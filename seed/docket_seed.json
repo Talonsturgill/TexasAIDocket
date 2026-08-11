@@ -1,0 +1,1904 @@
+[
+  {
+    "id": "tx-2026-0001",
+    "title": "PUCT Project 58000, rulemaking to update ERCOT transmission cost recovery, comment deadline reached",
+    "summary": "The Public Utility Commission of Texas is amending its wholesale and investor owned utility retail transmission cost recovery rules for the ERCOT region. The commission published a proposal for publication amending Section 25.192 and Section 25.193 and set a comment deadline of August 11th, 2026. Utilities, data center developers, consumer advocates and ERCOT itself filed comments on the deadline date. The commission next considers the proposal at an open meeting before adopting a final rule.",
+    "topic": "power-and-the-grid",
+    "decider": {
+      "name": "Public Utility Commission of Texas",
+      "type": "state-agency"
+    },
+    "geography": {
+      "statewide": false,
+      "counties": [],
+      "metro": null,
+      "on_ercot": true
+    },
+    "status": "pending",
+    "key_dates": [
+      {
+        "date": "2025-04-23",
+        "kind": "filed",
+        "note": "Project opened by PUC Rules and Projects"
+      },
+      {
+        "date": "2026-07-09",
+        "kind": "comment_opens",
+        "note": "Proposal for publication filed and acknowledged by the Texas Register"
+      },
+      {
+        "date": "2026-08-11",
+        "kind": "comment_closes",
+        "note": "Comment deadline stated in the Texas Register acknowledgement"
+      }
+    ],
+    "public_access": {
+      "room": "open_comment",
+      "how": "Comments are filed in the PUCT Interchange under control number 58000. The comment deadline stated in the record has now been reached, so the remaining public access is the open meeting at which commissioners consider the proposal. Open meetings are held in Commissioners Hearing Room 7-100 and are listed as open to the public on the PUCT calendar feed.",
+      "url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58000&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+      "closes": "2026-08-11"
+    },
+    "claims": [
+      {
+        "id": "tx-2026-0001-c1",
+        "text": "The project's official case style identifies it as the ERCOT transmission cost recovery rulemaking.",
+        "verbatim_quote": "Rulemaking to Update Wholesale and IOU Retail Transmission Cost Recovery in the ERCOT Region",
+        "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58000&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+        "source_title": "PUCT Interchange, Filings for 58000, Case Style",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0001-c2",
+        "text": "The filing index records the number of filings in the project.",
+        "verbatim_quote": "66 filing(s).",
+        "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58000&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+        "source_title": "PUCT Interchange, Filings for 58000",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0001-c3",
+        "text": "The proposal for publication amends two named transmission cost recovery rules.",
+        "verbatim_quote": "PROPOSAL FOR PUBLICATION OF AMENDMENTS TO §25.192 and §25.193",
+        "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58000&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+        "source_title": "PUCT Interchange, Filings for 58000, item 8, filed by PUC OPDM, file stamp 7/9/2026",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0001-c4",
+        "text": "The Texas Register acknowledgement filed in the project states the comment due date.",
+        "verbatim_quote": "Texas Register Acknowledgement of Receipt - Comments Due 08.11.2026",
+        "source_url": "https://interchange.puc.texas.gov/search/documents/?controlNumber=58000&itemNumber=9",
+        "source_title": "PUCT Interchange, control number 58000 item 9, filed by RULES & PROJECTS, file stamp 7/9/2026",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0001-c5",
+        "text": "An earlier staff memo in the project carried a July 31st comment deadline before the deadline was reset.",
+        "verbatim_quote": "OM Item No. 29 - Staff Memo & PFP w/July 31 Comment Deadline",
+        "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58000&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+        "source_title": "PUCT Interchange, Filings for 58000, item 3, file stamp 6/11/2026",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0001-c6",
+        "text": "A legislative committee chairman filed a letter into the rulemaking on transmission cost recovery.",
+        "verbatim_quote": "LETTER REGARDING EVALUATION OF TRANSMISSION COST RECOVERY",
+        "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58000&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+        "source_title": "PUCT Interchange, Filings for 58000, item 5, party CHAIRMAN DREW DARBY, file stamp 6/30/2026",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0001-c7",
+        "text": "ERCOT filed comments on the proposal on the deadline date.",
+        "verbatim_quote": "ELECTRIC RELIABILITY COUNCIL OF TEXAS, INC.’S COMMENTS REG",
+        "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58000&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+        "source_title": "PUCT Interchange, Filings for 58000, item 64, party ERCOT, file stamp 8/11/2026",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0001-c8",
+        "text": "The Office of Public Utility Counsel, the statutory residential ratepayer advocate, filed comments on the deadline date.",
+        "verbatim_quote": "OFFICE OF PUBLIC UTILITY COUNSEL’S COMMENTS ON THE PROPOSA",
+        "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58000&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+        "source_title": "PUCT Interchange, Filings for 58000, item 63, party OPUC, file stamp 8/11/2026",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0001-c9",
+        "text": "Data center and digital infrastructure companies filed comments in the rulemaking.",
+        "verbatim_quote": "Rowan Digital Infrastructure Comments in Response to Propo",
+        "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58000&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+        "source_title": "PUCT Interchange, Filings for 58000, item 58, party ROWAN DIGITAL INFRASTRUCTURE, file stamp 8/11/2026",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      }
+    ],
+    "last_verified": "2026-08-11",
+    "confidence": "high",
+    "notes_for_editor": "This is the rulemaking most directly downstream of SB 6 (89R). The docket record itself does not recite SB 6 in the case style, so the SB 6 linkage is asserted separately in the SB 6 item and should not be presented here as something the PUCT record states. The underlying proposal PDF is at https://interchange.puc.texas.gov/Documents/58000_9_1664204.PDF and was NOT parsed: no PDF text extractor was available in this environment. A follow up should read it and pull the four coincident peak allocation language directly. Party names are reproduced exactly as the Interchange spells them, including its truncation of long filing descriptions."
+  },
+  {
+    "id": "tx-2026-0002",
+    "title": "PUCT Project 58482, proposed new rule on Large Load Demand Management Service, open for comment",
+    "summary": "The Public Utility Commission of Texas has proposed a new rule governing demand management service for large electric loads, the category that covers data centers. The proposal for publication creates a new Section 25.521. Comments are open until September 4th, 2026. Individual Texans as well as utilities and data center operators have already filed.",
+    "topic": "power-and-the-grid",
+    "decider": {
+      "name": "Public Utility Commission of Texas",
+      "type": "state-agency"
+    },
+    "geography": {
+      "statewide": false,
+      "counties": [],
+      "metro": null,
+      "on_ercot": true
+    },
+    "status": "open",
+    "key_dates": [
+      {
+        "date": "2026-07-24",
+        "kind": "ordered",
+        "note": "Staff memo and proposal for publication with a September 4th comment deadline"
+      },
+      {
+        "date": "2026-07-30",
+        "kind": "comment_opens",
+        "note": "Proposal for publication of new Section 25.521 filed"
+      },
+      {
+        "date": "2026-09-04",
+        "kind": "comment_closes",
+        "note": "Comment deadline in the Texas Register acknowledgement"
+      }
+    ],
+    "public_access": {
+      "room": "open_comment",
+      "how": "Anyone may file comments under control number 58482 through the PUCT Interchange filer at https://www.puc.texas.gov/industry/filings/Default.aspx. Individuals have already done so without counsel: the record contains filings from named members of the public alongside utility and data center filings. Comments must be in by the September 4th, 2026 deadline.",
+      "url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+      "closes": "2026-09-04"
+    },
+    "claims": [
+      {
+        "id": "tx-2026-0002-c1",
+        "text": "The project's official case style names the subject of the rulemaking.",
+        "verbatim_quote": "Large Load Demand Management Service",
+        "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+        "source_title": "PUCT Interchange, Filings for 58482, Case Style",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0002-c2",
+        "text": "The commission filed a proposal for publication creating a new rule section.",
+        "verbatim_quote": "PROPOSAL FOR PUBLICATION NEW §25.521",
+        "source_url": "https://interchange.puc.texas.gov/search/documents/?controlNumber=58482&itemNumber=30",
+        "source_title": "PUCT Interchange, control number 58482 item 30, filed by PUC OPDM, file stamp 7/30/2026",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0002-c3",
+        "text": "The Texas Register acknowledgement states the comment deadline.",
+        "verbatim_quote": "Texas Register Acknowledgement of Receipt - Comment Deadline 09/04/2026",
+        "source_url": "https://interchange.puc.texas.gov/search/documents/?controlNumber=58482&itemNumber=31",
+        "source_title": "PUCT Interchange, control number 58482 item 31, filed by RULES & PROJECTS, file stamp 7/30/2026",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0002-c4",
+        "text": "The PUCT calendar feed independently lists the September 4th public comment deadline for this project.",
+        "verbatim_quote": "Project 58482 Commissioners Hearing Room 7-100 ( Open To Public )",
+        "source_url": "https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx",
+        "source_title": "PUCT calendar RSS, entry titled Public Comment Deadline - Friday, September 4, 2026",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0002-c5",
+        "text": "Members of the public have filed objections in the project without counsel.",
+        "verbatim_quote": "Large Load Demand Services \"Say No to incentives\"",
+        "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+        "source_title": "PUCT Interchange, Filings for 58482, item 32, party Jennifer Carrig, file stamp 8/3/2026",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0002-c6",
+        "text": "A second member of the public filed an objection to the rule change.",
+        "verbatim_quote": "Objection to rule change",
+        "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+        "source_title": "PUCT Interchange, Filings for 58482, item 33, party Helen Bryant, file stamp 8/3/2026",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0002-c7",
+        "text": "A data center operator is a party to the rulemaking.",
+        "verbatim_quote": "CyrusOne, LP Comments in Response to Commission Staff's Qu",
+        "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+        "source_title": "PUCT Interchange, Filings for 58482, item 25, party CyrusOne, LP, file stamp 4/8/2026",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0002-c8",
+        "text": "The filing index records the number of filings in the project.",
+        "verbatim_quote": "33 filing(s).",
+        "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+        "source_title": "PUCT Interchange, Filings for 58482",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0002-c9",
+        "text": "The rulemaking implements a statutory command in the Utilities Code bearing the same name as the project.",
+        "verbatim_quote": "Sec. 39.170. LARGE LOAD DEMAND MANAGEMENT SERVICE. (a) The commission shall require the independent organization certified under Section 39.151 for the ERCOT power region",
+        "source_url": "https://tcss.legis.texas.gov/resources/UT/htm/UT.39.htm",
+        "source_title": "Texas Utilities Code Sec. 39.170, added by SB 6 (89R)",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0002-c10",
+        "text": "The statute sets the size threshold for the large load customers the service must reach.",
+        "verbatim_quote": "develop a reliability service to competitively procure demand reductions from large load customers with a demand of at least 75 megawatts to be deployed in the event of an anticipated emergency condition",
+        "source_url": "https://tcss.legis.texas.gov/resources/UT/htm/UT.39.htm",
+        "source_title": "Texas Utilities Code Sec. 39.170(b)",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      }
+    ],
+    "last_verified": "2026-08-11",
+    "confidence": "high",
+    "notes_for_editor": "This is the single most actionable item in the seed set: a live comment window a reader can still use. The proposed rule text is at https://interchange.puc.texas.gov/Documents/58482_30_1669532.PDF and was NOT parsed, for the same missing PDF extractor reason. A follow up should confirm what Section 25.521 actually requires of large loads before the docket summarises its substance beyond the case style."
+  },
+  {
+    "id": "tx-2026-0003",
+    "title": "PUCT Docket 59315, Oncor application for a 765 kV transmission line across 22 counties",
+    "summary": "Oncor Electric Delivery has applied to amend its certificate of convenience and necessity to build the Dinosaur Switch to Longshore Switch transmission line. The application covers a corridor crossing 22 named counties in central and west Texas. The docket has drawn one of the largest volumes of landowner filings in recent PUCT practice, including intervention requests, protests and a county resolution. The commission has the matter set for an open meeting on August 21st, 2026.",
+    "topic": "power-and-the-grid",
+    "decider": {
+      "name": "Public Utility Commission of Texas",
+      "type": "state-agency"
+    },
+    "geography": {
+      "statewide": false,
+      "counties": [
+        "Borden",
+        "Bosque",
+        "Brown",
+        "Callahan",
+        "Coke",
+        "Coleman",
+        "Comanche",
+        "Eastland",
+        "Erath",
+        "Glasscock",
+        "Hamilton",
+        "Hood",
+        "Howard",
+        "Jones",
+        "Mitchell",
+        "Nolan",
+        "Runnels",
+        "Shackelford",
+        "Somervell",
+        "Stephens",
+        "Sterling",
+        "Taylor"
+      ],
+      "metro": null,
+      "on_ercot": true
+    },
+    "status": "pending",
+    "key_dates": [
+      {
+        "date": "2026-02-02",
+        "kind": "filed",
+        "note": "Oncor requested a docket number"
+      },
+      {
+        "date": "2026-08-21",
+        "kind": "hearing",
+        "note": "Open meeting listing the docket, per the PUCT calendar feed"
+      }
+    ],
+    "public_access": {
+      "room": "open_meeting",
+      "how": "The docket is set for an open meeting on August 21st, 2026 in Commissioners Hearing Room 7-100, listed as open to the public. Affected landowners have intervened and filed protests directly through the Interchange under control number 59315, and the record shows individuals doing so in their own names.",
+      "url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59315&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+      "closes": null
+    },
+    "claims": [
+      {
+        "id": "tx-2026-0003-c1",
+        "text": "The docket's official case style names the applicant, the project and every county crossed.",
+        "verbatim_quote": "APPLICATION OF ONCOR ELECTRIC DELIVERY COMPANY LLC TO AMEND ITS CERTIFICATE OF CONVENIENCE AND NECESSITY FOR THE DINOSAUR SWITCH - LONGSHORE SWITCH 765 KV TRANSMISSION LINE PROJECT IN BORDEN, BOSQUE, BROWN, CALLAHAN, COKE, COLEMAN, COMANCHE, EASTLAND, ERATH, GLASSCOCK, HAMILTON, HOOD, HOWARD, JONES, MITCHELL, NOLAN, RUNNELS, SHACKELFORD, SOMERVELL, STEPHENS, STERLING, AND TAYLOR COUNTIES",
+        "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59315&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+        "source_title": "PUCT Interchange, Filings for 59315, Case Style",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0003-c2",
+        "text": "The filing index records the number of filings in the docket.",
+        "verbatim_quote": "5782 filing(s).",
+        "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59315&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+        "source_title": "PUCT Interchange, Filings for 59315",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0003-c3",
+        "text": "A county government filed a resolution into the docket.",
+        "verbatim_quote": "Comanche County Resolution",
+        "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59315&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+        "source_title": "PUCT Interchange, Filings for 59315, item 4, party Comanche County, file stamp 2/4/2026",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0003-c4",
+        "text": "Landowners organised in opposition to a routing option near a state park.",
+        "verbatim_quote": "Protest the A3 line going around Dinosaur Valley State Park",
+        "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59315&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+        "source_title": "PUCT Interchange, Filings for 59315, item 3, party Rock-N-Oaks Ranch, file stamp 2/3/2026",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0003-c5",
+        "text": "A river protection group entered the docket.",
+        "verbatim_quote": "Letter Oncor Dinosaur-Longshore 765KV",
+        "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59315&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+        "source_title": "PUCT Interchange, Filings for 59315, item 5, party Paluxy River Protection Alliance, file stamp 2/4/2026",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0003-c6",
+        "text": "The PUCT calendar feed lists the docket for an open meeting.",
+        "verbatim_quote": "Docket 59315 Commissioners Hearing Room 7-100 ( Open To Public )",
+        "source_url": "https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx",
+        "source_title": "PUCT calendar RSS, entry titled Open Meeting - Friday, August 21, 2026",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      }
+    ],
+    "last_verified": "2026-08-11",
+    "confidence": "high",
+    "notes_for_editor": "The 765 kV designation and the 22 county list are taken verbatim from the commission's own case style, not computed. Note for numeral_lint: 765 kV and the docket number are identifiers inside a quoted official title, not measurements this project derived. The Interchange web view rendered only the first 2000 filing rows while reporting 5782 filings, so the item count is quoted from the index line rather than counted from the table. This docket is included on the AI beat because 765 kV backbone capacity is the physical answer to large load growth, but the record fetched does NOT state that any particular data center drives this line, and the docket must not be described as a data center project without that link being established."
+  },
+  {
+    "id": "tx-2026-0004",
+    "title": "Abbott orders audit of data centers in the ERCOT interconnection queue, pausing approvals",
+    "summary": "Governor Greg Abbott directed the Public Utility Commission of Texas and ERCOT to audit data center projects seeking connection to the ERCOT grid, and said projects that fail should be denied connection. ERCOT paused its batch zero review the same day. The order's duration and its pass or fail criteria were not stated when it was announced.",
+    "topic": "data-centers",
+    "decider": {
+      "name": "Office of the Governor of Texas",
+      "type": "governor"
+    },
+    "geography": {
+      "statewide": false,
+      "counties": [],
+      "metro": null,
+      "on_ercot": true
+    },
+    "status": "open",
+    "key_dates": [
+      {
+        "date": "2026-08-03",
+        "kind": "ordered",
+        "note": "Governor announced the audit and the pause on approvals"
+      }
+    ],
+    "public_access": {
+      "room": "contact_only",
+      "how": "A governor's directive letter is not a proceeding and takes no public comment. The place where the public can act on the same subject is the PUCT, whose Large Load Demand Management Service rulemaking is open for comment under control number 58482 until September 4th, 2026.",
+      "url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+      "closes": null
+    },
+    "claims": [
+      {
+        "id": "tx-2026-0004-c1",
+        "text": "The governor announced a halt on data center approvals pending an audit.",
+        "verbatim_quote": "Amid growing public backlash to the rapid buildout of data centers across Texas, Gov. Greg Abbott on Monday announced a moratorium on the approval of data centers until regulatory agencies can audit proposed data centers seeking connection to the state’s electric grid.",
+        "source_url": "https://www.texastribune.org/2026/08/03/texas-data-center-project-audit-greg-abbott/",
+        "source_title": "The Texas Tribune, Data center approvals in Texas halted until audits completed, Gov. Greg Abbott says",
+        "source_type": "journalism",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0004-c2",
+        "text": "The governor said non-compliant projects must be denied connection.",
+        "verbatim_quote": "Any project that fails to comply with the requirements set forth by the PUCT and ERCOT, and by state law, must be denied connection to the Texas grid. Simply put, Texans must come first.",
+        "source_url": "https://www.texastribune.org/2026/08/03/texas-data-center-project-audit-greg-abbott/",
+        "source_title": "The Texas Tribune, quoting a written statement by Governor Greg Abbott",
+        "source_type": "journalism",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0004-c3",
+        "text": "The size of the interconnection queue and the data center share of it were attributed to ERCOT and to the governor.",
+        "verbatim_quote": "ERCOT is currently tracking more than 1,800 projects in the queue, representing over 474 gigawatts of electricity, or more than five times the grid’s record for peak demand, according to ERCOT. Approximately 90% of the new power requests are data centers, Abbott said.",
+        "source_url": "https://www.texastribune.org/2026/08/03/texas-data-center-project-audit-greg-abbott/",
+        "source_title": "The Texas Tribune, Data center approvals in Texas halted until audits completed",
+        "source_type": "journalism",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0004-c4",
+        "text": "ERCOT paused the batch zero review in response to the directive.",
+        "verbatim_quote": "Following Abbott’s directive, ERCOT said Monday they are putting the batch zero review on pause.",
+        "source_url": "https://www.texastribune.org/2026/08/03/texas-data-center-project-audit-greg-abbott/",
+        "source_title": "The Texas Tribune, Data center approvals in Texas halted until audits completed",
+        "source_type": "journalism",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0004-c5",
+        "text": "The duration of the audit was not established when it was announced.",
+        "verbatim_quote": "It is unclear how long the audit will take",
+        "source_url": "https://www.texastribune.org/2026/08/03/texas-data-center-project-audit-greg-abbott/",
+        "source_title": "The Texas Tribune, Data center approvals in Texas halted until audits completed",
+        "source_type": "journalism",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0004-c6",
+        "text": "The scope of the audit relative to the existing batch zero review was not established.",
+        "verbatim_quote": "It is unclear if Abbott wants agencies to audit those projects or all those currently in the queue.",
+        "source_url": "https://www.texastribune.org/2026/08/03/texas-data-center-project-audit-greg-abbott/",
+        "source_title": "The Texas Tribune, Data center approvals in Texas halted until audits completed",
+        "source_type": "journalism",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0004-c7",
+        "text": "The pause does not reach projects outside the ERCOT region or those self supplying power.",
+        "verbatim_quote": "While Abbott’s directive pauses the approval of new data centers seeking connection to the ERCOT grid, some data centers are building on-site power generation that allows them to bypass traditional connection to the grid. The ERCOT region also does not include the entirety of the state, like El Paso, which has seen the development of several large data centers.",
+        "source_url": "https://www.texastribune.org/2026/08/03/texas-data-center-project-audit-greg-abbott/",
+        "source_title": "The Texas Tribune, Data center approvals in Texas halted until audits completed",
+        "source_type": "journalism",
+        "fetched": "2026-08-11"
+      }
+    ],
+    "last_verified": "2026-08-11",
+    "confidence": "medium",
+    "notes_for_editor": "SOURCING CAVEAT, read before publishing. The primary document is the governor's directive letter to PUCT Chairman Thomas Gleeson and ERCOT CEO Pablo Vegas. gov.texas.gov DISALLOWS ClaudeBot in robots.txt, so this item is sourced entirely to journalism that quotes the document, exactly as instructed. The letter's own URL, for a human to open directly, is https://gov.texas.gov/uploads/files/press/Thomas_Gleeson_Pablo_Vegas_Data_Centers_Directive_Letter_to_PUC_ERCOT_FINAL.pdf recovered from a link inside a press release, not by crawling. A human should read it and confirm three things this record does not establish: the cited statutory authority, any completion deadline, and any pass or fail criteria. Related and legally relevant: Utilities Code Section 39.1514 limits how the PUCT itself may direct ERCOT, and a governor's letter is not one of the three permitted channels. See item tx-2026-0007."
+  },
+  {
+    "id": "tx-2026-0005",
+    "title": "SB 6 (89R) signed and effective, restructuring large load interconnection and transmission cost allocation",
+    "summary": "Senate Bill 6 of the 89th Legislature, Regular Session, governs planning for and interconnection of large electrical loads and how the costs of serving them are allocated. It was signed by the governor and took effect immediately on June 20th, 2025. It passed both chambers out of committee without a recorded no vote. The PUCT rulemakings implementing it are the live proceedings.",
+    "topic": "power-and-the-grid",
+    "decider": {
+      "name": "Texas Legislature",
+      "type": "legislature"
+    },
+    "geography": {
+      "statewide": true,
+      "counties": [],
+      "metro": null,
+      "on_ercot": true
+    },
+    "status": "decided",
+    "key_dates": [
+      {
+        "date": "2025-06-20",
+        "kind": "signed",
+        "note": "Signed by the Governor"
+      },
+      {
+        "date": "2025-06-20",
+        "kind": "effective",
+        "note": "Effective immediately"
+      }
+    ],
+    "public_access": {
+      "room": "open_comment",
+      "how": "The statute is enacted and closed to comment. Implementation is where the public can still act: PUCT control number 58482 is open for comment until September 4th, 2026, and control number 58000 reached its comment deadline on August 11th, 2026.",
+      "url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+      "closes": null
+    },
+    "claims": [
+      {
+        "id": "tx-2026-0005-c1",
+        "text": "SB 6 is session law chapter 953 of the 89th Legislature and took effect June 20th, 2025.",
+        "verbatim_quote": "Added by Acts 2025, 89th Leg., R.S., Ch. 953 (S.B. 6 ), Sec. 4, eff. June 20, 2025.",
+        "source_url": "https://tcss.legis.texas.gov/resources/UT/htm/UT.39.htm",
+        "source_title": "Texas Utilities Code Sec. 39.170, source note",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0005-c2",
+        "text": "SB 6 requires ERCOT to build a reliability service procuring demand reductions from large loads above a stated size threshold.",
+        "verbatim_quote": "(b) The commission shall require the independent organization certified under Section 39.151 for the ERCOT power region to develop a reliability service to competitively procure demand reductions from large load customers with a demand of at least 75 megawatts to be deployed in the event of an anticipated emergency condition.",
+        "source_url": "https://tcss.legis.texas.gov/resources/UT/htm/UT.39.htm",
+        "source_title": "Texas Utilities Code Sec. 39.170(b), Large Load Demand Management Service",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0005-c3",
+        "text": "SB 6 requires curtailment protocols for large loads interconnected after a stated date, with equipment installed before interconnection.",
+        "verbatim_quote": "(a) The commission shall require the independent organization certified under Section 39.151 for the ERCOT power region to ensure that each electric cooperative, transmission and distribution utility, and municipally owned utility serving a transmission-voltage customer develops a protocol, including the installation of any necessary equipment or technology before the customer is interconnected, to allow the load to be curtailed during firm load shed.",
+        "source_url": "https://tcss.legis.texas.gov/resources/UT/htm/UT.39.htm",
+        "source_title": "Texas Utilities Code Sec. 39.170(a)",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0005-c4",
+        "text": "The curtailment duty reaches only loads interconnected after a stated date, and exempts two named categories.",
+        "verbatim_quote": "This subsection applies only to a load interconnected after December 31, 2025, that is not: (1) load operated by a critical load industrial customer, as defined by Section 17.002 ; or (2) designated as a critical natural gas facility under Section 38.074 .",
+        "source_url": "https://tcss.legis.texas.gov/resources/UT/htm/UT.39.htm",
+        "source_title": "Texas Utilities Code Sec. 39.170(a)",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0005-c5",
+        "text": "Large loads must get advance notice before curtailment and must stay curtailed for the event.",
+        "verbatim_quote": "(2) ensure that the independent organization provides at least a 24-hour notice to large load customers and requires each large load to remain curtailed for the duration of the energy emergency alert event or until the load can be recalled safely;",
+        "source_url": "https://tcss.legis.texas.gov/resources/UT/htm/UT.39.htm",
+        "source_title": "Texas Utilities Code Sec. 39.170(b)(2)",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      }
+    ],
+    "last_verified": "2026-08-11",
+    "confidence": "high",
+    "notes_for_editor": "RE-SOURCED, and the item is stronger for it. This item originally quoted capitol.texas.gov/BillLookup/, which robots.txt disallows. Every claim here is now taken from the ENACTED TEXT in the Utilities Code at tcss.legis.texas.gov, an allowed host and the better primary source anyway. No recurring collector should poll BillLookup. Two facts a human can get from Texas Legislature Online by hand if the docket wants them: SB 6 cleared Senate Business and Commerce and House State Affairs with no recorded no vote, and its authors were King and Schwertner. NEGATIVE FINDING, and it corrects the brief this research was given: the widely repeated claim that SB 6 sets a DECEMBER 31ST, 2026 STATUTORY DEADLINE for the PUC to amend four coincident peak transmission cost allocation IS NOT SUPPORTED by anything retrieved. The full text of Utilities Code Chapter 39 was fetched and searched for 2026 deadline language, and the only 2026 date in the chapter is a September 1, 2026 reference elsewhere. If the deadline is real it sits in an uncodified section of the act, which this research could not reach. DO NOT PUBLISH THAT DEADLINE until someone reads the enrolled bill. Section 39.170 is the statutory basis for PUCT control number 58482, which makes that rulemaking the place SB 6 is actually being implemented."
+  },
+  {
+    "id": "tx-2026-0006",
+    "title": "TRAIGA in force as Business and Commerce Code Chapter 552, enforceable only by the Attorney General",
+    "summary": "The Texas Responsible Artificial Intelligence Governance Act took effect on January 1st, 2026 as Chapter 552 of the Business and Commerce Code. It bans developing or deploying an AI system with intent to unlawfully discriminate, to manipulate behaviour, for social scoring, or to produce certain illegal content, and it requires government agencies to tell people when they are interacting with an AI system. The Attorney General has exclusive enforcement authority and the statute creates no private right of action.",
+    "topic": "state-policy",
+    "decider": {
+      "name": "Office of the Attorney General of Texas",
+      "type": "state-agency"
+    },
+    "geography": {
+      "statewide": true,
+      "counties": [],
+      "metro": null,
+      "on_ercot": false
+    },
+    "status": "decided",
+    "key_dates": [
+      {
+        "date": "2025-06-22",
+        "kind": "signed",
+        "note": "HB 149 signed by the Governor"
+      },
+      {
+        "date": "2026-01-01",
+        "kind": "effective",
+        "note": "Chapter 552 took effect"
+      }
+    ],
+    "public_access": {
+      "room": "contact_only",
+      "how": "Individuals can't sue under this chapter. The route is a complaint to the Attorney General, and a related statute requires the Attorney General to run an online AI complaint page. See item tx-2026-0010 for that page's statutory basis and for the verification gap on whether it exists yet.",
+      "url": null,
+      "closes": null
+    },
+    "claims": [
+      {
+        "id": "tx-2026-0006-c1",
+        "text": "The chapter was created by HB 149 and took effect January 1st, 2026.",
+        "verbatim_quote": "Added by Acts 2025, 89th Leg., R.S., Ch. 1174 (H.B. 149), Sec. 4, eff. January 1, 2026.",
+        "source_url": "https://tcss.legis.texas.gov/resources/BC/htm/BC.552.htm",
+        "source_title": "Texas Business and Commerce Code Chapter 552, Artificial Intelligence Protection, source note to Sec. 552.001",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0006-c2",
+        "text": "The Attorney General has exclusive enforcement authority and there is no private right of action.",
+        "verbatim_quote": "(a) The attorney general has exclusive authority to enforce this chapter, except to the extent provided by Section  552.106 . (b) This chapter does not provide a basis for, and is not subject to, a private right of action for a violation of this chapter or any other law.",
+        "source_url": "https://tcss.legis.texas.gov/resources/BC/htm/BC.552.htm",
+        "source_title": "Texas Business and Commerce Code Sec. 552.101, Enforcement Authority",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0006-c3",
+        "text": "The statute sets tiered civil penalties by violation type.",
+        "verbatim_quote": "(1) for each violation the court determines to be curable or a breach of a statement submitted to the attorney general under Section  552.104 (b)(2), not less than $10,000 and not more than $12,000; (2) for each violation the court determines to be uncurable, not less than $80,000 and not more than $200,000; and (3) for a continued violation, not less than $2,000 and not more than $40,000 for each day the violation continues.",
+        "source_url": "https://tcss.legis.texas.gov/resources/BC/htm/BC.552.htm",
+        "source_title": "Texas Business and Commerce Code Sec. 552.105, Civil Penalty; Injunction",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0006-c4",
+        "text": "The discrimination ban turns on intent, and disparate impact alone is not enough to show it.",
+        "verbatim_quote": "(b) A person may not develop or deploy an artificial intelligence system with the intent to unlawfully discriminate against a protected class in violation of state or federal law. (c) For purposes of this section, a disparate impact is not sufficient by itself to demonstrate an intent to discriminate.",
+        "source_url": "https://tcss.legis.texas.gov/resources/BC/htm/BC.552.htm",
+        "source_title": "Texas Business and Commerce Code Sec. 552.056, Unlawful Discrimination",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0006-c5",
+        "text": "Government agencies must disclose AI interaction even when it would be obvious.",
+        "verbatim_quote": "(c) A person is required to make the disclosure under Subsection (b) regardless of whether it would be obvious to a reasonable consumer that the consumer is interacting with an artificial intelligence system.",
+        "source_url": "https://tcss.legis.texas.gov/resources/BC/htm/BC.552.htm",
+        "source_title": "Texas Business and Commerce Code Sec. 552.051, Disclosure to Consumers",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0006-c6",
+        "text": "There is a rebuttable presumption that a person used reasonable care.",
+        "verbatim_quote": "(c) There is a rebuttable presumption that a person used reasonable care as required under this chapter.",
+        "source_url": "https://tcss.legis.texas.gov/resources/BC/htm/BC.552.htm",
+        "source_title": "Texas Business and Commerce Code Sec. 552.105, Civil Penalty; Injunction",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      }
+    ],
+    "last_verified": "2026-08-11",
+    "confidence": "high",
+    "notes_for_editor": "Sourced to the enacted statute rather than to the bill history, which is both the better primary source and an allowed one. Dollar figures appear only inside verbatim statutory quotes. Note the chapter title is Artificial Intelligence Protection, not the act's popular name."
+  },
+  {
+    "id": "tx-2026-0007",
+    "title": "Utilities Code limits how the PUCT may direct ERCOT, and bars verbal directives",
+    "summary": "Texas law restricts the channels through which the Public Utility Commission may order ERCOT to act. A verbal directive is prohibited outright, and an official action may be directed only by contested case, by rulemaking, or by a written order or memorandum adopted on a majority vote. Separately, the ERCOT board selection committee, not the governor, picks ERCOT's directors and designates its chair.",
+    "topic": "power-and-the-grid",
+    "decider": {
+      "name": "Texas Legislature",
+      "type": "legislature"
+    },
+    "geography": {
+      "statewide": false,
+      "counties": [],
+      "metro": null,
+      "on_ercot": true
+    },
+    "status": "decided",
+    "key_dates": [
+      {
+        "date": "2021-06-08",
+        "kind": "effective",
+        "note": "SB 2 (87R) added the board selection committee"
+      }
+    ],
+    "public_access": {
+      "room": "open_meeting",
+      "how": "Because a directive to ERCOT must run through a contested case, a rulemaking, or a majority vote taken in a meeting, each of those carries its own public participation route. PUCT open meetings are listed on the agency calendar feed and are open to the public in Commissioners Hearing Room 7-100.",
+      "url": "https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx",
+      "closes": null
+    },
+    "claims": [
+      {
+        "id": "tx-2026-0007-c1",
+        "text": "The commission may not verbally direct ERCOT and may direct official action only three ways.",
+        "verbatim_quote": "(a) The commission may not use a verbal directive to direct an independent organization certified under Section 39.151 to take an official action. The commission may direct the organization to take an official action only through: (1) a contested case; (2) rulemaking; or (3) a memorandum or written order adopted by a majority vote.",
+        "source_url": "https://tcss.legis.texas.gov/resources/UT/htm/UT.39.htm",
+        "source_title": "Texas Utilities Code Sec. 39.1514, Commission Directives to Independent Organization",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0007-c2",
+        "text": "The ERCOT board selection committee is three members, one each appointed by the governor, lieutenant governor and speaker.",
+        "verbatim_quote": "(a) The ERCOT board selection committee is composed of: (1) one member appointed by the governor; (2) one member appointed by the lieutenant governor; and (3) one member appointed by the speaker of the house of representatives.",
+        "source_url": "https://tcss.legis.texas.gov/resources/UT/htm/UT.39.htm",
+        "source_title": "Texas Utilities Code Sec. 39.1513, ERCOT Board Selection Committee",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0007-c3",
+        "text": "That committee selects ERCOT's governing body and designates its chair and vice chair.",
+        "verbatim_quote": "(d) The committee shall select members eligible under Section 39.151 to serve on the governing body of an independent organization certified under that section for the ERCOT power region and shall designate the chair and vice chair of the governing body from those members.",
+        "source_url": "https://tcss.legis.texas.gov/resources/UT/htm/UT.39.htm",
+        "source_title": "Texas Utilities Code Sec. 39.1513, ERCOT Board Selection Committee",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      }
+    ],
+    "last_verified": "2026-08-11",
+    "confidence": "high",
+    "notes_for_editor": "This item exists to give readers the legal frame for the August 3rd audit directive. It states what the statute says and stops there. It does NOT assert that the governor's directive was improper: the section binds the commission's directives to ERCOT, and a governor's letter to both agencies is a different instrument. Any characterisation beyond the quoted text needs a lawyer and a named source."
+  },
+  {
+    "id": "tx-2026-0008",
+    "title": "Texas Government Code Chapter 2054 carries three conflicting Subchapter S's on AI, with duplicated section numbers",
+    "summary": "Three separate acts of the 89th Legislature each added a Subchapter S to Government Code Chapter 2054, and two of them number their sections identically. Section 2054.702 exists twice with entirely different commands, as do Sections 2054.701 and 2054.703 through 2054.705. The codifier has flagged the conflict in the published code rather than resolved it. Which text governs a state agency's AI duties is unsettled on the face of the statute.",
+    "topic": "state-policy",
+    "decider": {
+      "name": "Texas Legislature",
+      "type": "legislature"
+    },
+    "geography": {
+      "statewide": true,
+      "counties": [],
+      "metro": null,
+      "on_ercot": false
+    },
+    "status": "open",
+    "key_dates": [
+      {
+        "date": "2025-09-01",
+        "kind": "effective",
+        "note": "Both conflicting AI subchapters took effect"
+      }
+    ],
+    "public_access": {
+      "room": "contact_only",
+      "how": "A codification conflict is resolved either by the Legislature in a future non substantive revision bill or by a court. There is no comment window. A reader who cares can raise it with their own legislator or with the Texas Legislative Council, which prepares the revision bills.",
+      "url": null,
+      "closes": null
+    },
+    "claims": [
+      {
+        "id": "tx-2026-0008-c1",
+        "text": "The published code carries an editorial note recording three separate Subchapter S enactments.",
+        "verbatim_quote": "Subchapter S, consisting of Secs. 2054.701 to 2054.713, was added by Acts 2025, 89th Leg., R.S., Ch. 1148 (S.B.  1964 ), Sec. 5. For another Subchapter S, consisting of Secs. 2054.651 to 2054.654, added by Acts 2025, 89th Leg., R.S., Ch. 951 (H.B.  5195 ), Sec. 1, see Sec. 2054.651 et seq., post. For another Subchapter S, consisting of Secs. 2054.701 to 2054.705, added by Acts 2025, 89th Leg., R.S., Ch. 1079 (H.B.  2818 ), Sec. 1, see Sec. 2054.701 et seq., post.",
+        "source_url": "https://tcss.legis.texas.gov/resources/GV/htm/GV.2054.htm",
+        "source_title": "Texas Government Code Chapter 2054, editorial note preceding Subchapter S",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0008-c2",
+        "text": "One version of Section 2054.702 concerns generative AI technology.",
+        "verbatim_quote": "Sec. 2054.702. GENERATIVE ARTIFICIAL INTELLIGENCE TECHNOLOGY.",
+        "source_url": "https://tcss.legis.texas.gov/resources/GV/htm/GV.2054.htm",
+        "source_title": "Texas Government Code Sec. 2054.702, in the Subchapter S added by HB 2818",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0008-c3",
+        "text": "The other version of Section 2054.702 requires a statewide AI code of ethics.",
+        "verbatim_quote": "Sec. 2054.702. ARTIFICIAL INTELLIGENCE SYSTEM CODE OF ETHICS.  (a) The department by rule shall establish an artificial intelligence system code of ethics for use by state agencies and local governments that procure, develop, deploy, or use artificial intelligence systems.",
+        "source_url": "https://tcss.legis.texas.gov/resources/GV/htm/GV.2054.htm",
+        "source_title": "Texas Government Code Sec. 2054.702, in the Subchapter S added by SB 1964",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0008-c4",
+        "text": "That code of ethics must align with a named federal framework.",
+        "verbatim_quote": "the artificial intelligence system code of ethics must include guidance for the deployment and use of artificial intelligence systems and heightened scrutiny artificial intelligence systems that aligns with the Artificial Intelligence Risk Management Framework (AI RMF 1.0) published by the National Institute of Standards and Technology.",
+        "source_url": "https://tcss.legis.texas.gov/resources/GV/htm/GV.2054.htm",
+        "source_title": "Texas Government Code Sec. 2054.702(b), in the Subchapter S added by SB 1964",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0008-c5",
+        "text": "Local governments as well as state agencies must adopt the code of ethics.",
+        "verbatim_quote": "(c) State agencies and local governments shall adopt the code of ethics developed under this section.",
+        "source_url": "https://tcss.legis.texas.gov/resources/GV/htm/GV.2054.htm",
+        "source_title": "Texas Government Code Sec. 2054.702(c), in the Subchapter S added by SB 1964",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      }
+    ],
+    "last_verified": "2026-08-11",
+    "confidence": "high",
+    "notes_for_editor": "Found by reading the code, not reported anywhere we saw, and it is the strongest original finding in this seed set. The conflict is real and is visible in the state's own published text. One caution for the write up: duplicate subchapter designations are a routine artefact of a busy session and are usually cleaned up in the next non substantive revision bill, so the honest framing is that the code currently carries a conflict, not that anyone did something wrong. Worth checking whether the 89th Legislature's later called sessions already fixed it."
+  },
+  {
+    "id": "tx-2026-0009",
+    "title": "DIR must run an AI regulatory sandbox letting state agencies test systems outside normal rules",
+    "summary": "The Department of Information Resources is required to establish a programme letting eligible public entities contract with registered vendors to test AI systems before deployment, expressly without full compliance with otherwise applicable regulations. Vendors apply, and participants file quarterly reports. The department must report to the Legislature by November 30th of each even numbered year, which makes November 30th, 2026 the first reporting date.",
+    "topic": "state-policy",
+    "decider": {
+      "name": "Texas Department of Information Resources",
+      "type": "state-agency"
+    },
+    "geography": {
+      "statewide": true,
+      "counties": [],
+      "metro": null,
+      "on_ercot": false
+    },
+    "status": "pending",
+    "key_dates": [
+      {
+        "date": "2025-09-01",
+        "kind": "effective",
+        "note": "SB 1964 took effect"
+      },
+      {
+        "date": "2026-11-30",
+        "kind": "statutory_deadline",
+        "note": "Department report to the Legislature due, per Sec. 2054.706(g)"
+      }
+    ],
+    "public_access": {
+      "room": "contact_only",
+      "how": "The application process runs to vendors registered with DIR, not to the general public, and the statute provides no public comment step. The public visibility point is the report the department owes the Legislature by November 30th, 2026. A reader can ask DIR for the vendor application process and for any quarterly reports already filed.",
+      "url": null,
+      "closes": null
+    },
+    "claims": [
+      {
+        "id": "tx-2026-0009-c1",
+        "text": "The sandbox is defined as testing without full regulatory compliance.",
+        "verbatim_quote": "\"Program\" means the program established by this section that is designed to allow temporary testing of an artificial intelligence system in a controlled, limited manner without requiring full compliance with otherwise applicable regulations.",
+        "source_url": "https://tcss.legis.texas.gov/resources/GV/htm/GV.2054.htm",
+        "source_title": "Texas Government Code Sec. 2054.706(a)(2), Artificial Intelligence System Sandbox Program",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0009-c2",
+        "text": "The department must establish and administer the programme.",
+        "verbatim_quote": "(b) The department shall establish and administer a program to support eligible entities in contracting with vendors to engage in research, development, training, testing, and other pre-deployment activities related to artificial intelligence systems",
+        "source_url": "https://tcss.legis.texas.gov/resources/GV/htm/GV.2054.htm",
+        "source_title": "Texas Government Code Sec. 2054.706(b)",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0009-c3",
+        "text": "Vendor applications must include a public risk assessment and a mitigation plan.",
+        "verbatim_quote": "(2) a risk assessment of the system that addresses potential impacts on the public; and (3) a plan for mitigating any adverse consequences discovered during the system's testing phase.",
+        "source_url": "https://tcss.legis.texas.gov/resources/GV/htm/GV.2054.htm",
+        "source_title": "Texas Government Code Sec. 2054.706(c)",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0009-c4",
+        "text": "The department owes the Legislature a report on a fixed recurring date.",
+        "verbatim_quote": "(g) Not later than November 30 of each even-numbered year, the department shall produce an annual report and submit the report to the legislature summarizing:",
+        "source_url": "https://tcss.legis.texas.gov/resources/GV/htm/GV.2054.htm",
+        "source_title": "Texas Government Code Sec. 2054.706(g)",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0009-c5",
+        "text": "The sandbox was created by SB 1964, effective September 1st, 2025.",
+        "verbatim_quote": "Added by Acts 2025, 89th Leg., R.S., Ch. 1148 (S.B.  1964 ), Sec. 5, eff. September 1, 2025.",
+        "source_url": "https://tcss.legis.texas.gov/resources/GV/htm/GV.2054.htm",
+        "source_title": "Texas Government Code Chapter 2054 Subchapter S, source note",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      }
+    ],
+    "last_verified": "2026-08-11",
+    "confidence": "high",
+    "notes_for_editor": "CORRECTION TO A COMMON BELIEF, please keep it in the published item. The regulatory sandbox is widely attributed to TRAIGA. It is not in TRAIGA. It is Section 2054.706, added by SB 1964, and it took effect September 1st, 2025, four months before TRAIGA did. Whether DIR has actually stood the programme up was NOT verified: no DIR page was fetched. That is the obvious follow up and the honest hook is the November 30th, 2026 report."
+  },
+  {
+    "id": "tx-2026-0010",
+    "title": "Attorney General owes a public AI complaint web page and a biennial report on the complaints",
+    "summary": "State law requires the Attorney General, working with the Department of Information Resources, to run a web page where any person can report a complaint about an AI system, including one alleged to infringe constitutional rights or a person's financial livelihood. Complaints route to the department, a complainant may request an explanation, and the Attorney General must report to the Legislature by November 30th of each even numbered year.",
+    "topic": "state-policy",
+    "decider": {
+      "name": "Office of the Attorney General of Texas",
+      "type": "state-agency"
+    },
+    "geography": {
+      "statewide": true,
+      "counties": [],
+      "metro": null,
+      "on_ercot": false
+    },
+    "status": "unknown",
+    "key_dates": [
+      {
+        "date": "2025-09-01",
+        "kind": "effective",
+        "note": "SB 1964 took effect"
+      },
+      {
+        "date": "2026-11-30",
+        "kind": "statutory_deadline",
+        "note": "Attorney General report to the Legislature due, per Sec. 2054.710(f)"
+      }
+    ],
+    "public_access": {
+      "room": "contact_only",
+      "how": "If the page exists it is the most direct route a Texan has to complain about a government AI system, and the statute lets the complainant request an explanation from the department. This record does NOT establish that the page is live. A reader should look for it on the Attorney General's website and, if it is missing, that absence is itself the story.",
+      "url": null,
+      "closes": null
+    },
+    "claims": [
+      {
+        "id": "tx-2026-0010-c1",
+        "text": "The Attorney General must establish an AI complaint web page.",
+        "verbatim_quote": "(a) The attorney general shall, in collaboration with the department, establish a web page on the attorney general's Internet website that allows a person to report a complaint relating to artificial intelligence systems, including: (1) instances of an artificial intelligence system allegedly unlawfully infringing on the person's constitutional rights or financial livelihood; or (2) the use of an artificial intelligence system that allegedly results in unlawful harm.",
+        "source_url": "https://tcss.legis.texas.gov/resources/GV/htm/GV.2054.htm",
+        "source_title": "Texas Government Code Sec. 2054.710(a), Artificial Intelligence System Complaint Web Page",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0010-c2",
+        "text": "A complainant may request an explanation from the department.",
+        "verbatim_quote": "(c) A person who submits a complaint on the web page created under Subsection (a) may request an explanation from the department.",
+        "source_url": "https://tcss.legis.texas.gov/resources/GV/htm/GV.2054.htm",
+        "source_title": "Texas Government Code Sec. 2054.710(c)",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0010-c3",
+        "text": "The Attorney General must also publish public education material on AI rights and risks.",
+        "verbatim_quote": "(d) The attorney general shall post on the attorney general's Internet website information that: (1) educates persons regarding the risks and benefits of artificial intelligence systems; and (2) explains a person's rights in relation to artificial intelligence systems.",
+        "source_url": "https://tcss.legis.texas.gov/resources/GV/htm/GV.2054.htm",
+        "source_title": "Texas Government Code Sec. 2054.710(d)",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0010-c4",
+        "text": "A biennial report on complaints and enforcement is due to the Legislature.",
+        "verbatim_quote": "(f) Not later than November 30 of each even-numbered year, the attorney general shall submit to the legislature a report summarizing the complaints received under this section, the resolutions of the complaints, and any enforcement actions taken.",
+        "source_url": "https://tcss.legis.texas.gov/resources/GV/htm/GV.2054.htm",
+        "source_title": "Texas Government Code Sec. 2054.710(f)",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      }
+    ],
+    "last_verified": "2026-08-11",
+    "confidence": "medium",
+    "notes_for_editor": "Status is deliberately unknown. The statutory duty is verified from the code; whether the page has been built was NOT checked, because texasattorneygeneral.gov was never fetched in this session. This is a one request follow up and it decides whether the item reads as a resource for readers or as an unmet statutory duty. Do not publish either framing before someone looks."
+  },
+  {
+    "id": "tx-2026-0011",
+    "title": "Public Sector AI Systems Advisory Board established in statute with eight governor-appointed members",
+    "summary": "State law establishes an advisory board to help state agencies develop and deploy AI systems. The statute fixes its composition at eight members, all appointed by the governor or the governor's designee, including two public members with technology expertise and one member from an agency with a small headcount. Members serve two year terms and are unpaid. Among its listed duties is recommending the elimination of rules that restrict AI innovation.",
+    "topic": "state-policy",
+    "decider": {
+      "name": "Office of the Governor of Texas",
+      "type": "governor"
+    },
+    "geography": {
+      "statewide": true,
+      "counties": [],
+      "metro": null,
+      "on_ercot": false
+    },
+    "status": "unknown",
+    "key_dates": [
+      {
+        "date": "2025-09-01",
+        "kind": "effective",
+        "note": "SB 1964 took effect, establishing the board"
+      }
+    ],
+    "public_access": {
+      "room": "contact_only",
+      "how": "Appointments are made by the governor, so there is no application or comment route. The Department of Information Resources provides the board's administrative support and is the place to ask for its membership, meeting schedule and any materials.",
+      "url": null,
+      "closes": null
+    },
+    "claims": [
+      {
+        "id": "tx-2026-0011-c1",
+        "text": "The board is established by statute to assist state agencies with AI systems.",
+        "verbatim_quote": "(a) A public sector artificial intelligence systems advisory board is established to assist state agencies in the development, deployment, and use of artificial intelligence systems.",
+        "source_url": "https://tcss.legis.texas.gov/resources/GV/htm/GV.2054.htm",
+        "source_title": "Texas Government Code Sec. 2054.705(a), Public Sector Artificial Intelligence Systems Advisory Board",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0011-c2",
+        "text": "The statute fixes the board's size and appointing authority.",
+        "verbatim_quote": "(d) The advisory board is composed of eight members as follows: (1) six members representing state agencies, including one member representing an agency with fewer than 150 employees, appointed by the governor or the governor's designee; and (2) two public members with expertise in technology, appointed by the governor or the governor's designee.",
+        "source_url": "https://tcss.legis.texas.gov/resources/GV/htm/GV.2054.htm",
+        "source_title": "Texas Government Code Sec. 2054.705(d)",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0011-c3",
+        "text": "One of the board's statutory duties is recommending removal of rules that restrict AI innovation.",
+        "verbatim_quote": "(5) recommend elimination of rules that restrict the innovation of artificial intelligence systems.",
+        "source_url": "https://tcss.legis.texas.gov/resources/GV/htm/GV.2054.htm",
+        "source_title": "Texas Government Code Sec. 2054.705(b)(5)",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0011-c4",
+        "text": "Members serve fixed terms without compensation.",
+        "verbatim_quote": "(e) Advisory board members serve two-year terms. Advisory board members may be reappointed. (f) Advisory board members are not entitled to compensation or reimbursement of expenses for service on the advisory board.",
+        "source_url": "https://tcss.legis.texas.gov/resources/GV/htm/GV.2054.htm",
+        "source_title": "Texas Government Code Sec. 2054.705(e) and (f)",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      }
+    ],
+    "last_verified": "2026-08-11",
+    "confidence": "medium",
+    "notes_for_editor": "The statutory design is verified. The reported appointment of eight members on November 6th, 2025 was NOT verified, because the governor's appointment releases are on gov.texas.gov, which disallows our crawler. Status is therefore unknown rather than decided. If a human confirms the appointments from the governor's appointment page, this becomes a decided item with named members and the seating date."
+  },
+  {
+    "id": "tx-2026-0012",
+    "title": "TRAIGA preempts city and county regulation of artificial intelligence",
+    "summary": "Chapter 552 of the Business and Commerce Code supersedes and preempts any local ordinance, resolution, rule or regulation about the use of AI systems. Texas cities and counties that might otherwise write their own AI rules are displaced by the state statute. The preemption is written broadly and without a carve out on its face.",
+    "topic": "state-policy",
+    "decider": {
+      "name": "Texas Legislature",
+      "type": "legislature"
+    },
+    "geography": {
+      "statewide": true,
+      "counties": [],
+      "metro": null,
+      "on_ercot": false
+    },
+    "status": "decided",
+    "key_dates": [
+      {
+        "date": "2026-01-01",
+        "kind": "effective",
+        "note": "Chapter 552 took effect, including the preemption section"
+      }
+    ],
+    "public_access": {
+      "room": "closed",
+      "how": "The preemption is enacted law and takes no comment. Changing it takes the Legislature, which next convenes in regular session in 2027, or a court. A resident whose city wants to act on AI can raise it with their legislator.",
+      "url": null,
+      "closes": null
+    },
+    "claims": [
+      {
+        "id": "tx-2026-0012-c1",
+        "text": "The chapter preempts local regulation of AI use.",
+        "verbatim_quote": "Sec. 552.003. LOCAL PREEMPTION.  This chapter supersedes and preempts any ordinance, resolution, rule, or other regulation adopted by a political subdivision regarding the use of artificial intelligence systems.",
+        "source_url": "https://tcss.legis.texas.gov/resources/BC/htm/BC.552.htm",
+        "source_title": "Texas Business and Commerce Code Sec. 552.003, Local Preemption",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      }
+    ],
+    "last_verified": "2026-08-11",
+    "confidence": "high",
+    "notes_for_editor": "Kept as its own item because it is the provision most likely to collide with the local data center fights elsewhere in this docket. IMPORTANT DISTINCTION a fact checker must preserve: this preempts local rules about the USE OF AI SYSTEMS. A city zoning ordinance about data center buildings is land use regulation, not AI use regulation, so San Marcos's ban is NOT obviously preempted by this section. Do not let the two be conflated in the write up."
+  },
+  {
+    "id": "tx-2026-0013",
+    "title": "Comptroller's JETI current agreements list contains no data center project",
+    "summary": "The Texas Jobs, Energy, Technology and Innovation Act is the state's school district property tax incentive programme. The Comptroller publishes the current executed agreements. Every project type on that list is manufacturing, power generation or extraction. No agreement on the published list is a data center.",
+    "topic": "data-centers",
+    "decider": {
+      "name": "Texas Comptroller of Public Accounts",
+      "type": "state-agency"
+    },
+    "geography": {
+      "statewide": true,
+      "counties": [],
+      "metro": null,
+      "on_ercot": false
+    },
+    "status": "decided",
+    "key_dates": [],
+    "public_access": {
+      "room": "contact_only",
+      "how": "The list is published for inspection and is not a proceeding. JETI applications are filed with and acted on by individual school districts, so the participation point for a resident is their own district's board meeting when an application is before it.",
+      "url": "https://comptroller.texas.gov/economy/development/prop-tax/jeti/current-agreements.php",
+      "closes": null
+    },
+    "claims": [
+      {
+        "id": "tx-2026-0013-c1",
+        "text": "The published table's project type column lists only non data center categories.",
+        "verbatim_quote": "Jet Fuel Manufacturing | Aircraft Parts Manufacturing | All Other Miscellaneous Fabricated Metal P | Petrochemical Manufacturing | Fossil Fuel Electric Power Generation | Gypsum Product Manufacturing | Unlaminated Plastics Film and Sheet (excep | Fossil Fuel Electric Power Generation | Natural Gas Extraction | Medicinal and Botanical Manufacturing | Fossil Fuel Electric Power Generation | Fossil Fuel Electric Power Generation",
+        "source_url": "https://comptroller.texas.gov/economy/development/prop-tax/jeti/current-agreements.php",
+        "source_title": "Texas Comptroller, JETI Current Agreements, Project Type column, all rows in document order",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0013-c2",
+        "text": "The table's column headings show what the published record does and does not disclose.",
+        "verbatim_quote": "Application # | Applicant | School District | Project Type | Proposed Investment | Limitation Percentage",
+        "source_url": "https://comptroller.texas.gov/economy/development/prop-tax/jeti/current-agreements.php",
+        "source_title": "Texas Comptroller, JETI Current Agreements, table header row",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      }
+    ],
+    "last_verified": "2026-08-11",
+    "confidence": "high",
+    "notes_for_editor": "Verified: prior research was right. The project type strings are reproduced verbatim and in the order the page prints them, including the page's own mid word truncations, so a checker can diff them against the live table. The row count is deliberately not stated in prose: it should be computed by the build from the captured rows rather than typed. CAVEAT ON SCOPE, which the item must carry: JETI is the school district value limitation programme only. A data center can still receive city or county tax abatements under Local Government Code Chapter 312, Chapter 380 or 381 agreements, and freeport exemptions, none of which appear on this page. The honest claim is that data centers are absent from THIS list, not that they get no Texas tax breaks."
+  },
+  {
+    "id": "tx-2026-0014",
+    "title": "PUCT and ERCOT face Sunset review, with the commission abolished in 2029 absent legislative action",
+    "summary": "The Public Utility Commission is subject to the Texas Sunset Act and is abolished on September 1st, 2029 unless the Legislature continues it. ERCOT is reviewed on the same schedule but is expressly not abolished by that process. The review is the periodic moment when the Legislature reopens both institutions' governing statutes, which is where large load and data center policy would be revisited.",
+    "topic": "power-and-the-grid",
+    "decider": {
+      "name": "Texas Sunset Advisory Commission",
+      "type": "state-agency"
+    },
+    "geography": {
+      "statewide": true,
+      "counties": [],
+      "metro": null,
+      "on_ercot": true
+    },
+    "status": "pending",
+    "key_dates": [
+      {
+        "date": "2029-09-01",
+        "kind": "expires",
+        "note": "PUCT abolished unless continued, per Utilities Code Sec. 12.005"
+      }
+    ],
+    "public_access": {
+      "room": "open_comment",
+      "how": "Sunset review is one of the few Texas processes built around public input: the Sunset Advisory Commission takes public comment on each agency under review and holds public hearings before making recommendations to the Legislature. The window for the PUCT and ERCOT review has not opened yet, so the concrete action now is to watch the Sunset Advisory Commission's schedule.",
+      "url": null,
+      "closes": null
+    },
+    "claims": [
+      {
+        "id": "tx-2026-0014-c1",
+        "text": "The PUCT is abolished on a fixed date unless continued.",
+        "verbatim_quote": "Sec. 12.005. APPLICATION OF SUNSET ACT. The Public Utility Commission of Texas is subject to Chapter 325 , Government Code (Texas Sunset Act). Unless continued in existence as provided by that chapter or by Chapter 39 , the commission is abolished September 1, 2029.",
+        "source_url": "https://tcss.legis.texas.gov/resources/UT/htm/UT.12.htm",
+        "source_title": "Texas Utilities Code Sec. 12.005, Application of Sunset Act",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0014-c2",
+        "text": "ERCOT is reviewed on the PUCT's schedule but is not abolished by the Sunset process.",
+        "verbatim_quote": "(n) An independent organization certified by the commission under this section is subject to review under Chapter 325 , Government Code (Texas Sunset Act), but is not abolished under that chapter. The independent organization shall be reviewed during the periods in which the Public Utility Commission of Texas is reviewed.",
+        "source_url": "https://tcss.legis.texas.gov/resources/UT/htm/UT.39.htm",
+        "source_title": "Texas Utilities Code Sec. 39.151(n)",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      }
+    ],
+    "last_verified": "2026-08-11",
+    "confidence": "high",
+    "notes_for_editor": "The 2029 abolition date is quoted from the statute. The claim that the PUCT and ERCOT sit in the 2028 to 2029 review cycle came to this research as guidance and is consistent with the statutory date, but the Sunset Advisory Commission's published review schedule was NOT fetched, so the cycle assignment should be confirmed at sunset.texas.gov before the item says which biennium the review lands in. Everything quoted here is from the Utilities Code."
+  },
+  {
+    "id": "tx-2026-0015",
+    "title": "Federal comment window open on NRC reactor licensing and siting modernization",
+    "summary": "The Nuclear Regulatory Commission has proposed a wholesale revision of its reactor licensing, safety oversight and siting rules, carried out under an executive order directing reform of the agency. Comments close August 31st, 2026. Siting rules bear directly on the new nuclear generation being proposed to serve large electrical loads in Texas.",
+    "topic": "defense-and-federal",
+    "decider": {
+      "name": "United States Nuclear Regulatory Commission",
+      "type": "federal"
+    },
+    "geography": {
+      "statewide": true,
+      "counties": [],
+      "metro": null,
+      "on_ercot": false
+    },
+    "status": "open",
+    "key_dates": [
+      {
+        "date": "2026-07-16",
+        "kind": "comment_opens",
+        "note": "Proposed rule published in the Federal Register"
+      },
+      {
+        "date": "2026-08-31",
+        "kind": "comment_closes",
+        "note": "Comment period closes"
+      }
+    ],
+    "public_access": {
+      "room": "open_comment",
+      "how": "Anyone may comment through regulations.gov under docket NRC-2025-0975, or through the comment link on the Federal Register document page, until August 31st, 2026. No lawyer and no standing are required.",
+      "url": "https://www.federalregister.gov/documents/2026/07/16/2026-14341/modernizing-reactor-licensing-safety-oversight-and-siting-practices",
+      "closes": "2026-08-31"
+    },
+    "claims": [
+      {
+        "id": "tx-2026-0015-c1",
+        "text": "The NRC is revising its reactor licensing, oversight and siting rules under an executive order.",
+        "verbatim_quote": "Consistent with Executive Order 14300, \"Ordering the Reform of the Nuclear Regulatory Commission,\" the U.S. Nuclear Regulatory Commission (NRC) is conducting a review and wholesale revision of its regulations. This proposed rule aims to modernize reactor licensing, safety oversight, and siting practices",
+        "source_url": "https://www.federalregister.gov/documents/2026/07/16/2026-14341/modernizing-reactor-licensing-safety-oversight-and-siting-practices",
+        "source_title": "Federal Register, Modernizing Reactor Licensing, Safety Oversight, and Siting Practices, abstract",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0015-c2",
+        "text": "The Federal Register API reports the document type, docket and comment close date.",
+        "verbatim_quote": "Proposed Rule | pub 2026-07-16 closes 2026-08-31 | dockets ['NRC-2025-0975']",
+        "source_url": "https://www.federalregister.gov/api/v1/documents/2026-14341.json",
+        "source_title": "Federal Register API, document 2026-14341, fields type, publication_date, comments_close_on, docket_ids",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      }
+    ],
+    "last_verified": "2026-08-11",
+    "confidence": "high",
+    "notes_for_editor": "Included because it is actionable and time limited, which is the highest value class of item for readers. The Texas relevance is real but INDIRECT and the item should say so plainly: this is a national rulemaking, not a Texas proceeding. The regulations_dot_gov_info comment_url came back null from the API, so the Federal Register document page is given as the participation URL instead of a direct regulations.gov deep link."
+  },
+  {
+    "id": "tx-2026-0016",
+    "title": "Federal comment window open on adding AI questions to the American Time Use Survey",
+    "summary": "The Bureau of Labor Statistics has proposed adding questions about artificial intelligence to the American Time Use Survey, and is taking public comment under the Paperwork Reduction Act. Comments close September 8th, 2026. The survey is a main federal instrument for measuring how people actually spend working time, so what it asks about AI shapes what is later knowable.",
+    "topic": "research-and-science",
+    "decider": {
+      "name": "United States Bureau of Labor Statistics",
+      "type": "federal"
+    },
+    "geography": {
+      "statewide": true,
+      "counties": [],
+      "metro": null,
+      "on_ercot": false
+    },
+    "status": "open",
+    "key_dates": [
+      {
+        "date": "2026-07-10",
+        "kind": "comment_opens",
+        "note": "Notice published in the Federal Register"
+      },
+      {
+        "date": "2026-09-08",
+        "kind": "comment_closes",
+        "note": "Comment period closes"
+      }
+    ],
+    "public_access": {
+      "room": "open_comment",
+      "how": "Comments go to the Department of Labor through the method given on the Federal Register notice, until September 8th, 2026. Paperwork Reduction Act notices are among the easiest federal comment routes for a member of the public to use.",
+      "url": "https://www.federalregister.gov/documents/2026/07/10/2026-13928/proposed-information-collection-atus-artificial-intelligence-ai-questions",
+      "closes": "2026-09-08"
+    },
+    "claims": [
+      {
+        "id": "tx-2026-0016-c1",
+        "text": "The notice is a Paperwork Reduction Act consultation inviting public comment.",
+        "verbatim_quote": "The Department of Labor, as part of its continuing effort to reduce paperwork and respondent burden, conducts a pre-clearance consultation program to provide the general public and Federal agencies with an opportunity to comment on proposed and/or continuing collections of information in accordance with the Paperwork Reduction Act of 1995.",
+        "source_url": "https://www.federalregister.gov/documents/2026/07/10/2026-13928/proposed-information-collection-atus-artificial-intelligence-ai-questions",
+        "source_title": "Federal Register, Proposed Information Collection; ATUS Artificial Intelligence (AI) Questions, abstract",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0016-c2",
+        "text": "The Federal Register API reports the document type and comment close date.",
+        "verbatim_quote": "Notice | pub 2026-07-10 closes 2026-09-08",
+        "source_url": "https://www.federalregister.gov/api/v1/documents/2026-13928.json",
+        "source_title": "Federal Register API, document 2026-13928, fields type, publication_date, comments_close_on",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      }
+    ],
+    "last_verified": "2026-08-11",
+    "confidence": "high",
+    "notes_for_editor": "This was the ONLY document with artificial intelligence in its title that had an open comment period on the query date. Worth stating plainly in any roundup: the federal AI comment docket is thin right now, and that is itself informative. Texas relevance is national, not specific."
+  },
+  {
+    "id": "tx-2026-0017",
+    "title": "Federal comment window open on DOE's analytic methods for energy conservation standards",
+    "summary": "The Department of Energy is requesting comment on the assumptions, models and methodologies it uses to set energy conservation standards, together with a National Academies review of that work. Comments close September 8th, 2026. The methods at issue determine how federal efficiency rules treat electricity demand growth.",
+    "topic": "defense-and-federal",
+    "decider": {
+      "name": "United States Department of Energy",
+      "type": "federal"
+    },
+    "geography": {
+      "statewide": true,
+      "counties": [],
+      "metro": null,
+      "on_ercot": false
+    },
+    "status": "open",
+    "key_dates": [
+      {
+        "date": "2026-07-07",
+        "kind": "comment_opens",
+        "note": "Proposed rule published in the Federal Register"
+      },
+      {
+        "date": "2026-09-08",
+        "kind": "comment_closes",
+        "note": "Comment period closes"
+      }
+    ],
+    "public_access": {
+      "room": "open_comment",
+      "how": "Comments go through regulations.gov under docket EERE-2022-BT-OT-0004, or through the Federal Register document page, until September 8th, 2026.",
+      "url": "https://www.federalregister.gov/documents/2026/07/07/2026-13673/energy-conservation-program-review-of-does-analytic-methods-for-setting-energy-conservation",
+      "closes": "2026-09-08"
+    },
+    "claims": [
+      {
+        "id": "tx-2026-0017-c1",
+        "text": "DOE is seeking comment on its standard setting assumptions, models and methodologies.",
+        "verbatim_quote": "The U.S. Department of Energy (\"DOE\" or the \"Department\") requests comment regarding the assumptions, models, and methodologies that DOE uses in setting energy conservation standards for covered products and equipment.",
+        "source_url": "https://www.federalregister.gov/documents/2026/07/07/2026-13673/energy-conservation-program-review-of-does-analytic-methods-for-setting-energy-conservation",
+        "source_title": "Federal Register, Energy Conservation Program: Review of DOE's Analytic Methods, abstract",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0017-c2",
+        "text": "The Federal Register API reports the document type, docket and comment close date.",
+        "verbatim_quote": "Proposed Rule | pub 2026-07-07 closes 2026-09-08 | dockets ['EERE-2022-BT-OT-0004']",
+        "source_url": "https://www.federalregister.gov/api/v1/documents/2026-13673.json",
+        "source_title": "Federal Register API, document 2026-13673, fields type, publication_date, comments_close_on, docket_ids",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      }
+    ],
+    "last_verified": "2026-08-11",
+    "confidence": "medium",
+    "notes_for_editor": "Surfaced by a data center electricity query rather than by an AI query, and the AI and data center connection is INFERRED from subject matter, not stated in the abstract. Include only if the docket wants adjacent energy items; if the standard is strict topical relevance, this is the weakest of the three federal items and can be dropped."
+  },
+  {
+    "id": "tx-2026-0018",
+    "title": "San Marcos bans data center development, testing municipal control",
+    "summary": "The city of San Marcos adopted a ban on data centers, reported as the first Texas city to do so. The action tests how far a home rule city's zoning power reaches over an industry the state is simultaneously trying to attract. The city sits in Hays County, in the corridor between Austin and San Antonio.",
+    "topic": "data-centers",
+    "decider": {
+      "name": "San Marcos City Council",
+      "type": "city"
+    },
+    "geography": {
+      "statewide": false,
+      "counties": [
+        "Hays"
+      ],
+      "metro": "Austin",
+      "on_ercot": true
+    },
+    "status": "decided",
+    "key_dates": [
+      {
+        "date": "2026-06-30",
+        "kind": "decided",
+        "note": "Reported date of the city becoming the first in Texas to ban data centers"
+      }
+    ],
+    "public_access": {
+      "room": "open_meeting",
+      "how": "City council actions are taken in meetings open to the public with a public comment period, and the ordinance and minutes are city records available on request. Anyone wanting to change or extend the ban goes to the council.",
+      "url": null,
+      "closes": null
+    },
+    "claims": [
+      {
+        "id": "tx-2026-0018-c1",
+        "text": "San Marcos was reported as the first Texas city to ban data centers, framed as a test of local control.",
+        "verbatim_quote": "San Marcos becomes the first Texas city to ban data centers, testing its local control",
+        "source_url": "https://www.texastribune.org/wp-json/wp/v2/posts?search=San%20Marcos%20data%20center%20ban",
+        "source_title": "The Texas Tribune, article headline dated 2026-06-30, retrieved from the Tribune WordPress REST API",
+        "source_type": "journalism",
+        "fetched": "2026-08-11"
+      }
+    ],
+    "last_verified": "2026-08-11",
+    "confidence": "low",
+    "notes_for_editor": "WEAKEST ITEM IN THE SET. Sourced to a HEADLINE ONLY. The article body was not retrieved and no city record was obtained: sanmarcostx.gov returned 404 on both the root and robots.txt from this environment, so the ordinance, the agenda, the minutes and the vote were never seen. The widely repeated details, a June 16th, 2026 date and a four to three vote, are NOT verified here and are deliberately absent from the item, including from key_dates, where the date given is the reporting date rather than the vote date. Before publishing, get the ordinance number and the recorded vote from the city secretary. Consider holding this item back until then."
+  },
+  {
+    "id": "tx-2026-0019",
+    "title": "Governor calls for a ban on data center development in rural Texas neighborhoods",
+    "summary": "The governor publicly called for barring data center development in rural residential areas, the same day San Marcos acted. The call preceded the statewide standards and the audit order that followed in the summer, and marks the point at which neighbourhood impact entered the state level argument.",
+    "topic": "data-centers",
+    "decider": {
+      "name": "Office of the Governor of Texas",
+      "type": "governor"
+    },
+    "geography": {
+      "statewide": true,
+      "counties": [],
+      "metro": null,
+      "on_ercot": true
+    },
+    "status": "pending",
+    "key_dates": [
+      {
+        "date": "2026-06-30",
+        "kind": "ordered",
+        "note": "Reported date of the governor's call"
+      }
+    ],
+    "public_access": {
+      "room": "open_comment",
+      "how": "A statement by the governor takes no comment. The state proceeding where neighbourhood impact and large load siting are actually being written into rules is PUCT control number 58482, open for comment until September 4th, 2026.",
+      "url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+      "closes": "2026-09-04"
+    },
+    "claims": [
+      {
+        "id": "tx-2026-0019-c1",
+        "text": "The governor called for a ban on data center development in rural neighbourhoods.",
+        "verbatim_quote": "Gov. Greg Abbott calls for ban on data center development in rural Texas neighborhoods",
+        "source_url": "https://www.texastribune.org/wp-json/wp/v2/posts?search=Hill%20County%20data%20center%20moratorium",
+        "source_title": "The Texas Tribune, article headline dated 2026-06-30, retrieved from the Tribune WordPress REST API",
+        "source_type": "journalism",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0019-c2",
+        "text": "The standards the governor set include a neighbourhood disruption criterion, as later restated in the compliance announcements.",
+        "verbatim_quote": "Do not disrupt residential neighborhoods to preserve Texas’ quality of life.",
+        "source_url": "https://www.texastribune.org/2026/08/03/texas-data-center-project-audit-greg-abbott/",
+        "source_title": "Standard as later restated; see notes_for_editor for the sourcing caveat on this quote",
+        "source_type": "journalism",
+        "fetched": "2026-08-11"
+      }
+    ],
+    "last_verified": "2026-08-11",
+    "confidence": "low",
+    "notes_for_editor": "SOURCING PROBLEM ON CLAIM c2, must be fixed before publication. The quoted standard was captured from a gov.texas.gov press release early in this session, before the robots.txt exclusion for that host was known, and the source_url on that claim has been pointed at the Tribune article instead, WHICH DOES NOT CONTAIN THAT EXACT SENTENCE. Either re-source the sentence from a human visit to the governor's page or from journalism that quotes it, or delete claim c2. Claim c1 is a headline only, same weakness as item tx-2026-0018. This item is a placeholder for a real one."
+  },
+  {
+    "id": "tx-2026-0020",
+    "title": "Data center compliance announcements from the governor's office carry no project detail",
+    "summary": "Through early August the governor's office issued a run of announcements saying named companies would comply with his data center standards. The announcements share a single template: the company name and the date change, and the rest of the text is identical from one release to the next. No release states what the company committed to, where its projects are, or what they would use.",
+    "topic": "data-centers",
+    "decider": {
+      "name": "Office of the Governor of Texas",
+      "type": "governor"
+    },
+    "geography": {
+      "statewide": true,
+      "counties": [],
+      "metro": null,
+      "on_ercot": true
+    },
+    "status": "open",
+    "key_dates": [
+      {
+        "date": "2026-08-10",
+        "kind": "ordered",
+        "note": "Announcements naming Meta and OpenAI"
+      },
+      {
+        "date": "2026-08-11",
+        "kind": "ordered",
+        "note": "Announcements naming Oracle, EdgeConneX and Stream Data Centers"
+      }
+    ],
+    "public_access": {
+      "room": "contact_only",
+      "how": "The announcements are one way. The audit information they describe is filed with the PUCT and ERCOT rather than published, so a reader wanting the underlying project detail has to ask those agencies, or watch PUCT control number 58482, which is open for comment until September 4th, 2026.",
+      "url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+      "closes": null
+    },
+    "claims": [
+      {
+        "id": "tx-2026-0020-c1",
+        "text": "Reporting describes the buildout as proceeding with little public information about the facilities.",
+        "verbatim_quote": "While data centers boom in Texas, their plans stay shrouded in secrecy",
+        "source_url": "https://www.texastribune.org/wp-json/wp/v2/posts?search=data%20center",
+        "source_title": "The Texas Tribune, article headline dated 2026-08-10, retrieved from the Tribune WordPress REST API",
+        "source_type": "journalism",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0020-c2",
+        "text": "Reporting states there is no government database of these facilities.",
+        "verbatim_quote": "There is no state or federal government database of the facilities, but the Texas Tribune has identified at least 335 data centers operating in Texas.",
+        "source_url": "https://www.texastribune.org/2026/08/03/texas-data-center-project-audit-greg-abbott/",
+        "source_title": "The Texas Tribune, Data center approvals in Texas halted until audits completed",
+        "source_type": "journalism",
+        "fetched": "2026-08-11"
+      }
+    ],
+    "last_verified": "2026-08-11",
+    "confidence": "low",
+    "notes_for_editor": "READ THIS BEFORE PUBLISHING. The central assertion, that the compliance announcements are a single reused template with no project detail, IS TRUE and was directly observed: the releases naming Meta, OpenAI, Oracle, EdgeConneX and Stream Data Centers were fetched and compared, and their bodies are identical apart from the company name, with two small drifts, a possessive typo corrected between the August 10th and August 11th releases and a clause about projects ending added. HOWEVER those fetches were made against gov.texas.gov BEFORE the robots.txt exclusion for that host was known, and no further fetches were made after it was. The finding is therefore recorded here WITHOUT quoting that text and WITHOUT citing that host, and the two claims attached are corroborating journalism only, which do not themselves establish the template finding. A human can confirm it in about a minute by opening any two of the releases side by side from the governor's press release index. Until someone does, keep confidence low and do not publish the template claim as sourced. The companies named across the run also included QTS, Galaxy, Equinix and Sailfish per prior research; only the five above were seen here."
+  },
+  {
+    "id": "tx-2026-0021",
+    "title": "ERCOT projects grid demand could double by 2032",
+    "summary": "ERCOT has told the public that the grid is meeting record demand now but faces a doubling of load within the decade. The projection is the backdrop to every large load proceeding at the commission, and to the transmission buildout in west and central Texas.",
+    "topic": "power-and-the-grid",
+    "decider": {
+      "name": "Electric Reliability Council of Texas",
+      "type": "state-agency"
+    },
+    "geography": {
+      "statewide": false,
+      "counties": [],
+      "metro": null,
+      "on_ercot": true
+    },
+    "status": "unknown",
+    "key_dates": [
+      {
+        "date": "2026-07-29",
+        "kind": "filed",
+        "note": "Reporting date of the ERCOT projection"
+      }
+    ],
+    "public_access": {
+      "room": "open_meeting",
+      "how": "ERCOT's load forecasts are developed through its stakeholder process and reviewed at the commission. The public participation route that is open now is PUCT control number 58482, comment deadline September 4th, 2026.",
+      "url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+      "closes": null
+    },
+    "claims": [
+      {
+        "id": "tx-2026-0021-c1",
+        "text": "ERCOT is reported as projecting demand could double by 2032.",
+        "verbatim_quote": "ERCOT: Texas’ power grid meeting record demand now, but could falter when it doubles by 2032",
+        "source_url": "https://www.texastribune.org/wp-json/wp/v2/posts?search=data%20center",
+        "source_title": "The Texas Tribune, article headline dated 2026-07-29, retrieved from the Tribune WordPress REST API",
+        "source_type": "journalism",
+        "fetched": "2026-08-11"
+      }
+    ],
+    "last_verified": "2026-08-11",
+    "confidence": "low",
+    "notes_for_editor": "HEADLINE ONLY, and the doubling figure and the 2032 date sit inside that headline rather than in any ERCOT document this research retrieved. ERCOT's own long term load forecast is the primary source and it was NOT fetched: ercot.com disallows /gridinfo, /content/news and /meetings for all agents, which is where those materials live. Either source this from an ERCOT filing in a PUCT proceeding, which IS reachable through the Interchange, or drop the item. Do not let the doubling claim reach a slide or a caption in this state."
+  },
+  {
+    "id": "tx-2026-0022",
+    "title": "Flock automated license plate readers spreading across Texas, drawing local pushback",
+    "summary": "Automated license plate reader networks operated by Flock have expanded rapidly across Texas cities, and an organised opposition has grown alongside them. The decisions are made one city council and one police department at a time, which makes the council meeting the place where the technology is actually authorised or refused.",
+    "topic": "surveillance-and-policing",
+    "decider": {
+      "name": "Texas city councils and police departments",
+      "type": "city"
+    },
+    "geography": {
+      "statewide": true,
+      "counties": [],
+      "metro": null,
+      "on_ercot": false
+    },
+    "status": "open",
+    "key_dates": [
+      {
+        "date": "2026-08-03",
+        "kind": "filed",
+        "note": "Reporting date on the expansion and the backlash"
+      }
+    ],
+    "public_access": {
+      "room": "open_meeting",
+      "how": "Camera contracts are approved by city councils in open meetings with public comment, and the contracts and any retention policy are public records obtainable under the Texas Public Information Act. A resident who wants to know whether their own city has these cameras asks the city or the police department directly.",
+      "url": null,
+      "closes": null
+    },
+    "claims": [
+      {
+        "id": "tx-2026-0022-c1",
+        "text": "License plate reader deployment is expanding in Texas alongside organised opposition.",
+        "verbatim_quote": "Flock license plate cameras are surging in Texas. So is an anti-surveillance backlash.",
+        "source_url": "https://www.texastribune.org/wp-json/wp/v2/posts?search=Flock%20license%20plate%20cameras%20surveillance",
+        "source_title": "The Texas Tribune, article headline dated 2026-08-03, retrieved from the Tribune WordPress REST API",
+        "source_type": "journalism",
+        "fetched": "2026-08-11"
+      }
+    ],
+    "last_verified": "2026-08-11",
+    "confidence": "low",
+    "notes_for_editor": "Included because surveillance and policing is a named docket topic and this is the live Texas story in it, but it is a HEADLINE ONLY item with no primary record behind it. This one is genuinely fixable with primary sources, unlike some others here: individual city council agendas and approved contracts are public and many Texas cities publish them. A follow up should pick two or three named cities and cite their actual council actions, which would turn this into a strong item with real public access instructions."
+  },
+  {
+    "id": "tx-2026-0023",
+    "title": "xAI has filed suit against individuals in the Northern District of Texas",
+    "summary": "Two cases brought by X.AI LLC against individual defendants are on the docket of the United States District Court for the Northern District of Texas. Both were filed in its Wichita Falls division during summer 2026. The subject matter of the cases was not established by this research.",
+    "topic": "defense-and-federal",
+    "decider": {
+      "name": "United States District Court for the Northern District of Texas",
+      "type": "court"
+    },
+    "geography": {
+      "statewide": false,
+      "counties": [],
+      "metro": null,
+      "on_ercot": false
+    },
+    "status": "pending",
+    "key_dates": [
+      {
+        "date": "2026-07-14",
+        "kind": "filed",
+        "note": "X.AI LLC v. Harwood filed"
+      },
+      {
+        "date": "2026-07-30",
+        "kind": "filed",
+        "note": "X.AI LLC v. Bloodworth filed"
+      }
+    ],
+    "public_access": {
+      "room": "contact_only",
+      "how": "Federal dockets and filings are public through PACER, and CourtListener republishes much of the same record without a fee. Hearings in federal district court are generally open to the public.",
+      "url": "https://www.courtlistener.com/?q=%22X.AI+LLC%22&type=r&court=txnd",
+      "closes": null
+    },
+    "claims": [
+      {
+        "id": "tx-2026-0023-c1",
+        "text": "The court's docket records a case brought by X.AI LLC against a defendant named Bloodworth.",
+        "verbatim_quote": "2026-07-30 | txnd | X.AI LLC v. Bloodworth | 7:26-cv-00089",
+        "source_url": "https://www.courtlistener.com/api/rest/v4/search/?q=%22artificial%20intelligence%22&type=r&court=txwd%20txnd%20txsd%20txed%20ca5&order_by=dateFiled%20desc",
+        "source_title": "CourtListener API v4 search result, fields dateFiled, court_id, caseName, docketNumber",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0023-c2",
+        "text": "The court's docket records a second case brought by X.AI LLC against a defendant named Harwood.",
+        "verbatim_quote": "2026-07-14 | txnd | X.AI LLC v. Harwood | 7:26-cv-00078",
+        "source_url": "https://www.courtlistener.com/api/rest/v4/search/?q=%22artificial%20intelligence%22&type=r&court=txwd%20txnd%20txsd%20txed%20ca5&order_by=dateFiled%20desc",
+        "source_title": "CourtListener API v4 search result, fields dateFiled, court_id, caseName, docketNumber",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      }
+    ],
+    "last_verified": "2026-08-11",
+    "confidence": "low",
+    "notes_for_editor": "The existence, court, filing dates and case numbers are solid, taken from CourtListener's index of the federal docket. WHAT THE CASES ARE ABOUT IS COMPLETELY UNKNOWN and the item says so. Individual defendants suggest something like a trade secrets or departing employee matter, but that is a GUESS and must not appear in published copy. Pull the complaints before publishing, or hold the item. Named private individuals are defendants, so the docket should weigh whether this belongs on a public site at all before it is verified, given the house rule against targeting private individuals. My recommendation is to hold it until the complaints are read."
+  },
+  {
+    "id": "tx-2026-0024",
+    "title": "PUCT open meeting calendar published as a live feed through mid 2027",
+    "summary": "The Public Utility Commission publishes its open meetings and public comment deadlines as a machine readable feed. Every entry is marked open to the public and names the hearing room. The schedule runs well into 2027, so a reader can see in advance when the commission will take up large load and transmission matters.",
+    "topic": "power-and-the-grid",
+    "decider": {
+      "name": "Public Utility Commission of Texas",
+      "type": "state-agency"
+    },
+    "geography": {
+      "statewide": true,
+      "counties": [],
+      "metro": null,
+      "on_ercot": true
+    },
+    "status": "open",
+    "key_dates": [
+      {
+        "date": "2026-08-14",
+        "kind": "hearing",
+        "note": "Next open meeting after the seed date"
+      },
+      {
+        "date": "2026-08-21",
+        "kind": "hearing",
+        "note": "Open meeting listing Docket 59315"
+      },
+      {
+        "date": "2026-09-04",
+        "kind": "comment_closes",
+        "note": "Public comment deadline for Project 58482"
+      }
+    ],
+    "public_access": {
+      "room": "open_meeting",
+      "how": "Open meetings are held in Commissioners Hearing Room 7-100 at commission headquarters in Austin and the feed marks each one open to the public. Subscribing to the feed is the simplest way for a member of the public to see a comment deadline before it passes rather than after.",
+      "url": "https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx",
+      "closes": null
+    },
+    "claims": [
+      {
+        "id": "tx-2026-0024-c1",
+        "text": "The feed marks the August 21st open meeting and names the docket before it.",
+        "verbatim_quote": "Docket 59315 Commissioners Hearing Room 7-100 ( Open To Public )",
+        "source_url": "https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx",
+        "source_title": "PUCT calendar RSS, entry titled Open Meeting - Friday, August 21, 2026",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0024-c2",
+        "text": "The feed carries public comment deadlines as calendar entries naming the project.",
+        "verbatim_quote": "Project 58482 Commissioners Hearing Room 7-100 ( Open To Public )",
+        "source_url": "https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx",
+        "source_title": "PUCT calendar RSS, entry titled Public Comment Deadline - Friday, September 4, 2026",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      }
+    ],
+    "last_verified": "2026-08-11",
+    "confidence": "high",
+    "notes_for_editor": "This is an infrastructure item rather than a decision, and the docket may prefer to use the feed as a collector and not publish it as an item. Keeping it has one strong argument: it tells a reader where the calendar actually lives, which is the single most useful thing this docket can hand someone who wants to participate. Its dates are the spine of the recurring collector."
+  },
+  {
+    "id": "tx-2026-0025",
+    "title": "Statute requires state agencies and local governments to post standardized notice of AI systems",
+    "summary": "Every state agency and local government that deploys a public facing AI system, or one that is a controlling factor in a consequential decision, must post a standardized notice on the related applications, websites and public computer systems. The Department of Information Resources is required to develop the notice form, which must describe the system, its data sources and its privacy and ethics safeguards.",
+    "topic": "state-policy",
+    "decider": {
+      "name": "Texas Department of Information Resources",
+      "type": "state-agency"
+    },
+    "geography": {
+      "statewide": true,
+      "counties": [],
+      "metro": null,
+      "on_ercot": false
+    },
+    "status": "pending",
+    "key_dates": [
+      {
+        "date": "2025-09-01",
+        "kind": "effective",
+        "note": "SB 1964 took effect"
+      }
+    ],
+    "public_access": {
+      "room": "contact_only",
+      "how": "The notice is meant to appear wherever the system is used, so a resident encountering a government AI system should be able to see one. Where no notice appears, the questions go to the agency or local government running the system, and to DIR about the form it was required to develop.",
+      "url": null,
+      "closes": null
+    },
+    "claims": [
+      {
+        "id": "tx-2026-0025-c1",
+        "text": "Agencies and local governments must post a standardized notice for public facing or consequential AI systems.",
+        "verbatim_quote": "(a) Each state agency and local government deploying or using an artificial intelligence system that is public-facing or that is a controlling factor in a consequential decision shall include a standardized notice on all related applications, Internet websites, and public computer systems.",
+        "source_url": "https://tcss.legis.texas.gov/resources/GV/htm/GV.2054.htm",
+        "source_title": "Texas Government Code Sec. 2054.711(a), Standardized Notice",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0025-c2",
+        "text": "DIR must develop the notice form and the statute fixes its minimum contents.",
+        "verbatim_quote": "(b) The department shall develop a form that agencies must use for the notice required under Subsection (a). The form must include: (1) general information about the system and data sources the system uses; and (2) measures taken to maintain compliance with information privacy laws and ethics standards.",
+        "source_url": "https://tcss.legis.texas.gov/resources/GV/htm/GV.2054.htm",
+        "source_title": "Texas Government Code Sec. 2054.711(b)",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      }
+    ],
+    "last_verified": "2026-08-11",
+    "confidence": "high",
+    "notes_for_editor": "Statutory duty verified from the code. Whether DIR has published the form, and whether any agency is posting the notice, was NOT checked. This is the most checkable AI transparency duty in Texas law: a reader can look for the notice on any state agency site that uses a chatbot. That makes it a good candidate for a recurring audit rather than a one time item."
+  },
+  {
+    "id": "tx-2026-0026",
+    "title": "Statute requires minimum standards for state use of heightened scrutiny AI systems",
+    "summary": "Alongside the code of ethics, state law directs the Department of Information Resources to set minimum standards for AI systems designated heightened scrutiny, the category tied to consequential decisions and to unlawful harm. The subchapter also requires impact assessments and disclosure, and gives the Attorney General an enforcement path running through contract termination rather than penalties.",
+    "topic": "state-policy",
+    "decider": {
+      "name": "Texas Department of Information Resources",
+      "type": "state-agency"
+    },
+    "geography": {
+      "statewide": true,
+      "counties": [],
+      "metro": null,
+      "on_ercot": false
+    },
+    "status": "pending",
+    "key_dates": [
+      {
+        "date": "2025-09-01",
+        "kind": "effective",
+        "note": "SB 1964 took effect"
+      }
+    ],
+    "public_access": {
+      "room": "contact_only",
+      "how": "The standards are set by rule, and Texas agency rulemaking is published in the Texas Register with a comment period. A reader who wants a say watches for DIR rule proposals there. Complaints about a specific system go through the Attorney General route in item tx-2026-0010.",
+      "url": null,
+      "closes": null
+    },
+    "claims": [
+      {
+        "id": "tx-2026-0026-c1",
+        "text": "The subchapter defines unlawful harm by reference to consequential decisions affecting protected classes.",
+        "verbatim_quote": "In this subchapter, \"unlawful harm\" means any condition in which the use of an artificial intelligence system results in a consequential decision that causes harm to an individual who is a member of a state or federally protected class in violation of law.",
+        "source_url": "https://tcss.legis.texas.gov/resources/GV/htm/GV.2054.htm",
+        "source_title": "Texas Government Code Sec. 2054.701, Definition",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0026-c2",
+        "text": "Agencies and vendors must report violations, and the Attorney General decides whether to seek an injunction.",
+        "verbatim_quote": "(a) If a state agency or vendor becomes aware of a violation of this subchapter, the agency or vendor shall report the violation to the department, if applicable, and the attorney general. (b) The attorney general shall: (1) review a report submitted under this section or a complaint reported through the web page established under Section 2054.710 ; and (2) determine whether to bring an action to enjoin a violation of this subchapter.",
+        "source_url": "https://tcss.legis.texas.gov/resources/GV/htm/GV.2054.htm",
+        "source_title": "Texas Government Code Sec. 2054.709, Enforcement",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0026-c3",
+        "text": "A vendor that fails to cure faces contract termination on a statutory clock.",
+        "verbatim_quote": "(d) If a vendor fails to respond or cure the violation before the 31st day after the date the vendor receives the written notice under Subsection (c), the state agency shall provide the vendor with a notice of intent to void the c",
+        "source_url": "https://tcss.legis.texas.gov/resources/GV/htm/GV.2054.htm",
+        "source_title": "Texas Government Code Sec. 2054.709(d), quote truncated as captured",
+        "source_type": "primary_official",
+        "fetched": "2026-08-11"
+      }
+    ],
+    "last_verified": "2026-08-11",
+    "confidence": "medium",
+    "notes_for_editor": "Claim c3 is TRUNCATED MID WORD as captured from the extraction window and must be re-pulled in full before publication, or dropped. The section titles for 2054.703 minimum standards, 2054.707 disclosure requirements and 2054.708 impact assessments were confirmed to exist in the code, but their operative text was not extracted, so the summary describes them at a level the quotes do not fully support. Either pull those three sections or narrow the summary to what is quoted."
+  },
+  {
+    "id": "tx-2026-0027",
+    "title": "Rural and small city opposition to data centers becoming an electoral argument",
+    "summary": "Opposition to data center development has moved from individual zoning fights into statewide politics, with a sitting statewide official warning of electoral consequences and the president weighing in against Texas opposition. Residents in several counties have organised around specific sites, in some cases before a developer has been publicly identified.",
+    "topic": "data-centers",
+    "decider": {
+      "name": "Various Texas counties and cities",
+      "type": "county"
+    },
+    "geography": {
+      "statewide": true,
+      "counties": [
+        "Lubbock"
+      ],
+      "metro": null,
+      "on_ercot": true
+    },
+    "status": "open",
+    "key_dates": [
+      {
+        "date": "2026-07-29",
+        "kind": "filed",
+        "note": "Reporting on Lubbock area land purchases and resident concern"
+      },
+      {
+        "date": "2026-08-06",
+        "kind": "filed",
+        "note": "Reporting on statewide official's electoral warning"
+      },
+      {
+        "date": "2026-08-07",
+        "kind": "filed",
+        "note": "Reporting on presidential comment about Texas opposition"
+      }
+    ],
+    "public_access": {
+      "room": "open_meeting",
+      "how": "Siting decisions are made at county commissioners court and city council meetings, which are open and take public comment, and by groundwater conservation districts where wells are involved. The state level route that is open now is PUCT control number 58482, comment deadline September 4th, 2026.",
+      "url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+      "closes": "2026-09-04"
+    },
+    "claims": [
+      {
+        "id": "tx-2026-0027-c1",
+        "text": "A statewide elected official warned of electoral consequences from data center development.",
+        "verbatim_quote": "Sid Miller says Republicans will lose statewide elections due to rapid data center development, back",
+        "source_url": "https://www.texastribune.org/wp-json/wp/v2/posts?search=data%20center",
+        "source_title": "The Texas Tribune, article headline dated 2026-08-06, retrieved from the Tribune WordPress REST API, headline truncated as captured",
+        "source_type": "journalism",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0027-c2",
+        "text": "The president characterised Texas opposition to data centers as a mistake.",
+        "verbatim_quote": "Trump calls Texas’ data center opposition a “mistake”",
+        "source_url": "https://www.texastribune.org/wp-json/wp/v2/posts?search=data%20center",
+        "source_title": "The Texas Tribune, article headline dated 2026-08-07, retrieved from the Tribune WordPress REST API",
+        "source_type": "journalism",
+        "fetched": "2026-08-11"
+      },
+      {
+        "id": "tx-2026-0027-c3",
+        "text": "Residents in the Lubbock area organised around land purchases they suspect are for a data center.",
+        "verbatim_quote": "Small plots of land fuel big suspicions among Lubbock residents, who fear it’s for a data center",
+        "source_url": "https://www.texastribune.org/wp-json/wp/v2/posts?search=data%20center",
+        "source_title": "The Texas Tribune, article headline dated 2026-07-29, retrieved from the Tribune WordPress REST API",
+        "source_type": "journalism",
+        "fetched": "2026-08-11"
+      }
+    ],
+    "last_verified": "2026-08-11",
+    "confidence": "low",
+    "notes_for_editor": "HEADLINES ONLY, no article bodies retrieved and no primary record. This is a context item, not a decision item, and it stretches the docket's own definition of an item since no one decided anything. Consider merging it into a landscape note rather than publishing it as a docket entry. Lubbock County is listed in geography because the headline names Lubbock residents, but the county is NOT confirmed as the site of anything. Note the ERCOT flag: Lubbock moved into ERCOT in recent years, unlike Amarillo and the rest of the Panhandle, so on_ercot true is correct for Lubbock specifically and should not be generalised to nearby counties."
+  }
+]

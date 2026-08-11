@@ -19,6 +19,24 @@ client.
 client.** Nothing throws when a collector silently skips a source it could have reached, which is
 exactly why this needs to be a rule rather than a habit.
 
+## And the corollary: robots.txt must be re-checked PER HOST, never inherited
+
+Two sources this registry listed as working turned out to be disallowed, and one host we assumed
+was hostile turned out to name us specifically as welcome. **User-Agent behaviour and robots
+policy are independent, and both vary host by host.**
+
+| Host | robots.txt | Behaviour | The compliant move |
+|---|---|---|---|
+| **`gisweb.tceq.texas.gov`** | **`Disallow: /` for ALL agents** | would serve data | **Do not fetch. Use EPA Envirofacts instead** |
+| **`courtlistener.com`** | disallows `*` **but explicitly ALLOWS `claudebot`** | 200 | **Send the ClaudeBot UA. It is the compliant one here** |
+| `interchange.puc.texas.gov` | **no robots.txt at all** | **402 to a ClaudeBot UA, 200 to a browser UA** | Browser UA. Nothing is disallowed |
+| `texastribune.org` | permits both | **403s a ClaudeBot UA, 200 to a browser UA** | Browser UA |
+| `comptroller.texas.gov` | broad `Disallow: /*/` **but `/economy/` is explicitly allowed** | 200 | Stay inside `/economy/` |
+| **`texreg.sos.state.tx.us`** | names GPTBot, Googlebot, bingbot; **no `*` group and no ClaudeBot group** | **allowed** | **Usable and currently unexploited. The Texas Register is the authoritative publication for proposed rules and their official comment instructions, which makes it the single best addition to the collector set** |
+
+**A 402 or a 403 is not a robots decision, and a robots allowance is not a promise of a 200.**
+Check the file, then check the fetch, and record both.
+
 ---
 
 ## 0. THE FINDING THAT CHANGES THE GRID WATCH DESIGN
@@ -188,7 +206,7 @@ needs. NCEI CDO v2 requires a token and is unnecessary given the above.
 | **PUCT filings by docket** | `interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=<N>&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending` | none | **[V]** docket 56822 returned case style, "199 filing(s)", and columns Item, File Stamp, Party, Item Type, Description | docket-keyed |
 | PUCT documents per item | `/search/documents/?controlNumber=<N>&itemNumber=<M>` | none | **[V]** 199 links enumerated | |
 | **PUCT calendar** | `puc.texas.gov/agency/calendar/GetCalendarRss.aspx` | none | **[V]** RSS with project numbers and hearing rooms | |
-| TCEQ regulated facilities | `gisweb.tceq.texas.gov/arcgis/rest/services/.../FeatureServer/<id>/query?where=1=1&outFields=*&f=json` | none | **[V]** rows with `COUNTY`, `REG_ENT_NAME`, `NEAR_CITY`, `LAT_DD/LONG_DD` | **county** |
+| ~~TCEQ regulated facilities~~ | ~~`gisweb.tceq.texas.gov/arcgis/rest/...`~~ | | **OFF LIMITS. `gisweb.tceq.texas.gov/robots.txt` is `Disallow: /` for ALL agents.** An earlier pass listed this as working. **It is not usable and must not be polled.** Facility data has to come from EPA Envirofacts, which carries county FIPS natively | |
 | RRC public viewer | `gis.rrc.texas.gov/server/rest/services/rrc_public/RRC_Public_Viewer_Srvs/MapServer` | none | **[V]** 41 layers, wells, pipelines, counties, districts | county layer 29 |
 
 **PUCT is a GET, not a POST.** `POST /search/search/` returns 404.

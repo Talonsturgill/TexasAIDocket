@@ -252,6 +252,17 @@ precision farming. City coverage will find itself; rural coverage has to be soug
   `api.waterdata.usgs.gov`, never `waterservices.usgs.gov`, which USGS itself describes as
   end-of-life.
 - Abbott's binding energy commitments come from the Legislature; his data center commitments come
-  from letters. **The hardest date on the Texas data center calendar is SB 6's December 31st, 2026
-  deadline for the PUC to amend 4CP transmission cost allocation** — statutory, predating all three
-  2026 directives, landing eight weeks after the election.
+  from letters. **CORRECTED 2026-08-11: an earlier version of this bullet called SB 6's
+  December 31st, 2026 4CP deadline "the hardest date on the Texas data center calendar." That is
+  now CONTESTED and must not be published.** A second agent fetched the full text of Utilities Code
+  Chapter 39 and found no such deadline; the only 2026 date is a September 1st reference elsewhere.
+  It may sit in an uncodified section, which needs the enrolled bill to settle. **What IS verified:
+  PUCT Project 58482 is where SB 6 is actually being implemented.** See the correction block in
+  `knowledge/shared/TEXAS_GOVERNMENT.md`.
+- **robots.txt must be re-checked per host, never inherited.** `gisweb.tceq.texas.gov` is
+  `Disallow: /` for all agents despite being listed here as working. `courtlistener.com` disallows
+  `*` but **explicitly allows `claudebot`**, so our UA is the compliant one there. And a 402 or 403
+  is not a robots decision: `interchange.puc.texas.gov` has no robots.txt but 402s a ClaudeBot UA.
+- **`texreg.sos.state.tx.us` is allowed and unexploited.** The Texas Register is the authoritative
+  publication for proposed rules and their official comment instructions, which makes it the best
+  single addition to the collector set.
