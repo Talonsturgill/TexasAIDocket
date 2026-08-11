@@ -77,6 +77,10 @@ STANDALONE_ALLOW = {
     "scripts/shared/ownership_check.py",
 }
 
+# Documents that describe intent rather than execute it. A script named only in one of these
+# is planned, not wired, and the wiring check must not accept a plan as proof of a connection.
+PLAN_DOCS = {".claude/WORKLOG.md", "README.md", "CLAUDE.md", "PORT_MANIFEST.tsv"}
+
 SKIP_SCAN_DIRS = {".git", "node_modules", "__pycache__", "out", "docs", "runs", "vendor"}
 TEXT_SUFFIXES = {".py", ".md", ".yaml", ".yml", ".json", ".txt", ".js", ".mjs", ".ts",
                  ".tsx", ".html", ".css", ".sh", ".tsv"}
@@ -185,9 +189,15 @@ def check_wiring(root: Path) -> Result:
         r.skip("no scripts yet")
         return r
 
-    # Everything that could plausibly name a script: prompts, workflows, other code, docs.
+    # Only things that can INVOKE count as evidence: prompts, workflows, shell, other code.
+    # Data files are excluded on purpose. A generated artifact that stamps its own producer
+    # ("generated_by: scripts/shared/places.py") would otherwise vouch for that script forever,
+    # which is the same self-referential hole as a file naming itself.
+    CALLER_SUFFIXES = {".py", ".md", ".yml", ".yaml", ".sh", ".js", ".mjs", ".ts", ".txt"}
     haystack: list[tuple[str, str]] = []
     for rel, path in walk_text_files(root):
+        if path.suffix not in CALLER_SUFFIXES:
+            continue
         try:
             haystack.append((rel.as_posix(), path.read_text(encoding="utf-8", errors="ignore")))
         except OSError:
@@ -205,6 +215,9 @@ def check_wiring(root: Path) -> Result:
         for holder, text in haystack:
             if holder == script:
                 continue                                  # a file naming itself proves nothing
+            if holder in PLAN_DOCS:
+                continue    # being named in a plan is not being wired into the machine; that
+                            # confusion is exactly the failure this check exists to catch
             if name in text or re.search(rf"\bimport\s+{re.escape(stem)}\b", text) \
                     or re.search(rf"\bfrom\s+{re.escape(stem)}\s+import\b", text):
                 referenced = True

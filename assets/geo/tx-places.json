@@ -1,0 +1,4857 @@
+{
+ "_spec": {
+  "purpose": "The canonical Texas place record. Every location string stored anywhere in this project resolves to an id in here before it is written, so that counts, facets and per-metro filters cannot silently fracture across spellings.",
+  "id_rule": "Stable forever. An id is never reused and never renamed; a place that changes name gains an alias and keeps its id.",
+  "provenance_rule": "Every field records where it came from. A field that was neither computed here nor read from a cited source is NOT WRITTEN. A plausible county seat nobody checked is worse than an absent one, because the absence gets fixed and the guess gets cited.",
+  "pending": "county_seat, population, ERCOT weather zone, ERCOT load zone, MSA and physiographic region are NOT yet populated. Each needs a cited source. The self-test fails if any of them is ever written without provenance.",
+  "record_schema": {
+   "id": "stable slug, e.g. county-midland",
+   "kind": "county | city | metro | region | zone",
+   "name": "display name",
+   "fips": "5-digit county FIPS, counties only",
+   "lon/lat": "area-weighted centroid, computed",
+   "aliases": "normalized strings that resolve to this record",
+   "provenance": "field name -> source"
+  }
+ },
+ "sources": [
+  {
+   "name": "us-atlas counties-10m",
+   "url": "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json",
+   "license": "ISC",
+   "derived_from": "US Census Bureau cartographic boundary files"
+  }
+ ],
+ "generated_by": "scripts/shared/places.py build",
+ "counts": {
+  "county": 254
+ },
+ "places": [
+  {
+   "id": "county-anderson",
+   "kind": "county",
+   "name": "Anderson",
+   "full_name": "Anderson County",
+   "fips": "48001",
+   "lon": -95.65145,
+   "lat": 31.8137,
+   "aliases": [
+    "48001",
+    "anderson"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-andrews",
+   "kind": "county",
+   "name": "Andrews",
+   "full_name": "Andrews County",
+   "fips": "48003",
+   "lon": -102.63788,
+   "lat": 32.30445,
+   "aliases": [
+    "48003",
+    "andrews"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-angelina",
+   "kind": "county",
+   "name": "Angelina",
+   "full_name": "Angelina County",
+   "fips": "48005",
+   "lon": -94.61207,
+   "lat": 31.25428,
+   "aliases": [
+    "48005",
+    "angelina"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-aransas",
+   "kind": "county",
+   "name": "Aransas",
+   "full_name": "Aransas County",
+   "fips": "48007",
+   "lon": -96.998,
+   "lat": 28.12014,
+   "aliases": [
+    "48007",
+    "aransas"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-archer",
+   "kind": "county",
+   "name": "Archer",
+   "full_name": "Archer County",
+   "fips": "48009",
+   "lon": -98.68744,
+   "lat": 33.61527,
+   "aliases": [
+    "48009",
+    "archer"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-armstrong",
+   "kind": "county",
+   "name": "Armstrong",
+   "full_name": "Armstrong County",
+   "fips": "48011",
+   "lon": -101.3576,
+   "lat": 34.9647,
+   "aliases": [
+    "48011",
+    "armstrong"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-atascosa",
+   "kind": "county",
+   "name": "Atascosa",
+   "full_name": "Atascosa County",
+   "fips": "48013",
+   "lon": -98.52702,
+   "lat": 28.8934,
+   "aliases": [
+    "48013",
+    "atascosa"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-austin",
+   "kind": "county",
+   "name": "Austin",
+   "full_name": "Austin County",
+   "fips": "48015",
+   "lon": -96.27811,
+   "lat": 29.8863,
+   "aliases": [
+    "48015",
+    "austin"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-bailey",
+   "kind": "county",
+   "name": "Bailey",
+   "full_name": "Bailey County",
+   "fips": "48017",
+   "lon": -102.83026,
+   "lat": 34.06852,
+   "aliases": [
+    "48017",
+    "bailey"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-bandera",
+   "kind": "county",
+   "name": "Bandera",
+   "full_name": "Bandera County",
+   "fips": "48019",
+   "lon": -99.24643,
+   "lat": 29.74712,
+   "aliases": [
+    "48019",
+    "bandera"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-bastrop",
+   "kind": "county",
+   "name": "Bastrop",
+   "full_name": "Bastrop County",
+   "fips": "48021",
+   "lon": -97.31162,
+   "lat": 30.1038,
+   "aliases": [
+    "48021",
+    "bastrop"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-baylor",
+   "kind": "county",
+   "name": "Baylor",
+   "full_name": "Baylor County",
+   "fips": "48023",
+   "lon": -99.2138,
+   "lat": 33.61675,
+   "aliases": [
+    "48023",
+    "baylor"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-bee",
+   "kind": "county",
+   "name": "Bee",
+   "full_name": "Bee County",
+   "fips": "48025",
+   "lon": -97.74192,
+   "lat": 28.41741,
+   "aliases": [
+    "48025",
+    "bee"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-bell",
+   "kind": "county",
+   "name": "Bell",
+   "full_name": "Bell County",
+   "fips": "48027",
+   "lon": -97.47892,
+   "lat": 31.03733,
+   "aliases": [
+    "48027",
+    "bell"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-bexar",
+   "kind": "county",
+   "name": "Bexar",
+   "full_name": "Bexar County",
+   "fips": "48029",
+   "lon": -98.52007,
+   "lat": 29.4494,
+   "aliases": [
+    "48029",
+    "bexar"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-blanco",
+   "kind": "county",
+   "name": "Blanco",
+   "full_name": "Blanco County",
+   "fips": "48031",
+   "lon": -98.40072,
+   "lat": 30.26641,
+   "aliases": [
+    "48031",
+    "blanco"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-borden",
+   "kind": "county",
+   "name": "Borden",
+   "full_name": "Borden County",
+   "fips": "48033",
+   "lon": -101.43155,
+   "lat": 32.74352,
+   "aliases": [
+    "48033",
+    "borden"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-bosque",
+   "kind": "county",
+   "name": "Bosque",
+   "full_name": "Bosque County",
+   "fips": "48035",
+   "lon": -97.63319,
+   "lat": 31.90065,
+   "aliases": [
+    "48035",
+    "bosque"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-bowie",
+   "kind": "county",
+   "name": "Bowie",
+   "full_name": "Bowie County",
+   "fips": "48037",
+   "lon": -94.42437,
+   "lat": 33.4462,
+   "aliases": [
+    "48037",
+    "bowie"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-brazoria",
+   "kind": "county",
+   "name": "Brazoria",
+   "full_name": "Brazoria County",
+   "fips": "48039",
+   "lon": -95.45183,
+   "lat": 29.18899,
+   "aliases": [
+    "48039",
+    "brazoria"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-brazos",
+   "kind": "county",
+   "name": "Brazos",
+   "full_name": "Brazos County",
+   "fips": "48041",
+   "lon": -96.30194,
+   "lat": 30.66095,
+   "aliases": [
+    "48041",
+    "brazos"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-brewster",
+   "kind": "county",
+   "name": "Brewster",
+   "full_name": "Brewster County",
+   "fips": "48043",
+   "lon": -103.25227,
+   "lat": 29.81166,
+   "aliases": [
+    "48043",
+    "brewster"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-briscoe",
+   "kind": "county",
+   "name": "Briscoe",
+   "full_name": "Briscoe County",
+   "fips": "48045",
+   "lon": -101.20841,
+   "lat": 34.53035,
+   "aliases": [
+    "48045",
+    "briscoe"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-brooks",
+   "kind": "county",
+   "name": "Brooks",
+   "full_name": "Brooks County",
+   "fips": "48047",
+   "lon": -98.2185,
+   "lat": 27.03106,
+   "aliases": [
+    "48047",
+    "brooks"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-brown",
+   "kind": "county",
+   "name": "Brown",
+   "full_name": "Brown County",
+   "fips": "48049",
+   "lon": -98.99851,
+   "lat": 31.77502,
+   "aliases": [
+    "48049",
+    "brown"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-burleson",
+   "kind": "county",
+   "name": "Burleson",
+   "full_name": "Burleson County",
+   "fips": "48051",
+   "lon": -96.61832,
+   "lat": 30.49251,
+   "aliases": [
+    "48051",
+    "burleson"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-burnet",
+   "kind": "county",
+   "name": "Burnet",
+   "full_name": "Burnet County",
+   "fips": "48053",
+   "lon": -98.18305,
+   "lat": 30.78873,
+   "aliases": [
+    "48053",
+    "burnet"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-caldwell",
+   "kind": "county",
+   "name": "Caldwell",
+   "full_name": "Caldwell County",
+   "fips": "48055",
+   "lon": -97.61834,
+   "lat": 29.83707,
+   "aliases": [
+    "48055",
+    "caldwell"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-calhoun",
+   "kind": "county",
+   "name": "Calhoun",
+   "full_name": "Calhoun County",
+   "fips": "48057",
+   "lon": -96.60448,
+   "lat": 28.50254,
+   "aliases": [
+    "48057",
+    "calhoun"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-callahan",
+   "kind": "county",
+   "name": "Callahan",
+   "full_name": "Callahan County",
+   "fips": "48059",
+   "lon": -99.37324,
+   "lat": 32.29779,
+   "aliases": [
+    "48059",
+    "callahan"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-cameron",
+   "kind": "county",
+   "name": "Cameron",
+   "full_name": "Cameron County",
+   "fips": "48061",
+   "lon": -97.51346,
+   "lat": 26.13427,
+   "aliases": [
+    "48061",
+    "cameron"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-camp",
+   "kind": "county",
+   "name": "Camp",
+   "full_name": "Camp County",
+   "fips": "48063",
+   "lon": -94.97973,
+   "lat": 32.97352,
+   "aliases": [
+    "48063",
+    "camp"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-carson",
+   "kind": "county",
+   "name": "Carson",
+   "full_name": "Carson County",
+   "fips": "48065",
+   "lon": -101.3546,
+   "lat": 35.40349,
+   "aliases": [
+    "48065",
+    "carson"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-cass",
+   "kind": "county",
+   "name": "Cass",
+   "full_name": "Cass County",
+   "fips": "48067",
+   "lon": -94.34233,
+   "lat": 33.07789,
+   "aliases": [
+    "48067",
+    "cass"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-castro",
+   "kind": "county",
+   "name": "Castro",
+   "full_name": "Castro County",
+   "fips": "48069",
+   "lon": -102.2628,
+   "lat": 34.53032,
+   "aliases": [
+    "48069",
+    "castro"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-chambers",
+   "kind": "county",
+   "name": "Chambers",
+   "full_name": "Chambers County",
+   "fips": "48071",
+   "lon": -94.60691,
+   "lat": 29.73853,
+   "aliases": [
+    "48071",
+    "chambers"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-cherokee",
+   "kind": "county",
+   "name": "Cherokee",
+   "full_name": "Cherokee County",
+   "fips": "48073",
+   "lon": -95.16448,
+   "lat": 31.83631,
+   "aliases": [
+    "48073",
+    "cherokee"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-childress",
+   "kind": "county",
+   "name": "Childress",
+   "full_name": "Childress County",
+   "fips": "48075",
+   "lon": -100.20652,
+   "lat": 34.52933,
+   "aliases": [
+    "48075",
+    "childress"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-clay",
+   "kind": "county",
+   "name": "Clay",
+   "full_name": "Clay County",
+   "fips": "48077",
+   "lon": -98.20867,
+   "lat": 33.78562,
+   "aliases": [
+    "48077",
+    "clay"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-cochran",
+   "kind": "county",
+   "name": "Cochran",
+   "full_name": "Cochran County",
+   "fips": "48079",
+   "lon": -102.8292,
+   "lat": 33.60391,
+   "aliases": [
+    "48079",
+    "cochran"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-coke",
+   "kind": "county",
+   "name": "Coke",
+   "full_name": "Coke County",
+   "fips": "48081",
+   "lon": -100.53037,
+   "lat": 31.88938,
+   "aliases": [
+    "48081",
+    "coke"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-coleman",
+   "kind": "county",
+   "name": "Coleman",
+   "full_name": "Coleman County",
+   "fips": "48083",
+   "lon": -99.45328,
+   "lat": 31.77201,
+   "aliases": [
+    "48083",
+    "coleman"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-collin",
+   "kind": "county",
+   "name": "Collin",
+   "full_name": "Collin County",
+   "fips": "48085",
+   "lon": -96.57249,
+   "lat": 33.18801,
+   "aliases": [
+    "48085",
+    "collin"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-collingsworth",
+   "kind": "county",
+   "name": "Collingsworth",
+   "full_name": "Collingsworth County",
+   "fips": "48087",
+   "lon": -100.26985,
+   "lat": 34.9648,
+   "aliases": [
+    "48087",
+    "collingsworth"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-colorado",
+   "kind": "county",
+   "name": "Colorado",
+   "full_name": "Colorado County",
+   "fips": "48089",
+   "lon": -96.52563,
+   "lat": 29.62041,
+   "aliases": [
+    "48089",
+    "colorado"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-comal",
+   "kind": "county",
+   "name": "Comal",
+   "full_name": "Comal County",
+   "fips": "48091",
+   "lon": -98.27836,
+   "lat": 29.80862,
+   "aliases": [
+    "48091",
+    "comal"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-comanche",
+   "kind": "county",
+   "name": "Comanche",
+   "full_name": "Comanche County",
+   "fips": "48093",
+   "lon": -98.55777,
+   "lat": 31.94835,
+   "aliases": [
+    "48093",
+    "comanche"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-concho",
+   "kind": "county",
+   "name": "Concho",
+   "full_name": "Concho County",
+   "fips": "48095",
+   "lon": -99.86484,
+   "lat": 31.32681,
+   "aliases": [
+    "48095",
+    "concho"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-cooke",
+   "kind": "county",
+   "name": "Cooke",
+   "full_name": "Cooke County",
+   "fips": "48097",
+   "lon": -97.21336,
+   "lat": 33.63978,
+   "aliases": [
+    "48097",
+    "cooke"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-coryell",
+   "kind": "county",
+   "name": "Coryell",
+   "full_name": "Coryell County",
+   "fips": "48099",
+   "lon": -97.79966,
+   "lat": 31.39104,
+   "aliases": [
+    "48099",
+    "coryell"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-cottle",
+   "kind": "county",
+   "name": "Cottle",
+   "full_name": "Cottle County",
+   "fips": "48101",
+   "lon": -100.27898,
+   "lat": 34.07766,
+   "aliases": [
+    "48101",
+    "cottle"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-crane",
+   "kind": "county",
+   "name": "Crane",
+   "full_name": "Crane County",
+   "fips": "48103",
+   "lon": -102.51527,
+   "lat": 31.42917,
+   "aliases": [
+    "48103",
+    "crane"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-crockett",
+   "kind": "county",
+   "name": "Crockett",
+   "full_name": "Crockett County",
+   "fips": "48105",
+   "lon": -101.41308,
+   "lat": 30.72284,
+   "aliases": [
+    "48105",
+    "crockett"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-crosby",
+   "kind": "county",
+   "name": "Crosby",
+   "full_name": "Crosby County",
+   "fips": "48107",
+   "lon": -101.29996,
+   "lat": 33.61453,
+   "aliases": [
+    "48107",
+    "crosby"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-culberson",
+   "kind": "county",
+   "name": "Culberson",
+   "full_name": "Culberson County",
+   "fips": "48109",
+   "lon": -104.51768,
+   "lat": 31.44631,
+   "aliases": [
+    "48109",
+    "culberson"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-dallam",
+   "kind": "county",
+   "name": "Dallam",
+   "full_name": "Dallam County",
+   "fips": "48111",
+   "lon": -102.60243,
+   "lat": 36.27815,
+   "aliases": [
+    "48111",
+    "dallam"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-dallas",
+   "kind": "county",
+   "name": "Dallas",
+   "full_name": "Dallas County",
+   "fips": "48113",
+   "lon": -96.77754,
+   "lat": 32.76656,
+   "aliases": [
+    "48113",
+    "dallas"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-dawson",
+   "kind": "county",
+   "name": "Dawson",
+   "full_name": "Dawson County",
+   "fips": "48115",
+   "lon": -101.94782,
+   "lat": 32.74259,
+   "aliases": [
+    "48115",
+    "dawson"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-dewitt",
+   "kind": "county",
+   "name": "DeWitt",
+   "full_name": "DeWitt County",
+   "fips": "48123",
+   "lon": -97.35733,
+   "lat": 29.08172,
+   "aliases": [
+    "48123",
+    "dewitt"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-deaf-smith",
+   "kind": "county",
+   "name": "Deaf Smith",
+   "full_name": "Deaf Smith County",
+   "fips": "48117",
+   "lon": -102.60565,
+   "lat": 34.96537,
+   "aliases": [
+    "48117",
+    "deaf smith"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-delta",
+   "kind": "county",
+   "name": "Delta",
+   "full_name": "Delta County",
+   "fips": "48119",
+   "lon": -95.67013,
+   "lat": 33.38542,
+   "aliases": [
+    "48119",
+    "delta"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-denton",
+   "kind": "county",
+   "name": "Denton",
+   "full_name": "Denton County",
+   "fips": "48121",
+   "lon": -97.1175,
+   "lat": 33.20516,
+   "aliases": [
+    "48121",
+    "denton"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-dickens",
+   "kind": "county",
+   "name": "Dickens",
+   "full_name": "Dickens County",
+   "fips": "48125",
+   "lon": -100.77852,
+   "lat": 33.61622,
+   "aliases": [
+    "48125",
+    "dickens"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-dimmit",
+   "kind": "county",
+   "name": "Dimmit",
+   "full_name": "Dimmit County",
+   "fips": "48127",
+   "lon": -99.75751,
+   "lat": 28.42268,
+   "aliases": [
+    "48127",
+    "dimmit"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-donley",
+   "kind": "county",
+   "name": "Donley",
+   "full_name": "Donley County",
+   "fips": "48129",
+   "lon": -100.81441,
+   "lat": 34.96537,
+   "aliases": [
+    "48129",
+    "donley"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-duval",
+   "kind": "county",
+   "name": "Duval",
+   "full_name": "Duval County",
+   "fips": "48131",
+   "lon": -98.50869,
+   "lat": 27.68229,
+   "aliases": [
+    "48131",
+    "duval"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-eastland",
+   "kind": "county",
+   "name": "Eastland",
+   "full_name": "Eastland County",
+   "fips": "48133",
+   "lon": -98.83215,
+   "lat": 32.32705,
+   "aliases": [
+    "48133",
+    "eastland"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-ector",
+   "kind": "county",
+   "name": "Ector",
+   "full_name": "Ector County",
+   "fips": "48135",
+   "lon": -102.54265,
+   "lat": 31.86889,
+   "aliases": [
+    "48135",
+    "ector"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-edwards",
+   "kind": "county",
+   "name": "Edwards",
+   "full_name": "Edwards County",
+   "fips": "48137",
+   "lon": -100.30548,
+   "lat": 29.98244,
+   "aliases": [
+    "48137",
+    "edwards"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-el-paso",
+   "kind": "county",
+   "name": "El Paso",
+   "full_name": "El Paso County",
+   "fips": "48141",
+   "lon": -106.23413,
+   "lat": 31.76802,
+   "aliases": [
+    "48141",
+    "el paso"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-ellis",
+   "kind": "county",
+   "name": "Ellis",
+   "full_name": "Ellis County",
+   "fips": "48139",
+   "lon": -96.79402,
+   "lat": 32.34857,
+   "aliases": [
+    "48139",
+    "ellis"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-erath",
+   "kind": "county",
+   "name": "Erath",
+   "full_name": "Erath County",
+   "fips": "48143",
+   "lon": -98.21739,
+   "lat": 32.23587,
+   "aliases": [
+    "48143",
+    "erath"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-falls",
+   "kind": "county",
+   "name": "Falls",
+   "full_name": "Falls County",
+   "fips": "48145",
+   "lon": -96.93704,
+   "lat": 31.25361,
+   "aliases": [
+    "48145",
+    "falls"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-fannin",
+   "kind": "county",
+   "name": "Fannin",
+   "full_name": "Fannin County",
+   "fips": "48147",
+   "lon": -96.10677,
+   "lat": 33.59251,
+   "aliases": [
+    "48147",
+    "fannin"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-fayette",
+   "kind": "county",
+   "name": "Fayette",
+   "full_name": "Fayette County",
+   "fips": "48149",
+   "lon": -96.91991,
+   "lat": 29.87598,
+   "aliases": [
+    "48149",
+    "fayette"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-fisher",
+   "kind": "county",
+   "name": "Fisher",
+   "full_name": "Fisher County",
+   "fips": "48151",
+   "lon": -100.40191,
+   "lat": 32.74321,
+   "aliases": [
+    "48151",
+    "fisher"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-floyd",
+   "kind": "county",
+   "name": "Floyd",
+   "full_name": "Floyd County",
+   "fips": "48153",
+   "lon": -101.30304,
+   "lat": 34.07238,
+   "aliases": [
+    "48153",
+    "floyd"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-foard",
+   "kind": "county",
+   "name": "Foard",
+   "full_name": "Foard County",
+   "fips": "48155",
+   "lon": -99.77874,
+   "lat": 33.97446,
+   "aliases": [
+    "48155",
+    "foard"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-fort-bend",
+   "kind": "county",
+   "name": "Fort Bend",
+   "full_name": "Fort Bend County",
+   "fips": "48157",
+   "lon": -95.7686,
+   "lat": 29.5273,
+   "aliases": [
+    "48157",
+    "fort bend"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-franklin",
+   "kind": "county",
+   "name": "Franklin",
+   "full_name": "Franklin County",
+   "fips": "48159",
+   "lon": -95.21852,
+   "lat": 33.17488,
+   "aliases": [
+    "48159",
+    "franklin"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-freestone",
+   "kind": "county",
+   "name": "Freestone",
+   "full_name": "Freestone County",
+   "fips": "48161",
+   "lon": -96.14999,
+   "lat": 31.70493,
+   "aliases": [
+    "48161",
+    "freestone"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-frio",
+   "kind": "county",
+   "name": "Frio",
+   "full_name": "Frio County",
+   "fips": "48163",
+   "lon": -99.10788,
+   "lat": 28.86773,
+   "aliases": [
+    "48163",
+    "frio"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-gaines",
+   "kind": "county",
+   "name": "Gaines",
+   "full_name": "Gaines County",
+   "fips": "48165",
+   "lon": -102.63555,
+   "lat": 32.74059,
+   "aliases": [
+    "48165",
+    "gaines"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-galveston",
+   "kind": "county",
+   "name": "Galveston",
+   "full_name": "Galveston County",
+   "fips": "48167",
+   "lon": -94.96087,
+   "lat": 29.38912,
+   "aliases": [
+    "48167",
+    "galveston"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-garza",
+   "kind": "county",
+   "name": "Garza",
+   "full_name": "Garza County",
+   "fips": "48169",
+   "lon": -101.29783,
+   "lat": 33.18,
+   "aliases": [
+    "48169",
+    "garza"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-gillespie",
+   "kind": "county",
+   "name": "Gillespie",
+   "full_name": "Gillespie County",
+   "fips": "48171",
+   "lon": -98.94774,
+   "lat": 30.31822,
+   "aliases": [
+    "48171",
+    "gillespie"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-glasscock",
+   "kind": "county",
+   "name": "Glasscock",
+   "full_name": "Glasscock County",
+   "fips": "48173",
+   "lon": -101.52074,
+   "lat": 31.86954,
+   "aliases": [
+    "48173",
+    "glasscock"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-goliad",
+   "kind": "county",
+   "name": "Goliad",
+   "full_name": "Goliad County",
+   "fips": "48175",
+   "lon": -97.42518,
+   "lat": 28.65771,
+   "aliases": [
+    "48175",
+    "goliad"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-gonzales",
+   "kind": "county",
+   "name": "Gonzales",
+   "full_name": "Gonzales County",
+   "fips": "48177",
+   "lon": -97.49264,
+   "lat": 29.45682,
+   "aliases": [
+    "48177",
+    "gonzales"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-gray",
+   "kind": "county",
+   "name": "Gray",
+   "full_name": "Gray County",
+   "fips": "48179",
+   "lon": -100.81387,
+   "lat": 35.40067,
+   "aliases": [
+    "48179",
+    "gray"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-grayson",
+   "kind": "county",
+   "name": "Grayson",
+   "full_name": "Grayson County",
+   "fips": "48181",
+   "lon": -96.67849,
+   "lat": 33.62687,
+   "aliases": [
+    "48181",
+    "grayson"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-gregg",
+   "kind": "county",
+   "name": "Gregg",
+   "full_name": "Gregg County",
+   "fips": "48183",
+   "lon": -94.81747,
+   "lat": 32.48077,
+   "aliases": [
+    "48183",
+    "gregg"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-grimes",
+   "kind": "county",
+   "name": "Grimes",
+   "full_name": "Grimes County",
+   "fips": "48185",
+   "lon": -95.98542,
+   "lat": 30.54484,
+   "aliases": [
+    "48185",
+    "grimes"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-guadalupe",
+   "kind": "county",
+   "name": "Guadalupe",
+   "full_name": "Guadalupe County",
+   "fips": "48187",
+   "lon": -97.94806,
+   "lat": 29.58285,
+   "aliases": [
+    "48187",
+    "guadalupe"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-hale",
+   "kind": "county",
+   "name": "Hale",
+   "full_name": "Hale County",
+   "fips": "48189",
+   "lon": -101.8265,
+   "lat": 34.07054,
+   "aliases": [
+    "48189",
+    "hale"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-hall",
+   "kind": "county",
+   "name": "Hall",
+   "full_name": "Hall County",
+   "fips": "48191",
+   "lon": -100.68109,
+   "lat": 34.53043,
+   "aliases": [
+    "48191",
+    "hall"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-hamilton",
+   "kind": "county",
+   "name": "Hamilton",
+   "full_name": "Hamilton County",
+   "fips": "48193",
+   "lon": -98.1106,
+   "lat": 31.70496,
+   "aliases": [
+    "48193",
+    "hamilton"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-hansford",
+   "kind": "county",
+   "name": "Hansford",
+   "full_name": "Hansford County",
+   "fips": "48195",
+   "lon": -101.35388,
+   "lat": 36.27783,
+   "aliases": [
+    "48195",
+    "hansford"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-hardeman",
+   "kind": "county",
+   "name": "Hardeman",
+   "full_name": "Hardeman County",
+   "fips": "48197",
+   "lon": -99.74438,
+   "lat": 34.28915,
+   "aliases": [
+    "48197",
+    "hardeman"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-hardin",
+   "kind": "county",
+   "name": "Hardin",
+   "full_name": "Hardin County",
+   "fips": "48199",
+   "lon": -94.39035,
+   "lat": 30.33166,
+   "aliases": [
+    "48199",
+    "hardin"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-harris",
+   "kind": "county",
+   "name": "Harris",
+   "full_name": "Harris County",
+   "fips": "48201",
+   "lon": -95.39278,
+   "lat": 29.85666,
+   "aliases": [
+    "48201",
+    "harris"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-harrison",
+   "kind": "county",
+   "name": "Harrison",
+   "full_name": "Harrison County",
+   "fips": "48203",
+   "lon": -94.37113,
+   "lat": 32.54752,
+   "aliases": [
+    "48203",
+    "harrison"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-hartley",
+   "kind": "county",
+   "name": "Hartley",
+   "full_name": "Hartley County",
+   "fips": "48205",
+   "lon": -102.60293,
+   "lat": 35.84032,
+   "aliases": [
+    "48205",
+    "hartley"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-haskell",
+   "kind": "county",
+   "name": "Haskell",
+   "full_name": "Haskell County",
+   "fips": "48207",
+   "lon": -99.73097,
+   "lat": 33.17855,
+   "aliases": [
+    "48207",
+    "haskell"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-hays",
+   "kind": "county",
+   "name": "Hays",
+   "full_name": "Hays County",
+   "fips": "48209",
+   "lon": -98.03042,
+   "lat": 30.05681,
+   "aliases": [
+    "48209",
+    "hays"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-hemphill",
+   "kind": "county",
+   "name": "Hemphill",
+   "full_name": "Hemphill County",
+   "fips": "48211",
+   "lon": -100.2709,
+   "lat": 35.83753,
+   "aliases": [
+    "48211",
+    "hemphill"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-henderson",
+   "kind": "county",
+   "name": "Henderson",
+   "full_name": "Henderson County",
+   "fips": "48213",
+   "lon": -95.85137,
+   "lat": 32.21225,
+   "aliases": [
+    "48213",
+    "henderson"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-hidalgo",
+   "kind": "county",
+   "name": "Hidalgo",
+   "full_name": "Hidalgo County",
+   "fips": "48215",
+   "lon": -98.18037,
+   "lat": 26.39669,
+   "aliases": [
+    "48215",
+    "hidalgo"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-hill",
+   "kind": "county",
+   "name": "Hill",
+   "full_name": "Hill County",
+   "fips": "48217",
+   "lon": -97.13104,
+   "lat": 31.99073,
+   "aliases": [
+    "48217",
+    "hill"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-hockley",
+   "kind": "county",
+   "name": "Hockley",
+   "full_name": "Hockley County",
+   "fips": "48219",
+   "lon": -102.34302,
+   "lat": 33.60772,
+   "aliases": [
+    "48219",
+    "hockley"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-hood",
+   "kind": "county",
+   "name": "Hood",
+   "full_name": "Hood County",
+   "fips": "48221",
+   "lon": -97.83281,
+   "lat": 32.43003,
+   "aliases": [
+    "48221",
+    "hood"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-hopkins",
+   "kind": "county",
+   "name": "Hopkins",
+   "full_name": "Hopkins County",
+   "fips": "48223",
+   "lon": -95.56392,
+   "lat": 33.14899,
+   "aliases": [
+    "48223",
+    "hopkins"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-houston",
+   "kind": "county",
+   "name": "Houston",
+   "full_name": "Houston County",
+   "fips": "48225",
+   "lon": -95.42264,
+   "lat": 31.31776,
+   "aliases": [
+    "48225",
+    "houston"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-howard",
+   "kind": "county",
+   "name": "Howard",
+   "full_name": "Howard County",
+   "fips": "48227",
+   "lon": -101.43569,
+   "lat": 32.30666,
+   "aliases": [
+    "48227",
+    "howard"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-hudspeth",
+   "kind": "county",
+   "name": "Hudspeth",
+   "full_name": "Hudspeth County",
+   "fips": "48229",
+   "lon": -105.38695,
+   "lat": 31.45711,
+   "aliases": [
+    "48229",
+    "hudspeth"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-hunt",
+   "kind": "county",
+   "name": "Hunt",
+   "full_name": "Hunt County",
+   "fips": "48231",
+   "lon": -96.08512,
+   "lat": 33.12389,
+   "aliases": [
+    "48231",
+    "hunt"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-hutchinson",
+   "kind": "county",
+   "name": "Hutchinson",
+   "full_name": "Hutchinson County",
+   "fips": "48233",
+   "lon": -101.35487,
+   "lat": 35.84011,
+   "aliases": [
+    "48233",
+    "hutchinson"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-irion",
+   "kind": "county",
+   "name": "Irion",
+   "full_name": "Irion County",
+   "fips": "48235",
+   "lon": -100.9819,
+   "lat": 31.30363,
+   "aliases": [
+    "48235",
+    "irion"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-jack",
+   "kind": "county",
+   "name": "Jack",
+   "full_name": "Jack County",
+   "fips": "48237",
+   "lon": -98.17306,
+   "lat": 33.23368,
+   "aliases": [
+    "48237",
+    "jack"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-jackson",
+   "kind": "county",
+   "name": "Jackson",
+   "full_name": "Jackson County",
+   "fips": "48239",
+   "lon": -96.5779,
+   "lat": 28.95386,
+   "aliases": [
+    "48239",
+    "jackson"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-jasper",
+   "kind": "county",
+   "name": "Jasper",
+   "full_name": "Jasper County",
+   "fips": "48241",
+   "lon": -94.02661,
+   "lat": 30.74595,
+   "aliases": [
+    "48241",
+    "jasper"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-jeff-davis",
+   "kind": "county",
+   "name": "Jeff Davis",
+   "full_name": "Jeff Davis County",
+   "fips": "48243",
+   "lon": -104.13974,
+   "lat": 30.7149,
+   "aliases": [
+    "48243",
+    "jeff davis"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-jefferson",
+   "kind": "county",
+   "name": "Jefferson",
+   "full_name": "Jefferson County",
+   "fips": "48245",
+   "lon": -94.16253,
+   "lat": 29.88275,
+   "aliases": [
+    "48245",
+    "jefferson"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-jim-hogg",
+   "kind": "county",
+   "name": "Jim Hogg",
+   "full_name": "Jim Hogg County",
+   "fips": "48247",
+   "lon": -98.69737,
+   "lat": 27.04426,
+   "aliases": [
+    "48247",
+    "jim hogg"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-jim-wells",
+   "kind": "county",
+   "name": "Jim Wells",
+   "full_name": "Jim Wells County",
+   "fips": "48249",
+   "lon": -98.09023,
+   "lat": 27.72974,
+   "aliases": [
+    "48249",
+    "jim wells"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-johnson",
+   "kind": "county",
+   "name": "Johnson",
+   "full_name": "Johnson County",
+   "fips": "48251",
+   "lon": -97.36593,
+   "lat": 32.37896,
+   "aliases": [
+    "48251",
+    "johnson"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-jones",
+   "kind": "county",
+   "name": "Jones",
+   "full_name": "Jones County",
+   "fips": "48253",
+   "lon": -99.87868,
+   "lat": 32.74007,
+   "aliases": [
+    "48253",
+    "jones"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-karnes",
+   "kind": "county",
+   "name": "Karnes",
+   "full_name": "Karnes County",
+   "fips": "48255",
+   "lon": -97.85909,
+   "lat": 28.90555,
+   "aliases": [
+    "48255",
+    "karnes"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-kaufman",
+   "kind": "county",
+   "name": "Kaufman",
+   "full_name": "Kaufman County",
+   "fips": "48257",
+   "lon": -96.28802,
+   "lat": 32.5991,
+   "aliases": [
+    "48257",
+    "kaufman"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-kendall",
+   "kind": "county",
+   "name": "Kendall",
+   "full_name": "Kendall County",
+   "fips": "48259",
+   "lon": -98.71163,
+   "lat": 29.94441,
+   "aliases": [
+    "48259",
+    "kendall"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-kenedy",
+   "kind": "county",
+   "name": "Kenedy",
+   "full_name": "Kenedy County",
+   "fips": "48261",
+   "lon": -97.69759,
+   "lat": 26.92973,
+   "aliases": [
+    "48261",
+    "kenedy"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-kent",
+   "kind": "county",
+   "name": "Kent",
+   "full_name": "Kent County",
+   "fips": "48263",
+   "lon": -100.77748,
+   "lat": 33.18118,
+   "aliases": [
+    "48263",
+    "kent"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-kerr",
+   "kind": "county",
+   "name": "Kerr",
+   "full_name": "Kerr County",
+   "fips": "48265",
+   "lon": -99.35008,
+   "lat": 30.06134,
+   "aliases": [
+    "48265",
+    "kerr"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-kimble",
+   "kind": "county",
+   "name": "Kimble",
+   "full_name": "Kimble County",
+   "fips": "48267",
+   "lon": -99.74771,
+   "lat": 30.48683,
+   "aliases": [
+    "48267",
+    "kimble"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-king",
+   "kind": "county",
+   "name": "King",
+   "full_name": "King County",
+   "fips": "48269",
+   "lon": -100.25645,
+   "lat": 33.61665,
+   "aliases": [
+    "48269",
+    "king"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-kinney",
+   "kind": "county",
+   "name": "Kinney",
+   "full_name": "Kinney County",
+   "fips": "48271",
+   "lon": -100.41744,
+   "lat": 29.35014,
+   "aliases": [
+    "48271",
+    "kinney"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-kleberg",
+   "kind": "county",
+   "name": "Kleberg",
+   "full_name": "Kleberg County",
+   "fips": "48273",
+   "lon": -97.72301,
+   "lat": 27.43088,
+   "aliases": [
+    "48273",
+    "kleberg"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-knox",
+   "kind": "county",
+   "name": "Knox",
+   "full_name": "Knox County",
+   "fips": "48275",
+   "lon": -99.74208,
+   "lat": 33.60615,
+   "aliases": [
+    "48275",
+    "knox"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-la-salle",
+   "kind": "county",
+   "name": "La Salle",
+   "full_name": "La Salle County",
+   "fips": "48283",
+   "lon": -99.10002,
+   "lat": 28.3449,
+   "aliases": [
+    "48283",
+    "la salle"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-lamar",
+   "kind": "county",
+   "name": "Lamar",
+   "full_name": "Lamar County",
+   "fips": "48277",
+   "lon": -95.57223,
+   "lat": 33.66766,
+   "aliases": [
+    "48277",
+    "lamar"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-lamb",
+   "kind": "county",
+   "name": "Lamb",
+   "full_name": "Lamb County",
+   "fips": "48279",
+   "lon": -102.35159,
+   "lat": 34.06884,
+   "aliases": [
+    "48279",
+    "lamb"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-lampasas",
+   "kind": "county",
+   "name": "Lampasas",
+   "full_name": "Lampasas County",
+   "fips": "48281",
+   "lon": -98.24235,
+   "lat": 31.19592,
+   "aliases": [
+    "48281",
+    "lampasas"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-lavaca",
+   "kind": "county",
+   "name": "Lavaca",
+   "full_name": "Lavaca County",
+   "fips": "48285",
+   "lon": -96.93086,
+   "lat": 29.38355,
+   "aliases": [
+    "48285",
+    "lavaca"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-lee",
+   "kind": "county",
+   "name": "Lee",
+   "full_name": "Lee County",
+   "fips": "48287",
+   "lon": -96.96399,
+   "lat": 30.3116,
+   "aliases": [
+    "48287",
+    "lee"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-leon",
+   "kind": "county",
+   "name": "Leon",
+   "full_name": "Leon County",
+   "fips": "48289",
+   "lon": -95.99686,
+   "lat": 31.29637,
+   "aliases": [
+    "48289",
+    "leon"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-liberty",
+   "kind": "county",
+   "name": "Liberty",
+   "full_name": "Liberty County",
+   "fips": "48291",
+   "lon": -94.81259,
+   "lat": 30.15066,
+   "aliases": [
+    "48291",
+    "liberty"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-limestone",
+   "kind": "county",
+   "name": "Limestone",
+   "full_name": "Limestone County",
+   "fips": "48293",
+   "lon": -96.58145,
+   "lat": 31.54554,
+   "aliases": [
+    "48293",
+    "limestone"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-lipscomb",
+   "kind": "county",
+   "name": "Lipscomb",
+   "full_name": "Lipscomb County",
+   "fips": "48295",
+   "lon": -100.27252,
+   "lat": 36.2778,
+   "aliases": [
+    "48295",
+    "lipscomb"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-live-oak",
+   "kind": "county",
+   "name": "Live Oak",
+   "full_name": "Live Oak County",
+   "fips": "48297",
+   "lon": -98.12521,
+   "lat": 28.35115,
+   "aliases": [
+    "48297",
+    "live oak"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-llano",
+   "kind": "county",
+   "name": "Llano",
+   "full_name": "Llano County",
+   "fips": "48299",
+   "lon": -98.6844,
+   "lat": 30.70627,
+   "aliases": [
+    "48299",
+    "llano"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-loving",
+   "kind": "county",
+   "name": "Loving",
+   "full_name": "Loving County",
+   "fips": "48301",
+   "lon": -103.57844,
+   "lat": 31.84882,
+   "aliases": [
+    "48301",
+    "loving"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-lubbock",
+   "kind": "county",
+   "name": "Lubbock",
+   "full_name": "Lubbock County",
+   "fips": "48303",
+   "lon": -101.82041,
+   "lat": 33.61024,
+   "aliases": [
+    "48303",
+    "lubbock"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-lynn",
+   "kind": "county",
+   "name": "Lynn",
+   "full_name": "Lynn County",
+   "fips": "48305",
+   "lon": -101.81572,
+   "lat": 33.1767,
+   "aliases": [
+    "48305",
+    "lynn"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-madison",
+   "kind": "county",
+   "name": "Madison",
+   "full_name": "Madison County",
+   "fips": "48313",
+   "lon": -95.92771,
+   "lat": 30.96671,
+   "aliases": [
+    "48313",
+    "madison"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-marion",
+   "kind": "county",
+   "name": "Marion",
+   "full_name": "Marion County",
+   "fips": "48315",
+   "lon": -94.35774,
+   "lat": 32.7984,
+   "aliases": [
+    "48315",
+    "marion"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-martin",
+   "kind": "county",
+   "name": "Martin",
+   "full_name": "Martin County",
+   "fips": "48317",
+   "lon": -101.95128,
+   "lat": 32.30578,
+   "aliases": [
+    "48317",
+    "martin"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-mason",
+   "kind": "county",
+   "name": "Mason",
+   "full_name": "Mason County",
+   "fips": "48319",
+   "lon": -99.226,
+   "lat": 30.71783,
+   "aliases": [
+    "48319",
+    "mason"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-matagorda",
+   "kind": "county",
+   "name": "Matagorda",
+   "full_name": "Matagorda County",
+   "fips": "48321",
+   "lon": -96.01259,
+   "lat": 28.82124,
+   "aliases": [
+    "48321",
+    "matagorda"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-maverick",
+   "kind": "county",
+   "name": "Maverick",
+   "full_name": "Maverick County",
+   "fips": "48323",
+   "lon": -100.31462,
+   "lat": 28.743,
+   "aliases": [
+    "48323",
+    "maverick"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-mcculloch",
+   "kind": "county",
+   "name": "McCulloch",
+   "full_name": "McCulloch County",
+   "fips": "48307",
+   "lon": -99.34768,
+   "lat": 31.1978,
+   "aliases": [
+    "48307",
+    "mcculloch"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-mclennan",
+   "kind": "county",
+   "name": "McLennan",
+   "full_name": "McLennan County",
+   "fips": "48309",
+   "lon": -97.20234,
+   "lat": 31.55263,
+   "aliases": [
+    "48309",
+    "mclennan"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-mcmullen",
+   "kind": "county",
+   "name": "McMullen",
+   "full_name": "McMullen County",
+   "fips": "48311",
+   "lon": -98.5678,
+   "lat": 28.35253,
+   "aliases": [
+    "48311",
+    "mcmullen"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-medina",
+   "kind": "county",
+   "name": "Medina",
+   "full_name": "Medina County",
+   "fips": "48325",
+   "lon": -99.11002,
+   "lat": 29.35538,
+   "aliases": [
+    "48325",
+    "medina"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-menard",
+   "kind": "county",
+   "name": "Menard",
+   "full_name": "Menard County",
+   "fips": "48327",
+   "lon": -99.82018,
+   "lat": 30.88969,
+   "aliases": [
+    "48327",
+    "menard"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-midland",
+   "kind": "county",
+   "name": "Midland",
+   "full_name": "Midland County",
+   "fips": "48329",
+   "lon": -102.03136,
+   "lat": 31.86889,
+   "aliases": [
+    "48329",
+    "midland"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-milam",
+   "kind": "county",
+   "name": "Milam",
+   "full_name": "Milam County",
+   "fips": "48331",
+   "lon": -96.97745,
+   "lat": 30.78613,
+   "aliases": [
+    "48331",
+    "milam"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-mills",
+   "kind": "county",
+   "name": "Mills",
+   "full_name": "Mills County",
+   "fips": "48333",
+   "lon": -98.59498,
+   "lat": 31.49568,
+   "aliases": [
+    "48333",
+    "mills"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-mitchell",
+   "kind": "county",
+   "name": "Mitchell",
+   "full_name": "Mitchell County",
+   "fips": "48335",
+   "lon": -100.92047,
+   "lat": 32.30615,
+   "aliases": [
+    "48335",
+    "mitchell"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-montague",
+   "kind": "county",
+   "name": "Montague",
+   "full_name": "Montague County",
+   "fips": "48337",
+   "lon": -97.72486,
+   "lat": 33.67478,
+   "aliases": [
+    "48337",
+    "montague"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-montgomery",
+   "kind": "county",
+   "name": "Montgomery",
+   "full_name": "Montgomery County",
+   "fips": "48339",
+   "lon": -95.503,
+   "lat": 30.3003,
+   "aliases": [
+    "48339",
+    "montgomery"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-moore",
+   "kind": "county",
+   "name": "Moore",
+   "full_name": "Moore County",
+   "fips": "48341",
+   "lon": -101.89317,
+   "lat": 35.83774,
+   "aliases": [
+    "48341",
+    "moore"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-morris",
+   "kind": "county",
+   "name": "Morris",
+   "full_name": "Morris County",
+   "fips": "48343",
+   "lon": -94.73353,
+   "lat": 33.11392,
+   "aliases": [
+    "48343",
+    "morris"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-motley",
+   "kind": "county",
+   "name": "Motley",
+   "full_name": "Motley County",
+   "fips": "48345",
+   "lon": -100.77957,
+   "lat": 34.07429,
+   "aliases": [
+    "48345",
+    "motley"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-nacogdoches",
+   "kind": "county",
+   "name": "Nacogdoches",
+   "full_name": "Nacogdoches County",
+   "fips": "48347",
+   "lon": -94.61692,
+   "lat": 31.61568,
+   "aliases": [
+    "48347",
+    "nacogdoches"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-navarro",
+   "kind": "county",
+   "name": "Navarro",
+   "full_name": "Navarro County",
+   "fips": "48349",
+   "lon": -96.47173,
+   "lat": 32.04729,
+   "aliases": [
+    "48349",
+    "navarro"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-newton",
+   "kind": "county",
+   "name": "Newton",
+   "full_name": "Newton County",
+   "fips": "48351",
+   "lon": -93.74552,
+   "lat": 30.78519,
+   "aliases": [
+    "48351",
+    "newton"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-nolan",
+   "kind": "county",
+   "name": "Nolan",
+   "full_name": "Nolan County",
+   "fips": "48353",
+   "lon": -100.40529,
+   "lat": 32.30407,
+   "aliases": [
+    "48353",
+    "nolan"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-nueces",
+   "kind": "county",
+   "name": "Nueces",
+   "full_name": "Nueces County",
+   "fips": "48355",
+   "lon": -97.60986,
+   "lat": 27.72485,
+   "aliases": [
+    "48355",
+    "nueces"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-ochiltree",
+   "kind": "county",
+   "name": "Ochiltree",
+   "full_name": "Ochiltree County",
+   "fips": "48357",
+   "lon": -100.8154,
+   "lat": 36.27798,
+   "aliases": [
+    "48357",
+    "ochiltree"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-oldham",
+   "kind": "county",
+   "name": "Oldham",
+   "full_name": "Oldham County",
+   "fips": "48359",
+   "lon": -102.60298,
+   "lat": 35.40435,
+   "aliases": [
+    "48359",
+    "oldham"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-orange",
+   "kind": "county",
+   "name": "Orange",
+   "full_name": "Orange County",
+   "fips": "48361",
+   "lon": -93.89301,
+   "lat": 30.11948,
+   "aliases": [
+    "48361",
+    "orange"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-palo-pinto",
+   "kind": "county",
+   "name": "Palo Pinto",
+   "full_name": "Palo Pinto County",
+   "fips": "48363",
+   "lon": -98.31195,
+   "lat": 32.75322,
+   "aliases": [
+    "48363",
+    "palo pinto"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-panola",
+   "kind": "county",
+   "name": "Panola",
+   "full_name": "Panola County",
+   "fips": "48365",
+   "lon": -94.30529,
+   "lat": 32.16212,
+   "aliases": [
+    "48365",
+    "panola"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-parker",
+   "kind": "county",
+   "name": "Parker",
+   "full_name": "Parker County",
+   "fips": "48367",
+   "lon": -97.80466,
+   "lat": 32.77782,
+   "aliases": [
+    "48367",
+    "parker"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-parmer",
+   "kind": "county",
+   "name": "Parmer",
+   "full_name": "Parmer County",
+   "fips": "48369",
+   "lon": -102.78515,
+   "lat": 34.52986,
+   "aliases": [
+    "48369",
+    "parmer"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-pecos",
+   "kind": "county",
+   "name": "Pecos",
+   "full_name": "Pecos County",
+   "fips": "48371",
+   "lon": -102.72369,
+   "lat": 30.78064,
+   "aliases": [
+    "48371",
+    "pecos"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-polk",
+   "kind": "county",
+   "name": "Polk",
+   "full_name": "Polk County",
+   "fips": "48373",
+   "lon": -94.82977,
+   "lat": 30.79245,
+   "aliases": [
+    "48373",
+    "polk"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-potter",
+   "kind": "county",
+   "name": "Potter",
+   "full_name": "Potter County",
+   "fips": "48375",
+   "lon": -101.89398,
+   "lat": 35.40132,
+   "aliases": [
+    "48375",
+    "potter"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-presidio",
+   "kind": "county",
+   "name": "Presidio",
+   "full_name": "Presidio County",
+   "fips": "48377",
+   "lon": -104.24096,
+   "lat": 29.99944,
+   "aliases": [
+    "48377",
+    "presidio"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-rains",
+   "kind": "county",
+   "name": "Rains",
+   "full_name": "Rains County",
+   "fips": "48379",
+   "lon": -95.79304,
+   "lat": 32.87068,
+   "aliases": [
+    "48379",
+    "rains"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-randall",
+   "kind": "county",
+   "name": "Randall",
+   "full_name": "Randall County",
+   "fips": "48381",
+   "lon": -101.89691,
+   "lat": 34.966,
+   "aliases": [
+    "48381",
+    "randall"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-reagan",
+   "kind": "county",
+   "name": "Reagan",
+   "full_name": "Reagan County",
+   "fips": "48383",
+   "lon": -101.52302,
+   "lat": 31.36602,
+   "aliases": [
+    "48383",
+    "reagan"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-real",
+   "kind": "county",
+   "name": "Real",
+   "full_name": "Real County",
+   "fips": "48385",
+   "lon": -99.82174,
+   "lat": 29.83259,
+   "aliases": [
+    "48385",
+    "real"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-red-river",
+   "kind": "county",
+   "name": "Red River",
+   "full_name": "Red River County",
+   "fips": "48387",
+   "lon": -95.05052,
+   "lat": 33.6206,
+   "aliases": [
+    "48387",
+    "red river"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-reeves",
+   "kind": "county",
+   "name": "Reeves",
+   "full_name": "Reeves County",
+   "fips": "48389",
+   "lon": -103.69229,
+   "lat": 31.3229,
+   "aliases": [
+    "48389",
+    "reeves"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-refugio",
+   "kind": "county",
+   "name": "Refugio",
+   "full_name": "Refugio County",
+   "fips": "48391",
+   "lon": -97.16178,
+   "lat": 28.32478,
+   "aliases": [
+    "48391",
+    "refugio"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-roberts",
+   "kind": "county",
+   "name": "Roberts",
+   "full_name": "Roberts County",
+   "fips": "48393",
+   "lon": -100.81468,
+   "lat": 35.83796,
+   "aliases": [
+    "48393",
+    "roberts"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-robertson",
+   "kind": "county",
+   "name": "Robertson",
+   "full_name": "Robertson County",
+   "fips": "48395",
+   "lon": -96.51442,
+   "lat": 31.02647,
+   "aliases": [
+    "48395",
+    "robertson"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-rockwall",
+   "kind": "county",
+   "name": "Rockwall",
+   "full_name": "Rockwall County",
+   "fips": "48397",
+   "lon": -96.40712,
+   "lat": 32.89804,
+   "aliases": [
+    "48397",
+    "rockwall"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-runnels",
+   "kind": "county",
+   "name": "Runnels",
+   "full_name": "Runnels County",
+   "fips": "48399",
+   "lon": -99.97667,
+   "lat": 31.83184,
+   "aliases": [
+    "48399",
+    "runnels"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-rusk",
+   "kind": "county",
+   "name": "Rusk",
+   "full_name": "Rusk County",
+   "fips": "48401",
+   "lon": -94.76172,
+   "lat": 32.10813,
+   "aliases": [
+    "48401",
+    "rusk"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-sabine",
+   "kind": "county",
+   "name": "Sabine",
+   "full_name": "Sabine County",
+   "fips": "48403",
+   "lon": -93.85299,
+   "lat": 31.34447,
+   "aliases": [
+    "48403",
+    "sabine"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-san-augustine",
+   "kind": "county",
+   "name": "San Augustine",
+   "full_name": "San Augustine County",
+   "fips": "48405",
+   "lon": -94.16794,
+   "lat": 31.39308,
+   "aliases": [
+    "48405",
+    "san augustine"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-san-jacinto",
+   "kind": "county",
+   "name": "San Jacinto",
+   "full_name": "San Jacinto County",
+   "fips": "48407",
+   "lon": -95.16716,
+   "lat": 30.57958,
+   "aliases": [
+    "48407",
+    "san jacinto"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-san-patricio",
+   "kind": "county",
+   "name": "San Patricio",
+   "full_name": "San Patricio County",
+   "fips": "48409",
+   "lon": -97.51966,
+   "lat": 28.00838,
+   "aliases": [
+    "48409",
+    "san patricio"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-san-saba",
+   "kind": "county",
+   "name": "San Saba",
+   "full_name": "San Saba County",
+   "fips": "48411",
+   "lon": -98.81881,
+   "lat": 31.15655,
+   "aliases": [
+    "48411",
+    "san saba"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-schleicher",
+   "kind": "county",
+   "name": "Schleicher",
+   "full_name": "Schleicher County",
+   "fips": "48413",
+   "lon": -100.53823,
+   "lat": 30.89731,
+   "aliases": [
+    "48413",
+    "schleicher"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-scurry",
+   "kind": "county",
+   "name": "Scurry",
+   "full_name": "Scurry County",
+   "fips": "48415",
+   "lon": -100.91622,
+   "lat": 32.74616,
+   "aliases": [
+    "48415",
+    "scurry"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-shackelford",
+   "kind": "county",
+   "name": "Shackelford",
+   "full_name": "Shackelford County",
+   "fips": "48417",
+   "lon": -99.35375,
+   "lat": 32.73568,
+   "aliases": [
+    "48417",
+    "shackelford"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-shelby",
+   "kind": "county",
+   "name": "Shelby",
+   "full_name": "Shelby County",
+   "fips": "48419",
+   "lon": -94.14599,
+   "lat": 31.79215,
+   "aliases": [
+    "48419",
+    "shelby"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-sherman",
+   "kind": "county",
+   "name": "Sherman",
+   "full_name": "Sherman County",
+   "fips": "48421",
+   "lon": -101.89327,
+   "lat": 36.27785,
+   "aliases": [
+    "48421",
+    "sherman"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-smith",
+   "kind": "county",
+   "name": "Smith",
+   "full_name": "Smith County",
+   "fips": "48423",
+   "lon": -95.26898,
+   "lat": 32.37606,
+   "aliases": [
+    "48423",
+    "smith"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-somervell",
+   "kind": "county",
+   "name": "Somervell",
+   "full_name": "Somervell County",
+   "fips": "48425",
+   "lon": -97.77506,
+   "lat": 32.22246,
+   "aliases": [
+    "48425",
+    "somervell"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-starr",
+   "kind": "county",
+   "name": "Starr",
+   "full_name": "Starr County",
+   "fips": "48427",
+   "lon": -98.73802,
+   "lat": 26.56201,
+   "aliases": [
+    "48427",
+    "starr"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-stephens",
+   "kind": "county",
+   "name": "Stephens",
+   "full_name": "Stephens County",
+   "fips": "48429",
+   "lon": -98.83546,
+   "lat": 32.73543,
+   "aliases": [
+    "48429",
+    "stephens"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-sterling",
+   "kind": "county",
+   "name": "Sterling",
+   "full_name": "Sterling County",
+   "fips": "48431",
+   "lon": -101.0498,
+   "lat": 31.82795,
+   "aliases": [
+    "48431",
+    "sterling"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-stonewall",
+   "kind": "county",
+   "name": "Stonewall",
+   "full_name": "Stonewall County",
+   "fips": "48433",
+   "lon": -100.25437,
+   "lat": 33.17892,
+   "aliases": [
+    "48433",
+    "stonewall"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-sutton",
+   "kind": "county",
+   "name": "Sutton",
+   "full_name": "Sutton County",
+   "fips": "48435",
+   "lon": -100.53792,
+   "lat": 30.49871,
+   "aliases": [
+    "48435",
+    "sutton"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-swisher",
+   "kind": "county",
+   "name": "Swisher",
+   "full_name": "Swisher County",
+   "fips": "48437",
+   "lon": -101.73521,
+   "lat": 34.53037,
+   "aliases": [
+    "48437",
+    "swisher"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-tarrant",
+   "kind": "county",
+   "name": "Tarrant",
+   "full_name": "Tarrant County",
+   "fips": "48439",
+   "lon": -97.29141,
+   "lat": 32.77169,
+   "aliases": [
+    "48439",
+    "tarrant"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-taylor",
+   "kind": "county",
+   "name": "Taylor",
+   "full_name": "Taylor County",
+   "fips": "48441",
+   "lon": -99.88967,
+   "lat": 32.30178,
+   "aliases": [
+    "48441",
+    "taylor"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-terrell",
+   "kind": "county",
+   "name": "Terrell",
+   "full_name": "Terrell County",
+   "fips": "48443",
+   "lon": -102.07713,
+   "lat": 30.22551,
+   "aliases": [
+    "48443",
+    "terrell"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-terry",
+   "kind": "county",
+   "name": "Terry",
+   "full_name": "Terry County",
+   "fips": "48445",
+   "lon": -102.33454,
+   "lat": 33.17386,
+   "aliases": [
+    "48445",
+    "terry"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-throckmorton",
+   "kind": "county",
+   "name": "Throckmorton",
+   "full_name": "Throckmorton County",
+   "fips": "48447",
+   "lon": -99.21303,
+   "lat": 33.17741,
+   "aliases": [
+    "48447",
+    "throckmorton"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-titus",
+   "kind": "county",
+   "name": "Titus",
+   "full_name": "Titus County",
+   "fips": "48449",
+   "lon": -94.96724,
+   "lat": 33.21607,
+   "aliases": [
+    "48449",
+    "titus"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-tom-green",
+   "kind": "county",
+   "name": "Tom Green",
+   "full_name": "Tom Green County",
+   "fips": "48451",
+   "lon": -100.46236,
+   "lat": 31.40454,
+   "aliases": [
+    "48451",
+    "tom green"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-travis",
+   "kind": "county",
+   "name": "Travis",
+   "full_name": "Travis County",
+   "fips": "48453",
+   "lon": -97.7824,
+   "lat": 30.33517,
+   "aliases": [
+    "48453",
+    "travis"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-trinity",
+   "kind": "county",
+   "name": "Trinity",
+   "full_name": "Trinity County",
+   "fips": "48455",
+   "lon": -95.13499,
+   "lat": 31.08879,
+   "aliases": [
+    "48455",
+    "trinity"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-tyler",
+   "kind": "county",
+   "name": "Tyler",
+   "full_name": "Tyler County",
+   "fips": "48457",
+   "lon": -94.37625,
+   "lat": 30.77087,
+   "aliases": [
+    "48457",
+    "tyler"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-upshur",
+   "kind": "county",
+   "name": "Upshur",
+   "full_name": "Upshur County",
+   "fips": "48459",
+   "lon": -94.94203,
+   "lat": 32.73597,
+   "aliases": [
+    "48459",
+    "upshur"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-upton",
+   "kind": "county",
+   "name": "Upton",
+   "full_name": "Upton County",
+   "fips": "48461",
+   "lon": -102.04346,
+   "lat": 31.36839,
+   "aliases": [
+    "48461",
+    "upton"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-uvalde",
+   "kind": "county",
+   "name": "Uvalde",
+   "full_name": "Uvalde County",
+   "fips": "48463",
+   "lon": -99.76207,
+   "lat": 29.35731,
+   "aliases": [
+    "48463",
+    "uvalde"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-val-verde",
+   "kind": "county",
+   "name": "Val Verde",
+   "full_name": "Val Verde County",
+   "fips": "48465",
+   "lon": -101.15225,
+   "lat": 29.89242,
+   "aliases": [
+    "48465",
+    "val verde"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-van-zandt",
+   "kind": "county",
+   "name": "Van Zandt",
+   "full_name": "Van Zandt County",
+   "fips": "48467",
+   "lon": -95.83703,
+   "lat": 32.5636,
+   "aliases": [
+    "48467",
+    "van zandt"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-victoria",
+   "kind": "county",
+   "name": "Victoria",
+   "full_name": "Victoria County",
+   "fips": "48469",
+   "lon": -96.96958,
+   "lat": 28.79588,
+   "aliases": [
+    "48469",
+    "victoria"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-walker",
+   "kind": "county",
+   "name": "Walker",
+   "full_name": "Walker County",
+   "fips": "48471",
+   "lon": -95.57184,
+   "lat": 30.73945,
+   "aliases": [
+    "48471",
+    "walker"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-waller",
+   "kind": "county",
+   "name": "Waller",
+   "full_name": "Waller County",
+   "fips": "48473",
+   "lon": -95.98832,
+   "lat": 30.00905,
+   "aliases": [
+    "48473",
+    "waller"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-ward",
+   "kind": "county",
+   "name": "Ward",
+   "full_name": "Ward County",
+   "fips": "48475",
+   "lon": -103.10187,
+   "lat": 31.5095,
+   "aliases": [
+    "48475",
+    "ward"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-washington",
+   "kind": "county",
+   "name": "Washington",
+   "full_name": "Washington County",
+   "fips": "48477",
+   "lon": -96.40387,
+   "lat": 30.21306,
+   "aliases": [
+    "48477",
+    "washington"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-webb",
+   "kind": "county",
+   "name": "Webb",
+   "full_name": "Webb County",
+   "fips": "48479",
+   "lon": -99.3316,
+   "lat": 27.761,
+   "aliases": [
+    "48479",
+    "webb"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-wharton",
+   "kind": "county",
+   "name": "Wharton",
+   "full_name": "Wharton County",
+   "fips": "48481",
+   "lon": -96.2219,
+   "lat": 29.27871,
+   "aliases": [
+    "48481",
+    "wharton"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-wheeler",
+   "kind": "county",
+   "name": "Wheeler",
+   "full_name": "Wheeler County",
+   "fips": "48483",
+   "lon": -100.26982,
+   "lat": 35.40137,
+   "aliases": [
+    "48483",
+    "wheeler"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-wichita",
+   "kind": "county",
+   "name": "Wichita",
+   "full_name": "Wichita County",
+   "fips": "48485",
+   "lon": -98.70328,
+   "lat": 33.98857,
+   "aliases": [
+    "48485",
+    "wichita"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-wilbarger",
+   "kind": "county",
+   "name": "Wilbarger",
+   "full_name": "Wilbarger County",
+   "fips": "48487",
+   "lon": -99.23976,
+   "lat": 34.0795,
+   "aliases": [
+    "48487",
+    "wilbarger"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-willacy",
+   "kind": "county",
+   "name": "Willacy",
+   "full_name": "Willacy County",
+   "fips": "48489",
+   "lon": -97.65782,
+   "lat": 26.47065,
+   "aliases": [
+    "48489",
+    "willacy"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-williamson",
+   "kind": "county",
+   "name": "Williamson",
+   "full_name": "Williamson County",
+   "fips": "48491",
+   "lon": -97.59965,
+   "lat": 30.64779,
+   "aliases": [
+    "48491",
+    "williamson"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-wilson",
+   "kind": "county",
+   "name": "Wilson",
+   "full_name": "Wilson County",
+   "fips": "48493",
+   "lon": -98.08624,
+   "lat": 29.17459,
+   "aliases": [
+    "48493",
+    "wilson"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-winkler",
+   "kind": "county",
+   "name": "Winkler",
+   "full_name": "Winkler County",
+   "fips": "48495",
+   "lon": -103.04903,
+   "lat": 31.84999,
+   "aliases": [
+    "48495",
+    "winkler"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-wise",
+   "kind": "county",
+   "name": "Wise",
+   "full_name": "Wise County",
+   "fips": "48497",
+   "lon": -97.65486,
+   "lat": 33.21555,
+   "aliases": [
+    "48497",
+    "wise"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-wood",
+   "kind": "county",
+   "name": "Wood",
+   "full_name": "Wood County",
+   "fips": "48499",
+   "lon": -95.38209,
+   "lat": 32.78709,
+   "aliases": [
+    "48499",
+    "wood"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-yoakum",
+   "kind": "county",
+   "name": "Yoakum",
+   "full_name": "Yoakum County",
+   "fips": "48501",
+   "lon": -102.82758,
+   "lat": 33.17297,
+   "aliases": [
+    "48501",
+    "yoakum"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-young",
+   "kind": "county",
+   "name": "Young",
+   "full_name": "Young County",
+   "fips": "48503",
+   "lon": -98.68881,
+   "lat": 33.17666,
+   "aliases": [
+    "48503",
+    "young"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-zapata",
+   "kind": "county",
+   "name": "Zapata",
+   "full_name": "Zapata County",
+   "fips": "48505",
+   "lon": -99.16914,
+   "lat": 27.00166,
+   "aliases": [
+    "48505",
+    "zapata"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  },
+  {
+   "id": "county-zavala",
+   "kind": "county",
+   "name": "Zavala",
+   "full_name": "Zavala County",
+   "fips": "48507",
+   "lon": -99.76044,
+   "lat": 28.86591,
+   "aliases": [
+    "48507",
+    "zavala"
+   ],
+   "provenance": {
+    "name": "us-atlas",
+    "fips": "us-atlas",
+    "lon": "computed:area-weighted-centroid",
+    "lat": "computed:area-weighted-centroid"
+   }
+  }
+ ]
+}
