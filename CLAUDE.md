@@ -72,6 +72,36 @@ actor may trigger a rebuild; none may edit the output. This is what makes it str
 impossible for a run to corrupt the live site: the worst case is a stale build that a gate
 catches, never a broken page.
 
+## Numbers are computed, never generated (THE LAW, and we publish it)
+
+**Every numeral this project publishes is produced by code, from data, and can be recomputed
+from the same inputs. No number is ever typed by a person or produced by a language model.**
+
+This is not an internal preference. It is a **public commitment stated on the site**, because it
+is the reason a reader should believe a number here over a number somewhere else. A model that
+writes "about 8.9 gigawatts" is guessing at a formatting problem it does not know it has. A
+model that has been told the answer is 8,927 and writes 8,297 has made an error nothing
+downstream will catch.
+
+What follows from it:
+
+- The model's job is to **decide what to measure, write the code that measures it, and write
+  the prose around it.** It is never the calculator.
+- Arithmetic, unit conversion, percentages, ratios, deltas, rankings, date math and rounding all
+  happen in Python. Not in a prompt, not in a caption, not in a slide string.
+- **`numeral_lint` is a hard build gate.** Every numeral appearing in published copy must be
+  present in the set of values the build actually computed. A numeral that cannot be traced to
+  a computation fails the build. Prose that needs a number asks the computation for it.
+- The same rule governs the carousel and the video: a figure on a slide or in a script traces to
+  a claim, and a claim traces to a fetched source and a computed value.
+- Where a number is genuinely an estimate, the code computes the estimate and labels it
+  `modeled`. Where it is measured, it is labeled `measured`. Where it is neither, it is not
+  published.
+- Rounding is a computation with a stated rule, not a stylistic choice made at writing time.
+
+The corollary a reader deserves: when we cannot compute something, we say so and publish the
+size of the gap instead of an estimate dressed as a measurement.
+
 ## Texas Grid Watch (hard rules)
 
 A daily numeric record of the ERCOT grid's position, published as open data beside the

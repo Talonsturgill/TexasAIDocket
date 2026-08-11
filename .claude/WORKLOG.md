@@ -57,7 +57,7 @@ Source machines total ~79,000 lines across three Alaska repos, which are REFEREN
 
 | # | Wave | Status | Notes |
 |---|---|---|---|
-| 0 | Foundation, ownership guard, port audit | IN PROGRESS | |
+| 0 | Foundation, ownership guard, port audit | **DONE** | 535 files / 158,683 lines routed, 0 unrouted |
 | 1 | Texas identity: research, doctrine, tokens, geodata | TODO | |
 | 2 | Docket spine + fact-checked seed items | TODO | 15 unverified research findings resolve here |
 | 3 | Website + AI-discoverability layer | TODO | `site_build.py` is the single biggest item |
@@ -68,7 +68,24 @@ Source machines total ~79,000 lines across three Alaska repos, which are REFEREN
 | 8 | Commercial wing + scanner | TODO | lands here + `TexasAIScanner` |
 | 9 | Wire-up, end-to-end proof, routine handoff | TODO | |
 | A | Metro scoping (cuts across waves 2, 3, 4, 5) | TODO | owner directive 2026-08-11 |
-| B | Data cleanliness spine: places + entity resolution | TODO | owner directive 2026-08-11 |
+| B | Data cleanliness spine: places + entity resolution | **PARTIAL** | see below |
+
+### Wave B progress
+
+DONE: all 254 counties with FIPS and computed area-weighted centroids, the resolver, the
+provenance law, and CI reproducibility (`tx-places.json` must rebuild byte-for-byte).
+
+STILL NEEDED, each blocked on a **cited** source, never a guess:
+- county to **ERCOT weather zone** (8 zones) and **load zone** (`LZ_HOUSTON`, `LZ_NORTH`,
+  `LZ_SOUTH`, `LZ_WEST`) mapping. Needed for per-metro grid reporting.
+- which counties are **outside ERCOT** entirely: El Paso is WECC, parts of the Panhandle and
+  East Texas are SPP or MISO. Getting this wrong makes a whole region's numbers silently wrong.
+- cities with population and county, MSA definitions, physiographic region
+- county seats
+- the **entity canonicalizer**: stable ids plus aliases for agencies, utilities, companies and
+  school districts, so "City of Houston", "Houston" and "COH" collapse to one thing
+
+Census API needs a free key (tested: returns "Missing Key"). Find a keyless route or get a key.
 
 ## Owner directive 2026-08-11: Texas is not Alaska in scale
 
@@ -101,6 +118,31 @@ resolve, every entity must canonicalize, no orphan aliases.
 - [ ] Flip `TexasAIDocket` to public (before Wave 3 ships)
 - [ ] Create routine triggers at claude.ai/code/routines once prompts land (Waves 6, 7, 8)
 - [ ] Keys when we reach them: Buttondown, Supabase project, Cloudflare Worker + KV + Turnstile
+
+## Owner directive 2026-08-11: editorial scope is wider than the docket
+
+The carousel and the video cover **Texas AI companies doing real work** and **AI applications
+making an impact in the state, in the cities and outside them**. Not only government decisions.
+
+This creates a real schema question to settle in Wave 2, and it should be settled deliberately
+rather than by accident:
+
+- A **docket item** is a decision. It has a decider, dates, a public-access status, and a
+  formal way in. That is what gives the docket its integrity, and diluting it would cost the
+  thing that makes it citable.
+- A **company or deployment** is an entity doing something. A hospital system rolling out
+  ambient AI, a school district's grading engine, a ranch running herd analytics, an oilfield
+  service company shipping a drilling optimizer. These often have no decider and no deadline.
+
+Provisional resolution, to confirm when the schema is built: keep `ledger/docket.json`
+decision-centric, and add a separate `ledger/deployments.json` with its own schema for
+companies and applications. A deployment that becomes a public decision (a district adopting a
+policy, a county approving a permit) gets a docket item that **references** the deployment
+record, so the two link without merging.
+
+The rural half matters and is under-covered by everyone: agriculture and ranching, oilfield
+operations, rural hospitals and clinics, small school districts, water districts, and
+precision farming. City coverage will find itself; rural coverage has to be sought.
 
 ## Hard-won facts (do not rediscover)
 

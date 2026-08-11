@@ -47,6 +47,20 @@ jobs:
       - name: Port audit self-test (prove every gate can go red)
         run: python3 scripts/shared/port_audit.py --self-test
 
+      - name: Places self-test (the canonical place record and its resolver)
+        run: python3 scripts/shared/places.py --self-test
+
+      - name: Places record is reproducible from its source geodata
+        run: |
+          # The place record is load-bearing: every stored location resolves through it, so a
+          # hand-edit would silently repoint pins and break per-metro counts. Rebuild it and
+          # require byte equality, the same discipline docs/ is held to.
+          cp assets/geo/tx-places.json /tmp/tx-places.committed.json
+          python3 scripts/shared/places.py build
+          diff -q /tmp/tx-places.committed.json assets/geo/tx-places.json \
+            || { echo "tx-places.json is not reproducible from tx-counties.topo.json"; exit 1; }
+          echo "places record reproduces byte-for-byte"
+
       - name: Ownership check
         run: |
           BRANCH="${{ github.head_ref || github.ref_name }}"

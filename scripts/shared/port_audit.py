@@ -39,6 +39,12 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[2]
 MANIFEST = REPO_ROOT / "PORT_MANIFEST.tsv"
 
+# Texas config -> the Alaska config it must stay at key parity with. Divergences are declared in
+# config/parity_map.yaml, never by deleting a row from here.
+REFERENCE_CONFIGS = {
+    "config/brand.yaml": "/home/user/alaskaaicarousels/config/brand.yaml",
+}
+
 # Alaska names that must not survive the port. Deliberately narrower than the detector in
 # gen_port_manifest.py: this one runs against Texas source, where a false positive is noise a
 # human has to triage, so ambiguous words ("arctic", "aurora") are left out and the
@@ -61,6 +67,15 @@ RESIDUE_ALLOW = {
     ".claude/WORKLOG.md",
     "CLAUDE.md",
     "README.md",
+    # Design records for the two numeric instruments. These name the upstream product on
+    # purpose: each documents which discipline was inherited and why, and a rule stripped of
+    # its reason is a rule the next context talks itself out of. Listed by exact path rather
+    # than a directory glob so the exemption cannot quietly spread.
+    "knowledge/shared/GRID_WATCH_DESIGN.md",
+    "knowledge/shared/OIL_WATCH_DESIGN.md",
+    # The parity map is a divergence record. Naming what each key diverged FROM is the entire
+    # content of the file, so it belongs with the manifest rather than with Texas source.
+    "config/parity_map.yaml",
 }
 
 # Scripts that are legitimately entry points nobody imports: run by hand, or by a human
@@ -70,6 +85,10 @@ STANDALONE_ALLOW = {
     "scripts/shared/port_audit.py",
     "scripts/shared/ownership_check.py",
 }
+
+# Documents that describe intent rather than execute it. A script named only in one of these
+# is planned, not wired, and the wiring check must not accept a plan as proof of a connection.
+PLAN_DOCS = {".claude/WORKLOG.md", "README.md", "CLAUDE.md", "PORT_MANIFEST.tsv"}
 
 SKIP_SCAN_DIRS = {".git", "node_modules", "__pycache__", "out", "docs", "runs", "vendor"}
 TEXT_SUFFIXES = {".py", ".md", ".yaml", ".yml", ".json", ".txt", ".js", ".mjs", ".ts",
@@ -179,9 +198,15 @@ def check_wiring(root: Path) -> Result:
         r.skip("no scripts yet")
         return r
 
-    # Everything that could plausibly name a script: prompts, workflows, other code, docs.
+    # Only things that can INVOKE count as evidence: prompts, workflows, shell, other code.
+    # Data files are excluded on purpose. A generated artifact that stamps its own producer
+    # ("generated_by: scripts/shared/places.py") would otherwise vouch for that script forever,
+    # which is the same self-referential hole as a file naming itself.
+    CALLER_SUFFIXES = {".py", ".md", ".yml", ".yaml", ".sh", ".js", ".mjs", ".ts", ".txt"}
     haystack: list[tuple[str, str]] = []
     for rel, path in walk_text_files(root):
+        if path.suffix not in CALLER_SUFFIXES:
+            continue
         try:
             haystack.append((rel.as_posix(), path.read_text(encoding="utf-8", errors="ignore")))
         except OSError:
@@ -199,6 +224,9 @@ def check_wiring(root: Path) -> Result:
         for holder, text in haystack:
             if holder == script:
                 continue                                  # a file naming itself proves nothing
+            if holder in PLAN_DOCS:
+                continue    # being named in a plan is not being wired into the machine; that
+                            # confusion is exactly the failure this check exists to catch
             if name in text or re.search(rf"\bimport\s+{re.escape(stem)}\b", text) \
                     or re.search(rf"\bfrom\s+{re.escape(stem)}\s+import\b", text):
                 referenced = True
@@ -306,18 +334,55 @@ def check_agents(root: Path) -> Result:
 
 
 # --------------------------------------------------------------------------- 7 parity
-def check_parity(root: Path) -> Result:
-    """Texas config must carry every KEY its Alaska counterpart had. Values differ, shape
-    does not. This is what catches a half-ported config that looks finished."""
+def _yaml_keys(node, prefix: str = "") -> set:
+    out = set()
+    if isinstance(node, dict):
+        for k, v in node.items():
+            out.add(f"{prefix}{k}")
+            out |= _yaml_keys(v, f"{prefix}{k}.")
+    return out
+
+
+def check_parity(root: Path, refs: dict | None = None) -> Result:
+    """Texas config must carry every KEY its Alaska counterpart had. Values differ, shape does
+    not. This is what catches a half-ported config that looks finished.
+
+    Divergence is allowed, but only in writing. config/parity_map.yaml records each missing key
+    as renamed, dropped or deferred, and this check holds each disposition to its own standard:
+
+      renamed  -> the Texas key it names MUST exist, so a rename can never stand in for a key
+                  nobody actually wrote. That loophole would recreate the exact failure the
+                  parity gate exists to catch.
+      dropped  -> a non-empty reason is required.
+      deferred -> a reason AND a blocked_on are required, and every deferral is PRINTED on every
+                  run. A parking space nobody sees is a grave.
+
+    A map entry for a key that is present is STALE and fails. Stale exemptions are how a strict
+    gate rots into a decorative one: the key comes back, nobody removes the waiver, and the next
+    time it goes missing the waiver silently covers it.
+    """
     r = Result("parity")
     try:
         import yaml
     except ImportError:
         r.skip("PyYAML unavailable")
         return r
-    pairs = [(root / "config" / "brand.yaml",
-              Path("/home/user/alaskaaicarousels/config/brand.yaml"))]
-    checked = 0
+
+    # Injectable so the self-test can point the gate at a throwaway reference. Without that the
+    # only way to exercise parity is against the real Alaska checkout, which is not present on
+    # CI and would make this the one gate that never proves it can go red.
+    pairs = [(root / rel, Path(ref)) for rel, ref in (refs or REFERENCE_CONFIGS).items()]
+
+    map_path = root / "config" / "parity_map.yaml"
+    pmap = {}
+    if map_path.exists():
+        try:
+            pmap = yaml.safe_load(map_path.read_text(encoding="utf-8")) or {}
+        except yaml.YAMLError as e:
+            r.fail(f"config/parity_map.yaml does not parse: {e}")
+            return r
+
+    checked, deferrals = 0, []
     for texas, alaska in pairs:
         if not texas.exists():
             continue
@@ -325,25 +390,56 @@ def check_parity(root: Path) -> Result:
             r.skip(f"reference {alaska} not on disk")
             continue
         checked += 1
+        rel = str(texas.relative_to(root))
+        entry = pmap.get(rel, {}) or {}
+        renamed = entry.get("renamed", {}) or {}
+        dropped = entry.get("dropped", {}) or {}
+        deferred = entry.get("deferred", {}) or {}
 
-        def keys(node, prefix=""):
-            out = set()
-            if isinstance(node, dict):
-                for k, v in node.items():
-                    out.add(f"{prefix}{k}")
-                    out |= keys(v, f"{prefix}{k}.")
-            return out
+        tex_keys = _yaml_keys(yaml.safe_load(texas.read_text(encoding="utf-8")))
+        missing = _yaml_keys(yaml.safe_load(alaska.read_text(encoding="utf-8"))) - tex_keys
 
-        missing = keys(yaml.safe_load(alaska.read_text(encoding="utf-8"))) - \
-            keys(yaml.safe_load(texas.read_text(encoding="utf-8")))
-        for k in sorted(missing)[:15]:
-            r.fail(f"{texas.relative_to(root)} is missing key '{k}'")
-        if len(missing) > 15:
-            r.fail(f"...and {len(missing) - 15} more missing keys")
+        unexplained = []
+        for k in sorted(missing):
+            if k in renamed:
+                target = renamed[k]
+                if target not in tex_keys:
+                    r.fail(f"{rel}: '{k}' is mapped to '{target}', which does not exist")
+            elif k in dropped:
+                if not str((dropped[k] or {}).get("reason", "")).strip():
+                    r.fail(f"{rel}: '{k}' is dropped with no reason")
+            elif k in deferred:
+                d = deferred[k] or {}
+                if not str(d.get("reason", "")).strip():
+                    r.fail(f"{rel}: '{k}' is deferred with no reason")
+                if not str(d.get("blocked_on", "")).strip():
+                    r.fail(f"{rel}: '{k}' is deferred with no blocked_on")
+                # The full argument lives in the map. The gate line only has to name the key
+                # and what unblocks it, or the deferral list becomes the thing nobody reads.
+                on = " ".join(str(d.get("blocked_on", "?")).split())
+                if len(on) > 58:
+                    on = on[:57].rsplit(" ", 1)[0] + "..."
+                deferrals.append(f"{k} (blocked on {on})")
+            else:
+                unexplained.append(k)
+
+        for k in unexplained[:15]:
+            r.fail(f"{rel} is missing key '{k}' and config/parity_map.yaml does not explain it")
+        if len(unexplained) > 15:
+            r.fail(f"...and {len(unexplained) - 15} more unexplained missing keys")
+
+        for group in ("renamed", "dropped", "deferred"):
+            for k in sorted((entry.get(group, {}) or {})):
+                if k not in missing:
+                    r.fail(f"{rel}: parity_map lists '{k}' as {group}, but it is present. "
+                           f"Stale exemption, remove it.")
+
     if checked == 0:
         r.skip("no config to compare yet")
     elif r.status == "PASS":
-        r.note(f"{checked} config file(s) at full key parity")
+        r.note(f"{checked} config file(s) at parity, divergences explained")
+    for d in sorted(set(deferrals)):
+        r.note(f"DEFERRED: {d}")
     return r
 
 
@@ -429,6 +525,53 @@ def self_test() -> int:
         man.write_text(head + "\n" + "\t".join(
             ["r", "p", "1", "1", "0", "DROP", "", "DROPPED", "because"]) + "\n", encoding="utf-8")
         expect("coverage passes a justified drop", check_coverage(root), "PASS")
+
+        # parity: every disposition in the map has to be held to its own standard, and an
+        # undeclared missing key has to fail. Run against a throwaway reference config.
+        cfg = root / "config"
+        cfg.mkdir()
+        ref = root / "_ref.yaml"
+        ref.write_text("a:\n  keep: 1\n  gone: 2\n", encoding="utf-8")
+        refs = {"config/brand.yaml": str(ref)}
+        tex, pmap = cfg / "brand.yaml", cfg / "parity_map.yaml"
+
+        tex.write_text("a:\n  keep: 1\n  gone: 2\n", encoding="utf-8")
+        expect("parity passes an exact key match", check_parity(root, refs), "PASS")
+
+        tex.write_text("a:\n  keep: 1\n", encoding="utf-8")
+        expect("parity catches an undeclared missing key", check_parity(root, refs), "FAIL")
+
+        pmap.write_text(
+            'config/brand.yaml:\n  renamed:\n    a.gone: a.nowhere\n', encoding="utf-8")
+        expect("parity catches a rename to a key that does not exist",
+               check_parity(root, refs), "FAIL")
+
+        tex.write_text("a:\n  keep: 1\n  renamed_to: 2\n", encoding="utf-8")
+        pmap.write_text(
+            'config/brand.yaml:\n  renamed:\n    a.gone: a.renamed_to\n', encoding="utf-8")
+        expect("parity passes a rename whose target exists", check_parity(root, refs), "PASS")
+
+        pmap.write_text(
+            'config/brand.yaml:\n  dropped:\n    a.gone:\n      reason: ""\n', encoding="utf-8")
+        expect("parity catches a drop with an empty reason", check_parity(root, refs), "FAIL")
+
+        pmap.write_text(
+            'config/brand.yaml:\n  dropped:\n    a.gone:\n      reason: "not a Texas concept"\n',
+            encoding="utf-8")
+        expect("parity passes a reasoned drop", check_parity(root, refs), "PASS")
+
+        pmap.write_text('config/brand.yaml:\n  deferred:\n    a.gone:\n'
+                        '      reason: "must be measured first"\n', encoding="utf-8")
+        expect("parity catches a deferral with no blocked_on", check_parity(root, refs), "FAIL")
+
+        pmap.write_text('config/brand.yaml:\n  deferred:\n    a.gone:\n'
+                        '      reason: "must be measured first"\n'
+                        '      blocked_on: "Wave 6"\n', encoding="utf-8")
+        expect("parity passes a fully argued deferral", check_parity(root, refs), "PASS")
+
+        tex.write_text("a:\n  keep: 1\n  gone: 2\n  renamed_to: 3\n", encoding="utf-8")
+        expect("parity catches a stale exemption for a key that came back",
+               check_parity(root, refs), "FAIL")
 
     if failures:
         print(f"\nport_audit self-test: {failures} FAILED", file=sys.stderr)

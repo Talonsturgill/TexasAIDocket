@@ -1,0 +1,120 @@
+# Where this repo's config deliberately diverges from the config it was ported from.
+#
+# WHY THIS FILE EXISTS. `port_audit.py`'s parity gate holds Texas config to every KEY its Alaska
+# counterpart carried, because the failure this whole port is built to prevent is a file that got
+# copied over, half finished, and looked done. A key that quietly vanished is that failure in
+# miniature. So the gate is strict, and every divergence has to be argued HERE, in data, where it
+# is reviewable, rather than by loosening the gate.
+#
+# Three dispositions, and the audit enforces the difference:
+#
+#   renamed:  the concept survived under a different key. The audit FAILS if the Texas key does
+#             not actually exist, so a rename can never be used to wave away a key nobody wrote.
+#   dropped:  the concept does not apply to Texas. A non-empty `reason` is REQUIRED.
+#   deferred: the concept applies, but the value cannot honestly be written yet. Requires a
+#             `reason` and a `blocked_on`. The audit PRINTS every deferral on every run, so this
+#             is a loud parking space and not a quiet grave.
+#
+# Adding a `dropped` entry is a real decision. Read the Alaska value first and make sure the
+# thing being dropped is the Alaska-ness of it and not the discipline behind it.
+
+"config/brand.yaml":
+
+  renamed:
+    # Naming. The product is a docket, not a page.
+    brand.page_name:                    brand.name
+    brand.channel:                      brand.channel_primary
+
+    # The house rules were regrouped under one `house_rules` subtree. Alaska grew them one
+    # maintainer ruling at a time, so they sit as siblings of `voice` and `audience` and read
+    # like sediment. Same rules, same reasons, one place to look.
+    brand.date_format:                        brand.house_rules.dates
+    brand.date_format.rule:                   brand.house_rules.dates.rule
+    brand.date_format.good:                   brand.house_rules.dates.good
+    brand.date_format.bad:                    brand.house_rules.dates.bad
+    brand.date_format.applies_to:             brand.house_rules.dates.applies_to
+    brand.date_format.enforced_by:            brand.house_rules.dates.enforced_by
+    brand.date_format.iso_is_still_correct_for: brand.house_rules.dates.iso_still_correct_for
+    brand.contractions:                       brand.house_rules.contractions
+    brand.contractions.rule:                  brand.house_rules.contractions.rule
+    brand.contractions.why:                   brand.house_rules.contractions.why
+    brand.contractions.enforced_by:           brand.house_rules.contractions.enforced_by
+    brand.sentence_openers:                   brand.house_rules.sentence_openers
+    brand.sentence_openers.rule:              brand.house_rules.sentence_openers.rule
+    brand.sentence_openers.why:               brand.house_rules.sentence_openers.why
+    brand.sentence_openers.enforced_by:       brand.house_rules.sentence_openers.enforced_by
+
+    # Visual. Same structural role, Texas material.
+    visual.constellation.polaris_star:  visual.constellation.mark
+    visual.constellation.gold_presence: visual.constellation.red_is_reserved
+    visual.tokens.flag_gold:            visual.tokens.flag_red
+    visual.tokens.deep_night:           visual.tokens.night
+    visual.tokens.flag_blue_horizon:    visual.tokens.flag_blue
+    visual.tokens.panel_navy:           visual.tokens.panel
+    visual.tokens.snow:                 visual.tokens.flag_white
+
+  dropped:
+    visual.tokens.aurora_green:
+      reason: >
+        An aurora color. Texas has no aurora, and a green-cyan-violet accent family carried into
+        a Big Bend dusk palette would be the single loudest tell that this product was cloned
+        rather than designed. The ROLE the aurora family played, a rotating accent family drawn
+        from the story's own material world, is preserved at visual.tokens.supporting_palettes_rotate.
+    visual.tokens.aurora_ice:
+      reason: "Same as aurora_green. Role preserved at supporting_palettes_rotate."
+    visual.tokens.aurora_violet:
+      reason: "Same as aurora_green. Role preserved at supporting_palettes_rotate."
+    visual.tokens.forget_me_not:
+      reason: >
+        The Alaska state flower, used as a soft blue accent. Texas has a state flower and it is
+        the bluebonnet, so the slot is filled by visual.tokens.bluebonnet rather than renamed:
+        the hex, the connotation and the usage are all different, and calling it a rename would
+        overstate the continuity.
+    visual.tokens.gold_halo:
+      reason: >
+        The lighter halo of the accent gold, which exists because Alaska's gold appears on every
+        slide and needs a glow value. Texas red is URGENT ONLY by explicit rule, so it appears on
+        few slides and must never glow. A halo token would invite exactly the decorative use the
+        reservation rule exists to forbid.
+
+  deferred:
+    brand.comma_discipline:
+      reason: >
+        This is a genuine discipline and Texas wants it. What cannot be ported is the NUMBER.
+        Alaska's ceiling of 6.2 commas per 100 words is ten percent below the mean measured
+        across its own 22 shipped captions, and the file says in its own why_not_the_weekly_repos_number
+        field that importing another surface's figure produced a 29 percent cut rather than the
+        10 percent that was asked for. That is the whole lesson: the threshold is a property of
+        what THIS surface actually ships. Texas has shipped nothing. Writing 6.2 here would be a
+        published number typed by a person from another product's corpus, which is the exact
+        thing CLAUDE.md's compute-not-generate law forbids, and it would be enforced as a hard
+        gate against copy it was never measured on.
+      blocked_on: >
+        Wave 6, plus the first 20 shipped captions. Then measure the mean, take ten percent off
+        it in code, and write the result with its baseline. Pick ONE unit while doing it: Alaska
+        carries both per-100-words and per-100-characters for the same rule, which is a trap.
+    brand.comma_discipline.rule:
+      reason: "Deferred with its parent."
+      blocked_on: "Wave 6 plus 20 shipped captions."
+    brand.comma_discipline.measured_baseline:
+      reason: "This is literally the measurement Texas does not have yet."
+      blocked_on: "Wave 6 plus 20 shipped captions."
+    brand.comma_discipline.why_not_the_weekly_repos_number:
+      reason: >
+        Alaska-specific reasoning about a sibling Alaska repo's figure. The PRINCIPLE it records,
+        that a threshold belongs to the surface it was measured on, is why this whole block is
+        deferred, so it is preserved in this reason rather than in a config key.
+      blocked_on: "Wave 6 plus 20 shipped captions."
+    brand.comma_discipline.how_to_cut_them:
+      reason: >
+        The craft guidance is portable and good (split the sentence, do not just delete the comma
+        and leave a run-on). It lands with the rule it belongs to rather than standing alone.
+      blocked_on: "Wave 6 plus 20 shipped captions."
+    brand.comma_discipline.enforced_by:
+      reason: "Names a linter constant that does not exist until the rule has a number."
+      blocked_on: "Wave 6 plus 20 shipped captions."
+    brand.linkedin_post.comma_per_100_chars:
+      reason: >
+        The same measured threshold expressed in the other unit. Deferred for the same reason,
+        and it is the reason to settle on one unit when the measurement exists.
+      blocked_on: "Wave 6 plus 20 shipped captions."
