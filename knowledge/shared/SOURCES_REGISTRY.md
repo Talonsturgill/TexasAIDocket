@@ -238,6 +238,71 @@ called it a dead end. The **FCC Broadband Map API returns 401 and needs free `us
 `hash_value` registration**. That is a registration, not a wall. The FCC's keyless Socrata data is
 real but frozen at **June 2021 Form 477** and will not answer a BEAD question.
 
+### The feed sweep: 8 of 12 "blocked" domains have working feeds
+
+A dedicated pass probed 83 feed URLs. **The blocked list was mostly wrong**, which compounds the
+curl-versus-WebFetch correction above: the first pass measured one client against HTML, and both
+of those choices were load-bearing.
+
+| Domain, previously "blocked" | Result |
+|---|---|
+| **texastribune.org** | **Open.** `/feed/` plus 8 topic feeds, 2 tag feeds, and the WP REST API |
+| **texasstandard.org** | **Open.** `/feed/` carries 300 items |
+| **hpcwire.com** | **Open.** `/feed/`, full text |
+| **therobotreport.com** | **Open.** `/feed/`, full text |
+| **news.utsa.edu** | **Open.** `/feed/`, full text — closes the San Antonio gap |
+| **tea.texas.gov** | **Open via GovDelivery**, 13 topics, full text — closes the STAAR gap |
+| **newsroom.heb.com** | **Open.** `/feed/` works even though the page body is empty |
+| **porthouston.com** | **Open.** `/feed/`, monthly |
+| `tacc.utexas.edu` | **EXCLUDED ON PURPOSE. See below.** |
+| `texasattorneygeneral.gov` | No feed. `/rss.xml`, `/feed`, link tags and GovDelivery all 404 |
+| `utsouthwestern.edu` | No feed. `/newsroom/rss.xml` answers **200 with a zero-byte body** |
+| `flocksafety.com` | No feed |
+
+**`tacc.utexas.edu` robots.txt explicitly disallows `ClaudeBot` and `anthropic-ai` domain-wide.**
+The research agent found no feed and **left the domain alone rather than routing around the
+restriction**, which is the correct call and the one this project has to keep making. It joins
+`data.capitol.texas.gov` on the off-limits list in section 1. TACC coverage has to come from NSF
+award data, UT System, or the LCCF project site instead.
+
+**The single most valuable find.** The Tribune's search *feed* returns 200 with zero items, but
+their **WP REST API is keyword-filtered, date-sorted, and returns complete article bodies**
+(verified at 8,150 and 6,001 characters):
+
+```
+https://www.texastribune.org/wp-json/wp/v2/posts?search=ERCOT&per_page=20&_fields=date,link,title,content
+```
+
+**That is full text, keyword-scoped, out of the most important newsroom on the beat.**
+
+### Two traps that would have burned runs
+
+1. **Empty shells parse cleanly and never fail a health check, which makes them more dangerous
+   than a 404.** `tceq.texas.gov/rss.xml`, `eenews.net/feed/`, and the `/index.rss` path that KUT,
+   KERA and Marfa Public Radio advertise **in their own link tags** all return **zero items**. For
+   those stations use `/news.rss`. **The health check must test item count, not status code.**
+2. **The search-feed trick is OR-matched and strips quotes.** Asking AgriLife for `data center`
+   returned a screwworm study and a retiring entomologist, because it matched "center" alone. On
+   Houston Public Media, `?s=datacenter` returned 4 of 4 on-beat where `?s=data+center` returned
+   vaccine policy. **Use single distinctive tokens, and post-filter regardless.**
+
+### Other feed findings
+
+- **ERCOT has no feed of any kind.** All conventional paths 404, the site is a JS app, and
+  robots.txt disallows `/content/news`. Grid data already comes through the collector, so this
+  costs only ERCOT *news*.
+- **SEC EDGAR 403s a browser UA and 200s a UA carrying contact details**, which is their stated
+  policy. With that one header the live 8-K feed and full-text search both open (1,946 hits for
+  "ERCOT" in 8-Ks).
+- **Federal Register RSS works keyless** with arbitrary search terms, but enforces a fixed 30-day
+  window and **silently ignores a `publication_date` lower bound**. It is also the working route to
+  FERC, whose own `rss.xml` 403s.
+- **Google News RSS still works keyless** with quoted phrases, `when:Nd` and `site:` filters, and
+  is the only way to see the Statesman, Dallas Morning News, Houston Chronicle and Texas Monthly,
+  none of which serve a usable feed. **`allintitle:` returns zero and must not be used.**
+- **Texas Legislature Online bill feeds are session-gated, not dead.** Placeholder items now, worth
+  wiring before the next regular session convenes in January 2027.
+
 ### Feeds verified live
 
 | Feed | Items | Full text? |
