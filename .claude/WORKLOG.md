@@ -62,7 +62,7 @@ Source machines total ~79,000 lines across three Alaska repos, which are REFEREN
 | 2 | Docket spine + fact-checked seed items | TODO | 15 unverified research findings resolve here |
 | 3 | Website + AI-discoverability layer | TODO | `site_build.py` is the single biggest item |
 | 4 | In-browser ask engine | TODO | |
-| 5 | Texas Grid Watch (ERCOT) | TODO | |
+| 5 | Texas Grid Watch (ERCOT) | TODO | **+ a SECOND daily instrument: TWDB reservoir storage.** Decided on measured evidence, see below |
 | 6 | Carousel machine | TODO | |
 | 7 | Video dispatch + Texas art library | TODO | lands in `TexasAIDispatch` |
 | 8 | Commercial wing + scanner | TODO | lands here + `TexasAIScanner` |
@@ -111,6 +111,30 @@ definitions, ERCOT load-zone and weather-zone mapping, physiographic region) plu
 with stable ids and alias lists. Validated with `--self-test`: every docket item location must
 resolve, every entity must canonicalize, no orphan aliases.
 
+## Decided 2026-08-11: the second daily instrument is reservoir storage
+
+Statewide conservation storage from TWDB, with per-metro decomposition and same-calendar-day
+historical ranking. Full argument and the worked computation in
+`knowledge/shared/SOURCES_REGISTRY.md`. The short version:
+
+- **It is the only genuinely daily candidate.** The Drought Monitor, the co-favorite, is weekly:
+  Travis County returned identical figures for three consecutive pull dates. **A daily instrument
+  fed by weekly data republishes an unchanged number six days in seven, which is worse than not
+  publishing.** Reservoir storage moved 26,085 acre-feet in one day.
+- **It needs no `modeled` label at all.** Volume, deltas and a 94-year percentile are arithmetic
+  over a fetched CSV, unlike the grid watch which must carry a modeled component.
+- **94 years of daily history (from 1933)**, so it ships with real historical rank on day one
+  rather than after a year of self-collection.
+- **The metro spread is the story with no modeling:** Austin 99.1, Houston 97.3, Dallas 94.3
+  against **Midland-Odessa 27.6, San Angelo 33.2, Abilene 45.2**. The Permian metros nearest the
+  new load have the least water.
+
+**Two traps to encode before any metro number publishes.** El Paso's only tagged reservoir is
+**Elephant Butte Lake, which is in New Mexico** and reads 1.4 percent full; publishing that as
+"El Paso's water supply" would be a serious credibility error. Its municipal CSV is also the only
+one of twenty that 500s. **That is the second time El Paso has broken a default assumption**, after
+the ERCOT membership question, which is a pattern worth generalizing into the places test suite.
+
 ## Blocked on the owner
 
 - [ ] Register domains (`texasaihq.com`, `texasaidocket.com`, `.org` all verified unregistered 2026-08-11)
@@ -140,6 +164,21 @@ companies and applications. A deployment that becomes a public decision (a distr
 policy, a county approving a permit) gets a docket item that **references** the deployment
 record, so the two link without merging.
 
+**CONFIRMED by the companies research, 2026-08-11**, and it added a required field. Almost
+everything published about AI companies is an announcement wearing the clothes of a deployment,
+so `deployments.json` carries a **`maturity` enum**: `announced`, `piloted`, `deployed`,
+`verified_by_third_party`. Two findings forced this:
+
+- MD Anderson's data science institute states on its own page that its AI work is in pilots and
+  not deployed patient care. A publication reporting "MD Anderson uses AI to predict surgical
+  complications" would have misrepresented a source that was being careful with its reader.
+- Across the entire research pass, exactly ONE item qualified as `verified_by_third_party`
+  (Edge Case's independent safety assessment of Aurora, June 25th 2026). That rarity is itself
+  reportable, and only a schema that can express it can report it.
+
+No Texas outlet tags this. It costs one enum field and it is the cheapest credibility this
+product can buy. See `knowledge/shared/TEXAS_AI_COMPANIES.md` section 1.
+
 The rural half matters and is under-covered by everyone: agriculture and ranching, oilfield
 operations, rural hospitals and clinics, small school districts, water districts, and
 precision farming. City coverage will find itself; rural coverage has to be sought.
@@ -163,3 +202,56 @@ precision farming. City coverage will find itself; rural coverage has to be soug
   gates, which compare against recent history.
 - Git identity in this repo is `Talon Sturgill <Talon.sturgill@gmail.com>`. The container
   default is `Claude <noreply@anthropic.com>` and must be overridden in every fresh clone.
+- Config divergence from the ported original is declared in `config/parity_map.yaml`, never by
+  deleting a row from `REFERENCE_CONFIGS` in `port_audit.py`. Three dispositions: `renamed`
+  (the named Texas key must EXIST, checked), `dropped` (reason required), `deferred` (reason
+  plus `blocked_on` required, and it prints on every audit run). A map entry for a key that is
+  present is stale and FAILS, because that is how a strict gate rots into a decorative one.
+- **The comma-discipline ceiling is deferred, not forgotten.** It is ten percent below a mean
+  measured on a corpus this product has not shipped. Copying the number would publish a figure
+  typed by a person from another product's captions and then enforce it as a hard gate against
+  copy it was never measured on. Compute it after 20 captions ship, and settle on ONE unit
+  while doing it (the source config carries both per-100-words and per-100-characters).
+- Many essential Texas sources refuse direct HTML fetches: texastribune.org, texasstandard.org
+  and tacc.utexas.edu all 403, and news.utsa.edu and utsouthwestern.edu are JS-only. A blocked
+  HTML endpoint is NOT a blocked source; feeds are built to be fetched by machines and are
+  often served from the same domains. Resolve via the feed registry, not by giving up.
+- `agrilifetoday.tamu.edu` is fetchable including its `?s=` search, publishes dated AI work with
+  named researchers every few weeks, and is read by nobody outside agriculture. It is the single
+  best rural AI source in Texas and it is how the rural half of the beat gets covered at all.
+- **A tool-level failure is NOT a property of a source.** An earlier pass recorded
+  texastribune.org as 403 and nearly wrote the best news source in Texas onto a permanent blocked
+  list. `curl` fetched the same article at the same moment, **HTTP 200, 292,873 bytes**. Retest
+  with a second client before any domain enters a blocked list an automation will inherit.
+- **ERCOT's dashboard feeds carry NO archive.** Rolling windows of 1 to 3 days, no date parameter,
+  no bulk file. **A day not collected is gone**, which is measured confirmation of the
+  cron-not-routine-phase rule rather than an analogy for it. Snapshot daily and within a year we
+  own a five-minute ERCOT series that does not otherwise exist for free.
+- **11 ERCOT dashboard endpoints is a proven ceiling**, extracted from the pages' own `apiUrl`
+  declarations: 12 names exist, 11 return 200, the 12th is vestigial. **The real extension is
+  `/content/cdr/`**, which carries system frequency, inertia, settlement prices by hub and load
+  zone, and a **7-day load forecast by weather zone** that the dashboards do not.
+- **Google removed the FAQPage rich result in May 2026** and deprecated SpecialAnnouncement in
+  July 2025. The plan named FAQPage; that would have been wasted work. **`Dataset` JSON-LD is the
+  one type with a live documented consumer** (Google Dataset Search).
+- **No major AI crawler documents that it reads `/llms.txt`.** Google, Anthropic and Perplexity all
+  describe robots.txt as the control surface and none mention it. Publish one as cheap hygiene,
+  claim nothing.
+- **Do not block `Google-Extended`, `GPTBot`, `ClaudeBot`, `Claude-SearchBot` or
+  `PerplexityBot`.** Google states Google-Extended is not a ranking signal; Perplexity explicitly
+  recommends allowing its bot to be cited. **For a record built to be cited, a permissive
+  robots.txt is the product strategy.**
+- **Workers KV allows 1,000 writes/day.** A read counter writing per pageview breaks at ~1,000
+  views. Must batch. **Supabase free projects pause after 7 days of inactivity** and restore is a
+  dashboard action, so the daily Worker should issue one authenticated query.
+- **Open-Meteo forbids commercial use of the free API** ("You may only use the free API services
+  for non-commercial purposes"), and the CC-BY data licence is not a defence because the *service*
+  is separately restricted. **Stadia Maps free forbids commercial use outright.** NWS and NCEI are
+  keyless, public domain, and cover degree days.
+- **`gwlevels` is decommissioned**, redirects removed after June 1st, 2026. Build any USGS work on
+  `api.waterdata.usgs.gov`, never `waterservices.usgs.gov`, which USGS itself describes as
+  end-of-life.
+- Abbott's binding energy commitments come from the Legislature; his data center commitments come
+  from letters. **The hardest date on the Texas data center calendar is SB 6's December 31st, 2026
+  deadline for the PUC to amend 4CP transmission cost allocation** — statutory, predating all three
+  2026 directives, landing eight weeks after the election.
