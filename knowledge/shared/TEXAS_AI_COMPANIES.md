@@ -216,12 +216,21 @@ domain goes on a blocked list that automations will inherit, it must be retested
 client. Writing off the best news source in Texas on a single tool's error would have quietly
 degraded every run, and nothing would have thrown.
 
-Genuinely unreachable, retested: tacc.utexas.edu (403 domain wide), hpcwire.com (403),
-therobotreport.com (403), texasattorneygeneral.gov (402), news.utsa.edu (JS only),
-utsouthwestern.edu/newsroom (JS only), porthouston.com (404), newsroom.heb.com (empty),
-flocksafety.com/newsroom (404), tea.texas.gov deep links (404), comptroller.texas.gov BEAD
-sub-pages (404). **These carry the same caveat**: each was blocked for one client, and the
-`www.ferc.gov` case is the only one independently confirmed against two.
+**SECOND CORRECTION, same day.** A dedicated feed sweep then found that **8 of the 12 domains on
+that list serve working feeds**, including hpcwire.com, therobotreport.com, **news.utsa.edu**
+(which closes the San Antonio gap in section 8) and **tea.texas.gov via GovDelivery** (which closes
+the STAAR gap). The list was wrong twice over, because the first pass measured one client against
+one protocol.
+
+Genuinely without a feed and genuinely unreachable: texasattorneygeneral.gov,
+utsouthwestern.edu (its `/newsroom/rss.xml` answers 200 with a **zero-byte body**),
+flocksafety.com, and comptroller.texas.gov's BEAD sub-pages.
+
+**`tacc.utexas.edu` is a different category and must not be retried.** Its robots.txt explicitly
+disallows `ClaudeBot` and `anthropic-ai` domain-wide. It is off limits by choice, not blocked by
+accident. TACC coverage comes from NSF award data, UT System or the LCCF project site.
+
+Full detail in `SOURCES_REGISTRY.md`.
 
 Full source detail lives in `SOURCES_REGISTRY.md`.
 
