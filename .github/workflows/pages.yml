@@ -1,0 +1,87 @@
+name: pages
+
+# Publish docs/ to GitHub Pages on every merge to main that touches the site or the record it
+# is built from.
+#
+# TWO THINGS HERE ARE NOT OBVIOUS AND BOTH ARE LOAD BEARING.
+#
+# 1. THE FRESHNESS GATE RUNS BEFORE THE DEPLOY. docs/ is a pure function of the ledgers, and
+#    this is the last place that promise can be checked before it becomes a live page. If the
+#    committed site does not match a rebuild, something was hand-edited or the ledgers moved
+#    without a rebuild, and publishing either would put a claim on the internet that the record
+#    does not support. Refusing to deploy is the correct failure.
+#
+# 2. THE DEPLOY RETRIES. GitHub's Pages API returns transient 5xx often enough that a single
+#    attempt loses a day's publish for no reason, and an unattended pipeline has nobody to
+#    press the button again.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/**"
+      - "ledger/**"
+      - "scripts/site/**"
+      - "config/brand.yaml"
+      - "assets/geo/**"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never cancel a deploy in flight. A half-published site is worse than a late one.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install --quiet pyyaml
+
+      - name: The record passes its own gates
+        run: python3 scripts/site/docket_build.py --validate
+
+      - name: The published site is exactly what the ledgers produce
+        run: |
+          # If this fails, docs/ says something the record does not. Do not publish it.
+          python3 scripts/site/site_fresh_check.py --today "$(date -u +%F)" || {
+            echo "::error::docs/ does not match a rebuild. Refusing to deploy."
+            exit 1
+          }
+
+  deploy:
+    needs: verify
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+      - name: Deploy, with backoff
+        id: deployment
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+
+      - name: Retry once
+        if: steps.deployment.outcome == 'failure'
+        id: retry1
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+
+      - name: Retry twice
+        if: steps.retry1.outcome == 'failure'
+        uses: actions/deploy-pages@v4
