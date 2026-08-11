@@ -119,6 +119,31 @@ resolve, every entity must canonicalize, no orphan aliases.
 - [ ] Create routine triggers at claude.ai/code/routines once prompts land (Waves 6, 7, 8)
 - [ ] Keys when we reach them: Buttondown, Supabase project, Cloudflare Worker + KV + Turnstile
 
+## Owner directive 2026-08-11: editorial scope is wider than the docket
+
+The carousel and the video cover **Texas AI companies doing real work** and **AI applications
+making an impact in the state, in the cities and outside them**. Not only government decisions.
+
+This creates a real schema question to settle in Wave 2, and it should be settled deliberately
+rather than by accident:
+
+- A **docket item** is a decision. It has a decider, dates, a public-access status, and a
+  formal way in. That is what gives the docket its integrity, and diluting it would cost the
+  thing that makes it citable.
+- A **company or deployment** is an entity doing something. A hospital system rolling out
+  ambient AI, a school district's grading engine, a ranch running herd analytics, an oilfield
+  service company shipping a drilling optimizer. These often have no decider and no deadline.
+
+Provisional resolution, to confirm when the schema is built: keep `ledger/docket.json`
+decision-centric, and add a separate `ledger/deployments.json` with its own schema for
+companies and applications. A deployment that becomes a public decision (a district adopting a
+policy, a county approving a permit) gets a docket item that **references** the deployment
+record, so the two link without merging.
+
+The rural half matters and is under-covered by everyone: agriculture and ranching, oilfield
+operations, rural hospitals and clinics, small school districts, water districts, and
+precision farming. City coverage will find itself; rural coverage has to be sought.
+
 ## Hard-won facts (do not rediscover)
 
 - The Alaska PIL/Taichi video engine is RETIRED, explicitly, at `dispatch_routine.md:530`.
