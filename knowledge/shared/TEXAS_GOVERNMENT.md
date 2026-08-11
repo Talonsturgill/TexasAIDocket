@@ -259,8 +259,27 @@ abolished** (39.151(n)); **TCEQ is abolished September 1st, 2035** (Water Code 5
 in play this decade.
 
 **The entire electric regulatory apparatus opens for statutory rewrite in the 2029 session, with
-Sunset staff work running through 2028. That is the next structural window after SB 6's
-December 31st, 2026 rulemaking deadline.** Chair: **Lois Kolkhorst**. Vice Chair: **Lacey Hull**.
+Sunset staff work running through 2028.** Chair: **Lois Kolkhorst**. Vice Chair: **Lacey Hull**.
+
+> ### CORRECTION, 2026-08-11, same day
+>
+> An earlier version of this document, and the WORKLOG, called **SB 6's December 31st, 2026
+> deadline for the PUC to amend 4CP transmission cost allocation** "the hardest date on the Texas
+> data center calendar." **That claim is now CONTESTED and must not be published.**
+>
+> A second agent **fetched the full text of Utilities Code Chapter 39 and searched it for 2026
+> deadline language. The only 2026 date in the chapter is a September 1st, 2026 reference
+> elsewhere.** `[DOC, negative]`
+>
+> The deadline may still be real and sitting in **an uncodified section of the act**, which is
+> common for transition and implementation provisions and which neither pass could reach.
+> **Resolving it requires reading the enrolled bill**, which lives behind the ClaudeBot-disallowed
+> `capitol.texas.gov/BillLookup/` path and therefore needs a human or another route.
+>
+> **This is exactly the failure the verification marks exist to catch.** The date arrived marked
+> `[DOC]`, it was load-bearing, and it was wrong or at least unproven. Where the codified text is
+> silent, the honest statement is that **PUCT Project 58482 is where SB 6 is actually being
+> implemented**, and that is verifiable from the Interchange filing system today.
 
 ---
 
@@ -316,10 +335,23 @@ about AI is void by statute. **A city ordinance about a data center building is 
 and survives on different ground.** Keeping those two categories distinct is the whole legal game
 for municipalities.
 
-**The sandbox (B&C Chapter 553)** `[DOC]`: DIR-run, up to **36 months**, and while enrolled **"The
-attorney general may not file or pursue charges against a program participant for violation of a
-law or regulation waived under this chapter."** The carve-out: **Subchapter B of Chapter 552 may
-never be waived.**
+**There appear to be TWO sandboxes, and conflating them is an error.** `[DOC]`
+
+- **B&C Chapter 553**, created by TRAIGA, DIR-run, up to **36 months**, and while enrolled **"The
+  attorney general may not file or pursue charges against a program participant for violation of a
+  law or regulation waived under this chapter."** Carve-out: **Subchapter B of Chapter 552 may
+  never be waived.** This one governs **private-sector** participants.
+- **Government Code 2054.706**, added by **SB 1964, effective September 1st, 2025** — **four months
+  BEFORE TRAIGA** — letting **eligible public entities** contract with registered vendors to test
+  AI systems **"without full compliance with otherwise applicable regulations."** Quarterly
+  participant reports, and **DIR must report to the Legislature by November 30th of each
+  even-numbered year, making November 30th, 2026 the first reporting date.**
+
+**The sandbox is widely attributed to TRAIGA. The public-entity one is not TRAIGA's.** Getting that
+attribution right is a small correction that signals we read the statute.
+
+**Whether DIR has actually stood either programme up is `[UNV]`.** No DIR page was fetched. **The
+November 30th, 2026 report is the honest hook.**
 
 **The Council (B&C Chapter 554)** `[DOC]`: **seven members — three appointed by the Governor, two
 by the Lt. Governor, two by the Speaker. The Governor appoints the chair. No Senate confirmation.**
@@ -328,9 +360,29 @@ regulatory capture, including undue influence by technology companies."**
 
 **Current membership: `[UNV]`, and this is the highest-value unfilled name list on the beat.**
 
-**A real codification conflict worth a docket item** `[DOC]`: three separate 89th Session bills
-each added a "Subchapter S" to Government Code 2054, producing **two competing sets of sections
-2054.701 through 2054.705.**
+**A second pass could not find the Council in Government Code or in B&C 552 at all** `[DOC,
+negative]`, and suggested it may have been cut in the Senate or left uncodified. **Note the two
+passes searched different codes**, so this is not a clean contradiction: the first read B&C
+Chapter 554 and quoted it. **Treat the Council's codified existence as CONTESTED until someone
+reads B&C 554 and the enrolled bill against each other.** Either answer is publishable and
+interesting: a seated-but-unnamed council, or a statutory body that never made it into the code.
+
+### The codification conflict, and it is the strongest original finding in the seed set
+
+`[DOC]` **Three separate acts of the 89th Legislature each added a "Subchapter S" to Government
+Code Chapter 2054, and two of them number their sections identically. Section 2054.702 exists
+TWICE with entirely different commands**, as do 2054.701 and 2054.703 through 2054.705.
+
+**The codifier has flagged the conflict in the published code rather than resolved it. Which text
+governs a state agency's AI duties is unsettled on the face of the statute.**
+
+It was found by reading the code, it is visible in the state's own published text, and it appears
+to have been reported nowhere.
+
+**The honest framing, which must travel with it:** duplicate subchapter designations are a routine
+artefact of a busy session and are usually cleaned up in the next non-substantive revision bill.
+**The code currently carries a conflict. Nobody did anything wrong.** Worth checking whether a
+later called session already fixed it.
 
 ---
 
