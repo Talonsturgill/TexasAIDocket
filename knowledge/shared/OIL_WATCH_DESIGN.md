@@ -57,21 +57,41 @@ scare.
 updated irregularly. It was already about six weeks stale when read. Build the staleness flag
 before building the headline.
 
-## 3. The Iran shock was real, and EIA says so
+## 3. The Iran shock is not history. It is ongoing.
 
-This is the rare case where the alarming version is the true one. EIA *Today in Energy*
-(id=67865) confirms **[V]**:
+**CORRECTION, 2026-08-11.** An earlier draft of this document implied the June 17th memorandum
+of understanding resolved the Strait of Hormuz disruption. **It did not. The truce collapsed on
+July 8th, 2026 and the Strait is still effectively closed today.** Hormuz traffic is running at
+about **six vessels a day against a normal 138 to 140**. Anything written here in the past tense
+about the crisis is wrong.
 
-- Actual disruption to crude and product flows **through the Strait of Hormuz in Q2 2026**,
-  with Middle Eastern countries shutting in production
-- Brent **high $118/bbl on April 29th, 2026**; **low $72/bbl on June 26th, 2026**
-- Average daily Brent swings of **$4/bbl in Q2 2026 against $1/bbl in 2025**
-- **June 17th, 2026:** a US-Iran memorandum of understanding seeking to resume Strait traffic
+Verified market facts **[V, EIA]**:
+- Actual disruption to crude and product flows through the Strait beginning **February 28th, 2026**
+- Brent **high $118/bbl on April 29th**, **low $72/bbl on June 26th** — a $46 round trip in eight weeks
+- Average daily Brent swings of **$4/bbl in Q2 2026 against $1/bbl in 2025**, a four-fold rise in
+  realized volatility
 - Estimated **5.1 million b/d** global crude inventory decline in Q2
+- Pre-crisis the Strait carried **25% of world seaborne oil and 20% of world LNG**, measured by
+  the IEA at 19.87 million b/d in 2025. The IEA called the disruption **"the largest supply
+  disruption in the history of the global oil market."**
 
-**Unresolved and must be stated as such [?]:** whether the Strait was ever *fully* closed or
-only severely restricted. Sources conflict. **Do not publish "$126 oil"** — that figure appears
-in secondary sources and conflicts with EIA's $118. Use EIA's number and date.
+**The mechanism is the part worth understanding, and almost nobody reports it:** the Strait was
+closed on **March 5th, 2026, when protection and indemnity insurance was withdrawn** for
+transits. The waterway remained legally open and became commercially impassable, because no
+owner sails an uninsured $120 million vessel carrying $150 million of cargo. **Insurance closed
+the Strait, not missiles.**
+
+There is a useful control case. In June 2025 Iran's parliament voted to close the Strait and it
+**did not close**; WTI averaged $68 that month and the market correctly ignored it. In 2026 it
+actually closed. The lesson is not to ignore Hormuz threats or to panic at them. It is that the
+market prices **the insurance market's behavior**, not the rhetoric.
+
+**Do not publish "$126 oil."** That figure appears in secondary sources and conflicts with EIA's
+$118, which is also consistent with April's $117.29 monthly average. Use EIA's number and date.
+
+**Do not present "about 9 million b/d still moving through Hormuz" as settled** — that is a DOE
+figure that sits uneasily beside traffic reports of six vessels a day, and the two sources have
+different incentives.
 
 **Also flag:** a naive search surfaces "EIA forecasts oil to average $51.26 in 2026." That is an
 obsolete pre-war STEO figure, now wrong by roughly 60%, and it will contaminate research.

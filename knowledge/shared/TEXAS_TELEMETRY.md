@@ -7,9 +7,10 @@ observed. This is the design record for the site hero and any live counter.
 
 ## 1. What we are reproducing
 
-The Alaska product's hero reads `ANCHORAGE · 15H 55M OF DAYLIGHT · LOSING 6 MIN A DAY`. It works
-because it pairs **a level with a rate**, is computed from first principles, changes every day,
-and names something every Alaskan physically feels. It says "from here" before you read a word.
+The pattern this is modeled on is a hero line that reads
+`<CITY> · 15H 55M OF DAYLIGHT · LOSING 6 MIN A DAY`. It works because it pairs **a level with a
+rate**, is computed from first principles, changes every day, and names something every local
+physically feels. It says "from here" before you read a word.
 
 Texas has no daylight story. The latitude spread is small and nobody thinks about it.
 
