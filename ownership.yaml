@@ -157,7 +157,7 @@ rules:
 
   - path: "docs/**"
     generated: true
-    rebuild_by: [carousel, gridwatch, human]
+    rebuild_by: [carousel, gridwatch, docket, human]
     note: >
       A pure deterministic function of the ledgers. site_fresh_check.py rebuilds into a temp
       dir and proves byte equality, which is what makes it impossible for a run to corrupt
