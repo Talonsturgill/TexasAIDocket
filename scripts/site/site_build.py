@@ -55,7 +55,8 @@ STAR = ('<svg class="star" viewBox="0 0 24 24" aria-hidden="true">'
         '<path d="M12 1.6l2.9 7.5 8 .4-6.2 5.1 2.1 7.8L12 18l-6.8 4.4 2.1-7.8L1.1 9.5l8-.4z"/>'
         '</svg>')
 
-NAV = [("", "Docket"), ("counties/", "Counties"), ("data/", "Data"), ("about/", "About")]
+NAV = [("", "Home"), ("record/", "The record"), ("counties/", "Counties"),
+       ("data/", "Data"), ("about/", "About")]
 
 
 def e(s) -> str:
@@ -230,7 +231,10 @@ def home(items: list, today: str) -> str:
   {svg}
 </section>
 
-{'<section><h2>Still open</h2><ul class="items">' + rows + '</ul></section>' if rows else ''}
+{'<section><h2>Still open</h2><ul class="items">' + rows + '</ul>'
+   '<p class="meta"><a href="record/">See all ' + str(n_items) + ' decisions</a></p>'
+   '</section>' if rows else
+   '<section><p class="meta"><a href="record/">See all ' + str(n_items) + ' decisions</a></p></section>'}
 
 <section>
   <h2>What this is</h2>
@@ -262,18 +266,45 @@ def docket_index(items: list, today: str) -> str:
                 .get(it["public_access"]["room"], 2), 0)
 
     rows = "".join(
-        f'<li>{clock(it, today)}<h3><a href="item/{e(it["id"])}/">{e(it["title"])}</a></h3>'
+        f'<li>{clock(it, today)}<h3><a href="../item/{e(it["id"])}/">{e(it["title"])}</a></h3>'
         f'{item_meta(it)}</li>'
         for it in sorted(items, key=key))
 
+    n_open = sum(1 for i in items if dk.window_state(i, today) == "open")
+    topics = "".join(
+        f'<a class="tag" href="../topic/{e(t)}/">{e(t)}</a> '
+        for t in sorted({i["topic"] for i in items}))
+
     body = f"""
 <h1>The record</h1>
-<div class="prose"><p>Ordered by how soon a reader can still act, not by when it was filed.</p></div>
+<div class="prose">
+  <p>Every decision on the record, <strong>ordered by how soon a reader can still act</strong>,
+  not by when it was filed. <span class="num">{n_open}</span> of
+  <span class="num">{len(items)}</span> are open to comment now.</p>
+  <p class="meta">{topics}</p>
+</div>
 <ul class="items">{rows}</ul>
 """
-    return page(title=f"The record — {SITE_NAME}", depth=0, active="",
+    return page(title=f"The record — {SITE_NAME}", depth=1, active="record/",
                 desc="Every AI decision on the Texas record, ordered by how soon you can act.",
-                body=body, today=today, canonical="")
+                body=body, today=today, canonical="record/")
+
+
+def topic_page(topic: str, items: list, today: str) -> str:
+    mine = [i for i in items if i["topic"] == topic]
+    rows = "".join(
+        f'<li>{clock(it, today)}<h3><a href="../../item/{e(it["id"])}/">{e(it["title"])}</a></h3>'
+        f'{item_meta(it)}</li>' for it in mine)
+    body = f"""
+<h1>{e(topic.replace("-", " "))}</h1>
+<div class="prose"><p><span class="num">{len(mine)}</span> of
+<span class="num">{len(items)}</span> decisions on the record.</p></div>
+<ul class="items">{rows}</ul>
+<p class="meta"><a href="../../record/">All decisions</a></p>
+"""
+    return page(title=f'{topic.replace("-", " ")} — {SITE_NAME}', depth=2, active="",
+                desc=f"Texas AI decisions filed under {topic.replace('-', ' ')}.",
+                body=body, today=today, canonical=f"topic/{topic}/")
 
 
 def item_page(it: dict, today: str) -> str:
@@ -552,6 +583,9 @@ def build(out: Path, today: str) -> dict:
     w("atom.xml", atom(items, today))
     w("feed.json", feed_json(items, today))
     w("llms.txt", llms_txt(items, today))
+    w("record/index.html", docket_index(items, today))
+    for t in sorted({i["topic"] for i in items}):
+        w(f"topic/{t}/index.html", topic_page(t, items, today))
     w("counties/index.html", counties_page(items, today))
     w("data/index.html", data_page(items, today))
     w("about/index.html", about_page(today))
@@ -616,6 +650,32 @@ def self_test() -> int:
         items = dk.load(LEDGER)
         one = (Path(td) / "a" / "item" / items[0]["id"] / "index.html").read_text(encoding="utf-8")
         check("an item page quotes its sources", "<blockquote>" in one)
+
+        # NO ORPHAN PAGE BUILDERS. docket_index() shipped once defined and never called, so
+        # nothing listed the whole record and no gate noticed: an unreferenced function does
+        # not throw, which is the same failure mode the port audit's wiring check exists for.
+        import inspect, re as _re
+        src = inspect.getsource(build)
+        builders = [n for n, o in globals().items()
+                    if callable(o) and (n.endswith("_page") or n in {"home", "docket_index"})]
+        orphans = [n for n in builders if not _re.search(rf"\b{n}\s*\(", src)]
+        check("every page builder is reached by build()", not orphans, f"orphaned: {orphans}")
+
+        # LINK DEPTH. Moving a page one directory deeper silently breaks every relative link
+        # inside it, and it renders fine, so nothing notices until a reader clicks. The port
+        # audit catches it repo-wide; catching it here means a broken build never gets written.
+        import re as _re2
+        root = Path(td) / "a"
+        broken = []
+        for f in root.rglob("*.html"):
+            for href in _re2.findall(r'href="([^"#?:]+)"', f.read_text(encoding="utf-8")):
+                if href.startswith(("http", "//", "mailto")):
+                    continue
+                t = (f.parent / href).resolve()
+                if not (t.exists() or (t / "index.html").exists()):
+                    broken.append(f"{f.relative_to(root)} -> {href}")
+        check("every relative link resolves from its own page", not broken,
+              f"{len(broken)} broken, first: {broken[:1]}")
         check("an item page links the source", "rel=\"nofollow noopener\"" in one)
 
     if failures:
