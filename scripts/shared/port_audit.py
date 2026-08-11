@@ -61,6 +61,12 @@ RESIDUE_ALLOW = {
     ".claude/WORKLOG.md",
     "CLAUDE.md",
     "README.md",
+    # Design records for the two numeric instruments. These name the upstream product on
+    # purpose: each documents which discipline was inherited and why, and a rule stripped of
+    # its reason is a rule the next context talks itself out of. Listed by exact path rather
+    # than a directory glob so the exemption cannot quietly spread.
+    "knowledge/shared/GRID_WATCH_DESIGN.md",
+    "knowledge/shared/OIL_WATCH_DESIGN.md",
 }
 
 # Scripts that are legitimately entry points nobody imports: run by hand, or by a human
