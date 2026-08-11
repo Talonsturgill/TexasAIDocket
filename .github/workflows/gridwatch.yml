@@ -62,11 +62,27 @@ jobs:
         # to a series nobody can rebuild, so this gates the fetch rather than reporting after.
         run: python3 scripts/gridwatch/gridwatch_collect.py --self-test
 
+      - name: Prove the water collector's own checks can go red
+        run: python3 scripts/gridwatch/waterwatch_collect.py --self-test
+
       - name: Collect the settled previous day
         id: collect
         run: |
           echo gridwatch > .git/ACTOR
           python3 scripts/gridwatch/gridwatch_collect.py --collect
+
+      - name: Collect today's reservoir storage
+        id: water
+        continue-on-error: true
+        run: |
+          # A second instrument on the same schedule, deliberately not gating the first. The
+          # grid and the reservoirs share nothing but a cron: TWDB being down must never cost
+          # an ERCOT day, and the step order puts the irreplaceable one first.
+          python3 scripts/gridwatch/waterwatch_collect.py --collect
+
+      - name: Say plainly if the water collection failed
+        if: steps.water.outcome == 'failure'
+        run: echo "::warning::the reservoir reading did not land; the grid reading is unaffected"
 
       - name: Rebuild the published site
         id: rebuild

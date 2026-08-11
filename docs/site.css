@@ -181,6 +181,15 @@ figcaption { font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
 .bar .fill { height:100%; background:var(--accent-deep); }
 .barnote { font-size:var(--s-1); color:var(--ink-mute); }
 .barnote strong { color:var(--ink-bright); }
+/* The metro bars on the water watch. Same rule, smaller: sorted driest first, and identical
+   in colour at every value, so the ordering carries the comparison and nothing implies that
+   a short bar is a verdict about a city's water supply. */
+.bar.mini { height:.7rem; margin:0; min-width:6rem; }
+td.barcell { width:40%; vertical-align:middle; }
+table.metros th[scope="row"] { font-weight:400; color:var(--ink-bright);
+  text-transform:none; letter-spacing:0; font-size:var(--s-1); }
+caption { caption-side:bottom; text-align:left; padding-top:.75rem; font-size:var(--s-1);
+  color:var(--ink-mute); max-width:var(--measure); }
 
 table.figures td:first-child { color:var(--ink-bright); }
 table.figures td:last-child { color:var(--ink-mute); font-size:.92em; }

@@ -62,7 +62,7 @@ Source machines total ~79,000 lines across three Alaska repos, which are REFEREN
 | 2 | Docket spine + fact-checked seed items | TODO | 15 unverified research findings resolve here |
 | 3 | Website + AI-discoverability layer | TODO | `site_build.py` is the single biggest item |
 | 4 | In-browser ask engine | TODO | |
-| 5 | Texas Grid Watch (ERCOT) | **PARTIAL** | collector, page, cron, page check all DONE and green. Reservoir instrument still TODO, see below |
+| 5 | Texas Grid Watch + Water Watch | **DONE** | both collectors, both pages, cron, page check, numeral_lint. All green |
 | 6 | Carousel machine | TODO | |
 | 7 | Video dispatch + Texas art library | TODO | lands in `TexasAIDispatch` |
 | 8 | Commercial wing + scanner | TODO | lands here + `TexasAIScanner` |
@@ -152,9 +152,25 @@ No other Texas page keeps this series. First day: 85.29 percent.
 
 ## Decided 2026-08-11: the second daily instrument is reservoir storage
 
-Statewide conservation storage from TWDB, with per-metro decomposition and same-calendar-day
-historical ranking. Full argument and the worked computation in
-`knowledge/shared/SOURCES_REGISTRY.md`. The short version:
+**SHIPPED 2026-08-11, but through a different door than planned.** The statewide CSV is
+disallowed: `waterdatafortexas.org/robots.txt` says `Disallow: *.csv` and the reservoir files
+are CSVs, so the 94 year archive and the historical percentile that came with it are not ours
+to take. `recent-conditions.json` is neither a CSV nor under an api path, returns 200, and is
+BETTER for what this needed: 122 reservoirs individually, with municipal tags, capacity, and
+gauge coordinates. The percentile is not published and the page says why. Our history starts
+now.
+
+First live day, 119 Texas reservoirs, 77.01 percent full, and the metro spread landed within a
+tenth of the earlier research: Midland Odessa 27.59, San Angelo 33.23, Abilene 45.18, against
+Austin 99.04 and Houston 97.26. The driest metro in Texas is the one in the Permian.
+
+Two traps handled in code, not prose. Elephant Butte is in NEW MEXICO and is the only record in
+the payload without a `texas` tag, so the roll up requires that tag rather than excluding by
+name, and a second out of state reservoir added later is excluded without anybody noticing it
+arrived. Addicks and Barker are flood control dams with no conservation pool: excluded, not
+counted as zero, and the count of exclusions is published.
+
+Original argument and the worked computation in `knowledge/shared/SOURCES_REGISTRY.md`:
 
 - **It is the only genuinely daily candidate.** The Drought Monitor, the co-favorite, is weekly:
   Travis County returned identical figures for three consecutive pull dates. **A daily instrument

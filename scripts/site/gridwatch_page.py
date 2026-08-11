@@ -40,9 +40,14 @@ from __future__ import annotations
 
 import json
 import re
+import sys
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+import numeral_lint                                                # noqa: E402
+
 READINGS = REPO_ROOT / "ledger" / "gridwatch" / "readings.jsonl"
 
 # Rounding is a computation with a stated rule. Gigawatts to one decimal is a tenth of a
@@ -506,30 +511,14 @@ def body(records: list[dict], today: str) -> str:
 
 
 # --------------------------------------------------------------------------- numeral gate
-SVG_BLOCK = re.compile(r"<svg\b.*?</svg>", re.DOTALL | re.IGNORECASE)
-TAG = re.compile(r"<[^>]+>")
-NUMERAL = re.compile(r"\d[\d,]*(?:\.\d+)?")
-
-
 def authorised(f: dict) -> set[str]:
     """Every numeral string this page is allowed to show, built from the same calls that render.
 
     A figure reaches a reader only by passing through here first. That is the whole mechanism:
     not a promise that nobody types a number, a check that fails the build if anybody does.
     """
-    ok: set[str] = set()
-
-    def add(*vals):
-        for v in vals:
-            if v is None:
-                continue
-            s = str(v)
-            ok.add(s)
-            # A minus sign is punctuation, not part of the numeral, so the scanner never sees
-            # it. Storage is negative most days; without this the record's most interesting
-            # honest figure would fail the gate that exists to protect it.
-            if s.startswith("-"):
-                ok.add(s[1:])
+    acc = numeral_lint.Authorised()
+    add = acc.add
 
     add(n0(f["days_held"]), n0(f["days_verified"]), n0(f["days_unverified"]), "14")
     L = f.get("latest")
@@ -560,28 +549,12 @@ def authorised(f: dict) -> set[str]:
             add(*(n0(blk[k]) for k in keys if blk.get(k) is not None))
     if f.get("accuracy"):
         add(pct(f["accuracy"]["mean_abs_peak_error_pct"]))
-    return ok
+    return acc.set
 
 
 def lint(html_body: str, f: dict) -> list[str]:
-    """Every numeral in the reader facing copy, traced to a computed value or rejected.
-
-    AUTHORISED STRINGS ARE CONSUMED WHOLE, LONGEST FIRST, rather than tokenised into the digits
-    they contain. The difference is the strength of the gate. "4pm to 5pm" is a computed label,
-    and tokenising it would authorise a bare 4 and a bare 5 everywhere on the page for the rest
-    of time. Removing the phrase intact authorises those digits exactly where they were
-    computed, and a stray 4 written anywhere else still fails. Longest first matters too, or
-    "83.1" would be eaten by "3" and stop being checked.
-
-    SVG geometry is stripped before checking. Those coordinates are computed from the series by
-    definition, there are hundreds of them, and none is a figure a reader reads. Authorising
-    them one by one would turn the allowlist into noise and hide a real violation inside it.
-    """
-    text = TAG.sub(" ", SVG_BLOCK.sub(" ", html_body))
-    for v in sorted(authorised(f), key=len, reverse=True):
-        if v:
-            text = text.replace(v, " ")
-    return sorted({m.group(0) for m in NUMERAL.finditer(text)})
+    """Every numeral in this page's copy, traced to a computed value or named as a violation."""
+    return numeral_lint.scan(html_body, authorised(f))
 
 
 # --------------------------------------------------------------------------- self-test

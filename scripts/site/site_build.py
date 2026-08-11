@@ -42,6 +42,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import docket_build as dk                                          # noqa: E402
 import gridwatch_page                                              # noqa: E402
 import texas_map                                                   # noqa: E402
+import waterwatch_page                                             # noqa: E402
 import theme                                                       # noqa: E402
 
 LEDGER = REPO_ROOT / "ledger" / "docket.json"
@@ -57,7 +58,7 @@ STAR = ('<svg class="star" viewBox="0 0 24 24" aria-hidden="true">'
         '</svg>')
 
 NAV = [("", "Home"), ("record/", "The record"), ("counties/", "Counties"),
-       ("grid/", "Grid watch"), ("data/", "Data"), ("about/", "About")]
+       ("grid/", "Grid"), ("water/", "Water"), ("data/", "Data"), ("about/", "About")]
 
 
 def e(s) -> str:
@@ -441,6 +442,43 @@ def grid_page(today: str) -> str:
                 }])
 
 
+def water_page(today: str) -> str:
+    """The Texas Water Watch. The grid watch's sibling, and the other half of the account.
+
+    Same numeral gate, same refusal to publish a verdict, same build time raise. A data centre
+    draws on electricity and on water, and a site that tracked only the first would be telling
+    half of the story it claims to keep.
+    """
+    recs = waterwatch_page.load()
+    body = waterwatch_page.body(recs, today)
+    stray = waterwatch_page.lint(body, waterwatch_page.figures(recs))
+    if stray:
+        raise SystemExit(
+            "site_build: the water watch page carries numerals that trace to no computation: "
+            + ", ".join(stray[:12]))
+    return page(title=f"Texas Water Watch — {SITE_NAME}", depth=1, active="water/",
+                desc="Water held in Texas reservoirs, by metro, measured daily. The Permian "
+                     "metros nearest the new load hold the least.",
+                body=body, today=today, canonical="water/",
+                extra_ld=[{
+                    "@context": "https://schema.org", "@type": "Dataset",
+                    "name": "Texas Water Watch",
+                    "description": "Daily conservation storage for every monitored Texas "
+                                   "reservoir, rolled up statewide and by metro. Out of state "
+                                   "reservoirs and flood control dams are excluded and the "
+                                   "exclusions are recorded.",
+                    "url": f"{SITE_URL}/water/",
+                    "license": "https://creativecommons.org/licenses/by/4.0/",
+                    "creator": {"@type": "Organization", "name": SITE_NAME},
+                    "distribution": [{"@type": "DataDownload",
+                                      "encodingFormat": "application/json",
+                                      "contentUrl": f"{SITE_URL}/waterwatch.json"}],
+                    "isAccessibleForFree": True,
+                    "temporalCoverage": (f'{recs[0]["date"]}/{recs[-1]["date"]}'
+                                         if recs else today),
+                }])
+
+
 def about_page(today: str) -> str:
     body = """
 <h1>About</h1>
@@ -637,6 +675,14 @@ def build(out: Path, today: str) -> dict:
                            "published figure is recomputable. Unverified days carry no "
                            "numbers rather than yesterday's."},
          "readings": gridwatch_page.load()}, indent=2, ensure_ascii=False) + "\n")
+    w("water/index.html", water_page(today))
+    w("waterwatch.json", json.dumps(
+        {"_spec": {"generated": today,
+                   "note": "One day per record, per reservoir, so every roll up is "
+                           "recomputable. Out of state reservoirs and flood control dams with "
+                           "no conservation pool are excluded, and both exclusions are named "
+                           "in each record."},
+         "readings": waterwatch_page.load()}, indent=2, ensure_ascii=False) + "\n")
     w("data/index.html", data_page(items, today))
     w("about/index.html", about_page(today))
 

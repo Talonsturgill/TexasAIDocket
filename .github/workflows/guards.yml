@@ -90,8 +90,17 @@ jobs:
       - name: Grid watch collector self-test (hermetic, gates every collection)
         run: python3 scripts/gridwatch/gridwatch_collect.py --self-test
 
+      - name: Numeral lint self-test (the gate behind "no number is ever typed")
+        run: python3 scripts/site/numeral_lint.py
+
+      - name: Water watch collector self-test (hermetic, gates every collection)
+        run: python3 scripts/gridwatch/waterwatch_collect.py --self-test
+
       - name: Grid watch page self-test (the numeral gate, and the bar that is never a dial)
         run: python3 scripts/site/gridwatch_page.py
+
+      - name: Water watch page self-test (one hue per bar, El Paso excluded on purpose)
+        run: python3 scripts/site/waterwatch_page.py
 
       - name: Grid watch page check self-test
         run: python3 scripts/gridwatch/gridwatch_pagecheck.py --self-test
