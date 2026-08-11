@@ -322,6 +322,38 @@ zero items**. **Health checks must test item count, not status code.**
 Feeds carry the last 20 to 300 items and **no archive**. They are a discovery lane, never a
 backfill lane.
 
+### Texas Ethics Commission — SOLVED, and it is bulk, keyless and daily
+
+Two prior passes failed here and called TEC "form-driven" and unusable. **It is not. The bulk
+files are static URLs, keyless, and regenerated every morning.** All verified August 11th, 2026.
+
+| What | URL | Size | Notes |
+|---|---|---|---|
+| **Lobby registry by client** | `www.ethics.state.tx.us/data/search/lobby/2026/2026LobbyGroupByClient.xlsx` | 785 KB | **THE key file.** 8,183 rows: client, lobbyist, address, dates, compensation bracket. Stamped daily |
+| Lobby registry by lobbyist | `.../2026/2026LobbyGroupByLobbyist.xlsx` | 1.05 MB | Same data keyed the other way |
+| Lobby subject matter | `.../2026/2026LobbySubjMatter.xlsx` | 3.67 MB | |
+| Registered lobbyist list | `.../2026/2026RegisteredLobbyists.xlsx` | 145 KB | |
+| **Lobby bulk CSV** | `prd.tecprd.ethicsefile.com/public/lobby/public/TEC_LA_CSV.zip` | 17.2 MB | 11 CSVs incl. `LaCvr` (82 MB, expenditure totals), `LaFood`, `LaGift`, `LaEnt` |
+| **Campaign finance bulk** | `prd.tecprd.ethicsefile.com/public/cf/public/TEC_CF_CSV.zip` → 301 → `dv2dphbeckkgm.cloudfront.net/TEC_CF_CSV.zip` | **1.04 GB** | Updated daily. **Must follow redirects** |
+| **All registered PACs** | `www.ethics.state.tx.us/data/search/cf/PacList.xlsx` | 342 KB | 2,451 PACs: filer ID, type, start date, address, **treasurer** |
+| Individual lobby report PDFs | `http://204.65.203.5/public/lobby/<reportID>.pdf` | | Direct, keyless, no session. IDs from the report index |
+| Record layouts | `.../data/search/cf/CFS-ReadMe.txt`, `.../CFS-Codes.txt`, `.../lobby/LobbyLAR-ReadMe.txt` | | Read these before parsing |
+
+**Four traps that will bite an automation, all verified:**
+
+1. **Use `www.ethics.state.tx.us`. The bare `ethics.state.tx.us` 404s on the same paths.**
+2. **`.../data/search/cf/TEC_CF_CSV.zip` is a DEAD 2019 LINK STILL PUBLISHED ON THE LIVE PAGE.**
+   A scraper that follows the visible link gets **seven-year-old data and no error**. This is the
+   worst possible failure mode: silently stale, never throws.
+3. **`HEAD` returns 404 on some TEC paths that `GET` serves.** Do not probe with `-I` alone.
+4. The year pattern holds across both the path and the filename, so swapping `2026` gets prior
+   years. The index lives at `.../search/lobby/loblistsREG2026-2030.php`.
+
+**What this unlocks:** the lobby registry answers who is hired by whom, daily, for free, and it is
+how `TEXAS_INFLUENCE.md`'s findings were computed rather than recalled. **The 1.04 GB campaign
+finance file is the highest-value unfetched thing in this project** — it closes the question of who
+actually gave money to whom.
+
 ### Municipal, for metro scoping
 
 | City | Platform | Endpoint | ✓ |
