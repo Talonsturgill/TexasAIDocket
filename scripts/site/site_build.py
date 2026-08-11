@@ -40,6 +40,7 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import docket_build as dk                                          # noqa: E402
+import gridwatch_page                                              # noqa: E402
 import texas_map                                                   # noqa: E402
 import theme                                                       # noqa: E402
 
@@ -56,7 +57,7 @@ STAR = ('<svg class="star" viewBox="0 0 24 24" aria-hidden="true">'
         '</svg>')
 
 NAV = [("", "Home"), ("record/", "The record"), ("counties/", "Counties"),
-       ("data/", "Data"), ("about/", "About")]
+       ("grid/", "Grid watch"), ("data/", "Data"), ("about/", "About")]
 
 
 def e(s) -> str:
@@ -400,6 +401,46 @@ def data_page(items: list, today: str) -> str:
                 body=body, today=today, canonical="data/")
 
 
+def grid_page(today: str) -> str:
+    """The Texas Grid Watch. A sibling of the docket, not a child of it.
+
+    The docket tracks discrete decisions on a scale of months. This tracks the physical system
+    on a scale of days. They share a masthead and nothing else: grid readings never enter
+    docket.json, because that schema is decision centric and a time series does not fit it.
+
+    THE NUMERAL GATE RUNS HERE, AT BUILD TIME, and raises rather than warns. Every figure in
+    this page's copy must trace to something gridwatch_page computed from the record. A page
+    that fails is not published, which is the only version of that promise worth making.
+    """
+    recs = gridwatch_page.load()
+    body = gridwatch_page.body(recs, today)
+    stray = gridwatch_page.lint(body, gridwatch_page.figures(recs))
+    if stray:
+        raise SystemExit(
+            "site_build: the grid watch page carries numerals that trace to no computation: "
+            + ", ".join(stray[:12]))
+    return page(title=f"Texas Grid Watch — {SITE_NAME}", depth=1, active="grid/",
+                desc="A daily numeric record of how the ERCOT grid is absorbing large "
+                     "constant load. Measured, computed, never estimated.",
+                body=body, today=today, canonical="grid/",
+                extra_ld=[{
+                    "@context": "https://schema.org", "@type": "Dataset",
+                    "name": "Texas Grid Watch",
+                    "description": "Daily settled ERCOT demand: measured hourly load, ERCOT's "
+                                   "day ahead forecast, committed capacity, and generation by "
+                                   "fuel. One record per day, append only.",
+                    "url": f"{SITE_URL}/grid/",
+                    "license": "https://creativecommons.org/licenses/by/4.0/",
+                    "creator": {"@type": "Organization", "name": SITE_NAME},
+                    "distribution": [{"@type": "DataDownload",
+                                      "encodingFormat": "application/json",
+                                      "contentUrl": f"{SITE_URL}/gridwatch.json"}],
+                    "isAccessibleForFree": True,
+                    "temporalCoverage": (f'{recs[0]["date"]}/{recs[-1]["date"]}'
+                                         if recs else today),
+                }])
+
+
 def about_page(today: str) -> str:
     body = """
 <h1>About</h1>
@@ -587,6 +628,15 @@ def build(out: Path, today: str) -> dict:
     for t in sorted({i["topic"] for i in items}):
         w(f"topic/{t}/index.html", topic_page(t, items, today))
     w("counties/index.html", counties_page(items, today))
+    w("grid/index.html", grid_page(today))
+    # The grid watch as open data, in the same shape the page was built from. A reader who
+    # doubts a figure here can recompute it without refetching anything from ERCOT.
+    w("gridwatch.json", json.dumps(
+        {"_spec": {"generated": today,
+                   "note": "One settled ERCOT day per record. Hourly series included so every "
+                           "published figure is recomputable. Unverified days carry no "
+                           "numbers rather than yesterday's."},
+         "readings": gridwatch_page.load()}, indent=2, ensure_ascii=False) + "\n")
     w("data/index.html", data_page(items, today))
     w("about/index.html", about_page(today))
 

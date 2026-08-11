@@ -1,0 +1,117 @@
+name: gridwatch
+
+# THE ONE JOB IN THIS REPO THAT CANNOT BE MADE UP LATER.
+#
+# ERCOT's dashboard feeds are rolling windows with no archive behind them. Miss a day and it is
+# gone, from here and from anywhere else. Everything below is shaped by that single fact.
+#
+# WHY THIS IS A CRON AND NOT A PHASE OF THE CAROUSEL ROUTINE
+#   The delivery policy says a failed run does not merge. That is right for editorial output
+#   and wrong for a time series: a carousel run failing its gates on a Tuesday must not cost
+#   Tuesday's reading. So the collector runs alone, owes nothing to any other job, and no
+#   editorial failure can reach it.
+#
+# WHY TWICE A DAY, AT THESE HOURS
+#   The collector takes ERCOT's settled PREVIOUS local day, so it does not race local midnight
+#   and does not care about being a few minutes late. 14:00 and 20:00 UTC are 9am and 3pm in
+#   Texas in summer, 8am and 2pm in winter. Both land inside the same Texas day year round, so
+#   the second run is a genuine retry of the first rather than a different day's work. If the
+#   morning run fails for any reason, the afternoon one still gets the day.
+#
+# WHY IT PUSHES STRAIGHT TO MAIN
+#   A pull request per day would put a required review, a CI queue and a merge between us and
+#   an unrepeatable measurement. The lane is enforced instead by ownership_check running here
+#   with the gridwatch actor before anything is pushed, which is the same gate a PR would run.
+#
+# WHY THE READING IS COMMITTED EVEN IF THE SITE REBUILD FAILS
+#   The reading is irreplaceable and the site is not. If the rebuild breaks, the commit lands
+#   with the ledger alone, the pages workflow then fails its freshness gate, and that failure
+#   is the correct alarm: the site is stale and somebody needs to know. The measurement is
+#   already safe on main by then.
+
+on:
+  schedule:
+    - cron: "0 14 * * *"
+    - cron: "0 20 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# Never cancel a collection in flight, and never run two at once against an append only ledger.
+concurrency:
+  group: gridwatch
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - run: pip install --quiet pyyaml
+
+      - name: Prove the collector's own checks can go red
+        # Hermetic, no network. A collector whose checks are broken has no business appending
+        # to a series nobody can rebuild, so this gates the fetch rather than reporting after.
+        run: python3 scripts/gridwatch/gridwatch_collect.py --self-test
+
+      - name: Collect the settled previous day
+        id: collect
+        run: |
+          echo gridwatch > .git/ACTOR
+          python3 scripts/gridwatch/gridwatch_collect.py --collect
+
+      - name: Rebuild the published site
+        id: rebuild
+        continue-on-error: true
+        run: python3 scripts/site/site_build.py --out docs --today "$(date -u +%F)"
+
+      - name: Stay in lane
+        run: |
+          # The same ownership gate a pull request would run, run here because there is no
+          # pull request. gridwatch owns its ledger and may rebuild docs; it may not touch
+          # the docket, the carousel, or any script but its own.
+          git add -A
+          if git diff --cached --quiet; then
+            echo "nothing changed, nothing to check"; exit 0
+          fi
+          python3 scripts/shared/ownership_check.py --actor gridwatch --staged
+
+      - name: Commit and push
+        run: |
+          if git diff --cached --quiet; then
+            echo "no new reading and no site change; the day was already held"; exit 0
+          fi
+          git config user.name  "Talon Sturgill"
+          git config user.email "Talon.sturgill@gmail.com"
+          DAY=$(python3 -c "import json,pathlib;p=pathlib.Path('ledger/gridwatch/readings.jsonl');\
+          print(json.loads(p.read_text().splitlines()[-1])['date'] if p.exists() else 'none')")
+          git commit -q -m "gridwatch: ERCOT settled day ${DAY}"
+
+          for delay in 2 4 8 16 0; do
+            git fetch --quiet origin main || true
+            git rebase --quiet origin/main || { git rebase --abort || true; }
+            if git push origin HEAD:main; then
+              echo "pushed"; exit 0
+            fi
+            [ "$delay" = 0 ] && break
+            echo "push failed, retrying in ${delay}s"; sleep "$delay"
+          done
+          echo "::error::could not push the reading. The measurement is in this run's \
+          workspace only and the day is at risk."
+          exit 1
+
+      - name: Say plainly if the site rebuild failed
+        if: steps.rebuild.outcome == 'failure'
+        run: |
+          echo "::error::The reading was collected and pushed, but the site did not rebuild. \
+          The published site is now stale and the pages freshness gate will refuse to deploy \
+          until it is fixed."
+          exit 1

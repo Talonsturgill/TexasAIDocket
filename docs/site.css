@@ -153,6 +153,38 @@ td.n,th.n { text-align:right; }
   background:transparent; color:var(--ink-mute); font-size:var(--s-1); }
 .gap strong { color:var(--ink); }
 
+.lede { font-size:var(--s1); line-height:1.5; color:var(--ink-bright); }
+
+/* ---- the grid watch ----------------------------------------------------- */
+/* THE LOAD SHAPE. Measured demand filled, ERCOT's day ahead forecast dashed over it. The
+   fill is one flat colour: this is a measurement drawn at its true scale, not a chart
+   arguing a case. */
+.shape { margin:1.5rem 0; }
+.loadshape { width:100%; height:auto; display:block; }
+.loadshape .area { fill:var(--accent-deep); fill-opacity:.28; }
+.loadshape .line { fill:none; stroke:var(--accent); stroke-width:2;
+  stroke-linejoin:round; vector-effect:non-scaling-stroke; }
+.loadshape .fc { fill:none; stroke:var(--ink-mute); stroke-width:1.4;
+  stroke-dasharray:5 4; vector-effect:non-scaling-stroke; }
+.loadshape .g { stroke:var(--rule); stroke-width:1; vector-effect:non-scaling-stroke; }
+.loadshape .ax { fill:var(--ink-mute); font-family:var(--mono); font-size:11px; }
+.loadshape .ax.unit { font-size:9px; letter-spacing:.08em; }
+figcaption { font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
+  max-width:var(--measure); }
+
+/* A BAR AND NEVER A DIAL. One hue at one intensity at every value, so there is no red zone
+   and therefore no verdict. The length is the whole message. If a future edit adds a
+   threshold colour here, it has changed what this page claims, and theme.py's self-test is
+   what refuses it. */
+.bar { height:1.6rem; background:var(--surface); border:1px solid var(--rule);
+  border-radius:2px; overflow:hidden; margin:.25rem 0 .75rem; }
+.bar .fill { height:100%; background:var(--accent-deep); }
+.barnote { font-size:var(--s-1); color:var(--ink-mute); }
+.barnote strong { color:var(--ink-bright); }
+
+table.figures td:first-child { color:var(--ink-bright); }
+table.figures td:last-child { color:var(--ink-mute); font-size:.92em; }
+
 footer.site { border-top:1px solid var(--rule); margin-top:4rem; padding-block:2rem 3rem;
   color:var(--ink-mute); font-size:var(--s-1); }
 footer.site a { color:var(--ink-mute); }

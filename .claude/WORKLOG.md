@@ -62,7 +62,7 @@ Source machines total ~79,000 lines across three Alaska repos, which are REFEREN
 | 2 | Docket spine + fact-checked seed items | TODO | 15 unverified research findings resolve here |
 | 3 | Website + AI-discoverability layer | TODO | `site_build.py` is the single biggest item |
 | 4 | In-browser ask engine | TODO | |
-| 5 | Texas Grid Watch (ERCOT) | TODO | **+ a SECOND daily instrument: TWDB reservoir storage.** Decided on measured evidence, see below |
+| 5 | Texas Grid Watch (ERCOT) | **PARTIAL** | collector, page, cron, page check all DONE and green. Reservoir instrument still TODO, see below |
 | 6 | Carousel machine | TODO | |
 | 7 | Video dispatch + Texas art library | TODO | lands in `TexasAIDispatch` |
 | 8 | Commercial wing + scanner | TODO | lands here + `TexasAIScanner` |
@@ -110,6 +110,45 @@ definitions, ERCOT load-zone and weather-zone mapping, physiographic region) plu
 `scripts/shared/places.py` to resolve any location string to it, and an entity canonicalizer
 with stable ids and alias lists. Validated with `--self-test`: every docket item location must
 resolve, every entity must canonicalize, no orphan aliases.
+
+## Measured 2026-08-11: what the ERCOT feeds actually are
+
+Probed live before writing a line of parser, and two of the findings changed the design.
+
+| feed | window | verdict |
+|---|---|---|
+| `system-wide-demand.json` | previousDay + currentDay + nextDay, hourly | **the spine.** Collect this |
+| `fuel-mix.json` | 2 days, 5 minute, keyed by date | collected, rides along |
+| `supply-demand.json` | current local day only, 5 minute | rejected, see below |
+| `daily-prc.json` | today only, 10 second | **deliberately not collected**, see below |
+| `loadForecastVsActual.json` | 302 redirect | it is `system-wide-demand.json` |
+
+**`supply-demand.json` nearly cost us the whole series.** Its rows carry a `forecast` FLAG,
+0 or 1, in the same list under the same key names: rows before now are telemetry, rows after
+now are projection. The first parser written here read "the latest row", which is a
+PROJECTION, and filed it as a measurement. Worse, it read the field named `forecast` as a
+modeled load value, so `modeled_load_mw` would have been the integer 1. Nothing downstream
+would have caught either. Read the payload before writing the parser.
+
+**Collect the SETTLED PREVIOUS day, never today.** `previousDay` is a complete 24 hour block,
+already settled, stamped with the day it means. That kills the race against local midnight,
+makes a late cron harmless, removes all partial-day arithmetic, and hands over measured load
+beside ERCOT's own day ahead forecast so the accuracy check needs no model of ours.
+
+**`daily-prc.json` is refused on purpose.** It carries ERCOT's `current_condition` block: a
+state, an EEA level, and a sentence like "There is enough power for current demand." A verdict
+does not become ours to publish because someone else said it first, and a field that exists in
+a ledger is a field some future page will render. Not collected. The refusal is the feature.
+
+**The reconciliation is the strongest gate we have.** Generation summed across fuels must land
+on measured load, because everything generated in an interconnection is consumed in it. First
+real day: 1,703,184 MWh generated against 1,701,380 MWh served, a gap of 0.106 percent. Two
+undocumented feeds, parsed separately, agreeing to a tenth of a percent. If either payload
+silently changes shape, that number moves and somebody notices. It is published on the page.
+
+**The load factor is the AI story.** Mean over peak. A data centre is flat, air conditioning
+is a spike, so large constant load raises the overnight trough faster than the afternoon peak.
+No other Texas page keeps this series. First day: 85.29 percent.
 
 ## Decided 2026-08-11: the second daily instrument is reservoir storage
 

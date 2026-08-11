@@ -135,6 +135,13 @@ rules:
     note: >
       One line per day, written by the cron. A run that rewrites a past line corrupts a
       series nobody can rebuild. Append only, forever.
+  - path: "ledger/gridwatch/raw/**"
+    owner: gridwatch
+    append_only: true
+    note: >
+      The raw ERCOT responses, gzipped, snapshotted BEFORE anything parses them. This is the
+      only route back if a parser turns out to have been wrong, because ERCOT keeps no
+      archive to refetch from. One file per feed per day, written once and never revised.
 
   # ---------------------------------------------------------------- ask lane
   - path: "scripts/site/ask_*.py"

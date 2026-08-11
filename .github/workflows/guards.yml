@@ -87,6 +87,26 @@ jobs:
               { [ $? -eq 2 ] && echo "ROTTEN items present" && exit 1; }
           fi
 
+      - name: Grid watch collector self-test (hermetic, gates every collection)
+        run: python3 scripts/gridwatch/gridwatch_collect.py --self-test
+
+      - name: Grid watch page self-test (the numeral gate, and the bar that is never a dial)
+        run: python3 scripts/site/gridwatch_page.py
+
+      - name: Grid watch page check self-test
+        run: python3 scripts/gridwatch/gridwatch_pagecheck.py --self-test
+
+      - name: The published grid watch page holds its promises
+        run: |
+          # Advisory by design: exit 2 means the page wants attention, and the grid watch must
+          # never be able to fail a build over presentation. Exit 1 would mean the checker
+          # itself broke, which is a real failure.
+          python3 scripts/gridwatch/gridwatch_pagecheck.py --today 2026-08-11 || {
+            code=$?
+            [ "$code" = 2 ] && echo "::warning::the grid watch page wants attention" && exit 0
+            exit "$code"
+          }
+
       - name: Theme self-test (tokens reach the CSS, red stays reserved)
         run: python3 scripts/site/theme.py --self-test
 

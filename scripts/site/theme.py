@@ -208,6 +208,38 @@ td.n,th.n {{ text-align:right; }}
   background:transparent; color:var(--ink-mute); font-size:var(--s-1); }}
 .gap strong {{ color:var(--ink); }}
 
+.lede {{ font-size:var(--s1); line-height:1.5; color:var(--ink-bright); }}
+
+/* ---- the grid watch ----------------------------------------------------- */
+/* THE LOAD SHAPE. Measured demand filled, ERCOT's day ahead forecast dashed over it. The
+   fill is one flat colour: this is a measurement drawn at its true scale, not a chart
+   arguing a case. */
+.shape {{ margin:1.5rem 0; }}
+.loadshape {{ width:100%; height:auto; display:block; }}
+.loadshape .area {{ fill:var(--accent-deep); fill-opacity:.28; }}
+.loadshape .line {{ fill:none; stroke:var(--accent); stroke-width:2;
+  stroke-linejoin:round; vector-effect:non-scaling-stroke; }}
+.loadshape .fc {{ fill:none; stroke:var(--ink-mute); stroke-width:1.4;
+  stroke-dasharray:5 4; vector-effect:non-scaling-stroke; }}
+.loadshape .g {{ stroke:var(--rule); stroke-width:1; vector-effect:non-scaling-stroke; }}
+.loadshape .ax {{ fill:var(--ink-mute); font-family:var(--mono); font-size:11px; }}
+.loadshape .ax.unit {{ font-size:9px; letter-spacing:.08em; }}
+figcaption {{ font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
+  max-width:var(--measure); }}
+
+/* A BAR AND NEVER A DIAL. One hue at one intensity at every value, so there is no red zone
+   and therefore no verdict. The length is the whole message. If a future edit adds a
+   threshold colour here, it has changed what this page claims, and theme.py's self-test is
+   what refuses it. */
+.bar {{ height:1.6rem; background:var(--surface); border:1px solid var(--rule);
+  border-radius:2px; overflow:hidden; margin:.25rem 0 .75rem; }}
+.bar .fill {{ height:100%; background:var(--accent-deep); }}
+.barnote {{ font-size:var(--s-1); color:var(--ink-mute); }}
+.barnote strong {{ color:var(--ink-bright); }}
+
+table.figures td:first-child {{ color:var(--ink-bright); }}
+table.figures td:last-child {{ color:var(--ink-mute); font-size:.92em; }}
+
 footer.site {{ border-top:1px solid var(--rule); margin-top:4rem; padding-block:2rem 3rem;
   color:var(--ink-mute); font-size:var(--s-1); }}
 footer.site a {{ color:var(--ink-mute); }}
@@ -257,6 +289,20 @@ def self_test() -> int:
 
     check("no severity ramp on the map",
           ".txmap .c.on" in sheet and ".txmap .c.warn" not in sheet)
+
+    # A BAR AND NEVER A DIAL, enforced in the one place a ramp would have to be written. The
+    # grid watch may show a length; it may not show a colour that means "bad", because that
+    # is a reliability verdict and the data cannot carry one.
+    bar = sheet[sheet.find(".bar {"):sheet.find(".barnote")] if ".bar {" in sheet else ""
+    check("the grid watch gauge exists", bool(bar))
+    check("the gauge fill has exactly one colour",
+          bar.count("background:") == 2, f"{bar.count('background:')} backgrounds in the bar")
+    check("no severity variant can be styled on the gauge",
+          not any(s in sheet for s in (".fill.warn", ".fill.high", ".fill.crit",
+                                       ".bar.warn", ".bar.high", ".bar.crit")))
+    check("the gauge is never a dial",
+          "dial" not in sheet and "conic-gradient" not in sheet)
+
     check("the stylesheet stays small", len(sheet.encode()) < 12_000,
           f"{len(sheet.encode())} bytes")
     check("two builds are byte identical", css() == sheet)
