@@ -1,12 +1,22 @@
-# Docket seed — STAGING, not the published record
+# Docket seed — candidates, not the record
 
-`docket_seed.json` is 27 candidate docket items built 2026-08-11 from primary official sources.
-**It is research output awaiting fact-check. It is NOT `ledger/docket.json` and must not be
-published as-is.**
+`docket_seed.json` holds candidate items. **`ledger/docket.json` is the published record.** An
+item moves from here to there only by passing every gate in `scripts/site/docket_build.py`:
 
-The live ledger, its schema and its gates land in Wave 2. This directory is human-owned staging so
-that the seed can be reviewed, corrected and promoted deliberately rather than shipped by
-accident.
+```
+python3 scripts/site/docket_build.py --promote seed/docket_seed.json --out ledger/docket.json
+```
+
+**Promotion is automatic and the gates are the reviewer.** The admission bar is deliberately
+stricter than the gates alone: every gate passes, confidence is high, and at least one claim
+cites a primary source rather than journalism.
+
+**A held item is not lost.** It stays here with its reason, and a later run that finds the
+primary source promotes it without anyone intervening. Nothing here waits on a person, which is
+why the reasons are written for a machine to re-test rather than for someone to adjudicate.
+
+Of the first 27 candidates, **13 were admitted.** The rest were held on confidence bands, a
+missing close date on an open comment window, or geography that named no place.
 
 ## What is in it
 

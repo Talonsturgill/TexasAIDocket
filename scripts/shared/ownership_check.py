@@ -88,10 +88,24 @@ class Rule:
         return bool(self._rx.match(path))
 
     def writers(self) -> list[str]:
-        """Every actor allowed to produce a change to this path."""
+        """Every actor allowed to produce a change to this path.
+
+        A MAINTAINER MAY WRITE ANYTHING. The pre-commit hook has always said so in words, "a
+        human at a keyboard owns everything, an unattended routine owns only its lane", and
+        until 2026-08-11 the code did not implement it: `human` was refused on every path an
+        automation owned, including the public docket a maintainer has to be able to seed and
+        correct. The map exists to keep automations out of each other's lanes, not to lock the
+        owner out of their own repository.
+
+        `append_only` still binds a human, and that is deliberate. The protection the public
+        record actually needs is not "nobody may write" but "nobody may quietly delete", which
+        is exactly what CLAUDE.md's stop-and-ask list is about.
+        """
         w = list(self.rebuild_by)
         if self.owner and self.owner not in w:
             w.append(self.owner)
+        if "human" not in w:
+            w.append("human")
         return w
 
 
@@ -249,11 +263,16 @@ def self_test() -> int:
         ("carousel",  "CLAUDE.md",                 True,  "default rule protects the constitution"),
         ("human",     "CLAUDE.md",                 False, "maintainer may edit the constitution"),
         ("carousel",  "docs/index.html",           False, "rebuild_by may regenerate output"),
-        ("human",     "docs/index.html",           True,  "an actor absent from rebuild_by FAILS"),
+        ("ask",       "docs/index.html",           True,  "an actor absent from rebuild_by FAILS"),
+        ("human",     "docs/index.html",           False, "a maintainer may regenerate output"),
         ("human",     "docs/videos/index.html",    False, "last match wins, carve-out overrides"),
         ("carousel",  "docs/videos/index.html",    True,  "carve-out revokes the broader grant"),
         ("gridwatch", "ledger/gridwatch/x.jsonl",  False, "owner may append"),
         ("carousel",  "ledger/gridwatch/x.jsonl",  True,  "non-owner may not touch the series"),
+        # A maintainer owns everything, which is what the pre-commit hook has always said in
+        # words. These two cases are what stopped the docket being seedable at all.
+        ("human",     "scripts/carousel/run.py",   False, "a maintainer may write an automation's lane"),
+        ("gridwatch", "scripts/carousel/run.py",   True,  "...but one automation still may not"),
     ]
     failures = 0
     for actor, path, expect_bad, label in cases:

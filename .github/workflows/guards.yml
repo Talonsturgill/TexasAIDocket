@@ -61,6 +61,32 @@ jobs:
             || { echo "tx-places.json is not reproducible from tx-counties.topo.json"; exit 1; }
           echo "places record reproduces byte-for-byte"
 
+      - name: Docket gates self-test (prove every gate can go red)
+        run: python3 scripts/site/docket_build.py --self-test
+
+      - name: Docket staleness selector self-test
+        run: python3 scripts/site/docket_staleness.py --self-test
+
+      - name: Docket gates against the committed record
+        run: |
+          # The record is the product. Nobody reviews it before it publishes, so these gates
+          # are the review: schema, a verbatim quote behind every claim, no numeral that is
+          # not quoted or computed, and no machine narration in reader copy.
+          if [ -f ledger/docket.json ]; then
+            python3 scripts/site/docket_build.py --validate
+          else
+            echo "no ledger yet, skipping"
+          fi
+
+      - name: Nothing rotten in the record
+        run: |
+          # Exit 2 means an item is past twice its re-verification limit while still live,
+          # which is the record quietly going stale in public.
+          if [ -f ledger/docket.json ]; then
+            python3 scripts/site/docket_staleness.py --budget 6 || \
+              { [ $? -eq 2 ] && echo "ROTTEN items present" && exit 1; }
+          fi
+
       - name: Ownership check
         run: |
           BRANCH="${{ github.head_ref || github.ref_name }}"
