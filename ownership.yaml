@@ -27,6 +27,7 @@
 version: 1
 
 actors:
+  docket: The daily docket record routine. Re-verifies, discovers, admits, rebuilds.
   carousel:  The daily LinkedIn carousel routine.
   gridwatch: The ERCOT Grid Watch collector. Runs on cron, never as a routine phase.
   ask:       The ask box's archive lane routine. Fires on API trigger.
@@ -35,6 +36,7 @@ actors:
 
 # Branch prefix to actor, used by CI when no explicit actor is passed.
 branch_actors:
+  "claude/docket-":    docket
   "claude/carousel-": carousel
   "claude/dispatch-": dispatch
   "gridwatch/":       gridwatch
@@ -78,10 +80,19 @@ rules:
 
   # ---------------------------------------------------------------- the public record
   - path: "ledger/docket.json"
-    owner: carousel
+    owner: docket
     note: >
       Maintained in the carousel routine's docket phase. Items are never deleted; history is
       append-only within each item.
+  - path: "seed/**"
+    owner: docket
+    note: >
+      Candidate items awaiting a primary source. The docket routine writes here freely; nothing
+      published comes from here until docket_build.py admits it.
+  - path: "scripts/site/**"
+    owner: human
+    note: >
+      The gates. A routine that can edit the gate that judges it has no gate.
   - path: "ledger/alerts.json"
     owner: carousel
     note: The no-repeat ledger for subscriber emails. Never reused by the grid watch.
