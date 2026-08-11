@@ -1,0 +1,536 @@
+source_repo	source_path	bytes	lines	ak_hits	disposition	target_path	status	reason
+alaskaaicarousels	.claude/agents/caption-critic.md	3236	58	0	PORT_RETHEMED	.claude/agents/carousel-caption-critic.md	TODO	namespaced: both Alaska repos ship a scorer and a flow-critic
+alaskaaicarousels	.claude/agents/caption-director.md	3408	58	1	PORT_RETHEMED	.claude/agents/carousel-caption-director.md	TODO	namespaced: both Alaska repos ship a scorer and a flow-critic
+alaskaaicarousels	.claude/agents/copywriter.md	2925	55	3	PORT_RETHEMED	.claude/agents/carousel-copywriter.md	TODO	namespaced: both Alaska repos ship a scorer and a flow-critic
+alaskaaicarousels	.claude/agents/fact-checker.md	3976	77	2	PORT_RETHEMED	.claude/agents/carousel-fact-checker.md	TODO	namespaced: both Alaska repos ship a scorer and a flow-critic
+alaskaaicarousels	.claude/agents/flow-critic.md	2099	42	1	PORT_RETHEMED	.claude/agents/carousel-flow-critic.md	TODO	namespaced: both Alaska repos ship a scorer and a flow-critic
+alaskaaicarousels	.claude/agents/pixel-critic.md	5503	92	1	PORT_RETHEMED	.claude/agents/carousel-pixel-critic.md	TODO	namespaced: both Alaska repos ship a scorer and a flow-critic
+alaskaaicarousels	.claude/agents/scorer.md	1686	36	0	PORT_RETHEMED	.claude/agents/carousel-scorer.md	TODO	namespaced: both Alaska repos ship a scorer and a flow-critic
+alaskaaicarousels	.claude/agents/scout.md	2144	44	7	PORT_RETHEMED	.claude/agents/carousel-scout.md	TODO	namespaced: both Alaska repos ship a scorer and a flow-critic
+alaskaaicarousels	.claude/agents/treatment-director.md	2223	37	2	PORT_RETHEMED	.claude/agents/carousel-treatment-director.md	TODO	namespaced: both Alaska repos ship a scorer and a flow-critic
+alaskaaicarousels	.claude/agents/upgrade-engineer.md	4889	81	0	PORT_RETHEMED	.claude/agents/carousel-upgrade-engineer.md	TODO	namespaced: both Alaska repos ship a scorer and a flow-critic
+alaskaaicarousels	.claude/skills/carousel-engine/SKILL.md	24638	383	30	PORT_RETHEMED	.claude/skills/carousel-engine/SKILL.md	TODO	
+alaskaaicarousels	.claude/skills/carousel-engine/assemble.py	8738	215	3	PORT_RETHEMED	.claude/skills/carousel-engine/assemble.py	TODO	
+alaskaaicarousels	.claude/skills/carousel-engine/bootstrap.sh	2160	50	0	PORT_RETHEMED	.claude/skills/carousel-engine/bootstrap.sh	TODO	
+alaskaaicarousels	.claude/skills/carousel-engine/qa.py	62968	1184	5	PORT_RETHEMED	.claude/skills/carousel-engine/qa.py	TODO	
+alaskaaicarousels	.claude/skills/carousel-engine/render.py	40485	841	5	PORT_RETHEMED	.claude/skills/carousel-engine/render.py	TODO	
+alaskaaicarousels	.github/workflows/ask.yml	4334	102	1	PORT_RETHEMED	.github/workflows/ask.yml	TODO	
+alaskaaicarousels	.github/workflows/beacon.yml	2382	63	0	PORT_RETHEMED	.github/workflows/beacon.yml	TODO	
+alaskaaicarousels	.github/workflows/broadband-pipeline.yml	2469	67	2	PORT_RETHEMED	.github/workflows/broadband-pipeline.yml	TODO	
+alaskaaicarousels	.github/workflows/docket-dates.yml	5142	123	1	PORT_RETHEMED	.github/workflows/docket-dates.yml	TODO	
+alaskaaicarousels	.github/workflows/docket-map-mobile.yml	2650	81	0	PORT_RETHEMED	.github/workflows/docket-map-mobile.yml	TODO	
+alaskaaicarousels	.github/workflows/gaswatch-eia.yml	7172	173	4	REBUILD	.github/workflows/-eia.yml	TODO	becomes the grid watch workflow
+alaskaaicarousels	.github/workflows/gaswatch.yml	11064	236	17	REBUILD	.github/workflows/.yml	TODO	becomes the grid watch workflow
+alaskaaicarousels	.github/workflows/pages.yml	5663	116	0	PORT_RETHEMED	.github/workflows/pages.yml	TODO	
+alaskaaicarousels	.github/workflows/run-record-parsers.yml	3033	85	0	PORT_RETHEMED	.github/workflows/run-record-parsers.yml	TODO	
+alaskaaicarousels	.github/workflows/scanner-contract.yml	3292	85	0	PORT_RETHEMED	.github/workflows/scanner-contract.yml	TODO	
+alaskaaicarousels	.gitignore	48	5	0	PORT_VERBATIM	.gitignore	TODO	
+alaskaaicarousels	CLAUDE.md	12178	209	19	REBUILD	CLAUDE.md	TODO	written fresh for the Texas repo topology
+alaskaaicarousels	LICENSE	1062	21	0	PORT_VERBATIM	LICENSE	TODO	
+alaskaaicarousels	README.md	5453	109	10	REBUILD	README.md	TODO	written fresh for the Texas repo topology
+alaskaaicarousels	assets/fonts/Archivo-Var.ttf	658596	0	0	PORT_VERBATIM	assets/fonts/Archivo-Var.ttf	TODO	
+alaskaaicarousels	assets/fonts/BricolageGrotesque-Var.ttf	408496	0	0	PORT_VERBATIM	assets/fonts/BricolageGrotesque-Var.ttf	TODO	
+alaskaaicarousels	assets/fonts/Fraunces-Italic-Var.ttf	414904	0	0	PORT_VERBATIM	assets/fonts/Fraunces-Italic-Var.ttf	TODO	
+alaskaaicarousels	assets/fonts/Fraunces-Var.ttf	360440	0	0	PORT_VERBATIM	assets/fonts/Fraunces-Var.ttf	TODO	
+alaskaaicarousels	assets/fonts/InstrumentSerif-Italic.ttf	71592	0	0	PORT_VERBATIM	assets/fonts/InstrumentSerif-Italic.ttf	TODO	
+alaskaaicarousels	assets/fonts/InstrumentSerif-Regular.ttf	70012	0	0	PORT_VERBATIM	assets/fonts/InstrumentSerif-Regular.ttf	TODO	
+alaskaaicarousels	assets/fonts/JetBrainsMono-Bold.ttf	274096	0	0	PORT_VERBATIM	assets/fonts/JetBrainsMono-Bold.ttf	TODO	
+alaskaaicarousels	assets/fonts/JetBrainsMono-Medium.ttf	270316	0	0	PORT_VERBATIM	assets/fonts/JetBrainsMono-Medium.ttf	TODO	
+alaskaaicarousels	assets/fonts/JetBrainsMono-Regular.ttf	270224	0	0	PORT_VERBATIM	assets/fonts/JetBrainsMono-Regular.ttf	TODO	
+alaskaaicarousels	assets/fonts/Manrope-Var.ttf	165420	0	0	PORT_VERBATIM	assets/fonts/Manrope-Var.ttf	TODO	
+alaskaaicarousels	assets/fonts/SpaceGrotesk-Var.ttf	136676	0	0	PORT_VERBATIM	assets/fonts/SpaceGrotesk-Var.ttf	TODO	
+alaskaaicarousels	assets/fonts/Unbounded-Var.ttf	778272	0	0	PORT_VERBATIM	assets/fonts/Unbounded-Var.ttf	TODO	
+alaskaaicarousels	assets/fonts/fonts.css	2725	81	1	PORT_VERBATIM	assets/fonts/fonts.css	TODO	
+alaskaaicarousels	assets/geo/ak-generation-20mw.geo.json	2952	1	6	REBUILD	assets/geo/ak-generation-20mw.geo.json	TODO	Alaska geodata; Texas needs its own counties, zones and gazetteer
+alaskaaicarousels	assets/geo/ak-taps.geo.json	4113	1	7	REBUILD	assets/geo/ak-taps.geo.json	TODO	Alaska geodata; Texas needs its own counties, zones and gazetteer
+alaskaaicarousels	assets/geo/ak-transmission-69kv.geo.json	8436	1	4	REBUILD	assets/geo/ak-transmission-69kv.geo.json	TODO	Alaska geodata; Texas needs its own counties, zones and gazetteer
+alaskaaicarousels	assets/geo/alaska-boroughs.geo.json	276271	1	11	REBUILD	assets/geo/alaska-boroughs.geo.json	TODO	Alaska geodata; Texas needs its own counties, zones and gazetteer
+alaskaaicarousels	assets/geo/alaska-places.json	8705	497	32	REBUILD	assets/geo/alaska-places.json	TODO	Alaska geodata; Texas needs its own counties, zones and gazetteer
+alaskaaicarousels	assets/geo/alaska-state.geo.json	766667	1	1	REBUILD	assets/geo/alaska-state.geo.json	TODO	Alaska geodata; Texas needs its own counties, zones and gazetteer
+alaskaaicarousels	assets/geo/us-states-10m.json	114554	1	1	REBUILD	assets/geo/us-states-10m.json	TODO	Alaska geodata; Texas needs its own counties, zones and gazetteer
+alaskaaicarousels	assets/geo/world-land-110m.json	55207	1	0	REBUILD	assets/geo/world-land-110m.json	TODO	Alaska geodata; Texas needs its own counties, zones and gazetteer
+alaskaaicarousels	assets/js/ak3d.js	10128	243	1	PORT_VERBATIM	assets/js/ak3d.js	TODO	
+alaskaaicarousels	assets/js/akcolor.js	7821	164	0	PORT_VERBATIM	assets/js/akcolor.js	TODO	
+alaskaaicarousels	assets/js/akengrave.js	19531	459	1	PORT_VERBATIM	assets/js/akengrave.js	TODO	
+alaskaaicarousels	assets/js/akgeo.js	2804	60	13	PORT_RETHEMED	assets/js/txgeo.js	TODO	encodes the Alaska conic fit; Texas needs its own projection recipe
+alaskaaicarousels	assets/js/akhachure.js	14130	320	6	PORT_VERBATIM	assets/js/akhachure.js	TODO	
+alaskaaicarousels	assets/js/aklabel.js	6357	147	10	PORT_VERBATIM	assets/js/aklabel.js	TODO	
+alaskaaicarousels	assets/js/akpost.js	16105	356	2	PORT_VERBATIM	assets/js/akpost.js	TODO	
+alaskaaicarousels	assets/js/akrelief.js	11345	236	16	PORT_VERBATIM	assets/js/akrelief.js	TODO	
+alaskaaicarousels	assets/js/aksdf.js	11727	265	0	PORT_VERBATIM	assets/js/aksdf.js	TODO	
+alaskaaicarousels	assets/js/aksnow.js	14531	320	7	PORT_VERBATIM	assets/js/aksnow.js	TODO	
+alaskaaicarousels	assets/js/akthree.js	18227	343	5	PORT_VERBATIM	assets/js/akthree.js	TODO	
+alaskaaicarousels	assets/js/aktype.js	13523	282	18	PORT_VERBATIM	assets/js/aktype.js	TODO	
+alaskaaicarousels	assets/js/d3.v7.min.js	279706	2	8	PORT_VERBATIM	assets/js/d3.v7.min.js	TODO	
+alaskaaicarousels	assets/js/noise.js	7084	190	6	PORT_VERBATIM	assets/js/noise.js	TODO	
+alaskaaicarousels	assets/js/three.module.min.js	691648	6	3	PORT_VERBATIM	assets/js/three.module.min.js	TODO	
+alaskaaicarousels	assets/js/topojson-client.min.js	7169	2	0	PORT_VERBATIM	assets/js/topojson-client.min.js	TODO	
+alaskaaicarousels	assets/js/zdog.min.js	29737	8	0	PORT_VERBATIM	assets/js/zdog.min.js	TODO	
+alaskaaicarousels	config/brand.yaml	11102	188	20	PORT_RETHEMED	config/brand.yaml	TODO	
+alaskaaicarousels	config/gaswatch_hdd_history.json	13474	1	3	REBUILD	config/gridwatch/_hdd_history.json	TODO	Cook Inlet gas model has no Texas analogue; ERCOT publishes its own forecast
+alaskaaicarousels	config/gaswatch_model.json	9174	147	21	REBUILD	config/gridwatch/_model.json	TODO	Cook Inlet gas model has no Texas analogue; ERCOT publishes its own forecast
+alaskaaicarousels	config/scoring_rubric.yaml	5253	89	6	PORT_RETHEMED	config/scoring_rubric.yaml	TODO	
+alaskaaicarousels	config/sources.yaml	5817	70	40	PORT_RETHEMED	config/sources.yaml	TODO	
+alaskaaicarousels	docs/.nojekyll	0	0	0	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/404.html	28866	83	29	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/CNAME	15	1	1	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/a7f3c21e9b8d4e5f6a1c0b3d2e8f7a94.txt	33	1	0	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/about/index.html	34993	132	95	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/apple-touch-icon.png	2330	0	0	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/ask-corpus.json	129462	1	491	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/atom.xml	109737	310	645	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/contact/index.html	30975	101	42	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/contact/thanks/index.html	29055	82	29	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/data/index.html	44148	135	110	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/docket/adl-422741-stak-north-slope-lease/index.html	54285	158	113	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/docket/aidea-houston-industrial-park/index.html	56290	158	166	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/docket/air-force-eul-ai-data-centers/index.html	59250	158	91	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/docket/aklng-tax-bill-second-special-session/index.html	60385	158	194	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/docket/alaska-statewide-transcription-rfp/index.html	45230	158	110	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/docket/ana-ai3-action-institute/index.html	49224	158	106	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/docket/anchorage-ao-2026-27-data-center-zoning/index.html	44502	158	118	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/docket/aogcc-class-vi-carbon-storage/index.html	45921	158	106	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/docket/army-janus-fort-wainwright/index.html	44984	156	50	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/docket/bradley-lake-dixon-diversion/index.html	50217	158	114	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/docket/cvea-micro-modular-reactor/index.html	45646	158	44	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/docket/dmv-automated-compliance-rfi/index.html	44057	158	57	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/docket/docket.json	112182	1663	397	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/docket/eielson-oklo-microreactor/index.html	46670	158	63	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/docket/enstar-cook-inlet-gas-storage/index.html	52988	158	302	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/docket/eo-14318-data-center-permitting/index.html	47034	158	49	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/docket/feed.xml	22795	171	124	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/docket/gvea-lm6000-turbine-purchase/index.html	49022	158	128	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/docket/hb-259-data-center-utility-standards/index.html	48702	158	94	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/docket/index.html	405477	2654	1030	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/docket/kpbsd-ai-policy-package/index.html	50672	158	126	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/docket/ratepayer-protection-pledge-alaska-utilities/index.html	49136	158	113	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/docket/terra-energy-center-doe-grant/index.html	46622	158	62	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/docket.json	112182	1663	397	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/feed.json	183088	1771	1117	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/feed.xml	94478	285	644	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/gas-watch/index.html	71634	553	118	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/gas-watch.json	45777	1155	127	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/index.html	63434	459	111	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/llms-full.txt	350825	2512	2069	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/llms.txt	11564	98	147	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/logo.png	57093	0	0	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/og-docket.png	308467	0	0	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/og.png	281058	0	0	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/privacy/index.html	35177	163	37	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/questions/index.html	142654	135	636	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/robots.txt	700	14	4	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/scan/index.html	78083	955	61	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/services/index.html	56227	270	88	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/services/thanks/index.html	39919	82	29	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/site.css	42916	466	5	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/site.js	9921	202	8	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/sitemap.xml	6852	1	77	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/sources/index.html	114885	80	381	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/topics/data-centers/index.html	46801	135	129	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/topics/data-sovereignty/index.html	37138	115	76	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/topics/defense-and-federal/index.html	49634	160	141	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/topics/index.html	31580	106	49	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/topics/land-and-permitting/index.html	52968	170	161	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/topics/power-and-the-grid/index.html	51189	157	163	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/topics/research-and-science/index.html	42663	145	100	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/topics/state-policy/index.html	53473	175	175	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/videos/index.html	19292	400	12	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	docs/videos/videos.json	28849	381	197	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
+alaskaaicarousels	examples/demo-deck/slides/slide-01.html	5849	122	8	REBUILD	examples/demo-deck/slides/slide-01.html	TODO	engine-proof decks are written fresh against Texas art
+alaskaaicarousels	examples/demo-deck/slides/slide-02.html	5295	112	16	REBUILD	examples/demo-deck/slides/slide-02.html	TODO	engine-proof decks are written fresh against Texas art
+alaskaaicarousels	examples/demo-deck/slides/slide-03.html	4549	114	3	REBUILD	examples/demo-deck/slides/slide-03.html	TODO	engine-proof decks are written fresh against Texas art
+alaskaaicarousels	examples/demo-deck/slides/slide-04.html	4802	116	4	REBUILD	examples/demo-deck/slides/slide-04.html	TODO	engine-proof decks are written fresh against Texas art
+alaskaaicarousels	examples/proof-3d/slides/slide-01.html	2863	44	1	REBUILD	examples/proof-3d/slides/slide-01.html	TODO	engine-proof decks are written fresh against Texas art
+alaskaaicarousels	examples/proof-3d/slides/slide-02.html	3185	57	0	REBUILD	examples/proof-3d/slides/slide-02.html	TODO	engine-proof decks are written fresh against Texas art
+alaskaaicarousels	examples/proof-3d/slides/slide-03.html	5158	81	4	REBUILD	examples/proof-3d/slides/slide-03.html	TODO	engine-proof decks are written fresh against Texas art
+alaskaaicarousels	knowledge/CAPTION_CRAFT.md	11768	214	3	PORT_RETHEMED	knowledge/carousel/CAPTION_CRAFT.md	TODO	
+alaskaaicarousels	knowledge/CAROUSEL_CRAFT.md	7558	129	7	PORT_RETHEMED	knowledge/carousel/CAROUSEL_CRAFT.md	TODO	
+alaskaaicarousels	knowledge/DESIGN_DOCTRINE.md	12503	205	12	PORT_RETHEMED	knowledge/carousel/DESIGN_DOCTRINE.md	TODO	
+alaskaaicarousels	knowledge/FIELD_NOTES.md	231133	3151	142	REBUILD	knowledge/carousel/FIELD_NOTES.md	TODO	living run-retro log; Texas starts empty
+alaskaaicarousels	knowledge/SLIDE_DOSSIER_SPEC.md	7525	131	2	PORT_RETHEMED	knowledge/carousel/SLIDE_DOSSIER_SPEC.md	TODO	
+alaskaaicarousels	knowledge/TECHNIQUE_LIBRARY.md	45446	669	26	PORT_RETHEMED	knowledge/carousel/TECHNIQUE_LIBRARY.md	TODO	
+alaskaaicarousels	ledger/alerts.json	1389	39	7	REBUILD	ledger/alerts.json	TODO	Alaska's memory would poison Texas dedupe and divergence gates
+alaskaaicarousels	ledger/artwork.json	132723	753	136	REBUILD	ledger/artwork.json	TODO	Alaska's memory would poison Texas dedupe and divergence gates
+alaskaaicarousels	ledger/captions.json	26442	317	35	REBUILD	ledger/captions.json	TODO	Alaska's memory would poison Texas dedupe and divergence gates
+alaskaaicarousels	ledger/docket.json	110005	1628	362	REBUILD	ledger/docket.json	TODO	Alaska's memory would poison Texas dedupe and divergence gates
+alaskaaicarousels	ledger/gaswatch.jsonl	44157	12	176	REBUILD	ledger/gaswatch.jsonl	TODO	Alaska's memory would poison Texas dedupe and divergence gates
+alaskaaicarousels	ledger/gaswatch_eia.json	26312	1376	3	REBUILD	ledger/gaswatch_eia.json	TODO	Alaska's memory would poison Texas dedupe and divergence gates
+alaskaaicarousels	ledger/instincts.json	68682	695	19	REBUILD	ledger/instincts.json	TODO	Alaska's memory would poison Texas dedupe and divergence gates
+alaskaaicarousels	ledger/topics.json	73089	1397	339	REBUILD	ledger/topics.json	TODO	Alaska's memory would poison Texas dedupe and divergence gates
+alaskaaicarousels	ledger/upgrades.json	231695	1284	58	REBUILD	ledger/upgrades.json	TODO	Alaska's memory would poison Texas dedupe and divergence gates
+alaskaaicarousels	prompts/ASK_ROUTINE.md	5487	121	4	PORT_RETHEMED	prompts/ask_routine.md	TODO	
+alaskaaicarousels	prompts/ROUTINE_PROMPT.txt	469	10	3	PORT_RETHEMED	prompts/CAROUSEL_TRIGGER.txt	TODO	
+alaskaaicarousels	prompts/routine_instructions.md	82996	1396	59	PORT_RETHEMED	prompts/carousel_routine.md	TODO	
+alaskaaicarousels	research/broadband/.gitignore	182	4	0	DROP		DROPPED	Alaska USAC data; a Texas analogue is a later project, not this port
+alaskaaicarousels	research/broadband/README.md	5607	97	8	DROP		DROPPED	Alaska USAC data; a Texas analogue is a later project, not this port
+alaskaaicarousels	research/broadband/bundle.py	9442	203	1	DROP		DROPPED	Alaska USAC data; a Texas analogue is a later project, not this port
+alaskaaicarousels	research/broadband/derived/circuits_v2.csv	1846309	7505	14913	DROP		DROPPED	Alaska USAC data; a Texas analogue is a later project, not this port
+alaskaaicarousels	research/broadband/derived/communities_geo.json	35364	1	12	DROP		DROPPED	Alaska USAC data; a Texas analogue is a later project, not this port
+alaskaaicarousels	research/broadband/fetch.sh	999	17	6	DROP		DROPPED	Alaska USAC data; a Texas analogue is a later project, not this port
+alaskaaicarousels	research/broadband/pipeline.py	13277	314	14	DROP		DROPPED	Alaska USAC data; a Texas analogue is a later project, not this port
+alaskaaicarousels	research/broadband/test_pipeline.py	5139	119	3	DROP		DROPPED	Alaska USAC data; a Texas analogue is a later project, not this port
+alaskaaicarousels	scripts/aggregate_check.py	35914	776	6	PORT_RETHEMED	scripts/carousel/aggregate_check.py	TODO	
+alaskaaicarousels	scripts/ask_answers.py	62727	1366	65	PORT_RETHEMED	scripts/site/ask_answers.py	TODO	
+alaskaaicarousels	scripts/ask_corpus.py	8998	222	6	PORT_RETHEMED	scripts/site/ask_corpus.py	TODO	
+alaskaaicarousels	scripts/bespoke_check.py	9630	218	1	PORT_RETHEMED	scripts/carousel/bespoke_check.py	TODO	
+alaskaaicarousels	scripts/caption_check.py	37354	740	8	PORT_RETHEMED	scripts/carousel/caption_check.py	TODO	
+alaskaaicarousels	scripts/claims_check.py	8002	192	0	PORT_RETHEMED	scripts/carousel/claims_check.py	TODO	
+alaskaaicarousels	scripts/copy_sync_check.py	8768	212	0	PORT_RETHEMED	scripts/carousel/copy_sync_check.py	TODO	
+alaskaaicarousels	scripts/craft_corpus.py	16958	407	0	PORT_RETHEMED	scripts/carousel/craft_corpus.py	TODO	
+alaskaaicarousels	scripts/dedupe_check.py	13910	318	6	PORT_RETHEMED	scripts/carousel/dedupe_check.py	TODO	
+alaskaaicarousels	scripts/docket_alerts.py	19107	425	6	PORT_RETHEMED	scripts/site/docket_alerts.py	TODO	
+alaskaaicarousels	scripts/docket_build.py	42270	913	44	PORT_RETHEMED	scripts/site/docket_build.py	TODO	
+alaskaaicarousels	scripts/docket_dates_check.py	28922	605	5	PORT_RETHEMED	scripts/site/docket_dates_check.py	TODO	
+alaskaaicarousels	scripts/docket_staleness.py	9092	191	1	PORT_RETHEMED	scripts/site/docket_staleness.py	TODO	
+alaskaaicarousels	scripts/dossier_check.py	10102	222	0	PORT_RETHEMED	scripts/carousel/dossier_check.py	TODO	
+alaskaaicarousels	scripts/feeds_build.py	22445	501	44	PORT_RETHEMED	scripts/site/feeds_build.py	TODO	
+alaskaaicarousels	scripts/fetch_map_layers.py	12141	296	32	PORT_RETHEMED	scripts/site/fetch_map_layers.py	TODO	
+alaskaaicarousels	scripts/gaswatch_build.py	97272	1944	89	REBUILD	scripts/gridwatch/build.py	TODO	ERCOT, not Cook Inlet: different sources, different physics
+alaskaaicarousels	scripts/gaswatch_collect.py	52167	1194	109	REBUILD	scripts/gridwatch/collect.py	TODO	ERCOT, not Cook Inlet: different sources, different physics
+alaskaaicarousels	scripts/gaswatch_eia.py	11650	281	17	REBUILD	scripts/gridwatch/eia.py	TODO	ERCOT, not Cook Inlet: different sources, different physics
+alaskaaicarousels	scripts/gaswatch_fit.py	13945	314	12	REBUILD	scripts/gridwatch/fit.py	TODO	ERCOT, not Cook Inlet: different sources, different physics
+alaskaaicarousels	scripts/gaswatch_hdd.py	9565	233	1	REBUILD	scripts/gridwatch/hdd.py	TODO	ERCOT, not Cook Inlet: different sources, different physics
+alaskaaicarousels	scripts/gaswatch_pagecheck.py	16666	396	9	REBUILD	scripts/gridwatch/pagecheck.py	TODO	ERCOT, not Cook Inlet: different sources, different physics
+alaskaaicarousels	scripts/gate_status.py	40370	878	3	PORT_RETHEMED	scripts/carousel/gate_status.py	TODO	
+alaskaaicarousels	scripts/gmail_draft.py	27963	526	9	PORT_RETHEMED	scripts/carousel/gmail_draft.py	TODO	
+alaskaaicarousels	scripts/indexnow.py	4874	127	1	PORT_RETHEMED	scripts/site/indexnow.py	TODO	
+alaskaaicarousels	scripts/parsers_check.py	9057	199	5	PORT_RETHEMED	scripts/carousel/parsers_check.py	TODO	
+alaskaaicarousels	scripts/prune_runs.py	5560	140	0	PORT_RETHEMED	scripts/carousel/prune_runs.py	TODO	
+alaskaaicarousels	scripts/read_stats.py	4974	123	1	PORT_RETHEMED	scripts/site/read_stats.py	TODO	
+alaskaaicarousels	scripts/scanner_sync_check.py	29098	635	2	PORT_RETHEMED	scripts/site/scanner_sync_check.py	TODO	
+alaskaaicarousels	scripts/ship_images.py	12311	285	1	PORT_RETHEMED	scripts/carousel/ship_images.py	TODO	
+alaskaaicarousels	scripts/shrink_pdfs.py	10545	264	0	PORT_RETHEMED	scripts/carousel/shrink_pdfs.py	TODO	
+alaskaaicarousels	scripts/site_build.py	403971	7581	414	PORT_RETHEMED	scripts/site/site_build.py	TODO	
+alaskaaicarousels	scripts/site_fresh_check.py	4299	110	0	PORT_RETHEMED	scripts/site/site_fresh_check.py	TODO	
+alaskaaicarousels	scripts/style_lint.py	3861	99	0	PORT_RETHEMED	scripts/shared/style_lint.py	TODO	
+alaskaaicarousels	scripts/trend_check.py	18638	474	0	PORT_RETHEMED	scripts/carousel/trend_check.py	TODO	
+alaskaaicarousels	supabase/README.md	5695	119	2	PORT_RETHEMED	supabase/README.md	TODO	
+alaskaaicarousels	supabase/functions/stats/index.ts	2987	78	1	PORT_RETHEMED	supabase/functions/stats/index.ts	TODO	
+alaskaaicarousels	supabase/functions/track/index.ts	5346	142	4	PORT_RETHEMED	supabase/functions/track/index.ts	TODO	
+alaskaaicarousels	supabase/migrations/0001_readership.sql	7240	138	1	PORT_RETHEMED	supabase/migrations/0001_readership.sql	TODO	
+alaskaaicarousels	supabase/migrations/0002_publish_drop_reasons.sql	3997	81	0	PORT_RETHEMED	supabase/migrations/0002_publish_drop_reasons.sql	TODO	
+alaskaaicarousels	tests/akhachure_verify.py	9028	241	6	PORT_RETHEMED	tests/akhachure_verify.py	TODO	
+alaskaaicarousels	tests/aksnow_probe.html	3662	91	5	PORT_RETHEMED	tests/aksnow_probe.html	TODO	
+alaskaaicarousels	tests/aksnow_verify.py	8857	203	0	PORT_RETHEMED	tests/aksnow_verify.py	TODO	
+alaskaaicarousels	tests/ask_engine.mjs	33530	717	46	PORT_RETHEMED	tests/ask_engine.mjs	TODO	
+alaskaaicarousels	tests/beacon_fires.js	11071	254	0	PORT_RETHEMED	tests/beacon_fires.js	TODO	
+alaskaaicarousels	tests/mobile_docket_map.js	13960	305	4	PORT_RETHEMED	tests/mobile_docket_map.js	TODO	
+alaskaaicarousels	vendor/scanner/README.md	7463	157	4	REBUILD	vendor/scanner/README.md	TODO	vendored contract regenerates from TexasAIScanner
+alaskaaicarousels	vendor/scanner/scan.html	41382	811	11	REBUILD	vendor/scanner/scan.html	TODO	vendored contract regenerates from TexasAIScanner
+alaskaaicarousels	vendor/scanner/scan_routine.md	29323	543	10	REBUILD	vendor/scanner/scan_routine.md	TODO	vendored contract regenerates from TexasAIScanner
+alaskaaicarousels	workers/ask/README.md	7190	169	3	PORT_RETHEMED	workers/ask/README.md	TODO	
+alaskaaicarousels	workers/ask/checks.js	5928	118	2	PORT_RETHEMED	workers/ask/checks.js	TODO	
+alaskaaicarousels	workers/ask/deep.js	6582	164	0	PORT_RETHEMED	workers/ask/deep.js	TODO	
+alaskaaicarousels	workers/ask/test-deep.mjs	5681	136	2	PORT_RETHEMED	workers/ask/test-deep.mjs	TODO	
+alaskaaicarousels	workers/ask/test.mjs	6845	141	11	PORT_RETHEMED	workers/ask/test.mjs	TODO	
+alaskaaicarousels	workers/ask/worker.js	5470	130	3	PORT_RETHEMED	workers/ask/worker.js	TODO	
+alaskaaicarousels	workers/ask/wrangler.toml	2142	41	1	PORT_RETHEMED	workers/ask/wrangler.toml	TODO	
+alaska-ai-weekly	.claude/WORKLOG.md	24852	353	0	REBUILD	TexasAIDispatch:.claude/.md	TODO	
+alaska-ai-weekly	.claude/agents/dispatch-fixer.md	6090	86	2	PORT_RETHEMED	TexasAIDispatch:.claude/agents/dispatch-fixer.md	TODO	
+alaska-ai-weekly	.claude/agents/editor.md	2154	56	1	PORT_RETHEMED	TexasAIDispatch:.claude/agents/editor.md	TODO	
+alaska-ai-weekly	.claude/agents/flow-critic.md	7678	106	0	PORT_RETHEMED	TexasAIDispatch:.claude/agents/flow-critic.md	TODO	
+alaska-ai-weekly	.claude/agents/researcher.md	2643	70	15	PORT_RETHEMED	TexasAIDispatch:.claude/agents/researcher.md	TODO	
+alaska-ai-weekly	.claude/agents/scorer.md	2732	61	0	PORT_RETHEMED	TexasAIDispatch:.claude/agents/scorer.md	TODO	
+alaska-ai-weekly	.claude/agents/storyboard-critic.md	13147	168	4	PORT_RETHEMED	TexasAIDispatch:.claude/agents/storyboard-critic.md	TODO	
+alaska-ai-weekly	.claude/agents/validator.md	1322	38	0	PORT_RETHEMED	TexasAIDispatch:.claude/agents/validator.md	TODO	
+alaska-ai-weekly	.claude/agents/vo-director.md	3952	63	2	PORT_RETHEMED	TexasAIDispatch:.claude/agents/vo-director.md	TODO	
+alaska-ai-weekly	.claude/agents/writer.md	5373	117	8	PORT_RETHEMED	TexasAIDispatch:.claude/agents/writer.md	TODO	
+alaska-ai-weekly	.claude/settings.json	564	34	0	REBUILD	TexasAIDispatch:.claude/.json	TODO	
+alaska-ai-weekly	.claude/settings.local.json	242	18	0	REBUILD	TexasAIDispatch:.claude/.local.json	TODO	
+alaska-ai-weekly	.claude/skills/alaska-ai-brief/SKILL.md	5579	105	31	PORT_RETHEMED	TexasAIDispatch:.claude/skills/texas-brief/SKILL.md	TODO	
+alaska-ai-weekly	.claude/skills/alaska-ai-brief/build_template.py	12650	356	20	PORT_RETHEMED	TexasAIDispatch:.claude/skills/texas-brief/build_template.py	TODO	
+alaska-ai-weekly	.claude/skills/alaska-ai-brief/fonts/Fraunces-Italic-Var.ttf	414904	0	0	PORT_RETHEMED	TexasAIDispatch:.claude/skills/texas-brief/fonts/Fraunces-Italic-Var.ttf	TODO	
+alaska-ai-weekly	.claude/skills/alaska-ai-brief/fonts/Fraunces-Var.ttf	360440	0	0	PORT_RETHEMED	TexasAIDispatch:.claude/skills/texas-brief/fonts/Fraunces-Var.ttf	TODO	
+alaska-ai-weekly	.claude/skills/alaska-ai-brief/fonts/JetBrainsMono-Bold.ttf	274096	0	0	PORT_RETHEMED	TexasAIDispatch:.claude/skills/texas-brief/fonts/JetBrainsMono-Bold.ttf	TODO	
+alaska-ai-weekly	.claude/skills/alaska-ai-brief/fonts/JetBrainsMono-Medium.ttf	270316	0	0	PORT_RETHEMED	TexasAIDispatch:.claude/skills/texas-brief/fonts/JetBrainsMono-Medium.ttf	TODO	
+alaska-ai-weekly	.claude/skills/alaska-ai-brief/fonts/JetBrainsMono-Regular.ttf	270224	0	0	PORT_RETHEMED	TexasAIDispatch:.claude/skills/texas-brief/fonts/JetBrainsMono-Regular.ttf	TODO	
+alaska-ai-weekly	.claude/skills/alaska-dispatch/SKILL.md	5943	76	13	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/audio_archive.py	10456	162	0	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/audio_build.py	3258	99	4	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/audio_launchcall.py	8708	147	2	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/audio_owl.py	8914	143	2	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/audio_teaching.py	10282	178	0	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/audio_thelid.py	9960	157	0	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/audio_tundra.py	10373	164	5	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/audio_v2.py	5292	93	1	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/audio_v3.py	6370	79	2	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/audio_voiss.py	11703	183	1	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/build_vo.py	6888	144	7	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/build_voiss.py	6883	142	4	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/chrome_tundra.py	20900	384	17	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/craft.py	3929	74	0	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/demo_craft.py	7573	129	8	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/demo_dimensional.py	8986	209	1	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/dimensional.py	18272	377	1	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/dispatch_core.py	16045	271	6	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/easing.py	3508	87	0	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/post_grade.py	3279	82	0	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/poster_v3_9x16.png	2478788	0	0	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/quality_gate.py	31908	462	0	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/render_archive.py	35131	704	3	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/render_launchcall.py	50912	820	43	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/render_owl.py	38230	639	42	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/render_teaching.py	54540	920	7	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/render_thelid.py	28574	587	2	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/render_v2.py	21191	399	23	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/render_v3.py	15745	333	22	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/render_voiss.py	44558	796	7	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/resume_render.sh	457	7	3	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/vo60.py	3945	61	4	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/vo_archive.py	7008	134	2	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/vo_backends.py	11437	258	1	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/vo_build_minerals.py	4536	88	6	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/vo_build_tundra.py	2463	53	3	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/vo_gemini.py	5711	127	0	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/vo_launchcall.py	4466	85	4	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/vo_qc.py	8734	211	1	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/vo_teaching.py	8700	170	0	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/alaska-dispatch/vo_thelid.py	6998	137	3	DROP		DROPPED	retired engine, explicitly, at dispatch_routine.md:530
+alaska-ai-weekly	.claude/skills/deep-research-ak/SKILL.md	1907	38	21	REBUILD	TexasAIDispatch:.claude/skills/deep-research-tx/SKILL.md	TODO	100 percent Alaska search vocabulary
+alaska-ai-weekly	.githooks/post-commit	1459	29	0	PORT_VERBATIM	TexasAIDispatch:.githooks/post-commit	TODO	the auto-push guardrail earns its place in every repo
+alaska-ai-weekly	.gitignore	1477	42	21	PORT_VERBATIM	TexasAIDispatch:.gitignore	TODO	
+alaska-ai-weekly	.mcp.json	23	3	0	PORT_VERBATIM	TexasAIDispatch:.mcp.json	TODO	
+alaska-ai-weekly	CLAUDE.md	6731	113	15	REBUILD	TexasAIDispatch:CLAUDE.md	TODO	
+alaska-ai-weekly	README.md	2308	55	9	REBUILD	TexasAIDispatch:README.md	TODO	
+alaska-ai-weekly	assets/sfx/MANIFEST.md	3291	51	0	PORT_VERBATIM	TexasAIDispatch:assets/sfx/MANIFEST.md	TODO	original synthesis and CC0, fully state-agnostic
+alaska-ai-weekly	assets/sfx/real/manifest.json	14441	334	0	PORT_VERBATIM	TexasAIDispatch:assets/sfx/real/manifest.json	TODO	original synthesis and CC0, fully state-agnostic
+alaska-ai-weekly	assets/voice/README.md	2164	45	4	REBUILD	TexasAIDispatch:assets/voice/README.md	TODO	Texas gets its own narrator persona
+alaska-ai-weekly	config/brand.yaml	8234	84	18	PORT_RETHEMED	TexasAIDispatch:config/brand.yaml	TODO	
+alaska-ai-weekly	config/composition_axes.yaml	8561	127	6	PORT_RETHEMED	TexasAIDispatch:config/composition_axes.yaml	TODO	
+alaska-ai-weekly	config/dispatch_rubric.yaml	7937	107	5	PORT_RETHEMED	TexasAIDispatch:config/dispatch_rubric.yaml	TODO	
+alaska-ai-weekly	config/eval_ledger.yaml	6868	185	3	REBUILD	TexasAIDispatch:config/eval_ledger.yaml	TODO	Alaska's ledger memory; starting non-empty breaks the divergence gates
+alaska-ai-weekly	config/linkedin_caption_rubric.yaml	4335	63	7	PORT_RETHEMED	TexasAIDispatch:config/linkedin_caption_rubric.yaml	TODO	
+alaska-ai-weekly	config/music_sources.yaml	6918	138	0	PORT_RETHEMED	TexasAIDispatch:config/music_sources.yaml	TODO	
+alaska-ai-weekly	config/owner_release.json	697	7	0	REBUILD	TexasAIDispatch:config/owner_release.json	TODO	Alaska's ledger memory; starting non-empty breaks the divergence gates
+alaska-ai-weekly	config/panel_protocol.md	3730	68	0	PORT_RETHEMED	TexasAIDispatch:config/panel_protocol.md	TODO	
+alaska-ai-weekly	config/scoring_rubric.yaml	2081	48	2	PORT_RETHEMED	TexasAIDispatch:config/scoring_rubric.yaml	TODO	
+alaska-ai-weekly	config/shot_structure.yaml	12671	152	1	PORT_RETHEMED	TexasAIDispatch:config/shot_structure.yaml	TODO	
+alaska-ai-weekly	config/sources.yaml	4318	49	31	PORT_RETHEMED	TexasAIDispatch:config/sources.yaml	TODO	
+alaska-ai-weekly	config/state.yaml	59880	1556	218	REBUILD	TexasAIDispatch:config/state.yaml	TODO	Alaska's ledger memory; starting non-empty breaks the divergence gates
+alaska-ai-weekly	config/visual_flow.yaml	6427	84	2	PORT_RETHEMED	TexasAIDispatch:config/visual_flow.yaml	TODO	
+alaska-ai-weekly	config/voices.yaml	7823	89	2	PORT_RETHEMED	TexasAIDispatch:config/voices.yaml	TODO	
+alaska-ai-weekly	docs/EVAL_REPEAT_OFFENDERS.md	3762	62	0	PORT_RETHEMED	TexasAIDispatch:knowledge/video/EVAL_REPEAT_OFFENDERS.md	TODO	
+alaska-ai-weekly	docs/LAUNCH.md	2277	37	4	PORT_RETHEMED	TexasAIDispatch:knowledge/video/LAUNCH.md	TODO	
+alaska-ai-weekly	docs/ROUTINE_SPEC.md	40017	466	37	DROP		DROPPED	superseded generation of the master prompt; history only
+alaska-ai-weekly	docs/RUN_UPGRADES.md	175653	2321	142	REBUILD	TexasAIDispatch:docs/RUN_UPGRADES.md	TODO	Alaska's run history; Texas starts empty
+alaska-ai-weekly	docs/UPGRADE_BACKLOG.md	8707	124	17	PORT_RETHEMED	TexasAIDispatch:knowledge/video/UPGRADE_BACKLOG.md	TODO	
+alaska-ai-weekly	docs/VIDEO_PRODUCTION_STANDARD.md	28499	334	38	PORT_RETHEMED	TexasAIDispatch:knowledge/video/VIDEO_PRODUCTION_STANDARD.md	TODO	
+alaska-ai-weekly	docs/WORLD_CLASS.md	7719	108	2	PORT_RETHEMED	TexasAIDispatch:knowledge/video/WORLD_CLASS.md	TODO	
+alaska-ai-weekly	docs/craft/ALASKA_NOSTALGIA.md	4824	69	32	REBUILD	TexasAIDispatch:knowledge/video/ALASKA_NOSTALGIA.md	TODO	the two files that are purely local flavor; Texas writes its own
+alaska-ai-weekly	docs/craft/ANCHORAGE_LANDMARKS.md	3217	46	21	REBUILD	TexasAIDispatch:knowledge/video/ANCHORAGE_LANDMARKS.md	TODO	the two files that are purely local flavor; Texas writes its own
+alaska-ai-weekly	docs/craft/CHOREOGRAPHY.md	11003	166	1	PORT_RETHEMED	TexasAIDispatch:knowledge/video/CHOREOGRAPHY.md	TODO	
+alaska-ai-weekly	docs/craft/CINEMATIC_SCENE_CRAFT.md	18741	286	11	PORT_RETHEMED	TexasAIDispatch:knowledge/video/CINEMATIC_SCENE_CRAFT.md	TODO	
+alaska-ai-weekly	docs/craft/DIMENSIONAL_CRAFT.md	10508	148	1	DROP		DROPPED	doctrine for the retired raymarcher
+alaska-ai-weekly	docs/craft/DIRECTORS_ROOM.md	4678	72	4	PORT_RETHEMED	TexasAIDispatch:knowledge/video/DIRECTORS_ROOM.md	TODO	
+alaska-ai-weekly	docs/craft/DISPATCH_STANDARD.md	14633	232	0	PORT_RETHEMED	TexasAIDispatch:knowledge/video/DISPATCH_STANDARD.md	TODO	
+alaska-ai-weekly	docs/craft/ENGAGEMENT.md	15845	256	0	PORT_RETHEMED	TexasAIDispatch:knowledge/video/ENGAGEMENT.md	TODO	
+alaska-ai-weekly	docs/craft/FISHCRAFT.md	4346	64	4	PORT_RETHEMED	TexasAIDispatch:knowledge/video/FISHCRAFT.md	TODO	
+alaska-ai-weekly	docs/craft/HERO_CRAFT.md	5282	80	0	PORT_RETHEMED	TexasAIDispatch:knowledge/video/HERO_CRAFT.md	TODO	
+alaska-ai-weekly	docs/craft/HOOK_CRAFT.md	4688	76	0	PORT_RETHEMED	TexasAIDispatch:knowledge/video/HOOK_CRAFT.md	TODO	
+alaska-ai-weekly	docs/craft/INFOGRAPHIC_2_5D.md	5405	83	2	PORT_RETHEMED	TexasAIDispatch:knowledge/video/INFOGRAPHIC_2_5D.md	TODO	
+alaska-ai-weekly	docs/craft/README.md	3460	57	1	PORT_RETHEMED	TexasAIDispatch:knowledge/video/README.md	TODO	
+alaska-ai-weekly	docs/craft/STAGE3D.md	3555	57	3	PORT_RETHEMED	TexasAIDispatch:knowledge/video/STAGE3D.md	TODO	
+alaska-ai-weekly	docs/craft/TWO_MINUTE_UPGRADE.md	10179	176	0	PORT_RETHEMED	TexasAIDispatch:knowledge/video/TWO_MINUTE_UPGRADE.md	TODO	
+alaska-ai-weekly	docs/craft/VISUAL_FLOW.md	15108	235	2	PORT_RETHEMED	TexasAIDispatch:knowledge/video/VISUAL_FLOW.md	TODO	
+alaska-ai-weekly	docs/craft/VOICE_AND_SCORE.md	5660	86	0	PORT_RETHEMED	TexasAIDispatch:knowledge/video/VOICE_AND_SCORE.md	TODO	
+alaska-ai-weekly	docs/craft/VO_DIRECTION.md	11767	183	1	PORT_RETHEMED	TexasAIDispatch:knowledge/video/VO_DIRECTION.md	TODO	
+alaska-ai-weekly	docs/craft/img/anchorage_skyline_2026-07-21.jpg	61512	0	0	PORT_RETHEMED	TexasAIDispatch:knowledge/video/img/anchorage_skyline_2026-07-21.jpg	TODO	
+alaska-ai-weekly	docs/craft/img/fish_sheet_2026-07-21.jpg	86713	0	0	PORT_RETHEMED	TexasAIDispatch:knowledge/video/img/fish_sheet_2026-07-21.jpg	TODO	
+alaska-ai-weekly	docs/craft/proof/RESULT.md	2935	44	3	PORT_RETHEMED	TexasAIDispatch:knowledge/video/proof/RESULT.md	TODO	
+alaska-ai-weekly	docs/craft/proof/code/proof_scenes.py	12378	203	10	PORT_RETHEMED	TexasAIDispatch:knowledge/video/proof/code/proof_scenes.py	TODO	
+alaska-ai-weekly	docs/craft/proof/contact.png	760857	0	0	PORT_RETHEMED	TexasAIDispatch:knowledge/video/proof/contact.png	TODO	
+alaska-ai-weekly	docs/craft/proof/proof_storyboard.json	4365	150	4	PORT_RETHEMED	TexasAIDispatch:knowledge/video/proof/proof_storyboard.json	TODO	
+alaska-ai-weekly	docs/craft/proof/stills/1_river_map.png	557964	0	0	PORT_RETHEMED	TexasAIDispatch:knowledge/video/proof/stills/1_river_map.png	TODO	
+alaska-ai-weekly	docs/craft/proof/stills/2_carry_inflight.png	497708	0	0	PORT_RETHEMED	TexasAIDispatch:knowledge/video/proof/stills/2_carry_inflight.png	TODO	
+alaska-ai-weekly	docs/craft/proof/stills/3_runcurve_peak.png	498725	0	0	PORT_RETHEMED	TexasAIDispatch:knowledge/video/proof/stills/3_runcurve_peak.png	TODO	
+alaska-ai-weekly	docs/craft/proof/stills/4_graphic_match_ridge.png	562929	0	0	PORT_RETHEMED	TexasAIDispatch:knowledge/video/proof/stills/4_graphic_match_ridge.png	TODO	
+alaska-ai-weekly	docs/craft/proof/stills/5_wordmark.png	587241	0	0	PORT_RETHEMED	TexasAIDispatch:knowledge/video/proof/stills/5_wordmark.png	TODO	
+alaska-ai-weekly	docs/craft/proof-smooth/RESULT.md	2407	38	3	PORT_RETHEMED	TexasAIDispatch:knowledge/video/proof-smooth/RESULT.md	TODO	
+alaska-ai-weekly	docs/craft/proof-smooth/code/demo_smooth.py	13271	217	11	PORT_RETHEMED	TexasAIDispatch:knowledge/video/proof-smooth/code/demo_smooth.py	TODO	
+alaska-ai-weekly	docs/craft/proof-smooth/contact.png	905811	0	0	PORT_RETHEMED	TexasAIDispatch:knowledge/video/proof-smooth/contact.png	TODO	
+alaska-ai-weekly	docs/craft/proof-smooth/stills/1_river.png	680738	0	0	PORT_RETHEMED	TexasAIDispatch:knowledge/video/proof-smooth/stills/1_river.png	TODO	
+alaska-ai-weekly	docs/craft/proof-smooth/stills/2_morph_river_to_curve.png	613373	0	0	PORT_RETHEMED	TexasAIDispatch:knowledge/video/proof-smooth/stills/2_morph_river_to_curve.png	TODO	
+alaska-ai-weekly	docs/craft/proof-smooth/stills/3_data_runcurve.png	352228	0	0	PORT_RETHEMED	TexasAIDispatch:knowledge/video/proof-smooth/stills/3_data_runcurve.png	TODO	
+alaska-ai-weekly	docs/craft/proof-smooth/stills/4_morph_curve_to_ridge.png	523089	0	0	PORT_RETHEMED	TexasAIDispatch:knowledge/video/proof-smooth/stills/4_morph_curve_to_ridge.png	TODO	
+alaska-ai-weekly	docs/craft/proof-smooth/stills/5_mountain.png	513376	0	0	PORT_RETHEMED	TexasAIDispatch:knowledge/video/proof-smooth/stills/5_mountain.png	TODO	
+alaska-ai-weekly	docs/craft/proof-smooth/storyboard.json	2920	114	4	PORT_RETHEMED	TexasAIDispatch:knowledge/video/proof-smooth/storyboard.json	TODO	
+alaska-ai-weekly	docs/craft/research/1-cut-grammar-and-rhythm.md	21330	249	7	PORT_VERBATIM	TexasAIDispatch:knowledge/video/research/1-cut-grammar-and-rhythm.md	TODO	raw craft dossiers, state-agnostic
+alaska-ai-weekly	docs/craft/research/2-scene-breaks-world-transitions.md	23345	258	3	PORT_VERBATIM	TexasAIDispatch:knowledge/video/research/2-scene-breaks-world-transitions.md	TODO	raw craft dossiers, state-agnostic
+alaska-ai-weekly	docs/craft/research/3-shot-grammar-sequence-construction.md	32404	435	8	PORT_VERBATIM	TexasAIDispatch:knowledge/video/research/3-shot-grammar-sequence-construction.md	TODO	raw craft dossiers, state-agnostic
+alaska-ai-weekly	docs/craft/research/4-motivated-camera-movement.md	22168	283	2	PORT_VERBATIM	TexasAIDispatch:knowledge/video/research/4-motivated-camera-movement.md	TODO	raw craft dossiers, state-agnostic
+alaska-ai-weekly	docs/craft/research/5-documentary-essayistic-craft.md	21325	253	1	PORT_VERBATIM	TexasAIDispatch:knowledge/video/research/5-documentary-essayistic-craft.md	TODO	raw craft dossiers, state-agnostic
+alaska-ai-weekly	docs/craft/research/6-title-hud-data-motion-graphics.md	26846	297	5	PORT_VERBATIM	TexasAIDispatch:knowledge/video/research/6-title-hud-data-motion-graphics.md	TODO	raw craft dossiers, state-agnostic
+alaska-ai-weekly	docs/research/engagement/audio.json	3453	28	0	PORT_RETHEMED	TexasAIDispatch:knowledge/video/research/engagement/audio.json	TODO	
+alaska-ai-weekly	docs/research/engagement/coolness.json	5898	38	0	PORT_RETHEMED	TexasAIDispatch:knowledge/video/research/engagement/coolness.json	TODO	
+alaska-ai-weekly	docs/research/engagement/interrupts.json	5642	43	0	PORT_RETHEMED	TexasAIDispatch:knowledge/video/research/engagement/interrupts.json	TODO	
+alaska-ai-weekly	docs/research/engagement/retention.json	5430	33	0	PORT_RETHEMED	TexasAIDispatch:knowledge/video/research/engagement/retention.json	TODO	
+alaska-ai-weekly	examples/post_001.md	2850	28	11	REBUILD	TexasAIDispatch:examples/post_001.md	TODO	
+alaska-ai-weekly	prompts/dispatch_routine.md	127209	1765	52	PORT_RETHEMED	TexasAIDispatch:prompts/dispatch_routine.md	TODO	
+alaska-ai-weekly	prompts/routine_instructions.md	25135	307	23	DROP		DROPPED	stale legacy prompt for the retired 3D engine, not the Facebook routine
+alaska-ai-weekly	requirements.txt	72	5	0	PORT_VERBATIM	TexasAIDispatch:requirements.txt	TODO	
+alaska-ai-weekly	scripts/_join_periods.py	4165	91	4	PORT_RETHEMED	TexasAIDispatch:scripts/_join_periods.py	TODO	
+alaska-ai-weekly	scripts/align_captions.py	5090	106	0	PORT_RETHEMED	TexasAIDispatch:scripts/align_captions.py	TODO	
+alaska-ai-weekly	scripts/align_lines_minerals.py	5043	102	0	PORT_RETHEMED	TexasAIDispatch:scripts/align_lines_minerals.py	TODO	
+alaska-ai-weekly	scripts/audio_evidence.py	7569	167	0	PORT_RETHEMED	TexasAIDispatch:scripts/audio_evidence.py	TODO	
+alaska-ai-weekly	scripts/audio_report.py	7134	146	0	PORT_RETHEMED	TexasAIDispatch:scripts/audio_report.py	TODO	
+alaska-ai-weekly	scripts/beat_delivery.py	6510	144	0	PORT_RETHEMED	TexasAIDispatch:scripts/beat_delivery.py	TODO	
+alaska-ai-weekly	scripts/beat_events.py	10218	214	0	PORT_RETHEMED	TexasAIDispatch:scripts/beat_events.py	TODO	
+alaska-ai-weekly	scripts/build_evidence.py	15286	249	0	PORT_RETHEMED	TexasAIDispatch:scripts/build_evidence.py	TODO	
+alaska-ai-weekly	scripts/build_scenes.py	18803	269	8	PORT_RETHEMED	TexasAIDispatch:scripts/build_scenes.py	TODO	
+alaska-ai-weekly	scripts/build_sfx_library.py	18333	416	0	PORT_RETHEMED	TexasAIDispatch:scripts/build_sfx_library.py	TODO	
+alaska-ai-weekly	scripts/caption_band_check.py	10619	229	0	PORT_RETHEMED	TexasAIDispatch:scripts/caption_band_check.py	TODO	
+alaska-ai-weekly	scripts/caption_check.py	15466	227	0	PORT_RETHEMED	TexasAIDispatch:scripts/caption_check.py	TODO	
+alaska-ai-weekly	scripts/caption_rechunk.py	9647	192	7	PORT_RETHEMED	TexasAIDispatch:scripts/caption_rechunk.py	TODO	
+alaska-ai-weekly	scripts/caption_spelling_check.py	3481	76	1	PORT_RETHEMED	TexasAIDispatch:scripts/caption_spelling_check.py	TODO	
+alaska-ai-weekly	scripts/captions_from_words.py	5736	124	0	PORT_RETHEMED	TexasAIDispatch:scripts/captions_from_words.py	TODO	
+alaska-ai-weekly	scripts/claims_contract_check.py	10909	216	2	PORT_RETHEMED	TexasAIDispatch:scripts/claims_contract_check.py	TODO	
+alaska-ai-weekly	scripts/content_sag_check.py	4952	111	0	PORT_RETHEMED	TexasAIDispatch:scripts/content_sag_check.py	TODO	
+alaska-ai-weekly	scripts/crop_safety.py	8563	172	0	PORT_RETHEMED	TexasAIDispatch:scripts/crop_safety.py	TODO	
+alaska-ai-weekly	scripts/dead_space_check.py	10222	200	0	PORT_RETHEMED	TexasAIDispatch:scripts/dead_space_check.py	TODO	
+alaska-ai-weekly	scripts/dedupe.py	12326	212	17	PORT_RETHEMED	TexasAIDispatch:scripts/dedupe.py	TODO	
+alaska-ai-weekly	scripts/dedupe_selftest.py	4889	102	16	PORT_RETHEMED	TexasAIDispatch:scripts/dedupe_selftest.py	TODO	
+alaska-ai-weekly	scripts/dispatch_captions.py	10516	218	1	PORT_RETHEMED	TexasAIDispatch:scripts/dispatch_captions.py	TODO	
+alaska-ai-weekly	scripts/dispatch_email.py	19881	325	15	PORT_RETHEMED	TexasAIDispatch:scripts/dispatch_email.py	TODO	
+alaska-ai-weekly	scripts/dispatch_loop.sh	4584	80	1	PORT_RETHEMED	TexasAIDispatch:scripts/dispatch_loop.sh	TODO	
+alaska-ai-weekly	scripts/dispatch_mix.py	29594	549	3	PORT_RETHEMED	TexasAIDispatch:scripts/dispatch_mix.py	TODO	
+alaska-ai-weekly	scripts/dispatch_mix_2026_07_18.py	8384	162	0	PORT_RETHEMED	TexasAIDispatch:scripts/dispatch_mix_2026_07_18.py	TODO	
+alaska-ai-weekly	scripts/dispatch_mix_2026_07_19.py	4811	111	3	PORT_RETHEMED	TexasAIDispatch:scripts/dispatch_mix_2026_07_19.py	TODO	
+alaska-ai-weekly	scripts/dispatch_mix_minerals.py	5786	136	1	PORT_RETHEMED	TexasAIDispatch:scripts/dispatch_mix_minerals.py	TODO	
+alaska-ai-weekly	scripts/dispatch_vo_edge.py	5135	134	0	PORT_RETHEMED	TexasAIDispatch:scripts/dispatch_vo_edge.py	TODO	
+alaska-ai-weekly	scripts/encode_deliverables.sh	6848	119	0	PORT_RETHEMED	TexasAIDispatch:scripts/encode_deliverables.sh	TODO	
+alaska-ai-weekly	scripts/eval_tracker.py	13315	271	0	PORT_RETHEMED	TexasAIDispatch:scripts/eval_tracker.py	TODO	
+alaska-ai-weekly	scripts/evidence_coverage_check.py	5289	121	1	PORT_RETHEMED	TexasAIDispatch:scripts/evidence_coverage_check.py	TODO	
+alaska-ai-weekly	scripts/fetch_sfx.py	6848	150	1	PORT_RETHEMED	TexasAIDispatch:scripts/fetch_sfx.py	TODO	
+alaska-ai-weekly	scripts/flow_check.py	22741	403	0	PORT_RETHEMED	TexasAIDispatch:scripts/flow_check.py	TODO	
+alaska-ai-weekly	scripts/format_gate_selftest.py	9217	212	0	PORT_RETHEMED	TexasAIDispatch:scripts/format_gate_selftest.py	TODO	
+alaska-ai-weekly	scripts/get_music.py	4151	70	0	PORT_RETHEMED	TexasAIDispatch:scripts/get_music.py	TODO	
+alaska-ai-weekly	scripts/gmail_draft.py	5149	114	6	PORT_RETHEMED	TexasAIDispatch:scripts/gmail_draft.py	TODO	
+alaska-ai-weekly	scripts/make_review_sheets.py	4630	85	0	PORT_RETHEMED	TexasAIDispatch:scripts/make_review_sheets.py	TODO	
+alaska-ai-weekly	scripts/motion_check.py	10742	235	0	PORT_RETHEMED	TexasAIDispatch:scripts/motion_check.py	TODO	
+alaska-ai-weekly	scripts/mux_and_verify.sh	1941	42	0	PORT_RETHEMED	TexasAIDispatch:scripts/mux_and_verify.sh	TODO	
+alaska-ai-weekly	scripts/no_exit.py	18615	378	0	PORT_RETHEMED	TexasAIDispatch:scripts/no_exit.py	TODO	
+alaska-ai-weekly	scripts/panel_ledger.py	7123	152	0	PORT_RETHEMED	TexasAIDispatch:scripts/panel_ledger.py	TODO	
+alaska-ai-weekly	scripts/plate_overlap_check.py	7549	170	0	PORT_RETHEMED	TexasAIDispatch:scripts/plate_overlap_check.py	TODO	
+alaska-ai-weekly	scripts/preflight.py	9796	174	0	PORT_RETHEMED	TexasAIDispatch:scripts/preflight.py	TODO	
+alaska-ai-weekly	scripts/probe_frames.sh	3554	75	0	PORT_RETHEMED	TexasAIDispatch:scripts/probe_frames.sh	TODO	
+alaska-ai-weekly	scripts/publish_feed.py	10495	195	7	PORT_RETHEMED	TexasAIDispatch:scripts/publish_feed.py	TODO	
+alaska-ai-weekly	scripts/record_draft.py	1993	53	2	PORT_RETHEMED	TexasAIDispatch:scripts/record_draft.py	TODO	
+alaska-ai-weekly	scripts/render.sh	4829	91	0	PORT_RETHEMED	TexasAIDispatch:scripts/render.sh	TODO	
+alaska-ai-weekly	scripts/render_parallel.sh	14936	279	1	PORT_RETHEMED	TexasAIDispatch:scripts/render_parallel.sh	TODO	
+alaska-ai-weekly	scripts/run_bg.sh	2935	71	0	PORT_RETHEMED	TexasAIDispatch:scripts/run_bg.sh	TODO	
+alaska-ai-weekly	scripts/run_guard.py	6133	151	1	PORT_RETHEMED	TexasAIDispatch:scripts/run_guard.py	TODO	
+alaska-ai-weekly	scripts/setup_env.sh	7268	115	1	PORT_RETHEMED	TexasAIDispatch:scripts/setup_env.sh	TODO	
+alaska-ai-weekly	scripts/sfx_bank.py	4204	101	0	PORT_RETHEMED	TexasAIDispatch:scripts/sfx_bank.py	TODO	
+alaska-ai-weekly	scripts/ship_gate.py	24571	521	0	PORT_RETHEMED	TexasAIDispatch:scripts/ship_gate.py	TODO	
+alaska-ai-weekly	scripts/shot_map.py	5011	118	2	PORT_RETHEMED	TexasAIDispatch:scripts/shot_map.py	TODO	
+alaska-ai-weekly	scripts/staging_check.py	11480	242	1	PORT_RETHEMED	TexasAIDispatch:scripts/staging_check.py	TODO	
+alaska-ai-weekly	scripts/story_gate.py	13248	266	6	PORT_RETHEMED	TexasAIDispatch:scripts/story_gate.py	TODO	
+alaska-ai-weekly	scripts/storyboard_check.py	39011	642	4	PORT_RETHEMED	TexasAIDispatch:scripts/storyboard_check.py	TODO	
+alaska-ai-weekly	scripts/text_fit_check.py	11979	268	0	PORT_RETHEMED	TexasAIDispatch:scripts/text_fit_check.py	TODO	
+alaska-ai-weekly	scripts/upload_video.py	9745	170	1	PORT_RETHEMED	TexasAIDispatch:scripts/upload_video.py	TODO	
+alaska-ai-weekly	scripts/vo_audio_check.py	4964	109	0	PORT_RETHEMED	TexasAIDispatch:scripts/vo_audio_check.py	TODO	
+alaska-ai-weekly	scripts/vo_claims_check.py	7840	160	2	PORT_RETHEMED	TexasAIDispatch:scripts/vo_claims_check.py	TODO	
+alaska-ai-weekly	scripts/vo_envelope.py	3681	98	0	PORT_RETHEMED	TexasAIDispatch:scripts/vo_envelope.py	TODO	
+alaska-ai-weekly	scripts/vo_length_estimate.py	5186	115	0	PORT_RETHEMED	TexasAIDispatch:scripts/vo_length_estimate.py	TODO	
+alaska-ai-weekly	scripts/vo_length_probe.py	14067	240	6	PORT_RETHEMED	TexasAIDispatch:scripts/vo_length_probe.py	TODO	
+alaska-ai-weekly	scripts/vo_patch_lines.py	18976	402	2	PORT_RETHEMED	TexasAIDispatch:scripts/vo_patch_lines.py	TODO	
+alaska-ai-weekly	scripts/vo_soundcheck.py	17593	367	1	PORT_RETHEMED	TexasAIDispatch:scripts/vo_soundcheck.py	TODO	
+alaska-ai-weekly	scripts/vo_synth_gemini.py	29754	549	0	PORT_RETHEMED	TexasAIDispatch:scripts/vo_synth_gemini.py	TODO	
+alaska-ai-weekly	scripts/zoom_clip_check.py	18294	358	1	PORT_RETHEMED	TexasAIDispatch:scripts/zoom_clip_check.py	TODO	
+alaska-ai-weekly	video-engine/.gitignore	30	3	0	PORT_VERBATIM	TexasAIDispatch:video-engine/.gitignore	TODO	
+alaska-ai-weekly	video-engine/package-lock.json	97559	2686	2	PORT_VERBATIM	TexasAIDispatch:video-engine/package-lock.json	TODO	
+alaska-ai-weekly	video-engine/package.json	477	20	2	PORT_VERBATIM	TexasAIDispatch:video-engine/package.json	TODO	
+alaska-ai-weekly	video-engine/remotion.config.ts	430	10	0	PORT_VERBATIM	TexasAIDispatch:video-engine/remotion.config.ts	TODO	
+alaska-ai-weekly	video-engine/src/BenchLook.tsx	5566	91	0	PORT_RETHEMED	TexasAIDispatch:video-engine/src/BenchLook.tsx	TODO	
+alaska-ai-weekly	video-engine/src/BiomeShowcase.tsx	1239	26	9	REBUILD	TexasAIDispatch:video-engine/src/BiomeShowcase.tsx	TODO	look-dev sheets get rebuilt against Texas assets
+alaska-ai-weekly	video-engine/src/BiomeShowcase2.tsx	1485	34	4	REBUILD	TexasAIDispatch:video-engine/src/BiomeShowcase2.tsx	TODO	look-dev sheets get rebuilt against Texas assets
+alaska-ai-weekly	video-engine/src/BiomeShowcase3.tsx	1442	33	0	REBUILD	TexasAIDispatch:video-engine/src/BiomeShowcase3.tsx	TODO	look-dev sheets get rebuilt against Texas assets
+alaska-ai-weekly	video-engine/src/CityShowcase.tsx	780	19	7	REBUILD	TexasAIDispatch:video-engine/src/CityShowcase.tsx	TODO	look-dev sheets get rebuilt against Texas assets
+alaska-ai-weekly	video-engine/src/CraftShowcase.tsx	3773	74	0	REBUILD	TexasAIDispatch:video-engine/src/CraftShowcase.tsx	TODO	look-dev sheets get rebuilt against Texas assets
+alaska-ai-weekly	video-engine/src/Dispatch.tsx	859	25	2	PORT_RETHEMED	TexasAIDispatch:video-engine/src/Dispatch.tsx	TODO	
+alaska-ai-weekly	video-engine/src/Ep0729.tsx	23706	441	11	DROP		DROPPED	per-story compositions; every Dispatch is a new film, never a re-skin
+alaska-ai-weekly	video-engine/src/Ep0730.tsx	31706	604	10	DROP		DROPPED	per-story compositions; every Dispatch is a new film, never a re-skin
+alaska-ai-weekly	video-engine/src/Ep0731.tsx	150648	2419	63	DROP		DROPPED	per-story compositions; every Dispatch is a new film, never a re-skin
+alaska-ai-weekly	video-engine/src/Ep0802.tsx	100344	1879	16	DROP		DROPPED	per-story compositions; every Dispatch is a new film, never a re-skin
+alaska-ai-weekly	video-engine/src/Ep0803.tsx	107735	1688	20	DROP		DROPPED	per-story compositions; every Dispatch is a new film, never a re-skin
+alaska-ai-weekly	video-engine/src/Ep0805.tsx	54378	1021	4	DROP		DROPPED	per-story compositions; every Dispatch is a new film, never a re-skin
+alaska-ai-weekly	video-engine/src/Ep0806.tsx	101938	1652	38	DROP		DROPPED	per-story compositions; every Dispatch is a new film, never a re-skin
+alaska-ai-weekly	video-engine/src/Ep0807.tsx	47066	893	16	DROP		DROPPED	per-story compositions; every Dispatch is a new film, never a re-skin
+alaska-ai-weekly	video-engine/src/Ep0808.tsx	137473	2299	18	DROP		DROPPED	per-story compositions; every Dispatch is a new film, never a re-skin
+alaska-ai-weekly	video-engine/src/Ep0809.tsx	65037	1105	11	DROP		DROPPED	per-story compositions; every Dispatch is a new film, never a re-skin
+alaska-ai-weekly	video-engine/src/Episode.tsx	25694	487	5	DROP		DROPPED	per-story compositions; every Dispatch is a new film, never a re-skin
+alaska-ai-weekly	video-engine/src/FaunaShowcase.tsx	2330	44	8	REBUILD	TexasAIDispatch:video-engine/src/FaunaShowcase.tsx	TODO	look-dev sheets get rebuilt against Texas assets
+alaska-ai-weekly	video-engine/src/FaunaShowcase2.tsx	1359	29	1	REBUILD	TexasAIDispatch:video-engine/src/FaunaShowcase2.tsx	TODO	look-dev sheets get rebuilt against Texas assets
+alaska-ai-weekly	video-engine/src/FaunaShowcase3.tsx	1112	24	0	REBUILD	TexasAIDispatch:video-engine/src/FaunaShowcase3.tsx	TODO	look-dev sheets get rebuilt against Texas assets
+alaska-ai-weekly	video-engine/src/FaunaShowcase4.tsx	1682	33	7	REBUILD	TexasAIDispatch:video-engine/src/FaunaShowcase4.tsx	TODO	look-dev sheets get rebuilt against Texas assets
+alaska-ai-weekly	video-engine/src/FaunaShowcase5.tsx	1760	40	5	REBUILD	TexasAIDispatch:video-engine/src/FaunaShowcase5.tsx	TODO	look-dev sheets get rebuilt against Texas assets
+alaska-ai-weekly	video-engine/src/FishShowcase.tsx	2546	44	3	REBUILD	TexasAIDispatch:video-engine/src/FishShowcase.tsx	TODO	look-dev sheets get rebuilt against Texas assets
+alaska-ai-weekly	video-engine/src/GateLook.tsx	3117	58	3	PORT_RETHEMED	TexasAIDispatch:video-engine/src/GateLook.tsx	TODO	
+alaska-ai-weekly	video-engine/src/IGSHook.tsx	17398	344	9	DROP		DROPPED	per-story compositions; every Dispatch is a new film, never a re-skin
+alaska-ai-weekly	video-engine/src/MaterialShowcase.tsx	3302	64	0	REBUILD	TexasAIDispatch:video-engine/src/MaterialShowcase.tsx	TODO	look-dev sheets get rebuilt against Texas assets
+alaska-ai-weekly	video-engine/src/Nenana3D.tsx	10945	200	5	DROP		DROPPED	per-story compositions; every Dispatch is a new film, never a re-skin
+alaska-ai-weekly	video-engine/src/PropsShowcase.tsx	2217	47	0	REBUILD	TexasAIDispatch:video-engine/src/PropsShowcase.tsx	TODO	look-dev sheets get rebuilt against Texas assets
+alaska-ai-weekly	video-engine/src/Root.tsx	10527	369	4	PORT_RETHEMED	TexasAIDispatch:video-engine/src/Root.tsx	TODO	
+alaska-ai-weekly	video-engine/src/Standoff.tsx	11238	192	19	DROP		DROPPED	per-story compositions; every Dispatch is a new film, never a re-skin
+alaska-ai-weekly	video-engine/src/StationLook.tsx	1828	28	0	PORT_RETHEMED	TexasAIDispatch:video-engine/src/StationLook.tsx	TODO	
+alaska-ai-weekly	video-engine/src/TwentyFiveD.tsx	10094	203	1	PORT_RETHEMED	TexasAIDispatch:video-engine/src/TwentyFiveD.tsx	TODO	
+alaska-ai-weekly	video-engine/src/UnderIceLook.tsx	2491	56	0	DROP		DROPPED	per-story compositions; every Dispatch is a new film, never a re-skin
+alaska-ai-weekly	video-engine/src/index.ts	109	4	0	PORT_RETHEMED	TexasAIDispatch:video-engine/src/index.ts	TODO	
+alaska-ai-weekly	video-engine/src/lib/ASSET_MANIFEST.md	80827	694	66	PORT_VERBATIM	TexasAIDispatch:video-engine/src/lib/ASSET_MANIFEST.md	TODO	
+alaska-ai-weekly	video-engine/src/lib/Character.tsx	85412	1255	3	PORT_RETHEMED	TexasAIDispatch:video-engine/src/lib/Character.tsx	TODO	engine is sound; the outfit, silhouette and substance tables are Alaska
+alaska-ai-weekly	video-engine/src/lib/FX.tsx	6726	153	0	PORT_VERBATIM	TexasAIDispatch:video-engine/src/lib/FX.tsx	TODO	
+alaska-ai-weekly	video-engine/src/lib/absence.tsx	8202	209	0	PORT_VERBATIM	TexasAIDispatch:video-engine/src/lib/absence.tsx	TODO	
+alaska-ai-weekly	video-engine/src/lib/bench.tsx	39747	670	3	PORT_VERBATIM	TexasAIDispatch:video-engine/src/lib/bench.tsx	TODO	
+alaska-ai-weekly	video-engine/src/lib/biomes.tsx	56695	985	39	REBUILD	TexasAIDispatch:video-engine/src/lib/biomes.tsx	TODO	the Alaska-coded art; Texas needs its own species, land and machines
+alaska-ai-weekly	video-engine/src/lib/bioprocess.tsx	25128	496	0	PORT_VERBATIM	TexasAIDispatch:video-engine/src/lib/bioprocess.tsx	TODO	
+alaska-ai-weekly	video-engine/src/lib/bugs.tsx	13146	282	5	PORT_VERBATIM	TexasAIDispatch:video-engine/src/lib/bugs.tsx	TODO	
+alaska-ai-weekly	video-engine/src/lib/civics.tsx	38698	673	1	PORT_VERBATIM	TexasAIDispatch:video-engine/src/lib/civics.tsx	TODO	
+alaska-ai-weekly	video-engine/src/lib/clinic.tsx	20948	409	1	PORT_VERBATIM	TexasAIDispatch:video-engine/src/lib/clinic.tsx	TODO	
+alaska-ai-weekly	video-engine/src/lib/evidence.tsx	14758	266	5	PORT_VERBATIM	TexasAIDispatch:video-engine/src/lib/evidence.tsx	TODO	
+alaska-ai-weekly	video-engine/src/lib/fauna.tsx	126646	2062	23	REBUILD	TexasAIDispatch:video-engine/src/lib/fauna.tsx	TODO	the Alaska-coded art; Texas needs its own species, land and machines
+alaska-ai-weekly	video-engine/src/lib/firecraft.tsx	23835	447	0	REBUILD	TexasAIDispatch:video-engine/src/lib/firecraft.tsx	TODO	the Alaska-coded art; Texas needs its own species, land and machines
+alaska-ai-weekly	video-engine/src/lib/fishcraft.tsx	15516	282	1	PORT_VERBATIM	TexasAIDispatch:video-engine/src/lib/fishcraft.tsx	TODO	
+alaska-ai-weekly	video-engine/src/lib/kit.tsx	71050	1098	6	PORT_RETHEMED	TexasAIDispatch:video-engine/src/lib/kit.tsx	TODO	engine is sound; the outfit, silhouette and substance tables are Alaska
+alaska-ai-weekly	video-engine/src/lib/lighting.tsx	43678	786	8	PORT_VERBATIM	TexasAIDispatch:video-engine/src/lib/lighting.tsx	TODO	
+alaska-ai-weekly	video-engine/src/lib/materials.tsx	6702	127	0	PORT_RETHEMED	TexasAIDispatch:video-engine/src/lib/materials.tsx	TODO	engine is sound; the outfit, silhouette and substance tables are Alaska
+alaska-ai-weekly	video-engine/src/lib/motion.tsx	17893	375	0	PORT_VERBATIM	TexasAIDispatch:video-engine/src/lib/motion.tsx	TODO	
+alaska-ai-weekly	video-engine/src/lib/nameengine.tsx	10768	220	0	PORT_VERBATIM	TexasAIDispatch:video-engine/src/lib/nameengine.tsx	TODO	
+alaska-ai-weekly	video-engine/src/lib/paper.tsx	17856	365	1	PORT_VERBATIM	TexasAIDispatch:video-engine/src/lib/paper.tsx	TODO	
+alaska-ai-weekly	video-engine/src/lib/props.tsx	25298	410	0	PORT_VERBATIM	TexasAIDispatch:video-engine/src/lib/props.tsx	TODO	
+alaska-ai-weekly	video-engine/src/lib/records.tsx	10045	193	0	PORT_VERBATIM	TexasAIDispatch:video-engine/src/lib/records.tsx	TODO	
+alaska-ai-weekly	video-engine/src/lib/screenlight.tsx	6423	151	0	PORT_VERBATIM	TexasAIDispatch:video-engine/src/lib/screenlight.tsx	TODO	
+alaska-ai-weekly	video-engine/src/lib/sensors.tsx	17871	286	1	PORT_VERBATIM	TexasAIDispatch:video-engine/src/lib/sensors.tsx	TODO	
+alaska-ai-weekly	video-engine/src/lib/simulation.tsx	9341	212	0	PORT_VERBATIM	TexasAIDispatch:video-engine/src/lib/simulation.tsx	TODO	
+alaska-ai-weekly	video-engine/src/lib/stage3d.tsx	15239	310	1	PORT_VERBATIM	TexasAIDispatch:video-engine/src/lib/stage3d.tsx	TODO	
+alaska-ai-weekly	video-engine/src/lib/underice.tsx	23904	442	2	REBUILD	TexasAIDispatch:video-engine/src/lib/underice.tsx	TODO	the Alaska-coded art; Texas needs its own species, land and machines
+alaska-ai-weekly	video-engine/src/lib/vehicles.tsx	11881	196	5	REBUILD	TexasAIDispatch:video-engine/src/lib/vehicles.tsx	TODO	the Alaska-coded art; Texas needs its own species, land and machines
+alaska-ai-weekly	video-engine/src/lib/vision.tsx	7989	167	0	PORT_VERBATIM	TexasAIDispatch:video-engine/src/lib/vision.tsx	TODO	
+alaska-ai-weekly	video-engine/src/lib/voice.tsx	6576	143	0	PORT_VERBATIM	TexasAIDispatch:video-engine/src/lib/voice.tsx	TODO	
+alaska-ai-weekly	video-engine/tsconfig.json	346	15	0	PORT_VERBATIM	TexasAIDispatch:video-engine/tsconfig.json	TODO	
+alaska-ai-scanner	.claude/agents/feasibility-mapper.md	3501	70	1	PORT_RETHEMED	TexasAIScanner:.claude/agents/feasibility-mapper.md	TODO	
+alaska-ai-scanner	.claude/agents/footprint-analyst.md	2932	59	0	PORT_RETHEMED	TexasAIScanner:.claude/agents/footprint-analyst.md	TODO	
+alaska-ai-scanner	.claude/agents/industry-scout.md	5336	97	0	PORT_RETHEMED	TexasAIScanner:.claude/agents/industry-scout.md	TODO	
+alaska-ai-scanner	.claude/agents/scan-critic.md	3947	71	0	PORT_RETHEMED	TexasAIScanner:.claude/agents/scan-critic.md	TODO	
+alaska-ai-scanner	.gitignore	60	7	0	PORT_VERBATIM	TexasAIScanner:.gitignore	TODO	
+alaska-ai-scanner	CLAUDE.md	8026	150	4	REBUILD	TexasAIScanner:CLAUDE.md	TODO	
+alaska-ai-scanner	README.md	3175	64	8	REBUILD	TexasAIScanner:README.md	TODO	
+alaska-ai-scanner	config/brand.yaml	2229	51	10	PORT_RETHEMED	TexasAIScanner:config/brand.yaml	TODO	
+alaska-ai-scanner	config/scan_contract.md	4896	99	3	PORT_RETHEMED	TexasAIScanner:config/scan_contract.md	TODO	
+alaska-ai-scanner	db/schema.sql	11779	257	7	PORT_RETHEMED	TexasAIScanner:db/schema.sql	TODO	
+alaska-ai-scanner	docs/LAUNCH_PLAN.md	13581	242	9	PORT_RETHEMED	TexasAIScanner:docs/LAUNCH_PLAN.md	TODO	
+alaska-ai-scanner	docs/PROGRESS_FEED_CONSUMERS.md	5431	112	1	PORT_RETHEMED	TexasAIScanner:docs/PROGRESS_FEED_CONSUMERS.md	TODO	
+alaska-ai-scanner	knowledge/AI_SCOPING_LADDER.md	2956	55	0	PORT_RETHEMED	TexasAIScanner:knowledge/AI_SCOPING_LADDER.md	TODO	
+alaska-ai-scanner	knowledge/BOTTLENECK_MAP.md	3164	43	3	PORT_RETHEMED	TexasAIScanner:knowledge/BOTTLENECK_MAP.md	TODO	
+alaska-ai-scanner	knowledge/PRIVACY_WALL.md	4102	72	0	PORT_RETHEMED	TexasAIScanner:knowledge/PRIVACY_WALL.md	TODO	
+alaska-ai-scanner	prompts/ROUTINE_PROMPT.txt	494	9	1	PORT_RETHEMED	TexasAIScanner:prompts/ROUTINE_PROMPT.txt	TODO	
+alaska-ai-scanner	prompts/scan_routine.md	30446	559	13	PORT_RETHEMED	TexasAIScanner:prompts/scan_routine.md	TODO	
+alaska-ai-scanner	samples/sample-scan.json	4250	68	1	REBUILD	TexasAIScanner:samples/sample-scan.json	TODO	
+alaska-ai-scanner	scripts/build_scan_page.py	19487	434	13	PORT_RETHEMED	TexasAIScanner:scripts/build_scan_page.py	TODO	
+alaska-ai-scanner	scripts/normalize_domain.py	1123	37	2	PORT_RETHEMED	TexasAIScanner:scripts/normalize_domain.py	TODO	
+alaska-ai-scanner	scripts/scan_notify.py	6884	156	4	PORT_RETHEMED	TexasAIScanner:scripts/scan_notify.py	TODO	
+alaska-ai-scanner	supabase/functions/_shared/normalize.ts	986	28	2	PORT_RETHEMED	TexasAIScanner:supabase/functions/_shared/normalize.ts	TODO	
+alaska-ai-scanner	supabase/functions/scan-notify-me/index.ts	2423	54	0	PORT_RETHEMED	TexasAIScanner:supabase/functions/scan-notify-me/index.ts	TODO	
+alaska-ai-scanner	supabase/functions/scan-optin/index.ts	3293	59	2	PORT_RETHEMED	TexasAIScanner:supabase/functions/scan-optin/index.ts	TODO	
+alaska-ai-scanner	supabase/functions/scan-request/index.ts	6681	141	1	PORT_RETHEMED	TexasAIScanner:supabase/functions/scan-request/index.ts	TODO	
+alaska-ai-scanner	supabase/functions/scan-result/index.ts	3252	68	0	PORT_RETHEMED	TexasAIScanner:supabase/functions/scan-result/index.ts	TODO	
+alaska-ai-scanner	web/scan.html	41382	811	11	PORT_RETHEMED	TexasAIScanner:web/scan.html	TODO	

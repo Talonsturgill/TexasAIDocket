@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# OWNERSHIP GUARD.
+# Several unattended automations share this repo and each one ends in a phase whose job is
+# editing its own machine. This hook is what stops one of them writing into another's lane,
+# by checking the staged change against ownership.yaml before the commit lands.
+#
+# The acting automation stamps its name into .git/ACTOR at its Phase 0. A session with no
+# stamp is treated as a maintainer, which is the correct default: a human at a keyboard owns
+# everything, an unattended routine owns only its lane.
+#
+# To bypass for a genuine emergency: git commit --no-verify. If a ROUTINE ever needs that,
+# the lane is wrong and ownership.yaml should be fixed instead.
+set -uo pipefail
+
+root="$(git rev-parse --show-toplevel 2>/dev/null || echo .)"
+checker="$root/scripts/shared/ownership_check.py"
+[ -f "$checker" ] || exit 0                       # not built yet, nothing to enforce
+
+actor="human"
+[ -f "$root/.git/ACTOR" ] && actor="$(tr -d '[:space:]' < "$root/.git/ACTOR")"
+[ -n "$actor" ] || actor="human"
+
+if ! python3 "$checker" --actor "$actor" --staged; then
+  echo ""
+  echo "pre-commit: refused. The staged change writes outside the '$actor' lane."
+  echo "  If you are a maintainer, clear the stamp:  rm .git/ACTOR"
+  echo "  If you are a routine, record the change as a proposal in the run record instead."
+  exit 1
+fi
+exit 0

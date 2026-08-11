@@ -1,0 +1,85 @@
+name: guards
+
+# The two structural gates for this repo, run on every change.
+#
+# ownership  no automation may write outside its lane. Several unattended routines share this
+#            history and each ends in a phase that edits its own machine, so the lane is only
+#            real if something checks it. The actor is inferred from the branch prefix.
+# port-audit is the port done, and is what we moved actually wired up? The previous attempt at
+#            this port failed by copying files across and never connecting them, which nothing
+#            else would notice, because an unreferenced script does not throw.
+#
+# Both self-test FIRST. A gate that cannot go red proves nothing about what it guards, so the
+# self-test reintroduces known-bad inputs and requires the checker to reject them before the
+# real run is allowed to mean anything.
+
+on:
+  pull_request:
+  push:
+    branches-ignore: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: guards-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  guards:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0          # ownership needs the diff against the base
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install --quiet pyyaml
+
+      - name: Ownership self-test (prove the gate can go red)
+        run: python3 scripts/shared/ownership_check.py --self-test
+
+      - name: Port audit self-test (prove every gate can go red)
+        run: python3 scripts/shared/port_audit.py --self-test
+
+      - name: Ownership check
+        run: |
+          BRANCH="${{ github.head_ref || github.ref_name }}"
+          BASE="${{ github.event.pull_request.base.sha }}"
+          if [ -n "$BASE" ]; then
+            RANGE="$BASE...HEAD"
+          else
+            git fetch --quiet origin main || true
+            RANGE="origin/main...HEAD"
+          fi
+          echo "branch=$BRANCH range=$RANGE"
+          python3 scripts/shared/ownership_check.py --branch "$BRANCH" --diff "$RANGE"
+
+      - name: Port manifest is current
+        run: |
+          # The manifest is generated from the upstream source repos, which are not checked
+          # out in CI, so regenerating it here is impossible by design. Assert instead that it
+          # parses, carries the expected columns, and that nothing is left UNROUTED.
+          python3 - <<'PY'
+          import csv, sys
+          from pathlib import Path
+          rows = list(csv.DictReader(Path("PORT_MANIFEST.tsv").open(newline="", encoding="utf-8"),
+                                     delimiter="\t"))
+          expected = {"source_repo", "source_path", "bytes", "lines", "ak_hits",
+                      "disposition", "target_path", "status", "reason"}
+          missing_cols = expected - set(rows[0].keys())
+          if missing_cols:
+              sys.exit(f"manifest is missing columns: {sorted(missing_cols)}")
+          bad = [r for r in rows if r["disposition"] == "UNROUTED"]
+          if bad:
+              sys.exit(f"{len(bad)} manifest row(s) still UNROUTED, first: {bad[0]['source_path']}")
+          print(f"manifest ok: {len(rows)} rows, none unrouted")
+          PY
+
+      - name: Port audit
+        run: python3 scripts/shared/port_audit.py

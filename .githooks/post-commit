@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# AUTO-PUSH GUARDRAIL.
+# WHY THIS EXISTS: these routines run in an EPHEMERAL container that is reclaimed after
+# periods of low activity. In the Alaska machine this cost a real, finished, gate-passed
+# video on 2026-07-21: the run committed its work LOCALLY, the container was reclaimed
+# mid-run and re-cloned fresh, and every unpushed commit went with it. Committing is not
+# durable here. Only origin is. So EVERY commit mirrors to origin immediately, and a
+# reclamation can cost at most the current in-flight work, never authored code again.
+#
+# Safe by construction: never pushes main (protects the shared branch); pushes in the
+# BACKGROUND so commits stay fast; never fails the commit (always exits 0); and pushing does
+# not itself create a commit, so there is no hook loop.
+set -uo pipefail
+branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo '')"
+case "$branch" in
+  ""|"HEAD"|"main"|"master") exit 0 ;;   # detached or protected branch: do nothing
+esac
+log=".git/auto-push.log"
+(
+  for attempt in 1 2 3 4; do
+    if git push -u origin "$branch" >>"$log" 2>&1; then
+      echo "$(git rev-parse --short HEAD) auto-pushed to origin/$branch (try $attempt)" >>"$log"
+      exit 0
+    fi
+    sleep $((attempt * attempt))   # 1s, 4s, 9s, 16s for transient network
+  done
+  echo "WARN auto-push FAILED for $branch after 4 tries, push manually" >>"$log"
+) >/dev/null 2>&1 &
+exit 0

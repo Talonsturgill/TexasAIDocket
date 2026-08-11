@@ -1,0 +1,27 @@
+{
+  "$comment": [
+    "PERMISSION MODE. The routines here run unattended in an ephemeral cloud container on a",
+    "schedule, with no human in the session. A permission prompt in that setting has nobody to",
+    "answer it, so the run does not fail, it WEDGES: it holds the container open until the",
+    "container is reclaimed, and the day's work is lost with no error anyone sees. bypassPermissions",
+    "is what keeps an unattended run finishing. It is not the thing containing the blast radius.",
+    "The containment is ownership.yaml, the CI guards, and the fact that docs/ is regenerated",
+    "rather than edited: a run can only write inside its own lane, and only a maintainer session",
+    "can change what the lanes are. Owner decision, 2026-08-11."
+  ],
+  "permissions": {
+    "defaultMode": "bypassPermissions"
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 -c \"import importlib,subprocess,sys; need=[p for m,p in [('yaml','pyyaml'),('requests','requests')] if not importlib.util.find_spec(m)]; subprocess.run([sys.executable,'-m','pip','install','--break-system-packages','-q',*need]) if need else None\" 2>/dev/null || true"
+          }
+        ]
+      }
+    ]
+  }
+}

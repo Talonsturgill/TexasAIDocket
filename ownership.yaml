@@ -1,0 +1,172 @@
+# ownership.yaml — who is allowed to write what.
+#
+# WHY THIS FILE EXISTS
+# Alaska ran one automation per repo and kept them apart with prose rules in CLAUDE.md
+# ("the gas watch numbers are not yours", "these six files are off limits"). That worked
+# because the boundary was also a repo boundary. This repo runs the carousel routine, the
+# grid watch collector and the ask lane together, and every one of them ends in a phase whose
+# entire job is editing its own machine. A prose rule is not a boundary against a process
+# whose job is to edit files. This map is, because it is checked.
+#
+# HOW IT IS READ
+# Rules are evaluated in order and the LAST matching rule wins, exactly like .gitignore.
+# Put broad defaults at the top and specific carve-outs below them.
+#
+# HOW IT IS ENFORCED
+#   scripts/shared/ownership_check.py --actor <actor> --diff <git range>
+#   .githooks/pre-commit          reads the actor stamp at .git/ACTOR
+#   .github/workflows/guards.yml  infers the actor from the branch prefix
+#
+# FLAGS
+#   owner        the one actor allowed to write this path
+#   generated    output, never hand-edited; must be reproducible from committed inputs
+#   rebuild_by   actors allowed to REGENERATE a generated path (they may not hand-edit it)
+#   append_only  existing lines may not be modified or deleted, only appended to
+#   note         why the rule exists, for whoever trips it at 3am
+
+version: 1
+
+actors:
+  carousel:  The daily LinkedIn carousel routine.
+  gridwatch: The ERCOT Grid Watch collector. Runs on cron, never as a routine phase.
+  ask:       The ask box's archive lane routine. Fires on API trigger.
+  dispatch:  The video routine, which lives in TexasAIDispatch and reaches in for one file.
+  human:     A maintainer session. Owns anything an unattended run must never rewrite.
+
+# Branch prefix to actor, used by CI when no explicit actor is passed.
+branch_actors:
+  "claude/carousel-": carousel
+  "claude/dispatch-": dispatch
+  "gridwatch/":       gridwatch
+  "claude/ask-":      ask
+
+rules:
+
+  # ---------------------------------------------------------------- default
+  # Anything not named below belongs to a maintainer. A routine that wants to touch
+  # something unlisted is doing something nobody designed, and should stop and say so.
+  - path: "**"
+    owner: human
+
+  # ---------------------------------------------------------------- the constitution
+  # No automation edits its own law, its own ownership map, or its own permissions.
+  # This is the rule that makes every other rule hold.
+  - path: "CLAUDE.md"
+    owner: human
+  - path: "ownership.yaml"
+    owner: human
+  - path: ".claude/settings.json"
+    owner: human
+  - path: ".githooks/**"
+    owner: human
+  - path: ".github/workflows/**"
+    owner: human
+    note: >
+      A run that can edit its own CI can switch off the gate that judges it. Workflow
+      changes go through a maintainer session.
+
+  # ---------------------------------------------------------------- shared identity
+  - path: "config/brand.yaml"
+    owner: human
+    note: >
+      One Texas voice across every surface. If the carousel could edit this, a caption-level
+      tweak would silently restyle the video and the website too.
+  - path: "knowledge/shared/**"
+    owner: human
+  - path: "assets/**"
+    owner: human
+
+  # ---------------------------------------------------------------- the public record
+  - path: "ledger/docket.json"
+    owner: carousel
+    note: >
+      Maintained in the carousel routine's docket phase. Items are never deleted; history is
+      append-only within each item.
+  - path: "ledger/alerts.json"
+    owner: carousel
+    note: The no-repeat ledger for subscriber emails. Never reused by the grid watch.
+
+  # ---------------------------------------------------------------- carousel
+  - path: "prompts/carousel_routine.md"
+    owner: human
+    note: >
+      The routine may propose changes to its own prompt in its retro, but a run rewriting the
+      instructions it is currently executing is how a machine drifts without anyone noticing.
+  - path: "scripts/carousel/**"
+    owner: carousel
+  - path: "config/carousel/**"
+    owner: carousel
+  - path: "ledger/carousel/**"
+    owner: carousel
+  - path: "knowledge/carousel/**"
+    owner: carousel
+  - path: "runs/carousel/**"
+    owner: carousel
+  - path: ".claude/agents/carousel-*.md"
+    owner: carousel
+  - path: ".claude/skills/carousel-engine/**"
+    owner: carousel
+
+  # ---------------------------------------------------------------- grid watch
+  # The tightest lane in the repo. CINGSA taught Alaska that a series you cannot backfill is
+  # worth more protection than the code that reads it; ERCOT is the same, its dashboard API
+  # publishes a rolling window and keeps no archive.
+  - path: "scripts/gridwatch/**"
+    owner: gridwatch
+  - path: "config/gridwatch/**"
+    owner: gridwatch
+    note: >
+      Model coefficients live here as data so a refit is a data change with its own commit
+      and never a code change.
+  - path: "ledger/gridwatch/*.jsonl"
+    owner: gridwatch
+    append_only: true
+    note: >
+      One line per day, written by the cron. A run that rewrites a past line corrupts a
+      series nobody can rebuild. Append only, forever.
+
+  # ---------------------------------------------------------------- ask lane
+  - path: "scripts/site/ask_*.py"
+    owner: human
+    note: The answer engine is a gate on what the site may claim. Maintainer-owned.
+  - path: "workers/ask/**"
+    owner: ask
+  - path: "prompts/ask_routine.md"
+    owner: human
+
+  # ---------------------------------------------------------------- the site
+  - path: "scripts/site/**"
+    owner: human
+    rebuild_by: [carousel, gridwatch]
+    note: >
+      The builder itself is maintainer-owned; the routines invoke it, they do not edit it.
+      rebuild_by records who is allowed to RUN it and commit the output.
+  - path: "scripts/shared/**"
+    owner: human
+
+  - path: "docs/**"
+    generated: true
+    rebuild_by: [carousel, gridwatch, human]
+    note: >
+      A pure deterministic function of the ledgers. site_fresh_check.py rebuilds into a temp
+      dir and proves byte equality, which is what makes it impossible for a run to corrupt
+      the live site by hand. Regenerate it; never edit it.
+
+  # ---------------------------------------------------------------- hard guards
+  - path: "docs/videos/videos.json"
+    owner: dispatch
+    append_only: true
+    note: >
+      EXTERNAL DATA. Owned by the publish step in TexasAIDispatch, which prepends one entry
+      per shipped video. No build in this repo may write, reformat, or delete it, and
+      site_build copies it through verbatim.
+  - path: "docs/videos/index.html"
+    owner: human
+    note: >
+      A hand-built static passthrough, not a template. site_build copies it verbatim and
+      never lints or regenerates it.
+  - path: "vendor/**"
+    owner: human
+    note: >
+      Vendored copies of another repo's contract, kept for checking only and never served.
+      Updated deliberately by a maintainer when the upstream contract moves.

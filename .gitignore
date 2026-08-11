@@ -1,0 +1,24 @@
+# Per-run scratch. Shipped artifacts live in runs/, never here.
+out/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+
+# Node
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Grid Watch raw response snapshots. The collector writes these before parsing so a
+# schema change can be diagnosed after the fact; the parsed record in ledger/ is the
+# durable artifact and these are debris.
+ledger/gridwatch/raw/
+
+# Local-only settings. .claude/settings.json IS committed (the routines need it);
+# settings.local.json is per-machine and is not.
+.claude/settings.local.json
