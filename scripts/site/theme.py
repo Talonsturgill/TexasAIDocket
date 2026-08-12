@@ -388,9 +388,9 @@ body::after {{ content:""; position:fixed; inset:0; pointer-events:none; z-index
    touch the type. */
 .sky .shimmer {{ position:absolute; inset:auto 0 0; height:70vh; mix-blend-mode:screen;
   background:repeating-linear-gradient(2deg,transparent 0 6%,
-    color-mix(in srgb,var(--accent) 14%,transparent) 8% 10.5%,
-    color-mix(in srgb,var(--accent) 4%,transparent) 12% 15%,transparent 17% 24%,
-    color-mix(in srgb,var(--accent-deep) 11%,transparent) 26% 28.5%,transparent 30% 40%);
+    color-mix(in srgb,var(--accent) 9%,transparent) 8% 10.5%,
+    color-mix(in srgb,var(--accent) 3%,transparent) 12% 15%,transparent 17% 24%,
+    color-mix(in srgb,var(--accent-deep) 7%,transparent) 26% 28.5%,transparent 30% 40%);
   background-size:240% 100%; filter:blur(18px);
   -webkit-mask-image:linear-gradient(0deg,#000 6%,rgba(0,0,0,.45) 42%,transparent 74%);
   mask-image:linear-gradient(0deg,#000 6%,rgba(0,0,0,.45) 42%,transparent 74%);
@@ -399,18 +399,23 @@ body::after {{ content:""; position:fixed; inset:0; pointer-events:none; z-index
   animation-duration:71s; animation-direction:alternate-reverse; }}
 @keyframes shimmer {{ from {{ background-position:0% 0; }} to {{ background-position:100% 0; }} }}
 
-/* Dusk cloud, drifting. Warm where the sibling's is cold, and slower, because nothing in this
-   sky should look like it is in a hurry. */
-.sky .veil {{ position:absolute; border-radius:50%; filter:blur(74px);
-  mix-blend-mode:screen; opacity:.5; }}
-.sky .v1 {{ width:62vw; height:40vh; left:34vw; top:-8vh;
-  background:radial-gradient(closest-side,color-mix(in srgb,var(--accent) 42%,transparent),
+/* Dusk cloud, drifting.
+   THE WARM ONES SIT LOW AND THE HIGH ONE IS COOL, which is both the physics and the fix. At
+   dusk the lit band is at the HORIZON and the sky overhead has already gone. The first version
+   had the warm veils at the top of the page, so ember and gold were screening over the whole
+   ground at once, and warm light screened over a violet ground is the definition of mauve. The
+   page read pink. Warmth belongs where the sun went. */
+.sky .veil {{ position:absolute; border-radius:50%; filter:blur(84px);
+  mix-blend-mode:screen; opacity:.34; }}
+.sky .v1 {{ width:64vw; height:34vh; left:30vw; bottom:2vh;
+  background:radial-gradient(closest-side,color-mix(in srgb,var(--accent) 34%,transparent),
     transparent 70%); animation:drift1 38s ease-in-out infinite alternate; }}
-.sky .v2 {{ width:50vw; height:36vh; left:6vw; top:-14vh;
-  background:radial-gradient(closest-side,color-mix(in srgb,var(--accent-deep) 38%,transparent),
+.sky .v2 {{ width:52vw; height:30vh; left:2vw; bottom:-4vh;
+  background:radial-gradient(closest-side,color-mix(in srgb,var(--accent-deep) 30%,transparent),
     transparent 70%); animation:drift2 47s ease-in-out infinite alternate; }}
-.sky .v3 {{ width:38vw; height:30vh; left:58vw; top:10vh;
-  background:radial-gradient(closest-side,color-mix(in srgb,var(--flag-blue) 34%,transparent),
+/* The one high cloud, and it is cool. A dusk sky is warm at the bottom and cold at the top. */
+.sky .v3 {{ width:46vw; height:32vh; left:22vw; top:-12vh; opacity:.26;
+  background:radial-gradient(closest-side,color-mix(in srgb,var(--flag-blue) 46%,transparent),
     transparent 70%); animation:drift3 61s ease-in-out infinite alternate; }}
 @keyframes drift1 {{ from {{ transform:translate(-5vw,0); }} to {{ transform:translate(6vw,3vh); }} }}
 @keyframes drift2 {{ from {{ transform:translate(4vw,2vh); }} to {{ transform:translate(-6vw,-2vh); }} }}
@@ -420,8 +425,8 @@ body::after {{ content:""; position:fixed; inset:0; pointer-events:none; z-index
 /* THE HORIZON. The thing you actually see out there is the sun gone behind the Chisos and the
    bottom of the sky staying lit long after the top has gone dark. */
 .sky .horizon {{ position:absolute; inset:auto 0 0; height:44vh; mix-blend-mode:screen;
-  background:linear-gradient(0deg,color-mix(in srgb,var(--accent) 30%,transparent) 0%,
-    color-mix(in srgb,var(--accent-deep) 14%,transparent) 34%,transparent 100%); }}
+  background:linear-gradient(0deg,color-mix(in srgb,var(--accent) 20%,transparent) 0%,
+    color-mix(in srgb,var(--accent-deep) 9%,transparent) 30%,transparent 100%); }}
 
 /* The mark in the sky, where the sibling puts its constellation. One star, not a pattern,
    which is the entire point of the thing. */
@@ -957,12 +962,19 @@ def self_test() -> int:
           "; ".join(f"{r['mode']}/{r['fg']} on {r['bg']} = {r['got']} (needs {r['need']})"
                     for r in bad[:4]))
 
-    # THE REGRESSION THAT STARTED THIS. Texas red as authored is 2.94 to 1 on the night ground,
-    # which fails even the large-text floor, and it was worn by the countdown.
+    # THE REGRESSION THAT STARTED THIS. Texas red as authored measured 2.94 to 1 on the night
+    # ground, failing even the large-text floor, while worn by the comment countdown.
+    #
+    # The number MOVED when the ground was darkened from 9 percent lightness to 4 to fix the
+    # page reading mauve, and it now clears the large-text floor. That is a real improvement
+    # and it does not retire the derivation: the countdown is body-weight text and is held to
+    # 4.5, which the authored red still misses. So the assertion is against the threshold that
+    # actually governs the element rather than against the number it happened to measure on the
+    # day it was written, which is what broke this test.
     p = palette()
-    check("the authored red really is the problem this solves",
-          contrast(t["colour"]["flag_red"], p["dark"]["bg"]) < AA_LARGE,
-          f"{contrast(t['colour']['flag_red'], p['dark']['bg']):.2f}")
+    authored = contrast(t["colour"]["flag_red"], p["dark"]["bg"])
+    check("the authored red still misses the floor its element is held to",
+          authored < AA_BODY, f"{authored:.2f}")
     check("...and the derived urgent fixes it in both modes",
           all(contrast(p[m]["urgent"], p[m]["bg"]) >= AA_BODY for m in ("dark", "light")))
     check("...while staying recognisably the same red",

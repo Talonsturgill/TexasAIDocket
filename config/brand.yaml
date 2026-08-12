@@ -318,10 +318,19 @@ visual:
 
     # Base register: Big Bend at dusk. Dark, wide, and specific to a real place in Texas
     # rather than a generic dark theme.
-    night: "#141020"
-    deep: "#1B1830"
-    panel: "#252041"
-    line: "#3B2A4A"
+    # MEASURED, AND CORRECTED 2026-08-12. The first ladder sat at 9 percent lightness with 33
+    # percent saturation, and at 9 percent a hue is plainly visible: the page read as a
+    # saturated violet, and the warm veils screening over it turned that violet mauve. Warm
+    # light over a violet ground is the definition of mauve, so the fix is both ends.
+    #
+    # It also contradicted the site's own argument. The star field is justified by Big Bend
+    # being a certified Dark Sky Park with among the least light pollution in the lower 48, and
+    # a genuinely dark sky is very nearly black. The sibling product's ground sits at 3 percent
+    # for the same reason. This ladder sits at 4 and keeps only a trace of violet.
+    night: "#08060F"
+    deep: "#0F0C1C"
+    panel: "#191530"
+    line: "#2B2447"
 
     # Land-derived supporting palette
     caliche: "#E4D8C3"         # body text on dark, and the raised surface on paper
