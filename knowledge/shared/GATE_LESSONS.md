@@ -152,6 +152,29 @@ published. Pin the ref.
 
 ---
 
+## 11. A gate that compares two renders must freeze the motion
+
+Once the sky was sped up to be visible, the check comparing a light-machine render against a dark
+one started failing in CI at **"off by 8"** while passing five times out of five locally. The two
+browser contexts load independently, so by the time each was photographed the clouds were at
+different points in the drift, and a slower runner widens the gap. The gate was measuring
+animation phase.
+
+**A gate that depends on runner speed teaches people to press re-run**, which is worse than no
+gate, because it also teaches them to ignore the real failure when it arrives.
+
+**What to check instead.** Decide what the comparison is actually about. This one is about the
+REGISTER, and motion is not part of that question, so both sides are frozen with
+`animation: none !important` before the pixels are read. The separation is stark once you look:
+a genuine register split measures 237, the phase flake measured 8.
+
+**And where motion IS part of the question, sample it deterministically.** The ground-brightness
+ceiling has to hold while a lit cloud drifts over a gutter, so it is checked at five fixed offsets
+rewound with `animationDelay`, keeping the least favourable frame. One screenshot answers that by
+luck. Five fixed ones answer it, and the message names the second it happened.
+
+---
+
 ## Two process faults, which caused more lost time than any bug above
 
 **Reading the last line of a report.** `house_style_check` prints an advice footer on failure and a

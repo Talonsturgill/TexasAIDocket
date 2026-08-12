@@ -95,6 +95,104 @@ def lone_star_svg(idprefix: str = "sky") -> str:
         f'</svg>')
 
 
+# --------------------------------------------------------------------------- the tumbleweed
+#
+# THE TEXAS ANSWER TO THE SIBLING'S METEOR. That page drops a meteor across the sky every seven
+# seconds: not information, and most of the reason the page feels alive rather than rendered. The
+# equivalent here is not another thing in the sky. It is on the ground, and it is the one piece of
+# West Texas motion everybody already has in their head.
+#
+# AND IT IS EARNED, the same way the star field is. A tumbleweed is Salsola tragus, Russian
+# thistle, which is not native and not folklore: it arrived in South Dakota flax seed in the 1870s
+# and was across the southern plains within thirty years. The plant snaps off at the root when it
+# dries and rolls to scatter seed, so the rolling IS the organism working. Drawing the real thing
+# rather than a cartoon ball is the difference between a reference and a costume, and this project
+# has a doctrine against costume.
+#
+# DRAWN, NOT DOODLED. A tumbleweed is a tangle of stems that branch and re-branch from a common
+# crown, so that is what is generated: arcs springing from near the centre, each forking once,
+# with the density falling off toward the edge the way a real skeleton thins. Seeded, because the
+# stylesheet has to be byte identical on every rebuild.
+TUMBLEWEED_SEED = 20250812
+_A, _C, _M = 1103515245, 12345, 2 ** 31
+
+
+def _rand(seed: int):
+    """The same tiny linear congruential generator grain.py uses, for the same reason.
+
+    Deterministic art needs a deterministic source. `random` seeded identically would also work,
+    but it is a promise about a standard library implementation rather than about arithmetic.
+    """
+    state = seed
+
+    def nxt() -> float:
+        nonlocal state
+        state = (_A * state + _C) % _M
+        return state / _M
+    return nxt
+
+
+def tumbleweed_svg(stems: int = 40) -> str:
+    """A tumbleweed skeleton on a 100 unit box, stroke only.
+
+    TWO RINGS AND AN IRREGULAR EDGE, because the first version was neither and it showed. Stems of
+    one length all springing from one crown draw a starburst, and the eye names a starburst
+    instantly. A real thistle is a tangle: an inner mass of short stems that have already forked
+    several times, a longer outer set reaching past it, and a silhouette that is nowhere near a
+    circle because the plant has been rolling into things.
+    """
+    import math                                                     # noqa: PLC0415
+    rnd = _rand(TUMBLEWEED_SEED)
+    cx = cy = 50.0
+    paths = []
+
+    # THE BOX IS 100 UNITS AND NOTHING MAY LEAVE IT. A fork is placed as a fraction of its
+    # parent stem plus a jitter, so the longest outer stem plus the largest fork reached 53.8
+    # from a centre at 50 and clipped against the viewBox edge. Clamping at the point of use is
+    # what makes that impossible rather than unlikely.
+    LIMIT = 46.0
+
+    def clamp(r: float) -> float:
+        return min(r, LIMIT)
+
+    def stem(a: float, r0: float, r1: float, bend: float) -> None:
+        x0, y0 = cx + r0 * math.cos(a), cy + r0 * math.sin(a)
+        r1 = clamp(r1)
+        x1, y1 = cx + r1 * math.cos(a + bend), cy + r1 * math.sin(a + bend)
+        mx = cx + ((r0 + r1) / 2) * math.cos(a + bend * 0.35)
+        my = cy + ((r0 + r1) / 2) * math.sin(a + bend * 0.35)
+        paths.append(f"M{x0:.1f},{y0:.1f}Q{mx:.1f},{my:.1f} {x1:.1f},{y1:.1f}")
+
+    # The outer reach. The radius varies by nearly half, which is what stops the silhouette
+    # reading as a ball and makes it read as a thing that has been blown along a fence line.
+    for i in range(stems):
+        a = (i / stems) * math.tau + (rnd() - 0.5) * 0.7
+        r0 = 4 + rnd() * 7
+        r1 = 26 + rnd() * 22
+        bend = (rnd() - 0.5) * 1.3
+        stem(a, r0, r1, bend)
+        # Two forks per stem rather than one, from different points along it. Forks are what
+        # turn a line into a branch, and one fork still reads as a bent line.
+        for frac in (0.5, 0.74):
+            fa = a + bend * frac + (rnd() - 0.5) * 1.5
+            fr = clamp(r1 * (frac + 0.1 + rnd() * 0.28))
+            fx = cx + (r1 * frac) * math.cos(a + bend * frac)
+            fy = cy + (r1 * frac) * math.sin(a + bend * frac)
+            paths.append(f"M{fx:.1f},{fy:.1f}L{cx + fr * math.cos(fa):.1f},"
+                         f"{cy + fr * math.sin(fa):.1f}")
+
+    # The inner mass, offset off-centre so the crown is not a bullseye. Short, dense, crossing.
+    ox, oy = (rnd() - 0.5) * 6, (rnd() - 0.5) * 6
+    for i in range(stems // 2):
+        a = rnd() * math.tau
+        r1 = clamp(9 + rnd() * 15)
+        paths.append(f"M{cx + ox:.1f},{cy + oy:.1f}L"
+                     f"{cx + ox + r1 * math.cos(a):.1f},{cy + oy + r1 * math.sin(a):.1f}")
+
+    return (f'<svg class="weed" viewBox="0 0 100 100" aria-hidden="true" focusable="false">'
+            f'<path d="{"".join(paths)}"/></svg>')
+
+
 def sky_markup(idprefix: str = "sky") -> str:
     """The whole atmosphere, as one element the page drops in behind everything.
 
@@ -107,9 +205,20 @@ def sky_markup(idprefix: str = "sky") -> str:
         f'<div class="shimmer"></div>'
         f'<div class="shimmer s2"></div>'
         f'<div class="veil v1"></div><div class="veil v2"></div><div class="veil v3"></div>'
+        # v4 and v5 are the cool upper pair. They keep the top of the page moving, which
+        # nothing did after the warm layers were pulled down to the horizon.
+        f'<div class="v4"></div><div class="v5"></div>'
         f'<div class="horizon"></div>'
+        f'<div class="tumble">{tumbleweed_svg()}</div>'
         f'{lone_star_svg(idprefix)}'
         f'</div>')
+
+
+def _re_nums(svg: str):
+    """Every coordinate in a path, for checking nothing escaped the viewBox."""
+    import re as _r                                                 # noqa: PLC0415
+    d = _r.search(r'd="([^"]+)"', svg)
+    return _r.findall(r"-?\d+(?:\.\d+)?", d.group(1)) if d else []
 
 
 def self_test() -> int:
@@ -157,6 +266,20 @@ def self_test() -> int:
     kitsch = _re.findall(r"\b(longhorn|cowhide|rope|lasso|boots?|spur|windmill|cactus|"
                          r"aurora|polaris|dipper)\b", m + svg, _re.IGNORECASE)
     ok("no costume, and no borrowed northern sky", not kitsch, str(sorted(set(kitsch))))
+
+    # ---- the tumbleweed -------------------------------------------------------
+    w = tumbleweed_svg()
+    ok("the tumbleweed is one path, so it costs one node", w.count("<path") == 1)
+    ok("...drawn as strokes rather than a filled blob", 'fill=' not in w and "M" in w)
+    ok("...dense enough to read as a tangle", w.count("M") >= 100, str(w.count("M")))
+    ok("...and it stays inside its box",
+       all(0 <= float(v) <= 100 for v in _re_nums(w)), "a stem escaped the viewBox")
+    ok("...seeded, so two builds draw the same weed", tumbleweed_svg() == w)
+    ok("...and a different count draws a different weed", tumbleweed_svg(20) != w)
+    ok("the sky carries it", 'class="tumble"' in m)
+    ok("...hidden from assistive tech like everything else out here",
+       'aria-hidden="true"' in w)
+    ok("...and it stays cheap", len(w) < 6_000, f"{len(w)} bytes")
 
     ok("two builds are byte identical", sky_markup() == m and star_field_css() == css)
 
