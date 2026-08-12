@@ -518,12 +518,30 @@ def self_test() -> int:
         (root / "ledger" / "s.jsonl").write_text('{"d":1}\n{"d":2}\n', encoding="utf-8")
         expect("schema passes good jsonl", check_schema(root), "PASS")
 
-        # agents: a named-but-absent agent must be caught
+        # agents: a named-but-absent agent must be caught. Names are <lane>-<role> here, and
+        # the hyphen is what stops the detector reading ordinary English as a name.
         (root / "prompts" / "r.md").write_text(
-            "run scripts/a.py then spawn the scout agent\n", encoding="utf-8")
+            "run scripts/a.py then spawn the carousel-scout agent\n", encoding="utf-8")
         expect("agents catches a missing agent file", check_agents(root), "FAIL")
-        (root / ".claude" / "agents" / "scout.md").write_text("x", encoding="utf-8")
+        (root / ".claude" / "agents" / "carousel-scout.md").write_text("x", encoding="utf-8")
         expect("agents passes when the file exists", check_agents(root), "PASS")
+
+        # THE FALSE POSITIVE THAT PROVED THE HYPHEN IS LOAD BEARING. Every routine prompt
+        # carries a sentence forbidding extra fan-out, and without the hyphen rule the
+        # detector read "never spawn more agents" as a reference to an agent called "more".
+        (root / "prompts" / "r.md").write_text(
+            "spawn the carousel-scout agent. There is no phase where spawning more agents "
+            "is the answer.\n", encoding="utf-8")
+        expect("agents does not read plain English as an agent name",
+               check_agents(root), "PASS")
+
+        # The phrasing real prompts use, which the first version of this detector missed:
+        # a count between the verb and the name, and no literal "agent" after it.
+        (root / "prompts" / "r.md").write_text(
+            "Spawn up to 6 `carousel-scout` agents, one per beat.\n"
+            "Spawn 1 `carousel-scorer` over the finished package.\n", encoding="utf-8")
+        expect("agents sees a counted, backticked reference with no trailing noun",
+               check_agents(root), "FAIL")   # carousel-scorer.md does not exist in the fixture
 
         # links: a dangling href must be caught
         docs = root / "docs"
