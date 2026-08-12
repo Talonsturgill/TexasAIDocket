@@ -119,6 +119,16 @@ jobs:
       - name: Caption lint self-test (the house rules, and that they can go red)
         run: python3 scripts/carousel/caption_check.py --self-test
 
+      - name: Bespoke check self-test (a template scores 1.0, a real deck scores near zero)
+        run: python3 scripts/carousel/bespoke_check.py --self-test
+
+      - name: The demo deck is genuinely bespoke
+        run: |
+          # The engine-proof deck is the reference this gate was fitted against, so it has to
+          # keep passing. If it ever drifts up, either the deck got lazier or the exclusion
+          # list got too generous, and both are worth knowing.
+          python3 scripts/carousel/bespoke_check.py --slides-dir examples/demo-deck/slides
+
       - name: House style self-test (our prose is checked, a quote never is)
         run: python3 scripts/site/house_style_check.py --self-test
 
