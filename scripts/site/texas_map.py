@@ -24,6 +24,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import re
 import sys
 from pathlib import Path
 
@@ -44,6 +45,20 @@ LAT1, LAT2 = 27.6, 35.0
 # a tenth of a pixel at any size this renders at, and it cuts the file by more than half.
 PRECISION = 2
 VIEW_W, VIEW_H = 1000.0, 900.0
+MARGIN = 18.0                     # the neatline inset, and the fit padding. One number, one job.
+
+# Mean Earth radius, in statute miles. The projection above works on a unit sphere, so this is
+# the only constant that turns projected units into a distance somebody can use.
+EARTH_MI = 3958.7613
+
+# Candidate scale bar lengths. The largest that fits inside a quarter of the sheet wins, so the
+# bar is chosen by measurement rather than drawn to look about right.
+SCALE_STEPS = (50, 100, 200, 250, 500)
+
+# Whole degrees to tick on the neatline. Texas spans about 106.6W to 93.5W and 25.8N to 36.5N,
+# so every second degree is dense enough to read as a graticule and sparse enough to stay quiet.
+MERIDIANS = range(-106, -93, 2)
+PARALLELS = range(26, 37, 2)
 
 
 def albers(lon: float, lat: float) -> tuple[float, float]:
@@ -86,7 +101,7 @@ def fit(rings_by_county: list) -> tuple[float, float, float]:
     xs = [x for _, _, rings in rings_by_county for r in rings for x, _ in r]
     ys = [y for _, _, rings in rings_by_county for r in rings for _, y in r]
     minx, maxx, miny, maxy = min(xs), max(xs), min(ys), max(ys)
-    pad = 18.0
+    pad = MARGIN
     scale = min((VIEW_W - 2 * pad) / (maxx - minx), (VIEW_H - 2 * pad) / (maxy - miny))
     # Centre what is left over, so the shape sits in the middle rather than in a corner.
     dx = pad + (VIEW_W - 2 * pad - (maxx - minx) * scale) / 2 - minx * scale
@@ -117,6 +132,119 @@ def path_d(rings: list, scale: float, dx: float, dy: float) -> str:
     return "".join(parts)
 
 
+# --------------------------------------------------------------------------- survey furniture
+def great_circle_mi(lon1: float, lat1: float, lon2: float, lat2: float) -> float:
+    """Haversine, in statute miles. The ground truth the scale bar is measured against."""
+    p1, p2 = math.radians(lat1), math.radians(lat2)
+    dp, dl = p2 - p1, math.radians(lon2 - lon1)
+    a = math.sin(dp / 2) ** 2 + math.cos(p1) * math.cos(p2) * math.sin(dl / 2) ** 2
+    return 2 * EARTH_MI * math.asin(math.sqrt(a))
+
+
+def units_per_mile(scale: float) -> float:
+    """View units per statute mile, measured on the projection rather than assumed.
+
+    Albers is EQUAL AREA, which means it does not preserve distance, so a single number cannot
+    be right everywhere on the sheet. It is exact along the two standard parallels and drifts
+    between and beyond them, which is why the caption says where the bar holds instead of
+    implying it holds everywhere. Measuring across a degree of longitude at the reference
+    latitude puts the sample between the standard parallels, where the error is smallest.
+    """
+    x1, _ = albers(LON0 - 0.5, LAT0)
+    x2, _ = albers(LON0 + 0.5, LAT0)
+    projected = abs(x2 - x1) * scale
+    return projected / great_circle_mi(LON0 - 0.5, LAT0, LON0 + 0.5, LAT0)
+
+
+def _crossing(fixed: float, lo: float, hi: float, target: float, axis: int,
+              scale: float, dx: float, dy: float, along_lat: bool) -> float | None:
+    """Where a graticule line crosses a neatline edge, by bisection.
+
+    A meridian on a conic projection is a straight line that is not vertical, and a parallel is
+    an arc. Neither meets a rectangular frame at a position you can compute from the corner, so
+    the tick has to be placed where the line ACTUALLY crosses. Fifty bisections resolve it far
+    below the rounding precision of the emitted path data.
+    """
+    def at(t: float) -> tuple[float, float]:
+        x, y = albers(fixed, t) if along_lat else albers(t, fixed)
+        return x * scale + dx, y * scale + dy
+
+    a, b = lo, hi
+    if (at(a)[axis] - target) * (at(b)[axis] - target) > 0:
+        return None                                   # the line never reaches this edge
+    for _ in range(50):
+        m = (a + b) / 2
+        if (at(a)[axis] - target) * (at(m)[axis] - target) <= 0:
+            b = m
+        else:
+            a = m
+    return (a + b) / 2
+
+
+def graticule(scale: float, dx: float, dy: float) -> str:
+    """Whole-degree ticks on the neatline, each placed where its own line crosses the frame."""
+    left, right = MARGIN, VIEW_W - MARGIN
+    top, bottom = MARGIN, VIEW_H - MARGIN
+    out = [f'<rect class="frame" x="{left:g}" y="{top:g}" '
+           f'width="{right - left:g}" height="{bottom - top:g}"/>']
+
+    for lon in MERIDIANS:
+        lat = _crossing(lon, 25.0, 37.5, bottom, 1, scale, dx, dy, along_lat=True)
+        if lat is None:
+            continue
+        x = albers(lon, lat)[0] * scale + dx
+        if not (left <= x <= right):
+            continue
+        out.append(f'<line class="tick" x1="{x:.1f}" y1="{bottom:g}" '
+                   f'x2="{x:.1f}" y2="{bottom - 7:g}"/>')
+        out.append(f'<text class="lab" x="{x:.1f}" y="{bottom - 11:g}" '
+                   f'text-anchor="middle">{abs(lon)}°W</text>')
+
+    for lat in PARALLELS:
+        lon = _crossing(lat, -108.0, -92.0, left, 0, scale, dx, dy, along_lat=False)
+        if lon is None:
+            continue
+        y = albers(lon, lat)[1] * scale + dy
+        if not (top <= y <= bottom):
+            continue
+        out.append(f'<line class="tick" x1="{left:g}" y1="{y:.1f}" '
+                   f'x2="{left + 7:g}" y2="{y:.1f}"/>')
+        out.append(f'<text class="lab" x="{left + 11:g}" y="{y:.1f}" '
+                   f'dominant-baseline="middle">{lat}°N</text>')
+    return "".join(out)
+
+
+def scale_bar(scale: float, dx: float, dy: float) -> tuple[str, int]:
+    """A bar of a round number of miles, sized by the projection. Returns the SVG and the miles.
+
+    Drawn as a survey checker: two alternating segments so a reader can halve it by eye, with
+    end ticks. The LENGTH is computed from the projection, so the bar is a measurement of the
+    drawing rather than a decoration placed near it.
+    """
+    upm = units_per_mile(scale)
+    usable = (VIEW_W - 2 * MARGIN) * 0.28
+    miles = SCALE_STEPS[0]
+    for step in SCALE_STEPS:
+        if step * upm <= usable:
+            miles = step
+    length = miles * upm
+
+    x0 = MARGIN + 26
+    y0 = VIEW_H - MARGIN - 34
+    half = length / 2
+    return ("".join([
+        f'<line class="scale" x1="{x0:.1f}" y1="{y0:.1f}" '
+        f'x2="{x0 + length:.1f}" y2="{y0:.1f}"/>',
+        # End and midpoint ticks. Three marks is the least that lets a reader halve the bar.
+        f'<line class="scale" x1="{x0:.1f}" y1="{y0 - 4:.1f}" x2="{x0:.1f}" y2="{y0 + 4:.1f}"/>',
+        f'<line class="scale" x1="{x0 + half:.1f}" y1="{y0 - 3:.1f}" '
+        f'x2="{x0 + half:.1f}" y2="{y0 + 3:.1f}"/>',
+        f'<line class="scale" x1="{x0 + length:.1f}" y1="{y0 - 4:.1f}" '
+        f'x2="{x0 + length:.1f}" y2="{y0 + 4:.1f}"/>',
+        f'<text class="lab" x="{x0:.1f}" y="{y0 - 9:.1f}">{miles} miles</text>',
+    ]), miles)
+
+
 def render(lit: set | None = None, *, title: str = "Texas counties in the record",
            idprefix: str = "txmap") -> str:
     """The whole map as one inline SVG.
@@ -145,12 +273,17 @@ def render(lit: set | None = None, *, title: str = "Texas counties in the record
             f"<title>{name} County</title></path>"
         )
 
+    bar, miles = scale_bar(scale, dx, dy)
     return (
         f'<svg class="txmap" viewBox="0 0 {VIEW_W:g} {VIEW_H:g}" role="img" '
         f'aria-labelledby="{idprefix}-t" preserveAspectRatio="xMidYMid meet">'
         f'<title id="{idprefix}-t">{title}. '
-        f'{n_lit} of {len(counties)} counties carry an item.</title>'
-        f'<g>{"".join(paths)}</g></svg>'
+        f'{n_lit} of {len(counties)} counties carry an item. '
+        f'Albers equal-area conic, {miles} mile scale bar.</title>'
+        f'<g>{"".join(paths)}</g>'
+        # The furniture is drawn LAST so it sits over the counties, and it is drawn as a group
+        # so the whole survey layer can be hidden in print with one selector.
+        f'<g class="survey">{graticule(scale, dx, dy)}{bar}</g></svg>'
     )
 
 
@@ -219,6 +352,59 @@ def self_test() -> int:
     # Matching by FIPS must work as well as by name, since the ledger may carry either.
     check("FIPS lights the same county as its name",
           render(lit={"48221"}).count('class="c on"') == 1)
+
+    # ---- THE SURVEY FURNITURE, and whether it tells the truth -----------------
+    # A scale bar that is decorative is worse than none: it invites a reader to measure with it.
+    # So the bar is checked the way a reader would use it, by measuring a known distance off the
+    # drawing and comparing against the great circle. Albers is equal-area rather than
+    # equidistant, so some error is expected and the tolerance says how much is acceptable
+    # rather than pretending there is none.
+    upm = units_per_mile(scale)
+    check("the projection yields a positive scale", upm > 0, str(upm))
+    by_pt = {n: [p for r in rings for p in r] for _, n, rings in counties}
+
+    def centre_view(nm):
+        pts = by_pt[nm]
+        return (sum(p[0] for p in pts) / len(pts) * scale + dx,
+                sum(p[1] for p in pts) / len(pts) * scale + dy)
+
+    # El Paso to Jefferson is the longest span the state offers, so it is where an equal-area
+    # projection's distance error is largest. If the bar holds here it holds anywhere on the
+    # sheet.
+    a, b = centre_view("El Paso"), centre_view("Jefferson")
+    measured = math.dist(a, b) / upm
+    truth = great_circle_mi(-106.29, 31.77, -94.15, 29.88)
+    err = abs(measured - truth) / truth
+    check("a distance measured off the map with the scale bar is within 2 percent",
+          err < 0.02, f"{measured:.0f} mi measured, {truth:.0f} mi true, {err * 100:.1f}% off")
+
+    svg_full = render(lit={"Hood"})
+    check("the sheet carries a neatline", 'class="frame"' in svg_full)
+    n_ticks = svg_full.count('class="tick"')
+    check("the graticule ticks whole degrees", n_ticks >= 8, f"{n_ticks} ticks")
+    check("...and every tick is labelled",
+          svg_full.count("°W") + svg_full.count("°N") == n_ticks,
+          f"{n_ticks} ticks, {svg_full.count('°W') + svg_full.count('°N')} labels")
+    bar_svg, miles = scale_bar(scale, dx, dy)
+    check("the scale bar is a round number of miles", miles in SCALE_STEPS, str(miles))
+    check("...and it fits inside the sheet",
+          miles * upm <= (VIEW_W - 2 * MARGIN) * 0.28,
+          f"{miles * upm:.0f} units")
+    check("...and the largest round number that fits was chosen",
+          all(bigger * upm > (VIEW_W - 2 * MARGIN) * 0.28
+              for bigger in SCALE_STEPS if bigger > miles))
+    check("the projection is named where a reader can find it",
+          "Albers equal-area conic" in svg_full)
+    # The graticule is placed by root-finding rather than by guessing at the corner, so a tick
+    # that landed outside the frame would mean the crossing search is broken.
+    for m_tick in re.finditer(r'class="tick" x1="([\d.]+)" y1="([\d.]+)"', svg_full):
+        tx, ty = float(m_tick.group(1)), float(m_tick.group(2))
+        if not (MARGIN - 0.5 <= tx <= VIEW_W - MARGIN + 0.5
+                and MARGIN - 0.5 <= ty <= VIEW_H - MARGIN + 0.5):
+            check("every graticule tick sits on the neatline", False, f"{tx},{ty}")
+            break
+    else:
+        check("every graticule tick sits on the neatline", True)
 
     if failures:
         print(f"\ntexas_map self-test: {failures} FAILED", file=sys.stderr)

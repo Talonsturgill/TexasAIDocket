@@ -1,41 +1,40 @@
 /* Texas AI Docket. Generated from config/brand.yaml by scripts/site/theme.py.
-   Do not edit. Edit the tokens and rebuild. */
+   Do not edit. Edit the tokens and rebuild.
+   Every contrast ratio in here is computed and gated. See theme.py --contrast. */
+
+@font-face{font-family:"Fraunces";src:url("fonts/fraunces.woff2") format("woff2");font-weight:400 700;font-style:normal;font-display:swap}@font-face{font-family:"Manrope";src:url("fonts/manrope.woff2") format("woff2");font-weight:300 700;font-style:normal;font-display:swap}@font-face{font-family:"JetBrains Mono";src:url("fonts/jetbrainsmono.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
 
 :root {
   /* Big Bend at dusk. The base register is a real place, not a generic dark theme. */
   --night:#141020; --deep:#1B1830; --panel:#252041; --line:#3B2A4A;
   --caliche:#E4D8C3; --limestone:#EDE6D6; --dust:#C9B393;
-  --rust:#8C5A3C; --ember:#B4664F; --gold:#E0956A;
-  --bluebonnet:#4E5FA8; --mesquite:#6E7A5A;
+  --ember:#B4664F; --gold:#E0956A;
+  --paper:#F6F1E4; --granite:#9A3B2A;
   --flag-red:#BF0A30; --flag-blue:#00205B; --star:#FFFFFF;
 
-  --bg:var(--night); --surface:var(--deep); --raised:var(--panel);
-  --ink:var(--caliche); --ink-bright:var(--limestone); --ink-mute:var(--dust);
-  --rule:var(--line); --accent:var(--gold); --accent-deep:var(--ember);
+  --bg:#141020;--surface:#1B1830;--raised:#252041;--ink:#E4D8C3;--ink-bright:#EDE6D6;--ink-mute:#C9B393;--rule:#3B2A4A;--accent:#E0956A;--accent-deep:#B4664F;--rule-strong:#756980;--urgent:#D7677E;--on-accent:#100F0E;
 
   --display:"Fraunces",Georgia,"Times New Roman",serif;
   --body:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
   --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
 
   /* A fifth-based scale. Enough steps to build hierarchy, few enough to stay consistent. */
-  --s-1:.79rem; --s0:1rem; --s1:1.27rem; --s2:1.6rem; --s3:2.04rem; --s4:2.59rem;
+  --s-2:.7rem; --s-1:.79rem; --s0:1rem; --s1:1.27rem; --s2:1.6rem; --s3:2.04rem; --s4:2.59rem;
   --measure:68ch; --gap:clamp(1rem,3vw,1.75rem); --radius:3px;
+  /* MARFA. The discipline of the empty field: a section is separated by air, not by a box.
+     One step, used everywhere, so the rhythm is a decision rather than an accident. */
+  --band:clamp(3rem,7vw,5.5rem);
+  --hair:1px;
 }
 
-/* A reader who has asked for light gets light. The palette inverts by role, so the
-   reservation on red and the meaning of every other token survive the switch. */
+/* A reader who has asked for light gets light, and gets a real material rather than an
+   inverted one. Caliche is the ground here and the type on the dark register: one stone,
+   two jobs. The roles are identical, so the reservation on red and the meaning of every
+   other token survive the switch. */
 @media (prefers-color-scheme: light) {
-  :root:not([data-theme="dark"]) {
-    --bg:#FBF8F1; --surface:#F3EEE2; --raised:#EDE6D6;
-    --ink:#241E2E; --ink-bright:#0F0B18; --ink-mute:#5A5064;
-    --rule:#D9CFBC; --accent:#8C4A22; --accent-deep:#6B3517;
-  }
+  :root:not([data-theme="dark"]) { --bg:#F6F1E4;--surface:#EDE6D6;--raised:#E4D8C3;--ink:#1B1830;--ink-bright:#141020;--ink-mute:#625E64;--rule:#CFC2A6;--accent:#9A3B2A;--accent-deep:#6F2A1E;--rule-strong:#837A69;--urgent:#BF0A30;--on-accent:#EDE6D6; }
 }
-:root[data-theme="light"] {
-  --bg:#FBF8F1; --surface:#F3EEE2; --raised:#EDE6D6;
-  --ink:#241E2E; --ink-bright:#0F0B18; --ink-mute:#5A5064;
-  --rule:#D9CFBC; --accent:#8C4A22; --accent-deep:#6B3517;
-}
+:root[data-theme="light"] { --bg:#F6F1E4;--surface:#EDE6D6;--raised:#E4D8C3;--ink:#1B1830;--ink-bright:#141020;--ink-mute:#625E64;--rule:#CFC2A6;--accent:#9A3B2A;--accent-deep:#6F2A1E;--rule-strong:#837A69;--urgent:#BF0A30;--on-accent:#EDE6D6; }
 
 *,*::before,*::after { box-sizing:border-box; }
 html { -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
@@ -48,8 +47,6 @@ body {
   margin:0; background:var(--bg); color:var(--ink);
   font:400 var(--s0)/1.65 var(--body);
   font-synthesis-weight:none; text-rendering:optimizeLegibility;
-  /* Fonts load late. Reserving the metric stops the page reflowing under a reader's eye. */
-  font-size-adjust:0.52;
 }
 
 h1,h2,h3 { font-family:var(--display); font-weight:600; line-height:1.15;
@@ -72,53 +69,84 @@ a:hover { color:var(--ink-bright); }
   color:var(--ink-bright); padding:.6em 1em; border:1px solid var(--accent); }
 
 /* ---- masthead ---------------------------------------------------------- */
-.masthead { border-bottom:1px solid var(--rule); background:var(--bg);
+/* THE MARK IS THE FLAG'S OWN GEOMETRY. The Lone Star flag is a blue hoist band carrying a
+   white star, then white over red. Setting the star in a blue block is that construction and
+   nothing else: no rope, no cowhide, no wood type. It is the one Texas device that is
+   statutory, abstract, and legible at 16 pixels. */
+.masthead { border-bottom:var(--hair) solid var(--rule); background:var(--bg);
   position:sticky; top:0; z-index:10; backdrop-filter:saturate(1.2) blur(6px); }
 .masthead .wrap { display:flex; align-items:center; gap:var(--gap);
   padding-block:.85rem; flex-wrap:wrap; }
-.wordmark { display:inline-flex; align-items:center; gap:.55rem;
+.wordmark { display:inline-flex; align-items:center; gap:.7rem;
   font-family:var(--display); font-weight:600; font-size:var(--s0);
   letter-spacing:.06em; text-transform:uppercase; color:var(--ink-bright);
   text-decoration:none; }
-.wordmark .star { width:1.05em; height:1.05em; fill:var(--star); flex:none; }
+.wordmark .hoist { display:grid; place-items:center; width:1.9em; height:2.05em;
+  background:var(--flag-blue); border-radius:1px; flex:none; }
+.wordmark .star { width:1.15em; height:1.15em; fill:var(--star); display:block; }
 nav.main { display:flex; gap:1.1rem; flex-wrap:wrap; margin-left:auto;
   font-size:var(--s-1); letter-spacing:.03em; text-transform:uppercase; }
 nav.main a { color:var(--ink-mute); text-decoration:none; padding-block:.25em;
-  border-bottom:1px solid transparent; }
+  border-bottom:var(--hair) solid transparent; }
 nav.main a:hover, nav.main a[aria-current] { color:var(--ink-bright);
   border-bottom-color:var(--accent); }
 
+/* ---- section furniture, from a drawing sheet ---------------------------- */
+/* A survey sheet separates its zones with a hairline and labels them in the margin. That is
+   the whole device: a rule that runs the full width of the container with the heading sitting
+   on it, and a mono label in the gutter. It reads as a document rather than a landing page,
+   which is what this is. */
+main > section { margin-block:var(--band); }
+main > section:first-child { margin-top:calc(var(--band) * .55); }
+main > section > h2 { position:relative; padding-top:1.1rem;
+  border-top:var(--hair) solid var(--rule); }
+main > section > h2::after { content:""; position:absolute; top:-1px; left:0; width:3.5rem;
+  border-top:2px solid var(--accent); }
+.sheetlabel { font-family:var(--mono); font-size:var(--s-2); letter-spacing:.16em;
+  text-transform:uppercase; color:var(--ink-mute); margin:0 0 .35rem; }
+
 /* ---- the map ------------------------------------------------------------ */
-/* The record, rendered. A county is lit or it is not, at one intensity. No severity ramp,
-   because a ramp implies a judgement this page does not get to publish. */
+/* A SURVEY, NOT AN INFOGRAPHIC. Hairline mesh at one weight, a lit county at one intensity,
+   and a scale bar computed from the projection rather than drawn to look about right. No
+   severity ramp, because a ramp implies a judgement this page does not get to publish. */
 .txmap { width:100%; height:auto; display:block; }
-.txmap .c { fill:var(--surface); stroke:var(--rule); stroke-width:.8;
+.txmap .c { fill:var(--surface); stroke:var(--rule); stroke-width:.6;
   vector-effect:non-scaling-stroke; transition:fill .18s ease; }
-.txmap .c.on { fill:var(--accent-deep); stroke:var(--accent); stroke-width:1.2; }
+.txmap .c.on { fill:var(--accent-deep); stroke:var(--accent); stroke-width:1.1; }
 .txmap .c:hover { fill:var(--raised); }
 .txmap .c.on:hover { fill:var(--accent); }
+.txmap .frame { fill:none; stroke:var(--rule); stroke-width:1;
+  vector-effect:non-scaling-stroke; }
+.txmap .tick { stroke:var(--ink-mute); stroke-width:1; vector-effect:non-scaling-stroke; }
+.txmap .scale { stroke:var(--ink-mute); stroke-width:1.4; vector-effect:non-scaling-stroke; }
+.txmap .lab { fill:var(--ink-mute); font-family:var(--mono); font-size:11px;
+  letter-spacing:.06em; }
 
 /* ---- the clock ---------------------------------------------------------- */
 /* The question nobody else answers: can a Texan still act on this, and by when. */
 .clock { display:grid; gap:.35rem; padding:1rem 1.15rem; background:var(--surface);
-  border:1px solid var(--rule); border-left:3px solid var(--accent); border-radius:var(--radius); }
+  border:var(--hair) solid var(--rule); border-left:3px solid var(--accent);
+  border-radius:var(--radius); }
 .clock .days { font-family:var(--mono); font-variant-numeric:tabular-nums;
   font-size:var(--s3); line-height:1; color:var(--ink-bright); }
 .clock .lab { font-size:var(--s-1); letter-spacing:.05em; text-transform:uppercase;
   color:var(--ink-mute); }
-.clock.soon { border-left-color:var(--flag-red); }
-.clock.soon .days { color:var(--flag-red); }
+/* The urgent value is DERIVED from Texas red against this mode's ground, because the red as
+   authored measures 2.94 to 1 on the night register and this is the number a reader came for. */
+.clock.soon { border-left-color:var(--urgent); }
+.clock.soon .days { color:var(--urgent); }
 
 .rooms { display:inline-flex; align-items:center; gap:.45em; font-size:var(--s-1);
   letter-spacing:.04em; text-transform:uppercase; color:var(--ink-mute); }
 .rooms::before { content:""; width:.6em; height:.6em; border-radius:50%;
   background:var(--ink-mute); }
 .rooms.open_comment::before, .rooms.open_meeting::before { background:var(--accent); }
-.rooms.closed::before { background:var(--rule); }
+.rooms.closed::before { background:var(--rule-strong); }
 
 /* ---- items -------------------------------------------------------------- */
-.items { display:grid; gap:1px; background:var(--rule); border:1px solid var(--rule);
-  border-radius:var(--radius); overflow:hidden; list-style:none; padding:0; margin:0; }
+.items { display:grid; gap:var(--hair); background:var(--rule);
+  border:var(--hair) solid var(--rule); border-radius:var(--radius); overflow:hidden;
+  list-style:none; padding:0; margin:0; }
 .items > li { background:var(--bg); padding:1.1rem var(--gap); display:grid; gap:.5rem; }
 .items > li:hover { background:var(--surface); }
 .items h3 { margin:0; font-size:var(--s1); }
@@ -126,39 +154,43 @@ nav.main a:hover, nav.main a[aria-current] { color:var(--ink-bright);
 .items h3 a:hover { text-decoration:underline; }
 .meta { display:flex; flex-wrap:wrap; gap:.4rem 1rem; font-size:var(--s-1);
   color:var(--ink-mute); }
-.tag { font-family:var(--mono); font-size:.75rem; letter-spacing:.04em;
-  text-transform:uppercase; color:var(--ink-mute); border:1px solid var(--rule);
-  padding:.1em .5em; border-radius:2px; }
+.tag { font-family:var(--mono); font-size:var(--s-2); letter-spacing:.04em;
+  text-transform:uppercase; color:var(--ink-mute);
+  border:var(--hair) solid var(--rule-strong); padding:.1em .5em; border-radius:2px; }
 
 /* ---- claims: the proof, made visible ------------------------------------ */
 /* Every figure traces to a quote. Showing the quote inline is what turns a policy into
    something a reader can feel. */
-.claim { margin:1rem 0; padding-left:1rem; border-left:2px solid var(--rule); }
+.claim { margin:1rem 0; padding-left:1rem; border-left:2px solid var(--rule-strong); }
 .claim blockquote { margin:0 0 .4rem; font-family:var(--mono); font-size:var(--s-1);
   line-height:1.6; color:var(--ink); }
 .claim blockquote::before { content:"\201C"; }
 .claim blockquote::after { content:"\201D"; }
 .claim cite { font-style:normal; font-size:var(--s-1); color:var(--ink-mute); }
-.claim .kind { font-family:var(--mono); font-size:.7rem; letter-spacing:.06em;
+.claim .kind { font-family:var(--mono); font-size:var(--s-2); letter-spacing:.06em;
   text-transform:uppercase; color:var(--ink-mute); }
 
-table { border-collapse:collapse; width:100%; font-size:var(--s-1); }
-th,td { text-align:left; padding:.5em .75em; border-bottom:1px solid var(--rule);
+/* Mid-century oil charts: heavy rules top and bottom, hairlines between. The weight tells a
+   reader where the table starts and stops without a box around it. */
+table { border-collapse:collapse; width:100%; font-size:var(--s-1);
+  border-top:2px solid var(--rule-strong); border-bottom:2px solid var(--rule-strong); }
+th,td { text-align:left; padding:.5em .75em; border-bottom:var(--hair) solid var(--rule);
   vertical-align:top; }
-th { font-weight:600; color:var(--ink-mute); font-size:.8rem; letter-spacing:.04em;
-  text-transform:uppercase; }
+tr:last-child td { border-bottom:0; }
+th { font-weight:600; color:var(--ink-mute); font-size:var(--s-2); letter-spacing:.04em;
+  text-transform:uppercase; border-bottom:var(--hair) solid var(--rule-strong); }
 td.n,th.n { text-align:right; }
 
-.gap { border:1px dashed var(--rule); border-radius:var(--radius); padding:1rem 1.15rem;
-  background:transparent; color:var(--ink-mute); font-size:var(--s-1); }
+.gap { border:var(--hair) dashed var(--rule-strong); border-radius:var(--radius);
+  padding:1rem 1.15rem; background:transparent; color:var(--ink-mute); font-size:var(--s-1); }
 .gap strong { color:var(--ink); }
 
 .lede { font-size:var(--s1); line-height:1.5; color:var(--ink-bright); }
 
 /* ---- the grid watch ----------------------------------------------------- */
-/* THE LOAD SHAPE. Measured demand filled, ERCOT's day ahead forecast dashed over it. The
-   fill is one flat colour: this is a measurement drawn at its true scale, not a chart
-   arguing a case. */
+/* THE LOAD SHAPE. Measured demand filled, ERCOT's day ahead forecast dashed over it. The fill
+   is one flat colour: this is a measurement drawn at its true scale, not a chart arguing a
+   case. */
 .shape { margin:1.5rem 0; }
 .loadshape { width:100%; height:auto; display:block; }
 .loadshape .area { fill:var(--accent-deep); fill-opacity:.28; }
@@ -172,45 +204,47 @@ td.n,th.n { text-align:right; }
 figcaption { font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
   max-width:var(--measure); }
 
-/* A BAR AND NEVER A DIAL. One hue at one intensity at every value, so there is no red zone
-   and therefore no verdict. The length is the whole message. If a future edit adds a
-   threshold colour here, it has changed what this page claims, and theme.py's self-test is
-   what refuses it. */
-.bar { height:1.6rem; background:var(--surface); border:1px solid var(--rule);
+/* A BAR AND NEVER A DIAL. One hue at one intensity at every value, so there is no red zone and
+   therefore no verdict. The length is the whole message. If a future edit adds a threshold
+   colour here, it has changed what this page claims, and theme.py's self-test is what refuses
+   it. */
+.bar { height:1.6rem; background:var(--surface); border:var(--hair) solid var(--rule-strong);
   border-radius:2px; overflow:hidden; margin:.25rem 0 .75rem; }
 .bar .fill { height:100%; background:var(--accent-deep); }
 .barnote { font-size:var(--s-1); color:var(--ink-mute); }
 .barnote strong { color:var(--ink-bright); }
-/* The metro bars on the water watch. Same rule, smaller: sorted driest first, and identical
-   in colour at every value, so the ordering carries the comparison and nothing implies that
-   a short bar is a verdict about a city's water supply. */
+/* The metro bars on the water watch. Same rule, smaller: sorted driest first, and identical in
+   colour at every value, so the ordering carries the comparison and nothing implies that a
+   short bar is a verdict about a city's water supply. */
 .bar.mini { height:.7rem; margin:0; min-width:6rem; }
 td.barcell { width:40%; vertical-align:middle; }
 table.metros th[scope="row"] { font-weight:400; color:var(--ink-bright);
-  text-transform:none; letter-spacing:0; font-size:var(--s-1); }
+  text-transform:none; letter-spacing:0; font-size:var(--s-1); border-bottom-width:var(--hair);
+  border-bottom-color:var(--rule); }
 caption { caption-side:bottom; text-align:left; padding-top:.75rem; font-size:var(--s-1);
   color:var(--ink-mute); max-width:var(--measure); }
 
 /* ---- the ask box -------------------------------------------------------- */
-/* Answered in the reader's browser. The styling says "a tool", not "a chatbot":
-   no avatar, no typing dots, no conversation. A question and what the record says. */
-.askbox { border:1px solid var(--rule); border-radius:var(--radius); padding:1.25rem var(--gap);
-  background:var(--surface); margin:1.5rem 0; }
+/* Answered in the reader's browser. The styling says "a tool", not "a chatbot": no avatar, no
+   typing dots, no conversation. A question and what the record says. */
+.askbox { border:var(--hair) solid var(--rule-strong); border-radius:var(--radius);
+  padding:1.25rem var(--gap); background:var(--surface); margin:1.5rem 0; }
 .askbox form { display:flex; gap:.6rem; flex-wrap:wrap; align-items:center; }
 .askbox label { position:absolute; left:-9999px; }
 .askbox input { flex:1 1 20rem; font:400 var(--s1)/1.4 var(--body); padding:.7em .9em;
-  background:var(--bg); color:var(--ink-bright); border:1px solid var(--rule);
-  border-radius:2px; }
+  background:var(--bg); color:var(--ink-bright);
+  border:var(--hair) solid var(--rule-strong); border-radius:2px; }
 .askbox input:focus-visible { border-color:var(--accent); }
 .askbox button[type="submit"] { font:600 var(--s0)/1 var(--body); padding:.85em 1.4em;
-  background:var(--accent-deep); color:var(--limestone); border:0; border-radius:2px;
+  background:var(--accent-deep); color:var(--on-accent); border:0; border-radius:2px;
   cursor:pointer; }
 .askbox .chips { display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.9rem; }
 .askbox .chips button { font:400 var(--s-1)/1 var(--body); padding:.5em .85em;
-  background:transparent; color:var(--ink-mute); border:1px solid var(--rule);
-  border-radius:999px; cursor:pointer; }
+  background:transparent; color:var(--ink-mute);
+  border:var(--hair) solid var(--rule-strong); border-radius:999px; cursor:pointer; }
 .askbox .chips button:hover { color:var(--ink-bright); border-color:var(--accent); }
-.askbox .answer { margin-top:1.25rem; padding-top:1.1rem; border-top:1px solid var(--rule); }
+.askbox .answer { margin-top:1.25rem; padding-top:1.1rem;
+  border-top:var(--hair) solid var(--rule); }
 .askbox .answer h3 { margin:0 0 .6rem; font-size:var(--s1); }
 .askbox .answer ul { list-style:none; padding:0; margin:.5rem 0 0; display:grid; gap:.7rem; }
 .askbox .answer .meta { font-size:var(--s-1); color:var(--ink-mute);
@@ -219,12 +253,29 @@ caption { caption-side:bottom; text-align:left; padding-top:.75rem; font-size:va
 table.figures td:first-child { color:var(--ink-bright); }
 table.figures td:last-child { color:var(--ink-mute); font-size:.92em; }
 
-footer.site { border-top:1px solid var(--rule); margin-top:4rem; padding-block:2rem 3rem;
-  color:var(--ink-mute); font-size:var(--s-1); }
+/* ---- the title block ---------------------------------------------------- */
+/* Every drawing sheet ends in one: what this is, who is answerable for it, when it was last
+   revised. A record that publishes its own build date in the same place a survey publishes its
+   revision is making the same promise, and the star sits here at the size it deserves rather
+   than shrunk into the navigation. */
+footer.site { border-top:2px solid var(--rule-strong); margin-top:var(--band);
+  padding-block:2rem 3rem; color:var(--ink-mute); font-size:var(--s-1); }
 footer.site a { color:var(--ink-mute); }
 footer.site a:hover { color:var(--ink-bright); }
+footer.site .block { display:grid; gap:var(--gap) calc(var(--gap) * 1.5);
+  grid-template-columns:auto minmax(0,var(--measure)); align-items:start; }
+footer.site .colophon { width:5.5rem; height:5.5rem; fill:var(--rule-strong); flex:none; }
+@media (max-width:34rem) {
+  footer.site .block { grid-template-columns:1fr; }
+  footer.site .colophon { width:3.5rem; height:3.5rem; }
+}
+footer.site dl { display:grid; grid-template-columns:auto 1fr; gap:.3rem 1rem; margin:1.25rem 0 0;
+  font-family:var(--mono); font-size:var(--s-2); }
+footer.site dt { letter-spacing:.14em; text-transform:uppercase; color:var(--ink-mute); }
+footer.site dd { margin:0; color:var(--ink); }
 
 @media print {
-  .masthead,nav.main,.txmap { display:none; }
+  .masthead,nav.main,.txmap,.askbox { display:none; }
   body { background:#fff; color:#000; }
+  a { color:#000; }
 }

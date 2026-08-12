@@ -13,8 +13,17 @@ So "done" is not a feeling here, it is these checks passing:
   3 WIRING     every script is reachable from a workflow, a prompt, or another script
   4 SCHEMA     every ledger parses and carries the envelope the readers expect
   5 LINKS      every internal link in the built site resolves to a real file
-  6 AGENTS     every agent and skill a prompt names exists on disk
-  7 PARITY     Texas config carries every key its Alaska counterpart did
+  6 ASSETS     every asset the site references is an asset the site ships, AND every typeface
+               it names is a typeface something defines
+  7 REFS       every repo path a knowledge doc, prompt or config cites actually exists
+  8 AGENTS     every agent and skill a prompt names exists on disk
+  9 PARITY     Texas config carries every key its Alaska counterpart did
+
+Three doors, one failure. WIRING catches a script that landed and was never connected. ASSETS
+and REFS were added after the same failure arrived through the other two: the three brand
+typefaces sat committed and unserved while every reader got Georgia, and a design doctrine was
+cited by four files and had never been written. Neither threw, because a font stack falls back
+silently and a citation is prose.
 
 Checks whose subject does not exist yet report SKIP rather than failing, so this is useful
 from the first wave rather than only at the end.
@@ -95,6 +104,33 @@ STANDALONE_ALLOW = {
 # Documents that describe intent rather than execute it. A script named only in one of these
 # is planned, not wired, and the wiring check must not accept a plan as proof of a connection.
 PLAN_DOCS = {".claude/WORKLOG.md", "README.md", "CLAUDE.md", "PORT_MANIFEST.tsv"}
+
+# Paths a knowledge document names in the FUTURE tense. A doctrine that says "planned for Wave
+# 7" is making a commitment, not a citation, and failing the build over one would push the next
+# writer to stop writing plans down, which is worse than the dangling path.
+#
+# Each entry carries where it was promised and what has to happen. The refs check prints any
+# entry whose file now exists, so this stays a parking space rather than a graveyard.
+REFS_PLANNED = {
+    "assets/lexicon/tx_pronunciation.json":
+        "TEXAS_PRONUNCIATION.md, Wave 7. Belongs to TexasAIDispatch, which owns the video "
+        "engine and its VO preflight, so it will never exist at this path in this repo.",
+    "ledger/deployments.json":
+        "The docket schema is decision-centric and a company deployment is not a decision. "
+        "The provisional resolution is a second ledger that a docket item can reference. "
+        "Not built, and not needed until the record carries one.",
+}
+
+# Paths a routine WRITES AND REMOVES. Absent between runs is their normal state, so unlike a
+# planned path there is nothing to nag about when one appears. Kept separate from REFS_PLANNED
+# precisely so the "now built, prune it" note never fires on a file whose whole life is
+# transient, which would train a reader to ignore the note.
+REFS_RUNTIME = {
+    "prompts/NEXT_RUN.md":
+        "A story queued by the previous run for the next one. The routine reads it 'if it "
+        "exists' and archives it into the run directory at ship time, so it is present only "
+        "between a queueing run and the run that consumes it.",
+}
 
 SKIP_SCAN_DIRS = {".git", "node_modules", "__pycache__", "out", "docs", "runs", "vendor"}
 TEXT_SUFFIXES = {".py", ".md", ".yaml", ".yml", ".json", ".txt", ".js", ".mjs", ".ts",
@@ -374,6 +410,115 @@ def check_links(root: Path) -> Result:
     return r
 
 
+def check_assets(root: Path) -> Result:
+    """Every asset the built site REFERENCES is an asset the built site SHIPS.
+
+    The wiring gate above answers "is this script reachable". Nothing answered the same question
+    about an asset, and that is where the failure actually landed: `config/brand.yaml` named
+    three typefaces, `theme.py` wrote them into every font stack, `assets/fonts/` held all three
+    on disk, and no rule served any of them. Every reader got Georgia and system-ui. The config
+    and the page disagreed for the whole life of the site, and nothing threw, because a font
+    stack that names a family no rule defines renders perfectly well in the fallback.
+
+    So: a stylesheet's `url(...)`, a document's `<link href>` and every `@font-face` source have
+    to resolve inside `docs/`. `check_links` reads markup only, which is why a font referenced
+    from inside the CSS was invisible to it.
+    """
+    r = Result("assets")
+    docs = root / "docs"
+    if not docs.exists():
+        r.skip("site not built yet")
+        return r
+
+    url_in_css = re.compile(r"url\(\s*[\"']?([^\"')]+)[\"']?\s*\)")
+    missing, checked = [], 0
+    for sheet in docs.rglob("*.css"):
+        text = sheet.read_text(encoding="utf-8", errors="ignore")
+        for target in url_in_css.findall(text):
+            if target.startswith(("http://", "https://", "data:", "//")):
+                continue
+            checked += 1
+            dest = (docs if target.startswith("/") else sheet.parent) / target.lstrip("/")
+            if not dest.exists():
+                missing.append(f"{sheet.relative_to(root)} -> {target}")
+
+    # THE OTHER HALF, and the half that actually bit. An asset can exist and still not be
+    # WORN: a served font nothing declares is as useless as a declared font nothing serves.
+    # Every family named as the first choice in a font stack must have a rule that defines it.
+    for sheet in docs.rglob("*.css"):
+        text = sheet.read_text(encoding="utf-8", errors="ignore")
+        declared = set(re.findall(r'@font-face\{[^}]*font-family:"([^"]+)"', text))
+        for stack in re.findall(r"--(?:display|body|mono):\"([^\"]+)\"", text):
+            checked += 1
+            if stack not in declared:
+                missing.append(f"{sheet.relative_to(root)}: font stack leads with "
+                               f"'{stack}' but no @font-face defines it, so every reader "
+                               f"silently gets the fallback")
+
+    for m in missing[:12]:
+        r.fail(f"unwired asset: {m}")
+    if len(missing) > 12:
+        r.fail(f"...and {len(missing) - 12} more")
+    if not missing:
+        r.note(f"{checked} asset reference(s) resolve and every named face is defined")
+    return r
+
+
+def check_refs(root: Path) -> Result:
+    """Every repo path named in prose is a repo path that exists.
+
+    `knowledge/shared/TEXAS_DESIGN_DOCTRINE.md` was cited by four files and did not exist. The
+    brand config pointed at it twice for the palette rules, the knowledge index listed it, and
+    an agent definition told a director to read it before pitching a deck. Nothing threw,
+    because a citation is prose: every reader of those files believed the argument had been had
+    somewhere, and the agent that was told to read it simply read nothing.
+
+    This is the same failure the wiring gate catches for scripts and the assets gate catches for
+    fonts, arriving through the third door. A path written down is a promise, so it is checked.
+    """
+    r = Result("refs")
+    # Only the directories this repo owns, and only real file extensions. Broad path-shaped
+    # matching would read a URL fragment or an example in a fenced block as a claim.
+    ref = re.compile(r"\b((?:knowledge|prompts|config|ledger|assets|scripts|tests|\.claude)"
+                     r"/[A-Za-z0-9_./-]+\.(?:md|ya?ml|json|py|mjs|txt|tsv|sh))\b")
+    # PLAN_DOCS describe intent rather than execute it, so a path in one of them is a proposal.
+    # The wiring gate already draws this line for scripts, and it is the same line here.
+    scan = [p for d in ("knowledge", "prompts", "config", ".claude")
+            for p in (root / d).rglob("*") if p.is_file()
+            and p.suffix in (".md", ".yaml", ".yml")
+            and p.relative_to(root).as_posix() not in PLAN_DOCS]
+
+    missing: dict = {}
+    checked = 0
+    for src in scan:
+        if not src.exists():
+            continue
+        for target in set(ref.findall(src.read_text(encoding="utf-8", errors="ignore"))):
+            # A glob or a placeholder is a description of a family of files, not a citation.
+            if (any(ch in target for ch in "*<>{}")
+                    or target in REFS_PLANNED or target in REFS_RUNTIME):
+                continue
+            checked += 1
+            if not (root / target).exists():
+                missing.setdefault(target, []).append(str(src.relative_to(root)))
+
+    for target, sources in sorted(missing.items())[:12]:
+        r.fail(f"{target} is cited by {', '.join(sorted(sources)[:3])} and does not exist")
+    if len(missing) > 12:
+        r.fail(f"...and {len(missing) - 12} more dangling references")
+
+    # A LOUD PARKING SPACE, NOT A QUIET GRAVE, the same discipline the parity map's deferrals
+    # get. A planned path that now exists is an allowlist entry doing nothing, and an allowlist
+    # nobody prunes is how an exemption outlives its reason.
+    landed = [p for p in REFS_PLANNED if (root / p).exists()]
+    for p in landed:
+        r.note(f"PLANNED and now built, drop it from REFS_PLANNED: {p}")
+    if not missing:
+        r.note(f"{checked} cited path(s) all exist, {len(REFS_PLANNED)} planned and "
+               f"{len(REFS_RUNTIME)} written at run time")
+    return r
+
+
 # --------------------------------------------------------------------------- 6 agents
 def check_agents(root: Path) -> Result:
     r = Result("agents")
@@ -531,6 +676,7 @@ def check_parity(root: Path, refs: dict | None = None) -> Result:
 CHECKS = {
     "coverage": check_coverage, "residue": check_residue, "wiring": check_wiring,
     "schema": check_schema, "archive": check_archive, "links": check_links,
+    "assets": check_assets, "refs": check_refs,
     "agents": check_agents, "parity": check_parity,
 }
 
@@ -625,6 +771,37 @@ def self_test() -> int:
         (docs / "nope").mkdir()
         (docs / "nope" / "index.html").write_text("ok", encoding="utf-8")
         expect("links passes when the target exists", check_links(root), "PASS")
+
+        # ASSETS. Both halves of the real failure, reintroduced. A font referenced from inside
+        # the CSS is invisible to the link checker, and a font stack naming a family nothing
+        # defines renders perfectly well in the fallback, so neither goes red on its own.
+        css = docs / "site.css"
+        css.write_text('@font-face{font-family:"Manrope";src:url("fonts/manrope.woff2")}'
+                       ':root{--body:"Manrope",system-ui}', encoding="utf-8")
+        expect("assets catches a font that is referenced but not served",
+               check_assets(root), "FAIL")
+        (docs / "fonts").mkdir()
+        (docs / "fonts" / "manrope.woff2").write_bytes(b"stub")
+        expect("assets passes once the file is actually there", check_assets(root), "PASS")
+        css.write_text('@font-face{font-family:"Manrope";src:url("fonts/manrope.woff2")}'
+                       ':root{--body:"Manrope",system-ui;--display:"Fraunces",Georgia}',
+                       encoding="utf-8")
+        expect("assets catches a face that is named but never defined",
+               check_assets(root), "FAIL")
+
+        # REFS. A cited path that does not exist. This is how a doctrine file can be pointed
+        # at by four places and never written: prose does not throw.
+        (root / "knowledge").mkdir(parents=True, exist_ok=True)
+        (root / "knowledge" / "INDEX.md").write_text(
+            "See knowledge/shared/TEXAS_DESIGN_DOCTRINE.md before drawing.\n", encoding="utf-8")
+        expect("refs catches a cited file that does not exist", check_refs(root), "FAIL")
+        (root / "knowledge" / "shared").mkdir(parents=True, exist_ok=True)
+        (root / "knowledge" / "shared" / "TEXAS_DESIGN_DOCTRINE.md").write_text(
+            "the doctrine\n", encoding="utf-8")
+        expect("refs passes once it is written", check_refs(root), "PASS")
+        (root / "knowledge" / "INDEX.md").write_text(
+            "Decks live at knowledge/carousel/*.md\n", encoding="utf-8")
+        expect("refs does not read a glob as a citation", check_refs(root), "PASS")
 
         # coverage: unrouted rows and reasonless drops must be caught
         man = root / "PORT_MANIFEST.tsv"

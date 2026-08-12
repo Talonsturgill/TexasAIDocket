@@ -1,0 +1,43 @@
+{
+  "faces": [
+    {
+      "file": "fraunces.woff2",
+      "family": "Fraunces",
+      "weight": "400 700",
+      "style": "normal",
+      "bytes": 38904,
+      "source": "Fraunces-Var.ttf",
+      "source_bytes": 360440,
+      "copyright": "Copyright 2020 The Fraunces Project Authors (github.com/undercasetype/Fraunces)",
+      "version": "Version 1.000;[b76b70a41]",
+      "licence": "This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: https://scripts.sil.org/OFL",
+      "licence_url": "https://scripts.sil.org/OFL"
+    },
+    {
+      "file": "manrope.woff2",
+      "family": "Manrope",
+      "weight": "300 700",
+      "style": "normal",
+      "bytes": 26440,
+      "source": "Manrope-Var.ttf",
+      "source_bytes": 165420,
+      "copyright": "Copyright 2019 The Manrope Project Authors (https://github.com/sharanda/manrope)",
+      "version": "Version 4.504",
+      "licence": "This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: http://scripts.sil.org/OFL",
+      "licence_url": "http://scripts.sil.org/OFL"
+    },
+    {
+      "file": "jetbrainsmono.woff2",
+      "family": "JetBrains Mono",
+      "weight": "400",
+      "style": "normal",
+      "bytes": 39736,
+      "source": "JetBrainsMono-Regular.ttf",
+      "source_bytes": 270224,
+      "copyright": "Copyright 2020 The JetBrains Mono Project Authors (https://github.com/JetBrains/JetBrainsMono)",
+      "version": "Version 2.305; ttfautohint (v1.8.4.7-5d5b)",
+      "licence": "This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: https://openfontlicense.org",
+      "licence_url": "https://openfontlicense.org"
+    }
+  ]
+}

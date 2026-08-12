@@ -41,6 +41,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import ask_answers                                                # noqa: E402
 import docket_build as dk                                          # noqa: E402
+import fonts_build                                                 # noqa: E402
 import gridwatch_page                                              # noqa: E402
 import texas_map                                                   # noqa: E402
 import waterwatch_page                                             # noqa: E402
@@ -54,9 +55,19 @@ SITE_URL = "https://talonsturgill.github.io/TexasAIDocket"
 
 # The Lone Star. Statutory, geometric, abstract, and legible at 16 pixels, which is why it is
 # the mark and a longhorn is not.
-STAR = ('<svg class="star" viewBox="0 0 24 24" aria-hidden="true">'
-        '<path d="M12 1.6l2.9 7.5 8 .4-6.2 5.1 2.1 7.8L12 18l-6.8 4.4 2.1-7.8L1.1 9.5l8-.4z"/>'
-        '</svg>')
+STAR_PATH = "M12 1.6l2.9 7.5 8 .4-6.2 5.1 2.1 7.8L12 18l-6.8 4.4 2.1-7.8L1.1 9.5l8-.4z"
+
+
+def star(cls: str = "star") -> str:
+    return (f'<svg class="{cls}" viewBox="0 0 24 24" aria-hidden="true">'
+            f'<path d="{STAR_PATH}"/></svg>')
+
+
+# THE MARK IS THE FLAG'S OWN CONSTRUCTION. The Lone Star flag is a blue hoist band carrying a
+# white star, then white over red. Setting the star in a blue block is that geometry and nothing
+# else, which is how the mark reads as Texas without reaching for a longhorn or a rope border.
+# The blue is the token the config already called structural and nothing on the site used.
+HOIST = f'<span class="hoist">{star()}</span>'
 
 NAV = [("", "Home"), ("record/", "The record"), ("ask/", "Ask"),
        ("counties/", "Counties"), ("grid/", "Grid"), ("water/", "Water"),
@@ -105,6 +116,7 @@ def page(*, title: str, desc: str, body: str, depth: int, active: str,
 <meta property="og:type" content="website">
 <meta property="og:url" content="{SITE_URL}/{canonical}">
 <link rel="stylesheet" href="{p}site.css">
+<link rel="preload" href="{p}fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="alternate" type="application/atom+xml" title="{e(SITE_NAME)}" href="{p}atom.xml">
 <script type="application/ld+json">{json.dumps(ld, separators=(",", ":"))}</script>
 </head>
@@ -112,7 +124,7 @@ def page(*, title: str, desc: str, body: str, depth: int, active: str,
 <a class="skip" href="#main">Skip to the record</a>
 <header class="masthead">
   <div class="wrap">
-    <a class="wordmark" href="{p or './'}">{STAR}<span>{e(SITE_NAME)}</span></a>
+    <a class="wordmark" href="{p or './'}">{HOIST}<span>{e(SITE_NAME)}</span></a>
     <nav class="main" aria-label="Sections">{nav}</nav>
   </div>
 </header>
@@ -120,13 +132,20 @@ def page(*, title: str, desc: str, body: str, depth: int, active: str,
 {body}
 </main>
 <footer class="site">
-  <div class="wrap prose">
-    <p><strong>Every numeral on this site is produced by code, from data, and can be recomputed
-    from the same inputs.</strong> No number here is typed by a person. Where something can't be
-    measured, the size of the gap is published instead of an estimate.</p>
-    <p>Every fact carries a quote from the source it came from, and a link to that source.
-    The record is <a href="{p}docket.json">open data</a>.</p>
-    <p class="num">Rebuilt {e(ordinal(_dt.date.fromisoformat(today)))}, {today[:4]}.</p>
+  <div class="wrap block">
+    {star("colophon")}
+    <div>
+      <p><strong>Every numeral on this site is produced by code, from data, and can be
+      recomputed from the same inputs.</strong> No number here is typed by a person. Where
+      something can't be measured, the size of the gap is published instead of an estimate.</p>
+      <p>Every fact carries a quote from the source it came from, and a link to that source.
+      The record is <a href="{p}docket.json">open data</a>.</p>
+      <dl data-prose="data">
+        <dt>Sheet</dt><dd>{e(canonical or "index")}</dd>
+        <dt>Record</dt><dd><a href="{p}docket.json">docket.json</a></dd>
+        <dt>Revised</dt><dd>{e(ordinal(_dt.date.fromisoformat(today)))}, {today[:4]}</dd>
+      </dl>
+    </div>
   </div>
 </footer>
 </body>
@@ -810,6 +829,23 @@ def build(out: Path, today: str) -> dict:
         written.append(path)
 
     w("site.css", theme.css())
+
+    # THE TYPE. Copied verbatim from the committed subsets rather than generated here: the
+    # byte-equal rebuild guarantee cannot depend on a compression library's version, and a copy
+    # is deterministic where a subsetting run is not. See scripts/site/fonts_build.py, which
+    # exists because brand.yaml named three faces, the stylesheet wrote them into every font
+    # stack, and nothing served them, so every reader got Georgia and system-ui instead.
+    for face in fonts_build.manifest()["faces"]:
+        src = fonts_build.WEB / face["file"]
+        dst = out / "fonts" / face["file"]
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(src, dst)
+        written.append(f'fonts/{face["file"]}')
+    # The licence ships beside the fonts, because the repository is public and all three faces
+    # are redistributed under the Open Font License.
+    shutil.copyfile(fonts_build.WEB / "OFL.txt", out / "fonts" / "OFL.txt")
+    written.append("fonts/OFL.txt")
+
     w("index.html", home(items, today))
     w("docket.json", json.dumps({"_spec": {"generated": today}, "items": items},
                                 indent=2, ensure_ascii=False) + "\n")
