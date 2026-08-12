@@ -132,17 +132,15 @@ const spots = {
   'left gutter, mid hero': [8, 640],
 };
 
-/* ---------- A READER ON A LIGHT MACHINE MUST GET THE SAME PAGE ---------- */
+/* ---------- THERE IS ONE PAGE, WHATEVER THE MACHINE PREFERS ---------- */
 //
-// THE GAP THAT LET THE PINK SHIP TWICE. Every check in this file opened the page with
-// `colorScheme: 'dark'`, so a whole second register was never once looked at by anything. The
-// owner opened the live site on a light machine and asked why the background was pink. It was:
-// the dusk atmosphere rendered over cream paper with `mix-blend-mode: multiply`, and multiply
-// takes the darker of the two, so the only thing a red veil can do to cream is stain it. Measured
-// at #F0E4D7, twelve points of red over green, spread across a soft field the width of the page.
+// THE GAP THAT LET THE PINK SHIP. Every check in this file opened the page with
+// `colorScheme: 'dark'`, and so did every screenshot taken while building it, so a second register
+// existed that nothing and nobody ever looked at. The first person to see it was the owner, on the
+// live site, and it was pink: the dusk atmosphere multiplied into cream paper.
 //
-// This is the same fault as a branch that only renders at two records: a mode nothing ever opens
-// is a mode nothing ever checks. So before anything else, the light machine is asked what it gets.
+// That register is gone now, and this is what keeps it gone. It is cheap and it is the difference
+// between one product and two.
 {
   const lightCtx = await browser.newContext({
     colorScheme: 'light', viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1,
@@ -150,21 +148,14 @@ const spots = {
   const lp = await lightCtx.newPage();
   await lp.goto(page_url);
   await lp.waitForTimeout(1200);
-  // CONTENT COMES OFF, because the thing under test is the GROUND. The accent is Capitol granite
-  // and the headline wears it on purpose, so an unhidden scan finds #DD8B60 at 82 points of red
-  // over green and reports the design as a fault. Leaving it in would mean choosing a ceiling
-  // loose enough to ignore the type, which is a ceiling loose enough to ignore a stain.
-  await lp.addStyleTag({ content: 'body > header, body > main, body > footer { visibility: hidden }' +
-                                  ' body::before { display: none }' });
+  // Content comes off both renders, because the thing under test is the GROUND. The accent is
+  // Capitol granite and the headline wears it on purpose, so an unhidden comparison would be
+  // measuring type and animation phase rather than register.
+  const strip = 'body > header, body > main, body > footer { visibility: hidden }' +
+                ' body::before { display: none }';
+  await lp.addStyleTag({ content: strip });
+  await p.addStyleTag({ content: strip });
   await lp.waitForTimeout(300);
-  // COMPARED AGAINST THE DARK RENDER, not held to an absolute warmth ceiling. Two attempts at a
-  // ceiling found the accent on the headline and then the Lone Star's halo, both of which are
-  // Capitol granite and warm because they are supposed to be. There is no number that separates
-  // "warm on purpose" from "stained" without knowing which is which. The question the site
-  // actually has to answer is narrower and has no magic number in it: does a reader on a light
-  // machine get the same page? So both are rendered and the grounds are compared.
-  await p.addStyleTag({ content: 'body > header, body > main, body > footer { visibility: hidden }' +
-                                 ' body::before { display: none }' });
   await p.waitForTimeout(300);
   const lightIm = decodePNG(await lp.screenshot());
   const darkIm = decodePNG(await p.screenshot());

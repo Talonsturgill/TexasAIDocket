@@ -417,9 +417,19 @@ visual:
   # theme.py reads this list, and its self-test requires every name here to reach the
   # stylesheet. That is what stops the palette drifting back into a mood board.
   site_palette:
+    # ONE REGISTER. There was a `light` group here describing a second palette that nobody asked
+    # for. It followed the operating system, so a reader on a light machine got a whole parallel
+    # rendering of the site, and every check and every screenshot taken while building it forced
+    # dark, so the first person ever to look at that rendering was the owner, on the live site.
+    # A second theme doubles the palette, doubles the contrast table and doubles the renderings
+    # any visual check has to cover, and it will be the unlooked-at half that breaks.
     dark: [night, deep, panel, line, caliche, limestone, dust, dusk_gold, dusk_ember]
-    light: [paper, limestone, caliche, paper_rule, night, deep, capitol_granite]
     both: [flag_red, flag_blue, flag_white]
+    # Still named because they still have jobs. `paper` and `capitol_granite` are the Capitol's
+    # own sunset granite and the caliche the type is cut from, both quoted on the site as facts
+    # about the state rather than used as grounds. `paper_rule` had one job, a hairline on a page
+    # that no longer exists, and it is gone with it.
+    quoted_only: [paper, capitol_granite]
     deck_only:
       # Real Texas material with no job on a record page. Named here so their absence from the
       # stylesheet reads as a decision rather than an oversight.
