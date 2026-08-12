@@ -40,6 +40,7 @@ block and a parsed artifact are equally blind to.
     gate_status.py --date 2026-08-12
     gate_status.py --date 2026-08-12 --sync runs/carousel/2026-08-12/RUN_RECORD.md
     gate_status.py --date 2026-08-12 --verify-pasted runs/carousel/2026-08-12/RUN_RECORD.md
+    gate_status.py --date 2026-08-12 --strict         # the ship gate: absent means it never ran
     gate_status.py --self-test
 
 Exit 0 every row passes, 1 a row failed or a pasted block is stale, 2 the checker could not run.
@@ -63,6 +64,28 @@ MAGIC = {".pdf": b"%PDF", ".png": b"\x89PNG\r\n\x1a\n", ".webp": b"RIFF", ".jpg"
 
 PASS, WARN, FAIL, ABSENT, STALE = "PASS", "WARN", "FAIL", "ABSENT", "STALE"
 BAD = (FAIL, STALE)
+
+# ABSENT is not a failure MID-RUN, because artifacts appear as the phases produce them, and a
+# gate that fails at Phase 8 for not having a score yet is a gate that gets ignored by Phase 9.
+# At the SHIP gate it is a different fact entirely: an absent artifact means the phase that
+# writes it never ran. `--strict` is that reading, and the end-to-end proof is what found the
+# gap. Everything self-tested green while a run with no claims file and no score could have
+# printed a clean block on its way out the door.
+STRICT_REQUIRED = ("claims", "render", "qa", "assembly", "score", "dossiers", "caption")
+
+# WHICH ROWS THE STALENESS RULE APPLIES TO, and the end-to-end proof is what forced this list to
+# exist. The rule was applied to every artifact, and it is only true of artifacts that DESCRIBE
+# the render.
+#
+# claims.json is written in Phase 6. The dossiers are Phase 9. The caption is Phase 10. The art
+# is built in Phase 11. **Every one of those legitimately predates the render in every run that
+# has ever gone right**, so marking them stale would have painted three rows red on every single
+# run, forever. A row that is always red is ignored exactly as fast as one that is always green,
+# and it would have taught the first real run to stop reading the block.
+#
+# The rows below are the ones a re-render actually invalidates: the QA of the render, the numbers
+# scanned out of the render, the package assembled from it, and the score given to it.
+RENDER_DEPENDENT = ("qa", "aggregates", "assembly", "score")
 
 
 class Row:
@@ -122,7 +145,7 @@ def rows_for(d: Path) -> list[Row]:
         if data is None:
             out.append(Row(name, FAIL, f"{rel} is unparseable"))
             return
-        if staleness(p, drawn):
+        if name in RENDER_DEPENDENT and staleness(p, drawn):
             out.append(Row(name, STALE, f"{rel} predates the newest render, so it describes a "
                                         f"deck that no longer exists. Re-run it"))
             return
@@ -131,7 +154,7 @@ def rows_for(d: Path) -> list[Row]:
     artifact("claims", "claims.json", lambda c: _claims(c))
     artifact("render", "render/render_report.json", lambda r: _render(r))
     artifact("qa", "render/machine_qa.json", lambda q: _qa(q))
-    artifact("aggregates", "aggregates.json", lambda a: _aggr(a))
+    artifact("aggregates", "aggregate_report.json", lambda a: _aggr(a))
     artifact("assembly", "final/assemble_report.json", lambda a: _assembly(a, d))
     artifact("score", "score.json", lambda s: _score(s))
 
@@ -178,9 +201,20 @@ def _qa(q) -> Row:
 
 
 def _aggr(a) -> Row:
-    decl = a.get("aggregates") or a.get("declared") or []
-    n = len(decl) if isinstance(decl, list) else 0
-    return Row("aggregates", PASS, f"{n} declared and re-derived")
+    """Reads aggregate_check's RECEIPT, not the declaration it checked.
+
+    `aggregates.json` is an input the run authors before the check runs, so a row built from it
+    reports only that somebody wrote a file. Worse, it can never clear a STALE flag, because a
+    check does not rewrite its own input, so the block ends up telling the run to re-run
+    something that re-running cannot fix. The end-to-end proof is what surfaced that.
+    """
+    n = a.get("declared")
+    if n is None:
+        decl = a.get("aggregates") or []
+        n = len(decl) if isinstance(decl, list) else 0
+    probs = a.get("problems") or []
+    return Row("aggregates", FAIL if probs else PASS,
+               f"{len(probs)} problem(s)" if probs else f"{n} declared and re-derived")
 
 
 def _assembly(a, d: Path) -> Row:
@@ -232,7 +266,8 @@ def sync(record: Path, fresh: str) -> str:
     return new
 
 
-def run(date: str, out_root: Path, sync_to: str | None, verify: str | None) -> int:
+def run(date: str, out_root: Path, sync_to: str | None, verify: str | None,
+        strict: bool = False) -> int:
     d = out_root / date
     if not d.exists():
         print(f"gate_status: {d} does not exist", file=sys.stderr)
@@ -272,11 +307,15 @@ def run(date: str, out_root: Path, sync_to: str | None, verify: str | None) -> i
         print(fresh)
 
     bad = [r for r in rows if r.status in BAD]
+    missing = [r for r in rows if strict and r.status == ABSENT and r.name in STRICT_REQUIRED]
+    if missing:
+        print(f"\ngate_status: {len(missing)} artifact(s) the ship gate requires were never "
+              f"written: {', '.join(r.name for r in missing)}.\n  An absent artifact at ship "
+              f"means the phase that writes it did not run.", file=sys.stderr)
     if bad:
         print(f"\ngate_status: {len(bad)} row(s) not passing: "
               f"{', '.join(r.name for r in bad)}", file=sys.stderr)
-        return 1
-    return 0
+    return 1 if (bad or missing) else 0
 
 
 def self_test() -> int:
@@ -341,6 +380,22 @@ def self_test() -> int:
         os.utime(d / "render" / "machine_qa.json", (later + 1, later + 1))
         ok("...and re-running the gate clears it", status_of(rows_for(d), "qa") == PASS)
 
+        # ...but ONLY for artifacts the render invalidates. claims.json is written in Phase 6,
+        # the dossiers in Phase 9, the caption in Phase 10, and the art is built in Phase 11, so
+        # all three legitimately predate the render in every run that goes right. Marking them
+        # stale would paint three rows red on every run forever, and a row that is always red is
+        # ignored exactly as fast as one that is always green. The end-to-end proof found this.
+        os.utime(d / "claims.json", (1, 1))
+        (d / "storyboard.md").write_text("planned", encoding="utf-8")
+        (d / "caption.txt").write_text("a caption", encoding="utf-8")
+        os.utime(d / "storyboard.md", (1, 1))
+        os.utime(d / "caption.txt", (1, 1))
+        rows = rows_for(d)
+        ok("a claims file older than the render is NOT stale, because it precedes the art",
+           status_of(rows, "claims") == PASS, status_of(rows, "claims"))
+        ok("...and neither are the dossiers or the caption",
+           status_of(rows, "dossiers") == PASS and status_of(rows, "caption") == PASS)
+
         # Magic bytes, not length.
         (d / "final" / "deck.pdf").write_bytes(b"NOT A PDF" + b"x" * 100000)
         (d / "final" / "assemble_report.json").write_text(
@@ -369,6 +424,14 @@ def self_test() -> int:
 
         # A missing artifact says so rather than passing.
         ok("an artifact never written is ABSENT", status_of(rows_for(d), "score") == ABSENT)
+
+        # ...and ABSENT is tolerated mid-run but refused at the ship gate. Found by the
+        # end-to-end proof: every self-test was green while a run with no claims file and no
+        # score could still print a clean block on its way out the door.
+        ok("mid-run, an absent artifact does not fail the block",
+           run("2026-08-12", Path(td), None, None, strict=False) == 0)
+        ok("...but --strict refuses it, because absent at ship means the phase never ran",
+           run("2026-08-12", Path(td), None, None, strict=True) == 1)
 
         # --sync and --verify-pasted, which are the two halves of the staleness fix.
         rec = Path(td) / "RUN_RECORD.md"
@@ -414,6 +477,8 @@ def main() -> int:
     ap.add_argument("--sync", metavar="RECORD", help="write the fresh block into this file")
     ap.add_argument("--verify-pasted", metavar="RECORD", dest="verify",
                     help="diff the block in this file against the artifacts")
+    ap.add_argument("--strict", action="store_true",
+                    help="ship gate: an artifact that was never written is a failure")
     ap.add_argument("--self-test", action="store_true")
     a = ap.parse_args()
     if a.self_test:
@@ -421,7 +486,7 @@ def main() -> int:
     if not a.date:
         print("gate_status: pass --date or --self-test", file=sys.stderr)
         return 2
-    return run(a.date, Path(a.out), a.sync, a.verify)
+    return run(a.date, Path(a.out), a.sync, a.verify, a.strict)
 
 
 if __name__ == "__main__":

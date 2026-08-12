@@ -61,8 +61,8 @@ Thinnest agents: pixel-critic 53%, caption-critic 62%, upgrade-engineer 62%.
 | C | `CAPTION_CRAFT.md`, Texas material | **DONE** — written, not retheemed. Manifest disposition corrected to REBUILD |
 | D | `TECHNIQUE_LIBRARY.md`, Texas material | **DONE** — every named API verified to exist |
 | E | Deepen pixel-critic, caption-critic, upgrade-engineer | **DONE** — all three now exceed the sibling's, written from THIS repo's lessons |
-| F | Deepen `daily_routine.md` against the new gates and craft | TODO |
-| G | End-to-end proof: render the demo deck, run every gate on it | TODO |
+| F | Deepen `daily_routine.md` against the new gates and craft | **DONE** — 13 KB to 33 KB, phases 0 to 18, each gate wired where its defect happens |
+| G | End-to-end proof: render the demo deck, run every gate on it | **DONE** — GREEN, and it found 5 defects every self-test had missed |
 | H | Reconcile manifest, update CLAUDE.md layout, hand off triggers | TODO |
 
 ## Handoff still owed to the owner (not blockers)
@@ -200,3 +200,14 @@ Thinnest agents: pixel-critic 53%, caption-critic 62%, upgrade-engineer 62%.
   finding of its own. The upgrade engineer is told its lane is narrower than the run's, that it
   stamps `upgrade` and may propose a prompt change but never make one, and that zero upgrades is a
   valid number.
+- 2026-08-12 — **WAVE G, the end-to-end proof, and it earned its place.** Every gate's self-tests
+  were green when it started. Running the real chain on a real render found five defects in under
+  an hour: a number regex that read "2,600 streamlines" as 600 and named a figure the slide does
+  not contain; the slide counter flagged as an invented number on every slide, nine findings a
+  deck forever; a count computed from data refused because the declaration format only knew how to
+  count claims, which would have taught the first real run that the honest route fails; claims.json
+  marked STALE for predating the render, which is true of every run that goes right, so three rows
+  would have been red permanently; and a status row built from an INPUT the run authors rather than
+  from a report, printing "re-run it" where re-running could not help. All five fixed and pinned
+  with tests. GATE_LESSONS 15. A fixture written by the same hand as the detector agrees with the
+  detector.
