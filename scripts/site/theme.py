@@ -534,11 +534,17 @@ body::after {{ content:""; position:fixed; inset:0; pointer-events:none; z-index
    to scatter seed, so the rolling is the organism working. See sky.py for how the skeleton is
    generated.
    IT IS RARE ON PURPOSE. A loop that fires every few seconds is a screensaver. This crosses once
-   in fifty seconds and takes about nine to do it, so it is a thing you catch rather than a thing
-   you watch, which is the entire trick the meteor is playing. The roll and the travel are one
-   transform, because a tumbleweed that slides without turning is a ball and reads as a bug. */
+   in fifty seconds, so it is a thing you catch rather than a thing you watch, which is the entire
+   trick the meteor is playing. The roll and the travel are one transform, because a tumbleweed
+   that slides without turning is a ball and reads as a bug.
+
+   THE FIRST CROSSING IS ALMOST IMMEDIATE (owner, 2026-08-12). It used to wait six seconds, and
+   rarity and a long cold open are not the same decision. Six seconds is most of the time a reader
+   spends on the page before scrolling, so the effect that gives the site its character was one a
+   lot of visitors never saw at all. The LOOP stays fifty seconds, which is what makes it rare;
+   only the opening wait is cut, so the first one lands while somebody is still looking. */
 .sky .tumble {{ position:absolute; top:74vh; left:0; width:clamp(38px,4.6vw,64px);
-  aspect-ratio:1; opacity:0; animation:tumble 50s linear infinite; animation-delay:6s; }}
+  aspect-ratio:1; opacity:0; animation:tumble 50s linear infinite; animation-delay:1.2s; }}
 .sky .tumble .weed {{ width:100%; height:100%; display:block; }}
 .sky .tumble .weed path {{ fill:none; stroke:var(--accent); stroke-width:1.6;
   stroke-linecap:round; opacity:.5; }}
