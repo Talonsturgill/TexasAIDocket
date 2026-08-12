@@ -71,6 +71,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+        # enablement turns Pages on via the API if it is not already configured, so the site
+        # does not sit behind a settings toggle nobody knows to flip. The workflow already
+        # holds pages:write, which is the permission this needs.
+        with:
+          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: docs
