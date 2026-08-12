@@ -40,11 +40,23 @@ are what matter. Register the domain, add the address, rebuild.
 
 That is the whole task. Nothing else is needed, no branch to pick, no folder to set.
 
-**Why it cannot be automated.** The workflow asks for it, with `enablement: true` on
+**It must be `GitHub Actions`, not `Deploy from a branch`.** Those two look interchangeable and
+are not. Picking the branch option still creates the `github-pages` environment, but it locks
+that environment's deployment branch policy to the Pages build rather than to `main`, and the
+workflow's deploy job is then rejected before it runs a single step:
+
+    Branch "main" is not allowed to deploy to github-pages due to environment protection rules.
+
+The tell is a deploy job that fails in about one second with NO steps and NO logs. A job that
+fails inside a step has a log; a job rejected by an environment rule never starts. If that
+happens, either set Source to `GitHub Actions`, or go to **Settings → Environments →
+github-pages → Deployment branches** and allow `main`.
+
+**Why it cannot be automated.** The workflow asks, with `enablement: true` on
 `configure-pages`, and GitHub refuses: `Create Pages site failed. Error: Resource not
-accessible by integration`. A workflow's `GITHUB_TOKEN` is allowed to DEPLOY to Pages but not
-to CREATE the Pages site in the first place. That first switch is reserved to a repository
-admin, deliberately, and no amount of workflow permission gets around it.
+accessible by integration`. A workflow's `GITHUB_TOKEN` may DEPLOY to Pages but may not CREATE
+the Pages site, and it cannot edit an environment's protection rules either. Both are reserved
+to a repository admin, deliberately.
 
 **Everything else is already done and verified.** The three repositories are public. The
 `verify` job passes: the record clears its own gates and the committed site is byte-identical
