@@ -60,7 +60,7 @@ STAR = ('<svg class="star" viewBox="0 0 24 24" aria-hidden="true">'
 
 NAV = [("", "Home"), ("record/", "The record"), ("ask/", "Ask"),
        ("counties/", "Counties"), ("grid/", "Grid"), ("water/", "Water"),
-       ("data/", "Data"), ("about/", "About")]
+       ("data/", "Data"), ("services/", "Services"), ("about/", "About")]
 
 
 def e(s) -> str:
@@ -539,6 +539,102 @@ def water_page(today: str) -> str:
                 }])
 
 
+def services_page(items: list, today: str) -> str:
+    """The commercial wing, argued from the record rather than from adjectives.
+
+    THE DOCKET IS THE PORTFOLIO. Every consulting page in this category says the same three
+    things about rigour, and none of them can be checked. This one points at a working system
+    a reader is already looking at: the counts below are computed from the live record at build
+    time, so the page cannot claim more than the machine actually does.
+
+    That constraint is the whole design. If the record shrinks, this page says something
+    smaller. There is no set of adjectives that can outrun it.
+    """
+    proj = dk.project(items, today)
+    counts = proj["counts"]
+    claims = sum(len(i.get("claims") or []) for i in items)
+    counties = len({c for i in items for c in (i.get("geography") or {}).get("counties") or []})
+    primary = sum(1 for i in items for c in (i.get("claims") or [])
+                  if str(c.get("source_type", "")).startswith("primary"))
+    body = f"""
+<h1>Services</h1>
+<div class="prose">
+  <p class="lede">This site is the sample of work. Everything below is measured from the record
+  it publishes, at the moment this page was built.</p>
+</div>
+
+<table class="figures">
+<thead><tr><th>What the machine does</th><th class="n">Today</th></tr></thead>
+<tbody>
+<tr><td>Decisions tracked, each re-verified on a schedule</td>
+    <td class="n num">{len(items)}</td></tr>
+<tr><td>Facts, each carrying the source's own words verbatim</td>
+    <td class="n num">{claims}</td></tr>
+<tr><td>...of those, drawn from a primary document</td>
+    <td class="n num">{primary}</td></tr>
+<tr><td>Counties with something in the record</td><td class="n num">{counties}</td></tr>
+<tr><td>Topics under continuous watch</td>
+    <td class="n num">{len(counts["by_topic"])}</td></tr>
+</tbody>
+</table>
+
+<div class="prose">
+  <h2>What is actually being demonstrated</h2>
+  <p>Three things, and each one is checkable on this site right now rather than asserted.</p>
+
+  <h3>Numbers that can be recomputed</h3>
+  <p>Every figure published here is produced by code, from data. A build gate fails on any
+  numeral that can't be traced to a quoted source or a computation, which is why the table
+  above changes when the record does and can't be inflated in a redesign.</p>
+
+  <h3>A record that maintains itself and says when it can't</h3>
+  <p>Items are re-verified on a schedule, and one that goes stale past its limit fails a gate
+  rather than sitting quietly. Where something is genuinely not public, the size of the gap is
+  published instead of an estimate.</p>
+
+  <h3>Instruments nobody else is keeping</h3>
+  <p>The <a href="../grid/">grid watch</a> tracks the load factor, which is the shape of Texas
+  demand rather than its peak, because that is where large constant load actually shows up. The
+  <a href="../water/">water watch</a> puts reservoir storage beside it by metro. Both series
+  started because nobody was keeping them, and a day not collected is gone for good.</p>
+
+  <h2>Where this is useful</h2>
+  <ul>
+    <li><strong>Siting and interconnection.</strong> What has been decided near a site, by
+    which body, and whether a comment window is still open.</li>
+    <li><strong>Regulatory watch.</strong> A standing record of an agency's decisions with the
+    filings attached, rather than a clipping service.</li>
+    <li><strong>Diligence.</strong> The physical account behind a project: the grid it lands
+    on, the water near it, and what the public file actually says.</li>
+    <li><strong>Building one of these.</strong> The machinery is the product as much as the
+    record is: gates that self-test, output proven to be a pure function of its inputs, and
+    numbers a machine is structurally unable to invent.</li>
+  </ul>
+
+  <h2>How to start</h2>
+  <p>Bring the question as it actually is, with the county or the docket number attached if
+  there is one. A useful first reply is usually a short written answer with the filings behind
+  it, not a proposal.</p>
+  <div class="gap">
+    <p><strong>The contact address is not published yet.</strong> A Texas record should be
+    reachable at a Texas address, and that domain is not registered. Publishing a borrowed one
+    in the meantime would be a small dishonesty on a page whose entire argument is that the
+    small ones are what matter. It goes up the day the domain does.</p>
+  </div>
+
+  <div class="gap">
+    <p><strong>What won't happen.</strong> No prediction about whether the grid holds. No
+    verdict on a project. No number that isn't computed from something fetched. Those limits
+    are the reason the rest is worth anything, and they don't move for a client.</p>
+  </div>
+</div>
+"""
+    return page(title=f"Working with us — {SITE_NAME}", depth=1, active="services/",
+                desc="The Texas AI Docket as a sample of work: what the machine does, "
+                     "measured from the record it publishes.",
+                body=body, today=today, canonical="services/")
+
+
 def about_page(today: str) -> str:
     body = """
 <h1>About</h1>
@@ -736,6 +832,7 @@ def build(out: Path, today: str) -> dict:
                            "numbers rather than yesterday's."},
          "readings": gridwatch_page.load()}, indent=2, ensure_ascii=False) + "\n")
     w("ask/index.html", ask_page(items, today))
+    w("services/index.html", services_page(items, today))
     w("water/index.html", water_page(today))
     w("waterwatch.json", json.dumps(
         {"_spec": {"generated": today,

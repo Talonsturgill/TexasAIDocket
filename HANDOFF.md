@@ -27,6 +27,11 @@ and somebody else eventually registers the name.
 absolute URL, the sitemap, the feeds and the structured data are derived from it, so it is a
 one line change and a rebuild.
 
+**The services page is waiting on this too.** It currently says the contact address is not
+published yet, because a Texas record should be reachable at a Texas address and publishing a
+borrowed one would be a small dishonesty on a page whose whole argument is that the small ones
+are what matter. Register the domain, add the address, rebuild.
+
 ---
 
 ## 2. Flip the repository to public
