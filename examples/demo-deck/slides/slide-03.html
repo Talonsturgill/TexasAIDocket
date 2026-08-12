@@ -1,0 +1,101 @@
+<!doctype html>
+<!-- DEMO SLIDE 3 — "The Data Field": a generative flow field driven by seeded
+     simplex noise, standing in for the caprock wind that runs the Panhandle
+     turbine fleet. Canvas 2D, no GPU, deterministic per seed.
+     Reference for: noise.js flow fields, canvas compositing, value ladders. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #141020; position: relative; font-family: "Fraunces", serif; }
+  canvas { position: absolute; inset: 0; }
+  /* THE KNOCKOUT PLATE. Type over a flow field is not a contrast problem that a
+     heavier weight fixes: the streamlines run THROUGH the letterforms, so the eye
+     loses the glyph edge no matter how bright it is. A plate removes the art from
+     under the text entirely, and reads as a caption card rather than as a patch. */
+  .cap { position: absolute; left: 72px; width: 690px; bottom: 128px;
+         background: #141020; border: 1px solid rgba(224, 149, 106, 0.34);
+         border-radius: 3px; padding: 48px 52px 52px; }
+  .kicker { font-family: "JetBrains Mono", monospace; font-size: 24px;
+            letter-spacing: 0.14em; color: #E0956A; text-transform: uppercase;
+            margin-bottom: 18px; }
+  h2 { font-weight: 800; font-size: 76px; line-height: 1.02; color: #EDE6D6;
+       letter-spacing: -0.015em; font-variation-settings: "opsz" 96; margin-bottom: 22px; }
+  p { font-family: "Manrope", sans-serif; font-size: 31px; line-height: 1.38;
+      color: rgba(228, 216, 195, 0.88); max-width: 590px; }
+  .counter { position: absolute; right: 72px; top: 72px;
+             font-family: "JetBrains Mono", monospace; font-size: 24px;
+             color: #EDE6D6; background: #141020;
+             padding: 10px 16px; border-radius: 3px; }
+</style>
+</head>
+<body>
+  <canvas id="c"></canvas>
+  <div class="counter">03 / 04</div>
+  <div class="cap">
+    <div class="kicker">Engine proof, slide three of four</div>
+    <h2>Seeded, not random</h2>
+    <p>A flow field of 2,600 streamlines through seeded simplex noise. The same
+       seed draws the same pixels, which is what makes a render reproducible.</p>
+  </div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+  /* THE 2x CONTRACT. The engine renders at deviceScaleFactor 2, so a canvas whose
+     backing store is 1080x1350 gets upscaled and ships soft. The backing store is
+     2x and the CSS box stays 1x; every drawing call below is in CSS pixels. */
+  const SC = 2;
+  const cv = document.getElementById("c");
+  cv.width = 1080 * SC; cv.height = 1350 * SC;
+  cv.style.width = "1080px"; cv.style.height = "1350px";
+  const cx = cv.getContext("2d");
+  cx.scale(SC, SC);
+  TX.reseed(20260812);
+  /* rng(seed) RETURNS a generator; calling TX.rng() bare yields a function, and
+     multiplying a function by a number is NaN. NaN coordinates draw nothing and
+     throw nothing, which is the quietest way a slide can come out blank. */
+  const R = TX.rng(20260812);
+
+  const g = cx.createLinearGradient(0, 0, 0, 1350);
+  g.addColorStop(0, "#141020"); g.addColorStop(0.62, "#1B1830"); g.addColorStop(1, "#252041");
+  cx.fillStyle = g; cx.fillRect(0, 0, 1080, 1350);
+
+  /* Three value groups, near to far. A single weight everywhere is the defect that
+     reads as a hatch rather than as a field: variance is what the eye calls texture. */
+  const bands = [
+    {n: 950,  w: 3.4, a: 0.62, col: "#E0956A", y0: 700, y1: 1360},
+    {n: 1000, w: 2.0, a: 0.44, col: "#C9B393", y0: 300, y1: 1020},
+    {n: 650,  w: 1.1, a: 0.30, col: "#4E5FA8", y0: 40,  y1: 600}
+  ];
+  cx.lineCap = "round";
+  for (const b of bands) {
+    cx.strokeStyle = b.col; cx.globalAlpha = b.a; cx.lineWidth = b.w;
+    for (let i = 0; i < b.n; i++) {
+      let x = R() * 1180 - 50;
+      let y = b.y0 + R() * (b.y1 - b.y0);
+      cx.beginPath(); cx.moveTo(x, y);
+      for (let s = 0; s < 46; s++) {
+        const th = TX.fbm2(x * 0.0013, y * 0.0016, {octaves: 4}) * Math.PI * 2.4;
+        x += Math.cos(th) * 7.5; y += Math.sin(th) * 7.5 - 1.1;
+        if (x < -60 || x > 1140 || y < 0 || y > 1350) break;
+        cx.lineTo(x, y);
+      }
+      cx.stroke();
+    }
+  }
+  cx.globalAlpha = 1;
+  cx.globalCompositeOperation = "overlay";
+  const t = new Image();
+  t.onload = () => {
+    const p = cx.createPattern(t, "repeat");
+    cx.globalAlpha = 0.10; cx.fillStyle = p; cx.fillRect(0, 0, 1080, 1350);
+    cx.globalAlpha = 1; cx.globalCompositeOperation = "source-over";
+    document.body.dataset.ready = "1";
+  };
+  t.src = TX.grainTile(150, 42, 3);
+</script>
+</body>
+</html>

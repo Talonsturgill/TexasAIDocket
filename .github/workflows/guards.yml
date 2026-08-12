@@ -87,6 +87,62 @@ jobs:
               { [ $? -eq 2 ] && echo "ROTTEN items present" && exit 1; }
           fi
 
+      - name: Grid watch collector self-test (hermetic, gates every collection)
+        run: python3 scripts/gridwatch/gridwatch_collect.py --self-test
+
+      - name: Numeral lint self-test (the gate behind "no number is ever typed")
+        run: python3 scripts/site/numeral_lint.py
+
+      - name: Water watch collector self-test (hermetic, gates every collection)
+        run: python3 scripts/gridwatch/waterwatch_collect.py --self-test
+
+      - name: Grid watch page self-test (the numeral gate, and the bar that is never a dial)
+        run: python3 scripts/site/gridwatch_page.py
+
+      - name: Water watch page self-test (one hue per bar, El Paso excluded on purpose)
+        run: python3 scripts/site/waterwatch_page.py
+
+      - name: Grid watch page check self-test
+        run: python3 scripts/gridwatch/gridwatch_pagecheck.py --self-test
+
+      - name: The published grid watch page holds its promises
+        run: |
+          # Advisory by design: exit 2 means the page wants attention, and the grid watch must
+          # never be able to fail a build over presentation. Exit 1 would mean the checker
+          # itself broke, which is a real failure.
+          python3 scripts/gridwatch/gridwatch_pagecheck.py --today 2026-08-11 || {
+            code=$?
+            [ "$code" = 2 ] && echo "::warning::the grid watch page wants attention" && exit 0
+            exit "$code"
+          }
+
+      - name: Caption lint self-test (the house rules, and that they can go red)
+        run: python3 scripts/carousel/caption_check.py --self-test
+
+      - name: Bespoke check self-test (a template scores 1.0, a real deck scores near zero)
+        run: python3 scripts/carousel/bespoke_check.py --self-test
+
+      - name: The demo deck is genuinely bespoke
+        run: |
+          # The engine-proof deck is the reference this gate was fitted against, so it has to
+          # keep passing. If it ever drifts up, either the deck got lazier or the exclusion
+          # list got too generous, and both are worth knowing.
+          python3 scripts/carousel/bespoke_check.py --slides-dir examples/demo-deck/slides
+
+      - name: Gmail draft self-test (drafts only, and the address is a constant)
+        run: python3 scripts/carousel/gmail_draft.py --self-test
+
+      - name: House style self-test (our prose is checked, a quote never is)
+        run: python3 scripts/site/house_style_check.py --self-test
+
+      - name: The published site keeps the house rules
+        run: |
+          # Checked against the built pages, because the copy a reader sees is assembled from
+          # f-strings and ledger fields and exists as a whole sentence nowhere else. Quoted
+          # source text is stripped first: rewriting a quotation to fit house style would be
+          # falsifying it, which is far worse than an inconsistent date.
+          python3 scripts/site/house_style_check.py
+
       - name: Theme self-test (tokens reach the CSS, red stays reserved)
         run: python3 scripts/site/theme.py --self-test
 

@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Texas Grid Watch — Texas AI Docket</title>
+<meta name="description" content="A daily numeric record of how the ERCOT grid is absorbing large constant load. Measured, computed, never estimated.">
+<link rel="canonical" href="https://talonsturgill.github.io/TexasAIDocket/grid/">
+<meta property="og:title" content="Texas Grid Watch — Texas AI Docket">
+<meta property="og:description" content="A daily numeric record of how the ERCOT grid is absorbing large constant load. Measured, computed, never estimated.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://talonsturgill.github.io/TexasAIDocket/grid/">
+<link rel="stylesheet" href="../site.css">
+<link rel="alternate" type="application/atom+xml" title="Texas AI Docket" href="../atom.xml">
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebSite","name":"Texas AI Docket","url":"https://talonsturgill.github.io/TexasAIDocket","publisher":{"@type":"Organization","name":"Texas AI Docket","url":"https://talonsturgill.github.io/TexasAIDocket"}},{"@context":"https://schema.org","@type":"Dataset","name":"Texas Grid Watch","description":"Daily settled ERCOT demand: measured hourly load, ERCOT's day ahead forecast, committed capacity, and generation by fuel. One record per day, append only.","url":"https://talonsturgill.github.io/TexasAIDocket/grid/","license":"https://creativecommons.org/licenses/by/4.0/","creator":{"@type":"Organization","name":"Texas AI Docket"},"distribution":[{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://talonsturgill.github.io/TexasAIDocket/gridwatch.json"}],"isAccessibleForFree":true,"temporalCoverage":"2026-08-10/2026-08-10"}]</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the record</a>
+<header class="masthead">
+  <div class="wrap">
+    <a class="wordmark" href="../"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l2.9 7.5 8 .4-6.2 5.1 2.1 7.8L12 18l-6.8 4.4 2.1-7.8L1.1 9.5l8-.4z"/></svg><span>Texas AI Docket</span></a>
+    <nav class="main" aria-label="Sections"><a href="../">Home</a><a href="../record/">The record</a><a href="../counties/">Counties</a><a href="../grid/" aria-current="page">Grid</a><a href="../water/">Water</a><a href="../data/">Data</a><a href="../about/">About</a></nav>
+  </div>
+</header>
+<main id="main" class="wrap">
+
+<h1>Texas Grid Watch</h1>
+<div class="prose">
+  <p class="lede">A daily numeric record of how the ERCOT grid is absorbing large constant
+  load. This page does not predict, grade, or reassure. It publishes measurements, the
+  arithmetic done on them, and the size of what nobody outside ERCOT can see.</p>
+</div>
+
+<h2>August 10th, 2026</h2>
+<figure class="shape">
+<svg viewBox="0 0 720 260" role="img" class="loadshape"
+     aria-label="Measured ERCOT demand hour by hour, with ERCOT's day ahead forecast.">
+  <line class="g" x1="46.0" x2="712.0" y1="234.0" y2="234.0"/><text class="ax" x="38.0" y="238.0" text-anchor="end">0</text><line class="g" x1="46.0" x2="712.0" y1="179.0" y2="179.0"/><text class="ax" x="38.0" y="183.0" text-anchor="end">25</text><line class="g" x1="46.0" x2="712.0" y1="124.0" y2="124.0"/><text class="ax" x="38.0" y="128.0" text-anchor="end">50</text><line class="g" x1="46.0" x2="712.0" y1="69.0" y2="69.0"/><text class="ax" x="38.0" y="73.0" text-anchor="end">75</text><line class="g" x1="46.0" x2="712.0" y1="14.0" y2="14.0"/><text class="ax" x="38.0" y="18.0" text-anchor="end">100</text>
+  <path class="area" d="M46.0,234.0 L46.0,91.96 L74.96,97.92 L103.91,102.53 L132.87,105.34 L161.83,106.2 L190.78,104.89 L219.74,102.42 L248.7,101.03 L277.65,94.63 L306.61,85.43 L335.57,77.55 L364.52,69.49 L393.48,62.07 L422.43,55.98 L451.39,53.04 L480.35,51.64 L509.3,51.14 L538.26,52.0 L567.22,54.44 L596.17,59.04 L625.13,63.51 L654.09,68.42 L683.04,76.64 L712.0,85.66 L712.0,234.0 Z"/>
+  <path class="line" d="M46.0,91.96 L74.96,97.92 L103.91,102.53 L132.87,105.34 L161.83,106.2 L190.78,104.89 L219.74,102.42 L248.7,101.03 L277.65,94.63 L306.61,85.43 L335.57,77.55 L364.52,69.49 L393.48,62.07 L422.43,55.98 L451.39,53.04 L480.35,51.64 L509.3,51.14 L538.26,52.0 L567.22,54.44 L596.17,59.04 L625.13,63.51 L654.09,68.42 L683.04,76.64 L712.0,85.66"/>
+  <path class="fc" d="M46.0,93.53 L74.96,99.74 L103.91,104.44 L132.87,107.34 L161.83,108.08 L190.78,106.3 L219.74,103.27 L248.7,102.06 L277.65,96.21 L306.61,87.44 L335.57,77.54 L364.52,67.52 L393.48,58.73 L422.43,51.16 L451.39,47.42 L480.35,46.11 L509.3,45.63 L538.26,46.53 L567.22,49.06 L596.17,54.06 L625.13,59.3 L654.09,65.04 L683.04,73.71 L712.0,82.42"/>
+  <text class="ax" x="46.0" y="252.0" text-anchor="middle">midnight</text><text class="ax" x="393.48" y="252.0" text-anchor="middle">noon</text><text class="ax" x="712.0" y="252.0" text-anchor="middle">midnight</text>
+  <text class="ax unit" x="38.0" y="12.0" text-anchor="end">GW</text>
+</svg>
+<figcaption>Measured demand across the day, filled. ERCOT's day ahead forecast, dashed.
+The scale starts at zero, so the flatness is real and not a drawing choice.</figcaption>
+</figure>
+
+<table class="figures">
+<thead><tr><th>Figure</th><th class="n">Value</th><th>What it is</th></tr></thead>
+<tbody>
+<tr><td>Peak demand</td><td class="n num">83.1 GW</td>
+    <td>measured, 4pm to 5pm</td></tr>
+<tr><td>Overnight trough</td><td class="n num">58.1 GW</td>
+    <td>measured, 4am to 5am</td></tr>
+<tr><td>Mean across the day</td><td class="n num">70.9 GW</td>
+    <td>computed from the hourly series</td></tr>
+<tr><td>Load factor</td><td class="n num">85.3%</td>
+    <td>computed, mean over peak</td></tr>
+<tr><td>Energy served</td><td class="n num">1,701,380 MWh</td>
+    <td>computed from the hourly series</td></tr>
+<tr><td>ERCOT day ahead peak forecast</td><td class="n num">85.6 GW</td>
+    <td>modeled by ERCOT, published the day before</td></tr>
+<tr><td>Forecast miss at the peak</td>
+    <td class="n num">2,503 MW</td>
+    <td>computed, ERCOT forecast high</td></tr>
+</tbody>
+</table>
+
+<h2>Demand against committed capacity</h2>
+<div class="bar" role="img"
+     aria-label="Demand at the daily peak reached 74.5 percent of the capacity ERCOT
+     had committed for that hour.">
+  <div class="fill" style="width:74.5%"></div>
+</div>
+<p class="barnote">At the peak hour, demand reached <strong class="num">74.5%</strong>
+of the generation capacity ERCOT had committed for that hour. This bar has one colour at every
+value on purpose. It is a measurement, not a judgement about whether the grid was comfortable,
+and no number on this page can tell you that.</p>
+
+<h2>The load factor, and why it is the number to watch</h2>
+<div class="prose">
+  <p>The load factor is the mean demand across a day divided by that day's peak. On August 10th, 2026 it was
+  <strong class="num">85.3%</strong>.</p>
+  <p>Peak megawatts is a weather story. Texas has broken its own demand record most summers
+  since air conditioning arrived, and a data centre barely shows up in it. The shape is the
+  story. A data centre draws at four in the morning close to what it draws at five in the
+  afternoon, so a grid taking on large constant load sees its overnight floor rise faster than
+  its afternoon ceiling, and the load factor climbs. Weather lifts both ends together.</p>
+  <p>One day can't show that. A year can, which is why the series starts now.</p>
+</div>
+
+<h2>The fingerprint</h2>
+<div class="prose">
+  <div class="gap"><strong>Not yet.</strong> Comparing the trough against the peak needs at
+  least <strong class="num">14</strong> settled days, so that a weekday and weekend pattern has
+  repeated twice. The record holds <strong class="num">1</strong>.
+  Nothing is drawn from fewer, because a line through two points is noise with a slope.</div>
+</div>
+
+<h2>Checking the forecast against what happened</h2>
+<div class="prose">
+  <p>ERCOT publishes a day ahead forecast, then publishes what the grid actually did. Both
+  arrive in the same record, so the gap between them is arithmetic rather than opinion. Across
+  the <strong class="num">1</strong> day held,
+  ERCOT's day ahead peak forecast missed the measured peak by
+  <strong class="num">2,503 MW</strong> on average, which is
+  <strong class="num">3.0%</strong> of peak. The worst miss
+  so far was <strong class="num">2,503 MW</strong>.</p>
+  <p>This is published whichever way it falls. It is a measurement of somebody else's model,
+  not a grade, and it is here because a page that checks its own inputs in public is worth more
+  than one that asserts they are good.</p>
+</div>
+
+<h2>What served the load</h2>
+<table class="figures">
+<thead><tr><th>Fuel</th><th class="n">MWh</th><th class="n">Share</th></tr></thead>
+<tbody><tr><td>Natural Gas</td><td class="n num">708,806</td><td class="n num">41.25</td></tr><tr><td>Wind</td><td class="n num">382,759</td><td class="n num">22.28</td></tr><tr><td>Solar</td><td class="n num">296,960</td><td class="n num">17.28</td></tr><tr><td>Coal and Lignite</td><td class="n num">208,664</td><td class="n num">12.14</td></tr><tr><td>Nuclear</td><td class="n num">119,050</td><td class="n num">6.93</td></tr><tr><td>Other</td><td class="n num">1,201</td><td class="n num">0.07</td></tr><tr><td>Hydro</td><td class="n num">745</td><td class="n num">0.04</td></tr><tr><td>Power Storage</td><td class="n num">-15,002</td><td class="n num">charging</td></tr><tr><td><strong>Gross generation</strong></td><td class="n num"><strong>1,718,185</strong></td><td class="n num">100.00</td></tr><tr><td>Net after storage</td><td class="n num">1,703,184</td><td></td></tr><tr><td>Measured load</td><td class="n num">1,701,380</td><td></td></tr></tbody>
+</table>
+<div class="prose">
+  <p>Generation by fuel, integrated across the day from ERCOT's five minute telemetry. Storage
+  is signed: it is negative on a day the batteries took in more than they gave back, which is
+  most days, because a round trip loses energy. Shares are computed against generation that was
+  positive, so a charging battery is not published as a generator.</p>
+  <p>Two ERCOT feeds are read separately here: one for demand, one for generation by fuel.
+  Everything generated inside the grid is consumed inside it, so net generation and measured
+  load have to land on each other. The two rows above differ by
+  <strong class="num">0.1%</strong>, which is about what direct current ties to
+  the neighbouring grids and line losses should account for. It is the cross check that would
+  catch either reader silently breaking, and it is the reason both rows are printed rather
+  than just the one that flatters.</p>
+</div>
+
+<h2>The size of what is not public</h2>
+<div class="prose">
+  <div class="gap">
+    <p><strong>Nobody outside ERCOT can say what any single data centre drew.</strong> Per site
+    large load metering is confidential. What is public is the system total, which is what this
+    page publishes.</p>
+    <p>So this page can show the shape of Texas demand changing. It can't attribute that change
+    to a named facility, and it does not try. Where an attribution is wanted and can't be
+    computed, the gap is printed instead of an estimate.</p>
+  </div>
+  <p>The record holds <strong class="num">1</strong>
+  day, of which
+  <strong class="num">1</strong>
+  is a complete settled day and
+  <strong class="num">0</strong>
+  are marked unverified. An unverified
+  day carries no numbers at all rather than yesterday's, because a gap that says it is a gap is
+  honest and a gap filled with the last known figure is a fabrication nothing downstream can
+  detect.</p>
+</div>
+
+<h2>How this is collected</h2>
+<div class="prose">
+  <p>Once a day, from ERCOT's public dashboard feeds, the settled previous day is read whole:
+  measured demand hour by hour, the day ahead forecast ERCOT published for those hours, the
+  capacity it had committed, and generation by fuel. The raw responses are archived before
+  anything parses them.</p>
+  <p>The record stores the full hourly series, not only the summary, so every figure on this
+  page can be recomputed from <a href="../gridwatch.json">the open data</a> without refetching
+  anything and without trusting the code that wrote it.</p>
+  <p>ERCOT keeps no archive of these feeds. Each is a rolling window. A day not collected is
+  gone for good, which is why the collector runs on its own schedule and is never a step inside
+  a routine that could fail for an unrelated reason.</p>
+</div>
+
+</main>
+<footer class="site">
+  <div class="wrap prose">
+    <p><strong>Every numeral on this site is produced by code, from data, and can be recomputed
+    from the same inputs.</strong> No number here is typed by a person. Where something can't be
+    measured, the size of the gap is published instead of an estimate.</p>
+    <p>Every fact carries a quote from the source it came from, and a link to that source.
+    The record is <a href="../docket.json">open data</a>.</p>
+    <p class="num">Rebuilt August 11th, 2026.</p>
+  </div>
+</footer>
+</body>
+</html>

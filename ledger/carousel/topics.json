@@ -1,0 +1,11 @@
+{
+  "_spec": {
+    "version": 1,
+    "purpose": "The dedupe ledger. No topic repeats within 30 days.",
+    "why": "A daily record that returns to the same story every week stops being a record and becomes a feed. The window is enforced in code, not remembered, because the run that most wants to repeat a topic is the run that found nothing else.",
+    "law": "No other product's ledger memory is ever copied in here. The dedupe gate compares against recent history, and a sibling product's history would poison it.",
+    "written_by": "carousel"
+  },
+  "window_days": 30,
+  "entries": []
+}

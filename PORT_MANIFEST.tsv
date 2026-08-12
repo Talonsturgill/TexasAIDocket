@@ -9,11 +9,11 @@ alaskaaicarousels	.claude/agents/scorer.md	1686	36	0	PORT_RETHEMED	.claude/agent
 alaskaaicarousels	.claude/agents/scout.md	2144	44	7	PORT_RETHEMED	.claude/agents/carousel-scout.md	TODO	namespaced: both Alaska repos ship a scorer and a flow-critic
 alaskaaicarousels	.claude/agents/treatment-director.md	2223	37	2	PORT_RETHEMED	.claude/agents/carousel-treatment-director.md	TODO	namespaced: both Alaska repos ship a scorer and a flow-critic
 alaskaaicarousels	.claude/agents/upgrade-engineer.md	4889	81	0	PORT_RETHEMED	.claude/agents/carousel-upgrade-engineer.md	TODO	namespaced: both Alaska repos ship a scorer and a flow-critic
-alaskaaicarousels	.claude/skills/carousel-engine/SKILL.md	24638	383	30	PORT_RETHEMED	.claude/skills/carousel-engine/SKILL.md	TODO	
-alaskaaicarousels	.claude/skills/carousel-engine/assemble.py	8738	215	3	PORT_RETHEMED	.claude/skills/carousel-engine/assemble.py	TODO	
-alaskaaicarousels	.claude/skills/carousel-engine/bootstrap.sh	2160	50	0	PORT_RETHEMED	.claude/skills/carousel-engine/bootstrap.sh	TODO	
-alaskaaicarousels	.claude/skills/carousel-engine/qa.py	62968	1184	5	PORT_RETHEMED	.claude/skills/carousel-engine/qa.py	TODO	
-alaskaaicarousels	.claude/skills/carousel-engine/render.py	40485	841	5	PORT_RETHEMED	.claude/skills/carousel-engine/render.py	TODO	
+alaskaaicarousels	.claude/skills/carousel-engine/SKILL.md	24638	383	30	PORT_RETHEMED	.claude/skills/carousel-engine/SKILL.md	DONE	
+alaskaaicarousels	.claude/skills/carousel-engine/assemble.py	8738	215	3	PORT_RETHEMED	.claude/skills/carousel-engine/assemble.py	DONE	
+alaskaaicarousels	.claude/skills/carousel-engine/bootstrap.sh	2160	50	0	PORT_RETHEMED	.claude/skills/carousel-engine/bootstrap.sh	DONE	
+alaskaaicarousels	.claude/skills/carousel-engine/qa.py	62968	1184	5	PORT_RETHEMED	.claude/skills/carousel-engine/qa.py	DONE	
+alaskaaicarousels	.claude/skills/carousel-engine/render.py	40485	841	5	PORT_RETHEMED	.claude/skills/carousel-engine/render.py	DONE	
 alaskaaicarousels	.github/workflows/ask.yml	4334	102	1	PORT_RETHEMED	.github/workflows/ask.yml	TODO	
 alaskaaicarousels	.github/workflows/beacon.yml	2382	63	0	PORT_RETHEMED	.github/workflows/beacon.yml	TODO	
 alaskaaicarousels	.github/workflows/broadband-pipeline.yml	2469	67	2	PORT_RETHEMED	.github/workflows/broadband-pipeline.yml	TODO	
@@ -28,19 +28,19 @@ alaskaaicarousels	.gitignore	48	5	0	PORT_VERBATIM	.gitignore	TODO
 alaskaaicarousels	CLAUDE.md	12178	209	19	REBUILD	CLAUDE.md	TODO	written fresh for the Texas repo topology
 alaskaaicarousels	LICENSE	1062	21	0	PORT_VERBATIM	LICENSE	TODO	
 alaskaaicarousels	README.md	5453	109	10	REBUILD	README.md	TODO	written fresh for the Texas repo topology
-alaskaaicarousels	assets/fonts/Archivo-Var.ttf	658596	0	0	PORT_VERBATIM	assets/fonts/Archivo-Var.ttf	TODO	
-alaskaaicarousels	assets/fonts/BricolageGrotesque-Var.ttf	408496	0	0	PORT_VERBATIM	assets/fonts/BricolageGrotesque-Var.ttf	TODO	
-alaskaaicarousels	assets/fonts/Fraunces-Italic-Var.ttf	414904	0	0	PORT_VERBATIM	assets/fonts/Fraunces-Italic-Var.ttf	TODO	
-alaskaaicarousels	assets/fonts/Fraunces-Var.ttf	360440	0	0	PORT_VERBATIM	assets/fonts/Fraunces-Var.ttf	TODO	
-alaskaaicarousels	assets/fonts/InstrumentSerif-Italic.ttf	71592	0	0	PORT_VERBATIM	assets/fonts/InstrumentSerif-Italic.ttf	TODO	
-alaskaaicarousels	assets/fonts/InstrumentSerif-Regular.ttf	70012	0	0	PORT_VERBATIM	assets/fonts/InstrumentSerif-Regular.ttf	TODO	
-alaskaaicarousels	assets/fonts/JetBrainsMono-Bold.ttf	274096	0	0	PORT_VERBATIM	assets/fonts/JetBrainsMono-Bold.ttf	TODO	
-alaskaaicarousels	assets/fonts/JetBrainsMono-Medium.ttf	270316	0	0	PORT_VERBATIM	assets/fonts/JetBrainsMono-Medium.ttf	TODO	
-alaskaaicarousels	assets/fonts/JetBrainsMono-Regular.ttf	270224	0	0	PORT_VERBATIM	assets/fonts/JetBrainsMono-Regular.ttf	TODO	
-alaskaaicarousels	assets/fonts/Manrope-Var.ttf	165420	0	0	PORT_VERBATIM	assets/fonts/Manrope-Var.ttf	TODO	
-alaskaaicarousels	assets/fonts/SpaceGrotesk-Var.ttf	136676	0	0	PORT_VERBATIM	assets/fonts/SpaceGrotesk-Var.ttf	TODO	
-alaskaaicarousels	assets/fonts/Unbounded-Var.ttf	778272	0	0	PORT_VERBATIM	assets/fonts/Unbounded-Var.ttf	TODO	
-alaskaaicarousels	assets/fonts/fonts.css	2725	81	1	PORT_VERBATIM	assets/fonts/fonts.css	TODO	
+alaskaaicarousels	assets/fonts/Archivo-Var.ttf	658596	0	0	PORT_VERBATIM	assets/fonts/Archivo-Var.ttf	DONE	
+alaskaaicarousels	assets/fonts/BricolageGrotesque-Var.ttf	408496	0	0	PORT_VERBATIM	assets/fonts/BricolageGrotesque-Var.ttf	DONE	
+alaskaaicarousels	assets/fonts/Fraunces-Italic-Var.ttf	414904	0	0	PORT_VERBATIM	assets/fonts/Fraunces-Italic-Var.ttf	DONE	
+alaskaaicarousels	assets/fonts/Fraunces-Var.ttf	360440	0	0	PORT_VERBATIM	assets/fonts/Fraunces-Var.ttf	DONE	
+alaskaaicarousels	assets/fonts/InstrumentSerif-Italic.ttf	71592	0	0	PORT_VERBATIM	assets/fonts/InstrumentSerif-Italic.ttf	DONE	
+alaskaaicarousels	assets/fonts/InstrumentSerif-Regular.ttf	70012	0	0	PORT_VERBATIM	assets/fonts/InstrumentSerif-Regular.ttf	DONE	
+alaskaaicarousels	assets/fonts/JetBrainsMono-Bold.ttf	274096	0	0	PORT_VERBATIM	assets/fonts/JetBrainsMono-Bold.ttf	DONE	
+alaskaaicarousels	assets/fonts/JetBrainsMono-Medium.ttf	270316	0	0	PORT_VERBATIM	assets/fonts/JetBrainsMono-Medium.ttf	DONE	
+alaskaaicarousels	assets/fonts/JetBrainsMono-Regular.ttf	270224	0	0	PORT_VERBATIM	assets/fonts/JetBrainsMono-Regular.ttf	DONE	
+alaskaaicarousels	assets/fonts/Manrope-Var.ttf	165420	0	0	PORT_VERBATIM	assets/fonts/Manrope-Var.ttf	DONE	
+alaskaaicarousels	assets/fonts/SpaceGrotesk-Var.ttf	136676	0	0	PORT_VERBATIM	assets/fonts/SpaceGrotesk-Var.ttf	DONE	
+alaskaaicarousels	assets/fonts/Unbounded-Var.ttf	778272	0	0	PORT_VERBATIM	assets/fonts/Unbounded-Var.ttf	DONE	
+alaskaaicarousels	assets/fonts/fonts.css	2725	81	1	PORT_VERBATIM	assets/fonts/fonts.css	DONE	
 alaskaaicarousels	assets/geo/ak-generation-20mw.geo.json	2952	1	6	REBUILD	assets/geo/ak-generation-20mw.geo.json	TODO	Alaska geodata; Texas needs its own counties, zones and gazetteer
 alaskaaicarousels	assets/geo/ak-taps.geo.json	4113	1	7	REBUILD	assets/geo/ak-taps.geo.json	TODO	Alaska geodata; Texas needs its own counties, zones and gazetteer
 alaskaaicarousels	assets/geo/ak-transmission-69kv.geo.json	8436	1	4	REBUILD	assets/geo/ak-transmission-69kv.geo.json	TODO	Alaska geodata; Texas needs its own counties, zones and gazetteer
@@ -49,23 +49,23 @@ alaskaaicarousels	assets/geo/alaska-places.json	8705	497	32	REBUILD	assets/geo/a
 alaskaaicarousels	assets/geo/alaska-state.geo.json	766667	1	1	REBUILD	assets/geo/alaska-state.geo.json	TODO	Alaska geodata; Texas needs its own counties, zones and gazetteer
 alaskaaicarousels	assets/geo/us-states-10m.json	114554	1	1	REBUILD	assets/geo/us-states-10m.json	TODO	Alaska geodata; Texas needs its own counties, zones and gazetteer
 alaskaaicarousels	assets/geo/world-land-110m.json	55207	1	0	REBUILD	assets/geo/world-land-110m.json	TODO	Alaska geodata; Texas needs its own counties, zones and gazetteer
-alaskaaicarousels	assets/js/ak3d.js	10128	243	1	PORT_VERBATIM	assets/js/ak3d.js	TODO	
-alaskaaicarousels	assets/js/akcolor.js	7821	164	0	PORT_VERBATIM	assets/js/akcolor.js	TODO	
-alaskaaicarousels	assets/js/akengrave.js	19531	459	1	PORT_VERBATIM	assets/js/akengrave.js	TODO	
-alaskaaicarousels	assets/js/akgeo.js	2804	60	13	PORT_RETHEMED	assets/js/txgeo.js	TODO	encodes the Alaska conic fit; Texas needs its own projection recipe
-alaskaaicarousels	assets/js/akhachure.js	14130	320	6	PORT_VERBATIM	assets/js/akhachure.js	TODO	
-alaskaaicarousels	assets/js/aklabel.js	6357	147	10	PORT_VERBATIM	assets/js/aklabel.js	TODO	
-alaskaaicarousels	assets/js/akpost.js	16105	356	2	PORT_VERBATIM	assets/js/akpost.js	TODO	
-alaskaaicarousels	assets/js/akrelief.js	11345	236	16	PORT_VERBATIM	assets/js/akrelief.js	TODO	
-alaskaaicarousels	assets/js/aksdf.js	11727	265	0	PORT_VERBATIM	assets/js/aksdf.js	TODO	
-alaskaaicarousels	assets/js/aksnow.js	14531	320	7	PORT_VERBATIM	assets/js/aksnow.js	TODO	
-alaskaaicarousels	assets/js/akthree.js	18227	343	5	PORT_VERBATIM	assets/js/akthree.js	TODO	
-alaskaaicarousels	assets/js/aktype.js	13523	282	18	PORT_VERBATIM	assets/js/aktype.js	TODO	
-alaskaaicarousels	assets/js/d3.v7.min.js	279706	2	8	PORT_VERBATIM	assets/js/d3.v7.min.js	TODO	
-alaskaaicarousels	assets/js/noise.js	7084	190	6	PORT_VERBATIM	assets/js/noise.js	TODO	
-alaskaaicarousels	assets/js/three.module.min.js	691648	6	3	PORT_VERBATIM	assets/js/three.module.min.js	TODO	
-alaskaaicarousels	assets/js/topojson-client.min.js	7169	2	0	PORT_VERBATIM	assets/js/topojson-client.min.js	TODO	
-alaskaaicarousels	assets/js/zdog.min.js	29737	8	0	PORT_VERBATIM	assets/js/zdog.min.js	TODO	
+alaskaaicarousels	assets/js/ak3d.js	10128	243	1	PORT_VERBATIM	assets/js/tx3d.js	DONE	
+alaskaaicarousels	assets/js/akcolor.js	7821	164	0	PORT_VERBATIM	assets/js/txcolor.js	DONE	
+alaskaaicarousels	assets/js/akengrave.js	19531	459	1	PORT_VERBATIM	assets/js/txengrave.js	DONE	
+alaskaaicarousels	assets/js/akgeo.js	2804	60	13	PORT_RETHEMED	assets/js/txgeo.js	DONE	encodes the Alaska conic fit; Texas needs its own projection recipe
+alaskaaicarousels	assets/js/akhachure.js	14130	320	6	PORT_VERBATIM	assets/js/txhachure.js	DONE	
+alaskaaicarousels	assets/js/aklabel.js	6357	147	10	PORT_VERBATIM	assets/js/txlabel.js	DONE	
+alaskaaicarousels	assets/js/akpost.js	16105	356	2	PORT_VERBATIM	assets/js/txpost.js	DONE	
+alaskaaicarousels	assets/js/akrelief.js	11345	236	16	PORT_VERBATIM	assets/js/txrelief.js	DONE	
+alaskaaicarousels	assets/js/aksdf.js	11727	265	0	PORT_VERBATIM	assets/js/txsdf.js	DONE	
+alaskaaicarousels	assets/js/aksnow.js	14531	320	7	PORT_VERBATIM	assets/js/txcarve.js	DONE	
+alaskaaicarousels	assets/js/akthree.js	18227	343	5	PORT_VERBATIM	assets/js/txthree.js	DONE	
+alaskaaicarousels	assets/js/aktype.js	13523	282	18	PORT_VERBATIM	assets/js/txtype.js	DONE	
+alaskaaicarousels	assets/js/d3.v7.min.js	279706	2	8	PORT_VERBATIM	assets/js/d3.v7.min.js	DONE	
+alaskaaicarousels	assets/js/noise.js	7084	190	6	PORT_VERBATIM	assets/js/noise.js	DONE	
+alaskaaicarousels	assets/js/three.module.min.js	691648	6	3	PORT_VERBATIM	assets/js/three.module.min.js	DONE	
+alaskaaicarousels	assets/js/topojson-client.min.js	7169	2	0	PORT_VERBATIM	assets/js/topojson-client.min.js	DONE	
+alaskaaicarousels	assets/js/zdog.min.js	29737	8	0	PORT_VERBATIM	assets/js/zdog.min.js	DONE	
 alaskaaicarousels	config/brand.yaml	11102	188	20	PORT_RETHEMED	config/brand.yaml	TODO	
 alaskaaicarousels	config/gaswatch_hdd_history.json	13474	1	3	REBUILD	config/gridwatch/_hdd_history.json	TODO	Cook Inlet gas model has no Texas analogue; ERCOT publishes its own forecast
 alaskaaicarousels	config/gaswatch_model.json	9174	147	21	REBUILD	config/gridwatch/_model.json	TODO	Cook Inlet gas model has no Texas analogue; ERCOT publishes its own forecast
@@ -136,10 +136,10 @@ alaskaaicarousels	docs/topics/research-and-science/index.html	42663	145	100	DROP
 alaskaaicarousels	docs/topics/state-policy/index.html	53473	175	175	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
 alaskaaicarousels	docs/videos/index.html	19292	400	12	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
 alaskaaicarousels	docs/videos/videos.json	28849	381	197	DROP		DROPPED	generated site output; Texas regenerates from its own ledgers
-alaskaaicarousels	examples/demo-deck/slides/slide-01.html	5849	122	8	REBUILD	examples/demo-deck/slides/slide-01.html	TODO	engine-proof decks are written fresh against Texas art
-alaskaaicarousels	examples/demo-deck/slides/slide-02.html	5295	112	16	REBUILD	examples/demo-deck/slides/slide-02.html	TODO	engine-proof decks are written fresh against Texas art
-alaskaaicarousels	examples/demo-deck/slides/slide-03.html	4549	114	3	REBUILD	examples/demo-deck/slides/slide-03.html	TODO	engine-proof decks are written fresh against Texas art
-alaskaaicarousels	examples/demo-deck/slides/slide-04.html	4802	116	4	REBUILD	examples/demo-deck/slides/slide-04.html	TODO	engine-proof decks are written fresh against Texas art
+alaskaaicarousels	examples/demo-deck/slides/slide-01.html	5849	122	8	REBUILD	examples/demo-deck/slides/slide-01.html	DONE	engine-proof decks are written fresh against Texas art
+alaskaaicarousels	examples/demo-deck/slides/slide-02.html	5295	112	16	REBUILD	examples/demo-deck/slides/slide-02.html	DONE	engine-proof decks are written fresh against Texas art
+alaskaaicarousels	examples/demo-deck/slides/slide-03.html	4549	114	3	REBUILD	examples/demo-deck/slides/slide-03.html	DONE	engine-proof decks are written fresh against Texas art
+alaskaaicarousels	examples/demo-deck/slides/slide-04.html	4802	116	4	REBUILD	examples/demo-deck/slides/slide-04.html	DONE	engine-proof decks are written fresh against Texas art
 alaskaaicarousels	examples/proof-3d/slides/slide-01.html	2863	44	1	REBUILD	examples/proof-3d/slides/slide-01.html	TODO	engine-proof decks are written fresh against Texas art
 alaskaaicarousels	examples/proof-3d/slides/slide-02.html	3185	57	0	REBUILD	examples/proof-3d/slides/slide-02.html	TODO	engine-proof decks are written fresh against Texas art
 alaskaaicarousels	examples/proof-3d/slides/slide-03.html	5158	81	4	REBUILD	examples/proof-3d/slides/slide-03.html	TODO	engine-proof decks are written fresh against Texas art

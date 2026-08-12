@@ -1,0 +1,95 @@
+# The rubric the scorer grades every deck against.
+#
+# WHY THE WEIGHTS LOOK LIKE THIS. Craft carries the most weight because craft is what a reader
+# actually experiences and it is the criterion a machine most reliably lets slide: nothing
+# breaks when a deck is merely competent, no gate fires, and the score drifts down a tenth at a
+# time until the product is boring and nobody can point at the run where that happened.
+#
+# The hard fails are not weighted at all. They are conditions, and any one of them makes the
+# deck unshippable whatever the weighted score says, because each one is a promise this product
+# has made in public.
+
+version: 1
+threshold: 7.0          # below this the deck does not ship
+scale: "0 to 10, where 7 is acceptable and 9 is the best thing shipped this month"
+
+criteria:
+  - name: artwork_craft
+    weight: 0.28
+    asks: >
+      Is the art genuinely made, or assembled? Does each frame have a real light and a real
+      dark rather than one mid band? Is the detail budgeted per region rather than spread
+      evenly? Would a designer look at this and want to know how it was drawn?
+    scoring:
+      9: "A frame a reader would screenshot. The technique serves the claim and could not be swapped out."
+      7: "Competent and consistent. Nothing wrong with it, nothing memorable in it."
+      5: "One drawing with different arguments, or a template with the story poured in."
+      3: "Decoration that would fit any story."
+
+  - name: claim_integrity
+    weight: 0.20
+    asks: >
+      Does every fact trace to a verified claim, and every numeral to a claim or a computation?
+      Is anything asserted that a fetched page does not support?
+    scoring:
+      9: "Every figure traceable, every source primary where a primary exists."
+      7: "Traceable throughout, some reliance on journalism where a filing existed."
+      5: "A claim that stretches its source."
+
+  - name: story_and_stakes
+    weight: 0.18
+    asks: >
+      Does a Texan reading this understand what happened, who decided it, where, and whether
+      they can still act on it? Is the stake concrete rather than abstract?
+    scoring:
+      9: "Names the county, the body and the deadline. A reader knows what to do next."
+      7: "Clear and accurate, stakes stated generally."
+      5: "A topic rather than a story."
+
+  - name: sequence_and_momentum
+    weight: 0.12
+    asks: >
+      Does the deck move? Is there a turn, a place where understanding changes? Does the cover
+      earn a swipe and the close land?
+    scoring:
+      9: "Builds, turns, lands. Nothing cuttable."
+      7: "Reads well in order."
+      5: "Nine slides in a row."
+
+  - name: voice
+    weight: 0.12
+    asks: >
+      Does this sound like a person from Texas wrote it? Texas First without boosterism, honest
+      about costs without doom. Regional specificity over state-level abstraction.
+    scoring:
+      9: "Nobody would guess a machine wrote it."
+      7: "Clean, on register, a little flat."
+      5: "Reads like a press release, or like an outsider describing Texas."
+
+  - name: variety
+    weight: 0.10
+    asks: >
+      Is this distinct from recent decks in technique, palette, structure and opening move?
+    scoring:
+      9: "Shares nothing with the last fortnight but the wordmark."
+      7: "Distinct, with one familiar move."
+      5: "Recognisably last week with a new subject."
+
+# ANY ONE OF THESE AND THE DECK DOES NOT SHIP, whatever the weighted score says.
+hard_fails:
+  - "a numeral on a slide or in the caption that traces to no claim and no computation"
+  - "a machine QA failure in the render report"
+  - "a caption_check violation"
+  - "a bespoke_check failure: the deck is one drawing repeated"
+  - "a topic repeated inside the 30 day window"
+  - "an unverified fact presented as verified"
+  - "a placeholder, a lorem, or an unfinished frame"
+  - "a source cited that was never fetched"
+
+honesty:
+  rule: >
+    Do not round up. Not to reach the threshold, not because the run worked hard, not because
+    the story is good. A 6.94 is a 6.94 and the email says so.
+  why: >
+    The score exists to tell the maintainer what actually shipped. A score that flatters is
+    worse than no score, because it is a measurement nobody can use and everybody believes.

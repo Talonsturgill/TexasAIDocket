@@ -1,0 +1,104 @@
+<!doctype html>
+<!-- DEMO SLIDE 2 — "The Map": d3 cartography through TXGeo, the same Albers
+     equal-area conic the website uses, so a slide and the site agree about where
+     places are. Counties as a mesh (shared borders stroke once), the state as
+     one merged outline, three sites marked from the gazetteer.
+     Reference for: d3 + topojson, TXGeo projection, knockout labels. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #141020; position: relative; font-family: "Fraunces", serif; }
+  .field { position: absolute; inset: 0;
+           background: radial-gradient(120% 90% at 50% 34%, #252041 0%, #141020 72%); }
+  svg.map { position: absolute; inset: 0; }
+  .hd { position: absolute; top: 92px; left: 96px; right: 96px; }
+  .kicker { font-family: "JetBrains Mono", monospace; font-size: 24px;
+            letter-spacing: 0.14em; color: #E0956A; text-transform: uppercase;
+            margin-bottom: 20px; }
+  h2 { font-weight: 800; font-size: 92px; line-height: 1.0; letter-spacing: -0.015em;
+       color: #EDE6D6; font-variation-settings: "opsz" 96; }
+  .legend { position: absolute; left: 96px; bottom: 108px;
+            font-family: "Manrope", sans-serif; font-size: 30px; line-height: 1.5;
+            color: rgba(228, 216, 195, 0.86); }
+  .legend b { color: #E0956A; font-weight: 700; }
+  .counter { position: absolute; right: 96px; bottom: 108px;
+             font-family: "JetBrains Mono", monospace; font-size: 24px;
+             color: rgba(237, 230, 214, 0.55); }
+</style>
+</head>
+<body>
+  <div class="field"></div>
+  <svg class="map" id="map" width="1080" height="1350" viewBox="0 0 1080 1350"></svg>
+
+  <div class="hd">
+    <div class="kicker">Engine proof, slide two of four</div>
+    <h2>254 counties,<br>one projection</h2>
+  </div>
+  <div class="legend">Albers equal-area conic<br><b>27.6 N / 35.0 N standard parallels</b></div>
+  <div class="counter">02 / 04</div>
+
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script src="@@ASSETS@@/js/topojson-client.min.js"></script>
+<script src="@@ASSETS@@/js/txgeo.js"></script>
+<script>
+(async function () {
+  const topo = await (await fetch("@@ASSETS@@/geo/tx-counties.topo.json")).json();
+  const state = TXGeo.outline(topo);
+  const svg = d3.select("#map");
+
+  /* Fit the FULL state, never a small bbox: fitExtent on a small lon/lat polygon
+     distorts a conic fit into a giant disc without erroring. */
+  const proj = TXGeo.texasProjection(state, [[64, 300], [1016, 1128]]);
+  const path = d3.geoPath(proj);
+
+  svg.append("path").attr("d", path(state))
+     .attr("fill", "#221B38").attr("stroke", "#E0956A").attr("stroke-width", 2.6);
+
+  /* Interior borders as ONE mesh path. Drawn per county, every shared edge would
+     be stroked twice and read as a doubled, muddy line. */
+  svg.append("path").attr("d", path(TXGeo.borders(topo)))
+     .attr("fill", "none").attr("stroke", "#5B4470").attr("stroke-width", 1.0);
+
+  const marks = [["Abilene", "Stargate"], ["Odessa", "Permian"], ["Childress", "Flare gas"]];
+  const g = svg.append("g");
+  for (const [place, label] of marks) {
+    const [x, y] = proj(TXGeo.place(place));
+    g.append("circle").attr("cx", x).attr("cy", y).attr("r", 9)
+      .attr("fill", "#E0956A").attr("stroke", "#141020").attr("stroke-width", 3);
+    g.append("text").attr("x", x + 18).attr("y", y + 8)
+      .attr("font-family", "JetBrains Mono, monospace").attr("font-size", 25)
+      .attr("fill", "#E4D8C3").text(label);
+  }
+  /* ANNOTATION FURNITURE IN THE LOWER THIRD. The machine gate reads a slide as three
+     horizontal bands and objects when the bottom one is empty, which it was: a map
+     floating over a blank strip. A measured scale bar is honest furniture rather than
+     decoration. It sits in the RIGHT half because the projection legend already owns the
+     left, and two blocks sharing one baseline is a collision the gate reads as overprint. */
+  const RIGHT = 984, fy = 1168;
+  const a = proj(TXGeo.place("El Paso")), b2 = proj(TXGeo.place("Abilene"));
+  const px = Math.hypot(b2[0] - a[0], b2[1] - a[1]);   // El Paso to Abilene on this fit
+  const segs = 4;
+  const x0 = RIGHT - px;
+  const scale = svg.append("g").attr("font-family", "JetBrains Mono, monospace");
+  scale.append("line").attr("x1", x0).attr("x2", RIGHT).attr("y1", fy).attr("y2", fy)
+       .attr("stroke", "#E0956A").attr("stroke-width", 2);
+  for (let i = 0; i <= segs; i++) {
+    const x = x0 + (px / segs) * i;
+    scale.append("line").attr("x1", x).attr("x2", x).attr("y1", fy - 11).attr("y2", fy + 5)
+         .attr("stroke", "#E0956A").attr("stroke-width", 2);
+  }
+  /* The label goes ABOVE the bar. Below it, it lands in the same baseline band as the
+     slide counter in the corner, and the gate reads two boxes sharing a band as overprint
+     whether or not the glyphs actually touch. */
+  scale.append("text").attr("x", RIGHT).attr("y", fy - 22).attr("font-size", 26)
+       .attr("text-anchor", "end").attr("fill", "rgba(228,216,195,0.78)")
+       .text("560 km, El Paso to Abilene");
+  document.body.dataset.ready = "1";
+})();
+</script>
+</body>
+</html>

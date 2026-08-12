@@ -40,7 +40,9 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import docket_build as dk                                          # noqa: E402
+import gridwatch_page                                              # noqa: E402
 import texas_map                                                   # noqa: E402
+import waterwatch_page                                             # noqa: E402
 import theme                                                       # noqa: E402
 
 LEDGER = REPO_ROOT / "ledger" / "docket.json"
@@ -56,7 +58,7 @@ STAR = ('<svg class="star" viewBox="0 0 24 24" aria-hidden="true">'
         '</svg>')
 
 NAV = [("", "Home"), ("record/", "The record"), ("counties/", "Counties"),
-       ("data/", "Data"), ("about/", "About")]
+       ("grid/", "Grid"), ("water/", "Water"), ("data/", "Data"), ("about/", "About")]
 
 
 def e(s) -> str:
@@ -118,7 +120,7 @@ def page(*, title: str, desc: str, body: str, depth: int, active: str,
 <footer class="site">
   <div class="wrap prose">
     <p><strong>Every numeral on this site is produced by code, from data, and can be recomputed
-    from the same inputs.</strong> No number here is typed by a person. Where something cannot be
+    from the same inputs.</strong> No number here is typed by a person. Where something can't be
     measured, the size of the gap is published instead of an estimate.</p>
     <p>Every fact carries a quote from the source it came from, and a link to that source.
     The record is <a href="{p}docket.json">open data</a>.</p>
@@ -400,6 +402,83 @@ def data_page(items: list, today: str) -> str:
                 body=body, today=today, canonical="data/")
 
 
+def grid_page(today: str) -> str:
+    """The Texas Grid Watch. A sibling of the docket, not a child of it.
+
+    The docket tracks discrete decisions on a scale of months. This tracks the physical system
+    on a scale of days. They share a masthead and nothing else: grid readings never enter
+    docket.json, because that schema is decision centric and a time series does not fit it.
+
+    THE NUMERAL GATE RUNS HERE, AT BUILD TIME, and raises rather than warns. Every figure in
+    this page's copy must trace to something gridwatch_page computed from the record. A page
+    that fails is not published, which is the only version of that promise worth making.
+    """
+    recs = gridwatch_page.load()
+    body = gridwatch_page.body(recs, today)
+    stray = gridwatch_page.lint(body, gridwatch_page.figures(recs))
+    if stray:
+        raise SystemExit(
+            "site_build: the grid watch page carries numerals that trace to no computation: "
+            + ", ".join(stray[:12]))
+    return page(title=f"Texas Grid Watch — {SITE_NAME}", depth=1, active="grid/",
+                desc="A daily numeric record of how the ERCOT grid is absorbing large "
+                     "constant load. Measured, computed, never estimated.",
+                body=body, today=today, canonical="grid/",
+                extra_ld=[{
+                    "@context": "https://schema.org", "@type": "Dataset",
+                    "name": "Texas Grid Watch",
+                    "description": "Daily settled ERCOT demand: measured hourly load, ERCOT's "
+                                   "day ahead forecast, committed capacity, and generation by "
+                                   "fuel. One record per day, append only.",
+                    "url": f"{SITE_URL}/grid/",
+                    "license": "https://creativecommons.org/licenses/by/4.0/",
+                    "creator": {"@type": "Organization", "name": SITE_NAME},
+                    "distribution": [{"@type": "DataDownload",
+                                      "encodingFormat": "application/json",
+                                      "contentUrl": f"{SITE_URL}/gridwatch.json"}],
+                    "isAccessibleForFree": True,
+                    "temporalCoverage": (f'{recs[0]["date"]}/{recs[-1]["date"]}'
+                                         if recs else today),
+                }])
+
+
+def water_page(today: str) -> str:
+    """The Texas Water Watch. The grid watch's sibling, and the other half of the account.
+
+    Same numeral gate, same refusal to publish a verdict, same build time raise. A data centre
+    draws on electricity and on water, and a site that tracked only the first would be telling
+    half of the story it claims to keep.
+    """
+    recs = waterwatch_page.load()
+    body = waterwatch_page.body(recs, today)
+    stray = waterwatch_page.lint(body, waterwatch_page.figures(recs))
+    if stray:
+        raise SystemExit(
+            "site_build: the water watch page carries numerals that trace to no computation: "
+            + ", ".join(stray[:12]))
+    return page(title=f"Texas Water Watch — {SITE_NAME}", depth=1, active="water/",
+                desc="Water held in Texas reservoirs, by metro, measured daily. The Permian "
+                     "metros nearest the new load hold the least.",
+                body=body, today=today, canonical="water/",
+                extra_ld=[{
+                    "@context": "https://schema.org", "@type": "Dataset",
+                    "name": "Texas Water Watch",
+                    "description": "Daily conservation storage for every monitored Texas "
+                                   "reservoir, rolled up statewide and by metro. Out of state "
+                                   "reservoirs and flood control dams are excluded and the "
+                                   "exclusions are recorded.",
+                    "url": f"{SITE_URL}/water/",
+                    "license": "https://creativecommons.org/licenses/by/4.0/",
+                    "creator": {"@type": "Organization", "name": SITE_NAME},
+                    "distribution": [{"@type": "DataDownload",
+                                      "encodingFormat": "application/json",
+                                      "contentUrl": f"{SITE_URL}/waterwatch.json"}],
+                    "isAccessibleForFree": True,
+                    "temporalCoverage": (f'{recs[0]["date"]}/{recs[-1]["date"]}'
+                                         if recs else today),
+                }])
+
+
 def about_page(today: str) -> str:
     body = """
 <h1>About</h1>
@@ -411,9 +490,9 @@ def about_page(today: str) -> str:
   <p>Every numeral published here is produced by code, from data, and can be recomputed from the
   same inputs. No number is typed by a person. This is the reason to believe a figure here over a
   figure somewhere else, and it is enforced by a build gate rather than by good intentions: a
-  numeral that cannot be traced to a quoted source or to a computation fails the build.</p>
+  numeral that can't be traced to a quoted source or to a computation fails the build.</p>
 
-  <h2>Where we cannot measure, we say so</h2>
+  <h2>Where measurement stops, the page says so</h2>
   <p>Some things are genuinely not public. Per-site large load metering is confidential. Roughly
   half the data centres planned in Texas sit in unincorporated land with no zoning file. Where
   that is true this record publishes the size of the gap rather than an estimate dressed as a
@@ -587,6 +666,23 @@ def build(out: Path, today: str) -> dict:
     for t in sorted({i["topic"] for i in items}):
         w(f"topic/{t}/index.html", topic_page(t, items, today))
     w("counties/index.html", counties_page(items, today))
+    w("grid/index.html", grid_page(today))
+    # The grid watch as open data, in the same shape the page was built from. A reader who
+    # doubts a figure here can recompute it without refetching anything from ERCOT.
+    w("gridwatch.json", json.dumps(
+        {"_spec": {"generated": today,
+                   "note": "One settled ERCOT day per record. Hourly series included so every "
+                           "published figure is recomputable. Unverified days carry no "
+                           "numbers rather than yesterday's."},
+         "readings": gridwatch_page.load()}, indent=2, ensure_ascii=False) + "\n")
+    w("water/index.html", water_page(today))
+    w("waterwatch.json", json.dumps(
+        {"_spec": {"generated": today,
+                   "note": "One day per record, per reservoir, so every roll up is "
+                           "recomputable. Out of state reservoirs and flood control dams with "
+                           "no conservation pool are excluded, and both exclusions are named "
+                           "in each record."},
+         "readings": waterwatch_page.load()}, indent=2, ensure_ascii=False) + "\n")
     w("data/index.html", data_page(items, today))
     w("about/index.html", about_page(today))
 
