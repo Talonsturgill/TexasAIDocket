@@ -34,16 +34,18 @@ are what matter. Register the domain, add the address, rebuild.
 
 ---
 
-## 2. Flip the repository to public
+## 2. Repository visibility — ALREADY DONE
 
-**Unblocks:** GitHub Pages, and the `raw.githubusercontent.com` image URLs the run email uses
-to show the deck's thumbnails.
+`TexasAIDocket`, `TexasAIDispatch` and `TexasAIScanner` are all public. This unblocked GitHub
+Pages and the `raw.githubusercontent.com` image URLs the run email uses for the deck
+thumbnails, and it means the instrument crons in item 4 can run.
 
-**If this is never done:** the site does not publish at all, and the daily email arrives with
-broken images.
+Nothing in the repo holds a secret, which is the point. The record is meant to be read,
+`robots.txt` says yes rather than no deliberately, and both collectors use keyless public
+endpoints.
 
-Nothing in the repo holds a secret. The record is meant to be read, `robots.txt` says yes
-rather than no on purpose, and the collectors use keyless public endpoints.
+**What is left here:** confirm GitHub Actions is enabled and that Pages is set to deploy from
+the `pages.yml` workflow rather than from a branch.
 
 ---
 
