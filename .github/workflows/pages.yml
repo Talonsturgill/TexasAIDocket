@@ -14,6 +14,25 @@ name: pages
 # 2. THE DEPLOY RETRIES. GitHub's Pages API returns transient 5xx often enough that a single
 #    attempt loses a day's publish for no reason, and an unattended pipeline has nobody to
 #    press the button again.
+#
+# 3. IT DOES NOT DEPEND ON WHO PUSHED, and it used to. `push` was the only real trigger, and a
+#    push made with GITHUB_TOKEN does not start a workflow. That is deliberate on GitHub's part,
+#    to stop a workflow triggering itself forever, and it meant this deploy fired for a merge made
+#    with a user token and silently did not for a merge made by a bot. Both happen here: the
+#    delivery policy says a passing run merges itself, and the grid watch collector commits to
+#    main on a cron. On 2026-08-12 a merged pull request left the live site on the previous
+#    build with nothing reporting a failure, because nothing had failed. No run had started.
+#
+#    That is the worst shape a fault can take in an unattended system. The record said the change
+#    shipped, every gate was green, and the site a reader loads was stale.
+#
+#    So there are now three triggers and only one of them cares about the actor:
+#      push          the fast path, for a merge made with a user token
+#      workflow_run  after the collector's cron, which is the usual way main moves
+#      schedule      the backstop, which fires whatever else did or did not happen
+#    The schedule is what makes a missed publish self-healing rather than permanent. Deploying an
+#    unchanged site is a no-op for a reader, and the verify job below still refuses to publish a
+#    docs/ that does not match a rebuild, so a redundant run cannot do harm.
 
 on:
   push:
@@ -25,6 +44,13 @@ on:
       - "config/brand.yaml"
       - "assets/geo/**"
       - ".github/workflows/pages.yml"
+  workflow_run:
+    workflows: [gridwatch]
+    types: [completed]
+  schedule:
+    # Every two hours. The pages this publishes carry comment deadlines and a daily grid
+    # reading, so the cost of being stale is measured in hours rather than days.
+    - cron: "0 */2 * * *"
   workflow_dispatch:
 
 permissions:
@@ -41,7 +67,14 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
+      # PINNED TO main, and that is required rather than tidy. Under `workflow_run` the default
+      # ref is the SHA of the run that triggered this one, which for a collector that pushes is
+      # the commit BEFORE its own write, so an unpinned checkout would faithfully publish the
+      # state that existed just before the thing being published. This workflow only ever
+      # publishes main, so naming it is correct for every trigger.
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
@@ -78,7 +111,14 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      # PINNED TO main, and that is required rather than tidy. Under `workflow_run` the default
+      # ref is the SHA of the run that triggered this one, which for a collector that pushes is
+      # the commit BEFORE its own write, so an unpinned checkout would faithfully publish the
+      # state that existed just before the thing being published. This workflow only ever
+      # publishes main, so naming it is correct for every trigger.
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - uses: actions/configure-pages@v5
         # enablement turns Pages on via the API if it is not already configured, so the site
         # does not sit behind a settings toggle nobody knows to flip. The workflow already

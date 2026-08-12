@@ -414,8 +414,8 @@ def body(records: list[dict], today: str) -> str:
   load have to land on each other. The two rows above differ by
   <strong class="num">{pct(abs(recon))}%</strong>, which is about what direct current ties to
   the neighbouring grids and line losses should account for. It is the cross check that would
-  catch either reader silently breaking, and it is the reason both rows are printed rather
-  than just the one that flatters.</p>"""
+  catch either reader silently breaking. That is why both rows are printed rather than just the
+  one that flatters.</p>"""
 
     return f"""
 <h1>Texas Grid Watch</h1>
@@ -494,9 +494,8 @@ def body(records: list[dict], today: str) -> str:
   {plural(f['days_verified'], 'is a complete settled day', 'are complete settled days')} and
   <strong class="num">{n0(f['days_unverified'])}</strong>
   {plural(f['days_unverified'], 'is', 'are')} marked unverified. An unverified
-  day carries no numbers at all rather than yesterday's, because a gap that says it is a gap is
-  honest and a gap filled with the last known figure is a fabrication nothing downstream can
-  detect.</p>
+  day carries no numbers at all rather than yesterday's. A gap that says it is a gap is honest.
+  A gap filled with the last known figure is a fabrication nothing downstream can detect.</p>
 </div>
 
 <h2>How this is collected</h2>
@@ -505,12 +504,12 @@ def body(records: list[dict], today: str) -> str:
   Measured demand hour by hour, the day ahead forecast ERCOT published for those hours, the
   capacity it had committed and generation by fuel. The raw responses are archived before
   anything parses them.</p>
-  <p>The record stores the full hourly series rather than only the summary, so every figure on this
-  page can be recomputed from <a href="../gridwatch.json">the open data</a> without refetching
+  <p>The record stores the full hourly series rather than only the summary. Every figure on this
+  page can be recomputed from <a href="../gridwatch.json">the open data</a>, without refetching
   anything and without trusting the code that wrote it.</p>
-  <p>ERCOT keeps no archive of these feeds. Each is a rolling window. A day not collected is
-  gone for good, which is why the collector runs on its own schedule and is never a step inside
-  a routine that could fail for an unrelated reason.</p>
+  <p>ERCOT keeps no archive of these feeds. Each is a rolling window. A day not collected is gone
+  for good. So the collector runs on its own schedule, never as a step inside a routine that could
+  fail for an unrelated reason.</p>
 </div>
 """
 

@@ -1,6 +1,6 @@
 # Federal comment window open on adding AI questions to the American Time Use Survey
 
-The Bureau of Labor Statistics has proposed adding questions about artificial intelligence to the American Time Use Survey, and is taking public comment under the Paperwork Reduction Act. Comments close September 8th, 2026. The survey is a main federal instrument for measuring how people actually spend working time, so what it asks about AI shapes what is later knowable.
+The Bureau of Labor Statistics has proposed adding questions about artificial intelligence to the American Time Use Survey. Public comment is open under the Paperwork Reduction Act. Comments close September 8th, 2026. The survey is a main federal instrument for measuring how people actually spend working time, so what it asks about AI shapes what is later knowable.
 
 - Topic: research-and-science
 - Decided by: United States Bureau of Labor Statistics (federal)

@@ -346,8 +346,17 @@ def home(items: list, today: str) -> str:
     # THE DEADLINE CARDS. A date at display size, a status word that is also a colour, and a
     # live count of what is left. Somebody should be able to find what is open to them without
     # reading a sentence.
+    #
+    # MARKED AS DATA, and that is a measurement fix rather than a formality. A card is a badge, a
+    # date, a count and a docket title, none of which is running prose, and a docket title reads
+    # "PUCT Project 58482, proposed new rule on Large Load Demand Management Service, open for
+    # comment", where both commas are structural. Three of those on the front page were being read
+    # as sentences by the comma density rule, which is exactly what `data-prose="data"` exists to
+    # stop. It narrows the density scope only, never the construction rules, so an em dash or a
+    # bare date inside a card is still a violation.
     rows = "".join(
-        f'<li><a class="dcard{" open" if a["days_left"] > 7 else ""}" href="item/{e(a["id"])}/">'
+        f'<li data-prose="data">'
+        f'<a class="dcard{" open" if a["days_left"] > 7 else ""}" href="item/{e(a["id"])}/">'
         f'<span class="badge {"open" if a["days_left"] > 7 else "soon"}">'
         f'{"Open to you" if a["days_left"] > 7 else "Closing soon"}</span>'
         f'<span class="big">{e(short_date(a["closes"]))}</span>'
@@ -740,8 +749,8 @@ def services_page(items: list, today: str) -> str:
 
   <h3>Numbers that can be recomputed</h3>
   <p>Every figure published here is produced by code, from data. A build gate fails on any
-  numeral that can't be traced to a quoted source or a computation, which is why the table
-  above changes when the record does and can't be inflated in a redesign.</p>
+  numeral that can't be traced to a quoted source or a computation. So the table above changes
+  when the record does, and no redesign can inflate it.</p>
 
   <h3>A record that maintains itself and says when it can't</h3>
   <p>Items are re-verified on a schedule, and one that goes stale past its limit fails a gate

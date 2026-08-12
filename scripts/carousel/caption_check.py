@@ -175,6 +175,26 @@ CAPTION_COMMA_CEILING = None
 COMMA_CEILING = CAPTION_COMMA_CEILING
 COMMA_FLOOR_WORDS = 80          # below this a rate is noise, so it is measured and not judged
 
+# SENTENCE LENGTH, AND WHY THIS NUMBER IS NOT MEASURED FROM OUR OWN WRITING.
+#
+# Owner's note, 2026-08-12: the writing here runs longer than the brand wants. The target lives in
+# config/brand.yaml as a voice rule, one idea per sentence, because a target is a matter of taste
+# and belongs where a writer reads it. This is the BACKSTOP, and a backstop needs a number.
+#
+# The comma ceiling was set at ten percent below its own measured corpus, and that only worked
+# because it was stated as a one time move off an unconstrained corpus. Applied to sentence length
+# the same method is a pure ratchet: every pass would measure a corpus the last pass had already
+# cut, and three rounds arrive at nothing. So this is an EXTERNAL threshold. Plain-language
+# guidance across style authorities puts comfortable running prose at fifteen to twenty words a
+# sentence and treats thirty as the point where a reader has to re-read. Thirty is therefore a
+# real edge rather than a reflection of the corpus, and it cannot creep, because it was never
+# derived from us.
+#
+# It has headroom on purpose. The site's longest sentence measures 27 words, so this fails on
+# regression rather than on today's writing, which is the job of a backstop. If a future pass wants
+# the prose shorter than this, tighten the RULE in brand.yaml and leave the edge where it is.
+SENTENCE_CEILING = 30
+
 # ISO dates are correct as a citation stamp. Stripped before the date rules so a source line
 # does not read as a house-style violation.
 ISO = re.compile(r"\b\d{4}-\d{2}-\d{2}\b")
@@ -274,6 +294,28 @@ def check(text: str) -> list[str]:
         if msg not in problems:
             problems.append(msg)
     return problems
+
+
+def long_sentences(text: str, ceiling: int = SENTENCE_CEILING) -> list[str]:
+    """Every sentence over the backstop, named with its length and where it starts.
+
+    Split on terminal punctuation and REQUIRED to end in it, so a run of chips or headings that
+    carries no full stop cannot be concatenated into one enormous pseudo-sentence. That is not a
+    hypothetical: the front page's three deadline cards measured as a single 82 word sentence,
+    which named the wrong problem and would have been fixed by rewriting prose that was already
+    fine. Structured regions are excluded upstream by `data-prose="data"`; this is the second
+    guard, for anything not marked.
+    """
+    out = []
+    for raw in re.split(r"(?<=[.!?])\s+", text):
+        s = " ".join(raw.split())
+        if not s.endswith((".", "!", "?")):
+            continue
+        n = len(s.split())
+        if n > ceiling:
+            out.append(f"sentence of {n} words, over the {ceiling} word backstop. "
+                       f"Split it at a clause. Starts \"{s[:60]}...\"")
+    return out
 
 
 def rate_problem(text: str, ceiling: float | None = COMMA_CEILING) -> str | None:
