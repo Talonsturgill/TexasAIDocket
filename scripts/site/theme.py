@@ -57,6 +57,8 @@ BRAND = REPO_ROOT / "config" / "brand.yaml"
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import fonts_build                                                 # noqa: E402
+import grain                                                       # noqa: E402
+import sky                                                         # noqa: E402
 
 # WCAG 2.1 thresholds. Named rather than inlined, because a bare 4.5 in a comparison is exactly
 # the kind of typed number this project does not allow itself elsewhere.
@@ -241,6 +243,13 @@ def palette() -> dict:
         # White or night, whichever the fill can actually carry, then pushed until it clears.
         ink_side = c["limestone"] if luminance(mode["accent-deep"]) < 0.35 else c["night"]
         mode["on-accent"] = lift(ink_side, mode["accent-deep"], AA_BODY)
+        # THE SIGNAL COLOURS ARE DERIVED PER MODE, and this is not a formality. A spring green
+        # that reads beautifully on Big Bend night measures under 2 to 1 on caliche paper, and
+        # the thing wearing it is the word telling a reader a comment window is open to them.
+        # Authored once, solved twice, against every ground it lands on.
+        for role in ("sig-open", "sig-soon", "sig-shut", "sig-link"):
+            mode[role] = lift_over(c[role.replace("-", "_").replace("sig_", "signal_")],
+                                   grounds, AA_BODY)
 
     return {"dark": dark, "light": light}
 
@@ -275,13 +284,26 @@ def css() -> str:
   --body:"{ty['body']}","Manrope fallback",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
   --mono:"{ty['mono']}",ui-monospace,SFMono-Regular,Menlo,monospace;
 
+  /* SIGNAL COLOURS. Not decoration and not a second accent. Each one means exactly one thing
+     about a public process, and nothing else on the site may wear it. `open` is the one a
+     reader is looking for, which is why it is the only cool hue in a warm palette and reads
+     instantly against everything around it. */
+  /* Derived per mode, because a spring green that sings on Big Bend night is invisible on
+     caliche paper. See theme.py --contrast. */
+
   /* A fifth-based scale. Enough steps to build hierarchy, few enough to stay consistent. */
   --s-2:.7rem; --s-1:.79rem; --s0:1rem; --s1:1.27rem; --s2:1.6rem; --s3:2.04rem; --s4:2.59rem;
-  --measure:68ch; --gap:clamp(1rem,3vw,1.75rem); --radius:3px;
+  /* THE DISPLAY SIZE IS ITS OWN SCALE, and this is most of the difference between a page that
+     reads as designed and one that reads as a document with a slightly bigger first line. The
+     type scale above tops out around 41 pixels, which is a fine size for a heading and far too
+     small for a masthead. A front page gets to be loud once. */
+  --d1:clamp(2.6rem,7.4vw,5.6rem); --d2:clamp(1.75rem,3.6vw,2.5rem);
+  --measure:68ch; --gap:clamp(1rem,3vw,1.75rem); --radius:3px; --radius-lg:12px;
   /* MARFA. The discipline of the empty field: a section is separated by air, not by a box.
      One step, used everywhere, so the rhythm is a decision rather than an accident. */
   --band:clamp(3rem,7vw,5.5rem);
   --hair:1px;
+  --shell:72rem;
 }}
 
 /* A reader who has asked for light gets light, and gets a real material rather than an
@@ -294,7 +316,12 @@ def css() -> str:
 :root[data-theme="light"] {{ {_vars(p['light'])} }}
 
 *,*::before,*::after {{ box-sizing:border-box; }}
-html {{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }}
+/* THE CLIP GOES ON html, NOT body. The masthead's full-bleed glass panel is 100vw wide
+   and off-centre by design, so something has to contain it. Putting `overflow-x:clip` on
+   `body` does contain it and also silently breaks `position:sticky` on everything inside,
+   because a clipping ancestor becomes the scroll container the sticky element resolves
+   against: the bar detached and rode down the page over the copy. */
+html {{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; overflow-x:clip; }}
 @media (prefers-reduced-motion:reduce) {{
   html {{ scroll-behavior:auto; }}
   *,*::before,*::after {{ animation-duration:.01ms!important; transition-duration:.01ms!important; }}
@@ -316,6 +343,107 @@ body {{
   margin:0; background:var(--bg); color:var(--ink);
   font:400 var(--s0)/1.65 var(--body);
   font-synthesis-weight:none; text-rendering:optimizeLegibility;
+}}
+
+/* ---- the surface ------------------------------------------------------- */
+/* FILM GRAIN OVER EVERYTHING. A perfectly smooth dark field is the loudest tell of a page
+   nobody designed: ink, paper, film and photographs all have noise, and an eye that has looked
+   at any of them reads a flat rectangle as a screen rather than a surface. One tiled 110 pixel
+   square at low opacity, generated with no dependencies so it can never silently go missing.
+   Fixed, so it does not scroll with the content and give away that it is a tile. */
+body::after {{ content:""; position:fixed; inset:0; pointer-events:none; z-index:90;
+  background-image:url({grain.data_uri()}); mix-blend-mode:overlay; opacity:.5; }}
+
+/* The reading position, as a hairline. Scroll-driven, so it runs on the compositor and costs
+   no script at all. Nothing depends on it, which is why it is inside @supports rather than
+   polyfilled. */
+@supports (animation-timeline:scroll()) {{
+  body::before {{ content:""; position:fixed; top:0; left:0; right:0; height:2px; z-index:95;
+    background:linear-gradient(90deg,var(--accent-deep),var(--accent));
+    transform-origin:0 50%; transform:scaleX(0);
+    animation:progress linear both; animation-timeline:scroll(root); }}
+  @keyframes progress {{ to {{ transform:scaleX(1); }} }}
+}}
+::selection {{ background:color-mix(in srgb,var(--accent) 28%,transparent); }}
+::-webkit-scrollbar {{ width:11px; }}
+::-webkit-scrollbar-thumb {{ background:var(--raised); border-radius:6px;
+  border:3px solid var(--bg); }}
+::-webkit-scrollbar-thumb:hover {{ background:var(--rule-strong); }}
+
+/* ---- big bend at dusk --------------------------------------------------- */
+/* The atmosphere. None of it is information and all of it is why the page reads as a place.
+   Everything here is behind the content, ignores the pointer, and is hidden from assistive
+   tech at the markup. */
+.sky {{ position:absolute; inset:0 0 auto 0; height:132vh; overflow:hidden;
+  pointer-events:none; z-index:0; }}
+
+/* THE STAR FIELD IS EARNED. Big Bend is a certified International Dark Sky Park with among the
+   least light pollution left in the lower 48, so a Texas night sky is genuinely one of the
+   darkest and busiest in the country. That is the fact this is drawing. */
+.sky .stars {{ position:absolute; inset:0; background-image:{sky.star_field_css()}; }}
+
+/* HEAT SHIMMER, which is the Texas phenomenon where the sibling product has an aurora. The
+   aurora is vertical, cold and northern. This is horizontal, warm and low: air off hot ground,
+   banding and sliding sideways just above the skyline. Masked so it fades out before it can
+   touch the type. */
+.sky .shimmer {{ position:absolute; inset:auto 0 0; height:70vh; mix-blend-mode:screen;
+  background:repeating-linear-gradient(2deg,transparent 0 6%,
+    color-mix(in srgb,var(--accent) 14%,transparent) 8% 10.5%,
+    color-mix(in srgb,var(--accent) 4%,transparent) 12% 15%,transparent 17% 24%,
+    color-mix(in srgb,var(--accent-deep) 11%,transparent) 26% 28.5%,transparent 30% 40%);
+  background-size:240% 100%; filter:blur(18px);
+  -webkit-mask-image:linear-gradient(0deg,#000 6%,rgba(0,0,0,.45) 42%,transparent 74%);
+  mask-image:linear-gradient(0deg,#000 6%,rgba(0,0,0,.45) 42%,transparent 74%);
+  animation:shimmer 52s ease-in-out infinite alternate; }}
+.sky .shimmer.s2 {{ filter:blur(30px); opacity:.6; background-size:290% 100%;
+  animation-duration:71s; animation-direction:alternate-reverse; }}
+@keyframes shimmer {{ from {{ background-position:0% 0; }} to {{ background-position:100% 0; }} }}
+
+/* Dusk cloud, drifting. Warm where the sibling's is cold, and slower, because nothing in this
+   sky should look like it is in a hurry. */
+.sky .veil {{ position:absolute; border-radius:50%; filter:blur(74px);
+  mix-blend-mode:screen; opacity:.5; }}
+.sky .v1 {{ width:62vw; height:40vh; left:34vw; top:-8vh;
+  background:radial-gradient(closest-side,color-mix(in srgb,var(--accent) 42%,transparent),
+    transparent 70%); animation:drift1 38s ease-in-out infinite alternate; }}
+.sky .v2 {{ width:50vw; height:36vh; left:6vw; top:-14vh;
+  background:radial-gradient(closest-side,color-mix(in srgb,var(--accent-deep) 38%,transparent),
+    transparent 70%); animation:drift2 47s ease-in-out infinite alternate; }}
+.sky .v3 {{ width:38vw; height:30vh; left:58vw; top:10vh;
+  background:radial-gradient(closest-side,color-mix(in srgb,var(--flag-blue) 34%,transparent),
+    transparent 70%); animation:drift3 61s ease-in-out infinite alternate; }}
+@keyframes drift1 {{ from {{ transform:translate(-5vw,0); }} to {{ transform:translate(6vw,3vh); }} }}
+@keyframes drift2 {{ from {{ transform:translate(4vw,2vh); }} to {{ transform:translate(-6vw,-2vh); }} }}
+@keyframes drift3 {{ from {{ transform:translate(0,0) scale(1); }}
+  to {{ transform:translate(-4vw,2vh) scale(1.12); }} }}
+
+/* THE HORIZON. The thing you actually see out there is the sun gone behind the Chisos and the
+   bottom of the sky staying lit long after the top has gone dark. */
+.sky .horizon {{ position:absolute; inset:auto 0 0; height:44vh; mix-blend-mode:screen;
+  background:linear-gradient(0deg,color-mix(in srgb,var(--accent) 30%,transparent) 0%,
+    color-mix(in srgb,var(--accent-deep) 14%,transparent) 34%,transparent 100%); }}
+
+/* The mark in the sky, where the sibling puts its constellation. One star, not a pattern,
+   which is the entire point of the thing. */
+.sky .lonestar {{ position:absolute; right:4vw; top:7vh; width:min(21vw,210px);
+  height:auto; opacity:.85; }}
+.sky .lonestar .twinkle {{ animation:twinkle 5.5s ease-in-out infinite; }}
+/* Scintillation rides on OPACITY and only on the halo subgroup. Animating a blur or a drop
+   shadow repaints a huge area every frame, and a mark that flickers stops being a mark. */
+@keyframes twinkle {{ 0%,100% {{ opacity:.8; }} 31% {{ opacity:.96; }} 52% {{ opacity:.86; }}
+  74% {{ opacity:1; }} 88% {{ opacity:.9; }} }}
+/* On paper the sky is a dusk haze rather than a night, so the star field comes off and the
+   warm layers thin right down. A star field on a cream page is confetti. */
+:root[data-theme="light"] .sky .stars, :root[data-theme="light"] .sky .lonestar {{ display:none; }}
+:root[data-theme="light"] .sky .veil {{ opacity:.2; mix-blend-mode:multiply; }}
+:root[data-theme="light"] .sky .shimmer, :root[data-theme="light"] .sky .horizon {{ opacity:.25;
+  mix-blend-mode:multiply; }}
+@media (prefers-color-scheme:light) {{
+  :root:not([data-theme="dark"]) .sky .stars,
+  :root:not([data-theme="dark"]) .sky .lonestar {{ display:none; }}
+  :root:not([data-theme="dark"]) .sky .veil {{ opacity:.2; mix-blend-mode:multiply; }}
+  :root:not([data-theme="dark"]) .sky .shimmer,
+  :root:not([data-theme="dark"]) .sky .horizon {{ opacity:.25; mix-blend-mode:multiply; }}
 }}
 
 h1,h2,h3 {{ font-family:var(--display); font-weight:600; line-height:1.15;
@@ -350,10 +478,19 @@ a:hover {{ color:var(--ink-bright); }}
    white star, then white over red. Setting the star in a blue block is that construction and
    nothing else: no rope, no cowhide, no wood type. It is the one Texas device that is
    statutory, abstract, and legible at 16 pixels. */
-.masthead {{ border-bottom:var(--hair) solid var(--rule); background:var(--bg);
-  position:sticky; top:0; z-index:10; backdrop-filter:saturate(1.2) blur(6px); }}
+/* GLASS ONLY ONCE THERE IS SOMETHING BEHIND IT. A solid bar pinned over the sky cuts the
+   atmosphere off at the top of the page and is the first thing that makes a designed page look
+   assembled. The panel fades in on scroll instead, full bleed, so at rest the mark simply sits
+   in the sky. */
+.masthead {{ position:sticky; top:0; z-index:80; }}
+.masthead::before {{ content:""; position:absolute; inset:0; left:50%; width:100vw;
+  margin-left:-50vw; z-index:-1; opacity:0;
+  background:color-mix(in srgb,var(--bg) 82%,transparent);
+  backdrop-filter:saturate(1.3) blur(14px); -webkit-backdrop-filter:saturate(1.3) blur(14px);
+  border-bottom:var(--hair) solid var(--rule); transition:opacity .35s; }}
+.masthead.scrolled::before {{ opacity:1; }}
 .masthead .wrap {{ display:flex; align-items:center; gap:var(--gap);
-  padding-block:.85rem; flex-wrap:wrap; }}
+  padding-block:1.15rem .9rem; flex-wrap:wrap; }}
 .wordmark {{ display:inline-flex; align-items:center; gap:.7rem;
   font-family:var(--display); font-weight:600; font-size:var(--s0);
   letter-spacing:.06em; text-transform:uppercase; color:var(--ink-bright);
@@ -363,19 +500,109 @@ a:hover {{ color:var(--ink-bright); }}
 .wordmark .star {{ width:1.15em; height:1.15em; fill:var(--star); display:block; }}
 nav.main {{ display:flex; gap:1.1rem; flex-wrap:wrap; margin-left:auto;
   font-size:var(--s-1); letter-spacing:.03em; text-transform:uppercase; }}
-nav.main a {{ color:var(--ink-mute); text-decoration:none; padding-block:.25em;
-  border-bottom:var(--hair) solid transparent; }}
-nav.main a:hover, nav.main a[aria-current] {{ color:var(--ink-bright);
-  border-bottom-color:var(--accent); }}
+/* The underline WIPES IN from the left rather than switching on. It is two properties and a
+   transition, and it is most of the difference between a nav that responds and a nav that
+   toggles. */
+nav.main a {{ color:var(--ink-mute); text-decoration:none; padding-block:.35em;
+  position:relative; }}
+nav.main a::after {{ content:""; position:absolute; left:0; right:100%; bottom:0; height:1.5px;
+  background:var(--accent); transition:right .25s ease; }}
+nav.main a:hover {{ color:var(--ink-bright); }}
+nav.main a:hover::after {{ right:0; }}
+nav.main a[aria-current] {{ color:var(--accent); }}
+nav.main a[aria-current]::after {{ right:0; }}
 /* ON A PHONE THE MASTHEAD LETS GO. Nine sections wrap to two rows at 390 pixels, and stuck to
    the top that is a third of the viewport permanently spent on navigation, on the one device
    the stated reader is most likely to be holding. It scrolls away instead, and the skip link
    above it is what a keyboard reader uses to get past it either way. */
 @media (max-width:46rem) {{
-  .masthead {{ position:static; backdrop-filter:none; }}
+  /* The mark comes off entirely. The nav wraps to two rows at this width and the hero starts
+     right under it, so there is no clear field left to put a star in, and a mark tangled in
+     the copy is worse than no mark. The sky keeps its stars, shimmer and horizon. */
+  .sky .lonestar {{ display:none; }}
+  .masthead {{ position:static; }}
+  .masthead::before {{ display:none; }}
   .masthead .wrap {{ gap:.6rem; }}
   nav.main {{ margin-left:0; gap:.5rem .9rem; font-size:var(--s-2); }}
 }}
+
+/* ---- the hero ----------------------------------------------------------- */
+/* A front page gets to be loud once, and this is the once. The record itself is set at reading
+   size everywhere else on the site. */
+.hero {{ padding:clamp(2.5rem,9vh,7rem) 0 0; }}
+.hero h1 {{ font-size:var(--d1); line-height:1.02; letter-spacing:-.02em; max-width:16ch;
+  margin:0; }}
+/* The one word that carries the argument, in the accent. `em` because the emphasis is real
+   rather than decorative, so it survives with styles off and reads correctly aloud. */
+.hero h1 em {{ font-style:normal; color:var(--accent); }}
+.hero .herolede {{ font-size:clamp(1.05rem,2.1vw,1.32rem); line-height:1.5; color:var(--ink);
+  max-width:46ch; margin:1.6rem 0 0; }}
+
+/* THE TELEMETRY PILL. The sibling product opens with how much daylight its state capital has
+   left today and how fast it is losing it, which is the single detail that makes its front
+   page feel alive rather than published. The Texas equivalent is not daylight, it is the grid,
+   which is what Texans actually argue about. Computed, dated, and never a verdict. */
+/* INLINE-BLOCK, NOT FLEX. As a flex row the three parts became three columns the moment the
+   line had to wrap, so on a phone the date sat in its own column beside a two-line middle. As
+   inline-block with a text separator it wraps like the sentence it is. */
+.tele {{ display:inline-block; font-family:var(--mono);
+  font-size:var(--s-1); letter-spacing:.13em; text-transform:uppercase; color:var(--accent);
+  border:var(--hair) solid color-mix(in srgb,var(--accent) 38%,transparent);
+  border-radius:5px; padding:.55em .95em; background:color-mix(in srgb,var(--surface) 62%,transparent);
+  margin-bottom:1.8rem; position:relative; overflow:hidden; text-decoration:none;
+  max-width:100%; }}
+.tele span + span::before {{ content:"\\00b7"; margin:0 .55em;
+  color:color-mix(in srgb,var(--accent) 55%,transparent); }}
+.tele > span:first-of-type::before {{ content:"\\00b7"; margin:0 .55em;
+  color:color-mix(in srgb,var(--accent) 55%,transparent); }}
+.tele::after {{ content:""; position:absolute; inset:0; transform:translateX(-130%) skewX(-18deg);
+  background:linear-gradient(105deg,transparent 30%,
+    color-mix(in srgb,var(--accent) 20%,transparent) 50%,transparent 70%);
+  animation:sweep 9s ease-in-out infinite; }}
+@keyframes sweep {{ 0%,74% {{ transform:translateX(-130%) skewX(-18deg); }}
+  90%,100% {{ transform:translateX(130%) skewX(-18deg); }} }}
+
+.ctarow {{ display:flex; gap:.9rem; flex-wrap:wrap; margin:2.4rem 0 0; }}
+.cta {{ font-family:var(--mono); font-size:var(--s-1); letter-spacing:.12em;
+  text-transform:uppercase; text-decoration:none; padding:.95em 1.5em; border-radius:6px;
+  display:inline-block; position:relative; overflow:hidden;
+  transition:transform .2s,box-shadow .2s,border-color .2s,color .2s; }}
+.cta.solid {{ background:var(--accent-deep); color:var(--on-accent); font-weight:500;
+  border:var(--hair) solid transparent; }}
+.cta.solid:hover {{ transform:translateY(-2px);
+  box-shadow:0 10px 30px color-mix(in srgb,var(--accent) 28%,transparent); }}
+.cta.ghost {{ border:var(--hair) solid var(--rule-strong); color:var(--ink); }}
+.cta.ghost:hover {{ border-color:var(--accent); color:var(--ink-bright); transform:translateY(-2px); }}
+.cta:active {{ transform:translateY(0) scale(.985); }}
+
+/* The counters. Mono, tabular, and every one of them computed from the record on this build. */
+.statrow {{ display:flex; gap:clamp(1.5rem,4vw,2.6rem); flex-wrap:wrap; margin:2.8rem 0 0;
+  font-family:var(--mono); }}
+.stat .n {{ display:block; font-size:clamp(1.6rem,3.4vw,2.4rem); line-height:1;
+  color:var(--ink-bright); font-variant-numeric:tabular-nums; letter-spacing:-.01em; }}
+.stat .n.hot {{ color:var(--accent); }}
+.stat .l {{ display:block; font-size:var(--s-2); letter-spacing:.17em; text-transform:uppercase;
+  color:var(--ink-mute); margin-top:.45rem; }}
+
+/* The hero arrives rather than appearing. Staggered, short, and only with script on, so a
+   no-script reader sees everything immediately rather than nothing at all. */
+html.js .rise > * {{ opacity:0; transform:translateY(20px);
+  animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards; }}
+html.js .rise > *:nth-child(2) {{ animation-delay:.09s; }}
+html.js .rise > *:nth-child(3) {{ animation-delay:.2s; }}
+html.js .rise > *:nth-child(4) {{ animation-delay:.31s; }}
+html.js .rise > *:nth-child(5) {{ animation-delay:.42s; }}
+@keyframes rise {{ to {{ opacity:1; transform:none; }} }}
+/* Same idea further down the page, driven by an observer.
+   IT FAILS VISIBLE, WHICH IS THE WHOLE DESIGN. Hiding `[data-reveal]` in the stylesheet and
+   relying on script to bring it back means any failure between those two points, a dead
+   observer, a script error above this one, a browser that never fires the callback, leaves a
+   reader looking at a blank column with the content present and invisible. So nothing is
+   hidden by the stylesheet alone: JS marks each element `pending` at the moment it observes
+   it, and only `pending` is hidden. No script, no marking, no hiding. */
+[data-reveal].pending {{ opacity:0; transform:translateY(16px);
+  transition:opacity .7s ease,transform .7s ease; }}
+[data-reveal].pending.in {{ opacity:1; transform:none; }}
 
 /* ---- section furniture, from a drawing sheet ---------------------------- */
 /* A survey sheet separates its zones with a hairline and labels them in the margin. That is
@@ -446,6 +673,43 @@ main > section > h2::after {{ content:""; position:absolute; top:-1px; left:0; w
 .items h3 {{ margin:0; font-size:var(--s1); }}
 .items h3 a {{ text-decoration:none; color:var(--ink-bright); }}
 .items h3 a:hover {{ text-decoration:underline; }}
+
+/* ---- the deadline cards ------------------------------------------------- */
+/* The one question this site exists to answer, made scannable. A reader should be able to find
+   what is open to them without reading a word of prose, which is what the status colour and
+   the date at display size are for. */
+.deck {{ display:grid; grid-template-columns:repeat(auto-fill,minmax(15rem,1fr));
+  gap:var(--gap); list-style:none; padding:0; margin:0; }}
+.dcard {{ display:block; text-decoration:none; padding:1.4rem 1.5rem;
+  border:var(--hair) solid var(--rule-strong); border-radius:var(--radius-lg);
+  background:linear-gradient(165deg,var(--surface) 0%,var(--bg) 100%);
+  transition:transform .25s,border-color .25s,box-shadow .25s; }}
+.dcard:hover {{ transform:translateY(-3px); border-color:var(--accent);
+  box-shadow:0 14px 38px color-mix(in srgb,var(--night) 45%,transparent); }}
+.dcard.open {{ border-color:color-mix(in srgb,var(--sig-open) 45%,transparent); }}
+/* THE DATE AT DISPLAY SIZE. A deadline is the payload, so it is set like a headline rather
+   than like metadata. Serif, because a date read as a date wants to look like type and not
+   like a readout. */
+.dcard .big {{ display:block; font-family:var(--display); font-weight:600; font-size:2.5rem;
+  line-height:1; color:var(--ink-bright); letter-spacing:-.02em; margin:.9rem 0 0; }}
+.dcard.open .big {{ color:var(--sig-open); }}
+.dcard .left {{ display:block; font-family:var(--mono); font-size:var(--s-1);
+  color:var(--ink-mute); margin:.5rem 0 .9rem; font-variant-numeric:tabular-nums; }}
+.dcard h3 {{ font-family:var(--body); font-weight:600; font-size:var(--s0); line-height:1.35;
+  color:var(--ink-bright); margin:0; }}
+.dcard .note {{ display:block; font-family:var(--mono); font-size:var(--s-2);
+  letter-spacing:.08em; text-transform:uppercase; color:var(--ink-mute); margin-top:.7rem; }}
+
+/* Status, as a word AND a colour. Never colour alone: about one man in twelve cannot separate
+   these hues, and the state is the whole point of the card. */
+.badge {{ display:inline-block; font-family:var(--mono); font-size:var(--s-2);
+  letter-spacing:.13em; text-transform:uppercase; padding:.28em .7em; border-radius:4px;
+  border:var(--hair) solid; }}
+.badge.open {{ color:var(--sig-open); border-color:color-mix(in srgb,var(--sig-open) 55%,transparent);
+  background:color-mix(in srgb,var(--sig-open) 8%,transparent); }}
+.badge.soon {{ color:var(--sig-soon); border-color:color-mix(in srgb,var(--sig-soon) 55%,transparent);
+  background:color-mix(in srgb,var(--sig-soon) 8%,transparent); }}
+.badge.shut {{ color:var(--sig-shut); border-color:color-mix(in srgb,var(--sig-shut) 45%,transparent); }}
 .meta {{ display:flex; flex-wrap:wrap; gap:.4rem 1rem; font-size:var(--s-1);
   color:var(--ink-mute); }}
 .tag {{ font-family:var(--mono); font-size:var(--s-2); letter-spacing:.04em;
@@ -552,10 +816,14 @@ table.figures td:last-child {{ color:var(--ink-mute); font-size:.92em; }}
    revised. A record that publishes its own build date in the same place a survey publishes its
    revision is making the same promise, and the star sits here at the size it deserves rather
    than shrunk into the navigation. */
+/* THE BOTTOM OF THE PAGE IS A PLACE, NOT A MARGIN. A record that ends in a build stamp and
+   nothing else tells a reader they have reached the end of a document. The sibling product
+   ends in a way out: what else there is, where to find it, and a colophon that says where the
+   thing was made and what it promises. That last strip is the one people quote back. */
 footer.site {{ border-top:2px solid var(--rule-strong); margin-top:var(--band);
-  padding-block:2rem 3rem; color:var(--ink-mute); font-size:var(--s-1); }}
-footer.site a {{ color:var(--ink-mute); }}
-footer.site a:hover {{ color:var(--ink-bright); }}
+  padding-block:2.2rem 3.5rem; color:var(--ink-mute); font-size:var(--s-1); }}
+footer.site a {{ color:var(--ink-mute); text-decoration:none; transition:color .2s; }}
+footer.site a:hover {{ color:var(--accent); }}
 footer.site .block {{ display:grid; gap:var(--gap) calc(var(--gap) * 1.5);
   grid-template-columns:auto minmax(0,var(--measure)); align-items:start; }}
 footer.site .colophon {{ width:5.5rem; height:5.5rem; fill:var(--rule-strong); flex:none; }}
@@ -563,10 +831,24 @@ footer.site .colophon {{ width:5.5rem; height:5.5rem; fill:var(--rule-strong); f
   footer.site .block {{ grid-template-columns:1fr; }}
   footer.site .colophon {{ width:3.5rem; height:3.5rem; }}
 }}
-footer.site dl {{ display:grid; grid-template-columns:auto 1fr; gap:.3rem 1rem; margin:1.25rem 0 0;
-  font-family:var(--mono); font-size:var(--s-2); }}
-footer.site dt {{ letter-spacing:.14em; text-transform:uppercase; color:var(--ink-mute); }}
-footer.site dd {{ margin:0; color:var(--ink); }}
+/* The way out. One row, mono, letterspaced, every section the site has. */
+.footnav {{ display:flex; flex-wrap:wrap; gap:.6rem 1.4rem; margin:2rem 0 0; padding:0;
+  list-style:none; font-family:var(--mono); font-size:var(--s-2); letter-spacing:.14em;
+  text-transform:uppercase; }}
+.footnav li {{ max-width:none; }}
+/* The colophon. Where it was made, when it was last revised, the coordinates of that place,
+   and the promise the whole product rests on, in one mono strip. */
+/* A FLEX ROW, not a sentence with non-breaking separators in it. The first version joined the
+   parts with a non-breaking space either side of the middot, which is correct typography and
+   leaves the line no legal place to break, so the strip ran off the right edge of the page and
+   took the promise at the end of it with it. Each part stays unbroken, the row wraps between
+   them. */
+.colophon-line {{ display:flex; flex-wrap:wrap; gap:0 .9rem; margin:1.8rem 0 0;
+  font-family:var(--mono); font-size:var(--s-2); letter-spacing:.13em; text-transform:uppercase;
+  color:var(--ink-mute); line-height:2; max-width:none; }}
+.colophon-line span {{ white-space:nowrap; }}
+.colophon-line span + span::before {{ content:"\\00b7"; color:var(--rule-strong);
+  margin-right:.9rem; }}
 
 @media print {{
   .masthead,nav.main,.txmap,.askbox {{ display:none; }}
@@ -591,6 +873,10 @@ footer.site dd {{ margin:0; color:var(--ink); }}
 # pairing below 4.5 with the gate still reporting every pairing clean.
 ON_EVERY_GROUND = [
     ("ink", AA_BODY, "body text"),
+    ("sig-open", AA_BODY, "the word saying a comment window is open"),
+    ("sig-soon", AA_BODY, "a window closing within the week"),
+    ("sig-shut", AA_BODY, "a decided item"),
+    ("sig-link", AA_BODY, "a link out to a source"),
     ("ink-bright", AA_BODY, "headings, the lede, the skip link"),
     ("ink-mute", AA_BODY, "meta, captions, chips, nav, map labels"),
     ("accent", AA_BODY, "links"),
@@ -735,6 +1021,13 @@ def self_test() -> int:
     check("...and urgent is worn only by the closing clock",
           sheet.count("var(--urgent)") == 2, f"{sheet.count('var(--urgent)')} uses")
 
+    # WHAT ACTUALLY RENDERS, shared by the checks below. Comments are stripped first: a comment
+    # draws nothing, and scanning them failed this build once for the comment that lists the
+    # kitsch being avoided. Substring matching failed it twice more, for "rope" inside Manrope
+    # and "dial" inside radial-gradient, which is why everything below uses word boundaries.
+    import re as _re                                                # noqa: PLC0415
+    rendered = _re.sub(r"/\*.*?\*/", " ", sheet, flags=_re.DOTALL)
+
     # A BAR AND NEVER A DIAL, enforced in the one place a ramp would have to be written.
     bar = sheet[sheet.find(".bar {"):sheet.find(".barnote")] if ".bar {" in sheet else ""
     check("the grid watch gauge exists", bool(bar))
@@ -743,32 +1036,40 @@ def self_test() -> int:
     check("no severity variant can be styled on the gauge",
           not any(s in sheet for s in (".fill.warn", ".fill.high", ".fill.crit",
                                        ".bar.warn", ".bar.high", ".bar.crit")))
+    # Word boundary, for the third time in this file. `radial-gradient` contains the letters of
+    # "dial", so a substring test failed the build the moment the sky introduced a radial. The
+    # rule being guarded is about a GAUGE shape, so it looks for the shapes a dial is made of.
     check("the gauge is never a dial",
-          "dial" not in sheet and "conic-gradient" not in sheet)
+          not _re.search(r"\bdial\b", rendered, _re.IGNORECASE)
+          and "conic-gradient" not in sheet)
 
     # THE FLAG'S GEOMETRY, and the kitsch it exists instead of. If a future edit reaches for a
     # longhorn or a rope border, this is where the argument was already had.
     check("the mark is the flag's hoist", ".wordmark .hoist" in sheet
           and "var(--flag-blue)" in sheet)
-    # Two mistakes this check made before it worked, both worth keeping in view. Substring
-    # matching failed the build for "rope" inside the body face's own name, Manrope. Scanning
-    # the comments failed it again for the comment that lists the kitsch being avoided. A
-    # comment renders nothing, so the scan is over declarations only, on word boundaries.
-    import re as _re                                                # noqa: PLC0415
-    rendered = _re.sub(r"/\*.*?\*/", " ", sheet, flags=_re.DOTALL)
     kitsch = _re.findall(r"\b(longhorn|cowhide|rope|lasso|lariat|boots?|spur|sheriff|saloon|"
                          r"wagon|cactus|armadillo)\b", rendered, _re.IGNORECASE)
     check("no kitsch", not kitsch, str(sorted(set(kitsch))))
 
-    # A BUDGET THAT GREW WITH THE SURFACE, NOT WITH WASTE. 12 KB when the site was five pages of
-    # text, 16 KB once it carried the county map, the load chart, the gauge, the metro bars and
-    # the ask box in two palettes. 20 KB for the three @font-face rules, the survey furniture,
-    # the drawing-sheet section rules and the footer title block. Now 21 KB for the two
-    # fallback faces that carry the metric overrides, which is 300 bytes buying the removal of
-    # a layout shift on every cold load. Raised in one place with the reason attached, never by
-    # deleting the check.
-    check("the stylesheet stays small", len(sheet.encode()) < 21_000,
-          f"{len(sheet.encode())} bytes")
+    # TWO BUDGETS, because they measure different things and one was hiding the other. The
+    # grain is an embedded IMAGE that happens to live in the stylesheet, and at 12 KB it is
+    # bigger than the rules were. Counting them together means either the texture blows a
+    # budget meant for CSS complexity, or the budget gets raised until it stops constraining
+    # the rules at all. So the tile is measured as an asset and the rules are measured as rules.
+    #
+    # The rules budget grew with the surface, never with waste: 12 KB for five pages of text,
+    # 16 KB for the map, chart, gauge, metro bars and ask box in two palettes, 21 KB for the
+    # web fonts and the survey furniture, and now 40 KB for v2, which added the Big Bend
+    # atmosphere, the display scale, the hero, the deadline cards, the signal badges and the
+    # footer system. For scale, the sibling product this was measured against ships 43 KB of
+    # rules for a site with more page types, so this is proportionate rather than indulgent.
+    # Raised in one place with the reason attached, never by deleting the check.
+    tile = grain.data_uri()
+    rules = len(sheet.replace(tile, "").encode())
+    check("the rules stay small", rules < 42_000, f"{rules} bytes of CSS")
+    check("...and the texture stays cheap", len(tile) < 14_000, f"{len(tile)} bytes of tile")
+    check("...and the whole sheet still fits in one round trip",
+          len(sheet.encode()) < 56_000, f"{len(sheet.encode())} bytes total")
     check("two builds are byte identical", css() == sheet)
 
     if failures:

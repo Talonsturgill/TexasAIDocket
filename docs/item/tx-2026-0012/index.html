@@ -17,6 +17,7 @@
 </head>
 <body>
 <a class="skip" href="#main">Skip to the record</a>
+<div class="sky" aria-hidden="true"><div class="stars"></div><div class="shimmer"></div><div class="shimmer s2"></div><div class="veil v1"></div><div class="veil v2"></div><div class="veil v3"></div><div class="horizon"></div><svg class="lonestar" viewBox="0 0 200 200" aria-hidden="true" focusable="false"><defs><radialGradient id="sky-halo"><stop offset="0%" stop-color="var(--gold)" stop-opacity=".55"/><stop offset="45%" stop-color="var(--gold)" stop-opacity=".13"/><stop offset="100%" stop-color="var(--gold)" stop-opacity="0"/></radialGradient></defs><g class="twinkle"><circle cx="100" cy="100" r="86" fill="url(#sky-halo)"/><path d="M100 14V186M14 100H186" stroke="var(--gold)" stroke-opacity=".22" stroke-width="1.2"/><path d="M52 52L148 148M148 52L52 148" stroke="var(--gold)" stroke-opacity=".1" stroke-width="1"/></g><g transform="translate(100 100) scale(2.6) translate(-12 -12)"><path d="M12 1.6l2.9 7.5 8 .4-6.2 5.1 2.1 7.8L12 18l-6.8 4.4 2.1-7.8L1.1 9.5l8-.4z" fill="var(--star)"/></g></svg></div>
 <header class="masthead">
   <div class="wrap">
     <a class="wordmark" href="../../"><span class="hoist"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l2.9 7.5 8 .4-6.2 5.1 2.1 7.8L12 18l-6.8 4.4 2.1-7.8L1.1 9.5l8-.4z"/></svg></span><span>Texas AI Docket</span></a>
@@ -54,13 +55,27 @@
       something can't be measured, the size of the gap is published instead of an estimate.</p>
       <p>Every fact carries a quote from the source it came from, and a link to that source.
       The record is <a href="../../docket.json">open data</a>.</p>
-      <dl data-prose="data">
-        <dt>Sheet</dt><dd>item/tx-2026-0012/</dd>
-        <dt>Record</dt><dd><a href="../../docket.json">docket.json</a></dd>
-        <dt>Revised</dt><dd>August 12th, 2026</dd>
-      </dl>
+      <ul class="footnav" data-prose="data"><li><a href="../../record/">The record</a></li><li><a href="../../ask/">Ask</a></li><li><a href="../../counties/">Counties</a></li><li><a href="../../grid/">Grid</a></li><li><a href="../../water/">Water</a></li><li><a href="../../data/">Data</a></li><li><a href="../../services/">Services</a></li><li><a href="../../about/">About</a></li><li><a href="../../docket.json">Open data</a></li><li><a href="../../atom.xml">Feed</a></li><li><a href="../../llms.txt">For machines</a></li></ul>
+      <p class="colophon-line" data-prose="data"><span>Built on the Balcones Escarpment</span><span>Revised August 12th, 2026</span><span>30°16&#x27;N 97°44&#x27;W</span><span>Every numeral computed from data</span></p>
     </div>
   </div>
 </footer>
+<script>
+document.documentElement.classList.add('js');
+addEventListener('scroll',function(){
+  document.querySelector('.masthead').classList.toggle('scrolled',scrollY>8);
+},{passive:true});
+if('IntersectionObserver' in window){
+  var els=document.querySelectorAll('[data-reveal]');
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in');
+      io.unobserve(en.target); } });
+  },{rootMargin:'0px 0px -8% 0px'});
+  els.forEach(function(el){ el.classList.add('pending'); io.observe(el); });
+  // Last resort. If the callback never runs, every section is shown anyway rather than left
+  // present and invisible.
+  setTimeout(function(){ els.forEach(function(el){ el.classList.add('in'); }); },2500);
+}
+</script>
 </body>
 </html>

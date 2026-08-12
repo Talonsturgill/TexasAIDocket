@@ -82,6 +82,12 @@ RESIDUE_ALLOW = {
     # than a directory glob so the exemption cannot quietly spread.
     "knowledge/shared/GRID_WATCH_DESIGN.md",
     "knowledge/shared/OIL_WATCH_DESIGN.md",
+    # The site design study. It is a device-by-device comparison against the sibling product's
+    # published site, written because the owner judged the Texas one a downgrade and the answer
+    # had to be specific rather than a feeling. Naming what each device was copied FROM, and
+    # which four were deliberately not taken, is the entire content of the file. Same exemption
+    # and same reason as the two instrument design records above.
+    "knowledge/shared/SIBLING_SITE_STUDY.md",
     # The parity map is a divergence record. Naming what each key diverged FROM is the entire
     # content of the file, so it belongs with the manifest rather than with Texas source.
     "config/parity_map.yaml",
