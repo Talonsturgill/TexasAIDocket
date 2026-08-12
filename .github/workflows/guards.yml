@@ -165,6 +165,16 @@ jobs:
           # no other gate looks at.
           python3 scripts/carousel/copy_sync_check.py --self-test
 
+      - name: Instincts ledger self-test (confidence is earned, never claimed)
+        run: |
+          # The sibling's ledger carries 101 entries, 47 at 0.90 confidence, of which 25 have
+          # ever been confirmed once. Those numbers were typed by the model that wrote the
+          # lesson, and they decide which lessons reach the next run's prompt. Here an entry
+          # records the dates it was confirmed and contradicted, confidence is Laplace's rule of
+          # succession over those events, and a written confidence field is a hard fail.
+          python3 scripts/carousel/instincts.py --self-test
+          python3 scripts/carousel/instincts.py --validate
+
       - name: Gate status self-test (the record cannot contradict the artifacts)
         run: |
           # A hand-written reconciliation once claimed zero QA warnings while the artifact said

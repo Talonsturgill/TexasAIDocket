@@ -1,0 +1,20 @@
+{
+  "_spec": {
+    "purpose": "The self-improvement ledger. The retro phase records what a run LEARNED about making decks, and the next run's directors room and copy chamber are handed the instincts that have earned their place. This is the machine's craft memory, and it is the one ledger whose entries are about how to work rather than about what was published.",
+    "confidence_is_computed_never_written": "An entry may NOT carry a confidence number. It carries the DATES it was confirmed and the dates it was contradicted, and scripts/carousel/instincts.py derives confidence from those events. Writing one by hand is a hard fail on load. This is the compute-not-generate law applied to the machine's own self-knowledge, and it is here because the sibling's ledger shows exactly what happens without it: 47 of its 101 entries sit at 0.90 confidence while only 25 entries have ever been confirmed once. Those numbers were typed by a model grading its own lesson, and a machine that can assert its own confidence will assert it high.",
+    "how_confidence_is_derived": "Laplace's rule of succession, (confirmations + 1) / (confirmations + contradictions + 2). A brand new instinct scores 0.5, which is the honest score for a lesson nothing has tested yet. Three clean confirmations reach 0.8. One contradiction against three confirmations drops to 0.67. The rule is from 1774 and is not measured from our own corpus, which matters: a threshold derived from our own history is a ratchet, and one derived from lessons we already believe would confirm whatever we happened to write first.",
+    "injection": "Before the directors room and the copy chamber, the run is handed the top 5 instincts at confidence >= 0.7. Under this formula that bar means at least three confirmations with no contradiction, so an instinct reaches the prompt by surviving three runs rather than by claiming to be important.",
+    "pruning": "An entry contradicted more often than confirmed, once it has been tested at least three times, is retired rather than deleted. Retired entries keep their evidence, because 'we tried this and it was wrong' is a lesson too and re-learning it costs a run.",
+    "why_this_starts_empty": "This repo has shipped zero decks. It cannot have learned anything from running, and seeding it with the sibling's 101 entries would be a lie about this machine's experience told in the machine's own memory. Those lessons are also about the sibling's engine and its art libraries, so most of them name files that do not exist here. Run 1 injects nothing, which is correct.",
+    "entry_schema": {
+      "id": "kebab-slug, stable, never reused",
+      "learned": "YYYY-MM-DD, the run that first wrote it down",
+      "instinct": "one imperative sentence, addressed to the next run",
+      "evidence": "what happened that taught this, specific enough to re-check",
+      "confirmed": ["YYYY-MM-DD, one per run that saw it hold"],
+      "contradicted": ["YYYY-MM-DD, one per run that saw it fail"],
+      "retired": "YYYY-MM-DD or absent"
+    }
+  },
+  "entries": []
+}

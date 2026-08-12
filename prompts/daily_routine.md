@@ -336,6 +336,17 @@ Say in writing why this story and not the others.
 
 ## PHASE 9 — DIRECTORS ROOM (the planning phase that earns the deck)
 
+First, ask the machine what it has learned:
+
+```
+python3 scripts/carousel/instincts.py --top 5
+```
+
+Hand whatever it prints to the directors and to the copy chamber. **If it prints nothing, hand
+them nothing.** An instinct reaches that list by surviving three runs without being contradicted,
+and a lesson no run has confirmed is worth less than the director's own judgement. This repo has
+shipped no decks, so early runs will get an empty list, and that is correct rather than a gap.
+
 Spawn 3 `carousel-treatment-director` agents in parallel, each with a different creative lens and
 the variety ledger's exclusions. Synthesise: pick one, graft the best of the others, and write the
 reason down.
@@ -514,6 +525,27 @@ what was held, the instrument check's finding, and anything a source did that th
 describe. **If a source behaved differently than `SOURCES_REGISTRY.md` says, update the registry in
 the same commit.** A registry that drifts from reality is worse than none, because the next run
 trusts it.
+
+**The craft.** Record what this run learned about making decks, zero to three lessons:
+
+```
+python3 scripts/carousel/instincts.py --add --id <kebab-slug> \
+    --instinct "<one imperative sentence to the next run>" --evidence "<what taught it>"
+python3 scripts/carousel/instincts.py --confirm <id>       # an existing instinct held
+python3 scripts/carousel/instincts.py --contradict <id>    # an existing instinct failed
+python3 scripts/carousel/instincts.py --prune
+```
+
+**You may not write a confidence number and the ledger refuses one.** Record what happened. The
+arithmetic decides what the lesson is worth, and it starts every new instinct at 0.50, which is
+the honest score for something nothing has tested.
+
+That refusal is not ceremony. The sibling's ledger carries 101 entries, 47 of them at 0.90
+confidence, and only 25 have ever been confirmed once. Those numbers were typed by the same model
+that had just decided the lesson was worth writing, and they are what chooses which lessons reach
+the next run's directors room. **Go back and confirm or contradict the instincts you were handed
+in Phase 9**, because an instinct nobody ever revisits is one that will sit in the prompt forever
+on the strength of the day it was written.
 
 **The machine.** `echo upgrade > .git/ACTOR`, then spawn 1 `carousel-upgrade-engineer`. Zero to
 three bounded, verified upgrades, logged to `ledger/carousel/upgrades.json`. Restore the stamp with

@@ -57,7 +57,7 @@ Thinnest agents: pixel-critic 53%, caption-critic 62%, upgrade-engineer 62%.
 |---|---|---|
 | A | The seven missing gates, each with self-test + replay | **DONE** — `claims_check` (21), `aggregate_check` (20), `dedupe_check` (10), `copy_sync_check` (21), `dossier_check` (26), `gate_status` (20), `ship_images` (15). 133 new self-tests. Every one wired into the routine AND into CI, and every one replayed against the defect it exists for |
 | A2 | Merge the two routines into one, on the owner's call | **DONE** |
-| B | `instincts.json` + the ledger the retro phase writes | TODO |
+| B | `instincts.json` + the ledger the retro phase writes | **DONE** — 39 self-tests. Confidence is DERIVED, never written |
 | C | `CAPTION_CRAFT.md`, Texas material | TODO |
 | D | `TECHNIQUE_LIBRARY.md`, Texas material | TODO |
 | E | Deepen pixel-critic, caption-critic, upgrade-engineer | TODO |
@@ -152,3 +152,16 @@ Thinnest agents: pixel-critic 53%, caption-critic 62%, upgrade-engineer 62%.
 - 2026-08-12 — **WAVE A DONE.** Carousel gates 3 to 10. The measure was never "Alaska's files
   exist here", it was whether an unattended run can fail safely and ship honestly, and the seven
   gates are the reviewer that nobody is.
+- 2026-08-12 — `instincts.json` and `instincts.py`, and the one thing deliberately not ported.
+  The sibling's ledger carries 101 entries, 47 of them at 0.90 confidence, and only 25 have ever
+  been confirmed once. The arithmetic only goes one way, so those numbers were typed at the moment
+  the lesson was written, by the same model that had just decided the lesson was worth writing. A
+  machine allowed to grade its own lesson grades it high, and that number is what decides which
+  lessons reach the next run's directors room. It is the compute-not-generate law with a hole in
+  it, in the file that shapes how every future deck gets made. Here an entry records the DATES it
+  was confirmed and contradicted, confidence is Laplace's rule of succession over those events,
+  and a written confidence field is a hard fail on load, along with score, weight, certainty and
+  priority, which are the words a model reaches for once confidence is refused. The injection bar
+  of 0.7 is not a dial: under this formula it means three confirmations with no contradiction, so
+  an instinct reaches the prompt by surviving three runs. Starts empty, because this repo has
+  shipped zero decks and cannot have learned anything from running.
