@@ -75,3 +75,29 @@ not, only a machine will.
 **Corollary, learned in the same hour:** a lint run against real data finds bugs in the lint.
 This one suggested writing "July 31th", and read "Commissioners Hearing Room 7-100" as a numeric
 range. Neither shows up against test strings somebody wrote to pass.
+
+## 2026-08-12 — The display face turned a 3 into a 5 at feed size
+
+**Found:** by looking at the contact sheet of the engine-proof deck. Slide 4's headline reads
+**"Software 5D, no GPU"** on the contact sheet and at the 432px thumb. At full 2160x2700 it is
+plainly 3D.
+
+**Cause:** Fraunces' 3 has a flat top rather than a round upper bowl. At display weight and
+feed size that flat top plus the closed lower bowl reads as a 5. Nothing was clipped, nothing
+was low contrast, and every machine check passed. `render_report.json` even transcribed the
+string correctly, because the DOM says 3D. **The defect exists only in the glyph a reader
+receives.**
+
+**The general lesson, which is the one this repo keeps relearning:** a checker sees what it
+reads and a reader sees what was drawn. Machine QA reads the text node. Only an eye on the
+thumbnail catches a glyph that renders as a different character.
+
+**What to do about it.** This is a pixel-critic finding, not an engine bug, and the critic is
+already told to read the 432px thumb and to transcribe every visible word. Transcribing from
+the THUMB rather than from the full size is what would surface it, since transcribing the
+full-size image gives the right answer and hides the problem.
+
+**Where it bites hardest.** Any numeral in the display face at feed size, which is most of what
+a slide is for. `3` and `5` are the pair to watch. A figure that a reader misreads is worse
+than one they cannot read at all, because a blur invites a second look and a wrong glyph does
+not.

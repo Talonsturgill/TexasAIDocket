@@ -13,10 +13,19 @@ You are a leaf worker: you never spawn another agent.
 
 1. **Read the full-size PNG.** Then read the 432px thumb, which is roughly how it arrives on a
    phone. A slide that only works at full size does not work.
-2. **Transcribe every visible word.** All of it, in reading order. This is not busywork: it is
-   the only way to catch a line that clipped, a label that ran under art, a word the renderer
-   dropped, or type that is present but unreadable. If you cannot read it, write `[illegible]`
-   and that is a finding.
+2. **Transcribe every visible word, FROM THE THUMB.** All of it, in reading order. This is not
+   busywork: it is the only way to catch a line that clipped, a label that ran under art, a word
+   the renderer dropped, or type that is present but unreadable. If you cannot read it, write
+   `[illegible]` and that is a finding.
+
+   **Transcribe the 432px thumb, then check it against the full size.** Transcribing the
+   full-size image gives the right answer and hides the problem. The engine-proof deck's slide 4
+   reads "Software 5D" at feed size and "Software 3D" at full resolution, because Fraunces has a
+   flat-topped 3 that collapses into a 5 at display weight. Nothing clipped, contrast was fine,
+   and `render_report.json` transcribed it correctly because the DOM says 3D. **The defect exists
+   only in the glyph a reader receives.** A figure a reader MISREADS is worse than one they
+   cannot read, because a blur invites a second look and a wrong glyph does not. `3` and `5` are
+   the pair to watch.
 3. **Check the dossier's acceptance checklist**, item by item, and say which passed.
 4. **Check the global standards** below.
 5. **Return the verdict.**
