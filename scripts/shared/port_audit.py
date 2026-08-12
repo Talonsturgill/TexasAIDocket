@@ -288,6 +288,58 @@ def check_schema(root: Path) -> Result:
 
 
 # --------------------------------------------------------------------------- 5 links
+def check_archive(root: Path) -> Result:
+    """Nothing the ownership map calls append-only may be gitignored.
+
+    THIS EXISTS BECAUSE IT ALREADY HAPPENED. `ledger/gridwatch/raw/` is the raw response
+    archive: the collector snapshots it BEFORE parsing, because neither ERCOT nor TWDB keeps
+    an archive and those bytes are the only way back if a parse turns out to have been wrong.
+    It was gitignored, so the cron wrote it into a container that gets reclaimed, and every
+    day's archive was being lost silently while ownership.yaml governed it as append-only and
+    the collector's comments explained why keeping it forever was the entire point.
+
+    Nothing threw. Nothing would ever have thrown. Three parts of the repo disagreed about
+    whether a file mattered, and the one that won was a line in .gitignore written weeks
+    earlier under a different assumption.
+
+    The general form: a path an actor OWNS and may never rewrite is a path this project has
+    decided is durable. Durable and ignored is a contradiction, and it is the kind that only
+    shows up when somebody goes looking.
+    """
+    r = Result("archive")
+    import subprocess
+    try:
+        import yaml
+        rules = yaml.safe_load((root / "ownership.yaml").read_text(encoding="utf-8"))["rules"]
+    except Exception as exc:                                       # noqa: BLE001
+        r.skip(f"no ownership map to read ({type(exc).__name__})")
+        return r
+
+    durable = [rule["path"] for rule in rules if rule.get("append_only")]
+    if not durable:
+        r.skip("no append-only paths declared")
+        return r
+
+    ignored = []
+    for pattern in durable:
+        probe = pattern.replace("**", "x").replace("*", "x")
+        try:
+            out = subprocess.run(["git", "check-ignore", "-q", probe], cwd=root,
+                                 capture_output=True)
+        except OSError:
+            r.skip("git unavailable")
+            return r
+        if out.returncode == 0:
+            ignored.append(pattern)
+
+    for i in ignored:
+        r.fail(f"{i} is append-only in ownership.yaml but gitignored: it is being written "
+               f"and thrown away")
+    if not ignored:
+        r.note(f"all {len(durable)} append-only path(s) are committed")
+    return r
+
+
 def check_links(root: Path) -> Result:
     r = Result("links")
     docs = root / "docs"
@@ -478,8 +530,8 @@ def check_parity(root: Path, refs: dict | None = None) -> Result:
 
 CHECKS = {
     "coverage": check_coverage, "residue": check_residue, "wiring": check_wiring,
-    "schema": check_schema, "links": check_links, "agents": check_agents,
-    "parity": check_parity,
+    "schema": check_schema, "archive": check_archive, "links": check_links,
+    "agents": check_agents, "parity": check_parity,
 }
 
 
@@ -558,6 +610,17 @@ def self_test() -> int:
         docs = root / "docs"
         docs.mkdir()
         (docs / "index.html").write_text('<a href="nope/">x</a>', encoding="utf-8")
+        # archive: a durable path that is gitignored is being written and thrown away
+        import subprocess as _sp
+        _sp.run(["git", "init", "-q"], cwd=root, capture_output=True)
+        (root / "ownership.yaml").write_text(
+            "rules:\n  - path: 'ledger/keep/**'\n    owner: x\n    append_only: true\n",
+            encoding="utf-8")
+        (root / ".gitignore").write_text("ledger/keep/\n", encoding="utf-8")
+        expect("archive catches a durable path that is gitignored", check_archive(root), "FAIL")
+        (root / ".gitignore").write_text("out/\n", encoding="utf-8")
+        expect("archive passes when the durable path is committed", check_archive(root), "PASS")
+
         expect("links catches a dangling href", check_links(root), "FAIL")
         (docs / "nope").mkdir()
         (docs / "nope" / "index.html").write_text("ok", encoding="utf-8")

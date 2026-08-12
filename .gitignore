@@ -14,10 +14,13 @@ node_modules/
 .DS_Store
 Thumbs.db
 
-# Grid Watch raw response snapshots. The collector writes these before parsing so a
-# schema change can be diagnosed after the fact; the parsed record in ledger/ is the
-# durable artifact and these are debris.
-ledger/gridwatch/raw/
+# NOTE: ledger/gridwatch/raw/ IS COMMITTED and was ignored here by mistake until
+# 2026-08-12. The collector snapshots the raw responses BEFORE parsing precisely
+# because neither ERCOT nor TWDB keeps an archive: if a parse turns out to have been
+# wrong, those bytes are the only way back. Ignoring them meant the cron wrote them
+# into a container that gets reclaimed, and every day's archive was lost silently.
+# They are gzipped for exactly this reason, about 12 MB a year for both instruments.
+# port_audit's archive gate now fails if any append-only owned path is ignored again.
 
 # Local-only settings. .claude/settings.json IS committed (the routines need it);
 # settings.local.json is per-machine and is not.
