@@ -1,0 +1,35 @@
+SIL Open Font License 1.1
+=========================
+
+The three typefaces served by this site are used under the SIL Open Font License, Version 1.1,
+which permits embedding and redistribution. The licence text and its FAQ are published by SIL at
+https://openfontlicense.org.
+
+The copyright line and licence statement below are read directly out of each font's own `name`
+table by scripts/site/fonts_build.py, so they are the fonts' own words rather than a
+transcription.
+
+Fraunces
+--------
+Copyright 2020 The Fraunces Project Authors (github.com/undercasetype/Fraunces)
+This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: https://scripts.sil.org/OFL
+Version: Version 1.000;[b76b70a41]
+Served as: fraunces.woff2
+
+Manrope
+-------
+Copyright 2019 The Manrope Project Authors (https://github.com/sharanda/manrope)
+This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: http://scripts.sil.org/OFL
+Version: Version 4.504
+Served as: manrope.woff2
+
+JetBrains Mono
+--------------
+Copyright 2020 The JetBrains Mono Project Authors (https://github.com/JetBrains/JetBrainsMono)
+This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: https://openfontlicense.org
+Version: Version 2.305; ttfautohint (v1.8.4.7-5d5b)
+Served as: jetbrainsmono.woff2
+
+The files in this directory are SUBSETS of the originals, produced by fonttools. The unmodified
+originals are committed in the parent directory. No font here is renamed, and the reserved font
+name provisions of the licence are therefore untouched.

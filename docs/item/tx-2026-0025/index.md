@@ -1,6 +1,6 @@
 # Statute requires state agencies and local governments to post standardized notice of AI systems
 
-Every state agency and local government that deploys a public facing AI system, or one that is a controlling factor in a consequential decision, must post a standardized notice on the related applications, websites and public computer systems. The Department of Information Resources is required to develop the notice form, which must describe the system, its data sources and its privacy and ethics safeguards.
+Every state agency and local government that deploys a public facing AI system must post a standardized notice on the related applications, websites and public computer systems. The same duty covers any system that is a controlling factor in a consequential decision. The Department of Information Resources is required to develop the notice form. That form must describe the system, its data sources and its privacy and ethics safeguards.
 
 - Topic: state-policy
 - Decided by: Texas Department of Information Resources (state-agency)

@@ -11,6 +11,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://talonsturgill.github.io/TexasAIDocket/grid/">
 <link rel="stylesheet" href="../site.css">
+<link rel="preload" href="../fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="alternate" type="application/atom+xml" title="Texas AI Docket" href="../atom.xml">
 <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebSite","name":"Texas AI Docket","url":"https://talonsturgill.github.io/TexasAIDocket","publisher":{"@type":"Organization","name":"Texas AI Docket","url":"https://talonsturgill.github.io/TexasAIDocket"}},{"@context":"https://schema.org","@type":"Dataset","name":"Texas Grid Watch","description":"Daily settled ERCOT demand: measured hourly load, ERCOT's day ahead forecast, committed capacity, and generation by fuel. One record per day, append only.","url":"https://talonsturgill.github.io/TexasAIDocket/grid/","license":"https://creativecommons.org/licenses/by/4.0/","creator":{"@type":"Organization","name":"Texas AI Docket"},"distribution":[{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://talonsturgill.github.io/TexasAIDocket/gridwatch.json"}],"isAccessibleForFree":true,"temporalCoverage":"2026-08-10/2026-08-10"}]</script>
 </head>
@@ -18,7 +19,7 @@
 <a class="skip" href="#main">Skip to the record</a>
 <header class="masthead">
   <div class="wrap">
-    <a class="wordmark" href="../"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l2.9 7.5 8 .4-6.2 5.1 2.1 7.8L12 18l-6.8 4.4 2.1-7.8L1.1 9.5l8-.4z"/></svg><span>Texas AI Docket</span></a>
+    <a class="wordmark" href="../"><span class="hoist"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l2.9 7.5 8 .4-6.2 5.1 2.1 7.8L12 18l-6.8 4.4 2.1-7.8L1.1 9.5l8-.4z"/></svg></span><span>Texas AI Docket</span></a>
     <nav class="main" aria-label="Sections"><a href="../">Home</a><a href="../record/">The record</a><a href="../ask/">Ask</a><a href="../counties/">Counties</a><a href="../grid/" aria-current="page">Grid</a><a href="../water/">Water</a><a href="../data/">Data</a><a href="../services/">Services</a><a href="../about/">About</a></nav>
   </div>
 </header>
@@ -27,7 +28,7 @@
 <h1>Texas Grid Watch</h1>
 <div class="prose">
   <p class="lede">A daily numeric record of how the ERCOT grid is absorbing large constant
-  load. This page does not predict, grade, or reassure. It publishes measurements, the
+  load. This page does not predict, grade or reassure. It publishes measurements, the
   arithmetic done on them, and the size of what nobody outside ERCOT can see.</p>
 </div>
 
@@ -119,10 +120,10 @@ and no number on this page can tell you that.</p>
 </table>
 <div class="prose">
   <p>Generation by fuel, integrated across the day from ERCOT's five minute telemetry. Storage
-  is signed: it is negative on a day the batteries took in more than they gave back, which is
-  most days, because a round trip loses energy. Shares are computed against generation that was
+  is signed. It reads negative on a day the batteries took in more than they gave back, which
+  is most days, because a round trip loses energy. Shares are computed against generation that was
   positive, so a charging battery is not published as a generator.</p>
-  <p>Two ERCOT feeds are read separately here: one for demand, one for generation by fuel.
+  <p>Two ERCOT feeds are read separately here, one for demand and one for generation by fuel.
   Everything generated inside the grid is consumed inside it, so net generation and measured
   load have to land on each other. The two rows above differ by
   <strong class="num">0.1%</strong>, which is about what direct current ties to
@@ -154,8 +155,8 @@ and no number on this page can tell you that.</p>
 
 <h2>How this is collected</h2>
 <div class="prose">
-  <p>Once a day, from ERCOT's public dashboard feeds, the settled previous day is read whole:
-  measured demand hour by hour, the day ahead forecast ERCOT published for those hours, the
+  <p>Once a day the settled previous day is read whole from ERCOT's public dashboard feeds.
+  Measured demand hour by hour, the day ahead forecast ERCOT published for those hours, the
   capacity it had committed, and generation by fuel. The raw responses are archived before
   anything parses them.</p>
   <p>The record stores the full hourly series, not only the summary, so every figure on this
@@ -168,13 +169,20 @@ and no number on this page can tell you that.</p>
 
 </main>
 <footer class="site">
-  <div class="wrap prose">
-    <p><strong>Every numeral on this site is produced by code, from data, and can be recomputed
-    from the same inputs.</strong> No number here is typed by a person. Where something can't be
-    measured, the size of the gap is published instead of an estimate.</p>
-    <p>Every fact carries a quote from the source it came from, and a link to that source.
-    The record is <a href="../docket.json">open data</a>.</p>
-    <p class="num">Rebuilt August 11th, 2026.</p>
+  <div class="wrap block">
+    <svg class="colophon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l2.9 7.5 8 .4-6.2 5.1 2.1 7.8L12 18l-6.8 4.4 2.1-7.8L1.1 9.5l8-.4z"/></svg>
+    <div>
+      <p><strong>Every numeral on this site is produced by code, from data, and can be
+      recomputed from the same inputs.</strong> No number here is typed by a person. Where
+      something can't be measured, the size of the gap is published instead of an estimate.</p>
+      <p>Every fact carries a quote from the source it came from, and a link to that source.
+      The record is <a href="../docket.json">open data</a>.</p>
+      <dl data-prose="data">
+        <dt>Sheet</dt><dd>grid/</dd>
+        <dt>Record</dt><dd><a href="../docket.json">docket.json</a></dd>
+        <dt>Revised</dt><dd>August 12th, 2026</dd>
+      </dl>
+    </div>
   </div>
 </footer>
 </body>

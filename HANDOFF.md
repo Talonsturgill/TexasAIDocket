@@ -34,26 +34,44 @@ are what matter. Register the domain, add the address, rebuild.
 
 ---
 
-## 2. Turn Pages on. Fifteen seconds, and it is the only thing between here and a live site.
+## 2. Pages is on and the site is live. DONE, and here is what it cost.
+
+**https://talonsturgill.github.io/TexasAIDocket/** serves every page.
+
+Left in place because the same trap catches the next repository, and because the failure mode
+is a deploy job that fails in about one second with no steps and no logs.
 
 **Settings → Pages → Build and deployment → Source → GitHub Actions.**
 
 That is the whole task. Nothing else is needed, no branch to pick, no folder to set.
 
-**Why it cannot be automated.** The workflow asks for it, with `enablement: true` on
+**It must be `GitHub Actions`, not `Deploy from a branch`.** Those two look interchangeable and
+are not. Picking the branch option still creates the `github-pages` environment, but it locks
+that environment's deployment branch policy to the Pages build rather than to `main`, and the
+workflow's deploy job is then rejected before it runs a single step:
+
+    Branch "main" is not allowed to deploy to github-pages due to environment protection rules.
+
+The tell is a deploy job that fails in about one second with NO steps and NO logs. A job that
+fails inside a step has a log; a job rejected by an environment rule never starts. If that
+happens, either set Source to `GitHub Actions`, or go to **Settings → Environments →
+github-pages → Deployment branches** and allow `main`.
+
+**Why it cannot be automated.** The workflow asks, with `enablement: true` on
 `configure-pages`, and GitHub refuses: `Create Pages site failed. Error: Resource not
-accessible by integration`. A workflow's `GITHUB_TOKEN` is allowed to DEPLOY to Pages but not
-to CREATE the Pages site in the first place. That first switch is reserved to a repository
-admin, deliberately, and no amount of workflow permission gets around it.
+accessible by integration`. A workflow's `GITHUB_TOKEN` may DEPLOY to Pages but may not CREATE
+the Pages site, and it cannot edit an environment's protection rules either. Both are reserved
+to a repository admin, deliberately.
 
-**Everything else is already done and verified.** The three repositories are public. The
-`verify` job passes: the record clears its own gates and the committed site is byte-identical
-to a rebuild. The `deploy` job runs and gets exactly as far as this one switch. The moment it
-is flipped, the next push to `main` publishes, and there is a `workflow_dispatch` trigger on
-`pages.yml` to publish immediately without waiting for one.
+**The second half of the trap, which is the one that actually bit here.** With Source set
+correctly, the deploy was still rejected. The `github-pages` environment had come up set to
+**Protected branches only** with **no branch protection rules configured**, which means zero
+branches qualify and `main` is not special. The fix was **Settings → Environments →
+github-pages → Deployment branches → No restriction**. Same one-second, no-log failure, a
+different cause, and the two are indistinguishable from the run page.
 
-Then the site is at **https://talonsturgill.github.io/TexasAIDocket/** until the domain in
-item 1 replaces it.
+The site is at **https://talonsturgill.github.io/TexasAIDocket/** until the domain in item 1
+replaces it. `SITE_URL` in `scripts/site/site_build.py` is the one key to change.
 
 ---
 
@@ -127,6 +145,7 @@ analytics tag would silently break a promise the site makes in writing.
 python3 scripts/shared/port_audit.py            # is the port done, and is it wired
 python3 scripts/site/site_fresh_check.py        # is the site exactly what the ledgers produce
 python3 scripts/site/house_style_check.py       # does the published copy keep the house rules
+python3 scripts/site/theme.py --contrast        # can a reader actually read every colour
 python3 scripts/gridwatch/gridwatch_pagecheck.py   # is the grid watch current and honest
 ```
 
@@ -134,3 +153,20 @@ The first two are the ones that matter. `port_audit` answers "did anything land 
 connected", which is how the previous attempt at this port failed. `site_fresh_check` answers
 "does the published site say anything the record does not", which is the promise the whole
 product rests on.
+
+---
+
+## Regenerating the web fonts
+
+Only needed if a typeface changes or the subset range does. The output is committed on purpose,
+because `docs/` has to be byte-identical to a rebuild and subsetting is not stable across
+`fonttools` versions, while a copy is.
+
+```bash
+pip install fonttools brotli
+python3 scripts/site/fonts_build.py             # rewrites assets/fonts/web/
+python3 scripts/site/site_build.py              # copies them into docs/
+```
+
+CI never runs this. It runs `fonts_build.py --self-test`, which reads the committed manifest and
+needs no font tooling at all.

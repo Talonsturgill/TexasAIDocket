@@ -11,6 +11,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://talonsturgill.github.io/TexasAIDocket/water/">
 <link rel="stylesheet" href="../site.css">
+<link rel="preload" href="../fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="alternate" type="application/atom+xml" title="Texas AI Docket" href="../atom.xml">
 <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebSite","name":"Texas AI Docket","url":"https://talonsturgill.github.io/TexasAIDocket","publisher":{"@type":"Organization","name":"Texas AI Docket","url":"https://talonsturgill.github.io/TexasAIDocket"}},{"@context":"https://schema.org","@type":"Dataset","name":"Texas Water Watch","description":"Daily conservation storage for every monitored Texas reservoir, rolled up statewide and by metro. Out of state reservoirs and flood control dams are excluded and the exclusions are recorded.","url":"https://talonsturgill.github.io/TexasAIDocket/water/","license":"https://creativecommons.org/licenses/by/4.0/","creator":{"@type":"Organization","name":"Texas AI Docket"},"distribution":[{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://talonsturgill.github.io/TexasAIDocket/waterwatch.json"}],"isAccessibleForFree":true,"temporalCoverage":"2026-08-11/2026-08-11"}]</script>
 </head>
@@ -18,7 +19,7 @@
 <a class="skip" href="#main">Skip to the record</a>
 <header class="masthead">
   <div class="wrap">
-    <a class="wordmark" href="../"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l2.9 7.5 8 .4-6.2 5.1 2.1 7.8L12 18l-6.8 4.4 2.1-7.8L1.1 9.5l8-.4z"/></svg><span>Texas AI Docket</span></a>
+    <a class="wordmark" href="../"><span class="hoist"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l2.9 7.5 8 .4-6.2 5.1 2.1 7.8L12 18l-6.8 4.4 2.1-7.8L1.1 9.5l8-.4z"/></svg></span><span>Texas AI Docket</span></a>
     <nav class="main" aria-label="Sections"><a href="../">Home</a><a href="../record/">The record</a><a href="../ask/">Ask</a><a href="../counties/">Counties</a><a href="../grid/">Grid</a><a href="../water/" aria-current="page">Water</a><a href="../data/">Data</a><a href="../services/">Services</a><a href="../about/">About</a></nav>
   </div>
 </header>
@@ -29,19 +30,18 @@
   <p class="lede">Texas reservoirs hold <strong class="num">24.30</strong>
   million acre feet, <strong class="num">77.0%</strong> of the conservation
   capacity across <strong class="num">119</strong> reservoirs. The
-  spread between metros is the part worth looking at: Midland and Odessa sits at
+  spread between metros is the part worth looking at. Midland and Odessa sits at
   <strong class="num">27.6%</strong> while Texarkana sits at
   <strong class="num">100.0%</strong>.</p>
-  <p>A data centre needs electricity and, in most cooling designs, water. The
-  <a href="../grid/">grid watch</a> tracks the first. This tracks the second. Together they are
-  the physical account behind every siting decision in <a href="../record/">the record</a>.</p>
+  <p>A data centre needs electricity. Most cooling designs need water too. The
+  <a href="../grid/">grid watch</a> tracks the first and this tracks the second. Together they
+  are the physical account behind every siting decision in <a href="../record/">the record</a>.</p>
 </div>
 
 <h2>August 11th, 2026</h2>
 <table class="figures metros">
 <caption>Municipal reservoir storage by metro, driest first. Every bar is the same colour at
-every value: the order and the length carry the comparison, and no judgement is implied by
-either.</caption>
+every value. The order and the length carry the comparison. Neither implies a judgement.</caption>
 <thead><tr><th>Metro</th><th>Full</th><th class="n">Percent</th>
 <th class="n">Acre feet</th></tr></thead>
 <tbody><tr>
@@ -165,7 +165,7 @@ either.</caption>
   <strong class="num">24,303,346</strong> acre feet against a conservation capacity
   of <strong class="num">31,558,535</strong>.</p>
   <p>Percent full is computed here from storage over capacity, never read from the feed's own
-  field. Comparing the two is free: across every reservoir counted, the largest disagreement
+  field. Comparing the two is free. Across every reservoir counted the largest disagreement
   was <strong class="num">0.05</strong> of a percentage point, which is
   rounding. It is checked every day because the day it stops being rounding is the day their
   field means something other than what this code assumes.</p>
@@ -179,8 +179,8 @@ either.</caption>
     Ogallala under the Panhandle and the Edwards under Central Texas are not measured here and
     do not move the numbers above.</p>
     <p>So a low bar is not a conclusion about a city's water supply and a full bar is not a
-    promise about it. Some reservoirs are drawn down deliberately; some refill in a week from
-    one storm upstream. The figures are what was in storage, on the day, and nothing more is
+    promise about it. Some reservoirs are drawn down deliberately. Some refill in a week from
+    one storm upstream. The figures are what was in storage on the day and nothing more is
     claimed from them.</p>
     <p><strong>El Paso is not in this table, and that is the correct answer.</strong> The only
     reservoir tagged to El Paso in the state's data is Elephant Butte Lake, which is in New
@@ -188,8 +188,8 @@ either.</caption>
     <strong class="num">0</strong> other out of state
     reservoirs. Publishing a New Mexico lake as El Paso's water supply would be wrong, and El
     Paso's supply is a different system that this instrument does not measure.</p>
-    <p>Flood control dams with no conservation pool are excluded rather than counted as empty:
-    <strong class="num">2</strong> of them, which stand dry by
+    <p>Flood control dams with no conservation pool are excluded rather than counted as
+    empty, <strong class="num">2</strong> of them. They stand dry by
     design and would otherwise drag the state total down for doing their job.</p>
   </div>
   <p><strong>There is no historical percentile on this page, and the reason is worth stating.
@@ -205,13 +205,20 @@ either.</caption>
 
 </main>
 <footer class="site">
-  <div class="wrap prose">
-    <p><strong>Every numeral on this site is produced by code, from data, and can be recomputed
-    from the same inputs.</strong> No number here is typed by a person. Where something can't be
-    measured, the size of the gap is published instead of an estimate.</p>
-    <p>Every fact carries a quote from the source it came from, and a link to that source.
-    The record is <a href="../docket.json">open data</a>.</p>
-    <p class="num">Rebuilt August 11th, 2026.</p>
+  <div class="wrap block">
+    <svg class="colophon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l2.9 7.5 8 .4-6.2 5.1 2.1 7.8L12 18l-6.8 4.4 2.1-7.8L1.1 9.5l8-.4z"/></svg>
+    <div>
+      <p><strong>Every numeral on this site is produced by code, from data, and can be
+      recomputed from the same inputs.</strong> No number here is typed by a person. Where
+      something can't be measured, the size of the gap is published instead of an estimate.</p>
+      <p>Every fact carries a quote from the source it came from, and a link to that source.
+      The record is <a href="../docket.json">open data</a>.</p>
+      <dl data-prose="data">
+        <dt>Sheet</dt><dd>water/</dd>
+        <dt>Record</dt><dd><a href="../docket.json">docket.json</a></dd>
+        <dt>Revised</dt><dd>August 12th, 2026</dd>
+      </dl>
+    </div>
   </div>
 </footer>
 </body>

@@ -404,7 +404,7 @@ def body(records: list[dict], today: str) -> str:
     recon_block = ""
     if recon is not None:
         recon_block = f"""
-  <p>Two ERCOT feeds are read separately here: one for demand, one for generation by fuel.
+  <p>Two ERCOT feeds are read separately here, one for demand and one for generation by fuel.
   Everything generated inside the grid is consumed inside it, so net generation and measured
   load have to land on each other. The two rows above differ by
   <strong class="num">{pct(abs(recon))}%</strong>, which is about what direct current ties to
@@ -416,7 +416,7 @@ def body(records: list[dict], today: str) -> str:
 <h1>Texas Grid Watch</h1>
 <div class="prose">
   <p class="lede">A daily numeric record of how the ERCOT grid is absorbing large constant
-  load. This page does not predict, grade, or reassure. It publishes measurements, the
+  load. This page does not predict, grade or reassure. It publishes measurements, the
   arithmetic done on them, and the size of what nobody outside ERCOT can see.</p>
 </div>
 
@@ -468,8 +468,8 @@ def body(records: list[dict], today: str) -> str:
 </table>
 <div class="prose">
   <p>Generation by fuel, integrated across the day from ERCOT's five minute telemetry. Storage
-  is signed: it is negative on a day the batteries took in more than they gave back, which is
-  most days, because a round trip loses energy. Shares are computed against generation that was
+  is signed. It reads negative on a day the batteries took in more than they gave back, which
+  is most days, because a round trip loses energy. Shares are computed against generation that was
   positive, so a charging battery is not published as a generator.</p>{recon_block}
 </div>
 
@@ -496,8 +496,8 @@ def body(records: list[dict], today: str) -> str:
 
 <h2>How this is collected</h2>
 <div class="prose">
-  <p>Once a day, from ERCOT's public dashboard feeds, the settled previous day is read whole:
-  measured demand hour by hour, the day ahead forecast ERCOT published for those hours, the
+  <p>Once a day the settled previous day is read whole from ERCOT's public dashboard feeds.
+  Measured demand hour by hour, the day ahead forecast ERCOT published for those hours, the
   capacity it had committed, and generation by fuel. The raw responses are archived before
   anything parses them.</p>
   <p>The record stores the full hourly series, not only the summary, so every figure on this

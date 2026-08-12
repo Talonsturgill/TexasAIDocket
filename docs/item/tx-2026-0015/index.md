@@ -1,6 +1,6 @@
 # Federal comment window open on NRC reactor licensing and siting modernization
 
-The Nuclear Regulatory Commission has proposed a wholesale revision of its reactor licensing, safety oversight and siting rules, carried out under an executive order directing reform of the agency. Comments close August 31st, 2026. Siting rules bear directly on the new nuclear generation being proposed to serve large electrical loads in Texas.
+The Nuclear Regulatory Commission has proposed a wholesale revision of its reactor licensing, safety oversight and siting rules. The revision is being carried out under an executive order directing reform of the agency. Comments close August 31st, 2026. Siting rules bear directly on the new nuclear generation being proposed to serve large electrical loads in Texas.
 
 - Topic: defense-and-federal
 - Decided by: United States Nuclear Regulatory Commission (federal)

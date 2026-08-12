@@ -57,6 +57,19 @@ CODE = re.compile(r"<(script|style)\b.*?</\1>", re.DOTALL | re.IGNORECASE)
 READER_VOICE = re.compile(r'<([a-z]+)\b[^>]*\bdata-voice="reader"[^>]*>.*?</\1>',
                           re.DOTALL | re.IGNORECASE)
 TAG = re.compile(r"<[^>]+>")
+# STRUCTURED DATA rendered as chips, labels and lists. A comma between two of Oncor's 22
+# affected counties is a delimiter, not a writer leaning on commas, and a metadata row repeated
+# once per card multiplies that delimiter by the number of cards. Measuring comma DENSITY over
+# it says nothing about whether the prose breathes.
+#
+# This exemption is deliberately narrower than the others: it is subtracted from the DENSITY
+# measurement only, and never from the construction rules. An em dash or a bare date inside a
+# chip is still a violation, so the marker cannot be used to smuggle bad copy past the gate. It
+# only stops a county list from being read as a sentence.
+DATA_REGION = re.compile(r'<([a-z]+)\b[^>]*\bdata-prose="data"[^>]*>.*?</\1>',
+                         re.DOTALL | re.IGNORECASE)
+# Paragraph containers: where running prose lives. Used only to scope the comma DENSITY rule.
+PARAGRAPH = re.compile(r"<(p|li)\b[^>]*>(.*?)</\1>", re.DOTALL | re.IGNORECASE)
 
 
 def our_prose(page_html: str) -> str:
@@ -67,6 +80,30 @@ def our_prose(page_html: str) -> str:
     return _html.unescape(TAG.sub(" ", body))
 
 
+def our_sentences(page_html: str) -> str:
+    """The RUNNING PROSE on a page: paragraphs and list items, minus data, quotes and code.
+
+    Commas per hundred words is a measure of how densely a SENTENCE is punctuated, so it is only
+    meaningful over text that is made of sentences. A page is also full of text that is not:
+    headlines, chips, counters, card titles. A docket title reads "PUCT Project 58000,
+    rulemaking to update ERCOT transmission cost recovery, comment deadline reached", where both
+    commas are structural, and an index page carrying a dozen of those would fail a density rule
+    for doing its job. Neither the title nor the chip gets any better for being rewritten.
+
+    So the rate is measured over paragraph containers. Every other rule still reads the whole
+    page through `our_prose`, so nothing escapes the gate by living in a heading. Only the
+    density heuristic narrows, and it narrows to the text the heuristic was designed for. The
+    report prints the measured word count beside the rate, so the coverage is visible rather
+    than assumed.
+    """
+    m = MAIN.search(page_html)
+    body = m.group(1) if m else page_html
+    body = DATA_REGION.sub(" ", body)
+    body = READER_VOICE.sub(" ", QUOTED.sub(" ", CODE.sub(" ", SVG.sub(" ", body))))
+    runs = [inner for _tag, inner in PARAGRAPH.findall(body)]
+    return _html.unescape(TAG.sub(" ", " ".join(runs)))
+
+
 def check_site(docs: Path) -> dict[str, list[str]]:
     out: dict[str, list[str]] = {}
     for page in sorted(docs.rglob("*.html")):
@@ -74,7 +111,16 @@ def check_site(docs: Path) -> dict[str, list[str]]:
             text = page.read_text(encoding="utf-8")
         except OSError:
             continue
-        problems = caption_check.check(our_prose(text))
+        prose = our_prose(text)
+        problems = caption_check.check(prose)
+        # The rate is judged per PAGE, which is the unit a reader actually reads. A single
+        # comma-heavy sentence can sit inside a page that breathes; a page whose average is over
+        # the ceiling is a page that does not.
+        running = our_sentences(text)
+        rate = caption_check.rate_problem(running, caption_check.SITE_COMMA_CEILING)
+        if rate:
+            _r, _c, words = caption_check.comma_rate(running)
+            problems = problems + [f"{rate}. Measured over {words} words of running prose"]
         if problems:
             out[str(page.relative_to(docs))] = problems
     return out
@@ -136,6 +182,49 @@ def self_test() -> int:
 
     ok("a page with no main element is still checked rather than skipped",
        bool(our_prose("<html><body><p>Filed August 11.</p></body></html>").strip()))
+
+    # THE DATA EXEMPTION, and its limit. It must take a county list out of the DENSITY
+    # measurement and leave it inside every construction rule, or it becomes a way to smuggle
+    # bad copy onto the page behind an attribute.
+    chips = ('<main><p>The line crosses the counties below.</p>'
+             '<p class="meta" data-prose="data">Borden, Bosque, Brown, Callahan, Coke</p>'
+             '</main>')
+    ok("a county list is not counted as prose density",
+       "Bosque" not in our_sentences(chips), our_sentences(chips))
+    ok("...and the sentence beside it still is", "crosses the counties" in our_sentences(chips))
+    # A HEADLINE is not a sentence. A docket title's commas are structural and rewriting the
+    # title to satisfy a density rule would make the record harder to read, not easier.
+    headline = ('<main><h3>PUCT Project 58000, cost recovery, deadline reached</h3>'
+                '<p>The commission set a hearing.</p></main>')
+    ok("a headline is outside the density measurement",
+       "58000" not in our_sentences(headline), our_sentences(headline))
+    ok("...but a headline is still read by the construction rules",
+       "58000" in our_prose(headline))
+    ok("a bare date in a headline still fails",
+       any("ordinal" in p for p in caption_check.check(
+           our_prose("<main><h3>Closes August 11</h3></main>"))))
+    ok("a list item counts as running prose",
+       "heard the county" in our_sentences('<main><li>The board heard the county.</li></main>'))
+    ok("...and the same list is STILL read by the construction rules",
+       "Bosque" in our_prose(chips))
+    ok("a bare date inside a data chip still fails",
+       any("ordinal" in p for p in caption_check.check(our_prose(
+           '<main><p class="meta" data-prose="data">Closes August 11</p></main>'))))
+    # The rate is what the marker was added for, so prove the marker changes the verdict.
+    heavy = ('<main><p>' + ("The commission set a hearing and heard from the county. " * 12) +
+             '</p><p class="meta" data-prose="data">' +
+             ("Borden, Bosque, Brown, Callahan, Coke, Coleman, Comanche. " * 6) + '</p></main>')
+    ok("the rate fails when a chip row is counted",
+       caption_check.rate_problem(our_prose(heavy), caption_check.SITE_COMMA_CEILING) is not None)
+    ok("...and passes once the chip row is recognised as data",
+       caption_check.rate_problem(our_sentences(heavy), caption_check.SITE_COMMA_CEILING) is None,
+       str(caption_check.rate_problem(our_sentences(heavy), caption_check.SITE_COMMA_CEILING)))
+    # And the rate must still be able to go red on genuine prose, or the exemption has quietly
+    # disabled the whole rule.
+    wordy = '<main><p>' + ("The commission, having heard, set a date, and then, later, "
+                           "adjourned the meeting. " * 8) + '</p></main>'
+    ok("a genuinely comma-heavy page still fails on rate",
+       caption_check.rate_problem(our_sentences(wordy), caption_check.SITE_COMMA_CEILING) is not None)
 
     if failures:
         print(f"\nhouse_style_check self-test: {failures} FAILED", file=sys.stderr)

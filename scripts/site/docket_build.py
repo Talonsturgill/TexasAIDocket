@@ -98,6 +98,12 @@ CONFIDENCES = {"high", "medium", "low"}
 # a claim's verbatim quote is the source's words and must never be rewritten to satisfy a linter.
 READER_COPY_FIELDS = ("title", "summary")
 
+# public_access.how is reader copy too. It renders on the item page and tells somebody how to
+# actually file a comment, which makes it the most consequential sentence on the page. It was
+# outside every copy gate until 2026-08-12, and the hole surfaced the honest way: the house
+# punctuation rule found a colon there that no gate had ever looked at.
+READER_COPY_NESTED = (("public_access", "how"),)
+
 # Machine narration. The record describes the world, it does not describe its own production.
 NARRATION = re.compile(
     r"\b(this (?:item|record|entry|docket)|we (?:found|could not|were unable|searched|fetched)|"
@@ -139,6 +145,20 @@ CITATION = re.compile(
 # The bare 2054 then reads as a year, leaving a stray 705 that looks like a published figure.
 DOTTED_SECTION = re.compile(r"\b\d{1,4}\.\d{1,4}[A-Za-z]?\b")
 
+# This record's own item ids. One item's copy pointing at another is a cross reference, and the
+# id carries a year and a sequence number that mean nothing as figures. It is stripped FIRST,
+# because the year rule would otherwise eat the "2026" out of "tx-2026-0010" and leave a bare
+# "0010" that reads like a published quantity.
+ITEM_ID = re.compile(r"\btx-\d{4}-\d{4}\b", re.IGNORECASE)
+
+# A room, floor or suite is an address. "Commissioners Hearing Room 7-100" is where a person
+# physically goes to be heard, and the hyphen makes it read as a range to any numeral rule that
+# has not been told otherwise.
+PLACE_NUMBER = re.compile(
+    r"\b(?:Rooms?|Suites?|Floors?|Buildings?)\s+(?:No\.?\s*)?[\dA-Za-z]+(?:-[\dA-Za-z]+)*\b",
+    re.IGNORECASE,
+)
+
 ISO_DATE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
 
@@ -161,7 +181,10 @@ class Result:
 
 
 def _reader_text(item: dict) -> str:
-    return " ".join(str(item.get(f, "")) for f in READER_COPY_FIELDS)
+    parts = [str(item.get(f, "")) for f in READER_COPY_FIELDS]
+    for outer, inner in READER_COPY_NESTED:
+        parts.append(str((item.get(outer) or {}).get(inner, "")))
+    return " ".join(parts)
 
 
 def _quoted_numerals(item: dict) -> set:
@@ -192,8 +215,10 @@ def _prose_numerals(text: str) -> list:
     """Numerals in prose, minus dates, years and citations, which are identifiers not figures."""
     # Order matters. Dotted sections go before YEAR, or "2054.705" loses its "2054" to the
     # year rule and leaves a bare "705" that reads as a published figure.
-    stripped = DATE_ORDINAL.sub(" ", text)
+    stripped = ITEM_ID.sub(" ", text)
+    stripped = DATE_ORDINAL.sub(" ", stripped)
     stripped = CITATION.sub(" ", stripped)
+    stripped = PLACE_NUMBER.sub(" ", stripped)
     stripped = DOTTED_SECTION.sub(" ", stripped)
     stripped = YEAR.sub(" ", stripped)
     return [m.replace(",", "").rstrip("%") for m in NUMERAL.findall(stripped)]
@@ -317,6 +342,36 @@ def gate_narration(items: list) -> Result:
     return r
 
 
+def gate_house_style(items: list) -> Result:
+    """The house punctuation and voice rules, applied to the record's own prose.
+
+    The site already runs this over the BUILT pages, which catches anything a page builder
+    writes. It could not catch anything the RECORD carries, because a bad sentence in a summary
+    is copy this project wrote just as much as a paragraph in a builder is. A rule enforced on
+    one and not the other is a rule with a door in it.
+
+    A claim's verbatim quote is never checked. Rewriting a quotation to fit house style would
+    be falsifying it, which is far worse than an inconsistent date, and `_reader_text` already
+    excludes quotes by construction.
+    """
+    r = Result("house style")
+    import sys as _sys
+    _sys.path.insert(0, str(REPO_ROOT / "scripts" / "carousel"))
+    import caption_check                                           # noqa: PLC0415
+
+    for it in items:
+        who = it.get("id", "?")
+        text = _reader_text(it)
+        for problem in caption_check.check(text):
+            r.fail(f"{who}: {problem}")
+        rate = caption_check.rate_problem(text, caption_check.SITE_COMMA_CEILING)
+        if rate:
+            r.fail(f"{who}: {rate}")
+    if r.status == "PASS":
+        r.note(f"{len(items)} item(s) keep the house rules")
+    return r
+
+
 def gate_staleness(items: list, today: str,
                    warn_days: int = 45, fail_days: int = 120) -> Result:
     """Two bands, and the outer one is a HARD FAIL.
@@ -390,7 +445,7 @@ def window_state(item: dict, today: str) -> str:
 
 GATES = {
     "schema": gate_schema, "claims": gate_claims, "numerals": gate_numerals,
-    "narration": gate_narration,
+    "narration": gate_narration, "house style": gate_house_style,
 }
 DATED_GATES = {"staleness": gate_staleness, "deadlines": gate_deadlines}
 
@@ -544,6 +599,12 @@ def self_test() -> int:
     expect("numerals exempts a PLURAL statute citation",
            gate_numerals([base(summary="Sections 2054.701 through 2054.705 conflict.")]),
            "PASS")
+    expect("numerals exempts a cross reference to another item",
+           gate_numerals([base(summary="See item tx-2026-0010 for the statutory basis.")]),
+           "PASS")
+    expect("numerals exempts a hearing room",
+           gate_numerals([base(summary="Meetings are held in Commissioners Hearing Room 7-100.")]),
+           "PASS")
     expect("numerals allows a count COMPUTED from the record",
            gate_numerals([base(summary="The corridor crosses 3 counties.",
                                geography={"statewide": False, "counties": ["A", "B", "C"]})]),
@@ -561,6 +622,32 @@ def self_test() -> int:
     expect("narration catches search narration",
            gate_narration([base(summary="No page anyone could reach lists the figure.")]),
            "FAIL")
+
+    expect("house style passes clean copy", gate_house_style([base()]), "PASS")
+    expect("house style catches a colon in a summary",
+           gate_house_style([base(summary="The order sets one condition: file by the date.")]),
+           "FAIL")
+    expect("house style catches a semicolon in a summary",
+           gate_house_style([base(summary="The rule is proposed; comments are open.")]), "FAIL")
+    # The nested field is the one a reader acts on, and it is the field a writer forgets is
+    # checked. A gate that reads the summary and not the instruction has a door in it.
+    expect("house style reaches public_access.how",
+           gate_house_style([base(public_access={
+               "room": "open_comment", "how": "File under the project number; attach a PDF.",
+               "url": None, "closes": "2026-09-04"})]), "FAIL")
+    expect("house style catches a bare date",
+           gate_house_style([base(summary="Comments close September 4.")]), "FAIL")
+    expect("house style catches an em dash",
+           gate_house_style([base(summary="The rule is open — comments close soon.")]),
+           "FAIL")
+    expect("house style catches the parenthetical comma",
+           gate_house_style([base(
+               summary="A site needs power and, in most designs, water.")]), "FAIL")
+    # A ratio and a clock time are the two colons that are not punctuation. Failing them would
+    # push a writer to rephrase a correct figure, which is the gate making the copy worse.
+    expect("house style allows a clock time",
+           gate_house_style([base(summary="The hearing starts at 9:30 in the morning.")]),
+           "PASS")
 
     expect("staleness passes a fresh item", gate_staleness([base()], today), "PASS")
     expect("staleness warns in the first band",

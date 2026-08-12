@@ -146,11 +146,27 @@ jobs:
       - name: Ask engine self-test (routes not cached answers, and it phones nobody)
         run: python3 scripts/site/ask_answers.py --self-test
 
-      - name: Theme self-test (tokens reach the CSS, red stays reserved)
-        run: python3 scripts/site/theme.py --self-test
+      - name: Web fonts are committed, licensed, and actually served
+        run: |
+          # The check exists because brand.yaml named three faces, theme.py wrote them into
+          # every font stack, assets/fonts/ held all three, and NOTHING SERVED THEM. A font
+          # stack naming a family no @font-face defines renders fine in the fallback, so the
+          # config and the page disagreed silently for the whole life of the site.
+          python3 scripts/site/fonts_build.py --self-test
 
-      - name: Map self-test (orientation, extent, determinism)
-        run: python3 scripts/site/texas_map.py --self-test
+      - name: Theme self-test (every contrast ratio computed and gated, red stays reserved)
+        run: |
+          # Contrast is a numeral and a palette is data, so the compute-not-generate law
+          # applies to the design system too. Texas red on the night register measures 2.94
+          # to 1, below even the large-text floor, and it was worn by the comment countdown.
+          python3 scripts/site/theme.py --self-test
+
+      - name: Map self-test (orientation, extent, determinism, and the scale bar tells the truth)
+        run: |
+          # The scale bar is checked the way a reader would use it: a known distance measured
+          # off the drawing against the great circle. A decorative scale bar is worse than
+          # none, because it invites somebody to measure with it.
+          python3 scripts/site/texas_map.py --self-test
 
       - name: Site build self-test
         run: python3 scripts/site/site_build.py --self-test
