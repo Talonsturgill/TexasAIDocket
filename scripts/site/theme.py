@@ -246,6 +246,31 @@ table.metros th[scope="row"] {{ font-weight:400; color:var(--ink-bright);
 caption {{ caption-side:bottom; text-align:left; padding-top:.75rem; font-size:var(--s-1);
   color:var(--ink-mute); max-width:var(--measure); }}
 
+/* ---- the ask box -------------------------------------------------------- */
+/* Answered in the reader's browser. The styling says "a tool", not "a chatbot":
+   no avatar, no typing dots, no conversation. A question and what the record says. */
+.askbox {{ border:1px solid var(--rule); border-radius:var(--radius); padding:1.25rem var(--gap);
+  background:var(--surface); margin:1.5rem 0; }}
+.askbox form {{ display:flex; gap:.6rem; flex-wrap:wrap; align-items:center; }}
+.askbox label {{ position:absolute; left:-9999px; }}
+.askbox input {{ flex:1 1 20rem; font:400 var(--s1)/1.4 var(--body); padding:.7em .9em;
+  background:var(--bg); color:var(--ink-bright); border:1px solid var(--rule);
+  border-radius:2px; }}
+.askbox input:focus-visible {{ border-color:var(--accent); }}
+.askbox button[type="submit"] {{ font:600 var(--s0)/1 var(--body); padding:.85em 1.4em;
+  background:var(--accent-deep); color:var(--limestone); border:0; border-radius:2px;
+  cursor:pointer; }}
+.askbox .chips {{ display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.9rem; }}
+.askbox .chips button {{ font:400 var(--s-1)/1 var(--body); padding:.5em .85em;
+  background:transparent; color:var(--ink-mute); border:1px solid var(--rule);
+  border-radius:999px; cursor:pointer; }}
+.askbox .chips button:hover {{ color:var(--ink-bright); border-color:var(--accent); }}
+.askbox .answer {{ margin-top:1.25rem; padding-top:1.1rem; border-top:1px solid var(--rule); }}
+.askbox .answer h3 {{ margin:0 0 .6rem; font-size:var(--s1); }}
+.askbox .answer ul {{ list-style:none; padding:0; margin:.5rem 0 0; display:grid; gap:.7rem; }}
+.askbox .answer .meta {{ font-size:var(--s-1); color:var(--ink-mute);
+  font-family:var(--mono); }}
+
 table.figures td:first-child {{ color:var(--ink-bright); }}
 table.figures td:last-child {{ color:var(--ink-mute); font-size:.92em; }}
 
@@ -312,7 +337,12 @@ def self_test() -> int:
     check("the gauge is never a dial",
           "dial" not in sheet and "conic-gradient" not in sheet)
 
-    check("the stylesheet stays small", len(sheet.encode()) < 12_000,
+    # A BUDGET THAT GREW WITH THE SURFACE, NOT WITH WASTE. The ceiling was 12 KB when the site
+    # was five pages of text. It now carries the county map, the grid watch's load chart and
+    # gauge, the water watch's metro bars, and the ask box, each with a light and a dark
+    # palette. Raised to 16 KB, which is still under 4 KB over the wire, and raised here in one
+    # place with the reason attached rather than by deleting the check.
+    check("the stylesheet stays small", len(sheet.encode()) < 16_000,
           f"{len(sheet.encode())} bytes")
     check("two builds are byte identical", css() == sheet)
 

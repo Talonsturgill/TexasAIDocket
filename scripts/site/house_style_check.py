@@ -45,6 +45,17 @@ MAIN = re.compile(r"<main\b[^>]*>(.*)</main>", re.DOTALL | re.IGNORECASE)
 # Quoted material and its attribution. Stripped, never linted. See the module docstring.
 QUOTED = re.compile(r"<(blockquote|cite)\b.*?</\1>", re.DOTALL | re.IGNORECASE)
 SVG = re.compile(r"<svg\b.*?</svg>", re.DOTALL | re.IGNORECASE)
+# Script and style CONTENT, not just their tags. Stripping tags alone leaves the code between
+# them, and the ask page ships its whole engine and index inline: the lint then read a
+# JavaScript identifier "i" as a first-person pronoun. Code is not reader-facing copy.
+CODE = re.compile(r"<(script|style)\b.*?</\1>", re.DOTALL | re.IGNORECASE)
+# TEXT IN THE READER'S VOICE, not the record's. The ask box's starter questions are phrased the
+# way a person types them, which includes "What can I still comment on?". The no-first-person
+# rule exists so the record does not speak as "we"; it was never meant to stop the page quoting
+# the reader back to themselves. Marked explicitly at the source rather than inferred, so the
+# exemption is a decision somebody made and can be found.
+READER_VOICE = re.compile(r'<([a-z]+)\b[^>]*\bdata-voice="reader"[^>]*>.*?</\1>',
+                          re.DOTALL | re.IGNORECASE)
 TAG = re.compile(r"<[^>]+>")
 
 
@@ -52,7 +63,7 @@ def our_prose(page_html: str) -> str:
     """What this project wrote, with everything it merely reproduced taken out."""
     m = MAIN.search(page_html)
     body = m.group(1) if m else page_html
-    body = QUOTED.sub(" ", SVG.sub(" ", body))
+    body = READER_VOICE.sub(" ", QUOTED.sub(" ", CODE.sub(" ", SVG.sub(" ", body))))
     return _html.unescape(TAG.sub(" ", body))
 
 
@@ -92,6 +103,21 @@ def self_test() -> int:
     ok("a quoted passage is removed before linting", "cannot be filed late" not in prose, prose)
     ok("...and so is its attribution", "Project 58000" not in prose)
     ok("SVG geometry is not prose", "40-60" not in prose)
+    coded = our_prose('<main><p>Filed August 11th.</p>'
+                      '<script>for (var i = 0; i < n; i++) { we.cannot(x); }</script>'
+                      '<style>.a { width: 40-60px }</style></main>')
+    ok("inline script is not prose", "cannot" not in coded and " i " not in f" {coded} ",
+       coded)
+    ok("inline style is not prose", "40-60" not in coded)
+    ok("...and the sentence beside the code still is", "August 11th" in coded)
+    voiced = our_prose('<main><p>Filed August 11th.</p>'
+                       '<div data-voice="reader"><button>What can I comment on?</button></div>'
+                       '</main>')
+    ok("text marked as the reader's own voice is exempt", "What can I" not in voiced, voiced)
+    ok("...and only what is marked", "August 11th" in voiced)
+    ok("an unmarked first person is still caught",
+       any("first person" in p for p in
+           caption_check.check(our_prose("<main><p>What can I comment on?</p></main>"))))
     ok("the footer is outside main and not checked", "cannot" not in prose)
     ok("a clean page reports nothing", not caption_check.check(prose),
        str(caption_check.check(prose)))

@@ -58,15 +58,15 @@ Source machines total ~79,000 lines across three Alaska repos, which are REFEREN
 | # | Wave | Status | Notes |
 |---|---|---|---|
 | 0 | Foundation, ownership guard, port audit | **DONE** | 535 files / 158,683 lines routed, 0 unrouted |
-| 1 | Texas identity: research, doctrine, tokens, geodata | TODO | |
-| 2 | Docket spine + fact-checked seed items | TODO | 15 unverified research findings resolve here |
-| 3 | Website + AI-discoverability layer | TODO | `site_build.py` is the single biggest item |
-| 4 | In-browser ask engine | TODO | |
+| 1 | Texas identity: research, doctrine, tokens, geodata | **DONE** | 21 knowledge docs, brand tokens, geodata, 17 art libraries ported as TX namespace |
+| 2 | Docket spine + fact-checked seed items | **DONE** | 13 items, 55 claims, all primary-sourced. 6 gates, 36 self-tests |
+| 3 | Website + AI-discoverability layer | **DONE** | 27 pages, feeds, Markdown twins, llms.txt, JSON-LD, byte-fresh gate |
+| 4 | In-browser ask engine | **DONE** | index, catalogue generated from the record, engine, page, browser test. Nothing sent anywhere |
 | 5 | Texas Grid Watch + Water Watch | **DONE** | both collectors, both pages, cron, page check, numeral_lint. All green |
 | 6 | Carousel machine | **PARTIAL** | engine, art libraries, demo deck, caption lint, bespoke check, 10 agents, ledgers, routine prompt all DONE. Craft doctrine + gmail_draft + scoring rubric remain |
-| 7 | Video dispatch + Texas art library | TODO | lands in `TexasAIDispatch` |
-| 8 | Commercial wing + scanner | TODO | lands here + `TexasAIScanner` |
-| 9 | Wire-up, end-to-end proof, routine handoff | TODO | |
+| 7 | Video dispatch + Texas art library | **TODO** | lands in `TexasAIDispatch` (exists, public, push confirmed). NOT STARTED, see below |
+| 8 | Commercial wing + scanner | **PARTIAL** | services page DONE here. `TexasAIScanner` (exists, public) NOT STARTED |
+| 9 | Wire-up, end-to-end proof, routine handoff | **PARTIAL** | HANDOFF.md, trigger pointers, full end-to-end pass green (21 suites, 8 gates). Owner actions outstanding |
 | A | Metro scoping (cuts across waves 2, 3, 4, 5) | TODO | owner directive 2026-08-11 |
 | B | Data cleanliness spine: places + entity resolution | **PARTIAL** | see below |
 
@@ -321,3 +321,55 @@ precision farming. City coverage will find itself; rural coverage has to be soug
 - **`texreg.sos.state.tx.us` is allowed and unexploited.** The Texas Register is the authoritative
   publication for proposed rules and their official comment instructions, which makes it the best
   single addition to the collector set.
+
+
+---
+
+## State at 2026-08-12, end of the long build session
+
+**Everything green.** 21 self-test suites including two that need a real browser, 8 structural
+gates, the site byte-identical to a rebuild across 49 files, house style clean across 27 pages.
+Run `python3 scripts/shared/port_audit.py` and `python3 scripts/site/site_fresh_check.py` first;
+they answer the two questions that matter.
+
+### What is live
+
+| surface | state |
+|---|---|
+| The record | 13 items, 55 claims, every one primary-sourced |
+| The site | 27 pages: home, record, ask, counties, grid, water, data, services, about |
+| Grid Watch | collector, page, cron, page check. First real day: peak 83,118 MW, load factor 0.8529 |
+| Water Watch | collector, page. 119 reservoirs, 77.01 percent. Midland Odessa driest at 27.59 |
+| Ask box | 121 questions, answered in-browser, nothing sent anywhere |
+| Carousel machine | engine, 17 art libraries, demo deck, 10 agents, routine prompt, 5 gates |
+
+### The three things a next session should know
+
+1. **`ledger/gridwatch/raw/` is committed and must stay committed.** It was gitignored, which
+   meant the cron wrote the archive into a container that gets reclaimed. `port_audit`'s
+   archive gate now fails on any append-only path that git would ignore.
+
+2. **`TX.rng(seed)` returns a generator function.** Calling it bare and multiplying by a number
+   yields NaN, NaN coordinates draw nothing, and nothing throws. Written into `SKILL.md` in the
+   largest letters that file has.
+
+3. **The comma ceiling is still deliberately unset.** It gets computed from this product's own
+   first twenty shipped captions, never copied. `config/parity_map.yaml` carries the unblock
+   condition and `caption_check.py` measures the rate every run.
+
+### What is genuinely not started
+
+**Wave 7, the video dispatch**, in `TexasAIDispatch`. Roughly 14,500 lines of Remotion `lib/`
+plus a Texas art library that has to be built rather than ported: biomes, fauna, vehicles,
+outfits. The repo exists, is public, and push is confirmed. This is a multi-session piece of
+work and it deserves the same care as the rest rather than a rushed version.
+
+**Wave 8's second half**, in `TexasAIScanner`. About 3,873 lines across 28 files, described in
+the plan as small and cleanly portable: a routine prompt, four Supabase edge functions, a
+schema, four agents, three knowledge docs. Needs its own Supabase project; do not reuse the
+sibling product's.
+
+**Metro scoping and the rest of the data cleanliness spine.** Blocked on a CITED source for the
+county-to-ERCOT-zone mapping and for which counties sit outside ERCOT entirely. El Paso is
+WECC, parts of the Panhandle and East Texas are SPP or MISO, and getting that wrong makes a
+whole region's numbers silently wrong. Never guess it.
