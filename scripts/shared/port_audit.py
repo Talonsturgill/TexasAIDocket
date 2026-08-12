@@ -192,8 +192,12 @@ def check_residue(root: Path) -> Result:
 def check_wiring(root: Path) -> Result:
     """The check that catches "we moved it but never hooked it up"."""
     r = Result("wiring")
+    # scripts/ AND the skill engines. A skill is exactly the shape of thing this check exists
+    # to catch: a few thousand lines that arrive as a directory, are never imported by anything,
+    # and go stale without a single error. Nothing else in the repo would notice.
+    roots = [root / "scripts", root / ".claude" / "skills"]
     scripts = sorted(p.relative_to(root).as_posix()
-                     for p in (root / "scripts").rglob("*.py")) if (root / "scripts").exists() else []
+                     for d in roots if d.exists() for p in d.rglob("*.py"))
     if not scripts:
         r.skip("no scripts yet")
         return r

@@ -1,0 +1,108 @@
+<!doctype html>
+<!-- DEMO SLIDE 1 — "Title-Card Hook": Big Bend dusk atmosphere built from an SVG
+     filter stack (feTurbulence + displacement + screen blend), a grain pass, and
+     Fraunces display type over a mono telemetry footer.
+     Reference for: SVG filter atmospheres, type setting, the Lone Star mark.
+     NOT a style template. Plumbing reference only: a real deck writes its own art. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #141020; position: relative; font-family: "Fraunces", serif; }
+
+  /* Big Bend at dusk: the desert floor still warm, the sky already gone violet. */
+  .sky { position: absolute; inset: 0;
+         background: linear-gradient(180deg, #141020 0%, #1B1830 38%, #3A2036 56%,
+                                     #8C5A3C 52%, #B4664F 58%, #3A2036 68%, #141020 78%); }
+  svg.haze { position: absolute; inset: 0; mix-blend-mode: screen; }
+  .grain { position: absolute; inset: 0; opacity: 0.11; mix-blend-mode: overlay;
+           background-repeat: repeat; }
+
+  .content { position: absolute; inset: 0; padding: 96px; display: flex;
+             flex-direction: column; justify-content: flex-end; }
+  /* THE RESERVE. Type over a gradient cannot be judged by its mean: the dek fell to
+     2.5:1 at its worst point while averaging 5.7. A reserve is a graded scrim that
+     lifts the floor under the whole text block without flattening the art above it. */
+  .reserve { position: absolute; left: 0; right: 0; bottom: 0; height: 720px;
+             background: linear-gradient(180deg, rgba(20,16,32,0) 0%,
+                         rgba(20,16,32,0.80) 22%, rgba(20,16,32,0.94) 52%,
+                         rgba(20,16,32,0.97) 100%); }
+  .kicker { font-family: "JetBrains Mono", monospace; font-weight: 500;
+            font-size: 26px; letter-spacing: 0.14em; color: #E0956A;
+            margin-bottom: 28px; text-transform: uppercase; }
+  h1 { font-weight: 840; font-size: 146px; line-height: 0.97;
+       letter-spacing: -0.018em; color: #EDE6D6;
+       font-variation-settings: "opsz" 144; margin-bottom: 32px; }
+  h1 .lit { color: #F2C9A6; }
+  .dek { font-family: "Manrope", sans-serif; font-weight: 500; font-size: 40px;
+         line-height: 1.32; color: rgba(228, 216, 195, 0.92); max-width: 830px;
+         margin-bottom: 72px; }
+  .footer { display: flex; justify-content: space-between; align-items: baseline;
+            border-top: 1px solid rgba(224, 149, 106, 0.38); padding-top: 22px; }
+  .brand { font-weight: 800; font-size: 30px; color: #FFFFFF; }
+  .coords, .counter { font-family: "JetBrains Mono", monospace; font-size: 24px;
+            color: rgba(237, 230, 214, 0.55); letter-spacing: 0.08em; }
+  .star { position: absolute; top: 88px; right: 96px; }
+</style>
+</head>
+<body>
+  <div class="sky"></div>
+
+  <svg class="haze" width="1080" height="1350" viewBox="0 0 1080 1350">
+    <defs>
+      <filter id="dust" x="-30%" y="-30%" width="160%" height="160%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.0016 0.011"
+                      numOctaves="4" seed="20260812" result="n"/>
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="140"
+                           xChannelSelector="R" yChannelSelector="G"/>
+        <feGaussianBlur stdDeviation="16"/>
+      </filter>
+      <linearGradient id="band" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%"   stop-color="#B4664F" stop-opacity="0"/>
+        <stop offset="38%"  stop-color="#E0956A" stop-opacity="0.92"/>
+        <stop offset="72%"  stop-color="#B4664F" stop-opacity="0.70"/>
+        <stop offset="100%" stop-color="#4E5FA8" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <g filter="url(#dust)">
+      <ellipse cx="540" cy="712" rx="760" ry="104" fill="url(#band)"/>
+      <ellipse cx="430" cy="806" rx="660" ry="62" fill="url(#band)" opacity="0.72"/>
+      <ellipse cx="668" cy="624" rx="520" ry="44" fill="url(#band)" opacity="0.44"/>
+    </g>
+  </svg>
+
+  <!-- The Lone Star: statutory, geometric, abstract. The one Texas mark that is not kitsch. -->
+  <svg class="star" width="86" height="86" viewBox="0 0 24 24">
+    <path d="M12 1.6l2.9 7.5 8 .4-6.2 5.1 2.1 7.8L12 18l-6.8 4.4 2.1-7.8L1.1 9.5l8-.4z"
+          fill="#FFFFFF" opacity="0.92"/>
+  </svg>
+
+  <div class="reserve"></div>
+  <div class="grain" id="grain"></div>
+
+  <div class="content">
+    <div class="kicker">Engine proof, slide one of four</div>
+    <h1>The record<br><span class="lit">is the product</span></h1>
+    <p class="dek">SVG filter atmosphere, displacement-mapped dust, a grain pass,
+       and variable display type. Every element drawn in code, nothing placed by hand.</p>
+    <div class="footer">
+      <span class="brand">Texas AI Docket</span>
+      <span class="coords">29.2500 N 103.2500 W</span>
+      <span class="counter">01 / 04</span>
+    </div>
+  </div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+  /* Seeded grain tile. TX.rng(seed) so the same slide renders the same pixels
+     every time: the QA harness re-renders and compares, and an unseeded
+     Math.random() would fail that check for no reason. */
+  TX.reseed(20260812);
+  document.getElementById("grain").style.backgroundImage =
+    "url(" + TX.grainTile(140, 40, 1) + ")";
+</script>
+</body>
+</html>

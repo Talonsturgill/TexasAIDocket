@@ -1,0 +1,123 @@
+<!doctype html>
+<!-- DEMO SLIDE 4 — "The Object": software 3D through TX3D, a heightfield lit and
+     rendered on Canvas 2D with no GPU and no WebGL. Stands in for a substation
+     yard read as terrain: the shape a data centre makes on a grid.
+     Reference for: TX3D camera and heightfield, contact shadows via TXCARVE. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #141020; position: relative; font-family: "Fraunces", serif; }
+  canvas { position: absolute; inset: 0; }
+  .hd { position: absolute; top: 96px; left: 96px; right: 96px; }
+  .kicker { font-family: "JetBrains Mono", monospace; font-size: 24px;
+            letter-spacing: 0.14em; color: #E0956A; text-transform: uppercase;
+            margin-bottom: 18px; }
+  h2 { font-weight: 800; font-size: 90px; line-height: 1.0; color: #EDE6D6;
+       letter-spacing: -0.015em; font-variation-settings: "opsz" 96; }
+  .foot { position: absolute; left: 96px; right: 96px; bottom: 96px;
+          display: flex; justify-content: space-between; align-items: baseline;
+          border-top: 1px solid rgba(224, 149, 106, 0.34); padding-top: 22px; }
+  .foot span { font-family: "JetBrains Mono", monospace; font-size: 24px;
+               color: rgba(237, 230, 214, 0.58); }
+  .foot .brand { font-family: "Fraunces", serif; font-weight: 800; font-size: 30px;
+                 color: #FFFFFF; }
+</style>
+</head>
+<body>
+  <canvas id="c"></canvas>
+  <div class="hd">
+    <div class="kicker">Engine proof, slide four of four</div>
+    <h2>Software 3D,<br>no GPU</h2>
+  </div>
+  <div class="foot">
+    <span class="brand">Texas AI Docket</span>
+    <span>TX3D heightfield</span>
+    <span>04 / 04</span>
+  </div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/tx3d.js"></script>
+<script>
+  /* THE 2x CONTRACT. The engine renders at deviceScaleFactor 2, so a canvas whose
+     backing store is 1080x1350 gets upscaled and ships soft. The backing store is
+     2x and the CSS box stays 1x; every drawing call below is in CSS pixels. */
+  /* THE 2x CONTRACT. The engine renders at deviceScaleFactor 2, so a canvas whose
+     backing store is 1080x1350 gets upscaled and ships soft. The backing store is
+     2x and the CSS box stays 1x; every drawing call below is in CSS pixels. */
+  const SC = 2;
+  const cv = document.getElementById("c");
+  cv.width = 1080 * SC; cv.height = 1350 * SC;
+  cv.style.width = "1080px"; cv.style.height = "1350px";
+  const cx = cv.getContext("2d");
+  cx.scale(SC, SC);
+
+  TX.reseed(20260812);
+  const R = TX.rng(20260812);
+
+  /* Sky first: a Permian dusk, violet overhead grading to ember at the caprock line. */
+  const sky = cx.createLinearGradient(0, 0, 0, 900);
+  sky.addColorStop(0, "#141020"); sky.addColorStop(0.52, "#241C3A");
+  sky.addColorStop(0.84, "#5A3446"); sky.addColorStop(1, "#B4664F");
+  cx.fillStyle = sky; cx.fillRect(0, 0, 1080, 1350);
+
+  for (let i = 0; i < 150; i++) {
+    const x = R() * 1080, y = R() * 520, m = R();
+    cx.fillStyle = "rgba(237,230,214," + (0.18 + 0.5 * m) + ")";
+    cx.beginPath(); cx.arc(x, y, 0.6 + m * 1.5, 0, 7); cx.fill();
+  }
+
+  const cam = TX3D.camera({ pos: [0, 9, 27], yaw: 0, pitch: -0.16,
+                            fov: 58, w: 1080, h: 1350, cy: 660 });
+
+  /* Caprock country: a flat mesa top cut by draws, the way the Llano Estacado
+     breaks down into the Permian. Flat is the point, so the noise is shallow and
+     the escarpment does the work. */
+  const land = (x, z) => {
+    const grain = TX.fbm2(x * 0.06, z * 0.06, { octaves: 5 });
+    const rim = 1 / (1 + Math.exp((z + 14) * 0.55));      // escarpment running east to west
+    const draws = Math.max(0, TX.fbm2(x * 0.11, z * 0.09, { octaves: 4 }) - 0.15) * 5.5;
+    return grain * 1.5 + rim * 9.5 - draws * rim;
+  };
+  const terrain = TX3D.heightfield({
+    xmin: -42, xmax: 42, zmin: -48, zmax: 11, nx: 96, nz: 96,
+    y: land,
+    color: (x, z, y) => {
+      if (y > 6.2) return TX3D.mix("#C9B393", "#E4D8C3", Math.min(1, (y - 6.2) / 3.4));
+      if (y > 1.6) return TX3D.mix("#8C5A3C", "#C9B393", (y - 1.6) / 4.6);
+      return TX3D.mix("#2A1D2E", "#8C5A3C", Math.max(0, y) / 1.6);
+    }
+  });
+
+  TX3D.render(cx, cam, terrain.faces, {
+    light: [0.52, 0.74, 0.32], ambient: 0.30,
+    fog: { color: "#2A1D2E", near: 26, far: 68 },
+    stroke: "rgba(228,216,195,0.05)", strokeWidth: 0.5
+  });
+
+  /* A transmission line running the rim: the thing that decides where load can land. */
+  const line = [];
+  for (let t = 0; t <= 1.0001; t += 0.01) {
+    const x = -38 + t * 76;
+    const z = -6 - Math.sin(t * Math.PI) * 22;
+    line.push([x, land(x, z) + 1.1, z]);
+  }
+  cx.save();
+  cx.shadowColor = "rgba(224,149,106,0.85)"; cx.shadowBlur = 14;
+  TX3D.line3d(cx, cam, line, { color: "#E0956A", width: 4.2,
+                               depthWidth: [1.15, 0.35], depthFar: 68 });
+  cx.restore();
+
+  const haze = cx.createLinearGradient(0, 790, 0, 1030);
+  haze.addColorStop(0, "rgba(180,102,79,0)");
+  haze.addColorStop(0.55, "rgba(180,102,79,0.16)");
+  haze.addColorStop(1, "rgba(20,16,32,0)");
+  cx.fillStyle = haze; cx.fillRect(0, 790, 1080, 240);
+
+  document.body.dataset.ready = "1";
+</script>
+</body>
+</html>
