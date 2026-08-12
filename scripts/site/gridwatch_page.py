@@ -393,7 +393,7 @@ def body(records: list[dict], today: str) -> str:
   recent <strong class="num">{n0(t['half_days'])}</strong> days against the first
   <strong class="num">{n0(t['half_days'])}</strong>.</p>
   <p>A trough rising faster than a peak is what large constant load looks like from outside.
-  Weather moves both together; a data centre lifts the floor.</p>
+  Weather moves both together. A data centre lifts the floor.</p>
 </div>"""
     elif f["days_verified"] < 14:
         trend_block = f"""
@@ -645,6 +645,26 @@ def self_test() -> int:
 
     check("the accuracy check is computed across every day held",
           fm["accuracy"]["days"] == 28 and fm["accuracy"]["mean_abs_peak_error_mw"] == 500.0)
+
+    # ---- the house rules, on every shape the record can take ------------------
+    # THE RICHER BRANCHES USED TO SHIP UNLINTED UNTIL DATA HAPPENED TO ARRIVE. This page is
+    # written to be true at one record and to say more as the series grows, which is the right
+    # design and it means whole paragraphs exist only at two days, or at fourteen. The sibling
+    # water page proved the cost on 2026-08-12: its comparison paragraph rendered for the FIRST
+    # time the day a second reading landed, carrying a colon and pushing the page over its comma
+    # ceiling, and it reached the deploy gate because nothing had ever linted that branch. The
+    # fixtures above already build every shape. Now the copy in each is read as copy.
+    import house_style_check as _hs                                 # noqa: PLC0415
+    for label, records in (("one settled day", one), ("an empty record", []),
+                           ("an unverified day", unver), ("a full trend", many)):
+        rendered = body(records, records[-1]["date"] if records else "2026-08-11")
+        problems = _hs.caption_check.check(_hs.our_prose(rendered))
+        rate = _hs.caption_check.rate_problem(_hs.our_sentences(rendered),
+                                              _hs.caption_check.SITE_COMMA_CEILING)
+        if rate:
+            problems = problems + [rate]
+        check(f"the copy at {label} keeps the house rules", not problems,
+              "; ".join(problems)[:150])
 
     dup = [rec("2026-08-10", 1.0, 1.0, verified=False), rec("2026-08-10", 83118.16, 58093.11)]
     import tempfile
