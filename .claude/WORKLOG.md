@@ -27,7 +27,7 @@ Shallow prompt with deep gates produces fewer decks, which is the survivable fai
 |---|---|---|
 | routine prompt | 13 KB, phases 0-14 | 83 KB, 17 phase headings |
 | knowledge | 15.6 KB / 4 docs | 316 KB / 6 docs |
-| carousel gates | 3 | 10 |
+| carousel gates | 3 -> **10** | 10 |
 | agents | 10 of 10, avg ~85% depth | 10 |
 | engine skill | complete (5 files) | complete |
 | ledgers | artwork, captions, topics, upgrades | + instincts |
@@ -55,15 +55,15 @@ Thinnest agents: pixel-critic 53%, caption-critic 62%, upgrade-engineer 62%.
 
 | # | Wave | Status |
 |---|---|---|
-| A | The seven missing gates, each with self-test + replay | **IN PROGRESS** — DONE: `claims_check` (21 checks), `aggregate_check` (20), `dedupe_check` (10), all wired into the routine and CI. Next: `copy_sync_check`, `dossier_check`, `gate_status`, `ship_images` |
+| A | The seven missing gates, each with self-test + replay | **DONE** — `claims_check` (21), `aggregate_check` (20), `dedupe_check` (10), `copy_sync_check` (21), `dossier_check` (26), `gate_status` (20), `ship_images` (15). 133 new self-tests. Every one wired into the routine AND into CI, and every one replayed against the defect it exists for |
 | A2 | Merge the two routines into one, on the owner's call | **DONE** |
-| B | `instincts.json` + the ledger the retro phase writes | TODO |
-| C | `CAPTION_CRAFT.md`, Texas material | TODO |
-| D | `TECHNIQUE_LIBRARY.md`, Texas material | TODO |
-| E | Deepen pixel-critic, caption-critic, upgrade-engineer | TODO |
-| F | Deepen `daily_routine.md` against the new gates and craft | TODO |
-| G | End-to-end proof: render the demo deck, run every gate on it | TODO |
-| H | Reconcile manifest, update CLAUDE.md layout, hand off triggers | TODO |
+| B | `instincts.json` + the ledger the retro phase writes | **DONE** — 39 self-tests. Confidence is DERIVED, never written |
+| C | `CAPTION_CRAFT.md`, Texas material | **DONE** — written, not retheemed. Manifest disposition corrected to REBUILD |
+| D | `TECHNIQUE_LIBRARY.md`, Texas material | **DONE** — every named API verified to exist |
+| E | Deepen pixel-critic, caption-critic, upgrade-engineer | **DONE** — all three now exceed the sibling's, written from THIS repo's lessons |
+| F | Deepen `daily_routine.md` against the new gates and craft | **DONE** — 13 KB to 33 KB, phases 0 to 18, each gate wired where its defect happens |
+| G | End-to-end proof: render the demo deck, run every gate on it | **DONE** — GREEN, and it found 5 defects every self-test had missed |
+| H | Reconcile manifest, update CLAUDE.md layout, hand off triggers | **DONE** |
 
 ## Handoff still owed to the owner (not blockers)
 
@@ -115,3 +115,130 @@ Thinnest agents: pixel-critic 53%, caption-critic 62%, upgrade-engineer 62%.
   prompt from scratch, which is precisely when a gate gets dropped by hand. Fixed, replayed, and
   the over-correction ("must appear in a prompt") is guarded against too, because the cron
   collectors appear in no prompt by design. GATE_LESSONS 13.
+- 2026-08-12 — `copy_sync_check.py`. Two failures, one file. The record going stale when a
+  slide's HTML is hand-edited during pixel review, which is the sibling's slide 05 kicker; and a
+  slide citing a claim id that is not in the claims file, which no gate looked at at all. The
+  first draft compared a 40 character prefix and its own self-test caught that as strictly worse
+  than using the full 80 characters the render records: two bodies agreeing for 64 characters and
+  diverging after passed it, which is the exact shape a late edit takes. The remaining blind spot
+  past character 80 is pinned by a test that asserts it is NOT detected, so nobody later mistakes
+  the limit for a matcher bug and shortens the needle to fix it.
+- 2026-08-12 — `dossier_check.py`, the only gate that fires before anything is drawn. The
+  sequencing hole it closes: a pixel critic grades each slide against its own dossier, so a bad
+  plan executed faithfully passes every review after it, and the sibling's dead lower zone reached
+  the scorer six runs running for exactly that reason. Reads the bottom band as its OWN clause,
+  because a lavish top third would otherwise vouch for an unplanned bottom, and that substitution
+  is the whole defect. Carries the sibling's word-boundary lesson: "ground" is not a hint, since
+  "the ground plane is left flat" describes the defect and as a substring it also cleared every
+  slide with a background.
+- 2026-08-12 — `gate_status.py`. Three sibling failures, each tighter than the last: a
+  hand-written reconciliation claiming zero QA warnings while the artifact said five; a correct
+  block pasted once with four render rounds run under it; and the same instinct broken twice in
+  one run at high confidence. So artifacts are PARSED and never measured (a valid report was once
+  false-flagged for being 196 bytes against a 200 byte threshold), binaries are checked by magic
+  bytes, and `--sync` writes the block rather than asking anyone to retype it. Idempotent, because
+  a rule with a cost gets skipped at the moment it matters. The row this version adds is STALE: an
+  artifact that predates the newest render is answering about a deck that no longer exists, and it
+  will say PASS forever.
+- 2026-08-12 — `ship_images.py`. Every figure measured on the files in front of it, per the
+  compute-not-generate law, which a script whose whole output is numerals is the last place to
+  break. Refuses any encode under 40 dB, an EXTERNAL visually-lossless threshold rather than one
+  measured from our own encodes, which would pass whatever we happened to ship first. Its first
+  fixture accumulated grain in uint8, wrapped 255 to 4, scattered speckle over the brightest band
+  and measured 34 dB and 99x: both numbers about the bug, not the encoder. A gate whose fixture is
+  pathological measures its fixture. Fixed in int16 with a clip, it measures 42.1 dB, which lands
+  where the sibling's real decks measured. `--all` refuses to write without `--force`, because it
+  reaches into runs that have already shipped and CLAUDE.md puts that on the stop-and-ask list.
+- 2026-08-12 — **WAVE A DONE.** Carousel gates 3 to 10. The measure was never "Alaska's files
+  exist here", it was whether an unattended run can fail safely and ship honestly, and the seven
+  gates are the reviewer that nobody is.
+- 2026-08-12 — `instincts.json` and `instincts.py`, and the one thing deliberately not ported.
+  The sibling's ledger carries 101 entries, 47 of them at 0.90 confidence, and only 25 have ever
+  been confirmed once. The arithmetic only goes one way, so those numbers were typed at the moment
+  the lesson was written, by the same model that had just decided the lesson was worth writing. A
+  machine allowed to grade its own lesson grades it high, and that number is what decides which
+  lessons reach the next run's directors room. It is the compute-not-generate law with a hole in
+  it, in the file that shapes how every future deck gets made. Here an entry records the DATES it
+  was confirmed and contradicted, confidence is Laplace's rule of succession over those events,
+  and a written confidence field is a hard fail on load, along with score, weight, certainty and
+  priority, which are the words a model reaches for once confidence is refused. The injection bar
+  of 0.7 is not a dial: under this formula it means three confirmations with no contradiction, so
+  an instinct reaches the prompt by surviving three runs. Starts empty, because this repo has
+  shipped zero decks and cannot have learned anything from running.
+- 2026-08-12 — `CAPTION_CRAFT.md`, written as Texas material rather than retheemed, and the
+  manifest disposition corrected from PORT_RETHEMED to REBUILD to say so. The menus are the most
+  repeatable part of a caption, so Alaska's would carry Alaska's civic vocabulary and its landscape
+  into every Texas post. Ten opening moves, eight structures, five closes, all new and all Texas.
+  The comma ceiling stays deliberately unset, because no caption has shipped and borrowing the
+  site's 3.97 would be exactly the typed-in number the law forbids. The doc named a ledger contract
+  captions.json did not declare, so the contract is now declared, including that `first_line` is
+  stored VERBATIM: the critic's real job is catching a sentence skeleton that survived a change of
+  nouns, and it can only do that with the real lines in front of it.
+- 2026-08-12 — writing that doc immediately created the exact defect the port audit exists for. It
+  existed on disk, referenced only by the WORKLOG, which the audit deliberately does not count as
+  wiring. Wired into the routine's context block, Phase 10, and both caption agents. The manifest
+  drift gate caught the stale row on the same run, its third real catch.
+- 2026-08-12 — `TECHNIQUE_LIBRARY.md`, written against THIS repo's libraries rather than
+  retheemed. Texas ships twelve purpose-built art libraries Alaska does not have (TXCARVE,
+  TXENGRAVE, TXSDF, TXPOST, TXC, txhachure, txrelief, txgeo, tx3d, txthree, txtype, txlabel), so a
+  retheme would have described a toolkit that is not here. Every backticked API in the doc was
+  checked against assets/js and two were wrong on the first pass: TX.hachure is TX.hachureField,
+  and TX.relief is TX.reliefShade. A technique library that names a function which does not exist
+  sends a run down a dead end, so all thirteen are now verified.
+- 2026-08-12 — the residue gate caught "Alaska's weather, not ours" inside that doc on the next
+  run. Correct catch: the point survives without the name, and saying caliche haze is dust hanging
+  in hot air rather than water is better craft writing than a comparison to somewhere else.
+- 2026-08-12 — Wave E. The three thinnest agents deepened from this repo's own accumulated
+  knowledge rather than from the sibling's text, which by now is the better source: fourteen gate
+  lessons, a technique library with a failure mode per entry, and an ownership map that has been
+  wrong twice. 2933 to 6331, 2392 to 4872, 3016 to 6332 bytes, each now past its sibling.
+  The three most useful additions were not length. The pixel critic is told to READ THE PIXEL and
+  never reason from the code, because this repo shipped a page that rendered mauve with all 62
+  contrast pairings passing. It is also told that the plan can be the problem: it grades against
+  the dossier, so a slide that executed a bad plan faithfully passes its own checklist, and being
+  the last reader positioned to see that, it should report a trivially satisfiable checklist as a
+  finding of its own. The upgrade engineer is told its lane is narrower than the run's, that it
+  stamps `upgrade` and may propose a prompt change but never make one, and that zero upgrades is a
+  valid number.
+- 2026-08-12 — **WAVE G, the end-to-end proof, and it earned its place.** Every gate's self-tests
+  were green when it started. Running the real chain on a real render found five defects in under
+  an hour: a number regex that read "2,600 streamlines" as 600 and named a figure the slide does
+  not contain; the slide counter flagged as an invented number on every slide, nine findings a
+  deck forever; a count computed from data refused because the declaration format only knew how to
+  count claims, which would have taught the first real run that the honest route fails; claims.json
+  marked STALE for predating the render, which is true of every run that goes right, so three rows
+  would have been red permanently; and a status row built from an INPUT the run authors rather than
+  from a report, printing "re-run it" where re-running could not help. All five fixed and pinned
+  with tests. GATE_LESSONS 15. A fixture written by the same hand as the detector agrees with the
+  detector.
+- 2026-08-12 — **WAVE H, and the v1 push is done.** Manifest reconciled and clean. CLAUDE.md's
+  layout now describes what exists rather than what was planned: the three carousel knowledge docs
+  by name and job, the instincts ledger with its no-typed-confidence rule, and the instruction to
+  run gates by exit code rather than by last line, which is the process fault that has already
+  shipped a red gate here once. HANDOFF.md now asks for ONE routine instead of two.
+
+## Where v1 landed, measured
+
+| | at plan | now |
+|---|---|---|
+| routine prompt | 13 KB, phases 0-14, split across two files | 33 KB, phases 0-18, one file |
+| carousel gates | 3 | 10 |
+| knowledge | 15.6 KB / 4 docs | 4 shared + 5 carousel, TECHNIQUE_LIBRARY and CAPTION_CRAFT written as Texas material |
+| ledgers | artwork, captions, topics, upgrades | + instincts, with confidence derived |
+| gate lessons | 9 | 15 |
+| thinnest agents | 53%, 62%, 62% | all three past the sibling's |
+| end-to-end proof | never run | GREEN, and it found 5 defects the self-tests missed |
+
+**The measure was never "every sibling file exists here".** It was whether an unattended run can
+fail safely and ship honestly, because nobody reviews the output. Ten gates, each replayed against
+the defect it exists for and watched go red, and a proof that the whole chain runs on a real
+render.
+
+## What is still owed, and by whom
+
+- **The owner:** create ONE routine in the routines UI from `prompts/ROUTINE_PROMPT.txt`; register
+  the domains; a Buttondown key when subscriber alerts are wanted. Every integration no-ops
+  cleanly without its key, so none of these block anything.
+- **Later waves, not v1:** Wave 7 (video dispatch, `TexasAIDispatch`), Wave 8 (commercial wing,
+  `TexasAIScanner`), metro scoping (still blocked on a citable county-to-ERCOT-zone mapping, and
+  the Grid Watch rules say publish the size of the gap rather than guess it).

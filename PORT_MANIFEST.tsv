@@ -143,19 +143,19 @@ alaskaaicarousels	examples/demo-deck/slides/slide-04.html	4802	116	4	REBUILD	exa
 alaskaaicarousels	examples/proof-3d/slides/slide-01.html	2863	44	1	REBUILD	examples/proof-3d/slides/slide-01.html	TODO	engine-proof decks are written fresh against Texas art
 alaskaaicarousels	examples/proof-3d/slides/slide-02.html	3185	57	0	REBUILD	examples/proof-3d/slides/slide-02.html	TODO	engine-proof decks are written fresh against Texas art
 alaskaaicarousels	examples/proof-3d/slides/slide-03.html	5158	81	4	REBUILD	examples/proof-3d/slides/slide-03.html	TODO	engine-proof decks are written fresh against Texas art
-alaskaaicarousels	knowledge/CAPTION_CRAFT.md	11768	214	3	PORT_RETHEMED	knowledge/carousel/CAPTION_CRAFT.md	TODO	
+alaskaaicarousels	knowledge/CAPTION_CRAFT.md	11768	214	3	REBUILD	knowledge/carousel/CAPTION_CRAFT.md	DONE	Written as Texas material, not retheemed. The menus are the repeatable part of a caption and Alaska's would carry Alaska's civic vocabulary and its landscape into every Texas post. The structure of the doc is the shared lineage; every move, structure and close in it is new.
 alaskaaicarousels	knowledge/CAROUSEL_CRAFT.md	7558	129	7	PORT_RETHEMED	knowledge/carousel/CAROUSEL_CRAFT.md	DONE	
 alaskaaicarousels	knowledge/DESIGN_DOCTRINE.md	12503	205	12	PORT_RETHEMED	knowledge/carousel/DESIGN_DOCTRINE.md	DONE	
 alaskaaicarousels	knowledge/FIELD_NOTES.md	231133	3151	142	REBUILD	knowledge/carousel/FIELD_NOTES.md	DONE	living run-retro log; Texas starts empty
 alaskaaicarousels	knowledge/SLIDE_DOSSIER_SPEC.md	7525	131	2	PORT_RETHEMED	knowledge/carousel/SLIDE_DOSSIER_SPEC.md	DONE	
-alaskaaicarousels	knowledge/TECHNIQUE_LIBRARY.md	45446	669	26	PORT_RETHEMED	knowledge/carousel/TECHNIQUE_LIBRARY.md	TODO	
+alaskaaicarousels	knowledge/TECHNIQUE_LIBRARY.md	45446	669	26	REBUILD	knowledge/carousel/TECHNIQUE_LIBRARY.md	DONE	Written as Texas material. Every technique names a real function in this repo's own assets/js libraries (TXGeo, TX3D, TXCARVE, TXENGRAVE, TXSDF, TXPOST, TXC), which are not Alaska's, so a retheme would have described a toolkit that does not exist here. Each entry records how the technique FAILS, which is the half a port would have dropped.
 alaskaaicarousels	ledger/alerts.json	1389	39	7	REBUILD	ledger/alerts.json	TODO	Alaska's memory would poison Texas dedupe and divergence gates
 alaskaaicarousels	ledger/artwork.json	132723	753	136	REBUILD	ledger/artwork.json	TODO	Alaska's memory would poison Texas dedupe and divergence gates
 alaskaaicarousels	ledger/captions.json	26442	317	35	REBUILD	ledger/captions.json	TODO	Alaska's memory would poison Texas dedupe and divergence gates
 alaskaaicarousels	ledger/docket.json	110005	1628	362	REBUILD	ledger/docket.json	DONE	Alaska's memory would poison Texas dedupe and divergence gates
 alaskaaicarousels	ledger/gaswatch.jsonl	44157	12	176	REBUILD	ledger/gaswatch.jsonl	TODO	Alaska's memory would poison Texas dedupe and divergence gates
 alaskaaicarousels	ledger/gaswatch_eia.json	26312	1376	3	REBUILD	ledger/gaswatch_eia.json	TODO	Alaska's memory would poison Texas dedupe and divergence gates
-alaskaaicarousels	ledger/instincts.json	68682	695	19	REBUILD	ledger/instincts.json	TODO	Alaska's memory would poison Texas dedupe and divergence gates
+alaskaaicarousels	ledger/instincts.json	68682	695	19	REBUILD	ledger/carousel/instincts.json	DONE	Rebuilt empty. Alaska's 101 entries are its engine's lessons, and this repo has shipped zero decks so it cannot have learned anything from running. Confidence is also redesigned: it is DERIVED from the confirmation record rather than written, because 47 of Alaska's entries sit at 0.90 with only 25 ever confirmed.
 alaskaaicarousels	ledger/topics.json	73089	1397	339	REBUILD	ledger/topics.json	TODO	Alaska's memory would poison Texas dedupe and divergence gates
 alaskaaicarousels	ledger/upgrades.json	231695	1284	58	REBUILD	ledger/upgrades.json	TODO	Alaska's memory would poison Texas dedupe and divergence gates
 alaskaaicarousels	prompts/ASK_ROUTINE.md	5487	121	4	PORT_RETHEMED	prompts/ask_routine.md	TODO	
@@ -175,14 +175,14 @@ alaskaaicarousels	scripts/ask_corpus.py	8998	222	6	PORT_RETHEMED	scripts/site/as
 alaskaaicarousels	scripts/bespoke_check.py	9630	218	1	PORT_RETHEMED	scripts/carousel/bespoke_check.py	DONE	
 alaskaaicarousels	scripts/caption_check.py	37354	740	8	PORT_RETHEMED	scripts/carousel/caption_check.py	DONE	
 alaskaaicarousels	scripts/claims_check.py	8002	192	0	PORT_RETHEMED	scripts/carousel/claims_check.py	DONE	
-alaskaaicarousels	scripts/copy_sync_check.py	8768	212	0	PORT_RETHEMED	scripts/carousel/copy_sync_check.py	TODO	
+alaskaaicarousels	scripts/copy_sync_check.py	8768	212	0	PORT_RETHEMED	scripts/carousel/copy_sync_check.py	DONE	
 alaskaaicarousels	scripts/craft_corpus.py	16958	407	0	PORT_RETHEMED	scripts/carousel/craft_corpus.py	TODO	
 alaskaaicarousels	scripts/dedupe_check.py	13910	318	6	PORT_RETHEMED	scripts/carousel/dedupe_check.py	DONE	
 alaskaaicarousels	scripts/docket_alerts.py	19107	425	6	PORT_RETHEMED	scripts/site/docket_alerts.py	TODO	
 alaskaaicarousels	scripts/docket_build.py	42270	913	44	PORT_RETHEMED	scripts/site/docket_build.py	DONE	
 alaskaaicarousels	scripts/docket_dates_check.py	28922	605	5	PORT_RETHEMED	scripts/site/docket_dates_check.py	TODO	
 alaskaaicarousels	scripts/docket_staleness.py	9092	191	1	PORT_RETHEMED	scripts/site/docket_staleness.py	DONE	
-alaskaaicarousels	scripts/dossier_check.py	10102	222	0	PORT_RETHEMED	scripts/carousel/dossier_check.py	TODO	
+alaskaaicarousels	scripts/dossier_check.py	10102	222	0	PORT_RETHEMED	scripts/carousel/dossier_check.py	DONE	
 alaskaaicarousels	scripts/feeds_build.py	22445	501	44	PORT_RETHEMED	scripts/site/feeds_build.py	TODO	
 alaskaaicarousels	scripts/fetch_map_layers.py	12141	296	32	PORT_RETHEMED	scripts/site/fetch_map_layers.py	TODO	
 alaskaaicarousels	scripts/gaswatch_build.py	97272	1944	89	REBUILD	scripts/gridwatch/build.py	TODO	ERCOT, not Cook Inlet: different sources, different physics
@@ -191,14 +191,14 @@ alaskaaicarousels	scripts/gaswatch_eia.py	11650	281	17	REBUILD	scripts/gridwatch
 alaskaaicarousels	scripts/gaswatch_fit.py	13945	314	12	REBUILD	scripts/gridwatch/fit.py	TODO	ERCOT, not Cook Inlet: different sources, different physics
 alaskaaicarousels	scripts/gaswatch_hdd.py	9565	233	1	REBUILD	scripts/gridwatch/hdd.py	TODO	ERCOT, not Cook Inlet: different sources, different physics
 alaskaaicarousels	scripts/gaswatch_pagecheck.py	16666	396	9	REBUILD	scripts/gridwatch/pagecheck.py	TODO	ERCOT, not Cook Inlet: different sources, different physics
-alaskaaicarousels	scripts/gate_status.py	40370	878	3	PORT_RETHEMED	scripts/carousel/gate_status.py	TODO	
+alaskaaicarousels	scripts/gate_status.py	40370	878	3	PORT_RETHEMED	scripts/carousel/gate_status.py	DONE	
 alaskaaicarousels	scripts/gmail_draft.py	27963	526	9	PORT_RETHEMED	scripts/carousel/gmail_draft.py	DONE	
 alaskaaicarousels	scripts/indexnow.py	4874	127	1	PORT_RETHEMED	scripts/site/indexnow.py	TODO	
 alaskaaicarousels	scripts/parsers_check.py	9057	199	5	PORT_RETHEMED	scripts/carousel/parsers_check.py	TODO	
 alaskaaicarousels	scripts/prune_runs.py	5560	140	0	PORT_RETHEMED	scripts/carousel/prune_runs.py	TODO	
 alaskaaicarousels	scripts/read_stats.py	4974	123	1	PORT_RETHEMED	scripts/site/read_stats.py	TODO	
 alaskaaicarousels	scripts/scanner_sync_check.py	29098	635	2	PORT_RETHEMED	scripts/site/scanner_sync_check.py	TODO	
-alaskaaicarousels	scripts/ship_images.py	12311	285	1	PORT_RETHEMED	scripts/carousel/ship_images.py	TODO	
+alaskaaicarousels	scripts/ship_images.py	12311	285	1	PORT_RETHEMED	scripts/carousel/ship_images.py	DONE	
 alaskaaicarousels	scripts/shrink_pdfs.py	10545	264	0	PORT_RETHEMED	scripts/carousel/shrink_pdfs.py	TODO	
 alaskaaicarousels	scripts/site_build.py	403971	7581	414	PORT_RETHEMED	scripts/site/site_build.py	DONE	
 alaskaaicarousels	scripts/site_fresh_check.py	4299	110	0	PORT_RETHEMED	scripts/site/site_fresh_check.py	DONE	

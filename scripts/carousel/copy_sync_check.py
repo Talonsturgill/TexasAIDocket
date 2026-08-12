@@ -1,0 +1,384 @@
+#!/usr/bin/env python3
+"""copy_sync_check.py — does the record still say what the deck says?
+
+WHY THIS EXISTS
+
+Two failures, one file.
+
+**The record goes stale.** During pixel review the showrunner edits display text straight into a
+slide's HTML, because that is the fastest way to answer a critic. A kicker, a headline, a label.
+`copy.json` is not touched, and from that moment the record of what the deck says disagrees with
+the deck. In the sibling product slide 05's kicker was hand-edited from HOW IT STARTED to BEFORE
+THE CLASS in the HTML while `copy.json` kept the old string, and the only thing that noticed was
+the scorer's transcription pass at the ship gate, with no budget left to do anything about it.
+There was no machine check. This is it.
+
+**A slide cites a claim that does not exist.** Every factual string here carries a claim id, and
+the site's whole promise is that the id resolves. Nothing checked that it does. `claims_check`
+proves the claims file is well formed. `aggregate_check` proves the arithmetic on top of it. Both
+look at the claims. Neither looks at whether the id a SLIDE cites is one of them, so a slide
+citing `tx-2026-08-12-07` when the file stops at 05 satisfies every other gate in the run. That is
+the same defect as the sibling's empty verification record, wearing different clothes: the promise
+holds everywhere except where a reader would check it.
+
+WHAT IT DOES
+
+For every string in `copy.json`, verify it is present in what the browser actually laid out, which
+is `render_report.json`'s per-slide `text_nodes[].text`. Then verify every claim id those slides
+cite exists in `claims.json`.
+
+DIRECTION, and why it is one way only. Authored-but-not-rendered is the defect. The reverse would
+flag every slide number, axis label and decorative string in the deck, and a gate that cries wolf
+teaches people to press on through, which is worse than no gate.
+
+    copy_sync_check.py --date 2026-08-12
+    copy_sync_check.py --self-test
+
+Exit 0 in sync, 1 drifted, 2 the checker could not run.
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import re
+import sys
+from pathlib import Path
+
+REPO_ROOT = Path(__file__).resolve().parents[2]
+
+# render.py records each node as `el.textContent.trim().replace(/\s+/g," ").slice(0, 80)`. That
+# 80 is not ours to choose and it is the hard limit on what this gate can see: a long body string
+# is truncated in the report, so its tail was never written down and no check here can ask about
+# it.
+#
+# THE NEEDLE IS THEREFORE THE AUTHORED STRING PUT THROUGH THE SAME TRUNCATION, and matched whole.
+# The first version of this file compared a 40 character prefix instead, which felt safer and was
+# strictly worse: it threw away half the evidence the artifact does carry. Two bodies agreeing for
+# 64 characters and diverging after passed it, which is exactly the shape a late edit takes.
+#
+# The remaining blind spot is real and is stated rather than papered over. A divergence beyond
+# character 80 of a single string is invisible here. **The cure for that is widening the render's
+# window, never loosening this comparison**, and there is a self-test below pinning the limit so
+# nobody later mistakes it for a bug in the matcher and "fixes" it by shortening the needle.
+RENDER_WINDOW = 80
+
+# The keys in a slide record that carry text a reader sees. `claim_ids` is deliberately absent:
+# it is metadata, checked separately below, and looking for "tx-2026-08-12-01" in the rendered
+# text would fail on every slide that correctly does not print its own citations.
+TEXT_KEYS = ("kicker", "headline", "subhead", "body", "label", "labels", "chip", "chips",
+             "caption", "stat", "stats", "note", "footer", "quote", "source", "title")
+
+
+def skeleton(s: str) -> str:
+    """Lowercase alphanumerics only.
+
+    Punctuation, case and whitespace differ freely between an authored string and what the
+    browser lays out: a non-breaking space, a soft hyphen, a wrapped line. None of those is the
+    defect this gate is looking for, which is a string REPLACED by a different one. Comparing
+    skeletons ignores the noise and still catches the replacement.
+    """
+    return re.sub(r"[^a-z0-9]+", "", str(s).lower())
+
+
+def strings_in(node) -> list[str]:
+    """Every reader-visible string in a slide record, however it is nested."""
+    out = []
+    if isinstance(node, str):
+        if node.strip():
+            out.append(node)
+    elif isinstance(node, list):
+        for item in node:
+            out.extend(strings_in(item))
+    elif isinstance(node, dict):
+        for k, v in node.items():
+            if k in TEXT_KEYS:
+                out.extend(strings_in(v))
+    return out
+
+
+def claim_ids_in(node) -> set[str]:
+    """Every claim id a slide cites, at any nesting depth."""
+    out = set()
+    if isinstance(node, dict):
+        for k, v in node.items():
+            if k in ("claim_ids", "claim_id", "claims"):
+                if isinstance(v, str):
+                    out.add(v)
+                elif isinstance(v, list):
+                    out.update(str(x) for x in v if isinstance(x, (str, int)))
+            else:
+                out |= claim_ids_in(v)
+    elif isinstance(node, list):
+        for item in node:
+            out |= claim_ids_in(item)
+    return out
+
+
+def normalize_slides(raw) -> dict[str, dict]:
+    """Accept either shape the run produces, without changing what is compared.
+
+    `copy.json["slides"]` is a dict keyed S1..S9 in the record form and a list of per-slide
+    objects in the copywriter's form. Both are real artifacts of a real run. A gate that crashes
+    on one of them is a gate that gets commented out.
+    """
+    if isinstance(raw, dict):
+        return {str(k): v for k, v in raw.items() if isinstance(v, (dict, list, str))}
+    if isinstance(raw, list):
+        out = {}
+        for i, item in enumerate(raw, start=1):
+            n = item.get("n") if isinstance(item, dict) else None
+            try:
+                n = int(n)
+            except (TypeError, ValueError):
+                n = i
+            out[f"S{n}"] = item
+        return out
+    return {}
+
+
+def slide_no(key: str) -> int | None:
+    m = re.search(r"(\d+)", str(key))
+    return int(m.group(1)) if m else None
+
+
+def rendered_text(report: dict) -> dict[int, str]:
+    """One skeleton per slide, being everything the browser laid out on it, concatenated.
+
+    Concatenating is deliberate. A headline split across two spans is recorded as three nodes,
+    the parent and each span, and an authored string that spans them matches none of the three
+    individually. The question this gate asks is whether the words reached the slide, not which
+    element holds them.
+    """
+    out: dict[int, str] = {}
+    for rec in report.get("slides") or []:
+        n = rec.get("n") or rec.get("slide") or slide_no(rec.get("file", ""))
+        if n is None:
+            continue
+        joined = " ".join(str(t.get("text", "")) for t in (rec.get("text_nodes") or []))
+        out[int(n)] = skeleton(joined)
+    return out
+
+
+def compare(copy: dict, report: dict, claims: dict | None) -> tuple[list[str], list[str]]:
+    """Returns (drifted, uncited). Both empty means in sync."""
+    drifted, uncited = [], []
+    slides = normalize_slides(copy.get("slides"))
+    laid_out = rendered_text(report)
+
+    for key in sorted(slides, key=lambda k: (slide_no(k) or 0)):
+        n = slide_no(key)
+        if n is None:
+            continue
+        if n not in laid_out:
+            drifted.append(f"{key}: authored but nothing rendered for slide {n}")
+            continue
+        haystack = laid_out[n]
+        for s in strings_in(slides[key]):
+            # Collapse whitespace first, then truncate, then skeletonise: the same order
+            # render.py applies, so the needle is exactly what a dedicated node would hold.
+            collapsed = re.sub(r"\s+", " ", str(s).strip())
+            needle = skeleton(collapsed[:RENDER_WINDOW])
+            if not needle:
+                continue
+            if needle not in haystack:
+                shown = s if len(s) <= 56 else s[:53] + "..."
+                drifted.append(f"{key}: \"{shown}\" is in copy.json but was not laid out")
+
+    if claims is not None:
+        known = set()
+        for c in (claims.get("claims") or claims.get("verified_claims") or []):
+            if isinstance(c, dict):
+                for k in ("id", "claim_id", "cid"):
+                    if c.get(k):
+                        known.add(str(c[k]))
+                        break
+        for key in sorted(slides, key=lambda k: (slide_no(k) or 0)):
+            for cid in sorted(claim_ids_in(slides[key])):
+                if cid not in known:
+                    uncited.append(f"{key}: cites claim '{cid}', which is not in claims.json")
+    return drifted, uncited
+
+
+def run(date: str, out_root: Path) -> int:
+    d = out_root / date
+    copy_p, rep_p, claims_p = d / "copy.json", d / "render" / "render_report.json", d / "claims.json"
+
+    for p in (copy_p, rep_p):
+        if not p.exists():
+            print(f"copy_sync: {p} is missing. Run the render before this gate.", file=sys.stderr)
+            return 2
+    try:
+        copy = json.loads(copy_p.read_text(encoding="utf-8"))
+        report = json.loads(rep_p.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        print(f"copy_sync: unreadable artifact: {exc}", file=sys.stderr)
+        return 2
+
+    claims = None
+    if claims_p.exists():
+        try:
+            claims = json.loads(claims_p.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            print("copy_sync: claims.json is unreadable, so citations are NOT checked this run",
+                  file=sys.stderr)
+
+    drifted, uncited = compare(copy, report, claims)
+    n_slides = len(normalize_slides(copy.get("slides")))
+
+    if not drifted and not uncited:
+        extra = "" if claims is not None else ", citations unchecked (no claims.json)"
+        print(f"copy sync: clean, {n_slides} slide(s) match what the browser laid out{extra}")
+        return 0
+
+    if drifted:
+        print(f"copy sync: {len(drifted)} string(s) in copy.json did not reach the render\n")
+        for m in drifted:
+            print(f"  {m}")
+        print("\n  This is the record disagreeing with the deck. It almost always means a slide's\n"
+              "  HTML was edited during pixel review and copy.json was not updated to match.\n"
+              "  FIX copy.json to say what the slide says. Never edit the slide to match a stale\n"
+              "  record: the render is what a reader receives.")
+    if uncited:
+        print(f"\ncopy sync: {len(uncited)} citation(s) point at nothing\n")
+        for m in uncited:
+            print(f"  {m}")
+        print("\n  A slide citing a claim id that is not in the claims file breaks the one promise\n"
+              "  this project makes about every fact. Add the claim or drop the citation.")
+    return 1
+
+
+def self_test() -> int:
+    failures = 0
+
+    def ok(label, cond, extra=""):
+        nonlocal failures
+        print(f"  {'ok  ' if cond else 'FAIL'}  {label}{'' if cond else '  ' + extra}")
+        if not cond:
+            failures += 1
+
+    def report_of(*per_slide):
+        return {"slides": [{"file": f"slide-{i:02d}.png", "n": i,
+                            "text_nodes": [{"text": t} for t in texts]}
+                           for i, texts in enumerate(per_slide, start=1)]}
+
+    claims = {"claims": [{"id": "tx-2026-08-12-01"}, {"id": "tx-2026-08-12-02"}]}
+
+    # THE SIBLING'S ACTUAL DEFECT, replayed. The HTML was hand-edited during pixel review and the
+    # record kept the old kicker.
+    copy = {"slides": {"S1": {"kicker": "HOW IT STARTED", "headline": "Four counties, one grid"}}}
+    rep = report_of(["BEFORE THE CLASS", "Four counties, one grid"])
+    drift, _ = compare(copy, rep, None)
+    ok("a hand-edited kicker that left copy.json behind is CAUGHT", len(drift) == 1, str(drift))
+    ok("...and the string it names is the stale one, not the good one",
+       "HOW IT STARTED" in drift[0], str(drift))
+
+    rep_ok = report_of(["HOW IT STARTED", "Four counties, one grid"])
+    ok("a synced slide is clean", compare(copy, rep_ok, None) == ([], []))
+
+    # Noise that must NOT trip it, or the gate gets switched off inside a week.
+    for label, authored, laid in [
+        ("case differs", "Four Counties, One Grid", "FOUR COUNTIES, ONE GRID"),
+        ("punctuation differs", "Hood County, Texas", "Hood County Texas"),
+        ("the browser wrapped a line", "Four counties one grid", "Four counties  one\ngrid"),
+        ("a straight quote became a glyph", 'the "large load" rule', "the large load rule"),
+    ]:
+        d, _ = compare({"slides": {"S1": {"headline": authored}}}, report_of([laid]), None)
+        ok(f"tolerates {label}", d == [], str(d))
+
+    # The 80 character truncation in render.py. A long body can only ever be matched on a prefix.
+    long_body = ("The commission opened a comment window on the rule that decides how quickly a "
+                 "large load can be told to stop drawing power from the grid")
+    truncated = long_body[:80]
+    d, _ = compare({"slides": {"S1": {"body": long_body}}}, report_of([truncated]), None)
+    ok("a long string truncated by the render still matches", d == [], str(d))
+
+    # ...and a body rewritten anywhere INSIDE that window is still caught. This is the case the
+    # first version of this file got wrong: it compared 40 characters, so a body that diverged at
+    # character 64 passed. Every character the artifact recorded is now used.
+    replaced = ("The commission opened a comment window on the rule that decides who pays for "
+                "the transmission line instead")
+    d, _ = compare({"slides": {"S1": {"body": long_body}}}, report_of([replaced[:80]]), None)
+    ok("a body rewritten inside the render's window is caught", len(d) == 1, str(d))
+
+    # THE KNOWN LIMIT, pinned so it stays a known limit. render.py writes down the first 80
+    # characters of a node and no more, so a divergence past that point was never recorded and
+    # cannot be asked about. This test exists to stop a later reader treating the miss as a bug
+    # in the matcher and shortening the needle to "fix" it, which would trade a documented blind
+    # spot for an undocumented one twice the size.
+    tail_edit = long_body[:RENDER_WINDOW] + " and then something else entirely happened"
+    d, _ = compare({"slides": {"S1": {"body": long_body}}},
+                   report_of([tail_edit[:RENDER_WINDOW]]), None)
+    ok("a divergence PAST the render's 80 character window is knowingly not detectable",
+       d == [], str(d))
+
+    # A headline split across spans: the parent and each child are separate nodes, and no single
+    # one contains the whole authored string.
+    d, _ = compare({"slides": {"S1": {"headline": "Four counties one grid"}}},
+                   report_of(["Four counties", "one grid"]), None)
+    ok("a headline split across two elements still matches", d == [], str(d))
+
+    # Nesting and list shapes, both of which real artifacts use.
+    d, _ = compare({"slides": [{"n": 1, "chips": ["PUCT", "ERCOT"]}]},
+                   report_of(["PUCT ERCOT"]), None)
+    ok("the list form of slides is read, not crashed on", d == [], str(d))
+    d, _ = compare({"slides": [{"n": 1, "chips": ["PUCT", "RAILROAD COMMISSION"]}]},
+                   report_of(["PUCT ERCOT"]), None)
+    ok("...and a missing chip inside a list is still caught", len(d) == 1, str(d))
+
+    # A slide that rendered nothing at all is the loudest possible version of this.
+    d, _ = compare({"slides": {"S2": {"headline": "Anything"}}}, report_of(["S1 only"]), None)
+    ok("a slide with no render at all is caught", len(d) == 1, str(d))
+
+    # CITATIONS. The gap between claims_check and the deck.
+    _, un = compare({"slides": {"S1": {"headline": "x", "claim_ids": ["tx-2026-08-12-01"]}}},
+                    report_of(["x"]), claims)
+    ok("a citation that resolves is clean", un == [], str(un))
+    _, un = compare({"slides": {"S1": {"headline": "x", "claim_ids": ["tx-2026-08-12-07"]}}},
+                    report_of(["x"]), claims)
+    ok("a slide citing a claim that does not exist is CAUGHT", len(un) == 1, str(un))
+    ok("...and it names the id", "tx-2026-08-12-07" in un[0], str(un))
+
+    _, un = compare({"slides": {"S1": {"headline": "x", "claim_ids": ["tx-2026-08-12-01"]}}},
+                    report_of(["x"]), None)
+    ok("citations are skipped rather than guessed when claims.json is absent", un == [])
+
+    # claim_ids must not be hunted for in the rendered text. A correct slide does not print its
+    # own citations, and an earlier shape of this check failed every deck for that reason.
+    d, _ = compare({"slides": {"S1": {"headline": "x", "claim_ids": ["tx-2026-08-12-01"]}}},
+                   report_of(["x"]), claims)
+    ok("a claim id is never expected to appear in the artwork", d == [], str(d))
+
+    # Nested citation shapes, since the copywriter emits per-string ids too.
+    _, un = compare({"slides": {"S1": {"headline": "x",
+                                       "stats": [{"stat": "x", "claim_id": "tx-2026-08-12-09"}]}}},
+                    report_of(["x"]), claims)
+    ok("a citation nested inside a stat is still checked", len(un) == 1, str(un))
+
+    if failures:
+        print(f"\ncopy_sync_check self-test: {failures} FAILED", file=sys.stderr)
+        return 1
+    print(f"\ncopy_sync_check self-test: all passed (render window {RENDER_WINDOW} chars, which "
+          f"is the limit of what the artifact records)")
+    return 0
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
+    ap.add_argument("--date", help="run date, e.g. 2026-08-12")
+    ap.add_argument("--out", default=str(REPO_ROOT / "out"))
+    ap.add_argument("--self-test", action="store_true")
+    a = ap.parse_args()
+    if a.self_test:
+        return self_test()
+    if not a.date:
+        print("copy_sync_check: pass --date or --self-test", file=sys.stderr)
+        return 2
+    return run(a.date, Path(a.out))
+
+
+if __name__ == "__main__":
+    try:
+        sys.exit(main())
+    except Exception as exc:                                            # noqa: BLE001
+        print(f"copy_sync_check: broke: {exc}", file=sys.stderr)
+        sys.exit(2)

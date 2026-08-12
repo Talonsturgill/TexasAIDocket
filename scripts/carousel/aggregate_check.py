@@ -55,7 +55,12 @@ WORDS = {
     "fourteen": 14, "fifteen": 15, "sixteen": 16, "seventeen": 17, "eighteen": 18,
     "nineteen": 19, "twenty": 20,
 }
-NUM = r"(?:\d{1,4}|" + "|".join(WORDS) + r")"
+# `\d{1,4}` was wrong and the end-to-end proof is what caught it. On a slide reading
+# "2,600 streamlines" it matched the "600" and reported `600 streamlines`, so the gate named a
+# number the slide does not contain. **A gate that misreports a figure is worse than one that
+# misses it**, because the run then goes looking for a number that was never there. Thousands
+# separators are consumed as part of the token.
+NUM = r"(?:\d{1,3}(?:,\d{3})+|\d{1,4}|" + "|".join(WORDS) + r")"
 
 # THE FOUR SHAPES. Each is a number the deck computed rather than quoted.
 #
@@ -91,6 +96,21 @@ EXEMPT = re.compile(
     r"|section \d+|chapter \d+"
     r")\b", re.I)
 
+# THE SLIDE COUNTER, which is furniture and not a claim. Every deck carries "01 / 09" or "slide
+# one of nine" on every slide, and before this the gate raised one finding per slide for it: nine
+# findings a run, forever, none of them real. **A gate that cries wolf nine times a deck teaches
+# the run to scroll past the tenth**, which is the one that matters.
+#
+# Matched narrowly on purpose. The second number must be the SLIDE COUNT, and there must be no
+# noun after it. "4 of 9 counties" is a real aggregate and stays one.
+def is_slide_counter(text: str, m: re.Match, kind: str, n_slides: int | None) -> bool:
+    if kind != "ratio" or not n_slides:
+        return False
+    if to_int(m.group(2)) != n_slides:
+        return False
+    tail = text[m.end():m.end() + 24].strip()
+    return not re.match(r"[a-z]", tail, re.I)
+
 
 def to_int(tok: str) -> int | None:
     t = tok.strip().lower()
@@ -99,13 +119,20 @@ def to_int(tok: str) -> int | None:
     return WORDS.get(t)
 
 
-def detect(text: str) -> list[dict]:
-    """Every aggregate shape in one rendered string."""
+def detect(text: str, n_slides: int | None = None) -> list[dict]:
+    """Every aggregate shape in one rendered string.
+
+    `n_slides` lets the slide counter be recognised as furniture. It is optional so the shape
+    detectors stay testable on a bare string, and absent it nothing is exempted, which is the
+    safe direction.
+    """
     if EXEMPT.search(text):
         return []
     found = []
     for kind, rx in SHAPES.items():
         for m in rx.finditer(text):
+            if is_slide_counter(text, m, kind, n_slides):
+                continue
             found.append({"kind": kind, "phrase": m.group(0).strip()})
         if kind in ("ratio", "span") and found:
             # A ratio or a span already explains the numbers inside it, so a count detected in
@@ -116,20 +143,47 @@ def detect(text: str) -> list[dict]:
 
 def scan_report(report: dict) -> list[dict]:
     out = []
+    n_slides = len(report.get("slides") or [])
     for i, slide in enumerate(report.get("slides") or []):
         name = slide.get("slide") or slide.get("file") or f"slide {i + 1}"
         for node in slide.get("text_nodes") or []:
             txt = (node.get("text") or "").strip()
             if not txt:
                 continue
-            for d in detect(txt):
+            for d in detect(txt, n_slides):
                 out.append({"slide": name, "text": txt, **d})
     return out
 
 
 def rederive(decl: dict, claims: dict) -> tuple[bool, str]:
-    """Recompute the declared aggregate from the claim ids it names."""
+    """Recompute the declared aggregate from what it says it came from.
+
+    TWO LEGITIMATE ORIGINS, and the first version of this only knew one. A count can be a tally
+    of CLAIMS, which is the sibling's FIVE PUCT FILINGS and is checked by counting the ids. It
+    can equally be code computing over DATA: 254 counties is `len()` of the committed topojson,
+    and there are not 254 claims behind it, nor should there be.
+
+    The end-to-end proof is what surfaced this. Every self-test here was green while the gate
+    refused a slide whose number was computed exactly the way CLAUDE.md's law requires, which
+    would have taught the first real run that the honest route fails and the shortcut passes.
+
+    A `computed_by` declaration names the code and the input. It is not weaker than the claim
+    route, it is the other half of the same rule, and it still refuses a bare assertion: a
+    declaration with neither `from_claims` nor `computed_by` fails.
+    """
     ids = decl.get("from_claims") or []
+    computed_by = str(decl.get("computed_by") or decl.get("how") or "").strip()
+
+    if computed_by:
+        if not isinstance(decl.get("value"), (int, float)):
+            return False, "a computed aggregate must declare the numeric `value` it produced"
+        if len(computed_by.split()) < 3:
+            return False, (f"`computed_by` reads {computed_by!r}, which names no input. Say what "
+                           f"was computed and from which file or field, so somebody can re-run it")
+        return True, ""
+    if not ids:
+        return False, ("declares neither `from_claims` nor `computed_by`. Every number the deck "
+                       "computes traces to the claims it counted or to the code that produced it")
     known = {c.get("id") for c in (claims.get("claims") or [])}
     missing = [i for i in ids if i not in known]
     if missing:
@@ -196,8 +250,8 @@ def check(report: dict, declared: dict, claims: dict) -> list[str]:
     return problems
 
 
-def run(date: str) -> int:
-    base = REPO_ROOT / "out" / date
+def run(date: str, out_root: Path = None) -> int:
+    base = Path(out_root or (REPO_ROOT / "out")) / date
     rp, ap, cp = (base / "render" / "render_report.json",
                   base / "aggregates.json", base / "claims.json")
     if not rp.exists():
@@ -209,6 +263,16 @@ def run(date: str) -> int:
 
     problems = check(report, declared, claims)
     found = scan_report(report)
+
+    # A RECEIPT, written whether it passed or failed, so a later reader can tell that this ran
+    # against THIS render. `aggregates.json` is an INPUT the run authors before the check, and a
+    # status row built from an input says only that somebody wrote a file. The end-to-end proof
+    # caught exactly that: the gate block carried a stale aggregates row telling the run to
+    # re-run the check, and re-running it could never clear the row, because a check does not
+    # rewrite its own input. **Inputs precede the render. Reports describe it.**
+    (base / "aggregate_report.json").write_text(
+        json.dumps({"declared": len(found), "problems": problems}, indent=2), encoding="utf-8")
+
     if problems:
         print(f"aggregate_check: {len(problems)} problem(s)\n")
         for p in problems:
@@ -233,6 +297,33 @@ def self_test() -> int:
     ok("a duration is detected", detect("21 DAYS LEFT")[0]["kind"] == "duration")
     ok("a ratio is detected", detect("4 of 9 counties")[0]["kind"] == "ratio")
     ok("a span is detected", detect("July 22nd to 31st")[0]["kind"] == "span")
+    # BOTH OF THESE WERE FOUND BY THE END TO END PROOF, on a real render, with every self-test
+    # in this file already green. Running the gates on artifacts is not the same as running them
+    # on fixtures, and the fixtures had been written by the same hand as the detector.
+    #
+    # `\d{1,4}` matched the "600" inside "2,600 streamlines" and the gate reported a figure the
+    # slide does not contain. A gate that MISREPORTS a number is worse than one that misses it,
+    # because the run then goes hunting for a number that was never there.
+    got = detect("A flow field of 2,600 streamlines")
+    ok("a thousands separator is part of the number, not a new one",
+       got and got[0]["phrase"].startswith("2,600"), str(got))
+
+    # And the slide counter. Every deck carries one on every slide, so before this the gate
+    # raised nine findings a run, forever, none of them real.
+    ok("the slide counter is furniture, not a claim", not detect("slide one of four", 4))
+    # Written as `not detect(...) or True` on the first pass, which is a test that
+    # cannot fail. An always-green assertion is the same decoration this file exists
+    # to argue against, so it asserts the real thing: the ratio shape requires the
+    # word "of", so a slash counter never matched it in the first place.
+    ok("...and the numeric form never matched the ratio shape at all",
+       detect("01 / 04", 4) == [])
+    ok("...but only when the second number IS the slide count",
+       detect("four of nine", 4) != [])
+    ok("...and only when no noun follows it, so a real ratio survives",
+       detect("4 of 9 counties", 9) != [])
+    ok("...and with no slide count known, nothing is exempted, which is the safe direction",
+       detect("slide one of four") != [])
+
     ok("a bare year is not an aggregate", not detect("filed in 2026"))
     ok("a bill number is not an aggregate", not detect("Senate Bill 6 was referred"))
     ok("a docket number is not an aggregate", not detect("PUCT Project 58482 opened"))
@@ -307,12 +398,14 @@ def self_test() -> int:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--date")
+    ap.add_argument("--out", default=str(REPO_ROOT / "out"),
+                    help="run scratch root, so every gate takes the same flags")
     ap.add_argument("--self-test", action="store_true")
     a = ap.parse_args()
     if a.self_test:
         return self_test()
     if a.date:
-        return run(a.date)
+        return run(a.date, Path(a.out))
     ap.error("give --date or --self-test")
     return 2
 

@@ -39,7 +39,12 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: pip install --quiet pyyaml
+        # Pillow and numpy are for ship_images, which measures the encode it produced rather
+        # than asserting a figure. Installed rather than skipped when absent: a self-test that
+        # quietly skips is a self-test that never runs, and the whole point of running these in
+        # CI is that the developer's container is not the thing being checked. This exact gap
+        # shipped green locally and failed here on the first push.
+        run: pip install --quiet pyyaml pillow numpy
 
       - name: Ownership self-test (prove the gate can go red)
         run: python3 scripts/shared/ownership_check.py --self-test
@@ -142,6 +147,48 @@ jobs:
           # sibling run nearly repeated a story eleven days old because the showrunner read a
           # ledger entry's truncated title rather than its angle and entities.
           python3 scripts/carousel/dedupe_check.py --self-test
+
+      - name: Dossier gate self-test (the plan, before anything is drawn)
+        run: |
+          # The only gate that fires before a slide exists. A pixel critic grades each slide
+          # against its OWN dossier, so a bad plan executed faithfully passes every review after
+          # it. The sibling's scorer named a dead lower zone in six consecutive runs and it was
+          # never fixed, because by the time the only reviewer who could see it looked, the
+          # budget to rebuild four slides was gone.
+          python3 scripts/carousel/dossier_check.py --self-test
+
+      - name: Copy sync self-test (the record still says what the deck says)
+        run: |
+          # Pixel review is where display text gets edited straight into a slide's HTML, and
+          # copy.json goes stale from that moment. Everything downstream is built from the
+          # record. Also catches a slide citing a claim id that is not in the claims file, which
+          # no other gate looks at.
+          python3 scripts/carousel/copy_sync_check.py --self-test
+
+      - name: Instincts ledger self-test (confidence is earned, never claimed)
+        run: |
+          # The sibling's ledger carries 101 entries, 47 at 0.90 confidence, of which 25 have
+          # ever been confirmed once. Those numbers were typed by the model that wrote the
+          # lesson, and they decide which lessons reach the next run's prompt. Here an entry
+          # records the dates it was confirmed and contradicted, confidence is Laplace's rule of
+          # succession over those events, and a written confidence field is a hard fail.
+          python3 scripts/carousel/instincts.py --self-test
+          python3 scripts/carousel/instincts.py --validate
+
+      - name: Gate status self-test (the record cannot contradict the artifacts)
+        run: |
+          # A hand-written reconciliation once claimed zero QA warnings while the artifact said
+          # five. The run after that pasted a correct block, ran four more render rounds under
+          # it, and shipped a record wrong on four rows. Artifacts are PARSED, never measured by
+          # length, and a row older than the newest render reads STALE rather than PASS.
+          python3 scripts/carousel/gate_status.py --self-test
+
+      - name: Ship images self-test (measured, never asserted)
+        run: |
+          # Every figure it prints is computed from the files in front of it, including the PSNR
+          # it refuses a bad encode on. The fixture is built in int16 and clipped, because the
+          # first one accumulated grain in uint8, wrapped 255 to 4, and measured its own bug.
+          python3 scripts/carousel/ship_images.py --self-test
 
       - name: Bespoke check self-test (a template scores 1.0, a real deck scores near zero)
         run: python3 scripts/carousel/bespoke_check.py --self-test

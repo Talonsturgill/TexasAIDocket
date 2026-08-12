@@ -135,7 +135,7 @@ public fact stand for another day, on a page whose entire promise is that it doe
 - `knowledge/shared/TEXAS_LANGUAGE.md` — the civic terms we get wrong by default. A county judge
   is an executive. The Railroad Commission regulates no railroads.
 - `knowledge/shared/TEXAS_ATTITUDES.md` — the evidence base for tone.
-- `knowledge/carousel/` — craft doctrine for the deck engine.
+- `knowledge/carousel/` — craft doctrine for the deck engine. `TECHNIQUE_LIBRARY.md` is what the engine can actually execute and how each technique fails; `CAPTION_CRAFT.md` is the caption room's menus and the anti-template law; `SLIDE_DOSSIER_SPEC.md` is the planning format `dossier_check` enforces.
 - `config/brand.yaml` — voice, house rules, banned phrases, visual tokens.
 - `.claude/skills/carousel-engine/SKILL.md` — the slide contract. **Read this before writing a
   slide, every run.** It carries the traps that cost whole slides.
@@ -336,22 +336,63 @@ Say in writing why this story and not the others.
 
 ## PHASE 9 — DIRECTORS ROOM (the planning phase that earns the deck)
 
+First, ask the machine what it has learned:
+
+```
+python3 scripts/carousel/instincts.py --top 5
+```
+
+Hand whatever it prints to the directors and to the copy chamber. **If it prints nothing, hand
+them nothing.** An instinct reaches that list by surviving three runs without being contradicted,
+and a lesson no run has confirmed is worth less than the director's own judgement. This repo has
+shipped no decks, so early runs will get an empty list, and that is correct rather than a gap.
+
+Read `knowledge/carousel/TECHNIQUE_LIBRARY.md`. Every technique in it names a real function in
+`assets/js/` and records **how it fails**, which is most of the craft. A technique is chosen
+because this claim wants it, and `why_this_technique` in the dossier is where that is argued. A
+cartographic claim wants cartography. A claim about a quantity over time does not become one by
+being drawn on a map.
+
 Spawn 3 `carousel-treatment-director` agents in parallel, each with a different creative lens and
 the variety ledger's exclusions. Synthesise: pick one, graft the best of the others, and write the
 reason down.
 
 Then write a **dossier per slide** before any code: what it claims, which claim ids, the technique,
 the composition, the value structure, the palette drawn from this story's own region, and an
-acceptance checklist the pixel critic will grade against.
+acceptance checklist the pixel critic will grade against. The format is
+`knowledge/carousel/SLIDE_DOSSIER_SPEC.md`.
 
 **No code is written before the dossiers exist.** A slide planned while it is being coded is a
 slide that will be argued for rather than judged.
 
+```
+python3 scripts/carousel/dossier_check.py --date <date>
+```
+
+This is the only gate in the run that fires before anything is drawn, and that is the whole point
+of it. **A pixel critic grades each slide against its own dossier, so a bad plan executed
+faithfully passes every review that comes after this one.** In the sibling product a dead lower
+zone was named by the scorer in six consecutive runs and never fixed, because by the time the only
+reviewer who could see it looked, the budget to rebuild four slides was gone. It reached the
+scorer six times because the dossier had written the empty bottom band into the plan and every
+critic downstream was grading against that plan.
+
+Fix the plan here, where it costs a paragraph.
+
 ## PHASE 10 — COPY CHAMBER (the caption room)
 
+Read `knowledge/carousel/CAPTION_CRAFT.md`. It holds the menus, the banned furniture and the
+anti-template law, which is the one rule no linter can check: **if yesterday's nouns can be
+swapped into today's caption and it still reads correctly, it was a template.**
+
+Take the exclusions from `ledger/carousel/captions.json` before anybody writes. Opening moves from
+the last six runs are off the menu, structures from the last three. **Hand the room what is off
+the table before it writes, never after**, because a director told no afterwards just defends what
+they already wrote.
+
 Spawn 2 `carousel-caption-director` agents with different assigned opening moves, then 1
-`carousel-caption-critic` to judge. One rewrite maximum. Then 1 `carousel-copywriter` to carry the
-winner verbatim and set the slide strings.
+`carousel-caption-critic` to judge against the craft doctrine. One rewrite maximum. Then 1
+`carousel-copywriter` to carry the winner verbatim and set the slide strings.
 
 ```bash
 python3 scripts/carousel/caption_check.py --file out/<date>/caption.txt
@@ -379,6 +420,27 @@ Spawn `carousel-pixel-critic` agents in parallel, one per one or two slides. The
 visible word and grade against the dossier's own checklist. Fix what they find, re-render,
 re-review. Then 1 `carousel-flow-critic` on the contact sheet, which judges the deck as a sequence
 rather than as nine slides.
+
+When the last round settles, before anything is assembled:
+
+```
+python3 scripts/carousel/copy_sync_check.py --date <date>
+```
+
+**Run it after every round, not once.** This phase is where display text gets edited straight into
+a slide's HTML, because answering a critic that way is faster than going back through `copy.json`.
+The moment that happens the record disagrees with the deck, and every artifact downstream, the
+email, the ledger, the archive page, is built from the record. In the sibling product a kicker was
+hand-edited in the HTML and `copy.json` kept the old string until the scorer caught it at the ship
+gate.
+
+It also checks that every claim id a slide cites exists in `claims.json`. `claims_check` proves the
+claims file is sound and `aggregate_check` proves the arithmetic on top of it. Neither asks whether
+the id a SLIDE points at is one of them, so a slide citing a claim that was dropped during
+verification satisfies every other gate in the run.
+
+**Fix `copy.json` to say what the slide says.** Never edit the slide to match a stale record. The
+render is what a reader receives.
 
 ## PHASE 13 — AGGREGATE GATE (every number the deck invented)
 
@@ -413,6 +475,26 @@ Confirm `assemble_report.json` says `pdf_mode: "vector"`.
 Spawn 1 `carousel-scorer`. Honest weighted score, hard fails enforced, no rounding up. Record it
 whatever it says.
 
+Before you write a word of the run record, and **again after every render round**:
+
+```
+python3 scripts/carousel/gate_status.py --date <date> --sync runs/carousel/<date>/RUN_RECORD.md
+```
+
+**Never hand-write the gate rows.** In the sibling product a hand-written reconciliation claimed
+zero QA warnings while the artifact on disk said five, and the scorer caught it. The run after that
+pasted a correct block once, ran four more render rounds under it, and shipped a record
+contradicting its own artifacts on four rows. Printing "do not hand-write this" did not stop
+either, which is why this writes the block for you.
+
+`--sync` is idempotent, so running it again after every round costs nothing. **A rule with a cost
+is a rule that gets skipped at the exact moment it matters.**
+
+It reads the artifacts and parses them. It never measures a file's size to decide whether it is
+valid, because a 196 byte report is valid and a 4 MB truncated PNG is not. A row whose artifact
+predates the newest rendered slide reads STALE rather than PASS, which is the row a re-render
+creates and nothing else in the run would notice.
+
 ## PHASE 16 — SHIP (one branch, one pull request, one merge)
 
 Authoritative policy is in `CLAUDE.md` and it wins over any instruction to keep work on a branch
@@ -423,15 +505,28 @@ record, the deck and the site rebuild land together, so the site is never built 
 is half a run old.
 
 1. Copy artifacts to `runs/carousel/<date>/`, archiving `prompts/NEXT_RUN.md` if it existed.
-2. Update `ledger/carousel/{topics,artwork,captions}.json`.
-3. Rebuild the site: `python3 scripts/site/site_build.py --out docs --today <date>`.
-4. Verify, and read the **exit codes**, never the last line of a report:
+2. Shrink the shipped images. The review loop needed lossless 2x PNGs, and a reader on a phone off
+   a county road needs the page to arrive:
+
+   ```
+   python3 scripts/carousel/ship_images.py --run <date>
+   ```
+
+   It measures what it produced rather than repeating a figure, and refuses any encode under the
+   visually lossless floor. Slide 1 also ships as `og.jpg`, because LinkedIn and Slack still handle
+   a WebP `og:image` inconsistently and the unfurl is rendered by somebody else's code.
+
+   **Never pass `--all`.** That reaches back into runs that have already shipped, which `CLAUDE.md`
+   puts on the short list of things that stop and ask.
+3. Update `ledger/carousel/{topics,artwork,captions}.json`.
+4. Rebuild the site: `python3 scripts/site/site_build.py --out docs --today <date>`.
+5. Verify, and read the **exit codes**, never the last line of a report:
    - `python3 scripts/site/docket_build.py --validate`
    - `python3 scripts/site/site_fresh_check.py`
    - `python3 scripts/site/house_style_check.py`
    - `python3 scripts/shared/port_audit.py`
    - `python3 scripts/shared/ownership_check.py --actor daily --staged`
-5. Commit, push, open a **ready (not draft)** pull request, and **merge it to `main` in the same
+6. Commit, push, open a **ready (not draft)** pull request, and **merge it to `main` in the same
    run.** The email's image URLs point at `main`, so the merge lands before the email.
 
 **A failed run commits its evidence to its branch and does NOT merge.**
@@ -445,6 +540,27 @@ what was held, the instrument check's finding, and anything a source did that th
 describe. **If a source behaved differently than `SOURCES_REGISTRY.md` says, update the registry in
 the same commit.** A registry that drifts from reality is worse than none, because the next run
 trusts it.
+
+**The craft.** Record what this run learned about making decks, zero to three lessons:
+
+```
+python3 scripts/carousel/instincts.py --add --id <kebab-slug> \
+    --instinct "<one imperative sentence to the next run>" --evidence "<what taught it>"
+python3 scripts/carousel/instincts.py --confirm <id>       # an existing instinct held
+python3 scripts/carousel/instincts.py --contradict <id>    # an existing instinct failed
+python3 scripts/carousel/instincts.py --prune
+```
+
+**You may not write a confidence number and the ledger refuses one.** Record what happened. The
+arithmetic decides what the lesson is worth, and it starts every new instinct at 0.50, which is
+the honest score for something nothing has tested.
+
+That refusal is not ceremony. The sibling's ledger carries 101 entries, 47 of them at 0.90
+confidence, and only 25 have ever been confirmed once. Those numbers were typed by the same model
+that had just decided the lesson was worth writing, and they are what chooses which lessons reach
+the next run's directors room. **Go back and confirm or contradict the instincts you were handed
+in Phase 9**, because an instinct nobody ever revisits is one that will sit in the prompt forever
+on the strength of the day it was written.
 
 **The machine.** `echo upgrade > .git/ACTOR`, then spawn 1 `carousel-upgrade-engineer`. Zero to
 three bounded, verified upgrades, logged to `ledger/carousel/upgrades.json`. Restore the stamp with

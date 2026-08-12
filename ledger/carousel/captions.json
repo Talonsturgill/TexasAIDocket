@@ -4,8 +4,21 @@
     "purpose": "The caption variety engine, plus the corpus the comma ceiling will be computed from.",
     "why": "An opening move is the most repeatable thing in a caption, and a machine will find one that scores well and use it forever. Each shipped caption records its opening move and structure so the caption room can be told what is off the table.",
     "comma_ceiling": "NOT SET. It is computed from this product's first twenty shipped captions at ten percent below their measured mean, never copied from another product. config/parity_map.yaml carries the unblock condition; scripts/carousel/caption_check.py measures the rate every run.",
-    "written_by": "carousel"
+    "written_by": "carousel",
+    "doctrine": "knowledge/carousel/CAPTION_CRAFT.md holds the menus this ledger rotates: ten opening moves, eight structures, five closing moves, and the anti-template law the critic judges by.",
+    "exclusions_handed_to_the_room": "opening moves from the last 6 runs, structures from the last 3. The room is told what is off the table before it writes, never after.",
+    "entry_schema": {
+      "date": "YYYY-MM-DD",
+      "opening_move": "one of the named moves in CAPTION_CRAFT.md",
+      "structure": "one of the named structures",
+      "closing_move": "one of the named closes",
+      "first_line": "the actual first line, VERBATIM. Stored because the critic's real job is catching a sentence skeleton that survived a change of nouns, and it can only do that with the real lines in front of it",
+      "words": "measured by caption_check.py, never typed",
+      "commas_per_100w": "measured by caption_check.py, never typed. This is the corpus the ceiling will be computed from"
+    }
   },
   "opening_moves_recent": [],
-  "entries": []
+  "entries": [],
+  "structures_recent": [],
+  "closing_moves_recent": []
 }

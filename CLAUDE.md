@@ -170,16 +170,28 @@ Alaska's history would poison them.
   into the routines UI, which says only "read that file from main and execute it", deliberately,
   so the real instructions stay versioned and reviewable rather than living in a settings box
   nobody diffs.
-- `knowledge/` — `shared/` (Texas research, design doctrine, vernacular), `carousel/` (craft
-  doctrine for the deck engine). Video craft doctrine lives in `TexasAIDispatch`.
+- `knowledge/` — `shared/` (Texas research, design doctrine, vernacular, sources registry),
+  `carousel/` (`TECHNIQUE_LIBRARY.md`, what the engine can execute and how each technique fails;
+  `CAPTION_CRAFT.md`, the caption room's menus and the anti-template law; `SLIDE_DOSSIER_SPEC.md`,
+  the planning format `dossier_check` enforces; `DESIGN_DOCTRINE.md`; `FIELD_NOTES.md`). Video
+  craft doctrine lives in `TexasAIDispatch`.
   **`shared/GATE_LESSONS.md` is required reading before you add a gate, trust one, or conclude
   that a green suite means a correct product.** It is the record of faults that shipped with
   every check passing, and each entry names what to check instead. A green suite has been wrong
   about the colour of the page, the promise on the front page, the state of a badge, whether the
-  site published at all, and prose that had not rendered yet.
+  site published at all, whether a rule in this repo's own ownership map was even in force,
+  whether a gate was connected to anything, and prose that had not rendered yet.
 - `config/` — `brand.yaml` (shared Texas voice and tokens), then per-surface subdirectories.
-- `ledger/` — committed state. `docket.json` is the public record; the rest is per-actor.
-- `scripts/` — namespaced by owning actor: `site/`, `carousel/`, `gridwatch/`, `shared/`.
+- `ledger/` — committed state. `docket.json` is the public record. `carousel/` holds the variety
+  ledgers (`topics`, `artwork`, `captions`), the automation-change trail (`upgrades`) and
+  `instincts.json`, the craft memory. **An instinct records the DATES it was confirmed and
+  contradicted and carries no confidence number**, because confidence is derived by
+  `scripts/carousel/instincts.py` and a machine allowed to grade its own lesson grades it high.
+- `scripts/` — namespaced by owning actor: `site/`, `carousel/`, `gridwatch/`, `shared/`. The
+  carousel gates each carry the defect they exist for in their own docstring, and each has a
+  `--self-test` that replays it. Run them by EXIT CODE, never by reading the last line: a report
+  that prints advice on failure and one clean line on success looks reassuring either way under
+  `tail -1`, and that has shipped a red gate here before.
 - `assets/` — committed fonts, art libraries, Texas geodata, places gazetteer.
 - `docs/` — the published site (GitHub Pages). GENERATED. Never hand-edit.
 - `out/` — per-run scratch (gitignored). `runs/` — shipped artifacts, merged to main each run.

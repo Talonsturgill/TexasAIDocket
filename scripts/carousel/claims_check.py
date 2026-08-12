@@ -308,6 +308,8 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--date", help="check out/<date>/claims.json")
     ap.add_argument("--file", help="check this file")
+    ap.add_argument("--out", default=str(REPO_ROOT / "out"),
+                    help="run scratch root, so every gate takes the same flags")
     ap.add_argument("--self-test", action="store_true")
     a = ap.parse_args()
     if a.self_test:
@@ -315,7 +317,7 @@ def main() -> int:
     if a.file:
         return run(Path(a.file))
     if a.date:
-        return run(REPO_ROOT / "out" / a.date / "claims.json")
+        return run(Path(a.out) / a.date / "claims.json")
     ap.error("give --date, --file or --self-test")
     return 2
 

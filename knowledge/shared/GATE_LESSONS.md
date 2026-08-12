@@ -240,6 +240,64 @@ because a lockfile lists it. A dead-code sweep that counts a function as live be
 it. **When the evidence and the question are one inference apart, the check answers the easier
 question and reports it as the harder one.**
 
+## 14. Your container is not the environment being checked
+
+`ship_images` passed its self-test fifteen times locally and failed on the first push with
+`Pillow and numpy are required`. The development container had them. The CI runner installed
+`pyyaml` and nothing else.
+
+The failure is trivial. **The tempting fix is the trap.** The obvious move is to make the self-test
+skip when the library is absent, so the suite goes green everywhere. That would have produced a
+green CI run in which the gate never executed, forever, and nobody would have looked again. A
+skipped test and a passing test are the same colour.
+
+**Install the dependency. Never skip the check.** The entire reason to run these in CI is that the
+machine they run on is not the machine they were written on.
+
+**What to check instead.** The audit is one line and worth running whenever a gate gains an
+import: list every script CI invokes, list its non-stdlib imports, compare to the install step.
+Note the trap inside the trap, which cost a second pass here: an anchored `^import` grep finds
+nothing, because the import that matters is indented inside the `try` block that produces the
+friendly error message.
+
+**Generalises to.** Fonts, locales, timezones, a headless browser, a git identity, an environment
+variable with a default in your shell profile. Every one of them is something the developer's
+machine supplies silently and a fresh runner does not.
+
+## 15. Fixtures written by the author of the detector agree with it
+
+The end-to-end proof ran the whole chain on a real render for the first time. **Every gate's
+self-tests were green before it started.** It found five defects in under an hour, and not one was
+exotic.
+
+- `aggregate_check` matched `\d{1,4}` and so read `2,600 streamlines` as **600**. It named a
+  number the slide does not contain. **A gate that misreports a figure is worse than one that
+  misses it**, because the run then hunts for something that was never there.
+- The same gate flagged the slide counter, `slide one of four`, on every slide. Nine findings a
+  deck, forever, none real. A gate that cries wolf nine times teaches the run to scroll past the
+  tenth.
+- It also refused a count computed the way the law requires. `254 counties` is `len()` of the
+  committed topojson, not a tally of 254 claims, and the declaration format could only express
+  the claim route. **It would have taught the first real run that the honest route fails and the
+  shortcut passes.**
+- `gate_status` marked `claims.json` STALE for predating the render. Claims are written in Phase
+  6 and the art is built in Phase 11, so that is true of every run that has ever gone right. Three
+  rows would have been red forever, and **a row that is always red is ignored exactly as fast as
+  one that is always green.**
+- The same gate read `aggregates.json`, an INPUT the run authors, as though it were a report. So
+  it printed a stale row saying "re-run it" that re-running could not clear, because a check does
+  not rewrite its own input. **Inputs precede the render. Reports describe it**, and a status row
+  belongs to a report.
+
+The pattern is one sentence. **A fixture written by the same hand as the detector agrees with the
+detector.** Every one of these needed a real artifact from a real render to surface, and a real
+artifact is the only thing that carries the shapes nobody thought to write down: a thousands
+separator, a slide counter, a file that legitimately precedes the thing it is being compared to.
+
+**What to check instead.** Run the whole chain on real output before believing the suite. The
+proof is not a formality at the end of the work, it is the first honest measurement of it, and it
+is cheap: one render and one pass through every gate.
+
 ---
 
 ## Two process faults, which caused more lost time than any bug above

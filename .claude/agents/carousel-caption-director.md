@@ -59,3 +59,5 @@ leaving a run-on. The rate is measured every run.
   "why_this_opening": "one sentence"
 }
 ```
+
+**Read `knowledge/carousel/CAPTION_CRAFT.md` before writing.** Your assigned opening move and structure are named there, and the move tells you where the caption STARTS. It does not supply the sentence. A caption assembled from the menu rather than conceived for this story is the exact thing the critic exists to reject.
