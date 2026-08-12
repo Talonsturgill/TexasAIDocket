@@ -66,7 +66,7 @@ Source machines total ~79,000 lines across three Alaska repos, which are REFEREN
 | 6 | Carousel machine | **PARTIAL** | engine, art libraries, demo deck, caption lint, bespoke check, 10 agents, ledgers, routine prompt all DONE. Craft doctrine + gmail_draft + scoring rubric remain |
 | 7 | Video dispatch + Texas art library | TODO | lands in `TexasAIDispatch` |
 | 8 | Commercial wing + scanner | TODO | lands here + `TexasAIScanner` |
-| 9 | Wire-up, end-to-end proof, routine handoff | TODO | |
+| 9 | Wire-up, end-to-end proof, routine handoff | **PARTIAL** | HANDOFF.md, trigger pointers, full end-to-end pass green (21 suites, 8 gates). Owner actions outstanding |
 | A | Metro scoping (cuts across waves 2, 3, 4, 5) | TODO | owner directive 2026-08-11 |
 | B | Data cleanliness spine: places + entity resolution | **PARTIAL** | see below |
 

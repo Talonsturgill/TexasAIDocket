@@ -9,8 +9,16 @@ Three things run off this repo:
   a page, as open data under CC BY 4.0, and as a corpus written to be read by LLMs.
 - **The daily carousel** — one verified Texas AI story a day, planned in forensic detail and
   rendered as bespoke code, delivered as a post-ready email draft.
-- **The Texas Grid Watch** — a daily numeric record of the ERCOT grid's position, including how
-  much of the large flexible load Texas has approved is actually drawing power.
+- **The Texas Grid Watch** — a daily numeric record of the ERCOT grid's position, built around
+  the load factor, which is the one number here that is genuinely about AI: a data centre draws
+  at four in the morning close to what it draws at five in the afternoon, so large constant load
+  lifts the overnight floor faster than the afternoon ceiling.
+- **The Texas Water Watch** — daily reservoir storage for 119 Texas reservoirs, rolled up by
+  metro. The driest metro in Texas is in the Permian, which is where much of the new load is
+  landing. The page publishes both numbers and draws no conclusion from them.
+- **The ask box** — a question about the record, answered in the reader's own browser from an
+  index that shipped with the page. Nothing is sent anywhere, and `tests/ask_engine.mjs` cuts
+  the network and asks every catalogued question anyway.
 
 Two sibling repos carry the rest: `TexasAIDispatch` (the narrated video engine) and
 `TexasAIScanner` (the Bottleneck Scanner backend).
@@ -18,21 +26,41 @@ Two sibling repos carry the rest: `TexasAIDispatch` (the narrated video engine) 
 ## How it fits together
 
 ```
-ERCOT + EIA ──► gridwatch collector ──► ledger/gridwatch/*.jsonl ──┐
-                                                                   ├──► site_build ──► docs/ ──► Pages
-research ──► claims ──► docket phase ──► ledger/docket.json ───────┘         │
-                                              │                              └──► llms.txt, feeds, JSON-LD
-                                              └──► carousel run ──► runs/ ──► email draft
+ERCOT  ──► gridwatch collector  ──► ledger/gridwatch/readings.jsonl ──┐
+TWDB   ──► waterwatch collector ──► ledger/gridwatch/water.jsonl    ──┤
+                                    (both cron, never a routine)      ├──► site_build ──► docs/ ──► Pages
+research ──► claims ──► docket routine ──► ledger/docket.json ────────┘        │
+                              │                                                ├──► ask index + catalogue
+                              │                                                └──► llms.txt, feeds, JSON-LD
+                              └──► carousel routine ──► runs/ ──► Gmail draft
 ```
 
 `docs/` is generated. It is a pure deterministic function of the ledgers, and
 `site_fresh_check.py` proves it by rebuilding into a temp directory and requiring byte
 equality. Nothing hand-edits the published site.
 
+## The laws
+
+**Numbers are computed, never generated.** Every numeral published traces to a quoted source or
+to code that computed it from data, and `numeral_lint` fails the build otherwise. It is stated
+publicly on the site, because it is the reason a reader should believe a number here.
+
+**Every path has exactly one owning actor.** Several unattended routines share this history and
+each ends in a phase whose job is editing its own machine. Prose is not a boundary against
+that; `ownership.yaml` is.
+
+**`docs/` is generated and never hand-edited**, proven by rebuilding into a temp directory and
+requiring byte equality.
+
+**A gate that cannot go red proves nothing.** Every checker here self-tests by reintroducing a
+known-bad input and requiring itself to reject it, before its real run is allowed to mean
+anything.
+
+See `HANDOFF.md` for what has to happen outside this repo to turn it all on.
+
 ## Running the guards
 
-Two structural gates, both of which self-test before they run, because a gate that cannot go
-red proves nothing about what it guards.
+Both structural gates self-test before they run.
 
 ```bash
 # No automation may write outside its lane.
