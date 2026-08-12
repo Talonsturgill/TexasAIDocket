@@ -120,7 +120,7 @@ def page(*, title: str, desc: str, body: str, depth: int, active: str,
 <footer class="site">
   <div class="wrap prose">
     <p><strong>Every numeral on this site is produced by code, from data, and can be recomputed
-    from the same inputs.</strong> No number here is typed by a person. Where something cannot be
+    from the same inputs.</strong> No number here is typed by a person. Where something can't be
     measured, the size of the gap is published instead of an estimate.</p>
     <p>Every fact carries a quote from the source it came from, and a link to that source.
     The record is <a href="{p}docket.json">open data</a>.</p>
@@ -490,9 +490,9 @@ def about_page(today: str) -> str:
   <p>Every numeral published here is produced by code, from data, and can be recomputed from the
   same inputs. No number is typed by a person. This is the reason to believe a figure here over a
   figure somewhere else, and it is enforced by a build gate rather than by good intentions: a
-  numeral that cannot be traced to a quoted source or to a computation fails the build.</p>
+  numeral that can't be traced to a quoted source or to a computation fails the build.</p>
 
-  <h2>Where we cannot measure, we say so</h2>
+  <h2>Where measurement stops, the page says so</h2>
   <p>Some things are genuinely not public. Per-site large load metering is confidential. Roughly
   half the data centres planned in Texas sit in unincorporated land with no zoning file. Where
   that is true this record publishes the size of the gap rather than an estimate dressed as a

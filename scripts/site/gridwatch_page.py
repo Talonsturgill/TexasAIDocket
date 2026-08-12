@@ -456,7 +456,7 @@ def body(records: list[dict], today: str) -> str:
   story. A data centre draws at four in the morning close to what it draws at five in the
   afternoon, so a grid taking on large constant load sees its overnight floor rise faster than
   its afternoon ceiling, and the load factor climbs. Weather lifts both ends together.</p>
-  <p>One day cannot show that. A year can, which is why the series starts now.</p>
+  <p>One day can't show that. A year can, which is why the series starts now.</p>
 </div>
 {trend_block}
 {acc_block}

@@ -116,6 +116,20 @@ jobs:
             exit "$code"
           }
 
+      - name: Caption lint self-test (the house rules, and that they can go red)
+        run: python3 scripts/carousel/caption_check.py --self-test
+
+      - name: House style self-test (our prose is checked, a quote never is)
+        run: python3 scripts/site/house_style_check.py --self-test
+
+      - name: The published site keeps the house rules
+        run: |
+          # Checked against the built pages, because the copy a reader sees is assembled from
+          # f-strings and ledger fields and exists as a whole sentence nowhere else. Quoted
+          # source text is stripped first: rewriting a quotation to fit house style would be
+          # falsifying it, which is far worse than an inconsistent date.
+          python3 scripts/site/house_style_check.py
+
       - name: Theme self-test (tokens reach the CSS, red stays reserved)
         run: python3 scripts/site/theme.py --self-test
 

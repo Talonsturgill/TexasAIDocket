@@ -292,8 +292,8 @@ def body(records: list[dict], today: str) -> str:
   </strong> The state publishes daily reservoir figures back to 1933, which would let today be
   ranked against the same date in every prior year. Those files are CSVs, and the publisher's
   robots.txt asks crawlers not to take CSVs. So they are not taken, no percentile is printed,
-  and this record's own history begins the day it began. The comparison exists; it is just not
-  ours to publish.</p>
+  and this record's own history begins the day it began. The comparison exists. Taking the
+  file it lives in is the one thing the publisher has asked crawlers not to do.</p>
   <p>The record holds <strong class="num">{af(f['days_held'])}</strong> day(s) so far.
   <a href="../waterwatch.json">The data is open</a>, per reservoir, so every roll up above can
   be recomputed without refetching anything.</p>
