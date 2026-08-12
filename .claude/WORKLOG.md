@@ -63,7 +63,7 @@ Thinnest agents: pixel-critic 53%, caption-critic 62%, upgrade-engineer 62%.
 | E | Deepen pixel-critic, caption-critic, upgrade-engineer | **DONE** — all three now exceed the sibling's, written from THIS repo's lessons |
 | F | Deepen `daily_routine.md` against the new gates and craft | **DONE** — 13 KB to 33 KB, phases 0 to 18, each gate wired where its defect happens |
 | G | End-to-end proof: render the demo deck, run every gate on it | **DONE** — GREEN, and it found 5 defects every self-test had missed |
-| H | Reconcile manifest, update CLAUDE.md layout, hand off triggers | TODO |
+| H | Reconcile manifest, update CLAUDE.md layout, hand off triggers | **DONE** |
 
 ## Handoff still owed to the owner (not blockers)
 
@@ -211,3 +211,34 @@ Thinnest agents: pixel-critic 53%, caption-critic 62%, upgrade-engineer 62%.
   from a report, printing "re-run it" where re-running could not help. All five fixed and pinned
   with tests. GATE_LESSONS 15. A fixture written by the same hand as the detector agrees with the
   detector.
+- 2026-08-12 — **WAVE H, and the v1 push is done.** Manifest reconciled and clean. CLAUDE.md's
+  layout now describes what exists rather than what was planned: the three carousel knowledge docs
+  by name and job, the instincts ledger with its no-typed-confidence rule, and the instruction to
+  run gates by exit code rather than by last line, which is the process fault that has already
+  shipped a red gate here once. HANDOFF.md now asks for ONE routine instead of two.
+
+## Where v1 landed, measured
+
+| | at plan | now |
+|---|---|---|
+| routine prompt | 13 KB, phases 0-14, split across two files | 33 KB, phases 0-18, one file |
+| carousel gates | 3 | 10 |
+| knowledge | 15.6 KB / 4 docs | 4 shared + 5 carousel, TECHNIQUE_LIBRARY and CAPTION_CRAFT written as Texas material |
+| ledgers | artwork, captions, topics, upgrades | + instincts, with confidence derived |
+| gate lessons | 9 | 15 |
+| thinnest agents | 53%, 62%, 62% | all three past the sibling's |
+| end-to-end proof | never run | GREEN, and it found 5 defects the self-tests missed |
+
+**The measure was never "every sibling file exists here".** It was whether an unattended run can
+fail safely and ship honestly, because nobody reviews the output. Ten gates, each replayed against
+the defect it exists for and watched go red, and a proof that the whole chain runs on a real
+render.
+
+## What is still owed, and by whom
+
+- **The owner:** create ONE routine in the routines UI from `prompts/ROUTINE_PROMPT.txt`; register
+  the domains; a Buttondown key when subscriber alerts are wanted. Every integration no-ops
+  cleanly without its key, so none of these block anything.
+- **Later waves, not v1:** Wave 7 (video dispatch, `TexasAIDispatch`), Wave 8 (commercial wing,
+  `TexasAIScanner`), metro scoping (still blocked on a citable county-to-ERCOT-zone mapping, and
+  the Grid Watch rules say publish the size of the gap rather than guess it).
