@@ -47,6 +47,7 @@ import sky                                                         # noqa: E402
 import texas_map                                                   # noqa: E402
 import waterwatch_page                                             # noqa: E402
 import grain                                                       # noqa: E402
+import mark                                                        # noqa: E402
 import theme                                                       # noqa: E402
 
 LEDGER = REPO_ROOT / "ledger" / "docket.json"
@@ -55,21 +56,17 @@ SITE_NAME = "Texas AI Docket"
 # One key drives every absolute URL, so moving to a custom domain is a one line change.
 SITE_URL = "https://talonsturgill.github.io/TexasAIDocket"
 
-# The Lone Star. Statutory, geometric, abstract, and legible at 16 pixels, which is why it is
-# the mark and a longhorn is not.
-STAR_PATH = "M12 1.6l2.9 7.5 8 .4-6.2 5.1 2.1 7.8L12 18l-6.8 4.4 2.1-7.8L1.1 9.5l8-.4z"
-
-
+# THE MARK IS COMPUTED FROM THE STATUTE. It used to be a star path typed into this file, whose
+# points were not equidistant from its centre and whose inner vertices were not on a common
+# circle, sitting in a block that was very nearly square when the flag's blue stripe is twice as
+# tall as it is wide. Every one of those is a small wrongness, and small wrongnesses in a mark are
+# what amateur means: nobody can name the fault and everybody can see it. See scripts/site/mark.py,
+# which derives all of it from Government Code sec. 3100.001.
 def star(cls: str = "star") -> str:
-    return (f'<svg class="{cls}" viewBox="0 0 24 24" aria-hidden="true">'
-            f'<path d="{STAR_PATH}"/></svg>')
+    return mark.star_svg(cls)
 
 
-# THE MARK IS THE FLAG'S OWN CONSTRUCTION. The Lone Star flag is a blue hoist band carrying a
-# white star, then white over red. Setting the star in a blue block is that geometry and nothing
-# else, which is how the mark reads as Texas without reaching for a longhorn or a rope border.
-# The blue is the token the config already called structural and nothing on the site used.
-HOIST = f'<span class="hoist">{star()}</span>'
+HOIST = mark.flag_svg()
 
 NAV = [("", "Home"), ("record/", "The record"), ("ask/", "Ask"),
        ("counties/", "Counties"), ("grid/", "Grid"), ("water/", "Water"),
@@ -479,7 +476,10 @@ def item_page(it: dict, today: str) -> str:
     pa = it.get("public_access") or {}
     how = pa.get("how") or ""
     url = pa.get("url")
-    act = (f'<p>{e(how)}</p>' + (f'<p><a href="{e(url)}" rel="nofollow noopener">'
+    # `go` marks a STANDALONE action link, as opposed to a link inside a sentence. WCAG 2.5.8
+    # exempts the inline case and this is not it, so the class is what lets the stylesheet give
+    # it a target a thumb can hit without inline-blocking every link in the prose.
+    act = (f'<p>{e(how)}</p>' + (f'<p><a class="go" href="{e(url)}" rel="nofollow noopener">'
                                  f'Where to do it</a></p>' if url else "")
            ) if how else '<p>No formal way in is published for this decision.</p>'
 

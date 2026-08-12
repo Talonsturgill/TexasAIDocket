@@ -464,12 +464,22 @@ body::after {{ content:""; position:fixed; inset:0; pointer-events:none; z-index
   background-size:240% 100%; filter:blur(18px);
   -webkit-mask-image:linear-gradient(0deg,#000 6%,rgba(0,0,0,.45) 42%,transparent 74%);
   mask-image:linear-gradient(0deg,#000 6%,rgba(0,0,0,.45) 42%,transparent 74%);
-  animation:shimmer 52s ease-in-out infinite alternate; }}
+  animation:shimmer 27s ease-in-out infinite alternate; }}
 .sky .shimmer.s2 {{ filter:blur(30px); opacity:.6; background-size:290% 100%;
-  animation-duration:71s; animation-direction:alternate-reverse; }}
+  animation-duration:38s; animation-direction:alternate-reverse; }}
 @keyframes shimmer {{ from {{ background-position:0% 0; }} to {{ background-position:100% 0; }} }}
 
 /* Dusk cloud, drifting.
+   THE PERIODS WERE 38 TO 97 SECONDS AND THE TRAVEL WAS ABOUT 6vw, which is a still image with
+   extra steps: the owner looked at the page and could not see any moving layer at all, which is
+   the correct verdict on motion nobody can perceive. Motion has to be seen inside the time
+   somebody actually spends looking, so the periods are roughly halved and the travel doubled,
+   and the clouds scale as they drift, because a cloud that slides at a fixed size reads as a
+   sticker being dragged.
+   THE COOL PAIR GOT THE BRIGHTNESS AND THE WARM PAIR DID NOT. Warm over this violet ground is
+   what made the page pink, and that is a fact about blending rather than about opacity, so the
+   warm layers are only faster. The cool ones deepen rather than shift hue, so they can carry the
+   visible weight. The rendered check samples the ground and would say so either way. */
    THE WARM ONES SIT LOW AND THE HIGH ONE IS COOL, which is both the physics and the fix. At
    dusk the lit band is at the HORIZON and the sky overhead has already gone. The first version
    had the warm veils at the top of the page, so ember and gold were screening over the whole
@@ -481,16 +491,74 @@ body::after {{ content:""; position:fixed; inset:0; pointer-events:none; z-index
    inside the fade loses most of itself and reads as a smudge rather than as cloud. */
 .sky .v1 {{ width:64vw; height:34vh; left:30vw; bottom:calc(var(--sky-fade) + 2vh);
   background:radial-gradient(closest-side,color-mix(in srgb,var(--accent) 34%,transparent),
-    transparent 70%); animation:drift1 38s ease-in-out infinite alternate; }}
+    transparent 70%); animation:drift1 23s ease-in-out infinite alternate; }}
 .sky .v2 {{ width:52vw; height:30vh; left:2vw; bottom:calc(var(--sky-fade) + 6vh);
   background:radial-gradient(closest-side,color-mix(in srgb,var(--accent-deep) 30%,transparent),
-    transparent 70%); animation:drift2 47s ease-in-out infinite alternate; }}
+    transparent 70%); animation:drift2 31s ease-in-out infinite alternate; }}
 /* The one high cloud, and it is cool. A dusk sky is warm at the bottom and cold at the top. */
 .sky .v3 {{ width:46vw; height:32vh; left:22vw; top:-12vh; opacity:.26;
   background:radial-gradient(closest-side,color-mix(in srgb,var(--flag-blue) 46%,transparent),
-    transparent 70%); animation:drift3 61s ease-in-out infinite alternate; }}
-@keyframes drift1 {{ from {{ transform:translate(-5vw,0); }} to {{ transform:translate(6vw,3vh); }} }}
-@keyframes drift2 {{ from {{ transform:translate(4vw,2vh); }} to {{ transform:translate(-6vw,-2vh); }} }}
+    transparent 70%); animation:drift3 37s ease-in-out infinite alternate; }}
+
+/* THE UPPER SKY HAS TO MOVE TOO, and for a while it did not. Fixing the pink meant pulling every
+   warm layer down to the horizon, which was right, and it left the top two thirds of the page as
+   near black with a fixed star field on it. Motion only at the very bottom is motion nobody sees,
+   so the page read as a still image.
+   These are the same slow drift as the warm ones and they are COOL, deliberately. Warm light
+   screened over this violet ground is the thing that made mauve, and that is a fact about
+   blending rather than about opacity, so turning a warm veil down would only make a slower
+   mistake. Violet over violet deepens instead of shifting hue, which is what a real sky does
+   overhead at this hour anyway. Long, uneven periods so the two never visibly cycle together. */
+.sky .v4, .sky .v5 {{ position:absolute; border-radius:50%; filter:blur(96px);
+  mix-blend-mode:screen; }}
+/* SMALLER AND BRIGHTER RATHER THAN BIGGER AND BRIGHTER, and the rendered check is what forced
+   the distinction. At 78vw these spanned the whole page, so raising their opacity to make the
+   motion visible lifted the ground itself: the left gutter measured 10 percent lightness against
+   a 7.5 ceiling, and the ceiling is the argument that the star field is earned. A wash that
+   covers everything is not a cloud, it is a tint, and tinting the page is not the same as moving
+   it. Narrower and brighter reads as something PASSING, which is the thing that was missing. */
+.sky .v4 {{ width:44vw; height:38vh; left:14vw; top:4vh; opacity:.62;
+  background:radial-gradient(closest-side,color-mix(in srgb,var(--flag-blue) 62%,transparent),
+    transparent 72%); animation:drift4 26s ease-in-out infinite alternate; }}
+.sky .v5 {{ width:38vw; height:30vh; right:12vw; top:26vh; opacity:.52;
+  background:radial-gradient(closest-side,color-mix(in srgb,var(--panel) 88%,transparent),
+    transparent 70%); animation:drift5 34s ease-in-out infinite alternate; }}
+@keyframes drift4 {{ from {{ transform:translate(-9vw,-3vh) scale(1); }}
+  to {{ transform:translate(13vw,6vh) scale(1.3); }} }}
+@keyframes drift5 {{ from {{ transform:translate(9vw,4vh) scale(1.22); }}
+  to {{ transform:translate(-12vw,-4vh) scale(1); }} }}
+
+/* THE TUMBLEWEED, which is this page's answer to the sibling's meteor. Not another thing in the
+   sky. The one piece of West Texas motion everybody already has in their head, and a real plant
+   doing the thing it evolved to do: Salsola tragus snaps off at the root when it dries and rolls
+   to scatter seed, so the rolling is the organism working. See sky.py for how the skeleton is
+   generated.
+   IT IS RARE ON PURPOSE. A loop that fires every few seconds is a screensaver. This crosses once
+   in fifty seconds and takes about nine to do it, so it is a thing you catch rather than a thing
+   you watch, which is the entire trick the meteor is playing. The roll and the travel are one
+   transform, because a tumbleweed that slides without turning is a ball and reads as a bug. */
+.sky .tumble {{ position:absolute; top:74vh; left:0; width:clamp(38px,4.6vw,64px);
+  aspect-ratio:1; opacity:0; animation:tumble 50s linear infinite; animation-delay:6s; }}
+.sky .tumble .weed {{ width:100%; height:100%; display:block; }}
+.sky .tumble .weed path {{ fill:none; stroke:var(--accent); stroke-width:1.6;
+  stroke-linecap:round; opacity:.5; }}
+@keyframes tumble {{
+  0%   {{ opacity:0; transform:translate(-14vw,0) rotate(0deg); }}
+  3%   {{ opacity:.85; }}
+  /* The hops. A tumbleweed does not roll along a line, it catches and lifts. */
+  8%   {{ transform:translate(6vw,-2.2vh) rotate(210deg); }}
+  12%  {{ transform:translate(22vw,0) rotate(430deg); }}
+  16%  {{ transform:translate(40vw,-3vh) rotate(640deg); }}
+  20%  {{ transform:translate(60vw,-.5vh) rotate(880deg); }}
+  24%  {{ transform:translate(82vw,-2.6vh) rotate(1100deg); }}
+  27%  {{ opacity:.7; }}
+  30%  {{ opacity:0; transform:translate(114vw,0) rotate(1330deg); }}
+  100% {{ opacity:0; transform:translate(114vw,0) rotate(1330deg); }}
+}}
+@keyframes drift1 {{ from {{ transform:translate(-13vw,-1vh) scale(1); }}
+  to {{ transform:translate(15vw,4vh) scale(1.12); }} }}
+@keyframes drift2 {{ from {{ transform:translate(12vw,3vh) scale(1.1); }}
+  to {{ transform:translate(-14vw,-3vh) scale(1); }} }}
 @keyframes drift3 {{ from {{ transform:translate(0,0) scale(1); }}
   to {{ transform:translate(-4vw,2vh) scale(1.12); }} }}
 
@@ -580,27 +648,53 @@ a:hover {{ color:var(--ink-bright); }}
   font-family:var(--display); font-weight:600; font-size:var(--s0);
   letter-spacing:.06em; text-transform:uppercase; color:var(--ink-bright);
   text-decoration:none; }}
-.wordmark .hoist {{ display:grid; place-items:center; width:1.9em; height:2.05em;
-  background:var(--flag-blue); border-radius:1px; flex:none; }}
-.wordmark .star {{ width:1.15em; height:1.15em; fill:var(--star); display:block; }}
+/* THE MARK IS THE FLAG, DRAWN TO THE STATUTE. Its proportions are not set here: the viewBox
+   carries them, computed in scripts/site/mark.py from Government Code sec. 3100.001, so the only
+   decision left to CSS is how large to render it. `height` and `auto` rather than both, because
+   fixing both would be overruling the law with a round number. */
+.wordmark .lonestar-mark {{ height:1.75em; width:auto; display:block; flex:none;
+  border-radius:1.5px; }}
+.wordmark .m-blue {{ fill:var(--flag-blue); }}
+.wordmark .m-white {{ fill:var(--star); }}
+.wordmark .m-red {{ fill:var(--flag-red); }}
+.m-star {{ fill:var(--star); }}
+/* THE ROTUNDA CUT. The star inlaid in the Capitol floor is set in stone wedges that take the
+   light differently either side of each point, and that is the whole difference between a mark
+   that reads as an object and one that reads as a sticker. Lit from the upper left, which is
+   where every other shadow on this page is lit from. The wedges sit ON the solid star, so a
+   renderer that drops them loses the facets and keeps the mark. */
+.f-lit {{ fill:#FFFFFF; opacity:.55; }}
+.f-shade {{ fill:var(--flag-blue); opacity:.14; }}
 nav.main {{ display:flex; gap:1.1rem; flex-wrap:wrap; margin-left:auto;
   font-size:var(--s-1); letter-spacing:.03em; text-transform:uppercase; }}
 /* The underline WIPES IN from the left rather than switching on. It is two properties and a
    transition, and it is most of the difference between a nav that responds and a nav that
    toggles. */
+/* WCAG 2.5.8 asks 24 by 24 CSS pixels of any control that is not inline in a sentence, and
+   a navigation link is not inline in a sentence. The vertical padding already cleared it and the
+   WIDTH did not: "Ask" measured 21 by 26 on a phone. `min-width` needs a block box to apply to,
+   which is why the display changes with it. */
 nav.main a {{ color:var(--ink-mute); text-decoration:none; padding-block:.35em;
-  position:relative; }}
+  display:inline-block; min-width:24px; text-align:center; position:relative; }}
 nav.main a::after {{ content:""; position:absolute; left:0; right:100%; bottom:0; height:1.5px;
   background:var(--accent); transition:right .25s ease; }}
 nav.main a:hover {{ color:var(--ink-bright); }}
 nav.main a:hover::after {{ right:0; }}
 nav.main a[aria-current] {{ color:var(--accent); }}
 nav.main a[aria-current]::after {{ right:0; }}
-/* ON A PHONE THE MASTHEAD LETS GO. Nine sections wrap to two rows at 390 pixels, and stuck to
-   the top that is a third of the viewport permanently spent on navigation, on the one device
-   the stated reader is most likely to be holding. It scrolls away instead, and the skip link
-   above it is what a keyboard reader uses to get past it either way. */
-@media (max-width:46rem) {{
+/* ON A NARROW SCREEN THE MASTHEAD LETS GO. Nine sections wrap to two rows, and stuck to the top
+   that is a third of the viewport permanently spent on navigation. It scrolls away instead, and
+   the skip link above it is what a keyboard reader uses to get past it either way.
+   THE BREAKPOINT IS MEASURED, AND IT USED TO BE GUESSED. At 46rem the bar was 692 pixels wide and
+   the nav alone measures 553, so from about 740 to 800 pixels the nav had already wrapped to a
+   second row while the desktop rules still applied: it stayed right-aligned, leaving a hole under
+   the wordmark, and the Lone Star came back on and sat directly behind the word SERVICES. That
+   band is exactly half of a laptop screen, which is where the owner found it.
+   The number now comes from the content rather than from a round figure. The nav needs 553, the
+   wordmark 205, and a gap that reads as a gap is about 48, so 806 of content. The shell's gutter
+   is 28 a side, so 862 of viewport. 56rem is 896, which leaves headroom for the moment a web font
+   swaps in and every label gets fractionally wider. */
+@media (max-width:56rem) {{
   /* The mark comes off entirely. The nav wraps to two rows at this width and the hero starts
      right under it, so there is no clear field left to put a star in, and a mark tangled in
      the copy is worse than no mark. The sky keeps its stars, shimmer and horizon.
@@ -894,6 +988,15 @@ main > section > h2::after {{ content:""; position:absolute; top:-1px; left:0; w
    reader where the table starts and stops without a box around it. */
 table {{ border-collapse:collapse; width:100%; font-size:var(--s-1);
   border-top:2px solid var(--rule-strong); border-bottom:2px solid var(--rule-strong); }}
+/* A TABLE THAT CANNOT FIT SCROLLS ITSELF, rather than pushing the page sideways. The water
+   page's figures table wants 364 pixels of columns and a 375 pixel phone offers about 325 of
+   content, so it hung over the edge and took the whole document with it. `display:block` makes
+   the table its own scroll box while its rows keep laying out as a table, which is the one
+   change here that needs no markup. The caption stays put because it is not a column. */
+@media (max-width:34rem) {{
+  table {{ display:block; overflow-x:auto; }}
+  table caption {{ position:sticky; left:0; }}
+}}
 th,td {{ text-align:left; padding:.5em .75em; border-bottom:var(--hair) solid var(--rule);
   vertical-align:top; }}
 tr:last-child td {{ border-bottom:0; }}
@@ -1005,9 +1108,18 @@ footer.site .colophon {{ width:4rem; height:4rem; fill:var(--ink); opacity:.28; 
   footer.site .colophon {{ width:2.75rem; height:2.75rem; }}
 }}
 /* The way out. One row, mono, letterspaced, every section the site has. */
-.footnav {{ display:flex; flex-wrap:wrap; gap:.6rem 1.4rem; margin:0; padding:0;
+/* Every one of these measured 14 pixels tall, which is a target a thumb misses. The gap
+   shrinks by the padding added, so the row reads the same and the target is twice the size. */
+.footnav {{ display:flex; flex-wrap:wrap; gap:.1rem 1.4rem; margin:0; padding:0;
   list-style:none; font-family:var(--mono); font-size:var(--s-2); letter-spacing:.14em;
   text-transform:uppercase; }}
+.footnav a {{ display:inline-block; min-width:24px; padding-block:.45rem; }}
+/* THE SAME 24 PIXEL FLOOR, FOR THE LINKS THAT ARE NOT IN A SENTENCE. WCAG 2.5.8 exempts a target
+   inline in a block of text, and that exemption is doing real work here: inline-blocking a link
+   inside running prose stops it wrapping mid-phrase, which is a worse outcome than a small target
+   a reader hits by aiming at a word. So this reaches only the standalone ones. A source citation
+   and a call to action are objects on the page, not words in a sentence. */
+.meta a, cite a, a.go {{ display:inline-block; min-width:24px; padding-block:.28rem; }}
 .footnav li {{ max-width:none; }}
 /* The colophon. Where it was made, when it was last revised, the coordinates of that place,
    and the promise the whole product rests on, in one mono strip. */
@@ -1216,9 +1328,19 @@ def self_test() -> int:
 
     # THE RESERVATION. Texas red is for genuine urgency only. It may define a variable and be
     # derived into --urgent, and it must not have a general purpose class.
+    #
+    # ONE CARVE-OUT, AND IT IS NARROW ON PURPOSE. The mark is the Texas flag, and the flag has a
+    # red stripe in it; refusing the flag its own colour would be the rule eating the thing it
+    # was written to protect. So `--flag-red` may be worn by exactly one selector, the mark's red
+    # field, and the check names that selector rather than counting uses. A carve-out that says
+    # "once" would let the next use be anywhere.
+    # `re`, not `_re`: the alias is bound below and is therefore local to the
+    # whole function. Same trap as the print-block check further up.
+    reds = re.findall(r"([^{}]*)\{[^{}]*var\(--flag-red\)", sheet)
     check("red is not a general utility",
-          ".red{" not in sheet and ".text-red" not in sheet
-          and "var(--flag-red)" not in sheet)
+          ".red{" not in sheet and ".text-red" not in sheet)
+    check("...and the only thing wearing the flag's red is the flag",
+          [r.strip() for r in reds] == [".wordmark .m-red"], str([r.strip() for r in reds]))
     check("...and urgent is worn only by the closing clock",
           sheet.count("var(--urgent)") == 2, f"{sheet.count('var(--urgent)')} uses")
 
@@ -1246,8 +1368,15 @@ def self_test() -> int:
 
     # THE FLAG'S GEOMETRY, and the kitsch it exists instead of. If a future edit reaches for a
     # longhorn or a rope border, this is where the argument was already had.
-    check("the mark is the flag's hoist", ".wordmark .hoist" in sheet
-          and "var(--flag-blue)" in sheet)
+    # THE MARK IS THE WHOLE FLAG NOW, drawn to Government Code sec. 3100.001 in mark.py rather
+    # than typed as an approximate path into a blue box that was very nearly square when the
+    # statute makes that stripe twice as tall as it is wide.
+    check("the mark carries the flag's three fields",
+          all(f".wordmark .m-{f}" in sheet for f in ("blue", "white", "red")))
+    check("...and the star is cut the way the rotunda's is",
+          ".f-lit" in sheet and ".f-shade" in sheet)
+    check("...with its proportions coming from the statute, not from CSS",
+          ".wordmark .lonestar-mark" in sheet and "width:auto" in sheet)
     kitsch = _re.findall(r"\b(longhorn|cowhide|rope|lasso|lariat|boots?|spur|sheriff|saloon|"
                          r"wagon|cactus|armadillo)\b", rendered, _re.IGNORECASE)
     check("no kitsch", not kitsch, str(sorted(set(kitsch))))

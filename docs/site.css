@@ -84,23 +84,59 @@ radial-gradient(1.1px 1.1px at 71% 46%,rgba(244,238,225,0.32),transparent 60%); 
   background-size:240% 100%; filter:blur(18px);
   -webkit-mask-image:linear-gradient(0deg,#000 6%,rgba(0,0,0,.45) 42%,transparent 74%);
   mask-image:linear-gradient(0deg,#000 6%,rgba(0,0,0,.45) 42%,transparent 74%);
-  animation:shimmer 52s ease-in-out infinite alternate; }
+  animation:shimmer 27s ease-in-out infinite alternate; }
 .sky .shimmer.s2 { filter:blur(30px); opacity:.6; background-size:290% 100%;
-  animation-duration:71s; animation-direction:alternate-reverse; }
+  animation-duration:38s; animation-direction:alternate-reverse; }
 @keyframes shimmer { from { background-position:0% 0; } to { background-position:100% 0; } }
+   THE WARM ONES SIT LOW AND THE HIGH ONE IS COOL, which is both the physics and the fix. At
+   dusk the lit band is at the HORIZON and the sky overhead has already gone. The first version
+   had the warm veils at the top of the page, so ember and gold were screening over the whole
+   ground at once, and warm light screened over a violet ground is the definition of mauve. The
+   page read pink. Warmth belongs where the sun went. */
 .sky .veil { position:absolute; border-radius:50%; filter:blur(84px);
   mix-blend-mode:screen; opacity:.34; }
 .sky .v1 { width:64vw; height:34vh; left:30vw; bottom:calc(var(--sky-fade) + 2vh);
   background:radial-gradient(closest-side,color-mix(in srgb,var(--accent) 34%,transparent),
-    transparent 70%); animation:drift1 38s ease-in-out infinite alternate; }
+    transparent 70%); animation:drift1 23s ease-in-out infinite alternate; }
 .sky .v2 { width:52vw; height:30vh; left:2vw; bottom:calc(var(--sky-fade) + 6vh);
   background:radial-gradient(closest-side,color-mix(in srgb,var(--accent-deep) 30%,transparent),
-    transparent 70%); animation:drift2 47s ease-in-out infinite alternate; }
+    transparent 70%); animation:drift2 31s ease-in-out infinite alternate; }
 .sky .v3 { width:46vw; height:32vh; left:22vw; top:-12vh; opacity:.26;
   background:radial-gradient(closest-side,color-mix(in srgb,var(--flag-blue) 46%,transparent),
-    transparent 70%); animation:drift3 61s ease-in-out infinite alternate; }
-@keyframes drift1 { from { transform:translate(-5vw,0); } to { transform:translate(6vw,3vh); } }
-@keyframes drift2 { from { transform:translate(4vw,2vh); } to { transform:translate(-6vw,-2vh); } }
+    transparent 70%); animation:drift3 37s ease-in-out infinite alternate; }
+.sky .v4, .sky .v5 { position:absolute; border-radius:50%; filter:blur(96px);
+  mix-blend-mode:screen; }
+.sky .v4 { width:44vw; height:38vh; left:14vw; top:4vh; opacity:.62;
+  background:radial-gradient(closest-side,color-mix(in srgb,var(--flag-blue) 62%,transparent),
+    transparent 72%); animation:drift4 26s ease-in-out infinite alternate; }
+.sky .v5 { width:38vw; height:30vh; right:12vw; top:26vh; opacity:.52;
+  background:radial-gradient(closest-side,color-mix(in srgb,var(--panel) 88%,transparent),
+    transparent 70%); animation:drift5 34s ease-in-out infinite alternate; }
+@keyframes drift4 { from { transform:translate(-9vw,-3vh) scale(1); }
+  to { transform:translate(13vw,6vh) scale(1.3); } }
+@keyframes drift5 { from { transform:translate(9vw,4vh) scale(1.22); }
+  to { transform:translate(-12vw,-4vh) scale(1); } }
+.sky .tumble { position:absolute; top:74vh; left:0; width:clamp(38px,4.6vw,64px);
+  aspect-ratio:1; opacity:0; animation:tumble 50s linear infinite; animation-delay:6s; }
+.sky .tumble .weed { width:100%; height:100%; display:block; }
+.sky .tumble .weed path { fill:none; stroke:var(--accent); stroke-width:1.6;
+  stroke-linecap:round; opacity:.5; }
+@keyframes tumble {
+  0%   { opacity:0; transform:translate(-14vw,0) rotate(0deg); }
+  3%   { opacity:.85; }
+  8%   { transform:translate(6vw,-2.2vh) rotate(210deg); }
+  12%  { transform:translate(22vw,0) rotate(430deg); }
+  16%  { transform:translate(40vw,-3vh) rotate(640deg); }
+  20%  { transform:translate(60vw,-.5vh) rotate(880deg); }
+  24%  { transform:translate(82vw,-2.6vh) rotate(1100deg); }
+  27%  { opacity:.7; }
+  30%  { opacity:0; transform:translate(114vw,0) rotate(1330deg); }
+  100% { opacity:0; transform:translate(114vw,0) rotate(1330deg); }
+}
+@keyframes drift1 { from { transform:translate(-13vw,-1vh) scale(1); }
+  to { transform:translate(15vw,4vh) scale(1.12); } }
+@keyframes drift2 { from { transform:translate(12vw,3vh) scale(1.1); }
+  to { transform:translate(-14vw,-3vh) scale(1); } }
 @keyframes drift3 { from { transform:translate(0,0) scale(1); }
   to { transform:translate(-4vw,2vh) scale(1.12); } }
 .sky .horizon { position:absolute; inset:auto 0 0; height:calc(44vh + var(--sky-fade));
@@ -145,20 +181,25 @@ a:hover { color:var(--ink-bright); }
   font-family:var(--display); font-weight:600; font-size:var(--s0);
   letter-spacing:.06em; text-transform:uppercase; color:var(--ink-bright);
   text-decoration:none; }
-.wordmark .hoist { display:grid; place-items:center; width:1.9em; height:2.05em;
-  background:var(--flag-blue); border-radius:1px; flex:none; }
-.wordmark .star { width:1.15em; height:1.15em; fill:var(--star); display:block; }
+.wordmark .lonestar-mark { height:1.75em; width:auto; display:block; flex:none;
+  border-radius:1.5px; }
+.wordmark .m-blue { fill:var(--flag-blue); }
+.wordmark .m-white { fill:var(--star); }
+.wordmark .m-red { fill:var(--flag-red); }
+.m-star { fill:var(--star); }
+.f-lit { fill:#FFFFFF; opacity:.55; }
+.f-shade { fill:var(--flag-blue); opacity:.14; }
 nav.main { display:flex; gap:1.1rem; flex-wrap:wrap; margin-left:auto;
   font-size:var(--s-1); letter-spacing:.03em; text-transform:uppercase; }
 nav.main a { color:var(--ink-mute); text-decoration:none; padding-block:.35em;
-  position:relative; }
+  display:inline-block; min-width:24px; text-align:center; position:relative; }
 nav.main a::after { content:""; position:absolute; left:0; right:100%; bottom:0; height:1.5px;
   background:var(--accent); transition:right .25s ease; }
 nav.main a:hover { color:var(--ink-bright); }
 nav.main a:hover::after { right:0; }
 nav.main a[aria-current] { color:var(--accent); }
 nav.main a[aria-current]::after { right:0; }
-@media (max-width:46rem) {
+@media (max-width:56rem) {
   .home .sky .lonestar { display:none; }
   .masthead { position:static; }
   .masthead::before { display:none; }
@@ -315,6 +356,10 @@ main > section > h2::after { content:""; position:absolute; top:-1px; left:0; wi
   text-transform:uppercase; color:var(--ink-mute); }
 table { border-collapse:collapse; width:100%; font-size:var(--s-1);
   border-top:2px solid var(--rule-strong); border-bottom:2px solid var(--rule-strong); }
+@media (max-width:34rem) {
+  table { display:block; overflow-x:auto; }
+  table caption { position:sticky; left:0; }
+}
 th,td { text-align:left; padding:.5em .75em; border-bottom:var(--hair) solid var(--rule);
   vertical-align:top; }
 tr:last-child td { border-bottom:0; }
@@ -384,9 +429,11 @@ footer.site .colophon { width:4rem; height:4rem; fill:var(--ink); opacity:.28; f
   footer.site .block { grid-template-columns:1fr; }
   footer.site .colophon { width:2.75rem; height:2.75rem; }
 }
-.footnav { display:flex; flex-wrap:wrap; gap:.6rem 1.4rem; margin:0; padding:0;
+.footnav { display:flex; flex-wrap:wrap; gap:.1rem 1.4rem; margin:0; padding:0;
   list-style:none; font-family:var(--mono); font-size:var(--s-2); letter-spacing:.14em;
   text-transform:uppercase; }
+.footnav a { display:inline-block; min-width:24px; padding-block:.45rem; }
+.meta a, cite a, a.go { display:inline-block; min-width:24px; padding-block:.28rem; }
 .footnav li { max-width:none; }
 .colophon-line { display:flex; flex-wrap:wrap; gap:0 .9rem; margin:1.1rem 0 0;
   font-family:var(--mono); font-size:var(--s-2); letter-spacing:.13em; text-transform:uppercase;
