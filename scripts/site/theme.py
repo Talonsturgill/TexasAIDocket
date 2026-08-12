@@ -216,7 +216,18 @@ def tokens() -> dict:
 
 
 def palette() -> dict:
-    """The nine roles, twice, with every derived value computed against its own ground.
+    """The nine roles, with every derived value computed against its own ground.
+
+    ONE REGISTER. There used to be two, and the second one was never asked for. It existed
+    because a second palette looks like diligence, and what it actually bought was a whole
+    parallel rendering of the product that nobody wanted, nobody chose and nobody ever opened,
+    including the person who wrote it: every check and every review screenshot forced dark. The
+    first person to see the light register was the owner, on the live site, and what they saw was
+    the dusk atmosphere multiplied into cream paper.
+
+    A second theme is not free. It doubles the palette, doubles the contrast table, and doubles
+    the number of renderings any visual check has to cover, and it will be the un-looked-at half
+    that breaks. Deleted rather than fixed.
 
     Returned as data rather than baked into the CSS string so the self-test can measure exactly
     what ships, and so `--contrast` can print it for a human.
@@ -229,20 +240,8 @@ def palette() -> dict:
         "rule": c["line"],
         "accent": c["dusk_gold"], "accent-deep": c["dusk_ember"],
     }
-    light = {
-        "bg": c["paper"], "surface": c["limestone"], "raised": c["caliche"],
-        "ink": c["deep"], "ink-bright": c["night"],
-        # The muted ink is the one role with no natural token. It is the night register faded
-        # into the paper as far as small print allows, so it moves when the base register moves
-        # and is never a grey typed to look about right.
-        "ink-mute": mute(c["night"], c["paper"],
-                         [c["paper"], c["limestone"], c["caliche"]], AA_BODY),
-        "rule": c["paper_rule"],
-        "accent": c["capitol_granite"],
-        "accent-deep": mix(c["capitol_granite"], "#000000", 0.28),
-    }
 
-    for mode in (dark, light):
+    for mode in (dark,):
         # Both of these are derived against EVERY ground they land on, not just the page. The
         # ask box sits on the surface and its input border is the strong rule; the countdown
         # sits on the surface too. A value solved against the page alone passes its own test
@@ -271,7 +270,7 @@ def palette() -> dict:
             mode[role] = lift_over(c[role.replace("-", "_").replace("sig_", "signal_")],
                                    grounds, AA_BODY)
 
-    return {"dark": dark, "light": light}
+    return {"dark": dark}
 
 
 def _vars(role_map: dict) -> str:
@@ -347,23 +346,14 @@ def annotated() -> str:
   --shell:72rem;
 }}
 
-/* THE DUSK REGISTER IS THE DESIGN, AND EVERY READER GETS IT. This used to follow the operating
-   system, so a reader on light saw a register nobody had ever looked at. The atmosphere is a Big
-   Bend night: a star field, a horizon glow and the Lone Star. Rendered over caliche paper it does
-   not become a daylight version of itself, it becomes mud. Multiplying `accent`, which is Capitol
-   granite red, at 20 percent over cream measured #F0E4D7, twelve points of red over green across
-   a large soft field, and a large soft field of warm-shifted cream reads as pink whatever the
-   numbers say. The owner saw the site for the first time on a light machine and asked why the
-   background was pink. It was pink.
-   Following `prefers-color-scheme` is normally right and it is not right here, because the two
-   registers were never equals: one is a place drawn at an hour, the other was a fallback. So the
-   fallback stops being automatic.
-   NOTHING IS DELETED. The paper palette still exists, still has all 62 of its pairings computed
-   and gated, and still drives `@media print`, which is the one place it is unarguably correct: a
-   docket page printed on a night ground wastes a cartridge and reads worse. It stays reachable
-   as an explicit `data-theme="light"` for the day there is a toggle to reach it with. */
-:root[data-theme="light"] {{ {_vars(p['light'])} }}
-@media print {{ :root {{ {_vars(p['light'])} }} }}
+/* ONE REGISTER, AND THIS IS IT. There was a second palette here that nobody asked for. It
+   followed the operating system, so a reader on a light machine got a whole parallel rendering of
+   the site, and the first person ever to look at that rendering was the owner, on the live site.
+   Everything that checks this page forced dark, and so did every screenshot taken while building
+   it, so the half that broke was the half nobody opened.
+   A second theme is not free. It doubles the palette, doubles the contrast table, and doubles the
+   renderings any visual check has to cover. It was deleted rather than fixed, because the fix
+   preserves the cost and the cost is what produced the fault. */
 
 *,*::before,*::after {{ box-sizing:border-box; }}
 /* THE CLIP GOES ON html, NOT body. The masthead's full-bleed glass panel is 100vw wide
@@ -537,9 +527,8 @@ body::after {{ content:""; position:fixed; inset:0; pointer-events:none; z-index
    cannot. Multiply takes the darker of the two, so the only thing a red veil can do to cream
    paper is stain it, and a stain spread across a soft field the width of the page is read as a
    colour rather than as weather. Measured at #F0E4D7, twelve points of red over green.
-   The dusk is a real place at a real hour. Paper is a different material and gets the honest
-   version of itself, which is paper. The atmosphere is a night sky or it is nothing. */
-:root[data-theme="light"] .sky {{ display:none; }}
+   The paper register is gone now, so the only place this still matters is print. A night sky
+   does not print. */
 @media print {{ .sky {{ display:none; }} }}
 
 h1,h2,h3 {{ font-family:var(--display); font-weight:600; line-height:1.15;
@@ -993,8 +982,14 @@ table.figures td:last-child {{ color:var(--ink-mute); font-size:.92em; }}
    nothing else tells a reader they have reached the end of a document. The sibling product
    ends in a way out: what else there is, where to find it, and a colophon that says where the
    thing was made and what it promises. That last strip is the one people quote back. */
+/* SIZED TO WHAT IS IN IT. The footer used to open with two paragraphs restating the site's
+   promises, and the padding, the star and the margins were all set around that. With the prose
+   gone it held 121 pixels of content inside 245 pixels of box: 91 of padding and a 32 pixel
+   margin that existed only to separate the links from paragraphs that are no longer there.
+   What is left is two rows of links and a colophon line, so it is sized like two rows of links
+   and a colophon line. */
 footer.site {{ border-top:2px solid var(--rule-strong); margin-top:var(--band);
-  padding-block:2.2rem 3.5rem; color:var(--ink-mute); font-size:var(--s-1); }}
+  padding-block:1.8rem 2rem; color:var(--ink-mute); font-size:var(--s-1); }}
 footer.site a {{ color:var(--ink-mute); text-decoration:none; transition:color .2s; }}
 footer.site a:hover {{ color:var(--accent); }}
 footer.site .block {{ display:grid; gap:var(--gap) calc(var(--gap) * 1.5);
@@ -1004,13 +999,13 @@ footer.site .block {{ display:grid; gap:var(--gap) calc(var(--gap) * 1.5);
    corner and read as a placeholder rather than as the mark. The ink at low opacity is the same
    star in the same colour the page is set in, and it flips with the mode, which a hardcoded white
    would not: on the paper register a white star is an empty corner. */
-footer.site .colophon {{ width:5.5rem; height:5.5rem; fill:var(--ink); opacity:.28; flex:none; }}
+footer.site .colophon {{ width:4rem; height:4rem; fill:var(--ink); opacity:.28; flex:none; }}
 @media (max-width:34rem) {{
   footer.site .block {{ grid-template-columns:1fr; }}
-  footer.site .colophon {{ width:3.5rem; height:3.5rem; }}
+  footer.site .colophon {{ width:2.75rem; height:2.75rem; }}
 }}
 /* The way out. One row, mono, letterspaced, every section the site has. */
-.footnav {{ display:flex; flex-wrap:wrap; gap:.6rem 1.4rem; margin:2rem 0 0; padding:0;
+.footnav {{ display:flex; flex-wrap:wrap; gap:.6rem 1.4rem; margin:0; padding:0;
   list-style:none; font-family:var(--mono); font-size:var(--s-2); letter-spacing:.14em;
   text-transform:uppercase; }}
 .footnav li {{ max-width:none; }}
@@ -1021,7 +1016,7 @@ footer.site .colophon {{ width:5.5rem; height:5.5rem; fill:var(--ink); opacity:.
    leaves the line no legal place to break, so the strip ran off the right edge of the page and
    took the promise at the end of it with it. Each part stays unbroken, the row wraps between
    them. */
-.colophon-line {{ display:flex; flex-wrap:wrap; gap:0 .9rem; margin:1.8rem 0 0;
+.colophon-line {{ display:flex; flex-wrap:wrap; gap:0 .9rem; margin:1.1rem 0 0;
   font-family:var(--mono); font-size:var(--s-2); letter-spacing:.13em; text-transform:uppercase;
   color:var(--ink-mute); line-height:2; max-width:none; }}
 .colophon-line span {{ white-space:nowrap; }}
@@ -1077,7 +1072,7 @@ def contrast_report() -> list:
     p = palette()
     rows = []
     for fg, bg, need, what in pairs():
-        for mode in ("dark", "light"):
+        for mode in ("dark",):
             got = contrast(p[mode][fg], p[mode][bg])
             rows.append({"mode": mode, "fg": fg, "bg": bg, "need": need,
                          "got": round(got, 2), "pass": got >= need, "what": what,
@@ -1148,14 +1143,16 @@ def self_test() -> int:
     authored = contrast(t["colour"]["flag_red"], p["dark"]["bg"])
     check("the authored red still misses the floor its element is held to",
           authored < AA_BODY, f"{authored:.2f}")
-    check("...and the derived urgent fixes it in both modes",
-          all(contrast(p[m]["urgent"], p[m]["bg"]) >= AA_BODY for m in ("dark", "light")))
+    check("...and the derived urgent fixes it",
+          contrast(p["dark"]["urgent"], p["dark"]["bg"]) >= AA_BODY,
+          f'{contrast(p["dark"]["urgent"], p["dark"]["bg"]):.2f}')
     check("...while staying recognisably the same red",
-          all(_rgb(p[m]["urgent"])[0] > _rgb(p[m]["urgent"])[2] for m in ("dark", "light")),
+          _rgb(p["dark"]["urgent"])[0] > _rgb(p["dark"]["urgent"])[2],
           "the red channel must still dominate the blue")
 
     # ---- the tokens reach the CSS, or the config is decoration ---------------
-    used = set(t["palette"]["dark"]) | set(t["palette"]["light"]) | set(t["palette"]["both"])
+    used = (set(t["palette"]["dark"]) | set(t["palette"]["both"])
+            | set(t["palette"].get("quoted_only", [])))
     missing = [n for n in used if t["colour"][n] not in sheet]
     check("every token the site claims to use reaches the stylesheet", not missing,
           str(missing))
@@ -1203,26 +1200,15 @@ def self_test() -> int:
     #
     # The assertions below are the decision, so that reinstating the automatic switch means
     # arguing with a gate rather than deleting a comment.
-    check("the dusk register is what a reader gets, whatever the machine prefers",
+    check("there is one register and the machine does not get a vote",
           "prefers-color-scheme" not in sheet)
-    check("...the paper palette is kept, not deleted", ':root[data-theme="light"]' in sheet)
-    check("...and it is what prints, because a record on a night ground wastes a cartridge",
-          "@media print" in sheet and f"--bg:{p['light']['bg']}" in sheet)
-    # A night sky over cream is the fault itself, so it must not be reachable in either paper
-    # route. Checked on both, because print is the one that would have been forgotten.
-    #
-    # MATCHED AS A RULE, NOT AS TWO SUBSTRINGS THAT HAPPEN TO BE NEAR EACH OTHER. The first
-    # version looked for "@media print" and then for "display:none" within the next 220
-    # characters, which found the PALETTE print block and reported a fault that was not there.
-    # Three separate print blocks exist and proximity says nothing about which one matched. This
-    # is the fourth time substring matching has lied in this file.
-    for label, pattern in (
-            ("the paper register", r':root\[data-theme="light"\]\s+\.sky\s*\{\s*display:none'),
-            ("print", r'@media print\s*\{\s*\.sky\s*\{\s*display:none')):
-        # `re`, not the `_re` the rest of this function uses. That alias is bound further down,
-        # which makes it local to the whole function and unusable above its own import line.
-        check(f"the atmosphere does not render on paper, via {label}",
-              bool(re.search(pattern, sheet)))
+    check("...and no second palette to go unlooked at", "data-theme" not in sheet)
+    check("...so the site has exactly one ground", sheet.count("--bg:") == 1,
+          f"{sheet.count('--bg:')} grounds declared")
+    # `re`, not the `_re` the rest of this function uses. That alias is bound further down, which
+    # makes it local to the whole function and unusable above its own import line.
+    check("a night sky does not print",
+          bool(re.search(r'@media print\s*\{\s*\.sky\s*\{\s*display:none', sheet)))
 
     check("no severity ramp on the map",
           ".txmap .c.on" in sheet and ".txmap .c.warn" not in sheet)

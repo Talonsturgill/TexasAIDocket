@@ -188,11 +188,6 @@ def page(*, title: str, desc: str, body: str, depth: int, active: str,
   <div class="wrap block">
     {star("colophon")}
     <div>
-      <p><strong>Every numeral on this site is produced by code, from data, and can be
-      recomputed from the same inputs.</strong> No number here is typed by a person. Where
-      something can't be measured, the size of the gap is published instead of an estimate.</p>
-      <p>Every fact carries a quote from the source it came from, and a link to that source.
-      The record is <a href="{p}docket.json">open data</a>.</p>
       <ul class="footnav" data-prose="data">{footnav}</ul>
       <p class="colophon-line" data-prose="data">{colophon}</p>
     </div>
