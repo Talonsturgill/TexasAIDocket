@@ -151,8 +151,18 @@ const spots = {
   // Content comes off both renders, because the thing under test is the GROUND. The accent is
   // Capitol granite and the headline wears it on purpose, so an unhidden comparison would be
   // measuring type and animation phase rather than register.
+  //
+  // AND THE MOTION COMES OFF, which is a correction rather than a tidy-up. Once the sky was sped
+  // up to be visible, the two contexts loaded independently and were at different points in the
+  // drift by the time each was photographed, so this compared animation phase and failed in CI at
+  // "off by 8" while passing five times out of five locally on a faster machine. A gate that
+  // depends on runner speed teaches people to press re-run, which is worse than no gate.
+  // The question here is whether the two machines get the same REGISTER. Motion is not part of
+  // that question, and freezing it makes the answer deterministic: a palette difference measures
+  // in the hundreds, not in single digits.
   const strip = 'body > header, body > main, body > footer { visibility: hidden }' +
-                ' body::before { display: none }';
+                ' body::before { display: none }' +
+                ' *, *::before, *::after { animation: none !important; transition: none !important }';
   await lp.addStyleTag({ content: strip });
   await p.addStyleTag({ content: strip });
   await lp.waitForTimeout(300);
@@ -187,15 +197,39 @@ const spots = {
   await p.waitForTimeout(1200);
 }
 
-for (const [where, [x, y]] of Object.entries(spots)) {
+// SAMPLED ACROSS THE DRIFT, NOT AT WHATEVER MOMENT THE SCREENSHOT LANDED ON. The clouds move now,
+// and a cloud that passes over a gutter can lift it: the ceiling either holds through the whole
+// cycle or it does not hold. One screenshot answers that question by luck. Rewinding the
+// animations to fixed offsets answers it deterministically, and turns a flake into coverage.
+const PHASES = [0, 7, 14, 21, 28];
+const darkest = {};
+for (const secs of PHASES) {
+  await p.evaluate(t => {
+    document.querySelectorAll('.sky *').forEach(el => {
+      el.style.animationDelay = `-${t}s`;
+      el.style.animationPlayState = 'paused';
+    });
+  }, secs);
+  await p.waitForTimeout(160);
   const im = decodePNG(await p.screenshot());
-  const rgb = px(im, x, y);
-  const [h, s, l] = hsl(rgb);
-  const hex = '#' + rgb.map(v => v.toString(16).padStart(2, '0')).join('').toUpperCase();
+  for (const [where, [x, y]] of Object.entries(spots)) {
+    const [h, s, l] = hsl(px(im, x, y));
+    const prev = darkest[where];
+    // Keep the least favourable frame per spot, so a failure names the moment it happened.
+    if (!prev || l > prev.l) darkest[where] = { rgb: px(im, x, y), h, s, l, secs };
+  }
+}
+await p.evaluate(() => document.querySelectorAll('.sky *').forEach(el => {
+  el.style.animationDelay = ''; el.style.animationPlayState = '';
+}));
+
+for (const [where, w] of Object.entries(darkest)) {
+  const { h, s, l } = w;
+  const hex = '#' + w.rgb.map(v => v.toString(16).padStart(2, '0')).join('').toUpperCase();
   const inBanned = h >= BANNED_HUE[0] && h <= BANNED_HUE[1];
-  ok(`${where} is night, not a colour`,
+  ok(`${where} is night at every point in the drift`,
      l <= MAX_LIGHT && s <= MAX_SAT,
-     `${hex} light ${(l * 100).toFixed(0)}% sat ${(s * 100).toFixed(0)}%`);
+     `${hex} light ${(l * 100).toFixed(0)}% sat ${(s * 100).toFixed(0)}% at ${w.secs}s`);
   ok(`...and ${where} is not pink`,
      !(inBanned && s > MAX_BANNED_SAT),
      `${hex} hue ${h.toFixed(0)} sat ${(s * 100).toFixed(0)}%`);
