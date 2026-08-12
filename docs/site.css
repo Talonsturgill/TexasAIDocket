@@ -6,13 +6,13 @@
 
 :root {
   /* Big Bend at dusk. The base register is a real place, not a generic dark theme. */
-  --night:#141020; --deep:#1B1830; --panel:#252041; --line:#3B2A4A;
+  --night:#08060F; --deep:#0F0C1C; --panel:#191530; --line:#2B2447;
   --caliche:#E4D8C3; --limestone:#EDE6D6; --dust:#C9B393;
   --ember:#B4664F; --gold:#E0956A;
   --paper:#F6F1E4; --granite:#9A3B2A;
   --flag-red:#BF0A30; --flag-blue:#00205B; --star:#FFFFFF;
 
-  --bg:#141020;--surface:#1B1830;--raised:#252041;--ink:#E4D8C3;--ink-bright:#EDE6D6;--ink-mute:#C9B393;--rule:#3B2A4A;--accent:#E0956A;--accent-deep:#B4664F;--rule-strong:#756980;--urgent:#D7677E;--on-accent:#100F0E;--sig-open:#4FC79A;--sig-soon:#E0956A;--sig-shut:#9087A1;--sig-link:#7FB2D9;
+  --bg:#08060F;--surface:#0F0C1C;--raised:#191530;--ink:#E4D8C3;--ink-bright:#EDE6D6;--ink-mute:#C9B393;--rule:#2B2447;--accent:#E0956A;--accent-deep:#B4664F;--rule-strong:#68627B;--urgent:#D45770;--on-accent:#100F0E;--sig-open:#4FC79A;--sig-soon:#E0956A;--sig-shut:#8E85A0;--sig-link:#7FB2D9;
 
   --display:"Fraunces","Fraunces fallback",Georgia,"Times New Roman",serif;
   --body:"Manrope","Manrope fallback",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
@@ -45,9 +45,9 @@
    two jobs. The roles are identical, so the reservation on red and the meaning of every
    other token survive the switch. */
 @media (prefers-color-scheme: light) {
-  :root:not([data-theme="dark"]) { --bg:#F6F1E4;--surface:#EDE6D6;--raised:#E4D8C3;--ink:#1B1830;--ink-bright:#141020;--ink-mute:#625E64;--rule:#CFC2A6;--accent:#9A3B2A;--accent-deep:#6F2A1E;--rule-strong:#837A69;--urgent:#BF0A30;--on-accent:#EDE6D6;--sig-open:#2B6A52;--sig-soon:#80553D;--sig-shut:#635C70;--sig-link:#466278; }
+  :root:not([data-theme="dark"]) { --bg:#F6F1E4;--surface:#EDE6D6;--raised:#E4D8C3;--ink:#0F0C1C;--ink-bright:#08060F;--ink-mute:#625E5F;--rule:#CFC2A6;--accent:#9A3B2A;--accent-deep:#6F2A1E;--rule-strong:#837A69;--urgent:#BF0A30;--on-accent:#EDE6D6;--sig-open:#2B6A52;--sig-soon:#80553D;--sig-shut:#635C70;--sig-link:#466278; }
 }
-:root[data-theme="light"] { --bg:#F6F1E4;--surface:#EDE6D6;--raised:#E4D8C3;--ink:#1B1830;--ink-bright:#141020;--ink-mute:#625E64;--rule:#CFC2A6;--accent:#9A3B2A;--accent-deep:#6F2A1E;--rule-strong:#837A69;--urgent:#BF0A30;--on-accent:#EDE6D6;--sig-open:#2B6A52;--sig-soon:#80553D;--sig-shut:#635C70;--sig-link:#466278; }
+:root[data-theme="light"] { --bg:#F6F1E4;--surface:#EDE6D6;--raised:#E4D8C3;--ink:#0F0C1C;--ink-bright:#08060F;--ink-mute:#625E5F;--rule:#CFC2A6;--accent:#9A3B2A;--accent-deep:#6F2A1E;--rule-strong:#837A69;--urgent:#BF0A30;--on-accent:#EDE6D6;--sig-open:#2B6A52;--sig-soon:#80553D;--sig-shut:#635C70;--sig-link:#466278; }
 
 *,*::before,*::after { box-sizing:border-box; }
 /* THE CLIP GOES ON html, NOT body. The masthead's full-bleed glass panel is 100vw wide
@@ -145,9 +145,9 @@ radial-gradient(1.1px 1.1px at 71% 46%,rgba(244,238,225,0.32),transparent 60%); 
    touch the type. */
 .sky .shimmer { position:absolute; inset:auto 0 0; height:70vh; mix-blend-mode:screen;
   background:repeating-linear-gradient(2deg,transparent 0 6%,
-    color-mix(in srgb,var(--accent) 14%,transparent) 8% 10.5%,
-    color-mix(in srgb,var(--accent) 4%,transparent) 12% 15%,transparent 17% 24%,
-    color-mix(in srgb,var(--accent-deep) 11%,transparent) 26% 28.5%,transparent 30% 40%);
+    color-mix(in srgb,var(--accent) 9%,transparent) 8% 10.5%,
+    color-mix(in srgb,var(--accent) 3%,transparent) 12% 15%,transparent 17% 24%,
+    color-mix(in srgb,var(--accent-deep) 7%,transparent) 26% 28.5%,transparent 30% 40%);
   background-size:240% 100%; filter:blur(18px);
   -webkit-mask-image:linear-gradient(0deg,#000 6%,rgba(0,0,0,.45) 42%,transparent 74%);
   mask-image:linear-gradient(0deg,#000 6%,rgba(0,0,0,.45) 42%,transparent 74%);
@@ -156,18 +156,23 @@ radial-gradient(1.1px 1.1px at 71% 46%,rgba(244,238,225,0.32),transparent 60%); 
   animation-duration:71s; animation-direction:alternate-reverse; }
 @keyframes shimmer { from { background-position:0% 0; } to { background-position:100% 0; } }
 
-/* Dusk cloud, drifting. Warm where the sibling's is cold, and slower, because nothing in this
-   sky should look like it is in a hurry. */
-.sky .veil { position:absolute; border-radius:50%; filter:blur(74px);
-  mix-blend-mode:screen; opacity:.5; }
-.sky .v1 { width:62vw; height:40vh; left:34vw; top:-8vh;
-  background:radial-gradient(closest-side,color-mix(in srgb,var(--accent) 42%,transparent),
+/* Dusk cloud, drifting.
+   THE WARM ONES SIT LOW AND THE HIGH ONE IS COOL, which is both the physics and the fix. At
+   dusk the lit band is at the HORIZON and the sky overhead has already gone. The first version
+   had the warm veils at the top of the page, so ember and gold were screening over the whole
+   ground at once, and warm light screened over a violet ground is the definition of mauve. The
+   page read pink. Warmth belongs where the sun went. */
+.sky .veil { position:absolute; border-radius:50%; filter:blur(84px);
+  mix-blend-mode:screen; opacity:.34; }
+.sky .v1 { width:64vw; height:34vh; left:30vw; bottom:2vh;
+  background:radial-gradient(closest-side,color-mix(in srgb,var(--accent) 34%,transparent),
     transparent 70%); animation:drift1 38s ease-in-out infinite alternate; }
-.sky .v2 { width:50vw; height:36vh; left:6vw; top:-14vh;
-  background:radial-gradient(closest-side,color-mix(in srgb,var(--accent-deep) 38%,transparent),
+.sky .v2 { width:52vw; height:30vh; left:2vw; bottom:-4vh;
+  background:radial-gradient(closest-side,color-mix(in srgb,var(--accent-deep) 30%,transparent),
     transparent 70%); animation:drift2 47s ease-in-out infinite alternate; }
-.sky .v3 { width:38vw; height:30vh; left:58vw; top:10vh;
-  background:radial-gradient(closest-side,color-mix(in srgb,var(--flag-blue) 34%,transparent),
+/* The one high cloud, and it is cool. A dusk sky is warm at the bottom and cold at the top. */
+.sky .v3 { width:46vw; height:32vh; left:22vw; top:-12vh; opacity:.26;
+  background:radial-gradient(closest-side,color-mix(in srgb,var(--flag-blue) 46%,transparent),
     transparent 70%); animation:drift3 61s ease-in-out infinite alternate; }
 @keyframes drift1 { from { transform:translate(-5vw,0); } to { transform:translate(6vw,3vh); } }
 @keyframes drift2 { from { transform:translate(4vw,2vh); } to { transform:translate(-6vw,-2vh); } }
@@ -177,13 +182,17 @@ radial-gradient(1.1px 1.1px at 71% 46%,rgba(244,238,225,0.32),transparent 60%); 
 /* THE HORIZON. The thing you actually see out there is the sun gone behind the Chisos and the
    bottom of the sky staying lit long after the top has gone dark. */
 .sky .horizon { position:absolute; inset:auto 0 0; height:44vh; mix-blend-mode:screen;
-  background:linear-gradient(0deg,color-mix(in srgb,var(--accent) 30%,transparent) 0%,
-    color-mix(in srgb,var(--accent-deep) 14%,transparent) 34%,transparent 100%); }
+  background:linear-gradient(0deg,color-mix(in srgb,var(--accent) 20%,transparent) 0%,
+    color-mix(in srgb,var(--accent-deep) 9%,transparent) 30%,transparent 100%); }
 
 /* The mark in the sky, where the sibling puts its constellation. One star, not a pattern,
    which is the entire point of the thing. */
-.sky .lonestar { position:absolute; right:4vw; top:7vh; width:min(21vw,210px);
-  height:auto; opacity:.85; }
+/* THE MARK IS ON THE FRONT PAGE ONLY. Everywhere else the top right of the page is content,
+   not sky, and a 210 pixel star sat over the grid watch's chart and the record's first cards.
+   The atmosphere still runs on every page; the mark does not. */
+.sky .lonestar { display:none; }
+.home .sky .lonestar { display:block; position:absolute; right:4vw; top:7vh;
+  width:min(21vw,210px); height:auto; opacity:.85; }
 .sky .lonestar .twinkle { animation:twinkle 5.5s ease-in-out infinite; }
 /* Scintillation rides on OPACITY and only on the halo subgroup. Animating a blur or a drop
    shadow repaints a huge area every frame, and a mark that flickers stops being a mark. */
@@ -368,6 +377,9 @@ html.js .rise > *:nth-child(5) { animation-delay:.42s; }
    which is what this is. */
 main > section { margin-block:var(--band); }
 main > section:first-child { margin-top:calc(var(--band) * .55); }
+/* An inner page opens with an h1 rather than a hero, and the hero is what was carrying the
+   clearance under the sticky bar. Without it the page title sat against the navigation. */
+main > h1:first-child { margin-top:clamp(2rem,6vh,4rem); }
 main > section > h2 { position:relative; padding-top:1.1rem;
   border-top:var(--hair) solid var(--rule); }
 main > section > h2::after { content:""; position:absolute; top:-1px; left:0; width:3.5rem;

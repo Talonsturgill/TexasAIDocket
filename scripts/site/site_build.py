@@ -131,7 +131,8 @@ def rel(depth: int) -> str:
 
 # --------------------------------------------------------------------------- shell
 def page(*, title: str, desc: str, body: str, depth: int, active: str,
-         today: str, canonical: str, extra_ld: list | None = None) -> str:
+         today: str, canonical: str, extra_ld: list | None = None,
+         home_page: bool = False) -> str:
     p = rel(depth)
     cur = ' aria-current="page"'
     nav = "".join(f'<a href="{p}{h}"{cur if h == active else ""}>{e(t)}</a>'
@@ -170,7 +171,7 @@ def page(*, title: str, desc: str, body: str, depth: int, active: str,
 <link rel="alternate" type="application/atom+xml" title="{e(SITE_NAME)}" href="{p}atom.xml">
 <script type="application/ld+json">{json.dumps(ld, separators=(",", ":"))}</script>
 </head>
-<body>
+<body{' class="home"' if home_page else ''}>
 <a class="skip" href="#main">Skip to the record</a>
 {sky.sky_markup()}
 <header class="masthead">
@@ -381,7 +382,7 @@ def home(items: list, today: str) -> str:
   </div>
 </section>
 """
-    return page(title=f"{SITE_NAME}", depth=0, active="",
+    return page(title=f"{SITE_NAME}", depth=0, active="", home_page=True,
                 desc=("A public, fact-checked record of AI decisions in Texas: who decides, "
                       "by when, and whether you can still comment."),
                 body=body, today=today, canonical="",

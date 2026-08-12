@@ -191,6 +191,17 @@ jobs:
           npx --yes playwright install --with-deps chromium
           SITE=docs node tests/ask_engine.mjs
 
+      - name: The page actually renders as night
+        run: |
+          # This one needs a browser because the bug it exists for lived in the COMPOSITE.
+          # Every token was correct in isolation and all 62 contrast pairings passed, and the
+          # page still rendered mauve, because warm veils were screening over a violet ground.
+          # Nothing that reads tokens can see that, and contrast does not care: mauve at the
+          # right luminance passes perfectly. So this samples the ground a reader actually
+          # sees, and also checks the horizon is still warmer than the sky, so the fix cannot
+          # be "delete the atmosphere".
+          SITE=docs node tests/page_ground.mjs
+
       - name: The map helper is oriented correctly
         run: |
           # No browser needed: the UMD libraries load under node, which is the point of
