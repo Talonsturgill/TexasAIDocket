@@ -58,7 +58,7 @@ Thinnest agents: pixel-critic 53%, caption-critic 62%, upgrade-engineer 62%.
 | A | The seven missing gates, each with self-test + replay | **DONE** — `claims_check` (21), `aggregate_check` (20), `dedupe_check` (10), `copy_sync_check` (21), `dossier_check` (26), `gate_status` (20), `ship_images` (15). 133 new self-tests. Every one wired into the routine AND into CI, and every one replayed against the defect it exists for |
 | A2 | Merge the two routines into one, on the owner's call | **DONE** |
 | B | `instincts.json` + the ledger the retro phase writes | **DONE** — 39 self-tests. Confidence is DERIVED, never written |
-| C | `CAPTION_CRAFT.md`, Texas material | TODO |
+| C | `CAPTION_CRAFT.md`, Texas material | **DONE** — written, not retheemed. Manifest disposition corrected to REBUILD |
 | D | `TECHNIQUE_LIBRARY.md`, Texas material | TODO |
 | E | Deepen pixel-critic, caption-critic, upgrade-engineer | TODO |
 | F | Deepen `daily_routine.md` against the new gates and craft | TODO |
@@ -165,3 +165,16 @@ Thinnest agents: pixel-critic 53%, caption-critic 62%, upgrade-engineer 62%.
   of 0.7 is not a dial: under this formula it means three confirmations with no contradiction, so
   an instinct reaches the prompt by surviving three runs. Starts empty, because this repo has
   shipped zero decks and cannot have learned anything from running.
+- 2026-08-12 — `CAPTION_CRAFT.md`, written as Texas material rather than retheemed, and the
+  manifest disposition corrected from PORT_RETHEMED to REBUILD to say so. The menus are the most
+  repeatable part of a caption, so Alaska's would carry Alaska's civic vocabulary and its landscape
+  into every Texas post. Ten opening moves, eight structures, five closes, all new and all Texas.
+  The comma ceiling stays deliberately unset, because no caption has shipped and borrowing the
+  site's 3.97 would be exactly the typed-in number the law forbids. The doc named a ledger contract
+  captions.json did not declare, so the contract is now declared, including that `first_line` is
+  stored VERBATIM: the critic's real job is catching a sentence skeleton that survived a change of
+  nouns, and it can only do that with the real lines in front of it.
+- 2026-08-12 — writing that doc immediately created the exact defect the port audit exists for. It
+  existed on disk, referenced only by the WORKLOG, which the audit deliberately does not count as
+  wiring. Wired into the routine's context block, Phase 10, and both caption agents. The manifest
+  drift gate caught the stale row on the same run, its third real catch.

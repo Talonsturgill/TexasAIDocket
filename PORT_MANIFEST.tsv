@@ -143,7 +143,7 @@ alaskaaicarousels	examples/demo-deck/slides/slide-04.html	4802	116	4	REBUILD	exa
 alaskaaicarousels	examples/proof-3d/slides/slide-01.html	2863	44	1	REBUILD	examples/proof-3d/slides/slide-01.html	TODO	engine-proof decks are written fresh against Texas art
 alaskaaicarousels	examples/proof-3d/slides/slide-02.html	3185	57	0	REBUILD	examples/proof-3d/slides/slide-02.html	TODO	engine-proof decks are written fresh against Texas art
 alaskaaicarousels	examples/proof-3d/slides/slide-03.html	5158	81	4	REBUILD	examples/proof-3d/slides/slide-03.html	TODO	engine-proof decks are written fresh against Texas art
-alaskaaicarousels	knowledge/CAPTION_CRAFT.md	11768	214	3	PORT_RETHEMED	knowledge/carousel/CAPTION_CRAFT.md	TODO	
+alaskaaicarousels	knowledge/CAPTION_CRAFT.md	11768	214	3	REBUILD	knowledge/carousel/CAPTION_CRAFT.md	DONE	Written as Texas material, not retheemed. The menus are the repeatable part of a caption and Alaska's would carry Alaska's civic vocabulary and its landscape into every Texas post. The structure of the doc is the shared lineage; every move, structure and close in it is new.
 alaskaaicarousels	knowledge/CAROUSEL_CRAFT.md	7558	129	7	PORT_RETHEMED	knowledge/carousel/CAROUSEL_CRAFT.md	DONE	
 alaskaaicarousels	knowledge/DESIGN_DOCTRINE.md	12503	205	12	PORT_RETHEMED	knowledge/carousel/DESIGN_DOCTRINE.md	DONE	
 alaskaaicarousels	knowledge/FIELD_NOTES.md	231133	3151	142	REBUILD	knowledge/carousel/FIELD_NOTES.md	DONE	living run-retro log; Texas starts empty
@@ -155,7 +155,7 @@ alaskaaicarousels	ledger/captions.json	26442	317	35	REBUILD	ledger/captions.json
 alaskaaicarousels	ledger/docket.json	110005	1628	362	REBUILD	ledger/docket.json	DONE	Alaska's memory would poison Texas dedupe and divergence gates
 alaskaaicarousels	ledger/gaswatch.jsonl	44157	12	176	REBUILD	ledger/gaswatch.jsonl	TODO	Alaska's memory would poison Texas dedupe and divergence gates
 alaskaaicarousels	ledger/gaswatch_eia.json	26312	1376	3	REBUILD	ledger/gaswatch_eia.json	TODO	Alaska's memory would poison Texas dedupe and divergence gates
-alaskaaicarousels	ledger/instincts.json	68682	695	19	REBUILD	ledger/instincts.json	TODO	Alaska's memory would poison Texas dedupe and divergence gates
+alaskaaicarousels	ledger/instincts.json	68682	695	19	REBUILD	ledger/carousel/instincts.json	DONE	Rebuilt empty. Alaska's 101 entries are its engine's lessons, and this repo has shipped zero decks so it cannot have learned anything from running. Confidence is also redesigned: it is DERIVED from the confirmation record rather than written, because 47 of Alaska's entries sit at 0.90 with only 25 ever confirmed.
 alaskaaicarousels	ledger/topics.json	73089	1397	339	REBUILD	ledger/topics.json	TODO	Alaska's memory would poison Texas dedupe and divergence gates
 alaskaaicarousels	ledger/upgrades.json	231695	1284	58	REBUILD	ledger/upgrades.json	TODO	Alaska's memory would poison Texas dedupe and divergence gates
 alaskaaicarousels	prompts/ASK_ROUTINE.md	5487	121	4	PORT_RETHEMED	prompts/ask_routine.md	TODO	

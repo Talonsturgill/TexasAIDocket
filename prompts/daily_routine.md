@@ -135,7 +135,7 @@ public fact stand for another day, on a page whose entire promise is that it doe
 - `knowledge/shared/TEXAS_LANGUAGE.md` — the civic terms we get wrong by default. A county judge
   is an executive. The Railroad Commission regulates no railroads.
 - `knowledge/shared/TEXAS_ATTITUDES.md` — the evidence base for tone.
-- `knowledge/carousel/` — craft doctrine for the deck engine.
+- `knowledge/carousel/` — craft doctrine for the deck engine. `CAPTION_CRAFT.md` is the caption room's menus and the anti-template law; `SLIDE_DOSSIER_SPEC.md` is the planning format `dossier_check` enforces.
 - `config/brand.yaml` — voice, house rules, banned phrases, visual tokens.
 - `.claude/skills/carousel-engine/SKILL.md` — the slide contract. **Read this before writing a
   slide, every run.** It carries the traps that cost whole slides.
@@ -375,9 +375,18 @@ Fix the plan here, where it costs a paragraph.
 
 ## PHASE 10 — COPY CHAMBER (the caption room)
 
+Read `knowledge/carousel/CAPTION_CRAFT.md`. It holds the menus, the banned furniture and the
+anti-template law, which is the one rule no linter can check: **if yesterday's nouns can be
+swapped into today's caption and it still reads correctly, it was a template.**
+
+Take the exclusions from `ledger/carousel/captions.json` before anybody writes. Opening moves from
+the last six runs are off the menu, structures from the last three. **Hand the room what is off
+the table before it writes, never after**, because a director told no afterwards just defends what
+they already wrote.
+
 Spawn 2 `carousel-caption-director` agents with different assigned opening moves, then 1
-`carousel-caption-critic` to judge. One rewrite maximum. Then 1 `carousel-copywriter` to carry the
-winner verbatim and set the slide strings.
+`carousel-caption-critic` to judge against the craft doctrine. One rewrite maximum. Then 1
+`carousel-copywriter` to carry the winner verbatim and set the slide strings.
 
 ```bash
 python3 scripts/carousel/caption_check.py --file out/<date>/caption.txt

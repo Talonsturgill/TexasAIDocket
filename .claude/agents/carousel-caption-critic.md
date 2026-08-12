@@ -43,3 +43,5 @@ change. You do not get to keep asking.
 on or argue with.
 
 **A CAPTION THAT BREAKS NO RULES IS NOT THEREBY GOOD.** Compliance is the floor.
+
+**Judge against `knowledge/carousel/CAPTION_CRAFT.md`.** The anti-template law is the one rule no linter can reach, so it is yours: swap yesterday's nouns into today's caption, and if it still reads correctly, it was a template and it fails. The ledger stores every shipped `first_line` verbatim so you can hold the real lines side by side rather than trusting a summary of them.
