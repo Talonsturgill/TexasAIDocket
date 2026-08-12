@@ -76,6 +76,12 @@ RESIDUE_ALLOW = {
     # The parity map is a divergence record. Naming what each key diverged FROM is the entire
     # content of the file, so it belongs with the manifest rather than with Texas source.
     "config/parity_map.yaml",
+    # The mailbox. CLAUDE.md requires the address as a module constant here rather than the
+    # account-relative "me", which the Gmail connector rejects outright, and the domain
+    # happens to be the shared one. Listed by exact path so the exemption covers the constant
+    # and nothing else: any OTHER file naming that domain is still a residue failure, which is
+    # what keeps the address in the two places it belongs.
+    "scripts/carousel/gmail_draft.py",
 }
 
 # Scripts that are legitimately entry points nobody imports: run by hand, or by a human
