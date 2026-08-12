@@ -81,7 +81,7 @@ ROUTES: list[tuple[str, str, str, str, str]] = [
     ("alaskaaicarousels", r"^knowledge/", "PORT_RETHEMED", "knowledge/carousel/", ""),
     ("alaskaaicarousels", r"^config/gaswatch", "REBUILD", "config/gridwatch/", "Cook Inlet gas model has no Texas analogue; ERCOT publishes its own forecast"),
     ("alaskaaicarousels", r"^config/", "PORT_RETHEMED", "config/", ""),
-    ("alaskaaicarousels", r"^prompts/routine_instructions\.md$", "PORT_RETHEMED", "prompts/carousel_routine.md", ""),
+    ("alaskaaicarousels", r"^prompts/routine_instructions\.md$", "PORT_RETHEMED", "prompts/daily_routine.md", ""),
     ("alaskaaicarousels", r"^prompts/ROUTINE_PROMPT\.txt$", "PORT_RETHEMED", "prompts/CAROUSEL_TRIGGER.txt", ""),
     ("alaskaaicarousels", r"^prompts/ASK_ROUTINE\.md$", "PORT_RETHEMED", "prompts/ask_routine.md", ""),
     ("alaskaaicarousels", r"^\.claude/agents/", "PORT_RETHEMED", ".claude/agents/carousel-", "namespaced: both Alaska repos ship a scorer and a flow-critic"),

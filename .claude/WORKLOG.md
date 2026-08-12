@@ -55,20 +55,20 @@ Thinnest agents: pixel-critic 53%, caption-critic 62%, upgrade-engineer 62%.
 
 | # | Wave | Status |
 |---|---|---|
-| A | The seven missing gates, each with self-test + replay | **IN PROGRESS** — DONE: `claims_check` (21 checks), `aggregate_check` (20), `dedupe_check` (10). All three wired into the routine and CI. Next: `copy_sync_check`, `dossier_check`, `gate_status`, `ship_images` |
+| A | The seven missing gates, each with self-test + replay | **IN PROGRESS** — DONE: `claims_check` (21 checks), `aggregate_check` (20), `dedupe_check` (10), all wired into the routine and CI. Next: `copy_sync_check`, `dossier_check`, `gate_status`, `ship_images` |
+| A2 | Merge the two routines into one, on the owner's call | **DONE** |
 | B | `instincts.json` + the ledger the retro phase writes | TODO |
 | C | `CAPTION_CRAFT.md`, Texas material | TODO |
 | D | `TECHNIQUE_LIBRARY.md`, Texas material | TODO |
 | E | Deepen pixel-critic, caption-critic, upgrade-engineer | TODO |
-| F | Deepen `carousel_routine.md` against the new gates and craft | TODO |
+| F | Deepen `daily_routine.md` against the new gates and craft | TODO |
 | G | End-to-end proof: render the demo deck, run every gate on it | TODO |
 | H | Reconcile manifest, update CLAUDE.md layout, hand off triggers | TODO |
 
 ## Handoff still owed to the owner (not blockers)
 
-- Create the two Claude routines in the routines UI. Trigger text is already in
-  `prompts/CAROUSEL_PROMPT.txt` and `prompts/DOCKET_PROMPT.txt`. Neither routine exists yet, so
-  neither has ever fired.
+- Create the ONE Claude routine in the routines UI. Trigger text is `prompts/ROUTINE_PROMPT.txt`.
+  It does not exist yet, so it has never fired. This was two routines until 2026-08-12.
 - Register the domains (all still open as of the plan).
 - Buttondown key when subscriber alerts are wanted. Every integration no-ops without its key.
 
@@ -95,3 +95,23 @@ Thinnest agents: pixel-critic 53%, caption-critic 62%, upgrade-engineer 62%.
   own similarity, and an entry with an unreadable date counts as inside the window so a bad
   date cannot hide a repeat. Graded exits, and the loudest still says read rather than reject.
   Coverage 71 -> 73 of 402.
+- 2026-08-12 — the record routine and the carousel routine merged into one,
+  `prompts/daily_routine.md`, on the owner's call, matching the sibling product. Two daily
+  routines meant two branches, two pull requests, two merges and two site rebuilds racing for
+  the same `docs/` tree. It also fixed an ordering fault: the record is now updated BEFORE the
+  story is picked, so a deck can only be built on a decision the record already holds. Phase 2
+  spawns the scouts and then works the record's worklist while they run, which is wall-clock
+  free. The degradation ladder gained two rungs, because the record survives four the deck does
+  not: a lost deck costs a post, a lost day of re-verification lets a wrong public fact stand.
+- 2026-08-12 — the merge forced a re-read of `ownership.yaml` and found TWO dead rules.
+  `scripts/site/**` was written twice, and the second one granted the carousel write access to
+  every gate that judges it while the first said, in the plainest words available, that it must
+  not. Fixed, and `shadowed()` now proves every rule still answers for its own namesake path.
+  It found the second dead rule the moment it was switched on. Actors are now `daily` and
+  `upgrade`, one process one actor, with the retro phase's narrow lane keeping a self-editing
+  phase off the public record. GATE_LESSONS 12.
+- 2026-08-12 — `port_audit`'s orphan check counted a CI `--self-test` line as wiring, which made
+  it structurally unable to fail for any gate in the repo. Caught while rewriting the routine
+  prompt from scratch, which is precisely when a gate gets dropped by hand. Fixed, replayed, and
+  the over-correction ("must appear in a prompt") is guarded against too, because the cron
+  collectors appear in no prompt by design. GATE_LESSONS 13.

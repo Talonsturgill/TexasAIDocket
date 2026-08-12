@@ -173,6 +173,73 @@ ceiling has to hold while a lit cloud drifts over a gutter, so it is checked at 
 rewound with `animationDelay`, keeping the least favourable frame. One screenshot answers that by
 luck. Five fixed ones answer it, and the message names the second it happened.
 
+## 12. A rule can be repealed and still read perfectly
+
+`ownership.yaml` is matched .gitignore style, last match wins. `scripts/site/**` was written near
+the top as `owner: human`, with the note **"the gates. A routine that can edit the gate that judges
+it has no gate."** Further down, in a different section, the same pattern was written again with
+`rebuild_by: [carousel, gridwatch]`.
+
+The second one won. For as long as it stood, the carousel could edit `site_build.py`,
+`house_style_check.py` and `docket_build.py`: **every gate that judges it.** The file said the
+opposite, in the plainest language anyone could write, and the sentence was worth nothing.
+
+This is worse than a rule that is wrong, because a rule that is wrong can be read and disagreed
+with. **A repealed rule still reads correctly.** Anyone auditing the file finds the strict sentence,
+believes it, and stops looking. The `rebuild_by` in the winning rule even carried a note claiming it
+meant "allowed to RUN it and commit the output", which the code does not implement and could not:
+running a script needs no permission at all.
+
+**What to check instead.** Ask each rule whether it still answers for its own namesake path. Build
+the canonical path the rule exists to match, run it back through the resolver, and fail if a
+different rule claims it. `ownership_check.py --self-test` does this against the shipped map on
+every run, and **it found a second dead rule the moment it was switched on** — `scripts/site/ask_*.py`,
+which a reordering had just buried under a broader rule. Two dead rules in a 190-line file that
+had been read carefully several times.
+
+**Generalises to.** Every last-match-wins or first-match-wins configuration: `.gitignore`, CSS
+cascades, firewall tables, route tables, `CODEOWNERS`, redirect maps. In all of them a later broad
+entry silently repeals an earlier specific one, and none of them warn. **If order decides meaning,
+something has to test that each entry still means what it says.**
+
+**Also worth naming.** The defect was found while merging two routines into one, because the merge
+forced a re-read of who owns what. Consolidation is when this class of fault surfaces, so a merge
+is the moment to check the boundary rather than assume it survived.
+
+## 13. A self-test is not wiring
+
+Found ten minutes after 12, during the same merge, and it is the same disease wearing different
+clothes.
+
+`port_audit`'s orphan check answers "is this script wired into the machine?" and the whole port
+manifest exists because the last attempt at this **moved files over and never wired them up**. It
+counted a script as wired if any workflow, prompt or script named it.
+
+Every gate in this repo is named in `guards.yml` as `<gate>.py --self-test`. So every gate
+satisfied the check permanently, no matter what. **For the entire class of file the check matters
+most for, it could not fail.**
+
+The cost was about to be real. Merging two routine prompts into one meant writing a fresh prompt
+and deleting both old ones, which is exactly the operation that drops a gate by hand. Any gate left
+out of the new prompt would have gone on passing, while being invoked by nothing, on the one
+question this audit exists to answer.
+
+**What to check instead.** Ask what the evidence actually proves. A self-test line proves the
+script's own tests pass. That is a fact about the script and says nothing about anything calling it
+in anger. The fix is one filter: a mention on a `--self-test` line is not a reference. Verified by
+deleting the dedupe gate's invocation from the routine, green before, red after.
+
+**The trap in the fix.** The obvious over-correction is "a gate must appear in a routine prompt".
+That breaks the cron-driven collectors, which appear in no prompt by design and must not be dragged
+into one. A real invocation in a workflow is still wiring. There is a self-test case for that too,
+because the repair for one fault is a good place to introduce the next.
+
+**Generalises to.** Any check whose evidence is "X is mentioned somewhere". Coverage that counts a
+file as tested because a test file imports it. A dependency audit that counts a package as used
+because a lockfile lists it. A dead-code sweep that counts a function as live because a test calls
+it. **When the evidence and the question are one inference apart, the check answers the easier
+question and reports it as the harder one.**
+
 ---
 
 ## Two process faults, which caused more lost time than any bug above

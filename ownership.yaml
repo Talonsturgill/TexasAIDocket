@@ -27,17 +27,29 @@
 version: 1
 
 actors:
-  docket: The daily docket record routine. Re-verifies, discovers, admits, rebuilds.
-  carousel:  The daily LinkedIn carousel routine.
+  daily:     The one daily routine. Re-verifies and admits the record, then ships the deck.
+  upgrade:   The retro phase's narrow lane. The machine only, never the record. See below.
   gridwatch: The ERCOT Grid Watch collector. Runs on cron, never as a routine phase.
   ask:       The ask box's archive lane routine. Fires on API trigger.
   dispatch:  The video routine, which lives in TexasAIDispatch and reaches in for one file.
   human:     A maintainer session. Owns anything an unattended run must never rewrite.
 
+# WHY `daily` AND NOT `docket` PLUS `carousel` (2026-08-12)
+# The record and the deck were two routines and are one now. Two actors for one process is a
+# fiction the checker cannot enforce: the process stamps one name and then needs the other's
+# lane, so the first thing it learns is that the stamp is negotiable. One process, one actor.
+#
+# The merge does widen one thing, and `upgrade` is the answer to it. Phase 17's whole job is
+# editing the machine. While the carousel was its own actor, that phase could not reach
+# `ledger/docket.json` because the carousel simply did not own it, and the separation cost
+# nothing to maintain because it was a side effect of the split. Merged, that protection is
+# gone unless it is stated. So the phase stamps `upgrade` before it runs and `daily` after,
+# and `upgrade` owns the machine's own files and nothing else. A self-editing phase should
+# never be able to edit the public record, and now it still cannot.
+
 # Branch prefix to actor, used by CI when no explicit actor is passed.
 branch_actors:
-  "claude/docket-":    docket
-  "claude/carousel-": carousel
+  "claude/daily-":    daily
   "claude/dispatch-": dispatch
   "gridwatch/":       gridwatch
   "claude/ask-":      ask
@@ -80,43 +92,54 @@ rules:
 
   # ---------------------------------------------------------------- the public record
   - path: "ledger/docket.json"
-    owner: docket
+    owner: daily
     note: >
-      Maintained in the carousel routine's docket phase. Items are never deleted; history is
-      append-only within each item.
+      Maintained in the daily routine's re-verify and admit phases. Items are never deleted,
+      and history is append-only within each item.
   - path: "seed/**"
-    owner: docket
+    owner: daily
     note: >
-      Candidate items awaiting a primary source. The docket routine writes here freely; nothing
+      Candidate items awaiting a primary source. The routine writes here freely; nothing
       published comes from here until docket_build.py admits it.
-  - path: "scripts/site/**"
-    owner: human
-    note: >
-      The gates. A routine that can edit the gate that judges it has no gate.
   - path: "ledger/alerts.json"
-    owner: carousel
+    owner: daily
     note: The no-repeat ledger for subscriber emails. Never reused by the grid watch.
 
-  # ---------------------------------------------------------------- carousel
-  - path: "prompts/carousel_routine.md"
+  # ---------------------------------------------------------------- what the RUN writes
+  # Split from the machine's own files below, by the plain test of who actually writes it.
+  # A run writes its output. The retro phase writes the machine. They barely overlap, so
+  # nothing is lost by keeping them apart and a self-editing phase is kept off the record.
+  - path: "ledger/carousel/**"
+    owner: daily
+    note: The variety ledgers, written at ship so tomorrow cannot repeat today.
+  - path: "runs/carousel/**"
+    owner: daily
+
+  # ---------------------------------------------------------------- the machine's own files
+  # Written by Phase 17 and by nothing else. The routine RUNS these every day; it does not
+  # edit them mid-run, and a run that rewrites the engine it is currently executing is how a
+  # machine drifts without anyone noticing.
+  - path: "scripts/carousel/**"
+    owner: upgrade
+  - path: "config/carousel/**"
+    owner: upgrade
+  - path: "knowledge/carousel/**"
+    owner: upgrade
+  - path: ".claude/agents/carousel-*.md"
+    owner: upgrade
+  - path: ".claude/skills/carousel-engine/**"
+    owner: upgrade
+  - path: "ledger/carousel/upgrades.json"
+    owner: upgrade
+    append_only: true
+    note: >
+      The automation-change trail, surfaced in every dated email. Append only, because an
+      upgrade that can edit its own history can hide one.
+  - path: "prompts/daily_routine.md"
     owner: human
     note: >
-      The routine may propose changes to its own prompt in its retro, but a run rewriting the
-      instructions it is currently executing is how a machine drifts without anyone noticing.
-  - path: "scripts/carousel/**"
-    owner: carousel
-  - path: "config/carousel/**"
-    owner: carousel
-  - path: "ledger/carousel/**"
-    owner: carousel
-  - path: "knowledge/carousel/**"
-    owner: carousel
-  - path: "runs/carousel/**"
-    owner: carousel
-  - path: ".claude/agents/carousel-*.md"
-    owner: carousel
-  - path: ".claude/skills/carousel-engine/**"
-    owner: carousel
+      The retro may PROPOSE changes to its own prompt, but a run rewriting the instructions it
+      is currently executing is how a machine drifts without anyone noticing.
 
   # ---------------------------------------------------------------- grid watch
   # The tightest lane in the repo. CINGSA taught Alaska that a series you cannot backfill is
@@ -143,28 +166,50 @@ rules:
       only route back if a parser turns out to have been wrong, because ERCOT keeps no
       archive to refetch from. One file per feed per day, written once and never revised.
 
-  # ---------------------------------------------------------------- ask lane
+  # ---------------------------------------------------------------- the site: THE GATES
+  # A routine that can edit the gate that judges it has no gate.
+  #
+  # This rule used to appear TWICE, and the second one carried `rebuild_by: [carousel,
+  # gridwatch]`. Last match wins, so the strict rule was dead and the carousel held write
+  # access to site_build.py, house_style_check.py and docket_build.py: every gate that judges
+  # it. Nothing warned, because a repealed rule still reads correctly in the file. `--self-test`
+  # now proves every rule still answers for its own namesake path, so a shadowed rule is a red
+  # gate rather than a comment. It found a second one the moment it was switched on.
+  #
+  # rebuild_by does NOT belong here. It grants full write, not "allowed to run it", which is
+  # what the old note claimed it meant. Running a script needs no permission at all. Only
+  # committing its OUTPUT does, and that output is docs/, which grants it below.
+  #
+  # ORDER MATTERS AND IT IS THE BROAD RULE FIRST. Every carve-out under scripts/site/ lives
+  # below this line. Put one above it and this rule is dead again.
+  - path: "scripts/site/**"
+    owner: human
+  - path: "scripts/shared/**"
+    owner: human
+
+  # Carve-outs, each naming ONE file. A glob here would hand back the gates the rule above
+  # just took away.
   - path: "scripts/site/ask_*.py"
     owner: human
     note: The answer engine is a gate on what the site may claim. Maintainer-owned.
+  - path: "scripts/site/gridwatch_page.py"
+    owner: human
+    rebuild_by: [daily]
+    note: Presentation only. The collectors, the model config and the ledgers stay off limits.
+  - path: "scripts/site/waterwatch_page.py"
+    owner: human
+    rebuild_by: [daily]
+    note: Presentation only, same terms as the grid watch page.
+
+  # ---------------------------------------------------------------- ask lane
   - path: "workers/ask/**"
     owner: ask
   - path: "prompts/ask_routine.md"
     owner: human
 
-  # ---------------------------------------------------------------- the site
-  - path: "scripts/site/**"
-    owner: human
-    rebuild_by: [carousel, gridwatch]
-    note: >
-      The builder itself is maintainer-owned; the routines invoke it, they do not edit it.
-      rebuild_by records who is allowed to RUN it and commit the output.
-  - path: "scripts/shared/**"
-    owner: human
-
   - path: "docs/**"
     generated: true
-    rebuild_by: [carousel, gridwatch, docket, human]
+    rebuild_by: [daily, gridwatch, human]
     note: >
       A pure deterministic function of the ledgers. site_fresh_check.py rebuilds into a temp
       dir and proves byte equality, which is what makes it impossible for a run to corrupt
