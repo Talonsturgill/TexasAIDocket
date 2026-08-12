@@ -61,7 +61,7 @@ Source machines total ~79,000 lines across three Alaska repos, which are REFEREN
 | 1 | Texas identity: research, doctrine, tokens, geodata | TODO | |
 | 2 | Docket spine + fact-checked seed items | TODO | 15 unverified research findings resolve here |
 | 3 | Website + AI-discoverability layer | TODO | `site_build.py` is the single biggest item |
-| 4 | In-browser ask engine | TODO | |
+| 4 | In-browser ask engine | **DONE** | index, catalogue generated from the record, engine, page, browser test. Nothing sent anywhere |
 | 5 | Texas Grid Watch + Water Watch | **DONE** | both collectors, both pages, cron, page check, numeral_lint. All green |
 | 6 | Carousel machine | **PARTIAL** | engine, art libraries, demo deck, caption lint, bespoke check, 10 agents, ledgers, routine prompt all DONE. Craft doctrine + gmail_draft + scoring rubric remain |
 | 7 | Video dispatch + Texas art library | TODO | lands in `TexasAIDispatch` |

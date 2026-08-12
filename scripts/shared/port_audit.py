@@ -295,9 +295,14 @@ def check_links(root: Path) -> Result:
         r.skip("site not built yet")
         return r
     href = re.compile(r'(?:href|src)="([^"#?]+)"')
+    # Script blocks are stripped first. A URL assembled at runtime, like the ask engine's
+    # "../item/" + id + "/", is not a static href: reading it as one reports a broken link to
+    # a path that never existed as a string. What those links point at is checked as DATA in
+    # site_build's own tests, which verify every id the engine can route to has a page.
+    script = re.compile(r"<script\b.*?</script>", re.DOTALL | re.IGNORECASE)
     broken, checked = [], 0
     for page in docs.rglob("*.html"):
-        text = page.read_text(encoding="utf-8", errors="ignore")
+        text = script.sub(" ", page.read_text(encoding="utf-8", errors="ignore"))
         for target in href.findall(text):
             if target.startswith(("http://", "https://", "mailto:", "data:", "//")):
                 continue

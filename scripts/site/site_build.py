@@ -39,6 +39,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+import ask_answers                                                # noqa: E402
 import docket_build as dk                                          # noqa: E402
 import gridwatch_page                                              # noqa: E402
 import texas_map                                                   # noqa: E402
@@ -57,8 +58,9 @@ STAR = ('<svg class="star" viewBox="0 0 24 24" aria-hidden="true">'
         '<path d="M12 1.6l2.9 7.5 8 .4-6.2 5.1 2.1 7.8L12 18l-6.8 4.4 2.1-7.8L1.1 9.5l8-.4z"/>'
         '</svg>')
 
-NAV = [("", "Home"), ("record/", "The record"), ("counties/", "Counties"),
-       ("grid/", "Grid"), ("water/", "Water"), ("data/", "Data"), ("about/", "About")]
+NAV = [("", "Home"), ("record/", "The record"), ("ask/", "Ask"),
+       ("counties/", "Counties"), ("grid/", "Grid"), ("water/", "Water"),
+       ("data/", "Data"), ("about/", "About")]
 
 
 def e(s) -> str:
@@ -442,6 +444,64 @@ def grid_page(today: str) -> str:
                 }])
 
 
+def ask_page(items: list, today: str) -> str:
+    """The ask box. Answered in the reader's browser, with nothing sent anywhere.
+
+    The index and the catalogue ship inline as JSON and the engine ships inline as script. Two
+    fewer requests matters here more than it usually does: the reader this is built for is
+    often on a phone in a county meeting room, and a question box that needs three round trips
+    to answer anything is a question box that does not get used.
+    """
+    idx = ask_answers.index(items, today)
+    cat = ask_answers.catalogue(idx)
+    starters = [c["q"] for c in cat if c["route"]["view"] in ("open_now", "counts")][:2] + \
+               [c["q"] for c in cat if c["route"]["view"] == "by_county"][:1] + \
+               [c["q"] for c in cat if c["route"]["view"] == "by_topic"][:1]
+    chips = "".join(f'<button type="button" data-ask="{e(q)}">{e(q)}</button>'
+                    for q in starters)
+    body = f"""
+<h1>Ask the record</h1>
+<div class="prose">
+  <p class="lede">Type a question about AI decisions in Texas. The answer is computed in your
+  browser from an index that shipped with this page.</p>
+  <p><strong>Nothing you type is sent anywhere.</strong> No request, no key, no log. Turn off
+  your connection after this page loads and the box still works, because there is nothing on
+  the other end of it. A record about surveillance and procurement should not be keeping a
+  list of who asked what about which county.</p>
+</div>
+
+<div id="ask" class="askbox">
+  <form role="search">
+    <label for="askq">Your question</label>
+    <input id="askq" type="search" autocomplete="off"
+           placeholder="What can I still comment on?">
+    <button type="submit">Ask</button>
+  </form>
+  <div class="chips" data-voice="reader">{chips}</div>
+  <div class="answer" hidden></div>
+</div>
+
+<div class="prose">
+  <h2>What it can answer</h2>
+  <p>The <strong class="num">{len(cat)}</strong> questions it knows are generated from the
+  record itself: its counties, its topics, the bodies that decided, and what is open today. A
+  county with nothing in it never gets a question, so the box can't promise an answer it does
+  not have.</p>
+  <p>Answers are composed when you ask, from the index on this page. Nothing is a stored
+  answer, which is why nothing here can be out of date relative to the record beside it.</p>
+  <p>Where the record holds nothing, it says so. That is the answer, not a gap in it.</p>
+</div>
+
+<script>window.__ASK_INDEX__={json.dumps(idx, separators=(",", ":"))};
+window.__ASK_CATALOGUE__={json.dumps(cat, separators=(",", ":"))};</script>
+<script>{ask_answers.engine_js()}</script>
+"""
+    return page(title=f"Ask the record — {SITE_NAME}", depth=1, active="ask/",
+                desc="Ask a question about AI decisions in Texas. Answered in your browser, "
+                     "from the record, with nothing sent anywhere.",
+                body=body, today=today, canonical="ask/")
+
+
 def water_page(today: str) -> str:
     """The Texas Water Watch. The grid watch's sibling, and the other half of the account.
 
@@ -675,6 +735,7 @@ def build(out: Path, today: str) -> dict:
                            "published figure is recomputable. Unverified days carry no "
                            "numbers rather than yesterday's."},
          "readings": gridwatch_page.load()}, indent=2, ensure_ascii=False) + "\n")
+    w("ask/index.html", ask_page(items, today))
     w("water/index.html", water_page(today))
     w("waterwatch.json", json.dumps(
         {"_spec": {"generated": today,
@@ -763,13 +824,30 @@ def self_test() -> int:
         import re as _re2
         root = Path(td) / "a"
         broken = []
+        # Script blocks are stripped first. A URL built at runtime, like the ask engine's
+        # "../item/" + id + "/", is not a static href and cannot be resolved by reading it.
+        # The links it produces are covered instead by the data check below, which is the
+        # honest way to check them: verify every id it could use, not the string that uses it.
+        script = _re2.compile(r"<script\b.*?</script>", _re2.DOTALL | _re2.IGNORECASE)
         for f in root.rglob("*.html"):
-            for href in _re2.findall(r'href="([^"#?:]+)"', f.read_text(encoding="utf-8")):
+            text = script.sub(" ", f.read_text(encoding="utf-8"))
+            for href in _re2.findall(r'href="([^"#?:]+)"', text):
                 if href.startswith(("http", "//", "mailto")):
                     continue
                 t = (f.parent / href).resolve()
                 if not (t.exists() or (t / "index.html").exists()):
                     broken.append(f"{f.relative_to(root)} -> {href}")
+        # THE ASK ENGINE'S LINKS, CHECKED AS DATA. Every item the index can route to must
+        # have a page built for it. This is what the static scan above structurally cannot do.
+        ask_idx = ask_answers.index(dk.load(LEDGER), "2026-08-11")
+        missing_pages = [i["id"] for i in ask_idx["items"]
+                         if not (root / "item" / i["id"] / "index.html").exists()]
+        check("every item the ask engine can route to has a page",
+              not missing_pages, str(missing_pages[:5]))
+        ask_routes = {c["route"]["view"] for c in ask_answers.catalogue(ask_idx)}
+        check("every route the catalogue emits is one the engine implements",
+              ask_routes <= set(ask_answers.VIEWS), str(ask_routes - set(ask_answers.VIEWS)))
+
         check("every relative link resolves from its own page", not broken,
               f"{len(broken)} broken, first: {broken[:1]}")
         check("an item page links the source", "rel=\"nofollow noopener\"" in one)

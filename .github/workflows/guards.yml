@@ -143,6 +143,9 @@ jobs:
           # falsifying it, which is far worse than an inconsistent date.
           python3 scripts/site/house_style_check.py
 
+      - name: Ask engine self-test (routes not cached answers, and it phones nobody)
+        run: python3 scripts/site/ask_answers.py --self-test
+
       - name: Theme self-test (tokens reach the CSS, red stays reserved)
         run: python3 scripts/site/theme.py --self-test
 
@@ -158,6 +161,19 @@ jobs:
           # site agrees with a fresh one, which is the only check that catches a hand edit or
           # a stale build. It is the guarantee behind "docs/ is generated, never hand-edited".
           python3 scripts/site/site_fresh_check.py --today 2026-08-11
+
+      - name: The ask engine answers every question it catalogues
+        run: |
+          # This one needs a browser, because the engine writes its prose at READ time and no
+          # build-time lint can reach the sentence a reader actually sees. It asks every
+          # catalogued question in a real page, checks no answer claims more than the record
+          # holds, and cuts the network to prove the page phones nobody.
+          npm install --no-save --silent playwright
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npx playwright install --with-deps chromium
+          SITE=docs node tests/ask_engine.mjs
+
+      - name: The map helper is oriented correctly in a browser
+        run: node tests/txgeo.mjs
 
       - name: Ownership check
         run: |
