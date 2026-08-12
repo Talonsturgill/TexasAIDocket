@@ -43,6 +43,7 @@ import ask_answers                                                # noqa: E402
 import docket_build as dk                                          # noqa: E402
 import fonts_build                                                 # noqa: E402
 import gridwatch_page                                              # noqa: E402
+import sky                                                         # noqa: E402
 import texas_map                                                   # noqa: E402
 import waterwatch_page                                             # noqa: E402
 import theme                                                       # noqa: E402
@@ -73,9 +74,48 @@ NAV = [("", "Home"), ("record/", "The record"), ("ask/", "Ask"),
        ("counties/", "Counties"), ("grid/", "Grid"), ("water/", "Water"),
        ("data/", "Data"), ("services/", "Services"), ("about/", "About")]
 
+# The footer's way out. Wider than the masthead nav, because the bottom of a page is where
+# somebody who did not find what they came for goes looking, and the machine-readable surfaces
+# belong there rather than in the top bar.
+FOOTNAV = NAV[1:] + [("docket.json", "Open data"), ("atom.xml", "Feed"),
+                     ("llms.txt", "For machines")]
+
+# WHERE THIS WAS MADE. Austin sits on the Balcones Escarpment, the fault line where the Hill
+# Country drops to the coastal plain, which runs straight through the city. Its coordinates are
+# the only ones on the site that are not derived from the record, and they are a fact about a
+# place rather than a measurement, in the way a printed sheet carries the shop that set it.
+MADE_AT = ("Built on the Balcones Escarpment", "30°16'N 97°44'W")
+
+# The one script the shell carries, and the three things it does. All three are progressive:
+# with script off the page keeps its atmosphere, its content and its layout, and loses only the
+# arrival animations and the glass on the bar.
+SHELL_JS = """<script>
+document.documentElement.classList.add('js');
+addEventListener('scroll',function(){
+  document.querySelector('.masthead').classList.toggle('scrolled',scrollY>8);
+},{passive:true});
+if('IntersectionObserver' in window){
+  var els=document.querySelectorAll('[data-reveal]');
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in');
+      io.unobserve(en.target); } });
+  },{rootMargin:'0px 0px -8% 0px'});
+  els.forEach(function(el){ el.classList.add('pending'); io.observe(el); });
+  // Last resort. If the callback never runs, every section is shown anyway rather than left
+  // present and invisible.
+  setTimeout(function(){ els.forEach(function(el){ el.classList.add('in'); }); },2500);
+}
+</script>"""
+
 
 def e(s) -> str:
     return html.escape(str(s if s is not None else ""), quote=True)
+
+
+def short_date(iso: str) -> str:
+    """"AUG 19", for a deadline set at display size. The long form stays in the prose."""
+    d = _dt.date.fromisoformat(iso)
+    return f"{d:%b} {d.day}".upper()
 
 
 def ordinal(d: _dt.date) -> str:
@@ -96,6 +136,16 @@ def page(*, title: str, desc: str, body: str, depth: int, active: str,
     cur = ' aria-current="page"'
     nav = "".join(f'<a href="{p}{h}"{cur if h == active else ""}>{e(t)}</a>'
                   for h, t in NAV)
+
+    footnav = "".join(f'<li><a href="{p}{h}">{e(t)}</a></li>' for h, t in FOOTNAV)
+    # The colophon is assembled from parts rather than written as a sentence, so the separator
+    # is a style decision in one place and the build date can never drift from `today`.
+    colophon = "".join(f"<span>{e(s)}</span>" for s in (
+        MADE_AT[0],
+        f"Revised {ordinal(_dt.date.fromisoformat(today))}, {today[:4]}",
+        MADE_AT[1],
+        "Every numeral computed from data",
+    ))
 
     ld = [{
         "@context": "https://schema.org", "@type": "WebSite",
@@ -122,6 +172,7 @@ def page(*, title: str, desc: str, body: str, depth: int, active: str,
 </head>
 <body>
 <a class="skip" href="#main">Skip to the record</a>
+{sky.sky_markup()}
 <header class="masthead">
   <div class="wrap">
     <a class="wordmark" href="{p or './'}">{HOIST}<span>{e(SITE_NAME)}</span></a>
@@ -140,14 +191,12 @@ def page(*, title: str, desc: str, body: str, depth: int, active: str,
       something can't be measured, the size of the gap is published instead of an estimate.</p>
       <p>Every fact carries a quote from the source it came from, and a link to that source.
       The record is <a href="{p}docket.json">open data</a>.</p>
-      <dl data-prose="data">
-        <dt>Sheet</dt><dd>{e(canonical or "index")}</dd>
-        <dt>Record</dt><dd><a href="{p}docket.json">docket.json</a></dd>
-        <dt>Revised</dt><dd>{e(ordinal(_dt.date.fromisoformat(today)))}, {today[:4]}</dd>
-      </dl>
+      <ul class="footnav" data-prose="data">{footnav}</ul>
+      <p class="colophon-line" data-prose="data">{colophon}</p>
     </div>
   </div>
 </footer>
+{SHELL_JS}
 </body>
 </html>
 """
@@ -213,6 +262,36 @@ def claims_html(it: dict) -> str:
 
 
 # --------------------------------------------------------------------------- pages
+def telemetry(p: str) -> str:
+    """One live, computed, dated line about the physical system, for the top of the front page.
+
+    The sibling product opens with how much daylight its state capital has left today and how
+    fast it is losing it, and that one detail is most of why its front page feels alive rather
+    than published. It works because it is true, it is about a real place, and it is different
+    every morning.
+
+    Texas has no daylight story worth telling. What it has instead is the grid, which is the
+    thing Texans actually argue about, so this reports what the load did against what was
+    committed to serve it, on the last settled day. Measured, dated, and not a verdict: it says
+    what happened, never whether it was fine.
+
+    Returns "" when the grid watch holds nothing, because a front page that invents a number to
+    fill a slot is the exact failure this project exists to not have.
+    """
+    rows = gridwatch_page.load()
+    if not rows:
+        return ""
+    r = rows[-1]
+    peak, cap = r.get("peak_load_mw"), r.get("capacity_at_peak_mw")
+    if not peak or not cap:
+        return ""
+    share = round(peak / cap * 100, 1)
+    when = ordinal(_dt.date.fromisoformat(r["date"]))
+    return (f'<a class="tele" href="{p}grid/">ERCOT'
+            f'<span>Peak drew {share}% of committed capacity</span>'
+            f'<span>{e(when)}</span></a>')
+
+
 def home(items: list, today: str) -> str:
     proj = dk.project(items, today)
     act = proj["actionable_now"]
@@ -236,20 +315,47 @@ def home(items: list, today: str) -> str:
                 ' Windows are checked every day, and one appears here the moment it opens.</div>')
         openers = f"<p>The record holds <strong>{n_items}</strong> decisions.</p>"
 
+    # THE DEADLINE CARDS. A date at display size, a status word that is also a colour, and a
+    # live count of what is left. Somebody should be able to find what is open to them without
+    # reading a sentence.
     rows = "".join(
-        f'<li><h3><a href="item/{e(a["id"])}/">{e(a["title"])}</a></h3>'
-        f'<p class="meta" data-prose="data"><span class="num">{a["days_left"]}</span> days left, '
-        f'closes {e(ordinal(_dt.date.fromisoformat(a["closes"])))}</p></li>'
-        for a in act[:6])
+        f'<li><a class="dcard{" open" if a["days_left"] > 7 else ""}" href="item/{e(a["id"])}/">'
+        f'<span class="badge {"open" if a["days_left"] > 7 else "soon"}">'
+        f'{"Open to you" if a["days_left"] > 7 else "Closing soon"}</span>'
+        f'<span class="big">{e(short_date(a["closes"]))}</span>'
+        f'<span class="left">{a["days_left"]} '
+        f'{"day" if a["days_left"] == 1 else "days"} left</span>'
+        f'<h3>{e(a["title"])}</h3>'
+        f'<span class="note">Public comment closes</span></a></li>'
+        for a in act[:3])
+
+    # The stat row, every figure of it computed on this build from the record itself.
+    stats = "".join(
+        f'<div class="stat"><span class="n{" hot" if hot else ""}">{n}</span>'
+        f'<span class="l">{e(label)}</span></div>'
+        for n, label, hot in (
+            (n_items, "Decisions tracked", False),
+            (n_claims, "Quoted sources", False),
+            (n_counties, "Counties touched", False),
+            (f"{len(act):02d}", "Doors open to you", True),
+        ))
 
     body = f"""
-<section class="hero">
-  <h1>What is being decided about AI in Texas, and whether you can still say something.</h1>
-  <div class="prose">{openers}</div>
-  {lede}
+<section class="hero rise">
+  {telemetry("")}
+  <h1>What is being decided about AI in Texas, and whether you
+  <em>can still say something</em>.</h1>
+  <p class="herolede">A public record of every AI decision in this state, with a quoted source on
+  every fact. Green means a door is open to you right now.</p>
+  <div class="ctarow">
+    <a class="cta solid" href="record/">The record</a>
+    <a class="cta ghost" href="ask/">Ask it a question</a>
+    <a class="cta ghost" href="grid/">The grid</a>
+  </div>
+  <div class="statrow">{stats}</div>
 </section>
 
-<section>
+<section data-reveal>
   <h2>Where</h2>
   <div class="prose"><p>Every county in Texas, drawn from the state's own geometry. The lit
   counties are the ones this record currently touches, <span class="num">{n_counties}</span>
@@ -257,12 +363,13 @@ def home(items: list, today: str) -> str:
   {svg}
 </section>
 
-{'<section><h2>Still open</h2><ul class="items" data-prose="data">' + rows + '</ul>'
+{'<section data-reveal><h2>Closing next</h2><ul class="deck">' + rows + '</ul>'
    '<p class="meta" data-prose="data"><a href="record/">See all ' + str(n_items) + ' decisions</a></p>'
    '</section>' if rows else
-   '<section><p class="meta" data-prose="data"><a href="record/">See all ' + str(n_items) + ' decisions</a></p></section>'}
+   '<section data-reveal>' + lede + '<p class="meta" data-prose="data"><a href="record/">See all '
+   + str(n_items) + ' decisions</a></p></section>'}
 
-<section>
+<section data-reveal>
   <h2>What this is</h2>
   <div class="prose">
     <p>A record of decisions about artificial intelligence in Texas. Who decided. By when. Whether

@@ -347,6 +347,19 @@ visual:
     # night colour that disappears.
     capitol_granite: "#9A3B2A"
 
+    # SIGNAL COLOURS. Each means exactly one thing about a public process and nothing on the
+    # site may wear it decoratively. The sibling product carries four for the same job and it
+    # is the reason a reader can scan its docket without reading it.
+    #
+    # `signal_open` is deliberately the only cool hue in a warm palette. A comment window that
+    # is open right now is the single thing a reader came to find, and against ember, gold and
+    # caliche a cool green is the fastest thing on the page to spot. It is a spring green
+    # rather than a screen green, so it sits with the dusk register instead of buzzing on it.
+    signal_open: "#4FC79A"     # a door is open to the public right now
+    signal_soon: "#E0956A"     # a window closing within a week. The accent, doing double duty
+    signal_shut: "#8E85A0"     # decided, or no public process exists
+    signal_link: "#7FB2D9"     # a link out to a source. Never a state, always a destination
+
     supporting_palettes_rotate: >
       Beyond the fixed tokens, each deck draws its accents from the material world of ITS OWN
       story and region. A Permian story is caliche, rust and flare orange. A Piney Woods story
