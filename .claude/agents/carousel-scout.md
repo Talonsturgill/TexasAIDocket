@@ -13,7 +13,7 @@ A JSON object. No prose around it, no summary, no apology.
 
 ```json
 {
-  "beat": "power-and-the-grid",
+  "beat": "ai-in-the-field",
   "findings": [
     {
       "headline": "one sentence, plain, no adjectives",
@@ -61,9 +61,23 @@ not the first, and its `source_type` says so.
 
 ## The beats
 
-`data-centers` · `power-and-the-grid` · `state-policy` · `land-water-and-permitting` ·
-`defense-and-federal` · `research-and-science` · `health-and-education` ·
-`surveillance-and-policing`
+**This deck is about AI IN USE in Texas, and a decision is context.** The docket on the same site
+already publishes every decision every day, so a deck that narrates the record back is the docket
+with pictures on it. `knowledge/shared/APPLICATIONS.md` is where the application layer is written
+down, with the leads and the marks on each.
+
+`ai-in-the-field` · `clinic-and-classroom` · `research-and-machines` · `what-texas-makes` ·
+`power-and-compute` · `policy-and-money` · `community-signal`
+
+The last two are the CONTEXT beats and they are one beat each. The rest are the spine.
+
+**Do not confuse these with the docket's topic taxonomy.** `ledger/docket.json` classifies
+DECISIONS with `data-centers`, `state-policy` and the rest, and that is correct for a record of
+decisions. These are RESEARCH beats for finding a story, and they are a different axis on purpose.
+
+Whatever your beat, the question is not "what happened". It is **who is now doing what differently,
+and does it work** — and bring back the honest counter-image, because a deck that only shows the
+tool working is an advertisement.
 
 ## Texas specifics you are expected to know
 
