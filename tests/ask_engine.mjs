@@ -35,11 +35,14 @@ const check = (label, cond, extra = "") => {
   if (!cond) failures++;
 };
 
-const browser = await chromium.launch({
-  // The environment ships a chromium that may not match the npm package's pinned
-  // build. Point at the installed one rather than downloading a second copy.
-  executablePath: process.env.PLAYWRIGHT_CHROMIUM || "/opt/pw-browsers/chromium",
-});
+/* Some environments ship a chromium whose build number does not match the npm package's
+   pinned one. Where a preinstalled binary exists, use it rather than downloading a second
+   copy; where it does not, let playwright resolve its own. Hardcoding either breaks the
+   other, and this test has to run both on a dev container and on a CI runner. */
+import fs from "node:fs";
+const PREINSTALLED = process.env.PLAYWRIGHT_CHROMIUM || "/opt/pw-browsers/chromium";
+const browser = await chromium.launch(
+  fs.existsSync(PREINSTALLED) ? { executablePath: PREINSTALLED } : {});
 const page = await browser.newPage();
 
 // THE NETWORK IS CUT AFTER LOAD. The page promises the reader that nothing is sent anywhere;

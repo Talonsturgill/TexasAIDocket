@@ -169,11 +169,15 @@ jobs:
           # catalogued question in a real page, checks no answer claims more than the record
           # holds, and cuts the network to prove the page phones nobody.
           npm install --no-save --silent playwright
-          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npx playwright install --with-deps chromium
+          npx --yes playwright install --with-deps chromium
           SITE=docs node tests/ask_engine.mjs
 
-      - name: The map helper is oriented correctly in a browser
-        run: node tests/txgeo.mjs
+      - name: The map helper is oriented correctly
+        run: |
+          # No browser needed: the UMD libraries load under node, which is the point of
+          # testing the projection here rather than only inside a rendered slide.
+          npm install --no-save --silent playwright >/dev/null 2>&1 || true
+          node tests/txgeo.mjs
 
       - name: Ownership check
         run: |
