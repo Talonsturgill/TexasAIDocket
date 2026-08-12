@@ -34,18 +34,26 @@ are what matter. Register the domain, add the address, rebuild.
 
 ---
 
-## 2. Repository visibility — ALREADY DONE
+## 2. Turn Pages on. Fifteen seconds, and it is the only thing between here and a live site.
 
-`TexasAIDocket`, `TexasAIDispatch` and `TexasAIScanner` are all public. This unblocked GitHub
-Pages and the `raw.githubusercontent.com` image URLs the run email uses for the deck
-thumbnails, and it means the instrument crons in item 4 can run.
+**Settings → Pages → Build and deployment → Source → GitHub Actions.**
 
-Nothing in the repo holds a secret, which is the point. The record is meant to be read,
-`robots.txt` says yes rather than no deliberately, and both collectors use keyless public
-endpoints.
+That is the whole task. Nothing else is needed, no branch to pick, no folder to set.
 
-**What is left here:** confirm GitHub Actions is enabled and that Pages is set to deploy from
-the `pages.yml` workflow rather than from a branch.
+**Why it cannot be automated.** The workflow asks for it, with `enablement: true` on
+`configure-pages`, and GitHub refuses: `Create Pages site failed. Error: Resource not
+accessible by integration`. A workflow's `GITHUB_TOKEN` is allowed to DEPLOY to Pages but not
+to CREATE the Pages site in the first place. That first switch is reserved to a repository
+admin, deliberately, and no amount of workflow permission gets around it.
+
+**Everything else is already done and verified.** The three repositories are public. The
+`verify` job passes: the record clears its own gates and the committed site is byte-identical
+to a rebuild. The `deploy` job runs and gets exactly as far as this one switch. The moment it
+is flipped, the next push to `main` publishes, and there is a `workflow_dispatch` trigger on
+`pages.yml` to publish immediately without waiting for one.
+
+Then the site is at **https://talonsturgill.github.io/TexasAIDocket/** until the domain in
+item 1 replaces it.
 
 ---
 
