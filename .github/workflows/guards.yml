@@ -128,6 +128,21 @@ jobs:
           # exactly when to install this: a gate written after the drift is archaeology.
           python3 scripts/carousel/claims_check.py --self-test
 
+      - name: Aggregate gate self-test (the arithmetic on top of the claims)
+        run: |
+          # claims_check proves each claim has a source. numeral_lint proves each published
+          # figure traces to a computation. Neither looks at the arithmetic performed ON TOP of
+          # the claims, and that is where a slide invents a number out of verified parts. The
+          # sibling printed FIVE where the answer was four, with every other gate passing.
+          python3 scripts/carousel/aggregate_check.py --self-test
+
+      - name: Dedupe pre-flight self-test (reads the whole entry, not the title)
+        run: |
+          # The thirty day rule is a semantic judgement, and judgements are made by reading. A
+          # sibling run nearly repeated a story eleven days old because the showrunner read a
+          # ledger entry's truncated title rather than its angle and entities.
+          python3 scripts/carousel/dedupe_check.py --self-test
+
       - name: Bespoke check self-test (a template scores 1.0, a real deck scores near zero)
         run: python3 scripts/carousel/bespoke_check.py --self-test
 

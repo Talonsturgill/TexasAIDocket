@@ -55,7 +55,7 @@ Thinnest agents: pixel-critic 53%, caption-critic 62%, upgrade-engineer 62%.
 
 | # | Wave | Status |
 |---|---|---|
-| A | The seven missing gates, each with self-test + replay | **IN PROGRESS** — `claims_check` DONE (21 checks, every sibling drift replayed, wired into Phase 3 and CI). Next: `dedupe_check`, `copy_sync_check`, `dossier_check`, `aggregate_check`, `gate_status`, `ship_images` |
+| A | The seven missing gates, each with self-test + replay | **IN PROGRESS** — DONE: `claims_check` (21 checks), `aggregate_check` (20), `dedupe_check` (10). All three wired into the routine and CI. Next: `copy_sync_check`, `dossier_check`, `gate_status`, `ship_images` |
 | B | `instincts.json` + the ledger the retro phase writes | TODO |
 | C | `CAPTION_CRAFT.md`, Texas material | TODO |
 | D | `TECHNIQUE_LIBRARY.md`, Texas material | TODO |
@@ -82,3 +82,16 @@ Thinnest agents: pixel-critic 53%, caption-critic 62%, upgrade-engineer 62%.
   on has collapsed. Coverage 70 -> 71 of 402.
 - 2026-08-12 — the manifest drift gate caught its first real case immediately: the new
   `claims_check.py` row was still TODO. Reconciled. Working as intended on the first use.
+- 2026-08-12 — `aggregate_check.py`. The gap between `claims_check` and `numeral_lint`: neither
+  looks at the arithmetic performed ON TOP of the claims, and that is where a slide invents a
+  number out of verified parts. Detects four shapes in the text the browser actually laid out,
+  requires a declaration naming the claim ids, re-derives. An undeclared aggregate fails,
+  because "I did not notice it was an aggregate" is how the sibling rendered FIVE where the
+  answer was four. Wired as Phase 9.5, between pixel review and assembly, so it runs on what
+  was rendered rather than on what was written.
+- 2026-08-12 — `dedupe_check.py`. Reads the FULL entry, which is the whole point: the sibling's
+  near-repeat survived because a truncated title was read instead of the angle and entities.
+  Scores as a share of the candidate's fingerprint so a verbose ledger entry cannot dilute its
+  own similarity, and an entry with an unreadable date counts as inside the window so a bad
+  date cannot hide a repeat. Graded exits, and the loudest still says read rather than reject.
+  Coverage 71 -> 73 of 402.

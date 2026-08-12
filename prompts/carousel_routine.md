@@ -174,8 +174,23 @@ blocks the run.** You may fix presentation only. Anything else is a proposal in 
 
 ## PHASE 5 — SELECTION + DEDUPE GATE
 
-Pick the story. Check it against `ledger/carousel/topics.json`: no repeat inside 30 days. Say
-in writing why this story and not the others.
+Pick the story. Run the pre-flight before you decide:
+
+```
+python3 scripts/carousel/dedupe_check.py --entities "PUCT, Oncor, Hood County" \
+                                         --keywords "transmission, 765 kV"
+```
+
+**Read the full entry it names, not the title.** In the sibling product a lead survived this
+gate because the showrunner read a ledger entry's truncated TITLE instead of its topic, angle,
+entities and keywords. It was a near-exact repeat of a deck eleven days old and was caught by
+luck, one step from publishing the same story twice inside the window.
+
+The tool is a signal, not a verdict. Two genuinely different decisions can share every entity in
+Texas, so a LIKELY REPEAT means stop and read, never auto-reject. The thirty day rule stays your
+call, made after reading.
+
+Say in writing why this story and not the others.
 
 ## PHASE 6 — DIRECTORS ROOM (the planning phase that earns the deck)
 
@@ -222,6 +237,25 @@ Spawn `carousel-pixel-critic` agents in parallel, one per one or two slides. The
 every visible word and grade against the dossier's own checklist. Fix what they find, re-render,
 re-review. Then 1 `carousel-flow-critic` on the contact sheet, which judges the deck as a
 sequence rather than as nine slides.
+
+## PHASE 9.5 — AGGREGATE GATE (every number the deck invented)
+
+```
+python3 scripts/carousel/aggregate_check.py --date <date>
+```
+
+`claims_check` proved each claim has a source. This proves the ARITHMETIC ON TOP of them. A
+slide reading "FIVE PUCT FILINGS" is not quoting anything: it is a count the deck computed, and
+a computed number is a fresh factual assertion in the largest type on the page.
+
+The sibling shipped exactly that. A slide printed FIVE where the answer was four, because a
+federal notice had been counted as a state posting, and slide 09 of the same deck said four.
+Machine QA passed, the copy gate passed, the claims gate passed. A human caught it by reading,
+and the same run's fact-checker had already rejected an "eight days" span for this very error.
+
+Declare every count, span, duration and ratio in `out/<date>/aggregates.json` with the claim ids
+it was computed from. An undeclared aggregate fails, which is deliberate: "I did not notice it
+was an aggregate" is precisely how the sibling's five got rendered.
 
 ## PHASE 10 — FINAL ASSEMBLY
 
