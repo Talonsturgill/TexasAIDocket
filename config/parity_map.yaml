@@ -84,6 +84,13 @@
         the bluebonnet, so the slot is filled by visual.tokens.bluebonnet rather than renamed:
         the hex, the connotation and the usage are all different, and calling it a rename would
         overstate the continuity.
+    brand.linkedin_post.comma_per_100_chars:
+      reason: >
+        The caption comma threshold, expressed in the OTHER unit. Texas settled on commas per
+        100 WORDS and carries one unit only, because holding one rule in two denominators is how
+        a threshold eventually gets compared against the wrong one. This is a decision rather
+        than a delay, so it is dropped. The words-based caption ceiling is a separate matter and
+        is recorded at brand.house_rules.commas.caption.blocked_on.
     visual.tokens.gold_halo:
       reason: >
         The lighter halo of the accent gold, which exists because Alaska's gold appears on every
@@ -104,12 +111,7 @@
     # `rate_problem` takes the ceiling as an argument specifically so the measured site number
     # can never leak onto the unmeasured caption surface. The construction rules run on both
     # today. Only the density rule waits.
-    brand.linkedin_post.comma_per_100_chars:
-      reason: >
-        The caption threshold, expressed in the OTHER unit. Texas settled on commas per 100
-        WORDS and carries one unit only, because holding a rule in two denominators is how a
-        threshold eventually gets compared against the wrong one. The words-based caption
-        ceiling is the deferred value; this key is the unit Texas chose not to keep.
-      blocked_on: >
-        Nothing, for this key. The caption ceiling it duplicates is blocked on the first 20
-        shipped captions, recorded at brand.house_rules.commas.caption.blocked_on.
+    # Nothing is deferred here any more. The comma discipline landed on 2026-08-12 and its keys
+    # are renamed above. The one key Texas will never carry is DROPPED rather than deferred,
+    # because a deferral with nothing blocking it prints on every audit run forever and cannot
+    # be cleared, which is precisely how a deferral list becomes the thing nobody reads.

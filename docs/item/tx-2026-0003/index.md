@@ -1,6 +1,6 @@
 # PUCT Docket 59315, Oncor application for a 765 kV transmission line across 22 counties
 
-Oncor Electric Delivery has applied to amend its certificate of convenience and necessity to build the Dinosaur Switch to Longshore Switch transmission line. The application covers a corridor crossing 22 named counties in central and west Texas. The docket has drawn one of the largest volumes of landowner filings in recent PUCT practice, including intervention requests, protests and a county resolution. The commission has the matter set for an open meeting on August 21st, 2026.
+Oncor Electric Delivery has applied to amend its certificate of convenience and necessity to build the Dinosaur Switch to Longshore Switch transmission line. The application covers a corridor crossing 22 named counties in central and west Texas. The docket has drawn one of the largest volumes of landowner filings in recent PUCT practice. Those filings include intervention requests, protests and a county resolution. The commission has the matter set for an open meeting on August 21st, 2026.
 
 - Topic: power-and-the-grid
 - Decided by: Public Utility Commission of Texas (state-agency)

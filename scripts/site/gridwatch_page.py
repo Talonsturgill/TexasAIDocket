@@ -312,8 +312,8 @@ def reserve_bar(latest: dict) -> str:
 </div>
 <p class="barnote">At the peak hour, demand reached <strong class="num">{pct(share)}%</strong>
 of the generation capacity ERCOT had committed for that hour. This bar has one colour at every
-value on purpose. It is a measurement, not a judgement about whether the grid was comfortable,
-and no number on this page can tell you that.</p>"""
+value on purpose. It is a measurement rather than a judgement about whether the grid was
+comfortable. No number on this page can tell you that.</p>"""
 
 
 # --------------------------------------------------------------------------- the page body
@@ -368,11 +368,11 @@ def body(records: list[dict], today: str) -> str:
   arrive in the same record, so the gap between them is arithmetic rather than opinion. Across
   the <strong class="num">{n0(acc['days'])}</strong> {plural(acc['days'], 'day', 'days')} held,
   ERCOT's day ahead peak forecast missed the measured peak by
-  <strong class="num">{n0(acc['mean_abs_peak_error_mw'])} MW</strong> on average, which is
+  <strong class="num">{n0(acc['mean_abs_peak_error_mw'])} MW</strong> on average. That is
   <strong class="num">{pct(acc['mean_abs_peak_error_pct'])}%</strong> of peak. The worst miss
   so far was <strong class="num">{n0(acc['worst_mw'])} MW</strong>.</p>
-  <p>This is published whichever way it falls. It is a measurement of somebody else's model,
-  not a grade, and it is here because a page that checks its own inputs in public is worth more
+  <p>This is published whichever way it falls. It is a measurement of somebody else's model
+  rather than a grade. It is here because a page that checks its own inputs in public is worth more
   than one that asserts they are good.</p>
 </div>"""
 
@@ -417,7 +417,7 @@ def body(records: list[dict], today: str) -> str:
 <div class="prose">
   <p class="lede">A daily numeric record of how the ERCOT grid is absorbing large constant
   load. This page does not predict, grade or reassure. It publishes measurements, the
-  arithmetic done on them, and the size of what nobody outside ERCOT can see.</p>
+  arithmetic done on them and the size of what nobody outside ERCOT can see.</p>
 </div>
 
 <h2>{d}</h2>
@@ -454,7 +454,7 @@ def body(records: list[dict], today: str) -> str:
   <p>Peak megawatts is a weather story. Texas has broken its own demand record most summers
   since air conditioning arrived, and a data centre barely shows up in it. The shape is the
   story. A data centre draws at four in the morning close to what it draws at five in the
-  afternoon, so a grid taking on large constant load sees its overnight floor rise faster than
+  afternoon. A grid taking on large constant load sees its overnight floor rise faster than
   its afternoon ceiling, and the load factor climbs. Weather lifts both ends together.</p>
   <p>One day can't show that. A year can, which is why the series starts now.</p>
 </div>
@@ -498,9 +498,9 @@ def body(records: list[dict], today: str) -> str:
 <div class="prose">
   <p>Once a day the settled previous day is read whole from ERCOT's public dashboard feeds.
   Measured demand hour by hour, the day ahead forecast ERCOT published for those hours, the
-  capacity it had committed, and generation by fuel. The raw responses are archived before
+  capacity it had committed and generation by fuel. The raw responses are archived before
   anything parses them.</p>
-  <p>The record stores the full hourly series, not only the summary, so every figure on this
+  <p>The record stores the full hourly series rather than only the summary, so every figure on this
   page can be recomputed from <a href="../gridwatch.json">the open data</a> without refetching
   anything and without trusting the code that wrote it.</p>
   <p>ERCOT keeps no archive of these feeds. Each is a rolling window. A day not collected is

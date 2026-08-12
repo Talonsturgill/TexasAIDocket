@@ -21,20 +21,36 @@ WHAT IT CHECKS, AND WHY EACH ONE IS HERE
     openers        A sentence never opens with "And" or "But".
     first person   Published copy has no "I", "we" or "our". The record speaks, not its author.
     ranges         "X to Y", never "X-Y".
+    colons         HARD FAIL. A colon in prose is a label bolted onto a sentence that could
+                   have opened with the thing itself. A clock time and a ratio are numbers
+                   rather than punctuation and are exempt.
+    semicolons     HARD FAIL. A full stop that lost its nerve. Write two sentences.
+    comma after    HARD FAIL, at any length. No comma after a coordinating conjunction or a
+    a conjunction  relative pronoun, and no hedge fenced off by a pair of commas. Write "A data
+                   centre needs electricity. Most cooling designs need water too", never "A
+                   data centre needs electricity and, in most cooling designs, water".
+    comma density  Hard fail ABOVE THE CEILING FOR THE CALLING SURFACE. See below.
 
-    commas         MEASURED AND REPORTED, NOT FAILED. See below.
+THE COMMA CEILING IS PER SURFACE, AND ONE OF THE TWO IS DELIBERATELY UNSET
 
-THE COMMA CEILING IS DELIBERATELY NOT SET YET
+A ceiling is a fact about a body of writing, so it is measured on the surface it governs and
+never imported from another. `rate_problem` takes the ceiling as an ARGUMENT for exactly that
+reason, so a measured number cannot leak onto an unmeasured surface.
 
-The sibling product enforces 6.2 commas per 100 words, which is ten percent below the mean it
-measured across its own shipped captions. That number is a fact about ITS corpus. Copying it
-here would be publishing a number typed by a person from another product's writing, which is
-the exact thing this project's compute-not-generate law forbids, and the rule is "ten percent
-below what each surface actually ships" rather than "6.2".
+    SITE_COMMA_CEILING      LIVE at 3.97, and a hard fail. Measured on the site's own running
+                            prose, which is the surface `house_style_check.py` enforces on.
+                            `docket_build.gate_house_style` applies the same number to the
+                            record's reader copy.
+    CAPTION_COMMA_CEILING   None, on purpose. No caption has shipped, so there is nothing to
+                            measure and any number here would be borrowed. Every construction
+                            rule above applies to a caption today. Only DENSITY waits, and
+                            `config/parity_map.yaml` carries the unblock condition so it cannot
+                            be quietly forgotten.
 
-So this measures the rate, prints it, and records it. When twenty captions have shipped, the
-ceiling gets computed from those twenty and turned on. `config/parity_map.yaml` carries that as
-a deferred divergence with its unblock condition, so it cannot be quietly forgotten.
+The sibling product's 6.2 is a fact about ITS captions. Copying it would be publishing a number
+typed by a person from another product's writing, which is what the compute-not-generate law
+forbids, and its own config records what that cost when it happened: an imported figure produced
+a 29 percent cut where 10 percent was asked for.
 
     caption_check.py --file out/<run>/caption.txt
     caption_check.py --self-test
@@ -112,10 +128,41 @@ HEDGE = re.compile(
 # forbids, and config/parity_map.yaml records what that mistake cost the sibling product: an
 # imported figure produced a 29 percent cut where 10 percent was asked for.
 #
-# WEBSITE. Measured across the 24 published pages carrying 80 words or more: 366 commas in
-# 6,180 words, which is 5.92 per hundred. The rule is ten percent below what the surface
-# actually ships, so the ceiling is 5.33.
-SITE_COMMA_CEILING = 5.33
+# WEBSITE. Measured on RUNNING PROSE, which is the surface the gate enforces on, counting only
+# the commas a writer CHOSE, over the corpus AS IT STOOD BEFORE ANY COMMA RULE TOUCHED IT
+# (main at 11f2918, 2026-08-12): 170 commas in 3,853 words across the 20 published pages
+# carrying 80 words or more of it, which is 4.41 per hundred. Ten percent below what the
+# surface shipped is 4.41 x 0.9, so the ceiling is 3.97.
+#
+# THREE THINGS THIS NUMBER GOT WRONG BEFORE IT GOT RIGHT, each of which made it a different
+# number, and all three are the same mistake: measuring something other than what is enforced.
+#
+#   1 The first version measured WHOLE PAGE text at 5.92 and enforced on running prose, which
+#     excludes headlines, chips and card titles. The ceiling was about a quarter looser than
+#     the rule it claimed to apply.
+#   2 The second counted every comma, including the one in "August 11th, 2026" and the
+#     thousands separator in "6,180". Neither is a density decision, and the tell was that the
+#     gate's own advice, split the sentence at the comma, cannot be followed at either.
+#   3 The third measured the corpus AFTER a round of tightening under the first ceiling, which
+#     is a RATCHET. Ten percent below an already-cut corpus cuts again, and three passes of
+#     that arrive at zero. The baseline has to be the writing as it stood before the rule
+#     existed, which is why the commit is named above.
+#
+# Recompute only when the corpus has grown enough that a new measurement means something, and
+# measure the same three things: running prose, chosen commas, untouched writing.
+#
+# THE FIRST VERSION OF THIS NUMBER MEASURED THE WRONG SURFACE and is worth keeping in view. It
+# was derived from whole-page text at 5.92 per hundred, then enforced against running prose,
+# which excludes headlines, chips and card titles and measures 4.21. The ceiling was therefore
+# about 27 percent looser than the rule it claimed to apply, and `brand.yaml` stated a
+# `measured_over` that its own number contradicted. Eleven of twenty pages sat above a correctly
+# derived ceiling while the gate reported clean.
+#
+# THE TEN PERCENT STEP IS A ONE TIME MOVE OFF AN UNCONSTRAINED CORPUS. Re-deriving it from a
+# corpus this ceiling has already tightened is a ratchet with no floor, and three rounds of it
+# would arrive at zero. Recompute only when the corpus has grown enough that the measurement
+# means something new, and say so here with the date when you do.
+SITE_COMMA_CEILING = 3.97
 #
 # CAPTIONS. No ceiling yet, ON PURPOSE. No caption has shipped, so there is nothing to measure
 # and any number here would be borrowed. The construction rules below still apply to a caption
@@ -155,10 +202,23 @@ def emojis(text: str) -> list[str]:
     return out
 
 
+# COMMAS A WRITER CANNOT CHOOSE. The date comma in "August 11th, 2026" is required by this
+# project's own date rule, and the thousands separator in "6,180" is required by how a number is
+# written. Neither is a density decision, and the tell is that the gate's own advice, "split the
+# sentence at the comma", is impossible at either one. Counting them punished an item for citing
+# three dates and handed back a fix nobody could apply.
+STRUCTURAL_COMMA = re.compile(
+    rf"\b(?:{MONTHS})\s+\d{{1,2}}(?:st|nd|rd|th)?,(?=\s*\d{{4}})|(?<=\d),(?=\d{{3}}\b)",
+    re.IGNORECASE)
+
+
 def comma_rate(body: str) -> tuple[float, int, int]:
-    """Commas per 100 words. Measured every run so the ceiling can be computed, not guessed."""
+    """Commas per 100 words, counting only the ones a writer chose to put there.
+
+    Measured every run so the ceiling can be computed rather than guessed.
+    """
     words = len(re.findall(r"\b[\w'-]+\b", body))
-    commas = body.count(",")
+    commas = STRUCTURAL_COMMA.sub(" ", body).count(",")
     return (round(commas / words * 100, 2) if words else 0.0), commas, words
 
 
@@ -193,14 +253,12 @@ def check(text: str) -> list[str]:
     for m in set(FIRST_PERSON.findall(prose)):
         problems.append(f'first person "{m}": published copy has no I, we or our. '
                         f"The record speaks, not its author")
-    for _ in COLON.findall(prose):
+    if COLON.search(prose):
         problems.append("colon: the house does not use them. A colon announces that something "
                         "is coming instead of saying it. End the sentence and start the next")
-        break
-    for _ in SEMICOLON.findall(prose):
+    if SEMICOLON.search(prose):
         problems.append("semicolon: the house does not use them. It glues two sentences that "
                         "would each be stronger alone. Use a full stop")
-        break
     for m in set(CONJ_COMMA.findall(prose)):
         problems.append(f'comma after "{m}": this interrupts the sentence the moment before '
                         f"it lands, so a reader has to go back. Split it in two")
@@ -359,8 +417,12 @@ def self_test() -> int:
     ok("...and so does in fact", catches("It was, in fact, filed.", "throat clearing"))
 
     # ---- THE COMMA CEILING, per surface, computed from that surface's own copy ---------
-    ok("the site ceiling is a measured number, not a borrowed one",
-       SITE_COMMA_CEILING == 5.33 and "5.92" in open(__file__).read())
+    # The ceiling must BE the arithmetic it claims, not merely sit near it. Asserting the
+    # relationship rather than the literal is what stops the two drifting apart, which is
+    # exactly how the first version came to state a baseline measured on a different surface
+    # from the one it was enforced against.
+    ok("the site ceiling really is ten percent below its stated baseline",
+       abs(SITE_COMMA_CEILING - round(4.41 * 0.9, 2)) < 0.005, str(SITE_COMMA_CEILING))
     ok("the caption ceiling is honestly absent until captions ship",
        CAPTION_COMMA_CEILING is None)
     # Long enough to clear COMMA_FLOOR_WORDS, or the rate is correctly not judged at all.
@@ -395,8 +457,41 @@ def self_test() -> int:
     rate, commas, words = comma_rate("One, two, three, four five six seven eight nine ten.")
     ok("the comma rate is measured per 100 words", commas == 3 and words == 10 and rate == 30.0,
        f"{commas}/{words}={rate}")
+    # ONLY THE COMMAS A WRITER CHOSE. A date comma is required by this file's own date rule and
+    # a thousands separator is required by how a number is written, so neither is a density
+    # decision. The tell is that the gate's advice, split the sentence at the comma, cannot be
+    # followed at either one. Counting them punished an item for citing three dates.
+    ok("a date comma is not counted", comma_rate("Comments close September 4th, 2026.")[1] == 0,
+       str(comma_rate("Comments close September 4th, 2026.")))
+    ok("a thousands separator is not counted",
+       comma_rate("The queue holds 6,180 megawatts.")[1] == 0)
+    ok("...but a chosen comma in the same sentence still is",
+       comma_rate("On September 4th, 2026, the commission met.")[1] == 1,
+       str(comma_rate("On September 4th, 2026, the commission met.")))
+    ok("...and a list comma between numbers still is",
+       comma_rate("It holds 6,180, 4,200 and 900 megawatts.")[1] == 1,
+       str(comma_rate("It holds 6,180, 4,200 and 900 megawatts.")))
+    src = open(__file__, encoding="utf-8").read()
     ok("the ceiling's provenance is written down where it can be found",
-       "5.92" in open(__file__).read() and "6,180 words" in open(__file__).read())
+       "4.41" in src and "3,853 words" in src)
+    ok("...and it names the surface it was measured on, because the first one did not",
+       "RUNNING PROSE" in src)
+
+    # THE DOCSTRING IS ASSERTED ON, not the source. The two are different targets and the
+    # difference matters: the header once said "MEASURED AND REPORTED, NOT FAILED" and "the
+    # ceiling is deliberately not set yet" for as long as a live 5.33 was hard-failing three
+    # gates, because the only test guarding it had been loosened from `in __doc__` to
+    # `in open(__file__).read()`, which a comment anywhere in the file satisfies. A maintainer
+    # reading the header would have believed density was unenforced.
+    doc = __doc__ or ""
+    ok("the module header states the ceiling is live rather than pending",
+       "LIVE at" in doc and "HARD FAIL" in doc)
+    ok("...and names both surfaces, so the per-surface rule is visible from the top",
+       "SITE_COMMA_CEILING" in doc and "CAPTION_COMMA_CEILING" in doc)
+    ok("...and every hard-fail rule appears in the header's list",
+       all(w in doc for w in ("colons", "semicolons", "comma density")))
+    ok("...and the header does not still claim density is unenforced",
+       "NOT FAILED" not in doc and "DELIBERATELY NOT SET YET" not in doc)
 
     ok("empty copy is clean rather than a crash", not check(""))
     ok("a violation reports as an actionable sentence, not a code",

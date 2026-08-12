@@ -1,6 +1,6 @@
 # PUCT Project 58000, rulemaking to update ERCOT transmission cost recovery, comment deadline reached
 
-The Public Utility Commission of Texas is amending its wholesale and investor owned utility retail transmission cost recovery rules for the ERCOT region. The commission published a proposal for publication amending Section 25.192 and Section 25.193 and set a comment deadline of August 11th, 2026. Utilities, data center developers, consumer advocates and ERCOT itself filed comments on the deadline date. The commission next considers the proposal at an open meeting before adopting a final rule.
+The Public Utility Commission of Texas is amending its wholesale and investor owned utility retail transmission cost recovery rules for the ERCOT region. The commission published a proposal for publication amending Section 25.192 and Section 25.193 and set a comment deadline of August 11th, 2026. Utilities and data center developers filed comments on the deadline date. So did consumer advocates and ERCOT itself. The commission next considers the proposal at an open meeting before adopting a final rule.
 
 - Topic: power-and-the-grid
 - Decided by: Public Utility Commission of Texas (state-agency)
