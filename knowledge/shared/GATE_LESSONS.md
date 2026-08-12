@@ -240,6 +240,30 @@ because a lockfile lists it. A dead-code sweep that counts a function as live be
 it. **When the evidence and the question are one inference apart, the check answers the easier
 question and reports it as the harder one.**
 
+## 14. Your container is not the environment being checked
+
+`ship_images` passed its self-test fifteen times locally and failed on the first push with
+`Pillow and numpy are required`. The development container had them. The CI runner installed
+`pyyaml` and nothing else.
+
+The failure is trivial. **The tempting fix is the trap.** The obvious move is to make the self-test
+skip when the library is absent, so the suite goes green everywhere. That would have produced a
+green CI run in which the gate never executed, forever, and nobody would have looked again. A
+skipped test and a passing test are the same colour.
+
+**Install the dependency. Never skip the check.** The entire reason to run these in CI is that the
+machine they run on is not the machine they were written on.
+
+**What to check instead.** The audit is one line and worth running whenever a gate gains an
+import: list every script CI invokes, list its non-stdlib imports, compare to the install step.
+Note the trap inside the trap, which cost a second pass here: an anchored `^import` grep finds
+nothing, because the import that matters is indented inside the `try` block that produces the
+friendly error message.
+
+**Generalises to.** Fonts, locales, timezones, a headless browser, a git identity, an environment
+variable with a default in your shell profile. Every one of them is something the developer's
+machine supplies silently and a fresh runner does not.
+
 ---
 
 ## Two process faults, which caused more lost time than any bug above

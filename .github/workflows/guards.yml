@@ -39,7 +39,12 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: pip install --quiet pyyaml
+        # Pillow and numpy are for ship_images, which measures the encode it produced rather
+        # than asserting a figure. Installed rather than skipped when absent: a self-test that
+        # quietly skips is a self-test that never runs, and the whole point of running these in
+        # CI is that the developer's container is not the thing being checked. This exact gap
+        # shipped green locally and failed here on the first push.
+        run: pip install --quiet pyyaml pillow numpy
 
       - name: Ownership self-test (prove the gate can go red)
         run: python3 scripts/shared/ownership_check.py --self-test
