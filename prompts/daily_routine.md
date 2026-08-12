@@ -191,12 +191,30 @@ routines are better merged than adjacent: the scouts are subagents doing wall-cl
 parallel, and the record's worklist is main-context work that does not need them. Doing the
 record while they are out is free.
 
-Spawn up to 6 `carousel-scout` agents, one per beat, **in a single message so they run
-concurrently**. Beats: `data-centers`, `power-and-the-grid`, `state-policy`,
-`land-water-and-permitting`, `defense-and-federal`, `research-and-science`,
-`health-and-education`, `surveillance-and-policing`.
+**READ `knowledge/shared/APPLICATIONS.md` FIRST.** The deck is about **AI IN USE** in Texas, and a
+decision is context. The docket on this same site already publishes every decision every day, which
+is exactly why the deck must not simply narrate it back.
 
-Pick the beats today plausibly has a story in. Six scouts on four live beats is waste.
+The first version of this list had eight beats and six were policy or infrastructure. The sibling
+in Alaska runs SIX and the shape is the correction: power and compute is ONE, policy and money is
+ONE, and everything else is the field, the lab, the robots and what people are actually saying.
+
+Spawn up to 6 `carousel-scout` agents, one per beat, **in a single message so they run
+concurrently**:
+
+| beat | what it covers |
+|---|---|
+| **`ai-in-the-field`** | the oilfield, farm and ranch, water, freight and the driverless lanes, rail and port, aviation and space, construction. Where the work is |
+| **`clinic-and-classroom`** | the Texas Medical Center, MD Anderson, hospital deployment, and what is actually happening in schools |
+| **`research-and-machines`** | TACC's Vista and Horizon, UT, A&M, Rice, UTSA, the public compute nobody fences off |
+| **`what-texas-makes`** | fabs, chips, plant floor, space hardware. The state is on both ends of the same supply chain |
+| `power-and-compute` | data centres, the grid, ERCOT, interconnection, water for cooling. **ONE beat** |
+| `policy-and-money` | the Legislature, the AG, PUCT, procurement, surveillance and policing, defence. **ONE beat**, and the docket already carries it |
+| **`community-signal`** | what Texans are actually discussing about this. Salience and angle only, never sole sourcing |
+
+Pick the beats today plausibly has a story in. Six scouts on four live beats is waste. **But at
+least half the scouts you do send must be on an application beat**, because left alone this drifts
+toward whatever is easiest to source, and what is easiest to source is a filing.
 
 Then, without waiting on them:
 

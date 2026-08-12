@@ -82,6 +82,13 @@ RESIDUE_ALLOW = {
     # than a directory glob so the exemption cannot quietly spread.
     "knowledge/shared/GRID_WATCH_DESIGN.md",
     "knowledge/shared/OIL_WATCH_DESIGN.md",
+    # The application-layer research, and the routine that acts on it. Both name the sibling
+    # because the correction they carry only makes sense against it: this product's beats were
+    # six-of-eight policy until somebody counted the sibling's and found power and compute was
+    # ONE of six there. Strip the comparison and what is left is a beat list with no argument
+    # behind it, which is a list the next context reorders on a whim.
+    "knowledge/shared/APPLICATIONS.md",
+    "prompts/daily_routine.md",
     # The site design study. It is a device-by-device comparison against the sibling product's
     # published site, written because the owner judged the Texas one a downgrade and the answer
     # had to be specific rather than a feeling. Naming what each device was copied FROM, and
