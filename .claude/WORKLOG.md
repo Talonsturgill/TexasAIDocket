@@ -60,7 +60,7 @@ Thinnest agents: pixel-critic 53%, caption-critic 62%, upgrade-engineer 62%.
 | B | `instincts.json` + the ledger the retro phase writes | **DONE** — 39 self-tests. Confidence is DERIVED, never written |
 | C | `CAPTION_CRAFT.md`, Texas material | **DONE** — written, not retheemed. Manifest disposition corrected to REBUILD |
 | D | `TECHNIQUE_LIBRARY.md`, Texas material | **DONE** — every named API verified to exist |
-| E | Deepen pixel-critic, caption-critic, upgrade-engineer | TODO |
+| E | Deepen pixel-critic, caption-critic, upgrade-engineer | **DONE** — all three now exceed the sibling's, written from THIS repo's lessons |
 | F | Deepen `daily_routine.md` against the new gates and craft | TODO |
 | G | End-to-end proof: render the demo deck, run every gate on it | TODO |
 | H | Reconcile manifest, update CLAUDE.md layout, hand off triggers | TODO |
@@ -188,3 +188,15 @@ Thinnest agents: pixel-critic 53%, caption-critic 62%, upgrade-engineer 62%.
 - 2026-08-12 — the residue gate caught "Alaska's weather, not ours" inside that doc on the next
   run. Correct catch: the point survives without the name, and saying caliche haze is dust hanging
   in hot air rather than water is better craft writing than a comparison to somewhere else.
+- 2026-08-12 — Wave E. The three thinnest agents deepened from this repo's own accumulated
+  knowledge rather than from the sibling's text, which by now is the better source: fourteen gate
+  lessons, a technique library with a failure mode per entry, and an ownership map that has been
+  wrong twice. 2933 to 6331, 2392 to 4872, 3016 to 6332 bytes, each now past its sibling.
+  The three most useful additions were not length. The pixel critic is told to READ THE PIXEL and
+  never reason from the code, because this repo shipped a page that rendered mauve with all 62
+  contrast pairings passing. It is also told that the plan can be the problem: it grades against
+  the dossier, so a slide that executed a bad plan faithfully passes its own checklist, and being
+  the last reader positioned to see that, it should report a trivially satisfiable checklist as a
+  finding of its own. The upgrade engineer is told its lane is narrower than the run's, that it
+  stamps `upgrade` and may propose a prompt change but never make one, and that zero upgrades is a
+  valid number.
