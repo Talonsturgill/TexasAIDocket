@@ -347,14 +347,23 @@ def annotated() -> str:
   --shell:72rem;
 }}
 
-/* A reader who has asked for light gets light, and gets a real material rather than an
-   inverted one. Caliche is the ground here and the type on the dark register: one stone,
-   two jobs. The roles are identical, so the reservation on red and the meaning of every
-   other token survive the switch. */
-@media (prefers-color-scheme: light) {{
-  :root:not([data-theme="dark"]) {{ {_vars(p['light'])} }}
-}}
+/* THE DUSK REGISTER IS THE DESIGN, AND EVERY READER GETS IT. This used to follow the operating
+   system, so a reader on light saw a register nobody had ever looked at. The atmosphere is a Big
+   Bend night: a star field, a horizon glow and the Lone Star. Rendered over caliche paper it does
+   not become a daylight version of itself, it becomes mud. Multiplying `accent`, which is Capitol
+   granite red, at 20 percent over cream measured #F0E4D7, twelve points of red over green across
+   a large soft field, and a large soft field of warm-shifted cream reads as pink whatever the
+   numbers say. The owner saw the site for the first time on a light machine and asked why the
+   background was pink. It was pink.
+   Following `prefers-color-scheme` is normally right and it is not right here, because the two
+   registers were never equals: one is a place drawn at an hour, the other was a fallback. So the
+   fallback stops being automatic.
+   NOTHING IS DELETED. The paper palette still exists, still has all 62 of its pairings computed
+   and gated, and still drives `@media print`, which is the one place it is unarguably correct: a
+   docket page printed on a night ground wastes a cartridge and reads worse. It stays reachable
+   as an explicit `data-theme="light"` for the day there is a toggle to reach it with. */
 :root[data-theme="light"] {{ {_vars(p['light'])} }}
+@media print {{ :root {{ {_vars(p['light'])} }} }}
 
 *,*::before,*::after {{ box-sizing:border-box; }}
 /* THE CLIP GOES ON html, NOT body. The masthead's full-bleed glass panel is 100vw wide
@@ -522,19 +531,16 @@ body::after {{ content:""; position:fixed; inset:0; pointer-events:none; z-index
    shadow repaints a huge area every frame, and a mark that flickers stops being a mark. */
 @keyframes twinkle {{ 0%,100% {{ opacity:.8; }} 31% {{ opacity:.96; }} 52% {{ opacity:.86; }}
   74% {{ opacity:1; }} 88% {{ opacity:.9; }} }}
-/* On paper the sky is a dusk haze rather than a night, so the star field comes off and the
-   warm layers thin right down. A star field on a cream page is confetti. */
-:root[data-theme="light"] .sky .stars, :root[data-theme="light"] .sky .lonestar {{ display:none; }}
-:root[data-theme="light"] .sky .veil {{ opacity:.2; mix-blend-mode:multiply; }}
-:root[data-theme="light"] .sky .shimmer, :root[data-theme="light"] .sky .horizon {{ opacity:.25;
-  mix-blend-mode:multiply; }}
-@media (prefers-color-scheme:light) {{
-  :root:not([data-theme="dark"]) .sky .stars,
-  :root:not([data-theme="dark"]) .sky .lonestar {{ display:none; }}
-  :root:not([data-theme="dark"]) .sky .veil {{ opacity:.2; mix-blend-mode:multiply; }}
-  :root:not([data-theme="dark"]) .sky .shimmer,
-  :root:not([data-theme="dark"]) .sky .horizon {{ opacity:.25; mix-blend-mode:multiply; }}
-}}
+/* ON PAPER THERE IS NO SKY AT ALL, and the version that tried to keep one is what made the
+   background pink. The old rule thinned the warm layers to 20 percent and switched them to
+   multiply, on the theory that a night could become a daylight haze by turning it down. It
+   cannot. Multiply takes the darker of the two, so the only thing a red veil can do to cream
+   paper is stain it, and a stain spread across a soft field the width of the page is read as a
+   colour rather than as weather. Measured at #F0E4D7, twelve points of red over green.
+   The dusk is a real place at a real hour. Paper is a different material and gets the honest
+   version of itself, which is paper. The atmosphere is a night sky or it is nothing. */
+:root[data-theme="light"] .sky {{ display:none; }}
+@media print {{ .sky {{ display:none; }} }}
 
 h1,h2,h3 {{ font-family:var(--display); font-weight:600; line-height:1.15;
   letter-spacing:-.012em; color:var(--ink-bright); margin:0 0 .5em; text-wrap:balance; }}
@@ -1181,12 +1187,42 @@ def self_test() -> int:
         ("prefers-reduced-motion", "motion is opt in"),
         ("focus-visible", "keyboard focus is visible"),
         ("tabular-nums", "figures align as measurements"),
-        ("prefers-color-scheme", "a light reader gets light"),
         (".skip", "there is a skip link"),
         ("@media print", "the record prints"),
         ("font-display:swap", "type never blocks the first paint"),
     ]:
         check(why, want in sheet)
+
+    # ---- one register, and the paper one kept for the job it is right for ------
+    # THIS USED TO ASSERT THAT A LIGHT READER GETS LIGHT, and the site deliberately stopped
+    # promising that. The two registers were never equals. The dark one is a place drawn at an
+    # hour, with a star field and a horizon; the light one was a fallback, and the atmosphere
+    # rendered over cream paper multiplied into a rose stain across the whole page. The owner's
+    # first look at the live site was on a light machine and the question was why the background
+    # was pink.
+    #
+    # The assertions below are the decision, so that reinstating the automatic switch means
+    # arguing with a gate rather than deleting a comment.
+    check("the dusk register is what a reader gets, whatever the machine prefers",
+          "prefers-color-scheme" not in sheet)
+    check("...the paper palette is kept, not deleted", ':root[data-theme="light"]' in sheet)
+    check("...and it is what prints, because a record on a night ground wastes a cartridge",
+          "@media print" in sheet and f"--bg:{p['light']['bg']}" in sheet)
+    # A night sky over cream is the fault itself, so it must not be reachable in either paper
+    # route. Checked on both, because print is the one that would have been forgotten.
+    #
+    # MATCHED AS A RULE, NOT AS TWO SUBSTRINGS THAT HAPPEN TO BE NEAR EACH OTHER. The first
+    # version looked for "@media print" and then for "display:none" within the next 220
+    # characters, which found the PALETTE print block and reported a fault that was not there.
+    # Three separate print blocks exist and proximity says nothing about which one matched. This
+    # is the fourth time substring matching has lied in this file.
+    for label, pattern in (
+            ("the paper register", r':root\[data-theme="light"\]\s+\.sky\s*\{\s*display:none'),
+            ("print", r'@media print\s*\{\s*\.sky\s*\{\s*display:none')):
+        # `re`, not the `_re` the rest of this function uses. That alias is bound further down,
+        # which makes it local to the whole function and unusable above its own import line.
+        check(f"the atmosphere does not render on paper, via {label}",
+              bool(re.search(pattern, sheet)))
 
     check("no severity ramp on the map",
           ".txmap .c.on" in sheet and ".txmap .c.warn" not in sheet)

@@ -123,13 +123,78 @@ await p.goto(page_url);
 await p.waitForTimeout(1200);
 
 // Sample where no content sits: the outer gutters and the strip above the fold's copy. Points
-// are chosen from the layout, not at random, so a failure names a place on the page.
+// are chosen from the layout, not at random, so a failure names a place on the page. Declared
+// here because both the register comparison below and the ground checks after it use them.
 const spots = {
   'top left gutter': [8, 120],
   'top right gutter': [1430, 120],
   'right of the headline': [1380, 640],
   'left gutter, mid hero': [8, 640],
 };
+
+/* ---------- A READER ON A LIGHT MACHINE MUST GET THE SAME PAGE ---------- */
+//
+// THE GAP THAT LET THE PINK SHIP TWICE. Every check in this file opened the page with
+// `colorScheme: 'dark'`, so a whole second register was never once looked at by anything. The
+// owner opened the live site on a light machine and asked why the background was pink. It was:
+// the dusk atmosphere rendered over cream paper with `mix-blend-mode: multiply`, and multiply
+// takes the darker of the two, so the only thing a red veil can do to cream is stain it. Measured
+// at #F0E4D7, twelve points of red over green, spread across a soft field the width of the page.
+//
+// This is the same fault as a branch that only renders at two records: a mode nothing ever opens
+// is a mode nothing ever checks. So before anything else, the light machine is asked what it gets.
+{
+  const lightCtx = await browser.newContext({
+    colorScheme: 'light', viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1,
+  });
+  const lp = await lightCtx.newPage();
+  await lp.goto(page_url);
+  await lp.waitForTimeout(1200);
+  // CONTENT COMES OFF, because the thing under test is the GROUND. The accent is Capitol granite
+  // and the headline wears it on purpose, so an unhidden scan finds #DD8B60 at 82 points of red
+  // over green and reports the design as a fault. Leaving it in would mean choosing a ceiling
+  // loose enough to ignore the type, which is a ceiling loose enough to ignore a stain.
+  await lp.addStyleTag({ content: 'body > header, body > main, body > footer { visibility: hidden }' +
+                                  ' body::before { display: none }' });
+  await lp.waitForTimeout(300);
+  // COMPARED AGAINST THE DARK RENDER, not held to an absolute warmth ceiling. Two attempts at a
+  // ceiling found the accent on the headline and then the Lone Star's halo, both of which are
+  // Capitol granite and warm because they are supposed to be. There is no number that separates
+  // "warm on purpose" from "stained" without knowing which is which. The question the site
+  // actually has to answer is narrower and has no magic number in it: does a reader on a light
+  // machine get the same page? So both are rendered and the grounds are compared.
+  await p.addStyleTag({ content: 'body > header, body > main, body > footer { visibility: hidden }' +
+                                 ' body::before { display: none }' });
+  await p.waitForTimeout(300);
+  const lightIm = decodePNG(await lp.screenshot());
+  const darkIm = decodePNG(await p.screenshot());
+  // A patch mean, because the film grain is +/- 26 per pixel and a single point compares noise.
+  const patch = (im, cx, cy) => {
+    let r = 0, g = 0, b = 0, n = 0;
+    for (let y = cy - 4; y <= cy + 4; y++) for (let x = cx - 4; x <= cx + 4; x++) {
+      const c = px(im, x, y); r += c[0]; g += c[1]; b += c[2]; n++;
+    }
+    return [r / n, g / n, b / n];
+  };
+  const drift = [];
+  for (const [where, [x, y]] of Object.entries(spots)) {
+    const a = patch(lightIm, Math.min(x, 1430), y), d = patch(darkIm, Math.min(x, 1430), y);
+    const delta = Math.max(...[0, 1, 2].map(i => Math.abs(a[i] - d[i])));
+    if (delta > 8) drift.push(`${where} off by ${delta.toFixed(0)}`);
+  }
+  ok('a reader on a light machine gets the same page', drift.length === 0, drift.join(', '));
+  // The register itself, asked of the browser rather than inferred from pixels. If a future edit
+  // reinstates the automatic switch, this is the line that says so in one word.
+  const lightBg = await lp.evaluate(() => getComputedStyle(document.body).backgroundColor);
+  const darkBg = await p.evaluate(() => getComputedStyle(document.body).backgroundColor);
+  ok('...and it is the dusk register, the one the design was drawn in', lightBg === darkBg,
+     `light ${lightBg}, dark ${darkBg}`);
+  await lightCtx.close();
+  // The dark page had its content hidden for the comparison, so it is reloaded before
+  // the ground checks below, which read a page a reader would actually see.
+  await p.reload();
+  await p.waitForTimeout(1200);
+}
 
 for (const [where, [x, y]] of Object.entries(spots)) {
   const im = decodePNG(await p.screenshot());
