@@ -298,7 +298,7 @@ def check_wiring(root: Path) -> Result:
             if holder in PLAN_DOCS:
                 continue    # being named in a plan is not being wired into the machine; that
                             # confusion is exactly the failure this check exists to catch
-            if name in text or re.search(rf"\bimport\s+{re.escape(stem)}\b", text) \
+            if invokes(text, name) or re.search(rf"\bimport\s+{re.escape(stem)}\b", text) \
                     or re.search(rf"\bfrom\s+{re.escape(stem)}\s+import\b", text):
                 referenced = True
                 break
@@ -310,6 +310,32 @@ def check_wiring(root: Path) -> Result:
     if not orphans:
         r.note(f"all {len(scripts)} script(s) reachable")
     return r
+
+
+def invokes(text: str, name: str) -> bool:
+    """Does this file actually PUT THE SCRIPT TO WORK, or does it only prove the script runs?
+
+    A `--self-test` line is not wiring. It says the script's own tests pass, which is a fact
+    about the script and says nothing about anything calling it in anger. Every gate in this
+    repo is listed in `guards.yml` as a self-test, so counting that as a reference made the
+    orphan check structurally unable to fail for the entire class of file it matters most for.
+
+    That was not theoretical. Merging the two routine prompts into one on 2026-08-12 meant
+    writing a fresh prompt and deleting both old ones, which is precisely when a gate gets
+    dropped by hand. Every one of them would have kept passing this check while being invoked
+    by nothing, and "we moved it and never wired it" is the single failure this whole audit
+    exists to catch.
+
+    Verified by deleting the dedupe gate's invocation from the routine: green before this
+    change, red after.
+    """
+    for line in text.splitlines():
+        if name not in line:
+            continue
+        if "--self-test" in line:
+            continue                    # proves the script works, not that anything calls it
+        return True
+    return False
 
 
 # --------------------------------------------------------------------------- 4 schema
@@ -746,6 +772,30 @@ def self_test() -> int:
         expect("wiring catches an orphan script", check_wiring(root), "FAIL")
         (root / "prompts" / "r.md").write_text("then run scripts/a.py\n", encoding="utf-8")
         expect("wiring passes a referenced script", check_wiring(root), "PASS")
+
+        # A SELF-TEST IS NOT WIRING, and this is the case that mattered most. Every gate in
+        # this repo is listed in guards.yml as `<gate>.py --self-test`, so while that counted
+        # as a reference the orphan check could not fail for a gate no matter what. It would
+        # have watched a routine rewrite drop a gate entirely and reported all clear.
+        (root / ".github" / "workflows").mkdir(parents=True)
+        (root / ".github" / "workflows" / "guards.yml").write_text(
+            "      - run: python3 scripts/a.py --self-test\n", encoding="utf-8")
+        (root / "prompts" / "r.md").write_text("nothing calls it now\n", encoding="utf-8")
+        expect("wiring REFUSES a script whose only mention is a CI self-test",
+               check_wiring(root), "FAIL")
+        (root / "prompts" / "r.md").write_text(
+            "then run scripts/a.py --date <date>\n", encoding="utf-8")
+        expect("wiring passes once something actually invokes it", check_wiring(root), "PASS")
+        # A real invocation in the WORKFLOW is still wiring. Cron-driven collectors live there
+        # and appear in no prompt at all, so this must not become "prompts only".
+        (root / "prompts" / "r.md").write_text("nothing calls it now\n", encoding="utf-8")
+        (root / ".github" / "workflows" / "guards.yml").write_text(
+            "      - run: python3 scripts/a.py --self-test\n"
+            "      - run: python3 scripts/a.py --collect\n", encoding="utf-8")
+        expect("wiring accepts a real invocation in a workflow", check_wiring(root), "PASS")
+        import shutil as _shutil
+        _shutil.rmtree(root / ".github")
+        (root / "prompts" / "r.md").write_text("then run scripts/a.py\n", encoding="utf-8")
 
         # schema: bad json, then a missing envelope, then valid
         (root / "ledger" / "x.json").write_text("{not json", encoding="utf-8")

@@ -1,7 +1,7 @@
 # Texas AI Docket
 
 Source repo for the Texas AI Docket: a public, fact-checked record of AI decisions in Texas,
-the website that publishes it, the daily LinkedIn carousel routine, the Texas Grid Watch, and
+the website that publishes it, the daily routine that maintains both, the Texas Grid Watch, and
 the in-browser ask engine.
 
 ## Work in progress
@@ -54,7 +54,18 @@ carousel, the grid watch, and the ask lane together, and each ends in a phase wh
 job is editing its own machine. Prose is not a boundary against that. `ownership.yaml` is.
 
 **Every path in this repo has exactly one owning actor.** Before you write, know which actor
-you are (`carousel`, `gridwatch`, `ask`, `human`) and write only what that actor owns.
+you are (`daily`, `upgrade`, `gridwatch`, `ask`, `human`) and write only what that actor owns.
+
+The record and the deck were two routines until 2026-08-12 and are one now, on the owner's call.
+One process gets one actor, `daily`. Two actors for one process is a fiction the checker cannot
+enforce, because the process stamps one name and then needs the other's lane, and the first thing
+it learns is that the stamp is negotiable.
+
+`upgrade` is the exception and it earns its keep. The retro phase's whole job is editing the
+machine, and while the carousel was its own actor it could not reach `ledger/docket.json` because
+it simply did not own it. Merged, that protection is gone unless it is stated, so the phase stamps
+`upgrade`, which owns the machine's own files and nothing else. **A self-editing phase must never
+be able to edit the public record.**
 
 - `python3 scripts/shared/ownership_check.py --actor <a> --diff <range>` fails on any
   out-of-lane write. Run it before you commit.
@@ -132,9 +143,10 @@ physical system on a scale of days. They are siblings, not parent and child. The
   delivery policy says a failed run does not merge, which is right for editorial output and
   wrong for a time series. A carousel run failing its gates on a Tuesday must not cost
   Tuesday's reading. A missed day is the one irreversible failure this project has.
-- The carousel routine LOOKS at the page every run and may fix PRESENTATION only. The
-  collectors, the model config and the ledgers are off limits to it. That check never blocks a
-  run and a bad run never stops the check.
+- The daily routine LOOKS at the page every run and may fix PRESENTATION only, in
+  `scripts/site/gridwatch_page.py` and `scripts/site/waterwatch_page.py`, which are named one by
+  one in `ownership.yaml` rather than covered by a glob. The collectors, the model config and the
+  ledgers are off limits to it. That check never blocks a run and a bad run never stops the check.
 
 ## Sibling repos
 
@@ -153,8 +165,11 @@ Alaska's history would poison them.
 
 ## Layout
 
-- `prompts/` — the routine prompts. Each is the single source of truth for its routine; the
-  trigger prompts in the routines UI are thin pointers that say "read this file and execute it".
+- `prompts/` — `daily_routine.md` is the single source of truth for the one daily routine, which
+  maintains the record and then ships the deck. `ROUTINE_PROMPT.txt` is the thin pointer pasted
+  into the routines UI, which says only "read that file from main and execute it", deliberately,
+  so the real instructions stay versioned and reviewable rather than living in a settings box
+  nobody diffs.
 - `knowledge/` — `shared/` (Texas research, design doctrine, vernacular), `carousel/` (craft
   doctrine for the deck engine). Video craft doctrine lives in `TexasAIDispatch`.
   **`shared/GATE_LESSONS.md` is required reading before you add a gate, trust one, or conclude

@@ -65,7 +65,7 @@ Both structural gates self-test before they run.
 ```bash
 # No automation may write outside its lane.
 python3 scripts/shared/ownership_check.py --self-test
-python3 scripts/shared/ownership_check.py --actor carousel --diff origin/main...HEAD
+python3 scripts/shared/ownership_check.py --actor daily --diff origin/main...HEAD
 
 # Is the port done, and is what we moved actually wired up?
 python3 scripts/shared/port_audit.py --self-test

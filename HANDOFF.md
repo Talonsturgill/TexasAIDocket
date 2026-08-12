@@ -75,17 +75,23 @@ replaces it. `SITE_URL` in `scripts/site/site_build.py` is the one key to change
 
 ---
 
-## 3. Create the routine triggers
+## 3. Create the routine trigger
 
-At claude.ai/code/routines. Each trigger's prompt is a thin pointer; the real instructions live
-in this repo so they are versioned and reviewable.
+**One routine, not two.** At claude.ai/code/routines. The trigger's prompt is a thin pointer; the
+real instructions live in this repo so they are versioned and reviewable.
 
 | routine | prompt file | cadence |
 |---|---|---|
-| Texas AI Docket, carousel | `prompts/carousel_routine.md` | daily |
-| Texas AI Docket, record | `prompts/docket_routine.md` | daily, offset from the carousel |
+| Texas AI Docket, daily | `prompts/daily_routine.md` | daily |
 
-The trigger prompt should say, in full: *read `prompts/<file>` from `main` and execute it.*
+The trigger prompt is the contents of `prompts/ROUTINE_PROMPT.txt`, which says in full: *read
+`prompts/daily_routine.md` from `main` and execute it.*
+
+This was two routines until 2026-08-12, one for the record and one for the deck. They are one
+now, matching the sibling product. Two daily routines meant two branches, two pull requests, two
+merges and two site rebuilds racing each other for the same `docs/` tree. A single routine cannot
+race itself, and it updates the record **before** it picks the story, so a deck can only be built
+on a decision the record already holds.
 
 **Set permissions to `bypassPermissions`.** An unattended run wedges forever on a permission
 prompt with nobody there to answer it.

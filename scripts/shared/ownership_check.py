@@ -12,9 +12,9 @@ Reads ownership.yaml, works out which files a change touches, and fails if the a
 automation does not own one of them. Rules are matched like .gitignore: evaluated in order,
 LAST match wins, so broad defaults sit at the top and carve-outs below.
 
-    ownership_check.py --actor carousel --diff origin/main...HEAD
+    ownership_check.py --actor daily --diff origin/main...HEAD
     ownership_check.py --actor gridwatch --staged
-    ownership_check.py --actor carousel --files docs/index.html ledger/docket.json
+    ownership_check.py --actor daily --files docs/index.html ledger/docket.json
     ownership_check.py --self-test
 
 EXIT CODES
@@ -135,6 +135,36 @@ class OwnershipMap:
             if branch.startswith(prefix) and (best is None or len(prefix) > len(best[0])):
                 best = (prefix, actor)
         return best[1] if best else None
+
+    def shadowed(self) -> list[tuple[int, str, str]]:
+        """Rules a LATER rule has silently repealed.
+
+        In a last-match-wins file a broad rule added at the bottom repeals a specific rule at
+        the top, and the repealed rule still reads perfectly. That is not hypothetical here.
+        `scripts/site/**` was written once as `owner: human` with the note "the gates, a
+        routine that can edit the gate that judges it has no gate", and then written a second
+        time further down with `rebuild_by: [carousel, gridwatch]`. The second won. For as long
+        as it stood, the carousel could edit site_build.py, house_style_check.py and
+        docket_build.py, which are the gates that judge it, while the file said the opposite in
+        the plainest language anyone could write.
+
+        The test is direct rather than clever. Build the most canonical path each rule exists
+        to match, then ask the map which rule claims it. A rule that does not answer for its
+        own namesake path is not narrowing anything, it is decoration.
+
+        A rule may legitimately be overridden for PART of its range, which is how every
+        carve-out here works. This only reports a rule overridden across the whole of it.
+        """
+        out = []
+        for i, rule in enumerate(self.rules):
+            probe = rule.path.replace("**/", "d/").replace("**", "d/f").replace("*", "f")
+            probe = probe.rstrip("/") or "f"
+            if not rule.matches(probe):
+                continue                    # can't build a probe for it, so can't judge it
+            winner = self.rule_for(probe)
+            if winner is not rule:
+                out.append((i, rule.path, winner.path if winner else "(none)"))
+        return out
 
 
 # --------------------------------------------------------------------------- git
@@ -301,6 +331,61 @@ def self_test() -> int:
         if not ok:
             failures += 1
 
+    # THE SHADOWED-RULE DETECTOR, replayed against the exact defect it was written for. The
+    # real map carried these two rules in this order for a week. The strict one reads as
+    # plainly as a rule can and was worth nothing, because the one below repealed it.
+    repealed = OwnershipMap(yaml.safe_load("""
+version: 1
+actors: {carousel: c, human: h}
+rules:
+  - path: "**"
+    owner: human
+  - path: "scripts/site/**"
+    owner: human
+  - path: "scripts/site/**"
+    owner: human
+    rebuild_by: [carousel]
+"""))
+    shadows = repealed.shadowed()
+    ok = [s[1] for s in shadows] == ["scripts/site/**"]
+    print(f"  {'ok  ' if ok else 'FAIL'}  a rule repealed by a later duplicate is REPORTED")
+    failures += 0 if ok else 1
+    ok = "carousel" in repealed.rule_for("scripts/site/site_build.py").writers()
+    print(f"  {'ok  ' if ok else 'FAIL'}  ...and the repeal was real, not cosmetic")
+    failures += 0 if ok else 1
+
+    # A carve-out narrower than the rule above it is the normal way this file works, and must
+    # not be reported. Only a rule overridden across the WHOLE of its range is dead.
+    carved = OwnershipMap(yaml.safe_load("""
+version: 1
+actors: {daily: d, human: h}
+rules:
+  - path: "**"
+    owner: human
+  - path: "scripts/site/**"
+    owner: human
+  - path: "scripts/site/gridwatch_page.py"
+    owner: human
+    rebuild_by: [daily]
+"""))
+    ok = carved.shadowed() == []
+    print(f"  {'ok  ' if ok else 'FAIL'}  a narrower carve-out is NOT reported as shadowing")
+    failures += 0 if ok else 1
+
+    # And the shipped map itself, because the detector exists to guard that one.
+    try:
+        live = OwnershipMap.load(DEFAULT_MAP)
+        live_shadows = live.shadowed()
+        ok = live_shadows == []
+        print(f"  {'ok  ' if ok else 'FAIL'}  the shipped ownership.yaml has no dead rules")
+        if not ok:
+            failures += 1
+            for _, dead, by in live_shadows:
+                print(f"        {dead!r} is repealed by {by!r}", file=sys.stderr)
+    except Exception as exc:                                            # noqa: BLE001
+        print(f"  FAIL  cannot read the shipped map: {exc}")
+        failures += 1
+
     # Branch inference, including longest-prefix wins.
     for branch, expect in [("claude/carousel-2026-08-11", "carousel"),
                            ("gridwatch/2026-08-11", "gridwatch"),
@@ -350,7 +435,7 @@ def self_test() -> int:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--actor", help="carousel | gridwatch | ask | dispatch | human")
+    ap.add_argument("--actor", help="daily | upgrade | gridwatch | ask | dispatch | human")
     ap.add_argument("--diff", help="git range, e.g. origin/main...HEAD")
     ap.add_argument("--staged", action="store_true", help="check the staged change")
     ap.add_argument("--files", nargs="*", help="check these paths directly")
