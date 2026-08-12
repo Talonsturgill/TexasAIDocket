@@ -16,10 +16,8 @@
   --hair:1px;
   --shell:72rem;
 }
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme="dark"]) { --bg:#F6F1E4;--surface:#EDE6D6;--raised:#E4D8C3;--ink:#0F0C1C;--ink-bright:#08060F;--ink-mute:#625E5F;--rule:#CFC2A6;--accent:#9A3B2A;--accent-deep:#6F2A1E;--rule-strong:#837A69;--urgent:#BF0A30;--on-accent:#EDE6D6;--sig-open:#2B6A52;--sig-soon:#BF0A30;--sig-shut:#635C70;--sig-link:#466278; }
-}
 :root[data-theme="light"] { --bg:#F6F1E4;--surface:#EDE6D6;--raised:#E4D8C3;--ink:#0F0C1C;--ink-bright:#08060F;--ink-mute:#625E5F;--rule:#CFC2A6;--accent:#9A3B2A;--accent-deep:#6F2A1E;--rule-strong:#837A69;--urgent:#BF0A30;--on-accent:#EDE6D6;--sig-open:#2B6A52;--sig-soon:#BF0A30;--sig-shut:#635C70;--sig-link:#466278; }
+@media print { :root { --bg:#F6F1E4;--surface:#EDE6D6;--raised:#E4D8C3;--ink:#0F0C1C;--ink-bright:#08060F;--ink-mute:#625E5F;--rule:#CFC2A6;--accent:#9A3B2A;--accent-deep:#6F2A1E;--rule-strong:#837A69;--urgent:#BF0A30;--on-accent:#EDE6D6;--sig-open:#2B6A52;--sig-soon:#BF0A30;--sig-shut:#635C70;--sig-link:#466278; } }
 *,*::before,*::after { box-sizing:border-box; }
 html { -webkit-text-size-adjust:100%; scroll-behavior:smooth; overflow-x:clip; }
 @media (prefers-reduced-motion:reduce) {
@@ -119,17 +117,8 @@ radial-gradient(1.1px 1.1px at 71% 46%,rgba(244,238,225,0.32),transparent 60%); 
 .sky .lonestar .twinkle { animation:twinkle 5.5s ease-in-out infinite; }
 @keyframes twinkle { 0%,100% { opacity:.8; } 31% { opacity:.96; } 52% { opacity:.86; }
   74% { opacity:1; } 88% { opacity:.9; } }
-:root[data-theme="light"] .sky .stars, :root[data-theme="light"] .sky .lonestar { display:none; }
-:root[data-theme="light"] .sky .veil { opacity:.2; mix-blend-mode:multiply; }
-:root[data-theme="light"] .sky .shimmer, :root[data-theme="light"] .sky .horizon { opacity:.25;
-  mix-blend-mode:multiply; }
-@media (prefers-color-scheme:light) {
-  :root:not([data-theme="dark"]) .sky .stars,
-  :root:not([data-theme="dark"]) .sky .lonestar { display:none; }
-  :root:not([data-theme="dark"]) .sky .veil { opacity:.2; mix-blend-mode:multiply; }
-  :root:not([data-theme="dark"]) .sky .shimmer,
-  :root:not([data-theme="dark"]) .sky .horizon { opacity:.25; mix-blend-mode:multiply; }
-}
+:root[data-theme="light"] .sky { display:none; }
+@media print { .sky { display:none; } }
 h1,h2,h3 { font-family:var(--display); font-weight:600; line-height:1.15;
   letter-spacing:-.012em; color:var(--ink-bright); margin:0 0 .5em; text-wrap:balance; }
 h1 { font-size:clamp(var(--s2),6.2vw,var(--s4)); }

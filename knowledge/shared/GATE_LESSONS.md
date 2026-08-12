@@ -101,6 +101,35 @@ reader.
 state, a single-item state, a paginated state, a "no data yet" state. Each is prose somebody
 eventually reads.
 
+## 9a. A mode nothing ever opens is a mode nothing ever checks
+
+The same fault as 9, in a wider form, and it cost the same bug twice.
+
+Every check in `page_ground.mjs` opened the page with `colorScheme: 'dark'`. Every screenshot taken
+during review forced it too. So the light register was never once looked at by anything, by a gate
+or by a person. The owner opened the live site on a light machine and asked why the background was
+pink.
+
+It was. The dusk atmosphere rendered over cream paper with `mix-blend-mode: multiply`, and multiply
+takes the darker of the two, so the only thing a red veil can do to cream paper is stain it.
+Measured at `#F0E4D7`, twelve points of red over green, spread across a soft field the width of the
+page. Small numbers, and a large soft field of warm-shifted cream reads as a colour regardless.
+
+**Two lessons, and the second is the one that generalises.**
+
+The design lesson: a night sky does not become a daylight version of itself by being turned down.
+The atmosphere is a night sky or it is nothing. On paper the honest version of paper is paper.
+
+The gate lesson: **enumerate the modes and check every one.** Colour scheme, viewport, reduced
+motion, print, script disabled, locale. Each is a complete second rendering of the product. A suite
+that only opens one of them is measuring a preference, not a page.
+
+**What to check instead.** Where two modes are meant to agree, render both and **compare them**
+rather than holding each to an absolute threshold. Two attempts at a warmth ceiling here failed on
+the accent in the headline and then on the Lone Star's halo, both warm because they are supposed to
+be. There is no number that separates "warm on purpose" from "stained". There is a very simple
+check that a reader on a light machine gets the same page.
+
 ## 10. A deploy that depends on who pushed
 
 `pages.yml` fired on `push` and nothing else. **A push made with `GITHUB_TOKEN` does not start a
