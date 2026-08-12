@@ -273,9 +273,14 @@ def load_shape_svg(latest: dict) -> str:
         f'<text class="ax" x="{pad_l - 8}" y="{y(v) + 4}" text-anchor="end">'
         f'{int(v / 1000)}</text>'
         for v in [ceil * k / 4 for k in range(5)])
+    # ANCHORED TO THE ENDS, NOT CENTRED ON THEM. A centred label at x=0 puts half its width
+    # outside the drawing, and at the right edge the same thing clipped "midnight" to "midni".
+    # It only became visible when the real monospace face finally started loading, because the
+    # system fallback was narrower and the overhang stayed inside the frame.
     ticks = "".join(
-        f'<text class="ax" x="{x(i)}" y="{h - 8}" text-anchor="middle">{lab}</text>'
-        for i, lab in [(0, "midnight"), (n // 2, "noon"), (n - 1, "midnight")]
+        f'<text class="ax" x="{x(i)}" y="{h - 8}" text-anchor="{anchor}">{lab}</text>'
+        for i, lab, anchor in [(0, "midnight", "start"), (n // 2, "noon", "middle"),
+                               (n - 1, "midnight", "end")]
         if n > 2)
 
     fseg = (f'<path class="fc" d="{fline}"/>' if fline else "")
@@ -287,7 +292,7 @@ def load_shape_svg(latest: dict) -> str:
   <path class="line" d="{line}"/>
   {fseg}
   {ticks}
-  <text class="ax unit" x="{pad_l - 8}" y="{pad_t - 2}" text-anchor="end">GW</text>
+  <text class="ax unit" x="{pad_l - 8}" y="{pad_t - 14}" text-anchor="end">GW</text>
 </svg>
 <figcaption>Measured demand across the day, filled. ERCOT's day ahead forecast, dashed.
 The scale starts at zero, so the flatness is real and not a drawing choice.</figcaption>

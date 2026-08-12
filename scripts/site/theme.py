@@ -430,8 +430,12 @@ body::after {{ content:""; position:fixed; inset:0; pointer-events:none; z-index
 
 /* The mark in the sky, where the sibling puts its constellation. One star, not a pattern,
    which is the entire point of the thing. */
-.sky .lonestar {{ position:absolute; right:4vw; top:7vh; width:min(21vw,210px);
-  height:auto; opacity:.85; }}
+/* THE MARK IS ON THE FRONT PAGE ONLY. Everywhere else the top right of the page is content,
+   not sky, and a 210 pixel star sat over the grid watch's chart and the record's first cards.
+   The atmosphere still runs on every page; the mark does not. */
+.sky .lonestar {{ display:none; }}
+.home .sky .lonestar {{ display:block; position:absolute; right:4vw; top:7vh;
+  width:min(21vw,210px); height:auto; opacity:.85; }}
 .sky .lonestar .twinkle {{ animation:twinkle 5.5s ease-in-out infinite; }}
 /* Scintillation rides on OPACITY and only on the halo subgroup. Animating a blur or a drop
    shadow repaints a huge area every frame, and a mark that flickers stops being a mark. */
@@ -616,6 +620,9 @@ html.js .rise > *:nth-child(5) {{ animation-delay:.42s; }}
    which is what this is. */
 main > section {{ margin-block:var(--band); }}
 main > section:first-child {{ margin-top:calc(var(--band) * .55); }}
+/* An inner page opens with an h1 rather than a hero, and the hero is what was carrying the
+   clearance under the sticky bar. Without it the page title sat against the navigation. */
+main > h1:first-child {{ margin-top:clamp(2rem,6vh,4rem); }}
 main > section > h2 {{ position:relative; padding-top:1.1rem;
   border-top:var(--hair) solid var(--rule); }}
 main > section > h2::after {{ content:""; position:absolute; top:-1px; left:0; width:3.5rem;
