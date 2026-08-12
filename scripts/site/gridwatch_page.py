@@ -393,7 +393,7 @@ def body(records: list[dict], today: str) -> str:
   recent <strong class="num">{n0(t['half_days'])}</strong> days against the first
   <strong class="num">{n0(t['half_days'])}</strong>.</p>
   <p>A trough rising faster than a peak is what large constant load looks like from outside.
-  Weather moves both together; a data centre lifts the floor.</p>
+  Weather moves both together. A data centre lifts the floor.</p>
 </div>"""
     elif f["days_verified"] < 14:
         trend_block = f"""
@@ -414,8 +414,8 @@ def body(records: list[dict], today: str) -> str:
   load have to land on each other. The two rows above differ by
   <strong class="num">{pct(abs(recon))}%</strong>, which is about what direct current ties to
   the neighbouring grids and line losses should account for. It is the cross check that would
-  catch either reader silently breaking, and it is the reason both rows are printed rather
-  than just the one that flatters.</p>"""
+  catch either reader silently breaking. That is why both rows are printed rather than just the
+  one that flatters.</p>"""
 
     return f"""
 <h1>Texas Grid Watch</h1>
@@ -494,9 +494,8 @@ def body(records: list[dict], today: str) -> str:
   {plural(f['days_verified'], 'is a complete settled day', 'are complete settled days')} and
   <strong class="num">{n0(f['days_unverified'])}</strong>
   {plural(f['days_unverified'], 'is', 'are')} marked unverified. An unverified
-  day carries no numbers at all rather than yesterday's, because a gap that says it is a gap is
-  honest and a gap filled with the last known figure is a fabrication nothing downstream can
-  detect.</p>
+  day carries no numbers at all rather than yesterday's. A gap that says it is a gap is honest.
+  A gap filled with the last known figure is a fabrication nothing downstream can detect.</p>
 </div>
 
 <h2>How this is collected</h2>
@@ -505,12 +504,12 @@ def body(records: list[dict], today: str) -> str:
   Measured demand hour by hour, the day ahead forecast ERCOT published for those hours, the
   capacity it had committed and generation by fuel. The raw responses are archived before
   anything parses them.</p>
-  <p>The record stores the full hourly series rather than only the summary, so every figure on this
-  page can be recomputed from <a href="../gridwatch.json">the open data</a> without refetching
+  <p>The record stores the full hourly series rather than only the summary. Every figure on this
+  page can be recomputed from <a href="../gridwatch.json">the open data</a>, without refetching
   anything and without trusting the code that wrote it.</p>
-  <p>ERCOT keeps no archive of these feeds. Each is a rolling window. A day not collected is
-  gone for good, which is why the collector runs on its own schedule and is never a step inside
-  a routine that could fail for an unrelated reason.</p>
+  <p>ERCOT keeps no archive of these feeds. Each is a rolling window. A day not collected is gone
+  for good. So the collector runs on its own schedule, never as a step inside a routine that could
+  fail for an unrelated reason.</p>
 </div>
 """
 
@@ -646,6 +645,26 @@ def self_test() -> int:
 
     check("the accuracy check is computed across every day held",
           fm["accuracy"]["days"] == 28 and fm["accuracy"]["mean_abs_peak_error_mw"] == 500.0)
+
+    # ---- the house rules, on every shape the record can take ------------------
+    # THE RICHER BRANCHES USED TO SHIP UNLINTED UNTIL DATA HAPPENED TO ARRIVE. This page is
+    # written to be true at one record and to say more as the series grows, which is the right
+    # design and it means whole paragraphs exist only at two days, or at fourteen. The sibling
+    # water page proved the cost on 2026-08-12: its comparison paragraph rendered for the FIRST
+    # time the day a second reading landed, carrying a colon and pushing the page over its comma
+    # ceiling, and it reached the deploy gate because nothing had ever linted that branch. The
+    # fixtures above already build every shape. Now the copy in each is read as copy.
+    import house_style_check as _hs                                 # noqa: PLC0415
+    for label, records in (("one settled day", one), ("an empty record", []),
+                           ("an unverified day", unver), ("a full trend", many)):
+        rendered = body(records, records[-1]["date"] if records else "2026-08-11")
+        problems = _hs.caption_check.check(_hs.our_prose(rendered))
+        rate = _hs.caption_check.rate_problem(_hs.our_sentences(rendered),
+                                              _hs.caption_check.SITE_COMMA_CEILING)
+        if rate:
+            problems = problems + [rate]
+        check(f"the copy at {label} keeps the house rules", not problems,
+              "; ".join(problems)[:150])
 
     dup = [rec("2026-08-10", 1.0, 1.0, verified=False), rec("2026-08-10", 83118.16, 58093.11)]
     import tempfile

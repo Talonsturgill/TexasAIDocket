@@ -231,10 +231,10 @@ def body(records: list[dict], today: str) -> str:
     if c:
         direction = "rose" if c["storage_af"] > 0 else "fell" if c["storage_af"] < 0 else "held"
         change = f"""
-  <p>Against {ordinal_date(c['from_date'])}, storage {direction} by
-  <strong class="num">{af(abs(c['storage_af']))}</strong> acre feet, a move of
-  <strong class="num">{pct(abs(c['percent_full']))}</strong> points. Daily movement is the
-  reason this record is daily: a weekly instrument would have shown the same number twice.</p>"""
+  <p>Storage {direction} by <strong class="num">{af(abs(c['storage_af']))}</strong> acre feet
+  against {ordinal_date(c['from_date'])}. That is a move of
+  <strong class="num">{pct(abs(c['percent_full']))}</strong> points. Daily movement is the reason
+  this record is daily. A weekly instrument would have shown the same number twice.</p>"""
 
     agree = ""
     if L.get("agreement") is not None:
@@ -404,6 +404,30 @@ def self_test() -> int:
     unver = [{"_spec": 1, "date": "2026-08-11", "verified": False}]
     check("an unverified day publishes no number",
           figures(unver)["latest"] is None and figures(unver)["days_verified"] == 0)
+
+    # ---- the house rules, on every shape the record can take ------------------
+    # THE RICHER BRANCHES USED TO SHIP UNLINTED UNTIL DATA HAPPENED TO ARRIVE. This page is
+    # written to be true at one record and to say more as the series grows, so whole paragraphs
+    # exist only at two records or more. The comparison paragraph rendered for the FIRST time on
+    # 2026-08-12, the day a second reading landed, carrying a colon and pushing the page's comma
+    # rate over its ceiling. It reached the deploy gate because nothing had ever linted it: the
+    # fixtures below already built the two record shape, and the checks on it only asked
+    # structural questions.
+    #
+    # A page that degrades honestly has more shapes than a page that does not, and every one of
+    # them is copy a reader eventually sees. So the linter runs on all of them here, at the same
+    # moment the fixture is built, rather than on whichever shape today's data happens to produce.
+    import house_style_check as _hs                                 # noqa: PLC0415
+    for label, records in (("one record", one), ("two records", two), ("a gap", gapped),
+                           ("an empty record", []), ("an unverified day", unver)):
+        rendered = body(records, records[-1]["date"] if records else "2026-08-11")
+        problems = _hs.caption_check.check(_hs.our_prose(rendered))
+        rate = _hs.caption_check.rate_problem(_hs.our_sentences(rendered),
+                                              _hs.caption_check.SITE_COMMA_CEILING)
+        if rate:
+            problems = problems + [rate]
+        check(f"the copy at {label} keeps the house rules", not problems,
+              "; ".join(problems)[:150])
 
     # THE QUOTED ESCAPE HATCH, held to its own standard. It is the one route by which a numeral
     # that was not computed can reach a reader, so it must be impossible to widen quietly.

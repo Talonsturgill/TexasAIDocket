@@ -1,6 +1,6 @@
 # DIR must run an AI regulatory sandbox letting state agencies test systems outside normal rules
 
-The Department of Information Resources is required to establish a programme letting eligible public entities contract with registered vendors to test AI systems before deployment, expressly without full compliance with otherwise applicable regulations. Vendors apply, and participants file quarterly reports. The department must report to the Legislature by November 30th of each even numbered year. That makes November 30th, 2026 the first reporting date.
+The Department of Information Resources is required to establish a programme letting eligible public entities contract with registered vendors to test AI systems before deployment. That testing is expressly without full compliance with otherwise applicable regulations. Vendors apply, and participants file quarterly reports. The department must report to the Legislature by November 30th of each even numbered year. That makes November 30th, 2026 the first reporting date.
 
 - Topic: state-policy
 - Decided by: Texas Department of Information Resources (state-agency)

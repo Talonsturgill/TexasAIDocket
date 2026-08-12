@@ -147,6 +147,9 @@ def check_site(docs: Path) -> dict[str, list[str]]:
         # comma-heavy sentence can sit inside a page that breathes; a page whose average is over
         # the ceiling is a page that does not.
         running = our_sentences(text)
+        # Measured on the same RUNNING PROSE scope as the comma rate, for the same reason. A chip,
+        # a card and a heading are not sentences and a length rule has nothing to say about them.
+        problems = problems + caption_check.long_sentences(running)
         rate = caption_check.rate_problem(running, caption_check.SITE_COMMA_CEILING)
         if rate:
             _r, _c, words = caption_check.comma_rate(running)
@@ -255,6 +258,25 @@ def self_test() -> int:
                            "adjourned the meeting. " * 8) + '</p></main>'
     ok("a genuinely comma-heavy page still fails on rate",
        caption_check.rate_problem(our_sentences(wordy), caption_check.SITE_COMMA_CEILING) is not None)
+
+    # ---- the sentence length backstop ----------------------------------------
+    long_p = ("<main><p>" + " ".join(["word"] * 40) + ".</p></main>")
+    ok("a forty word sentence trips the backstop",
+       len(caption_check.long_sentences(our_sentences(long_p))) == 1)
+    ok("...and a normal one does not",
+       not caption_check.long_sentences(our_sentences(
+           "<main><p>The commission set the hearing for August 11th.</p></main>")))
+    # THE PSEUDO-SENTENCE TRAP. Three deadline cards on the front page measured as one 82 word
+    # sentence, because card text carries no full stop and a naive split joins it all together.
+    # That names the wrong problem and invites somebody to rewrite prose that was fine. Cards are
+    # marked as data upstream; requiring terminal punctuation is the second guard.
+    cards = ("<main>" + "".join(
+        f"<li><span>Open to you</span><span>AUG {d}</span>"
+        f"<h3>Federal comment window open on reactor licensing and siting modernization</h3>"
+        f"<span>Public comment closes</span></li>" for d in (11, 21, 31)) + "</main>")
+    ok("a run of chips with no full stop is not read as one long sentence",
+       not caption_check.long_sentences(our_sentences(cards)),
+       str(caption_check.long_sentences(our_sentences(cards)))[:90])
 
     if failures:
         print(f"\nhouse_style_check self-test: {failures} FAILED", file=sys.stderr)
