@@ -371,10 +371,9 @@ def home(items: list, today: str) -> str:
     body = f"""
 <section class="hero rise">
   {telemetry("")}
-  <h1>What is being decided about AI in Texas, and whether you
-  <em>can still say something</em>.</h1>
-  <p class="herolede">A public record of every AI decision in this state, with a quoted source on
-  every fact. Green means a door is open to you right now.</p>
+  <h1>AI is coming <em>South</em>.</h1>
+  <p class="herolede">Every AI decision in Texas and the source behind it. Green means a door is
+  open to you.</p>
   <div class="ctarow">
     <a class="cta solid" href="record/">The record</a>
     <a class="cta ghost" href="ask/">Ask it a question</a>
@@ -410,8 +409,8 @@ def home(items: list, today: str) -> str:
 </section>
 """
     return page(title=f"{SITE_NAME}", depth=0, active="", home_page=True,
-                desc=("A public, fact-checked record of AI decisions in Texas: who decides, "
-                      "by when, and whether you can still comment."),
+                desc=("A fact-checked record of AI decisions in Texas. Who decided, by when, "
+                      "and whether you can still comment."),
                 body=body, today=today, canonical="",
                 extra_ld=[docket_dataset_ld(items, today)])
 
@@ -446,7 +445,7 @@ def docket_index(items: list, today: str) -> str:
 </div>
 <ul class="items" data-prose="data">{rows}</ul>
 """
-    return page(title=f"The record — {SITE_NAME}", depth=1, active="record/",
+    return page(title=f"The record · {SITE_NAME}", depth=1, active="record/",
                 desc="Every AI decision on the Texas record, ordered by how soon you can act.",
                 body=body, today=today, canonical="record/")
 
@@ -463,7 +462,7 @@ def topic_page(topic: str, items: list, today: str) -> str:
 <ul class="items" data-prose="data">{rows}</ul>
 <p class="meta" data-prose="data"><a href="../../record/">All decisions</a></p>
 """
-    return page(title=f'{topic.replace("-", " ")} — {SITE_NAME}', depth=2, active="",
+    return page(title=f'{topic.replace("-", " ")} · {SITE_NAME}', depth=2, active="",
                 desc=f"Texas AI decisions filed under {topic.replace('-', ' ')}.",
                 body=body, today=today, canonical=f"topic/{topic}/")
 
@@ -500,7 +499,7 @@ def item_page(it: dict, today: str) -> str:
 <p class="meta" data-prose="data"><span class="num">Last checked {e(it["last_verified"])}</span></p>
 </article>
 """
-    return page(title=f'{it["title"]} — {SITE_NAME}', depth=2, active="",
+    return page(title=f'{it["title"]} · {SITE_NAME}', depth=2, active="",
                 desc=it["summary"][:180], body=body, today=today,
                 canonical=f'item/{it["id"]}/')
 
@@ -530,7 +529,7 @@ def counties_page(items: list, today: str) -> str:
 <table><thead><tr><th>County</th><th class="n">Items</th><th>Topics</th></tr></thead>
 <tbody>{rows}</tbody></table>
 """
-    return page(title=f"By county — {SITE_NAME}", depth=1, active="counties/",
+    return page(title=f"By county · {SITE_NAME}", depth=1, active="counties/",
                 desc="Which Texas counties appear in the record of AI decisions.",
                 body=body, today=today, canonical="counties/")
 
@@ -556,7 +555,7 @@ def data_page(items: list, today: str) -> str:
   headline alone.</p>
 </div>
 """
-    return page(title=f"The data — {SITE_NAME}", depth=1, active="data/",
+    return page(title=f"The data · {SITE_NAME}", depth=1, active="data/",
                 desc="The Texas AI Docket as open data, and the gates every entry passes.",
                 body=body, today=today, canonical="data/")
 
@@ -579,7 +578,7 @@ def grid_page(today: str) -> str:
         raise SystemExit(
             "site_build: the grid watch page carries numerals that trace to no computation: "
             + ", ".join(stray[:12]))
-    return page(title=f"Texas Grid Watch — {SITE_NAME}", depth=1, active="grid/",
+    return page(title=f"Texas Grid Watch · {SITE_NAME}", depth=1, active="grid/",
                 desc="A daily numeric record of how the ERCOT grid is absorbing large "
                      "constant load. Measured, computed, never estimated.",
                 body=body, today=today, canonical="grid/",
@@ -653,7 +652,7 @@ def ask_page(items: list, today: str) -> str:
 window.__ASK_CATALOGUE__={json.dumps(cat, separators=(",", ":"))};</script>
 <script>{ask_answers.engine_js()}</script>
 """
-    return page(title=f"Ask the record — {SITE_NAME}", depth=1, active="ask/",
+    return page(title=f"Ask the record · {SITE_NAME}", depth=1, active="ask/",
                 desc="Ask a question about AI decisions in Texas. Answered in your browser, "
                      "from the record, with nothing sent anywhere.",
                 body=body, today=today, canonical="ask/")
@@ -673,7 +672,7 @@ def water_page(today: str) -> str:
         raise SystemExit(
             "site_build: the water watch page carries numerals that trace to no computation: "
             + ", ".join(stray[:12]))
-    return page(title=f"Texas Water Watch — {SITE_NAME}", depth=1, active="water/",
+    return page(title=f"Texas Water Watch · {SITE_NAME}", depth=1, active="water/",
                 desc="Water held in Texas reservoirs, by metro, measured daily. The Permian "
                      "metros nearest the new load hold the least.",
                 body=body, today=today, canonical="water/",
@@ -786,9 +785,8 @@ def services_page(items: list, today: str) -> str:
   </div>
 </div>
 """
-    return page(title=f"Working with us — {SITE_NAME}", depth=1, active="services/",
-                desc="The Texas AI Docket as a sample of work: what the machine does, "
-                     "measured from the record it publishes.",
+    return page(title=f"Working together · {SITE_NAME}", depth=1, active="services/",
+                desc="What the machine does, measured from the record it publishes.",
                 body=body, today=today, canonical="services/")
 
 
@@ -821,7 +819,7 @@ def about_page(today: str) -> str:
   where the right answer was checked. Corrections stay on the page.</p>
 </div>
 """
-    return page(title=f"About — {SITE_NAME}", depth=1, active="about/",
+    return page(title=f"About · {SITE_NAME}", depth=1, active="about/",
                 desc="What the Texas AI Docket is, how its numbers are produced, and its limits.",
                 body=body, today=today, canonical="about/")
 
@@ -855,7 +853,7 @@ def item_markdown(it: dict, today: str) -> str:
         lines.append(f'- Take part: {pa["url"]}')
     lines += ["", f'- Last checked: {it["last_verified"]}', "", "## Dates", ""]
     for k in sorted(it.get("key_dates", []), key=lambda d: d["date"]):
-        lines.append(f'- {k["date"]} — {k["kind"].replace("_", " ")}'
+        lines.append(f'- {k["date"]} · {k["kind"].replace("_", " ")}'
                      + (f': {k["note"]}' if k.get("note") else ""))
     lines += ["", "## Evidence", "",
               "Every fact above rests on one of these. The words are the source's own.", ""]
@@ -1058,8 +1056,21 @@ def self_test() -> int:
         stats = build(Path(td) / "a", today)
         check("the site builds", stats["pages"] >= 4, str(stats))
         idx = (Path(td) / "a" / "index.html").read_text(encoding="utf-8")
-        check("the home page names the reader's question",
-              "still say something" in idx or "still open" in idx)
+        # WHAT THIS PROTECTS IS THE ANSWER, NOT ONE DRAFT'S PHRASING. It used to look for the
+        # literal words "still say something", which lived in the first headline, so shortening
+        # the headline failed a check about whether the page answers the reader's question. The
+        # question is whether somebody can still act. The page answers it with a COUNTED number
+        # of ways in, marked hot so it reads first, and with the sentence that teaches what the
+        # green means. Both of those are structural and survive a rewrite. A quoted fragment of
+        # a headline is a copy of the copy, and it only ever fails for the wrong reason.
+        check("the home page counts the ways a reader can still act",
+              'class="n hot"' in idx and "Doors open to you" in idx)
+        # Matched against COLLAPSED whitespace, because the lede is a multi line f-string and
+        # HTML whitespace is not semantic. Searching the raw source for a phrase that wraps finds
+        # nothing and reports that the page lost the sentence it is looking at.
+        flat = " ".join(idx.split())
+        check("...and teaches the signal that marks them",
+              "Green means a door is open to you" in flat)
         check("the map is inline, so it needs no second request", "<svg class=\"txmap\"" in idx)
         check("Dataset structured data is emitted", '"@type":"Dataset"' in idx)
         check("robots says yes rather than no",

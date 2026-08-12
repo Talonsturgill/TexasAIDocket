@@ -14,8 +14,8 @@ The Bureau of Labor Statistics has proposed adding questions about artificial in
 
 ## Dates
 
-- 2026-07-10 — comment opens: Notice published in the Federal Register
-- 2026-09-08 — comment closes: Comment period closes
+- 2026-07-10 · comment opens: Notice published in the Federal Register
+- 2026-09-08 · comment closes: Comment period closes
 
 ## Evidence
 

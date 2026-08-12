@@ -14,9 +14,9 @@ The Public Utility Commission of Texas has proposed a new rule governing demand 
 
 ## Dates
 
-- 2026-07-24 — ordered: Staff memo and proposal for publication with a September 4th comment deadline
-- 2026-07-30 — comment opens: Proposal for publication of new Section 25.521 filed
-- 2026-09-04 — comment closes: Comment deadline in the Texas Register acknowledgement
+- 2026-07-24 · ordered: Staff memo and proposal for publication with a September 4th comment deadline
+- 2026-07-30 · comment opens: Proposal for publication of new Section 25.521 filed
+- 2026-09-04 · comment closes: Comment deadline in the Texas Register acknowledgement
 
 ## Evidence
 

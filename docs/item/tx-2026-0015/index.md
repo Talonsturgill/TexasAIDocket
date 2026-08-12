@@ -14,8 +14,8 @@ The Nuclear Regulatory Commission has proposed a wholesale revision of its react
 
 ## Dates
 
-- 2026-07-16 — comment opens: Proposed rule published in the Federal Register
-- 2026-08-31 — comment closes: Comment period closes
+- 2026-07-16 · comment opens: Proposed rule published in the Federal Register
+- 2026-08-31 · comment closes: Comment period closes
 
 ## Evidence
 

@@ -13,9 +13,9 @@ The Public Utility Commission publishes its open meetings and public comment dea
 
 ## Dates
 
-- 2026-08-14 — hearing: Next open meeting after the seed date
-- 2026-08-21 — hearing: Open meeting listing Docket 59315
-- 2026-09-04 — comment closes: Public comment deadline for Project 58482
+- 2026-08-14 · hearing: Next open meeting after the seed date
+- 2026-08-21 · hearing: Open meeting listing Docket 59315
+- 2026-09-04 · comment closes: Public comment deadline for Project 58482
 
 ## Evidence
 

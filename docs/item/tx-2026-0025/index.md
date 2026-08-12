@@ -12,7 +12,7 @@ Every state agency and local government that deploys a public facing AI system m
 
 ## Dates
 
-- 2025-09-01 — effective: SB 1964 took effect
+- 2025-09-01 · effective: SB 1964 took effect
 
 ## Evidence
 

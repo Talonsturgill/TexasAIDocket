@@ -180,8 +180,8 @@ nav.main a[aria-current]::after { right:0; }
   nav.main { margin-left:0; gap:.5rem .9rem; font-size:var(--s-2); }
 }
 .hero { padding:clamp(2.5rem,9vh,7rem) 0 0; }
-.hero h1 { font-size:var(--d1); line-height:1.02; letter-spacing:-.02em; max-width:16ch;
-  margin:0; }
+.hero h1 { font-size:clamp(3rem,9.2vw,7.6rem); line-height:1; letter-spacing:-.03em;
+  max-width:22ch; margin:0; text-wrap:balance; }
 .hero h1 em { font-style:normal; color:var(--accent); }
 .hero .herolede { font-size:clamp(1.05rem,2.1vw,1.32rem); line-height:1.5; color:var(--ink);
   max-width:46ch; margin:1.6rem 0 0; }

@@ -625,8 +625,13 @@ nav.main a[aria-current]::after {{ right:0; }}
 /* A front page gets to be loud once, and this is the once. The record itself is set at reading
    size everywhere else on the site. */
 .hero {{ padding:clamp(2.5rem,9vh,7rem) 0 0; }}
-.hero h1 {{ font-size:var(--d1); line-height:1.02; letter-spacing:-.02em; max-width:16ch;
-  margin:0; }}
+/* A SHORT HEADLINE IS ALLOWED TO BE BIGGER, and that is the whole return on making it short. The
+   opening line was fourteen words and had to be set at the shared display size to fit four rows
+   inside the measure. At four words it fills one line with room to spare, so it takes its own step
+   above `--d1` and a wider measure. `--d1` is left where it is, because the inner page titles use
+   it and a docket title is a long sentence that would become a wall at this size. */
+.hero h1 {{ font-size:clamp(3rem,9.2vw,7.6rem); line-height:1; letter-spacing:-.03em;
+  max-width:22ch; margin:0; text-wrap:balance; }}
 /* The one word that carries the argument, in the accent. `em` because the emphasis is real
    rather than decorative, so it survives with styles off and reads correctly aloud. */
 .hero h1 em {{ font-style:normal; color:var(--accent); }}

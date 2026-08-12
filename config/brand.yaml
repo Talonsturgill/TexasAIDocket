@@ -96,6 +96,31 @@ brand:
       - "Never invent a quote, a number or a person. If it is not in the claims file, it does
          not exist."
 
+    # ------------------------------------------------------------ LENGTH IS PART OF THE VOICE
+    # Owner's note, 2026-08-12, on the front page opening line. The first version read "What is
+    # being decided about AI in Texas, and whether you can still say something." Fourteen words,
+    # every one of them accurate, and it explained the site instead of making anybody want to read
+    # it. The replacement is "AI is coming South." Four words, intriguing rather than complete, and
+    # it earned a headline nearly twice the size because a short line can be set large.
+    #
+    # The note was general, not about that one line: the writing across these surfaces runs longer
+    # than the brand wants. Analytical does not mean exhaustive. A line that states the whole thesis
+    # leaves a reader nothing to lean into.
+    brevity:
+      principle: >
+        Say the interesting half and stop. Being right is the floor, not the goal. If a sentence
+        can lose a clause and still land, it had a clause too many.
+      display_copy: >
+        A headline, a slide's opening line and a video's first line are HOOKS, not summaries. Aim
+        at four to seven words. Intrigue beats completeness, because the sentence underneath is
+        where the completeness goes. A short line also buys display size, which is the visual half
+        of the same decision.
+      running_prose: >
+        One idea per sentence. Prefer two short sentences to one correct long one, which is the
+        same instinct the colon and comma rules are already enforcing from the other end.
+      the_test: >
+        Read it aloud. If a breath is needed in the middle of a headline, it is not a headline.
+
   # ---------------------------------------------------------------- HOUSE RULES
   # Enforced mechanically by the caption and copy linters. Each exists because of a specific
   # failure, and the reason travels with the rule so nobody talks themselves out of it later.

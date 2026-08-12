@@ -12,8 +12,8 @@ The Department of Information Resources is required to establish a programme let
 
 ## Dates
 
-- 2025-09-01 — effective: SB 1964 took effect
-- 2026-11-30 — statutory deadline: Department report to the Legislature due, per Sec. 2054.706(g)
+- 2025-09-01 · effective: SB 1964 took effect
+- 2026-11-30 · statutory deadline: Department report to the Legislature due, per Sec. 2054.706(g)
 
 ## Evidence
 

@@ -14,9 +14,9 @@ The Public Utility Commission of Texas is amending its wholesale and investor ow
 
 ## Dates
 
-- 2025-04-23 — filed: Project opened by PUC Rules and Projects
-- 2026-07-09 — comment opens: Proposal for publication filed and acknowledged by the Texas Register
-- 2026-08-11 — comment closes: Comment deadline stated in the Texas Register acknowledgement
+- 2025-04-23 · filed: Project opened by PUC Rules and Projects
+- 2026-07-09 · comment opens: Proposal for publication filed and acknowledged by the Texas Register
+- 2026-08-11 · comment closes: Comment deadline stated in the Texas Register acknowledgement
 
 ## Evidence
 

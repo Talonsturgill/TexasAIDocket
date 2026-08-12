@@ -13,7 +13,7 @@ Texas law restricts the channels through which the Public Utility Commission may
 
 ## Dates
 
-- 2021-06-08 — effective: SB 2 (87R) added the board selection committee
+- 2021-06-08 · effective: SB 2 (87R) added the board selection committee
 
 ## Evidence
 

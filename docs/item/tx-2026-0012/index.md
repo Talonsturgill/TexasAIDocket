@@ -12,7 +12,7 @@ Chapter 552 of the Business and Commerce Code supersedes and preempts any local 
 
 ## Dates
 
-- 2026-01-01 — effective: Chapter 552 took effect, including the preemption section
+- 2026-01-01 · effective: Chapter 552 took effect, including the preemption section
 
 ## Evidence
 

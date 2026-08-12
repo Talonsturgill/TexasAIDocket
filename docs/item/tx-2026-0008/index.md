@@ -12,7 +12,7 @@ Three separate acts of the 89th Legislature each added a Subchapter S to Governm
 
 ## Dates
 
-- 2025-09-01 — effective: Both conflicting AI subchapters took effect
+- 2025-09-01 · effective: Both conflicting AI subchapters took effect
 
 ## Evidence
 

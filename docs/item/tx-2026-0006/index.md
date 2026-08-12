@@ -12,8 +12,8 @@ The Texas Responsible Artificial Intelligence Governance Act took effect on Janu
 
 ## Dates
 
-- 2025-06-22 — signed: HB 149 signed by the Governor
-- 2026-01-01 — effective: Chapter 552 took effect
+- 2025-06-22 · signed: HB 149 signed by the Governor
+- 2026-01-01 · effective: Chapter 552 took effect
 
 ## Evidence
 

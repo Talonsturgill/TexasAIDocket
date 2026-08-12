@@ -105,6 +105,33 @@ def our_sentences(page_html: str) -> str:
     return _html.unescape(TAG.sub(" ", " ".join(runs)))
 
 
+#
+
+# THE HEAD IS PUBLISHED COPY TOO, and it was the one place nothing looked. Everything above scopes
+# to `<main>`, which is right for the page a reader scrolls and wrong for the sentence that
+# represents the page everywhere else. The home page's description carried a banned colon from the
+# day it was written, and it is the line that appears in a search result, in a shared link preview
+# and in a chat unfurl. More people read that sentence than read the page.
+#
+# Checked for CONSTRUCTION only, never for comma density: these are two or three sentences and the
+# density rule has an eighty word floor, so pointing it at them would measure noise.
+HEAD = re.compile(r"<head\b[^>]*>(.*?)</head>", re.DOTALL | re.IGNORECASE)
+HEAD_TEXT = re.compile(
+    r"<title\b[^>]*>(?P<title>.*?)</title>"
+    r"|<meta\b[^>]*\b(?:name|property)=\"(?:description|og:title|og:description)\"[^>]*"
+    r"\bcontent=\"(?P<content>[^\"]*)\"",
+    re.DOTALL | re.IGNORECASE)
+
+
+def page_metadata(page_html: str) -> str:
+    """The reader-facing strings in the head: the title and the social descriptions."""
+    m = HEAD.search(page_html)
+    if not m:
+        return ""
+    found = [(g.group("title") or g.group("content") or "") for g in HEAD_TEXT.finditer(m.group(1))]
+    return _html.unescape(TAG.sub(" ", " ".join(found)))
+
+
 def check_site(docs: Path) -> dict[str, list[str]]:
     out: dict[str, list[str]] = {}
     for page in sorted(docs.rglob("*.html")):
@@ -114,6 +141,8 @@ def check_site(docs: Path) -> dict[str, list[str]]:
             continue
         prose = our_prose(text)
         problems = caption_check.check(prose)
+        problems += [f"{p} (in the page metadata, which is what a search result shows)"
+                     for p in caption_check.check(page_metadata(text))]
         # The rate is judged per PAGE, which is the unit a reader actually reads. A single
         # comma-heavy sentence can sit inside a page that breathes; a page whose average is over
         # the ceiling is a page that does not.
