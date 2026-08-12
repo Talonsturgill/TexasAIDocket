@@ -364,8 +364,15 @@ visual:
     # is open right now is the single thing a reader came to find, and against ember, gold and
     # caliche a cool green is the fastest thing on the page to spot. It is a spring green
     # rather than a screen green, so it sits with the dusk register instead of buzzing on it.
+    # `signal_soon` IS TEXAS RED, and it used to be the accent "doing double duty". That comment
+    # was the tell. The rule three lines up says nothing else on the site may wear a signal
+    # colour, and #E0956A is the link colour, the section rule and the hero's emphasis, so the
+    # one badge meaning "this closes within the week" rendered as indistinguishable from every
+    # link on the page. Texas red is already reserved for exactly this and nothing else, and the
+    # countdown on the item pages was already using it, so the two agree now instead of naming
+    # the same state in two colours.
     signal_open: "#4FC79A"     # a door is open to the public right now
-    signal_soon: "#E0956A"     # a window closing within a week. The accent, doing double duty
+    signal_soon: "#BF0A30"     # a window closing within a week. Texas red, and nothing else is
     signal_shut: "#8E85A0"     # decided, or no public process exists
     signal_link: "#7FB2D9"     # a link out to a source. Never a state, always a destination
 

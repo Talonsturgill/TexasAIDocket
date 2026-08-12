@@ -49,6 +49,8 @@ reader allows it.
 from __future__ import annotations
 
 import argparse
+import gzip
+import re
 import sys
 from pathlib import Path
 
@@ -65,6 +67,24 @@ import sky                                                         # noqa: E402
 AA_BODY = 4.5           # 1.4.3, text under 24px (or under 18.66px bold)
 AA_LARGE = 3.0          # 1.4.3, large text
 AA_NONTEXT = 3.0        # 1.4.11, boundaries a reader needs in order to find a control
+
+# The film grain tile, as a sibling of the stylesheet rather than a data URI inside it.
+GRAIN_FILE = "grain.png"
+
+# THE STYLESHEET BUDGET, MEASURED ON WHAT CROSSES THE WIRE.
+#
+# The first version of this gate counted uncompressed source bytes and called the limit "one round
+# trip", which was the right intent measured on the wrong quantity twice over. GitHub Pages serves
+# this compressed, so uncompressed bytes are not what a reader waits for; and a third of those
+# bytes were maintainer comments, which are worth a great deal in theme.py and nothing at all in a
+# browser. Stripped and compressed, the same sheet is 6 KB rather than 56 KB.
+#
+# The number itself is not a taste value. TCP opens at an initial congestion window of 10 segments,
+# so roughly 14 KB arrives before the client has to acknowledge anything. A render blocking
+# stylesheet inside that window costs one round trip; a byte over it costs two, which is the
+# difference a reader actually perceives. So the budget is the window, and it is applied to the
+# compressed bytes of the sheet as shipped.
+INITIAL_CWND = 10 * 1460      # bytes delivered before the first ACK is needed
 
 # The three page grounds anything can land on. ONE list, used both to derive the colours that
 # must clear every ground and to generate the contrast table that proves they did.
@@ -259,7 +279,28 @@ def _vars(role_map: dict) -> str:
 
 
 # --------------------------------------------------------------------------- stylesheet
+def strip_comments(sheet: str) -> str:
+    """The shipped sheet, without the reasoning a browser has no use for.
+
+    The comments in `annotated()` are the record of why each value is what it is, and they belong
+    in version control where a maintainer reads them, not in a render blocking download every
+    reader pays for. `theme.py --css --annotated` prints them for a human.
+
+    Safe as a plain regex here, and checked rather than assumed: the self-test asserts brace
+    balance survives and that no `/*` appears inside a quoted value, which is the one way this
+    could eat a declaration.
+    """
+    out = re.sub(r"/\*.*?\*/", "", sheet, flags=re.S)
+    out = re.sub(r"[ \t]+\n", "\n", out)
+    return re.sub(r"\n{2,}", "\n", out).strip() + "\n"
+
+
 def css() -> str:
+    """What ships."""
+    return strip_comments(annotated())
+
+
+def annotated() -> str:
     t = tokens()
     c, ty = t["colour"], t["type"]
     p = palette()
@@ -343,6 +384,13 @@ body {{
   margin:0; background:var(--bg); color:var(--ink);
   font:400 var(--s0)/1.65 var(--body);
   font-synthesis-weight:none; text-rendering:optimizeLegibility;
+  /* A LONG UNBREAKABLE TOKEN MUST NOT RUN OFF THE PAGE, and on this site the tokens are addresses
+     somebody needs. A bare URL in one item's "how to take part" copy could not break, so at 390
+     pixels it ran past the column and `overflow-x:clip` cut it dead: the phone reader was shown
+     the first half of the address for filing their comment and no way to reach the rest.
+     Set on `body` rather than on the paragraph that happened to break, because the record is
+     written by a routine and the next long token is not going to be in the same element. */
+  overflow-wrap:break-word;
 }}
 
 /* ---- the surface ------------------------------------------------------- */
@@ -350,9 +398,16 @@ body {{
    nobody designed: ink, paper, film and photographs all have noise, and an eye that has looked
    at any of them reads a flat rectangle as a screen rather than a surface. One tiled 110 pixel
    square at low opacity, generated with no dependencies so it can never silently go missing.
-   Fixed, so it does not scroll with the content and give away that it is a tile. */
+   Fixed, so it does not scroll with the content and give away that it is a tile.
+   IT IS ITS OWN FILE, NOT A DATA URI, and that is a first-paint decision rather than tidiness.
+   Inlined it was 12 KB of base64 in the middle of a RENDER BLOCKING stylesheet, and base64 of an
+   already-compressed PNG is close to incompressible, so it alone pushed the sheet past the
+   initial congestion window and delayed first paint on every page for a texture nobody would
+   notice arriving a beat late. As a file it loads in parallel and blocks nothing, and it stops
+   costing the 33 percent that base64 adds. Relative with no leading slash, so it resolves
+   against the stylesheet and works from any page depth and under a project path. */
 body::after {{ content:""; position:fixed; inset:0; pointer-events:none; z-index:90;
-  background-image:url({grain.data_uri()}); mix-blend-mode:overlay; opacity:.5; }}
+  background-image:url({GRAIN_FILE}); mix-blend-mode:overlay; opacity:.5; }}
 
 /* The reading position, as a hairline. Scroll-driven, so it runs on the compositor and costs
    no script at all. Nothing depends on it, which is why it is inside @supports rather than
@@ -374,7 +429,22 @@ body::after {{ content:""; position:fixed; inset:0; pointer-events:none; z-index
 /* The atmosphere. None of it is information and all of it is why the page reads as a place.
    Everything here is behind the content, ignores the pointer, and is hidden from assistive
    tech at the markup. */
-.sky {{ position:absolute; inset:0 0 auto 0; height:132vh; overflow:hidden;
+/* YOU MUST NOT BE ABLE TO SEE WHERE WEATHER STOPS, and you could. Every warm layer in here is
+   anchored to the BOTTOM of this box and reaches its maximum exactly where `overflow:hidden`
+   cuts it off, so the page showed a hard horizontal seam right across it: sampled at a scroll of
+   800 the brightest row of the horizon measured rgb(58,40,37) with rgb(8,6,15) directly beneath
+   it, a 106 step drop over one pixel, looking like a rendering fault rather than a sky.
+   THE FADE IS ON THE CONTAINER, NOT ON EACH LAYER. Fading the horizon alone would fix the
+   horizon and leave the next layer somebody adds to reintroduce the same edge. Masking the box
+   makes the guarantee structural: nothing inside it can reach the cut at full strength.
+   `--sky-fade` is the depth of that fade, and the rule for every layer inside is: REACH THE
+   BOTTOM AND LET THE MASK DO IT. A layer that stops at the top of the fade zone instead just
+   moves its own hard edge there, which is exactly what the first attempt at this did. Peaks go
+   above the fade, geometry goes through it. */
+.sky {{ --sky-fade:18vh;
+  position:absolute; inset:0 0 auto 0; height:132vh; overflow:hidden;
+  -webkit-mask-image:linear-gradient(180deg,#000 0 calc(100% - var(--sky-fade)),transparent 100%);
+  mask-image:linear-gradient(180deg,#000 0 calc(100% - var(--sky-fade)),transparent 100%);
   pointer-events:none; z-index:0; }}
 
 /* THE STAR FIELD IS EARNED. Big Bend is a certified International Dark Sky Park with among the
@@ -386,7 +456,8 @@ body::after {{ content:""; position:fixed; inset:0; pointer-events:none; z-index
    aurora is vertical, cold and northern. This is horizontal, warm and low: air off hot ground,
    banding and sliding sideways just above the skyline. Masked so it fades out before it can
    touch the type. */
-.sky .shimmer {{ position:absolute; inset:auto 0 0; height:70vh; mix-blend-mode:screen;
+.sky .shimmer {{ position:absolute; inset:auto 0 0; height:calc(70vh + var(--sky-fade));
+  mix-blend-mode:screen;
   background:repeating-linear-gradient(2deg,transparent 0 6%,
     color-mix(in srgb,var(--accent) 9%,transparent) 8% 10.5%,
     color-mix(in srgb,var(--accent) 3%,transparent) 12% 15%,transparent 17% 24%,
@@ -407,10 +478,12 @@ body::after {{ content:""; position:fixed; inset:0; pointer-events:none; z-index
    page read pink. Warmth belongs where the sun went. */
 .sky .veil {{ position:absolute; border-radius:50%; filter:blur(84px);
   mix-blend-mode:screen; opacity:.34; }}
-.sky .v1 {{ width:64vw; height:34vh; left:30vw; bottom:2vh;
+/* The warm pair sit so their CENTRES clear the fade zone. A blurred ellipse whose middle is
+   inside the fade loses most of itself and reads as a smudge rather than as cloud. */
+.sky .v1 {{ width:64vw; height:34vh; left:30vw; bottom:calc(var(--sky-fade) + 2vh);
   background:radial-gradient(closest-side,color-mix(in srgb,var(--accent) 34%,transparent),
     transparent 70%); animation:drift1 38s ease-in-out infinite alternate; }}
-.sky .v2 {{ width:52vw; height:30vh; left:2vw; bottom:-4vh;
+.sky .v2 {{ width:52vw; height:30vh; left:2vw; bottom:calc(var(--sky-fade) + 6vh);
   background:radial-gradient(closest-side,color-mix(in srgb,var(--accent-deep) 30%,transparent),
     transparent 70%); animation:drift2 47s ease-in-out infinite alternate; }}
 /* The one high cloud, and it is cool. A dusk sky is warm at the bottom and cold at the top. */
@@ -423,10 +496,18 @@ body::after {{ content:""; position:fixed; inset:0; pointer-events:none; z-index
   to {{ transform:translate(-4vw,2vh) scale(1.12); }} }}
 
 /* THE HORIZON. The thing you actually see out there is the sun gone behind the Chisos and the
-   bottom of the sky staying lit long after the top has gone dark. */
-.sky .horizon {{ position:absolute; inset:auto 0 0; height:44vh; mix-blend-mode:screen;
-  background:linear-gradient(0deg,color-mix(in srgb,var(--accent) 20%,transparent) 0%,
-    color-mix(in srgb,var(--accent-deep) 9%,transparent) 30%,transparent 100%); }}
+   bottom of the sky staying lit long after the top has gone dark.
+   IT REACHES THE BOTTOM AND HOLDS ITS PEAK ON A PLATEAU. The band runs the full height of the box
+   so the container's fade is what ends it, and the gradient holds full strength across the fade
+   zone before climbing away, so the brightest row a reader sees sits just above the fade at the
+   authored intensity rather than at some fraction of it. Without the plateau the mask multiplies
+   the peak down to about three fifths and the dusk goes out of the dusk. */
+.sky .horizon {{ position:absolute; inset:auto 0 0; height:calc(44vh + var(--sky-fade));
+  mix-blend-mode:screen;
+  background:linear-gradient(0deg,color-mix(in srgb,var(--accent) 20%,transparent) 0
+      var(--sky-fade),
+    color-mix(in srgb,var(--accent-deep) 9%,transparent) calc(var(--sky-fade) + 13vh),
+    transparent 100%); }}
 
 /* The mark in the sky, where the sibling puts its constellation. One star, not a pattern,
    which is the entire point of the thing. */
@@ -527,8 +608,13 @@ nav.main a[aria-current]::after {{ right:0; }}
 @media (max-width:46rem) {{
   /* The mark comes off entirely. The nav wraps to two rows at this width and the hero starts
      right under it, so there is no clear field left to put a star in, and a mark tangled in
-     the copy is worse than no mark. The sky keeps its stars, shimmer and horizon. */
-  .sky .lonestar {{ display:none; }}
+     the copy is worse than no mark. The sky keeps its stars, shimmer and horizon.
+     WRITTEN AS `.home .sky` TO MATCH THE RULE IT IS OVERRIDING. The first version said
+     `.sky .lonestar`, one class less specific than the `.home .sky .lonestar` that turns the mark
+     on, and specificity beats both source order and being inside a media query, so the mark stayed
+     on every phone with its glow sitting in the wrapped navigation. A media query is not a
+     trump card. */
+  .home .sky .lonestar {{ display:none; }}
   .masthead {{ position:static; }}
   .masthead::before {{ display:none; }}
   .masthead .wrap {{ gap:.6rem; }}
@@ -620,9 +706,16 @@ html.js .rise > *:nth-child(5) {{ animation-delay:.42s; }}
    which is what this is. */
 main > section {{ margin-block:var(--band); }}
 main > section:first-child {{ margin-top:calc(var(--band) * .55); }}
-/* An inner page opens with an h1 rather than a hero, and the hero is what was carrying the
-   clearance under the sticky bar. Without it the page title sat against the navigation. */
-main > h1:first-child {{ margin-top:clamp(2rem,6vh,4rem); }}
+/* AN INNER PAGE OPENS WITH AN H1 RATHER THAN A HERO, and the hero is what was carrying the
+   clearance under the sticky bar. Without it the page title sits against the navigation.
+   THIS IS ON `main`, NOT ON THE HEADING, because the heading version was written as
+   `main > h1:first-child` and every item page wraps its title in an `<article>`. The selector
+   matched the pages that were looked at and missed all thirteen of the ones that were not, which
+   is the failure mode of styling by document shape: a wrapper somebody adds later silently drops
+   the rule. Padding on the container cannot be defeated that way.
+   The home page is exempt because its hero brings its own opening measure. */
+main {{ padding-top:clamp(2rem,6vh,4rem); }}
+.home main {{ padding-top:0; }}
 main > section > h2 {{ position:relative; padding-top:1.1rem;
   border-top:var(--hair) solid var(--rule); }}
 main > section > h2::after {{ content:""; position:absolute; top:-1px; left:0; width:3.5rem;
@@ -638,8 +731,23 @@ main > section > h2::after {{ content:""; position:absolute; top:-1px; left:0; w
    than the page. 1000/900 of 72vh is 80vh. */
 .txmap {{ width:100%; max-width:min(100%,80vh); height:auto; display:block;
   margin-inline:auto; }}
-.txmap .c {{ fill:var(--surface); stroke:var(--rule); stroke-width:.6;
+/* THE MESH IS THE FIGURE, NOT FURNITURE, AND IT WAS DRAWN IN THE DIVIDER TOKEN. `rule` is the
+   hairline that separates two rows of a table, and at 1.39 to 1 on the night register and 1.56
+   on paper that is exactly right, because a divider is decoration and WCAG 1.4.11 asks nothing
+   of decoration. The same value was carrying "every county in Texas, drawn from the state's own
+   geometry", which made that sentence a caption for something a reader could not see. The state
+   is drawn by its lines here rather than by a fill, deliberately, so the lines are the content
+   and they get the token derived to clear the non-text floor.
+   THE MESH STAYS QUIET BY WEIGHT, NOT BY CONTRAST. 254 counties at a readable ratio would shout
+   if the stroke were heavy, and the temptation is to solve that by dimming the colour, which
+   just puts the geometry back under the floor. Weight is the design lever. The threshold is the
+   standard, and it does not move. */
+.txmap .c {{ fill:var(--surface); stroke:var(--rule-strong); stroke-width:.5;
   vector-effect:non-scaling-stroke; transition:fill .18s ease; }}
+/* The silhouette reads before the subdivision, so the outer boundary is the same colour at a
+   heavier weight. Same reason: hierarchy by weight. */
+.txmap .edge {{ fill:none; stroke:var(--rule-strong); stroke-width:1.4; stroke-linejoin:round;
+  vector-effect:non-scaling-stroke; }}
 .txmap .c.on {{ fill:var(--accent-deep); stroke:var(--accent); stroke-width:1.1; }}
 .txmap .c:hover {{ fill:var(--raised); }}
 .txmap .c.on:hover {{ fill:var(--accent); }}
@@ -657,11 +765,14 @@ main > section > h2::after {{ content:""; position:absolute; top:-1px; left:0; w
 
 /* ---- the clock ---------------------------------------------------------- */
 /* The question nobody else answers: can a Texan still act on this, and by when. */
+/* THE COUNTDOWN WEARS THE SIGNAL, not the accent. The clock is only ever rendered when a window
+   is OPEN, which is exactly the state the front page promises in green, and it was reading in the
+   generic ink and the generic accent. Green while there is time, Texas red once there is not. */
 .clock {{ display:grid; gap:.35rem; padding:1rem 1.15rem; background:var(--surface);
-  border:var(--hair) solid var(--rule); border-left:3px solid var(--accent);
+  border:var(--hair) solid var(--rule); border-left:3px solid var(--sig-open);
   border-radius:var(--radius); }}
 .clock .days {{ font-family:var(--mono); font-variant-numeric:tabular-nums;
-  font-size:var(--s3); line-height:1; color:var(--ink-bright); }}
+  font-size:var(--s3); line-height:1; color:var(--sig-open); }}
 .clock .lab {{ font-size:var(--s-1); letter-spacing:.05em; text-transform:uppercase;
   color:var(--ink-mute); }}
 /* The urgent value is DERIVED from Texas red against this mode's ground, because the red as
@@ -669,18 +780,57 @@ main > section > h2::after {{ content:""; position:absolute; top:-1px; left:0; w
 .clock.soon {{ border-left-color:var(--urgent); }}
 .clock.soon .days {{ color:var(--urgent); }}
 
+/* THE ROOM INDICATOR, AND THE PROMISE IT HAS TO KEEP. The front page tells a reader in as many
+   words that green means a door is open to them. This was painting both open states in `accent`,
+   the generic link colour, so the home page's cards said green and the record page and all
+   thirteen item pages said orange for the same items. The site contradicted its own instruction on
+   fourteen of twenty seven pages, and no gate could see it: every token was correct, every ratio
+   passed, and the only thing wrong was WHICH token reached the element. That is what the rendered
+   check in tests/page_ground.mjs now measures.
+   The word carries the colour as well as the dot, because "green" in that sentence is a promise
+   about what a reader is looking for, and a coloured dot beside grey text is not what anybody
+   scanning a list of thirteen decisions actually sees. */
 .rooms {{ display:inline-flex; align-items:center; gap:.45em; font-size:var(--s-1);
   letter-spacing:.04em; text-transform:uppercase; color:var(--ink-mute); }}
 .rooms::before {{ content:""; width:.6em; height:.6em; border-radius:50%;
   background:var(--ink-mute); }}
-.rooms.open_comment::before, .rooms.open_meeting::before {{ background:var(--accent); }}
-.rooms.closed::before {{ background:var(--rule-strong); }}
+.rooms.open_comment, .rooms.open_meeting {{ color:var(--sig-open); }}
+.rooms.open_comment::before, .rooms.open_meeting::before {{ background:var(--sig-open); }}
+/* `contact_only` keeps the neutral ink on purpose. It is neither a door nor a decision, and
+   giving it a signal colour would mean inventing a fifth meaning for a four state taxonomy. */
+/* `comment_closed` is DERIVED rather than stored: a window the ledger recorded as open whose date
+   has since passed. It wears the shut signal, because from where a reader stands it is shut. */
+.rooms.closed, .rooms.comment_closed {{ color:var(--sig-shut); }}
+.rooms.closed::before, .rooms.comment_closed::before {{ background:var(--sig-shut); }}
 
 /* ---- items -------------------------------------------------------------- */
 .items {{ display:grid; gap:var(--hair); background:var(--rule);
   border:var(--hair) solid var(--rule); border-radius:var(--radius); overflow:hidden;
   list-style:none; padding:0; margin:0; }}
-.items > li {{ background:var(--bg); padding:1.1rem var(--gap); display:grid; gap:.5rem; }}
+/* THE COUNTDOWN SITS BESIDE THE DECISION, NOT ON TOP OF IT. As one more row in a single column
+   grid the clock stretched to the full width of the list, so a panel holding three short lines
+   ran better than a thousand pixels wide with most of it empty. That is what an unstyled default
+   looks like, not a designed list. A narrow fixed column also lines every countdown up down the
+   left edge, which is the entire point of a list ordered by how soon a reader can still act. */
+.items > li {{ background:var(--bg); padding:1.1rem var(--gap); display:grid; gap:.5rem 1.4rem;
+  align-items:start; }}
+.items > li .clock {{ justify-self:start; min-width:9.5rem; }}
+@media (min-width:46rem) {{
+  /* `auto 1fr` RATHER THAN TWO AUTO ROWS, and the reason is a real grid rule rather than a
+     preference. When an item spans rows that are all `auto`, the excess of its own height is
+     distributed BETWEEN those rows, so the clock being taller than the title plus the meta pushed
+     the two apart: the title row measured 50 pixels around a 23 pixel heading and the meta drifted
+     down the card. `align-content` cannot fix that, because the rows are being SIZED larger rather
+     than positioned. A single `1fr` row takes the slack instead, and the meta is pinned to its top,
+     so the pair stay together and any leftover height falls below them where the clock is. */
+  /* Wide enough that "CLOSES SEPTEMBER 4TH" stays on one line. A date broken across two lines is
+     the one wrap worth spending column width to avoid, because the reader is here for the date. */
+  .items > li {{ grid-template-columns:13.5rem minmax(0,1fr);
+    grid-template-rows:auto 1fr; grid-template-areas:"clock title" "clock meta"; }}
+  .items > li .clock {{ grid-area:clock; min-width:0; }}
+  .items > li h3 {{ grid-area:title; }}
+  .items > li .meta {{ grid-area:meta; align-self:start; margin:0; }}
+}}
 .items > li:hover {{ background:var(--surface); }}
 .items h3 {{ margin:0; font-size:var(--s1); }}
 .items h3 a {{ text-decoration:none; color:var(--ink-bright); }}
@@ -838,7 +988,12 @@ footer.site a {{ color:var(--ink-mute); text-decoration:none; transition:color .
 footer.site a:hover {{ color:var(--accent); }}
 footer.site .block {{ display:grid; gap:var(--gap) calc(var(--gap) * 1.5);
   grid-template-columns:auto minmax(0,var(--measure)); align-items:start; }}
-footer.site .colophon {{ width:5.5rem; height:5.5rem; fill:var(--rule-strong); flex:none; }}
+/* THE CLOSING MARK IS THE SAME STAR AS EVERY OTHER STAR, JUST QUIET. It was filled with
+   `rule-strong`, the boundary token, which put a mid grey violet shape at full strength in the
+   corner and read as a placeholder rather than as the mark. The ink at low opacity is the same
+   star in the same colour the page is set in, and it flips with the mode, which a hardcoded white
+   would not: on the paper register a white star is an empty corner. */
+footer.site .colophon {{ width:5.5rem; height:5.5rem; fill:var(--ink); opacity:.28; flex:none; }}
 @media (max-width:34rem) {{
   footer.site .block {{ grid-template-columns:1fr; }}
   footer.site .colophon {{ width:3.5rem; height:3.5rem; }}
@@ -893,7 +1048,7 @@ ON_EVERY_GROUND = [
     ("ink-mute", AA_BODY, "meta, captions, chips, nav, map labels"),
     ("accent", AA_BODY, "links"),
     ("urgent", AA_BODY, "the closing countdown"),
-    ("rule-strong", AA_NONTEXT, "an input, chip or claim boundary"),
+    ("rule-strong", AA_NONTEXT, "an input or chip boundary, and the county mesh"),
 ]
 
 # Pairings whose background is not one of the three page grounds, so they cannot be generated.
@@ -1070,25 +1225,36 @@ def self_test() -> int:
                          r"wagon|cactus|armadillo)\b", rendered, _re.IGNORECASE)
     check("no kitsch", not kitsch, str(sorted(set(kitsch))))
 
-    # TWO BUDGETS, because they measure different things and one was hiding the other. The
-    # grain is an embedded IMAGE that happens to live in the stylesheet, and at 12 KB it is
-    # bigger than the rules were. Counting them together means either the texture blows a
-    # budget meant for CSS complexity, or the budget gets raised until it stops constraining
-    # the rules at all. So the tile is measured as an asset and the rules are measured as rules.
+    # ---- what a reader waits for ------------------------------------------------
+    # THE BUDGET IS THE CONGESTION WINDOW, AND IT IS MEASURED COMPRESSED. Two earlier versions of
+    # this gate counted uncompressed source bytes against a hand-raised ceiling, which drifted
+    # upward every time the surface grew and so constrained nothing by the end. The quantity that
+    # decides whether the page paints in one round trip or two is the COMPRESSED size of the
+    # render blocking sheet, and the threshold is a property of TCP rather than of taste.
     #
-    # The rules budget grew with the surface, never with waste: 12 KB for five pages of text,
-    # 16 KB for the map, chart, gauge, metro bars and ask box in two palettes, 21 KB for the
-    # web fonts and the survey furniture, and now 40 KB for v2, which added the Big Bend
-    # atmosphere, the display scale, the hero, the deadline cards, the signal badges and the
-    # footer system. For scale, the sibling product this was measured against ships 43 KB of
-    # rules for a site with more page types, so this is proportionate rather than indulgent.
-    # Raised in one place with the reason attached, never by deleting the check.
-    tile = grain.data_uri()
-    rules = len(sheet.replace(tile, "").encode())
-    check("the rules stay small", rules < 42_000, f"{rules} bytes of CSS")
-    check("...and the texture stays cheap", len(tile) < 14_000, f"{len(tile)} bytes of tile")
-    check("...and the whole sheet still fits in one round trip",
-          len(sheet.encode()) < 56_000, f"{len(sheet.encode())} bytes total")
+    # Stripping the comments and moving the grain out took the same stylesheet from 24 KB
+    # compressed, comfortably over the window, to about 6 KB. Neither change removed a rule.
+    wire = len(gzip.compress(sheet.encode(), 9))
+    check("the stylesheet paints in one round trip", wire < INITIAL_CWND,
+          f"{wire:,} bytes compressed, window is {INITIAL_CWND:,}")
+    # Kept as its own check because the sheet and the texture fail for different reasons and a
+    # combined number hides which. The tile is a fixed-size asset, so this is a regression guard
+    # rather than a budget: it should not move unless the noise parameters do.
+    tile = grain.png()
+    check("the texture stays cheap", len(tile) < 14_000, f"{len(tile):,} bytes of tile")
+    check("...and it is not inlined into the render blocking sheet",
+          "data:image/png" not in sheet and GRAIN_FILE in sheet)
+
+    # The stripping is the one transformation between the annotated source and what ships, so it
+    # is checked rather than trusted. A `/*` inside a quoted value is the only way the regex could
+    # swallow a declaration, and unbalanced braces are how that would show up.
+    full = annotated()
+    check("the reasoning survives in the source", len(full) > len(sheet) * 1.3)
+    check("stripping comments leaves the rules intact",
+          sheet.count("{") == sheet.count("}") == full.count("{") == full.count("}"),
+          f"{sheet.count('{')}/{sheet.count('}')} vs {full.count('{')}/{full.count('}')}")
+    check("...and no comment marker hides inside a value",
+          not _re.search(r'"[^"\n]*/\*', full))
     check("two builds are byte identical", css() == sheet)
 
     if failures:

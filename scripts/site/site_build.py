@@ -46,6 +46,7 @@ import gridwatch_page                                              # noqa: E402
 import sky                                                         # noqa: E402
 import texas_map                                                   # noqa: E402
 import waterwatch_page                                             # noqa: E402
+import grain                                                       # noqa: E402
 import theme                                                       # noqa: E402
 
 LEDGER = REPO_ROOT / "ledger" / "docket.json"
@@ -214,7 +215,12 @@ def clock(item: dict, today: str) -> str:
     soon = " soon" if days <= 7 else ""
     unit = "day" if days == 1 else "days"
     when = ordinal(_dt.date.fromisoformat(pa["closes"]))
-    left = "closes today" if days == 0 else f"{days} {unit} left to comment"
+    # THE NUMBER IS ALREADY THE BIGGEST THING IN THE BOX, so the label does not repeat it. It read
+    # "19" and then "19 DAYS LEFT TO COMMENT", which wasted the line, wrapped the column onto four
+    # rows and made a screen reader say the figure twice. Dropping the digit fixes all three at
+    # once: the DOM order puts the number immediately before the unit, so it is still announced as
+    # "19 days left to comment", once.
+    left = "closes today" if days == 0 else f"{unit} left to comment"
     return (f'<div class="clock{soon}"><span class="days">{days}</span>'
             f'<span class="lab">{e(left)}</span>'
             f'<span class="lab">Closes {e(when)}</span></div>')
@@ -222,10 +228,31 @@ def clock(item: dict, today: str) -> str:
 
 def room_label(room: str) -> str:
     return {"open_comment": "Comment window open", "open_meeting": "Public meeting",
-            "contact_only": "No formal process", "closed": "Closed"}.get(room, room)
+            "contact_only": "No formal process", "closed": "Closed",
+            "comment_closed": "Comment window closed"}.get(room, room)
 
 
-def item_meta(it: dict) -> str:
+def effective_room(it: dict, today: str) -> str:
+    """The room a reader is standing in TODAY, not the kind of room the ledger recorded.
+
+    THE BADGE HAS TO DO THE ARITHMETIC THE CLOCK ALREADY DOES. `window_state` says exactly this in
+    its docstring, that the ledger stores what kind of access exists and when it ends and that
+    whether it is open right now is computed fresh every build, and the badge was the one place
+    that ignored it. It rendered the stored `open_comment` as a green "comment window open" on an
+    item whose deadline had passed the day before and whose own headline said the deadline had
+    been reached. The clock on the same page knew, because the clock asks.
+
+    That is worse than an inconsistency. Green on this site is a promise that a door is open to a
+    reader right now, and the whole record is worth nothing if it points somebody at a window that
+    shut yesterday.
+    """
+    room = (it.get("public_access") or {}).get("room", "")
+    if room == "open_comment" and dk.window_state(it, today) == "closed":
+        return "comment_closed"
+    return room
+
+
+def item_meta(it: dict, today: str) -> str:
     g = it.get("geography") or {}
     where = ("Statewide" if g.get("statewide")
              else ", ".join(g.get("counties") or []) or
@@ -234,8 +261,8 @@ def item_meta(it: dict) -> str:
             f'<span>{e(it["decider"]["name"])}</span>']
     if where:
         bits.append(f'<span>{e(where if len(where) < 60 else where[:57] + "...")}</span>')
-    bits.append(f'<span class="rooms {e(it["public_access"]["room"])}">'
-                f'{e(room_label(it["public_access"]["room"]))}</span>')
+    room = effective_room(it, today)
+    bits.append(f'<span class="rooms {e(room)}">{e(room_label(room))}</span>')
     # Chips, not sentences. The comma between two of Oncor's 22 counties is a delimiter, and
     # this row repeats once per card, so leaving it in a comma-density measurement would fail
     # a page for the crime of listing counties. See house_style_check.DATA_REGION.
@@ -401,7 +428,7 @@ def docket_index(items: list, today: str) -> str:
 
     rows = "".join(
         f'<li>{clock(it, today)}<h3><a href="../item/{e(it["id"])}/">{e(it["title"])}</a></h3>'
-        f'{item_meta(it)}</li>'
+        f'{item_meta(it, today)}</li>'
         for it in sorted(items, key=key))
 
     n_open = sum(1 for i in items if dk.window_state(i, today) == "open")
@@ -428,7 +455,7 @@ def topic_page(topic: str, items: list, today: str) -> str:
     mine = [i for i in items if i["topic"] == topic]
     rows = "".join(
         f'<li>{clock(it, today)}<h3><a href="../../item/{e(it["id"])}/">{e(it["title"])}</a></h3>'
-        f'{item_meta(it)}</li>' for it in mine)
+        f'{item_meta(it, today)}</li>' for it in mine)
     body = f"""
 <h1>{e(topic.replace("-", " "))}</h1>
 <div class="prose"><p><span class="num">{len(mine)}</span> of
@@ -456,7 +483,7 @@ def item_page(it: dict, today: str) -> str:
     body = f"""
 <article>
 <h1>{e(it["title"])}</h1>
-{item_meta(it)}
+{item_meta(it, today)}
 {clock(it, today)}
 <div class="prose"><p>{e(it["summary"])}</p></div>
 
@@ -937,6 +964,13 @@ def build(out: Path, today: str) -> dict:
         written.append(path)
 
     w("site.css", theme.css())
+
+    # THE FILM GRAIN, as its own asset. It used to be a 12 KB base64 data URI inside site.css,
+    # which is close to incompressible and sat in the middle of a render blocking download, so a
+    # decorative texture was delaying first paint on every page. Written from the generator rather
+    # than copied, because it is computed from three named constants and is byte-deterministic.
+    (out / theme.GRAIN_FILE).write_bytes(grain.png())
+    written.append(theme.GRAIN_FILE)
 
     # THE TYPE. Copied verbatim from the committed subsets rather than generated here: the
     # byte-equal rebuild guarantee cannot depend on a compression library's version, and a copy

@@ -20,8 +20,8 @@
  */
 import { chromium } from 'playwright';
 import { inflateSync } from 'node:zlib';
-import { existsSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { existsSync, readdirSync } from 'node:fs';
+import { join, resolve } from 'node:path';
 
 /* ---------- a PNG decoder, only as far as we need one ---------- */
 function decodePNG(buf) {
@@ -155,10 +155,173 @@ ok('the horizon is warmer than the sky above it',
    warmth(low) > warmth(top),
    `top r-b ${warmth(top)}, horizon r-b ${warmth(low)}`);
 
+/* ---------- and it must not have a visible edge ---------- */
+//
+// THE SECOND BUG THIS FILE EXISTS FOR. The corrected sky was the right colour and had a hard
+// horizontal seam across it. Every warm layer is anchored to the bottom of a fixed-height box and
+// reached its maximum exactly where `overflow:hidden` cut it, so at a scroll of 800 the brightest
+// row of the horizon measured rgb(58,40,37) with rgb(8,6,15) directly beneath it. A 106 step drop
+// over one pixel, right across the page. Nothing above catches it: the ground is night at both
+// ends of the cut, no token is wrong, and the checks above sample points rather than looking for
+// a discontinuity between them.
+//
+// The first repair moved the layers up instead of letting them run into the fade, which relocated
+// the same edge rather than removing it, so this scans rather than spot-checks.
+//
+// CONTENT IS HIDDEN FIRST, with `visibility` so the layout and therefore the sky's height are
+// untouched. Type, rules and card borders are all legitimate hard edges, and leaving them in
+// would mean choosing a threshold loose enough to ignore them, which is a threshold loose enough
+// to ignore a seam. With the page emptied, every edge left belongs to the weather.
+//
+// ROWS ARE AVERAGED ACROSS THE WIDTH before comparing. The film grain is +/- 26 per channel, so
+// neighbouring pixels differ by more than a seam does; averaging a few hundred of them removes
+// the noise and leaves the gradient. A real gradient moves by a fraction of a step per row.
+const SEAM_STEP = 12;              // summed across channels, on the row average
+// `body::before` is the 2px reading-position rail and `body::after` is the film grain. The rail is
+// chrome and a deliberate hard edge, so it comes off. The grain STAYS: it is part of the surface
+// and it is what makes the averaging necessary in the first place, so hiding it would be testing a
+// page nobody sees.
+await p.addStyleTag({ content: 'body > header, body > main, body > footer { visibility: hidden }' +
+                               ' body::before { display: none }' });
+await p.evaluate(() => window.scrollTo({ top: 500, behavior: 'instant' }));
+await p.waitForTimeout(600);
+
+const sky = decodePNG(await p.screenshot());
+const rowAvg = y => {
+  let r = 0, g = 0, b = 0, n = 0;
+  for (let x = 0; x < sky.w; x += 3) { const c = px(sky, x, y); r += c[0]; g += c[1]; b += c[2]; n++; }
+  return [r / n, g / n, b / n];
+};
+let worst = 0, worstY = 0;
+let prev = rowAvg(1);
+for (let y = 2; y < sky.h - 1; y++) {
+  const cur = rowAvg(y);
+  const step = Math.abs(cur[0] - prev[0]) + Math.abs(cur[1] - prev[1]) + Math.abs(cur[2] - prev[2]);
+  if (step > worst) { worst = step; worstY = y; }
+  prev = cur;
+}
+ok('the atmosphere has no visible edge',
+   worst < SEAM_STEP,
+   `largest step ${worst.toFixed(1)} at row ${worstY}, ceiling ${SEAM_STEP}`);
+
+/* ---------- and the signals mean what the front page says they mean ---------- */
+//
+// THE THIRD BUG, AND THE ONE NO STATIC CHECK CAN REACH. The front page tells a reader that green
+// means a door is open to them. The home page's deadline cards were green. The record page and all
+// thirteen item pages painted the same open items in `--accent`, the generic link colour, so the
+// site contradicted its own instruction on fourteen of twenty seven pages.
+//
+// Nothing caught it, and nothing was going to. Every token held its authored value, all 62
+// contrast pairings passed, and the CSS was valid. The defect was WHICH token reached the element,
+// which is visible only after the cascade has run. So this asks the browser for the computed
+// colour of every open-state indicator on a real page and requires it to be the same colour the
+// promise is made about.
+const openPage = 'file://' + resolve(SITE, 'record', 'index.html');
+const p2 = await ctx.newPage();
+await p2.goto(openPage);
+await p2.waitForTimeout(400);
+
+const sig = await p2.evaluate(() => {
+  const root = getComputedStyle(document.documentElement);
+  const tok = n => root.getPropertyValue(n).trim();
+  // Resolve a hex token to the rgb() string the browser reports, by asking the browser.
+  const probe = document.createElement('span');
+  document.body.appendChild(probe);
+  const asRGB = hex => { probe.style.color = hex; return getComputedStyle(probe).color; };
+  const out = { open: asRGB(tok('--sig-open')), accent: asRGB(tok('--accent')), rooms: [], clocks: [] };
+  document.querySelectorAll('.rooms.open_comment, .rooms.open_meeting').forEach(el => {
+    out.rooms.push({ text: getComputedStyle(el).color,
+                     dot: getComputedStyle(el, '::before').backgroundColor });
+  });
+  document.querySelectorAll('.clock:not(.soon) .days').forEach(el => {
+    out.clocks.push(getComputedStyle(el).color);
+  });
+  probe.remove();
+  return out;
+});
+
+ok('the record page has open items to check', sig.rooms.length > 0, `${sig.rooms.length} found`);
+ok('...and the open signal is not simply the link colour', sig.open !== sig.accent,
+   `both ${sig.open}`);
+const wrongDot = sig.rooms.filter(r => r.dot !== sig.open);
+const wrongWord = sig.rooms.filter(r => r.text !== sig.open);
+ok('every open room indicator is the green the front page promises',
+   wrongDot.length === 0 && wrongWord.length === 0,
+   `${wrongDot.length} dots and ${wrongWord.length} labels off, first dot ${sig.rooms[0]?.dot}`);
+const wrongClock = sig.clocks.filter(c => c !== sig.open);
+ok('...and so is every countdown that still has time on it',
+   wrongClock.length === 0, `${wrongClock.length} of ${sig.clocks.length}, first ${wrongClock[0]}`);
+
+/* ---------- and it holds on EVERY page, not the three anybody looked at ---------- */
+//
+// THE FOURTH BUG, AND THE ONE THAT GENERALISES. The clearance under the sticky bar was written as
+// `main > h1:first-child`. Every item page wraps its title in an `<article>`, so the rule matched
+// the pages that had been opened and silently missed all thirteen that had not, and their titles
+// sat against the navigation. Styling by document shape fails exactly this way: somebody adds a
+// wrapper and a rule stops applying with nothing to report it.
+//
+// So the last pass is a sweep. It opens every page the build produced and checks the two things
+// that are true of all of them, at a phone width as well as a laptop, because a layout that only
+// holds at one viewport is the same bug wearing different clothes.
+const pages = [];
+{
+  const walk = (dir) => {
+    for (const ent of readdirSync(dir, { withFileTypes: true })) {
+      const full = join(dir, ent.name);
+      if (ent.isDirectory()) walk(full);
+      else if (ent.name.endsWith('.html')) pages.push(full);
+    }
+  };
+  walk(resolve(SITE));
+}
+ok('the sweep found the whole site', pages.length >= 20, `${pages.length} pages`);
+
+const MIN_CLEARANCE = 12;          // px between the sticky bar and the first heading
+const tooTight = [], overflowing = [], strayMark = [];
+for (const width of [1440, 390]) {
+  const sweep = await browser.newContext({
+    colorScheme: 'dark', viewport: { width, height: 900 }, deviceScaleFactor: 1,
+  });
+  const sp = await sweep.newPage();
+  for (const file of pages) {
+    await sp.goto('file://' + file);
+    const r = await sp.evaluate(() => {
+      const bar = document.querySelector('.masthead');
+      const h = document.querySelector('main h1, main h2');
+      const barBottom = bar ? bar.getBoundingClientRect().bottom : 0;
+      const mark = document.querySelector('.sky .lonestar');
+      return {
+        gap: h ? Math.round(h.getBoundingClientRect().top - barBottom) : null,
+        overflow: Math.round(document.documentElement.scrollWidth - document.documentElement.clientWidth),
+        markShown: !!mark && getComputedStyle(mark).display !== 'none',
+        isHome: document.body.classList.contains('home'),
+      };
+    });
+    const name = file.slice(resolve(SITE).length + 1);
+    if (r.gap !== null && r.gap < MIN_CLEARANCE) tooTight.push(`${name}@${width} ${r.gap}px`);
+    if (r.overflow > 1) overflowing.push(`${name}@${width} +${r.overflow}px`);
+    // THE MARK IS THE FRONT PAGE'S ALONE, AND ONLY WHERE THERE IS SKY TO PUT IT IN. Both halves
+    // of that were already written down as comments and neither was true: a 210 pixel star sat
+    // over the grid chart and the record's cards on inner pages, and the rule meant to remove it
+    // on a phone was a class less specific than the rule that turns it on, so it stayed in the
+    // wrapped navigation on every narrow screen. Specificity beats a media query. A comment
+    // stating a rule does not make the rule hold, which is the whole argument for this file.
+    if (r.markShown && (!r.isHome || width <= 736)) strayMark.push(`${name}@${width}`);
+  }
+  await sweep.close();
+}
+ok(`every page clears the sticky bar (${pages.length} pages, two widths)`,
+   tooTight.length === 0, `${tooTight.length} too tight: ${tooTight.slice(0, 3).join(', ')}`);
+ok('...and no page scrolls sideways',
+   overflowing.length === 0, `${overflowing.length}: ${overflowing.slice(0, 3).join(', ')}`);
+ok('...and the mark appears on the front page only, and not on a phone',
+   strayMark.length === 0, `${strayMark.length}: ${strayMark.slice(0, 4).join(', ')}`);
+
 await browser.close();
 
 if (failures) {
   console.error(`\npage_ground: ${failures} FAILED`);
   process.exit(1);
 }
-console.log('\npage_ground: all passed (the page renders as night, and the horizon is warm)');
+console.log(`\npage_ground: all passed (night ground, warm horizon, no seam, green means open, ` +
+            `and ${pages.length} pages hold at two widths)`);

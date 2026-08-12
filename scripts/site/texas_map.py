@@ -132,6 +132,76 @@ def path_d(rings: list, scale: float, dx: float, dy: float) -> str:
     return "".join(parts)
 
 
+def state_outline() -> list[list[tuple[float, float]]]:
+    """The state's own silhouette, in projected units, as a list of open polylines.
+
+    WHY THIS IS EXACT RATHER THAN APPROXIMATE, AND WHY IT IS CHEAP. A silhouette is the union of
+    254 polygons, and computing a real polygon union is a serious piece of geometry. It is also
+    completely unnecessary here, because the source is a TOPOLOGY and this is the thing a topology
+    is for. TopoJSON stores each shared border ONCE, as an arc, and each county references the
+    arcs that bound it. So an arc referenced by TWO Texas counties is an interior border, and an
+    arc referenced by exactly ONE is on the edge of the state. Selecting on that count is the
+    union, with no geometry at all.
+
+    The Panhandle and the Sabine work because the atlas is national and we filter to FIPS 48: an
+    arc a Texas county shares with an Oklahoma or Louisiana county is referenced once among Texas
+    counties, which is correct, since that is the state line. The Gulf coast arcs are referenced
+    once because nothing is on the other side.
+
+    Returned as open polylines rather than closed rings on purpose. Stroking is all this is for,
+    the arcs already meet end to end at shared vertices, and stitching them into rings would be
+    work whose only visible effect is a join the stroke already makes.
+    """
+    topo = json.loads(COUNTIES_SRC.read_text(encoding="utf-8"))
+    arcs = _places.decode_arcs(topo)
+    return [[albers(x, y) for x, y in arcs[i]] for i in sorted(boundary_arc_ids(topo))]
+
+
+def county_arc_ids(geom: dict) -> list[int]:
+    """Every arc a county's geometry references, as canonical (non-negative) ids.
+
+    A negative index in TopoJSON means "traverse this arc backwards", so the two signs are the
+    same border. Folding them together is what makes a shared border count as two references
+    rather than as two different arcs.
+    """
+    if geom["type"] == "Polygon":
+        raw = [i for ring in geom["arcs"] for i in ring]
+    elif geom["type"] == "MultiPolygon":
+        raw = [i for poly in geom["arcs"] for ring in poly for i in ring]
+    else:
+        raw = []
+    return [i if i >= 0 else ~i for i in raw]
+
+
+def boundary_arc_ids(topo: dict) -> set:
+    """The arc ids on the edge of the state: referenced by exactly one Texas county."""
+    uses: dict[int, int] = {}
+    for geom in topo["objects"]["counties"]["geometries"]:
+        props = geom.get("properties") or {}
+        fips = str(geom.get("id") or props.get("fips") or "")
+        if not fips.startswith("48"):
+            continue
+        for i in county_arc_ids(geom):
+            uses[i] = uses.get(i, 0) + 1
+    return {i for i, n in uses.items() if n == 1}
+
+
+def polyline_d(lines: list, scale: float, dx: float, dy: float) -> str:
+    """Open polylines as path data. Same rounding and de-duplication as `path_d`, no Z."""
+    parts = []
+    for line in lines:
+        pts, last = [], None
+        for x, y in line:
+            p = (round(x * scale + dx, PRECISION), round(y * scale + dy, PRECISION))
+            if p != last:
+                pts.append(p)
+                last = p
+        if len(pts) < 2:
+            continue
+        parts.append("M" + "L".join(f"{x:g},{y:g}" for x, y in pts))
+    return "".join(parts)
+
+
 # --------------------------------------------------------------------------- survey furniture
 def great_circle_mi(lon1: float, lat1: float, lon2: float, lat2: float) -> float:
     """Haversine, in statute miles. The ground truth the scale bar is measured against."""
@@ -291,6 +361,10 @@ def render(lit: set | None = None, *, title: str = "Texas counties in the record
         f'{n_lit} of {len(counties)} counties carry an item. '
         f'Albers equal-area conic.</title>'
         f'<g>{"".join(paths)}</g>'
+        # The silhouette over the mesh, so the state reads before its subdivision does. Same
+        # colour as the mesh at a heavier weight, because hierarchy here is weight and the
+        # contrast threshold is not a place to express emphasis.
+        f'<path class="edge" d="{polyline_d(state_outline(), scale, dx, dy)}"/>'
         # The furniture is drawn LAST so it sits over the counties, and it is drawn as a group
         # so the whole survey layer can be hidden in print with one selector.
         f'<g class="survey">{graticule(scale, dx, dy)}{bar}</g></svg>'
@@ -348,8 +422,10 @@ def self_test() -> int:
     check("west is left: El Paso sits left of Cameron", elpaso[0] < cameron[0])
 
     svg = render(lit={"Hood", "Ector"})
-    check("the SVG carries one path per county", svg.count("<path") == 254,
-          f"got {svg.count('<path')}")
+    # Counted on the COUNTY class rather than on "<path", which the silhouette also is. The
+    # unqualified count read 255 the moment the outline was added and named the wrong cause.
+    n_paths = len(re.findall(r'class="c(?: on)?"', svg))
+    check("the SVG carries one path per county", n_paths == 254, f"got {n_paths}")
     n_on = svg.count('class="c on"')
     check("lit counties are marked", n_on == 2, f"got {n_on}")
     check("the accessible title counts what is lit", "2 of 254 counties" in svg)
@@ -362,6 +438,40 @@ def self_test() -> int:
     # Matching by FIPS must work as well as by name, since the ledger may carry either.
     check("FIPS lights the same county as its name",
           render(lit={"48221"}).count('class="c on"') == 1)
+
+    # ---- THE SILHOUETTE, and whether it is the state's edge --------------------
+    # Selecting arcs by reference count is exact, and it is also easy to get backwards: taking
+    # count >= 2 instead of == 1 yields the INTERIOR mesh, which still draws a plausible tangle
+    # of lines over Texas and would never look obviously wrong. So this is checked against
+    # geography rather than against itself.
+    outline = state_outline()
+    check("the state has a silhouette", len(outline) > 0, f"{len(outline)} arcs")
+    ov = [p for line in outline for p in line]
+    allv = [p for _, _, rings in counties for r in rings for p in r]
+    # The extremes of Texas are on the edge of Texas, by definition. If the interior arcs had
+    # been selected, no extreme would be on the drawn line.
+    for label, key in (("west", lambda p: p[0]), ("east", lambda p: -p[0]),
+                       ("north", lambda p: p[1]), ("south", lambda p: -p[1])):
+        want = min(allv, key=key)
+        check(f"the {label} extreme of the state lies on the silhouette",
+              min(math.dist(want, p) for p in ov) < 1e-9, str(want))
+    # And the converse, which is the half that catches an inverted comparison: a county with no
+    # state line and no coast contributes nothing to it. Hood is inland, ringed by six Texas
+    # counties.
+    topo = json.loads(COUNTIES_SRC.read_text(encoding="utf-8"))
+    edge_ids = boundary_arc_ids(topo)
+    by_fips = {str(g.get("id") or ""): g for g in topo["objects"]["counties"]["geometries"]}
+    hood = set(county_arc_ids(by_fips["48221"]))          # Hood, inland
+    dallam = set(county_arc_ids(by_fips["48111"]))        # Dallam, the northwest corner
+    check("an inland county contributes nothing to the silhouette",
+          not (hood & edge_ids), str(sorted(hood & edge_ids)))
+    check("...and a corner county contributes to it", bool(dallam & edge_ids))
+    check("the silhouette is a small fraction of the mesh it sits on",
+          len(ov) < len(allv) / 4, f"{len(ov)} of {len(allv)} points")
+    check("the silhouette is drawn over the counties, not under them",
+          svg.index('class="c') < svg.index('class="edge"'))
+    check("...and it carries no fill, so it cannot mask a lit county",
+          'class="edge" d="M' in svg)
 
     # ---- THE SURVEY FURNITURE, and whether it tells the truth -----------------
     # A scale bar that is decorative is worse than none: it invites a reader to measure with it.

@@ -117,6 +117,59 @@ deliberate enough to survive a glance. Check the existing stylesheet before nami
 
 ---
 
+## 6a. What a screenshot pass found that no gate could
+
+Every defect below shipped with the whole suite green, because each one is invisible to a checker
+that reads source. They are grouped by the reason they were invisible, because that is the part
+that generalises.
+
+**A composite is not its parts.** The page rendered mauve while all 62 contrast pairings passed.
+Warm veils screening over a violet ground at 9 percent lightness is mauve, and contrast does not
+care about hue. Nothing that reads tokens can see a blend. *Sample the rendered pixel.*
+
+**A container's edge is not its content's edge.** Every warm layer in the sky was anchored to the
+bottom of a fixed-height box with `overflow:hidden`, so each reached full strength exactly where it
+was cut. The seam measured a 106 step drop across one pixel, right across the page. The fix is a
+fade on the CONTAINER, not on each layer, because a per-layer fade only holds until somebody adds
+a layer. *Guarantee the edge once, structurally.* And the first repair moved the layers up instead
+of letting them run into the fade, which relocated the seam rather than removing it: peaks go above
+the fade, geometry goes through it.
+
+**Which token reached the element is not which token is correct.** The front page says green means
+a door is open. The room badges and the countdowns were painted in `accent`, the link colour, so
+the site contradicted its own instruction on 14 of 27 pages. Every token held its authored value.
+*Ask the browser for the computed colour of the thing making the promise.*
+
+**A signal colour that equals another role is not a signal.** `signal_soon` was the accent "doing
+double duty", so the one badge meaning "closes this week" was indistinguishable from every link.
+If a palette reserves a colour, check that nothing else already has it.
+
+**Specificity beats a media query.** The mark was turned on by `.home .sky .lonestar` and turned
+off on phones by `.sky .lonestar`, one class less specific, so it never came off. A media query is
+not a trump card. *Write an override at the specificity of the rule it overrides.*
+
+**Styling by document shape breaks when the shape changes.** The clearance under the sticky bar was
+`main > h1:first-child`. Item pages wrap their title in an `<article>`, so it matched the pages
+somebody had opened and missed all 13 that they had not. *Put the rule on the container, and sweep
+every page rather than the three you were looking at.*
+
+**Furniture tokens on content.** The county mesh used `rule`, the hairline divider, at 1.39 to 1 on
+night and 1.56 on paper, under a caption promising "every county in Texas". A divider at that ratio
+is right; the figure of a section is not a divider. Keep the threshold and use STROKE WEIGHT for
+quiet, never contrast.
+
+**An unbreakable token clips silently.** A bare URL in one item's copy could not wrap, so at 390
+pixels `overflow-x:clip` cut the address a reader needs in order to file a comment. `overflow-wrap`
+belongs on `body`, because the next long token will be in a different element.
+
+**And one non-defect worth knowing, because it cost time twice.** A screenshot taken during a
+smooth scroll captures sticky elements at a stale offset, and a `fullPage` capture does not scroll,
+so intersection-revealed sections photograph as a blank middle no reader ever sees. Scroll the page
+with `behavior:'instant'` before capturing. Reading a rendering artefact as a bug costs as much as
+missing a real one.
+
+---
+
 ## 7. What is still not ported
 
 Honest list, so nobody assumes these were considered and rejected.
