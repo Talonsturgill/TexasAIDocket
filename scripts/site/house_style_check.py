@@ -72,12 +72,16 @@ DATA_REGION = re.compile(r'<([a-z]+)\b[^>]*\bdata-prose="data"[^>]*>.*?</\1>',
 PARAGRAPH = re.compile(r"<(p|li)\b[^>]*>(.*?)</\1>", re.DOTALL | re.IGNORECASE)
 
 
-def our_prose(page_html: str) -> str:
-    """What this project wrote, with everything it merely reproduced taken out."""
+def _stripped(page_html: str) -> str:
+    """The shared work: main, minus quotes, code, SVG and reader-voiced text. Markup intact."""
     m = MAIN.search(page_html)
     body = m.group(1) if m else page_html
-    body = READER_VOICE.sub(" ", QUOTED.sub(" ", CODE.sub(" ", SVG.sub(" ", body))))
-    return _html.unescape(TAG.sub(" ", body))
+    return READER_VOICE.sub(" ", QUOTED.sub(" ", CODE.sub(" ", SVG.sub(" ", body))))
+
+
+def our_prose(page_html: str) -> str:
+    """What this project wrote, with everything it merely reproduced taken out."""
+    return _html.unescape(TAG.sub(" ", _stripped(page_html)))
 
 
 def our_sentences(page_html: str) -> str:
@@ -96,10 +100,7 @@ def our_sentences(page_html: str) -> str:
     report prints the measured word count beside the rate, so the coverage is visible rather
     than assumed.
     """
-    m = MAIN.search(page_html)
-    body = m.group(1) if m else page_html
-    body = DATA_REGION.sub(" ", body)
-    body = READER_VOICE.sub(" ", QUOTED.sub(" ", CODE.sub(" ", SVG.sub(" ", body))))
+    body = DATA_REGION.sub(" ", _stripped(page_html))
     runs = [inner for _tag, inner in PARAGRAPH.findall(body)]
     return _html.unescape(TAG.sub(" ", " ".join(runs)))
 

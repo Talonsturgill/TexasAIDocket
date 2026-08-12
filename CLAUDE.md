@@ -187,10 +187,14 @@ verbatim quote is never touched.
 a relative pronoun, and no hedge fenced off by a pair of commas. Write "A data centre needs
 electricity. Most cooling designs need water too", never "A data centre needs electricity and,
 in most cooling designs, water". DENSITY, over running prose: under the ceiling MEASURED ON THAT
-SURFACE. The site's is 5.33 per 100 words, ten percent below its own measured 5.92. Captions have
-no ceiling yet because no caption has shipped, and borrowing the site's would be exactly the
-typed-in number the compute-not-generate law forbids. The cure is splitting the sentence at the
-comma, never deleting the comma and leaving a run-on.
+SURFACE. The site's is 3.97 per 100 words, ten percent below its own measured 4.41. Three things
+that number has to get right, and each was wrong once: it is measured on RUNNING PROSE, which is
+what the gate reads, not whole-page text; it counts only the commas a WRITER CHOSE, since a date
+comma and a thousands separator can't be split at; and it is measured on the corpus BEFORE any
+comma rule touched it, because ten percent below an already-cut corpus is a ratchet that reaches
+zero. Captions have no ceiling because no caption has shipped, and borrowing the site's would be
+exactly the typed-in number the compute-not-generate law forbids. The cure is splitting the
+sentence at the comma, never deleting the comma and leaving a run-on.
 Never "cannot", always "can't".
 Never open a sentence with "And" or "But".
 No first person in published copy.

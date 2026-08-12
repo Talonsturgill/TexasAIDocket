@@ -203,10 +203,22 @@ def build() -> int:
 
 
 def manifest() -> dict:
-    """What is committed. Reads the manifest only, so the site build needs no font tooling."""
+    """What is committed. Reads the manifest only, so the site build needs no font tooling.
+
+    A MISSING MANIFEST RAISES. Returning an empty face list instead was the exact failure this
+    module was written to end, rebuilt one layer up: `theme.css` would emit no `@font-face` rule
+    while still writing Fraunces, Manrope and JetBrains Mono into every font stack, so the whole
+    site would publish looking fine and silently serving Georgia to every reader. The same rule
+    `tokens()` follows applies here, fail loudly rather than render a grey approximation.
+    """
     if not MANIFEST.exists():
-        return {"faces": []}
-    return json.loads(MANIFEST.read_text(encoding="utf-8"))
+        raise FileNotFoundError(
+            f"{MANIFEST} is missing. The site cannot serve its typefaces without it. "
+            f"Run: pip install fonttools brotli && python3 scripts/site/fonts_build.py")
+    doc = json.loads(MANIFEST.read_text(encoding="utf-8"))
+    if not doc.get("faces"):
+        raise ValueError(f"{MANIFEST} lists no faces, so nothing would be served")
+    return doc
 
 
 def face_css(url_prefix: str) -> str:

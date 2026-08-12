@@ -143,12 +143,19 @@ brand:
         a figure carried over from a different surface produced a 29 percent cut where 10 percent
         was asked for.
       site:
-        measured_baseline: "5.92 commas per 100 words, across the 24 published pages carrying 80
-          words or more: 366 commas in 6,180 words."
-        ceiling: 5.33          # ten percent below the measured baseline, computed not chosen
+        measured_baseline: "4.41 commas per 100 words. 170 commas in 3,853 words across the 20
+          published pages carrying 80 words or more of running prose."
+        ceiling: 3.97          # ten percent below the measured baseline, computed not chosen
         measured_over: "running prose only, meaning paragraphs and list items. Headlines, chips
           and card titles carry structural commas that no rewrite improves."
-        enforced_by: "caption_check.SITE_COMMA_CEILING, applied by house_style_check.py."
+        counting: "only the commas a writer CHOSE. The comma in a date and a thousands
+          separator are required by other rules, and the gate's own advice, split the sentence
+          at the comma, cannot be followed at either one."
+        measured_on: "main at 11f2918, the corpus as it stood BEFORE any comma rule touched it.
+          Deriving ten percent below an already-tightened corpus is a ratchet that reaches zero
+          in three passes, so the baseline is the writing as it was before the rule existed."
+        enforced_by: "caption_check.SITE_COMMA_CEILING, applied by house_style_check.py to the
+          built pages and by docket_build.gate_house_style to the record's reader copy."
       caption:
         measured_baseline: null
         ceiling: null

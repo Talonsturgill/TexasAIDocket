@@ -265,8 +265,8 @@ def home(items: list, today: str) -> str:
 <section>
   <h2>What this is</h2>
   <div class="prose">
-    <p>A record of decisions about artificial intelligence in Texas. Who decided, by when, and
-    whether the public still has a way in. It holds <span class="num">{n_items}</span> decisions
+    <p>A record of decisions about artificial intelligence in Texas. Who decided. By when. Whether
+    the public still has a way in. It holds <span class="num">{n_items}</span> decisions
     supported by <span class="num">{n_claims}</span> quoted sources.</p>
     <p>An entry is admitted only when every fact in it carries a quote from a source that was
     actually fetched. At least one of those sources has to be the filing, the statute or the
@@ -414,9 +414,9 @@ def data_page(items: list, today: str) -> str:
 <table><thead><tr><th>Topic</th><th class="n">Items</th></tr></thead><tbody>{rows}</tbody></table>
 <div class="prose">
   <h2>How a fact gets in</h2>
-  <p>An entry is admitted when every gate passes. The shape is valid, every claim carries a
-  verbatim quote and a URL that was fetched, no numeral appears in the prose that is not either
-  quoted from a source or computed from the record itself, and at least one source is primary.</p>
+  <p>An entry is admitted when every gate passes. The shape is valid and every claim carries a
+  verbatim quote and a URL that was fetched. No numeral appears in the prose that is not either
+  quoted from a source or computed from the record itself. At least one source is primary.</p>
   <p>Entries that fail stay out until they pass. Nothing is published on the strength of a
   headline alone.</p>
 </div>
@@ -486,7 +486,7 @@ def ask_page(items: list, today: str) -> str:
 <div class="prose">
   <p class="lede">Type a question about AI decisions in Texas. The answer is computed in your
   browser from an index that shipped with this page.</p>
-  <p><strong>Nothing you type is sent anywhere.</strong> No request, no key, no log. Turn off
+  <p><strong>Nothing you type is sent anywhere.</strong> No request. No key. No log. Turn off
   your connection after this page loads and the box still works. There is nothing on the other
   end of it. A record about surveillance and procurement should not be keeping a list of who
   asked what about which county.</p>
@@ -509,7 +509,7 @@ def ask_page(items: list, today: str) -> str:
   record itself. They come from its counties, its topics, the bodies that decided and what is
   open today. A county with nothing in it never gets a question, so the box can't promise an
   answer it does not have.</p>
-  <p>Answers are composed when you ask, from the index on this page. Nothing is a stored
+  <p>Answers are composed from the index on this page at the moment you ask. Nothing is a stored
   answer, which is why nothing here can be out of date relative to the record beside it.</p>
   <p>Where the record holds nothing, it says so. That is the answer, not a gap in it.</p>
 </div>
@@ -615,21 +615,21 @@ def services_page(items: list, today: str) -> str:
   published instead of an estimate.</p>
 
   <h3>Instruments nobody else is keeping</h3>
-  <p>The <a href="../grid/">grid watch</a> tracks the load factor, which is the shape of Texas
-  demand rather than its peak, because that is where large constant load actually shows up. The
+  <p>The <a href="../grid/">grid watch</a> tracks the load factor, the shape of Texas
+  demand rather than its peak. That is where large constant load actually shows up. The
   <a href="../water/">water watch</a> puts reservoir storage beside it by metro. Both series
   started because nobody was keeping them, and a day not collected is gone for good.</p>
 
   <h2>Where this is useful</h2>
   <ul>
-    <li><strong>Siting and interconnection.</strong> What has been decided near a site, by
-    which body, and whether a comment window is still open.</li>
+    <li><strong>Siting and interconnection.</strong> What has been decided near a site and by
+    which body. Whether a comment window is still open.</li>
     <li><strong>Regulatory watch.</strong> A standing record of an agency's decisions with the
     filings attached, rather than a clipping service.</li>
     <li><strong>Diligence.</strong> The physical account behind a project. The grid it lands
-    on, the water near it, and what the public file actually says.</li>
+    on, the water near it and what the public file actually says.</li>
     <li><strong>Building one of these.</strong> The machinery is the product as much as the
-    record is. Gates that self-test, output proven to be a pure function of its inputs, and
+    record is. Gates that self-test, output proven to be a pure function of its inputs and
     numbers a machine is structurally unable to invent.</li>
   </ul>
 
@@ -665,7 +665,7 @@ def about_page(today: str) -> str:
   Texas. Data centres. The electric grid. State policy. Land, water and permitting.</p>
 
   <h2>Numbers are computed, never generated</h2>
-  <p>Every numeral published here is produced by code, from data, and can be recomputed from the
+  <p>Every numeral published here is produced by code, from data. Each one can be recomputed from the
   same inputs. No number is typed by a person. This is the reason to believe a figure here over a
   figure somewhere else, and it is enforced by a build gate rather than by good intentions. A
   numeral that can't be traced to a quoted source or to a computation fails the build.</p>
@@ -678,11 +678,11 @@ def about_page(today: str) -> str:
 
   <h2>What this record will never do</h2>
   <p>It will not tell you whether the grid will hold. It will not predict an outcome or publish a
-  verdict on a project. It publishes what was decided, by whom, by when, and whether the public
-  still has a way in.</p>
+  verdict on a project. It publishes what was decided and who decided it. It publishes the
+  deadline, and whether the public still has a way in.</p>
 
   <h2>Corrections</h2>
-  <p>When something here has been wrong, the correction says what was wrong, for how long, and
+  <p>When something here has been wrong, the correction says what was wrong and for how long. It says
   where the right answer was checked. Corrections stay on the page.</p>
 </div>
 """
@@ -835,11 +835,9 @@ def build(out: Path, today: str) -> dict:
     # is deterministic where a subsetting run is not. See scripts/site/fonts_build.py, which
     # exists because brand.yaml named three faces, the stylesheet wrote them into every font
     # stack, and nothing served them, so every reader got Georgia and system-ui instead.
+    (out / "fonts").mkdir(parents=True, exist_ok=True)
     for face in fonts_build.manifest()["faces"]:
-        src = fonts_build.WEB / face["file"]
-        dst = out / "fonts" / face["file"]
-        dst.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(src, dst)
+        shutil.copyfile(fonts_build.WEB / face["file"], out / "fonts" / face["file"])
         written.append(f'fonts/{face["file"]}')
     # The licence ships beside the fonts, because the repository is public and all three faces
     # are redistributed under the Open Font License.

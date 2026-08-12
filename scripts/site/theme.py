@@ -64,6 +64,10 @@ AA_BODY = 4.5           # 1.4.3, text under 24px (or under 18.66px bold)
 AA_LARGE = 3.0          # 1.4.3, large text
 AA_NONTEXT = 3.0        # 1.4.11, boundaries a reader needs in order to find a control
 
+# The three page grounds anything can land on. ONE list, used both to derive the colours that
+# must clear every ground and to generate the contrast table that proves they did.
+GROUNDS = ("bg", "surface", "raised")
+
 
 # --------------------------------------------------------------------------- colour maths
 def _rgb(h: str) -> tuple[int, int, int]:
@@ -130,9 +134,25 @@ def lift_over(base: str, grounds: list, target: float) -> str:
         out = lift(out, ground, target)
     # One pass can leave an earlier ground behind, because lifting for a later ground moves the
     # colour. Repeat until every ground is satisfied at once.
-    while any(contrast(out, g) < target for g in grounds):
-        out = lift(out, min(grounds, key=lambda g: contrast(out, g)), target)
-    return out
+    #
+    # THE CAP IS NOT DEFENSIVE PADDING, IT IS THE ONLY EXIT FROM AN IMPOSSIBLE ASK. `lift` picks
+    # its direction per ground, toward white on a dark one and toward black on a light one, so a
+    # set of grounds straddling that threshold makes the value ping-pong and the loop never
+    # converges. `lift_over("#BF0A30", ["#141020", "#F6F1E4"], 4.5)` spins forever. That set is
+    # not a bug in this function, it is a palette asking one colour to be legible on both a near
+    # black and a near white ground, which no single colour does at 4.5 to 1. Uncapped, the
+    # symptom is the site build and its self-test hanging in CI with no output, which reads as
+    # an infrastructure fault rather than a palette that cannot be satisfied.
+    for _ in range(512):
+        failing = [g for g in grounds if contrast(out, g) < target]
+        if not failing:
+            return out
+        out = lift(out, min(failing, key=lambda g: contrast(out, g)), target)
+    worst = min(grounds, key=lambda g: contrast(out, g))
+    raise ValueError(
+        f"no single colour derived from {base} clears {target}:1 against every ground in "
+        f"{grounds}. The closest attempt was {out}, still {contrast(out, worst):.2f} against "
+        f"{worst}. Grounds this far apart in luminance need two tokens, not one derivation.")
 
 
 def mute(base: str, toward: str, grounds: list, target: float) -> str:
@@ -205,7 +225,7 @@ def palette() -> dict:
         # ask box sits on the surface and its input border is the strong rule; the countdown
         # sits on the surface too. A value solved against the page alone passes its own test
         # and fails where a reader meets it.
-        grounds = [mode["bg"], mode["surface"], mode["raised"]]
+        grounds = [mode[g] for g in GROUNDS]
         # A DIVIDER AND A CONTROL BOUNDARY ARE NOT THE SAME OBJECT. WCAG 1.4.11 asks 3 to 1 of
         # anything a reader needs in order to find a control, and asks nothing of decoration. A
         # table's row divider is decoration and wants to be a hairline. The border that is the
@@ -251,8 +271,8 @@ def css() -> str:
 
   {_vars(p['dark'])}
 
-  --display:"{ty['display']}",Georgia,"Times New Roman",serif;
-  --body:"{ty['body']}",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --display:"{ty['display']}","Fraunces fallback",Georgia,"Times New Roman",serif;
+  --body:"{ty['body']}","Manrope fallback",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
   --mono:"{ty['mono']}",ui-monospace,SFMono-Regular,Menlo,monospace;
 
   /* A fifth-based scale. Enough steps to build hierarchy, few enough to stay consistent. */
@@ -279,6 +299,18 @@ html {{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }}
   html {{ scroll-behavior:auto; }}
   *,*::before,*::after {{ animation-duration:.01ms!important; transition-duration:.01ms!important; }}
 }}
+
+/* THE SWAP REFLOW, which only became real when the fonts did. `font-display:swap` paints in the
+   fallback and then re-lays-out when the real face arrives. Before this site served any font
+   there was nothing to swap, so nothing shifted. Now three faces load on a cold cache, and
+   without a metric override the reader watches the page jump under their eyes.
+   `size-adjust` on a fallback-only family scales the fallback's glyphs to the real face's
+   measured x-height ratio, so the two occupy nearly the same space and the swap is a change of
+   shape rather than a change of layout. Ratios are the faces' own metrics. */
+@font-face {{ font-family:"Manrope fallback"; src:local("Arial"),local("Helvetica"),
+  local("Liberation Sans"); size-adjust:104%; ascent-override:100%; descent-override:26%; }}
+@font-face {{ font-family:"Fraunces fallback"; src:local("Georgia"),local("Times New Roman"),
+  local("Liberation Serif"); size-adjust:107%; ascent-override:96%; descent-override:24%; }}
 
 body {{
   margin:0; background:var(--bg); color:var(--ink);
@@ -356,8 +388,6 @@ main > section > h2 {{ position:relative; padding-top:1.1rem;
   border-top:var(--hair) solid var(--rule); }}
 main > section > h2::after {{ content:""; position:absolute; top:-1px; left:0; width:3.5rem;
   border-top:2px solid var(--accent); }}
-.sheetlabel {{ font-family:var(--mono); font-size:var(--s-2); letter-spacing:.16em;
-  text-transform:uppercase; color:var(--ink-mute); margin:0 0 .35rem; }}
 
 /* ---- the map ------------------------------------------------------------ */
 /* A SURVEY, NOT AN INFOGRAPHIC. Hairline mesh at one weight, a lit county at one intensity,
@@ -552,31 +582,37 @@ footer.site dd {{ margin:0; color:var(--ink); }}
 # The list is written out rather than derived, because the threshold depends on how a colour is
 # USED and no amount of introspection over a stylesheet can tell you that a countdown is set at
 # 33 pixels. Each row names the element it is about, so a failure points at a thing on a page.
-PAIRS = [
-    # (foreground role, background role, threshold, what it is)
-    ("ink", "bg", AA_BODY, "body text on the page"),
-    ("ink", "surface", AA_BODY, "body text on a panel"),
-    ("ink", "raised", AA_BODY, "body text on a raised panel"),
-    ("ink-bright", "bg", AA_BODY, "headings"),
-    ("ink-mute", "bg", AA_BODY, "meta, captions, chips, nav"),
-    ("ink-mute", "surface", AA_BODY, "meta inside a panel"),
-    ("accent", "bg", AA_BODY, "links"),
-    ("accent", "surface", AA_BODY, "links inside a panel"),
-    ("urgent", "bg", AA_BODY, "the closing countdown"),
-    ("urgent", "surface", AA_BODY, "the closing countdown on its panel"),
-    ("urgent", "raised", AA_BODY, "the closing countdown on a raised panel"),
-    ("rule-strong", "bg", AA_NONTEXT, "an input or chip boundary on the page"),
-    ("rule-strong", "surface", AA_NONTEXT, "the ask box's input boundary, on its panel"),
-    ("rule-strong", "raised", AA_NONTEXT, "a boundary on the raised surface"),
-    ("accent", "raised", AA_LARGE, "a link on the raised surface"),
+# EVERY ROLE THAT LANDS ON A GROUND IS CHECKED AGAINST EVERY GROUND, generated rather than
+# listed. The hand-written version was a second copy of the same fact as `GROUNDS` in `palette`,
+# and the two had already drifted: light `ink-mute` on `raised` measures 4.51, one hundredth
+# above the floor, and had no row, while `.txmap .lab` is ink-mute and `.txmap .c:hover` fills
+# with raised, so map labels genuinely render there. It passed only because `mute()` happened to
+# constrain against caliche. Editing one list without the other would have dropped a real
+# pairing below 4.5 with the gate still reporting every pairing clean.
+ON_EVERY_GROUND = [
+    ("ink", AA_BODY, "body text"),
+    ("ink-bright", AA_BODY, "headings, the lede, the skip link"),
+    ("ink-mute", AA_BODY, "meta, captions, chips, nav, map labels"),
+    ("accent", AA_BODY, "links"),
+    ("urgent", AA_BODY, "the closing countdown"),
+    ("rule-strong", AA_NONTEXT, "an input, chip or claim boundary"),
+]
+
+# Pairings whose background is not one of the three page grounds, so they cannot be generated.
+PAIRS_EXTRA = [
     ("on-accent", "accent-deep", AA_BODY, "the ask box's submit button label"),
 ]
+
+
+def pairs() -> list:
+    return [(fg, ground, need, f"{what}, on the {ground}")
+            for fg, need, what in ON_EVERY_GROUND for ground in GROUNDS] + PAIRS_EXTRA
 
 
 def contrast_report() -> list:
     p = palette()
     rows = []
-    for fg, bg, need, what in PAIRS:
+    for fg, bg, need, what in pairs():
         for mode in ("dark", "light"):
             got = contrast(p[mode][fg], p[mode][bg])
             rows.append({"mode": mode, "fg": fg, "bg": bg, "need": need,
@@ -726,10 +762,12 @@ def self_test() -> int:
 
     # A BUDGET THAT GREW WITH THE SURFACE, NOT WITH WASTE. 12 KB when the site was five pages of
     # text, 16 KB once it carried the county map, the load chart, the gauge, the metro bars and
-    # the ask box in two palettes. Now 20 KB: this build adds three @font-face rules, the survey
-    # furniture on the map, the drawing-sheet section rules and the footer title block. Raised
-    # in one place with the reason attached, never by deleting the check.
-    check("the stylesheet stays small", len(sheet.encode()) < 20_000,
+    # the ask box in two palettes. 20 KB for the three @font-face rules, the survey furniture,
+    # the drawing-sheet section rules and the footer title block. Now 21 KB for the two
+    # fallback faces that carry the metric overrides, which is 300 bytes buying the removal of
+    # a layout shift on every cold load. Raised in one place with the reason attached, never by
+    # deleting the check.
+    check("the stylesheet stays small", len(sheet.encode()) < 21_000,
           f"{len(sheet.encode())} bytes")
     check("two builds are byte identical", css() == sheet)
 

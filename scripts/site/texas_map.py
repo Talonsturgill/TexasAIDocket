@@ -283,8 +283,13 @@ def render(lit: set | None = None, *, title: str = "Texas counties in the record
         f'<svg class="txmap" viewBox="0 0 {VIEW_W:g} {VIEW_H:g}" role="img" '
         f'aria-labelledby="{idprefix}-t" preserveAspectRatio="xMidYMid meet">'
         f'<title id="{idprefix}-t">{title}. '
+        # The projection is a property of the drawing and is always true. The SCALE BAR is not
+        # announced here, because the stylesheet hides the whole survey layer below 34rem and a
+        # static title cannot know that. Telling a screen reader on a phone about a measuring
+        # device the page is not rendering is worse than staying quiet: the bar carries its own
+        # text, which is announced exactly when the bar is on screen.
         f'{n_lit} of {len(counties)} counties carry an item. '
-        f'Albers equal-area conic, {miles} mile scale bar.</title>'
+        f'Albers equal-area conic.</title>'
         f'<g>{"".join(paths)}</g>'
         # The furniture is drawn LAST so it sits over the counties, and it is drawn as a group
         # so the whole survey layer can be hidden in print with one selector.

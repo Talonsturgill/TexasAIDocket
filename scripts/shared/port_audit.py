@@ -432,8 +432,11 @@ def check_assets(root: Path) -> Result:
 
     url_in_css = re.compile(r"url\(\s*[\"']?([^\"')]+)[\"']?\s*\)")
     missing, checked = [], 0
+    # ONE pass per stylesheet. Both halves read the identical text, so walking twice bought two
+    # file reads and the chance of the two loops drifting onto different file sets.
     for sheet in docs.rglob("*.css"):
         text = sheet.read_text(encoding="utf-8", errors="ignore")
+
         for target in url_in_css.findall(text):
             if target.startswith(("http://", "https://", "data:", "//")):
                 continue
@@ -442,11 +445,9 @@ def check_assets(root: Path) -> Result:
             if not dest.exists():
                 missing.append(f"{sheet.relative_to(root)} -> {target}")
 
-    # THE OTHER HALF, and the half that actually bit. An asset can exist and still not be
-    # WORN: a served font nothing declares is as useless as a declared font nothing serves.
-    # Every family named as the first choice in a font stack must have a rule that defines it.
-    for sheet in docs.rglob("*.css"):
-        text = sheet.read_text(encoding="utf-8", errors="ignore")
+        # THE OTHER HALF, and the half that actually bit. An asset can exist and still not be
+        # WORN: a served font nothing declares is as useless as a declared font nothing serves.
+        # Every family named as the first choice in a font stack must have a rule defining it.
         declared = set(re.findall(r'@font-face\{[^}]*font-family:"([^"]+)"', text))
         for stack in re.findall(r"--(?:display|body|mono):\"([^\"]+)\"", text):
             checked += 1

@@ -49,6 +49,13 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[2]
 LEDGER = REPO_ROOT / "ledger" / "docket.json"
 
+# The house rules live with the caption linter, because they govern every surface and that is
+# where they were first written down. Imported once at module scope rather than inside the gate:
+# an insert per call left one duplicate path entry per invocation, and it also hid the
+# dependency from the wiring gate, which reads imports.
+sys.path.insert(0, str(REPO_ROOT / "scripts" / "carousel"))
+import caption_check                                               # noqa: E402
+
 SPEC_VERSION = 1
 
 # --------------------------------------------------------------------------- vocabularies
@@ -151,13 +158,20 @@ DOTTED_SECTION = re.compile(r"\b\d{1,4}\.\d{1,4}[A-Za-z]?\b")
 # "0010" that reads like a published quantity.
 ITEM_ID = re.compile(r"\btx-\d{4}-\d{4}\b", re.IGNORECASE)
 
-# A room, floor or suite is an address. "Commissioners Hearing Room 7-100" is where a person
+# A room or suite number is an address. "Commissioners Hearing Room 7-100" is where a person
 # physically goes to be heard, and the hyphen makes it read as a range to any numeral rule that
 # has not been told otherwise.
-PLACE_NUMBER = re.compile(
-    r"\b(?:Rooms?|Suites?|Floors?|Buildings?)\s+(?:No\.?\s*)?[\dA-Za-z]+(?:-[\dA-Za-z]+)*\b",
-    re.IGNORECASE,
-)
+#
+# "Building" AND "Floor" WERE HERE AND HAD TO COME OUT. They are ordinary English words, and in
+# a docket about data centres and the grid they are ordinary English words that are frequently
+# followed by a figure. Case-insensitively, "Building 500 megawatts of new gas capacity was
+# approved" had its 500 stripped before the numeral gate ever saw it, and the gate reported
+# clean. An exemption that swallows a published figure is worse than no exemption, because the
+# law this file enforces is that no numeral reaches a reader unquoted and uncomputed.
+#
+# The identifier must also start with a DIGIT. "Room" followed by a word is prose.
+PLACE_NUMBER = re.compile(r"\b(?:Rooms?|Suites?)\s+(?:No\.?\s*)?\d[\dA-Za-z]*(?:-[\dA-Za-z]+)*\b",
+                          re.IGNORECASE)
 
 ISO_DATE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
@@ -355,10 +369,6 @@ def gate_house_style(items: list) -> Result:
     excludes quotes by construction.
     """
     r = Result("house style")
-    import sys as _sys
-    _sys.path.insert(0, str(REPO_ROOT / "scripts" / "carousel"))
-    import caption_check                                           # noqa: PLC0415
-
     for it in items:
         who = it.get("id", "?")
         text = _reader_text(it)
@@ -605,6 +615,20 @@ def self_test() -> int:
     expect("numerals exempts a hearing room",
            gate_numerals([base(summary="Meetings are held in Commissioners Hearing Room 7-100.")]),
            "PASS")
+    # THE EXEMPTION MUST NOT SWALLOW A REAL FIGURE. These three passed the gate while the place
+    # rule also matched "Building" and "Floor", which are ordinary words in a docket about data
+    # centres and the grid. An exemption wide enough to hide a published megawatt figure defeats
+    # the one law this file exists to enforce.
+    expect("...but 'Building' before a figure is prose, not an address",
+           gate_numerals([base(summary="Building 500 megawatts of gas capacity was approved.")]),
+           "FAIL")
+    # 37, not 12: the fixture's own claim quote reads "Project No. 58482, 12 filing(s)", so a 12
+    # here is legitimately allowed and the case would pass for the wrong reason.
+    expect("...and so is 'Floor' before a figure",
+           gate_numerals([base(summary="Floor 37 percent of the load is served this way.")]),
+           "FAIL")
+    expect("...and a room number must actually be a number",
+           gate_numerals([base(summary="Room enough for 40 more turbines.")]), "FAIL")
     expect("numerals allows a count COMPUTED from the record",
            gate_numerals([base(summary="The corridor crosses 3 counties.",
                                geography={"statewide": False, "counties": ["A", "B", "C"]})]),
