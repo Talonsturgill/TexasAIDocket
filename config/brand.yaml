@@ -113,6 +113,52 @@ brand:
     punctuation:
       rule: "Straight quotes only. No emojis anywhere, in any surface."
       enforced_by: "scripts/carousel/caption_check.py QUOTE_RE and EMOJI_RE (hard fail)."
+    colons_and_semicolons:
+      rule: "No colons and no semicolons in published copy. Write two sentences."
+      why: >
+        Both are joints that let a sentence keep going after it has finished its thought. A
+        semicolon is almost always a full stop that lost its nerve, and a colon in prose is
+        usually a label bolted onto a sentence that could have opened with the thing itself.
+        Cutting them forces the shorter sentence that was already there.
+      exempt: >
+        A clock time (9:30) and a ratio (3:1) are numbers, not punctuation, and failing them
+        would push a writer to rephrase a correct figure. A verbatim quote is never touched:
+        rewriting a source's punctuation is falsifying it. Neither exemption is a style choice.
+      enforced_by: "scripts/carousel/caption_check.py COLON and SEMICOLON (hard fail), applied to
+        the site through scripts/site/house_style_check.py and to the record through
+        docket_build.py's house style gate."
+    commas:
+      rule: >
+        Two rules. CONSTRUCTION, at any length: no comma after a coordinating conjunction or a
+        relative pronoun, and no hedge set off by a pair of commas. Write "A data centre needs
+        electricity. Most cooling designs need water too", never "A data centre needs
+        electricity and, in most cooling designs, water". DENSITY, over a block of running
+        prose: commas per hundred words stays under the ceiling MEASURED ON THAT SURFACE.
+      how_to_cut_them: >
+        Split the sentence at the comma. Never delete the comma and leave a run-on, which trades
+        a punctuation problem for a grammar one.
+      the_ceiling_is_per_surface: >
+        A ceiling is a fact about a body of writing, so it is measured on the surface it governs
+        and never imported from another. The sibling product recorded what importing one costs:
+        a figure carried over from a different surface produced a 29 percent cut where 10 percent
+        was asked for.
+      site:
+        measured_baseline: "5.92 commas per 100 words, across the 24 published pages carrying 80
+          words or more: 366 commas in 6,180 words."
+        ceiling: 5.33          # ten percent below the measured baseline, computed not chosen
+        measured_over: "running prose only, meaning paragraphs and list items. Headlines, chips
+          and card titles carry structural commas that no rewrite improves."
+        enforced_by: "caption_check.SITE_COMMA_CEILING, applied by house_style_check.py."
+      caption:
+        measured_baseline: null
+        ceiling: null
+        why_null: >
+          No caption has shipped, so there is nothing to measure and any number here would be
+          borrowed. The construction rules apply to a caption today. The density rule waits.
+        blocked_on: "the first 20 shipped captions. Then measure the mean, take ten percent off
+          it in code, and set caption_check.CAPTION_COMMA_CEILING with its baseline beside it."
+        unit: "commas per 100 WORDS. One unit only. Carrying both words and characters for the
+          same rule is how a threshold gets compared against the wrong denominator."
     contractions:
       rule: "Never 'cannot'. Always 'can't'. Verbatim quotes are exempt."
       why: "The voice speaks it that way. 'Cannot' reads written rather than said."

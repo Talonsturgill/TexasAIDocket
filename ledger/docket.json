@@ -173,7 +173,7 @@
       ],
       "public_access": {
         "room": "open_comment",
-        "how": "Anyone may file comments under control number 58482 through the PUCT Interchange filer at https://www.puc.texas.gov/industry/filings/Default.aspx. Individuals have already done so without counsel: the record contains filings from named members of the public alongside utility and data center filings. Comments must be in by the September 4th, 2026 deadline.",
+        "how": "Anyone may file comments under control number 58482 through the PUCT Interchange filer at https://www.puc.texas.gov/industry/filings/Default.aspx. Individuals have already done so without counsel. The record contains filings from named members of the public alongside utility and data center filings. Comments must be in by the September 4th, 2026 deadline.",
         "url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
         "closes": "2026-09-04"
       },
@@ -487,7 +487,7 @@
     {
       "id": "tx-2026-0007",
       "title": "Utilities Code limits how the PUCT may direct ERCOT, and bars verbal directives",
-      "summary": "Texas law restricts the channels through which the Public Utility Commission may order ERCOT to act. A verbal directive is prohibited outright, and an official action may be directed only by contested case, by rulemaking, or by a written order or memorandum adopted on a majority vote. Separately, the ERCOT board selection committee, not the governor, picks ERCOT's directors and designates its chair.",
+      "summary": "Texas law restricts the channels through which the Public Utility Commission may order ERCOT to act. A verbal directive is prohibited outright. An official action may be directed only by contested case, by rulemaking, or by a written order or memorandum adopted on a majority vote. The ERCOT board selection committee picks ERCOT's directors and designates its chair. The governor does not.",
       "topic": "power-and-the-grid",
       "decider": {
         "name": "Texas Legislature",
@@ -509,7 +509,7 @@
       ],
       "public_access": {
         "room": "open_meeting",
-        "how": "Because a directive to ERCOT must run through a contested case, a rulemaking, or a majority vote taken in a meeting, each of those carries its own public participation route. PUCT open meetings are listed on the agency calendar feed and are open to the public in Commissioners Hearing Room 7-100.",
+        "how": "A directive to ERCOT must run through a contested case, a rulemaking, or a majority vote taken in a meeting. Each of those routes carries its own way in for the public. PUCT open meetings are listed on the agency calendar feed and are open to the public in Commissioners Hearing Room 7-100.",
         "url": "https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx",
         "closes": null
       },
@@ -805,7 +805,7 @@
     {
       "id": "tx-2026-0015",
       "title": "Federal comment window open on NRC reactor licensing and siting modernization",
-      "summary": "The Nuclear Regulatory Commission has proposed a wholesale revision of its reactor licensing, safety oversight and siting rules, carried out under an executive order directing reform of the agency. Comments close August 31st, 2026. Siting rules bear directly on the new nuclear generation being proposed to serve large electrical loads in Texas.",
+      "summary": "The Nuclear Regulatory Commission has proposed a wholesale revision of its reactor licensing, safety oversight and siting rules. The revision is being carried out under an executive order directing reform of the agency. Comments close August 31st, 2026. Siting rules bear directly on the new nuclear generation being proposed to serve large electrical loads in Texas.",
       "topic": "defense-and-federal",
       "decider": {
         "name": "United States Nuclear Regulatory Commission",
@@ -832,7 +832,7 @@
       ],
       "public_access": {
         "room": "open_comment",
-        "how": "Anyone may comment through regulations.gov under docket NRC-2025-0975, or through the comment link on the Federal Register document page, until August 31st, 2026. No lawyer and no standing are required.",
+        "how": "Anyone may comment through regulations.gov under docket NRC-2025-0975 until August 31st, 2026. The comment link on the Federal Register document page reaches the same docket. No lawyer and no standing are required.",
         "url": "https://www.federalregister.gov/documents/2026/07/16/2026-14341/modernizing-reactor-licensing-safety-oversight-and-siting-practices",
         "closes": "2026-08-31"
       },
@@ -984,7 +984,7 @@
     {
       "id": "tx-2026-0025",
       "title": "Statute requires state agencies and local governments to post standardized notice of AI systems",
-      "summary": "Every state agency and local government that deploys a public facing AI system, or one that is a controlling factor in a consequential decision, must post a standardized notice on the related applications, websites and public computer systems. The Department of Information Resources is required to develop the notice form, which must describe the system, its data sources and its privacy and ethics safeguards.",
+      "summary": "Every state agency and local government that deploys a public facing AI system must post a standardized notice on the related applications, websites and public computer systems. The same duty covers any system that is a controlling factor in a consequential decision. The Department of Information Resources is required to develop the notice form. That form must describe the system, its data sources and its privacy and ethics safeguards.",
       "topic": "state-policy",
       "decider": {
         "name": "Texas Department of Information Resources",
@@ -1006,7 +1006,7 @@
       ],
       "public_access": {
         "room": "contact_only",
-        "how": "The notice is meant to appear wherever the system is used, so a resident encountering a government AI system should be able to see one. Where no notice appears, the questions go to the agency or local government running the system, and to DIR about the form it was required to develop.",
+        "how": "The notice is meant to appear wherever the system is used. A resident who meets a government AI system should be able to see one. Where no notice appears, the question goes to the agency or local government running the system. Questions about the form itself go to DIR, which was required to develop it.",
         "url": null,
         "closes": null
       },

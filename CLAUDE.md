@@ -175,10 +175,22 @@ These routines DRAFT ONLY and never send.
 
 ## House rules that never bend
 
-Dates take the ordinal, month first: "August 11th", never "11 August" and never a bare
+Dates take the ordinal, month first. "August 11th", never "11 August" and never a bare
 "August 11". ISO stays correct for a citation stamp or a ledger field.
 No em dashes or en dashes anywhere. Ranges read "X to Y".
 No emojis. Straight quotes only.
+**No colons and no semicolons in published copy.** Write two sentences. A semicolon is a full
+stop that lost its nerve, and a colon in prose is a label bolted onto a sentence that could have
+opened with the thing itself. A clock time and a ratio are numbers, not punctuation, and a
+verbatim quote is never touched.
+**Commas, two rules.** CONSTRUCTION, at any length: no comma after a coordinating conjunction or
+a relative pronoun, and no hedge fenced off by a pair of commas. Write "A data centre needs
+electricity. Most cooling designs need water too", never "A data centre needs electricity and,
+in most cooling designs, water". DENSITY, over running prose: under the ceiling MEASURED ON THAT
+SURFACE. The site's is 5.33 per 100 words, ten percent below its own measured 5.92. Captions have
+no ceiling yet because no caption has shipped, and borrowing the site's would be exactly the
+typed-in number the compute-not-generate law forbids. The cure is splitting the sentence at the
+comma, never deleting the comma and leaving a run-on.
 Never "cannot", always "can't".
 Never open a sentence with "And" or "But".
 No first person in published copy.

@@ -27,7 +27,7 @@
 <h1>Texas Grid Watch</h1>
 <div class="prose">
   <p class="lede">A daily numeric record of how the ERCOT grid is absorbing large constant
-  load. This page does not predict, grade, or reassure. It publishes measurements, the
+  load. This page does not predict, grade or reassure. It publishes measurements, the
   arithmetic done on them, and the size of what nobody outside ERCOT can see.</p>
 </div>
 
@@ -119,10 +119,10 @@ and no number on this page can tell you that.</p>
 </table>
 <div class="prose">
   <p>Generation by fuel, integrated across the day from ERCOT's five minute telemetry. Storage
-  is signed: it is negative on a day the batteries took in more than they gave back, which is
-  most days, because a round trip loses energy. Shares are computed against generation that was
+  is signed. It reads negative on a day the batteries took in more than they gave back, which
+  is most days, because a round trip loses energy. Shares are computed against generation that was
   positive, so a charging battery is not published as a generator.</p>
-  <p>Two ERCOT feeds are read separately here: one for demand, one for generation by fuel.
+  <p>Two ERCOT feeds are read separately here, one for demand and one for generation by fuel.
   Everything generated inside the grid is consumed inside it, so net generation and measured
   load have to land on each other. The two rows above differ by
   <strong class="num">0.1%</strong>, which is about what direct current ties to
@@ -154,8 +154,8 @@ and no number on this page can tell you that.</p>
 
 <h2>How this is collected</h2>
 <div class="prose">
-  <p>Once a day, from ERCOT's public dashboard feeds, the settled previous day is read whole:
-  measured demand hour by hour, the day ahead forecast ERCOT published for those hours, the
+  <p>Once a day the settled previous day is read whole from ERCOT's public dashboard feeds.
+  Measured demand hour by hour, the day ahead forecast ERCOT published for those hours, the
   capacity it had committed, and generation by fuel. The raw responses are archived before
   anything parses them.</p>
   <p>The record stores the full hourly series, not only the summary, so every figure on this
@@ -174,7 +174,7 @@ and no number on this page can tell you that.</p>
     measured, the size of the gap is published instead of an estimate.</p>
     <p>Every fact carries a quote from the source it came from, and a link to that source.
     The record is <a href="../docket.json">open data</a>.</p>
-    <p class="num">Rebuilt August 11th, 2026.</p>
+    <p class="num">Rebuilt August 12th, 2026.</p>
   </div>
 </footer>
 </body>

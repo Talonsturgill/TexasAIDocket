@@ -1,6 +1,6 @@
 # Utilities Code limits how the PUCT may direct ERCOT, and bars verbal directives
 
-Texas law restricts the channels through which the Public Utility Commission may order ERCOT to act. A verbal directive is prohibited outright, and an official action may be directed only by contested case, by rulemaking, or by a written order or memorandum adopted on a majority vote. Separately, the ERCOT board selection committee, not the governor, picks ERCOT's directors and designates its chair.
+Texas law restricts the channels through which the Public Utility Commission may order ERCOT to act. A verbal directive is prohibited outright. An official action may be directed only by contested case, by rulemaking, or by a written order or memorandum adopted on a majority vote. The ERCOT board selection committee picks ERCOT's directors and designates its chair. The governor does not.
 
 - Topic: power-and-the-grid
 - Decided by: Texas Legislature (legislature)

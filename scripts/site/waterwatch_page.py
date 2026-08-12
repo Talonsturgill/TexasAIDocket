@@ -193,8 +193,7 @@ def metro_bars(metros: list[dict]) -> str:
 </tr>""" for m in metros)
     return f"""<table class="figures metros">
 <caption>Municipal reservoir storage by metro, driest first. Every bar is the same colour at
-every value: the order and the length carry the comparison, and no judgement is implied by
-either.</caption>
+every value. The order and the length carry the comparison. Neither implies a judgement.</caption>
 <thead><tr><th>Metro</th><th>Full</th><th class="n">Percent</th>
 <th class="n">Acre feet</th></tr></thead>
 <tbody>{rows}</tbody></table>"""
@@ -223,7 +222,7 @@ def body(records: list[dict], today: str) -> str:
   <p class="lede">Texas reservoirs hold <strong class="num">{maf(L['storage_af'])}</strong>
   million acre feet, <strong class="num">{pct(L['percent_full'])}%</strong> of the conservation
   capacity across <strong class="num">{af(L['reservoir_count'])}</strong> reservoirs. The
-  spread between metros is the part worth looking at: {driest['name']} sits at
+  spread between metros is the part worth looking at. {driest['name']} sits at
   <strong class="num">{pct(driest['percent_full'])}%</strong> while {fullest['name']} sits at
   <strong class="num">{pct(fullest['percent_full'])}%</strong>.</p>"""
 
@@ -241,7 +240,7 @@ def body(records: list[dict], today: str) -> str:
     if L.get("agreement") is not None:
         agree = f"""
   <p>Percent full is computed here from storage over capacity, never read from the feed's own
-  field. Comparing the two is free: across every reservoir counted, the largest disagreement
+  field. Comparing the two is free. Across every reservoir counted the largest disagreement
   was <strong class="num">{pt(L['agreement'])}</strong> of a percentage point, which is
   rounding. It is checked every day because the day it stops being rounding is the day their
   field means something other than what this code assumes.</p>"""
@@ -259,9 +258,9 @@ def body(records: list[dict], today: str) -> str:
     return f"""
 <h1>Texas Water Watch</h1>
 <div class="prose">{lede}
-  <p>A data centre needs electricity and, in most cooling designs, water. The
-  <a href="../grid/">grid watch</a> tracks the first. This tracks the second. Together they are
-  the physical account behind every siting decision in <a href="../record/">the record</a>.</p>
+  <p>A data centre needs electricity. Most cooling designs need water too. The
+  <a href="../grid/">grid watch</a> tracks the first and this tracks the second. Together they
+  are the physical account behind every siting decision in <a href="../record/">the record</a>.</p>
 </div>
 
 <h2>{d}</h2>
@@ -281,11 +280,11 @@ def body(records: list[dict], today: str) -> str:
     Ogallala under the Panhandle and the Edwards under Central Texas are not measured here and
     do not move the numbers above.</p>
     <p>So a low bar is not a conclusion about a city's water supply and a full bar is not a
-    promise about it. Some reservoirs are drawn down deliberately; some refill in a week from
-    one storm upstream. The figures are what was in storage, on the day, and nothing more is
+    promise about it. Some reservoirs are drawn down deliberately. Some refill in a week from
+    one storm upstream. The figures are what was in storage on the day and nothing more is
     claimed from them.</p>{out_of_state}
-    <p>Flood control dams with no conservation pool are excluded rather than counted as empty:
-    <strong class="num">{af(len(L['excluded_no_pool']))}</strong> of them, which stand dry by
+    <p>Flood control dams with no conservation pool are excluded rather than counted as
+    empty, <strong class="num">{af(len(L['excluded_no_pool']))}</strong> of them. They stand dry by
     design and would otherwise drag the state total down for doing their job.</p>
   </div>
   <p><strong>There is no historical percentile on this page, and the reason is worth stating.

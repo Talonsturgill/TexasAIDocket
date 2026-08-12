@@ -167,7 +167,10 @@ def item_meta(it: dict) -> str:
         bits.append(f'<span>{e(where if len(where) < 60 else where[:57] + "...")}</span>')
     bits.append(f'<span class="rooms {e(it["public_access"]["room"])}">'
                 f'{e(room_label(it["public_access"]["room"]))}</span>')
-    return f'<p class="meta">{"".join(bits)}</p>'
+    # Chips, not sentences. The comma between two of Oncor's 22 counties is a delimiter, and
+    # this row repeats once per card, so leaving it in a comma-density measurement would fail
+    # a page for the crime of listing counties. See house_style_check.DATA_REGION.
+    return f'<p class="meta" data-prose="data">{"".join(bits)}</p>'
 
 
 def claims_html(it: dict) -> str:
@@ -186,7 +189,7 @@ def claims_html(it: dict) -> str:
             f'<blockquote>{e(c["verbatim_quote"])}</blockquote>'
             f'<cite><a href="{e(c["source_url"])}" rel="nofollow noopener">'
             f'{e(c.get("source_title") or c["source_url"][:70])}</a></cite> '
-            f'<span class="kind">{e(kind)}</span></div>')
+            f'<span class="kind" data-prose="data">{e(kind)}</span></div>')
     return "".join(out)
 
 
@@ -216,7 +219,7 @@ def home(items: list, today: str) -> str:
 
     rows = "".join(
         f'<li><h3><a href="item/{e(a["id"])}/">{e(a["title"])}</a></h3>'
-        f'<p class="meta"><span class="num">{a["days_left"]}</span> days left, '
+        f'<p class="meta" data-prose="data"><span class="num">{a["days_left"]}</span> days left, '
         f'closes {e(ordinal(_dt.date.fromisoformat(a["closes"])))}</p></li>'
         for a in act[:6])
 
@@ -235,20 +238,20 @@ def home(items: list, today: str) -> str:
   {svg}
 </section>
 
-{'<section><h2>Still open</h2><ul class="items">' + rows + '</ul>'
-   '<p class="meta"><a href="record/">See all ' + str(n_items) + ' decisions</a></p>'
+{'<section><h2>Still open</h2><ul class="items" data-prose="data">' + rows + '</ul>'
+   '<p class="meta" data-prose="data"><a href="record/">See all ' + str(n_items) + ' decisions</a></p>'
    '</section>' if rows else
-   '<section><p class="meta"><a href="record/">See all ' + str(n_items) + ' decisions</a></p></section>'}
+   '<section><p class="meta" data-prose="data"><a href="record/">See all ' + str(n_items) + ' decisions</a></p></section>'}
 
 <section>
   <h2>What this is</h2>
   <div class="prose">
-    <p>A record of decisions about artificial intelligence in Texas: who decided, by when, and
+    <p>A record of decisions about artificial intelligence in Texas. Who decided, by when, and
     whether the public still has a way in. It holds <span class="num">{n_items}</span> decisions
     supported by <span class="num">{n_claims}</span> quoted sources.</p>
     <p>An entry is admitted only when every fact in it carries a quote from a source that was
-    actually fetched, and at least one of those sources is the filing, the statute or the agency
-    itself rather than a news report about it.</p>
+    actually fetched. At least one of those sources has to be the filing, the statute or the
+    agency itself rather than a news report about it.</p>
   </div>
 </section>
 """
@@ -285,9 +288,9 @@ def docket_index(items: list, today: str) -> str:
   <p>Every decision on the record, <strong>ordered by how soon a reader can still act</strong>,
   not by when it was filed. <span class="num">{n_open}</span> of
   <span class="num">{len(items)}</span> are open to comment now.</p>
-  <p class="meta">{topics}</p>
+  <p class="meta" data-prose="data">{topics}</p>
 </div>
-<ul class="items">{rows}</ul>
+<ul class="items" data-prose="data">{rows}</ul>
 """
     return page(title=f"The record — {SITE_NAME}", depth=1, active="record/",
                 desc="Every AI decision on the Texas record, ordered by how soon you can act.",
@@ -303,8 +306,8 @@ def topic_page(topic: str, items: list, today: str) -> str:
 <h1>{e(topic.replace("-", " "))}</h1>
 <div class="prose"><p><span class="num">{len(mine)}</span> of
 <span class="num">{len(items)}</span> decisions on the record.</p></div>
-<ul class="items">{rows}</ul>
-<p class="meta"><a href="../../record/">All decisions</a></p>
+<ul class="items" data-prose="data">{rows}</ul>
+<p class="meta" data-prose="data"><a href="../../record/">All decisions</a></p>
 """
     return page(title=f'{topic.replace("-", " ")} — {SITE_NAME}', depth=2, active="",
                 desc=f"Texas AI decisions filed under {topic.replace('-', ' ')}.",
@@ -340,7 +343,7 @@ def item_page(it: dict, today: str) -> str:
   {claims_html(it)}
 </section>
 
-<p class="meta"><span class="num">Last checked {e(it["last_verified"])}</span></p>
+<p class="meta" data-prose="data"><span class="num">Last checked {e(it["last_verified"])}</span></p>
 </article>
 """
     return page(title=f'{it["title"]} — {SITE_NAME}', depth=2, active="",
@@ -392,7 +395,7 @@ def data_page(items: list, today: str) -> str:
 <table><thead><tr><th>Topic</th><th class="n">Items</th></tr></thead><tbody>{rows}</tbody></table>
 <div class="prose">
   <h2>How a fact gets in</h2>
-  <p>An entry is admitted when every gate passes: the shape is valid, every claim carries a
+  <p>An entry is admitted when every gate passes. The shape is valid, every claim carries a
   verbatim quote and a URL that was fetched, no numeral appears in the prose that is not either
   quoted from a source or computed from the record itself, and at least one source is primary.</p>
   <p>Entries that fail stay out until they pass. Nothing is published on the strength of a
@@ -465,9 +468,9 @@ def ask_page(items: list, today: str) -> str:
   <p class="lede">Type a question about AI decisions in Texas. The answer is computed in your
   browser from an index that shipped with this page.</p>
   <p><strong>Nothing you type is sent anywhere.</strong> No request, no key, no log. Turn off
-  your connection after this page loads and the box still works, because there is nothing on
-  the other end of it. A record about surveillance and procurement should not be keeping a
-  list of who asked what about which county.</p>
+  your connection after this page loads and the box still works. There is nothing on the other
+  end of it. A record about surveillance and procurement should not be keeping a list of who
+  asked what about which county.</p>
 </div>
 
 <div id="ask" class="askbox">
@@ -484,9 +487,9 @@ def ask_page(items: list, today: str) -> str:
 <div class="prose">
   <h2>What it can answer</h2>
   <p>The <strong class="num">{len(cat)}</strong> questions it knows are generated from the
-  record itself: its counties, its topics, the bodies that decided, and what is open today. A
-  county with nothing in it never gets a question, so the box can't promise an answer it does
-  not have.</p>
+  record itself. They come from its counties, its topics, the bodies that decided and what is
+  open today. A county with nothing in it never gets a question, so the box can't promise an
+  answer it does not have.</p>
   <p>Answers are composed when you ask, from the index on this page. Nothing is a stored
   answer, which is why nothing here can be out of date relative to the record beside it.</p>
   <p>Where the record holds nothing, it says so. That is the answer, not a gap in it.</p>
@@ -604,10 +607,10 @@ def services_page(items: list, today: str) -> str:
     which body, and whether a comment window is still open.</li>
     <li><strong>Regulatory watch.</strong> A standing record of an agency's decisions with the
     filings attached, rather than a clipping service.</li>
-    <li><strong>Diligence.</strong> The physical account behind a project: the grid it lands
+    <li><strong>Diligence.</strong> The physical account behind a project. The grid it lands
     on, the water near it, and what the public file actually says.</li>
     <li><strong>Building one of these.</strong> The machinery is the product as much as the
-    record is: gates that self-test, output proven to be a pure function of its inputs, and
+    record is. Gates that self-test, output proven to be a pure function of its inputs, and
     numbers a machine is structurally unable to invent.</li>
   </ul>
 
@@ -639,13 +642,13 @@ def about_page(today: str) -> str:
     body = """
 <h1>About</h1>
 <div class="prose">
-  <p>The Texas AI Docket is a public record of decisions about artificial intelligence in Texas:
-  data centres, the electric grid, state policy, land, water and permitting.</p>
+  <p>The Texas AI Docket is a public record of decisions about artificial intelligence in
+  Texas. Data centres. The electric grid. State policy. Land, water and permitting.</p>
 
   <h2>Numbers are computed, never generated</h2>
   <p>Every numeral published here is produced by code, from data, and can be recomputed from the
   same inputs. No number is typed by a person. This is the reason to believe a figure here over a
-  figure somewhere else, and it is enforced by a build gate rather than by good intentions: a
+  figure somewhere else, and it is enforced by a build gate rather than by good intentions. A
   numeral that can't be traced to a quoted source or to a computation fails the build.</p>
 
   <h2>Where measurement stops, the page says so</h2>
