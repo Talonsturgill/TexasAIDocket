@@ -198,6 +198,25 @@ def check_coverage(root: Path) -> Result:
     for x in dropped_no_reason[:10]:
         r.fail(f"DROP without a reason: {x['source_repo']}/{x['source_path']}")
 
+    # THE MANIFEST WAS LYING, AND IT IS THE ONE FILE THAT MUST NOT. Its whole job is answering
+    # "is the port done", and status was hand-maintained, so 31 rows sat at TODO with their target
+    # already on disk, including all ten carousel agents. Coverage read 10 percent when the real
+    # figure was higher, and because coverage only NOTES it never failed. A tracking system that
+    # drifts from the tree is worse than no tracking system: it is a confident wrong answer, and
+    # the whole reason this file exists is that the last attempt at this port moved files across
+    # and never wired them.
+    #
+    # So status is now CHECKED against the tree rather than trusted. A row claiming work is
+    # outstanding while the file exists is a bookkeeping fault and fails. `--reconcile` writes the
+    # truth back, so fixing it is one command rather than an afternoon of hand edits.
+    stale = [x for x in rows
+             if x["status"] == "TODO" and x["target_path"]
+             and (root / x["target_path"]).exists()]
+    for x in stale[:10]:
+        r.fail(f"marked TODO but already on disk: {x['source_path']} -> {x['target_path']}")
+    if len(stale) > 10:
+        r.fail(f"...and {len(stale) - 10} more. Run: port_audit.py --reconcile")
+
     todo = [x for x in rows if x["status"] == "TODO"]
     done = [x for x in rows if x["status"] == "DONE"]
     dropped = [x for x in rows if x["status"] == "DROPPED"]
@@ -689,6 +708,12 @@ CHECKS = {
 
 
 # --------------------------------------------------------------------------- self-test
+def _fail_result() -> "Result":
+    r = Result("x")
+    r.fail("status was rewritten by a deletion")
+    return r
+
+
 def self_test() -> int:
     """Prove each gate can go red, using a throwaway tree. A gate that cannot fail proves
     nothing about what it guards."""
@@ -824,6 +849,27 @@ def self_test() -> int:
             ["r", "p", "1", "1", "0", "DROP", "", "DROPPED", "because"]) + "\n", encoding="utf-8")
         expect("coverage passes a justified drop", check_coverage(root), "PASS")
 
+        # STATUS DRIFT. The manifest is the answer to "is the port done", and its status column
+        # was kept by hand, so 31 rows sat at TODO with the file already on disk, all ten
+        # carousel agents among them. Coverage read 10 percent against a real 17 and never
+        # failed, because it only noted. A tracking system that drifts from the tree is a
+        # confident wrong answer, which is worse than no answer.
+        (root / "ledger" / "ported.json").write_text("{}", encoding="utf-8")
+        man.write_text(head + "\n" + "\t".join(
+            ["r", "p", "1", "1", "0", "PORT_VERBATIM", "ledger/ported.json", "TODO", ""])
+            + "\n", encoding="utf-8")
+        expect("coverage catches a row marked TODO whose target exists",
+               check_coverage(root), "FAIL")
+        assert reconcile(root) == 0
+        expect("...and reconcile writes the truth back", check_coverage(root), "PASS")
+        # Only in the safe direction: a missing file must NOT quietly un-do a DONE row, because
+        # that would let a deletion rewrite the plan.
+        (root / "ledger" / "ported.json").unlink()
+        assert reconcile(root) == 0
+        rows_after = read_manifest(root / "PORT_MANIFEST.tsv")
+        expect("...and a deletion does not rewrite the plan",
+               Result("x") if rows_after[0]["status"] == "DONE" else _fail_result(), "PASS")
+
         # parity: every disposition in the map has to be held to its own standard, and an
         # undeclared missing key has to fail. Run against a throwaway reference config.
         cfg = root / "config"
@@ -878,12 +924,45 @@ def self_test() -> int:
     return 0
 
 
+
+def reconcile(root: Path) -> int:
+    """Write the manifest's status column back from what is actually on disk.
+
+    ONLY IN THE SAFE DIRECTION. TODO becomes DONE where the target exists, and nothing else moves.
+    Flipping DONE back to TODO because a file is missing would let a deletion quietly rewrite the
+    plan, and the plan is the thing that remembers what was supposed to happen.
+    """
+    import csv                                                      # noqa: PLC0415
+    mpath = root / "PORT_MANIFEST.tsv"
+    rows = read_manifest(mpath)
+    if not rows:
+        print("port audit: no manifest to reconcile", file=sys.stderr)
+        return 2
+    fields = list(rows[0].keys())
+    changed = 0
+    for x in rows:
+        if x["status"] == "TODO" and x["target_path"] and (root / x["target_path"]).exists():
+            x["status"] = "DONE"
+            changed += 1
+    if changed:
+        with mpath.open("w", newline="", encoding="utf-8") as fh:
+            w = csv.DictWriter(fh, fieldnames=fields, delimiter="\t", lineterminator="\n")
+            w.writeheader()
+            w.writerows(rows)
+    print(f"port audit: reconciled {changed} row(s) from the tree")
+    return 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--root", default=str(REPO_ROOT))
     ap.add_argument("--only", nargs="*", choices=sorted(CHECKS), help="run only these checks")
     ap.add_argument("--summary", action="store_true", help="coverage progress only")
+    ap.add_argument("--reconcile", action="store_true",
+                    help="write status back from the tree: TODO becomes DONE where the target "
+                         "exists. The manifest is bookkeeping, and bookkeeping that has to be "
+                         "kept by hand is bookkeeping that drifts.")
     ap.add_argument("--self-test", action="store_true")
     args = ap.parse_args()
 
@@ -891,6 +970,9 @@ def main() -> int:
         return self_test()
 
     root = Path(args.root)
+
+    if args.reconcile:
+        return reconcile(root)
     names = args.only or (["coverage"] if args.summary else list(CHECKS))
 
     print(f"port audit  {root}\n")
