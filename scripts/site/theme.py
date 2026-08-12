@@ -538,28 +538,35 @@ body::after {{ content:""; position:fixed; inset:0; pointer-events:none; z-index
    trick the meteor is playing. The roll and the travel are one transform, because a tumbleweed
    that slides without turning is a ball and reads as a bug.
 
+   SIZE AND SPEED (owner, 2026-08-12). Bigger, and across a little faster. The speed lives in the
+   KEYFRAME PERCENTAGES rather than in the duration, because the fifty second cycle is what makes
+   the thing rare and shortening it would trade rarity for speed. Compressing the visible window
+   from 30 percent to 22 percent takes the crossing from about fifteen seconds to about eleven and
+   leaves the loop alone. The rotation went up with it, since a weed that crosses faster at the
+   same spin rate is sliding, and sliding without turning is the bug this whole element avoids.
+
    THE FIRST CROSSING IS ALMOST IMMEDIATE (owner, 2026-08-12). It used to wait six seconds, and
    rarity and a long cold open are not the same decision. Six seconds is most of the time a reader
    spends on the page before scrolling, so the effect that gives the site its character was one a
    lot of visitors never saw at all. The LOOP stays fifty seconds, which is what makes it rare;
    only the opening wait is cut, so the first one lands while somebody is still looking. */
-.sky .tumble {{ position:absolute; top:74vh; left:0; width:clamp(38px,4.6vw,64px);
+.sky .tumble {{ position:absolute; top:74vh; left:0; width:clamp(52px,6.2vw,88px);
   aspect-ratio:1; opacity:0; animation:tumble 50s linear infinite; animation-delay:1.2s; }}
 .sky .tumble .weed {{ width:100%; height:100%; display:block; }}
 .sky .tumble .weed path {{ fill:none; stroke:var(--accent); stroke-width:1.6;
   stroke-linecap:round; opacity:.5; }}
 @keyframes tumble {{
   0%   {{ opacity:0; transform:translate(-14vw,0) rotate(0deg); }}
-  3%   {{ opacity:.85; }}
+  2%   {{ opacity:.85; }}
   /* The hops. A tumbleweed does not roll along a line, it catches and lifts. */
-  8%   {{ transform:translate(6vw,-2.2vh) rotate(210deg); }}
-  12%  {{ transform:translate(22vw,0) rotate(430deg); }}
-  16%  {{ transform:translate(40vw,-3vh) rotate(640deg); }}
-  20%  {{ transform:translate(60vw,-.5vh) rotate(880deg); }}
-  24%  {{ transform:translate(82vw,-2.6vh) rotate(1100deg); }}
-  27%  {{ opacity:.7; }}
-  30%  {{ opacity:0; transform:translate(114vw,0) rotate(1330deg); }}
-  100% {{ opacity:0; transform:translate(114vw,0) rotate(1330deg); }}
+  6%   {{ transform:translate(6vw,-2.4vh) rotate(230deg); }}
+  9%   {{ transform:translate(22vw,0) rotate(470deg); }}
+  12%  {{ transform:translate(40vw,-3.2vh) rotate(700deg); }}
+  15%  {{ transform:translate(60vw,-.5vh) rotate(960deg); }}
+  18%  {{ transform:translate(82vw,-2.8vh) rotate(1200deg); }}
+  20%  {{ opacity:.7; }}
+  22%  {{ opacity:0; transform:translate(114vw,0) rotate(1450deg); }}
+  100% {{ opacity:0; transform:translate(114vw,0) rotate(1450deg); }}
 }}
 @keyframes drift1 {{ from {{ transform:translate(-13vw,-1vh) scale(1); }}
   to {{ transform:translate(15vw,4vh) scale(1.12); }} }}
