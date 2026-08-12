@@ -137,6 +137,23 @@ cannot prove.
 
 Write `out/<date>/claims.json`. **Everything downstream draws from this file only.**
 
+Then run the gate, and do not proceed until it is clean:
+
+```
+python3 scripts/carousel/claims_check.py --date <date>
+```
+
+**This is not a formality.** The fact-checker is an agent handed a schema, and nothing about that
+arrangement guarantees it returns the same shape twice. In the sibling product it drifted across
+eighteen runs: the container was renamed four times, the same field appeared as `claim`, `text`
+and `statement`, the source appeared under three different keys and once inside a nested
+`evidence` object. Nothing downstream complained, the site published anyway, and **the
+verification record rendered empty on 14 of 18 decks.** The promise that every fact traces to a
+fetched source was silently unmet on the page that exists to demonstrate it.
+
+The gate names the field it expected and the field it found, so a fix is one rename. If it fails,
+fix the claims file, not the gate.
+
 If nothing survives, that is one of the three legitimate causes of an empty run, and it is rare.
 Check that you actually looked before you conclude it.
 

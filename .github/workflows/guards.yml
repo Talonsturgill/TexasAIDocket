@@ -119,6 +119,15 @@ jobs:
       - name: Caption lint self-test (the house rules, and that they can go red)
         run: python3 scripts/carousel/caption_check.py --self-test
 
+      - name: Claims gate self-test (every drift the sibling suffered, replayed)
+        run: |
+          # The fact-checker is an agent given a schema, and an agent given a schema returns
+          # what it returns. In the sibling product the shape drifted across eighteen runs and
+          # the verification record rendered empty on fourteen decks, silently, because nothing
+          # read the file closely enough to complain. Texas has shipped zero decks, which is
+          # exactly when to install this: a gate written after the drift is archaeology.
+          python3 scripts/carousel/claims_check.py --self-test
+
       - name: Bespoke check self-test (a template scores 1.0, a real deck scores near zero)
         run: python3 scripts/carousel/bespoke_check.py --self-test
 
