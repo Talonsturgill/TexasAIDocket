@@ -320,13 +320,31 @@ def check_agents(root: Path) -> Result:
         r.skip("no prompts yet")
         return r
     available = {p.stem for p in agents_dir.glob("*.md")} if agents_dir.exists() else set()
-    # A prompt names an agent as `spawn the X agent` or backticked. Matching the phrasing the
-    # routine prompts actually use rather than every capitalised word.
-    pat = re.compile(r"(?:spawn|launch)\s+(?:a\s+|an\s+|the\s+)?`?([a-z][a-z0-9-]{2,})`?\s+agent",
-                     re.IGNORECASE)
+    # HOW A PROMPT ACTUALLY NAMES AN AGENT. The first version of this required the literal
+    # word "agent" directly after the name, and matched 1 of the 10 references in the carousel
+    # routine: real prompts write "Spawn up to 6 `carousel-scout` agents" and "Spawn 1
+    # `carousel-fact-checker` over everything the scouts returned". A gate that sees one
+    # reference in ten would pass a prompt naming an agent that does not exist, which is the
+    # entire thing it was built to catch.
+    #
+    # So: inside any sentence that spawns or launches something, every backticked hyphenated
+    # identifier is an agent reference. The hyphen requirement keeps file paths and flags out,
+    # and the sentence scope keeps unrelated backticks out.
+    spawn_line = re.compile(r"[^.\n]*\b(?:spawn|launch)\w*\b[^.\n]*", re.IGNORECASE)
+    backticked = re.compile(r"`([a-z][a-z0-9]*(?:-[a-z0-9]+)+)`")
+    # THE HYPHEN IS REQUIRED, and it is what keeps this from reading English as a name.
+    # Agents in this repo are named <lane>-<role>, so "carousel-scout" is a reference and the
+    # "more" in "never spawn more agents" is not. Without it that negative sentence, which
+    # exists in every routine prompt precisely to forbid extra fan-out, reported a missing
+    # agent called "more".
+    bare = re.compile(r"(?:spawn|launch)\w*\s+(?:a\s+|an\s+|the\s+)?"
+                      r"`?([a-z][a-z0-9]*(?:-[a-z0-9]+)+)`?\s+agent", re.IGNORECASE)
     named: set[str] = set()
     for prompt in prompts.rglob("*.md"):
-        named |= {m.lower() for m in pat.findall(prompt.read_text(encoding="utf-8", errors="ignore"))}
+        text = prompt.read_text(encoding="utf-8", errors="ignore")
+        for sentence in spawn_line.findall(text):
+            named |= {m.lower() for m in backticked.findall(sentence)}
+        named |= {m.lower() for m in bare.findall(text)}
     missing = sorted(named - available)
     for m in missing:
         r.fail(f"prompt names agent '{m}' but .claude/agents/{m}.md does not exist")

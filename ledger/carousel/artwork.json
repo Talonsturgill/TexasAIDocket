@@ -1,0 +1,11 @@
+{
+  "_spec": {
+    "version": 1,
+    "purpose": "The variety engine. No two decks visually alike.",
+    "why": "Each run records the techniques, palette, structure and camera it used, and the next run reads this to know what it may not reach for again. Without it a machine converges on whatever worked once, which is how a daily product develops a house style nobody chose.",
+    "enforced_by": "scripts/carousel/bespoke_check.py measures WITHIN a deck. This ledger constrains ACROSS decks. Both are needed: a deck can be nine different drawings that all look like last Tuesday.",
+    "written_by": "carousel"
+  },
+  "recent_window": 14,
+  "entries": []
+}

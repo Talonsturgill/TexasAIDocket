@@ -1,0 +1,11 @@
+{
+  "_spec": {
+    "version": 1,
+    "purpose": "The caption variety engine, plus the corpus the comma ceiling will be computed from.",
+    "why": "An opening move is the most repeatable thing in a caption, and a machine will find one that scores well and use it forever. Each shipped caption records its opening move and structure so the caption room can be told what is off the table.",
+    "comma_ceiling": "NOT SET. It is computed from this product's first twenty shipped captions at ten percent below their measured mean, never copied from another product. config/parity_map.yaml carries the unblock condition; scripts/carousel/caption_check.py measures the rate every run.",
+    "written_by": "carousel"
+  },
+  "opening_moves_recent": [],
+  "entries": []
+}

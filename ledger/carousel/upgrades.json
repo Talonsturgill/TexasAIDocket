@@ -1,0 +1,10 @@
+{
+  "_spec": {
+    "version": 1,
+    "purpose": "The automation-change trail. Every machine upgrade a run makes to itself.",
+    "why": "A routine whose last phase edits its own machine will drift, and the drift is invisible unless each change is written down where the next run and the maintainer both see it. Each set reverts as one commit.",
+    "bound_by": "ownership.yaml. An upgrade needing another actor's files is not an upgrade this run gets to make; it is written here as a proposal and stops.",
+    "written_by": "carousel"
+  },
+  "entries": []
+}
