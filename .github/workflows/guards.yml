@@ -129,6 +129,9 @@ jobs:
           # list got too generous, and both are worth knowing.
           python3 scripts/carousel/bespoke_check.py --slides-dir examples/demo-deck/slides
 
+      - name: Gmail draft self-test (drafts only, and the address is a constant)
+        run: python3 scripts/carousel/gmail_draft.py --self-test
+
       - name: House style self-test (our prose is checked, a quote never is)
         run: python3 scripts/site/house_style_check.py --self-test
 
