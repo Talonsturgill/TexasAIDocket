@@ -27,7 +27,7 @@ Shallow prompt with deep gates produces fewer decks, which is the survivable fai
 |---|---|---|
 | routine prompt | 13 KB, phases 0-14 | 83 KB, 17 phase headings |
 | knowledge | 15.6 KB / 4 docs | 316 KB / 6 docs |
-| carousel gates | 3 | 10 |
+| carousel gates | 3 -> **10** | 10 |
 | agents | 10 of 10, avg ~85% depth | 10 |
 | engine skill | complete (5 files) | complete |
 | ledgers | artwork, captions, topics, upgrades | + instincts |
@@ -55,7 +55,7 @@ Thinnest agents: pixel-critic 53%, caption-critic 62%, upgrade-engineer 62%.
 
 | # | Wave | Status |
 |---|---|---|
-| A | The seven missing gates, each with self-test + replay | **IN PROGRESS** — DONE: `claims_check` (21), `aggregate_check` (20), `dedupe_check` (10), `copy_sync_check` (21), `dossier_check` (26), all wired into the routine and CI. Next: `gate_status`, `ship_images` |
+| A | The seven missing gates, each with self-test + replay | **DONE** — `claims_check` (21), `aggregate_check` (20), `dedupe_check` (10), `copy_sync_check` (21), `dossier_check` (26), `gate_status` (20), `ship_images` (15). 133 new self-tests. Every one wired into the routine AND into CI, and every one replayed against the defect it exists for |
 | A2 | Merge the two routines into one, on the owner's call | **DONE** |
 | B | `instincts.json` + the ledger the retro phase writes | TODO |
 | C | `CAPTION_CRAFT.md`, Texas material | TODO |
@@ -131,3 +131,24 @@ Thinnest agents: pixel-critic 53%, caption-critic 62%, upgrade-engineer 62%.
   is the whole defect. Carries the sibling's word-boundary lesson: "ground" is not a hint, since
   "the ground plane is left flat" describes the defect and as a substring it also cleared every
   slide with a background.
+- 2026-08-12 — `gate_status.py`. Three sibling failures, each tighter than the last: a
+  hand-written reconciliation claiming zero QA warnings while the artifact said five; a correct
+  block pasted once with four render rounds run under it; and the same instinct broken twice in
+  one run at high confidence. So artifacts are PARSED and never measured (a valid report was once
+  false-flagged for being 196 bytes against a 200 byte threshold), binaries are checked by magic
+  bytes, and `--sync` writes the block rather than asking anyone to retype it. Idempotent, because
+  a rule with a cost gets skipped at the moment it matters. The row this version adds is STALE: an
+  artifact that predates the newest render is answering about a deck that no longer exists, and it
+  will say PASS forever.
+- 2026-08-12 — `ship_images.py`. Every figure measured on the files in front of it, per the
+  compute-not-generate law, which a script whose whole output is numerals is the last place to
+  break. Refuses any encode under 40 dB, an EXTERNAL visually-lossless threshold rather than one
+  measured from our own encodes, which would pass whatever we happened to ship first. Its first
+  fixture accumulated grain in uint8, wrapped 255 to 4, scattered speckle over the brightest band
+  and measured 34 dB and 99x: both numbers about the bug, not the encoder. A gate whose fixture is
+  pathological measures its fixture. Fixed in int16 with a clip, it measures 42.1 dB, which lands
+  where the sibling's real decks measured. `--all` refuses to write without `--force`, because it
+  reaches into runs that have already shipped and CLAUDE.md puts that on the stop-and-ask list.
+- 2026-08-12 — **WAVE A DONE.** Carousel gates 3 to 10. The measure was never "Alaska's files
+  exist here", it was whether an unattended run can fail safely and ship honestly, and the seven
+  gates are the reviewer that nobody is.

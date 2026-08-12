@@ -160,6 +160,21 @@ jobs:
           # no other gate looks at.
           python3 scripts/carousel/copy_sync_check.py --self-test
 
+      - name: Gate status self-test (the record cannot contradict the artifacts)
+        run: |
+          # A hand-written reconciliation once claimed zero QA warnings while the artifact said
+          # five. The run after that pasted a correct block, ran four more render rounds under
+          # it, and shipped a record wrong on four rows. Artifacts are PARSED, never measured by
+          # length, and a row older than the newest render reads STALE rather than PASS.
+          python3 scripts/carousel/gate_status.py --self-test
+
+      - name: Ship images self-test (measured, never asserted)
+        run: |
+          # Every figure it prints is computed from the files in front of it, including the PSNR
+          # it refuses a bad encode on. The fixture is built in int16 and clipped, because the
+          # first one accumulated grain in uint8, wrapped 255 to 4, and measured its own bug.
+          python3 scripts/carousel/ship_images.py --self-test
+
       - name: Bespoke check self-test (a template scores 1.0, a real deck scores near zero)
         run: python3 scripts/carousel/bespoke_check.py --self-test
 

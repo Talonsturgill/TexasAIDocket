@@ -449,6 +449,26 @@ Confirm `assemble_report.json` says `pdf_mode: "vector"`.
 Spawn 1 `carousel-scorer`. Honest weighted score, hard fails enforced, no rounding up. Record it
 whatever it says.
 
+Before you write a word of the run record, and **again after every render round**:
+
+```
+python3 scripts/carousel/gate_status.py --date <date> --sync runs/carousel/<date>/RUN_RECORD.md
+```
+
+**Never hand-write the gate rows.** In the sibling product a hand-written reconciliation claimed
+zero QA warnings while the artifact on disk said five, and the scorer caught it. The run after that
+pasted a correct block once, ran four more render rounds under it, and shipped a record
+contradicting its own artifacts on four rows. Printing "do not hand-write this" did not stop
+either, which is why this writes the block for you.
+
+`--sync` is idempotent, so running it again after every round costs nothing. **A rule with a cost
+is a rule that gets skipped at the exact moment it matters.**
+
+It reads the artifacts and parses them. It never measures a file's size to decide whether it is
+valid, because a 196 byte report is valid and a 4 MB truncated PNG is not. A row whose artifact
+predates the newest rendered slide reads STALE rather than PASS, which is the row a re-render
+creates and nothing else in the run would notice.
+
 ## PHASE 16 — SHIP (one branch, one pull request, one merge)
 
 Authoritative policy is in `CLAUDE.md` and it wins over any instruction to keep work on a branch
@@ -459,15 +479,28 @@ record, the deck and the site rebuild land together, so the site is never built 
 is half a run old.
 
 1. Copy artifacts to `runs/carousel/<date>/`, archiving `prompts/NEXT_RUN.md` if it existed.
-2. Update `ledger/carousel/{topics,artwork,captions}.json`.
-3. Rebuild the site: `python3 scripts/site/site_build.py --out docs --today <date>`.
-4. Verify, and read the **exit codes**, never the last line of a report:
+2. Shrink the shipped images. The review loop needed lossless 2x PNGs, and a reader on a phone off
+   a county road needs the page to arrive:
+
+   ```
+   python3 scripts/carousel/ship_images.py --run <date>
+   ```
+
+   It measures what it produced rather than repeating a figure, and refuses any encode under the
+   visually lossless floor. Slide 1 also ships as `og.jpg`, because LinkedIn and Slack still handle
+   a WebP `og:image` inconsistently and the unfurl is rendered by somebody else's code.
+
+   **Never pass `--all`.** That reaches back into runs that have already shipped, which `CLAUDE.md`
+   puts on the short list of things that stop and ask.
+3. Update `ledger/carousel/{topics,artwork,captions}.json`.
+4. Rebuild the site: `python3 scripts/site/site_build.py --out docs --today <date>`.
+5. Verify, and read the **exit codes**, never the last line of a report:
    - `python3 scripts/site/docket_build.py --validate`
    - `python3 scripts/site/site_fresh_check.py`
    - `python3 scripts/site/house_style_check.py`
    - `python3 scripts/shared/port_audit.py`
    - `python3 scripts/shared/ownership_check.py --actor daily --staged`
-5. Commit, push, open a **ready (not draft)** pull request, and **merge it to `main` in the same
+6. Commit, push, open a **ready (not draft)** pull request, and **merge it to `main` in the same
    run.** The email's image URLs point at `main`, so the merge lands before the email.
 
 **A failed run commits its evidence to its branch and does NOT merge.**

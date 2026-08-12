@@ -191,14 +191,14 @@ alaskaaicarousels	scripts/gaswatch_eia.py	11650	281	17	REBUILD	scripts/gridwatch
 alaskaaicarousels	scripts/gaswatch_fit.py	13945	314	12	REBUILD	scripts/gridwatch/fit.py	TODO	ERCOT, not Cook Inlet: different sources, different physics
 alaskaaicarousels	scripts/gaswatch_hdd.py	9565	233	1	REBUILD	scripts/gridwatch/hdd.py	TODO	ERCOT, not Cook Inlet: different sources, different physics
 alaskaaicarousels	scripts/gaswatch_pagecheck.py	16666	396	9	REBUILD	scripts/gridwatch/pagecheck.py	TODO	ERCOT, not Cook Inlet: different sources, different physics
-alaskaaicarousels	scripts/gate_status.py	40370	878	3	PORT_RETHEMED	scripts/carousel/gate_status.py	TODO	
+alaskaaicarousels	scripts/gate_status.py	40370	878	3	PORT_RETHEMED	scripts/carousel/gate_status.py	DONE	
 alaskaaicarousels	scripts/gmail_draft.py	27963	526	9	PORT_RETHEMED	scripts/carousel/gmail_draft.py	DONE	
 alaskaaicarousels	scripts/indexnow.py	4874	127	1	PORT_RETHEMED	scripts/site/indexnow.py	TODO	
 alaskaaicarousels	scripts/parsers_check.py	9057	199	5	PORT_RETHEMED	scripts/carousel/parsers_check.py	TODO	
 alaskaaicarousels	scripts/prune_runs.py	5560	140	0	PORT_RETHEMED	scripts/carousel/prune_runs.py	TODO	
 alaskaaicarousels	scripts/read_stats.py	4974	123	1	PORT_RETHEMED	scripts/site/read_stats.py	TODO	
 alaskaaicarousels	scripts/scanner_sync_check.py	29098	635	2	PORT_RETHEMED	scripts/site/scanner_sync_check.py	TODO	
-alaskaaicarousels	scripts/ship_images.py	12311	285	1	PORT_RETHEMED	scripts/carousel/ship_images.py	TODO	
+alaskaaicarousels	scripts/ship_images.py	12311	285	1	PORT_RETHEMED	scripts/carousel/ship_images.py	DONE	
 alaskaaicarousels	scripts/shrink_pdfs.py	10545	264	0	PORT_RETHEMED	scripts/carousel/shrink_pdfs.py	TODO	
 alaskaaicarousels	scripts/site_build.py	403971	7581	414	PORT_RETHEMED	scripts/site/site_build.py	DONE	
 alaskaaicarousels	scripts/site_fresh_check.py	4299	110	0	PORT_RETHEMED	scripts/site/site_fresh_check.py	DONE	
