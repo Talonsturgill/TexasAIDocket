@@ -50,6 +50,15 @@ jobs:
       - name: The record passes its own gates
         run: python3 scripts/site/docket_build.py --validate
 
+      - name: The copy about to be published keeps the house rules
+        run: |
+          # guards.yml runs this on every branch, and it was missing HERE, which is the one
+          # place it actually gates a publish. A house-rule violation caught on a branch is a
+          # note; the same violation caught at the deploy is the difference between a reader
+          # seeing it and not. Quoted source text is exempt: rewriting a quotation to fit
+          # house style would be falsifying it.
+          python3 scripts/site/house_style_check.py
+
       - name: The published site is exactly what the ledgers produce
         run: |
           # No --today. The check rebuilds using the date the committed site was BUILT with,
