@@ -52,8 +52,12 @@ jobs:
 
       - name: The published site is exactly what the ledgers produce
         run: |
-          # If this fails, docs/ says something the record does not. Do not publish it.
-          python3 scripts/site/site_fresh_check.py --today "$(date -u +%F)" || {
+          # No --today. The check rebuilds using the date the committed site was BUILT with,
+          # read from its own docket.json, because the question is "does docs/ say anything
+          # the ledgers do not" and never "was docs/ built today". Passing the current date
+          # here made every page report as changed the moment UTC rolled past midnight, and
+          # this gate refused to publish a perfectly correct site every day for three days.
+          python3 scripts/site/site_fresh_check.py || {
             echo "::error::docs/ does not match a rebuild. Refusing to deploy."
             exit 1
           }

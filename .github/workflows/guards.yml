@@ -110,7 +110,7 @@ jobs:
           # Advisory by design: exit 2 means the page wants attention, and the grid watch must
           # never be able to fail a build over presentation. Exit 1 would mean the checker
           # itself broke, which is a real failure.
-          python3 scripts/gridwatch/gridwatch_pagecheck.py --today 2026-08-11 || {
+          python3 scripts/gridwatch/gridwatch_pagecheck.py || {
             code=$?
             [ "$code" = 2 ] && echo "::warning::the grid watch page wants attention" && exit 0
             exit "$code"
@@ -155,12 +155,15 @@ jobs:
       - name: Site build self-test
         run: python3 scripts/site/site_build.py --self-test
 
+      - name: Freshness gate self-test (it bites, and a date change alone does not)
+        run: python3 scripts/site/site_fresh_check.py --self-test
+
       - name: The published site is exactly what the ledgers produce
         run: |
           # site_build --self-test proves two fresh builds agree. This proves the COMMITTED
           # site agrees with a fresh one, which is the only check that catches a hand edit or
           # a stale build. It is the guarantee behind "docs/ is generated, never hand-edited".
-          python3 scripts/site/site_fresh_check.py --today 2026-08-11
+          python3 scripts/site/site_fresh_check.py
 
       - name: The ask engine answers every question it catalogues
         run: |
