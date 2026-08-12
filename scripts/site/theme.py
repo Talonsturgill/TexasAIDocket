@@ -288,8 +288,16 @@ body {{
 
 h1,h2,h3 {{ font-family:var(--display); font-weight:600; line-height:1.15;
   letter-spacing:-.012em; color:var(--ink-bright); margin:0 0 .5em; text-wrap:balance; }}
-h1 {{ font-size:var(--s4); }} h2 {{ font-size:var(--s2); }} h3 {{ font-size:var(--s1); }}
+/* The display size is FLUID, because a fixed one is a size chosen for a desktop and endured
+   everywhere else. At the top step on a 390 pixel phone the home headline ran to eight lines
+   and pushed the record itself off the first two screens. */
+h1 {{ font-size:clamp(var(--s2),6.2vw,var(--s4)); }}
+h2 {{ font-size:clamp(var(--s1),4vw,var(--s2)); }} h3 {{ font-size:var(--s1); }}
+/* The measure is for READING. A list item that is a card is a layout box, not a line of prose,
+   and capping it at 68 characters left the container's own rule colour showing through the
+   right half of every card on a wide screen. */
 p,li {{ max-width:var(--measure); text-wrap:pretty; }}
+.items > li, footer.site dd, footer.site dt {{ max-width:none; }}
 a {{ color:var(--accent); text-decoration-thickness:1px; text-underline-offset:.18em; }}
 a:hover {{ color:var(--ink-bright); }}
 :focus-visible {{ outline:2px solid var(--accent); outline-offset:3px; border-radius:2px; }}
@@ -327,6 +335,15 @@ nav.main a {{ color:var(--ink-mute); text-decoration:none; padding-block:.25em;
   border-bottom:var(--hair) solid transparent; }}
 nav.main a:hover, nav.main a[aria-current] {{ color:var(--ink-bright);
   border-bottom-color:var(--accent); }}
+/* ON A PHONE THE MASTHEAD LETS GO. Nine sections wrap to two rows at 390 pixels, and stuck to
+   the top that is a third of the viewport permanently spent on navigation, on the one device
+   the stated reader is most likely to be holding. It scrolls away instead, and the skip link
+   above it is what a keyboard reader uses to get past it either way. */
+@media (max-width:46rem) {{
+  .masthead {{ position:static; backdrop-filter:none; }}
+  .masthead .wrap {{ gap:.6rem; }}
+  nav.main {{ margin-left:0; gap:.5rem .9rem; font-size:var(--s-2); }}
+}}
 
 /* ---- section furniture, from a drawing sheet ---------------------------- */
 /* A survey sheet separates its zones with a hairline and labels them in the margin. That is
@@ -346,7 +363,12 @@ main > section > h2::after {{ content:""; position:absolute; top:-1px; left:0; w
 /* A SURVEY, NOT AN INFOGRAPHIC. Hairline mesh at one weight, a lit county at one intensity,
    and a scale bar computed from the projection rather than drawn to look about right. No
    severity ramp, because a ramp implies a judgement this page does not get to publish. */
-.txmap {{ width:100%; height:auto; display:block; }}
+/* THE SHEET IS CAPPED. The map is 1000 by 900, so at full container width it stood taller than
+   a laptop viewport and the record it illustrates started below the fold. Capping the WIDTH by
+   the height budget keeps the aspect exact and lets the sheet be a figure on the page rather
+   than the page. 1000/900 of 72vh is 80vh. */
+.txmap {{ width:100%; max-width:min(100%,80vh); height:auto; display:block;
+  margin-inline:auto; }}
 .txmap .c {{ fill:var(--surface); stroke:var(--rule); stroke-width:.6;
   vector-effect:non-scaling-stroke; transition:fill .18s ease; }}
 .txmap .c.on {{ fill:var(--accent-deep); stroke:var(--accent); stroke-width:1.1; }}
@@ -358,6 +380,11 @@ main > section > h2::after {{ content:""; position:absolute; top:-1px; left:0; w
 .txmap .scale {{ stroke:var(--ink-mute); stroke-width:1.4; vector-effect:non-scaling-stroke; }}
 .txmap .lab {{ fill:var(--ink-mute); font-family:var(--mono); font-size:11px;
   letter-spacing:.06em; }}
+/* ON A NARROW SCREEN THE SURVEY LAYER COMES OFF. At 350 pixels the sheet's 11 unit type
+   renders around 4 pixels, which is not small type, it is a smudge that reads as dirt on the
+   map. A phone gets the locator: 254 counties and the ones the record touches. That is why the
+   furniture is drawn as one group. */
+@media (max-width:34rem) {{ .txmap .survey {{ display:none; }} }}
 
 /* ---- the clock ---------------------------------------------------------- */
 /* The question nobody else answers: can a Texan still act on this, and by when. */

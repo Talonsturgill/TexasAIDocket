@@ -229,8 +229,13 @@ def scale_bar(scale: float, dx: float, dy: float) -> tuple[str, int]:
             miles = step
     length = miles * upm
 
-    x0 = MARGIN + 26
-    y0 = VIEW_H - MARGIN - 34
+    # TOP LEFT, which is where a survey sheet puts it and, not by coincidence, the only large
+    # empty field Texas's own shape leaves on a rectangular sheet: everything northwest of the
+    # Panhandle is New Mexico and Oklahoma. The first version sat bottom left and collided with
+    # the 26 degree parallel's label, which is what a scale bar looks like when it is placed by
+    # eye rather than against the drawing it belongs to.
+    x0 = MARGIN + 34
+    y0 = MARGIN + 52
     half = length / 2
     return ("".join([
         f'<line class="scale" x1="{x0:.1f}" y1="{y0:.1f}" '
@@ -395,6 +400,47 @@ def self_test() -> int:
               for bigger in SCALE_STEPS if bigger > miles))
     check("the projection is named where a reader can find it",
           "Albers equal-area conic" in svg_full)
+
+    # NOTHING ON THE SHEET OVERLAPS ANYTHING ELSE. The scale bar sat bottom left in its first
+    # version and printed "200 miles" straight through the 26 degree parallel's label. Both
+    # elements were individually correct and the sheet was unreadable in that corner, which is
+    # what placing furniture by eye buys. Boxes are approximate, deliberately generous, and
+    # measured in the same units the SVG is drawn in.
+    def label_boxes(svg: str) -> list:
+        boxes = []
+        for m_lab in re.finditer(
+                r'class="lab" x="([\d.]+)" y="([\d.]+)"([^>]*)>([^<]+)<', svg):
+            lx, ly = float(m_lab.group(1)), float(m_lab.group(2))
+            attrs, text = m_lab.group(3), m_lab.group(4)
+            # 11px mono, so roughly 6.6 units per character, and about 12 units tall.
+            w, h = len(text) * 6.6, 12.0
+            # `text-anchor` centres HORIZONTALLY. Testing for the bare word "middle" also
+            # matched `dominant-baseline="middle"`, which centres vertically, so every parallel
+            # label was shifted half its width to the left and the collision this check exists
+            # to find fell outside the box. A broken gate reports clean, which is worse than no
+            # gate, so the attribute is matched in full.
+            if 'text-anchor="middle"' in attrs:
+                lx -= w / 2
+            boxes.append((lx, ly - h * 0.8, lx + w, ly + h * 0.2, text))
+        return boxes
+
+    boxes = label_boxes(svg_full)
+    check("every label on the sheet was found", len(boxes) >= 9, str(len(boxes)))
+    clashes = []
+    for i, a in enumerate(boxes):
+        for b in boxes[i + 1:]:
+            if a[0] < b[2] and b[0] < a[2] and a[1] < b[3] and b[1] < a[3]:
+                clashes.append(f"{a[4]!r} over {b[4]!r}")
+    check("no two labels on the sheet overlap", not clashes, "; ".join(clashes[:3]))
+
+    # And the bar's own rule must not run through a label either, which the text check alone
+    # would miss because the bar is a line rather than a string.
+    bar_line = re.search(r'class="scale" x1="([\d.]+)" y1="([\d.]+)" x2="([\d.]+)"', svg_full)
+    if bar_line:
+        bx1, by, bx2 = (float(bar_line.group(i)) for i in (1, 2, 3))
+        hit = [t for x1, y1, x2, y2, t in boxes
+               if y1 - 2 <= by <= y2 + 2 and x1 < bx2 and bx1 < x2 and t != f"{miles} miles"]
+        check("the scale bar's rule does not run through a label", not hit, str(hit))
     # The graticule is placed by root-finding rather than by guessing at the corner, so a tick
     # that landed outside the frame would mean the crossing search is broken.
     for m_tick in re.finditer(r'class="tick" x1="([\d.]+)" y1="([\d.]+)"', svg_full):
