@@ -55,7 +55,7 @@ Thinnest agents: pixel-critic 53%, caption-critic 62%, upgrade-engineer 62%.
 
 | # | Wave | Status |
 |---|---|---|
-| A | The seven missing gates, each with self-test + replay | **IN PROGRESS** — DONE: `claims_check` (21 checks), `aggregate_check` (20), `dedupe_check` (10), all wired into the routine and CI. Next: `copy_sync_check`, `dossier_check`, `gate_status`, `ship_images` |
+| A | The seven missing gates, each with self-test + replay | **IN PROGRESS** — DONE: `claims_check` (21), `aggregate_check` (20), `dedupe_check` (10), `copy_sync_check` (21), `dossier_check` (26), all wired into the routine and CI. Next: `gate_status`, `ship_images` |
 | A2 | Merge the two routines into one, on the owner's call | **DONE** |
 | B | `instincts.json` + the ledger the retro phase writes | TODO |
 | C | `CAPTION_CRAFT.md`, Texas material | TODO |
@@ -115,3 +115,19 @@ Thinnest agents: pixel-critic 53%, caption-critic 62%, upgrade-engineer 62%.
   prompt from scratch, which is precisely when a gate gets dropped by hand. Fixed, replayed, and
   the over-correction ("must appear in a prompt") is guarded against too, because the cron
   collectors appear in no prompt by design. GATE_LESSONS 13.
+- 2026-08-12 — `copy_sync_check.py`. Two failures, one file. The record going stale when a
+  slide's HTML is hand-edited during pixel review, which is the sibling's slide 05 kicker; and a
+  slide citing a claim id that is not in the claims file, which no gate looked at at all. The
+  first draft compared a 40 character prefix and its own self-test caught that as strictly worse
+  than using the full 80 characters the render records: two bodies agreeing for 64 characters and
+  diverging after passed it, which is the exact shape a late edit takes. The remaining blind spot
+  past character 80 is pinned by a test that asserts it is NOT detected, so nobody later mistakes
+  the limit for a matcher bug and shortens the needle to fix it.
+- 2026-08-12 — `dossier_check.py`, the only gate that fires before anything is drawn. The
+  sequencing hole it closes: a pixel critic grades each slide against its own dossier, so a bad
+  plan executed faithfully passes every review after it, and the sibling's dead lower zone reached
+  the scorer six runs running for exactly that reason. Reads the bottom band as its OWN clause,
+  because a lavish top third would otherwise vouch for an unplanned bottom, and that substitution
+  is the whole defect. Carries the sibling's word-boundary lesson: "ground" is not a hint, since
+  "the ground plane is left flat" describes the defect and as a substring it also cleared every
+  slide with a background.

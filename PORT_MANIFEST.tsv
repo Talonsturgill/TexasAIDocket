@@ -175,14 +175,14 @@ alaskaaicarousels	scripts/ask_corpus.py	8998	222	6	PORT_RETHEMED	scripts/site/as
 alaskaaicarousels	scripts/bespoke_check.py	9630	218	1	PORT_RETHEMED	scripts/carousel/bespoke_check.py	DONE	
 alaskaaicarousels	scripts/caption_check.py	37354	740	8	PORT_RETHEMED	scripts/carousel/caption_check.py	DONE	
 alaskaaicarousels	scripts/claims_check.py	8002	192	0	PORT_RETHEMED	scripts/carousel/claims_check.py	DONE	
-alaskaaicarousels	scripts/copy_sync_check.py	8768	212	0	PORT_RETHEMED	scripts/carousel/copy_sync_check.py	TODO	
+alaskaaicarousels	scripts/copy_sync_check.py	8768	212	0	PORT_RETHEMED	scripts/carousel/copy_sync_check.py	DONE	
 alaskaaicarousels	scripts/craft_corpus.py	16958	407	0	PORT_RETHEMED	scripts/carousel/craft_corpus.py	TODO	
 alaskaaicarousels	scripts/dedupe_check.py	13910	318	6	PORT_RETHEMED	scripts/carousel/dedupe_check.py	DONE	
 alaskaaicarousels	scripts/docket_alerts.py	19107	425	6	PORT_RETHEMED	scripts/site/docket_alerts.py	TODO	
 alaskaaicarousels	scripts/docket_build.py	42270	913	44	PORT_RETHEMED	scripts/site/docket_build.py	DONE	
 alaskaaicarousels	scripts/docket_dates_check.py	28922	605	5	PORT_RETHEMED	scripts/site/docket_dates_check.py	TODO	
 alaskaaicarousels	scripts/docket_staleness.py	9092	191	1	PORT_RETHEMED	scripts/site/docket_staleness.py	DONE	
-alaskaaicarousels	scripts/dossier_check.py	10102	222	0	PORT_RETHEMED	scripts/carousel/dossier_check.py	TODO	
+alaskaaicarousels	scripts/dossier_check.py	10102	222	0	PORT_RETHEMED	scripts/carousel/dossier_check.py	DONE	
 alaskaaicarousels	scripts/feeds_build.py	22445	501	44	PORT_RETHEMED	scripts/site/feeds_build.py	TODO	
 alaskaaicarousels	scripts/fetch_map_layers.py	12141	296	32	PORT_RETHEMED	scripts/site/fetch_map_layers.py	TODO	
 alaskaaicarousels	scripts/gaswatch_build.py	97272	1944	89	REBUILD	scripts/gridwatch/build.py	TODO	ERCOT, not Cook Inlet: different sources, different physics

@@ -342,10 +342,25 @@ reason down.
 
 Then write a **dossier per slide** before any code: what it claims, which claim ids, the technique,
 the composition, the value structure, the palette drawn from this story's own region, and an
-acceptance checklist the pixel critic will grade against.
+acceptance checklist the pixel critic will grade against. The format is
+`knowledge/carousel/SLIDE_DOSSIER_SPEC.md`.
 
 **No code is written before the dossiers exist.** A slide planned while it is being coded is a
 slide that will be argued for rather than judged.
+
+```
+python3 scripts/carousel/dossier_check.py --date <date>
+```
+
+This is the only gate in the run that fires before anything is drawn, and that is the whole point
+of it. **A pixel critic grades each slide against its own dossier, so a bad plan executed
+faithfully passes every review that comes after this one.** In the sibling product a dead lower
+zone was named by the scorer in six consecutive runs and never fixed, because by the time the only
+reviewer who could see it looked, the budget to rebuild four slides was gone. It reached the
+scorer six times because the dossier had written the empty bottom band into the plan and every
+critic downstream was grading against that plan.
+
+Fix the plan here, where it costs a paragraph.
 
 ## PHASE 10 — COPY CHAMBER (the caption room)
 
@@ -379,6 +394,27 @@ Spawn `carousel-pixel-critic` agents in parallel, one per one or two slides. The
 visible word and grade against the dossier's own checklist. Fix what they find, re-render,
 re-review. Then 1 `carousel-flow-critic` on the contact sheet, which judges the deck as a sequence
 rather than as nine slides.
+
+When the last round settles, before anything is assembled:
+
+```
+python3 scripts/carousel/copy_sync_check.py --date <date>
+```
+
+**Run it after every round, not once.** This phase is where display text gets edited straight into
+a slide's HTML, because answering a critic that way is faster than going back through `copy.json`.
+The moment that happens the record disagrees with the deck, and every artifact downstream, the
+email, the ledger, the archive page, is built from the record. In the sibling product a kicker was
+hand-edited in the HTML and `copy.json` kept the old string until the scorer caught it at the ship
+gate.
+
+It also checks that every claim id a slide cites exists in `claims.json`. `claims_check` proves the
+claims file is sound and `aggregate_check` proves the arithmetic on top of it. Neither asks whether
+the id a SLIDE points at is one of them, so a slide citing a claim that was dropped during
+verification satisfies every other gate in the run.
+
+**Fix `copy.json` to say what the slide says.** Never edit the slide to match a stale record. The
+render is what a reader receives.
 
 ## PHASE 13 — AGGREGATE GATE (every number the deck invented)
 

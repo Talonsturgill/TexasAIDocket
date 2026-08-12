@@ -143,6 +143,23 @@ jobs:
           # ledger entry's truncated title rather than its angle and entities.
           python3 scripts/carousel/dedupe_check.py --self-test
 
+      - name: Dossier gate self-test (the plan, before anything is drawn)
+        run: |
+          # The only gate that fires before a slide exists. A pixel critic grades each slide
+          # against its OWN dossier, so a bad plan executed faithfully passes every review after
+          # it. The sibling's scorer named a dead lower zone in six consecutive runs and it was
+          # never fixed, because by the time the only reviewer who could see it looked, the
+          # budget to rebuild four slides was gone.
+          python3 scripts/carousel/dossier_check.py --self-test
+
+      - name: Copy sync self-test (the record still says what the deck says)
+        run: |
+          # Pixel review is where display text gets edited straight into a slide's HTML, and
+          # copy.json goes stale from that moment. Everything downstream is built from the
+          # record. Also catches a slide citing a claim id that is not in the claims file, which
+          # no other gate looks at.
+          python3 scripts/carousel/copy_sync_check.py --self-test
+
       - name: Bespoke check self-test (a template scores 1.0, a real deck scores near zero)
         run: python3 scripts/carousel/bespoke_check.py --self-test
 
