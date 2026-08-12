@@ -157,6 +157,11 @@ Alaska's history would poison them.
   trigger prompts in the routines UI are thin pointers that say "read this file and execute it".
 - `knowledge/` — `shared/` (Texas research, design doctrine, vernacular), `carousel/` (craft
   doctrine for the deck engine). Video craft doctrine lives in `TexasAIDispatch`.
+  **`shared/GATE_LESSONS.md` is required reading before you add a gate, trust one, or conclude
+  that a green suite means a correct product.** It is the record of faults that shipped with
+  every check passing, and each entry names what to check instead. A green suite has been wrong
+  about the colour of the page, the promise on the front page, the state of a badge, whether the
+  site published at all, and prose that had not rendered yet.
 - `config/` — `brand.yaml` (shared Texas voice and tokens), then per-surface subdirectories.
 - `ledger/` — committed state. `docket.json` is the public record; the rest is per-actor.
 - `scripts/` — namespaced by owning actor: `site/`, `carousel/`, `gridwatch/`, `shared/`.
