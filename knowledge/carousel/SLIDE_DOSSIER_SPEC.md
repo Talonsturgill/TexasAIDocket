@@ -31,7 +31,7 @@ composition:
   focal: "what the eye lands on first, and what pulls it there"
 
 art:
-  technique: "named, from the technique library"
+  technique: "named, from knowledge/carousel/TECHNIQUE_LIBRARY.md"
   why_this_technique: "what it does for THIS claim that another would not"
   palette: "drawn from this story's own region, with the source named"
   value_structure: "what is lightest, what is darkest, and what each is doing"

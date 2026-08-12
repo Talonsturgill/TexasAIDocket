@@ -59,7 +59,7 @@ Thinnest agents: pixel-critic 53%, caption-critic 62%, upgrade-engineer 62%.
 | A2 | Merge the two routines into one, on the owner's call | **DONE** |
 | B | `instincts.json` + the ledger the retro phase writes | **DONE** — 39 self-tests. Confidence is DERIVED, never written |
 | C | `CAPTION_CRAFT.md`, Texas material | **DONE** — written, not retheemed. Manifest disposition corrected to REBUILD |
-| D | `TECHNIQUE_LIBRARY.md`, Texas material | TODO |
+| D | `TECHNIQUE_LIBRARY.md`, Texas material | **DONE** — every named API verified to exist |
 | E | Deepen pixel-critic, caption-critic, upgrade-engineer | TODO |
 | F | Deepen `daily_routine.md` against the new gates and craft | TODO |
 | G | End-to-end proof: render the demo deck, run every gate on it | TODO |
@@ -178,3 +178,13 @@ Thinnest agents: pixel-critic 53%, caption-critic 62%, upgrade-engineer 62%.
   existed on disk, referenced only by the WORKLOG, which the audit deliberately does not count as
   wiring. Wired into the routine's context block, Phase 10, and both caption agents. The manifest
   drift gate caught the stale row on the same run, its third real catch.
+- 2026-08-12 — `TECHNIQUE_LIBRARY.md`, written against THIS repo's libraries rather than
+  retheemed. Texas ships twelve purpose-built art libraries Alaska does not have (TXCARVE,
+  TXENGRAVE, TXSDF, TXPOST, TXC, txhachure, txrelief, txgeo, tx3d, txthree, txtype, txlabel), so a
+  retheme would have described a toolkit that is not here. Every backticked API in the doc was
+  checked against assets/js and two were wrong on the first pass: TX.hachure is TX.hachureField,
+  and TX.relief is TX.reliefShade. A technique library that names a function which does not exist
+  sends a run down a dead end, so all thirteen are now verified.
+- 2026-08-12 — the residue gate caught "Alaska's weather, not ours" inside that doc on the next
+  run. Correct catch: the point survives without the name, and saying caliche haze is dust hanging
+  in hot air rather than water is better craft writing than a comparison to somewhere else.

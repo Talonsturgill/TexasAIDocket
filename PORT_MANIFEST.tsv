@@ -148,7 +148,7 @@ alaskaaicarousels	knowledge/CAROUSEL_CRAFT.md	7558	129	7	PORT_RETHEMED	knowledge
 alaskaaicarousels	knowledge/DESIGN_DOCTRINE.md	12503	205	12	PORT_RETHEMED	knowledge/carousel/DESIGN_DOCTRINE.md	DONE	
 alaskaaicarousels	knowledge/FIELD_NOTES.md	231133	3151	142	REBUILD	knowledge/carousel/FIELD_NOTES.md	DONE	living run-retro log; Texas starts empty
 alaskaaicarousels	knowledge/SLIDE_DOSSIER_SPEC.md	7525	131	2	PORT_RETHEMED	knowledge/carousel/SLIDE_DOSSIER_SPEC.md	DONE	
-alaskaaicarousels	knowledge/TECHNIQUE_LIBRARY.md	45446	669	26	PORT_RETHEMED	knowledge/carousel/TECHNIQUE_LIBRARY.md	TODO	
+alaskaaicarousels	knowledge/TECHNIQUE_LIBRARY.md	45446	669	26	REBUILD	knowledge/carousel/TECHNIQUE_LIBRARY.md	DONE	Written as Texas material. Every technique names a real function in this repo's own assets/js libraries (TXGeo, TX3D, TXCARVE, TXENGRAVE, TXSDF, TXPOST, TXC), which are not Alaska's, so a retheme would have described a toolkit that does not exist here. Each entry records how the technique FAILS, which is the half a port would have dropped.
 alaskaaicarousels	ledger/alerts.json	1389	39	7	REBUILD	ledger/alerts.json	TODO	Alaska's memory would poison Texas dedupe and divergence gates
 alaskaaicarousels	ledger/artwork.json	132723	753	136	REBUILD	ledger/artwork.json	TODO	Alaska's memory would poison Texas dedupe and divergence gates
 alaskaaicarousels	ledger/captions.json	26442	317	35	REBUILD	ledger/captions.json	TODO	Alaska's memory would poison Texas dedupe and divergence gates

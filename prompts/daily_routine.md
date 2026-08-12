@@ -135,7 +135,7 @@ public fact stand for another day, on a page whose entire promise is that it doe
 - `knowledge/shared/TEXAS_LANGUAGE.md` — the civic terms we get wrong by default. A county judge
   is an executive. The Railroad Commission regulates no railroads.
 - `knowledge/shared/TEXAS_ATTITUDES.md` — the evidence base for tone.
-- `knowledge/carousel/` — craft doctrine for the deck engine. `CAPTION_CRAFT.md` is the caption room's menus and the anti-template law; `SLIDE_DOSSIER_SPEC.md` is the planning format `dossier_check` enforces.
+- `knowledge/carousel/` — craft doctrine for the deck engine. `TECHNIQUE_LIBRARY.md` is what the engine can actually execute and how each technique fails; `CAPTION_CRAFT.md` is the caption room's menus and the anti-template law; `SLIDE_DOSSIER_SPEC.md` is the planning format `dossier_check` enforces.
 - `config/brand.yaml` — voice, house rules, banned phrases, visual tokens.
 - `.claude/skills/carousel-engine/SKILL.md` — the slide contract. **Read this before writing a
   slide, every run.** It carries the traps that cost whole slides.
@@ -346,6 +346,12 @@ Hand whatever it prints to the directors and to the copy chamber. **If it prints
 them nothing.** An instinct reaches that list by surviving three runs without being contradicted,
 and a lesson no run has confirmed is worth less than the director's own judgement. This repo has
 shipped no decks, so early runs will get an empty list, and that is correct rather than a gap.
+
+Read `knowledge/carousel/TECHNIQUE_LIBRARY.md`. Every technique in it names a real function in
+`assets/js/` and records **how it fails**, which is most of the craft. A technique is chosen
+because this claim wants it, and `why_this_technique` in the dossier is where that is argued. A
+cartographic claim wants cartography. A claim about a quantity over time does not become one by
+being drawn on a map.
 
 Spawn 3 `carousel-treatment-director` agents in parallel, each with a different creative lens and
 the variety ledger's exclusions. Synthesise: pick one, graft the best of the others, and write the
