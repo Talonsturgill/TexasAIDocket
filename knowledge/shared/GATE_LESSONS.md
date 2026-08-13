@@ -376,6 +376,36 @@ underline and Home is where a reader's eye is not.
 **What to check.** A sentinel that collides with a real value is not a sentinel. Use `None`, and
 test the sentinel before the comparison rather than letting it fall out of one.
 
+## 21. A workflow's implicit default is a repo setting, and a setting is not a rule
+
+`gridwatch.yml` ran `actions/checkout@v4` with no `ref`, which takes the repository's default
+branch, and every push in the same job targeted `main`. Those were the same branch only because
+nobody had changed the setting, and this repository's default is a feature branch.
+
+**What that bought while it "worked".** The job checked out the feature branch, committed the
+reading on top of it, and rebased onto `origin/main`. While main was an ancestor the rebase was a
+no-op and the push fast-forwarded, so every run was green **while a data collection cron pushed
+unreviewed feature work to trunk once a day.** Nothing in the repo grants it that. The
+`ownership_check` step immediately above it passed, because it checks the FILES a job wrote, not
+the COMMITS a job pushes.
+
+**What it cost when it broke.** A squash merge left trunk and the feature branch holding
+identical content through different history. The rebase replayed the branch over its own squashed
+self, conflicted in two files, and both of that day's runs died with the reading in the workspace.
+ERCOT keeps no archive, so that day is gone.
+
+**What to check.** Any step that names a branch must name it everywhere, including the checkout.
+An implicit ref in a job with an explicit push target is a mismatch waiting for a setting to
+change. And **`pages.yml` in this same repo already pinned `ref: main`, with a comment explaining
+why** — the fix existed twenty lines away in a sibling file and had not been carried across. When
+a workflow learns something about refs, grep the other workflows the same day.
+
+**The second half, which is its own lesson.** A push retry loop must not push after a failed
+rebase. This one aborted the rebase and pushed anyway, so one conflict burned all five attempts
+printing the same rejection five times and buried the actual cause under the noise. The loop now
+also refuses to push when it is more than one commit ahead of trunk, which is the check that would
+have caught the whole thing on day one.
+
 ## Two process faults, which caused more lost time than any bug above
 
 **Reading the last line of a report.** `house_style_check` prints an advice footer on failure and a

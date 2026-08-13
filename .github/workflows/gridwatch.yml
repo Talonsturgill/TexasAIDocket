@@ -47,8 +47,29 @@ jobs:
   collect:
     runs-on: ubuntu-latest
     steps:
+      # `main` BY NAME, NEVER THE DEFAULT BRANCH.
+      #
+      # This step used to take the checkout action's default, which is whatever the
+      # repository's default branch happens to be, while every push below targets `main`.
+      # Those are the same branch only by luck, and on 2026-08-13 they stopped being.
+      #
+      # What that cost: this job checked out the feature branch, committed the reading on
+      # top of it, and ran `git rebase origin/main`, which replayed the whole feature
+      # branch. While `main` was an ancestor that rebase was a no-op and the push
+      # fast-forwarded, so nobody noticed that **a data collection cron was quietly
+      # pushing unreviewed feature work to trunk every single day.** The moment the
+      # feature branch was squash merged, the two held identical content through
+      # different history, the replay conflicted with itself in `WORKLOG.md` and
+      # `places.py`, and both of that day's runs died with the reading still in the
+      # workspace. ERCOT's dashboard keeps no archive, so that is the one loss this
+      # project cannot repair.
+      #
+      # Naming the branch fixes both halves at once. The workspace is trunk, so the only
+      # commit a rebase can replay is this job's own reading, and there is no longer any
+      # path by which this job pushes somebody else's work.
       - uses: actions/checkout@v4
         with:
+          ref: main
           fetch-depth: 0
 
       - uses: actions/setup-python@v5
@@ -111,17 +132,40 @@ jobs:
           print(json.loads(p.read_text().splitlines()[-1])['date'] if p.exists() else 'none')")
           git commit -q -m "gridwatch: ERCOT settled day ${DAY}"
 
+          # ONE COMMIT AHEAD OF TRUNK, CHECKED BEFORE ANYTHING IS PUSHED. With `main`
+          # checked out above, this job's history is trunk plus exactly one reading. If it
+          # is ever more than that, something has put work in this workspace that this job
+          # does not own, and pushing it is how a collector becomes a deploy mechanism.
+          AHEAD=$(git rev-list --count origin/main..HEAD)
+          if [ "$AHEAD" != "1" ]; then
+            echo "::error::this job is ${AHEAD} commits ahead of main and should be 1. \
+          Refusing to push, because a collector must only ever push its own reading."
+            exit 1
+          fi
+
           for delay in 2 4 8 16 0; do
             git fetch --quiet origin main || true
-            git rebase --quiet origin/main || { git rebase --abort || true; }
-            if git push origin HEAD:main; then
-              echo "pushed"; exit 0
+            # A FAILED REBASE MEANS DO NOT PUSH. The old loop aborted the rebase and then
+            # pushed anyway, which is a guaranteed non-fast-forward, so a single conflict
+            # burned all five attempts printing the same rejection five times and buried
+            # the real cause under it.
+            if git rebase --quiet origin/main; then
+              if git push origin HEAD:main; then
+                echo "pushed"; exit 0
+              fi
+              echo "push rejected"
+            else
+              git rebase --abort || true
+              echo "::warning::rebase onto origin/main conflicted. Trunk holds a change \
+          this reading cannot be replayed over."
             fi
             [ "$delay" = 0 ] && break
-            echo "push failed, retrying in ${delay}s"; sleep "$delay"
+            echo "retrying in ${delay}s"; sleep "$delay"
           done
           echo "::error::could not push the reading. The measurement is in this run's \
-          workspace only and the day is at risk."
+          workspace only and the day is at risk. Re-run this workflow once trunk is \
+          settled; the collector takes the settled previous day, so a same-day re-run \
+          recovers it."
           exit 1
 
       - name: Say plainly if the site rebuild failed
