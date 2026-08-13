@@ -1070,7 +1070,27 @@ table.tally.pair {{ max-width:32rem; }}
    case. */
 .shape {{ margin:1.5rem 0; }}
 .loadshape {{ width:100%; height:auto; display:block; }}
-.loadshape .area {{ fill:var(--accent-deep); fill-opacity:.28; }}
+/* A VERTICAL FADE, NOT A SEVERITY RAMP. The grid watch's no-ramp rule governs the capacity
+   gauge, where a colour change would imply a red zone this page does not get to publish.
+   Nothing here encodes value in colour: the fade separates the filled day from the ground
+   under it, and the stroke on top carries the reading. Sixty percent of that fill sits below
+   the trough on a normal day, and as a flat slab it read as a placeholder. */
+/* NO `fill` HERE. The gradient is defined inside the chart's own SVG, so a `url(#lsfill)`
+   in the stylesheet is a reference every page loads and only one page can resolve. The port
+   audit calls that an unwired asset and it is right to: a paint server and the thing that
+   paints with it belong in the same file. The element carries the fill. */
+/* The peak and the trough, marked where they happen. */
+.loadshape .mk {{ fill:var(--accent); stroke:var(--bg); stroke-width:1.5; }}
+.loadshape .mklab {{ fill:var(--ink-bright); font-size:11px; }}
+/* The residual strip. One hue, one width, and the length is the whole message, which is the
+   same rule the capacity bar follows. A miss above the line and a miss below it are the same
+   colour, because "forecast high" is not better or worse than "forecast low". */
+.loadshape .res {{ stroke:var(--accent); stroke-width:6; stroke-linecap:butt;
+  opacity:.75; vector-effect:non-scaling-stroke; }}
+/* The residual's zero, drawn stronger than a gridline. Whether a bar hangs above or below it
+   is the whole reading, and against the faint divider token it was a guess. */
+.loadshape .zero {{ stroke:var(--rule-strong); stroke-width:1.5;
+  vector-effect:non-scaling-stroke; }}
 .loadshape .line {{ fill:none; stroke:var(--accent); stroke-width:2;
   stroke-linejoin:round; vector-effect:non-scaling-stroke; }}
 .loadshape .fc {{ fill:none; stroke:var(--ink-mute); stroke-width:1.4;
@@ -1104,6 +1124,44 @@ caption {{ caption-side:bottom; text-align:left; padding-top:.75rem; font-size:v
 /* ---- the ask box -------------------------------------------------------- */
 /* Answered in the reader's browser. The styling says "a tool", not "a chatbot": no avatar, no
    typing dots, no conversation. A question and what the record says. */
+/* ---- published work: the article and video feeds --------------------------- */
+/* TWO COLUMNS AT READING WIDTH, ONE ON A PHONE, and the image leads. A carousel cover and a
+   video poster are both 4:5 portrait, so the same grid holds either without a second rule. */
+.deckgrid {{ display:grid; gap:var(--gap); margin:1.75rem 0 0;
+  grid-template-columns:repeat(auto-fill,minmax(min(100%,17rem),1fr)); }}
+.deckgrid .deck, .vcard {{ display:block; margin:0; text-decoration:none; color:inherit;
+  border:var(--hair) solid var(--rule); border-radius:var(--radius); overflow:hidden;
+  background:var(--surface); }}
+.deckgrid .deck img, .vcard video {{ display:block; width:100%; height:auto;
+  aspect-ratio:4/5; object-fit:cover; background:var(--panel); }}
+.deckgrid .deck h3, .vcard h3 {{ margin:.35rem 0 0; font-size:var(--s0); line-height:1.25; }}
+.deckgrid .deck .meta, .vcard .meta {{ margin:0; }}
+.deckgrid .deck > :not(img), .vcard figcaption {{ padding:0 .9rem; }}
+.deckgrid .deck {{ padding-bottom:1rem; transition:border-color .2s,transform .2s; }}
+.deckgrid .deck:hover {{ border-color:var(--accent); transform:translateY(-2px); }}
+.vcard figcaption {{ padding-bottom:1rem; }}
+.vcard p {{ margin:.4rem 0 0; font-size:var(--s-1); color:var(--ink-mute); }}
+
+/* THE LATEST ONE, on the front page. Cover beside copy above the fold width, stacked below
+   it, because a 4:5 image next to a paragraph at 30rem leaves neither enough room. */
+.latest {{ display:grid; gap:var(--gap); margin:1.25rem 0 0; align-items:start;
+  grid-template-columns:minmax(0,15rem) minmax(0,1fr); }}
+.latest .cover img, .latest .vidwrap video {{ display:block; width:100%; height:auto;
+  aspect-ratio:4/5; object-fit:cover; border-radius:var(--radius);
+  border:var(--hair) solid var(--rule); background:var(--panel); }}
+.latest h3 {{ margin:.4rem 0 .3rem; font-size:var(--s1); line-height:1.2; }}
+.latest p {{ margin:0 0 .9rem; color:var(--ink-mute); }}
+@media (max-width:40rem) {{
+  .latest {{ grid-template-columns:1fr; }}
+  .latest .cover, .latest .vidwrap {{ max-width:15rem; }}
+}}
+.sub {{ margin:.2rem 0 0; color:var(--ink-mute); font-size:var(--s-1); }}
+/* Every slide of one shipped article, read top to bottom. */
+.slides {{ display:grid; gap:.75rem; margin:1.5rem 0 0;
+  grid-template-columns:repeat(auto-fill,minmax(min(100%,20rem),1fr)); }}
+.slides img {{ display:block; width:100%; height:auto; border-radius:var(--radius);
+  border:var(--hair) solid var(--rule); }}
+
 .askbox {{ border:var(--hair) solid var(--rule-strong); border-radius:var(--radius);
   padding:1.25rem var(--gap); background:var(--surface); margin:1.5rem 0; }}
 /* THE LEAN VARIANT, which is the box on the front page. It sits directly under the hero and

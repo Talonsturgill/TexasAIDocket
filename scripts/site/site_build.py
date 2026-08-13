@@ -79,9 +79,9 @@ HOIST = mark.flag_svg()
 #
 # `Ask` is gone from the bar because the box is on the front page now. A search field a reader
 # has to navigate to is a search field a reader does not use.
-NAV = [("", "Home"), ("record/", "Docket"),
-       ("counties/", "Counties"), ("grid/", "Grid"), ("water/", "Water"),
-       ("services/", "Services"), ("about/", "About")]
+NAV = [("", "Home"), ("record/", "Docket"), ("articles/", "Articles"),
+       ("videos/", "Videos"), ("counties/", "Counties"), ("grid/", "Grid"),
+       ("water/", "Water"), ("services/", "Services"), ("about/", "About")]
 
 # The footer's way out. Wider than the masthead nav, because the bottom of a page is where
 # somebody who did not find what they came for goes looking, and the machine-readable surfaces
@@ -311,6 +311,60 @@ def claims_html(it: dict) -> str:
     return "".join(out)
 
 
+# --------------------------------------------------------------------- published work
+# Raw media is served from the repository rather than copied into `docs/`. A carousel run
+# ships six 1080x1350 images and the site would double the repository every day if the build
+# copied them. They are already committed on `main` and already public.
+RAW = f"https://raw.githubusercontent.com/Talonsturgill/TexasAIDocket/main"
+
+
+def load_runs() -> list:
+    """Every carousel this project has shipped, newest first.
+
+    READ FROM THE ARTIFACTS, NOT FROM A LIST SOMEBODY MAINTAINS. A run is shipped when
+    `runs/carousel/<date>/` exists with copy in it, so the feed cannot claim an article that
+    was never published and cannot miss one that was. A directory that does not parse is
+    skipped rather than guessed at, because a half-written run is a run that did not ship.
+    """
+    out = []
+    base = REPO_ROOT / "runs" / "carousel"
+    if not base.is_dir():
+        return out
+    for d in sorted((x for x in base.iterdir() if x.is_dir()), key=lambda x: x.name,
+                    reverse=True):
+        try:
+            copy = json.loads((d / "copy.json").read_text("utf-8"))
+        except Exception:                                            # noqa: BLE001
+            continue
+        slides = sorted(d.glob("slide-*.webp")) or sorted(d.glob("slide-*.png"))
+        if not slides:
+            continue
+        title = (copy.get("document_title") or copy.get("title") or d.name)
+        hook = (copy.get("hook") or copy.get("subtitle") or "")
+        out.append({"date": d.name, "title": str(title), "hook": str(hook),
+                    "slides": len(slides), "cover": slides[0].name})
+    return out
+
+
+def video_feed() -> dict:
+    """The Dispatch feed, or an empty one.
+
+    `docs/videos/videos.json` is written by the publish step in `TexasAIDispatch` and by
+    nothing here. It legitimately does not exist until the first video ships, so an absent
+    feed is zero videos and never an error. Counted at every build, which means the number
+    is right as of the last rebuild and the front page re-reads it live for the rest.
+    """
+    try:
+        d = json.loads((REPO_ROOT / "docs" / "videos" / "videos.json").read_text("utf-8"))
+        return d if isinstance(d, dict) else {"videos": d}
+    except Exception:                                                # noqa: BLE001
+        return {}
+
+
+def video_count() -> int:
+    return len([v for v in (video_feed().get("videos") or []) if v])
+
+
 # --------------------------------------------------------------------------- pages
 def _ercot_share():
     """The front page telemetry figure and its date, or None when the watch holds nothing.
@@ -355,6 +409,223 @@ def telemetry(p: str) -> str:
             f'<span>{e(when)}</span></a>')
 
 
+def videos_page(today: str) -> str:
+    """The Dispatch feed, rendered in the reader's browser from the feed file.
+
+    GENERATED, NOT A HAND-BUILT PASSTHROUGH, and that is a deliberate departure from how the
+    sibling product does it. A standalone page carries its own copy of the masthead, and this
+    site's masthead changed twice in one afternoon. A hand-maintained nav does not go wrong
+    loudly, it goes wrong by still pointing at a tab that no longer exists, on the one page
+    nobody regenerates. So the shell is generated like every other page and only the DATA is
+    external.
+
+    THE FEED IS FETCHED RATHER THAN BAKED for the same reason the front page fetches it:
+    `docs/videos/videos.json` is written by `TexasAIDispatch` on its own schedule, and a
+    build cannot know what shipped after it ran.
+
+    WORKS WITH NO FEED AT ALL. Before the first video the file does not exist, the fetch
+    fails, and the page says so in a sentence. It never renders a heading over an empty grid.
+    """
+    body = """
+<h1>Videos</h1>
+<div class="prose">
+  <p>One short film a day about artificial intelligence in Texas. Narrated, sourced, and
+  built by the same machine that keeps the docket.</p>
+</div>
+<div id="vidgrid" class="deckgrid"></div>
+<p id="vidnone" class="gap">No video has shipped yet. The first one appears here the day it
+does.</p>
+<script>
+(function(){
+  var grid=document.getElementById('vidgrid'), none=document.getElementById('vidnone');
+  if(!window.fetch)return;
+  var esc=function(t){return String(t==null?'':t).replace(/[&<>"]/g,function(m){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m];});};
+  fetch('videos.json').then(function(r){
+    if(!r.ok)throw 0; return r.json();
+  }).then(function(m){
+    var base=m.media_base||'';
+    var vs=(m.videos||[]).filter(function(v){return v&&v.video});
+    if(!vs.length)return;
+    var abs=function(u){return /^https?:\/\//.test(u)?u:base+u};
+    grid.innerHTML=vs.map(function(v){
+      var when=v.date||'';
+      try{when=new Date(v.date+'T12:00:00').toLocaleDateString('en-US',
+        {month:'long',day:'numeric',year:'numeric'})}catch(e){}
+      /* preload none and poster only. A grid of autoplaying files is a data bill for a
+         reader who came to look at one of them. */
+      return '<figure class="vcard"><video controls playsinline preload="none" poster="'+
+        esc(abs(v.poster||''))+'" src="'+esc(abs(v.video_mobile||v.video))+
+        '" aria-label="'+esc(v.title||'Texas AI video')+'"></video>'+
+        '<figcaption><span class="meta" data-prose="data"><span class="tag">'+esc(when)+
+        '</span></span><h3>'+esc(v.title||'')+'</h3><p>'+esc(v.caption||'')+
+        '</p></figcaption></figure>';
+    }).join('');
+    none.hidden=true;
+  }).catch(function(){});
+})();
+</script>
+"""
+    return page(title=f"Videos · {SITE_NAME}", depth=1, active="videos/",
+                desc="Every video Texas AI Docket has published. One short film a day on "
+                     "artificial intelligence in Texas.",
+                body=body, today=today, canonical="videos/")
+
+
+def articles_page(runs: list, today: str) -> str:
+    """Every carousel this project has shipped, newest first.
+
+    HONEST WHEN EMPTY. Before the first run there is nothing here, and this says so in one
+    sentence rather than rendering an empty grid under a confident heading. The same
+    sentence is what a reader sees if every run fails for a week, which is the point: the
+    page reports the state of the work rather than a state somebody hoped for.
+    """
+    cards = "".join(f"""<a class="deck" href="{e(r["date"])}/">
+  <img src="{RAW}/runs/carousel/{e(r["date"])}/{e(r["cover"])}" width="1080" height="1350"
+       loading="lazy" alt="Cover slide, {e(r["title"])}">
+  <span class="meta" data-prose="data"><span class="tag">{e(ordinal(
+    _dt.date.fromisoformat(r["date"])))}</span><span>{r["slides"]} slides</span></span>
+  <h3>{e(r["title"])}</h3></a>""" for r in runs)
+
+    body = f"""
+<h1>Articles</h1>
+<div class="prose">
+  <p>One verified Texas and AI story at a time, drawn as a carousel. Newest first.</p>
+</div>
+{f'<div class="deckgrid">{cards}</div>' if runs else
+ '<p class="gap">No article has shipped yet. The first one appears here the day it does.</p>'}
+"""
+    return page(title=f"Articles · {SITE_NAME}", depth=1, active="articles/",
+                desc="Every article Texas AI Docket has published. One verified Texas and AI "
+                     "story at a time.",
+                body=body, today=today, canonical="articles/")
+
+
+def article_page(r: dict, today: str) -> str:
+    """One shipped carousel, every slide, and the caption that went out with it."""
+    d = _dt.date.fromisoformat(r["date"])
+    slides = "".join(
+        f'<img src="{RAW}/runs/carousel/{e(r["date"])}/slide-{i:02d}.webp" width="1080"'
+        f' height="1350" loading="lazy" alt="Slide {i} of {r["slides"]}">'
+        for i in range(1, r["slides"] + 1))
+    body = f"""
+<article>
+<h1>{e(r["title"])}</h1>
+<p class="meta" data-prose="data"><span class="tag">{e(ordinal(d))}</span>
+  <span>{r["slides"]} slides</span></p>
+<div class="prose"><p>{e(r["hook"])}</p></div>
+<div class="slides">{slides}</div>
+<p class="meta" data-prose="data"><a href="../">Every article</a></p>
+</article>
+"""
+    return page(title=f'{r["title"]} · {SITE_NAME}', depth=2, active="articles/",
+                desc=(r["hook"] or r["title"])[:180], body=body, today=today,
+                canonical=f'articles/{r["date"]}/')
+
+
+def latest_article(runs: list) -> str:
+    """The newest carousel, baked at build time.
+
+    BAKED RATHER THAN FETCHED, unlike the video below it, and the difference is where the
+    data lives. The runs are in this repository, so the build already knows them and a
+    reader with script off still sees the article. The video feed is written by another
+    repository on its own schedule, so the build's answer goes stale between rebuilds and
+    has to be re-read in the page.
+
+    Renders nothing at all when nothing has shipped. A section that explains its own
+    emptiness is worse than a section that is not there.
+    """
+    if not runs:
+        return ""
+    r = runs[0]
+    return f"""
+<section data-reveal>
+  <h2>The latest article</h2>
+  <p class="sub">One verified Texas and AI story, drawn as a swipeable carousel.</p>
+  <div class="latest">
+    <a class="cover" href="articles/{e(r["date"])}/"><img
+      src="{RAW}/runs/carousel/{e(r["date"])}/{e(r["cover"])}"
+      width="1080" height="1350" loading="lazy"
+      alt="Cover slide, {e(r["title"])}"></a>
+    <div>
+      <p class="meta" data-prose="data"><span class="tag">{e(ordinal(
+        _dt.date.fromisoformat(r["date"])))}</span>
+        <span>{r["slides"]} slides</span></p>
+      <h3>{e(r["title"])}</h3>
+      <p>{e(r["hook"])}</p>
+      <div class="ctarow">
+        <a class="cta ghost" href="articles/{e(r["date"])}/">Read it</a>
+        <a class="cta ghost" href="articles/">Every article</a>
+      </div>
+    </div>
+  </div>
+</section>"""
+
+
+def latest_video() -> str:
+    """The newest Dispatch, filled in by the page from the feed it fetches.
+
+    THE SKELETON IS BAKED AND THE CONTENT IS NOT, because `docs/videos/videos.json` belongs
+    to `TexasAIDispatch` and is appended to on a schedule this build knows nothing about. A
+    video that ships an hour after a rebuild would sit invisible until the next one, which
+    for a daily feed is most of its life.
+
+    HIDDEN UNTIL IT HAS SOMETHING. The section starts `hidden` and is only revealed once a
+    video is actually in the feed, so a reader never meets a heading over an empty frame,
+    and the page is correct on the day the feed does not exist yet.
+
+    The file only loads when the section scrolls into view. A muted autoplaying video at the
+    top of a page costs a reader on a county road their data before they have chosen to
+    watch anything.
+    """
+    return """
+<section id="homevid" data-reveal hidden>
+  <h2>The latest video</h2>
+  <p class="sub">The newest from the daily feed.</p>
+  <div class="latest">
+    <div class="vidwrap"><video id="hv" muted playsinline loop preload="none"
+      aria-label="The latest Texas AI video"></video></div>
+    <div>
+      <p class="meta" data-prose="data"><span class="tag" id="hvdate"></span></p>
+      <h3 id="hvtitle"></h3>
+      <p id="hvcap"></p>
+      <div class="ctarow"><a class="cta ghost" href="videos/">Every video</a></div>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var sec=document.getElementById('homevid');
+  if(!sec||!window.fetch)return;
+  fetch('videos/videos.json').then(function(r){return r.json()}).then(function(m){
+    var base=m.media_base||'';
+    var vs=(m.videos||[]).filter(function(v){return v&&v.video});
+    /* The counter re-reads the same fetch, so a video that landed after the last rebuild
+       is counted the moment anybody loads the page. */
+    var st=document.getElementById('vidstat');
+    if(st&&vs.length){var n=vs.length;
+      st.querySelector('.n').textContent=(n<10?'0':'')+n;}
+    if(!vs.length)return;
+    var v=vs[0], abs=function(u){return /^https?:\/\//.test(u)?u:base+u};
+    var el=document.getElementById('hv');
+    if(v.poster)el.poster=abs(v.poster);
+    el.dataset.src=abs(v.video_mobile||v.video);
+    document.getElementById('hvtitle').textContent=v.title||'';
+    document.getElementById('hvcap').textContent=v.caption||'';
+    var d=document.getElementById('hvdate');
+    try{d.textContent=new Date(v.date+'T12:00:00').toLocaleDateString('en-US',
+      {month:'long',day:'numeric',year:'numeric'})}catch(e){d.textContent=v.date||''}
+    sec.hidden=false;
+    var io=new IntersectionObserver(function(es){es.forEach(function(en){
+      if(!en.isIntersecting)return;
+      if(!el.src){el.src=el.dataset.src;var q=el.play();if(q&&q.catch)q.catch(function(){});}
+      io.disconnect();})},{rootMargin:'200px'});
+    io.observe(sec);
+  }).catch(function(){});
+})();
+</script>"""
+
+
 def home(items: list, today: str) -> str:
     proj = dk.project(items, today)
     act = proj["actionable_now"]
@@ -364,6 +635,8 @@ def home(items: list, today: str) -> str:
     n_counties = len(lit)
     n_items = proj["counts"]["items"]
     n_claims = proj["counts"]["claims"]
+    runs = load_runs()
+    n_videos = video_count()
 
     if act:
         soonest = act[0]
@@ -401,15 +674,25 @@ def home(items: list, today: str) -> str:
         f'<span class="note">Public comment closes</span></a></li>'
         for a in act[:3])
 
-    # The stat row, every figure of it computed on this build from the record itself.
+    # THE STAT ROW COUNTS WHAT THIS PROJECT HAS PUBLISHED, plus the one number a reader can
+    # act on. It used to count quoted sources and counties touched, which are facts about the
+    # record's internals rather than about the work: a reader has no use for 55 quotes and no
+    # way to want a 56th. Articles and videos are the things that exist because this ran, and
+    # the open doors are the reason to come back. All four are computed at build.
+    #
+    # `id="vidstat"` is read again at runtime. The video feed is appended to by another
+    # repository on its own schedule, so a video that lands after today's build leaves this
+    # number one behind until the next one. The front page re-reads the same feed it already
+    # fetches for the latest-video block, so the figure is right whenever the page is loaded,
+    # and the built number stays as the answer with script off.
     stats = "".join(
-        f'<div class="stat"><span class="n{" hot" if hot else ""}">{n}</span>'
+        f'<div class="stat"{attrs}><span class="n{" hot" if hot else ""}">{n}</span>'
         f'<span class="l">{e(label)}</span></div>'
-        for n, label, hot in (
-            (n_items, "Decisions tracked", False),
-            (n_claims, "Quoted sources", False),
-            (n_counties, "Counties touched", False),
-            (f"{len(act):02d}", "Doors open to you", True),
+        for n, label, hot, attrs in (
+            (f"{len(runs):02d}", "Articles written", False, ""),
+            (f"{n_videos:02d}", "Videos published", False, ' id="vidstat"'),
+            (n_items, "Decisions tracked", False, ""),
+            (f"{len(act):02d}", "Doors open to you", True, ""),
         ))
 
     body = f"""
@@ -426,6 +709,10 @@ def home(items: list, today: str) -> str:
 </section>
 
 {ask_box(items, today)}
+
+{latest_article(runs)}
+
+{latest_video()}
 
 <section data-reveal>
   <h2>Where</h2>
@@ -1298,6 +1585,9 @@ def _home_numerals(items: list, today: str) -> set:
         # authorised by one call.
         a.add(share[0], *re.findall(r"\d+", share[1]))
     a.add(f"{len(dk.project(items, today)['actionable_now']):02d}")
+    # THE PUBLISHED-WORK COUNTS, zero padded the way the row prints them. `02d` of zero is
+    # "00", which is not "0", and the row prints three of them.
+    a.add(f"{len(load_runs()):02d}", f"{video_count():02d}", len(load_runs()), video_count())
     return a.set
 
 
@@ -1398,6 +1688,7 @@ def _watch_numerals(mod) -> set:
 
 def build(out: Path, today: str) -> dict:
     items = dk.load(LEDGER)
+    runs = load_runs()
     bad, results = dk.run_gates(items, today)
     if bad:
         dk.report(results)
@@ -1488,6 +1779,18 @@ def build(out: Path, today: str) -> dict:
         w(f"topic/{t}/index.html", topic_page(t, items, today),
           listed([i for i in items if i["topic"] == t]))
     w("counties/index.html", counties_page(items, today))
+    w("articles/index.html", articles_page(runs, today))
+    w("videos/index.html", videos_page(today))
+    # THE FEED ITSELF IS EXTERNAL DATA and is copied through byte for byte. It is written by
+    # `TexasAIDispatch` and `ownership.yaml` gives it to that actor, so no build here may
+    # write it, reformat it, or invent one when it is missing.
+    feed_src = REPO_ROOT / "docs" / "videos" / "videos.json"
+    if feed_src.exists() and feed_src.resolve() != (out / "videos" / "videos.json").resolve():
+        (out / "videos").mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(feed_src, out / "videos" / "videos.json")
+        written.append("videos/videos.json")
+    for r in runs:
+        w(f'articles/{r["date"]}/index.html', article_page(r, today))
     # PER PLACE. The index, then a page for every metro the record touches and every
     # touched county that is in no metro. Nothing falls between the two.
     for pl in all_places(items, today):

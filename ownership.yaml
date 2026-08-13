@@ -225,9 +225,15 @@ rules:
       site_build copies it through verbatim.
   - path: "docs/videos/index.html"
     owner: human
+    rebuild_by: [daily, gridwatch]
     note: >
-      A hand-built static passthrough, not a template. site_build copies it verbatim and
-      never lints or regenerates it.
+      GENERATED, and this rule changed on 2026-08-13. It was written as a hand-built static
+      passthrough, copied verbatim and never regenerated, which is how the sibling product
+      does it. That is the wrong trade here. A standalone page carries its own copy of the
+      masthead, and this site's masthead changed twice in one afternoon. A hand-maintained
+      nav does not fail loudly; it keeps pointing at a tab that no longer exists, on the one
+      page nothing regenerates. The shell is built by site_build like every other page and
+      only the FEED is external.
   - path: "vendor/**"
     owner: human
     note: >
