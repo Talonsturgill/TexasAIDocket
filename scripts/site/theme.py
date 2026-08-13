@@ -1098,6 +1098,32 @@ table.tally.pair {{ max-width:32rem; }}
 .loadshape .g {{ stroke:var(--rule); stroke-width:1; vector-effect:non-scaling-stroke; }}
 .loadshape .ax {{ fill:var(--ink-mute); font-family:var(--mono); font-size:11px; }}
 .loadshape .ax.unit {{ font-size:9px; letter-spacing:.08em; }}
+/* SVG TEXT SCALES WITH THE DRAWING, AND THE DRAWING SHRINKS TO FIT.
+   The chart is a 720 unit wide viewBox rendered to whatever the column gives it, so an 11
+   unit label is 11 screen pixels at exactly one width and nothing like it anywhere else.
+   Measured: at a 390px viewport the sheet renders 358px wide, a scale of 0.497, which puts
+   every axis number and both peak labels at 5.5 PIXELS. Legible on a laptop, unreadable on
+   the phone this site is mostly read on, and no build-time check can see it because the
+   markup is identical at every width.
+   So the user-unit size steps up as the sheet steps down, chosen to land every label between
+   about 10 and 13 screen pixels across the whole range. `tests/responsive.mjs` measures the
+   effective size and fails under 10, so these numbers cannot drift away from the drawing. */
+@media (max-width:22rem) {{
+  .loadshape .ax, .loadshape .mklab {{ font-size:27px; }}
+  .loadshape .ax.unit {{ font-size:22px; }}
+}}
+@media (min-width:22.01rem) and (max-width:26rem) {{
+  .loadshape .ax, .loadshape .mklab {{ font-size:22px; }}
+  .loadshape .ax.unit {{ font-size:18px; }}
+}}
+@media (min-width:26.01rem) and (max-width:34rem) {{
+  .loadshape .ax, .loadshape .mklab {{ font-size:19px; }}
+  .loadshape .ax.unit {{ font-size:16px; }}
+}}
+@media (min-width:34.01rem) and (max-width:46rem) {{
+  .loadshape .ax, .loadshape .mklab {{ font-size:15px; }}
+  .loadshape .ax.unit {{ font-size:12px; }}
+}}
 figcaption {{ font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
   max-width:var(--measure); }}
 

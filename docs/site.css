@@ -395,6 +395,22 @@ table.tally.pair { max-width:32rem; }
 .loadshape .g { stroke:var(--rule); stroke-width:1; vector-effect:non-scaling-stroke; }
 .loadshape .ax { fill:var(--ink-mute); font-family:var(--mono); font-size:11px; }
 .loadshape .ax.unit { font-size:9px; letter-spacing:.08em; }
+@media (max-width:22rem) {
+  .loadshape .ax, .loadshape .mklab { font-size:27px; }
+  .loadshape .ax.unit { font-size:22px; }
+}
+@media (min-width:22.01rem) and (max-width:26rem) {
+  .loadshape .ax, .loadshape .mklab { font-size:22px; }
+  .loadshape .ax.unit { font-size:18px; }
+}
+@media (min-width:26.01rem) and (max-width:34rem) {
+  .loadshape .ax, .loadshape .mklab { font-size:19px; }
+  .loadshape .ax.unit { font-size:16px; }
+}
+@media (min-width:34.01rem) and (max-width:46rem) {
+  .loadshape .ax, .loadshape .mklab { font-size:15px; }
+  .loadshape .ax.unit { font-size:12px; }
+}
 figcaption { font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
   max-width:var(--measure); }
 .bar { height:1.6rem; background:var(--surface); border:var(--hair) solid var(--rule-strong);
