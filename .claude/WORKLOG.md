@@ -91,7 +91,7 @@ reports the existing backlog without failing, and the backlog can only shrink.
 |---|---|---|
 | M1 | The place spine: vendor the Texas CBSA subset, extend `places.py` with metro/division/CSA, resolver + self-tests | **DONE** — 26 metro + 41 micro areas, 2 divisions, 13 combined, 133 of 254 counties covered. 13 new self-tests |
 | M2 | Locatability: tighten the rule that had a loophole, resolve every county name, derive the metro, ratchet the backlog | **DONE** — 6 new assertions in `docket_build`, and it caught its own fixture |
-| M3 | Derivation: metro is COMPUTED from counties, never typed. Wire into `docket_build.py` | TODO |
+| M3 | Derivation: the projection carries `by_metro` and `unmetroed_counties` | **DONE** — and the first run proved the design: 13 of one item's 22 counties are in no metro |
 | M4 | The site: `/places/` index, a page per metro and per touched county, cross-linked from every item | TODO |
 | M5 | The ask engine: a `by_metro` view, metro entities in the vocabulary, catalogued questions | TODO |
 | M6 | The water watch reconciled onto the registry, and the San Antonio gap reported | TODO |
@@ -167,3 +167,19 @@ is one of the three backlogged items, so the exemption swallowed the "item that 
 assertion and a test that had checked something real for weeks began passing for the wrong
 reason. Fixed by giving that fixture an id outside the backlog, and the ratchet itself is now
 asserted in both directions.
+
+### M3 — the projection carries places (2026-08-13)
+
+`project()` now emits `by_metro` and `unmetroed_counties`, both derived from the counties
+through `places.metro_of`, plus the two counts a page can publish.
+
+**The first run vindicated the two-index design in one line.** The single substantial item in
+the record touches 22 counties. They resolve to 7 statistical areas covering 9 counties, and
+**13 counties fall outside every metro** -- Borden, Coke, Coleman, Comanche, Eastland,
+Glasscock, Hamilton, Mitchell, Runnels, Shackelford, Somervell, Stephens and Sterling. A
+metro-only view would have silently dropped more than half of the most substantial item in
+the record, **including Shackelford, which is the Vantage data centre county.**
+
+So `counties_touched_outside_any_metro` is published rather than hidden. Same instinct as the
+grid watch publishing the size of what is not public: a per-city page that quietly omitted
+those counties would be a more confident and a less honest page.

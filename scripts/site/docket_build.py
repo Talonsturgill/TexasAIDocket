@@ -551,6 +551,16 @@ def project(items: list, today: str) -> dict:
     publish a numeral at all."""
     t = _dt.date.fromisoformat(today)
     by_topic, by_county, by_room, by_status = {}, {}, {}, {}
+    # THE PLACE INDEX, and it is deliberately two indexes rather than one.
+    #
+    # A metro index alone would drop 121 of Texas's 254 counties, which is not an edge
+    # case: Shackelford, Childress and most of the Permian outside Midland-Odessa are in
+    # no statistical area, and that is exactly where the physical buildout is. So an item
+    # lands in `by_metro` when its counties are in one, and every touched county lands in
+    # `unmetroed_counties` when they are not, and no item falls between them.
+    by_metro: dict[str, dict] = {}
+    unmetroed: dict[str, int] = {}
+    res = _resolver()
     actionable = []
     for it in items:
         by_topic[it["topic"]] = by_topic.get(it["topic"], 0) + 1
@@ -559,6 +569,19 @@ def project(items: list, today: str) -> dict:
         by_room[room] = by_room.get(room, 0) + 1
         for c in (it.get("geography") or {}).get("counties") or []:
             by_county[c] = by_county.get(c, 0) + 1
+            m = res.metro_of(c) if res else None
+            if m:
+                slot = by_metro.setdefault(m["id"], {
+                    "id": m["id"], "name": m["name"], "full_name": m["full_name"],
+                    "code": m["code"], "area_type": m["area_type"],
+                    "counties": m["counties"], "items": [], "touched_counties": [],
+                })
+                if it["id"] not in slot["items"]:
+                    slot["items"].append(it["id"])
+                if c not in slot["touched_counties"]:
+                    slot["touched_counties"].append(c)
+            else:
+                unmetroed[c] = unmetroed.get(c, 0) + 1
         closes = (it.get("public_access") or {}).get("closes")
         if room == "open_comment" and closes:
             try:
@@ -578,8 +601,16 @@ def project(items: list, today: str) -> dict:
             "by_status": dict(sorted(by_status.items())),
             "by_room": dict(sorted(by_room.items())),
             "counties_touched": len(by_county),
+            "metros_touched": len(by_metro),
+            # The size of what a metro view would MISS, published rather than hidden.
+            # It is the same instinct as the grid watch publishing the size of what is
+            # not public: a per-city page that quietly omitted these counties would be
+            # a more confident and less honest page.
+            "counties_touched_outside_any_metro": len(unmetroed),
         },
         "by_county": dict(sorted(by_county.items())),
+        "by_metro": {k: by_metro[k] for k in sorted(by_metro)},
+        "unmetroed_counties": dict(sorted(unmetroed.items())),
         "actionable_now": actionable,
     }
 
