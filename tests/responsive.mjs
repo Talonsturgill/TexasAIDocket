@@ -174,6 +174,44 @@ for (const w of [1440, 1180, 1024, 896, 834, 768, 700, 680, 600, 540, 480, 400, 
 }
 check("the mark is shown wherever it has clear sky, and only hidden where it would collide",
       wrong.length === 0, wrong.slice(0, 4).join(" | "));
+// CHART TEXT IS MEASURED ON SCREEN, NOT IN THE FILE.
+//
+// The load chart is a fixed viewBox scaled to whatever the column gives it, so its labels are
+// the size the stylesheet says at exactly one viewport and something else everywhere. At 390px
+// they rendered at 5.5 pixels, which is legible on a laptop and unreadable on the phone this
+// site is mostly read on. Nothing in the markup differs between those two widths, so no
+// build-time check could see it. This multiplies the computed font size by the sheet's actual
+// scale and requires the result to stay readable.
+const tiny = [];
+for (const w of [320, 360, 390, 414, 480, 540, 600, 680, 768, 900, 1180, 1440]) {
+  await pg.setViewportSize({ width: w, height: 900 });
+  await pg.goto("file://" + path.join(SITE, "grid", "index.html"));
+  const worst = await pg.evaluate(() => {
+    const svg = document.querySelector("svg.loadshape");
+    if (!svg) return null;
+    const k = svg.getBoundingClientRect().width / svg.viewBox.baseVal.width;
+    // TWO FLOORS, because the labels do two jobs. An axis number and a peak callout are
+    // DATA and have to be read; the "GW" and "MW" unit marks are furniture that a reader
+    // takes in once. Holding both to the same floor forced the unit marks up to the size of
+    // the figures, which is not a legibility fix, it is a different design. Measured
+    // separately so a failure names which of the two actually shrank.
+    let data = Infinity, unit = Infinity;
+    for (const t of svg.querySelectorAll("text")) {
+      if (!t.textContent.trim()) continue;
+      const px = parseFloat(getComputedStyle(t).fontSize) * k;
+      if (t.classList.contains("unit")) unit = Math.min(unit, px);
+      else data = Math.min(data, px);
+    }
+    return { data: data === Infinity ? null : +data.toFixed(1),
+             unit: unit === Infinity ? null : +unit.toFixed(1) };
+  });
+  if (!worst) continue;
+  if (worst.data !== null && worst.data < 10) tiny.push(`${w}px data ${worst.data}px`);
+  if (worst.unit !== null && worst.unit < 8) tiny.push(`${w}px unit ${worst.unit}px`);
+}
+check("every label on the load chart stays readable at every width",
+      tiny.length === 0, tiny.slice(0, 4).join(" | "));
+
 await browser.close();
 
 if (failures) { console.error(`\nresponsive: ${failures} FAILED`); process.exit(1); }
