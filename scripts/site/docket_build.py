@@ -194,6 +194,93 @@ class Result:
         self.lines.append(msg)
 
 
+# ---------------------------------------------------------------------------- geography
+# THE ITEMS THAT WERE UNLOCATABLE WHILE PASSING A LOCATABILITY CHECK.
+#
+# The rule here used to read
+#
+#     if not (statewide or counties or on_ercot):  fail("Every item is somewhere")
+#
+# and three items passed it on `on_ercot: true` alone, with no county and not statewide.
+# **ERCOT serves about ninety percent of the state's load.** "On the ERCOT grid" is barely
+# narrower than "in Texas", it is a PROPERTY of an item rather than a PLACE, and it is not
+# something a reader can filter by. So those three appear on no county page, light no
+# county on the map, and would appear on no metro page either, while the gate that exists
+# to prevent exactly that reported clean.
+#
+# It is the shape `knowledge/shared/GATE_LESSONS.md` keeps collecting: **a rule satisfied
+# by a value that does not carry the meaning the rule is about.** `on_ercot` stays in the
+# schema because it is a true and useful fact. It no longer counts as a location.
+#
+# The second half is entity resolution. Twenty-two county names sit in the record as free
+# strings and nothing has ever checked they are real Texas counties. They all happen to
+# resolve today. A typo would be stored, would light nothing on the map, and would say so
+# to nobody, which is the silent-failure mode `places.py` was written against.
+#
+# THE BACKLOG IS A RATCHET. `ledger/docket.json` belongs to the `daily` actor, so a
+# maintainer session cannot fill these in; the routine does it during re-verify. A hard
+# fail on day one would block every run until a lane it does not own was cleared by hand.
+# So the three known items are named here, they are the only ones exempt, and the list can
+# only shrink. A fourth unlocatable item fails immediately.
+GEOGRAPHY_BACKLOG = {
+    "tx-2026-0001": "ERCOT large-load interconnection, admitted before geography was checked",
+    "tx-2026-0002": "ERCOT large-load queue, same",
+    "tx-2026-0007": "ERCOT planning docket, same",
+}
+
+
+def _resolver():
+    """The place resolver, or None when the gazetteer is unreadable.
+
+    A missing gazetteer must not silently switch off county resolution, so the caller
+    turns None into a failure rather than a skip.
+    """
+    try:
+        sys.path.insert(0, str(REPO_ROOT / "scripts" / "shared"))
+        import places                                                # noqa: PLC0415
+        return places.Resolver.load()
+    except Exception:                                                # noqa: BLE001
+        return None
+
+
+def _geography_problems(who: str, item: dict) -> list:
+    out = []
+    g = item.get("geography") or {}
+    counties = g.get("counties") or []
+    item_id = str(item.get("id", ""))
+
+    if not (g.get("statewide") or counties):
+        if item_id not in GEOGRAPHY_BACKLOG:
+            out.append(
+                f"{who}: geography names no county and is not statewide, so this item is on "
+                f"no county page, lights no county on the map and belongs to no metro. "
+                f"`on_ercot` does NOT count: ERCOT carries about ninety percent of the "
+                f"state's load, so it is a property rather than a place. Name the counties.")
+
+    res = _resolver()
+    if counties and res is None:
+        out.append(f"{who}: the places gazetteer could not be read, so county names went "
+                   f"unchecked. That is a stop rather than a skip.")
+    elif counties:
+        unresolved = [c for c in counties if res.resolve(c) is None]
+        for c in unresolved:
+            hint = ", ".join(p["full_name"] for p in res.candidates(c)[:3])
+            out.append(f"{who}: county {c!r} is not a Texas county this project knows. It "
+                       f"would be stored, light nothing on the map and tell nobody."
+                       + (f" Did you mean {hint}?" if hint else ""))
+
+        # METRO IS DERIVED, NEVER TYPED. The compute-not-generate law, applied to a field
+        # a well-meaning editor would otherwise fill in by hand.
+        derived = sorted({m["full_name"] for c in counties
+                          if (m := res.metro_of(c)) is not None})
+        declared = g.get("metro")
+        if declared is not None and declared != (derived[0] if len(derived) == 1 else derived):
+            out.append(f"{who}: geography.metro is {declared!r} and the counties compute to "
+                       f"{derived!r}. The metro is derived from the counties by "
+                       f"`places.metro_of`, never typed.")
+    return out
+
+
 def _reader_text(item: dict) -> str:
     parts = [str(item.get(f, "")) for f in READER_COPY_FIELDS]
     for outer, inner in READER_COPY_NESTED:
@@ -284,10 +371,8 @@ def gate_schema(items: list) -> Result:
         if not ISO_DATE.match(str(it.get("last_verified", ""))):
             r.fail(f"{who}: last_verified '{it.get('last_verified')}' is not ISO yyyy-mm-dd")
 
-        g = it.get("geography") or {}
-        if not (g.get("statewide") or g.get("counties") or g.get("on_ercot")):
-            r.fail(f"{who}: geography names no county, not statewide, and not the ERCOT "
-                   f"region. Every item is somewhere")
+        for problem in _geography_problems(who, it):
+            r.fail(problem)
     if r.status == "PASS":
         r.note(f"{len(items)} item(s) conform")
     return r
@@ -576,8 +661,29 @@ def self_test() -> int:
            gate_schema([base(key_dates=[{"date": "2026-09-04", "kind": "someday"}])]), "FAIL")
     expect("schema catches a non-ISO date",
            gate_schema([base(key_dates=[{"date": "Sept 4 2026", "kind": "hearing"}])]), "FAIL")
+    # THE FIXTURE'S ID MATTERS HERE, and it caught this test the moment the ratchet
+    # landed: `base()` uses tx-2026-0001, which is one of the three backlogged items, so
+    # the exemption swallowed the assertion and a test that had checked something for
+    # weeks started passing for the wrong reason. Any id outside the backlog restores it.
     expect("schema catches an item that is nowhere",
-           gate_schema([base(geography={"statewide": False, "counties": []})]), "FAIL")
+           gate_schema([base(id="tx-2026-9999",
+                             geography={"statewide": False, "counties": []})]), "FAIL")
+    expect("...and `on_ercot` alone does NOT rescue it, being a property and not a place",
+           gate_schema([base(id="tx-2026-9999",
+                             geography={"statewide": False, "counties": [],
+                                        "on_ercot": True})]), "FAIL")
+    expect("...while a backlogged item is exempt, so the routine is not blocked out of a "
+           "lane it does not own",
+           gate_schema([base(id="tx-2026-0001",
+                             geography={"statewide": False, "counties": [],
+                                        "on_ercot": True})]), "PASS")
+    expect("a county that is not a Texas county is refused",
+           gate_schema([base(geography={"statewide": False, "counties": ["Taylr"]})]), "FAIL")
+    expect("...and a real one is accepted",
+           gate_schema([base(geography={"statewide": False, "counties": ["Taylor"]})]), "PASS")
+    expect("a hand-typed metro that disagrees with the counties is refused",
+           gate_schema([base(geography={"statewide": False, "counties": ["Taylor"],
+                                        "metro": "Dallas-Fort Worth-Arlington, TX"})]), "FAIL")
     expect("schema catches a duplicate id",
            gate_schema([base(), base()]), "FAIL")
     expect("schema catches a missing decider name",

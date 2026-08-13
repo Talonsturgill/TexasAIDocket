@@ -90,7 +90,7 @@ reports the existing backlog without failing, and the backlog can only shrink.
 | # | Wave | Status |
 |---|---|---|
 | M1 | The place spine: vendor the Texas CBSA subset, extend `places.py` with metro/division/CSA, resolver + self-tests | **DONE** — 26 metro + 41 micro areas, 2 divisions, 13 combined, 133 of 254 counties covered. 13 new self-tests |
-| M2 | `geography_check.py`: an item must be locatable. Ratchet, with the backlog reported and not failed | TODO |
+| M2 | Locatability: tighten the rule that had a loophole, resolve every county name, derive the metro, ratchet the backlog | **DONE** — 6 new assertions in `docket_build`, and it caught its own fixture |
 | M3 | Derivation: metro is COMPUTED from counties, never typed. Wire into `docket_build.py` | TODO |
 | M4 | The site: `/places/` index, a page per metro and per touched county, cross-linked from every item | TODO |
 | M5 | The ask engine: a `by_metro` view, metro entities in the vocabulary, catalogued questions | TODO |
@@ -130,3 +130,40 @@ decade's names, on the two biggest pages of the site.
 Resolver behaviour now, checked end to end: `Taylor County` walks to the Abilene MSA,
 `Shackelford` resolves as a county and returns None for its metro rather than guessing,
 `Arlington` lands on Dallas-Fort Worth, `The Woodlands` on Houston, `Round Rock` on Austin.
+
+### M2 — locatable, and the rule that already existed (2026-08-13)
+
+The plan said "add a gate". The gate was already there, and its third clause was a loophole:
+
+    if not (statewide or counties or on_ercot):  fail("Every item is somewhere")
+
+**Three items pass that on `on_ercot: true` alone**, with no county and not statewide. ERCOT
+carries about ninety percent of the state's load, so "on the ERCOT grid" is barely narrower
+than "in Texas". It is a PROPERTY of an item rather than a PLACE, and it is not something a
+reader can filter by. Those three appear on no county page, light no county on the map, and
+would appear on no metro page either, while the check written to prevent exactly that
+reported clean. The shape `GATE_LESSONS.md` keeps collecting: **a rule satisfied by a value
+that does not carry the meaning the rule is about.**
+
+`on_ercot` stays in the schema, because it is a true and useful fact. It no longer counts as
+a location.
+
+Second half: **twenty-two county names sat in the record as free strings and nothing had ever
+checked they were real Texas counties.** They all happen to resolve. A typo would have been
+stored, lit nothing on the map, and said so to nobody. They resolve through `places.py` now,
+and an unresolvable name comes back with candidates.
+
+Third: **the metro is derived and never typed.** If `geography.metro` disagrees with what the
+counties compute to, the build fails. That is the compute-not-generate law applied to a field
+a well-meaning editor would otherwise fill in by hand.
+
+**The backlog is a ratchet.** `ledger/docket.json` belongs to `daily`, so this session cannot
+fill the three in; the routine does it at re-verify. A hard fail today would block every run
+out of a lane it does not own. So the three are named in `GEOGRAPHY_BACKLOG`, they are the
+only exemptions, and the list can only shrink.
+
+**And the gate caught its own test.** `base()` in the self-test uses id `tx-2026-0001`, which
+is one of the three backlogged items, so the exemption swallowed the "item that is nowhere"
+assertion and a test that had checked something real for weeks began passing for the wrong
+reason. Fixed by giving that fixture an id outside the backlog, and the ratchet itself is now
+asserted in both directions.
