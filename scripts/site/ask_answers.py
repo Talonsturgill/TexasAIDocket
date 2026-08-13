@@ -66,8 +66,36 @@ TOPIC_WORDS = {
                                   "alpr", "flock", "privacy"],
 }
 
-# The four smart views. A route names one of these plus what to run it over.
-VIEWS = ("open_now", "by_county", "by_topic", "by_decider", "by_status", "item", "counts")
+# The smart views. A route names one of these plus what to run it over.
+VIEWS = ("open_now", "by_county", "by_metro", "by_topic", "by_decider", "by_status",
+         "item", "counts")
+
+
+def _metros() -> list:
+    """Every Texas statistical area, as the vocabulary the box understands.
+
+    ALL OF THEM, NOT ONLY THE ONES IN THE RECORD, and that is a deliberate split from how
+    counties work here. The catalogue is a PROMISE and lists only what the record can
+    answer. The index is a VOCABULARY, and a reader who types "El Paso" deserves to be
+    told the record holds nothing there yet rather than to be handed the nearest fuzzy
+    match from somewhere else in Texas. Sixty-seven areas is a few kilobytes and it buys
+    an honest no.
+
+    A READER TYPES A CITY, NEVER A DELINEATION. Nobody asks about
+    "Houston-Pasadena-The Woodlands", so the aliases the gazetteer already derives from
+    each area's name are carried through and matched on.
+    """
+    try:
+        sys.path.insert(0, str(REPO_ROOT / "scripts" / "shared"))
+        import places                                                # noqa: PLC0415
+        r = places.Resolver.load()
+    except Exception:                                                # noqa: BLE001
+        return []
+    return [{"id": p["id"], "name": p["name"], "full_name": p["full_name"],
+             "area_type": p["area_type"], "counties": p["counties"],
+             "aliases": [a for a in p.get("aliases", []) if not a.isdigit()]}
+            for p in sorted(r.places, key=lambda p: p.get("name", ""))
+            if p.get("kind") == "cbsa"]
 
 
 # --------------------------------------------------------------------------- the index
@@ -78,6 +106,14 @@ def index(items: list, today: str) -> dict:
     does NOT carry any prose the engine will speak: the engine composes that at read time from
     these values, so an answer cannot drift away from the record while looking authoritative.
     """
+    metros = _metros()
+    # county -> the areas containing it, so an item's areas are DERIVED here exactly the
+    # way the site derives them, from the same gazetteer, and never stored on the item.
+    of_county: dict[str, list] = {}
+    for m in metros:
+        for c in m["counties"]:
+            of_county.setdefault(c, []).append(m["id"])
+
     out = []
     for it in items:
         g = it.get("geography") or {}
@@ -96,6 +132,8 @@ def index(items: list, today: str) -> dict:
             "decider_type": it["decider"]["type"],
             "status": it["status"],
             "counties": g.get("counties") or [],
+            "metros": sorted({mid for c in (g.get("counties") or [])
+                              for mid in of_county.get(c, [])}),
             "statewide": bool(g.get("statewide")),
             "on_ercot": bool(g.get("on_ercot")),
             "room": pa.get("room"),
@@ -109,6 +147,10 @@ def index(items: list, today: str) -> dict:
         "generated": today,
         "items": out,
         "counties": sorted({c for i in out for c in i["counties"]}),
+        "metros": metros,
+        # THE AREAS THE RECORD ACTUALLY TOUCHES, kept apart from the vocabulary above.
+        # The catalogue reads this one and promises nothing about the rest.
+        "metros_touched": sorted({mid for i in out for mid in i["metros"]}),
         "topics": sorted({i["topic"] for i in out}),
         "deciders": sorted({i["decider"] for i in out}),
         "statuses": sorted({i["status"] for i in out}),
@@ -140,6 +182,17 @@ def catalogue(idx: dict) -> list[dict]:
         add(f"What is happening in {c} County?", "by_county", c)
         add(f"Is anything being decided in {c} County?", "by_county", c)
         add(f"Can I comment on anything in {c} County?", "by_county", c)
+
+    # BY AREA, and only for areas the record reaches. A reader asks about a city, and the
+    # city is the metro's name, so the question is phrased the way it would be spoken.
+    by_id = {m["id"]: m for m in idx.get("metros", [])}
+    for mid in idx.get("metros_touched", []):
+        m = by_id.get(mid)
+        if not m:
+            continue
+        add(f"What is happening in {m['name']}?", "by_metro", mid)
+        add(f"Is anything being decided around {m['name']}?", "by_metro", mid)
+        add(f"Can I comment on anything in the {m['name']} area?", "by_metro", mid)
 
     for t in idx["topics"]:
         pretty = t.replace("-", " ")
@@ -226,8 +279,29 @@ def engine_js() -> str:
     /* A direct mention of a county, a topic word or a decider outranks a fuzzy catalogue
        match, because it is what the reader actually said. */
     var direct = null;
-    IDX.counties.forEach(function (c) {
-      if (norm(query).indexOf(norm(c)) >= 0) direct = { view: "by_county", arg: c };
+    var nq = norm(query);
+
+    /* THE COUNTY AND THE CITY SHARE A NAME AND THEY ARE NOT THE SAME PLACE. Reeves County
+       contains the city of Pecos. Pecos County is two hundred miles west. Midland, Tyler,
+       El Paso and Lubbock are each a county and the central city of an area that is not
+       the same shape. places.py refuses that ambiguity by keeping one index per grain, and
+       the browser has to make the same distinction or it will answer a different question
+       than the one asked.
+
+       So the word "county" decides it. A reader who writes it means the county, and a
+       reader who writes a bare city name means the place they live, which is the area. */
+    var saysCounty = /\bcounty\b/.test(nq);
+    if (saysCounty) IDX.counties.forEach(function (c) {
+      if (nq.indexOf(norm(c)) >= 0) direct = { view: "by_county", arg: c };
+    });
+    if (!direct) (IDX.metros || []).forEach(function (m) {
+      if (direct) return;
+      var hit = nq.indexOf(norm(m.name)) >= 0 ||
+                (m.aliases || []).some(function (a) { return nq.indexOf(norm(a)) >= 0; });
+      if (hit) direct = { view: "by_metro", arg: m.id };
+    });
+    if (!direct) IDX.counties.forEach(function (c) {
+      if (nq.indexOf(norm(c)) >= 0) direct = { view: "by_county", arg: c };
     });
     if (!direct) IDX.deciders.forEach(function (d) {
       if (norm(query).indexOf(norm(d)) >= 0) direct = { view: "by_decider", arg: d };
@@ -281,13 +355,63 @@ def engine_js() -> str:
           "<p>The record holds " + all.length + " " + plural(all.length, "item", "items") +
           ", and none has an open window today. That is the record's answer, not a gap in it.</p>";
         break;
+      /* LOCAL AND STATEWIDE ARE COUNTED SEPARATELY, and the headline counts only the
+         local ones. Merging them produced the single worst sentence this engine has
+         written: "9 items in the El Paso area", above a note saying nothing had been
+         found in either of El Paso's counties. All nine were statewide. A reader in El
+         Paso would have read that as local coverage and been wrong, and the number was
+         perfectly accurate the whole time. A true count of the wrong set is a lie with a
+         citation. */
       case "by_county":
-        sel = all.filter(function (i) {
-          return i.counties.indexOf(route.arg) >= 0 || i.statewide; });
-        head = sel.length + " " + plural(sel.length, "item", "items") + " touching " +
-               route.arg + " County";
-        note = sel.some(function (i) { return i.statewide; }) ?
-          "<p>Statewide items are included, because a statewide decision reaches every county.</p>" : "";
+        var local = all.filter(function (i) {
+          return i.counties.indexOf(route.arg) >= 0; });
+        var state = all.filter(function (i) { return i.statewide; });
+        sel = local.concat(state.filter(function (i) { return local.indexOf(i) < 0; }));
+        head = local.length
+          ? local.length + " " + plural(local.length, "item", "items") + " in " +
+            route.arg + " County"
+          : "Nothing in the record is specific to " + route.arg + " County";
+        note = state.length
+          ? "<p>" + state.length + " statewide " +
+            plural(state.length, "decision reaches", "decisions reach") +
+            " it as well, and " + plural(state.length, "it is", "they are") +
+            " listed below.</p>"
+          : "";
+        break;
+      /* BY AREA. The counties with nothing found are NAMED rather than dropped. A page
+         that listed only the covered counties would read as a complete answer about the
+         area, and the honest statement is that the area is this and the record reaches
+         part of it. Same instinct as the grid watch publishing the size of what is not
+         public. */
+      case "by_metro":
+        var M = null;
+        IDX.metros.forEach(function (m) { if (m.id === route.arg) M = m; });
+        if (!M) { sel = []; head = "Not an area this record knows"; break; }
+        var mlocal = all.filter(function (i) { return i.metros.indexOf(M.id) >= 0; });
+        var mstate = all.filter(function (i) { return i.statewide; });
+        sel = mlocal.concat(mstate.filter(function (i) { return mlocal.indexOf(i) < 0; }));
+        var covered = {};
+        mlocal.forEach(function (i) {
+          i.counties.forEach(function (c) {
+            if (M.counties.indexOf(c) >= 0) covered[c] = 1; }); });
+        var missing = M.counties.filter(function (c) { return !covered[c]; });
+        head = mlocal.length
+          ? mlocal.length + " " + plural(mlocal.length, "item", "items") + " in the " +
+            M.name + " area"
+          : "Nothing in the record is specific to the " + M.name + " area";
+        note = "<p>The " + esc(M.full_name) + " " +
+               (M.area_type === "metropolitan" ? "metropolitan" : "micropolitan") +
+               " area is " + M.counties.length + " " +
+               plural(M.counties.length, "county", "counties") + ". " +
+               (missing.length
+                 ? "Nothing has yet been found in " + esc(missing.join(", ")) + "."
+                 : "The record reaches every one of them.") + "</p>" +
+               (mstate.length
+                 ? "<p>" + mstate.length + " statewide " +
+                   plural(mstate.length, "decision reaches", "decisions reach") +
+                   " it as well, and " + plural(mstate.length, "it is", "they are") +
+                   " listed below.</p>"
+                 : "");
         break;
       case "by_topic":
         sel = all.filter(function (i) { return i.topic === route.arg; });
@@ -381,11 +505,30 @@ def self_test() -> int:
     ok("counties, topics and deciders come from the record",
        idx["counties"] == ["Taylor"] and len(idx["topics"]) == 2 and len(idx["deciders"]) == 2)
 
+    # THE VOCABULARY AND THE PROMISE ARE DIFFERENT LISTS, and this is the one design
+    # decision in the metro view worth guarding. The box knows every Texas area so it can
+    # tell a reader in El Paso that the record holds nothing there. The catalogue names
+    # only the areas the record reaches, so it never promises an answer it does not have.
+    ok("the index carries every Texas area as vocabulary, not only the touched ones",
+       len(idx["metros"]) > 60 and any(m["name"] == "El Paso" for m in idx["metros"]),
+       str(len(idx["metros"])))
+    ok("...while the touched list holds only what the record reaches",
+       idx["metros_touched"] == ["metro-abilene"], str(idx["metros_touched"]))
+    ok("an item's areas are derived from its counties and never stored on it",
+       idx["items"][0]["metros"] == ["metro-abilene"], str(idx["items"][0]["metros"]))
+    ok("a city alias reaches its area, because nobody types a delineation name",
+       any("houston" in (m["aliases"] or [])
+           for m in idx["metros"] if m["name"].startswith("Houston")))
+
     qs = [c["q"] for c in cat]
     ok("the catalogue asks about every county in the record",
        any("Taylor County" in q for q in qs))
     ok("...and never about a county the record does not hold",
        not any("Harris" in q for q in qs))
+    ok("the catalogue asks about the areas the record reaches",
+       any("in Abilene?" in q for q in qs))
+    ok("...and never about an area it does not",
+       not any("El Paso" in q for q in qs))
     ok("...and about every topic, decider and status",
        any("power and the grid" in q for q in qs)
        and any("Department of Information Resources" in q for q in qs)

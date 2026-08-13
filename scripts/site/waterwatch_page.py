@@ -148,11 +148,20 @@ def figures(records: list[dict]) -> dict:
         "capacity_af": last["capacity_af"],
         "percent_full": last["percent_full"],
         "reservoir_count": last["reservoir_count"],
+        # THE NAMES, NOT THE FIGURES. `coverage` needs to know whether a named reservoir is
+        # in the day's record before the page says it is, and nothing else here reads them.
+        # Carrying the whole storage map would put 119 unauthorised numerals in reach of a
+        # page that has no business printing any of them.
+        "reservoir_names": sorted(last.get("reservoirs") or {}),
         "metros": metros,
         "excluded_out_of_state": last.get("excluded_out_of_state") or [],
         "excluded_no_pool": last.get("excluded_no_conservation_pool") or [],
         "agreement": last.get("percent_full_max_disagreement"),
     }
+    # COMPUTED HERE, so the page and its numeral gate read the same two figures from the
+    # same call. Computing it in the renderer and again in `authorised` would be two copies
+    # of one derivation, and the gate would be checking its own second opinion.
+    f["latest"]["coverage"] = coverage(metros, f["latest"]["reservoir_names"])
 
     # THE DAY OVER DAY MOVE, which is the whole reason this instrument is daily rather than
     # weekly. It appears only when there is an actual previous day to difference against, and
@@ -173,7 +182,82 @@ def figures(records: list[dict]) -> dict:
 
 
 # --------------------------------------------------------------------------- rendering
-def metro_bars(metros: list[dict]) -> str:
+def registry() -> dict:
+    """The slug-to-registry crosswalk, derived, or {} when the gazetteer is unreadable.
+
+    THE SLUG IS THE SOURCE'S WORD AND IT IS NOT REWRITTEN. `municipal_temple_killeen` and
+    `municipal_midland_odessa` are tags TWDB publishes and this project fetched. Editing
+    them to match the federal delineation would be editing fetched data, which is the one
+    thing a record product does not get to do. So the OMB name is derived beside the slug
+    by `places.Resolver.crosswalk`, and where the two disagree the page shows both.
+    """
+    try:
+        sys.path.insert(0, str(REPO_ROOT / "scripts" / "shared"))
+        import places                                                # noqa: PLC0415
+        r = places.Resolver.load()
+    except Exception:                                                # noqa: BLE001
+        return {}
+    return {"resolver": r,
+            "areas": [p for p in r.places if p.get("kind") == r.METRO]}
+
+
+def coverage(metros: list[dict], reservoir_names: list) -> dict:
+    """What the metro roll-up reaches, and what it does not.
+
+    THE SAN ANTONIO HOLE, WHICH IS THE POINT OF THIS FUNCTION. Nineteen slugs come out of
+    the feed and San Antonio-New Braunfels is not one of them, while Canyon and Medina are
+    both in the reservoir list. So the second largest metropolitan area in Texas has no
+    line on this page and two of its reservoirs are sitting in the same payload untagged.
+
+    That is a gap in the SOURCE's municipal tagging rather than a fact about water, and
+    the difference matters enormously to a reader. A page that simply omitted San Antonio
+    would read as though there were nothing to say.
+
+    Every part of this is checked rather than asserted. The areas with a line are the ones
+    whose slug resolves. The named reservoirs are confirmed present in the day's record.
+    Neither the count nor the names are typed.
+    """
+    reg = registry()
+    if not reg:
+        return {}
+    r = reg["resolver"]
+    hit, walk = set(), []
+    for m in metros:
+        c = r.crosswalk(m["slug"])
+        walk.append({**c, "name": m["name"]})
+        # EVERY GRAIN IS LIFTED TO CBSA BEFORE IT IS COUNTED, or the comparison is between
+        # two different populations. The first version counted the raw ids and reported
+        # "20 of the 67 statistical areas", where 67 is the CBSA count and the 20 included
+        # two metropolitan DIVISIONS, which are not CBSAs and are both inside one. Dallas
+        # and Fort Worth were counted twice and their shared area counted zero times.
+        #
+        # Both numbers were computed from data and the numeral gate passed them, because a
+        # gate that checks whether a figure was computed cannot check whether it was the
+        # right figure. Only reading the sentence catches this one. A division and a
+        # combined area both lift through their member counties, which is the one route
+        # every grain in this registry shares.
+        for pid in c["ids"]:
+            p = r.by_id.get(pid)
+            if not p:
+                continue
+            if p.get("kind") == r.METRO:
+                hit.add(pid)
+                continue
+            for county in p.get("counties") or []:
+                parent = r.metro_of(county)
+                if parent:
+                    hit.add(parent["id"])
+    unlined = [p for p in reg["areas"] if p["id"] not in hit]
+    sa = next((p for p in reg["areas"] if p["id"].startswith("metro-san-antonio")), None)
+    # Named only if the day's record actually holds them. An example a reader can check.
+    stranded = [k for k in ("Canyon", "Medina") if k in set(reservoir_names or [])]
+    return {"walk": walk, "areas": len(reg["areas"]), "lined": len(hit),
+            "unlined": len(unlined),
+            "san_antonio": sa if (sa and sa["id"] not in hit) else None,
+            "stranded": stranded}
+
+
+def metro_bars(metros: list[dict], walk: list | None = None) -> str:
     """Nineteen metros, sorted driest first, one bar each.
 
     ONE HUE AT EVERY VALUE, same rule as the grid watch. A colour ramp here would say that a
@@ -184,8 +268,23 @@ def metro_bars(metros: list[dict]) -> str:
     """
     if not metros:
         return ""
+    # THE FEDERAL NAME, WHERE IT DIFFERS FROM THE SOURCE'S. Shown only on the rows where
+    # the two disagree, because printing "Abilene (Abilene, TX)" nineteen times to catch
+    # the four that matter is noise a reader has to filter every visit.
+    by_slug = {w["slug"]: w for w in (walk or [])}
+
+    def omb(m):
+        w = by_slug.get(m["slug"])
+        if not w or not w["ids"]:
+            return ""
+        r = registry().get("resolver")
+        names = [r.by_id[i]["name"] for i in w["ids"] if r and i in r.by_id]
+        if not names or (len(names) == 1 and names[0].lower() == m["name"].lower()):
+            return ""
+        return f'<br><span class="meta">{", ".join(names)}</span>'
+
     rows = "".join(f"""<tr>
-  <th scope="row">{m['name']}</th>
+  <th scope="row">{m['name']}{omb(m)}</th>
   <td class="barcell"><div class="bar mini"><div class="fill"
       style="width:{min(float(m['percent_full']), 100.0):.1f}%"></div></div></td>
   <td class="n num">{pct(m['percent_full'])}%</td>
@@ -193,7 +292,9 @@ def metro_bars(metros: list[dict]) -> str:
 </tr>""" for m in metros)
     return f"""<table class="figures metros">
 <caption>Municipal reservoir storage by metro, driest first. Every bar is the same colour at
-every value. The order and the length carry the comparison. Neither implies a judgement.</caption>
+every value. The order and the length carry the comparison. Neither implies a judgement.
+Where the water data's name for an area differs from the federal delineation, both are
+shown.</caption>
 <thead><tr><th>Metro</th><th>Full</th><th class="n">Percent</th>
 <th class="n">Acre feet</th></tr></thead>
 <tbody>{rows}</tbody></table>"""
@@ -245,6 +346,22 @@ def body(records: list[dict], today: str) -> str:
   rounding. It is checked every day because the day it stops being rounding is the day their
   field means something other than what this code assumes.</p>"""
 
+    cov = L.get("coverage") or {}
+    gap = ""
+    if cov and cov.get("san_antonio"):
+        sa = cov["san_antonio"]
+        seen = (" Both are in the day's reservoir record. The missing line is a gap in the "
+                "source's municipal tagging rather than an absence of water."
+                if len(cov["stranded"]) == 2 else "")
+        gap = f"""
+    <p><strong>San Antonio has no line above. That is a gap rather than an answer.</strong>
+    The state's water data tags reservoirs to <strong class="num">{af(cov['lined'])}</strong>
+    of the <strong class="num">{af(cov['areas'])}</strong> statistical areas in Texas.
+    {sa['name']} is not one of them.
+    {" and ".join(cov["stranded"]) if cov["stranded"] else "Its reservoirs"} sit in the same
+    payload carrying no municipal tag at all.{seen} Reading that as a dry metro would be
+    exactly backwards.</p>"""
+
     out_of_state = ""
     if L["excluded_out_of_state"]:
         out_of_state = f"""
@@ -264,7 +381,7 @@ def body(records: list[dict], today: str) -> str:
 </div>
 
 <h2>{d}</h2>
-{metro_bars(metros)}
+{metro_bars(metros, cov.get("walk"))}
 
 <div class="prose">
   <p>Statewide, conservation storage stands at
@@ -278,7 +395,7 @@ def body(records: list[dict], today: str) -> str:
     <p><strong>This is surface water in reservoirs, and nothing else.</strong> A Texas city's
     supply also runs on groundwater, on reuse, and on water bought from other systems. The
     Ogallala under the Panhandle and the Edwards under Central Texas are not measured here and
-    do not move the numbers above.</p>
+    do not move the numbers above.</p>{gap}
     <p>So a low bar is not a conclusion about a city's water supply and a full bar is not a
     promise about it. Some reservoirs are drawn down deliberately. Some refill in a week from
     one storm upstream. The figures are what was in storage on the day and nothing more is
@@ -315,6 +432,8 @@ def authorised(f: dict) -> set[str]:
         for m in L["metros"]:
             add(pct(m["percent_full"]), af(m["storage_af"]), af(m["capacity_af"]),
                 af(m["reservoirs"]))
+        cov = L.get("coverage") or {}
+        add(af(cov.get("lined")), af(cov.get("areas")), af(cov.get("unlined")))
     c = f.get("change")
     if c:
         add(af(abs(c["storage_af"])), pct(abs(c["percent_full"])),
@@ -443,6 +562,29 @@ def self_test() -> int:
           metro_name("some_new_metro") == "Some New Metro")
     check("the display name table carries no numerals",
           not any(ch.isdigit() for ch in "".join(METRO_NAMES.values())))
+
+    # THE COVERAGE ARITHMETIC HAS TO CLOSE, and this is the assertion that would have
+    # caught the sentence that shipped: "20 of the 67 statistical areas", where the 20
+    # counted two metropolitan divisions that are not among the 67. Both numbers were
+    # computed and the numeral gate passed them. The population they are drawn from is
+    # what the gate could not check, and 20 + 49 never equalled 67.
+    live = figures(load())
+    cov = (live.get("latest") or {}).get("coverage") or {}
+    if cov:
+        check("every area is either lined or unlined, and never both or neither",
+              cov["lined"] + cov["unlined"] == cov["areas"],
+              f'{cov["lined"]} + {cov["unlined"]} != {cov["areas"]}')
+        check("the lined count is drawn from the same population it is compared against",
+              cov["lined"] <= cov["areas"])
+        check("San Antonio is reported as a gap while the source does not tag it",
+              cov["san_antonio"] is not None)
+
+    synthetic = coverage([{"slug": "dallas", "name": "Dallas"},
+                          {"slug": "fort_worth", "name": "Fort Worth"}], [])
+    check("two divisions of one area count that area once, not twice",
+          not synthetic or synthetic["lined"] == 1, str(synthetic.get("lined")))
+    check("a slug the registry does not know is counted as reaching nothing",
+          (coverage([{"slug": "narnia", "name": "Narnia"}], []) or {}).get("lined") == 0)
 
     if failures:
         print(f"\nwaterwatch_page self-test: {failures} FAILED")

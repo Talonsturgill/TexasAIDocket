@@ -300,6 +300,82 @@ is cheap: one render and one pass through every gate.
 
 ---
 
+## 16. A gate is only as strong as its narrowest scope
+
+`numeral_lint` checks a page's numerals against the set of values the build computed. The first
+wiring merged the grid watch's and water watch's authorised sets into one set shared by all 48
+pages. Those two pages authorise an hourly load series and a full fuel mix, several hundred
+figures spanning every magnitude a page might print, so almost any three to five digit number
+was authorised somewhere on the site. A figure typed into a docket page passed because an
+unrelated megawatt reading happened to match it.
+
+**What to check.** Widening an allowlist to make a gate green is the same move as switching the
+gate off, and it does not look like it. When a gate is scoped per page, plant a value that is
+legitimately authorised on a DIFFERENT page and require a red build. `site_build --self-test`
+does exactly that, with a real grid watch figure.
+
+## 17. Deleting authorised strings by substring dissolves every figure
+
+Same gate, second and worse cause. The scanner removed each authorised string from the text and
+reported whatever digits survived. Any real page authorises all ten single digits within a few
+counts and dates, so `8,927` was deleted one character at a time by four authorisations that had
+nothing to do with it. Nothing survived, so nothing was ever reported. **Every numeral on the
+site had been dissolving from the inside for two waves, and the module's own docstring claimed
+it was "strong on the figures that matter, which are the multi digit and decimal ones".**
+
+**What to check instead.** Tokenise first, then ask of each whole token whether the build
+computed THAT number. A multi token phrase like "4pm to 5pm" is still consumed whole, and a
+phrase is defined as an authorised string carrying a character a numeral token cannot contain,
+which is what stops it splitting a figure it merely overlaps.
+
+**Generalises to.** Any checker that works by removing what is allowed and reporting the
+remainder. Subtraction over a shared alphabet is not filtering.
+
+## 18. A reference is a dependency even when it is not a link
+
+Item `tx-2026-0006` tells a reader "See item tx-2026-0010 for that page's statutory basis", and
+there is no `tx-2026-0010`. Fact checking culled it and the pointer survived. Three checks nearly
+caught it and could not: the link checker reads `href` attributes and this is prose, the claims
+gate checks that claims have sources and this is not a claim, and the numeral gate's own
+self-test **used that same id** as its example of a legitimate cross-reference exemption.
+
+**What to check.** A checker that knows the id space, over every prose field. Prose that names
+another record is asserting that record exists.
+
+**And note the second half.** A test fixture demonstrating an exemption taught the suite that the
+broken id was fine. See entry 15: fixtures written beside a detector agree with it.
+
+## 19. A true count of the wrong set reads exactly like a true count
+
+The ask engine answered "El Paso" with "9 items in the El Paso area", one line above a note
+saying nothing had been found in either of El Paso's counties. All nine were statewide. Every
+number in that sentence was correct, so no count assertion could see it, and a reader in El Paso
+would have read it as local coverage.
+
+The same shape hit the water page independently: "20 of the 67 statistical areas", where 67 is
+the CBSA count and the 20 included two metropolitan divisions, which are not CBSAs and are both
+inside one. Dallas and Fort Worth were counted twice and their shared area zero times. Both
+numerals were computed from data and `numeral_lint` passed them.
+
+**What to check.** Recompute the set the headline claims to describe, from the same data, and
+compare. `tests/ask_engine.mjs` does it for all 87 place questions. For a ratio, assert the
+partition closes: `lined + unlined == areas` is what would have caught the water page.
+
+**The general rule, and it bounds every gate in this repo.** A gate that checks whether a figure
+was COMPUTED cannot check whether it was the RIGHT figure. The compute-not-generate law protects
+against a number nobody derived. It does not protect against a number derived from the wrong
+population, and only reading the sentence catches that.
+
+## 20. One value meaning two things
+
+`page(active="")` marked the current nav entry. `""` is also Home's own href. So every item page
+and every topic page shipped `aria-current="page"` on Home, telling a screen reader it was on the
+front page while it read an item. Every page looked right, because the marker is a small
+underline and Home is where a reader's eye is not.
+
+**What to check.** A sentinel that collides with a real value is not a sentinel. Use `None`, and
+test the sentinel before the comparison rather than letting it fall out of one.
+
 ## Two process faults, which caused more lost time than any bug above
 
 **Reading the last line of a report.** `house_style_check` prints an advice footer on failure and a

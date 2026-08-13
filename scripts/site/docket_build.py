@@ -194,6 +194,100 @@ class Result:
         self.lines.append(msg)
 
 
+# ---------------------------------------------------------------------------- geography
+# THE ITEMS THAT WERE UNLOCATABLE WHILE PASSING A LOCATABILITY CHECK.
+#
+# The rule here used to read
+#
+#     if not (statewide or counties or on_ercot):  fail("Every item is somewhere")
+#
+# and three items passed it on `on_ercot: true` alone, with no county and not statewide.
+# **ERCOT serves about ninety percent of the state's load.** "On the ERCOT grid" is barely
+# narrower than "in Texas", it is a PROPERTY of an item rather than a PLACE, and it is not
+# something a reader can filter by. So those three appear on no county page, light no
+# county on the map, and would appear on no metro page either, while the gate that exists
+# to prevent exactly that reported clean.
+#
+# It is the shape `knowledge/shared/GATE_LESSONS.md` keeps collecting: **a rule satisfied
+# by a value that does not carry the meaning the rule is about.** `on_ercot` stays in the
+# schema because it is a true and useful fact. It no longer counts as a location.
+#
+# The second half is entity resolution. Twenty-two county names sit in the record as free
+# strings and nothing has ever checked they are real Texas counties. They all happen to
+# resolve today. A typo would be stored, would light nothing on the map, and would say so
+# to nobody, which is the silent-failure mode `places.py` was written against.
+#
+# THE BACKLOG IS A RATCHET. `ledger/docket.json` belongs to the `daily` actor, so a
+# maintainer session cannot fill these in; the routine does it during re-verify. A hard
+# fail on day one would block every run until a lane it does not own was cleared by hand.
+# So the three known items are named here, they are the only ones exempt, and the list can
+# only shrink. A fourth unlocatable item fails immediately.
+GEOGRAPHY_BACKLOG = {
+    "tx-2026-0001": "ERCOT large-load interconnection, admitted before geography was checked",
+    "tx-2026-0002": "ERCOT large-load queue, same",
+    "tx-2026-0007": "ERCOT planning docket, same",
+}
+
+# THE OTHER RATCHET, same reason and same lane. One item points a reader at an item that
+# fact checking culled. See `gate_cross_references`. Written as item -> the id it names, so
+# a second dangling pointer from the SAME item still fails.
+XREF_BACKLOG = {
+    "tx-2026-0006": "tx-2026-0010",
+}
+
+
+def _resolver():
+    """The place resolver, or None when the gazetteer is unreadable.
+
+    A missing gazetteer must not silently switch off county resolution, so the caller
+    turns None into a failure rather than a skip.
+    """
+    try:
+        sys.path.insert(0, str(REPO_ROOT / "scripts" / "shared"))
+        import places                                                # noqa: PLC0415
+        return places.Resolver.load()
+    except Exception:                                                # noqa: BLE001
+        return None
+
+
+def _geography_problems(who: str, item: dict) -> list:
+    out = []
+    g = item.get("geography") or {}
+    counties = g.get("counties") or []
+    item_id = str(item.get("id", ""))
+
+    if not (g.get("statewide") or counties):
+        if item_id not in GEOGRAPHY_BACKLOG:
+            out.append(
+                f"{who}: geography names no county and is not statewide, so this item is on "
+                f"no county page, lights no county on the map and belongs to no metro. "
+                f"`on_ercot` does NOT count: ERCOT carries about ninety percent of the "
+                f"state's load, so it is a property rather than a place. Name the counties.")
+
+    res = _resolver()
+    if counties and res is None:
+        out.append(f"{who}: the places gazetteer could not be read, so county names went "
+                   f"unchecked. That is a stop rather than a skip.")
+    elif counties:
+        unresolved = [c for c in counties if res.resolve(c) is None]
+        for c in unresolved:
+            hint = ", ".join(p["full_name"] for p in res.candidates(c)[:3])
+            out.append(f"{who}: county {c!r} is not a Texas county this project knows. It "
+                       f"would be stored, light nothing on the map and tell nobody."
+                       + (f" Did you mean {hint}?" if hint else ""))
+
+        # METRO IS DERIVED, NEVER TYPED. The compute-not-generate law, applied to a field
+        # a well-meaning editor would otherwise fill in by hand.
+        derived = sorted({m["full_name"] for c in counties
+                          if (m := res.metro_of(c)) is not None})
+        declared = g.get("metro")
+        if declared is not None and declared != (derived[0] if len(derived) == 1 else derived):
+            out.append(f"{who}: geography.metro is {declared!r} and the counties compute to "
+                       f"{derived!r}. The metro is derived from the counties by "
+                       f"`places.metro_of`, never typed.")
+    return out
+
+
 def _reader_text(item: dict) -> str:
     parts = [str(item.get(f, "")) for f in READER_COPY_FIELDS]
     for outer, inner in READER_COPY_NESTED:
@@ -284,10 +378,8 @@ def gate_schema(items: list) -> Result:
         if not ISO_DATE.match(str(it.get("last_verified", ""))):
             r.fail(f"{who}: last_verified '{it.get('last_verified')}' is not ISO yyyy-mm-dd")
 
-        g = it.get("geography") or {}
-        if not (g.get("statewide") or g.get("counties") or g.get("on_ercot")):
-            r.fail(f"{who}: geography names no county, not statewide, and not the ERCOT "
-                   f"region. Every item is somewhere")
+        for problem in _geography_problems(who, it):
+            r.fail(problem)
     if r.status == "PASS":
         r.note(f"{len(items)} item(s) conform")
     return r
@@ -353,6 +445,51 @@ def gate_narration(items: list) -> Result:
                    f"({m.group(0).strip()!r}). The record describes the world, not its own work")
     if r.status == "PASS":
         r.note("no machine narration in reader copy")
+    return r
+
+
+def gate_cross_references(items: list) -> Result:
+    """An item this record points a reader at has to exist.
+
+    FOUND BY THE NUMERAL GATE, WHICH IS NOT WHAT THE NUMERAL GATE IS FOR. Item
+    tx-2026-0006 tells a reader "See item tx-2026-0010 for that page's statutory basis",
+    and there is no tx-2026-0010. Ids run 0001 to 0025 with gaps, because fact checking
+    culled the ones that could not be sourced, and this pointer survived the cull.
+
+    Nothing caught it and three things nearly should have. The link checker reads `href`
+    attributes and this is prose, so there is no link to be broken. The claims gate checks
+    that every claim has a source, and this sentence is not a claim. The numeral gate saw
+    it only because `0010` is a numeral, and it reported a stray digit rather than a
+    broken promise, which is a diagnosis one step short of the disease.
+
+    The general shape, for `GATE_LESSONS.md`: **a reference is a dependency even when it
+    is not a link.** Prose that names another record is asserting that record exists, and
+    only a checker that knows the id space can tell whether it does.
+
+    RATCHETED, like the geography backlog and for the same reason. `ledger/docket.json`
+    belongs to `daily`, so a maintainer session cannot rewrite that sentence. Blocking
+    every build until the routine next runs would take the whole site down over one
+    dangling pointer, which is a worse outcome than the pointer. The one known break is
+    named, it is the only exemption, and a second one fails immediately.
+    """
+    known = {i.get("id") for i in items}
+    r = Result("cross references")
+    dangling = 0
+    for it in items:
+        who = it.get("id", "?")
+        for ref in sorted(set(ITEM_ID.findall(_reader_text(it)))):
+            if ref in known or ref == who:
+                continue
+            dangling += 1
+            if XREF_BACKLOG.get(who) == ref:
+                r.note(f"{who}: points at {ref}, which does not exist. Known break, "
+                       f"awaiting the routine's re-verify phase")
+                continue
+            r.fail(f"{who}: reader copy points at item {ref} and no such item is in the "
+                   f"record. Name an item that exists, or say the thing instead of "
+                   f"pointing at it")
+    if r.status == "PASS" and not dangling:
+        r.note(f"every item reference in {len(items)} item(s) resolves")
     return r
 
 
@@ -456,6 +593,7 @@ def window_state(item: dict, today: str) -> str:
 GATES = {
     "schema": gate_schema, "claims": gate_claims, "numerals": gate_numerals,
     "narration": gate_narration, "house style": gate_house_style,
+    "cross references": gate_cross_references,
 }
 DATED_GATES = {"staleness": gate_staleness, "deadlines": gate_deadlines}
 
@@ -466,6 +604,16 @@ def project(items: list, today: str) -> dict:
     publish a numeral at all."""
     t = _dt.date.fromisoformat(today)
     by_topic, by_county, by_room, by_status = {}, {}, {}, {}
+    # THE PLACE INDEX, and it is deliberately two indexes rather than one.
+    #
+    # A metro index alone would drop 121 of Texas's 254 counties, which is not an edge
+    # case: Shackelford, Childress and most of the Permian outside Midland-Odessa are in
+    # no statistical area, and that is exactly where the physical buildout is. So an item
+    # lands in `by_metro` when its counties are in one, and every touched county lands in
+    # `unmetroed_counties` when they are not, and no item falls between them.
+    by_metro: dict[str, dict] = {}
+    unmetroed: dict[str, int] = {}
+    res = _resolver()
     actionable = []
     for it in items:
         by_topic[it["topic"]] = by_topic.get(it["topic"], 0) + 1
@@ -474,6 +622,19 @@ def project(items: list, today: str) -> dict:
         by_room[room] = by_room.get(room, 0) + 1
         for c in (it.get("geography") or {}).get("counties") or []:
             by_county[c] = by_county.get(c, 0) + 1
+            m = res.metro_of(c) if res else None
+            if m:
+                slot = by_metro.setdefault(m["id"], {
+                    "id": m["id"], "name": m["name"], "full_name": m["full_name"],
+                    "code": m["code"], "area_type": m["area_type"],
+                    "counties": m["counties"], "items": [], "touched_counties": [],
+                })
+                if it["id"] not in slot["items"]:
+                    slot["items"].append(it["id"])
+                if c not in slot["touched_counties"]:
+                    slot["touched_counties"].append(c)
+            else:
+                unmetroed[c] = unmetroed.get(c, 0) + 1
         closes = (it.get("public_access") or {}).get("closes")
         if room == "open_comment" and closes:
             try:
@@ -493,8 +654,16 @@ def project(items: list, today: str) -> dict:
             "by_status": dict(sorted(by_status.items())),
             "by_room": dict(sorted(by_room.items())),
             "counties_touched": len(by_county),
+            "metros_touched": len(by_metro),
+            # The size of what a metro view would MISS, published rather than hidden.
+            # It is the same instinct as the grid watch publishing the size of what is
+            # not public: a per-city page that quietly omitted these counties would be
+            # a more confident and less honest page.
+            "counties_touched_outside_any_metro": len(unmetroed),
         },
         "by_county": dict(sorted(by_county.items())),
+        "by_metro": {k: by_metro[k] for k in sorted(by_metro)},
+        "unmetroed_counties": dict(sorted(unmetroed.items())),
         "actionable_now": actionable,
     }
 
@@ -512,6 +681,28 @@ def run_gates(items: list, today: str) -> tuple[int, list]:
     results += [g(items, today) for g in DATED_GATES.values()]
     bad = sum(1 for r in results if r.status == "FAIL")
     return bad, results
+
+
+def backlog(items: list) -> list:
+    """What the ratchets are currently letting through, in one line each.
+
+    A RATCHET NOBODY SEES IS AN EXEMPTION. Both backlogs here exist because the record
+    belongs to the `daily` actor and a maintainer session cannot fill them, so a hard fail
+    would take the site down over work in a lane it does not own. That is the right call
+    and it has a failure mode: a green build says nothing, the exemption stops being a
+    debt, and the ratchet becomes the standard. So every build prints what is outstanding,
+    whether or not anything failed.
+    """
+    known = {i.get("id") for i in items}
+    out = []
+    for it in items:
+        who = it.get("id", "?")
+        if who in GEOGRAPHY_BACKLOG:
+            out.append(f"{who}: no county and not statewide ({GEOGRAPHY_BACKLOG[who]})")
+        for ref in sorted(set(ITEM_ID.findall(_reader_text(it)))):
+            if ref not in known and ref != who:
+                out.append(f"{who}: points at {ref}, which is not in the record")
+    return out
 
 
 def report(results: list) -> None:
@@ -562,6 +753,12 @@ def self_test() -> int:
             for line in result.lines[:3]:
                 print(f"        {line}", file=sys.stderr)
 
+    def check(label, cond, extra=""):
+        nonlocal failures
+        print(f"  {'ok  ' if cond else 'FAIL'}  {label}{'' if cond else '  ' + extra}")
+        if not cond:
+            failures += 1
+
     today = "2026-08-11"
 
     expect("schema passes a well-formed item", gate_schema([base()]), "PASS")
@@ -576,8 +773,29 @@ def self_test() -> int:
            gate_schema([base(key_dates=[{"date": "2026-09-04", "kind": "someday"}])]), "FAIL")
     expect("schema catches a non-ISO date",
            gate_schema([base(key_dates=[{"date": "Sept 4 2026", "kind": "hearing"}])]), "FAIL")
+    # THE FIXTURE'S ID MATTERS HERE, and it caught this test the moment the ratchet
+    # landed: `base()` uses tx-2026-0001, which is one of the three backlogged items, so
+    # the exemption swallowed the assertion and a test that had checked something for
+    # weeks started passing for the wrong reason. Any id outside the backlog restores it.
     expect("schema catches an item that is nowhere",
-           gate_schema([base(geography={"statewide": False, "counties": []})]), "FAIL")
+           gate_schema([base(id="tx-2026-9999",
+                             geography={"statewide": False, "counties": []})]), "FAIL")
+    expect("...and `on_ercot` alone does NOT rescue it, being a property and not a place",
+           gate_schema([base(id="tx-2026-9999",
+                             geography={"statewide": False, "counties": [],
+                                        "on_ercot": True})]), "FAIL")
+    expect("...while a backlogged item is exempt, so the routine is not blocked out of a "
+           "lane it does not own",
+           gate_schema([base(id="tx-2026-0001",
+                             geography={"statewide": False, "counties": [],
+                                        "on_ercot": True})]), "PASS")
+    expect("a county that is not a Texas county is refused",
+           gate_schema([base(geography={"statewide": False, "counties": ["Taylr"]})]), "FAIL")
+    expect("...and a real one is accepted",
+           gate_schema([base(geography={"statewide": False, "counties": ["Taylor"]})]), "PASS")
+    expect("a hand-typed metro that disagrees with the counties is refused",
+           gate_schema([base(geography={"statewide": False, "counties": ["Taylor"],
+                                        "metro": "Dallas-Fort Worth-Arlington, TX"})]), "FAIL")
     expect("schema catches a duplicate id",
            gate_schema([base(), base()]), "FAIL")
     expect("schema catches a missing decider name",
@@ -612,6 +830,44 @@ def self_test() -> int:
     expect("numerals exempts a cross reference to another item",
            gate_numerals([base(summary="See item tx-2026-0010 for the statutory basis.")]),
            "PASS")
+
+    # CROSS REFERENCES. The numeral gate exempts an item id, correctly, because an id is an
+    # identifier and not a figure. Nothing then checked that the id names anything. This
+    # test's own fixture used tx-2026-0010, which is the very id the live record points at
+    # and does not have, so the suite demonstrated the hole while asserting the exemption.
+    two = [base(id="tx-2026-9999"), base(id="tx-2026-9998")]
+    expect("cross references passes a pointer to an item that exists",
+           gate_cross_references([base(id="tx-2026-9999",
+                                       summary="See item tx-2026-9998 for more."), two[1]]),
+           "PASS")
+    expect("cross references catches a pointer to an item that does not",
+           gate_cross_references([base(id="tx-2026-9999",
+                                       summary="See item tx-2026-0010 for more.")]), "FAIL")
+    expect("cross references does not trip on an item naming itself",
+           gate_cross_references([base(id="tx-2026-9999",
+                                       summary="Item tx-2026-9999 is this one.")]), "PASS")
+    # THE RATCHET, BOTH WAYS. The one known break is exempt and nothing else is, including
+    # a second break from the same item.
+    expect("cross references exempts the one item on the backlog",
+           gate_cross_references([base(id="tx-2026-0006",
+                                       summary="See item tx-2026-0010 for more.")]), "PASS")
+    expect("...and does not exempt a different dangling id from that same item",
+           gate_cross_references([base(id="tx-2026-0006",
+                                       summary="See item tx-2026-0011 for more.")]), "FAIL")
+    expect("...and does not exempt that id when another item names it",
+           gate_cross_references([base(id="tx-2026-9999",
+                                       summary="See item tx-2026-0010 for more.")]), "FAIL")
+
+    # THE BACKLOG IS VISIBLE. An exemption that reports nothing on a green build is not a
+    # debt, it is a decision nobody revisits.
+    check("backlog says nothing about a clean record",
+          not backlog([base(id="tx-2026-9999")]))
+    check("backlog names an exempted geography gap",
+          any("tx-2026-0001" in ln for ln in backlog([base(id="tx-2026-0001",
+                                                          geography={"on_ercot": True})])))
+    check("backlog names an exempted dangling pointer",
+          any("tx-2026-0010" in ln for ln in backlog(
+              [base(id="tx-2026-0006", summary="See item tx-2026-0010 for more.")])))
     expect("numerals exempts a hearing room",
            gate_numerals([base(summary="Meetings are held in Commissioners Hearing Room 7-100.")]),
            "PASS")

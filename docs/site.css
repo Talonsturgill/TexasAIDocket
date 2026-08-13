@@ -267,6 +267,8 @@ main > section > h2::after { content:""; position:absolute; top:-1px; left:0; wi
   border-top:2px solid var(--accent); }
 .txmap { width:100%; max-width:min(100%,80vh); height:auto; display:block;
   margin-inline:auto; }
+.txmap.inset { max-width:min(100%,42vh); }
+.txmap.inset .survey { display:none; }
 .txmap .c { fill:var(--surface); stroke:var(--rule-strong); stroke-width:.5;
   vector-effect:non-scaling-stroke; transition:fill .18s ease; }
 .txmap .edge { fill:none; stroke:var(--rule-strong); stroke-width:1.4; stroke-linejoin:round;
@@ -366,6 +368,9 @@ tr:last-child td { border-bottom:0; }
 th { font-weight:600; color:var(--ink-mute); font-size:var(--s-2); letter-spacing:.04em;
   text-transform:uppercase; border-bottom:var(--hair) solid var(--rule-strong); }
 td.n,th.n { text-align:right; }
+table.tally td.n,table.tally th.n { width:1%; white-space:nowrap; }
+table.tally td:first-child,table.tally th:first-child { width:99%; }
+table.tally.pair { max-width:32rem; }
 .gap { border:var(--hair) dashed var(--rule-strong); border-radius:var(--radius);
   padding:1rem 1.15rem; background:transparent; color:var(--ink-mute); font-size:var(--s-1); }
 .gap strong { color:var(--ink); }

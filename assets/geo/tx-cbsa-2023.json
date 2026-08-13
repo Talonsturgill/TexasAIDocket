@@ -1,0 +1,2711 @@
+{
+ "_spec": {
+  "purpose": "The Texas subset of the federal statistical-area delineation, so every surface that groups by metro groups by the same thing.",
+  "grains": "cbsa is the metro or micro area; division splits the largest CBSAs (this is what makes Dallas and Fort Worth separable); csa combines adjacent CBSAs (this is what makes Midland-Odessa one place). A surface picks the grain its subject needs and they share ids.",
+  "not_covered": "121 of Texas's 254 counties are in NO statistical area. That is not a gap in this file, it is a fact about Texas, and it is why the scoping unit in this project is a PLACE rather than a metro."
+ },
+ "source": {
+  "name": "OMB Core Based Statistical Areas, July 2023 delineation (List 1)",
+  "url": "https://www2.census.gov/programs-surveys/metro-micro/geographies/reference-files/2023/delineation-files/list1_2023.xlsx",
+  "license": "US Government work, public domain",
+  "derived_from": "OMB Bulletin, published by the US Census Bureau",
+  "vintage": "2023-07"
+ },
+ "generated_by": "scripts/shared/places.py cbsa",
+ "counts": {
+  "areas": 82,
+  "metropolitan": 26,
+  "micropolitan": 41,
+  "divisions": 2,
+  "combined": 13,
+  "counties_in_an_area": 133
+ },
+ "areas": [
+  {
+   "id": "combined-abilene-sweetwater",
+   "kind": "csa",
+   "code": "101",
+   "name": "Abilene-Sweetwater, TX",
+   "type": "metropolitan",
+   "counties": [
+    "Callahan",
+    "Jones",
+    "Nolan",
+    "Taylor"
+   ],
+   "county_fips": [
+    "48059",
+    "48253",
+    "48353",
+    "48441"
+   ]
+  },
+  {
+   "id": "combined-amarillo-borger",
+   "kind": "csa",
+   "code": "108",
+   "name": "Amarillo-Borger, TX",
+   "type": "metropolitan",
+   "counties": [
+    "Armstrong",
+    "Carson",
+    "Hutchinson",
+    "Oldham",
+    "Potter",
+    "Randall"
+   ],
+   "county_fips": [
+    "48011",
+    "48065",
+    "48233",
+    "48359",
+    "48375",
+    "48381"
+   ]
+  },
+  {
+   "id": "combined-brownsville-harlingen-raymondville",
+   "kind": "csa",
+   "code": "154",
+   "name": "Brownsville-Harlingen-Raymondville, TX",
+   "type": "metropolitan",
+   "counties": [
+    "Cameron",
+    "Willacy"
+   ],
+   "county_fips": [
+    "48061",
+    "48489"
+   ]
+  },
+  {
+   "id": "combined-corpus-christi-kingsville-alice",
+   "kind": "csa",
+   "code": "204",
+   "name": "Corpus Christi-Kingsville-Alice, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Aransas",
+    "Brooks",
+    "Jim Wells",
+    "Kleberg",
+    "Nueces",
+    "San Patricio"
+   ],
+   "county_fips": [
+    "48007",
+    "48047",
+    "48249",
+    "48273",
+    "48355",
+    "48409"
+   ]
+  },
+  {
+   "id": "combined-dallas-fort-worth",
+   "kind": "csa",
+   "code": "206",
+   "name": "Dallas-Fort Worth, TX-OK",
+   "type": "micropolitan",
+   "counties": [
+    "Collin",
+    "Cooke",
+    "Dallas",
+    "Denton",
+    "Ellis",
+    "Fannin",
+    "Grayson",
+    "Henderson",
+    "Hood",
+    "Hopkins",
+    "Hunt",
+    "Johnson",
+    "Kaufman",
+    "Navarro",
+    "Palo Pinto",
+    "Parker",
+    "Rockwall",
+    "Tarrant",
+    "Wise"
+   ],
+   "county_fips": [
+    "48085",
+    "48097",
+    "48113",
+    "48121",
+    "48139",
+    "48147",
+    "48181",
+    "48213",
+    "48221",
+    "48223",
+    "48231",
+    "48251",
+    "48257",
+    "48349",
+    "48363",
+    "48367",
+    "48397",
+    "48439",
+    "48497"
+   ]
+  },
+  {
+   "id": "combined-el-paso-las-cruces",
+   "kind": "csa",
+   "code": "238",
+   "name": "El Paso-Las Cruces, TX-NM",
+   "type": "metropolitan",
+   "counties": [
+    "El Paso",
+    "Hudspeth"
+   ],
+   "county_fips": [
+    "48141",
+    "48229"
+   ]
+  },
+  {
+   "id": "combined-houston-pasadena",
+   "kind": "csa",
+   "code": "288",
+   "name": "Houston-Pasadena, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Austin",
+    "Brazoria",
+    "Chambers",
+    "Fort Bend",
+    "Galveston",
+    "Harris",
+    "Liberty",
+    "Matagorda",
+    "Montgomery",
+    "San Jacinto",
+    "Walker",
+    "Waller",
+    "Washington",
+    "Wharton"
+   ],
+   "county_fips": [
+    "48015",
+    "48039",
+    "48071",
+    "48157",
+    "48167",
+    "48201",
+    "48291",
+    "48321",
+    "48339",
+    "48407",
+    "48471",
+    "48473",
+    "48477",
+    "48481"
+   ]
+  },
+  {
+   "id": "combined-lubbock-plainview",
+   "kind": "csa",
+   "code": "352",
+   "name": "Lubbock-Plainview, TX",
+   "type": "metropolitan",
+   "counties": [
+    "Cochran",
+    "Crosby",
+    "Floyd",
+    "Garza",
+    "Hale",
+    "Hockley",
+    "Lubbock",
+    "Lynn"
+   ],
+   "county_fips": [
+    "48079",
+    "48107",
+    "48153",
+    "48169",
+    "48189",
+    "48219",
+    "48303",
+    "48305"
+   ]
+  },
+  {
+   "id": "combined-mcallen-edinburg",
+   "kind": "csa",
+   "code": "365",
+   "name": "McAllen-Edinburg, TX",
+   "type": "metropolitan",
+   "counties": [
+    "Hidalgo",
+    "Starr"
+   ],
+   "county_fips": [
+    "48215",
+    "48427"
+   ]
+  },
+  {
+   "id": "combined-midland-odessa-andrews",
+   "kind": "csa",
+   "code": "372",
+   "name": "Midland-Odessa-Andrews, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Andrews",
+    "Ector",
+    "Martin",
+    "Midland"
+   ],
+   "county_fips": [
+    "48003",
+    "48135",
+    "48317",
+    "48329"
+   ]
+  },
+  {
+   "id": "combined-san-antonio-new-braunfels-kerrville",
+   "kind": "csa",
+   "code": "484",
+   "name": "San Antonio-New Braunfels-Kerrville, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Atascosa",
+    "Bandera",
+    "Bexar",
+    "Comal",
+    "Gillespie",
+    "Guadalupe",
+    "Kendall",
+    "Kerr",
+    "Medina",
+    "Wilson"
+   ],
+   "county_fips": [
+    "48013",
+    "48019",
+    "48029",
+    "48091",
+    "48171",
+    "48187",
+    "48259",
+    "48265",
+    "48325",
+    "48493"
+   ]
+  },
+  {
+   "id": "combined-tyler-jacksonville",
+   "kind": "csa",
+   "code": "540",
+   "name": "Tyler-Jacksonville, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Cherokee",
+    "Smith"
+   ],
+   "county_fips": [
+    "48073",
+    "48423"
+   ]
+  },
+  {
+   "id": "combined-victoria-port-lavaca",
+   "kind": "csa",
+   "code": "544",
+   "name": "Victoria-Port Lavaca, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Calhoun",
+    "Goliad",
+    "Victoria"
+   ],
+   "county_fips": [
+    "48057",
+    "48175",
+    "48469"
+   ]
+  },
+  {
+   "id": "division-dallas-plano-irving",
+   "kind": "division",
+   "code": "19124",
+   "name": "Dallas-Plano-Irving, TX",
+   "type": "metropolitan",
+   "counties": [
+    "Collin",
+    "Dallas",
+    "Denton",
+    "Ellis",
+    "Hunt",
+    "Kaufman",
+    "Rockwall"
+   ],
+   "county_fips": [
+    "48085",
+    "48113",
+    "48121",
+    "48139",
+    "48231",
+    "48257",
+    "48397"
+   ]
+  },
+  {
+   "id": "division-fort-worth-arlington-grapevine",
+   "kind": "division",
+   "code": "23104",
+   "name": "Fort Worth-Arlington-Grapevine, TX",
+   "type": "metropolitan",
+   "counties": [
+    "Johnson",
+    "Parker",
+    "Tarrant",
+    "Wise"
+   ],
+   "county_fips": [
+    "48251",
+    "48367",
+    "48439",
+    "48497"
+   ]
+  },
+  {
+   "id": "metro-abilene",
+   "kind": "cbsa",
+   "code": "10180",
+   "name": "Abilene, TX",
+   "type": "metropolitan",
+   "counties": [
+    "Callahan",
+    "Jones",
+    "Taylor"
+   ],
+   "county_fips": [
+    "48059",
+    "48253",
+    "48441"
+   ]
+  },
+  {
+   "id": "metro-alice",
+   "kind": "cbsa",
+   "code": "10860",
+   "name": "Alice, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Brooks",
+    "Jim Wells"
+   ],
+   "county_fips": [
+    "48047",
+    "48249"
+   ]
+  },
+  {
+   "id": "metro-amarillo",
+   "kind": "cbsa",
+   "code": "11100",
+   "name": "Amarillo, TX",
+   "type": "metropolitan",
+   "counties": [
+    "Armstrong",
+    "Carson",
+    "Oldham",
+    "Potter",
+    "Randall"
+   ],
+   "county_fips": [
+    "48011",
+    "48065",
+    "48359",
+    "48375",
+    "48381"
+   ]
+  },
+  {
+   "id": "metro-andrews",
+   "kind": "cbsa",
+   "code": "11380",
+   "name": "Andrews, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Andrews"
+   ],
+   "county_fips": [
+    "48003"
+   ]
+  },
+  {
+   "id": "metro-athens",
+   "kind": "cbsa",
+   "code": "11980",
+   "name": "Athens, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Henderson"
+   ],
+   "county_fips": [
+    "48213"
+   ]
+  },
+  {
+   "id": "metro-austin-round-rock-san-marcos",
+   "kind": "cbsa",
+   "code": "12420",
+   "name": "Austin-Round Rock-San Marcos, TX",
+   "type": "metropolitan",
+   "counties": [
+    "Bastrop",
+    "Caldwell",
+    "Hays",
+    "Travis",
+    "Williamson"
+   ],
+   "county_fips": [
+    "48021",
+    "48055",
+    "48209",
+    "48453",
+    "48491"
+   ]
+  },
+  {
+   "id": "metro-bay-city",
+   "kind": "cbsa",
+   "code": "13060",
+   "name": "Bay City, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Matagorda"
+   ],
+   "county_fips": [
+    "48321"
+   ]
+  },
+  {
+   "id": "metro-beaumont-port-arthur",
+   "kind": "cbsa",
+   "code": "13140",
+   "name": "Beaumont-Port Arthur, TX",
+   "type": "metropolitan",
+   "counties": [
+    "Hardin",
+    "Jefferson",
+    "Orange"
+   ],
+   "county_fips": [
+    "48199",
+    "48245",
+    "48361"
+   ]
+  },
+  {
+   "id": "metro-beeville",
+   "kind": "cbsa",
+   "code": "13300",
+   "name": "Beeville, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Bee"
+   ],
+   "county_fips": [
+    "48025"
+   ]
+  },
+  {
+   "id": "metro-big-spring",
+   "kind": "cbsa",
+   "code": "13700",
+   "name": "Big Spring, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Howard"
+   ],
+   "county_fips": [
+    "48227"
+   ]
+  },
+  {
+   "id": "metro-bonham",
+   "kind": "cbsa",
+   "code": "14300",
+   "name": "Bonham, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Fannin"
+   ],
+   "county_fips": [
+    "48147"
+   ]
+  },
+  {
+   "id": "metro-borger",
+   "kind": "cbsa",
+   "code": "14420",
+   "name": "Borger, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Hutchinson"
+   ],
+   "county_fips": [
+    "48233"
+   ]
+  },
+  {
+   "id": "metro-brenham",
+   "kind": "cbsa",
+   "code": "14780",
+   "name": "Brenham, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Washington"
+   ],
+   "county_fips": [
+    "48477"
+   ]
+  },
+  {
+   "id": "metro-brownsville-harlingen",
+   "kind": "cbsa",
+   "code": "15180",
+   "name": "Brownsville-Harlingen, TX",
+   "type": "metropolitan",
+   "counties": [
+    "Cameron"
+   ],
+   "county_fips": [
+    "48061"
+   ]
+  },
+  {
+   "id": "metro-brownwood",
+   "kind": "cbsa",
+   "code": "15220",
+   "name": "Brownwood, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Brown"
+   ],
+   "county_fips": [
+    "48049"
+   ]
+  },
+  {
+   "id": "metro-college-station-bryan",
+   "kind": "cbsa",
+   "code": "17780",
+   "name": "College Station-Bryan, TX",
+   "type": "metropolitan",
+   "counties": [
+    "Brazos",
+    "Burleson",
+    "Robertson"
+   ],
+   "county_fips": [
+    "48041",
+    "48051",
+    "48395"
+   ]
+  },
+  {
+   "id": "metro-corpus-christi",
+   "kind": "cbsa",
+   "code": "18580",
+   "name": "Corpus Christi, TX",
+   "type": "metropolitan",
+   "counties": [
+    "Aransas",
+    "Nueces",
+    "San Patricio"
+   ],
+   "county_fips": [
+    "48007",
+    "48355",
+    "48409"
+   ]
+  },
+  {
+   "id": "metro-corsicana",
+   "kind": "cbsa",
+   "code": "18620",
+   "name": "Corsicana, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Navarro"
+   ],
+   "county_fips": [
+    "48349"
+   ]
+  },
+  {
+   "id": "metro-dallas-fort-worth-arlington",
+   "kind": "cbsa",
+   "code": "19100",
+   "name": "Dallas-Fort Worth-Arlington, TX",
+   "type": "metropolitan",
+   "counties": [
+    "Collin",
+    "Dallas",
+    "Denton",
+    "Ellis",
+    "Hunt",
+    "Johnson",
+    "Kaufman",
+    "Parker",
+    "Rockwall",
+    "Tarrant",
+    "Wise"
+   ],
+   "county_fips": [
+    "48085",
+    "48113",
+    "48121",
+    "48139",
+    "48231",
+    "48251",
+    "48257",
+    "48367",
+    "48397",
+    "48439",
+    "48497"
+   ]
+  },
+  {
+   "id": "metro-del-rio",
+   "kind": "cbsa",
+   "code": "19620",
+   "name": "Del Rio, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Val Verde"
+   ],
+   "county_fips": [
+    "48465"
+   ]
+  },
+  {
+   "id": "metro-dumas",
+   "kind": "cbsa",
+   "code": "20300",
+   "name": "Dumas, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Moore"
+   ],
+   "county_fips": [
+    "48341"
+   ]
+  },
+  {
+   "id": "metro-eagle-pass",
+   "kind": "cbsa",
+   "code": "20580",
+   "name": "Eagle Pass, TX",
+   "type": "metropolitan",
+   "counties": [
+    "Maverick"
+   ],
+   "county_fips": [
+    "48323"
+   ]
+  },
+  {
+   "id": "metro-el-campo",
+   "kind": "cbsa",
+   "code": "20900",
+   "name": "El Campo, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Wharton"
+   ],
+   "county_fips": [
+    "48481"
+   ]
+  },
+  {
+   "id": "metro-el-paso",
+   "kind": "cbsa",
+   "code": "21340",
+   "name": "El Paso, TX",
+   "type": "metropolitan",
+   "counties": [
+    "El Paso",
+    "Hudspeth"
+   ],
+   "county_fips": [
+    "48141",
+    "48229"
+   ]
+  },
+  {
+   "id": "metro-fredericksburg",
+   "kind": "cbsa",
+   "code": "23240",
+   "name": "Fredericksburg, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Gillespie"
+   ],
+   "county_fips": [
+    "48171"
+   ]
+  },
+  {
+   "id": "metro-gainesville",
+   "kind": "cbsa",
+   "code": "23620",
+   "name": "Gainesville, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Cooke"
+   ],
+   "county_fips": [
+    "48097"
+   ]
+  },
+  {
+   "id": "metro-granbury",
+   "kind": "cbsa",
+   "code": "24180",
+   "name": "Granbury, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Hood"
+   ],
+   "county_fips": [
+    "48221"
+   ]
+  },
+  {
+   "id": "metro-hereford",
+   "kind": "cbsa",
+   "code": "25820",
+   "name": "Hereford, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Deaf Smith"
+   ],
+   "county_fips": [
+    "48117"
+   ]
+  },
+  {
+   "id": "metro-houston-pasadena-the-woodlands",
+   "kind": "cbsa",
+   "code": "26420",
+   "name": "Houston-Pasadena-The Woodlands, TX",
+   "type": "metropolitan",
+   "counties": [
+    "Austin",
+    "Brazoria",
+    "Chambers",
+    "Fort Bend",
+    "Galveston",
+    "Harris",
+    "Liberty",
+    "Montgomery",
+    "San Jacinto",
+    "Waller"
+   ],
+   "county_fips": [
+    "48015",
+    "48039",
+    "48071",
+    "48157",
+    "48167",
+    "48201",
+    "48291",
+    "48339",
+    "48407",
+    "48473"
+   ]
+  },
+  {
+   "id": "metro-huntsville",
+   "kind": "cbsa",
+   "code": "26660",
+   "name": "Huntsville, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Walker"
+   ],
+   "county_fips": [
+    "48471"
+   ]
+  },
+  {
+   "id": "metro-jacksonville",
+   "kind": "cbsa",
+   "code": "27380",
+   "name": "Jacksonville, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Cherokee"
+   ],
+   "county_fips": [
+    "48073"
+   ]
+  },
+  {
+   "id": "metro-kerrville",
+   "kind": "cbsa",
+   "code": "28500",
+   "name": "Kerrville, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Kerr"
+   ],
+   "county_fips": [
+    "48265"
+   ]
+  },
+  {
+   "id": "metro-killeen-temple",
+   "kind": "cbsa",
+   "code": "28660",
+   "name": "Killeen-Temple, TX",
+   "type": "metropolitan",
+   "counties": [
+    "Bell",
+    "Coryell",
+    "Lampasas"
+   ],
+   "county_fips": [
+    "48027",
+    "48099",
+    "48281"
+   ]
+  },
+  {
+   "id": "metro-kingsville",
+   "kind": "cbsa",
+   "code": "28780",
+   "name": "Kingsville, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Kleberg"
+   ],
+   "county_fips": [
+    "48273"
+   ]
+  },
+  {
+   "id": "metro-laredo",
+   "kind": "cbsa",
+   "code": "29700",
+   "name": "Laredo, TX",
+   "type": "metropolitan",
+   "counties": [
+    "Webb"
+   ],
+   "county_fips": [
+    "48479"
+   ]
+  },
+  {
+   "id": "metro-longview",
+   "kind": "cbsa",
+   "code": "30980",
+   "name": "Longview, TX",
+   "type": "metropolitan",
+   "counties": [
+    "Gregg",
+    "Harrison",
+    "Rusk",
+    "Upshur"
+   ],
+   "county_fips": [
+    "48183",
+    "48203",
+    "48401",
+    "48459"
+   ]
+  },
+  {
+   "id": "metro-lubbock",
+   "kind": "cbsa",
+   "code": "31180",
+   "name": "Lubbock, TX",
+   "type": "metropolitan",
+   "counties": [
+    "Cochran",
+    "Crosby",
+    "Garza",
+    "Hockley",
+    "Lubbock",
+    "Lynn"
+   ],
+   "county_fips": [
+    "48079",
+    "48107",
+    "48169",
+    "48219",
+    "48303",
+    "48305"
+   ]
+  },
+  {
+   "id": "metro-lufkin",
+   "kind": "cbsa",
+   "code": "31260",
+   "name": "Lufkin, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Angelina"
+   ],
+   "county_fips": [
+    "48005"
+   ]
+  },
+  {
+   "id": "metro-mcallen-edinburg-mission",
+   "kind": "cbsa",
+   "code": "32580",
+   "name": "McAllen-Edinburg-Mission, TX",
+   "type": "metropolitan",
+   "counties": [
+    "Hidalgo"
+   ],
+   "county_fips": [
+    "48215"
+   ]
+  },
+  {
+   "id": "metro-midland",
+   "kind": "cbsa",
+   "code": "33260",
+   "name": "Midland, TX",
+   "type": "metropolitan",
+   "counties": [
+    "Martin",
+    "Midland"
+   ],
+   "county_fips": [
+    "48317",
+    "48329"
+   ]
+  },
+  {
+   "id": "metro-mineral-wells",
+   "kind": "cbsa",
+   "code": "33420",
+   "name": "Mineral Wells, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Palo Pinto"
+   ],
+   "county_fips": [
+    "48363"
+   ]
+  },
+  {
+   "id": "metro-mount-pleasant",
+   "kind": "cbsa",
+   "code": "34420",
+   "name": "Mount Pleasant, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Camp",
+    "Morris",
+    "Titus"
+   ],
+   "county_fips": [
+    "48063",
+    "48343",
+    "48449"
+   ]
+  },
+  {
+   "id": "metro-nacogdoches",
+   "kind": "cbsa",
+   "code": "34860",
+   "name": "Nacogdoches, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Nacogdoches"
+   ],
+   "county_fips": [
+    "48347"
+   ]
+  },
+  {
+   "id": "metro-odessa",
+   "kind": "cbsa",
+   "code": "36220",
+   "name": "Odessa, TX",
+   "type": "metropolitan",
+   "counties": [
+    "Ector"
+   ],
+   "county_fips": [
+    "48135"
+   ]
+  },
+  {
+   "id": "metro-palestine",
+   "kind": "cbsa",
+   "code": "37300",
+   "name": "Palestine, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Anderson"
+   ],
+   "county_fips": [
+    "48001"
+   ]
+  },
+  {
+   "id": "metro-pampa",
+   "kind": "cbsa",
+   "code": "37420",
+   "name": "Pampa, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Gray",
+    "Roberts"
+   ],
+   "county_fips": [
+    "48179",
+    "48393"
+   ]
+  },
+  {
+   "id": "metro-paris",
+   "kind": "cbsa",
+   "code": "37580",
+   "name": "Paris, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Lamar",
+    "Red River"
+   ],
+   "county_fips": [
+    "48277",
+    "48387"
+   ]
+  },
+  {
+   "id": "metro-plainview",
+   "kind": "cbsa",
+   "code": "38380",
+   "name": "Plainview, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Floyd",
+    "Hale"
+   ],
+   "county_fips": [
+    "48153",
+    "48189"
+   ]
+  },
+  {
+   "id": "metro-port-lavaca",
+   "kind": "cbsa",
+   "code": "38920",
+   "name": "Port Lavaca, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Calhoun"
+   ],
+   "county_fips": [
+    "48057"
+   ]
+  },
+  {
+   "id": "metro-raymondville",
+   "kind": "cbsa",
+   "code": "39700",
+   "name": "Raymondville, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Willacy"
+   ],
+   "county_fips": [
+    "48489"
+   ]
+  },
+  {
+   "id": "metro-rio-grande-city-roma",
+   "kind": "cbsa",
+   "code": "40100",
+   "name": "Rio Grande City-Roma, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Starr"
+   ],
+   "county_fips": [
+    "48427"
+   ]
+  },
+  {
+   "id": "metro-san-angelo",
+   "kind": "cbsa",
+   "code": "41660",
+   "name": "San Angelo, TX",
+   "type": "metropolitan",
+   "counties": [
+    "Irion",
+    "Tom Green"
+   ],
+   "county_fips": [
+    "48235",
+    "48451"
+   ]
+  },
+  {
+   "id": "metro-san-antonio-new-braunfels",
+   "kind": "cbsa",
+   "code": "41700",
+   "name": "San Antonio-New Braunfels, TX",
+   "type": "metropolitan",
+   "counties": [
+    "Atascosa",
+    "Bandera",
+    "Bexar",
+    "Comal",
+    "Guadalupe",
+    "Kendall",
+    "Medina",
+    "Wilson"
+   ],
+   "county_fips": [
+    "48013",
+    "48019",
+    "48029",
+    "48091",
+    "48187",
+    "48259",
+    "48325",
+    "48493"
+   ]
+  },
+  {
+   "id": "metro-sherman-denison",
+   "kind": "cbsa",
+   "code": "43300",
+   "name": "Sherman-Denison, TX",
+   "type": "metropolitan",
+   "counties": [
+    "Grayson"
+   ],
+   "county_fips": [
+    "48181"
+   ]
+  },
+  {
+   "id": "metro-snyder",
+   "kind": "cbsa",
+   "code": "43660",
+   "name": "Snyder, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Scurry"
+   ],
+   "county_fips": [
+    "48415"
+   ]
+  },
+  {
+   "id": "metro-stephenville",
+   "kind": "cbsa",
+   "code": "44500",
+   "name": "Stephenville, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Erath"
+   ],
+   "county_fips": [
+    "48143"
+   ]
+  },
+  {
+   "id": "metro-sulphur-springs",
+   "kind": "cbsa",
+   "code": "44860",
+   "name": "Sulphur Springs, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Hopkins"
+   ],
+   "county_fips": [
+    "48223"
+   ]
+  },
+  {
+   "id": "metro-sweetwater",
+   "kind": "cbsa",
+   "code": "45020",
+   "name": "Sweetwater, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Nolan"
+   ],
+   "county_fips": [
+    "48353"
+   ]
+  },
+  {
+   "id": "metro-texarkana",
+   "kind": "cbsa",
+   "code": "45500",
+   "name": "Texarkana, TX-AR",
+   "type": "metropolitan",
+   "counties": [
+    "Bowie"
+   ],
+   "county_fips": [
+    "48037"
+   ]
+  },
+  {
+   "id": "metro-town-of-pecos",
+   "kind": "cbsa",
+   "code": "45880",
+   "name": "Town of Pecos, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Reeves"
+   ],
+   "county_fips": [
+    "48389"
+   ]
+  },
+  {
+   "id": "metro-tyler",
+   "kind": "cbsa",
+   "code": "46340",
+   "name": "Tyler, TX",
+   "type": "metropolitan",
+   "counties": [
+    "Smith"
+   ],
+   "county_fips": [
+    "48423"
+   ]
+  },
+  {
+   "id": "metro-uvalde",
+   "kind": "cbsa",
+   "code": "46620",
+   "name": "Uvalde, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Uvalde"
+   ],
+   "county_fips": [
+    "48463"
+   ]
+  },
+  {
+   "id": "metro-vernon",
+   "kind": "cbsa",
+   "code": "46900",
+   "name": "Vernon, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Wilbarger"
+   ],
+   "county_fips": [
+    "48487"
+   ]
+  },
+  {
+   "id": "metro-victoria",
+   "kind": "cbsa",
+   "code": "47020",
+   "name": "Victoria, TX",
+   "type": "metropolitan",
+   "counties": [
+    "Goliad",
+    "Victoria"
+   ],
+   "county_fips": [
+    "48175",
+    "48469"
+   ]
+  },
+  {
+   "id": "metro-waco",
+   "kind": "cbsa",
+   "code": "47380",
+   "name": "Waco, TX",
+   "type": "metropolitan",
+   "counties": [
+    "Bosque",
+    "Falls",
+    "McLennan"
+   ],
+   "county_fips": [
+    "48035",
+    "48145",
+    "48309"
+   ]
+  },
+  {
+   "id": "metro-wichita-falls",
+   "kind": "cbsa",
+   "code": "48660",
+   "name": "Wichita Falls, TX",
+   "type": "metropolitan",
+   "counties": [
+    "Archer",
+    "Clay",
+    "Wichita"
+   ],
+   "county_fips": [
+    "48009",
+    "48077",
+    "48485"
+   ]
+  },
+  {
+   "id": "metro-zapata",
+   "kind": "cbsa",
+   "code": "49820",
+   "name": "Zapata, TX",
+   "type": "micropolitan",
+   "counties": [
+    "Zapata"
+   ],
+   "county_fips": [
+    "48505"
+   ]
+  }
+ ],
+ "county_to": {
+  "48001": {
+   "cbsa": "37300",
+   "cbsa_name": "Palestine, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "central"
+  },
+  "48003": {
+   "cbsa": "11380",
+   "cbsa_name": "Andrews, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "372",
+   "csa_name": "Midland-Odessa-Andrews, TX",
+   "role": "central"
+  },
+  "48005": {
+   "cbsa": "31260",
+   "cbsa_name": "Lufkin, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "central"
+  },
+  "48007": {
+   "cbsa": "18580",
+   "cbsa_name": "Corpus Christi, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "204",
+   "csa_name": "Corpus Christi-Kingsville-Alice, TX",
+   "role": "outlying"
+  },
+  "48009": {
+   "cbsa": "48660",
+   "cbsa_name": "Wichita Falls, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "outlying"
+  },
+  "48011": {
+   "cbsa": "11100",
+   "cbsa_name": "Amarillo, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "108",
+   "csa_name": "Amarillo-Borger, TX",
+   "role": "outlying"
+  },
+  "48013": {
+   "cbsa": "41700",
+   "cbsa_name": "San Antonio-New Braunfels, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "484",
+   "csa_name": "San Antonio-New Braunfels-Kerrville, TX",
+   "role": "outlying"
+  },
+  "48015": {
+   "cbsa": "26420",
+   "cbsa_name": "Houston-Pasadena-The Woodlands, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "288",
+   "csa_name": "Houston-Pasadena, TX",
+   "role": "outlying"
+  },
+  "48019": {
+   "cbsa": "41700",
+   "cbsa_name": "San Antonio-New Braunfels, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "484",
+   "csa_name": "San Antonio-New Braunfels-Kerrville, TX",
+   "role": "outlying"
+  },
+  "48021": {
+   "cbsa": "12420",
+   "cbsa_name": "Austin-Round Rock-San Marcos, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "outlying"
+  },
+  "48025": {
+   "cbsa": "13300",
+   "cbsa_name": "Beeville, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "central"
+  },
+  "48027": {
+   "cbsa": "28660",
+   "cbsa_name": "Killeen-Temple, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "central"
+  },
+  "48029": {
+   "cbsa": "41700",
+   "cbsa_name": "San Antonio-New Braunfels, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "484",
+   "csa_name": "San Antonio-New Braunfels-Kerrville, TX",
+   "role": "central"
+  },
+  "48035": {
+   "cbsa": "47380",
+   "cbsa_name": "Waco, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "outlying"
+  },
+  "48037": {
+   "cbsa": "45500",
+   "cbsa_name": "Texarkana, TX-AR",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "central"
+  },
+  "48039": {
+   "cbsa": "26420",
+   "cbsa_name": "Houston-Pasadena-The Woodlands, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "288",
+   "csa_name": "Houston-Pasadena, TX",
+   "role": "central"
+  },
+  "48041": {
+   "cbsa": "17780",
+   "cbsa_name": "College Station-Bryan, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "central"
+  },
+  "48047": {
+   "cbsa": "10860",
+   "cbsa_name": "Alice, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "204",
+   "csa_name": "Corpus Christi-Kingsville-Alice, TX",
+   "role": "outlying"
+  },
+  "48049": {
+   "cbsa": "15220",
+   "cbsa_name": "Brownwood, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "central"
+  },
+  "48051": {
+   "cbsa": "17780",
+   "cbsa_name": "College Station-Bryan, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "outlying"
+  },
+  "48055": {
+   "cbsa": "12420",
+   "cbsa_name": "Austin-Round Rock-San Marcos, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "outlying"
+  },
+  "48057": {
+   "cbsa": "38920",
+   "cbsa_name": "Port Lavaca, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "544",
+   "csa_name": "Victoria-Port Lavaca, TX",
+   "role": "central"
+  },
+  "48059": {
+   "cbsa": "10180",
+   "cbsa_name": "Abilene, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "101",
+   "csa_name": "Abilene-Sweetwater, TX",
+   "role": "outlying"
+  },
+  "48061": {
+   "cbsa": "15180",
+   "cbsa_name": "Brownsville-Harlingen, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "154",
+   "csa_name": "Brownsville-Harlingen-Raymondville, TX",
+   "role": "central"
+  },
+  "48063": {
+   "cbsa": "34420",
+   "cbsa_name": "Mount Pleasant, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "outlying"
+  },
+  "48065": {
+   "cbsa": "11100",
+   "cbsa_name": "Amarillo, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "108",
+   "csa_name": "Amarillo-Borger, TX",
+   "role": "outlying"
+  },
+  "48071": {
+   "cbsa": "26420",
+   "cbsa_name": "Houston-Pasadena-The Woodlands, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "288",
+   "csa_name": "Houston-Pasadena, TX",
+   "role": "outlying"
+  },
+  "48073": {
+   "cbsa": "27380",
+   "cbsa_name": "Jacksonville, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "540",
+   "csa_name": "Tyler-Jacksonville, TX",
+   "role": "central"
+  },
+  "48077": {
+   "cbsa": "48660",
+   "cbsa_name": "Wichita Falls, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "outlying"
+  },
+  "48079": {
+   "cbsa": "31180",
+   "cbsa_name": "Lubbock, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "352",
+   "csa_name": "Lubbock-Plainview, TX",
+   "role": "outlying"
+  },
+  "48085": {
+   "cbsa": "19100",
+   "cbsa_name": "Dallas-Fort Worth-Arlington, TX",
+   "type": "metropolitan",
+   "division": "19124",
+   "division_name": "Dallas-Plano-Irving, TX",
+   "csa": "206",
+   "csa_name": "Dallas-Fort Worth, TX-OK",
+   "role": "central"
+  },
+  "48091": {
+   "cbsa": "41700",
+   "cbsa_name": "San Antonio-New Braunfels, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "484",
+   "csa_name": "San Antonio-New Braunfels-Kerrville, TX",
+   "role": "outlying"
+  },
+  "48097": {
+   "cbsa": "23620",
+   "cbsa_name": "Gainesville, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "206",
+   "csa_name": "Dallas-Fort Worth, TX-OK",
+   "role": "central"
+  },
+  "48099": {
+   "cbsa": "28660",
+   "cbsa_name": "Killeen-Temple, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "central"
+  },
+  "48107": {
+   "cbsa": "31180",
+   "cbsa_name": "Lubbock, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "352",
+   "csa_name": "Lubbock-Plainview, TX",
+   "role": "outlying"
+  },
+  "48113": {
+   "cbsa": "19100",
+   "cbsa_name": "Dallas-Fort Worth-Arlington, TX",
+   "type": "metropolitan",
+   "division": "19124",
+   "division_name": "Dallas-Plano-Irving, TX",
+   "csa": "206",
+   "csa_name": "Dallas-Fort Worth, TX-OK",
+   "role": "central"
+  },
+  "48117": {
+   "cbsa": "25820",
+   "cbsa_name": "Hereford, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "central"
+  },
+  "48121": {
+   "cbsa": "19100",
+   "cbsa_name": "Dallas-Fort Worth-Arlington, TX",
+   "type": "metropolitan",
+   "division": "19124",
+   "division_name": "Dallas-Plano-Irving, TX",
+   "csa": "206",
+   "csa_name": "Dallas-Fort Worth, TX-OK",
+   "role": "outlying"
+  },
+  "48135": {
+   "cbsa": "36220",
+   "cbsa_name": "Odessa, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "372",
+   "csa_name": "Midland-Odessa-Andrews, TX",
+   "role": "central"
+  },
+  "48139": {
+   "cbsa": "19100",
+   "cbsa_name": "Dallas-Fort Worth-Arlington, TX",
+   "type": "metropolitan",
+   "division": "19124",
+   "division_name": "Dallas-Plano-Irving, TX",
+   "csa": "206",
+   "csa_name": "Dallas-Fort Worth, TX-OK",
+   "role": "central"
+  },
+  "48141": {
+   "cbsa": "21340",
+   "cbsa_name": "El Paso, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "238",
+   "csa_name": "El Paso-Las Cruces, TX-NM",
+   "role": "central"
+  },
+  "48143": {
+   "cbsa": "44500",
+   "cbsa_name": "Stephenville, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "central"
+  },
+  "48145": {
+   "cbsa": "47380",
+   "cbsa_name": "Waco, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "outlying"
+  },
+  "48147": {
+   "cbsa": "14300",
+   "cbsa_name": "Bonham, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "206",
+   "csa_name": "Dallas-Fort Worth, TX-OK",
+   "role": "central"
+  },
+  "48153": {
+   "cbsa": "38380",
+   "cbsa_name": "Plainview, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "352",
+   "csa_name": "Lubbock-Plainview, TX",
+   "role": "outlying"
+  },
+  "48157": {
+   "cbsa": "26420",
+   "cbsa_name": "Houston-Pasadena-The Woodlands, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "288",
+   "csa_name": "Houston-Pasadena, TX",
+   "role": "central"
+  },
+  "48167": {
+   "cbsa": "26420",
+   "cbsa_name": "Houston-Pasadena-The Woodlands, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "288",
+   "csa_name": "Houston-Pasadena, TX",
+   "role": "outlying"
+  },
+  "48169": {
+   "cbsa": "31180",
+   "cbsa_name": "Lubbock, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "352",
+   "csa_name": "Lubbock-Plainview, TX",
+   "role": "outlying"
+  },
+  "48171": {
+   "cbsa": "23240",
+   "cbsa_name": "Fredericksburg, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "484",
+   "csa_name": "San Antonio-New Braunfels-Kerrville, TX",
+   "role": "central"
+  },
+  "48175": {
+   "cbsa": "47020",
+   "cbsa_name": "Victoria, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "544",
+   "csa_name": "Victoria-Port Lavaca, TX",
+   "role": "outlying"
+  },
+  "48179": {
+   "cbsa": "37420",
+   "cbsa_name": "Pampa, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "central"
+  },
+  "48181": {
+   "cbsa": "43300",
+   "cbsa_name": "Sherman-Denison, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "206",
+   "csa_name": "Dallas-Fort Worth, TX-OK",
+   "role": "central"
+  },
+  "48183": {
+   "cbsa": "30980",
+   "cbsa_name": "Longview, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "central"
+  },
+  "48187": {
+   "cbsa": "41700",
+   "cbsa_name": "San Antonio-New Braunfels, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "484",
+   "csa_name": "San Antonio-New Braunfels-Kerrville, TX",
+   "role": "central"
+  },
+  "48189": {
+   "cbsa": "38380",
+   "cbsa_name": "Plainview, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "352",
+   "csa_name": "Lubbock-Plainview, TX",
+   "role": "central"
+  },
+  "48199": {
+   "cbsa": "13140",
+   "cbsa_name": "Beaumont-Port Arthur, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "outlying"
+  },
+  "48201": {
+   "cbsa": "26420",
+   "cbsa_name": "Houston-Pasadena-The Woodlands, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "288",
+   "csa_name": "Houston-Pasadena, TX",
+   "role": "central"
+  },
+  "48203": {
+   "cbsa": "30980",
+   "cbsa_name": "Longview, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "outlying"
+  },
+  "48209": {
+   "cbsa": "12420",
+   "cbsa_name": "Austin-Round Rock-San Marcos, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "central"
+  },
+  "48213": {
+   "cbsa": "11980",
+   "cbsa_name": "Athens, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "206",
+   "csa_name": "Dallas-Fort Worth, TX-OK",
+   "role": "central"
+  },
+  "48215": {
+   "cbsa": "32580",
+   "cbsa_name": "McAllen-Edinburg-Mission, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "365",
+   "csa_name": "McAllen-Edinburg, TX",
+   "role": "central"
+  },
+  "48219": {
+   "cbsa": "31180",
+   "cbsa_name": "Lubbock, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "352",
+   "csa_name": "Lubbock-Plainview, TX",
+   "role": "outlying"
+  },
+  "48221": {
+   "cbsa": "24180",
+   "cbsa_name": "Granbury, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "206",
+   "csa_name": "Dallas-Fort Worth, TX-OK",
+   "role": "central"
+  },
+  "48223": {
+   "cbsa": "44860",
+   "cbsa_name": "Sulphur Springs, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "206",
+   "csa_name": "Dallas-Fort Worth, TX-OK",
+   "role": "central"
+  },
+  "48227": {
+   "cbsa": "13700",
+   "cbsa_name": "Big Spring, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "central"
+  },
+  "48229": {
+   "cbsa": "21340",
+   "cbsa_name": "El Paso, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "238",
+   "csa_name": "El Paso-Las Cruces, TX-NM",
+   "role": "outlying"
+  },
+  "48231": {
+   "cbsa": "19100",
+   "cbsa_name": "Dallas-Fort Worth-Arlington, TX",
+   "type": "metropolitan",
+   "division": "19124",
+   "division_name": "Dallas-Plano-Irving, TX",
+   "csa": "206",
+   "csa_name": "Dallas-Fort Worth, TX-OK",
+   "role": "outlying"
+  },
+  "48233": {
+   "cbsa": "14420",
+   "cbsa_name": "Borger, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "108",
+   "csa_name": "Amarillo-Borger, TX",
+   "role": "central"
+  },
+  "48235": {
+   "cbsa": "41660",
+   "cbsa_name": "San Angelo, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "outlying"
+  },
+  "48245": {
+   "cbsa": "13140",
+   "cbsa_name": "Beaumont-Port Arthur, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "central"
+  },
+  "48249": {
+   "cbsa": "10860",
+   "cbsa_name": "Alice, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "204",
+   "csa_name": "Corpus Christi-Kingsville-Alice, TX",
+   "role": "central"
+  },
+  "48251": {
+   "cbsa": "19100",
+   "cbsa_name": "Dallas-Fort Worth-Arlington, TX",
+   "type": "metropolitan",
+   "division": "23104",
+   "division_name": "Fort Worth-Arlington-Grapevine, TX",
+   "csa": "206",
+   "csa_name": "Dallas-Fort Worth, TX-OK",
+   "role": "central"
+  },
+  "48253": {
+   "cbsa": "10180",
+   "cbsa_name": "Abilene, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "101",
+   "csa_name": "Abilene-Sweetwater, TX",
+   "role": "outlying"
+  },
+  "48257": {
+   "cbsa": "19100",
+   "cbsa_name": "Dallas-Fort Worth-Arlington, TX",
+   "type": "metropolitan",
+   "division": "19124",
+   "division_name": "Dallas-Plano-Irving, TX",
+   "csa": "206",
+   "csa_name": "Dallas-Fort Worth, TX-OK",
+   "role": "outlying"
+  },
+  "48259": {
+   "cbsa": "41700",
+   "cbsa_name": "San Antonio-New Braunfels, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "484",
+   "csa_name": "San Antonio-New Braunfels-Kerrville, TX",
+   "role": "outlying"
+  },
+  "48265": {
+   "cbsa": "28500",
+   "cbsa_name": "Kerrville, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "484",
+   "csa_name": "San Antonio-New Braunfels-Kerrville, TX",
+   "role": "central"
+  },
+  "48273": {
+   "cbsa": "28780",
+   "cbsa_name": "Kingsville, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "204",
+   "csa_name": "Corpus Christi-Kingsville-Alice, TX",
+   "role": "central"
+  },
+  "48277": {
+   "cbsa": "37580",
+   "cbsa_name": "Paris, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "central"
+  },
+  "48281": {
+   "cbsa": "28660",
+   "cbsa_name": "Killeen-Temple, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "outlying"
+  },
+  "48291": {
+   "cbsa": "26420",
+   "cbsa_name": "Houston-Pasadena-The Woodlands, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "288",
+   "csa_name": "Houston-Pasadena, TX",
+   "role": "outlying"
+  },
+  "48303": {
+   "cbsa": "31180",
+   "cbsa_name": "Lubbock, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "352",
+   "csa_name": "Lubbock-Plainview, TX",
+   "role": "central"
+  },
+  "48305": {
+   "cbsa": "31180",
+   "cbsa_name": "Lubbock, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "352",
+   "csa_name": "Lubbock-Plainview, TX",
+   "role": "outlying"
+  },
+  "48309": {
+   "cbsa": "47380",
+   "cbsa_name": "Waco, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "central"
+  },
+  "48317": {
+   "cbsa": "33260",
+   "cbsa_name": "Midland, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "372",
+   "csa_name": "Midland-Odessa-Andrews, TX",
+   "role": "outlying"
+  },
+  "48321": {
+   "cbsa": "13060",
+   "cbsa_name": "Bay City, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "288",
+   "csa_name": "Houston-Pasadena, TX",
+   "role": "central"
+  },
+  "48323": {
+   "cbsa": "20580",
+   "cbsa_name": "Eagle Pass, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "central"
+  },
+  "48325": {
+   "cbsa": "41700",
+   "cbsa_name": "San Antonio-New Braunfels, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "484",
+   "csa_name": "San Antonio-New Braunfels-Kerrville, TX",
+   "role": "outlying"
+  },
+  "48329": {
+   "cbsa": "33260",
+   "cbsa_name": "Midland, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "372",
+   "csa_name": "Midland-Odessa-Andrews, TX",
+   "role": "central"
+  },
+  "48339": {
+   "cbsa": "26420",
+   "cbsa_name": "Houston-Pasadena-The Woodlands, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "288",
+   "csa_name": "Houston-Pasadena, TX",
+   "role": "outlying"
+  },
+  "48341": {
+   "cbsa": "20300",
+   "cbsa_name": "Dumas, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "central"
+  },
+  "48343": {
+   "cbsa": "34420",
+   "cbsa_name": "Mount Pleasant, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "outlying"
+  },
+  "48347": {
+   "cbsa": "34860",
+   "cbsa_name": "Nacogdoches, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "central"
+  },
+  "48349": {
+   "cbsa": "18620",
+   "cbsa_name": "Corsicana, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "206",
+   "csa_name": "Dallas-Fort Worth, TX-OK",
+   "role": "central"
+  },
+  "48353": {
+   "cbsa": "45020",
+   "cbsa_name": "Sweetwater, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "101",
+   "csa_name": "Abilene-Sweetwater, TX",
+   "role": "central"
+  },
+  "48355": {
+   "cbsa": "18580",
+   "cbsa_name": "Corpus Christi, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "204",
+   "csa_name": "Corpus Christi-Kingsville-Alice, TX",
+   "role": "central"
+  },
+  "48359": {
+   "cbsa": "11100",
+   "cbsa_name": "Amarillo, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "108",
+   "csa_name": "Amarillo-Borger, TX",
+   "role": "outlying"
+  },
+  "48361": {
+   "cbsa": "13140",
+   "cbsa_name": "Beaumont-Port Arthur, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "outlying"
+  },
+  "48363": {
+   "cbsa": "33420",
+   "cbsa_name": "Mineral Wells, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "206",
+   "csa_name": "Dallas-Fort Worth, TX-OK",
+   "role": "central"
+  },
+  "48367": {
+   "cbsa": "19100",
+   "cbsa_name": "Dallas-Fort Worth-Arlington, TX",
+   "type": "metropolitan",
+   "division": "23104",
+   "division_name": "Fort Worth-Arlington-Grapevine, TX",
+   "csa": "206",
+   "csa_name": "Dallas-Fort Worth, TX-OK",
+   "role": "outlying"
+  },
+  "48375": {
+   "cbsa": "11100",
+   "cbsa_name": "Amarillo, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "108",
+   "csa_name": "Amarillo-Borger, TX",
+   "role": "central"
+  },
+  "48381": {
+   "cbsa": "11100",
+   "cbsa_name": "Amarillo, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "108",
+   "csa_name": "Amarillo-Borger, TX",
+   "role": "central"
+  },
+  "48387": {
+   "cbsa": "37580",
+   "cbsa_name": "Paris, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "outlying"
+  },
+  "48389": {
+   "cbsa": "45880",
+   "cbsa_name": "Town of Pecos, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "central"
+  },
+  "48393": {
+   "cbsa": "37420",
+   "cbsa_name": "Pampa, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "outlying"
+  },
+  "48395": {
+   "cbsa": "17780",
+   "cbsa_name": "College Station-Bryan, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "outlying"
+  },
+  "48397": {
+   "cbsa": "19100",
+   "cbsa_name": "Dallas-Fort Worth-Arlington, TX",
+   "type": "metropolitan",
+   "division": "19124",
+   "division_name": "Dallas-Plano-Irving, TX",
+   "csa": "206",
+   "csa_name": "Dallas-Fort Worth, TX-OK",
+   "role": "central"
+  },
+  "48401": {
+   "cbsa": "30980",
+   "cbsa_name": "Longview, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "outlying"
+  },
+  "48407": {
+   "cbsa": "26420",
+   "cbsa_name": "Houston-Pasadena-The Woodlands, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "288",
+   "csa_name": "Houston-Pasadena, TX",
+   "role": "outlying"
+  },
+  "48409": {
+   "cbsa": "18580",
+   "cbsa_name": "Corpus Christi, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "204",
+   "csa_name": "Corpus Christi-Kingsville-Alice, TX",
+   "role": "central"
+  },
+  "48415": {
+   "cbsa": "43660",
+   "cbsa_name": "Snyder, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "central"
+  },
+  "48423": {
+   "cbsa": "46340",
+   "cbsa_name": "Tyler, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "540",
+   "csa_name": "Tyler-Jacksonville, TX",
+   "role": "central"
+  },
+  "48427": {
+   "cbsa": "40100",
+   "cbsa_name": "Rio Grande City-Roma, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "365",
+   "csa_name": "McAllen-Edinburg, TX",
+   "role": "central"
+  },
+  "48439": {
+   "cbsa": "19100",
+   "cbsa_name": "Dallas-Fort Worth-Arlington, TX",
+   "type": "metropolitan",
+   "division": "23104",
+   "division_name": "Fort Worth-Arlington-Grapevine, TX",
+   "csa": "206",
+   "csa_name": "Dallas-Fort Worth, TX-OK",
+   "role": "central"
+  },
+  "48441": {
+   "cbsa": "10180",
+   "cbsa_name": "Abilene, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "101",
+   "csa_name": "Abilene-Sweetwater, TX",
+   "role": "central"
+  },
+  "48449": {
+   "cbsa": "34420",
+   "cbsa_name": "Mount Pleasant, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "central"
+  },
+  "48451": {
+   "cbsa": "41660",
+   "cbsa_name": "San Angelo, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "central"
+  },
+  "48453": {
+   "cbsa": "12420",
+   "cbsa_name": "Austin-Round Rock-San Marcos, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "central"
+  },
+  "48459": {
+   "cbsa": "30980",
+   "cbsa_name": "Longview, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "outlying"
+  },
+  "48463": {
+   "cbsa": "46620",
+   "cbsa_name": "Uvalde, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "central"
+  },
+  "48465": {
+   "cbsa": "19620",
+   "cbsa_name": "Del Rio, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "central"
+  },
+  "48469": {
+   "cbsa": "47020",
+   "cbsa_name": "Victoria, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "544",
+   "csa_name": "Victoria-Port Lavaca, TX",
+   "role": "central"
+  },
+  "48471": {
+   "cbsa": "26660",
+   "cbsa_name": "Huntsville, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "288",
+   "csa_name": "Houston-Pasadena, TX",
+   "role": "central"
+  },
+  "48473": {
+   "cbsa": "26420",
+   "cbsa_name": "Houston-Pasadena-The Woodlands, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "288",
+   "csa_name": "Houston-Pasadena, TX",
+   "role": "central"
+  },
+  "48477": {
+   "cbsa": "14780",
+   "cbsa_name": "Brenham, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "288",
+   "csa_name": "Houston-Pasadena, TX",
+   "role": "central"
+  },
+  "48479": {
+   "cbsa": "29700",
+   "cbsa_name": "Laredo, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "central"
+  },
+  "48481": {
+   "cbsa": "20900",
+   "cbsa_name": "El Campo, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "288",
+   "csa_name": "Houston-Pasadena, TX",
+   "role": "central"
+  },
+  "48485": {
+   "cbsa": "48660",
+   "cbsa_name": "Wichita Falls, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "central"
+  },
+  "48487": {
+   "cbsa": "46900",
+   "cbsa_name": "Vernon, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "central"
+  },
+  "48489": {
+   "cbsa": "39700",
+   "cbsa_name": "Raymondville, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "154",
+   "csa_name": "Brownsville-Harlingen-Raymondville, TX",
+   "role": "central"
+  },
+  "48491": {
+   "cbsa": "12420",
+   "cbsa_name": "Austin-Round Rock-San Marcos, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "central"
+  },
+  "48493": {
+   "cbsa": "41700",
+   "cbsa_name": "San Antonio-New Braunfels, TX",
+   "type": "metropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": "484",
+   "csa_name": "San Antonio-New Braunfels-Kerrville, TX",
+   "role": "outlying"
+  },
+  "48497": {
+   "cbsa": "19100",
+   "cbsa_name": "Dallas-Fort Worth-Arlington, TX",
+   "type": "metropolitan",
+   "division": "23104",
+   "division_name": "Fort Worth-Arlington-Grapevine, TX",
+   "csa": "206",
+   "csa_name": "Dallas-Fort Worth, TX-OK",
+   "role": "outlying"
+  },
+  "48505": {
+   "cbsa": "49820",
+   "cbsa_name": "Zapata, TX",
+   "type": "micropolitan",
+   "division": null,
+   "division_name": null,
+   "csa": null,
+   "csa_name": null,
+   "role": "central"
+  }
+ }
+}
