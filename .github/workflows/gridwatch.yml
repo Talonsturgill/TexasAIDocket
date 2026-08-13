@@ -29,11 +29,31 @@ name: gridwatch
 #   is the correct alarm: the site is stale and somebody needs to know. The measurement is
 #   already safe on main by then.
 
+# A RECOVERY LEVER THAT NEEDS NO UI AND NO EXTRA PERMISSION.
+#
+# `workflow_dispatch` is the obvious way to re-run a missed collection and it is not always
+# reachable. Triggering it over the API needs `actions: write`, which the GitHub App working on
+# this repository does not hold, so an automated maintainer hits `403 Resource not accessible by
+# integration` and the only route left is a human at the Actions tab. On 2026-08-13 that was the
+# difference between recovering a lost ERCOT day and losing it, because the window to recover one
+# closes at Texas midnight and nobody was guaranteed to be at a keyboard before then.
+#
+# Pushing a commit needs no permission beyond the one that already exists, so touching the
+# sentinel file below and pushing it to `main` starts a collection:
+#
+#     date -u +%FT%TZ > .github/recover-gridwatch   # then commit, PR, merge
+#
+# Firing this more than once is harmless. `worth_writing` refuses to rewrite a settled verified
+# day, so a spurious run reads ERCOT, finds the day already held, and writes nothing.
 on:
   schedule:
     - cron: "0 14 * * *"
     - cron: "0 20 * * *"
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/recover-gridwatch"
 
 permissions:
   contents: write
