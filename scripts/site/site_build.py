@@ -896,9 +896,12 @@ def ask_page(items: list, today: str) -> str:
 <div class="prose">
   <h2>What it can answer</h2>
   <p>The <strong class="num">{len(cat)}</strong> questions it knows are generated from the
-  record itself. They come from its counties, its topics, the bodies that decided and what is
-  open today. A county with nothing in it never gets a question, so the box can't promise an
-  answer it does not have.</p>
+  record itself. They come from its counties, its metropolitan areas, its topics, the bodies
+  that decided and what is open today. A place with nothing in it never gets a question, so the
+  box can't promise an answer it does not have.</p>
+  <p>The box knows every one of the state's statistical areas even where the record is silent,
+  which is a different thing from asking about them. Type a city it holds nothing on and it
+  will say so rather than reach for the nearest match somewhere else in Texas.</p>
   <p>Answers are composed from the index on this page at the moment you ask. Nothing is a stored
   answer, which is why nothing here can be out of date relative to the record beside it.</p>
   <p>Where the record holds nothing, it says so. That is the answer, not a gap in it.</p>
@@ -1486,7 +1489,12 @@ def build(out: Path, today: str) -> dict:
                            "published figure is recomputable. Unverified days carry no "
                            "numbers rather than yesterday's."},
          "readings": gridwatch_page.load()}, indent=2, ensure_ascii=False) + "\n")
-    w("ask/index.html", ask_page(items, today))
+    # The catalogue size is the one figure this page states, and it is the length of the
+    # list the page is shipping. It passed the gate before the metro questions existed
+    # only because the count was 121 and the state has 121 counties in no metro, which is
+    # the coincidence `numeral_lint`'s docstring admits it cannot see through.
+    w("ask/index.html", ask_page(items, today),
+      {str(len(ask_answers.catalogue(ask_answers.index(items, today))))} | listed(items))
     w("services/index.html", services_page(items, today))
     w("water/index.html", water_page(today), _watch_numerals(waterwatch_page))
     w("waterwatch.json", json.dumps(

@@ -94,6 +94,38 @@ check(`every catalogued question is answered (${cat.length} asked)`, empty.lengt
 check("no answer claims more items than the record holds", overclaimed.length === 0,
       overclaimed.slice(0, 3).join(" | "));
 
+// A PLACE ANSWER MUST NOT COUNT STATEWIDE ITEMS AS LOCAL COVERAGE.
+//
+// This is the failure this file exists to catch, and it shipped once. The metro view opened
+// with "9 items in the El Paso area" directly above a note saying nothing had been found in
+// either of El Paso's counties. All nine were statewide. Every number in it was correct and
+// the sentence was false, so no count assertion could see it: a true count of the wrong set
+// reads exactly like a true count.
+//
+// So the headline count is checked against the LOCAL set specifically, recomputed here from
+// the index the page shipped rather than from anything the engine said.
+const placeWrong = [];
+for (const entry of cat) {
+  const v = entry.route.view;
+  if (v !== "by_metro" && v !== "by_county") continue;
+  const a = await page.evaluate((q) => window.__askAnswer(q), entry.q);
+  const want = await page.evaluate(([view, arg]) => {
+    const idx = window.__ASK_INDEX__;
+    return idx.items.filter((i) => view === "by_metro"
+      ? (i.metros || []).indexOf(arg) >= 0
+      : i.counties.indexOf(arg) >= 0).length;
+  }, [v, entry.route.arg]);
+  const said = (a.head.match(/^(\d+)\s+items?\b/) || [])[1];
+  if (want === 0 && said !== undefined) {
+    placeWrong.push(`${entry.q} -> claims ${said} local, record has none`);
+  } else if (want > 0 && Number(said) !== want) {
+    placeWrong.push(`${entry.q} -> claims ${said}, local set is ${want}`);
+  }
+}
+check(`a place answer counts only what is local to it (${
+        cat.filter((c) => /^by_(metro|county)$/.test(c.route.view)).length} places asked)`,
+      placeWrong.length === 0, placeWrong.slice(0, 3).join(" | "));
+
 // A QUESTION THE RECORD CANNOT ANSWER MUST SAY SO, not improvise.
 const nonsense = await page.evaluate(() =>
   window.__askAnswer("what is the airspeed velocity of an unladen swallow"));
