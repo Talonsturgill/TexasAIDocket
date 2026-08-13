@@ -321,7 +321,8 @@ def scale_bar(scale: float, dx: float, dy: float) -> tuple[str, int]:
 
 
 def render(lit: set | None = None, *, title: str = "Texas counties in the record",
-           idprefix: str = "txmap", inset: bool = False) -> str:
+           idprefix: str = "txmap", inset: bool = False,
+           links: dict | None = None) -> str:
     """The whole map as one inline SVG.
 
     `lit` is a set of county NAMES (as the geodata spells them) or FIPS codes. Anything not lit
@@ -343,10 +344,20 @@ def render(lit: set | None = None, *, title: str = "Texas counties in the record
         cls = "c on" if on else "c"
         # The title element is what a screen reader announces, and it is also what a sighted
         # reader gets on hover with no JavaScript at all.
-        paths.append(
-            f'<path class="{cls}" d="{d}" data-fips="{fips}" data-county="{name}">'
-            f"<title>{name} County</title></path>"
-        )
+        node = (f'<path class="{cls}" d="{d}" data-fips="{fips}" data-county="{name}">'
+                f"<title>{name} County</title></path>")
+        # A LIT COUNTY IS A LINK, which is the whole map's job now that there is no index page
+        # standing in front of it. Only lit counties link: an unlit county has nothing to open,
+        # and a link to an empty page is a worse answer than a county that does not respond.
+        #
+        # `<a>` INSIDE SVG IS A REAL LINK in every browser that matters, and it takes the
+        # keyboard focus and the screen reader announcement with it, which a `click` handler
+        # bolted onto a `<path>` does not. The map keeps working with script switched off.
+        href = (links or {}).get(name)
+        if on and href:
+            node = (f'<a href="{href}" class="cl" aria-label="{name} County, what the record '
+                    f'holds">{node}</a>')
+        paths.append(node)
 
     bar, miles = scale_bar(scale, dx, dy)
     return (

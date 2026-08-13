@@ -56,7 +56,12 @@ await page.route("**/*", (route) => {
   return route.abort();
 });
 
-await page.goto("file://" + path.join(SITE, "ask", "index.html"));
+// THE BOX MOVED TO THE FRONT PAGE. It had its own page and its own nav tab, behind a
+// heading and four paragraphs explaining what a search field is, which is a search field
+// most readers never reached. Loading the front page here is not a cosmetic change to the
+// test: the box is at depth 0 now, and the engine's item links used to be hardcoded
+// "../item/", which from the front page walks out of the site entirely.
+await page.goto("file://" + path.join(SITE, "index.html"));
 await page.waitForFunction(() => typeof window.__askAnswer === "function");
 
 const idx = await page.evaluate(() => window.__ASK_INDEX__);
@@ -125,6 +130,24 @@ for (const entry of cat) {
 check(`a place answer counts only what is local to it (${
         cat.filter((c) => /^by_(metro|county)$/.test(c.route.view)).length} places asked)`,
       placeWrong.length === 0, placeWrong.slice(0, 3).join(" | "));
+
+// THE LINKS AN ANSWER RENDERS MUST RESOLVE.
+//
+// The engine builds item hrefs at read time, and it used to hardcode "../item/", which is
+// correct for exactly one depth. Moving the box to the front page made every one of those
+// links walk out of the site, and the page would have looked flawless doing it: the answer
+// text, the counts and the titles were all still right. Nothing else in this file reads an
+// href, so nothing else could have caught it.
+const dead = [];
+for (const entry of cat.slice(0, 40)) {
+  const html = await page.evaluate((q) => (window.__askAnswer(q) || {}).body || "", entry.q);
+  for (const m of html.matchAll(/href="([^"]+)"/g)) {
+    const target = path.resolve(SITE, m[1].replace(/\/$/, "/index.html"));
+    if (!fs.existsSync(target)) dead.push(`${entry.q} -> ${m[1]}`);
+  }
+}
+check("every link an answer renders resolves to a page that exists", dead.length === 0,
+      dead.slice(0, 3).join(" | "));
 
 // A QUESTION THE RECORD CANNOT ANSWER MUST SAY SO, not improvise.
 const nonsense = await page.evaluate(() =>
