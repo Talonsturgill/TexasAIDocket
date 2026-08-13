@@ -200,11 +200,16 @@ nav.main a:hover::after { right:0; }
 nav.main a[aria-current] { color:var(--accent); }
 nav.main a[aria-current]::after { right:0; }
 @media (max-width:56rem) {
-  .home .sky .lonestar { display:none; }
   .masthead { position:static; }
   .masthead::before { display:none; }
   .masthead .wrap { gap:.6rem; }
   nav.main { margin-left:0; gap:.5rem .9rem; font-size:var(--s-2); }
+}
+@media (max-width:30rem) {
+  .home .sky .lonestar { display:none; }
+}
+@media (min-width:30.01rem) and (max-width:56rem) {
+  .home .hero .tele { max-width:74%; }
 }
 .hero { padding:clamp(2.5rem,9vh,7rem) 0 0; }
 .hero h1 { font-size:clamp(3rem,9.2vw,7.6rem); line-height:1; letter-spacing:-.03em;
@@ -401,6 +406,13 @@ caption { caption-side:bottom; text-align:left; padding-top:.75rem; font-size:va
   color:var(--ink-mute); max-width:var(--measure); }
 .askbox { border:var(--hair) solid var(--rule-strong); border-radius:var(--radius);
   padding:1.25rem var(--gap); background:var(--surface); margin:1.5rem 0; }
+.askbox.lean { border:0; background:transparent; padding:0; margin:0; }
+.askbox.lean form { gap:.5rem; }
+.askbox.lean .chips { margin-top:.7rem; }
+.asksection { margin:2.25rem 0 0; }
+.askfoot { margin:.7rem 0 0; font-size:var(--s-1); color:var(--ink-mute); }
+.vh { position:absolute; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden;
+  clip:rect(0 0 0 0); white-space:nowrap; border:0; }
 .askbox form { display:flex; gap:.6rem; flex-wrap:wrap; align-items:center; }
 .askbox label { position:absolute; left:-9999px; }
 .askbox input { flex:1 1 20rem; font:400 var(--s1)/1.4 var(--body); padding:.7em .9em;

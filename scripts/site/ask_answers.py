@@ -321,7 +321,7 @@ def engine_js() -> str:
     });
   }
   function link(it) {
-    return '<a href="../item/' + esc(it.id) + '/">' + esc(it.title) + "</a>";
+    return '<a href="' + BASE + 'item/' + esc(it.id) + '/">' + esc(it.title) + "</a>";
   }
   function list(items) {
     if (!items.length) return "";
@@ -448,6 +448,12 @@ def engine_js() -> str:
 
   var box = document.getElementById("ask");
   if (!box) return;
+  /* THE LINK PREFIX COMES FROM THE MARKUP, because the box moved. It used to hardcode
+     "../item/", which was correct for exactly one location: a page one directory deep. The
+     box is on the front page now, at depth 0, where "../item/" walks out of the site
+     entirely. Every answer it rendered would have linked to a 404 and the page would have
+     looked perfect. The host element states its own depth and the engine reads it. */
+  var BASE = box.getAttribute("data-base") || "";
   var input = box.querySelector("input");
   var out = box.querySelector(".answer");
 

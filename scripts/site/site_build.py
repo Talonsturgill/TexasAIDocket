@@ -70,15 +70,29 @@ def star(cls: str = "star") -> str:
 
 HOIST = mark.flag_svg()
 
-NAV = [("", "Home"), ("record/", "The record"), ("ask/", "Ask"),
-       ("places/", "Places"), ("counties/", "Counties"), ("grid/", "Grid"), ("water/", "Water"),
-       ("data/", "Data"), ("services/", "Services"), ("about/", "About")]
+# THE TOP BAR CARRIES PLACES A READER GOES, and `Data` is not one of them. It is where a
+# machine goes, and putting it in the masthead cost a slot in the row that has to survive a
+# phone, while the readers it was aimed at were never going to look there.
+# `Docket` rather than `The record`, because it is the word the thing is called. The URL stays
+# `record/`, since a published address is a promise to anything already linking it and a label
+# is not.
+#
+# `Ask` is gone from the bar because the box is on the front page now. A search field a reader
+# has to navigate to is a search field a reader does not use.
+NAV = [("", "Home"), ("record/", "Docket"),
+       ("counties/", "Counties"), ("grid/", "Grid"), ("water/", "Water"),
+       ("services/", "Services"), ("about/", "About")]
 
 # The footer's way out. Wider than the masthead nav, because the bottom of a page is where
 # somebody who did not find what they came for goes looking, and the machine-readable surfaces
 # belong there rather than in the top bar.
-FOOTNAV = NAV[1:] + [("docket.json", "Open data"), ("atom.xml", "Feed"),
-                     ("llms.txt", "For machines")]
+#
+# THE FOOTER SAID "DATA" TWICE. It listed the `/data/` page and then listed `docket.json` as
+# "Open data" beside it, which is the same idea under two names one word apart. Worse, all
+# three raw links it carried are the exact three the `/data/` page exists to list, with the
+# context that page adds and the footer cannot. So the page is the entry and the raw links
+# come out. One name, one route, and the shortest footer this site has had.
+FOOTNAV = NAV[1:] + [("data/", "Data")]
 
 # WHERE THIS WAS MADE. Austin sits on the Balcones Escarpment, the fault line where the Hill
 # Country drops to the coastal plain, which runs straight through the city.
@@ -345,7 +359,7 @@ def home(items: list, today: str) -> str:
     proj = dk.project(items, today)
     act = proj["actionable_now"]
     lit = {c for it in items for c in (it.get("geography") or {}).get("counties") or []}
-    svg = texas_map.render(lit=lit)
+    svg = texas_map.render(lit=lit, links=county_links(items, today, 0))
 
     n_counties = len(lit)
     n_items = proj["counts"]["items"]
@@ -405,12 +419,13 @@ def home(items: list, today: str) -> str:
   <p class="herolede">Every AI decision in Texas and the source behind it. Green means a door is
   open to you.</p>
   <div class="ctarow">
-    <a class="cta solid" href="record/">The record</a>
-    <a class="cta ghost" href="ask/">Ask it a question</a>
+    <a class="cta solid" href="record/">The docket</a>
     <a class="cta ghost" href="grid/">The grid</a>
   </div>
   <div class="statrow">{stats}</div>
 </section>
+
+{ask_box(items, today)}
 
 <section data-reveal>
   <h2>Where</h2>
@@ -601,33 +616,63 @@ def item_page(it: dict, today: str) -> str:
 
 
 def counties_page(items: list, today: str) -> str:
+    """Every place the record touches, on one page, entered through the map.
+
+    THIS PAGE ABSORBED `/places/`, WHICH WAS A TAB SPENDING A NAV SLOT ON A TAXONOMY. A
+    reader does not arrive wanting to browse statistical areas. They arrive wanting to know
+    what is happening near them, and the map answers that in one click where a table of
+    federal delineations answered it in three. So the areas are a section here rather than
+    a destination, and the map is the way in.
+    """
+    proj = dk.project(items, today)
     tx = _place_facts()
     by = {}
     for it in items:
         for c in (it.get("geography") or {}).get("counties") or []:
             by.setdefault(c, []).append(it)
+    statewide = [i for i in items if (i.get("geography") or {}).get("statewide")]
+
     rows = "".join(
-        f'<tr><td>{e(c)} County</td><td class="n num">{len(v)}</td>'
+        f'<tr><td><a href="../place/county-{_place_slug(c)}/">{e(c)} County</a></td>'
+        f'<td class="n num">{len(v)}</td>'
         f'<td>{", ".join(e(t) for t in dict.fromkeys(i["topic"] for i in v))}</td></tr>'
         for c, v in sorted(by.items(), key=lambda kv: (-len(kv[1]), kv[0])))
-    statewide = [i for i in items if (i.get("geography") or {}).get("statewide")]
+
+    metros = proj["by_metro"]
+    mrows = "".join(
+        f'<tr><td><a href="../place/{e(mid)}/">{e(m["name"])}</a></td>'
+        f'<td class="n num">{len(m["items"])}</td>'
+        f'<td class="n num">{len(m["touched_counties"])}</td>'
+        f'<td>{e(m["area_type"])}</td></tr>'
+        for mid, m in sorted(metros.items(), key=lambda kv: (-len(kv[1]["items"]), kv[0])))
 
     body = f"""
 <h1>By county</h1>
 <div class="prose">
-  <p><span class="num">{len(by)}</span> of Texas's <span class="num">{tx["counties"]}</span> counties are
-  named in the record. A further <span class="num">{len(statewide)}</span> decisions apply
-  statewide.</p>
+  <p><span class="num">{len(by)}</span> of Texas's <span class="num">{tx["counties"]}</span>
+  counties are named in the record. A further <span class="num">{len(statewide)}</span>
+  decisions apply statewide. <strong>Click a lit county to see what it holds.</strong></p>
   <p class="gap"><strong>A county with no entry is not a county where nothing is happening.</strong>
   It is a county where nothing has yet been found in a primary source. Roughly half of the data
   centres planned in Texas sit in unincorporated land, where there is no zoning file to read.</p>
 </div>
-{texas_map.render(lit=set(by))}
-<table><thead><tr><th>County</th><th class="n">Items</th><th>Topics</th></tr></thead>
+{texas_map.render(lit=set(by), links=county_links(items, today, 1))}
+<table class="tally"><thead><tr><th>County</th><th class="n">Items</th><th>Topics</th></tr></thead>
 <tbody>{rows}</tbody></table>
+
+<h2>By metropolitan area</h2>
+<div class="prose">
+  <p class="gap"><strong>Half of Texas is in no metro, and it is not the empty half.</strong>
+  Of the state's <span class="num">{tx["counties"]}</span> counties,
+  <span class="num">{tx["outside_any_metro"]}</span> sit outside every federal statistical
+  area, and that is where much of the physical buildout is going up. The county table above is
+  the complete answer. This one groups it for a reader who thinks in cities.</p>
+</div>
+<table class="tally"><thead><tr><th>Area</th><th class="n">Items</th><th class="n">Counties</th>
+<th>Kind</th></tr></thead><tbody>{mrows}</tbody></table>
 """
     return page(title=f"By county · {SITE_NAME}", depth=1, active="counties/",
-                desc="Which Texas counties appear in the record of AI decisions.",
+                desc="Which Texas counties and metros appear in the record of AI decisions.",
                 body=body, today=today, canonical="counties/")
 
 
@@ -690,47 +735,6 @@ def _made_at_numerals() -> tuple:
     return tuple(re.findall(r"\d+", _made_at()))
 
 
-def places_index(items: list, today: str) -> str:
-    proj = dk.project(items, today)
-    metros = proj["by_metro"]
-    loose = proj["unmetroed_counties"]
-    tx = _place_facts()
-
-    mrows = "".join(
-        f'<tr><td><a href="../place/{e(mid)}/">{e(m["name"])}</a></td>'
-        f'<td class="n num">{len(m["items"])}</td>'
-        f'<td class="n num">{len(m["touched_counties"])}</td>'
-        f'<td>{e(m["area_type"])}</td></tr>'
-        for mid, m in sorted(metros.items(), key=lambda kv: (-len(kv[1]["items"]), kv[0])))
-    crows = "".join(
-        f'<tr><td><a href="../place/county-{_place_slug(c)}/">{e(c)} County</a></td>'
-        f'<td class="n num">{n}</td></tr>'
-        for c, n in sorted(loose.items(), key=lambda kv: (-kv[1], kv[0])))
-
-    body = f"""
-<h1>By place</h1>
-<div class="prose">
-  <p>Where the record touches. <span class="num">{len(metros)}</span> metropolitan and
-  micropolitan areas, and a further <span class="num">{len(loose)}</span> counties that
-  belong to none.</p>
-  <p class="gap"><strong>Half of Texas is in no metro, and it is not the empty half.</strong>
-  Of the state's <span class="num">{tx["counties"]}</span> counties,
-  <span class="num">{tx["outside_any_metro"]}</span> sit outside every federal statistical
-  area. A page that listed only metros would leave out the places where most of the physical
-  buildout is going up, so those counties get their own entries here.</p>
-</div>
-<h2>Metropolitan and micropolitan areas</h2>
-<table class="tally"><thead><tr><th>Area</th><th class="n">Items</th><th class="n">Counties</th>
-<th>Kind</th></tr></thead><tbody>{mrows}</tbody></table>
-<h2>Counties outside any area</h2>
-<table class="tally pair"><thead><tr><th>County</th><th class="n">Items</th></tr></thead>
-<tbody>{crows}</tbody></table>
-"""
-    return page(title=f"By place · {SITE_NAME}", depth=1, active="places/",
-                desc="Which Texas metros and counties appear in the record of AI decisions.",
-                body=body, today=today, canonical="places/")
-
-
 def place_page(place: dict, items: list, today: str) -> str:
     """One metro or one county. The same page shape either way, because to a reader they
     are the same question asked about a different size of place."""
@@ -775,9 +779,9 @@ def place_page(place: dict, items: list, today: str) -> str:
 {texas_map.render(lit=lit, inset=True)}
 <table><thead><tr><th>Item</th><th>Topic</th><th>Status</th></tr></thead>
 <tbody>{rows}</tbody></table>
-<p class="prose"><a href="../../places/">All places</a></p>
+<p class="prose"><a href="../../counties/">All counties and areas</a></p>
 """
-    return page(title=f"{head} · {SITE_NAME}", depth=2, active="places/",
+    return page(title=f"{head} · {SITE_NAME}", depth=2, active="counties/",
                 desc=f"What the record of Texas AI decisions says about {head}.",
                 body=body, today=today, canonical=f"place/{place['id']}/")
 
@@ -792,11 +796,22 @@ def all_places(items: list, today: str) -> list:
     for it in items:
         for c in (it.get("geography") or {}).get("counties") or []:
             by_county.setdefault(c, []).append(it["id"])
-    for c in proj["unmetroed_counties"]:
+    # EVERY TOUCHED COUNTY, not only the ones in no metro. The map is the way into this now
+    # and a reader clicking Taylor wants Taylor, not the Abilene area that contains it. A
+    # county page that only existed for the unmetroed half would leave two thirds of the lit
+    # counties on the map pointing at nothing.
+    for c in sorted(by_county):
         out.append({"id": f"county-{_place_slug(c)}", "kind": "county", "name": c,
                     "full_name": f"{c} County", "counties": [c],
                     "touched_counties": [c], "items": by_county.get(c, [])})
     return out
+
+
+def county_links(items: list, today: str, depth: int) -> dict:
+    """county name -> href for its page, at the depth the map is being drawn from."""
+    up = rel(depth)
+    return {c: f"{up}place/county-{_place_slug(c)}/"
+            for it in items for c in (it.get("geography") or {}).get("counties") or []}
 
 
 def data_page(items: list, today: str) -> str:
@@ -865,65 +880,48 @@ def grid_page(today: str) -> str:
                 }])
 
 
-def ask_page(items: list, today: str) -> str:
-    """The ask box. Answered in the reader's browser, with nothing sent anywhere.
+def ask_box(items: list, today: str) -> str:
+    """The ask box, on the front page, with the essay taken off it.
 
-    The index and the catalogue ship inline as JSON and the engine ships inline as script. Two
-    fewer requests matters here more than it usually does: the reader this is built for is
-    often on a phone in a county meeting room, and a question box that needs three round trips
-    to answer anything is a question box that does not get used.
+    IT USED TO BE ITS OWN PAGE BEHIND ITS OWN NAV TAB, under a heading, a lede, and four
+    paragraphs explaining what a search field is. A reader who has to navigate to a search
+    field in order to use it mostly does not, and the copy around it was written for
+    somebody deciding whether to trust the box rather than for somebody with a question.
+
+    So the field is the first thing under the hero and the words are gone, except one line.
+    That line stays because "nothing is sent anywhere" is the one thing about this box a
+    reader cannot see by looking at it, and it is the whole reason it works on a phone with
+    no signal in a county meeting room.
+
+    The index and the catalogue still ship inline, so the box answers with no request.
     """
     idx = ask_answers.index(items, today)
     cat = ask_answers.catalogue(idx)
-    starters = [c["q"] for c in cat if c["route"]["view"] in ("open_now", "counts")][:2] + \
-               [c["q"] for c in cat if c["route"]["view"] == "by_county"][:1] + \
+    starters = [c["q"] for c in cat if c["route"]["view"] in ("open_now", "counts")][:1] + \
+               [c["q"] for c in cat if c["route"]["view"] == "by_metro"][:1] + \
                [c["q"] for c in cat if c["route"]["view"] == "by_topic"][:1]
     chips = "".join(f'<button type="button" data-ask="{e(q)}">{e(q)}</button>'
                     for q in starters)
-    body = f"""
-<h1>Ask the record</h1>
-<div class="prose">
-  <p class="lede">Type a question about AI decisions in Texas. The answer is computed in your
-  browser from an index that shipped with this page.</p>
-  <p><strong>Nothing you type is sent anywhere.</strong> No request. No key. No log. Turn off
-  your connection after this page loads and the box still works. There is nothing on the other
-  end of it. A record about surveillance and procurement should not be keeping a list of who
-  asked what about which county.</p>
-</div>
-
-<div id="ask" class="askbox">
-  <form role="search">
-    <label for="askq">Your question</label>
-    <input id="askq" type="search" autocomplete="off"
-           placeholder="What can I still comment on?">
-    <button type="submit">Ask</button>
-  </form>
-  <div class="chips" data-voice="reader">{chips}</div>
-  <div class="answer" hidden></div>
-</div>
-
-<div class="prose">
-  <h2>What it can answer</h2>
-  <p>The <strong class="num">{len(cat)}</strong> questions it knows are generated from the
-  record itself. They come from its counties, its metropolitan areas, its topics, the bodies
-  that decided and what is open today. A place with nothing in it never gets a question, so the
-  box can't promise an answer it does not have.</p>
-  <p>The box knows every one of the state's statistical areas even where the record is silent,
-  which is a different thing from asking about them. Type a city it holds nothing on and it
-  will say so rather than reach for the nearest match somewhere else in Texas.</p>
-  <p>Answers are composed from the index on this page at the moment you ask. Nothing is a stored
-  answer, which is why nothing here can be out of date relative to the record beside it.</p>
-  <p>Where the record holds nothing, it says so. That is the answer, not a gap in it.</p>
-</div>
+    return f"""
+<section class="asksection" data-reveal>
+  <div id="ask" class="askbox lean" data-base="">
+    <form role="search">
+      <label class="vh" for="askq">Ask the record a question</label>
+      <input id="askq" type="search" autocomplete="off"
+             placeholder="Ask the record. Try a city, a topic, or a deadline.">
+      <button type="submit">Ask</button>
+    </form>
+    <div class="chips" data-voice="reader">{chips}</div>
+    <div class="answer" hidden></div>
+  </div>
+  <p class="askfoot">Answered in your browser from an index on this page. Nothing you type is
+  sent anywhere.</p>
+</section>
 
 <script>window.__ASK_INDEX__={json.dumps(idx, separators=(",", ":"))};
 window.__ASK_CATALOGUE__={json.dumps(cat, separators=(",", ":"))};</script>
 <script>{ask_answers.engine_js()}</script>
 """
-    return page(title=f"Ask the record · {SITE_NAME}", depth=1, active="ask/",
-                desc="Ask a question about AI decisions in Texas. Answered in your browser, "
-                     "from the record, with nothing sent anywhere.",
-                body=body, today=today, canonical="ask/")
 
 
 def water_page(today: str) -> str:
@@ -1291,7 +1289,14 @@ def _home_numerals(items: list, today: str) -> set:
     a = numeral_lint.Authorised()
     share = _ercot_share()
     if share:
-        a.add(share[0])
+        # BOTH HALVES OF THE STRIP, because it prints a figure AND a date, and only the
+        # figure was authorised. The date comes from the grid watch ledger rather than from
+        # this build's `today`, and for as long as the two matched nothing objected. The day
+        # the collector recovered a reading the site had not been rebuilt for, the strip read
+        # "August 12th" against a build stamped the 11th, and `12` became a numeral no
+        # computation had produced. A figure and its date are one statement and they are
+        # authorised by one call.
+        a.add(share[0], *re.findall(r"\d+", share[1]))
     a.add(f"{len(dk.project(items, today)['actionable_now']):02d}")
     return a.set
 
@@ -1485,7 +1490,6 @@ def build(out: Path, today: str) -> dict:
     w("counties/index.html", counties_page(items, today))
     # PER PLACE. The index, then a page for every metro the record touches and every
     # touched county that is in no metro. Nothing falls between the two.
-    w("places/index.html", places_index(items, today))
     for pl in all_places(items, today):
         w(f'place/{pl["id"]}/index.html', place_page(pl, items, today),
           listed([i for i in items if i["id"] in set(pl["items"])]))
@@ -1502,8 +1506,7 @@ def build(out: Path, today: str) -> dict:
     # list the page is shipping. It passed the gate before the metro questions existed
     # only because the count was 121 and the state has 121 counties in no metro, which is
     # the coincidence `numeral_lint`'s docstring admits it cannot see through.
-    w("ask/index.html", ask_page(items, today),
-      {str(len(ask_answers.catalogue(ask_answers.index(items, today))))} | listed(items))
+
     w("services/index.html", services_page(items, today))
     w("water/index.html", water_page(today), _watch_numerals(waterwatch_page))
     w("waterwatch.json", json.dumps(
@@ -1639,19 +1642,19 @@ def self_test() -> int:
         # once with a number nothing computed, and once with a number that IS computed on
         # a DIFFERENT page, which is the only way to catch a set that has quietly widened.
         import contextlib as _cl, io as _io
-        real_places, real_home = places_index, home
+        real_places, real_home = counties_page, home
 
         def planted(fn, find, ins):
             return lambda *a, **k: fn(*a, **k).replace(find, find + ins, 1)
 
         for label, name, real, ins, want in (
-                ("a figure nothing computed", "places_index", real_places,
+                ("a figure nothing computed", "counties_page", real_places,
                  "<p>Roughly 8,927 megawatts.</p>", "8,927"),
-                ("a figure computed on another page", "places_index", real_places,
+                ("a figure computed on another page", "counties_page", real_places,
                  "<p>Energy served was 1,743,297 MWh.</p>", "1,743,297"),
                 ("a figure planted on the front page", "home", real_home,
                  "<p>Some 41,203 filings.</p>", "41,203")):
-            anchor = "<h1>By place</h1>" if name == "places_index" else "</h1>"
+            anchor = "<h1>By county</h1>" if name == "counties_page" else "</h1>"
             globals()[name] = planted(real, anchor, ins)
             err, fired = _io.StringIO(), False
             try:

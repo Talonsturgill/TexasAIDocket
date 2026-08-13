@@ -708,19 +708,36 @@ nav.main a[aria-current]::after {{ right:0; }}
    is 28 a side, so 862 of viewport. 56rem is 896, which leaves headroom for the moment a web font
    swaps in and every label gets fractionally wider. */
 @media (max-width:56rem) {{
-  /* The mark comes off entirely. The nav wraps to two rows at this width and the hero starts
-     right under it, so there is no clear field left to put a star in, and a mark tangled in
-     the copy is worse than no mark. The sky keeps its stars, shimmer and horizon.
-     WRITTEN AS `.home .sky` TO MATCH THE RULE IT IS OVERRIDING. The first version said
-     `.sky .lonestar`, one class less specific than the `.home .sky .lonestar` that turns the mark
-     on, and specificity beats both source order and being inside a media query, so the mark stayed
-     on every phone with its glow sitting in the wrapped navigation. A media query is not a
-     trump card. */
-  .home .sky .lonestar {{ display:none; }}
   .masthead {{ position:static; }}
   .masthead::before {{ display:none; }}
   .masthead .wrap {{ gap:.6rem; }}
   nav.main {{ margin-left:0; gap:.5rem .9rem; font-size:var(--s-2); }}
+}}
+
+/* THE MARK COMES OFF WHERE THE NAV ACTUALLY WRAPS, AND NOT 376 PIXELS EARLIER.
+   This rule lived at `max-width:56rem` and justified itself in a comment: "the nav wraps to
+   two rows at this width and the hero starts right under it, so there is no clear field left
+   to put a star in". Every word of that is true at the width it was written for and false
+   across most of the range it was applied to. Measured by stepping the viewport ten pixels at
+   a time and counting the distinct top offsets of the nav links, the bar holds ONE row down to
+   520px. So the mark was being deleted through 600, 700, 800 and 896 pixels of perfectly clear
+   sky, which is the width most laptops open a window at.
+   The breakpoint is the measurement now, rounded down to the nearest whole rem, and it is
+   re-measured by tests/responsive.mjs rather than reasoned about again.
+   WRITTEN AS `.home .sky` TO MATCH THE RULE IT OVERRIDES. The first version said
+   `.sky .lonestar`, one class less specific than the `.home .sky .lonestar` that turns the mark
+   on, and specificity beats both source order and being inside a media query, so the mark
+   stayed on every phone with its glow sitting in the wrapped navigation. */
+@media (max-width:30rem) {{
+  .home .sky .lonestar {{ display:none; }}
+}}
+/* AND THE TELEMETRY PILL STOPS RUNNING UNDER IT. Measured with the mark forced on and its box
+   compared against the hero's, the mark never touches the headline at any width down to 360px.
+   The only thing it ever met was this strip, between about 640 and 800 pixels, where the pill
+   is long enough to reach the right gutter. Capping the strip is a smaller change than deleting
+   a mark, and it is the change that matches what was actually wrong. */
+@media (min-width:30.01rem) and (max-width:56rem) {{
+  .home .hero .tele {{ max-width:74%; }}
 }}
 
 /* ---- the hero ----------------------------------------------------------- */
@@ -1089,6 +1106,21 @@ caption {{ caption-side:bottom; text-align:left; padding-top:.75rem; font-size:v
    typing dots, no conversation. A question and what the record says. */
 .askbox {{ border:var(--hair) solid var(--rule-strong); border-radius:var(--radius);
   padding:1.25rem var(--gap); background:var(--surface); margin:1.5rem 0; }}
+/* THE LEAN VARIANT, which is the box on the front page. It sits directly under the hero and
+   competes with it for the first screen, so it carries no chrome of its own: the field IS the
+   object, and the border, the panel and the padding that made sense on a dedicated page all
+   read as a box drawn around a box here. The answer region still gets its rule, because that
+   one separates two different things rather than decorating one. */
+.askbox.lean {{ border:0; background:transparent; padding:0; margin:0; }}
+.askbox.lean form {{ gap:.5rem; }}
+.askbox.lean .chips {{ margin-top:.7rem; }}
+.asksection {{ margin:2.25rem 0 0; }}
+.askfoot {{ margin:.7rem 0 0; font-size:var(--s-1); color:var(--ink-mute); }}
+/* A label that a screen reader reads and a sighted reader does not need, because the
+   placeholder already says it. Never `display:none`, which takes it off the accessibility
+   tree along with everything else. */
+.vh {{ position:absolute; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden;
+  clip:rect(0 0 0 0); white-space:nowrap; border:0; }}
 .askbox form {{ display:flex; gap:.6rem; flex-wrap:wrap; align-items:center; }}
 .askbox label {{ position:absolute; left:-9999px; }}
 .askbox input {{ flex:1 1 20rem; font:400 var(--s1)/1.4 var(--body); padding:.7em .9em;
