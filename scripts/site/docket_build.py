@@ -228,6 +228,13 @@ GEOGRAPHY_BACKLOG = {
     "tx-2026-0007": "ERCOT planning docket, same",
 }
 
+# THE OTHER RATCHET, same reason and same lane. One item points a reader at an item that
+# fact checking culled. See `gate_cross_references`. Written as item -> the id it names, so
+# a second dangling pointer from the SAME item still fails.
+XREF_BACKLOG = {
+    "tx-2026-0006": "tx-2026-0010",
+}
+
 
 def _resolver():
     """The place resolver, or None when the gazetteer is unreadable.
@@ -441,6 +448,51 @@ def gate_narration(items: list) -> Result:
     return r
 
 
+def gate_cross_references(items: list) -> Result:
+    """An item this record points a reader at has to exist.
+
+    FOUND BY THE NUMERAL GATE, WHICH IS NOT WHAT THE NUMERAL GATE IS FOR. Item
+    tx-2026-0006 tells a reader "See item tx-2026-0010 for that page's statutory basis",
+    and there is no tx-2026-0010. Ids run 0001 to 0025 with gaps, because fact checking
+    culled the ones that could not be sourced, and this pointer survived the cull.
+
+    Nothing caught it and three things nearly should have. The link checker reads `href`
+    attributes and this is prose, so there is no link to be broken. The claims gate checks
+    that every claim has a source, and this sentence is not a claim. The numeral gate saw
+    it only because `0010` is a numeral, and it reported a stray digit rather than a
+    broken promise, which is a diagnosis one step short of the disease.
+
+    The general shape, for `GATE_LESSONS.md`: **a reference is a dependency even when it
+    is not a link.** Prose that names another record is asserting that record exists, and
+    only a checker that knows the id space can tell whether it does.
+
+    RATCHETED, like the geography backlog and for the same reason. `ledger/docket.json`
+    belongs to `daily`, so a maintainer session cannot rewrite that sentence. Blocking
+    every build until the routine next runs would take the whole site down over one
+    dangling pointer, which is a worse outcome than the pointer. The one known break is
+    named, it is the only exemption, and a second one fails immediately.
+    """
+    known = {i.get("id") for i in items}
+    r = Result("cross references")
+    dangling = 0
+    for it in items:
+        who = it.get("id", "?")
+        for ref in sorted(set(ITEM_ID.findall(_reader_text(it)))):
+            if ref in known or ref == who:
+                continue
+            dangling += 1
+            if XREF_BACKLOG.get(who) == ref:
+                r.note(f"{who}: points at {ref}, which does not exist. Known break, "
+                       f"awaiting the routine's re-verify phase")
+                continue
+            r.fail(f"{who}: reader copy points at item {ref} and no such item is in the "
+                   f"record. Name an item that exists, or say the thing instead of "
+                   f"pointing at it")
+    if r.status == "PASS" and not dangling:
+        r.note(f"every item reference in {len(items)} item(s) resolves")
+    return r
+
+
 def gate_house_style(items: list) -> Result:
     """The house punctuation and voice rules, applied to the record's own prose.
 
@@ -541,6 +593,7 @@ def window_state(item: dict, today: str) -> str:
 GATES = {
     "schema": gate_schema, "claims": gate_claims, "numerals": gate_numerals,
     "narration": gate_narration, "house style": gate_house_style,
+    "cross references": gate_cross_references,
 }
 DATED_GATES = {"staleness": gate_staleness, "deadlines": gate_deadlines}
 
@@ -630,6 +683,28 @@ def run_gates(items: list, today: str) -> tuple[int, list]:
     return bad, results
 
 
+def backlog(items: list) -> list:
+    """What the ratchets are currently letting through, in one line each.
+
+    A RATCHET NOBODY SEES IS AN EXEMPTION. Both backlogs here exist because the record
+    belongs to the `daily` actor and a maintainer session cannot fill them, so a hard fail
+    would take the site down over work in a lane it does not own. That is the right call
+    and it has a failure mode: a green build says nothing, the exemption stops being a
+    debt, and the ratchet becomes the standard. So every build prints what is outstanding,
+    whether or not anything failed.
+    """
+    known = {i.get("id") for i in items}
+    out = []
+    for it in items:
+        who = it.get("id", "?")
+        if who in GEOGRAPHY_BACKLOG:
+            out.append(f"{who}: no county and not statewide ({GEOGRAPHY_BACKLOG[who]})")
+        for ref in sorted(set(ITEM_ID.findall(_reader_text(it)))):
+            if ref not in known and ref != who:
+                out.append(f"{who}: points at {ref}, which is not in the record")
+    return out
+
+
 def report(results: list) -> None:
     for r in results:
         print(f"  [{r.status}] {r.name}")
@@ -677,6 +752,12 @@ def self_test() -> int:
             failures += 1
             for line in result.lines[:3]:
                 print(f"        {line}", file=sys.stderr)
+
+    def check(label, cond, extra=""):
+        nonlocal failures
+        print(f"  {'ok  ' if cond else 'FAIL'}  {label}{'' if cond else '  ' + extra}")
+        if not cond:
+            failures += 1
 
     today = "2026-08-11"
 
@@ -749,6 +830,44 @@ def self_test() -> int:
     expect("numerals exempts a cross reference to another item",
            gate_numerals([base(summary="See item tx-2026-0010 for the statutory basis.")]),
            "PASS")
+
+    # CROSS REFERENCES. The numeral gate exempts an item id, correctly, because an id is an
+    # identifier and not a figure. Nothing then checked that the id names anything. This
+    # test's own fixture used tx-2026-0010, which is the very id the live record points at
+    # and does not have, so the suite demonstrated the hole while asserting the exemption.
+    two = [base(id="tx-2026-9999"), base(id="tx-2026-9998")]
+    expect("cross references passes a pointer to an item that exists",
+           gate_cross_references([base(id="tx-2026-9999",
+                                       summary="See item tx-2026-9998 for more."), two[1]]),
+           "PASS")
+    expect("cross references catches a pointer to an item that does not",
+           gate_cross_references([base(id="tx-2026-9999",
+                                       summary="See item tx-2026-0010 for more.")]), "FAIL")
+    expect("cross references does not trip on an item naming itself",
+           gate_cross_references([base(id="tx-2026-9999",
+                                       summary="Item tx-2026-9999 is this one.")]), "PASS")
+    # THE RATCHET, BOTH WAYS. The one known break is exempt and nothing else is, including
+    # a second break from the same item.
+    expect("cross references exempts the one item on the backlog",
+           gate_cross_references([base(id="tx-2026-0006",
+                                       summary="See item tx-2026-0010 for more.")]), "PASS")
+    expect("...and does not exempt a different dangling id from that same item",
+           gate_cross_references([base(id="tx-2026-0006",
+                                       summary="See item tx-2026-0011 for more.")]), "FAIL")
+    expect("...and does not exempt that id when another item names it",
+           gate_cross_references([base(id="tx-2026-9999",
+                                       summary="See item tx-2026-0010 for more.")]), "FAIL")
+
+    # THE BACKLOG IS VISIBLE. An exemption that reports nothing on a green build is not a
+    # debt, it is a decision nobody revisits.
+    check("backlog says nothing about a clean record",
+          not backlog([base(id="tx-2026-9999")]))
+    check("backlog names an exempted geography gap",
+          any("tx-2026-0001" in ln for ln in backlog([base(id="tx-2026-0001",
+                                                          geography={"on_ercot": True})])))
+    check("backlog names an exempted dangling pointer",
+          any("tx-2026-0010" in ln for ln in backlog(
+              [base(id="tx-2026-0006", summary="See item tx-2026-0010 for more.")])))
     expect("numerals exempts a hearing room",
            gate_numerals([base(summary="Meetings are held in Commissioners Hearing Room 7-100.")]),
            "PASS")

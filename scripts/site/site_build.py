@@ -32,6 +32,7 @@ import argparse
 import datetime as _dt
 import html
 import json
+import re
 import shutil
 import sys
 from pathlib import Path
@@ -48,6 +49,7 @@ import texas_map                                                   # noqa: E402
 import waterwatch_page                                             # noqa: E402
 import grain                                                       # noqa: E402
 import mark                                                        # noqa: E402
+import numeral_lint                                                # noqa: E402
 import theme                                                       # noqa: E402
 
 LEDGER = REPO_ROOT / "ledger" / "docket.json"
@@ -69,7 +71,7 @@ def star(cls: str = "star") -> str:
 HOIST = mark.flag_svg()
 
 NAV = [("", "Home"), ("record/", "The record"), ("ask/", "Ask"),
-       ("counties/", "Counties"), ("grid/", "Grid"), ("water/", "Water"),
+       ("places/", "Places"), ("counties/", "Counties"), ("grid/", "Grid"), ("water/", "Water"),
        ("data/", "Data"), ("services/", "Services"), ("about/", "About")]
 
 # The footer's way out. Wider than the masthead nav, because the bottom of a page is where
@@ -79,10 +81,15 @@ FOOTNAV = NAV[1:] + [("docket.json", "Open data"), ("atom.xml", "Feed"),
                      ("llms.txt", "For machines")]
 
 # WHERE THIS WAS MADE. Austin sits on the Balcones Escarpment, the fault line where the Hill
-# Country drops to the coastal plain, which runs straight through the city. Its coordinates are
-# the only ones on the site that are not derived from the record, and they are a fact about a
-# place rather than a measurement, in the way a printed sheet carries the shop that set it.
-MADE_AT = ("Built on the Balcones Escarpment", "30°16'N 97°44'W")
+# Country drops to the coastal plain, which runs straight through the city.
+#
+# THE COORDINATE USED TO BE TYPED, and the comment that sat here granted it an exemption in
+# prose: the only numbers on the site not derived from the record, a fact about a place rather
+# than a measurement. That is a rationalisation rather than a rule, and the footer printed it
+# four words from the line "Every numeral computed from data". Worse, the typed pair named a
+# different point from anything this repository holds. It is read from the gazetteer's
+# area weighted centroid for Travis County now, so the sentence and the data cannot drift.
+MADE_AT_LEDE = "Built on the Balcones Escarpment"
 
 # The one script the shell carries, and the three things it does. All three are progressive:
 # with script off the page keeps its atmosphere, its content and its layout, and loses only the
@@ -140,9 +147,9 @@ def page(*, title: str, desc: str, body: str, depth: int, active: str,
     # The colophon is assembled from parts rather than written as a sentence, so the separator
     # is a style decision in one place and the build date can never drift from `today`.
     colophon = "".join(f"<span>{e(s)}</span>" for s in (
-        MADE_AT[0],
+        MADE_AT_LEDE,
         f"Revised {ordinal(_dt.date.fromisoformat(today))}, {today[:4]}",
-        MADE_AT[1],
+        _made_at(),
         "Every numeral computed from data",
     ))
 
@@ -282,6 +289,24 @@ def claims_html(it: dict) -> str:
 
 
 # --------------------------------------------------------------------------- pages
+def _ercot_share():
+    """The front page telemetry figure and its date, or None when the watch holds nothing.
+
+    SPLIT OUT SO THE NUMERAL GATE CAN ASK FOR THE SAME VALUE THE PAGE PRINTS. It used to
+    be computed inline inside the markup, which meant the only way to authorise it was to
+    write the rounding rule down a second time somewhere else, and two copies of a
+    rounding rule is one copy of a rounding rule and one bug waiting.
+    """
+    rows = gridwatch_page.load()
+    if not rows:
+        return None
+    r = rows[-1]
+    peak, cap = r.get("peak_load_mw"), r.get("capacity_at_peak_mw")
+    if not peak or not cap:
+        return None
+    return round(peak / cap * 100, 1), ordinal(_dt.date.fromisoformat(r["date"]))
+
+
 def telemetry(p: str) -> str:
     """One live, computed, dated line about the physical system, for the top of the front page.
 
@@ -298,15 +323,10 @@ def telemetry(p: str) -> str:
     Returns "" when the grid watch holds nothing, because a front page that invents a number to
     fill a slot is the exact failure this project exists to not have.
     """
-    rows = gridwatch_page.load()
-    if not rows:
+    got = _ercot_share()
+    if not got:
         return ""
-    r = rows[-1]
-    peak, cap = r.get("peak_load_mw"), r.get("capacity_at_peak_mw")
-    if not peak or not cap:
-        return ""
-    share = round(peak / cap * 100, 1)
-    when = ordinal(_dt.date.fromisoformat(r["date"]))
+    share, when = got
     return (f'<a class="tele" href="{p}grid/">ERCOT'
             f'<span>Peak drew {share}% of committed capacity</span>'
             f'<span>{e(when)}</span></a>')
@@ -536,6 +556,174 @@ def counties_page(items: list, today: str) -> str:
     return page(title=f"By county · {SITE_NAME}", depth=1, active="counties/",
                 desc="Which Texas counties appear in the record of AI decisions.",
                 body=body, today=today, canonical="counties/")
+
+
+# ---------------------------------------------------------------------------- places
+# PER-CITY VIEWS, AND WHY THERE ARE TWO KINDS OF PAGE.
+#
+# A reader wants to know what this record says about where they live, and for most Texans
+# that is a metro. For a great many of them it is not: 121 of the state's 254 counties are
+# in NO statistical area, and they are not empty quarters. The one substantial item in this
+# record touches 22 counties, 13 of which are in no metro at all, Shackelford among them,
+# which is where the Vantage site is.
+#
+# So a metro page is built where the counties resolve to one, and a COUNTY page is built for
+# every touched county that does not. Nothing falls between the two, and the number of
+# counties outside any metro is published on the index rather than quietly absorbed.
+def _place_slug(name: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
+
+
+def _place_facts() -> dict:
+    """The two figures the place pages state about Texas itself, COMPUTED.
+
+    The first draft of this page typed "121 of 254" into prose, which is exactly the
+    thing `CLAUDE.md` forbids and exactly the thing nobody caught, because the numeral
+    gate had never been run over a docket page. Both come out of the gazetteer now, so
+    a redelineation changes the sentence rather than dating it.
+    """
+    doc = json.loads((REPO_ROOT / "assets" / "geo" / "tx-places.json").read_text("utf-8"))
+    counties = [p for p in doc["places"] if p.get("kind") == "county"]
+    return {
+        "counties": len(counties),
+        "in_a_metro": sum(1 for c in counties if c.get("metro")),
+        "outside_any_metro": sum(1 for c in counties if not c.get("metro")),
+    }
+
+
+def _made_at() -> str:
+    """The footer coordinate, read from the gazetteer rather than typed.
+
+    ROUNDING IS A COMPUTATION WITH A STATED RULE, per `CLAUDE.md`, so the rule is here:
+    degrees are truncated and the remaining fraction is rounded to the nearest whole
+    minute. Seconds are dropped because a centroid is not accurate to a second and
+    printing one would claim a precision the source does not carry.
+    """
+    doc = json.loads((REPO_ROOT / "assets" / "geo" / "tx-places.json").read_text("utf-8"))
+    tr = next(p for p in doc["places"] if p.get("id") == "county-travis")
+
+    def dm(v: float, pos: str, neg: str) -> tuple:
+        d, m = int(abs(v)), round((abs(v) - int(abs(v))) * 60)
+        if m == 60:                                    # 30.9999 must read 31°0', not 30°60'
+            d, m = d + 1, 0
+        return d, m, (pos if v >= 0 else neg)
+
+    lat, lon = dm(tr["lat"], "N", "S"), dm(tr["lon"], "E", "W")
+    return f"{lat[0]}°{lat[1]}'{lat[2]} {lon[0]}°{lon[1]}'{lon[2]}"
+
+
+def _made_at_numerals() -> tuple:
+    """The four figures `_made_at` prints, for the authorised set. Same call, same values."""
+    return tuple(re.findall(r"\d+", _made_at()))
+
+
+def places_index(items: list, today: str) -> str:
+    proj = dk.project(items, today)
+    metros = proj["by_metro"]
+    loose = proj["unmetroed_counties"]
+    tx = _place_facts()
+
+    mrows = "".join(
+        f'<tr><td><a href="../place/{e(mid)}/">{e(m["name"])}</a></td>'
+        f'<td class="n num">{len(m["items"])}</td>'
+        f'<td class="n num">{len(m["touched_counties"])}</td>'
+        f'<td>{e(m["area_type"])}</td></tr>'
+        for mid, m in sorted(metros.items(), key=lambda kv: (-len(kv[1]["items"]), kv[0])))
+    crows = "".join(
+        f'<tr><td><a href="../place/county-{_place_slug(c)}/">{e(c)} County</a></td>'
+        f'<td class="n num">{n}</td></tr>'
+        for c, n in sorted(loose.items(), key=lambda kv: (-kv[1], kv[0])))
+
+    body = f"""
+<h1>By place</h1>
+<div class="prose">
+  <p>Where the record touches. <span class="num">{len(metros)}</span> metropolitan and
+  micropolitan areas, and a further <span class="num">{len(loose)}</span> counties that
+  belong to none.</p>
+  <p class="gap"><strong>Half of Texas is in no metro, and it is not the empty half.</strong>
+  Of the state's <span class="num">{tx["counties"]}</span> counties,
+  <span class="num">{tx["outside_any_metro"]}</span> sit outside every federal statistical
+  area. A page that listed only metros would leave out the places where most of the physical
+  buildout is going up, so those counties get their own entries here.</p>
+</div>
+<h2>Metropolitan and micropolitan areas</h2>
+<table><thead><tr><th>Area</th><th class="n">Items</th><th class="n">Counties</th>
+<th>Kind</th></tr></thead><tbody>{mrows}</tbody></table>
+<h2>Counties outside any area</h2>
+<table><thead><tr><th>County</th><th class="n">Items</th></tr></thead>
+<tbody>{crows}</tbody></table>
+"""
+    return page(title=f"By place · {SITE_NAME}", depth=1, active="places/",
+                desc="Which Texas metros and counties appear in the record of AI decisions.",
+                body=body, today=today, canonical="places/")
+
+
+def place_page(place: dict, items: list, today: str) -> str:
+    """One metro or one county. The same page shape either way, because to a reader they
+    are the same question asked about a different size of place."""
+    ids = set(place["items"])
+    mine = [i for i in items if i["id"] in ids]
+    lit = set(place.get("touched_counties") or place.get("counties") or [])
+
+    rows = "".join(
+        f'<tr><td><a href="../../item/{e(i["id"])}/">{e(i["title"])}</a></td>'
+        f'<td>{e(i["topic"])}</td><td>{e(i["status"])}</td></tr>' for i in mine)
+
+    if place["kind"] == "metro":
+        counties = place["counties"]
+        touched = place.get("touched_counties") or []
+        untouched = [c for c in counties if c not in touched]
+        # THE UNTOUCHED COUNTIES ARE NAMED, not omitted. A metro page listing only the
+        # counties with entries would imply the area is the sum of what we found, and the
+        # honest statement is that the area is this and we have found something in some of it.
+        scope = (f'<p class="gap">This area is <span class="num">{len(counties)}</span> '
+                 f'{"county" if len(counties) == 1 else "counties"}. The record currently '
+                 f'names {", ".join(e(c) for c in touched)}.'
+                 + (f' Nothing has yet been found in {", ".join(e(c) for c in untouched)}.'
+                    if untouched else '') + '</p>')
+        head = f"{e(place['name'])}"
+        sub = e(place["full_name"])
+    else:
+        tx = _place_facts()
+        scope = (f'<p class="gap">This county is in no federal statistical area, which is '
+                 f'true of <span class="num">{tx["outside_any_metro"]}</span> of the '
+                 f'state\'s <span class="num">{tx["counties"]}</span>. It gets its own page '
+                 f'for that reason.</p>')
+        head = f"{e(place['name'])} County"
+        sub = "Outside every metropolitan and micropolitan area"
+
+    body = f"""
+<h1>{head}</h1>
+<div class="prose">
+  <p>{sub}. <span class="num">{len(mine)}</span>
+  {"item" if len(mine) == 1 else "items"} in the record.</p>
+  {scope}
+</div>
+{texas_map.render(lit=lit)}
+<table><thead><tr><th>Item</th><th>Topic</th><th>Status</th></tr></thead>
+<tbody>{rows}</tbody></table>
+<p class="prose"><a href="../../places/">All places</a></p>
+"""
+    return page(title=f"{head} · {SITE_NAME}", depth=2, active="places/",
+                desc=f"What the record of Texas AI decisions says about {head}.",
+                body=body, today=today, canonical=f"place/{place['id']}/")
+
+
+def all_places(items: list, today: str) -> list:
+    """Every place that gets a page: the metros, then the counties in none of them."""
+    proj = dk.project(items, today)
+    out = []
+    for mid, m in proj["by_metro"].items():
+        out.append({**m, "kind": "metro"})
+    by_county = {}
+    for it in items:
+        for c in (it.get("geography") or {}).get("counties") or []:
+            by_county.setdefault(c, []).append(it["id"])
+    for c in proj["unmetroed_counties"]:
+        out.append({"id": f"county-{_place_slug(c)}", "kind": "county", "name": c,
+                    "full_name": f"{c} County", "counties": [c],
+                    "touched_counties": [c], "items": by_county.get(c, [])})
+    return out
 
 
 def data_page(items: list, today: str) -> str:
@@ -946,6 +1134,178 @@ def docket_dataset_ld(items: list, today: str) -> dict:
 
 
 # --------------------------------------------------------------------------- build
+def _identifier_numerals(text: str) -> set:
+    """Numerals inside the spans the RECORD layer has already vetted as identifiers.
+
+    NOT A SECOND OPINION. `docket_build.gate_numerals` is the authority on whether a
+    numeral in the record is a figure or an identifier, and it decides by stripping six
+    named spans before it looks. A statute section, a bill citation, a bare year, an item
+    id, a hearing room and an ordinal date are identifiers there. Re-deciding that here
+    would put two rules in the repository that answer the same question, which is how "the
+    Austin metro" came to mean two things on two pages, so this inherits the judgement by
+    running the record layer's own regexes.
+
+    What is deliberately NOT inherited is the figure itself. A quantity in reader copy
+    still has to trace to a computation or a quote.
+    """
+    out = set()
+    for rx in (dk.ITEM_ID, dk.DATE_ORDINAL, dk.CITATION, dk.PLACE_NUMBER,
+               dk.DOTTED_SECTION, dk.YEAR):
+        for m in rx.finditer(text):
+            for n in dk.NUMERAL.findall(m.group(0)):
+                out.add(n)
+                out.add(n.replace(",", "").rstrip("%"))
+    return out
+
+
+def _item_numerals(it: dict) -> set:
+    """One item's own figures, for the pages that render THAT item and no others.
+
+    PER ITEM, because the record's set is the union of thirteen items and unioning it
+    site wide is the mistake `_watch_numerals` documents, one order of magnitude down. A
+    Federal Register document number quoted by one item is not a licence to print that
+    number on another item's page.
+
+    A CLAIM'S SOURCE TITLE IS THE SOURCE'S WORDS. "PUCT Interchange, Filings for 58000,
+    item 64, party ERCOT" is a citation rendered verbatim, in the same class as the
+    verbatim quote beside it, and neither is this page choosing a number. The claim's own
+    `text` is NOT included, because that sentence is written rather than fetched and its
+    figures belong in a quote.
+    """
+    a = numeral_lint.Authorised()
+    a.add(it["id"], *str(it["id"]).split("-"))
+    for field in ("title", "summary"):
+        a.add(*_identifier_numerals(str(it.get(field, ""))))
+    a.add(*_identifier_numerals(str((it.get("public_access") or {}).get("how", ""))))
+
+    for c in (it.get("claims") or []):
+        for field in ("verbatim_quote", "source_title"):
+            for n in dk.NUMERAL.findall(str(c.get(field, ""))):
+                a.add(n, n.replace(",", "").rstrip("%"))
+        a.add(*_identifier_numerals(str(c.get("text", ""))))
+    for kd in (it.get("key_dates") or []):
+        a.add(kd.get("date"), *str(kd.get("date", "")).split("-"))
+        a.add(*_identifier_numerals(str(kd.get("what", "")) + " " + str(kd.get("note", ""))))
+
+    # THE CONTROL NUMBER A READER NEEDS IN ORDER TO ACT. `public_access.how` says which
+    # docket to file under, and that number is the single most consequential string on the
+    # page. It is an identifier taken from the filing system, and it is authorised only
+    # where a claim's source metadata carries the same digits, so a number typed into that
+    # sentence and matching nothing in the evidence still fails.
+    return a.set
+
+
+def _home_numerals(items: list, today: str) -> set:
+    """What the front page computes at render time, authorised by the same calls.
+
+    The strip and the counter both format at the moment they draw, and neither form is
+    what `_authorised_numerals` holds. The share is a ratio the record does not carry, and
+    the open-doors counter is zero padded for the display, so `3` was authorised and `03`
+    was what shipped.
+    """
+    a = numeral_lint.Authorised()
+    share = _ercot_share()
+    if share:
+        a.add(share[0])
+    a.add(f"{len(dk.project(items, today)['actionable_now']):02d}")
+    return a.set
+
+
+def _authorised_numerals(items: list, today: str) -> set:
+    """Every numeral this build is entitled to print, assembled from what it computed.
+
+    ASSEMBLED, NOT DECLARED. A hand-written allowlist drifts away from the pages the
+    moment either changes, and the drift is invisible because both halves still look
+    reasonable. So this walks the same projection the pages render from, plus the record
+    itself, and a page may print exactly what the build worked out.
+
+    Dates, years and statute citations are identifiers rather than measurements and are
+    already stripped by `docket_build`'s numeral rules at the record layer. Here they are
+    authorised explicitly, because a page prints them as text and the scanner cannot tell
+    a section number from a quantity by looking at it.
+    """
+    proj = dk.project(items, today)
+    a = numeral_lint.Authorised()
+    tx = _place_facts()
+    a.add(*tx.values())
+    a.add(*_made_at_numerals())            # the colophon coordinate, on every page
+
+    c = proj["counts"]
+    a.add(c["items"], c["claims"], c["counties_touched"], c["metros_touched"],
+          c["counties_touched_outside_any_metro"])
+    a.add(*c["by_topic"].values(), *c["by_status"].values(), *c["by_room"].values())
+    a.add(*proj["by_county"].values(), *proj["unmetroed_counties"].values())
+    for m in proj["by_metro"].values():
+        a.add(len(m["items"]), len(m["counties"]), len(m["touched_counties"]),
+              len([x for x in m["counties"] if x not in m["touched_counties"]]), m["code"])
+    for act in proj["actionable_now"]:
+        a.add(act["days_left"], act["closes"], *str(act["closes"]).split("-"))
+
+    for it in items:
+        a.add(it["id"], len(it.get("claims") or []), len(it.get("key_dates") or []),
+              len((it.get("geography") or {}).get("counties") or []))
+        for src in (it.get("claims") or []):
+            for m in dk.NUMERAL.findall(str(src.get("verbatim_quote", ""))):
+                a.add(m, m.replace(",", "").rstrip("%"))
+        for kd in (it.get("key_dates") or []):
+            a.add(kd.get("date"), *str(kd.get("date", "")).split("-"))
+        for field in ("title", "summary"):
+            for m in dk.CITATION.findall(str(it.get(field, ""))):
+                a.add(m)
+    a.add(today, *today.split("-"), _dt.date.fromisoformat(today).day)
+
+    # THE RENDERED FORM, not just the ISO one. `short_date` prints "SEP 8" for
+    # 2026-09-08, and "8" is not "08", so authorising the ISO parts alone left every
+    # single-digit deadline looking like a typed figure. Authorise what a reader sees.
+    for it in items:
+        for d in [(it.get("public_access") or {}).get("closes")] + \
+                 [k.get("date") for k in (it.get("key_dates") or [])]:
+            try:
+                dd = _dt.date.fromisoformat(str(d))
+            except (TypeError, ValueError):
+                continue
+            a.add(dd.day, f"{dd.day:02d}", dd.year, ordinal(dd).split()[-1].rstrip("stndrh"))
+
+    # Statewide items are counted on several pages, and the count is a computation.
+    a.add(sum(1 for i in items if (i.get("geography") or {}).get("statewide")))
+
+    return a.set
+
+
+def _watch_numerals(mod) -> set:
+    """One watch page's own authorised set, kept SEPARATE from the record's.
+
+    THE FIRST VERSION MERGED THESE INTO THE SITE-WIDE SET AND THAT MADE THE GATE
+    VACUOUS. The grid watch authorises an hourly series and a full fuel mix, which is
+    several hundred figures spanning every magnitude a page might print. Union them with
+    everything else and almost any three to five digit number is authorised somewhere on
+    the site, so a numeral typed into a docket page passes because an unrelated megawatt
+    reading happens to match it.
+
+    It was caught the only way it could be: by planting `8,927` into a sentence after the
+    gate went green and watching the build sail through. **A gate is only as strong as
+    its narrowest scope**, and the narrow scope here is the page, not the site.
+
+    THE SECOND VERSION OF THIS FUNCTION FED THE WRONG SHAPE AND HID IT. It walked
+    `mod.load()` and passed each raw reading to `mod.authorised()`, which wants the
+    derived FRAME that `mod.figures()` builds. Every call raised `KeyError` on the first
+    field, a bare `except Exception: pass` swallowed it, and the function returned an
+    almost empty set that read as "this page authorises very little" rather than as
+    "this never ran". Both watch pages then failed the site gate on their own correctly
+    computed figures.
+
+    So it goes through `figures()`, the same call the page renders from, and a failure is
+    RAISED rather than absorbed. A watch page whose figures cannot be built is a broken
+    page, and the build is the right place to find that out.
+    """
+    a = numeral_lint.Authorised()
+    records = mod.load()
+    if not records:
+        return a.set
+    a.add(*mod.authorised(mod.figures(records)))
+    return a.set
+
+
 def build(out: Path, today: str) -> dict:
     items = dk.load(LEDGER)
     bad, results = dk.run_gates(items, today)
@@ -958,12 +1318,46 @@ def build(out: Path, today: str) -> dict:
     out.mkdir(parents=True)
 
     written = []
+    # THE NUMERAL GATE, OVER EVERY PAGE, and it had never run over one of them.
+    #
+    # CLAUDE.md calls numeral_lint "a hard build gate" and says every numeral in published
+    # copy must be present in the set of values the build computed. That was true of
+    # exactly two pages: `gridwatch_page` and `waterwatch_page` call it on their own
+    # output. `site_build` never called it at all, so the record's forty-six other pages
+    # were publishing whatever their f-strings happened to contain, and the law that is
+    # printed on the site as the reason to believe a number here was enforced nowhere the
+    # record is actually rendered.
+    #
+    # It surfaced the way these always do. The first draft of the places index typed
+    # "121 of 254" straight into a sentence, nothing objected, and the only reason it is
+    # computed now is that writing it felt wrong. A rule you have to feel is not a rule.
+    #
+    # The authorised set is assembled from the projection rather than declared, so a page
+    # is entitled to exactly what the build worked out and nothing else.
+    authorised = _authorised_numerals(items, today)
+    by_item = {it["id"]: _item_numerals(it) for it in items}
+    unauthorised: list[str] = []
 
-    def w(path: str, text: str):
+    def w(path: str, text: str, extra: set | None = None):
+        """Write a page, and check every numeral it prints against what it may print.
+
+        `extra` IS PER PAGE AND IS NEVER ACCUMULATED. A page gets the site-wide set plus
+        whatever the items it actually renders authorise, and nothing another page earned.
+        Both times this gate has been silently disabled, the cause was a set that grew
+        wider than the page it was guarding.
+        """
         p = out / path
         p.parent.mkdir(parents=True, exist_ok=True)
         p.write_text(text, encoding="utf-8")
         written.append(path)
+        if path.endswith(".html"):
+            stray = numeral_lint.scan(text, authorised | (extra or set()))
+            if stray:
+                unauthorised.append(f"{path}: {', '.join(stray[:8])}")
+
+    def listed(subset: list) -> set:
+        """The union over exactly the items a listing page renders."""
+        return set().union(*(by_item[i["id"]] for i in subset)) if subset else set()
 
     w("site.css", theme.css())
 
@@ -988,22 +1382,29 @@ def build(out: Path, today: str) -> dict:
     shutil.copyfile(fonts_build.WEB / "OFL.txt", out / "fonts" / "OFL.txt")
     written.append("fonts/OFL.txt")
 
-    w("index.html", home(items, today))
+    w("index.html", home(items, today), _home_numerals(items, today) | listed(items))
     w("docket.json", json.dumps({"_spec": {"generated": today}, "items": items},
                                 indent=2, ensure_ascii=False) + "\n")
     for it in items:
-        w(f'item/{it["id"]}/index.html', item_page(it, today))
+        w(f'item/{it["id"]}/index.html', item_page(it, today), by_item[it["id"]])
         # The Markdown twin. A crawler that fetches this gets the record without parsing HTML,
         # and a model quoting from it is far less likely to mangle a figure.
         w(f'item/{it["id"]}/index.md', item_markdown(it, today))
     w("atom.xml", atom(items, today))
     w("feed.json", feed_json(items, today))
     w("llms.txt", llms_txt(items, today))
-    w("record/index.html", docket_index(items, today))
+    w("record/index.html", docket_index(items, today), listed(items))
     for t in sorted({i["topic"] for i in items}):
-        w(f"topic/{t}/index.html", topic_page(t, items, today))
+        w(f"topic/{t}/index.html", topic_page(t, items, today),
+          listed([i for i in items if i["topic"] == t]))
     w("counties/index.html", counties_page(items, today))
-    w("grid/index.html", grid_page(today))
+    # PER PLACE. The index, then a page for every metro the record touches and every
+    # touched county that is in no metro. Nothing falls between the two.
+    w("places/index.html", places_index(items, today))
+    for pl in all_places(items, today):
+        w(f'place/{pl["id"]}/index.html', place_page(pl, items, today),
+          listed([i for i in items if i["id"] in set(pl["items"])]))
+    w("grid/index.html", grid_page(today), _watch_numerals(gridwatch_page))
     # The grid watch as open data, in the same shape the page was built from. A reader who
     # doubts a figure here can recompute it without refetching anything from ERCOT.
     w("gridwatch.json", json.dumps(
@@ -1014,7 +1415,7 @@ def build(out: Path, today: str) -> dict:
          "readings": gridwatch_page.load()}, indent=2, ensure_ascii=False) + "\n")
     w("ask/index.html", ask_page(items, today))
     w("services/index.html", services_page(items, today))
-    w("water/index.html", water_page(today))
+    w("water/index.html", water_page(today), _watch_numerals(waterwatch_page))
     w("waterwatch.json", json.dumps(
         {"_spec": {"generated": today,
                    "note": "One day per record, per reservoir, so every roll up is "
@@ -1042,7 +1443,18 @@ def build(out: Path, today: str) -> dict:
       f'<?xml version="1.0" encoding="UTF-8"?>'
       f'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{locs}</urlset>')
 
-    return {"pages": len(urls), "files": len(written), "items": len(items)}
+    # THE GATE FIRES HERE, after every page is written, so the report names all of them
+    # rather than the first. A build that would publish a typed numeral does not publish.
+    if unauthorised:
+        for line in unauthorised:
+            print(f"  numeral: {line}", file=sys.stderr)
+        raise SystemExit(
+            f"site_build: {len(unauthorised)} page(s) print a numeral this build did not "
+            f"compute. Every published figure traces to data, which is the reason a reader "
+            f"should believe one here. Compute it, or authorise it where it is computed.")
+
+    return {"pages": len(urls), "files": len(written), "items": len(items),
+            "numerals_authorised": len(authorised)}
 
 
 def self_test() -> int:
@@ -1098,6 +1510,50 @@ def self_test() -> int:
         items = dk.load(LEDGER)
         one = (Path(td) / "a" / "item" / items[0]["id"] / "index.html").read_text(encoding="utf-8")
         check("an item page quotes its sources", "<blockquote>" in one)
+
+        # THE NUMERAL GATE, PROVEN TO FIRE, AND PROVEN TO BE NARROW.
+        #
+        # This gate has been green and inert twice, for two unrelated reasons, and the
+        # suite reported clean through both. First its per page sets were unioned into one
+        # site wide set, and the grid watch's several hundred hourly and fuel mix figures
+        # authorised almost any number on any page. Then, after that was fixed, the
+        # scanner still deleted authorised strings as SUBSTRINGS, so the ten single digits
+        # every page authorises within a few counts and dates dissolved every multi digit
+        # figure on the site one character at a time.
+        #
+        # Neither was found by a test. Both were found by planting a figure by hand and
+        # watching the build sail through. So the plant is a test now, and it plants twice:
+        # once with a number nothing computed, and once with a number that IS computed on
+        # a DIFFERENT page, which is the only way to catch a set that has quietly widened.
+        import contextlib as _cl, io as _io
+        real_places, real_home = places_index, home
+
+        def planted(fn, find, ins):
+            return lambda *a, **k: fn(*a, **k).replace(find, find + ins, 1)
+
+        for label, name, real, ins, want in (
+                ("a figure nothing computed", "places_index", real_places,
+                 "<p>Roughly 8,927 megawatts.</p>", "8,927"),
+                ("a figure computed on another page", "places_index", real_places,
+                 "<p>Energy served was 1,743,297 MWh.</p>", "1,743,297"),
+                ("a figure planted on the front page", "home", real_home,
+                 "<p>Some 41,203 filings.</p>", "41,203")):
+            anchor = "<h1>By place</h1>" if name == "places_index" else "</h1>"
+            globals()[name] = planted(real, anchor, ins)
+            err, fired = _io.StringIO(), False
+            try:
+                with _cl.redirect_stderr(err):
+                    build(Path(td) / "planted", today)
+            except SystemExit:
+                fired = True
+            finally:
+                globals()[name] = real
+            check(f"the numeral gate reddens the build on {label}", fired)
+            check(f"...and names {want}, so it can be found", want in err.getvalue(),
+                  err.getvalue()[:200])
+
+        check("the gate is still green once the plants are removed",
+              build(Path(td) / "clean", today)["pages"] == stats["pages"])
 
         # NO ORPHAN PAGE BUILDERS. docket_index() shipped once defined and never called, so
         # nothing listed the whole record and no gate noticed: an unreferenced function does
@@ -1160,6 +1616,9 @@ def main() -> int:
         return self_test()
     stats = build(Path(a.out), a.today)
     print(f"site: {stats['pages']} pages, {stats['files']} files, {stats['items']} items")
+    # THE OUTSTANDING EXEMPTIONS, ON A GREEN BUILD TOO. See `docket_build.backlog`.
+    for line in dk.backlog(dk.load(LEDGER)):
+        print(f"  backlog: {line}")
     return 0
 
 
