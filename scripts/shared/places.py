@@ -33,6 +33,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[2]
 PLACES = REPO_ROOT / "assets" / "geo" / "tx-places.json"
 COUNTIES_SRC = REPO_ROOT / "assets" / "geo" / "tx-counties.topo.json"
+CBSA = REPO_ROOT / "assets" / "geo" / "tx-cbsa-2023.json"
 
 TX_FIPS = "48"
 
@@ -41,6 +42,15 @@ SOURCE_US_ATLAS = {
     "url": "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json",
     "license": "ISC",
     "derived_from": "US Census Bureau cartographic boundary files",
+}
+
+SOURCE_OMB = {
+    "name": "OMB Core Based Statistical Areas, July 2023 delineation (List 1)",
+    "url": ("https://www2.census.gov/programs-surveys/metro-micro/geographies/"
+            "reference-files/2023/delineation-files/list1_2023.xlsx"),
+    "license": "US Government work, public domain",
+    "derived_from": "OMB Bulletin, published by the US Census Bureau",
+    "vintage": "2023-07",
 }
 
 
@@ -133,6 +143,137 @@ def norm(text: str) -> str:
 
 
 # --------------------------------------------------------------------------- build
+# --------------------------------------------------------------------------- CBSA
+# THE METRO LAYER, and why it is three layers rather than one.
+#
+# `_spec.pending` in this file has said since it was written that MSA is not populated
+# and needs a cited source. This is that source: the OMB July 2023 delineation, read
+# rather than remembered.
+#
+# READING IT CAUGHT TWO THINGS MEMORY WOULD HAVE GOT WRONG. The 2023 revision renamed
+# Houston to "Houston-Pasadena-The Woodlands" and Austin to "Austin-Round Rock-San
+# Marcos". A metro name typed from memory would have been the previous decade's, on
+# the two biggest pages of the site.
+#
+# AND THE HARD PART: this project already had a metro vocabulary. `waterwatch_collect`
+# groups reservoirs into 19 metros, and it splits Dallas from Fort Worth and merges
+# Midland with Odessa -- neither of which matches the MSA list. Both are RIGHT for
+# water, because a reservoir serves a city rather than a statistical area, and both
+# resolve against this file with a code of their own:
+#
+#   Dallas and Fort Worth are Metropolitan DIVISIONS (19124, 23104) inside one CBSA.
+#   Midland-Odessa is a COMBINED statistical area (CSA 372), of two MSAs.
+#
+# So all three grains are carried, a surface picks the one it needs, and they share
+# ids. One entity, several memberships, which is the only arrangement in which the
+# water page and the docket page can both say "Austin" and mean it.
+def extract_cbsa(xlsx: Path, out: Path) -> int:
+    """Vendor the TEXAS SUBSET of the national delineation file.
+
+    The national file is 143 KB of mostly-not-Texas, needs openpyxl, and would put a
+    binary in a repo whose diffs are meant to be readable. The derived subset is small,
+    is JSON, and shows up in review as the handful of lines that actually changed. The
+    fetch is a person's job, once per delineation vintage, and this prints the command.
+    """
+    try:
+        import openpyxl                                              # noqa: PLC0415
+    except ImportError:
+        print("places: extracting CBSAs needs openpyxl (pip install openpyxl). It is a "
+              "one-off maintainer step, not a build dependency.", file=sys.stderr)
+        return 2
+    if not xlsx.exists():
+        print(f"places: delineation file missing at {xlsx}\n  fetch it once with:\n"
+              f"  curl -sSL -o /tmp/list1_2023.xlsx {SOURCE_OMB['url']}", file=sys.stderr)
+        return 2
+
+    ws = openpyxl.load_workbook(xlsx, read_only=True).active
+    rows = [r for r in ws.iter_rows(min_row=4, values_only=True) if r and r[9] == TX_FIPS]
+    if not rows:
+        print("places: no Texas rows in the delineation file. Wrong sheet or wrong file.",
+              file=sys.stderr)
+        return 1
+
+    areas: dict[str, dict] = {}
+    county_to: dict[str, dict] = {}
+    for r in rows:
+        cbsa, div, csa, title, kind, div_title, csa_title, county, _st, sf, cf, central = r[:12]
+        fips = f"{sf}{cf}"
+        metro = kind and kind.startswith("Metropolitan")
+
+        def area(aid: str, code: str, name: str, grain: str):
+            a = areas.setdefault(aid, {
+                "id": aid, "kind": grain, "code": str(code), "name": name,
+                "type": "metropolitan" if metro else "micropolitan",
+                "counties": [], "county_fips": [],
+            })
+            if fips not in a["county_fips"]:
+                a["counties"].append(str(county).replace(" County", ""))
+                a["county_fips"].append(fips)
+            return a
+
+        area(f"metro-{slugify(str(title).split(',')[0])}", cbsa, str(title), "cbsa")
+        if div:
+            area(f"division-{slugify(str(div_title).split(',')[0])}", div, str(div_title),
+                 "division")
+        if csa:
+            area(f"combined-{slugify(str(csa_title).split(',')[0])}", csa, str(csa_title),
+                 "csa")
+
+        county_to[fips] = {
+            "cbsa": str(cbsa),
+            "cbsa_name": str(title),
+            "type": "metropolitan" if metro else "micropolitan",
+            "division": str(div) if div else None,
+            "division_name": str(div_title) if div else None,
+            "csa": str(csa) if csa else None,
+            "csa_name": str(csa_title) if csa else None,
+            # Central or Outlying is the OMB's own word for whether a county is the
+            # core of its area or commutes into it. A page that lists ten counties
+            # under "Houston" should be able to say which one Houston is in.
+            "role": str(central).lower() if central else None,
+        }
+
+    for a in areas.values():
+        order = sorted(zip(a["counties"], a["county_fips"]))
+        a["counties"] = [c for c, _ in order]
+        a["county_fips"] = [f for _, f in order]
+
+    doc = {
+        "_spec": {
+            "purpose": ("The Texas subset of the federal statistical-area delineation, so "
+                        "every surface that groups by metro groups by the same thing."),
+            "grains": ("cbsa is the metro or micro area; division splits the largest CBSAs "
+                       "(this is what makes Dallas and Fort Worth separable); csa combines "
+                       "adjacent CBSAs (this is what makes Midland-Odessa one place). A "
+                       "surface picks the grain its subject needs and they share ids."),
+            "not_covered": ("121 of Texas's 254 counties are in NO statistical area. That is "
+                            "not a gap in this file, it is a fact about Texas, and it is why "
+                            "the scoping unit in this project is a PLACE rather than a metro."),
+        },
+        "source": SOURCE_OMB,
+        "generated_by": "scripts/shared/places.py cbsa",
+        "counts": {
+            "areas": len(areas),
+            "metropolitan": sum(1 for a in areas.values()
+                                if a["kind"] == "cbsa" and a["type"] == "metropolitan"),
+            "micropolitan": sum(1 for a in areas.values()
+                                if a["kind"] == "cbsa" and a["type"] == "micropolitan"),
+            "divisions": sum(1 for a in areas.values() if a["kind"] == "division"),
+            "combined": sum(1 for a in areas.values() if a["kind"] == "csa"),
+            "counties_in_an_area": len(county_to),
+        },
+        "areas": [areas[k] for k in sorted(areas)],
+        "county_to": dict(sorted(county_to.items())),
+    }
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(doc, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+    c = doc["counts"]
+    print(f"places: {c['metropolitan']} metro + {c['micropolitan']} micro areas, "
+          f"{c['divisions']} divisions, {c['combined']} combined, covering "
+          f"{c['counties_in_an_area']} of 254 counties -> {out.relative_to(REPO_ROOT)}")
+    return 0
+
+
 def build(src: Path, out: Path) -> int:
     if not src.exists():
         print(f"places: source geodata missing at {src}\n"
@@ -174,6 +315,78 @@ def build(src: Path, out: Path) -> int:
     for c in counties:
         c.pop("_area_deg2", None)
 
+    # THE METRO LAYER, attached from the vendored federal subset and NOWHERE ELSE.
+    #
+    # A county that is in no statistical area gets `metro: None` and says so in its
+    # provenance. That is a fact about Texas rather than a hole in the data, and the
+    # difference matters: an absent field invites somebody to fill it in, and an
+    # explicit "this county is in no CBSA" does not.
+    cbsa_doc = json.loads(CBSA.read_text(encoding="utf-8")) if CBSA.exists() else None
+    covered = 0
+    for c in counties:
+        m = (cbsa_doc or {}).get("county_to", {}).get(c["fips"])
+        if m:
+            covered += 1
+            c["metro"] = m
+            c["provenance"]["metro"] = "omb-2023-delineation"
+            # A METRO NAME IS NOT A COUNTY ALIAS, and Texas is emphatic about it.
+            #
+            # The first version folded the CBSA and CSA names into each member county's
+            # aliases, and the self-test immediately refused to resolve El Paso,
+            # Lubbock, Midland, Pecos and Tyler. It was right to. A Texas metro is named
+            # for its central city, and there is frequently a DIFFERENT COUNTY with that
+            # name somewhere else: Reeves County contains the city of Pecos, and Pecos
+            # County is two hundred miles away. Smith County contains Tyler, and Tyler
+            # County is in the Piney Woods. Aliasing the metro onto its members made
+            # "tyler" mean two counties, so the resolver correctly refused both, and five
+            # counties that had resolved for weeks stopped.
+            #
+            # So metros live in their own index with their own ids, and `resolve` takes
+            # the kind it wants. See `Resolver`.
+        elif cbsa_doc:
+            c["metro"] = None
+            c["provenance"]["metro"] = "omb-2023-delineation:in-no-statistical-area"
+
+    # The areas themselves, as first-class places. A metro is a thing a reader asks about
+    # and a page is written for, so it gets an id, aliases and provenance like anything
+    # else here. Its centroid is the AREA-WEIGHTED MEAN of its member counties' centroids,
+    # which is computed rather than looked up and is labelled as such.
+    areas: list[dict] = []
+    by_fips = {c["fips"]: c for c in counties}
+    for a in (cbsa_doc or {}).get("areas", []):
+        members = [by_fips[f] for f in a["county_fips"] if f in by_fips]
+        if not members:
+            continue
+        short = str(a["name"]).split(",")[0]
+        areas.append({
+            "id": a["id"],
+            "kind": a["kind"],                      # cbsa | division | csa
+            "name": short,
+            "full_name": a["name"],
+            "area_type": a["type"],                 # metropolitan | micropolitan
+            "code": a["code"],
+            "lon": round(sum(m["lon"] for m in members) / len(members), 5),
+            "lat": round(sum(m["lat"] for m in members) / len(members), 5),
+            "counties": a["counties"],
+            "county_fips": a["county_fips"],
+            # THE PRINCIPAL CITIES ARE ALIASES, each of them. A CBSA title is a list of
+            # its principal cities and a reader knows one of them, not the string. Nobody
+            # types "Houston-Pasadena-The Woodlands", and somebody asking about Arlington
+            # means Dallas-Fort Worth and should land there.
+            "aliases": sorted({norm(short), norm(a["name"]), a["code"]}
+                              | {norm(city) for city in short.split("-") if norm(city)}),
+            "provenance": {
+                "name": "omb-2023-delineation",
+                "code": "omb-2023-delineation",
+                "counties": "omb-2023-delineation",
+                "county_fips": "omb-2023-delineation",
+                "area_type": "omb-2023-delineation",
+                "lon": "computed:mean-of-member-county-centroids",
+                "lat": "computed:mean-of-member-county-centroids",
+            },
+        })
+    areas.sort(key=lambda a: (a["kind"], a["name"]))
+
     doc = {
         "_spec": {
             "purpose": (
@@ -202,10 +415,11 @@ def build(src: Path, out: Path) -> int:
                 "provenance": "field name -> source",
             },
         },
-        "sources": [SOURCE_US_ATLAS],
+        "sources": [SOURCE_US_ATLAS] + ([SOURCE_OMB] if cbsa_doc else []),
         "generated_by": "scripts/shared/places.py build",
-        "counts": {"county": len(counties)},
-        "places": counties,
+        "counts": {"county": len(counties), "county_in_a_metro": covered,
+                   "metro": len(areas)},
+        "places": counties + areas,
     }
 
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -219,19 +433,44 @@ def build(src: Path, out: Path) -> int:
 
 # --------------------------------------------------------------------------- resolve
 class Resolver:
+    """Resolve a string to a place, WITHIN A KIND.
+
+    THE INDEX IS PER KIND, and that is not tidiness. `norm()` deliberately strips the
+    word "county" so that "Harris Co." and "Harris County" collapse to one key -- which
+    means a county and a metro named for the same city are indistinguishable after
+    normalization. In Texas that is common and it is worse than common: Reeves County
+    contains the CITY of Pecos while Pecos County is two hundred miles away, and Smith
+    County contains Tyler while Tyler County is in the Piney Woods.
+
+    A single index makes those strings ambiguous, and this resolver refuses ambiguity by
+    design, so five counties that had resolved correctly for weeks stopped the moment
+    metros were added. Separate indexes are the fix, and the caller says which kind it
+    means, which it always knows.
+    """
+
+    COUNTY = "county"
+    METRO = "cbsa"
+
     def __init__(self, doc: dict):
         self.places = doc["places"]
         self.by_id = {p["id"]: p for p in self.places}
-        self.index: dict[str, list[dict]] = {}
+        # ONE INDEX PER GRAIN. County, cbsa, division and csa each get their own, for the
+        # same reason counties and metros are separate at all: after normalization the
+        # strings collide. "Houston" is a principal city of the Houston CBSA and of the
+        # Houston-Pasadena COMBINED area, and a single metro index makes it ambiguous,
+        # so this resolver would refuse the most obvious query on the site.
+        self.by_kind: dict[str, dict[str, list[dict]]] = {}
         for p in self.places:
+            idx = self.by_kind.setdefault(p.get("kind", "county"), {})
             for alias in p.get("aliases", []):
-                self.index.setdefault(alias, []).append(p)
+                idx.setdefault(alias, []).append(p)
+        self.index = self.by_kind.get("county", {})     # the default, kept for callers
 
     @classmethod
     def load(cls, path: Path = PLACES) -> "Resolver":
         return cls(json.loads(path.read_text(encoding="utf-8")))
 
-    def resolve(self, text: str) -> dict | None:
+    def resolve(self, text: str, kind: str = COUNTY) -> dict | None:
         """Exact-after-normalization only. No fuzzy matching.
 
         Deliberate: a fuzzy resolver that maps 'Deaf Smith' to 'Smith' is worse than no
@@ -241,12 +480,35 @@ class Resolver:
         key = norm(text)
         if not key:
             return None
-        hits = self.index.get(key)
+        hits = self.by_kind.get(kind, {}).get(key)
         if hits and len(hits) == 1:
             return hits[0]
         if hits:
             return None                      # ambiguous: refuse rather than pick
         return None
+
+    def resolve_metro(self, text: str, grain: str = METRO) -> dict | None:
+        """The metro a string names, at the grain asked for.
+
+        `cbsa` by default, which is what a docket page wants. A surface whose subject is
+        genuinely a division or a combined area -- the water watch's Dallas against Fort
+        Worth, or its Midland-Odessa basin -- asks for that grain by name.
+        """
+        return self.resolve(text, kind=grain)
+
+    def metro_of(self, county: str) -> dict | None:
+        """The CBSA record a county belongs to, or None when it is in no statistical area.
+
+        None here is a FACT rather than a hole: 121 of Texas's 254 counties are in no
+        CBSA, and they are where much of the physical AI buildout is. A caller that treats
+        None as missing data will quietly drop half the state.
+        """
+        c = self.resolve(county)
+        m = (c or {}).get("metro")
+        if not m:
+            return None
+        return next((p for p in self.places
+                     if p.get("kind") == "cbsa" and p.get("code") == m["cbsa"]), None)
 
     def candidates(self, text: str, limit: int = 5) -> list[dict]:
         """Suggestions for an unresolved string, to make the failure actionable."""
@@ -299,9 +561,51 @@ def self_test() -> int:
     check("254 Texas counties", doc["counts"]["county"], 254)
 
     # Every county must resolve from its bare name and its 'X County' form.
-    unresolved = [p["name"] for p in r.places
+    counties = [p for p in r.places if p["kind"] == "county"]
+    unresolved = [p["name"] for p in counties
                   if r.resolve(p["name"]) is None or r.resolve(p["full_name"]) is None]
     check("every county resolves both ways", unresolved[:5], [])
+
+    # THE TRAP THE FIRST VERSION FELL INTO. Metro names were folded into their member
+    # counties' aliases, and five counties immediately stopped resolving: a Texas metro is
+    # named for its central city and there is often a DIFFERENT county with that name.
+    # Reeves County contains the city of Pecos and Pecos County is two hundred miles away.
+    # So the indexes are separate, and these four assertions are what keeps them separate.
+    areas = [p for p in r.places if p["kind"] != "county"]
+    # AT ITS OWN GRAIN. A CSA does not resolve in the CBSA index and should not: they are
+    # different entities that share a principal city, which is the whole reason the index
+    # is split. Resolving each area against its own kind is the assertion that means
+    # something; resolving them all against one would only prove the split had failed.
+    unresolved_m = [p["name"] for p in areas
+                    if r.resolve_metro(p["name"], grain=p["kind"]) is None]
+    check("every area resolves at its own grain", unresolved_m[:5], [])
+    check("...and Pecos the COUNTY is still Pecos the county",
+          (r.resolve("Pecos") or {}).get("id"), "county-pecos")
+    check("...while the city of Pecos is in Reeves, which is the Pecos MICRO area",
+          (r.resolve_metro("Pecos") or {}).get("counties"), ["Reeves"])
+    check("...and Tyler the county is not Tyler the metro",
+          ((r.resolve("Tyler") or {}).get("id"), (r.resolve_metro("Tyler") or {}).get("counties")),
+          ("county-tyler", ["Smith"]))
+
+    # The metro layer itself, against the vendored federal subset.
+    check("133 of 254 counties are in a statistical area, and the rest honestly are not",
+          doc["counts"]["county_in_a_metro"], 133)
+    check("a county in no CBSA says so rather than omitting the field",
+          [c["metro"] for c in counties if c["name"] == "Shackelford"], [None])
+    check("Houston carries its 2023 name, not the previous decade's",
+          (r.resolve_metro("Houston") or {}).get("full_name"),
+          "Houston-Pasadena-The Woodlands, TX")
+    check("Dallas and Fort Worth are separable, as metropolitan divisions",
+          sorted(p["id"] for p in areas if p["kind"] == "division"),
+          ["division-dallas-plano-irving", "division-fort-worth-arlington-grapevine"])
+    check("Midland and Odessa are two MSAs inside one combined area",
+          sorted((r.resolve_metro("Midland-Odessa-Andrews", grain="csa") or {})
+                 .get("counties", [])),
+          ["Andrews", "Ector", "Martin", "Midland"])
+    check("metro_of walks county to CBSA",
+          (r.metro_of("Taylor") or {}).get("full_name"), "Abilene, TX")
+    check("...and returns None for a county in none of them, rather than guessing",
+          r.metro_of("Shackelford"), None)
 
     # Ids must be unique and stable-looking.
     ids = [p["id"] for p in r.places]
@@ -345,6 +649,9 @@ def main() -> int:
     b = sub.add_parser("build")
     b.add_argument("--from", dest="src", default=str(COUNTIES_SRC))
     b.add_argument("--out", default=str(PLACES))
+    cb = sub.add_parser("cbsa", help="vendor the Texas subset of the OMB delineation file")
+    cb.add_argument("--from", dest="xlsx", default="/tmp/list1_2023.xlsx")
+    cb.add_argument("--out", default=str(CBSA))
     rs = sub.add_parser("resolve")
     rs.add_argument("text", nargs="+")
     ap.add_argument("--self-test", action="store_true")
@@ -354,6 +661,8 @@ def main() -> int:
         return self_test()
     if args.cmd == "build":
         return build(Path(args.src), Path(args.out))
+    if args.cmd == "cbsa":
+        return extract_cbsa(Path(args.xlsx), Path(args.out))
     if args.cmd == "resolve":
         r = Resolver.load()
         text = " ".join(args.text)

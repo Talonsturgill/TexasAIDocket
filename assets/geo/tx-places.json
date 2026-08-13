@@ -20,11 +20,20 @@
    "url": "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json",
    "license": "ISC",
    "derived_from": "US Census Bureau cartographic boundary files"
+  },
+  {
+   "name": "OMB Core Based Statistical Areas, July 2023 delineation (List 1)",
+   "url": "https://www2.census.gov/programs-surveys/metro-micro/geographies/reference-files/2023/delineation-files/list1_2023.xlsx",
+   "license": "US Government work, public domain",
+   "derived_from": "OMB Bulletin, published by the US Census Bureau",
+   "vintage": "2023-07"
   }
  ],
  "generated_by": "scripts/shared/places.py build",
  "counts": {
-  "county": 254
+  "county": 254,
+  "county_in_a_metro": 133,
+  "metro": 82
  },
  "places": [
   {
@@ -43,7 +52,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "37300",
+    "cbsa_name": "Palestine, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "central"
    }
   },
   {
@@ -62,7 +82,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "11380",
+    "cbsa_name": "Andrews, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "372",
+    "csa_name": "Midland-Odessa-Andrews, TX",
+    "role": "central"
    }
   },
   {
@@ -81,7 +112,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "31260",
+    "cbsa_name": "Lufkin, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "central"
    }
   },
   {
@@ -100,7 +142,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "18580",
+    "cbsa_name": "Corpus Christi, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "204",
+    "csa_name": "Corpus Christi-Kingsville-Alice, TX",
+    "role": "outlying"
    }
   },
   {
@@ -119,7 +172,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "48660",
+    "cbsa_name": "Wichita Falls, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "outlying"
    }
   },
   {
@@ -138,7 +202,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "11100",
+    "cbsa_name": "Amarillo, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "108",
+    "csa_name": "Amarillo-Borger, TX",
+    "role": "outlying"
    }
   },
   {
@@ -157,7 +232,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "41700",
+    "cbsa_name": "San Antonio-New Braunfels, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "484",
+    "csa_name": "San Antonio-New Braunfels-Kerrville, TX",
+    "role": "outlying"
    }
   },
   {
@@ -176,7 +262,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "26420",
+    "cbsa_name": "Houston-Pasadena-The Woodlands, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "288",
+    "csa_name": "Houston-Pasadena, TX",
+    "role": "outlying"
    }
   },
   {
@@ -195,8 +292,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-bandera",
@@ -214,7 +313,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "41700",
+    "cbsa_name": "San Antonio-New Braunfels, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "484",
+    "csa_name": "San Antonio-New Braunfels-Kerrville, TX",
+    "role": "outlying"
    }
   },
   {
@@ -233,7 +343,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "12420",
+    "cbsa_name": "Austin-Round Rock-San Marcos, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "outlying"
    }
   },
   {
@@ -252,8 +373,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-bee",
@@ -271,7 +394,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "13300",
+    "cbsa_name": "Beeville, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "central"
    }
   },
   {
@@ -290,7 +424,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "28660",
+    "cbsa_name": "Killeen-Temple, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "central"
    }
   },
   {
@@ -309,7 +454,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "41700",
+    "cbsa_name": "San Antonio-New Braunfels, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "484",
+    "csa_name": "San Antonio-New Braunfels-Kerrville, TX",
+    "role": "central"
    }
   },
   {
@@ -328,8 +484,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-borden",
@@ -347,8 +505,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-bosque",
@@ -366,7 +526,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "47380",
+    "cbsa_name": "Waco, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "outlying"
    }
   },
   {
@@ -385,7 +556,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "45500",
+    "cbsa_name": "Texarkana, TX-AR",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "central"
    }
   },
   {
@@ -404,7 +586,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "26420",
+    "cbsa_name": "Houston-Pasadena-The Woodlands, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "288",
+    "csa_name": "Houston-Pasadena, TX",
+    "role": "central"
    }
   },
   {
@@ -423,7 +616,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "17780",
+    "cbsa_name": "College Station-Bryan, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "central"
    }
   },
   {
@@ -442,8 +646,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-briscoe",
@@ -461,8 +667,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-brooks",
@@ -480,7 +688,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "10860",
+    "cbsa_name": "Alice, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "204",
+    "csa_name": "Corpus Christi-Kingsville-Alice, TX",
+    "role": "outlying"
    }
   },
   {
@@ -499,7 +718,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "15220",
+    "cbsa_name": "Brownwood, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "central"
    }
   },
   {
@@ -518,7 +748,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "17780",
+    "cbsa_name": "College Station-Bryan, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "outlying"
    }
   },
   {
@@ -537,8 +778,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-caldwell",
@@ -556,7 +799,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "12420",
+    "cbsa_name": "Austin-Round Rock-San Marcos, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "outlying"
    }
   },
   {
@@ -575,7 +829,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "38920",
+    "cbsa_name": "Port Lavaca, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "544",
+    "csa_name": "Victoria-Port Lavaca, TX",
+    "role": "central"
    }
   },
   {
@@ -594,7 +859,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "10180",
+    "cbsa_name": "Abilene, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "101",
+    "csa_name": "Abilene-Sweetwater, TX",
+    "role": "outlying"
    }
   },
   {
@@ -613,7 +889,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "15180",
+    "cbsa_name": "Brownsville-Harlingen, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "154",
+    "csa_name": "Brownsville-Harlingen-Raymondville, TX",
+    "role": "central"
    }
   },
   {
@@ -632,7 +919,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "34420",
+    "cbsa_name": "Mount Pleasant, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "outlying"
    }
   },
   {
@@ -651,7 +949,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "11100",
+    "cbsa_name": "Amarillo, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "108",
+    "csa_name": "Amarillo-Borger, TX",
+    "role": "outlying"
    }
   },
   {
@@ -670,8 +979,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-castro",
@@ -689,8 +1000,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-chambers",
@@ -708,7 +1021,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "26420",
+    "cbsa_name": "Houston-Pasadena-The Woodlands, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "288",
+    "csa_name": "Houston-Pasadena, TX",
+    "role": "outlying"
    }
   },
   {
@@ -727,7 +1051,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "27380",
+    "cbsa_name": "Jacksonville, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "540",
+    "csa_name": "Tyler-Jacksonville, TX",
+    "role": "central"
    }
   },
   {
@@ -746,8 +1081,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-clay",
@@ -765,7 +1102,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "48660",
+    "cbsa_name": "Wichita Falls, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "outlying"
    }
   },
   {
@@ -784,7 +1132,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "31180",
+    "cbsa_name": "Lubbock, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "352",
+    "csa_name": "Lubbock-Plainview, TX",
+    "role": "outlying"
    }
   },
   {
@@ -803,8 +1162,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-coleman",
@@ -822,8 +1183,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-collin",
@@ -841,7 +1204,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "19100",
+    "cbsa_name": "Dallas-Fort Worth-Arlington, TX",
+    "type": "metropolitan",
+    "division": "19124",
+    "division_name": "Dallas-Plano-Irving, TX",
+    "csa": "206",
+    "csa_name": "Dallas-Fort Worth, TX-OK",
+    "role": "central"
    }
   },
   {
@@ -860,8 +1234,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-colorado",
@@ -879,8 +1255,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-comal",
@@ -898,7 +1276,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "41700",
+    "cbsa_name": "San Antonio-New Braunfels, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "484",
+    "csa_name": "San Antonio-New Braunfels-Kerrville, TX",
+    "role": "outlying"
    }
   },
   {
@@ -917,8 +1306,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-concho",
@@ -936,8 +1327,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-cooke",
@@ -955,7 +1348,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "23620",
+    "cbsa_name": "Gainesville, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "206",
+    "csa_name": "Dallas-Fort Worth, TX-OK",
+    "role": "central"
    }
   },
   {
@@ -974,7 +1378,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "28660",
+    "cbsa_name": "Killeen-Temple, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "central"
    }
   },
   {
@@ -993,8 +1408,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-crane",
@@ -1012,8 +1429,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-crockett",
@@ -1031,8 +1450,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-crosby",
@@ -1050,7 +1471,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "31180",
+    "cbsa_name": "Lubbock, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "352",
+    "csa_name": "Lubbock-Plainview, TX",
+    "role": "outlying"
    }
   },
   {
@@ -1069,8 +1501,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-dallam",
@@ -1088,8 +1522,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-dallas",
@@ -1107,7 +1543,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "19100",
+    "cbsa_name": "Dallas-Fort Worth-Arlington, TX",
+    "type": "metropolitan",
+    "division": "19124",
+    "division_name": "Dallas-Plano-Irving, TX",
+    "csa": "206",
+    "csa_name": "Dallas-Fort Worth, TX-OK",
+    "role": "central"
    }
   },
   {
@@ -1126,8 +1573,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-dewitt",
@@ -1145,8 +1594,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-deaf-smith",
@@ -1164,7 +1615,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "25820",
+    "cbsa_name": "Hereford, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "central"
    }
   },
   {
@@ -1183,8 +1645,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-denton",
@@ -1202,7 +1666,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "19100",
+    "cbsa_name": "Dallas-Fort Worth-Arlington, TX",
+    "type": "metropolitan",
+    "division": "19124",
+    "division_name": "Dallas-Plano-Irving, TX",
+    "csa": "206",
+    "csa_name": "Dallas-Fort Worth, TX-OK",
+    "role": "outlying"
    }
   },
   {
@@ -1221,8 +1696,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-dimmit",
@@ -1240,8 +1717,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-donley",
@@ -1259,8 +1738,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-duval",
@@ -1278,8 +1759,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-eastland",
@@ -1297,8 +1780,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-ector",
@@ -1316,7 +1801,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "36220",
+    "cbsa_name": "Odessa, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "372",
+    "csa_name": "Midland-Odessa-Andrews, TX",
+    "role": "central"
    }
   },
   {
@@ -1335,8 +1831,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-el-paso",
@@ -1354,7 +1852,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "21340",
+    "cbsa_name": "El Paso, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "238",
+    "csa_name": "El Paso-Las Cruces, TX-NM",
+    "role": "central"
    }
   },
   {
@@ -1373,7 +1882,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "19100",
+    "cbsa_name": "Dallas-Fort Worth-Arlington, TX",
+    "type": "metropolitan",
+    "division": "19124",
+    "division_name": "Dallas-Plano-Irving, TX",
+    "csa": "206",
+    "csa_name": "Dallas-Fort Worth, TX-OK",
+    "role": "central"
    }
   },
   {
@@ -1392,7 +1912,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "44500",
+    "cbsa_name": "Stephenville, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "central"
    }
   },
   {
@@ -1411,7 +1942,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "47380",
+    "cbsa_name": "Waco, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "outlying"
    }
   },
   {
@@ -1430,7 +1972,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "14300",
+    "cbsa_name": "Bonham, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "206",
+    "csa_name": "Dallas-Fort Worth, TX-OK",
+    "role": "central"
    }
   },
   {
@@ -1449,8 +2002,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-fisher",
@@ -1468,8 +2023,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-floyd",
@@ -1487,7 +2044,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "38380",
+    "cbsa_name": "Plainview, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "352",
+    "csa_name": "Lubbock-Plainview, TX",
+    "role": "outlying"
    }
   },
   {
@@ -1506,8 +2074,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-fort-bend",
@@ -1525,7 +2095,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "26420",
+    "cbsa_name": "Houston-Pasadena-The Woodlands, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "288",
+    "csa_name": "Houston-Pasadena, TX",
+    "role": "central"
    }
   },
   {
@@ -1544,8 +2125,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-freestone",
@@ -1563,8 +2146,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-frio",
@@ -1582,8 +2167,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-gaines",
@@ -1601,8 +2188,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-galveston",
@@ -1620,7 +2209,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "26420",
+    "cbsa_name": "Houston-Pasadena-The Woodlands, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "288",
+    "csa_name": "Houston-Pasadena, TX",
+    "role": "outlying"
    }
   },
   {
@@ -1639,7 +2239,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "31180",
+    "cbsa_name": "Lubbock, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "352",
+    "csa_name": "Lubbock-Plainview, TX",
+    "role": "outlying"
    }
   },
   {
@@ -1658,7 +2269,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "23240",
+    "cbsa_name": "Fredericksburg, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "484",
+    "csa_name": "San Antonio-New Braunfels-Kerrville, TX",
+    "role": "central"
    }
   },
   {
@@ -1677,8 +2299,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-goliad",
@@ -1696,7 +2320,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "47020",
+    "cbsa_name": "Victoria, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "544",
+    "csa_name": "Victoria-Port Lavaca, TX",
+    "role": "outlying"
    }
   },
   {
@@ -1715,8 +2350,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-gray",
@@ -1734,7 +2371,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "37420",
+    "cbsa_name": "Pampa, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "central"
    }
   },
   {
@@ -1753,7 +2401,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "43300",
+    "cbsa_name": "Sherman-Denison, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "206",
+    "csa_name": "Dallas-Fort Worth, TX-OK",
+    "role": "central"
    }
   },
   {
@@ -1772,7 +2431,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "30980",
+    "cbsa_name": "Longview, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "central"
    }
   },
   {
@@ -1791,8 +2461,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-guadalupe",
@@ -1810,7 +2482,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "41700",
+    "cbsa_name": "San Antonio-New Braunfels, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "484",
+    "csa_name": "San Antonio-New Braunfels-Kerrville, TX",
+    "role": "central"
    }
   },
   {
@@ -1829,7 +2512,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "38380",
+    "cbsa_name": "Plainview, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "352",
+    "csa_name": "Lubbock-Plainview, TX",
+    "role": "central"
    }
   },
   {
@@ -1848,8 +2542,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-hamilton",
@@ -1867,8 +2563,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-hansford",
@@ -1886,8 +2584,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-hardeman",
@@ -1905,8 +2605,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-hardin",
@@ -1924,7 +2626,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "13140",
+    "cbsa_name": "Beaumont-Port Arthur, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "outlying"
    }
   },
   {
@@ -1943,7 +2656,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "26420",
+    "cbsa_name": "Houston-Pasadena-The Woodlands, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "288",
+    "csa_name": "Houston-Pasadena, TX",
+    "role": "central"
    }
   },
   {
@@ -1962,7 +2686,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "30980",
+    "cbsa_name": "Longview, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "outlying"
    }
   },
   {
@@ -1981,8 +2716,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-haskell",
@@ -2000,8 +2737,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-hays",
@@ -2019,7 +2758,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "12420",
+    "cbsa_name": "Austin-Round Rock-San Marcos, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "central"
    }
   },
   {
@@ -2038,8 +2788,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-henderson",
@@ -2057,7 +2809,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "11980",
+    "cbsa_name": "Athens, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "206",
+    "csa_name": "Dallas-Fort Worth, TX-OK",
+    "role": "central"
    }
   },
   {
@@ -2076,7 +2839,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "32580",
+    "cbsa_name": "McAllen-Edinburg-Mission, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "365",
+    "csa_name": "McAllen-Edinburg, TX",
+    "role": "central"
    }
   },
   {
@@ -2095,8 +2869,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-hockley",
@@ -2114,7 +2890,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "31180",
+    "cbsa_name": "Lubbock, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "352",
+    "csa_name": "Lubbock-Plainview, TX",
+    "role": "outlying"
    }
   },
   {
@@ -2133,7 +2920,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "24180",
+    "cbsa_name": "Granbury, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "206",
+    "csa_name": "Dallas-Fort Worth, TX-OK",
+    "role": "central"
    }
   },
   {
@@ -2152,7 +2950,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "44860",
+    "cbsa_name": "Sulphur Springs, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "206",
+    "csa_name": "Dallas-Fort Worth, TX-OK",
+    "role": "central"
    }
   },
   {
@@ -2171,8 +2980,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-howard",
@@ -2190,7 +3001,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "13700",
+    "cbsa_name": "Big Spring, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "central"
    }
   },
   {
@@ -2209,7 +3031,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "21340",
+    "cbsa_name": "El Paso, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "238",
+    "csa_name": "El Paso-Las Cruces, TX-NM",
+    "role": "outlying"
    }
   },
   {
@@ -2228,7 +3061,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "19100",
+    "cbsa_name": "Dallas-Fort Worth-Arlington, TX",
+    "type": "metropolitan",
+    "division": "19124",
+    "division_name": "Dallas-Plano-Irving, TX",
+    "csa": "206",
+    "csa_name": "Dallas-Fort Worth, TX-OK",
+    "role": "outlying"
    }
   },
   {
@@ -2247,7 +3091,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "14420",
+    "cbsa_name": "Borger, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "108",
+    "csa_name": "Amarillo-Borger, TX",
+    "role": "central"
    }
   },
   {
@@ -2266,7 +3121,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "41660",
+    "cbsa_name": "San Angelo, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "outlying"
    }
   },
   {
@@ -2285,8 +3151,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-jackson",
@@ -2304,8 +3172,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-jasper",
@@ -2323,8 +3193,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-jeff-davis",
@@ -2342,8 +3214,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-jefferson",
@@ -2361,7 +3235,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "13140",
+    "cbsa_name": "Beaumont-Port Arthur, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "central"
    }
   },
   {
@@ -2380,8 +3265,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-jim-wells",
@@ -2399,7 +3286,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "10860",
+    "cbsa_name": "Alice, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "204",
+    "csa_name": "Corpus Christi-Kingsville-Alice, TX",
+    "role": "central"
    }
   },
   {
@@ -2418,7 +3316,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "19100",
+    "cbsa_name": "Dallas-Fort Worth-Arlington, TX",
+    "type": "metropolitan",
+    "division": "23104",
+    "division_name": "Fort Worth-Arlington-Grapevine, TX",
+    "csa": "206",
+    "csa_name": "Dallas-Fort Worth, TX-OK",
+    "role": "central"
    }
   },
   {
@@ -2437,7 +3346,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "10180",
+    "cbsa_name": "Abilene, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "101",
+    "csa_name": "Abilene-Sweetwater, TX",
+    "role": "outlying"
    }
   },
   {
@@ -2456,8 +3376,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-kaufman",
@@ -2475,7 +3397,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "19100",
+    "cbsa_name": "Dallas-Fort Worth-Arlington, TX",
+    "type": "metropolitan",
+    "division": "19124",
+    "division_name": "Dallas-Plano-Irving, TX",
+    "csa": "206",
+    "csa_name": "Dallas-Fort Worth, TX-OK",
+    "role": "outlying"
    }
   },
   {
@@ -2494,7 +3427,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "41700",
+    "cbsa_name": "San Antonio-New Braunfels, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "484",
+    "csa_name": "San Antonio-New Braunfels-Kerrville, TX",
+    "role": "outlying"
    }
   },
   {
@@ -2513,8 +3457,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-kent",
@@ -2532,8 +3478,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-kerr",
@@ -2551,7 +3499,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "28500",
+    "cbsa_name": "Kerrville, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "484",
+    "csa_name": "San Antonio-New Braunfels-Kerrville, TX",
+    "role": "central"
    }
   },
   {
@@ -2570,8 +3529,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-king",
@@ -2589,8 +3550,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-kinney",
@@ -2608,8 +3571,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-kleberg",
@@ -2627,7 +3592,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "28780",
+    "cbsa_name": "Kingsville, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "204",
+    "csa_name": "Corpus Christi-Kingsville-Alice, TX",
+    "role": "central"
    }
   },
   {
@@ -2646,8 +3622,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-la-salle",
@@ -2665,8 +3643,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-lamar",
@@ -2684,7 +3664,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "37580",
+    "cbsa_name": "Paris, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "central"
    }
   },
   {
@@ -2703,8 +3694,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-lampasas",
@@ -2722,7 +3715,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "28660",
+    "cbsa_name": "Killeen-Temple, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "outlying"
    }
   },
   {
@@ -2741,8 +3745,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-lee",
@@ -2760,8 +3766,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-leon",
@@ -2779,8 +3787,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-liberty",
@@ -2798,7 +3808,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "26420",
+    "cbsa_name": "Houston-Pasadena-The Woodlands, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "288",
+    "csa_name": "Houston-Pasadena, TX",
+    "role": "outlying"
    }
   },
   {
@@ -2817,8 +3838,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-lipscomb",
@@ -2836,8 +3859,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-live-oak",
@@ -2855,8 +3880,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-llano",
@@ -2874,8 +3901,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-loving",
@@ -2893,8 +3922,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-lubbock",
@@ -2912,7 +3943,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "31180",
+    "cbsa_name": "Lubbock, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "352",
+    "csa_name": "Lubbock-Plainview, TX",
+    "role": "central"
    }
   },
   {
@@ -2931,7 +3973,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "31180",
+    "cbsa_name": "Lubbock, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "352",
+    "csa_name": "Lubbock-Plainview, TX",
+    "role": "outlying"
    }
   },
   {
@@ -2950,8 +4003,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-marion",
@@ -2969,8 +4024,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-martin",
@@ -2988,7 +4045,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "33260",
+    "cbsa_name": "Midland, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "372",
+    "csa_name": "Midland-Odessa-Andrews, TX",
+    "role": "outlying"
    }
   },
   {
@@ -3007,8 +4075,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-matagorda",
@@ -3026,7 +4096,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "13060",
+    "cbsa_name": "Bay City, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "288",
+    "csa_name": "Houston-Pasadena, TX",
+    "role": "central"
    }
   },
   {
@@ -3045,7 +4126,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "20580",
+    "cbsa_name": "Eagle Pass, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "central"
    }
   },
   {
@@ -3064,8 +4156,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-mclennan",
@@ -3083,7 +4177,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "47380",
+    "cbsa_name": "Waco, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "central"
    }
   },
   {
@@ -3102,8 +4207,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-medina",
@@ -3121,7 +4228,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "41700",
+    "cbsa_name": "San Antonio-New Braunfels, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "484",
+    "csa_name": "San Antonio-New Braunfels-Kerrville, TX",
+    "role": "outlying"
    }
   },
   {
@@ -3140,8 +4258,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-midland",
@@ -3159,7 +4279,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "33260",
+    "cbsa_name": "Midland, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "372",
+    "csa_name": "Midland-Odessa-Andrews, TX",
+    "role": "central"
    }
   },
   {
@@ -3178,8 +4309,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-mills",
@@ -3197,8 +4330,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-mitchell",
@@ -3216,8 +4351,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-montague",
@@ -3235,8 +4372,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-montgomery",
@@ -3254,7 +4393,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "26420",
+    "cbsa_name": "Houston-Pasadena-The Woodlands, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "288",
+    "csa_name": "Houston-Pasadena, TX",
+    "role": "outlying"
    }
   },
   {
@@ -3273,7 +4423,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "20300",
+    "cbsa_name": "Dumas, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "central"
    }
   },
   {
@@ -3292,7 +4453,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "34420",
+    "cbsa_name": "Mount Pleasant, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "outlying"
    }
   },
   {
@@ -3311,8 +4483,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-nacogdoches",
@@ -3330,7 +4504,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "34860",
+    "cbsa_name": "Nacogdoches, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "central"
    }
   },
   {
@@ -3349,7 +4534,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "18620",
+    "cbsa_name": "Corsicana, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "206",
+    "csa_name": "Dallas-Fort Worth, TX-OK",
+    "role": "central"
    }
   },
   {
@@ -3368,8 +4564,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-nolan",
@@ -3387,7 +4585,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "45020",
+    "cbsa_name": "Sweetwater, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "101",
+    "csa_name": "Abilene-Sweetwater, TX",
+    "role": "central"
    }
   },
   {
@@ -3406,7 +4615,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "18580",
+    "cbsa_name": "Corpus Christi, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "204",
+    "csa_name": "Corpus Christi-Kingsville-Alice, TX",
+    "role": "central"
    }
   },
   {
@@ -3425,8 +4645,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-oldham",
@@ -3444,7 +4666,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "11100",
+    "cbsa_name": "Amarillo, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "108",
+    "csa_name": "Amarillo-Borger, TX",
+    "role": "outlying"
    }
   },
   {
@@ -3463,7 +4696,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "13140",
+    "cbsa_name": "Beaumont-Port Arthur, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "outlying"
    }
   },
   {
@@ -3482,7 +4726,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "33420",
+    "cbsa_name": "Mineral Wells, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "206",
+    "csa_name": "Dallas-Fort Worth, TX-OK",
+    "role": "central"
    }
   },
   {
@@ -3501,8 +4756,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-parker",
@@ -3520,7 +4777,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "19100",
+    "cbsa_name": "Dallas-Fort Worth-Arlington, TX",
+    "type": "metropolitan",
+    "division": "23104",
+    "division_name": "Fort Worth-Arlington-Grapevine, TX",
+    "csa": "206",
+    "csa_name": "Dallas-Fort Worth, TX-OK",
+    "role": "outlying"
    }
   },
   {
@@ -3539,8 +4807,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-pecos",
@@ -3558,8 +4828,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-polk",
@@ -3577,8 +4849,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-potter",
@@ -3596,7 +4870,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "11100",
+    "cbsa_name": "Amarillo, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "108",
+    "csa_name": "Amarillo-Borger, TX",
+    "role": "central"
    }
   },
   {
@@ -3615,8 +4900,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-rains",
@@ -3634,8 +4921,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-randall",
@@ -3653,7 +4942,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "11100",
+    "cbsa_name": "Amarillo, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "108",
+    "csa_name": "Amarillo-Borger, TX",
+    "role": "central"
    }
   },
   {
@@ -3672,8 +4972,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-real",
@@ -3691,8 +4993,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-red-river",
@@ -3710,7 +5014,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "37580",
+    "cbsa_name": "Paris, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "outlying"
    }
   },
   {
@@ -3729,7 +5044,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "45880",
+    "cbsa_name": "Town of Pecos, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "central"
    }
   },
   {
@@ -3748,8 +5074,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-roberts",
@@ -3767,7 +5095,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "37420",
+    "cbsa_name": "Pampa, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "outlying"
    }
   },
   {
@@ -3786,7 +5125,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "17780",
+    "cbsa_name": "College Station-Bryan, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "outlying"
    }
   },
   {
@@ -3805,7 +5155,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "19100",
+    "cbsa_name": "Dallas-Fort Worth-Arlington, TX",
+    "type": "metropolitan",
+    "division": "19124",
+    "division_name": "Dallas-Plano-Irving, TX",
+    "csa": "206",
+    "csa_name": "Dallas-Fort Worth, TX-OK",
+    "role": "central"
    }
   },
   {
@@ -3824,8 +5185,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-rusk",
@@ -3843,7 +5206,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "30980",
+    "cbsa_name": "Longview, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "outlying"
    }
   },
   {
@@ -3862,8 +5236,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-san-augustine",
@@ -3881,8 +5257,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-san-jacinto",
@@ -3900,7 +5278,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "26420",
+    "cbsa_name": "Houston-Pasadena-The Woodlands, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "288",
+    "csa_name": "Houston-Pasadena, TX",
+    "role": "outlying"
    }
   },
   {
@@ -3919,7 +5308,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "18580",
+    "cbsa_name": "Corpus Christi, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "204",
+    "csa_name": "Corpus Christi-Kingsville-Alice, TX",
+    "role": "central"
    }
   },
   {
@@ -3938,8 +5338,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-schleicher",
@@ -3957,8 +5359,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-scurry",
@@ -3976,7 +5380,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "43660",
+    "cbsa_name": "Snyder, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "central"
    }
   },
   {
@@ -3995,8 +5410,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-shelby",
@@ -4014,8 +5431,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-sherman",
@@ -4033,8 +5452,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-smith",
@@ -4052,7 +5473,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "46340",
+    "cbsa_name": "Tyler, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "540",
+    "csa_name": "Tyler-Jacksonville, TX",
+    "role": "central"
    }
   },
   {
@@ -4071,8 +5503,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-starr",
@@ -4090,7 +5524,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "40100",
+    "cbsa_name": "Rio Grande City-Roma, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "365",
+    "csa_name": "McAllen-Edinburg, TX",
+    "role": "central"
    }
   },
   {
@@ -4109,8 +5554,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-sterling",
@@ -4128,8 +5575,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-stonewall",
@@ -4147,8 +5596,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-sutton",
@@ -4166,8 +5617,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-swisher",
@@ -4185,8 +5638,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-tarrant",
@@ -4204,7 +5659,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "19100",
+    "cbsa_name": "Dallas-Fort Worth-Arlington, TX",
+    "type": "metropolitan",
+    "division": "23104",
+    "division_name": "Fort Worth-Arlington-Grapevine, TX",
+    "csa": "206",
+    "csa_name": "Dallas-Fort Worth, TX-OK",
+    "role": "central"
    }
   },
   {
@@ -4223,7 +5689,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "10180",
+    "cbsa_name": "Abilene, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "101",
+    "csa_name": "Abilene-Sweetwater, TX",
+    "role": "central"
    }
   },
   {
@@ -4242,8 +5719,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-terry",
@@ -4261,8 +5740,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-throckmorton",
@@ -4280,8 +5761,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-titus",
@@ -4299,7 +5782,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "34420",
+    "cbsa_name": "Mount Pleasant, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "central"
    }
   },
   {
@@ -4318,7 +5812,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "41660",
+    "cbsa_name": "San Angelo, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "central"
    }
   },
   {
@@ -4337,7 +5842,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "12420",
+    "cbsa_name": "Austin-Round Rock-San Marcos, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "central"
    }
   },
   {
@@ -4356,8 +5872,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-tyler",
@@ -4375,8 +5893,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-upshur",
@@ -4394,7 +5914,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "30980",
+    "cbsa_name": "Longview, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "outlying"
    }
   },
   {
@@ -4413,8 +5944,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-uvalde",
@@ -4432,7 +5965,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "46620",
+    "cbsa_name": "Uvalde, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "central"
    }
   },
   {
@@ -4451,7 +5995,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "19620",
+    "cbsa_name": "Del Rio, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "central"
    }
   },
   {
@@ -4470,8 +6025,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-victoria",
@@ -4489,7 +6046,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "47020",
+    "cbsa_name": "Victoria, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "544",
+    "csa_name": "Victoria-Port Lavaca, TX",
+    "role": "central"
    }
   },
   {
@@ -4508,7 +6076,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "26660",
+    "cbsa_name": "Huntsville, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "288",
+    "csa_name": "Houston-Pasadena, TX",
+    "role": "central"
    }
   },
   {
@@ -4527,7 +6106,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "26420",
+    "cbsa_name": "Houston-Pasadena-The Woodlands, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "288",
+    "csa_name": "Houston-Pasadena, TX",
+    "role": "central"
    }
   },
   {
@@ -4546,8 +6136,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-washington",
@@ -4565,7 +6157,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "14780",
+    "cbsa_name": "Brenham, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "288",
+    "csa_name": "Houston-Pasadena, TX",
+    "role": "central"
    }
   },
   {
@@ -4584,7 +6187,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "29700",
+    "cbsa_name": "Laredo, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "central"
    }
   },
   {
@@ -4603,7 +6217,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "20900",
+    "cbsa_name": "El Campo, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "288",
+    "csa_name": "Houston-Pasadena, TX",
+    "role": "central"
    }
   },
   {
@@ -4622,8 +6247,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-wichita",
@@ -4641,7 +6268,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "48660",
+    "cbsa_name": "Wichita Falls, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "central"
    }
   },
   {
@@ -4660,7 +6298,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "46900",
+    "cbsa_name": "Vernon, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "central"
    }
   },
   {
@@ -4679,7 +6328,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "39700",
+    "cbsa_name": "Raymondville, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "154",
+    "csa_name": "Brownsville-Harlingen-Raymondville, TX",
+    "role": "central"
    }
   },
   {
@@ -4698,7 +6358,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "12420",
+    "cbsa_name": "Austin-Round Rock-San Marcos, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "central"
    }
   },
   {
@@ -4717,7 +6388,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "41700",
+    "cbsa_name": "San Antonio-New Braunfels, TX",
+    "type": "metropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": "484",
+    "csa_name": "San Antonio-New Braunfels-Kerrville, TX",
+    "role": "outlying"
    }
   },
   {
@@ -4736,8 +6418,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-wise",
@@ -4755,7 +6439,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "19100",
+    "cbsa_name": "Dallas-Fort Worth-Arlington, TX",
+    "type": "metropolitan",
+    "division": "23104",
+    "division_name": "Fort Worth-Arlington-Grapevine, TX",
+    "csa": "206",
+    "csa_name": "Dallas-Fort Worth, TX-OK",
+    "role": "outlying"
    }
   },
   {
@@ -4774,8 +6469,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-yoakum",
@@ -4793,8 +6490,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-young",
@@ -4812,8 +6511,10 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
-   }
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
   },
   {
    "id": "county-zapata",
@@ -4831,7 +6532,18 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation"
+   },
+   "metro": {
+    "cbsa": "49820",
+    "cbsa_name": "Zapata, TX",
+    "type": "micropolitan",
+    "division": null,
+    "division_name": null,
+    "csa": null,
+    "csa_name": null,
+    "role": "central"
    }
   },
   {
@@ -4850,7 +6562,2740 @@
     "name": "us-atlas",
     "fips": "us-atlas",
     "lon": "computed:area-weighted-centroid",
-    "lat": "computed:area-weighted-centroid"
+    "lat": "computed:area-weighted-centroid",
+    "metro": "omb-2023-delineation:in-no-statistical-area"
+   },
+   "metro": null
+  },
+  {
+   "id": "metro-abilene",
+   "kind": "cbsa",
+   "name": "Abilene",
+   "full_name": "Abilene, TX",
+   "area_type": "metropolitan",
+   "code": "10180",
+   "lon": -99.71386,
+   "lat": 32.44655,
+   "counties": [
+    "Callahan",
+    "Jones",
+    "Taylor"
+   ],
+   "county_fips": [
+    "48059",
+    "48253",
+    "48441"
+   ],
+   "aliases": [
+    "10180",
+    "abilene"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-alice",
+   "kind": "cbsa",
+   "name": "Alice",
+   "full_name": "Alice, TX",
+   "area_type": "micropolitan",
+   "code": "10860",
+   "lon": -98.15437,
+   "lat": 27.3804,
+   "counties": [
+    "Brooks",
+    "Jim Wells"
+   ],
+   "county_fips": [
+    "48047",
+    "48249"
+   ],
+   "aliases": [
+    "10860",
+    "alice"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-amarillo",
+   "kind": "cbsa",
+   "name": "Amarillo",
+   "full_name": "Amarillo, TX",
+   "area_type": "metropolitan",
+   "code": "11100",
+   "lon": -101.82121,
+   "lat": 35.22797,
+   "counties": [
+    "Armstrong",
+    "Carson",
+    "Oldham",
+    "Potter",
+    "Randall"
+   ],
+   "county_fips": [
+    "48011",
+    "48065",
+    "48359",
+    "48375",
+    "48381"
+   ],
+   "aliases": [
+    "11100",
+    "amarillo"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-andrews",
+   "kind": "cbsa",
+   "name": "Andrews",
+   "full_name": "Andrews, TX",
+   "area_type": "micropolitan",
+   "code": "11380",
+   "lon": -102.63788,
+   "lat": 32.30445,
+   "counties": [
+    "Andrews"
+   ],
+   "county_fips": [
+    "48003"
+   ],
+   "aliases": [
+    "11380",
+    "andrews"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-athens",
+   "kind": "cbsa",
+   "name": "Athens",
+   "full_name": "Athens, TX",
+   "area_type": "micropolitan",
+   "code": "11980",
+   "lon": -95.85137,
+   "lat": 32.21225,
+   "counties": [
+    "Henderson"
+   ],
+   "county_fips": [
+    "48213"
+   ],
+   "aliases": [
+    "11980",
+    "athens"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-austin-round-rock-san-marcos",
+   "kind": "cbsa",
+   "name": "Austin-Round Rock-San Marcos",
+   "full_name": "Austin-Round Rock-San Marcos, TX",
+   "area_type": "metropolitan",
+   "code": "12420",
+   "lon": -97.66849,
+   "lat": 30.19613,
+   "counties": [
+    "Bastrop",
+    "Caldwell",
+    "Hays",
+    "Travis",
+    "Williamson"
+   ],
+   "county_fips": [
+    "48021",
+    "48055",
+    "48209",
+    "48453",
+    "48491"
+   ],
+   "aliases": [
+    "12420",
+    "austin",
+    "austin round rock san marcos",
+    "round rock",
+    "san marcos"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-bay-city",
+   "kind": "cbsa",
+   "name": "Bay City",
+   "full_name": "Bay City, TX",
+   "area_type": "micropolitan",
+   "code": "13060",
+   "lon": -96.01259,
+   "lat": 28.82124,
+   "counties": [
+    "Matagorda"
+   ],
+   "county_fips": [
+    "48321"
+   ],
+   "aliases": [
+    "13060",
+    "bay city"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-beaumont-port-arthur",
+   "kind": "cbsa",
+   "name": "Beaumont-Port Arthur",
+   "full_name": "Beaumont-Port Arthur, TX",
+   "area_type": "metropolitan",
+   "code": "13140",
+   "lon": -94.14863,
+   "lat": 30.1113,
+   "counties": [
+    "Hardin",
+    "Jefferson",
+    "Orange"
+   ],
+   "county_fips": [
+    "48199",
+    "48245",
+    "48361"
+   ],
+   "aliases": [
+    "13140",
+    "beaumont",
+    "beaumont port arthur",
+    "port arthur"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-beeville",
+   "kind": "cbsa",
+   "name": "Beeville",
+   "full_name": "Beeville, TX",
+   "area_type": "micropolitan",
+   "code": "13300",
+   "lon": -97.74192,
+   "lat": 28.41741,
+   "counties": [
+    "Bee"
+   ],
+   "county_fips": [
+    "48025"
+   ],
+   "aliases": [
+    "13300",
+    "beeville"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-big-spring",
+   "kind": "cbsa",
+   "name": "Big Spring",
+   "full_name": "Big Spring, TX",
+   "area_type": "micropolitan",
+   "code": "13700",
+   "lon": -101.43569,
+   "lat": 32.30666,
+   "counties": [
+    "Howard"
+   ],
+   "county_fips": [
+    "48227"
+   ],
+   "aliases": [
+    "13700",
+    "big spring"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-bonham",
+   "kind": "cbsa",
+   "name": "Bonham",
+   "full_name": "Bonham, TX",
+   "area_type": "micropolitan",
+   "code": "14300",
+   "lon": -96.10677,
+   "lat": 33.59251,
+   "counties": [
+    "Fannin"
+   ],
+   "county_fips": [
+    "48147"
+   ],
+   "aliases": [
+    "14300",
+    "bonham"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-borger",
+   "kind": "cbsa",
+   "name": "Borger",
+   "full_name": "Borger, TX",
+   "area_type": "micropolitan",
+   "code": "14420",
+   "lon": -101.35487,
+   "lat": 35.84011,
+   "counties": [
+    "Hutchinson"
+   ],
+   "county_fips": [
+    "48233"
+   ],
+   "aliases": [
+    "14420",
+    "borger"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-brenham",
+   "kind": "cbsa",
+   "name": "Brenham",
+   "full_name": "Brenham, TX",
+   "area_type": "micropolitan",
+   "code": "14780",
+   "lon": -96.40387,
+   "lat": 30.21306,
+   "counties": [
+    "Washington"
+   ],
+   "county_fips": [
+    "48477"
+   ],
+   "aliases": [
+    "14780",
+    "brenham"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-brownsville-harlingen",
+   "kind": "cbsa",
+   "name": "Brownsville-Harlingen",
+   "full_name": "Brownsville-Harlingen, TX",
+   "area_type": "metropolitan",
+   "code": "15180",
+   "lon": -97.51346,
+   "lat": 26.13427,
+   "counties": [
+    "Cameron"
+   ],
+   "county_fips": [
+    "48061"
+   ],
+   "aliases": [
+    "15180",
+    "brownsville",
+    "brownsville harlingen",
+    "harlingen"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-brownwood",
+   "kind": "cbsa",
+   "name": "Brownwood",
+   "full_name": "Brownwood, TX",
+   "area_type": "micropolitan",
+   "code": "15220",
+   "lon": -98.99851,
+   "lat": 31.77502,
+   "counties": [
+    "Brown"
+   ],
+   "county_fips": [
+    "48049"
+   ],
+   "aliases": [
+    "15220",
+    "brownwood"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-college-station-bryan",
+   "kind": "cbsa",
+   "name": "College Station-Bryan",
+   "full_name": "College Station-Bryan, TX",
+   "area_type": "metropolitan",
+   "code": "17780",
+   "lon": -96.47823,
+   "lat": 30.72664,
+   "counties": [
+    "Brazos",
+    "Burleson",
+    "Robertson"
+   ],
+   "county_fips": [
+    "48041",
+    "48051",
+    "48395"
+   ],
+   "aliases": [
+    "17780",
+    "bryan",
+    "college station",
+    "college station bryan"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-corpus-christi",
+   "kind": "cbsa",
+   "name": "Corpus Christi",
+   "full_name": "Corpus Christi, TX",
+   "area_type": "metropolitan",
+   "code": "18580",
+   "lon": -97.37584,
+   "lat": 27.95112,
+   "counties": [
+    "Aransas",
+    "Nueces",
+    "San Patricio"
+   ],
+   "county_fips": [
+    "48007",
+    "48355",
+    "48409"
+   ],
+   "aliases": [
+    "18580",
+    "corpus christi"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-corsicana",
+   "kind": "cbsa",
+   "name": "Corsicana",
+   "full_name": "Corsicana, TX",
+   "area_type": "micropolitan",
+   "code": "18620",
+   "lon": -96.47173,
+   "lat": 32.04729,
+   "counties": [
+    "Navarro"
+   ],
+   "county_fips": [
+    "48349"
+   ],
+   "aliases": [
+    "18620",
+    "corsicana"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-dallas-fort-worth-arlington",
+   "kind": "cbsa",
+   "name": "Dallas-Fort Worth-Arlington",
+   "full_name": "Dallas-Fort Worth-Arlington, TX",
+   "area_type": "metropolitan",
+   "code": "19100",
+   "lon": -96.92352,
+   "lat": 32.84303,
+   "counties": [
+    "Collin",
+    "Dallas",
+    "Denton",
+    "Ellis",
+    "Hunt",
+    "Johnson",
+    "Kaufman",
+    "Parker",
+    "Rockwall",
+    "Tarrant",
+    "Wise"
+   ],
+   "county_fips": [
+    "48085",
+    "48113",
+    "48121",
+    "48139",
+    "48231",
+    "48251",
+    "48257",
+    "48367",
+    "48397",
+    "48439",
+    "48497"
+   ],
+   "aliases": [
+    "19100",
+    "arlington",
+    "dallas",
+    "dallas fort worth arlington",
+    "fort worth"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-del-rio",
+   "kind": "cbsa",
+   "name": "Del Rio",
+   "full_name": "Del Rio, TX",
+   "area_type": "micropolitan",
+   "code": "19620",
+   "lon": -101.15225,
+   "lat": 29.89242,
+   "counties": [
+    "Val Verde"
+   ],
+   "county_fips": [
+    "48465"
+   ],
+   "aliases": [
+    "19620",
+    "del rio"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-dumas",
+   "kind": "cbsa",
+   "name": "Dumas",
+   "full_name": "Dumas, TX",
+   "area_type": "micropolitan",
+   "code": "20300",
+   "lon": -101.89317,
+   "lat": 35.83774,
+   "counties": [
+    "Moore"
+   ],
+   "county_fips": [
+    "48341"
+   ],
+   "aliases": [
+    "20300",
+    "dumas"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-eagle-pass",
+   "kind": "cbsa",
+   "name": "Eagle Pass",
+   "full_name": "Eagle Pass, TX",
+   "area_type": "metropolitan",
+   "code": "20580",
+   "lon": -100.31462,
+   "lat": 28.743,
+   "counties": [
+    "Maverick"
+   ],
+   "county_fips": [
+    "48323"
+   ],
+   "aliases": [
+    "20580",
+    "eagle pass"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-el-campo",
+   "kind": "cbsa",
+   "name": "El Campo",
+   "full_name": "El Campo, TX",
+   "area_type": "micropolitan",
+   "code": "20900",
+   "lon": -96.2219,
+   "lat": 29.27871,
+   "counties": [
+    "Wharton"
+   ],
+   "county_fips": [
+    "48481"
+   ],
+   "aliases": [
+    "20900",
+    "el campo"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-el-paso",
+   "kind": "cbsa",
+   "name": "El Paso",
+   "full_name": "El Paso, TX",
+   "area_type": "metropolitan",
+   "code": "21340",
+   "lon": -105.81054,
+   "lat": 31.61257,
+   "counties": [
+    "El Paso",
+    "Hudspeth"
+   ],
+   "county_fips": [
+    "48141",
+    "48229"
+   ],
+   "aliases": [
+    "21340",
+    "el paso"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-fredericksburg",
+   "kind": "cbsa",
+   "name": "Fredericksburg",
+   "full_name": "Fredericksburg, TX",
+   "area_type": "micropolitan",
+   "code": "23240",
+   "lon": -98.94774,
+   "lat": 30.31822,
+   "counties": [
+    "Gillespie"
+   ],
+   "county_fips": [
+    "48171"
+   ],
+   "aliases": [
+    "23240",
+    "fredericksburg"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-gainesville",
+   "kind": "cbsa",
+   "name": "Gainesville",
+   "full_name": "Gainesville, TX",
+   "area_type": "micropolitan",
+   "code": "23620",
+   "lon": -97.21336,
+   "lat": 33.63978,
+   "counties": [
+    "Cooke"
+   ],
+   "county_fips": [
+    "48097"
+   ],
+   "aliases": [
+    "23620",
+    "gainesville"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-granbury",
+   "kind": "cbsa",
+   "name": "Granbury",
+   "full_name": "Granbury, TX",
+   "area_type": "micropolitan",
+   "code": "24180",
+   "lon": -97.83281,
+   "lat": 32.43003,
+   "counties": [
+    "Hood"
+   ],
+   "county_fips": [
+    "48221"
+   ],
+   "aliases": [
+    "24180",
+    "granbury"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-hereford",
+   "kind": "cbsa",
+   "name": "Hereford",
+   "full_name": "Hereford, TX",
+   "area_type": "micropolitan",
+   "code": "25820",
+   "lon": -102.60565,
+   "lat": 34.96537,
+   "counties": [
+    "Deaf Smith"
+   ],
+   "county_fips": [
+    "48117"
+   ],
+   "aliases": [
+    "25820",
+    "hereford"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-houston-pasadena-the-woodlands",
+   "kind": "cbsa",
+   "name": "Houston-Pasadena-The Woodlands",
+   "full_name": "Houston-Pasadena-The Woodlands, TX",
+   "area_type": "metropolitan",
+   "code": "26420",
+   "lon": -95.39302,
+   "lat": 29.86265,
+   "counties": [
+    "Austin",
+    "Brazoria",
+    "Chambers",
+    "Fort Bend",
+    "Galveston",
+    "Harris",
+    "Liberty",
+    "Montgomery",
+    "San Jacinto",
+    "Waller"
+   ],
+   "county_fips": [
+    "48015",
+    "48039",
+    "48071",
+    "48157",
+    "48167",
+    "48201",
+    "48291",
+    "48339",
+    "48407",
+    "48473"
+   ],
+   "aliases": [
+    "26420",
+    "houston",
+    "houston pasadena woodlands",
+    "pasadena",
+    "woodlands"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-huntsville",
+   "kind": "cbsa",
+   "name": "Huntsville",
+   "full_name": "Huntsville, TX",
+   "area_type": "micropolitan",
+   "code": "26660",
+   "lon": -95.57184,
+   "lat": 30.73945,
+   "counties": [
+    "Walker"
+   ],
+   "county_fips": [
+    "48471"
+   ],
+   "aliases": [
+    "26660",
+    "huntsville"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-jacksonville",
+   "kind": "cbsa",
+   "name": "Jacksonville",
+   "full_name": "Jacksonville, TX",
+   "area_type": "micropolitan",
+   "code": "27380",
+   "lon": -95.16448,
+   "lat": 31.83631,
+   "counties": [
+    "Cherokee"
+   ],
+   "county_fips": [
+    "48073"
+   ],
+   "aliases": [
+    "27380",
+    "jacksonville"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-kerrville",
+   "kind": "cbsa",
+   "name": "Kerrville",
+   "full_name": "Kerrville, TX",
+   "area_type": "micropolitan",
+   "code": "28500",
+   "lon": -99.35008,
+   "lat": 30.06134,
+   "counties": [
+    "Kerr"
+   ],
+   "county_fips": [
+    "48265"
+   ],
+   "aliases": [
+    "28500",
+    "kerrville"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-killeen-temple",
+   "kind": "cbsa",
+   "name": "Killeen-Temple",
+   "full_name": "Killeen-Temple, TX",
+   "area_type": "metropolitan",
+   "code": "28660",
+   "lon": -97.84031,
+   "lat": 31.2081,
+   "counties": [
+    "Bell",
+    "Coryell",
+    "Lampasas"
+   ],
+   "county_fips": [
+    "48027",
+    "48099",
+    "48281"
+   ],
+   "aliases": [
+    "28660",
+    "killeen",
+    "killeen temple",
+    "temple"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-kingsville",
+   "kind": "cbsa",
+   "name": "Kingsville",
+   "full_name": "Kingsville, TX",
+   "area_type": "micropolitan",
+   "code": "28780",
+   "lon": -97.72301,
+   "lat": 27.43088,
+   "counties": [
+    "Kleberg"
+   ],
+   "county_fips": [
+    "48273"
+   ],
+   "aliases": [
+    "28780",
+    "kingsville"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-laredo",
+   "kind": "cbsa",
+   "name": "Laredo",
+   "full_name": "Laredo, TX",
+   "area_type": "metropolitan",
+   "code": "29700",
+   "lon": -99.3316,
+   "lat": 27.761,
+   "counties": [
+    "Webb"
+   ],
+   "county_fips": [
+    "48479"
+   ],
+   "aliases": [
+    "29700",
+    "laredo"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-longview",
+   "kind": "cbsa",
+   "name": "Longview",
+   "full_name": "Longview, TX",
+   "area_type": "metropolitan",
+   "code": "30980",
+   "lon": -94.72309,
+   "lat": 32.4681,
+   "counties": [
+    "Gregg",
+    "Harrison",
+    "Rusk",
+    "Upshur"
+   ],
+   "county_fips": [
+    "48183",
+    "48203",
+    "48401",
+    "48459"
+   ],
+   "aliases": [
+    "30980",
+    "longview"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-lubbock",
+   "kind": "cbsa",
+   "name": "Lubbock",
+   "full_name": "Lubbock, TX",
+   "area_type": "metropolitan",
+   "code": "31180",
+   "lon": -101.90102,
+   "lat": 33.46552,
+   "counties": [
+    "Cochran",
+    "Crosby",
+    "Garza",
+    "Hockley",
+    "Lubbock",
+    "Lynn"
+   ],
+   "county_fips": [
+    "48079",
+    "48107",
+    "48169",
+    "48219",
+    "48303",
+    "48305"
+   ],
+   "aliases": [
+    "31180",
+    "lubbock"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-lufkin",
+   "kind": "cbsa",
+   "name": "Lufkin",
+   "full_name": "Lufkin, TX",
+   "area_type": "micropolitan",
+   "code": "31260",
+   "lon": -94.61207,
+   "lat": 31.25428,
+   "counties": [
+    "Angelina"
+   ],
+   "county_fips": [
+    "48005"
+   ],
+   "aliases": [
+    "31260",
+    "lufkin"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-mcallen-edinburg-mission",
+   "kind": "cbsa",
+   "name": "McAllen-Edinburg-Mission",
+   "full_name": "McAllen-Edinburg-Mission, TX",
+   "area_type": "metropolitan",
+   "code": "32580",
+   "lon": -98.18037,
+   "lat": 26.39669,
+   "counties": [
+    "Hidalgo"
+   ],
+   "county_fips": [
+    "48215"
+   ],
+   "aliases": [
+    "32580",
+    "edinburg",
+    "mcallen",
+    "mcallen edinburg mission",
+    "mission"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-midland",
+   "kind": "cbsa",
+   "name": "Midland",
+   "full_name": "Midland, TX",
+   "area_type": "metropolitan",
+   "code": "33260",
+   "lon": -101.99132,
+   "lat": 32.08733,
+   "counties": [
+    "Martin",
+    "Midland"
+   ],
+   "county_fips": [
+    "48317",
+    "48329"
+   ],
+   "aliases": [
+    "33260",
+    "midland"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-mineral-wells",
+   "kind": "cbsa",
+   "name": "Mineral Wells",
+   "full_name": "Mineral Wells, TX",
+   "area_type": "micropolitan",
+   "code": "33420",
+   "lon": -98.31195,
+   "lat": 32.75322,
+   "counties": [
+    "Palo Pinto"
+   ],
+   "county_fips": [
+    "48363"
+   ],
+   "aliases": [
+    "33420",
+    "mineral wells"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-mount-pleasant",
+   "kind": "cbsa",
+   "name": "Mount Pleasant",
+   "full_name": "Mount Pleasant, TX",
+   "area_type": "micropolitan",
+   "code": "34420",
+   "lon": -94.8935,
+   "lat": 33.10117,
+   "counties": [
+    "Camp",
+    "Morris",
+    "Titus"
+   ],
+   "county_fips": [
+    "48063",
+    "48343",
+    "48449"
+   ],
+   "aliases": [
+    "34420",
+    "mount pleasant"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-nacogdoches",
+   "kind": "cbsa",
+   "name": "Nacogdoches",
+   "full_name": "Nacogdoches, TX",
+   "area_type": "micropolitan",
+   "code": "34860",
+   "lon": -94.61692,
+   "lat": 31.61568,
+   "counties": [
+    "Nacogdoches"
+   ],
+   "county_fips": [
+    "48347"
+   ],
+   "aliases": [
+    "34860",
+    "nacogdoches"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-odessa",
+   "kind": "cbsa",
+   "name": "Odessa",
+   "full_name": "Odessa, TX",
+   "area_type": "metropolitan",
+   "code": "36220",
+   "lon": -102.54265,
+   "lat": 31.86889,
+   "counties": [
+    "Ector"
+   ],
+   "county_fips": [
+    "48135"
+   ],
+   "aliases": [
+    "36220",
+    "odessa"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-palestine",
+   "kind": "cbsa",
+   "name": "Palestine",
+   "full_name": "Palestine, TX",
+   "area_type": "micropolitan",
+   "code": "37300",
+   "lon": -95.65145,
+   "lat": 31.8137,
+   "counties": [
+    "Anderson"
+   ],
+   "county_fips": [
+    "48001"
+   ],
+   "aliases": [
+    "37300",
+    "palestine"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-pampa",
+   "kind": "cbsa",
+   "name": "Pampa",
+   "full_name": "Pampa, TX",
+   "area_type": "micropolitan",
+   "code": "37420",
+   "lon": -100.81427,
+   "lat": 35.61932,
+   "counties": [
+    "Gray",
+    "Roberts"
+   ],
+   "county_fips": [
+    "48179",
+    "48393"
+   ],
+   "aliases": [
+    "37420",
+    "pampa"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-paris",
+   "kind": "cbsa",
+   "name": "Paris",
+   "full_name": "Paris, TX",
+   "area_type": "micropolitan",
+   "code": "37580",
+   "lon": -95.31137,
+   "lat": 33.64413,
+   "counties": [
+    "Lamar",
+    "Red River"
+   ],
+   "county_fips": [
+    "48277",
+    "48387"
+   ],
+   "aliases": [
+    "37580",
+    "paris"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-plainview",
+   "kind": "cbsa",
+   "name": "Plainview",
+   "full_name": "Plainview, TX",
+   "area_type": "micropolitan",
+   "code": "38380",
+   "lon": -101.56477,
+   "lat": 34.07146,
+   "counties": [
+    "Floyd",
+    "Hale"
+   ],
+   "county_fips": [
+    "48153",
+    "48189"
+   ],
+   "aliases": [
+    "38380",
+    "plainview"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-port-lavaca",
+   "kind": "cbsa",
+   "name": "Port Lavaca",
+   "full_name": "Port Lavaca, TX",
+   "area_type": "micropolitan",
+   "code": "38920",
+   "lon": -96.60448,
+   "lat": 28.50254,
+   "counties": [
+    "Calhoun"
+   ],
+   "county_fips": [
+    "48057"
+   ],
+   "aliases": [
+    "38920",
+    "port lavaca"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-raymondville",
+   "kind": "cbsa",
+   "name": "Raymondville",
+   "full_name": "Raymondville, TX",
+   "area_type": "micropolitan",
+   "code": "39700",
+   "lon": -97.65782,
+   "lat": 26.47065,
+   "counties": [
+    "Willacy"
+   ],
+   "county_fips": [
+    "48489"
+   ],
+   "aliases": [
+    "39700",
+    "raymondville"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-rio-grande-city-roma",
+   "kind": "cbsa",
+   "name": "Rio Grande City-Roma",
+   "full_name": "Rio Grande City-Roma, TX",
+   "area_type": "micropolitan",
+   "code": "40100",
+   "lon": -98.73802,
+   "lat": 26.56201,
+   "counties": [
+    "Starr"
+   ],
+   "county_fips": [
+    "48427"
+   ],
+   "aliases": [
+    "40100",
+    "rio grande city",
+    "rio grande city roma",
+    "roma"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-san-angelo",
+   "kind": "cbsa",
+   "name": "San Angelo",
+   "full_name": "San Angelo, TX",
+   "area_type": "metropolitan",
+   "code": "41660",
+   "lon": -100.72213,
+   "lat": 31.35408,
+   "counties": [
+    "Irion",
+    "Tom Green"
+   ],
+   "county_fips": [
+    "48235",
+    "48451"
+   ],
+   "aliases": [
+    "41660",
+    "san angelo"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-san-antonio-new-braunfels",
+   "kind": "cbsa",
+   "name": "San Antonio-New Braunfels",
+   "full_name": "San Antonio-New Braunfels, TX",
+   "area_type": "metropolitan",
+   "code": "41700",
+   "lon": -98.55348,
+   "lat": 29.49447,
+   "counties": [
+    "Atascosa",
+    "Bandera",
+    "Bexar",
+    "Comal",
+    "Guadalupe",
+    "Kendall",
+    "Medina",
+    "Wilson"
+   ],
+   "county_fips": [
+    "48013",
+    "48019",
+    "48029",
+    "48091",
+    "48187",
+    "48259",
+    "48325",
+    "48493"
+   ],
+   "aliases": [
+    "41700",
+    "new braunfels",
+    "san antonio",
+    "san antonio new braunfels"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-sherman-denison",
+   "kind": "cbsa",
+   "name": "Sherman-Denison",
+   "full_name": "Sherman-Denison, TX",
+   "area_type": "metropolitan",
+   "code": "43300",
+   "lon": -96.67849,
+   "lat": 33.62687,
+   "counties": [
+    "Grayson"
+   ],
+   "county_fips": [
+    "48181"
+   ],
+   "aliases": [
+    "43300",
+    "denison",
+    "sherman",
+    "sherman denison"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-snyder",
+   "kind": "cbsa",
+   "name": "Snyder",
+   "full_name": "Snyder, TX",
+   "area_type": "micropolitan",
+   "code": "43660",
+   "lon": -100.91622,
+   "lat": 32.74616,
+   "counties": [
+    "Scurry"
+   ],
+   "county_fips": [
+    "48415"
+   ],
+   "aliases": [
+    "43660",
+    "snyder"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-stephenville",
+   "kind": "cbsa",
+   "name": "Stephenville",
+   "full_name": "Stephenville, TX",
+   "area_type": "micropolitan",
+   "code": "44500",
+   "lon": -98.21739,
+   "lat": 32.23587,
+   "counties": [
+    "Erath"
+   ],
+   "county_fips": [
+    "48143"
+   ],
+   "aliases": [
+    "44500",
+    "stephenville"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-sulphur-springs",
+   "kind": "cbsa",
+   "name": "Sulphur Springs",
+   "full_name": "Sulphur Springs, TX",
+   "area_type": "micropolitan",
+   "code": "44860",
+   "lon": -95.56392,
+   "lat": 33.14899,
+   "counties": [
+    "Hopkins"
+   ],
+   "county_fips": [
+    "48223"
+   ],
+   "aliases": [
+    "44860",
+    "sulphur springs"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-sweetwater",
+   "kind": "cbsa",
+   "name": "Sweetwater",
+   "full_name": "Sweetwater, TX",
+   "area_type": "micropolitan",
+   "code": "45020",
+   "lon": -100.40529,
+   "lat": 32.30407,
+   "counties": [
+    "Nolan"
+   ],
+   "county_fips": [
+    "48353"
+   ],
+   "aliases": [
+    "45020",
+    "sweetwater"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-texarkana",
+   "kind": "cbsa",
+   "name": "Texarkana",
+   "full_name": "Texarkana, TX-AR",
+   "area_type": "metropolitan",
+   "code": "45500",
+   "lon": -94.42437,
+   "lat": 33.4462,
+   "counties": [
+    "Bowie"
+   ],
+   "county_fips": [
+    "48037"
+   ],
+   "aliases": [
+    "45500",
+    "texarkana",
+    "texarkana ar"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-town-of-pecos",
+   "kind": "cbsa",
+   "name": "Town of Pecos",
+   "full_name": "Town of Pecos, TX",
+   "area_type": "micropolitan",
+   "code": "45880",
+   "lon": -103.69229,
+   "lat": 31.3229,
+   "counties": [
+    "Reeves"
+   ],
+   "county_fips": [
+    "48389"
+   ],
+   "aliases": [
+    "45880",
+    "pecos"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-tyler",
+   "kind": "cbsa",
+   "name": "Tyler",
+   "full_name": "Tyler, TX",
+   "area_type": "metropolitan",
+   "code": "46340",
+   "lon": -95.26898,
+   "lat": 32.37606,
+   "counties": [
+    "Smith"
+   ],
+   "county_fips": [
+    "48423"
+   ],
+   "aliases": [
+    "46340",
+    "tyler"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-uvalde",
+   "kind": "cbsa",
+   "name": "Uvalde",
+   "full_name": "Uvalde, TX",
+   "area_type": "micropolitan",
+   "code": "46620",
+   "lon": -99.76207,
+   "lat": 29.35731,
+   "counties": [
+    "Uvalde"
+   ],
+   "county_fips": [
+    "48463"
+   ],
+   "aliases": [
+    "46620",
+    "uvalde"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-vernon",
+   "kind": "cbsa",
+   "name": "Vernon",
+   "full_name": "Vernon, TX",
+   "area_type": "micropolitan",
+   "code": "46900",
+   "lon": -99.23976,
+   "lat": 34.0795,
+   "counties": [
+    "Wilbarger"
+   ],
+   "county_fips": [
+    "48487"
+   ],
+   "aliases": [
+    "46900",
+    "vernon"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-victoria",
+   "kind": "cbsa",
+   "name": "Victoria",
+   "full_name": "Victoria, TX",
+   "area_type": "metropolitan",
+   "code": "47020",
+   "lon": -97.19738,
+   "lat": 28.7268,
+   "counties": [
+    "Goliad",
+    "Victoria"
+   ],
+   "county_fips": [
+    "48175",
+    "48469"
+   ],
+   "aliases": [
+    "47020",
+    "victoria"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-waco",
+   "kind": "cbsa",
+   "name": "Waco",
+   "full_name": "Waco, TX",
+   "area_type": "metropolitan",
+   "code": "47380",
+   "lon": -97.25752,
+   "lat": 31.56896,
+   "counties": [
+    "Bosque",
+    "Falls",
+    "McLennan"
+   ],
+   "county_fips": [
+    "48035",
+    "48145",
+    "48309"
+   ],
+   "aliases": [
+    "47380",
+    "waco"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-wichita-falls",
+   "kind": "cbsa",
+   "name": "Wichita Falls",
+   "full_name": "Wichita Falls, TX",
+   "area_type": "metropolitan",
+   "code": "48660",
+   "lon": -98.53313,
+   "lat": 33.79649,
+   "counties": [
+    "Archer",
+    "Clay",
+    "Wichita"
+   ],
+   "county_fips": [
+    "48009",
+    "48077",
+    "48485"
+   ],
+   "aliases": [
+    "48660",
+    "wichita falls"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "metro-zapata",
+   "kind": "cbsa",
+   "name": "Zapata",
+   "full_name": "Zapata, TX",
+   "area_type": "micropolitan",
+   "code": "49820",
+   "lon": -99.16914,
+   "lat": 27.00166,
+   "counties": [
+    "Zapata"
+   ],
+   "county_fips": [
+    "48505"
+   ],
+   "aliases": [
+    "49820",
+    "zapata"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "combined-abilene-sweetwater",
+   "kind": "csa",
+   "name": "Abilene-Sweetwater",
+   "full_name": "Abilene-Sweetwater, TX",
+   "area_type": "metropolitan",
+   "code": "101",
+   "lon": -99.88672,
+   "lat": 32.41093,
+   "counties": [
+    "Callahan",
+    "Jones",
+    "Nolan",
+    "Taylor"
+   ],
+   "county_fips": [
+    "48059",
+    "48253",
+    "48353",
+    "48441"
+   ],
+   "aliases": [
+    "101",
+    "abilene",
+    "abilene sweetwater",
+    "sweetwater"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "combined-amarillo-borger",
+   "kind": "csa",
+   "name": "Amarillo-Borger",
+   "full_name": "Amarillo-Borger, TX",
+   "area_type": "metropolitan",
+   "code": "108",
+   "lon": -101.74349,
+   "lat": 35.33,
+   "counties": [
+    "Armstrong",
+    "Carson",
+    "Hutchinson",
+    "Oldham",
+    "Potter",
+    "Randall"
+   ],
+   "county_fips": [
+    "48011",
+    "48065",
+    "48233",
+    "48359",
+    "48375",
+    "48381"
+   ],
+   "aliases": [
+    "108",
+    "amarillo",
+    "amarillo borger",
+    "borger"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "combined-brownsville-harlingen-raymondville",
+   "kind": "csa",
+   "name": "Brownsville-Harlingen-Raymondville",
+   "full_name": "Brownsville-Harlingen-Raymondville, TX",
+   "area_type": "metropolitan",
+   "code": "154",
+   "lon": -97.58564,
+   "lat": 26.30246,
+   "counties": [
+    "Cameron",
+    "Willacy"
+   ],
+   "county_fips": [
+    "48061",
+    "48489"
+   ],
+   "aliases": [
+    "154",
+    "brownsville",
+    "brownsville harlingen raymondville",
+    "harlingen",
+    "raymondville"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "combined-corpus-christi-kingsville-alice",
+   "kind": "csa",
+   "name": "Corpus Christi-Kingsville-Alice",
+   "full_name": "Corpus Christi-Kingsville-Alice, TX",
+   "area_type": "micropolitan",
+   "code": "204",
+   "lon": -97.69321,
+   "lat": 27.67418,
+   "counties": [
+    "Aransas",
+    "Brooks",
+    "Jim Wells",
+    "Kleberg",
+    "Nueces",
+    "San Patricio"
+   ],
+   "county_fips": [
+    "48007",
+    "48047",
+    "48249",
+    "48273",
+    "48355",
+    "48409"
+   ],
+   "aliases": [
+    "204",
+    "alice",
+    "corpus christi",
+    "corpus christi kingsville alice",
+    "kingsville"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "combined-dallas-fort-worth",
+   "kind": "csa",
+   "name": "Dallas-Fort Worth",
+   "full_name": "Dallas-Fort Worth, TX-OK",
+   "area_type": "micropolitan",
+   "code": "206",
+   "lon": -96.85206,
+   "lat": 32.88023,
+   "counties": [
+    "Collin",
+    "Cooke",
+    "Dallas",
+    "Denton",
+    "Ellis",
+    "Fannin",
+    "Grayson",
+    "Henderson",
+    "Hood",
+    "Hopkins",
+    "Hunt",
+    "Johnson",
+    "Kaufman",
+    "Navarro",
+    "Palo Pinto",
+    "Parker",
+    "Rockwall",
+    "Tarrant",
+    "Wise"
+   ],
+   "county_fips": [
+    "48085",
+    "48097",
+    "48113",
+    "48121",
+    "48139",
+    "48147",
+    "48181",
+    "48213",
+    "48221",
+    "48223",
+    "48231",
+    "48251",
+    "48257",
+    "48349",
+    "48363",
+    "48367",
+    "48397",
+    "48439",
+    "48497"
+   ],
+   "aliases": [
+    "206",
+    "dallas",
+    "dallas fort worth",
+    "dallas fort worth ok",
+    "fort worth"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "combined-el-paso-las-cruces",
+   "kind": "csa",
+   "name": "El Paso-Las Cruces",
+   "full_name": "El Paso-Las Cruces, TX-NM",
+   "area_type": "metropolitan",
+   "code": "238",
+   "lon": -105.81054,
+   "lat": 31.61257,
+   "counties": [
+    "El Paso",
+    "Hudspeth"
+   ],
+   "county_fips": [
+    "48141",
+    "48229"
+   ],
+   "aliases": [
+    "238",
+    "el paso",
+    "el paso las cruces",
+    "el paso las cruces nm",
+    "las cruces"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "combined-houston-pasadena",
+   "kind": "csa",
+   "name": "Houston-Pasadena",
+   "full_name": "Houston-Pasadena, TX",
+   "area_type": "micropolitan",
+   "code": "288",
+   "lon": -95.58146,
+   "lat": 29.83421,
+   "counties": [
+    "Austin",
+    "Brazoria",
+    "Chambers",
+    "Fort Bend",
+    "Galveston",
+    "Harris",
+    "Liberty",
+    "Matagorda",
+    "Montgomery",
+    "San Jacinto",
+    "Walker",
+    "Waller",
+    "Washington",
+    "Wharton"
+   ],
+   "county_fips": [
+    "48015",
+    "48039",
+    "48071",
+    "48157",
+    "48167",
+    "48201",
+    "48291",
+    "48321",
+    "48339",
+    "48407",
+    "48471",
+    "48473",
+    "48477",
+    "48481"
+   ],
+   "aliases": [
+    "288",
+    "houston",
+    "houston pasadena",
+    "pasadena"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "combined-lubbock-plainview",
+   "kind": "csa",
+   "name": "Lubbock-Plainview",
+   "full_name": "Lubbock-Plainview, TX",
+   "area_type": "metropolitan",
+   "code": "352",
+   "lon": -101.81696,
+   "lat": 33.617,
+   "counties": [
+    "Cochran",
+    "Crosby",
+    "Floyd",
+    "Garza",
+    "Hale",
+    "Hockley",
+    "Lubbock",
+    "Lynn"
+   ],
+   "county_fips": [
+    "48079",
+    "48107",
+    "48153",
+    "48169",
+    "48189",
+    "48219",
+    "48303",
+    "48305"
+   ],
+   "aliases": [
+    "352",
+    "lubbock",
+    "lubbock plainview",
+    "plainview"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "combined-mcallen-edinburg",
+   "kind": "csa",
+   "name": "McAllen-Edinburg",
+   "full_name": "McAllen-Edinburg, TX",
+   "area_type": "metropolitan",
+   "code": "365",
+   "lon": -98.45919,
+   "lat": 26.47935,
+   "counties": [
+    "Hidalgo",
+    "Starr"
+   ],
+   "county_fips": [
+    "48215",
+    "48427"
+   ],
+   "aliases": [
+    "365",
+    "edinburg",
+    "mcallen",
+    "mcallen edinburg"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "combined-midland-odessa-andrews",
+   "kind": "csa",
+   "name": "Midland-Odessa-Andrews",
+   "full_name": "Midland-Odessa-Andrews, TX",
+   "area_type": "micropolitan",
+   "code": "372",
+   "lon": -102.29079,
+   "lat": 32.087,
+   "counties": [
+    "Andrews",
+    "Ector",
+    "Martin",
+    "Midland"
+   ],
+   "county_fips": [
+    "48003",
+    "48135",
+    "48317",
+    "48329"
+   ],
+   "aliases": [
+    "372",
+    "andrews",
+    "midland",
+    "midland odessa andrews",
+    "odessa"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "combined-san-antonio-new-braunfels-kerrville",
+   "kind": "csa",
+   "name": "San Antonio-New Braunfels-Kerrville",
+   "full_name": "San Antonio-New Braunfels-Kerrville, TX",
+   "area_type": "micropolitan",
+   "code": "484",
+   "lon": -98.67256,
+   "lat": 29.63353,
+   "counties": [
+    "Atascosa",
+    "Bandera",
+    "Bexar",
+    "Comal",
+    "Gillespie",
+    "Guadalupe",
+    "Kendall",
+    "Kerr",
+    "Medina",
+    "Wilson"
+   ],
+   "county_fips": [
+    "48013",
+    "48019",
+    "48029",
+    "48091",
+    "48171",
+    "48187",
+    "48259",
+    "48265",
+    "48325",
+    "48493"
+   ],
+   "aliases": [
+    "484",
+    "kerrville",
+    "new braunfels",
+    "san antonio",
+    "san antonio new braunfels kerrville"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "combined-tyler-jacksonville",
+   "kind": "csa",
+   "name": "Tyler-Jacksonville",
+   "full_name": "Tyler-Jacksonville, TX",
+   "area_type": "micropolitan",
+   "code": "540",
+   "lon": -95.21673,
+   "lat": 32.10619,
+   "counties": [
+    "Cherokee",
+    "Smith"
+   ],
+   "county_fips": [
+    "48073",
+    "48423"
+   ],
+   "aliases": [
+    "540",
+    "jacksonville",
+    "tyler",
+    "tyler jacksonville"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "combined-victoria-port-lavaca",
+   "kind": "csa",
+   "name": "Victoria-Port Lavaca",
+   "full_name": "Victoria-Port Lavaca, TX",
+   "area_type": "micropolitan",
+   "code": "544",
+   "lon": -96.99975,
+   "lat": 28.65204,
+   "counties": [
+    "Calhoun",
+    "Goliad",
+    "Victoria"
+   ],
+   "county_fips": [
+    "48057",
+    "48175",
+    "48469"
+   ],
+   "aliases": [
+    "544",
+    "port lavaca",
+    "victoria",
+    "victoria port lavaca"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "division-dallas-plano-irving",
+   "kind": "division",
+   "name": "Dallas-Plano-Irving",
+   "full_name": "Dallas-Plano-Irving, TX",
+   "area_type": "metropolitan",
+   "code": "19124",
+   "lon": -96.5774,
+   "lat": 32.87562,
+   "counties": [
+    "Collin",
+    "Dallas",
+    "Denton",
+    "Ellis",
+    "Hunt",
+    "Kaufman",
+    "Rockwall"
+   ],
+   "county_fips": [
+    "48085",
+    "48113",
+    "48121",
+    "48139",
+    "48231",
+    "48257",
+    "48397"
+   ],
+   "aliases": [
+    "19124",
+    "dallas",
+    "dallas plano irving",
+    "irving",
+    "plano"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
+   }
+  },
+  {
+   "id": "division-fort-worth-arlington-grapevine",
+   "kind": "division",
+   "name": "Fort Worth-Arlington-Grapevine",
+   "full_name": "Fort Worth-Arlington-Grapevine, TX",
+   "area_type": "metropolitan",
+   "code": "23104",
+   "lon": -97.52921,
+   "lat": 32.78601,
+   "counties": [
+    "Johnson",
+    "Parker",
+    "Tarrant",
+    "Wise"
+   ],
+   "county_fips": [
+    "48251",
+    "48367",
+    "48439",
+    "48497"
+   ],
+   "aliases": [
+    "23104",
+    "arlington",
+    "fort worth",
+    "fort worth arlington grapevine",
+    "grapevine"
+   ],
+   "provenance": {
+    "name": "omb-2023-delineation",
+    "code": "omb-2023-delineation",
+    "counties": "omb-2023-delineation",
+    "county_fips": "omb-2023-delineation",
+    "area_type": "omb-2023-delineation",
+    "lon": "computed:mean-of-member-county-centroids",
+    "lat": "computed:mean-of-member-county-centroids"
    }
   }
  ]

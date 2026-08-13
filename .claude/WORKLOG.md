@@ -1,244 +1,132 @@
-# WORKLOG — carousel machine to v1
+# WORKLOG — metro scoping
 
-Written before touching code, per CLAUDE.md, because this does not fit one context.
+Written before touching code, per CLAUDE.md. The previous worklog (carousel machine to v1)
+had all its waves DONE and is replaced here rather than kept, which is what that file's own
+rule says to do.
 
 ## The directive
 
-> "lets launch this task first that way we can get this repo to a v1 before we move to the
-> other repos"
+> "do #2, Metro scoping, massive task so go slow"
 
-The task is the gap identified when the owner asked whether the carousel automation is as
-robust as the one in `alaskaaicarousels`. The honest answer was: scaffolded and wired, not as
-deep. This closes it.
+Task #2 in the standing list: **per-city views across the docket, the site, the grid watch and
+the ask engine.** A reader in Abilene should be able to see what this record says about Abilene.
 
-## What v1 means here
+## Measured starting point (2026-08-13, main at 6ce6c2b)
 
-**The carousel routine can run unattended and produce a deck that meets the standard, with the
-gates as the reviewer.** Not "every Alaska file exists in Texas". The measure is whether an
-unattended run can fail safely and ship honestly, because nobody reviews the output.
+| | state |
+|---|---|
+| `ledger/docket.json` | 13 items, **`metro: null` on every one** |
+| items with any county | **1 of 13** (tx-2026-0003, the Abilene buildout, 22 counties) |
+| items `statewide: false` with no county and no metro | **3** — geographically null, on no page at all |
+| `assets/geo/tx-places.json` | 254 counties, FIPS, computed centroids, aliases, provenance. **No metro layer** |
+| the site's map | real, generated from the record, currently lighting **22 of 254** |
+| the site's `counties/` page | real, and reflects the same one item |
+| `ledger/gridwatch/water.jsonl` | **already carries 19 metros**, from reservoir tags |
+| the ask engine's smart views | `open_now, by_county, by_topic, by_decider, by_status, item, counts` — **no metro view** |
 
-That ordering matters and drives the wave order below: **gates first, craft second, prompt
-depth third.** A deep prompt with shallow gates is a machine that produces confident bad decks.
-Shallow prompt with deep gates produces fewer decks, which is the survivable failure.
+So the honest summary: the schema anticipated this, the plumbing is largely built, and the
+data layer that would make any of it mean something does not exist.
 
-## Measured starting point (2026-08-12, main at a455aa8)
+## Three findings that shape the design
 
-| | Texas | Alaska |
-|---|---|---|
-| routine prompt | 13 KB, phases 0-14 | 83 KB, 17 phase headings |
-| knowledge | 15.6 KB / 4 docs | 316 KB / 6 docs |
-| carousel gates | 3 -> **10** | 10 |
-| agents | 10 of 10, avg ~85% depth | 10 |
-| engine skill | complete (5 files) | complete |
-| ledgers | artwork, captions, topics, upgrades | + instincts |
-| runs shipped | **0** | 30 |
+### 1. Half of Texas is in no metro, and it is the half this story is about
 
-Missing knowledge: `TECHNIQUE_LIBRARY.md` (45 KB, 80+ named techniques), `CAPTION_CRAFT.md`
-(12 KB).
-Missing gates: `dossier_check`, `copy_sync_check`, `aggregate_check`, `claims_check`,
-`dedupe_check`, `gate_status`, `ship_images`.
-Thinnest agents: pixel-critic 53%, caption-critic 62%, upgrade-engineer 62%.
+The 2023 OMB delineation file puts **133 of 254 Texas counties inside a CBSA. The other 121 are
+in none.** Those are not empty quarters: Shackelford, Childress, the Permian outside
+Midland-Odessa, the Panhandle wind and most of the Ogallala are where the physical AI buildout
+is actually happening.
+
+**So the scoping unit cannot be the metro.** A geography facet that only knows metros cannot
+place the Vantage site in Shackelford County, and would quietly drop the most Texas half of the
+record. The unit is a **place**: a metro where there is one, a county where there is not.
+
+### 2. There are already two metro vocabularies, and they disagree
+
+`waterwatch_collect.py` groups reservoirs into 19 metros. Adding a second list for the docket
+is precisely the entity drift `places.py` was written to prevent -- "Austin" meaning two
+different things on two pages of one site.
+
+**Every divergence resolves against the federal file, with a code.** Checked, not assumed:
+
+| water watch says | OMB says |
+|---|---|
+| `dallas` and `fort_worth` separately | Metropolitan **Divisions** 19124 Dallas-Plano-Irving and 23104 Fort Worth-Arlington-Grapevine, inside CBSA 19100 |
+| `midland_odessa` as one | two MSAs, 33260 Midland and 36220 Odessa, inside **CSA** 372 Midland-Odessa-Andrews |
+| `temple_killeen` | CBSA 28660 **Killeen-Temple**. A name-order alias |
+| `nacogdoches` | CBSA 34860, **Micropolitan** rather than Metropolitan. Real, just not an MSA |
+| no `san_antonio` | CBSA 41700 exists. This is a **gap in the reservoir tagging**, not a taxonomy question. Canyon and Medina serve it |
+
+The water watch's groupings are RIGHT for water -- a reservoir serves a city, not a statistical
+area -- and they are the right grain: divisions and CSAs are real OMB entities with codes. So
+the registry carries all three grains and a surface picks the one it needs. **One id, several
+memberships.**
+
+### 3. I cannot write the record, and that is correct
+
+`ownership.yaml` gives `ledger/docket.json` to the `daily` actor. A maintainer session owns
+`scripts/`, `assets/`, `knowledge/shared/` and the workflows. **So this work builds the machine
+and the gate; the daily routine populates the geography during its re-verify phase.**
+
+That is the right split and it decides the shape of the gate: a hard fail on day one would
+block every run until a thirteen-item backlog was cleared by hand, in a lane the runs own. So
+the gate is a **ratchet** -- it fails on any newly admitted item that is unlocatable, and
+reports the existing backlog without failing, and the backlog can only shrink.
 
 ## Rules this work obeys
 
-1. **Alaska is REFERENCE ONLY.** Never write to those repos. Never copy ledger memory: the
-   dedupe and divergence gates compare against recent history and Alaska's would poison them.
-2. **Every gate is replayed against the defect it exists for** and watched go red. A gate that
-   has never failed is a decoration. See `knowledge/shared/GATE_LESSONS.md` first.
-3. **No numeral typed.** Thresholds come from an external standard or from a measurement whose
-   date and corpus are recorded. Never "ten percent below our own" more than once, dated.
-4. **Ported means retheemed, not copied.** Alaska's technique library is Alaska's material.
-   Texas needs Texas material or the decks will look like a borrowed brand.
-5. `port_audit.py --reconcile` after each wave, and the manifest must agree with the tree.
+- Numbers are computed, never generated. The county-to-metro mapping is READ from the OMB
+  delineation file and vendored with its source, never typed from memory. The 2023 file already
+  caught two names I would have got wrong: Houston is **Houston-Pasadena-The Woodlands** since
+  the 2023 revision, and Austin is **Austin-Round Rock-San Marcos**.
+- The provenance rule in `places.py`: a field this program did not compute or read from a cited
+  source is not written at all.
+- `docs/` is generated. Never hand-edited.
+- Every gate gets a `--self-test` that replays the defect it exists for, and every gate is run
+  by exit code.
+- No em dashes, no colons or semicolons in published copy, ordinal dates, no first person.
 
 ## Waves
 
 | # | Wave | Status |
 |---|---|---|
-| A | The seven missing gates, each with self-test + replay | **DONE** — `claims_check` (21), `aggregate_check` (20), `dedupe_check` (10), `copy_sync_check` (21), `dossier_check` (26), `gate_status` (20), `ship_images` (15). 133 new self-tests. Every one wired into the routine AND into CI, and every one replayed against the defect it exists for |
-| A2 | Merge the two routines into one, on the owner's call | **DONE** |
-| B | `instincts.json` + the ledger the retro phase writes | **DONE** — 39 self-tests. Confidence is DERIVED, never written |
-| C | `CAPTION_CRAFT.md`, Texas material | **DONE** — written, not retheemed. Manifest disposition corrected to REBUILD |
-| D | `TECHNIQUE_LIBRARY.md`, Texas material | **DONE** — every named API verified to exist |
-| E | Deepen pixel-critic, caption-critic, upgrade-engineer | **DONE** — all three now exceed the sibling's, written from THIS repo's lessons |
-| F | Deepen `daily_routine.md` against the new gates and craft | **DONE** — 13 KB to 33 KB, phases 0 to 18, each gate wired where its defect happens |
-| G | End-to-end proof: render the demo deck, run every gate on it | **DONE** — GREEN, and it found 5 defects every self-test had missed |
-| H | Reconcile manifest, update CLAUDE.md layout, hand off triggers | **DONE** |
-
-## Handoff still owed to the owner (not blockers)
-
-- Create the ONE Claude routine in the routines UI. Trigger text is `prompts/ROUTINE_PROMPT.txt`.
-  It does not exist yet, so it has never fired. This was two routines until 2026-08-12.
-- Register the domains (all still open as of the plan).
-- Buttondown key when subscriber alerts are wanted. Every integration no-ops without its key.
+| M1 | The place spine: vendor the Texas CBSA subset, extend `places.py` with metro/division/CSA, resolver + self-tests | **DONE** — 26 metro + 41 micro areas, 2 divisions, 13 combined, 133 of 254 counties covered. 13 new self-tests |
+| M2 | `geography_check.py`: an item must be locatable. Ratchet, with the backlog reported and not failed | TODO |
+| M3 | Derivation: metro is COMPUTED from counties, never typed. Wire into `docket_build.py` | TODO |
+| M4 | The site: `/places/` index, a page per metro and per touched county, cross-linked from every item | TODO |
+| M5 | The ask engine: a `by_metro` view, metro entities in the vocabulary, catalogued questions | TODO |
+| M6 | The water watch reconciled onto the registry, and the San Antonio gap reported | TODO |
+| M7 | The daily routine's prompt: the re-verify phase fills geography, and the admit phase requires it | TODO |
+| M8 | Proof: rebuild the site, check freshness byte-equality, run every gate, look at the pages | TODO |
 
 ## Log
 
-- 2026-08-12 — worklog written, starting Wave A.
-- 2026-08-12 — `claims_check.py` written and wired. Replays all nine shape drifts the sibling
-  suffered across eighteen runs, plus eight quality faults. The strictest check is that `text`
-  and `quote` may not be identical: if they are, the fact-checker copied the source into the
-  claim rather than verifying a statement against it, and the distinction the whole gate rests
-  on has collapsed. Coverage 70 -> 71 of 402.
-- 2026-08-12 — the manifest drift gate caught its first real case immediately: the new
-  `claims_check.py` row was still TODO. Reconciled. Working as intended on the first use.
-- 2026-08-12 — `aggregate_check.py`. The gap between `claims_check` and `numeral_lint`: neither
-  looks at the arithmetic performed ON TOP of the claims, and that is where a slide invents a
-  number out of verified parts. Detects four shapes in the text the browser actually laid out,
-  requires a declaration naming the claim ids, re-derives. An undeclared aggregate fails,
-  because "I did not notice it was an aggregate" is how the sibling rendered FIVE where the
-  answer was four. Wired as Phase 9.5, between pixel review and assembly, so it runs on what
-  was rendered rather than on what was written.
-- 2026-08-12 — `dedupe_check.py`. Reads the FULL entry, which is the whole point: the sibling's
-  near-repeat survived because a truncated title was read instead of the angle and entities.
-  Scores as a share of the candidate's fingerprint so a verbose ledger entry cannot dilute its
-  own similarity, and an entry with an unreadable date counts as inside the window so a bad
-  date cannot hide a repeat. Graded exits, and the loudest still says read rather than reject.
-  Coverage 71 -> 73 of 402.
-- 2026-08-12 — the record routine and the carousel routine merged into one,
-  `prompts/daily_routine.md`, on the owner's call, matching the sibling product. Two daily
-  routines meant two branches, two pull requests, two merges and two site rebuilds racing for
-  the same `docs/` tree. It also fixed an ordering fault: the record is now updated BEFORE the
-  story is picked, so a deck can only be built on a decision the record already holds. Phase 2
-  spawns the scouts and then works the record's worklist while they run, which is wall-clock
-  free. The degradation ladder gained two rungs, because the record survives four the deck does
-  not: a lost deck costs a post, a lost day of re-verification lets a wrong public fact stand.
-- 2026-08-12 — the merge forced a re-read of `ownership.yaml` and found TWO dead rules.
-  `scripts/site/**` was written twice, and the second one granted the carousel write access to
-  every gate that judges it while the first said, in the plainest words available, that it must
-  not. Fixed, and `shadowed()` now proves every rule still answers for its own namesake path.
-  It found the second dead rule the moment it was switched on. Actors are now `daily` and
-  `upgrade`, one process one actor, with the retro phase's narrow lane keeping a self-editing
-  phase off the public record. GATE_LESSONS 12.
-- 2026-08-12 — `port_audit`'s orphan check counted a CI `--self-test` line as wiring, which made
-  it structurally unable to fail for any gate in the repo. Caught while rewriting the routine
-  prompt from scratch, which is precisely when a gate gets dropped by hand. Fixed, replayed, and
-  the over-correction ("must appear in a prompt") is guarded against too, because the cron
-  collectors appear in no prompt by design. GATE_LESSONS 13.
-- 2026-08-12 — `copy_sync_check.py`. Two failures, one file. The record going stale when a
-  slide's HTML is hand-edited during pixel review, which is the sibling's slide 05 kicker; and a
-  slide citing a claim id that is not in the claims file, which no gate looked at at all. The
-  first draft compared a 40 character prefix and its own self-test caught that as strictly worse
-  than using the full 80 characters the render records: two bodies agreeing for 64 characters and
-  diverging after passed it, which is the exact shape a late edit takes. The remaining blind spot
-  past character 80 is pinned by a test that asserts it is NOT detected, so nobody later mistakes
-  the limit for a matcher bug and shortens the needle to fix it.
-- 2026-08-12 — `dossier_check.py`, the only gate that fires before anything is drawn. The
-  sequencing hole it closes: a pixel critic grades each slide against its own dossier, so a bad
-  plan executed faithfully passes every review after it, and the sibling's dead lower zone reached
-  the scorer six runs running for exactly that reason. Reads the bottom band as its OWN clause,
-  because a lavish top third would otherwise vouch for an unplanned bottom, and that substitution
-  is the whole defect. Carries the sibling's word-boundary lesson: "ground" is not a hint, since
-  "the ground plane is left flat" describes the defect and as a substring it also cleared every
-  slide with a background.
-- 2026-08-12 — `gate_status.py`. Three sibling failures, each tighter than the last: a
-  hand-written reconciliation claiming zero QA warnings while the artifact said five; a correct
-  block pasted once with four render rounds run under it; and the same instinct broken twice in
-  one run at high confidence. So artifacts are PARSED and never measured (a valid report was once
-  false-flagged for being 196 bytes against a 200 byte threshold), binaries are checked by magic
-  bytes, and `--sync` writes the block rather than asking anyone to retype it. Idempotent, because
-  a rule with a cost gets skipped at the moment it matters. The row this version adds is STALE: an
-  artifact that predates the newest render is answering about a deck that no longer exists, and it
-  will say PASS forever.
-- 2026-08-12 — `ship_images.py`. Every figure measured on the files in front of it, per the
-  compute-not-generate law, which a script whose whole output is numerals is the last place to
-  break. Refuses any encode under 40 dB, an EXTERNAL visually-lossless threshold rather than one
-  measured from our own encodes, which would pass whatever we happened to ship first. Its first
-  fixture accumulated grain in uint8, wrapped 255 to 4, scattered speckle over the brightest band
-  and measured 34 dB and 99x: both numbers about the bug, not the encoder. A gate whose fixture is
-  pathological measures its fixture. Fixed in int16 with a clip, it measures 42.1 dB, which lands
-  where the sibling's real decks measured. `--all` refuses to write without `--force`, because it
-  reaches into runs that have already shipped and CLAUDE.md puts that on the stop-and-ask list.
-- 2026-08-12 — **WAVE A DONE.** Carousel gates 3 to 10. The measure was never "Alaska's files
-  exist here", it was whether an unattended run can fail safely and ship honestly, and the seven
-  gates are the reviewer that nobody is.
-- 2026-08-12 — `instincts.json` and `instincts.py`, and the one thing deliberately not ported.
-  The sibling's ledger carries 101 entries, 47 of them at 0.90 confidence, and only 25 have ever
-  been confirmed once. The arithmetic only goes one way, so those numbers were typed at the moment
-  the lesson was written, by the same model that had just decided the lesson was worth writing. A
-  machine allowed to grade its own lesson grades it high, and that number is what decides which
-  lessons reach the next run's directors room. It is the compute-not-generate law with a hole in
-  it, in the file that shapes how every future deck gets made. Here an entry records the DATES it
-  was confirmed and contradicted, confidence is Laplace's rule of succession over those events,
-  and a written confidence field is a hard fail on load, along with score, weight, certainty and
-  priority, which are the words a model reaches for once confidence is refused. The injection bar
-  of 0.7 is not a dial: under this formula it means three confirmations with no contradiction, so
-  an instinct reaches the prompt by surviving three runs. Starts empty, because this repo has
-  shipped zero decks and cannot have learned anything from running.
-- 2026-08-12 — `CAPTION_CRAFT.md`, written as Texas material rather than retheemed, and the
-  manifest disposition corrected from PORT_RETHEMED to REBUILD to say so. The menus are the most
-  repeatable part of a caption, so Alaska's would carry Alaska's civic vocabulary and its landscape
-  into every Texas post. Ten opening moves, eight structures, five closes, all new and all Texas.
-  The comma ceiling stays deliberately unset, because no caption has shipped and borrowing the
-  site's 3.97 would be exactly the typed-in number the law forbids. The doc named a ledger contract
-  captions.json did not declare, so the contract is now declared, including that `first_line` is
-  stored VERBATIM: the critic's real job is catching a sentence skeleton that survived a change of
-  nouns, and it can only do that with the real lines in front of it.
-- 2026-08-12 — writing that doc immediately created the exact defect the port audit exists for. It
-  existed on disk, referenced only by the WORKLOG, which the audit deliberately does not count as
-  wiring. Wired into the routine's context block, Phase 10, and both caption agents. The manifest
-  drift gate caught the stale row on the same run, its third real catch.
-- 2026-08-12 — `TECHNIQUE_LIBRARY.md`, written against THIS repo's libraries rather than
-  retheemed. Texas ships twelve purpose-built art libraries Alaska does not have (TXCARVE,
-  TXENGRAVE, TXSDF, TXPOST, TXC, txhachure, txrelief, txgeo, tx3d, txthree, txtype, txlabel), so a
-  retheme would have described a toolkit that is not here. Every backticked API in the doc was
-  checked against assets/js and two were wrong on the first pass: TX.hachure is TX.hachureField,
-  and TX.relief is TX.reliefShade. A technique library that names a function which does not exist
-  sends a run down a dead end, so all thirteen are now verified.
-- 2026-08-12 — the residue gate caught "Alaska's weather, not ours" inside that doc on the next
-  run. Correct catch: the point survives without the name, and saying caliche haze is dust hanging
-  in hot air rather than water is better craft writing than a comparison to somewhere else.
-- 2026-08-12 — Wave E. The three thinnest agents deepened from this repo's own accumulated
-  knowledge rather than from the sibling's text, which by now is the better source: fourteen gate
-  lessons, a technique library with a failure mode per entry, and an ownership map that has been
-  wrong twice. 2933 to 6331, 2392 to 4872, 3016 to 6332 bytes, each now past its sibling.
-  The three most useful additions were not length. The pixel critic is told to READ THE PIXEL and
-  never reason from the code, because this repo shipped a page that rendered mauve with all 62
-  contrast pairings passing. It is also told that the plan can be the problem: it grades against
-  the dossier, so a slide that executed a bad plan faithfully passes its own checklist, and being
-  the last reader positioned to see that, it should report a trivially satisfiable checklist as a
-  finding of its own. The upgrade engineer is told its lane is narrower than the run's, that it
-  stamps `upgrade` and may propose a prompt change but never make one, and that zero upgrades is a
-  valid number.
-- 2026-08-12 — **WAVE G, the end-to-end proof, and it earned its place.** Every gate's self-tests
-  were green when it started. Running the real chain on a real render found five defects in under
-  an hour: a number regex that read "2,600 streamlines" as 600 and named a figure the slide does
-  not contain; the slide counter flagged as an invented number on every slide, nine findings a
-  deck forever; a count computed from data refused because the declaration format only knew how to
-  count claims, which would have taught the first real run that the honest route fails; claims.json
-  marked STALE for predating the render, which is true of every run that goes right, so three rows
-  would have been red permanently; and a status row built from an INPUT the run authors rather than
-  from a report, printing "re-run it" where re-running could not help. All five fixed and pinned
-  with tests. GATE_LESSONS 15. A fixture written by the same hand as the detector agrees with the
-  detector.
-- 2026-08-12 — **WAVE H, and the v1 push is done.** Manifest reconciled and clean. CLAUDE.md's
-  layout now describes what exists rather than what was planned: the three carousel knowledge docs
-  by name and job, the instincts ledger with its no-typed-confidence rule, and the instruction to
-  run gates by exit code rather than by last line, which is the process fault that has already
-  shipped a red gate here once. HANDOFF.md now asks for ONE routine instead of two.
+(appended as waves land)
 
-## Where v1 landed, measured
+### M1 — the place spine (2026-08-13)
 
-| | at plan | now |
-|---|---|---|
-| routine prompt | 13 KB, phases 0-14, split across two files | 33 KB, phases 0-18, one file |
-| carousel gates | 3 | 10 |
-| knowledge | 15.6 KB / 4 docs | 4 shared + 5 carousel, TECHNIQUE_LIBRARY and CAPTION_CRAFT written as Texas material |
-| ledgers | artwork, captions, topics, upgrades | + instincts, with confidence derived |
-| gate lessons | 9 | 15 |
-| thinnest agents | 53%, 62%, 62% | all three past the sibling's |
-| end-to-end proof | never run | GREEN, and it found 5 defects the self-tests missed |
+Vendored `assets/geo/tx-cbsa-2023.json` from the OMB July 2023 delineation, extended
+`places.py` with a `cbsa` subcommand and a metro layer on every county, and made metros
+first-class place records.
 
-**The measure was never "every sibling file exists here".** It was whether an unattended run can
-fail safely and ship honestly, because nobody reviews the output. Ten gates, each replayed against
-the defect it exists for and watched go red, and a proof that the whole chain runs on a real
-render.
+**The existing self-test caught the design error immediately, and it was a Texas-specific
+one.** The first version folded each CBSA and CSA name into its member counties' aliases,
+and five counties stopped resolving: El Paso, Lubbock, Midland, Pecos and Tyler. A Texas
+metro is named for its central city, and there is frequently a DIFFERENT county with that
+name somewhere else. **Reeves County contains the city of Pecos. Pecos County is two hundred
+miles away. Smith County contains Tyler. Tyler County is in the Piney Woods.** One index made
+those strings ambiguous, and this resolver refuses ambiguity by design, so it correctly
+refused both readings and the county lookups that had worked for weeks went dark.
 
-## What is still owed, and by whom
+So the index is per GRAIN: county, cbsa, division, csa. That turned out to be needed twice
+over -- adding principal cities as aliases (nobody types "Houston-Pasadena-The Woodlands")
+made "Houston" ambiguous between the CBSA and the Houston-Pasadena CSA, which one metro index
+would also have refused.
 
-- **The owner:** create ONE routine in the routines UI from `prompts/ROUTINE_PROMPT.txt`; register
-  the domains; a Buttondown key when subscriber alerts are wanted. Every integration no-ops
-  cleanly without its key, so none of these block anything.
-- **Later waves, not v1:** Wave 7 (video dispatch, `TexasAIDispatch`), Wave 8 (commercial wing,
-  `TexasAIScanner`), metro scoping (still blocked on a citable county-to-ERCOT-zone mapping, and
-  the Grid Watch rules say publish the size of the gap rather than guess it).
+Reading the file rather than remembering it caught two more: Houston has been
+**Houston-Pasadena-The Woodlands** since the 2023 revision and Austin has been
+**Austin-Round Rock-San Marcos**. Typed from memory, both would have been the previous
+decade's names, on the two biggest pages of the site.
+
+Resolver behaviour now, checked end to end: `Taylor County` walks to the Abilene MSA,
+`Shackelford` resolves as a county and returns None for its metro rather than guessing,
+`Arlington` lands on Dallas-Fort Worth, `The Woodlands` on Houston, `Round Rock` on Austin.
