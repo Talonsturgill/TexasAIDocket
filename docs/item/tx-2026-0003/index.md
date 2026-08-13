@@ -5,6 +5,14 @@ Oncor Electric Delivery has applied to amend its certificate of convenience and 
 - Topic: power-and-the-grid
 - Decided by: Public Utility Commission of Texas (state-agency)
 - Where: Borden, Bosque, Brown, Callahan, Coke, Coleman, Comanche, Eastland, Erath, Glasscock, Hamilton, Hood, Howard, Jones, Mitchell, Nolan, Runnels, Shackelford, Somervell, Stephens, Sterling, Taylor
+- Statistical areas:
+  - Abilene, TX
+  - Big Spring, TX
+  - Brownwood, TX
+  - Granbury, TX
+  - Stephenville, TX
+  - Sweetwater, TX
+  - Waco, TX
 - Status: pending
 - Public access: Public meeting
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59315&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending

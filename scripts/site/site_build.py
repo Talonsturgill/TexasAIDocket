@@ -407,7 +407,7 @@ def home(items: list, today: str) -> str:
   <h2>Where</h2>
   <div class="prose"><p>Every county in Texas, drawn from the state's own geometry. The lit
   counties are the ones this record currently touches, <span class="num">{n_counties}</span>
-  of <span class="num">254</span>.</p></div>
+  of <span class="num">{_place_facts()["counties"]}</span>.</p></div>
   {svg}
 </section>
 
@@ -488,6 +488,67 @@ def topic_page(topic: str, items: list, today: str) -> str:
                 body=body, today=today, canonical=f"topic/{topic}/")
 
 
+def _item_metros(it: dict) -> list:
+    """The statistical areas an item's counties fall in, derived and never typed."""
+    r = dk._resolver()
+    if not r:
+        return []
+    out = {}
+    for c in (it.get("geography") or {}).get("counties") or []:
+        m = r.metro_of(c)
+        if m:
+            out[m["id"]] = m["full_name"]
+    return [out[k] for k in sorted(out, key=lambda k: out[k])]
+
+
+def item_where(it: dict) -> str:
+    """The item's places, linked, so the record reads in both directions.
+
+    THE PLACE PAGES LINKED TO ITEMS AND NOTHING LINKED BACK. A reader on the Abilene
+    transmission item could not reach the Abilene page, could not see what else touches
+    Shackelford, and had no way to discover that per place views exist at all. A one way
+    link is half a cross reference and it is the half nobody notices is missing, because
+    every page it points at looks correctly connected from where it sits.
+
+    METROS AND LOOSE COUNTIES ARE BOTH NAMED, in that order, for the reason `M3` found:
+    thirteen of this record's twenty-two counties are in no statistical area, including
+    Shackelford, which is where the data centre is. A metro-only line would read as
+    complete while dropping the part of Texas the story is actually about.
+    """
+    g = it.get("geography") or {}
+    counties = g.get("counties") or []
+    if g.get("statewide"):
+        return ('<p>Statewide. This decision applies across Texas rather than to a '
+                'named county.</p>')
+    if not counties:
+        return ('<p class="gap">No county is named for this item yet. It appears on no '
+                'place page and lights nothing on the map.</p>')
+
+    r = dk._resolver()
+    metros, loose = {}, []
+    for c in counties:
+        m = r.metro_of(c) if r else None
+        if m:
+            metros.setdefault(m["id"], m["name"])
+        else:
+            loose.append(c)
+
+    def links(pairs):
+        return ", ".join(f'<a href="../../place/{e(i)}/">{e(n)}</a>' for i, n in pairs)
+
+    parts = [f'<p><span class="num">{len(counties)}</span> '
+             f'{"county" if len(counties) == 1 else "counties"}.']
+    if metros:
+        parts.append(f' In {links(sorted(metros.items(), key=lambda kv: kv[1]))}.')
+    if loose:
+        parts.append(
+            f' {"Also in" if metros else "In"} '
+            f'{links((f"county-{_place_slug(c)}", c) for c in sorted(loose))}, which '
+            f'{"is" if len(loose) == 1 else "are"} in no metropolitan or micropolitan area.')
+    parts.append('</p>')
+    return "".join(parts)
+
+
 def item_page(it: dict, today: str) -> str:
     dates = "".join(
         f'<tr><td class="num">{e(k["date"])}</td><td>{e(k["kind"].replace("_", " "))}</td>'
@@ -512,6 +573,8 @@ def item_page(it: dict, today: str) -> str:
 
 <section><h2>How to take part</h2><div class="prose">{act}</div></section>
 
+<section><h2>Where</h2><div class="prose" data-prose="data">{item_where(it)}</div></section>
+
 {'<section><h2>Dates</h2><table><thead><tr><th>Date</th><th>What</th><th>Note</th></tr></thead><tbody>' + dates + '</tbody></table></section>' if dates else ''}
 
 <section>
@@ -529,6 +592,7 @@ def item_page(it: dict, today: str) -> str:
 
 
 def counties_page(items: list, today: str) -> str:
+    tx = _place_facts()
     by = {}
     for it in items:
         for c in (it.get("geography") or {}).get("counties") or []:
@@ -542,7 +606,7 @@ def counties_page(items: list, today: str) -> str:
     body = f"""
 <h1>By county</h1>
 <div class="prose">
-  <p><span class="num">{len(by)}</span> of Texas's <span class="num">254</span> counties are
+  <p><span class="num">{len(by)}</span> of Texas's <span class="num">{tx["counties"]}</span> counties are
   named in the record. A further <span class="num">{len(statewide)}</span> decisions apply
   statewide.</p>
   <p class="gap"><strong>A county with no entry is not a county where nothing is happening.</strong>
@@ -1036,6 +1100,15 @@ def item_markdown(it: dict, today: str) -> str:
         f'- Topic: {it["topic"]}',
         f'- Decided by: {it["decider"]["name"]} ({it["decider"]["type"]})',
         f'- Where: {where}',
+        # THE METRO LINE IS IN THE HTML, SO IT IS HERE. The twin is the record as a machine
+        # reads it, and a twin that carries a narrower answer than the page is a second
+        # vocabulary for the same question, which is the drift `places.py` exists to stop.
+        #
+        # A SUB LIST RATHER THAN A COMMA JOIN, because every OMB area name ENDS in ", TX".
+        # Joined with commas, seven areas read as fourteen fields and nothing downstream
+        # can split them back. County names carry no comma, which is why `Where` above can.
+        *(["- Statistical areas:"] + [f"  - {m}" for m in _item_metros(it)]
+          if _item_metros(it) else []),
         f'- Status: {it["status"]}',
         f'- Public access: {room_label(pa.get("room", ""))}',
     ]
@@ -1510,6 +1583,29 @@ def self_test() -> int:
         items = dk.load(LEDGER)
         one = (Path(td) / "a" / "item" / items[0]["id"] / "index.html").read_text(encoding="utf-8")
         check("an item page quotes its sources", "<blockquote>" in one)
+
+        # THE PLACE LINKS RUN BOTH WAYS. The place pages listed their items from the
+        # first build and nothing pointed back, which looks correct from either end: every
+        # place page is fully connected when you are standing on it. Checked here as a
+        # round trip rather than as "the item page contains the word place", because the
+        # thing worth guaranteeing is that a reader can get from an item to a place page
+        # and find that same item waiting there.
+        located = [i for i in items
+                   if ((i.get("geography") or {}).get("counties") or [])]
+        round_trip = []
+        for i in located:
+            page_html = (Path(td) / "a" / "item" / i["id"] / "index.html").read_text("utf-8")
+            for pid in set(re.findall(r'href="\.\./\.\./place/([^"/]+)/"', page_html)):
+                target = Path(td) / "a" / "place" / pid / "index.html"
+                if not target.exists() or f'item/{i["id"]}/' not in target.read_text("utf-8"):
+                    round_trip.append(f'{i["id"]} -> {pid}')
+        check("every located item links to a place page that lists it back",
+              located and not round_trip, f"broken: {round_trip[:3]}")
+        check("...and an item with no county says so rather than linking nowhere",
+              all("appears on no place page" in
+                  (Path(td) / "a" / "item" / i["id"] / "index.html").read_text("utf-8")
+                  for i in items if i not in located
+                  and not (i.get("geography") or {}).get("statewide")))
 
         # THE NUMERAL GATE, PROVEN TO FIRE, AND PROVEN TO BE NARROW.
         #
