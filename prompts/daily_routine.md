@@ -245,6 +245,33 @@ For each item on the worklist, fetch **one primary source** and update it.
 - Set `last_verified` **even when nothing changed.** "Checked and unchanged" is a fact about the
   item, and an unset stamp is indistinguishable from never having looked.
 - Correct dates that moved. Update `status` when the world moved.
+
+**CLEAR THE BACKLOG WHILE YOU ARE IN THERE.** Every build prints the outstanding exemptions,
+green or not:
+
+```
+python3 scripts/site/site_build.py --out /tmp/site --today <date>   # look at the `backlog:` lines
+```
+
+Those lines are the only work in the record that a maintainer session structurally cannot do,
+because `ledger/docket.json` belongs to this routine. Two kinds, and both are yours:
+
+- **`no county and not statewide`.** The item is on no county page, lights nothing on the map and
+  belongs to no metro. Read the item's own primary source and name the counties it actually
+  touches, or set `statewide: true` if that is what the source says. `on_ercot` is a property
+  rather than a place and does not count. Never guess a county from a decider's address.
+- **`points at <id>, which is not in the record`.** Reader copy promises an item that does not
+  exist, usually because fact checking culled it. Either point at an item that does exist, or say
+  the thing instead of pointing at it. Do not invent the missing item to satisfy the pointer.
+
+Fix at most what the sources support in one run. Both lists are ratchets and can only shrink, so
+a run that clears one entry has moved the record forward permanently. A run that clears none is
+fine and a run that lets one grow is a failure, because the third entry is what turns a debt into
+a standard.
+
+**Geography is never typed at a grain the record does not hold.** Name counties. The metro is
+derived from them by `places.py` and the build fails if a hand-typed `metro` disagrees with what
+the counties compute to.
 - Add a history note **only when something changed**, and write it as three dry sentences: the
   right answer, where you checked it, stop.
 
@@ -290,6 +317,16 @@ least one claim cites a primary source.** Held items stay in the seed with their
 promoted automatically by a later run that finds the primary source. **Nothing is lost by being
 held, and nothing is helped by lowering the bar.**
 
+**AN ITEM IS ADMITTED SOMEWHERE OR IT IS NOT ADMITTED.** A new item must name its counties or
+be statewide, and the gate refuses it otherwise. There is no backlog to join: the three items on
+that list predate the rule and are exempt by name, and nothing is ever added to it. An item with
+no place appears on no county page, no metro page and no point on the map, and a reader looking
+for what is happening near them will not find it however good the item is.
+
+If the source genuinely does not say where, the item is **held in the seed** with that as its
+reason, exactly like a missing primary source. A statewide flag used to mean "I could not tell"
+is worse than holding it, because it publishes a claim about scope that nobody checked.
+
 ## PHASE 6 — CLAIMS
 
 Spawn 1 `carousel-fact-checker` over everything the scouts returned. It re-fetches, verifies every
@@ -323,10 +360,29 @@ not rung (f).
 
 ```bash
 python3 scripts/gridwatch/gridwatch_pagecheck.py
+python3 scripts/site/waterwatch_page.py --self-test
+python3 scripts/site/site_build.py --out /tmp/site --today <date>
 ```
 
 Exit 0 is clean, exit 2 wants attention, exit 1 means the checker itself broke. **This never
-blocks the run.** You may fix presentation only. Anything else is a proposal in the run record.
+blocks the run.** You may fix presentation only, and only in `scripts/site/gridwatch_page.py` and
+`scripts/site/waterwatch_page.py`. Anything else is a proposal in the run record.
+
+**THEN LOOK AT THE PAGES.** A checker sees what it reads and the product is what a reader
+receives, which is the whole of `knowledge/shared/GATE_LESSONS.md`. Three things a green suite
+has been wrong about here and cannot answer for you:
+
+- **The water page's coverage sentence.** It names how many of the state's statistical areas the
+  water data tags and calls out San Antonio, which has none. If the source starts tagging San
+  Antonio that paragraph must stop appearing, and only reading it tells you.
+- **A place page for a metro where the record just landed something.** Does the count in the
+  headline match the items listed under it, and are the untouched counties still named?
+- **The `backlog:` lines the build prints.** They are the same lines Phase 3 works from. If one
+  has grown rather than shrunk, that is a failure of this run and not a note for the next one.
+
+A water page check belongs beside the grid one and does not exist. It would live in
+`scripts/gridwatch/`, which the daily routine does not own, so it is a proposal in the run
+record rather than something a run writes.
 
 ## PHASE 8 — SELECTION + DEDUPE GATE
 
@@ -628,7 +684,10 @@ burns a step rediscovering the address.
 
 - The worklist was cleared, or the shortfall is named in the run record.
 - Nothing rotten remains, or its reason is recorded.
-- Every item admitted this run cites a primary source.
+- Every item admitted this run cites a primary source, and names where it is.
+- **The backlog is no longer than it was at wake.** Shrinking it is the goal and holding it
+  steady is acceptable. Growing it is a failed run, because the entry nobody clears is the entry
+  that teaches the next run the list is optional.
 - A deck shipped, merged to `main`, with a Gmail draft waiting.
 - Every fact traces to a verified claim. Every numeral traces to a claim or a computation.
 - Every machine gate green by exit code, every score honest.
