@@ -321,7 +321,7 @@ def scale_bar(scale: float, dx: float, dy: float) -> tuple[str, int]:
 
 
 def render(lit: set | None = None, *, title: str = "Texas counties in the record",
-           idprefix: str = "txmap") -> str:
+           idprefix: str = "txmap", inset: bool = False) -> str:
     """The whole map as one inline SVG.
 
     `lit` is a set of county NAMES (as the geodata spells them) or FIPS codes. Anything not lit
@@ -350,7 +350,7 @@ def render(lit: set | None = None, *, title: str = "Texas counties in the record
 
     bar, miles = scale_bar(scale, dx, dy)
     return (
-        f'<svg class="txmap" viewBox="0 0 {VIEW_W:g} {VIEW_H:g}" role="img" '
+        f'<svg class="txmap{" inset" if inset else ""}" viewBox="0 0 {VIEW_W:g} {VIEW_H:g}" role="img" '
         f'aria-labelledby="{idprefix}-t" preserveAspectRatio="xMidYMid meet">'
         f'<title id="{idprefix}-t">{title}. '
         # The projection is a property of the drawing and is always true. The SCALE BAR is not

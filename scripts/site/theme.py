@@ -838,6 +838,17 @@ main > section > h2::after {{ content:""; position:absolute; top:-1px; left:0; w
    than the page. 1000/900 of 72vh is 80vh. */
 .txmap {{ width:100%; max-width:min(100%,80vh); height:auto; display:block;
   margin-inline:auto; }}
+/* THE INSET, for a page whose subject is one place rather than the state. On a metro page the
+   map's job is to answer "where in Texas is this", which is orientation and takes a glance. At
+   the full size it answered that question with 900 pixels of unlit Texas, and the one item the
+   page exists to show sat below the fold underneath it. Same drawing, one third the height. */
+.txmap.inset {{ max-width:min(100%,42vh); }}
+/* AND THE SURVEY FURNITURE COMES OFF WITH THE SIZE. The graticule labels and the scale bar are
+   sized in the SVG's own units, so shrinking the sheet shrinks them to about seven pixels,
+   which is furniture a reader can see is there and cannot read. The rule already exists for
+   phones one media query below and it is the same judgement: this drawing is being glanced at
+   rather than measured. */
+.txmap.inset .survey {{ display:none; }}
 /* THE MESH IS THE FIGURE, NOT FURNITURE, AND IT WAS DRAWN IN THE DIVIDER TOKEN. `rule` is the
    hairline that separates two rows of a table, and at 1.39 to 1 on the night register and 1.56
    on paper that is exactly right, because a divider is decoration and WCAG 1.4.11 asks nothing
@@ -1016,6 +1027,19 @@ tr:last-child td {{ border-bottom:0; }}
 th {{ font-weight:600; color:var(--ink-mute); font-size:var(--s-2); letter-spacing:.04em;
   text-transform:uppercase; border-bottom:var(--hair) solid var(--rule-strong); }}
 td.n,th.n {{ text-align:right; }}
+/* A NUMBER COLUMN IS AS WIDE AS THE NUMBER, and no wider. A two column table at full page
+   width strands its figure a thousand pixels from the label it belongs to, and a reader has
+   to track across empty space to pair them, which is the exact job a table is supposed to do
+   for you. The first column takes the slack instead. `min-content` on a right aligned numeric
+   cell is the width of its longest number plus the padding, so the columns stay aligned with
+   each other and stop being a gulf. */
+table.tally td.n,table.tally th.n {{ width:1%; white-space:nowrap; }}
+table.tally td:first-child,table.tally th:first-child {{ width:99%; }}
+/* A TWO COLUMN TALLY NARROWS THE TABLE INSTEAD OF THE COLUMN. With only a label and a count
+   there is no third column to absorb the slack, so giving the label 99% just moves the gulf
+   rather than closing it. Capping the table at a readable measure is the only thing that puts
+   the number back beside the thing it counts. */
+table.tally.pair {{ max-width:32rem; }}
 
 .gap {{ border:var(--hair) dashed var(--rule-strong); border-radius:var(--radius);
   padding:1rem 1.15rem; background:transparent; color:var(--ink-mute); font-size:var(--s-1); }}

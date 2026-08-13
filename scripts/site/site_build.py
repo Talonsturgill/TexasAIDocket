@@ -139,9 +139,18 @@ def page(*, title: str, desc: str, body: str, depth: int, active: str,
          today: str, canonical: str, extra_ld: list | None = None,
          home_page: bool = False) -> str:
     p = rel(depth)
+    # `""` USED TO MEAN TWO THINGS AND ONE OF THEM WAS A LIE. It is Home's own href, and it
+    # was also what a page with no nav entry passed to mean "none of these". So every item
+    # page and every topic page shipped `aria-current="page"` on Home, telling a screen
+    # reader it was on the front page while it read an item. Nothing looked wrong, because
+    # the underline it draws is small and Home is where a reader's eye is not.
+    #
+    # `None` is the "none of these" sentinel now, and it is checked before the comparison
+    # rather than falling out of it. Item and topic pages mark THE RECORD instead, which
+    # is true of both and more useful than marking nothing.
     cur = ' aria-current="page"'
-    nav = "".join(f'<a href="{p}{h}"{cur if h == active else ""}>{e(t)}</a>'
-                  for h, t in NAV)
+    nav = "".join(f'<a href="{p}{h}"{cur if active is not None and h == active else ""}>'
+                  f'{e(t)}</a>' for h, t in NAV)
 
     footnav = "".join(f'<li><a href="{p}{h}">{e(t)}</a></li>' for h, t in FOOTNAV)
     # The colophon is assembled from parts rather than written as a sentence, so the separator
@@ -483,7 +492,7 @@ def topic_page(topic: str, items: list, today: str) -> str:
 <ul class="items" data-prose="data">{rows}</ul>
 <p class="meta" data-prose="data"><a href="../../record/">All decisions</a></p>
 """
-    return page(title=f'{topic.replace("-", " ")} · {SITE_NAME}', depth=2, active="",
+    return page(title=f'{topic.replace("-", " ")} · {SITE_NAME}', depth=2, active="record/",
                 desc=f"Texas AI decisions filed under {topic.replace('-', ' ')}.",
                 body=body, today=today, canonical=f"topic/{topic}/")
 
@@ -586,7 +595,7 @@ def item_page(it: dict, today: str) -> str:
 <p class="meta" data-prose="data"><span class="num">Last checked {e(it["last_verified"])}</span></p>
 </article>
 """
-    return page(title=f'{it["title"]} · {SITE_NAME}', depth=2, active="",
+    return page(title=f'{it["title"]} · {SITE_NAME}', depth=2, active="record/",
                 desc=it["summary"][:180], body=body, today=today,
                 canonical=f'item/{it["id"]}/')
 
@@ -711,10 +720,10 @@ def places_index(items: list, today: str) -> str:
   buildout is going up, so those counties get their own entries here.</p>
 </div>
 <h2>Metropolitan and micropolitan areas</h2>
-<table><thead><tr><th>Area</th><th class="n">Items</th><th class="n">Counties</th>
+<table class="tally"><thead><tr><th>Area</th><th class="n">Items</th><th class="n">Counties</th>
 <th>Kind</th></tr></thead><tbody>{mrows}</tbody></table>
 <h2>Counties outside any area</h2>
-<table><thead><tr><th>County</th><th class="n">Items</th></tr></thead>
+<table class="tally pair"><thead><tr><th>County</th><th class="n">Items</th></tr></thead>
 <tbody>{crows}</tbody></table>
 """
     return page(title=f"By place · {SITE_NAME}", depth=1, active="places/",
@@ -763,7 +772,7 @@ def place_page(place: dict, items: list, today: str) -> str:
   {"item" if len(mine) == 1 else "items"} in the record.</p>
   {scope}
 </div>
-{texas_map.render(lit=lit)}
+{texas_map.render(lit=lit, inset=True)}
 <table><thead><tr><th>Item</th><th>Topic</th><th>Status</th></tr></thead>
 <tbody>{rows}</tbody></table>
 <p class="prose"><a href="../../places/">All places</a></p>
