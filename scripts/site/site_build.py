@@ -1289,7 +1289,14 @@ def _home_numerals(items: list, today: str) -> set:
     a = numeral_lint.Authorised()
     share = _ercot_share()
     if share:
-        a.add(share[0])
+        # BOTH HALVES OF THE STRIP, because it prints a figure AND a date, and only the
+        # figure was authorised. The date comes from the grid watch ledger rather than from
+        # this build's `today`, and for as long as the two matched nothing objected. The day
+        # the collector recovered a reading the site had not been rebuilt for, the strip read
+        # "August 12th" against a build stamped the 11th, and `12` became a numeral no
+        # computation had produced. A figure and its date are one statement and they are
+        # authorised by one call.
+        a.add(share[0], *re.findall(r"\d+", share[1]))
     a.add(f"{len(dk.project(items, today)['actionable_now']):02d}")
     return a.set
 
