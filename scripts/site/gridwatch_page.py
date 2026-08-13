@@ -236,30 +236,56 @@ def figures(records: list[dict]) -> dict:
 
 # --------------------------------------------------------------------------- the chart
 def load_shape_svg(latest: dict) -> str:
-    """The day, drawn. Measured load filled, ERCOT's day ahead forecast as a line over it.
+    """The day, drawn, with the two things a reader came for marked on it.
 
-    THE Y AXIS STARTS AT ZERO AND THAT IS THE POINT. A truncated axis would make the daily
-    swing look dramatic; from zero a reader sees what is actually true, that ERCOT's load never
-    falls much below three quarters of its peak. The flatness IS the story, so exaggerating the
-    peaks would be arguing against our own finding with a drawing.
+    THE Y AXIS STARTS AT ZERO AND STAYS THERE. A truncated axis makes an ordinary Tuesday
+    look like a crisis, and the true finding here is the opposite one: ERCOT's load never
+    falls much below three quarters of its peak. Exaggerating that with a drawing would be
+    arguing against our own measurement.
+
+    WHAT WAS WRONG WITH IT ANYWAY, measured rather than felt. On a real day the load runs
+    60,462 to 88,143 MW against a 100,000 ceiling, so **the entire story occupied 27.7% of
+    the canvas and 60.5% of it was a featureless block below the trough.** Worse, the day
+    ahead forecast missed the peak by 432 MW, which is half a percent, which at true scale
+    is about one pixel. The dashed forecast line was drawn exactly on top of the measured
+    one and carried no information at all while looking like it did. Honest and unreadable
+    is still unreadable.
+
+    Three changes, none of which touch the scale.
+
+    THE PEAK AND THE TROUGH ARE MARKED AND LABELLED where they happen. A reader gets the two
+    magnitudes and the two hours without decoding an axis, and they sit in the empty upper
+    field rather than in a table somewhere else on the page.
+
+    THE MISS GETS ITS OWN PANEL, at its own scale, said so in words. A residual strip under
+    the main chart is the standard way to show a small difference without distorting the
+    thing it is a difference from. The main chart keeps the truthful shape; the strip
+    answers "by how much, and when". Its scale is stated on it, so nobody reads the two as
+    the same axis.
+
+    THE FILL FADES DOWNWARD. That is not a severity ramp and carries no value meaning. The
+    grid watch's no-ramp rule is about the capacity gauge, where colour would imply a red
+    zone this page does not get to publish. Here the fade separates a filled area from the
+    ground under it, and the line on top carries the reading.
     """
     load = [v for v in latest["load_mw"]]
     if not any(isinstance(v, (int, float)) for v in load):
         return ""
     fc = latest["day_ahead_forecast_mw"] or []
-    w, h, pad_l, pad_b, pad_t = 720.0, 260.0, 46.0, 26.0, 14.0
-    top = max([v for v in load if v is not None] +
-              [v for v in fc if isinstance(v, (int, float))])
-    # A ceiling on a round number keeps the gridlines meaningful across days of different size.
+    w, pad_l, pad_t = 720.0, 52.0, 16.0
+    main_h, gap, res_h, pad_b = 210.0, 34.0, 62.0, 24.0
+    h = pad_t + main_h + gap + res_h + pad_b
+    vals = [v for v in load if isinstance(v, (int, float))]
+    top = max(vals + [v for v in fc if isinstance(v, (int, float))])
     ceil = (int(top / 20000) + 1) * 20000.0
     n = len(load)
-    plot_w, plot_h = w - pad_l - 8, h - pad_b - pad_t
+    plot_w = w - pad_l - 12
 
     def x(i):
         return round(pad_l + (i / max(n - 1, 1)) * plot_w, 2)
 
     def y(v):
-        return round(pad_t + plot_h - (v / ceil) * plot_h, 2)
+        return round(pad_t + main_h - (v / ceil) * main_h, 2)
 
     pts = [(x(i), y(v)) for i, v in enumerate(load) if isinstance(v, (int, float))]
     area = (f'M{pts[0][0]},{y(0)} ' + " ".join(f"L{a},{b}" for a, b in pts) +
@@ -269,34 +295,82 @@ def load_shape_svg(latest: dict) -> str:
     fline = ("M" + " L".join(f"{a},{b}" for a, b in fpts)) if fpts else ""
 
     grid = "".join(
-        f'<line class="g" x1="{pad_l}" x2="{w - 8}" y1="{y(v)}" y2="{y(v)}"/>'
+        f'<line class="g" x1="{pad_l}" x2="{w - 12}" y1="{y(v)}" y2="{y(v)}"/>'
         f'<text class="ax" x="{pad_l - 8}" y="{y(v) + 4}" text-anchor="end">'
         f'{int(v / 1000)}</text>'
         for v in [ceil * k / 4 for k in range(5)])
     # ANCHORED TO THE ENDS, NOT CENTRED ON THEM. A centred label at x=0 puts half its width
     # outside the drawing, and at the right edge the same thing clipped "midnight" to "midni".
-    # It only became visible when the real monospace face finally started loading, because the
-    # system fallback was narrower and the overhang stayed inside the frame.
     ticks = "".join(
-        f'<text class="ax" x="{x(i)}" y="{h - 8}" text-anchor="{anchor}">{lab}</text>'
+        f'<text class="ax" x="{x(i)}" y="{pad_t + main_h + 15}" text-anchor="{anchor}">{lab}</text>'
         for i, lab, anchor in [(0, "midnight", "start"), (n // 2, "noon", "middle"),
                                (n - 1, "midnight", "end")]
         if n > 2)
 
+    # THE PEAK AND THE TROUGH, found in the same series the line is drawn from rather than
+    # read off a field somewhere else, so the dot cannot land away from the bend it names.
+    marks = ""
+    idx = [i for i, v in enumerate(load) if isinstance(v, (int, float))]
+    if idx:
+        hi = max(idx, key=lambda i: load[i])
+        lo = min(idx, key=lambda i: load[i])
+        for i, tag, dy, anchor in ((hi, "peak", -14.0, "middle"), (lo, "trough", 22.0, "middle")):
+            px, py = x(i), y(load[i])
+            lx = min(max(px, pad_l + 34), w - 46)
+            marks += (f'<circle class="mk" cx="{px}" cy="{py}" r="3.5"/>'
+                      f'<text class="ax mklab" x="{lx}" y="{round(py + dy, 2)}" '
+                      f'text-anchor="{anchor}">{gw(load[i])} GW at {hour(i + 1)}</text>')
+
+    # THE RESIDUAL STRIP. Forecast minus measured, hour by hour, on a scale of its own.
+    res = ""
+    if fpts and len(fc) == n:
+        errs = [(i, fc[i] - load[i]) for i in range(n)
+                if isinstance(fc[i], (int, float)) and isinstance(load[i], (int, float))]
+        if errs:
+            span = max(abs(v) for _, v in errs) or 1.0
+            # A round ceiling so the label is a number a reader can hold, and never zero.
+            rceil = max(500.0, (int(span / 500) + 1) * 500.0)
+            mid = pad_t + main_h + gap + res_h / 2
+
+            def ry(v):
+                return round(mid - (v / rceil) * (res_h / 2), 2)
+
+            bars = "".join(
+                f'<line class="res" x1="{x(i)}" x2="{x(i)}" y1="{mid}" y2="{ry(v)}"/>'
+                for i, v in errs)
+            res = (f'<line class="zero" x1="{pad_l}" x2="{w - 12}" y1="{mid}" y2="{mid}"/>'
+                   f'{bars}'
+                   f'<text class="ax" x="{pad_l - 8}" y="{ry(rceil) + 4}" '
+                   f'text-anchor="end">{n0(rceil)}</text>'
+                   f'<text class="ax" x="{pad_l - 8}" y="{ry(-rceil) + 4}" '
+                   f'text-anchor="end">-{n0(rceil)}</text>'
+                   f'<text class="ax unit" x="{pad_l - 8}" y="{round(mid + 4, 2)}" '
+                   f'text-anchor="end">MW</text>')
+
     fseg = (f'<path class="fc" d="{fline}"/>' if fline else "")
     return f"""<figure class="shape">
 <svg viewBox="0 0 {w:.0f} {h:.0f}" role="img" class="loadshape"
-     aria-label="Measured ERCOT demand hour by hour, with ERCOT's day ahead forecast.">
+     aria-label="Measured ERCOT demand hour by hour against ERCOT's day ahead forecast, with
+     the forecast error shown separately below.">
+  <defs><linearGradient id="lsfill" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="var(--accent-deep)" stop-opacity=".42"/>
+    <stop offset="1" stop-color="var(--accent-deep)" stop-opacity=".06"/>
+  </linearGradient></defs>
   {grid}
-  <path class="area" d="{area}"/>
-  <path class="line" d="{line}"/>
+  <path class="area" fill="url(#lsfill)" d="{area}"/>
   {fseg}
+  <path class="line" d="{line}"/>
+  {marks}
   {ticks}
-  <text class="ax unit" x="{pad_l - 8}" y="{pad_t - 14}" text-anchor="end">GW</text>
+  <text class="ax unit" x="{pad_l - 8}" y="{pad_t - 5}" text-anchor="end">GW</text>
+  {res}
 </svg>
-<figcaption>Measured demand across the day, filled. ERCOT's day ahead forecast, dashed.
-The scale starts at zero, so the flatness is real and not a drawing choice.</figcaption>
-</figure>"""
+<figcaption>Measured demand across the day, filled, with the peak and the trough marked.
+ERCOT's day ahead forecast is the dashed line, which tracks the measured one closely enough
+that the two overlap. The scale starts at zero, so the flatness is real and not a drawing
+choice. The strip underneath is the forecast minus what actually happened, hour by hour, on
+a scale of its own, because at the scale above it a miss this size is about one pixel.
+</figcaption></figure>"""
 
 
 def reserve_bar(latest: dict) -> str:
