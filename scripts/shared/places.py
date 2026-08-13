@@ -450,6 +450,8 @@ class Resolver:
 
     COUNTY = "county"
     METRO = "cbsa"
+    DIVISION = "division"
+    CSA = "csa"
 
     def __init__(self, doc: dict):
         self.places = doc["places"]
@@ -495,6 +497,60 @@ class Resolver:
         Worth, or its Midland-Odessa basin -- asks for that grain by name.
         """
         return self.resolve(text, kind=grain)
+
+    def crosswalk(self, slug: str) -> dict:
+        """Map an OUTSIDE party's area slug onto this registry, by derivation.
+
+        WHY THIS IS NOT A TABLE. The water watch groups reservoirs by nineteen slugs like
+        `midland_odessa` and `temple_killeen`. Those are not a vocabulary this project
+        chose. They are `municipal_*` tags published by TWDB and read out of the feed, and
+        the record of what the source said is the thing this project is for. Rewriting them
+        to match OMB would be editing fetched data, and typing a nineteen-row mapping by
+        hand would be inventing nineteen facts. So the slug stays exactly as fetched and
+        the registry id is DERIVED beside it, here, from the same gazetteer every other
+        surface resolves against.
+
+        THE GRAIN IS PART OF THE ANSWER, and it is chosen by what resolves rather than
+        declared. Checked against the 2023 delineation, not remembered:
+
+          `dallas` and `fort_worth` are one CBSA and two metropolitan DIVISIONS, and they
+          are genuinely two water systems, so the division is the honest grain. Collapsing
+          them to the shared CBSA would merge two reservoirs sets that TWDB deliberately
+          separates.
+
+          `temple_killeen` is CBSA 28660, whose OMB name is Killeen-Temple. A token set
+          match catches a reversed name without a special case, which matters because the
+          next reversal nobody predicts is caught too.
+
+          `midland_odessa` is TWO CBSAs, 33260 Midland and 36220 Odessa, which sit inside
+          CSA 372 Midland-Odessa-Andrews. It maps to both rather than to the CSA, because
+          the CSA also contains Andrews and the tag does not claim Andrews.
+
+        Returns `{slug, ids, grain, how}`, where `how` names the rule that fired so the
+        derivation can be read rather than trusted. `ids` is empty when nothing resolves,
+        which is a reportable fact and never a silent drop.
+        """
+        text = str(slug).replace("_", " ")
+        for grain in (self.DIVISION, self.METRO, self.CSA):
+            got = self.resolve(text, kind=grain)
+            if got:
+                return {"slug": slug, "ids": [got["id"]], "grain": grain,
+                        "how": f"exact name at {grain} grain"}
+
+        want = set(norm(text).split())
+        if want:
+            same = [p for p in self.places if p.get("kind") == self.METRO
+                    and set(norm(p.get("name", "")).split()) == want]
+            if len(same) == 1:
+                return {"slug": slug, "ids": [same[0]["id"]], "grain": self.METRO,
+                        "how": "same words in a different order"}
+
+            parts = [self.resolve(w, kind=self.METRO) for w in sorted(want)]
+            if len(parts) > 1 and all(parts):
+                return {"slug": slug, "ids": [p["id"] for p in parts], "grain": self.METRO,
+                        "how": "every word names an area of its own"}
+
+        return {"slug": slug, "ids": [], "grain": None, "how": "nothing in the registry"}
 
     def metro_of(self, county: str) -> dict | None:
         """The CBSA record a county belongs to, or None when it is in no statistical area.
@@ -606,6 +662,36 @@ def self_test() -> int:
           (r.metro_of("Taylor") or {}).get("full_name"), "Abilene, TX")
     check("...and returns None for a county in none of them, rather than guessing",
           r.metro_of("Shackelford"), None)
+
+    # THE CROSSWALK, one case per rule it can fire, and every one of them is a real TWDB
+    # municipal tag rather than an invented example. The point is that the slugs stay
+    # exactly as the source published them and the registry id is derived beside them.
+    check("a slug that matches an area name resolves at cbsa grain",
+          (r.crosswalk("abilene")["ids"], r.crosswalk("abilene")["grain"]),
+          (["metro-abilene"], "cbsa"))
+    check("Dallas and Fort Worth resolve to their DIVISIONS, which is what makes them "
+          "separable water systems",
+          (r.crosswalk("dallas")["ids"], r.crosswalk("fort_worth")["ids"]),
+          (["division-dallas-plano-irving"], ["division-fort-worth-arlington-grapevine"]))
+    check("a reversed name resolves by its words rather than by a special case",
+          (r.crosswalk("temple_killeen")["ids"], r.crosswalk("temple_killeen")["how"]),
+          (["metro-killeen-temple"], "same words in a different order"))
+    check("a slug naming two areas resolves to both, and not to the combined area that "
+          "also contains a third",
+          r.crosswalk("midland_odessa")["ids"], ["metro-midland", "metro-odessa"])
+    check("a slug the registry does not know resolves to nothing, and says so",
+          (r.crosswalk("narnia")["ids"], r.crosswalk("narnia")["grain"]), ([], None))
+    check("every rule the crosswalk can fire names itself, so a derivation can be read",
+          all(r.crosswalk(s)["how"] for s in
+              ("abilene", "dallas", "temple_killeen", "midland_odessa", "narnia")), True)
+    # Every TWDB municipal slug in the ledger today, resolved. A tag that stops resolving
+    # is a change at the source worth seeing, not a silent drop from the coverage count.
+    tags = ["abilene", "amarillo", "austin", "beaumont_port_arthur", "brownsville",
+            "corpus_christi", "dallas", "fort_worth", "houston", "laredo", "lubbock",
+            "midland_odessa", "nacogdoches", "san_angelo", "temple_killeen", "texarkana",
+            "tyler", "waco", "wichita_falls"]
+    check("every municipal tag the water feed publishes resolves onto the registry",
+          [s for s in tags if not r.crosswalk(s)["ids"]], [])
 
     # Ids must be unique and stable-looking.
     ids = [p["id"] for p in r.places]
