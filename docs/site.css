@@ -51,6 +51,8 @@ body::after { content:""; position:fixed; inset:0; pointer-events:none; z-index:
   -webkit-mask-image:linear-gradient(180deg,#000 0 calc(100% - var(--sky-fade)),transparent 100%);
   mask-image:linear-gradient(180deg,#000 0 calc(100% - var(--sky-fade)),transparent 100%);
   pointer-events:none; z-index:0; }
+main, .masthead, footer.site { position:relative; z-index:1; }
+.masthead { z-index:80; }
 .sky .stars { position:absolute; inset:0; background-image:radial-gradient(1.0px 1.0px at 4% 8%,rgba(244,238,225,0.55),transparent 60%),
 radial-gradient(1.4px 1.4px at 11% 21%,rgba(244,238,225,0.7),transparent 60%),
 radial-gradient(1.0px 1.0px at 17% 5%,rgba(244,238,225,0.45),transparent 60%),
@@ -343,6 +345,8 @@ main > section > h2::after { content:""; position:absolute; top:-1px; left:0; wi
   .items > li .clock { grid-area:clock; min-width:0; }
   .items > li h3 { grid-area:title; }
   .items > li .meta { grid-area:meta; align-self:start; margin:0; }
+  .items > li:not(:has(.clock)) { grid-template-columns:minmax(0,1fr);
+    grid-template-areas:"title" "meta"; }
 }
 .items > li:hover { background:var(--surface); }
 .items h3 { margin:0; font-size:var(--s1); }

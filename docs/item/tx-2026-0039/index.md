@@ -8,7 +8,7 @@ The National Science Foundation announced the first awards under its CyberAICorp
 - Statistical areas:
   - El Paso, TX
 - Status: decided
-- Public access: No formal process
+- Public access: Write to the decider
 - Take part: https://www.utep.edu/cs/opportunities/sfs_program.html
 
 - Last checked: 2026-08-14

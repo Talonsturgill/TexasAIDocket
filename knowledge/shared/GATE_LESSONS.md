@@ -619,6 +619,40 @@ fails on a ledger nobody edited.
 page renders, and it goes stale the moment a template starts rendering one more field. Diff the
 two: every string a builder interpolates into a page is reader copy, whoever wrote it.
 
+## 31. Nine green suites and nobody had looked at the page
+
+Every gate in this repository passed. `house_style_check` clean across 147 pages,
+`site_fresh_check` byte identical, `text_contrast` over 7,713 runs of text, `responsive`,
+`page_ground`, `ask_engine`, `numeral_lint`, the docket's eight. Then the owner asked for a
+LOOK at the pages, and one pass of screenshots found three faults in ten minutes.
+
+**The atmosphere was painting on top of the record.** `.sky` is a positioned element at
+z-index 0 and `main` is a static one, and a positioned box paints after every non-positioned
+block in the same stacking context. So the weather layer had been over the copy the whole time,
+and `pointer-events:none` hid it from everything that hit tests. The tumbleweed made it visible
+by rolling across the front page's own statistics, the record's map and the grid chart's
+residual strip, in the accent colour, on top.
+
+**A badge contradicted its own page.** TCEQ's preliminary decision on the Crusoe plant wore
+"NO FORMAL PROCESS" two inches above a summary saying comments are due within thirty days and a
+section headed "How to take part". The upstream demotion was correct, since a window with no
+close date cannot be `open_comment`. The label it demoted to made a claim about the world that
+the record had never checked.
+
+**The front page advertised nothing.** Two of four counters read "00", zero padded, on a page
+arguing the record is substantial.
+
+Not one of these is a thing a checker can see. `page_ground` samples points where content is
+NOT. `text_contrast` composites background COLOURS and cannot see a drawing laid over a
+numeral. `numeral_lint` proved "00" traced to a computation, which it did. `house_style_check`
+read the badge as three well-formed words. Every gate answered its own question correctly.
+
+**What to check.** A gate answers the question it was given. It cannot notice that the page is
+self-contradictory, that a decoration is on top of the data, or that a true number is the wrong
+thing to lead with. **Look at the rendered pages after any change you did not visually
+confirm**, at the widths a reader uses, and treat a green suite as evidence that the things you
+thought to ask about are fine rather than that the product is.
+
 ---
 
 ## The rule for setting a threshold

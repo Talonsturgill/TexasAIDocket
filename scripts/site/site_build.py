@@ -296,8 +296,22 @@ def clock(item: dict, today: str) -> str:
 
 
 def room_label(room: str) -> str:
+    """The badge a reader sees, which has to be true of every item wearing it.
+
+    `contact_only` READ "NO FORMAL PROCESS" AND THAT WAS FLATLY WRONG ON SOME OF THEM. TCEQ's
+    preliminary decision on the Crusoe plant at Abilene carried the badge while its own summary
+    said written comments are due within thirty days of newspaper publication, and its How to
+    take part section told a reader how to file one. The page contradicted itself in two inches
+    of screen.
+    The cause is upstream and is correct: a comment window with no close date cannot be
+    `open_comment`, because the schema refuses a window a reader cannot date, so the batch
+    demotes it. What was wrong is that the demotion target then ASSERTED something the record
+    does not know. "No formal process" is a claim about the world. What this room actually
+    means is narrower and always true: there is a named decider and a way to reach them, and no
+    dated window this record can stand behind.
+    """
     return {"open_comment": "Comment window open", "open_meeting": "Public meeting",
-            "contact_only": "No formal process", "closed": "Closed",
+            "contact_only": "Write to the decider", "closed": "Closed",
             "comment_closed": "Comment window closed"}.get(room, room)
 
 
@@ -735,15 +749,30 @@ def home(items: list, today: str) -> str:
     # number one behind until the next one. The front page re-reads the same feed it already
     # fetches for the latest-video block, so the figure is right whenever the page is loaded,
     # and the built number stays as the answer with script off.
+    # A COUNTER THAT READS ZERO IS AN EMPTY SHELF, NOT A FACT WORTH THE FRONT PAGE.
+    #
+    # This row printed "00 ARTICLES WRITTEN" and "00 VIDEOS PUBLISHED" beside "58 DECISIONS
+    # TRACKED", so half of it advertised nothing at all on a page whose whole argument is that
+    # the record is substantial. Zero padded, "00" also reads as a broken widget rather than a
+    # count. Nothing is hidden by leaving it out: both sections are in the navigation and a
+    # reader who wants them can go and find them empty, honestly.
+    #
+    # So the row is a PRIORITY LIST and takes the first four that have something in them. The
+    # published work leads once it exists, because a daily product proving it ships daily is
+    # the strongest thing this row can say, and it comes back on its own the day the first
+    # article lands rather than needing anybody to remember this rule.
+    candidates = [
+        (len(runs), "Articles written", False, ""),
+        (n_videos, "Videos published", False, ' id="vidstat"'),
+        (n_items, "Decisions tracked", False, ""),
+        (len(act), "Doors open to you", True, ""),
+        (n_counties, "Counties named", False, ""),
+        (n_claims, "Sources cited", False, ""),
+    ]
     stats = "".join(
-        f'<div class="stat"{attrs}><span class="n{" hot" if hot else ""}">{n}</span>'
+        f'<div class="stat"{attrs}><span class="n{" hot" if hot else ""}">{v:02d}</span>'
         f'<span class="l">{e(label)}</span></div>'
-        for n, label, hot, attrs in (
-            (f"{len(runs):02d}", "Articles written", False, ""),
-            (f"{n_videos:02d}", "Videos published", False, ' id="vidstat"'),
-            (n_items, "Decisions tracked", False, ""),
-            (f"{len(act):02d}", "Doors open to you", True, ""),
-        ))
+        for v, label, hot, attrs in [c for c in candidates if c[0]][:4])
 
     body = f"""
 <section class="hero rise">
@@ -883,7 +912,21 @@ def topic_label(topic: str) -> str:
     page's filter row for as long as that row existed. The slug stays the identifier
     everywhere it is one, in the URL, the ledger and the ask engine's vocabulary, and this
     is the only place it becomes English.
+
+    THE COMMA IS A RULE, NOT AN EXCEPTION FOR ONE SLUG. `land-water-and-permitting` is a list
+    of three and reads wrong without it. `power-and-the-grid` is a list of two and reads wrong
+    with it. What separates them is how many items sit before the "and", so that is what is
+    counted: two or more means a serial list, and a serial list takes a comma between every
+    item but the last pair. A hand-written label for the one awkward slug would be the same
+    string typed in two places, which is how a URL and a heading drift apart.
     """
+    words = topic.split("-")
+    if "and" in words:
+        i = words.index("and")
+        head, tail = words[:i], words[i + 1:]
+        if len(head) >= 2:
+            phrase = ", ".join(head) + " and " + " ".join(tail)
+            return phrase[0].upper() + phrase[1:]
     return topic.replace("-", " ").capitalize()
 
 

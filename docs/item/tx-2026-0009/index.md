@@ -6,7 +6,7 @@ The Department of Information Resources is required to establish a program letti
 - Decided by: Texas Department of Information Resources (state-agency)
 - Where: Statewide
 - Status: pending
-- Public access: No formal process
+- Public access: Write to the decider
 
 - Last checked: 2026-08-11
 

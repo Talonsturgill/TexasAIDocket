@@ -445,6 +445,21 @@ body::after {{ content:""; position:fixed; inset:0; pointer-events:none; z-index
   -webkit-mask-image:linear-gradient(180deg,#000 0 calc(100% - var(--sky-fade)),transparent 100%);
   mask-image:linear-gradient(180deg,#000 0 calc(100% - var(--sky-fade)),transparent 100%);
   pointer-events:none; z-index:0; }}
+/* THE ATMOSPHERE GOES UNDER THE RECORD, and until now it did not.
+   `.sky` is a POSITIONED element at z-index 0 and `main` is a static one, and in the painting
+   order a positioned box at auto or zero paints after every non-positioned block in the same
+   stacking context. So the sky was on top of the copy the whole time. `pointer-events:none`
+   hid the consequence from anything that hit tests, which is most of this suite.
+   The tumbleweed is what made it visible. It rolls along `top:74vh` measured from the top of
+   the DOCUMENT, and on a phone 74vh is 621 pixels down a stacked column, so it crossed the
+   front page's own statistics, the record's map and the grid chart's residual strip, on top,
+   in the accent colour. Three pages, one cause, and no gate saw any of it: page_ground samples
+   points where content is NOT, and text_contrast composites background COLOURS and cannot see
+   a drawing laid over a numeral.
+   One declaration fixes the class rather than the weed. Content sits above the weather, the
+   masthead at 80 and the grain at 90 still sit above content, and nothing needed a new number. */
+main, .masthead, footer.site {{ position:relative; z-index:1; }}
+.masthead {{ z-index:80; }}
 
 /* THE STAR FIELD IS EARNED. Big Bend is a certified International Dark Sky Park with among the
    least light pollution left in the lower 48, so a Texas night sky is genuinely one of the
@@ -1113,6 +1128,15 @@ main > section > h2::after {{ content:""; position:absolute; top:-1px; left:0; w
   .items > li .clock {{ grid-area:clock; min-width:0; }}
   .items > li h3 {{ grid-area:title; }}
   .items > li .meta {{ grid-area:meta; align-self:start; margin:0; }}
+  /* A COLUMN RESERVED FOR SOMETHING 54 OF 58 CARDS DO NOT HAVE.
+     The countdown only renders for an item with a dated comment window, and `clock()` returns
+     an empty string otherwise, so the element is genuinely absent rather than empty. The grid
+     went on holding 13.5rem for it anyway, which put a fifth of every card on the record and
+     every topic page into white space, and it read as the same dead space the phone had.
+     `:has()` asks the card whether it actually has a clock. Where it is unsupported the rule
+     does not match and the layout is exactly what it was, so this cannot make anything worse. */
+  .items > li:not(:has(.clock)) {{ grid-template-columns:minmax(0,1fr);
+    grid-template-areas:"title" "meta"; }}
 }}
 .items > li:hover {{ background:var(--surface); }}
 .items h3 {{ margin:0; font-size:var(--s1); }}

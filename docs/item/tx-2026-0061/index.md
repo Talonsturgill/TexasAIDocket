@@ -8,7 +8,7 @@ The San Marcos City Council voted on June 16th, 2026 to define data centers in t
 - Statistical areas:
   - Austin-Round Rock-San Marcos, TX
 - Status: decided
-- Public access: No formal process
+- Public access: Write to the decider
 - Take part: https://www.sanmarcostx.gov/2859/Code-Updates
 
 - Last checked: 2026-08-14
