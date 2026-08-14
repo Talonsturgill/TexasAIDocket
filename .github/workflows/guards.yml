@@ -1,6 +1,6 @@
 name: guards
 
-# The two structural gates for this repo, run on every change.
+# The two structural gates for this repo, run on every PULL REQUEST and every MERGE to main.
 #
 # ownership  no automation may write outside its lane. Several unattended routines share this
 #            history and each ends in a phase that edits its own machine, so the lane is only
@@ -12,11 +12,18 @@ name: guards
 # Both self-test FIRST. A gate that cannot go red proves nothing about what it guards, so the
 # self-test reintroduces known-bad inputs and requires the checker to reject them before the
 # real run is allowed to mean anything.
+#
+# WHY NOT ON EVERY PUSH. This used to run on every push to every branch but main, so each
+# intermediate dev commit and each unattended routine step fired the gate, and every failing
+# WORK-IN-PROGRESS commit mailed the maintainer a failure. The merge is where a change becomes
+# real, and the pull_request trigger already gates every merge, so the per-commit runs were
+# redundant noise. Now it runs on PRs and on main itself, so main is validated on the way in
+# and a red is a red that MEANS something. Maintainer-directed change, 2026-08-14.
 
 on:
   pull_request:
   push:
-    branches-ignore: [main]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
