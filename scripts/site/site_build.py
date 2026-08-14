@@ -1382,30 +1382,29 @@ def scan_page(today: str) -> str:
     body = f"""
 <section class="hero" data-reveal>
   <h1>See where AI would actually help you</h1>
-  <p class="sub">Give us a website. What comes back is an honest map of where AI would carry
-  real load in that operation, where ordinary software does the same job cheaper and safer,
-  and where it has no business at all.</p>
+  <p class="sub">Send a website. What comes back is an honest map of that operation. Where AI
+  would carry real load. Where ordinary software does the same job cheaper and safer. Where it
+  has no business at all.</p>
 </section>
 
 <section data-reveal>
   <h2>What comes back</h2>
   <div class="cards">
     <div class="card"><h3>Sourced to your own pages</h3><p>Every line traces to a page on your
-    site, linked so you can check it. Nothing is inferred from another business and nothing is
-    invented. If the public site is too thin to say something true, the report says that
-    instead.</p></div>
-    <div class="card"><h3>The honest no, included</h3><p>Most operations have a pocket where a
-    scale already counts it, or a person clears it in a couple of minutes. Those get marked as
-    leave-it-alone, and they are the reason the rest of the report is worth reading.</p></div>
+    site. Each one is linked so you can check it. Nothing is inferred from another business and
+    nothing is invented. A site too thin to support a true finding gets told exactly that.</p></div>
+    <div class="card"><h3>The honest no</h3><p>Most operations have a pocket where a scale
+    already counts it. Others have one a person clears in a couple of minutes. Those get marked
+    leave-it-alone. They are the reason the rest of the report is worth reading.</p></div>
     <div class="card"><h3>What your industry already published</h3><p>What operators in the same
-    line of work have published about trying the same thing, and where it got rolled back.
-    Their results, cited and linked, never dressed up as a forecast about you.</p></div>
+    line of work have published about trying the same thing. Also where it got rolled back. Their
+    results are cited and linked. None of it is dressed up as a forecast about you.</p></div>
   </div>
 </section>
 
 <section id="start" data-reveal>
   <h2>Ask for one</h2>
-  <p class="sub">One report, to one address. No list, no follow-up sequence, no second email.</p>
+  <p class="sub">One report to one address. No list. No follow-up sequence. No second email.</p>
   <form class="leadform" action="{FORM_ACTION}" method="POST">
     <input type="hidden" name="_subject" value="Texas AI Docket, bottleneck scan request">
     <input type="hidden" name="_captcha" value="false">
@@ -1427,16 +1426,16 @@ def scan_page(today: str) -> str:
       placeholder="Anything worth knowing, optional"></textarea>
     <button class="cta solid" type="submit">Send it</button>
   </form>
-  <p class="fine">A person reads every report before it goes out, so this takes a day or two
+  <p class="fine">A person reads every report before it goes out. That takes a day or two
   rather than seconds. Your report is not published anywhere and is not shown to anyone else.
-  It reads what is public, so it can't see a billing system or a call volume, and it says so
-  where that matters. If it turns out to be worth going further, the
-  <a href="../services/">Field Study</a> is what goes deeper.</p>
+  It reads what is public. It can't see a billing system or a call volume and it says so where
+  that matters. The <a href="../services/">Field Study</a> is what goes deeper if that turns out
+  to be worth doing.</p>
 </section>
 """
     return page(title=f"Bottleneck scan · {SITE_NAME}", depth=1, active="",
-                desc="An honest read of where AI would help a Texas business, where ordinary "
-                     "software is cheaper, and what the industry has already published.",
+                desc="An honest read of where AI would help a Texas business. Where ordinary "
+                     "software is cheaper. What the industry has already published.",
                 body=body, today=today, canonical="scan/")
 
 
@@ -1563,9 +1562,8 @@ def services_page(items: list, today: str) -> str:
 <section id="start" data-reveal>
   <h2>Start here</h2>
   <p class="sub">Say what the work is. A reply comes inside one business day.</p>
-  <p class="sub">Not ready for that yet, and want to see the thinking first. The
-  <a href="../scan/">bottleneck scan</a> is free, and it reads your own site and says
-  where AI would and would not help.</p>
+  <p class="sub">Not ready for that yet. The <a href="../scan/">bottleneck scan</a> is free.
+  It reads your own site and says where AI would and would not help.</p>
   <form class="leadform" action="{FORM_ACTION}" method="POST">
     <input type="hidden" name="_subject" value="Texas AI Docket, services enquiry">
     <input type="hidden" name="_captcha" value="false">
