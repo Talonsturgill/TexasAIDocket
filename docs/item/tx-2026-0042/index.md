@@ -1,0 +1,46 @@
+# Young County Commissioners Court receives the Project Saltworks tax abatement application and ratifies a developer funded escrow for consultants
+
+Young County Commissioners Court formally received a tax abatement application from Headwaters Site Development for the Project Saltworks data center campus at the courthouse in Graham on August 10th, 2026. That agenda item required no vote, and County Judge Win Graham said he would hand the application to the county clerk so it becomes a public document. Commissioners did vote to ratify a separate escrow agreement under which the developer puts up 250,000 dollars to pay for the county's outside consultants while it evaluates the project. Residents used public comment to ask the court to slow down and wait for the Legislature before granting any incentive. Commissioner Alan Craig said the application contained no specifics and that the court would know more when it convenes again on August 17th.
+
+- Topic: data-centers
+- Decided by: Young County Commissioners Court (county)
+- Where: Young
+- Status: pending
+- Public access: Public meeting
+- Take part: https://www.olneyenterprise.com/news/county-votes-data-center-abatement
+
+- Last checked: 2026-08-14
+
+## Dates
+
+- 2026-08-10 · filed: County received Headwaters Site Development's tax abatement application for Project Saltworks and voted 5 to 0 to ratify the escrow agreement
+- 2026-08-17 · hearing: Commissioners Court reconvenes to begin considering the abatement request, per Commissioner Alan Craig
+
+## Evidence
+
+Every fact above rests on one of these. The words are the source's own.
+
+### The county formally received the developer's tax abatement application on August 10th while opponents urged commissioners to reject incentives.
+
+> GRAHAM — Young County Commissioners took another step toward negotiations over the proposed Project Saltworks data center campus on Aug. 10, formally receiving a tax abatement application from the project's developer while opponents again urged county officials to slow down or reject incentives altogether.
+
+Source (journalism): https://www.olneyenterprise.com/news/county-votes-data-center-abatement
+
+### Commissioners voted unanimously to ratify an escrow agreement funding the county's consultants.
+
+> Commissioners did vote 5-0 to ratify a separate escrow agreement under which Headwaters will provide $250,000 to cover the county's costs for consultants as it evaluates the project.
+
+Source (journalism): https://www.olneyenterprise.com/news/county-votes-data-center-abatement
+
+### Receiving the application is not an approval of any abatement.
+
+> The receipt of the abatement application does not mean commissioners have approved a tax abatement for Project Saltworks.
+
+Source (journalism): https://www.olneyenterprise.com/news/county-votes-data-center-abatement
+
+### A commissioner said the request carried no specifics and that the court would take it up the following Monday.
+
+> "There's no meat in the sandwich right now. That will likely change starting next Monday."
+
+Source (journalism): https://www.olneyenterprise.com/news/county-votes-data-center-abatement
+

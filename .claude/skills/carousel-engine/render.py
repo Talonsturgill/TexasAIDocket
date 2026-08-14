@@ -585,7 +585,7 @@ IN_PAGE_QA_JS = """
      looks exactly like a leader reaching something small, which is why run
      No.28's slide 06 shipped two detail-circle leaders pointing at void through
      TWO pixel critics and a flow critic: the tails were fixed pixel deltas from
-     each circle's own centre (tail:[-70,-70,-150,-150]), so no reviewer and no
+     each circle's own center (tail:[-70,-70,-150,-150]), so no reviewer and no
      gate could tell what they were supposed to arrive at. Pixels cannot answer
      it either (the leader's own landing tick puts ink at the terminus), so the
      slide DECLARES the arithmetic instead: for every drafting leader, where it

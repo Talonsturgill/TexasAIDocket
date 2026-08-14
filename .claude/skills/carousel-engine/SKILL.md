@@ -155,7 +155,7 @@ taste call.
 - **A leader must land on the thing it points at, and say where that is.** Every drafting
   leader, callout rule or detail-circle tail is authored as a world-coordinate polyline that
   terminates ON the target's own coordinates, never as a fixed offset from the annotation's own
-  centre:
+  center:
 
   ```js
   var SITE = [BX + 2, 838];                       // the feature's own coordinates

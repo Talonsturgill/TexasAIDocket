@@ -103,7 +103,7 @@ def fit(rings_by_county: list) -> tuple[float, float, float]:
     minx, maxx, miny, maxy = min(xs), max(xs), min(ys), max(ys)
     pad = MARGIN
     scale = min((VIEW_W - 2 * pad) / (maxx - minx), (VIEW_H - 2 * pad) / (maxy - miny))
-    # Centre what is left over, so the shape sits in the middle rather than in a corner.
+    # Center what is left over, so the shape sits in the middle rather than in a corner.
     dx = pad + (VIEW_W - 2 * pad - (maxx - minx) * scale) / 2 - minx * scale
     dy = pad + (VIEW_H - 2 * pad - (maxy - miny) * scale) / 2 - miny * scale
     return scale, dx, dy
@@ -322,7 +322,7 @@ def scale_bar(scale: float, dx: float, dy: float) -> tuple[str, int]:
 
 def render(lit: set | None = None, *, title: str = "Texas counties in the record",
            idprefix: str = "txmap", inset: bool = False,
-           links: dict | None = None) -> str:
+           links: dict | None = None, counts: dict | None = None) -> str:
     """The whole map as one inline SVG.
 
     `lit` is a set of county NAMES (as the geodata spells them) or FIPS codes. Anything not lit
@@ -344,7 +344,14 @@ def render(lit: set | None = None, *, title: str = "Texas counties in the record
         cls = "c on" if on else "c"
         # The title element is what a screen reader announces, and it is also what a sighted
         # reader gets on hover with no JavaScript at all.
-        node = (f'<path class="{cls}" d="{d}" data-fips="{fips}" data-county="{name}">'
+        # THE COUNT TRAVELS WITH THE SHAPE. A thumb dragged across this map on a phone needs to
+        # say what it is over, and the alternative to an attribute is a second index shipped
+        # beside the drawing that can disagree with it. `n` is absent rather than zero on an
+        # unlit county, because "nothing on the record" and "zero of something" are different
+        # sentences and the readout writes them differently.
+        n = (counts or {}).get(name)
+        nattr = f' data-n="{int(n)}"' if on and n else ""
+        node = (f'<path class="{cls}" d="{d}" data-fips="{fips}" data-county="{name}"{nattr}>'
                 f"<title>{name} County</title></path>")
         # A LIT COUNTY IS A LINK, which is the whole map's job now that there is no index page
         # standing in front of it. Only lit counties link: an unlit county has nothing to open,
@@ -422,13 +429,13 @@ def self_test() -> int:
 
     # Orientation, checked against three counties whose relative positions are not in doubt.
     by_name = {n: rings for _, n, rings in counties}
-    def centre(nm):
+    def center(nm):
         pts = [p for r in by_name[nm] for p in r]
         return (sum(p[0] for p in pts) / len(pts) * scale + dx,
                 sum(p[1] for p in pts) / len(pts) * scale + dy)
-    dallam = centre("Dallam")        # far northwest corner
-    cameron = centre("Cameron")      # far south tip
-    elpaso = centre("El Paso")       # far west
+    dallam = center("Dallam")        # far northwest corner
+    cameron = center("Cameron")      # far south tip
+    elpaso = center("El Paso")       # far west
     check("north is up: Dallam sits above Cameron", dallam[1] < cameron[1])
     check("west is left: El Paso sits left of Cameron", elpaso[0] < cameron[0])
 
@@ -494,7 +501,7 @@ def self_test() -> int:
     check("the projection yields a positive scale", upm > 0, str(upm))
     by_pt = {n: [p for r in rings for p in r] for _, n, rings in counties}
 
-    def centre_view(nm):
+    def center_view(nm):
         pts = by_pt[nm]
         return (sum(p[0] for p in pts) / len(pts) * scale + dx,
                 sum(p[1] for p in pts) / len(pts) * scale + dy)
@@ -502,7 +509,7 @@ def self_test() -> int:
     # El Paso to Jefferson is the longest span the state offers, so it is where an equal-area
     # projection's distance error is largest. If the bar holds here it holds anywhere on the
     # sheet.
-    a, b = centre_view("El Paso"), centre_view("Jefferson")
+    a, b = center_view("El Paso"), center_view("Jefferson")
     measured = math.dist(a, b) / upm
     truth = great_circle_mi(-106.29, 31.77, -94.15, 29.88)
     err = abs(measured - truth) / truth
@@ -540,8 +547,8 @@ def self_test() -> int:
             attrs, text = m_lab.group(3), m_lab.group(4)
             # 11px mono, so roughly 6.6 units per character, and about 12 units tall.
             w, h = len(text) * 6.6, 12.0
-            # `text-anchor` centres HORIZONTALLY. Testing for the bare word "middle" also
-            # matched `dominant-baseline="middle"`, which centres vertically, so every parallel
+            # `text-anchor` centers HORIZONTALLY. Testing for the bare word "middle" also
+            # matched `dominant-baseline="middle"`, which centers vertically, so every parallel
             # label was shifted half its width to the left and the collision this check exists
             # to find fell outside the box. A broken gate reports clean, which is worse than no
             # gate, so the attribute is matched in full.

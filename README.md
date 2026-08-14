@@ -10,7 +10,7 @@ Three things run off this repo:
 - **The daily carousel** — one verified Texas AI story a day, planned in forensic detail and
   rendered as bespoke code, delivered as a post-ready email draft.
 - **The Texas Grid Watch** — a daily numeric record of the ERCOT grid's position, built around
-  the load factor, which is the one number here that is genuinely about AI: a data centre draws
+  the load factor, which is the one number here that is genuinely about AI: a data center draws
   at four in the morning close to what it draws at five in the afternoon, so large constant load
   lifts the overnight floor faster than the afternoon ceiling.
 - **The Texas Water Watch** — daily reservoir storage for 119 Texas reservoirs, rolled up by

@@ -1,6 +1,6 @@
 # TRAIGA in force as Business and Commerce Code Chapter 552, enforceable only by the Attorney General
 
-The Texas Responsible Artificial Intelligence Governance Act took effect on January 1st, 2026 as Chapter 552 of the Business and Commerce Code. It bans developing or deploying an AI system with intent to unlawfully discriminate, to manipulate behaviour, for social scoring or to produce certain illegal content. It also requires government agencies to tell people when they are interacting with an AI system. The Attorney General has exclusive enforcement authority and the statute creates no private right of action.
+The Texas Responsible Artificial Intelligence Governance Act took effect on January 1st, 2026 as Chapter 552 of the Business and Commerce Code. It bans developing or deploying an AI system with intent to unlawfully discriminate, to manipulate behavior, for social scoring or to produce certain illegal content. It also requires government agencies to tell people when they are interacting with an AI system. The Attorney General has exclusive enforcement authority and the statute creates no private right of action.
 
 - Topic: state-policy
 - Decided by: Office of the Attorney General of Texas (state-agency)

@@ -357,7 +357,7 @@ def annotated() -> str:
 
 *,*::before,*::after {{ box-sizing:border-box; }}
 /* THE CLIP GOES ON html, NOT body. The masthead's full-bleed glass panel is 100vw wide
-   and off-centre by design, so something has to contain it. Putting `overflow-x:clip` on
+   and off-center by design, so something has to contain it. Putting `overflow-x:clip` on
    `body` does contain it and also silently breaks `position:sticky` on everything inside,
    because a clipping ancestor becomes the scroll container the sticky element resolves
    against: the bar detached and rode down the page over the copy. */
@@ -485,20 +485,20 @@ body::after {{ content:""; position:fixed; inset:0; pointer-events:none; z-index
    had the warm veils at the top of the page, so ember and gold were screening over the whole
    ground at once, and warm light screened over a violet ground is the definition of mauve. The
    page read pink. Warmth belongs where the sun went. */
-.sky .veil {{ position:absolute; border-radius:50%; filter:blur(84px);
+.sky .veil {{ position:absolute; border-radius:50%; filter:blur(52px);
   mix-blend-mode:screen; opacity:.34; }}
 /* The warm pair sit so their CENTRES clear the fade zone. A blurred ellipse whose middle is
    inside the fade loses most of itself and reads as a smudge rather than as cloud. */
 .sky .v1 {{ width:64vw; height:34vh; left:30vw; bottom:calc(var(--sky-fade) + 2vh);
   background:radial-gradient(closest-side,color-mix(in srgb,var(--accent) 34%,transparent),
-    transparent 70%); animation:drift1 23s ease-in-out infinite alternate; }}
+    transparent 70%); animation:drift1 15s ease-in-out infinite alternate; }}
 .sky .v2 {{ width:52vw; height:30vh; left:2vw; bottom:calc(var(--sky-fade) + 6vh);
   background:radial-gradient(closest-side,color-mix(in srgb,var(--accent-deep) 30%,transparent),
-    transparent 70%); animation:drift2 31s ease-in-out infinite alternate; }}
+    transparent 70%); animation:drift2 19s ease-in-out infinite alternate; }}
 /* The one high cloud, and it is cool. A dusk sky is warm at the bottom and cold at the top. */
 .sky .v3 {{ width:46vw; height:32vh; left:22vw; top:-12vh; opacity:.26;
   background:radial-gradient(closest-side,color-mix(in srgb,var(--flag-blue) 46%,transparent),
-    transparent 70%); animation:drift3 37s ease-in-out infinite alternate; }}
+    transparent 70%); animation:drift3 24s ease-in-out infinite alternate; }}
 
 /* THE UPPER SKY HAS TO MOVE TOO, and for a while it did not. Fixing the pink meant pulling every
    warm layer down to the horizon, which was right, and it left the top two thirds of the page as
@@ -509,24 +509,35 @@ body::after {{ content:""; position:fixed; inset:0; pointer-events:none; z-index
    blending rather than about opacity, so turning a warm veil down would only make a slower
    mistake. Violet over violet deepens instead of shifting hue, which is what a real sky does
    overhead at this hour anyway. Long, uneven periods so the two never visibly cycle together. */
-.sky .v4, .sky .v5 {{ position:absolute; border-radius:50%; filter:blur(96px);
+.sky .v4, .sky .v5 {{ position:absolute; border-radius:50%; filter:blur(58px);
   mix-blend-mode:screen; }}
-/* SMALLER AND BRIGHTER RATHER THAN BIGGER AND BRIGHTER, and the rendered check is what forced
+/* THE OPACITIES ARE .78 AND .68 BECAUSE THAT IS THE MOST THE NIGHT GROUND WILL CARRY.
+   The owner reported the background did not appear to move, and measuring the rendered
+   frames rather than the DOM proved it: over fifteen seconds the page changed by a mean of
+   2.6 parts in 255, which is about one percent of luminance delivered slowly enough for the
+   eye to adapt to it. Transforms were changing the whole time. Nothing was arriving.
+   Three levers exist and only two are free. Speed and travel distance cost no brightness, so
+   the periods came down by about a third and the translate ranges roughly doubled. Opacity
+   costs brightness directly, and brightness is capped by the swept ground ceiling that earns
+   the star field. At .9 and .8 the sweep put five points over it, peaking at 8.2 against a
+   7.5 limit. At .78 and .68 it holds. These are measured limits, not chosen values, and
+   tests/page_ground.mjs is what measures them.
+   SMALLER AND BRIGHTER RATHER THAN BIGGER AND BRIGHTER, and the rendered check is what forced
    the distinction. At 78vw these spanned the whole page, so raising their opacity to make the
    motion visible lifted the ground itself: the left gutter measured 10 percent lightness against
    a 7.5 ceiling, and the ceiling is the argument that the star field is earned. A wash that
    covers everything is not a cloud, it is a tint, and tinting the page is not the same as moving
    it. Narrower and brighter reads as something PASSING, which is the thing that was missing. */
-.sky .v4 {{ width:44vw; height:38vh; left:14vw; top:4vh; opacity:.62;
+.sky .v4 {{ width:44vw; height:38vh; left:14vw; top:4vh; opacity:.78;
   background:radial-gradient(closest-side,color-mix(in srgb,var(--flag-blue) 62%,transparent),
-    transparent 72%); animation:drift4 26s ease-in-out infinite alternate; }}
-.sky .v5 {{ width:38vw; height:30vh; right:12vw; top:26vh; opacity:.52;
+    transparent 72%); animation:drift4 17s ease-in-out infinite alternate; }}
+.sky .v5 {{ width:38vw; height:30vh; right:12vw; top:26vh; opacity:.68;
   background:radial-gradient(closest-side,color-mix(in srgb,var(--panel) 88%,transparent),
-    transparent 70%); animation:drift5 34s ease-in-out infinite alternate; }}
-@keyframes drift4 {{ from {{ transform:translate(-9vw,-3vh) scale(1); }}
-  to {{ transform:translate(13vw,6vh) scale(1.3); }} }}
-@keyframes drift5 {{ from {{ transform:translate(9vw,4vh) scale(1.22); }}
-  to {{ transform:translate(-12vw,-4vh) scale(1); }} }}
+    transparent 70%); animation:drift5 21s ease-in-out infinite alternate; }}
+@keyframes drift4 {{ from {{ transform:translate(-20vw,-6vh) scale(1); }}
+  to {{ transform:translate(24vw,10vh) scale(1.34); }} }}
+@keyframes drift5 {{ from {{ transform:translate(20vw,8vh) scale(1.26); }}
+  to {{ transform:translate(-22vw,-7vh) scale(1); }} }}
 
 /* THE TUMBLEWEED, which is this page's answer to the sibling's meteor. Not another thing in the
    sky. The one piece of West Texas motion everybody already has in their head, and a real plant
@@ -568,12 +579,12 @@ body::after {{ content:""; position:fixed; inset:0; pointer-events:none; z-index
   22%  {{ opacity:0; transform:translate(114vw,0) rotate(1450deg); }}
   100% {{ opacity:0; transform:translate(114vw,0) rotate(1450deg); }}
 }}
-@keyframes drift1 {{ from {{ transform:translate(-13vw,-1vh) scale(1); }}
+@keyframes drift1 {{ from {{ transform:translate(-24vw,-3vh) scale(1); }}
   to {{ transform:translate(15vw,4vh) scale(1.12); }} }}
-@keyframes drift2 {{ from {{ transform:translate(12vw,3vh) scale(1.1); }}
+@keyframes drift2 {{ from {{ transform:translate(22vw,6vh) scale(1.18); }}
   to {{ transform:translate(-14vw,-3vh) scale(1); }} }}
-@keyframes drift3 {{ from {{ transform:translate(0,0) scale(1); }}
-  to {{ transform:translate(-4vw,2vh) scale(1.12); }} }}
+@keyframes drift3 {{ from {{ transform:translate(-10vw,-2vh) scale(1); }}
+  to {{ transform:translate(11vw,5vh) scale(1.16); }} }}
 
 /* THE HORIZON. The thing you actually see out there is the sun gone behind the Chisos and the
    bottom of the sky staying lit long after the top has gone dark.
@@ -714,6 +725,46 @@ nav.main a[aria-current]::after {{ right:0; }}
   nav.main {{ margin-left:0; gap:.5rem .9rem; font-size:var(--s-2); }}
 }}
 
+/* ---- ON A PHONE THE NAV IS ONE ROW THAT SCROLLS ------------------------- */
+/* WHAT THE OWNER SAW: a phone screenshot of the about page whose whole first screen was a
+   wordmark, a nav, and then a field of stars, with the headline pushed off the bottom. Three
+   measured things were adding up, and none of them looked wrong on its own.
+   The nav wrapped. Eight labels need 327 pixels of text and the seven gaps between them add
+   123 more, so at 412 the row broke and left ABOUT alone on a second line under seven
+   siblings. A one-item second row does not read as a navigation, it reads as a rendering
+   fault, which is very close to what was reported: tabs missing.
+   That second row also cost 34 pixels of masthead, and the hero was already spending
+   `9vh` above its headline, which is 82 on a tall phone. Add the shell's own top padding and
+   the reader met 309 pixels of nothing before the first word. On a 915 pixel screen that is a
+   quarter of the phone gone before the page says anything.
+   THE BREAKPOINT IS MEASURED, not chosen: stepping the viewport four pixels at a time, the
+   bar holds one row down to 460 and breaks below it. 28.75rem is that number, and it is the
+   same one the Lone Star's own rules turn on, because it is the same event.
+   A SCROLLING ROW RATHER THAN A MENU BUTTON. Every section stays visible and reachable with a
+   thumb, and nothing is hidden behind a control a reader has to discover. The row bleeds to
+   both screen edges, because a strip that stops inside the gutter looks like it ends there. */
+@media (max-width:28.7499rem) {{
+  nav.main {{ flex-wrap:nowrap; overflow-x:auto; overscroll-behavior-x:contain;
+    -webkit-overflow-scrolling:touch; scrollbar-width:none; -ms-overflow-style:none;
+    margin-inline:calc(var(--gap) * -1); padding-inline:var(--gap); }}
+/* NO EDGE FADE, AND THAT IS THE SECOND ANSWER TO THE QUESTION. The first was a mask that
+   dissolved the last 2.4rem of the row, which reads well while the row overflows and is a
+   defect the moment it does not: near the top of this range the eight labels fit, and the mask
+   went on dimming a link that was entirely visible. A mask cannot ask whether there is
+   anything to scroll to. What can answer that is the row itself: it bleeds to both screen
+   edges, so when there is more, the next label is visibly cut by the edge of the phone, and
+   when there is not, nothing is cut and nothing is dimmed. The affordance is the overflow. */
+  nav.main::-webkit-scrollbar {{ display:none; }}
+  /* Without this the links shrink to fit instead of overflowing, and the row silently becomes
+     eight squeezed columns rather than a strip that scrolls. */
+  nav.main a {{ flex:none; }}
+}}
+/* The spacing half of the same fix is NOT here, it is below `.hero` and `main`, and that is
+   deliberate rather than untidy. It lived in this block first and did nothing: `.hero` and
+   this rule both weigh 0-0-1-0, `.hero` is declared 90 lines further down, and at equal
+   specificity the later declaration wins no matter which one sits inside a media query. The
+   computed padding stayed at 82.35 pixels while the stylesheet read as fixed. */
+
 /* THE MARK COMES OFF WHERE THE NAV ACTUALLY WRAPS, AND NOT 376 PIXELS EARLIER.
    This rule lived at `max-width:56rem` and justified itself in a comment: "the nav wraps to
    two rows at this width and the hero starts right under it, so there is no clear field left
@@ -745,11 +796,19 @@ nav.main a[aria-current]::after {{ right:0; }}
    IN REM RATHER THAN PX, and that is load bearing. The wrap point is a property of how wide
    the nav text is, so it moves with the reader's font size. A px breakpoint would hold the
    mark in the two-row position on a phone whose nav had already collapsed to one. */
-@media (max-width:28.7499rem) {{        /* the nav is two rows */
-  .home .sky .lonestar {{ top:8.5rem; right:5vw; width:min(23vw,96px); }}
-}}
-@media (min-width:28.75rem) and (max-width:37.5rem) {{  /* the nav is one row */
-  .home .sky .lonestar {{ top:6rem; right:5vw; width:min(20vw,92px); }}
+/* ONE BAND NOW, WHERE THERE WERE TWO, because the thing that split them is gone. The pair
+   above existed to track a masthead that was two rows on a phone and one row just above it,
+   and the nav is a single scrolling row at every width now. Keeping two rules meant keeping
+   two numbers for one event, and they promptly disagreed at their own boundary: at 460 the
+   hero rule read narrow and the mark rule read wide, and the mark landed on the telemetry
+   strip in the eleven pixel band between them. That band was the scrollbar.
+   THE PLACE IS THE ONE THE NAV VACATED. Tightening the bar to a single row opened 65 pixels
+   between the masthead at 97 and the telemetry strip at 162, and it is the same 65 pixels at
+   every width down to 300 because both edges are set by content rather than by proportion. A
+   54 pixel mark sits in it with eight to spare, which is why it is small here and not because
+   small looks better: it is the size the clear field is. */
+@media (max-width:37.5rem) {{
+  .home .sky .lonestar {{ top:6.3rem; right:5vw; width:min(16vw,54px); }}
 }}
 /* AND THE TELEMETRY PILL STOPS RUNNING UNDER IT. Measured with the mark forced on and its box
    compared against the hero's, the mark never touches the headline at any width down to 360px.
@@ -876,6 +935,16 @@ main > section:first-child {{ margin-top:calc(var(--band) * .55); }}
    The home page is exempt because its hero brings its own opening measure. */
 main {{ padding-top:clamp(2rem,6vh,4rem); }}
 .home main {{ padding-top:0; }}
+/* THE OTHER HALF OF THE PHONE FIX, and it has to live below both `.hero` and `main` to have any
+   effect at all. Three separate openings were stacking on a phone: 54.9 pixels from `main`,
+   26.4 of margin on the hero, and 82.35 of `9vh` padding inside it, so 164 pixels of nothing
+   sat between a 97 pixel masthead and the first word. `6vh` and `9vh` are proportions of the
+   window, which is the right instinct on a laptop and the wrong one on a phone, where the
+   window is tall, narrow, and already carrying a masthead that a desktop hides. */
+@media (max-width:28.7499rem) {{
+  main {{ padding-top:1.5rem; }}
+  .hero {{ padding-top:1.2rem; }}
+}}
 main > section > h2 {{ position:relative; padding-top:1.1rem;
   border-top:var(--hair) solid var(--rule); }}
 main > section > h2::after {{ content:""; position:absolute; top:-1px; left:0; width:3.5rem;
@@ -933,7 +1002,23 @@ main > section > h2::after {{ content:""; position:absolute; top:-1px; left:0; w
    map alone is compliant would be the kind of green check this project keeps a file about. */
 @media (pointer:coarse) {{
   .txmap a .c.on {{ stroke-width:3; }}
+  /* A drag across the map must not start selecting the labels under it. */
+  .txmap {{ -webkit-user-select:none; user-select:none; }}
 }}
+/* ---- the map under a thumb ---------------------------------------------- */
+/* On a laptop the map answers "what is this county" on hover. A phone has no hover, so the
+   only way to ask was to commit to a county, load its page, come back, and commit to the next
+   one. That is not looking around, it is a survey taken one page load at a time.
+   Both of these exist only where there is a thumb. A readout that never fills is a line of
+   empty furniture under the drawing, so it is hidden wherever hover already answers. */
+.mapread {{ min-height:1.5em; margin:.55rem 0 0; font-family:var(--mono);
+  font-size:var(--s-1); color:var(--ink-mute); }}
+.mapread:empty {{ min-height:0; margin:0; }}
+@media (hover:hover) and (pointer:fine) {{ .mapread {{ display:none; }} }}
+/* THE HIGHLIGHT IS A STROKE AND NOT A FILL, so a lit county goes on saying it is lit while the
+   thumb is on it. Swapping the fill would answer "where is my finger" by deleting the answer to
+   "what does the record hold here", and the second question is the one the map is for. */
+.txmap .c.under {{ stroke:var(--accent); stroke-width:2.5; paint-order:stroke; }}
 .txmap .c:hover {{ fill:var(--raised); }}
 .txmap .c.on:hover {{ fill:var(--accent); }}
 .txmap .frame {{ fill:none; stroke:var(--rule); stroke-width:1;
@@ -1075,6 +1160,54 @@ main > section > h2::after {{ content:""; position:absolute; top:-1px; left:0; w
 .tag {{ font-family:var(--mono); font-size:var(--s-2); letter-spacing:.04em;
   text-transform:uppercase; color:var(--ink-mute);
   border:var(--hair) solid var(--rule-strong); padding:.1em .5em; border-radius:2px; }}
+
+/* ---- the topic row: the record's own filter ----------------------------- */
+/* This was five `.tag` boxes carrying the raw slug, which is what a database export looks
+   like rather than a record. `.tag` is right where it is used, on a date or a kind marker
+   beside a headline, and wrong as the primary way into the record, so this is its own class
+   instead of a widening of that one. Three things changed and each does work.
+   THE LABEL IS ENGLISH. `DEFENSE-AND-FEDERAL` is the filing name and the reader never asked
+   for it. The slug stays the identifier in the URL, the ledger and the ask vocabulary.
+   THE COUNT IS ON THE CHIP. Five identical boxes assert five equal beats, and this record is
+   not shaped like that: one topic can hold half the decisions and another can hold one. The
+   reader deciding where to look is asking exactly that, so the row answers before the click.
+   THE GEOMETRY IS A PILL, the same 999px the ask box's suggestion chips use, so the two
+   control rows on this site read as one family. */
+.topicrow {{ display:flex; flex-wrap:wrap; gap:.5rem; margin:1.3rem 0 2rem; }}
+.topicchip {{ display:inline-flex; align-items:center; gap:.55rem;
+  padding:.42rem .5rem .42rem .95rem; border-radius:999px; text-decoration:none;
+  color:var(--ink); font:400 var(--s-1)/1.15 var(--body);
+  border:var(--hair) solid var(--rule-strong);
+  background:color-mix(in srgb,var(--surface) 72%,transparent);
+  transition:border-color .18s ease, background-color .18s ease, color .18s ease,
+    transform .18s ease; }}
+/* The count sits in its own well so it reads as a quantity and not as part of the name.
+   Mono, because it is a figure, and every other figure on this site is set in mono. */
+.topicchip .tc-n {{ font-family:var(--mono); font-size:var(--s-2); line-height:1;
+  color:var(--ink-mute); min-width:1.55em; padding:.34em .48em; border-radius:999px;
+  text-align:center; background:color-mix(in srgb,var(--ink) 9%,transparent);
+  transition:background-color .18s ease, color .18s ease; }}
+/* HOVER GUARDED, because on a phone `:hover` latches on after a tap and leaves the chip a
+   reader just left looking like the one they are on. */
+@media (hover:hover) {{
+  .topicchip:hover {{ color:var(--ink-bright); transform:translateY(-1px);
+    border-color:color-mix(in srgb,var(--accent) 62%,transparent);
+    background:color-mix(in srgb,var(--surface) 96%,transparent); }}
+  .topicchip:hover .tc-n {{ color:var(--ink-bright);
+    background:color-mix(in srgb,var(--accent) 24%,transparent); }}
+}}
+/* THE CURRENT TOPIC IS A FILLED CHIP, not an underline. This row repeats on every topic page
+   so a reader can cross from one beat to the next without going back through the record, and
+   the one they are standing on has to be readable at a glance. */
+.topicchip[aria-current] {{ color:var(--on-accent); border-color:transparent;
+  background:var(--accent-deep); }}
+/* THE WELL LIGHTENS HERE AND DARKENS ON EVERY OTHER CHIP, and that inversion is the whole
+   point rather than an inconsistency. An ordinary chip is light text on a dark ground, so a
+   lighter well would eat its contrast. This one is `--on-accent`, which is DARK ink on the
+   ember, so the well has to go the other way. The first version mixed black in on both, which
+   read fine on the four dark chips and dropped this numeral to 2.93 against its own well. */
+.topicchip[aria-current] .tc-n {{ color:var(--on-accent);
+  background:color-mix(in srgb,#fff 34%,transparent); }}
 
 /* ---- claims: the proof, made visible ------------------------------------ */
 /* Every figure traces to a quote. Showing the quote inline is what turns a policy into
@@ -1318,15 +1451,47 @@ caption {{ caption-side:bottom; text-align:left; padding-top:.75rem; font-size:v
    tree along with everything else. */
 .vh {{ position:absolute; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden;
   clip:rect(0 0 0 0); white-space:nowrap; border:0; }}
-.askbox form {{ display:flex; gap:.6rem; flex-wrap:wrap; align-items:center; }}
+/* THE COMPOSER, NOT A SEARCH FORM. This was a square cornered field with a square cornered
+   button sitting beside it, which is the shape a site search has had since about 2006 and
+   reads that way. What this box actually does is take a question in a sentence and answer it,
+   so it is shaped like the thing people now type questions into: ONE rounded container with
+   the field and the send control inside it, rather than two rectangles in a row.
+   THE SHELL IS ON THE FORM AND NOT ON `.askbox`, which matters because the front page uses
+   the `.lean` variant that strips the outer panel. Putting the shape on the wrapper would
+   have deleted it exactly where it is most used. */
+.askbox form {{ display:flex; gap:.5rem; align-items:center; flex-wrap:nowrap;
+  padding:.4rem .4rem .4rem 1.15rem; border-radius:1.6rem;
+  border:var(--hair) solid var(--rule-strong);
+  background:color-mix(in srgb,var(--surface) 82%,transparent);
+  transition:border-color .18s ease, box-shadow .18s ease, background-color .18s ease; }}
+/* FOCUS IS A SOFT RING, NOT A HARD BORDER SWAP. A one pixel colour change on a dark ground is
+   almost invisible, and this control is the one thing on the front page a reader is invited to
+   act on. `:focus-within` so the ring belongs to the composer while the caret is in the field. */
+.askbox form:focus-within {{ border-color:color-mix(in srgb,var(--accent) 70%,transparent);
+  background:color-mix(in srgb,var(--surface) 96%,transparent);
+  box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 14%,transparent); }}
 .askbox label {{ position:absolute; left:-9999px; }}
-.askbox input {{ flex:1 1 20rem; min-width:0; font:400 var(--s1)/1.4 var(--body); padding:.7em .9em;
-  background:var(--bg); color:var(--ink-bright);
-  border:var(--hair) solid var(--rule-strong); border-radius:2px; }}
-.askbox input:focus-visible {{ border-color:var(--accent); }}
-.askbox button[type="submit"] {{ font:600 var(--s0)/1 var(--body); padding:.85em 1.4em;
-  background:var(--accent-deep); color:var(--on-accent); border:0; border-radius:2px;
-  cursor:pointer; }}
+.askbox input {{ flex:1 1 auto; min-width:0; font:400 var(--s1)/1.5 var(--body);
+  padding:.5em 0; background:transparent; color:var(--ink-bright);
+  border:0; border-radius:0; }}
+/* The field carries no ring of its own. The composer around it already has one, and two
+   nested focus rings is how a control starts looking like a bug. */
+.askbox input:focus, .askbox input:focus-visible {{ outline:none; }}
+.askbox input::placeholder {{ color:var(--ink-mute); }}
+/* Safari paints its own clear affordance inside a `type=search`, which lands on top of the
+   send control at small widths. */
+.askbox input::-webkit-search-decoration,
+.askbox input::-webkit-search-cancel-button {{ -webkit-appearance:none; appearance:none; }}
+/* THE SEND CONTROL IS A CIRCLE INSIDE THE SHELL. Square is 2.4rem so it clears the 24 pixel
+   target floor on a phone with room to spare, and it keeps its accessible name in a visually
+   hidden span rather than relying on the glyph. */
+.askbox button[type="submit"] {{ flex:none; width:2.4rem; height:2.4rem; display:grid;
+  place-items:center; padding:0; border:0; border-radius:50%; cursor:pointer;
+  background:var(--accent-deep); color:var(--on-accent);
+  transition:transform .16s ease, background-color .16s ease, opacity .16s ease; }}
+.askbox button[type="submit"] svg {{ width:1.05rem; height:1.05rem; display:block; }}
+.askbox button[type="submit"]:hover {{ transform:translateY(-1px); }}
+.askbox button[type="submit"]:active {{ transform:translateY(0); }}
 .askbox .chips {{ display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.9rem; }}
 .askbox .chips button {{ font:400 var(--s-1)/1 var(--body); padding:.5em .85em;
   background:transparent; color:var(--ink-mute);
@@ -1438,7 +1603,8 @@ ON_EVERY_GROUND = [
 
 # Pairings whose background is not one of the three page grounds, so they cannot be generated.
 PAIRS_EXTRA = [
-    ("on-accent", "accent-deep", AA_BODY, "the ask box's submit button label"),
+    ("on-accent", "accent-deep", AA_BODY,
+     "the ask box's submit control, and the topic chip a reader is standing on"),
 ]
 
 

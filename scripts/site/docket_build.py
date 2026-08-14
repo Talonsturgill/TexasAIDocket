@@ -138,19 +138,38 @@ YEAR = re.compile(r"\b(?:19|20)\d{2}\b")
 # Chapter 2054, Section 39.151, Docket 59315.
 CITATION = re.compile(
     r"\b(?:SB|HB|SJR|HJR)\s*\d+[A-Za-z]?\b|"
+    # The Texas Administrative Code, cited the way Texas cites it. The leading figure is the
+    # TITLE number, which is as much an identifier as the section after it.
+    r"\b\d{1,2}\s+(?:Texas Administrative Code|TAC)\s+(?:(?:Section|Sec\.?|§)\s*)?[\d.]+[A-Za-z]?\b|"
+    # THE CONTINUATION IS PART OF THE CITATION. "Sections 2054.701 through 2054.705" names two
+    # sections, and a rule that only reaches the first leaves the second to be rescued by
+    # something else. That something else used to be a bare dotted pattern, and the cost of it
+    # is recorded below.
     r"\b(?:Projects?|Dockets?|Control Numbers?|Chapters?|Sections?|Subchapters?|"
     r"Articles?|Rules?|Items?)\s*"
-    r"(?:No\.?\s*)?[\d.]+[A-Za-z]?\b|"
+    r"(?:No\.?\s*)?[\d.]+[A-Za-z]?"
+    r"(?:\s*(?:through|thru|to|and|,)\s*(?:No\.?\s*)?[\d.]+[A-Za-z]?)*\b|"
     r"\b\d{1,3}(?:st|nd|rd|th)\s+Legislature\b|"
     r"\b\d+R\b",
     re.IGNORECASE,
 )
 
-# A dotted number in this domain is a statute section, never a measurement: 2054.702, 39.151,
-# 36.116. It needs its own rule because a RANGE leaves the second number bare, and stripping
-# "Sections 2054.701 through 2054.705" with CITATION alone catches the first and not the second.
-# The bare 2054 then reads as a year, leaving a stray 705 that looks like a published figure.
-DOTTED_SECTION = re.compile(r"\b\d{1,4}\.\d{1,4}[A-Za-z]?\b")
+# A dotted number in this domain is USUALLY a statute section: 2054.702, 39.151, 36.116. It
+# needs a rule of its own because a citation can put one somewhere CITATION's anchor word does
+# not reach.
+#
+# THIS PATTERN WAS `\d{1,4}\.\d{1,4}` AND THAT IS EVERY DECIMAL NUMBER THERE IS. It was written
+# to rescue the second half of "Sections 2054.701 through 2054.705", and it also silently
+# exempted "8.0 gallons per square foot", "22.61 inches of rain" and "5.30 gigawatts at peak"
+# from the one law this file exists to enforce. A published measurement with a decimal point in
+# it was never checked against a source, on any item, since the gate was written. Nothing
+# reported it because an over-wide exemption has no symptom: the gate goes green.
+#
+# The range is CITATION's job now, where the anchor word is. What is left here is the statute
+# shape this domain actually uses, which carries THREE digits after the point. Every measurement
+# in this record carries one or two. That is a discriminator rather than a law, so it is written
+# down: a statute section with two decimal digits needs its anchor word to be exempt.
+DOTTED_SECTION = re.compile(r"\b\d{1,4}\.\d{3}[A-Za-z]?\b")
 
 # This record's own item ids. One item's copy pointing at another is a cross reference, and the
 # id carries a year and a sequence number that mean nothing as figures. It is stripped FIRST,
@@ -163,7 +182,7 @@ ITEM_ID = re.compile(r"\btx-\d{4}-\d{4}\b", re.IGNORECASE)
 # has not been told otherwise.
 #
 # "Building" AND "Floor" WERE HERE AND HAD TO COME OUT. They are ordinary English words, and in
-# a docket about data centres and the grid they are ordinary English words that are frequently
+# a docket about data centers and the grid they are ordinary English words that are frequently
 # followed by a figure. Case-insensitively, "Building 500 megawatts of new gas capacity was
 # approved" had its 500 stripped before the numeral gate ever saw it, and the gate reported
 # clean. An exemption that swallows a published figure is worse than no exemption, because the
@@ -172,6 +191,52 @@ ITEM_ID = re.compile(r"\btx-\d{4}-\d{4}\b", re.IGNORECASE)
 # The identifier must also start with a DIGIT. "Room" followed by a word is prose.
 PLACE_NUMBER = re.compile(r"\b(?:Rooms?|Suites?)\s+(?:No\.?\s*)?\d[\dA-Za-z]*(?:-[\dA-Za-z]+)*\b",
                           re.IGNORECASE)
+
+# THE REST OF THE ADDRESS, on the same principle and under the same warning.
+#
+# `public_access.how` is the field that tells a Texan where to go and who to call, and it is
+# reader copy, so the numeral gate reads it. Almost everything a useful `how` contains is a
+# LOCATOR: a street number, a post box, a mail code, a zip, a phone, a time on a clock. None of
+# those is a measurement, none was computed, and quoting a source saying "1001 Preston Street"
+# to justify printing "1001 Preston Street" is a ritual rather than a check. The record already
+# accepted this argument once for a room number.
+#
+# EVERY ONE OF THESE IS ANCHORED TO THE WORD THAT SAYS WHAT THE NUMBER IS, which is what keeps
+# it from becoming the "Building" mistake above. A bare five digit pattern would exempt a zip
+# and also 12500, so the zip has to be preceded by TX or Texas. A bare hyphenated pattern would
+# exempt an ordinance number and also a vote of 4-1, so the identifier has to be preceded by
+# Ordinance, Resolution, Permit or their siblings. `_self_test` holds a negative case for each.
+STREET = re.compile(
+    r"\b\d{1,6}\s+(?:[NSEW]\.?\s+|North\s+|South\s+|East\s+|West\s+)?"
+    r"[A-Z][\w.'-]*(?:\s+[A-Z][\w.'-]*){0,4}\s+"
+    r"(?:Street|St|Avenue|Ave|Road|Rd|Drive|Dr|Boulevard|Blvd|Lane|Ln|Way|Highway|Hwy|"
+    r"Parkway|Pkwy|Circle|Cir|Court|Ct|Plaza|Place|Pl|Trail|Trl)\b\.?(?:\s+\d{1,5}\b)?")
+PO_BOX = re.compile(r"\bP\.?\s?O\.?\s*Box\s+\d+\b", re.IGNORECASE)
+MAIL_CODE = re.compile(r"\bMC[-\s]?\d{2,4}\b")
+# Anchored to the state, so it cannot swallow a bare five figure quantity.
+ZIP_CODE = re.compile(r"\b(?:TX|Texas|postal\s+code|zip(?:\s+code)?)\s*,?\s*"
+                      r"\d{5}(?:-\d{4})?\b", re.IGNORECASE)
+# A North American number, with or without the area code, plus the three digit city line.
+PHONE = re.compile(r"\b(?:\d{3}[-.]\d{3}[-.]\d{4}|\d{3}[-.]\d{4}|3-1-1)\b")
+# A COLON IS A CLOCK. A POINT IS ONLY A CLOCK WITH A MARKER BESIDE IT, because "5.30" on its
+# own is a decimal and "5.30 gigawatts at peak" is exactly the figure this gate exists to catch.
+CLOCK = re.compile(
+    r"\b\d{1,2}:\d{2}\s*(?:[ap]\.?\s?m\.?)?"
+    r"|\b\d{1,2}[.:]\d{2}\s*[ap]\.?\s?m\.?"
+    r"|\b\d{1,2}[.:]\d{2}\s+in\s+the\s+(?:morning|afternoon|evening)"
+    r"|\b\d{1,2}\s*[ap]\.\s?m\.", re.IGNORECASE)
+# An instrument's own file number. The anchor word is the point: without it this pattern would
+# exempt every hyphenated pair of figures on the page, including a council vote.
+INSTRUMENT_ID = re.compile(
+    r"\b(?:Ordinance|Ordinances|Resolution|Resolutions|Order|Orders|Permit|Permits|Docket|"
+    r"Project|Contract|Agreement|Zone|File|Case|Application|Chapter|Section|Article|"
+    r"Division|Matter|Item)\s+(?:No\.?\s*|Number\s*|Numbers\s*)?"
+    r"[A-Z]{0,5}[-\s]?\d[\dA-Za-z]*(?:[-.][\dA-Za-z]+)*\b", re.IGNORECASE)
+# The same thing written as a bare token, which only reads as an identifier because it leads
+# with letters: ORD-2026-08, AI05-26, PSDTX1704, WQ0016885001.
+CODED_ID = re.compile(r"\b[A-Z]{2,6}-?\d[\dA-Za-z]*(?:-[\dA-Za-z]+)*\b")
+
+LOCATORS = (STREET, PO_BOX, MAIL_CODE, ZIP_CODE, PHONE, CLOCK, INSTRUMENT_ID, CODED_ID)
 
 ISO_DATE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
@@ -327,6 +392,10 @@ def _prose_numerals(text: str) -> list:
     stripped = DATE_ORDINAL.sub(" ", stripped)
     stripped = CITATION.sub(" ", stripped)
     stripped = PLACE_NUMBER.sub(" ", stripped)
+    # The locators go before DOTTED_SECTION, or "5.30 in the afternoon" loses its "5.30" to the
+    # section rule and the clock pattern never sees a time to strip.
+    for pat in LOCATORS:
+        stripped = pat.sub(" ", stripped)
     stripped = DOTTED_SECTION.sub(" ", stripped)
     stripped = YEAR.sub(" ", stripped)
     return [m.replace(",", "").rstrip("%") for m in NUMERAL.findall(stripped)]
@@ -873,11 +942,60 @@ def self_test() -> int:
            "PASS")
     # THE EXEMPTION MUST NOT SWALLOW A REAL FIGURE. These three passed the gate while the place
     # rule also matched "Building" and "Floor", which are ordinary words in a docket about data
-    # centres and the grid. An exemption wide enough to hide a published megawatt figure defeats
+    # centers and the grid. An exemption wide enough to hide a published megawatt figure defeats
     # the one law this file exists to enforce.
     expect("...but 'Building' before a figure is prose, not an address",
            gate_numerals([base(summary="Building 500 megawatts of gas capacity was approved.")]),
            "FAIL")
+
+    # THE REST OF THE ADDRESS. Each locator gets a case that must pass and a case that must
+    # still fail, because the whole risk in widening this gate is a pattern that also matches a
+    # measurement. Written as pairs so a future edit that loosens one is visible against the
+    # negative beside it.
+    for label, allowed, forbidden in [
+        ("a street address",
+         "Comments are heard at 1001 Preston Street, Houston.",
+         "The campus will draw 1001 acre feet a year."),
+        ("a post box",
+         "Write to the Office of the Chief Clerk, P.O. Box 13087, Austin.",
+         "The plant is rated 13087 horsepower."),
+        ("a mail code",
+         "Address it to MC-105 at the commission.",
+         "The site sits on 105 acres."),
+        ("a zip code",
+         "The office is in Austin, Texas 78711-3087.",
+         "The award totalled 78711 dollars."),
+        ("a phone number",
+         "The education program takes questions at 800-687-4040.",
+         "The county granted 687 permits."),
+        ("a time on a clock",
+         "The hearing begins at 5:30 p.m. in the courtroom.",
+         "The line carries 5.30 gigawatts at peak."),
+        ("an instrument's file number",
+         "The council adopted Ordinance No. 2026-078 that evening.",
+         "The council approved it 4-1 that evening."),
+        ("a coded permit number",
+         "The application covers permit PSDTX1704 and its greenhouse gas twin.",
+         "The turbines add 1704 megawatts to the site."),
+    ]:
+        expect(f"numerals exempts {label}", gate_numerals([base(summary=allowed)]), "PASS")
+        expect(f"...and still catches a figure shaped like {label}",
+               gate_numerals([base(summary=forbidden)]), "FAIL")
+
+    # A DECIMAL MEASUREMENT IS A MEASUREMENT. `DOTTED_SECTION` used to read `\d{1,4}\.\d{1,4}`,
+    # which is every decimal number there is, so these three were exempt from the day the gate
+    # was written and nothing ever reported it. An over-wide exemption has no symptom.
+    for figure in ("The ordinance caps fill at 8.0 gallons per square foot.",
+                   "The station has recorded 22.61 inches of rain this year.",
+                   "The line carries 5.30 gigawatts at peak."):
+        expect(f"numerals catches an unquoted decimal: {figure.split()[-4]}",
+               gate_numerals([base(summary=figure)]), "FAIL")
+    expect("...while a statute section keeps its exemption",
+           gate_numerals([base(summary="The rule amends 16 TAC 25.194 for large loads.")]),
+           "PASS")
+    expect("...and so does the far end of a cited range",
+           gate_numerals([base(summary="It amends Sections 2054.701 through 2054.705 as well.")]),
+           "PASS")
     # 37, not 12: the fixture's own claim quote reads "Project No. 58482, 12 filing(s)", so a 12
     # here is legitimately allowed and the case would pass for the wrong reason.
     expect("...and so is 'Floor' before a figure",

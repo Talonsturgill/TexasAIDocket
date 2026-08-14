@@ -48,7 +48,7 @@ SEED = 11
 
 
 def _noise(size: int, strength: int, seed: int) -> bytes:
-    """One greyscale plane of seeded speckle, centred on mid grey."""
+    """One greyscale plane of seeded speckle, centered on mid grey."""
     out = bytearray(size * size)
     state = seed & 0xFFFFFFFF
     span = strength * 2 + 1
@@ -117,11 +117,11 @@ def self_test() -> int:
         ok(f"every chunk's CRC verifies ({checked} chunks)", True)
 
     # The pixels have to be noise CENTRED ON MID GREY. An overlay blend of a field that is not
-    # centred darkens or lightens the whole site, which looks like a palette bug rather than a
+    # centered darkens or lightens the whole site, which looks like a palette bug rather than a
     # texture bug and is very hard to trace back to here.
     plane = _noise(SIZE, STRENGTH, SEED)
     mean = sum(plane) / len(plane)
-    ok("the texture is centred on mid grey", abs(mean - 128) < 1.0, f"mean {mean:.2f}")
+    ok("the texture is centered on mid grey", abs(mean - 128) < 1.0, f"mean {mean:.2f}")
     ok("...and stays inside its stated strength",
        min(plane) >= 128 - STRENGTH and max(plane) <= 128 + STRENGTH,
        f"{min(plane)}..{max(plane)}")

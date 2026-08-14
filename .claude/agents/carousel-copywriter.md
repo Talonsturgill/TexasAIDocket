@@ -24,7 +24,7 @@ A slide is read in about two seconds on a phone at roughly a third of its render
 works there is short, concrete and high contrast in meaning as well as in value:
 
 - A headline is a claim, not a topic. "8.9 GW approved, 4.0 GW drawing" beats "Texas data
-  centre growth".
+  center growth".
 - A dek finishes the thought the headline started. It does not restate it.
 - A label names the thing it points at.
 - Never set a sentence on a slide that a reader has to reread.

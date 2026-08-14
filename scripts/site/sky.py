@@ -110,7 +110,7 @@ def lone_star_svg(idprefix: str = "sky") -> str:
 # has a doctrine against costume.
 #
 # DRAWN, NOT DOODLED. A tumbleweed is a tangle of stems that branch and re-branch from a common
-# crown, so that is what is generated: arcs springing from near the centre, each forking once,
+# crown, so that is what is generated: arcs springing from near the center, each forking once,
 # with the density falling off toward the edge the way a real skeleton thins. Seeded, because the
 # stylesheet has to be byte identical on every rebuild.
 TUMBLEWEED_SEED = 20250812
@@ -148,7 +148,7 @@ def tumbleweed_svg(stems: int = 40) -> str:
 
     # THE BOX IS 100 UNITS AND NOTHING MAY LEAVE IT. A fork is placed as a fraction of its
     # parent stem plus a jitter, so the longest outer stem plus the largest fork reached 53.8
-    # from a centre at 50 and clipped against the viewBox edge. Clamping at the point of use is
+    # from a center at 50 and clipped against the viewBox edge. Clamping at the point of use is
     # what makes that impossible rather than unlikely.
     LIMIT = 46.0
 
@@ -181,7 +181,7 @@ def tumbleweed_svg(stems: int = 40) -> str:
             paths.append(f"M{fx:.1f},{fy:.1f}L{cx + fr * math.cos(fa):.1f},"
                          f"{cy + fr * math.sin(fa):.1f}")
 
-    # The inner mass, offset off-centre so the crown is not a bullseye. Short, dense, crossing.
+    # The inner mass, offset off-center so the crown is not a bullseye. Short, dense, crossing.
     ox, oy = (rnd() - 0.5) * 6, (rnd() - 0.5) * 6
     for i in range(stems // 2):
         a = rnd() * math.tau

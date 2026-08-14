@@ -3,7 +3,7 @@
 
 WHY WATER SITS BESIDE THE GRID ON THIS SITE
 
-A data centre needs two things Texas has to supply from a finite stock: electricity, and, for
+A data center needs two things Texas has to supply from a finite stock: electricity, and, for
 most cooling designs, water. The grid watch tracks the first. This tracks the second, and the
 two together are the physical account behind every siting decision in the docket.
 
@@ -291,7 +291,7 @@ def metro_bars(metros: list[dict], walk: list | None = None) -> str:
   <td class="n num">{af(m['storage_af'])}</td>
 </tr>""" for m in metros)
     return f"""<table class="figures metros">
-<caption>Municipal reservoir storage by metro, driest first. Every bar is the same colour at
+<caption>Municipal reservoir storage by metro, driest first. Every bar is the same color at
 every value. The order and the length carry the comparison. Neither implies a judgement.
 Where the water data's name for an area differs from the federal delineation, both are
 shown.</caption>
@@ -307,7 +307,7 @@ def body(records: list[dict], today: str) -> str:
 <h1>Texas Water Watch</h1>
 <div class="prose">
   <p>A daily numeric record of water held in Texas reservoirs, published beside the grid watch
-  because a data centre draws on both.</p>
+  because a data center draws on both.</p>
   <div class="gap"><strong>The record is empty.</strong> No day has been collected yet.
   Nothing is estimated to fill the space.</div>
 </div>
@@ -375,7 +375,7 @@ def body(records: list[dict], today: str) -> str:
     return f"""
 <h1>Texas Water Watch</h1>
 <div class="prose">{lede}
-  <p>A data centre needs electricity. Most cooling designs need water too. The
+  <p>A data center needs electricity. Most cooling designs need water too. The
   <a href="../grid/">grid watch</a> tracks the first and this tracks the second. Together they
   are the physical account behind every siting decision in <a href="../record/">the record</a>.</p>
 </div>

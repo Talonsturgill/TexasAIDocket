@@ -165,7 +165,7 @@ def self_test() -> int:
             {"date": "2026-08-01",
              "title": "PUCT opens comment on large load demand management",
              "topic": "power-and-the-grid",
-             "angle": "The commission is writing the rule that decides how fast a data centre "
+             "angle": "The commission is writing the rule that decides how fast a data center "
                       "can be told to stop drawing power",
              "entities": ["PUCT", "ERCOT", "Oncor"],
              "keywords": ["large load", "demand management", "curtailment"]},

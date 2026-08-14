@@ -87,8 +87,24 @@ def scan(html_body: str, authorised: set[str]) -> list[str]:
     # `&lt;div&gt;` sitting in copy cannot turn itself back into markup and vanish.
     text = _html.unescape(TAG.sub(" ", SCRIPT_BLOCK.sub(" ", SVG_BLOCK.sub(" ", html_body))))
     phrases = [a for a in authorised if a and _PHRASE_CHAR.search(a)]
+    # A PHRASE IS REMOVED AT A TOKEN BOUNDARY, NEVER AS A BARE SUBSTRING.
+    #
+    # The comment above says longest-first is what stops a phrase splitting a figure it
+    # merely overlaps, and that only holds when a longer authorised phrase covers the same
+    # span. It did not here. The water watch page prints "Amarillo 42.0%", the set carried a
+    # bare "0%" from an unrelated computation, and `str.replace` took the "0%" out of the
+    # middle of the percentage and left "42." behind. The scanner then reported a stray 42
+    # that no reader could see and no page had printed, on a figure that was correct.
+    #
+    # It stayed hidden because 42 happened to be authorised site wide by an unrelated docket
+    # count, so the page passed. Growing the record from 13 items to 58 changed those counts,
+    # the coincidence lapsed, and four phantom numerals appeared on a page nobody had touched.
+    # A GATE THAT PASSES BY COLLISION IS NOT PASSING.
+    #
+    # The boundary is asserted on both sides: a phrase may not begin in the middle of a
+    # number, and may not end immediately before more digits.
     for v in sorted(phrases, key=len, reverse=True):
-        text = text.replace(v, " ")
+        text = re.sub(r"(?<![0-9.,])" + re.escape(v) + r"(?![0-9])", " ", text)
     return sorted({m.group(0) for m in NUMERAL.finditer(text)
                    if m.group(0) not in authorised})
 
@@ -189,6 +205,20 @@ def self_test() -> int:
           not scan("<p>83.1</p>", b.set), str(scan("<p>83.1</p>", b.set)))
     check("...and 3 inside 83.1 is not a licence for 133",
           scan("<p>133</p>", b.set) == ["133"], str(scan("<p>133</p>", b.set)))
+
+    # THE WATER WATCH FAULT, kept as a case because it survived in the repository for as long
+    # as an unrelated docket count happened to equal the phantom it produced.
+    pct = Authorised()
+    pct.add("0%", "6%", "42.0%", "76.6%")
+    check("a short authorised phrase does not eat the middle of a longer figure",
+          not scan("<p>Amarillo 42.0% and 76.6% of capacity</p>", pct.set),
+          str(scan("<p>Amarillo 42.0% and 76.6% of capacity</p>", pct.set)))
+    check("...and the same phrase standing alone is still authorised",
+          not scan("<p>The residual is 0% today.</p>", pct.set),
+          str(scan("<p>The residual is 0% today.</p>", pct.set)))
+    check("...while an unauthorised percentage is still caught",
+          scan("<p>Storage sits at 51.4% today.</p>", pct.set) == ["51.4"],
+          str(scan("<p>Storage sits at 51.4% today.</p>", pct.set)))
 
     check("a digit inside a computed phrase does not authorise a different figure",
           scan("<p>4pm to 5pm, and also 4,500 more</p>", a.set) == ["4,500"],

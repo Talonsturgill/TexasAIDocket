@@ -234,8 +234,8 @@ stop that lost its nerve, and a colon in prose is a label bolted onto a sentence
 opened with the thing itself. A clock time and a ratio are numbers, not punctuation, and a
 verbatim quote is never touched.
 **Commas, two rules.** CONSTRUCTION, at any length: no comma after a coordinating conjunction or
-a relative pronoun, and no hedge fenced off by a pair of commas. Write "A data centre needs
-electricity. Most cooling designs need water too", never "A data centre needs electricity and,
+a relative pronoun, and no hedge fenced off by a pair of commas. Write "A data center needs
+electricity. Most cooling designs need water too", never "A data center needs electricity and,
 in most cooling designs, water". DENSITY, over running prose: under the ceiling MEASURED ON THAT
 SURFACE. The site's is 3.97 per 100 words, ten percent below its own measured 4.41. Three things
 that number has to get right, and each was wrong once: it is measured on RUNNING PROSE, which is

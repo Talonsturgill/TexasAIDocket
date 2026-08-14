@@ -208,7 +208,7 @@ concurrently**:
 | **`clinic-and-classroom`** | the Texas Medical Center, MD Anderson, hospital deployment, and what is actually happening in schools |
 | **`research-and-machines`** | TACC's Vista and Horizon, UT, A&M, Rice, UTSA, the public compute nobody fences off |
 | **`what-texas-makes`** | fabs, chips, plant floor, space hardware. The state is on both ends of the same supply chain |
-| `power-and-compute` | data centres, the grid, ERCOT, interconnection, water for cooling. **ONE beat** |
+| `power-and-compute` | data centers, the grid, ERCOT, interconnection, water for cooling. **ONE beat** |
 | `policy-and-money` | the Legislature, the AG, PUCT, procurement, surveillance and policing, defence. **ONE beat**, and the docket already carries it |
 | **`community-signal`** | what Texans are actually discussing about this. Salience and angle only, never sole sourcing |
 
@@ -308,9 +308,22 @@ cites.
 
 ## PHASE 5 — ADMIT
 
+A research batch does not arrive in the record's shape, and the four differences are always the
+same four. `source_type` comes back as `secondary_reported` where the record says `journalism`,
+claims arrive without ids, `last_verified` is nobody's job until it is missing, and `metro` gets
+typed as "Austin" where the record stores what the gazetteer computes. Doing that by hand across
+forty items gets it right thirty nine times.
+
 ```
+python3 scripts/site/docket_ingest.py --batch out/research/*.json --today <today>
 python3 scripts/site/docket_build.py --promote seed/docket_seed.json --out ledger/docket.json
 ```
+
+`docket_ingest` normalises and **reports every repair it made**, including the one with teeth: an
+`open_comment` room carrying no close date is a window the batch could not confirm, and it is
+demoted rather than published, because a door a reader cannot date is not a door. It never
+fact checks and it never writes prose. A claim that arrives without a verbatim quote is dropped
+and named, never repaired.
 
 The admission bar is stricter than the gates: every gate passes, confidence is high, and **at
 least one claim cites a primary source.** Held items stay in the seed with their reason and are

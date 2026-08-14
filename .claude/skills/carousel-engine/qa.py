@@ -53,7 +53,7 @@ Checks per slide (consuming render_report.json + the PNGs):
     more than LEADER_LAND_PX apart. Added 2026-08-07 after run No.28's slide 06
     shipped two detail-circle leaders pointing at void through two pixel critics,
     a flow critic and the first scoring cycle: their tails were fixed pixel
-    deltas from each circle's own centre, so the target was never named anywhere
+    deltas from each circle's own center, so the target was never named anywhere
     and no reviewer could tell a leader reaching something small from one
     reaching nothing. A pixel test cannot answer it (the landing tick puts ink at
     the terminus); declared arithmetic can.
@@ -583,7 +583,7 @@ def leader_lands(ld):
     ran out into empty void, through two pixel critics, a flow critic and the
     first scoring cycle. Nobody was careless: a leader stopping in void looks
     exactly like a leader reaching something small, and the tails were authored
-    as fixed pixel deltas from each circle's OWN centre
+    as fixed pixel deltas from each circle's OWN center
     (tail:[-70,-70,-150,-150]), so there was no place in the slide, the record
     or the pipeline where the target was ever named. There was nothing to check.
 
@@ -617,7 +617,7 @@ def leader_lands(ld):
                         "declared at (%g,%g), %.0f design px away (tolerance "
                         "%.0f). Author the leader as a world-coordinate "
                         "polyline that terminates ON the target's coordinates, "
-                        "not as an offset from the annotation's own centre"
+                        "not as an offset from the annotation's own center"
                         % (name, to[0], to[1], at[0], at[1], d, LEADER_LAND_PX))
     return "ok", "leader %r lands %.1fpx from its target" % (name, d)
 

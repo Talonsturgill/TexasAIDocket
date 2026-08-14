@@ -85,7 +85,7 @@ def ring_points(arc_ids: list[int], arcs: list[list[tuple[float, float]]]) -> li
 def polygon_centroid(rings: list[list[tuple[float, float]]]) -> tuple[float, float, float]:
     """Area-weighted centroid over a polygon's rings, and its absolute area.
 
-    Area weighting, not bounding-box centre: a bbox centre for a county with a long river
+    Area weighting, not bounding-box center: a bbox center for a county with a long river
     boundary lands outside the county, and a pin outside its own county is the kind of error a
     reader spots instantly.
     """
@@ -698,7 +698,7 @@ def self_test() -> int:
     check("ids are unique", len(ids), len(set(ids)))
 
     # Centroids must actually be inside Texas. A pin in the wrong state is the error a reader
-    # spots instantly, and it is exactly what a bbox centre would produce for a river county.
+    # spots instantly, and it is exactly what a bbox center would produce for a river county.
     outside = [p["name"] for p in r.places
                if not (-107.0 <= p["lon"] <= -93.0 and 25.0 <= p["lat"] <= 37.0)]
     check("every centroid falls inside Texas", outside[:5], [])

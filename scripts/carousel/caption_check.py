@@ -27,8 +27,8 @@ WHAT IT CHECKS, AND WHY EACH ONE IS HERE
     semicolons     HARD FAIL. A full stop that lost its nerve. Write two sentences.
     comma after    HARD FAIL, at any length. No comma after a coordinating conjunction or a
     a conjunction  relative pronoun, and no hedge fenced off by a pair of commas. Write "A data
-                   centre needs electricity. Most cooling designs need water too", never "A
-                   data centre needs electricity and, in most cooling designs, water".
+                   center needs electricity. Most cooling designs need water too", never "A
+                   data center needs electricity and, in most cooling designs, water".
     comma density  Hard fail ABOVE THE CEILING FOR THE CALLING SURFACE. See below.
 
 THE COMMA CEILING IS PER SURFACE, AND ONE OF THE TWO IS DELIBERATELY UNSET
@@ -78,9 +78,48 @@ BARE_DATE = re.compile(rf"\b(?:{MONTHS})\s+\d{{1,2}}\b(?!\s*(?:st|nd|rd|th)\b)",
 DAY_FIRST = re.compile(rf"\b\d{{1,2}}(?:st|nd|rd|th)?\s+(?:{MONTHS})\b", re.IGNORECASE)
 OF_MONTH = re.compile(rf"\bthe\s+\d{{1,2}}(?:st|nd|rd|th)\s+of\s+(?:{MONTHS})\b", re.IGNORECASE)
 CANNOT = re.compile(r"\bcannot\b", re.IGNORECASE)
+
+# BRITISH SPELLING, WHICH IS INVISIBLE UNTIL SOMEBODY FROM TEXAS READS IT.
+#
+# "data centres" shipped across this site, on the one subject the record is most about. It is
+# the exact shape of fault a lint is for: every instance reads fine, nothing objects, and the
+# product quietly sounds like it was written somewhere else. It took the owner to catch it.
+#
+# The pairs are the ones this subject matter actually produces. `-ise` verbs are deliberately
+# NOT here as a blanket rule, because "enterprise", "franchise", "advertise" and "comprise" are
+# American too, and a rule that fires on those is a rule somebody switches off.
+#
+# THIS IS SPELLING, NOT QUOTATION. A verbatim quote keeps whatever the source wrote, and the
+# callers already exclude quotes by construction.
+BRITISH = {
+    "centre": "center", "centres": "centers", "centred": "centered", "centring": "centering",
+    "colour": "color", "colours": "colors", "coloured": "colored",
+    "behaviour": "behavior", "behaviours": "behaviors",
+    "neighbour": "neighbor", "neighbours": "neighbors",
+    "neighbourhood": "neighborhood", "neighbourhoods": "neighborhoods",
+    "labour": "labor", "harbour": "harbor", "favour": "favor", "favours": "favors",
+    "favourite": "favorite", "honour": "honor", "rumour": "rumor", "vapour": "vapor",
+    "metre": "meter", "metres": "meters", "litre": "liter", "litres": "liters",
+    "fibre": "fibre-optic is a compound; the noun is fiber", "fibres": "fibers",
+    "defence": "defense", "licence": "license", "offence": "offense", "practise": "practice",
+    "programme": "program", "programmes": "programs",
+    "modelling": "modeling", "modelled": "modeled", "labelled": "labeled",
+    "travelled": "traveled", "cancelled": "canceled", "fuelled": "fueled",
+    "analyse": "analyze", "analysed": "analyzed", "catalogue": "catalog",
+    "grey": "gray", "storey": "story", "storeys": "stories",
+    "aluminium": "aluminum", "sulphur": "sulfur",
+}
+BRITISH_RX = re.compile(r"\b(" + "|".join(sorted(BRITISH, key=len, reverse=True)) + r")\b",
+                        re.IGNORECASE)
 OPENER = re.compile(r"(?:^|(?<=[.!?])\s+|\n)\s*(And|But)\b")
 FIRST_PERSON = re.compile(r"\b(?:I|I'm|I've|I'll|we|we're|we've|we'll|our|ours|us|my|mine)\b",
                           re.IGNORECASE)
+# A ROMAN NUMERAL IS NOT A PRONOUN. "the 2027 State Water Plan (Phase I)" is the document's own
+# name, and reporting it as a writer talking about themselves sends an editor looking for a
+# first person that is not there. The anchor is the word in front, the same way an identifier
+# is told from a range: a lone capital I after Phase, Part or Title is a numeral.
+ROMAN_LABEL = re.compile(r"\b(?:Phase|Part|Title|Volume|Article|Book|Class|Type|Tier|Stage)\s+"
+                         r"(?:I{1,3}|IV|VI{0,3}|IX|XI{0,3})\b")
 # A numeric range written with a hyphen. Guarded so a bill number or a hyphenated word does
 # not trip it.
 NUM_RANGE = re.compile(r"(?<![\w-])\d[\d,]*(?:\.\d+)?\s*[-‐‑]\s*\d[\d,]*(?:\.\d+)?(?![\w-])")
@@ -93,7 +132,27 @@ IDENT_INTRO = re.compile(
     r"\b(?:room|rooms|suite|ste|project|projects|docket|dockets|control\s+number|"
     r"number|no\.?|section|sections|rule|rules|chapter|chapters|subchapter|item|items|"
     r"case|application|tariff|unit|building|bldg|box|phone|fax|zip|form|permit|"
-    r"license|registration|account|invoice|order)\s*$", re.IGNORECASE)
+    r"license|registration|account|invoice|order|"
+    # An instrument's own file number, which is what a city or county actually calls the thing
+    # it adopted. "Ordinance 2026-078" is a name. Rewriting it "2026 to 078" would leave a
+    # reader unable to look it up, which is the whole point of printing it.
+    r"ordinance|ordinances|resolution|resolutions|agreement|agreements|contract|"
+    r"contracts|zone|matter|amendment|ord)\s*$", re.IGNORECASE)
+
+# A ZIP+4 IS A ZIP, and the noun in front of it is a city and a state rather than the word
+# "zip". "Austin, Texas 78711-3087" is the whole address of the office a comment is mailed to,
+# and it is the one number on the page a reader might copy by hand. Matched on its own shape,
+# five then four, immediately after a state, so it cannot reach an ordinary pair of figures.
+ZIP_PLUS_FOUR = re.compile(r"(?:\b(?:Texas|TX|postal\s+code|zip(?:\s+code)?)\s*,?\s*)$",
+                           re.IGNORECASE)
+
+# "Ordinance 2026-078" is the NAME of a thing. "the amendment 4-1" is a vote on an amendment.
+# Both put an identifier word immediately before a hyphenated pair, and the tell between them
+# is the ARTICLE: a proper identifier does not take one and a common noun in a sentence does.
+# Without this, adding `amendment` to the list above quietly exempted "passed the amendment
+# 4-1", which is exactly the vote count the range rule exists to catch.
+ARTICLED_NOUN = re.compile(r"\b(?:the|a|an|its|this|that|each|his|her|their|our)\s+\w+\s*$",
+                           re.IGNORECASE)
 
 # ---------------------------------------------------------------- punctuation the house drops
 # COLONS AND SEMICOLONS. Both are a writer reaching for a joint instead of a full stop. A colon
@@ -107,7 +166,7 @@ SEMICOLON = re.compile(r";")
 
 # A COMMA IMMEDIATELY AFTER A CONJUNCTION. This is the construction the owner flagged:
 #
-#     A data centre needs electricity and, in most cooling designs, water.
+#     A data center needs electricity and, in most cooling designs, water.
 #
 # The tell is the comma after "and". It interrupts a simple compound the moment before it
 # lands, and the sentence has to be re-read. Almost nothing is lost by splitting it in two.
@@ -268,9 +327,12 @@ def check(text: str) -> list[str]:
 
     for m in set(CANNOT.findall(prose)):
         problems.append(f'"{m}": never "cannot", always "can\'t"')
+    for m in {x.lower() for x in BRITISH_RX.findall(prose)}:
+        problems.append(f'"{m}" is British spelling: write "{BRITISH[m]}". This site is '
+                        f"published in Texas")
     for m in set(OPENER.findall(prose)):
         problems.append(f'a sentence opens with "{m}": rewrite the opening')
-    for m in set(FIRST_PERSON.findall(prose)):
+    for m in set(FIRST_PERSON.findall(ROMAN_LABEL.sub(" ", prose))):
         problems.append(f'first person "{m}": published copy has no I, we or our. '
                         f"The record speaks, not its author")
     if COLON.search(prose):
@@ -288,8 +350,12 @@ def check(text: str) -> list[str]:
 
     for m in NUM_RANGE.finditer(prose):
         before = prose[max(0, m.start() - 28):m.start()]
-        if IDENT_INTRO.search(before):
+        if IDENT_INTRO.search(before) and not ARTICLED_NOUN.search(before):
             continue                       # a room, a docket, a section: an identifier
+        # The range pattern lets a comma sit inside its digits, so an address reaches here as
+        # "78711-3087," with the sentence's own punctuation attached.
+        if re.fullmatch(r"\d{5}-\d{4},?", m.group(0)) and ZIP_PLUS_FOUR.search(before):
+            continue                       # a postal code, in an address
         msg = f'range "{m.group(0)}": write it "X to Y"'
         if msg not in problems:
             problems.append(msg)
@@ -382,7 +448,7 @@ def self_test() -> int:
     # THE DASH RULE.
     ok("an em dash fails", catches("Load rose sharply—then fell.", "no em or en dashes"))
     ok("an en dash fails", catches("Pages 40–60 are redacted.", "no em or en dashes"))
-    ok("a hyphenated word is fine", not catches("A well-sited data centre.", "dash"))
+    ok("a hyphenated word is fine", not catches("A well-sited data center.", "dash"))
 
     # THE DATE RULES. These are the ones a writer drifts on.
     ok("a bare date fails", catches("The hearing is August 11.", "dates take the ordinal"))
@@ -413,6 +479,10 @@ def self_test() -> int:
 
     ok("first person fails", catches("We verified the filing.", "first person"))
     ok("...including possessive", catches("Our reading of the order.", "first person"))
+    ok("a roman numeral label is not a pronoun",
+       not catches("The board adopted the 2027 State Water Plan (Phase I).", "first person"))
+    ok("...and a real first person beside one still fails",
+       catches("We read the plan (Phase I) closely.", "first person"))
     ok('"us" as a word fails', catches("The order reached us late.", "first person"))
     ok("a word containing we is fine", not catches("The weather drove the peak.", "first person"))
     ok("a word containing I is fine", not catches("The Interconnection filed it.", "first person"))
@@ -427,8 +497,33 @@ def self_test() -> int:
                   "Control Number 2026-14341 in the filing system."):
         ok(f"an identifier is not a range: {ident.split()[0]}",
            not catches(ident, "range"), str([p for p in check(ident) if "range" in p]))
+    # THE INSTRUMENTS A CITY ACTUALLY ADOPTS, and the address it takes comments at. Both came
+    # out of running this lint against the real record, which is where these turn up.
+    for ident in ("The council adopted Ordinance 2026-078 that evening.",
+                  "It signed Resolution No. 010-26 asking the Legislature to act.",
+                  "The city adopted the code under ORD-2026-08 the same day.",
+                  "Mail it to the Chief Clerk, Austin, Texas 78711-3087, before it shuts."):
+        ok(f"an instrument or an address is not a range: {ident.split()[2]}",
+           not catches(ident, "range"), str([p for p in check(ident) if "range" in p]))
+    # A VOTE IS NOT AN IDENTIFIER, and this is the pair that keeps the exemption honest. The
+    # words in front are the only difference between a name and a count, and "voted 5-0" reads
+    # correctly as "voted 5 to 0" while "Ordinance 2026 to 078" does not exist.
+    for vote in ("The court voted 5-0 to deny the reinvestment zone.",
+                 "Commissioners passed the amendment 4-1 that night.",
+                 "The commission rejected the permit 4-0 in open session."):
+        ok(f"a vote count is still a range: {vote.split()[2]}", catches(vote, "write it"))
     ok("a real range still fails even near an identifier word",
        catches("The order in Room 7 runs 40-60 pages.", "write it"))
+    # BRITISH SPELLING. The first pair is the one that shipped, on the one subject this record
+    # is most about, and it took the owner reading the live site to find it.
+    ok("data centres fails", catches("Three data centres were approved.", "British spelling"))
+    ok("...and names the American form",
+       catches("Three data centres were approved.", 'write "centers"'))
+    ok("...and it is caught capitalised", catches("Centre Street rules apply.", "British"))
+    for fine in ("Three data centers were approved.", "The enterprise franchise will advertise.",
+                 "The program comprises a license and a practice.",
+                 "It will analyze the fiber optic route."):
+        ok(f"American spelling passes: {fine.split()[1]}", not catches(fine, "British"), fine)
     ok("a curly apostrophe fails", catches("It can’t be verified.", "straight quotes"))
     ok("an emoji fails", catches("Big news \U0001F680 today.", "not the register"))
     ok("a degree sign is not an emoji", not catches("It hit 104 degrees.", "register"))
@@ -444,7 +539,7 @@ def self_test() -> int:
        any("End the sentence" in x for x in check("Read here: one for demand.")))
 
     # THE CONSTRUCTION THE OWNER FLAGGED, verbatim.
-    flagged = "A data centre needs electricity and, in most cooling designs, water."
+    flagged = "A data center needs electricity and, in most cooling designs, water."
     ok("the flagged comma-after-conjunction fails", catches(flagged, 'comma after "and"'))
     ok("...for the right reason", any("Split it in two" in x for x in check(flagged)))
     for c in ("but", "or", "which", "though"):

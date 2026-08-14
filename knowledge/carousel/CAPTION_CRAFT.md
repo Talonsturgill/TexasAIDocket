@@ -43,7 +43,7 @@ beats completeness. The sentence underneath is where the completeness goes.
 | **the quiet decision** | opens on the fact that something was decided while nobody watched | "The rule changed in March." |
 | **the two things** | sets two facts beside each other and lets the gap do the work | "Approved, 8.9 gigawatts. Drawing, 4.0." |
 | **the object** | opens on a physical thing, not a policy, because a transformer is easier to see than a docket | "A substation yard outside Abilene." |
-| **the correction** | opens by naming a thing everybody believes that is not so | "Data centres do not mostly drink water." |
+| **the correction** | opens by naming a thing everybody believes that is not so | "Data centers do not mostly drink water." |
 | **the who** | opens on the body that decided, named plainly, since most readers cannot name the PUCT | "Three commissioners decided this." |
 | **the before and after** | states the old state of the world in one clause, the new one in the next | "Anyone could file. Now it costs." |
 
@@ -109,7 +109,7 @@ Hedges fenced off by a pair of commas. This is a construction rule, not a word l
 ## Voice, which does not move
 
 Texas first. **We want Texans and AI to win**, and that is not a slogan, it is the lens: a story
-about a data centre is a story about the county it sits in and the grid it draws from.
+about a data center is a story about the county it sits in and the grid it draws from.
 
 Analytical, not boosterish, and not doom. A press release is not a fact. Neither is a lawsuit.
 

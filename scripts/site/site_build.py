@@ -60,7 +60,7 @@ SITE_NAME = "Texas AI Docket"
 SITE_URL = "https://talonsturgill.github.io/TexasAIDocket"
 
 # THE MARK IS COMPUTED FROM THE STATUTE. It used to be a star path typed into this file, whose
-# points were not equidistant from its centre and whose inner vertices were not on a common
+# points were not equidistant from its center and whose inner vertices were not on a common
 # circle, sitting in a block that was very nearly square when the flag's blue stripe is twice as
 # tall as it is wide. Every one of those is a small wrongness, and small wrongnesses in a mark are
 # what amateur means: nobody can name the fault and everybody can see it. See scripts/site/mark.py,
@@ -125,6 +125,52 @@ if('IntersectionObserver' in window){
   // present and invisible.
   setTimeout(function(){ els.forEach(function(el){ el.classList.add('in'); }); },2500);
 }
+// THE MAP UNDER A THUMB.
+// On a laptop the map answers "what is this county" with a hover title. A phone has no hover,
+// so the only way to ask was to commit to a county and load its page, come back, and commit to
+// the next one. That is not looking around, it is a survey taken one page load at a time.
+// Dragging a thumb across the state now names each county and says what it holds, and lifting
+// the thumb without moving still opens the county, so the link is not taken away.
+(function(){
+  var read=document.getElementById('mapread'), map=document.querySelector('svg.txmap');
+  if(!read||!map||!('ontouchstart' in window)) return;
+  var moved=false, sx=0, sy=0, last=null;
+  function at(t){
+    var el=document.elementFromPoint(t.clientX,t.clientY);
+    return el&&el.closest?el.closest('path.c'):null;
+  }
+  function show(p){
+    if(p===last) return;
+    if(last) last.classList.remove('under');
+    last=p;
+    if(!p){ read.textContent=''; return; }
+    p.classList.add('under');
+    var n=p.getAttribute('data-n');
+    read.textContent=p.getAttribute('data-county')+' County. '+
+      (n? n+(n==='1'?' decision':' decisions')+' on the record. Lift to open.'
+        : 'Nothing on the record yet.');
+  }
+  map.addEventListener('touchstart',function(e){
+    var t=e.touches[0]; moved=false; sx=t.clientX; sy=t.clientY; show(at(t));
+  },{passive:true});
+  map.addEventListener('touchmove',function(e){
+    var t=e.touches[0];
+    if(Math.abs(t.clientX-sx)>6||Math.abs(t.clientY-sy)>6) moved=true;
+    if(moved){ show(at(t)); e.preventDefault(); }
+    // NOT PASSIVE, because a drag across the map has to stop the page scrolling under it. The
+    // guard is the 6 pixel threshold: until the thumb has actually moved, the browser keeps
+    // its scroll, so a reader who starts a page scroll on top of the map still scrolls.
+  },{passive:false});
+  map.addEventListener('touchend',function(e){
+    if(!moved) return;               // a tap: leave the link alone, it is the whole point
+    // A DRAG IS NOT A CLICK. Without this the county under the lifted thumb navigates, so
+    // looking around the map would keep throwing the reader onto a county page.
+    var kill=function(ev){ ev.preventDefault(); ev.stopPropagation(); };
+    map.addEventListener('click',kill,{capture:true,once:true});
+    setTimeout(function(){ map.removeEventListener('click',kill,{capture:true}); },400);
+    setTimeout(function(){ show(null); },2600);
+  });
+})();
 </script>"""
 
 
@@ -280,7 +326,10 @@ def item_meta(it: dict, today: str) -> str:
     where = ("Statewide" if g.get("statewide")
              else ", ".join(g.get("counties") or []) or
              ("ERCOT region" if g.get("on_ercot") else ""))
-    bits = [f'<span class="tag">{e(it["topic"])}</span>',
+    # THE SAME LABEL THE FILTER ROW USES. A card that says DEFENSE-AND-FEDERAL beside a chip
+    # that says "Defense and federal" is one taxonomy printed two ways, and a reader has to work
+    # out that they are the same thing. The slug stays the identifier in the URL and the ledger.
+    bits = [f'<span class="tag">{e(topic_label(it["topic"]))}</span>',
             f'<span>{e(it["decider"]["name"])}</span>']
     if where:
         bits.append(f'<span>{e(where if len(where) < 60 else where[:57] + "...")}</span>')
@@ -630,7 +679,8 @@ def home(items: list, today: str) -> str:
     proj = dk.project(items, today)
     act = proj["actionable_now"]
     lit = {c for it in items for c in (it.get("geography") or {}).get("counties") or []}
-    svg = texas_map.render(lit=lit, links=county_links(items, today, 0))
+    svg = texas_map.render(lit=lit, links=county_links(items, today, 0),
+                           counts=proj["by_county"])
 
     n_counties = len(lit)
     n_items = proj["counts"]["items"]
@@ -720,6 +770,7 @@ def home(items: list, today: str) -> str:
   counties are the ones this record currently touches, <span class="num">{n_counties}</span>
   of <span class="num">{_place_facts()["counties"]}</span>.</p></div>
   {svg}
+  <p class="mapread" id="mapread" role="status" aria-live="polite" data-prose="data"></p>
 </section>
 
 {'<section data-reveal><h2>Closing next</h2><ul class="deck">' + rows + '</ul>'
@@ -783,9 +834,7 @@ def docket_index(items: list, today: str) -> str:
         f'<td>{e(m["area_type"])}</td></tr>'
         for mid, m in sorted(proj["by_metro"].items(),
                              key=lambda kv: (-len(kv[1]["items"]), kv[0])))
-    topics = "".join(
-        f'<a class="tag" href="../topic/{e(t)}/">{e(t)}</a> '
-        for t in sorted({i["topic"] for i in items}))
+    topics = topic_chips(items, depth=1)
 
     body = f"""
 <h1>The record</h1>
@@ -793,14 +842,16 @@ def docket_index(items: list, today: str) -> str:
   <p>Every decision on the record, <strong>ordered by how soon a reader can still act</strong>,
   not by when it was filed. <span class="num">{n_open}</span> of
   <span class="num">{len(items)}</span> are open to comment now.</p>
-  <p class="meta" data-prose="data">{topics}</p>
 </div>
+{topics}
 
 <!-- THE MAP LIVES ON THE RECORD NOW, because geography is a property of the record rather
      than a subject of its own. It had a tab, and a tab is a promise that a reader wants to
      browse Texas by county, which is not what anybody arrives wanting. Clicking a lit county
      still opens what that county holds. -->
-{texas_map.render(lit=lit, links=county_links(items, today, 1))}
+{texas_map.render(lit=lit, links=county_links(items, today, 1),
+                  counts=proj["by_county"])}
+<p class="mapread" id="mapread" role="status" aria-live="polite" data-prose="data"></p>
 <p class="meta" data-prose="data">Click a lit county to see what it holds.
   <span class="num">{len(lit)}</span> of <span class="num">{tx["counties"]}</span> counties
   are named, and <span class="num">{n_state}</span> decisions apply statewide.</p>
@@ -824,19 +875,58 @@ def docket_index(items: list, today: str) -> str:
                 body=body, today=today, canonical="record/")
 
 
+def topic_label(topic: str) -> str:
+    """The reader-facing name of a topic, derived from its slug and never typed twice.
+
+    A slug is a filing convention. `DEFENSE-AND-FEDERAL` shouted in monospace is what a
+    database looks like, not what a record reads like, and it was the label on the record
+    page's filter row for as long as that row existed. The slug stays the identifier
+    everywhere it is one, in the URL, the ledger and the ask engine's vocabulary, and this
+    is the only place it becomes English.
+    """
+    return topic.replace("-", " ").capitalize()
+
+
+def topic_chips(items: list, depth: int, current: str = "") -> str:
+    """The record's filter row: one pill per topic, carrying its share of the record.
+
+    THE COUNT IS THE HIERARCHY. Five identical boxes say every topic is the same size, and
+    on this record they are not: one beat can hold half the decisions while another holds
+    one. A reader deciding where to look is asking exactly that question, so the row answers
+    it before they click. Every count here is `len()` of a filtered list, which is what the
+    compute-not-generate law requires of a published numeral.
+    """
+    by: dict = {}
+    for it in items:
+        by.setdefault(it["topic"], []).append(it)
+    up = "../" * depth
+    out = []
+    for t in sorted(by):
+        # `aria-current` and not a class, because the state is "this is the page you are on"
+        # and that is a thing assistive technology already knows how to say.
+        here = ' aria-current="page"' if t == current else ""
+        out.append(
+            f'<a class="topicchip" href="{up}topic/{e(t)}/"{here}>'
+            f'<span class="tc-name">{e(topic_label(t))}</span>'
+            f'<span class="tc-n num">{len(by[t])}</span></a>')
+    return ('<nav class="topicrow" data-prose="data" aria-label="Filter the record by topic">'
+            + "".join(out) + "</nav>")
+
+
 def topic_page(topic: str, items: list, today: str) -> str:
     mine = [i for i in items if i["topic"] == topic]
     rows = "".join(
         f'<li>{clock(it, today)}<h3><a href="../../item/{e(it["id"])}/">{e(it["title"])}</a></h3>'
         f'{item_meta(it, today)}</li>' for it in mine)
     body = f"""
-<h1>{e(topic.replace("-", " "))}</h1>
+<h1>{e(topic_label(topic))}</h1>
 <div class="prose"><p><span class="num">{len(mine)}</span> of
 <span class="num">{len(items)}</span> decisions on the record.</p></div>
+{topic_chips(items, depth=2, current=topic)}
 <ul class="items" data-prose="data">{rows}</ul>
 <p class="meta" data-prose="data"><a href="../../record/">All decisions</a></p>
 """
-    return page(title=f'{topic.replace("-", " ")} · {SITE_NAME}', depth=2, active="record/",
+    return page(title=f"{topic_label(topic)} · {SITE_NAME}", depth=2, active="record/",
                 desc=f"Texas AI decisions filed under {topic.replace('-', ' ')}.",
                 body=body, today=today, canonical=f"topic/{topic}/")
 
@@ -865,7 +955,7 @@ def item_where(it: dict) -> str:
 
     METROS AND LOOSE COUNTIES ARE BOTH NAMED, in that order, for the reason `M3` found:
     thirteen of this record's twenty-two counties are in no statistical area, including
-    Shackelford, which is where the data centre is. A metro-only line would read as
+    Shackelford, which is where the data center is. A metro-only line would read as
     complete while dropping the part of Texas the story is actually about.
     """
     g = it.get("geography") or {}
@@ -1169,8 +1259,8 @@ def ask_box(items: list, today: str) -> str:
     <form role="search">
       <label class="vh" for="askq">Ask the record a question</label>
       <input id="askq" type="search" autocomplete="off"
-             placeholder="Ask the record. Try a city, a topic, or a deadline.">
-      <button type="submit">Ask</button>
+             placeholder="Ask about any AI decision in Texas">
+      <button type="submit"><span class="vh">Ask</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
     </form>
     <div class="chips" data-voice="reader">{chips}</div>
     <div class="answer" hidden></div>
@@ -1186,7 +1276,7 @@ window.__ASK_CATALOGUE__={json.dumps(cat, separators=(",", ":"))};</script>
 def water_page(today: str) -> str:
     """The Texas Water Watch. The grid watch's sibling, and the other half of the account.
 
-    Same numeral gate, same refusal to publish a verdict, same build time raise. A data centre
+    Same numeral gate, same refusal to publish a verdict, same build time raise. A data center
     draws on electricity and on water, and a site that tracked only the first would be telling
     half of the story it claims to keep.
     """
@@ -1303,7 +1393,7 @@ def services_page(items: list, today: str) -> str:
     body = f"""
 <section class="hero rise">
   <h1>Texas is where it gets <em>built</em>.</h1>
-  <p class="herolede">The data centres. The load. The water. It is all landing here first.
+  <p class="herolede">The data centers. The load. The water. It is all landing here first.
   The businesses that move first will own the decade.</p>
   <div class="ctarow">
     <a class="cta solid" href="#start">Start here</a>
@@ -1581,8 +1671,12 @@ def _identifier_numerals(text: str) -> set:
     still has to trace to a computation or a quote.
     """
     out = set()
+    # `dk.LOCATORS` is the rest of an address, added when the record grew a beat whose whole
+    # subject is where to go and who to call. Spread from the record layer's own tuple rather
+    # than listed again here, so a locator this project recognises is a locator on every
+    # surface and there is still exactly one place that decides.
     for rx in (dk.ITEM_ID, dk.DATE_ORDINAL, dk.CITATION, dk.PLACE_NUMBER,
-               dk.DOTTED_SECTION, dk.YEAR):
+               *dk.LOCATORS, dk.DOTTED_SECTION, dk.YEAR):
         for m in rx.finditer(text):
             for n in dk.NUMERAL.findall(m.group(0)):
                 out.add(n)
