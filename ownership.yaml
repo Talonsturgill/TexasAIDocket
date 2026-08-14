@@ -180,24 +180,6 @@ rules:
   - path: "ledger/gridwatch/weather.jsonl"
     owner: gridwatch
     append_only: false
-
-  # THE RETIRED NAME OF THE SAME SERIES. It was `heat.jsonl` for one day, 2026-08-13 to
-  # 2026-08-14, until rainfall joined temperature and "heat" stopped describing the file.
-  # Exempt for exactly the reason the current name is: these are the same re-derivable NCEI
-  # observations, and the protection above is for series nobody can rebuild.
-  #
-  # WHY IT OUTLIVES THE RENAME COMMIT, which is a fact about how the gate reads history
-  # rather than about this file. The check runs on a RANGE, `origin/main...HEAD`, and judges
-  # that whole diff against the map as it stands at the END of it. So for as long as the
-  # commit deleting this path is inside the range CI evaluates, the rule deleting the
-  # exemption and the diff needing it are in the same range and the gate fails. Splitting it
-  # into a follow-up commit does not work and was tried.
-  #
-  # Safe to delete in any pull request opened after the rename has merged into `main`,
-  # because the rename is then behind the merge base and no longer in anyone's range.
-  - path: "ledger/gridwatch/heat.jsonl"
-    owner: gridwatch
-    append_only: false
   - path: "ledger/gridwatch/raw/**"
     owner: gridwatch
     append_only: true
