@@ -430,6 +430,48 @@ short of measuring the rendered box could tell the difference between this and a
 Every CSS change that claims a measurable effect gets measured after, in a browser, on the built
 page. Reading the diff is not verification of a stylesheet.
 
+## 23. A test that encodes the workaround defends the bug
+
+The Lone Star was `display:none` below 30rem, because its glow landed in the wrapped
+navigation. Two tests then asserted that arrangement. `page_ground.mjs` required the mark to be
+absent on a phone, in a check named "and not on a phone". `responsive.mjs` permitted hiding it
+wherever a collision existed, so a stylesheet hiding it on every phone was green by
+construction.
+
+**The owner found it by looking at the site.** Both suites were passing, and one of them was
+written specifically to check that mark.
+
+**What to check.** When a fix is "hide it", the test that follows must assert the OUTCOME the
+reader wants, not the mechanism chosen. "The mark is visible and touches nothing" is a
+requirement. "The mark is hidden where it would touch something" is a restatement of the
+workaround, and it will hold just as happily when the workaround has eaten the whole feature.
+
+The sweep that found the truth also found a band nobody had looked at: from 488 to 592px the
+mark sat directly on the "Services" and "About" links, at widths where it was never hidden and
+never tested.
+
+## 24. A clipped numeral is not a layout bug
+
+The load chart's axis type steps up to 27 user units on a phone so it survives being scaled
+down. The left gutter that type is drawn into was 52 units and fixed in Python, while the type
+size is a CSS breakpoint, so neither could see the other. Six characters at 27 units is about
+97, and it did not fit.
+
+**It did not render as a cut. It rendered as "500", where the record says 2,500.** The part
+that fell off the left edge was "2,". The residual axis was wrong, by a factor of five, on
+every phone, under a `numeral_lint` that had authorised the correct value and a legibility test
+that had measured the correct font size.
+
+**What to check.** `numeral_lint` proves a published figure traces to a computation. It reads
+the DOM, so it cannot see that the glyphs were painted outside the canvas. Any figure drawn
+into a fixed coordinate space needs its rendered box measured against that space, and
+`responsive.mjs` now does exactly that at fifteen widths. Legible and present are two
+questions, and the suite was only asking one.
+
+The generalisation is worth keeping: **whenever a value's geometry lives in one language and
+its type size lives in another, something has to measure the pair.** Every clipped label here
+came from that split.
+
 ## Two process faults, which caused more lost time than any bug above
 
 **Reading the last line of a report.** `house_style_check` prints an advice footer on failure and a

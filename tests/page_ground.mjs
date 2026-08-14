@@ -400,13 +400,22 @@ for (const width of [1440, 390]) {
     const name = file.slice(resolve(SITE).length + 1);
     if (r.gap !== null && r.gap < MIN_CLEARANCE) tooTight.push(`${name}@${width} ${r.gap}px`);
     if (r.overflow > 1) overflowing.push(`${name}@${width} +${r.overflow}px`);
-    // THE MARK IS THE FRONT PAGE'S ALONE, AND ONLY WHERE THERE IS SKY TO PUT IT IN. Both halves
-    // of that were already written down as comments and neither was true: a 210 pixel star sat
-    // over the grid chart and the record's cards on inner pages, and the rule meant to remove it
-    // on a phone was a class less specific than the rule that turns it on, so it stayed in the
-    // wrapped navigation on every narrow screen. Specificity beats a media query. A comment
-    // stating a rule does not make the rule hold, which is the whole argument for this file.
-    if (r.markShown && (!r.isHome || width <= 736)) strayMark.push(`${name}@${width}`);
+    // THE MARK IS THE FRONT PAGE'S ALONE, AND IT BELONGS ON A PHONE TOO.
+    //
+    // The first half was already written down as a comment and was not true: a 210 pixel star
+    // sat over the grid chart and the record's cards on inner pages, because the rule meant to
+    // remove it was a class less specific than the rule that turns it on. Specificity beats a
+    // media query. That half still holds and is still checked.
+    //
+    // THE SECOND HALF USED TO SAY "AND NOT ON A PHONE", AND THAT WAS THIS TEST ENCODING A BUG.
+    // The mark was hidden below 30rem because its glow landed in the wrapped navigation, and
+    // this line then required it to stay hidden, so the one piece of brand furniture on the
+    // page was absent for most readers with a green suite agreeing. A position problem is
+    // answered with a position: the mark now moves below the nav on small screens.
+    // `tests/responsive.mjs` owns the collision proof at every width; this file only asserts
+    // that the mark is on the front page, on every screen, and nowhere else.
+    if (r.markShown && !r.isHome) strayMark.push(`${name}@${width} (inner page)`);
+    if (!r.markShown && r.isHome) strayMark.push(`${name}@${width} (missing from the front page)`);
   }
   await sweep.close();
 }
@@ -414,7 +423,7 @@ ok(`every page clears the sticky bar (${pages.length} pages, two widths)`,
    tooTight.length === 0, `${tooTight.length} too tight: ${tooTight.slice(0, 3).join(', ')}`);
 ok('...and no page scrolls sideways',
    overflowing.length === 0, `${overflowing.length}: ${overflowing.slice(0, 3).join(', ')}`);
-ok('...and the mark appears on the front page only, and not on a phone',
+ok('...and the mark is on the front page at every width, and on no other page',
    strayMark.length === 0, `${strayMark.length}: ${strayMark.slice(0, 4).join(', ')}`);
 
 /* THE WHOLE GROUND, ON A GRID, NOT FOUR POINTS SOMEBODY CHOSE.

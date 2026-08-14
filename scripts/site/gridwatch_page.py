@@ -272,8 +272,36 @@ def load_shape_svg(latest: dict) -> str:
     if not any(isinstance(v, (int, float)) for v in load):
         return ""
     fc = latest["day_ahead_forecast_mw"] or []
-    w, pad_l, pad_t = 720.0, 52.0, 16.0
-    main_h, gap, res_h, pad_b = 210.0, 34.0, 62.0, 24.0
+    # THE LEFT GUTTER HOLDS THE WIDEST LABEL AT THE LARGEST PHONE TYPE SIZE, and that is the
+    # whole reason it is 108 rather than the 52 it used to be.
+    #
+    # WHAT 52 SHIPPED. The axis labels are right anchored eight units inside this gutter, and
+    # the type steps up to 27 user units on a phone so the glyphs clear ten CSS pixels once the
+    # drawing is scaled down. Six characters of mono at 27 units is about 97, which did not fit
+    # in 44, so the residual axis was cut on every phone. It did not read as a cut. It read as
+    # "500", because the part that fell off the left edge was "2,". A published figure showing a
+    # different number from the one computed is the one failure this project cannot have, so
+    # this is a correctness fix wearing a layout fix's clothes.
+    #
+    # The geometry is Python and the type size is a CSS breakpoint, so neither can see the
+    # other. The gutter is therefore sized for the worst case the stylesheet can produce, and
+    # `tests/responsive.mjs` measures the rendered glyph boxes against the drawing rather than
+    # trusting this arithmetic.
+    # `pad_t` holds the unit caption ABOVE the top gridline label rather than on top of it.
+    # At 16 the caption's baseline sat five units above the plot and the topmost axis number
+    # sat four below it, which is fine at eleven point type and prints "GW" through "100" at
+    # twenty seven.
+    w, pad_l, pad_t = 720.0, 108.0, 44.0
+    # The largest `.loadshape .ax` step in theme.py, in user units. If that step changes, this
+    # changes with it, and the test catches the pair going out of step.
+    ax_max_px = 27.0
+    # Mono advance width is close enough to 0.62em for a layout bound; the check is measured.
+    est = lambda s: 0.62 * ax_max_px * len(s)
+    # `gap` and `res_h` are sized on the same principle as the gutter. The residual strip
+    # stacks three captions down the gutter, one at each end and the unit in the middle, so
+    # the strip's HALF HEIGHT is the space between them. At 62 that was 31 units for a caption
+    # 27 units tall, which stopped being enough the moment the type stepped up for phones.
+    main_h, gap, res_h, pad_b = 210.0, 48.0, 86.0, 24.0
     h = pad_t + main_h + gap + res_h + pad_b
     vals = [v for v in load if isinstance(v, (int, float))]
     top = max(vals + [v for v in fc if isinstance(v, (int, float))])
@@ -316,10 +344,21 @@ def load_shape_svg(latest: dict) -> str:
         lo = min(idx, key=lambda i: load[i])
         for i, tag, dy, anchor in ((hi, "peak", -14.0, "middle"), (lo, "trough", 22.0, "middle")):
             px, py = x(i), y(load[i])
-            lx = min(max(px, pad_l + 34), w - 46)
+            # CLAMPED BY THE LABEL'S OWN WIDTH, not by a fixed inset. These callouts are long
+            # sentences, about 340 units at the phone type size, and a middle anchored label
+            # that wide needs half of itself either side of the point it names. The old clamp
+            # allowed the centre anywhere from 86 to 674, so on a phone the trough callout ran
+            # off the left edge and sat across the axis numbers.
+            label = f"{gw(load[i])} GW at {hour(i + 1)}"
+            # The left bound is the GUTTER, not the canvas edge. Clamping to zero kept the
+            # callout on the drawing and laid it straight across the axis numbers, which is
+            # legible in neither direction.
+            half = est(label) / 2.0
+            lo_x, hi_x = pad_l + half, w - half
+            lx = (pad_l + (w - pad_l) / 2.0 if lo_x > hi_x else min(max(px, lo_x), hi_x))
             marks += (f'<circle class="mk" cx="{px}" cy="{py}" r="3.5"/>'
                       f'<text class="ax mklab" x="{lx}" y="{round(py + dy, 2)}" '
-                      f'text-anchor="{anchor}">{gw(load[i])} GW at {hour(i + 1)}</text>')
+                      f'text-anchor="{anchor}">{label}</text>')
 
     # THE RESIDUAL STRIP. Forecast minus measured, hour by hour, on a scale of its own.
     res = ""
@@ -362,7 +401,7 @@ def load_shape_svg(latest: dict) -> str:
   <path class="line" d="{line}"/>
   {marks}
   {ticks}
-  <text class="ax unit" x="{pad_l - 8}" y="{pad_t - 5}" text-anchor="end">GW</text>
+  <text class="ax unit" x="0" y="{pad_t - 8}" text-anchor="start">GW</text>
   {res}
 </svg>
 <figcaption>Measured demand across the day, filled, with the peak and the trough marked.
