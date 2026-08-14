@@ -406,6 +406,30 @@ printing the same rejection five times and buried the actual cause under the noi
 also refuses to push when it is more than one commit ahead of trunk, which is the check that would
 have caught the whole thing on day one.
 
+## 22. A CSS rule can be correct, matched, and dead, and it reads as fixed
+
+The front page chip wrapped onto a third line on a phone, carrying one word. The fix was to give
+up a little letter-spacing below 30rem, and it was written into the `max-width:30rem` block that
+already existed for hiding the star.
+
+**It changed nothing.** The measured height was 78px before and 78px after. The selector was
+right, the media query matched, the property was valid, and the value was sensible.
+
+A media query carries **no specificity of its own**. That block sits above the `.tele` rule in the
+sheet, so `.tele{letter-spacing:.13em}` and `.tele{letter-spacing:.095em}` were two rules of equal
+specificity and the later one won. Moving the same three lines below the base rule fixed it.
+
+**What to check.** An override written into a media query is only an override if it comes AFTER
+the rule it overrides in source order. Grouping narrow-screen rules into one tidy block near the
+top of a stylesheet is exactly how this happens, because the tidiness is what puts them before
+the declarations they mean to beat.
+
+**And the broader one, which is the reason this is in this file.** The measurement is what caught
+it. The rule was reviewed twice and read correctly both times, because it *was* correct. Nothing
+short of measuring the rendered box could tell the difference between this and a working fix.
+Every CSS change that claims a measurable effect gets measured after, in a browser, on the built
+page. Reading the diff is not verification of a stylesheet.
+
 ## Two process faults, which caused more lost time than any bug above
 
 **Reading the last line of a report.** `house_style_check` prints an advice footer on failure and a

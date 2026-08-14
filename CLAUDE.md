@@ -193,6 +193,12 @@ Alaska's history would poison them.
   that prints advice on failure and one clean line on success looks reassuring either way under
   `tail -1`, and that has shipped a red gate here before.
 - `assets/` — committed fonts, art libraries, Texas geodata, places gazetteer.
+- The front page's one live line is the **heat clock**, in `scripts/site/heatclock.py` with its
+  collector in `scripts/gridwatch/`. `knowledge/shared/TEXAS_TELEMETRY.md` section 0 is the
+  decision record for what it says and why it is not the reservoir line that document ranked
+  first. Two rules it inherits from that research: there is no canonical statewide station, so
+  it is **city scoped and names the city**, and the station is picked on a stated rule rather
+  than for producing the most striking number.
 - `docs/` — the published site (GitHub Pages). GENERATED. Never hand-edit.
 - `out/` — per-run scratch (gitignored). `runs/` — shipped artifacts, merged to main each run.
 

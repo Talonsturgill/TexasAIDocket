@@ -5,6 +5,54 @@ observed. This is the design record for the site hero and any live counter.
 
 ---
 
+## 0. WHAT SHIPPED, and why it is not this document's first choice (2026-08-14)
+
+The hero chip is live and it is **the heat clock, city scoped**, candidate 7 below rather than
+candidate 1:
+
+> `DALLAS FORT WORTH · 17 DAYS AT 100 BY AUGUST 10TH · 7 MORE IN A NORMAL YEAR`
+
+**Why not the reservoir line.** Section 2 recommends
+`TEXAS · RESERVOIRS 77% FULL · LOSING 27,887 ACRE-FEET A DAY`, and its structural argument is
+correct: a level plus a rate, statewide, with a sign that flips seasonally on its own. It loses
+on the one criterion this document itself says matters most. The daylight line works because it
+"names something every local physically feels" and needs no unit explained. **Nobody has an
+intuition for an acre-foot.** 27,887 acre-feet a day is exactly the homework problem that got
+the previous chip replaced, where a reader had to already know what committed capacity was
+before the sentence could mean anything. "77% full" is intuitive and the rate beside it is not,
+and the rate is the half doing the work.
+
+A hundred degree day needs no gloss at all, and Texas already keeps score in that unit without
+being taught it.
+
+**The city scoping rule in section 6 is honoured, not ignored.** There is no canonical statewide
+station, so the chip names Dallas Fort Worth on the page and the station choice is made once, in
+the open, on a stated rule: the largest metro's official station. It is explicitly not chosen for
+producing the most striking number. Wichita Falls runs further above its normal most summers.
+
+**Independent cross check.** This document measured DFW at 17 days at 100 as of 2026-08-11. The
+collector, written three days later against a different source, returned 17 through 2026-08-10.
+Two sources, two methods, same figure.
+
+**Source chosen: NCEI `daily-summaries`, not ACIS.** Both are keyless and public domain. NCEI is
+the archive of record, serves any range back to the nineteenth century, and yields the 1991 to
+2020 normals from the same daily record the count comes from, so the count and the thing it is
+compared against are recomputable from one source.
+
+**What this changes about the collector's shape.** The grid collector is built around ERCOT
+keeping no archive, so a missed day is gone forever. NCEI is the archive, so the heat collector
+backfills a trailing window, a week of failures costs nothing, and it keeps no raw snapshots
+because the source bytes are permanently re-fetchable by the same URL. Copying the grid
+collector's emergency discipline here would have been cargo cult.
+
+**Still worth building, in this order.** Section 5's rule-driven rotation is the better long-run
+answer and nothing here forecloses it: lead with whichever candidate sits furthest from its own
+norm for the calendar day. The heat clock is the first candidate with both a daily series and a
+computed normal, which is exactly what that rotation needs. The reservoir series has been
+collecting since launch and has the 94 year history, so it is the second.
+
+---
+
 ## 1. What we are reproducing
 
 The pattern this is modeled on is a hero line that reads
