@@ -275,9 +275,22 @@ def engine_js() -> str:
     CAT.forEach(function (c) {
       var cw = words(c.q), score = 0;
       qw.forEach(function (w) {
-        if (cw.indexOf(w) >= 0) score += idf(w);
-        else if (cw.some(function (x) { return x.indexOf(w) === 0 || w.indexOf(x) === 0; }))
-          score += idf(w) * 0.5;
+        if (cw.indexOf(w) >= 0) { score += idf(w); return; }
+        /* A PREFIX MATCH NEEDS ENOUGH PREFIX TO MEAN SOMETHING.
+           This was any shared opening character, which is a fine rule for "permit" against
+           "permits" and a bad one for "air" against "airspeed". The record grew a beat of TCEQ
+           air permits, "air" entered the catalogue vocabulary, and the box answered "what is
+           the airspeed velocity of an unladen swallow" with a confident item about air quality
+           permits. The stopword note above already records what that costs: a reader trusts the
+           one part of the page that talks back, so the box has to be honest more than it has to
+           be helpful. Four characters is the shortest shared stem that is a word rather than a
+           coincidence, and BOTH sides must clear it so a long query word cannot claim a short
+           catalogue one. */
+        var stemmy = cw.some(function (x) {
+          if (x.length < 4 || w.length < 4) return false;
+          return x.indexOf(w) === 0 || w.indexOf(x) === 0;
+        });
+        if (stemmy) score += idf(w) * 0.5;
       });
       if (!top || score > top.score) top = { c: c, score: score };
     });

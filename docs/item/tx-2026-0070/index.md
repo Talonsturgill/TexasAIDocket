@@ -1,0 +1,35 @@
+# Tom Green County Commissioners Court declines a Precinct 4 moratorium on data centers and large energy projects
+
+The Tom Green County Commissioners Court voted not to pursue a temporary moratorium on large scale energy and data center development in Precinct 4. The court acted after hearing a presentation from Beacon Data Centers on its proposed Westline site at Dove Creek, west of San Angelo. Commissioner Shawn Nanny pointed to a $100 million lawsuit filed against Hill County after that county approved a similar one year pause. The result is that the unincorporated part of the county has no local pause. The city of San Angelo has three adopted data center ordinances, and they apply only inside its own limits. That split is the whole local story in Texas, where counties have no general zoning power and cities do.
+
+- Topic: data-centers
+- Decided by: Tom Green County Commissioners Court (county)
+- Where: Tom Green
+- Statistical areas:
+  - San Angelo, TX
+- Status: decided
+- Public access: Public meeting
+- Take part: https://sanangelolive.com/news/county/2026-06-02/tom-green-county-commissioners-reject-data-center-moratorium
+
+- Last checked: 2026-08-14
+
+## Dates
+
+- 2026-06-02 · ordered: Commissioners Court declined to advance the Precinct 4 moratorium
+
+## Evidence
+
+Every fact above rests on one of these. The words are the source's own.
+
+### The court voted against a temporary moratorium on large scale energy and data center development in Precinct 4 after a Beacon Data Centers presentation.
+
+> SAN ANGELO, Texas — The Tom Green County Commissioners' Court voted Tuesday not to pursue a temporary moratorium on large-scale energy and data center development in Precinct 4 after hearing a presentation from Beacon Data Centers about its proposed Westline Site in Dove Creek.
+
+Source (journalism): https://sanangelolive.com/news/county/2026-06-02/tom-green-county-commissioners-reject-data-center-moratorium
+
+### A commissioner cited litigation against Hill County over a similar moratorium.
+
+> Commissioner Shawn Nanny referenced a recent $100 million lawsuit filed against Hill County after it approved a similar one-year moratorium.
+
+Source (journalism): https://sanangelolive.com/news/county/2026-06-02/tom-green-county-commissioners-reject-data-center-moratorium
+

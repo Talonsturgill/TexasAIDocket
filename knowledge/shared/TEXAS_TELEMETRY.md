@@ -101,9 +101,23 @@ Texas has no daylight story. The latitude spread is small and nobody thinks abou
 Verified 2026-08-11: 24,311,245 acre-feet of 31,558,535 acre-feet conservation capacity, with a
 seven-day mean change of −27,887 af/day. Every numeral computed from the last rows of one CSV.
 
-**Source:** `https://waterdatafortexas.org/reservoirs/statewide.csv` — HTTP **200**, 1.46 MB,
-five columns, **no key**, regenerated daily. (The `.json` variant is a 404 and
-`/recent-conditions` is a 500. Only the CSV works.)
+**Source:** `https://waterdatafortexas.org/reservoirs/recent-conditions.json` — HTTP **200**,
+**no key**, one record per monitored reservoir with storage, elevation, percent full,
+conservation capacity, coordinates and basin, all stamped with today's date.
+
+> **CORRECTED 2026-08-14, AND THE CORRECTION REVERSES THE RECOMMENDATION.** This paragraph used
+> to name `statewide.csv` and record that `/recent-conditions` was a 500. Re-checked today the
+> JSON returns 200, and the CSV is the one thing on that host the publisher forbids:
+> `waterdatafortexas.org/robots.txt` reads, in full, `User-agent: *`, `Disallow: *.csv`,
+> `Disallow: /*?output_format=*`, `Disallow: /coastal/api/*`, `Disallow: /reservoirs/api/*`.
+> So the statewide aggregate is **computed from the allowed per-reservoir JSON** rather than
+> taken from a forbidden file, which is also what the compute-not-generate law would have
+> preferred anyway. A 500 on one day is not a property of an endpoint. **Re-check a dead
+> endpoint before building around its death, and check the robots file of the host you are
+> about to hit rather than the one you are reading.**
+
+**It is a rolling window with no history.** Every record carries today's date and nothing else,
+so the daily snapshot is not optional. A missed day is gone.
 
 **Why it beats drought as the lead:** it moves daily rather than weekly, it is a measurement of
 stored water rather than a panel's classification, and the rate term is the exact structural
@@ -141,13 +155,22 @@ model output rather than a tally.
 | 3 | Percent of Texas in drought by category | `usdmdataservices.unl.edu/api/StateStatistics/...` | 200 | no | weekly, Thursday |
 | 4 | Wind and solar share of ERCOT generation now | ERCOT `fuel-mix.json` | 200 | no | 5 minutes |
 | 5 | ERCOT demand against the all-time record | ERCOT `supply-demand.json` | 200 | no | 5 minutes |
-| 6 | Texas counties under an NWS heat advisory | `api.weather.gov/alerts/active?area=TX` | 200 | no | continuous |
+| ~~6~~ | ~~Texas counties under an NWS heat advisory~~ | `api.weather.gov` | **DISALLOWED** | no | see below |
 | 7 | Days at or above 100°F this year, by station | `data.rcc-acis.org/MultiStnData` | 200 | no | daily |
 | 8 | Days left in hurricane season, active systems | `nhc.noaa.gov/CurrentStorms.json` | 200 | no | continuous |
 | 9 | Days until the 90th Legislature convenes | date math, no source needed | n/a | n/a | daily |
 
 The burn ban feed is unusually good: **the count is pre-computed in line one**, so it is
 self-validating. Note it is UTF-16.
+
+> **CANDIDATE 6 IS STRUCK, 2026-08-14.** `api.weather.gov/robots.txt` reads, in full,
+> `User-agent: *` then `Disallow: /`. The whole host is closed to automated agents. The endpoint
+> does return a clean 200 with real Texas advisories, and that is exactly why it was listed here
+> without a caveat: **working and permitted are different questions, and only one of them is
+> visible from the response.** Nothing in this project may poll it. `www.weather.gov/robots.txt`
+> is a 404, so the block is specific to the API host.
+> The row above was written from a status code. Every row in this table needs its robots file
+> read, not its status line.
 
 **Dropped after testing:** the Edwards Aquifer J-17 well (the USGS site exists but both `nwis/iv`
 and `nwis/dv` return empty series, and the Edwards Aquifer Authority page is a 26 MB single-page
@@ -187,9 +210,27 @@ numbers and never their ratio**, and never a fill bar. This is the same reasonin
 bar-never-a-dial rule.
 
 **And the record figure itself came from Wikipedia.** Under this project's law that numbers are
-computed and never generated, it cannot be typed into a template. It must be recomputed from the
-ERCOT MIS archive (`IceDocListJsonWS?reportTypeId=13101` returns 200, `mirDownload?doclookupId=`
-returns a zip) and committed to `config/` as data with a recompute script.
+computed and never generated, it cannot be typed into a template. It has to be recomputed from a
+primary archive and committed to `config/` as data with a recompute script.
+
+> **CORRECTED 2026-08-14. THE ARCHIVE THIS PARAGRAPH NAMED IS DISALLOWED.** It used to instruct
+> a recompute from the ERCOT MIS (`IceDocListJsonWS?reportTypeId=13101`, then
+> `mirDownload?doclookupId=`). Both return 200 and this project may not take either:
+> `www.ercot.com/robots.txt` carries `Disallow: /misapp` and `Disallow: /misdownload`, which
+> closes the entire machine-readable report archive. **An instruction in a knowledge file is a
+> standing order, and this one ordered a crawl the publisher had refused.**
+>
+> The substitute is `https://www.ercot.com/gridinfo/load/load_hist`, the historical hourly load
+> archive, whose files sit under `/files/docs/` and are not disallowed. It KEEPS HISTORY back to
+> 1995, which every ERCOT dashboard feed does not. Two cautions carried over from the sweep.
+> The series there is **native load**, which is not the dashboard's `systemLoad`, and mixing
+> them is a silent error. And the file format changes across three eras, `.txt` then `.xls`
+> then zipped `.xlsx`, so a parser needs three branches.
+>
+> `/gridinfo` itself is ambiguous: robots says `Disallow: /content/gridinfo`, and ERCOT runs
+> Adobe Experience Manager where `/content/X` is the internal path for the public `/X`. Read by
+> the letter it is allowed, read by intent it is not. **Poll the dated `/files/docs/` URLs
+> directly and treat the index page as a human step.**
 
 **Reservoir storage** is safe because it is a measurement, but the rate must be labeled as what
 it is: a **seven-day trailing mean**. Say "LOSING," never "ON PACE TO" or "WILL BE EMPTY BY."

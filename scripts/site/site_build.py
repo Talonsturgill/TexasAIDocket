@@ -1618,8 +1618,12 @@ def _identifier_numerals(text: str) -> set:
     still has to trace to a computation or a quote.
     """
     out = set()
+    # `dk.LOCATORS` is the rest of an address, added when the record grew a beat whose whole
+    # subject is where to go and who to call. Spread from the record layer's own tuple rather
+    # than listed again here, so a locator this project recognises is a locator on every
+    # surface and there is still exactly one place that decides.
     for rx in (dk.ITEM_ID, dk.DATE_ORDINAL, dk.CITATION, dk.PLACE_NUMBER,
-               dk.DOTTED_SECTION, dk.YEAR):
+               *dk.LOCATORS, dk.DOTTED_SECTION, dk.YEAR):
         for m in rx.finditer(text):
             for n in dk.NUMERAL.findall(m.group(0)):
                 out.add(n)

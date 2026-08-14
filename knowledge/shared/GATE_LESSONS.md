@@ -580,6 +580,45 @@ at x=0, one antialiasing pixel from being clipped on any machine.
 inequality. A tolerance of zero turns every rounding difference between two machines into a
 flapping test, and flapping tests get their failures explained away.
 
+## 29. A gate that passes by collision is not passing
+
+The water watch page printed four percentages that its own module did not authorise. It passed
+anyway, for months, because `_authorised_numerals` unions the whole record's counts and 42, 71,
+76 and 93 all happened to equal some unrelated docket figure.
+
+Growing the record from 13 items to 58 changed those counts. The coincidence lapsed and four
+phantom numerals appeared on a page nobody had touched, which is how it was finally seen.
+
+Underneath was a second fault, and it is the sharper one. Phrase removal in `numeral_lint` was a
+plain `str.replace`. The set carried a bare `"0%"` from an unrelated computation, the page
+printed `"Amarillo 42.0%"`, and the replace took the `0%` out of the MIDDLE of the percentage
+and left `42.` behind. **The scanner then reported a stray 42 on a figure that was correct.**
+The file's own comment claimed longest-first ordering prevented exactly this, and it only does
+when a longer authorised phrase covers the same span.
+
+**What to check.** Removal is anchored now: a phrase may not begin inside a number and may not
+end immediately before more digits. And the general rule, which `_watch_numerals` already
+records one level up: **a gate is only as strong as its narrowest scope, and a union is not a
+scope.** If a page passes because some other page computed the same integer, nothing has been
+checked.
+
+## 30. Reader copy is every field a page renders, not the two the gate was told about
+
+`docket_build`'s copy gates read `title`, `summary` and `public_access.how`. The site renders
+more than that: a claim's own `text`, and the `note` on every key date. Neither was ever checked
+at the record layer, so vote counts written `7-0`, a bare `May 20` and an agenda code reading as
+the first person all passed the record's gates and were caught later by
+`house_style_check.py`, which reads the built page instead.
+
+That is the right backstop and the wrong place to find out. The record layer knows which item is
+wrong and can say so; the page layer knows a file under `docs/` is wrong and has to be traced
+back. The gap also means the RECORD can hold copy the SITE will reject, which is a build that
+fails on a ledger nobody edited.
+
+**What to check.** When a gate names the fields it reads, that list is a claim about what the
+page renders, and it goes stale the moment a template starts rendering one more field. Diff the
+two: every string a builder interpolates into a page is reader copy, whoever wrote it.
+
 ---
 
 ## The rule for setting a threshold

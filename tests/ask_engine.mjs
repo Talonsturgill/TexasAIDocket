@@ -84,12 +84,23 @@ for (const entry of cat) {
   // Every count the answer states must be one the index can support. The engine counts from
   // the index, so any number above the item total is the engine inventing scale.
   const text = `${a.head} ${a.body || ""}`.replace(/<[^>]+>/g, " ");
-  for (const m of text.match(NUM) || []) {
-    const n = Number(m.replace(/,/g, ""));
-    // Claim totals and day counts legitimately exceed the item count; item counts cannot.
-    if (/\bitems?\b/.test(text.slice(Math.max(0, text.indexOf(m) - 4), text.indexOf(m) + 24))
-        && n > itemCount) {
-      overclaimed.push(`${entry.q} -> ${m} (record holds ${itemCount})`);
+  // THE WINDOW IS THIS MATCH'S OWN POSITION, and it used to be `text.indexOf(m)`, which
+  // returns the FIRST place that string appears anywhere in the answer. With thirteen items
+  // the answers were short enough that the two coincided. At fifty-eight they stopped: a "2026"
+  // inside a title was located at some earlier "2026" that happened to sit next to the word
+  // "item", and the check reported an item count of 2026 on an answer that claimed nothing of
+  // the kind. A regex with `g` gives the real index, so use it.
+  const scan = new RegExp(NUM.source, "g");
+  for (const m of text.matchAll(scan)) {
+    const n = Number(m[0].replace(/,/g, ""));
+    // AN ITEM COUNT IS THE NUMERAL IMMEDIATELY BEFORE THE WORD, which is how the engine
+    // phrases one: "1 item from ...". The window used to reach 24 characters PAST the numeral
+    // and catch any "item" in the vicinity, so "in Graham on August 10th, 2026. That agenda
+    // item required no vote" read as a claim that the record holds 2026 items. Short answers
+    // hid it. Claim totals and day counts legitimately exceed the item count; item counts
+    // cannot.
+    if (/^\s*items?\b/.test(text.slice(m.index + m[0].length)) && n > itemCount) {
+      overclaimed.push(`${entry.q} -> ${m[0]} (record holds ${itemCount})`);
     }
   }
 }

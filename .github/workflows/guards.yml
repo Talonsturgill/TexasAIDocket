@@ -107,6 +107,9 @@ jobs:
       - name: Drought collector self-test (the severity columns are cumulative, and are checked)
         run: python3 scripts/gridwatch/drought_collect.py --self-test
 
+      - name: Docket ingest self-test (an undated comment window is demoted, never published)
+        run: python3 scripts/site/docket_ingest.py --self-test
+
       - name: Front chip self-test (the rotation, and no day of the year left empty)
         run: python3 scripts/site/frontchip.py --self-test
 
