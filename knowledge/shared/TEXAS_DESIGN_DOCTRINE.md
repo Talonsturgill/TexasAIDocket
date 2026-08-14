@@ -231,7 +231,7 @@ none, because it invites a reader to measure with it.
 
 ## 9. What "Texas First" looks like on a page
 
-The voice is not tone deaf about data centres and it is not against them. AI is transformational
+The voice is not tone deaf about data centers and it is not against them. AI is transformational
 technology and Texas should win with it. That position has a visual consequence:
 
 **The design never dramatises.** No alarm colours, no urgent typography, no charts that lean.

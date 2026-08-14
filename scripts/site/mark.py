@@ -7,7 +7,7 @@ The mark was a path typed into a source file:
 
     M12 1.6l2.9 7.5 8 .4-6.2 5.1 2.1 7.8L12 18l-6.8 4.4 2.1-7.8L1.1 9.5l8-.4z
 
-Approximately a star. Its points are not equidistant from its centre, its inner vertices are not
+Approximately a star. Its points are not equidistant from its center, its inner vertices are not
 on a common circle, and it sits in a block that is very nearly square. Every one of those is a
 small wrongness, and small wrongnesses in a mark are what "amateur" means: nobody can name the
 fault, everybody can see it.
@@ -17,7 +17,7 @@ sec. 3100.001, and the specification is complete:
 
   - the flag is a rectangle whose width is two thirds its length
   - a blue vertical stripe at the hoist, one third the length of the flag
-  - a white regular five pointed star centred in that stripe, ONE POINT UP, sized so that a
+  - a white regular five pointed star centered in that stripe, ONE POINT UP, sized so that a
     circle passing through its five points has a diameter three quarters the width of the stripe
 
 So the mark is computed from those four sentences. This is the same law the rest of the project
@@ -90,7 +90,7 @@ def star_facets(cx: float, cy: float, r: float) -> list:
     """Each point cut into two wedges, the way the rotunda inlay is cut.
 
     A point runs from one inner vertex, out to the tip, and back to the next inner vertex. The cut
-    is the line from the centre to the tip, so each wedge is centre, inner vertex, tip. Ten wedges,
+    is the line from the center to the tip, so each wedge is center, inner vertex, tip. Ten wedges,
     alternating which side of the point's own axis they fall on, which is what lets the two sides
     take different light.
     """
@@ -166,7 +166,7 @@ def self_test() -> int:
     v = star_points(cx, cy, STAR_R)
     outer = [math.dist((cx, cy), v[i]) for i in range(0, 10, 2)]
     inner = [math.dist((cx, cy), v[i]) for i in range(1, 10, 2)]
-    ok("all five points are the same distance from the centre",
+    ok("all five points are the same distance from the center",
        max(outer) - min(outer) < 1e-9, f"{min(outer):.6f} to {max(outer):.6f}")
     ok("...and so are all five inner vertices",
        max(inner) - min(inner) < 1e-9, f"{min(inner):.6f} to {max(inner):.6f}")
@@ -186,7 +186,7 @@ def self_test() -> int:
     ok("...half lit and half shaded",
        sum(1 for k, _ in f if k == "lit") == POINTS
        and sum(1 for k, _ in f if k == "shade") == POINTS)
-    ok("...and each wedge is a triangle from the centre",
+    ok("...and each wedge is a triangle from the center",
        all(len(tri) == 3 and tri[0] == (cx, cy) for _, tri in f))
 
     # ---- what ships ----------------------------------------------------------

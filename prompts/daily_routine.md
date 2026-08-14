@@ -208,7 +208,7 @@ concurrently**:
 | **`clinic-and-classroom`** | the Texas Medical Center, MD Anderson, hospital deployment, and what is actually happening in schools |
 | **`research-and-machines`** | TACC's Vista and Horizon, UT, A&M, Rice, UTSA, the public compute nobody fences off |
 | **`what-texas-makes`** | fabs, chips, plant floor, space hardware. The state is on both ends of the same supply chain |
-| `power-and-compute` | data centres, the grid, ERCOT, interconnection, water for cooling. **ONE beat** |
+| `power-and-compute` | data centers, the grid, ERCOT, interconnection, water for cooling. **ONE beat** |
 | `policy-and-money` | the Legislature, the AG, PUCT, procurement, surveillance and policing, defence. **ONE beat**, and the docket already carries it |
 | **`community-signal`** | what Texans are actually discussing about this. Salience and angle only, never sole sourcing |
 

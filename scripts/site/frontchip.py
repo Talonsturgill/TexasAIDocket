@@ -71,6 +71,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 LEDGER = REPO_ROOT / "ledger" / "gridwatch" / "weather.jsonl"
 NORMALS = REPO_ROOT / "config" / "gridwatch" / "weather_normals.json"
+DROUGHT_LEDGER = REPO_ROOT / "ledger" / "gridwatch" / "drought.jsonl"
+DROUGHT_NORMALS = REPO_ROOT / "config" / "gridwatch" / "drought_normals.json"
 
 # The record settles a few days behind real time and the collector runs daily, so a gap wider
 # than this means the collector has been broken for a fortnight rather than that NCEI is
@@ -96,7 +98,12 @@ SEASON_CEIL = 0.98
 # Ranking is by distance, and this settles exact ties so a rebuild is byte identical. Two
 # candidates matching to the full float is vanishingly unlikely and "vanishingly unlikely"
 # is how a build becomes non-deterministic and a freshness gate starts flapping.
-ORDER = ("hot", "cold", "warm", "rain")
+ORDER = ("hot", "cold", "warm", "rain", "drought")
+
+# `None` already means something to `candidates`: read the real drought ledger. So "the caller
+# said nothing" needs its own value, and it cannot be None or False without colliding with the
+# two states that already have meanings.
+_UNSET = object()
 
 # How each candidate reads. `noun` takes (singular, plural); `qualifier` follows the count.
 VOICE = {
@@ -105,6 +112,27 @@ VOICE = {
     "warm": dict(noun=("night", "nights"), qualifier="over {threshold}"),
     "rain": dict(noun=("inch", "inches"), qualifier="of rain"),
 }
+
+# THE FIFTH CANDIDATE IS A DIFFERENT KIND OF THING, and the code says so rather than pretending.
+#
+# The four above are TOTALS: they accumulate through a cycle and only ever climb, which is what
+# makes them read as a clock. Drought is a LEVEL. It is a share of the state on one day, it can
+# fall as easily as rise, and it has no cycle to accumulate through.
+#
+# A level was ruled out of this rotation once, and the reason was flicker: a number that moves
+# every morning for no reason a reader can feel makes the chip jump between subjects. That
+# reason does not apply here. The Drought Monitor publishes ONCE A WEEK, so this figure is
+# constant for seven days at a time and moves by a few points when it moves at all. The rule
+# the rotation actually needs is that a candidate be SLOW, and accumulation was only ever one
+# way of being slow.
+#
+# It also cannot use the season gate, which asks how far a total has come through its cycle.
+# Drought is in season in Texas every week of the year. It is gated on having a fresh map and
+# a week with enough years behind it instead.
+DROUGHT_STALE_AFTER_DAYS = 21
+# Whole percent. The feed carries two decimals and a tenth of a percent of Texas is noise at
+# the scale of a headline, which is why the Drought Monitor's own summaries quote whole points.
+DROUGHT_DP = 0
 
 # Rounding is a computation with a stated rule. Counts are whole days. Rain is a tenth of an
 # inch, which is the finest reading a rain gauge is quoted at and coarser than the noise in a
@@ -124,6 +152,53 @@ def normals(path: Path = NORMALS) -> dict:
     if not path.exists():
         return {}
     return json.loads(path.read_text())
+
+
+def drought_rows(path: Path = DROUGHT_LEDGER) -> list[dict]:
+    if not path.exists():
+        return []
+    rows = [json.loads(t) for t in (s.strip() for s in path.read_text().splitlines()) if t]
+    rows.sort(key=lambda r: r["valid_start"])
+    return rows
+
+
+def drought_normals(path: Path = DROUGHT_NORMALS) -> dict:
+    return json.loads(path.read_text()) if path.exists() else {}
+
+
+def drought_candidate(today: _dt.date, rows: list[dict] | None = None,
+                      norms: dict | None = None) -> dict | None:
+    """The share of Texas in drought, against its own normal for that week of the year.
+
+    THE FIRST SEGMENT NAMES THE DROUGHT MONITOR WHERE THE WEATHER LINES NAME A STATION, and
+    that is a rule rather than a flourish. This figure is a panel's classification, not an
+    instrument reading, and the research that admitted it to this rotation admitted it on the
+    condition that it is attributed every time it is shown. The segment answers "whose number
+    is this", which happens to be the honest question for the weather candidates too.
+
+    IT CARRIES THE MAP'S DATE, NEVER TODAY'S. A map covers the week ending on its Tuesday and
+    publishes on the Thursday after, so stamping it with today would claim a currency the
+    classification does not have.
+    """
+    rows = drought_rows() if rows is None else rows
+    norms = drought_normals() if norms is None else norms
+    if not rows or not norms.get("by_week"):
+        return None
+    last = rows[-1]
+    when = _dt.date.fromisoformat(last["valid_start"])
+    if (today - when).days > DROUGHT_STALE_AFTER_DAYS or when > today:
+        return None
+    stats = norms["by_week"].get(str(when.isocalendar()[1]))
+    if not stats:
+        return None
+    mean, sd = stats[0], stats[1]
+    value = last.get("in_drought_pct")
+    if value is None or sd <= 0:
+        return None
+    return {"key": "drought", "value": float(value), "mean": float(mean), "sd": float(sd),
+            "unit": "percent", "threshold": None,
+            "distance": abs(float(value) - float(mean)) / float(sd),
+            "through": when, "place": norms.get("source", "US Drought Monitor")}
 
 
 def _cycle_year(d: _dt.date, cycle: str, start_month: int) -> int:
@@ -158,11 +233,21 @@ def observed(rows: list[dict], key: str, spec: dict, last: _dt.date, start_month
 
 
 def candidates(today: _dt.date, rows: list[dict] | None = None,
-               norms: dict | None = None) -> list[dict]:
+               norms: dict | None = None, drought=_UNSET) -> list[dict]:
     """Every candidate that is in season today, with its measured value and its normal.
 
     Returned sorted by distance, furthest first. The caller takes the head.
+
+    HERMETIC BY THE SHAPE OF THE CALL, and it was not, which broke five of its own tests the
+    day the drought candidate was added. A caller that hands in `rows` or `norms` is running a
+    scenario, and a scenario that reaches out to `ledger/gridwatch/drought.jsonl` is not a
+    scenario, it is the live rotation wearing a fixture. The synthetic tests asserted that two
+    candidates ran and got three, the third being real Texas drought data with a real distance
+    that reordered the result. Passing `drought` explicitly still wins over this, so a test
+    that wants to exercise the drought path says so with a tuple and one that wants it gone
+    says `False`.
     """
+    rows_given, norms_given = rows, norms
     rows = load() if rows is None else rows
     norms = normals() if norms is None else norms
     if not rows or not norms.get("metrics"):
@@ -193,6 +278,16 @@ def candidates(today: _dt.date, rows: list[dict] | None = None,
             "distance": abs(value - mean) / sd,
             "through": last, "place": norms["station_name"],
         })
+    # The level candidate runs beside the totals and is ranked by the same distance. It reads
+    # its own record and its own normals, so a missing drought file costs the rotation one
+    # candidate and nothing else.
+    if drought is _UNSET:
+        drought = None if (rows_given is None and norms_given is None) else False
+    if drought is not False:
+        d = drought_candidate(today, *drought) if isinstance(drought, tuple) \
+            else drought_candidate(today)
+        if d:
+            out.append(d)
     out.sort(key=lambda c: (-c["distance"], ORDER.index(c["key"])))
     return out
 
@@ -207,6 +302,8 @@ def reading(today: _dt.date, rows: list[dict] | None = None,
 def _fmt(value: float, unit: str) -> str:
     if unit == "inches":
         return f"{value:.{RAIN_DP}f}"
+    if unit == "percent":
+        return f"{value:.{DROUGHT_DP}f}"
     return str(int(round(value)))
 
 
@@ -217,6 +314,11 @@ def phrasing(r: dict) -> tuple[str, str, str]:
     detail that makes an otherwise careful page look automated, which is exactly what it is
     and exactly what it must not look like.
     """
+    if r["key"] == "drought":
+        # "on", not "by". A total is a count THROUGH a date; this is a reading TAKEN on one.
+        return (r["place"],
+                f'{_fmt(r["value"], r["unit"])}% of Texas in drought on {{through}}',
+                f'normal is {_fmt(r["mean"], r["unit"])}')
     v = VOICE[r["key"]]
     shown = _fmt(r["value"], r["unit"])
     # Plural on the VALUE AS PRINTED, not on the raw number. Rain rounds to one decimal, and
@@ -298,6 +400,39 @@ def _self_test() -> int:
             "metrics": {"hot": norm({"08-10": [10.0, 0.0]}, 20.0)}}
     check("a metric with no year to year spread cannot be ranked and is skipped",
           candidates(_dt.date(2026, 8, 14), rows, flat) == [])
+
+    # THE DROUGHT CANDIDATE, EXERCISED ON PURPOSE.
+    # It used to be exercised by accident: `candidates` read the real ledger even when handed a
+    # fixture, so these synthetic scenarios silently ranked live Texas drought data alongside
+    # two made up metrics, and five checks broke the day that data moved. Making the scenarios
+    # hermetic fixed those five and left this path with no coverage at all, which is the worse
+    # of the two states because it is the quiet one. So it is passed in explicitly here.
+    dnorm = {"by_week": {"33": [40.0, 10.0]}}                  # week 33 normal, 40 percent, sd 10
+    drow = [{"valid_start": "2026-08-11", "in_drought_pct": 92.0}]      # 5.2 sd above normal
+    withd = candidates(_dt.date(2026, 8, 14), rows, norms, drought=(drow, dnorm))
+    check("drought ranks beside the weather candidates and can beat them",
+          [c["key"] for c in withd][0] == "drought",
+          [(c["key"], round(c["distance"], 2)) for c in withd])
+    check("a drought record past its window is dropped rather than carried forward",
+          candidates(_dt.date(2026, 10, 1), rows, norms,
+                     drought=(drow, dnorm)) == candidates(_dt.date(2026, 10, 1), rows, norms,
+                                                          drought=False))
+    check("a week with no published normal cannot be ranked and is skipped",
+          [c["key"] for c in candidates(_dt.date(2026, 8, 14), rows, norms,
+                                        drought=(drow, {"by_week": {"9": [40.0, 10.0]}}))]
+          == ["warm", "hot"])
+    dhead, dmid, dtail = phrasing(withd[0])
+    check("the drought line names the Drought Monitor first, where a weather line names a station",
+          "Drought Monitor" in dhead, dhead)
+    check("the drought line carries the map's own date and not today's",
+          withd[0]["through"] == _dt.date(2026, 8, 11) and "{through}" in dmid,
+          (withd[0]["through"], dmid))
+    check("the drought line prints a whole percent against a whole normal",
+          dmid.startswith("92% of Texas in drought") and dtail == "normal is 40", (dmid, dtail))
+    # A scenario is hermetic unless it says otherwise, and that is what the five broken checks
+    # bought. Asserted, so it cannot quietly revert to reading the repository.
+    check("a scenario never reaches the real drought ledger unless it asks to",
+          [c["key"] for c in candidates(_dt.date(2026, 8, 14), rows, norms)] == ["warm", "hot"])
 
     # STALENESS AND EMPTINESS.
     check("a record within the window prints", reading(_dt.date(2026, 8, 20), rows, norms))

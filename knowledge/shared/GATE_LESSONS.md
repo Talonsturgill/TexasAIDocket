@@ -483,6 +483,74 @@ sticky elements at a stale offset, and a `fullPage` capture does not scroll, so 
 revealed sections photograph as a blank middle no reader ever sees. Both were investigated as
 layout bugs before being recognised. Scroll with `behavior:'instant'` and settle before capturing.
 
+## 25. A token pairing is not the colour a reader receives
+
+`scripts/site/theme.py` measures contrast, and it measures TOKEN against TOKEN. That is exactly
+right for `--ink` on the page ground and blind to anything a rule composites out of two tokens.
+
+The topic chip a reader is standing on is `--on-accent` on `--accent-deep`. That pairing is in
+the list, it measures 4.52, it passes. The count numeral beside it sat in a well of
+`color-mix(in srgb,#000 24%,transparent)` laid over the same ember, and **no token names that
+colour, so no pairing existed for it.** It shipped at 2.92 with the suite green.
+
+The mechanical mistake is worth naming because it will recur. Every other chip on that row is
+light ink on a dark ground, where mixing black into a well RAISES contrast. That one is dark ink
+on a light ground, where the identical declaration LOWERS it. One rule, two grounds, opposite
+outcomes, and nothing in a stylesheet can tell you which you have.
+
+**What to check.** `tests/text_contrast.mjs` walks the built pages and, for every run of visible
+text, composites the whole ancestor background stack down to the page ground the way a browser
+does, then measures the glyph colour against THAT. 2,729 runs across 56 pages. It declines text
+over an image or gradient ground, because there is no single ground to measure, and it PRINTS the
+count it declined on success as well as on failure, so a run that covered almost nothing cannot
+read as a run that found nothing.
+
+## 26. A gate that mis-parses its own input invents failures, and they are convincing
+
+The first draft of that contrast gate scraped four numbers out of a computed colour with
+`/[\d.]+/g`. Correct for `rgb(180, 102, 79)`. Silently wrong for `color(srgb 1 1 1 / 0.34)`,
+which is what Chrome returns for anything built with `color-mix()`: those channels run 0 to 1,
+not 0 to 255, so a 34 percent white well parsed as `rgb(1,1,1)` and the gate reported a
+perfectly legible numeral at 2.42.
+
+**It reported the fix as worse than the bug**, 2.42 against 2.92, which is the most persuasive
+shape a false failure can take: it looks like evidence you made things worse, and the obvious
+next move is to revert a correct change. The tell was that the arithmetic did not reconcile.
+34 percent white over that ember is about 7.5 to near-black ink, and no amount of squinting at
+the stylesheet gets to 2.42.
+
+Note what saved it, because it is cheap and it is not automatic: the original 2.92 reading was
+right ONLY by coincidence. `color(srgb 0 0 0 / 0.24)` parses identically in both scales, because
+zero is zero. The parser was already broken when it caught the real bug.
+
+**What to check.** Do not parse a browser's output with a regular expression when the browser
+will hand you the answer. That gate now paints one pixel and reads it back, which is correct in
+any colour syntax Chrome accepts including ones that do not exist yet. And prove a new gate
+against the defect it was written for: revert the fix, watch it go red at the expected number,
+restore. Ours prints 2.92, which is the figure hand arithmetic gives.
+
+## 27. Three small paddings are one big hole
+
+A phone screenshot from the owner: the whole first screen of the about page was a wordmark, a
+navigation, and a field of stars, with the headline pushed off the bottom. Nothing in it looked
+broken enough to point at.
+
+Four measured things were adding up, and each was defensible alone. The nav wrapped, because
+eight labels need 327 pixels of text and the seven gaps add 123 more; that cost 34 pixels of
+masthead and left ABOUT alone on a second row, which does not read as navigation, it reads as a
+rendering fault. `main` spent `6vh`. The hero spent `9vh` on top of its own 26 of margin. On a
+915 pixel phone that is 164 pixels of nothing under a 97 pixel masthead.
+
+**`vh` is a proportion of the window, which is the right instinct on a laptop and the wrong one
+on a phone**, where the window is tall, narrow, and already carrying a masthead a desktop hides.
+Every one of those rules was written and reviewed on a wide screen where it looks like air.
+
+**What to check.** No gate here measures how much of the first screen is empty, and the reason
+is that a threshold for that would be taste with a number bolted on. What is asserted instead is
+the thing that has a right answer: `responsive.mjs` now checks that the nav is ONE row at every
+width AND that the last link can be scrolled into view, together. Either alone is passable by a
+fault, since a row that never wraps is trivially achieved by clipping four sections away.
+
 ---
 
 ## The rule for setting a threshold

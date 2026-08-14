@@ -163,7 +163,7 @@ ITEM_ID = re.compile(r"\btx-\d{4}-\d{4}\b", re.IGNORECASE)
 # has not been told otherwise.
 #
 # "Building" AND "Floor" WERE HERE AND HAD TO COME OUT. They are ordinary English words, and in
-# a docket about data centres and the grid they are ordinary English words that are frequently
+# a docket about data centers and the grid they are ordinary English words that are frequently
 # followed by a figure. Case-insensitively, "Building 500 megawatts of new gas capacity was
 # approved" had its 500 stripped before the numeral gate ever saw it, and the gate reported
 # clean. An exemption that swallows a published figure is worse than no exemption, because the
@@ -873,7 +873,7 @@ def self_test() -> int:
            "PASS")
     # THE EXEMPTION MUST NOT SWALLOW A REAL FIGURE. These three passed the gate while the place
     # rule also matched "Building" and "Floor", which are ordinary words in a docket about data
-    # centres and the grid. An exemption wide enough to hide a published megawatt figure defeats
+    # centers and the grid. An exemption wide enough to hide a published megawatt figure defeats
     # the one law this file exists to enforce.
     expect("...but 'Building' before a figure is prose, not an address",
            gate_numerals([base(summary="Building 500 megawatts of gas capacity was approved.")]),

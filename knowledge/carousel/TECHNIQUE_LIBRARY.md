@@ -40,12 +40,12 @@ hanging in hot air, not water, and the difference is the whole register.
 under 6px. Reads instantly as Texas summer. *Fails when:* it touches type. Warp the field, never
 the glyphs.
 
-**Dust column** — vertical `TX.warp2` with a hard falloff, one column, off-centre. For stories
+**Dust column** — vertical `TX.warp2` with a hard falloff, one column, off-center. For stories
 about something arriving. *Fails when:* there are two. One is weather, two is a pattern.
 
 **Norther front** — a hard horizontal value break with a soft gradient beneath, the cold side
 above. The one atmosphere with a real edge in it, so it does structural work. *Fails when:* the
-break lands on the vertical centre and cuts the slide in half.
+break lands on the vertical center and cuts the slide in half.
 
 **Grain** — `TX.grainTile` at low opacity over everything. Not optional on a flat field: an
 untextured gradient reads as an unfinished render on a phone screen. *Fails when:* the tile

@@ -104,6 +104,9 @@ jobs:
       - name: Weather collector self-test (a dry day is zero, a missing high is not)
         run: python3 scripts/gridwatch/weather_collect.py --self-test
 
+      - name: Drought collector self-test (the severity columns are cumulative, and are checked)
+        run: python3 scripts/gridwatch/drought_collect.py --self-test
+
       - name: Front chip self-test (the rotation, and no day of the year left empty)
         run: python3 scripts/site/frontchip.py --self-test
 
@@ -278,6 +281,26 @@ jobs:
           # sees, and also checks the horizon is still warmer than the sky, so the fix cannot
           # be "delete the atmosphere".
           SITE=docs node tests/page_ground.mjs
+
+      - name: The site fits the screen it is on
+        run: |
+          # THIS SUITE EXISTED AND DID NOT RUN HERE, which is its own lesson: it caught a real
+          # regression locally, the Lone Star landing on the telemetry strip after the hero was
+          # tightened for phones, and nothing in CI would have. It asserts the things a phone
+          # gets wrong quietly: nothing overflows sideways, the sticky bar never lands on the
+          # copy, the nav is one row at every width AND its last link can be scrolled to, the
+          # mark is shown everywhere and touches nothing, and the load chart's labels are
+          # legible and uncut at the size they actually render.
+          SITE=docs node tests/responsive.mjs
+
+      - name: Every word is legible against the ground it lands on
+        run: |
+          # A browser again, and for the same reason as the night check above: the defect lived
+          # in a COMPOSITE. theme.py pairs a foreground token with a ground token, which cannot
+          # see a well built out of `color-mix()` over an accent. One shipped at 2.92 with every
+          # token pairing green. This composites the whole ancestor stack the way a browser does
+          # and measures the glyph against that, over every run of text on every page.
+          SITE=docs node tests/text_contrast.mjs
 
       - name: The map helper is oriented correctly
         run: |

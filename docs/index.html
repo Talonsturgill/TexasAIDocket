@@ -44,8 +44,8 @@
     <form role="search">
       <label class="vh" for="askq">Ask the record a question</label>
       <input id="askq" type="search" autocomplete="off"
-             placeholder="Ask the record. Try a city, a topic, or a deadline.">
-      <button type="submit">Ask</button>
+             placeholder="Ask about any AI decision in Texas">
+      <button type="submit"><span class="vh">Ask</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
     </form>
     <div class="chips" data-voice="reader"><button type="button" data-ask="What can I still comment on?">What can I still comment on?</button><button type="button" data-ask="What is happening in Abilene?">What is happening in Abilene?</button><button type="button" data-ask="What is in the record about data centers?">What is in the record about data centers?</button></div>
     <div class="answer" hidden></div>
@@ -68,7 +68,7 @@ window.__ASK_CATALOGUE__=[{"q":"What can I still comment on?","route":{"view":"o
      a dishonest one. Nearly every catalogued question contains "what" and "the", so a query
      made entirely of noise still shared words with the catalogue and scored above zero. Asked
      for the airspeed velocity of an unladen swallow, the engine returned a confident answer
-     about data centres. On a record product that is the single worst thing the box can do:
+     about data centers. On a record product that is the single worst thing the box can do:
      a reader trusts the one part of the page that is talking to them directly. */
   var STOP = {what:1, the:1, and:1, for:1, from:1, with:1, this:1, that:1, are:1, was:1,
               were:1, has:1, have:1, had:1, can:1, could:1, would:1, should:1, does:1,

@@ -26,7 +26,7 @@ It reads `out/<date>/storyboard.md` and holds every dossier to the spec in
     the three bands are all answered                the spec says all three must have an answer
     the bottom band names something modeled         THE DEFECT ABOVE
     the jobs are distinct                           the spec says two alike means one is cuttable
-    structure is reasoned, not a word               the spec says "centred" is not an answer
+    structure is reasoned, not a word               the spec says "centered" is not an answer
     every numeral says where it came from           the compute-not-generate law, at plan time
     acceptance items are checkable by looking       a vague item always passes
     `data-breather` matches a declared breather     the attribute may RATIFY a plan, never invent
@@ -406,8 +406,8 @@ def self_test() -> int:
        any("bottom third" in x for x in f), str(f))
 
     # The spec's own rules.
-    f = check({1: good(composition={"structure": "centred"})}, 1, None)
-    ok("\"centred\" is refused as a structure", any("not an answer" in x for x in f), str(f))
+    f = check({1: good(composition={"structure": "centered"})}, 1, None)
+    ok("\"centered\" is refused as a structure", any("not an answer" in x for x in f), str(f))
 
     f = check({1: good(1), 2: good(2, job="slide 1 shows the thing only slide 1 shows")}, 2, None)
     ok("two slides with the same job are CAUGHT", any("same job" in x for x in f), str(f))

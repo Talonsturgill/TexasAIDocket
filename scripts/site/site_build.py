@@ -60,7 +60,7 @@ SITE_NAME = "Texas AI Docket"
 SITE_URL = "https://talonsturgill.github.io/TexasAIDocket"
 
 # THE MARK IS COMPUTED FROM THE STATUTE. It used to be a star path typed into this file, whose
-# points were not equidistant from its centre and whose inner vertices were not on a common
+# points were not equidistant from its center and whose inner vertices were not on a common
 # circle, sitting in a block that was very nearly square when the flag's blue stripe is twice as
 # tall as it is wide. Every one of those is a small wrongness, and small wrongnesses in a mark are
 # what amateur means: nobody can name the fault and everybody can see it. See scripts/site/mark.py,
@@ -783,9 +783,7 @@ def docket_index(items: list, today: str) -> str:
         f'<td>{e(m["area_type"])}</td></tr>'
         for mid, m in sorted(proj["by_metro"].items(),
                              key=lambda kv: (-len(kv[1]["items"]), kv[0])))
-    topics = "".join(
-        f'<a class="tag" href="../topic/{e(t)}/">{e(t)}</a> '
-        for t in sorted({i["topic"] for i in items}))
+    topics = topic_chips(items, depth=1)
 
     body = f"""
 <h1>The record</h1>
@@ -793,8 +791,8 @@ def docket_index(items: list, today: str) -> str:
   <p>Every decision on the record, <strong>ordered by how soon a reader can still act</strong>,
   not by when it was filed. <span class="num">{n_open}</span> of
   <span class="num">{len(items)}</span> are open to comment now.</p>
-  <p class="meta" data-prose="data">{topics}</p>
 </div>
+{topics}
 
 <!-- THE MAP LIVES ON THE RECORD NOW, because geography is a property of the record rather
      than a subject of its own. It had a tab, and a tab is a promise that a reader wants to
@@ -824,19 +822,58 @@ def docket_index(items: list, today: str) -> str:
                 body=body, today=today, canonical="record/")
 
 
+def topic_label(topic: str) -> str:
+    """The reader-facing name of a topic, derived from its slug and never typed twice.
+
+    A slug is a filing convention. `DEFENSE-AND-FEDERAL` shouted in monospace is what a
+    database looks like, not what a record reads like, and it was the label on the record
+    page's filter row for as long as that row existed. The slug stays the identifier
+    everywhere it is one, in the URL, the ledger and the ask engine's vocabulary, and this
+    is the only place it becomes English.
+    """
+    return topic.replace("-", " ").capitalize()
+
+
+def topic_chips(items: list, depth: int, current: str = "") -> str:
+    """The record's filter row: one pill per topic, carrying its share of the record.
+
+    THE COUNT IS THE HIERARCHY. Five identical boxes say every topic is the same size, and
+    on this record they are not: one beat can hold half the decisions while another holds
+    one. A reader deciding where to look is asking exactly that question, so the row answers
+    it before they click. Every count here is `len()` of a filtered list, which is what the
+    compute-not-generate law requires of a published numeral.
+    """
+    by: dict = {}
+    for it in items:
+        by.setdefault(it["topic"], []).append(it)
+    up = "../" * depth
+    out = []
+    for t in sorted(by):
+        # `aria-current` and not a class, because the state is "this is the page you are on"
+        # and that is a thing assistive technology already knows how to say.
+        here = ' aria-current="page"' if t == current else ""
+        out.append(
+            f'<a class="topicchip" href="{up}topic/{e(t)}/"{here}>'
+            f'<span class="tc-name">{e(topic_label(t))}</span>'
+            f'<span class="tc-n num">{len(by[t])}</span></a>')
+    return ('<nav class="topicrow" data-prose="data" aria-label="Filter the record by topic">'
+            + "".join(out) + "</nav>")
+
+
 def topic_page(topic: str, items: list, today: str) -> str:
     mine = [i for i in items if i["topic"] == topic]
     rows = "".join(
         f'<li>{clock(it, today)}<h3><a href="../../item/{e(it["id"])}/">{e(it["title"])}</a></h3>'
         f'{item_meta(it, today)}</li>' for it in mine)
     body = f"""
-<h1>{e(topic.replace("-", " "))}</h1>
+<h1>{e(topic_label(topic))}</h1>
 <div class="prose"><p><span class="num">{len(mine)}</span> of
 <span class="num">{len(items)}</span> decisions on the record.</p></div>
+{topic_chips(items, depth=2, current=topic)}
 <ul class="items" data-prose="data">{rows}</ul>
 <p class="meta" data-prose="data"><a href="../../record/">All decisions</a></p>
 """
-    return page(title=f'{topic.replace("-", " ")} · {SITE_NAME}', depth=2, active="record/",
+    return page(title=f"{topic_label(topic)} · {SITE_NAME}", depth=2, active="record/",
                 desc=f"Texas AI decisions filed under {topic.replace('-', ' ')}.",
                 body=body, today=today, canonical=f"topic/{topic}/")
 
@@ -865,7 +902,7 @@ def item_where(it: dict) -> str:
 
     METROS AND LOOSE COUNTIES ARE BOTH NAMED, in that order, for the reason `M3` found:
     thirteen of this record's twenty-two counties are in no statistical area, including
-    Shackelford, which is where the data centre is. A metro-only line would read as
+    Shackelford, which is where the data center is. A metro-only line would read as
     complete while dropping the part of Texas the story is actually about.
     """
     g = it.get("geography") or {}
@@ -1169,8 +1206,8 @@ def ask_box(items: list, today: str) -> str:
     <form role="search">
       <label class="vh" for="askq">Ask the record a question</label>
       <input id="askq" type="search" autocomplete="off"
-             placeholder="Ask the record. Try a city, a topic, or a deadline.">
-      <button type="submit">Ask</button>
+             placeholder="Ask about any AI decision in Texas">
+      <button type="submit"><span class="vh">Ask</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
     </form>
     <div class="chips" data-voice="reader">{chips}</div>
     <div class="answer" hidden></div>
@@ -1186,7 +1223,7 @@ window.__ASK_CATALOGUE__={json.dumps(cat, separators=(",", ":"))};</script>
 def water_page(today: str) -> str:
     """The Texas Water Watch. The grid watch's sibling, and the other half of the account.
 
-    Same numeral gate, same refusal to publish a verdict, same build time raise. A data centre
+    Same numeral gate, same refusal to publish a verdict, same build time raise. A data center
     draws on electricity and on water, and a site that tracked only the first would be telling
     half of the story it claims to keep.
     """
@@ -1303,7 +1340,7 @@ def services_page(items: list, today: str) -> str:
     body = f"""
 <section class="hero rise">
   <h1>Texas is where it gets <em>built</em>.</h1>
-  <p class="herolede">The data centres. The load. The water. It is all landing here first.
+  <p class="herolede">The data centers. The load. The water. It is all landing here first.
   The businesses that move first will own the decade.</p>
   <div class="ctarow">
     <a class="cta solid" href="#start">Start here</a>

@@ -61,7 +61,7 @@ carries it is a hundred-year-old form. A pumpjack does not look like AI. That ga
 **The Ogallala has declined more than 50 percent beneath parts of the Texas Panhandle** **[V]**, so
 every acre-inch is a financial decision, and that is what pulled the technology in.
 
-- **Variable-rate centre pivots cut water application 15 to 20 percent in documented trials**
+- **Variable-rate center pivots cut water application 15 to 20 percent in documented trials**
   **[V]**, by giving more to sandy zones and less to clay. A pivot that used to be one valve is now
   a moving line of independently controlled nozzles.
 - **Cattle wearables and herd-behaviour models predicting disease before symptoms** **[V]**.
@@ -72,7 +72,7 @@ every acre-inch is a financial decision, and that is what pulled the technology 
 Regional split that matters for staging: **High Plains** irrigated row crop, **Central Texas**
 ranching, **Rio Grande Valley** fruit and vegetable, **East Texas** poultry **[V]**.
 
-**THE VISUAL.** A centre pivot is a quarter-mile machine that draws a circle you can see from
+**THE VISUAL.** A center pivot is a quarter-mile machine that draws a circle you can see from
 orbit, and the circles are the most recognisable aerial image the Panhandle has. A pivot whose
 nozzles are individually thinking is a line of decisions crossing a field.
 
@@ -90,7 +90,7 @@ This is the most under-drawn AI story in Texas and it is happening on the inters
 **THE VISUAL.** A cab with nobody in it, at speed, on a road everybody in the state has driven. And
 the honest counter-image: the truck stop it does not stop at.
 
-### 4. The clinic, in the largest medical centre in the world
+### 4. The clinic, in the largest medical center in the world
 
 Houston's Texas Medical Center is the biggest in the world **[U]**, and MD Anderson runs an
 **Institute for Data Science in Oncology** **[V]**.
@@ -113,7 +113,7 @@ the show can be about a person rather than a system without straining.
   Frontera** **[V]**.
 - TACC leads an **NSF Leadership-Class Computing Facility** **[V]**.
 
-**THE VISUAL.** This is the one data centre in Texas that is not a private slab behind a berm: it is
+**THE VISUAL.** This is the one data center in Texas that is not a private slab behind a berm: it is
 public, it is academic, and anybody's research can run on it. That contrast against the fenced
 hyperscale build is a whole film.
 

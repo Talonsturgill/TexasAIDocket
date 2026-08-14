@@ -189,7 +189,7 @@ def summarise(d: dict) -> dict:
     """Every figure a page could want, computed here, from the series stored beside it.
 
     THE LOAD FACTOR IS THE POINT. Mean over peak is the shape of the day, and it is the one
-    number on this page that is genuinely about AI. A data centre is a flat load: it runs at
+    number on this page that is genuinely about AI. A data center is a flat load: it runs at
     four in the morning at close to what it runs at five in the afternoon. Air conditioning is
     the opposite, a tall narrow spike against a low night. So a grid absorbing large constant
     load has its trough rise faster than its peak, and the load factor climbs. That is a

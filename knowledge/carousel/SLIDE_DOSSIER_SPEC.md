@@ -24,7 +24,7 @@ numerals:                 # every figure, and where it comes from
 composition:
   structure: >
     How the frame is organised, and why this content wants that organisation rather than
-    another. "Centred" is not an answer; "the figure sits on the horizon line so the reader
+    another. "Centered" is not an answer; "the figure sits on the horizon line so the reader
     reads the scale before the number" is.
   bands: >
     What occupies the top, middle and bottom third. All three must have an answer.

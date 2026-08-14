@@ -27,8 +27,8 @@ WHAT IT CHECKS, AND WHY EACH ONE IS HERE
     semicolons     HARD FAIL. A full stop that lost its nerve. Write two sentences.
     comma after    HARD FAIL, at any length. No comma after a coordinating conjunction or a
     a conjunction  relative pronoun, and no hedge fenced off by a pair of commas. Write "A data
-                   centre needs electricity. Most cooling designs need water too", never "A
-                   data centre needs electricity and, in most cooling designs, water".
+                   center needs electricity. Most cooling designs need water too", never "A
+                   data center needs electricity and, in most cooling designs, water".
     comma density  Hard fail ABOVE THE CEILING FOR THE CALLING SURFACE. See below.
 
 THE COMMA CEILING IS PER SURFACE, AND ONE OF THE TWO IS DELIBERATELY UNSET
@@ -107,7 +107,7 @@ SEMICOLON = re.compile(r";")
 
 # A COMMA IMMEDIATELY AFTER A CONJUNCTION. This is the construction the owner flagged:
 #
-#     A data centre needs electricity and, in most cooling designs, water.
+#     A data center needs electricity and, in most cooling designs, water.
 #
 # The tell is the comma after "and". It interrupts a simple compound the moment before it
 # lands, and the sentence has to be re-read. Almost nothing is lost by splitting it in two.
@@ -382,7 +382,7 @@ def self_test() -> int:
     # THE DASH RULE.
     ok("an em dash fails", catches("Load rose sharply—then fell.", "no em or en dashes"))
     ok("an en dash fails", catches("Pages 40–60 are redacted.", "no em or en dashes"))
-    ok("a hyphenated word is fine", not catches("A well-sited data centre.", "dash"))
+    ok("a hyphenated word is fine", not catches("A well-sited data center.", "dash"))
 
     # THE DATE RULES. These are the ones a writer drifts on.
     ok("a bare date fails", catches("The hearing is August 11.", "dates take the ordinal"))
@@ -444,7 +444,7 @@ def self_test() -> int:
        any("End the sentence" in x for x in check("Read here: one for demand.")))
 
     # THE CONSTRUCTION THE OWNER FLAGGED, verbatim.
-    flagged = "A data centre needs electricity and, in most cooling designs, water."
+    flagged = "A data center needs electricity and, in most cooling designs, water."
     ok("the flagged comma-after-conjunction fails", catches(flagged, 'comma after "and"'))
     ok("...for the right reason", any("Split it in two" in x for x in check(flagged)))
     for c in ("but", "or", "which", "though"):

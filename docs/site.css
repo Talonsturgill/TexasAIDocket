@@ -88,29 +88,29 @@ radial-gradient(1.1px 1.1px at 71% 46%,rgba(244,238,225,0.32),transparent 60%); 
 .sky .shimmer.s2 { filter:blur(30px); opacity:.6; background-size:290% 100%;
   animation-duration:38s; animation-direction:alternate-reverse; }
 @keyframes shimmer { from { background-position:0% 0; } to { background-position:100% 0; } }
-.sky .veil { position:absolute; border-radius:50%; filter:blur(84px);
+.sky .veil { position:absolute; border-radius:50%; filter:blur(52px);
   mix-blend-mode:screen; opacity:.34; }
 .sky .v1 { width:64vw; height:34vh; left:30vw; bottom:calc(var(--sky-fade) + 2vh);
   background:radial-gradient(closest-side,color-mix(in srgb,var(--accent) 34%,transparent),
-    transparent 70%); animation:drift1 23s ease-in-out infinite alternate; }
+    transparent 70%); animation:drift1 15s ease-in-out infinite alternate; }
 .sky .v2 { width:52vw; height:30vh; left:2vw; bottom:calc(var(--sky-fade) + 6vh);
   background:radial-gradient(closest-side,color-mix(in srgb,var(--accent-deep) 30%,transparent),
-    transparent 70%); animation:drift2 31s ease-in-out infinite alternate; }
+    transparent 70%); animation:drift2 19s ease-in-out infinite alternate; }
 .sky .v3 { width:46vw; height:32vh; left:22vw; top:-12vh; opacity:.26;
   background:radial-gradient(closest-side,color-mix(in srgb,var(--flag-blue) 46%,transparent),
-    transparent 70%); animation:drift3 37s ease-in-out infinite alternate; }
-.sky .v4, .sky .v5 { position:absolute; border-radius:50%; filter:blur(96px);
+    transparent 70%); animation:drift3 24s ease-in-out infinite alternate; }
+.sky .v4, .sky .v5 { position:absolute; border-radius:50%; filter:blur(58px);
   mix-blend-mode:screen; }
-.sky .v4 { width:44vw; height:38vh; left:14vw; top:4vh; opacity:.62;
+.sky .v4 { width:44vw; height:38vh; left:14vw; top:4vh; opacity:.78;
   background:radial-gradient(closest-side,color-mix(in srgb,var(--flag-blue) 62%,transparent),
-    transparent 72%); animation:drift4 26s ease-in-out infinite alternate; }
-.sky .v5 { width:38vw; height:30vh; right:12vw; top:26vh; opacity:.52;
+    transparent 72%); animation:drift4 17s ease-in-out infinite alternate; }
+.sky .v5 { width:38vw; height:30vh; right:12vw; top:26vh; opacity:.68;
   background:radial-gradient(closest-side,color-mix(in srgb,var(--panel) 88%,transparent),
-    transparent 70%); animation:drift5 34s ease-in-out infinite alternate; }
-@keyframes drift4 { from { transform:translate(-9vw,-3vh) scale(1); }
-  to { transform:translate(13vw,6vh) scale(1.3); } }
-@keyframes drift5 { from { transform:translate(9vw,4vh) scale(1.22); }
-  to { transform:translate(-12vw,-4vh) scale(1); } }
+    transparent 70%); animation:drift5 21s ease-in-out infinite alternate; }
+@keyframes drift4 { from { transform:translate(-20vw,-6vh) scale(1); }
+  to { transform:translate(24vw,10vh) scale(1.34); } }
+@keyframes drift5 { from { transform:translate(20vw,8vh) scale(1.26); }
+  to { transform:translate(-22vw,-7vh) scale(1); } }
 .sky .tumble { position:absolute; top:74vh; left:0; width:clamp(52px,6.2vw,88px);
   aspect-ratio:1; opacity:0; animation:tumble 50s linear infinite; animation-delay:1.2s; }
 .sky .tumble .weed { width:100%; height:100%; display:block; }
@@ -128,12 +128,12 @@ radial-gradient(1.1px 1.1px at 71% 46%,rgba(244,238,225,0.32),transparent 60%); 
   22%  { opacity:0; transform:translate(114vw,0) rotate(1450deg); }
   100% { opacity:0; transform:translate(114vw,0) rotate(1450deg); }
 }
-@keyframes drift1 { from { transform:translate(-13vw,-1vh) scale(1); }
+@keyframes drift1 { from { transform:translate(-24vw,-3vh) scale(1); }
   to { transform:translate(15vw,4vh) scale(1.12); } }
-@keyframes drift2 { from { transform:translate(12vw,3vh) scale(1.1); }
+@keyframes drift2 { from { transform:translate(22vw,6vh) scale(1.18); }
   to { transform:translate(-14vw,-3vh) scale(1); } }
-@keyframes drift3 { from { transform:translate(0,0) scale(1); }
-  to { transform:translate(-4vw,2vh) scale(1.12); } }
+@keyframes drift3 { from { transform:translate(-10vw,-2vh) scale(1); }
+  to { transform:translate(11vw,5vh) scale(1.16); } }
 .sky .horizon { position:absolute; inset:auto 0 0; height:calc(44vh + var(--sky-fade));
   mix-blend-mode:screen;
   background:linear-gradient(0deg,color-mix(in srgb,var(--accent) 20%,transparent) 0
@@ -201,10 +201,14 @@ nav.main a[aria-current]::after { right:0; }
   nav.main { margin-left:0; gap:.5rem .9rem; font-size:var(--s-2); }
 }
 @media (max-width:28.7499rem) {
-  .home .sky .lonestar { top:8.5rem; right:5vw; width:min(23vw,96px); }
+  nav.main { flex-wrap:nowrap; overflow-x:auto; overscroll-behavior-x:contain;
+    -webkit-overflow-scrolling:touch; scrollbar-width:none; -ms-overflow-style:none;
+    margin-inline:calc(var(--gap) * -1); padding-inline:var(--gap); }
+  nav.main::-webkit-scrollbar { display:none; }
+  nav.main a { flex:none; }
 }
-@media (min-width:28.75rem) and (max-width:37.5rem) {
-  .home .sky .lonestar { top:6rem; right:5vw; width:min(20vw,92px); }
+@media (max-width:37.5rem) {
+  .home .sky .lonestar { top:6.3rem; right:5vw; width:min(16vw,54px); }
 }
 @media (min-width:30.01rem) and (max-width:56rem) {
   .home .hero .tele { max-width:74%; }
@@ -267,6 +271,10 @@ main > section { margin-block:var(--band); }
 main > section:first-child { margin-top:calc(var(--band) * .55); }
 main { padding-top:clamp(2rem,6vh,4rem); }
 .home main { padding-top:0; }
+@media (max-width:28.7499rem) {
+  main { padding-top:1.5rem; }
+  .hero { padding-top:1.2rem; }
+}
 main > section > h2 { position:relative; padding-top:1.1rem;
   border-top:var(--hair) solid var(--rule); }
 main > section > h2::after { content:""; position:absolute; top:-1px; left:0; width:3.5rem;
@@ -365,6 +373,29 @@ main > section > h2::after { content:""; position:absolute; top:-1px; left:0; wi
 .tag { font-family:var(--mono); font-size:var(--s-2); letter-spacing:.04em;
   text-transform:uppercase; color:var(--ink-mute);
   border:var(--hair) solid var(--rule-strong); padding:.1em .5em; border-radius:2px; }
+.topicrow { display:flex; flex-wrap:wrap; gap:.5rem; margin:1.3rem 0 2rem; }
+.topicchip { display:inline-flex; align-items:center; gap:.55rem;
+  padding:.42rem .5rem .42rem .95rem; border-radius:999px; text-decoration:none;
+  color:var(--ink); font:400 var(--s-1)/1.15 var(--body);
+  border:var(--hair) solid var(--rule-strong);
+  background:color-mix(in srgb,var(--surface) 72%,transparent);
+  transition:border-color .18s ease, background-color .18s ease, color .18s ease,
+    transform .18s ease; }
+.topicchip .tc-n { font-family:var(--mono); font-size:var(--s-2); line-height:1;
+  color:var(--ink-mute); min-width:1.55em; padding:.34em .48em; border-radius:999px;
+  text-align:center; background:color-mix(in srgb,var(--ink) 9%,transparent);
+  transition:background-color .18s ease, color .18s ease; }
+@media (hover:hover) {
+  .topicchip:hover { color:var(--ink-bright); transform:translateY(-1px);
+    border-color:color-mix(in srgb,var(--accent) 62%,transparent);
+    background:color-mix(in srgb,var(--surface) 96%,transparent); }
+  .topicchip:hover .tc-n { color:var(--ink-bright);
+    background:color-mix(in srgb,var(--accent) 24%,transparent); }
+}
+.topicchip[aria-current] { color:var(--on-accent); border-color:transparent;
+  background:var(--accent-deep); }
+.topicchip[aria-current] .tc-n { color:var(--on-accent);
+  background:color-mix(in srgb,#fff 34%,transparent); }
 .claim { margin:1rem 0; padding-left:1rem; border-left:2px solid var(--rule-strong); }
 .claim blockquote { margin:0 0 .4rem; font-family:var(--mono); font-size:var(--s-1);
   line-height:1.6; color:var(--ink); }
@@ -512,15 +543,29 @@ caption { caption-side:bottom; text-align:left; padding-top:.75rem; font-size:va
 .askfoot { margin:.7rem 0 0; font-size:var(--s-1); color:var(--ink-mute); }
 .vh { position:absolute; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden;
   clip:rect(0 0 0 0); white-space:nowrap; border:0; }
-.askbox form { display:flex; gap:.6rem; flex-wrap:wrap; align-items:center; }
+.askbox form { display:flex; gap:.5rem; align-items:center; flex-wrap:nowrap;
+  padding:.4rem .4rem .4rem 1.15rem; border-radius:1.6rem;
+  border:var(--hair) solid var(--rule-strong);
+  background:color-mix(in srgb,var(--surface) 82%,transparent);
+  transition:border-color .18s ease, box-shadow .18s ease, background-color .18s ease; }
+.askbox form:focus-within { border-color:color-mix(in srgb,var(--accent) 70%,transparent);
+  background:color-mix(in srgb,var(--surface) 96%,transparent);
+  box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 14%,transparent); }
 .askbox label { position:absolute; left:-9999px; }
-.askbox input { flex:1 1 20rem; min-width:0; font:400 var(--s1)/1.4 var(--body); padding:.7em .9em;
-  background:var(--bg); color:var(--ink-bright);
-  border:var(--hair) solid var(--rule-strong); border-radius:2px; }
-.askbox input:focus-visible { border-color:var(--accent); }
-.askbox button[type="submit"] { font:600 var(--s0)/1 var(--body); padding:.85em 1.4em;
-  background:var(--accent-deep); color:var(--on-accent); border:0; border-radius:2px;
-  cursor:pointer; }
+.askbox input { flex:1 1 auto; min-width:0; font:400 var(--s1)/1.5 var(--body);
+  padding:.5em 0; background:transparent; color:var(--ink-bright);
+  border:0; border-radius:0; }
+.askbox input:focus, .askbox input:focus-visible { outline:none; }
+.askbox input::placeholder { color:var(--ink-mute); }
+.askbox input::-webkit-search-decoration,
+.askbox input::-webkit-search-cancel-button { -webkit-appearance:none; appearance:none; }
+.askbox button[type="submit"] { flex:none; width:2.4rem; height:2.4rem; display:grid;
+  place-items:center; padding:0; border:0; border-radius:50%; cursor:pointer;
+  background:var(--accent-deep); color:var(--on-accent);
+  transition:transform .16s ease, background-color .16s ease, opacity .16s ease; }
+.askbox button[type="submit"] svg { width:1.05rem; height:1.05rem; display:block; }
+.askbox button[type="submit"]:hover { transform:translateY(-1px); }
+.askbox button[type="submit"]:active { transform:translateY(0); }
 .askbox .chips { display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.9rem; }
 .askbox .chips button { font:400 var(--s-1)/1 var(--body); padding:.5em .85em;
   background:transparent; color:var(--ink-mute);

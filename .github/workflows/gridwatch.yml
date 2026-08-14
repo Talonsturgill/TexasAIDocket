@@ -109,6 +109,9 @@ jobs:
       - name: Prove the weather collector's own checks can go red
         run: python3 scripts/gridwatch/weather_collect.py --self-test
 
+      - name: Prove the drought collector's own checks can go red
+        run: python3 scripts/gridwatch/drought_collect.py --self-test
+
       - name: Collect the settled previous day
         id: collect
         run: |
@@ -142,6 +145,21 @@ jobs:
       - name: Say plainly if the heat collection failed
         if: steps.heat.outcome == 'failure'
         run: echo "::warning::the weather record did not update; it backfills, so nothing is lost"
+
+      - name: Fill any gap in the drought record
+        id: drought
+        continue-on-error: true
+        run: |
+          # LAST, AND FOR THE SAME REASON THE WEATHER STEP IS SECOND TO LAST. The US Drought
+          # Monitor keeps every weekly map back to 2000, so a failed fetch costs staleness and
+          # never a record. It also publishes once a week, on a Thursday, so six runs in seven
+          # find nothing new and exit having changed nothing. Ordered behind the two collectors
+          # that genuinely cannot lose a day.
+          python3 scripts/gridwatch/drought_collect.py --collect
+
+      - name: Say plainly if the drought collection failed
+        if: steps.drought.outcome == 'failure'
+        run: echo "::warning::the drought record did not update; it backfills, so nothing is lost"
 
       - name: Rebuild the published site
         id: rebuild

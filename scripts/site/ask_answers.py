@@ -51,7 +51,12 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import docket_build as dk                                          # noqa: E402
 
 TOPIC_WORDS = {
-    "data-centers": ["data center", "data centre", "datacenter", "hyperscale", "server farm"],
+    # BRITISH SPELLING STAYS IN THE MATCH LIST AND NEVER IN THE COPY. The site writes
+    # "center" everywhere a reader can read it, and a reader who types "data centre"
+    # still has to land on the right topic. Input and output are different questions,
+    # and a spelling sweep that treats them as one silently costs recall.
+    "data-centers": ["data center", "data centre", "datacenter", "hyperscale",
+                     "server farm"],
     "power-and-the-grid": ["grid", "power", "electricity", "ercot", "transmission", "load",
                            "megawatt", "interconnection", "substation"],
     "state-policy": ["law", "bill", "statute", "legislature", "rule", "policy", "regulation",
@@ -235,7 +240,7 @@ def engine_js() -> str:
      a dishonest one. Nearly every catalogued question contains "what" and "the", so a query
      made entirely of noise still shared words with the catalogue and scored above zero. Asked
      for the airspeed velocity of an unladen swallow, the engine returned a confident answer
-     about data centres. On a record product that is the single worst thing the box can do:
+     about data centers. On a record product that is the single worst thing the box can do:
      a reader trusts the one part of the page that is talking to them directly. */
   var STOP = {what:1, the:1, and:1, for:1, from:1, with:1, this:1, that:1, are:1, was:1,
               were:1, has:1, have:1, had:1, can:1, could:1, would:1, should:1, does:1,

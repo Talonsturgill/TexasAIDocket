@@ -33,7 +33,7 @@ assignment. The critic picks one.
 about." No rhetorical question that answers itself. Start where the story starts.
 
 **TEXAS FIRST, AND NOT TONE DEAF.** This product thinks AI is transformational and wants Texans
-to win from it. It also does not pretend a data centre is free. Both of those are true in the
+to win from it. It also does not pretend a data center is free. Both of those are true in the
 same caption and neither is a slogan. Boosterism and doom are the two easy registers and both
 are wrong.
 

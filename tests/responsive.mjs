@@ -130,25 +130,38 @@ check(`nothing overflows its viewport (${pairs} page/width pairs)`, overflow.len
 check("the sticky masthead never lands on the content", overlap.length === 0,
       overlap.slice(0, 3).join(" | "));
 
-// THE MARK, TIED TO THE MEASURED WRAP RATHER THAN TO A CHOSEN NUMBER.
 const pg = await browser.newPage({ viewport: { width: 1200, height: 900 } });
-let wrapAt = 0;
-for (let w = 1200; w >= 300; w -= 10) {
+/* A 90-STEP SEARCH FOR THE WRAP WIDTH USED TO RUN HERE, and it was already dead before it was
+   deleted: it stepped the viewport from 1200 to 300 loading the front page at each stop, and
+   assigned the answer to a variable nothing read after the note that printed it was replaced
+   by the assertion below. Its companion `starAt` had no caller at all. Both are gone. The wrap
+   width is not searched for any more because the nav does not wrap at any width. */
+/* THE NAV IS ONE ROW AT EVERY WIDTH, and that is now an assertion rather than a note.
+   It used to wrap below 460, which put a single ABOUT alone on a second line under seven
+   siblings. That does not read as a navigation, it reads as a rendering fault, and it was
+   reported as one: tabs missing on a phone. Below 28.75rem the row scrolls sideways instead.
+   ASSERTED TOGETHER WITH REACHABILITY, because a row that never wraps is trivially achievable
+   by clipping the overflow, and that would lose four sections with no visible symptom. So the
+   last link has to be scrollable INTO view, not merely present in the DOM. */
+const navRow = [];
+for (const w of [1440, 1024, 768, 600, 500, 460, 440, 412, 390, 360, 320, 300]) {
   await pg.setViewportSize({ width: w, height: 900 });
   await pg.goto("file://" + path.join(SITE, "index.html"));
-  const rows = await pg.evaluate(() => new Set([...document.querySelectorAll("nav.main a")]
-    .map((a) => Math.round(a.getBoundingClientRect().top))).size);
-  if (rows > 1) { wrapAt = w; break; }
-}
-const starAt = async (w) => {
-  await pg.setViewportSize({ width: w, height: 900 });
-  await pg.goto("file://" + path.join(SITE, "index.html"));
-  return pg.evaluate(() => {
-    const s = document.querySelector(".sky .lonestar");
-    return !!s && getComputedStyle(s).display !== "none";
+  const r = await pg.evaluate(async () => {
+    const nav = document.querySelector("nav.main");
+    const as = [...nav.querySelectorAll("a")];
+    const rows = new Set(as.map((a) => Math.round(a.getBoundingClientRect().top))).size;
+    nav.scrollLeft = nav.scrollWidth;
+    await new Promise((r) => requestAnimationFrame(r));
+    const last = as[as.length - 1].getBoundingClientRect();
+    const box = nav.getBoundingClientRect();
+    return { rows, n: as.length, reached: last.right <= box.right + 1 && last.left >= box.left - 1 };
   });
-};
-console.log(`  ..    nav wraps at ${wrapAt}px`);
+  if (r.rows > 1) navRow.push(`${w}px wraps to ${r.rows} rows`);
+  if (!r.reached) navRow.push(`${w}px cannot scroll to the last of ${r.n} links`);
+}
+check("the nav is one row at every width, and every section can be reached",
+      navRow.length === 0, navRow.slice(0, 4).join(" | "));
 
 // THE MARK IS ASSERTED BY COLLISION, NOT BY A CHOSEN NUMBER. Forced on, its box is compared
 // against the hero headline and the telemetry strip at every width. It may be hidden only

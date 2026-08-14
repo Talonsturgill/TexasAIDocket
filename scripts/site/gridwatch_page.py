@@ -10,9 +10,9 @@ WHAT THIS PAGE IS FOR
 
 Every number here is about one question: how is Texas absorbing large constant load. The
 answer is not the peak. Peak megawatts is a summer weather story that Texas has been telling
-since air conditioning, and a data centre barely moves it. The answer is the SHAPE.
+since air conditioning, and a data center barely moves it. The answer is the SHAPE.
 
-    A data centre is flat. It draws at four in the morning what it draws at five in the
+    A data center is flat. It draws at four in the morning what it draws at five in the
     afternoon. Air conditioning is a spike against a low night.
 
 So a grid taking on large constant load has its TROUGH rise faster than its peak, and the load
@@ -29,7 +29,7 @@ is a verdict this page does not get to publish. The length is the whole message.
 WHAT IT SAYS INSTEAD
 
 The size of what is not public. Per site large load metering is confidential in Texas, so
-nobody outside ERCOT can say what any one data centre drew. That gap is published as a fact
+nobody outside ERCOT can say what any one data center drew. That gap is published as a fact
 rather than filled with an estimate.
 
 DEGRADING HONESTLY. A series that starts today has one record in it, and a page that needs
@@ -327,7 +327,7 @@ def load_shape_svg(latest: dict) -> str:
         f'<text class="ax" x="{pad_l - 8}" y="{y(v) + 4}" text-anchor="end">'
         f'{int(v / 1000)}</text>'
         for v in [ceil * k / 4 for k in range(5)])
-    # ANCHORED TO THE ENDS, NOT CENTRED ON THEM. A centred label at x=0 puts half its width
+    # ANCHORED TO THE ENDS, NOT CENTRED ON THEM. A centered label at x=0 puts half its width
     # outside the drawing, and at the right edge the same thing clipped "midnight" to "midni".
     ticks = "".join(
         f'<text class="ax" x="{x(i)}" y="{pad_t + main_h + 15}" text-anchor="{anchor}">{lab}</text>'
@@ -347,7 +347,7 @@ def load_shape_svg(latest: dict) -> str:
             # CLAMPED BY THE LABEL'S OWN WIDTH, not by a fixed inset. These callouts are long
             # sentences, about 340 units at the phone type size, and a middle anchored label
             # that wide needs half of itself either side of the point it names. The old clamp
-            # allowed the centre anywhere from 86 to 674, so on a phone the trough callout ran
+            # allowed the center anywhere from 86 to 674, so on a phone the trough callout ran
             # off the left edge and sat across the axis numbers.
             label = f"{gw(load[i])} GW at {hour(i + 1)}"
             # The left bound is the GUTTER, not the canvas edge. Clamping to zero kept the
@@ -506,7 +506,7 @@ def body(records: list[dict], today: str) -> str:
   recent <strong class="num">{n0(t['half_days'])}</strong> days against the first
   <strong class="num">{n0(t['half_days'])}</strong>.</p>
   <p>A trough rising faster than a peak is what large constant load looks like from outside.
-  Weather moves both together. A data centre lifts the floor.</p>
+  Weather moves both together. A data center lifts the floor.</p>
 </div>"""
     elif f["days_verified"] < 14:
         trend_block = f"""
@@ -570,8 +570,8 @@ def body(records: list[dict], today: str) -> str:
   <p>The load factor is the mean demand across a day divided by that day's peak. On {d} it was
   <strong class="num">{lfpct}%</strong>.</p>
   <p>Peak megawatts is a weather story. Texas has broken its own demand record most summers
-  since air conditioning arrived, and a data centre barely shows up in it. The shape is the
-  story. A data centre draws at four in the morning close to what it draws at five in the
+  since air conditioning arrived, and a data center barely shows up in it. The shape is the
+  story. A data center draws at four in the morning close to what it draws at five in the
   afternoon. A grid taking on large constant load sees its overnight floor rise faster than
   its afternoon ceiling, and the load factor climbs. Weather lifts both ends together.</p>
   <p>One day can't show that. A year can, which is why the series starts now.</p>
@@ -594,7 +594,7 @@ def body(records: list[dict], today: str) -> str:
 <h2>The size of what is not public</h2>
 <div class="prose">
   <div class="gap">
-    <p><strong>Nobody outside ERCOT can say what any single data centre drew.</strong> Per site
+    <p><strong>Nobody outside ERCOT can say what any single data center drew.</strong> Per site
     large load metering is confidential. What is public is the system total, which is what this
     page publishes.</p>
     <p>So this page can show the shape of Texas demand changing. It can't attribute that change
