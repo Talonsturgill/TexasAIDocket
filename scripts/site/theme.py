@@ -759,8 +759,9 @@ nav.main a[aria-current]::after {{ right:0; }}
 
 /* THE TELEMETRY PILL. The sibling product opens with how much daylight its state capital has
    left today and how fast it is losing it, which is the single detail that makes its front
-   page feel alive rather than published. The Texas equivalent is not daylight, it is the grid,
-   which is what Texans actually argue about. Computed, dated, and never a verdict. */
+   page feel alive rather than published. Texas has no daylight story, so this one counts
+   hundred degree days against what a normal year holds by the same date, and freezing nights
+   through the winter. Computed, dated, and never a forecast. */
 /* INLINE-BLOCK, NOT FLEX. As a flex row the three parts became three columns the moment the
    line had to wrap, so on a phone the date sat in its own column beside a two-line middle. As
    inline-block with a text separator it wraps like the sentence it is. */
@@ -780,6 +781,21 @@ nav.main a[aria-current]::after {{ right:0; }}
   animation:sweep 9s ease-in-out infinite; }}
 @keyframes sweep {{ 0%,74% {{ transform:translateX(-130%) skewX(-18deg); }}
   90%,100% {{ transform:translateX(130%) skewX(-18deg); }} }}
+/* THE PILL LOSES A LINE ON A PHONE BY GIVING UP TRACKING IT DOES NOT NEED. Three segments of
+   mono caps at .13em wrapped onto a third line carrying one word. Measured at 390px: .13em is
+   78px tall, .10em and below is 58px. Tracking is what makes small caps readable, so this
+   gives up the least that buys the line back rather than shrinking the type. Below about
+   370px it wraps to three again, which is correct. The text is simply longer than that screen.
+
+   THIS RULE LIVES HERE AND NOT WITH THE OTHER NARROW-SCREEN RULES ABOVE, and the reason is
+   the whole lesson. Written into the `max-width:30rem` block further up the sheet it was
+   perfectly correct CSS, matched the right element at the right width, and did nothing at
+   all, because a media query carries no extra specificity and that block sits ABOVE the
+   `.tele` rule it was meant to override. Same specificity, earlier in the source, silently
+   loses. It read as fixed and measured as unchanged. */
+@media (max-width:30rem) {{
+  .tele {{ letter-spacing:.095em; }}
+}}
 
 .ctarow {{ display:flex; gap:.9rem; flex-wrap:wrap; margin:2.4rem 0 0; }}
 .cta {{ font-family:var(--mono); font-size:var(--s-1); letter-spacing:.12em;
@@ -937,6 +953,19 @@ main > section > h2::after {{ content:""; position:absolute; top:-1px; left:0; w
    has since passed. It wears the shut signal, because from where a reader stands it is shut. */
 .rooms.closed, .rooms.comment_closed {{ color:var(--sig-shut); }}
 .rooms.closed::before, .rooms.comment_closed::before {{ background:var(--sig-shut); }}
+
+/* ---- the open data list -------------------------------------------------- */
+/* Filename first in mono, then what is in it. A bare bulleted list of four links reads as an
+   afterthought; the point of this page is that the files ARE the record, so the names carry
+   the weight and the description follows in body type. */
+.filelist {{ list-style:none; padding:0; margin:1.4rem 0 0; display:grid; gap:.75rem; }}
+.filelist li {{ display:flex; flex-wrap:wrap; gap:.2rem .8rem; align-items:baseline;
+  padding-bottom:.75rem; border-bottom:var(--hair) solid var(--rule); color:var(--ink-dim); }}
+.filelist li:last-child {{ border-bottom:0; padding-bottom:0; }}
+.filelist a {{ font-family:var(--mono); font-size:var(--s-1); letter-spacing:.02em;
+  color:var(--accent); text-decoration:none;
+  border-bottom:var(--hair) solid color-mix(in srgb,var(--accent) 40%,transparent); }}
+.filelist a:hover {{ color:var(--ink-bright); border-bottom-color:currentColor; }}
 
 /* ---- items -------------------------------------------------------------- */
 .items {{ display:grid; gap:var(--hair); background:var(--rule);

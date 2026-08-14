@@ -228,6 +228,9 @@ nav.main a[aria-current]::after { right:0; }
   animation:sweep 9s ease-in-out infinite; }
 @keyframes sweep { 0%,74% { transform:translateX(-130%) skewX(-18deg); }
   90%,100% { transform:translateX(130%) skewX(-18deg); } }
+@media (max-width:30rem) {
+  .tele { letter-spacing:.095em; }
+}
 .ctarow { display:flex; gap:.9rem; flex-wrap:wrap; margin:2.4rem 0 0; }
 .cta { font-family:var(--mono); font-size:var(--s-1); letter-spacing:.12em;
   text-transform:uppercase; text-decoration:none; padding:.95em 1.5em; border-radius:6px;
@@ -300,6 +303,14 @@ main > section > h2::after { content:""; position:absolute; top:-1px; left:0; wi
 .rooms.open_comment::before, .rooms.open_meeting::before { background:var(--sig-open); }
 .rooms.closed, .rooms.comment_closed { color:var(--sig-shut); }
 .rooms.closed::before, .rooms.comment_closed::before { background:var(--sig-shut); }
+.filelist { list-style:none; padding:0; margin:1.4rem 0 0; display:grid; gap:.75rem; }
+.filelist li { display:flex; flex-wrap:wrap; gap:.2rem .8rem; align-items:baseline;
+  padding-bottom:.75rem; border-bottom:var(--hair) solid var(--rule); color:var(--ink-dim); }
+.filelist li:last-child { border-bottom:0; padding-bottom:0; }
+.filelist a { font-family:var(--mono); font-size:var(--s-1); letter-spacing:.02em;
+  color:var(--accent); text-decoration:none;
+  border-bottom:var(--hair) solid color-mix(in srgb,var(--accent) 40%,transparent); }
+.filelist a:hover { color:var(--ink-bright); border-bottom-color:currentColor; }
 .items { display:grid; gap:var(--hair); background:var(--rule);
   border:var(--hair) solid var(--rule); border-radius:var(--radius); overflow:hidden;
   list-style:none; padding:0; margin:0; }

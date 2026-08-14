@@ -44,6 +44,7 @@ import ask_answers                                                # noqa: E402
 import docket_build as dk                                          # noqa: E402
 import fonts_build                                                 # noqa: E402
 import gridwatch_page                                              # noqa: E402
+import heatclock                                                   # noqa: E402
 import sky                                                         # noqa: E402
 import texas_map                                                   # noqa: E402
 import waterwatch_page                                             # noqa: E402
@@ -366,47 +367,46 @@ def video_count() -> int:
 
 
 # --------------------------------------------------------------------------- pages
-def _ercot_share():
-    """The front page telemetry figure and its date, or None when the watch holds nothing.
+def telemetry(today: str) -> str:
+    """One live, computed, dated line about the physical world, for the top of the front page.
 
-    SPLIT OUT SO THE NUMERAL GATE CAN ASK FOR THE SAME VALUE THE PAGE PRINTS. It used to
-    be computed inline inside the markup, which meant the only way to authorise it was to
-    write the rounding rule down a second time somewhere else, and two copies of a
-    rounding rule is one copy of a rounding rule and one bug waiting.
+    THIS USED TO REPORT THE GRID AND THAT WAS THE MISTAKE. It read "Peak drew 75.5% of
+    committed capacity", which was measured, dated, correctly rounded and almost nobody's
+    idea of a reason to keep reading. It asks the reader to already know what committed
+    capacity is before the sentence can mean anything, and the opening line of a front page
+    is the worst place in the product to require homework.
+
+    The sibling opens with how much daylight its state capital has today and how fast it is
+    losing it, and that one detail is most of why its front page reads as alive rather than
+    published. What makes it work is not that it is about energy. It is that the reader
+    already feels it, it moves every morning, and it accumulates in one direction so you can
+    tell where you are in the season from it.
+
+    Texas has no daylight story, so this is the heat. The hundred degree day is the unit
+    Texas already keeps score in, and the count runs all summer as a shared grievance. From
+    November the same clock counts freezing nights, which is the other extreme Texas counts
+    and the reason it argues about its grid at all.
+
+    The arithmetic lives in `heatclock`, which is where its self-test lives too. This function
+    is markup and nothing else.
+
+    IT IS NOT A LINK, and that is deliberate rather than an omission. It was one, pointing at
+    the grid page, back when it reported the grid. A reader who clicks a line about the heat
+    lands on a page that says nothing about the heat, and an unpaid promise costs more than
+    the click was worth. The sibling's daily chip is a plain div for the same reason. The
+    record behind it is published as open data and listed on the data page, which is where
+    somebody who wants the numbers goes.
+
+    Returns "" when the record holds nothing or has gone stale, because a front page that
+    invents a number to fill a slot is the exact failure this project exists to not have.
     """
-    rows = gridwatch_page.load()
-    if not rows:
-        return None
-    r = rows[-1]
-    peak, cap = r.get("peak_load_mw"), r.get("capacity_at_peak_mw")
-    if not peak or not cap:
-        return None
-    return round(peak / cap * 100, 1), ordinal(_dt.date.fromisoformat(r["date"]))
-
-
-def telemetry(p: str) -> str:
-    """One live, computed, dated line about the physical system, for the top of the front page.
-
-    The sibling product opens with how much daylight its state capital has left today and how
-    fast it is losing it, and that one detail is most of why its front page feels alive rather
-    than published. It works because it is true, it is about a real place, and it is different
-    every morning.
-
-    Texas has no daylight story worth telling. What it has instead is the grid, which is the
-    thing Texans actually argue about, so this reports what the load did against what was
-    committed to serve it, on the last settled day. Measured, dated, and not a verdict: it says
-    what happened, never whether it was fine.
-
-    Returns "" when the grid watch holds nothing, because a front page that invents a number to
-    fill a slot is the exact failure this project exists to not have.
-    """
-    got = _ercot_share()
-    if not got:
+    r = heatclock.reading(_dt.date.fromisoformat(today))
+    if not r:
         return ""
-    share, when = got
-    return (f'<a class="tele" href="{p}grid/">ERCOT'
-            f'<span>Peak drew {share}% of committed capacity</span>'
-            f'<span>{e(when)}</span></a>')
+    place, middle, tail = heatclock.phrasing(r)
+    middle = middle.format(through=ordinal(r["through"]))
+    return (f'<div class="tele">{e(place)}'
+            f'<span>{e(middle)}</span><span>{e(tail)}</span></div>')
 
 
 def videos_page(today: str) -> str:
@@ -697,7 +697,7 @@ def home(items: list, today: str) -> str:
 
     body = f"""
 <section class="hero rise">
-  {telemetry("")}
+  {telemetry(today)}
   <h1>AI is coming <em>South</em>.</h1>
   <p class="herolede">Every AI decision in Texas and the source behind it. Green means a door is
   open to you.</p>
@@ -1077,9 +1077,14 @@ def data_page(items: list, today: str) -> str:
     body = f"""
 <h1>The data</h1>
 <div class="prose">
-  <p>The whole record is one JSON file. It is the same file this site is built from, so anything
-  published here can be recomputed from it.</p>
-  <p><a href="../docket.json">docket.json</a></p>
+  <p>Four files, each the one this site was built from, so anything published here can be
+  recomputed rather than taken on trust.</p>
+  <ul class="filelist" data-prose="data">
+    <li><a href="../docket.json">docket.json</a> every decision in the record</li>
+    <li><a href="../gridwatch.json">gridwatch.json</a> one settled ERCOT day per record, hourly</li>
+    <li><a href="../waterwatch.json">waterwatch.json</a> reservoir storage, per reservoir per day</li>
+    <li><a href="../heatclock.json">heatclock.json</a> observed daily highs and lows, with normals</li>
+  </ul>
 </div>
 <table><thead><tr><th>Topic</th><th class="n">Items</th></tr></thead><tbody>{rows}</tbody></table>
 <div class="prose">
@@ -1631,16 +1636,15 @@ def _home_numerals(items: list, today: str) -> set:
     was what shipped.
     """
     a = numeral_lint.Authorised()
-    share = _ercot_share()
-    if share:
-        # BOTH HALVES OF THE STRIP, because it prints a figure AND a date, and only the
-        # figure was authorised. The date comes from the grid watch ledger rather than from
-        # this build's `today`, and for as long as the two matched nothing objected. The day
-        # the collector recovered a reading the site had not been rebuilt for, the strip read
-        # "August 12th" against a build stamped the 11th, and `12` became a numeral no
-        # computation had produced. A figure and its date are one statement and they are
-        # authorised by one call.
-        a.add(share[0], *re.findall(r"\d+", share[1]))
+    # THE CHIP AND ITS DATE ARE ONE STATEMENT AND ONE CALL AUTHORISES BOTH. The date comes
+    # from the weather ledger rather than from this build's `today`, and for as long as the
+    # two matched nothing objected. The day a collector recovered a reading the site had not
+    # been rebuilt for, the strip carried a day number no computation on this page had
+    # produced. `heatclock.figures` returns exactly the numerals the chip prints, its own
+    # self-test proves that set is neither short nor long, and the day is one of them.
+    chip = heatclock.reading(_dt.date.fromisoformat(today))
+    if chip:
+        a.add(*heatclock.figures(chip))
     a.add(f"{len(dk.project(items, today)['actionable_now']):02d}")
     # THE PUBLISHED-WORK COUNTS, zero padded the way the row prints them. `02d` of zero is
     # "00", which is not "0", and the row prints three of them.
@@ -1875,6 +1879,17 @@ def build(out: Path, today: str) -> dict:
                            "no conservation pool are excluded, and both exclusions are named "
                            "in each record."},
          "readings": waterwatch_page.load()}, indent=2, ensure_ascii=False) + "\n")
+    # The heat clock as open data, on the same terms as the other two series. It has no page
+    # of its own, because it is one line at the top of the front page rather than a subject,
+    # so the data page is where a reader finds it.
+    w("heatclock.json", json.dumps(
+        {"_spec": {"generated": today,
+                   "note": "Observed daily maximum and minimum at one anchor station, from "
+                           "NCEI daily summaries. A day with no observation is absent rather "
+                           "than zero. Normals are the 1991 to 2020 period computed from the "
+                           "same record and shipped beside it."},
+         "normals": heatclock.normals(),
+         "readings": heatclock.load()}, indent=2, ensure_ascii=False) + "\n")
     w("data/index.html", data_page(items, today))
     w("about/index.html", about_page(today))
 
