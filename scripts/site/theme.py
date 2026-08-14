@@ -1002,7 +1002,23 @@ main > section > h2::after {{ content:""; position:absolute; top:-1px; left:0; w
    map alone is compliant would be the kind of green check this project keeps a file about. */
 @media (pointer:coarse) {{
   .txmap a .c.on {{ stroke-width:3; }}
+  /* A drag across the map must not start selecting the labels under it. */
+  .txmap {{ -webkit-user-select:none; user-select:none; }}
 }}
+/* ---- the map under a thumb ---------------------------------------------- */
+/* On a laptop the map answers "what is this county" on hover. A phone has no hover, so the
+   only way to ask was to commit to a county, load its page, come back, and commit to the next
+   one. That is not looking around, it is a survey taken one page load at a time.
+   Both of these exist only where there is a thumb. A readout that never fills is a line of
+   empty furniture under the drawing, so it is hidden wherever hover already answers. */
+.mapread {{ min-height:1.5em; margin:.55rem 0 0; font-family:var(--mono);
+  font-size:var(--s-1); color:var(--ink-mute); }}
+.mapread:empty {{ min-height:0; margin:0; }}
+@media (hover:hover) and (pointer:fine) {{ .mapread {{ display:none; }} }}
+/* THE HIGHLIGHT IS A STROKE AND NOT A FILL, so a lit county goes on saying it is lit while the
+   thumb is on it. Swapping the fill would answer "where is my finger" by deleting the answer to
+   "what does the record hold here", and the second question is the one the map is for. */
+.txmap .c.under {{ stroke:var(--accent); stroke-width:2.5; paint-order:stroke; }}
 .txmap .c:hover {{ fill:var(--raised); }}
 .txmap .c.on:hover {{ fill:var(--accent); }}
 .txmap .frame {{ fill:none; stroke:var(--rule); stroke-width:1;

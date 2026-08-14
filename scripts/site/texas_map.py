@@ -322,7 +322,7 @@ def scale_bar(scale: float, dx: float, dy: float) -> tuple[str, int]:
 
 def render(lit: set | None = None, *, title: str = "Texas counties in the record",
            idprefix: str = "txmap", inset: bool = False,
-           links: dict | None = None) -> str:
+           links: dict | None = None, counts: dict | None = None) -> str:
     """The whole map as one inline SVG.
 
     `lit` is a set of county NAMES (as the geodata spells them) or FIPS codes. Anything not lit
@@ -344,7 +344,14 @@ def render(lit: set | None = None, *, title: str = "Texas counties in the record
         cls = "c on" if on else "c"
         # The title element is what a screen reader announces, and it is also what a sighted
         # reader gets on hover with no JavaScript at all.
-        node = (f'<path class="{cls}" d="{d}" data-fips="{fips}" data-county="{name}">'
+        # THE COUNT TRAVELS WITH THE SHAPE. A thumb dragged across this map on a phone needs to
+        # say what it is over, and the alternative to an attribute is a second index shipped
+        # beside the drawing that can disagree with it. `n` is absent rather than zero on an
+        # unlit county, because "nothing on the record" and "zero of something" are different
+        # sentences and the readout writes them differently.
+        n = (counts or {}).get(name)
+        nattr = f' data-n="{int(n)}"' if on and n else ""
+        node = (f'<path class="{cls}" d="{d}" data-fips="{fips}" data-county="{name}"{nattr}>'
                 f"<title>{name} County</title></path>")
         # A LIT COUNTY IS A LINK, which is the whole map's job now that there is no index page
         # standing in front of it. Only lit counties link: an unlit county has nothing to open,

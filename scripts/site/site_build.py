@@ -125,6 +125,52 @@ if('IntersectionObserver' in window){
   // present and invisible.
   setTimeout(function(){ els.forEach(function(el){ el.classList.add('in'); }); },2500);
 }
+// THE MAP UNDER A THUMB.
+// On a laptop the map answers "what is this county" with a hover title. A phone has no hover,
+// so the only way to ask was to commit to a county and load its page, come back, and commit to
+// the next one. That is not looking around, it is a survey taken one page load at a time.
+// Dragging a thumb across the state now names each county and says what it holds, and lifting
+// the thumb without moving still opens the county, so the link is not taken away.
+(function(){
+  var read=document.getElementById('mapread'), map=document.querySelector('svg.txmap');
+  if(!read||!map||!('ontouchstart' in window)) return;
+  var moved=false, sx=0, sy=0, last=null;
+  function at(t){
+    var el=document.elementFromPoint(t.clientX,t.clientY);
+    return el&&el.closest?el.closest('path.c'):null;
+  }
+  function show(p){
+    if(p===last) return;
+    if(last) last.classList.remove('under');
+    last=p;
+    if(!p){ read.textContent=''; return; }
+    p.classList.add('under');
+    var n=p.getAttribute('data-n');
+    read.textContent=p.getAttribute('data-county')+' County. '+
+      (n? n+(n==='1'?' decision':' decisions')+' on the record. Lift to open.'
+        : 'Nothing on the record yet.');
+  }
+  map.addEventListener('touchstart',function(e){
+    var t=e.touches[0]; moved=false; sx=t.clientX; sy=t.clientY; show(at(t));
+  },{passive:true});
+  map.addEventListener('touchmove',function(e){
+    var t=e.touches[0];
+    if(Math.abs(t.clientX-sx)>6||Math.abs(t.clientY-sy)>6) moved=true;
+    if(moved){ show(at(t)); e.preventDefault(); }
+    // NOT PASSIVE, because a drag across the map has to stop the page scrolling under it. The
+    // guard is the 6 pixel threshold: until the thumb has actually moved, the browser keeps
+    // its scroll, so a reader who starts a page scroll on top of the map still scrolls.
+  },{passive:false});
+  map.addEventListener('touchend',function(e){
+    if(!moved) return;               // a tap: leave the link alone, it is the whole point
+    // A DRAG IS NOT A CLICK. Without this the county under the lifted thumb navigates, so
+    // looking around the map would keep throwing the reader onto a county page.
+    var kill=function(ev){ ev.preventDefault(); ev.stopPropagation(); };
+    map.addEventListener('click',kill,{capture:true,once:true});
+    setTimeout(function(){ map.removeEventListener('click',kill,{capture:true}); },400);
+    setTimeout(function(){ show(null); },2600);
+  });
+})();
 </script>"""
 
 
@@ -280,7 +326,10 @@ def item_meta(it: dict, today: str) -> str:
     where = ("Statewide" if g.get("statewide")
              else ", ".join(g.get("counties") or []) or
              ("ERCOT region" if g.get("on_ercot") else ""))
-    bits = [f'<span class="tag">{e(it["topic"])}</span>',
+    # THE SAME LABEL THE FILTER ROW USES. A card that says DEFENSE-AND-FEDERAL beside a chip
+    # that says "Defense and federal" is one taxonomy printed two ways, and a reader has to work
+    # out that they are the same thing. The slug stays the identifier in the URL and the ledger.
+    bits = [f'<span class="tag">{e(topic_label(it["topic"]))}</span>',
             f'<span>{e(it["decider"]["name"])}</span>']
     if where:
         bits.append(f'<span>{e(where if len(where) < 60 else where[:57] + "...")}</span>')
@@ -630,7 +679,8 @@ def home(items: list, today: str) -> str:
     proj = dk.project(items, today)
     act = proj["actionable_now"]
     lit = {c for it in items for c in (it.get("geography") or {}).get("counties") or []}
-    svg = texas_map.render(lit=lit, links=county_links(items, today, 0))
+    svg = texas_map.render(lit=lit, links=county_links(items, today, 0),
+                           counts=proj["by_county"])
 
     n_counties = len(lit)
     n_items = proj["counts"]["items"]
@@ -720,6 +770,7 @@ def home(items: list, today: str) -> str:
   counties are the ones this record currently touches, <span class="num">{n_counties}</span>
   of <span class="num">{_place_facts()["counties"]}</span>.</p></div>
   {svg}
+  <p class="mapread" id="mapread" role="status" aria-live="polite" data-prose="data"></p>
 </section>
 
 {'<section data-reveal><h2>Closing next</h2><ul class="deck">' + rows + '</ul>'
@@ -798,7 +849,9 @@ def docket_index(items: list, today: str) -> str:
      than a subject of its own. It had a tab, and a tab is a promise that a reader wants to
      browse Texas by county, which is not what anybody arrives wanting. Clicking a lit county
      still opens what that county holds. -->
-{texas_map.render(lit=lit, links=county_links(items, today, 1))}
+{texas_map.render(lit=lit, links=county_links(items, today, 1),
+                  counts=proj["by_county"])}
+<p class="mapread" id="mapread" role="status" aria-live="polite" data-prose="data"></p>
 <p class="meta" data-prose="data">Click a lit county to see what it holds.
   <span class="num">{len(lit)}</span> of <span class="num">{tx["counties"]}</span> counties
   are named, and <span class="num">{n_state}</span> decisions apply statewide.</p>

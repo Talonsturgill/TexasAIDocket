@@ -294,6 +294,61 @@ for (const w of [280, 300, 320, 360, 375, 390, 414, 440, 480, 540, 600, 680, 768
 check(`every chart label clears the drawing by ${MARGIN} units and lands on no other`,
       cut.length === 0, cut.slice(0, 4).join(" | "));
 
+// THE MAP UNDER A THUMB, ON A DEVICE THAT HAS ONE.
+//
+// A phone has no hover, so before this the only way to ask the map what a county was, was to
+// commit to it, load its page and come back. Dragging now names each county as the thumb
+// crosses it. Three things have to hold together and any two without the third is a defect:
+// the readout has to fill, the drag must NOT navigate on release, and a plain tap must still
+// open the county. Take away the third and the map has lost its only job on a phone; take away
+// the second and looking around throws the reader onto a county page.
+const touch = await browser.newContext({
+  viewport: { width: 412, height: 839 }, hasTouch: true, isMobile: true, deviceScaleFactor: 2,
+});
+const tp = await touch.newPage();
+await tp.goto("file://" + path.join(SITE, "index.html"));
+await tp.waitForTimeout(400);
+// `behavior:'instant'`, because the stylesheet sets `scroll-behavior:smooth` and a measurement
+// taken during the glide reads the old position. That cost a debugging round.
+await tp.evaluate(() => {
+  const m = document.querySelector("svg.txmap");
+  scrollTo({ top: m.getBoundingClientRect().top + scrollY - 110, behavior: "instant" });
+});
+await tp.waitForTimeout(400);
+const bb = await (await tp.$("svg.txmap")).boundingBox();
+const cdp = await touch.newCDPSession(tp);
+const named = new Set();
+const y = bb.y + bb.height * 0.5;
+await cdp.send("Input.dispatchTouchEvent",
+               { type: "touchStart", touchPoints: [{ x: bb.x + bb.width * 0.25, y }] });
+for (let f = 0.25; f <= 0.85; f += 0.025) {
+  await cdp.send("Input.dispatchTouchEvent",
+                 { type: "touchMove", touchPoints: [{ x: bb.x + bb.width * f, y }] });
+  await tp.waitForTimeout(30);
+  const t = await tp.evaluate(() => document.getElementById("mapread").textContent.trim());
+  if (t) named.add(t);
+}
+const urlBeforeRelease = tp.url();
+await cdp.send("Input.dispatchTouchEvent", { type: "touchEnd", touchPoints: [] });
+await tp.waitForTimeout(350);
+check("a thumb dragged across the map names the counties it crosses",
+      named.size >= 6, `${named.size} named`);
+check("...and says what each one holds",
+      [...named].some((t) => /\d+ decisions? on the record/.test(t)) &&
+      [...named].some((t) => /Nothing on the record/.test(t)),
+      [...named].slice(0, 2).join(" | "));
+check("...and releasing the drag does not navigate", tp.url() === urlBeforeRelease, tp.url());
+
+const lit = await tp.$("svg.txmap a.cl");
+const lb = await lit.boundingBox();
+await cdp.send("Input.dispatchTouchEvent",
+               { type: "touchStart", touchPoints: [{ x: lb.x + lb.width / 2, y: lb.y + lb.height / 2 }] });
+await cdp.send("Input.dispatchTouchEvent", { type: "touchEnd", touchPoints: [] });
+await tp.waitForTimeout(700);
+check("...while a plain tap still opens the county",
+      tp.url().includes("/place/county-"), tp.url());
+await touch.close();
+
 await browser.close();
 
 if (failures) { console.error(`\nresponsive: ${failures} FAILED`); process.exit(1); }

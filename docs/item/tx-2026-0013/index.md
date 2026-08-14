@@ -1,6 +1,6 @@
 # Comptroller's JETI current agreements list contains no data center project
 
-The Texas Jobs, Energy, Technology and Innovation Act is the state's school district property tax incentive programme. The Comptroller publishes the current executed agreements. Every project type on that list is manufacturing, power generation or extraction. No agreement on the published list is a data center.
+The Texas Jobs, Energy, Technology and Innovation Act is the state's school district property tax incentive program. The Comptroller publishes the current executed agreements. Every project type on that list is manufacturing, power generation or extraction. No agreement on the published list is a data center.
 
 - Topic: data-centers
 - Decided by: Texas Comptroller of Public Accounts (state-agency)

@@ -28,9 +28,9 @@
 
 <article>
 <h1>TRAIGA in force as Business and Commerce Code Chapter 552, enforceable only by the Attorney General</h1>
-<p class="meta" data-prose="data"><span class="tag">state-policy</span><span>Office of the Attorney General of Texas</span><span>Statewide</span><span class="rooms contact_only">No formal process</span></p>
+<p class="meta" data-prose="data"><span class="tag">State policy</span><span>Office of the Attorney General of Texas</span><span>Statewide</span><span class="rooms contact_only">No formal process</span></p>
 
-<div class="prose"><p>The Texas Responsible Artificial Intelligence Governance Act took effect on January 1st, 2026 as Chapter 552 of the Business and Commerce Code. It bans developing or deploying an AI system with intent to unlawfully discriminate, to manipulate behaviour, for social scoring or to produce certain illegal content. It also requires government agencies to tell people when they are interacting with an AI system. The Attorney General has exclusive enforcement authority and the statute creates no private right of action.</p></div>
+<div class="prose"><p>The Texas Responsible Artificial Intelligence Governance Act took effect on January 1st, 2026 as Chapter 552 of the Business and Commerce Code. It bans developing or deploying an AI system with intent to unlawfully discriminate, to manipulate behavior, for social scoring or to produce certain illegal content. It also requires government agencies to tell people when they are interacting with an AI system. The Attorney General has exclusive enforcement authority and the statute creates no private right of action.</p></div>
 
 <section><h2>How to take part</h2><div class="prose"><p>Individuals can&#x27;t sue under this chapter. The route is a complaint to the Attorney General. A related statute requires that office to run an online AI complaint page. See item tx-2026-0010 for that page&#x27;s statutory basis and for the verification gap on whether it exists yet.</p></div></section>
 
@@ -73,6 +73,52 @@ if('IntersectionObserver' in window){
   // present and invisible.
   setTimeout(function(){ els.forEach(function(el){ el.classList.add('in'); }); },2500);
 }
+// THE MAP UNDER A THUMB.
+// On a laptop the map answers "what is this county" with a hover title. A phone has no hover,
+// so the only way to ask was to commit to a county and load its page, come back, and commit to
+// the next one. That is not looking around, it is a survey taken one page load at a time.
+// Dragging a thumb across the state now names each county and says what it holds, and lifting
+// the thumb without moving still opens the county, so the link is not taken away.
+(function(){
+  var read=document.getElementById('mapread'), map=document.querySelector('svg.txmap');
+  if(!read||!map||!('ontouchstart' in window)) return;
+  var moved=false, sx=0, sy=0, last=null;
+  function at(t){
+    var el=document.elementFromPoint(t.clientX,t.clientY);
+    return el&&el.closest?el.closest('path.c'):null;
+  }
+  function show(p){
+    if(p===last) return;
+    if(last) last.classList.remove('under');
+    last=p;
+    if(!p){ read.textContent=''; return; }
+    p.classList.add('under');
+    var n=p.getAttribute('data-n');
+    read.textContent=p.getAttribute('data-county')+' County. '+
+      (n? n+(n==='1'?' decision':' decisions')+' on the record. Lift to open.'
+        : 'Nothing on the record yet.');
+  }
+  map.addEventListener('touchstart',function(e){
+    var t=e.touches[0]; moved=false; sx=t.clientX; sy=t.clientY; show(at(t));
+  },{passive:true});
+  map.addEventListener('touchmove',function(e){
+    var t=e.touches[0];
+    if(Math.abs(t.clientX-sx)>6||Math.abs(t.clientY-sy)>6) moved=true;
+    if(moved){ show(at(t)); e.preventDefault(); }
+    // NOT PASSIVE, because a drag across the map has to stop the page scrolling under it. The
+    // guard is the 6 pixel threshold: until the thumb has actually moved, the browser keeps
+    // its scroll, so a reader who starts a page scroll on top of the map still scrolls.
+  },{passive:false});
+  map.addEventListener('touchend',function(e){
+    if(!moved) return;               // a tap: leave the link alone, it is the whole point
+    // A DRAG IS NOT A CLICK. Without this the county under the lifted thumb navigates, so
+    // looking around the map would keep throwing the reader onto a county page.
+    var kill=function(ev){ ev.preventDefault(); ev.stopPropagation(); };
+    map.addEventListener('click',kill,{capture:true,once:true});
+    setTimeout(function(){ map.removeEventListener('click',kill,{capture:true}); },400);
+    setTimeout(function(){ show(null); },2600);
+  });
+})();
 </script>
 </body>
 </html>

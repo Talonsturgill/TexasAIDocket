@@ -291,7 +291,7 @@ def metro_bars(metros: list[dict], walk: list | None = None) -> str:
   <td class="n num">{af(m['storage_af'])}</td>
 </tr>""" for m in metros)
     return f"""<table class="figures metros">
-<caption>Municipal reservoir storage by metro, driest first. Every bar is the same colour at
+<caption>Municipal reservoir storage by metro, driest first. Every bar is the same color at
 every value. The order and the length carry the comparison. Neither implies a judgement.
 Where the water data's name for an area differs from the federal delineation, both are
 shown.</caption>

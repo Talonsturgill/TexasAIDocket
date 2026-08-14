@@ -457,7 +457,7 @@ def reserve_bar(latest: dict) -> str:
 
     A dial has a red zone. A red zone is a verdict, and a verdict is the one thing this page has
     promised never to publish, because a unit trip can produce an emergency on a day the numbers
-    looked comfortable. So the fill is the same colour at ninety percent as at forty, and the
+    looked comfortable. So the fill is the same color at ninety percent as at forty, and the
     length carries the entire message.
     """
     share = latest.get("load_share_of_capacity_pct")
@@ -469,7 +469,7 @@ def reserve_bar(latest: dict) -> str:
   <div class="fill" style="width:{min(float(share), 100.0):.1f}%"></div>
 </div>
 <p class="barnote">At the peak hour, demand reached <strong class="num">{pct(share)}%</strong>
-of the generation capacity ERCOT had committed for that hour. This bar has one colour at every
+of the generation capacity ERCOT had committed for that hour. This bar has one color at every
 value on purpose. It is a measurement rather than a judgement about whether the grid was
 comfortable. No number on this page can tell you that.</p>"""
 

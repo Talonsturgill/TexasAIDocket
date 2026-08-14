@@ -78,6 +78,39 @@ BARE_DATE = re.compile(rf"\b(?:{MONTHS})\s+\d{{1,2}}\b(?!\s*(?:st|nd|rd|th)\b)",
 DAY_FIRST = re.compile(rf"\b\d{{1,2}}(?:st|nd|rd|th)?\s+(?:{MONTHS})\b", re.IGNORECASE)
 OF_MONTH = re.compile(rf"\bthe\s+\d{{1,2}}(?:st|nd|rd|th)\s+of\s+(?:{MONTHS})\b", re.IGNORECASE)
 CANNOT = re.compile(r"\bcannot\b", re.IGNORECASE)
+
+# BRITISH SPELLING, WHICH IS INVISIBLE UNTIL SOMEBODY FROM TEXAS READS IT.
+#
+# "data centres" shipped across this site, on the one subject the record is most about. It is
+# the exact shape of fault a lint is for: every instance reads fine, nothing objects, and the
+# product quietly sounds like it was written somewhere else. It took the owner to catch it.
+#
+# The pairs are the ones this subject matter actually produces. `-ise` verbs are deliberately
+# NOT here as a blanket rule, because "enterprise", "franchise", "advertise" and "comprise" are
+# American too, and a rule that fires on those is a rule somebody switches off.
+#
+# THIS IS SPELLING, NOT QUOTATION. A verbatim quote keeps whatever the source wrote, and the
+# callers already exclude quotes by construction.
+BRITISH = {
+    "centre": "center", "centres": "centers", "centred": "centered", "centring": "centering",
+    "colour": "color", "colours": "colors", "coloured": "colored",
+    "behaviour": "behavior", "behaviours": "behaviors",
+    "neighbour": "neighbor", "neighbours": "neighbors",
+    "neighbourhood": "neighborhood", "neighbourhoods": "neighborhoods",
+    "labour": "labor", "harbour": "harbor", "favour": "favor", "favours": "favors",
+    "favourite": "favorite", "honour": "honor", "rumour": "rumor", "vapour": "vapor",
+    "metre": "meter", "metres": "meters", "litre": "liter", "litres": "liters",
+    "fibre": "fibre-optic is a compound; the noun is fiber", "fibres": "fibers",
+    "defence": "defense", "licence": "license", "offence": "offense", "practise": "practice",
+    "programme": "program", "programmes": "programs",
+    "modelling": "modeling", "modelled": "modeled", "labelled": "labeled",
+    "travelled": "traveled", "cancelled": "canceled", "fuelled": "fueled",
+    "analyse": "analyze", "analysed": "analyzed", "catalogue": "catalog",
+    "grey": "gray", "storey": "story", "storeys": "stories",
+    "aluminium": "aluminum", "sulphur": "sulfur",
+}
+BRITISH_RX = re.compile(r"\b(" + "|".join(sorted(BRITISH, key=len, reverse=True)) + r")\b",
+                        re.IGNORECASE)
 OPENER = re.compile(r"(?:^|(?<=[.!?])\s+|\n)\s*(And|But)\b")
 FIRST_PERSON = re.compile(r"\b(?:I|I'm|I've|I'll|we|we're|we've|we'll|our|ours|us|my|mine)\b",
                           re.IGNORECASE)
@@ -294,6 +327,9 @@ def check(text: str) -> list[str]:
 
     for m in set(CANNOT.findall(prose)):
         problems.append(f'"{m}": never "cannot", always "can\'t"')
+    for m in {x.lower() for x in BRITISH_RX.findall(prose)}:
+        problems.append(f'"{m}" is British spelling: write "{BRITISH[m]}". This site is '
+                        f"published in Texas")
     for m in set(OPENER.findall(prose)):
         problems.append(f'a sentence opens with "{m}": rewrite the opening')
     for m in set(FIRST_PERSON.findall(ROMAN_LABEL.sub(" ", prose))):
@@ -478,6 +514,16 @@ def self_test() -> int:
         ok(f"a vote count is still a range: {vote.split()[2]}", catches(vote, "write it"))
     ok("a real range still fails even near an identifier word",
        catches("The order in Room 7 runs 40-60 pages.", "write it"))
+    # BRITISH SPELLING. The first pair is the one that shipped, on the one subject this record
+    # is most about, and it took the owner reading the live site to find it.
+    ok("data centres fails", catches("Three data centres were approved.", "British spelling"))
+    ok("...and names the American form",
+       catches("Three data centres were approved.", 'write "centers"'))
+    ok("...and it is caught capitalised", catches("Centre Street rules apply.", "British"))
+    for fine in ("Three data centers were approved.", "The enterprise franchise will advertise.",
+                 "The program comprises a license and a practice.",
+                 "It will analyze the fiber optic route."):
+        ok(f"American spelling passes: {fine.split()[1]}", not catches(fine, "British"), fine)
     ok("a curly apostrophe fails", catches("It can’t be verified.", "straight quotes"))
     ok("an emoji fails", catches("Big news \U0001F680 today.", "not the register"))
     ok("a degree sign is not an emoji", not catches("It hit 104 degrees.", "register"))

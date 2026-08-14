@@ -290,7 +290,13 @@ main > section > h2::after { content:""; position:absolute; top:-1px; left:0; wi
 .txmap .c.on { fill:var(--accent-deep); stroke:var(--accent); stroke-width:1.1; }
 @media (pointer:coarse) {
   .txmap a .c.on { stroke-width:3; }
+  .txmap { -webkit-user-select:none; user-select:none; }
 }
+.mapread { min-height:1.5em; margin:.55rem 0 0; font-family:var(--mono);
+  font-size:var(--s-1); color:var(--ink-mute); }
+.mapread:empty { min-height:0; margin:0; }
+@media (hover:hover) and (pointer:fine) { .mapread { display:none; } }
+.txmap .c.under { stroke:var(--accent); stroke-width:2.5; paint-order:stroke; }
 .txmap .c:hover { fill:var(--raised); }
 .txmap .c.on:hover { fill:var(--accent); }
 .txmap .frame { fill:none; stroke:var(--rule); stroke-width:1;

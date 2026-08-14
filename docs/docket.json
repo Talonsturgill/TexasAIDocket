@@ -384,7 +384,7 @@
     {
       "id": "tx-2026-0006",
       "title": "TRAIGA in force as Business and Commerce Code Chapter 552, enforceable only by the Attorney General",
-      "summary": "The Texas Responsible Artificial Intelligence Governance Act took effect on January 1st, 2026 as Chapter 552 of the Business and Commerce Code. It bans developing or deploying an AI system with intent to unlawfully discriminate, to manipulate behaviour, for social scoring or to produce certain illegal content. It also requires government agencies to tell people when they are interacting with an AI system. The Attorney General has exclusive enforcement authority and the statute creates no private right of action.",
+      "summary": "The Texas Responsible Artificial Intelligence Governance Act took effect on January 1st, 2026 as Chapter 552 of the Business and Commerce Code. It bans developing or deploying an AI system with intent to unlawfully discriminate, to manipulate behavior, for social scoring or to produce certain illegal content. It also requires government agencies to tell people when they are interacting with an AI system. The Attorney General has exclusive enforcement authority and the statute creates no private right of action.",
       "topic": "state-policy",
       "decider": {
         "name": "Office of the Attorney General of Texas",
@@ -620,7 +620,7 @@
     {
       "id": "tx-2026-0009",
       "title": "DIR must run an AI regulatory sandbox letting state agencies test systems outside normal rules",
-      "summary": "The Department of Information Resources is required to establish a programme letting eligible public entities contract with registered vendors to test AI systems before deployment. That testing is expressly without full compliance with otherwise applicable regulations. Vendors apply, and participants file quarterly reports. The department must report to the Legislature by November 30th of each even numbered year. That makes November 30th, 2026 the first reporting date.",
+      "summary": "The Department of Information Resources is required to establish a program letting eligible public entities contract with registered vendors to test AI systems before deployment. That testing is expressly without full compliance with otherwise applicable regulations. Vendors apply, and participants file quarterly reports. The department must report to the Legislature by November 30th of each even numbered year. That makes November 30th, 2026 the first reporting date.",
       "topic": "state-policy",
       "decider": {
         "name": "Texas Department of Information Resources",
@@ -663,7 +663,7 @@
         },
         {
           "id": "tx-2026-0009-c2",
-          "text": "The department must establish and administer the programme.",
+          "text": "The department must establish and administer the program.",
           "verbatim_quote": "(b) The department shall establish and administer a program to support eligible entities in contracting with vendors to engage in research, development, training, testing, and other pre-deployment activities related to artificial intelligence systems",
           "source_url": "https://tcss.legis.texas.gov/resources/GV/htm/GV.2054.htm",
           "source_title": "Texas Government Code Sec. 2054.706(b)",
@@ -700,7 +700,7 @@
       ],
       "last_verified": "2026-08-11",
       "confidence": "high",
-      "notes_for_editor": "CORRECTION TO A COMMON BELIEF, please keep it in the published item. The regulatory sandbox is widely attributed to TRAIGA. It is not in TRAIGA. It is Section 2054.706, added by SB 1964, and it took effect September 1st, 2025, four months before TRAIGA did. Whether DIR has actually stood the programme up was NOT verified: no DIR page was fetched. That is the obvious follow up and the honest hook is the November 30th, 2026 report."
+      "notes_for_editor": "CORRECTION TO A COMMON BELIEF, please keep it in the published item. The regulatory sandbox is widely attributed to TRAIGA. It is not in TRAIGA. It is Section 2054.706, added by SB 1964, and it took effect September 1st, 2025, four months before TRAIGA did. Whether DIR has actually stood the program up was NOT verified: no DIR page was fetched. That is the obvious follow up and the honest hook is the November 30th, 2026 report."
     },
     {
       "id": "tx-2026-0012",
@@ -749,7 +749,7 @@
     {
       "id": "tx-2026-0013",
       "title": "Comptroller's JETI current agreements list contains no data center project",
-      "summary": "The Texas Jobs, Energy, Technology and Innovation Act is the state's school district property tax incentive programme. The Comptroller publishes the current executed agreements. Every project type on that list is manufacturing, power generation or extraction. No agreement on the published list is a data center.",
+      "summary": "The Texas Jobs, Energy, Technology and Innovation Act is the state's school district property tax incentive program. The Comptroller publishes the current executed agreements. Every project type on that list is manufacturing, power generation or extraction. No agreement on the published list is a data center.",
       "topic": "data-centers",
       "decider": {
         "name": "Texas Comptroller of Public Accounts",
@@ -791,7 +791,7 @@
       ],
       "last_verified": "2026-08-11",
       "confidence": "high",
-      "notes_for_editor": "Verified: prior research was right. The project type strings are reproduced verbatim and in the order the page prints them, including the page's own mid word truncations, so a checker can diff them against the live table. The row count is deliberately not stated in prose: it should be computed by the build from the captured rows rather than typed. CAVEAT ON SCOPE, which the item must carry: JETI is the school district value limitation programme only. A data center can still receive city or county tax abatements under Local Government Code Chapter 312, Chapter 380 or 381 agreements, and freeport exemptions, none of which appear on this page. The honest claim is that data centers are absent from THIS list, not that they get no Texas tax breaks."
+      "notes_for_editor": "Verified: prior research was right. The project type strings are reproduced verbatim and in the order the page prints them, including the page's own mid word truncations, so a checker can diff them against the live table. The row count is deliberately not stated in prose: it should be computed by the build from the captured rows rather than typed. CAVEAT ON SCOPE, which the item must carry: JETI is the school district value limitation program only. A data center can still receive city or county tax abatements under Local Government Code Chapter 312, Chapter 380 or 381 agreements, and freeport exemptions, none of which appear on this page. The honest claim is that data centers are absent from THIS list, not that they get no Texas tax breaks."
     },
     {
       "id": "tx-2026-0015",
