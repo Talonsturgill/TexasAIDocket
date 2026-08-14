@@ -44,7 +44,7 @@ import ask_answers                                                # noqa: E402
 import docket_build as dk                                          # noqa: E402
 import fonts_build                                                 # noqa: E402
 import gridwatch_page                                              # noqa: E402
-import heatclock                                                   # noqa: E402
+import frontchip                                                   # noqa: E402
 import sky                                                         # noqa: E402
 import texas_map                                                   # noqa: E402
 import waterwatch_page                                             # noqa: E402
@@ -387,7 +387,7 @@ def telemetry(today: str) -> str:
     November the same clock counts freezing nights, which is the other extreme Texas counts
     and the reason it argues about its grid at all.
 
-    The arithmetic lives in `heatclock`, which is where its self-test lives too. This function
+    The arithmetic and the rotation live in `frontchip`, with their self-tests. This function
     is markup and nothing else.
 
     IT IS NOT A LINK, and that is deliberate rather than an omission. It was one, pointing at
@@ -400,10 +400,10 @@ def telemetry(today: str) -> str:
     Returns "" when the record holds nothing or has gone stale, because a front page that
     invents a number to fill a slot is the exact failure this project exists to not have.
     """
-    r = heatclock.reading(_dt.date.fromisoformat(today))
+    r = frontchip.reading(_dt.date.fromisoformat(today))
     if not r:
         return ""
-    place, middle, tail = heatclock.phrasing(r)
+    place, middle, tail = frontchip.phrasing(r)
     middle = middle.format(through=ordinal(r["through"]))
     return (f'<div class="tele">{e(place)}'
             f'<span>{e(middle)}</span><span>{e(tail)}</span></div>')
@@ -1083,7 +1083,7 @@ def data_page(items: list, today: str) -> str:
     <li><a href="../docket.json">docket.json</a> every decision in the record</li>
     <li><a href="../gridwatch.json">gridwatch.json</a> one settled ERCOT day per record, hourly</li>
     <li><a href="../waterwatch.json">waterwatch.json</a> reservoir storage, per reservoir per day</li>
-    <li><a href="../heatclock.json">heatclock.json</a> observed daily highs and lows, with normals</li>
+    <li><a href="../weather.json">weather.json</a> observed daily weather, with its normals</li>
   </ul>
 </div>
 <table><thead><tr><th>Topic</th><th class="n">Items</th></tr></thead><tbody>{rows}</tbody></table>
@@ -1640,11 +1640,11 @@ def _home_numerals(items: list, today: str) -> set:
     # from the weather ledger rather than from this build's `today`, and for as long as the
     # two matched nothing objected. The day a collector recovered a reading the site had not
     # been rebuilt for, the strip carried a day number no computation on this page had
-    # produced. `heatclock.figures` returns exactly the numerals the chip prints, its own
+    # produced. `frontchip.figures` returns exactly the numerals the chip prints, its own
     # self-test proves that set is neither short nor long, and the day is one of them.
-    chip = heatclock.reading(_dt.date.fromisoformat(today))
+    chip = frontchip.reading(_dt.date.fromisoformat(today))
     if chip:
-        a.add(*heatclock.figures(chip))
+        a.add(*frontchip.figures(chip))
     a.add(f"{len(dk.project(items, today)['actionable_now']):02d}")
     # THE PUBLISHED-WORK COUNTS, zero padded the way the row prints them. `02d` of zero is
     # "00", which is not "0", and the row prints three of them.
@@ -1882,14 +1882,14 @@ def build(out: Path, today: str) -> dict:
     # The heat clock as open data, on the same terms as the other two series. It has no page
     # of its own, because it is one line at the top of the front page rather than a subject,
     # so the data page is where a reader finds it.
-    w("heatclock.json", json.dumps(
+    w("weather.json", json.dumps(
         {"_spec": {"generated": today,
                    "note": "Observed daily maximum and minimum at one anchor station, from "
                            "NCEI daily summaries. A day with no observation is absent rather "
                            "than zero. Normals are the 1991 to 2020 period computed from the "
                            "same record and shipped beside it."},
-         "normals": heatclock.normals(),
-         "readings": heatclock.load()}, indent=2, ensure_ascii=False) + "\n")
+         "normals": frontchip.normals(),
+         "readings": frontchip.load()}, indent=2, ensure_ascii=False) + "\n")
     w("data/index.html", data_page(items, today))
     w("about/index.html", about_page(today))
 

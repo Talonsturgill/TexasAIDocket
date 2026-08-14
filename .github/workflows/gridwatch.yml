@@ -106,8 +106,8 @@ jobs:
       - name: Prove the water collector's own checks can go red
         run: python3 scripts/gridwatch/waterwatch_collect.py --self-test
 
-      - name: Prove the heat collector's own checks can go red
-        run: python3 scripts/gridwatch/heatclock_collect.py --self-test
+      - name: Prove the weather collector's own checks can go red
+        run: python3 scripts/gridwatch/weather_collect.py --self-test
 
       - name: Collect the settled previous day
         id: collect
@@ -128,7 +128,7 @@ jobs:
         if: steps.water.outcome == 'failure'
         run: echo "::warning::the reservoir reading did not land; the grid reading is unaffected"
 
-      - name: Fill any gap in the observed heat record
+      - name: Fill any gap in the observed weather record
         id: heat
         continue-on-error: true
         run: |
@@ -137,11 +137,11 @@ jobs:
           # absent. A week of failures costs nothing but a week of staleness, and the next
           # successful run catches up completely. It runs last and gates nothing for that
           # reason: the two collectors above are the ones with something to lose.
-          python3 scripts/gridwatch/heatclock_collect.py --collect
+          python3 scripts/gridwatch/weather_collect.py --collect
 
       - name: Say plainly if the heat collection failed
         if: steps.heat.outcome == 'failure'
-        run: echo "::warning::the heat record did not update; it backfills, so nothing is lost"
+        run: echo "::warning::the weather record did not update; it backfills, so nothing is lost"
 
       - name: Rebuild the published site
         id: rebuild

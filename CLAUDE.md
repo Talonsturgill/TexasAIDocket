@@ -193,12 +193,24 @@ Alaska's history would poison them.
   that prints advice on failure and one clean line on success looks reassuring either way under
   `tail -1`, and that has shipped a red gate here before.
 - `assets/` — committed fonts, art libraries, Texas geodata, places gazetteer.
-- The front page's one live line is the **heat clock**, in `scripts/site/heatclock.py` with its
-  collector in `scripts/gridwatch/`. `knowledge/shared/TEXAS_TELEMETRY.md` section 0 is the
-  decision record for what it says and why it is not the reservoir line that document ranked
-  first. Two rules it inherits from that research: there is no canonical statewide station, so
-  it is **city scoped and names the city**, and the station is picked on a stated rule rather
-  than for producing the most striking number.
+- The front page's one live line is the **weather chip**, in `scripts/site/frontchip.py` with
+  its collector in `scripts/gridwatch/weather_collect.py`.
+  `knowledge/shared/TEXAS_TELEMETRY.md` section 0 is the decision record.
+  **It ROTATES.** Four candidates run (hundred degree days, freezing nights, nights over 80,
+  inches of rain) and it leads with whichever is furthest from its own normal for that date,
+  measured in units of that metric's own year to year spread so unlike things can be ranked.
+  **The comparison that chooses is never published** — the page prints only what was measured
+  and what is normal, because a standard score is good enough to rank four candidates and not
+  a number this project would put its name on. A candidate is in season when its own normal
+  sits between 10 and 98 percent of a full cycle, so no calendar table decides anything and a
+  new candidate needs no window written for it. Its self-test walks all 366 days and asserts
+  the chip is never left with nothing to say.
+  Two rules inherited from the research: there is no canonical statewide station, so it is
+  **city scoped and names the city**, and the station is picked on a stated rule rather than
+  for producing the most striking number.
+  Its ledger, `ledger/gridwatch/weather.jsonl`, is the one series here that is **not**
+  append-only, because NCEI is a permanent archive and every line is re-derivable. That
+  carve-out is stated in `ownership.yaml` and nowhere else.
 - `docs/` — the published site (GitHub Pages). GENERATED. Never hand-edit.
 - `out/` — per-run scratch (gitignored). `runs/` — shipped artifacts, merged to main each run.
 
