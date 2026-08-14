@@ -6,7 +6,7 @@ TCEQ's pending new source review page lists air permit applications whose notice
 - Decided by: Texas Commission on Environmental Quality, Air Permits Division (state-agency)
 - Where: Statewide
 - Status: pending
-- Public access: No formal process
+- Public access: Write to the decider
 - Take part: https://www.tceq.texas.gov/permitting/air/newsourcereview/airpermits-pendingpermit-apps
 
 - Last checked: 2026-08-14

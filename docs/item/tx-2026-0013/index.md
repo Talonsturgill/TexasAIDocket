@@ -6,7 +6,7 @@ The Texas Jobs, Energy, Technology and Innovation Act is the state's school dist
 - Decided by: Texas Comptroller of Public Accounts (state-agency)
 - Where: Statewide
 - Status: decided
-- Public access: No formal process
+- Public access: Write to the decider
 - Take part: https://comptroller.texas.gov/economy/development/prop-tax/jeti/current-agreements.php
 
 - Last checked: 2026-08-11

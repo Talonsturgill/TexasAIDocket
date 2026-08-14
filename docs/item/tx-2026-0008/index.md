@@ -6,7 +6,7 @@ Three separate acts of the 89th Legislature each added a Subchapter S to Governm
 - Decided by: Texas Legislature (legislature)
 - Where: Statewide
 - Status: open
-- Public access: No formal process
+- Public access: Write to the decider
 
 - Last checked: 2026-08-11
 

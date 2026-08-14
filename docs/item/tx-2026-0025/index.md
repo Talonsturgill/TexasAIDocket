@@ -6,7 +6,7 @@ Every state agency and local government that deploys a public facing AI system m
 - Decided by: Texas Department of Information Resources (state-agency)
 - Where: Statewide
 - Status: pending
-- Public access: No formal process
+- Public access: Write to the decider
 
 - Last checked: 2026-08-11
 

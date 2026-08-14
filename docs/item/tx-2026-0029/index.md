@@ -8,7 +8,7 @@ The Williamson County Commissioners Court approved a Chapter 312 tax abatement i
 - Statistical areas:
   - Austin-Round Rock-San Marcos, TX
 - Status: decided
-- Public access: No formal process
+- Public access: Write to the decider
 - Take part: https://www.wilcotx.gov/m/newsflash/Home/Detail/789
 
 - Last checked: 2026-08-14

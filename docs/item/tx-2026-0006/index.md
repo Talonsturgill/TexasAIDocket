@@ -6,7 +6,7 @@ The Texas Responsible Artificial Intelligence Governance Act took effect on Janu
 - Decided by: Office of the Attorney General of Texas (state-agency)
 - Where: Statewide
 - Status: decided
-- Public access: No formal process
+- Public access: Write to the decider
 
 - Last checked: 2026-08-11
 

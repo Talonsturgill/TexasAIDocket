@@ -8,7 +8,7 @@ HGACBuy is the cooperative purchasing program run by the Houston-Galveston Area 
 - Statistical areas:
   - Houston-Pasadena-The Woodlands, TX
 - Status: decided
-- Public access: No formal process
+- Public access: Write to the decider
 - Take part: https://www.hgacbuy.org/products-and-services/view-contract?contractid=3147
 
 - Last checked: 2026-08-14

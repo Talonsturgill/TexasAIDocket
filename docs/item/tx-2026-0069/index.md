@@ -8,7 +8,7 @@ The Texas Comptroller now lists application J0022 among current agreements under
 - Statistical areas:
   - Town of Pecos, TX
 - Status: decided
-- Public access: No formal process
+- Public access: Write to the decider
 - Take part: https://comptroller.texas.gov/economy/development/prop-tax/jeti/application-details.php?id=J0022
 
 - Last checked: 2026-08-14
