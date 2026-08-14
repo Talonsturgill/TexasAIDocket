@@ -80,7 +80,7 @@ HOIST = mark.flag_svg()
 # `Ask` is gone from the bar because the box is on the front page now. A search field a reader
 # has to navigate to is a search field a reader does not use.
 NAV = [("", "Home"), ("record/", "Docket"), ("articles/", "Articles"),
-       ("videos/", "Videos"), ("counties/", "Counties"), ("grid/", "Grid"),
+       ("videos/", "Videos"), ("grid/", "Grid"),
        ("water/", "Water"), ("services/", "Services"), ("about/", "About")]
 
 # The footer's way out. Wider than the masthead nav, because the bottom of a page is where
@@ -763,6 +763,26 @@ def docket_index(items: list, today: str) -> str:
         for it in sorted(items, key=key))
 
     n_open = sum(1 for i in items if dk.window_state(i, today) == "open")
+    tx = _place_facts()
+    proj = dk.project(items, today)
+    n_state = sum(1 for i in items if (i.get("geography") or {}).get("statewide"))
+    by = {}
+    for it in items:
+        for c in (it.get("geography") or {}).get("counties") or []:
+            by.setdefault(c, []).append(it)
+    lit = set(by)
+    crows = "".join(
+        f'<tr><td><a href="../place/county-{_place_slug(c)}/">{e(c)} County</a></td>'
+        f'<td class="n num">{len(v)}</td>'
+        f'<td>{", ".join(e(t) for t in dict.fromkeys(i["topic"] for i in v))}</td></tr>'
+        for c, v in sorted(by.items(), key=lambda kv: (-len(kv[1]), kv[0])))
+    mrows = "".join(
+        f'<tr><td><a href="../place/{e(mid)}/">{e(m["name"])}</a></td>'
+        f'<td class="n num">{len(m["items"])}</td>'
+        f'<td class="n num">{len(m["touched_counties"])}</td>'
+        f'<td>{e(m["area_type"])}</td></tr>'
+        for mid, m in sorted(proj["by_metro"].items(),
+                             key=lambda kv: (-len(kv[1]["items"]), kv[0])))
     topics = "".join(
         f'<a class="tag" href="../topic/{e(t)}/">{e(t)}</a> '
         for t in sorted({i["topic"] for i in items}))
@@ -775,6 +795,28 @@ def docket_index(items: list, today: str) -> str:
   <span class="num">{len(items)}</span> are open to comment now.</p>
   <p class="meta" data-prose="data">{topics}</p>
 </div>
+
+<!-- THE MAP LIVES ON THE RECORD NOW, because geography is a property of the record rather
+     than a subject of its own. It had a tab, and a tab is a promise that a reader wants to
+     browse Texas by county, which is not what anybody arrives wanting. Clicking a lit county
+     still opens what that county holds. -->
+{texas_map.render(lit=lit, links=county_links(items, today, 1))}
+<p class="meta" data-prose="data">Click a lit county to see what it holds.
+  <span class="num">{len(lit)}</span> of <span class="num">{tx["counties"]}</span> counties
+  are named, and <span class="num">{n_state}</span> decisions apply statewide.</p>
+
+<!-- FOLDED, NOT DELETED. The two tables are the complete geographic answer and they are also
+     forty rows, which is most of a screen a reader did not ask for. `details` costs nothing,
+     needs no script, and is open to a keyboard and a screen reader by default. -->
+<details class="fold">
+  <summary>Every county and area, listed</summary>
+  <table class="tally"><thead><tr><th>County</th><th class="n">Items</th>
+    <th>Topics</th></tr></thead><tbody>{crows}</tbody></table>
+  <h3>By metropolitan area</h3>
+  <table class="tally"><thead><tr><th>Area</th><th class="n">Items</th>
+    <th class="n">Counties</th><th>Kind</th></tr></thead><tbody>{mrows}</tbody></table>
+</details>
+
 <ul class="items" data-prose="data">{rows}</ul>
 """
     return page(title=f"The record · {SITE_NAME}", depth=1, active="record/",
@@ -902,79 +944,6 @@ def item_page(it: dict, today: str) -> str:
                 canonical=f'item/{it["id"]}/')
 
 
-def counties_page(items: list, today: str) -> str:
-    """Every place the record touches, on one page, entered through the map.
-
-    THIS PAGE ABSORBED `/places/`, WHICH WAS A TAB SPENDING A NAV SLOT ON A TAXONOMY. A
-    reader does not arrive wanting to browse statistical areas. They arrive wanting to know
-    what is happening near them, and the map answers that in one click where a table of
-    federal delineations answered it in three. So the areas are a section here rather than
-    a destination, and the map is the way in.
-    """
-    proj = dk.project(items, today)
-    tx = _place_facts()
-    by = {}
-    for it in items:
-        for c in (it.get("geography") or {}).get("counties") or []:
-            by.setdefault(c, []).append(it)
-    statewide = [i for i in items if (i.get("geography") or {}).get("statewide")]
-
-    rows = "".join(
-        f'<tr><td><a href="../place/county-{_place_slug(c)}/">{e(c)} County</a></td>'
-        f'<td class="n num">{len(v)}</td>'
-        f'<td>{", ".join(e(t) for t in dict.fromkeys(i["topic"] for i in v))}</td></tr>'
-        for c, v in sorted(by.items(), key=lambda kv: (-len(kv[1]), kv[0])))
-
-    metros = proj["by_metro"]
-    mrows = "".join(
-        f'<tr><td><a href="../place/{e(mid)}/">{e(m["name"])}</a></td>'
-        f'<td class="n num">{len(m["items"])}</td>'
-        f'<td class="n num">{len(m["touched_counties"])}</td>'
-        f'<td>{e(m["area_type"])}</td></tr>'
-        for mid, m in sorted(metros.items(), key=lambda kv: (-len(kv[1]["items"]), kv[0])))
-
-    body = f"""
-<h1>By county</h1>
-<div class="prose">
-  <p><span class="num">{len(by)}</span> of Texas's <span class="num">{tx["counties"]}</span>
-  counties are named in the record. A further <span class="num">{len(statewide)}</span>
-  decisions apply statewide. <strong>Click a lit county to see what it holds.</strong></p>
-  <p class="gap"><strong>A county with no entry is not a county where nothing is happening.</strong>
-  It is a county where nothing has yet been found in a primary source. Roughly half of the data
-  centres planned in Texas sit in unincorporated land, where there is no zoning file to read.</p>
-</div>
-{texas_map.render(lit=set(by), links=county_links(items, today, 1))}
-<table class="tally"><thead><tr><th>County</th><th class="n">Items</th><th>Topics</th></tr></thead>
-<tbody>{rows}</tbody></table>
-
-<h2>By metropolitan area</h2>
-<div class="prose">
-  <p class="gap"><strong>Half of Texas is in no metro, and it is not the empty half.</strong>
-  Of the state's <span class="num">{tx["counties"]}</span> counties,
-  <span class="num">{tx["outside_any_metro"]}</span> sit outside every federal statistical
-  area, and that is where much of the physical buildout is going up. The county table above is
-  the complete answer. This one groups it for a reader who thinks in cities.</p>
-</div>
-<table class="tally"><thead><tr><th>Area</th><th class="n">Items</th><th class="n">Counties</th>
-<th>Kind</th></tr></thead><tbody>{mrows}</tbody></table>
-"""
-    return page(title=f"By county · {SITE_NAME}", depth=1, active="counties/",
-                desc="Which Texas counties and metros appear in the record of AI decisions.",
-                body=body, today=today, canonical="counties/")
-
-
-# ---------------------------------------------------------------------------- places
-# PER-CITY VIEWS, AND WHY THERE ARE TWO KINDS OF PAGE.
-#
-# A reader wants to know what this record says about where they live, and for most Texans
-# that is a metro. For a great many of them it is not: 121 of the state's 254 counties are
-# in NO statistical area, and they are not empty quarters. The one substantial item in this
-# record touches 22 counties, 13 of which are in no metro at all, Shackelford among them,
-# which is where the Vantage site is.
-#
-# So a metro page is built where the counties resolve to one, and a COUNTY page is built for
-# every touched county that does not. Nothing falls between the two, and the number of
-# counties outside any metro is published on the index rather than quietly absorbed.
 def _place_slug(name: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
 
@@ -1066,9 +1035,9 @@ def place_page(place: dict, items: list, today: str) -> str:
 {texas_map.render(lit=lit, inset=True)}
 <table><thead><tr><th>Item</th><th>Topic</th><th>Status</th></tr></thead>
 <tbody>{rows}</tbody></table>
-<p class="prose"><a href="../../counties/">All counties and areas</a></p>
+<p class="prose"><a href="../../record/">The whole record</a></p>
 """
-    return page(title=f"{head} · {SITE_NAME}", depth=2, active="counties/",
+    return page(title=f"{head} · {SITE_NAME}", depth=2, active="record/",
                 desc=f"What the record of Texas AI decisions says about {head}.",
                 body=body, today=today, canonical=f"place/{place['id']}/")
 
@@ -1201,8 +1170,6 @@ def ask_box(items: list, today: str) -> str:
     <div class="chips" data-voice="reader">{chips}</div>
     <div class="answer" hidden></div>
   </div>
-  <p class="askfoot">Answered in your browser from an index on this page. Nothing you type is
-  sent anywhere.</p>
 </section>
 
 <script>window.__ASK_INDEX__={json.dumps(idx, separators=(",", ":"))};
@@ -1248,136 +1215,226 @@ def water_page(today: str) -> str:
                 }])
 
 
+# The contact form posts to FormSubmit, because a Pages site has no backend. The action is
+# FormSubmit's opaque alias for the docket mailbox named in CLAUDE.md, which keeps the raw
+# address out of the page source. It is the SAME alias the sibling product uses, because it
+# is the same mailbox and it is already activated. `_subject` tells the two apart in the
+# inbox. The domain is deliberately not spelled here: the residue check reads this file.
+FORM_ACTION = "https://formsubmit.co/228f72bce4f9b0e50b49d8d501374771"
+
+
 def services_page(items: list, today: str) -> str:
     """The commercial wing, argued from the record rather than from adjectives.
 
     THE DOCKET IS THE PORTFOLIO. Every consulting page in this category says the same three
-    things about rigour, and none of them can be checked. This one points at a working system
-    a reader is already looking at: the counts below are computed from the live record at build
-    time, so the page cannot claim more than the machine actually does.
+    things about rigour and none of them can be checked. This one points at a working system
+    the reader is already looking at, and the counts are computed from the live record at
+    build time, so the page can't claim more than the machine does.
 
-    That constraint is the whole design. If the record shrinks, this page says something
-    smaller. There is no set of adjectives that can outrun it.
+    WRITTEN IN THE SECOND PERSON, which the house rule forces and the copy is better for. "No
+    first person in published copy" rules out the whole vocabulary this page would otherwise
+    reach for, and what is left is the reader and what they get, which is what a services page
+    should have been about anyway.
+
+    SHORT ON PURPOSE. The version this replaced was a table of docket statistics with no offer
+    on it, and the version before that explained the philosophy at length. A page that has to
+    be read twice to find the price is not a page anybody buys from.
     """
     proj = dk.project(items, today)
-    counts = proj["counts"]
-    claims = sum(len(i.get("claims") or []) for i in items)
-    counties = len({c for i in items for c in (i.get("geography") or {}).get("counties") or []})
-    primary = sum(1 for i in items for c in (i.get("claims") or [])
-                  if str(c.get("source_type", "")).startswith("primary"))
+    c = proj["counts"]
+    n_topics = len(c["by_topic"])
+    stats = "".join(
+        f'<div class="stat"><span class="n{" hot" if hot else ""}">{n}</span>'
+        f'<span class="l">{e(label)}</span></div>'
+        for n, label, hot in (
+            (c["items"], "Decisions tracked", False),
+            (c["claims"], "Sources quoted", False),
+            (c["counties_touched"], "Counties covered", False),
+            (n_topics, "Beats watched daily", True),
+        ))
+
+    caps = "".join(
+        f'<div class="cap"><span class="k">{k}</span><h3>{h}</h3><p>{t}</p></div>'
+        for k, h, t in (
+            ("Answer", "Voice and chat that never sleeps",
+             "Every call picked up. Every job booked. 2am in February and through the "
+             "August rush."),
+            ("Retrieve", "Assistants that know your files",
+             "Twenty years of contracts and permits. Answers with the source attached."),
+            ("Automate", "Workflows that run themselves",
+             "Invoicing and scheduling. Data entry and reporting. The busywork moves itself."),
+            ("Draft", "The paperwork engine",
+             "Proposals and bids drafted in hours. Permits and filings too. Texas runs on "
+             "paperwork."),
+            ("Employ", "Digital employees",
+             "The hire you couldn't make. A named agent with a real job description. On shift "
+             "around the clock."),
+            ("Connect", "The whole back office",
+             "Connected agents running your operation together. Wired into the tools you "
+             "already pay for."),
+        ))
+
+    offers = "".join(
+        f'<div class="offer{" lead" if lead else ""}">'
+        f'<span class="tag">{e(when)}</span>'
+        f'<h3>{h}</h3><p>{t}</p>'
+        f'<p class="terms">{terms}</p></div>'
+        for h, when, t, terms, lead in (
+            ("The Field Study", "1 to 2 weeks",
+             "Your operation studied from the inside and your competitors from the outside. "
+             "Then a ranked map of where AI actually pays for you. Most firms sell a slide "
+             "deck here. You get a working prototype of the best bet.",
+             "That answer comes back even if AI doesn't pay in your business yet.", True),
+            ("The Build", "Live inside a month, typically",
+             "Whatever the Field Study surfaces, or what you already know you want. Shipped "
+             "to production behind real quality gates. Improved on a schedule after that.",
+             "Every build ends with something you own.", False),
+            ("The Partnership", "Ongoing",
+             "An embedded engineer and standing AI leadership. Built for owners who want to "
+             "win the AI front of their industry without becoming engineers.",
+             "On the hook for the outcome, not the deliverable.", False),
+        ))
+
     body = f"""
-<h1>Services</h1>
-<div class="prose">
-  <p class="lede">This site is the sample of work. Everything below is measured from the record
-  it publishes, at the moment this page was built.</p>
-</div>
-
-<table class="figures">
-<thead><tr><th>What the machine does</th><th class="n">Today</th></tr></thead>
-<tbody>
-<tr><td>Decisions tracked, each re-verified on a schedule</td>
-    <td class="n num">{len(items)}</td></tr>
-<tr><td>Facts, each carrying the source's own words verbatim</td>
-    <td class="n num">{claims}</td></tr>
-<tr><td>...of those, drawn from a primary document</td>
-    <td class="n num">{primary}</td></tr>
-<tr><td>Counties with something in the record</td><td class="n num">{counties}</td></tr>
-<tr><td>Topics under continuous watch</td>
-    <td class="n num">{len(counts["by_topic"])}</td></tr>
-</tbody>
-</table>
-
-<div class="prose">
-  <h2>What is actually being demonstrated</h2>
-  <p>Three things, and each one is checkable on this site right now rather than asserted.</p>
-
-  <h3>Numbers that can be recomputed</h3>
-  <p>Every figure published here is produced by code, from data. A build gate fails on any
-  numeral that can't be traced to a quoted source or a computation. So the table above changes
-  when the record does, and no redesign can inflate it.</p>
-
-  <h3>A record that maintains itself and says when it can't</h3>
-  <p>Items are re-verified on a schedule, and one that goes stale past its limit fails a gate
-  rather than sitting quietly. Where something is genuinely not public, the size of the gap is
-  published instead of an estimate.</p>
-
-  <h3>Instruments nobody else is keeping</h3>
-  <p>The <a href="../grid/">grid watch</a> tracks the load factor, the shape of Texas
-  demand rather than its peak. That is where large constant load actually shows up. The
-  <a href="../water/">water watch</a> puts reservoir storage beside it by metro. Both series
-  started because nobody was keeping them, and a day not collected is gone for good.</p>
-
-  <h2>Where this is useful</h2>
-  <ul>
-    <li><strong>Siting and interconnection.</strong> What has been decided near a site and by
-    which body. Whether a comment window is still open.</li>
-    <li><strong>Regulatory watch.</strong> A standing record of an agency's decisions with the
-    filings attached, rather than a clipping service.</li>
-    <li><strong>Diligence.</strong> The physical account behind a project. The grid it lands
-    on, the water near it and what the public file actually says.</li>
-    <li><strong>Building one of these.</strong> The machinery is the product as much as the
-    record is. Gates that self-test, output proven to be a pure function of its inputs and
-    numbers a machine is structurally unable to invent.</li>
-  </ul>
-
-  <h2>How to start</h2>
-  <p>Bring the question as it actually is, with the county or the docket number attached if
-  there is one. A useful first reply is usually a short written answer with the filings behind
-  it, not a proposal.</p>
-  <div class="gap">
-    <p><strong>The contact address is not published yet.</strong> A Texas record should be
-    reachable at a Texas address, and that domain is not registered. Publishing a borrowed one
-    in the meantime would be a small dishonesty on a page whose entire argument is that the
-    small ones are what matter. It goes up the day the domain does.</p>
+<section class="hero rise">
+  <h1>Texas is where it gets <em>built</em>.</h1>
+  <p class="herolede">The data centres. The load. The water. It is all landing here first.
+  The businesses that move first will own the decade.</p>
+  <div class="ctarow">
+    <a class="cta solid" href="#start">Start here</a>
+    <a class="cta ghost" href="#ways">See the three ways in</a>
   </div>
+</section>
 
-  <div class="gap">
-    <p><strong>What won't happen.</strong> No prediction about whether the grid holds. No
-    verdict on a project. No number that isn't computed from something fetched. Those limits
-    are the reason the rest is worth anything, and they don't move for a client.</p>
+<section data-reveal>
+  <h2>The proof is the site you are on</h2>
+  <p class="sub">Every figure below is counted from the live record at the moment this page was
+  built. It moves when the work does.</p>
+  <div class="statrow">{stats}</div>
+</section>
+
+<section data-reveal>
+  <h2>What gets built</h2>
+  <p class="sub">If the work happens on a screen it can probably be built. Bring a specific ask
+  or let the Field Study find the highest payers.</p>
+  <div class="capgrid">{caps}</div>
+</section>
+
+<section id="ways" data-reveal>
+  <h2>Three ways in</h2>
+  <p class="sub">Every engagement ends with something you own. Scope and price are set on a
+  call against your numbers.</p>
+  <div class="offers">{offers}</div>
+</section>
+
+<section data-reveal>
+  <h2>The shop runs on what it sells</h2>
+  <p class="sub">You are not the test case.</p>
+  <div class="capgrid">
+    <div class="cap"><span class="k">In public</span><h3>This site ships itself</h3>
+      <p>The record, the deck and the video all ship from an autonomous studio. You are
+      reading the proof of work.</p></div>
+    <div class="cap"><span class="k">In production</span><h3>Systems running now</h3>
+      <p>Content engines and event pipelines. Multi-agent systems too. All of it behind
+      quality gates and approval steps.</p></div>
+    <div class="cap"><span class="k">Self improving</span><h3>The machine upgrades itself</h3>
+      <p>After every run the studio studies what hurt and ships fixes to its own machinery.
+      What you own gets the same habit.</p></div>
   </div>
-</div>
+</section>
+
+<section id="start" data-reveal>
+  <h2>Start here</h2>
+  <p class="sub">Say what the work is. A reply comes inside one business day.</p>
+  <form class="leadform" action="{FORM_ACTION}" method="POST">
+    <input type="hidden" name="_subject" value="Texas AI Docket, services enquiry">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+    <label class="vh" for="lf-name">Your name</label>
+    <input id="lf-name" name="name" type="text" placeholder="Your name" required>
+    <label class="vh" for="lf-co">Company</label>
+    <input id="lf-co" name="company" type="text" placeholder="Company">
+    <label class="vh" for="lf-mail">Email</label>
+    <input id="lf-mail" name="email" type="email" placeholder="Email" required>
+    <label class="vh" for="lf-msg">What is the work</label>
+    <textarea id="lf-msg" name="message" rows="4" required
+      placeholder="What is the work and what would a win look like"></textarea>
+    <button class="cta solid" type="submit">Send it</button>
+  </form>
+</section>
 """
-    return page(title=f"Working together · {SITE_NAME}", depth=1, active="services/",
-                desc="What the machine does, measured from the record it publishes.",
+    return page(title=f"Services · {SITE_NAME}", depth=1, active="services/",
+                desc="AI systems built for Texas businesses by the desk that publishes the "
+                     "Texas AI Docket. Three ways in, priced on a call.",
                 body=body, today=today, canonical="services/")
 
 
 def about_page(today: str) -> str:
+    """Who this is and what it is for, in the second person the house rule forces.
+
+    MODELLED ON THE SIBLING PRODUCT'S SHAPE and not its voice. That page is written in the
+    first person, which this one can't use, so every commitment is stated as what a client
+    gets rather than as what the desk promises. It reads harder that way, which is the right
+    direction for a page whose whole job is telling somebody what they can hold you to.
+    """
     body = """
-<h1>About</h1>
-<div class="prose">
-  <p>The Texas AI Docket is a public record of decisions about artificial intelligence in
-  Texas. Data centres. The electric grid. State policy. Land, water and permitting.</p>
+<section class="hero rise">
+  <h1>Built for the <em>Lone Star State</em>.</h1>
+  <p class="herolede">Texas AI Docket is a daily publication about artificial intelligence in
+  Texas and an AI studio that builds for Texas businesses. One desk, two jobs.</p>
+</section>
 
-  <h2>Numbers are computed, never generated</h2>
-  <p>Every numeral published here is produced by code, from data. Each one can be recomputed from the
-  same inputs. No number is typed by a person. This is the reason to believe a figure here over a
-  figure somewhere else, and it is enforced by a build gate rather than by good intentions. A
-  numeral that can't be traced to a quoted source or to a computation fails the build.</p>
+<div class="prose" data-reveal>
+  <h2>What this is</h2>
+  <p>AI is arriving in Texas the way oil and rail once did. As land. As load. As water
+  rights. As filings nobody reads until the concrete is poured. The docket tracks those
+  decisions one at a time with the source attached, so a Texan can see it coming.</p>
+  <p>The same desk runs a working AI studio. Agentic systems and digital employees.
+  Paperwork engines and assistants trained on a company's own files. That work lives on the
+  <a href="../services/">services page</a>. Writing the beat every morning is exactly why the
+  studio knows what actually pays.</p>
 
-  <h2>Where measurement stops, the page says so</h2>
-  <p>Some things are genuinely not public. Per-site large load metering is confidential. Roughly
-  half the data centres planned in Texas sit in unincorporated land with no zoning file. Where
-  that is true this record publishes the size of the gap rather than an estimate dressed as a
-  measurement.</p>
+  <h2>Who runs it</h2>
+  <p>Founded and run by <a href="https://www.linkedin.com/in/talonsturgill">Talon
+  Sturgill</a>, also lead AI engineer for a large lab serving enterprise clients. That
+  expertise gets pointed at Texas businesses who rarely get access to it.</p>
 
-  <h2>What this record will never do</h2>
-  <p>It will not tell you whether the grid will hold. It will not predict an outcome or publish a
-  verdict on a project. It publishes what was decided and who decided it. It publishes the
-  deadline, and whether the public still has a way in.</p>
+  <h2>How the work gets verified</h2>
+  <p>Every fact carries a claim id and traces to a document that was actually fetched. At
+  least one source on every item has to be the filing or the statute or the agency itself
+  rather than a story about it. Nothing enters <a href="../record/">the record</a> without
+  that. An item that can't be re-verified says so on its own page.</p>
+  <p>Every numeral is produced by code from data. A build gate fails on any figure that
+  can't be traced to a computation. Where something is genuinely not public, the size of the
+  gap gets published instead of an estimate.</p>
 
-  <h2>Corrections</h2>
-  <p>When something here has been wrong, the correction says what was wrong and for how long. It says
-  where the right answer was checked. Corrections stay on the page.</p>
+  <h2>What you can hold this desk to</h2>
+  <p><strong>Your outcome outranks the invoice.</strong> The recommendation is what this desk
+  would do in your seat with its own money. Sometimes that is a smaller build than you asked
+  about. Sometimes it is the honest no. You get the same answer either way.</p>
+  <p><strong>Plain talk both directions.</strong> Bad news arrives early and in plain words.
+  No soft version. No jargon fog. No risk buried in an appendix. Same expected back. A client
+  who says it straight gets problems fixed while they are still small.</p>
+  <p><strong>The build gets guarded even from the brief.</strong> Most AI projects die of
+  enthusiasm. The wrong first system built too big on data that was not ready. Watching that
+  happen across an industry every morning is how you learn where the road washes out. When the
+  exciting ask and the right build disagree, you will hear about it. That judgement is most of
+  what you are paying for.</p>
+  <p><strong>Nobody chases this desk.</strong> A note gets a reply inside one business day and
+  usually sooner. A person reads everything and the machines are on shift around the clock.</p>
+
+  <h2>Where to find it</h2>
+  <p>The record, the <a href="../articles/">articles</a> and the
+  <a href="../videos/">videos</a> live here. For the studio, start at
+  <a href="../services/">services</a>.</p>
 </div>
 """
     return page(title=f"About · {SITE_NAME}", depth=1, active="about/",
-                desc="What the Texas AI Docket is, how its numbers are produced, and its limits.",
+                desc="Texas AI Docket is a daily publication on AI in Texas and an AI studio "
+                     "building for Texas businesses.",
                 body=body, today=today, canonical="about/")
 
 
-# --------------------------------------------------------------------------- machine readers
 def item_markdown(it: dict, today: str) -> str:
     """A clean Markdown twin of every item.
 
@@ -1778,7 +1835,6 @@ def build(out: Path, today: str) -> dict:
     for t in sorted({i["topic"] for i in items}):
         w(f"topic/{t}/index.html", topic_page(t, items, today),
           listed([i for i in items if i["topic"] == t]))
-    w("counties/index.html", counties_page(items, today))
     w("articles/index.html", articles_page(runs, today))
     w("videos/index.html", videos_page(today))
     # THE FEED ITSELF IS EXTERNAL DATA and is copied through byte for byte. It is written by
@@ -1945,19 +2001,19 @@ def self_test() -> int:
         # once with a number nothing computed, and once with a number that IS computed on
         # a DIFFERENT page, which is the only way to catch a set that has quietly widened.
         import contextlib as _cl, io as _io
-        real_places, real_home = counties_page, home
+        real_docket, real_home = docket_index, home
 
         def planted(fn, find, ins):
             return lambda *a, **k: fn(*a, **k).replace(find, find + ins, 1)
 
         for label, name, real, ins, want in (
-                ("a figure nothing computed", "counties_page", real_places,
+                ("a figure nothing computed", "docket_index", real_docket,
                  "<p>Roughly 8,927 megawatts.</p>", "8,927"),
-                ("a figure computed on another page", "counties_page", real_places,
+                ("a figure computed on another page", "docket_index", real_docket,
                  "<p>Energy served was 1,743,297 MWh.</p>", "1,743,297"),
                 ("a figure planted on the front page", "home", real_home,
                  "<p>Some 41,203 filings.</p>", "41,203")):
-            anchor = "<h1>By county</h1>" if name == "counties_page" else "</h1>"
+            anchor = "<h1>The record</h1>" if name == "docket_index" else "</h1>"
             globals()[name] = planted(real, anchor, ins)
             err, fired = _io.StringIO(), False
             try:

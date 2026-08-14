@@ -480,7 +480,7 @@ body::after {{ content:""; position:fixed; inset:0; pointer-events:none; z-index
    what made the page pink, and that is a fact about blending rather than about opacity, so the
    warm layers are only faster. The cool ones deepen rather than shift hue, so they can carry the
    visible weight. The rendered check samples the ground and would say so either way. */
-   THE WARM ONES SIT LOW AND THE HIGH ONE IS COOL, which is both the physics and the fix. At
+/* THE WARM ONES SIT LOW AND THE HIGH ONE IS COOL, which is both the physics and the fix. At
    dusk the lit band is at the HORIZON and the sky overhead has already gone. The first version
    had the warm veils at the top of the page, so ember and gold were screening over the whole
    ground at once, and warm light screened over a violet ground is the definition of mauve. The
@@ -1150,6 +1150,54 @@ caption {{ caption-side:bottom; text-align:left; padding-top:.75rem; font-size:v
 /* ---- the ask box -------------------------------------------------------- */
 /* Answered in the reader's browser. The styling says "a tool", not "a chatbot": no avatar, no
    typing dots, no conversation. A question and what the record says. */
+/* A FOLD, for the complete answer a reader did not ask for yet. `details` needs no script,
+   is keyboard and screen reader native, and prints open. */
+.fold {{ margin:1.25rem 0 0; border-top:var(--hair) solid var(--rule);
+  border-bottom:var(--hair) solid var(--rule); }}
+.fold > summary {{ cursor:pointer; padding:.8rem 0; font-family:var(--mono);
+  font-size:var(--s-2); letter-spacing:.08em; text-transform:uppercase;
+  color:var(--ink-mute); }}
+.fold > summary:hover {{ color:var(--ink-bright); }}
+.fold[open] > summary {{ color:var(--ink-bright); }}
+.fold h3 {{ margin:1.4rem 0 0; font-size:var(--s0); }}
+.fold table {{ margin-bottom:1rem; }}
+@media print {{ .fold {{ }} .fold > summary {{ display:none; }} }}
+
+/* ---- services: the capability grid, the offers and the form ----------------- */
+.capgrid {{ display:grid; gap:var(--gap); margin:1.5rem 0 0;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr)); }}
+/* SIX CARDS WANT THREE AND THREE. Left to auto-fit at reading width they land four and two,
+   which reads as a grid that ran out rather than one that was planned. */
+@media (min-width:58rem) {{ .capgrid {{ grid-template-columns:repeat(3,1fr); }} }}
+.cap {{ border-top:2px solid var(--rule-strong); padding-top:.9rem; }}
+.cap .k {{ display:block; font-family:var(--mono); font-size:var(--s-2);
+  letter-spacing:.1em; text-transform:uppercase; color:var(--accent); }}
+.cap h3 {{ margin:.35rem 0 .35rem; font-size:var(--s0); line-height:1.25; }}
+.cap p {{ margin:0; color:var(--ink-mute); font-size:var(--s-1); }}
+
+/* THE OFFERS CARRY THE WEIGHT OF THE PAGE, so they are the only cards on the site with a
+   filled ground. The first one leads because a reader choosing between three options mostly
+   wants to be told where to start. */
+.offers {{ display:grid; gap:var(--gap); margin:1.5rem 0 0;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr)); }}
+.offer {{ border:var(--hair) solid var(--rule-strong); border-radius:var(--radius);
+  background:var(--surface); padding:1.15rem var(--gap) 1.25rem; }}
+.offer.lead {{ border-color:var(--accent); background:var(--panel); }}
+.offer h3 {{ margin:.5rem 0 .4rem; font-size:var(--s1); line-height:1.2; }}
+.offer p {{ margin:0 0 .6rem; color:var(--ink-mute); }}
+.offer .terms {{ margin:0; font-size:var(--s-1); color:var(--ink-bright); }}
+.offer.lead .terms {{ color:var(--accent); }}
+
+/* One column, generous targets. A form on a services page is the only place on this site a
+   reader types anything that leaves the machine, so it gets room. */
+.leadform {{ display:grid; gap:.7rem; margin:1.25rem 0 0; max-width:34rem; }}
+.leadform input, .leadform textarea {{ font:400 var(--s0)/1.4 var(--body);
+  padding:.75em .9em; color:var(--ink-bright); background:var(--panel);
+  border:var(--hair) solid var(--rule-strong); border-radius:var(--radius); width:100%; }}
+.leadform input:focus-visible, .leadform textarea:focus-visible {{
+  border-color:var(--accent); outline:2px solid var(--accent); outline-offset:1px; }}
+.leadform button {{ justify-self:start; cursor:pointer; border:0; }}
+
 /* ---- published work: the article and video feeds --------------------------- */
 /* TWO COLUMNS AT READING WIDTH, ONE ON A PHONE, and the image leads. A carousel cover and a
    video poster are both 4:5 portrait, so the same grid holds either without a second rule. */

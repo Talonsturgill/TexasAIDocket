@@ -112,9 +112,19 @@ const ok = (label, cond, extra = '') => {
   if (!cond) failures++;
 };
 
-const browser = await chromium.launch({
-  executablePath: process.env.CHROME_PATH || undefined,
-});
+/* THE SAME BROWSER RESOLUTION EVERY OTHER SUITE HERE USES, and this file did not have it.
+   It launched with `CHROME_PATH || undefined`, which on a machine with a preinstalled
+   chromium and no playwright download means playwright hunts for its own copy, does not find
+   it, and throws before a single pixel is sampled. So the one test written to catch a wrong
+   background COULD NOT RUN AT ALL in this environment, and nothing said so: it is not in CI
+   and a person running it saw a stack trace rather than a red check.
+   That is the fault this whole file exists to warn about, wearing a different hat. A test
+   that cannot execute is indistinguishable from a test that passes, right up until somebody
+   asks whether anyone has actually looked. */
+const PREINSTALLED = process.env.CHROME_PATH || process.env.PLAYWRIGHT_CHROMIUM
+  || '/opt/pw-browsers/chromium';
+const browser = await chromium.launch(
+  existsSync(PREINSTALLED) ? { executablePath: PREINSTALLED } : {});
 const ctx = await browser.newContext({
   colorScheme: 'dark', viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1,
 });
@@ -407,7 +417,55 @@ ok('...and no page scrolls sideways',
 ok('...and the mark appears on the front page only, and not on a phone',
    strayMark.length === 0, `${strayMark.length}: ${strayMark.slice(0, 4).join(', ')}`);
 
+/* THE WHOLE GROUND, ON A GRID, NOT FOUR POINTS SOMEBODY CHOSE.
+ *
+ * Everything above samples named coordinates. That is precise and it is exactly how this file
+ * missed the worst atmosphere bug the site has had: a comment in theme.py lost its opening
+ * slash-star, CSS error recovery swallowed the whole `.sky .veil` rule, and the three warm
+ * veils rendered with no position, no blur and no blend at all. Instead of soft light at the
+ * horizon they were three hard opaque blobs stacked down the page. Sampled on a grid the page
+ * had TWENTY POINTS over its own 7.5 percent lightness ceiling, peaking at 16.7 percent, in
+ * the pink band this file is named after. Every hand-picked point missed them.
+ *
+ * So the ground is swept. The star's own glow is excluded by its bounding box, because a drawn
+ * mark is supposed to be bright and is not ground.
+ */
+{
+  // BACK TO THE FRONT PAGE FIRST. The sweep above walks all 57 pages, so `p` is parked on
+  // whatever it looked at last. Sampling there measured content rather than ground and
+  // reported 304 breaches, which is a broken check rather than a broken page.
+  await p.goto(page_url);
+  await p.waitForTimeout(700);
+  const grid = [];
+  for (let x = 20; x < 1440; x += 40) for (let y = 20; y < 900; y += 40) grid.push([x, y]);
+  const bare = await p.evaluate((g) => g.filter(([x, y]) => {
+    const star = document.querySelector('.sky .lonestar');
+    if (star) {
+      const r = star.getBoundingClientRect();
+      if (x >= r.left - 70 && x <= r.right + 70 && y >= r.top - 70 && y <= r.bottom + 70)
+        return false;
+    }
+    const el = document.elementFromPoint(x, y);
+    if (!el) return true;
+    const t = el.tagName.toLowerCase();
+    return t === 'body' || t === 'html' || el.classList.contains('sky') || el.closest('.sky');
+  }), grid);
+  const im = decodePNG(await p.screenshot());
+  const bright = [], pinkish = [];
+  for (const [x, y] of bare) {
+    const [h, s, l] = hsl(px(im, x, y));
+    if (l > MAX_LIGHT) bright.push(`(${x},${y}) ${(l * 100).toFixed(1)}%`);
+    if (h >= BANNED_HUE[0] && h <= BANNED_HUE[1] && s > MAX_BANNED_SAT)
+      pinkish.push(`(${x},${y}) hue ${h.toFixed(0)} sat ${(s * 100).toFixed(0)}%`);
+  }
+  ok(`the swept ground stays night (${bare.length} points)`,
+     bright.length <= 4, `${bright.length} over ceiling: ${bright.slice(0, 4).join(' ')}`);
+  ok('...and the swept ground is not pink',
+     pinkish.length <= 16, `${pinkish.length} pink: ${pinkish.slice(0, 3).join(' ')}`);
+}
+
 await browser.close();
+
 
 if (failures) {
   console.error(`\npage_ground: ${failures} FAILED`);
