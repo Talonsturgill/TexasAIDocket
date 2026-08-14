@@ -88,11 +88,6 @@ radial-gradient(1.1px 1.1px at 71% 46%,rgba(244,238,225,0.32),transparent 60%); 
 .sky .shimmer.s2 { filter:blur(30px); opacity:.6; background-size:290% 100%;
   animation-duration:38s; animation-direction:alternate-reverse; }
 @keyframes shimmer { from { background-position:0% 0; } to { background-position:100% 0; } }
-   THE WARM ONES SIT LOW AND THE HIGH ONE IS COOL, which is both the physics and the fix. At
-   dusk the lit band is at the HORIZON and the sky overhead has already gone. The first version
-   had the warm veils at the top of the page, so ember and gold were screening over the whole
-   ground at once, and warm light screened over a violet ground is the definition of mauve. The
-   page read pink. Warmth belongs where the sun went. */
 .sky .veil { position:absolute; border-radius:50%; filter:blur(84px);
   mix-blend-mode:screen; opacity:.34; }
 .sky .v1 { width:64vw; height:34vh; left:30vw; bottom:calc(var(--sky-fade) + 2vh);
@@ -425,6 +420,40 @@ table.metros th[scope="row"] { font-weight:400; color:var(--ink-bright);
   border-bottom-color:var(--rule); }
 caption { caption-side:bottom; text-align:left; padding-top:.75rem; font-size:var(--s-1);
   color:var(--ink-mute); max-width:var(--measure); }
+.fold { margin:1.25rem 0 0; border-top:var(--hair) solid var(--rule);
+  border-bottom:var(--hair) solid var(--rule); }
+.fold > summary { cursor:pointer; padding:.8rem 0; font-family:var(--mono);
+  font-size:var(--s-2); letter-spacing:.08em; text-transform:uppercase;
+  color:var(--ink-mute); }
+.fold > summary:hover { color:var(--ink-bright); }
+.fold[open] > summary { color:var(--ink-bright); }
+.fold h3 { margin:1.4rem 0 0; font-size:var(--s0); }
+.fold table { margin-bottom:1rem; }
+@media print { .fold { } .fold > summary { display:none; } }
+.capgrid { display:grid; gap:var(--gap); margin:1.5rem 0 0;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr)); }
+@media (min-width:58rem) { .capgrid { grid-template-columns:repeat(3,1fr); } }
+.cap { border-top:2px solid var(--rule-strong); padding-top:.9rem; }
+.cap .k { display:block; font-family:var(--mono); font-size:var(--s-2);
+  letter-spacing:.1em; text-transform:uppercase; color:var(--accent); }
+.cap h3 { margin:.35rem 0 .35rem; font-size:var(--s0); line-height:1.25; }
+.cap p { margin:0; color:var(--ink-mute); font-size:var(--s-1); }
+.offers { display:grid; gap:var(--gap); margin:1.5rem 0 0;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr)); }
+.offer { border:var(--hair) solid var(--rule-strong); border-radius:var(--radius);
+  background:var(--surface); padding:1.15rem var(--gap) 1.25rem; }
+.offer.lead { border-color:var(--accent); background:var(--panel); }
+.offer h3 { margin:.5rem 0 .4rem; font-size:var(--s1); line-height:1.2; }
+.offer p { margin:0 0 .6rem; color:var(--ink-mute); }
+.offer .terms { margin:0; font-size:var(--s-1); color:var(--ink-bright); }
+.offer.lead .terms { color:var(--accent); }
+.leadform { display:grid; gap:.7rem; margin:1.25rem 0 0; max-width:34rem; }
+.leadform input, .leadform textarea { font:400 var(--s0)/1.4 var(--body);
+  padding:.75em .9em; color:var(--ink-bright); background:var(--panel);
+  border:var(--hair) solid var(--rule-strong); border-radius:var(--radius); width:100%; }
+.leadform input:focus-visible, .leadform textarea:focus-visible {
+  border-color:var(--accent); outline:2px solid var(--accent); outline-offset:1px; }
+.leadform button { justify-self:start; cursor:pointer; border:0; }
 .deckgrid { display:grid; gap:var(--gap); margin:1.75rem 0 0;
   grid-template-columns:repeat(auto-fill,minmax(min(100%,17rem),1fr)); }
 .deckgrid .deck, .vcard { display:block; margin:0; text-decoration:none; color:inherit;

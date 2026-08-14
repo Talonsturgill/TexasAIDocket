@@ -49,10 +49,10 @@ READINGS = REPO_ROOT / "ledger" / "gridwatch" / "water.jsonl"
 # that is neither; the docket gate has always worked this way. Every entry names the source it
 # is quoted from, and there is deliberately no way to add one without writing that down, which
 # is what keeps this from becoming a hole in the gate.
-QUOTED = {
-    "1933": "TWDB publishes daily reservoir conservation storage beginning 1933-07-01, "
-            "which is the archive this page explains it does not take.",
-}
+# Empty, and that is the wanted state. The one entry here existed for a paragraph explaining
+# why no historical percentile is printed, and that paragraph came off the page. An
+# authorisation outliving the copy it was granted for is how an allowlist rots.
+QUOTED: dict[str, str] = {}
 
 # Metro slugs come from TWDB's own municipal tags. Their display names are ours, and they are
 # labels rather than data: no numeral lives in this table, so nothing here can smuggle a figure
@@ -404,12 +404,6 @@ def body(records: list[dict], today: str) -> str:
     empty, <strong class="num">{af(len(L['excluded_no_pool']))}</strong> of them. They stand dry by
     design and would otherwise drag the state total down for doing their job.</p>
   </div>
-  <p><strong>There is no historical percentile on this page, and the reason is worth stating.
-  </strong> The state publishes daily reservoir figures back to 1933, which would let today be
-  ranked against the same date in every prior year. Those files are CSVs, and the publisher's
-  robots.txt asks crawlers not to take CSVs. So they are not taken, no percentile is printed,
-  and this record's own history begins the day it began. The comparison exists. Taking the
-  file it lives in is the one thing the publisher has asked crawlers not to do.</p>
   <p>The record holds <strong class="num">{af(f['days_held'])}</strong> day(s) so far.
   <a href="../waterwatch.json">The data is open</a>, per reservoir, so every roll up above can
   be recomputed without refetching anything.</p>
@@ -494,10 +488,8 @@ def self_test() -> int:
           "Elephant Butte" in b and "New Mexico" in b)
     check("El Paso is not given a bar", "el_paso" not in b)
 
-    check("the missing percentile is explained, not omitted quietly",
-          "robots.txt" in b and "1933" in b)
-    check("...and 1933 is authorised, since it names a real published start",
-          "1933" not in lint(b, f))
+    check("no orphaned quoted numeral survives the copy it was admitted for",
+          all(k in b for k in QUOTED), str([k for k in QUOTED if k not in b]))
 
     # THE DAY OVER DAY MOVE.
     two = [rec("2026-08-10", storage=24329431.0), rec("2026-08-11")]
