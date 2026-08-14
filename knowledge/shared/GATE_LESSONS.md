@@ -551,6 +551,35 @@ the thing that has a right answer: `responsive.mjs` now checks that the nav is O
 width AND that the last link can be scrolled into view, together. Either alone is passable by a
 fault, since a row that never wraps is trivially achieved by clipping four sections away.
 
+## 28. A pass by half a unit is a coin flip, and the runner calls it
+
+`responsive.mjs` asserts that no chart label falls outside the drawing. It passed locally and
+failed in CI **on the same commit and the same bytes**: `320px cut -2,500`.
+
+Neither machine was wrong. The chart's left gutter was a constant of 108, correct when it was
+measured, and the residual strip's ceiling moves with the data. The day it reached 2,500 the
+negative label became six characters wanting 100.4 units of the 100 the gutter leaves. Under
+half a unit, decided by which fonts a machine happens to have installed. **The runner's fonts
+are what a reader with a web font still loading is looking at**, so the red result was the
+honest one and the green one was luck.
+
+Two things were wrong and only one of them was the number.
+
+**The gutter was typed, against labels that change daily.** It is computed now, from every
+string that actually gets drawn into it, which meant factoring the residual ceiling out so the
+gutter and the strip cannot disagree about how wide `-2,500` is. The advance-width estimate
+went from 0.62 to 0.66 for the same reason: 0.62 is about right for the face this site serves
+and is not a BOUND, and a layout bound has to hold for the fallback too.
+
+**The assertion had no margin.** "Not outside the box" is satisfied at 0.1 units of clearance,
+and 0.1 units is not a passing layout, it is an unresolved one. Labels now have to clear the
+drawing by 2 units. That change alone found a second thing: the `GW` caption was anchored flush
+at x=0, one antialiasing pixel from being clipped on any machine.
+
+**The general rule.** When a check is a geometric inequality, assert a margin, not the
+inequality. A tolerance of zero turns every rounding difference between two machines into a
+flapping test, and flapping tests get their failures explained away.
+
 ---
 
 ## The rule for setting a threshold

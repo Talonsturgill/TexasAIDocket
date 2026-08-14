@@ -251,11 +251,24 @@ check("every label on the load chart stays readable at every width",
 // as "500", because the part that fell off was "2,". A published figure showing a different
 // number from the one computed is the failure this project exists to prevent, and it shipped
 // behind a passing legibility test.
+// A HAIR OF CLEARANCE IS NOT CLEARANCE, and this check learned that the expensive way.
+//
+// It passed here and failed on the CI runner, on the same commit and the same bytes, with
+// "320px cut -2,500". Neither machine was wrong. The gutter was a constant of 108 measured
+// when the longest label was shorter, and the day the residual ceiling reached 2,500 the
+// negative label wanted 100.4 units of the 100 the gutter left. Under half a unit of overlap
+// decided by which fonts a machine happens to have, and the runner's are what a reader with a
+// web font still loading is looking at.
+//
+// So the tolerance runs the other way now. A label has to clear the drawing by MARGIN units,
+// not merely fail to be outside it, and the gutter is computed from the labels rather than
+// typed. A pass this close to the edge is a failure waiting for a different machine.
+const MARGIN = 2;
 const cut = [];
 for (const w of [280, 300, 320, 360, 375, 390, 414, 440, 480, 540, 600, 680, 768, 900, 1180]) {
   await pg.setViewportSize({ width: w, height: 900 });
   await pg.goto("file://" + path.join(SITE, "grid", "index.html"));
-  const r = await pg.evaluate(() => {
+  const r = await pg.evaluate((margin) => {
     const svg = document.querySelector("svg.loadshape");
     if (!svg) return null;
     const vb = svg.viewBox.baseVal;
@@ -263,8 +276,10 @@ for (const w of [280, 300, 320, 360, 375, 390, 414, 440, 480, 540, 600, 680, 768
     const out = [];
     for (const t of T) {
       const b = t.getBBox();
-      if (b.x < -0.5 || b.x + b.width > vb.width + 0.5 ||
-          b.y < -0.5 || b.y + b.height > vb.height + 0.5) out.push(`cut ${t.textContent}`);
+      if (b.x < margin || b.x + b.width > vb.width - margin ||
+          b.y < 0 || b.y + b.height > vb.height)
+        out.push(`cut ${t.textContent} (x ${b.x.toFixed(1)} to ` +
+                 `${(b.x + b.width).toFixed(1)} of ${vb.width})`);
     }
     for (let i = 0; i < T.length; i++) for (let j = i + 1; j < T.length; j++) {
       const a = T[i].getBBox(), c = T[j].getBBox();
@@ -273,10 +288,10 @@ for (const w of [280, 300, 320, 360, 375, 390, 414, 440, 480, 540, 600, 680, 768
         out.push(`${T[i].textContent} on ${T[j].textContent}`);
     }
     return out;
-  });
+  }, MARGIN);
   if (r && r.length) cut.push(`${w}px ${r[0]}`);
 }
-check("no chart label is cut by the drawing or laid on another",
+check(`every chart label clears the drawing by ${MARGIN} units and lands on no other`,
       cut.length === 0, cut.slice(0, 4).join(" | "));
 
 await browser.close();

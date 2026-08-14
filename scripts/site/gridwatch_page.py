@@ -118,6 +118,24 @@ def plural(n, one: str, many: str) -> str:
         return many
 
 
+def _residual_ceiling(load: list, fc: list) -> float | None:
+    """The residual strip's symmetric ceiling, or None when there is no strip to draw.
+
+    Factored out of the chart because the GUTTER has to know how wide "-2,500" is before the
+    strip is drawn, and the alternative is this arithmetic written twice, which is one place
+    for it to drift and produce a gutter sized for a label the chart does not print.
+    """
+    if not fc or len(fc) != len(load):
+        return None
+    errs = [fc[i] - load[i] for i in range(len(load))
+            if isinstance(fc[i], (int, float)) and isinstance(load[i], (int, float))]
+    if not errs:
+        return None
+    span = max(abs(v) for v in errs) or 1.0
+    # A round ceiling so the label is a number a reader can hold, and never zero.
+    return max(500.0, (int(span / 500) + 1) * 500.0)
+
+
 def n0(x) -> str | None:
     return None if x is None else f"{round(float(x)):,}"
 
@@ -291,12 +309,15 @@ def load_shape_svg(latest: dict) -> str:
     # At 16 the caption's baseline sat five units above the plot and the topmost axis number
     # sat four below it, which is fine at eleven point type and prints "GW" through "100" at
     # twenty seven.
-    w, pad_l, pad_t = 720.0, 108.0, 44.0
+    w, pad_t = 720.0, 44.0
     # The largest `.loadshape .ax` step in theme.py, in user units. If that step changes, this
     # changes with it, and the test catches the pair going out of step.
     ax_max_px = 27.0
-    # Mono advance width is close enough to 0.62em for a layout bound; the check is measured.
-    est = lambda s: 0.62 * ax_max_px * len(s)
+    # A MONO ADVANCE, ROUNDED UP RATHER THAN AVERAGED. This was 0.62, which is about right for
+    # the face this site serves and is not a bound: a fallback mono, or a face that has not
+    # swapped in yet, sets wider. 0.66 covers the common Linux fallbacks with room, and the
+    # cost of being generous is a few units of gutter nobody will notice.
+    est = lambda s: 0.66 * ax_max_px * len(s)
     # `gap` and `res_h` are sized on the same principle as the gutter. The residual strip
     # stacks three captions down the gutter, one at each end and the unit in the middle, so
     # the strip's HALF HEIGHT is the space between them. At 62 that was 31 units for a caption
@@ -307,6 +328,28 @@ def load_shape_svg(latest: dict) -> str:
     top = max(vals + [v for v in fc if isinstance(v, (int, float))])
     ceil = (int(top / 20000) + 1) * 20000.0
     n = len(load)
+
+    # THE GUTTER IS SIZED FROM THE LABELS IT HAS TO HOLD.
+    #
+    # It was 108, a constant, and 108 was right for the labels that existed when it was
+    # measured. The residual strip's ceiling moves with the data, and the day it reached 2,500
+    # the negative label became six characters, which needs 100.4 units of the 100 the gutter
+    # leaves. It rendered correctly here and was CUT ON THE CI RUNNER, because the margin was
+    # under half a unit and the two machines do not have the same fonts. The runner was right.
+    # A reader whose web font has not swapped in yet is looking at the runner's render.
+    #
+    # This is the same fault as the one in GATE_LESSONS 24, one level up. That one was type
+    # size in CSS and geometry in Python with nothing able to see the pair. This is the pair
+    # being visible and the gutter still being a number typed once, against labels that change
+    # daily. So it is computed from every string that gets drawn into it.
+    rceil = _residual_ceiling(load, fc)
+    gutter = [str(int(ceil * k / 4 / 1000)) for k in range(5)] + ["GW", "MW"]
+    if rceil is not None:
+        gutter += [n0(rceil), "-" + n0(rceil)]
+    # 8 is the gap the labels are anchored back from the plot; 6 more so a face wider than the
+    # estimate still lands inside the drawing rather than one unit outside it.
+    pad_l = round(max(est(s) for s in gutter) + 8 + 6, 1)
+
     plot_w = w - pad_l - 12
 
     def x(i):
@@ -362,13 +405,10 @@ def load_shape_svg(latest: dict) -> str:
 
     # THE RESIDUAL STRIP. Forecast minus measured, hour by hour, on a scale of its own.
     res = ""
-    if fpts and len(fc) == n:
+    if rceil is not None:
         errs = [(i, fc[i] - load[i]) for i in range(n)
                 if isinstance(fc[i], (int, float)) and isinstance(load[i], (int, float))]
         if errs:
-            span = max(abs(v) for _, v in errs) or 1.0
-            # A round ceiling so the label is a number a reader can hold, and never zero.
-            rceil = max(500.0, (int(span / 500) + 1) * 500.0)
             mid = pad_t + main_h + gap + res_h / 2
 
             def ry(v):
@@ -401,7 +441,7 @@ def load_shape_svg(latest: dict) -> str:
   <path class="line" d="{line}"/>
   {marks}
   {ticks}
-  <text class="ax unit" x="0" y="{pad_t - 8}" text-anchor="start">GW</text>
+  <text class="ax unit" x="4" y="{pad_t - 8}" text-anchor="start">GW</text>
   {res}
 </svg>
 <figcaption>Measured demand across the day, filled, with the peak and the trough marked.
