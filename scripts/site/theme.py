@@ -728,8 +728,28 @@ nav.main a[aria-current]::after {{ right:0; }}
    `.sky .lonestar`, one class less specific than the `.home .sky .lonestar` that turns the mark
    on, and specificity beats both source order and being inside a media query, so the mark
    stayed on every phone with its glow sitting in the wrapped navigation. */
-@media (max-width:30rem) {{
-  .home .sky .lonestar {{ display:none; }}
+/* AND ON A PHONE IT MOVES DOWN INSTEAD OF BEING DELETED.
+   This rule used to be `display:none`, and the justification above is the tell: the mark was
+   removed because its glow sat in the wrapped navigation. That is a POSITION problem, and the
+   answer to a position problem is a position. Deleting the one piece of brand furniture on the
+   page, on the majority of the traffic, to avoid moving it eighty pixels is not a trade.
+   MEASURED RATHER THAN GUESSED. With the mark forced on and every box compared, it never
+   touches the headline or the telemetry strip at any width from 280 to 480px. The nav is the
+   only thing it ever met, and the nav is two rows deep below about 450px, ending at 117px.
+   So the mark clears it and sits in the band between the navigation and the strip.
+   TWO RANGES, BECAUSE THE NAV HAS TWO STATES AND THE BAND MOVES WITH IT. Stepping the
+   viewport a pixel at a time, the bar is two rows up to 459px and one row from 460px, which
+   is 28.75rem. Below it the band runs 117 to 236; above it, 82 to 199. One rule spanning both
+   put the mark through the telemetry strip at 480px, which is how this fix failed its own
+   measurement the first time it was written.
+   IN REM RATHER THAN PX, and that is load bearing. The wrap point is a property of how wide
+   the nav text is, so it moves with the reader's font size. A px breakpoint would hold the
+   mark in the two-row position on a phone whose nav had already collapsed to one. */
+@media (max-width:28.7499rem) {{        /* the nav is two rows */
+  .home .sky .lonestar {{ top:8.5rem; right:5vw; width:min(23vw,96px); }}
+}}
+@media (min-width:28.75rem) and (max-width:37.5rem) {{  /* the nav is one row */
+  .home .sky .lonestar {{ top:6rem; right:5vw; width:min(20vw,92px); }}
 }}
 /* AND THE TELEMETRY PILL STOPS RUNNING UNDER IT. Measured with the mark forced on and its box
    compared against the hero's, the mark never touches the headline at any width down to 360px.
@@ -900,6 +920,20 @@ main > section > h2::after {{ content:""; position:absolute; top:-1px; left:0; w
 .txmap .edge {{ fill:none; stroke:var(--rule-strong); stroke-width:1.4; stroke-linejoin:round;
   vector-effect:non-scaling-stroke; }}
 .txmap .c.on {{ fill:var(--accent-deep); stroke:var(--accent); stroke-width:1.1; }}
+/* WCAG 2.5.8 ON A SHAPE THAT CANNOT BE GIVEN A MINIMUM SIZE, AND WHAT IS HONESTLY DONE
+   ABOUT IT. The record page invites a reader to click a lit county. Borden measures 12.7 by
+   12.9 on a phone and 9 by 9 at 320px, and a county is a fixed shape on a map, so `min-width`
+   has nothing to act on and no amount of CSS makes Borden 24 pixels wide without lying about
+   where Borden is.
+   TWO THINGS ARE DONE INSTEAD. A touch pointer gets a heavier outline, which is hit tested
+   along with the fill and so genuinely enlarges the target, and reads as a deliberate emphasis
+   rather than a hack. And the same page carries the county TABLE, every county as a full width
+   text link, which is the equivalent control the success criterion asks for and the route that
+   actually works on a phone. The map is the overview; the table is the control. Claiming the
+   map alone is compliant would be the kind of green check this project keeps a file about. */
+@media (pointer:coarse) {{
+  .txmap a .c.on {{ stroke-width:3; }}
+}}
 .txmap .c:hover {{ fill:var(--raised); }}
 .txmap .c.on:hover {{ fill:var(--accent); }}
 .txmap .frame {{ fill:none; stroke:var(--rule); stroke-width:1;
@@ -912,7 +946,7 @@ main > section > h2::after {{ content:""; position:absolute; top:-1px; left:0; w
    renders around 4 pixels, which is not small type, it is a smudge that reads as dirt on the
    map. A phone gets the locator: 254 counties and the ones the record touches. That is why the
    furniture is drawn as one group. */
-@media (max-width:34rem) {{ .txmap .survey {{ display:none; }} }}
+@media (max-width:34rem) {{ .txmap .survey {{ font-size:15px; stroke-width:1.4; }} }}
 
 /* ---- the clock ---------------------------------------------------------- */
 /* The question nobody else answers: can a Texan still act on this, and by when. */
@@ -1190,7 +1224,9 @@ caption {{ caption-side:bottom; text-align:left; padding-top:.75rem; font-size:v
 .fold[open] > summary {{ color:var(--ink-bright); }}
 .fold h3 {{ margin:1.4rem 0 0; font-size:var(--s0); }}
 .fold table {{ margin-bottom:1rem; }}
-@media print {{ .fold {{ }} .fold > summary {{ display:none; }} }}
+@media print {{ .fold > summary {{ list-style:none; }}
+  .fold > summary::-webkit-details-marker {{ display:none; }}
+  .fold > *:not(summary) {{ display:revert !important; }} }}
 
 /* ---- services: the capability grid, the offers and the form ----------------- */
 .capgrid {{ display:grid; gap:var(--gap); margin:1.5rem 0 0;
@@ -1284,7 +1320,7 @@ caption {{ caption-side:bottom; text-align:left; padding-top:.75rem; font-size:v
   clip:rect(0 0 0 0); white-space:nowrap; border:0; }}
 .askbox form {{ display:flex; gap:.6rem; flex-wrap:wrap; align-items:center; }}
 .askbox label {{ position:absolute; left:-9999px; }}
-.askbox input {{ flex:1 1 20rem; font:400 var(--s1)/1.4 var(--body); padding:.7em .9em;
+.askbox input {{ flex:1 1 20rem; min-width:0; font:400 var(--s1)/1.4 var(--body); padding:.7em .9em;
   background:var(--bg); color:var(--ink-bright);
   border:var(--hair) solid var(--rule-strong); border-radius:2px; }}
 .askbox input:focus-visible {{ border-color:var(--accent); }}
@@ -1349,7 +1385,8 @@ footer.site .colophon {{ width:4rem; height:4rem; fill:var(--ink); opacity:.28; 
    inside running prose stops it wrapping mid-phrase, which is a worse outcome than a small target
    a reader hits by aiming at a word. So this reaches only the standalone ones. A source citation
    and a call to action are objects on the page, not words in a sentence. */
-.meta a, cite a, a.go {{ display:inline-block; min-width:24px; padding-block:.28rem; }}
+.meta a, cite a, a.go, .filelist a, .prose > p > a.plain {{ display:inline-block;
+  min-width:24px; padding-block:.28rem; }}
 .footnav li {{ max-width:none; }}
 /* The colophon. Where it was made, when it was last revised, the coordinates of that place,
    and the promise the whole product rests on, in one mono strip. */
@@ -1361,7 +1398,7 @@ footer.site .colophon {{ width:4rem; height:4rem; fill:var(--ink); opacity:.28; 
 .colophon-line {{ display:flex; flex-wrap:wrap; gap:0 .9rem; margin:1.1rem 0 0;
   font-family:var(--mono); font-size:var(--s-2); letter-spacing:.13em; text-transform:uppercase;
   color:var(--ink-mute); line-height:2; max-width:none; }}
-.colophon-line span {{ white-space:nowrap; }}
+.colophon-line span {{ white-space:normal; }}
 .colophon-line span + span::before {{ content:"\\00b7"; color:var(--rule-strong);
   margin-right:.9rem; }}
 

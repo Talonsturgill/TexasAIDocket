@@ -53,16 +53,21 @@ const browser = await chromium.launch(
 // and so are the place pages, so sweeping every one of them multiplies the runtime by forty
 // and finds nothing the representative does not. A layout that stops being represented here
 // is the thing to watch for, which is why the list names shapes rather than URLs.
+// NAMED PAGES MUST EXIST. The `.filter(existsSync)` below is here so a site built without
+// the videos feed still runs, and it silently swallowed `counties/index.html` for weeks
+// after that page was merged into the docket. A list that quietly shrinks is a coverage
+// report that lies, so the drop is now printed.
 const pages = [
   "index.html",             // hero, map, ask box, stat row
   "record/index.html",      // the long list
-  "counties/index.html",    // map plus two tables
   "grid/index.html",        // chart and figures
   "water/index.html",       // the widest table on the site
   "about/index.html",       // plain prose
   "services/index.html",    // marketing layout
   "data/index.html",        // link list
-].filter((f) => fs.existsSync(path.join(SITE, f)))
+].filter((f) => { const ok = fs.existsSync(path.join(SITE, f));
+                 if (!ok) console.log(`  ..    NOT BUILT, skipped: ${f}`);
+                 return ok; })
  .concat(fs.readdirSync(path.join(SITE, "item")).slice(0, 1).map((d) => `item/${d}/index.html`))
  .concat(fs.readdirSync(path.join(SITE, "place")).slice(0, 1).map((d) => `place/${d}/index.html`));
 
@@ -163,16 +168,29 @@ const collideAt = async (w) => {
       const c = el.getBoundingClientRect();
       return !(sb.right < c.left || sb.left > c.right || sb.bottom < c.top || sb.top > c.bottom);
     };
-    return { shown, hits: [".hero h1", ".hero .tele"].filter(hit) };
+    // THE NAV LINKS, NOT THE NAV BOX. The bar is full width, so comparing against its
+    // container calls every mark a collision. What a reader actually sees is the glow
+    // behind LINK TEXT, and that is what the mark used to be deleted to avoid.
+    const links = [...document.querySelectorAll("nav.main a")].filter((a) => {
+      const c = a.getBoundingClientRect();
+      return !(sb.right < c.left || sb.left > c.right || sb.bottom < c.top || sb.top > c.bottom);
+    }).map((a) => `nav:${a.textContent.trim()}`);
+    return { shown, hits: [".hero h1", ".hero .tele"].filter(hit).concat(links) };
   });
 };
 const wrong = [];
-for (const w of [1440, 1180, 1024, 896, 834, 768, 700, 680, 600, 540, 480, 400, 360, 320]) {
+// THE MARK IS NEVER HIDDEN NOW, AT ANY WIDTH. It used to be deleted below 30rem because its
+// glow sat in the wrapped navigation, which is a position problem answered with a position.
+// The old rule here encoded the old compromise: it permitted hiding wherever a collision
+// existed, so a stylesheet that hid the mark on every phone passed. Both halves are asserted
+// instead: shown everywhere, and touching nothing anywhere.
+for (const w of [1440, 1180, 1024, 896, 834, 768, 700, 680, 640, 600, 560, 540, 500, 480,
+                 460, 440, 414, 400, 390, 375, 360, 340, 320, 300, 280]) {
   const r = await collideAt(w);
-  if (r.shown && r.hits.length) wrong.push(`${w}px shown but overlaps ${r.hits.join(",")}`);
-  if (!r.shown && !r.hits.length && w >= 540) wrong.push(`${w}px hidden with clear sky for it`);
+  if (!r.shown) wrong.push(`${w}px the mark is hidden`);
+  if (r.hits.length) wrong.push(`${w}px overlaps ${r.hits.join(",")}`);
 }
-check("the mark is shown wherever it has clear sky, and only hidden where it would collide",
+check("the mark is shown at every width and lands on nothing",
       wrong.length === 0, wrong.slice(0, 4).join(" | "));
 // CHART TEXT IS MEASURED ON SCREEN, NOT IN THE FILE.
 //
@@ -211,6 +229,42 @@ for (const w of [320, 360, 390, 414, 480, 540, 600, 680, 768, 900, 1180, 1440]) 
 }
 check("every label on the load chart stays readable at every width",
       tiny.length === 0, tiny.slice(0, 4).join(" | "));
+
+// AND READABLE IS NOT ENOUGH: IT HAS TO BE THERE.
+//
+// The check above multiplies font size by scale and asks whether the glyphs are big enough.
+// It never asked whether they were inside the drawing, so the fix that stepped the type up
+// for phones pushed the residual axis off the left edge and stayed green. "-2,500" rendered
+// as "500", because the part that fell off was "2,". A published figure showing a different
+// number from the one computed is the failure this project exists to prevent, and it shipped
+// behind a passing legibility test.
+const cut = [];
+for (const w of [280, 300, 320, 360, 375, 390, 414, 440, 480, 540, 600, 680, 768, 900, 1180]) {
+  await pg.setViewportSize({ width: w, height: 900 });
+  await pg.goto("file://" + path.join(SITE, "grid", "index.html"));
+  const r = await pg.evaluate(() => {
+    const svg = document.querySelector("svg.loadshape");
+    if (!svg) return null;
+    const vb = svg.viewBox.baseVal;
+    const T = [...svg.querySelectorAll("text")].filter((t) => t.textContent.trim());
+    const out = [];
+    for (const t of T) {
+      const b = t.getBBox();
+      if (b.x < -0.5 || b.x + b.width > vb.width + 0.5 ||
+          b.y < -0.5 || b.y + b.height > vb.height + 0.5) out.push(`cut ${t.textContent}`);
+    }
+    for (let i = 0; i < T.length; i++) for (let j = i + 1; j < T.length; j++) {
+      const a = T[i].getBBox(), c = T[j].getBBox();
+      if (!(a.x + a.width <= c.x || c.x + c.width <= a.x ||
+            a.y + a.height <= c.y || c.y + c.height <= a.y))
+        out.push(`${T[i].textContent} on ${T[j].textContent}`);
+    }
+    return out;
+  });
+  if (r && r.length) cut.push(`${w}px ${r[0]}`);
+}
+check("no chart label is cut by the drawing or laid on another",
+      cut.length === 0, cut.slice(0, 4).join(" | "));
 
 await browser.close();
 
