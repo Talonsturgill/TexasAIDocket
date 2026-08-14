@@ -101,11 +101,11 @@ jobs:
       - name: Water watch collector self-test (hermetic, gates every collection)
         run: python3 scripts/gridwatch/waterwatch_collect.py --self-test
 
-      - name: Heat clock collector self-test (a missing observation is not a cold day)
-        run: python3 scripts/gridwatch/heatclock_collect.py --self-test
+      - name: Weather collector self-test (a dry day is zero, a missing high is not)
+        run: python3 scripts/gridwatch/weather_collect.py --self-test
 
-      - name: Heat clock reader self-test (both seasons, and the front page chip's numerals)
-        run: python3 scripts/site/heatclock.py --self-test
+      - name: Front chip self-test (the rotation, and no day of the year left empty)
+        run: python3 scripts/site/frontchip.py --self-test
 
       - name: Grid watch page self-test (the numeral gate, and the bar that is never a dial)
         run: python3 scripts/site/gridwatch_page.py

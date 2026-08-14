@@ -158,6 +158,46 @@ rules:
     note: >
       One line per day, written by the cron. A run that rewrites a past line corrupts a
       series nobody can rebuild. Append only, forever.
+
+  # THE ONE SERIES HERE THAT IS NOT IRREPLACEABLE, and the append-only rule is lifted from it
+  # deliberately rather than by oversight.
+  #
+  # Read the rule above and notice what it actually protects: "a series nobody can rebuild."
+  # That is the entire justification, and it is true of ERCOT, whose dashboard keeps no
+  # archive, and of the reservoir feed, whose own publisher asks crawlers not to take the file
+  # holding the history. It is NOT true here. This series comes from NCEI daily summaries,
+  # which IS the archive: any station, any date range, back to the nineteenth century, keyless
+  # and public domain. Every line can be re-derived from the source on demand.
+  #
+  # So a rewrite here is a re-derivation and not a loss, and holding this file append-only
+  # bought no protection while blocking an ordinary change: adding precipitation to a record
+  # that already held temperature meant every existing line needed a field it did not have.
+  #
+  # This is a NARROWING, not a loosening. The glob above now names two irreplaceable series
+  # instead of covering three files and meaning it for two, so the protection on the ones that
+  # need it is stated rather than inherited. If a future series is added here that cannot be
+  # refetched, it falls under the glob and is protected by default. That is the right default.
+  - path: "ledger/gridwatch/weather.jsonl"
+    owner: gridwatch
+    append_only: false
+
+  # THE RETIRED NAME OF THE SAME SERIES. It was `heat.jsonl` for one day, 2026-08-13 to
+  # 2026-08-14, until rainfall joined temperature and "heat" stopped describing the file.
+  # Exempt for exactly the reason the current name is: these are the same re-derivable NCEI
+  # observations, and the protection above is for series nobody can rebuild.
+  #
+  # WHY IT OUTLIVES THE RENAME COMMIT, which is a fact about how the gate reads history
+  # rather than about this file. The check runs on a RANGE, `origin/main...HEAD`, and judges
+  # that whole diff against the map as it stands at the END of it. So for as long as the
+  # commit deleting this path is inside the range CI evaluates, the rule deleting the
+  # exemption and the diff needing it are in the same range and the gate fails. Splitting it
+  # into a follow-up commit does not work and was tried.
+  #
+  # Safe to delete in any pull request opened after the rename has merged into `main`,
+  # because the rename is then behind the merge base and no longer in anyone's range.
+  - path: "ledger/gridwatch/heat.jsonl"
+    owner: gridwatch
+    append_only: false
   - path: "ledger/gridwatch/raw/**"
     owner: gridwatch
     append_only: true

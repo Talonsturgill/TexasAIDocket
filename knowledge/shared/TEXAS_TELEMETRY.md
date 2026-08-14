@@ -45,11 +45,43 @@ backfills a trailing window, a week of failures costs nothing, and it keeps no r
 because the source bytes are permanently re-fetchable by the same URL. Copying the grid
 collector's emergency discipline here would have been cargo cult.
 
-**Still worth building, in this order.** Section 5's rule-driven rotation is the better long-run
-answer and nothing here forecloses it: lead with whichever candidate sits furthest from its own
-norm for the calendar day. The heat clock is the first candidate with both a daily series and a
-computed normal, which is exactly what that rotation needs. The reservoir series has been
-collecting since launch and has the 94 year history, so it is the second.
+**THE ROTATION IN SECTION 5 IS NOW BUILT** (2026-08-14), with one correction to it below.
+
+Four candidates run, all from the same station and the same public-domain archive, and the chip
+leads with whichever sits furthest from its own normal for the settled date:
+
+| candidate | cycle | normal for the year | in season |
+|---|---|---|---|
+| days at or above 100 | calendar year | 20.3 days | roughly July to mid September |
+| nights at or below 32 | July to June | 29.4 nights | roughly November to March |
+| nights at or above 80 | calendar year | 12.5 nights | high summer |
+| inches of rain | calendar year | 37.0 inches | most of the year |
+
+**Comparing days against inches.** Each candidate's distance is measured in units of its own
+year to year spread, so the normals carry a standard deviation beside every mean. This is what
+makes the ranking mean anything: hundred degree day counts at this station swing by about
+twelve between years, so being three days ahead is noise, while eleven nights above a normal of
+nine is not. On the day it shipped the rotation passed over the heat count and led with warm
+nights for exactly that reason.
+
+**The comparison is never published.** It picks the candidate and is then discarded. The page
+prints only the measured value and the normal. A standard score on a right skewed rainfall
+distribution is a defensible way to rank four things and not a figure this project would put
+its name on, and choosing what to show is allowed to use rougher arithmetic than showing it.
+
+**Season is derived, not scheduled.** A candidate is in season while its own normal sits
+between 10 and 98 percent of a full cycle. The floor keeps out a metric where one event swings
+the total, and the ceiling retires one whose season is climatologically over. No calendar table
+exists and a new candidate needs no window written for it. The self-test walks all 366 days and
+asserts the chip is never left with nothing to say.
+
+**THE CORRECTION TO SECTION 5.** It says the finalists all have enough history, and names
+"reservoirs 94 years". **They do not.** `waterdatafortexas.org/robots.txt` carries
+`Disallow: *.csv`, and the statewide file holding that history is a CSV, so it is not ours to
+take. Our own reservoir record starts the day it started. Burn bans carry no history at all and
+the ERCOT feeds carry a two day window, so of the candidates in section 4 only the weather
+station can supply a normal today. That is why all four run off one source, and it is a fact
+about what is reachable rather than a preference.
 
 ---
 
