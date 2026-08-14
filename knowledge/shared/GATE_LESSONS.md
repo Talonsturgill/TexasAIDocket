@@ -647,6 +647,15 @@ NOT. `text_contrast` composites background COLOURS and cannot see a drawing laid
 numeral. `numeral_lint` proved "00" traced to a computation, which it did. `house_style_check`
 read the badge as three well-formed words. Every gate answered its own question correctly.
 
+**And when the fix is a layout choice, measure the options rather than argue them.** The
+water watch's metro table was four columns in 380 pixels, and the bar cell was taking 131
+of them from a `width:40%` and a 6rem floor while the metro name got 100 and wrapped to two
+lines with the federal delineation wrapping to two more. Four candidates were rendered and
+measured: dropping the bar column was the shortest table by a little and was the WRONG
+answer, because the caption tells a reader the length carries the comparison and a width
+where the bar is absent makes the caption lie. Narrowing it kept every column and every
+figure, gave the name 176 pixels instead of 100, and took the worst row from 118 to 75.
+
 **What to check.** A gate answers the question it was given. It cannot notice that the page is
 self-contradictory, that a decoration is on top of the data, or that a true number is the wrong
 thing to lead with. **Look at the rendered pages after any change you did not visually

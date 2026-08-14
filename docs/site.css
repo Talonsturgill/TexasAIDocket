@@ -473,6 +473,11 @@ figcaption { font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
 .barnote strong { color:var(--ink-bright); }
 .bar.mini { height:.7rem; margin:0; min-width:6rem; }
 td.barcell { width:40%; vertical-align:middle; }
+@media (max-width:34rem) {
+  td.barcell { width:20%; }
+  .bar.mini { min-width:2.6rem; }
+  table.metros th, table.metros td { padding:.45em .3em; }
+}
 table.metros th[scope="row"] { font-weight:400; color:var(--ink-bright);
   text-transform:none; letter-spacing:0; font-size:var(--s-1); border-bottom-width:var(--hair);
   border-bottom-color:var(--rule); }

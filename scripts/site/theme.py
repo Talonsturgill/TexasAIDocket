@@ -1361,6 +1361,22 @@ figcaption {{ font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
    short bar is a verdict about a city's water supply. */
 .bar.mini {{ height:.7rem; margin:0; min-width:6rem; }}
 td.barcell {{ width:40%; vertical-align:middle; }}
+/* FOUR COLUMNS IN 380 PIXELS, AND THE BAR WAS TAKING THE NAME'S SHARE.
+   Measured on a phone: the table gets 380, the bar cell took 131 of it from `width:40%` and a
+   6rem floor, and the metro name was left with 100. "Midland and Odessa" then wrapped to two
+   lines, the federal delineation under it wrapped to two more, and that row stood 118 pixels
+   tall against a 34 pixel median. Nineteen rows of that is a column of ragged whitespace.
+   Four options were measured rather than argued about. Dropping the bar column is the shortest
+   table by a little and it is the wrong answer: the caption tells a reader that the length
+   carries the comparison, so a width where the bar is absent makes the caption lie. Narrowing
+   it and tightening the cell padding keeps every column, every figure and the bar, gives the
+   name 176 pixels instead of 100, and takes the worst row from 118 to 75 and the whole table
+   down by 27 percent. */
+@media (max-width:34rem) {{
+  td.barcell {{ width:20%; }}
+  .bar.mini {{ min-width:2.6rem; }}
+  table.metros th, table.metros td {{ padding:.45em .3em; }}
+}}
 table.metros th[scope="row"] {{ font-weight:400; color:var(--ink-bright);
   text-transform:none; letter-spacing:0; font-size:var(--s-1); border-bottom-width:var(--hair);
   border-bottom-color:var(--rule); }}
