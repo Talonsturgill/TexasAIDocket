@@ -46,9 +46,9 @@ same promise and the check has no opinion about which reads better.
 | --- | --- |
 | repo | `Talonsturgill/TexasAIScanner` |
 | path | `web/scan.html` |
-| last changed at | `1033ac35eda49099b6d60319600f0d92ba3d86af` (branch `main`) |
-| sha256 | `c80dd7e3f422a622af8ce8999d25ce4b2dedc8a87cafc70eebdcc33844226982` |
-| bytes | `7956` |
+| last changed at | `79280eaac72f3d4a92519d9fc5663660b8d435e0` (branch `main`) |
+| sha256 | `2b35a046cf8750ab72b3c3db6c4eb951ae9d96251540f26fa999fb65dcdc6d1a` |
+| bytes | `8301` |
 
 The commit is the one that last CHANGED the file, not whatever `main` happens to be at, so
 re-vendoring says a file moved only when it did.

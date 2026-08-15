@@ -697,6 +697,41 @@ def latest_video() -> str:
 </script>"""
 
 
+def scan_teaser() -> str:
+    """The Bottleneck Scanner's homepage front door.
+
+    THE SIBLING PUTS THIS SECOND, directly under the hero. Here it is LAST, on the owner's call,
+    and the placement is the argument. That site leads with a free tool. This one leads with a
+    record, and a record that opens by selling something is a record that has told you what it
+    is for. Somebody who has read down the whole page is also somebody who might want the scan.
+
+    NO JS AND NO CAPTCHA HERE. The single field GETs to the scan page, which prefills it and runs
+    the real flow behind its own captcha. A second Turnstile widget on the homepage would load a
+    third party script on every visit to a page nobody came here to submit a form on.
+
+    NO DIGITS, deliberately, same as the scan page. `numeral_lint` refuses a numeral the build
+    did not compute, and "about twenty minutes" is a claim nobody measured.
+    """
+    return """
+<section data-reveal id="scan">
+  <h2>Would AI actually help your business</h2>
+  <div class="prose">
+    <p>The scanner reads your own public pages and hands back an honest map of that operation.
+    Where AI would carry real load. Where ordinary software does the same job cheaper and safer.
+    Where it has no business at all.</p>
+    <p>It is free and the parts that say not yet are the honest ones. Every line traces to a page
+    on your own site, linked so you can check it.</p>
+  </div>
+  <form class="leadform scanteaser" action="scan/" method="get">
+    <label class="vh" for="scan-url">Your website</label>
+    <input type="text" name="url" id="scan-url" required placeholder="yourbusiness.com"
+      autocomplete="url" inputmode="url">
+    <button class="cta solid" type="submit">Scan it</button>
+  </form>
+</section>
+"""
+
+
 def home(items: list, today: str) -> str:
     proj = dk.project(items, today)
     act = proj["actionable_now"]
@@ -827,6 +862,8 @@ def home(items: list, today: str) -> str:
     agency itself rather than a news report about it.</p>
   </div>
 </section>
+
+{scan_teaser()}
 """
     return page(title=f"{SITE_NAME}", depth=0, active="", home_page=True,
                 desc=("A fact-checked record of AI decisions in Texas. Who decided, by when, "
@@ -1390,6 +1427,11 @@ _SCAN_JS = """
     var form = document.querySelector('#start form.leadform');
     if (!form) return;
     var endpoint = '__ENDPOINT__';
+    // The homepage teaser hands the url over as ?url=. Prefill rather than making
+    // somebody type it a second time, and never overwrite what they typed here.
+    var q = new URLSearchParams(location.search).get('url');
+    if (q) { var pre = form.querySelector('[name=website]'); if (pre && !pre.value) pre.value = q; }
+
     var status = form.querySelector('.scan-status');
     var button = form.querySelector('button[type=submit]');
     var val = function (n) { var e = form.querySelector('[name=' + n + ']'); return e ? e.value.trim() : ''; };
