@@ -381,6 +381,35 @@ Exit 0 is clean, exit 2 wants attention, exit 1 means the checker itself broke. 
 blocks the run.** You may fix presentation only, and only in `scripts/site/gridwatch_page.py` and
 `scripts/site/waterwatch_page.py`. Anything else is a proposal in the run record.
 
+**THE SCANNER'S DAILY CEILING.** The scan form fires its routine on submit, so the only thing
+between a public form and a bill is `daily_cap` in the scanner project's `scanner.config`. A
+requester who hits it is told the day is full. **NOBODY TELLS YOU**, which is why this step
+exists: a ceiling nobody is notified about is a ceiling you find out about from the people who
+gave up.
+
+Through the Supabase connector, on project `texas-ai-scanner`:
+
+```sql
+select (select count(*) from scanner.scans
+        where created_at >= ((now() at time zone 'America/Chicago')::date)) as today,
+       (select value::int from scanner.config where key = 'daily_cap')      as cap,
+       (select count(*) from scanner.scans
+        where created_at >= now() - interval '24 hours' and status = 'failed') as failed_24h;
+```
+
+Three outcomes and only the middle one costs you anything.
+
+- `today` under `cap`, no failures. Say nothing. A quiet day is not news.
+- `today` at or over `cap`, OR any `failed_24h`. **Draft** the maintainer a note naming the
+  count, the cap and the failure reasons verbatim from the `error` column. A `trigger 401` means
+  the key is rejected and every scan since then was lost, which is the one thing here worth
+  waking somebody for.
+- The query itself fails. Say so in the run record and carry on. This never blocks the run,
+  same as everything else in this phase.
+
+**DRAFT, NEVER SEND.** That rule has no exception here either, and the connector's reply tool is
+right there.
+
 **THEN LOOK AT THE PAGES.** A checker sees what it reads and the product is what a reader
 receives, which is the whole of `knowledge/shared/GATE_LESSONS.md`. Three things a green suite
 has been wrong about here and cannot answer for you:
