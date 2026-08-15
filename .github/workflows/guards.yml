@@ -280,6 +280,19 @@ jobs:
       - name: The written lane's client, and every word it shows
         run: python3 scripts/site/ask_written.py --self-test
 
+      - name: The tab icon is drawn, not defaulted
+        run: |
+          # The site shipped no icon of any kind, so every tab showed the browser's generic
+          # globe. The icon is GENERATED from the same statute as the wordmark rather than
+          # committed as a binary, for grain.py's reason: the sibling made its texture a soft
+          # Pillow dependency, a box without Pillow stripped it silently, and nothing threw.
+          # An icon that can go missing on a green build puts the globe straight back.
+          #
+          # This checks the geometry on the RASTER as well as on the numbers, because a star
+          # resting on a point is this flag's most recognisable failure and it is invisible in
+          # a coordinate list.
+          python3 scripts/site/favicon.py --self-test
+
       - name: Web fonts are committed, licensed, and actually served
         run: |
           # The check exists because brand.yaml named three faces, theme.py wrote them into
