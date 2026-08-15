@@ -46,6 +46,7 @@ import ask_written                                                # noqa: E402
 import docket_build as dk                                          # noqa: E402
 import favicon                                                     # noqa: E402
 import fonts_build                                                 # noqa: E402
+import indexnow                                                    # noqa: E402
 import og                                                          # noqa: E402
 import schema                                                      # noqa: E402
 import gridwatch_page                                              # noqa: E402
@@ -2571,6 +2572,11 @@ def build(out: Path, today: str) -> dict:
     # that can go missing without throwing puts the generic globe back on a green build.
     # THE SOCIAL CARD. Absolute url in the tags, so a scraper resolving against its own base
     # cannot miss it, which is the most common way a card silently fails.
+    # THE INDEXNOW OWNERSHIP FILE. Served at the site root, containing the key and nothing
+    # else. Without it every submission fails verification, so it is written by the build
+    # rather than committed by hand and hoped for.
+    w(indexnow.KEY_FILE, indexnow.key_file_contents())
+
     for name, blob in og.files().items():
         (out / name).write_bytes(blob)
         written.append(name)

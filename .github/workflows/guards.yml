@@ -294,6 +294,14 @@ jobs:
       - name: The written lane's client, and every word it shows
         run: python3 scripts/site/ask_written.py --self-test
 
+      - name: The index can be told a page changed
+        run: |
+          # Nothing here submits anything. It proves the key is well formed, that the file
+          # which verifies ownership is actually served, and that a submission is built
+          # correctly, because a key file that is missing makes every future submission fail
+          # verification silently.
+          python3 scripts/site/indexnow.py --self-test
+
       - name: A shared link has a card rather than a bare string
         run: |
           # Four Open Graph tags shipped and none was an image, so every link pasted into a

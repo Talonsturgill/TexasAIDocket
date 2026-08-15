@@ -125,11 +125,13 @@ the reason the runner exists.
 | S3 | `og.py` social cards | DONE for the site card. PER-DECISION cards carrying the headline are NOT done: they need a text rasteriser or a dependency this project refused once, and that limit is stated in og.py rather than hidden |
 | S4 | llms-full.txt, feed.xml, 404.html, llms.txt rebuild | DONE. llms.txt 17k to 38k with real sections, truncation fixed |
 | S5 | `/questions/` and `/sources/` | DONE. 633 answers on one hub, 95 documents from 49 publishers |
-| S6 | IndexNow | TODO |
+| S6 | IndexNow | DONE. Key file written by the build, fails soft, submits nothing from CI yet |
 | S7 | `knowledge/shared/AI_SEO.md` + GATE_LESSONS entry | DOC DONE. GATE_LESSONS entry still TODO |
 
 ### Wrap
 
 | # | task | status |
 |---|---|---|
-| W1 | delete this file | TODO |
+| W1 | per-decision og cards carrying the headline, which need a text rasteriser | TODO |
+| W2 | GATE_LESSONS entry for the unlinted JSON-LD surface | TODO |
+| W3 | delete this file | TODO |
