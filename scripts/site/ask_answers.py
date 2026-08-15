@@ -476,6 +476,13 @@ def engine_js() -> str:
   var out = box.querySelector(".answer");
 
   function run() {
+    /* STAND DOWN WHILE A WRITTEN ANSWER IS ON SCREEN. Pressing enter hands the question to the
+       written lane, which takes the box over: the live list, the starters and the note all
+       step aside so the answer is the only thing being read. Without this the engine would go
+       on rewriting its own panel underneath a conversation, from whatever half typed follow-up
+       happened to be in the field. The reader gets all of it back with Start over.
+       This changes nothing about what this file SENDS, which is still nothing at all. */
+    if (box.classList.contains("answering")) return;
     var a = answer(best(input.value));
     out.innerHTML = "<h3>" + esc(a.head) + "</h3>" + a.body;
     out.hidden = false;
