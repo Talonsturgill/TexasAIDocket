@@ -122,7 +122,7 @@ the reason the runner exists.
 |---|---|---|
 | S1 | `scripts/site/schema.py` + wire into `page()` | DONE. 5 types to 16, 633 Q&A pairs, 58 Reports, 0 dangling @ids |
 | S2 | `schema_check.py`, numeral and style lints extended into JSON-LD | DONE. Proved red on the real artifact with 5 planted faults |
-| S3 | `og.py` social cards | TODO |
+| S3 | `og.py` social cards | DONE for the site card. PER-DECISION cards carrying the headline are NOT done: they need a text rasteriser or a dependency this project refused once, and that limit is stated in og.py rather than hidden |
 | S4 | llms-full.txt, feed.xml, 404.html, llms.txt rebuild | DONE. llms.txt 17k to 38k with real sections, truncation fixed |
 | S5 | `/questions/` and `/sources/` | DONE. 633 answers on one hub, 95 documents from 49 publishers |
 | S6 | IndexNow | TODO |

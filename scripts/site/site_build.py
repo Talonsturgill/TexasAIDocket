@@ -46,6 +46,7 @@ import ask_written                                                # noqa: E402
 import docket_build as dk                                          # noqa: E402
 import favicon                                                     # noqa: E402
 import fonts_build                                                 # noqa: E402
+import og                                                          # noqa: E402
 import schema                                                      # noqa: E402
 import gridwatch_page                                              # noqa: E402
 import frontchip                                                   # noqa: E402
@@ -259,6 +260,7 @@ def page(*, title: str, desc: str, body: str, depth: int, active: str,
 <meta property="og:description" content="{e(desc)}">
 <meta property="og:type" content="website">
 <meta property="og:url" content="{SITE_URL}/{canonical}">
+{og.head_html(p, SITE_URL, SITE_NAME, title, desc)}
 {favicon.head_html(p)}
 <link rel="stylesheet" href="{p}site.css">
 <link rel="preload" href="{p}fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
@@ -2567,6 +2569,12 @@ def build(out: Path, today: str) -> dict:
     # request a browser makes on its own before it has parsed any markup. Generated from the same
     # statute as the wordmark rather than committed as a binary, for grain.py's reason: an icon
     # that can go missing without throwing puts the generic globe back on a green build.
+    # THE SOCIAL CARD. Absolute url in the tags, so a scraper resolving against its own base
+    # cannot miss it, which is the most common way a card silently fails.
+    for name, blob in og.files().items():
+        (out / name).write_bytes(blob)
+        written.append(name)
+
     for name, blob in favicon.files().items():
         (out / name).write_bytes(blob)
         written.append(name)

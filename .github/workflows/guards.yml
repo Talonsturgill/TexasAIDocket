@@ -294,6 +294,14 @@ jobs:
       - name: The written lane's client, and every word it shows
         run: python3 scripts/site/ask_written.py --self-test
 
+      - name: A shared link has a card rather than a bare string
+        run: |
+          # Four Open Graph tags shipped and none was an image, so every link pasted into a
+          # chat or a timeline rendered as a bare blue string. Drawn from the same statute
+          # geometry as the tab icon and the wordmark, and textured with the site's own grain,
+          # so the card is this record rather than a generic flag crop.
+          python3 scripts/site/og.py --self-test
+
       - name: The tab icon is drawn, not defaulted
         run: |
           # The site shipped no icon of any kind, so every tab showed the browser's generic
