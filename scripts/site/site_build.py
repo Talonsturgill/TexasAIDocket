@@ -44,6 +44,7 @@ import ask_answers                                                # noqa: E402
 import ask_corpus                                                 # noqa: E402
 import ask_written                                                # noqa: E402
 import docket_build as dk                                          # noqa: E402
+import favicon                                                     # noqa: E402
 import fonts_build                                                 # noqa: E402
 import gridwatch_page                                              # noqa: E402
 import frontchip                                                   # noqa: E402
@@ -251,6 +252,7 @@ def page(*, title: str, desc: str, body: str, depth: int, active: str,
 <meta property="og:description" content="{e(desc)}">
 <meta property="og:type" content="website">
 <meta property="og:url" content="{SITE_URL}/{canonical}">
+{favicon.head_html(p)}
 <link rel="stylesheet" href="{p}site.css">
 <link rel="preload" href="{p}fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="alternate" type="application/atom+xml" title="{e(SITE_NAME)}" href="{p}atom.xml">
@@ -2197,6 +2199,14 @@ def build(out: Path, today: str) -> dict:
     # than copied, because it is computed from three named constants and is byte-deterministic.
     (out / theme.GRAIN_FILE).write_bytes(grain.png())
     written.append(theme.GRAIN_FILE)
+
+    # THE TAB ICON. Every page declares it, and `favicon.ico` also sits at the site root for the
+    # request a browser makes on its own before it has parsed any markup. Generated from the same
+    # statute as the wordmark rather than committed as a binary, for grain.py's reason: an icon
+    # that can go missing without throwing puts the generic globe back on a green build.
+    for name, blob in favicon.files().items():
+        (out / name).write_bytes(blob)
+        written.append(name)
 
     # THE TYPE. Copied verbatim from the committed subsets rather than generated here: the
     # byte-equal rebuild guarantee cannot depend on a compression library's version, and a copy
