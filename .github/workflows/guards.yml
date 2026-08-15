@@ -240,6 +240,20 @@ jobs:
           python3 scripts/site/scanner_sync_check.py --self-test
           python3 scripts/site/scanner_sync_check.py
 
+      - name: The structured data is checked as the published copy it is
+        run: |
+          # house_style_check strips every <script> before it lints, correctly, because the ask
+          # page ships its engine inline. JSON-LD lives in a <script>. So the moment schema.py
+          # began emitting 633 generated question and answer pairs, those became the largest
+          # surface of published prose on the site that NO gate read.
+          #
+          # This reads them: house style on every sentence, every numeral traced to a value in
+          # the ledger, every citation url present in a claim, no dangling @id, and nothing
+          # wearing NewsArticle, which these pages are not.
+          python3 scripts/site/schema.py --self-test
+          python3 scripts/site/schema_check.py --self-test
+          python3 scripts/site/schema_check.py
+
       - name: The published site keeps the house rules
         run: |
           # Checked against the built pages, because the copy a reader sees is assembled from

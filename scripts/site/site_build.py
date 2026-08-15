@@ -46,6 +46,7 @@ import ask_written                                                # noqa: E402
 import docket_build as dk                                          # noqa: E402
 import favicon                                                     # noqa: E402
 import fonts_build                                                 # noqa: E402
+import schema                                                      # noqa: E402
 import gridwatch_page                                              # noqa: E402
 import frontchip                                                   # noqa: E402
 import sky                                                         # noqa: E402
@@ -234,11 +235,17 @@ def page(*, title: str, desc: str, body: str, depth: int, active: str,
         "Every numeral computed from data",
     ))
 
+    # ONE ORGANIZATION NODE, REFERENCED BY `@id` EVERYWHERE ELSE. This used to repeat the whole
+    # publisher object on all 148 pages, which states the same fact 148 times and builds no
+    # graph: nothing could tell that the publisher of a decision page and the publisher of the
+    # dataset were the same body. With a stable `@id` they are one node that every other node
+    # points at, which is what makes the record traversable rather than merely present.
     ld = [{
         "@context": "https://schema.org", "@type": "WebSite",
-        "name": SITE_NAME, "url": SITE_URL,
-        "publisher": {"@type": "Organization", "name": SITE_NAME, "url": SITE_URL},
-    }] + (extra_ld or [])
+        "@id": f"{SITE_URL}/#website",
+        "name": SITE_NAME, "url": SITE_URL, "inLanguage": "en-US",
+        "publisher": {"@id": f"{SITE_URL}/#org"},
+    }, {"@context": "https://schema.org", **schema.org_node(SCHEMA_CTX)}] + (extra_ld or [])
 
     return f"""<!doctype html>
 <html lang="en-US">
@@ -883,7 +890,16 @@ def home(items: list, today: str) -> str:
                 desc=("A fact-checked record of AI decisions in Texas. Who decided, by when, "
                       "and whether you can still comment."),
                 body=body, today=today, canonical="",
-                extra_ld=[docket_dataset_ld(items, today)])
+                # THE DATASET NODE THE WHOLE RECORD HANGS OFF. Every one of the 58 Reports says
+                # it `isPartOf` this `@id`, so the node has to exist somewhere or all 58
+                # references dangle. It is emitted here AND on `/record/`, which is legal and
+                # is not duplication in the sense that matters: both come from one function, so
+                # the two can never disagree. The homepage is where a data consumer lands.
+                # NO BREADCRUMB HERE. The front page is the root of the trail, so a trail on it
+                # would be a list of one, which says nothing and is the kind of markup added
+                # for the sake of having markup.
+                extra_ld=[{"@context": "https://schema.org",
+                           **schema.dataset_node(SCHEMA_CTX, items, today)}])
 
 
 def docket_index(items: list, today: str) -> str:
@@ -960,7 +976,17 @@ def docket_index(items: list, today: str) -> str:
 """
     return page(title=f"The record · {SITE_NAME}", depth=1, active="record/",
                 desc="Every AI decision on the Texas record, ordered by how soon you can act.",
-                body=body, today=today, canonical="record/")
+                body=body, today=today, canonical="record/",
+                # The page that IS the dataset carries its node, which is where a crawler
+                # following `isPartOf` from any decision expects to arrive.
+                extra_ld=[{"@context": "https://schema.org",
+                           **schema.dataset_node(SCHEMA_CTX, items, today)},
+                          schema.collection_node(
+                              SCHEMA_CTX, name="The record", path="record/",
+                              description="Every tracked decision about artificial "
+                                          "intelligence in Texas.", count=len(items)),
+                          schema.breadcrumbs(SCHEMA_CTX,
+                                             [(SITE_NAME, ""), ("The record", "record/")])])
 
 
 def topic_label(topic: str) -> str:
@@ -987,6 +1013,14 @@ def topic_label(topic: str) -> str:
             phrase = ", ".join(head) + " and " + " ".join(tail)
             return phrase[0].upper() + phrase[1:]
     return topic.replace("-", " ").capitalize()
+
+
+# WHAT schema.py NEEDS FROM HERE, assembled once. It is built at this point in the file rather
+# than at the top because it closes over the three label functions above, and it passes them
+# rather than letting that module reimplement them: each label is a house rule with a written
+# reason, and a second copy is how a URL and a heading drift apart.
+SCHEMA_CTX = schema.Ctx(site_url=SITE_URL, site_name=SITE_NAME, topic_label=topic_label,
+                        room_label=room_label, ordinal=ordinal)
 
 
 def topic_chips(items: list, depth: int, current: str = "") -> str:
@@ -1133,7 +1167,11 @@ def item_page(it: dict, today: str) -> str:
 """
     return page(title=f'{it["title"]} · {SITE_NAME}', depth=2, active="record/",
                 desc=it["summary"][:180], body=body, today=today,
-                canonical=f'item/{it["id"]}/')
+                canonical=f'item/{it["id"]}/',
+                # THE RECORD, SAID IN MACHINE READABLE FORM. A Report carrying this item's
+                # citations, the questions a reader arrives with answered from its own fields,
+                # and the trail back up. Every one computed in schema.py, none written.
+                extra_ld=schema.item_nodes(SCHEMA_CTX, it, today))
 
 
 def _place_slug(name: str) -> str:
