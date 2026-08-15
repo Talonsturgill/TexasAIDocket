@@ -222,14 +222,14 @@ def item_prose(it: dict, today: str) -> str:
     return head + "\n" + "\n".join(b for b in body if b)
 
 
-def _feed(name: str):
-    path = DOCS / f"{name}.json"
+def _feed(name: str, docs_dir=None):
+    path = (Path(docs_dir) if docs_dir else DOCS) / f"{name}.json"
     if not path.exists():
         return None
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def instruments() -> str:
+def instruments(docs_dir=None) -> str:
     """The two daily instruments, at their CURRENT reading only.
 
     Never the series. A reading a day for a year is thousands of numerals that no question
@@ -243,7 +243,7 @@ def instruments() -> str:
     """
     out = []
 
-    grid = _feed("gridwatch")
+    grid = _feed("gridwatch", docs_dir)
     if grid and grid.get("readings"):
         r = grid["readings"][-1]
         prev = grid["readings"][-2] if len(grid["readings"]) > 1 else None
@@ -275,7 +275,7 @@ def instruments() -> str:
                          f"{prev.get('peak_load_mw')} MW")
         out.append(_sentences(lines))
 
-    water = _feed("waterwatch")
+    water = _feed("waterwatch", docs_dir)
     if water and water.get("readings"):
         r = water["readings"][-1]
         prev = water["readings"][-2] if len(water["readings"]) > 1 else None
@@ -342,7 +342,7 @@ a button the reader can press, so make it a real question the record can answer.
 """
 
 
-def build(today: str = None) -> dict:
+def build(today: str = None, docs_dir=None) -> dict:
     today = today or _dt.date.today().isoformat()
     items = dk.load(LEDGER)
 
@@ -350,7 +350,7 @@ def build(today: str = None) -> dict:
         f"THE TEXAS AI DOCKET, as it stood on {longdate(today)}. "
         f"It tracks {len(items)} decisions.",
     ]
-    inst = instruments()
+    inst = instruments(docs_dir)
     if inst:
         parts.append("THE DAILY INSTRUMENTS.\n\n" + inst)
     parts.append("THE DECISIONS.")
@@ -425,7 +425,7 @@ def self_test() -> int:
         check(f"the pack never says {banned!r}", banned not in text.lower())
 
     print("the instruments are current, never the series")
-    grid = _feed("gridwatch")
+    grid = _feed("gridwatch")   # the repo's committed docs/, which is what a self-test reads
     if grid and len(grid.get("readings") or []) > 2:
         # Only the last two readings may appear. A third proves the series leaked in.
         third = grid["readings"][-3].get("peak_load_mw")

@@ -251,6 +251,22 @@ jobs:
       - name: Ask engine self-test (routes not cached answers, and it phones nobody)
         run: python3 scripts/site/ask_answers.py --self-test
 
+      # The record the written answer lane reads, and the key it is marked against. Both are
+      # published daily and both are paid for on every question, so both are gated.
+      #
+      # The pack's size check is the one with a bill attached. Every character in it is sent
+      # with every question forever, so the ceiling is a budget decision and raising it to
+      # make this step green would be spending money to silence a warning.
+      #
+      # The corpus check that matters most is the one asserting the allow-list does NOT cover
+      # the whole ledger. It is derived from the pack, so numerals living only in dropped
+      # fields have to be absent. If they ever all appear, the trim has stopped working and
+      # the numeral guard has quietly gone permissive, which nothing else would notice.
+      - name: The answering record, and what an answer may contain
+        run: |
+          python3 scripts/site/ask_pack.py --self-test
+          python3 scripts/site/ask_corpus.py --self-test
+
       - name: Web fonts are committed, licensed, and actually served
         run: |
           # The check exists because brand.yaml named three faces, theme.py wrote them into

@@ -171,7 +171,8 @@ alaskaaicarousels	research/broadband/pipeline.py	13277	314	14	DROP		DROPPED	Alas
 alaskaaicarousels	research/broadband/test_pipeline.py	5139	119	3	DROP		DROPPED	Alaska USAC data; a Texas analogue is a later project, not this port
 alaskaaicarousels	scripts/aggregate_check.py	35914	776	6	PORT_RETHEMED	scripts/carousel/aggregate_check.py	DONE	
 alaskaaicarousels	scripts/ask_answers.py	62727	1366	65	PORT_RETHEMED	scripts/site/ask_answers.py	DONE	
-alaskaaicarousels	scripts/ask_corpus.py	8998	222	6	PORT_RETHEMED	scripts/site/ask_corpus.py	TODO	
+alaskaaicarousels	scripts/ask_corpus.py	8998	222	6	PORT_RETHEMED	scripts/site/ask_corpus.py	DONE	rewritten, not retyped. The allow-list is derived from the PACK and not the ledger, because authorising a whole time series admits nearly every small number that exists
+alaskaaicarousels	scripts/ask_pack.py	29069	575	8	PORT_RETHEMED	scripts/site/ask_pack.py	DONE	rewritten for the Texas schema and house voice. No colons, no first person, ordinal dates, claims trimmed to text and quote
 alaskaaicarousels	scripts/bespoke_check.py	9630	218	1	PORT_RETHEMED	scripts/carousel/bespoke_check.py	DONE	
 alaskaaicarousels	scripts/caption_check.py	37354	740	8	PORT_RETHEMED	scripts/carousel/caption_check.py	DONE	
 alaskaaicarousels	scripts/claims_check.py	8002	192	0	PORT_RETHEMED	scripts/carousel/claims_check.py	DONE	

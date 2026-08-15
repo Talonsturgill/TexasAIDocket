@@ -41,6 +41,7 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import ask_answers                                                # noqa: E402
+import ask_corpus                                                 # noqa: E402
 import docket_build as dk                                          # noqa: E402
 import fonts_build                                                 # noqa: E402
 import gridwatch_page                                              # noqa: E402
@@ -2125,6 +2126,26 @@ def build(out: Path, today: str) -> dict:
                            "no conservation pool are excluded, and both exclusions are named "
                            "in each record."},
          "readings": waterwatch_page.load()}, indent=2, ensure_ascii=False) + "\n")
+
+    # THE ANSWERING RECORD, published as two files beside the site.
+    #
+    # ask-pack.json is the whole record as prose, which is what the written answer lane puts in
+    # front of the model. ask-corpus.json is the answer key the worker marks the reply against,
+    # and its numeral allow-list is READ OFF THE PACK rather than off the ledger, so the promise
+    # is exact: the model may state a number only if that number was in what it was shown.
+    #
+    # IT RUNS HERE, AFTER THE FEEDS, AND READS THEM OUT OF THIS BUILD'S OWN OUTPUT. Reading
+    # them from the repository's docs/ instead made the pack depend on whatever the LAST build
+    # left on disk, so a rebuild into a temp directory picked up stale instrument readings and
+    # produced a different pack. site_fresh_check caught exactly that, which is what it is for.
+    # A build has to be a pure function of the ledgers or the freshness promise is hollow.
+    #
+    # Published rather than bundled into the worker because both change daily with the record
+    # and the worker does not. A worker carrying its own copy would answer from yesterday's
+    # docket the morning after a run, and nothing would say so.
+    corpus, pack = ask_corpus.write(out / "ask-corpus.json", out / "ask-pack.json",
+                                    today, docs_dir=out)
+    written.extend(["ask-corpus.json", "ask-pack.json"])
     # The heat clock as open data, on the same terms as the other two series. It has no page
     # of its own, because it is one line at the top of the front page rather than a subject,
     # so the data page is where a reader finds it.

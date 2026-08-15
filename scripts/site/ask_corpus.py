@@ -63,7 +63,10 @@ def normalise(tok: str) -> str:
     which reads to a visitor as the record being wrong.
     """
     tok = tok.replace(",", "")
-    tok = tok.lstrip("0") or "0"
+    # Strip padding zeros, but never the zero in front of a decimal point. Without the guard
+    # 0.8469 became .8469, which NUMERAL then cannot match if a model writes it back that way,
+    # so the figure would pass unchecked.
+    tok = ("0" + tok.lstrip("0")) if tok.startswith("0.") else (tok.lstrip("0") or "0")
     if "." in tok:
         tok = tok.rstrip("0").rstrip(".") or "0"
     return tok
@@ -74,8 +77,8 @@ def numerals(text: str) -> set:
     return {normalise(m) for m in NUMERAL.findall(text)}
 
 
-def build(today: str = None) -> dict:
-    pack = ask_pack.build(today)
+def build(today: str = None, docs_dir=None) -> dict:
+    pack = ask_pack.build(today, docs_dir)
     items = dk.load(LEDGER)
 
     return {
@@ -88,9 +91,10 @@ def build(today: str = None) -> dict:
     }
 
 
-def write(corpus_path: Path = OUT_CORPUS, pack_path: Path = OUT_PACK, today: str = None):
-    corpus = build(today)
-    pack = ask_pack.build(today)
+def write(corpus_path: Path = OUT_CORPUS, pack_path: Path = OUT_PACK,
+          today: str = None, docs_dir=None):
+    corpus = build(today, docs_dir)
+    pack = ask_pack.build(today, docs_dir)
     for path, blob in ((corpus_path, corpus), (pack_path, pack)):
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(blob, separators=(",", ":"), sort_keys=True),
@@ -109,7 +113,11 @@ def self_test() -> int:
     print("normalising")
     for raw, want in (("07", "7"), ("0", "0"), ("00", "0"), ("76.50", "76.5"),
                       ("8,927", "8927"), ("1,781,547.9", "1781547.9"),
-                      ("6.00", "6"), ("2026", "2026")):
+                      ("6.00", "6"), ("2026", "2026"),
+                      # A load factor. The leading zero is part of the number and stripping it
+                      # left .8469, which NUMERAL then cannot match if a model writes it back
+                      # that way, so the figure would have passed unchecked.
+                      ("0.8469", "0.8469"), ("0.5", "0.5"), ("0.50", "0.5")):
         check(f"{raw} normalises to {want}", normalise(raw) == want, normalise(raw))
 
     print("tokenising, which has to match numeral_lint exactly")
