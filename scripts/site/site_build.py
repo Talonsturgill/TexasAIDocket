@@ -93,7 +93,10 @@ NAV = [("", "Home"), ("record/", "Docket"), ("articles/", "Articles"),
 # three raw links it carried are the exact three the `/data/` page exists to list, with the
 # context that page adds and the footer cannot. So the page is the entry and the raw links
 # come out. One name, one route, and the shortest footer this site has had.
-FOOTNAV = NAV[1:] + [("data/", "Data")]
+# The scan is the free front door under the services ladder, so it belongs in the way out
+# rather than in the top bar. Eight items is already a full masthead and a ninth would
+# cost the seven that were there first.
+FOOTNAV = NAV[1:] + [("scan/", "Scan"), ("data/", "Data")]
 
 # WHERE THIS WAS MADE. Austin sits on the Balcones Escarpment, the fault line where the Hill
 # Country drops to the coastal plain, which runs straight through the city.
@@ -1361,6 +1364,81 @@ def water_page(today: str) -> str:
 FORM_ACTION = "https://formsubmit.co/228f72bce4f9b0e50b49d8d501374771"
 
 
+def scan_page(today: str) -> str:
+    """The Bottleneck Scanner, the free front door under the paid ladder.
+
+    THE PAGE IS THE CONTRACT. Every promise in this copy is something the scanner routine in
+    the sibling repo actually holds: one report, to one address, no list, no second message,
+    nothing published. If this copy and that routine ever disagree, this is what the requester
+    agreed to and the routine is what is wrong.
+
+    NO DIGITS IN THIS COPY, deliberately. `numeral_lint` refuses a numeral the build did not
+    compute, and every number this page wants to say is a promise rather than a measurement.
+    So the promises are written in words and the page states no figures at all.
+
+    SECOND PERSON THROUGHOUT, per the house rule. A page about somebody else's operation that
+    keeps saying "we" is talking about itself.
+    """
+    body = f"""
+<section class="hero" data-reveal>
+  <h1>See where AI would actually help you</h1>
+  <p class="sub">Send a website. What comes back is an honest map of that operation. Where AI
+  would carry real load. Where ordinary software does the same job cheaper and safer. Where it
+  has no business at all.</p>
+</section>
+
+<section data-reveal>
+  <h2>What comes back</h2>
+  <div class="cards">
+    <div class="card"><h3>Sourced to your own pages</h3><p>Every line traces to a page on your
+    site. Each one is linked so you can check it. Nothing is inferred from another business and
+    nothing is invented. A site too thin to support a true finding gets told exactly that.</p></div>
+    <div class="card"><h3>The honest no</h3><p>Most operations have a pocket where a scale
+    already counts it. Others have one a person clears in a couple of minutes. Those get marked
+    leave-it-alone. They are the reason the rest of the report is worth reading.</p></div>
+    <div class="card"><h3>What your industry already published</h3><p>What operators in the same
+    line of work have published about trying the same thing. Also where it got rolled back. Their
+    results are cited and linked. None of it is dressed up as a forecast about you.</p></div>
+  </div>
+</section>
+
+<section id="start" data-reveal>
+  <h2>Ask for one</h2>
+  <p class="sub">One report to one address. No list. No follow-up sequence. No second email.</p>
+  <form class="leadform" action="{FORM_ACTION}" method="POST">
+    <input type="hidden" name="_subject" value="Texas AI Docket, bottleneck scan request">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+    <label class="vh" for="sc-site">Your website</label>
+    <input id="sc-site" name="website" type="text" inputmode="url" required
+      placeholder="Your website">
+    <label class="vh" for="sc-mail">Where the report should go</label>
+    <input id="sc-mail" name="email" type="email" required
+      placeholder="Where the report should go">
+    <label class="vh" for="sc-book">Booking page, optional</label>
+    <input id="sc-book" name="booking_url" type="text" inputmode="url"
+      placeholder="Booking or scheduling page, optional">
+    <label class="vh" for="sc-jobs">Careers page, optional</label>
+    <input id="sc-jobs" name="jobs_url" type="text" inputmode="url"
+      placeholder="Careers page, optional">
+    <label class="vh" for="sc-note">Anything worth knowing</label>
+    <textarea id="sc-note" name="message" rows="3"
+      placeholder="Anything worth knowing, optional"></textarea>
+    <button class="cta solid" type="submit">Send it</button>
+  </form>
+  <p class="fine">A person reads every report before it goes out. That takes a day or two
+  rather than seconds. Your report is not published anywhere and is not shown to anyone else.
+  It reads what is public. It can't see a billing system or a call volume and it says so where
+  that matters. The <a href="../services/">Field Study</a> is what goes deeper if that turns out
+  to be worth doing.</p>
+</section>
+"""
+    return page(title=f"Bottleneck scan · {SITE_NAME}", depth=1, active="",
+                desc="An honest read of where AI would help a Texas business. Where ordinary "
+                     "software is cheaper. What the industry has already published.",
+                body=body, today=today, canonical="scan/")
+
+
 def services_page(items: list, today: str) -> str:
     """The commercial wing, argued from the record rather than from adjectives.
 
@@ -1484,6 +1562,8 @@ def services_page(items: list, today: str) -> str:
 <section id="start" data-reveal>
   <h2>Start here</h2>
   <p class="sub">Say what the work is. A reply comes inside one business day.</p>
+  <p class="sub">Not ready for that yet. The <a href="../scan/">bottleneck scan</a> is free.
+  It reads your own site and says where AI would and would not help.</p>
   <form class="leadform" action="{FORM_ACTION}" method="POST">
     <input type="hidden" name="_subject" value="Texas AI Docket, services enquiry">
     <input type="hidden" name="_captcha" value="false">
@@ -2007,6 +2087,7 @@ def build(out: Path, today: str) -> dict:
     # only because the count was 121 and the state has 121 counties in no metro, which is
     # the coincidence `numeral_lint`'s docstring admits it cannot see through.
 
+    w("scan/index.html", scan_page(today))
     w("services/index.html", services_page(items, today))
     w("water/index.html", water_page(today), _watch_numerals(waterwatch_page))
     w("waterwatch.json", json.dumps(

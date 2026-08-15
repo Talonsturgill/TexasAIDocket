@@ -153,7 +153,7 @@ physical system on a scale of days. They are siblings, not parent and child. The
 | Repo | Owns |
 |---|---|
 | `TexasAIDispatch` | the video engine and its renders |
-| `TexasAIScanner` | the Bottleneck Scanner backend and its Supabase functions |
+| `TexasAIScanner` | the Bottleneck Scanner: its method, its four agents and its renderer. It has NO backend on purpose. The form here posts to FormSubmit, the scan runs locally, and the report goes into a Gmail draft that a human sends. Nothing about a requester is ever stored or published |
 
 `TexasAIDispatch` writes exactly one file here, `docs/videos/videos.json`, via its publish
 step. Nothing else in this repo may write it, and no build here may reformat it.
