@@ -112,6 +112,10 @@ STANDALONE_ALLOW = {
     "scripts/shared/gen_port_manifest.py",
     "scripts/shared/port_audit.py",
     "scripts/shared/ownership_check.py",
+    # Runs guards.yml here, before a push. It is deliberately NOT wired into the workflow: a
+    # runner that ran itself inside CI would run every step twice, and the one place it must
+    # not be is the place it is checking.
+    "scripts/shared/guards_local.py",
 }
 
 # Documents that describe intent rather than execute it. A script named only in one of these

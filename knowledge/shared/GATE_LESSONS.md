@@ -662,6 +662,43 @@ thing to lead with. **Look at the rendered pages after any change you did not vi
 confirm**, at the widths a reader uses, and treat a green suite as evidence that the things you
 thought to ask about are fine rather than that the product is.
 
+## 32. Running every self-test is not running the gates
+
+The homepage grew a scanner section whose button read "Scan my business". `house_style_check`
+refuses first person in published copy, it ran against the built site in CI, and it went red on
+the first push.
+
+Locally the change had been "verified" by running every `--self-test` under `scripts/`, and all
+of them passed. They were the wrong half. **A self-test proves the checker can go red. Only the
+checker proves the product is clean.** That distinction is the oldest lesson in this file and it
+was still arrived at again by the same route, which is the part worth recording: knowing a
+principle and having a way to act on it are different things.
+
+The reason the wrong half got run is mechanical rather than careless. `guards.yml` is fifty
+steps. Nothing could run them, so "run the gates before pushing" meant remembering fifty
+commands, and what anybody remembers under time pressure is the shape of a list rather than the
+list. The self-tests are the memorable shape: one flag, uniform across every script, greppable.
+The gates are the part that varies.
+
+The defect itself came from the sibling repo, cleanly. That site's button says SCAN MY BUSINESS
+and its checker does not read first person, so the copy arrived intact and correct by its own
+rules and wrong by ours. **A rule the source repo does not enforce is a rule its copy will not
+carry.** Anything ported is only as clean as the strictest gate on the receiving side, which is
+an argument for running the receiving side's gates on the day the port lands rather than the day
+after.
+
+**What to check instead.** `scripts/shared/guards_local.py` runs the workflow's steps here, by
+exit code, in one command. It reads `guards.yml` rather than keeping its own list, because a
+runner with a hand-maintained list is a second source of truth that reports green over the step
+CI added last week. It refuses to report a clean run over zero parsed steps, and it names every
+step it skipped instead of folding them into a total.
+
+**Generalises to.** Any ritual that stands in for a check. If the honest version is long and the
+convenient version is short, the convenient one is what gets run, and no amount of writing the
+rule down changes that. Make the honest version one command.
+
+---
+
 ---
 
 ## The rule for setting a threshold
