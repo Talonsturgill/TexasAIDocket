@@ -1421,6 +1421,7 @@ def ask_box(items: list, today: str) -> str:
          literally true rather than nearly true. -->
     <div id="askts"></div>
   </div>
+  {ask_written.dialog_html()}
 </section>
 
 <script>window.__ASK_INDEX__={json.dumps(idx, separators=(",", ":"))};

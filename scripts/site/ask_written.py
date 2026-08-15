@@ -37,6 +37,21 @@ ENDPOINT = "https://texas-ask.talon-sturgill.workers.dev"
 # who views source. The SECRET half lives in the worker and appears nowhere in this repository.
 TURNSTILE_SITEKEY = "0x4AAAAAAEQ2csplf8Pifi79"
 
+# Where a reader who wants to talk ends up. Same calendar the sibling product books into,
+# because it is the same person on the other end of it.
+BOOKING_URL = "https://calendly.com/talon-sturgill-ixzj/new-meeting"
+
+# FEEDBACK GOES TO EMAIL WITH NO BACKEND IN BETWEEN. formsubmit.co takes a POST and forwards
+# it, so this needs no server, no secret and nothing to keep running. The ajax endpoint returns
+# JSON rather than redirecting, which keeps a reader on the page they were reading.
+#
+# It is the SIBLING PRODUCT'S endpoint, deliberately. That hash is bound to a confirmed inbox
+# and this one would be bound to the same person, so a second endpoint would be a second thing
+# to activate for no gain. _subject labels every note so the two are sortable on arrival. If
+# this record ever gets a mailbox of its own, this is the one line to change.
+FEEDBACK_ACTION = "https://formsubmit.co/ajax/228f72bce4f9b0e50b49d8d501374771"
+FEEDBACK_SUBJECT = "Texas AI Docket, feedback on the search"
+
 
 # EVERY SENTENCE A READER CAN SEE, IN ONE PLACE.
 #
@@ -57,6 +72,10 @@ COPY = {
     "provenance":   "Written from the published record. Every figure checked against it.",
     "again":        "Start over",
     "chip":         "Yes, show me",
+    "feedback":     "Send feedback",
+    "fb_sending":   "Sending",
+    "fb_thanks":    "Thanks. That goes straight to a person.",
+    "fb_failed":    "That did not send. Try the book a call link instead.",
     "cut_some":     "The rest was withheld because ",
     "cut_none":     "None of that answer is shown, because ",
     # One per reason the worker can send. A reason with no words here falls through to the
@@ -70,15 +89,72 @@ COPY = {
 
 
 def note_html() -> str:
-    """The honest half of the offer, above the control it describes.
+    """The line under the field. Short, because the long version was not read.
 
-    Both sentences are load bearing and neither may be softened without changing what the code
-    does. Typing really does send nothing. Pressing really does send the question.
+    IT SAID MORE AND CARRIED LESS. Two sentences explaining which half of the box sends and
+    which does not, sitting above a control most people press without reading anything first.
+    What a reader actually needs here is that the answers come from a model still being worked
+    on, and a way to say when one is wrong.
+
+    The send disclosure survives as one clause rather than a sentence, because it is the only
+    fact about this box a reader cannot discover by using it. Everything else the long version
+    said, a person learns by typing.
     """
     return (
-        '<p class="asknote">Typing searches the record here in your browser and '
-        '<b>sends nothing anywhere</b>. Press enter and the question goes to a model that '
-        'writes an answer from that same record, checked line by line against it.</p>'
+        '<p class="asknote">Model in training, and pressing enter sends a question to it. '
+        '<button type="button" class="asklink" id="askfbopen">Send feedback</button>'
+        '<span class="askdot" aria-hidden="true"></span>'
+        f'<a class="asklink" href="{BOOKING_URL}" target="_blank" rel="noopener">'
+        'Book a call</a></p>'
+    )
+
+
+def dialog_html() -> str:
+    """The feedback form, as a real dialog element.
+
+    A NATIVE <dialog> RATHER THAN A DIV. It gets focus trapping, escape to close, an inert
+    background and the browser's top layer for free, and every one of those is otherwise a
+    few hundred lines of the kind of code that is wrong on one phone and nobody's phone is
+    the one it was tested on.
+
+    WHAT IT SENDS IS ON SCREEN BEFORE IT SENDS. The last exchange is the single most useful
+    thing a reader can attach to "that answer was wrong", and attaching it quietly would be
+    collecting somebody's conversation without saying so. It is shown, it is a checkbox, and
+    the row does not appear at all until there is an exchange to attach.
+
+    NO BACKEND. formsubmit.co takes the POST and forwards it as mail, so there is no server
+    to keep running, no secret to rotate and nothing to go stale.
+    """
+    return (
+        '<dialog class="askfb" id="askfb" aria-labelledby="askfbh">\n'
+        f'  <form id="askfbform" method="POST" action="{FEEDBACK_ACTION}">\n'
+        '    <h2 id="askfbh">Model in training</h2>\n'
+        '    <p class="askfbnote">The search writes from the published record and is checked '
+        'against it line by line. It still gets things wrong, and what it got wrong is the '
+        'useful part.</p>\n'
+        '    <label class="askfbl" for="askfbtext">What happened</label>\n'
+        '    <textarea id="askfbtext" name="feedback" rows="4" required\n'
+        '              placeholder="The answer missed a filing, or read oddly, or stopped '
+        'short"></textarea>\n'
+        '    <label class="askfbl" for="askfbmail">Email, only if a reply is wanted</label>\n'
+        '    <input id="askfbmail" name="email" type="email" autocomplete="email" '
+        'placeholder="Optional">\n'
+        '    <label class="askfbcheck" id="askfbattachrow" hidden>\n'
+        '      <input type="checkbox" id="askfbattach" checked>\n'
+        '      <span>Attach the last question and answer</span>\n'
+        '    </label>\n'
+        '    <pre class="askfbctx" id="askfbctxview" hidden></pre>\n'
+        f'    <input type="hidden" name="_subject" value="{FEEDBACK_SUBJECT}">\n'
+        '    <input type="hidden" name="_captcha" value="false">\n'
+        '    <input type="hidden" name="_template" value="table">\n'
+        '    <input type="hidden" name="exchange" id="askfbctx">\n'
+        '    <p class="askfbmsg" id="askfbmsg" role="status" aria-live="polite"></p>\n'
+        '    <div class="askfbrow">\n'
+        '      <button type="submit" class="askfbsend" id="askfbsend">Send</button>\n'
+        '      <button type="button" class="asklink" id="askfbclose">Close</button>\n'
+        '    </div>\n'
+        '  </form>\n'
+        '</dialog>'
     )
 
 
@@ -387,6 +463,20 @@ _CLIENT = r"""
       again.textContent = "%%again%%";
       again.addEventListener("click", reset);
       foot.appendChild(again);
+
+      /* FEEDBACK BELONGS HERE TOO, and this was a real hole. Answering hides the note under
+         the field, note and starters and live list together, so the one moment a reader has
+         just watched the model be wrong was the one moment they had no way to say so. It sits
+         beside Start over, which is where somebody who has finished reading already is. */
+      var say = document.createElement("button");
+      say.type = "button";
+      say.className = "askagain";
+      say.textContent = "%%feedback%%";
+      say.addEventListener("click", function () {
+        var open = document.getElementById("askfbopen");
+        if (open) open.click();
+      });
+      foot.appendChild(say);
       thread.appendChild(foot);
     }
 
@@ -462,6 +552,85 @@ _CLIENT = r"""
     });
   }
 
+  /* ---- feedback ----------------------------------------------------------
+     A model that is still being worked on needs a way to hear that it was wrong, and the
+     reader who just watched it be wrong is the only person who can say so. This is that,
+     and it is the shortest path that reaches a person: a form that posts to a forwarding
+     service and no backend anywhere. */
+  var fb = document.getElementById("askfb");
+  var fbOpen = document.getElementById("askfbopen");
+  if (fb && fbOpen) {
+    var fbForm  = document.getElementById("askfbform");
+    var fbMsg   = document.getElementById("askfbmsg");
+    var fbCtx   = document.getElementById("askfbctx");
+    var fbView  = document.getElementById("askfbctxview");
+    var fbRow   = document.getElementById("askfbattachrow");
+    var fbCheck = document.getElementById("askfbattach");
+    var fbSend  = document.getElementById("askfbsend");
+
+    /* The last exchange, as text, or nothing. Read from `turns` rather than scraped off the
+       page, so what gets attached is exactly what was said and not what the DOM happens to
+       hold after a Start over. */
+    function lastExchange() {
+      for (var i = turns.length - 1; i > 0; i--) {
+        if (turns[i].role === "assistant") {
+          return "Q. " + turns[i - 1].content + "\n\nA. " + turns[i].content;
+        }
+      }
+      return "";
+    }
+
+    fbOpen.addEventListener("click", function () {
+      var ex = lastExchange();
+      /* No exchange, no offer to attach one. An unticked checkbox next to an empty box is a
+         question a reader has to work out the answer to. */
+      fbRow.hidden = !ex;
+      fbView.hidden = !ex;
+      fbView.textContent = ex;
+      if (fbCheck) fbCheck.checked = !!ex;
+      fbMsg.textContent = "";
+      fbSend.disabled = false;
+      if (typeof fb.showModal === "function") fb.showModal();
+      else fb.setAttribute("open", "");
+      var t = document.getElementById("askfbtext");
+      if (t) t.focus();
+    });
+
+    document.getElementById("askfbclose").addEventListener("click", function () {
+      if (typeof fb.close === "function") fb.close(); else fb.removeAttribute("open");
+    });
+    if (fbCheck) {
+      fbCheck.addEventListener("change", function () { fbView.hidden = !fbCheck.checked; });
+    }
+
+    fbForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      /* Attached only if the box is ticked, and the field is cleared otherwise rather than
+         left holding a value from a previous open. */
+      fbCtx.value = (fbCheck && fbCheck.checked) ? lastExchange() : "";
+      fbSend.disabled = true;
+      fbMsg.textContent = "%%fb_sending%%";
+      fetch(fbForm.action, {
+        method: "POST",
+        headers: { "content-type": "application/json", "accept": "application/json" },
+        body: JSON.stringify(Object.fromEntries(new FormData(fbForm).entries()))
+      }).then(function (r) {
+        if (!r.ok) throw new Error("bad status");
+        fbMsg.textContent = "%%fb_thanks%%";
+        fbForm.reset();
+        fbView.hidden = true;
+        setTimeout(function () {
+          if (typeof fb.close === "function") fb.close(); else fb.removeAttribute("open");
+        }, 1600);
+      }).catch(function () {
+        /* Say where it stands and give the second route, rather than losing what somebody
+           took the trouble to write. */
+        fbMsg.textContent = "%%fb_failed%%";
+        fbSend.disabled = false;
+      });
+    });
+  }
+
   /* SUBMIT IS THE WRITTEN LANE NOW. It used to re-run the engine, which is what typing already
      does, so pressing enter did nothing a reader could see. */
   form.addEventListener("submit", function (e) {
@@ -485,13 +654,33 @@ def self_test() -> int:
     js = client_js()
     note = note_html()
 
-    print("the honest half of the offer")
-    check("the note says typing sends nothing", "sends nothing anywhere" in note)
-    check("and that pressing enter does send", "goes to a model" in note)
-    # Both halves have to be there. A note carrying only the reassuring half is worse than no
-    # note, because it reads as a promise about the whole box.
-    check("neither half stands alone",
-          "sends nothing" in note and "Press enter" in note)
+    print("the line under the field")
+    # The long version explained which half of the box sends and which does not, and was not
+    # read. What survives is the one fact a reader cannot discover by using the box: that
+    # pressing sends. Losing that clause would leave a page that quietly calls a model.
+    check("it says the model is still being worked on", "Model in training" in note)
+    check("it still discloses that pressing sends", "sends a question to it" in note, note)
+    check("feedback is offered", 'id="askfbopen"' in note and "Send feedback" in note)
+    check("and a way to reach a person", BOOKING_URL in note and "Book a call" in note)
+
+    print("the feedback form")
+    d = dialog_html()
+    check("it is a real dialog element", d.startswith("<dialog"))
+    check("it posts somewhere that forwards to mail", FEEDBACK_ACTION in d)
+    check("and labels itself so two products stay sortable", FEEDBACK_SUBJECT in d)
+    check("the note field is required", 'name="feedback"' in d and "required" in d)
+    check("email is optional", 'name="email"' in d and "Optional" in d)
+    # Attaching somebody's conversation without showing it would be collecting it quietly.
+    check("what gets attached is shown before it is sent",
+          'id="askfbctxview"' in d and 'id="askfbattach"' in d)
+    check("and attaching is a choice", 'type="checkbox"' in d)
+    check("the attach row is hidden until there is something to attach",
+          'id="askfbattachrow" hidden' in d)
+    js = client_js()
+    check("nothing is attached when the box is unticked",
+          'fbCheck.checked) ? lastExchange() : ""' in js)
+    check("the exchange is read from the thread, not scraped off the page",
+          "for (var i = turns.length - 1" in js)
 
     print("the house rules, over the copy a reader actually sees")
     # Read from COPY and the note, never from the source around them. A colon in a comment two

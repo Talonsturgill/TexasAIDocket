@@ -50,7 +50,13 @@ await page.route("**/answer", async (route) => {
   : n === 2 ? [{ stage: "Reading the record" },
                { sentence: "The comment window has closed." },
                { withheld: "numeral" }]
-  :           [{ capped: true }];
+  : n === 3 ? [{ capped: true }]
+  // Section I needs a real exchange to attach, so the stub answers normally again once the
+  // capped case has been proved. Leaving it capped forever meant lastExchange() had nothing
+  // to return and the attach checks failed for a reason that was purely about this file.
+  :           [{ stage: "Reading the record" },
+               { sentence: "The Public Utility Commission of Texas decides it." },
+               { done: true }];
   await route.fulfill({
     status: 200, contentType: "application/x-ndjson",
     body: lines.map((l) => JSON.stringify(l)).join("\n") + "\n",
@@ -65,8 +71,12 @@ head("A. at rest, before anyone has asked anything");
 ok("the thread is not on screen", await page.locator("#askthread").isHidden());
 ok("the note is", await page.locator(".asknote").isVisible());
 const note = await page.locator(".asknote").textContent();
-ok("it says typing sends nothing", note.includes("sends nothing anywhere"), note);
-ok("and that pressing enter does send", note.includes("goes to a model"), note);
+ok("the note names the model", note.includes("Model in training"), note);
+ok("and still discloses that pressing sends", note.includes("sends a question to it"), note);
+ok("book a call points at the calendar",
+  (await page.locator('.asknote a.asklink').getAttribute("href"))
+    .startsWith("https://calendly.com/"),
+  await page.locator('.asknote a.asklink').getAttribute("href"));
 ok("the starters are offered", (await page.locator(".chips button").count()) > 0);
 // The promise is only true if nothing has actually gone out yet.
 ok("no request has been made", seen.length === 0);
@@ -180,7 +190,55 @@ ok("the placeholder is back",
 ok("and the next question starts a fresh conversation",
   (await page.evaluate(() => document.querySelectorAll(".askturn").length)) === 0);
 
-head("I. nothing threw across any of that");
+// ------------------------------------------------------------------ feedback
+head("I. feedback, which is the point of saying the model is in training");
+let sent = null;
+await page.route("**/formsubmit.co/**", async (route) => {
+  sent = JSON.parse(route.request().postData());
+  await route.fulfill({ status: 200, contentType: "application/json",
+                        body: JSON.stringify({ success: "true" }) });
+});
+// Reopen a conversation so there is an exchange available to attach.
+await page.fill("#askq", "who decides the ERCOT transmission rule");
+await page.press("#askq", "Enter");
+await page.waitForSelector(".askfrom", { timeout: 8000 });
+
+ok("feedback is still reachable after an answer",
+  await page.locator(".askfrom button", { hasText: "Send feedback" }).isVisible());
+await page.locator(".askfrom button", { hasText: "Send feedback" }).click();
+await page.waitForTimeout(200);
+ok("the dialog opens", await page.locator("#askfb").isVisible());
+ok("the attach row appears once there is an exchange",
+  await page.locator("#askfbattachrow").isVisible());
+const ctx = await page.locator("#askfbctxview").textContent();
+ok("and what would be attached is shown before sending",
+  ctx.includes("who decides") && ctx.includes("Public Utility Commission"), ctx.slice(0, 90));
+
+await page.fill("#askfbtext", "it missed the comment deadline");
+await page.click("#askfbsend");
+await page.waitForTimeout(400);
+ok("the note reaches the forwarder", sent && sent.feedback === "it missed the comment deadline",
+  JSON.stringify(sent));
+ok("the exchange rides along when ticked", sent && sent.exchange.includes("Public Utility"),
+  (sent && sent.exchange || "").slice(0, 60));
+ok("and it is labelled so two products stay sortable",
+  sent && sent._subject.includes("Texas AI Docket"), sent && sent._subject);
+ok("the reader is thanked", (await page.locator("#askfbmsg").textContent()).includes("Thanks"),
+  await page.locator("#askfbmsg").textContent());
+
+// Unticking has to actually withhold it, or the checkbox is decoration.
+await page.waitForTimeout(1800);
+await page.locator(".askfrom button", { hasText: "Send feedback" }).click();
+await page.waitForTimeout(200);
+await page.uncheck("#askfbattach");
+ok("unticking hides the preview too", await page.locator("#askfbctxview").isHidden());
+await page.fill("#askfbtext", "second note");
+await page.click("#askfbsend");
+await page.waitForTimeout(400);
+ok("nothing is attached when the box is unticked", sent && sent.exchange === "",
+  JSON.stringify(sent && sent.exchange));
+
+head("J. nothing threw across any of that");
 // Let the page finish anything it defers on scroll before asking.
 await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
 await page.waitForTimeout(600);

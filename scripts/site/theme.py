@@ -1571,6 +1571,53 @@ caption {{ caption-side:bottom; text-align:left; padding-top:.75rem; font-size:v
   max-width:52ch; }}
 .asknote b {{ color:var(--ink-bright); font-weight:500; }}
 
+/* A LINK THAT IS A BUTTON, AND A BUTTON THAT IS A LINK. "Send feedback" opens a dialog so it
+   has to be a button for a keyboard and a screen reader, and "Book a call" leaves the site so
+   it has to be an anchor. They sit in the same sentence and must not look like two different
+   kinds of thing, so the styling is on the class rather than on the element. */
+.asklink {{ font:inherit; color:var(--accent); background:none; border:0; padding:0;
+  cursor:pointer; text-decoration:none;
+  border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent); }}
+.asklink:hover {{ border-bottom-color:var(--accent); }}
+.askdot {{ display:inline-block; width:3px; height:3px; border-radius:50%; margin:0 .55em .2em;
+  background:var(--ink-mute); vertical-align:middle; }}
+
+/* THE FEEDBACK DIALOG. A native <dialog>, so focus trapping, escape to close and the top
+   layer come from the browser rather than from three hundred lines that are wrong on one
+   phone. ::backdrop is the browser's too. */
+.askfb {{ border:var(--hair) solid var(--rule-strong); border-radius:var(--radius);
+  background:var(--surface); color:var(--ink); padding:0; max-width:min(94vw, 34rem);
+  width:100%; }}
+.askfb::backdrop {{ background:color-mix(in srgb,#000 62%,transparent); }}
+.askfb form {{ display:grid; gap:.55rem; padding:1.35rem var(--gap) 1.15rem; }}
+.askfb h2 {{ margin:0; font-size:var(--s2); }}
+.askfbnote {{ margin:0 0 .35rem; font-size:var(--s-1); line-height:1.55; color:var(--ink-mute); }}
+.askfbl {{ font-size:var(--s-1); color:var(--ink-mute); }}
+.askfb textarea, .askfb input[type="email"] {{ font:400 var(--s0)/1.5 var(--body);
+  width:100%; padding:.6em .75em; border-radius:.6rem; color:var(--ink-bright);
+  background:color-mix(in srgb,var(--surface) 60%,#000);
+  border:var(--hair) solid var(--rule-strong); }}
+.askfb textarea:focus, .askfb input[type="email"]:focus {{ outline:none;
+  border-color:color-mix(in srgb,var(--accent) 70%,transparent);
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 14%,transparent); }}
+.askfbcheck {{ display:flex; gap:.5rem; align-items:flex-start; margin-top:.2rem;
+  font-size:var(--s-1); color:var(--ink-mute); cursor:pointer; }}
+.askfbcheck input {{ margin-top:.15rem; accent-color:var(--accent); }}
+/* What is about to be sent, shown before it is. Scrolls rather than growing the dialog past
+   the viewport on a phone. */
+.askfbctx {{ margin:0; max-height:8.5rem; overflow:auto; white-space:pre-wrap;
+  font:400 var(--s-1)/1.5 var(--body); color:var(--ink-mute);
+  padding:.6rem .75rem; border-radius:.5rem;
+  background:color-mix(in srgb,var(--surface) 60%,#000);
+  border:var(--hair) solid var(--rule); }}
+.askfbmsg {{ margin:0; min-height:1.2em; font-size:var(--s-1); color:var(--accent); }}
+.askfbrow {{ display:flex; gap:1rem; align-items:center; margin-top:.3rem; }}
+.askfbsend {{ font:400 var(--s-1)/1 var(--body); padding:.7em 1.4em; border:0;
+  border-radius:999px; cursor:pointer; background:var(--accent-deep); color:var(--on-accent);
+  transition:transform .16s ease, opacity .16s ease; }}
+.askfbsend:hover {{ transform:translateY(-1px); }}
+.askfbsend[disabled] {{ opacity:.6; cursor:default; transform:none; }}
+
 /* THE THREAD SITS ABOVE THE FIELD. A conversation reads upward: what was said is behind you
    and the thing you type into stays under your thumb. Putting answers below the composer
    pushes the field down the page as the exchange grows, so the control a reader wants is the
