@@ -726,7 +726,7 @@ def scan_teaser() -> str:
     <label class="vh" for="scan-url">Your website</label>
     <input type="text" name="url" id="scan-url" required placeholder="yourbusiness.com"
       autocomplete="url" inputmode="url">
-    <button class="cta solid" type="submit">Scan my business</button>
+    <button class="cta solid" type="submit">Scan it</button>
   </form>
 </section>
 """
