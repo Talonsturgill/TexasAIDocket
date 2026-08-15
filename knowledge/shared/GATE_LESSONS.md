@@ -699,6 +699,48 @@ rule down changes that. Make the honest version one command.
 
 ---
 
+## 33. A gate's own exemption is where the next unread surface grows
+
+`house_style_check` strips `<script>` before it lints, and the reason is good and is written
+down: the ask page ships its whole engine inline, and a JavaScript identifier `i` was being read
+as a first person pronoun. `numeral_lint` strips the same block for the same reason, after a
+build failed all 48 pages on the `8` in `scrollY>8`.
+
+Both exemptions were correct. Neither was wrong on the day it was added.
+
+Then the structured data spine began emitting 633 generated question and answer pairs into
+`<script type="application/ld+json">`, and the site acquired **its largest single surface of
+published prose that no gate read.** Those sentences are quoted by answer engines and read back
+to people. They are exactly as public as the page body and were exactly as checked as a comment.
+
+Nothing went red. The exemption did precisely what it was written to do.
+
+**What to check instead.** When you add an exemption, write down what it is exempting and what
+would make that wrong later. An exemption is a promise about the CONTENT of a region, not about
+the region itself: "script tags hold code" was true, and the moment a script tag held prose the
+promise expired silently. `schema_check.py` now reads inside the block the other two skip.
+
+**Two smaller faults from the same build, both worth their own line.**
+
+There were TWO numeral tokenisers. `numeral_lint` had already met the bug where a token that may
+contain a comma but need not END on a digit swallows the sentence's punctuation, had documented
+it, and had fixed it. The new module wrote its own regex and met the identical bug, so "Room
+170, Austin" came back as the token "170," and a correctly rendered address looked like an
+invented figure. The lesson is not that the regex was wrong. **It is that there was a second
+regex at all**, in a repo whose stated rule is that a thing written twice is wrong in both
+places at once.
+
+And the first version of the numeral check compared generated sentences against the PAGE'S
+RENDERED TEXT. The page prints a date as `2021-06-08` and the sentence prints it as "June 8th",
+so every correctly computed day number was reported as unauthorised. A gate that reports a
+correct product as a violation is how a gate gets switched off, and the fix was to check against
+the LEDGER, which is the input both of them derive from.
+
+**Generalises to.** Any rule of the form "region X is not copy". It is a claim about what
+somebody puts in X, and nobody tells the linter when that changes.
+
+---
+
 ---
 
 ## The rule for setting a threshold

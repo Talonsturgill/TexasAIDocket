@@ -195,7 +195,7 @@ alaskaaicarousels	scripts/gaswatch_hdd.py	9565	233	1	REBUILD	scripts/gridwatch/h
 alaskaaicarousels	scripts/gaswatch_pagecheck.py	16666	396	9	REBUILD	scripts/gridwatch/pagecheck.py	TODO	ERCOT, not Cook Inlet: different sources, different physics
 alaskaaicarousels	scripts/gate_status.py	40370	878	3	PORT_RETHEMED	scripts/carousel/gate_status.py	DONE	
 alaskaaicarousels	scripts/gmail_draft.py	27963	526	9	PORT_RETHEMED	scripts/carousel/gmail_draft.py	DONE	
-alaskaaicarousels	scripts/indexnow.py	4874	127	1	PORT_RETHEMED	scripts/site/indexnow.py	TODO	
+alaskaaicarousels	scripts/indexnow.py	4874	127	1	PORT_RETHEMED	scripts/site/indexnow.py	DONE	Rewritten for this host. Fails soft so a refused submission never reds a deploy, and the key file is written by the build rather than committed by hand, since a missing one makes every submission fail verification silently.
 alaskaaicarousels	scripts/parsers_check.py	9057	199	5	PORT_RETHEMED	scripts/carousel/parsers_check.py	TODO	
 alaskaaicarousels	scripts/prune_runs.py	5560	140	0	PORT_RETHEMED	scripts/carousel/prune_runs.py	TODO	
 alaskaaicarousels	scripts/read_stats.py	4974	123	1	PORT_RETHEMED	scripts/site/read_stats.py	TODO	
