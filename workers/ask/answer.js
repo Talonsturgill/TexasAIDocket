@@ -36,7 +36,8 @@ const ANSWER_TTL = 60 * 60 * 24 * 7;
 // The answer caches merged too, and that is not annoying, it is a lie. The cache key is built
 // from the pack date and the conversation, both packs are generated daily, so the SAME
 // question asked on both sites on the SAME day produced the SAME key. This site could have
-// served an answer about Cook Inlet gas storage under its own name.
+// served the other record's answer, about another state's infrastructure, under its own name,
+// and a reader would have had no way to tell.
 //
 // A prefix makes the collision impossible whatever namespace someone binds, which is the
 // right place to fix it: a deploy time mistake should not be able to reach a reader.

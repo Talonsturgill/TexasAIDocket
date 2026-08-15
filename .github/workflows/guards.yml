@@ -274,6 +274,12 @@ jobs:
       - name: What a written answer is allowed to say
         run: node workers/ask/test.js
 
+      # The client for the lane that leaves the page, and the copy a reader is shown. The copy
+      # ships inside a JavaScript string where house_style_check cannot reach it, so the house
+      # rules are enforced here instead, over the copy block rather than the source around it.
+      - name: The written lane's client, and every word it shows
+        run: python3 scripts/site/ask_written.py --self-test
+
       - name: Web fonts are committed, licensed, and actually served
         run: |
           # The check exists because brand.yaml named three faces, theme.py wrote them into
@@ -318,6 +324,17 @@ jobs:
           npm install --no-save --silent playwright
           npx --yes playwright install --with-deps chromium
           SITE=docs node tests/ask_engine.mjs
+
+      # The other lane, in the same browser. The worker is stubbed; the streaming, the thread
+      # memory, the guard's wording and the two-press follow-up are not.
+      #
+      # The check that matters most here is the one in ask_engine above, which asserts NO
+      # request leaves the page after any interaction. It went red when the human check was
+      # armed on focus, because that fetched Cloudflare's script the moment a caret landed in
+      # the field, during what this page's own note calls typing. The check was right and the
+      # arming moved to the first press.
+      - name: The written lane holds a conversation, and says what it sends
+        run: SITE=docs node tests/ask_written.mjs
 
       - name: The page actually renders as night
         run: |

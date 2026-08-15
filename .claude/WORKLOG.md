@@ -120,8 +120,14 @@ from a prefix that maps to no actor, which the checker treats as `human`.
 one namespace, so both workers use it. Every key this worker writes carries a `tx:` prefix, so
 the spend counters and, far more importantly, the ANSWER CACHES cannot collide. Before the
 prefix, the same question asked on both sites on the same day built the same key and this site
-could have served an answer about Cook Inlet gas storage under its own name. Do not remove the
+could have served the other record's answer under its own name. Do not remove the
 prefix to "tidy up" after splitting the namespaces.
+
+**THE HUMAN CHECK ARMS ON THE FIRST PRESS, NEVER ON FOCUS.** Arming on focus was faster and
+was wrong: it fetched Cloudflare's script the moment a caret landed in the field, so a request
+left the page during what the note above the field calls typing. `tests/ask_engine.mjs`
+asserts no request leaves the page after ANY interaction and went red on it. Do not move it
+back to make the first answer feel quicker.
 
 **CNAME must be IN THE ARTIFACT.** Actions deploys publish exactly what the artifact
 contains, so a custom domain set only in Pages settings is dropped on the next deploy.
@@ -134,10 +140,10 @@ contains, so a custom domain set only in Pages settings is dropped on the next d
 | 2 | `ask_corpus.py` against the Texas schema | DONE. 228 authorised numerals, 68 ledger numerals correctly dropped |
 | 3 | `ask_pack.py`, with the claims trim, plus a hard size ceiling | DONE. 150,314 chars, roughly 37,578 tokens, ceiling 220,000 |
 | 4 | `workers/ask/` port, Texas guard set, red case for every guard | DONE. 73 assertions. Deployed and verified live at texas-ask.talon-sturgill.workers.dev |
-| 5 | written lane client in `site_build.py` | TODO |
-| 6 | `tests/ask_written.mjs` | TODO |
-| 7 | wire all of it into `.github/workflows/guards.yml` | TODO |
-| 8 | owner walkthrough for worker deploy, once 4 is done | TODO |
+| 5 | written lane client, landed as `scripts/site/ask_written.py` | DONE |
+| 6 | `tests/ask_written.mjs` | DONE, 36 checks in a real browser |
+| 7 | wire all of it into `.github/workflows/guards.yml` | DONE |
+| 8 | owner walkthrough for worker deploy | DONE, worker is live |
 
 ### Wrap
 

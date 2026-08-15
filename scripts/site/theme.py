@@ -1544,6 +1544,97 @@ caption {{ caption-side:bottom; text-align:left; padding-top:.75rem; font-size:v
 .askbox .answer .meta {{ font-size:var(--s-1); color:var(--ink-mute);
   font-family:var(--mono); }}
 
+/* ---- the written lane --------------------------------------------------- */
+/* Typing is answered here in the browser and sends nothing. Pressing enter sends the question
+   to a model that writes it up from the same record. Those are two different things and the
+   box has to make a reader feel the difference before they press, not explain it after.
+   THE NOTE IS ABOVE THE CONTROL IT DESCRIBES, and it says what each half does in the reader's
+   own terms. It is not fine print: it is the honest half of an offer. */
+.asknote {{ margin:.75rem 0 0; font-size:var(--s-1); line-height:1.55; color:var(--ink-mute);
+  max-width:52ch; }}
+.asknote b {{ color:var(--ink-bright); font-weight:500; }}
+
+/* THE THREAD SITS ABOVE THE FIELD. A conversation reads upward: what was said is behind you
+   and the thing you type into stays under your thumb. Putting answers below the composer
+   pushes the field down the page as the exchange grows, so the control a reader wants is the
+   one that keeps moving away from them. */
+.askthread {{ margin:0 0 1.1rem; display:grid; gap:0; }}
+.askturn {{ margin:0 0 .7rem; padding-left:.85rem; font-size:var(--s0);
+  line-height:1.5; color:var(--ink-mute);
+  border-left:2px solid var(--rule-strong); }}
+.askreply + .askturn {{ margin-top:1.6rem; }}
+.askreply {{ font-size:var(--s1); line-height:1.7; color:var(--ink-bright); }}
+.askreply p {{ margin:0; }}
+.askreply a.cite {{ color:var(--accent); text-decoration:none;
+  border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent); }}
+.askreply a.cite:hover {{ border-bottom-color:var(--accent); }}
+
+/* WHAT IS HAPPENING, WHILE IT HAPPENS. Both halves of this line are true rather than
+   decorative. The record really is being read, and every figure really is checked against it
+   before it is allowed onto the page. */
+.askstage {{ display:flex; align-items:center; gap:.6rem;
+  font-size:var(--s-1); color:var(--ink-mute); }}
+.askstage::before {{ content:""; width:.4rem; height:.4rem; border-radius:50%; flex:none;
+  background:var(--accent); animation:askpulse 1.1s ease-in-out infinite; }}
+@keyframes askpulse {{ 0%,100% {{ opacity:.25; transform:scale(.8); }}
+                       50% {{ opacity:1; transform:scale(1); }} }}
+/* Each verified sentence arrives on its own and fades rather than snapping in. The fade is
+   not ornament: it marks the sentence as a unit, which is the unit the guard checks. */
+.askseg {{ animation:askfade .3s ease both; }}
+@keyframes askfade {{ from {{ opacity:0; }} to {{ opacity:1; }} }}
+
+/* WHERE AN ANSWER STOPPED, AND WHY. A sentence that fails a check ends the answer there. The
+   reader is told which check, in words, because "something went wrong" from a record product
+   is worse than the stop itself. */
+.askstop {{ margin-top:.8rem; padding-left:.85rem; border-left:2px solid var(--accent);
+  font-size:var(--s-1); line-height:1.55; color:var(--ink-mute); }}
+
+/* TAKING THE ANSWER UP ON ITS CLOSING OFFER. Every answer ends by offering the obvious next
+   question. This turns that offer into one press, and it FILLS THE FIELD RATHER THAN SENDING,
+   because sending is the half that costs and a reader should see what they are about to ask. */
+.asknext {{ justify-self:start; margin-top:1rem; font:400 var(--s-1)/1 var(--body);
+  padding:.6em 1.1em; cursor:pointer; border-radius:999px;
+  color:var(--accent); background:color-mix(in srgb,var(--accent) 8%,transparent);
+  border:var(--hair) solid color-mix(in srgb,var(--accent) 40%,transparent);
+  transition:background-color .18s ease, border-color .18s ease; }}
+.asknext:hover {{ background:color-mix(in srgb,var(--accent) 16%,transparent);
+  border-color:var(--accent); }}
+
+/* Provenance, after the answer and quiet about it. This is the line that makes the box worth
+   trusting, so it stays. It just does not announce itself first. */
+.askfrom {{ margin-top:1.1rem; padding-top:.8rem;
+  border-top:var(--hair) solid var(--rule);
+  display:flex; flex-wrap:wrap; gap:.9rem; align-items:baseline;
+  font-size:var(--s-1); line-height:1.5; color:var(--ink-mute); }}
+.askagain {{ font:inherit; color:var(--accent); background:none; border:0; padding:0;
+  cursor:pointer; border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent); }}
+.askagain:hover {{ border-bottom-color:var(--accent); }}
+
+/* ANSWERING TAKES THE SCREEN. The starters, the note and the engine's live list all step
+   aside, so the answer is the only thing being read. They come back with Start over. */
+.askbox.answering .chips,
+.askbox.answering .asknote,
+.askbox.answering .answer {{ display:none; }}
+
+/* The send control while it is working. The spinner replaces the arrow rather than sitting
+   beside it, so the control keeps its size and the layout does not shift under a thumb. */
+.askbox button[type="submit"][aria-busy="true"] svg {{ display:none; }}
+.askbox button[type="submit"][aria-busy="true"]::after {{ content:""; width:.95rem;
+  height:.95rem; border-radius:50%; border:2px solid color-mix(in srgb,var(--on-accent) 35%,transparent);
+  border-top-color:var(--on-accent); animation:askspin .7s linear infinite; }}
+@keyframes askspin {{ to {{ transform:rotate(360deg); }} }}
+.askbox button[type="submit"][disabled] {{ cursor:default; opacity:.75; }}
+
+/* The human check. Managed mode is invisible unless a person is genuinely needed, so this
+   holds no space until Turnstile puts something in it. */
+#askts:not(:empty) {{ margin-top:.9rem; }}
+
+@media (prefers-reduced-motion:reduce) {{
+  .askstage::before {{ animation:none; opacity:1; }}
+  .askseg {{ animation:none; }}
+  .askbox button[type="submit"][aria-busy="true"]::after {{ animation:none; }}
+}}
+
 table.figures td:first-child {{ color:var(--ink-bright); }}
 table.figures td:last-child {{ color:var(--ink-mute); font-size:.92em; }}
 
