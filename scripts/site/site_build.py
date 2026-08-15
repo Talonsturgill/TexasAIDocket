@@ -41,6 +41,8 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import ask_answers                                                # noqa: E402
+import ask_corpus                                                 # noqa: E402
+import ask_written                                                # noqa: E402
 import docket_build as dk                                          # noqa: E402
 import fonts_build                                                 # noqa: E402
 import gridwatch_page                                              # noqa: E402
@@ -1353,21 +1355,35 @@ def ask_box(items: list, today: str) -> str:
                     for q in starters)
     return f"""
 <section class="asksection" data-reveal>
-  <div id="ask" class="askbox lean" data-base="">
+  <div id="ask" class="askbox lean" data-base=""
+       data-endpoint="{e(ask_written.ENDPOINT)}"
+       data-sitekey="{e(ask_written.TURNSTILE_SITEKEY)}">
+    <!-- THE THREAD IS ABOVE THE FIELD. A conversation reads upward, and answers below the
+         composer push the field down the page as the exchange grows, so the one control a
+         reader wants is the one that keeps moving away from them.
+         aria-live polite because sentences arrive one at a time after the press, and a reader
+         on a screen reader would otherwise be told nothing was happening at all. -->
+    <div class="askthread" id="askthread" hidden aria-live="polite" aria-atomic="false"></div>
     <form class="composer" role="search">
       <label class="vh" for="askq">Ask the record a question</label>
       <input id="askq" type="search" autocomplete="off"
              placeholder="Ask about any AI decision in Texas">
       <button type="submit"><span class="vh">Ask</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
     </form>
+    {ask_written.note_html()}
     <div class="chips" data-voice="reader">{chips}</div>
     <div class="answer" hidden></div>
+    <!-- Turnstile renders here, and only after the field is focused. A reader who never asks
+         anything never fetches Cloudflare's script, which is what keeps the note above
+         literally true rather than nearly true. -->
+    <div id="askts"></div>
   </div>
 </section>
 
 <script>window.__ASK_INDEX__={json.dumps(idx, separators=(",", ":"))};
 window.__ASK_CATALOGUE__={json.dumps(cat, separators=(",", ":"))};</script>
 <script>{ask_answers.engine_js()}</script>
+<script>{ask_written.client_js()}</script>
 """
 
 
@@ -2252,6 +2268,26 @@ def build(out: Path, today: str) -> dict:
                            "no conservation pool are excluded, and both exclusions are named "
                            "in each record."},
          "readings": waterwatch_page.load()}, indent=2, ensure_ascii=False) + "\n")
+
+    # THE ANSWERING RECORD, published as two files beside the site.
+    #
+    # ask-pack.json is the whole record as prose, which is what the written answer lane puts in
+    # front of the model. ask-corpus.json is the answer key the worker marks the reply against,
+    # and its numeral allow-list is READ OFF THE PACK rather than off the ledger, so the promise
+    # is exact: the model may state a number only if that number was in what it was shown.
+    #
+    # IT RUNS HERE, AFTER THE FEEDS, AND READS THEM OUT OF THIS BUILD'S OWN OUTPUT. Reading
+    # them from the repository's docs/ instead made the pack depend on whatever the LAST build
+    # left on disk, so a rebuild into a temp directory picked up stale instrument readings and
+    # produced a different pack. site_fresh_check caught exactly that, which is what it is for.
+    # A build has to be a pure function of the ledgers or the freshness promise is hollow.
+    #
+    # Published rather than bundled into the worker because both change daily with the record
+    # and the worker does not. A worker carrying its own copy would answer from yesterday's
+    # docket the morning after a run, and nothing would say so.
+    corpus, pack = ask_corpus.write(out / "ask-corpus.json", out / "ask-pack.json",
+                                    today, docs_dir=out)
+    written.extend(["ask-corpus.json", "ask-pack.json"])
     # The heat clock as open data, on the same terms as the other two series. It has no page
     # of its own, because it is one line at the top of the front page rather than a subject,
     # so the data page is where a reader finds it.
