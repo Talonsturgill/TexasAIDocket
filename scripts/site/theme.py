@@ -1482,7 +1482,7 @@ caption {{ caption-side:bottom; text-align:left; padding-top:.75rem; font-size:v
    read as a box drawn around a box here. The answer region still gets its rule, because that
    one separates two different things rather than decorating one. */
 .askbox.lean {{ border:0; background:transparent; padding:0; margin:0; }}
-.askbox.lean form {{ gap:.5rem; }}
+.askbox.lean .composer {{ gap:.5rem; }}
 .askbox.lean .chips {{ margin-top:.7rem; }}
 .asksection {{ margin:2.25rem 0 0; }}
 .askfoot {{ margin:.7rem 0 0; font-size:var(--s-1); color:var(--ink-mute); }}
@@ -1499,7 +1499,7 @@ caption {{ caption-side:bottom; text-align:left; padding-top:.75rem; font-size:v
    THE SHELL IS ON THE FORM AND NOT ON `.askbox`, which matters because the front page uses
    the `.lean` variant that strips the outer panel. Putting the shape on the wrapper would
    have deleted it exactly where it is most used. */
-.askbox form {{ display:flex; gap:.5rem; align-items:center; flex-wrap:nowrap;
+.composer {{ display:flex; gap:.5rem; align-items:center; flex-wrap:nowrap;
   padding:.4rem .4rem .4rem 1.15rem; border-radius:1.6rem;
   border:var(--hair) solid var(--rule-strong);
   background:color-mix(in srgb,var(--surface) 82%,transparent);
@@ -1507,31 +1507,48 @@ caption {{ caption-side:bottom; text-align:left; padding-top:.75rem; font-size:v
 /* FOCUS IS A SOFT RING, NOT A HARD BORDER SWAP. A one pixel colour change on a dark ground is
    almost invisible, and this control is the one thing on the front page a reader is invited to
    act on. `:focus-within` so the ring belongs to the composer while the caret is in the field. */
-.askbox form:focus-within {{ border-color:color-mix(in srgb,var(--accent) 70%,transparent);
+.composer:focus-within {{ border-color:color-mix(in srgb,var(--accent) 70%,transparent);
   background:color-mix(in srgb,var(--surface) 96%,transparent);
   box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 14%,transparent); }}
 .askbox label {{ position:absolute; left:-9999px; }}
-.askbox input {{ flex:1 1 auto; min-width:0; font:400 var(--s1)/1.5 var(--body);
+.composer input {{ flex:1 1 auto; min-width:0; font:400 var(--s1)/1.5 var(--body);
   padding:.5em 0; background:transparent; color:var(--ink-bright);
   border:0; border-radius:0; }}
 /* The field carries no ring of its own. The composer around it already has one, and two
    nested focus rings is how a control starts looking like a bug. */
-.askbox input:focus, .askbox input:focus-visible {{ outline:none; }}
-.askbox input::placeholder {{ color:var(--ink-mute); }}
+.composer input:focus, .composer input:focus-visible {{ outline:none; }}
+.composer input::placeholder {{ color:var(--ink-mute); }}
 /* Safari paints its own clear affordance inside a `type=search`, which lands on top of the
    send control at small widths. */
-.askbox input::-webkit-search-decoration,
-.askbox input::-webkit-search-cancel-button {{ -webkit-appearance:none; appearance:none; }}
+.composer input::-webkit-search-decoration,
+.composer input::-webkit-search-cancel-button {{ -webkit-appearance:none; appearance:none; }}
 /* THE SEND CONTROL IS A CIRCLE INSIDE THE SHELL. Square is 2.4rem so it clears the 24 pixel
    target floor on a phone with room to spare, and it keeps its accessible name in a visually
    hidden span rather than relying on the glyph. */
-.askbox button[type="submit"] {{ flex:none; width:2.4rem; height:2.4rem; display:grid;
-  place-items:center; padding:0; border:0; border-radius:50%; cursor:pointer;
+.composer button[type="submit"] {{ flex:none; height:2.4rem; display:grid;
+  place-items:center; padding:0; border:0; cursor:pointer;
   background:var(--accent-deep); color:var(--on-accent);
   transition:transform .16s ease, background-color .16s ease, opacity .16s ease; }}
-.askbox button[type="submit"] svg {{ width:1.05rem; height:1.05rem; display:block; }}
-.askbox button[type="submit"]:hover {{ transform:translateY(-1px); }}
-.askbox button[type="submit"]:active {{ transform:translateY(0); }}
+.composer button[type="submit"] svg {{ width:1.05rem; height:1.05rem; display:block; }}
+.composer button[type="submit"]:hover {{ transform:translateY(-1px); }}
+.composer button[type="submit"]:active {{ transform:translateY(0); }}
+/* TWO CONTROL SHAPES IN ONE SHELL, chosen by whether the control carries a word.
+   THE CIRCLE is the ask composer's. Its placeholder already says what the box does, so an
+   arrow is the whole instruction, and 2.4rem square clears the 24 pixel target floor on a
+   phone with room to spare.
+   THE PILL is for a control that has to name its own action. The scan bar starts a scan on
+   somebody's own website, which is a different promise from sending a question and is worth a
+   word rather than a glyph. Same shell, same height, same focus ring, so the two read as one
+   family at a glance.
+   `:not(.cta)` rather than source order: two rules of equal specificity fighting over one
+   button is a shape that breaks the next time somebody reorders this file. */
+.composer button[type="submit"]:not(.cta) {{ width:2.4rem; border-radius:50%; }}
+.composer button.cta {{ width:auto; border-radius:999px; padding:0 1.2rem;
+  font-size:var(--s-2); box-shadow:none; }}
+.composer button.cta:hover {{ transform:translateY(-1px); box-shadow:none; }}
+/* The scan bar's own spacing. The shell is shared, the distance from the prose above it is
+   this section's business. */
+.scanform {{ margin:1.5rem 0 0; }}
 .askbox .chips {{ display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.9rem; }}
 .askbox .chips button {{ font:400 var(--s-1)/1 var(--body); padding:.5em .85em;
   background:transparent; color:var(--ink-mute);

@@ -552,35 +552,40 @@ caption { caption-side:bottom; text-align:left; padding-top:.75rem; font-size:va
 .askbox { border:var(--hair) solid var(--rule-strong); border-radius:var(--radius);
   padding:1.25rem var(--gap); background:var(--surface); margin:1.5rem 0; }
 .askbox.lean { border:0; background:transparent; padding:0; margin:0; }
-.askbox.lean form { gap:.5rem; }
+.askbox.lean .composer { gap:.5rem; }
 .askbox.lean .chips { margin-top:.7rem; }
 .asksection { margin:2.25rem 0 0; }
 .askfoot { margin:.7rem 0 0; font-size:var(--s-1); color:var(--ink-mute); }
 .vh { position:absolute; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden;
   clip:rect(0 0 0 0); white-space:nowrap; border:0; }
-.askbox form { display:flex; gap:.5rem; align-items:center; flex-wrap:nowrap;
+.composer { display:flex; gap:.5rem; align-items:center; flex-wrap:nowrap;
   padding:.4rem .4rem .4rem 1.15rem; border-radius:1.6rem;
   border:var(--hair) solid var(--rule-strong);
   background:color-mix(in srgb,var(--surface) 82%,transparent);
   transition:border-color .18s ease, box-shadow .18s ease, background-color .18s ease; }
-.askbox form:focus-within { border-color:color-mix(in srgb,var(--accent) 70%,transparent);
+.composer:focus-within { border-color:color-mix(in srgb,var(--accent) 70%,transparent);
   background:color-mix(in srgb,var(--surface) 96%,transparent);
   box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 14%,transparent); }
 .askbox label { position:absolute; left:-9999px; }
-.askbox input { flex:1 1 auto; min-width:0; font:400 var(--s1)/1.5 var(--body);
+.composer input { flex:1 1 auto; min-width:0; font:400 var(--s1)/1.5 var(--body);
   padding:.5em 0; background:transparent; color:var(--ink-bright);
   border:0; border-radius:0; }
-.askbox input:focus, .askbox input:focus-visible { outline:none; }
-.askbox input::placeholder { color:var(--ink-mute); }
-.askbox input::-webkit-search-decoration,
-.askbox input::-webkit-search-cancel-button { -webkit-appearance:none; appearance:none; }
-.askbox button[type="submit"] { flex:none; width:2.4rem; height:2.4rem; display:grid;
-  place-items:center; padding:0; border:0; border-radius:50%; cursor:pointer;
+.composer input:focus, .composer input:focus-visible { outline:none; }
+.composer input::placeholder { color:var(--ink-mute); }
+.composer input::-webkit-search-decoration,
+.composer input::-webkit-search-cancel-button { -webkit-appearance:none; appearance:none; }
+.composer button[type="submit"] { flex:none; height:2.4rem; display:grid;
+  place-items:center; padding:0; border:0; cursor:pointer;
   background:var(--accent-deep); color:var(--on-accent);
   transition:transform .16s ease, background-color .16s ease, opacity .16s ease; }
-.askbox button[type="submit"] svg { width:1.05rem; height:1.05rem; display:block; }
-.askbox button[type="submit"]:hover { transform:translateY(-1px); }
-.askbox button[type="submit"]:active { transform:translateY(0); }
+.composer button[type="submit"] svg { width:1.05rem; height:1.05rem; display:block; }
+.composer button[type="submit"]:hover { transform:translateY(-1px); }
+.composer button[type="submit"]:active { transform:translateY(0); }
+.composer button[type="submit"]:not(.cta) { width:2.4rem; border-radius:50%; }
+.composer button.cta { width:auto; border-radius:999px; padding:0 1.2rem;
+  font-size:var(--s-2); box-shadow:none; }
+.composer button.cta:hover { transform:translateY(-1px); box-shadow:none; }
+.scanform { margin:1.5rem 0 0; }
 .askbox .chips { display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.9rem; }
 .askbox .chips button { font:400 var(--s-1)/1 var(--body); padding:.5em .85em;
   background:transparent; color:var(--ink-mute);

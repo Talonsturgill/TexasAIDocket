@@ -49,7 +49,7 @@
          aria-live polite because sentences arrive one at a time after the press, and a reader
          on a screen reader would otherwise be told nothing was happening at all. -->
     <div class="askthread" id="askthread" hidden aria-live="polite" aria-atomic="false"></div>
-    <form role="search">
+    <form class="composer" role="search">
       <label class="vh" for="askq">Ask the record a question</label>
       <input id="askq" type="search" autocomplete="off"
              placeholder="Ask about any AI decision in Texas">
@@ -795,7 +795,7 @@ window.__ASK_CATALOGUE__=[{"q":"What can I still comment on?","route":{"view":"o
     <p>It is free and the parts that say not yet are the honest ones. Every line traces to a page
     on your own site, linked so you can check it.</p>
   </div>
-  <form class="leadform scanteaser" action="scan/" method="get">
+  <form class="composer scanform" action="scan/" method="get">
     <label class="vh" for="scan-url">Your website</label>
     <input type="text" name="url" id="scan-url" required placeholder="yourbusiness.com"
       autocomplete="url" inputmode="url">
