@@ -126,12 +126,12 @@ the reason the runner exists.
 | S4 | llms-full.txt, feed.xml, 404.html, llms.txt rebuild | DONE. llms.txt 17k to 38k with real sections, truncation fixed |
 | S5 | `/questions/` and `/sources/` | DONE. 633 answers on one hub, 95 documents from 49 publishers |
 | S6 | IndexNow | DONE. Key file written by the build, fails soft, submits nothing from CI yet |
-| S7 | `knowledge/shared/AI_SEO.md` + GATE_LESSONS entry | DOC DONE. GATE_LESSONS entry still TODO |
+| S7 | `knowledge/shared/AI_SEO.md` + GATE_LESSONS entry | DONE |
 
 ### Wrap
 
 | # | task | status |
 |---|---|---|
 | W1 | per-decision og cards carrying the headline, which need a text rasteriser | TODO |
-| W2 | GATE_LESSONS entry for the unlinted JSON-LD surface | TODO |
+| W2 | GATE_LESSONS entry for the unlinted JSON-LD surface | DONE, entry 33 |
 | W3 | delete this file | TODO |
