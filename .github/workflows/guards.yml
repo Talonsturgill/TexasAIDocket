@@ -225,6 +225,21 @@ jobs:
       - name: House style self-test (our prose is checked, a quote never is)
         run: python3 scripts/site/house_style_check.py --self-test
 
+      - name: The scan page and the scanner repo agree on the contract
+        run: |
+          # The scan form exists twice: docs/scan/index.html built by scan_page(), and the
+          # scanner repo's web/scan.html. Neither reads the other, and they had drifted twice.
+          # The one that matters: the scanner turned the captcha ON with a written rationale,
+          # its repo law said so, and the published page stayed at false for a day, because the
+          # fix landed in a file nothing serves. A change to the scanner's copy does not reach a
+          # reader. Only a change here does.
+          #
+          # Field names are the silent half. Phase 0 of the scan routine parses them out of the
+          # forwarded mail, so a rename here means a request arrives without the key the routine
+          # reads and nothing throws.
+          python3 scripts/site/scanner_sync_check.py --self-test
+          python3 scripts/site/scanner_sync_check.py
+
       - name: The published site keeps the house rules
         run: |
           # Checked against the built pages, because the copy a reader sees is assembled from
