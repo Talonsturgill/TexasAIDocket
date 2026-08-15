@@ -1,0 +1,84 @@
+<!-- The scan form.
+     Served from the docket site at /scan/. It posts to FormSubmit, exactly as the services form
+     does, so there is no endpoint, no key and no server anywhere in this product.
+
+     THE PROMISE ON THIS PAGE IS THE CONTRACT. It says one report, to one address, and no list.
+     The routine holds every part of that: it drafts to the address typed here and nowhere else,
+     it never adds anybody to anything, and it never sends a second message. If this copy and
+     the routine ever disagree, this copy is what the requester agreed to and the routine is what
+     is wrong.
+
+     The markup is deliberately plain so the docket's site_build can wrap it in the site shell
+     without fighting a second set of styles.
+
+     THIS FILE IS A TEMPLATE AND MUST NEVER BE SERVED VERBATIM. `{FORM_ACTION}` below is a
+     REQUIRED substitution, performed by the docket's site_build, which holds the FormSubmit
+     alias for the docket mailbox. Copied to a host as-is, the form posts to the literal
+     relative path `{FORM_ACTION}`, which 404s, and every scan request is lost with nobody
+     told. The docket serves this page at /scan/. -->
+<section class="scan" id="scan">
+  <h1>See where AI would actually help you</h1>
+  <p class="sub">
+    Send a website. What comes back is an honest map of that operation. Where AI would carry
+    real load. Where ordinary software does the same job cheaper and safer. Where it has no
+    business at all. Plus what operators in the same line of work have already published about
+    trying it.
+  </p>
+
+  <ul class="scan-what">
+    <li>Every line traces to a page on your own site, linked so you can check it.</li>
+    <li>The parts that say you don't need AI yet are the honest ones, and they are the point.</li>
+    <li>One report to one address. No list, no follow-up sequence, no second email.</li>
+    <li>It reads what is public. It can't see a billing system or a call volume, and it says
+      so where that matters.</li>
+  </ul>
+
+  <form class="leadform" action="{FORM_ACTION}" method="POST">
+    <input type="hidden" name="_subject" value="Texas AI Docket, bottleneck scan request">
+    <!-- THE CAPTCHA STAYS ON HERE, and this form deliberately diverges from the docket's
+         services form, which switches it off. Do not "fix" the difference by matching them.
+
+         CLAUDE.md names two defenses and only two: "the form carries a honeypot field and
+         FormSubmit's own abuse handling". The honeypot is the weaker half by a wide margin,
+         since a bot that posts only the named fields never touches it, so switching the
+         captcha off left roughly one defense standing.
+
+         The two forms differ because what sits behind them differs. A services enquiry costs a
+         maintainer the seconds it takes to read. A scan request is an item in a queue that
+         costs money and runs research when it is picked up, which is the cost CLAUDE.md's
+         COST AND ABUSE DISCIPLINE is about. The extra click is the cheapest thing in the whole
+         path, and the queue being legible is what keeps a real request from being lost in a
+         flood of junk. -->
+    <input type="hidden" name="_captcha" value="true">
+    <!-- the honeypot: a bot fills it, a person never sees it. Second line of defense, not the
+         first, and never the only one -->
+    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
+    <label class="vh" for="sc-site">Your website</label>
+    <input id="sc-site" name="website" type="text" inputmode="url" required
+           placeholder="Your website (yourcompany.com)">
+
+    <label class="vh" for="sc-mail">Where the report should go</label>
+    <input id="sc-mail" name="email" type="email" required
+           placeholder="Where the report should go">
+
+    <label class="vh" for="sc-book">Booking or scheduling page, if you have one</label>
+    <input id="sc-book" name="booking_url" type="text" inputmode="url"
+           placeholder="Booking or scheduling page, if you have one (optional)">
+
+    <label class="vh" for="sc-jobs">Careers page, if you have one</label>
+    <input id="sc-jobs" name="jobs_url" type="text" inputmode="url"
+           placeholder="Careers page, if you have one (optional)">
+
+    <label class="vh" for="sc-note">Anything worth knowing</label>
+    <textarea id="sc-note" name="message" rows="3"
+              placeholder="Anything worth knowing (optional)"></textarea>
+
+    <button class="cta solid" type="submit">Send it</button>
+  </form>
+
+  <p class="scan-fine">
+    A person reads every report before it goes out, so this takes a day or two rather than ninety
+    seconds. Your report is not published anywhere and is not shown to anyone else.
+  </p>
+</section>

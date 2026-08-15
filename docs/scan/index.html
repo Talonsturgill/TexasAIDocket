@@ -53,7 +53,20 @@
   <p class="sub">One report to one address. No list. No follow-up sequence. No second email.</p>
   <form class="leadform" action="https://formsubmit.co/228f72bce4f9b0e50b49d8d501374771" method="POST">
     <input type="hidden" name="_subject" value="Texas AI Docket, bottleneck scan request">
-    <input type="hidden" name="_captcha" value="false">
+    <!-- THE CAPTCHA IS ON HERE AND OFF ON THE SERVICES FORM, deliberately. Do not harmonise
+         them. The scanner repo's CLAUDE.md names two abuse defenses and only two, the honeypot
+         and FormSubmit's own handling, and the honeypot is the weaker half by a wide margin
+         because a bot posting only the named fields never touches it. Off, that left roughly
+         one defense standing.
+
+         The two forms differ because what sits behind them differs. A services enquiry costs a
+         maintainer the seconds it takes to read. A scan request is an item in a queue that
+         costs money and runs research when it is picked up, which is what the scanner's COST
+         AND ABUSE DISCIPLINE section is about. The extra click is the cheapest thing in the
+         whole path.
+
+         scanner_sync_check.py compares this value against the scanner's own copy. -->
+    <input type="hidden" name="_captcha" value="true">
     <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
     <label class="vh" for="sc-site">Your website</label>
     <input id="sc-site" name="website" type="text" inputmode="url" required
@@ -85,7 +98,7 @@
     <svg class="colophon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="m-star" d="M12,1L14.47,8.6L22.46,8.6L16,13.3L18.47,20.9L12,16.2L5.53,20.9L8,13.3L1.54,8.6L9.53,8.6Z"/><path class="f-lit" d="M12,12L9.53,8.6L12,1Z"/><path class="f-shade" d="M12,12L12,1L14.47,8.6Z"/><path class="f-lit" d="M12,12L14.47,8.6L22.46,8.6Z"/><path class="f-shade" d="M12,12L22.46,8.6L16,13.3Z"/><path class="f-lit" d="M12,12L16,13.3L18.47,20.9Z"/><path class="f-shade" d="M12,12L18.47,20.9L12,16.2Z"/><path class="f-lit" d="M12,12L12,16.2L5.53,20.9Z"/><path class="f-shade" d="M12,12L5.53,20.9L8,13.3Z"/><path class="f-lit" d="M12,12L8,13.3L1.54,8.6Z"/><path class="f-shade" d="M12,12L1.54,8.6L9.53,8.6Z"/></svg>
     <div>
       <ul class="footnav" data-prose="data"><li><a href="../record/">Docket</a></li><li><a href="../articles/">Articles</a></li><li><a href="../videos/">Videos</a></li><li><a href="../grid/">Grid</a></li><li><a href="../water/">Water</a></li><li><a href="../services/">Services</a></li><li><a href="../about/">About</a></li><li><a href="../scan/">Scan</a></li><li><a href="../data/">Data</a></li></ul>
-      <p class="colophon-line" data-prose="data"><span>Built on the Balcones Escarpment</span><span>Revised August 14th, 2026</span><span>30°20&#x27;N 97°47&#x27;W</span><span>Every numeral computed from data</span></p>
+      <p class="colophon-line" data-prose="data"><span>Built on the Balcones Escarpment</span><span>Revised August 15th, 2026</span><span>30°20&#x27;N 97°47&#x27;W</span><span>Every numeral computed from data</span></p>
     </div>
   </div>
 </footer>

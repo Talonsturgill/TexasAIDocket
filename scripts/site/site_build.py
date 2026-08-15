@@ -1407,7 +1407,20 @@ def scan_page(today: str) -> str:
   <p class="sub">One report to one address. No list. No follow-up sequence. No second email.</p>
   <form class="leadform" action="{FORM_ACTION}" method="POST">
     <input type="hidden" name="_subject" value="Texas AI Docket, bottleneck scan request">
-    <input type="hidden" name="_captcha" value="false">
+    <!-- THE CAPTCHA IS ON HERE AND OFF ON THE SERVICES FORM, deliberately. Do not harmonise
+         them. The scanner repo's CLAUDE.md names two abuse defenses and only two, the honeypot
+         and FormSubmit's own handling, and the honeypot is the weaker half by a wide margin
+         because a bot posting only the named fields never touches it. Off, that left roughly
+         one defense standing.
+
+         The two forms differ because what sits behind them differs. A services enquiry costs a
+         maintainer the seconds it takes to read. A scan request is an item in a queue that
+         costs money and runs research when it is picked up, which is what the scanner's COST
+         AND ABUSE DISCIPLINE section is about. The extra click is the cheapest thing in the
+         whole path.
+
+         scanner_sync_check.py compares this value against the scanner's own copy. -->
+    <input type="hidden" name="_captcha" value="true">
     <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
     <label class="vh" for="sc-site">Your website</label>
     <input id="sc-site" name="website" type="text" inputmode="url" required
