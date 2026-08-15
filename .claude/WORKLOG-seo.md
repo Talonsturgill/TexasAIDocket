@@ -122,7 +122,7 @@ the reason the runner exists.
 |---|---|---|
 | S1 | `scripts/site/schema.py` + wire into `page()` | DONE. 5 types to 16, 633 Q&A pairs, 58 Reports, 0 dangling @ids |
 | S2 | `schema_check.py`, numeral and style lints extended into JSON-LD | DONE. Proved red on the real artifact with 5 planted faults |
-| S3 | `og.py` social cards | DONE for the site card. PER-DECISION cards carrying the headline are NOT done: they need a text rasteriser or a dependency this project refused once, and that limit is stated in og.py rather than hidden |
+| S3 | `og.py` social cards | DONE, including per-decision cards. `truetype.py` reads glyph outlines out of the committed OFL fonts, so the headline is on the card with no dependency |
 | S4 | llms-full.txt, feed.xml, 404.html, llms.txt rebuild | DONE. llms.txt 17k to 38k with real sections, truncation fixed |
 | S5 | `/questions/` and `/sources/` | DONE. 633 answers on one hub, 95 documents from 49 publishers |
 | S6 | IndexNow | DONE. Key file written by the build, fails soft, submits nothing from CI yet |
@@ -132,6 +132,6 @@ the reason the runner exists.
 
 | # | task | status |
 |---|---|---|
-| W1 | per-decision og cards carrying the headline, which need a text rasteriser | TODO |
+| W1 | per-decision og cards carrying the headline | DONE |
 | W2 | GATE_LESSONS entry for the unlinted JSON-LD surface | DONE, entry 33 |
 | W3 | delete this file | TODO |
