@@ -104,8 +104,8 @@ Domain `texasaidocket.com` registered 2026-08-15 through Cloudflare Registrar.
 | DNS, four A records plus www CNAME, all DNS-only | DONE, verified resolving to the four Pages IPs on apex and www. They are the real Pages addresses and not Cloudflare's proxy range, which is the proof the grey cloud was set |
 | Cloudflare KV namespace | DONE |
 | Turnstile widget | DONE. Site key `0x4AAAAAAEQ2csplf8Pifi79`, public, bakes into the page. Secret key is the owner's and goes in the worker, never here |
-| Pages custom domain in repo settings | WAITING ON OWNER. Until it is set, the apex answers 404 and no certificate issues. The CNAME being in the artifact is necessary and not sufficient |
 | Anthropic API key | WAITING |
+| Pages custom domain in repo settings | DONE. https://texasaidocket.com/ serves 200, www and github.io both 301 to it |
 | Worker shell named texasai-ask | WAITING |
 | monthly ceiling | UNDECIDED. Recommendation 200, about $17 |
 
@@ -126,7 +126,7 @@ contains, so a custom domain set only in Pages settings is dropped on the next d
 | 1 | move the site to texasaidocket.com | DONE, PR #50, merge BLOCKED on owner DNS |
 | 2 | `ask_corpus.py` against the Texas schema | DONE. 228 authorised numerals, 68 ledger numerals correctly dropped |
 | 3 | `ask_pack.py`, with the claims trim, plus a hard size ceiling | DONE. 150,314 chars, roughly 37,578 tokens, ceiling 220,000 |
-| 4 | `workers/ask/` port, Texas guard set, red case for every guard | TODO |
+| 4 | `workers/ask/` port, Texas guard set, red case for every guard | checks.js DONE, 69 assertions. answer.js and worker.js TODO |
 | 5 | written lane client in `site_build.py` | TODO |
 | 6 | `tests/ask_written.mjs` | TODO |
 | 7 | wire all of it into `.github/workflows/guards.yml` | TODO |
