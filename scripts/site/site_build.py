@@ -57,7 +57,12 @@ LEDGER = REPO_ROOT / "ledger" / "docket.json"
 
 SITE_NAME = "Texas AI Docket"
 # One key drives every absolute URL, so moving to a custom domain is a one line change.
-SITE_URL = "https://talonsturgill.github.io/TexasAIDocket"
+# It was one, on 2026-08-15, from https://talonsturgill.github.io/TexasAIDocket. The move cost
+# nothing beyond this line and the CNAME derived from it, because every link on every page is
+# document relative: 77 of them and not one root relative, so dropping a path segment off the
+# front of the site moved no href at all. Only the absolute URLs built from here had to change,
+# which is the canonical tag, og:url, the sitemap, the feeds and the structured data.
+SITE_URL = "https://texasaidocket.com"
 
 # THE MARK IS COMPUTED FROM THE STATUTE. It used to be a star path typed into this file, whose
 # points were not equidistant from its center and whose inner vertices were not on a common
@@ -2032,6 +2037,16 @@ def build(out: Path, today: str) -> dict:
         return set().union(*(by_item[i["id"]] for i in subset)) if subset else set()
 
     w("site.css", theme.css())
+
+    # THE CUSTOM DOMAIN, told to GitHub Pages. Derived from SITE_URL rather than typed, so the
+    # domain the pages claim as canonical and the domain Pages actually serves cannot disagree.
+    #
+    # It has to be IN THE ARTIFACT, not only in the repository's Pages settings. This site
+    # deploys through Actions, and an Actions deploy publishes exactly what the artifact
+    # contains: a custom domain set in settings but missing from the upload gets dropped on the
+    # next deploy, and the site silently reverts to the github.io hostname.
+    (out / "CNAME").write_text(SITE_URL.split("//", 1)[1].rstrip("/") + "\n", encoding="utf-8")
+    written.append("CNAME")
 
     # THE FILM GRAIN, as its own asset. It used to be a 12 KB base64 data URI inside site.css,
     # which is close to incompressible and sat in the middle of a render blocking download, so a
