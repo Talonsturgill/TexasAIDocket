@@ -72,11 +72,12 @@ ok("the thread is not on screen", await page.locator("#askthread").isHidden());
 ok("the note is", await page.locator(".asknote").isVisible());
 const note = await page.locator(".asknote").textContent();
 ok("the note names the model", note.includes("Model in training"), note);
-ok("and still discloses that pressing sends", note.includes("sends a question to it"), note);
-ok("book a call points at the calendar",
-  (await page.locator('.asknote a.asklink').getAttribute("href"))
-    .startsWith("https://calendly.com/"),
-  await page.locator('.asknote a.asklink').getAttribute("href"));
+ok("and stays to one short line", note.trim().length < 40, note);
+// Booking lives on the services page. A calendar link under the ask box is an offer made to
+// somebody who came to read a record, at the moment they are reading it.
+ok("no booking link under the field",
+  (await page.locator(".asknote a").count()) === 0);
+ok("feedback is offered instead", await page.locator("#askfbopen").isVisible());
 ok("the starters are offered", (await page.locator(".chips button").count()) > 0);
 // The promise is only true if nothing has actually gone out yet.
 ok("no request has been made", seen.length === 0);

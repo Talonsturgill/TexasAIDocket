@@ -1421,7 +1421,7 @@ def ask_box(items: list, today: str) -> str:
          literally true rather than nearly true. -->
     <div id="askts"></div>
   </div>
-  {ask_written.dialog_html()}
+  {ask_written.dialog_html(FORM_ACTION.replace("formsubmit.co/", "formsubmit.co/ajax/"))}
 </section>
 
 <script>window.__ASK_INDEX__={json.dumps(idx, separators=(",", ":"))};
@@ -1474,6 +1474,11 @@ def water_page(today: str) -> str:
 # is the same mailbox and it is already activated. `_subject` tells the two apart in the
 # inbox. The domain is deliberately not spelled here: the residue check reads this file.
 FORM_ACTION = "https://formsubmit.co/228f72bce4f9b0e50b49d8d501374771"
+
+# The same calendar the sibling product books into, because it is the same person on the other
+# end of it. It lives on the services page and nowhere else: a booking link under the ask box
+# is an offer made to somebody who came to read a record, at the moment they are reading it.
+BOOKING_URL = "https://calendly.com/talon-sturgill-ixzj/new-meeting"
 
 # THE SCAN FORM HAS A SECOND PATH AS OF 2026-08-15. With JavaScript it posts to the
 # `scan-request` Edge Function, which verifies the captcha, enforces the daily and per-IP caps
@@ -1769,6 +1774,8 @@ def services_page(items: list, today: str) -> str:
   <p class="sub">Say what the work is. A reply comes inside one business day.</p>
   <p class="sub">Not ready for that yet. The <a href="../scan/">bottleneck scan</a> is free.
   It reads your own site and says where AI would and would not help.</p>
+  <p class="sub">Rather talk first. <a href="{BOOKING_URL}" target="_blank"
+  rel="noopener">Book a call</a> and skip the back and forth.</p>
   <form class="leadform" action="{FORM_ACTION}" method="POST">
     <input type="hidden" name="_subject" value="Texas AI Docket, services enquiry">
     <input type="hidden" name="_captcha" value="false">

@@ -37,19 +37,12 @@ ENDPOINT = "https://texas-ask.talon-sturgill.workers.dev"
 # who views source. The SECRET half lives in the worker and appears nowhere in this repository.
 TURNSTILE_SITEKEY = "0x4AAAAAAEQ2csplf8Pifi79"
 
-# Where a reader who wants to talk ends up. Same calendar the sibling product books into,
-# because it is the same person on the other end of it.
-BOOKING_URL = "https://calendly.com/talon-sturgill-ixzj/new-meeting"
-
-# FEEDBACK GOES TO EMAIL WITH NO BACKEND IN BETWEEN. formsubmit.co takes a POST and forwards
-# it, so this needs no server, no secret and nothing to keep running. The ajax endpoint returns
-# JSON rather than redirecting, which keeps a reader on the page they were reading.
+# FEEDBACK GOES TO EMAIL WITH NO BACKEND. formsubmit.co takes a POST and forwards it, so this
+# needs no server, no secret and nothing to keep running. The ACTION IS PASSED IN from
+# site_build, which already owns that endpoint for the services form. Two constants holding
+# one URL is one of them going stale.
 #
-# It is the SIBLING PRODUCT'S endpoint, deliberately. That hash is bound to a confirmed inbox
-# and this one would be bound to the same person, so a second endpoint would be a second thing
-# to activate for no gain. _subject labels every note so the two are sortable on arrival. If
-# this record ever gets a mailbox of its own, this is the one line to change.
-FEEDBACK_ACTION = "https://formsubmit.co/ajax/228f72bce4f9b0e50b49d8d501374771"
+# The ajax variant returns JSON rather than redirecting, which keeps a reader on the page.
 FEEDBACK_SUBJECT = "Texas AI Docket, feedback on the search"
 
 
@@ -89,27 +82,23 @@ COPY = {
 
 
 def note_html() -> str:
-    """The line under the field. Short, because the long version was not read.
+    """The line under the field.
 
-    IT SAID MORE AND CARRIED LESS. Two sentences explaining which half of the box sends and
-    which does not, sitting above a control most people press without reading anything first.
-    What a reader actually needs here is that the answers come from a model still being worked
-    on, and a way to say when one is wrong.
+    IT SAID MORE AND CARRIED LESS, twice. First it was two sentences explaining which half of
+    the box sends and which does not, above a control most people press without reading
+    anything. Then it was one clause doing the same job in fewer words, which was still a
+    sentence about plumbing sitting where a reader is deciding what to ask.
 
-    The send disclosure survives as one clause rather than a sentence, because it is the only
-    fact about this box a reader cannot discover by using it. Everything else the long version
-    said, a person learns by typing.
+    Owner's call both times. What is left is the thing a reader can act on: the answers come
+    from a model that is still being worked on, and here is how to say when one is wrong.
     """
     return (
-        '<p class="asknote">Model in training, and pressing enter sends a question to it. '
-        '<button type="button" class="asklink" id="askfbopen">Send feedback</button>'
-        '<span class="askdot" aria-hidden="true"></span>'
-        f'<a class="asklink" href="{BOOKING_URL}" target="_blank" rel="noopener">'
-        'Book a call</a></p>'
+        '<p class="asknote">Model in training. '
+        '<button type="button" class="asklink" id="askfbopen">Send feedback</button></p>'
     )
 
 
-def dialog_html() -> str:
+def dialog_html(action: str) -> str:
     """The feedback form, as a real dialog element.
 
     A NATIVE <dialog> RATHER THAN A DIV. It gets focus trapping, escape to close, an inert
@@ -127,7 +116,7 @@ def dialog_html() -> str:
     """
     return (
         '<dialog class="askfb" id="askfb" aria-labelledby="askfbh">\n'
-        f'  <form id="askfbform" method="POST" action="{FEEDBACK_ACTION}">\n'
+        f'  <form id="askfbform" method="POST" action="{action}">\n'
         '    <h2 id="askfbh">Model in training</h2>\n'
         '    <p class="askfbnote">The search writes from the published record and is checked '
         'against it line by line. It still gets things wrong, and what it got wrong is the '
@@ -659,14 +648,14 @@ def self_test() -> int:
     # read. What survives is the one fact a reader cannot discover by using the box: that
     # pressing sends. Losing that clause would leave a page that quietly calls a model.
     check("it says the model is still being worked on", "Model in training" in note)
-    check("it still discloses that pressing sends", "sends a question to it" in note, note)
     check("feedback is offered", 'id="askfbopen"' in note and "Send feedback" in note)
-    check("and a way to reach a person", BOOKING_URL in note and "Book a call" in note)
+    # It is one short sentence and a control. Anything longer went unread twice.
+    check("and it stays short", len(re.sub(r"<[^>]+>", "", note)) < 40, note)
 
     print("the feedback form")
-    d = dialog_html()
+    d = dialog_html("https://example.test/ajax/abc")
     check("it is a real dialog element", d.startswith("<dialog"))
-    check("it posts somewhere that forwards to mail", FEEDBACK_ACTION in d)
+    check("it posts to the action it was handed", "https://example.test/ajax/abc" in d)
     check("and labels itself so two products stay sortable", FEEDBACK_SUBJECT in d)
     check("the note field is required", 'name="feedback"' in d and "required" in d)
     check("email is optional", 'name="email"' in d and "Optional" in d)
@@ -676,6 +665,7 @@ def self_test() -> int:
     check("and attaching is a choice", 'type="checkbox"' in d)
     check("the attach row is hidden until there is something to attach",
           'id="askfbattachrow" hidden' in d)
+    check("no endpoint is hardcoded here", "formsubmit" not in dialog_html("X"))
     js = client_js()
     check("nothing is attached when the box is unticked",
           'fbCheck.checked) ? lastExchange() : ""' in js)
