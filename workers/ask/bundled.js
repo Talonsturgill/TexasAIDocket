@@ -252,6 +252,24 @@ const DEFAULT_CAP = 200;
 const MAX_TOKENS = 700;
 const ANSWER_TTL = 60 * 60 * 24 * 7;
 
+// EVERY KV KEY THIS WORKER WRITES CARRIES THIS.
+//
+// Not decoration. A sibling product runs the same design against a different record, and on
+// 2026-08-15 both workers were pointed at ONE KV namespace by mistake. Two things went wrong
+// at once and only one of them was about money.
+//
+// The spend counters merged, so a 200 ceiling and a 500 ceiling read the same number and each
+// site's questions ate the other's budget. That is annoying.
+//
+// The answer caches merged too, and that is not annoying, it is a lie. The cache key is built
+// from the pack date and the conversation, both packs are generated daily, so the SAME
+// question asked on both sites on the SAME day produced the SAME key. This site could have
+// served an answer about Cook Inlet gas storage under its own name.
+//
+// A prefix makes the collision impossible whatever namespace someone binds, which is the
+// right place to fix it: a deploy time mistake should not be able to reach a reader.
+const KV_PREFIX = "tx";
+
 export function effectiveModel(env) {
   return env.ASK_MODEL || DEFAULT_MODEL;
 }
@@ -298,11 +316,11 @@ export async function cacheKey(turns, packDate) {
   const digest = await crypto.subtle.digest("SHA-256",
     new TextEncoder().encode(`${packDate}\n${thread}`));
   const hex = [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, "0")).join("");
-  return `a:${packDate}:${hex.slice(0, 32)}`;
+  return `a:${KV_PREFIX}:${packDate}:${hex.slice(0, 32)}`;
 }
 
 export function monthKey(nowISO) {
-  return `spend:${nowISO.slice(0, 7)}`;
+  return `spend:${KV_PREFIX}:${nowISO.slice(0, 7)}`;
 }
 
 /**
@@ -323,7 +341,8 @@ export async function spendOf(env, nowISO) {
   if (!env.ASK_KV) return { cap, spent: null, left: null, note: "no KV bound" };
   const key = monthKey(nowISO || new Date().toISOString());
   const spent = Number(await env.ASK_KV.get(key)) || 0;
-  return { month: key.slice(6), cap, spent, left: Math.max(0, cap - spent) };
+  return { month: nowISO ? nowISO.slice(0, 7) : new Date().toISOString().slice(0, 7),
+           cap, spent, left: Math.max(0, cap - spent) };
 }
 
 async function fetchJSON(url) {

@@ -182,6 +182,25 @@ ok("repair happens before the split, so what is checked is what is sent",
   splitSentences("It filed; the window closed. Next").sentences[0] === "It filed.",
   JSON.stringify(splitSentences("It filed; the window closed. Next")));
 
+// ------------------------------------------------------- KV key namespacing
+head("L. every KV key is namespaced to this site");
+// The regression this pins actually happened. Two workers running the same design were
+// pointed at one KV namespace, and the answer caches merged: the same question asked on both
+// sites on the same day built the same key, so one site could serve the other's answer under
+// its own name. A shared spend counter was the lesser half of it.
+const { cacheKey, monthKey } = await import("./answer.js");
+ok("the month key names the site",
+  monthKey("2026-08-15T00:00:00Z") === "spend:tx:2026-08",
+  monthKey("2026-08-15T00:00:00Z"));
+const k = await cacheKey([{ role: "user", content: "what is open now" }], "2026-08-15");
+ok("the answer key names the site", k.startsWith("a:tx:2026-08-15:"), k);
+ok("and the same question on a different day is a different key",
+  k !== await cacheKey([{ role: "user", content: "what is open now" }], "2026-08-16"));
+ok("spendOf still reports a bare month, not the prefixed key",
+  (await (await import("./answer.js")).spendOf(
+    { ASK_MONTHLY_CAP: "200", ASK_KV: { get: async () => "7" } },
+    "2026-08-15T00:00:00Z")).month === "2026-08");
+
 console.log("");
 console.log(fail === 0 ? `checks clean, ${pass} assertions`
                        : `checks FAILED, ${fail} of ${pass + fail}`);
