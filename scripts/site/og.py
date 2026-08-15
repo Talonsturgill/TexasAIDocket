@@ -117,52 +117,98 @@ def _background() -> bytearray:
     return bytearray(_BG)
 
 
-def _paint(buf: bytearray, polys: list, dx: float, dy: float, colour) -> None:
-    """Fill the glyph polygons into the card, antialiased, touching only their own bounds.
+_GLYPH: dict = {}
 
-    The same coverage routine the tab icon uses, run over the glyph's bounding box rather than
-    the canvas, which is what keeps 58 cards cheap.
+
+def _glyph_cov(face, ch: str, size: float):
+    """One character's antialiased coverage, rasterised once and kept.
+
+    THE WIN THIS EXISTS FOR. 58 headlines are about 3,000 glyph instances drawn from roughly
+    sixty distinct characters, and the first version rasterised every instance. That put seven
+    minutes on CI, where the build already runs twice under `site_fresh_check`. A letter is the
+    same shape everywhere it appears, so it is filled once and stamped after that.
+
+    Returned as (width, height, x offset, y offset, coverage counts) with the offsets relative
+    to the pen position on the baseline.
     """
+    key = (id(face), ch, size)
+    hit = _GLYPH.get(key)
+    if hit is not None:
+        return hit
+    gid = face.cmap.get(ord(ch))
+    polys = truetype.flatten(face.contours(gid)) if gid is not None else []
+    scale = size / face.units
+    polys = [[(x * scale, -y * scale) for x, y in poly] for poly in polys]
     if not polys:
-        return
+        out = (0, 0, 0, 0, [])
+        _GLYPH[key] = out
+        return out
     xs = [x for p in polys for x, _ in p]
     ys = [y for p in polys for _, y in p]
-    x0, x1 = max(0, int(min(xs) + dx) - 1), min(W, int(max(xs) + dx) + 2)
-    y0, y1 = max(0, int(min(ys) + dy) - 1), min(H, int(max(ys) + dy) + 2)
-    if x1 <= x0 or y1 <= y0:
-        return
-    bw, bh, ss = x1 - x0, y1 - y0, favicon.SS
+    ox, oy = int(min(xs)) - 1, int(min(ys)) - 1
+    bw, bh = int(max(xs)) - ox + 2, int(max(ys)) - oy + 2
+    ss = favicon.SS
     counts = [0] * (bw * bh)
-    edges = [[(px + dx - x0, py + dy - y0) for px, py in poly] for poly in polys]
+    edges = [[(x - ox, y - oy) for x, y in poly] for poly in polys]
     for sy in range(bh * ss):
         y = (sy + 0.5) / ss
-        xs_hit = []
+        hits = []
         for poly in edges:
             n = len(poly)
             for i in range(n):
                 ax, ay = poly[i]
                 bx, by = poly[(i + 1) % n]
                 if (ay <= y < by) or (by <= y < ay):
-                    xs_hit.append(ax + (y - ay) / (by - ay) * (bx - ax))
-        if not xs_hit:
+                    hits.append(ax + (y - ay) / (by - ay) * (bx - ax))
+        if not hits:
             continue
-        xs_hit.sort()
+        hits.sort()
         row = (sy // ss) * bw
-        for k in range(0, len(xs_hit) - 1, 2):
-            xa, xb = xs_hit[k], xs_hit[k + 1]
+        for k in range(0, len(hits) - 1, 2):
+            xa, xb = hits[k], hits[k + 1]
             sa, sb = max(0, int(xa * ss)), min(bw * ss, int(xb * ss) + 1)
             for sx in range(sa, sb):
                 if xa <= (sx + 0.5) / ss < xb:
                     counts[row + sx // ss] += 1
-    full = ss * ss
-    for yy in range(bh):
-        for xx in range(bw):
-            c = counts[yy * bw + xx]
-            if not c:
-                continue
-            i = ((y0 + yy) * W + (x0 + xx)) * 3
-            for ch in range(3):
-                buf[i + ch] += (colour[ch] - buf[i + ch]) * min(c, full) // full
+    out = (bw, bh, ox, oy, counts)
+    _GLYPH[key] = out
+    return out
+
+
+def _draw_text(buf: bytearray, face, text: str, size: float, left: float, baseline: float,
+               colour) -> None:
+    """Stamp a line of cached glyphs onto the card.
+
+    THE PEN LANDS ON A WHOLE PIXEL. A cached glyph carries no sub-pixel phase, so the advance is
+    rounded when it is stamped. At display size that is a spacing difference nobody can see, and
+    it is deterministic, which `site_fresh_check` requires of every byte in `docs/`.
+    """
+    full = favicon.SS * favicon.SS
+    pen = left
+    scale = size / face.units
+    for ch in text:
+        gid = face.cmap.get(ord(ch))
+        bw, bh, ox, oy, counts = _glyph_cov(face, ch, size)
+        if bw:
+            gx, gy = int(pen) + ox, int(baseline) + oy
+            for yy in range(bh):
+                py = gy + yy
+                if not 0 <= py < H:
+                    continue
+                row = yy * bw
+                base = py * W
+                for xx in range(bw):
+                    c = counts[row + xx]
+                    if not c:
+                        continue
+                    px = gx + xx
+                    if not 0 <= px < W:
+                        continue
+                    i = (base + px) * 3
+                    for k in range(3):
+                        buf[i + k] += (colour[k] - buf[i + k]) * min(c, full) // full
+        pen += (face.advance(gid) if gid is not None
+                else face.advance(face.cmap.get(32, 0))) * scale
 
 
 def card(headline: str) -> bytes:
@@ -171,8 +217,7 @@ def card(headline: str) -> bytes:
     face = truetype.load("Fraunces-Var.ttf")
     lines = truetype.wrap(face, headline, TITLE_SIZE, TEXT_W, max_lines=4)
     for i, line in enumerate(lines):
-        polys, _ = truetype.layout(face, line, TITLE_SIZE)
-        _paint(buf, polys, TEXT_LEFT, TEXT_TOP + i * LINE, WHITE)
+        _draw_text(buf, face, line, TITLE_SIZE, TEXT_LEFT, TEXT_TOP + i * LINE, WHITE)
     return _encode(bytes(buf))
 
 
@@ -269,8 +314,7 @@ def self_test() -> int:
 
     buf = _background()
     face = truetype.load("Fraunces-Var.ttf")
-    polys, _ = truetype.layout(face, "Texas", TITLE_SIZE)
-    _paint(buf, polys, TEXT_LEFT, TEXT_TOP, WHITE)
+    _draw_text(buf, face, "Texas", TITLE_SIZE, TEXT_LEFT, TEXT_TOP, WHITE)
 
     def px(b, x, y):
         i = (y * W + x) * 3
