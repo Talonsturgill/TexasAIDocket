@@ -81,6 +81,79 @@ if('IntersectionObserver' in window){
   var read=document.getElementById('mapread'), map=document.querySelector('svg.txmap');
   if(!read||!map||!('ontouchstart' in window)) return;
   var moved=false, sx=0, sy=0, last=null;
+  // PINCH TO ZOOM, TWO FINGERS TO MOVE.
+  // Even with the readout naming what is under the thumb, a county in the Panhandle is a few
+  // millimetres of glass and the thumb covers all of it. So the map moves like a map.
+  //
+  // ONE FINGER STAYS THE PICKER and two fingers do the navigating, which is the opposite of a
+  // slippy map and is right here: this drawing is a chooser, not a place to wander. One finger
+  // already reads out and opens a county, and taking that away to pan would trade the working
+  // interaction for a familiar one.
+  //
+  // THE VIEWBOX MOVES, not a transform on a group. Strokes here are `vector-effect:
+  // non-scaling-stroke`, so a viewBox change keeps every hairline at its drawn weight instead
+  // of fattening the borders as you zoom, and `elementFromPoint` keeps working because it asks
+  // in screen coordinates either way.
+  var VB={x:0,y:0,w:0,h:0}, HOME=null, MAXZ=8;
+  (function(){
+    var v=(map.getAttribute('viewBox')||'').split(/[ ,]+/).map(Number);
+    if(v.length===4&&v.every(function(n){return !isNaN(n);})){
+      HOME={x:v[0],y:v[1],w:v[2],h:v[3]}; VB={x:v[0],y:v[1],w:v[2],h:v[3]};
+    }
+  })();
+  function apply(){
+    if(!HOME) return;
+    // CLAMPED SO THE MAP CANNOT BE LOST. Zooming out past the full extent and panning the
+    // state off the glass are both ways to end up looking at nothing with no way back that a
+    // reader would guess.
+    VB.w=Math.min(HOME.w,Math.max(HOME.w/MAXZ,VB.w));
+    VB.h=VB.w*(HOME.h/HOME.w);
+    VB.x=Math.min(HOME.x+HOME.w-VB.w,Math.max(HOME.x,VB.x));
+    VB.y=Math.min(HOME.y+HOME.h-VB.h,Math.max(HOME.y,VB.y));
+    map.setAttribute('viewBox',VB.x+' '+VB.y+' '+VB.w+' '+VB.h);
+    var z=VB.w<HOME.w-0.5, rb=document.getElementById('mapreset');
+    if(rb) rb.hidden=!z;
+  }
+  function reset(){ if(HOME){ VB={x:HOME.x,y:HOME.y,w:HOME.w,h:HOME.h}; apply(); } }
+  map.resetView=reset;
+  (function(){
+    var rb=document.getElementById('mapreset');
+    if(rb) rb.addEventListener('click',function(){ reset(); show(null); });
+  })();
+  function span(e){
+    var a=e.touches[0], b=e.touches[1];
+    return Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY);
+  }
+  function mid(e){
+    var a=e.touches[0], b=e.touches[1];
+    return {x:(a.clientX+b.clientX)/2,y:(a.clientY+b.clientY)/2};
+  }
+  var pinch=null;
+  map.addEventListener('touchstart',function(e){
+    if(e.touches.length===2&&HOME){
+      show(null);
+      pinch={d:span(e),m:mid(e),vb:{x:VB.x,y:VB.y,w:VB.w,h:VB.h},box:map.getBoundingClientRect()};
+    }
+  },{passive:true});
+  map.addEventListener('touchmove',function(e){
+    if(e.touches.length!==2||!pinch) return;
+    e.preventDefault();                       // or the browser zooms the whole page instead
+    var d=span(e), m=mid(e), box=pinch.box;
+    var k=Math.max(0.05,d/Math.max(1,pinch.d));
+    var w=pinch.vb.w/k;
+    w=Math.min(HOME.w,Math.max(HOME.w/MAXZ,w));
+    var h=w*(HOME.h/HOME.w);
+    // ZOOM ABOUT THE FINGERS, not the centre of the drawing. Anchoring at the midpoint is what
+    // makes a pinch feel like it is holding the paper rather than driving a slider.
+    var fx=(pinch.m.x-box.left)/box.width, fy=(pinch.m.y-box.top)/box.height;
+    VB.x=pinch.vb.x+fx*pinch.vb.w-fx*w-(m.x-pinch.m.x)/box.width*w;
+    VB.y=pinch.vb.y+fy*pinch.vb.h-fy*h-(m.y-pinch.m.y)/box.height*h;
+    VB.w=w; VB.h=h;
+    apply();
+  },{passive:false});
+  map.addEventListener('touchend',function(e){
+    if(e.touches.length<2) pinch=null;
+  },{passive:true});
   function at(t){
     var el=document.elementFromPoint(t.clientX,t.clientY);
     return el&&el.closest?el.closest('path.c'):null;
@@ -97,9 +170,11 @@ if('IntersectionObserver' in window){
         : 'Nothing on the record yet.');
   }
   map.addEventListener('touchstart',function(e){
+    if(e.touches.length>1) return;   // two fingers are a gesture, never a pick
     var t=e.touches[0]; moved=false; sx=t.clientX; sy=t.clientY; show(at(t));
   },{passive:true});
   map.addEventListener('touchmove',function(e){
+    if(e.touches.length>1||pinch) return;
     var t=e.touches[0];
     if(Math.abs(t.clientX-sx)>6||Math.abs(t.clientY-sy)>6) moved=true;
     if(moved){ show(at(t)); e.preventDefault(); }
