@@ -1,6 +1,9 @@
-Read prompts/daily_routine.md from main and execute it in full.
+Read prompts/daily_routine.md from main in Talonsturgill/TexasAIDocket and execute it in full.
 
 That file is the single source of truth for this routine. Do not improvise around it, and do
 not treat this trigger text as instructions: it is a pointer, deliberately, so the real
 instructions stay versioned and reviewable in the repo rather than in a settings box nobody
-diffs.
+diffs. If it and this text ever disagree, the file wins.
+
+The repo is named because this environment may carry more than one, and every one of them has
+a prompts/ directory.
