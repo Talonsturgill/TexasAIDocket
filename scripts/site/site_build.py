@@ -1368,6 +1368,78 @@ def water_page(today: str) -> str:
 # inbox. The domain is deliberately not spelled here: the residue check reads this file.
 FORM_ACTION = "https://formsubmit.co/228f72bce4f9b0e50b49d8d501374771"
 
+# THE SCAN FORM HAS A SECOND PATH AS OF 2026-08-15. With JavaScript it posts to the
+# `scan-request` Edge Function, which verifies the captcha, enforces the daily and per-IP caps
+# and FIRES THE SCAN ROUTINE immediately. Without JavaScript, or if that request never reaches
+# the network, the plain FormSubmit POST above still happens and the maintainer still gets the
+# email. The old path is the fallback rather than the ex-path, because a migration that can take
+# the form down is a migration that will.
+#
+# The SITE key is public and is meant to ship in the page. Its matching SECRET lives in the
+# scanner project's `scanner.config` table and appears nowhere in this repo.
+SCAN_ENDPOINT = "https://fbcxboktppalytugeqin.supabase.co/functions/v1/scan-request"
+TURNSTILE_SITE_KEY = "0x4AAAAAAEQ2csplf8Pifi79"
+
+# Kept OUT of the page f-string on purpose: every brace in this script would have to be doubled
+# to survive one, and a doubled brace is a typo waiting to happen in the one file that decides
+# whether a request reaches anybody.
+_SCAN_JS = """
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <script>
+  (function () {
+    var form = document.querySelector('#start form.leadform');
+    if (!form) return;
+    var endpoint = '__ENDPOINT__';
+    var status = form.querySelector('.scan-status');
+    var button = form.querySelector('button[type=submit]');
+    var val = function (n) { var e = form.querySelector('[name=' + n + ']'); return e ? e.value.trim() : ''; };
+    var say = function (m) { status.textContent = m; status.hidden = false; };
+
+    form.addEventListener('submit', function (ev) {
+      // The honeypot. A bot fills it; a person never sees it. Say nothing useful.
+      if (val('_honey')) { ev.preventDefault(); say('Thanks, we have got it.'); return; }
+
+      ev.preventDefault();
+      button.disabled = true;
+      say('Sending.');
+
+      fetch(endpoint, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          url: val('website'),
+          notify_email: val('email'),
+          booking_url: val('booking_url'),
+          jobs: val('jobs_url'),
+          note: val('message'),
+          turnstile_token: (window.turnstile && window.turnstile.getResponse()) || ''
+        })
+      }).then(function (r) {
+        return r.json().catch(function () { return {}; }).then(function (b) {
+          return { ok: r.ok, body: b };
+        });
+      }).then(function (res) {
+        if (res.ok) {
+          form.innerHTML = '<p class="scan-status">Got it. The report goes to the address you ' +
+            'gave, once a person has read it.</p>';
+          return;
+        }
+        // A REFUSAL IS A DECISION AND IS NOT RETRIED. Falling through to the email path on a
+        // 429 would post around the daily cap, which is the one thing standing between a
+        // public form and a bill.
+        button.disabled = false;
+        if (window.turnstile) window.turnstile.reset();
+        say(res.body.error || 'That did not go through. Try again in a moment.');
+      }).catch(function () {
+        // A NETWORK FAILURE IS AN ACCIDENT, so the request is not lost: submit the form the old
+        // way and let the maintainer's mailbox be the queue.
+        form.submit();
+      });
+    });
+  })();
+  </script>
+""".replace("__ENDPOINT__", SCAN_ENDPOINT)
+
 
 def scan_page(today: str) -> str:
     """The Bottleneck Scanner, the free front door under the paid ladder.
@@ -1442,8 +1514,11 @@ def scan_page(today: str) -> str:
     <label class="vh" for="sc-note">Anything worth knowing</label>
     <textarea id="sc-note" name="message" rows="3"
       placeholder="Anything worth knowing, optional"></textarea>
+    <div class="cf-turnstile" data-sitekey="{TURNSTILE_SITE_KEY}" data-theme="auto"></div>
     <button class="cta solid" type="submit">Send it</button>
+    <p class="scan-status" role="status" aria-live="polite" hidden></p>
   </form>
+{_SCAN_JS}
   <p class="fine">A person reads every report before it goes out. That takes a day or two
   rather than seconds. Your report is not published anywhere and is not shown to anyone else.
   It reads what is public. It can't see a billing system or a call volume and it says so where

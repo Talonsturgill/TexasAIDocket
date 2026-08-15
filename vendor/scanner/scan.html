@@ -1,6 +1,11 @@
 <!-- The scan form.
-     Served from the docket site at /scan/. It posts to FormSubmit, exactly as the services form
-     does, so there is no endpoint, no key and no server anywhere in this product.
+     Served from the docket site at /scan/.
+
+     TWO PATHS, ON PURPOSE. With JavaScript it posts to the `scan-request` Edge Function, which
+     verifies the captcha, enforces the caps and FIRES THE SCAN ROUTINE immediately. Without
+     JavaScript, or if that request never reaches the network, the plain form POST to FormSubmit
+     still happens and the maintainer still gets the email. The old path is the fallback rather
+     than the ex-path, because a migration that can take the form down is a migration that will.
 
      THE PROMISE ON THIS PAGE IS THE CONTRACT. It says one report, to one address, and no list.
      The routine holds every part of that: it drafts to the address typed here and nowhere else,
@@ -11,11 +16,12 @@
      The markup is deliberately plain so the docket's site_build can wrap it in the site shell
      without fighting a second set of styles.
 
-     THIS FILE IS A TEMPLATE AND MUST NEVER BE SERVED VERBATIM. `{FORM_ACTION}` below is a
-     REQUIRED substitution, performed by the docket's site_build, which holds the FormSubmit
-     alias for the docket mailbox. Copied to a host as-is, the form posts to the literal
-     relative path `{FORM_ACTION}`, which 404s, and every scan request is lost with nobody
-     told. The docket serves this page at /scan/. -->
+     THIS FILE IS A TEMPLATE AND MUST NEVER BE SERVED VERBATIM. Three REQUIRED substitutions,
+     performed by the docket's site_build: `{FORM_ACTION}` (the FormSubmit alias for the docket
+     mailbox), `{SCAN_ENDPOINT}` (the Edge Function url) and `{TURNSTILE_SITE_KEY}` (public, it
+     is meant to ship in the page; the matching SECRET lives in scanner.config and never here).
+     Copied to a host as-is, the form posts to the literal relative path `{FORM_ACTION}`, which
+     404s, and every scan request is lost with nobody told. The docket serves this at /scan/. -->
 <section class="scan" id="scan">
   <h1>See where AI would actually help you</h1>
   <p class="sub">
@@ -74,8 +80,70 @@
     <textarea id="sc-note" name="message" rows="3"
               placeholder="Anything worth knowing (optional)"></textarea>
 
+    <div class="cf-turnstile" data-sitekey="{TURNSTILE_SITE_KEY}" data-theme="auto"></div>
+
     <button class="cta solid" type="submit">Send it</button>
+    <p class="scan-status" role="status" aria-live="polite" hidden></p>
   </form>
+
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <script>
+  (function () {
+    var form = document.currentScript.parentNode.querySelector('form.leadform');
+    if (!form) return;
+    var endpoint = '{SCAN_ENDPOINT}';
+    // Unsubstituted template, which means this page was copied rather than built.
+    // Leave the plain FormSubmit POST alone rather than fetching a literal brace.
+    if (endpoint.charAt(0) === '{') return;
+
+    var status = form.querySelector('.scan-status');
+    var button = form.querySelector('button[type=submit]');
+    var val = function (n) { var e = form.querySelector('[name=' + n + ']'); return e ? e.value.trim() : ''; };
+    var say = function (m) { status.textContent = m; status.hidden = false; };
+
+    form.addEventListener('submit', function (ev) {
+      // The honeypot. A bot fills it; a person never sees it. Say nothing useful.
+      if (val('_honey')) { ev.preventDefault(); say('Thanks, we have got it.'); return; }
+
+      ev.preventDefault();
+      button.disabled = true;
+      say('Sending.');
+
+      fetch(endpoint, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          url: val('website'),
+          notify_email: val('email'),
+          booking_url: val('booking_url'),
+          jobs: val('jobs_url'),
+          note: val('message'),
+          turnstile_token: (window.turnstile && window.turnstile.getResponse()) || ''
+        })
+      }).then(function (r) {
+        return r.json().catch(function () { return {}; }).then(function (b) {
+          return { ok: r.ok, body: b };
+        });
+      }).then(function (res) {
+        if (res.ok) {
+          form.innerHTML = '<p class="scan-status">Got it. The report goes to ' +
+            'the address you gave, once a person has read it.</p>';
+          return;
+        }
+        // A REFUSAL IS A DECISION AND IS NOT RETRIED. Falling through to the email
+        // path on a 429 would post around the daily cap, which is the one thing
+        // standing between a public form and a bill.
+        button.disabled = false;
+        if (window.turnstile) window.turnstile.reset();
+        say(res.body.error || 'That did not go through. Try again in a moment.');
+      }).catch(function () {
+        // A NETWORK FAILURE IS AN ACCIDENT, so the request is not lost: submit the
+        // form the old way and let the maintainer's mailbox be the queue.
+        form.submit();
+      });
+    });
+  })();
+  </script>
 
   <p class="scan-fine">
     A person reads every report before it goes out, so this takes a day or two rather than ninety
