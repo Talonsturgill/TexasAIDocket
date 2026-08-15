@@ -192,6 +192,11 @@ Alaska's history would poison them.
   `--self-test` that replays it. Run them by EXIT CODE, never by reading the last line: a report
   that prints advice on failure and one clean line on success looks reassuring either way under
   `tail -1`, and that has shipped a red gate here before.
+  **Before you push, run `python3 scripts/shared/guards_local.py`.** It runs the whole of
+  `guards.yml` here, by exit code, and it reads that file rather than keeping its own list so it
+  cannot fall behind CI. `--fast` defers the node suites while you iterate. Running every
+  `--self-test` instead is the wrong half and has already put a red build on the board: a
+  self-test proves the checker can go red, and only the checker proves the product is clean.
 - `assets/` — committed fonts, art libraries, Texas geodata, places gazetteer.
 - The front page's one live line is the **weather chip**, in `scripts/site/frontchip.py` with
   its collector in `scripts/gridwatch/weather_collect.py`.
