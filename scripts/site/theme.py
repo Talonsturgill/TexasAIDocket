@@ -1029,7 +1029,15 @@ main > section > h2::after {{ content:""; position:absolute; top:-1px; left:0; w
 .mapread {{ min-height:1.5em; margin:.55rem 0 0; font-family:var(--mono);
   font-size:var(--s-1); color:var(--ink-mute); }}
 .mapread:empty {{ min-height:0; margin:0; }}
-@media (hover:hover) and (pointer:fine) {{ .mapread {{ display:none; }} }}
+/* THE WAY BACK OUT. A map that zooms and cannot be reset is a map a reader can get lost in,
+   and the gesture that would undo it is the one they just used to get here. Hidden until the
+   view has actually moved, because a control that does nothing is furniture. */
+.mapreset {{ margin:.5rem 0 0; padding:.5em 1em; border-radius:999px; cursor:pointer;
+  font-family:var(--mono); font-size:var(--s-2); letter-spacing:.08em;
+  text-transform:uppercase; background:var(--accent-deep); color:var(--on-accent);
+  border:var(--hair) solid transparent; }}
+.mapreset[hidden] {{ display:none; }}
+@media (hover:hover) and (pointer:fine) {{ .mapread, .mapreset {{ display:none; }} }}
 /* THE HIGHLIGHT IS A STROKE AND NOT A FILL, so a lit county goes on saying it is lit while the
    thumb is on it. Swapping the fill would answer "where is my finger" by deleting the answer to
    "what does the record hold here", and the second question is the one the map is for. */

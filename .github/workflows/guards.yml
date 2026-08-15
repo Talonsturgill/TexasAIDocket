@@ -398,6 +398,19 @@ jobs:
           # be "delete the atmosphere".
           SITE=docs node tests/page_ground.mjs
 
+      - name: The map moves like a map on a phone
+        run: |
+          # On a phone you cannot see which county you are tapping, because it is under your
+          # finger, and a Panhandle county is a few millimetres of glass. The readout names
+          # what is under the thumb; this is the other half. Pinch to zoom, two fingers to
+          # move, and a control that puts the whole state back.
+          #
+          # A BROWSER, because the whole feature is touch events, a live viewBox and a bounding
+          # box. A test that mocked all three would be testing the mock. The context declares
+          # hasTouch, since the feature is behind `'ontouchstart' in window` and a desktop
+          # context would exercise nothing and report green.
+          SITE=docs node tests/map_gestures.mjs
+
       - name: The site fits the screen it is on
         run: |
           # THIS SUITE EXISTED AND DID NOT RUN HERE, which is its own lesson: it caught a real
