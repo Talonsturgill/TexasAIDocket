@@ -267,6 +267,13 @@ jobs:
           python3 scripts/site/ask_pack.py --self-test
           python3 scripts/site/ask_corpus.py --self-test
 
+      # The worker's checker, which is the only thing standing between a model's guess and a
+      # published claim. Half of these assertions are sentences that must NOT trip a guard: a
+      # verdict gate that blocks its own correct refusal teaches the model to answer instead
+      # of decline, and it fails silently, because the answer still looks fine.
+      - name: What a written answer is allowed to say
+        run: node workers/ask/test.js
+
       - name: Web fonts are committed, licensed, and actually served
         run: |
           # The check exists because brand.yaml named three faces, theme.py wrote them into

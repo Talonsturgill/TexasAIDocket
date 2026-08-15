@@ -220,11 +220,11 @@ alaskaaicarousels	vendor/scanner/README.md	7463	157	4	REBUILD	vendor/scanner/REA
 alaskaaicarousels	vendor/scanner/scan.html	41382	811	11	REBUILD	vendor/scanner/scan.html	DONE	vendored contract regenerates from TexasAIScanner
 alaskaaicarousels	vendor/scanner/scan_routine.md	29323	543	10	DROP		DROPPED	Alaska vendored the routine spec because its sync check read the PHASES and note KINDS out of it to drive a live progress feed. Texas has no backend and no progress feed, so there is nothing to read from it. The Texas sync check compares the FORM, which is vendored beside this.
 alaskaaicarousels	workers/ask/README.md	7190	169	3	PORT_RETHEMED	workers/ask/README.md	TODO	
-alaskaaicarousels	workers/ask/checks.js	5928	118	2	PORT_RETHEMED	workers/ask/checks.js	TODO	
-alaskaaicarousels	workers/ask/deep.js	6582	164	0	PORT_RETHEMED	workers/ask/deep.js	TODO	
-alaskaaicarousels	workers/ask/test-deep.mjs	5681	136	2	PORT_RETHEMED	workers/ask/test-deep.mjs	TODO	
-alaskaaicarousels	workers/ask/test.mjs	6845	141	11	PORT_RETHEMED	workers/ask/test.mjs	TODO	
-alaskaaicarousels	workers/ask/worker.js	5470	130	3	PORT_RETHEMED	workers/ask/worker.js	TODO	
+alaskaaicarousels	workers/ask/checks.js	5928	118	2	PORT_RETHEMED	workers/ask/checks.js	DONE	rewritten. Eight guards where the sibling has three, because the house rules are stricter and the instrument is the ERCOT grid, not gas
+alaskaaicarousels	workers/ask/deep.js	6582	164	0	PORT_RETHEMED	workers/ask/deep.js	DROPPED	the archive lane fires a routine per question and answers in minutes. Never configured on the sibling either, where it 503d from the day it shipped
+alaskaaicarousels	workers/ask/test-deep.mjs	5681	136	2	PORT_RETHEMED	workers/ask/test-deep.mjs	DROPPED	tests the lane above, which is not ported
+alaskaaicarousels	workers/ask/test.mjs	6845	141	11	PORT_RETHEMED	workers/ask/test.js	DONE	landed as workers/ask/test.js, 69 assertions
+alaskaaicarousels	workers/ask/worker.js	5470	130	3	PORT_RETHEMED	workers/ask/worker.js	DONE	no archive lane here, so /deep and /result are gone. CORS origin reads from ASK_ORIGIN rather than hardcoded
 alaskaaicarousels	workers/ask/wrangler.toml	2142	41	1	PORT_RETHEMED	workers/ask/wrangler.toml	TODO	
 alaska-ai-weekly	.claude/WORKLOG.md	24852	353	0	REBUILD	TexasAIDispatch:.claude/.md	TODO	
 alaska-ai-weekly	.claude/agents/dispatch-fixer.md	6090	86	2	PORT_RETHEMED	TexasAIDispatch:.claude/agents/dispatch-fixer.md	TODO	
