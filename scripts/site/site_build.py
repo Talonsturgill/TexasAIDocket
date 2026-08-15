@@ -212,7 +212,8 @@ def rel(depth: int) -> str:
 # --------------------------------------------------------------------------- shell
 def page(*, title: str, desc: str, body: str, depth: int, active: str,
          today: str, canonical: str, extra_ld: list | None = None,
-         home_page: bool = False) -> str:
+         home_page: bool = False, og_image: str = "og.png",
+         og_alt: str | None = None) -> str:
     p = rel(depth)
     # `""` USED TO MEAN TWO THINGS AND ONE OF THEM WAS A LIE. It is Home's own href, and it
     # was also what a page with no nav entry passed to mean "none of these". So every item
@@ -261,7 +262,7 @@ def page(*, title: str, desc: str, body: str, depth: int, active: str,
 <meta property="og:description" content="{e(desc)}">
 <meta property="og:type" content="website">
 <meta property="og:url" content="{SITE_URL}/{canonical}">
-{og.head_html(p, SITE_URL, SITE_NAME, title, desc)}
+{og.head_html(p, SITE_URL, SITE_NAME, title, desc, og_image, og_alt)}
 {favicon.head_html(p)}
 <link rel="stylesheet" href="{p}site.css">
 <link rel="preload" href="{p}fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
@@ -1171,6 +1172,10 @@ def item_page(it: dict, today: str) -> str:
     return page(title=f'{it["title"]} · {SITE_NAME}', depth=2, active="record/",
                 desc=it["summary"][:180], body=body, today=today,
                 canonical=f'item/{it["id"]}/',
+                # ITS OWN CARD, carrying its own headline. A shared decision link now shows
+                # what the decision is rather than the site's generic mark.
+                og_image=f'og/{it["id"]}.png',
+                og_alt=f'{it["title"]}. A card from the Texas AI Docket.',
                 # THE RECORD, SAID IN MACHINE READABLE FORM. A Report carrying this item's
                 # citations, the questions a reader arrives with answered from its own fields,
                 # and the trail back up. Every one computed in schema.py, none written.
@@ -2585,7 +2590,10 @@ def build(out: Path, today: str) -> dict:
     # rather than committed by hand and hoped for.
     w(indexnow.KEY_FILE, indexnow.key_file_contents())
 
-    for name, blob in og.files().items():
+    for name, blob in og.files(items).items():
+        # The per-decision cards live in their own directory, which has to exist first. The
+        # site card sits at the root beside the favicon.
+        (out / name).parent.mkdir(parents=True, exist_ok=True)
         (out / name).write_bytes(blob)
         written.append(name)
 

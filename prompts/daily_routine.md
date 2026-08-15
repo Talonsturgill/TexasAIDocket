@@ -375,6 +375,13 @@ not rung (f).
 python3 scripts/gridwatch/gridwatch_pagecheck.py
 python3 scripts/site/waterwatch_page.py --self-test
 python3 scripts/site/site_build.py --out /tmp/site --today <date>
+
+# THE DISCOVERABILITY SURFACES. Run by exit code, never by reading the last line.
+python3 scripts/site/schema_check.py          # the structured data, as published copy
+python3 scripts/site/og.py --self-test        # the social cards and the text on them
+python3 scripts/site/favicon.py --self-test   # the tab icon
+python3 scripts/site/truetype.py --self-test  # the glyph reader the cards depend on
+python3 scripts/site/indexnow.py --self-test  # the key file that verifies ownership
 ```
 
 Exit 0 is clean, exit 2 wants attention, exit 1 means the checker itself broke. **This never
@@ -409,6 +416,46 @@ Three outcomes and only the middle one costs you anything.
 
 **DRAFT, NEVER SEND.** That rule has no exception here either, and the connector's reply tool is
 right there.
+
+**THE DISCOVERABILITY SURFACES ARE UPDATED BY THE BUILD, AND THAT IS THE POINT.**
+
+`llms.txt`, `llms-full.txt`, the three feeds, the sitemap, every JSON-LD block, all 58 social
+cards and the two hubs at `/questions/` and `/sources/` are **pure functions of the ledger**.
+They are rebuilt from scratch every run by Phase 16 and `site_fresh_check` proves the committed
+site is byte identical to a fresh build. So a decision admitted in Phase 5 is in the corpus, in
+the feeds, in the structured data and on its own card by the time this run merges, with no step
+here to remember.
+
+**What that guarantee does NOT cover, and what this phase is for.** A gate answers the question
+it was given. None of the five above can tell you the product is any good. So look, and then
+**sign off in the run record by name**, one line each, under a heading spelled exactly
+`## Discoverability signoff` so a later run can grep the series. A surface nobody looked at gets
+written down as NOT LOOKED AT, never as fine. Four lines, one per bullet below, each naming what
+was opened and what it showed.
+
+- **One decision's card, opened as an image.** Pick the run's newest item and open
+  `docs/og/<id>.png`. Does the headline wrap somewhere a reader would break it, and does it end
+  in a whole word rather than a stump? The wrapper cuts on width, so a title that is one long
+  proper noun is where it will look wrong first.
+- **`/questions/`, read as a reader.** Are these questions somebody would actually type? The
+  answers are computed from a fixed set of shapes, so a new `public_access` room or a status
+  the record has not carried before is where a shape stops making sense.
+- **The `Open right now` section of `llms.txt`.** It lists what still has a dated way in. Cross
+  it against the open windows Phase 3 re-verified. If a window closed today and it is still
+  listed, the build ran before the record moved and the merge order is wrong.
+- **A source title in `/sources/`.** Quoted material is exempt from the punctuation and numeral
+  rules by design. Confirm the exemption is still doing that and not hiding one of our own
+  sentences.
+
+**IF A SURFACE DID NOT UPDATE**, say which and why in the run record. The three real causes, in
+the order they actually happen: the build did not run, the ledger did not change so there was
+nothing to regenerate, or a gate went red and Phase 16 did not merge. Only the third is a
+failure of this run.
+
+**INDEXNOW SUBMITS ITSELF.** `pages.yml` pushes the day's changed urls after a successful
+deploy, filtered on the sitemap's own `lastmod`. Nothing to do here. If the key file ever stops
+being served the self-test above goes red, and every submission after that would have failed
+verification silently.
 
 **THEN LOOK AT THE PAGES.** A checker sees what it reads and the product is what a reader
 receives, which is the whole of `knowledge/shared/GATE_LESSONS.md`. Three things a green suite

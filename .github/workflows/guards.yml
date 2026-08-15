@@ -302,6 +302,14 @@ jobs:
           # verification silently.
           python3 scripts/site/indexnow.py --self-test
 
+      - name: Glyph outlines come out of the committed fonts
+        run: |
+          # The card carries the decision's headline, and it got there without a dependency.
+          # A TrueType glyph is quadratic contours, and the implied on-curve midpoint between
+          # two off-curve points is the compression that makes a naive reader draw a letter
+          # inside out, so that path is exercised on a real glyph rather than assumed.
+          python3 scripts/site/truetype.py --self-test
+
       - name: A shared link has a card rather than a bare string
         run: |
           # Four Open Graph tags shipped and none was an image, so every link pasted into a
