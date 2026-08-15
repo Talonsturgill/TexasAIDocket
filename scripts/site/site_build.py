@@ -1936,26 +1936,351 @@ def feed_json(items: list, today: str) -> str:
     }, indent=2, ensure_ascii=False) + "\n"
 
 
-def llms_txt(items: list, today: str) -> str:
-    """Published as cheap hygiene, and nothing on this site claims it does more.
+def _first_sentence(text: str, cap: int = 220) -> str:
+    """A description that ends where a sentence ends, never mid word.
 
-    No major AI crawler documents that it reads /llms.txt. Google, Anthropic and Perplexity all
-    name robots.txt as the control surface and none mention it. It is a community proposal, not
-    a standard. Publishing costs one generated file from a build that already holds the index in
-    memory; claiming it works would be exactly the unverifiable assertion this project refuses.
+    THE BUG THIS FIXES was `summary[:110]`, a hard character cut that shipped
+    "...amend its certificate of convenience and necessity to build the Dinosau" into the file
+    a model reads to learn what this site holds. Fifty eight entries, every one truncated, many
+    of them mid word. A machine reading that learns the record is unreliable, which is the exact
+    opposite of the thing being advertised.
     """
-    rows = "\n".join(f'- [{i["title"]}]({SITE_URL}/item/{i["id"]}/index.md): '
-                     f'{i["summary"][:110]}' for i in items)
-    return (f"# {SITE_NAME}\n\n"
-            f"> A public, fact-checked record of decisions about artificial intelligence in "
-            f"Texas. Every entry carries verbatim quotes from the sources it rests on, and at "
-            f"least one primary source. Every numeral is computed from data, never written by "
-            f"a person.\n\n"
-            f"## The record\n\n{rows}\n\n"
-            f"## Data\n\n"
-            f"- [The whole record as JSON]({SITE_URL}/docket.json)\n"
-            f"- [Atom feed]({SITE_URL}/atom.xml)\n"
-            f"- [JSON feed]({SITE_URL}/feed.json)\n")
+    text = " ".join((text or "").split())
+    if len(text) <= cap:
+        return text
+    cut = text[:cap]
+    stop = max(cut.rfind(". "), cut.rfind("? "), cut.rfind("! "))
+    if stop > cap * 0.5:
+        return cut[:stop + 1]
+    return cut[:cut.rfind(" ")].rstrip(",;") + "..."
+
+
+def not_found_page(today: str, items: list) -> str:
+    """The page a reader gets for a path that is not here.
+
+    GitHub Pages serves `docs/404.html` for any unknown path. Without one, a mistyped decision
+    id lands on the host's default page: no navigation, no way to search, and nothing saying
+    the site is ours. The most common way to arrive here is a stale link to a decision, so the
+    one useful thing to offer is the record itself and the box that answers questions about it.
+
+    NOT IN THE SITEMAP and it carries no canonical, because it is not a destination. It is also
+    the one page whose own URL is unknown at build time, which is why `canonical` points at the
+    record rather than at itself.
+    """
+    body = f"""
+<article>
+<h1>That page is not here</h1>
+<div class="prose">
+  <p>The link may be old, or the address may have a typo in it. Nothing has been removed from
+  this record, so a decision that was here is still here under its own address.</p>
+  <p>The record carries <span class="num">{len(items)}</span> tracked decisions and every one
+  of them is listed in one place.</p>
+</div>
+<p class="ctarow"><a class="cta solid" href="record/">Open the record</a>
+<a class="cta ghost" href="./">Front page</a></p>
+</article>
+"""
+    return page(title=f"Not found · {SITE_NAME}", depth=0, active=None,
+                desc="That page is not here. The record and every tracked decision in it are "
+                     "one link away.",
+                body=body, today=today, canonical="record/")
+
+
+def _cite_titles(text: str, titles: set) -> str:
+    """Wrap every verbatim source title in `<cite>`, which is what it is.
+
+    Marks quoted material as quoted so the numeral and style lints skip it, the same mechanism
+    `house_style_check` has always used. Longest first, so a title containing another is not
+    left in fragments. The text is ALREADY ESCAPED when this runs, so the titles are escaped to
+    match before comparison.
+    """
+    for t in sorted(titles, key=len, reverse=True):
+        text = text.replace(e(t), f"<cite>{e(t)}</cite>")
+    return text
+
+
+def _quoted_numerals(items: list) -> set:
+    """Numerals that live inside a source's own title or url, for the two pages that print them.
+
+    A docket number in "PUCT Interchange, Filings for 58000" is an IDENTIFIER inside QUOTED
+    MATERIAL. It is not a measurement, it was not computed, and it is not ours to change: a
+    document's title is the document's own words, which is the same reason `house_style_check`
+    never lints a quotation.
+
+    PASSED PER PAGE, NEVER ADDED TO THE SITE-WIDE SET. `_authorised_numerals` carries a warning
+    earned twice over, that both times this gate was silently disabled the cause was an
+    allowlist that grew wider than the page it guarded. Only the questions and sources pages
+    print source titles, so only they get this.
+    """
+    out = set()
+    for it in items:
+        for c in it.get("claims") or []:
+            for field in (c.get("source_title"), c.get("source_url")):
+                if field:
+                    out |= set(numeral_lint.NUMERAL.findall(field))
+    return out
+
+
+def questions_page(items: list, today: str) -> str:
+    """Every question this record can answer, with its answer, on one page.
+
+    WHY A HUB AND NOT A DOORWAY. The difference is whether anything is behind it. This page is
+    a VIEW over the record: each question and each answer is the same computed pair the item
+    page emits as structured data, from `schema.qa_pairs`, so the page and the JSON-LD cannot
+    drift and neither can be written independently of the ledger. A page built by asking a model
+    for likely questions would be a doorway page, which is both spam and a lie.
+
+    WHY IT IS WORTH HAVING. This is where a long tail query lands. Somebody types "can I still
+    comment on the Oncor 765 kV line" into a search box or an assistant, and that sentence
+    exists here, answered, with a link to the decision it came from.
+
+    ONE QUESTION SHAPE PER SECTION rather than one section per decision, because a reader
+    arrives with a KIND of question. Fifty eight blocks of ten questions is a database dump.
+    """
+    _titles = schema.source_titles(items)
+    shapes = {}
+    for it in sorted(items, key=lambda i: i["title"]):
+        for q, a in schema.qa_pairs(SCHEMA_CTX, it, today):
+            # The shape is the question with its subject removed, which is what makes two
+            # questions about different decisions the same KIND of question.
+            key = q.replace(it["title"], "").strip().rstrip("?").strip()
+            shapes.setdefault(key, []).append((it, q, a))
+
+    order = sorted(shapes, key=lambda k: (-len(shapes[k]), k))
+    figures = {str(len(shapes))} | {str(len(v)) for v in shapes.values()}
+    figures |= {str(sum(len(v) for v in shapes.values()))}
+    nav = "".join(f'<a href="#{_place_slug(k)}">{e(k.capitalize())}</a>' for k in order)
+    blocks = []
+    for k in order:
+        rows = "".join(
+            f'<details><summary>{e(q)}</summary><div class="prose">'
+            f'<p>{_cite_titles(e(a), _titles)}</p>'
+            f'<p><a class="go" href="../item/{it["id"]}/">Open the decision</a>.</p></div>'
+            f'</details>'
+            for it, q, a in shapes[k])
+        blocks.append(f'<section id="{_place_slug(k)}"><h2>{e(k.capitalize())}</h2>'
+                      f'<div class="qa">{rows}</div></section>')
+
+    body = f"""
+<article>
+<h1>Questions this record answers</h1>
+<div class="prose">
+  <p>Every answer below is assembled from the record itself, from the same fields the decision
+  page prints. Nothing here is written separately, so an answer can't drift from the entry it
+  describes.</p>
+  <p>An answer the record can't support is not shown at all.</p>
+</div>
+<nav class="chips" aria-label="Question kinds">{nav}</nav>
+{"".join(blocks)}
+</article>
+"""
+    return figures, page(title=f"Questions · {SITE_NAME}", depth=1, active="record/",
+                desc="Every question this record can answer about AI decisions in Texas, "
+                     "answered from the record itself.",
+                body=body, today=today, canonical="questions/",
+                extra_ld=[schema.collection_node(
+                              SCHEMA_CTX, name="Questions", path="questions/",
+                              description="Questions answered from the tracked record.",
+                              count=sum(len(v) for v in shapes.values())),
+                          schema.breadcrumbs(SCHEMA_CTX,
+                                             [(SITE_NAME, ""), ("Questions", "questions/")])])
+
+
+def sources_page(items: list, today: str) -> str:
+    """Every document a claim in this record was checked against, grouped by who published it.
+
+    THE PAGE THAT MAKES THE WHOLE ARGUMENT CHECKABLE. This record's claim is that every fact
+    traces to a fetched source. Until this page existed a reader had to open 58 decisions to
+    see the shape of that, and a machine had no single place to learn what this record rests on.
+
+    GROUPED BY HOST, because "who says so" is the question a reader is actually asking, and a
+    flat list of 95 urls answers it worse than a list of the bodies behind them.
+    """
+    from urllib.parse import urlparse
+    hosts = {}
+    for it in items:
+        for c in it.get("claims") or []:
+            u = c.get("source_url")
+            if not u:
+                continue
+            h = urlparse(u).netloc.removeprefix("www.")
+            hosts.setdefault(h, {}).setdefault(u, {"title": c.get("source_title") or u,
+                                                   "type": c.get("source_type"), "items": set()})
+            hosts[h][u]["items"].add(it["id"])
+
+    blocks = []
+    for h in sorted(hosts):
+        rows = "".join(
+            f'<li><a href="{e(u)}" rel="nofollow noopener"><cite>{e(d["title"])}</cite></a> '
+            f'<span class="meta">{e((d["type"] or "").replace("_", " "))}, cited by '
+            f'<span class="num">{len(d["items"])}</span> '
+            f'{"entry" if len(d["items"]) == 1 else "entries"}</span></li>'
+            for u, d in sorted(hosts[h].items(), key=lambda kv: kv[1]["title"]))
+        n = len(hosts[h])
+        blocks.append(
+            f'<section><h2>{e(h)}</h2><p class="meta" data-prose="data">'
+            f'<span class="num">{n}</span> {"document" if n == 1 else "documents"}</p>'
+            f'<ul class="sources" data-prose="data">{rows}</ul></section>')
+
+    n_docs = sum(len(v) for v in hosts.values())
+    # THE FIGURES THIS PAGE COMPUTED, handed back with it. Authorising them at the call site by
+    # guessing what the page prints is how an allowlist drifts from its page; returning them
+    # from the computation that produced them is the only version that cannot.
+    figures = {str(n_docs), str(len(hosts))}
+    figures |= {str(len(v)) for v in hosts.values()}
+    figures |= {str(len(d["items"])) for v in hosts.values() for d in v.values()}
+    body = f"""
+<article>
+<h1>Every source this record rests on</h1>
+<div class="prose">
+  <p>Each entry in the record carries a verbatim quote from a document that was fetched. At
+  least one of those documents has to be the filing, the statute or the agency itself rather
+  than a report about it. This is all of them.</p>
+  <p><span class="num">{n_docs}</span> documents from
+  <span class="num">{len(hosts)}</span> publishers.</p>
+</div>
+{"".join(blocks)}
+</article>
+"""
+    return figures, page(title=f"Sources · {SITE_NAME}", depth=1, active="record/",
+                desc="Every document a claim in the Texas AI Docket was checked against, "
+                     "grouped by publisher.",
+                body=body, today=today, canonical="sources/",
+                extra_ld=[schema.collection_node(
+                              SCHEMA_CTX, name="Sources", path="sources/",
+                              description="Every document a claim was checked against.",
+                              count=n_docs),
+                          schema.breadcrumbs(SCHEMA_CTX,
+                                             [(SITE_NAME, ""), ("Sources", "sources/")])])
+
+
+def llms_txt(items: list, today: str) -> str:
+    """The map of this site for a machine, in the community `llms.txt` shape.
+
+    PUBLISHED AS CHEAP HYGIENE, and nothing on this site claims it does more. No major AI
+    crawler documents that it reads `/llms.txt`. Google, Anthropic and Perplexity all name
+    robots.txt as the control surface and none mention it. It is a community proposal, not a
+    standard. Publishing costs one generated file from a build that already holds the index in
+    memory. Claiming it works would be exactly the unverifiable assertion this project refuses.
+
+    WHAT CHANGED, and why it was worth changing. The first version was one flat list of every
+    item with each description cut at 110 characters, mid word. A flat list is not a map: it
+    tells a reader what exists and nothing about what matters, and a truncated description is
+    worse than none because it looks like the whole answer.
+
+    THE ORDER IS THE ARGUMENT. What a person can still act on comes first, because a comment
+    window that closes on Friday is the most perishable thing this record holds. Then the
+    standing surfaces, then the whole record, then the data.
+    """
+    def line(i):
+        return (f'- [{i["title"]}]({SITE_URL}/item/{i["id"]}/): '
+                f'{_first_sentence(i["summary"])}')
+
+    open_now = [i for i in items
+                if (i.get("public_access") or {}).get("room") in ("open_comment",
+                                                                  "open_meeting")]
+    by_topic = {}
+    for i in items:
+        by_topic.setdefault(i["topic"], []).append(i)
+
+    parts = [
+        f"# {SITE_NAME}", "",
+        "> A public, fact-checked record of decisions about artificial intelligence in Texas. "
+        "Every entry carries verbatim quotes from the sources it rests on, and at least one "
+        "primary source. Every numeral is computed from data, never written by a person.", "",
+        "This record may be read, indexed, cited and quoted. Attribution to the "
+        f"{SITE_NAME} with a link to the page is requested. No crawler is blocked. Every "
+        "decision also exists as Markdown at the same path plus index.md, and the whole "
+        "record is one fetch at /llms-full.txt.", "",
+        "## Start here", "",
+        f"- [The record, every tracked decision]({SITE_URL}/record/)",
+        f"- [Questions answered from the record]({SITE_URL}/questions/)",
+        f"- [Every source a claim was checked against]({SITE_URL}/sources/)",
+        f"- [The data, its schema and its licence]({SITE_URL}/data/)",
+        f"- [Texas Grid Watch, the daily ERCOT record]({SITE_URL}/grid/)",
+        f"- [Texas Water Watch]({SITE_URL}/water/)",
+        f"- [About this record]({SITE_URL}/about/)", "",
+    ]
+
+    if open_now:
+        parts += ["## Open right now", "",
+                  "Decisions a member of the public still has a dated way into.", ""]
+        parts += [line(i) for i in sorted(open_now, key=lambda x: x["title"])]
+        parts += [""]
+
+    parts += ["## The whole record, by beat", ""]
+    for topic in sorted(by_topic):
+        parts += [f"### {topic_label(topic)}", ""]
+        parts += [line(i) for i in sorted(by_topic[topic], key=lambda x: x["title"])]
+        parts += [""]
+
+    parts += [
+        "## Feeds", "",
+        f"- [RSS]({SITE_URL}/feed.xml)",
+        f"- [Atom]({SITE_URL}/atom.xml)",
+        f"- [JSON Feed]({SITE_URL}/feed.json)", "",
+        "## Data", "",
+        f"- [The whole record as JSON]({SITE_URL}/docket.json), CC BY 4.0",
+        f"- [Every decision as Markdown, one fetch]({SITE_URL}/llms-full.txt)",
+        f"- [Grid Watch as JSON]({SITE_URL}/gridwatch.json)",
+        f"- [Water Watch as JSON]({SITE_URL}/waterwatch.json)", "",
+    ]
+    return "\n".join(parts)
+
+
+def llms_full_txt(items: list, today: str) -> str:
+    """Every decision as Markdown in one fetch.
+
+    THE HIGHEST VALUE FILE ON THIS SITE FOR A MACHINE READER, and it costs one concatenation of
+    twins the build already writes. A model answering a question about Texas and AI can hold the
+    entire record in one request rather than crawling 58 pages and parsing HTML out of each.
+
+    Built from `item_markdown` rather than from a second rendering, so the one fetch and the 58
+    fetches can never disagree. A separate renderer here would be a second vocabulary for the
+    same record, which is the drift this project keeps having to design against.
+    """
+    head = [
+        f"# {SITE_NAME}", "",
+        "The whole record as plain Markdown, one decision after another, in the order they "
+        "are filed. Every fact carries a quote from a source that was fetched, and at least "
+        "one of those sources is the filing, the statute or the agency itself.", "",
+        f"Licence CC BY 4.0. Built {ordinal(_dt.date.fromisoformat(today))}, {today[:4]}. "
+        f"The canonical page for any decision below is {SITE_URL}/item/<id>/.", "",
+        "---", "",
+    ]
+    body = []
+    for it in sorted(items, key=lambda i: i["id"]):
+        body += [item_markdown(it, today).rstrip(), "", "---", ""]
+    return "\n".join(head + body)
+
+
+def feed_xml(items: list, today: str) -> str:
+    """RSS 2.0, beside the Atom and JSON feeds.
+
+    Three feed formats is not indulgence. Atom is the better specification, JSON Feed is the
+    easiest to consume, and RSS is the one every reader, aggregator and newsroom tool actually
+    supports. Shipping the two better ones and not the common one is a purity that costs
+    readers.
+    """
+    def rfc822(d: str) -> str:
+        return _dt.date.fromisoformat(d).strftime("%a, %d %b %Y 00:00:00 +0000")
+
+    latest = max((i["last_verified"] for i in items), default=today)
+    rows = "".join(
+        f"<item><title>{e(i['title'])}</title>"
+        f"<link>{SITE_URL}/item/{i['id']}/</link>"
+        f"<guid isPermaLink=\"true\">{SITE_URL}/item/{i['id']}/</guid>"
+        f"<pubDate>{rfc822(i['last_verified'])}</pubDate>"
+        f"<description>{e(i['summary'])}</description></item>"
+        for i in sorted(items, key=lambda x: x["last_verified"], reverse=True))
+    return ('<?xml version="1.0" encoding="utf-8"?>'
+            '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel>'
+            f"<title>{e(SITE_NAME)}</title><link>{SITE_URL}/</link>"
+            f'<atom:link href="{SITE_URL}/feed.xml" rel="self" type="application/rss+xml"/>'
+            "<description>A public, fact-checked record of decisions about artificial "
+            "intelligence in Texas.</description><language>en-US</language>"
+            f"<lastBuildDate>{rfc822(latest)}</lastBuildDate>"
+            f"{rows}</channel></rss>")
 
 
 def docket_dataset_ld(items: list, today: str) -> dict:
@@ -2270,7 +2595,27 @@ def build(out: Path, today: str) -> dict:
         w(f'item/{it["id"]}/index.md', item_markdown(it, today))
     w("atom.xml", atom(items, today))
     w("feed.json", feed_json(items, today))
+    # THE TWO HUBS. Views over the record, never doorway pages: every sentence on them is
+    # computed from the ledger, and the questions page shares `schema.qa_pairs` with the
+    # structured data so the page and the JSON-LD cannot say different things.
+    _quoted = _quoted_numerals(items)
+    _qfig, _qhtml = questions_page(items, today)
+    w("questions/index.html", _qhtml,
+      extra=(set().union(*(schema.authorised_numerals(i, today) for i in items))
+             if items else set()) | _quoted | _qfig)
+    _sfig, _shtml = sources_page(items, today)
+    w("sources/index.html", _shtml, extra=_quoted | _sfig)
     w("llms.txt", llms_txt(items, today))
+    # THE WHOLE RECORD IN ONE FETCH, built from the same twins the item pages ship so the one
+    # fetch and the 58 fetches can never disagree.
+    w("llms-full.txt", llms_full_txt(items, today))
+    # RSS beside Atom and JSON Feed. Atom is the better spec and RSS is the one every reader
+    # actually supports, so shipping only the better one is a purity that costs readers.
+    w("feed.xml", feed_xml(items, today))
+    # A 404 THAT IS A WAY BACK IN, not a dead end. GitHub Pages serves docs/404.html for any
+    # unknown path, and without one a mistyped decision id lands a reader on the host's default
+    # page with no navigation, no search and no sign the site is even ours.
+    w("404.html", not_found_page(today, items))
     w("record/index.html", docket_index(items, today), listed(items))
     for t in sorted({i["topic"] for i in items}):
         w(f"topic/{t}/index.html", topic_page(t, items, today),
@@ -2421,7 +2766,7 @@ def self_test() -> int:
         md = next((Path(td) / "a" / "item").rglob("index.md")).read_text(encoding="utf-8")
         check("the Markdown twin carries the source's own words", "> " in md)
         check("llms.txt claims nothing it cannot back",
-              "## The record" in (Path(td) / "a" / "llms.txt").read_text(encoding="utf-8"))
+              "## The whole record, by beat" in (Path(td) / "a" / "llms.txt").read_text(encoding="utf-8"))
 
         # Rule 1: docs/ is a pure function of the ledgers.
         b = Path(td) / "b"

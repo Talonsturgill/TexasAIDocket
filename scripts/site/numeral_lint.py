@@ -65,6 +65,19 @@ SVG_BLOCK = re.compile(r"<svg\b.*?</svg>", re.DOTALL | re.IGNORECASE)
 # problem is a gate somebody switches off, so the exemption is part of the scanner
 # rather than 48 authorisations.
 SCRIPT_BLOCK = re.compile(r"<(script|style)\b.*?</\1>", re.DOTALL | re.IGNORECASE)
+
+# A `<cite>` IS THE TITLE OF A WORK, AND A WORK'S TITLE IS NOT OUR FIGURE TO AUTHORISE.
+#
+# `house_style_check` already strips `<cite>` for exactly this reason: rewriting a source's own
+# words to fit house style falsifies them. The same argument governs numerals. TCEQ really did
+# name a notice "Cancelation of Public Meeting: Fermi Equipment Holdco, LLC, 183462, PSDTX1704",
+# and the Texas Water Development Board really does meet at 1700 Congress Avenue. Those are
+# identifiers inside quoted material, not measurements this build computed, and authorising
+# them one by one would grow the allowlist by every permit number the record ever cites.
+#
+# The exemption is NARROW because `<cite>` is narrow: it marks a title and nothing else. A
+# figure in our own sentence beside a citation is still read and still has to trace to data.
+CITE_BLOCK = re.compile(r"<cite\b.*?</cite>", re.DOTALL | re.IGNORECASE)
 TAG = re.compile(r"<[^>]+>")
 
 # A NUMERAL TOKEN ENDS ON A DIGIT. `\d[\d,]*` swallows the comma in "In 2026, the" and
@@ -85,7 +98,7 @@ def scan(html_body: str, authorised: set[str]) -> list[str]:
     # and the site footer carries two of them, so every page on the site reported a
     # phantom 27 that no reader could see. Decoded after the tags come out, so an escaped
     # `&lt;div&gt;` sitting in copy cannot turn itself back into markup and vanish.
-    text = _html.unescape(TAG.sub(" ", SCRIPT_BLOCK.sub(" ", SVG_BLOCK.sub(" ", html_body))))
+    text = _html.unescape(TAG.sub(" ", CITE_BLOCK.sub(" ", SCRIPT_BLOCK.sub(" ", SVG_BLOCK.sub(" ", html_body)))))
     phrases = [a for a in authorised if a and _PHRASE_CHAR.search(a)]
     # A PHRASE IS REMOVED AT A TOKEN BOUNDARY, NEVER AS A BARE SUBSTRING.
     #

@@ -225,20 +225,22 @@ def authorised_numerals(it: dict, today: str) -> set:
     return out
 
 
-# ONE TOKENISER, USED ON BOTH SIDES. The allow-list and the check have to agree on where a
-# figure ends or the comparison is theatre. Built with `\d[\d,]*` and an optional decimal tail
-# so a sentence's own full stop is never swallowed into the number: the first version used
-# `[\d,.]*`, which turned "control number 58000." into the token "58000." and then failed to
-# match the identical figure in the answer.
-_NUM = None
+# ONE TOKENISER FOR THE WHOLE PROJECT, borrowed rather than written again.
+#
+# This file had its own, `\d[\d,]*(?:\.\d+)?%?`, and it was wrong in the exact way
+# `numeral_lint` had already documented and fixed: a token that may contain a comma but need not
+# END on a digit swallows the sentence's punctuation. "Room 170, Austin" came back as the token
+# "170," which then matched the identical figure nowhere, so a correctly rendered address looked
+# like an invented number.
+#
+# The lesson is not "fix the regex". It is that there was a second regex at all. `numeral_lint`
+# owns what a numeral is, so it is imported, and the two halves of every comparison are now
+# incapable of disagreeing.
+import numeral_lint as _nl                                                        # noqa: E402
 
 
 def numerals_in(text: str) -> list:
-    global _NUM
-    if _NUM is None:
-        import re as _re
-        _NUM = _re.compile(r"\d[\d,]*(?:\.\d+)?%?")
-    return _NUM.findall(text or "")
+    return _nl.NUMERAL.findall(text or "")
 
 
 def _plural(n: int, one: str, many: str) -> str:
@@ -456,15 +458,18 @@ def qa_pairs(ctx: Ctx, it: dict, today: str) -> list:
         d, k = ahead[0]
         days = (d - now).days
         when = "tomorrow" if days == 1 else f"in {_spell(days) if days < 13 else days} days"
-        note = (k.get("note") or k.get("kind", "").replace("_", " ")).rstrip(".")
+        # THE KIND, NOT THE NOTE. A `key_dates` note is free text and is not gated as reader
+        # copy anywhere, so notes run long: embedding one produced answers of 33 words against
+        # a 30 word backstop. The kind is short, always present and always true, and the note
+        # itself is on the item page where a reader who wants the detail already is.
         add(f"What happens next with {t}?",
-            f"{note} on {ctx.ordinal(d)}, {when}.")
+            f"A {k.get('kind', 'step').replace('_', ' ')} is set for "
+            f"{ctx.ordinal(d)}, {when}.")
     elif ds:
         d, k = ds[-1]
         add(f"What happens next with {t}?",
-            f"No future date is on the record. The last dated step was "
-            f"{(k.get('note') or k.get('kind','').replace('_',' ')).rstrip('.')} on "
-            f"{ctx.ordinal(d)}.")
+            f"No future date is on the record. The last dated step was a "
+            f"{k.get('kind', 'step').replace('_', ' ')} on {ctx.ordinal(d)}.")
 
     if ds:
         first, _ = ds[0]
