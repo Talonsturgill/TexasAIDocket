@@ -562,13 +562,10 @@ def body(records: list[dict], today: str) -> str:
     recon_block = ""
     if recon is not None:
         recon_block = f"""
-  <p>Two ERCOT feeds are read separately here, one for demand and one for generation by fuel.
-  Everything generated inside the grid is consumed inside it, so net generation and measured
-  load have to land on each other. The two rows above differ by
-  <strong class="num">{pct(abs(recon))}%</strong>, which is about what direct current ties to
-  the neighbouring grids and line losses should account for. It is the cross check that would
-  catch either reader silently breaking. That is why both rows are printed rather than just the
-  one that flatters.</p>"""
+  <p>Demand and generation come from separate feeds. Everything generated inside the grid is
+  consumed inside it, so the two have to agree. They differ by
+  <strong class="num">{pct(abs(recon))}%</strong>, about what the ties and line losses account
+  for. Both are printed because this is the check that catches either reader breaking.</p>"""
 
     return f"""
 <h1>Texas Grid Watch</h1>
@@ -607,14 +604,12 @@ def body(records: list[dict], today: str) -> str:
 
 <h2>The load factor, and why it is the number to watch</h2>
 <div class="prose">
-  <p>The load factor is the mean demand across a day divided by that day's peak. On {d} it was
+  <p>A day's mean demand divided by its peak. On {d} it was
   <strong class="num">{lfpct}%</strong>.</p>
-  <p>Peak megawatts is a weather story. Texas has broken its own demand record most summers
-  since air conditioning arrived, and a data center barely shows up in it. The shape is the
-  story. A data center draws at four in the morning close to what it draws at five in the
-  afternoon. A grid taking on large constant load sees its overnight floor rise faster than
-  its afternoon ceiling, and the load factor climbs. Weather lifts both ends together.</p>
-  <p>One day can't show that. A year can, which is why the series starts now.</p>
+  <p>Peak is a weather story. Shape is the story. A data center draws about as much at four in
+  the morning as at five in the afternoon, so constant load lifts the overnight floor faster
+  than the afternoon ceiling. Weather lifts both.</p>
+  <p>One day can't show that. A year can.</p>
 </div>
 {trend_block}
 {acc_block}
@@ -625,10 +620,9 @@ def body(records: list[dict], today: str) -> str:
 <tbody>{fuel_rows}</tbody>
 </table>
 <div class="prose">
-  <p>Generation by fuel, integrated across the day from ERCOT's five minute telemetry. Storage
-  is signed. It reads negative on a day the batteries took in more than they gave back, which
-  is most days, because a round trip loses energy. Shares are computed against generation that was
-  positive, so a charging battery is not published as a generator.</p>{recon_block}
+  <p>Integrated across the day from ERCOT's five minute telemetry. Storage is signed, so it
+  reads negative when batteries take in more than they give back. Shares count only positive
+  generation.</p>{recon_block}
 </div>
 
 <h2>The size of what is not public</h2>
@@ -653,16 +647,13 @@ def body(records: list[dict], today: str) -> str:
 
 <h2>How this is collected</h2>
 <div class="prose">
-  <p>Once a day the settled previous day is read whole from ERCOT's public dashboard feeds.
-  Measured demand hour by hour, the day ahead forecast ERCOT published for those hours, the
-  capacity it had committed and generation by fuel. The raw responses are archived before
-  anything parses them.</p>
-  <p>The record stores the full hourly series rather than only the summary. Every figure on this
-  page can be recomputed from <a href="../gridwatch.json">the open data</a>, without refetching
-  anything and without trusting the code that wrote it.</p>
-  <p>ERCOT keeps no archive of these feeds. Each is a rolling window. A day not collected is gone
-  for good. So the collector runs on its own schedule, never as a step inside a routine that could
-  fail for an unrelated reason.</p>
+  <p>Once a day the settled previous day is read whole from ERCOT's dashboard feeds. Demand
+  hour by hour, the day ahead forecast, committed capacity and generation by fuel. Raw responses
+  are archived first.</p>
+  <p>The full hourly series is stored, so every figure here can be recomputed from
+  <a href="../gridwatch.json">the open data</a>.</p>
+  <p>ERCOT keeps no archive. A missed day is gone for good, so the collector runs on its own
+  schedule.</p>
 </div>
 """
 
