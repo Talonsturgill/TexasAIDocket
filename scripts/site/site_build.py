@@ -705,6 +705,16 @@ def scan_teaser() -> str:
     record, and a record that opens by selling something is a record that has told you what it
     is for. Somebody who has read down the whole page is also somebody who might want the scan.
 
+    IT WEARS THE ASK BOX'S SHELL. This shipped as a `.leadform`, which is the stacked grid the
+    contact and services pages use: a square cornered field at 34rem with a square button under
+    it, in a full width section, a few screens below a full width rounded composer. Two form
+    shapes on one page and neither explains the other.
+
+    So the shell is now `.composer`, the same class the ask box wears, and the difference is the
+    control: an arrow where the placeholder already said what the box does, a word where it has
+    to name its own action. Shared as a class and not copied, because a shape written out twice
+    is a shape that is wrong in both places at once.
+
     NO JS AND NO CAPTCHA HERE. The single field GETs to the scan page, which prefills it and runs
     the real flow behind its own captcha. A second Turnstile widget on the homepage would load a
     third party script on every visit to a page nobody came here to submit a form on.
@@ -722,7 +732,7 @@ def scan_teaser() -> str:
     <p>It is free and the parts that say not yet are the honest ones. Every line traces to a page
     on your own site, linked so you can check it.</p>
   </div>
-  <form class="leadform scanteaser" action="scan/" method="get">
+  <form class="composer scanform" action="scan/" method="get">
     <label class="vh" for="scan-url">Your website</label>
     <input type="text" name="url" id="scan-url" required placeholder="yourbusiness.com"
       autocomplete="url" inputmode="url">
@@ -1344,7 +1354,7 @@ def ask_box(items: list, today: str) -> str:
     return f"""
 <section class="asksection" data-reveal>
   <div id="ask" class="askbox lean" data-base="">
-    <form role="search">
+    <form class="composer" role="search">
       <label class="vh" for="askq">Ask the record a question</label>
       <input id="askq" type="search" autocomplete="off"
              placeholder="Ask about any AI decision in Texas">
