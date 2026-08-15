@@ -143,3 +143,25 @@ jobs:
       - name: Retry twice
         if: steps.retry1.outcome == 'failure'
         uses: actions/deploy-pages@v4
+
+      # TELL THE INDEX WHAT CHANGED, once the deploy has actually landed.
+      #
+      # AFTER the deploy and never before: submitting a url the crawler then fetches and finds
+      # unchanged spends the request for nothing, and doing it on a failed deploy points a
+      # crawler at the old page.
+      #
+      # ONLY WHAT CHANGED TODAY. IndexNow expects the delta. Sending all 150 urls on every
+      # deploy when one page moved reads as abuse and earns 429s or quiet ignoring, so this
+      # filters on the sitemap's own lastmod. The full set was submitted once by hand as a
+      # seed and does not need repeating.
+      #
+      # NOT `strict`, so this can never red a deploy. The site is live either way and a crawl
+      # hint is a courtesy on top of it. Google does not participate in IndexNow, so nothing
+      # here is what reaches Google.
+      - name: Tell the index what changed
+        if: success()
+        continue-on-error: true
+        run: |
+          git fetch origin main --depth=1 -q || true
+          python3 scripts/site/indexnow.py --since "$(date -u +%F)"
+
