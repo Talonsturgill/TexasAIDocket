@@ -146,9 +146,10 @@ if('IntersectionObserver' in window){
 // Dragging a thumb across the state now names each county and says what it holds, and lifting
 // the thumb without moving still opens the county, so the link is not taken away.
 (function(){
-  var read=document.getElementById('mapread'), map=document.querySelector('svg.txmap');
+  var read=document.getElementById('mapread'), map=document.querySelector('svg.txmap'),
+      rb=document.getElementById('mapreset');
   if(!read||!map||!('ontouchstart' in window)) return;
-  var moved=false, sx=0, sy=0, last=null;
+  var moved=false, sx=0, sy=0, last=null, clearAt=0;
   // PINCH TO ZOOM, TWO FINGERS TO MOVE.
   // Even with the readout naming what is under the thumb, a county in the Panhandle is a few
   // millimetres of glass and the thumb covers all of it. So the map moves like a map.
@@ -179,15 +180,12 @@ if('IntersectionObserver' in window){
     VB.x=Math.min(HOME.x+HOME.w-VB.w,Math.max(HOME.x,VB.x));
     VB.y=Math.min(HOME.y+HOME.h-VB.h,Math.max(HOME.y,VB.y));
     map.setAttribute('viewBox',VB.x+' '+VB.y+' '+VB.w+' '+VB.h);
-    var z=VB.w<HOME.w-0.5, rb=document.getElementById('mapreset');
-    if(rb) rb.hidden=!z;
+    // The button is resolved once at the top with the readout, because this runs on every
+    // touchmove of a pinch, roughly sixty times a second on the device with the least headroom.
+    if(rb) rb.hidden=!(VB.w<HOME.w-0.5);
   }
   function reset(){ if(HOME){ VB={x:HOME.x,y:HOME.y,w:HOME.w,h:HOME.h}; apply(); } }
-  map.resetView=reset;
-  (function(){
-    var rb=document.getElementById('mapreset');
-    if(rb) rb.addEventListener('click',function(){ reset(); show(null); });
-  })();
+  if(rb) rb.addEventListener('click',function(){ reset(); show(null); });
   function span(e){
     var a=e.touches[0], b=e.touches[1];
     return Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY);
@@ -239,6 +237,7 @@ if('IntersectionObserver' in window){
   }
   map.addEventListener('touchstart',function(e){
     if(e.touches.length>1) return;   // two fingers are a gesture, never a pick
+    clearTimeout(clearAt);           // a new touch outlives the last one's timer
     var t=e.touches[0]; moved=false; sx=t.clientX; sy=t.clientY; show(at(t));
   },{passive:true});
   map.addEventListener('touchmove',function(e){
@@ -257,7 +256,10 @@ if('IntersectionObserver' in window){
     var kill=function(ev){ ev.preventDefault(); ev.stopPropagation(); };
     map.addEventListener('click',kill,{capture:true,once:true});
     setTimeout(function(){ map.removeEventListener('click',kill,{capture:true}); },400);
-    setTimeout(function(){ show(null); },2600);
+    // HELD AND CANCELLED, because it used to be armed on every release and never cleared.
+    // Drag, lift, drag again, then hold still on a county to read it, and the FIRST timer
+    // fired at 2.6s and blanked the readout under a stationary thumb.
+    clearTimeout(clearAt); clearAt=setTimeout(function(){ show(null); },2600);
   });
 })();
 </script>"""
@@ -744,7 +746,11 @@ def latest_video() -> str:
   <h2>The latest video</h2>
   <p class="sub">The newest from the daily feed.</p>
   <div class="latest">
-    <div class="vidwrap"><video id="hv" muted playsinline loop preload="none"
+    <!-- CONTROLS, ALWAYS. A roughly 60 second film looping forever beside the copy with no
+         pause, stop or hide is a WCAG 2.2.2 failure, and `prefers-reduced-motion` cannot
+         reach media playback from CSS. The reader gets a control and the script below asks
+         before it starts anything. -->
+    <div class="vidwrap"><video id="hv" muted playsinline loop controls preload="none"
       aria-label="The latest Texas AI video"></video></div>
     <div>
       <p class="meta" data-prose="data"><span class="tag" id="hvdate"></span></p>
@@ -779,7 +785,14 @@ def latest_video() -> str:
     sec.hidden=false;
     var io=new IntersectionObserver(function(es){es.forEach(function(en){
       if(!en.isIntersecting)return;
-      if(!el.src){el.src=el.dataset.src;var q=el.play();if(q&&q.catch)q.catch(function(){});}
+      // AUTOPLAY ONLY IF NOBODY ASKED FOR LESS MOTION. The source still loads either way, so
+      // pressing play is instant. Reduced motion is a request about movement, and a looping
+      // film is the largest piece of movement on the page.
+      if(!el.src){
+        el.src=el.dataset.src;
+        var calm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+        if(!calm){var q=el.play();if(q&&q.catch)q.catch(function(){});}
+      }
       io.disconnect();})},{rootMargin:'200px'});
     io.observe(sec);
   }).catch(function(){});
@@ -843,18 +856,16 @@ def home(items: list, today: str) -> str:
     runs = load_runs()
     n_videos = video_count()
 
-    if act:
-        soonest = act[0]
-        lede = (f'<div class="clock{" soon" if soonest["days_left"] <= 7 else ""}">'
-                f'<span class="days">{soonest["days_left"]}</span>'
-                f'<span class="lab">days left on the next comment window</span></div>')
-        openers = (f'<p><strong>{len(act)}</strong> of the '
-                   f'<strong>{n_items}</strong> decisions on this record are still open to '
-                   f'public comment.</p>')
-    else:
-        lede = ('<div class="gap"><strong>No comment window on this record is open today.</strong>'
-                ' Windows are checked every day, and one appears here the moment it opens.</div>')
-        openers = f"<p>The record holds <strong>{n_items}</strong> decisions.</p>"
+    # WHAT STANDS IN FOR THE DEADLINE CARDS WHEN THERE ARE NONE.
+    #
+    # This was a pair. A clock widget for when something is open, and this line for when
+    # nothing is, and the clock could never render: the cards below are built from the same
+    # `act` list, so they are there whenever it is non-empty, and the template reaches for
+    # this only when they are not. It was a second copy of `clock()` that had drifted, missing
+    # both the singular and the closes-today wording, so it was also one day from reading "1
+    # days left" if anything had ever shown it. One list, one branch, no ghost widget.
+    lede = ('<div class="gap"><strong>No comment window on this record is open today.</strong>'
+            ' Windows are checked every day, and one appears here the moment it opens.</div>')
 
     # THE DEADLINE CARDS. A date at display size, a status word that is also a colour, and a
     # live count of what is left. Somebody should be able to find what is open to them without
@@ -872,7 +883,13 @@ def home(items: list, today: str) -> str:
         f'<a class="dcard{" open" if a["days_left"] > 7 else ""}" href="item/{e(a["id"])}/">'
         f'<span class="badge {"open" if a["days_left"] > 7 else "soon"}">'
         f'{"Open to you" if a["days_left"] > 7 else "Closing soon"}</span>'
-        f'<span class="big">{e(short_date(a["closes"]))}</span>'
+        # A `<time>`, NOT A SPAN. The tile reads "SEP 8" at display size, which is a date
+        # abbreviated the way a calendar abbreviates one and not the way this project writes a
+        # date in a sentence. Carrying the ISO value in the element that shows it is what makes
+        # that legitimate rather than an exception: the machine-readable date is right there,
+        # the house style checker verifies the visible text renders it, and a search engine or
+        # a screen reader gets the unambiguous value instead of three shouted letters.
+        f'<time class="big" datetime="{e(a["closes"])}">{e(short_date(a["closes"]))}</time>'
         f'<span class="left">{a["days_left"]} '
         f'{"day" if a["days_left"] == 1 else "days"} left</span>'
         f'<h3>{e(a["title"])}</h3>'
@@ -1007,7 +1024,13 @@ def docket_index(items: list, today: str) -> str:
     crows = "".join(
         f'<tr><td><a href="../place/county-{_place_slug(c)}/">{e(c)} County</a></td>'
         f'<td class="n num">{len(v)}</td>'
-        f'<td>{", ".join(e(t) for t in dict.fromkeys(i["topic"] for i in v))}</td></tr>'
+        # SEPARATED BY A MIDDOT, NOT A COMMA, because one of the labels contains a comma.
+        # These were raw slugs, which read like a database, and `topic_label` is the one place
+        # a slug becomes English. `land-water-and-permitting` becomes "Land, water and
+        # permitting", correctly, and a comma-joined list of it beside another topic reads as
+        # four things. The separator has to be something no label can contain.
+        f'<td>{" · ".join(e(topic_label(t)) for t in dict.fromkeys(i["topic"] for i in v))}</td>'
+        f'</tr>'
         for c, v in sorted(by.items(), key=lambda kv: (-len(kv[1]), kv[0])))
     mrows = "".join(
         f'<tr><td><a href="../place/{e(mid)}/">{e(m["name"])}</a></td>'

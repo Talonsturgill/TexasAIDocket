@@ -82,9 +82,10 @@ if('IntersectionObserver' in window){
 // Dragging a thumb across the state now names each county and says what it holds, and lifting
 // the thumb without moving still opens the county, so the link is not taken away.
 (function(){
-  var read=document.getElementById('mapread'), map=document.querySelector('svg.txmap');
+  var read=document.getElementById('mapread'), map=document.querySelector('svg.txmap'),
+      rb=document.getElementById('mapreset');
   if(!read||!map||!('ontouchstart' in window)) return;
-  var moved=false, sx=0, sy=0, last=null;
+  var moved=false, sx=0, sy=0, last=null, clearAt=0;
   // PINCH TO ZOOM, TWO FINGERS TO MOVE.
   // Even with the readout naming what is under the thumb, a county in the Panhandle is a few
   // millimetres of glass and the thumb covers all of it. So the map moves like a map.
@@ -115,15 +116,12 @@ if('IntersectionObserver' in window){
     VB.x=Math.min(HOME.x+HOME.w-VB.w,Math.max(HOME.x,VB.x));
     VB.y=Math.min(HOME.y+HOME.h-VB.h,Math.max(HOME.y,VB.y));
     map.setAttribute('viewBox',VB.x+' '+VB.y+' '+VB.w+' '+VB.h);
-    var z=VB.w<HOME.w-0.5, rb=document.getElementById('mapreset');
-    if(rb) rb.hidden=!z;
+    // The button is resolved once at the top with the readout, because this runs on every
+    // touchmove of a pinch, roughly sixty times a second on the device with the least headroom.
+    if(rb) rb.hidden=!(VB.w<HOME.w-0.5);
   }
   function reset(){ if(HOME){ VB={x:HOME.x,y:HOME.y,w:HOME.w,h:HOME.h}; apply(); } }
-  map.resetView=reset;
-  (function(){
-    var rb=document.getElementById('mapreset');
-    if(rb) rb.addEventListener('click',function(){ reset(); show(null); });
-  })();
+  if(rb) rb.addEventListener('click',function(){ reset(); show(null); });
   function span(e){
     var a=e.touches[0], b=e.touches[1];
     return Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY);
@@ -175,6 +173,7 @@ if('IntersectionObserver' in window){
   }
   map.addEventListener('touchstart',function(e){
     if(e.touches.length>1) return;   // two fingers are a gesture, never a pick
+    clearTimeout(clearAt);           // a new touch outlives the last one's timer
     var t=e.touches[0]; moved=false; sx=t.clientX; sy=t.clientY; show(at(t));
   },{passive:true});
   map.addEventListener('touchmove',function(e){
@@ -193,7 +192,10 @@ if('IntersectionObserver' in window){
     var kill=function(ev){ ev.preventDefault(); ev.stopPropagation(); };
     map.addEventListener('click',kill,{capture:true,once:true});
     setTimeout(function(){ map.removeEventListener('click',kill,{capture:true}); },400);
-    setTimeout(function(){ show(null); },2600);
+    // HELD AND CANCELLED, because it used to be armed on every release and never cleared.
+    // Drag, lift, drag again, then hold still on a county to read it, and the FIRST timer
+    // fired at 2.6s and blanked the readout under a stationary thumb.
+    clearTimeout(clearAt); clearAt=setTimeout(function(){ show(null); },2600);
   });
 })();
 </script>

@@ -44,6 +44,11 @@ const check = (label, cond, extra = "") => {
 
 // Every width a real reader arrives at, from the narrowest phone still shipping to a wide desktop.
 const WIDTHS = [320, 360, 390, 414, 480, 540, 600, 680, 768, 834, 896, 1024, 1180, 1440, 1920];
+// A ONE PIXEL SWEEP THROUGH THE BAND WHERE THE NAV ACTUALLY BREAKS. The coarse list
+// above steps 460 to 500 in one jump and the nav takes a second row at 461 and 462, so
+// the assertion that it is one row "at every width" was green and false. A checker that
+// samples cannot find a fault narrower than its own step.
+const NAV_SWEEP = Array.from({length: 121}, (_, i) => 440 + i);
 
 const PREINSTALLED = process.env.PLAYWRIGHT_CHROMIUM || "/opt/pw-browsers/chromium";
 const browser = await chromium.launch(
@@ -144,7 +149,8 @@ const pg = await browser.newPage({ viewport: { width: 1200, height: 900 } });
    by clipping the overflow, and that would lose four sections with no visible symptom. So the
    last link has to be scrollable INTO view, not merely present in the DOM. */
 const navRow = [];
-for (const w of [1440, 1024, 768, 600, 500, 460, 440, 412, 390, 360, 320, 300]) {
+for (const w of [...new Set([1440, 1024, 768, 600, 500, 460, 440, 412, 390, 360, 320, 300,
+                            ...NAV_SWEEP])].sort((a, b) => b - a)) {
   await pg.setViewportSize({ width: w, height: 900 });
   await pg.goto("file://" + path.join(SITE, "index.html"));
   const r = await pg.evaluate(async () => {
