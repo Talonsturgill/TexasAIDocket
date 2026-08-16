@@ -47,13 +47,13 @@ that actually runs.
 
 | # | wave | proposals | paths | status |
 |---|---|---|---|---|
-| A | the ownership law is not in force | 8, 9 | `ownership.yaml`, `.github/workflows/guards.yml`, `scripts/shared/guards_local.py`, `CLAUDE.md`, `.githooks/pre-commit` | TODO |
-| B | the law contradicts the routine | 6 | `ownership.yaml` or `prompts/daily_routine.md`, `knowledge/shared/SOURCES_REGISTRY.md` | TODO |
-| C | a documented command destroys the record | 7 | `scripts/site/docket_build.py`, `prompts/daily_routine.md` | TODO |
-| D | two carousel gates measure the wrong thing | 4, 5 | `scripts/carousel/copy_sync_check.py`, `scripts/carousel/aggregate_check.py` | TODO |
-| E | the site says two things it does not mean | 1, 2 | `scripts/site/site_build.py` | TODO |
-| F | the water page has no page check | 3 | `scripts/gridwatch/waterwatch_pagecheck.py` | TODO |
-| G | write the lessons down | all | `knowledge/shared/GATE_LESSONS.md` | TODO |
+| A | the ownership law is not in force | 8, 9 | `ownership.yaml`, `guards.yml`, `guards_local.py`, `CLAUDE.md`, `.githooks/commit-msg`, `ownership_check.py`, Phase 0 and 17 | **DONE** |
+| B | the law contradicts the routine | 6 | `ownership.yaml`, `SOURCES_FIELD_LOG.md` (new), `SOURCES_REGISTRY.md`, Phase 17 | **DONE** |
+| C | a documented command destroys the record | 7 | `docket_build.py`, `prompts/daily_routine.md` | **DONE** |
+| D | two carousel gates measure the wrong thing | 4, 5 | `copy_sync_check.py`, `aggregate_check.py` | **DONE** |
+| E | the site says two things it does not mean | 1, 2 | `site_build.py`, `texas_map.py`, `docs/` rebuilt | **DONE** |
+| F | the water page has no page check | 3 | `waterwatch_pagecheck.py` (new), `guards.yml`, Phase 7 | **DONE** |
+| G | write the lessons down | all | `GATE_LESSONS.md` entries 19 to 22 | **DONE** |
 
 ## Decisions taken, with the reason
 

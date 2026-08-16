@@ -833,3 +833,113 @@ centre to be a test reports itself as such instead of passing.
 **And a coverage rule that came out of the same pass.** When a suite runs in more than one
 context, assert the count PER CONTEXT. A phone pass that silently built nothing lands as a
 healthy total, because the desktop pass alone clears any threshold written against the sum.
+
+## 19. A law with no mechanism, reported as a skip
+
+`ownership.yaml` is the boundary between several unattended automations sharing one git
+history, and `.githooks/pre-commit` is what enforces it locally. On 2026-08-16 the whole of a
+run's work went in with **no ownership check on any commit**, because `core.hooksPath` was
+unset in that checkout and `.git/hooks/pre-commit` did not exist. The hook file was committed,
+executable and unreferenced. Git runs a hook it has been pointed at, and repository config does
+not travel with a clone.
+
+The stamping ritual ran the entire time. Phase 0 wrote `.git/ACTOR`, every phase that changed
+lane rewrote it, and the run record described a hook enforcing something. The stamp was going
+into a file nothing read.
+
+**`guards_local.py` was the only thing that noticed, and it reported the gap as a SKIPPED
+step**, then printed `51 step(s) passed` and exited 0. This repo's own instructions say to run
+gates by exit code rather than by reading the last line. A run that obeyed them learned nothing.
+
+**What to check instead.** A skip and an unavailable check are not the same event and must not
+share a report line. A skip is what a check looks like when it is not needed. A check that
+CANNOT RUN is the opposite, and belongs in the failure list with a non-zero exit. Ask of any
+skip: does this mean "covered elsewhere" or does it mean "not covered at all"? Only the first
+is a skip.
+
+**And the second-order lesson, which is why this is entry 19 and not a footnote.** Entry 12 in
+this file is a rule that was repealed and still read perfectly. This is the same fault one level
+down: not a rule that was overridden, but a rule with nothing implementing it. Both were found
+by a person reading rather than by anything red. When a check exists to enforce a written rule,
+something has to assert THE CHECK IS CONNECTED, and that assertion has to be able to fail.
+
+## 20. Two enforcers disagreeing about what a lane is scoped to
+
+The pre-commit hook checked the staged change against `.git/ACTOR`, so it scoped a lane to a
+COMMIT. CI pinned one actor from the branch prefix and checked the whole branch diff, so it
+scoped a lane to a BRANCH. Both were correct implementations of a sentence nobody had made
+precise, and each was green on inputs the other refused.
+
+That was not academic. The daily routine's own Phase 17 instructs the run to stamp `upgrade` and
+commit, on the only branch Phase 16 gives it. **Obeying the routine exactly produced a branch CI
+was built to reject**, and the first run to ship a deck spent its ship phase discovering that and
+moving two commits onto a separate pull request.
+
+**What to check instead.** Where two mechanisms enforce one rule, write down which unit the rule
+is scoped to and make both read the same signal. Here the stamp is copied into the commit as an
+`Actor:` trailer by `.githooks/commit-msg`, so one stamp drives the hook and the runner.
+
+**The trap inside the fix.** Trusting a per-commit declaration means a commit can name its own
+lane, and the lanes are what carry the protection: `upgrade` owns the machine and not the record,
+so a false `upgrade` stamp buys nothing. `human` is the exception, because it owns every path, so
+a routine that could stamp `human` would switch the whole map off from inside a commit message.
+`actors_allowed_on_branch` drops `human` in code rather than trusting the map to be written
+carefully, and the self-test puts `human` in the test map on purpose to prove the drop happens.
+
+## 21. An allowlist of names is a gate that sleeps
+
+`copy_sync_check` decided what to check by matching KEY NAMES against a list: kicker, headline,
+subhead, body and eleven more. Slides here are bespoke and the copywriter names keys to suit the
+slide. The 2026-08-16 deck used `hook`, `hook2`, `tag`, `tag2`, `dek`, `bodies`, `how`, `rows`,
+`attribution`, `site`, `source2` and `when1`. **Twelve of its nineteen key names were invisible
+to the gate**, including every key carrying body prose. It reported clean having examined 35
+strings and none of the deck's sentences.
+
+That is how a slide sentence citing "SB 6" with nothing behind it reached the published record
+with every gate green. The run found the missing REVERSE direction and proposed adding it, which
+was right and would not have been enough: a reverse check over the same allowlist would have
+missed the same twelve keys.
+
+**What to check instead.** When a gate selects what to examine, the default must be EXAMINE, with
+named exemptions. An allowlist fails silent, because a name nobody thought of is a thing nobody
+checks and nothing reports the omission. A denylist fails loud, because the failure mode is a
+gate complaining about something harmless, which somebody then fixes.
+
+Ask of any selector: if tomorrow's artifact invents a name, does this gate check it or skip it?
+
+**The related note on carve-outs.** The reverse direction was left out originally on the
+argument that it would flag every axis label and that a gate crying wolf is worse than no gate.
+The premise was true and the conclusion was wrong. The answer to a noisy check is carve-outs
+narrow enough to state, not the absence of the check. Here the carve-outs are the design's own
+`decorative` flag, named standing furniture, and a prose-shape test. And a provenance stamp is
+STRIPPED from a node rather than exempting the node, because exempting anything containing a
+stamp would blind the gate to whatever sits beside it.
+
+## 22. A number can be right while the sentence around it is wrong
+
+`numeral_lint` is a hard build gate and it enforces something precise: every numeral in published
+copy traces to a value the build actually computed. It is structurally unable to see whether the
+words around the numeral describe what was computed. Two defects shipped in that blind spot on
+one page each.
+
+The map's accessible title read "N of 254 counties carry an item" on every page, where the lit
+set is whatever the caller passed. On the Killeen-Temple page that is the counties of that
+metro's items, so the map announced **"1 of 254 counties carry an item"** to a screen reader, a
+statewide claim contradicted by the page's own prose two lines above.
+
+`llms.txt` built its "Open right now" list from `public_access.room` alone, under a heading
+reading "Decisions a member of the public still has a dated way into". Room records what KIND of
+access exists, never whether it is open. **28 of 47 entries were finished votes.**
+
+Both numbers were correctly computed and correctly rendered. Neither sentence was true.
+
+**What to check instead.** For every published figure, ask what noun phrase the reader will
+attach to it and whether the code guarantees that phrase. A count needs its scope named in the
+same sentence, and a list under a promise needs the promise computed rather than approximated by
+a nearby field.
+
+**And prefer the derivation the heading promises, not the one that is easy.** The obvious fix
+for `llms.txt` was to drop `decided` items. That is a proxy, and it deletes the case the heading
+most wants: League City has decided, and what it decided was to order a special election on
+November 3rd, which is precisely a dated way in. Computing a FUTURE DOOR keeps it and drops the
+finished votes, because a finished vote has no future door whatever its status says.
