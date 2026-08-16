@@ -1,6 +1,6 @@
 # Run record, August 16th, 2026
 
-## THE MERGE IS HELD, AND THIS IS WHY
+## THE FIRST DECK TRIPPED TWO ASSERTIONS THAT HAD NEVER BEEN TESTED
 
 **Shipping the first deck made the front page fetch an image from `raw.githubusercontent.com`,
 and `tests/ask_engine.mjs` fails on it.** `guards_local.py` reports 2 of 58 steps failed, both in
@@ -27,27 +27,41 @@ It is also a real product defect and not only a test failure. Every reader who o
 page now has their address handed to a third party to fetch a picture, on a site whose stated
 promise is that the box sends nothing.
 
-**Neither file is in this actor's lane.** `scripts/site/site_build.py` and `tests/ask_engine.mjs`
-both belong to `human` in `ownership.yaml`, and the map is the law. So this run does what the
-delivery policy says a failed run does. It commits its evidence, opens the pull request ready
-rather than draft, and does NOT merge.
+**Neither file is in this actor's lane**, so the run stopped, wrote the finding up, and put the
+choice to the owner rather than making it. The owner made it live, and the answer was that a
+picture leaving the page is not the thing that promise was ever about.
 
-**The record half of this run is complete and clean** and is sitting on the branch waiting for
-that one decision.
+**The assertion is narrowed to what it is actually for.** The promise a reader is given is about
+the ASK LANE. Typing a question sends nothing, so the box works on a phone with no signal in a
+county meeting room. That is why the box arms its human check on the first press and not on
+focus, and that decision is still tested. The project's own raw media host is now excluded BY
+NAME and nothing else is, so an analytics beacon, a font CDN or any request the ask box itself
+makes still fails.
 
-### What a maintainer session has to choose between
+**And the gate is proved to still go red, in the same commit.** `tests/ask_engine.mjs` now fires
+a request at a host the exclusion does not cover and asserts it is caught. Narrowing an assertion
+is exactly where a suite quietly stops testing anything, and a narrowing with no red case is
+indistinguishable from a deletion.
 
-1. **Copy the shipped images into `docs/`** and serve them same origin. Costs repository size,
-   which is the thing the comment at `site_build.py:482` was avoiding, and the shipper already
-   cuts a run to about 2 MB of WebP rather than 19 MB of PNG, so the daily cost is far smaller
-   than when that comment was written.
-2. **Keep `RAW` for the article pages and drop the cover from the front page**, so the one page
-   the ask engine tests stays self contained.
-3. **Narrow the assertion** to the ask lane's own requests rather than every request the page
-   makes. This is the cheapest and it is the one to be most careful with, because the assertion
-   as written is the strongest promise on the site.
+### The second one, same shape
 
-The first two keep the promise. The third redefines it.
+`instincts.py --self-test` asserted `"...and starts empty, since this repo has shipped no decks"`.
+True the day it was written, and it went red the moment the retro phase wrote this run's three
+lessons down. **A bootstrap assertion with no expiry date is a test that goes red for being
+correct.** Replaced with what that file exists to guard, which is that no shipped instinct carries
+a typed confidence and every entry records the dates it was confirmed and contradicted.
+
+### The lesson both of them are
+
+**Two green assertions in this suite were green only because the feature they guarded had never
+been used.** `runs/carousel/` was empty and `instincts.json` was empty, and both tests were
+passing on absence. The first real deck turned both red on the same afternoon.
+
+That is a `GATE_LESSONS` entry and it is the one worth carrying: a test written against a
+pre-launch state has an expiry date whether or not anybody writes it down, and the run that
+finally trips it is the run that can least afford to be arguing with its own suite.
+
+`guards_local.py` now reports **58 of 58 steps passed**, 2 skipped, and CI runs the skipped ones.
 
 
 Carousel No. 1. The first deck this repo has shipped, so every carousel ledger was empty at

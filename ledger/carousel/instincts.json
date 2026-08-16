@@ -44,6 +44,14 @@
       "evidence": "Carousel No. 1 slide 7 opened on 'It is not in the queue' with the antecedent last named on slide 5. The flow critic could not recover the subject at feed speed until it reached a small label at the bottom edge.",
       "confirmed": [],
       "contradicted": []
+    },
+    {
+      "id": "assertions-expire-on-first-use",
+      "learned": "2026-08-16",
+      "instinct": "When a gate passes because a feature has never been used, write its expiry into the assertion, because the run that first uses the feature is the one that can least afford to argue with its own suite.",
+      "evidence": "Carousel No. 1 turned two green assertions red on the same afternoon. The ask engine asserted no request leaves the page, which held only while runs/carousel was empty. The instincts self-test asserted the ledger starts empty since this repo has shipped no decks.",
+      "confirmed": [],
+      "contradicted": []
     }
   ]
 }
