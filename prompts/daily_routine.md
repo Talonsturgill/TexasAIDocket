@@ -323,8 +323,19 @@ forty items gets it right thirty nine times.
 
 ```
 python3 scripts/site/docket_ingest.py --batch out/research/*.json --today <today>
-python3 scripts/site/docket_build.py --promote seed/docket_seed.json --out ledger/docket.json
+python3 scripts/site/docket_build.py --promote seed/docket_seed.json
 ```
+
+**THE SECOND COMMAND TAKES NO `--out`, AND THAT IS THE WHOLE POINT.** `--promote` is a GATE, not
+a merge. It writes only the items admitted on this pass, so pointing it at the ledger writes
+today's handful and drops everything already published. This file told a run to do exactly that
+until 2026-08-16. Measured that day against a temp file: 27 candidates against a 58 item ledger
+wrote 6 items and dropped 52.
+
+Run it with no `--out`, read what passed, and append those items to `ledger/docket.json`.
+`promote()` now refuses any write that would lose a published item, so the destructive form fails
+loudly instead of succeeding quietly, but do not lean on that. **The record is append-only in
+substance and never deletes an item.**
 
 `docket_ingest` normalises and **reports every repair it made**, including the one with teeth: an
 `open_comment` room carrying no close date is a window the batch could not confirm, and it is
