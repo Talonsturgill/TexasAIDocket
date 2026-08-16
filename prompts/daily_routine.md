@@ -391,6 +391,7 @@ not rung (f).
 
 ```bash
 python3 scripts/gridwatch/gridwatch_pagecheck.py
+python3 scripts/gridwatch/waterwatch_pagecheck.py
 python3 scripts/site/waterwatch_page.py --self-test
 python3 scripts/site/site_build.py --out /tmp/site --today <date>
 
@@ -405,6 +406,14 @@ python3 scripts/site/indexnow.py --self-test  # the key file that verifies owner
 Exit 0 is clean, exit 2 wants attention, exit 1 means the checker itself broke. **This never
 blocks the run.** You may fix presentation only, and only in `scripts/site/gridwatch_page.py` and
 `scripts/site/waterwatch_page.py`. Anything else is a proposal in the run record.
+
+**Both instruments have a page check now.** The water one was missing until 2026-08-16 and its
+absence was written up as a proposal, because the two are the same shape of thing. A cron writes
+a file and a builder renders it, and neither of them would notice the page going wrong. They are
+separate files rather than one parameterised checker because the promises differ. The water page
+also promises that percent full is computed from storage over capacity rather than read from the
+feed's own field, that a metro with no line is a gap in the source's tagging rather than a dry
+city, and that out of state reservoirs are excluded rather than counted as empty.
 
 **THE SCANNER'S DAILY CEILING.** The scan form fires its routine on submit, so the only thing
 between a public form and a bill is `daily_cap` in the scanner project's `scanner.config`. A

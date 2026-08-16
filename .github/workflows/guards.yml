@@ -140,6 +140,20 @@ jobs:
             exit "$code"
           }
 
+      - name: Water watch page check self-test
+        run: python3 scripts/gridwatch/waterwatch_pagecheck.py --self-test
+
+      - name: The published water watch page holds its promises
+        run: |
+          # Advisory by design, exactly like the grid watch above and for the same reason: an
+          # instrument must never fail a build over presentation. Exit 2 is a finding, exit 1
+          # would mean the checker itself broke.
+          python3 scripts/gridwatch/waterwatch_pagecheck.py || {
+            code=$?
+            [ "$code" = 2 ] && echo "::warning::the water watch page wants attention" && exit 0
+            exit "$code"
+          }
+
       - name: Caption lint self-test (the house rules, and that they can go red)
         run: python3 scripts/carousel/caption_check.py --self-test
 
