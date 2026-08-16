@@ -131,7 +131,15 @@ down and stopped.
    argument. This run worked around it by printing decimal degrees instead, which is a worse
    footer than the doctrine asks for.
 
-6. **`docket_build.py --promote SEED --out ledger/docket.json` is destructive, and the master
+6. **The master routine and `ownership.yaml` contradict each other about the sources registry.**
+   Phase 17 says "If a source behaved differently than `SOURCES_REGISTRY.md` says, update the
+   registry in the same commit." `ownership.yaml` gives `knowledge/shared/**` to `human`, and the
+   pre-commit hook refuses the write. This run drafted the four registry additions above, ran the
+   ownership check, and reverted them, because the map is the law and prose is not a boundary
+   against it. One of the two documents has to move. The registry findings are written out in
+   full in the section above so a maintainer session can apply them in one paste.
+
+7. **`docket_build.py --promote SEED --out ledger/docket.json` is destructive, and the master
    routine tells a run to type it.** `promote()` writes ONLY the admitted set to `--out`. Run as
    Phase 5 prints it, against a seed carrying 27 candidates and a ledger carrying 58 published
    items, it writes 6 items and silently drops 52. That was proved this run by writing the
@@ -241,10 +249,34 @@ What the critics caught, in the order it mattered.
 critic named directly. "The stipple density stays low enough that the paper reads as tooth" passes
 when there is no stipple at all. An item with a ceiling and no floor is not a test.
 
+## The craft ledger
+
+Three instincts recorded, each at 0.50, which is the honest score for a lesson nothing has tested.
+`instincts.py --top 5` printed nothing at Phase 9 and it printed nothing after, which is correct.
+
+- `roof-must-touch-what-it-covers`
+- `acceptance-items-need-a-floor`
+- `name-the-subject-on-the-turn`
+
+None could be confirmed or contradicted this run, because the room was handed no instincts to test.
+
 ## Sources registry
 
-`SOURCES_REGISTRY.md` behaved as written with three exceptions, all recorded in the same commit
-as this record.
+`SOURCES_REGISTRY.md` behaved as written, with four things to add.
+
+- **`gov.texas.gov` serves no robots.txt** and answers a browser User-Agent on both the press
+  releases and the `/uploads/files/press/` PDFs. It is the single most productive source this run
+  and it is not in the registry at all.
+- **`lrl.texas.gov` is usable.** Its robots.txt carries content signals and no path disallow. The
+  Legislative Reference Library's weekly interim hearings post is the cheapest route to a dated
+  public microphone, which is exactly what this record promises a reader.
+- **`courtlistener.com` returned a CloudFront 403** to a ClaudeBot User-Agent on `robots.txt`
+  itself. The registry says that host explicitly allows `claudebot`, and the robots policy has not
+  changed. This is the registry's own standing rule about tool-level failures, and the entry
+  should say the 403 has been seen so the next run does not write the host off.
+- **`texreg.sos.state.tx.us` robots.txt is as recorded**, disallowing FacebookExternalHit, bingbot,
+  GPTBot, ChatGPT-User, OAI-SearchBot, Googlebot and AhrefsBot, with no `*` group. Confirmed rather
+  than assumed.
 
 ## Gate status
 
