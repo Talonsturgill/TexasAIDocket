@@ -396,6 +396,7 @@ python3 scripts/site/waterwatch_page.py --self-test
 python3 scripts/site/site_build.py --out /tmp/site --today <date>
 
 # THE DISCOVERABILITY SURFACES. Run by exit code, never by reading the last line.
+python3 scripts/site/media_check.py           # every image the site points at exists
 python3 scripts/site/schema_check.py          # the structured data, as published copy
 python3 scripts/site/og.py --self-test        # the social cards and the text on them
 python3 scripts/site/favicon.py --self-test   # the tab icon
@@ -708,6 +709,12 @@ is half a run old.
 
    **Never pass `--all`.** That reaches back into runs that have already shipped, which `CLAUDE.md`
    puts on the short list of things that stop and ask.
+
+   **THIS COMMAND'S EXIT CODE IS A STOP, NOT A NOTE.** On 2026-08-16 it exited 1 saying two
+   slides encoded under the quality floor, the run read the message and shipped anyway, and the
+   live article page carried two broken images and silently dropped two more slides. The owner
+   found it, which is the one way a defect must never be found. If this exits non-zero, the deck
+   is not ready to ship and the run's job is to make it exit zero.
 3. Update `ledger/carousel/{topics,artwork,captions}.json`.
 4. Rebuild the site: `python3 scripts/site/site_build.py --out docs --today <date>`.
 5. Verify, and read the **exit codes**, never the last line of a report:
@@ -716,7 +723,13 @@ is half a run old.
    - `python3 scripts/site/house_style_check.py`
    - `python3 scripts/shared/port_audit.py`
    - `python3 scripts/shared/ownership_check.py --actor daily --staged`
-6. Commit, push, open a **ready (not draft)** pull request, and **merge it to `main` in the same
+   - `python3 scripts/site/media_check.py`
+6. **OPEN THE PAGES YOU JUST PUBLISHED AND LOOK AT THEM.** Not the builders, the output. The
+   front page and `docs/articles/<date>/index.html`. Every slide present, the slide count right,
+   the story readable as text with the images off. `media_check` is the machine half of this and
+   it was written after a run shipped a page with two broken images past a fully green suite. A
+   gate that reads the builder's intent cannot see what the product actually says.
+7. Commit, push, open a **ready (not draft)** pull request, and **merge it to `main` in the same
    run.** The email's image URLs point at `main`, so the merge lands before the email.
 
 **A failed run commits its evidence to its branch and does NOT merge.**

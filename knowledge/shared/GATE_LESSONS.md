@@ -943,3 +943,44 @@ for `llms.txt` was to drop `decided` items. That is a proxy, and it deletes the 
 most wants: League City has decided, and what it decided was to order a special election on
 November 3rd, which is precisely a dated way in. Computing a FUTURE DOOR keeps it and drops the
 finished votes, because a finished vote has no future door whatever its status says.
+
+## 25. Every gate green, and the page was broken
+
+The owner opened the site and said two slides had not rendered. They had not. The article page
+carried two broken images, silently published six slides of an eight slide deck, and told the
+front page it was a six slide deck. The whole suite was green.
+
+Each link in the chain behaved correctly on its own.
+
+1. `ship_images` encoded eight slides and refused two for coming in under its 40 dB quality
+   floor, the stipple paper register at 39.0 and the hachured soil section at 40.0. That was the
+   right call, correctly measured. It printed PROBLEM and exited 1.
+2. **The run read the message and shipped anyway.** Exit 1 was treated as a note.
+3. `site_build` counted `slide-*.webp`, got six, and generated image URLs BY INDEX from that
+   count. So it emitted 01 through 06, of which 03 and 06 did not exist, and never emitted 07 or
+   08 at all.
+4. Nothing in the suite opened a built page and asked whether what it points at is there.
+
+**The count came from one place and the URLs from another, and nothing checked they agreed.** A
+count of surviving files is only a valid source of indices while the survivors happen to be a
+contiguous 1..N, which is an assumption nobody wrote down and the first irregular deck broke.
+
+**What to check instead.** Derive a collection's length and its members from the SAME source. The
+manifest says what the deck is; a glob says what survived. Where the two can differ, the
+difference is the finding, and it should be reported rather than resolved by picking whichever
+number is smaller.
+
+**And check the product, not the intent.** `site_fresh_check` proved `docs/` was byte-identical
+to what the builders produce, which was true and useless: the builders and the comparison agreed
+about publishing a broken image. `media_check.py` now opens every built page and resolves every
+asset it references, including the ones served from this project's own repository, and it fails
+if an article page is pictures and a title with no words under them. Replayed against the run as
+it shipped, it names both broken slides.
+
+**The half of this that is not about code.** The gate that failed hardest was the one that
+noticed. `ship_images` said, in plain words and in its exit code, that two slides were not fit to
+ship, and the run went past it. No amount of new checking helps if a red gate is read as advice,
+so the routine now says at that step that its exit code is a stop.
+
+The rule underneath: **a defect the owner finds by looking at the site is a defect the automation
+was supposed to find first.** Publishing is not the last step. Opening what you published is.

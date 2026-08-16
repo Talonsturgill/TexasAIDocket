@@ -559,14 +559,139 @@ def load_runs() -> list:
             copy = json.loads((d / "copy.json").read_text("utf-8"))
         except Exception:                                            # noqa: BLE001
             continue
-        slides = sorted(d.glob("slide-*.webp")) or sorted(d.glob("slide-*.png"))
-        if not slides:
+        # THE MANIFEST SAYS HOW MANY SLIDES THERE ARE. A GLOB SAYS HOW MANY IMAGES SURVIVED.
+        #
+        # This counted `slide-*.webp` and then the article page generated URLs by INDEX from
+        # that count, which is only correct while the surviving files happen to be a contiguous
+        # 1..N. On 2026-08-16 they were not. `ship_images` refused two slides for encoding under
+        # its 40 dB quality floor, so the run shipped eight slides with six webp among them, and
+        # the count came back 6. The page then emitted slide-01 through slide-06, of which 03
+        # and 06 did not exist and rendered as broken images, and slides 07 and 08 were never
+        # emitted at all. The homepage said "6 slides" for an eight slide deck.
+        #
+        # So the count comes from the manifest, which is what the deck actually is, and each
+        # slide resolves to a file that is checked to exist. A missing one is reported rather
+        # than silently skipped, because a hole here is a broken image on the live site.
+        planned = copy.get("slides")
+        n = len(planned) if isinstance(planned, (list, dict)) else 0
+        files, missing = [], []
+        for i in range(1, n + 1):
+            # webp is the shipping format and png is what survives when webp could not meet the
+            # quality floor. Either is a real slide; neither existing is a defect.
+            for ext in ("webp", "png"):
+                p = d / f"slide-{i:02d}.{ext}"
+                if p.exists():
+                    files.append(p.name)
+                    break
+            else:
+                missing.append(f"slide-{i:02d}")
+        if missing:
+            print(f"  MISSING IMAGE: run {d.name} plans {n} slide(s) and "
+                  f"{', '.join(missing)} has no webp and no png. The article page would "
+                  f"publish a broken image.", file=sys.stderr)
+        if not files:
             continue
         title = (copy.get("document_title") or copy.get("title") or d.name)
-        hook = (copy.get("hook") or copy.get("subtitle") or "")
-        out.append({"date": d.name, "title": str(title), "hook": str(hook),
-                    "slides": len(slides), "cover": slides[0].name})
+
+        # THE DECK'S OWN WORDS, SO THE PAGE IS READABLE AND INDEXABLE WITHOUT THE IMAGES.
+        #
+        # An article page that is eight pictures and a title publishes nothing a search engine,
+        # a screen reader or a reader with images off can use. Everything the slides say is
+        # already in `copy.json`, because that manifest is what `copy_sync_check` proves the
+        # render against, so the text is right here and was simply never written into the page.
+        #
+        # PROSE ONLY. A slide's labels ("10,000 FT A SIDE") are furniture and read as noise in
+        # running text, so the same shape test the copy gate uses picks sentences out of them.
+        prose = []
+        for key in sorted(normalise_slide_keys(planned), key=lambda k: k[0]):
+            said = [_CLAIM_STAMP.sub(" ", " ".join(s.split())).strip()
+                    for s in _slide_strings(key[1]) if _reads_as_prose(s)]
+            # A QUOTATION IS MARKED AS ONE. A slide that prints a source's own words keeps them,
+            # so they arrive here still wearing their quotation marks, and rendering them as
+            # this project's prose would put somebody else's sentence under this project's
+            # house rules. `house_style_check` exempts `blockquote` for exactly that reason and
+            # says so in its own docstring: house style governs our prose and stops at the
+            # quotation mark.
+            said = [{"quote": s.startswith('"'), "text": s} for s in said if s]
+            if said:
+                prose.append(said)
+
+        claims = []
+        try:
+            cj = json.loads((d / "claims.json").read_text("utf-8"))
+            claims = [c for c in (cj.get("claims") or []) if isinstance(c, dict)]
+        except Exception:                                            # noqa: BLE001
+            pass
+
+        out.append({"date": d.name, "title": str(title),
+                    "hook": str(copy.get("hook") or copy.get("subtitle") or ""),
+                    "story": str(copy.get("story") or ""),
+                    "slides": len(files), "files": files, "missing": missing,
+                    "prose": prose, "claims": claims,
+                    "cover": files[0]})
     return out
+
+
+def normalise_slide_keys(planned) -> list:
+    """(order, slide) pairs, from either shape a run writes."""
+    if isinstance(planned, dict):
+        out = []
+        for k, v in planned.items():
+            m = re.search(r"(\d+)", str(k))
+            out.append((int(m.group(1)) if m else 0, v))
+        return out
+    if isinstance(planned, list):
+        return list(enumerate(planned, start=1))
+    return []
+
+
+# Machinery, never reader copy. Kept in step with copy_sync_check's list by intent: this one
+# only has to avoid printing citations and drawing instructions as prose.
+_SLIDE_META = frozenset({"claims", "claim_id", "claim_ids", "cid", "n", "slide", "index", "id",
+                         "technique", "file", "path", "art", "palette", "notes", "todo"})
+
+
+def _slide_strings(node) -> list:
+    out = []
+    if isinstance(node, str):
+        if node.strip():
+            out.append(node)
+    elif isinstance(node, list):
+        for x in node:
+            out.extend(_slide_strings(x))
+    elif isinstance(node, dict):
+        for k, v in node.items():
+            if k not in _SLIDE_META:
+                out.extend(_slide_strings(v))
+    return out
+
+
+# The provenance stamp the design prints beside a sourced figure. It belongs on the slide and
+# reads as debris in running text, and the claim it names is published in full further down the
+# page with its source attached.
+_CLAIM_STAMP = re.compile(
+    r"\bCLAIMS?\s+[A-Za-z0-9_.-]+\s*\.?(\s*(QUOTED\s+VERBATIM|COMPUTED|MEASURED|MODELED)\s*\.?)?",
+    re.IGNORECASE)
+
+
+def _reads_as_prose(text: str) -> bool:
+    """Whether a slide string belongs in the story, as opposed to on the slide.
+
+    TWO TESTS, AND THE CASE ONE IS DOING THE REAL WORK. A first pass used length and terminal
+    punctuation alone, which is enough to sort a label from a sentence but not enough to sort a
+    TAG from one: "SITE PLAN NOT PUBLIC." is four words ending in a full stop. The design
+    doctrine sets tags, kickers and labels in capitals and writes body prose in sentence case,
+    so the case is the signal, and it is the design's own signal rather than one invented here.
+    """
+    t = _CLAIM_STAMP.sub(" ", " ".join(str(text).split())).strip()
+    if not t:
+        return False
+    letters = [ch for ch in t if ch.isalpha()]
+    if letters and all(ch.isupper() for ch in letters):
+        return False
+    if len(t) >= 60:
+        return True
+    return len(t.split()) >= 4 and t.rstrip().endswith((".", "?", "!"))
 
 
 def video_feed() -> dict:
@@ -723,29 +848,101 @@ def articles_page(runs: list, today: str) -> str:
                 body=body, today=today, canonical="articles/")
 
 
-def article_page(r: dict, today: str) -> str:
-    """One shipped carousel, every slide, and the caption that went out with it."""
+def article_page(r: dict, today: str, items: list) -> str:
+    """One shipped carousel, as TEXT first and pictures second.
+
+    THIS PAGE USED TO BE EIGHT IMAGES AND A TITLE. Everything the deck said was locked inside
+    PNGs, so the page published nothing a search engine could index, nothing a screen reader
+    could read, and nothing a reader with images off could see. The words were never missing:
+    `copy.json` is the manifest `copy_sync_check` proves the render against, and `claims.json`
+    holds every source those words rest on. They were simply never written into the page.
+
+    The shape follows the sibling product's archive, which solved this first. The deck, then the
+    story in the deck's own words, then every claim with the source it was checked against, then
+    the beats. A reader who never loads an image still gets the whole thing.
+    """
     d = _dt.date.fromisoformat(r["date"])
+    # BY FILENAME, NEVER BY INDEX. See `load_runs`: generating `slide-{i:02d}.webp` from a count
+    # published two broken images and dropped two slides entirely the first time the surviving
+    # files were not a contiguous run.
     slides = "".join(
-        f'<img src="{RAW}/runs/carousel/{e(r["date"])}/slide-{i:02d}.webp" width="1080"'
+        f'<img src="{RAW}/runs/carousel/{e(r["date"])}/{e(name)}" width="1080"'
         f' height="1350" loading="lazy" alt="Slide {i} of {r["slides"]}">'
-        for i in range(1, r["slides"] + 1))
+        for i, name in enumerate(r["files"], start=1))
+
+    def say(block):
+        return "".join(
+            f"<blockquote>{e(s['text'])}</blockquote>" if s["quote"]
+            else f"<p>{e(s['text'])}</p>" for s in block)
+
+    story = "".join(say(b) for b in r.get("prose") or [])
+    if not story:
+        story = f'<p>{e(r["hook"] or r["title"])}</p>'
+
+    # EVERY CLAIM, WITH WHAT IT WAS CHECKED AGAINST. The site's promise is that a fact traces to
+    # a source a reader can open, and this is the page where the deck's facts live, so this is
+    # where that promise has to be redeemable.
+    def claim_row(i, c):
+        kind = ("PRIMARY" if str(c.get("source_type", "")).startswith("primary") else "REPORT")
+        url, title = str(c.get("url") or ""), str(c.get("source_title") or "")
+        shown = e(title or url)
+        cite = (f'<cite><a href="{e(url)}" rel="nofollow noopener">{shown}</a></cite>'
+                if url else f"<cite>{shown}</cite>")
+        quote = str(c.get("quote") or "").strip()
+        block = f"<blockquote>{e(quote)}</blockquote>" if quote else ""
+        checked = ""
+        try:
+            if c.get("retrieved"):
+                checked = f' · checked {e(ordinal(_dt.date.fromisoformat(str(c["retrieved"]))))}'
+        except ValueError:
+            checked = ""
+        return (f'<li><p>{e(str(c.get("text") or ""))}</p>{block}'
+                f'<p class="meta" data-prose="data"><span class="tag">{kind}</span> {cite}'
+                f'{checked}</p></li>')
+
+    claims = r.get("claims") or []
+    claims_html = ""
+    if claims:
+        rows = "".join(claim_row(i, c) for i, c in enumerate(claims, start=1))
+        claims_html = f"""
+<h2>What was verified</h2>
+<p class="meta" data-prose="data"><span class="num">{len(claims)}</span> claims, each re-fetched
+  from its source before this deck shipped.</p>
+<ol class="claims">{rows}</ol>"""
+
+    beats, entry = "", ""
+    for it in items:
+        if it.get("id") == r.get("story"):
+            beats = (f'<h2>Beats</h2><p class="meta" data-prose="data">'
+                     f'<span class="tag">{e(it.get("topic", ""))}</span></p>')
+            entry = (f'<p class="meta" data-prose="data">The record entry for this decision is '
+                     f'<a href="../../item/{e(it["id"])}/">{e(it["title"])}</a>.</p>')
+            break
+
     body = f"""
 <article>
 <h1>{e(r["title"])}</h1>
-<p class="meta" data-prose="data"><span class="tag">{e(ordinal(d))}</span>
+<p class="meta" data-prose="data"><span class="tag">Published {e(ordinal(d))}</span>
   <span>{r["slides"]} slides</span></p>
-<div class="prose"><p>{e(r["hook"])}</p></div>
+
+<h2>The deck</h2>
 <div class="slides">{slides}</div>
+
+<h2>The story</h2>
+<div class="prose">{story}{entry}</div>
+{claims_html}
+{beats}
 <p class="meta" data-prose="data"><a href="../">Every article</a></p>
 </article>
 """
+    flat = [s["text"] for b in (r.get("prose") or []) for s in b if not s["quote"]]
+    desc = " ".join((flat or [r["title"]])[0].split())[:180]
     return page(title=f'{r["title"]} · {SITE_NAME}', depth=2, active="articles/",
-                desc=(r["hook"] or r["title"])[:180], body=body, today=today,
+                desc=desc, body=body, today=today,
                 canonical=f'articles/{r["date"]}/')
 
 
-def latest_article(runs: list) -> str:
+def latest_article(runs: list, items: list) -> str:
     """The newest carousel, baked at build time.
 
     BAKED RATHER THAN FETCHED, unlike the video below it, and the difference is where the
@@ -760,6 +957,38 @@ def latest_article(runs: list) -> str:
     if not runs:
         return ""
     r = runs[0]
+
+    # WHAT THE CARD SAYS BESIDE THE COVER, and why it is not the deck's own words.
+    #
+    # This printed `copy.json`'s top level `hook`, which does not exist: hooks are per slide, so
+    # the card carried a title and an empty paragraph. A reader saw "Terafab, Grimes County" and
+    # nothing else, which says where but not what.
+    #
+    # The text comes from the DECISION the deck is about, not from the deck. `copy.json` names
+    # its story, that item is already on this site, and its summary is already through the
+    # numeral gate, the narration gate and the house style gate. Lifting a slide's prose here
+    # instead would put figures on the front page that this build never computed, which is the
+    # one thing the compute-not-generate law does not bend on.
+    # THE ITEM'S TITLE, NOT THE FIRST SENTENCE OF ITS SUMMARY, and the reason is dates.
+    #
+    # These summaries open by dating the announcement, so the card read "August 16th" in its
+    # own tag and then "Governor Greg Abbott announced on August 6th, 2026" in the paragraph
+    # underneath. Two bare dates a line apart, meaning different things, with nothing saying
+    # which was which. A reader cannot tell whether the story is ten days old or the page is.
+    #
+    # The item title says what happened without dating it, so the only date on the card is the
+    # one in the tag, and the tag now says what that date IS.
+    blurb = ""
+    for it in items:
+        if it.get("id") == r.get("story"):
+            blurb = " ".join(str(it.get("title") or "").split())
+            break
+    if not blurb:
+        blurb = str(r["hook"])
+
+    story_link = (f'<a href="item/{e(r["story"])}/">the decision it is about</a>'
+                  if r.get("story") else "")
+
     return f"""
 <section data-reveal>
   <h2>The latest article</h2>
@@ -770,13 +999,14 @@ def latest_article(runs: list) -> str:
       width="1080" height="1350" loading="lazy"
       alt="Cover slide, {e(r["title"])}"></a>
     <div>
-      <p class="meta" data-prose="data"><span class="tag">{e(ordinal(
+      <p class="meta" data-prose="data"><span class="tag">Published {e(ordinal(
         _dt.date.fromisoformat(r["date"])))}</span>
         <span>{r["slides"]} slides</span></p>
       <h3>{e(r["title"])}</h3>
-      <p>{e(r["hook"])}</p>
+      <p>{e(blurb)}</p>
       <div class="ctarow">
         <a class="cta ghost" href="articles/{e(r["date"])}/">Read it</a>
+        {story_link and f'<a class="cta ghost" href="item/{e(r["story"])}/">The record entry</a>'}
         <a class="cta ghost" href="articles/">Every article</a>
       </div>
     </div>
@@ -1006,8 +1236,6 @@ def home(items: list, today: str) -> str:
 
 {ask_box(items, today)}
 
-{latest_article(runs)}
-
 {latest_video()}
 
 <section data-reveal>
@@ -1019,6 +1247,8 @@ def home(items: list, today: str) -> str:
   <p class="mapread" id="mapread" role="status" aria-live="polite" data-prose="data"></p>
   <button type="button" class="mapreset" id="mapreset" hidden>Show all of Texas</button>
 </section>
+
+{latest_article(runs, items)}
 
 {'<section data-reveal><h2>Closing next</h2><ul class="deck">' + rows + '</ul>'
    '<p class="meta" data-prose="data"><a href="record/">See all ' + str(n_items) + ' decisions</a></p>'
@@ -2188,6 +2418,46 @@ def _quoted_numerals(items: list) -> set:
     return out
 
 
+def _run_numerals(r: dict) -> set:
+    """Every numeral one shipped deck is entitled to print, and where each one comes from.
+
+    Two origins and no third. A figure was QUOTED from a source, so it is in a claim's verbatim
+    quote or in the title of the document that quote came from. Or it was COMPUTED by the run,
+    in which case it is in that run's `computed.json`, which is the file its own `compute.py`
+    wrote and which the run's gates checked the slides against.
+
+    A numeral the deck printed from neither is exactly what this gate exists to refuse, and it
+    stays refused: nothing here authorises a figure by it having appeared on a slide.
+    """
+    out = set()
+    for c in r.get("claims") or []:
+        for field in (c.get("quote"), c.get("text"), c.get("source_title"), c.get("url")):
+            if field:
+                out |= set(numeral_lint.NUMERAL.findall(str(field)))
+
+    computed = REPO_ROOT / "runs" / "carousel" / r["date"] / "computed.json"
+    try:
+        blob = json.loads(computed.read_text("utf-8"))
+    except Exception:                                                # noqa: BLE001
+        blob = None
+
+    def walk(node):
+        if isinstance(node, dict):
+            for v in node.values():
+                walk(v)
+        elif isinstance(node, list):
+            for v in node:
+                walk(v)
+        elif isinstance(node, (int, float)) and not isinstance(node, bool):
+            out.add(str(node))
+            out.add(f"{node:,}")
+        elif isinstance(node, str):
+            out.update(numeral_lint.NUMERAL.findall(node))
+
+    walk(blob)
+    return out
+
+
 def question_groups(items: list, today: str) -> dict:
     """Every computed question and answer, grouped by the KIND of question it is.
 
@@ -2906,7 +3176,19 @@ def build(out: Path, today: str) -> dict:
         shutil.copyfile(feed_src, out / "videos" / "videos.json")
         written.append("videos/videos.json")
     for r in runs:
-        w(f'articles/{r["date"]}/index.html', article_page(r, today))
+        # THE DECK'S OWN NUMERALS, AUTHORISED WHERE THEY WERE COMPUTED AND QUOTED.
+        #
+        # This page now publishes the deck's prose and every claim behind it, so it carries
+        # figures this site build did not compute. That is exactly the case the law already
+        # covers at the docket layer: a numeral reaches published copy either by being computed
+        # from data or by being QUOTED FROM A SOURCE. Both sets come from the run's own
+        # artifacts, so nothing here is authorised by being typed.
+        #
+        # PER PAGE, NEVER SITE-WIDE, for the reason `_authorised_numerals` records twice over:
+        # both times this gate was silently disabled, the cause was an allowlist that grew
+        # wider than the page it guarded. Only this article page gets this article's figures.
+        w(f'articles/{r["date"]}/index.html', article_page(r, today, items),
+          extra=_run_numerals(r))
     # PER PLACE. The index, then a page for every metro the record touches and every
     # touched county that is in no metro. Nothing falls between the two.
     for pl in all_places(items, today):
