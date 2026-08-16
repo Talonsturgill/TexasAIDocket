@@ -68,11 +68,42 @@ finally trips it is the run that can least afford to be arguing with its own sui
 The two repairs above are NOT on this run branch. They are on `maintenance/2026-08-16-gate-repairs`,
 which is PR #70, merged to `main` before this one.
 
-The pre-commit hook took both of them here without complaint, because it checks per commit off
-`.git/ACTOR` and each was stamped with the actor that owns the file. CI does not work that way. It
-reads ONE actor out of the branch prefix and checks the whole branch diff against it, so a
-`claude/daily-` branch carrying an `upgrade` commit and a `human` commit is two violations no
+The pre-commit hook took both of them here without complaint. **It took them because it was never
+running.** That is corrected below and it is the more important of the two findings.
+
+The design the hook implements checks per commit off `.git/ACTOR`, and each of these was stamped
+with the actor that owns the file, so a working hook would have passed them too. CI does not work
+that way. It reads ONE actor out of the branch prefix and checks the whole branch diff against it,
+so a `claude/daily-` branch carrying an `upgrade` commit and a `human` commit is two violations no
 matter how each commit was stamped.
+
+### THE HOOK WAS NOT INSTALLED, AND NOTHING SAID SO UNTIL THE LAST HOUR
+
+`git config core.hooksPath` was unset in this checkout and `.git/hooks/pre-commit` did not exist.
+`.githooks/pre-commit` is committed and executable and git was never pointed at it. **Every commit
+this run made went in with no ownership check on it at all.** Not one was refused because not one
+was examined.
+
+The stamping ritual ran the whole time. Phase 0 wrote `.git/ACTOR`, every phase that changed lanes
+rewrote it, and this record described a hook enforcing something. The stamp was going into a file
+nothing read.
+
+What actually caught the two out-of-lane files was a person typing `ownership_check.py` by hand
+and CI running it on the branch. Both are real and neither is the mechanism CLAUDE.md describes,
+which is a hook that makes an out-of-lane write impossible to commit rather than merely visible
+afterward.
+
+`guards_local.py` is the only thing in the repo that noticed, and it says so in a skip line rather
+than a failure. The line reads that the ownership law "has no local mechanism" in this checkout and
+tells you the command to fix it, and it prints under a `guards_local: 51 step(s) passed` banner and
+an exit code of 0. **A green suite reported the law was not in force.** That is a `GATE_LESSONS`
+entry twice over, and the file already carries one about a rule in this repo's own ownership map
+not being in force. This is the same fault a second time, in the same place, and this time the
+mechanism was missing rather than the rule.
+
+Fixed in this checkout with `git config core.hooksPath .githooks`, which is worth nothing beyond
+this container. A fresh clone starts unprotected and the container is ephemeral, so this is
+proposal 9.
 
 **The two checkers disagree, and the routine's own design sits on the disagreement.** Phase 17
 instructs the daily run to `echo upgrade > .git/ACTOR` and commit. Follow that instruction on a
@@ -255,6 +286,18 @@ down and stopped.
    Or teach the CI step to read the actor stamp per commit the way the hook does, which is more
    faithful to how the routine actually works and more work. `ownership.yaml` and
    `.github/workflows/guards.yml` are both maintainer owned, so this run wrote it down and stopped.
+
+9. **A fresh clone has no ownership enforcement, and the only thing that reports it reports it as
+   a skip under a green banner.** `core.hooksPath` is repository configuration and does not travel
+   with a clone, so `.githooks/pre-commit` sat committed and executable and unreferenced for this
+   entire run. `guards_local.py` names the gap and hands over the exact command, then prints
+   `51 step(s) passed` and exits 0. A run reading the exit code, which this repo's own instructions
+   say to do rather than reading the last line, learns nothing. Two halves to close it. The setup
+   step that CLAUDE.md already gives for git identity should set `core.hooksPath` in the same
+   breath, since both are repository configuration a fresh clone lacks and both are load bearing.
+   And `guards_local.py` should treat a missing local mechanism as a FAILURE rather than a skip,
+   because a skip is what a check looks like when it is not needed and this one is a check that
+   cannot run. `scripts/shared/` and `CLAUDE.md` are maintainer owned.
 
 ## The deck
 
