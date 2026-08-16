@@ -63,6 +63,35 @@ finally trips it is the run that can least afford to be arguing with its own sui
 
 `guards_local.py` now reports **58 of 58 steps passed**, 2 skipped, and CI runs the skipped ones.
 
+### Both fixes ship on their own branch, and the reason is a gap in the map
+
+The two repairs above are NOT on this run branch. They are on `maintenance/2026-08-16-gate-repairs`,
+which is PR #70, merged to `main` before this one.
+
+The pre-commit hook took both of them here without complaint, because it checks per commit off
+`.git/ACTOR` and each was stamped with the actor that owns the file. CI does not work that way. It
+reads ONE actor out of the branch prefix and checks the whole branch diff against it, so a
+`claude/daily-` branch carrying an `upgrade` commit and a `human` commit is two violations no
+matter how each commit was stamped.
+
+**The two checkers disagree, and the routine's own design sits on the disagreement.** Phase 17
+instructs the daily run to `echo upgrade > .git/ACTOR` and commit. Follow that instruction on a
+`claude/daily-` branch, which is the only branch Phase 16 gives the run, and the result is a branch
+CI is built to reject. This is not a rule being broken. It is the routine and the enforcement
+disagreeing about what a lane is scoped to, a commit or a branch, and today is the first day the
+run made an out-of-lane commit and found out.
+
+`branch_actors` maps four prefixes, to `daily`, `dispatch`, `gridwatch` and `ask`. There is no
+prefix for `upgrade` and none for `human`. A branch matching nothing is treated as `human`, which
+owns every path, and that is the escape hatch this split used. It works and it is honest here,
+since the owner directed both edits live, but an `upgrade` commit reaching `main` through the
+`human` hatch means the narrow lane that exists to stop a self-editing phase from touching the
+public record is not the lane it actually travelled in.
+
+**Nothing in this run patches that.** `ownership.yaml` is not this actor's to edit, and a run
+that rewrites the map it is being judged by is the exact failure the map exists to prevent. It is
+proposal 8 below.
+
 
 Carousel No. 1. The first deck this repo has shipped, so every carousel ledger was empty at
 wake and nothing was excluded.
@@ -211,6 +240,21 @@ down and stopped.
    gating each candidate with `--promote` and no `--out`, then appending what passed. Both the
    command in `prompts/daily_routine.md` and the guard in `promote()` are maintainer owned.
    The safe form of the command is `--promote SEED` with no `--out` at all.
+
+8. **The pre-commit hook and CI disagree about whether a lane is scoped to a commit or a branch,
+   and Phase 17 sits on the disagreement.** The hook checks per commit off `.git/ACTOR`. CI reads
+   one actor out of the branch prefix and checks the whole branch diff. Phase 17 instructs the
+   daily run to stamp `upgrade` and commit, on the only branch Phase 16 gives it, which is
+   `claude/daily-`. Do exactly as instructed and CI refuses the result. `branch_actors` has no
+   prefix for `upgrade` and none for `human`, so the only route out is a branch matching nothing,
+   which the checker treats as `human` and which owns every path. That worked today and it is the
+   wrong shape. An `upgrade` change reaching `main` through the `human` hatch has not travelled
+   in the narrow lane that exists to keep a self-editing phase away from the public record.
+   Two ways to close it, and the choice is the maintainer's. Add `claude/upgrade-` to
+   `branch_actors` and let Phase 17 open its own pull request, which keeps the narrow lane real.
+   Or teach the CI step to read the actor stamp per commit the way the hook does, which is more
+   faithful to how the routine actually works and more work. `ownership.yaml` and
+   `.github/workflows/guards.yml` are both maintainer owned, so this run wrote it down and stopped.
 
 ## The deck
 
