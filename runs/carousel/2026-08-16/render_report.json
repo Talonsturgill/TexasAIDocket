@@ -508,7 +508,7 @@
           "anc": []
         },
         {
-          "text": "Post Oak Savannah, sandy loam over iron red clay. The Navasota River runs the we",
+          "text": "The Post Oak Belt, where upland soils run a sandy loam surface layer over a mott",
           "x": 80,
           "y": 1052,
           "w": 820,
@@ -523,13 +523,13 @@
             [
               80,
               1052,
-              737,
+              751,
               41
             ],
             [
               80,
               1094,
-              508,
+              657,
               41
             ]
           ],
@@ -608,7 +608,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1051,
+      "render_ms": 1099,
       "ok": true,
       "canvases": [
         {
@@ -667,7 +667,7 @@
           "font_px": 28,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(15, 12, 28)",
+          "color": "rgb(244, 238, 223)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -930,7 +930,7 @@
         }
       ],
       "nondeterminism": [],
-      "render_ms": 1334,
+      "render_ms": 1520,
       "ok": true,
       "canvases": [
         {
@@ -2242,12 +2242,12 @@
           "anc": []
         },
         {
-          "text": "SAND",
-          "x": 930,
-          "y": 901,
-          "w": 70,
-          "h": 35,
-          "font_px": 26,
+          "text": "SANDY LOAM SURFACE LAYER",
+          "x": 598,
+          "y": 896,
+          "w": 402,
+          "h": 34,
+          "font_px": 25,
           "weight": "400",
           "family": "JetBrains Mono",
           "color": "rgb(36, 30, 25)",
@@ -2255,21 +2255,21 @@
           "overlap_ok": false,
           "lines": [
             [
-              930,
-              901,
-              70,
-              35
+              598,
+              896,
+              402,
+              34
             ]
           ],
           "anc": []
         },
         {
-          "text": "SANDY LOAM OVER IRON RED",
-          "x": 582,
-          "y": 1043,
-          "w": 418,
-          "h": 35,
-          "font_px": 26,
+          "text": "MOTTLED RED CLAYPAN SUBSOIL",
+          "x": 548,
+          "y": 1050,
+          "w": 452,
+          "h": 34,
+          "font_px": 25,
           "weight": "400",
           "family": "JetBrains Mono",
           "color": "rgb(241, 226, 206)",
@@ -2277,10 +2277,32 @@
           "overlap_ok": false,
           "lines": [
             [
-              582,
-              1043,
-              418,
-              35
+              548,
+              1050,
+              452,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TEXAS ALMANAC, SOILS OF TEXAS",
+          "x": 534,
+          "y": 1094,
+          "w": 466,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgba(255, 236, 206, 0.72)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              534,
+              1094,
+              466,
+              31
             ]
           ],
           "anc": []
@@ -2431,7 +2453,7 @@
       ],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1431,
+      "render_ms": 1361,
       "ok": true,
       "canvases": [
         {
@@ -2536,7 +2558,7 @@
           "x": 80,
           "y": 674,
           "w": 920,
-          "h": 129,
+          "h": 86,
           "font_px": 32,
           "weight": "400",
           "family": "Manrope",
@@ -2554,12 +2576,6 @@
               80,
               716,
               890,
-              44
-            ],
-            [
-              80,
-              759,
-              894,
               44
             ]
           ],
@@ -2660,7 +2676,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 885,
+      "render_ms": 1227,
       "ok": true,
       "canvases": [
         {

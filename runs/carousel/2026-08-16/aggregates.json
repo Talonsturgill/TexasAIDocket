@@ -1,5 +1,5 @@
 {
-  "_note": "Every number this deck computed rather than quoted, with the code that produced it. compute.py is committed beside this file and re-runs to the same values.",
+  "_note": "Every number this deck computed rather than quoted, with the code that produced it. compute.py is committed beside this file and re-runs to the same values. The 0.18 percent share on slide 5 is NOT listed here and cannot be: aggregate_check declares a phrase only when its own detector found it on a slide, and it does not read '0.18 PERCENT OF THE FIRST PHASE' as one of its four shapes. A declaration with no matching finding is refused as a leftover. The figure traces through compute.py tef_share_of_phase_one_pct instead, which ships beside this file.",
   "aggregates": [
     {
       "phrase": "89 miles across",

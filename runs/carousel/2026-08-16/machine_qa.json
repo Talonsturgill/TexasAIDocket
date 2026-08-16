@@ -25,8 +25,6 @@
       "file": "slide-03.html",
       "fails": [],
       "warns": [
-        "low contrast ~2.5 on 'ADVANCED PACKAGING' (est.)",
-        "worst-point contrast 2.1 on 'ADVANCED PACKAGING' (box mean 2.5) -- below the rubric's 4.5 line somewhere along the run of the text",
         "busy art under text (bg edge density 0.05) beneath 'TEXAS AI DOCKET' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
         "busy art under text (bg edge density 0.05) beneath '03 / 09' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
       ],
@@ -84,6 +82,7 @@
       "file": "slide-08.html",
       "fails": [],
       "warns": [
+        "busy art under text (bg edge density 0.06) beneath 'TEXAS ALMANAC, SOILS OF TEXAS' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
         "busy art under text (bg edge density 0.05) beneath 'TEXAS AI DOCKET' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
         "busy art under text (bg edge density 0.04) beneath '08 / 09' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
       ],
@@ -102,6 +101,6 @@
     }
   ],
   "fails": 0,
-  "warns": 28,
+  "warns": 27,
   "verdict": "WARN"
 }

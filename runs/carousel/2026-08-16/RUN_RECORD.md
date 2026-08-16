@@ -251,12 +251,12 @@ as this record.
 <!-- gate-status:begin -->
 | gate | status | detail |
 |---|---|---|
-| claims         | PASS   | 29 verified claim(s) |
+| claims         | PASS   | 30 verified claim(s) |
 | render         | PASS   | 9 slide(s) |
-| qa             | WARN   | 0 fail(s), 28 warn(s) |
+| qa             | WARN   | 0 fail(s), 27 warn(s) |
 | aggregates     | PASS   | 4 declared and re-derived |
 | assembly       | PASS   | 9 slide(s), 4.15 MB, vector |
 | score          | ABSENT | score.json not written yet |
-| dossiers       | PASS   | 33,704 chars planned |
+| dossiers       | PASS   | 33,939 chars planned |
 | caption        | PASS   | 138 words |
 <!-- gate-status:end -->

@@ -71,6 +71,7 @@ Post Oak Savannah, not Permian and not Hill Country. Every accent is a material 
 | `bluestem` | `#C9A063` | little bluestem cured tawny by August |
 | `loam` | `#A85433` | the iron red sandy loam where a county road is cut down into it |
 | `bottom` | `#6B6448` | Navasota River bottomland silt |
+| `granite` | `#9A3B2A` | the Capitol's own sunset granite, the accent on the paper frame |
 | `sand` | `#D8C9AB` | the pale leached quartz horizon over the loam |
 | `caliche` | `#E4D8C3` | type on dark, the house token |
 | `paper` | `#F6F1E4` | the document register, slides 6 and 8 only |
@@ -320,7 +321,7 @@ type:
 acceptance:
   - "the two masses are drawn at true ratio to the two figures, so the small one is 0.18 percent of the tall one and is not floored to a visible minimum"
   - "both masses are the same hue at the same intensity, with no gradient and no second colour"
-  - "the 0.18 figure re-derives from c2 and c3 and is declared in aggregates.json"
+  - "the 0.18 figure re-derives from c2 and c3 through compute.py tef_share_of_phase_one_pct, which ships beside the deck, and no figure on this slide is typed"
   - "the bottom third carries the modeled stone ledge with its own cast shadow rather than a hairline"
   - "neither figure is described as large, small, generous or cheap anywhere on the slide"
 risks:
@@ -430,7 +431,7 @@ job: >
   Make the gap physical at the scale of the place, by drawing the one thing about this site that
   has been surveyed for a century and leaving the frame above it as an empty, ruled, labelled
   field.
-claims: [c26, c22, c25, c5]
+claims: [c26, c5, c30]
 numerals: []
 composition:
   structure: >
@@ -465,7 +466,7 @@ art:
 type:
   hook: "The soil is mapped. The site is not."
   dek: "Checked August 16th"
-  labels: ["NO ACREAGE PUBLISHED", "NO SITE PLAN PUBLISHED", "NOT YET ON THE STATE'S JETI AGREEMENTS TABLE", "SAND", "SANDY LOAM"]
+  labels: ["NO ACREAGE PUBLISHED", "NO SITE PLAN PUBLISHED", "NOT YET ON THE STATE'S JETI AGREEMENTS TABLE", "SANDY LOAM SURFACE LAYER", "MOTTLED RED CLAYPAN SUBSOIL", "TEXAS ALMANAC, SOILS OF TEXAS"]
 acceptance:
   - "no building outline, envelope, massing or footprint is drawn anywhere above the ground line"
   - "the empty upper field is bounded by the ground line, carries grain and a graticule, and is never a bare canvas that the near-uniform gate would read as a dead frame"

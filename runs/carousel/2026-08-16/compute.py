@@ -25,19 +25,19 @@ out = {}
 side_ft = math.isqrt(FOOTPRINT_SQFT)
 assert side_ft * side_ft == FOOTPRINT_SQFT, "not a perfect square, do not round it into copy"
 out["footprint_square_side_ft"] = {"value": side_ft, "label": "measured",
-    "from": ["c-footprint"], "how": "isqrt(100000000)"}
+    "from": ["c5"], "how": "isqrt(100000000)"}
 out["footprint_square_side_mi"] = {"value": round(side_ft / FEET_PER_MILE, 2), "label": "measured",
-    "from": ["c-footprint"], "how": "10000 / 5280, rounded to 2 decimals"}
+    "from": ["c5"], "how": "10000 / 5280, rounded to 2 decimals"}
 out["footprint_sq_mi"] = {"value": round(FOOTPRINT_SQFT / FEET_PER_MILE**2, 2), "label": "measured",
-    "from": ["c-footprint"], "how": "100000000 / 5280^2, rounded to 2 decimals"}
+    "from": ["c5"], "how": "100000000 / 5280^2, rounded to 2 decimals"}
 
 # --- what the state and the company are each putting in per job ----------------------
 out["phase_one_usd_per_job"] = {"value": round(PHASE_ONE_USD / PHASE_ONE_JOBS), "label": "measured",
-    "from": ["c-phase-one"], "how": "16800000000 / 3000"}
+    "from": ["c2"], "how": "16800000000 / 3000"}
 out["tef_usd_per_job"] = {"value": round(TEF_GRANT_USD / PHASE_ONE_JOBS), "label": "measured",
-    "from": ["c-phase-one", "c-tef"], "how": "30000000 / 3000"}
+    "from": ["c2", "c3"], "how": "30000000 / 3000"}
 out["tef_share_of_phase_one_pct"] = {"value": round(100 * TEF_GRANT_USD / PHASE_ONE_USD, 2),
-    "label": "measured", "from": ["c-phase-one", "c-tef"],
+    "label": "measured", "from": ["c2", "c3"],
     "how": "100 * 30000000 / 16800000000, rounded to 2 decimals"}
 
 # --- the roof against the county it lands in -----------------------------------------
