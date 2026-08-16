@@ -944,6 +944,75 @@ most wants: League City has decided, and what it decided was to order a special 
 November 3rd, which is precisely a dated way in. Computing a FUTURE DOOR keeps it and drops the
 finished votes, because a finished vote has no future door whatever its status says.
 
+## 23. A fact the code branches on, carried only in prose
+
+`llms.txt` decides whether a dated hearing is still a door a reader can walk through. TCEQ
+called off two August 2026 hearings and the record kept the original dates with the
+cancellation written into the `note`, which is correct history: the sitting was scheduled and
+then was not.
+
+The first fix read that note with a regex. It worked, it was pinned by a self-test, and it was
+the wrong shape. **The site was branching on a sentence a person writes.** It would have gone
+quiet the day somebody wrote "called off", or "postponed indefinitely", or moved the word into
+the summary instead, and nothing would have reported the change: the page would simply have
+started publishing a canceled hearing as a live door again.
+
+This is the compute-not-generate law at the level of a boolean rather than a numeral. The law
+says no published NUMBER is ever typed by a person. The same argument covers any fact the build
+makes a decision on, because a decision derived from prose is a decision derived from whatever
+phrasing happened to be used that day.
+
+**What to check instead.** For every branch in a builder, ask where the fact it tests lives. If
+the answer is a free-text field, the fact needs a field of its own, and the free text needs a
+gate keeping it honest against that field.
+
+Both halves matter and the second is the part that is easy to skip. `key_dates[].canceled` is
+the truth now, and `gate_schema` fails any date whose note calls itself canceled while the flag
+does not. Without that gate the field would silently drift out of date the first time somebody
+wrote the note and forgot the flag, and a field nobody maintains is worse than the prose it
+replaced, because the code trusts it more.
+
+The asymmetry is deliberate. A note saying canceled REQUIRES the flag. A canceled date requires
+no note at all. The gate exists to stop the prose contradicting the data, not to make writers
+describe every field twice.
+
+## 24. A test that lands inside the window the product suppresses
+
+`responsive.mjs` asserts three things about the map on a phone, and says in its own comment that
+any two without the third is a defect: the readout fills under a dragging thumb, releasing the
+drag does NOT navigate, and a plain tap still opens the county.
+
+The third assertion failed in CI on a build whose `docs/index.html` was byte identical to the
+one that had passed fifteen minutes earlier. Locally it navigated on **one run in three**.
+
+The cause was not geometry and not timing noise. A drag's `touchend` arms a capture-phase click
+killer and removes it after **400ms**, which is precisely what makes assertion two true. The test
+waited **350ms** and then tapped. It was tapping inside the window the product deliberately
+suppresses clicks in, so it could only pass by accident: the killer is `once:true`, so it
+survived unless the drag's own `touchend` had already produced a click that consumed it. Whether
+that happened was the coin toss.
+
+**The gate was not measuring what it claimed.** It said "a plain tap" and performed a tap that no
+reader performs, 350ms after lifting from a drag, in the one window where the product's answer is
+supposed to be "no".
+
+**What to check instead.** When a product deliberately suppresses, debounces or delays a
+behaviour, any test of the behaviour has to state where its input sits relative to that window.
+Read the constant, do not guess a wait. A test whose input falls inside a suppression window is
+testing the suppression, whatever its label says.
+
+**And the fix has a direction.** The wait went to 700ms because the killer lives 400ms. If this
+assertion starts failing again, raising the number is NOT the fix, because that would mean the
+killer is outliving its own window, which is a defect in the map rather than in the clock in the
+test. The comment says so at the call site, since the next person to meet a red test at 3am will
+reach for the number first.
+
+**The near miss worth recording.** This surfaced on a pull request that changed one JSON file and
+could not have caused it. The tempting reading was "unrelated, therefore flaky, therefore re-run",
+and a re-run would have been green about a third of the time. A latent coin toss in a gate is
+indistinguishable from an intermittent product fault until somebody reproduces it, and the only
+honest way to tell them apart is to reproduce it.
+
 ## 25. Every gate green, and the page was broken
 
 The owner opened the site and said two slides had not rendered. They had not. The article page
@@ -984,3 +1053,4 @@ so the routine now says at that step that its exit code is a stop.
 
 The rule underneath: **a defect the owner finds by looking at the site is a defect the automation
 was supposed to find first.** Publishing is not the last step. Opening what you published is.
+
