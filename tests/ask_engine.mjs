@@ -45,13 +45,31 @@ const browser = await chromium.launch(
   fs.existsSync(PREINSTALLED) ? { executablePath: PREINSTALLED } : {});
 const page = await browser.newPage();
 
-// THE NETWORK IS CUT AFTER LOAD. The page promises the reader that nothing is sent anywhere;
-// this is that promise, tested rather than asserted. Every request after the document itself
-// fails, and the box must still answer every question.
+// THE NETWORK IS CUT AFTER LOAD. The page promises the reader that the BOX sends nothing
+// anywhere; this is that promise, tested rather than asserted. Every request after the
+// document itself fails, and the box must still answer every question.
+//
+// WHAT THIS ASSERTION IS ACTUALLY FOR, narrowed 2026-08-16 on the owner's call, in the run
+// that first tripped it. The promise the reader is given is about the ASK LANE: typing a
+// question sends nothing, so the box works on a phone with no signal in a county meeting
+// room. It was never a promise that the page loads no pictures.
+//
+// It read as the wider promise only because it had never been tested against a page that
+// carried one. `runs/carousel/` was empty until the first deck shipped, so the front page
+// emitted no external reference at all and the assertion passed vacuously for its whole
+// life. The first shipped carousel put its cover on the front page from the repository's
+// own raw host and turned a green suite red overnight.
+//
+// So the media host is excluded BY NAME and nothing else is. An analytics beacon, a font
+// CDN, a third-party script or any request the ask box itself makes still fails this, which
+// is the whole of what the promise was protecting.
+const MEDIA_HOST = "https://raw.githubusercontent.com/Talonsturgill/TexasAIDocket/";
 const external = [];
 await page.route("**/*", (route) => {
   const url = route.request().url();
   if (url.startsWith("file://")) return route.continue();
+  // A shipped carousel image served from this project's own repository. Not a beacon.
+  if (url.startsWith(MEDIA_HOST)) return route.abort();
   external.push(url);
   return route.abort();
 });
@@ -190,6 +208,17 @@ check("a starter chip answers when clicked", chipped.trim().length > 0);
 
 check("still no request left the page after every interaction", external.length === 0,
       external.join(", "));
+
+// THE GATE CAN STILL GO RED, PROVED RATHER THAN ASSERTED. Narrowing an assertion is exactly
+// where a suite quietly stops testing anything, so the exclusion is exercised against a host
+// it does not cover. If this ever stops catching the beacon, the narrowing above has widened
+// into "no request is ever checked" and the promise is gone with it.
+const beacon = "https://analytics.example.com/collect?q=test";
+await page.evaluate((u) => fetch(u).catch(() => {}), beacon);
+await page.waitForTimeout(150);
+check("...and a request to any other host is still caught",
+      external.some((u) => u.startsWith("https://analytics.example.com/")),
+      external.join(", ") || "nothing was caught, so the exclusion is too wide");
 
 await browser.close();
 console.log(failures ? `\nask_engine: ${failures} FAILED` : "\nask_engine: all passed");
