@@ -14,7 +14,6 @@
       "register": "dark, Big Bend at dusk, with one deliberate paper inversion at slide 6",
       "techniques": [
         "extruded county with a true scale overlay",
-        "single county spotlight with a leader out of the dense east",
         "parallax planes with a two part contact shadow",
         "engraving, white line intaglio",
         "the residual bar at true ratio",
@@ -37,7 +36,9 @@
       "camera": "one county at close range, then the whole state, then an object stack, then flat type, then two masses, then a sheet, then a field with a hard stop, then a section below grade, then the dusk horizon",
       "light_decks_used": 1,
       "bespoke_median": 0.3997,
-      "bespoke_closest_pair": "slide-01 and slide-02 at 0.8859, both TXGeo cartography sharing the d3 and topojson scaffolding. Different scale, different value polarity and different furniture. The scorer called slide 2 the most cuttable frame in the deck and that judgement stands for the next run."
+      "bespoke_closest_pair": "slide-01 and slide-02 at 0.8859, both TXGeo cartography sharing the d3 and topojson scaffolding. Different scale, different value polarity and different furniture. The scorer called slide 2 the most cuttable frame in the deck and that judgement stands for the next run.",
+      "slides": 8,
+      "cut": "Slide 2, the state locator, cut after the third scoring pass. Three independent reviews called it the most cuttable frame, it was the closest visual pair, and its only unique content was a county land area."
     }
   ]
 }

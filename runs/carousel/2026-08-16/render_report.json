@@ -19,8 +19,8 @@
       "text_nodes": [
         {
           "text": "10,000 FT A SIDE",
-          "x": 183,
-          "y": 819,
+          "x": 286,
+          "y": 835,
           "w": 250,
           "h": 35,
           "font_px": 26,
@@ -31,8 +31,8 @@
           "overlap_ok": false,
           "lines": [
             [
-              183,
-              819,
+              286,
+              835,
               250,
               35
             ]
@@ -41,8 +41,8 @@
         },
         {
           "text": "THE ROOF, AT TRUE SCALE",
-          "x": 74,
-          "y": 887,
+          "x": 177,
+          "y": 903,
           "w": 359,
           "h": 35,
           "font_px": 26,
@@ -53,8 +53,8 @@
           "overlap_ok": false,
           "lines": [
             [
-              74,
-              887,
+              177,
+              903,
               359,
               35
             ]
@@ -85,8 +85,8 @@
         },
         {
           "text": "GRIMES COUNTY",
-          "x": 470,
-          "y": 714,
+          "x": 596,
+          "y": 740,
           "w": 187,
           "h": 31,
           "font_px": 24,
@@ -97,8 +97,8 @@
           "overlap_ok": false,
           "lines": [
             [
-              470,
-              714,
+              596,
+              740,
               187,
               31
             ]
@@ -165,9 +165,9 @@
           "text": "The state says the production chain goes under a single roof. That roof is a squ",
           "x": 80,
           "y": 572,
-          "w": 760,
-          "h": 146,
-          "font_px": 36,
+          "w": 520,
+          "h": 182,
+          "font_px": 34,
           "weight": "400",
           "family": "Manrope",
           "color": "rgb(201, 179, 147)",
@@ -177,20 +177,26 @@
             [
               80,
               571,
-              685,
-              49
+              469,
+              46
             ],
             [
               80,
-              620,
-              658,
-              49
+              617,
+              474,
+              46
             ],
             [
               80,
-              668,
-              350,
-              49
+              662,
+              502,
+              46
+            ],
+            [
+              80,
+              708,
+              147,
+              46
             ]
           ],
           "anc": []
@@ -246,7 +252,7 @@
           "anc": []
         },
         {
-          "text": "01 / 09",
+          "text": "01 / 08",
           "x": 882,
           "y": 1223,
           "w": 118,
@@ -299,18 +305,18 @@
           "reads": "differ",
           "a": [
             [
-              626,
-              954,
+              728,
+              970,
               26,
               26
             ]
           ],
           "b": [
             [
-              500,
-              1080,
-              90,
-              90
+              610,
+              1100,
+              80,
+              80
             ]
           ],
           "a_visible_frac": 1,
@@ -319,7 +325,7 @@
       ],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1251,
+      "render_ms": 1267,
       "ok": true,
       "canvases": [
         {
@@ -332,8 +338,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 27.9,
-          "variance": 301.5
+          "mean": 27,
+          "variance": 254.5
         }
       ],
       "breather": false,
@@ -342,295 +348,6 @@
     {
       "file": "slide-02.html",
       "png": "slide-02.png",
-      "console_errors": [],
-      "page_errors": [],
-      "overflow_warnings": [],
-      "fonts_missing": [],
-      "text_nodes": [
-        {
-          "text": "GRIMES COUNTY",
-          "x": 397,
-          "y": 710,
-          "w": 234,
-          "h": 40,
-          "font_px": 30,
-          "weight": "400",
-          "family": "JetBrains Mono",
-          "color": "rgb(228, 216, 195)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              397,
-              710,
-              234,
-              40
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "787.467",
-          "x": 472,
-          "y": 760,
-          "w": 160,
-          "h": 50,
-          "font_px": 38,
-          "weight": "400",
-          "family": "JetBrains Mono",
-          "color": "rgb(201, 160, 99)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              472,
-              760,
-              160,
-              50
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "SQ MI OF LAND",
-          "x": 444,
-          "y": 823,
-          "w": 187,
-          "h": 31,
-          "font_px": 24,
-          "weight": "400",
-          "family": "JetBrains Mono",
-          "color": "rgb(201, 179, 147)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              444,
-              823,
-              187,
-              31
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "HOUSTON",
-          "x": 764,
-          "y": 924,
-          "w": 101,
-          "h": 31,
-          "font_px": 24,
-          "weight": "400",
-          "family": "JetBrains Mono",
-          "color": "rgb(201, 179, 147)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              764,
-              924,
-              101,
-              31
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "COLLEGE STATION AND BRYAN",
-          "x": 442,
-          "y": 865,
-          "w": 360,
-          "h": 31,
-          "font_px": 24,
-          "weight": "400",
-          "family": "JetBrains Mono",
-          "color": "rgb(201, 179, 147)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              442,
-              865,
-              360,
-              31
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "Where in Texas",
-          "x": 80,
-          "y": 118,
-          "w": 920,
-          "h": 34,
-          "font_px": 25,
-          "weight": "400",
-          "family": "JetBrains Mono",
-          "color": "rgb(201, 160, 99)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              80,
-              118,
-              263,
-              34
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "Between Houstonand Bryan.",
-          "x": 80,
-          "y": 172,
-          "w": 920,
-          "h": 204,
-          "font_px": 104,
-          "weight": "800",
-          "family": "Fraunces",
-          "color": "rgb(228, 216, 195)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              80,
-              158,
-              759,
-              129
-            ],
-            [
-              80,
-              260,
-              464,
-              129
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "The Post Oak Belt, where upland soils run a sandy loam surface layer over a mott",
-          "x": 80,
-          "y": 1052,
-          "w": 820,
-          "h": 84,
-          "font_px": 30,
-          "weight": "400",
-          "family": "Manrope",
-          "color": "rgb(201, 179, 147)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              80,
-              1052,
-              751,
-              41
-            ],
-            [
-              80,
-              1094,
-              657,
-              41
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "TEXAS AI DOCKET",
-          "x": 122,
-          "y": 1223,
-          "w": 284,
-          "h": 31,
-          "font_px": 24,
-          "weight": "400",
-          "family": "JetBrains Mono",
-          "color": "rgba(228, 216, 195, 0.72)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              122,
-              1223,
-              284,
-              31
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "02 / 09",
-          "x": 882,
-          "y": 1223,
-          "w": 118,
-          "h": 31,
-          "font_px": 24,
-          "weight": "400",
-          "family": "JetBrains Mono",
-          "color": "rgba(228, 216, 195, 0.5)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              882,
-              1223,
-              118,
-              31
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "GRIMES COUNTY 30.545 N 95.985 W",
-          "x": 80,
-          "y": 1265,
-          "w": 418,
-          "h": 25,
-          "font_px": 19,
-          "weight": "400",
-          "family": "JetBrains Mono",
-          "color": "rgba(228, 216, 195, 0.34)",
-          "decorative": true,
-          "overlap_ok": false,
-          "lines": [
-            [
-              80,
-              1265,
-              418,
-              25
-            ]
-          ],
-          "anc": []
-        }
-      ],
-      "body_overflow": false,
-      "canvas_text": [],
-      "svg_plates": [],
-      "encodings": [],
-      "contacts": [],
-      "nondeterminism": [],
-      "render_ms": 1099,
-      "ok": true,
-      "canvases": [
-        {
-          "x": 0,
-          "y": 0,
-          "w": 1080,
-          "h": 1350,
-          "bw": 2160,
-          "bh": 2700,
-          "area_frac": 1,
-          "backing_ratio": 2,
-          "sample_ok": true,
-          "mean": 26.6,
-          "variance": 289.6
-        }
-      ],
-      "breather": false,
-      "leaders": []
-    },
-    {
-      "file": "slide-03.html",
-      "png": "slide-03.png",
       "console_errors": [],
       "page_errors": [],
       "overflow_warnings": [],
@@ -837,7 +554,7 @@
           "anc": []
         },
         {
-          "text": "03 / 09",
+          "text": "02 / 08",
           "x": 882,
           "y": 1223,
           "w": 118,
@@ -930,7 +647,7 @@
         }
       ],
       "nondeterminism": [],
-      "render_ms": 1520,
+      "render_ms": 1774,
       "ok": true,
       "canvases": [
         {
@@ -951,8 +668,8 @@
       "leaders": []
     },
     {
-      "file": "slide-04.html",
-      "png": "slide-04.png",
+      "file": "slide-03.html",
+      "png": "slide-03.png",
       "console_errors": [],
       "page_errors": [],
       "overflow_warnings": [],
@@ -1137,7 +854,7 @@
           "anc": []
         },
         {
-          "text": "04 / 09",
+          "text": "03 / 08",
           "x": 882,
           "y": 1223,
           "w": 118,
@@ -1187,7 +904,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1153,
+      "render_ms": 1158,
       "ok": true,
       "canvases": [
         {
@@ -1208,8 +925,8 @@
       "leaders": []
     },
     {
-      "file": "slide-05.html",
-      "png": "slide-05.png",
+      "file": "slide-04.html",
+      "png": "slide-04.png",
       "console_errors": [],
       "page_errors": [],
       "overflow_warnings": [],
@@ -1426,7 +1143,7 @@
           "anc": []
         },
         {
-          "text": "05 / 09",
+          "text": "04 / 08",
           "x": 882,
           "y": 1223,
           "w": 118,
@@ -1476,7 +1193,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1047,
+      "render_ms": 1038,
       "ok": true,
       "canvases": [
         {
@@ -1497,8 +1214,8 @@
       "leaders": []
     },
     {
-      "file": "slide-06.html",
-      "png": "slide-06.png",
+      "file": "slide-05.html",
+      "png": "slide-05.png",
       "console_errors": [],
       "page_errors": [],
       "overflow_warnings": [],
@@ -1527,7 +1244,7 @@
           "anc": []
         },
         {
-          "text": "Four signatures,on the record.",
+          "text": "Four bodies,on the record.",
           "x": 80,
           "y": 159,
           "w": 920,
@@ -1542,7 +1259,7 @@
             [
               80,
               146,
-              664,
+              499,
               124
             ],
             [
@@ -1671,11 +1388,11 @@
           "anc": []
         },
         {
-          "text": "\"Ultimately, the Board determined that providing the requested tax incentives fo",
+          "text": "Voted to enter an agreement with TeraFab AI, LLC under the JETI Act. \"Ultimately",
           "x": 80,
           "y": 732,
           "w": 920,
-          "h": 77,
+          "h": 115,
           "font_px": 29,
           "weight": "400",
           "family": "Manrope",
@@ -1686,12 +1403,18 @@
             [
               80,
               731,
-              887,
+              907,
               40
             ],
             [
               80,
               769,
+              887,
+              40
+            ],
+            [
+              80,
+              807,
               747,
               40
             ]
@@ -1701,7 +1424,7 @@
         {
           "text": "ANDERSON-SHIRO CISD",
           "x": 80,
-          "y": 851,
+          "y": 890,
           "w": 920,
           "h": 31,
           "font_px": 24,
@@ -1713,7 +1436,7 @@
           "lines": [
             [
               80,
-              851,
+              890,
               324,
               31
             ]
@@ -1723,7 +1446,7 @@
         {
           "text": "\"There are defining moments in the life of a school district, and this is one of",
           "x": 80,
-          "y": 891,
+          "y": 930,
           "w": 920,
           "h": 77,
           "font_px": 29,
@@ -1735,13 +1458,13 @@
           "lines": [
             [
               80,
-              890,
+              929,
               915,
               40
             ],
             [
               80,
-              929,
+              967,
               320,
               40
             ]
@@ -1771,7 +1494,7 @@
           "anc": []
         },
         {
-          "text": "06 / 09",
+          "text": "05 / 08",
           "x": 882,
           "y": 1223,
           "w": 118,
@@ -1821,7 +1544,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 721,
+      "render_ms": 747,
       "ok": true,
       "canvases": [
         {
@@ -1842,8 +1565,8 @@
       "leaders": []
     },
     {
-      "file": "slide-07.html",
-      "png": "slide-07.png",
+      "file": "slide-06.html",
+      "png": "slide-06.png",
       "console_errors": [],
       "page_errors": [],
       "overflow_warnings": [],
@@ -2054,7 +1777,7 @@
           "anc": []
         },
         {
-          "text": "07 / 09",
+          "text": "06 / 08",
           "x": 882,
           "y": 1223,
           "w": 118,
@@ -2147,7 +1870,7 @@
         }
       ],
       "nondeterminism": [],
-      "render_ms": 1545,
+      "render_ms": 1476,
       "ok": true,
       "canvases": [
         {
@@ -2168,8 +1891,8 @@
       "leaders": []
     },
     {
-      "file": "slide-08.html",
-      "png": "slide-08.png",
+      "file": "slide-07.html",
+      "png": "slide-07.png",
       "console_errors": [],
       "page_errors": [],
       "overflow_warnings": [],
@@ -2380,7 +2103,7 @@
           "anc": []
         },
         {
-          "text": "08 / 09",
+          "text": "07 / 08",
           "x": 882,
           "y": 1223,
           "w": 118,
@@ -2453,7 +2176,7 @@
       ],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1361,
+      "render_ms": 1240,
       "ok": true,
       "canvases": [
         {
@@ -2474,8 +2197,8 @@
       "leaders": []
     },
     {
-      "file": "slide-09.html",
-      "png": "slide-09.png",
+      "file": "slide-08.html",
+      "png": "slide-08.png",
       "console_errors": [],
       "page_errors": [],
       "overflow_warnings": [],
@@ -2582,6 +2305,34 @@
           "anc": []
         },
         {
+          "text": "The Legislative Reference Library posts the week's hearings with a link to each ",
+          "x": 80,
+          "y": 776,
+          "w": 920,
+          "h": 73,
+          "font_px": 27,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(201, 179, 147)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              775,
+              896,
+              37
+            ],
+            [
+              80,
+              811,
+              167,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
           "text": "texasaidocket.com",
           "x": 80,
           "y": 1123,
@@ -2626,7 +2377,7 @@
           "anc": []
         },
         {
-          "text": "09 / 09",
+          "text": "08 / 08",
           "x": 882,
           "y": 1223,
           "w": 118,
@@ -2676,7 +2427,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1227,
+      "render_ms": 983,
       "ok": true,
       "canvases": [
         {

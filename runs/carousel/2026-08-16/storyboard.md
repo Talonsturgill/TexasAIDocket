@@ -20,6 +20,15 @@ days before this announcement the state stopped 474 gigawatts of that queue pend
 Then it paid toward a plant that is reported to be building its own generation and not joining
 the queue at all. The deck ends somewhere a reader did not expect to be.
 
+## The cut
+
+Slide 2, the state locator, was cut after the third scoring pass, leaving eight slides. Three
+independent reviews reached the same judgement without being told the others had. It answered a
+question slide 1 already answered, it was the deck's closest visual pair at 0.8859, its four
+label plates stacked into one block over central Texas, and its only unique content was a county
+land area. **This is an editorial cut for quality, not a shortfall against the ladder**, whose
+floor is six.
+
 ## The directors room, and what was grafted
 
 Two lenses returned, scale and the loop. A third, the signed record, did not return before the
@@ -147,53 +156,6 @@ risks:
 ```yaml
 slide: 2
 job: >
-  Put the county on the state so a reader who has never heard of Grimes knows within one beat
-  whether this is near them.
-claims: [c1]
-numerals:
-  - value_from: c1
-composition:
-  structure: >
-    The full state silhouette is fitted small and high so the whole of Texas is visible at once,
-    with one county lifted in value, because the question this slide answers is where in Texas
-    and that question needs the whole state in frame rather than a crop of it.
-  bands: >
-    The TOP third carries the state outline with the counties mesh drawn once as a single path
-    and Grimes lifted in bluestem. The MIDDLE third carries a leader line out of the dense east
-    to a knockout label, and the two nearest cities a reader will actually know, set as ticked
-    anchors. The BOTTOM third carries a caliche haze wash rising off the horizon line with the
-    Navasota drawn as a contoured river trace through modeled texture, plus the counter and the
-    coordinates footer sitting on that graded ground.
-  focal: "The single lifted county, because everything else on the frame is one value"
-art:
-  technique: "Single-county spotlight with a leader out of the dense east"
-  why_this_technique: >
-    The technique library warns that a spotlight fails when the county is small and east, where
-    254 counties are dense, and Grimes is exactly that county. The recorded fix is a leader line
-    to a label outside the mesh, so the technique is chosen with its own failure mode already
-    answered in the plan.
-  palette: "line for the county mesh, oak for the state fill, bluestem for Grimes, caliche for the label"
-  value_structure: >
-    Darkest is the ground below the state. The state sits one step up in oak. The lifted county
-    is the lightest thing on the frame and it is the only place any saturation appears.
-  motion: "Across the state left to right, catching on the lifted county, then out along the leader"
-type:
-  hook: "Between Houston and Bryan."
-  dek: "Post Oak Savannah, sandy loam over iron red clay. The Navasota River runs the western line."
-  labels: ["GRIMES COUNTY", "787.467", "SQ MI OF LAND", "HOUSTON", "COLLEGE STATION AND BRYAN"]
-acceptance:
-  - "the state is drawn through TXGeo and is neither mirrored nor inverted, checkable by finding El Paso on the left and Beaumont on the right"
-  - "the leader terminates on the Grimes polygon's own coordinates within 24 design px, declared through window.__txLeaders"
-  - "the county borders are drawn as one mesh path so no shared edge is stroked twice into a doubled line"
-  - "the 787 figure traces to c27 and appears nowhere else on this slide"
-  - "the lifted county is distinguishable from its neighbours at 432px, declared through data-encodes with reads differ"
-risks:
-  - "At full-state fit Grimes is about a fingernail. If the value lift is too subtle it disappears at feed size, which is why the separation is declared and measured rather than judged."
-```
-
-```yaml
-slide: 3
-job: >
   Show what vertically integrated actually means here, which is three manufacturing stages that
   are normally three separate buildings in three separate countries, stacked into one.
 claims: [c6, c5]
@@ -237,7 +199,7 @@ risks:
 ```
 
 ```yaml
-slide: 4
+slide: 3
 job: >
   Give the company's own stated purpose one uninterrupted frame, in its own words, because the
   reason a chip plant is an AI story is a sentence somebody said rather than an inference.
@@ -281,7 +243,7 @@ risks:
 ```
 
 ```yaml
-slide: 5
+slide: 4
 job: >
   Set what the company is putting in beside what the state is putting in, and let the two
   figures be the argument without a word of framing.
@@ -329,12 +291,12 @@ risks:
 ```
 
 ```yaml
-slide: 6
+slide: 5
 job: >
   Name the four bodies that actually signed something, because a state announcement is one
   sentence and a school board vote is a room full of people in a county of eight hundred square
   miles.
-claims: [c9, c10, c11, c12, c4]
+claims: [c3, c4, c9, c10, c11, c12]
 numerals: []
 composition:
   structure: >
@@ -361,7 +323,7 @@ art:
     type. The deckle shadow at the bottom is the only mass.
   motion: "Straight down the register, entry by entry"
 type:
-  hook: "Four signatures, on the record."
+  hook: "Four bodies, on the record."
   dek: "A governor, a county judge and two school boards"
   labels: ["OFFICE OF THE TEXAS GOVERNOR", "GRIMES COUNTY, ITS COUNTY JUDGE", "IOLA ISD, ITS BOARD OF TRUSTEES", "ANDERSON-SHIRO CISD"]
 acceptance:
@@ -374,7 +336,7 @@ risks:
 ```
 
 ```yaml
-slide: 7
+slide: 6
 job: >
   Turn the deck, by putting this plant next to the queue the state just froze and showing that
   it is reported to be building its own power instead of joining it.
@@ -426,7 +388,7 @@ risks:
 ```
 
 ```yaml
-slide: 8
+slide: 7
 job: >
   Make the gap physical at the scale of the place, by drawing the one thing about this site that
   has been surveyed for a century and leaving the frame above it as an empty, ruled, labelled
@@ -480,11 +442,11 @@ risks:
 ```
 
 ```yaml
-slide: 9
+slide: 8
 job: >
   Hand the reader the two dated things they can still do something with, and close the deck on
   the record rather than on a summary.
-claims: [c28]
+claims: [c28, c31]
 numerals: []
 composition:
   structure: >

@@ -283,12 +283,12 @@ None could be confirmed or contradicted this run, because the room was handed no
 <!-- gate-status:begin -->
 | gate | status | detail |
 |---|---|---|
-| claims         | PASS   | 30 verified claim(s) |
-| render         | PASS   | 9 slide(s) |
-| qa             | WARN   | 0 fail(s), 27 warn(s) |
+| claims         | PASS   | 31 verified claim(s) |
+| render         | PASS   | 8 slide(s) |
+| qa             | WARN   | 0 fail(s), 25 warn(s) |
 | aggregates     | PASS   | 4 declared and re-derived |
-| assembly       | PASS   | 9 slide(s), 4.15 MB, vector |
+| assembly       | PASS   | 8 slide(s), 3.77 MB, vector |
 | score          | ABSENT | score.json not written yet |
-| dossiers       | PASS   | 33,939 chars planned |
-| caption        | PASS   | 138 words |
+| dossiers       | PASS   | 31,478 chars planned |
+| caption        | PASS   | 152 words |
 <!-- gate-status:end -->

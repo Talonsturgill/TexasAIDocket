@@ -1,6 +1,6 @@
 <!doctype html>
-<!-- SLIDE 7 — the turn. The frozen queue as one hundred arrested paths, one per PERCENT,
-     and this plant standing outside it. No arrowheads, and no causal verb anywhere. -->
+<!-- SLIDE 8 — the counter-image. The dirt has been mapped for a century. Nothing above
+     the ground line is drawn, because no acreage and no site plan are published. -->
 <html><head><meta charset="utf-8">
 <link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
 <style>
@@ -9,10 +9,10 @@
   body{background:#08060F;position:relative;font-family:"Manrope",sans-serif}
   canvas#art{position:absolute;inset:0}
   svg#ink{position:absolute;inset:0}
-  .hd{position:absolute;top:110px;left:80px;right:80px}
+  .hd{position:absolute;top:112px;left:80px;right:80px}
   .kick{font-family:"JetBrains Mono",monospace;font-size:25px;letter-spacing:.15em;
         color:#C9A063;text-transform:uppercase;margin-bottom:16px}
-  h1{font-family:"Fraunces",serif;font-weight:800;font-size:98px;line-height:.96;
+  h1{font-family:"Fraunces",serif;font-weight:800;font-size:110px;line-height:.96;
      letter-spacing:-.022em;color:#E4D8C3;font-variation-settings:"opsz" 96}
   .mark{position:absolute;left:80px;bottom:96px;display:flex;align-items:center;gap:16px}
   .wm{font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:.19em;color:rgba(228,216,195,.72)}
@@ -21,19 +21,18 @@
   .geo{position:absolute;left:80px;bottom:60px;font-family:"JetBrains Mono",monospace;
        font-size:19px;letter-spacing:.11em;color:rgba(228,216,195,.34)}
 </style></head>
-<body data-encodes='[{"claim":"the lit plant below the stop bar is tellable from the queue field above it","reads":"differ","a":[[300,1040,240,60]],"b":[[300,560,240,60]]}]'
-      data-contacts='[{"what":"the plant on its own ground","shadow":[[310,1110,400,16]],"ground":[[310,1200,400,16]]}]'>
+<body data-encodes='[{"claim":"the mapped ground below the line reads differently from the undrawn field above it","reads":"differ","a":[[300,900,300,120]],"b":[[300,560,300,120]]}]'>
   <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
   <svg id="ink" width="1080" height="1350" viewBox="0 0 1080 1350"></svg>
   <div class="hd">
-    <div class="kick">August 3rd, the same office</div>
-    <h1>The plant is not<br>in the queue.</h1>
+    <div class="kick">Checked August 16th</div>
+    <h1>The soil is mapped.<br>The site is not.</h1>
   </div>
   <div class="mark">
     <svg width="26" height="26" viewBox="0 0 24 24"><polygon fill="#FFF" points="12,1 15.1,8.6 23,9.2 17,14.4 18.9,22 12,17.8 5.1,22 7,14.4 1,9.2 8.9,8.6"/></svg>
     <span class="wm">TEXAS AI DOCKET</span>
   </div>
-  <div class="ctr">07 / 09</div>
+  <div class="ctr">07 / 08</div>
   <div class="geo" data-decorative>GRIMES COUNTY  30.545 N  95.985 W</div>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script src="@@ASSETS@@/js/d3.v7.min.js"></script>
@@ -45,104 +44,125 @@ window.renderReady = new Promise(function (done) {
   const R = TX.rng(20260816);
   const g = document.getElementById("art").getContext("2d");
   g.scale(2, 2);
-  const sky = g.createLinearGradient(0, 0, 0, 1350);
-  sky.addColorStop(0, "#0A0812"); sky.addColorStop(.5, "#12101F"); sky.addColorStop(1, "#0A0812");
-  g.fillStyle = sky; g.fillRect(0, 0, 1080, 1350);
+  const GROUND = 862;                       /* below the vertical centre, deliberately */
 
-  /* ONE HUNDRED PATHS, ONE PER PERCENT. Never one per gigawatt: ninety percent of 474
-     gigawatts is the product of two approximations and this deck does not publish it.
-     Ninety are heavy for the data center share, ten are thin for everything else. */
-  const STOP = Math.round(1350 * 0.382) + 300;      /* the bar, off the vertical centre */
-  const TOP = 400;
+  /* ABOVE THE LINE: the emptiest field in the deck. Bounded, ruled, and never a bare
+     canvas. No building outline, no envelope, no massing, because none is published. */
+  const sky = g.createLinearGradient(0, 0, 0, GROUND);
+  sky.addColorStop(0, "#08060F"); sky.addColorStop(1, "#0D0A17");
+  g.fillStyle = sky; g.fillRect(0, 0, 1080, GROUND);
+  g.strokeStyle = "rgba(43,36,71,.55)"; g.lineWidth = 1;
+  for (let x = 0; x <= 1080; x += 120) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x, GROUND); g.stroke(); }
+  for (let y = 0; y <= GROUND; y += 120) { g.beginPath(); g.moveTo(0, y); g.lineTo(1080, y); g.stroke(); }
+
+  /* BELOW THE LINE: the fullest rendering in the deck. Sandy loam over iron red, hachured. */
+  const SAND_BOT = GROUND + 96;
+  g.fillStyle = "#B8A87F"; g.fillRect(0, GROUND, 1080, SAND_BOT - GROUND);
+  const loam = g.createLinearGradient(0, SAND_BOT, 0, 1350);
+  loam.addColorStop(0, "#A85433"); loam.addColorStop(.55, "#7E3C24"); loam.addColorStop(1, "#43200F");
+  g.fillStyle = loam; g.fillRect(0, SAND_BOT, 1080, 1350 - SAND_BOT);
+
+  /* the leached transition, blurred by hachure rather than by a gradient */
   g.lineCap = "round";
-  for (let i = 0; i < 100; i++) {
-    const heavy = i < 90;
-    let x = 76 + R() * 60;
-    let y = TOP + (i / 100) * (STOP - TOP - 26) + R() * 8;
-    const len = 200 + R() * 640;                    /* varied, since uniform length reads as hair */
-    g.beginPath(); g.moveTo(x, y);
-    for (let s = 0; s < len; s += 7) {
-      const a = TX.simplex2(x / 240, y / 190) * 0.34;
-      x += Math.cos(a) * 7; y += Math.sin(a) * 7;
-      if (y > STOP - 8) { y = STOP - 8; }            /* arrested against the bar */
-      g.lineTo(x, y);
-      if (x > 1010) break;
-    }
-    g.strokeStyle = heavy ? "rgba(201,160,99,.62)" : "rgba(122,116,106,.46)";
-    g.lineWidth = heavy ? 2.6 : 1.1;
-    g.stroke();
-  }
-
-  /* THE STOP. The hardest edge in the deck. */
-  g.fillStyle = "#0A0812"; g.fillRect(0, STOP, 1080, 1350 - STOP);
-  g.fillStyle = "#E4D8C3"; g.fillRect(0, STOP - 4, 1080, 4);
-
-  /* Below it, its own ground, lit so a contact shadow has something to subtract from. */
-  const apron = g.createLinearGradient(0, STOP, 0, 1350);
-  apron.addColorStop(0, "#241B14"); apron.addColorStop(.42, "#5C4028");
-  apron.addColorStop(.72, "#7A5433"); apron.addColorStop(1, "#3A2A1C");
-  g.fillStyle = apron; g.fillRect(0, STOP, 1080, 1350 - STOP);
-  const pool = g.createRadialGradient(508, 1150, 30, 508, 1150, 560);
-  pool.addColorStop(0, "rgba(224,149,106,.42)"); pool.addColorStop(1, "rgba(224,149,106,0)");
-  g.fillStyle = pool; g.fillRect(0, STOP, 1080, 1350 - STOP);
-  /* the apron is worked ground, hachured so the bottom band is terrain and not a wash */
-  g.lineCap = "round";
-  for (let i = 0; i < 3200; i++) {
-    const x = R() * 1080, y = STOP + 14 + R() * (1336 - STOP);
-    const slope = TX.fbm2(x / 190, y / 105, { octaves: 3 });
-    const len = 5 + 14 * Math.abs(slope);
-    g.globalAlpha = 0.10 + 0.26 * Math.abs(slope);
-    g.strokeStyle = slope > 0 ? "#D8C9AB" : "#2A1C12";
+  for (let i = 0; i < 2200; i++) {
+    const x = R() * 1080, y = GROUND + 6 + R() * (SAND_BOT - GROUND - 10);
+    const v = TX.fbm2(x / 130, y / 60, { octaves: 3 });
+    g.globalAlpha = 0.14 + 0.32 * Math.abs(v);
+    g.strokeStyle = v > 0 ? "#EFE6D0" : "#8A7852";
     g.lineWidth = 1;
+    g.beginPath(); g.moveTo(x, y); g.lineTo(x + v * 3, y + 8 + Math.abs(v) * 9); g.stroke();
+  }
+  for (let i = 0; i < 5200; i++) {
+    const x = R() * 1080, y = SAND_BOT - 16 + R() * (1362 - SAND_BOT);
+    const slope = TX.fbm2(x / 220, y / 130, { octaves: 4, gain: .5 });
+    const len = 7 + 20 * Math.abs(slope);
+    g.globalAlpha = 0.09 + 0.30 * Math.abs(slope);
+    g.strokeStyle = slope > 0 ? "#E0956A" : "#2A1208";
+    g.lineWidth = 1.1;
     g.beginPath(); g.moveTo(x, y);
-    g.lineTo(x + Math.cos(1.2 + slope * .8) * len, y + Math.sin(1.2 + slope * .8) * len);
-    g.stroke();
+    g.lineTo(x + Math.cos(1.05 + slope) * len, y + Math.sin(1.05 + slope) * len); g.stroke();
   }
+  /* iron mottling, the crests catching light */
   g.globalAlpha = 1;
-
-  /* The plant: one lit mass on its own ground, outside the field. Two-part contact shadow. */
-  g.fillStyle = "rgba(14,10,6,.88)"; g.fillRect(300, 1108, 420, 20);
-  g.fillStyle = "rgba(14,10,6,.44)"; g.fillRect(268, 1100, 484, 38);
-  g.fillStyle = "#D8C9AB"; g.fillRect(318, 1040, 384, 68);
-  g.fillStyle = "#6E3A22"; g.fillRect(318, 1040, 384, 6);
-  /* its own generation, drawn as heat off the roof rather than as a plume of smoke */
-  g.globalAlpha = .55;
-  for (let i = 0; i < 500; i++) {
-    const x = 330 + R() * 360, y = 1040 - R() * 74;
-    const t = (1040 - y) / 74;
-    g.fillStyle = "rgba(224,149,106," + (0.16 * (1 - t) * R()) + ")";
-    g.fillRect(x + TX.simplex2(x / 40, y / 30) * 5, y, 2.4, 2.4);
+  for (let i = 0; i < 520; i++) {
+    const x = R() * 1080, y = SAND_BOT + 14 + R() * (1326 - SAND_BOT);
+    const v = TX.fbm2(x / 90, y / 70, { octaves: 3 });
+    if (v < 0.06) continue;
+    g.fillStyle = "rgba(244,222,190," + (0.22 + 0.44 * v) + ")";
+    g.fillRect(x, y, 2.4 + v * 3, 2.2);
   }
-  g.globalAlpha = 1;
 
-  /* A scrim under the footer band, because the apron is lit and the constellation type
-     must not fight worked ground. */
-  const scrim = g.createLinearGradient(0, 1214, 0, 1350);
-  scrim.addColorStop(0, "rgba(10,8,6,0)"); scrim.addColorStop(.35, "rgba(10,8,6,.82)");
-  scrim.addColorStop(1, "rgba(10,8,6,.94)");
-  g.fillStyle = scrim; g.fillRect(0, 1214, 1080, 136);
+  /* two post oak taproots, carved with a lit left edge and a shadow under it */
+  for (const [rx, depth] of [[240, 400], [592, 330]]) {
+    const pts = [];
+    let x = rx;
+    for (let d = 0; d <= depth; d += 8) {
+      x += TX.simplex2(x / 70, (GROUND + d) / 90) * 4.6;
+      pts.push([x, GROUND + d]);
+    }
+    /* a tapering form with a shadow side and a lit side, so it is a root and not a crack */
+    for (let i = 1; i < pts.length; i++) {
+      const t = i / pts.length, w = 17 * (1 - t) + 2;
+      g.beginPath(); g.moveTo(pts[i - 1][0], pts[i - 1][1]); g.lineTo(pts[i][0], pts[i][1]);
+      g.strokeStyle = "rgba(26,13,6,.82)"; g.lineWidth = w; g.lineCap = "round"; g.stroke();
+      g.beginPath();
+      g.moveTo(pts[i - 1][0] - w * 0.26, pts[i - 1][1]); g.lineTo(pts[i][0] - w * 0.26, pts[i][1]);
+      g.strokeStyle = "rgba(224,201,166,.30)"; g.lineWidth = Math.max(1.2, w * 0.30); g.stroke();
+    }
+    /* two lateral rootlets, because one line down is a crack and a branching form is not */
+    for (const k of [0.28, 0.56]) {
+      const i0 = Math.floor(pts.length * k), dir = k < .4 ? 1 : -1;
+      let bx = pts[i0][0], by = pts[i0][1];
+      g.beginPath(); g.moveTo(bx, by);
+      for (let j = 0; j < 9; j++) {
+        bx += dir * (11 + TX.simplex2(bx / 40, by / 40) * 6); by += 9 + j * 1.4;
+        g.lineTo(bx, by);
+      }
+      g.strokeStyle = "rgba(26,13,6,.72)"; g.lineWidth = 4.4; g.stroke();
+    }
+  }
+
+  /* THE GROUND LINE. The heaviest single rule in the deck, with a section tick at its head. */
+  g.fillStyle = "#E4D8C3"; g.fillRect(0, GROUND - 7, 1080, 8);
+  g.fillStyle = "#C9A063"; g.fillRect(80, GROUND - 34, 6, 34);
+
+  /* THE LIT CUT FACE. The declared lightest thing in the deck, and it was not on the frame. */
+  const cut = g.createLinearGradient(0, 0, 168, 0);
+  cut.addColorStop(0, "rgba(255,236,206,.52)"); cut.addColorStop(.55, "rgba(255,224,186,.22)");
+  cut.addColorStop(1, "rgba(255,224,186,0)");
+  g.fillStyle = cut; g.fillRect(0, GROUND, 168, 1350 - GROUND);
+
+  /* A depth scale down the right, so the section carries a measurement. */
+  g.fillStyle = "rgba(244,238,223,.62)";
+  for (let d = 0; d <= 4; d++) {
+    const y = GROUND + 12 + d * 108;
+    if (y > 1300) break;
+    g.fillRect(1004, y, d % 2 ? 16 : 30, 2);
+  }
 
   const grain = new Image();
-  await new Promise(r => { grain.onload = r; grain.src = TX.grainTile(280, 40, 37); });
+  await new Promise(r => { grain.onload = r; grain.src = TX.grainTile(280, 44, 53); });
   g.globalAlpha = .034;
   for (let y = 0; y < 1350; y += 280) for (let x = 0; x < 1080; x += 280) g.drawImage(grain, x, y);
   g.globalAlpha = 1;
 
   const svg = d3.select("#ink");
   await document.fonts.ready;
-  function lab(x, y, txt, size, fill, anchor, plate) {
+  function lab(x, y, txt, size, fill, plate, anchor) {
     const t = svg.append("text").attr("x", x).attr("y", y).attr("text-anchor", anchor || "start")
       .attr("font-family", "JetBrains Mono, monospace").attr("font-size", size)
       .attr("letter-spacing", "0.07em").attr("fill", fill).text(txt);
-    if (plate) TX.svgPlate(t.node(), { padX: 12, padY: 9, fill: plate, stroke: "#2B2447" });
+    if (plate) TX.svgPlate(t.node(), { padX: 13, padY: 10, fill: plate, stroke: "#2B2447" });
     return t;
   }
-  lab(80, 452, "APPROXIMATELY 474 GW OF REQUESTS", 27, "#E4D8C3", "start", "#0A0812");
-  lab(80, 494, "GOVERNOR'S LETTER, AUGUST 3RD", 24, "#C9A063", "start", "#0A0812");
-  lab(80, 536, "APPROXIMATELY 90 PERCENT, DATA CENTERS", 24, "#C9A063", "start", "#0A0812");
-  lab(1000, STOP - 76, "AUDIT BEFORE ANY OF THEM ADVANCES", 26, "#E4D8C3", "end", "#0A0812");
-  lab(80, 1178, "TERAFAB, REPORTED TO BE BUILDING ITS OWN GENERATION", 25, "#E4D8C3", "start", "#1A1108");
-  lab(1000, 946, "SCALE FIGURE. SITE PLAN NOT PUBLIC.", 24, "#E4D8C3", "end", "#150E08");
+  /* what is absent, in the field where it is absent */
+  lab(80, 508, "NO ACREAGE PUBLISHED", 30, "#E4D8C3", "#0B0813");
+  lab(80, 566, "NO SITE PLAN PUBLISHED", 30, "#E4D8C3", "#0B0813");
+  lab(80, 624, "NOT YET ON THE STATE'S JETI AGREEMENTS TABLE", 25, "#C9A063", "#0B0813");
+  /* what is present, named on the horizons it belongs to */
+  lab(1000, GROUND + 60, "SANDY LOAM SURFACE LAYER", 25, "#241E19", null, "end");
+  lab(1000, GROUND + 214, "MOTTLED RED CLAYPAN SUBSOIL", 25, "#F1E2CE", null, "end");
+  lab(1000, GROUND + 256, "TEXAS ALMANAC, SOILS OF TEXAS", 24, "rgba(255,236,206,.72)", null, "end");
   document.body.dataset.ready = "1"; done();
 })();
 });

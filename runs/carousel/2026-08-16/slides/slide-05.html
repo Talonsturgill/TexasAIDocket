@@ -1,142 +1,118 @@
 <!doctype html>
-<!-- SLIDE 5 — the money, at true ratio. One hue, one intensity, no severity ramp. -->
+<!-- SLIDE 6 — the register. Paper, the deck's one light frame. Four bodies, four sentences. -->
 <html><head><meta charset="utf-8">
 <link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   html,body{width:1080px;height:1350px;overflow:hidden}
-  body{background:#08060F;position:relative;font-family:"Manrope",sans-serif}
+  body{background:#F6F1E4;position:relative;font-family:"Manrope",sans-serif}
   canvas#art{position:absolute;inset:0}
-  svg#ink{position:absolute;inset:0}
   .hd{position:absolute;top:112px;left:80px;right:80px}
-  .kick{font-family:"JetBrains Mono",monospace;font-size:25px;letter-spacing:.15em;
-        color:#C9A063;text-transform:uppercase;margin-bottom:18px}
-  h1{font-family:"Fraunces",serif;font-weight:800;font-size:104px;line-height:.98;
-     letter-spacing:-.022em;color:#E4D8C3;font-variation-settings:"opsz" 96}
-  .dek{position:absolute;left:80px;top:372px;width:900px;font-size:30px;font-size:31px;color:#C9B393;line-height:1.42}
+  .kick{font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:.11em;
+        color:#9A3B2A;text-transform:uppercase;margin-bottom:16px}
+  h1{font-family:"Fraunces",serif;font-weight:800;font-size:100px;line-height:.98;
+     letter-spacing:-.022em;color:#241E19;font-variation-settings:"opsz" 96}
+  .reg{position:absolute;top:386px;left:80px;right:80px}
+  .row{padding:22px 0 20px;border-top:1px solid #CFC2A6}
+  .row:first-child{border-top:3px solid #9A3B2A}
+  .row:last-child{border-bottom:1px solid #CFC2A6}
+  .who{font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:.11em;
+       color:#9A3B2A;margin-bottom:9px}
+  .said{font-size:29px;line-height:1.32;color:#241E19}
   .mark{position:absolute;left:80px;bottom:96px;display:flex;align-items:center;gap:16px}
-  .wm{font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:.19em;color:rgba(228,216,195,.72)}
+  .wm{font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:.19em;color:rgba(228,216,195,.8)}
   .ctr{position:absolute;right:80px;bottom:96px;font-family:"JetBrains Mono",monospace;
-       font-size:24px;letter-spacing:.1em;color:rgba(228,216,195,.5)}
+       font-size:24px;letter-spacing:.1em;color:rgba(228,216,195,.56)}
   .geo{position:absolute;left:80px;bottom:60px;font-family:"JetBrains Mono",monospace;
-       font-size:19px;letter-spacing:.11em;color:rgba(228,216,195,.34)}
+       font-size:19px;letter-spacing:.11em;color:rgba(228,216,195,.38)}
 </style></head>
 <body>
   <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
-  <svg id="ink" width="1080" height="1350" viewBox="0 0 1080 1350"></svg>
   <div class="hd">
-    <div class="kick">Announced, August 6th</div>
-    <h1 id="hook">$16.8 billion.<br>$30 million.</h1>
+    <div class="kick">A governor, a county judge and two school boards</div>
+    <h1>Four bodies,<br>on the record.</h1>
   </div>
-  <div class="dek" id="dek">What the company says it will spend in the first phase, and what the
-    state put in.</div>
+  <div class="reg">
+    <div class="row"><div class="who">OFFICE OF THE TEXAS GOVERNOR</div>
+      <div class="said">Extended a Texas Enterprise Fund grant, and states the plant is a
+        qualified project under the JETI program.</div></div>
+    <div class="row"><div class="who">GRIMES COUNTY, ITS COUNTY JUDGE</div>
+      <div class="said">"This is a generational change for Grimes County,"</div></div>
+    <div class="row"><div class="who">IOLA ISD, ITS BOARD OF TRUSTEES</div>
+      <div class="said">Voted to enter an agreement with TeraFab AI, LLC under the JETI Act. "Ultimately, the Board determined that providing the requested tax
+        incentives for this project was in Iola ISD's best interest."</div></div>
+    <div class="row"><div class="who">ANDERSON-SHIRO CISD</div>
+      <div class="said">"There are defining moments in the life of a school district, and this is
+        one of those moments."</div></div>
+  </div>
   <div class="mark">
-    <svg width="26" height="26" viewBox="0 0 24 24"><polygon fill="#FFF" points="12,1 15.1,8.6 23,9.2 17,14.4 18.9,22 12,17.8 5.1,22 7,14.4 1,9.2 8.9,8.6"/></svg>
+    <svg width="26" height="26" viewBox="0 0 24 24"><polygon fill="#FFFFFF" points="12,1 15.1,8.6 23,9.2 17,14.4 18.9,22 12,17.8 5.1,22 7,14.4 1,9.2 8.9,8.6"/></svg>
     <span class="wm">TEXAS AI DOCKET</span>
   </div>
-  <div class="ctr">05 / 09</div>
+  <div class="ctr">05 / 08</div>
   <div class="geo" data-decorative>GRIMES COUNTY  30.545 N  95.985 W</div>
 <script src="@@ASSETS@@/js/noise.js"></script>
-<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
-<script src="@@ASSETS@@/js/txtype.js"></script>
 <script>
 window.renderReady = new Promise(function (done) {
 (async function () {
   TX.reseed(20260816);
   const R = TX.rng(20260816);
-  const PHASE_ONE = 16800000000;   // claim c2, verbatim "more than $16.8 billion"
-  const TEF       = 30000000;      // claim c3, verbatim "$30 million"
-  const share = 100 * TEF / PHASE_ONE;
-
   const g = document.getElementById("art").getContext("2d");
   g.scale(2, 2);
-  const sky = g.createLinearGradient(0, 0, 0, 1350);
-  sky.addColorStop(0, "#08060F"); sky.addColorStop(.58, "#0E0B1A"); sky.addColorStop(1, "#171225");
-  g.fillStyle = sky; g.fillRect(0, 0, 1080, 1350);
+  g.fillStyle = "#F6F1E4"; g.fillRect(0, 0, 1080, 1350);
 
-  /* Norther front: a hard value break at 0.382 rather than on the centre line. */
-  const BREAK = Math.round(1350 * 0.382);
-  g.fillStyle = "#0A0812"; g.fillRect(0, 0, 1080, BREAK);
-  const soft = g.createLinearGradient(0, BREAK, 0, BREAK + 210);
-  soft.addColorStop(0, "rgba(74,82,54,.26)"); soft.addColorStop(1, "rgba(74,82,54,0)");
-  g.fillStyle = soft; g.fillRect(0, BREAK, 1080, 210);
-  g.fillStyle = "rgba(201,160,99,.55)"; g.fillRect(0, BREAK, 1080, 2);
-
-  /* The lit stone ledge the bars stand on, so the bottom band carries modeled tone. */
-  const LEDGE = 1082;
-  const pool = g.createRadialGradient(540, LEDGE + 10, 20, 540, LEDGE + 10, 520);
-  pool.addColorStop(0, "rgba(201,160,99,.24)"); pool.addColorStop(1, "rgba(201,160,99,0)");
-  g.fillStyle = pool; g.fillRect(0, 980, 1080, 370);
-  g.fillStyle = "#2A2118"; g.fillRect(80, LEDGE, 920, 34);
-  g.fillStyle = "rgba(8,6,15,.55)"; g.fillRect(96, LEDGE + 34, 888, 16);
-  g.globalAlpha = .5;
-  for (let i = 0; i < 460; i++) {
-    const x = 80 + R() * 920, y = LEDGE + 2 + R() * 30;
-    g.fillStyle = "rgba(216,201,171," + (0.04 + 0.09 * R()) + ")";
-    g.fillRect(x, y, 1 + R() * 6, 1.2);
-  }
+  /* Paper tooth. A stipple at low density, doing the job of a stock rather than
+     carrying a quantity, which is the honest use of the technique. */
   g.globalAlpha = 1;
+  for (let i = 0; i < 54000; i++) {
+    const x = R() * 1080, y = R() * 1350;
+    if (y > 96 && y < 352) continue;          /* the display band stays clean paper */
+    const v = TX.fbm2(x / 340, y / 340, { octaves: 3 });
+    g.fillStyle = "rgba(207,194,166," + (0.30 + 0.34 * Math.abs(v)) + ")";
+    g.fillRect(x, y, 1.6, 1.6);
+  }
 
-  /* THE TWO MASSES, at true ratio. The small one is 0.18 percent of the tall one and
-     it is NOT floored to a visible minimum. Its label sits on it. */
-  const TALL = 498;
-  const hSmall = TALL * (TEF / PHASE_ONE);
-  g.fillStyle = "#C9A063";
-  g.fillRect(212, LEDGE - TALL, 172, TALL);
-  g.fillRect(700, LEDGE - Math.max(hSmall, 1.2), 172, Math.max(hSmall, 1.2));
+  /* The deckle edge. The paper falls off into its own shadow at the foot, which is the
+     one graded mass on an otherwise flat frame. */
+  const TEAR = 1162;
+  function tearY(x) { return TEAR + TX.fbm2(x / 90, 3.1, { octaves: 4, gain: .55 }) * 13; }
 
-  /* Below the ledge the ground keeps going. Hachured sandy loam so the bottom band is
-     terrain rather than a strip under a chart. */
+  /* what is under the sheet, so the tear has something to reveal */
+  const under = g.createLinearGradient(0, TEAR - 20, 0, 1350);
+  under.addColorStop(0, "#4A5236"); under.addColorStop(.5, "#3A3F2A"); under.addColorStop(1, "#241E19");
+  g.fillStyle = under; g.fillRect(0, TEAR - 20, 1080, 1350 - TEAR + 20);
+
+  /* the sheet's own body clipped to the torn line, then its cast shadow below */
   g.save();
-  const soil = g.createLinearGradient(0, LEDGE + 50, 0, 1350);
-  soil.addColorStop(0, "#241C16"); soil.addColorStop(.55, "#3A2A20"); soil.addColorStop(1, "#1A140F");
-  g.fillStyle = soil; g.fillRect(0, LEDGE + 50, 1080, 1350 - LEDGE - 50);
-  g.lineCap = "round";
-  for (let i = 0; i < 1500; i++) {
-    const x = R() * 1080, y = LEDGE + 54 + R() * (1296 - LEDGE);
-    const slope = TX.fbm2(x / 210, y / 120, { octaves: 3 });
-    const len = 5 + 13 * Math.abs(slope);
-    g.globalAlpha = 0.10 + 0.24 * Math.abs(slope);
-    g.strokeStyle = slope > 0 ? "#A85433" : "#5A4030";
-    g.lineWidth = 1;
-    g.beginPath(); g.moveTo(x, y);
-    g.lineTo(x + Math.cos(1.15 + slope * .7) * len, y + Math.sin(1.15 + slope * .7) * len);
-    g.stroke();
-  }
-  g.globalAlpha = 1; g.restore();
+  g.beginPath(); g.moveTo(0, 0);
+  for (let x = 0; x <= 1080; x += 4) g.lineTo(x, tearY(x));
+  g.lineTo(1080, 0); g.closePath(); g.clip();
+  g.fillStyle = "#F6F1E4"; g.fillRect(0, TEAR - 60, 1080, 120);
+  g.restore();
 
-  const grain = new Image();
-  await new Promise(r => { grain.onload = r; grain.src = TX.grainTile(280, 40, 29); });
-  g.globalAlpha = .034;
-  for (let y = 0; y < 1350; y += 280) for (let x = 0; x < 1080; x += 280) g.drawImage(grain, x, y);
-  g.globalAlpha = 1;
-
-  const svg = d3.select("#ink");
-  await document.fonts.ready;
-  function lab(x, y, txt, size, fill, anchor) {
-    const t = svg.append("text").attr("x", x).attr("y", y).attr("text-anchor", anchor || "start")
-      .attr("font-family", "JetBrains Mono, monospace").attr("font-size", size)
-      .attr("letter-spacing", "0.07em").attr("fill", fill).text(txt);
-    return t;
+  g.save();
+  g.beginPath(); g.moveTo(0, 1350);
+  for (let x = 0; x <= 1080; x += 4) g.lineTo(x, tearY(x));
+  g.lineTo(1080, 1350); g.closePath(); g.clip();
+  const cast = g.createLinearGradient(0, TEAR - 6, 0, TEAR + 96);
+  cast.addColorStop(0, "rgba(24,20,14,.72)"); cast.addColorStop(1, "rgba(24,20,14,0)");
+  g.fillStyle = cast; g.fillRect(0, TEAR - 20, 1080, 130);
+  /* fibers hanging off the torn edge */
+  for (let i = 0; i < 2200; i++) {
+    const x = R() * 1080, base = tearY(x), y = base + R() * 36;
+    const t = (y - base) / 36;
+    g.fillStyle = "rgba(214,203,176," + (0.30 * (1 - t) * R()) + ")";
+    g.fillRect(x, y, 1.4, 2.2 + R() * 4);
   }
-  lab(212, LEDGE - TALL - 22, "FIRST PHASE CAPITAL", 26, "#E4D8C3");
-  lab(872, LEDGE - 104, "TEXAS ENTERPRISE FUND", 26, "#E4D8C3", "end");
-  lab(872, LEDGE - 72, "GRANT", 26, "#E4D8C3", "end");
-  const pointer = svg.append("path")
-    .attr("d", "M786," + (LEDGE - 58) + "L786," + (LEDGE - 12))
-    .attr("stroke", "#E4D8C3").attr("stroke-width", 2).attr("fill", "none");
-  const sh = lab(540, LEDGE + 116, share.toFixed(2) + " PERCENT OF THE FIRST PHASE", 30, "#C9A063", "middle");
-  TX.svgPlate(sh.node(), { padX: 14, padY: 10, fill: "#0B0813", stroke: "#2B2447" });
-  const note = lab(80, 520,
-    "SAME HUE, SAME SCALE. THE SHORT ONE IS NOT FLOORED.", 24,
-    "rgba(228,216,195,.72)", "start");
-  TX.svgPlate(note.node(), { padX: 12, padY: 9, fill: "#0B0813", stroke: "#221C38" });
-  /* A measured gap at the short mass, so the leader ends in a dimension rather than on the ledge. */
-  const dimTop = LEDGE - Math.max(hSmall, 1.2);
-  svg.append("path").attr("d", "M746," + dimTop + "L826," + dimTop)
-     .attr("stroke", "#E4D8C3").attr("stroke-width", 2.4);
-  svg.append("path").attr("d", "M746," + LEDGE + "L826," + LEDGE)
-     .attr("stroke", "#E4D8C3").attr("stroke-width", 2.4);
+  /* the ground below, given its own tooth so the foot is terrain and not a flat band */
+  for (let i = 0; i < 5200; i++) {
+    const x = R() * 1080, y = TEAR + 20 + R() * 160;
+    const v = TX.fbm2(x / 160, y / 90, { octaves: 3 });
+    g.fillStyle = (v > 0 ? "rgba(201,160,99," : "rgba(20,16,12,") + (0.05 + 0.16 * Math.abs(v)) + ")";
+    g.fillRect(x, y, 1.6, 1.6);
+  }
+  g.restore();
+
   document.body.dataset.ready = "1"; done();
 })();
 });

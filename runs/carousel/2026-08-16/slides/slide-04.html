@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- SLIDE 4 — the purpose, in the company's own words, on an engraved ground. -->
+<!-- SLIDE 5 — the money, at true ratio. One hue, one intensity, no severity ramp. -->
 <html><head><meta charset="utf-8">
 <link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
 <style>
@@ -7,15 +7,13 @@
   html,body{width:1080px;height:1350px;overflow:hidden}
   body{background:#08060F;position:relative;font-family:"Manrope",sans-serif}
   canvas#art{position:absolute;inset:0}
-  .attr{position:absolute;top:128px;left:80px;right:80px;font-family:"JetBrains Mono",monospace;
-        font-size:25px;letter-spacing:.13em;color:#C9A063;text-transform:uppercase;line-height:1.5}
-  blockquote{position:absolute;top:342px;left:80px;right:80px;font-family:"Fraunces",serif;
-     font-weight:600;font-size:66px;line-height:1.16;letter-spacing:-.012em;color:#E4D8C3;
-     font-variation-settings:"opsz" 72}
-  blockquote em{font-style:normal;color:#C9A063}
-  .src{position:absolute;left:80px;bottom:230px;font-family:"JetBrains Mono",monospace;
-       font-size:24px;letter-spacing:.09em;color:rgba(228,216,195,.66);line-height:1.7}
-  .src b{font-weight:700;font-size:30px;color:#E4D8C3;letter-spacing:.07em}
+  svg#ink{position:absolute;inset:0}
+  .hd{position:absolute;top:112px;left:80px;right:80px}
+  .kick{font-family:"JetBrains Mono",monospace;font-size:25px;letter-spacing:.15em;
+        color:#C9A063;text-transform:uppercase;margin-bottom:18px}
+  h1{font-family:"Fraunces",serif;font-weight:800;font-size:104px;line-height:.98;
+     letter-spacing:-.022em;color:#E4D8C3;font-variation-settings:"opsz" 96}
+  .dek{position:absolute;left:80px;top:372px;width:900px;font-size:30px;font-size:31px;color:#C9B393;line-height:1.42}
   .mark{position:absolute;left:80px;bottom:96px;display:flex;align-items:center;gap:16px}
   .wm{font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:.19em;color:rgba(228,216,195,.72)}
   .ctr{position:absolute;right:80px;bottom:96px;font-family:"JetBrains Mono",monospace;
@@ -25,68 +23,120 @@
 </style></head>
 <body>
   <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
-  <div class="attr">Elon Musk, in the Governor's release, August 6th</div>
-  <blockquote>"The Terafab is bringing cutting-edge manufacturing to America, creating thousands
-    of high-paying jobs in the Lone Star State, and enabling us to produce
-    <em>AI chips at scale for use on Earth and in space.</em>"</blockquote>
-  <div class="src"><b>THE PLANT IS ANNOUNCED. NOTHING IS BUILT.</b><br>CLAIM c7. QUOTED VERBATIM.</div>
+  <svg id="ink" width="1080" height="1350" viewBox="0 0 1080 1350"></svg>
+  <div class="hd">
+    <div class="kick">Announced, August 6th</div>
+    <h1 id="hook">$16.8 billion.<br>$30 million.</h1>
+  </div>
+  <div class="dek" id="dek">What the company says it will spend in the first phase, and what the
+    state put in.</div>
   <div class="mark">
     <svg width="26" height="26" viewBox="0 0 24 24"><polygon fill="#FFF" points="12,1 15.1,8.6 23,9.2 17,14.4 18.9,22 12,17.8 5.1,22 7,14.4 1,9.2 8.9,8.6"/></svg>
     <span class="wm">TEXAS AI DOCKET</span>
   </div>
-  <div class="ctr">04 / 09</div>
+  <div class="ctr">04 / 08</div>
   <div class="geo" data-decorative>GRIMES COUNTY  30.545 N  95.985 W</div>
 <script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
 <script>
 window.renderReady = new Promise(function (done) {
 (async function () {
   TX.reseed(20260816);
   const R = TX.rng(20260816);
+  const PHASE_ONE = 16800000000;   // claim c2, verbatim "more than $16.8 billion"
+  const TEF       = 30000000;      // claim c3, verbatim "$30 million"
+  const share = 100 * TEF / PHASE_ONE;
+
   const g = document.getElementById("art").getContext("2d");
   g.scale(2, 2);
-  g.fillStyle = "#08060F"; g.fillRect(0, 0, 1080, 1350);
+  const sky = g.createLinearGradient(0, 0, 0, 1350);
+  sky.addColorStop(0, "#08060F"); sky.addColorStop(.58, "#0E0B1A"); sky.addColorStop(1, "#171225");
+  g.fillStyle = sky; g.fillRect(0, 0, 1080, 1350);
 
-  /* White-line intaglio. The burin field is DENSE where there is no type and thins to
-     nothing across the type band, because the library says engrave the ground and not
-     the message. The density function is the whole slide. */
-  const TYPE_TOP = 320, TYPE_BOT = 1176;
-  function density(y) {
-    if (y < TYPE_TOP) return Math.min(1, (TYPE_TOP - y) / 190);
-    if (y > TYPE_BOT) return Math.min(1, (y - TYPE_BOT) / 110);
-    return 0;
+  /* Norther front: a hard value break at 0.382 rather than on the centre line. */
+  const BREAK = Math.round(1350 * 0.382);
+  g.fillStyle = "#0A0812"; g.fillRect(0, 0, 1080, BREAK);
+  const soft = g.createLinearGradient(0, BREAK, 0, BREAK + 210);
+  soft.addColorStop(0, "rgba(74,82,54,.26)"); soft.addColorStop(1, "rgba(74,82,54,0)");
+  g.fillStyle = soft; g.fillRect(0, BREAK, 1080, 210);
+  g.fillStyle = "rgba(201,160,99,.55)"; g.fillRect(0, BREAK, 1080, 2);
+
+  /* The lit stone ledge the bars stand on, so the bottom band carries modeled tone. */
+  const LEDGE = 1082;
+  const pool = g.createRadialGradient(540, LEDGE + 10, 20, 540, LEDGE + 10, 520);
+  pool.addColorStop(0, "rgba(201,160,99,.24)"); pool.addColorStop(1, "rgba(201,160,99,0)");
+  g.fillStyle = pool; g.fillRect(0, 980, 1080, 370);
+  g.fillStyle = "#2A2118"; g.fillRect(80, LEDGE, 920, 34);
+  g.fillStyle = "rgba(8,6,15,.55)"; g.fillRect(96, LEDGE + 34, 888, 16);
+  g.globalAlpha = .5;
+  for (let i = 0; i < 460; i++) {
+    const x = 80 + R() * 920, y = LEDGE + 2 + R() * 30;
+    g.fillStyle = "rgba(216,201,171," + (0.04 + 0.09 * R()) + ")";
+    g.fillRect(x, y, 1 + R() * 6, 1.2);
   }
+  g.globalAlpha = 1;
+
+  /* THE TWO MASSES, at true ratio. The small one is 0.18 percent of the tall one and
+     it is NOT floored to a visible minimum. Its label sits on it. */
+  const TALL = 498;
+  const hSmall = TALL * (TEF / PHASE_ONE);
+  g.fillStyle = "#C9A063";
+  g.fillRect(212, LEDGE - TALL, 172, TALL);
+  g.fillRect(700, LEDGE - Math.max(hSmall, 1.2), 172, Math.max(hSmall, 1.2));
+
+  /* Below the ledge the ground keeps going. Hachured sandy loam so the bottom band is
+     terrain rather than a strip under a chart. */
+  g.save();
+  const soil = g.createLinearGradient(0, LEDGE + 50, 0, 1350);
+  soil.addColorStop(0, "#241C16"); soil.addColorStop(.55, "#3A2A20"); soil.addColorStop(1, "#1A140F");
+  g.fillStyle = soil; g.fillRect(0, LEDGE + 50, 1080, 1350 - LEDGE - 50);
   g.lineCap = "round";
-  for (let y = 6; y < 1350; y += (y > 1200 ? 3.4 : 5)) {
-    const d = density(y);
-    if (d <= 0.02) continue;
-    g.globalAlpha = 0.13 + 0.34 * d;
-    g.strokeStyle = "#C9B393";
-    g.lineWidth = 0.7 + 1.3 * d;
-    g.beginPath();
-    let first = true;
-    for (let x = -20; x < 1100; x += 8) {
-      const w = TX.fbm2(x / 320, y / 190, { octaves: 4, gain: .52 });
-      const yy = y + w * (5 + 9 * d);
-      if (first) { g.moveTo(x, yy); first = false; } else { g.lineTo(x, yy); }
-    }
+  for (let i = 0; i < 1500; i++) {
+    const x = R() * 1080, y = LEDGE + 54 + R() * (1296 - LEDGE);
+    const slope = TX.fbm2(x / 210, y / 120, { octaves: 3 });
+    const len = 5 + 13 * Math.abs(slope);
+    g.globalAlpha = 0.10 + 0.24 * Math.abs(slope);
+    g.strokeStyle = slope > 0 ? "#A85433" : "#5A4030";
+    g.lineWidth = 1;
+    g.beginPath(); g.moveTo(x, y);
+    g.lineTo(x + Math.cos(1.15 + slope * .7) * len, y + Math.sin(1.15 + slope * .7) * len);
     g.stroke();
   }
-  g.globalAlpha = 1;
-
-  /* A raking warm light low in the frame, so the densest engraving reads as a lit mass
-     rather than as a texture swatch. */
-  const glow = g.createRadialGradient(300, 1300, 30, 300, 1300, 620);
-  glow.addColorStop(0, "rgba(168,84,51,.19)"); glow.addColorStop(1, "rgba(168,84,51,0)");
-  g.fillStyle = glow; g.fillRect(0, 1000, 1080, 350);
-
-  /* One heavy rule under the attribution, the only hard edge on the frame. */
-  g.fillStyle = "#A85433"; g.fillRect(80, 228, 396, 3);
+  g.globalAlpha = 1; g.restore();
 
   const grain = new Image();
-  await new Promise(r => { grain.onload = r; grain.src = TX.grainTile(280, 42, 19); });
-  g.globalAlpha = .035;
+  await new Promise(r => { grain.onload = r; grain.src = TX.grainTile(280, 40, 29); });
+  g.globalAlpha = .034;
   for (let y = 0; y < 1350; y += 280) for (let x = 0; x < 1080; x += 280) g.drawImage(grain, x, y);
   g.globalAlpha = 1;
+
+  const svg = d3.select("#ink");
+  await document.fonts.ready;
+  function lab(x, y, txt, size, fill, anchor) {
+    const t = svg.append("text").attr("x", x).attr("y", y).attr("text-anchor", anchor || "start")
+      .attr("font-family", "JetBrains Mono, monospace").attr("font-size", size)
+      .attr("letter-spacing", "0.07em").attr("fill", fill).text(txt);
+    return t;
+  }
+  lab(212, LEDGE - TALL - 22, "FIRST PHASE CAPITAL", 26, "#E4D8C3");
+  lab(872, LEDGE - 104, "TEXAS ENTERPRISE FUND", 26, "#E4D8C3", "end");
+  lab(872, LEDGE - 72, "GRANT", 26, "#E4D8C3", "end");
+  const pointer = svg.append("path")
+    .attr("d", "M786," + (LEDGE - 58) + "L786," + (LEDGE - 12))
+    .attr("stroke", "#E4D8C3").attr("stroke-width", 2).attr("fill", "none");
+  const sh = lab(540, LEDGE + 116, share.toFixed(2) + " PERCENT OF THE FIRST PHASE", 30, "#C9A063", "middle");
+  TX.svgPlate(sh.node(), { padX: 14, padY: 10, fill: "#0B0813", stroke: "#2B2447" });
+  const note = lab(80, 520,
+    "SAME HUE, SAME SCALE. THE SHORT ONE IS NOT FLOORED.", 24,
+    "rgba(228,216,195,.72)", "start");
+  TX.svgPlate(note.node(), { padX: 12, padY: 9, fill: "#0B0813", stroke: "#221C38" });
+  /* A measured gap at the short mass, so the leader ends in a dimension rather than on the ledge. */
+  const dimTop = LEDGE - Math.max(hSmall, 1.2);
+  svg.append("path").attr("d", "M746," + dimTop + "L826," + dimTop)
+     .attr("stroke", "#E4D8C3").attr("stroke-width", 2.4);
+  svg.append("path").attr("d", "M746," + LEDGE + "L826," + LEDGE)
+     .attr("stroke", "#E4D8C3").attr("stroke-width", 2.4);
   document.body.dataset.ready = "1"; done();
 })();
 });
