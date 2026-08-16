@@ -1,0 +1,155 @@
+{
+  "date": "2026-08-16",
+  "story": "tx-2026-0071",
+  "document_title": "Terafab, Grimes County",
+  "slides": {
+    "S1": {
+      "kicker": "Grimes County, August 6th",
+      "hook": "One roof.",
+      "hook2": "1.89 miles across.",
+      "tag": "SCALE FIGURE.",
+      "tag2": "SITE PLAN NOT PUBLIC.",
+      "labels": [
+        "10,000 FT A SIDE",
+        "THE ROOF, AT TRUE SCALE",
+        "GRIMES COUNTY",
+        "5 MILES"
+      ],
+      "claims": [
+        "c5",
+        "c1"
+      ],
+      "dek": "The state says the production chain goes under a single roof. That roof is a square"
+    },
+    "S2": {
+      "kicker": "Where in Texas",
+      "hook": "Between Houston",
+      "hook2": "and Bryan.",
+      "dek": "Post Oak Savannah, sandy loam over iron red clay. The Navasota River runs the western line.",
+      "labels": [
+        "GRIMES COUNTY",
+        "787.467",
+        "SQ MI OF LAND",
+        "HOUSTON",
+        "COLLEGE STATION AND BRYAN"
+      ],
+      "claims": [
+        "c1",
+        "c27"
+      ]
+    },
+    "S3": {
+      "kicker": "Vertically integrated",
+      "hook": "Logic. Memory.",
+      "hook2": "Packaging.",
+      "dek": "These stages normally sit in separate plants, often on separate continents. The company says all three go under one roof.",
+      "labels": [
+        "ONE ROOF",
+        "ADVANCED PACKAGING",
+        "MEMORY",
+        "LOGIC"
+      ],
+      "claims": [
+        "c6",
+        "c5"
+      ]
+    },
+    "S4": {
+      "attribution": "Elon Musk, in the Governor's release, August 6th",
+      "source": "CLAIM c7. QUOTED VERBATIM.",
+      "source2": "THE PLANT IS ANNOUNCED. NOTHING IS BUILT.",
+      "claims": [
+        "c7"
+      ],
+      "quote": "\"The Terafab is bringing cutting-edge manufacturing to America, creating thousands of high-paying jobs in the Lone Star State, and enabling us to produce AI chips at scale for use on Earth and in space.\""
+    },
+    "S5": {
+      "kicker": "Announced, August 6th",
+      "hook": "$16.8 billion.",
+      "hook2": "$30 million.",
+      "dek": "What the company says it will spend in the first phase, and what the state put in.",
+      "labels": [
+        "FIRST PHASE CAPITAL",
+        "TEXAS ENTERPRISE FUND",
+        "GRANT",
+        "0.18 PERCENT OF THE FIRST PHASE",
+        "SAME HUE, SAME SCALE. THE SHORT ONE IS NOT FLOORED."
+      ],
+      "claims": [
+        "c2",
+        "c3"
+      ]
+    },
+    "S6": {
+      "kicker": "A governor, a county judge and two school boards",
+      "hook": "Four signatures,",
+      "hook2": "on the record.",
+      "rows": [
+        "OFFICE OF THE TEXAS GOVERNOR",
+        "GRIMES COUNTY, ITS COUNTY JUDGE",
+        "IOLA ISD, ITS BOARD OF TRUSTEES",
+        "ANDERSON-SHIRO CISD"
+      ],
+      "claims": [
+        "c3",
+        "c4",
+        "c11",
+        "c10",
+        "c12"
+      ],
+      "bodies": [
+        "Extended a Texas Enterprise Fund grant, and states the plant is a qualified project under the JETI program.",
+        "\"This is a generational change for Grimes County,\"",
+        "\"Ultimately, the Board determined that providing the requested tax incentives for this project was in Iola ISD's best interest.\"",
+        "\"There are defining moments in the life of a school district, and this is one of those moments.\""
+      ]
+    },
+    "S7": {
+      "kicker": "August 3rd, the same office",
+      "hook": "The plant is not",
+      "hook2": "in the queue.",
+      "labels": [
+        "APPROXIMATELY 474 GW OF REQUESTS",
+        "GOVERNOR'S LETTER, AUGUST 3RD",
+        "APPROXIMATELY 90 PERCENT, DATA CENTERS",
+        "AUDIT BEFORE ANY OF THEM ADVANCES",
+        "TERAFAB, REPORTED TO BE BUILDING ITS OWN GENERATION",
+        "SCALE FIGURE. SITE PLAN NOT PUBLIC."
+      ],
+      "claims": [
+        "c13",
+        "c14",
+        "c15",
+        "c24"
+      ]
+    },
+    "S8": {
+      "kicker": "Checked August 16th",
+      "hook": "The soil is mapped.",
+      "hook2": "The site is not.",
+      "labels": [
+        "NO ACREAGE PUBLISHED",
+        "NO SITE PLAN PUBLISHED",
+        "NOT YET ON THE STATE'S JETI AGREEMENTS TABLE",
+        "SAND",
+        "SANDY LOAM OVER IRON RED"
+      ],
+      "claims": [
+        "c26",
+        "c5"
+      ]
+    },
+    "S9": {
+      "hook": "One date, still",
+      "hook2": "ahead of you.",
+      "when1": "AUGUST 19TH, 2026",
+      "site": "texasaidocket.com",
+      "footer": "EVERY FACT TRACES TO A SOURCE",
+      "claims": [
+        "c28"
+      ],
+      "body": "The House Committee on State Affairs takes up a data center charge that reaches the grid operator's batch study process. Interim hearings are public and they take testimony in Austin."
+    }
+  },
+  "_note": "EVERY rendered string of body prose is listed here, not only the labels. The scorer found that five slides published prose that entered no manifest, so nothing checked it, and that is how an unsourced figure reached the closing slide. copy_sync_check only proves manifest to render. The reverse direction is a gate this repo does not have yet and it is written up as a proposal."
+}

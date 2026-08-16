@@ -1,0 +1,43 @@
+{
+  "_note": "Every number this deck computed rather than quoted, with the code that produced it. compute.py is committed beside this file and re-runs to the same values.",
+  "aggregates": [
+    {
+      "phrase": "89 miles across",
+      "kind": "count",
+      "value": 1.89,
+      "computed_by": "out/2026-08-16/compute.py footprint_square_side_mi, sqrt(100000000) / 5280 from claim c5, rounded to two decimals",
+      "from_claims": [
+        "c5"
+      ]
+    },
+    {
+      "phrase": "5 MILES",
+      "kind": "count",
+      "value": 5,
+      "computed_by": "slide-01.html scale bar, five miles measured through the same TXGeo Albers projection the county polygon is drawn with",
+      "from_claims": [
+        "c5"
+      ]
+    },
+    {
+      "phrase": "Four signatures",
+      "kind": "count",
+      "value": 4,
+      "from_claims": [
+        "c3",
+        "c11",
+        "c10",
+        "c12"
+      ]
+    },
+    {
+      "phrase": "two school boards",
+      "kind": "count",
+      "value": 2,
+      "from_claims": [
+        "c10",
+        "c12"
+      ]
+    }
+  ]
+}

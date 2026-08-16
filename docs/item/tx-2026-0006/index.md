@@ -55,3 +55,9 @@ Source (primary_official): https://tcss.legis.texas.gov/resources/BC/htm/BC.552.
 
 Source (primary_official): https://tcss.legis.texas.gov/resources/BC/htm/BC.552.htm
 
+### The chapter requires the Attorney General to run an online complaint mechanism.
+
+> The attorney general shall create and maintain an online mechanism on the attorney general's Internet website through which a consumer may submit a complaint under this chapter to the attorney general.
+
+Source (primary_official): https://tcss.legis.texas.gov/resources/BC/htm/BC.552.htm
+

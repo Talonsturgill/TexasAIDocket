@@ -1,0 +1,107 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.06) beneath '5 MILES' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "worst-point contrast 3.6 on 'The state says the production chain goes' (box mean 9.3) -- below the rubric's 4.5 line somewhere along the run of the text",
+        "busy art under text (bg edge density 0.05) beneath 'TEXAS AI DOCKET' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.04) beneath '01 / 09' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "encodings": [
+        "'the roof plate is tellable from the county top face it lies on': dE 63.3, AUC 0.85, visible 100%/100%, seen 110/1296px at 432w"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.05) beneath 'TEXAS AI DOCKET' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.04) beneath '02 / 09' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "low contrast ~2.5 on 'ADVANCED PACKAGING' (est.)",
+        "worst-point contrast 2.1 on 'ADVANCED PACKAGING' (box mean 2.5) -- below the rubric's 4.5 line somewhere along the run of the text",
+        "busy art under text (bg edge density 0.05) beneath 'TEXAS AI DOCKET' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.05) beneath '03 / 09' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "encodings": [
+        "'the roof plane and the deepest stage plane are different values': dE 62.2, AUC 0.96, visible 100%/100%, seen 2016/2352px at 432w"
+      ],
+      "contacts": [
+        "'the stack sitting on its slab': shadow L* 7.7 vs ground L* 18.9, dL 11.2 at 432w"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 69% of this slide's own average craft density (top 72% / mid 32% / bottom 31% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "busy art under text (bg edge density 0.12) beneath 'Elon Musk, in the Governor's release, Au' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "art touching glyphs (3% of the ring around 'Elon Musk, in the Governor's release, Au', spanning 27%) -- pixel critic verify the label is not crossed",
+        "busy art under text (bg edge density 0.05) beneath 'THE PLANT IS ANNOUNCED. NOTHING IS BUILT' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.13) beneath 'TEXAS AI DOCKET' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.15) beneath '04 / 09' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.06) beneath 'SAME HUE, SAME SCALE. THE SHORT ONE IS N' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.05) beneath 'TEXAS AI DOCKET' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.04) beneath '05 / 09' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.05) beneath 'TEXAS AI DOCKET' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.05) beneath '06 / 09' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.05) beneath 'TEXAS AI DOCKET' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.04) beneath '07 / 09' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "encodings": [
+        "'the lit plant below the stop bar is tellable from the queue field above it': dE 65.8, AUC 0.96, visible 100%/100%, seen 2304/2304px at 432w"
+      ],
+      "contacts": [
+        "'the plant on its own ground': shadow L* 6.5 vs ground L* 49.1, dL 42.7 at 432w"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.05) beneath 'TEXAS AI DOCKET' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.04) beneath '08 / 09' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "encodings": [
+        "'the mapped ground below the line reads differently from the undrawn field above it': dE 52.1, AUC 0.98, visible 100%/38%, seen 5760/2188px at 432w"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.06) beneath 'texasaidocket.com' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.05) beneath 'EVERY FACT TRACES TO A SOURCE' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.05) beneath '09 / 09' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 28,
+  "verdict": "WARN"
+}

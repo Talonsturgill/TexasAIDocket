@@ -1,0 +1,436 @@
+{
+  "date": "2026-08-16",
+  "story": "tx-2026-0071 Terafab, Grimes County",
+  "claims": [
+    {
+      "id": "c1",
+      "text": "Governor Abbott announced on August 6th that SpaceX will build a semiconductor plant in Grimes County.",
+      "quote": "Governor Greg Abbott today announced SpaceX will construct a vertically integrated semiconductor fabrication plant in Grimes County.",
+      "url": "https://gov.texas.gov/news/post/governor-abbott-announces-spacex-expansion-in-grimes-county",
+      "source_title": "Office of the Texas Governor, release of August 6th, 2026, opening paragraph",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-16",
+      "numbers": [],
+      "confidence": "high"
+    },
+    {
+      "id": "c2",
+      "text": "The state puts the opening phase at more than 16.8 billion dollars and 3,000 jobs.",
+      "quote": "The first phase of the Terafab project represents a capital investment of more than $16.8 billion and will create 3,000 new jobs.",
+      "url": "https://gov.texas.gov/news/post/governor-abbott-announces-spacex-expansion-in-grimes-county",
+      "source_title": "Office of the Texas Governor, release of August 6th, 2026",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-16",
+      "numbers": [
+        {
+          "value": "$16.8 billion",
+          "means": "capital investment, first phase only"
+        },
+        {
+          "value": "3,000",
+          "means": "new jobs stated"
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "c3",
+      "text": "Texas extended a Texas Enterprise Fund grant of 30 million dollars to the company.",
+      "quote": "A Texas Enterprise Fund (TEF) grant of $30 million has been extended to SpaceX.",
+      "url": "https://gov.texas.gov/news/post/governor-abbott-announces-spacex-expansion-in-grimes-county",
+      "source_title": "Office of the Texas Governor, release of August 6th, 2026",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-16",
+      "numbers": [
+        {
+          "value": "$30 million",
+          "means": "Texas Enterprise Fund grant"
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "c4",
+      "text": "The plant also carries qualified project status under the state's JETI tax program.",
+      "quote": "The facility is also a qualified project under the Texas Jobs, Energy, Technology, and Innovation (JETI) program.",
+      "url": "https://gov.texas.gov/news/post/governor-abbott-announces-spacex-expansion-in-grimes-county",
+      "source_title": "Office of the Texas Governor, release of August 6th, 2026",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-16",
+      "numbers": [],
+      "confidence": "high"
+    },
+    {
+      "id": "c5",
+      "text": "The state describes a hundred million square foot plant holding the whole production chain in one building.",
+      "quote": "The 100-million-square-foot facility will consolidate the production chain under a single roof to accelerate semiconductor manufacturing to meet the company's future chip needs",
+      "url": "https://gov.texas.gov/news/post/governor-abbott-announces-spacex-expansion-in-grimes-county",
+      "source_title": "Office of the Texas Governor, release of August 6th, 2026",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-16",
+      "numbers": [
+        {
+          "value": "100-million-square-foot",
+          "means": "stated facility floor area"
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "c6",
+      "text": "The company describes the plant as combining logic, memory and advanced packaging in one building in Grimes County.",
+      "quote": "we're now embarking on the most epic chip-building effort — combining logic, memory, and advanced packaging all under one roof — in Grimes County, Texas.",
+      "url": "https://gov.texas.gov/news/post/governor-abbott-announces-spacex-expansion-in-grimes-county",
+      "source_title": "Office of the Texas Governor, release of August 6th, 2026, statement of SpaceX Founder and CEO Elon Musk",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-16",
+      "numbers": [],
+      "confidence": "high"
+    },
+    {
+      "id": "c7",
+      "text": "The company states the plant's purpose is producing AI chips at scale.",
+      "quote": "The Terafab is bringing cutting-edge manufacturing to America, creating thousands of high-paying jobs in the Lone Star State, and enabling us to produce AI chips at scale for use on Earth and in space.",
+      "url": "https://gov.texas.gov/news/post/governor-abbott-announces-spacex-expansion-in-grimes-county",
+      "source_title": "Office of the Texas Governor, release of August 6th, 2026, statement of Elon Musk",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-16",
+      "numbers": [],
+      "confidence": "high"
+    },
+    {
+      "id": "c8",
+      "text": "The company places the plant beside its Starbase headquarters and its Starlink factory at Bastrop, both in Texas.",
+      "quote": "In addition to our headquarters in Starbase, Texas, where Starship is being developed and launched, and our Starlink factory in Bastrop, Texas, where our high-speed internet kits are manufactured for millions of Starlink customers all around the world",
+      "url": "https://gov.texas.gov/news/post/governor-abbott-announces-spacex-expansion-in-grimes-county",
+      "source_title": "Office of the Texas Governor, release of August 6th, 2026, statement of Elon Musk",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-16",
+      "numbers": [],
+      "confidence": "high"
+    },
+    {
+      "id": "c9",
+      "text": "The Iola school board voted to enter a JETI agreement with the entity named TeraFab AI, LLC.",
+      "quote": "The Iola Independent School District Board of Trustees voted to enter into an agreement with TeraFab AI, LLC under the Texas Jobs, Energy, Technology, and Innovation Act,",
+      "url": "https://gov.texas.gov/news/post/governor-abbott-announces-spacex-expansion-in-grimes-county",
+      "source_title": "Office of the Texas Governor, release of August 6th, 2026, statement of Iola ISD Superintendent Jeff Dyer",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-16",
+      "numbers": [],
+      "confidence": "high"
+    },
+    {
+      "id": "c10",
+      "text": "The Iola superintendent says the board concluded the requested incentives served the district's interest.",
+      "quote": "Ultimately, the Board determined that providing the requested tax incentives for this project was in Iola ISD's best interest.",
+      "url": "https://gov.texas.gov/news/post/governor-abbott-announces-spacex-expansion-in-grimes-county",
+      "source_title": "Office of the Texas Governor, release of August 6th, 2026, statement of Iola ISD Superintendent Jeff Dyer",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-16",
+      "numbers": [],
+      "confidence": "high"
+    },
+    {
+      "id": "c11",
+      "text": "The Grimes County executive calls the project a generational change for the county.",
+      "quote": "This is a generational change for Grimes County,",
+      "url": "https://gov.texas.gov/news/post/governor-abbott-announces-spacex-expansion-in-grimes-county",
+      "source_title": "Office of the Texas Governor, release of August 6th, 2026, statement of Grimes County Judge Joe Fauth III",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-16",
+      "numbers": [],
+      "confidence": "high"
+    },
+    {
+      "id": "c12",
+      "text": "The Anderson-Shiro superintendent frames the district's agreement as a defining moment.",
+      "quote": "There are defining moments in the life of a school district, and this is one of those moments.",
+      "url": "https://gov.texas.gov/news/post/governor-abbott-announces-spacex-expansion-in-grimes-county",
+      "source_title": "Office of the Texas Governor, release of August 6th, 2026, statement of Anderson-Shiro CISD Superintendent Dr. Sarah Borowicz",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-16",
+      "numbers": [],
+      "confidence": "high"
+    },
+    {
+      "id": "c13",
+      "text": "Three days earlier the Governor's own directive letter put ERCOT's connection requests at approximately 474 gigawatts, more than five times the state record peak.",
+      "quote": "The Electric Reliability Council of Texas (ERCOT) is currently considering approximately 474 gigawatts of requests to connect to the Texas grid. That is more than five times Texas' record peak electricity demand for ERCOT.",
+      "url": "https://gov.texas.gov/uploads/files/press/Thomas_Gleeson_Pablo_Vegas_Data_Centers_Directive_Letter_to_PUCT_ERCOT_August_2026_.pdf",
+      "source_title": "Office of the Texas Governor, directive letter to the utility commission chairman and the ERCOT chief executive, August 3rd, 2026",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-16",
+      "numbers": [
+        {
+          "value": "474 gigawatts",
+          "means": "connection requests ERCOT is considering, per the Governor, August 3rd 2026"
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "c14",
+      "text": "The Governor attributes approximately 90 percent of the new power requests to data centers.",
+      "quote": "Approximately 90 percent of the new power requests are data centers.",
+      "url": "https://gov.texas.gov/uploads/files/press/Thomas_Gleeson_Pablo_Vegas_Data_Centers_Directive_Letter_to_PUCT_ERCOT_August_2026_.pdf",
+      "source_title": "Office of the Texas Governor, directive letter of August 3rd, 2026",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-16",
+      "numbers": [
+        {
+          "value": "90 percent",
+          "means": "share of new power requests that are data centers"
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "c15",
+      "text": "The Governor ordered the audit finished before any further data center advances.",
+      "quote": "The Public Utility Commission of Texas (PUC) and ERCOT must conduct a comprehensive verification and audit of all data centers advancing through ERCOT's interconnection process before any additional data centers are approved to move forward.",
+      "url": "https://gov.texas.gov/uploads/files/press/Thomas_Gleeson_Pablo_Vegas_Data_Centers_Directive_Letter_to_PUCT_ERCOT_August_2026_.pdf",
+      "source_title": "Office of the Texas Governor, directive letter of August 3rd, 2026",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-16",
+      "numbers": [],
+      "confidence": "high"
+    },
+    {
+      "id": "c16",
+      "text": "The letter gives its reason, which is that some data centers did not answer the commission's water and power survey.",
+      "quote": "The failure of some data centers to comply with the PUC's survey measuring water and power usage under the General Appropriations Act makes this necessary.",
+      "url": "https://gov.texas.gov/uploads/files/press/Thomas_Gleeson_Pablo_Vegas_Data_Centers_Directive_Letter_to_PUCT_ERCOT_August_2026_.pdf",
+      "source_title": "Office of the Texas Governor, directive letter of August 3rd, 2026",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-16",
+      "numbers": [],
+      "confidence": "high"
+    },
+    {
+      "id": "c17",
+      "text": "ERCOT's own June briefing puts more than 438,000 megawatts of proposed large user demand in its queue as of mid 2026.",
+      "quote": "As of mid-2026, large users totaling more than 438,000 MW of proposed demand had entered ERCOT’s connection queue.",
+      "url": "https://www.ercot.com/files/docs/2026/06/18/ERCOT-Trending-Topic-New-Batch-Connection-Process-for-Large-Electricity-Users.pdf",
+      "source_title": "ERCOT Trending Topics, June 18th, 2026, background section",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-16",
+      "numbers": [
+        {
+          "value": "438,000 MW",
+          "means": "proposed large user demand in the ERCOT queue, mid 2026"
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "c18",
+      "text": "ERCOT attributes nearly 90 percent of those queued requests to data centers.",
+      "quote": "Nearly 90% of those requests were from data centers.",
+      "url": "https://www.ercot.com/files/docs/2026/06/18/ERCOT-Trending-Topic-New-Batch-Connection-Process-for-Large-Electricity-Users.pdf",
+      "source_title": "ERCOT Trending Topics, June 18th, 2026, background section",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-16",
+      "numbers": [
+        {
+          "value": "90%",
+          "means": "ERCOT's own share of queued large user requests from data centers"
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "c19",
+      "text": "The ERCOT record peak stands at 85,508 megawatts, set in August 2023.",
+      "quote": "To put that in perspective, ERCOT’s all-time peak demand record is 85,508 MW set on August 10, 2023.",
+      "url": "https://www.ercot.com/files/docs/2026/06/18/ERCOT-Trending-Topic-New-Batch-Connection-Process-for-Large-Electricity-Users.pdf",
+      "source_title": "ERCOT Trending Topics, June 18th, 2026, background section",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-16",
+      "numbers": [
+        {
+          "value": "85,508 MW",
+          "means": "ERCOT all-time peak demand record"
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "c20",
+      "text": "ERCOT counts a site as a large user above 75 megawatts and equates that to the draw of 18,750 homes at peak.",
+      "quote": "ERCOT defines a large user as a single site with a peak electricity demand of more than 75 MW.",
+      "url": "https://www.ercot.com/files/docs/2026/06/18/ERCOT-Trending-Topic-New-Batch-Connection-Process-for-Large-Electricity-Users.pdf",
+      "source_title": "ERCOT Trending Topics, June 18th, 2026, callout box",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-16",
+      "numbers": [
+        {
+          "value": "75 MW",
+          "means": "large user threshold at a single site"
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "c21",
+      "text": "The reported abatement is not the hundred percent widely repeated, and the county payment is fixed for a term.",
+      "quote": "Brannon said the actual abatement is approximately 78 percent, and that the agreement fixes SpaceX’s payment to Grimes County at $20 million per year for 35 years, totaling $710 million.",
+      "url": "https://www.kbtx.com/2026/08/06/spacex-confirms-terefab-project-is-done-deal-reps-meet-face-to-face-with-grimes-county-residents/",
+      "source_title": "KBTX, Lillian Kosh, published August 5th, 2026, reporter's summary of remarks by SpaceX attorney Buck Brannon. NOT a direct quotation from Brannon",
+      "source_type": "secondary_reported",
+      "retrieved": "2026-08-16",
+      "numbers": [
+        {
+          "value": "78 percent",
+          "means": "abatement share, as reported"
+        },
+        {
+          "value": "$20 million per year",
+          "means": "fixed county payment"
+        },
+        {
+          "value": "35 years",
+          "means": "term"
+        }
+      ],
+      "confidence": "medium"
+    },
+    {
+      "id": "c22",
+      "text": "A Terafab representative says the site was chosen to store water rather than for groundwater.",
+      "quote": "We definitely did not pick this location for groundwater. We picked this location for its ability to store water,",
+      "url": "https://www.kbtx.com/2026/08/06/spacex-confirms-terefab-project-is-done-deal-reps-meet-face-to-face-with-grimes-county-residents/",
+      "source_title": "KBTX, August 5th, 2026, quoting Terafab representative Riley Trennell",
+      "source_type": "secondary_reported",
+      "retrieved": "2026-08-16",
+      "numbers": [],
+      "confidence": "medium"
+    },
+    {
+      "id": "c23",
+      "text": "The same representative says the annual draw is capped and the river can't be dried up.",
+      "quote": "We can’t dry up the Navasota River. The amount of water we can take on an annual basis is limited,",
+      "url": "https://www.kbtx.com/2026/08/06/spacex-confirms-terefab-project-is-done-deal-reps-meet-face-to-face-with-grimes-county-residents/",
+      "source_title": "KBTX, August 5th, 2026, quoting Terafab representative Riley Trennell",
+      "source_type": "secondary_reported",
+      "retrieved": "2026-08-16",
+      "numbers": [],
+      "confidence": "medium"
+    },
+    {
+      "id": "c24",
+      "text": "The plant is reported to be building its own gas fired generation rather than drawing the load off the grid.",
+      "quote": "He also confirmed that SpaceX will build its own natural gas-fired power plants to power the facility",
+      "url": "https://www.kbtx.com/2026/08/06/spacex-confirms-terefab-project-is-done-deal-reps-meet-face-to-face-with-grimes-county-residents/",
+      "source_title": "KBTX, August 5th, 2026, reporting remarks by Terafab representative Riley Trennell",
+      "source_type": "secondary_reported",
+      "retrieved": "2026-08-16",
+      "numbers": [],
+      "confidence": "medium"
+    },
+    {
+      "id": "c25",
+      "text": "The site is reported as Gibbons Creek and chosen for rainwater storage.",
+      "quote": "Trennell explained that SpaceX selected the Gibbons Creek site specifically for its ability to store rainwater, not for groundwater access.",
+      "url": "https://www.kbtx.com/2026/08/06/spacex-confirms-terefab-project-is-done-deal-reps-meet-face-to-face-with-grimes-county-residents/",
+      "source_title": "KBTX, August 5th, 2026",
+      "source_type": "secondary_reported",
+      "retrieved": "2026-08-16",
+      "numbers": [],
+      "confidence": "medium"
+    },
+    {
+      "id": "c26",
+      "text": "On the date this was checked the state's own public register of JETI agreements named neither the company nor either Grimes County school district.",
+      "quote": "Application # | Applicant | School District | Project Type | Proposed Investment | Limitation Percentage | Minimum Required Jobs",
+      "url": "https://comptroller.texas.gov/economy/development/prop-tax/jeti/current-agreements.php",
+      "source_title": "Texas Comptroller, JETI current agreements table, column headers. Checked August 16th, 2026. The page carries no last updated date",
+      "source_type": "data",
+      "retrieved": "2026-08-16",
+      "numbers": [],
+      "confidence": "medium"
+    },
+    {
+      "id": "c27",
+      "text": "The Census gazetteer puts the county's land area at 787.467 square miles.",
+      "quote": "48185 Grimes County 787.467",
+      "url": "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2024_Gazetteer/2024_gaz_counties_48.txt",
+      "source_title": "US Census Bureau 2024 Gazetteer, Texas counties file, GEOID 48185, ALAND_SQMI column",
+      "source_type": "data",
+      "retrieved": "2026-08-16",
+      "numbers": [
+        {
+          "value": "787.467",
+          "means": "Grimes County land area in square miles"
+        }
+      ],
+      "confidence": "medium"
+    },
+    {
+      "id": "c28",
+      "text": "A Texas House committee takes up a data center charge on August 19th that reaches SB 6 and the grid operator's batch study process.",
+      "quote": "Study the implementation of SB 6 and the Large Load Batch Study Process proposed by the Electric Reliability Council of Texas, as it relates to data centers, and identify how grid-connected data center facilities and co-located resources can support grid resilience and reliability.",
+      "url": "https://lrl.texas.gov/whatsNew/client/index.cfm/2026/8/12/Interim-Hearings--Week-of-August-17-2026",
+      "source_title": "Legislative Reference Library of Texas, Interim Hearings, Week of August 17, 2026, House Committee on State Affairs",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-16",
+      "numbers": [],
+      "confidence": "high"
+    },
+    {
+      "id": "c29",
+      "text": "A second Texas House committee takes up artificial intelligence in health care on August 20th.",
+      "quote": "Charge: Artificial Intelligence Use in Health Care: Study the use of artificial intelligence in the health care system to improve access, quality, and efficiency of care, while evaluating potential risks to patient safety, privacy, and access to care for Texans.",
+      "url": "https://lrl.texas.gov/whatsNew/client/index.cfm/2026/8/12/Interim-Hearings--Week-of-August-17-2026",
+      "source_title": "Legislative Reference Library of Texas, House Committee on Public Health charge text",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-16",
+      "numbers": [],
+      "confidence": "high"
+    }
+  ],
+  "rejected": [
+    {
+      "url": "https://www.kbtx.com/2026/08/06/spacex-confirms-terefab-project-is-done-deal-reps-meet-face-to-face-with-grimes-county-residents/",
+      "finding": "\"The actual abatement is approximately 78 percent.\" presented as a direct quotation from SpaceX attorney Buck Brannon.",
+      "reason": "The page carries it as the reporter's own sentence with no quotation marks. Kept as c21 in the form the page actually publishes, and labelled as a summary of his remarks rather than his words."
+    },
+    {
+      "url": "https://www.kbtx.com/2026/08/06/spacex-confirms-terefab-project-is-done-deal-reps-meet-face-to-face-with-grimes-county-residents/",
+      "finding": "The groundwater and Navasota River quotes attributed to Buck Brannon.",
+      "reason": "Both belong to Riley Trennell, a Terafab representative, and Brannon is the SpaceX attorney who spoke later in the meeting about tax. A slide putting these in a lawyer's mouth would be false."
+    },
+    {
+      "url": "https://www.kbtx.com/2026/08/06/spacex-confirms-terefab-project-is-done-deal-reps-meet-face-to-face-with-grimes-county-residents/",
+      "finding": "The KBTX piece dated August 6th, 2026.",
+      "reason": "The page's own dateline reads Published: Aug. 5, 2026 at 9:25 PM CDT. Only the URL path carries 08/06."
+    },
+    {
+      "url": "https://comptroller.texas.gov/economy/development/prop-tax/jeti/current-agreements.php",
+      "finding": "A row count for the JETI current agreements table.",
+      "reason": "No count could be made to agree with itself across two reads, so none is published. The absence of the names is robust to a miscount and is kept as c26. The count is not."
+    },
+    {
+      "url": "https://www.census.gov/quickfacts/fact/table/grimescountytexas/PST045224",
+      "finding": "Grimes County population, wanted for a scale comparison.",
+      "reason": "Census QuickFacts returned 403 and the gazetteer carries land area but no population. A tertiary figure was seen and is deliberately not laundered into a citation. The deck compares floor area to land area instead, which has a primary source at both ends."
+    },
+    {
+      "url": "https://gov.texas.gov/uploads/files/press/Thomas_Gleeson_Pablo_Vegas_Data_Centers_Directive_Letter_to_PUCT_ERCOT_August_2026_.pdf",
+      "finding": "The claim that the two grid figures can be compared.",
+      "reason": "c13 is 474 gigawatts from the Governor on August 3rd. c17 is 438,000 megawatts from ERCOT on June 18th. Seven weeks apart, two bodies, and neither restates the other. Converting one into the other's units to make them comparable is exactly the model produced number this project forbids."
+    },
+    {
+      "url": "https://gov.texas.gov/news/post/governor-abbott-announces-spacex-expansion-in-grimes-county",
+      "finding": "A trailing period on the quotes at c9 and c11 in place of the comma.",
+      "reason": "Checked against the raw HTML of the release. The page carries Innovation Act,” and Grimes County,” with commas inside the closing quotation mark. The comma is the source's, so it stays."
+    }
+  ],
+  "notes": [
+    "DO NOT RECONCILE c13 AND c17. Any slide placing them together must date and attribute each.",
+    "The KBTX money sentence does not close on its own arithmetic. Twenty million a year for thirty five years is stated in the same sentence as a seven hundred and ten million total. That is the source's inconsistency, reproduced verbatim and not corrected. The deck does not lean on that total.",
+    "Everything about Terafab in the release is an announcement, including the company's words inside it. Announced capacity is not built capacity. c26 is the counterweight and belongs in the deck.",
+    "Three spellings are in play and none may be normalised. The release says Terafab, the KBTX headline says Terefab, and the entity in the Iola agreement is TeraFab AI, LLC.",
+    "c24 is the answer to where the power comes from and it changes the frame. This plant is reported to be building its own generation rather than joining the queue in c13."
+  ]
+}

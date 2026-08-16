@@ -1,0 +1,168 @@
+<!doctype html>
+<!-- SLIDE 2 — where in Texas. Full-state fit, one county lifted, leader out of the dense east. -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1080px;height:1350px;overflow:hidden}
+  body{background:#08060F;position:relative;font-family:"Manrope",sans-serif}
+  canvas#art{position:absolute;inset:0}
+  svg#ink{position:absolute;inset:0}
+  .hd{position:absolute;top:118px;left:80px;right:80px}
+  .kick{font-family:"JetBrains Mono",monospace;font-size:25px;letter-spacing:.15em;
+        color:#C9A063;text-transform:uppercase;margin-bottom:20px}
+  h1{font-family:"Fraunces",serif;font-weight:800;font-size:104px;line-height:.98;
+     letter-spacing:-.02em;color:#E4D8C3;font-variation-settings:"opsz" 96}
+  .dek{position:absolute;left:80px;bottom:214px;width:820px;font-size:30px;color:#C9B393;line-height:1.4}
+  .mark{position:absolute;left:80px;bottom:96px;display:flex;align-items:center;gap:16px}
+  .wm{font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:.19em;color:rgba(228,216,195,.72)}
+  .ctr{position:absolute;right:80px;bottom:96px;font-family:"JetBrains Mono",monospace;
+       font-size:24px;letter-spacing:.1em;color:rgba(228,216,195,.5)}
+  .geo{position:absolute;left:80px;bottom:60px;font-family:"JetBrains Mono",monospace;
+       font-size:19px;letter-spacing:.11em;color:rgba(228,216,195,.34)}
+</style></head>
+<body>
+  <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+  <svg id="ink" width="1080" height="1350" viewBox="0 0 1080 1350"></svg>
+  <div class="hd">
+    <div class="kick">Where in Texas</div>
+    <h1>Between Houston<br>and Bryan.</h1>
+  </div>
+  <div class="dek">Post Oak Savannah, sandy loam over iron red clay. The Navasota River runs the
+    western line.</div>
+  <div class="mark">
+    <svg width="26" height="26" viewBox="0 0 24 24"><polygon fill="#FFF" points="12,1 15.1,8.6 23,9.2 17,14.4 18.9,22 12,17.8 5.1,22 7,14.4 1,9.2 8.9,8.6"/></svg>
+    <span class="wm">TEXAS AI DOCKET</span>
+  </div>
+  <div class="ctr">02 / 09</div>
+  <div class="geo" data-decorative>GRIMES COUNTY  30.545 N  95.985 W</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script src="@@ASSETS@@/js/topojson-client.min.js"></script>
+<script src="@@ASSETS@@/js/txgeo.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script>
+window.renderReady = new Promise(function (done) {
+(async function () {
+  TX.reseed(20260816);
+  const R = TX.rng(20260816);
+  const c = document.getElementById("art"), g = c.getContext("2d");
+  g.scale(2, 2);
+  const sky = g.createLinearGradient(0, 0, 0, 1350);
+  sky.addColorStop(0, "#08060F"); sky.addColorStop(.58, "#0B0912"); sky.addColorStop(1, "#120E1C");
+  g.fillStyle = sky; g.fillRect(0, 0, 1080, 1350);
+
+  /* Caliche-free lower haze, drawn as a graded wash with its own tooth. */
+  g.save();
+  const hz = g.createLinearGradient(0, 980, 0, 1350);
+  hz.addColorStop(0, "rgba(74,82,54,0)"); hz.addColorStop(.55, "rgba(74,82,54,.20)");
+  hz.addColorStop(1, "rgba(30,42,38,.34)");
+  g.fillStyle = hz; g.fillRect(0, 980, 1080, 370);
+  g.globalAlpha = .22; g.strokeStyle = "#4A5236"; g.lineWidth = 1;
+  for (let i = 0; i < 420; i++) {
+    const x = R() * 1080, y = 1000 + R() * 330, len = 6 + R() * 16;
+    g.beginPath(); g.moveTo(x, y); g.lineTo(x + len, y - 2 + R() * 4); g.stroke();
+  }
+  g.globalAlpha = 1; g.restore();
+
+  const topo = await (await fetch("@@ASSETS@@/geo/tx-counties.topo.json")).json();
+  const state = TXGeo.outline(topo);
+  const counties = TXGeo.counties(topo);
+  const grimes = counties.features.find(f => f.properties.name === "Grimes");
+  const proj = TXGeo.texasProjection(state, [[236, 486], [1004, 1168]]);
+  const path = d3.geoPath(proj).context(g);
+
+  g.beginPath(); path(state); g.fillStyle = "#2E3B2B"; g.fill();
+  g.beginPath(); path(TXGeo.borders(topo));
+  g.strokeStyle = "rgba(20,16,10,.55)"; g.lineWidth = 1; g.stroke();
+  g.beginPath(); path(state); g.strokeStyle = "#C1914F"; g.lineWidth = 2.2; g.stroke();
+
+  g.beginPath(); path(grimes); g.fillStyle = "#C9A063"; g.fill();
+  g.strokeStyle = "#D8C9AB"; g.lineWidth = 1.6; g.stroke();
+
+  /* The Navasota, traced as a contour through the county's own western line, and a
+     caliche haze rising off the horizon, because the dossier promised both and the band
+     was carrying body copy on flat ground. */
+  g.save();
+  const gcen = d3.geoCentroid(grimes), anchor = proj(gcen);
+  g.beginPath();
+  for (let k = 0; k <= 40; k++) {
+    const t = k / 40;
+    const x = anchor[0] - 16 + TX.simplex2(t * 3.1, 1.7) * 9;
+    const y = anchor[1] - 26 + t * 52;
+    if (k === 0) g.moveTo(x, y); else g.lineTo(x, y);
+  }
+  g.strokeStyle = "#6B6448"; g.lineWidth = 2.2; g.stroke();
+  g.restore();
+
+  g.save();
+  const hz2 = g.createLinearGradient(0, 1120, 0, 1350);
+  hz2.addColorStop(0, "rgba(216,201,171,0)");
+  hz2.addColorStop(.55, "rgba(216,201,171,.10)");
+  hz2.addColorStop(1, "rgba(107,100,72,.26)");
+  g.fillStyle = hz2; g.fillRect(0, 1120, 1080, 230);
+  g.lineCap = "round";
+  for (let i = 0; i < 1500; i++) {
+    const x = R() * 1080, y = 1150 + R() * 190;
+    const slope = TX.fbm2(x / 200, y / 110, { octaves: 3 });
+    g.globalAlpha = 0.07 + 0.20 * Math.abs(slope);
+    g.strokeStyle = slope > 0 ? "#C1914F" : "#141A16";
+    g.lineWidth = 1;
+    const len = 5 + 13 * Math.abs(slope);
+    g.beginPath(); g.moveTo(x, y);
+    g.lineTo(x + Math.cos(1.3 + slope * .7) * len, y + Math.sin(1.3 + slope * .7) * len);
+    g.stroke();
+  }
+  g.globalAlpha = 1; g.restore();
+
+  const grain = new Image();
+  await new Promise(r => { grain.onload = r; grain.src = TX.grainTile(280, 38, 3); });
+  g.globalAlpha = .034;
+  for (let y = 0; y < 1350; y += 280) for (let x = 0; x < 1080; x += 280) g.drawImage(grain, x, y);
+  g.globalAlpha = 1;
+
+  const svg = d3.select("#ink");
+  const cen = d3.geoCentroid(grimes), SITE = proj(cen);
+  const bend = [SITE[0] - 96, SITE[1] - 118];
+  const end  = [bend[0] - 104, bend[1]];
+  svg.append("path")
+     .attr("d", "M" + SITE[0] + "," + SITE[1] + "L" + bend[0] + "," + bend[1] + "L" + end[0] + "," + end[1])
+     .attr("fill", "none").attr("stroke", "#A85433").attr("stroke-width", 2);
+  svg.append("circle").attr("cx", SITE[0]).attr("cy", SITE[1]).attr("r", 5).attr("fill", "#A85433");
+  window.__txLeaders = [{ target: "the Grimes County polygon", at: SITE, to: end }];
+
+  const lab = svg.append("text").attr("x", end[0] - 12).attr("y", end[1] - 6).attr("text-anchor", "end")
+     .attr("font-family", "JetBrains Mono, monospace").attr("font-size", 30)
+     .attr("fill", "#E4D8C3").text("GRIMES COUNTY");
+  const area = svg.append("text").attr("x", end[0] - 12).attr("y", end[1] + 52).attr("text-anchor", "end")
+     .attr("font-family", "JetBrains Mono, monospace").attr("font-size", 38)
+     .attr("fill", "#C9A063").text("787.467");
+  const areaU = svg.append("text").attr("x", end[0] - 12).attr("y", end[1] + 100).attr("text-anchor", "end")
+     .attr("font-family", "JetBrains Mono, monospace").attr("font-size", 24)
+     .attr("fill", "#C9B393").text("SQ MI OF LAND");
+  await document.fonts.ready;
+  TX.svgPlate(lab.node(),  { padX: 12, padY: 9, fill: "#0F0C1C", stroke: "#2B2447" });
+  TX.svgPlate(area.node(),  { padX: 12, padY: 9, fill: "#0F0C1C", stroke: "#2B2447" });
+  TX.svgPlate(areaU.node(), { padX: 12, padY: 8, fill: "#0F0C1C", stroke: "#2B2447" });
+
+  /* Two anchors a reader already has coordinates for. */
+  /* Anchors from committed data only. Houston is in TXGeo's own table, and the
+     College Station and Bryan anchor is read out of the gazetteer rather than typed. */
+  const gaz = await (await fetch("@@ASSETS@@/geo/tx-places.json")).json();
+  const csb = gaz.places.find(q => q.name === "College Station-Bryan");
+  const anchors = [[TXGeo.place("Houston"), "HOUSTON"],
+                   [[csb.lon, csb.lat], "COLLEGE STATION AND BRYAN"]];
+  for (const [lonlat, nm] of anchors) {
+    const p = proj(lonlat);
+    svg.append("circle").attr("cx", p[0]).attr("cy", p[1]).attr("r", 4.5)
+       .attr("fill", "#0F0C1C").attr("stroke", "#C9B393").attr("stroke-width", 2);
+    const t = svg.append("text").attr("x", p[0] - 14).attr("y", p[1] + 34).attr("text-anchor", "end")
+       .attr("font-family", "JetBrains Mono, monospace").attr("font-size", 24)
+       .attr("fill", "#C9B393").text(nm);
+    TX.svgPlate(t.node(), { padX: 9, padY: 7, fill: "#0F0C1C", stroke: "#2B2447" });
+  }
+  document.body.dataset.ready = "1"; done();
+})();
+});
+</script>
+</body></html>

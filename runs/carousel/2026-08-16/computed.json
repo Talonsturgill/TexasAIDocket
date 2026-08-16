@@ -1,0 +1,94 @@
+{
+  "footprint_square_side_ft": {
+    "value": 10000,
+    "label": "measured",
+    "from": [
+      "c-footprint"
+    ],
+    "how": "isqrt(100000000)"
+  },
+  "footprint_square_side_mi": {
+    "value": 1.89,
+    "label": "measured",
+    "from": [
+      "c-footprint"
+    ],
+    "how": "10000 / 5280, rounded to 2 decimals"
+  },
+  "footprint_sq_mi": {
+    "value": 3.59,
+    "label": "measured",
+    "from": [
+      "c-footprint"
+    ],
+    "how": "100000000 / 5280^2, rounded to 2 decimals"
+  },
+  "phase_one_usd_per_job": {
+    "value": 5600000,
+    "label": "measured",
+    "from": [
+      "c-phase-one"
+    ],
+    "how": "16800000000 / 3000"
+  },
+  "tef_usd_per_job": {
+    "value": 10000,
+    "label": "measured",
+    "from": [
+      "c-phase-one",
+      "c-tef"
+    ],
+    "how": "30000000 / 3000"
+  },
+  "tef_share_of_phase_one_pct": {
+    "value": 0.18,
+    "label": "measured",
+    "from": [
+      "c-phase-one",
+      "c-tef"
+    ],
+    "how": "100 * 30000000 / 16800000000, rounded to 2 decimals"
+  },
+  "county_land_sq_mi": {
+    "value": 787.467,
+    "label": "measured",
+    "from": [
+      "c27"
+    ],
+    "how": "quoted from the gazetteer, not computed"
+  },
+  "footprint_share_of_county_pct": {
+    "value": 0.46,
+    "label": "measured",
+    "from": [
+      "c5",
+      "c27"
+    ],
+    "how": "100 * (100000000 / 5280^2) / 787.467, rounded to 2 decimals"
+  },
+  "county_footer": {
+    "value": "GRIMES COUNTY  30 degrees 33 minutes N  95 degrees 59 minutes W",
+    "label": "measured",
+    "from": [
+      "assets/geo/tx-places.json county-grimes"
+    ],
+    "how": "area-weighted centroid from us-atlas counties-10m, decimal degrees to degrees and minutes"
+  },
+  "county_lonlat": {
+    "value": [
+      -95.98542,
+      30.54484
+    ],
+    "label": "measured",
+    "from": [
+      "assets/geo/tx-places.json county-grimes"
+    ],
+    "how": "verbatim from the gazetteer"
+  },
+  "seed": {
+    "value": 20260816,
+    "label": "measured",
+    "from": [],
+    "how": "the run date"
+  }
+}

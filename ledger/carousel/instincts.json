@@ -11,10 +11,39 @@
       "learned": "YYYY-MM-DD, the run that first wrote it down",
       "instinct": "one imperative sentence, addressed to the next run",
       "evidence": "what happened that taught this, specific enough to re-check",
-      "confirmed": ["YYYY-MM-DD, one per run that saw it hold"],
-      "contradicted": ["YYYY-MM-DD, one per run that saw it fail"],
+      "confirmed": [
+        "YYYY-MM-DD, one per run that saw it hold"
+      ],
+      "contradicted": [
+        "YYYY-MM-DD, one per run that saw it fail"
+      ],
       "retired": "YYYY-MM-DD or absent"
     }
   },
-  "entries": []
+  "entries": [
+    {
+      "id": "roof-must-touch-what-it-covers",
+      "learned": "2026-08-16",
+      "instinct": "When a slide claims one thing covers several, draw the covering thing touching them, with walls and an eave shadow, never as a wider bar above a gap.",
+      "evidence": "Carousel No. 1 slide 3. The roof plane sat 70px above the three stage planes with a black bar between, and the pixel critic read the whole frame as a four-bar SaaS chart. The acceptance item tested for vertical breaks crossing the plane, which a single rectangle can never fail.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "acceptance-items-need-a-floor",
+      "learned": "2026-08-16",
+      "instinct": "Write every acceptance item so that rendering NOTHING fails it, not just so that rendering too much fails it.",
+      "evidence": "Carousel No. 1. 'The stipple density stays low enough that the paper reads as tooth' passed on slide 6 where no stipple rendered at all, and 'the bottom third carries the densest engraved mass' passed on slide 4 where a flat warm wash was doing the work. Both items had a ceiling and no floor.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "name-the-subject-on-the-turn",
+      "learned": "2026-08-16",
+      "instinct": "The turn slide must name its subject in its own hook, because a carousel slide gets screenshotted and reshared alone.",
+      "evidence": "Carousel No. 1 slide 7 opened on 'It is not in the queue' with the antecedent last named on slide 5. The flow critic could not recover the subject at feed speed until it reached a small label at the bottom edge.",
+      "confirmed": [],
+      "contradicted": []
+    }
+  ]
 }

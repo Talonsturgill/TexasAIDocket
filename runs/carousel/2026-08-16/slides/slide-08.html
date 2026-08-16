@@ -1,0 +1,169 @@
+<!doctype html>
+<!-- SLIDE 8 — the counter-image. The dirt has been mapped for a century. Nothing above
+     the ground line is drawn, because no acreage and no site plan are published. -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1080px;height:1350px;overflow:hidden}
+  body{background:#08060F;position:relative;font-family:"Manrope",sans-serif}
+  canvas#art{position:absolute;inset:0}
+  svg#ink{position:absolute;inset:0}
+  .hd{position:absolute;top:112px;left:80px;right:80px}
+  .kick{font-family:"JetBrains Mono",monospace;font-size:25px;letter-spacing:.15em;
+        color:#C9A063;text-transform:uppercase;margin-bottom:16px}
+  h1{font-family:"Fraunces",serif;font-weight:800;font-size:110px;line-height:.96;
+     letter-spacing:-.022em;color:#E4D8C3;font-variation-settings:"opsz" 96}
+  .mark{position:absolute;left:80px;bottom:96px;display:flex;align-items:center;gap:16px}
+  .wm{font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:.19em;color:rgba(228,216,195,.72)}
+  .ctr{position:absolute;right:80px;bottom:96px;font-family:"JetBrains Mono",monospace;
+       font-size:24px;letter-spacing:.1em;color:rgba(228,216,195,.5)}
+  .geo{position:absolute;left:80px;bottom:60px;font-family:"JetBrains Mono",monospace;
+       font-size:19px;letter-spacing:.11em;color:rgba(228,216,195,.34)}
+</style></head>
+<body data-encodes='[{"claim":"the mapped ground below the line reads differently from the undrawn field above it","reads":"differ","a":[[300,900,300,120]],"b":[[300,560,300,120]]}]'>
+  <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+  <svg id="ink" width="1080" height="1350" viewBox="0 0 1080 1350"></svg>
+  <div class="hd">
+    <div class="kick">Checked August 16th</div>
+    <h1>The soil is mapped.<br>The site is not.</h1>
+  </div>
+  <div class="mark">
+    <svg width="26" height="26" viewBox="0 0 24 24"><polygon fill="#FFF" points="12,1 15.1,8.6 23,9.2 17,14.4 18.9,22 12,17.8 5.1,22 7,14.4 1,9.2 8.9,8.6"/></svg>
+    <span class="wm">TEXAS AI DOCKET</span>
+  </div>
+  <div class="ctr">08 / 09</div>
+  <div class="geo" data-decorative>GRIMES COUNTY  30.545 N  95.985 W</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script>
+window.renderReady = new Promise(function (done) {
+(async function () {
+  TX.reseed(20260816);
+  const R = TX.rng(20260816);
+  const g = document.getElementById("art").getContext("2d");
+  g.scale(2, 2);
+  const GROUND = 862;                       /* below the vertical centre, deliberately */
+
+  /* ABOVE THE LINE: the emptiest field in the deck. Bounded, ruled, and never a bare
+     canvas. No building outline, no envelope, no massing, because none is published. */
+  const sky = g.createLinearGradient(0, 0, 0, GROUND);
+  sky.addColorStop(0, "#08060F"); sky.addColorStop(1, "#0D0A17");
+  g.fillStyle = sky; g.fillRect(0, 0, 1080, GROUND);
+  g.strokeStyle = "rgba(43,36,71,.55)"; g.lineWidth = 1;
+  for (let x = 0; x <= 1080; x += 120) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x, GROUND); g.stroke(); }
+  for (let y = 0; y <= GROUND; y += 120) { g.beginPath(); g.moveTo(0, y); g.lineTo(1080, y); g.stroke(); }
+
+  /* BELOW THE LINE: the fullest rendering in the deck. Sandy loam over iron red, hachured. */
+  const SAND_BOT = GROUND + 96;
+  g.fillStyle = "#B8A87F"; g.fillRect(0, GROUND, 1080, SAND_BOT - GROUND);
+  const loam = g.createLinearGradient(0, SAND_BOT, 0, 1350);
+  loam.addColorStop(0, "#A85433"); loam.addColorStop(.55, "#7E3C24"); loam.addColorStop(1, "#43200F");
+  g.fillStyle = loam; g.fillRect(0, SAND_BOT, 1080, 1350 - SAND_BOT);
+
+  /* the leached transition, blurred by hachure rather than by a gradient */
+  g.lineCap = "round";
+  for (let i = 0; i < 2200; i++) {
+    const x = R() * 1080, y = GROUND + 6 + R() * (SAND_BOT - GROUND - 10);
+    const v = TX.fbm2(x / 130, y / 60, { octaves: 3 });
+    g.globalAlpha = 0.14 + 0.32 * Math.abs(v);
+    g.strokeStyle = v > 0 ? "#EFE6D0" : "#8A7852";
+    g.lineWidth = 1;
+    g.beginPath(); g.moveTo(x, y); g.lineTo(x + v * 3, y + 8 + Math.abs(v) * 9); g.stroke();
+  }
+  for (let i = 0; i < 5200; i++) {
+    const x = R() * 1080, y = SAND_BOT - 16 + R() * (1362 - SAND_BOT);
+    const slope = TX.fbm2(x / 220, y / 130, { octaves: 4, gain: .5 });
+    const len = 7 + 20 * Math.abs(slope);
+    g.globalAlpha = 0.09 + 0.30 * Math.abs(slope);
+    g.strokeStyle = slope > 0 ? "#E0956A" : "#2A1208";
+    g.lineWidth = 1.1;
+    g.beginPath(); g.moveTo(x, y);
+    g.lineTo(x + Math.cos(1.05 + slope) * len, y + Math.sin(1.05 + slope) * len); g.stroke();
+  }
+  /* iron mottling, the crests catching light */
+  g.globalAlpha = 1;
+  for (let i = 0; i < 520; i++) {
+    const x = R() * 1080, y = SAND_BOT + 14 + R() * (1326 - SAND_BOT);
+    const v = TX.fbm2(x / 90, y / 70, { octaves: 3 });
+    if (v < 0.06) continue;
+    g.fillStyle = "rgba(244,222,190," + (0.22 + 0.44 * v) + ")";
+    g.fillRect(x, y, 2.4 + v * 3, 2.2);
+  }
+
+  /* two post oak taproots, carved with a lit left edge and a shadow under it */
+  for (const [rx, depth] of [[240, 400], [592, 330]]) {
+    const pts = [];
+    let x = rx;
+    for (let d = 0; d <= depth; d += 8) {
+      x += TX.simplex2(x / 70, (GROUND + d) / 90) * 4.6;
+      pts.push([x, GROUND + d]);
+    }
+    /* a tapering form with a shadow side and a lit side, so it is a root and not a crack */
+    for (let i = 1; i < pts.length; i++) {
+      const t = i / pts.length, w = 17 * (1 - t) + 2;
+      g.beginPath(); g.moveTo(pts[i - 1][0], pts[i - 1][1]); g.lineTo(pts[i][0], pts[i][1]);
+      g.strokeStyle = "rgba(26,13,6,.82)"; g.lineWidth = w; g.lineCap = "round"; g.stroke();
+      g.beginPath();
+      g.moveTo(pts[i - 1][0] - w * 0.26, pts[i - 1][1]); g.lineTo(pts[i][0] - w * 0.26, pts[i][1]);
+      g.strokeStyle = "rgba(224,201,166,.30)"; g.lineWidth = Math.max(1.2, w * 0.30); g.stroke();
+    }
+    /* two lateral rootlets, because one line down is a crack and a branching form is not */
+    for (const k of [0.28, 0.56]) {
+      const i0 = Math.floor(pts.length * k), dir = k < .4 ? 1 : -1;
+      let bx = pts[i0][0], by = pts[i0][1];
+      g.beginPath(); g.moveTo(bx, by);
+      for (let j = 0; j < 9; j++) {
+        bx += dir * (11 + TX.simplex2(bx / 40, by / 40) * 6); by += 9 + j * 1.4;
+        g.lineTo(bx, by);
+      }
+      g.strokeStyle = "rgba(26,13,6,.72)"; g.lineWidth = 4.4; g.stroke();
+    }
+  }
+
+  /* THE GROUND LINE. The heaviest single rule in the deck, with a section tick at its head. */
+  g.fillStyle = "#E4D8C3"; g.fillRect(0, GROUND - 7, 1080, 8);
+  g.fillStyle = "#C9A063"; g.fillRect(80, GROUND - 34, 6, 34);
+
+  /* THE LIT CUT FACE. The declared lightest thing in the deck, and it was not on the frame. */
+  const cut = g.createLinearGradient(0, 0, 168, 0);
+  cut.addColorStop(0, "rgba(255,236,206,.52)"); cut.addColorStop(.55, "rgba(255,224,186,.22)");
+  cut.addColorStop(1, "rgba(255,224,186,0)");
+  g.fillStyle = cut; g.fillRect(0, GROUND, 168, 1350 - GROUND);
+
+  /* A depth scale down the right, so the section carries a measurement. */
+  g.fillStyle = "rgba(244,238,223,.62)";
+  for (let d = 0; d <= 4; d++) {
+    const y = GROUND + 12 + d * 108;
+    if (y > 1300) break;
+    g.fillRect(1004, y, d % 2 ? 16 : 30, 2);
+  }
+
+  const grain = new Image();
+  await new Promise(r => { grain.onload = r; grain.src = TX.grainTile(280, 44, 53); });
+  g.globalAlpha = .034;
+  for (let y = 0; y < 1350; y += 280) for (let x = 0; x < 1080; x += 280) g.drawImage(grain, x, y);
+  g.globalAlpha = 1;
+
+  const svg = d3.select("#ink");
+  await document.fonts.ready;
+  function lab(x, y, txt, size, fill, plate, anchor) {
+    const t = svg.append("text").attr("x", x).attr("y", y).attr("text-anchor", anchor || "start")
+      .attr("font-family", "JetBrains Mono, monospace").attr("font-size", size)
+      .attr("letter-spacing", "0.07em").attr("fill", fill).text(txt);
+    if (plate) TX.svgPlate(t.node(), { padX: 13, padY: 10, fill: plate, stroke: "#2B2447" });
+    return t;
+  }
+  /* what is absent, in the field where it is absent */
+  lab(80, 508, "NO ACREAGE PUBLISHED", 30, "#E4D8C3", "#0B0813");
+  lab(80, 566, "NO SITE PLAN PUBLISHED", 30, "#E4D8C3", "#0B0813");
+  lab(80, 624, "NOT YET ON THE STATE'S JETI AGREEMENTS TABLE", 25, "#C9A063", "#0B0813");
+  /* what is present, named on the horizons it belongs to */
+  lab(1000, GROUND + 66, "SAND", 26, "#241E19", null, "end");
+  lab(1000, GROUND + 208, "SANDY LOAM OVER IRON RED", 26, "#F1E2CE", null, "end");
+  document.body.dataset.ready = "1"; done();
+})();
+});
+</script>
+</body></html>
