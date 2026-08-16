@@ -444,11 +444,9 @@ def load_shape_svg(latest: dict) -> str:
   <text class="ax unit" x="4" y="{pad_t - 8}" text-anchor="start">GW</text>
   {res}
 </svg>
-<figcaption>Measured demand across the day, filled, with the peak and the trough marked.
-ERCOT's day ahead forecast is the dashed line, which tracks the measured one closely enough
-that the two overlap. The scale starts at zero, so the flatness is real and not a drawing
-choice. The strip underneath is the forecast minus what actually happened, hour by hour, on
-a scale of its own, because at the scale above it a miss this size is about one pixel.
+<figcaption>Measured demand, peak and trough marked. The dashed line is ERCOT's forecast,
+close enough to overlap. The scale starts at zero, so the flatness is real. The strip below is
+forecast minus measured, scaled separately because a miss is one pixel up here.
 </figcaption></figure>"""
 
 
@@ -522,16 +520,14 @@ def body(records: list[dict], today: str) -> str:
         acc_block = f"""
 <h2>Checking the forecast against what happened</h2>
 <div class="prose">
-  <p>ERCOT publishes a day ahead forecast, then publishes what the grid actually did. Both
-  arrive in the same record, so the gap between them is arithmetic rather than opinion. Across
-  the <strong class="num">{n0(acc['days'])}</strong> {plural(acc['days'], 'day', 'days')} held,
-  ERCOT's day ahead peak forecast missed the measured peak by
-  <strong class="num">{n0(acc['mean_abs_peak_error_mw'])} MW</strong> on average. That is
-  <strong class="num">{pct(acc['mean_abs_peak_error_pct'])}%</strong> of peak. The worst miss
-  so far was <strong class="num">{n0(acc['worst_mw'])} MW</strong>.</p>
-  <p>This is published whichever way it falls. It is a measurement of somebody else's model
-  rather than a grade. It is here because a page that checks its own inputs in public is worth more
-  than one that asserts they are good.</p>
+  <p>ERCOT publishes a forecast then what happened. The gap is arithmetic rather than
+  opinion. Across <strong class="num">{n0(acc['days'])}</strong>
+  {plural(acc['days'], 'day', 'days')} its day ahead peak forecast missed by
+  <strong class="num">{n0(acc['mean_abs_peak_error_mw'])} MW</strong> on average, or
+  <strong class="num">{pct(acc['mean_abs_peak_error_pct'])}%</strong> of peak. Worst so far
+  <strong class="num">{n0(acc['worst_mw'])} MW</strong>.</p>
+  <p>Published whichever way it falls. A page that checks its inputs in public beats one that
+  asserts they are good.</p>
 </div>"""
 
     trend_block = ""
@@ -562,10 +558,9 @@ def body(records: list[dict], today: str) -> str:
     recon_block = ""
     if recon is not None:
         recon_block = f"""
-  <p>Demand and generation come from separate feeds. Everything generated inside the grid is
-  consumed inside it, so the two have to agree. They differ by
-  <strong class="num">{pct(abs(recon))}%</strong>, about what the ties and line losses account
-  for. Both are printed because this is the check that catches either reader breaking.</p>"""
+  <p>Separate feeds, and everything generated inside the grid is consumed inside it, so they
+  must agree. They differ by <strong class="num">{pct(abs(recon))}%</strong>, about what ties
+  and losses account for. Both print because this catches either reader breaking.</p>"""
 
     return f"""
 <h1>Texas Grid Watch</h1>
@@ -620,9 +615,8 @@ def body(records: list[dict], today: str) -> str:
 <tbody>{fuel_rows}</tbody>
 </table>
 <div class="prose">
-  <p>Integrated across the day from ERCOT's five minute telemetry. Storage is signed, so it
-  reads negative when batteries take in more than they give back. Shares count only positive
-  generation.</p>{recon_block}
+  <p>Integrated from ERCOT's five minute telemetry. Storage is signed. It reads negative when
+  batteries absorb more than they return. Shares count positive generation only.</p>{recon_block}
 </div>
 
 <h2>The size of what is not public</h2>
