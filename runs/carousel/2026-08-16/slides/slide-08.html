@@ -1,0 +1,138 @@
+<!doctype html>
+<!-- SLIDE 9 — the close. Two dated things a reader can act on, and the mark. No summary. -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1080px;height:1350px;overflow:hidden}
+  body{background:#08060F;position:relative;font-family:"Manrope",sans-serif}
+  canvas#art{position:absolute;inset:0}
+  .top{position:absolute;top:128px;left:80px;right:80px;display:flex;align-items:center;gap:20px}
+  .top .wm{font-family:"JetBrains Mono",monospace;font-size:27px;letter-spacing:.21em;color:#E4D8C3}
+  h1{position:absolute;top:288px;left:80px;right:80px;font-family:"Fraunces",serif;
+     font-weight:800;font-size:108px;line-height:.98;letter-spacing:-.022em;color:#E4D8C3;
+     font-variation-settings:"opsz" 96}
+  .lines{position:absolute;top:588px;left:80px;right:80px}
+  .ln{padding:26px 0;border-top:1px solid #2B2447}
+  .ln:last-child{border-bottom:1px solid #2B2447}
+  .when{font-family:"JetBrains Mono",monospace;font-size:34px;letter-spacing:.11em;
+        color:#C9A063;margin-bottom:14px}
+  .what{font-size:32px;line-height:1.34;color:#E4D8C3}
+  .how{margin-top:16px;font-size:27px;line-height:1.36;color:#C9B393}
+  .site{position:absolute;left:80px;bottom:196px;font-family:"JetBrains Mono",monospace;
+        font-size:24px;letter-spacing:.1em;color:rgba(228,216,195,.72)}
+  .mark{position:absolute;left:80px;bottom:96px;display:flex;align-items:center;gap:16px}
+  .wm2{font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:.19em;color:rgba(228,216,195,.72)}
+  .ctr{position:absolute;right:80px;bottom:96px;font-family:"JetBrains Mono",monospace;
+       font-size:24px;letter-spacing:.1em;color:rgba(228,216,195,.5)}
+  .geo{position:absolute;left:80px;bottom:60px;font-family:"JetBrains Mono",monospace;
+       font-size:19px;letter-spacing:.11em;color:rgba(228,216,195,.34)}
+</style></head>
+<body>
+  <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+  <div class="top">
+    <svg width="34" height="34" viewBox="0 0 24 24"><polygon fill="#FFF" points="12,1 15.1,8.6 23,9.2 17,14.4 18.9,22 12,17.8 5.1,22 7,14.4 1,9.2 8.9,8.6"/></svg>
+    <span class="wm">TEXAS AI DOCKET</span>
+  </div>
+  <h1>One date, still<br>ahead of you.</h1>
+  <div class="lines">
+    <div class="ln"><div class="when">AUGUST 19TH, 2026</div>
+      <div class="what">The House Committee on State Affairs takes up a data center charge that
+        reaches the grid operator's batch study process.</div>
+      <div class="how">The Legislative Reference Library posts the week's hearings with a link to
+        each agenda.</div></div>
+  </div>
+  <div class="site">texasaidocket.com</div>
+  <div class="mark">
+    <svg width="26" height="26" viewBox="0 0 24 24"><polygon fill="#FFF" points="12,1 15.1,8.6 23,9.2 17,14.4 18.9,22 12,17.8 5.1,22 7,14.4 1,9.2 8.9,8.6"/></svg>
+    <span class="wm2">EVERY FACT TRACES TO A SOURCE</span>
+  </div>
+  <div class="ctr">08 / 08</div>
+  <div class="geo" data-decorative>GRIMES COUNTY  30.545 N  95.985 W</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = new Promise(function (done) {
+(async function () {
+  TX.reseed(20260816);
+  const R = TX.rng(20260816);
+  const g = document.getElementById("art").getContext("2d");
+  g.scale(2, 2);
+
+  /* Big Bend dusk, the house atmosphere, spent on the close because a close should look
+     like the product rather than like this one story. */
+  const sky = g.createLinearGradient(0, 0, 0, 1350);
+  sky.addColorStop(0, "#08060F"); sky.addColorStop(.42, "#0F0C1C");
+  sky.addColorStop(.80, "#1A1226"); sky.addColorStop(1, "#2A1A22");
+  g.fillStyle = sky; g.fillRect(0, 0, 1080, 1350);
+
+  /* The warm band sits LOW and stops short of both frame edges, so a horizon does not
+     become a stripe. */
+  g.save();
+  const HZ = 1188;
+  const warm = g.createRadialGradient(600, HZ + 92, 40, 600, HZ + 92, 620);
+  warm.addColorStop(0, "rgba(224,149,106,.62)");
+  warm.addColorStop(.5, "rgba(180,102,79,.30)");
+  warm.addColorStop(1, "rgba(180,102,79,0)");
+  g.save();
+  const feather = g.createLinearGradient(0, 0, 1080, 0);
+  feather.addColorStop(0, "rgba(0,0,0,0)"); feather.addColorStop(.20, "rgba(0,0,0,1)");
+  feather.addColorStop(.80, "rgba(0,0,0,1)"); feather.addColorStop(1, "rgba(0,0,0,0)");
+  const off = document.createElement("canvas"); off.width = 2160; off.height = 700;
+  const o = off.getContext("2d"); o.scale(2, 2);
+  o.fillStyle = warm; o.fillRect(0, 0, 1080, 350);
+  o.globalCompositeOperation = "destination-in";
+  o.fillStyle = feather; o.fillRect(0, 0, 1080, 350);
+  const vfade = o.createLinearGradient(0, 0, 0, 190);
+  vfade.addColorStop(0, "rgba(0,0,0,0)"); vfade.addColorStop(1, "rgba(0,0,0,1)");
+  o.fillStyle = vfade; o.fillRect(0, 0, 1080, 190);
+  g.drawImage(off, 0, 1010, 1080, 350);
+  g.restore();
+  g.restore();
+
+  /* Ridge line, drawn once, with fBm rather than a straight edge. */
+  g.beginPath(); g.moveTo(0, 1350);
+  for (let x = 0; x <= 1080; x += 6) {
+    const h = HZ - 26 * TX.fbm2(x / 300, 7.7, { octaves: 4, gain: .52 })
+                 - 14 * TX.fbm2(x / 90, 2.3, { octaves: 3 });
+    g.lineTo(x, h);
+  }
+  g.lineTo(1080, 1350); g.closePath();
+  g.fillStyle = "#140F1C"; g.fill();
+
+  /* ONE dust column, off centre. One is weather. Two is a pattern. */
+  g.save();
+  for (let i = 0; i < 1400; i++) {
+    const t = R();
+    const y = HZ - t * 430;
+    const spread = 22 + t * 96;
+    const x = 812 + (R() - .5) * spread + TX.simplex2(y / 90, 3.3) * 22;
+    g.fillStyle = "rgba(201,179,147," + (0.13 * (1 - t) * R()) + ")";
+    g.fillRect(x, y, 2.2, 2.6);
+  }
+  g.restore();
+
+  /* Star field above the dusk, sparse, because Big Bend is a dark sky park and that is the
+     whole justification for the base register. */
+  for (let i = 0; i < 130; i++) {
+    const x = R() * 1080, y = R() * 620;
+    g.fillStyle = "rgba(228,216,195," + (0.10 + 0.34 * R()) + ")";
+    const s = R() < .12 ? 2.2 : 1.3;
+    g.fillRect(x, y, s, s);
+  }
+
+  /* A scrim under the footer band so the constellation type is not sitting in the dusk. */
+  const fscrim = g.createLinearGradient(0, 1150, 0, 1350);
+  fscrim.addColorStop(0, "rgba(8,6,15,0)"); fscrim.addColorStop(.5, "rgba(8,6,15,.60)");
+  fscrim.addColorStop(1, "rgba(8,6,15,.90)");
+  g.fillStyle = fscrim; g.fillRect(0, 1150, 1080, 200);
+
+  const grain = new Image();
+  await new Promise(r => { grain.onload = r; grain.src = TX.grainTile(280, 42, 61); });
+  g.globalAlpha = .035;
+  for (let y = 0; y < 1350; y += 280) for (let x = 0; x < 1080; x += 280) g.drawImage(grain, x, y);
+  g.globalAlpha = 1;
+  document.body.dataset.ready = "1"; done();
+})();
+});
+</script>
+</body></html>

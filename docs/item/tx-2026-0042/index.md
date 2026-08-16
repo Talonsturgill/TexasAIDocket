@@ -9,7 +9,7 @@ Young County Commissioners Court formally received a tax abatement application f
 - Public access: Public meeting
 - Take part: https://www.olneyenterprise.com/news/county-votes-data-center-abatement
 
-- Last checked: 2026-08-14
+- Last checked: 2026-08-16
 
 ## Dates
 
@@ -40,7 +40,7 @@ Source (journalism): https://www.olneyenterprise.com/news/county-votes-data-cent
 
 ### A commissioner said the request carried no specifics and that the court would take it up the following Monday.
 
-> "There's no meat in the sandwich right now. That will likely change starting next Monday."
+> "There's no meat in the sandwich right now," he said. "That will likely change starting next Monday."
 
 Source (journalism): https://www.olneyenterprise.com/news/county-votes-data-center-abatement
 

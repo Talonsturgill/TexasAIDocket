@@ -1,6 +1,6 @@
 # PUCT Project 58000, rulemaking to update ERCOT transmission cost recovery, comment deadline reached
 
-The Public Utility Commission of Texas is amending its wholesale and investor owned utility retail transmission cost recovery rules for the ERCOT region. The commission published a proposal for publication amending Section 25.192 and Section 25.193 and set a comment deadline of August 11th, 2026. Utilities and data center developers filed comments on the deadline date. So did consumer advocates and ERCOT itself. The commission next considers the proposal at an open meeting before adopting a final rule.
+The Public Utility Commission of Texas is amending its wholesale and investor owned utility retail transmission cost recovery rules for the ERCOT region. The commission published a proposal for publication amending Section 25.192 and Section 25.193 and adding a new Section 25.252, and set a comment deadline of August 11th, 2026. Utilities and data center developers filed comments on the deadline date. So did consumer advocates and ERCOT itself. The project index now stands at 67 filings. The commission next considers the proposal at an open meeting before adopting a final rule.
 
 - Topic: power-and-the-grid
 - Decided by: Public Utility Commission of Texas (state-agency)
@@ -10,7 +10,7 @@ The Public Utility Commission of Texas is amending its wholesale and investor ow
 - Comment closes: 2026-08-11
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58000&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-08-11
+- Last checked: 2026-08-16
 
 ## Dates
 
@@ -30,13 +30,13 @@ Source (primary_official): https://interchange.puc.texas.gov/search/filings/?Uti
 
 ### The filing index records the number of filings in the project.
 
-> 66 filing(s).
+> 67 filing(s).
 
 Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58000&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-### The proposal for publication amends two named transmission cost recovery rules.
+### The proposal for publication amends two named transmission cost recovery rules and adds a third.
 
-> PROPOSAL FOR PUBLICATION OF AMENDMENTS TO §25.192 and §25.193
+> PROPOSAL FOR PUBLICATION OF AMENDMENTS TO §25.192 and §25.193 and NEW §25.252
 
 Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58000&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 

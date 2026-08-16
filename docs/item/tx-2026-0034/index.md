@@ -12,7 +12,7 @@ The El Paso City Council has a letter to Governor Greg Abbott set for action at 
 - Comment closes: 2026-08-18
 - Take part: https://elpasotexas.legistar.com/MeetingDetail.aspx?LEGID=2572&GID=776&G=2431E662-8524-4328-8249-389E26A066A2
 
-- Last checked: 2026-08-14
+- Last checked: 2026-08-16
 
 ## Dates
 

@@ -1,0 +1,219 @@
+<!doctype html>
+<!-- SLIDE 1 — the roof, at true scale, on the county it is going into.
+     Extruded county through TXGeo's Albers conic, with a roof plate whose side
+     length is derived at render time from the quoted 100,000,000 square feet. -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1080px;height:1350px;overflow:hidden}
+  body{background:#08060F;position:relative;font-family:"Manrope",sans-serif}
+  canvas#art{position:absolute;inset:0}
+  svg#ink{position:absolute;inset:0}
+  .hd{position:absolute;top:118px;left:80px;right:80px}
+  .kick{font-family:"JetBrains Mono",monospace;font-size:25px;letter-spacing:.15em;
+        color:#C9A063;text-transform:uppercase;margin-bottom:22px}
+  h1{font-family:"Fraunces",serif;font-weight:800;font-size:132px;line-height:.94;
+     letter-spacing:-.02em;color:#E4D8C3;font-variation-settings:"opsz" 120}
+  .dek{margin-top:26px;font-size:34px;color:#C9B393;line-height:1.34;max-width:520px}
+  .tag{position:absolute;left:80px;bottom:318px;background:#0B0813;padding:8px 12px;border:1px solid #2B2447;font-family:"JetBrains Mono",monospace;
+       font-size:24px;letter-spacing:.09em;color:#A85433}
+  .mark{position:absolute;left:80px;bottom:96px;display:flex;align-items:center;gap:16px}
+  .mark .wm{font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:.19em;
+            color:rgba(228,216,195,.72)}
+  .ctr{position:absolute;right:80px;bottom:96px;font-family:"JetBrains Mono",monospace;
+       font-size:24px;letter-spacing:.1em;color:rgba(228,216,195,.5)}
+  .geo{position:absolute;left:80px;bottom:60px;font-family:"JetBrains Mono",monospace;
+       font-size:19px;letter-spacing:.11em;color:rgba(228,216,195,.34)}
+</style></head>
+<body data-encodes='[{"claim":"the roof plate is tellable from the county top face it lies on","reads":"differ","a":[[728,970,26,26]],"b":[[610,1100,80,80]]}]'>
+  <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+  <svg id="ink" width="1080" height="1350" viewBox="0 0 1080 1350"></svg>
+
+  <div class="hd">
+    <div class="kick">Grimes County, August 6th</div>
+    <h1 id="hook">One roof.<br>1.89 miles across.</h1>
+    <div class="dek">The state says the production chain goes under a single roof. That roof is a
+      square ten thousand feet on a side.</div>
+  </div>
+  <div class="tag">SCALE FIGURE.<br>SITE PLAN NOT PUBLIC.</div>
+  <div class="mark">
+    <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true">
+      <polygon fill="#FFFFFF" points="12,1 15.1,8.6 23,9.2 17,14.4 18.9,22 12,17.8 5.1,22 7,14.4 1,9.2 8.9,8.6"/>
+    </svg>
+    <span class="wm">TEXAS AI DOCKET</span>
+  </div>
+  <div class="ctr">01 / 08</div>
+  <div class="geo" data-decorative>GRIMES COUNTY  30.545 N  95.985 W</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script src="@@ASSETS@@/js/topojson-client.min.js"></script>
+<script src="@@ASSETS@@/js/txgeo.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script>
+window.renderReady = new Promise(function (done) {
+(async function () {
+  TX.reseed(20260816);
+  const R = TX.rng(20260816);
+
+  /* THE ONLY TYPED FIGURE IS THE ONE THE SOURCE PUBLISHES. Everything shown is
+     derived from it here, at render time, so nothing is a remembered number. */
+  const SQ_FT = 100000000;                       // claim c5, verbatim
+  const SIDE_FT = Math.sqrt(SQ_FT);              // 10000
+  const SIDE_MI = SIDE_FT / 5280;                // 1.8939...
+  document.getElementById("hook").innerHTML =
+      "One roof.<br>" + SIDE_MI.toFixed(2) + " miles across.";
+  document.querySelector(".dek").textContent =
+      "The state says the production chain goes under a single roof. That roof is a square " +
+      SIDE_FT.toLocaleString("en-US") + " feet on a side.";
+
+  const c = document.getElementById("art"), g = c.getContext("2d");
+  g.scale(2, 2);
+
+  /* Ground. A dusk wash that lifts toward the county's own horizon rather than a flat fill. */
+  const sky = g.createLinearGradient(0, 0, 0, 1350);
+  sky.addColorStop(0, "#08060F"); sky.addColorStop(.46, "#0F0C1C");
+  sky.addColorStop(.78, "#171226"); sky.addColorStop(1, "#0C0916");
+  g.fillStyle = sky; g.fillRect(0, 0, 1080, 1350);
+
+  const topo = await (await fetch("@@ASSETS@@/geo/tx-counties.topo.json")).json();
+  const state = TXGeo.outline(topo);
+  const counties = TXGeo.counties(topo);
+  const grimes = counties.features.find(f => f.properties.name === "Grimes");
+
+  /* Fit the FULL state first, then zoom. fitExtent on one small county distorts a
+     conic fit into a giant disc and throws nothing. */
+  const proj = TXGeo.texasProjection(state, [[0, 0], [1080, 1350]]);
+  const cen = d3.geoCentroid(grimes);
+  TXGeo.zoomTo(proj, state, cen, [714, 968], 9.4);
+  const path = d3.geoPath(proj).context(g);
+
+  /* True scale, measured off THIS projection at THIS latitude rather than assumed. */
+  const MI_PER_DEG_LON = 69.172 * Math.cos(cen[1] * Math.PI / 180);
+  const pA = proj(cen), pB = proj([cen[0] + SIDE_MI / MI_PER_DEG_LON, cen[1]]);
+  const sidePx = Math.hypot(pB[0] - pA[0], pB[1] - pA[1]);
+
+  const DEPTH = 46;                              // capped: the silhouette is why the county is here
+
+  /* Side wall: the same outline dropped, filled between. Drawn first so the top face lands on it. */
+  g.save();
+  g.translate(0, DEPTH);
+  g.beginPath(); path(grimes); g.fillStyle = "#241E19"; g.fill();
+  g.restore();
+  for (let d = DEPTH; d >= 0; d -= 2) {
+    g.save(); g.translate(0, d);
+    g.beginPath(); path(grimes);
+    const t = d / DEPTH;
+    g.fillStyle = "rgba(36,30,25," + (0.24 + 0.5 * t) + ")"; g.fill();
+    g.restore();
+  }
+
+  /* Top face, lit from upper left, with a dry hachure tooth so it is a surface. */
+  g.save();
+  g.beginPath(); path(grimes); g.clip();
+  const face = g.createLinearGradient(420, 620, 980, 1250);
+  face.addColorStop(0, "#5A6141"); face.addColorStop(.55, "#4A5236"); face.addColorStop(1, "#333A26");
+  g.fillStyle = face; g.fillRect(0, 0, 1080, 1350);
+  g.globalAlpha = .30; g.strokeStyle = "#2A3020"; g.lineWidth = 1;
+  for (let i = 0; i < 620; i++) {
+    const x = 380 + R() * 700, y = 600 + R() * 720;
+    const a = 0.9 + 0.55 * TX.fbm2(x / 260, y / 260, { octaves: 3 });
+    g.beginPath(); g.moveTo(x, y);
+    g.lineTo(x + Math.cos(a) * 13, y + Math.sin(a) * 13); g.stroke();
+  }
+  g.globalAlpha = 1;
+  g.restore();
+
+  /* County edge. */
+  g.beginPath(); path(grimes);
+  g.strokeStyle = "#C9A063"; g.lineWidth = 2.4; g.stroke();
+
+  /* THE ROOF, at true scale, on the top face. Square because a square is what the
+     area gives; it is not a site plan and the corner tag says so. */
+  const rx = pA[0] - sidePx / 2 + 22, ry = pA[1] - sidePx / 2 + 8;
+  g.save();
+  g.shadowColor = "rgba(8,6,15,.9)"; g.shadowBlur = 30; g.shadowOffsetY = 9;
+  g.fillStyle = "#F4EEDF"; g.fillRect(rx, ry, sidePx, sidePx);
+  g.restore();
+  g.strokeStyle = "#8C4A2F"; g.lineWidth = 4; g.strokeRect(rx, ry, sidePx, sidePx);
+  /* a sighting ring, so the eye finds a true scale square that is honestly small */
+  g.beginPath();
+  g.arc(rx + sidePx / 2, ry + sidePx / 2, 62, 0, Math.PI * 2);
+  g.strokeStyle = "rgba(193,145,79,.34)"; g.lineWidth = 3; g.stroke();
+
+  /* The bottom band is ground, not a strip. Hachured bottomland running west out of frame,
+     under a low haze, so the scale bar and the tag sit on terrain. */
+  g.save();
+  const bl = g.createLinearGradient(0, 1040, 0, 1350);
+  bl.addColorStop(0, "rgba(30,42,38,0)"); bl.addColorStop(.5, "rgba(30,42,38,.55)");
+  bl.addColorStop(1, "rgba(22,30,26,.82)");
+  g.fillStyle = bl; g.fillRect(0, 1040, 1080, 310);
+  g.lineCap = "round";
+  for (let i = 0; i < 1900; i++) {
+    const x = R() * 720, y = 1060 + R() * 280;
+    const slope = TX.fbm2(x / 180, y / 100, { octaves: 3 });
+    const len = 5 + 15 * Math.abs(slope);
+    g.globalAlpha = 0.08 + 0.24 * Math.abs(slope);
+    g.strokeStyle = slope > 0 ? "#C1914F" : "#141A16";
+    g.lineWidth = 1;
+    g.beginPath(); g.moveTo(x, y);
+    g.lineTo(x + Math.cos(1.25 + slope * .8) * len, y + Math.sin(1.25 + slope * .8) * len);
+    g.stroke();
+  }
+  g.globalAlpha = 1; g.restore();
+
+  /* Grain, because an untextured gradient reads as an unfinished render on a phone. */
+  const grain = new Image();
+  await new Promise(r => { grain.onload = r; grain.src = TX.grainTile(280, 40, 7); });
+  g.globalAlpha = .035;
+  for (let y = 0; y < 1350; y += 280) for (let x = 0; x < 1080; x += 280) g.drawImage(grain, x, y);
+  g.globalAlpha = 1;
+
+  /* Leader and dimension, in SVG so the type stays vector. */
+  const svg = d3.select("#ink");
+  const SITE = [rx, ry + sidePx / 2];
+  const bend = [SITE[0] - 92, SITE[1] - 86];
+  const end  = [bend[0] - 96, bend[1]];
+  svg.append("path")
+     .attr("d", "M" + SITE[0] + "," + SITE[1] + "L" + bend[0] + "," + bend[1] +
+                "L" + end[0] + "," + end[1])
+     .attr("fill", "none").attr("stroke", "#A85433").attr("stroke-width", 2);
+  svg.append("circle").attr("cx", SITE[0]).attr("cy", SITE[1]).attr("r", 4).attr("fill", "#A85433");
+  window.__txLeaders = [{ target: "the roof plate's east edge", at: SITE, to: end }];
+
+  const dim = svg.append("text").attr("x", end[0]).attr("y", end[1] - 28).attr("text-anchor", "end")
+     .attr("font-family", "JetBrains Mono, monospace").attr("font-size", 26)
+     .attr("fill", "#E4D8C3").text(SIDE_FT.toLocaleString("en-US") + " FT A SIDE");
+  const nm = svg.append("text").attr("x", end[0]).attr("y", end[1] + 40).attr("text-anchor", "end")
+     .attr("font-family", "JetBrains Mono, monospace").attr("font-size", 26)
+     .attr("fill", "#C9A063").text("THE ROOF, AT TRUE SCALE");
+  await document.fonts.ready;
+  TX.svgPlate(dim.node(), { padX: 12, padY: 9, fill: "#0F0C1C", stroke: "#2B2447" });
+  TX.svgPlate(nm.node(),  { padX: 12, padY: 9, fill: "#0F0C1C", stroke: "#2B2447" });
+
+  /* Scale bar, measured off the same projection. */
+  const barMi = 5, barPx = (barMi / SIDE_MI) * sidePx;
+  const bx = 80, by = 1128;
+  const sb = svg.append("g").attr("font-family", "JetBrains Mono, monospace");
+  sb.append("line").attr("x1", bx).attr("x2", bx + barPx).attr("y1", by).attr("y2", by)
+    .attr("stroke", "#C9A063").attr("stroke-width", 2);
+  for (let i = 0; i <= barMi; i++) {
+    const x = bx + (barPx / barMi) * i;
+    sb.append("line").attr("x1", x).attr("x2", x).attr("y1", by - 9).attr("y2", by + 5)
+      .attr("stroke", "#C9A063").attr("stroke-width", 2);
+  }
+  sb.append("text").attr("x", bx).attr("y", by - 20).attr("font-size", 24)
+    .attr("fill", "rgba(228,216,195,.78)").text(barMi + " MILES");
+
+  const gr = svg.append("text").attr("x", 596).attr("y", 764)
+     .attr("font-family", "JetBrains Mono, monospace").attr("font-size", 24)
+     .attr("fill", "#E4D8C3").text("GRIMES COUNTY");
+  TX.svgPlate(gr.node(), { padX: 12, padY: 9, fill: "#0F0C1C", stroke: "#2B2447" });
+
+  document.body.dataset.ready = "1";
+  done();
+})();
+});
+</script>
+</body></html>
