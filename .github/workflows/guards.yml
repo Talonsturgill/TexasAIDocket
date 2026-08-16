@@ -140,6 +140,15 @@ jobs:
             exit "$code"
           }
 
+      - name: Media check self-test (it can go red)
+        run: python3 scripts/site/media_check.py --self-test
+
+      # THE PRODUCT, NOT THE BUILDER'S INTENT. On 2026-08-16 every gate here was green while
+      # the live article page carried two broken images and had silently dropped two slides.
+      # Nothing in the suite opened a built page and asked whether what it points at is there.
+      - name: Every image the site points at exists
+        run: python3 scripts/site/media_check.py
+
       - name: Water watch page check self-test
         run: python3 scripts/gridwatch/waterwatch_pagecheck.py --self-test
 
