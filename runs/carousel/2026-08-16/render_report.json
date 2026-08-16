@@ -1222,11 +1222,11 @@
       "fonts_missing": [],
       "text_nodes": [
         {
-          "text": "A governor, a county judge and two school boards",
+          "text": "A governor, a county judge, a school board and a school district",
           "x": 80,
           "y": 112,
           "w": 920,
-          "h": 31,
+          "h": 62,
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
@@ -1239,6 +1239,12 @@
               112,
               818,
               31
+            ],
+            [
+              80,
+              143,
+              256,
+              31
             ]
           ],
           "anc": []
@@ -1246,7 +1252,7 @@
         {
           "text": "Four bodies,on the record.",
           "x": 80,
-          "y": 159,
+          "y": 190,
           "w": 920,
           "h": 196,
           "font_px": 100,
@@ -1258,13 +1264,13 @@
           "lines": [
             [
               80,
-              146,
+              177,
               499,
               124
             ],
             [
               80,
-              244,
+              275,
               558,
               124
             ]
@@ -1544,7 +1550,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 747,
+      "render_ms": 801,
       "ok": true,
       "canvases": [
         {

@@ -11,7 +11,7 @@
     {
       "date": "2026-08-16",
       "carousel_no": 1,
-      "register": "dark, Big Bend at dusk, with one deliberate paper inversion at slide 6",
+      "register": "dark, Big Bend at dusk, with one deliberate paper inversion at slide 5",
       "techniques": [
         "extruded county with a true scale overlay",
         "parallax planes with a two part contact shadow",
@@ -33,10 +33,10 @@
       },
       "red_spent": false,
       "red_note": "No comment window on this story closes in a period a reader can act on, so the reserved red stayed unspent.",
-      "camera": "one county at close range, then the whole state, then an object stack, then flat type, then two masses, then a sheet, then a field with a hard stop, then a section below grade, then the dusk horizon",
+      "camera": "one county at close range, then an object stack, then flat type, then two masses, then a sheet, then a field with a hard stop, then a section below grade, then the dusk horizon",
       "light_decks_used": 1,
       "bespoke_median": 0.3997,
-      "bespoke_closest_pair": "slide-01 and slide-02 at 0.8859, both TXGeo cartography sharing the d3 and topojson scaffolding. Different scale, different value polarity and different furniture. The scorer called slide 2 the most cuttable frame in the deck and that judgement stands for the next run.",
+      "bespoke_closest_pair": "After the cut, the closest pair no longer involves cartography. bespoke_median 0.3997 was measured on the nine slide deck; the shipped deck is eight and the pair that produced 0.8859 is the frame that was cut.",
       "slides": 8,
       "cut": "Slide 2, the state locator, cut after the third scoring pass. Three independent reviews called it the most cuttable frame, it was the closest visual pair, and its only unique content was a county land area."
     }

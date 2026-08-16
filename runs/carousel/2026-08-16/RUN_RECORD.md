@@ -249,6 +249,33 @@ What the critics caught, in the order it mattered.
 critic named directly. "The stipple density stays low enough that the paper reads as tooth" passes
 when there is no stipple at all. An item with a ceiling and no floor is not a test.
 
+## The score
+
+**7.00 against a threshold of 7.0.** It ships, and it clears by two thousandths of a point, which
+is not a result to be pleased about.
+
+Four scoring passes. 6.75, 6.41, 6.55, 7.00. The first two failed on hard fails and both were
+right. The 6.41 found an unsourced figure in the PUBLIC RECORD, not just on a slide. The 6.55
+failed the deck on one word, a hook reading "Four signatures" over four rows in which not one
+signature was documented.
+
+| criterion | weight | score |
+|---|---|---|
+| artwork_craft | 0.28 | 6.8 |
+| claim_integrity | 0.20 | 7.2 |
+| story_and_stakes | 0.18 | 7.3 |
+| sequence_and_momentum | 0.12 | 7.0 |
+| voice | 0.12 | 7.2 |
+| variety | 0.10 | 6.4 |
+
+**What the score is telling the next run.** The dark label chip is used thirteen times across four
+slides and is the reason three frames read as annotated rather than drawn. It is a house style on
+day one that nobody chose. The closing frame asks a Texan to act and then hands them a library's
+calendar rather than the fact, already in the record at `tx-2026-0073`, that the hearing takes
+public testimony. And `variety` scored lowest of all six because the ledgers went stale during the
+renumbering, which is the one failure a variety engine can't survive, since the ledger is the only
+thing the next run reads. Those were re-derived from the shipped deck before the merge.
+
 ## The craft ledger
 
 Three instincts recorded, each at 0.50, which is the honest score for a lesson nothing has tested.
@@ -286,9 +313,9 @@ None could be confirmed or contradicted this run, because the room was handed no
 | claims         | PASS   | 31 verified claim(s) |
 | render         | PASS   | 8 slide(s) |
 | qa             | WARN   | 0 fail(s), 25 warn(s) |
-| aggregates     | PASS   | 4 declared and re-derived |
+| aggregates     | PASS   | 3 declared and re-derived |
 | assembly       | PASS   | 8 slide(s), 3.77 MB, vector |
-| score          | ABSENT | score.json not written yet |
-| dossiers       | PASS   | 31,478 chars planned |
+| score          | PASS   | None |
+| dossiers       | PASS   | 31,538 chars planned |
 | caption        | PASS   | 152 words |
 <!-- gate-status:end -->

@@ -83,13 +83,13 @@ Post Oak Savannah, not Permian and not Hill Country. Every accent is a material 
 | `granite` | `#9A3B2A` | the Capitol's own sunset granite, the accent on the paper frame |
 | `sand` | `#D8C9AB` | the pale leached quartz horizon over the loam |
 | `caliche` | `#E4D8C3` | type on dark, the house token |
-| `paper` | `#F6F1E4` | the document register, slides 6 and 8 only |
+| `paper` | `#F6F1E4` | the document register, slide 5 only |
 
-**Value structure across the deck.** Slides 1 to 5 sit on the dark ladder with the tawny
-bluestem carrying every figure. Slides 6 and 8 invert to `paper`, because they are documents
-rather than land, and that inversion is the deck's rhythm rather than decoration. Slide 7 is the
-darkest frame in the deck and slide 9 returns to `deep`. The lightest single element anywhere is
-the roof plane on slide 1.
+**Value structure across the deck.** Slides 1 to 4 sit on the dark ladder with the tawny
+bluestem carrying every figure. Slide 5 inverts to `paper`, because it is a document rather than
+land, and that inversion is the deck's rhythm rather than decoration. Slide 6 carries the hardest
+edge in the deck and slide 8 returns to `deep`. The lightest single element anywhere is the lit
+cut face of the loam on slide 7, which sits directly under the darkest field in the deck.
 
 **The reserved red is not used.** No comment window on this story closes in a period a reader can
 act on, so `--flag-red` stays unspent. The one dated way in, the August 19th hearing, is set in
@@ -474,7 +474,7 @@ art:
 type:
   hook: "One date, still ahead of you."
   dek: "EVERY FACT TRACES TO A SOURCE, set as the closing footer"
-  labels: ["AUGUST 19TH, 2026", "texasaidocket.com", "09 / 09"]
+  labels: ["AUGUST 19TH, 2026", "texasaidocket.com", "08 / 08"]
 acceptance:
   - "the hearing date on this slide is the date the record carries at tx-2026-0073, traced to claim c28, and exactly ONE date appears so the actionable thing is unmistakable"
   - "the horizon band does not reach the left or right frame edge, per the Big Bend dusk field failure mode"
