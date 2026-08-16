@@ -146,6 +146,12 @@ window.__ASK_CATALOGUE__=[{"q":"What can I still comment on?","route":{"view":"o
   });
   function idf(w) { return Math.log(1 + CAT.length / (1 + (DF[w] || 0))); }
 
+  // TOKENS ARE MEMOISED, like DF already is. `best()` re-tokenised all 401 catalogue
+  // questions on every keystroke, two regex passes and a split each, none of it changing
+  // between characters. Measured at 2.90ms a call on a desktop, which is 15 to 25ms per
+  // character on the mid-range Android this box is written for.
+  var _TOK = {};
+  function toks(q) { var v = _TOK[q]; if (!v) { v = _TOK[q] = words(q); } return v; }
   function best(query) {
     var qw = words(query);
     if (!qw.length) return null;
@@ -361,6 +367,10 @@ window.__ASK_CATALOGUE__=[{"q":"What can I still comment on?","route":{"view":"o
        happened to be in the field. The reader gets all of it back with Start over.
        This changes nothing about what this file SENDS, which is still nothing at all. */
     if (box.classList.contains("answering")) return;
+    // AN EMPTY FIELD IS NOT A FAILED QUESTION. `best("")` is null and `answer(null)` heads
+    // "No answer for that yet.", so backspacing to empty, or pressing Start over, told the
+    // reader the box had failed at the moment they had asked nothing at all.
+    if (!input.value.trim()) { out.hidden = true; out.innerHTML = ""; return; }
     var a = answer(best(input.value));
     out.innerHTML = "<h3>" + esc(a.head) + "</h3>" + a.body;
     out.hidden = false;
@@ -850,7 +860,11 @@ window.__ASK_CATALOGUE__=[{"q":"What can I still comment on?","route":{"view":"o
   <h2>The latest video</h2>
   <p class="sub">The newest from the daily feed.</p>
   <div class="latest">
-    <div class="vidwrap"><video id="hv" muted playsinline loop preload="none"
+    <!-- CONTROLS, ALWAYS. A roughly 60 second film looping forever beside the copy with no
+         pause, stop or hide is a WCAG 2.2.2 failure, and `prefers-reduced-motion` cannot
+         reach media playback from CSS. The reader gets a control and the script below asks
+         before it starts anything. -->
+    <div class="vidwrap"><video id="hv" muted playsinline loop controls preload="none"
       aria-label="The latest Texas AI video"></video></div>
     <div>
       <p class="meta" data-prose="data"><span class="tag" id="hvdate"></span></p>
@@ -885,7 +899,14 @@ window.__ASK_CATALOGUE__=[{"q":"What can I still comment on?","route":{"view":"o
     sec.hidden=false;
     var io=new IntersectionObserver(function(es){es.forEach(function(en){
       if(!en.isIntersecting)return;
-      if(!el.src){el.src=el.dataset.src;var q=el.play();if(q&&q.catch)q.catch(function(){});}
+      // AUTOPLAY ONLY IF NOBODY ASKED FOR LESS MOTION. The source still loads either way, so
+      // pressing play is instant. Reduced motion is a request about movement, and a looping
+      // film is the largest piece of movement on the page.
+      if(!el.src){
+        el.src=el.dataset.src;
+        var calm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+        if(!calm){var q=el.play();if(q&&q.catch)q.catch(function(){});}
+      }
       io.disconnect();})},{rootMargin:'200px'});
     io.observe(sec);
   }).catch(function(){});
@@ -902,7 +923,7 @@ window.__ASK_CATALOGUE__=[{"q":"What can I still comment on?","route":{"view":"o
   <button type="button" class="mapreset" id="mapreset" hidden>Show all of Texas</button>
 </section>
 
-<section data-reveal><h2>Closing next</h2><ul class="deck"><li data-prose="data"><a class="dcard open" href="item/tx-2026-0015/"><span class="badge open">Open to you</span><span class="big">AUG 31</span><span class="left">15 days left</span><h3>Federal comment window open on NRC reactor licensing and siting modernization</h3><span class="note">Public comment closes</span></a></li><li data-prose="data"><a class="dcard open" href="item/tx-2026-0002/"><span class="badge open">Open to you</span><span class="big">SEP 4</span><span class="left">19 days left</span><h3>PUCT Project 58482, proposed new rule on Large Load Demand Management Service, open for comment</h3><span class="note">Public comment closes</span></a></li><li data-prose="data"><a class="dcard open" href="item/tx-2026-0016/"><span class="badge open">Open to you</span><span class="big">SEP 8</span><span class="left">23 days left</span><h3>Federal comment window open on adding AI questions to the American Time Use Survey</h3><span class="note">Public comment closes</span></a></li></ul><p class="meta" data-prose="data"><a href="record/">See all 58 decisions</a></p></section>
+<section data-reveal><h2>Closing next</h2><ul class="deck"><li data-prose="data"><a class="dcard open" href="item/tx-2026-0015/"><span class="badge open">Open to you</span><time class="big" datetime="2026-08-31">AUG 31</time><span class="left">15 days left</span><h3>Federal comment window open on NRC reactor licensing and siting modernization</h3><span class="note">Public comment closes</span></a></li><li data-prose="data"><a class="dcard open" href="item/tx-2026-0002/"><span class="badge open">Open to you</span><time class="big" datetime="2026-09-04">SEP 4</time><span class="left">19 days left</span><h3>PUCT Project 58482, proposed new rule on Large Load Demand Management Service, open for comment</h3><span class="note">Public comment closes</span></a></li><li data-prose="data"><a class="dcard open" href="item/tx-2026-0016/"><span class="badge open">Open to you</span><time class="big" datetime="2026-09-08">SEP 8</time><span class="left">23 days left</span><h3>Federal comment window open on adding AI questions to the American Time Use Survey</h3><span class="note">Public comment closes</span></a></li></ul><p class="meta" data-prose="data"><a href="record/">See all 58 decisions</a></p></section>
 
 <section data-reveal>
   <h2>What this is</h2>
@@ -966,9 +987,10 @@ if('IntersectionObserver' in window){
 // Dragging a thumb across the state now names each county and says what it holds, and lifting
 // the thumb without moving still opens the county, so the link is not taken away.
 (function(){
-  var read=document.getElementById('mapread'), map=document.querySelector('svg.txmap');
+  var read=document.getElementById('mapread'), map=document.querySelector('svg.txmap'),
+      rb=document.getElementById('mapreset');
   if(!read||!map||!('ontouchstart' in window)) return;
-  var moved=false, sx=0, sy=0, last=null;
+  var moved=false, sx=0, sy=0, last=null, clearAt=0;
   // PINCH TO ZOOM, TWO FINGERS TO MOVE.
   // Even with the readout naming what is under the thumb, a county in the Panhandle is a few
   // millimetres of glass and the thumb covers all of it. So the map moves like a map.
@@ -999,15 +1021,12 @@ if('IntersectionObserver' in window){
     VB.x=Math.min(HOME.x+HOME.w-VB.w,Math.max(HOME.x,VB.x));
     VB.y=Math.min(HOME.y+HOME.h-VB.h,Math.max(HOME.y,VB.y));
     map.setAttribute('viewBox',VB.x+' '+VB.y+' '+VB.w+' '+VB.h);
-    var z=VB.w<HOME.w-0.5, rb=document.getElementById('mapreset');
-    if(rb) rb.hidden=!z;
+    // The button is resolved once at the top with the readout, because this runs on every
+    // touchmove of a pinch, roughly sixty times a second on the device with the least headroom.
+    if(rb) rb.hidden=!(VB.w<HOME.w-0.5);
   }
   function reset(){ if(HOME){ VB={x:HOME.x,y:HOME.y,w:HOME.w,h:HOME.h}; apply(); } }
-  map.resetView=reset;
-  (function(){
-    var rb=document.getElementById('mapreset');
-    if(rb) rb.addEventListener('click',function(){ reset(); show(null); });
-  })();
+  if(rb) rb.addEventListener('click',function(){ reset(); show(null); });
   function span(e){
     var a=e.touches[0], b=e.touches[1];
     return Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY);
@@ -1059,6 +1078,7 @@ if('IntersectionObserver' in window){
   }
   map.addEventListener('touchstart',function(e){
     if(e.touches.length>1) return;   // two fingers are a gesture, never a pick
+    clearTimeout(clearAt);           // a new touch outlives the last one's timer
     var t=e.touches[0]; moved=false; sx=t.clientX; sy=t.clientY; show(at(t));
   },{passive:true});
   map.addEventListener('touchmove',function(e){
@@ -1077,7 +1097,10 @@ if('IntersectionObserver' in window){
     var kill=function(ev){ ev.preventDefault(); ev.stopPropagation(); };
     map.addEventListener('click',kill,{capture:true,once:true});
     setTimeout(function(){ map.removeEventListener('click',kill,{capture:true}); },400);
-    setTimeout(function(){ show(null); },2600);
+    // HELD AND CANCELLED, because it used to be armed on every release and never cleared.
+    // Drag, lift, drag again, then hold still on a county to read it, and the FIRST timer
+    // fired at 2.6s and blanked the readout under a stationary thumb.
+    clearTimeout(clearAt); clearAt=setTimeout(function(){ show(null); },2600);
   });
 })();
 </script>
