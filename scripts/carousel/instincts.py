@@ -305,8 +305,23 @@ def self_test() -> int:
         real = json.loads(LEDGER.read_text(encoding="utf-8"))
         probs = validate(real)
         ok("the shipped instincts.json validates", probs == [], str(probs[:3]))
-        ok("...and starts empty, since this repo has shipped no decks",
-           real.get("entries") == [])
+        # THIS USED TO ASSERT THE LEDGER WAS EMPTY, "since this repo has shipped no decks".
+        # It was true on the day it was written and it expired the moment the first deck
+        # shipped, on 2026-08-16, which is the run that tripped it. A bootstrap assertion with
+        # no expiry date is a test that goes red for being correct.
+        #
+        # What it should have been guarding all along is the thing that actually matters about
+        # this file: NO ENTRY MAY CARRY A TYPED CONFIDENCE. Confidence is derived, because a
+        # machine allowed to grade its own lesson grades it high, and the sibling product's
+        # ledger is 101 entries with 47 of them self-scored at 0.90 and 25 ever confirmed once.
+        entries = real.get("entries") or []
+        typed = [e.get("id") for e in entries
+                 if any(k in e for k in ("confidence", "score", "weight"))]
+        ok("no shipped instinct carries a typed confidence", typed == [], str(typed))
+        ok("every shipped instinct records the dates it was confirmed and contradicted",
+           all(isinstance(e.get("confirmed"), list) and isinstance(e.get("contradicted"), list)
+               for e in entries),
+           f"{len(entries)} entr(ies)")
     except OSError as exc:
         ok(f"the shipped ledger is readable ({exc})", False)
 
