@@ -4458,6 +4458,209 @@
       ],
       "id": "tx-2026-0070",
       "last_verified": "2026-08-14"
+    },
+    {
+      "id": "tx-2026-0071",
+      "title": "SpaceX will build the Terafab semiconductor plant in Grimes County on a state grant and two school district agreements",
+      "summary": "Governor Greg Abbott announced on August 6th, 2026 that SpaceX will construct a vertically integrated semiconductor fabrication plant in Grimes County. A Texas Enterprise Fund grant of $30 million has been extended to the company. The project is also qualified under the state's Jobs Energy Technology and Innovation program. The release states a first phase of more than $16.8 billion in capital investment and 3,000 new jobs. The company's own statement in the release says the plant will produce AI chips at scale. Two school districts have agreements of their own. The Iola board voted to enter one and the Anderson-Shiro superintendent describes another.",
+      "topic": "state-policy",
+      "decider": {
+        "name": "Office of the Texas Governor",
+        "type": "governor"
+      },
+      "geography": {
+        "statewide": false,
+        "counties": [
+          "Grimes"
+        ],
+        "metro": null,
+        "on_ercot": true
+      },
+      "status": "decided",
+      "key_dates": [
+        {
+          "date": "2026-08-06",
+          "kind": "decided",
+          "note": "Governor announced the grant and the qualified project"
+        }
+      ],
+      "public_access": {
+        "room": "contact_only",
+        "how": "The state grant and the school district agreements are already made. A resident who wants to follow what happens next goes to the Grimes County Commissioners Court and to the Iola and Anderson-Shiro school boards, which meet in public and hold the local agreements. The Texas Enterprise Fund is administered by the Governor's economic development office.",
+        "url": "https://gov.texas.gov/news/post/governor-abbott-announces-spacex-expansion-in-grimes-county",
+        "closes": null
+      },
+      "claims": [
+        {
+          "id": "tx-2026-0071-c1",
+          "text": "The Governor announced a vertically integrated semiconductor plant in Grimes County.",
+          "verbatim_quote": "Governor Greg Abbott today announced SpaceX will construct a vertically integrated semiconductor fabrication plant in Grimes County.",
+          "source_url": "https://gov.texas.gov/news/post/governor-abbott-announces-spacex-expansion-in-grimes-county",
+          "source_title": "Office of the Texas Governor, Governor Abbott Announces SpaceX Expansion In Grimes County",
+          "source_type": "primary_official",
+          "fetched": "2026-08-16"
+        },
+        {
+          "id": "tx-2026-0071-c2",
+          "text": "The release states the first phase investment and the job count.",
+          "verbatim_quote": "The first phase of the Terafab project represents a capital investment of more than $16.8 billion and will create 3,000 new jobs.",
+          "source_url": "https://gov.texas.gov/news/post/governor-abbott-announces-spacex-expansion-in-grimes-county",
+          "source_title": "Office of the Texas Governor, Governor Abbott Announces SpaceX Expansion In Grimes County",
+          "source_type": "primary_official",
+          "fetched": "2026-08-16"
+        },
+        {
+          "id": "tx-2026-0071-c3",
+          "text": "A Texas Enterprise Fund grant was extended to the company.",
+          "verbatim_quote": "A Texas Enterprise Fund (TEF) grant of $30 million has been extended to SpaceX.",
+          "source_url": "https://gov.texas.gov/news/post/governor-abbott-announces-spacex-expansion-in-grimes-county",
+          "source_title": "Office of the Texas Governor, Governor Abbott Announces SpaceX Expansion In Grimes County",
+          "source_type": "primary_official",
+          "fetched": "2026-08-16"
+        },
+        {
+          "id": "tx-2026-0071-c4",
+          "text": "The project is qualified under the state's Jobs Energy Technology and Innovation program.",
+          "verbatim_quote": "The facility is also a qualified project under the Texas Jobs, Energy, Technology, and Innovation (JETI) program.",
+          "source_url": "https://gov.texas.gov/news/post/governor-abbott-announces-spacex-expansion-in-grimes-county",
+          "source_title": "Office of the Texas Governor, Governor Abbott Announces SpaceX Expansion In Grimes County",
+          "source_type": "primary_official",
+          "fetched": "2026-08-16"
+        },
+        {
+          "id": "tx-2026-0071-c5",
+          "text": "The company's founder states the plant is for producing AI chips at scale.",
+          "verbatim_quote": "The Terafab is bringing cutting-edge manufacturing to America, creating thousands of high-paying jobs in the Lone Star State, and enabling us to produce AI chips at scale for use on Earth and in space.",
+          "source_url": "https://gov.texas.gov/news/post/governor-abbott-announces-spacex-expansion-in-grimes-county",
+          "source_title": "Office of the Texas Governor, statement of SpaceX Founder and CEO Elon Musk in the release",
+          "source_type": "primary_official",
+          "fetched": "2026-08-16"
+        },
+        {
+          "id": "tx-2026-0071-c6",
+          "text": "The Iola school board voted to enter an agreement under the state program.",
+          "verbatim_quote": "The Iola Independent School District Board of Trustees voted to enter into an agreement with TeraFab AI, LLC under the Texas Jobs, Energy, Technology, and Innovation Act,",
+          "source_url": "https://gov.texas.gov/news/post/governor-abbott-announces-spacex-expansion-in-grimes-county",
+          "source_title": "Office of the Texas Governor, statement of Iola ISD Superintendent Jeff Dyer in the release",
+          "source_type": "primary_official",
+          "fetched": "2026-08-16"
+        },
+        {
+          "id": "tx-2026-0071-c7",
+          "text": "The release states the facility's floor area and that it consolidates the production chain in one building.",
+          "verbatim_quote": "The 100-million-square-foot facility will consolidate the production chain under a single roof to accelerate semiconductor manufacturing to meet the company's future chip needs",
+          "source_url": "https://gov.texas.gov/news/post/governor-abbott-announces-spacex-expansion-in-grimes-county",
+          "source_title": "Office of the Texas Governor, Governor Abbott Announces SpaceX Expansion In Grimes County",
+          "source_type": "primary_official",
+          "fetched": "2026-08-16"
+        }
+      ],
+      "last_verified": "2026-08-16",
+      "confidence": "high",
+      "notes_for_editor": "Raw HTML fetched with a browser User-Agent. gov.texas.gov serves no robots.txt."
+    },
+    {
+      "id": "tx-2026-0072",
+      "title": "Governor Abbott directs the utility commission and ERCOT to audit every data center in the interconnection queue before any of them advances",
+      "summary": "Governor Greg Abbott directed the Public Utility Commission of Texas and ERCOT on August 3rd, 2026 to run a verification and audit of every data center moving through the interconnection process. The audit must finish before any data center project moves forward. The directive names five things the agencies must obtain from each project. They are public financial assistance received or expected, whether the project brings its own power, whether it brings and reuses its own water, what it does to reduce effects on neighbors, and who owns and controls it. The release states the queue at over 474 gigawatts and puts the data center share of new power requests at approximately 90 percent.",
+      "topic": "data-centers",
+      "decider": {
+        "name": "Office of the Texas Governor",
+        "type": "governor"
+      },
+      "geography": {
+        "statewide": true,
+        "counties": [],
+        "metro": null,
+        "on_ercot": true
+      },
+      "status": "pending",
+      "key_dates": [
+        {
+          "date": "2026-08-03",
+          "kind": "ordered",
+          "note": "Directive issued"
+        },
+        {
+          "date": "2026-08-20",
+          "kind": "hearing",
+          "note": "Next utility commission open meeting after the directive"
+        }
+      ],
+      "public_access": {
+        "room": "open_meeting",
+        "how": "The commission carries this out in its own open meetings, which its calendar feed lists as open to the public in Commissioners Hearing Room 7-100 in Austin. The next one after the directive falls on August 20th, 2026. Subscribing to that feed is the way to see an item before it is taken up rather than after.",
+        "url": "https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx",
+        "closes": null
+      },
+      "claims": [
+        {
+          "id": "tx-2026-0072-c1",
+          "text": "The Governor directed the commission and ERCOT to audit all data centers in the interconnection process.",
+          "verbatim_quote": "Governor Greg Abbott today\ndirected\nthe Public Utility Commission of Texas (PUCT) and the Electric Reliability Council of Texas (ERCOT) to conduct a comprehensive verification and audit of all data centers advancing through ERCOT's interconnection process.",
+          "source_url": "https://gov.texas.gov/news/post/governor-abbott-directs-comprehensive-data-center-audit",
+          "source_title": "Office of the Texas Governor, Governor Abbott Directs Comprehensive Data Center Audit",
+          "source_type": "primary_official",
+          "fetched": "2026-08-16"
+        },
+        {
+          "id": "tx-2026-0072-c2",
+          "text": "The audit must be complete before any project advances, and a failing project is denied connection.",
+          "verbatim_quote": "The PUCT and ERCOT must complete this audit before any data center project moves forward. Any project that fails to comply with the requirements set forth by the PUCT and ERCOT will be denied connection to the Texas grid.",
+          "source_url": "https://gov.texas.gov/news/post/governor-abbott-directs-comprehensive-data-center-audit",
+          "source_title": "Office of the Texas Governor, Governor Abbott Directs Comprehensive Data Center Audit",
+          "source_type": "primary_official",
+          "fetched": "2026-08-16"
+        },
+        {
+          "id": "tx-2026-0072-c3",
+          "text": "The release states the size of the interconnection queue against the record peak.",
+          "verbatim_quote": "ERCOT is currently considering approximately over 474 gigawatts of requests to connect to the Texas grid, more than five times Texas' record peak electricity demand for ERCOT.",
+          "source_url": "https://gov.texas.gov/news/post/governor-abbott-directs-comprehensive-data-center-audit",
+          "source_title": "Office of the Texas Governor, Governor Abbott Directs Comprehensive Data Center Audit",
+          "source_type": "primary_official",
+          "fetched": "2026-08-16"
+        },
+        {
+          "id": "tx-2026-0072-c4",
+          "text": "The release states the data center share of new power requests.",
+          "verbatim_quote": "Approximately 90 percent of the new power requests are data centers.",
+          "source_url": "https://gov.texas.gov/news/post/governor-abbott-directs-comprehensive-data-center-audit",
+          "source_title": "Office of the Texas Governor, Governor Abbott Directs Comprehensive Data Center Audit",
+          "source_type": "primary_official",
+          "fetched": "2026-08-16"
+        },
+        {
+          "id": "tx-2026-0072-c5",
+          "text": "The directive requires disclosure of public financial assistance received or expected.",
+          "verbatim_quote": "Information detailing the extent to which data centers are paying their own way or depending on the state for financial assistance. That would include all state and local tax incentives, grants, abatements, or other public financial assistance received or expected to be received.",
+          "source_url": "https://gov.texas.gov/news/post/governor-abbott-directs-comprehensive-data-center-audit",
+          "source_title": "Office of the Texas Governor, Governor Abbott Directs Comprehensive Data Center Audit",
+          "source_type": "primary_official",
+          "fetched": "2026-08-16"
+        },
+        {
+          "id": "tx-2026-0072-c6",
+          "text": "The directive requires water and cooling information from each project.",
+          "verbatim_quote": "The extent to which data centers are bringing their own water and reusing their own water as opposed to using water needed by local communities.",
+          "source_url": "https://gov.texas.gov/news/post/governor-abbott-directs-comprehensive-data-center-audit",
+          "source_title": "Office of the Texas Governor, Governor Abbott Directs Comprehensive Data Center Audit",
+          "source_type": "primary_official",
+          "fetched": "2026-08-16"
+        },
+        {
+          "id": "tx-2026-0072-c7",
+          "text": "The commission's calendar lists an open meeting on August 20th.",
+          "verbatim_quote": "Open Meeting - Thursday, August 20, 2026",
+          "source_url": "https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx",
+          "source_title": "PUCT calendar RSS, entry title",
+          "source_type": "primary_official",
+          "fetched": "2026-08-16"
+        }
+      ],
+      "last_verified": "2026-08-16",
+      "confidence": "high",
+      "notes_for_editor": "Raw HTML fetched with a browser User-Agent, quotes checked character for character."
     }
   ]
 }
