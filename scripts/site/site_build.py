@@ -472,15 +472,16 @@ def next_door(it: dict, today: str) -> str | None:
         if kd.get("kind") not in DOOR_KINDS or not kd.get("date"):
             continue
         # A CANCELED SITTING IS NOT A DOOR. TCEQ called off two hearings in August 2026 and the
-        # record kept the original dates with "since canceled" in the note, which is correct
+        # record kept the original dates with the cancellation in the note, which is correct
         # history and would have published both as live doors.
         #
-        # This reads the note because the note is where the ledger currently carries it, and
-        # that is the weakness rather than the fix. A canceled date should be a FIELD, so this
-        # is a text match against a string the routine itself writes rather than against a
-        # source. Pinned by a self-test so it cannot rot silently, and written up as the data
-        # shape that should replace it.
-        if re.search(r"\bcancell?ed\b", str(kd.get("note") or ""), re.I):
+        # THIS READS A FIELD, NOT THE PROSE. The first version of this matched the word in the
+        # note with a regex, which worked and was the wrong shape: a text match against a
+        # sentence a person writes is the generated-not-computed failure this project refuses
+        # everywhere else, and it would go quiet the day somebody wrote "called off" instead.
+        # `gate_schema` now fails any date whose note says canceled while the flag does not, so
+        # the sentence cannot drift away from the field it is describing.
+        if kd.get("canceled"):
             continue
         dates.append(str(kd["date"]))
 
@@ -3165,6 +3166,55 @@ def self_test() -> int:
         check("every relative link resolves from its own page", not broken,
               f"{len(broken)} broken, first: {broken[:1]}")
         check("an item page links the source", "rel=\"nofollow noopener\"" in one)
+
+    # ---------------------------------------------------------------- next_door
+    # WHAT COUNTS AS A DOOR A READER CAN STILL WALK THROUGH. `llms.txt` published 28 finished
+    # votes of 47 entries under a heading promising a dated way in, because it filtered on the
+    # KIND of access recorded rather than on whether the door is open.
+    def door(**over):
+        it = {"public_access": {"room": "open_meeting", "closes": None},
+              "key_dates": [{"date": "2026-09-04", "kind": "hearing", "note": ""}],
+              "status": "pending"}
+        it.update(over)
+        return it
+
+    check("a future hearing is a door", next_door(door(), "2026-08-16") == "2026-09-04")
+    check("a past hearing is not",
+          next_door(door(key_dates=[{"date": "2026-07-01", "kind": "hearing"}]),
+                    "2026-08-16") is None)
+    check("the door is today's, when it is today",
+          next_door(door(key_dates=[{"date": "2026-08-16", "kind": "hearing"}]),
+                    "2026-08-16") == "2026-08-16")
+    check("the NEAREST future door is the one reported",
+          next_door(door(key_dates=[{"date": "2026-11-03", "kind": "hearing"},
+                                    {"date": "2026-09-04", "kind": "hearing"}]),
+                    "2026-08-16") == "2026-09-04")
+
+    # A DECIDED ITEM WITH A FUTURE DOOR KEEPS IT, which is why this is not a status filter.
+    # League City has decided, and what it decided was to order a November 3rd election.
+    check("a decided item with a future door still has one",
+          next_door(door(status="decided"), "2026-08-16") == "2026-09-04")
+
+    # A clock on an agency is not a room a Texan can stand in.
+    check("a statutory deadline is not a public door",
+          next_door(door(key_dates=[{"date": "2026-09-04", "kind": "statutory_deadline"}]),
+                    "2026-08-16") is None)
+    check("...nor is the date a rule takes effect",
+          next_door(door(key_dates=[{"date": "2027-02-16", "kind": "effective"}]),
+                    "2026-08-16") is None)
+
+    # A CANCELED SITTING IS NOT A DOOR, AND IT IS A FIELD RATHER THAN A SENTENCE. This read the
+    # note with a regex first, which worked and would have gone quiet the day somebody wrote
+    # "called off". gate_schema keeps the note from disagreeing with the flag.
+    check("a canceled hearing is not a door",
+          next_door(door(key_dates=[{"date": "2026-09-04", "kind": "hearing",
+                                     "canceled": True, "note": "since canceled"}]),
+                    "2026-08-16") is None)
+    check("...and the prose alone no longer decides it",
+          next_door(door(key_dates=[{"date": "2026-09-04", "kind": "hearing",
+                                     "note": "since canceled"}]),
+                    "2026-08-16") == "2026-09-04",
+          "the flag is the truth; gate_schema is what refuses this item at build time")
 
     if failures:
         print(f"\nsite_build self-test: {failures} FAILED", file=sys.stderr)
