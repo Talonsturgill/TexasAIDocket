@@ -619,8 +619,14 @@ def qa_pairs(ctx: Ctx, it: dict, today: str) -> list:
         # /sources/, both of which lay them out as a list, which is what a list wants to be.
         n = len(srcs)
         primary = sum(1 for c in srcs if str(c.get("source_type", "")).startswith("primary"))
-        line = f"{_spell(n).capitalize()} {_plural(n, 'source', 'sources')} back it."
-        if primary:
+        # THE VERB AGREES TOO. `_plural` was pluralising the noun and leaving "back" bare, so a
+        # single-source entry published "One source back it." And "them" needs something to be
+        # plural about, so one source is "It is primary" rather than "One of them is primary".
+        line = (f"{_spell(n).capitalize()} {_plural(n, 'source', 'sources')} "
+                f"{_plural(n, 'backs', 'back')} it.")
+        if primary and n == 1:
+            line += " It is primary."
+        elif primary:
             line += (f" {_spell(primary).capitalize()} of them "
                      f"{_plural(primary, 'is', 'are')} primary.")
         add(f"{t}. What sources back it?", line)
@@ -798,6 +804,26 @@ def self_test() -> int:
     ok("...and no geography answer is invented",
        not any("Where in Texas" in q for q, _ in bp), str([q for q, _ in bp]))
     ok("...but what the record does hold is still answered", len(bp) >= 3, str(len(bp)))
+
+    # SUBJECT AND VERB AGREE, over every answer the real ledger produces.
+    #
+    # `_plural` was pluralising the noun and leaving the verb alone, so a single-source entry
+    # published "One source back it." A count of one is rare in a record of 58 decisions, which
+    # is exactly why nothing caught it by eye: most items have three or four sources and read
+    # correctly, and the broken form only appears on the handful that have one.
+    #
+    # So this checks the CLASS, not the instance. Any spelled singular followed by a bare
+    # plural verb, over everything `qa_pairs` can emit for the whole ledger. A new frame that
+    # writes "One county cover it" fails here without anyone remembering this happened.
+    import re as _re
+    singular_verb = _re.compile(
+        r"\b(?:One|A|An)\s+[a-z]+\s+(?:back|cover|apply|start|are|were|have|do|include)\b")
+    produced = [a for it in items for _q, a in qa_pairs(ctx, it, today)]
+    bad_agreement = sorted({a for a in produced if singular_verb.search(a)})
+    ok(f"a singular subject takes a singular verb, over {len(produced)} live answers",
+       not bad_agreement, "\n         ".join(bad_agreement[:5]))
+    ok("...and that read real answers rather than an empty list",
+       len(produced) >= 100, f"only {len(produced)} answer(s) produced")
 
     print("\nschema self-test: " + ("all passed" if not failures else f"{failures} FAILED"))
     return 0 if not failures else 1
