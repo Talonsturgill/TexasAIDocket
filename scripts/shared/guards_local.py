@@ -139,14 +139,34 @@ def ci_note(step: Step) -> str:
         if hook_installed():
             return (base + ". Covered here by the pre-commit hook, which runs the same check "
                     "off .git/ACTOR on every commit")
-        return (base + ". NOT covered here either: core.hooksPath does not point at an existing "
-                "pre-commit hook in this checkout, so the ownership law has no local mechanism. "
-                "Run `git config core.hooksPath .githooks`")
+        return base + ". " + NO_LOCAL_MECHANISM
     return base
 
 
+# THIS IS A FAILURE, NOT A SKIP, AND THE DIFFERENCE COST A WHOLE RUN.
+#
+# On 2026-08-16 `core.hooksPath` was unset in the working checkout, so `.githooks/pre-commit`
+# sat committed and executable and unreferenced. Every commit that run made went in with no
+# ownership check on it. This file was the ONLY thing that noticed, and it reported the gap as a
+# skipped step, printed `51 step(s) passed`, and exited 0. A run reading the exit code, which
+# this repo's own instructions say to do rather than reading the last line, learned nothing.
+#
+# A skip is what a check looks like when it is not needed. This is a check that CANNOT RUN,
+# which is the opposite, and reporting the two the same way is what made a green suite mean
+# "the ownership law is not in force".
+NO_LOCAL_MECHANISM = (
+    "NOT covered here either: core.hooksPath does not point at an executable pre-commit hook "
+    "in this checkout, so the ownership law has no local mechanism at all. "
+    "Run `git config core.hooksPath .githooks`")
+
+
 def hook_installed() -> bool:
-    """Whether this checkout really has a pre-commit hook git would run."""
+    """Whether this checkout really has the hooks git would run.
+
+    Both hooks, not just one. `pre-commit` is what refuses an out-of-lane write, and
+    `commit-msg` is what stamps the `Actor:` trailer CI reads to judge a commit's lane. A
+    checkout with only the first enforces locally and then hands CI commits it cannot judge.
+    """
     try:
         out = subprocess.run(["git", "config", "core.hooksPath"], cwd=REPO_ROOT,
                              capture_output=True, text=True)
@@ -154,8 +174,8 @@ def hook_installed() -> bool:
     except OSError:
         return False
     root = (REPO_ROOT / path) if path else (REPO_ROOT / ".git" / "hooks")
-    hook = root / "pre-commit"
-    return hook.exists() and hook.stat().st_mode & 0o111 != 0
+    return all((root / name).exists() and (root / name).stat().st_mode & 0o111 != 0
+               for name in ("pre-commit", "commit-msg"))
 
 
 def run_step(step: Step) -> tuple[int, str, float]:
@@ -241,6 +261,18 @@ def main() -> int:
         for s, why in skipped:
             print(f"  -  {s.name}: {why}")
         print()
+
+    # A LAW WITH NO MECHANISM IS A FAILURE. See NO_LOCAL_MECHANISM above for the run this cost.
+    unenforced = [s for s, why in skipped if NO_LOCAL_MECHANISM in why]
+    if unenforced:
+        print("guards_local: the ownership law has NO LOCAL MECHANISM in this checkout.",
+              file=sys.stderr)
+        print("  .githooks/pre-commit and .githooks/commit-msg are committed and executable, "
+              "and git is\n  not pointed at them, so every commit here goes in unchecked and "
+              "unstamped.\n\n      git config core.hooksPath .githooks\n", file=sys.stderr)
+        print("  This is a FAILURE and not a skip. A skip is what a check looks like when it is "
+              "not\n  needed. This is a check that cannot run.", file=sys.stderr)
+        return 1
 
     if failed:
         print(f"guards_local: {len(failed)} of {ran} step(s) FAILED", file=sys.stderr)
@@ -344,8 +376,33 @@ jobs:
        else "the hook is installed and the note does not say so")
     ok("...and a step with no local cover gets the plain reason",
        "pre-commit" not in ci_note(Step("x", 'run: "${{ github.sha }}"')))
-    ok("this checkout really does have the hook the note claims", hook_installed(),
-       "core.hooksPath does not resolve to an executable pre-commit here")
+    ok("this checkout really does have the hooks the note claims", hook_installed(),
+       "core.hooksPath does not resolve to executable pre-commit AND commit-msg hooks here")
+
+    # THE RED CASE FOR THE FAULT THIS FILE MISSED. On 2026-08-16 the hook was not installed,
+    # this file said so in a skip line, and it exited 0 under a passing banner. The assertion
+    # is not "the note mentions it" but "a missing mechanism is routed to the FAILURE list",
+    # because the note was already correct that day and the exit code was still green.
+    ok("a missing local mechanism produces the sentinel the failure path keys on",
+       NO_LOCAL_MECHANISM in ci_note(own) or hook_installed(),
+       "the note no longer carries the sentinel, so the failure path is unreachable")
+    ok("...and the failure path keys on that same sentinel",
+       "NO_LOCAL_MECHANISM in why" in Path(__file__).read_text(encoding="utf-8"),
+       "the sentinel and the check that reads it have drifted apart")
+
+    # Simulate the 2026-08-16 checkout: hook absent, note produced, and assert the classifier
+    # routes it to the failure list rather than the skip list.
+    import unittest.mock as _mock
+    with _mock.patch(f"{__name__}.hook_installed", return_value=False):
+        absent_note = ci_note(own)
+    ok("with no hook installed, the note carries the sentinel",
+       NO_LOCAL_MECHANISM in absent_note, absent_note)
+    ok("...and that note would be classified unenforced, not merely skipped",
+       [1 for w in [absent_note] if NO_LOCAL_MECHANISM in w] == [1])
+    with _mock.patch(f"{__name__}.hook_installed", return_value=True):
+        present_note = ci_note(own)
+    ok("...while an installed hook is NOT classified unenforced",
+       NO_LOCAL_MECHANISM not in present_note, present_note)
 
     ok("the real workflow parses to something", len(steps()) > 10, str(len(steps())))
     ok("...and the house style CHECK is one of the steps found, not just its self-test",

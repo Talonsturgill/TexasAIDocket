@@ -28,14 +28,22 @@ policy are independent, and both vary host by host.**
 | Host | robots.txt | Behaviour | The compliant move |
 |---|---|---|---|
 | **`gisweb.tceq.texas.gov`** | **`Disallow: /` for ALL agents** | would serve data | **Do not fetch. Use EPA Envirofacts instead** |
-| **`courtlistener.com`** | disallows `*` **but explicitly ALLOWS `claudebot`** | 200 | **Send the ClaudeBot UA. It is the compliant one here** |
+| **`courtlistener.com`** | disallows `*` **but explicitly ALLOWS `claudebot`** | 200, **and a CloudFront 403 on `robots.txt` itself was seen 2026-08-16** | **Send the ClaudeBot UA. It is the compliant one here. A 403 fetching the robots file is an edge failure and NOT a policy change, so do not write this host off on one** |
+| `gov.texas.gov` | **serves no robots.txt at all** | 200 to a browser UA, posts and `/uploads/files/press/` PDFs alike | Browser UA. Nothing is disallowed because nothing is stated |
+| `lrl.texas.gov` | content signals, **no path disallow** | 200 | Usable. The weekly interim hearings post is the cheapest dated public microphone |
 | `interchange.puc.texas.gov` | **no robots.txt at all** | **402 to a ClaudeBot UA, 200 to a browser UA** | Browser UA. Nothing is disallowed |
 | `texastribune.org` | permits both | **403s a ClaudeBot UA, 200 to a browser UA** | Browser UA |
 | `comptroller.texas.gov` | broad `Disallow: /*/` **but `/economy/` is explicitly allowed** | 200 | Stay inside `/economy/` |
-| **`texreg.sos.state.tx.us`** | names GPTBot, Googlebot, bingbot; **no `*` group and no ClaudeBot group** | **allowed** | **Usable and currently unexploited. The Texas Register is the authoritative publication for proposed rules and their official comment instructions, which makes it the single best addition to the collector set** |
+| **`texreg.sos.state.tx.us`** | names FacebookExternalHit, bingbot, GPTBot, ChatGPT-User, OAI-SearchBot, Googlebot and AhrefsBot; **no `*` group and no ClaudeBot group**. Re-confirmed 2026-08-16 | **allowed** | **Usable and currently unexploited. The Texas Register is the authoritative publication for proposed rules and their official comment instructions, which makes it the single best addition to the collector set** |
 
 **A 402 or a 403 is not a robots decision, and a robots allowance is not a promise of a 200.**
 Check the file, then check the fetch, and record both.
+
+**WHERE A RUN WRITES WHAT IT OBSERVED.** This file is `human` owned and stays that way, because it
+carries the disallow list, and an unattended run that could edit its own boundary does not have
+one. So a run appends to `knowledge/shared/SOURCES_FIELD_LOG.md` instead, which it owns and may
+only add to. A maintainer folds those entries up into this file. The four entries dated
+2026-08-16 above arrived that way.
 
 ---
 
@@ -210,6 +218,21 @@ needs. NCEI CDO v2 requires a token and is unnecessary given the above.
 | RRC public viewer | `gis.rrc.texas.gov/server/rest/services/rrc_public/RRC_Public_Viewer_Srvs/MapServer` | none | **[V]** 41 layers, wells, pipelines, counties, districts | county layer 29 |
 
 **PUCT is a GET, not a POST.** `POST /search/search/` returns 404.
+
+### The Governor's office and the Legislative Reference Library
+
+Both added 2026-08-16, from the first run to ship a deck. `gov.texas.gov` was the single most
+productive source of that run and was not in this registry at all.
+
+| Source | Endpoint | Key | ✓ | Geo |
+|---|---|---|---|---|
+| **Governor's press releases** | `gov.texas.gov/news/post/<slug>` | none | **[V]** **serves NO robots.txt**, answers a browser User-Agent | statewide, names the county in the body |
+| **Governor's directive letters and press PDFs** | `gov.texas.gov/uploads/files/press/<file>.pdf` | none | **[V]** same host, same terms. This is where a directive's actual text lives, rather than the summary in the post | |
+| **LRL interim hearings, weekly** | `lrl.texas.gov/whatsNew/client/index.cfm/<yyyy>/<m>/<d>/Interim-Hearings--Week-of-<Month>-<D>-<YYYY>` | none | **[V]** robots.txt carries content signals and **no path disallow** | statewide |
+
+**The LRL weekly post is the cheapest route to a dated public microphone**, which is exactly what
+this record promises a reader. A committee hearing is a decision point with a date and a room, and
+it is a `public_access` entry the record can carry before anything is decided.
 
 ### Money
 

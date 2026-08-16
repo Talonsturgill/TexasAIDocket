@@ -1,0 +1,34 @@
+{
+  "_note": "Every number this deck computed rather than quoted, with the code that produced it. compute.py is committed beside this file and re-runs to the same values. The 0.18 percent share on slide 5 is NOT listed here and cannot be: aggregate_check declares a phrase only when its own detector found it on a slide, and it does not read '0.18 PERCENT OF THE FIRST PHASE' as one of its four shapes. A declaration with no matching finding is refused as a leftover. The figure traces through compute.py tef_share_of_phase_one_pct instead, which ships beside this file.",
+  "aggregates": [
+    {
+      "phrase": "89 miles across",
+      "kind": "count",
+      "value": 1.89,
+      "computed_by": "out/2026-08-16/compute.py footprint_square_side_mi, sqrt(100000000) / 5280 from claim c5, rounded to two decimals",
+      "from_claims": [
+        "c5"
+      ]
+    },
+    {
+      "phrase": "5 MILES",
+      "kind": "count",
+      "value": 5,
+      "computed_by": "slide-01.html scale bar, five miles measured through the same TXGeo Albers projection the county polygon is drawn with",
+      "from_claims": [
+        "c5"
+      ]
+    },
+    {
+      "phrase": "Four bodies",
+      "kind": "count",
+      "value": 4,
+      "from_claims": [
+        "c3",
+        "c11",
+        "c10",
+        "c12"
+      ]
+    }
+  ]
+}

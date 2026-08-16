@@ -1,0 +1,35 @@
+{
+  "run_date": "2026-08-16",
+  "phases": {
+    "wake": "done",
+    "craft": "done",
+    "sweep": "done",
+    "reverify": "done",
+    "discover": "done",
+    "admit": "done",
+    "claims": "pending",
+    "instrument": "done",
+    "selection": "done",
+    "directors": "pending",
+    "copy": "pending",
+    "art": "pending",
+    "pixel": "pending",
+    "aggregate": "pending",
+    "assembly": "pending",
+    "scoring": "pending",
+    "ship": "pending",
+    "retro": "pending",
+    "email": "pending"
+  },
+  "artifacts": {
+    "fetches": "out/2026-08-16/fetch/",
+    "computed": "out/2026-08-16/computed.json",
+    "commits": [
+      "27c4c51 re-verify twelve",
+      "b743663 admit Terafab and the audit directive",
+      "fa15c4a directive letter and interim hearings"
+    ],
+    "story": "tx-2026-0071 Terafab, Grimes County",
+    "claims": "pending fact-checker"
+  }
+}

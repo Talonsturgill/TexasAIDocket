@@ -11,7 +11,7 @@ The Texas Commission on Environmental Quality had set a notice and comment heari
 - Public access: Public meeting
 - Take part: https://www.tceq.texas.gov/agency/decisions/hearings/notice-and-comment-hearing-vantage-data-centers-tx11-llc-o4791
 
-- Last checked: 2026-08-14
+- Last checked: 2026-08-16
 
 ## Dates
 

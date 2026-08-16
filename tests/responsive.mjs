@@ -336,7 +336,17 @@ for (let f = 0.25; f <= 0.85; f += 0.025) {
 }
 const urlBeforeRelease = tp.url();
 await cdp.send("Input.dispatchTouchEvent", { type: "touchEnd", touchPoints: [] });
-await tp.waitForTimeout(350);
+// PAST THE CLICK KILLER, NOT INSIDE IT. A drag's touchend arms a capture-phase click killer
+// and removes it after 400ms, which is what stops the county under the lifted thumb opening.
+// This waited 350ms and then tapped, so the tap landed inside the window the product
+// deliberately suppresses, and passed only when the drag's own touchend had already consumed
+// the `once:true` killer. That is a coin toss: locally it navigated on 1 run in 3.
+//
+// The assertion is "a plain tap still opens the county", so the tap has to be a plain one.
+// Waiting past the window is what makes it plain. Raising this number is NOT the fix if it
+// starts failing again: that would mean the killer is outliving its 400ms, which is a defect
+// in the map rather than in the clock here.
+await tp.waitForTimeout(700);
 check("a thumb dragged across the map names the counties it crosses",
       named.size >= 6, `${named.size} named`);
 check("...and says what each one holds",

@@ -1,0 +1,142 @@
+<!doctype html>
+<!-- SLIDE 3 — three stages, one roof. Parallax planes with a two-part contact shadow. -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1080px;height:1350px;overflow:hidden}
+  body{background:#08060F;position:relative;font-family:"Manrope",sans-serif}
+  canvas#art{position:absolute;inset:0}
+  svg#ink{position:absolute;inset:0}
+  .hd{position:absolute;top:118px;left:80px;right:80px}
+  .kick{font-family:"JetBrains Mono",monospace;font-size:25px;letter-spacing:.15em;
+        color:#C9A063;text-transform:uppercase;margin-bottom:20px}
+  h1{font-family:"Fraunces",serif;font-weight:800;font-size:112px;line-height:.96;
+     letter-spacing:-.02em;color:#E4D8C3;font-variation-settings:"opsz" 96}
+  .dek{position:absolute;left:80px;top:512px;width:600px;font-size:32px;color:#C9B393;line-height:1.42}
+  .mark{position:absolute;left:80px;bottom:96px;display:flex;align-items:center;gap:16px}
+  .wm{font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:.19em;color:rgba(228,216,195,.72)}
+  .ctr{position:absolute;right:80px;bottom:96px;font-family:"JetBrains Mono",monospace;
+       font-size:24px;letter-spacing:.1em;color:rgba(228,216,195,.5)}
+  .geo{position:absolute;left:80px;bottom:60px;font-family:"JetBrains Mono",monospace;
+       font-size:19px;letter-spacing:.11em;color:rgba(228,216,195,.34)}
+</style></head>
+<body data-contacts='[{"what":"the stack sitting on its slab","shadow":[[280,1178,520,18]],"ground":[[280,1268,520,18]]}]'
+      data-encodes='[{"claim":"the roof plane and the deepest stage plane are different values","reads":"differ","a":[[300,836,420,30]],"b":[[300,1036,420,34]]}]'>
+  <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+  <svg id="ink" width="1080" height="1350" viewBox="0 0 1080 1350"></svg>
+  <div class="hd">
+    <div class="kick">Vertically integrated</div>
+    <h1>Logic. Memory.<br>Packaging.</h1>
+  </div>
+  <div class="dek">These stages normally sit in separate plants, often on separate continents.
+    The company says all three go under one roof.</div>
+  <div class="mark">
+    <svg width="26" height="26" viewBox="0 0 24 24"><polygon fill="#FFF" points="12,1 15.1,8.6 23,9.2 17,14.4 18.9,22 12,17.8 5.1,22 7,14.4 1,9.2 8.9,8.6"/></svg>
+    <span class="wm">TEXAS AI DOCKET</span>
+  </div>
+  <div class="ctr">02 / 08</div>
+  <div class="geo" data-decorative>GRIMES COUNTY  30.545 N  95.985 W</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script>
+window.renderReady = new Promise(function (done) {
+(async function () {
+  TX.reseed(20260816);
+  const R = TX.rng(20260816);
+  const g = document.getElementById("art").getContext("2d");
+  g.scale(2, 2);
+  const sky = g.createLinearGradient(0, 0, 0, 1350);
+  sky.addColorStop(0, "#08060F"); sky.addColorStop(.5, "#0D0A18"); sky.addColorStop(1, "#150F1E");
+  g.fillStyle = sky; g.fillRect(0, 0, 1080, 1350);
+
+  /* A plane drawn as a parallelogram receding to the right, so the stack has depth
+     without a 3D scene. Each stage is its own value, which is what stops it being a collage. */
+  /* A plane drawn as a parallelogram receding to the right, so the stack has depth
+     without a 3D scene. Each stage is its own value, which is what stops it being a collage. */
+  function plane(x0, y, w, h, fill, edge, skew) {
+    const x1 = x0 + w;
+    g.beginPath();
+    g.moveTo(x0, y); g.lineTo(x1, y - skew); g.lineTo(x1, y - skew + h); g.lineTo(x0, y + h);
+    g.closePath();
+    g.fillStyle = fill; g.fill();
+    g.strokeStyle = edge; g.lineWidth = 1.6; g.stroke();
+    g.beginPath(); g.moveTo(x0, y); g.lineTo(x1, y - skew);
+    g.strokeStyle = "rgba(216,201,171,.40)"; g.lineWidth = 2; g.stroke();
+  }
+
+  /* Ground lit first, so the contact shadow has something to subtract from. */
+  const pool = g.createRadialGradient(540, 1176, 20, 540, 1176, 440);
+  pool.addColorStop(0, "rgba(201,160,99,.26)"); pool.addColorStop(1, "rgba(201,160,99,0)");
+  g.fillStyle = pool; g.fillRect(0, 1010, 1080, 340);
+
+  /* the slab, then a TWO-PART contact shadow cast into the lit ground BELOW it. A single
+     hard rectangle above the slab reads as a drop shadow and as a fifth bar. */
+  g.fillStyle = "#3A2A22"; g.fillRect(232, 1130, 616, 44);
+  g.save();
+  g.filter = "blur(9px)";
+  g.fillStyle = "rgba(8,6,15,.58)"; g.fillRect(238, 1174, 604, 26);
+  g.filter = "blur(34px)";
+  g.fillStyle = "rgba(8,6,15,.30)"; g.fillRect(186, 1174, 708, 62);
+  g.restore(); g.filter = "none";
+
+  /* END WALLS first, so the roof lands ON the stack rather than above it. A roof with no
+     walls and a gap under it is a fourth bar, which is what the critic saw. */
+  g.beginPath();
+  g.moveTo(140, 810); g.lineTo(160, 810); g.lineTo(160, 1112); g.lineTo(140, 1112);
+  g.closePath(); g.fillStyle = "#2B2447"; g.fill();
+  g.beginPath();
+  g.moveTo(912, 780); g.lineTo(932, 780); g.lineTo(932, 1082); g.lineTo(912, 1082);
+  g.closePath(); g.fillStyle = "#221C3A"; g.fill();
+
+  /* the three stages, tight enough to read as one stack */
+  plane(206, 1024, 660, 70, "#2E2A20", "#403A2C", 30);
+  plane(206,  940, 660, 70, "#4A5236", "#5C6544", 30);
+  plane(206,  856, 660, 70, "#8C5A3C", "#A85433", 30);
+
+  /* THE EAVE SHADOW. The roof throws light off the top stage, which is what makes it a roof
+     over the stages rather than a bar beside them. */
+  g.save();
+  g.beginPath();
+  g.moveTo(206, 856); g.lineTo(866, 826); g.lineTo(866, 896); g.lineTo(206, 926);
+  g.closePath(); g.clip();
+  const eave = g.createLinearGradient(0, 852, 0, 926);
+  eave.addColorStop(0, "rgba(8,6,15,.62)"); eave.addColorStop(1, "rgba(8,6,15,0)");
+  g.fillStyle = eave; g.fillRect(190, 850, 700, 80);
+  g.restore();
+
+  /* the roof OVERHANGS what it covers on both sides, and it is the lightest thing here */
+  plane(140, 826, 792, 46, "#D8C9AB", "#F1E8D2", 30);
+
+  /* a dust haze off the slab edge, so the bottom band carries modeled tone */
+  g.globalAlpha = .55;
+  for (let i = 0; i < 380; i++) {
+    const x = 190 + R() * 700, y = 1186 + R() * 84;
+    g.fillStyle = "rgba(201,179,147," + (0.05 + 0.11 * R()) + ")";
+    g.fillRect(x, y, 2 + R() * 6, 1.4);
+  }
+  g.globalAlpha = 1;
+
+  const grain = new Image();
+  await new Promise(r => { grain.onload = r; grain.src = TX.grainTile(280, 40, 11); });
+  g.globalAlpha = .034;
+  for (let y = 0; y < 1350; y += 280) for (let x = 0; x < 1080; x += 280) g.drawImage(grain, x, y);
+  g.globalAlpha = 1;
+
+  const svg = d3.select("#ink");
+  await document.fonts.ready;
+  const rows = [["ONE ROOF", 800, "#D8C9AB", 152],
+                ["ADVANCED PACKAGING", 900, "#F4EEDF", 226],
+                ["MEMORY", 984, "#E4D8C3", 226],
+                ["LOGIC", 1068, "#E4D8C3", 226]];
+  for (const [txt, y, fg, x] of rows) {
+    svg.append("text").attr("x", x).attr("y", y)
+       .attr("font-family", "JetBrains Mono, monospace").attr("font-size", 28)
+       .attr("letter-spacing", "0.09em").attr("fill", fg).text(txt);
+  }
+  document.body.dataset.ready = "1"; done();
+})();
+});
+</script>
+</body></html>

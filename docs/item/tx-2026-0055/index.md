@@ -11,7 +11,7 @@ Conroe City Council voted late on August 13th, 2026 on whether to place a bindin
 - Public access: Public meeting
 - Take part: https://www.cityofconroe.org/government/city_council/agendas_minutes/index.php
 
-- Last checked: 2026-08-14
+- Last checked: 2026-08-16
 
 ## Dates
 
@@ -25,7 +25,7 @@ Every fact above rests on one of these. The words are the source's own.
 
 ### The motion to send the Flock camera question to voters failed for want of a third vote.
 
-> The motion did not get the three 'yes' votes needed to advance.
+> the motion did not get the three "yes" votes needed to advance
 
 Source (journalism): https://www.click2houston.com/news/local/2026/08/14/conroe-city-council-vote-falls-short-of-putting-flock-camera-question-on-november-ballot/
 
