@@ -759,3 +759,77 @@ it was never derived from us.
 one time move and record the date.** And keep the target separate from the backstop: the target is
 taste and belongs in `config/brand.yaml` where a writer reads it; the backstop is an edge and
 belongs in the linter.
+
+## 35. A checker that cannot see the form the product actually ships
+
+The month abbreviation rule in `caption_check` matched `Aug 31` and not `AUG 31`. Its own
+self test proved it fired, on `"Filed Aug 11."`, and stayed green for as long as it existed.
+
+`short_date()` returns `f"{d:%b} {d.day}".upper()`. Uppercase is the only form this site has
+ever rendered an abbreviated month in. So the rule could see every case that was not on the
+site and could not see the one case that was, and the self test agreed with it, because the
+self test was written from the rule rather than from the page.
+
+May was the only month it ever caught, through a different rule that happened to match a
+three letter month spelled in full. That is what made the gap visible at all, and it was
+luck.
+
+Adding `re.IGNORECASE` immediately turned up three real violations on the front page.
+
+**What to check instead.** When you write a rule against a rendered form, get the form from
+the renderer, not from your idea of it. Grep for the function that produces it and read what
+it returns. A self test written from the rule tests the rule against itself; a self test
+written from a real rendered string tests it against the product.
+
+**The second half of this one is worth as much as the first.** The three violations it found
+were on a calendar tile that reads "SEP 8" at display size, and the honest answer was neither
+to widen the exemption nor to spell "September 8th" across a 2.5rem tile.
+
+The tile became a `time` element carrying its own `datetime` attribute, and the checker
+verifies that the visible text is a rendering of that attribute before letting it past the
+date rules. The exemption is earned per element, by proof, and an element that fails to earn
+it is reported AND left in the prose stream, so wrapping a sentence in `time` gets it linted
+twice rather than not at all.
+
+Note which direction the derivation runs. The permitted renderings are computed in the
+CHECKER from the ISO value. Importing them from the builder would produce a checker that
+agrees with the generator about a wrong answer, which is the same fault as an allow list
+built from the output instead of the input.
+
+**Generalises to.** Every "this region is data, not prose" argument. The way to settle it is
+not a marker asserting the region is exempt. It is a machine readable value in the element
+itself that the checker can hold the visible text against.
+
+## 36. A test that cannot tell a working implementation from a broken one
+
+`map_gestures.mjs` has said in its header since the day it was written that zoom anchors on
+the fingers rather than the centre of the drawing. Fourteen assertions, none of them that one.
+
+The reason is worth more than the omission. Every pinch in the file was performed at the
+centre of the viewport, and **an anchored zoom and a centre anchored zoom produce the same
+viewBox when the fingers are at the centre.** The two implementations are indistinguishable
+under the only input the test supplied. Deleting the anchoring maths from the page would not
+have turned it red.
+
+Underneath that, every pinch used a hardcoded `(195, 400)` on a viewport where the drawing
+starts at y=502. The gestures were being performed above the map. The handler ran anyway,
+because the events were dispatched straight at the element, so the whole file was passing on
+input no finger could produce.
+
+`text_contrast.mjs` had the same shape at a different scale. It swept 151 pages in one 1100px
+desktop context, where a `max-width` query cannot fire and the map's touch built controls do
+not exist. The site's two newest controls, over a live map, had never been measured by the
+gate whose entire promise is that every word on the site is legible.
+
+**What to check instead.** For any assertion, ask what the broken implementation would
+produce and whether your input distinguishes it. If a centred pinch, a desktop viewport or a
+default value makes two different behaviours agree, the test is measuring the agreement.
+
+The fix is to state the discrimination in the test itself. The anchoring assertion now
+computes what a centre anchored zoom WOULD have left under the finger and fails if the
+observed answer is not several times closer to the anchored one, so a pinch too near the
+centre to be a test reports itself as such instead of passing.
+
+**And a coverage rule that came out of the same pass.** When a suite runs in more than one
+context, assert the count PER CONTEXT. A phone pass that silently built nothing lands as a
+healthy total, because the desktop pass alone clears any threshold written against the sum.
