@@ -147,6 +147,21 @@ def scan_report(report: dict) -> list[dict]:
     for i, slide in enumerate(report.get("slides") or []):
         name = slide.get("slide") or slide.get("file") or f"slide {i + 1}"
         for node in slide.get("text_nodes") or []:
+            # FURNITURE THE DESIGN HAS ALREADY DECLARED. render.py records a `decorative` flag
+            # for exactly this, and until 2026-08-16 nothing here read it.
+            #
+            # The coordinates footer in the form the design doctrine asks for, "30 degrees 33
+            # minutes N", reads as a span to the shape detectors. It produced four findings on
+            # every slide, thirty six for the deck, none of them real. That run worked around it
+            # by printing decimal degrees, which is a worse footer than the doctrine asks for,
+            # and wrote the gate up as a proposal.
+            #
+            # The argument is the same one already written above for the slide counter: a gate
+            # that cries wolf nine times a deck teaches the run to scroll past the tenth. This
+            # exemption is narrower than that one, because a designer had to mark the element
+            # rather than the gate guessing from a pattern.
+            if node.get("decorative"):
+                continue
             txt = (node.get("text") or "").strip()
             if not txt:
                 continue
@@ -323,6 +338,26 @@ def self_test() -> int:
        detect("4 of 9 counties", 9) != [])
     ok("...and with no slide count known, nothing is exempted, which is the safe direction",
        detect("slide one of four") != [])
+
+    # THE DECORATIVE MARKER, which existed and was not being read. The coordinates footer in the
+    # form the design doctrine asks for produced four findings on every slide, thirty six for the
+    # 2026-08-16 deck, and that run printed decimal degrees instead to get past it.
+    footer = "GRIMES COUNTY 30 degrees 33 minutes N 95 degrees 59 minutes W"
+    ok("the doctrine's coordinates footer does read as an aggregate on its own",
+       detect(footer) != [], "if this goes quiet the exemption below proves nothing")
+    marked = {"slides": [{"file": "slide-01.png",
+                          "text_nodes": [{"text": footer, "decorative": True}]}]}
+    ok("...and a node the design marked decorative is not scanned", scan_report(marked) == [])
+    unmarked = {"slides": [{"file": "slide-01.png",
+                            "text_nodes": [{"text": footer, "decorative": False}]}]}
+    ok("...while the same string unmarked is still reported", scan_report(unmarked) != [])
+
+    # The exemption must not swallow a real figure that happens to share a node with furniture.
+    real = {"slides": [{"file": "slide-01.png", "text_nodes": [
+        {"text": footer, "decorative": True},
+        {"text": "4 of 9 counties carry an item", "decorative": False}]}]}
+    ok("...and a real aggregate beside decorative furniture still lands",
+       len(scan_report(real)) == 1, str(scan_report(real)))
 
     ok("a bare year is not an aggregate", not detect("filed in 2026"))
     ok("a bill number is not an aggregate", not detect("Senate Bill 6 was referred"))
