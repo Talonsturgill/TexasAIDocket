@@ -109,6 +109,30 @@ rules:
       tweak would silently restyle the video and the website too.
   - path: "knowledge/shared/**"
     owner: human
+
+  # THE ONE FILE IN knowledge/shared A RUN MAY WRITE, and the reason it is a separate file.
+  #
+  # Phase 17 tells a run that a source which behaved differently than SOURCES_REGISTRY.md
+  # describes is knowledge the next run needs. The map refused that write, so until 2026-08-16
+  # the routine and the map contradicted each other and a run's four source findings survived
+  # only because it wrote them longhand into its run record and a maintainer pasted them across.
+  #
+  # The registry itself does NOT open, and must not. It carries the crawl boundary, the list of
+  # hosts this project has decided not to fetch. A run able to edit its own boundary does not
+  # have one: it could delete a disallow and the next fetch would be compliant with a file it
+  # had just rewritten.
+  #
+  # So observation is split from law. A run appends what it SAW here. A maintainer decides what
+  # is durable and folds it up into the registry. append_only is what makes that safe, because
+  # the risk was never a run adding a note, it was a run removing a restriction.
+  - path: "knowledge/shared/SOURCES_FIELD_LOG.md"
+    owner: daily
+    append_only: true
+    note: >
+      What a run observed about a source, as opposed to what the project has decided about it.
+      A run may only ADD. The registry beside it stays human owned because it carries the
+      disallow list, and an unattended run that can edit its own crawl boundary does not have
+      one.
   - path: "assets/**"
     owner: human
 

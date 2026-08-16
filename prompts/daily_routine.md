@@ -127,7 +127,8 @@ public fact stand for another day, on a page whose entire promise is that it doe
 - `CLAUDE.md` — the law: ownership, the compute-not-generate rule, the delivery policy.
 - `.claude/WORKLOG.md` if it exists — the durable plan across contexts.
 - `knowledge/shared/SOURCES_REGISTRY.md` — **what is fetchable, what is off limits, and the
-  traps.** Read this before any fetch.
+  traps.** Read this before any fetch. You may not write it. Its companion
+  `SOURCES_FIELD_LOG.md` is where you append what a source actually did, and it is yours.
 - `knowledge/shared/GATE_LESSONS.md` — how this machine has lied to itself before. Read it before
   you trust a green gate.
 - `knowledge/shared/TEXAS_GOVERNMENT.md` — who decides what, and where a decision actually gets
@@ -706,9 +707,24 @@ Two parts, and the second one changes lane.
 
 **The run record.** Append what the worklist held, what was deferred and why, what was admitted and
 what was held, the instrument check's finding, and anything a source did that the registry does not
-describe. **If a source behaved differently than `SOURCES_REGISTRY.md` says, update the registry in
-the same commit.** A registry that drifts from reality is worse than none, because the next run
-trusts it.
+describe. **If a source behaved differently than `SOURCES_REGISTRY.md` says, append the finding to
+`knowledge/shared/SOURCES_FIELD_LOG.md` in the same commit.** A registry that drifts from reality
+is worse than none, because the next run trusts it.
+
+**Append to the field log, never to the registry, and this is not a formality.** The registry is
+`human` owned and stays that way because it carries the crawl boundary, the hosts this project has
+decided not to fetch. A run able to edit its own boundary does not have one: it could delete a
+disallow and the next fetch would be compliant with a file it had just rewritten. The field log is
+yours and is append-only, so you can record anything you saw and remove nothing. A maintainer folds
+what is durable up into the registry.
+
+Until 2026-08-16 this instruction named the registry, the map refused the write, and that run's
+four source findings survived only because it wrote them longhand into its run record and a
+maintainer pasted them across by hand. A finding that survives on somebody remembering to copy it
+is a finding the machine loses.
+
+**A disallow you would like to be different is not a field observation.** Never route around one
+and never argue with one in the log.
 
 **The craft.** Record what this run learned about making decks, zero to three lessons:
 
