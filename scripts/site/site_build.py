@@ -364,11 +364,20 @@ def page(*, title: str, desc: str, body: str, depth: int, active: str,
     footnav = "".join(f'<li><a href="{p}{h}">{e(t)}</a></li>' for h, t in FOOTNAV)
     # The colophon is assembled from parts rather than written as a sentence, so the separator
     # is a style decision in one place and the build date can never drift from `today`.
+    #
+    # IT CARRIED "EVERY NUMERAL COMPUTED FROM DATA" AND NO LONGER DOES. The promise is real and
+    # it is the reason to believe a figure here, which is exactly why a four word slogan under
+    # every page was the wrong place for it. Stated that way it is an assertion a reader has no
+    # way to check, repeated 167 times.
+    #
+    # It is not lost. `/data/` makes the same commitment where it can also say how it is kept,
+    # naming the build gate that fails on a figure tracing to nothing, which is the half that
+    # makes it worth reading. A claim with its mechanism on one page beats a claim without one
+    # on every page.
     colophon = "".join(f"<span>{e(s)}</span>" for s in (
         MADE_AT_LEDE,
         f"Revised {ordinal(_dt.date.fromisoformat(today))}, {today[:4]}",
         _made_at(),
-        "Every numeral computed from data",
     ))
 
     # ONE ORGANIZATION NODE, REFERENCED BY `@id` EVERYWHERE ELSE. This used to repeat the whole
