@@ -1713,7 +1713,6 @@ def scan_page(today: str) -> str:
     <p class="scan-status" role="status" aria-live="polite" hidden></p>
   </form>
 {_SCAN_JS}
-  <p class="fine">A person reads every report before it goes out.</p>
 </section>
 """
     return page(title=f"Bottleneck scan · {SITE_NAME}", depth=1, active="",
