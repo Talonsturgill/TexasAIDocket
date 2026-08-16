@@ -167,17 +167,23 @@ ephemeral container has destroyed finished work before.
 
 ## PHASE 0 — WAKE
 
-1. Stamp the actor so the pre-commit hook enforces your lane: `echo daily > .git/ACTOR`.
-2. `git fetch origin main && git checkout -B claude/daily-<date> origin/main`.
-3. Read `prompts/NEXT_RUN.md` if it exists: a story queued by the previous run. Archive it into
+1. Point git at the hooks, which a fresh clone does not do for you and without which nothing
+   below enforces anything: `git config core.hooksPath .githooks`. Confirm with
+   `python3 scripts/shared/guards_local.py --fast --only Ownership`, which now FAILS rather
+   than skips when the hooks are not wired up.
+2. Stamp the actor so both checkers enforce your lane: `echo daily > .git/ACTOR`. The
+   pre-commit hook reads it to refuse an out-of-lane write, and the commit-msg hook copies it
+   into each commit as an `Actor:` trailer, which is what CI reads to judge that commit's lane.
+3. `git fetch origin main && git checkout -B claude/daily-<date> origin/main`.
+4. Read `prompts/NEXT_RUN.md` if it exists: a story queued by the previous run. Archive it into
    the run directory at ship time.
-4. Read the context files above.
-5. `bash .claude/skills/carousel-engine/bootstrap.sh`.
-6. `python3 scripts/site/docket_build.py --validate` and
+5. Read the context files above.
+6. `bash .claude/skills/carousel-engine/bootstrap.sh`.
+7. `python3 scripts/site/docket_build.py --validate` and
    `python3 scripts/shared/ownership_check.py --self-test`. **If a gate is already red on a clean
    checkout, fix that before anything else.** A gate red at wake means the last run shipped past
    it.
-7. Read the ledgers. Write down, explicitly, what is off the table today.
+8. Read the ledgers. Write down, explicitly, what is off the table today.
 
 ## PHASE 1 — CRAFT REFRESH (timeboxed, about 10 searches)
 
@@ -726,13 +732,24 @@ in Phase 9**, because an instinct nobody ever revisits is one that will sit in t
 on the strength of the day it was written.
 
 **The machine.** `echo upgrade > .git/ACTOR`, then spawn 1 `carousel-upgrade-engineer`. Zero to
-three bounded, verified upgrades, logged to `ledger/carousel/upgrades.json`. Restore the stamp with
-`echo daily > .git/ACTOR` when it is done.
+three bounded, verified upgrades, logged to `ledger/carousel/upgrades.json`. **Commit this
+phase's work before you restore the stamp**, then `echo daily > .git/ACTOR`.
+
+The commit order matters and it is the whole mechanism. The commit-msg hook copies whatever is in
+`.git/ACTOR` at commit time into the message as an `Actor:` trailer, and CI judges each commit by
+that trailer. Restoring the stamp before committing hands CI an upgrade commit wearing the `daily`
+label, which is the one thing the narrow lane exists to prevent.
 
 That stamp swap is not ceremony. Before the merge, this phase could not reach the public record
 because the carousel actor simply did not own it. Now that one actor runs both surfaces, the only
 thing standing between a self-editing phase and `ledger/docket.json` is a narrower lane, so it gets
 one. **An upgrade needing a file outside that lane is written down as a proposal and stopped.**
+
+**A `claude/daily-` branch may carry `upgrade` commits and this is now stated in the map, not
+worked around.** Until 2026-08-16 CI pinned one actor per branch and checked the whole branch
+diff, so this phase produced a branch CI refused, and the first run to hit it had to move two
+commits onto a separate pull request. `branch_also_allows` in `ownership.yaml` names `upgrade` as
+a lane this branch may stamp. Nothing else is added, and `human` can never be.
 
 **Never loosen a gate to make a run pass.**
 

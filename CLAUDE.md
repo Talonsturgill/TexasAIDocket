@@ -28,6 +28,26 @@ Git identity in this repo is `Talon Sturgill <Talon.sturgill@gmail.com>`. The co
 default is `Claude <noreply@anthropic.com>`, so a fresh clone MUST override it before the
 first commit.
 
+## First commands in a fresh clone (AUTHORITATIVE — run these before you write anything)
+
+Both of these are REPOSITORY CONFIGURATION, which does not travel with a clone, and both are
+load bearing. Run all three lines together or neither is done.
+
+```
+git config user.name  "Talon Sturgill"
+git config user.email "Talon.sturgill@gmail.com"
+git config core.hooksPath .githooks
+```
+
+The third line is the one that was missing on 2026-08-16, and the cost was a whole run of
+commits landing with no ownership check on any of them. `.githooks/pre-commit` and
+`.githooks/commit-msg` are committed and executable, and git runs neither until it is pointed
+at them. The first refuses an out-of-lane write. The second stamps the `Actor:` trailer that CI
+reads to judge which lane a commit is in, so without it every commit reaches CI unstamped.
+
+`guards_local.py` now FAILS rather than skips when this is unset, so the gap cannot pass under
+a green banner a second time.
+
 ## Delivery and merge policy (AUTHORITATIVE — overrides any draft-PR default)
 
 Routine runs SHIP AUTONOMOUSLY. When a run's quality gates pass, the run branch is merged to
