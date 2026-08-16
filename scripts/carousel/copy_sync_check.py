@@ -27,9 +27,24 @@ For every string in `copy.json`, verify it is present in what the browser actual
 is `render_report.json`'s per-slide `text_nodes[].text`. Then verify every claim id those slides
 cite exists in `claims.json`.
 
-DIRECTION, and why it is one way only. Authored-but-not-rendered is the defect. The reverse would
-flag every slide number, axis label and decorative string in the deck, and a gate that cries wolf
-teaches people to press on through, which is worse than no gate.
+**A third failure, found on 2026-08-16, and it is the one that made the other two ornamental.**
+The key names this gate looked at were an ALLOWLIST, so a slide using a key the list did not
+name was skipped in silence. Slides are bespoke and the copywriter names keys to suit the slide.
+That deck used `hook`, `hook2`, `tag`, `tag2`, `dek`, `bodies`, `how`, `rows`, `attribution`,
+`site`, `source2` and `when1`, and twelve of its nineteen key names were invisible here. The gate
+reported clean having never read a word of the deck's prose. It is a denylist now.
+
+DIRECTION, BOTH WAYS SINCE 2026-08-16. This file used to argue the reverse direction would flag
+every slide number and axis label, and that a gate which cries wolf is worse than no gate. The
+first half was true of a naive reverse check and the conclusion was wrong. Rendered-but-not-
+authored is how a sentence reaches a published slide having entered no manifest, and everything
+downstream that reads the manifest is then blind to it. It happened on five slides of that deck,
+and the sentence carrying an untraced "SB 6" was one of them.
+
+The reverse direction is kept quiet by three carve-outs rather than by not existing: nodes the
+design marked `decorative`, standing furniture like the masthead and the slide counter, and a
+prose-shape test so labels are never demanded. The provenance stamp is stripped from a node
+rather than exempting the node, because it arrives concatenated with real text.
 
     copy_sync_check.py --date 2026-08-12
     copy_sync_check.py --self-test
@@ -62,11 +77,28 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 # nobody later mistakes it for a bug in the matcher and "fixes" it by shortening the needle.
 RENDER_WINDOW = 80
 
-# The keys in a slide record that carry text a reader sees. `claim_ids` is deliberately absent:
-# it is metadata, checked separately below, and looking for "tx-2026-08-12-01" in the rendered
-# text would fail on every slide that correctly does not print its own citations.
-TEXT_KEYS = ("kicker", "headline", "subhead", "body", "label", "labels", "chip", "chips",
-             "caption", "stat", "stats", "note", "footer", "quote", "source", "title")
+# A DENYLIST, AND IT USED TO BE AN ALLOWLIST. THAT WAS THE HOLE.
+#
+# This was a tuple of key names the gate would look at: kicker, headline, subhead, body, label,
+# labels, chip, chips, caption, stat, stats, note, footer, quote, source, title. Every other key
+# was skipped in silence. Slides are bespoke, so the copywriter names keys to suit the slide, and
+# on 2026-08-16 the deck used `hook`, `hook2`, `tag`, `tag2`, `dek`, `bodies`, `how`, `rows`,
+# `attribution`, `site`, `source2` and `when1`. Twelve of the nineteen key names in that deck
+# were invisible here, including every one carrying body prose.
+#
+# The gate reported clean and had checked 35 strings out of a deck whose prose it had never
+# seen. That is how a sentence carrying an untraced "SB 6" reached a published slide with every
+# gate green, and it is the shape GATE_LESSONS warns about: a check wired to nothing, passing.
+#
+# So the question is inverted. Everything is reader copy unless it is named here as machinery.
+# A new key invented for tomorrow's slide is checked by default, and the failure mode of getting
+# this list wrong is a gate that cries wolf rather than a gate that sleeps.
+META_KEYS = frozenset({
+    "claims", "claim_id", "claim_ids", "cid",          # citations, checked separately below
+    "n", "slide", "index", "id",                       # position and identity
+    "technique", "file", "path", "art", "palette",     # how it was drawn, never what it says
+    "notes", "note_to_self", "todo",                   # planning residue, never rendered
+})
 
 
 def skeleton(s: str) -> str:
@@ -91,7 +123,7 @@ def strings_in(node) -> list[str]:
             out.extend(strings_in(item))
     elif isinstance(node, dict):
         for k, v in node.items():
-            if k in TEXT_KEYS:
+            if k not in META_KEYS:
                 out.extend(strings_in(v))
     return out
 
@@ -159,6 +191,89 @@ def rendered_text(report: dict) -> dict[int, str]:
     return out
 
 
+# THE REVERSE DIRECTION, AND WHAT KEEPS IT FROM CRYING WOLF.
+#
+# Authored-but-not-rendered was the only direction this gate checked, and the docstring argued
+# the reverse would flag every slide number and axis label. That was true of a naive reverse
+# check and it was the wrong conclusion: rendered-but-not-authored is how a sentence reaches a
+# published slide having entered no manifest, which is invisible to every gate downstream that
+# reads the manifest. It happened on 2026-08-16, on five slides.
+#
+# Three carve-outs make it quiet enough to keep.
+#
+# 1. `decorative`. render.py already marks nodes the design declares as furniture, and the
+#    coordinates footer this deck prints is marked. The marker exists; nothing was reading it.
+# 2. Standing furniture. The masthead and the slide counter appear on every slide, are never
+#    authored per slide, and are matched as whole strings rather than by pattern-guessing.
+# 3. PROSE SHAPE. A label is a few words with no sentence in it. Body prose either runs long or
+#    ends a sentence. Only prose-shaped nodes are demanded, because a manifest of every axis
+#    label is not what the manifest is for.
+#
+# The blind spot is stated rather than papered over: a SHORT unauthored string that is not
+# furniture slips through. That is the deliberate price of a gate people do not learn to ignore.
+STANDING_FURNITURE = frozenset({
+    "texasaidocket",           # the masthead
+    "texasaidocketcom",        # the closing card's address
+})
+
+SLIDE_COUNTER = re.compile(r"^\s*\d+\s*/\s*\d+\s*$")
+
+# The provenance stamp the design doctrine prints beside a sourced figure, in the forms this
+# engine emits: "CLAIM c7.", "CLAIM c7. QUOTED VERBATIM.", "CLAIM c7. COMPUTED.".
+#
+# It is not authored copy and demanding it appear in copy.json would be demanding the manifest
+# carry its own citations, which this file already argues against in the other direction. The id
+# inside it is not unchecked: the citation half below resolves every id a slide cites against
+# claims.json.
+#
+# STRIPPED FROM THE NODE, NOT AN EXEMPTION FOR THE NODE. A stamp usually arrives concatenated
+# into a parent element alongside real text, so exempting any node containing one would blind
+# this gate to whatever sits beside it. Removing just the stamp leaves the rest to be judged.
+CLAIM_STAMP = re.compile(
+    r"\bCLAIMS?\s+[A-Za-z0-9_.-]+\s*\.?(\s*(QUOTED\s+VERBATIM|COMPUTED|MEASURED|MODELED)\s*\.?)?",
+    re.IGNORECASE)
+
+
+def is_prose(text: str) -> bool:
+    """Whether a rendered string is body prose rather than a label.
+
+    Long, or ends a sentence with enough words to be one. render.py truncates at
+    RENDER_WINDOW, so a long body arrives without its terminal full stop and the length arm is
+    what catches it.
+    """
+    t = " ".join(str(text).split())
+    if len(t) >= 60:
+        return True
+    return len(t.split()) >= 5 and t.rstrip().endswith((".", "?", "!"))
+
+
+def unauthored(report: dict, authored: dict[int, str]) -> list[str]:
+    """Prose the browser laid out that no authored string accounts for."""
+    out = []
+    for rec in report.get("slides") or []:
+        n = rec.get("n") or rec.get("slide") or slide_no(rec.get("file", ""))
+        if n is None:
+            continue
+        hay = authored.get(int(n), "")
+        for node in rec.get("text_nodes") or []:
+            text = str(node.get("text", "")).strip()
+            if not text or node.get("decorative"):
+                continue
+            if SLIDE_COUNTER.match(text):
+                continue
+            text = CLAIM_STAMP.sub(" ", text).strip()
+            if not text:
+                continue
+            sk = skeleton(text)
+            if not sk or sk in STANDING_FURNITURE or sk in hay:
+                continue
+            if not is_prose(text):
+                continue
+            shown = text if len(text) <= 56 else text[:53] + "..."
+            out.append(f"S{n}: \"{shown}\" was laid out but is in no authored string")
+    return out
+
+
 def compare(copy: dict, report: dict, claims: dict | None) -> tuple[list[str], list[str]]:
     """Returns (drifted, uncited). Both empty means in sync."""
     drifted, uncited = [], []
@@ -183,6 +298,16 @@ def compare(copy: dict, report: dict, claims: dict | None) -> tuple[list[str], l
             if needle not in haystack:
                 shown = s if len(s) <= 56 else s[:53] + "..."
                 drifted.append(f"{key}: \"{shown}\" is in copy.json but was not laid out")
+
+    # ...and the other way. Concatenated per slide for the same reason the forward direction
+    # concatenates: a string split across spans is one authored string and three rendered nodes.
+    authored_by_slide = {}
+    for key in slides:
+        n = slide_no(key)
+        if n is None:
+            continue
+        authored_by_slide[n] = skeleton(" ".join(strings_in(slides[key])))
+    drifted.extend(unauthored(report, authored_by_slide))
 
     if claims is not None:
         known = set()
@@ -298,7 +423,15 @@ def self_test() -> int:
     replaced = ("The commission opened a comment window on the rule that decides who pays for "
                 "the transmission line instead")
     d, _ = compare({"slides": {"S1": {"body": long_body}}}, report_of([replaced[:80]]), None)
-    ok("a body rewritten inside the render's window is caught", len(d) == 1, str(d))
+    # BOTH DIRECTIONS SPEAK HERE, and that is the improvement rather than a duplicate. The
+    # authored body did not reach the slide, AND prose reached the slide that nobody authored.
+    # Before the reverse direction existed only the first half was visible, and a slide whose
+    # prose was typed in fresh rather than edited produced no finding at all.
+    ok("a body rewritten inside the render's window is caught", len(d) == 2, str(d))
+    ok("...as authored-but-not-rendered",
+       any("is in copy.json but was not laid out" in x for x in d), str(d))
+    ok("...and as rendered-but-not-authored",
+       any("is in no authored string" in x for x in d), str(d))
 
     # THE KNOWN LIMIT, pinned so it stays a known limit. render.py writes down the first 80
     # characters of a node and no more, so a divergence past that point was never recorded and
@@ -353,6 +486,63 @@ def self_test() -> int:
                                        "stats": [{"stat": "x", "claim_id": "tx-2026-08-12-09"}]}}},
                     report_of(["x"]), claims)
     ok("a citation nested inside a stat is still checked", len(un) == 1, str(un))
+
+    # ---------------------------------------------------------------- the denylist
+    # THE HOLE THAT MADE THIS GATE ORNAMENTAL. Key names were an allowlist, so a slide using a
+    # key the list did not name was skipped in silence. The 2026-08-16 deck used hook, hook2,
+    # tag, tag2, dek, bodies, how, rows, attribution, site, source2 and when1, and twelve of its
+    # nineteen key names were invisible here. The gate reported clean having never read the
+    # deck's prose.
+    d, _ = compare({"slides": {"S1": {"dek": "A key name nobody thought of in advance"}}},
+                   report_of(["something else entirely"]), None)
+    ok("a key name the gate was never taught is still checked", len(d) == 1, str(d))
+    d, _ = compare({"slides": {"S1": {"hook": "One roof.", "tag2": "SITE PLAN NOT PUBLIC."}}},
+                   report_of(["One roof. SITE PLAN NOT PUBLIC."]), None)
+    ok("...and an invented key that DID render is clean", d == [], str(d))
+    d, _ = compare({"slides": {"S1": {"headline": "x", "technique": "hachured soil section"}}},
+                   report_of(["x"]), None)
+    ok("machinery keys are still not demanded on the slide", d == [], str(d))
+
+    # ---------------------------------------------------------------- the reverse direction
+    # A sentence typed straight into a slide's HTML enters no manifest, so nothing downstream
+    # that reads the manifest can see it. That is how an untraced "SB 6" reached a published
+    # slide on 2026-08-16 with every gate green.
+    def rich(nodes):
+        return {"slides": [{"n": 1, "file": "slide-01.png", "text_nodes": nodes}]}
+
+    prose = "This sentence was typed straight into the slide and entered no manifest at all."
+    d, _ = compare({"slides": {"S1": {"headline": "Authored"}}},
+                   rich([{"text": "Authored"}, {"text": prose}]), None)
+    ok("prose that was rendered but never authored is CAUGHT", len(d) == 1, str(d))
+
+    # The three carve-outs, each of which must stay quiet or the gate gets ignored.
+    d, _ = compare({"slides": {"S1": {"headline": "Authored"}}},
+                   rich([{"text": "Authored"}, {"text": prose, "decorative": True}]), None)
+    ok("...unless the design marked it decorative", d == [], str(d))
+    d, _ = compare({"slides": {"S1": {"headline": "Authored"}}},
+                   rich([{"text": "Authored"}, {"text": "TEXAS AI DOCKET"},
+                         {"text": "03 / 08"}, {"text": "10,000 FT A SIDE"}]), None)
+    ok("...and the masthead, the counter and a label are not demanded", d == [], str(d))
+
+    # The provenance stamp is furniture, but STRIPPED rather than exempting its whole node,
+    # because it arrives concatenated with real text and exempting the node would blind the gate
+    # to whatever sits beside it.
+    d, _ = compare({"slides": {"S1": {"tag": "THE PLANT IS ANNOUNCED."}}},
+                   rich([{"text": "THE PLANT IS ANNOUNCED. CLAIM c7. QUOTED VERBATIM."}]), None)
+    ok("a claim stamp beside authored text is not demanded", d == [], str(d))
+    d, _ = compare({"slides": {"S1": {"headline": "Authored"}}},
+                   rich([{"text": "Authored"}, {"text": prose + " CLAIM c9."}]), None)
+    ok("...but unauthored prose beside a stamp is still CAUGHT", len(d) == 1, str(d))
+
+    # The shipped deck of 2026-08-16, which is the artifact this direction was built from. It
+    # must come back clean, or the carve-outs are wrong in the other direction.
+    shipped = REPO_ROOT / "runs" / "carousel" / "2026-08-16"
+    if (shipped / "copy.json").exists() and (shipped / "render_report.json").exists():
+        sd, su = compare(json.loads((shipped / "copy.json").read_text(encoding="utf-8")),
+                         json.loads((shipped / "render_report.json").read_text(encoding="utf-8")),
+                         json.loads((shipped / "claims.json").read_text(encoding="utf-8")))
+        ok("the first shipped deck passes both directions", sd == [] and su == [],
+           str(sd + su)[:300])
 
     if failures:
         print(f"\ncopy_sync_check self-test: {failures} FAILED", file=sys.stderr)

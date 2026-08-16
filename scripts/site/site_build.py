@@ -146,9 +146,80 @@ if('IntersectionObserver' in window){
 // Dragging a thumb across the state now names each county and says what it holds, and lifting
 // the thumb without moving still opens the county, so the link is not taken away.
 (function(){
-  var read=document.getElementById('mapread'), map=document.querySelector('svg.txmap');
+  var read=document.getElementById('mapread'), map=document.querySelector('svg.txmap'),
+      rb=document.getElementById('mapreset');
   if(!read||!map||!('ontouchstart' in window)) return;
-  var moved=false, sx=0, sy=0, last=null;
+  var moved=false, sx=0, sy=0, last=null, clearAt=0;
+  // PINCH TO ZOOM, TWO FINGERS TO MOVE.
+  // Even with the readout naming what is under the thumb, a county in the Panhandle is a few
+  // millimetres of glass and the thumb covers all of it. So the map moves like a map.
+  //
+  // ONE FINGER STAYS THE PICKER and two fingers do the navigating, which is the opposite of a
+  // slippy map and is right here: this drawing is a chooser, not a place to wander. One finger
+  // already reads out and opens a county, and taking that away to pan would trade the working
+  // interaction for a familiar one.
+  //
+  // THE VIEWBOX MOVES, not a transform on a group. Strokes here are `vector-effect:
+  // non-scaling-stroke`, so a viewBox change keeps every hairline at its drawn weight instead
+  // of fattening the borders as you zoom, and `elementFromPoint` keeps working because it asks
+  // in screen coordinates either way.
+  var VB={x:0,y:0,w:0,h:0}, HOME=null, MAXZ=8;
+  (function(){
+    var v=(map.getAttribute('viewBox')||'').split(/[ ,]+/).map(Number);
+    if(v.length===4&&v.every(function(n){return !isNaN(n);})){
+      HOME={x:v[0],y:v[1],w:v[2],h:v[3]}; VB={x:v[0],y:v[1],w:v[2],h:v[3]};
+    }
+  })();
+  function apply(){
+    if(!HOME) return;
+    // CLAMPED SO THE MAP CANNOT BE LOST. Zooming out past the full extent and panning the
+    // state off the glass are both ways to end up looking at nothing with no way back that a
+    // reader would guess.
+    VB.w=Math.min(HOME.w,Math.max(HOME.w/MAXZ,VB.w));
+    VB.h=VB.w*(HOME.h/HOME.w);
+    VB.x=Math.min(HOME.x+HOME.w-VB.w,Math.max(HOME.x,VB.x));
+    VB.y=Math.min(HOME.y+HOME.h-VB.h,Math.max(HOME.y,VB.y));
+    map.setAttribute('viewBox',VB.x+' '+VB.y+' '+VB.w+' '+VB.h);
+    // The button is resolved once at the top with the readout, because this runs on every
+    // touchmove of a pinch, roughly sixty times a second on the device with the least headroom.
+    if(rb) rb.hidden=!(VB.w<HOME.w-0.5);
+  }
+  function reset(){ if(HOME){ VB={x:HOME.x,y:HOME.y,w:HOME.w,h:HOME.h}; apply(); } }
+  if(rb) rb.addEventListener('click',function(){ reset(); show(null); });
+  function span(e){
+    var a=e.touches[0], b=e.touches[1];
+    return Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY);
+  }
+  function mid(e){
+    var a=e.touches[0], b=e.touches[1];
+    return {x:(a.clientX+b.clientX)/2,y:(a.clientY+b.clientY)/2};
+  }
+  var pinch=null;
+  map.addEventListener('touchstart',function(e){
+    if(e.touches.length===2&&HOME){
+      show(null);
+      pinch={d:span(e),m:mid(e),vb:{x:VB.x,y:VB.y,w:VB.w,h:VB.h},box:map.getBoundingClientRect()};
+    }
+  },{passive:true});
+  map.addEventListener('touchmove',function(e){
+    if(e.touches.length!==2||!pinch) return;
+    e.preventDefault();                       // or the browser zooms the whole page instead
+    var d=span(e), m=mid(e), box=pinch.box;
+    var k=Math.max(0.05,d/Math.max(1,pinch.d));
+    var w=pinch.vb.w/k;
+    w=Math.min(HOME.w,Math.max(HOME.w/MAXZ,w));
+    var h=w*(HOME.h/HOME.w);
+    // ZOOM ABOUT THE FINGERS, not the centre of the drawing. Anchoring at the midpoint is what
+    // makes a pinch feel like it is holding the paper rather than driving a slider.
+    var fx=(pinch.m.x-box.left)/box.width, fy=(pinch.m.y-box.top)/box.height;
+    VB.x=pinch.vb.x+fx*pinch.vb.w-fx*w-(m.x-pinch.m.x)/box.width*w;
+    VB.y=pinch.vb.y+fy*pinch.vb.h-fy*h-(m.y-pinch.m.y)/box.height*h;
+    VB.w=w; VB.h=h;
+    apply();
+  },{passive:false});
+  map.addEventListener('touchend',function(e){
+    if(e.touches.length<2) pinch=null;
+  },{passive:true});
   function at(t){
     var el=document.elementFromPoint(t.clientX,t.clientY);
     return el&&el.closest?el.closest('path.c'):null;
@@ -165,9 +236,12 @@ if('IntersectionObserver' in window){
         : 'Nothing on the record yet.');
   }
   map.addEventListener('touchstart',function(e){
+    if(e.touches.length>1) return;   // two fingers are a gesture, never a pick
+    clearTimeout(clearAt);           // a new touch outlives the last one's timer
     var t=e.touches[0]; moved=false; sx=t.clientX; sy=t.clientY; show(at(t));
   },{passive:true});
   map.addEventListener('touchmove',function(e){
+    if(e.touches.length>1||pinch) return;
     var t=e.touches[0];
     if(Math.abs(t.clientX-sx)>6||Math.abs(t.clientY-sy)>6) moved=true;
     if(moved){ show(at(t)); e.preventDefault(); }
@@ -182,7 +256,10 @@ if('IntersectionObserver' in window){
     var kill=function(ev){ ev.preventDefault(); ev.stopPropagation(); };
     map.addEventListener('click',kill,{capture:true,once:true});
     setTimeout(function(){ map.removeEventListener('click',kill,{capture:true}); },400);
-    setTimeout(function(){ show(null); },2600);
+    // HELD AND CANCELLED, because it used to be armed on every release and never cleared.
+    // Drag, lift, drag again, then hold still on a county to read it, and the FIRST timer
+    // fired at 2.6s and blanked the readout under a stationary thumb.
+    clearTimeout(clearAt); clearAt=setTimeout(function(){ show(null); },2600);
   });
 })();
 </script>"""
@@ -212,7 +289,8 @@ def rel(depth: int) -> str:
 # --------------------------------------------------------------------------- shell
 def page(*, title: str, desc: str, body: str, depth: int, active: str,
          today: str, canonical: str, extra_ld: list | None = None,
-         home_page: bool = False) -> str:
+         home_page: bool = False, og_image: str = "og.png",
+         og_alt: str | None = None) -> str:
     p = rel(depth)
     # `""` USED TO MEAN TWO THINGS AND ONE OF THEM WAS A LIE. It is Home's own href, and it
     # was also what a page with no nav entry passed to mean "none of these". So every item
@@ -261,7 +339,7 @@ def page(*, title: str, desc: str, body: str, depth: int, active: str,
 <meta property="og:description" content="{e(desc)}">
 <meta property="og:type" content="website">
 <meta property="og:url" content="{SITE_URL}/{canonical}">
-{og.head_html(p, SITE_URL, SITE_NAME, title, desc)}
+{og.head_html(p, SITE_URL, SITE_NAME, title, desc, og_image, og_alt)}
 {favicon.head_html(p)}
 <link rel="stylesheet" href="{p}site.css">
 <link rel="preload" href="{p}fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
@@ -357,6 +435,66 @@ def effective_room(it: dict, today: str) -> str:
     return room
 
 
+# The date kinds that are a door a MEMBER OF THE PUBLIC can walk through. `statutory_deadline`
+# is a clock on an agency and `effective` is when a rule starts biting, and neither is somewhere
+# a Texan turns up and speaks. `comment_opens` is a start, not an end.
+DOOR_KINDS = frozenset({"hearing", "comment_closes"})
+
+
+def next_door(it: dict, today: str) -> str | None:
+    """The next date a member of the public can still act on, or None.
+
+    THE SAME LESSON AS `effective_room`, one page further out. `llms.txt` built its "Open right
+    now" list from `public_access.room` alone, under a heading reading "Decisions a member of the
+    public still has a dated way into". Room is what KIND of access the ledger recorded, never
+    whether it is open, so every decided vote held in an open meeting stayed on that list
+    forever. On 2026-08-16 that was 28 of 47 entries: Archer County's unanimous denial, Brazoria
+    County's 5 to 0 denial, San Angelo's adopted ordinances. A reader following any of them finds
+    a finished vote.
+
+    DATED, NOT STATUS. The obvious fix was to drop `decided` and `withdrawn` items, and it is
+    the wrong one, because it deletes the case the heading most wants. League City's council has
+    DECIDED, and what it decided was to order a special election on November 3rd, which is
+    exactly a dated way in. The promise in the heading is a date in the future, so that is what
+    gets computed. A finished vote has no future door whatever its status says, and a future
+    election has one whatever its status says.
+    """
+    try:
+        t = _dt.date.fromisoformat(today)
+    except (ValueError, TypeError):
+        return None
+
+    dates = []
+    closes = (it.get("public_access") or {}).get("closes")
+    if closes:
+        dates.append(str(closes))
+    for kd in it.get("key_dates") or []:
+        if kd.get("kind") not in DOOR_KINDS or not kd.get("date"):
+            continue
+        # A CANCELED SITTING IS NOT A DOOR. TCEQ called off two hearings in August 2026 and the
+        # record kept the original dates with the cancellation in the note, which is correct
+        # history and would have published both as live doors.
+        #
+        # THIS READS A FIELD, NOT THE PROSE. The first version of this matched the word in the
+        # note with a regex, which worked and was the wrong shape: a text match against a
+        # sentence a person writes is the generated-not-computed failure this project refuses
+        # everywhere else, and it would go quiet the day somebody wrote "called off" instead.
+        # `gate_schema` now fails any date whose note says canceled while the flag does not, so
+        # the sentence cannot drift away from the field it is describing.
+        if kd.get("canceled"):
+            continue
+        dates.append(str(kd["date"]))
+
+    future = []
+    for d in dates:
+        try:
+            if _dt.date.fromisoformat(d) >= t:
+                future.append(d)
+        except ValueError:
+            continue
+    return min(future) if future else None
+
+
 def item_meta(it: dict, today: str) -> str:
     g = it.get("geography") or {}
     where = ("Statewide" if g.get("statewide")
@@ -422,14 +560,139 @@ def load_runs() -> list:
             copy = json.loads((d / "copy.json").read_text("utf-8"))
         except Exception:                                            # noqa: BLE001
             continue
-        slides = sorted(d.glob("slide-*.webp")) or sorted(d.glob("slide-*.png"))
-        if not slides:
+        # THE MANIFEST SAYS HOW MANY SLIDES THERE ARE. A GLOB SAYS HOW MANY IMAGES SURVIVED.
+        #
+        # This counted `slide-*.webp` and then the article page generated URLs by INDEX from
+        # that count, which is only correct while the surviving files happen to be a contiguous
+        # 1..N. On 2026-08-16 they were not. `ship_images` refused two slides for encoding under
+        # its 40 dB quality floor, so the run shipped eight slides with six webp among them, and
+        # the count came back 6. The page then emitted slide-01 through slide-06, of which 03
+        # and 06 did not exist and rendered as broken images, and slides 07 and 08 were never
+        # emitted at all. The homepage said "6 slides" for an eight slide deck.
+        #
+        # So the count comes from the manifest, which is what the deck actually is, and each
+        # slide resolves to a file that is checked to exist. A missing one is reported rather
+        # than silently skipped, because a hole here is a broken image on the live site.
+        planned = copy.get("slides")
+        n = len(planned) if isinstance(planned, (list, dict)) else 0
+        files, missing = [], []
+        for i in range(1, n + 1):
+            # webp is the shipping format and png is what survives when webp could not meet the
+            # quality floor. Either is a real slide; neither existing is a defect.
+            for ext in ("webp", "png"):
+                p = d / f"slide-{i:02d}.{ext}"
+                if p.exists():
+                    files.append(p.name)
+                    break
+            else:
+                missing.append(f"slide-{i:02d}")
+        if missing:
+            print(f"  MISSING IMAGE: run {d.name} plans {n} slide(s) and "
+                  f"{', '.join(missing)} has no webp and no png. The article page would "
+                  f"publish a broken image.", file=sys.stderr)
+        if not files:
             continue
         title = (copy.get("document_title") or copy.get("title") or d.name)
-        hook = (copy.get("hook") or copy.get("subtitle") or "")
-        out.append({"date": d.name, "title": str(title), "hook": str(hook),
-                    "slides": len(slides), "cover": slides[0].name})
+
+        # THE DECK'S OWN WORDS, SO THE PAGE IS READABLE AND INDEXABLE WITHOUT THE IMAGES.
+        #
+        # An article page that is eight pictures and a title publishes nothing a search engine,
+        # a screen reader or a reader with images off can use. Everything the slides say is
+        # already in `copy.json`, because that manifest is what `copy_sync_check` proves the
+        # render against, so the text is right here and was simply never written into the page.
+        #
+        # PROSE ONLY. A slide's labels ("10,000 FT A SIDE") are furniture and read as noise in
+        # running text, so the same shape test the copy gate uses picks sentences out of them.
+        prose = []
+        for key in sorted(normalise_slide_keys(planned), key=lambda k: k[0]):
+            said = [_CLAIM_STAMP.sub(" ", " ".join(s.split())).strip()
+                    for s in _slide_strings(key[1]) if _reads_as_prose(s)]
+            # A QUOTATION IS MARKED AS ONE. A slide that prints a source's own words keeps them,
+            # so they arrive here still wearing their quotation marks, and rendering them as
+            # this project's prose would put somebody else's sentence under this project's
+            # house rules. `house_style_check` exempts `blockquote` for exactly that reason and
+            # says so in its own docstring: house style governs our prose and stops at the
+            # quotation mark.
+            said = [{"quote": s.startswith('"'), "text": s} for s in said if s]
+            if said:
+                prose.append(said)
+
+        claims = []
+        try:
+            cj = json.loads((d / "claims.json").read_text("utf-8"))
+            claims = [c for c in (cj.get("claims") or []) if isinstance(c, dict)]
+        except Exception:                                            # noqa: BLE001
+            pass
+
+        out.append({"date": d.name, "title": str(title),
+                    "hook": str(copy.get("hook") or copy.get("subtitle") or ""),
+                    "story": str(copy.get("story") or ""),
+                    "slides": len(files), "files": files, "missing": missing,
+                    "prose": prose, "claims": claims,
+                    "cover": files[0]})
     return out
+
+
+def normalise_slide_keys(planned) -> list:
+    """(order, slide) pairs, from either shape a run writes."""
+    if isinstance(planned, dict):
+        out = []
+        for k, v in planned.items():
+            m = re.search(r"(\d+)", str(k))
+            out.append((int(m.group(1)) if m else 0, v))
+        return out
+    if isinstance(planned, list):
+        return list(enumerate(planned, start=1))
+    return []
+
+
+# Machinery, never reader copy. Kept in step with copy_sync_check's list by intent: this one
+# only has to avoid printing citations and drawing instructions as prose.
+_SLIDE_META = frozenset({"claims", "claim_id", "claim_ids", "cid", "n", "slide", "index", "id",
+                         "technique", "file", "path", "art", "palette", "notes", "todo"})
+
+
+def _slide_strings(node) -> list:
+    out = []
+    if isinstance(node, str):
+        if node.strip():
+            out.append(node)
+    elif isinstance(node, list):
+        for x in node:
+            out.extend(_slide_strings(x))
+    elif isinstance(node, dict):
+        for k, v in node.items():
+            if k not in _SLIDE_META:
+                out.extend(_slide_strings(v))
+    return out
+
+
+# The provenance stamp the design prints beside a sourced figure. It belongs on the slide and
+# reads as debris in running text, and the claim it names is published in full further down the
+# page with its source attached.
+_CLAIM_STAMP = re.compile(
+    r"\bCLAIMS?\s+[A-Za-z0-9_.-]+\s*\.?(\s*(QUOTED\s+VERBATIM|COMPUTED|MEASURED|MODELED)\s*\.?)?",
+    re.IGNORECASE)
+
+
+def _reads_as_prose(text: str) -> bool:
+    """Whether a slide string belongs in the story, as opposed to on the slide.
+
+    TWO TESTS, AND THE CASE ONE IS DOING THE REAL WORK. A first pass used length and terminal
+    punctuation alone, which is enough to sort a label from a sentence but not enough to sort a
+    TAG from one: "SITE PLAN NOT PUBLIC." is four words ending in a full stop. The design
+    doctrine sets tags, kickers and labels in capitals and writes body prose in sentence case,
+    so the case is the signal, and it is the design's own signal rather than one invented here.
+    """
+    t = _CLAIM_STAMP.sub(" ", " ".join(str(text).split())).strip()
+    if not t:
+        return False
+    letters = [ch for ch in t if ch.isalpha()]
+    if letters and all(ch.isupper() for ch in letters):
+        return False
+    if len(t) >= 60:
+        return True
+    return len(t.split()) >= 4 and t.rstrip().endswith((".", "?", "!"))
 
 
 def video_feed() -> dict:
@@ -586,29 +849,101 @@ def articles_page(runs: list, today: str) -> str:
                 body=body, today=today, canonical="articles/")
 
 
-def article_page(r: dict, today: str) -> str:
-    """One shipped carousel, every slide, and the caption that went out with it."""
+def article_page(r: dict, today: str, items: list) -> str:
+    """One shipped carousel, as TEXT first and pictures second.
+
+    THIS PAGE USED TO BE EIGHT IMAGES AND A TITLE. Everything the deck said was locked inside
+    PNGs, so the page published nothing a search engine could index, nothing a screen reader
+    could read, and nothing a reader with images off could see. The words were never missing:
+    `copy.json` is the manifest `copy_sync_check` proves the render against, and `claims.json`
+    holds every source those words rest on. They were simply never written into the page.
+
+    The shape follows the sibling product's archive, which solved this first. The deck, then the
+    story in the deck's own words, then every claim with the source it was checked against, then
+    the beats. A reader who never loads an image still gets the whole thing.
+    """
     d = _dt.date.fromisoformat(r["date"])
+    # BY FILENAME, NEVER BY INDEX. See `load_runs`: generating `slide-{i:02d}.webp` from a count
+    # published two broken images and dropped two slides entirely the first time the surviving
+    # files were not a contiguous run.
     slides = "".join(
-        f'<img src="{RAW}/runs/carousel/{e(r["date"])}/slide-{i:02d}.webp" width="1080"'
+        f'<img src="{RAW}/runs/carousel/{e(r["date"])}/{e(name)}" width="1080"'
         f' height="1350" loading="lazy" alt="Slide {i} of {r["slides"]}">'
-        for i in range(1, r["slides"] + 1))
+        for i, name in enumerate(r["files"], start=1))
+
+    def say(block):
+        return "".join(
+            f"<blockquote>{e(s['text'])}</blockquote>" if s["quote"]
+            else f"<p>{e(s['text'])}</p>" for s in block)
+
+    story = "".join(say(b) for b in r.get("prose") or [])
+    if not story:
+        story = f'<p>{e(r["hook"] or r["title"])}</p>'
+
+    # EVERY CLAIM, WITH WHAT IT WAS CHECKED AGAINST. The site's promise is that a fact traces to
+    # a source a reader can open, and this is the page where the deck's facts live, so this is
+    # where that promise has to be redeemable.
+    def claim_row(i, c):
+        kind = ("PRIMARY" if str(c.get("source_type", "")).startswith("primary") else "REPORT")
+        url, title = str(c.get("url") or ""), str(c.get("source_title") or "")
+        shown = e(title or url)
+        cite = (f'<cite><a href="{e(url)}" rel="nofollow noopener">{shown}</a></cite>'
+                if url else f"<cite>{shown}</cite>")
+        quote = str(c.get("quote") or "").strip()
+        block = f"<blockquote>{e(quote)}</blockquote>" if quote else ""
+        checked = ""
+        try:
+            if c.get("retrieved"):
+                checked = f' · checked {e(ordinal(_dt.date.fromisoformat(str(c["retrieved"]))))}'
+        except ValueError:
+            checked = ""
+        return (f'<li><p>{e(str(c.get("text") or ""))}</p>{block}'
+                f'<p class="meta" data-prose="data"><span class="tag">{kind}</span> {cite}'
+                f'{checked}</p></li>')
+
+    claims = r.get("claims") or []
+    claims_html = ""
+    if claims:
+        rows = "".join(claim_row(i, c) for i, c in enumerate(claims, start=1))
+        claims_html = f"""
+<h2>What was verified</h2>
+<p class="meta" data-prose="data"><span class="num">{len(claims)}</span> claims, each re-fetched
+  from its source before this deck shipped.</p>
+<ol class="claims">{rows}</ol>"""
+
+    beats, entry = "", ""
+    for it in items:
+        if it.get("id") == r.get("story"):
+            beats = (f'<h2>Beats</h2><p class="meta" data-prose="data">'
+                     f'<span class="tag">{e(it.get("topic", ""))}</span></p>')
+            entry = (f'<p class="meta" data-prose="data">The record entry for this decision is '
+                     f'<a href="../../item/{e(it["id"])}/">{e(it["title"])}</a>.</p>')
+            break
+
     body = f"""
 <article>
 <h1>{e(r["title"])}</h1>
-<p class="meta" data-prose="data"><span class="tag">{e(ordinal(d))}</span>
+<p class="meta" data-prose="data"><span class="tag">Published {e(ordinal(d))}</span>
   <span>{r["slides"]} slides</span></p>
-<div class="prose"><p>{e(r["hook"])}</p></div>
+
+<h2>The deck</h2>
 <div class="slides">{slides}</div>
+
+<h2>The story</h2>
+<div class="prose">{story}{entry}</div>
+{claims_html}
+{beats}
 <p class="meta" data-prose="data"><a href="../">Every article</a></p>
 </article>
 """
+    flat = [s["text"] for b in (r.get("prose") or []) for s in b if not s["quote"]]
+    desc = " ".join((flat or [r["title"]])[0].split())[:180]
     return page(title=f'{r["title"]} · {SITE_NAME}', depth=2, active="articles/",
-                desc=(r["hook"] or r["title"])[:180], body=body, today=today,
+                desc=desc, body=body, today=today,
                 canonical=f'articles/{r["date"]}/')
 
 
-def latest_article(runs: list) -> str:
+def latest_article(runs: list, items: list) -> str:
     """The newest carousel, baked at build time.
 
     BAKED RATHER THAN FETCHED, unlike the video below it, and the difference is where the
@@ -623,6 +958,38 @@ def latest_article(runs: list) -> str:
     if not runs:
         return ""
     r = runs[0]
+
+    # WHAT THE CARD SAYS BESIDE THE COVER, and why it is not the deck's own words.
+    #
+    # This printed `copy.json`'s top level `hook`, which does not exist: hooks are per slide, so
+    # the card carried a title and an empty paragraph. A reader saw "Terafab, Grimes County" and
+    # nothing else, which says where but not what.
+    #
+    # The text comes from the DECISION the deck is about, not from the deck. `copy.json` names
+    # its story, that item is already on this site, and its summary is already through the
+    # numeral gate, the narration gate and the house style gate. Lifting a slide's prose here
+    # instead would put figures on the front page that this build never computed, which is the
+    # one thing the compute-not-generate law does not bend on.
+    # THE ITEM'S TITLE, NOT THE FIRST SENTENCE OF ITS SUMMARY, and the reason is dates.
+    #
+    # These summaries open by dating the announcement, so the card read "August 16th" in its
+    # own tag and then "Governor Greg Abbott announced on August 6th, 2026" in the paragraph
+    # underneath. Two bare dates a line apart, meaning different things, with nothing saying
+    # which was which. A reader cannot tell whether the story is ten days old or the page is.
+    #
+    # The item title says what happened without dating it, so the only date on the card is the
+    # one in the tag, and the tag now says what that date IS.
+    blurb = ""
+    for it in items:
+        if it.get("id") == r.get("story"):
+            blurb = " ".join(str(it.get("title") or "").split())
+            break
+    if not blurb:
+        blurb = str(r["hook"])
+
+    story_link = (f'<a href="item/{e(r["story"])}/">the decision it is about</a>'
+                  if r.get("story") else "")
+
     return f"""
 <section data-reveal>
   <h2>The latest article</h2>
@@ -633,13 +1000,14 @@ def latest_article(runs: list) -> str:
       width="1080" height="1350" loading="lazy"
       alt="Cover slide, {e(r["title"])}"></a>
     <div>
-      <p class="meta" data-prose="data"><span class="tag">{e(ordinal(
+      <p class="meta" data-prose="data"><span class="tag">Published {e(ordinal(
         _dt.date.fromisoformat(r["date"])))}</span>
         <span>{r["slides"]} slides</span></p>
       <h3>{e(r["title"])}</h3>
-      <p>{e(r["hook"])}</p>
+      <p>{e(blurb)}</p>
       <div class="ctarow">
         <a class="cta ghost" href="articles/{e(r["date"])}/">Read it</a>
+        {story_link and f'<a class="cta ghost" href="item/{e(r["story"])}/">The record entry</a>'}
         <a class="cta ghost" href="articles/">Every article</a>
       </div>
     </div>
@@ -668,7 +1036,11 @@ def latest_video() -> str:
   <h2>The latest video</h2>
   <p class="sub">The newest from the daily feed.</p>
   <div class="latest">
-    <div class="vidwrap"><video id="hv" muted playsinline loop preload="none"
+    <!-- CONTROLS, ALWAYS. A roughly 60 second film looping forever beside the copy with no
+         pause, stop or hide is a WCAG 2.2.2 failure, and `prefers-reduced-motion` cannot
+         reach media playback from CSS. The reader gets a control and the script below asks
+         before it starts anything. -->
+    <div class="vidwrap"><video id="hv" muted playsinline loop controls preload="none"
       aria-label="The latest Texas AI video"></video></div>
     <div>
       <p class="meta" data-prose="data"><span class="tag" id="hvdate"></span></p>
@@ -703,7 +1075,14 @@ def latest_video() -> str:
     sec.hidden=false;
     var io=new IntersectionObserver(function(es){es.forEach(function(en){
       if(!en.isIntersecting)return;
-      if(!el.src){el.src=el.dataset.src;var q=el.play();if(q&&q.catch)q.catch(function(){});}
+      // AUTOPLAY ONLY IF NOBODY ASKED FOR LESS MOTION. The source still loads either way, so
+      // pressing play is instant. Reduced motion is a request about movement, and a looping
+      // film is the largest piece of movement on the page.
+      if(!el.src){
+        el.src=el.dataset.src;
+        var calm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+        if(!calm){var q=el.play();if(q&&q.catch)q.catch(function(){});}
+      }
       io.disconnect();})},{rootMargin:'200px'});
     io.observe(sec);
   }).catch(function(){});
@@ -740,11 +1119,9 @@ def scan_teaser() -> str:
 <section data-reveal id="scan">
   <h2>Would AI actually help your business</h2>
   <div class="prose">
-    <p>The scanner reads your own public pages and hands back an honest map of that operation.
-    Where AI would carry real load. Where ordinary software does the same job cheaper and safer.
-    Where it has no business at all.</p>
-    <p>It is free and the parts that say not yet are the honest ones. Every line traces to a page
-    on your own site, linked so you can check it.</p>
+    <p>The scanner reads your public pages and maps where AI would carry real load. Where
+    ordinary software wins. Where it has no business at all.</p>
+    <p>Free. Every line links to the page it came from.</p>
   </div>
   <form class="composer scanform" action="scan/" method="get">
     <label class="vh" for="scan-url">Your website</label>
@@ -769,18 +1146,16 @@ def home(items: list, today: str) -> str:
     runs = load_runs()
     n_videos = video_count()
 
-    if act:
-        soonest = act[0]
-        lede = (f'<div class="clock{" soon" if soonest["days_left"] <= 7 else ""}">'
-                f'<span class="days">{soonest["days_left"]}</span>'
-                f'<span class="lab">days left on the next comment window</span></div>')
-        openers = (f'<p><strong>{len(act)}</strong> of the '
-                   f'<strong>{n_items}</strong> decisions on this record are still open to '
-                   f'public comment.</p>')
-    else:
-        lede = ('<div class="gap"><strong>No comment window on this record is open today.</strong>'
-                ' Windows are checked every day, and one appears here the moment it opens.</div>')
-        openers = f"<p>The record holds <strong>{n_items}</strong> decisions.</p>"
+    # WHAT STANDS IN FOR THE DEADLINE CARDS WHEN THERE ARE NONE.
+    #
+    # This was a pair. A clock widget for when something is open, and this line for when
+    # nothing is, and the clock could never render: the cards below are built from the same
+    # `act` list, so they are there whenever it is non-empty, and the template reaches for
+    # this only when they are not. It was a second copy of `clock()` that had drifted, missing
+    # both the singular and the closes-today wording, so it was also one day from reading "1
+    # days left" if anything had ever shown it. One list, one branch, no ghost widget.
+    lede = ('<div class="gap"><strong>No comment window on this record is open today.</strong>'
+            ' Windows are checked every day, and one appears here the moment it opens.</div>')
 
     # THE DEADLINE CARDS. A date at display size, a status word that is also a colour, and a
     # live count of what is left. Somebody should be able to find what is open to them without
@@ -798,7 +1173,13 @@ def home(items: list, today: str) -> str:
         f'<a class="dcard{" open" if a["days_left"] > 7 else ""}" href="item/{e(a["id"])}/">'
         f'<span class="badge {"open" if a["days_left"] > 7 else "soon"}">'
         f'{"Open to you" if a["days_left"] > 7 else "Closing soon"}</span>'
-        f'<span class="big">{e(short_date(a["closes"]))}</span>'
+        # A `<time>`, NOT A SPAN. The tile reads "SEP 8" at display size, which is a date
+        # abbreviated the way a calendar abbreviates one and not the way this project writes a
+        # date in a sentence. Carrying the ISO value in the element that shows it is what makes
+        # that legitimate rather than an exception: the machine-readable date is right there,
+        # the house style checker verifies the visible text renders it, and a search engine or
+        # a screen reader gets the unambiguous value instead of three shouted letters.
+        f'<time class="big" datetime="{e(a["closes"])}">{e(short_date(a["closes"]))}</time>'
         f'<span class="left">{a["days_left"]} '
         f'{"day" if a["days_left"] == 1 else "days"} left</span>'
         f'<h3>{e(a["title"])}</h3>'
@@ -856,8 +1237,6 @@ def home(items: list, today: str) -> str:
 
 {ask_box(items, today)}
 
-{latest_article(runs)}
-
 {latest_video()}
 
 <section data-reveal>
@@ -867,7 +1246,10 @@ def home(items: list, today: str) -> str:
   of <span class="num">{_place_facts()["counties"]}</span>.</p></div>
   {svg}
   <p class="mapread" id="mapread" role="status" aria-live="polite" data-prose="data"></p>
+  <button type="button" class="mapreset" id="mapreset" hidden>Show all of Texas</button>
 </section>
+
+{latest_article(runs, items)}
 
 {'<section data-reveal><h2>Closing next</h2><ul class="deck">' + rows + '</ul>'
    '<p class="meta" data-prose="data"><a href="record/">See all ' + str(n_items) + ' decisions</a></p>'
@@ -932,7 +1314,13 @@ def docket_index(items: list, today: str) -> str:
     crows = "".join(
         f'<tr><td><a href="../place/county-{_place_slug(c)}/">{e(c)} County</a></td>'
         f'<td class="n num">{len(v)}</td>'
-        f'<td>{", ".join(e(t) for t in dict.fromkeys(i["topic"] for i in v))}</td></tr>'
+        # SEPARATED BY A MIDDOT, NOT A COMMA, because one of the labels contains a comma.
+        # These were raw slugs, which read like a database, and `topic_label` is the one place
+        # a slug becomes English. `land-water-and-permitting` becomes "Land, water and
+        # permitting", correctly, and a comma-joined list of it beside another topic reads as
+        # four things. The separator has to be something no label can contain.
+        f'<td>{" · ".join(e(topic_label(t)) for t in dict.fromkeys(i["topic"] for i in v))}</td>'
+        f'</tr>'
         for c, v in sorted(by.items(), key=lambda kv: (-len(kv[1]), kv[0])))
     mrows = "".join(
         f'<tr><td><a href="../place/{e(mid)}/">{e(m["name"])}</a></td>'
@@ -959,6 +1347,7 @@ def docket_index(items: list, today: str) -> str:
 {texas_map.render(lit=lit, links=county_links(items, today, 1),
                   counts=proj["by_county"])}
 <p class="mapread" id="mapread" role="status" aria-live="polite" data-prose="data"></p>
+  <button type="button" class="mapreset" id="mapreset" hidden>Show all of Texas</button>
 <p class="meta" data-prose="data">Click a lit county to see what it holds.
   <span class="num">{len(lit)}</span> of <span class="num">{tx["counties"]}</span> counties
   are named, and <span class="num">{n_state}</span> decisions apply statewide.</p>
@@ -1171,6 +1560,10 @@ def item_page(it: dict, today: str) -> str:
     return page(title=f'{it["title"]} · {SITE_NAME}', depth=2, active="record/",
                 desc=it["summary"][:180], body=body, today=today,
                 canonical=f'item/{it["id"]}/',
+                # ITS OWN CARD, carrying its own headline. A shared decision link now shows
+                # what the decision is rather than the site's generic mark.
+                og_image=f'og/{it["id"]}.png',
+                og_alt=f'{it["title"]}. A card from the Texas AI Docket.',
                 # THE RECORD, SAID IN MACHINE READABLE FORM. A Report carrying this item's
                 # citations, the questions a reader arrives with answered from its own fields,
                 # and the trail back up. Every one computed in schema.py, none written.
@@ -1249,6 +1642,9 @@ def place_page(place: dict, items: list, today: str) -> str:
                     if untouched else '') + '</p>')
         head = f"{e(place['name'])}"
         sub = e(place["full_name"])
+        # What the map's count is a count OF on this page. Without it the accessible title
+        # announces a statewide figure that this page's own prose contradicts two lines above.
+        map_scope = f"the items on this {place['name']} page"
     else:
         tx = _place_facts()
         scope = (f'<p class="gap">This county is in no federal statistical area, which is '
@@ -1257,6 +1653,7 @@ def place_page(place: dict, items: list, today: str) -> str:
                  f'for that reason.</p>')
         head = f"{e(place['name'])} County"
         sub = "Outside every metropolitan and micropolitan area"
+        map_scope = f"the items on this {place['name']} County page"
 
     body = f"""
 <h1>{head}</h1>
@@ -1265,7 +1662,7 @@ def place_page(place: dict, items: list, today: str) -> str:
   {"item" if len(mine) == 1 else "items"} in the record.</p>
   {scope}
 </div>
-{texas_map.render(lit=lit, inset=True)}
+{texas_map.render(lit=lit, inset=True, scope=map_scope)}
 <table><thead><tr><th>Item</th><th>Topic</th><th>Status</th></tr></thead>
 <tbody>{rows}</tbody></table>
 <p class="prose"><a href="../../record/">The whole record</a></p>
@@ -1576,9 +1973,6 @@ def scan_page(today: str) -> str:
     body = f"""
 <section class="hero" data-reveal>
   <h1>See where AI would actually help you</h1>
-  <p class="sub">Send a website. What comes back is an honest map of that operation. Where AI
-  would carry real load. Where ordinary software does the same job cheaper and safer. Where it
-  has no business at all.</p>
 </section>
 
 <section data-reveal>
@@ -1636,11 +2030,6 @@ def scan_page(today: str) -> str:
     <p class="scan-status" role="status" aria-live="polite" hidden></p>
   </form>
 {_SCAN_JS}
-  <p class="fine">A person reads every report before it goes out. That takes a day or two
-  rather than seconds. Your report is not published anywhere and is not shown to anyone else.
-  It reads what is public. It can't see a billing system or a call volume and it says so where
-  that matters. The <a href="../services/">Field Study</a> is what goes deeper if that turns out
-  to be worth doing.</p>
 </section>
 """
     return page(title=f"Bottleneck scan · {SITE_NAME}", depth=1, active="",
@@ -1830,13 +2219,11 @@ def about_page(today: str) -> str:
   expertise gets pointed at Texas businesses who rarely get access to it.</p>
 
   <h2>How the work gets verified</h2>
-  <p>Every fact carries a claim id and traces to a document that was actually fetched. At
-  least one source on every item has to be the filing or the statute or the agency itself
-  rather than a story about it. Nothing enters <a href="../record/">the record</a> without
-  that. An item that can't be re-verified says so on its own page.</p>
-  <p>Every numeral is produced by code from data. A build gate fails on any figure that
-  can't be traced to a computation. Where something is genuinely not public, the size of the
-  gap gets published instead of an estimate.</p>
+  <p>Every fact carries a claim id and traces to a fetched document. At least one source on
+  every item is the filing or the statute or the agency itself. An item that can't be
+  re-verified says so on <a href="../record/">its own page</a>.</p>
+  <p>Every numeral is produced by code. A build gate fails on any figure that traces to no
+  computation. Where something is not public the gap is published instead of an estimate.</p>
 
   <h2>What you can hold this desk to</h2>
   <p><strong>Your outcome outranks the invoice.</strong> The recommendation is what this desk
@@ -2032,57 +2419,137 @@ def _quoted_numerals(items: list) -> set:
     return out
 
 
-def questions_page(items: list, today: str) -> str:
-    """Every question this record can answer, with its answer, on one page.
+def _run_numerals(r: dict) -> set:
+    """Every numeral one shipped deck is entitled to print, and where each one comes from.
 
-    WHY A HUB AND NOT A DOORWAY. The difference is whether anything is behind it. This page is
-    a VIEW over the record: each question and each answer is the same computed pair the item
-    page emits as structured data, from `schema.qa_pairs`, so the page and the JSON-LD cannot
-    drift and neither can be written independently of the ledger. A page built by asking a model
-    for likely questions would be a doorway page, which is both spam and a lie.
+    Two origins and no third. A figure was QUOTED from a source, so it is in a claim's verbatim
+    quote or in the title of the document that quote came from. Or it was COMPUTED by the run,
+    in which case it is in that run's `computed.json`, which is the file its own `compute.py`
+    wrote and which the run's gates checked the slides against.
 
-    WHY IT IS WORTH HAVING. This is where a long tail query lands. Somebody types "can I still
-    comment on the Oncor 765 kV line" into a search box or an assistant, and that sentence
-    exists here, answered, with a link to the decision it came from.
-
-    ONE QUESTION SHAPE PER SECTION rather than one section per decision, because a reader
-    arrives with a KIND of question. Fifty eight blocks of ten questions is a database dump.
+    A numeral the deck printed from neither is exactly what this gate exists to refuse, and it
+    stays refused: nothing here authorises a figure by it having appeared on a slide.
     """
-    _titles = schema.source_titles(items)
-    shapes = {}
+    out = set()
+    for c in r.get("claims") or []:
+        for field in (c.get("quote"), c.get("text"), c.get("source_title"), c.get("url")):
+            if field:
+                out |= set(numeral_lint.NUMERAL.findall(str(field)))
+
+    computed = REPO_ROOT / "runs" / "carousel" / r["date"] / "computed.json"
+    try:
+        blob = json.loads(computed.read_text("utf-8"))
+    except Exception:                                                # noqa: BLE001
+        blob = None
+
+    def walk(node):
+        if isinstance(node, dict):
+            for v in node.values():
+                walk(v)
+        elif isinstance(node, list):
+            for v in node:
+                walk(v)
+        elif isinstance(node, (int, float)) and not isinstance(node, bool):
+            out.add(str(node))
+            out.add(f"{node:,}")
+        elif isinstance(node, str):
+            out.update(numeral_lint.NUMERAL.findall(node))
+
+    walk(blob)
+    return out
+
+
+def question_groups(items: list, today: str) -> dict:
+    """Every computed question and answer, grouped by the KIND of question it is.
+
+    One place builds this, and both the hub and the twelve kind pages read it, so a question
+    can't appear on one and not the other.
+    """
+    groups = {}
     for it in sorted(items, key=lambda i: i["title"]):
         for q, a in schema.qa_pairs(SCHEMA_CTX, it, today):
-            # The shape is the question with its subject removed, which is what makes two
-            # questions about different decisions the same KIND of question.
-            key = q.replace(it["title"], "").strip().rstrip("?").strip()
-            shapes.setdefault(key, []).append((it, q, a))
+            groups.setdefault(schema.shape_of(q, it["title"]), []).append((it, q, a))
+    return groups
 
-    order = sorted(shapes, key=lambda k: (-len(shapes[k]), k))
-    figures = {str(len(shapes))} | {str(len(v)) for v in shapes.values()}
-    figures |= {str(sum(len(v) for v in shapes.values()))}
-    nav = "".join(f'<a href="#{_place_slug(k)}">{e(k.capitalize())}</a>' for k in order)
-    blocks = []
-    for k in order:
-        rows = "".join(
-            f'<details><summary>{e(q)}</summary><div class="prose">'
-            f'<p>{_cite_titles(e(a), _titles)}</p>'
-            f'<p><a class="go" href="../item/{it["id"]}/">Open the decision</a>.</p></div>'
-            f'</details>'
-            for it, q, a in shapes[k])
-        blocks.append(f'<section id="{_place_slug(k)}"><h2>{e(k.capitalize())}</h2>'
-                      f'<div class="qa">{rows}</div></section>')
+
+def questions_check(groups: dict) -> None:
+    """The frames and `schema.QUESTION_KINDS` agree, in both directions, on every build.
+
+    A frame with no entry would silently drop its questions off the site entirely, because the
+    hub only walks the map. An entry no frame produces would render an empty page that looks
+    perfectly healthy. The second is the one that rots quietly, so both are a hard fail.
+    """
+    mapped = {shape for shape, _s, _h, _b in schema.QUESTION_KINDS}
+    built = set(groups)
+    if built - mapped:
+        raise SystemExit("questions: qa_pairs produces a shape with no page: "
+                         + ", ".join(sorted(built - mapped)))
+    if mapped - built:
+        raise SystemExit("questions: QUESTION_KINDS carries a shape nothing produces: "
+                         + ", ".join(sorted(mapped - built)))
+
+
+def _qa_rows(rows: list, titles: dict, depth: int) -> str:
+    up = "../" * depth
+
+    def one(it, q, a):
+        # A LIST ANSWER IS MARKED AS DATA, and only once it has proved it is one. The check is
+        # in `schema.list_answer_ok`, which reads the item's own county list, so an answer that
+        # started carrying prose would fail the build rather than quietly inherit the exemption.
+        listy = (schema.shape_of(q, it["title"]) in schema.LIST_ANSWER_SHAPES
+                 and schema.list_answer_ok(it, a))
+        if schema.shape_of(q, it["title"]) in schema.LIST_ANSWER_SHAPES and not listy:
+            raise SystemExit(f'questions: {it["id"]} claims a list answer that is not one: {a}')
+        mark = ' data-prose="data"' if listy else ""
+        return (f'<details><summary>{e(q)}</summary><div class="prose">'
+                f'<p{mark}>{_cite_titles(e(a), titles)}</p>'
+                f'<p><a class="go" href="{up}item/{it["id"]}/">Open the decision</a>.</p>'
+                f'</div></details>')
+
+    return "".join(one(it, q, a) for it, q, a in rows)
+
+
+def questions_hub(items: list, today: str) -> tuple:
+    """The twelve kinds of question this record answers, each linking to its own page.
+
+    WHY A HUB AND NOT A DOORWAY. The difference is whether anything is behind it. Every kind
+    listed here has a page of real answers, and every answer is the same computed pair the item
+    page emits as structured data, from `schema.qa_pairs`, so the page and the JSON-LD cannot
+    drift and neither can be written independently of the ledger.
+
+    WHY IT SPLIT. This was one page carrying all 633 pairs, 290 KB of HTML and 633 `<details>`
+    elements, and it was the heaviest thing on the site by a factor of six. That is a slow page
+    on a phone over cellular for no reason, and it is one title, one description and one
+    canonical URL trying to be about twelve different questions at once. Split, each kind gets
+    a page whose title is what it is about, which is both lighter to load and a far more
+    targetable unit for the search that lands on it.
+
+    ONE KIND PER PAGE rather than one decision per page, because a reader arrives with a KIND of
+    question. Fifty eight blocks of ten questions is a database dump.
+    """
+    groups = question_groups(items, today)
+    questions_check(groups)
+    total = sum(len(v) for v in groups.values())
+    figures = {str(total), str(len(schema.QUESTION_KINDS))}
+    figures |= {str(len(v)) for v in groups.values()}
+
+    cards = "".join(
+        f'<li data-prose="data"><a class="dcard open" href="{slug}/">'
+        f'<span class="big">{len(groups[shape]):02d}</span>'
+        f'<span class="left">answered</span>'
+        f'<h3>{e(head)}</h3><span class="note">{e(blurb)}</span></a></li>'
+        for shape, slug, head, blurb in schema.QUESTION_KINDS if groups.get(shape))
 
     body = f"""
 <article>
 <h1>Questions this record answers</h1>
 <div class="prose">
-  <p>Every answer below is assembled from the record itself, from the same fields the decision
-  page prints. Nothing here is written separately, so an answer can't drift from the entry it
+  <p>Every answer is assembled from the record itself, from the same fields the decision page
+  prints. Nothing here is written separately, so an answer can't drift from the entry it
   describes.</p>
   <p>An answer the record can't support is not shown at all.</p>
 </div>
-<nav class="chips" aria-label="Question kinds">{nav}</nav>
-{"".join(blocks)}
+<ul class="deck">{cards}</ul>
 </article>
 """
     return figures, page(title=f"Questions · {SITE_NAME}", depth=1, active="record/",
@@ -2092,9 +2559,43 @@ def questions_page(items: list, today: str) -> str:
                 extra_ld=[schema.collection_node(
                               SCHEMA_CTX, name="Questions", path="questions/",
                               description="Questions answered from the tracked record.",
-                              count=sum(len(v) for v in shapes.values())),
+                              count=total),
                           schema.breadcrumbs(SCHEMA_CTX,
                                              [(SITE_NAME, ""), ("Questions", "questions/")])])
+
+
+def questions_kind_page(items: list, today: str, kind: tuple) -> tuple:
+    """One kind of question, asked of every decision on the record that can answer it."""
+    shape, slug, head, blurb = kind
+    groups = question_groups(items, today)
+    rows = groups.get(shape) or []
+    titles = schema.source_titles(items)
+    figures = {str(len(rows))}
+
+    others = "".join(
+        f'<a href="../{s}/">{e(h)}</a>'
+        for sh, s, h, _b in schema.QUESTION_KINDS if sh != shape and groups.get(sh))
+
+    body = f"""
+<article>
+<h1>{e(head)}</h1>
+<div class="prose">
+  <p>{e(blurb)} Answered here for {len(rows)} of the decisions on the record, from the same
+  fields the decision page prints.</p>
+</div>
+<div class="qa">{_qa_rows(rows, titles, 2)}</div>
+<nav class="chips" aria-label="Other kinds of question">{others}</nav>
+</article>
+"""
+    return figures, page(title=f"{head} · {SITE_NAME}", depth=2, active="record/",
+                desc=f"{blurb} Answered from the Texas AI Docket for {len(rows)} decisions.",
+                body=body, today=today, canonical=f"questions/{slug}/",
+                extra_ld=[schema.collection_node(
+                              SCHEMA_CTX, name=head, path=f"questions/{slug}/",
+                              description=blurb, count=len(rows)),
+                          schema.breadcrumbs(SCHEMA_CTX,
+                                             [(SITE_NAME, ""), ("Questions", "questions/"),
+                                              (head, f"questions/{slug}/")])])
 
 
 def sources_page(items: list, today: str) -> str:
@@ -2187,9 +2688,12 @@ def llms_txt(items: list, today: str) -> str:
         return (f'- [{i["title"]}]({SITE_URL}/item/{i["id"]}/): '
                 f'{_first_sentence(i["summary"])}')
 
+    # The heading below promises a DATED way in, so the filter computes one. Room alone is the
+    # kind of access the ledger recorded and says nothing about whether it is still open. See
+    # `next_door` for the 28 finished votes this used to publish as live doors.
     open_now = [i for i in items
-                if (i.get("public_access") or {}).get("room") in ("open_comment",
-                                                                  "open_meeting")]
+                if (i.get("public_access") or {}).get("room") in ("open_comment", "open_meeting")
+                and next_door(i, today)]
     by_topic = {}
     for i in items:
         by_topic.setdefault(i["topic"], []).append(i)
@@ -2212,6 +2716,17 @@ def llms_txt(items: list, today: str) -> str:
         f"- [Texas Water Watch]({SITE_URL}/water/)",
         f"- [About this record]({SITE_URL}/about/)", "",
     ]
+
+    # THE TWELVE QUESTION PAGES, NAMED. This file exists so a model can find the answer without
+    # crawling, and one link to a hub is a link to twelve more links. Naming them here is the
+    # difference between "questions are answered somewhere on this site" and "the page that
+    # says who decides is at this URL". Generated from the same map the pages are, so a kind
+    # can't be listed here and missing there.
+    parts += ["## Questions, by what is being asked", "",
+              "Each page answers one kind of question about every decision on the record.", ""]
+    parts += [f"- [{head}]({SITE_URL}/questions/{slug}/): {blurb}"
+              for _shape, slug, head, blurb in schema.QUESTION_KINDS]
+    parts += [""]
 
     if open_now:
         parts += ["## Open right now", "",
@@ -2585,7 +3100,10 @@ def build(out: Path, today: str) -> dict:
     # rather than committed by hand and hoped for.
     w(indexnow.KEY_FILE, indexnow.key_file_contents())
 
-    for name, blob in og.files().items():
+    for name, blob in og.files(items).items():
+        # The per-decision cards live in their own directory, which has to exist first. The
+        # site card sits at the root beside the favicon.
+        (out / name).parent.mkdir(parents=True, exist_ok=True)
         (out / name).write_bytes(blob)
         written.append(name)
 
@@ -2621,10 +3139,16 @@ def build(out: Path, today: str) -> dict:
     # computed from the ledger, and the questions page shares `schema.qa_pairs` with the
     # structured data so the page and the JSON-LD cannot say different things.
     _quoted = _quoted_numerals(items)
-    _qfig, _qhtml = questions_page(items, today)
-    w("questions/index.html", _qhtml,
-      extra=(set().union(*(schema.authorised_numerals(i, today) for i in items))
-             if items else set()) | _quoted | _qfig)
+    _allnums = (set().union(*(schema.authorised_numerals(i, today) for i in items))
+                if items else set())
+    _qfig, _qhtml = questions_hub(items, today)
+    w("questions/index.html", _qhtml, extra=_allnums | _quoted | _qfig)
+    # ONE PAGE PER KIND OF QUESTION. The hub above walks the same map, and `questions_check`
+    # fails the build if the map and the frames disagree either way, so a kind cannot be
+    # answered on the site without being linked from the hub or listed without existing.
+    for _kind in schema.QUESTION_KINDS:
+        _kfig, _khtml = questions_kind_page(items, today, _kind)
+        w(f"questions/{_kind[1]}/index.html", _khtml, extra=_allnums | _quoted | _kfig)
     _sfig, _shtml = sources_page(items, today)
     w("sources/index.html", _shtml, extra=_quoted | _sfig)
     w("llms.txt", llms_txt(items, today))
@@ -2653,7 +3177,19 @@ def build(out: Path, today: str) -> dict:
         shutil.copyfile(feed_src, out / "videos" / "videos.json")
         written.append("videos/videos.json")
     for r in runs:
-        w(f'articles/{r["date"]}/index.html', article_page(r, today))
+        # THE DECK'S OWN NUMERALS, AUTHORISED WHERE THEY WERE COMPUTED AND QUOTED.
+        #
+        # This page now publishes the deck's prose and every claim behind it, so it carries
+        # figures this site build did not compute. That is exactly the case the law already
+        # covers at the docket layer: a numeral reaches published copy either by being computed
+        # from data or by being QUOTED FROM A SOURCE. Both sets come from the run's own
+        # artifacts, so nothing here is authorised by being typed.
+        #
+        # PER PAGE, NEVER SITE-WIDE, for the reason `_authorised_numerals` records twice over:
+        # both times this gate was silently disabled, the cause was an allowlist that grew
+        # wider than the page it guarded. Only this article page gets this article's figures.
+        w(f'articles/{r["date"]}/index.html', article_page(r, today, items),
+          extra=_run_numerals(r))
     # PER PLACE. The index, then a page for every metro the record touches and every
     # touched county that is in no metro. Nothing falls between the two.
     for pl in all_places(items, today):
@@ -2912,6 +3448,55 @@ def self_test() -> int:
         check("every relative link resolves from its own page", not broken,
               f"{len(broken)} broken, first: {broken[:1]}")
         check("an item page links the source", "rel=\"nofollow noopener\"" in one)
+
+    # ---------------------------------------------------------------- next_door
+    # WHAT COUNTS AS A DOOR A READER CAN STILL WALK THROUGH. `llms.txt` published 28 finished
+    # votes of 47 entries under a heading promising a dated way in, because it filtered on the
+    # KIND of access recorded rather than on whether the door is open.
+    def door(**over):
+        it = {"public_access": {"room": "open_meeting", "closes": None},
+              "key_dates": [{"date": "2026-09-04", "kind": "hearing", "note": ""}],
+              "status": "pending"}
+        it.update(over)
+        return it
+
+    check("a future hearing is a door", next_door(door(), "2026-08-16") == "2026-09-04")
+    check("a past hearing is not",
+          next_door(door(key_dates=[{"date": "2026-07-01", "kind": "hearing"}]),
+                    "2026-08-16") is None)
+    check("the door is today's, when it is today",
+          next_door(door(key_dates=[{"date": "2026-08-16", "kind": "hearing"}]),
+                    "2026-08-16") == "2026-08-16")
+    check("the NEAREST future door is the one reported",
+          next_door(door(key_dates=[{"date": "2026-11-03", "kind": "hearing"},
+                                    {"date": "2026-09-04", "kind": "hearing"}]),
+                    "2026-08-16") == "2026-09-04")
+
+    # A DECIDED ITEM WITH A FUTURE DOOR KEEPS IT, which is why this is not a status filter.
+    # League City has decided, and what it decided was to order a November 3rd election.
+    check("a decided item with a future door still has one",
+          next_door(door(status="decided"), "2026-08-16") == "2026-09-04")
+
+    # A clock on an agency is not a room a Texan can stand in.
+    check("a statutory deadline is not a public door",
+          next_door(door(key_dates=[{"date": "2026-09-04", "kind": "statutory_deadline"}]),
+                    "2026-08-16") is None)
+    check("...nor is the date a rule takes effect",
+          next_door(door(key_dates=[{"date": "2027-02-16", "kind": "effective"}]),
+                    "2026-08-16") is None)
+
+    # A CANCELED SITTING IS NOT A DOOR, AND IT IS A FIELD RATHER THAN A SENTENCE. This read the
+    # note with a regex first, which worked and would have gone quiet the day somebody wrote
+    # "called off". gate_schema keeps the note from disagreeing with the flag.
+    check("a canceled hearing is not a door",
+          next_door(door(key_dates=[{"date": "2026-09-04", "kind": "hearing",
+                                     "canceled": True, "note": "since canceled"}]),
+                    "2026-08-16") is None)
+    check("...and the prose alone no longer decides it",
+          next_door(door(key_dates=[{"date": "2026-09-04", "kind": "hearing",
+                                     "note": "since canceled"}]),
+                    "2026-08-16") == "2026-09-04",
+          "the flag is the truth; gate_schema is what refuses this item at build time")
 
     if failures:
         print(f"\nsite_build self-test: {failures} FAILED", file=sys.stderr)

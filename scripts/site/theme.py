@@ -364,7 +364,13 @@ def annotated() -> str:
 html {{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; overflow-x:clip; }}
 @media (prefers-reduced-motion:reduce) {{
   html {{ scroll-behavior:auto; }}
-  *,*::before,*::after {{ animation-duration:.01ms!important; transition-duration:.01ms!important; }}
+  /* ITERATION COUNT IS THE ONE THAT MATTERS. Shortening the duration of an `infinite`
+     animation does not stop it, it runs it faster forever, so the sky's eight loops kept
+     cycling. `shimmer` animates `background-position` on a full width blurred layer, which is
+     not compositable, so every frame repainted and re-blurred it on every page of the site.
+     A reader who set reduce-motion asked not to pay that. */
+  *,*::before,*::after {{ animation-duration:.01ms!important; animation-iteration-count:1!important;
+    transition-duration:.01ms!important; }}
 }}
 
 /* THE SWAP REFLOW, which only became real when the fonts did. `font-display:swap` paints in the
@@ -752,13 +758,16 @@ nav.main a[aria-current]::after {{ right:0; }}
    `9vh` above its headline, which is 82 on a tall phone. Add the shell's own top padding and
    the reader met 309 pixels of nothing before the first word. On a 915 pixel screen that is a
    quarter of the phone gone before the page says anything.
-   THE BREAKPOINT IS MEASURED, not chosen: stepping the viewport four pixels at a time, the
-   bar holds one row down to 460 and breaks below it. 28.75rem is that number, and it is the
+   THE BREAKPOINT IS MEASURED, not chosen, and the first measurement was wrong in a way worth
+   keeping. Stepping the viewport FOUR pixels at a time said the bar holds one row down to 460,
+   so the rule ended at 28.75rem. Stepping ONE pixel at a time finds the bar taking a second row
+   at 461 and 462, holding only "About", which is the exact one-item second row described below.
+   A four pixel step cannot find a two pixel band. The rule now ends at 29rem and 29rem is that number, and it is the
    same one the Lone Star's own rules turn on, because it is the same event.
    A SCROLLING ROW RATHER THAN A MENU BUTTON. Every section stays visible and reachable with a
    thumb, and nothing is hidden behind a control a reader has to discover. The row bleeds to
    both screen edges, because a strip that stops inside the gutter looks like it ends there. */
-@media (max-width:28.7499rem) {{
+@media (max-width:28.9999rem) {{
   nav.main {{ flex-wrap:nowrap; overflow-x:auto; overscroll-behavior-x:contain;
     -webkit-overflow-scrolling:touch; scrollbar-width:none; -ms-overflow-style:none;
     margin-inline:calc(var(--gap) * -1); padding-inline:var(--gap); }}
@@ -956,7 +965,7 @@ main {{ padding-top:clamp(2rem,6vh,4rem); }}
    sat between a 97 pixel masthead and the first word. `6vh` and `9vh` are proportions of the
    window, which is the right instinct on a laptop and the wrong one on a phone, where the
    window is tall, narrow, and already carrying a masthead that a desktop hides. */
-@media (max-width:28.7499rem) {{
+@media (max-width:28.9999rem) {{
   main {{ padding-top:1.5rem; }}
   .hero {{ padding-top:1.2rem; }}
 }}
@@ -973,7 +982,13 @@ main > section > h2::after {{ content:""; position:absolute; top:-1px; left:0; w
    a laptop viewport and the record it illustrates started below the fold. Capping the WIDTH by
    the height budget keeps the aspect exact and lets the sheet be a figure on the page rather
    than the page. 1000/900 of 72vh is 80vh. */
-.txmap {{ width:100%; max-width:min(100%,80vh); height:auto; display:block;
+/* TOUCH-ACTION IS THE DECLARATIVE HALF, and it was missing entirely. The pinch handler
+   suppresses the browser's own page zoom with `preventDefault` inside a non-passive touchmove,
+   which Chromium honours and which is why the gesture suite is green. iOS Safari drives pinch
+   through `gesturestart`/`gesturechange` and does not reliably let a touchmove cancel a zoom
+   already under way, so an iPhone reader pinching the map could zoom the whole page instead.
+   `touch-action:none` tells both engines the element handles its own gestures. */
+.txmap {{ touch-action:none; width:100%; max-width:min(100%,80vh); height:auto; display:block;
   margin-inline:auto; }}
 /* THE INSET, for a page whose subject is one place rather than the state. On a metro page the
    map's job is to answer "where in Texas is this", which is orientation and takes a glance. At
@@ -1029,7 +1044,24 @@ main > section > h2::after {{ content:""; position:absolute; top:-1px; left:0; w
 .mapread {{ min-height:1.5em; margin:.55rem 0 0; font-family:var(--mono);
   font-size:var(--s-1); color:var(--ink-mute); }}
 .mapread:empty {{ min-height:0; margin:0; }}
-@media (hover:hover) and (pointer:fine) {{ .mapread {{ display:none; }} }}
+/* THE WAY BACK OUT. A map that zooms and cannot be reset is a map a reader can get lost in,
+   and the gesture that would undo it is the one they just used to get here. Hidden until the
+   view has actually moved, because a control that does nothing is furniture. */
+.mapreset {{ margin:.5rem 0 0; padding:.5em 1em; border-radius:999px; cursor:pointer;
+  font-family:var(--mono); font-size:var(--s-2); letter-spacing:.08em;
+  text-transform:uppercase; background:var(--accent-deep); color:var(--on-accent);
+  border:var(--hair) solid transparent; }}
+.mapreset[hidden] {{ display:none; }}
+/* KEYED OFF WHETHER A TOUCH EXISTS, not off the primary pointer. `(hover:hover) and
+   (pointer:fine)` describes the mouse a device leads with, while the gesture layer turns on
+   for any device with `ontouchstart`. A touchscreen laptop, a Surface or an iPad with a
+   trackpad matched both: pinch to the 8x cap worked and the way back was `display:none`,
+   leaving a page reload. `any-pointer:coarse` asks the question the gesture actually asks. */
+@media (hover:hover) and (pointer:fine) and (any-pointer:coarse) {{
+  .mapread, .mapreset {{ display:revert; }}
+}}
+@media (hover:hover) and (pointer:fine) {{ .mapread, .mapreset {{ display:none; }} }}
+@media (any-pointer:coarse) {{ .mapread {{ display:block; }} }}
 /* THE HIGHLIGHT IS A STROKE AND NOT A FILL, so a lit county goes on saying it is lit while the
    thumb is on it. Swapping the fill would answer "where is my finger" by deleting the answer to
    "what does the record hold here", and the second question is the one the map is for. */
@@ -1046,7 +1078,15 @@ main > section > h2::after {{ content:""; position:absolute; top:-1px; left:0; w
    renders around 4 pixels, which is not small type, it is a smudge that reads as dirt on the
    map. A phone gets the locator: 254 counties and the ones the record touches. That is why the
    furniture is drawn as one group. */
-@media (max-width:34rem) {{ .txmap .survey {{ font-size:15px; stroke-width:1.4; }} }}
+/* DISPLAY, NOT FONT SIZE, and this rule did nothing for as long as it existed. It set
+   `font-size` on the `<g class="survey">` wrapper while every `<text>` inside carries
+   `class="lab"` and takes 11px from `.txmap .lab` directly. An own declaration beats an
+   inherited one, so the label kept its 11 units and rendered at 3.94 CSS pixels on a 390 wide
+   phone: exactly the smudge the comment above claims to have cured. `texas_map.py` also tells
+   a screen reader the scale bar is not announced because "the stylesheet hides the whole
+   survey layer below 34rem", which was describing behaviour that never happened.
+   Hiding it is what the comment, the aria text and the design all already said. */
+@media (max-width:34rem) {{ .txmap .survey {{ display:none; }} }}
 
 /* ---- the clock ---------------------------------------------------------- */
 /* The question nobody else answers: can a Texan still act on this, and by when. */

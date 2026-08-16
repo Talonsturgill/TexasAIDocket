@@ -1,0 +1,144 @@
+<!doctype html>
+<!-- SLIDE 5 — the money, at true ratio. One hue, one intensity, no severity ramp. -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1080px;height:1350px;overflow:hidden}
+  body{background:#08060F;position:relative;font-family:"Manrope",sans-serif}
+  canvas#art{position:absolute;inset:0}
+  svg#ink{position:absolute;inset:0}
+  .hd{position:absolute;top:112px;left:80px;right:80px}
+  .kick{font-family:"JetBrains Mono",monospace;font-size:25px;letter-spacing:.15em;
+        color:#C9A063;text-transform:uppercase;margin-bottom:18px}
+  h1{font-family:"Fraunces",serif;font-weight:800;font-size:104px;line-height:.98;
+     letter-spacing:-.022em;color:#E4D8C3;font-variation-settings:"opsz" 96}
+  .dek{position:absolute;left:80px;top:372px;width:900px;font-size:30px;font-size:31px;color:#C9B393;line-height:1.42}
+  .mark{position:absolute;left:80px;bottom:96px;display:flex;align-items:center;gap:16px}
+  .wm{font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:.19em;color:rgba(228,216,195,.72)}
+  .ctr{position:absolute;right:80px;bottom:96px;font-family:"JetBrains Mono",monospace;
+       font-size:24px;letter-spacing:.1em;color:rgba(228,216,195,.5)}
+  .geo{position:absolute;left:80px;bottom:60px;font-family:"JetBrains Mono",monospace;
+       font-size:19px;letter-spacing:.11em;color:rgba(228,216,195,.34)}
+</style></head>
+<body>
+  <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+  <svg id="ink" width="1080" height="1350" viewBox="0 0 1080 1350"></svg>
+  <div class="hd">
+    <div class="kick">Announced, August 6th</div>
+    <h1 id="hook">$16.8 billion.<br>$30 million.</h1>
+  </div>
+  <div class="dek" id="dek">What the company says it will spend in the first phase, and what the
+    state put in.</div>
+  <div class="mark">
+    <svg width="26" height="26" viewBox="0 0 24 24"><polygon fill="#FFF" points="12,1 15.1,8.6 23,9.2 17,14.4 18.9,22 12,17.8 5.1,22 7,14.4 1,9.2 8.9,8.6"/></svg>
+    <span class="wm">TEXAS AI DOCKET</span>
+  </div>
+  <div class="ctr">04 / 08</div>
+  <div class="geo" data-decorative>GRIMES COUNTY  30.545 N  95.985 W</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script>
+window.renderReady = new Promise(function (done) {
+(async function () {
+  TX.reseed(20260816);
+  const R = TX.rng(20260816);
+  const PHASE_ONE = 16800000000;   // claim c2, verbatim "more than $16.8 billion"
+  const TEF       = 30000000;      // claim c3, verbatim "$30 million"
+  const share = 100 * TEF / PHASE_ONE;
+
+  const g = document.getElementById("art").getContext("2d");
+  g.scale(2, 2);
+  const sky = g.createLinearGradient(0, 0, 0, 1350);
+  sky.addColorStop(0, "#08060F"); sky.addColorStop(.58, "#0E0B1A"); sky.addColorStop(1, "#171225");
+  g.fillStyle = sky; g.fillRect(0, 0, 1080, 1350);
+
+  /* Norther front: a hard value break at 0.382 rather than on the centre line. */
+  const BREAK = Math.round(1350 * 0.382);
+  g.fillStyle = "#0A0812"; g.fillRect(0, 0, 1080, BREAK);
+  const soft = g.createLinearGradient(0, BREAK, 0, BREAK + 210);
+  soft.addColorStop(0, "rgba(74,82,54,.26)"); soft.addColorStop(1, "rgba(74,82,54,0)");
+  g.fillStyle = soft; g.fillRect(0, BREAK, 1080, 210);
+  g.fillStyle = "rgba(201,160,99,.55)"; g.fillRect(0, BREAK, 1080, 2);
+
+  /* The lit stone ledge the bars stand on, so the bottom band carries modeled tone. */
+  const LEDGE = 1082;
+  const pool = g.createRadialGradient(540, LEDGE + 10, 20, 540, LEDGE + 10, 520);
+  pool.addColorStop(0, "rgba(201,160,99,.24)"); pool.addColorStop(1, "rgba(201,160,99,0)");
+  g.fillStyle = pool; g.fillRect(0, 980, 1080, 370);
+  g.fillStyle = "#2A2118"; g.fillRect(80, LEDGE, 920, 34);
+  g.fillStyle = "rgba(8,6,15,.55)"; g.fillRect(96, LEDGE + 34, 888, 16);
+  g.globalAlpha = .5;
+  for (let i = 0; i < 460; i++) {
+    const x = 80 + R() * 920, y = LEDGE + 2 + R() * 30;
+    g.fillStyle = "rgba(216,201,171," + (0.04 + 0.09 * R()) + ")";
+    g.fillRect(x, y, 1 + R() * 6, 1.2);
+  }
+  g.globalAlpha = 1;
+
+  /* THE TWO MASSES, at true ratio. The small one is 0.18 percent of the tall one and
+     it is NOT floored to a visible minimum. Its label sits on it. */
+  const TALL = 498;
+  const hSmall = TALL * (TEF / PHASE_ONE);
+  g.fillStyle = "#C9A063";
+  g.fillRect(212, LEDGE - TALL, 172, TALL);
+  g.fillRect(700, LEDGE - Math.max(hSmall, 1.2), 172, Math.max(hSmall, 1.2));
+
+  /* Below the ledge the ground keeps going. Hachured sandy loam so the bottom band is
+     terrain rather than a strip under a chart. */
+  g.save();
+  const soil = g.createLinearGradient(0, LEDGE + 50, 0, 1350);
+  soil.addColorStop(0, "#241C16"); soil.addColorStop(.55, "#3A2A20"); soil.addColorStop(1, "#1A140F");
+  g.fillStyle = soil; g.fillRect(0, LEDGE + 50, 1080, 1350 - LEDGE - 50);
+  g.lineCap = "round";
+  for (let i = 0; i < 1500; i++) {
+    const x = R() * 1080, y = LEDGE + 54 + R() * (1296 - LEDGE);
+    const slope = TX.fbm2(x / 210, y / 120, { octaves: 3 });
+    const len = 5 + 13 * Math.abs(slope);
+    g.globalAlpha = 0.10 + 0.24 * Math.abs(slope);
+    g.strokeStyle = slope > 0 ? "#A85433" : "#5A4030";
+    g.lineWidth = 1;
+    g.beginPath(); g.moveTo(x, y);
+    g.lineTo(x + Math.cos(1.15 + slope * .7) * len, y + Math.sin(1.15 + slope * .7) * len);
+    g.stroke();
+  }
+  g.globalAlpha = 1; g.restore();
+
+  const grain = new Image();
+  await new Promise(r => { grain.onload = r; grain.src = TX.grainTile(280, 40, 29); });
+  g.globalAlpha = .034;
+  for (let y = 0; y < 1350; y += 280) for (let x = 0; x < 1080; x += 280) g.drawImage(grain, x, y);
+  g.globalAlpha = 1;
+
+  const svg = d3.select("#ink");
+  await document.fonts.ready;
+  function lab(x, y, txt, size, fill, anchor) {
+    const t = svg.append("text").attr("x", x).attr("y", y).attr("text-anchor", anchor || "start")
+      .attr("font-family", "JetBrains Mono, monospace").attr("font-size", size)
+      .attr("letter-spacing", "0.07em").attr("fill", fill).text(txt);
+    return t;
+  }
+  lab(212, LEDGE - TALL - 22, "FIRST PHASE CAPITAL", 26, "#E4D8C3");
+  lab(872, LEDGE - 104, "TEXAS ENTERPRISE FUND", 26, "#E4D8C3", "end");
+  lab(872, LEDGE - 72, "GRANT", 26, "#E4D8C3", "end");
+  const pointer = svg.append("path")
+    .attr("d", "M786," + (LEDGE - 58) + "L786," + (LEDGE - 12))
+    .attr("stroke", "#E4D8C3").attr("stroke-width", 2).attr("fill", "none");
+  const sh = lab(540, LEDGE + 116, share.toFixed(2) + " PERCENT OF THE FIRST PHASE", 30, "#C9A063", "middle");
+  TX.svgPlate(sh.node(), { padX: 14, padY: 10, fill: "#0B0813", stroke: "#2B2447" });
+  const note = lab(80, 520,
+    "SAME HUE, SAME SCALE. THE SHORT ONE IS NOT FLOORED.", 24,
+    "rgba(228,216,195,.72)", "start");
+  TX.svgPlate(note.node(), { padX: 12, padY: 9, fill: "#0B0813", stroke: "#221C38" });
+  /* A measured gap at the short mass, so the leader ends in a dimension rather than on the ledge. */
+  const dimTop = LEDGE - Math.max(hSmall, 1.2);
+  svg.append("path").attr("d", "M746," + dimTop + "L826," + dimTop)
+     .attr("stroke", "#E4D8C3").attr("stroke-width", 2.4);
+  svg.append("path").attr("d", "M746," + LEDGE + "L826," + LEDGE)
+     .attr("stroke", "#E4D8C3").attr("stroke-width", 2.4);
+  document.body.dataset.ready = "1"; done();
+})();
+});
+</script>
+</body></html>

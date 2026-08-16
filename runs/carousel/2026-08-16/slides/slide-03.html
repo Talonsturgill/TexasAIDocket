@@ -1,0 +1,94 @@
+<!doctype html>
+<!-- SLIDE 4 — the purpose, in the company's own words, on an engraved ground. -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1080px;height:1350px;overflow:hidden}
+  body{background:#08060F;position:relative;font-family:"Manrope",sans-serif}
+  canvas#art{position:absolute;inset:0}
+  .attr{position:absolute;top:128px;left:80px;right:80px;font-family:"JetBrains Mono",monospace;
+        font-size:25px;letter-spacing:.13em;color:#C9A063;text-transform:uppercase;line-height:1.5}
+  blockquote{position:absolute;top:342px;left:80px;right:80px;font-family:"Fraunces",serif;
+     font-weight:600;font-size:66px;line-height:1.16;letter-spacing:-.012em;color:#E4D8C3;
+     font-variation-settings:"opsz" 72}
+  blockquote em{font-style:normal;color:#C9A063}
+  .src{position:absolute;left:80px;bottom:230px;font-family:"JetBrains Mono",monospace;
+       font-size:24px;letter-spacing:.09em;color:rgba(228,216,195,.66);line-height:1.7}
+  .src b{font-weight:700;font-size:30px;color:#E4D8C3;letter-spacing:.07em}
+  .mark{position:absolute;left:80px;bottom:96px;display:flex;align-items:center;gap:16px}
+  .wm{font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:.19em;color:rgba(228,216,195,.72)}
+  .ctr{position:absolute;right:80px;bottom:96px;font-family:"JetBrains Mono",monospace;
+       font-size:24px;letter-spacing:.1em;color:rgba(228,216,195,.5)}
+  .geo{position:absolute;left:80px;bottom:60px;font-family:"JetBrains Mono",monospace;
+       font-size:19px;letter-spacing:.11em;color:rgba(228,216,195,.34)}
+</style></head>
+<body>
+  <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+  <div class="attr">Elon Musk, in the Governor's release, August 6th</div>
+  <blockquote>"The Terafab is bringing cutting-edge manufacturing to America, creating thousands
+    of high-paying jobs in the Lone Star State, and enabling us to produce
+    <em>AI chips at scale for use on Earth and in space.</em>"</blockquote>
+  <div class="src"><b>THE PLANT IS ANNOUNCED. NOTHING IS BUILT.</b><br>CLAIM c7. QUOTED VERBATIM.</div>
+  <div class="mark">
+    <svg width="26" height="26" viewBox="0 0 24 24"><polygon fill="#FFF" points="12,1 15.1,8.6 23,9.2 17,14.4 18.9,22 12,17.8 5.1,22 7,14.4 1,9.2 8.9,8.6"/></svg>
+    <span class="wm">TEXAS AI DOCKET</span>
+  </div>
+  <div class="ctr">03 / 08</div>
+  <div class="geo" data-decorative>GRIMES COUNTY  30.545 N  95.985 W</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = new Promise(function (done) {
+(async function () {
+  TX.reseed(20260816);
+  const R = TX.rng(20260816);
+  const g = document.getElementById("art").getContext("2d");
+  g.scale(2, 2);
+  g.fillStyle = "#08060F"; g.fillRect(0, 0, 1080, 1350);
+
+  /* White-line intaglio. The burin field is DENSE where there is no type and thins to
+     nothing across the type band, because the library says engrave the ground and not
+     the message. The density function is the whole slide. */
+  const TYPE_TOP = 320, TYPE_BOT = 1176;
+  function density(y) {
+    if (y < TYPE_TOP) return Math.min(1, (TYPE_TOP - y) / 190);
+    if (y > TYPE_BOT) return Math.min(1, (y - TYPE_BOT) / 110);
+    return 0;
+  }
+  g.lineCap = "round";
+  for (let y = 6; y < 1350; y += (y > 1200 ? 3.4 : 5)) {
+    const d = density(y);
+    if (d <= 0.02) continue;
+    g.globalAlpha = 0.13 + 0.34 * d;
+    g.strokeStyle = "#C9B393";
+    g.lineWidth = 0.7 + 1.3 * d;
+    g.beginPath();
+    let first = true;
+    for (let x = -20; x < 1100; x += 8) {
+      const w = TX.fbm2(x / 320, y / 190, { octaves: 4, gain: .52 });
+      const yy = y + w * (5 + 9 * d);
+      if (first) { g.moveTo(x, yy); first = false; } else { g.lineTo(x, yy); }
+    }
+    g.stroke();
+  }
+  g.globalAlpha = 1;
+
+  /* A raking warm light low in the frame, so the densest engraving reads as a lit mass
+     rather than as a texture swatch. */
+  const glow = g.createRadialGradient(300, 1300, 30, 300, 1300, 620);
+  glow.addColorStop(0, "rgba(168,84,51,.19)"); glow.addColorStop(1, "rgba(168,84,51,0)");
+  g.fillStyle = glow; g.fillRect(0, 1000, 1080, 350);
+
+  /* One heavy rule under the attribution, the only hard edge on the frame. */
+  g.fillStyle = "#A85433"; g.fillRect(80, 228, 396, 3);
+
+  const grain = new Image();
+  await new Promise(r => { grain.onload = r; grain.src = TX.grainTile(280, 42, 19); });
+  g.globalAlpha = .035;
+  for (let y = 0; y < 1350; y += 280) for (let x = 0; x < 1080; x += 280) g.drawImage(grain, x, y);
+  g.globalAlpha = 1;
+  document.body.dataset.ready = "1"; done();
+})();
+});
+</script>
+</body></html>

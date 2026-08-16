@@ -12,7 +12,7 @@ The Temple Planning and Zoning Commission has three data center items on its Aug
 - Comment closes: 2026-08-17
 - Take part: https://www.templetx.gov/datacenters
 
-- Last checked: 2026-08-14
+- Last checked: 2026-08-16
 
 ## Dates
 

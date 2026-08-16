@@ -1,0 +1,150 @@
+<!doctype html>
+<!-- SLIDE 7 — the turn. The frozen queue as one hundred arrested paths, one per PERCENT,
+     and this plant standing outside it. No arrowheads, and no causal verb anywhere. -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1080px;height:1350px;overflow:hidden}
+  body{background:#08060F;position:relative;font-family:"Manrope",sans-serif}
+  canvas#art{position:absolute;inset:0}
+  svg#ink{position:absolute;inset:0}
+  .hd{position:absolute;top:110px;left:80px;right:80px}
+  .kick{font-family:"JetBrains Mono",monospace;font-size:25px;letter-spacing:.15em;
+        color:#C9A063;text-transform:uppercase;margin-bottom:16px}
+  h1{font-family:"Fraunces",serif;font-weight:800;font-size:98px;line-height:.96;
+     letter-spacing:-.022em;color:#E4D8C3;font-variation-settings:"opsz" 96}
+  .mark{position:absolute;left:80px;bottom:96px;display:flex;align-items:center;gap:16px}
+  .wm{font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:.19em;color:rgba(228,216,195,.72)}
+  .ctr{position:absolute;right:80px;bottom:96px;font-family:"JetBrains Mono",monospace;
+       font-size:24px;letter-spacing:.1em;color:rgba(228,216,195,.5)}
+  .geo{position:absolute;left:80px;bottom:60px;font-family:"JetBrains Mono",monospace;
+       font-size:19px;letter-spacing:.11em;color:rgba(228,216,195,.34)}
+</style></head>
+<body data-encodes='[{"claim":"the lit plant below the stop bar is tellable from the queue field above it","reads":"differ","a":[[300,1040,240,60]],"b":[[300,560,240,60]]}]'
+      data-contacts='[{"what":"the plant on its own ground","shadow":[[310,1110,400,16]],"ground":[[310,1200,400,16]]}]'>
+  <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+  <svg id="ink" width="1080" height="1350" viewBox="0 0 1080 1350"></svg>
+  <div class="hd">
+    <div class="kick">August 3rd, the same office</div>
+    <h1>The plant is not<br>in the queue.</h1>
+  </div>
+  <div class="mark">
+    <svg width="26" height="26" viewBox="0 0 24 24"><polygon fill="#FFF" points="12,1 15.1,8.6 23,9.2 17,14.4 18.9,22 12,17.8 5.1,22 7,14.4 1,9.2 8.9,8.6"/></svg>
+    <span class="wm">TEXAS AI DOCKET</span>
+  </div>
+  <div class="ctr">06 / 08</div>
+  <div class="geo" data-decorative>GRIMES COUNTY  30.545 N  95.985 W</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script>
+window.renderReady = new Promise(function (done) {
+(async function () {
+  TX.reseed(20260816);
+  const R = TX.rng(20260816);
+  const g = document.getElementById("art").getContext("2d");
+  g.scale(2, 2);
+  const sky = g.createLinearGradient(0, 0, 0, 1350);
+  sky.addColorStop(0, "#0A0812"); sky.addColorStop(.5, "#12101F"); sky.addColorStop(1, "#0A0812");
+  g.fillStyle = sky; g.fillRect(0, 0, 1080, 1350);
+
+  /* ONE HUNDRED PATHS, ONE PER PERCENT. Never one per gigawatt: ninety percent of 474
+     gigawatts is the product of two approximations and this deck does not publish it.
+     Ninety are heavy for the data center share, ten are thin for everything else. */
+  const STOP = Math.round(1350 * 0.382) + 300;      /* the bar, off the vertical centre */
+  const TOP = 400;
+  g.lineCap = "round";
+  for (let i = 0; i < 100; i++) {
+    const heavy = i < 90;
+    let x = 76 + R() * 60;
+    let y = TOP + (i / 100) * (STOP - TOP - 26) + R() * 8;
+    const len = 200 + R() * 640;                    /* varied, since uniform length reads as hair */
+    g.beginPath(); g.moveTo(x, y);
+    for (let s = 0; s < len; s += 7) {
+      const a = TX.simplex2(x / 240, y / 190) * 0.34;
+      x += Math.cos(a) * 7; y += Math.sin(a) * 7;
+      if (y > STOP - 8) { y = STOP - 8; }            /* arrested against the bar */
+      g.lineTo(x, y);
+      if (x > 1010) break;
+    }
+    g.strokeStyle = heavy ? "rgba(201,160,99,.62)" : "rgba(122,116,106,.46)";
+    g.lineWidth = heavy ? 2.6 : 1.1;
+    g.stroke();
+  }
+
+  /* THE STOP. The hardest edge in the deck. */
+  g.fillStyle = "#0A0812"; g.fillRect(0, STOP, 1080, 1350 - STOP);
+  g.fillStyle = "#E4D8C3"; g.fillRect(0, STOP - 4, 1080, 4);
+
+  /* Below it, its own ground, lit so a contact shadow has something to subtract from. */
+  const apron = g.createLinearGradient(0, STOP, 0, 1350);
+  apron.addColorStop(0, "#241B14"); apron.addColorStop(.42, "#5C4028");
+  apron.addColorStop(.72, "#7A5433"); apron.addColorStop(1, "#3A2A1C");
+  g.fillStyle = apron; g.fillRect(0, STOP, 1080, 1350 - STOP);
+  const pool = g.createRadialGradient(508, 1150, 30, 508, 1150, 560);
+  pool.addColorStop(0, "rgba(224,149,106,.42)"); pool.addColorStop(1, "rgba(224,149,106,0)");
+  g.fillStyle = pool; g.fillRect(0, STOP, 1080, 1350 - STOP);
+  /* the apron is worked ground, hachured so the bottom band is terrain and not a wash */
+  g.lineCap = "round";
+  for (let i = 0; i < 3200; i++) {
+    const x = R() * 1080, y = STOP + 14 + R() * (1336 - STOP);
+    const slope = TX.fbm2(x / 190, y / 105, { octaves: 3 });
+    const len = 5 + 14 * Math.abs(slope);
+    g.globalAlpha = 0.10 + 0.26 * Math.abs(slope);
+    g.strokeStyle = slope > 0 ? "#D8C9AB" : "#2A1C12";
+    g.lineWidth = 1;
+    g.beginPath(); g.moveTo(x, y);
+    g.lineTo(x + Math.cos(1.2 + slope * .8) * len, y + Math.sin(1.2 + slope * .8) * len);
+    g.stroke();
+  }
+  g.globalAlpha = 1;
+
+  /* The plant: one lit mass on its own ground, outside the field. Two-part contact shadow. */
+  g.fillStyle = "rgba(14,10,6,.88)"; g.fillRect(300, 1108, 420, 20);
+  g.fillStyle = "rgba(14,10,6,.44)"; g.fillRect(268, 1100, 484, 38);
+  g.fillStyle = "#D8C9AB"; g.fillRect(318, 1040, 384, 68);
+  g.fillStyle = "#6E3A22"; g.fillRect(318, 1040, 384, 6);
+  /* its own generation, drawn as heat off the roof rather than as a plume of smoke */
+  g.globalAlpha = .55;
+  for (let i = 0; i < 500; i++) {
+    const x = 330 + R() * 360, y = 1040 - R() * 74;
+    const t = (1040 - y) / 74;
+    g.fillStyle = "rgba(224,149,106," + (0.16 * (1 - t) * R()) + ")";
+    g.fillRect(x + TX.simplex2(x / 40, y / 30) * 5, y, 2.4, 2.4);
+  }
+  g.globalAlpha = 1;
+
+  /* A scrim under the footer band, because the apron is lit and the constellation type
+     must not fight worked ground. */
+  const scrim = g.createLinearGradient(0, 1214, 0, 1350);
+  scrim.addColorStop(0, "rgba(10,8,6,0)"); scrim.addColorStop(.35, "rgba(10,8,6,.82)");
+  scrim.addColorStop(1, "rgba(10,8,6,.94)");
+  g.fillStyle = scrim; g.fillRect(0, 1214, 1080, 136);
+
+  const grain = new Image();
+  await new Promise(r => { grain.onload = r; grain.src = TX.grainTile(280, 40, 37); });
+  g.globalAlpha = .034;
+  for (let y = 0; y < 1350; y += 280) for (let x = 0; x < 1080; x += 280) g.drawImage(grain, x, y);
+  g.globalAlpha = 1;
+
+  const svg = d3.select("#ink");
+  await document.fonts.ready;
+  function lab(x, y, txt, size, fill, anchor, plate) {
+    const t = svg.append("text").attr("x", x).attr("y", y).attr("text-anchor", anchor || "start")
+      .attr("font-family", "JetBrains Mono, monospace").attr("font-size", size)
+      .attr("letter-spacing", "0.07em").attr("fill", fill).text(txt);
+    if (plate) TX.svgPlate(t.node(), { padX: 12, padY: 9, fill: plate, stroke: "#2B2447" });
+    return t;
+  }
+  lab(80, 452, "APPROXIMATELY 474 GW OF REQUESTS", 27, "#E4D8C3", "start", "#0A0812");
+  lab(80, 494, "GOVERNOR'S LETTER, AUGUST 3RD", 24, "#C9A063", "start", "#0A0812");
+  lab(80, 536, "APPROXIMATELY 90 PERCENT, DATA CENTERS", 24, "#C9A063", "start", "#0A0812");
+  lab(1000, STOP - 76, "AUDIT BEFORE ANY OF THEM ADVANCES", 26, "#E4D8C3", "end", "#0A0812");
+  lab(80, 1178, "TERAFAB, REPORTED TO BE BUILDING ITS OWN GENERATION", 25, "#E4D8C3", "start", "#1A1108");
+  lab(1000, 946, "SCALE FIGURE. SITE PLAN NOT PUBLIC.", 24, "#E4D8C3", "end", "#150E08");
+  document.body.dataset.ready = "1"; done();
+})();
+});
+</script>
+</body></html>

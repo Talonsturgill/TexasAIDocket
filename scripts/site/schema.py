@@ -380,6 +380,98 @@ def _spatial(it: dict):
 
 
 # ------------------------------------------------------------------ the questions
+def _subject(title: str) -> str:
+    """A docket title as the opening sentence of a question, with no doubled full stop.
+
+    Titles arrive from the ledger and a few carry trailing whitespace or a full stop of their
+    own. Both would render as "... Matador .. Has it been decided?" once a frame appends one.
+    """
+    return title.strip().rstrip(".").strip()
+
+
+# THE TWELVE KINDS OF QUESTION, each with the page it gets and the heading that page wears.
+#
+# WHY A MAP AND NOT A DERIVATION. A shape comes out of `shape_of` reading "Who decides it",
+# which is exactly right inside a summary where the headline has just named the subject, and
+# unbound as the title of a page, where "it" refers to nothing yet. So the heading binds the
+# pronoun once. There is no way to derive "Who decides" from "Who decides it" that would not
+# be a worse guess than writing it down.
+#
+# WHY IT LIVES HERE. Next to the frames it names, so changing a frame and changing its page are
+# the same edit in the same file. `questions_check` asserts the map and the frames agree in BOTH
+# directions on every build: a frame with no entry fails, and an entry no frame produces fails.
+# The second direction is the one that rots quietly, because a stale entry just renders an empty
+# page that looks fine.
+QUESTION_KINDS = [
+    ("What is this decision", "what-it-is", "What each decision is",
+     "The record's own summary of every entry it carries."),
+    ("Who decides it", "who-decides", "Who decides",
+     "The body holding the pen on each decision."),
+    ("Can the public take part", "taking-part", "How the public can take part",
+     "The room each decision is being made in, and what that room allows."),
+    ("Can the public comment on it", "open-comment", "Where a comment window is open",
+     "The decisions taking written comment right now."),
+    ("Where in Texas does it apply", "where-in-texas", "Where in Texas each one applies",
+     "Counties and metros, from the geography on the record."),
+    ("Has it been decided", "decided-or-pending", "What has been decided",
+     "Settled, pending or withdrawn, for every entry."),
+    ("What happens next", "what-happens-next", "What happens next",
+     "The next dated step on each decision, counted against today."),
+    ("When did it start", "when-it-started", "When each one started",
+     "The earliest date on every entry's record."),
+    ("What kind of decision is it", "kind-of-decision", "What kind of decision each one is",
+     "The topic each entry is filed under."),
+    ("What sources back it", "sources-behind-it", "What sources back each one",
+     "How many documents stand behind an entry, and how many are primary."),
+    ("Is it on the ERCOT grid", "on-the-ercot-grid", "Which are on the ERCOT grid",
+     "Inside or outside the interconnection that covers most of Texas."),
+    ("When was it last checked", "last-checked", "When each one was last checked",
+     "The date every fact on an entry was last verified against its source."),
+]
+
+
+# THE ONE ANSWER SHAPE WHOSE COMMAS ARE DELIMITERS.
+#
+# `Where in Texas does it apply?` answers with a list of county names, and a page of fifty five
+# of those measures 7.3 commas per hundred words against a 3.97 ceiling while containing no
+# writer's comma at all. The house cure for a comma is to split the sentence at it, and there
+# is no way to split "Carson, Potter and Randall Counties" into sentences. The rule is
+# measuring something it has no advice about, which is exactly what `data-prose="data"` is for.
+#
+# AND THE MARKER IS EARNED, NOT ASSERTED. `list_answer_ok` checks that every comma in the
+# answer is followed by a name the record actually holds for that item, so the exemption is a
+# promise about the CONTENT of the sentence rather than about where it sits on the page. A
+# frame that started writing prose into this shape would fail the check rather than inherit a
+# hole. The self test runs it over every item in the ledger.
+LIST_ANSWER_SHAPES = {"Where in Texas does it apply"}
+
+
+def list_answer_ok(it: dict, answer: str) -> bool:
+    """Every comma in a list answer separates two names this item's record carries."""
+    names = set((it.get("geography") or {}).get("counties") or [])
+    if (it.get("geography") or {}).get("metro"):
+        # A metro reads "Austin-Round Rock-San Marcos, TX", so its own comma is part of a name.
+        names |= {(it["geography"]["metro"].split(",")[-1] or "").strip()}
+    for tail in answer.split(",")[1:]:
+        word = tail.strip().split(" ")[0].rstrip(".")
+        if word not in names:
+            return False
+    return True
+
+
+def shape_of(q: str, title: str) -> str:
+    """The KIND of question, which is the frame with its subject removed.
+
+    The questions page groups by this, because a reader arrives with a kind of question rather
+    than with a decision. It lives here, next to the frames it strips, so that changing a frame
+    and changing the grouping are the same edit. The page used to reverse this out with
+    `q.replace(it["title"], "")`, which is a second copy of a rule that only one of the two
+    files knows.
+    """
+    head = _subject(title) + ". "
+    return (q[len(head):] if q.startswith(head) else q).rstrip("?").strip()
+
+
 def qa_pairs(ctx: Ctx, it: dict, today: str) -> list:
     """The questions a reader arrives with, answered from the record and nothing else.
 
@@ -389,8 +481,27 @@ def qa_pairs(ctx: Ctx, it: dict, today: str) -> list:
     A question whose answer the record does not hold is DROPPED rather than answered vaguely.
     "No information is available" is a sentence that helps nobody and it would be the most
     repeated sentence on the site.
+
+    THE SUBJECT IS A SENTENCE OF ITS OWN, AND THAT IS THE WHOLE GRAMMAR OF THIS FUNCTION.
+
+    Every one of these frames used to splice the title in as a noun phrase, and a docket title
+    is not a noun phrase. It is a headline with a finite verb in it. "Amarillo City Council
+    authorizes a twenty year water supply agreement" spliced into "Has X been decided?" produces
+    "Has Amarillo City Council authorizes a twenty year water supply agreement been decided?",
+    and all 633 published pairs read like that. Eleven of the twelve shapes were broken; the
+    twelfth, "What is X?", needs a noun phrase just as much and was broken too.
+
+    That is worse here than anywhere else on the site. This is the copy answer engines quote
+    back to people, and it is the page built for somebody who typed a whole sentence into a
+    search box.
+
+    The fix costs no new data and loses no search term. The headline becomes the first sentence
+    and the question follows it, referring back the way English refers back. "Amarillo City
+    Council authorizes a twenty year water supply agreement. Has it been decided?" Every word of
+    the title survives for matching, the frame is four words instead of a mangled clause, and it
+    reads as what it is, which is a docket entry with a question attached.
     """
-    t = it["title"]
+    t = _subject(it["title"])
     now = _date(today) or _dt.date.today()
     ds = _dates(it)
     g = it.get("geography") or {}
@@ -402,10 +513,10 @@ def qa_pairs(ctx: Ctx, it: dict, today: str) -> list:
         if a:
             out.append((q, a))
 
-    add(f"What is {t}?", it["summary"])
+    add(f"{t}. What is this decision?", it["summary"])
 
     if dec:
-        add(f"Who decides {t}?",
+        add(f"{t}. Who decides it?",
             f"{dec} decides. The record names the deciding body for every entry it carries.")
 
     # CAN THE PUBLIC TAKE PART. The most consequential answer on the page, so it is built from
@@ -414,39 +525,47 @@ def qa_pairs(ctx: Ctx, it: dict, today: str) -> list:
     # real items and is a fault this project already paid for once.
     room, how = pa.get("room"), (pa.get("how") or "").strip()
     if room == "open_comment":
-        add(f"Can the public comment on {t}?",
+        add(f"{t}. Can the public comment on it?",
             how or "A comment window is open. The item page carries the filing route.")
     elif room == "open_meeting":
-        add(f"Can the public take part in {t}?",
+        add(f"{t}. Can the public take part?",
             how or "A public meeting is scheduled where testimony is possible.")
     elif room == "contact_only":
-        add(f"Can the public take part in {t}?",
+        add(f"{t}. Can the public take part?",
             (how + " " if how else "")
             + "No dated public window is on the record. The deciding body is named and "
               "reachable.")
     elif room == "closed":
-        add(f"Can the public take part in {t}?",
+        add(f"{t}. Can the public take part?",
             how or "No public participation route is open for this decision.")
 
     # WHERE. Counties are counted rather than listed past a handful, because a sentence naming
     # twenty two of them is not an answer anybody reads.
     counties = _counties(it)
     if g.get("statewide"):
-        add(f"Where in Texas does {t} apply?", "It applies statewide.")
+        add(f"{t}. Where in Texas does it apply?", "It applies statewide.")
     elif g.get("metro") and not counties:
-        add(f"Where in Texas does {t} apply?", f"It applies in the {g['metro']} area.")
+        add(f"{t}. Where in Texas does it apply?", f"It applies in the {g['metro']} area.")
     elif counties:
         n = len(counties)
-        named = ", ".join(counties[:4])
-        rest = "" if n <= 4 else f", and {_spell(n - 4) if n - 4 < 13 else n - 4} more"
+        # THE COMMAS HERE ARE DELIMITERS AND THE SENTENCE MUST NOT ADD MORE. A county list is
+        # already at the density a list is, so the two commas this used to bolt on, one before
+        # "and 18 more" and one before "in the Amarillo area", pushed a page of these to 13.5
+        # per hundred words. Neither was doing any work a reader could name.
+        # A SERIAL "AND", because "Carson, Potter, Randall Counties" is not a list in English,
+        # it is a list in a database. It also drops a comma at no cost when the tail is named.
+        head4 = counties[:4]
+        named = (", ".join(head4[:-1]) + " and " + head4[-1]) if n <= 4 and len(head4) > 1 \
+            else ", ".join(head4)
+        rest = "" if n <= 4 else f" and {_spell(n - 4) if n - 4 < 13 else n - 4} more"
         where = f"{named} {_plural(n, 'County', 'Counties')}{rest}"
         if g.get("metro"):
-            where += f", in the {g['metro']} area"
-        add(f"Where in Texas does {t} apply?", f"It covers {where}.")
+            where += f" in the {g['metro']} area"
+        add(f"{t}. Where in Texas does it apply?", f"It covers {where}.")
 
     status = it.get("status")
     if status:
-        add(f"Has {t} been decided?", {
+        add(f"{t}. Has it been decided?", {
             "pending": "It is pending. No final decision is on the record.",
             "decided": "It has been decided. The dates on the item page carry when.",
             "withdrawn": "It was withdrawn.",
@@ -462,43 +581,62 @@ def qa_pairs(ctx: Ctx, it: dict, today: str) -> list:
         # copy anywhere, so notes run long: embedding one produced answers of 33 words against
         # a 30 word backstop. The kind is short, always present and always true, and the note
         # itself is on the item page where a reader who wants the detail already is.
-        add(f"What happens next with {t}?",
+        add(f"{t}. What happens next?",
             f"A {k.get('kind', 'step').replace('_', ' ')} is set for "
             f"{ctx.ordinal(d)}, {when}.")
     elif ds:
         d, k = ds[-1]
-        add(f"What happens next with {t}?",
+        add(f"{t}. What happens next?",
             f"No future date is on the record. The last dated step was a "
             f"{k.get('kind', 'step').replace('_', ' ')} on {ctx.ordinal(d)}.")
 
     if ds:
         first, _ = ds[0]
-        add(f"When did {t} start?",
+        add(f"{t}. When did it start?",
             f"The earliest date on its record is {ctx.ordinal(first)}, {first.year}.")
 
     topic = it.get("topic")
     if topic:
-        add(f"What kind of decision is {t}?",
-            f"It is filed under {ctx.topic_label(topic).lower()}"
-            + (f", decided by {dec}." if dec else "."))
+        # THE TOPIC AND NOTHING ELSE. This appended ", decided by <body>", which is the answer
+        # to "Who decides it?" two questions up, and it arrived as a trailing comma clause on
+        # a label that already contains its own serial comma. Repeating another answer is not
+        # worth a comma splice.
+        add(f"{t}. What kind of decision is it?",
+            f"It is filed under {ctx.topic_label(topic).lower()}.")
 
     srcs = _sources(it)
     if srcs:
-        names = sorted({c.get("source_title") for c in srcs if c.get("source_title")})
+        # THE COUNTS, NOT THE BIBLIOGRAPHY.
+        #
+        # This comma-joined up to four source TITLES into the sentence, and a source title is
+        # itself a comma-separated string: "PUCT Interchange, Filings for 58482, Case Style".
+        # Four of those produced a single 60 word answer carrying fifteen commas with no way to
+        # see where one document ended and the next began. It also dragged the sources' own
+        # punctuation into our copy, so answers were publishing "file stamp 7/30/2026" and
+        # "Friday, September 4, 2026" in a house that writes neither.
+        #
+        # The titles are not lost. Every one is on the item page this answer links to, and on
+        # /sources/, both of which lay them out as a list, which is what a list wants to be.
         n = len(srcs)
         primary = sum(1 for c in srcs if str(c.get("source_type", "")).startswith("primary"))
-        line = (f"{_spell(n).capitalize()} {_plural(n, 'source', 'sources')} back it"
-                + (f", {_spell(primary)} of them primary" if primary else "") + ".")
-        if names:
-            line += " " + ", ".join(names[:4]) + "."
-        add(f"What sources back {t}?", line)
+        # THE VERB AGREES TOO. `_plural` was pluralising the noun and leaving "back" bare, so a
+        # single-source entry published "One source back it." And "them" needs something to be
+        # plural about, so one source is "It is primary" rather than "One of them is primary".
+        line = (f"{_spell(n).capitalize()} {_plural(n, 'source', 'sources')} "
+                f"{_plural(n, 'backs', 'back')} it.")
+        if primary and n == 1:
+            line += " It is primary."
+        elif primary:
+            line += (f" {_spell(primary).capitalize()} of them "
+                     f"{_plural(primary, 'is', 'are')} primary.")
+        add(f"{t}. What sources back it?", line)
 
     if g.get("on_ercot") is not None:
-        add(f"Is {t} on the ERCOT grid?",
+        add(f"{t}. Is it on the ERCOT grid?",
             "Yes. It sits inside the ERCOT interconnection." if g["on_ercot"]
             else "No. It sits outside the ERCOT interconnection.")
 
-    add(f"When was {t} last checked?",
+    add(f"{t}. When was it last checked?",
         f"Every fact on it was last verified against its source on "
         f"{ctx.ordinal(_date(it['last_verified']))}, {it['last_verified'][:4]}."
         if _date(it.get("last_verified")) else None)
@@ -666,6 +804,26 @@ def self_test() -> int:
     ok("...and no geography answer is invented",
        not any("Where in Texas" in q for q, _ in bp), str([q for q, _ in bp]))
     ok("...but what the record does hold is still answered", len(bp) >= 3, str(len(bp)))
+
+    # SUBJECT AND VERB AGREE, over every answer the real ledger produces.
+    #
+    # `_plural` was pluralising the noun and leaving the verb alone, so a single-source entry
+    # published "One source back it." A count of one is rare in a record of 58 decisions, which
+    # is exactly why nothing caught it by eye: most items have three or four sources and read
+    # correctly, and the broken form only appears on the handful that have one.
+    #
+    # So this checks the CLASS, not the instance. Any spelled singular followed by a bare
+    # plural verb, over everything `qa_pairs` can emit for the whole ledger. A new frame that
+    # writes "One county cover it" fails here without anyone remembering this happened.
+    import re as _re
+    singular_verb = _re.compile(
+        r"\b(?:One|A|An)\s+[a-z]+\s+(?:back|cover|apply|start|are|were|have|do|include)\b")
+    produced = [a for it in items for _q, a in qa_pairs(ctx, it, today)]
+    bad_agreement = sorted({a for a in produced if singular_verb.search(a)})
+    ok(f"a singular subject takes a singular verb, over {len(produced)} live answers",
+       not bad_agreement, "\n         ".join(bad_agreement[:5]))
+    ok("...and that read real answers rather than an empty list",
+       len(produced) >= 100, f"only {len(produced)} answer(s) produced")
 
     print("\nschema self-test: " + ("all passed" if not failures else f"{failures} FAILED"))
     return 0 if not failures else 1

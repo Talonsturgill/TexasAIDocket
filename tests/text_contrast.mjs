@@ -33,6 +33,7 @@
 import { chromium } from 'playwright';
 import { readdirSync, statSync, existsSync } from 'node:fs';
 import { resolve, join } from 'node:path';
+import { MEASURE } from './lib/contrast.mjs';
 
 const SITE = process.env.SITE || 'docs';
 
@@ -71,123 +72,61 @@ const PREINSTALLED = process.env.CHROME_PATH || process.env.PLAYWRIGHT_CHROMIUM
   || '/opt/pw-browsers/chromium';
 const browser = await chromium.launch(
   existsSync(PREINSTALLED) ? { executablePath: PREINSTALLED } : {});
-const ctx = await browser.newContext({ viewport: { width: 1100, height: 900 } });
-const p = await ctx.newPage();
 
-/* The measurement runs inside the page, because compositing needs the live computed styles of
-   every ancestor and shipping that tree out one element at a time is slow enough to matter over
-   fifty-odd pages. */
-const MEASURE = () => {
-  const relLum = ([r, g, b]) => {
-    const f = v => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); };
-    return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b);
-  };
-  const ratio = (a, b) => {
-    const x = relLum(a), y = relLum(b);
-    const [hi, lo] = x > y ? [x, y] : [y, x];
-    return (hi + 0.05) / (lo + 0.05);
-  };
-  /* THE BROWSER IS THE ONLY HONEST PARSER OF A CSS COLOUR, so it does the parsing.
-     The first version of this scraped four numbers out of the computed string with
-     /[\d.]+/g, which is correct for `rgb(180, 102, 79)` and silently wrong for
-     `color(srgb 1 1 1 / 0.34)`, the form Chrome hands back for anything built with
-     `color-mix()`. Those channels are 0 to 1, not 0 to 255, so a white well parsed as
-     rgb(1,1,1) and the gate reported a legible numeral as 2.42 against its ground. It very
-     nearly talked me into "fixing" a colour that was already right.
-     Painting one pixel and reading it back cannot make that mistake, in any colour syntax
-     this browser accepts, including ones that do not exist yet. `getImageData` returns
-     unpremultiplied channels, so a 34 percent white comes back as 255,255,255 at 0.34. */
-  const cv = document.createElement('canvas');
-  cv.width = cv.height = 1;
-  const cx = cv.getContext('2d', { willReadFrequently: true });
-  const parse = s => {
-    if (!s) return null;
-    cx.clearRect(0, 0, 1, 1);
-    cx.fillStyle = '#000';
-    cx.fillStyle = s;           /* an unparseable value leaves the previous fill in place */
-    cx.fillRect(0, 0, 1, 1);
-    const d = cx.getImageData(0, 0, 1, 1).data;
-    return [d[0], d[1], d[2], d[3] / 255];
-  };
-  const over = (fg, bg) => [0, 1, 2].map(i => fg[i] * fg[3] + bg[i] * (1 - fg[3]));
+/* TWO CONTEXTS, AND THE PHONE ONE IS NOT OPTIONAL.
+ *
+ * This walked one 1100px desktop window, and a desktop window cannot see two whole classes of
+ * text on this site. A `max-width` media query can repaint any ground it likes, so a rule that
+ * is fine wide and dark-on-dark narrow was never in scope. Worse, the county map's readout and
+ * its reset control are built only when `'ontouchstart' in window` is true, so on a desktop
+ * context they do not exist in the DOM at all. That is the phone-only furniture the last
+ * fortnight of work added, over a live map, and the gate that is supposed to guarantee every
+ * word on this site is legible had never once looked at it.
+ *
+ * `isMobile` is what makes the narrow query apply the way a phone applies it, and `hasTouch` is
+ * what makes the touch-gated code build itself. Both, or the pass is theatre. */
+const CONTEXTS = [
+  { name: 'desktop', opts: { viewport: { width: 1100, height: 900 } } },
+  { name: 'phone', opts: { viewport: { width: 390, height: 844 }, hasTouch: true,
+                           isMobile: true, deviceScaleFactor: 3 } },
+];
 
-  /* THE GROUND UNDER AN ELEMENT is every ancestor background composited bottom up, starting at
-     the browser's own white and ending at the nearest painted layer. Anything that paints an
-     image or a gradient anywhere in that stack is not a colour and is declined, not guessed. */
-  const groundOf = el => {
-    const stack = [];
-    for (let n = el; n; n = n.parentElement) {
-      const cs = getComputedStyle(n);
-      if (cs.backgroundImage && cs.backgroundImage !== 'none') return null;
-      const c = parse(cs.backgroundColor);
-      if (c && c[3] > 0) stack.push(c);
-      if (c && c[3] >= 0.999) break;
-    }
-    let ground = [255, 255, 255];
-    for (const layer of stack.reverse()) ground = over(layer, ground);
-    return ground;
-  };
-
-  const hidden = el => {
-    const cs = getComputedStyle(el);
-    if (cs.display === 'none' || cs.visibility === 'hidden' || Number(cs.opacity) === 0) return true;
-    const r = el.getBoundingClientRect();
-    /* The visually-hidden pattern this site uses parks a label off-canvas at -9999px. It is
-       read aloud and never seen, so it has no ground and no contrast question. */
-    if (r.width < 2 || r.height < 2 || r.right < -1000 || r.bottom < -1000) return true;
-    return false;
-  };
-
-  const rows = [], skipped = { image: 0, hidden: 0 };
-  const walk = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-  const seen = new Set();
-  for (let t = walk.nextNode(); t; t = walk.nextNode()) {
-    if (!t.nodeValue || !t.nodeValue.trim()) continue;
-    const el = t.parentElement;
-    if (!el || seen.has(el)) continue;
-    seen.add(el);
-    /* SVG text carries `fill`, not `color`, and lives on drawings this suite has no ground for.
-       responsive.mjs holds the chart labels. */
-    if (el.closest('svg')) continue;
-    if (hidden(el)) { skipped.hidden++; continue; }
-    const ground = groundOf(el);
-    if (!ground) { skipped.image++; continue; }
-    const cs = getComputedStyle(el);
-    const fg = parse(cs.color);
-    if (!fg) continue;
-    const size = parseFloat(cs.fontSize);
-    const weight = Number(cs.fontWeight) || 400;
-    const large = size >= 24 || (size >= 18.66 && weight >= 700);
-    rows.push({
-      text: t.nodeValue.trim().slice(0, 42),
-      sel: el.tagName.toLowerCase() + (el.className && typeof el.className === 'string'
-        ? '.' + el.className.trim().split(/\s+/).join('.') : ''),
-      got: Math.round(ratio(over(fg, ground), ground) * 100) / 100,
-      need: large ? 3.0 : 4.5,
-    });
-  }
-  return { rows, skipped };
-};
 
 const bad = [];
 let measured = 0, skippedImage = 0, skippedHidden = 0;
-for (const f of files) {
-  await p.goto('file://' + f);
-  await p.waitForTimeout(30);
-  const { rows, skipped } = await p.evaluate(MEASURE);
-  measured += rows.length;
-  skippedImage += skipped.image;
-  skippedHidden += skipped.hidden;
-  const rel = f.slice(resolve(SITE).length + 1);
-  for (const r of rows) {
-    if (r.got + 0.005 < r.need) bad.push(`${rel} ${r.sel} ${r.got} < ${r.need}  "${r.text}"`);
+const perContext = {};
+for (const { name, opts } of CONTEXTS) {
+  const ctx = await browser.newContext(opts);
+  const p = await ctx.newPage();
+  let seen = 0;
+  for (const f of files) {
+    await p.goto('file://' + f);
+    await p.waitForTimeout(30);
+    const { rows, skipped } = await p.evaluate(MEASURE);
+    seen += rows.length;
+    skippedImage += skipped.image;
+    skippedHidden += skipped.hidden;
+    const rel = f.slice(resolve(SITE).length + 1);
+    for (const r of rows) {
+      if (r.got + 0.005 < r.need) {
+        bad.push(`[${name}] ${rel} ${r.sel} ${r.got} < ${r.need}  "${r.text}"`);
+      }
+    }
   }
+  await ctx.close();
+  perContext[name] = seen;
+  measured += seen;
 }
 await browser.close();
 
-/* A GATE THAT MEASURED NOTHING IS NOT A PASSING GATE. */
-ok(`text was measured on every page (${measured} runs across ${files.length} pages)`,
-   measured > files.length * 3, `only ${measured} runs found`);
+/* A GATE THAT MEASURED NOTHING IS NOT A PASSING GATE, AND NEITHER IS ONE WHERE A WHOLE CONTEXT
+   MEASURED NOTHING. A phone pass that silently built no pages would land here as a healthy
+   total, because the desktop pass alone clears any threshold written against the total. */
+for (const { name } of CONTEXTS) {
+  ok(`text was measured on every page in the ${name} context `
+     + `(${perContext[name]} runs across ${files.length} pages)`,
+     perContext[name] > files.length * 3, `only ${perContext[name]} runs found`);
+}
 ok('every run of text clears its contrast floor against the ground it lands on',
    bad.length === 0, `${bad.length} under floor:\n        ${bad.slice(0, 12).join('\n        ')}`);
 /* NO SILENT CAPS. What this gate declined to measure is printed whether it passed or failed,

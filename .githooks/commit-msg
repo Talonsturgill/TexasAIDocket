@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# ACTOR STAMP, carried into the commit so CI can read it.
+#
+# The pre-commit hook checks the staged change against .git/ACTOR, which lives in .git and
+# therefore never leaves this machine. CI has no way to see it, so until 2026-08-16 CI fell back
+# to pinning one actor from the branch prefix and checking the whole branch diff. That made a
+# lane mean something different on the runner than it meant here, and the daily routine's own
+# Phase 17, which stamps `upgrade` and commits on a `claude/daily-` branch, sat exactly on the
+# disagreement.
+#
+# This hook copies the stamp into the commit message as an `Actor:` trailer. One stamp, written
+# once at a routine's Phase 0, now drives both checkers.
+#
+# An unstamped commit gets no trailer, which is correct: `--diff-per-commit` falls back to the
+# branch's own actor, so a maintainer typing an ordinary commit needs to know none of this.
+set -uo pipefail
+
+msg_file="$1"
+root="$(git rev-parse --show-toplevel 2>/dev/null || echo .)"
+[ -f "$root/.git/ACTOR" ] || exit 0
+
+actor="$(tr -d '[:space:]' < "$root/.git/ACTOR")"
+[ -n "$actor" ] || exit 0
+
+# Already stamped, by an amend or a cherry-pick carrying the trailer forward. Leave it alone
+# rather than stacking a second one, which would leave the two disagreeing with no rule for
+# which wins.
+if grep -qiE '^[[:space:]]*Actor:[[:space:]]*[A-Za-z0-9_-]+[[:space:]]*$' "$msg_file"; then
+  exit 0
+fi
+
+# A trailer has to be the last block and separated from the body by a blank line, or git
+# interpret-trailers and the checker's regex disagree about where the message ends.
+printf '\nActor: %s\n' "$actor" >> "$msg_file"
+exit 0

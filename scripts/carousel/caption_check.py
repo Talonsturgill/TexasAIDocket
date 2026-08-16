@@ -322,7 +322,12 @@ def check(text: str) -> list[str]:
         problems.append(f'"{m}": month first. Write "August 11th", never "11 August"')
     for m in set(OF_MONTH.findall(prose)):
         problems.append(f'"{m}": drop "the" and "of". Write "August 11th"')
-    for m in set(re.findall(MONTH_ABBR, prose)):
+    # IGNORECASE, because the site ships its deadline chips uppercase. `short_date()` returns
+    # "AUG 31" and this pattern only matched "Aug 31", so the one place a bare abbreviated date
+    # actually renders was the one place the gate could not see, while its own self-test claims
+    # "a bare date inside a data chip still fails". May was the only month it caught, through a
+    # different rule, which is what made the gap visible at all.
+    for m in set(re.findall(MONTH_ABBR, prose, re.IGNORECASE)):
         problems.append(f'"{m}": spell the month out in a sentence')
 
     for m in set(CANNOT.findall(prose)):

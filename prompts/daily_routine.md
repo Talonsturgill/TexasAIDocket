@@ -127,7 +127,8 @@ public fact stand for another day, on a page whose entire promise is that it doe
 - `CLAUDE.md` — the law: ownership, the compute-not-generate rule, the delivery policy.
 - `.claude/WORKLOG.md` if it exists — the durable plan across contexts.
 - `knowledge/shared/SOURCES_REGISTRY.md` — **what is fetchable, what is off limits, and the
-  traps.** Read this before any fetch.
+  traps.** Read this before any fetch. You may not write it. Its companion
+  `SOURCES_FIELD_LOG.md` is where you append what a source actually did, and it is yours.
 - `knowledge/shared/GATE_LESSONS.md` — how this machine has lied to itself before. Read it before
   you trust a green gate.
 - `knowledge/shared/TEXAS_GOVERNMENT.md` — who decides what, and where a decision actually gets
@@ -167,17 +168,23 @@ ephemeral container has destroyed finished work before.
 
 ## PHASE 0 — WAKE
 
-1. Stamp the actor so the pre-commit hook enforces your lane: `echo daily > .git/ACTOR`.
-2. `git fetch origin main && git checkout -B claude/daily-<date> origin/main`.
-3. Read `prompts/NEXT_RUN.md` if it exists: a story queued by the previous run. Archive it into
+1. Point git at the hooks, which a fresh clone does not do for you and without which nothing
+   below enforces anything: `git config core.hooksPath .githooks`. Confirm with
+   `python3 scripts/shared/guards_local.py --fast --only Ownership`, which now FAILS rather
+   than skips when the hooks are not wired up.
+2. Stamp the actor so both checkers enforce your lane: `echo daily > .git/ACTOR`. The
+   pre-commit hook reads it to refuse an out-of-lane write, and the commit-msg hook copies it
+   into each commit as an `Actor:` trailer, which is what CI reads to judge that commit's lane.
+3. `git fetch origin main && git checkout -B claude/daily-<date> origin/main`.
+4. Read `prompts/NEXT_RUN.md` if it exists: a story queued by the previous run. Archive it into
    the run directory at ship time.
-4. Read the context files above.
-5. `bash .claude/skills/carousel-engine/bootstrap.sh`.
-6. `python3 scripts/site/docket_build.py --validate` and
+5. Read the context files above.
+6. `bash .claude/skills/carousel-engine/bootstrap.sh`.
+7. `python3 scripts/site/docket_build.py --validate` and
    `python3 scripts/shared/ownership_check.py --self-test`. **If a gate is already red on a clean
    checkout, fix that before anything else.** A gate red at wake means the last run shipped past
    it.
-7. Read the ledgers. Write down, explicitly, what is off the table today.
+8. Read the ledgers. Write down, explicitly, what is off the table today.
 
 ## PHASE 1 — CRAFT REFRESH (timeboxed, about 10 searches)
 
@@ -316,8 +323,19 @@ forty items gets it right thirty nine times.
 
 ```
 python3 scripts/site/docket_ingest.py --batch out/research/*.json --today <today>
-python3 scripts/site/docket_build.py --promote seed/docket_seed.json --out ledger/docket.json
+python3 scripts/site/docket_build.py --promote seed/docket_seed.json
 ```
+
+**THE SECOND COMMAND TAKES NO `--out`, AND THAT IS THE WHOLE POINT.** `--promote` is a GATE, not
+a merge. It writes only the items admitted on this pass, so pointing it at the ledger writes
+today's handful and drops everything already published. This file told a run to do exactly that
+until 2026-08-16. Measured that day against a temp file: 27 candidates against a 58 item ledger
+wrote 6 items and dropped 52.
+
+Run it with no `--out`, read what passed, and append those items to `ledger/docket.json`.
+`promote()` now refuses any write that would lose a published item, so the destructive form fails
+loudly instead of succeeding quietly, but do not lean on that. **The record is append-only in
+substance and never deletes an item.**
 
 `docket_ingest` normalises and **reports every repair it made**, including the one with teeth: an
 `open_comment` room carrying no close date is a window the batch could not confirm, and it is
@@ -373,13 +391,30 @@ not rung (f).
 
 ```bash
 python3 scripts/gridwatch/gridwatch_pagecheck.py
+python3 scripts/gridwatch/waterwatch_pagecheck.py
 python3 scripts/site/waterwatch_page.py --self-test
 python3 scripts/site/site_build.py --out /tmp/site --today <date>
+
+# THE DISCOVERABILITY SURFACES. Run by exit code, never by reading the last line.
+python3 scripts/site/media_check.py           # every image the site points at exists
+python3 scripts/site/schema_check.py          # the structured data, as published copy
+python3 scripts/site/og.py --self-test        # the social cards and the text on them
+python3 scripts/site/favicon.py --self-test   # the tab icon
+python3 scripts/site/truetype.py --self-test  # the glyph reader the cards depend on
+python3 scripts/site/indexnow.py --self-test  # the key file that verifies ownership
 ```
 
 Exit 0 is clean, exit 2 wants attention, exit 1 means the checker itself broke. **This never
 blocks the run.** You may fix presentation only, and only in `scripts/site/gridwatch_page.py` and
 `scripts/site/waterwatch_page.py`. Anything else is a proposal in the run record.
+
+**Both instruments have a page check now.** The water one was missing until 2026-08-16 and its
+absence was written up as a proposal, because the two are the same shape of thing. A cron writes
+a file and a builder renders it, and neither of them would notice the page going wrong. They are
+separate files rather than one parameterised checker because the promises differ. The water page
+also promises that percent full is computed from storage over capacity rather than read from the
+feed's own field, that a metro with no line is a gap in the source's tagging rather than a dry
+city, and that out of state reservoirs are excluded rather than counted as empty.
 
 **THE SCANNER'S DAILY CEILING.** The scan form fires its routine on submit, so the only thing
 between a public form and a bill is `daily_cap` in the scanner project's `scanner.config`. A
@@ -409,6 +444,46 @@ Three outcomes and only the middle one costs you anything.
 
 **DRAFT, NEVER SEND.** That rule has no exception here either, and the connector's reply tool is
 right there.
+
+**THE DISCOVERABILITY SURFACES ARE UPDATED BY THE BUILD, AND THAT IS THE POINT.**
+
+`llms.txt`, `llms-full.txt`, the three feeds, the sitemap, every JSON-LD block, all 58 social
+cards and the two hubs at `/questions/` and `/sources/` are **pure functions of the ledger**.
+They are rebuilt from scratch every run by Phase 16 and `site_fresh_check` proves the committed
+site is byte identical to a fresh build. So a decision admitted in Phase 5 is in the corpus, in
+the feeds, in the structured data and on its own card by the time this run merges, with no step
+here to remember.
+
+**What that guarantee does NOT cover, and what this phase is for.** A gate answers the question
+it was given. None of the five above can tell you the product is any good. So look, and then
+**sign off in the run record by name**, one line each, under a heading spelled exactly
+`## Discoverability signoff` so a later run can grep the series. A surface nobody looked at gets
+written down as NOT LOOKED AT, never as fine. Four lines, one per bullet below, each naming what
+was opened and what it showed.
+
+- **One decision's card, opened as an image.** Pick the run's newest item and open
+  `docs/og/<id>.png`. Does the headline wrap somewhere a reader would break it, and does it end
+  in a whole word rather than a stump? The wrapper cuts on width, so a title that is one long
+  proper noun is where it will look wrong first.
+- **`/questions/`, read as a reader.** Are these questions somebody would actually type? The
+  answers are computed from a fixed set of shapes, so a new `public_access` room or a status
+  the record has not carried before is where a shape stops making sense.
+- **The `Open right now` section of `llms.txt`.** It lists what still has a dated way in. Cross
+  it against the open windows Phase 3 re-verified. If a window closed today and it is still
+  listed, the build ran before the record moved and the merge order is wrong.
+- **A source title in `/sources/`.** Quoted material is exempt from the punctuation and numeral
+  rules by design. Confirm the exemption is still doing that and not hiding one of our own
+  sentences.
+
+**IF A SURFACE DID NOT UPDATE**, say which and why in the run record. The three real causes, in
+the order they actually happen: the build did not run, the ledger did not change so there was
+nothing to regenerate, or a gate went red and Phase 16 did not merge. Only the third is a
+failure of this run.
+
+**INDEXNOW SUBMITS ITSELF.** `pages.yml` pushes the day's changed urls after a successful
+deploy, filtered on the sitemap's own `lastmod`. Nothing to do here. If the key file ever stops
+being served the self-test above goes red, and every submission after that would have failed
+verification silently.
 
 **THEN LOOK AT THE PAGES.** A checker sees what it reads and the product is what a reader
 receives, which is the whole of `knowledge/shared/GATE_LESSONS.md`. Three things a green suite
@@ -634,6 +709,12 @@ is half a run old.
 
    **Never pass `--all`.** That reaches back into runs that have already shipped, which `CLAUDE.md`
    puts on the short list of things that stop and ask.
+
+   **THIS COMMAND'S EXIT CODE IS A STOP, NOT A NOTE.** On 2026-08-16 it exited 1 saying two
+   slides encoded under the quality floor, the run read the message and shipped anyway, and the
+   live article page carried two broken images and silently dropped two more slides. The owner
+   found it, which is the one way a defect must never be found. If this exits non-zero, the deck
+   is not ready to ship and the run's job is to make it exit zero.
 3. Update `ledger/carousel/{topics,artwork,captions}.json`.
 4. Rebuild the site: `python3 scripts/site/site_build.py --out docs --today <date>`.
 5. Verify, and read the **exit codes**, never the last line of a report:
@@ -642,7 +723,13 @@ is half a run old.
    - `python3 scripts/site/house_style_check.py`
    - `python3 scripts/shared/port_audit.py`
    - `python3 scripts/shared/ownership_check.py --actor daily --staged`
-6. Commit, push, open a **ready (not draft)** pull request, and **merge it to `main` in the same
+   - `python3 scripts/site/media_check.py`
+6. **OPEN THE PAGES YOU JUST PUBLISHED AND LOOK AT THEM.** Not the builders, the output. The
+   front page and `docs/articles/<date>/index.html`. Every slide present, the slide count right,
+   the story readable as text with the images off. `media_check` is the machine half of this and
+   it was written after a run shipped a page with two broken images past a fully green suite. A
+   gate that reads the builder's intent cannot see what the product actually says.
+7. Commit, push, open a **ready (not draft)** pull request, and **merge it to `main` in the same
    run.** The email's image URLs point at `main`, so the merge lands before the email.
 
 **A failed run commits its evidence to its branch and does NOT merge.**
@@ -653,9 +740,24 @@ Two parts, and the second one changes lane.
 
 **The run record.** Append what the worklist held, what was deferred and why, what was admitted and
 what was held, the instrument check's finding, and anything a source did that the registry does not
-describe. **If a source behaved differently than `SOURCES_REGISTRY.md` says, update the registry in
-the same commit.** A registry that drifts from reality is worse than none, because the next run
-trusts it.
+describe. **If a source behaved differently than `SOURCES_REGISTRY.md` says, append the finding to
+`knowledge/shared/SOURCES_FIELD_LOG.md` in the same commit.** A registry that drifts from reality
+is worse than none, because the next run trusts it.
+
+**Append to the field log, never to the registry, and this is not a formality.** The registry is
+`human` owned and stays that way because it carries the crawl boundary, the hosts this project has
+decided not to fetch. A run able to edit its own boundary does not have one: it could delete a
+disallow and the next fetch would be compliant with a file it had just rewritten. The field log is
+yours and is append-only, so you can record anything you saw and remove nothing. A maintainer folds
+what is durable up into the registry.
+
+Until 2026-08-16 this instruction named the registry, the map refused the write, and that run's
+four source findings survived only because it wrote them longhand into its run record and a
+maintainer pasted them across by hand. A finding that survives on somebody remembering to copy it
+is a finding the machine loses.
+
+**A disallow you would like to be different is not a field observation.** Never route around one
+and never argue with one in the log.
 
 **The craft.** Record what this run learned about making decks, zero to three lessons:
 
@@ -679,13 +781,24 @@ in Phase 9**, because an instinct nobody ever revisits is one that will sit in t
 on the strength of the day it was written.
 
 **The machine.** `echo upgrade > .git/ACTOR`, then spawn 1 `carousel-upgrade-engineer`. Zero to
-three bounded, verified upgrades, logged to `ledger/carousel/upgrades.json`. Restore the stamp with
-`echo daily > .git/ACTOR` when it is done.
+three bounded, verified upgrades, logged to `ledger/carousel/upgrades.json`. **Commit this
+phase's work before you restore the stamp**, then `echo daily > .git/ACTOR`.
+
+The commit order matters and it is the whole mechanism. The commit-msg hook copies whatever is in
+`.git/ACTOR` at commit time into the message as an `Actor:` trailer, and CI judges each commit by
+that trailer. Restoring the stamp before committing hands CI an upgrade commit wearing the `daily`
+label, which is the one thing the narrow lane exists to prevent.
 
 That stamp swap is not ceremony. Before the merge, this phase could not reach the public record
 because the carousel actor simply did not own it. Now that one actor runs both surfaces, the only
 thing standing between a self-editing phase and `ledger/docket.json` is a narrower lane, so it gets
 one. **An upgrade needing a file outside that lane is written down as a proposal and stopped.**
+
+**A `claude/daily-` branch may carry `upgrade` commits and this is now stated in the map, not
+worked around.** Until 2026-08-16 CI pinned one actor per branch and checked the whole branch
+diff, so this phase produced a branch CI refused, and the first run to hit it had to move two
+commits onto a separate pull request. `branch_also_allows` in `ownership.yaml` names `upgrade` as
+a lane this branch may stamp. Nothing else is added, and `human` can never be.
 
 **Never loosen a gate to make a run pass.**
 

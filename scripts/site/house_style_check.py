@@ -29,6 +29,7 @@ reported here it is in a sentence this project wrote and can freely rewrite.
 from __future__ import annotations
 
 import argparse
+import datetime as _dt
 import html as _html
 import re
 import sys
@@ -57,6 +58,61 @@ CODE = re.compile(r"<(script|style)\b.*?</\1>", re.DOTALL | re.IGNORECASE)
 READER_VOICE = re.compile(r'<([a-z]+)\b[^>]*\bdata-voice="reader"[^>]*>.*?</\1>',
                           re.DOTALL | re.IGNORECASE)
 TAG = re.compile(r"<[^>]+>")
+
+# A DATE CHIP, AND THE ONE EXEMPTION IT HAS TO EARN.
+#
+# The deadline cards on the front page carry the date at display size, "SEP 8" over "23 days
+# left". That is a calendar tile, not a sentence, and the date rules are written for sentences:
+# their own message says "read it aloud, nobody says a bare date in a sentence". Nobody reads a
+# tile aloud either.
+#
+# The rule above is emphatic that `data-prose="data"` narrows the DENSITY measurement and never
+# the construction rules, so a bare date inside a chip is still a violation. That stays true.
+# This is not that marker and it is not a region: it is `<time datetime="2026-09-08">`, and it is
+# exempt only for as long as its visible text is a faithful rendering OF ITS OWN ATTRIBUTE.
+#
+# The check derives the permitted renderings here, from the ISO value, rather than importing
+# them from the builder. A checker that asks the generator what the right answer is will agree
+# with the generator about a wrong answer. Anything else inside a `<time>` is reported as its own
+# violation and left in the prose stream, so the element cannot be used as a wrapper to smuggle
+# a sentence past the date rules. That is the difference between an exemption that is a promise
+# about content and one that is a promise about a region.
+TIME_EL = re.compile(r'<time\b[^>]*\bdatetime="([^"]+)"[^>]*>(.*?)</time>',
+                     re.DOTALL | re.IGNORECASE)
+
+
+def _renderings(iso: str) -> set:
+    """Every way this project is allowed to print one date, derived from the date itself."""
+    try:
+        d = _dt.date.fromisoformat(iso[:10])
+    except ValueError:
+        return set()
+    n = d.day
+    suf = "th" if 11 <= n <= 13 else {1: "st", 2: "nd", 3: "rd"}.get(n % 10, "th")
+    return {f"{d:%b} {n}".upper(), f"{d:%B} {n}{suf}", d.isoformat(),
+            f"{d:%B} {d.year}", f"{d:%b} {n}"}
+
+
+def _time_chips(body: str) -> tuple:
+    """Strip the `<time>` elements that render their own datetime. Report the ones that do not."""
+    problems = []
+
+    def sub(m):
+        iso, inner = m.group(1), _html.unescape(TAG.sub("", m.group(2))).strip()
+        allowed = _renderings(iso)
+        if not allowed:
+            problems.append(f'<time datetime="{iso}">: not a date this can verify')
+            return m.group(0)
+        if inner in allowed:
+            return " "
+        problems.append(f'"{inner}" in a <time datetime="{iso}"> does not render that date. '
+                        f"A time element is exempt from the date rules only while its text is "
+                        f"what its own attribute says")
+        return m.group(0)
+
+    return TIME_EL.sub(sub, body), problems
+
+
 # STRUCTURED DATA rendered as chips, labels and lists. A comma between two of Oncor's 22
 # affected counties is a delimiter, not a writer leaning on commas, and a metadata row repeated
 # once per card multiplies that delimiter by the number of cards. Measuring comma DENSITY over
@@ -73,10 +129,17 @@ PARAGRAPH = re.compile(r"<(p|li)\b[^>]*>(.*?)</\1>", re.DOTALL | re.IGNORECASE)
 
 
 def _stripped(page_html: str) -> str:
-    """The shared work: main, minus quotes, code, SVG and reader-voiced text. Markup intact."""
+    """The shared work: main, minus quotes, code, SVG, reader voice and verified date chips."""
     m = MAIN.search(page_html)
     body = m.group(1) if m else page_html
-    return READER_VOICE.sub(" ", QUOTED.sub(" ", CODE.sub(" ", SVG.sub(" ", body))))
+    body = READER_VOICE.sub(" ", QUOTED.sub(" ", CODE.sub(" ", SVG.sub(" ", body))))
+    return _time_chips(body)[0]
+
+
+def time_chip_problems(page_html: str) -> list:
+    """The `<time>` elements that claimed the date exemption without earning it."""
+    m = MAIN.search(page_html)
+    return _time_chips(m.group(1) if m else page_html)[1]
 
 
 def our_prose(page_html: str) -> str:
@@ -141,6 +204,8 @@ def check_site(docs: Path) -> dict[str, list[str]]:
             continue
         prose = our_prose(text)
         problems = caption_check.check(prose)
+        # An exemption that reports nothing when it is misused is a hole with a comment over it.
+        problems += time_chip_problems(text)
         problems += [f"{p} (in the page metadata, which is what a search result shows)"
                      for p in caption_check.check(page_metadata(text))]
         # The rate is judged per PAGE, which is the unit a reader actually reads. A single
@@ -194,6 +259,31 @@ def self_test() -> int:
                        '</main>')
     ok("text marked as the reader's own voice is exempt", "What can I" not in voiced, voiced)
     ok("...and only what is marked", "August 11th" in voiced)
+
+    # THE DATE CHIP EXEMPTION, PROVEN IN BOTH DIRECTIONS. It is worthless if it only ever
+    # passes: the reason it exists is that a calendar tile is not a sentence, and the reason it
+    # is safe is that the tile has to be showing its own datetime to get the exemption.
+    chip = '<main><p>Filed August 11th.</p><time datetime="2026-09-08" class="big">SEP 8</time>'
+    ok("a date chip rendering its own datetime is exempt from the date rules",
+       not [p for p in caption_check.check(our_prose(chip + "</main>"))
+            if "month" in p or "ordinal" in p],
+       str(caption_check.check(our_prose(chip + "</main>"))))
+    ok("...and it is not reported as an unearned exemption either",
+       time_chip_problems(chip + "</main>") == [])
+    lying = '<main><time datetime="2026-09-08">AUG 31</time></main>'
+    ok("a chip whose text is not its own datetime is reported",
+       any("does not render that date" in p for p in time_chip_problems(lying)),
+       str(time_chip_problems(lying)))
+    ok("...and its text stays in the prose, so the date rules see it too",
+       "AUG 31" in our_prose(lying))
+    smuggle = ('<main><time datetime="2026-09-08">The deadline is Sep 8 and we cannot '
+               'extend it.</time></main>')
+    ok("a sentence wrapped in a time element does not escape the rules",
+       any("cannot" in p for p in caption_check.check(our_prose(smuggle))),
+       str(caption_check.check(our_prose(smuggle))))
+    ok("a time element with an unparseable datetime is reported, not waved through",
+       any("not a date this can verify" in p
+           for p in time_chip_problems('<main><time datetime="soon">SEP 8</time></main>')))
     ok("an unmarked first person is still caught",
        any("first person" in p for p in
            caption_check.check(our_prose("<main><p>What can I comment on?</p></main>"))))

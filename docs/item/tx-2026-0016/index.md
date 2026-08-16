@@ -10,7 +10,7 @@ The Bureau of Labor Statistics has proposed adding questions about artificial in
 - Comment closes: 2026-09-08
 - Take part: https://www.federalregister.gov/documents/2026/07/10/2026-13928/proposed-information-collection-atus-artificial-intelligence-ai-questions
 
-- Last checked: 2026-08-11
+- Last checked: 2026-08-16
 
 ## Dates
 

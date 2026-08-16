@@ -759,3 +759,298 @@ it was never derived from us.
 one time move and record the date.** And keep the target separate from the backstop: the target is
 taste and belongs in `config/brand.yaml` where a writer reads it; the backstop is an edge and
 belongs in the linter.
+
+## 35. A checker that cannot see the form the product actually ships
+
+The month abbreviation rule in `caption_check` matched `Aug 31` and not `AUG 31`. Its own
+self test proved it fired, on `"Filed Aug 11."`, and stayed green for as long as it existed.
+
+`short_date()` returns `f"{d:%b} {d.day}".upper()`. Uppercase is the only form this site has
+ever rendered an abbreviated month in. So the rule could see every case that was not on the
+site and could not see the one case that was, and the self test agreed with it, because the
+self test was written from the rule rather than from the page.
+
+May was the only month it ever caught, through a different rule that happened to match a
+three letter month spelled in full. That is what made the gap visible at all, and it was
+luck.
+
+Adding `re.IGNORECASE` immediately turned up three real violations on the front page.
+
+**What to check instead.** When you write a rule against a rendered form, get the form from
+the renderer, not from your idea of it. Grep for the function that produces it and read what
+it returns. A self test written from the rule tests the rule against itself; a self test
+written from a real rendered string tests it against the product.
+
+**The second half of this one is worth as much as the first.** The three violations it found
+were on a calendar tile that reads "SEP 8" at display size, and the honest answer was neither
+to widen the exemption nor to spell "September 8th" across a 2.5rem tile.
+
+The tile became a `time` element carrying its own `datetime` attribute, and the checker
+verifies that the visible text is a rendering of that attribute before letting it past the
+date rules. The exemption is earned per element, by proof, and an element that fails to earn
+it is reported AND left in the prose stream, so wrapping a sentence in `time` gets it linted
+twice rather than not at all.
+
+Note which direction the derivation runs. The permitted renderings are computed in the
+CHECKER from the ISO value. Importing them from the builder would produce a checker that
+agrees with the generator about a wrong answer, which is the same fault as an allow list
+built from the output instead of the input.
+
+**Generalises to.** Every "this region is data, not prose" argument. The way to settle it is
+not a marker asserting the region is exempt. It is a machine readable value in the element
+itself that the checker can hold the visible text against.
+
+## 36. A test that cannot tell a working implementation from a broken one
+
+`map_gestures.mjs` has said in its header since the day it was written that zoom anchors on
+the fingers rather than the centre of the drawing. Fourteen assertions, none of them that one.
+
+The reason is worth more than the omission. Every pinch in the file was performed at the
+centre of the viewport, and **an anchored zoom and a centre anchored zoom produce the same
+viewBox when the fingers are at the centre.** The two implementations are indistinguishable
+under the only input the test supplied. Deleting the anchoring maths from the page would not
+have turned it red.
+
+Underneath that, every pinch used a hardcoded `(195, 400)` on a viewport where the drawing
+starts at y=502. The gestures were being performed above the map. The handler ran anyway,
+because the events were dispatched straight at the element, so the whole file was passing on
+input no finger could produce.
+
+`text_contrast.mjs` had the same shape at a different scale. It swept 151 pages in one 1100px
+desktop context, where a `max-width` query cannot fire and the map's touch built controls do
+not exist. The site's two newest controls, over a live map, had never been measured by the
+gate whose entire promise is that every word on the site is legible.
+
+**What to check instead.** For any assertion, ask what the broken implementation would
+produce and whether your input distinguishes it. If a centred pinch, a desktop viewport or a
+default value makes two different behaviours agree, the test is measuring the agreement.
+
+The fix is to state the discrimination in the test itself. The anchoring assertion now
+computes what a centre anchored zoom WOULD have left under the finger and fails if the
+observed answer is not several times closer to the anchored one, so a pinch too near the
+centre to be a test reports itself as such instead of passing.
+
+**And a coverage rule that came out of the same pass.** When a suite runs in more than one
+context, assert the count PER CONTEXT. A phone pass that silently built nothing lands as a
+healthy total, because the desktop pass alone clears any threshold written against the sum.
+
+## 19. A law with no mechanism, reported as a skip
+
+`ownership.yaml` is the boundary between several unattended automations sharing one git
+history, and `.githooks/pre-commit` is what enforces it locally. On 2026-08-16 the whole of a
+run's work went in with **no ownership check on any commit**, because `core.hooksPath` was
+unset in that checkout and `.git/hooks/pre-commit` did not exist. The hook file was committed,
+executable and unreferenced. Git runs a hook it has been pointed at, and repository config does
+not travel with a clone.
+
+The stamping ritual ran the entire time. Phase 0 wrote `.git/ACTOR`, every phase that changed
+lane rewrote it, and the run record described a hook enforcing something. The stamp was going
+into a file nothing read.
+
+**`guards_local.py` was the only thing that noticed, and it reported the gap as a SKIPPED
+step**, then printed `51 step(s) passed` and exited 0. This repo's own instructions say to run
+gates by exit code rather than by reading the last line. A run that obeyed them learned nothing.
+
+**What to check instead.** A skip and an unavailable check are not the same event and must not
+share a report line. A skip is what a check looks like when it is not needed. A check that
+CANNOT RUN is the opposite, and belongs in the failure list with a non-zero exit. Ask of any
+skip: does this mean "covered elsewhere" or does it mean "not covered at all"? Only the first
+is a skip.
+
+**And the second-order lesson, which is why this is entry 19 and not a footnote.** Entry 12 in
+this file is a rule that was repealed and still read perfectly. This is the same fault one level
+down: not a rule that was overridden, but a rule with nothing implementing it. Both were found
+by a person reading rather than by anything red. When a check exists to enforce a written rule,
+something has to assert THE CHECK IS CONNECTED, and that assertion has to be able to fail.
+
+## 20. Two enforcers disagreeing about what a lane is scoped to
+
+The pre-commit hook checked the staged change against `.git/ACTOR`, so it scoped a lane to a
+COMMIT. CI pinned one actor from the branch prefix and checked the whole branch diff, so it
+scoped a lane to a BRANCH. Both were correct implementations of a sentence nobody had made
+precise, and each was green on inputs the other refused.
+
+That was not academic. The daily routine's own Phase 17 instructs the run to stamp `upgrade` and
+commit, on the only branch Phase 16 gives it. **Obeying the routine exactly produced a branch CI
+was built to reject**, and the first run to ship a deck spent its ship phase discovering that and
+moving two commits onto a separate pull request.
+
+**What to check instead.** Where two mechanisms enforce one rule, write down which unit the rule
+is scoped to and make both read the same signal. Here the stamp is copied into the commit as an
+`Actor:` trailer by `.githooks/commit-msg`, so one stamp drives the hook and the runner.
+
+**The trap inside the fix.** Trusting a per-commit declaration means a commit can name its own
+lane, and the lanes are what carry the protection: `upgrade` owns the machine and not the record,
+so a false `upgrade` stamp buys nothing. `human` is the exception, because it owns every path, so
+a routine that could stamp `human` would switch the whole map off from inside a commit message.
+`actors_allowed_on_branch` drops `human` in code rather than trusting the map to be written
+carefully, and the self-test puts `human` in the test map on purpose to prove the drop happens.
+
+## 21. An allowlist of names is a gate that sleeps
+
+`copy_sync_check` decided what to check by matching KEY NAMES against a list: kicker, headline,
+subhead, body and eleven more. Slides here are bespoke and the copywriter names keys to suit the
+slide. The 2026-08-16 deck used `hook`, `hook2`, `tag`, `tag2`, `dek`, `bodies`, `how`, `rows`,
+`attribution`, `site`, `source2` and `when1`. **Twelve of its nineteen key names were invisible
+to the gate**, including every key carrying body prose. It reported clean having examined 35
+strings and none of the deck's sentences.
+
+That is how a slide sentence citing "SB 6" with nothing behind it reached the published record
+with every gate green. The run found the missing REVERSE direction and proposed adding it, which
+was right and would not have been enough: a reverse check over the same allowlist would have
+missed the same twelve keys.
+
+**What to check instead.** When a gate selects what to examine, the default must be EXAMINE, with
+named exemptions. An allowlist fails silent, because a name nobody thought of is a thing nobody
+checks and nothing reports the omission. A denylist fails loud, because the failure mode is a
+gate complaining about something harmless, which somebody then fixes.
+
+Ask of any selector: if tomorrow's artifact invents a name, does this gate check it or skip it?
+
+**The related note on carve-outs.** The reverse direction was left out originally on the
+argument that it would flag every axis label and that a gate crying wolf is worse than no gate.
+The premise was true and the conclusion was wrong. The answer to a noisy check is carve-outs
+narrow enough to state, not the absence of the check. Here the carve-outs are the design's own
+`decorative` flag, named standing furniture, and a prose-shape test. And a provenance stamp is
+STRIPPED from a node rather than exempting the node, because exempting anything containing a
+stamp would blind the gate to whatever sits beside it.
+
+## 22. A number can be right while the sentence around it is wrong
+
+`numeral_lint` is a hard build gate and it enforces something precise: every numeral in published
+copy traces to a value the build actually computed. It is structurally unable to see whether the
+words around the numeral describe what was computed. Two defects shipped in that blind spot on
+one page each.
+
+The map's accessible title read "N of 254 counties carry an item" on every page, where the lit
+set is whatever the caller passed. On the Killeen-Temple page that is the counties of that
+metro's items, so the map announced **"1 of 254 counties carry an item"** to a screen reader, a
+statewide claim contradicted by the page's own prose two lines above.
+
+`llms.txt` built its "Open right now" list from `public_access.room` alone, under a heading
+reading "Decisions a member of the public still has a dated way into". Room records what KIND of
+access exists, never whether it is open. **28 of 47 entries were finished votes.**
+
+Both numbers were correctly computed and correctly rendered. Neither sentence was true.
+
+**What to check instead.** For every published figure, ask what noun phrase the reader will
+attach to it and whether the code guarantees that phrase. A count needs its scope named in the
+same sentence, and a list under a promise needs the promise computed rather than approximated by
+a nearby field.
+
+**And prefer the derivation the heading promises, not the one that is easy.** The obvious fix
+for `llms.txt` was to drop `decided` items. That is a proxy, and it deletes the case the heading
+most wants: League City has decided, and what it decided was to order a special election on
+November 3rd, which is precisely a dated way in. Computing a FUTURE DOOR keeps it and drops the
+finished votes, because a finished vote has no future door whatever its status says.
+
+## 23. A fact the code branches on, carried only in prose
+
+`llms.txt` decides whether a dated hearing is still a door a reader can walk through. TCEQ
+called off two August 2026 hearings and the record kept the original dates with the
+cancellation written into the `note`, which is correct history: the sitting was scheduled and
+then was not.
+
+The first fix read that note with a regex. It worked, it was pinned by a self-test, and it was
+the wrong shape. **The site was branching on a sentence a person writes.** It would have gone
+quiet the day somebody wrote "called off", or "postponed indefinitely", or moved the word into
+the summary instead, and nothing would have reported the change: the page would simply have
+started publishing a canceled hearing as a live door again.
+
+This is the compute-not-generate law at the level of a boolean rather than a numeral. The law
+says no published NUMBER is ever typed by a person. The same argument covers any fact the build
+makes a decision on, because a decision derived from prose is a decision derived from whatever
+phrasing happened to be used that day.
+
+**What to check instead.** For every branch in a builder, ask where the fact it tests lives. If
+the answer is a free-text field, the fact needs a field of its own, and the free text needs a
+gate keeping it honest against that field.
+
+Both halves matter and the second is the part that is easy to skip. `key_dates[].canceled` is
+the truth now, and `gate_schema` fails any date whose note calls itself canceled while the flag
+does not. Without that gate the field would silently drift out of date the first time somebody
+wrote the note and forgot the flag, and a field nobody maintains is worse than the prose it
+replaced, because the code trusts it more.
+
+The asymmetry is deliberate. A note saying canceled REQUIRES the flag. A canceled date requires
+no note at all. The gate exists to stop the prose contradicting the data, not to make writers
+describe every field twice.
+
+## 24. A test that lands inside the window the product suppresses
+
+`responsive.mjs` asserts three things about the map on a phone, and says in its own comment that
+any two without the third is a defect: the readout fills under a dragging thumb, releasing the
+drag does NOT navigate, and a plain tap still opens the county.
+
+The third assertion failed in CI on a build whose `docs/index.html` was byte identical to the
+one that had passed fifteen minutes earlier. Locally it navigated on **one run in three**.
+
+The cause was not geometry and not timing noise. A drag's `touchend` arms a capture-phase click
+killer and removes it after **400ms**, which is precisely what makes assertion two true. The test
+waited **350ms** and then tapped. It was tapping inside the window the product deliberately
+suppresses clicks in, so it could only pass by accident: the killer is `once:true`, so it
+survived unless the drag's own `touchend` had already produced a click that consumed it. Whether
+that happened was the coin toss.
+
+**The gate was not measuring what it claimed.** It said "a plain tap" and performed a tap that no
+reader performs, 350ms after lifting from a drag, in the one window where the product's answer is
+supposed to be "no".
+
+**What to check instead.** When a product deliberately suppresses, debounces or delays a
+behaviour, any test of the behaviour has to state where its input sits relative to that window.
+Read the constant, do not guess a wait. A test whose input falls inside a suppression window is
+testing the suppression, whatever its label says.
+
+**And the fix has a direction.** The wait went to 700ms because the killer lives 400ms. If this
+assertion starts failing again, raising the number is NOT the fix, because that would mean the
+killer is outliving its own window, which is a defect in the map rather than in the clock in the
+test. The comment says so at the call site, since the next person to meet a red test at 3am will
+reach for the number first.
+
+**The near miss worth recording.** This surfaced on a pull request that changed one JSON file and
+could not have caused it. The tempting reading was "unrelated, therefore flaky, therefore re-run",
+and a re-run would have been green about a third of the time. A latent coin toss in a gate is
+indistinguishable from an intermittent product fault until somebody reproduces it, and the only
+honest way to tell them apart is to reproduce it.
+
+## 25. Every gate green, and the page was broken
+
+The owner opened the site and said two slides had not rendered. They had not. The article page
+carried two broken images, silently published six slides of an eight slide deck, and told the
+front page it was a six slide deck. The whole suite was green.
+
+Each link in the chain behaved correctly on its own.
+
+1. `ship_images` encoded eight slides and refused two for coming in under its 40 dB quality
+   floor, the stipple paper register at 39.0 and the hachured soil section at 40.0. That was the
+   right call, correctly measured. It printed PROBLEM and exited 1.
+2. **The run read the message and shipped anyway.** Exit 1 was treated as a note.
+3. `site_build` counted `slide-*.webp`, got six, and generated image URLs BY INDEX from that
+   count. So it emitted 01 through 06, of which 03 and 06 did not exist, and never emitted 07 or
+   08 at all.
+4. Nothing in the suite opened a built page and asked whether what it points at is there.
+
+**The count came from one place and the URLs from another, and nothing checked they agreed.** A
+count of surviving files is only a valid source of indices while the survivors happen to be a
+contiguous 1..N, which is an assumption nobody wrote down and the first irregular deck broke.
+
+**What to check instead.** Derive a collection's length and its members from the SAME source. The
+manifest says what the deck is; a glob says what survived. Where the two can differ, the
+difference is the finding, and it should be reported rather than resolved by picking whichever
+number is smaller.
+
+**And check the product, not the intent.** `site_fresh_check` proved `docs/` was byte-identical
+to what the builders produce, which was true and useless: the builders and the comparison agreed
+about publishing a broken image. `media_check.py` now opens every built page and resolves every
+asset it references, including the ones served from this project's own repository, and it fails
+if an article page is pictures and a title with no words under them. Replayed against the run as
+it shipped, it names both broken slides.
+
+**The half of this that is not about code.** The gate that failed hardest was the one that
+noticed. `ship_images` said, in plain words and in its exit code, that two slides were not fit to
+ship, and the run went past it. No amount of new checking helps if a red gate is read as advice,
+so the routine now says at that step that its exit code is a stop.
+
+The rule underneath: **a defect the owner finds by looking at the site is a defect the automation
+was supposed to find first.** Publishing is not the last step. Opening what you published is.
+

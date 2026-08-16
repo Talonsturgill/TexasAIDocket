@@ -443,6 +443,27 @@ def gate_schema(items: list) -> Result:
                 r.fail(f"{who}: key_dates kind '{kd.get('kind')}' is not in the vocabulary")
             if not ISO_DATE.match(str(kd.get("date", ""))):
                 r.fail(f"{who}: key_dates date '{kd.get('date')}' is not ISO yyyy-mm-dd")
+            if "canceled" in kd and not isinstance(kd["canceled"], bool):
+                r.fail(f"{who}: key_dates canceled must be true or false, not "
+                       f"{kd['canceled']!r}")
+            # A CANCELED SITTING HAS TO BE A FIELD, NOT A SENTENCE.
+            #
+            # TCEQ called off two August 2026 hearings and the record kept the original dates
+            # with "since canceled" in the note, which is correct history. The site then had to
+            # decide whether a date was still a door, and the only thing carrying that fact was
+            # prose. `next_door` read the note with a regex to avoid publishing two canceled
+            # hearings as live doors, and a regex over a sentence a person writes is exactly the
+            # generated-not-computed shape this project refuses everywhere else.
+            #
+            # So the flag is the truth and this gate keeps the sentence honest against it. Say
+            # canceled in the note and the field must agree. The reverse is deliberately NOT
+            # required: a canceled date may carry any note or none.
+            if (re.search(r"\bcancell?ed\b", str(kd.get("note") or ""), re.I)
+                    and not kd.get("canceled")):
+                r.fail(f"{who}: the {kd.get('kind')} on {kd.get('date')} describes itself as "
+                       f"canceled in its note but carries no canceled flag. The site decides "
+                       f"whether a date is still a door, and it may not do that by reading "
+                       f"prose")
 
         if not ISO_DATE.match(str(it.get("last_verified", ""))):
             r.fail(f"{who}: last_verified '{it.get('last_verified')}' is not ISO yyyy-mm-dd")
@@ -842,6 +863,25 @@ def self_test() -> int:
            gate_schema([base(key_dates=[{"date": "2026-09-04", "kind": "someday"}])]), "FAIL")
     expect("schema catches a non-ISO date",
            gate_schema([base(key_dates=[{"date": "Sept 4 2026", "kind": "hearing"}])]), "FAIL")
+
+    # A CANCELED SITTING IS A FIELD, AND THE PROSE MAY NOT DISAGREE WITH IT.
+    # The site decides whether a date is still a door a reader can walk through. It read the
+    # note with a regex to keep two canceled TCEQ hearings off that list, which worked and was
+    # the generated-not-computed shape refused everywhere else here. The flag is the truth now
+    # and this keeps the sentence honest against it.
+    expect("schema catches a note saying canceled while the flag does not",
+           gate_schema([base(key_dates=[{"date": "2026-09-04", "kind": "hearing",
+                                         "note": "public meeting, since canceled"}])]), "FAIL")
+    expect("...and passes once the flag agrees",
+           gate_schema([base(key_dates=[{"date": "2026-09-04", "kind": "hearing",
+                                         "canceled": True,
+                                         "note": "public meeting, since canceled"}])]), "PASS")
+    expect("...and a canceled date needs no note at all",
+           gate_schema([base(key_dates=[{"date": "2026-09-04", "kind": "hearing",
+                                         "canceled": True, "note": ""}])]), "PASS")
+    expect("...while the flag must be a boolean, not a reason string",
+           gate_schema([base(key_dates=[{"date": "2026-09-04", "kind": "hearing",
+                                         "canceled": "yes"}])]), "FAIL")
     # THE FIXTURE'S ID MATTERS HERE, and it caught this test the moment the ratchet
     # landed: `base()` uses tx-2026-0001, which is one of the three backlogged items, so
     # the exemption swallowed the assertion and a test that had checked something for
@@ -1074,6 +1114,56 @@ def self_test() -> int:
     if not ok:
         failures += 1
 
+    # PROMOTE MUST NOT BE ABLE TO EAT THE RECORD.
+    #
+    # Until 2026-08-16 `--promote SEED --out ledger/docket.json` was the command this repo's own
+    # routine told a run to type, and it writes ONLY the admitted set. Against a 58 item ledger
+    # it wrote 6 items and dropped 52. These cases are the guard's red case: the first proves it
+    # refuses and leaves the file byte-identical, the second proves it has not been widened into
+    # refusing every write, which would just be the feature deleted.
+    import tempfile as _tf
+    with _tf.TemporaryDirectory() as td:
+        tmp = Path(td)
+        seed = tmp / "seed.json"
+        published = tmp / "ledger.json"
+
+        admitted_item = base()
+        seed.write_text(json.dumps({"items": [admitted_item]}, indent=2), encoding="utf-8")
+
+        # A ledger already holding an item this pass does not carry.
+        older = base(id="tx-2026-0999")
+        published.write_text(json.dumps(
+            {"_spec": {"version": SPEC_VERSION, "generated": today, "gates": []},
+             "items": [older]}, indent=2) + "\n", encoding="utf-8")
+        before = published.read_bytes()
+
+        rc = promote(seed, today, out=published, require_primary=False)
+        ok = rc == 1
+        print(f"  {'ok  ' if ok else 'FAIL'}  promote REFUSES a write that would drop a "
+              f"published item")
+        failures += 0 if ok else 1
+
+        ok = published.read_bytes() == before
+        print(f"  {'ok  ' if ok else 'FAIL'}  ...and the file it refused is byte-identical after")
+        failures += 0 if ok else 1
+
+        # The feature still works where nothing is lost, which is what stops the guard above
+        # from being a deletion dressed as a safeguard.
+        fresh = tmp / "fresh.json"
+        rc = promote(seed, today, out=fresh, require_primary=False)
+        ok = rc == 0 and fresh.exists()
+        print(f"  {'ok  ' if ok else 'FAIL'}  ...but still writes when nothing would be lost")
+        failures += 0 if ok else 1
+
+        superset = tmp / "superset.json"
+        superset.write_text(json.dumps(
+            {"_spec": {"version": SPEC_VERSION, "generated": today, "gates": []},
+             "items": [admitted_item]}, indent=2) + "\n", encoding="utf-8")
+        rc = promote(seed, today, out=superset, require_primary=False)
+        ok = rc == 0
+        print(f"  {'ok  ' if ok else 'FAIL'}  ...and rewriting the same item set is allowed")
+        failures += 0 if ok else 1
+
     if failures:
         print(f"\ndocket_build self-test: {failures} FAILED", file=sys.stderr)
         return 1
@@ -1123,6 +1213,42 @@ def promote(seed_path: Path, today: str, out: Path | None = None,
         print(f"  HELD  {i}: {why}")
 
     if out:
+        # REFUSE TO WRITE A FILE THAT WOULD LOSE PUBLISHED ITEMS.
+        #
+        # `promote` writes ONLY the admitted set. Pointed at the live ledger, as the routine
+        # itself told a run to do until 2026-08-16, it writes the handful of items that passed
+        # this run and silently drops every item already published. Measured that day against a
+        # temp file: 27 candidates against a 58 item ledger wrote 6 items and dropped 52.
+        #
+        # The old mitigation was a sentence in a run record saying not to pass `--out` at the
+        # ledger. That is not a guard, it is a hope. This is the guard, and it is deliberately
+        # written as "would this write lose anything" rather than "is this path the ledger",
+        # because the destructive shape is the loss and not the filename.
+        if out.exists():
+            try:
+                existing = load(out)
+            except Exception:                                          # noqa: BLE001
+                existing = []
+            keep = {i.get("id") for i in admitted if i.get("id")}
+            dropped = [i.get("id") for i in existing if i.get("id") and i.get("id") not in keep]
+            if dropped:
+                try:
+                    shown = out.resolve().relative_to(REPO_ROOT)
+                except ValueError:
+                    shown = out
+                print(f"\nREFUSING TO WRITE {shown}: it already holds {len(existing)} item(s) "
+                      f"and this write carries {len(admitted)}, so {len(dropped)} would be "
+                      f"dropped.", file=sys.stderr)
+                for i in dropped[:8]:
+                    print(f"  would lose  {i}", file=sys.stderr)
+                if len(dropped) > 8:
+                    print(f"  ...and {len(dropped) - 8} more", file=sys.stderr)
+                print("\n  --promote writes only the items admitted on THIS pass. It is a gate, "
+                      "not a merge.\n  Run it with no --out to see what passes, then append what "
+                      "passed to the ledger.\n  The record is append-only in substance and never "
+                      "deletes an item.", file=sys.stderr)
+                return 1
+
         bad, results = run_gates(admitted, today)
         if bad:
             print("\nrefusing to write: the admitted set does not pass as a whole",

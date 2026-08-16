@@ -54,6 +54,13 @@ RUNS = REPO_ROOT / "runs" / "carousel"
 # long way under where the file stops shrinking. It is a starting point, not a promise: the PSNR
 # printed per slide is the actual measurement, and QUALITY_FLOOR_DB is what decides pass or fail.
 QUALITY = 82
+
+# THE LADDER, walked in order until a slide clears the quality floor. One fixed quality was the
+# wrong instrument for a deck whose whole premise is that no two slides are drawn alike: flat
+# fields encode beautifully at 82 and high frequency texture does not. Stops rather than a
+# search because each step is a full encode of a 2160x2700 image, and four attempts on the two
+# worst slides of a deck is cheap where a bisection is not.
+QUALITY_LADDER = (82, 88, 92, 96)
 OG_QUALITY = 90
 
 # 40 dB is the conventional visually-lossless threshold for photographic content, and it is an
@@ -80,7 +87,19 @@ def psnr(a: Image.Image, b: Image.Image) -> float:
 
 
 def convert_one(png: Path, dry: bool) -> dict:
-    """Encode one slide and MEASURE the result. Returns what was measured, never what was hoped."""
+    """Encode one slide and MEASURE the result. Returns what was measured, never what was hoped.
+
+    QUALITY IS RAISED UNTIL THE SLIDE MEETS THE FLOOR, rather than one attempt at 82 and a
+    complaint. The deck of 2026-08-16 is why. Its stipple paper register and its hachured soil
+    section are high frequency texture, which is webp's worst case, and both encoded under the
+    40 dB floor at quality 82: 39.0 and 40.0. The gate refused them correctly, they shipped with
+    no webp beside their png, and the site published two broken images and dropped two more
+    slides. One fixed quality for eight bespoke slides was the wrong instrument, because the
+    whole point of this deck engine is that no two slides are drawn alike.
+
+    The floor is never lowered to make a slide pass. The encoder is asked to work harder, and if
+    it still cannot reach the floor the png is what ships, which is bigger and correct.
+    """
     webp = png.with_suffix(".webp")
     src_bytes = png.stat().st_size
     if dry:
@@ -88,12 +107,26 @@ def convert_one(png: Path, dry: bool) -> dict:
 
     with Image.open(png) as im:
         im.load()
-        im.save(webp, "WEBP", quality=QUALITY, method=6)
-        with Image.open(webp) as out:
-            out.load()
-            db = psnr(im, out)
+        db, used = None, None
+        for q in QUALITY_LADDER:
+            im.save(webp, "WEBP", quality=q, method=6)
+            with Image.open(webp) as out:
+                out.load()
+                db = psnr(im, out)
+            used = q
+            if db >= QUALITY_FLOOR_DB:
+                break
+
+    # Nothing on the ladder cleared the floor, so there is no honest webp for this slide. Remove
+    # the one just written: leaving a visibly degraded file beside the png is how a later step
+    # picks it up believing it passed.
+    if db < QUALITY_FLOOR_DB:
+        webp.unlink(missing_ok=True)
+        return {"name": png.name, "src": src_bytes, "dst": None, "psnr": db, "wrote": False,
+                "quality": used, "floor_missed": True}
+
     return {"name": png.name, "src": src_bytes, "dst": webp.stat().st_size, "psnr": db,
-            "wrote": True, "path": webp}
+            "wrote": True, "path": webp, "quality": used}
 
 
 def write_og(png: Path, dest: Path, dry: bool) -> dict | None:
@@ -131,11 +164,25 @@ def ship(run_dir: Path, dry: bool, keep_png: bool = False) -> tuple[list[dict], 
     except (OSError, ValueError) as exc:
         problems.append(f"og.jpg: {exc}")
 
+    # A SLIDE THAT COULD NOT MEET THE FLOOR IS NOT A PROBLEM, IT IS A PNG.
+    #
+    # This used to record it as a problem, which is what happened on 2026-08-16, and a problem
+    # is what the run reported and then published around. The honest outcome is that the slide
+    # ships in the format that is correct for it, so this reports the fact and keeps the png.
+    # `load_runs` in site_build resolves webp then png per slide, so a mixed deck renders whole.
     for r in results:
-        if r["psnr"] is not None and not math.isnan(r["psnr"]) and r["psnr"] < QUALITY_FLOOR_DB:
+        if r.get("floor_missed"):
+            print(f"  {r['name']}: {r['psnr']:.1f} dB at quality {r['quality']}, under the "
+                  f"{QUALITY_FLOOR_DB} dB floor even at the top of the ladder. Shipping the PNG, "
+                  f"which is bigger and correct.")
+        elif r["psnr"] is not None and not math.isnan(r["psnr"]) \
+                and r["psnr"] < QUALITY_FLOOR_DB:
             problems.append(f"{r['name']}: {r['psnr']:.1f} dB is under the {QUALITY_FLOOR_DB} dB "
                             f"floor. The encode is visible, so do not ship it")
 
+    # PER FILE, NOT ALL OR NOTHING. A png whose webp cleared the floor is redundant and goes. A
+    # png that is the slide's only shipping format has to stay, and deleting it because some
+    # OTHER slide was fine is how a deck loses an image entirely.
     if not dry and not keep_png and not problems:
         for png in pngs:
             if png.with_suffix(".webp").exists():

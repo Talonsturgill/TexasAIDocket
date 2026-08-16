@@ -40,8 +40,8 @@
 
 <h1>Health and education</h1>
 <div class="prose"><p><span class="num">2</span> of
-<span class="num">58</span> decisions on the record.</p></div>
-<nav class="topicrow" data-prose="data" aria-label="Filter the record by topic"><a class="topicchip" href="../../topic/data-centers/"><span class="tc-name">Data centers</span><span class="tc-n num">19</span></a><a class="topicchip" href="../../topic/defense-and-federal/"><span class="tc-name">Defense and federal</span><span class="tc-n num">1</span></a><a class="topicchip" href="../../topic/health-and-education/" aria-current="page"><span class="tc-name">Health and education</span><span class="tc-n num">2</span></a><a class="topicchip" href="../../topic/land-water-and-permitting/"><span class="tc-name">Land, water and permitting</span><span class="tc-n num">14</span></a><a class="topicchip" href="../../topic/power-and-the-grid/"><span class="tc-name">Power and the grid</span><span class="tc-n num">7</span></a><a class="topicchip" href="../../topic/research-and-science/"><span class="tc-name">Research and science</span><span class="tc-n num">3</span></a><a class="topicchip" href="../../topic/state-policy/"><span class="tc-name">State policy</span><span class="tc-n num">7</span></a><a class="topicchip" href="../../topic/surveillance-and-policing/"><span class="tc-name">Surveillance and policing</span><span class="tc-n num">5</span></a></nav>
+<span class="num">61</span> decisions on the record.</p></div>
+<nav class="topicrow" data-prose="data" aria-label="Filter the record by topic"><a class="topicchip" href="../../topic/data-centers/"><span class="tc-name">Data centers</span><span class="tc-n num">20</span></a><a class="topicchip" href="../../topic/defense-and-federal/"><span class="tc-name">Defense and federal</span><span class="tc-n num">1</span></a><a class="topicchip" href="../../topic/health-and-education/" aria-current="page"><span class="tc-name">Health and education</span><span class="tc-n num">2</span></a><a class="topicchip" href="../../topic/land-water-and-permitting/"><span class="tc-name">Land, water and permitting</span><span class="tc-n num">14</span></a><a class="topicchip" href="../../topic/power-and-the-grid/"><span class="tc-name">Power and the grid</span><span class="tc-n num">7</span></a><a class="topicchip" href="../../topic/research-and-science/"><span class="tc-name">Research and science</span><span class="tc-n num">3</span></a><a class="topicchip" href="../../topic/state-policy/"><span class="tc-name">State policy</span><span class="tc-n num">9</span></a><a class="topicchip" href="../../topic/surveillance-and-policing/"><span class="tc-name">Surveillance and policing</span><span class="tc-n num">5</span></a></nav>
 <ul class="items" data-prose="data"><li><h3><a href="../../item/tx-2026-0039/">National Science Foundation names UT El Paso in the first round of CyberAICorps Scholarship for Service awards</a></h3><p class="meta" data-prose="data"><span class="tag">Health and education</span><span>U.S. National Science Foundation</span><span>El Paso</span><span class="rooms contact_only">Write to the decider</span></p></li><li><h3><a href="../../item/tx-2026-0053/">Houston ISD Board of Managers carried a new local board policy on artificial intelligence to a second reading on its August 13th agenda</a></h3><p class="meta" data-prose="data"><span class="tag">Health and education</span><span>Houston Independent School District Board of Managers</span><span>Harris</span><span class="rooms open_meeting">Public meeting</span></p></li></ul>
 <p class="meta" data-prose="data"><a href="../../record/">All decisions</a></p>
 
@@ -78,9 +78,80 @@ if('IntersectionObserver' in window){
 // Dragging a thumb across the state now names each county and says what it holds, and lifting
 // the thumb without moving still opens the county, so the link is not taken away.
 (function(){
-  var read=document.getElementById('mapread'), map=document.querySelector('svg.txmap');
+  var read=document.getElementById('mapread'), map=document.querySelector('svg.txmap'),
+      rb=document.getElementById('mapreset');
   if(!read||!map||!('ontouchstart' in window)) return;
-  var moved=false, sx=0, sy=0, last=null;
+  var moved=false, sx=0, sy=0, last=null, clearAt=0;
+  // PINCH TO ZOOM, TWO FINGERS TO MOVE.
+  // Even with the readout naming what is under the thumb, a county in the Panhandle is a few
+  // millimetres of glass and the thumb covers all of it. So the map moves like a map.
+  //
+  // ONE FINGER STAYS THE PICKER and two fingers do the navigating, which is the opposite of a
+  // slippy map and is right here: this drawing is a chooser, not a place to wander. One finger
+  // already reads out and opens a county, and taking that away to pan would trade the working
+  // interaction for a familiar one.
+  //
+  // THE VIEWBOX MOVES, not a transform on a group. Strokes here are `vector-effect:
+  // non-scaling-stroke`, so a viewBox change keeps every hairline at its drawn weight instead
+  // of fattening the borders as you zoom, and `elementFromPoint` keeps working because it asks
+  // in screen coordinates either way.
+  var VB={x:0,y:0,w:0,h:0}, HOME=null, MAXZ=8;
+  (function(){
+    var v=(map.getAttribute('viewBox')||'').split(/[ ,]+/).map(Number);
+    if(v.length===4&&v.every(function(n){return !isNaN(n);})){
+      HOME={x:v[0],y:v[1],w:v[2],h:v[3]}; VB={x:v[0],y:v[1],w:v[2],h:v[3]};
+    }
+  })();
+  function apply(){
+    if(!HOME) return;
+    // CLAMPED SO THE MAP CANNOT BE LOST. Zooming out past the full extent and panning the
+    // state off the glass are both ways to end up looking at nothing with no way back that a
+    // reader would guess.
+    VB.w=Math.min(HOME.w,Math.max(HOME.w/MAXZ,VB.w));
+    VB.h=VB.w*(HOME.h/HOME.w);
+    VB.x=Math.min(HOME.x+HOME.w-VB.w,Math.max(HOME.x,VB.x));
+    VB.y=Math.min(HOME.y+HOME.h-VB.h,Math.max(HOME.y,VB.y));
+    map.setAttribute('viewBox',VB.x+' '+VB.y+' '+VB.w+' '+VB.h);
+    // The button is resolved once at the top with the readout, because this runs on every
+    // touchmove of a pinch, roughly sixty times a second on the device with the least headroom.
+    if(rb) rb.hidden=!(VB.w<HOME.w-0.5);
+  }
+  function reset(){ if(HOME){ VB={x:HOME.x,y:HOME.y,w:HOME.w,h:HOME.h}; apply(); } }
+  if(rb) rb.addEventListener('click',function(){ reset(); show(null); });
+  function span(e){
+    var a=e.touches[0], b=e.touches[1];
+    return Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY);
+  }
+  function mid(e){
+    var a=e.touches[0], b=e.touches[1];
+    return {x:(a.clientX+b.clientX)/2,y:(a.clientY+b.clientY)/2};
+  }
+  var pinch=null;
+  map.addEventListener('touchstart',function(e){
+    if(e.touches.length===2&&HOME){
+      show(null);
+      pinch={d:span(e),m:mid(e),vb:{x:VB.x,y:VB.y,w:VB.w,h:VB.h},box:map.getBoundingClientRect()};
+    }
+  },{passive:true});
+  map.addEventListener('touchmove',function(e){
+    if(e.touches.length!==2||!pinch) return;
+    e.preventDefault();                       // or the browser zooms the whole page instead
+    var d=span(e), m=mid(e), box=pinch.box;
+    var k=Math.max(0.05,d/Math.max(1,pinch.d));
+    var w=pinch.vb.w/k;
+    w=Math.min(HOME.w,Math.max(HOME.w/MAXZ,w));
+    var h=w*(HOME.h/HOME.w);
+    // ZOOM ABOUT THE FINGERS, not the centre of the drawing. Anchoring at the midpoint is what
+    // makes a pinch feel like it is holding the paper rather than driving a slider.
+    var fx=(pinch.m.x-box.left)/box.width, fy=(pinch.m.y-box.top)/box.height;
+    VB.x=pinch.vb.x+fx*pinch.vb.w-fx*w-(m.x-pinch.m.x)/box.width*w;
+    VB.y=pinch.vb.y+fy*pinch.vb.h-fy*h-(m.y-pinch.m.y)/box.height*h;
+    VB.w=w; VB.h=h;
+    apply();
+  },{passive:false});
+  map.addEventListener('touchend',function(e){
+    if(e.touches.length<2) pinch=null;
+  },{passive:true});
   function at(t){
     var el=document.elementFromPoint(t.clientX,t.clientY);
     return el&&el.closest?el.closest('path.c'):null;
@@ -97,9 +168,12 @@ if('IntersectionObserver' in window){
         : 'Nothing on the record yet.');
   }
   map.addEventListener('touchstart',function(e){
+    if(e.touches.length>1) return;   // two fingers are a gesture, never a pick
+    clearTimeout(clearAt);           // a new touch outlives the last one's timer
     var t=e.touches[0]; moved=false; sx=t.clientX; sy=t.clientY; show(at(t));
   },{passive:true});
   map.addEventListener('touchmove',function(e){
+    if(e.touches.length>1||pinch) return;
     var t=e.touches[0];
     if(Math.abs(t.clientX-sx)>6||Math.abs(t.clientY-sy)>6) moved=true;
     if(moved){ show(at(t)); e.preventDefault(); }
@@ -114,7 +188,10 @@ if('IntersectionObserver' in window){
     var kill=function(ev){ ev.preventDefault(); ev.stopPropagation(); };
     map.addEventListener('click',kill,{capture:true,once:true});
     setTimeout(function(){ map.removeEventListener('click',kill,{capture:true}); },400);
-    setTimeout(function(){ show(null); },2600);
+    // HELD AND CANCELLED, because it used to be armed on every release and never cleared.
+    // Drag, lift, drag again, then hold still on a county to read it, and the FIRST timer
+    // fired at 2.6s and blanked the readout under a stationary thumb.
+    clearTimeout(clearAt); clearAt=setTimeout(function(){ show(null); },2600);
   });
 })();
 </script>

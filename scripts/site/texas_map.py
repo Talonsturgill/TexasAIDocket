@@ -322,12 +322,25 @@ def scale_bar(scale: float, dx: float, dy: float) -> tuple[str, int]:
 
 def render(lit: set | None = None, *, title: str = "Texas counties in the record",
            idprefix: str = "txmap", inset: bool = False,
-           links: dict | None = None, counts: dict | None = None) -> str:
+           links: dict | None = None, counts: dict | None = None,
+           scope: str | None = None) -> str:
     """The whole map as one inline SVG.
 
     `lit` is a set of county NAMES (as the geodata spells them) or FIPS codes. Anything not lit
     is drawn in the faint field colour, which is the honest default: most of Texas is not in the
     record on most days, and the map should say so.
+
+    `scope` NAMES WHAT THE COUNT COVERS, and it exists because the count was right while the
+    sentence was wrong. The accessible title read "N of 254 counties carry an item" on every
+    page, and `lit` is whatever the caller passed. On the Killeen-Temple page that is the
+    counties of THAT metro's items, so the map announced "1 of 254 counties carry an item" to a
+    screen reader, which is a statewide claim the page does not mean and the record contradicts.
+    Austin said 3, El Paso said 1.
+
+    Nothing here was computed wrongly. The number was correctly derived and correctly rendered
+    into a sentence that did not say what it was the number of, which is the kind of defect
+    `numeral_lint` is structurally unable to see: it checks that a numeral traces to a
+    computation, never that the words around it describe the same thing.
     """
     lit = {str(x).strip().lower() for x in (lit or set())}
     counties = county_rings()
@@ -376,7 +389,9 @@ def render(lit: set | None = None, *, title: str = "Texas counties in the record
         # static title cannot know that. Telling a screen reader on a phone about a measuring
         # device the page is not rendering is worse than staying quiet: the bar carries its own
         # text, which is announced exactly when the bar is on screen.
-        f'{n_lit} of {len(counties)} counties carry an item. '
+        f'{n_lit} of {len(counties)} counties '
+        f'{"is" if n_lit == 1 else "are"} named by '
+        f'{scope if scope else "the record"}. '
         f'Albers equal-area conic.</title>'
         f'<g>{"".join(paths)}</g>'
         # The silhouette over the mesh, so the state reads before its subdivision does. Same
@@ -584,6 +599,29 @@ def self_test() -> int:
             break
     else:
         check("every graticule tick sits on the neatline", True)
+
+    # THE ACCESSIBLE TITLE HAS TO SAY WHAT ITS NUMBER IS A NUMBER OF.
+    # It read "N of 254 counties carry an item" on every page while `lit` was whatever the
+    # caller passed, so a metro page announced a statewide claim its own prose contradicted.
+    # numeral_lint cannot see this class of defect: the numeral was correctly computed and
+    # correctly rendered, into a sentence that did not describe it.
+    import re as _re
+
+    def title_of(svg):
+        return _re.search(r"<title[^>]*>(.*?)</title>", svg, _re.S).group(1)
+
+    scoped = title_of(render(lit={"Travis"}, scope="the items on this Killeen-Temple page"))
+    check("a scoped map names the scope its count covers",
+          "the items on this Killeen-Temple page" in scoped, scoped)
+    check("...and does not claim the record statewide",
+          "named by the record" not in scoped, scoped)
+
+    plain = title_of(render(lit={"Travis"}))
+    check("an unscoped map still speaks for the record", "named by the record" in plain, plain)
+
+    check("the verb agrees at one county", "1 of 254 counties is named" in plain, plain)
+    many = title_of(render(lit={"Travis", "Harris", "Bexar"}))
+    check("...and at more than one", "3 of 254 counties are named" in many, many)
 
     if failures:
         print(f"\ntexas_map self-test: {failures} FAILED", file=sys.stderr)
