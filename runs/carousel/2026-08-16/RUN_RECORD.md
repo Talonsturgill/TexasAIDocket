@@ -114,7 +114,24 @@ down and stopped.
    `scripts/gridwatch/`, which this routine does not own. Recorded, per the master routine's
    own instruction.
 
-4. **`docket_build.py --promote SEED --out ledger/docket.json` is destructive, and the master
+4. **`copy_sync_check.py` only checks one direction, and that is how an unsourced figure
+   reached the closing slide.** It proves every string in `copy.json` reached the render. It
+   never asks whether every string in the RENDER is in `copy.json`. So a sentence typed straight
+   into a slide's HTML is invisible to it, and invisible to everything downstream that reads the
+   manifest. This run published body prose on five slides that entered no manifest, and the
+   sentence carrying an untraced "SB 6" was one of them. The reverse check wants to exist, with
+   the usual carve-outs for furniture. `scripts/carousel/` is the upgrade actor's lane, so this
+   is written down and stopped.
+
+5. **`aggregate_check.py` reads decorative furniture as computed counts.** The coordinates footer
+   in the form the design doctrine prints it, "30 degrees 33 minutes N", produced four findings on
+   every slide, thirty six for the deck. The tool already exempts the slide counter for exactly
+   this reason and its own comment says a gate that cries wolf nine times a deck teaches the run
+   to scroll past the tenth. An element marked `data-decorative` should be exempt on the same
+   argument. This run worked around it by printing decimal degrees instead, which is a worse
+   footer than the doctrine asks for.
+
+6. **`docket_build.py --promote SEED --out ledger/docket.json` is destructive, and the master
    routine tells a run to type it.** `promote()` writes ONLY the admitted set to `--out`. Run as
    Phase 5 prints it, against a seed carrying 27 candidates and a ledger carrying 58 published
    items, it writes 6 items and silently drops 52. That was proved this run by writing the
@@ -185,6 +202,45 @@ period where the record stores a comma. The saved HTML of the release carries `I
 and `Grimes County,"` with the comma inside the closing quotation mark, so the record's quotes were
 already right and were left alone. An agent's confident correction is not evidence either.
 
+### The review, and what it caught
+
+Three pixel critics and a flow critic ran, then the scorer. **The review round was not reduced.**
+Partway through this run the showrunner concluded the critic fleet was starved and was about to
+disclose a reduced round. That conclusion was wrong and the mistake is worth recording, because
+it nearly put a false sentence in this file. Liveness was checked with `stat` on the task output
+path, which is a SYMLINK, so the command returned the length of the link target rather than the
+size of the transcript. Every agent read as 124 bytes, including four that had already finished.
+Measured with `stat -L`, all five were alive and writing between 1.4 and 2.7 MB. **A measurement
+that returns the same number for every subject is measuring the wrong thing.**
+
+What the critics caught, in the order it mattered.
+
+- **The scorer found an unsourced figure in the PUBLIC RECORD, not just on a slide.**
+  `tx-2026-0073`'s summary asserted the State Affairs charge names SB 6 and none of its five
+  quotes carried the string. The fact turned out to be real. The Legislative Reference Library
+  page reads "Study the implementation of SB 6 and the Large Load Batch Study Process proposed by
+  the Electric Reliability Council of Texas" and the stored quote had been cropped to begin after
+  that clause. Widened in the record and in `claims.json`, not cut.
+- **The same finding named the mechanism, which is worse than the instance.** Five slides
+  published body prose that was in no manifest, so `copy_sync_check` never saw it. Every rendered
+  string of prose is now in `copy.json`. The gate hole itself is a proposal below.
+- Slide 3 was a bar chart. The roof neither touched nor covered the three stages it was supposed
+  to be covering, and the acceptance item that was meant to catch it tested for vertical breaks,
+  which a single rectangle can never fail. Rebuilt with end walls, an overhang and an eave shadow.
+- Slide 2 was a single value group. The state fill was not the oak the plan declared, so at feed
+  size the silhouette was a stain with three black boxes on it.
+- Slide 6 renamed a Texas county judge to "ITS EXECUTIVE". The office is executive in function and
+  the title is county judge, and the acceptance item had asked for exactly that.
+- Slide 9 carried a second, off-story hearing at equal weight to the one that belongs to this
+  story. The flow critic's line is the right one. A close that hands over two things hands over
+  nothing. Cut to one date.
+- Slide 8's declared focal, the ground line, was an unstroked colour change, and its lit cut face
+  and depth scale were never drawn. All three now exist and the split is visibly unequal.
+
+**Two acceptance items were satisfiable by rendering nothing**, which the slide 4 and slide 6
+critic named directly. "The stipple density stays low enough that the paper reads as tooth" passes
+when there is no stipple at all. An item with a ceiling and no floor is not a test.
+
 ## Sources registry
 
 `SOURCES_REGISTRY.md` behaved as written with three exceptions, all recorded in the same commit
@@ -196,8 +252,8 @@ as this record.
 | gate | status | detail |
 |---|---|---|
 | claims         | PASS   | 29 verified claim(s) |
-| render         | WARN   | 9 slide(s), 1 overflow warning(s) |
-| qa             | WARN   | 0 fail(s), 29 warn(s) |
+| render         | PASS   | 9 slide(s) |
+| qa             | WARN   | 0 fail(s), 28 warn(s) |
 | aggregates     | PASS   | 4 declared and re-derived |
 | assembly       | PASS   | 9 slide(s), 4.15 MB, vector |
 | score          | ABSENT | score.json not written yet |
