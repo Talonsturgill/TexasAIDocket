@@ -291,10 +291,9 @@ def metro_bars(metros: list[dict], walk: list | None = None) -> str:
   <td class="n num">{af(m['storage_af'])}</td>
 </tr>""" for m in metros)
     return f"""<table class="figures metros">
-<caption>Municipal reservoir storage by metro, driest first. Every bar is the same color at
-every value. The order and the length carry the comparison. Neither implies a judgement.
-Where the water data's name for an area differs from the federal delineation, both are
-shown.</caption>
+<caption>Municipal reservoir storage by metro, driest first. One color at every value, so
+order and length carry the comparison. Where the water data's name differs from the federal
+one, both are shown.</caption>
 <thead><tr><th>Metro</th><th>Full</th><th class="n">Percent</th>
 <th class="n">Acre feet</th></tr></thead>
 <tbody>{rows}</tbody></table>"""
@@ -321,10 +320,10 @@ def body(records: list[dict], today: str) -> str:
     if driest and fullest and driest["slug"] != fullest["slug"]:
         lede = f"""
   <p class="lede">Texas reservoirs hold <strong class="num">{maf(L['storage_af'])}</strong>
-  million acre feet, <strong class="num">{pct(L['percent_full'])}%</strong> of the conservation
+  million acre feet, <strong class="num">{pct(L['percent_full'])}%</strong> of conservation
   capacity across <strong class="num">{af(L['reservoir_count'])}</strong> reservoirs. The
-  spread between metros is the part worth looking at. {driest['name']} sits at
-  <strong class="num">{pct(driest['percent_full'])}%</strong> while {fullest['name']} sits at
+  spread is the story. {driest['name']} sits at
+  <strong class="num">{pct(driest['percent_full'])}%</strong>, {fullest['name']} at
   <strong class="num">{pct(fullest['percent_full'])}%</strong>.</p>"""
 
     change = ""
@@ -332,19 +331,18 @@ def body(records: list[dict], today: str) -> str:
     if c:
         direction = "rose" if c["storage_af"] > 0 else "fell" if c["storage_af"] < 0 else "held"
         change = f"""
-  <p>Storage {direction} by <strong class="num">{af(abs(c['storage_af']))}</strong> acre feet
-  against {ordinal_date(c['from_date'])}. That is a move of
-  <strong class="num">{pct(abs(c['percent_full']))}</strong> points. Daily movement is the reason
-  this record is daily. A weekly instrument would have shown the same number twice.</p>"""
+  <p>Storage {direction} <strong class="num">{af(abs(c['storage_af']))}</strong> acre feet
+  against {ordinal_date(c['from_date'])}, a move of
+  <strong class="num">{pct(abs(c['percent_full']))}</strong> points. Daily movement is why this
+  record is daily. A weekly one would show the same number twice.</p>"""
 
     agree = ""
     if L.get("agreement") is not None:
         agree = f"""
-  <p>Percent full is computed here from storage over capacity, never read from the feed's own
-  field. Comparing the two is free. Across every reservoir counted the largest disagreement
-  was <strong class="num">{pt(L['agreement'])}</strong> of a percentage point, which is
-  rounding. It is checked every day because the day it stops being rounding is the day their
-  field means something other than what this code assumes.</p>"""
+  <p>Percent full is computed from storage over capacity, never read from the feed's own field.
+  The largest disagreement was <strong class="num">{pt(L['agreement'])}</strong> of a point.
+  Checked daily, because the day that stops being rounding is the day their field means
+  something else.</p>"""
 
     cov = L.get("coverage") or {}
     gap = ""
@@ -365,19 +363,18 @@ def body(records: list[dict], today: str) -> str:
     out_of_state = ""
     if L["excluded_out_of_state"]:
         out_of_state = f"""
-    <p><strong>El Paso is not in this table, and that is the correct answer.</strong> The only
-    reservoir tagged to El Paso in the state's data is Elephant Butte Lake, which is in New
-    Mexico. It is excluded from every figure above, along with
+    <p><strong>El Paso is not in this table, and that is correct.</strong> The only reservoir
+    tagged to it is Elephant Butte Lake, in New Mexico, excluded along with
     <strong class="num">{af(len(L['excluded_out_of_state']) - 1)}</strong> other out of state
-    reservoirs. Publishing a New Mexico lake as El Paso's water supply would be wrong, and El
-    Paso's supply is a different system that this instrument does not measure.</p>"""
+    reservoirs. El Paso's supply is a different system this instrument does not
+    measure.</p>"""
 
     return f"""
 <h1>Texas Water Watch</h1>
 <div class="prose">{lede}
   <p>A data center needs electricity. Most cooling designs need water too. The
-  <a href="../grid/">grid watch</a> tracks the first and this tracks the second. Together they
-  are the physical account behind every siting decision in <a href="../record/">the record</a>.</p>
+  <a href="../grid/">grid watch</a> tracks the first and this the second, the account behind
+  every siting decision in <a href="../record/">the record</a>.</p>
 </div>
 
 <h2>{d}</h2>
@@ -392,17 +389,15 @@ def body(records: list[dict], today: str) -> str:
 <h2>What this measures, and what it does not</h2>
 <div class="prose">
   <div class="gap">
-    <p><strong>This is surface water in reservoirs, and nothing else.</strong> A Texas city's
-    supply also runs on groundwater, on reuse, and on water bought from other systems. The
-    Ogallala under the Panhandle and the Edwards under Central Texas are not measured here and
-    do not move the numbers above.</p>{gap}
-    <p>So a low bar is not a conclusion about a city's water supply and a full bar is not a
-    promise about it. Some reservoirs are drawn down deliberately. Some refill in a week from
-    one storm upstream. The figures are what was in storage on the day and nothing more is
-    claimed from them.</p>{out_of_state}
-    <p>Flood control dams with no conservation pool are excluded rather than counted as
-    empty, <strong class="num">{af(len(L['excluded_no_pool']))}</strong> of them. They stand dry by
-    design and would otherwise drag the state total down for doing their job.</p>
+    <p><strong>This is surface water in reservoirs, and nothing else.</strong> A city's supply
+    also runs on groundwater, reuse and purchased water. The Ogallala and the Edwards are not
+    measured here.</p>{gap}
+    <p>A low bar is not a conclusion about a city's supply and a full bar is not a promise.
+    Some reservoirs are drawn down deliberately. Some refill in a week from one storm. These
+    are the figures for the day and nothing more.</p>{out_of_state}
+    <p><strong class="num">{af(len(L['excluded_no_pool']))}</strong> flood control dams with no
+    conservation pool are excluded rather than counted as empty. They stand dry by design and
+    would drag the state total down for doing their job.</p>
   </div>
   <p>The record holds <strong class="num">{af(f['days_held'])}</strong> day(s) so far.
   <a href="../waterwatch.json">The data is open</a>, per reservoir, so every roll up above can
@@ -498,8 +493,12 @@ def self_test() -> int:
     check("...computed, and signed", f2["change"]["storage_af"] == -26085.0,
           str(f2["change"]["storage_af"]))
     b2 = body(two, "2026-08-11")
+    # ASSERTED ON THE INTENT, not on a phrase. This read `"fell by" in b2` and went red when
+    # the copy was tightened from "fell by 26,085" to "fell 26,085", which is the same claim in
+    # fewer words. What the check is actually for is that the page reports a fall in plain
+    # language and never grades it as a "decline", so that is what it now says.
     check("the change renders as a fall without calling it a decline",
-          "fell by" in b2 and "26,085" in b2)
+          "fell" in b2 and "26,085" in b2 and "declin" not in b2.lower())
     check("...and passes the gate", not lint(b2, f2), str(lint(b2, f2)[:8]))
 
     gapped = [rec("2026-08-01", storage=24329431.0), rec("2026-08-11")]

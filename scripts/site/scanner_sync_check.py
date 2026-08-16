@@ -69,7 +69,6 @@ PROMISES = [
     ("there is no list", "no list"),
     ("there is no follow up sequence", "no follow up sequence"),
     ("there is no second email", "no second email"),
-    ("a person reads it before it goes", "a person reads every report before it goes out"),
     ("every line traces to the requester's own pages", "traces to a page on your"),
 ]
 
@@ -223,7 +222,7 @@ def self_test() -> int:
        any("no second email" in p or "second email" in p for p in got), str(got[:1]))
 
     # AND A PROMISE THE PAGE MAKES THAT THE ROUTINE IS NOT ON THE HOOK FOR.
-    extra = base.replace("A person reads", "There is no list. A person reads")
+    extra = base.replace("One report", "There is no list. One report")
     thin = base.replace("No list, ", "")
     got = compare(thin, extra)
     ok("a promise on the page that the contract does not carry is caught",

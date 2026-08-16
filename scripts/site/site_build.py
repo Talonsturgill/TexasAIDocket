@@ -1656,9 +1656,6 @@ def scan_page(today: str) -> str:
     body = f"""
 <section class="hero" data-reveal>
   <h1>See where AI would actually help you</h1>
-  <p class="sub">Send a website. What comes back is an honest map of that operation. Where AI
-  would carry real load. Where ordinary software does the same job cheaper and safer. Where it
-  has no business at all.</p>
 </section>
 
 <section data-reveal>
@@ -1716,11 +1713,6 @@ def scan_page(today: str) -> str:
     <p class="scan-status" role="status" aria-live="polite" hidden></p>
   </form>
 {_SCAN_JS}
-  <p class="fine">A person reads every report before it goes out. That takes a day or two
-  rather than seconds. Your report is not published anywhere and is not shown to anyone else.
-  It reads what is public. It can't see a billing system or a call volume and it says so where
-  that matters. The <a href="../services/">Field Study</a> is what goes deeper if that turns out
-  to be worth doing.</p>
 </section>
 """
     return page(title=f"Bottleneck scan · {SITE_NAME}", depth=1, active="",
@@ -1910,13 +1902,11 @@ def about_page(today: str) -> str:
   expertise gets pointed at Texas businesses who rarely get access to it.</p>
 
   <h2>How the work gets verified</h2>
-  <p>Every fact carries a claim id and traces to a document that was actually fetched. At
-  least one source on every item has to be the filing or the statute or the agency itself
-  rather than a story about it. Nothing enters <a href="../record/">the record</a> without
-  that. An item that can't be re-verified says so on its own page.</p>
-  <p>Every numeral is produced by code from data. A build gate fails on any figure that
-  can't be traced to a computation. Where something is genuinely not public, the size of the
-  gap gets published instead of an estimate.</p>
+  <p>Every fact carries a claim id and traces to a fetched document. At least one source on
+  every item is the filing or the statute or the agency itself. An item that can't be
+  re-verified says so on <a href="../record/">its own page</a>.</p>
+  <p>Every numeral is produced by code. A build gate fails on any figure that traces to no
+  computation. Where something is not public the gap is published instead of an estimate.</p>
 
   <h2>What you can hold this desk to</h2>
   <p><strong>Your outcome outranks the invoice.</strong> The recommendation is what this desk
