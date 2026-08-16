@@ -64,8 +64,11 @@ COPY = {
                     "whole record instantly and for nothing, which is most of what this box does.",
     "provenance":   "Written from the published record. Every figure checked against it.",
     "again":        "Start over",
-    "chip":         "Yes, show me",
+    "send":         "Ask",
+    "accept":       "Use the suggested question",
     "feedback":     "Send feedback",
+    "too_long":     "That answer ran longer than the space for it, so the last part is not "
+                    "shown. A narrower question gets the whole of it.",
     "fb_sending":   "Sending",
     "fb_thanks":    "Thanks. That goes straight to a person.",
     "fb_failed":    "That did not send. Try the book a call link instead.",
@@ -179,6 +182,27 @@ _CLIENT = r"""
   if (!form || !input || !send || !thread) return;
 
   var busy = false;
+  /* The suggested follow-up, waiting in the placeholder. Held here rather than read back off
+     the placeholder, because the placeholder is display and this is data. */
+  var pending = null;
+
+  function acceptPending() {
+    if (!pending) return false;
+    input.value = pending;
+    pending = null;
+    input.placeholder = "%%followup%%";
+    send.setAttribute("aria-label", "%%send%%");
+    input.focus();
+    try { input.setSelectionRange(input.value.length, input.value.length); } catch (e) {}
+    return true;
+  }
+
+  function dropPending() {
+    if (!pending) return;
+    pending = null;
+    input.placeholder = "%%followup%%";
+    send.setAttribute("aria-label", "%%send%%");
+  }
   /* The conversation, held in the page only. Nothing is stored anywhere, it goes when the tab
      does, and it is what makes "when does that close" mean something on its own. The worker
      keeps no session either: the thread travels with each question. */
@@ -335,6 +359,7 @@ _CLIENT = r"""
 
   function reset() {
     turns = [];
+    pending = null;
     thread.textContent = "";
     thread.hidden = true;
     box.classList.remove("answering");
@@ -370,7 +395,9 @@ _CLIENT = r"""
     thread.appendChild(body);
 
     input.value = "";
+    pending = null;
     input.placeholder = "%%followup%%";
+    send.setAttribute("aria-label", "%%send%%");
 
     /* The question goes to the top and the answer arrives under it, the way a conversation
        moves. Not scrollIntoView: the masthead is sticky, so start-of-element lands under it.
@@ -424,19 +451,16 @@ _CLIENT = r"""
 
       clearTrailing();
 
-      var next = said.length ? followUp(said[said.length - 1]) : null;
-      if (next) {
-        var chip = document.createElement("button");
-        chip.type = "button";
-        chip.className = "asknext";
-        chip.textContent = "%%chip%%";
-        chip.addEventListener("click", function () {
-          input.value = next;
-          input.focus();
-          try { input.setSelectionRange(next.length, next.length); } catch (e) {}
-          chip.remove();
-        });
-        thread.appendChild(chip);
+      /* THE OFFER GOES INTO THE FIELD, NOT INTO A BUTTON.
+         It was a chip under the answer, which worked and was one more thing to look at. A
+         reader who has just read an answer is already looking at the field they will type the
+         next one into, so the suggestion belongs there, lightly, the way an editor suggests a
+         completion. The send control accepts it and a second press sends it, which is the same
+         two presses the chip needed and one fewer place to look. */
+      pending = said.length ? followUp(said[said.length - 1]) : null;
+      if (pending) {
+        input.placeholder = pending;
+        send.setAttribute("aria-label", "%%accept%%");
       }
 
       var foot = document.createElement("div");
@@ -483,6 +507,18 @@ _CLIENT = r"""
         body.appendChild(stop);
         return;
       }
+      if (ev.long) {
+        /* The model ran out of room. The half sentence it was in the middle of is dropped by
+           the worker rather than shipped, because "under the Paperw" reaching a reader is
+           worse than saying the answer was too long, and a reader cannot tell a truncation
+           from the record simply stopping there. */
+        dropStage();
+        var cut = document.createElement("div");
+        cut.className = "askstop";
+        cut.textContent = "%%too_long%%";
+        body.appendChild(cut);
+        return;
+      }
       if (ev.capped) {
         dropStage();
         if (!started) {
@@ -496,12 +532,27 @@ _CLIENT = r"""
       }
     }
 
-    waitForToken(stage).then(function (tok) {
-      stage("%%stage_read%%");
+    function post(tok) {
       return fetch(EP + "/answer", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ messages: turns, turnstile_token: tok || null })
+      });
+    }
+
+    waitForToken(stage).then(function (tok) {
+      stage("%%stage_read%%");
+      return post(tok);
+    }).then(function (r) {
+      /* A 403 here is a token that was spent, expired or never arrived, and it is not the
+         reader's doing. Showing them "finish the human check first" next to a widget that is
+         deliberately invisible is a dead end nobody can act on, which is exactly what an eval
+         found. Ask for a fresh one and go again, once. */
+      if (r.status !== 403) return r;
+      stage("%%stage_human%%");
+      spendToken();
+      return waitForToken(stage).then(function (fresh) {
+        return fresh ? post(fresh) : r;
       });
     }).then(function (r) {
       if (!r.body || !r.body.getReader) {
@@ -620,10 +671,29 @@ _CLIENT = r"""
     });
   }
 
+  /* Writing your own question puts the suggestion away. A placeholder that lingers under
+     text somebody is typing is just noise behind their sentence. */
+  input.addEventListener("input", function () { if (input.value) dropPending(); });
+
+  /* Tab and the right arrow accept it, which is the convention everywhere else a field
+     suggests a completion, and both only fire when the field is empty so neither steals a
+     keystroke from somebody writing. */
+  input.addEventListener("keydown", function (e) {
+    if (input.value || !pending) return;
+    if (e.key === "Tab" || e.key === "ArrowRight") {
+      e.preventDefault();
+      acceptPending();
+    }
+  });
+
   /* SUBMIT IS THE WRITTEN LANE NOW. It used to re-run the engine, which is what typing already
      does, so pressing enter did nothing a reader could see. */
   form.addEventListener("submit", function (e) {
     e.preventDefault();
+    /* An empty field with a suggestion waiting means the arrow accepts rather than sends. The
+       reader sees the words land in their own field and presses again to ask, so nothing is
+       ever sent that they have not seen in full. */
+    if (!input.value.trim() && acceptPending()) return;
     var q = input.value.trim();
     if (!q) return;
     ask(q);
@@ -713,10 +783,20 @@ def self_test() -> int:
     for reason in ("numeral", "citation", "voice", "verdict"):
         check(f"{reason} has a sentence", f"{reason}:" in js)
 
-    print("the follow-up chip fills, and never sends")
-    check("it sets the field", "input.value = next;" in js)
-    check("and there is no submit in its handler",
-          "chip.addEventListener" in js and "ask(next)" not in js)
+    print("the suggested follow-up waits in the field and never sends itself")
+    check("it lands in the placeholder, lightly", 'input.placeholder = pending;' in js)
+    check("accepting puts it in the field", "input.value = pending;" in js)
+    # The whole point of two presses. Sending is the metered half, so a suggestion that sent
+    # itself would spend on a mis-tap and on words the reader never saw in full.
+    check("accepting returns before anything is sent",
+          "if (!input.value.trim() && acceptPending()) return;" in js)
+    check("tab and the right arrow take it too",
+          'e.key === "Tab" || e.key === "ArrowRight"' in js)
+    check("and neither steals a keystroke from somebody typing",
+          "if (input.value || !pending) return;" in js)
+    check("writing your own question puts it away", "if (input.value) dropPending();" in js)
+    check("the send control says what it will do",
+          '"%%accept%%"' in _CLIENT and '"%%send%%"' in _CLIENT)
 
     print()
     print("ask_written self-test clean" if ok[0] else "ask_written self-test FAILED")

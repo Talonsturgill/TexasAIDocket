@@ -21,7 +21,15 @@ const CORPUS_URL = `${SITE}/ask-corpus.json`;
 // ASK_MODEL overrides it when a model is being trialled, and /_config reports which won.
 const DEFAULT_MODEL = "claude-sonnet-5";
 const DEFAULT_CAP = 200;
-const MAX_TOKENS = 700;
+// Raised from 700 on 2026-08-15, after an eval cut two answers mid word. "under the Paperw"
+// and "The record only sh" both reached a reader. The questions that hit it were the ones
+// worth asking, three open comment windows and a survey of data center projects, because an
+// answer that has to name several decisions is exactly the answer that runs long.
+//
+// Output is the cheap half. At Sonnet 5 rates 1,400 tokens is about 1.4 cents against roughly
+// 10 cents of input on every question, so the ceiling was buying almost nothing and costing
+// the answers a reader most needs.
+const MAX_TOKENS = 1400;
 const ANSWER_TTL = 60 * 60 * 24 * 7;
 
 // EVERY KV KEY THIS WORKER WRITES CARRIES THIS.
@@ -330,7 +338,7 @@ export async function answerStream(turns, env, now) {
 
         const reader = r.body.getReader();
         const dec = new TextDecoder();
-        let sse = "", prose = "", kept = [], stopped = null;
+        let sse = "", prose = "", kept = [], stopped = null, ranLong = false;
 
         outer:
         while (true) {
@@ -343,6 +351,10 @@ export async function answerStream(turns, env, now) {
             if (!l.startsWith("data:")) continue;
             let ev;
             try { ev = JSON.parse(l.slice(5).trim()); } catch { continue; }
+            // The model says why it stopped, and it is the only thing that can. A trailing
+            // fragment looks identical whether the model simply did not end on a full stop or
+            // whether it was cut off in the middle of a word.
+            if (ev?.delta?.stop_reason === "max_tokens") ranLong = true;
             const piece = ev?.delta?.text;
             if (typeof piece !== "string") continue;
             prose += piece;
@@ -357,14 +369,18 @@ export async function answerStream(turns, env, now) {
           }
         }
 
-        // Whatever is left in the buffer is a final sentence with no trailing space.
-        if (!stopped && prose.trim()) {
+        // Whatever is left in the buffer is a final sentence with no trailing space, UNLESS
+        // the model ran out of room, in which case it is half a sentence and possibly half a
+        // word. Publishing that is worse than saying the answer was too long for the space,
+        // because a reader cannot tell a truncation from the record simply stopping there.
+        if (!stopped && prose.trim() && !ranLong) {
           const v = checkSentence(prose.trim(), ctx);
           if (v.ok) { kept.push(prose.trim()); send({ sentence: prose.trim() }); }
           else stopped = v;
         }
 
         if (stopped) send({ withheld: stopped.reason });
+        else if (ranLong) send({ long: true });
         else send({ done: true });
 
         if (env.ASK_KV && key) {

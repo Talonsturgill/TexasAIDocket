@@ -39,24 +39,32 @@ await page.route("**://challenges.cloudflare.com/**", (r) => r.abort());
 // and the month running out.
 let seen = [];
 await page.route("**/answer", async (route) => {
-  seen.push(JSON.parse(route.request().postData()));
-  const n = seen.length;
+  const body = JSON.parse(route.request().postData());
+  seen.push(body);
+  /* DISPATCH ON WHAT WAS ASKED, NOT ON HOW MANY HAVE BEEN ASKED. Keying off the request count
+     meant every section that added or removed a question silently shifted which canned reply
+     the next section got, and the failure looked like a page bug rather than a fixture one. */
+  const q = body.messages[body.messages.length - 1].content;
   const lines =
-    n === 1 ? [{ stage: "Reading the record" },
-               { sentence: "The Public Utility Commission of Texas decides it." },
-               { sentence: "See [[tx-2026-0001]] for the filings." },
-               { sentence: "Want the dates it moved on?" },
-               { done: true }]
-  : n === 2 ? [{ stage: "Reading the record" },
-               { sentence: "The comment window has closed." },
-               { withheld: "numeral" }]
-  : n === 3 ? [{ capped: true }]
-  // Section I needs a real exchange to attach, so the stub answers normally again once the
-  // capped case has been proved. Leaving it capped forever meant lastExchange() had nothing
-  // to return and the attach checks failed for a reason that was purely about this file.
-  :           [{ stage: "Reading the record" },
-               { sentence: "The Public Utility Commission of Texas decides it." },
-               { done: true }];
+    /list everything/.test(q)
+      ? [{ stage: "Reading the record" },
+         { sentence: "Four comment windows are open right now." },
+         { long: true }]
+    : /one more/.test(q)
+      ? [{ capped: true }]
+    : /when did it close/.test(q)
+      ? [{ stage: "Reading the record" },
+         { sentence: "The comment window has closed." },
+         { withheld: "numeral" }]
+    : /who decides/.test(q)
+      ? [{ stage: "Reading the record" },
+         { sentence: "The Public Utility Commission of Texas decides it." },
+         { sentence: "See [[tx-2026-0001]] for the filings." },
+         { sentence: "Want the dates it moved on?" },
+         { done: true }]
+    : [{ stage: "Reading the record" },
+       { sentence: "The Public Utility Commission of Texas decides it." },
+       { done: true }];
   await route.fulfill({
     status: 200, contentType: "application/x-ndjson",
     body: lines.map((l) => JSON.stringify(l)).join("\n") + "\n",
@@ -131,47 +139,78 @@ ok("the citation became a link to the decision",
 ok("provenance appears", (await page.locator(".askfrom").textContent())
   .includes("Every figure checked"));
 ok("the field is empty and ready", (await page.inputValue("#askq")) === "");
-ok("and asks for a follow-up now",
-  (await page.getAttribute("#askq", "placeholder")) === "Ask a follow-up");
+ok("and the placeholder now carries the suggested follow-up",
+  (await page.getAttribute("#askq", "placeholder")) === "Show me the dates it moved on.",
+  await page.getAttribute("#askq", "placeholder"));
 
 head("D. the box takes the screen while it answers");
 ok("the starters step aside", await page.locator(".chips").isHidden());
 ok("the note steps aside", await page.locator(".asknote").isHidden());
 ok("the engine's live list steps aside", await page.locator("#ask .answer").isHidden());
 
-head("E. the closing offer becomes one press");
-ok("the chip is offered", (await page.locator(".asknext").textContent()) === "Yes, show me");
-await page.click(".asknext");
+head("E. the closing offer waits in the field");
+ok("it is suggested in the placeholder, not in a button",
+  (await page.getAttribute("#askq", "placeholder")) === "Show me the dates it moved on.",
+  await page.getAttribute("#askq", "placeholder"));
+ok("no chip is rendered any more", (await page.locator(".asknext").count()) === 0);
+ok("the field itself is still empty", (await page.inputValue("#askq")) === "");
+ok("and the control says what it will do",
+  (await page.getAttribute('button[type="submit"]', "aria-label")) ===
+    "Use the suggested question");
+
+// The arrow accepts rather than sends, which is the whole two-press design.
+await page.click('button[type="submit"]');
 await page.waitForTimeout(150);
-ok("pressing it loads the question",
+ok("pressing the arrow loads it into the field",
   (await page.inputValue("#askq")) === "Show me the dates it moved on.",
   await page.inputValue("#askq"));
-/* Two presses on purpose. Sending is the metered half and the note says so, so a chip that
-   sent by itself would spend on a mis-tap and make that note false. */
 ok("but does NOT send it", seen.length === 1, `${seen.length} requests`);
-ok("the chip goes once taken up", (await page.locator(".asknext").count()) === 0);
+ok("the placeholder goes back to normal",
+  (await page.getAttribute("#askq", "placeholder")) === "Ask a follow-up");
+
+head("F. writing your own question puts the suggestion away");
+// Earn a real suggestion rather than setting the placeholder by hand, which would leave the
+// client's own state untouched and test nothing.
+await page.fill("#askq", "who decides it then");
+await page.press("#askq", "Enter");
+await page.waitForSelector(".askfrom", { timeout: 8000 });
+ok("a fresh answer suggests again",
+  (await page.getAttribute("#askq", "placeholder")) === "Show me the dates it moved on.",
+  await page.getAttribute("#askq", "placeholder"));
+await page.fill("#askq", "something else entirely");
+await page.waitForTimeout(120);
+ok("typing dismisses it",
+  (await page.getAttribute("#askq", "placeholder")) === "Ask a follow-up",
+  await page.getAttribute("#askq", "placeholder"));
+ok("and the control goes back to sending",
+  (await page.getAttribute('button[type="submit"]', "aria-label")) === "Ask");
+await page.fill("#askq", "");
 
 // ------------------------------------------------------------------ cut
-head("F. an answer the guard cut");
+head("G. an answer the guard cut");
 await page.fill("#askq", "when did it close");
 await page.press("#askq", "Enter");
 await page.waitForSelector(".askstop", { timeout: 8000 });
-ok("the follow-up carried the whole conversation", seen[1].messages.length === 3,
-  JSON.stringify(seen[1].messages.map((m) => m.role)));
+// Indexed from the END, not from a fixed position. Adding a question to an earlier section
+// used to shift every index after it and the failure looked like a page bug.
+const last = seen[seen.length - 1];
+ok("the follow-up carried the whole conversation", last.messages.length >= 3,
+  JSON.stringify(last.messages.map((m) => m.role)));
 /* Only what the reader SAW goes back. A sentence withheld from them must not be one the model
    can build on either, or a refused claim re-enters on the next question. */
 ok("and only guard approved text went back",
-  seen[1].messages[1].content === "The Public Utility Commission of Texas decides it. " +
+  last.messages[1].content === "The Public Utility Commission of Texas decides it. " +
     "See [[tx-2026-0001]] for the filings. Want the dates it moved on?",
-  seen[1].messages[1].content);
+  last.messages[1].content);
 ok("the cut is explained in words",
   (await page.locator(".askstop").textContent()).includes("figure the record does not carry"),
   await page.locator(".askstop").textContent());
 ok("no chip is invented for a cut answer", (await page.locator(".asknext").count()) === 0);
-ok("two exchanges are on screen", (await page.locator(".askturn").count()) === 2);
+ok("every exchange is still on screen", (await page.locator(".askturn").count()) === 3,
+  String(await page.locator(".askturn").count()));
 
 // ------------------------------------------------------------------ capped
-head("G. the month running out says so in this page's own words");
+head("H. the month running out says so in this page's own words");
 await page.fill("#askq", "one more");
 await page.press("#askq", "Enter");
 await page.waitForTimeout(600);
@@ -180,7 +219,7 @@ ok("it says the written answers are spent", capped.includes("last written answer
 ok("and points at the half that still works", capped.includes("Typing still searches"), capped);
 
 // ------------------------------------------------------------------ reset
-head("H. start over puts it back");
+head("I. start over puts it back");
 await page.click(".askagain");
 await page.waitForTimeout(200);
 ok("the thread is gone", await page.locator("#askthread").isHidden());
@@ -192,7 +231,7 @@ ok("and the next question starts a fresh conversation",
   (await page.evaluate(() => document.querySelectorAll(".askturn").length)) === 0);
 
 // ------------------------------------------------------------------ feedback
-head("I. feedback, which is the point of saying the model is in training");
+head("J. feedback, which is the point of saying the model is in training");
 let sent = null;
 await page.route("**/formsubmit.co/**", async (route) => {
   sent = JSON.parse(route.request().postData());
@@ -239,7 +278,23 @@ await page.waitForTimeout(400);
 ok("nothing is attached when the box is unticked", sent && sent.exchange === "",
   JSON.stringify(sent && sent.exchange));
 
-head("J. nothing threw across any of that");
+head("K. an answer that ran out of room");
+await page.click(".askagain");
+await page.waitForTimeout(200);
+await page.fill("#askq", "list everything");
+await page.press("#askq", "Enter");
+await page.waitForSelector(".askstop", { timeout: 8000 });
+const longMsg = await page.locator(".askstop").last().textContent();
+ok("it says the answer was too long", longMsg.includes("ran longer than the space"), longMsg);
+ok("the sentence that did land is still shown",
+  (await page.locator(".askreply").last().textContent()).includes("Four comment windows"));
+// The whole point. A fragment like "under the Paperw" reaching a reader is worse than a
+// visible stop, because a truncation and the record ending there look identical.
+ok("and no fragment was published",
+  !(await page.locator(".askreply").last().textContent()).match(/[a-z]{3}$/m) ||
+  (await page.locator(".askreply").last().textContent()).includes("right now."));
+
+head("L. nothing threw across any of that");
 // Let the page finish anything it defers on scroll before asking.
 await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
 await page.waitForTimeout(600);
