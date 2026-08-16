@@ -943,3 +943,35 @@ for `llms.txt` was to drop `decided` items. That is a proxy, and it deletes the 
 most wants: League City has decided, and what it decided was to order a special election on
 November 3rd, which is precisely a dated way in. Computing a FUTURE DOOR keeps it and drops the
 finished votes, because a finished vote has no future door whatever its status says.
+
+## 23. A fact the code branches on, carried only in prose
+
+`llms.txt` decides whether a dated hearing is still a door a reader can walk through. TCEQ
+called off two August 2026 hearings and the record kept the original dates with the
+cancellation written into the `note`, which is correct history: the sitting was scheduled and
+then was not.
+
+The first fix read that note with a regex. It worked, it was pinned by a self-test, and it was
+the wrong shape. **The site was branching on a sentence a person writes.** It would have gone
+quiet the day somebody wrote "called off", or "postponed indefinitely", or moved the word into
+the summary instead, and nothing would have reported the change: the page would simply have
+started publishing a canceled hearing as a live door again.
+
+This is the compute-not-generate law at the level of a boolean rather than a numeral. The law
+says no published NUMBER is ever typed by a person. The same argument covers any fact the build
+makes a decision on, because a decision derived from prose is a decision derived from whatever
+phrasing happened to be used that day.
+
+**What to check instead.** For every branch in a builder, ask where the fact it tests lives. If
+the answer is a free-text field, the fact needs a field of its own, and the free text needs a
+gate keeping it honest against that field.
+
+Both halves matter and the second is the part that is easy to skip. `key_dates[].canceled` is
+the truth now, and `gate_schema` fails any date whose note calls itself canceled while the flag
+does not. Without that gate the field would silently drift out of date the first time somebody
+wrote the note and forgot the flag, and a field nobody maintains is worse than the prose it
+replaced, because the code trusts it more.
+
+The asymmetry is deliberate. A note saying canceled REQUIRES the flag. A canceled date requires
+no note at all. The gate exists to stop the prose contradicting the data, not to make writers
+describe every field twice.
