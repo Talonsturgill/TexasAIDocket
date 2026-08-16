@@ -37,15 +37,6 @@ policy are independent, and both vary host by host.**
 **A 402 or a 403 is not a robots decision, and a robots allowance is not a promise of a 200.**
 Check the file, then check the fetch, and record both.
 
-**Confirmed and added 2026-08-16.**
-
-| Host | robots.txt | Behaviour | The compliant move |
-|---|---|---|---|
-| **`gov.texas.gov`** | **serves no robots.txt**, 403 on the path itself | 200 to a browser UA on `/news/post/` and on `/uploads/files/press/*.pdf` | Browser UA. The press releases AND the directive letters behind them are both fetchable, and the letter is the instrument where the release is only about it |
-| **`lrl.texas.gov`** | content signals, **no path disallow** | 200 | Usable. The Legislative Reference Library posts each week's interim hearings with links to the agendas, which is the cheapest route to a dated public microphone |
-| **`texasalmanac.com`** | `Disallow:` empty, so everything is allowed | 200 | Usable. A reference work rather than a survey, so cite it for what it states and no further |
-| `courtlistener.com` | unchanged, still allows `claudebot` | **CloudFront 403 on 2026-08-16, on robots.txt itself** | Not a robots change. This is the tool-level failure the standing rule above describes. Retry with a second client before writing the host off |
-
 ---
 
 ## 0. THE FINDING THAT CHANGES THE GRID WATCH DESIGN
