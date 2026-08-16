@@ -1,5 +1,55 @@
 # Run record, August 16th, 2026
 
+## THE MERGE IS HELD, AND THIS IS WHY
+
+**Shipping the first deck made the front page fetch an image from `raw.githubusercontent.com`,
+and `tests/ask_engine.mjs` fails on it.** `guards_local.py` reports 2 of 58 steps failed, both in
+that suite, and CI runs the same file.
+
+The mechanism, exactly.
+
+- `scripts/site/site_build.py:482` defines `RAW` as
+  `https://raw.githubusercontent.com/Talonsturgill/TexasAIDocket/main`, with a comment giving the
+  reason: a carousel run ships eight 1080x1350 images and copying them into `docs/` would double
+  the repository every day.
+- `site_build.py:710` renders the newest run's cover on the FRONT PAGE as
+  `<img src="{RAW}/runs/carousel/2026-08-16/slide-01.webp">`.
+- `tests/ask_engine.mjs:72` asserts `external.length === 0`, and line 191 asserts it again after
+  every interaction. That assertion is the proof that the free ask lane sends nothing anywhere,
+  which is the promise the front page makes to a reader on a phone in a county meeting room.
+
+**Both decisions are deliberate and both are right on their own.** They have never met until
+today, because `runs/carousel/` was empty and the front page therefore emitted no external
+reference. **The suite was green because the feature had never been used.** That is a
+`GATE_LESSONS` entry, and the honest version of it is that a passing test proved nothing here.
+
+It is also a real product defect and not only a test failure. Every reader who opens the front
+page now has their address handed to a third party to fetch a picture, on a site whose stated
+promise is that the box sends nothing.
+
+**Neither file is in this actor's lane.** `scripts/site/site_build.py` and `tests/ask_engine.mjs`
+both belong to `human` in `ownership.yaml`, and the map is the law. So this run does what the
+delivery policy says a failed run does. It commits its evidence, opens the pull request ready
+rather than draft, and does NOT merge.
+
+**The record half of this run is complete and clean** and is sitting on the branch waiting for
+that one decision.
+
+### What a maintainer session has to choose between
+
+1. **Copy the shipped images into `docs/`** and serve them same origin. Costs repository size,
+   which is the thing the comment at `site_build.py:482` was avoiding, and the shipper already
+   cuts a run to about 2 MB of WebP rather than 19 MB of PNG, so the daily cost is far smaller
+   than when that comment was written.
+2. **Keep `RAW` for the article pages and drop the cover from the front page**, so the one page
+   the ask engine tests stays self contained.
+3. **Narrow the assertion** to the ask lane's own requests rather than every request the page
+   makes. This is the cheapest and it is the one to be most careful with, because the assertion
+   as written is the strongest promise on the site.
+
+The first two keep the promise. The third redefines it.
+
+
 Carousel No. 1. The first deck this repo has shipped, so every carousel ledger was empty at
 wake and nothing was excluded.
 
