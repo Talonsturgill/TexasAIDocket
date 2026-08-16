@@ -975,3 +975,40 @@ replaced, because the code trusts it more.
 The asymmetry is deliberate. A note saying canceled REQUIRES the flag. A canceled date requires
 no note at all. The gate exists to stop the prose contradicting the data, not to make writers
 describe every field twice.
+
+## 24. A test that lands inside the window the product suppresses
+
+`responsive.mjs` asserts three things about the map on a phone, and says in its own comment that
+any two without the third is a defect: the readout fills under a dragging thumb, releasing the
+drag does NOT navigate, and a plain tap still opens the county.
+
+The third assertion failed in CI on a build whose `docs/index.html` was byte identical to the
+one that had passed fifteen minutes earlier. Locally it navigated on **one run in three**.
+
+The cause was not geometry and not timing noise. A drag's `touchend` arms a capture-phase click
+killer and removes it after **400ms**, which is precisely what makes assertion two true. The test
+waited **350ms** and then tapped. It was tapping inside the window the product deliberately
+suppresses clicks in, so it could only pass by accident: the killer is `once:true`, so it
+survived unless the drag's own `touchend` had already produced a click that consumed it. Whether
+that happened was the coin toss.
+
+**The gate was not measuring what it claimed.** It said "a plain tap" and performed a tap that no
+reader performs, 350ms after lifting from a drag, in the one window where the product's answer is
+supposed to be "no".
+
+**What to check instead.** When a product deliberately suppresses, debounces or delays a
+behaviour, any test of the behaviour has to state where its input sits relative to that window.
+Read the constant, do not guess a wait. A test whose input falls inside a suppression window is
+testing the suppression, whatever its label says.
+
+**And the fix has a direction.** The wait went to 700ms because the killer lives 400ms. If this
+assertion starts failing again, raising the number is NOT the fix, because that would mean the
+killer is outliving its own window, which is a defect in the map rather than in the clock in the
+test. The comment says so at the call site, since the next person to meet a red test at 3am will
+reach for the number first.
+
+**The near miss worth recording.** This surfaced on a pull request that changed one JSON file and
+could not have caused it. The tempting reading was "unrelated, therefore flaky, therefore re-run",
+and a re-run would have been green about a third of the time. A latent coin toss in a gate is
+indistinguishable from an intermittent product fault until somebody reproduces it, and the only
+honest way to tell them apart is to reproduce it.
