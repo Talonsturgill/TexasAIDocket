@@ -2125,57 +2125,97 @@ def _quoted_numerals(items: list) -> set:
     return out
 
 
-def questions_page(items: list, today: str) -> str:
-    """Every question this record can answer, with its answer, on one page.
+def question_groups(items: list, today: str) -> dict:
+    """Every computed question and answer, grouped by the KIND of question it is.
 
-    WHY A HUB AND NOT A DOORWAY. The difference is whether anything is behind it. This page is
-    a VIEW over the record: each question and each answer is the same computed pair the item
-    page emits as structured data, from `schema.qa_pairs`, so the page and the JSON-LD cannot
-    drift and neither can be written independently of the ledger. A page built by asking a model
-    for likely questions would be a doorway page, which is both spam and a lie.
-
-    WHY IT IS WORTH HAVING. This is where a long tail query lands. Somebody types "can I still
-    comment on the Oncor 765 kV line" into a search box or an assistant, and that sentence
-    exists here, answered, with a link to the decision it came from.
-
-    ONE QUESTION SHAPE PER SECTION rather than one section per decision, because a reader
-    arrives with a KIND of question. Fifty eight blocks of ten questions is a database dump.
+    One place builds this, and both the hub and the twelve kind pages read it, so a question
+    can't appear on one and not the other.
     """
-    _titles = schema.source_titles(items)
-    shapes = {}
+    groups = {}
     for it in sorted(items, key=lambda i: i["title"]):
         for q, a in schema.qa_pairs(SCHEMA_CTX, it, today):
-            # The shape is the question with its subject removed, which is what makes two
-            # questions about different decisions the same KIND of question.
-            key = q.replace(it["title"], "").strip().rstrip("?").strip()
-            shapes.setdefault(key, []).append((it, q, a))
+            groups.setdefault(schema.shape_of(q, it["title"]), []).append((it, q, a))
+    return groups
 
-    order = sorted(shapes, key=lambda k: (-len(shapes[k]), k))
-    figures = {str(len(shapes))} | {str(len(v)) for v in shapes.values()}
-    figures |= {str(sum(len(v) for v in shapes.values()))}
-    nav = "".join(f'<a href="#{_place_slug(k)}">{e(k.capitalize())}</a>' for k in order)
-    blocks = []
-    for k in order:
-        rows = "".join(
-            f'<details><summary>{e(q)}</summary><div class="prose">'
-            f'<p>{_cite_titles(e(a), _titles)}</p>'
-            f'<p><a class="go" href="../item/{it["id"]}/">Open the decision</a>.</p></div>'
-            f'</details>'
-            for it, q, a in shapes[k])
-        blocks.append(f'<section id="{_place_slug(k)}"><h2>{e(k.capitalize())}</h2>'
-                      f'<div class="qa">{rows}</div></section>')
+
+def questions_check(groups: dict) -> None:
+    """The frames and `schema.QUESTION_KINDS` agree, in both directions, on every build.
+
+    A frame with no entry would silently drop its questions off the site entirely, because the
+    hub only walks the map. An entry no frame produces would render an empty page that looks
+    perfectly healthy. The second is the one that rots quietly, so both are a hard fail.
+    """
+    mapped = {shape for shape, _s, _h, _b in schema.QUESTION_KINDS}
+    built = set(groups)
+    if built - mapped:
+        raise SystemExit("questions: qa_pairs produces a shape with no page: "
+                         + ", ".join(sorted(built - mapped)))
+    if mapped - built:
+        raise SystemExit("questions: QUESTION_KINDS carries a shape nothing produces: "
+                         + ", ".join(sorted(mapped - built)))
+
+
+def _qa_rows(rows: list, titles: dict, depth: int) -> str:
+    up = "../" * depth
+
+    def one(it, q, a):
+        # A LIST ANSWER IS MARKED AS DATA, and only once it has proved it is one. The check is
+        # in `schema.list_answer_ok`, which reads the item's own county list, so an answer that
+        # started carrying prose would fail the build rather than quietly inherit the exemption.
+        listy = (schema.shape_of(q, it["title"]) in schema.LIST_ANSWER_SHAPES
+                 and schema.list_answer_ok(it, a))
+        if schema.shape_of(q, it["title"]) in schema.LIST_ANSWER_SHAPES and not listy:
+            raise SystemExit(f'questions: {it["id"]} claims a list answer that is not one: {a}')
+        mark = ' data-prose="data"' if listy else ""
+        return (f'<details><summary>{e(q)}</summary><div class="prose">'
+                f'<p{mark}>{_cite_titles(e(a), titles)}</p>'
+                f'<p><a class="go" href="{up}item/{it["id"]}/">Open the decision</a>.</p>'
+                f'</div></details>')
+
+    return "".join(one(it, q, a) for it, q, a in rows)
+
+
+def questions_hub(items: list, today: str) -> tuple:
+    """The twelve kinds of question this record answers, each linking to its own page.
+
+    WHY A HUB AND NOT A DOORWAY. The difference is whether anything is behind it. Every kind
+    listed here has a page of real answers, and every answer is the same computed pair the item
+    page emits as structured data, from `schema.qa_pairs`, so the page and the JSON-LD cannot
+    drift and neither can be written independently of the ledger.
+
+    WHY IT SPLIT. This was one page carrying all 633 pairs, 290 KB of HTML and 633 `<details>`
+    elements, and it was the heaviest thing on the site by a factor of six. That is a slow page
+    on a phone over cellular for no reason, and it is one title, one description and one
+    canonical URL trying to be about twelve different questions at once. Split, each kind gets
+    a page whose title is what it is about, which is both lighter to load and a far more
+    targetable unit for the search that lands on it.
+
+    ONE KIND PER PAGE rather than one decision per page, because a reader arrives with a KIND of
+    question. Fifty eight blocks of ten questions is a database dump.
+    """
+    groups = question_groups(items, today)
+    questions_check(groups)
+    total = sum(len(v) for v in groups.values())
+    figures = {str(total), str(len(schema.QUESTION_KINDS))}
+    figures |= {str(len(v)) for v in groups.values()}
+
+    cards = "".join(
+        f'<li data-prose="data"><a class="dcard open" href="{slug}/">'
+        f'<span class="big">{len(groups[shape]):02d}</span>'
+        f'<span class="left">answered</span>'
+        f'<h3>{e(head)}</h3><span class="note">{e(blurb)}</span></a></li>'
+        for shape, slug, head, blurb in schema.QUESTION_KINDS if groups.get(shape))
 
     body = f"""
 <article>
 <h1>Questions this record answers</h1>
 <div class="prose">
-  <p>Every answer below is assembled from the record itself, from the same fields the decision
-  page prints. Nothing here is written separately, so an answer can't drift from the entry it
+  <p>Every answer is assembled from the record itself, from the same fields the decision page
+  prints. Nothing here is written separately, so an answer can't drift from the entry it
   describes.</p>
   <p>An answer the record can't support is not shown at all.</p>
 </div>
-<nav class="chips" aria-label="Question kinds">{nav}</nav>
-{"".join(blocks)}
+<ul class="deck">{cards}</ul>
 </article>
 """
     return figures, page(title=f"Questions · {SITE_NAME}", depth=1, active="record/",
@@ -2185,9 +2225,43 @@ def questions_page(items: list, today: str) -> str:
                 extra_ld=[schema.collection_node(
                               SCHEMA_CTX, name="Questions", path="questions/",
                               description="Questions answered from the tracked record.",
-                              count=sum(len(v) for v in shapes.values())),
+                              count=total),
                           schema.breadcrumbs(SCHEMA_CTX,
                                              [(SITE_NAME, ""), ("Questions", "questions/")])])
+
+
+def questions_kind_page(items: list, today: str, kind: tuple) -> tuple:
+    """One kind of question, asked of every decision on the record that can answer it."""
+    shape, slug, head, blurb = kind
+    groups = question_groups(items, today)
+    rows = groups.get(shape) or []
+    titles = schema.source_titles(items)
+    figures = {str(len(rows))}
+
+    others = "".join(
+        f'<a href="../{s}/">{e(h)}</a>'
+        for sh, s, h, _b in schema.QUESTION_KINDS if sh != shape and groups.get(sh))
+
+    body = f"""
+<article>
+<h1>{e(head)}</h1>
+<div class="prose">
+  <p>{e(blurb)} Answered here for {len(rows)} of the decisions on the record, from the same
+  fields the decision page prints.</p>
+</div>
+<div class="qa">{_qa_rows(rows, titles, 2)}</div>
+<nav class="chips" aria-label="Other kinds of question">{others}</nav>
+</article>
+"""
+    return figures, page(title=f"{head} · {SITE_NAME}", depth=2, active="record/",
+                desc=f"{blurb} Answered from the Texas AI Docket for {len(rows)} decisions.",
+                body=body, today=today, canonical=f"questions/{slug}/",
+                extra_ld=[schema.collection_node(
+                              SCHEMA_CTX, name=head, path=f"questions/{slug}/",
+                              description=blurb, count=len(rows)),
+                          schema.breadcrumbs(SCHEMA_CTX,
+                                             [(SITE_NAME, ""), ("Questions", "questions/"),
+                                              (head, f"questions/{slug}/")])])
 
 
 def sources_page(items: list, today: str) -> str:
@@ -2305,6 +2379,17 @@ def llms_txt(items: list, today: str) -> str:
         f"- [Texas Water Watch]({SITE_URL}/water/)",
         f"- [About this record]({SITE_URL}/about/)", "",
     ]
+
+    # THE TWELVE QUESTION PAGES, NAMED. This file exists so a model can find the answer without
+    # crawling, and one link to a hub is a link to twelve more links. Naming them here is the
+    # difference between "questions are answered somewhere on this site" and "the page that
+    # says who decides is at this URL". Generated from the same map the pages are, so a kind
+    # can't be listed here and missing there.
+    parts += ["## Questions, by what is being asked", "",
+              "Each page answers one kind of question about every decision on the record.", ""]
+    parts += [f"- [{head}]({SITE_URL}/questions/{slug}/): {blurb}"
+              for _shape, slug, head, blurb in schema.QUESTION_KINDS]
+    parts += [""]
 
     if open_now:
         parts += ["## Open right now", "",
@@ -2717,10 +2802,16 @@ def build(out: Path, today: str) -> dict:
     # computed from the ledger, and the questions page shares `schema.qa_pairs` with the
     # structured data so the page and the JSON-LD cannot say different things.
     _quoted = _quoted_numerals(items)
-    _qfig, _qhtml = questions_page(items, today)
-    w("questions/index.html", _qhtml,
-      extra=(set().union(*(schema.authorised_numerals(i, today) for i in items))
-             if items else set()) | _quoted | _qfig)
+    _allnums = (set().union(*(schema.authorised_numerals(i, today) for i in items))
+                if items else set())
+    _qfig, _qhtml = questions_hub(items, today)
+    w("questions/index.html", _qhtml, extra=_allnums | _quoted | _qfig)
+    # ONE PAGE PER KIND OF QUESTION. The hub above walks the same map, and `questions_check`
+    # fails the build if the map and the frames disagree either way, so a kind cannot be
+    # answered on the site without being linked from the hub or listed without existing.
+    for _kind in schema.QUESTION_KINDS:
+        _kfig, _khtml = questions_kind_page(items, today, _kind)
+        w(f"questions/{_kind[1]}/index.html", _khtml, extra=_allnums | _quoted | _kfig)
     _sfig, _shtml = sources_page(items, today)
     w("sources/index.html", _shtml, extra=_quoted | _sfig)
     w("llms.txt", llms_txt(items, today))
