@@ -127,7 +127,8 @@ public fact stand for another day, on a page whose entire promise is that it doe
 - `CLAUDE.md` — the law: ownership, the compute-not-generate rule, the delivery policy.
 - `.claude/WORKLOG.md` if it exists — the durable plan across contexts.
 - `knowledge/shared/SOURCES_REGISTRY.md` — **what is fetchable, what is off limits, and the
-  traps.** Read this before any fetch.
+  traps.** Read this before any fetch. You may not write it. Its companion
+  `SOURCES_FIELD_LOG.md` is where you append what a source actually did, and it is yours.
 - `knowledge/shared/GATE_LESSONS.md` — how this machine has lied to itself before. Read it before
   you trust a green gate.
 - `knowledge/shared/TEXAS_GOVERNMENT.md` — who decides what, and where a decision actually gets
@@ -167,17 +168,23 @@ ephemeral container has destroyed finished work before.
 
 ## PHASE 0 — WAKE
 
-1. Stamp the actor so the pre-commit hook enforces your lane: `echo daily > .git/ACTOR`.
-2. `git fetch origin main && git checkout -B claude/daily-<date> origin/main`.
-3. Read `prompts/NEXT_RUN.md` if it exists: a story queued by the previous run. Archive it into
+1. Point git at the hooks, which a fresh clone does not do for you and without which nothing
+   below enforces anything: `git config core.hooksPath .githooks`. Confirm with
+   `python3 scripts/shared/guards_local.py --fast --only Ownership`, which now FAILS rather
+   than skips when the hooks are not wired up.
+2. Stamp the actor so both checkers enforce your lane: `echo daily > .git/ACTOR`. The
+   pre-commit hook reads it to refuse an out-of-lane write, and the commit-msg hook copies it
+   into each commit as an `Actor:` trailer, which is what CI reads to judge that commit's lane.
+3. `git fetch origin main && git checkout -B claude/daily-<date> origin/main`.
+4. Read `prompts/NEXT_RUN.md` if it exists: a story queued by the previous run. Archive it into
    the run directory at ship time.
-4. Read the context files above.
-5. `bash .claude/skills/carousel-engine/bootstrap.sh`.
-6. `python3 scripts/site/docket_build.py --validate` and
+5. Read the context files above.
+6. `bash .claude/skills/carousel-engine/bootstrap.sh`.
+7. `python3 scripts/site/docket_build.py --validate` and
    `python3 scripts/shared/ownership_check.py --self-test`. **If a gate is already red on a clean
    checkout, fix that before anything else.** A gate red at wake means the last run shipped past
    it.
-7. Read the ledgers. Write down, explicitly, what is off the table today.
+8. Read the ledgers. Write down, explicitly, what is off the table today.
 
 ## PHASE 1 — CRAFT REFRESH (timeboxed, about 10 searches)
 
@@ -316,8 +323,19 @@ forty items gets it right thirty nine times.
 
 ```
 python3 scripts/site/docket_ingest.py --batch out/research/*.json --today <today>
-python3 scripts/site/docket_build.py --promote seed/docket_seed.json --out ledger/docket.json
+python3 scripts/site/docket_build.py --promote seed/docket_seed.json
 ```
+
+**THE SECOND COMMAND TAKES NO `--out`, AND THAT IS THE WHOLE POINT.** `--promote` is a GATE, not
+a merge. It writes only the items admitted on this pass, so pointing it at the ledger writes
+today's handful and drops everything already published. This file told a run to do exactly that
+until 2026-08-16. Measured that day against a temp file: 27 candidates against a 58 item ledger
+wrote 6 items and dropped 52.
+
+Run it with no `--out`, read what passed, and append those items to `ledger/docket.json`.
+`promote()` now refuses any write that would lose a published item, so the destructive form fails
+loudly instead of succeeding quietly, but do not lean on that. **The record is append-only in
+substance and never deletes an item.**
 
 `docket_ingest` normalises and **reports every repair it made**, including the one with teeth: an
 `open_comment` room carrying no close date is a window the batch could not confirm, and it is
@@ -373,6 +391,7 @@ not rung (f).
 
 ```bash
 python3 scripts/gridwatch/gridwatch_pagecheck.py
+python3 scripts/gridwatch/waterwatch_pagecheck.py
 python3 scripts/site/waterwatch_page.py --self-test
 python3 scripts/site/site_build.py --out /tmp/site --today <date>
 
@@ -387,6 +406,14 @@ python3 scripts/site/indexnow.py --self-test  # the key file that verifies owner
 Exit 0 is clean, exit 2 wants attention, exit 1 means the checker itself broke. **This never
 blocks the run.** You may fix presentation only, and only in `scripts/site/gridwatch_page.py` and
 `scripts/site/waterwatch_page.py`. Anything else is a proposal in the run record.
+
+**Both instruments have a page check now.** The water one was missing until 2026-08-16 and its
+absence was written up as a proposal, because the two are the same shape of thing. A cron writes
+a file and a builder renders it, and neither of them would notice the page going wrong. They are
+separate files rather than one parameterised checker because the promises differ. The water page
+also promises that percent full is computed from storage over capacity rather than read from the
+feed's own field, that a metro with no line is a gap in the source's tagging rather than a dry
+city, and that out of state reservoirs are excluded rather than counted as empty.
 
 **THE SCANNER'S DAILY CEILING.** The scan form fires its routine on submit, so the only thing
 between a public form and a bill is `daily_cap` in the scanner project's `scanner.config`. A
@@ -700,9 +727,24 @@ Two parts, and the second one changes lane.
 
 **The run record.** Append what the worklist held, what was deferred and why, what was admitted and
 what was held, the instrument check's finding, and anything a source did that the registry does not
-describe. **If a source behaved differently than `SOURCES_REGISTRY.md` says, update the registry in
-the same commit.** A registry that drifts from reality is worse than none, because the next run
-trusts it.
+describe. **If a source behaved differently than `SOURCES_REGISTRY.md` says, append the finding to
+`knowledge/shared/SOURCES_FIELD_LOG.md` in the same commit.** A registry that drifts from reality
+is worse than none, because the next run trusts it.
+
+**Append to the field log, never to the registry, and this is not a formality.** The registry is
+`human` owned and stays that way because it carries the crawl boundary, the hosts this project has
+decided not to fetch. A run able to edit its own boundary does not have one: it could delete a
+disallow and the next fetch would be compliant with a file it had just rewritten. The field log is
+yours and is append-only, so you can record anything you saw and remove nothing. A maintainer folds
+what is durable up into the registry.
+
+Until 2026-08-16 this instruction named the registry, the map refused the write, and that run's
+four source findings survived only because it wrote them longhand into its run record and a
+maintainer pasted them across by hand. A finding that survives on somebody remembering to copy it
+is a finding the machine loses.
+
+**A disallow you would like to be different is not a field observation.** Never route around one
+and never argue with one in the log.
 
 **The craft.** Record what this run learned about making decks, zero to three lessons:
 
@@ -726,13 +768,24 @@ in Phase 9**, because an instinct nobody ever revisits is one that will sit in t
 on the strength of the day it was written.
 
 **The machine.** `echo upgrade > .git/ACTOR`, then spawn 1 `carousel-upgrade-engineer`. Zero to
-three bounded, verified upgrades, logged to `ledger/carousel/upgrades.json`. Restore the stamp with
-`echo daily > .git/ACTOR` when it is done.
+three bounded, verified upgrades, logged to `ledger/carousel/upgrades.json`. **Commit this
+phase's work before you restore the stamp**, then `echo daily > .git/ACTOR`.
+
+The commit order matters and it is the whole mechanism. The commit-msg hook copies whatever is in
+`.git/ACTOR` at commit time into the message as an `Actor:` trailer, and CI judges each commit by
+that trailer. Restoring the stamp before committing hands CI an upgrade commit wearing the `daily`
+label, which is the one thing the narrow lane exists to prevent.
 
 That stamp swap is not ceremony. Before the merge, this phase could not reach the public record
 because the carousel actor simply did not own it. Now that one actor runs both surfaces, the only
 thing standing between a self-editing phase and `ledger/docket.json` is a narrower lane, so it gets
 one. **An upgrade needing a file outside that lane is written down as a proposal and stopped.**
+
+**A `claude/daily-` branch may carry `upgrade` commits and this is now stated in the map, not
+worked around.** Until 2026-08-16 CI pinned one actor per branch and checked the whole branch
+diff, so this phase produced a branch CI refused, and the first run to hit it had to move two
+commits onto a separate pull request. `branch_also_allows` in `ownership.yaml` names `upgrade` as
+a lane this branch may stamp. Nothing else is added, and `human` can never be.
 
 **Never loosen a gate to make a run pass.**
 

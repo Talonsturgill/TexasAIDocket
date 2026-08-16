@@ -435,6 +435,65 @@ def effective_room(it: dict, today: str) -> str:
     return room
 
 
+# The date kinds that are a door a MEMBER OF THE PUBLIC can walk through. `statutory_deadline`
+# is a clock on an agency and `effective` is when a rule starts biting, and neither is somewhere
+# a Texan turns up and speaks. `comment_opens` is a start, not an end.
+DOOR_KINDS = frozenset({"hearing", "comment_closes"})
+
+
+def next_door(it: dict, today: str) -> str | None:
+    """The next date a member of the public can still act on, or None.
+
+    THE SAME LESSON AS `effective_room`, one page further out. `llms.txt` built its "Open right
+    now" list from `public_access.room` alone, under a heading reading "Decisions a member of the
+    public still has a dated way into". Room is what KIND of access the ledger recorded, never
+    whether it is open, so every decided vote held in an open meeting stayed on that list
+    forever. On 2026-08-16 that was 28 of 47 entries: Archer County's unanimous denial, Brazoria
+    County's 5 to 0 denial, San Angelo's adopted ordinances. A reader following any of them finds
+    a finished vote.
+
+    DATED, NOT STATUS. The obvious fix was to drop `decided` and `withdrawn` items, and it is
+    the wrong one, because it deletes the case the heading most wants. League City's council has
+    DECIDED, and what it decided was to order a special election on November 3rd, which is
+    exactly a dated way in. The promise in the heading is a date in the future, so that is what
+    gets computed. A finished vote has no future door whatever its status says, and a future
+    election has one whatever its status says.
+    """
+    try:
+        t = _dt.date.fromisoformat(today)
+    except (ValueError, TypeError):
+        return None
+
+    dates = []
+    closes = (it.get("public_access") or {}).get("closes")
+    if closes:
+        dates.append(str(closes))
+    for kd in it.get("key_dates") or []:
+        if kd.get("kind") not in DOOR_KINDS or not kd.get("date"):
+            continue
+        # A CANCELED SITTING IS NOT A DOOR. TCEQ called off two hearings in August 2026 and the
+        # record kept the original dates with "since canceled" in the note, which is correct
+        # history and would have published both as live doors.
+        #
+        # This reads the note because the note is where the ledger currently carries it, and
+        # that is the weakness rather than the fix. A canceled date should be a FIELD, so this
+        # is a text match against a string the routine itself writes rather than against a
+        # source. Pinned by a self-test so it cannot rot silently, and written up as the data
+        # shape that should replace it.
+        if re.search(r"\bcancell?ed\b", str(kd.get("note") or ""), re.I):
+            continue
+        dates.append(str(kd["date"]))
+
+    future = []
+    for d in dates:
+        try:
+            if _dt.date.fromisoformat(d) >= t:
+                future.append(d)
+        except ValueError:
+            continue
+    return min(future) if future else None
+
+
 def item_meta(it: dict, today: str) -> str:
     g = it.get("geography") or {}
     where = ("Statewide" if g.get("statewide")
@@ -1352,6 +1411,9 @@ def place_page(place: dict, items: list, today: str) -> str:
                     if untouched else '') + '</p>')
         head = f"{e(place['name'])}"
         sub = e(place["full_name"])
+        # What the map's count is a count OF on this page. Without it the accessible title
+        # announces a statewide figure that this page's own prose contradicts two lines above.
+        map_scope = f"the items on this {place['name']} page"
     else:
         tx = _place_facts()
         scope = (f'<p class="gap">This county is in no federal statistical area, which is '
@@ -1360,6 +1422,7 @@ def place_page(place: dict, items: list, today: str) -> str:
                  f'for that reason.</p>')
         head = f"{e(place['name'])} County"
         sub = "Outside every metropolitan and micropolitan area"
+        map_scope = f"the items on this {place['name']} County page"
 
     body = f"""
 <h1>{head}</h1>
@@ -1368,7 +1431,7 @@ def place_page(place: dict, items: list, today: str) -> str:
   {"item" if len(mine) == 1 else "items"} in the record.</p>
   {scope}
 </div>
-{texas_map.render(lit=lit, inset=True)}
+{texas_map.render(lit=lit, inset=True, scope=map_scope)}
 <table><thead><tr><th>Item</th><th>Topic</th><th>Status</th></tr></thead>
 <tbody>{rows}</tbody></table>
 <p class="prose"><a href="../../record/">The whole record</a></p>
@@ -2354,9 +2417,12 @@ def llms_txt(items: list, today: str) -> str:
         return (f'- [{i["title"]}]({SITE_URL}/item/{i["id"]}/): '
                 f'{_first_sentence(i["summary"])}')
 
+    # The heading below promises a DATED way in, so the filter computes one. Room alone is the
+    # kind of access the ledger recorded and says nothing about whether it is still open. See
+    # `next_door` for the 28 finished votes this used to publish as live doors.
     open_now = [i for i in items
-                if (i.get("public_access") or {}).get("room") in ("open_comment",
-                                                                  "open_meeting")]
+                if (i.get("public_access") or {}).get("room") in ("open_comment", "open_meeting")
+                and next_door(i, today)]
     by_topic = {}
     for i in items:
         by_topic.setdefault(i["topic"], []).append(i)

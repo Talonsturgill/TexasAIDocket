@@ -140,6 +140,20 @@ jobs:
             exit "$code"
           }
 
+      - name: Water watch page check self-test
+        run: python3 scripts/gridwatch/waterwatch_pagecheck.py --self-test
+
+      - name: The published water watch page holds its promises
+        run: |
+          # Advisory by design, exactly like the grid watch above and for the same reason: an
+          # instrument must never fail a build over presentation. Exit 2 is a finding, exit 1
+          # would mean the checker itself broke.
+          python3 scripts/gridwatch/waterwatch_pagecheck.py || {
+            code=$?
+            [ "$code" = 2 ] && echo "::warning::the water watch page wants attention" && exit 0
+            exit "$code"
+          }
+
       - name: Caption lint self-test (the house rules, and that they can go red)
         run: python3 scripts/carousel/caption_check.py --self-test
 
@@ -438,6 +452,14 @@ jobs:
           npm install --no-save --silent playwright >/dev/null 2>&1 || true
           node tests/txgeo.mjs
 
+      # A LANE IS SCOPED TO A COMMIT, NOT TO A BRANCH.
+      # This step used to pin one actor from the branch prefix and check the whole branch diff,
+      # which disagreed with the pre-commit hook, which reads a per-commit stamp. The daily
+      # routine's Phase 17 stamps `upgrade` and commits on a `claude/daily-` branch, so obeying
+      # the routine produced a branch this step was built to reject. It now walks the range one
+      # commit at a time and reads each commit's `Actor:` trailer, written by
+      # .githooks/commit-msg from the same stamp the hook reads. `branch_also_allows` in
+      # ownership.yaml bounds which lanes a prefix may stamp.
       - name: Ownership check
         run: |
           BRANCH="${{ github.head_ref || github.ref_name }}"
@@ -449,7 +471,12 @@ jobs:
             RANGE="origin/main...HEAD"
           fi
           echo "branch=$BRANCH range=$RANGE"
-          python3 scripts/shared/ownership_check.py --branch "$BRANCH" --diff "$RANGE"
+          python3 scripts/shared/ownership_check.py --branch "$BRANCH" --diff-per-commit "$RANGE"
+
+      # The checker's own red cases. Without this the step above could be passing because it
+      # cannot fail, which is the fault this repo has shipped more than once.
+      - name: Ownership checker can go red
+        run: python3 scripts/shared/ownership_check.py --self-test
 
       - name: Port manifest is current
         run: |

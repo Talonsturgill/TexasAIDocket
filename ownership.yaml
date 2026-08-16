@@ -48,11 +48,33 @@ actors:
 # never be able to edit the public record, and now it still cannot.
 
 # Branch prefix to actor, used by CI when no explicit actor is passed.
+# A branch prefix names the actor its commits are judged against by default. A branch matching
+# no prefix is a maintainer session, which owns every path.
 branch_actors:
   "claude/daily-":    daily
   "claude/dispatch-": dispatch
   "gridwatch/":       gridwatch
   "claude/ask-":      ask
+  "claude/upgrade-":  upgrade
+
+# THE EXTRA LANES A BRANCH MAY CARRY, and the reason this key exists at all.
+#
+# A lane is scoped to a COMMIT, not to a branch. The pre-commit hook always worked that way,
+# reading the stamp in .git/ACTOR, and CI did not: it pinned one actor from the prefix and
+# checked the whole branch diff. The daily routine's Phase 17 stamps `upgrade` and commits, on
+# the only branch Phase 16 gives it, so obeying the routine produced a branch CI was built to
+# reject. The first run to ship a deck hit exactly that and had to route two commits around it.
+#
+# CI now walks commit by commit and reads each commit's `Actor:` trailer, written by
+# .githooks/commit-msg from the same stamp. This key is the bound on that: it says which actors
+# a prefix is allowed to stamp, so the trailer widens what a branch can do only as far as the
+# map already agreed to.
+#
+# `human` may NEVER appear here. It owns every path, so a routine able to stamp it would be a
+# routine that switched the map off from inside a commit message. `actors_allowed_on_branch`
+# drops it rather than trusting this comment to be obeyed.
+branch_also_allows:
+  "claude/daily-": [upgrade]      # Phase 17, the retro that edits the machine. Nothing else.
 
 rules:
 
@@ -87,6 +109,30 @@ rules:
       tweak would silently restyle the video and the website too.
   - path: "knowledge/shared/**"
     owner: human
+
+  # THE ONE FILE IN knowledge/shared A RUN MAY WRITE, and the reason it is a separate file.
+  #
+  # Phase 17 tells a run that a source which behaved differently than SOURCES_REGISTRY.md
+  # describes is knowledge the next run needs. The map refused that write, so until 2026-08-16
+  # the routine and the map contradicted each other and a run's four source findings survived
+  # only because it wrote them longhand into its run record and a maintainer pasted them across.
+  #
+  # The registry itself does NOT open, and must not. It carries the crawl boundary, the list of
+  # hosts this project has decided not to fetch. A run able to edit its own boundary does not
+  # have one: it could delete a disallow and the next fetch would be compliant with a file it
+  # had just rewritten.
+  #
+  # So observation is split from law. A run appends what it SAW here. A maintainer decides what
+  # is durable and folds it up into the registry. append_only is what makes that safe, because
+  # the risk was never a run adding a note, it was a run removing a restriction.
+  - path: "knowledge/shared/SOURCES_FIELD_LOG.md"
+    owner: daily
+    append_only: true
+    note: >
+      What a run observed about a source, as opposed to what the project has decided about it.
+      A run may only ADD. The registry beside it stays human owned because it carries the
+      disallow list, and an unattended run that can edit its own crawl boundary does not have
+      one.
   - path: "assets/**"
     owner: human
 
