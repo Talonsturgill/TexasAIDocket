@@ -17,8 +17,24 @@
       "commas_per_100w": "measured by caption_check.py, never typed. This is the corpus the ceiling will be computed from"
     }
   },
-  "opening_moves_recent": [],
-  "entries": [],
-  "structures_recent": [],
-  "closing_moves_recent": []
+  "opening_moves_recent": [
+    "the object"
+  ],
+  "entries": [
+    {
+      "date": "2026-08-16",
+      "opening_move": "the object",
+      "structure": "pivot",
+      "closing_move": "ask the one question the decision leaves open",
+      "first_line": "One roof, 1.89 miles on a side.",
+      "words": 141,
+      "commas_per_100w": 1.42
+    }
+  ],
+  "structures_recent": [
+    "pivot"
+  ],
+  "closing_moves_recent": [
+    "ask the one question the decision leaves open"
+  ]
 }
