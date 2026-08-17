@@ -156,6 +156,51 @@ def where(geo: dict) -> str:
     return _sentences(bits)
 
 
+def tally(items: list, today: str) -> str:
+    """The counts, computed here rather than left for the model to do by hand.
+
+    A COUNTING QUESTION IS THE ONE A RECORD PRODUCT SHOULD BE BEST AT AND A MODEL IS WORST AT.
+    Asked how many decisions involve data centers, the answer came back empty: 58 records were
+    in front of it, 19 of them carry that topic, and counting instances scattered through
+    150,000 characters is exactly the arithmetic a language model gets wrong or declines.
+
+    So the arithmetic is done in Python, from the same list the pages are built from, and the
+    model is handed the result. Nothing here is a new fact. Every line is a count of records
+    already below, which is why it can be checked by reading the rest of the pack.
+    """
+    from collections import Counter
+    topics = Counter(it["topic"] for it in items)
+    statuses = Counter(it["status"] for it in items)
+    deciders = Counter(it["decider"]["name"] for it in items)
+    open_now = [it for it in items if dk.window_state(it, today) == "open"]
+    counties = Counter(c for it in items
+                       for c in ((it.get("geography") or {}).get("counties") or []))
+    statewide = sum(1 for it in items if ((it.get("geography") or {}).get("statewide")))
+    ercot = sum(1 for it in items if ((it.get("geography") or {}).get("on_ercot")))
+
+    lines = [
+        f"The record holds {len(items)} decisions in total",
+        "By topic, " + ", ".join(
+            f"{TOPIC_WORDS.get(k, k.replace('-', ' '))} {v}"
+            for k, v in sorted(topics.items(), key=lambda x: (-x[1], x[0]))),
+        "By status, " + ", ".join(f"{k} {v}" for k, v in sorted(statuses.items())),
+        f"{statewide} are statewide and {ercot} sit on the ERCOT grid",
+        f"{len(counties)} counties are named across the record",
+        "The deciders appearing more than once are " + ", ".join(
+            f"{k} {v}" for k, v in sorted(deciders.items(), key=lambda x: (-x[1], x[0]))
+            if v > 1),
+    ]
+    if open_now:
+        lines.append(
+            f"{len(open_now)} public windows are open today, which are "
+            + ", ".join(f"[[{it['id']}]] closing "
+                        f"{longdate(((it.get('public_access') or {}).get('closes')))}"
+                        for it in open_now))
+    else:
+        lines.append("No public window is open today")
+    return "THE COUNTS, computed from the records below.\n" + _sentences(lines)
+
+
 def item_prose(it: dict, today: str) -> str:
     """One decision, as the model should read it.
 
@@ -336,9 +381,22 @@ instead.
 
 HOW TO SOUND. Like a person who knows the record, talking to someone who asked a fair
 question. Not like an assistant. Skip the throat clearing, so no "Great question", no
-"Certainly", no "I'd be happy to". Answer first. Close by offering the one obvious next
-question, phrased as an offer, like "Want the dates it moved on?" That closing offer becomes
-a button the reader can press, so make it a real question the record can answer.
+"Certainly", no "I'd be happy to". Answer first.
+
+WHEN ONE DETAIL IS MISSING, ASK FOR IT AND STOP. Somebody asking whether their county is
+affected has not told you the county. The answer to that is "Which county are you in?" and
+nothing else. Do not explain why it can't be answered yet, do not list every county on the
+record, and do not restate the question back. One short question, then stop.
+
+WRITE TO THE READER, NOT ABOUT THE RECORD. Say "you" and address them directly. The rule
+against first person rules out "I" and "we", and it does NOT mean falling back on the passive
+voice, which is what makes an answer read like a machine. "Tell the county and the record can
+be checked against it" is the passive doing the work of a pronoun. "Which county are you in?"
+is the same question asked by somebody who is actually listening.
+
+Close by offering the one obvious next question, phrased as an offer, like "Want the dates it
+moved on?" That offer is loaded into the reader's own field for them, so make it a real
+question this record can answer.
 """
 
 
@@ -350,6 +408,7 @@ def build(today: str = None, docs_dir=None) -> dict:
         f"THE TEXAS AI DOCKET, as it stood on {longdate(today)}. "
         f"It tracks {len(items)} decisions.",
     ]
+    parts.append(tally(items, today))
     inst = instruments(docs_dir)
     if inst:
         parts.append("THE DAILY INSTRUMENTS.\n\n" + inst)

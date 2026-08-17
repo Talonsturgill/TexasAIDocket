@@ -400,6 +400,27 @@ window.__ASK_CATALOGUE__=[{"q":"What can I still comment on?","route":{"view":"o
   if (!form || !input || !send || !thread) return;
 
   var busy = false;
+  /* The suggested follow-up, waiting in the placeholder. Held here rather than read back off
+     the placeholder, because the placeholder is display and this is data. */
+  var pending = null;
+
+  function acceptPending() {
+    if (!pending) return false;
+    input.value = pending;
+    pending = null;
+    input.placeholder = "Ask a follow-up";
+    send.setAttribute("aria-label", "Ask");
+    input.focus();
+    try { input.setSelectionRange(input.value.length, input.value.length); } catch (e) {}
+    return true;
+  }
+
+  function dropPending() {
+    if (!pending) return;
+    pending = null;
+    input.placeholder = "Ask a follow-up";
+    send.setAttribute("aria-label", "Ask");
+  }
   /* The conversation, held in the page only. Nothing is stored anywhere, it goes when the tab
      does, and it is what makes "when does that close" mean something on its own. The worker
      keeps no session either: the thread travels with each question. */
@@ -556,6 +577,7 @@ window.__ASK_CATALOGUE__=[{"q":"What can I still comment on?","route":{"view":"o
 
   function reset() {
     turns = [];
+    pending = null;
     thread.textContent = "";
     thread.hidden = true;
     box.classList.remove("answering");
@@ -591,7 +613,9 @@ window.__ASK_CATALOGUE__=[{"q":"What can I still comment on?","route":{"view":"o
     thread.appendChild(body);
 
     input.value = "";
+    pending = null;
     input.placeholder = "Ask a follow-up";
+    send.setAttribute("aria-label", "Ask");
 
     /* The question goes to the top and the answer arrives under it, the way a conversation
        moves. Not scrollIntoView: the masthead is sticky, so start-of-element lands under it.
@@ -645,19 +669,16 @@ window.__ASK_CATALOGUE__=[{"q":"What can I still comment on?","route":{"view":"o
 
       clearTrailing();
 
-      var next = said.length ? followUp(said[said.length - 1]) : null;
-      if (next) {
-        var chip = document.createElement("button");
-        chip.type = "button";
-        chip.className = "asknext";
-        chip.textContent = "Yes, show me";
-        chip.addEventListener("click", function () {
-          input.value = next;
-          input.focus();
-          try { input.setSelectionRange(next.length, next.length); } catch (e) {}
-          chip.remove();
-        });
-        thread.appendChild(chip);
+      /* THE OFFER GOES INTO THE FIELD, NOT INTO A BUTTON.
+         It was a chip under the answer, which worked and was one more thing to look at. A
+         reader who has just read an answer is already looking at the field they will type the
+         next one into, so the suggestion belongs there, lightly, the way an editor suggests a
+         completion. The send control accepts it and a second press sends it, which is the same
+         two presses the chip needed and one fewer place to look. */
+      pending = said.length ? followUp(said[said.length - 1]) : null;
+      if (pending) {
+        input.placeholder = pending;
+        send.setAttribute("aria-label", "Use the suggested question");
       }
 
       var foot = document.createElement("div");
@@ -704,6 +725,18 @@ window.__ASK_CATALOGUE__=[{"q":"What can I still comment on?","route":{"view":"o
         body.appendChild(stop);
         return;
       }
+      if (ev.long) {
+        /* The model ran out of room. The half sentence it was in the middle of is dropped by
+           the worker rather than shipped, because "under the Paperw" reaching a reader is
+           worse than saying the answer was too long, and a reader cannot tell a truncation
+           from the record simply stopping there. */
+        dropStage();
+        var cut = document.createElement("div");
+        cut.className = "askstop";
+        cut.textContent = "That answer ran longer than the space for it, so the last part is not shown. A narrower question gets the whole of it.";
+        body.appendChild(cut);
+        return;
+      }
       if (ev.capped) {
         dropStage();
         if (!started) {
@@ -717,12 +750,27 @@ window.__ASK_CATALOGUE__=[{"q":"What can I still comment on?","route":{"view":"o
       }
     }
 
-    waitForToken(stage).then(function (tok) {
-      stage("Reading the record");
+    function post(tok) {
       return fetch(EP + "/answer", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ messages: turns, turnstile_token: tok || null })
+      });
+    }
+
+    waitForToken(stage).then(function (tok) {
+      stage("Reading the record");
+      return post(tok);
+    }).then(function (r) {
+      /* A 403 here is a token that was spent, expired or never arrived, and it is not the
+         reader's doing. Showing them "finish the human check first" next to a widget that is
+         deliberately invisible is a dead end nobody can act on, which is exactly what an eval
+         found. Ask for a fresh one and go again, once. */
+      if (r.status !== 403) return r;
+      stage("Passing the human check");
+      spendToken();
+      return waitForToken(stage).then(function (fresh) {
+        return fresh ? post(fresh) : r;
       });
     }).then(function (r) {
       if (!r.body || !r.body.getReader) {
@@ -841,10 +889,29 @@ window.__ASK_CATALOGUE__=[{"q":"What can I still comment on?","route":{"view":"o
     });
   }
 
+  /* Writing your own question puts the suggestion away. A placeholder that lingers under
+     text somebody is typing is just noise behind their sentence. */
+  input.addEventListener("input", function () { if (input.value) dropPending(); });
+
+  /* Tab and the right arrow accept it, which is the convention everywhere else a field
+     suggests a completion, and both only fire when the field is empty so neither steals a
+     keystroke from somebody writing. */
+  input.addEventListener("keydown", function (e) {
+    if (input.value || !pending) return;
+    if (e.key === "Tab" || e.key === "ArrowRight") {
+      e.preventDefault();
+      acceptPending();
+    }
+  });
+
   /* SUBMIT IS THE WRITTEN LANE NOW. It used to re-run the engine, which is what typing already
      does, so pressing enter did nothing a reader could see. */
   form.addEventListener("submit", function (e) {
     e.preventDefault();
+    /* An empty field with a suggestion waiting means the arrow accepts rather than sends. The
+       reader sees the words land in their own field and presses again to ask, so nothing is
+       ever sent that they have not seen in full. */
+    if (!input.value.trim() && acceptPending()) return;
     var q = input.value.trim();
     if (!q) return;
     ask(q);
