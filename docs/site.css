@@ -715,6 +715,20 @@ footer.site .colophon { width:4rem; height:4rem; fill:var(--ink); opacity:.28; f
 .meta a, cite a, a.go, .filelist a, .prose > p > a.plain { display:inline-block;
   min-width:24px; padding-block:.28rem; }
 .footnav li { max-width:none; }
+.socials { display:flex; flex-wrap:wrap; gap:.5rem; margin:1.25rem 0 0; padding:0;
+  list-style:none; }
+.socials li { max-width:none; }
+.socials a { display:flex; width:44px; height:44px; align-items:center; justify-content:center;
+  border:var(--hair) solid var(--rule); border-radius:12px; color:var(--ink-mute);
+  transition:color .2s, border-color .2s, transform .2s; }
+.socials svg { width:18px; height:18px; fill:currentColor; }
+.socials a:hover { color:var(--accent); border-color:var(--accent);
+  transform:translateY(-2px); }
+.socials a:focus-visible { color:var(--accent); border-color:var(--accent); }
+@media (prefers-reduced-motion:reduce) {
+  .socials a { transition:none; }
+  .socials a:hover { transform:none; }
+}
 .colophon-line { display:flex; flex-wrap:wrap; gap:0 .9rem; margin:1.1rem 0 0;
   font-family:var(--mono); font-size:var(--s-2); letter-spacing:.13em; text-transform:uppercase;
   color:var(--ink-mute); line-height:2; max-width:none; }

@@ -1788,6 +1788,30 @@ footer.site .colophon {{ width:4rem; height:4rem; fill:var(--ink); opacity:.28; 
 .meta a, cite a, a.go, .filelist a, .prose > p > a.plain {{ display:inline-block;
   min-width:24px; padding-block:.28rem; }}
 .footnav li {{ max-width:none; }}
+/* WHERE THIS RECORD IS ELSEWHERE. A row of marks, sized as targets first.
+   44 pixels, not the 24 the footnav links settled for. WCAG 2.5.8 sets 24 as the floor and
+   2.5.5 sets 44 as the comfortable size, and a text link has its own label to aim at while an
+   icon is only ever the box. The box IS the target here, so it takes the larger number.
+   The mark sits at 18 so the padding does the growing, which keeps the row visually quiet at a
+   size a thumb still lands on. */
+.socials {{ display:flex; flex-wrap:wrap; gap:.5rem; margin:1.25rem 0 0; padding:0;
+  list-style:none; }}
+.socials li {{ max-width:none; }}
+.socials a {{ display:flex; width:44px; height:44px; align-items:center; justify-content:center;
+  border:var(--hair) solid var(--rule); border-radius:12px; color:var(--ink-mute);
+  transition:color .2s, border-color .2s, transform .2s; }}
+/* `fill:currentColor` so the glyph follows the link's own colour through hover and focus, which
+   is one declaration instead of three and cannot get out of step with them. */
+.socials svg {{ width:18px; height:18px; fill:currentColor; }}
+.socials a:hover {{ color:var(--accent); border-color:var(--accent);
+  transform:translateY(-2px); }}
+/* THE SAME TREATMENT ON FOCUS, because a keyboard reaches this row too and the hover state is
+   the only thing that says which mark is live. */
+.socials a:focus-visible {{ color:var(--accent); border-color:var(--accent); }}
+@media (prefers-reduced-motion:reduce) {{
+  .socials a {{ transition:none; }}
+  .socials a:hover {{ transform:none; }}
+}}
 /* The colophon. Where it was made, when it was last revised, the coordinates of that place,
    and the promise the whole product rests on, in one mono strip. */
 /* A FLEX ROW, not a sentence with non-breaking separators in it. The first version joined the
