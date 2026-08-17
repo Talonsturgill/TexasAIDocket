@@ -102,12 +102,16 @@ class Ctx:
     a written reason, and a second copy is how a URL and a heading drift apart.
     """
 
-    def __init__(self, *, site_url, site_name, topic_label, room_label, ordinal):
+    def __init__(self, *, site_url, site_name, topic_label, room_label, ordinal,
+                 same_as=()):
         self.site_url = site_url.rstrip("/")
         self.site_name = site_name
         self.topic_label = topic_label
         self.room_label = room_label
         self.ordinal = ordinal
+        # The profiles this record keeps elsewhere. Passed in for the same reason the label
+        # functions are: `site_build` owns the list, and this file importing it back is a cycle.
+        self.same_as = list(same_as)
 
     def url(self, path: str = "") -> str:
         return f"{self.site_url}/{path.lstrip('/')}" if path else f"{self.site_url}/"
@@ -261,7 +265,7 @@ def _spell(n: int) -> str:
 # ------------------------------------------------------------------ the nodes
 def org_node(ctx: Ctx) -> dict:
     """The publisher, defined once. Everything else points at this by `@id`."""
-    return {
+    node = {
         "@type": "Organization",
         "@id": ctx.url("#org"),
         "name": ctx.site_name,
@@ -269,6 +273,14 @@ def org_node(ctx: Ctx) -> dict:
         "description": "A public, fact-checked record of decisions about artificial "
                        "intelligence in Texas.",
     }
+    # `sameAs` IS THE ENTITY CLAIM, and it is the whole reason the social row is worth more
+    # than decoration. It tells a search engine and an answer engine that this site and those
+    # profiles are one organisation, so a mention of any of them resolves to the same thing.
+    # Emitted only when there is something to claim, because an empty array is a smaller lie
+    # than a wrong one but it is still noise in the graph.
+    if ctx.same_as:
+        node["sameAs"] = list(ctx.same_as)
+    return node
 
 
 def dataset_node(ctx: Ctx, items: list, today: str) -> dict:

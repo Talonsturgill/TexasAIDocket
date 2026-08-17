@@ -109,6 +109,62 @@ NAV = [("", "Home"), ("record/", "Docket"), ("articles/", "Articles"),
 # cost the seven that were there first.
 FOOTNAV = NAV[1:] + [("scan/", "Scan"), ("data/", "Data")]
 
+# WHERE THIS RECORD IS, ELSEWHERE ON THE WEB.
+#
+# Two jobs from one list, and the second is the one that is easy to forget. The visible job is
+# the icon row at the bottom of every page. The invisible one is `sameAs` on the Organization
+# node, which is how a search engine and an answer engine learn that this site, that LinkedIn
+# page and that Facebook page are ONE entity rather than three unrelated things with similar
+# names. Without it the record's authority is split across three strangers.
+#
+# So the list is the single source and `SAME_AS` is derived from it. Adding a profile in one
+# place makes it appear in the footer and in the structured data at once, and there is no way
+# to add one to the row and forget the claim.
+#
+# THE URLS ARE CANONICAL PAGE URLS, NOT SHARE LINKS. The Facebook profile arrived as
+# facebook.com/share/1EgcaoaUmG/, which works for a person clicking it and is the wrong thing
+# to put in `sameAs`: a share token identifies a share, it can be rotated, and it resolves
+# through a login wall. Facebook's own redirect from that token names the page, and the page is
+# what goes here.
+#
+# The glyphs are each brand's own mark on a 24 by 24 grid, drawn as a path rather than fetched,
+# because an icon font or a CDN sprite is a third party request on every page of a site that
+# makes none.
+SOCIALS = [
+    ("LinkedIn", "https://www.linkedin.com/company/texasaidocket/",
+     "M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 "
+     "1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 "
+     "3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 "
+     "0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 "
+     "2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 "
+     ".774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 "
+     "22.271V1.729C24 .774 23.2 0 22.225 0z"),
+    ("Facebook", "https://www.facebook.com/Texasaidocket",
+     "M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 "
+     "11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 "
+     "2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 "
+     "3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"),
+]
+SAME_AS = [url for _name, url, _path in SOCIALS]
+
+
+def socials() -> str:
+    """The icon row, one link per profile.
+
+    `aria-label` NAMES THE DESTINATION, because the link's only visible content is a drawing.
+    Without it a screen reader announces "link" and nothing else, which is the whole row gone.
+    The mark itself is `aria-hidden`, so the name is announced once rather than twice.
+
+    `rel="noopener"` on every one. These open in a new tab, and a new tab opened from a link
+    gets a handle back to this page unless that is refused.
+    """
+    return "".join(
+        f'<li><a href="{url}" target="_blank" rel="noopener"'
+        f' aria-label="{e(SITE_NAME)} on {e(name)}">'
+        f'<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">'
+        f'<path d="{path}"/></svg></a></li>'
+        for name, url, path in SOCIALS)
+
 # WHERE THIS WAS MADE. Austin sits on the Balcones Escarpment, the fault line where the Hill
 # Country drops to the coastal plain, which runs straight through the city.
 #
@@ -308,11 +364,20 @@ def page(*, title: str, desc: str, body: str, depth: int, active: str,
     footnav = "".join(f'<li><a href="{p}{h}">{e(t)}</a></li>' for h, t in FOOTNAV)
     # The colophon is assembled from parts rather than written as a sentence, so the separator
     # is a style decision in one place and the build date can never drift from `today`.
+    #
+    # IT CARRIED "EVERY NUMERAL COMPUTED FROM DATA" AND NO LONGER DOES. The promise is real and
+    # it is the reason to believe a figure here, which is exactly why a four word slogan under
+    # every page was the wrong place for it. Stated that way it is an assertion a reader has no
+    # way to check, repeated 167 times.
+    #
+    # It is not lost. `/data/` makes the same commitment where it can also say how it is kept,
+    # naming the build gate that fails on a figure tracing to nothing, which is the half that
+    # makes it worth reading. A claim with its mechanism on one page beats a claim without one
+    # on every page.
     colophon = "".join(f"<span>{e(s)}</span>" for s in (
         MADE_AT_LEDE,
         f"Revised {ordinal(_dt.date.fromisoformat(today))}, {today[:4]}",
         _made_at(),
-        "Every numeral computed from data",
     ))
 
     # ONE ORGANIZATION NODE, REFERENCED BY `@id` EVERYWHERE ELSE. This used to repeat the whole
@@ -363,6 +428,7 @@ def page(*, title: str, desc: str, body: str, depth: int, active: str,
     {star("colophon")}
     <div>
       <ul class="footnav" data-prose="data">{footnav}</ul>
+      <ul class="socials" data-prose="data">{socials()}</ul>
       <p class="colophon-line" data-prose="data">{colophon}</p>
     </div>
   </div>
@@ -1412,7 +1478,7 @@ def topic_label(topic: str) -> str:
 # rather than letting that module reimplement them: each label is a house rule with a written
 # reason, and a second copy is how a URL and a heading drift apart.
 SCHEMA_CTX = schema.Ctx(site_url=SITE_URL, site_name=SITE_NAME, topic_label=topic_label,
-                        room_label=room_label, ordinal=ordinal)
+                        room_label=room_label, ordinal=ordinal, same_as=SAME_AS)
 
 
 def topic_chips(items: list, depth: int, current: str = "") -> str:
