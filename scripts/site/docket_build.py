@@ -20,7 +20,8 @@ The four gates, and what each one is actually protecting:
 
 Plus two freshness gates:
 
-  5 STALENESS   two bands. Past 45 days an item is due for a re-check; past 120 it is a HARD
+  5 STALENESS   two bands, matching the selector's own two day leash. Past 2 days an item is
+                due for a re-check; past 6 it is a HARD
                 FAIL, because publishing a four month old item as current is a false claim.
   6 DEADLINES   close dates must parse. Whether a window is OPEN is never stored, it is derived
                 from the date on every build, so it cannot rot between runs.
@@ -610,14 +611,25 @@ def gate_house_style(items: list) -> Result:
 
 
 def gate_staleness(items: list, today: str,
-                   warn_days: int = 45, fail_days: int = 120) -> Result:
+                   warn_days: int = 2, fail_days: int = 6) -> Result:
     """Two bands, and the outer one is a HARD FAIL.
 
-    A warning nobody reads is a warning that does nothing. Past `fail_days` an item has not been
-    re-checked in four months and is being published as current anyway, which is the record
-    quietly becoming untrue. The build stops rather than shipping it.
+    THE BANDS WERE 45 AND 120 DAYS UNTIL 2026-08-18. That was the loosest gate in this repo by
+    a wide margin, and it was enforcing nothing: the selector called an item due after 3 days
+    while this gate stayed silent for six more weeks, so an item could rot for a month and a
+    half with every gate green. Owner's call, and it is right: re-verification is the product,
+    so the gate that enforces it should be the strict one.
 
-    The warn band is what a re-verification pass should be picking up first.
+    The bands now match `docket_staleness.LEASH_DAYS`. Past two days an item is DUE and the
+    build warns. Past six, three times the leash, it is being published as current when nobody
+    has looked at it in most of a week, and the build stops.
+
+    WHY THE HARD BAND IS NOT ALSO TWO DAYS, which is the obvious thing to ask. A run that
+    re-verifies everything drops every item to zero and the gate is silent, so at two days both
+    bands would fire together and the warn band would never be seen. Worse, a single source
+    outage on one item would block the whole publication, deck included, on a day when 30 other
+    items were verified perfectly. Six days is far tighter than anything this gate has ever
+    enforced and still leaves a run two more attempts to reach a source that was down.
     """
     r = Result("staleness")
     t = _dt.date.fromisoformat(today)
@@ -766,10 +778,33 @@ def load(path: Path) -> list:
     return raw.get("items", [])
 
 
-def run_gates(items: list, today: str) -> tuple[int, list]:
+# Gates whose FAIL is LOUD BUT DOES NOT STOP A REBUILD. Exactly one, and the reason is the
+# same one the `backlog` docstring below already argues: a hard fail must not take the site
+# down over work in a lane the build cannot do for itself.
+#
+# STALENESS IS ABOUT THE AGE OF THE INPUT, NOT THE CORRECTNESS OF THE OUTPUT. A schema error, a
+# broken cross reference or an untraceable numeral all mean the page this build would produce is
+# WRONG, so refusing to build is right. An item last verified seven days ago produces a page
+# that is perfectly correct and merely old. Refusing to rebuild on that freezes the site in an
+# even older state than the one being complained about, and takes the deck down with it, which
+# is the punishment landing on the reader instead of on the run.
+#
+# Enforcement is not weakened. `--validate` still counts this and still exits non-zero, CI still
+# goes red, and the routine still has to clear it before it can ship. What changes is only that
+# a stale record can still be REBUILT while it is being fixed.
+NON_BLOCKING_FOR_BUILD = {"staleness"}
+
+
+def run_gates(items: list, today: str, *, blocking_only: bool = False) -> tuple[int, list]:
+    """Returns (count of FAILs that matter to the caller, all results).
+
+    `blocking_only` is for the site builder. Everything else, including `--validate`, counts
+    every FAIL, so nothing is quietly downgraded.
+    """
     results = [g(items) for g in GATES.values()]
     results += [g(items, today) for g in DATED_GATES.values()]
-    bad = sum(1 for r in results if r.status == "FAIL")
+    bad = sum(1 for r in results if r.status == "FAIL"
+              and not (blocking_only and r.name in NON_BLOCKING_FOR_BUILD))
     return bad, results
 
 
@@ -1088,10 +1123,33 @@ def self_test() -> int:
            "PASS")
 
     expect("staleness passes a fresh item", gate_staleness([base()], today), "PASS")
-    expect("staleness warns in the first band",
-           gate_staleness([base(last_verified="2026-06-15")], today), "WARN")
-    expect("staleness FAILS past the outer band",
+    # today is 2026-08-11 here, so every fixture date sits before it. The bands are the whole
+    # reason this gate exists, so they are asserted at their exact edges rather than left to
+    # whatever the defaults happen to be.
+    expect("an item inside the two day leash passes",
+           gate_staleness([base(last_verified="2026-08-09")], today), "PASS")
+    expect("the day it goes past the leash it warns, not fails",
+           gate_staleness([base(last_verified="2026-08-08")], today), "WARN")
+    expect("six days is still the warn band",
+           gate_staleness([base(last_verified="2026-08-05")], today), "WARN")
+    expect("seven days is the hard band",
+           gate_staleness([base(last_verified="2026-08-04")], today), "FAIL")
+    expect("staleness FAILS far past the outer band",
            gate_staleness([base(last_verified="2025-12-01")], today), "FAIL")
+
+    # THE DISTINCTION THE BUILDER DEPENDS ON. A stale record is loud everywhere and stops only
+    # the ship, never the rebuild. Anything that would make the OUTPUT wrong still stops both.
+    stale_only = [base(last_verified="2025-12-01")]
+    n_all, _ = run_gates(stale_only, today)
+    n_block, _ = run_gates(stale_only, today, blocking_only=True)
+    check("a stale record fails validate", n_all >= 1, str(n_all))
+    check("...and does NOT stop a rebuild", n_block == 0, str(n_block))
+
+    broken = [base(last_verified=today, topic="not-a-real-topic")]
+    n_all_b, _ = run_gates(broken, today)
+    n_block_b, _ = run_gates(broken, today, blocking_only=True)
+    check("a record that would render WRONG fails validate", n_all_b >= 1, str(n_all_b))
+    check("...and DOES stop a rebuild", n_block_b >= 1, str(n_block_b))
 
     expect("deadlines passes a parseable close date", gate_deadlines([base()], today), "PASS")
     expect("deadlines catches an unparseable close date", gate_deadlines(

@@ -226,7 +226,7 @@ toward whatever is easiest to source, and what is easiest to source is a filing.
 Then, without waiting on them:
 
 ```
-python3 scripts/site/docket_staleness.py --today <date> --budget 6
+python3 scripts/site/docket_staleness.py --today <date>
 ```
 
 **Do not pick items yourself.** The selector ranks by urgency and it exists because prose
@@ -236,14 +236,25 @@ and aged in silence for weeks.
 Read all three of its lists.
 
 - **WORK** is what you re-verify this run.
-- **DEFERRED** is what the budget dropped. **A cap that does not announce itself is
-  indistinguishable from full coverage.** If the deferred list is non-empty two runs running,
-  raise `--budget` rather than letting the tail rot.
+- **DEFERRED should always be empty, and you may not make it non-empty.** There is no budget
+  any more. **Do not pass `--budget`.** The owner's call on 2026-08-18 was that re-verification
+  IS the product, so every item is due every two days and the worklist is however long that is.
+  About 30 items on an ordinary day. If it is 44 today then 44 is the job.
 - **ROTTEN** is past twice its limit while still live. **Re-verify these before anything new.**
   The tool exits 2 when any exist.
 
-Note the leash rule it encodes: **an item awaiting a decision with no published date is not a
-quiet item, it is the loudest one.** It can change on any morning, so it gets three days.
+Note the leash rule it encodes: **every item, whatever its status, gets two days.** An item
+awaiting a decision with no published date used to get a shorter leash than the rest and now
+simply shares the shortest one. Ranking still decides the ORDER you work in, never who gets
+dropped, because nothing is dropped.
+
+**A `decided` item is on the same two days as everything else**, and that is deliberate. A
+decision that was appealed, rescinded, superseded or corrected is exactly the claim that goes
+stale without announcing itself, because it is the one nobody looks at again.
+
+**`docket_build.py --validate` now ENFORCES this.** It warns past two days and HARD FAILS past
+six. A red staleness gate at wake is not a broken build, it is the record telling you what it
+needs, and Phase 0's rule applies: fix it before anything else.
 
 ## PHASE 3 — RE-VERIFY
 
@@ -877,7 +888,9 @@ burns a step rediscovering the address.
 
 ## SUCCESS CRITERIA (all must hold)
 
-- The worklist was cleared, or the shortfall is named in the run record.
+- **The worklist was cleared in full.** With no budget, "cleared" means every item the selector
+  named is re-verified, and a shortfall is a failure to be explained rather than a cap to be
+  reported. If a source was genuinely unreachable, name the item and what it did.
 - Nothing rotten remains, or its reason is recorded.
 - Every item admitted this run cites a primary source, and names where it is.
 - **The backlog is no longer than it was at wake.** Shrinking it is the goal and holding it
