@@ -2639,19 +2639,14 @@ def about_page(today: str) -> str:
   computation. Where something is not public the gap is published instead of an estimate.</p>
 
   <h2>What you can hold this desk to</h2>
-  <p><strong>Your outcome outranks the invoice.</strong> The recommendation is what this desk
-  would do in your seat with its own money. Sometimes that is a smaller build than you asked
-  about. Sometimes it is the honest no. You get the same answer either way.</p>
-  <p><strong>Plain talk both directions.</strong> Bad news arrives early and in plain words.
-  No soft version. No jargon fog. No risk buried in an appendix. Same expected back. A client
-  who says it straight gets problems fixed while they are still small.</p>
+  <p><strong>Your outcome outranks the invoice.</strong> This desk recommends what it would
+  do with its own money. Sometimes that is a smaller build. Sometimes it is no.</p>
+  <p><strong>Plain talk both directions.</strong> Bad news arrives early and plain. No soft
+  version. Same expected back. A problem said early is still small.</p>
   <p><strong>The build gets guarded even from the brief.</strong> Most AI projects die of
-  enthusiasm. The wrong first system built too big on data that was not ready. Watching that
-  happen across an industry every morning is how you learn where the road washes out. When the
-  exciting ask and the right build disagree, you will hear about it. That judgement is most of
-  what you are paying for.</p>
-  <p><strong>Nobody chases this desk.</strong> A note gets a reply inside one business day and
-  usually sooner. A person reads everything and the machines are on shift around the clock.</p>
+  enthusiasm. When the exciting ask and the right build disagree, you hear it. That judgement
+  is what you pay for.</p>
+  <p><strong>Nobody chases this desk.</strong> A reply lands inside one business day.</p>
 
   <h2>Where to find it</h2>
   <p>The record, the <a href="../articles/">articles</a> and the
