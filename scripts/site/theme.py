@@ -1237,6 +1237,41 @@ main > section > h2::after {{ content:""; position:absolute; top:-1px; left:0; w
    reader deciding where to look is asking exactly that, so the row answers before the click.
    THE GEOMETRY IS A PILL, the same 999px the ask box's suggestion chips use, so the two
    control rows on this site read as one family. */
+/* THE COVERS GRID, on /topic/ and on the front page.
+
+   DENSER THAN THE CARD WALL IT REPLACES AND CARRYING MORE. The reference version of this is a
+   wall of full width cards, which spends most of a screen on eight facts. `auto-fit` with a
+   floor lets it run three across on a desktop, two on a tablet and one on a phone without a
+   breakpoint, and the card is a text block rather than a box, so the beats read as a list a
+   reader scans rather than eight things competing for a click.
+
+   THE RULE IS ON THE LEFT, NOT AROUND. A border on four sides makes eight boxes; a hairline on
+   the leading edge groups them as one structure and costs no vertical space, which is the
+   whole point of this being denser than what it is modelled on. */
+.covers {{ list-style:none; margin:1.3rem 0 2rem; padding:0; display:grid; gap:1.15rem 1.6rem;
+  grid-template-columns:repeat(auto-fit,minmax(17rem,1fr)); }}
+.covers .cv-card {{ padding:0 0 0 .95rem; border-left:var(--hair) solid var(--rule-strong); }}
+.covers .cv-card a {{ text-decoration:none; color:inherit; }}
+.covers .cv-card h2, .covers .cv-card h3 {{ margin:0; font-size:var(--s0); line-height:1.2; }}
+@media (hover:hover) {{
+  .covers .cv-card a:hover h2, .covers .cv-card a:hover h3 {{ color:var(--ink-bright); }}
+}}
+.covers .cv-blurb {{ margin:.3rem 0 .45rem; font-size:var(--s-1); line-height:1.45;
+  color:var(--ink-quiet); }}
+/* The count and the open flag on one baseline, in mono, because every other figure on this
+   site is set in mono and a count that changes typeface between surfaces reads as a different
+   kind of number. */
+.covers .cv-foot {{ margin:0; font-family:var(--mono); font-size:var(--s-2);
+  letter-spacing:.04em; color:var(--ink-quiet); display:flex; flex-wrap:wrap; gap:.55rem; }}
+/* OPEN IS THE ONE THING ON THIS CARD A READER CAN ACT ON, so it is the one thing that carries
+   the accent. It is absent rather than zero when nothing is open, because "0 open" is a true
+   sentence that reads as a dead beat. */
+.covers .cv-open {{ color:var(--accent); }}
+.covers .cv-open::before {{ content:"·"; margin-right:.55rem; color:var(--ink-quiet); }}
+/* On the front page the grid sits among full width sections, so it gets a little more air
+   above it and a smaller floor, which lets it run four across on a wide screen. */
+.covers.front {{ grid-template-columns:repeat(auto-fit,minmax(15rem,1fr)); }}
+
 .topicrow {{ display:flex; flex-wrap:wrap; gap:.5rem; margin:1.3rem 0 2rem; }}
 .topicchip {{ display:inline-flex; align-items:center; gap:.55rem;
   padding:.42rem .5rem .42rem .95rem; border-radius:999px; text-decoration:none;
