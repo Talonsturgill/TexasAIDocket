@@ -9,7 +9,7 @@ Texas law restricts the channels through which the Public Utility Commission may
 - Public access: Public meeting
 - Take part: https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
 
-- Last checked: 2026-08-11
+- Last checked: 2026-08-18
 
 ## Dates
 

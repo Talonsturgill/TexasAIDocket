@@ -327,7 +327,7 @@
         {
           "date": "2026-08-21",
           "kind": "hearing",
-          "note": "Open meeting listing the docket, per the PUCT calendar feed"
+          "note": "Open meeting on the PUCT calendar feed. The entry no longer names this docket and gives an off site address"
         }
       ],
       "public_access": {
@@ -349,11 +349,11 @@
         {
           "id": "tx-2026-0003-c2",
           "text": "The filing index records the number of filings in the docket.",
-          "verbatim_quote": "5782 filing(s).",
+          "verbatim_quote": "5790 filing(s).",
           "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59315&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
           "source_title": "PUCT Interchange, Filings for 59315",
           "source_type": "primary_official",
-          "fetched": "2026-08-11"
+          "fetched": "2026-08-18"
         },
         {
           "id": "tx-2026-0003-c3",
@@ -384,17 +384,23 @@
         },
         {
           "id": "tx-2026-0003-c6",
-          "text": "The PUCT calendar feed lists the docket for an open meeting.",
-          "verbatim_quote": "Docket 59315 Commissioners Hearing Room 7-100 ( Open To Public )",
+          "text": "The PUCT calendar feed's entry for the August 21st open meeting no longer names the docket, and gives an off site address rather than a hearing room.",
+          "verbatim_quote": "NA ( Open To Public ) AT&T Hotel and Conference Center (1900 University Ave, Austin, TX 78705)",
           "source_url": "https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx",
           "source_title": "PUCT calendar RSS, entry titled Open Meeting - Friday, August 21, 2026",
           "source_type": "primary_official",
-          "fetched": "2026-08-11"
+          "fetched": "2026-08-18"
         }
       ],
-      "last_verified": "2026-08-11",
+      "last_verified": "2026-08-18",
       "confidence": "high",
-      "notes_for_editor": "The 765 kV designation and the 22 county list are taken verbatim from the commission's own case style, not computed. Note for numeral_lint: 765 kV and the docket number are identifiers inside a quoted official title, not measurements this project derived. The Interchange web view rendered only the first 2000 filing rows while reporting 5782 filings, so the item count is quoted from the index line rather than counted from the table. This docket is included on the AI beat because 765 kV backbone capacity is the physical answer to large load growth, but the record fetched does NOT state that any particular data center drives this line, and the docket must not be described as a data center project without that link being established."
+      "notes_for_editor": "The 765 kV designation and the 22 county list are taken verbatim from the commission's own case style, not computed. Note for numeral_lint: 765 kV and the docket number are identifiers inside a quoted official title, not measurements this project derived. The Interchange web view rendered only the first 2000 filing rows while reporting 5782 filings, so the item count is quoted from the index line rather than counted from the table. This docket is included on the AI beat because 765 kV backbone capacity is the physical answer to large load growth, but the record fetched does NOT state that any particular data center drives this line, and the docket must not be described as a data center project without that link being established.",
+      "history": [
+        {
+          "date": "2026-08-18",
+          "note": "The filing index moved from 5782 to 5790. The calendar entry for the August 21st open meeting no longer names this docket. That entry now gives the AT&T Hotel and Conference Center rather than Commissioners Hearing Room 7-100."
+        }
+      ]
     },
     {
       "id": "tx-2026-0006",
@@ -434,11 +440,11 @@
         {
           "id": "tx-2026-0006-c1",
           "text": "The chapter was created by HB 149 and took effect January 1st, 2026.",
-          "verbatim_quote": "Added by Acts 2025, 89th Leg., R.S., Ch. 1174 (H.B. 149), Sec. 4, eff. January 1, 2026.",
+          "verbatim_quote": "Added by Acts 2025, 89th Leg., R.S., Ch. 1174 (H.B. 149 ), Sec. 4, eff. January 1, 2026.",
           "source_url": "https://tcss.legis.texas.gov/resources/BC/htm/BC.552.htm",
           "source_title": "Texas Business and Commerce Code Chapter 552, Artificial Intelligence Protection, source note to Sec. 552.001",
           "source_type": "primary_official",
-          "fetched": "2026-08-11"
+          "fetched": "2026-08-18"
         },
         {
           "id": "tx-2026-0006-c2",
@@ -495,7 +501,7 @@
           "fetched": "2026-08-16"
         }
       ],
-      "last_verified": "2026-08-11",
+      "last_verified": "2026-08-18",
       "confidence": "high",
       "notes_for_editor": "Sourced to the enacted statute rather than to the bill history, which is both the better primary source and an allowed one. Dollar figures appear only inside verbatim statutory quotes. Note the chapter title is Artificial Intelligence Protection, not the act's popular name."
     },
@@ -557,7 +563,7 @@
           "fetched": "2026-08-11"
         }
       ],
-      "last_verified": "2026-08-11",
+      "last_verified": "2026-08-18",
       "confidence": "high",
       "notes_for_editor": "This item exists to give readers the legal frame for the August 3rd audit directive. It states what the statute says and stops there. It does NOT assert that the governor's directive was improper: the section binds the commission's directives to ERCOT, and a governor's letter to both agencies is a different instrument. Any characterisation beyond the quoted text needs a lawyer and a named source."
     },
@@ -722,7 +728,7 @@
           "fetched": "2026-08-11"
         }
       ],
-      "last_verified": "2026-08-11",
+      "last_verified": "2026-08-18",
       "confidence": "high",
       "notes_for_editor": "CORRECTION TO A COMMON BELIEF, please keep it in the published item. The regulatory sandbox is widely attributed to TRAIGA. It is not in TRAIGA. It is Section 2054.706, added by SB 1964, and it took effect September 1st, 2025, four months before TRAIGA did. Whether DIR has actually stood the program up was NOT verified: no DIR page was fetched. That is the obvious follow up and the honest hook is the November 30th, 2026 report."
     },
@@ -766,7 +772,7 @@
           "fetched": "2026-08-11"
         }
       ],
-      "last_verified": "2026-08-11",
+      "last_verified": "2026-08-18",
       "confidence": "high",
       "notes_for_editor": "Kept as its own item because it is the provision most likely to collide with the local data center fights elsewhere in this docket. IMPORTANT DISTINCTION a fact checker must preserve: this preempts local rules about the USE OF AI SYSTEMS. A city zoning ordinance about data center buildings is land use regulation, not AI use regulation, so San Marcos's ban is NOT obviously preempted by this section. Do not let the two be conflated in the write up."
     },
@@ -797,23 +803,23 @@
         {
           "id": "tx-2026-0013-c1",
           "text": "The published table's project type column lists only non data center categories.",
-          "verbatim_quote": "Jet Fuel Manufacturing | Aircraft Parts Manufacturing | All Other Miscellaneous Fabricated Metal P | Petrochemical Manufacturing | Fossil Fuel Electric Power Generation | Gypsum Product Manufacturing | Unlaminated Plastics Film and Sheet (excep | Fossil Fuel Electric Power Generation | Natural Gas Extraction | Medicinal and Botanical Manufacturing | Fossil Fuel Electric Power Generation | Fossil Fuel Electric Power Generation",
+          "verbatim_quote": "J0001 Summit Next Gen, LLC Galena Park ISD Jet Fuel Manufacturing $1.7 billion 50% 75 jobs J0002 Bell Textron, Inc. Northwest ISD Aircraft Parts Manufacturing $429 million 50% 75 jobs J0004 Vinton Steel LLC Canutillo ISD All Other Miscellaneous Fabricated Metal Product Manufacturing $230 million 50% 75 jobs",
           "source_url": "https://comptroller.texas.gov/economy/development/prop-tax/jeti/current-agreements.php",
           "source_title": "Texas Comptroller, JETI Current Agreements, Project Type column, all rows in document order",
           "source_type": "primary_official",
-          "fetched": "2026-08-11"
+          "fetched": "2026-08-18"
         },
         {
           "id": "tx-2026-0013-c2",
           "text": "The table's column headings show what the published record does and does not disclose.",
-          "verbatim_quote": "Application # | Applicant | School District | Project Type | Proposed Investment | Limitation Percentage",
+          "verbatim_quote": "Application # Applicant School District Project Type Proposed Investment Limitation Percentage Minimum Required Jobs",
           "source_url": "https://comptroller.texas.gov/economy/development/prop-tax/jeti/current-agreements.php",
           "source_title": "Texas Comptroller, JETI Current Agreements, table header row",
           "source_type": "primary_official",
-          "fetched": "2026-08-11"
+          "fetched": "2026-08-18"
         }
       ],
-      "last_verified": "2026-08-11",
+      "last_verified": "2026-08-18",
       "confidence": "high",
       "notes_for_editor": "Verified: prior research was right. The project type strings are reproduced verbatim and in the order the page prints them, including the page's own mid word truncations, so a checker can diff them against the live table. The row count is deliberately not stated in prose: it should be computed by the build from the captured rows rather than typed. CAVEAT ON SCOPE, which the item must carry: JETI is the school district value limitation program only. A data center can still receive city or county tax abatements under Local Government Code Chapter 312, Chapter 380 or 381 agreements, and freeport exemptions, none of which appear on this page. The honest claim is that data centers are absent from THIS list, not that they get no Texas tax breaks."
     },

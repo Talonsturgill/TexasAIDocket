@@ -17,12 +17,12 @@ Oncor Electric Delivery has applied to amend its certificate of convenience and 
 - Public access: Public meeting
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59315&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-08-11
+- Last checked: 2026-08-18
 
 ## Dates
 
 - 2026-02-02 · filed: Oncor requested a docket number
-- 2026-08-21 · hearing: Open meeting listing the docket, per the PUCT calendar feed
+- 2026-08-21 · hearing: Open meeting on the PUCT calendar feed. The entry no longer names this docket and gives an off site address
 
 ## Evidence
 
@@ -36,7 +36,7 @@ Source (primary_official): https://interchange.puc.texas.gov/search/filings/?Uti
 
 ### The filing index records the number of filings in the docket.
 
-> 5782 filing(s).
+> 5790 filing(s).
 
 Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59315&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
@@ -58,9 +58,9 @@ Source (primary_official): https://interchange.puc.texas.gov/search/filings/?Uti
 
 Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59315&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-### The PUCT calendar feed lists the docket for an open meeting.
+### The PUCT calendar feed's entry for the August 21st open meeting no longer names the docket, and gives an off site address rather than a hearing room.
 
-> Docket 59315 Commissioners Hearing Room 7-100 ( Open To Public )
+> NA ( Open To Public ) AT&T Hotel and Conference Center (1900 University Ave, Austin, TX 78705)
 
 Source (primary_official): https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
 

@@ -109,3 +109,35 @@ One block per finding, newest at the bottom.
 investigation of Meta AI Studio and Character.AI heavily, and it is dated **August 18th, 2025**,
 not 2026. The source URLs carry `/2025/08/18/`. An anniversary reads as news to a search ranker,
 and the year is the only thing that distinguishes them.
+
+## 2026-08-18, second pass, the re-verification that cleared the new two day leash
+
+**`puc.texas.gov/agency/calendar/GetCalendarRss.aspx` answered 200 to curl with a browser
+User-Agent**, the same host and path that returned 402 to the scout's client earlier the same
+day. 12,722 bytes of real RSS, 31 open meetings from August 14th, 2026 to July 29th, 2027.
+- so: the 402 recorded earlier today belonged to the fetching client, not to the host. This is
+  the registry's own standing rule reproducing itself, that a tool-level failure is not a
+  property of the source, and it is now the second time this project has nearly written off a
+  working feed on one client's status code
+- the compliant move is unchanged. `puc.texas.gov/robots.txt` is `User-agent: * Allow: /`
+
+**`tcss.legis.texas.gov` serves NO robots.txt**, 404 with a zero byte body, and answers a
+browser User-Agent with full statute text. BC.552 28,877 bytes, UT.39 635,739, GV.2054 480,543.
+- this is where Texas statute text is actually fetchable. `statutes.capitol.texas.gov` is a
+  JavaScript application that serves its own HTML shell for `/robots.txt`, so it is not a
+  useful fetch target and `tcss.legis.texas.gov` is
+
+**`interchange.puc.texas.gov` answered 200 to a browser User-Agent**, 1,398,029 bytes for
+docket 59315. It had 503'd twice earlier today.
+- so: the earlier 503 was the host being unwell for a moment, not a policy change, and the
+  browser UA rule in the registry still holds
+
+**A QUOTE FIDELITY TRAP, and it is in the statute text itself.** Texas statute pages write a
+bill citation with a space before the closing parenthesis, `(H.B. 149 )` and `(S.B. 1964 )`.
+A stored quote that tidied that to `(H.B. 149)` no longer matches the source. One item here
+had the tidied form and one had the faithful one, which is how it was noticed at all.
+
+**AN RSS DESCRIPTION IS DOUBLE ESCAPED.** The PUCT calendar feed carries markup inside its
+`<description>`, escaped, so a verifier that strips tags BEFORE unescaping sees
+`&lt;strong&gt;` as visible text and a correct quote reads as missing. Unescape first, then
+strip. This produced one false negative in today's check and would produce one every run.

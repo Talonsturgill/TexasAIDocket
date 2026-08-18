@@ -9,7 +9,7 @@ The Texas Jobs, Energy, Technology and Innovation Act is the state's school dist
 - Public access: Write to the decider
 - Take part: https://comptroller.texas.gov/economy/development/prop-tax/jeti/current-agreements.php
 
-- Last checked: 2026-08-11
+- Last checked: 2026-08-18
 
 ## Dates
 
@@ -20,13 +20,13 @@ Every fact above rests on one of these. The words are the source's own.
 
 ### The published table's project type column lists only non data center categories.
 
-> Jet Fuel Manufacturing | Aircraft Parts Manufacturing | All Other Miscellaneous Fabricated Metal P | Petrochemical Manufacturing | Fossil Fuel Electric Power Generation | Gypsum Product Manufacturing | Unlaminated Plastics Film and Sheet (excep | Fossil Fuel Electric Power Generation | Natural Gas Extraction | Medicinal and Botanical Manufacturing | Fossil Fuel Electric Power Generation | Fossil Fuel Electric Power Generation
+> J0001 Summit Next Gen, LLC Galena Park ISD Jet Fuel Manufacturing $1.7 billion 50% 75 jobs J0002 Bell Textron, Inc. Northwest ISD Aircraft Parts Manufacturing $429 million 50% 75 jobs J0004 Vinton Steel LLC Canutillo ISD All Other Miscellaneous Fabricated Metal Product Manufacturing $230 million 50% 75 jobs
 
 Source (primary_official): https://comptroller.texas.gov/economy/development/prop-tax/jeti/current-agreements.php
 
 ### The table's column headings show what the published record does and does not disclose.
 
-> Application # | Applicant | School District | Project Type | Proposed Investment | Limitation Percentage
+> Application # Applicant School District Project Type Proposed Investment Limitation Percentage Minimum Required Jobs
 
 Source (primary_official): https://comptroller.texas.gov/economy/development/prop-tax/jeti/current-agreements.php
 

@@ -8,7 +8,7 @@ The Department of Information Resources is required to establish a program letti
 - Status: pending
 - Public access: Write to the decider
 
-- Last checked: 2026-08-11
+- Last checked: 2026-08-18
 
 ## Dates
 
