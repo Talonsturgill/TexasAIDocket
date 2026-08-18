@@ -1484,9 +1484,6 @@ figcaption {{ font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
 .queuegap .qfill {{ background:var(--granite); }}
 .queuegap .qstages li {{ border-bottom-color:var(--paper-rule); }}
 .queuegap .qstages .qs {{ color:var(--granite); }}
-.queuegap .qchart .qa {{ fill:var(--granite); }}
-.queuegap .qchart .qd {{ fill:var(--granite); opacity:.55; }}
-.queuegap .qticks span {{ color:var(--granite); }}
 /* The page's first section sits under a sticky masthead, so its heading needs the same
    clearance an anchored jump would get. */
 .queuegap > h2:first-child {{ padding-top:.35rem; }}
@@ -1525,16 +1522,57 @@ figcaption {{ font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
 /* The monthly series. Paired bars per month, cleared then drawing, so a reader sees that
    neither has moved. Shape carries it, not colour: the pair is always left-then-right and the
    two are separated by a gap rather than by hue alone. */
-/* BARS STRETCH, TYPE DOES NOT. The viewBox is stretched so the bars fill the column at any
-   width, which distorts anything drawn inside it, so the month labels are HTML in a grid that
-   matches the bar columns rather than <text> in the drawing. */
-.qchart svg {{ width:100%; height:clamp(4.5rem,15vw,6.5rem); display:block; }}
-.qchart .qa {{ fill:var(--accent-deep); }}
-.qchart .qd {{ fill:var(--gold); }}
-.qchart {{ padding-bottom:.4rem; }}
-.qticks {{ display:grid; grid-auto-flow:column; grid-auto-columns:1fr; margin-top:.3rem; }}
-.qticks span {{ font-family:var(--mono); font-size:var(--s-2); color:var(--ink-mute);
-  text-align:center; }}
+/* THE SERIES, AS AN INSTRUMENT RATHER THAN A PICTURE. Built from HTML boxes and not SVG so the
+   values are real text: selectable, readable by a screen reader, visible to the numeral gate,
+   and never distorted by a stretched viewBox. Hover and keyboard focus both raise a group,
+   because a chart nobody can interrogate is a screenshot with extra steps. */
+.qchart {{ margin:0; padding:0; }}
+.qgroups {{ list-style:none; margin:0; padding:0; max-width:none;
+  display:grid; grid-auto-flow:column; grid-auto-columns:1fr; gap:clamp(.2rem,1.4vw,1rem);
+  align-items:end; height:clamp(7rem,20vw,10rem); }}
+.qgrp {{ display:flex; flex-direction:column; align-items:center; justify-content:flex-end;
+  height:100%; gap:.35rem; border-radius:2px; padding:.2rem .1rem;
+  transition:background .18s ease; }}
+.qgrp:hover, .qgrp:focus-visible {{
+  background:color-mix(in srgb, var(--granite) 9%, transparent); outline:none; }}
+.qgrp:focus-visible {{ box-shadow:0 0 0 2px var(--granite); }}
+.qbars {{ display:flex; align-items:flex-end; justify-content:center;
+  gap:clamp(2px,.6vw,5px); width:100%; flex:1; }}
+/* The column is transparent and full height; the FILL is the bar. That separation is what
+   lets the value label sit on the card rather than on the bar, which is both what a reader
+   sees and what the contrast check measures. */
+.qb {{ width:clamp(9px,3.2vw,26px); height:100%; display:flex; flex-direction:column;
+  justify-content:flex-end; align-items:center; }}
+.qbf {{ width:100%; min-height:2px; border-radius:1px 1px 0 0; }}
+.qb.qa .qbf {{ background:var(--granite); }}
+.qb.qd .qbf {{ background:color-mix(in srgb, var(--granite) 42%, var(--paper)); }}
+/* THE VALUE SITS ABOVE ITS OWN BAR and is always present, never revealed on hover. A number a
+   reader has to hunt for is a number the page did not really publish. It turns upright rather
+   than disappearing on a narrow screen, so six months still fit at 380px. */
+.qbv {{ font-family:var(--mono); font-size:clamp(7.5px,1.9vw,11px); line-height:1.6;
+  color:var(--granite); font-variant-numeric:tabular-nums; white-space:nowrap; }}
+.qgrp:hover .qbv, .qgrp:focus-visible .qbv {{ color:var(--night); font-weight:500; }}
+.qm {{ font-family:var(--mono); font-size:var(--s-2); color:var(--granite);
+  letter-spacing:.06em; }}
+.qlegend {{ display:flex; flex-wrap:wrap; align-items:center; gap:.35rem 1rem;
+  font-family:var(--mono); font-size:var(--s-2); color:var(--granite);
+  letter-spacing:.06em; text-transform:uppercase; margin:.9rem 0 .5rem; }}
+.qkey {{ width:.7rem; height:.7rem; border-radius:1px; display:inline-block;
+  margin-right:.3rem; vertical-align:-1px; }}
+.qkey.qa {{ background:var(--granite); }}
+.qkey.qd {{ background:color-mix(in srgb, var(--granite) 42%, var(--paper)); }}
+.qlegend .qunit {{ margin-left:auto; opacity:.75; }}
+/* NARROW SCREENS TURN THE VALUE UPRIGHT, and the container has to make room for it or the
+   tallest bars push their own labels off the top. The first phone render clipped five of six
+   to "8,78" and "9,04", which is worse than no label. The padding is inside the fixed height,
+   so the bars simply get shorter and every value stays whole. */
+@media (max-width:30rem) {{
+  .qgroups {{ height:13rem; padding-top:3.4rem; }}
+  .qbv {{ writing-mode:vertical-rl; transform:rotate(180deg);
+    font-size:9.5px; letter-spacing:.02em; }}
+  .qlegend {{ font-size:9.5px; gap:.3rem .6rem; }}
+  .qlegend .qunit {{ margin-left:0; }}
+}}
 
 /* Meng To's Sylva easing. A long tail that settles rather than stops, which suits a bar whose
    length IS the measurement: it arrives at its value and stays there instead of bouncing. */
