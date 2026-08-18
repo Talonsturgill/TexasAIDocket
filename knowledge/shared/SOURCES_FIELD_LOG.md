@@ -72,3 +72,40 @@ One block per finding, newest at the bottom.
 - so: confirmed rather than assumed, which is the point of re-checking per host
 
 <!-- A run appends below this line. Never edit above it. -->
+
+## 2026-08-18, the daily run
+
+**`puc.texas.gov/agency/calendar/GetCalendarRss.aspx` returned HTTP 402.**
+- registry says: `[V]`, keyless RSS with project numbers and hearing rooms, and it is named the
+  highest value poll in the discovery phase
+- fetch: 402 to the scout's client this run, so the calendar was not read at all
+- note: 402 is the same status `interchange.puc.texas.gov` gives a bot User-Agent, and the fix
+  there is a browser User-Agent. Worth testing whether the same fix applies to the calendar host
+  before anybody concludes the feed is gone
+
+**`interchange.puc.texas.gov` document fetch returned HTTP 503, twice.**
+- registry says: `[V]` to a browser User-Agent, no robots.txt
+- fetch: `Documents/55999_84_1445376.PDF` 503'd on two attempts, so the primary filing behind the
+  ERCOT large-load verification numbers could not be read and those figures stayed on journalism
+- so: a 503 is the host being unwell rather than a policy change. Not a blocked-list candidate
+
+**`texasattorneygeneral.gov` returned HTTP 402 on two attempts.**
+- registry says: no feed, and the host is otherwise undescribed
+- fetch: 402, page never opened
+
+**Three newsrooms 403'd a fetch this run:** `houstonpublicmedia.org` (two articles),
+`khou.com`, `fortworthreport.org`, and `fortworthtexas.gov` (the city's own data center page).
+- consequence worth recording: the Houston ISD start date, the AI platform branding and the
+  assessment threshold all rested on the 403'd Houston Public Media articles, so they were held
+  out of the claims rather than carried on a page nobody opened
+- the standing rule on this page applies. A tool-level 403 is not a property of the source, and
+  none of these belong on a blocked list without a retest from a second client
+
+**`abc13.com` answered 200 and truncated its quotes to about 125 characters.**
+- so: usable as a lead, useless as a verbatim source. An empty shell fails loudly, a truncated
+  one does not, and a quote cut at 125 characters would have shipped as a real quote
+
+**A dating trap worth naming.** A search for Texas Attorney General AI enforcement surfaces the
+investigation of Meta AI Studio and Character.AI heavily, and it is dated **August 18th, 2025**,
+not 2026. The source URLs carry `/2025/08/18/`. An anniversary reads as news to a search ranker,
+and the year is the only thing that distinguishes them.

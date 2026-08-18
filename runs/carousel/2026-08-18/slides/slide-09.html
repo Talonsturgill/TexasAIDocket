@@ -1,0 +1,186 @@
+<!doctype html>
+<!-- SLIDE 9 — NO RECORDED ACTION.
+     A policy moving through a board is a path with stations, and the point of this claim is
+     that the last one is unfilled. An open ring with no fill states that as no sentence
+     does. Beneath it the record's own fields, as the register returns them, with the
+     unreturned values drawn as fields bounded on all four sides so an absence reads as a
+     finding rather than as a failed fetch.
+     THE WORDS ADOPTED, APPROVED AND PASSED APPEAR NOWHERE ON THIS FRAME. Claim c16.
+     The one circle in a deck whose structural law forbids them, admitted because it is a
+     node on a path rather than a dial, encodes no value and carries no scale. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #DCD6C8; position: relative; font-family: "Manrope", sans-serif; }
+
+  canvas#art { position: absolute; inset: 0; width: 1080px; height: 1350px; }
+
+  .kick { position: absolute; top: 96px; left: 84px;
+          font-family: "JetBrains Mono", monospace; font-size: 25px;
+          letter-spacing: 0.13em; text-transform: uppercase; color: #3E5340; }
+  h2 { position: absolute; top: 148px; left: 84px; right: 100px;
+       font-family: "Fraunces", serif; font-weight: 800; font-size: 78px;
+       line-height: 1.0; letter-spacing: -0.018em; color: #2C3A34;
+       font-variation-settings: "opsz" 80; }
+
+  .filed { position: absolute; top: 306px; left: 84px; right: 84px;
+           font-family: "JetBrains Mono", monospace; font-size: 24px;
+           color: #4A5A52; line-height: 1.5; }
+
+  .nodelbl { position: absolute; font-family: "JetBrains Mono", monospace;
+             font-size: 24px; color: #4A5A52; }
+
+  table { position: absolute; left: 84px; right: 84px; bottom: 196px;
+          width: 912px; border-collapse: collapse; }
+  td { font-family: "JetBrains Mono", monospace; font-size: 26px;
+       padding: 13px 6px; border-bottom: 1px solid rgba(95,115,80,0.45); }
+  td.k { color: #4A5A52; width: 46%; }
+  td.v { color: #2C3A34; }
+  tr.head td { border-top: 2px solid #2C3A34; border-bottom: 0; padding-top: 0; height: 2px; }
+  tr.last td { border-bottom: 2px solid #2C3A34; }
+  .blank { display: inline-block; width: 300px; height: 30px;
+           border: 1.6px solid #7A6A55; vertical-align: -8px; }
+
+  .asof { position: absolute; left: 84px; bottom: 96px; right: 300px;
+          font-family: "JetBrains Mono", monospace; font-size: 24px; color: #4A4436; }
+  .counter { position: absolute; right: 84px; bottom: 88px;
+             font-family: "JetBrains Mono", monospace; font-size: 24px; color: #7A6A55; }
+</style>
+</head>
+<body>
+  <canvas id="art" width="2160" height="2700"></canvas>
+
+  <div class="kick">The rule that would govern it</div>
+  <h2>Second reading,<br>no recorded action</h2>
+
+  <div class="filed">Board policy CQD(LOCAL), technology resources and artificial
+    intelligence, Houston ISD School Board</div>
+
+  <div class="nodelbl" id="n1" style="left:150px; top:566px;">introduced<br>June 15th, 2026</div>
+  <div class="nodelbl" id="n2" style="left:432px; top:566px;">second reading<br>August 13th, 2026</div>
+  <div class="nodelbl" id="n3" style="left:742px; top:566px;">no recorded<br>action</div>
+
+  <table>
+    <tr class="head"><td colspan="2"></td></tr>
+    <tr><td class="k">agenda status</td><td class="v">Agenda Ready</td></tr>
+    <tr><td class="k">enactment date</td><td class="v"><span class="blank"></span></td></tr>
+    <tr><td class="k">action text</td><td class="v"><span class="blank"></span></td></tr>
+    <tr class="last"><td class="k">minutes</td><td class="v">Draft</td></tr>
+  </table>
+  <div class="asof">Checked five days after the meeting. The minutes were still marked Draft.</div>
+  <div class="counter" data-decorative>09 / 09</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260818;
+  TX.reseed(SEED);
+
+  var cv = document.getElementById("art");
+  var ctx = cv.getContext("2d");
+  ctx.scale(2, 2);
+  var W = 1080, H = 1350;
+
+  /* ---- the path with its stations -------------------------------------------------
+     LIFTED IN VALUE, never carved and with no contact shadow. A carved line reads as a
+     crack in the sheet, and a two part contact shadow is on the August 16th exclusion
+     list, so the run is drawn as a raised rule instead. */
+  var LY = 490;
+  var NODES = [
+    { x: 196, filled: true,  ochre: false },
+    { x: 496, filled: true,  ochre: true  },
+    { x: 800, filled: false, ochre: false }
+  ];
+
+  /* the run itself, solid to the last filled node then open beyond it */
+  ctx.strokeStyle = "#5F7350";
+  ctx.lineWidth = 4;
+  ctx.beginPath(); ctx.moveTo(NODES[0].x, LY); ctx.lineTo(NODES[1].x, LY); ctx.stroke();
+
+  ctx.strokeStyle = "#7A6A55";
+  ctx.lineWidth = 1.6;
+  ctx.beginPath(); ctx.moveTo(NODES[1].x, LY); ctx.lineTo(NODES[2].x, LY); ctx.stroke();
+
+  NODES.forEach(function (n) {
+    ctx.beginPath();
+    ctx.arc(n.x, LY, n.filled ? 13 : 15, 0, Math.PI * 2);
+    if (n.filled) {
+      ctx.fillStyle = n.ochre ? "#D2A03C" : "#5F7350";
+      ctx.fill();
+      ctx.strokeStyle = "#2C3A34"; ctx.lineWidth = 2; ctx.stroke();
+    } else {
+      /* The open ring is NOT filled at all. Painting it with the page token still read as
+         a white disc against the sheet, so the ground simply shows through instead. */
+      ctx.strokeStyle = "#7A6A55"; ctx.lineWidth = 2.6; ctx.stroke();
+    }
+  });
+
+  /* ---- ground tone under the table ------------------------------------------------- */
+  var wash = ctx.createLinearGradient(0, 720, 0, 1350);
+  wash.addColorStop(0, "rgba(122,106,85,0.00)");
+  wash.addColorStop(0.55, "rgba(122,106,85,0.070)");
+  wash.addColorStop(1, "rgba(122,106,85,0.135)");
+  ctx.fillStyle = wash;
+  ctx.fillRect(0, 720, W, 630);
+
+  /* ---- THE BOTTOM BAND'S OWN FURNITURE ----------------------------------------------
+     The first render tripped the dead-lower-zone gate: the bottom third carried 3% of the
+     slide's craft density because everything down there was DOM type over a bare wash. A
+     bigger quiet zone is exactly the wrong answer, so the drafting furniture runs down
+     into the band and the open node is tied to the field it refers to. */
+
+  /* stationing ticks down the left margin, through the whole lower band */
+  ctx.strokeStyle = "rgba(95,115,80,0.55)";
+  for (var ty = 760; ty <= 1300; ty += 16) {
+    var major = ((ty - 760) % 80) === 0;
+    ctx.lineWidth = major ? 1.6 : 0.9;
+    ctx.beginPath();
+    ctx.moveTo(56, ty);
+    ctx.lineTo(56 + (major ? 20 : 11), ty);
+    ctx.stroke();
+  }
+  ctx.beginPath();
+  ctx.moveTo(56, 760); ctx.lineTo(56, 1300);
+  ctx.strokeStyle = "rgba(95,115,80,0.45)"; ctx.lineWidth = 1.2; ctx.stroke();
+
+  /* a low hachure field behind the table, giving the band modeled tone rather than flat
+     paper. Angled, sparse, and always beneath the type. */
+  ctx.save();
+  ctx.strokeStyle = "rgba(122,106,85,0.16)";
+  ctx.lineWidth = 1;
+  for (var hx = -280; hx < W + 120; hx += 9 + 11 * (0.5 + 0.5 * TX.fbm2(hx * 0.004, 1.7, { octaves: 2 }))) {
+    var jitter = TX.fbm2(hx * 0.01, 3.1, { octaves: 3 }) * 16;
+    ctx.strokeStyle = "rgba(122,106,85," + (0.10 + 0.13 * (1 - hx / W)).toFixed(3) + ")";
+    ctx.beginPath();
+    ctx.moveTo(hx + jitter, 892);
+    ctx.lineTo(hx + 210 + jitter, 1316);
+    ctx.stroke();
+  }
+  ctx.restore();
+
+
+  /* a soft graded shadow just under where the closing rule lands */
+  var sh = ctx.createLinearGradient(0, 1142, 0, 1188);
+  sh.addColorStop(0, "rgba(58,50,36,0.22)");
+  sh.addColorStop(1, "rgba(58,50,36,0)");
+  ctx.fillStyle = sh;
+  ctx.fillRect(84, 1142, 912, 46);
+
+  var g = new Image();
+  g.onload = function () {
+    ctx.globalAlpha = 0.032;
+    ctx.fillStyle = ctx.createPattern(g, "repeat");
+    ctx.fillRect(0, 0, W, H);
+    ctx.globalAlpha = 1;
+    resolve();
+  };
+  g.onerror = function () { resolve(); };
+  g.src = TX.grainTile(250, 40, SEED);
+});
+</script>
+</body>
+</html>

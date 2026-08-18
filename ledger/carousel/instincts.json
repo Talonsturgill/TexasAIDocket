@@ -52,6 +52,30 @@
       "evidence": "Carousel No. 1 turned two green assertions red on the same afternoon. The ask engine asserted no request leaves the page, which held only while runs/carousel was empty. The instincts self-test asserted the ledger starts empty since this repo has shipped no decks.",
       "confirmed": [],
       "contradicted": []
+    },
+    {
+      "id": "acceptance-lists-cannot-catch-their-own-frame",
+      "learned": "2026-08-18",
+      "instinct": "Put one acceptance item on every dossier that names what the frame must NOT be mistaken for, because a checklist of parts passes while the whole reads as the wrong thing.",
+      "evidence": "Slide 5 passed all five of its acceptance items while reading as a Gantt chart that asserted start times the record does not state, with the contradicting caption on the same frame. The list checked edges, proportions, light and labels and never asked whether it read as a chart.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "compute-every-drawn-proportion",
+      "learned": "2026-08-18",
+      "instinct": "Any position or length a reader could measure goes through compute.py, not just the ones that carry a printed number.",
+      "evidence": "Slide 4's stationing terminus was typed at x=660, drawing a 63:37 split where the hours are 81:19, beside ten minute ticks that were themselves to scale. The frame promised a scale and contradicted it, and no gate caught it because no numeral was printed.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-gate-fix-can-create-an-editorial-defect",
+      "learned": "2026-08-18",
+      "instinct": "After answering a composition gate, re-read the frame for what the new furniture now asserts.",
+      "evidence": "A dashed leader added to clear slide 9's dead lower zone ran from the no-action node into an empty passed-date field, which is a causal drawing and turned a record into an accusation.",
+      "confirmed": [],
+      "contradicted": []
     }
   ]
 }

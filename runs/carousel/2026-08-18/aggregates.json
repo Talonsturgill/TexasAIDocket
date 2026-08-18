@@ -1,0 +1,52 @@
+{
+  "_note": "Three declarations, and a note on why the field is `computed_by` rather than `from_claims` for all of them. Each of these numbers is QUOTED from a single claim rather than counted across several, so naming N claim ids would be a lie in the shape the count rule expects. The `computed_by` route is the honest one here because it names the exact claim and the exact string the figure came from, which is what a reader needs in order to re-check it. This deck computes no aggregate at all that reaches published copy. compute.py ships beside this file and records the one aggregate the deck DELIBERATELY REFUSED, a residual of the instructional day against the named blocks, because c4 never states that its three parts are disjoint from c3's first four hours and summing them may double count. That is the shape of the sibling's wrong FIVE and it is not published in any form. Slide 8's hook originally read 'Five pairings' and was rewritten to assert no count at all, because the district's own page states no total and counting the names to publish a sum is exactly what the fact-checker forbade.",
+  "aggregates": [
+    {
+      "phrase": "Two schools",
+      "kind": "count",
+      "value": 2,
+      "computed_by": "quoted from claim c2, which reads 'the launch of two Future 2 schools'. Not counted by this deck",
+      "slide": "slide-02.html"
+    },
+    {
+      "phrase": "Three blocks",
+      "kind": "count",
+      "value": 3,
+      "computed_by": "the three blocks enumerated in claim c5, namely the coursework block, the experiences block and the workshop block",
+      "slide": "slide-05.html"
+    },
+    {
+      "phrase": "110 minutesexperiences",
+      "kind": "count",
+      "value": 110,
+      "computed_by": "quoted verbatim from claim c5, which writes '110 minutes'. The adjacent word is the label beneath it and the two are separate strings in the layout",
+      "slide": "slide-05.html"
+    },
+    {
+      "phrase": "five days",
+      "kind": "duration",
+      "value": 5,
+      "from_date": "2026-08-13",
+      "to_date": "2026-08-18",
+      "from_claims": [
+        "c16"
+      ],
+      "computed_by": "date arithmetic from claim c16's second reading date to the date the register was checked",
+      "slide": "slide-09.html"
+    },
+    {
+      "phrase": "four hours",
+      "kind": "duration",
+      "value": 4,
+      "computed_by": "quoted from claim c3, which reads 'The first four hours of school follow the standard NES curriculum'. Not computed by this deck",
+      "slide": "slide-01.html"
+    },
+    {
+      "phrase": "four hours",
+      "kind": "count",
+      "value": 4,
+      "computed_by": "quoted from claim c3, which reads 'The first four hours of school follow the standard NES curriculum'. Not computed by this deck",
+      "slide": "slide-01.html"
+    }
+  ]
+}

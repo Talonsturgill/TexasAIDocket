@@ -12,7 +12,7 @@ The City of Taylor published a public notice that its City Council would conside
 - Comment closes: 2026-08-13
 - Take part: https://www.taylortx.gov/m/newsflash/Home/Detail/2066
 
-- Last checked: 2026-08-14
+- Last checked: 2026-08-18
 
 ## Dates
 

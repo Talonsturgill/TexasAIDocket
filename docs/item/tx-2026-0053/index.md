@@ -1,4 +1,4 @@
-# Houston ISD Board of Managers carried a new local board policy on artificial intelligence to a second reading on its August 13th agenda
+# Houston ISD carried an artificial intelligence board policy to a second reading
 
 Houston Independent School District has a proposed local board policy numbered CQD(LOCAL) covering technology resources and artificial intelligence. The item was introduced on March 20th, 2026. Its first reading sat on the June 11th, 2026 board agenda as item 42. Its second reading sat on the August 13th, 2026 agenda as item 24, in the consent section. The district's agenda system records no action, mover or vote for either reading. The August 13th minutes are still marked draft, so the record does not yet show whether the board adopted it. This is a state-appointed Board of Managers rather than an elected board, and the policy would apply to the largest school district in Texas.
 
@@ -11,7 +11,7 @@ Houston Independent School District has a proposed local board policy numbered C
 - Public access: Public meeting
 - Take part: https://houstonisd.legistar.com/MeetingDetail.aspx?LEGID=1304&GID=889&G=AEA739C4-F651-4FB7-B1D8-F4D303D5084D
 
-- Last checked: 2026-08-14
+- Last checked: 2026-08-18
 
 ## Dates
 

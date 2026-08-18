@@ -39,6 +39,38 @@
       "bespoke_closest_pair": "After the cut, the closest pair no longer involves cartography. bespoke_median 0.3997 was measured on the nine slide deck; the shipped deck is eight and the pair that produced 0.8859 is the frame that was cut.",
       "slides": 8,
       "cut": "Slide 2, the state locator, cut after the third scoring pass. Three independent reviews called it the most cuttable frame, it was the closest visual pair, and its only unique content was a county land area."
+    },
+    {
+      "date": "2026-08-18",
+      "carousel_no": 2,
+      "register": "daylight throughout, a Gulf Coast overcast working sheet, with exactly one dark interior at slide 7",
+      "techniques": [
+        "SDF raymarch, a 16 by 9 recess carved into a brick mass",
+        "single-county spotlight with a leader line to a label outside the mesh",
+        "grid decay threshold-driven from an fBm field",
+        "line and node as engineering stationing over a heat shimmer band",
+        "relit tiles at true duration, rotated and overlapping, on no shared baseline",
+        "heightfield terrain with a horizon solved from the projection centre",
+        "a lit panel in a shadowed interior with a plate measured for a line the record does not contain",
+        "axonometric plaques, one pairing per row, widths following the names",
+        "line and node with an unfilled ring, over an oil-chart field table"
+      ],
+      "palette": {
+        "source": "a post-war Houston ISD elementary building on the Gulf Coast prairie, Harris County",
+        "overcast": "#E9EAE6 the flat August lid over Houston",
+        "brick": "#C9A67B buff face brick",
+        "terrazzo": "#DCD6C8 corridor pale",
+        "slate": "#2C3A34 chalkboard, the deck's true dark",
+        "bayou": "#5F7350 Buffalo Bayou at slack water",
+        "ochre": "#D2A03C pencil lacquer",
+        "clay": "#7A6A55 coastal prairie"
+      },
+      "red_spent": false,
+      "structural_laws": [
+        "no circles anywhere except one path node, argued for by name",
+        "filled means the source states it, outlined means the source calls it optional or does not describe it"
+      ],
+      "bespoke_median_similarity": 0.2298
     }
   ]
 }

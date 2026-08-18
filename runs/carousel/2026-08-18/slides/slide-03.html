@@ -1,0 +1,153 @@
+<!doctype html>
+<!-- SLIDE 3 — THE ARGUMENT.
+     Grid decay, threshold driven from an fBm field rather than from x, because a linear
+     ramp reads as a gradient over a grid and that is this technique's recorded failure.
+     The quote is literally about a body of things to know giving way to a way of thinking,
+     so the ordered field breaks up around the sentence that says so. Claims c1, c18. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #E9EAE6; position: relative; font-family: "Manrope", sans-serif; }
+
+  canvas#art { position: absolute; inset: 0; width: 1080px; height: 1350px; }
+
+  .kick { position: absolute; top: 96px; left: 84px;
+          font-family: "JetBrains Mono", monospace; font-size: 25px;
+          letter-spacing: 0.13em; text-transform: uppercase; color: #3E5340; }
+
+  .quote { position: absolute; left: 84px; right: 96px; top: 330px;
+           font-family: "Fraunces", serif; font-weight: 700; font-size: 66px;
+           line-height: 1.12; letter-spacing: -0.014em; color: #2C3A34;
+           font-variation-settings: "opsz" 72; }
+  .quote span.lead { display: block; }
+
+  .who { position: absolute; left: 84px; top: 1006px;
+         font-family: "JetBrains Mono", monospace; font-size: 26px;
+         color: #4A5A52; letter-spacing: 0.04em; }
+
+  .ask { position: absolute; left: 84px; right: 150px; top: 812px;
+         font-family: "Fraunces", serif; font-style: italic; font-weight: 500;
+         font-size: 44px; line-height: 1.24; color: #3A4A42; }
+
+  .foot { position: absolute; left: 84px; right: 84px; bottom: 112px; }
+  .foot .rule { height: 1px; background: #5F7350; opacity: 0.6; margin-bottom: 20px; }
+  .foot p { font-size: 28px; line-height: 1.42; color: #4A5A52; }
+  .foot .fig { color: #7A5310; font-family: "JetBrains Mono", monospace;
+               font-size: 28px; }
+  .counter { position: absolute; right: 84px; bottom: 40px;
+             font-family: "JetBrains Mono", monospace; font-size: 24px; color: #6E6455; }
+</style>
+</head>
+<body>
+  <canvas id="art" width="2160" height="2700"></canvas>
+
+  <div class="kick">What the superintendent says school is for</div>
+
+  <div class="quote">
+    <span class="lead">"Schools must shift focus</span>
+    <span class="lead">from 'what to know'</span>
+    <span class="lead">to 'how to think,'"</span>
+  </div>
+  <div class="ask">"What is our competitive advantage in an AI-enabled world?"</div>
+  <div class="who">Both, Superintendent Mike Miles</div>
+
+  <div class="foot">
+    <div class="rule"></div>
+    <p>Houston ISD cites a McKinsey and Company projection that
+       <span class="fig">57%</span> of jobs could be automated by
+       <span class="fig">2030</span>.</p>
+  </div>
+  <div class="counter" data-decorative>03 / 09</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260818;
+  TX.reseed(SEED);
+  var R = TX.rng(SEED);            /* RETURNS A GENERATOR. R() is the number. */
+
+  var cv = document.getElementById("art");
+  var ctx = cv.getContext("2d");
+  ctx.scale(2, 2);
+
+  var W = 1080, H = 1350;
+  var CELL = 40, GAP = 0;
+  var x0 = 84, x1 = 996, y0 = 176, y1 = 1180;
+
+  /* The quote's own box, kept clear so no cell ink ever crosses a glyph. */
+  var CLEAR = [
+    { x: 70, y: 300, w: 940, h: 360 },     /* the three quote lines */
+    { x: 70, y: 782, w: 620, h: 62  },     /* attribution */
+    { x: 70, y: 852, w: 860, h: 150 },     /* the question */
+    { x: 70, y: 1180, w: 940, h: 170 }     /* the footer block */
+  ];
+  function inClear(cx, cy) {
+    for (var i = 0; i < CLEAR.length; i++) {
+      var c = CLEAR[i];
+      if (cx > c.x - 16 && cx < c.x + c.w + 16 && cy > c.y - 16 && cy < c.y + c.h + 16) return true;
+    }
+    return false;
+  }
+
+  ctx.clearRect(0, 0, W, H);
+  ctx.strokeStyle = "#5F7350";
+  ctx.lineWidth = 2;
+
+  var painted = 0;
+  for (var gy = y0; gy < y1; gy += CELL + GAP) {
+    for (var gx = x0; gx < x1; gx += CELL + GAP) {
+      var cxc = gx + CELL / 2, cyc = gy + CELL / 2;
+      if (inClear(gx, gy)) continue;
+
+      /* Threshold on an fBm field, NOT on x. Cells therefore leave in clusters and the
+         grid ends raggedly instead of fading like a gradient. */
+      var n = TX.fbm2(gx * 0.0042, gy * 0.0042, { octaves: 4 });
+      var vertical = (gy - y0) / (y1 - y0);          /* gentle bias, never the whole story */
+      var keep = (n * 0.5 + 0.5) > (0.20 + vertical * 0.58);
+
+      if (!keep) continue;
+      ctx.globalAlpha = 0.26 + 0.30 * (1 - vertical);
+      ctx.fillStyle = "#7E9179";
+      ctx.fillRect(gx, gy, CELL - 9, CELL - 9);
+      painted++;
+    }
+  }
+  ctx.globalAlpha = 1;
+
+  /* the graded terrazzo wash the bands plan promised, so the lower third is not bare paper */
+  var tw = ctx.createLinearGradient(0, 1010, 0, 1350);
+  tw.addColorStop(0, "rgba(122,106,85,0.00)");
+  tw.addColorStop(1, "rgba(122,106,85,0.150)");
+  ctx.fillStyle = tw;
+  ctx.fillRect(0, 1010, W, 340);
+
+  /* Scattered survivors below the main field, so the ragged edge continues rather than
+     stopping on a line. */
+  for (var i = 0; i < 46; i++) {
+    var sx = x0 + R() * (x1 - x0);
+    var sy = 966 + R() * 168;        /* stops clear of the footer rule at 1180 */
+    if (inClear(sx, sy)) continue;
+    ctx.globalAlpha = 0.09 + R() * 0.15;
+    ctx.fillStyle = "#7E9179";
+    ctx.fillRect(Math.round(sx), Math.round(sy), CELL - 9, CELL - 9);
+  }
+  ctx.globalAlpha = 1;
+
+  var g = new Image();
+  g.onload = function () {
+    ctx.globalAlpha = 0.028;
+    ctx.fillStyle = ctx.createPattern(g, "repeat");
+    ctx.fillRect(0, 0, W, H);
+    ctx.globalAlpha = 1;
+    resolve();
+  };
+  g.onerror = function () { resolve(); };
+  g.src = TX.grainTile(250, 36, SEED);
+});
+</script>
+</body>
+</html>

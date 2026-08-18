@@ -1,0 +1,196 @@
+<!doctype html>
+<!-- SLIDE 8 — THE SPREAD.
+     Five grouped plaques in axonometric. The data is a set of PAIRINGS rather than a
+     geography or a quantity. A map would imply locations the claims do not carry, and a bar
+     would imply a count the district does not publish.
+     NO NUMERAL IS PRINTED ON THE PLAQUES. The figure nine exists only in the attribution
+     line, in the same sentence as The Texan and its date, because the district's own page
+     states no total and counting the drawn plaques would be arithmetic by implication.
+     Claims c11, c10. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #DCD6C8; position: relative; font-family: "Manrope", sans-serif; }
+
+  canvas#art { position: absolute; inset: 0; width: 1080px; height: 1350px; }
+
+  .hd { position: absolute; top: 100px; left: 84px; right: 84px; }
+  .kick { font-family: "JetBrains Mono", monospace; font-size: 25px;
+          letter-spacing: 0.13em; text-transform: uppercase; color: #3E5340;
+          margin-bottom: 20px; }
+  h2 { font-family: "Fraunces", serif; font-weight: 800; font-size: 80px;
+       line-height: 1.0; letter-spacing: -0.018em; color: #2C3A34;
+       font-variation-settings: "opsz" 82; }
+  .src { position: absolute; top: 340px; left: 84px;
+         font-family: "JetBrains Mono", monospace; font-size: 25px; color: #7A6A55; }
+
+  .foot { position: absolute; left: 84px; right: 84px; bottom: 150px; }
+  .foot .rule2 { height: 2px; background: #2C3A34; margin-bottom: 18px; }
+  .foot .a { font-size: 30px; line-height: 1.4; color: #2C3A34; padding-bottom: 16px;
+             border-bottom: 1px solid rgba(95,115,80,0.55); margin-bottom: 16px; }
+  .foot .b { font-size: 29px; line-height: 1.4; color: #4A5A52; }
+  .foot .b em { font-style: normal; color: #2C3A34; font-family: "JetBrains Mono", monospace; }
+    .counter { position: absolute; right: 84px; bottom: 88px;
+             font-family: "JetBrains Mono", monospace; font-size: 24px; color: #7A6A55; }
+
+  /* Plaque names, positioned from the art's own computed geometry. Type over art needs a
+     declared defense, and here it is the plaque face itself, which is an opaque solid the
+     art paints before the type lands. */
+  .pname { position: absolute; font-family: "JetBrains Mono", monospace;
+           font-size: 25px; line-height: 30px; color: #2C3A34;
+           text-align: center; }
+</style>
+</head>
+<body>
+  <canvas id="art" width="2160" height="2700"></canvas>
+
+  <div class="hd">
+    <div class="kick">How far the model has spread</div>
+    <h2>Pairings,<br>never a total</h2>
+  </div>
+  <div class="src">as the campus page lists them</div>
+
+  <div class="foot">
+    <div class="rule2"></div>
+    <div class="a">The campus page lists these pairings. It states no total.</div>
+    <div class="b">The Texan reported on May 7th, 2026 that <em>nine</em> campuses would move
+      to Future 2.</div>
+  </div>
+  <div class="counter" data-decorative>08 / 09</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/zdog.min.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260818;
+  TX.reseed(SEED);
+
+  var cv = document.getElementById("art");
+  var ctx = cv.getContext("2d");
+  ctx.scale(2, 2);
+  var W = 1080, H = 1350;
+
+  /* The five pairings exactly as the district's page lists them. The first group carries
+     three plaques and the rest carry two, which is where the eye starts and stops. */
+  var GROUPS = [
+    ["C. Martinez"],
+    ["Gregg", "Hartman"],
+    ["Bonham", "Sugar Grove Academy"],
+    ["Shadydale", "Forest Brook"],
+    ["Southmayd", "Deady"]
+  ];
+
+  /* ---- axonometric plaque, rounded-stroke vector, drawn directly on 2D ------------
+     A three-quarter axonometric box with a face, a top and a side. The deck's declared
+     upper left light gives the top the lit value and the side the shadow value. */
+  var DX = 16, DY = -9;                /* the axonometric offset */
+  var LABELS = [];                     /* filled by plaque(), emitted as DOM after the art */
+
+  function plaque(x, y, w, h, label) {
+    /* contact shadow first, graded, so the group sits on the sheet */
+    var sg = ctx.createLinearGradient(0, y + h, 0, y + h + 26);
+    sg.addColorStop(0, "rgba(58,50,36,0.26)");
+    sg.addColorStop(1, "rgba(58,50,36,0)");
+    ctx.fillStyle = sg;
+    ctx.fillRect(x + 6, y + h, w, 26);
+
+    /* side */
+    ctx.beginPath();
+    ctx.moveTo(x + w, y); ctx.lineTo(x + w + DX, y + DY);
+    ctx.lineTo(x + w + DX, y + h + DY); ctx.lineTo(x + w, y + h);
+    ctx.closePath();
+    ctx.fillStyle = "#9C7C55";
+    ctx.fill();
+
+    /* top */
+    ctx.beginPath();
+    ctx.moveTo(x, y); ctx.lineTo(x + DX, y + DY);
+    ctx.lineTo(x + w + DX, y + DY); ctx.lineTo(x + w, y);
+    ctx.closePath();
+    ctx.fillStyle = "#E0BE92";
+    ctx.fill();
+
+    /* face */
+    var fg = ctx.createLinearGradient(0, y, 0, y + h);
+    fg.addColorStop(0, "#D2AE83");
+    fg.addColorStop(1, "#C09A6E");
+    ctx.fillStyle = fg;
+    ctx.fillRect(x, y, w, h);
+
+    /* rounded stroke outline */
+    ctx.strokeStyle = "#2C3A34";
+    ctx.lineWidth = 2.2;
+    ctx.lineJoin = "round";
+    ctx.strokeRect(x + 1, y + 1, w - 2, h - 2);
+
+    /* The name is NOT drawn here. Canvas text rasterises into the PDF, so every plaque
+       label is emitted as DOM type above the art instead, which stays vector and survives
+       LinkedIn's recompression. Positions are recorded and laid out after the art. */
+    LABELS.push({ x: x, y: y, w: w, h: h, label: label });
+  }
+
+
+  /* ONE PAIRING PER ROW. The first layout put five groups across a single row, which is
+     wider than the frame, and two plaques rendered offscreen. A row per pairing also lets
+     each group carry its own tie and keeps every name legible at 432px. */
+  var PH = 66, GAPIN = 14, ROW_Y = 410, ROW_STEP = 128;
+  /* Width follows the NAME. A fixed 244 face gave "Sugar Grove Academy" a second line that
+     fell outside the plaque, with the plaque stroke and the contact rule running through it
+     at x-height. A reader does not see illegible type there, they see a school name struck
+     through, on a slide about which schools were added. */
+  function plaqueW(nm) { return Math.max(244, Math.round(nm.length * 15.2) + 46); }
+  var STAGGER = [96, 268, 96, 300, 150];   /* fixed, so the column is a course, not a grid */
+
+  GROUPS.forEach(function (names, gi) {
+    var y = ROW_Y + gi * ROW_STEP;
+    var x = STAGGER[gi];
+    var gx = x;
+    var widths = names.map(plaqueW);
+    names.forEach(function (nm, j) {
+      plaque(gx, y, widths[j], PH, nm);
+      gx += widths[j] + (j < names.length - 1 ? GAPIN : 0);
+    });
+    var groupW = widths.reduce(function (a, b) { return a + b; }, 0)
+               + GAPIN * (names.length - 1);
+    /* Every group carries the same contact rule, including the single one. Treating one
+       group differently with no stated reason made it read as a dropped element. */
+    ctx.strokeStyle = "rgba(95,115,80,0.60)";
+    ctx.lineWidth = 2.2;
+    ctx.beginPath();
+    ctx.moveTo(x + 24, y + PH + 9);
+    ctx.lineTo(x + groupW - 24, y + PH + 9);
+    ctx.stroke();
+  });
+
+  var g = new Image();
+  g.onload = function () {
+    ctx.globalAlpha = 0.030;
+    ctx.fillStyle = ctx.createPattern(g, "repeat");
+    ctx.fillRect(0, 0, W, H);
+    ctx.globalAlpha = 1;
+    emitLabels();
+    resolve();
+  };
+  g.onerror = function () { emitLabels(); resolve(); };
+  g.src = TX.grainTile(244, 40, SEED);
+
+  /* Plaque names as DOM type above the canvas, so they stay vector in the PDF. */
+  function emitLabels() {
+    LABELS.forEach(function (L) {
+      var d = document.createElement("div");
+      d.className = "pname";
+      d.style.left = L.x + "px";
+      d.style.top = (L.y + L.h / 2 - 15) + "px";
+      d.style.width = L.w + "px";
+      d.textContent = L.label;
+      document.body.appendChild(d);
+    });
+  }
+});
+</script>
+</body>
+</html>
