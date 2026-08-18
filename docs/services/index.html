@@ -70,27 +70,32 @@
 </section>
 
 <section id="start" data-reveal>
-  <h2>Start here</h2>
-  <p class="sub">Say what the work is. A reply comes inside one business day.</p>
-  <p class="sub">Not ready for that yet. The <a href="../scan/">bottleneck scan</a> is free.
-  It reads your own site and says where AI would and would not help.</p>
-  <p class="sub">Rather talk first. <a href="https://calendly.com/talon-sturgill-ixzj/new-meeting" target="_blank"
-  rel="noopener">Book a call</a> and skip the back and forth.</p>
-  <form class="leadform" action="https://formsubmit.co/228f72bce4f9b0e50b49d8d501374771" method="POST">
-    <input type="hidden" name="_subject" value="Texas AI Docket, services enquiry">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
-    <label class="vh" for="lf-name">Your name</label>
-    <input id="lf-name" name="name" type="text" placeholder="Your name" required>
-    <label class="vh" for="lf-co">Company</label>
-    <input id="lf-co" name="company" type="text" placeholder="Company">
-    <label class="vh" for="lf-mail">Email</label>
-    <input id="lf-mail" name="email" type="email" placeholder="Email" required>
-    <label class="vh" for="lf-msg">What is the work</label>
-    <textarea id="lf-msg" name="message" rows="4" required
-      placeholder="What is the work and what would a win look like"></textarea>
-    <button class="cta solid" type="submit">Send it</button>
-  </form>
+  <div class="startgrid">
+    <div class="startsay">
+      <h2>Start here</h2>
+      <p class="sub">Say what the work is. A reply comes inside one business day.</p>
+      <ul class="altways">
+        <li><span class="k">Not ready</span>
+          <a href="../scan/">Run the bottleneck scan</a>
+          <p>Free. It reads your own site and says where AI would and would not help.</p></li>
+        <li><span class="k">Rather talk</span>
+          <a href="https://calendly.com/talon-sturgill-ixzj/new-meeting" target="_blank" rel="noopener">Book a call</a>
+          <p>Skip the back and forth.</p></li>
+      </ul>
+    </div>
+    <form class="leadform" action="https://formsubmit.co/228f72bce4f9b0e50b49d8d501374771" method="POST">
+      <input type="hidden" name="_subject" value="Texas AI Docket, services enquiry">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+      <div class="row2">
+        <div class="field"><label for="lf-name">Your name</label><input id="lf-name" name="name" type="text" required autocomplete="name" autocapitalize="words"></div>
+        <div class="field"><label for="lf-co">Company <span class="opt">optional</span></label><input id="lf-co" name="company" type="text" autocomplete="organization"></div>
+      </div>
+      <div class="field"><label for="lf-mail">Email</label><input id="lf-mail" name="email" type="email" required autocomplete="email" inputmode="email" spellcheck="false"></div>
+      <div class="field"><label for="lf-msg">What is the work</label><textarea id="lf-msg" name="message" rows="5" required></textarea><span class="hint">Say what a win would look like.</span></div>
+      <button class="cta solid" type="submit">Send it</button>
+    </form>
+  </div>
 </section>
 
 </main>

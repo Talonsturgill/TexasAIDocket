@@ -1704,11 +1704,11 @@ a way in.</p>
 def covers_section(items: list, today: str) -> tuple:
     """The front page's index of the record. Returns (numerals it prints, html).
 
-    DENSER THAN THE CARD WALL IT IS MODELLED ON, and carrying more. The prior art is seven
-    full width cards of name, count and blurb, which is most of a screen for eight
-    facts. This is one row per beat in a grid that runs two and three wide, and each row
-    carries the name, the count, the blurb and whether anything on that beat is still open,
-    which is one more fact per beat in roughly a third of the height.
+    DENSER THAN THE CARD WALL IT IS MODELLED ON, and carrying more. The reference version of
+    this pattern is a column of full width cards of name, count and blurb, which spends most of
+    a screen on eight facts. This is one row per beat in a grid that runs two and three wide,
+    and each row carries the name, the count, the blurb and whether anything on that beat is
+    still open, which is one more fact per beat in roughly a third of the height.
 
     THE BLURB IS THE SAME STRING THE HUB PUBLISHES, by construction. Two surfaces describing
     the same eight beats in two sets of words is how a site starts contradicting itself.
@@ -2336,6 +2336,28 @@ _SCAN_JS = """
 """.replace("__ENDPOINT__", SCAN_ENDPOINT)
 
 
+def field(fid: str, label: str, control: str, optional: bool = False,
+          hint: str = "") -> str:
+    """One form field, with a REAL label that stays on screen.
+
+    WHAT THIS REPLACED, AND WHY IT WAS THE WHOLE PROBLEM. Every field on both forms carried a
+    visually hidden label and repeated its text as a `placeholder`. That is the oldest tell in
+    web form design and it is broken three ways besides. The name of the field disappears the
+    moment somebody types, so a reader checking their own answer has nothing to check it
+    against. A placeholder renders at a contrast no rule here would allow in body copy. Browser
+    autofill paints over it, so the one moment a field is most likely to be wrong is the moment
+    it is least likely to be labelled.
+
+    The label is a mono uppercase kicker, which is the vocabulary this site already speaks in
+    its footer, its colophon and its section cards. A form stops looking like a control panel
+    bolted onto an editorial page and starts looking like part of one.
+    """
+    opt = ' <span class="opt">optional</span>' if optional else ""
+    tip = f'<span class="hint">{e(hint)}</span>' if hint else ""
+    return (f'<div class="field"><label for="{fid}">{e(label)}{opt}</label>'
+            f'{control}{tip}</div>')
+
+
 def scan_page(today: str) -> str:
     """The Bottleneck Scanner, the free front door under the paid ladder.
 
@@ -2351,6 +2373,24 @@ def scan_page(today: str) -> str:
     SECOND PERSON THROUGHOUT, per the house rule. A page about somebody else's operation that
     keeps saying "we" is talking about itself.
     """
+    # SAME FIELD SYSTEM AS THE SERVICES FORM, because they are the same component and were
+    # drifting apart as two copies of one idea. Both carried placeholder-as-label; both now
+    # carry a real one.
+    site_f = field("sc-site", "Your website",
+                   '<input id="sc-site" name="website" type="text" inputmode="url" required '
+                   'autocomplete="url" spellcheck="false">')
+    rmail_f = field("sc-mail", "Where the report should go",
+                    '<input id="sc-mail" name="email" type="email" required '
+                    'autocomplete="email" inputmode="email" spellcheck="false">')
+    book_f = field("sc-book", "Booking page",
+                   '<input id="sc-book" name="booking_url" type="text" inputmode="url" '
+                   'spellcheck="false">', optional=True)
+    jobs_f = field("sc-jobs", "Careers page",
+                   '<input id="sc-jobs" name="jobs_url" type="text" inputmode="url" '
+                   'spellcheck="false">', optional=True)
+    note_f = field("sc-note", "Anything worth knowing",
+                   '<textarea id="sc-note" name="message" rows="3"></textarea>', optional=True)
+
     body = f"""
 <section class="hero" data-reveal>
   <h1>See where AI would actually help you</h1>
@@ -2391,21 +2431,13 @@ def scan_page(today: str) -> str:
          scanner_sync_check.py compares this value against the scanner's own copy. -->
     <input type="hidden" name="_captcha" value="true">
     <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
-    <label class="vh" for="sc-site">Your website</label>
-    <input id="sc-site" name="website" type="text" inputmode="url" required
-      placeholder="Your website">
-    <label class="vh" for="sc-mail">Where the report should go</label>
-    <input id="sc-mail" name="email" type="email" required
-      placeholder="Where the report should go">
-    <label class="vh" for="sc-book">Booking page, optional</label>
-    <input id="sc-book" name="booking_url" type="text" inputmode="url"
-      placeholder="Booking or scheduling page, optional">
-    <label class="vh" for="sc-jobs">Careers page, optional</label>
-    <input id="sc-jobs" name="jobs_url" type="text" inputmode="url"
-      placeholder="Careers page, optional">
-    <label class="vh" for="sc-note">Anything worth knowing</label>
-    <textarea id="sc-note" name="message" rows="3"
-      placeholder="Anything worth knowing, optional"></textarea>
+    {site_f}
+    {rmail_f}
+    <div class="row2">
+      {book_f}
+      {jobs_f}
+    </div>
+    {note_f}
     <div class="cf-turnstile" data-sitekey="{TURNSTILE_SITE_KEY}" data-theme="auto"></div>
     <button class="cta solid" type="submit">Send it</button>
     <p class="scan-status" role="status" aria-live="polite" hidden></p>
@@ -2491,6 +2523,22 @@ def services_page(items: list, today: str) -> str:
              "On the hook for the outcome, not the deliverable.", False),
         ))
 
+    # THE FOUR FIELDS, BUILT BEFORE THE TEMPLATE so the label text sits in one readable place
+    # rather than spread through markup. `autocomplete` is on every one of them, which is the
+    # difference between a form a phone fills in one tap and a form a phone fights.
+    name_f = field("lf-name", "Your name",
+                   '<input id="lf-name" name="name" type="text" required '
+                   'autocomplete="name" autocapitalize="words">')
+    co_f = field("lf-co", "Company",
+                 '<input id="lf-co" name="company" type="text" '
+                 'autocomplete="organization">', optional=True)
+    mail_f = field("lf-mail", "Email",
+                   '<input id="lf-mail" name="email" type="email" required '
+                   'autocomplete="email" inputmode="email" spellcheck="false">')
+    msg_f = field("lf-msg", "What is the work",
+                  '<textarea id="lf-msg" name="message" rows="5" required></textarea>',
+                  hint="Say what a win would look like.")
+
     body = f"""
 <section class="hero rise">
   <h1>Texas is where it gets <em>built</em>.</h1>
@@ -2524,27 +2572,32 @@ def services_page(items: list, today: str) -> str:
 </section>
 
 <section id="start" data-reveal>
-  <h2>Start here</h2>
-  <p class="sub">Say what the work is. A reply comes inside one business day.</p>
-  <p class="sub">Not ready for that yet. The <a href="../scan/">bottleneck scan</a> is free.
-  It reads your own site and says where AI would and would not help.</p>
-  <p class="sub">Rather talk first. <a href="{BOOKING_URL}" target="_blank"
-  rel="noopener">Book a call</a> and skip the back and forth.</p>
-  <form class="leadform" action="{FORM_ACTION}" method="POST">
-    <input type="hidden" name="_subject" value="Texas AI Docket, services enquiry">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
-    <label class="vh" for="lf-name">Your name</label>
-    <input id="lf-name" name="name" type="text" placeholder="Your name" required>
-    <label class="vh" for="lf-co">Company</label>
-    <input id="lf-co" name="company" type="text" placeholder="Company">
-    <label class="vh" for="lf-mail">Email</label>
-    <input id="lf-mail" name="email" type="email" placeholder="Email" required>
-    <label class="vh" for="lf-msg">What is the work</label>
-    <textarea id="lf-msg" name="message" rows="4" required
-      placeholder="What is the work and what would a win look like"></textarea>
-    <button class="cta solid" type="submit">Send it</button>
-  </form>
+  <div class="startgrid">
+    <div class="startsay">
+      <h2>Start here</h2>
+      <p class="sub">Say what the work is. A reply comes inside one business day.</p>
+      <ul class="altways">
+        <li><span class="k">Not ready</span>
+          <a href="../scan/">Run the bottleneck scan</a>
+          <p>Free. It reads your own site and says where AI would and would not help.</p></li>
+        <li><span class="k">Rather talk</span>
+          <a href="{BOOKING_URL}" target="_blank" rel="noopener">Book a call</a>
+          <p>Skip the back and forth.</p></li>
+      </ul>
+    </div>
+    <form class="leadform" action="{FORM_ACTION}" method="POST">
+      <input type="hidden" name="_subject" value="Texas AI Docket, services enquiry">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+      <div class="row2">
+        {name_f}
+        {co_f}
+      </div>
+      {mail_f}
+      {msg_f}
+      <button class="cta solid" type="submit">Send it</button>
+    </form>
+  </div>
 </section>
 """
     return page(title=f"Services · {SITE_NAME}", depth=1, active="services/",
@@ -3664,6 +3717,29 @@ def self_test() -> int:
         print(f"  {'ok  ' if cond else 'FAIL'}  {label}{'' if cond else '  ' + extra}")
         if not cond:
             failures += 1
+
+    # THE TOPIC VOCABULARY LIVES IN TWO FILES AND THEY HAVE TO AGREE.
+    #
+    # `docket_build.TOPICS` decides what the record may admit. `TOPIC_BLURBS` decides what
+    # /topic/ and the front page can say about it. Adding a beat to the first and not the second
+    # is a build that dies at Phase 16 with the deck already made, which is the most expensive
+    # minute of the run to discover it in. Adding it to the second only is a blurb nothing
+    # renders, which nobody notices at all.
+    #
+    # So it is checked HERE, where it costs a second and CI runs it on the pull request that
+    # adds the beat. The error names the missing side, because the whole point is that whoever
+    # trips it should not have to read this file to know what to do.
+    missing = sorted(dk.TOPICS - set(TOPIC_BLURBS))
+    check(f"every admitted beat has a blurb (missing {missing or 'none'})", not missing,
+          "add one line per slug to TOPIC_BLURBS in scripts/site/site_build.py")
+    orphan = sorted(set(TOPIC_BLURBS) - dk.TOPICS)
+    check(f"...and no blurb describes a beat the record cannot admit ({orphan or 'none'})",
+          not orphan, "remove it, or add the slug to TOPICS in scripts/site/docket_build.py")
+    # A BLURB THAT SAYS NOTHING PASSES THE CHECK ABOVE AND FAILS THE READER. It is published as
+    # the page's meta description, which is the sentence a search result shows.
+    thin = sorted(t for t, b in TOPIC_BLURBS.items() if len(b.split()) < 8)
+    check(f"...and every blurb is a sentence rather than a placeholder ({thin or 'none'})",
+          not thin, "a meta description under eight words tells a search result nothing")
 
     today = "2026-08-11"
     with tempfile.TemporaryDirectory() as td:

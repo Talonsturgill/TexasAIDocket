@@ -77,21 +77,13 @@
          scanner_sync_check.py compares this value against the scanner's own copy. -->
     <input type="hidden" name="_captcha" value="true">
     <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
-    <label class="vh" for="sc-site">Your website</label>
-    <input id="sc-site" name="website" type="text" inputmode="url" required
-      placeholder="Your website">
-    <label class="vh" for="sc-mail">Where the report should go</label>
-    <input id="sc-mail" name="email" type="email" required
-      placeholder="Where the report should go">
-    <label class="vh" for="sc-book">Booking page, optional</label>
-    <input id="sc-book" name="booking_url" type="text" inputmode="url"
-      placeholder="Booking or scheduling page, optional">
-    <label class="vh" for="sc-jobs">Careers page, optional</label>
-    <input id="sc-jobs" name="jobs_url" type="text" inputmode="url"
-      placeholder="Careers page, optional">
-    <label class="vh" for="sc-note">Anything worth knowing</label>
-    <textarea id="sc-note" name="message" rows="3"
-      placeholder="Anything worth knowing, optional"></textarea>
+    <div class="field"><label for="sc-site">Your website</label><input id="sc-site" name="website" type="text" inputmode="url" required autocomplete="url" spellcheck="false"></div>
+    <div class="field"><label for="sc-mail">Where the report should go</label><input id="sc-mail" name="email" type="email" required autocomplete="email" inputmode="email" spellcheck="false"></div>
+    <div class="row2">
+      <div class="field"><label for="sc-book">Booking page <span class="opt">optional</span></label><input id="sc-book" name="booking_url" type="text" inputmode="url" spellcheck="false"></div>
+      <div class="field"><label for="sc-jobs">Careers page <span class="opt">optional</span></label><input id="sc-jobs" name="jobs_url" type="text" inputmode="url" spellcheck="false"></div>
+    </div>
+    <div class="field"><label for="sc-note">Anything worth knowing <span class="opt">optional</span></label><textarea id="sc-note" name="message" rows="3"></textarea></div>
     <div class="cf-turnstile" data-sitekey="0x4AAAAAAEQ2csplf8Pifi79" data-theme="auto"></div>
     <button class="cta solid" type="submit">Send it</button>
     <p class="scan-status" role="status" aria-live="polite" hidden></p>

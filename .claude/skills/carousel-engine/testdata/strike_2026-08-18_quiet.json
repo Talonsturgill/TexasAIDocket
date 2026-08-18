@@ -1,0 +1,205 @@
+{
+ "captured_from": "a real chromium render of slide-09.html, cropped to design rows 1130..1285 and re-based by 1130. Every coordinate below is the browser's, not an author's (GATE_LESSONS 15).",
+ "note": "the DEFECT geometry with the tr.last 2px #2C3A34 rule deleted, so the table's ordinary 1px rgba(95,115,80,0.45) separator crosses the same footnote line in the same place. Identical geometry, quiet hairline. Only WCAG 1.4.11's 3.0:1 non-text floor separates this from the defect, so this case is what proves the floor is load bearing rather than decorative.",
+ "image": "strike_2026-08-18_quiet.webp",
+ "scale": 2.0,
+ "design_y_offset": 1130,
+ "text_nodes": [
+  {
+   "text": "action text",
+   "x": 84,
+   "y": -36,
+   "w": 420,
+   "h": 62,
+   "font_px": 26,
+   "weight": "400",
+   "family": "JetBrains Mono",
+   "color": "rgb(74, 90, 82)",
+   "decorative": false,
+   "overlap_ok": false,
+   "lines": [
+    [
+     90,
+     -23,
+     172,
+     35
+    ]
+   ]
+  },
+  {
+   "text": "minutes",
+   "x": 84,
+   "y": 26,
+   "w": 420,
+   "h": 62,
+   "font_px": 26,
+   "weight": "400",
+   "family": "JetBrains Mono",
+   "color": "rgb(74, 90, 82)",
+   "decorative": false,
+   "overlap_ok": false,
+   "lines": [
+    [
+     90,
+     39,
+     109,
+     35
+    ]
+   ]
+  },
+  {
+   "text": "Draft",
+   "x": 504,
+   "y": 26,
+   "w": 492,
+   "h": 62,
+   "font_px": 26,
+   "weight": "400",
+   "family": "JetBrains Mono",
+   "color": "rgb(44, 58, 52)",
+   "decorative": false,
+   "overlap_ok": false,
+   "lines": [
+    [
+     510,
+     39,
+     78,
+     35
+    ]
+   ]
+  },
+  {
+   "text": "Checked five days after the meeting. The minutes were still marked Draft.",
+   "x": 84,
+   "y": 74,
+   "w": 696,
+   "h": 62,
+   "font_px": 24,
+   "weight": "400",
+   "family": "JetBrains Mono",
+   "color": "rgb(74, 68, 54)",
+   "decorative": false,
+   "overlap_ok": false,
+   "lines": [
+    [
+     84,
+     74,
+     691,
+     31
+    ],
+    [
+     84,
+     105,
+     346,
+     31
+    ]
+   ]
+  },
+  {
+   "text": "09 / 09",
+   "x": 895,
+   "y": 101,
+   "w": 101,
+   "h": 31,
+   "font_px": 24,
+   "weight": "400",
+   "family": "JetBrains Mono",
+   "color": "rgb(122, 106, 85)",
+   "decorative": true,
+   "overlap_ok": false,
+   "lines": [
+    [
+     895,
+     101,
+     101,
+     31
+    ]
+   ]
+  }
+ ],
+ "rules": [
+  {
+   "kind": "border",
+   "x": 84,
+   "y": 24.5,
+   "w": 419.5,
+   "h": 1,
+   "by": "k",
+   "color": "rgba(95, 115, 80, 0.45)",
+   "decorative": false,
+   "skip": [
+    0
+   ]
+  },
+  {
+   "kind": "border",
+   "x": 503.5,
+   "y": 24.5,
+   "w": 492.5,
+   "h": 1,
+   "by": "v",
+   "color": "rgba(95, 115, 80, 0.45)",
+   "decorative": false,
+   "skip": []
+  },
+  {
+   "kind": "border",
+   "x": 509.5,
+   "y": 11,
+   "w": 300,
+   "h": 1,
+   "by": "blank",
+   "color": "rgb(122, 106, 85)",
+   "decorative": false,
+   "skip": []
+  },
+  {
+   "kind": "border",
+   "x": 509.5,
+   "y": -18,
+   "w": 1,
+   "h": 30,
+   "by": "blank",
+   "color": "rgb(122, 106, 85)",
+   "decorative": false,
+   "skip": []
+  },
+  {
+   "kind": "border",
+   "x": 808.5,
+   "y": -18,
+   "w": 1,
+   "h": 30,
+   "by": "blank",
+   "color": "rgb(122, 106, 85)",
+   "decorative": false,
+   "skip": []
+  },
+  {
+   "kind": "border",
+   "x": 84,
+   "y": 86.5,
+   "w": 419.5,
+   "h": 1,
+   "by": "k",
+   "color": "rgba(95, 115, 80, 0.45)",
+   "decorative": false,
+   "skip": [
+    1
+   ]
+  },
+  {
+   "kind": "border",
+   "x": 503.5,
+   "y": 86.5,
+   "w": 492.5,
+   "h": 1,
+   "by": "v",
+   "color": "rgba(95, 115, 80, 0.45)",
+   "decorative": false,
+   "skip": [
+    2
+   ]
+  }
+ ]
+}

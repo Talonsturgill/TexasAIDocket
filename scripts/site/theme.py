@@ -973,9 +973,24 @@ main {{ padding-top:clamp(2rem,6vh,4rem); }}
   main {{ padding-top:1.5rem; }}
   .hero {{ padding-top:1.2rem; }}
 }}
-main > section > h2 {{ position:relative; padding-top:1.1rem;
+/* THE SECTION MARK. A hairline across the top of every section heading with a short accent
+   tick sitting on it, which is the rhythm the whole page is built on.
+   `.startsay > h2` is named because that heading is one level deeper than the rest. The
+   selector was `main > section > h2` alone, and the moment the services form went to two
+   columns its heading stopped being a direct child, silently lost its rule and its tick, and
+   that section stopped matching every other section on the page. Nothing failed. It just
+   looked wrong, which is the kind of regression only a screenshot catches. */
+main > section > h2 {{ position:relative;
+  padding-top:1.1rem; border-top:var(--hair) solid var(--rule); }}
+main > section > h2::after {{ content:""; position:absolute;
+  top:-1px; left:0; width:3.5rem; border-top:2px solid var(--accent); }}
+/* THE TWO COLUMN SECTION WEARS THE MARK ITSELF. Its heading sits inside the left column, so
+   hanging the rule on the heading drew it a fifth of the way across and stopped, which is the
+   one section on the site whose rule did not reach. The grid carries it instead and the rule
+   spans both columns like every other one. */
+.startgrid {{ position:relative; padding-top:1.1rem;
   border-top:var(--hair) solid var(--rule); }}
-main > section > h2::after {{ content:""; position:absolute; top:-1px; left:0; width:3.5rem;
+.startgrid::before {{ content:""; position:absolute; top:-1px; left:0; width:3.5rem;
   border-top:2px solid var(--accent); }}
 
 /* ---- the map ------------------------------------------------------------ */
@@ -1600,15 +1615,79 @@ caption {{ caption-side:bottom; text-align:left; padding-top:.75rem; font-size:v
 .offer .terms {{ margin:0; font-size:var(--s-1); color:var(--ink-bright); }}
 .offer.lead .terms {{ color:var(--accent); }}
 
-/* One column, generous targets. A form on a services page is the only place on this site a
-   reader types anything that leaves the machine, so it gets room. */
-.leadform {{ display:grid; gap:.7rem; margin:1.25rem 0 0; max-width:34rem; }}
-.leadform input, .leadform textarea {{ font:400 var(--s0)/1.4 var(--body);
-  padding:.75em .9em; color:var(--ink-bright); background:var(--panel);
-  border:var(--hair) solid var(--rule-strong); border-radius:var(--radius); width:100%; }}
-.leadform input:focus-visible, .leadform textarea:focus-visible {{
-  border-color:var(--accent); outline:2px solid var(--accent); outline-offset:1px; }}
-.leadform button {{ justify-self:start; cursor:pointer; border:0; }}
+/* THE FORM. Typography on rules, not boxes.
+   A form on a services page is the only place on this site a reader types anything that leaves
+   the machine, so it is the one place worth getting right. It was four identical bordered boxes
+   stacked in a narrow column with the field names living in placeholders, which is the shape a
+   contact form has had since about 2009 and reads exactly that old.
+   What it is instead: a mono uppercase label that never leaves, over a field with no box at all,
+   sitting on the same hairline rule this site draws under every heading and between every
+   footer link. The page already speaks that language everywhere else. */
+.startgrid {{ display:grid; gap:clamp(1.75rem,4vw,3.5rem); align-items:start;
+  grid-template-columns:minmax(0,1fr); }}
+/* The pitch and the alternatives on the left, the form on the right, which is read then act.
+   One column until there is genuinely room for two, so the form never gets squeezed thin. */
+@media (min-width:56rem) {{
+  .startgrid {{ grid-template-columns:minmax(0,20rem) minmax(0,1fr); }}
+}}
+.startsay h2 {{ margin-top:0; }}
+
+/* The two ways in that are not this form. They were three stacked paragraphs competing with
+   the thing they sit next to. A kicker, a link and one line each says the same in a third of
+   the space and stops reading as an apology for the form. */
+.altways {{ list-style:none; margin:1.75rem 0 0; padding:0; display:grid; gap:1.15rem; }}
+.altways li {{ max-width:none; border-top:var(--hair) solid var(--rule); padding-top:.85rem; }}
+.altways .k {{ display:block; font-family:var(--mono); font-size:var(--s-2);
+  letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin-bottom:.3rem; }}
+.altways a {{ display:inline-block; min-width:24px; padding-block:.15rem;
+  font-size:var(--s1); color:var(--ink-bright); text-decoration:none;
+  border-bottom:var(--hair) solid color-mix(in srgb,var(--accent) 50%,transparent);
+  transition:border-color .2s; }}
+.altways a:hover {{ border-bottom-color:var(--accent); }}
+.altways p {{ margin:.4rem 0 0; font-size:var(--s-1); color:var(--ink-mute); max-width:34rem; }}
+
+/* Capped, because a rule running the full width of a wide column stops reading as a field
+   and starts reading as a divider. */
+.leadform {{ display:grid; gap:1.4rem; margin:1.9rem 0 0; max-width:36rem; }}
+/* Inside the two column block the grid's own gap does this job, so the margin would double it. */
+.startgrid .leadform {{ margin-top:0; }}
+/* Two short fields share a row rather than each taking a full one, which is most of why the
+   old form looked like a queue. */
+.row2 {{ display:grid; gap:1.4rem; grid-template-columns:minmax(0,1fr); }}
+@media (min-width:34rem) {{ .row2 {{ grid-template-columns:1fr 1fr; }} }}
+.field label {{ display:block; font-family:var(--mono); font-size:var(--s-2);
+  letter-spacing:.14em; text-transform:uppercase; color:var(--ink-mute); margin:0 0 .45rem; }}
+/* "optional" is an aside, so it is set as one. Lowercase against the uppercase label carries
+   the distinction at the SAME colour, because a dimmer grey is how a legible label becomes an
+   illegible one and this site measures every run of text against its ground. */
+.field .opt {{ text-transform:none; letter-spacing:.01em; font-style:italic; }}
+.field input, .field textarea {{ display:block; width:100%; font:400 var(--s1)/1.5 var(--body);
+  color:var(--ink-bright); background:transparent; border:0; border-radius:0;
+  border-bottom:var(--hair) solid var(--rule-strong); padding:.4em 0 .5em;
+  transition:border-color .2s,box-shadow .2s; }}
+.field textarea {{ resize:vertical; min-height:6.5rem; }}
+.field input:hover, .field textarea:hover {{ border-bottom-color:var(--ink-mute); }}
+/* Focus thickens the rule AND changes its hue, so the state is not carried by colour alone.
+   The site's global focus ring still lands on top of this, which is the convention everywhere
+   else here and is not worth breaking for one component. */
+.field input:focus, .field textarea:focus {{ border-bottom-color:var(--accent);
+  box-shadow:0 2px 0 0 var(--accent); }}
+/* AUTOFILL, WHICH IS WHERE A TRANSPARENT FIELD GOES WRONG. Chrome paints its own near-white
+   background behind an autofilled input and ignores `background`, so a dark form fills itself
+   in with white boxes of nearly invisible text. The inset shadow is the only thing that
+   overrides it. */
+.field input:-webkit-autofill, .field input:-webkit-autofill:hover,
+.field input:-webkit-autofill:focus {{
+  -webkit-text-fill-color:var(--ink-bright); caret-color:var(--ink-bright);
+  -webkit-box-shadow:0 0 0 100px var(--bg) inset;
+  transition:background-color 9999s ease-in-out 0s; }}
+.field .hint {{ display:block; margin:.5rem 0 0; font-size:var(--s-1); color:var(--ink-mute); }}
+/* Full width on a phone, where a button that does not fill the column reads as an afterthought.
+   Sized to its own text once there is room beside it. */
+.leadform button {{ cursor:pointer; border:0; width:100%; margin-top:.2rem; }}
+@media (min-width:34rem) {{
+  .leadform button {{ width:auto; justify-self:start; min-width:13rem; }}
+}}
 
 /* ---- published work: the article and video feeds --------------------------- */
 /* TWO COLUMNS AT READING WIDTH, ONE ON A PHONE, and the image leads. A carousel cover and a

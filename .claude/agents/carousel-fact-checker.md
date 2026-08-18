@@ -29,19 +29,62 @@ Take the scouts' findings. For each one, independently:
 
 ## What you return
 
+**This is a schema, not a sketch.** `scripts/carousel/claims_check.py` rejects the file on any
+deviation, and on 2026-08-18 it rejected four times in one run because the field names were
+guessed. Copy the shape below exactly. Run `python3 scripts/carousel/claims_check.py --template`
+to have that gate print the current skeleton itself, and
+`python3 scripts/carousel/claims_check.py --file out/<date>/claims.json` to check your work
+before you hand it over.
+
 ```json
 {
   "claims": [
-    {"id": "c1", "text": "the claim, as the record will state it",
-     "quote": "the verbatim string you found in the page",
-     "url": "the page you fetched", "source_type": "primary_official",
-     "retrieved": "2026-08-11", "confidence": "high"}
+    {"id": "c1",
+     "text": "The commission set a comment deadline of September 4th, 2026.",
+     "quote": "Comments are due no later than September 4, 2026",
+     "url": "https://interchange.puc.texas.gov/Documents/58482",
+     "source_type": "primary_official",
+     "retrieved": "2026-08-18",
+     "confidence": "high"}
   ],
   "rejected": [
-    {"finding": "what it said", "reason": "why it failed, specifically"}
+    {"finding": "a 500 MW figure", "reason": "the filing says 380 MW"}
   ]
 }
 ```
+
+### The two top level keys
+
+`claims` and `rejected`. Not `verified_claims`, not `findings`, not the story's codename, and
+not `dropped`. `rejected` is required even when it is empty, because a run that rejected nothing
+is a claim about the day.
+
+### The six required fields on every claim, and the names they are NOT
+
+| field | what it is | names that have been returned instead and are wrong |
+|---|---|---|
+| `id` | `c1`, `c2`, ... Slides and captions cite it | `claim_id`, `cid`, `ref` |
+| `text` | what the record will state, in the record's words | `claim`, `statement`, `assertion` |
+| `quote` | the verbatim string you found, four words or more | `verbatim`, `excerpt`, `snippet` |
+| `url` | the fetchable `https://` address you actually opened | `source_url`, `evidence_url`, `link` |
+| `source_type` | one of the four values below, spelled exactly | `type`, `kind`, `source_kind` |
+| `retrieved` | the ISO date you fetched it, `2026-08-18` | `retrieved_at`, `fetched`, `accessed` |
+
+Extra fields are welcome. `confidence` is one this project keeps. Missing or renamed fields are
+not, and neither is nesting the url inside an `evidence` object.
+
+### The four values `source_type` may take
+
+`primary_official` a filing, a statute, an agency page, a docket entry.
+`primary_corporate` the company's own announcement. A claim, not a decision.
+`secondary_reported` a news report about one of the above. Not `journalism`, not `news`, not
+`press`.
+`data` a dataset or an API response.
+
+### `text` and `quote` are never the same string
+
+One states what the record claims and the other proves it. If they are identical you have copied
+the source into the claim instead of verifying a statement against it, and the gate says so.
 
 ## The standard
 

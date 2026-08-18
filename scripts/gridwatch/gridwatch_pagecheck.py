@@ -46,7 +46,22 @@ STALE_DAYS = 2
 
 def findings(page_html: str, records: list, today: str,
              queue_data: dict | None = None) -> list[str]:
-    """Everything wrong with the published page, in the order a reader would meet it."""
+    """Everything wrong with the published page, in the order a reader would meet it.
+
+    `queue_data` IS THE HERMETIC SEAM, and it exists for one reason worth stating. Production
+    passes nothing and the live queue ledger is read, which is right, because the real page
+    prints real queue figures and they have to be authorised.
+
+    A TEST must pass its own. `gridwatch_page` learned this first and wrote it down next to its
+    `NO_QUEUE` fixture: handing the live ledger to a hermetic test let a planted "8.9" pass,
+    because the ledger happened to hold a month at 8,926 MW and the page renders that as
+    "8.9 GW". The planted numeral was authorised, so the check that is supposed to catch a typed
+    figure reported a clean page, truthfully, and could not go red.
+
+    That fix landed one file away and this one kept calling `figures` with the live ledger, so
+    the same assertion here went quiet in exactly the same way. A gate that cannot fail is worse
+    than no gate, because the suite reports it green.
+    """
     import gridwatch_page as gp
 
     out: list[str] = []
@@ -92,11 +107,6 @@ def findings(page_html: str, records: list, today: str,
         out.append("the page has no main element; the site shell has changed shape and the "
                    "numeral check cannot tell copy from chrome")
         main = ""
-    # The queue data is passed through rather than fetched, for the same reason the
-    # fixture pages below are built with NO_QUEUE: gp.figures() reads the live ledger
-    # when it is not handed one, and a hermetic test that inherits real numerals can
-    # authorise the very figure it planted. Live callers pass nothing and get the
-    # published record, which is what checking the published page means.
     stray = gp.lint(main, gp.figures(records, queue_data))
     if stray:
         out.append("numerals on the published page trace to no computation: "
@@ -183,13 +193,6 @@ def self_test() -> int:
             '<p>13 items, 254 counties.</p></footer></body></html>')
 
     good = [rec("2026-08-08"), rec("2026-08-09"), rec("2026-08-10")]
-    # NO_QUEUE, and this is load bearing rather than tidy. gp.body() reads the live queue
-    # ledger when it is not handed one, so a fixture page built without it carries real
-    # numerals, and this self-test plants "8.9 GW" and requires the checker to catch it. The
-    # ledger holds a month at 8,926 MW, which renders as exactly "8.9": the plant was
-    # authorised by real data and the check passed while catching nothing. Same collision that
-    # hid inside gridwatch_page's own self-test, reached through a different caller, which is
-    # the argument for the fixtures being the ONLY source of numerals in any hermetic test.
     html = shell(gp.body(good, "2026-08-11", gp.NO_QUEUE))
     check("a current page with a whole series is clean",
           findings(html, good, "2026-08-11", gp.NO_QUEUE) == [], str(findings(html, good, "2026-08-11", gp.NO_QUEUE)))
@@ -208,12 +211,14 @@ def self_test() -> int:
           any("collector may have stopped" in f for f in late), str(late))
 
     holed = [rec("2026-08-05"), rec("2026-08-08"), rec("2026-08-09"), rec("2026-08-10")]
-    f = findings(shell(gp.body(holed, "2026-08-11", gp.NO_QUEUE)), holed, "2026-08-11", gp.NO_QUEUE)
+    f = findings(shell(gp.body(holed, "2026-08-11", gp.NO_QUEUE)), holed, "2026-08-11",
+                 gp.NO_QUEUE)
     check("a hole in the series is found and counted",
           any("missing from the series" in x and "2026-08-06" in x for x in f), str(f))
 
     unv = good + [{"_spec": 1, "date": "2026-08-11", "verified": False}]
-    f = findings(shell(gp.body(unv, "2026-08-12", gp.NO_QUEUE)), unv, "2026-08-12", gp.NO_QUEUE)
+    f = findings(shell(gp.body(unv, "2026-08-12", gp.NO_QUEUE)), unv, "2026-08-12",
+                 gp.NO_QUEUE)
     check("an unverified day is reported", any("unverified" in x for x in f), str(f))
 
     f = findings(html.replace("</h1>", "</h1><p>roughly 8.9 GW</p>"), good, "2026-08-11", gp.NO_QUEUE)
@@ -221,7 +226,7 @@ def self_test() -> int:
           any("trace to no computation" in x and "8.9" in x for x in f), str(f))
 
     f = findings(html.replace("</h1>", "</h1><p>ERCOT faces a shortfall</p>"),
-                 good, "2026-08-11")
+                 good, "2026-08-11", gp.NO_QUEUE)
     check("verdict language on the published page is caught",
           any("reliability verdict language" in x for x in f), str(f))
 
@@ -241,7 +246,7 @@ def self_test() -> int:
           findings("", good, "2026-08-11", gp.NO_QUEUE) == ["the published grid watch page is missing or "
                                                "empty"])
     check("an empty record is a finding, not a crash",
-          any("never succeeded" in x for x in findings(html, [], "2026-08-11")))
+          any("never succeeded" in x for x in findings(html, [], "2026-08-11", gp.NO_QUEUE)))
 
     if failures:
         print(f"\ngridwatch_pagecheck self-test: {failures} FAILED")

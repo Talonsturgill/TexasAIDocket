@@ -358,6 +358,20 @@ If the source genuinely does not say where, the item is **held in the seed** wit
 reason, exactly like a missing primary source. A statewide flag used to mean "I could not tell"
 is worse than holding it, because it publishes a claim about scope that nobody checked.
 
+**A NEW BEAT IS A TWO FILE CHANGE AND HALF OF IT KILLS THE BUILD.** The topic vocabulary lives
+in `docket_build.TOPICS`, which decides what the record may admit, and in
+`site_build.TOPIC_BLURBS`, which is the one line `/topic/` and the front page publish about that
+beat. It is also the beat page's meta description, so it is the sentence a search result shows.
+
+Add a slug to the first and not the second and `site_build` **refuses to build**, by design,
+because a hub card with a heading and nothing under it reads as a beat nobody has filed against
+rather than as a fault. Discovering that at Phase 16 costs you a finished deck. So if this run
+admits a beat the record has never carried, add both in the same commit, and run
+`python3 scripts/site/site_build.py --self-test` before you go on. It names the missing side.
+
+Nothing else about the beat needs doing. `/topic/`, the beat's own page, the chip rows, the
+front page card and the structured data are all rebuilt from the ledger by Phase 16.
+
 ## PHASE 6 — CLAIMS
 
 Spawn 1 `carousel-fact-checker` over everything the scouts returned. It re-fetches, verifies every
@@ -447,8 +461,9 @@ right there.
 
 **THE DISCOVERABILITY SURFACES ARE UPDATED BY THE BUILD, AND THAT IS THE POINT.**
 
-`llms.txt`, `llms-full.txt`, the three feeds, the sitemap, every JSON-LD block, all 58 social
-cards and the two hubs at `/questions/` and `/sources/` are **pure functions of the ledger**.
+`llms.txt`, `llms-full.txt`, the three feeds, the sitemap, every JSON-LD block, every social
+card and the four hubs at `/questions/`, `/sources/`, `/topic/` and `/place/` are **pure
+functions of the ledger**.
 They are rebuilt from scratch every run by Phase 16 and `site_fresh_check` proves the committed
 site is byte identical to a fresh build. So a decision admitted in Phase 5 is in the corpus, in
 the feeds, in the structured data and on its own card by the time this run merges, with no step
@@ -458,7 +473,7 @@ here to remember.
 it was given. None of the five above can tell you the product is any good. So look, and then
 **sign off in the run record by name**, one line each, under a heading spelled exactly
 `## Discoverability signoff` so a later run can grep the series. A surface nobody looked at gets
-written down as NOT LOOKED AT, never as fine. Four lines, one per bullet below, each naming what
+written down as NOT LOOKED AT, never as fine. Six lines, one per bullet below, each naming what
 was opened and what it showed.
 
 - **One decision's card, opened as an image.** Pick the run's newest item and open
@@ -474,6 +489,22 @@ was opened and what it showed.
 - **A source title in `/sources/`.** Quoted material is exempt from the punctuation and numeral
   rules by design. Confirm the exemption is still doing that and not hiding one of our own
   sentences.
+- **`/topic/`, counting one card against its own page.** Open the hub, pick the beat this run
+  touched, and check the count on the card equals the number of decisions listed on the beat's
+  page. Then read the `still open to comment` figure. It is a claim about TODAY rather than
+  about the record, and `GATE_LESSONS.md` entry 26 is what happens when those two are confused.
+  The per beat figures must sum to the number the front page's own counter prints.
+- **`/place/`, for the place this run landed something in.** Is that county or metro on the hub,
+  and does its count match the page behind it? A place that took an item today and is not on the
+  hub means the build ran before the record moved, which is the merge order fault the `llms.txt`
+  bullet above catches from the other direction.
+
+**`/topic/` AND `/place/` NEED NOTHING FROM THIS RUN EITHER, WITH ONE EXCEPTION.** They index
+the two page families that had no page above them until 2026-08-18, and both are rebuilt from
+the ledger like everything else here. An item admitted today appears on its beat hub, on its
+county and metro pages, and in the `ItemList` each of those hubs publishes, with no step to
+remember. The exception is Phase 5's: a beat the record has never carried needs its line in
+`TOPIC_BLURBS` or the build refuses, and that is deliberate.
 
 **IF A SURFACE DID NOT UPDATE**, say which and why in the run record. The three real causes, in
 the order they actually happen: the build did not run, the ledger did not change so there was
@@ -721,9 +752,18 @@ is half a run old.
    - `python3 scripts/site/docket_build.py --validate`
    - `python3 scripts/site/site_fresh_check.py`
    - `python3 scripts/site/house_style_check.py`
+   - `python3 scripts/site/schema_check.py`
    - `python3 scripts/shared/port_audit.py`
    - `python3 scripts/shared/ownership_check.py --actor daily --staged`
    - `python3 scripts/site/media_check.py`
+
+   **`schema_check` is on this list and not only in Phase 7**, because Phase 7 never blocks a
+   run and this step does. Almost every page carries a `CollectionPage` naming its own children
+   and a `BreadcrumbList` since 2026-08-18, so the structured data is no longer one boilerplate
+   node that could not really be wrong. It is now the largest machine readable surface the site
+   has, it is what an answer engine reads instead of the page, and a broken `@id` reference or
+   an item list pointing at a page this build did not write is invisible to every other gate
+   here.
 6. **OPEN THE PAGES YOU JUST PUBLISHED AND LOOK AT THEM.** Not the builders, the output. The
    front page and `docs/articles/<date>/index.html`. Every slide present, the slide count right,
    the story readable as text with the images off. `media_check` is the machine half of this and
