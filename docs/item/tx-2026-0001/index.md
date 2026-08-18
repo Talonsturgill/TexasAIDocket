@@ -18,6 +18,12 @@ The Public Utility Commission of Texas is amending its wholesale and investor ow
 - 2026-07-09 · comment opens: Proposal for publication filed and acknowledged by the Texas Register
 - 2026-08-11 · comment closes: Comment deadline stated in the Texas Register acknowledgement
 
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-16 · The filing index moved from 66 to 67 with a late comment from Antora Energy. The proposal for publication also creates a new Section 25.252, which the earlier summary did not carry. Checked against the PUCT Interchange filing index for control number 58000.
+
 ## Evidence
 
 Every fact above rests on one of these. The words are the source's own.

@@ -15,6 +15,12 @@ The Department of Information Resources is required to establish a program letti
 - 2025-09-01 · effective: SB 1964 took effect
 - 2026-11-30 · statutory deadline: Department report to the Legislature due, per Sec. 2054.706(g)
 
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-18 · Checked and unchanged. The sandbox program stands required of the Department of Information Resources and the report to the Legislature is still due November 30th, 2026.
+
 ## Evidence
 
 Every fact above rests on one of these. The words are the source's own.

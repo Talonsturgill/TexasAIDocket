@@ -953,6 +953,17 @@ html.js .rise > *:nth-child(5) {{ animation-delay:.42s; }}
    which is what this is. */
 main > section {{ margin-block:var(--band); }}
 main > section:first-child {{ margin-top:calc(var(--band) * .55); }}
+/* AN ITEM PAGE'S SECTIONS WERE SPACED BY ACCIDENT, and the accident held for as long as every
+   section happened to end in a paragraph. They sit inside `<article>`, so the rule above has
+   never matched one of them, and their computed top margin is zero on all 61 pages. What
+   separated them was the trailing paragraph's own bottom margin, borrowed. The moment a
+   section ended in a table the next heading landed against it, which is what "The evidence"
+   has been doing under the Dates table all along and what the movement log made impossible to
+   keep missing. Spacing that depends on the shape of the last child is not spacing.
+   NOT `var(--band)`. That token is the full page band and would re-space every item page well
+   past what the paragraph was giving, which is a redesign rather than a repair. This matches
+   `.asksection`, already in this sheet, and collapses with the paragraph margin it replaces. */
+article > section {{ margin-top:2.25rem; }}
 /* AN INNER PAGE OPENS WITH AN H1 RATHER THAN A HERO, and the hero is what was carrying the
    clearance under the sticky bar. Without it the page title sits against the navigation.
    THIS IS ON `main`, NOT ON THE HEADING, because the heading version was written as
@@ -1338,6 +1349,24 @@ main > section > h2::after {{ content:""; position:absolute;
 .claim cite {{ font-style:normal; font-size:var(--s-1); color:var(--ink-mute); }}
 .claim .kind {{ font-family:var(--mono); font-size:var(--s-2); letter-spacing:.06em;
   text-transform:uppercase; color:var(--ink-mute); }}
+
+/* ---- the movement log: a decision being watched -------------------------- */
+/* THE LIST MARKER IS SUPPRESSED ON PURPOSE. This is an `ol` because the order is the
+   meaning, oldest first, so the markup has to say ordered. What it must not do is PRINT
+   a counter beside each line, because a reader arriving at "3." next to a date reads a
+   figure about the decision rather than a position in a list. The date is the marker.
+   It also keeps the one rule this project will not bend on: every numeral a reader sees
+   was computed from data, and a CSS counter is a number the build never computed.
+   The rule down the left is the same device the claims block uses, for the same reason.
+   These are observations of the record, and they hang off one spine. */
+ol.moved {{ list-style:none; margin:1rem 0 0; padding:0 0 0 1rem;
+  border-left:2px solid var(--rule-strong); }}
+ol.moved > li {{ margin:0 0 1rem; }}
+ol.moved > li:last-child {{ margin-bottom:0; }}
+ol.moved > li > .num {{ display:block; font-size:var(--s-2); letter-spacing:.04em;
+  color:var(--ink-mute); }}
+ol.moved > li > p {{ margin:.15rem 0 0; font-size:var(--s-1); line-height:1.6;
+  color:var(--ink); max-width:34rem; }}
 
 /* Mid-century oil charts: heavy rules top and bottom, hairlines between. The weight tells a
    reader where the table starts and stops without a box around it. */

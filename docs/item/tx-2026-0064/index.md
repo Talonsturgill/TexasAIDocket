@@ -18,6 +18,12 @@ The Texas Commission on Environmental Quality's executive director finished tech
 - 2025-11-07 · filed: Application submitted to TCEQ
 - 2026-08-05 · ordered: Notice issuance date for the executive director's preliminary decision and draft permit
 
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-18 · Checked and unchanged. The notice still names permits 182126, PSDTX1688 and GHGPSDTX263 for Crusoe Technologies. The comment window runs 30 days from newspaper publication.
+
 ## Evidence
 
 Every fact above rests on one of these. The words are the source's own.

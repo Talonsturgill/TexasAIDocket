@@ -17,6 +17,12 @@ The Killeen Planning and Zoning Commission voted in late April 2026 against a co
 
 - 2026-04-28 · ordered: Date KWTX reported the commission's denial. The exact commission meeting date was not confirmed from a fetched page, and the reporting places it in late April 2026
 
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-18 · Checked and unchanged. Killeen's council has taken the data center subject up as a future agenda item.
+
 ## Evidence
 
 Every fact above rests on one of these. The words are the source's own.

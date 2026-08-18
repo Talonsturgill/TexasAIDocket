@@ -19,6 +19,12 @@ Houston Independent School District has a proposed local board policy numbered C
 - 2026-06-11 · hearing: First reading placed on the board agenda as item 42
 - 2026-08-13 · hearing: Second reading placed on the board agenda as item 24, in the consent section
 
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-18 · Checked and unchanged. Policy CQD(LOCAL) sits on the August 13th agenda with no recorded action and no passed flag.
+
 ## Evidence
 
 Every fact above rests on one of these. The words are the source's own.

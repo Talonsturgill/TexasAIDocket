@@ -17,6 +17,12 @@ The Public Utility Commission publishes its open meetings and public comment dea
 - 2026-08-21 · hearing: Open meeting listed at an off site hotel and conference center
 - 2026-09-04 · comment closes: Public comment deadline for Project 58482
 
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-16 · The August 21st entry no longer names Docket 59315 and no longer lists Commissioners Hearing Room 7-100. It now gives the AT&T Hotel and Conference Center. An open meeting on August 20th has been added. Checked against the PUCT calendar feed.
+
 ## Evidence
 
 Every fact above rests on one of these. The words are the source's own.
