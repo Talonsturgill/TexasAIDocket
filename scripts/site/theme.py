@@ -1411,6 +1411,67 @@ figcaption {{ font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
 .bar .fill {{ height:100%; background:var(--accent-deep); }}
 .barnote {{ font-size:var(--s-1); color:var(--ink-mute); }}
 .barnote strong {{ color:var(--ink-bright); }}
+
+/* THE QUEUE GAP. Two bars on one scale, which is the whole instrument: the distance is seen
+   rather than computed. Same law as .bar above, one hue at one intensity at every value, so
+   the LENGTH is the entire message and nothing implies a verdict about whether the queue is
+   real. A reader draws that conclusion or does not; the page does not draw it for them. */
+.queuegap {{ margin:0 0 var(--band); scroll-margin-top:5rem; }}
+/* The page's first section sits under a sticky masthead, so its heading needs the same
+   clearance an anchored jump would get. */
+.queuegap > h2:first-child {{ padding-top:.35rem; }}
+.queuegap .qlede {{ font-family:var(--display); font-size:var(--s2); line-height:1.25;
+  max-width:22ch; margin:0 0 var(--gap); }}
+.qgap {{ display:flex; flex-direction:column; gap:.55rem; margin:0 0 .7rem; }}
+.qrow {{ display:grid; grid-template-columns:minmax(9rem,auto) 1fr; gap:.5rem 1rem;
+  align-items:center; }}
+.qlab {{ display:flex; flex-direction:column; line-height:1.15; }}
+.qk {{ font-family:var(--mono); font-size:var(--s-2); letter-spacing:.08em;
+  text-transform:uppercase; color:var(--ink-mute); }}
+.qv {{ font-family:var(--display); font-size:var(--s1); color:var(--ink-bright);
+  font-variant-numeric:tabular-nums; }}
+.qbar {{ height:1.1rem; background:var(--surface); border:var(--hair) solid var(--rule-strong);
+  border-radius:2px; overflow:hidden; }}
+.qfill {{ height:100%; background:var(--accent-deep); min-width:2px; }}
+.qnote {{ font-size:var(--s-1); color:var(--ink-mute); max-width:var(--measure);
+  margin:0 0 var(--gap); }}
+
+/* The funnel. AN ORDERED LIST because the stages are genuinely sequential: a project cannot
+   draw power before it is cleared to. The number is not decoration, so it is not drawn. */
+.qstages {{ list-style:none; padding:0; margin:0 0 .7rem;
+  display:flex; flex-direction:column; gap:.4rem; }}
+.qstages li {{ display:grid; grid-template-columns:minmax(0,1fr) auto auto; gap:.75rem;
+  align-items:baseline; padding:.5rem 0; border-bottom:var(--hair) solid var(--line); }}
+/* THE STAGE LABEL WRAPS, THE FIGURE NEVER DOES. At 380px the three columns were overflowing
+   and taking the share off the right edge. The label is the only part that can afford to
+   take two lines. */
+.qstages .qk {{ overflow-wrap:anywhere; }}
+.qstages .qs {{ font-family:var(--mono); font-size:var(--s-2); color:var(--ink-mute);
+  font-variant-numeric:tabular-nums; min-width:3.4rem; text-align:right; }}
+
+/* The monthly series. Paired bars per month, cleared then drawing, so a reader sees that
+   neither has moved. Shape carries it, not colour: the pair is always left-then-right and the
+   two are separated by a gap rather than by hue alone. */
+/* BARS STRETCH, TYPE DOES NOT. The viewBox is stretched so the bars fill the column at any
+   width, which distorts anything drawn inside it, so the month labels are HTML in a grid that
+   matches the bar columns rather than <text> in the drawing. */
+.qchart svg {{ width:100%; height:clamp(4.5rem,15vw,6.5rem); display:block; }}
+.qchart .qa {{ fill:var(--accent-deep); }}
+.qchart .qd {{ fill:var(--gold); }}
+.qchart {{ padding-bottom:.4rem; }}
+.qticks {{ display:grid; grid-auto-flow:column; grid-auto-columns:1fr; margin-top:.3rem; }}
+.qticks span {{ font-family:var(--mono); font-size:var(--s-2); color:var(--ink-mute);
+  text-align:center; }}
+
+/* Meng To's Sylva easing. A long tail that settles rather than stops, which suits a bar whose
+   length IS the measurement: it arrives at its value and stays there instead of bouncing. */
+.queuegap .qfill {{ transition:width 1.1s cubic-bezier(.16,1,.3,1); }}
+@media (prefers-reduced-motion:reduce) {{ .queuegap .qfill {{ transition:none; }} }}
+
+@media (max-width:26rem) {{
+  .qrow {{ grid-template-columns:1fr; gap:.15rem; }}
+  .qlab {{ flex-direction:row; align-items:baseline; gap:.5rem; }}
+}}
 /* The metro bars on the water watch. Same rule, smaller: sorted driest first, and identical in
    colour at every value, so the ordering carries the comparison and nothing implies that a
    short bar is a verdict about a city's water supply. */

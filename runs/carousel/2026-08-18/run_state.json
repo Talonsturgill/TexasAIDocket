@@ -1,0 +1,32 @@
+{
+  "run_date": "2026-08-18",
+  "degraded_rung": "attempting-a",
+  "block_cause": "weekly usage limit, resets 5pm UTC",
+  "phases": {
+    "wake": "done",
+    "craft": "folded-into-selection",
+    "sweep": "done",
+    "reverify": "done",
+    "discover": "done",
+    "admit": "held (journalism-only candidates)",
+    "claims": "done",
+    "instrument": "done",
+    "selection": "done",
+    "directors": "in_progress",
+    "copy": "pending",
+    "art": "pending",
+    "pixel": "pending",
+    "aggregate": "pending",
+    "assembly": "pending",
+    "scoring": "pending",
+    "ship": "done-record-only",
+    "retro": "pending",
+    "email": "pending"
+  },
+  "note": "weekly limit reset ~17:00 UTC; deck attempted after record already shipped to branch",
+  "artifacts": {
+    "claims": "out/2026-08-18/claims.json",
+    "research": "out/research/*.json"
+  },
+  "story": "Houston ISD Future 2, an AI-era school whose afternoons are screen-free, against a board AI policy that shows no recorded action"
+}

@@ -1,0 +1,71 @@
+{
+  "date": "2026-08-18",
+  "carousel_no": 2,
+  "story": "tx-2026-0053",
+  "rubric": "config/carousel/scoring_rubric.yaml v1",
+  "scored_by": "carousel-scorer, two passes",
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.28,
+      "score": 6.0,
+      "why": "Three frames are genuinely made. Slide 1's raymarched recess is the empty niche where a screen would be and could not be swapped for another drawing. Slide 7 is the deck's true dark, and holding the vendor plate empty is the best single idea in the set. Slide 3's grid decaying from dense order into scatter carries the claim. Against that, band seams read as compositing edges on several frames, slides 2 and 9 share an unlabeled tick ruler that argues nothing, and slide 1's recess shows stair-step aliasing on its rim."
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 8.7,
+      "why": "The strongest dimension, and the rejections are why. Nine claims were killed including the run's own load-bearing premise. The two-versus-nine campus conflict is handled without arithmetic. The 57% ships only as something Houston ISD cites. c16 is guarded to no recorded action. compute.py refuses the residual and records why, against the run's own interest. Both geometry repairs were measured by the scorer: the slide 4 terminus lands at 80.6 percent of the drawn run against a true 81.0, and slide 5's tiles measure 1:1.80:1.47 against a true 1:1.833:1.5."
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.18,
+      "score": 7.0,
+      "why": "The spine is real and non-obvious. What it never does is tell a Texan what to do next. No meeting date, no comment window, no campus page pointer."
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.12,
+      "score": 7.0,
+      "why": "There is a genuine turn at slide 7. Slides 4 and 5 both do here is the schedule, and slide 6 restates the cover's claim from the same quote rather than advancing."
+    },
+    {
+      "name": "voice",
+      "weight": 0.12,
+      "score": 7.0,
+      "why": "Clean and on register, and the house rules hold throughout. It is not especially Texan. Change three nouns and this is Ohio. The only regional gesture a reader sees is a Harris County locator."
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 6.5,
+      "why": "Across decks it is strong, a full register inversion against August 16th. Within the deck it is thinner than the 0.2298 median implies. Slides 5 and 8 share palette, object, stagger and drop shadow closely enough that the 0.42 closest pair understates what a reader sees."
+    }
+  ],
+  "weighted_score": 7.01,
+  "weighted_arithmetic": "6.0*0.28 + 8.7*0.20 + 7.0*0.18 + 7.0*0.12 + 7.0*0.12 + 6.5*0.10 = 7.010",
+  "threshold": 7.0,
+  "hard_fail_found_and_repaired": {
+    "what": "slide 9's footnote was struck through by the table's own bottom rule on the closing frame",
+    "how_found": "the scorer measured render_report.json's text-node coordinates rather than trusting the green QA banner. The minutes row ran to y=1218 and the footnote began at y=1204, a 14px intrusion that put a drawn rule through the glyphs and read as a strikethrough at 432px",
+    "why_qa_missed_it": "qa.py tests a text box against other TEXT boxes and against opaque DOM elements. This was text against a table border, which is drawn geometry the gate does not see",
+    "repair": "the table was lifted to bottom 196px and the footnote dropped to bottom 96px. The minutes row now ends at y=1154 and the footnote begins at y=1192, verified from the re-rendered report",
+    "status": "REPAIRED and re-verified"
+  },
+  "hard_fails": [],
+  "ship": true,
+  "ship_reason": "7.01 clears the 7.0 threshold and the one hard fail was repaired and re-verified from the render report rather than by eye. The margin is one hundredth and that is recorded rather than rounded away.",
+  "honest_assessment": "7.01 is an acceptable deck, not a good one. Three frames are genuinely designed, the fact-checking is the best thing this repo has produced, and the rest is competent scaffolding around them. The score is not rounded up and the thinness of the margin is the point.",
+  "three_strongest": [
+    "The nine rejected claims. Killing the Katy prohibition, the TimeBack vendor name, the 60 percent threshold and the teachers-of-record line cost the run its original frame, and the deck is truer for it.",
+    "Slide 7. A lit panel in a dark room and a plate held empty for a name the record does not contain. The technique is the argument.",
+    "compute.py refusing the residual and writing down why in the file rather than in a comment nobody reads. The law applied against the run's own interest is the law working."
+  ],
+  "three_weakest": [
+    "Slide 9's struck-through footnote reached the scorer past a green QA gate, on the closing frame.",
+    "Slide 6's first repair relocated its own defect, moving a flat field from the ground into the sky, and needed a second pass.",
+    "Slides 5 and 8 are close to the same drawing with different arguments, and slides 2 and 9 share a tick ruler that argues nothing."
+  ],
+  "one_sentence_fix": "Teach the QA gate to test text boxes against DRAWN geometry and not only against other text, because it passed slide 9 while its own render_report held the coordinates proving a rule ran through the footnote, and every collision of that class will keep shipping under a green banner until the gate can see rules, plates and shadows.",
+  "reaffirmed_after_final_render": "Slide 9's filed line was reworded after this score to drop a colon that house_style_check lints in our own prose. No claim, numeral, technique or composition changed, so no dimension moves. The score stands at 7.01."
+}

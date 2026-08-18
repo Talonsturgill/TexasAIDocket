@@ -1406,6 +1406,12 @@ def docket_index(items: list, today: str) -> str:
 </div>
 {topics}
 
+<!-- THE SAME ASK BOX AS THE FRONT PAGE, above the map because a reader who arrives on the
+     record wanting an answer should not have to go back to the home page to find the field.
+     base="../" so the answer's citation links resolve from one level deep; every other
+     endpoint it uses is absolute. -->
+{ask_box(items, today, base="../")}
+
 <!-- THE MAP LIVES ON THE RECORD NOW, because geography is a property of the record rather
      than a subject of its own. It had a tab, and a tab is a promise that a reader wants to
      browse Texas by county, which is not what anybody arrives wanting. Clicking a lit county
@@ -1837,7 +1843,7 @@ def grid_page(today: str) -> str:
                 }])
 
 
-def ask_box(items: list, today: str) -> str:
+def ask_box(items: list, today: str, base: str = "") -> str:
     """The ask box, on the front page, with the essay taken off it.
 
     IT USED TO BE ITS OWN PAGE BEHIND ITS OWN NAV TAB, under a heading, a lede, and four
@@ -1861,7 +1867,7 @@ def ask_box(items: list, today: str) -> str:
                     for q in starters)
     return f"""
 <section class="asksection" data-reveal>
-  <div id="ask" class="askbox lean" data-base=""
+  <div id="ask" class="askbox lean" data-base="{e(base)}"
        data-endpoint="{e(ask_written.ENDPOINT)}"
        data-sitekey="{e(ask_written.TURNSTILE_SITEKEY)}">
     <!-- THE THREAD IS ABOVE THE FIELD. A conversation reads upward, and answers below the
