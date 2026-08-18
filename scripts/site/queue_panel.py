@@ -225,38 +225,72 @@ def stages(f: dict) -> str:
 
 
 def flatline(f: dict) -> str:
-    """The series, which is the finding a single reading can't show.
+    """The series, as a readable instrument rather than a picture of bars.
 
-    Both figures have sat flat all year while the queue grew. That observation only exists
-    because each month was stored.
+    WHAT WAS WRONG WITH THE FIRST VERSION. It was six pairs of rectangles with month names
+    under them and no values anywhere, which asks a reader to take the shape on trust. The
+    point of the panel is that these are MEASURED figures, so the figures have to be on the
+    page. Owner's call, and right.
 
-    THE MONTH LABELS ARE HTML, NOT SVG TEXT. The bars want a stretched viewBox so they fill the
-    column at any width, and `preserveAspectRatio="none"` stretches every glyph inside it with
-    them. The first render had months squashed into unreadable wide letters. Bars stretch, type
-    does not, so the type lives outside the drawing.
+    HTML BARS RATHER THAN SVG, for three reasons that all matter here. Type never distorts,
+    because nothing is inside a stretched viewBox. Hover and keyboard focus are native. And
+    every number is real DOM text, which means the numeral gate can see it, a screen reader can
+    read it, and a reader can select and copy it.
+
+    NOT COLOUR ALONE. Each group is labelled, each bar carries its own value, and the pair is
+    always cleared-then-drawing in that order. A reader who cannot separate the two hues still
+    gets the whole reading from the text.
+
+    NO HIDDEN DATA TABLE, deliberately. The usual advice is to ship a visually hidden table
+    beside a chart, and the first version did. Two things were wrong with it here. It is a
+    SECOND COPY of the same numbers in the DOM, which is a second thing to keep true. And
+    tests/text_contrast measures each run of text against its own ground, which for a `th`
+    inside a clipped table is the page rather than nothing, so ten runs reported 1.8 against a
+    floor of 4.5: a real reading of markup that should not have been there. Every group is
+    focusable and its `aria-label` carries the month and both figures, which is the same
+    reading and is navigable, from one source.
     """
     s = f.get("series") or []
     ch = f.get("change")
     if len(s) < 2 or not ch:
         return ""
     top = max(r["approved_mw"] for r in s) * 1.12
-    w, h = 100.0 / len(s), 100.0
-    bars = []
-    for i, r in enumerate(s):
-        x = i * w
-        for key, cls, off in (("approved_mw", "qa", 0.16), ("drawing_mw", "qd", 0.52)):
-            bh = r[key] / top * h
-            bars.append(f'<rect class="{cls}" x="{x + w * off:.2f}" y="{h - bh:.2f}" '
-                        f'width="{w * 0.30:.2f}" height="{bh:.2f}"/>')
-    labels = "".join(f'<span>{MONTHS[int(r["month"][5:]) - 1][:3]}</span>' for r in s)
-    return f"""<div class="qchart">
-  <svg viewBox="0 0 100 {h:.0f}" preserveAspectRatio="none" role="img"
-       aria-label="Cleared to switch on and actually drawing, by month, from
-       {month_label(ch['from_month'])} to {month_label(s[-1]['month'])}. Both sit flat.">
-    {''.join(bars)}
-  </svg>
-  <div class="qticks" aria-hidden="true">{labels}</div>
-</div>"""
+
+    groups = []
+    for r in s:
+        label = MONTHS[int(r["month"][5:]) - 1][:3]
+        # THE LABEL IS A SIBLING OF THE FILL, NOT A CHILD OF IT. It was nested inside the
+        # coloured bar and positioned above it, so visually it sat on the card while its
+        # ancestor background was the bar. tests/text_contrast composites the ancestor stack
+        # and measured granite on the pale bar at 3.12, under the floor. Structure now matches
+        # what a reader sees: the column is transparent, the fill is the bar, the value labels
+        # the bar from the card.
+        bars = "".join(
+            f'<span class="qb {cls}">'
+            f'<span class="qbv num">{n0(r[key])}</span>'
+            f'<span class="qbf" style="height:{r[key] / top * 100.0:.1f}%"></span></span>'
+            for key, cls in (("approved_mw", "qa"), ("drawing_mw", "qd")))
+        # tabindex so the readout is reachable without a pointer. A group is not a control and
+        # gets no role: it is a labelled region of a figure, and `aria-label` carries the whole
+        # reading so focus announces the month and both values together.
+        groups.append(
+            f'<li class="qgrp" tabindex="0" aria-label="{month_label(r["month"])}, '
+            f'cleared to switch on {n0(r["approved_mw"])} megawatts, '
+            f'actually drawing {n0(r["drawing_mw"])} megawatts">'
+            f'<span class="qbars">{bars}</span>'
+            # A <time>, not a span. The axis labels a month, the element says which month in a
+            # machine readable form, and house_style_check's exemption is satisfied because the
+            # visible text is a faithful rendering of that attribute rather than a bare date
+            # sitting loose beside a figure.
+            f'<time class="qm" datetime="{r["month"]}">{label}</time></li>')
+
+    return f"""<figure class="qchart">
+  <ol class="qgroups" data-prose="data">{''.join(groups)}</ol>
+  <p class="qlegend" data-prose="data">
+    <span class="qkey qa"></span>Cleared to switch on
+    <span class="qkey qd"></span>Actually drawing
+    <span class="qunit">megawatts</span></p>
+</figure>"""
 
 
 # --------------------------------------------------------------------------- the panel
@@ -275,8 +309,8 @@ def panel(data: dict) -> str:
     if ch:
         trend = f"""<h3>It has not moved all year</h3>
 {flatline(f)}
-<p class="qnote">Each month since {month_label(ch['from_month'])}. Left bar cleared to switch
-on. Right bar actually drawing.</p>"""
+<p class="qnote">Every figure ERCOT has published this year. The queue grew to
+{gw(R['mw'])} GW over the same months.</p>"""
 
     return f"""<section class="queuegap" data-reveal>
   <h2>The Queue Gap</h2>
@@ -319,8 +353,11 @@ def authorised(f: dict) -> set[str]:
     if ch:
         add(n0(ch["months"]), month_label(ch["from_month"]))
     for r in f.get("series") or []:
+        # n0 as well as gw: the chart prints exact megawatts now, which is the whole point of
+        # it being data rather than a shape, so those strings have to be authorised too.
         add(month_label(r["month"]), MONTHS[int(r["month"][5:]) - 1][:3],
-            gw(r["approved_mw"]), gw(r["drawing_mw"]))
+            gw(r["approved_mw"]), gw(r["drawing_mw"]),
+            n0(r["approved_mw"]), n0(r["drawing_mw"]))
     return acc.set
 
 
