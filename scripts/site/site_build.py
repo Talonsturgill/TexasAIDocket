@@ -3432,10 +3432,18 @@ def _watch_numerals(mod) -> set:
 def build(out: Path, today: str) -> dict:
     items = dk.load(LEDGER)
     runs = load_runs()
-    bad, results = dk.run_gates(items, today)
+    # blocking_only: a stale record still rebuilds, loudly. See NON_BLOCKING_FOR_BUILD in
+    # docket_build. Refusing to rebuild because the input is old leaves the reader with an
+    # even older page, which is the wrong party paying for the run's debt.
+    bad, results = dk.run_gates(items, today, blocking_only=True)
+    stale = [r for r in results if r.name in dk.NON_BLOCKING_FOR_BUILD and r.status == "FAIL"]
     if bad:
         dk.report(results)
         raise SystemExit("site_build: the record does not pass its own gates; refusing to build")
+    if stale:
+        dk.report(results)
+        print("site_build: BUILDING ANYWAY, but the record is stale and `--validate` will fail. "
+              "Re-verify the items named above. This is a debt, not a pass.")
 
     if out.exists():
         shutil.rmtree(out)
