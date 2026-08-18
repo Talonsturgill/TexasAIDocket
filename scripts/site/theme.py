@@ -1767,14 +1767,43 @@ figcaption {{ font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
 .qgrp:hover, .qgrp:focus-visible {{
   background:color-mix(in srgb, var(--granite) 9%, transparent); outline:none; }}
 .qgrp:focus-visible {{ box-shadow:0 0 0 2px var(--granite); }}
+/* The pair is CAPPED and centred so the two bars read as one month's reading. Letting the
+   columns take the whole group set the two bars of a pair as far apart as two neighbouring
+   months, and the pairing stopped being visible. The cap is wide enough for both value labels
+   at every width tested; tightening it further is what puts them back into each other. */
 .qbars {{ display:flex; align-items:flex-end; justify-content:center;
-  gap:clamp(2px,.6vw,5px); width:100%; flex:1; }}
+  gap:clamp(2px,.6vw,5px); width:100%; max-width:clamp(4.6rem,13vw,7.5rem);
+  margin-inline:auto; flex:1; }}
 /* The column is transparent and full height; the FILL is the bar. That separation is what
    lets the value label sit on the card rather than on the bar, which is both what a reader
    sees and what the contrast check measures. */
-.qb {{ width:clamp(9px,3.2vw,26px); height:100%; display:flex; flex-direction:column;
+/* THE COLUMN TAKES HALF THE GROUP; THE BAR INSIDE IT STAYS NARROW. The column was as narrow
+   as the bar, so each value label overflowed its column evenly on both sides and the pair met
+   in the middle: "8,787" and "4,049" rendered as "8,7874,049", one nonsense number. Nothing in
+   the DOM was wrong, which is why no lint could see it. Giving the column the width and the
+   fill the bar keeps the two labels apart by layout instead of by luck. */
+.qb {{ flex:1 1 0; min-width:0; height:100%; display:flex; flex-direction:column;
   justify-content:flex-end; align-items:center; }}
-.qbf {{ width:100%; min-height:2px; border-radius:1px 1px 0 0; }}
+/* The label band is RESERVED, and the plot is what is left. The fill's percentage resolves
+   against .qbp, so a bar at full scale reaches the top of the plot and stops there, under its
+   own label, instead of being asked to share a box the label is also in. This is why the
+   value can no longer come down on top of the bar: not a colour choice, a layout that cannot
+   express the overlap. */
+.qbv {{ flex:0 0 auto; }}
+.qbp {{ flex:1 1 auto; width:100%; display:flex; align-items:flex-end;
+  justify-content:center; min-height:0; }}
+.qbf {{ width:clamp(9px,3.2vw,26px); max-width:100%; min-height:2px;
+  border-radius:1px 1px 0 0; }}
+/* A month the record holds with nothing published: a rule where the bars would be, and the
+   word, so the slot reads as absent rather than as zero. */
+.qmiss {{ height:100%; display:flex; flex-direction:column; justify-content:flex-end;
+  align-items:center; gap:.3rem; width:100%; }}
+.qmissr {{ width:70%; border-top:1px dashed color-mix(in srgb, var(--granite) 45%, transparent);
+  height:0; }}
+.qmisst {{ font-family:var(--mono); font-size:clamp(7.5px,1.9vw,11px); line-height:1.6;
+  color:color-mix(in srgb, var(--granite) 72%, var(--paper));
+  letter-spacing:.06em; order:-1; }}
+.qgrp.qnone .qm {{ color:color-mix(in srgb, var(--granite) 72%, var(--paper)); }}
 .qb.qa .qbf {{ background:var(--granite); }}
 .qb.qd .qbf {{ background:color-mix(in srgb, var(--granite) 42%, var(--paper)); }}
 /* THE VALUE SITS ABOVE ITS OWN BAR and is always present, never revealed on hover. A number a
