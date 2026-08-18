@@ -18,6 +18,12 @@ The City of Taylor published a public notice that its City Council would conside
 
 - 2026-08-13 · hearing: Regularly scheduled Taylor City Council meeting at 6:00 p.m. at which the amended abatement was noticed for consideration
 
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-18 · Checked and unchanged. The amended abatement notice for Compal still posts on the City of Taylor newsflash.
+
 ## Evidence
 
 Every fact above rests on one of these. The words are the source's own.

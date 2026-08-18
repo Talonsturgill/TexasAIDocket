@@ -15,6 +15,12 @@ Texas law restricts the channels through which the Public Utility Commission may
 
 - 2021-06-08 · effective: SB 2 (87R) added the board selection committee
 
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-18 · Checked and unchanged. The statute still bars a verbal directive and still limits an official action to a contested case, a rulemaking or a written order.
+
 ## Evidence
 
 Every fact above rests on one of these. The words are the source's own.

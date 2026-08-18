@@ -16,6 +16,12 @@ Governor Greg Abbott issued a directive on August 3rd, 2026. It tells the Public
 - 2026-08-03 · ordered: Directive issued
 - 2026-08-20 · hearing: Next utility commission open meeting after the directive
 
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-16 · The directive letter itself is now the cited source rather than the press release about it. The release reads 'approximately over 474 gigawatts' where the letter reads 'approximately 474 gigawatts'.
+
 ## Evidence
 
 Every fact above rests on one of these. The words are the source's own.

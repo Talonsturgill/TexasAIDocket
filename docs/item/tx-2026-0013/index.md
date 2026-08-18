@@ -14,6 +14,12 @@ The Texas Jobs, Energy, Technology and Innovation Act is the state's school dist
 ## Dates
 
 
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-18 · Checked and unchanged. The Comptroller's current JETI agreements list still names no data center project.
+
 ## Evidence
 
 Every fact above rests on one of these. The words are the source's own.

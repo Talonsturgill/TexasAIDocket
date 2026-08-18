@@ -18,6 +18,12 @@ Laredo City Council declined to impose a temporary moratorium on data center per
 - 2026-08-05 · ordered: Council rejected the moratorium and directed staff to draft permanent standards, as reported
 - 2026-08-11 · hearing: Mayor-hosted community town hall on proposed data center regulations
 
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-18 · Checked and unchanged.
+
 ## Evidence
 
 Every fact above rests on one of these. The words are the source's own.
