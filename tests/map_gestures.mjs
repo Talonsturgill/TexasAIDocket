@@ -55,19 +55,36 @@ ok(`the map starts at its full extent, ${HOME[2].toFixed(0)} wide`, HOME[2] > 0)
 ok('the touch layer is live on a phone context',
    await page.evaluate(() => 'ontouchstart' in window));
 
-// WHERE THE FINGERS ACTUALLY LAND. This defaulted to a hardcoded (195, 400), which is above
-// the map on this viewport: the drawing starts around y=502. The handler runs anyway, because
-// the events are dispatched straight at the element, so every zoom assertion in here was
-// passing on a gesture performed off the drawing. Anchoring is measured against the finger
-// position, so a wrong finger position is the one input that has to be real.
-const BOX = await page.$eval('svg.txmap', (s) => {
+// WHERE THE FINGERS ACTUALLY LAND, and it has been wrong twice.
+//
+// First it was a hardcoded (195, 400), which is above the map: the drawing started around
+// y=502. The handler runs anyway, because the events are dispatched straight at the element,
+// so every zoom assertion in here was passing on a gesture performed off the drawing.
+//
+// Then it was measured once at load and reused, which is the same fault with a longer fuse.
+// READ LIVE, NEVER CACHED. This measured the box once at load and reused it all the way
+// down the file, which is a bug that waits for the page to get longer. `page.click` scrolls
+// its target into view, so the moment the reset control sat below the fold the click moved
+// the page, the cached coordinates pointed at where the map used to be, and the anchoring
+// assertion compared a stale client point against a live `getScreenCTM`. It reported 840
+// units of drift on a map that had not drifted at all.
+//
+// A layout measurement is only true at the instant it is taken. Every finger position here
+// is computed at the moment it is used.
+const boxNow = () => page.$eval('svg.txmap', (s) => {
   const r = s.getBoundingClientRect();
   return {left: r.left, top: r.top, w: r.width, h: r.height};
 });
-const AT = (fx, fy) => [BOX.left + BOX.w * fx, BOX.top + BOX.h * fy];
-const [MIDX, MIDY] = AT(0.5, 0.5);
-ok(`the fingers land on the drawing, centre (${MIDX.toFixed(0)}, ${MIDY.toFixed(0)})`,
-   MIDY > BOX.top && MIDY < BOX.top + BOX.h && MIDX > BOX.left && MIDX < BOX.left + BOX.w);
+const AT = async (fx, fy) => {
+  const b = await boxNow();
+  return [b.left + b.w * fx, b.top + b.h * fy];
+};
+{
+  const b = await boxNow();
+  const [mx, my] = await AT(0.5, 0.5);
+  ok(`the fingers land on the drawing, centre (${mx.toFixed(0)}, ${my.toFixed(0)})`,
+     my > b.top && my < b.top + b.h && mx > b.left && mx < b.left + b.w);
+}
 
 // The SVG user-space point under a client point, asked of the browser rather than derived,
 // because `preserveAspectRatio` letterboxes and a hand-rolled ratio would not know it.
@@ -79,7 +96,8 @@ const userAt = (x, y) => page.evaluate(([x, y]) => {
 
 // Two fingers, dispatched as real TouchEvents. Playwright's touchscreen API is single
 // touch only, so a pinch has to be built by hand.
-async function pinch(from, to, cx = MIDX, cy = MIDY) {
+async function pinch(from, to, cx, cy) {
+  if (cx === undefined || cy === undefined) [cx, cy] = await AT(0.5, 0.5);
   await page.evaluate(([from, to, cx, cy]) => {
     const map = document.querySelector('svg.txmap');
     const T = (x, y, id) => new Touch({identifier: id, target: map, clientX: x, clientY: y});
@@ -111,7 +129,7 @@ async function twoFingerDrag(dx, dy) {
       fire('touchmove', [T(ax - 45 + px, ay + py, 1), T(ax + 45 + px, ay + py, 2)]);
     }
     fire('touchend', []);
-  }, [dx, dy, MIDX, MIDY]);
+  }, [dx, dy, ...(await AT(0.5, 0.5))]);
   await page.waitForTimeout(60);
 }
 
@@ -143,7 +161,7 @@ ok('the reset control is showing now the view has moved',
 await page.click('#mapreset');
 await page.waitForTimeout(80);
 {
-  const [ax, ay] = AT(0.22, 0.27);
+  const [ax, ay] = await AT(0.22, 0.27);
   const before = await userAt(ax, ay);
   const home = await vb();
   await pinch(70, 250, ax, ay);
