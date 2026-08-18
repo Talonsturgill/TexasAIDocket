@@ -1089,3 +1089,66 @@ number the front page prints, and that agreement is checkable by hand in one lin
 **Generalises to.** Any enum that describes a kind of thing being read as a statement about that
 thing's current state. A status, a room, a category, a type. If the answer depends on the date,
 the field alone can't give it.
+
+---
+
+## 27. Generated, validated, and shown to nobody
+
+Three fields on the same page, found on one afternoon in August 2026, each written by something
+and read by nothing a person could see.
+
+`history` had existed on every item since the record did. The routine wrote to it only when
+something changed, so every "checked and unchanged" observation was discarded at the instant it
+was made, and no builder rendered the field at all. **57 of 61 items carried no movement log**,
+and the four that did showed a reader nothing.
+
+`schema.qa_pairs` produced up to twelve answered questions per item, every one assembled from
+named fields and arithmetic, every one governed by its own self-tests for punctuation, voice and
+subject-verb agreement. All of it shipped inside a `FAQPage` JSON-LD node. **A crawler could read
+those answers. The person the page was built for could not.**
+
+`key_dates[].note` rendered in the Dates table where a reader read it, and sat outside every copy
+gate on both layers, because the gates were written against a list of fields somebody maintained
+by hand and nobody had asked whether this one was on it.
+
+Every gate was green throughout. There is no gate for this, and that is the point: a build gate
+answers "is what we published correct", and none of the three was incorrect. Two of them were not
+published at all, and the third was published outside the gates' field list.
+
+**What to check instead.** For each field the record carries, ask three separate questions and
+expect three separate answers. **Who writes it. What validates it. Where a reader sees it.** A
+field with a gap in any column is not a feature yet. The `history` field had a writer and nothing
+else, `qa_pairs` had a writer and a validator and no reader, and `key_dates[].note` had a writer
+and a reader and no validator. Three different gaps, one shape.
+
+**Generalises to.** Any field added in a hurry to carry state, then never wired to a surface. The
+tell is that grepping the field name finds the write and a comment, and nothing else. That grep
+takes ten seconds and is worth running over the schema once a quarter.
+
+---
+
+## 28. A self-test proved the gate could go red, on a sentence nobody writes
+
+`gate_narration` refuses machine narration in reader copy. Its self-tests were real, it had been
+watched going red, and one of its branches read `(?:could|couldn't|can't) be verified`.
+
+The sentence a person actually writes is "**the date could not be verified**".
+
+The negation sits between the modal and the verb, so the branch missed it. The neighbouring
+`not verified` alternative missed it too, because the string is "not BE verified". The gate whose
+entire subject is that phrase was blind to its most natural form, and had been for as long as it
+had existed.
+
+It was found by widening the gate to a new field and then deliberately trying to make the new
+coverage fail. Three test phrasings were tried. Two went red, and the third passed when it
+plainly should not have, which is the only reason anybody looked at the pattern.
+
+**What to check instead.** "Every gate can go red" is necessary and it is not sufficient. A gate
+that goes red on the phrasing its author had in mind proves the wiring works, not that the rule
+is covered. When a gate targets a PHRASE rather than a structure, write out three or four ways a
+person would really say it, including the negated form, and check that each one fails. Negation,
+contraction and passive voice are where a phrase pattern leaks, in that order.
+
+**Generalises to.** Any check built on a list of literal phrases rather than on a structural
+property. Banned-word lists, narration detectors, hedge detectors, tone checks. The structural
+gates in this repo do not have this failure mode, because a semicolon is a semicolon.

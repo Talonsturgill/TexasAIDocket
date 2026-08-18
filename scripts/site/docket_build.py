@@ -117,7 +117,13 @@ NARRATION = re.compile(
     r"\b(this (?:item|record|entry|docket)|we (?:found|could not|were unable|searched|fetched)|"
     r"our (?:research|search|analysis)|the (?:search|scan|crawl) (?:found|turned up|returned)|"
     r"no page (?:anyone|we) could reach|as of this writing|at the time of writing|"
-    r"(?:could|couldn't|can't) be verified|not verified|unverified|"
+    # THE NEGATED FORM IS THE ONE PEOPLE ACTUALLY WRITE, and this branch missed it. It read
+    # "could be verified", so "the date could not be verified" walked past a gate whose whole
+    # subject it is, on the one word that makes it narration rather than a fact. The separate
+    # "not verified" alternative did not catch it either, because the string is "not BE
+    # verified". Found on 2026-08-18 while checking that the widened gate could go red, which
+    # is the argument for testing that a gate BITES rather than that it passes.
+    r"(?:could|couldn't|can't|would|cannot)(?:\s+not)?\s+be verified|not verified|unverified|"
     r"i |i'm |we |we're |our |us )",
     re.IGNORECASE,
 )
@@ -128,9 +134,18 @@ NUMERAL = re.compile(r"\d[\d,]*(?:\.\d+)?%?")
 
 # House style writes dates as "August 11th". Those ordinals are not published figures and must
 # not be forced into a claim quote.
+#
+# A DATE CAN NAME MORE THAN ONE DAY, and this read only the first of them until 2026-08-18. A
+# board that meets over two days is written "August 12th and 13th, 2026", the pattern matched
+# "August 12th", and the numeral gate then read the surviving "13" as a figure with no claim
+# behind it. Nothing was wrong with the sentence. The checker could only recognise a date with
+# exactly one day in it, and every extra day a real meeting ran was reported as an untraceable
+# number. Ranges are covered by the same tail, which is why "to" and "through" are in it:
+# house style writes a range as "X to Y" and that is a date, not a subtraction.
 DATE_ORDINAL = re.compile(
     r"\b(?:January|February|March|April|May|June|July|August|September|October|November|"
-    r"December)\s+\d{1,2}(?:st|nd|rd|th)\b",
+    r"December)\s+\d{1,2}(?:st|nd|rd|th)"
+    r"(?:\s*(?:,|and|to|through)\s*\d{1,2}(?:st|nd|rd|th))*\b",
     re.IGNORECASE,
 )
 # A bare four-digit year in prose is a date, not a measurement.
@@ -377,12 +392,14 @@ def _reader_text(item: dict, *, include_history: bool = True) -> str:
         for h in item.get("history") or []:
             if isinstance(h, dict):
                 parts.append(str(h.get("note", "")))
-    # A key date's note ALSO renders, in the Dates table, and is also ungoverned. It is
-    # deliberately NOT folded in here, and the reason is that doing so silently changes the
-    # input to a MEASURED ceiling. The comma rule is calibrated on running prose, and a key
-    # date note is a label fragment, so counting it moves a number that was measured on
-    # something else. Widening that gate is its own decision with its own evidence, and it is
-    # recorded as a wave in .claude/WORKLOG.md with the three real defects it already found.
+    # A key date's note ALSO renders, on the timeline, and is NOT folded in here. It is not
+    # ungoverned any more. `gate_house_style` reads it directly and applies the construction
+    # rules to it, and the reason it is checked over there rather than folded in over here is
+    # that this text is what the COMMA CEILING is measured against. That ceiling is a measured
+    # number calibrated on running prose, a key date note is a label fragment, and adding
+    # fragments to the measurement moves a number that was measured on something else. The
+    # split, and the numeral gate question still open on those notes, are written out in full
+    # at `gate_house_style`.
     return " ".join(parts)
 
 
@@ -630,8 +647,42 @@ def gate_house_style(items: list) -> Result:
         rate = caption_check.rate_problem(text, caption_check.SITE_COMMA_CEILING)
         if rate:
             r.fail(f"{who}: {rate}")
+        # A KEY DATE NOTE IS COPY, AND IT IS CHECKED ON CONSTRUCTION ONLY.
+        #
+        # It renders on the timeline under the date it belongs to, so a reader reads it, and
+        # until 2026-08-18 no gate on either layer read it. That is the hole the movement log
+        # sat in and it opened the same way, by the field being written before anybody asked
+        # what governs it.
+        #
+        # THE SPLIT IS DELIBERATE AND THE COMMA CEILING IS THE HALF LEFT OUT. That ceiling is a
+        # MEASURED number, 3.97, taken by counting the commas in this project's running prose
+        # and cutting ten percent. What it means depends entirely on what was measured to
+        # produce it. A key date note is a label fragment, "Regular City Council meeting,
+        # 9:00 AM, item scheduled for discussion and action", where both commas are structural
+        # and there is no sentence to split at. Folding fragments into the measurement while
+        # keeping a threshold calibrated on sentences would fail pages for a reason that has
+        # nothing to do with whether the prose breathes, which is the exact error CLAUDE.md
+        # names when it says the rate is measured on running prose and not on whole-page text.
+        # Fragments can have their own ceiling when somebody measures fragments.
+        #
+        # THE NUMERAL GATE IS ALSO LEFT OUT, AND THAT ONE IS NOT SETTLED. This is the open
+        # question on this gate and it is written here because here is where somebody will look.
+        # Run over these notes it produced exactly two findings and both were the checker's
+        # fault. "August 12th and 13th" was a date `DATE_ORDINAL` could only half read, which
+        # was a real bug and is fixed at that pattern. "NewsChannel 6" is a broadcaster's name,
+        # and that one is still open: the answer to a proper noun with a numeral inside it is
+        # not an allowlist, because an allowlist is a hole with a list attached to it. Until
+        # there is a real answer these notes are not numeral checked, which is a stated gap
+        # rather than an oversight.
+        for kd in (it.get("key_dates") or []):
+            for problem in caption_check.check(str(kd.get("note") or "")):
+                r.fail(f"{who}: key date {kd.get('date', '?')}: {problem}")
+            m = NARRATION.search(str(kd.get("note") or ""))
+            if m:
+                r.fail(f"{who}: key date {kd.get('date', '?')}: narrates the machine or uses "
+                       f"first person ({m.group(0).strip()!r})")
     if r.status == "PASS":
-        r.note(f"{len(items)} item(s) keep the house rules")
+        r.note(f"{len(items)} item(s) keep the house rules, key date notes included")
     return r
 
 
@@ -1120,6 +1171,11 @@ def self_test() -> int:
     expect("narration catches search narration",
            gate_narration([base(summary="No page anyone could reach lists the figure.")]),
            "FAIL")
+    # THE NEGATED FORM, which this gate read past until 2026-08-18. Its branch was written
+    # "could be verified" and the sentence somebody actually writes is "could not be verified",
+    # so the one word that turns a fact into narration was the one word that let it through.
+    expect("narration catches the negated verification phrase",
+           gate_narration([base(summary="The meeting date could not be verified.")]), "FAIL")
 
     expect("house style passes clean copy", gate_house_style([base()]), "PASS")
     expect("house style catches a colon in a summary",
@@ -1135,6 +1191,30 @@ def self_test() -> int:
                "url": None, "closes": "2026-09-04"})]), "FAIL")
     expect("house style catches a bare date",
            gate_house_style([base(summary="Comments close September 4.")]), "FAIL")
+    # THE KEY DATE NOTE, which renders on the timeline and was outside every gate on both
+    # layers until 2026-08-18. Three cases, and the third is the point of the other two: the
+    # construction rules apply to a fragment exactly as they apply to a sentence, and the comma
+    # ceiling does not, because that number was measured on running prose and a label fragment
+    # is not running prose. A note whose commas are structural has to keep passing or the split
+    # was not made.
+    expect("house style reaches a key date note",
+           gate_house_style([base(key_dates=[
+               {"date": "2026-08-21", "kind": "hearing",
+                "note": "Open meeting — the board sits"}])]), "FAIL")
+    expect("...and catches narration in one",
+           gate_house_style([base(key_dates=[
+               {"date": "2026-08-21", "kind": "hearing",
+                "note": "Open meeting, the date could not be verified"}])]), "FAIL")
+    expect("...and leaves a comma dense fragment alone",
+           gate_house_style([base(key_dates=[
+               {"date": "2026-08-21", "kind": "hearing",
+                "note": "Regular City Council meeting, 9:00 AM, item scheduled for "
+                        "discussion and action"}])]), "PASS")
+    # A DATE CAN NAME TWO DAYS. The ordinal pattern read only the first, so the numeral gate
+    # reported the second as a figure with no claim behind it. Nothing was wrong with the copy.
+    expect("a two day date is a date, not a stray figure",
+           gate_numerals([base(summary="The board meets in Austin on August 12th and 13th, "
+                                       "2026.")]), "PASS")
     expect("house style catches an em dash",
            gate_house_style([base(summary="The rule is open — comments close soon.")]),
            "FAIL")
