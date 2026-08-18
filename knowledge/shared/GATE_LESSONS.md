@@ -1152,3 +1152,45 @@ contraction and passive voice are where a phrase pattern leaks, in that order.
 **Generalises to.** Any check built on a list of literal phrases rather than on a structural
 property. Banned-word lists, narration detectors, hedge detectors, tone checks. The structural
 gates in this repo do not have this failure mode, because a semicolon is a semicolon.
+
+---
+
+## 29. The exemption an allowlist would have been, and the pass that was luck
+
+A key date note on `tx-2026-0041` reads "Date NewsChannel 6 reported the Planning and Zoning
+Commission approval". The `6` is half a broadcaster's name. It is not a measurement, it traces to
+no computation, and it never will, so the numeral gate could not read those notes at all and they
+stayed outside it while every other field moved inside.
+
+**The obvious fix is a list of station names, and a list is a hole with a list attached to it.**
+The moment "Channel 12" goes on it, "Channel 12" is authorised on every page of this site forever,
+whether or not any source ever mentioned it, and the gate has quietly stopped being about
+evidence.
+
+**What was done instead.** The candidate span is found structurally, a capitalised run followed by
+a number, and then it has to MATCH A NAME THE ITEM'S OWN EVIDENCE ALREADY CARRIES: a source URL's
+host, a source title, the deciding body, the item's title. `NewsChannel 6` is authorised on that
+item because that item cites `newschannel6now.com`, whose host squashes to `newschannel6nowcom`
+and carries `newschannel6`. `NewsChannel 9` is authorised nowhere, because nothing in the record
+is called that. The exemption is **earned per item**, which is the same shape as
+`schema.list_answer_ok`, where the comma exemption is checked against the counties the record
+actually holds rather than granted to a region of the page.
+
+**And then the second half, which is the part worth remembering.** With the record layer fixed,
+the site layer's build passed. It had been passing all along. Not because the site layer had
+solved this, but because `6` is a single digit and a single digit is nearly always in the
+site-wide authorised set already, put there by some unrelated computation on some unrelated page.
+
+**The gate was returning the right answer for a reason that had nothing to do with the question.**
+It would have gone red the first day a broadcaster's number was less common, on a change that had
+nothing to do with broadcasters. Both layers now derive the same answer from the same function.
+
+**What to check instead.** When a gate passes on the case you were worried about, find out WHY it
+passed before you move on. A pass is evidence about the gate only if you know which rule produced
+it. This one was reached by asking the authorised set directly, item by item, instead of reading
+the build's exit code, which is the same instruction as "run a gate by exit code, never by reading
+the last line", one level in.
+
+**Generalises to.** Any allowlist shared across a whole site where the values are small integers,
+short strings, or common tokens. The wider the set, the more often it is right by coincidence, and
+coincidence does not survive a refactor.

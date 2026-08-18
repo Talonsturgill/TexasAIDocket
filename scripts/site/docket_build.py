@@ -427,6 +427,69 @@ def _quoted_numerals(item: dict) -> set:
     return out
 
 
+# A NAME WITH A NUMBER IN IT, and the number is part of the name.
+#
+# "NewsChannel 6" is a broadcaster. "ABC13" is a station. "Interstate 35" is a road. The numeral
+# is not a measurement and forcing it into a claim quote would be the law misread, the same
+# misreading `_quoted_numerals` already names for computed figures.
+#
+# THE EXEMPTION IS EARNED, NOT DECLARED, which is the only reason it is allowed to exist. The
+# obvious fix here is an allowlist of station names, and an allowlist is a hole with a list
+# attached to it: the moment somebody adds "Channel 12" to it, "Channel 12" is authorised on
+# every page of the site whether or not any source ever mentioned it. So nothing is listed.
+# The candidate span is found structurally, and then it has to MATCH A NAME THIS ITEM'S OWN
+# EVIDENCE ALREADY CARRIES, which is exactly the shape of `schema.list_answer_ok`, where the
+# comma exemption is checked against the counties the record actually holds.
+#
+# What the evidence carries, for this purpose: the host of every source URL, every source
+# title, the deciding body's name, and the item's own title. "NewsChannel 6" is authorised on
+# tx-2026-0041 because that item cites `newschannel6now.com`. "NewsChannel 9" is not authorised
+# anywhere, because nothing in the record is called that.
+NAME_NUMBER = re.compile(r"\b([A-Z][A-Za-z&.'’-]*(?:\s+[A-Z][A-Za-z&.'’-]*)*)\s*(\d[\d,]*)\b")
+
+
+def _squash(s: str) -> str:
+    """Lowercase alphanumerics only, so a host, a headline and a sentence compare as names."""
+    return re.sub(r"[^a-z0-9]+", "", str(s).lower())
+
+
+def _name_evidence(item: dict) -> str:
+    """Every name this item's record carries, squashed into one haystack."""
+    parts = [str(item.get("title", "")), str((item.get("decider") or {}).get("name", ""))]
+    for c in item.get("claims", []):
+        parts.append(str(c.get("source_title", "")))
+        # The host, with its dots gone, is where a broadcaster's own number usually lives.
+        # `newschannel6now.com` squashes to `newschannel6nowcom`, which carries `newschannel6`.
+        parts.append(str(c.get("source_url", "")))
+    return " ".join(_squash(p) for p in parts)
+
+
+def _name_numerals(item: dict, text: str) -> set:
+    """Numerals in `text` that sit inside a name this item's own evidence already carries.
+
+    EVERY SUFFIX OF THE CAPITALISED RUN IS TRIED, SHORTEST FIRST, and that is not a detail. The
+    pattern is greedy by necessity, because a name can be several words, so "Date NewsChannel 6"
+    hands back "Date NewsChannel" as the candidate and `datenewschannel6` matches nothing. The
+    name is the tail of that run, not the whole of it, and which tail is not knowable from the
+    sentence. Trying each one costs nothing and keeps the test a membership check against the
+    record rather than a guess about where a proper noun starts.
+
+    It does NOT loosen the exemption. A longer or shorter window still has to match a name the
+    evidence carries, so a sentence can only ever authorise a numeral the record already knows
+    is part of a name.
+    """
+    hay = _name_evidence(item)
+    out = set()
+    for name, num in NAME_NUMBER.findall(text):
+        words = name.split()
+        for i in range(len(words) - 1, -1, -1):
+            probe = _squash(" ".join(words[i:]) + num)
+            if probe and probe in hay:
+                out.add(num.replace(",", "").rstrip("%"))
+                break
+    return out
+
+
 def _prose_numerals(text: str) -> list:
     """Numerals in prose, minus dates, years and citations, which are identifiers not figures."""
     # Order matters. Dotted sections go before YEAR, or "2054.705" loses its "2054" to the
@@ -552,6 +615,18 @@ def gate_numerals(items: list) -> Result:
 
     Every numeral in reader copy must appear in some claim's verbatim quote. Dates, years and
     statute or docket citations are exempt because they are identifiers, not measurements.
+
+    KEY DATE NOTES ARE IN THIS GATE AS OF 2026-08-18, and getting them in was the whole reason
+    `_name_numerals` exists. They render under their own date on the timeline, so they are read
+    exactly as much as the summary is, and they sat outside this gate because one of them says
+    "NewsChannel 6" and a broadcaster's name is not a measurement. The fix for that is not to
+    keep the notes out and it is not a list of station names. It is a rule that asks the
+    record whether the thing is a name, which is what `_name_numerals` does.
+
+    THEY ARE CHECKED SEPARATELY RATHER THAN CONCATENATED ONTO THE SUMMARY, because the name
+    exemption is scoped to the text it was earned in. A broadcaster this item cites is not a
+    licence for that figure to appear anywhere else in the item's copy, where nothing has
+    established it as a name.
     """
     r = Result("numerals")
     checked = 0
@@ -563,8 +638,17 @@ def gate_numerals(items: list) -> Result:
             if got not in allowed:
                 r.fail(f"{who}: numeral '{got}' appears in reader copy but in no claim quote. "
                        f"Quote it or cut it")
+        for kd in (it.get("key_dates") or []):
+            note = str(kd.get("note") or "")
+            ok = allowed | _name_numerals(it, note)
+            for got in _prose_numerals(note):
+                checked += 1
+                if got not in ok:
+                    r.fail(f"{who}: key date {kd.get('date', '?')}: numeral '{got}' appears in "
+                           f"the note but in no claim quote and in no name the record carries. "
+                           f"Quote it or cut it")
     if r.status == "PASS":
-        r.note(f"{checked} numeral(s) in copy, all traceable to a quote")
+        r.note(f"{checked} numeral(s) in copy, all traceable to a quote or a name")
     return r
 
 
@@ -665,15 +749,11 @@ def gate_house_style(items: list) -> Result:
         # names when it says the rate is measured on running prose and not on whole-page text.
         # Fragments can have their own ceiling when somebody measures fragments.
         #
-        # THE NUMERAL GATE IS ALSO LEFT OUT, AND THAT ONE IS NOT SETTLED. This is the open
-        # question on this gate and it is written here because here is where somebody will look.
-        # Run over these notes it produced exactly two findings and both were the checker's
-        # fault. "August 12th and 13th" was a date `DATE_ORDINAL` could only half read, which
-        # was a real bug and is fixed at that pattern. "NewsChannel 6" is a broadcaster's name,
-        # and that one is still open: the answer to a proper noun with a numeral inside it is
-        # not an allowlist, because an allowlist is a hole with a list attached to it. Until
-        # there is a real answer these notes are not numeral checked, which is a stated gap
-        # rather than an oversight.
+        # THE NUMERAL GATE IS NOT LEFT OUT. It reads these notes over in `gate_numerals`, and
+        # the two findings that stood in the way were both the checker's fault rather than the
+        # copy's. "August 12th and 13th" was a date `DATE_ORDINAL` could only half read, fixed
+        # at that pattern. "NewsChannel 6" is a broadcaster's name, answered by `_name_numerals`
+        # asking the record whether the thing is a name instead of carrying a list of stations.
         for kd in (it.get("key_dates") or []):
             for problem in caption_check.check(str(kd.get("note") or "")):
                 r.fail(f"{who}: key date {kd.get('date', '?')}: {problem}")
@@ -1035,6 +1115,35 @@ def self_test() -> int:
            gate_numerals([base(summary="The queue holds 474 gigawatts of requests.")]), "FAIL")
     expect("numerals exempts an ordinal date",
            gate_numerals([base(summary="Comments close September 4th.")]), "PASS")
+    # THE KEY DATE NOTE IS IN THIS GATE, and the name exemption is what let it in. Four cases,
+    # and the last two are the ones that keep the exemption honest: it has to be EARNED against
+    # a name the item's own evidence carries, and it must not travel to another item.
+    _bcast = [{"id": "c1", "text": "t", "verbatim_quote": "A conditional use request was "
+                                                          "approved.",
+               "source_url": "https://www.newschannel6now.com/2026/08/11/datanovax/",
+               "source_title": "DataNovaX data center approved", "source_type": "journalism",
+               "fetched": "2026-08-11"}]
+    expect("numerals reaches a key date note",
+           gate_numerals([base(key_dates=[{"date": "2026-09-04", "kind": "reported",
+                                           "note": "The plant draws 900 megawatts"}])]), "FAIL")
+    expect("...and a two day date in one is still a date",
+           gate_numerals([base(key_dates=[{"date": "2026-09-04", "kind": "hearing",
+                                           "note": "Board sits September 4th and 5th"}])]),
+           "PASS")
+    expect("...and a broadcaster's own number is a name, not a figure",
+           gate_numerals([base(claims=_bcast,
+                               key_dates=[{"date": "2026-09-04", "kind": "reported",
+                                           "note": "Date NewsChannel 6 reported the "
+                                                   "approval"}])]), "PASS")
+    expect("...but only on an item whose evidence carries that name",
+           gate_numerals([base(key_dates=[{"date": "2026-09-04", "kind": "reported",
+                                           "note": "Date NewsChannel 6 reported the "
+                                                   "approval"}])]), "FAIL")
+    expect("...and an invented station is refused on the item that cites the real one",
+           gate_numerals([base(claims=_bcast,
+                               key_dates=[{"date": "2026-09-04", "kind": "reported",
+                                           "note": "Date NewsChannel 9 reported the "
+                                                   "approval"}])]), "FAIL")
     expect("numerals exempts a bare year",
            gate_numerals([base(summary="The rule took effect in 2025.")]), "PASS")
     expect("numerals exempts a bill citation",
