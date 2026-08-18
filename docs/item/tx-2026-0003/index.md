@@ -22,7 +22,7 @@ Oncor Electric Delivery has applied to amend its certificate of convenience and 
 ## Dates
 
 - 2026-02-02 · filed: Oncor requested a docket number
-- 2026-08-21 · hearing: Open meeting on the PUCT calendar feed. The entry no longer names this docket and gives an off site address
+- 2026-08-21 · hearing: Open meeting on the PUCT calendar feed, which no longer names Docket 59315
 
 ## Evidence
 
