@@ -107,7 +107,13 @@ NAV = [("", "Home"), ("record/", "Docket"), ("articles/", "Articles"),
 # The scan is the free front door under the services ladder, so it belongs in the way out
 # rather than in the top bar. Eight items is already a full masthead and a ninth would
 # cost the seven that were there first.
-FOOTNAV = NAV[1:] + [("scan/", "Scan"), ("data/", "Data")]
+# BEATS AND PLACES SIT IN THE FOOTER, not the masthead. Eight items is already a full top bar
+# on a phone and these are the two ways INTO the record rather than two more sections beside
+# it, so the way out at the bottom of the page is where somebody who did not find what they
+# came for actually looks. It also means no hub is itself an orphan, which is the fault they
+# were built to fix.
+FOOTNAV = NAV[1:] + [("topic/", "Beats"), ("place/", "Places"),
+                     ("scan/", "Scan"), ("data/", "Data")]
 
 # WHERE THIS RECORD IS, ELSEWHERE ON THE WEB.
 #
@@ -1209,6 +1215,9 @@ def home(items: list, today: str) -> str:
     n_counties = len(lit)
     n_items = proj["counts"]["items"]
     n_claims = proj["counts"]["claims"]
+    # The front page's index of the beats. Its figures are authorised by the same call that
+    # renders them, which is why it hands back both.
+    covers_html = covers_section(items, today)[1]
     runs = load_runs()
     n_videos = video_count()
 
@@ -1322,6 +1331,8 @@ def home(items: list, today: str) -> str:
    '</section>' if rows else
    '<section data-reveal>' + lede + '<p class="meta" data-prose="data"><a href="record/">See all '
    + str(n_items) + ' decisions</a></p></section>'}
+
+{covers_html}
 
 <section data-reveal>
   <h2>What this is</h2>
@@ -1524,11 +1535,218 @@ def topic_page(topic: str, items: list, today: str) -> str:
 <span class="num">{len(items)}</span> decisions on the record.</p></div>
 {topic_chips(items, depth=2, current=topic)}
 <ul class="items" data-prose="data">{rows}</ul>
-<p class="meta" data-prose="data"><a href="../../record/">All decisions</a></p>
+<p class="meta" data-prose="data"><a href="../../record/">All decisions</a> ·
+<a href="../">All beats</a></p>
 """
-    return page(title=f"{topic_label(topic)} · {SITE_NAME}", depth=2, active="record/",
-                desc=f"Texas AI decisions filed under {topic.replace('-', ' ')}.",
-                body=body, today=today, canonical=f"topic/{topic}/")
+    return page(
+        title=f"{topic_label(topic)} · {SITE_NAME}", depth=2, active="record/",
+        # THE DESCRIPTION SAYS WHAT THE BEAT IS, not what the URL is. It read "Texas AI
+        # decisions filed under data centers", which is the slug with spaces in it and tells a
+        # reader in a result list nothing they did not already know from the title. The blurb
+        # is the line written to describe this beat, so it is the line that belongs here.
+        desc=f"{topic_blurb(topic)} Tracked on the Texas AI Docket.",
+        body=body, today=today, canonical=f"topic/{topic}/",
+        extra_ld=[
+            schema.collection_node(
+                SCHEMA_CTX, name=topic_label(topic), path=f"topic/{topic}/",
+                description=topic_blurb(topic), count=len(mine),
+                elements=[(i["title"], f'item/{i["id"]}/') for i in mine]),
+            schema.breadcrumbs(SCHEMA_CTX, [(SITE_NAME, ""), ("The beats", "topic/"),
+                                            (topic_label(topic), f"topic/{topic}/")]),
+        ])
+
+
+# ---------------------------------------------------------------- the beats, and their hub
+
+# WHY A BLURB IS DATA RATHER THAN A SENTENCE INSIDE A TEMPLATE.
+#
+# Two surfaces publish it, the hub at /topic/ and the front page's covers grid, and a line
+# written into either template is the same sentence typed twice, which is how a heading and a
+# description drift apart. It sits beside `topic_label` because both turn a filing slug into
+# something a reader was meant to read, and both are the only place that happens.
+#
+# THESE ARE THE ONE PLACE THIS SITE DESCRIBES A BEAT RATHER THAN COUNTING IT. A hub whose
+# cards carry a name and a number is a directory listing, and a directory listing is thin to a
+# reader deciding where to look and thin to a crawler deciding whether the page is about
+# anything. The blurb is what makes /topic/ a page about Texas AI decisions instead of a page
+# about eight links.
+TOPIC_BLURBS = {
+    "data-centers":
+        "Where the buildings go and who signs off on them. Zoning votes. Tax abatements. "
+        "Moratoriums county by county.",
+    "power-and-the-grid":
+        "The load these projects add and the rules written around it. Interconnection. "
+        "Curtailment. Who pays for the wires.",
+    "state-policy":
+        "Bills and agency rules that set what AI may do in Texas. Statewide directives and "
+        "who answers for them.",
+    "land-water-and-permitting":
+        "The acreage and the water a project needs before anything is built. Groundwater "
+        "districts. Plats. The permits that gate them.",
+    "defense-and-federal":
+        "Federal agencies and installations making AI decisions on Texas ground. Base "
+        "contracts and national programs sited here.",
+    "research-and-science":
+        "University labs and state research money. The institutions building these systems "
+        "rather than buying them.",
+    "health-and-education":
+        "AI reaching patients and students. What hospital systems and school districts allow "
+        "in clinical and classroom use.",
+    "surveillance-and-policing":
+        "Cameras and plate readers in the hands of Texas agencies. The predictive tools "
+        "beside them and the oversight attached to each.",
+}
+
+
+def topic_blurb(topic: str) -> str:
+    """One line on what a beat covers, shared by the hub and the front page.
+
+    IT FAILS THE BUILD RATHER THAN FALLING BACK TO EMPTY. A missing blurb rendered as an
+    empty string publishes a card with a heading and nothing under it, which reads as a beat
+    nobody has filed against yet rather than as a build fault, and it would ship. Admitting a
+    new topic to the ledger is therefore deliberately a two file change.
+    """
+    try:
+        return TOPIC_BLURBS[topic]
+    except KeyError:
+        raise SystemExit(
+            f"site_build: topic {topic!r} has no blurb. Every beat the ledger admits needs one "
+            f"line in TOPIC_BLURBS saying what it covers, because /topic/ and the front page "
+            f"both publish it and neither has anywhere else to get it.")
+
+
+def _open_now(subset: list, today: str) -> int:
+    """How many of these decisions a Texan can still comment on TODAY. Computed, never typed.
+
+    IT ASKS `window_state` RATHER THAN READING THE ROOM, and the first draft of this did read
+    the room, which was wrong in a way that would have shipped a false claim on the two most
+    visible pages on the site.
+
+    `public_access.room` records what KIND of access a decision has, not whether that access is
+    still available. Counting `open_meeting` as open put "18 still open to the public" on the
+    data centers card while one of those meetings had closed five days earlier. The room is a
+    fact about the decision. Whether the door is open is arithmetic against today, which is
+    exactly what `window_state` exists to do and what the item pages already trust.
+
+    THERE IS ONE DEFINITION OF OPEN ON THIS SITE and this is not allowed to be a second one. A
+    broader count would read better and would mean something no other page means, which is how
+    two surfaces start disagreeing about the same record.
+    """
+    return sum(1 for i in subset if dk.window_state(i, today) == "open")
+
+
+def topics_index(items: list, today: str) -> tuple:
+    """The hub for /topic/. Returns (numerals it prints, html).
+
+    WHY THIS PAGE HAD TO EXIST. Eight topic pages shipped with no index above them and
+    nothing on the site linking to one, so the only routes in were the chip row on a page a
+    reader had already found and the sitemap. A page family reachable only sideways is
+    crawled slowly and understood as a set of strangers rather than as a structure, and it
+    gets worse every time the record grows, which is the direction this record only goes.
+
+    IT RETURNS ITS OWN NUMERALS, the pattern the questions and sources pages already use, so
+    the figures it prints and the figures it is authorised to print come out of the same
+    call and cannot drift.
+    """
+    by: dict = {}
+    for it in items:
+        by.setdefault(it["topic"], []).append(it)
+
+    a = numeral_lint.Authorised()
+    a.add(len(items), len(by))
+
+    cards = []
+    for t in sorted(by):
+        mine = by[t]
+        openn = _open_now(mine, today)
+        a.add(len(mine), openn)
+        # THE OPEN COUNT IS PRINTED ONLY WHEN THERE IS ONE. "0 still open" is a true sentence
+        # that reads as a dead beat, and most beats are closed most of the time because that
+        # is what a record of decided things looks like.
+        still = (f'<span class="cv-open">{openn} still open to comment</span>'
+                 if openn else "")
+        cards.append(
+            f'<li class="cv-card"><a href="{e(t)}/"><h2>{e(topic_label(t))}</h2></a>'
+            f'<p class="cv-blurb">{e(topic_blurb(t))}</p>'
+            f'<p class="cv-foot" data-prose="data">'
+            f'<span class="num">{len(mine)}</span> '
+            f'{"decision" if len(mine) == 1 else "decisions"}{still}</p></li>')
+
+    body = f"""
+<h1>The beats</h1>
+<div class="prose"><p>Every decision on this record is filed under one of these
+<span class="num">{len(by)}</span> beats. Each keeps its own page whether or not it moved this
+week. Each names the decisions on it and who decided them. Each says whether a Texan still has
+a way in.</p>
+</div>
+<ul class="covers">{"".join(cards)}</ul>
+<p class="meta" data-prose="data"><a href="../record/">All
+<span class="num">{len(items)}</span> decisions</a> ·
+<a href="../place/">Browse by place</a></p>
+"""
+    html = page(
+        title=f"The beats · {SITE_NAME}", depth=1, active="record/",
+        desc=("The beats the Texas AI Docket tracks, from data centers and the ERCOT grid to "
+              "land, water and permitting. Every AI decision in Texas, filed and sourced."),
+        body=body, today=today, canonical="topic/",
+        extra_ld=[
+            schema.collection_node(
+                SCHEMA_CTX, name="The beats", path="topic/",
+                description="Every beat the Texas AI Docket files decisions under.",
+                count=len(by),
+                elements=[(topic_label(t), f"topic/{t}/") for t in sorted(by)]),
+            schema.breadcrumbs(SCHEMA_CTX, [(SITE_NAME, ""), ("The record", "record/"),
+                                            ("The beats", "topic/")]),
+        ])
+    return a.set, html
+
+
+def covers_section(items: list, today: str) -> tuple:
+    """The front page's index of the record. Returns (numerals it prints, html).
+
+    DENSER THAN THE CARD WALL IT IS MODELLED ON, and carrying more. Alaska's version of this
+    is seven full width cards of name, count and blurb, which is most of a screen for eight
+    facts. This is one row per beat in a grid that runs two and three wide, and each row
+    carries the name, the count, the blurb and whether anything on that beat is still open,
+    which is one more fact per beat in roughly a third of the height.
+
+    THE BLURB IS THE SAME STRING THE HUB PUBLISHES, by construction. Two surfaces describing
+    the same eight beats in two sets of words is how a site starts contradicting itself.
+
+    It is a SECOND route to the same pages rather than a decoration. The beats were reachable
+    from the chip row on the record page and from nowhere else a reader lands first, and the
+    front page is where nearly everybody lands first.
+    """
+    by: dict = {}
+    for it in items:
+        by.setdefault(it["topic"], []).append(it)
+
+    a = numeral_lint.Authorised()
+    a.add(len(items), len(by))
+
+    cards = []
+    for t in sorted(by, key=lambda k: (-len(by[k]), k)):
+        mine = by[t]
+        openn = _open_now(mine, today)
+        a.add(len(mine), openn)
+        still = (f'<span class="cv-open">{openn} open to comment</span>' if openn else "")
+        cards.append(
+            f'<li class="cv-card"><a href="topic/{e(t)}/"><h3>{e(topic_label(t))}</h3></a>'
+            f'<p class="cv-blurb">{e(topic_blurb(t))}</p>'
+            f'<p class="cv-foot" data-prose="data"><span class="num">{len(mine)}</span> '
+            f'{"decision" if len(mine) == 1 else "decisions"}{still}</p></li>')
+
+    html = f"""<section data-reveal>
+  <h2><a href="topic/">What this record covers</a></h2>
+  <div class="prose"><p>Every decision is filed under one of
+  <span class="num">{len(by)}</span> beats. Each keeps its own page whether or not it moved
+  this week. Each says whether a Texan still has a way in.</p></div>
+  <ul class="covers front">{"".join(cards)}</ul>
+  <p class="meta" data-prose="data"><a href="topic/">All beats</a> ·
+  <a href="place/">Browse by place</a> ·
+  <a href="record/">All <span class="num">{len(items)}</span> decisions</a></p>
+</section>"""
+    return a.set, html
 
 
 def _item_metros(it: dict) -> list:
@@ -1737,11 +1955,26 @@ def place_page(place: dict, items: list, today: str) -> str:
 {texas_map.render(lit=lit, inset=True, scope=map_scope)}
 <table><thead><tr><th>Item</th><th>Topic</th><th>Status</th></tr></thead>
 <tbody>{rows}</tbody></table>
-<p class="prose"><a href="../../record/">The whole record</a></p>
+<p class="prose"><a href="../../record/">The whole record</a> ·
+<a href="../">Every place</a></p>
 """
-    return page(title=f"{head} · {SITE_NAME}", depth=2, active="record/",
-                desc=f"What the record of Texas AI decisions says about {head}.",
-                body=body, today=today, canonical=f"place/{place['id']}/")
+    return page(
+        title=f"{head} · {SITE_NAME}", depth=2, active="record/",
+        desc=f"What the record of Texas AI decisions says about {head}.",
+        body=body, today=today, canonical=f"place/{place['id']}/",
+        # A PLACE PAGE IS A COLLECTION AND IT SAID SO NOWHERE. These 73 pages carried the
+        # boilerplate site node and nothing else, so the most locally searched question this
+        # record answers, whether anything is happening in my county, was the one a crawler
+        # had the least to go on. The list names the decisions rather than counting them.
+        extra_ld=[
+            schema.collection_node(
+                SCHEMA_CTX, name=head, path=f"place/{place['id']}/",
+                description=f"Texas AI decisions on the record for {head}.",
+                count=len(mine),
+                elements=[(i["title"], f'item/{i["id"]}/') for i in mine]),
+            schema.breadcrumbs(SCHEMA_CTX, [(SITE_NAME, ""), ("By place", "place/"),
+                                            (head, f"place/{place['id']}/")]),
+        ])
 
 
 def all_places(items: list, today: str) -> list:
@@ -1763,6 +1996,82 @@ def all_places(items: list, today: str) -> list:
                     "full_name": f"{c} County", "counties": [c],
                     "touched_counties": [c], "items": by_county.get(c, [])})
     return out
+
+
+def places_index(items: list, today: str) -> tuple:
+    """The hub for /place/. Returns (numerals it prints, html).
+
+    THE BIGGEST SURFACE ON THIS SITE HAD NO INDEX. Seventy odd place pages shipped with no
+    page above them, reachable only from whichever item happened to name that county and from
+    the sitemap. The build loop's own comment said "The index, then a page for every metro",
+    and the index it named was never written. So a reader could not see the geography of the
+    record at all, and the pages that answer the most locally searched question this record
+    can answer, whether anything is happening in MY county, were the hardest ones to reach.
+
+    METROS AND COUNTIES ARE LISTED SEPARATELY because they are different sizes of answer, and
+    a single alphabetical run of both would put Bell County next to the Killeen area that
+    contains it with nothing saying which is which.
+    """
+    places = all_places(items, today)
+    metros = [pl for pl in places if pl["kind"] == "metro"]
+    counties = [pl for pl in places if pl["kind"] == "county"]
+    tx = _place_facts()
+
+    a = numeral_lint.Authorised()
+    a.add(len(items), len(places), len(metros), len(counties), *tx.values())
+
+    def cell(pl: dict, label: str) -> str:
+        n = len(pl["items"])
+        a.add(n)
+        return (f'<a class="topicchip" href="{e(pl["id"])}/">'
+                f'<span class="tc-name">{e(label)}</span>'
+                f'<span class="tc-n num">{n}</span></a>')
+
+    metro_row = "".join(cell(pl, pl["name"]) for pl in
+                        sorted(metros, key=lambda x: x["name"]))
+    county_row = "".join(cell(pl, f'{pl["name"]} County') for pl in
+                         sorted(counties, key=lambda x: x["name"]))
+
+    body = f"""
+<h1>By place</h1>
+<div class="prose"><p>Texas has <span class="num">{tx["counties"]}</span> counties. This record
+currently names <span class="num">{len(counties)}</span> of them across
+<span class="num">{len(metros)}</span> statistical areas. Every county the record touches keeps
+its own page. So does every area. A reader asking about Bell County wants Bell County rather
+than the Killeen area that contains it.</p></div>
+
+<h2>Statistical areas</h2>
+<div class="prose"><p>The federal metropolitan and micropolitan areas this record touches.
+Each page names the counties in the area and says plainly which of them nothing has been found
+in yet.</p></div>
+{'<nav class="topicrow" aria-label="Areas">' + metro_row + '</nav>' if metro_row else ''}
+
+<h2>Counties</h2>
+<div class="prose"><p>Every county with at least one decision on the record.</p></div>
+{'<nav class="topicrow" aria-label="Counties">' + county_row + '</nav>' if county_row else ''}
+
+<p class="meta" data-prose="data"><a href="../record/">All
+<span class="num">{len(items)}</span> decisions</a> ·
+<a href="../topic/">Browse by beat</a></p>
+"""
+    html = page(
+        title=f"By place · {SITE_NAME}", depth=1, active="record/",
+        desc=("Texas AI decisions by county and metro area. Every county this record touches "
+              "keeps its own page of who decided, by when, and whether the public still has "
+              "a way in."),
+        body=body, today=today, canonical="place/",
+        extra_ld=[
+            schema.collection_node(
+                SCHEMA_CTX, name="By place", path="place/",
+                description="Every Texas county and statistical area this record touches.",
+                count=len(places),
+                elements=[(pl["name"] if pl["kind"] == "metro" else f'{pl["name"]} County',
+                           f'place/{pl["id"]}/')
+                          for pl in sorted(places, key=lambda x: (x["kind"], x["name"]))]),
+            schema.breadcrumbs(SCHEMA_CTX, [(SITE_NAME, ""), ("The record", "record/"),
+                                            ("By place", "place/")]),
+        ])
+    return a.set, html
 
 
 def county_links(items: list, today: str, depth: int) -> dict:
@@ -3176,7 +3485,8 @@ def build(out: Path, today: str) -> dict:
     shutil.copyfile(fonts_build.WEB / "OFL.txt", out / "fonts" / "OFL.txt")
     written.append("fonts/OFL.txt")
 
-    w("index.html", home(items, today), _home_numerals(items, today) | listed(items))
+    w("index.html", home(items, today),
+      _home_numerals(items, today) | listed(items) | covers_section(items, today)[0])
     w("docket.json", json.dumps({"_spec": {"generated": today}, "items": items},
                                 indent=2, ensure_ascii=False) + "\n")
     for it in items:
@@ -3214,6 +3524,10 @@ def build(out: Path, today: str) -> dict:
     # page with no navigation, no search and no sign the site is even ours.
     w("404.html", not_found_page(today, items))
     w("record/index.html", docket_index(items, today), listed(items))
+    # THE HUB, THEN THE BEATS. Written above the loop so the family reads as a family, and
+    # so a reader or a crawler arriving at /topic/ finds a page rather than a 404.
+    _tfig, _thtml = topics_index(items, today)
+    w("topic/index.html", _thtml, extra=_tfig)
     for t in sorted({i["topic"] for i in items}):
         w(f"topic/{t}/index.html", topic_page(t, items, today),
           listed([i for i in items if i["topic"] == t]))
@@ -3243,6 +3557,12 @@ def build(out: Path, today: str) -> dict:
           extra=_run_numerals(r))
     # PER PLACE. The index, then a page for every metro the record touches and every
     # touched county that is in no metro. Nothing falls between the two.
+    #
+    # THIS COMMENT PROMISED AN INDEX FOR MONTHS AND THERE WAS NONE. It is written now, and it
+    # is written first, because 73 pages reachable only sideways from whichever item names
+    # them is the largest family on this site being crawled as strangers.
+    _plfig, _plhtml = places_index(items, today)
+    w("place/index.html", _plhtml, extra=_plfig)
     for pl in all_places(items, today):
         w(f'place/{pl["id"]}/index.html', place_page(pl, items, today),
           listed([i for i in items if i["id"] in set(pl["items"])]))

@@ -680,7 +680,27 @@ def breadcrumbs(ctx: Ctx, trail: list) -> dict:
     }
 
 
-def collection_node(ctx: Ctx, *, name: str, path: str, description: str, count: int) -> dict:
+def collection_node(ctx: Ctx, *, name: str, path: str, description: str, count: int,
+                    elements: list | None = None) -> dict:
+    """A hub page, and what is actually in it.
+
+    `elements` IS [(name, path)] AND IT IS WHAT MAKES THIS NODE WORTH EMITTING. An
+    `ItemList` carrying only `numberOfItems` states that a collection has a size and
+    refuses to say what is in it, which tells a crawler nothing it could not have counted
+    itself. The list is how a hub page is read AS a hub rather than as one more page that
+    happens to have links on it, and it is the difference between a page family being
+    understood as a family and being crawled as 73 unrelated strangers.
+
+    It stays OPTIONAL because two callers legitimately have no list to give. The questions
+    pages are generated per kind and their entries are the questions themselves, which are
+    already emitted as a `FAQPage`, and duplicating them here would state the same thing
+    twice in one head.
+    """
+    lst = {"@type": "ItemList", "numberOfItems": count}
+    if elements:
+        lst["itemListElement"] = [
+            {"@type": "ListItem", "position": i + 1, "name": n, "url": ctx.url(pth)}
+            for i, (n, pth) in enumerate(elements)]
     return {
         "@context": "https://schema.org",
         "@type": "CollectionPage",
@@ -688,7 +708,7 @@ def collection_node(ctx: Ctx, *, name: str, path: str, description: str, count: 
         "description": description,
         "url": ctx.url(path),
         "isPartOf": {"@id": ctx.url("#org")},
-        "mainEntity": {"@type": "ItemList", "numberOfItems": count},
+        "mainEntity": lst,
     }
 
 
@@ -836,6 +856,21 @@ def self_test() -> int:
        not bad_agreement, "\n         ".join(bad_agreement[:5]))
     ok("...and that read real answers rather than an empty list",
        len(produced) >= 100, f"only {len(produced)} answer(s) produced")
+
+    # A HUB'S LIST SAYS WHAT IS IN IT, which is the whole reason the node is worth emitting.
+    bare = collection_node(ctx, name="Beats", path="topic/", description="d", count=2)
+    full = collection_node(ctx, name="Beats", path="topic/", description="d", count=2,
+                           elements=[("Data centers", "topic/data-centers/"),
+                                     ("State policy", "topic/state-policy/")])
+    ok("a collection with no elements still states its size",
+       bare["mainEntity"]["numberOfItems"] == 2
+       and "itemListElement" not in bare["mainEntity"])
+    ok("...and one with elements names every child and links it",
+       [x["name"] for x in full["mainEntity"]["itemListElement"]]
+       == ["Data centers", "State policy"]
+       and full["mainEntity"]["itemListElement"][1]["url"].endswith("/topic/state-policy/"))
+    ok("...positions are one based and in order, which is what a ListItem means",
+       [x["position"] for x in full["mainEntity"]["itemListElement"]] == [1, 2])
 
     print("\nschema self-test: " + ("all passed" if not failures else f"{failures} FAILED"))
     return 0 if not failures else 1
