@@ -2208,22 +2208,6 @@ def services_page(items: list, today: str) -> str:
   <div class="offers">{offers}</div>
 </section>
 
-<section data-reveal>
-  <h2>The shop runs on what it sells</h2>
-  <p class="sub">You are not the test case.</p>
-  <div class="capgrid">
-    <div class="cap"><span class="k">In public</span><h3>This site ships itself</h3>
-      <p>The record, the deck and the video all ship from an autonomous studio. You are
-      reading the proof of work.</p></div>
-    <div class="cap"><span class="k">In production</span><h3>Systems running now</h3>
-      <p>Content engines and event pipelines. Multi-agent systems too. All of it behind
-      quality gates and approval steps.</p></div>
-    <div class="cap"><span class="k">Self improving</span><h3>The machine upgrades itself</h3>
-      <p>After every run the studio studies what hurt and ships fixes to its own machinery.
-      What you own gets the same habit.</p></div>
-  </div>
-</section>
-
 <section id="start" data-reveal>
   <h2>Start here</h2>
   <p class="sub">Say what the work is. A reply comes inside one business day.</p>
@@ -2278,11 +2262,6 @@ def about_page(today: str) -> str:
   Paperwork engines and assistants trained on a company's own files. That work lives on the
   <a href="../services/">services page</a>. Writing the beat every morning is exactly why the
   studio knows what actually pays.</p>
-
-  <h2>Who runs it</h2>
-  <p>Founded and run by <a href="https://www.linkedin.com/in/talonsturgill">Talon
-  Sturgill</a>, also lead AI engineer for a large lab serving enterprise clients. That
-  expertise gets pointed at Texas businesses who rarely get access to it.</p>
 
   <h2>How the work gets verified</h2>
   <p>Every fact carries a claim id and traces to a fetched document. At least one source on
