@@ -1054,3 +1054,38 @@ so the routine now says at that step that its exit code is a stop.
 The rule underneath: **a defect the owner finds by looking at the site is a defect the automation
 was supposed to find first.** Publishing is not the last step. Opening what you published is.
 
+
+## 26. A field's name is not a claim about today
+
+The hub cards for the beats and the front page's index of them were built to carry one fact past
+the count, whether a Texan can still act on anything on that beat. The first cut read
+`public_access.room` and counted `open_comment` and `open_meeting` together, which put **"18
+still open to the public"** on the data centers card while one of those meetings had closed five
+days before the build.
+
+Every gate passed. `house_style_check` read the sentence and found nothing wrong with its
+grammar, its commas or its voice. `numeral_lint` traced the 18 to a computation, because 18
+genuinely was the length of a filtered list. `schema_check` validated the node the number sat
+beside. `site_fresh_check` proved the page was exactly what the builder produces. The build was
+byte reproducible, house style clean, fully sourced and wrong.
+
+`room` records what KIND of access a decision has. It does not record whether that access is
+still available, and nothing in its name says so. The arithmetic against today is a separate
+question that this repository had already answered once, in `window_state`, which the item pages
+already trusted and which the front page's own counter was already printing.
+
+**What to check instead.** Ask whether a published claim is a fact about the RECORD or a fact
+about TODAY. A count of rows in a ledger is the first. Anything carrying "still", "open",
+"current", "now" or "remaining" is the second, and it has to be computed against a date. No lint
+can catch this, because both are the same integer to a scanner. The check is a reader asking what
+the sentence promises.
+
+**And it is why a second definition is worse than a missing one.** The broader count read better
+and would have been defensible in isolation. What made it a defect is that this site already had
+one definition of open, so shipping a second meant two surfaces disagreeing about the same
+record on any day the two happened to diverge. The per topic figures now sum to exactly the
+number the front page prints, and that agreement is checkable by hand in one line.
+
+**Generalises to.** Any enum that describes a kind of thing being read as a statement about that
+thing's current state. A status, a room, a category, a type. If the answer depends on the date,
+the field alone can't give it.
