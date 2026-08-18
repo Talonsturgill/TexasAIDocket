@@ -29,8 +29,24 @@ Strict about the handful of fields the public site depends on, quiet about every
 fact-checker should stay free to record MORE than the minimum, because the extra is often what a
 later run needs. It is not free to record less, or to rename what it records.
 
+THE SPEC THE AGENT READS IS PART OF THIS GATE (2026-08-18)
+
+Texas's second deck rediscovered the drift in one run: the fact-checker returned `source_url`
+for `url`, `journalism` for `secondary_reported`, `dropped` for `rejected`, and no `retrieved`
+at all, and the showrunner repaired the file by hand across four rejections. The gate was right
+every time. **The agent was guessing, because the only schema it had was a worked example with
+`"url": "the page you fetched"` in it, and the source taxonomy was written as prose advice in a
+different section of the file with none of its four values spelled out.**
+
+So this file now owns the spec as well as the check. `--template` prints a valid skeleton
+BUILT FROM THE CONSTANTS BELOW, and `--self-test` runs `check()` over the JSON example in
+`.claude/agents/carousel-fact-checker.md` and asserts that spec names every required field and
+every source type. A schema written twice is wrong in both places eventually; this is what makes
+the second copy fail loudly instead.
+
     claims_check.py --date 2026-08-12
     claims_check.py --file out/2026-08-12/claims.json
+    claims_check.py --template
     claims_check.py --self-test
 
 Exit 0 clean, 1 on a hard failure, 2 if the file cannot be read at all.
@@ -78,6 +94,64 @@ ID_RE = re.compile(r"^c\d+$")
 MIN_QUOTE_WORDS = 4
 # Below this a "quote" is a fragment that cannot be searched for in the source, which makes it
 # unverifiable by the next person, which is the same as not having one.
+
+
+AGENT_SPEC = REPO_ROOT / ".claude" / "agents" / "carousel-fact-checker.md"
+
+# The value --template fills source_type with. Named rather than taken as sorted(SOURCE_TYPES)[0],
+# which quietly became "data" and would have taught every run that a filing is a dataset. The
+# self-test asserts it is still a member of the taxonomy.
+TEMPLATE_SOURCE_TYPE = "primary_official"
+
+
+def template() -> dict:
+    """A valid claims file, BUILT FROM THE CONSTANTS ABOVE rather than typed beside them.
+
+    Printed by --template and asserted clean by --self-test, so the skeleton the run copies
+    can never fall behind the schema the run is checked against. Every value here is a real
+    one: an agent that fills in a placeholder still produces a file this gate accepts.
+    """
+    return {
+        CONTAINER: [{
+            "id": "c1",
+            "text": "what the record will state, in the record's own words",
+            "quote": "the verbatim string you found in the fetched page",
+            "url": "https://interchange.puc.texas.gov/Documents/58482",
+            "source_type": TEMPLATE_SOURCE_TYPE,
+            "retrieved": _dt.date.today().isoformat(),
+            "confidence": "high",
+        }],
+        "rejected": [{"finding": "what the scout said", "reason": "why it failed, specifically"}],
+    }
+
+
+def spec_problems(md: str) -> list[str]:
+    """Does the agent's own spec state the schema this file enforces?
+
+    GATE_LESSONS 19 and 12: a rule written in one place and enforced in another is a rule that
+    reads perfectly while meaning nothing. The 2026-08-18 drift cost four rejections because
+    the spec's example was placeholder prose and the source taxonomy appeared nowhere in it.
+    """
+    problems: list[str] = []
+    m = re.search(r"```json\s*\n(.*?)```", md, re.S)
+    if not m:
+        problems.append("the spec has no ```json example for the agent to copy")
+    else:
+        try:
+            problems += [f"the spec's own example fails this gate: {p}"
+                         for p in check(json.loads(m.group(1)))]
+        except json.JSONDecodeError as exc:
+            problems.append(f"the spec's example is not valid JSON: {exc}")
+    for f in sorted(REQUIRED):
+        if not re.search(r"`%s`" % re.escape(f), md):
+            problems.append(f"the spec never names the required field {f!r} in backticks")
+    for st in sorted(SOURCE_TYPES):
+        if st not in md:
+            problems.append(f"the spec never names the source type {st!r}, so the agent guesses")
+    if CONTAINER not in md or "rejected" not in md:
+        problems.append("the spec does not name both top level keys, "
+                        f"{CONTAINER!r} and 'rejected'")
+    return problems
 
 
 def load(path: Path) -> dict:
@@ -200,6 +274,7 @@ def run(path: Path) -> int:
         for p in problems:
             print(f"  - {p}")
         print("\n  The deck is built from this file only. Fix it before Phase 6.")
+        print("  `claims_check.py --template` prints a valid skeleton to work from.")
         return 1
     print(f"claims: clean ({n} verified claim(s), {len(doc.get('rejected') or [])} rejected)")
     return 0
@@ -278,11 +353,46 @@ def self_test() -> int:
        bool(check({"claims": [], "rejected": []})))
     ok("a file that is not an object fails rather than throwing", bool(check(["c1"])))
 
+    # THE SPEC IS PART OF THE GATE (2026-08-18). Four rejections in one run, all of them the
+    # agent guessing at a field name the spec did not state. A spec that has drifted from the
+    # checker is not a documentation problem, it is the checker's input being wrong.
+    ok("the template this file prints passes this file's own check",
+       not check(template()), str(check(template()))[:120])
+    ok("...and its source_type is really in the taxonomy",
+       TEMPLATE_SOURCE_TYPE in SOURCE_TYPES, TEMPLATE_SOURCE_TYPE)
+
+    # THE 2026-08-18 SHAPE, replayed exactly as the fact-checker returned it that day: four
+    # renames in one file, each of which the gate caught and the showrunner repaired by hand.
+    tx = {"claims": [{"id": "c1", "text": good["claims"][0]["text"],
+                      "quote": good["claims"][0]["quote"],
+                      "source_url": good["claims"][0]["url"],
+                      "source_type": "journalism", "confidence": "high"}],
+          "dropped": [{"finding": "a 500 MW figure", "reason": "the filing says 380 MW"}]}
+    p = check(tx)
+    ok("caught: 2026-08-18's source_url", any("source_url" in x for x in p), str(p))
+    ok("caught: 2026-08-18's missing retrieved", any("'retrieved'" in x for x in p), str(p))
+    ok("caught: 2026-08-18's journalism source type", any("journalism" in x for x in p), str(p))
+    ok("caught: 2026-08-18's dropped instead of rejected",
+       any("rejected" in x for x in p), str(p))
+    if not AGENT_SPEC.exists():
+        ok(f"the fact-checker spec exists at {AGENT_SPEC.relative_to(REPO_ROOT)}", False,
+           "the agent has no schema at all")
+    else:
+        md = AGENT_SPEC.read_text(encoding="utf-8")
+        sp = spec_problems(md)
+        ok("the fact-checker's own spec states the schema this gate enforces",
+           not sp, "; ".join(sp)[:300])
+        # and the spec check itself has to be able to go red
+        ok("...and that check can fail: a spec missing the taxonomy is CAUGHT",
+           bool(spec_problems(md.replace("secondary_reported", "journalism"))))
+        ok("...and a spec whose example fails the gate is CAUGHT",
+           bool(spec_problems(md.replace('"url":', '"source_url":'))))
+
     if failures:
         print(f"\nclaims_check self-test: {failures} FAILED", file=sys.stderr)
         return 1
     print(f"\nclaims_check self-test: all passed ({len(REQUIRED)} required fields, "
-          f"every sibling drift replayed)")
+          f"every sibling drift replayed, and the agent spec checked against them)")
     return 0
 
 
@@ -311,9 +421,14 @@ def main() -> int:
     ap.add_argument("--out", default=str(REPO_ROOT / "out"),
                     help="run scratch root, so every gate takes the same flags")
     ap.add_argument("--self-test", action="store_true")
+    ap.add_argument("--template", action="store_true",
+                    help="print a valid claims.json skeleton built from this file's schema")
     a = ap.parse_args()
     if a.self_test:
         return self_test()
+    if a.template:
+        print(json.dumps(template(), indent=2))
+        return 0
     if a.file:
         return run(Path(a.file))
     if a.date:

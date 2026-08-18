@@ -20,6 +20,17 @@ Checks per slide (consuming render_report.json + the PNGs):
     through the text). Knockout plates and halos leave that ring clean.
     Added 2026-07-25 after four slides shipped art-band labels crossed by
     canvas-drawn geometry through two scoring cycles of PASS with zero warns.
+  - TEXT STRUCK BY A DRAWN RULE (FAIL): consumes render.py's drawn-geometry
+    probe (every border side, outline, painted empty box and SVG line/rect edge)
+    and FAILS when a strip thinner than one em of the struck type runs through
+    the GLYPH BAND of a non-decorative text line and measures 3.0:1 or better
+    against the paper beside it (WCAG 1.4.11's non-text floor, measured off the
+    PNG). Added 2026-08-18 after slide 09's table ran its 2px bottom rule
+    through the middle of the closing footnote and machine QA reported PASS with
+    zero fails and zero warns: text_collisions() compares TEXT to TEXT, the
+    occlusion probe compares text to OPAQUE ELEMENT BOXES four or more px in
+    both dimensions, and a border is neither. Paint order is not consulted; a
+    dark hairline across a word is a strikethrough whichever painted last.
   - TEXT UNDER AN OPAQUE PLATE (FAIL): consumes render.py's occlusion probe
     (paint-order-confirmed intersections of each line box with foreign opaque
     element boxes) and FAILS when a plate covers >=20x6px of a non-decorative
@@ -79,7 +90,8 @@ Checks per slide (consuming render_report.json + the PNGs):
 
 Usage:
   python .claude/skills/carousel-engine/qa.py --render-dir out/run/render
-Exit codes: 0 pass (warnings allowed), 1 any FAIL.
+  python .claude/skills/carousel-engine/qa.py --self-test
+Exit codes: 0 pass (warnings allowed), 1 any FAIL, 2 the checker could not run.
 Writes <render-dir>/machine_qa.json
 """
 
@@ -87,7 +99,9 @@ import argparse
 import json
 import math
 import re
+import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 import numpy as np
@@ -785,6 +799,17 @@ def frame_balance(img_arr):
     return bands[2] / occ, bands
 
 
+# TEXT STRUCK BY A DRAWN RULE (2026-08-18). See rule_strikes().
+#
+# WCAG 2.1 SC 1.4.11 Non-text Contrast. A rule only reads as a strikethrough if
+# a reader can see it, and the published floor for "visual information required
+# to identify graphical objects" is 3.0:1 against adjacent colour. This is that
+# standard, used as written; it is not a number measured off this corpus, so it
+# cannot ratchet. Below it, a hairline is the decoration GATE_LESSONS 7 says a
+# divider is allowed to be, and this gate says nothing about it.
+RULE_VISIBLE_RATIO = 3.0
+RULE_SAMPLE_MIN = 24   # device px of clean strip needed before a colour is claimed
+
 OCC_FAIL_W = 20     # px of a line box's WIDTH an opaque plate must cover to FAIL
 OCC_FAIL_H = 6       # px of its HEIGHT (a quarter of the 24px mono floor)
 OCC_WARN_W = 12      # the tripwire band below the FAIL, for the critics' eyes
@@ -826,11 +851,393 @@ def text_collisions(nodes, min_overlap=0.30, min_px=8):
     return found
 
 
+def _text_mask(nodes, shape, scale):
+    """Device-pixel mask of every text line box on the slide, dilated 2px.
+
+    Used to keep glyph ink out of the colour samples taken for a drawn rule and
+    for the paper beside it. A median over a region that includes letterforms is
+    a median of the wrong population, which is the mistake GATE_LESSONS 26 is
+    about: do not measure a thing through something else that is sitting on it.
+    """
+    m = np.zeros(shape[:2], dtype=bool)
+    for n in nodes:
+        for bx, by, bw, bh in (n.get("lines") or [[n["x"], n["y"], n["w"], n["h"]]]):
+            x0 = max(0, int(bx * scale) - 2)
+            y0 = max(0, int(by * scale) - 2)
+            x1 = min(shape[1], int(math.ceil((bx + bw) * scale)) + 2)
+            y1 = min(shape[0], int(math.ceil((by + bh) * scale)) + 2)
+            if x1 > x0 and y1 > y0:
+                m[y0:y1, x0:x1] = True
+    return m
+
+
+def _clean_median(img_arr, tmask, x0, y0, x1, y1):
+    H, W = img_arr.shape[:2]
+    x0, y0 = max(0, int(x0)), max(0, int(y0))
+    x1, y1 = min(W, int(x1)), min(H, int(y1))
+    if x1 <= x0 or y1 <= y0:
+        return None, 0
+    sub = img_arr[y0:y1, x0:x1, :3]
+    keep = ~tmask[y0:y1, x0:x1]
+    n = int(keep.sum())
+    if n < RULE_SAMPLE_MIN:
+        return None, n
+    return np.median(sub[keep].astype(float), axis=0), n
+
+
+def strip_visibility(img_arr, tmask, r, scale, reach):
+    """MEASURE, off the PNG, whether a drawn strip reads against its own ground.
+
+    Returns (ratio, ink_rgb, paper_rgb) or None when the paper beside the strip
+    cannot be found within `reach` device px. Nothing is inferred from the
+    declared CSS colour: an rgba hairline, a blend mode and a grain overlay all
+    change what the reader receives, and only the composited pixel knows.
+
+    TWO THINGS THIS GETS RIGHT THAT THE FIRST DRAFT GOT WRONG, both found by
+    replaying the 2026-08-18 defect rather than by reasoning about it.
+
+    The ink is the strip's WORST (most contrasting) SCAN LINE, not the median
+    over the strip. A 2 design px border occupies 4 device rows at scale 2 and
+    paints about two of them, so a median over the whole strip reads halfway
+    between the rule and the paper: the real rule measured 2.6:1 that way and
+    7.6:1 correctly, and 2.6 is under the floor, so averaging would have passed
+    the defect this gate exists for. This is the same correction
+    contrast_worst_cell() made for text in 2026-07-31.
+
+    The ink sample does NOT mask off text and the paper sample DOES. A rule
+    spans its own scan line and glyphs cross it at a few x positions, so the
+    row median is the rule; a band of paper inside a line box is mostly
+    letterforms, so it has to be masked, and then looked for further out when
+    the rule runs the whole width of the type.
+    """
+    sx0, sy0 = int(r["x"] * scale), int(r["y"] * scale)
+    sx1 = int(math.ceil((r["x"] + r["w"]) * scale))
+    sy1 = int(math.ceil((r["y"] + r["h"]) * scale))
+    H, W = img_arr.shape[:2]
+    sx0, sy0 = max(0, sx0), max(0, sy0)
+    sx1, sy1 = min(W, sx1), min(H, sy1)
+    if sx1 <= sx0 or sy1 <= sy0:
+        return None
+    horiz = r["w"] >= r["h"]
+    t = max(1, (sy1 - sy0) if horiz else (sx1 - sx0))
+
+    # paper first: widen away from the strip in steps of its own thickness
+    paper = None
+    step = t
+    while step <= max(reach, t):
+        if horiz:
+            a, na = _clean_median(img_arr, tmask, sx0, sy0 - t - step, sx1, sy0 - t)
+            b, nb = _clean_median(img_arr, tmask, sx0, sy1 + t, sx1, sy1 + t + step)
+        else:
+            a, na = _clean_median(img_arr, tmask, sx0 - t - step, sy0, sx0 - t, sy1)
+            b, nb = _clean_median(img_arr, tmask, sx1 + t, sy0, sx1 + t + step, sy1)
+        sides = [(v, c) for v, c in ((a, na), (b, nb)) if v is not None]
+        if sides:
+            paper = sum(v * c for v, c in sides) / sum(c for _, c in sides)
+            break
+        step *= 2
+    if paper is None:
+        return None
+    lp = rel_luminance(paper)
+
+    best = None
+    for k in (range(sy0, sy1) if horiz else range(sx0, sx1)):
+        line = img_arr[k:k + 1, sx0:sx1, :3] if horiz else img_arr[sy0:sy1, k:k + 1, :3]
+        if line.size == 0:
+            continue
+        ink = np.median(line.reshape(-1, 3).astype(float), axis=0)
+        li = rel_luminance(ink)
+        lo, hi = min(li, lp), max(li, lp)
+        ratio = (hi + 0.05) / (lo + 0.05)
+        if best is None or ratio > best[0]:
+            best = (ratio, ink, paper)
+    return best
+
+
+def rule_strikes(nodes, rules, img_arr, scale):
+    """TEXT STRUCK BY A DRAWN RULE (2026-08-18). The class of collision every
+    other gate in this file is structurally unable to see.
+
+    THE DEFECT THIS EXISTS FOR. Run No.2's slide 09 closed the deck with a field
+    table over a footnote. The table's `tr.last td { border-bottom: 2px }` drew a
+    rule from x=84 to x=996 at y=1215, and the footnote's first line box was
+    [84,1204,691,31] with a 24px face, so a dark 2px rule ran through the middle
+    of the sentence and read as a STRIKETHROUGH at 432px feed width. qa.py
+    reported zero fails and zero warns on that slide. The scorer found it by
+    reading render_report.json's coordinates by hand, at the ship gate.
+
+    WHY NOTHING HERE COULD SEE IT, which is the part that generalises:
+
+      text_collisions()          compares TEXT line boxes against TEXT line
+                                 boxes. A border is not text.
+      the occlusion probe        compares line boxes against OPAQUE ELEMENT
+                                 BOXES, and requires >= 4px in both dimensions
+                                 plus a confirmed paint order. A 2px border is
+                                 not an element box, and this one painted BELOW
+                                 the footnote anyway.
+      glyph_ink_contamination()  reads pixels and would have had a chance, but
+                                 it fires on ink of the GLYPHS' OWN VALUE, and
+                                 the rule (#2C3A34) and the footnote (#4A4436)
+                                 are different values on the same sheet.
+      busy_art_under_text()      measures edge DENSITY, and one clean straight
+                                 rule through a line is the lowest-density
+                                 structure there is.
+
+    So the whole family -- a table rule, a CSS border, an <hr>, a divider div,
+    an SVG line -- shipped invisibly. render.py now emits every such strip as
+    geometry; this grades them.
+
+    THE TEST, and every quantity in it is the type's own or an external standard.
+
+      the glyph band   the em box, centred in the measured line box. That is
+                       CSS's own content area for an inline box, so it is
+                       derived from the node's font-size and its rendered line
+                       box rather than typed. Half-leading falls outside it,
+                       which is what separates a rule THROUGH a word from a
+                       rule sitting in the gap under it.
+      is it a rule     the strip's thickness must be under one em of the struck
+                       type. At one em or more the thing is a plate, and the
+                       occlusion probe owns plates. One em is the type's own
+                       unit and scales with the slide.
+      how much crossed a horizontal rule must cross at least one em of the line
+                       (one character struck, not a corner clipped). A vertical
+                       rule must sit at least one em inside BOTH ends of the
+                       line box, because a column divider brushing the end of a
+                       line box is ordinary and legitimate and a vertical rule
+                       standing inside a run of words is not.
+      can it be seen   WCAG 1.4.11's 3.0:1 non-text contrast floor, measured off
+                       the PNG between the strip and the paper beside it. Under
+                       that it is the hairline divider GATE_LESSONS 7 says is
+                       allowed to be quiet, and this says nothing about it.
+
+    PAINT ORDER IS NOT CONSULTED. The rule that shipped was painted UNDER the
+    footnote and read as a strikethrough regardless, because a dark hairline
+    across a word is a strikethrough whichever was rasterised last.
+
+    Returns a list of (severity, message) with severity "fail" or "warn".
+    """
+    out = []
+    if not rules or not nodes:
+        return out
+    tmask = _text_mask(nodes, img_arr.shape, scale)
+    seen = set()
+    for i, n in enumerate(nodes):
+        if n.get("decorative"):
+            continue
+        em = float(n.get("font_px") or 0)
+        if em <= 0:
+            continue
+        lines = n.get("lines") or [[n["x"], n["y"], n["w"], n["h"]]]
+        for bx, by, bw, bh in lines:
+            cy = by + bh / 2.0
+            band0, band1 = max(by, cy - em / 2.0), min(by + bh, cy + em / 2.0)
+            for r in rules:
+                if i in (r.get("skip") or []):
+                    continue
+                rw, rh = float(r["w"]), float(r["h"])
+                if min(rw, rh) <= 0 or min(rw, rh) >= em:
+                    continue          # a plate, not a rule: the occlusion probe owns it
+                rx, ry = float(r["x"]), float(r["y"])
+                ix = min(bx + bw, rx + rw) - max(bx, rx)
+                if ix <= 0 or min(by + bh, ry + rh) - max(by, ry) <= 0:
+                    continue
+                if rw >= rh:
+                    if ix < em:
+                        continue      # a corner clipped, not a character struck
+                else:
+                    cxr = rx + rw / 2.0
+                    if cxr - bx < em or (bx + bw) - cxr < em:
+                        continue      # a divider brushing the end of a line box
+                in_band = min(band1, ry + rh) - max(band0, ry) > 0
+                key = (i, round(rx), round(ry), round(rw), round(rh))
+                if key in seen:
+                    continue
+                seen.add(key)
+                # look for the paper up to one em away from the rule: further
+                # than that is a different part of the picture, not its ground.
+                vis = strip_visibility(img_arr, tmask, r, scale, em * scale)
+                where = ("%s .%s at %g,%g %gx%g"
+                         % (r.get("kind", "rule"), r.get("by", "?"), rx, ry, rw, rh))
+                if vis is None:
+                    if in_band:
+                        out.append(("warn",
+                                    "a drawn rule crosses the glyph band of '%s' (%s) and "
+                                    "COULD NOT BE MEASURED: too little of the strip is clear "
+                                    "of type to read its colour against the paper. Judge it "
+                                    "by eye rather than reading this as a pass"
+                                    % (n["text"][:40], where)))
+                    continue
+                ratio, _ink, _paper = vis
+                if ratio < RULE_VISIBLE_RATIO:
+                    continue          # a quiet divider; WCAG 1.4.11 asks nothing of it
+                if in_band:
+                    out.append((
+                        "warn" if n.get("overlap_ok") else "fail",
+                        "text struck by a drawn rule: '%s' has a %s running through its "
+                        "glyph band (%.0fpx of the line, %.1f:1 against the paper beside "
+                        "it). At feed width that reads as a strikethrough. Move the type, "
+                        "move the rule, or knock the rule out behind the line"
+                        % (n["text"][:40], where, ix, ratio)
+                        + (" [marked data-overlap-ok]" if n.get("overlap_ok") else "")))
+                else:
+                    out.append((
+                        "warn",
+                        "a drawn rule sits inside the line box of '%s' (%s, %.1f:1) but "
+                        "clear of the glyph band -- it is in the leading, so one reflow "
+                        "of this copy puts it through the words"
+                        % (n["text"][:40], where, ratio)))
+    return out
+
+
+def rules_missing_warning(rec):
+    """A slide record with no `rules` key was written by a render.py that had no
+    drawn-geometry probe, so the strikethrough gate CANNOT RUN on it.
+
+    GATE_LESSONS 19: a skip and an unavailable check are not the same event and
+    must not share a report line. This one says so out loud rather than letting
+    a slide nothing looked at read as a slide nothing found.
+    """
+    if "rules" in rec:
+        return None
+    return ("drawn-rule geometry is missing from this slide's render record, so "
+            "the strikethrough gate COULD NOT RUN -- re-render with the current "
+            "render.py rather than reading this slide as clean")
+
+
+TESTDATA = Path(__file__).resolve().parent / "testdata"
+
+
+def self_test():
+    """Replay the 2026-08-18 strikethrough against REAL CAPTURED RENDERS.
+
+    Three of the four cases are chromium renders of the same slide, cropped and
+    re-based, with the browser's own coordinates: the slide as it first
+    rendered (the defect), the slide as it shipped (the repair), and the defect
+    geometry with the loud rule swapped for the table's ordinary quiet hairline.
+    GATE_LESSONS 15 is why they are renders and not hand-written dicts, and the
+    third one is why they are three: it holds the geometry constant and changes
+    only what a reader can see, so it is the case that would go red if the WCAG
+    floor were quietly removed.
+    """
+    failures = 0
+
+    def ok(label, cond, extra=""):
+        nonlocal failures
+        print(f"  {'ok  ' if cond else 'FAIL'}  {label}{'' if cond else '  ' + extra}")
+        if not cond:
+            failures += 1
+
+    def load(name):
+        d = json.loads((TESTDATA / f"strike_2026-08-18_{name}.json").read_text())
+        arr = np.asarray(Image.open(TESTDATA / d["image"]).convert("RGB"))
+        return d, arr
+
+    def run(d, arr, nodes=None):
+        return rule_strikes(nodes if nodes is not None else d["text_nodes"],
+                            d["rules"], arr, d["scale"])
+
+    # 1. THE DEFECT. qa.py reported this slide PASS, 0 fails, 0 warns.
+    d, arr = load("defect")
+    f = run(d, arr)
+    fails = [m for s, m in f if s == "fail"]
+    ok("the 2026-08-18 strikethrough is CAUGHT", len(fails) >= 1, str(f))
+    ok("...and it names the struck text", any("Checked five days" in m for m in fails),
+       str(fails))
+    ok("...and it names the rule that struck it",
+       any("border .k" in m or "border .v" in m for m in fails), str(fails))
+
+    # 2. THE REPAIR. Same table, same 2px rule, moved clear of the footnote. A
+    #    gate that cannot go green on the repair is measuring something else.
+    dr, ar = load("repaired")
+    ok("the shipped repair is clean", run(dr, ar) == [], str(run(dr, ar)))
+    ok("...and the repair fixture still carries the rule that struck",
+       any(r["h"] == 2 for r in dr["rules"]), str(dr["rules"]))
+
+    # 3. THE DISCRIMINATION. Identical crossing, quiet 1px hairline instead of
+    #    the 2px near-black rule. Only WCAG 1.4.11's 3.0:1 non-text floor tells
+    #    these two apart, so this is the case that proves the floor does work.
+    dq, aq = load("quiet")
+    q = run(dq, aq)
+    ok("a quiet hairline crossing the same line is NOT a strike",
+       not [m for s, m in q if s == "fail"], str(q))
+    ok("...and the quiet fixture really does cross the glyph band",
+       any(abs(r["y"] - 86.5) < 0.6 for r in dq["rules"]), str(dq["rules"]))
+
+    # 4. THE GLYPH BAND IS THE LINE, NOT THE LINE BOX. Take the defect's real
+    #    pixels and slide the footnote's line box down 12px, which puts the same
+    #    rule in the LEADING above the type instead of through it. The rule's
+    #    own pixels are untouched, so the visibility measurement is unchanged
+    #    and only the band test moves.
+    shifted = [dict(n) for n in d["text_nodes"]]
+    for n in shifted:
+        if n["text"].startswith("Checked"):
+            n["lines"] = [[lx, ly + 12, lw, lh] for lx, ly, lw, lh in n["lines"]]
+    s = run(d, arr, shifted)
+    ok("a rule in the leading is a WARN, not a FAIL",
+       not [m for sv, m in s if sv == "fail"] and
+       any("in the leading" in m for _, m in s), str(s))
+
+    # 5. THE AUTHOR'S ESCAPE HATCH, which every other gate in this file honours.
+    marked = [dict(n) for n in d["text_nodes"]]
+    for n in marked:
+        if n["text"].startswith("Checked"):
+            n["overlap_ok"] = True
+    m = run(d, arr, marked)
+    ok("data-overlap-ok demotes the strike to a WARN",
+       not [x for sv, x in m if sv == "fail"] and
+       any("data-overlap-ok" in x for _, x in m), str(m))
+
+    # 6. AN UNAVAILABLE CHECK IS NOT A SKIP (GATE_LESSONS 19).
+    ok("a render record with no geometry reports that it could not run",
+       rules_missing_warning({"file": "slide-01.html"}) is not None)
+    ok("...and a record that has it does not",
+       rules_missing_warning({"file": "slide-01.html", "rules": []}) is None)
+
+    # 7. THE GATE MUST BE WIRED TO THE RUN, not just to this function.
+    #    GATE_LESSONS 13: a self-test is not wiring, and a MENTION is not a
+    #    reference. The first draft of this case grepped the source for a call
+    #    to rule_strikes and stayed green when the call was neutered to
+    #    `[] and rule_strikes(...)`, which is the same fault the port audit
+    #    shipped. So it runs the real entry point end to end instead: a render
+    #    dir built from the defect fixture, through argparse, the slide loop and
+    #    the exit code a run reads.
+    with tempfile.TemporaryDirectory() as td:
+        rd = Path(td)
+        Image.fromarray(arr).save(rd / "slide-09.png")
+        h, w = arr.shape[:2]
+        rec = {k: v for k, v in d.items() if k in ("text_nodes", "rules")}
+        rec.update({"file": "slide-09.html", "png": "slide-09.png"})
+        (rd / "render_report.json").write_text(json.dumps({
+            "canvas": {"width": int(w / d["scale"]), "height": int(h / d["scale"]),
+                       "scale": d["scale"], "px": [w, h]},
+            "slides": [rec]}))
+        p = subprocess.run([sys.executable, str(Path(__file__).resolve()),
+                            "--render-dir", str(rd)],
+                           capture_output=True, text=True)
+        ok("the real entry point exits 1 on the defect", p.returncode == 1,
+           p.stdout[-400:] + p.stderr[-200:])
+        ok("...reporting it as a FAIL, not a warn",
+           "FAIL: text struck by a drawn rule" in p.stdout, p.stdout[-600:])
+
+    if failures:
+        print(f"\nqa self-test: {failures} FAILED", file=sys.stderr)
+        return 1
+    print("\nqa self-test: all passed (3 real renders of slide-09.html, "
+          "2026-08-18, replayed)")
+    return 0
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--render-dir", required=True)
+    ap.add_argument("--render-dir")
+    ap.add_argument("--self-test", action="store_true")
     ap.add_argument("--safe-margin", type=int, default=SAFE_MARGIN)
     args = ap.parse_args()
+    if args.self_test:
+        sys.exit(self_test())
+    if not args.render_dir:
+        print("qa.py: pass --render-dir or --self-test", file=sys.stderr)
+        sys.exit(2)
 
     rdir = Path(args.render_dir)
     report = json.loads((rdir / "render_report.json").read_text())
@@ -1044,6 +1451,20 @@ def main():
                 res["warns"].append(msg + " [decorative]")
             else:
                 res["fails"].append(msg)
+
+        # TEXT STRUCK BY A DRAWN RULE (2026-08-18). See rule_strikes() for the
+        # defect and for why every other gate here was blind to it. The absence
+        # of the key is NOT a skip: a render_report written by an older
+        # render.py carries no geometry, so the check cannot run, and
+        # GATE_LESSONS 19 is the whole reason that says so out loud instead of
+        # passing quietly.
+        _missing = rules_missing_warning(rec)
+        if _missing:
+            res["warns"].append(_missing)
+        else:
+            for sev, msg in rule_strikes(rec.get("text_nodes", []), rec["rules"],
+                                         arr, scale):
+                (res["fails"] if sev == "fail" else res["warns"]).append(msg)
 
         # text-on-text overprint (the class of defect no other gate sees).
         # data-overlap-ok marks DELIBERATE layering (e.g., a chip on an
