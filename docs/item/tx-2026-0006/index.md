@@ -8,7 +8,7 @@ The Texas Responsible Artificial Intelligence Governance Act took effect on Janu
 - Status: decided
 - Public access: Write to the decider
 
-- Last checked: 2026-08-11
+- Last checked: 2026-08-18
 
 ## Dates
 
@@ -21,7 +21,7 @@ Every fact above rests on one of these. The words are the source's own.
 
 ### The chapter was created by HB 149 and took effect January 1st, 2026.
 
-> Added by Acts 2025, 89th Leg., R.S., Ch. 1174 (H.B. 149), Sec. 4, eff. January 1, 2026.
+> Added by Acts 2025, 89th Leg., R.S., Ch. 1174 (H.B. 149 ), Sec. 4, eff. January 1, 2026.
 
 Source (primary_official): https://tcss.legis.texas.gov/resources/BC/htm/BC.552.htm
 
