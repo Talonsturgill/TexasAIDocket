@@ -296,9 +296,6 @@ on. Right bar actually drawing.</p>"""
 
   <h3>Where it stands</h3>
   {stages(f)}
-  <p class="qnote">ERCOT publishes two more stages between the first and the second. Both are
-  drawn in a chart with no text behind it. Neither is collected and neither is shown here.</p>
-
   {trend}
 </section>"""
 

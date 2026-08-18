@@ -316,6 +316,10 @@ def annotated() -> str:
   --caliche:{c['caliche']}; --limestone:{c['limestone']}; --dust:{c['dust']};
   --ember:{c['dusk_ember']}; --gold:{c['dusk_gold']};
   --paper:{c['paper']}; --granite:{c['capitol_granite']};
+  /* The paper side of the palette. `rust` is deliberately NOT here: brand.yaml scopes it
+     deck_only and theme's own self-test refuses it in site CSS, which is the right call and
+     caught this. The card uses --granite, which brand.yaml scopes with --paper. */
+  --paper-rule:{c['paper_rule']};
   --flag-red:{c['flag_red']}; --flag-blue:{c['flag_blue']}; --star:{c['flag_white']};
 
   {_vars(p['dark'])}
@@ -1451,7 +1455,38 @@ figcaption {{ font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
    rather than computed. Same law as .bar above, one hue at one intensity at every value, so
    the LENGTH is the entire message and nothing implies a verdict about whether the queue is
    real. A reader draws that conclusion or does not; the page does not draw it for them. */
-.queuegap {{ margin:0 0 var(--band); scroll-margin-top:5rem; }}
+/* THE INSTRUMENT SITS ON THE PAGE RATHER THAN IN IT. A light card on the night ground, which
+   is the one idea worth taking from Meng To's Sylva: the reading is a different KIND of thing
+   from the prose around it, and giving it its own surface says so before a word is read.
+   Executed in this site's own tokens and not his, so it belongs to this palette.
+
+   EVERY PAIRING WAS CHECKED WITH theme.contrast() AGAINST THE CARD, not against the page. A
+   card inverts the ground, so a colour that passed on night can fail on paper and the check
+   has to be redone rather than assumed:
+     night on paper           17.85   the figures
+     capitol_granite on paper  6.14   the labels AND the bar fill
+     paper_rule on paper       1.56   the bar track, which carries no meaning and no text
+
+   ONE ACCENT, NOT TWO. Label and bar share a hue and are told apart by size and weight, which
+   is the discipline the rest of this sheet keeps. brand.yaml scopes `paper` and
+   `capitol_granite` together, so the card is built from a pair the palette already pairs. */
+.queuegap {{ margin:0 0 var(--band); scroll-margin-top:5rem;
+  background:var(--paper); color:var(--night);
+  border-radius:var(--radius-lg); padding:clamp(1.25rem,4vw,2.5rem);
+  box-shadow:0 1px 0 rgba(255,255,255,.06), 0 24px 60px -28px rgba(0,0,0,.85); }}
+.queuegap h2, .queuegap h3 {{ color:var(--night); }}
+.queuegap .qlede {{ color:var(--night); }}
+.queuegap .qk {{ color:var(--granite); }}
+.queuegap .qv {{ color:var(--night); }}
+.queuegap .qnote {{ color:var(--granite); }}
+.queuegap .qnote a {{ color:var(--granite); text-decoration-color:var(--paper-rule); }}
+.queuegap .qbar {{ background:var(--paper-rule); border-color:var(--paper-rule); }}
+.queuegap .qfill {{ background:var(--granite); }}
+.queuegap .qstages li {{ border-bottom-color:var(--paper-rule); }}
+.queuegap .qstages .qs {{ color:var(--granite); }}
+.queuegap .qchart .qa {{ fill:var(--granite); }}
+.queuegap .qchart .qd {{ fill:var(--granite); opacity:.55; }}
+.queuegap .qticks span {{ color:var(--granite); }}
 /* The page's first section sits under a sticky masthead, so its heading needs the same
    clearance an anchored jump would get. */
 .queuegap > h2:first-child {{ padding-top:.35rem; }}
@@ -1473,7 +1508,10 @@ figcaption {{ font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
 
 /* The funnel. AN ORDERED LIST because the stages are genuinely sequential: a project cannot
    draw power before it is cleared to. The number is not decoration, so it is not drawn. */
-.qstages {{ list-style:none; padding:0; margin:0 0 .7rem;
+/* max-width:none because the base rule caps every `ol` at the reading measure, and this is a
+   figure rather than prose: capped, its rows stopped two thirds across while the bars above
+   ran the full card and the two read as misaligned. */
+.qstages {{ list-style:none; padding:0; margin:0 0 .7rem; max-width:none;
   display:flex; flex-direction:column; gap:.4rem; }}
 .qstages li {{ display:grid; grid-template-columns:minmax(0,1fr) auto auto; gap:.75rem;
   align-items:baseline; padding:.5rem 0; border-bottom:var(--hair) solid var(--line); }}
