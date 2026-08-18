@@ -46,7 +46,8 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-import numeral_lint                                                # noqa: E402
+import numeral_lint
+import queue_panel                                                # noqa: E402
 
 READINGS = REPO_ROOT / "ledger" / "gridwatch" / "readings.jsonl"
 
@@ -162,14 +163,25 @@ def hour(he) -> str | None:
 
 
 # --------------------------------------------------------------------------- computation
-def figures(records: list[dict]) -> dict:
+def figures(records: list[dict], queue_data: dict | None = None) -> dict:
     """Every number this page publishes, computed here, from the record.
 
     Nothing downstream computes. The renderer formats what this returns and the lint authorises
     what this returns, so a figure that is not in here cannot reach a reader.
     """
     live = [r for r in records if r.get("verified") and r.get("peak_load_mw") is not None]
+    # THE QUEUE FIGURES TRAVEL IN `f`, NEVER READ FROM DISK BY authorised().
+    #
+    # They used to be loaded inside authorised(), which made that function impure and, worse,
+    # made this module's self-test non-hermetic: it plants "8.9" and requires the gate to catch
+    # it, while the live queue ledger holds a month at 8,926 MW that renders as exactly "8.9".
+    # The planted numeral was therefore authorised by real data and the check passed while the
+    # gate was doing nothing. That is the collision failure numeral_lint's own comment warns
+    # about, reached from a different direction. Passing the data in lets the self-test hand
+    # over an empty queue and get a real answer.
     f: dict = {
+        "queue": queue_panel.figures(
+            queue_data if queue_data is not None else queue_panel.load()),
         "days_held": len(records),
         "days_verified": len(live),
         "days_unverified": len(records) - len(live),
@@ -473,8 +485,8 @@ comfortable. No number on this page can tell you that.</p>"""
 
 
 # --------------------------------------------------------------------------- the page body
-def body(records: list[dict], today: str) -> str:
-    f = figures(records)
+def body(records: list[dict], today: str, queue_data: dict | None = None) -> str:
+    f = figures(records, queue_data)
     if not f["latest"]:
         return """
 <h1>Texas Grid Watch</h1>
@@ -518,16 +530,13 @@ def body(records: list[dict], today: str) -> str:
     acc_block = ""
     if acc:
         acc_block = f"""
-<h2>Checking the forecast against what happened</h2>
+<h2>Forecast accuracy</h2>
 <div class="prose">
-  <p>ERCOT publishes a forecast then what happened. The gap is arithmetic rather than
-  opinion. Across <strong class="num">{n0(acc['days'])}</strong>
+  <p>Across <strong class="num">{n0(acc['days'])}</strong>
   {plural(acc['days'], 'day', 'days')} its day ahead peak forecast missed by
   <strong class="num">{n0(acc['mean_abs_peak_error_mw'])} MW</strong> on average, or
   <strong class="num">{pct(acc['mean_abs_peak_error_pct'])}%</strong> of peak. Worst so far
   <strong class="num">{n0(acc['worst_mw'])} MW</strong>.</p>
-  <p>Published whichever way it falls. A page that checks its inputs in public beats one that
-  asserts they are good.</p>
 </div>"""
 
     trend_block = ""
@@ -541,8 +550,7 @@ def body(records: list[dict], today: str) -> str:
   peak moved by <strong class="num">{n0(t['peak_change_mw'])} MW</strong>, comparing the most
   recent <strong class="num">{n0(t['half_days'])}</strong> days against the first
   <strong class="num">{n0(t['half_days'])}</strong>.</p>
-  <p>A trough rising faster than a peak is what large constant load looks like from outside.
-  Weather moves both together. A data center lifts the floor.</p>
+  <p>A trough rising faster than a peak is what constant load looks like from outside.</p>
 </div>"""
     elif f["days_verified"] < 14:
         trend_block = f"""
@@ -562,15 +570,23 @@ def body(records: list[dict], today: str) -> str:
   must agree. They differ by <strong class="num">{pct(abs(recon))}%</strong>, about what ties
   and losses account for. Both print because this catches either reader breaking.</p>"""
 
+    # THE QUEUE GAP LEADS. It is the question every other one on this beat resolves to, and
+    # the daily reading below is the measured answer to "and what is actually happening".
+    # Ordered that way rather than by cadence: the reader's question comes first.
+    queue = queue_panel.panel(
+        queue_data if queue_data is not None else queue_panel.load())
+
     return f"""
 <h1>Texas Grid Watch</h1>
 <div class="prose">
-  <p class="lede">A daily numeric record of how the ERCOT grid is absorbing large constant
-  load. This page does not predict, grade or reassure. It publishes measurements, the
-  arithmetic done on them and the size of what nobody outside ERCOT can see.</p>
+  <p class="lede">What large load has asked the Texas grid for, and what it is actually
+  drawing. Measured, never predicted.</p>
 </div>
 
-<h2>{d}</h2>
+{queue}
+
+<h2>Yesterday on the grid</h2>
+<p class="qnote">{d}. What the whole system actually did, settled overnight.</p>
 {load_shape_svg(L)}
 
 <table class="figures">
@@ -597,14 +613,11 @@ def body(records: list[dict], today: str) -> str:
 <h2>Demand against committed capacity</h2>
 {reserve_bar(L)}
 
-<h2>The load factor, and why it is the number to watch</h2>
+<h2>Load factor</h2>
 <div class="prose">
-  <p>A day's mean demand divided by its peak. On {d} it was
-  <strong class="num">{lfpct}%</strong>.</p>
-  <p>Peak is a weather story. Shape is the story. A data center draws about as much at four in
-  the morning as at five in the afternoon, so constant load lifts the overnight floor faster
-  than the afternoon ceiling. Weather lifts both.</p>
-  <p>One day can't show that. A year can.</p>
+  <p>Mean demand over peak. On {d} it was <strong class="num">{lfpct}%</strong>. A data center
+  draws about as much at four in the morning as at five in the afternoon. Constant load lifts
+  the overnight floor faster than the afternoon ceiling. Weather lifts both.</p>
 </div>
 {trend_block}
 {acc_block}
@@ -615,39 +628,21 @@ def body(records: list[dict], today: str) -> str:
 <tbody>{fuel_rows}</tbody>
 </table>
 <div class="prose">
-  <p>Integrated from ERCOT's five minute telemetry. Storage is signed. It reads negative when
-  batteries absorb more than they return. Shares count positive generation only.</p>{recon_block}
+  <p>Integrated from five minute telemetry. Storage is signed. It reads negative when
+  batteries absorb more than they return.{recon_block}</p>
 </div>
 
-<h2>The size of what is not public</h2>
+<h2>What is not public</h2>
 <div class="prose">
   <div class="gap">
     <p><strong>Nobody outside ERCOT can say what any single data center drew.</strong> Per site
-    large load metering is confidential. What is public is the system total, which is what this
-    page publishes.</p>
-    <p>So this page can show the shape of Texas demand changing. It can't attribute that change
-    to a named facility, and it does not try. Where an attribution is wanted and can't be
-    computed, the gap is printed instead of an estimate.</p>
+    metering is confidential. This page publishes the system total and never an attribution.</p>
   </div>
-  <p>The record holds <strong class="num">{n0(f['days_held'])}</strong>
-  {plural(f['days_held'], 'day', 'days')}, of which
-  <strong class="num">{n0(f['days_verified'])}</strong>
-  {plural(f['days_verified'], 'is a complete settled day', 'are complete settled days')} and
-  <strong class="num">{n0(f['days_unverified'])}</strong>
-  {plural(f['days_unverified'], 'is', 'are')} marked unverified. An unverified
-  day carries no numbers at all rather than yesterday's. A gap that says it is a gap is honest.
-  A gap filled with the last known figure is a fabrication nothing downstream can detect.</p>
-</div>
-
-<h2>How this is collected</h2>
-<div class="prose">
-  <p>Once a day the settled previous day is read whole from ERCOT's dashboard feeds. Demand
-  hour by hour, the day ahead forecast, committed capacity and generation by fuel. Raw responses
-  are archived first.</p>
-  <p>The full hourly series is stored, so every figure here can be recomputed from
+  <p><strong class="num">{n0(f['days_held'])}</strong>
+  {plural(f['days_held'], 'day', 'days')} held,
+  <strong class="num">{n0(f['days_unverified'])}</strong> unverified. An unverified day carries
+  no numbers rather than yesterday's. Everything here recomputes from
   <a href="../gridwatch.json">the open data</a>.</p>
-  <p>ERCOT keeps no archive. A missed day is gone for good, so the collector runs on its own
-  schedule.</p>
 </div>
 """
 
@@ -691,7 +686,12 @@ def authorised(f: dict) -> set[str]:
             add(*(n0(blk[k]) for k in keys if blk.get(k) is not None))
     if f.get("accuracy"):
         add(pct(f["accuracy"]["mean_abs_peak_error_pct"]))
-    return acc.set
+    # THE QUEUE PANEL AUTHORISES ITS OWN FIGURES, and the union is taken HERE rather than in
+    # lint(), because site_build reads this function directly through `_watch_numerals` to
+    # build the page's scoped set. A union that lived only in lint() would pass the page's own
+    # check and fail the build's, which is precisely the drift that puts a renderer and its
+    # allow-list in one module in the first place.
+    return acc.set | queue_panel.authorised(f.get("queue") or {})
 
 
 def lint(html_body: str, f: dict) -> list[str]:
@@ -700,6 +700,12 @@ def lint(html_body: str, f: dict) -> list[str]:
 
 
 # --------------------------------------------------------------------------- self-test
+# The fixtures below are the ONLY source of authorised numerals in the self-test. Handing the
+# real queue ledger to a hermetic test is what let a planted "8.9" pass while the live ledger
+# happened to hold a month at 8,926 MW.
+NO_QUEUE: dict = {"records": [], "requested": {}}
+
+
 def self_test() -> int:
     failures = 0
 
@@ -730,10 +736,10 @@ def self_test() -> int:
                                     "Solar": 290000.0, "Power Storage": -15000.0}}
 
     one = [rec("2026-08-10", 83118.16, 58093.11)]
-    f = figures(one)
+    f = figures(one, NO_QUEUE)
     check("one day is enough to publish a day", f["latest"] is not None)
     check("...and not enough to publish a trend", f["trend"] is None)
-    b = body(one, "2026-08-11")
+    b = body(one, "2026-08-11", NO_QUEUE)
     check("the page renders from a single record", "<h1>Texas Grid Watch</h1>" in b)
     check("...and says plainly that the trend is not available yet",
           "Not yet." in b and "14" in b)
@@ -758,25 +764,25 @@ def self_test() -> int:
     hit = [w for w in verdicts if w in b.lower()]
     check("no reliability verdict in the reader copy", not hit, str(hit))
 
-    empty = body([], "2026-08-11")
+    empty = body([], "2026-08-11", NO_QUEUE)
     check("an empty record says it is empty rather than rendering zeros",
           "The record is empty." in empty and "0.0 GW" not in empty)
     check("...and the empty page has no numerals to authorise",
-          not lint(empty, figures([])), str(lint(empty, figures([]))))
+          not lint(empty, figures([], NO_QUEUE)), str(lint(empty, figures([], NO_QUEUE))))
 
     unver = [{"_spec": 1, "date": "2026-08-09", "verified": False, "note": "fetch failed"}]
-    fu = figures(unver)
+    fu = figures(unver, NO_QUEUE)
     check("an unverified day counts, and publishes no number",
           fu["days_held"] == 1 and fu["days_verified"] == 0 and fu["latest"] is None)
 
     many = [rec(f"2026-07-{i:02d}", 80000.0 + i * 10, 55000.0 + i * 60) for i in range(1, 29)]
-    fm = figures(many)
+    fm = figures(many, NO_QUEUE)
     check("fourteen settled days or more earns a trend block", fm["trend"] is not None)
     check("...comparing halves, not endpoints", fm["trend"]["half_days"] == 14)
     check("a trough rising faster than the peak is visible in the trend",
           fm["trend"]["trough_change_mw"] > fm["trend"]["peak_change_mw"],
           f"{fm['trend']['trough_change_mw']} vs {fm['trend']['peak_change_mw']}")
-    bm = body(many, "2026-08-11")
+    bm = body(many, "2026-08-11", NO_QUEUE)
     check("the trend block renders", "The fingerprint" in bm and "Not yet." not in bm)
     check("the trend page also passes the numeral gate", not lint(bm, fm),
           str(lint(bm, fm)[:8]))
@@ -795,7 +801,7 @@ def self_test() -> int:
     import house_style_check as _hs                                 # noqa: PLC0415
     for label, records in (("one settled day", one), ("an empty record", []),
                            ("an unverified day", unver), ("a full trend", many)):
-        rendered = body(records, records[-1]["date"] if records else "2026-08-11")
+        rendered = body(records, records[-1]["date"] if records else "2026-08-11", NO_QUEUE)
         problems = _hs.caption_check.check(_hs.our_prose(rendered))
         rate = _hs.caption_check.rate_problem(_hs.our_sentences(rendered),
                                               _hs.caption_check.SITE_COMMA_CEILING)
@@ -825,11 +831,11 @@ def self_test() -> int:
           f"{share(0.0437)} {share(0.0004)} {share(0.0)}")
     tiny = [rec("2026-08-10", 83118.16, 58093.11)]
     tiny[0]["fuel_energy_mwh"] = dict(tiny[0]["fuel_energy_mwh"], Hydro=745.0)
-    bt = body(tiny, "2026-08-11")
+    bt = body(tiny, "2026-08-11", NO_QUEUE)
     check("a tiny real contribution shows a real number on the page",
           ">0.05<" in bt or "0.05" in bt, "hydro share missing")
-    check("...and it still passes the numeral gate", not lint(bt, figures(tiny)),
-          str(lint(bt, figures(tiny))[:6]))
+    check("...and it still passes the numeral gate", not lint(bt, figures(tiny, NO_QUEUE)),
+          str(lint(bt, figures(tiny, NO_QUEUE))[:6]))
     check("a charging battery is labelled, not left as an empty cell",
           "charging" in b and "<td class=\"n num\"></td>" not in b)
     check("the forecast miss says which way it missed",

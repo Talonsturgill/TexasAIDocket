@@ -1,0 +1,59 @@
+name: queue watch
+
+# The large load interconnection queue, read once a month from ERCOT's Monthly Operational
+# Overview.
+#
+# ITS OWN WORKFLOW AND NOT A STEP IN gridwatch.yml, for the same reason the grid watch is not a
+# routine phase. That collector reads a settled ERCOT day and a missed day is gone for good;
+# this one reads a monthly board deck that stays up. Different cadence, different source,
+# different failure mode, so an ERCOT MIS outage on report day must never be able to cost a
+# demand day.
+#
+# The schedule fires daily and the collector exits early once the month is held and verified,
+# because the report's publication day moves around the middle of the following month and
+# guessing it wrong means waiting another month.
+
+on:
+  schedule:
+    - cron: "0 16 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/gridwatch/queue_collect.py"
+      - ".github/workflows/queuewatch.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: queuewatch
+  cancel-in-progress: false
+
+jobs:
+  read:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Hermetic, no network. A collector whose own checks are broken has no business appending
+      # to a series, so this gates the fetch rather than reporting after it.
+      - name: Prove the collector's checks can go red
+        run: python3 scripts/gridwatch/queue_collect.py --self-test
+
+      # Exit 2 means "read, but unverified" and is not a failure of this job: an unverified
+      # record is the correct output when the report is not up yet or the sentence moved. Only
+      # a crash (exit 1) fails the run.
+      - name: Read the latest report
+        run: |
+          python3 scripts/gridwatch/queue_collect.py --collect || rc=$?
+          if [ "${rc:-0}" -gt 2 ]; then exit "$rc"; fi
+
+      - name: Commit the reading
+        run: |
+          git config user.name  "texas-ai-docket-bot"
+          git config user.email "bot@texasaidocket.com"
+          git add ledger/gridwatch/queue.jsonl ledger/gridwatch/raw || true
+          git diff --cached --quiet && echo "nothing new" && exit 0
+          git commit -m "queuewatch: large load queue reading"
+          git push
