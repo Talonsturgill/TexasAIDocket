@@ -1,0 +1,9 @@
+{
+  "_comment": "The total large load interconnection queue, as ERCOT states it in published text. DATA, NOT CODE: a new figure is a data commit with its source, never an edit to a renderer. Kept here rather than in the collector's ledger because it comes from a different document on a different cadence than the Monthly Operational Overview, and blending the two would hide that.",
+  "requested_gw": 410,
+  "data_center_share_pct": 87,
+  "as_of": "2026-03-26",
+  "source_title": "ERCOT Update, Senate Committee on Business & Commerce",
+  "source_url": "https://www.ercot.com/files/docs/2026/04/01/ERCOT_LargeLoad_Update_April2026_B-C_-Hearing.pdf",
+  "quote": "ERCOT is tracking approximately 410 GW of Large Loads seeking interconnection of which ~87% are data centers."
+}
