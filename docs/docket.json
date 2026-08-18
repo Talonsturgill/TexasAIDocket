@@ -318,7 +318,7 @@
         {
           "date": "2026-08-21",
           "kind": "hearing",
-          "note": "Open meeting on the PUCT calendar feed. The entry no longer names this docket and gives an off site address"
+          "note": "Open meeting on the PUCT calendar feed, which no longer names Docket 59315"
         }
       ],
       "public_access": {
@@ -389,7 +389,7 @@
       "history": [
         {
           "date": "2026-08-18",
-          "note": "The filing index moved from 5782 to 5790. The calendar entry for the August 21st open meeting no longer names this docket. That entry now gives the AT&T Hotel and Conference Center rather than Commissioners Hearing Room 7-100."
+          "note": "The filing index moved from 5782 to 5790. The calendar entry for the August 21st open meeting no longer names Docket 59315. That entry now gives the AT&T Hotel and Conference Center rather than Commissioners Hearing Room 7-100."
         }
       ]
     },
@@ -494,7 +494,13 @@
       ],
       "last_verified": "2026-08-18",
       "confidence": "high",
-      "notes_for_editor": "Sourced to the enacted statute rather than to the bill history, which is both the better primary source and an allowed one. Dollar figures appear only inside verbatim statutory quotes. Note the chapter title is Artificial Intelligence Protection, not the act's popular name."
+      "notes_for_editor": "Sourced to the enacted statute rather than to the bill history, which is both the better primary source and an allowed one. Dollar figures appear only inside verbatim statutory quotes. Note the chapter title is Artificial Intelligence Protection, not the act's popular name.",
+      "history": [
+        {
+          "date": "2026-08-18",
+          "note": "Checked and unchanged. Chapter 552 stands in force with enforcement resting solely with the Attorney General."
+        }
+      ]
     },
     {
       "id": "tx-2026-0007",
@@ -556,7 +562,13 @@
       ],
       "last_verified": "2026-08-18",
       "confidence": "high",
-      "notes_for_editor": "This item exists to give readers the legal frame for the August 3rd audit directive. It states what the statute says and stops there. It does NOT assert that the governor's directive was improper: the section binds the commission's directives to ERCOT, and a governor's letter to both agencies is a different instrument. Any characterisation beyond the quoted text needs a lawyer and a named source."
+      "notes_for_editor": "This item exists to give readers the legal frame for the August 3rd audit directive. It states what the statute says and stops there. It does NOT assert that the governor's directive was improper: the section binds the commission's directives to ERCOT, and a governor's letter to both agencies is a different instrument. Any characterisation beyond the quoted text needs a lawyer and a named source.",
+      "history": [
+        {
+          "date": "2026-08-18",
+          "note": "Checked and unchanged. The statute still bars a verbal directive and still limits an official action to a contested case, a rulemaking or a written order."
+        }
+      ]
     },
     {
       "id": "tx-2026-0008",
@@ -721,7 +733,13 @@
       ],
       "last_verified": "2026-08-18",
       "confidence": "high",
-      "notes_for_editor": "CORRECTION TO A COMMON BELIEF, please keep it in the published item. The regulatory sandbox is widely attributed to TRAIGA. It is not in TRAIGA. It is Section 2054.706, added by SB 1964, and it took effect September 1st, 2025, four months before TRAIGA did. Whether DIR has actually stood the program up was NOT verified: no DIR page was fetched. That is the obvious follow up and the honest hook is the November 30th, 2026 report."
+      "notes_for_editor": "CORRECTION TO A COMMON BELIEF, please keep it in the published item. The regulatory sandbox is widely attributed to TRAIGA. It is not in TRAIGA. It is Section 2054.706, added by SB 1964, and it took effect September 1st, 2025, four months before TRAIGA did. Whether DIR has actually stood the program up was NOT verified: no DIR page was fetched. That is the obvious follow up and the honest hook is the November 30th, 2026 report.",
+      "history": [
+        {
+          "date": "2026-08-18",
+          "note": "Checked and unchanged. The sandbox program stands required of the Department of Information Resources and the report to the Legislature is still due November 30th, 2026."
+        }
+      ]
     },
     {
       "id": "tx-2026-0012",
@@ -765,7 +783,13 @@
       ],
       "last_verified": "2026-08-18",
       "confidence": "high",
-      "notes_for_editor": "Kept as its own item because it is the provision most likely to collide with the local data center fights elsewhere in this docket. IMPORTANT DISTINCTION a fact checker must preserve: this preempts local rules about the USE OF AI SYSTEMS. A city zoning ordinance about data center buildings is land use regulation, not AI use regulation, so San Marcos's ban is NOT obviously preempted by this section. Do not let the two be conflated in the write up."
+      "notes_for_editor": "Kept as its own item because it is the provision most likely to collide with the local data center fights elsewhere in this docket. IMPORTANT DISTINCTION a fact checker must preserve: this preempts local rules about the USE OF AI SYSTEMS. A city zoning ordinance about data center buildings is land use regulation, not AI use regulation, so San Marcos's ban is NOT obviously preempted by this section. Do not let the two be conflated in the write up.",
+      "history": [
+        {
+          "date": "2026-08-18",
+          "note": "Checked and unchanged. Chapter 552 still supersedes any local ordinance or rule about the use of AI systems."
+        }
+      ]
     },
     {
       "id": "tx-2026-0013",
@@ -812,7 +836,13 @@
       ],
       "last_verified": "2026-08-18",
       "confidence": "high",
-      "notes_for_editor": "Verified: prior research was right. The project type strings are reproduced verbatim and in the order the page prints them, including the page's own mid word truncations, so a checker can diff them against the live table. The row count is deliberately not stated in prose: it should be computed by the build from the captured rows rather than typed. CAVEAT ON SCOPE, which the item must carry: JETI is the school district value limitation program only. A data center can still receive city or county tax abatements under Local Government Code Chapter 312, Chapter 380 or 381 agreements, and freeport exemptions, none of which appear on this page. The honest claim is that data centers are absent from THIS list, not that they get no Texas tax breaks."
+      "notes_for_editor": "Verified: prior research was right. The project type strings are reproduced verbatim and in the order the page prints them, including the page's own mid word truncations, so a checker can diff them against the live table. The row count is deliberately not stated in prose: it should be computed by the build from the captured rows rather than typed. CAVEAT ON SCOPE, which the item must carry: JETI is the school district value limitation program only. A data center can still receive city or county tax abatements under Local Government Code Chapter 312, Chapter 380 or 381 agreements, and freeport exemptions, none of which appear on this page. The honest claim is that data centers are absent from THIS list, not that they get no Texas tax breaks.",
+      "history": [
+        {
+          "date": "2026-08-18",
+          "note": "Checked and unchanged. The Comptroller's current JETI agreements list still names no data center project."
+        }
+      ]
     },
     {
       "id": "tx-2026-0015",
@@ -1210,7 +1240,13 @@
         }
       ],
       "id": "tx-2026-0027",
-      "last_verified": "2026-08-18"
+      "last_verified": "2026-08-18",
+      "history": [
+        {
+          "date": "2026-08-18",
+          "note": "Checked and unchanged. The amended abatement notice for Compal still posts on the City of Taylor newsflash."
+        }
+      ]
     },
     {
       "title": "Hays County Commissioners Court adopted a 180-day emergency water review period for high water use developments and created a review board",
@@ -1599,7 +1635,13 @@
         }
       ],
       "id": "tx-2026-0032",
-      "last_verified": "2026-08-18"
+      "last_verified": "2026-08-18",
+      "history": [
+        {
+          "date": "2026-08-18",
+          "note": "Checked and unchanged. Killeen's council has taken the data center subject up as a future agenda item."
+        }
+      ]
     },
     {
       "title": "El Paso City Council adopts a Data Center Policy Framework requiring a Special Permit for hyperscale projects",
@@ -1724,7 +1766,13 @@
         }
       ],
       "id": "tx-2026-0034",
-      "last_verified": "2026-08-18"
+      "last_verified": "2026-08-18",
+      "history": [
+        {
+          "date": "2026-08-18",
+          "note": "Checked and unchanged. The matter reads Agenda Ready for the August 18th agenda with no passed date recorded."
+        }
+      ]
     },
     {
       "title": "El Paso City Council amends its state legislative agenda to seek protection for residential ratepayers from data center utility costs",
@@ -1938,7 +1986,13 @@
         }
       ],
       "id": "tx-2026-0037",
-      "last_verified": "2026-08-18"
+      "last_verified": "2026-08-18",
+      "history": [
+        {
+          "date": "2026-08-18",
+          "note": "Checked and unchanged."
+        }
+      ]
     },
     {
       "title": "Harlingen Waterworks System board approves an effluent water supply agreement with RGV Property LLC for a proposed data center",
@@ -3168,7 +3222,13 @@
         }
       ],
       "id": "tx-2026-0053",
-      "last_verified": "2026-08-18"
+      "last_verified": "2026-08-18",
+      "history": [
+        {
+          "date": "2026-08-18",
+          "note": "Checked and unchanged. Policy CQD(LOCAL) sits on the August 13th agenda with no recorded action and no passed flag."
+        }
+      ]
     },
     {
       "title": "Houston-Galveston Area Council put AI consulting services on its HGACBuy purchasing catalog under contract AI05-26",
@@ -3903,7 +3963,13 @@
         }
       ],
       "id": "tx-2026-0064",
-      "last_verified": "2026-08-18"
+      "last_verified": "2026-08-18",
+      "history": [
+        {
+          "date": "2026-08-18",
+          "note": "Checked and unchanged. The notice still names permits 182126, PSDTX1688 and GHGPSDTX263 for Crusoe Technologies. The comment window runs 30 days from newspaper publication."
+        }
+      ]
     },
     {
       "title": "San Angelo City Council caps data center cooling water by ordinance",
