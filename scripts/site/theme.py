@@ -1522,6 +1522,86 @@ figcaption {{ font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
 /* The monthly series. Paired bars per month, cleared then drawing, so a reader sees that
    neither has moved. Shape carries it, not colour: the pair is always left-then-right and the
    two are separated by a gap rather than by hue alone. */
+/* ---- THE DAILY READING, AS AN INSTRUMENT PANEL ----
+   The section held a settled reading every day and read like an essay about one: seven equal
+   weight headings, two tables, and prose explaining the page to itself. What follows gives the
+   day one hierarchy, one chart, one bar and one row of tiles, so a reader meets four KINDS of
+   thing rather than seven paragraphs. */
+
+/* The state of the machine, in the machine's voice. The dot carries no value and no verdict,
+   it only says the collector ran, and it holds still for anyone who asked it to. */
+.livebar {{ display:flex; flex-wrap:wrap; align-items:center; gap:.4rem .9rem;
+  font-family:var(--mono); font-size:var(--s-1); color:var(--ink-mute);
+  padding:.55rem 0 1.1rem; border-bottom:var(--hair) solid var(--line); margin-bottom:1.4rem; }}
+.livebar strong {{ color:var(--ink-bright); font-weight:500; }}
+.livedot {{ width:.5rem; height:.5rem; border-radius:50%; background:var(--gold);
+  box-shadow:0 0 0 0 color-mix(in srgb, var(--gold) 70%, transparent);
+  animation:livepulse 2.6s ease-out infinite; flex:none; }}
+@keyframes livepulse {{
+  0% {{ box-shadow:0 0 0 0 color-mix(in srgb, var(--gold) 60%, transparent); }}
+  70% {{ box-shadow:0 0 0 .5rem color-mix(in srgb, var(--gold) 0%, transparent); }}
+  100% {{ box-shadow:0 0 0 0 color-mix(in srgb, var(--gold) 0%, transparent); }}
+}}
+@media (prefers-reduced-motion:reduce) {{ .livedot {{ animation:none; }} }}
+.livesep {{ width:var(--hair); height:.9rem; background:var(--line); flex:none; }}
+
+/* The day's vital signs. A table gave six numbers the same weight and spent a column
+   explaining each one; these align on one optical line so magnitudes compare by eye. */
+.stiles {{ display:grid; gap:1px; background:var(--line); border:var(--hair) solid var(--line);
+  grid-template-columns:repeat(auto-fit,minmax(8.5rem,1fr)); margin:1.6rem 0 0;
+  border-radius:var(--radius); overflow:hidden; }}
+.stile {{ background:var(--deep); padding:.85rem .9rem 1rem; display:flex;
+  flex-direction:column; gap:.15rem; }}
+.sk {{ font-family:var(--mono); font-size:var(--s-2); letter-spacing:.09em;
+  text-transform:uppercase; color:var(--ink-mute); }}
+.sv {{ font-family:var(--display); font-size:clamp(1.35rem,3.2vw,1.9rem); line-height:1.05;
+  color:var(--ink-bright); font-variant-numeric:tabular-nums; }}
+.su {{ font-family:var(--mono); font-size:.42em; color:var(--ink-mute); margin-left:.28em;
+  letter-spacing:.04em; }}
+.sn {{ font-size:var(--s-2); color:var(--ink-mute); }}
+
+/* What served the load. One bar says gas served about half the day before a word is read;
+   the figures stay underneath rather than being replaced by the picture. */
+.fuelbar {{ display:flex; height:1.5rem; border-radius:2px; overflow:hidden; margin:.2rem 0 1rem;
+  border:var(--hair) solid var(--line); }}
+.fseg {{ display:block; height:100%; }}
+.fseg.f0 {{ background:var(--ember); }}
+.fseg.f1 {{ background:var(--gold); }}
+.fseg.f2 {{ background:color-mix(in srgb, var(--gold) 62%, var(--panel)); }}
+.fseg.f3 {{ background:color-mix(in srgb, var(--ember) 58%, var(--panel)); }}
+.fseg.f4 {{ background:color-mix(in srgb, var(--caliche) 46%, var(--panel)); }}
+.fseg.f5 {{ background:color-mix(in srgb, var(--caliche) 30%, var(--panel)); }}
+.fseg.f6 {{ background:color-mix(in srgb, var(--dust) 26%, var(--panel)); }}
+.fseg.f7 {{ background:color-mix(in srgb, var(--dust) 16%, var(--panel)); }}
+.fuelkey {{ list-style:none; padding:0; margin:0 0 .5rem; max-width:none;
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(15rem,1fr)); gap:.1rem 1.6rem; }}
+.fuelkey li {{ display:grid; grid-template-columns:auto 1fr auto auto; align-items:baseline;
+  gap:.55rem; padding:.32rem 0; border-bottom:var(--hair) solid var(--line);
+  font-size:var(--s-1); }}
+.fkey {{ width:.65rem; height:.65rem; border-radius:1px; align-self:center; }}
+.fkey.f0 {{ background:var(--ember); }}
+.fkey.f1 {{ background:var(--gold); }}
+.fkey.f2 {{ background:color-mix(in srgb, var(--gold) 62%, var(--panel)); }}
+.fkey.f3 {{ background:color-mix(in srgb, var(--ember) 58%, var(--panel)); }}
+.fkey.f4 {{ background:color-mix(in srgb, var(--caliche) 46%, var(--panel)); }}
+.fkey.f5 {{ background:color-mix(in srgb, var(--caliche) 30%, var(--panel)); }}
+.fkey.f6 {{ background:color-mix(in srgb, var(--dust) 26%, var(--panel)); }}
+.fkey.f7 {{ background:color-mix(in srgb, var(--dust) 16%, var(--panel)); }}
+.fkey.fnone {{ border:var(--hair) dashed var(--rule-strong); }}
+.fuelkey .fn {{ color:var(--ink-bright); }}
+.fuelkey .fp, .fuelkey .fm {{ font-family:var(--mono); font-size:var(--s-2);
+  color:var(--ink-mute); font-variant-numeric:tabular-nums; }}
+.fuelkey .fp {{ min-width:3.6rem; text-align:right; }}
+.fuelkey .fm {{ min-width:5rem; text-align:right; }}
+.fuelkey .fneg .fn {{ color:var(--ink-mute); }}
+.funit {{ font-family:var(--mono); font-size:var(--s-2); letter-spacing:.06em;
+  text-transform:uppercase; color:var(--ink-mute); margin:0 0 var(--gap); }}
+
+.daily h3 {{ margin-top:var(--band); }}
+.daily h4 {{ font-family:var(--mono); font-size:var(--s-1); letter-spacing:.08em;
+  text-transform:uppercase; color:var(--ink-mute); margin:1.8rem 0 .5rem; font-weight:500; }}
+.gridnote {{ margin-top:var(--band); }}
+
 /* THE SERIES, AS AN INSTRUMENT RATHER THAN A PICTURE. Built from HTML boxes and not SVG so the
    values are real text: selectable, readable by a screen reader, visible to the numeral gate,
    and never distorted by a stretched viewBox. Hover and keyboard focus both raise a group,

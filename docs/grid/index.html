@@ -96,9 +96,18 @@
 410 GW over the same months.</p>
 </section>
 
-<h2>Yesterday on the grid</h2>
-<p class="qnote">August 17th, 2026. What the whole system actually did, settled overnight.</p>
-<figure class="shape">
+<section class="daily" data-reveal>
+  <h2>Yesterday on the grid</h2>
+  <div class="livebar" data-prose="data">
+  <span class="livedot" aria-hidden="true"></span>
+  <span class="livenow"><strong>Settled</strong> August 17th, 2026</span>
+  <span class="livesep" aria-hidden="true"></span>
+  <span><strong class="num">8</strong>
+    days held</span>
+  <span class="livesep" aria-hidden="true"></span>
+  <span>next reading August 19th, 2026</span>
+</div>
+  <figure class="shape">
 <svg viewBox="0 0 720 412" role="img" class="loadshape"
      aria-label="Measured ERCOT demand hour by hour against ERCOT's day ahead forecast, with
      the forecast error shown separately below.">
@@ -119,55 +128,44 @@
 close enough to overlap. The scale starts at zero, so the flatness is real. The strip below is
 forecast minus measured, scaled separately because a miss is one pixel up here.
 </figcaption></figure>
+  <div class="stiles" data-prose="data"><div class="stile"><span class="sk">Peak</span><span class="sv num">89.1<span class="su">GW</span></span><span class="sn">4pm to 5pm</span></div><div class="stile"><span class="sk">Trough</span><span class="sv num">57.3<span class="su">GW</span></span><span class="sn">4am to 5am</span></div><div class="stile"><span class="sk">Mean</span><span class="sv num">73.2<span class="su">GW</span></span><span class="sn">across the day</span></div><div class="stile"><span class="sk">Load factor</span><span class="sv num">82.1<span class="su">%</span></span><span class="sn">mean over peak</span></div><div class="stile"><span class="sk">Forecast miss</span><span class="sv num">663<span class="su">MW</span></span><span class="sn">ERCOT forecast high</span></div></div>
 
-<table class="figures">
-<thead><tr><th>Figure</th><th class="n">Value</th><th>What it is</th></tr></thead>
-<tbody>
-<tr><td>Peak demand</td><td class="n num">89.1 GW</td>
-    <td>measured, 4pm to 5pm</td></tr>
-<tr><td>Overnight trough</td><td class="n num">57.3 GW</td>
-    <td>measured, 4am to 5am</td></tr>
-<tr><td>Mean across the day</td><td class="n num">73.2 GW</td>
-    <td>computed from the hourly series</td></tr>
-<tr><td>Load factor</td><td class="n num">82.1%</td>
-    <td>computed, mean over peak</td></tr>
-<tr><td>Energy served</td><td class="n num">1,756,839 MWh</td>
-    <td>computed from the hourly series</td></tr>
-<tr><td>ERCOT day ahead peak forecast</td><td class="n num">89.8 GW</td>
-    <td>modeled by ERCOT, published the day before</td></tr>
-<tr><td>Forecast miss at the peak</td>
-    <td class="n num">663 MW</td>
-    <td>computed, ERCOT forecast high</td></tr>
-</tbody>
-</table>
-
-<h2>Demand against committed capacity</h2>
-<div class="bar" role="img"
+  <h4>Demand against committed capacity</h4>
+  <div class="bar" role="img"
      aria-label="Demand at the daily peak reached 78.8 percent of the capacity ERCOT
      had committed for that hour.">
   <div class="fill" style="width:78.8%"></div>
 </div>
-<p class="barnote">At the peak hour, demand reached <strong class="num">78.8%</strong>
-of the generation capacity ERCOT had committed for that hour. This bar has one color at every
-value on purpose. It is a measurement rather than a judgement about whether the grid was
-comfortable. No number on this page can tell you that.</p>
+<p class="barnote">Demand at the peak hour reached <strong class="num">78.8%</strong>
+of the capacity ERCOT had committed for it. One color at every value on purpose. This is a
+measurement and not a judgement about whether the grid was comfortable.</p>
 
-<h2>Load factor</h2>
-<div class="prose">
-  <p>Mean demand over peak. On August 17th, 2026 it was <strong class="num">82.1%</strong>. A data center
-  draws about as much at four in the morning as at five in the afternoon. Constant load lifts
-  the overnight floor faster than the afternoon ceiling. Weather lifts both.</p>
-</div>
+  <h3>What served it</h3>
+  <div class="fuelbar" role="img"
+     aria-label="What served the load, by share of energy generated."><span class="fseg f0" style="width:49.15%" title="Natural Gas, 49.15 percent"></span><span class="fseg f1" style="width:20.10%" title="Solar, 20.10 percent"></span><span class="fseg f2" style="width:12.21%" title="Wind, 12.21 percent"></span><span class="fseg f3" style="width:11.61%" title="Coal and Lignite, 11.61 percent"></span><span class="fseg f4" style="width:6.77%" title="Nuclear, 6.77 percent"></span><span class="fseg f5" style="width:0.08%" title="Other, 0.08 percent"></span><span class="fseg f6" style="width:0.08%" title="Hydro, 0.08 percent"></span></div>
+<ul class="fuelkey" data-prose="data"><li><span class="fkey f0" aria-hidden="true"></span><span class="fn">Natural Gas</span><span class="fp num">49.15%</span><span class="fm num">864,440</span></li><li><span class="fkey f1" aria-hidden="true"></span><span class="fn">Solar</span><span class="fp num">20.10%</span><span class="fm num">353,489</span></li><li><span class="fkey f2" aria-hidden="true"></span><span class="fn">Wind</span><span class="fp num">12.21%</span><span class="fm num">214,724</span></li><li><span class="fkey f3" aria-hidden="true"></span><span class="fn">Coal and Lignite</span><span class="fp num">11.61%</span><span class="fm num">204,254</span></li><li><span class="fkey f4" aria-hidden="true"></span><span class="fn">Nuclear</span><span class="fp num">6.77%</span><span class="fm num">119,136</span></li><li><span class="fkey f5" aria-hidden="true"></span><span class="fn">Other</span><span class="fp num">0.08%</span><span class="fm num">1,450</span></li><li><span class="fkey f6" aria-hidden="true"></span><span class="fn">Hydro</span><span class="fp num">0.08%</span><span class="fm num">1,375</span></li><li class="fneg"><span class="fkey fnone" aria-hidden="true"></span><span class="fn">Power Storage</span><span class="fp">charging</span><span class="fm num">-5,225</span></li></ul>
+<p class="funit" data-prose="data">Share of generation, then megawatt hours.</p>
+  
+  <p>Separate feeds, and everything generated inside the grid is consumed inside it, so they
+  must agree. They differ by <strong class="num">0.2%</strong>, about what ties
+  and losses account for. Both print because this catches either reader breaking.</p>
 
-<h2>The fingerprint</h2>
+  <h3>The shape is the story</h3>
+  <div class="prose">
+    <p>A data center draws about as much at four in the morning as at five in the afternoon.
+    Constant load lifts the overnight floor faster than the afternoon ceiling. Weather lifts
+    both. The floor is where new demand shows first.</p>
+  </div>
+  
+<h4>The fingerprint</h4>
 <div class="prose">
   <div class="gap"><strong>Not yet.</strong> Comparing the trough against the peak needs at
   least <strong class="num">14</strong> settled days, so that a weekday and weekend pattern has
   repeated twice. The record holds <strong class="num">8</strong>.
   Nothing is drawn from fewer, because a line through two points is noise with a slope.</div>
 </div>
-
-<h2>Forecast accuracy</h2>
+  
+<h4>Forecast accuracy</h4>
 <div class="prose">
   <p>Across <strong class="num">8</strong>
   days its day ahead peak forecast missed by
@@ -175,22 +173,9 @@ comfortable. No number on this page can tell you that.</p>
   <strong class="num">1.2%</strong> of peak. Worst so far
   <strong class="num">2,503 MW</strong>.</p>
 </div>
+</section>
 
-<h2>What served the load</h2>
-<table class="figures">
-<thead><tr><th>Fuel</th><th class="n">MWh</th><th class="n">Share</th></tr></thead>
-<tbody><tr><td>Natural Gas</td><td class="n num">864,440</td><td class="n num">49.15</td></tr><tr><td>Solar</td><td class="n num">353,489</td><td class="n num">20.10</td></tr><tr><td>Wind</td><td class="n num">214,724</td><td class="n num">12.21</td></tr><tr><td>Coal and Lignite</td><td class="n num">204,254</td><td class="n num">11.61</td></tr><tr><td>Nuclear</td><td class="n num">119,136</td><td class="n num">6.77</td></tr><tr><td>Other</td><td class="n num">1,450</td><td class="n num">0.08</td></tr><tr><td>Hydro</td><td class="n num">1,375</td><td class="n num">0.08</td></tr><tr><td>Power Storage</td><td class="n num">-5,225</td><td class="n num">charging</td></tr><tr><td><strong>Gross generation</strong></td><td class="n num"><strong>1,758,869</strong></td><td class="n num">100.00</td></tr><tr><td>Net after storage</td><td class="n num">1,753,644</td><td></td></tr><tr><td>Measured load</td><td class="n num">1,756,839</td><td></td></tr></tbody>
-</table>
-<div class="prose">
-  <p>Integrated from five minute telemetry. Storage is signed. It reads negative when
-  batteries absorb more than they return.
-  <p>Separate feeds, and everything generated inside the grid is consumed inside it, so they
-  must agree. They differ by <strong class="num">0.2%</strong>, about what ties
-  and losses account for. Both print because this catches either reader breaking.</p></p>
-</div>
-
-<h2>What is not public</h2>
-<div class="prose">
+<div class="prose gridnote">
   <div class="gap">
     <p><strong>Nobody outside ERCOT can say what any single data center drew.</strong> Per site
     metering is confidential. This page publishes the system total and never an attribution.</p>
