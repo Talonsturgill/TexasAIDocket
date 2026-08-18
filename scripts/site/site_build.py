@@ -1704,8 +1704,8 @@ a way in.</p>
 def covers_section(items: list, today: str) -> tuple:
     """The front page's index of the record. Returns (numerals it prints, html).
 
-    DENSER THAN THE CARD WALL IT IS MODELLED ON, and carrying more. Alaska's version of this
-    is seven full width cards of name, count and blurb, which is most of a screen for eight
+    DENSER THAN THE CARD WALL IT IS MODELLED ON, and carrying more. The prior art is seven
+    full width cards of name, count and blurb, which is most of a screen for eight
     facts. This is one row per beat in a grid that runs two and three wide, and each row
     carries the name, the count, the blurb and whether anything on that beat is still open,
     which is one more fact per beat in roughly a third of the height.
