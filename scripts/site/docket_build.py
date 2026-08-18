@@ -354,10 +354,35 @@ def _geography_problems(who: str, item: dict) -> list:
     return out
 
 
-def _reader_text(item: dict) -> str:
+def _reader_text(item: dict, *, include_history: bool = True) -> str:
+    """The prose this project WROTE for a reader, which is what the copy gates govern.
+
+    HISTORY NOTES ARE READER COPY AND WERE OUTSIDE EVERY GATE UNTIL 2026-08-18, which is the
+    same hole `public_access.how` sat in until 2026-08-12 and it opened for the same reason: the
+    field was not rendered, so nobody asked whether it was governed. Now that the movement log
+    renders on the item page it is the most-read prose on it after the summary.
+
+    `include_history` is FALSE for exactly one caller, the numeral gate, and the reason is
+    structural rather than convenient. A movement line's whole job is to say what the record
+    used to hold, "the filing index moved from 5782 to 5790". The old figure is by definition
+    no longer in any current claim quote, because the claim was updated to the new one. Holding
+    the log to the numeral gate would make the one sentence a movement log exists to write
+    unwriteable, and would push a run toward "the index moved" with no figures at all, which is
+    worse copy and a weaker record. The old value's provenance is this file's own git history.
+    """
     parts = [str(item.get(f, "")) for f in READER_COPY_FIELDS]
     for outer, inner in READER_COPY_NESTED:
         parts.append(str((item.get(outer) or {}).get(inner, "")))
+    if include_history:
+        for h in item.get("history") or []:
+            if isinstance(h, dict):
+                parts.append(str(h.get("note", "")))
+    # A key date's note ALSO renders, in the Dates table, and is also ungoverned. It is
+    # deliberately NOT folded in here, and the reason is that doing so silently changes the
+    # input to a MEASURED ceiling. The comma rule is calibrated on running prose, and a key
+    # date note is a label fragment, so counting it moves a number that was measured on
+    # something else. Widening that gate is its own decision with its own evidence, and it is
+    # recorded as a wave in .claude/WORKLOG.md with the three real defects it already found.
     return " ".join(parts)
 
 
@@ -516,7 +541,7 @@ def gate_numerals(items: list) -> Result:
     for it in items:
         who = it.get("id", "?")
         allowed = _quoted_numerals(it)
-        for got in _prose_numerals(_reader_text(it)):
+        for got in _prose_numerals(_reader_text(it, include_history=False)):
             checked += 1
             if got not in allowed:
                 r.fail(f"{who}: numeral '{got}' appears in reader copy but in no claim quote. "

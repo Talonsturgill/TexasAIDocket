@@ -290,8 +290,23 @@ a standard.
 **Geography is never typed at a grain the record does not hold.** Name counties. The metro is
 derived from them by `places.py` and the build fails if a hand-typed `metro` disagrees with what
 the counties compute to.
-- Add a history note **only when something changed**, and write it as three dry sentences: the
-  right answer, where you checked it, stop.
+- **WRITE A DATED MOVEMENT LINE EVERY TIME YOU CHECK AN ITEM, INCLUDING WHEN NOTHING CHANGED.**
+  This is the item's own record of being watched, it renders on the page as **How this decision
+  moved**, and it is the difference between a tracked decision and a stack of quotes. Until
+  2026-08-18 this rule said the opposite, to write a note only on a change, and the result was
+  that 57 of 61 items carried no movement log at all while their `last_verified` stamps advanced
+  every week. The stamp kept the fact and the reader never saw it.
+
+  It is the same argument the stamp rule three bullets up already makes. "Checked and unchanged"
+  is a fact about the item. A reader who sees six dated lines saying the window is still open
+  knows somebody looked six times. A reader who sees one date does not.
+
+  Three dry sentences at most, oldest first, about the DECISION:
+  - changed: what the right answer is now, and what moved.
+  - unchanged: say so plainly, and name the thing you confirmed is still true.
+  - unreachable: name what is therefore **unconfirmed**, never what the fetcher did. A source
+    that would not answer is a fact about the record's certainty, and "returned a 403 this run"
+    is machine narration that `gate_narration` refuses and should.
 
 **A correction is not an incident report.** The sibling product once appended 160 words to a
 public item explaining which four surfaces had been wrong and what gate now guarded it. Every word

@@ -1815,6 +1815,23 @@ def item_page(it: dict, today: str) -> str:
         f'<tr><td class="num">{e(k["date"])}</td><td>{e(k["kind"].replace("_", " "))}</td>'
         f'<td>{e(k.get("note") or "")}</td></tr>'
         for k in sorted(it.get("key_dates", []), key=lambda d: d["date"]))
+    # HOW THIS DECISION MOVED. One dated line per check, oldest first, including the checks
+    # where nothing moved. Added 2026-08-18 on the owner's call: the field already existed, the
+    # routine only wrote to it on a change, and NOTHING RENDERED IT, so 57 of 61 items showed a
+    # reader a wall of quotes and a single date. A record that is watched should look watched.
+    moved = "".join(
+        f'<li><span class="num">{e(h["date"])}</span><p>{e(h.get("note") or "")}</p></li>'
+        for h in sorted((x for x in (it.get("history") or []) if isinstance(x, dict)),
+                        key=lambda d: str(d.get("date", ""))))
+    # ASSEMBLED HERE RATHER THAN INLINE, so an item with no log emits nothing at all. Written
+    # inline the conditional left two blank lines behind on the 57 pages that have no history
+    # yet, which is a byte change on 57 files for a section none of them carry. The site's
+    # freshness check compares bytes, so noise like that turns a real diff into a haystack.
+    moved_block = (
+        '<section><h2>How this decision moved</h2><div class="prose"><p>One dated line per '
+        'check, oldest first. A line that says nothing changed means somebody looked and it '
+        f'had not.</p></div><ol class="moved">{moved}</ol></section>\n\n') if moved else ""
+
     pa = it.get("public_access") or {}
     how = pa.get("how") or ""
     url = pa.get("url")
@@ -1838,7 +1855,7 @@ def item_page(it: dict, today: str) -> str:
 
 {'<section><h2>Dates</h2><table><thead><tr><th>Date</th><th>What</th><th>Note</th></tr></thead><tbody>' + dates + '</tbody></table></section>' if dates else ''}
 
-<section>
+{moved_block}<section>
   <h2>The evidence</h2>
   <div class="prose"><p>Every fact above rests on one of these. The words are the source's own.</p></div>
   {claims_html(it)}
@@ -2699,6 +2716,19 @@ def item_markdown(it: dict, today: str) -> str:
     for k in sorted(it.get("key_dates", []), key=lambda d: d["date"]):
         lines.append(f'- {k["date"]} · {k["kind"].replace("_", " ")}'
                      + (f': {k["note"]}' if k.get("note") else ""))
+    # THE MOVEMENT LOG BELONGS IN THE TWIN TOO. The twin is the record as a machine reads it,
+    # and the one thing a machine reader most often gets wrong about a decision is whether it
+    # is still live. A dated line saying somebody looked on the 18th and nothing had changed
+    # answers that better than the status word does, and leaving it out of the twin would build
+    # the same gap one layer down that this whole section exists to close.
+    movement = sorted((x for x in (it.get("history") or []) if isinstance(x, dict)),
+                      key=lambda d: str(d.get("date", "")))
+    if movement:
+        lines += ["", "## How this decision moved", "",
+                  "One dated line per check, oldest first. A line that says nothing changed "
+                  "means somebody looked and it had not.", ""]
+        for h in movement:
+            lines.append(f'- {h["date"]} · {h.get("note") or ""}')
     lines += ["", "## Evidence", "",
               "Every fact above rests on one of these. The words are the source's own.", ""]
     for c in it.get("claims", []):
@@ -3295,6 +3325,27 @@ def _item_numerals(it: dict) -> set:
     for kd in (it.get("key_dates") or []):
         a.add(kd.get("date"), *str(kd.get("date", "")).split("-"))
         a.add(*_identifier_numerals(str(kd.get("what", "")) + " " + str(kd.get("note", ""))))
+
+    # THE MOVEMENT LOG, and this is a carve-out rather than an oversight. `docket_build`'s
+    # numeral gate excludes history notes for a structural reason, and the site layer has to
+    # make the same exclusion or the record passes and the page it produces fails. A movement
+    # line's whole job is to say what the record USED TO HOLD, "the filing index moved from
+    # 5782 to 5790". The old figure is by definition in no current claim quote, because the
+    # claim was updated to the new one. Holding the log to the numeral set would make the one
+    # sentence a movement log exists to write unwriteable, and would push a run toward "the
+    # index moved" with no figures at all, which is worse copy and a weaker record. The old
+    # value's provenance is `ledger/docket.json`'s own git history, which is a stronger trace
+    # than a quote because it carries the run that observed the change.
+    #
+    # PER ITEM, like everything else in this function. An old figure from one decision's log
+    # is not a licence to print that figure on another decision's page, so the carve-out is
+    # exactly as wide as the page that renders the line and no wider.
+    for h in (it.get("history") or []):
+        if not isinstance(h, dict):
+            continue
+        for n in dk.NUMERAL.findall(str(h.get("note", "")) + " " + str(h.get("date", ""))):
+            a.add(n, n.replace(",", "").rstrip("%"))
+        a.add(*str(h.get("date", "")).split("-"))
 
     # THE CONTROL NUMBER A READER NEEDS IN ORDER TO ACT. `public_access.how` says which
     # docket to file under, and that number is the single most consequential string on the
