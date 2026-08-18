@@ -1704,11 +1704,11 @@ a way in.</p>
 def covers_section(items: list, today: str) -> tuple:
     """The front page's index of the record. Returns (numerals it prints, html).
 
-    DENSER THAN THE CARD WALL IT IS MODELLED ON, and carrying more. Alaska's version of this
-    is seven full width cards of name, count and blurb, which is most of a screen for eight
-    facts. This is one row per beat in a grid that runs two and three wide, and each row
-    carries the name, the count, the blurb and whether anything on that beat is still open,
-    which is one more fact per beat in roughly a third of the height.
+    DENSER THAN THE CARD WALL IT IS MODELLED ON, and carrying more. The reference version of
+    this pattern is a column of full width cards of name, count and blurb, which spends most of
+    a screen on eight facts. This is one row per beat in a grid that runs two and three wide,
+    and each row carries the name, the count, the blurb and whether anything on that beat is
+    still open, which is one more fact per beat in roughly a third of the height.
 
     THE BLURB IS THE SAME STRING THE HUB PUBLISHES, by construction. Two surfaces describing
     the same eight beats in two sets of words is how a site starts contradicting itself.
@@ -3717,6 +3717,29 @@ def self_test() -> int:
         print(f"  {'ok  ' if cond else 'FAIL'}  {label}{'' if cond else '  ' + extra}")
         if not cond:
             failures += 1
+
+    # THE TOPIC VOCABULARY LIVES IN TWO FILES AND THEY HAVE TO AGREE.
+    #
+    # `docket_build.TOPICS` decides what the record may admit. `TOPIC_BLURBS` decides what
+    # /topic/ and the front page can say about it. Adding a beat to the first and not the second
+    # is a build that dies at Phase 16 with the deck already made, which is the most expensive
+    # minute of the run to discover it in. Adding it to the second only is a blurb nothing
+    # renders, which nobody notices at all.
+    #
+    # So it is checked HERE, where it costs a second and CI runs it on the pull request that
+    # adds the beat. The error names the missing side, because the whole point is that whoever
+    # trips it should not have to read this file to know what to do.
+    missing = sorted(dk.TOPICS - set(TOPIC_BLURBS))
+    check(f"every admitted beat has a blurb (missing {missing or 'none'})", not missing,
+          "add one line per slug to TOPIC_BLURBS in scripts/site/site_build.py")
+    orphan = sorted(set(TOPIC_BLURBS) - dk.TOPICS)
+    check(f"...and no blurb describes a beat the record cannot admit ({orphan or 'none'})",
+          not orphan, "remove it, or add the slug to TOPICS in scripts/site/docket_build.py")
+    # A BLURB THAT SAYS NOTHING PASSES THE CHECK ABOVE AND FAILS THE READER. It is published as
+    # the page's meta description, which is the sentence a search result shows.
+    thin = sorted(t for t, b in TOPIC_BLURBS.items() if len(b.split()) < 8)
+    check(f"...and every blurb is a sentence rather than a placeholder ({thin or 'none'})",
+          not thin, "a meta description under eight words tells a search result nothing")
 
     today = "2026-08-11"
     with tempfile.TemporaryDirectory() as td:
