@@ -44,7 +44,8 @@ PAGE = REPO_ROOT / "docs" / "grid" / "index.html"
 STALE_DAYS = 2
 
 
-def findings(page_html: str, records: list, today: str) -> list[str]:
+def findings(page_html: str, records: list, today: str,
+             queue_data: dict | None = None) -> list[str]:
     """Everything wrong with the published page, in the order a reader would meet it."""
     import gridwatch_page as gp
 
@@ -91,7 +92,12 @@ def findings(page_html: str, records: list, today: str) -> list[str]:
         out.append("the page has no main element; the site shell has changed shape and the "
                    "numeral check cannot tell copy from chrome")
         main = ""
-    stray = gp.lint(main, gp.figures(records))
+    # The queue data is passed through rather than fetched, for the same reason the
+    # fixture pages below are built with NO_QUEUE: gp.figures() reads the live ledger
+    # when it is not handed one, and a hermetic test that inherits real numerals can
+    # authorise the very figure it planted. Live callers pass nothing and get the
+    # published record, which is what checking the published page means.
+    stray = gp.lint(main, gp.figures(records, queue_data))
     if stray:
         out.append("numerals on the published page trace to no computation: "
                    + ", ".join(stray[:8]))
@@ -177,33 +183,40 @@ def self_test() -> int:
             '<p>13 items, 254 counties.</p></footer></body></html>')
 
     good = [rec("2026-08-08"), rec("2026-08-09"), rec("2026-08-10")]
-    html = shell(gp.body(good, "2026-08-11"))
+    # NO_QUEUE, and this is load bearing rather than tidy. gp.body() reads the live queue
+    # ledger when it is not handed one, so a fixture page built without it carries real
+    # numerals, and this self-test plants "8.9 GW" and requires the checker to catch it. The
+    # ledger holds a month at 8,926 MW, which renders as exactly "8.9": the plant was
+    # authorised by real data and the check passed while catching nothing. Same collision that
+    # hid inside gridwatch_page's own self-test, reached through a different caller, which is
+    # the argument for the fixtures being the ONLY source of numerals in any hermetic test.
+    html = shell(gp.body(good, "2026-08-11", gp.NO_QUEUE))
     check("a current page with a whole series is clean",
-          findings(html, good, "2026-08-11") == [], str(findings(html, good, "2026-08-11")))
+          findings(html, good, "2026-08-11", gp.NO_QUEUE) == [], str(findings(html, good, "2026-08-11", gp.NO_QUEUE)))
     check("the site's own chrome numerals are not read as grid watch copy",
           not any("trace to no computation" in x
-                  for x in findings(html, good, "2026-08-11")))
+                  for x in findings(html, good, "2026-08-11", gp.NO_QUEUE)))
     check("a page with no main element says so rather than checking nothing",
           any("no main element" in x
-              for x in findings("<body><p>1234567</p></body>", good, "2026-08-11")))
+              for x in findings("<body><p>1234567</p></body>", good, "2026-08-11", gp.NO_QUEUE)))
 
     check("one day behind is the healthy steady state, not a finding",
           not any("collector may have stopped" in f
-                  for f in findings(html, good, "2026-08-11")))
-    late = findings(html, good, "2026-08-14")
+                  for f in findings(html, good, "2026-08-11", gp.NO_QUEUE)))
+    late = findings(html, good, "2026-08-14", gp.NO_QUEUE)
     check("four days behind is a finding",
           any("collector may have stopped" in f for f in late), str(late))
 
     holed = [rec("2026-08-05"), rec("2026-08-08"), rec("2026-08-09"), rec("2026-08-10")]
-    f = findings(shell(gp.body(holed, "2026-08-11")), holed, "2026-08-11")
+    f = findings(shell(gp.body(holed, "2026-08-11", gp.NO_QUEUE)), holed, "2026-08-11", gp.NO_QUEUE)
     check("a hole in the series is found and counted",
           any("missing from the series" in x and "2026-08-06" in x for x in f), str(f))
 
     unv = good + [{"_spec": 1, "date": "2026-08-11", "verified": False}]
-    f = findings(shell(gp.body(unv, "2026-08-12")), unv, "2026-08-12")
+    f = findings(shell(gp.body(unv, "2026-08-12", gp.NO_QUEUE)), unv, "2026-08-12", gp.NO_QUEUE)
     check("an unverified day is reported", any("unverified" in x for x in f), str(f))
 
-    f = findings(html.replace("</h1>", "</h1><p>roughly 8.9 GW</p>"), good, "2026-08-11")
+    f = findings(html.replace("</h1>", "</h1><p>roughly 8.9 GW</p>"), good, "2026-08-11", gp.NO_QUEUE)
     check("a typed numeral on the published page is caught",
           any("trace to no computation" in x and "8.9" in x for x in f), str(f))
 
@@ -212,20 +225,20 @@ def self_test() -> int:
     check("verdict language on the published page is caught",
           any("reliability verdict language" in x for x in f), str(f))
 
-    f = findings(html.replace('class="bar"', 'class="dial"'), good, "2026-08-11")
+    f = findings(html.replace('class="bar"', 'class="dial"'), good, "2026-08-11", gp.NO_QUEUE)
     check("the gauge turning into a dial is caught",
           any("become a dial" in x for x in f), str(f))
-    f = findings(html.replace('class="fill"', 'class="fill critical"'), good, "2026-08-11")
+    f = findings(html.replace('class="fill"', 'class="fill critical"'), good, "2026-08-11", gp.NO_QUEUE)
     check("a severity class on the gauge is caught",
           any("severity class" in x for x in f), str(f))
 
-    stale = shell(gp.body(good[:-1], "2026-08-11"))
-    f = findings(stale, good, "2026-08-11")
+    stale = shell(gp.body(good[:-1], "2026-08-11", gp.NO_QUEUE))
+    f = findings(stale, good, "2026-08-11", gp.NO_QUEUE)
     check("a site stale against the ledger is caught",
           any("does not show the newest reading" in x for x in f), str(f))
 
     check("an empty page is a finding, not a crash",
-          findings("", good, "2026-08-11") == ["the published grid watch page is missing or "
+          findings("", good, "2026-08-11", gp.NO_QUEUE) == ["the published grid watch page is missing or "
                                                "empty"])
     check("an empty record is a finding, not a crash",
           any("never succeeded" in x for x in findings(html, [], "2026-08-11")))
