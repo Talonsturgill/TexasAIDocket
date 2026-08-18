@@ -33,6 +33,20 @@ An undeclared aggregate fails. That is the point: the deck must say where each i
 came from, and "I did not notice it was an aggregate" is exactly how the sibling's five got
 rendered.
 
+THE THREE ROUTES A DECLARATION MAY TAKE, and the third was added 2026-08-18
+
+    from_claims   a tally, one claim id per unit counted        FIVE PUCT FILINGS
+    computed_by   code over data, naming the code and the input 254 counties, len() of a topojson
+    quoted_from   a figure THE SOURCE WROTE, plus the exact     two schools, four hours
+                  string it appears in
+
+Run No.2 had five figures of the third kind and only two routes to declare them, so it declared
+them all through `computed_by`, whose name asserts the opposite of what happened and whose only
+check is that the prose runs to three words. The honest route was the unchecked one. `quoted_from`
+takes a claim id and the quoted string, and verifies BOTH: the string must occur in that claim,
+and the declared value must be a numeral inside that string. A `computed_by` that describes
+quoting is now refused and told where to go, so the workaround cannot be reused.
+
     aggregate_check.py --date 2026-08-12
     aggregate_check.py --self-test
 """
@@ -170,6 +184,47 @@ def scan_report(report: dict) -> list[dict]:
     return out
 
 
+def _norm(s: str) -> str:
+    """Whitespace collapsed, case folded, smart quotes and dashes flattened.
+
+    A declaration is copied out of a claim by hand, so the difference between the two is
+    usually a line break or a curly apostrophe. Failing on that would teach a run that the
+    gate is fussy rather than that the source disagrees, and a gate people route around is
+    worse than none (GATE_LESSONS 15, the slide counter that cried wolf nine times a deck).
+    """
+    s = (s or "").replace("’", "'").replace("‘", "'")
+    s = s.replace("“", '"').replace("”", '"')
+    s = s.replace("—", "-").replace("–", "-")
+    return re.sub(r"\s+", " ", s).strip().casefold()
+
+
+def _rederive_quoted(decl: dict, claims: dict, cid: str) -> tuple[bool, str]:
+    """A figure the SOURCE wrote, checked against the claim that carries it. See rederive()."""
+    stated = decl.get("value")
+    if not isinstance(stated, (int, float)):
+        return False, "a quoted aggregate must declare the numeric `value` the source states"
+    quote = str(decl.get("quote") or "").strip()
+    if not quote:
+        return False, ("`quoted_from` names claim %s and no `quote`. The claim id alone does not "
+                       "say WHICH string in it carries the number, so nothing can be checked" % cid)
+    by_id = {c.get("id"): c for c in (claims.get("claims") or []) if isinstance(c, dict)}
+    claim = by_id.get(cid)
+    if claim is None:
+        return False, (f"`quoted_from` cites {cid!r}, which is not in the claims file "
+                       f"(ids present: {sorted(by_id)[:8]})")
+    haystack = _norm(" ".join(str(claim.get(k) or "") for k in ("quote", "text")))
+    if _norm(quote) not in haystack:
+        return False, (f"the declared quote {quote[:60]!r} does not occur in claim {cid}. A "
+                       f"figure is only quoted if the claim actually contains the string it "
+                       f"came from; claim {cid} reads {str(claim.get('quote') or claim.get('text'))[:80]!r}")
+    toks = [to_int(m.group(1)) for m in re.finditer(rf"\b({NUM})\b", quote, re.I)]
+    if stated not in [t for t in toks if t is not None]:
+        return False, (f"the declaration says {stated} and the quoted string carries "
+                       f"{[t for t in toks if t is not None] or 'no numeral at all'}. A quoted "
+                       f"figure must be the number the source wrote, not a number derived from it")
+    return True, ""
+
+
 def rederive(decl: dict, claims: dict) -> tuple[bool, str]:
     """Recompute the declared aggregate from what it says it came from.
 
@@ -188,6 +243,31 @@ def rederive(decl: dict, claims: dict) -> tuple[bool, str]:
     """
     ids = decl.get("from_claims") or []
     computed_by = str(decl.get("computed_by") or decl.get("how") or "").strip()
+
+    # THE THIRD ORIGIN (2026-08-18), and the run that earned it wrote the argument itself.
+    #
+    # A figure can be neither counted nor computed. It can be QUOTED: the source says "two
+    # Future 2 schools" and "the first four hours", and the deck repeats the number the source
+    # wrote. The `count` rule wants one claim id per unit counted, so "two schools" would have
+    # to name two claims, which is a lie in the shape the rule expects. Run No.2 therefore
+    # declared five quoted figures through `computed_by`, a field whose name says the opposite
+    # of what happened, and whose only check is that the prose is three words long. So the
+    # honest route was the unchecked one and the note carried the whole burden.
+    #
+    # `quoted_from` is that route, and it is STRICTLY STRONGER than what it replaces, not a
+    # relaxation. It names the claim and the exact string, and both are verified: the string
+    # must actually occur in that claim, and the declared value must be a numeral inside that
+    # string. A quoted figure the source does not contain now fails, where before it passed on
+    # a sentence nobody read.
+    quoted_from = str(decl.get("quoted_from") or "").strip()
+    if quoted_from:
+        return _rederive_quoted(decl, claims, quoted_from)
+    if re.search(r"\bquot(?:ed|ing)\s+(?:verbatim\s+)?from\b", computed_by, re.I):
+        return False, (
+            "`computed_by` says the figure was QUOTED, which means it was not computed. Declare "
+            "it with `quoted_from` (the claim id) and `quote` (the exact string in that claim "
+            "carrying the number) so the gate can check the source really says it, instead of "
+            "reading a sentence nobody verifies")
 
     if computed_by:
         if not isinstance(decl.get("value"), (int, float)):
@@ -422,6 +502,54 @@ def self_test() -> int:
 
     ok("an empty deck is clean rather than an error",
        not check({"slides": []}, {"aggregates": []}, claims))
+
+    # THE QUOTED ROUTE (2026-08-18). Run No.2's own figures, verbatim: c2 says "the launch of
+    # two Future 2 schools" and the slide printed "Two schools". Before this the only way to
+    # declare that was `computed_by`, which is a free text field the gate reads three words of.
+    qc = {"claims": [
+        {"id": "c2", "text": "Houston ISD announced a launch of two schools.",
+         "quote": 'with the launch of two Future 2 schools, C. Martinez and Gregg'},
+        {"id": "c3", "text": "The first four hours follow the standard curriculum.",
+         "quote": "The first four hours of school follow the standard NES curriculum"}]}
+    qr = {"slides": [{"slide": "slide-02", "text_nodes": [{"text": "Two schools"}]}]}
+    qgood = {"aggregates": [{"phrase": "Two schools", "kind": "count", "value": 2,
+                             "quoted_from": "c2", "quote": "the launch of two Future 2 schools"}]}
+    ok("a quoted figure declared with quoted_from passes", not check(qr, qgood, qc),
+       str(check(qr, qgood, qc))[:160])
+
+    def qbad(**over):
+        d = dict(qgood["aggregates"][0]); d.update(over)
+        for k, v in list(d.items()):
+            if v is None:
+                d.pop(k)
+        return check(qr, {"aggregates": [d]}, qc)
+
+    ok("caught: a quote the claim does not contain",
+       any("does not occur in claim c2" in p for p in
+           qbad(quote="the launch of two hundred Future 2 schools")))
+    ok("caught: a value that is not the number the source wrote",
+       any("the quoted string carries" in p for p in qbad(value=7)))
+    ok("caught: a quoted_from naming a claim that does not exist",
+       any("not in the claims file" in p for p in qbad(quoted_from="c99")))
+    ok("caught: a claim id with no quote, which checks nothing",
+       any("does not say WHICH string" in p for p in qbad(quote=None)))
+    ok("a curly apostrophe in the claim is not a disagreement",
+       not check(qr, {"aggregates": [dict(qgood["aggregates"][0],
+                                          quote="the launch of two Future 2 schools")]},
+                 {"claims": [dict(qc["claims"][0],
+                                  quote="with the  launch of two Future 2 schools")]}))
+
+    # AND THE WORKAROUND ITSELF. This is the declaration run No.2 actually shipped, word for
+    # word. It passed. It must not again, and the message has to name the route that replaces it.
+    ok("caught: the 2026-08-18 workaround, a quoted figure declared as computed_by",
+       any("Declare it with `quoted_from`" in p for p in check(qr, {"aggregates": [
+           {"phrase": "Two schools", "kind": "count", "value": 2,
+            "computed_by": "quoted from claim c2, which reads 'the launch of two Future 2 "
+                           "schools'. Not counted by this deck"}]}, qc)))
+    ok("...and an honest computed_by that merely mentions counting quoted names still passes",
+       not check(qr, {"aggregates": [
+           {"phrase": "Two schools", "kind": "count", "value": 2,
+            "computed_by": "len() over the campus list in assets/houston_future2.json"}]}, qc))
 
     if failures:
         print(f"\naggregate_check self-test: {failures} FAILED", file=sys.stderr)

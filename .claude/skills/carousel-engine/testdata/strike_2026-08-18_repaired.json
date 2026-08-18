@@ -1,0 +1,127 @@
+{
+ "captured_from": "a real chromium render of slide-09.html, cropped to design rows 1130..1285 and re-based by 1130. Every coordinate below is the browser's, not an author's (GATE_LESSONS 15).",
+ "note": "the same slide AS SHIPPED (table lifted to bottom:196px, footnote dropped to bottom:96px). The same 2px rule is still drawn, 38px above the footnote's line box, and must not be reported. A gate that cannot go green on the repair is not measuring the repair.",
+ "image": "strike_2026-08-18_repaired.webp",
+ "scale": 2.0,
+ "design_y_offset": 1130,
+ "text_nodes": [
+  {
+   "text": "minutes",
+   "x": 84,
+   "y": -39,
+   "w": 420,
+   "h": 63,
+   "font_px": 26,
+   "weight": "400",
+   "family": "JetBrains Mono",
+   "color": "rgb(74, 90, 82)",
+   "decorative": false,
+   "overlap_ok": false,
+   "lines": [
+    [
+     90,
+     -26,
+     109,
+     35
+    ]
+   ]
+  },
+  {
+   "text": "Draft",
+   "x": 504,
+   "y": -39,
+   "w": 492,
+   "h": 63,
+   "font_px": 26,
+   "weight": "400",
+   "family": "JetBrains Mono",
+   "color": "rgb(44, 58, 52)",
+   "decorative": false,
+   "overlap_ok": false,
+   "lines": [
+    [
+     510,
+     -26,
+     78,
+     35
+    ]
+   ]
+  },
+  {
+   "text": "Checked five days after the meeting. The minutes were still marked Draft.",
+   "x": 84,
+   "y": 62,
+   "w": 696,
+   "h": 62,
+   "font_px": 24,
+   "weight": "400",
+   "family": "JetBrains Mono",
+   "color": "rgb(74, 68, 54)",
+   "decorative": false,
+   "overlap_ok": false,
+   "lines": [
+    [
+     84,
+     62,
+     691,
+     31
+    ],
+    [
+     84,
+     93,
+     346,
+     31
+    ]
+   ]
+  },
+  {
+   "text": "09 / 09",
+   "x": 895,
+   "y": 101,
+   "w": 101,
+   "h": 31,
+   "font_px": 24,
+   "weight": "400",
+   "family": "JetBrains Mono",
+   "color": "rgb(122, 106, 85)",
+   "decorative": true,
+   "overlap_ok": false,
+   "lines": [
+    [
+     895,
+     101,
+     101,
+     31
+    ]
+   ]
+  }
+ ],
+ "rules": [
+  {
+   "kind": "border",
+   "x": 84,
+   "y": 21,
+   "w": 419.5,
+   "h": 2,
+   "by": "k",
+   "color": "rgb(44, 58, 52)",
+   "decorative": false,
+   "skip": [
+    0
+   ]
+  },
+  {
+   "kind": "border",
+   "x": 503.5,
+   "y": 21,
+   "w": 492.5,
+   "h": 2,
+   "by": "v",
+   "color": "rgb(44, 58, 52)",
+   "decorative": false,
+   "skip": [
+    1
+   ]
+  }
+ ]
+}

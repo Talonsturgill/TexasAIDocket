@@ -387,6 +387,140 @@ IN_PAGE_QA_JS = """
     }
   }
 
+  /* DRAWN RULES (2026-08-18). The geometry half of qa.py's strikethrough gate.
+     Everything above this block sees TEXT (line boxes) or OPAQUE BOXES (the
+     occlusion probe, which requires a filled background >= 4px in BOTH
+     dimensions and confirms paint order). A one or two pixel BORDER is neither,
+     so on 2026-08-18 slide 09's table ran its 2px `tr.last td` bottom rule
+     from x=84 to x=996 at y=1216, straight through the glyph band of a footnote
+     line box at [84,1204,691,31], and machine QA reported zero fails and zero
+     warns. At 432px feed width that rule reads as a strikethrough through the
+     sentence. The scorer caught it by reading these coordinates out of this
+     file, which is the whole argument for measuring them here.
+
+     What is emitted is STRIPS, in viewport (design) px, with no judgement:
+
+       kind "border"  one strip per visible side of any element's border box
+       kind "outline" the same for a CSS outline, offset included
+       kind "fill"    an element that is ITSELF drawn geometry: a painted box
+                      with no text anywhere inside it (an <hr>, a divider div,
+                      a ruled empty field). A plate BEHIND type contains that
+                      type and is excluded here, which is right: the occlusion
+                      probe above owns plates and this owns rules.
+       kind "svg"     an SVG <line> or <rect>'s side strips. A <path> is not
+                      emitted: its bounding box is not the shape it draws, and
+                      a box that is not the geometry would be a gate reporting
+                      a figure the slide does not contain (GATE_LESSONS 15).
+
+     `skip` carries the indices of every text node this strip is the box of, or
+     an ancestor or descendant of, so qa.py never reports an element's own
+     underline or a card's border against text inside the card. That is the same
+     conservative ownership rule the occlusion probe uses.
+
+     NO VISIBILITY THRESHOLD IS APPLIED HERE, deliberately. Whether a hairline
+     at alpha 0.45 reads as a strikethrough is a question about the pixels a
+     reader receives, not about a declared alpha, so qa.py measures it off the
+     PNG against WCAG 1.4.11's 3.0:1 non-text floor. Emitting everything and
+     judging on measurement is what keeps this from being a typed number.
+     PAINT ORDER IS ALSO NOT CONSULTED, and that is not an oversight: the
+     2026-08-18 rule was painted BENEATH the footnote (the div comes after the
+     table in document order) and still read as a strikethrough, because a dark
+     hairline crossing a word is a strikethrough whichever of the two was
+     rasterised last. */
+  out.rules = [];
+  try {
+    const _skipFor = (el) => {
+      const s = [];
+      for (const [tel, idx] of recorded) {
+        if (tel === el || el.contains(tel) || tel.contains(el)) s.push(idx);
+      }
+      return s;
+    };
+    const _name = (e) =>
+      ((e.getAttribute && e.getAttribute("class")) || e.id || e.tagName || "?")
+        .toString().slice(0, 40);
+    const push = (el, kind, x, y, w, h, color) => {
+      if (out.rules.length >= 600) return;
+      if (!(w > 0.5 && h > 0.5)) return;
+      if (x + w < 0 || y + h < 0 || x > W || y > H) return;
+      out.rules.push({
+        kind: kind, x: Math.round(x * 10) / 10, y: Math.round(y * 10) / 10,
+        w: Math.round(w * 10) / 10, h: Math.round(h * 10) / 10,
+        by: _name(el), color: color || "",
+        decorative: !!(el.hasAttribute && (el.hasAttribute("data-decorative") ||
+                       (el.closest && el.closest("[data-decorative]")))),
+        skip: _skipFor(el)
+      });
+    };
+    for (const e of document.querySelectorAll("body *")) {
+      const tg = (e.tagName || "").toUpperCase();
+      if (tg === "SCRIPT" || tg === "STYLE" || tg === "CANVAS") continue;
+      const cs4 = getComputedStyle(e);
+      if (cs4.display === "none" || cs4.visibility === "hidden") continue;
+      if (parseFloat(cs4.opacity) === 0) continue;
+      const isSvg = e.namespaceURI === "http://www.w3.org/2000/svg";
+      const r4 = e.getBoundingClientRect();
+      if (isSvg) {
+        const lt = tg.toLowerCase();
+        if (lt !== "line" && lt !== "rect") continue;
+        const sw = parseFloat(cs4.strokeWidth || "0") || 0;
+        const stroked = sw > 0 && (cs4.stroke || "") !== "none" && (cs4.stroke || "") !== "";
+        if (lt === "line") {
+          if (!stroked) continue;
+          push(e, "svg", r4.left, r4.top, Math.max(r4.width, sw), Math.max(r4.height, sw),
+               cs4.stroke);
+        } else {
+          if (stroked) {
+            push(e, "svg", r4.left, r4.top, r4.width, sw, cs4.stroke);
+            push(e, "svg", r4.left, r4.bottom - sw, r4.width, sw, cs4.stroke);
+            push(e, "svg", r4.left, r4.top, sw, r4.height, cs4.stroke);
+            push(e, "svg", r4.right - sw, r4.top, sw, r4.height, cs4.stroke);
+          }
+          const fl = (cs4.fill || "").trim();
+          if (fl && fl !== "none" && !e.textContent.trim()) {
+            push(e, "fill", r4.left, r4.top, r4.width, r4.height, fl);
+          }
+        }
+        continue;
+      }
+      const side = (p) => {
+        const st = cs4.getPropertyValue("border-" + p + "-style");
+        if (!st || st === "none" || st === "hidden") return 0;
+        return parseFloat(cs4.getPropertyValue("border-" + p + "-width")) || 0;
+      };
+      const bt = side("top"), bb = side("bottom"), bl = side("left"), br = side("right");
+      if (bt) push(e, "border", r4.left, r4.top, r4.width, bt,
+                   cs4.getPropertyValue("border-top-color"));
+      if (bb) push(e, "border", r4.left, r4.bottom - bb, r4.width, bb,
+                   cs4.getPropertyValue("border-bottom-color"));
+      if (bl) push(e, "border", r4.left, r4.top, bl, r4.height,
+                   cs4.getPropertyValue("border-left-color"));
+      if (br) push(e, "border", r4.right - br, r4.top, br, r4.height,
+                   cs4.getPropertyValue("border-right-color"));
+      const ow = parseFloat(cs4.outlineWidth) || 0;
+      if (ow > 0 && cs4.outlineStyle && cs4.outlineStyle !== "none") {
+        const off = parseFloat(cs4.outlineOffset) || 0;
+        const ox = r4.left - off - ow, oy = r4.top - off - ow;
+        const oW = r4.width + 2 * (off + ow), oH = r4.height + 2 * (off + ow);
+        push(e, "outline", ox, oy, oW, ow, cs4.outlineColor);
+        push(e, "outline", ox, oy + oH - ow, oW, ow, cs4.outlineColor);
+        push(e, "outline", ox, oy, ow, oH, cs4.outlineColor);
+        push(e, "outline", ox + oW - ow, oy, ow, oH, cs4.outlineColor);
+      }
+      /* An element that is ITSELF a drawn mark: painted, and holding no words.
+         A plate behind type holds that type and is not this. */
+      if (!e.textContent.trim()) {
+        const painted = _alpha(cs4.backgroundColor) > 0 ||
+                        (cs4.backgroundImage && cs4.backgroundImage !== "none");
+        if (painted && !(r4.width >= W - 1 && r4.height >= H - 1)) {
+          push(e, "fill", r4.left, r4.top, r4.width, r4.height, cs4.backgroundColor);
+        }
+      }
+    }
+  } catch (e) {
+    try { console.error("drawn-rules probe threw: " + e); } catch (e2) {}
+  }
+
   /* DECLARED ENCODINGS (2026-07-29). A slide may state, in machine-readable
      form, what its artwork is supposed to SAY without words:
 
@@ -734,7 +868,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
     rec = {"file": path.name, "png": out_png.name, "console_errors": [], "page_errors": [],
            "overflow_warnings": [], "fonts_missing": [], "text_nodes": [],
            "body_overflow": False, "canvas_text": [], "svg_plates": [],
-           "encodings": [], "contacts": [], "nondeterminism": [],
+           "rules": [], "encodings": [], "contacts": [], "nondeterminism": [],
            "render_ms": 0, "ok": False}
     t0 = time.time()
     page = browser.new_page(viewport={"width": width, "height": height},
@@ -756,7 +890,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
         rec.update({k: qa[k] for k in ("text_nodes", "overflow_warnings",
                                        "fonts_missing", "body_overflow", "canvases",
                                        "canvas_text", "breather", "svg_plates",
-                                       "encodings", "contacts", "leaders")})
+                                       "rules", "encodings", "contacts", "leaders")})
         page.screenshot(path=str(out_png), clip={"x": 0, "y": 0, "width": width, "height": height})
         rec["ok"] = out_png.exists() and out_png.stat().st_size > 10_000
         if not rec["ok"]:

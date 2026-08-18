@@ -7,4 +7,88 @@
     "written_by": "carousel"
   },
   "entries": []
+  ,"_shape": {
+    "discovered": "2026-08-18, by the first phase that ever tried to write this file",
+    "why_entries_is_empty": "The `entries` array above is empty and will stay empty. ownership.yaml marks this path append_only, and ownership_check implements that as 'the diff contains no removed line'. Adding the first element to a JSON array moves its closing bracket, which rewrites the line `\"entries\": []`, so the array could never receive an entry and the rule refused the operation it exists to permit. Nothing had ever written this file, so nothing had ever found out.",
+    "how_to_append": "One top level key per run date, with the COMMA LEADING on its own line, inserted immediately before the final closing brace. That is the only JSON shape that grows by pure insertion: the previous entry's closing brace is untouched because its separator lives on the next line, and the file's last line never moves. Read it with json.load and take every key that parses as a date.",
+    "the_rule_was_not_loosened": "ownership.yaml was not edited and could not be: it belongs to the human actor. The shape moved to fit the rule rather than the rule moving to fit the shape."
+  }
+  ,"2026-08-18": {
+    "run": "carousel no. 2, Houston ISD Future 2",
+    "actor": "upgrade",
+    "upgrades": [
+      {
+        "what": "qa.py FAILS a non-decorative text line whose glyph band is crossed by a drawn rule, judged from new per-element geometry emitted by render.py",
+        "why": "slide 09 shipped with the field table's 2px `tr.last td` bottom rule at y=1215 running through the footnote's first line box [84,1204,691,31], and machine QA reported PASS with zero fails and zero warns. text_collisions compares TEXT to TEXT. The occlusion probe compares text to OPAQUE ELEMENT BOXES four or more px in both dimensions, and this rule painted BENEATH the footnote anyway. glyph_ink_contamination fires on ink of the glyphs' OWN value and the rule was a different colour on the same sheet. busy_art_under_text measures edge DENSITY, and one clean rule through a line is the lowest density structure there is. Every gate answered its own question correctly. The scorer found it by reading render_report.json's coordinates by hand at the ship gate, where a repair costs a rebuild.",
+        "files": [
+          ".claude/skills/carousel-engine/render.py",
+          ".claude/skills/carousel-engine/qa.py",
+          ".claude/skills/carousel-engine/testdata/strike_2026-08-18_defect.json",
+          ".claude/skills/carousel-engine/testdata/strike_2026-08-18_defect.webp",
+          ".claude/skills/carousel-engine/testdata/strike_2026-08-18_repaired.json",
+          ".claude/skills/carousel-engine/testdata/strike_2026-08-18_repaired.webp",
+          ".claude/skills/carousel-engine/testdata/strike_2026-08-18_quiet.json",
+          ".claude/skills/carousel-engine/testdata/strike_2026-08-18_quiet.webp"
+        ],
+        "every_quantity_and_where_it_came_from": {
+          "the glyph band": "the em box centred in the measured line box, which is CSS's own content area for an inline box. Derived from the node's own font-size and its rendered line box, so nothing is typed and it scales with the type. Half leading falls outside it, which is what separates a rule THROUGH a word from a rule sitting in the gap under it.",
+          "rule or plate": "the strip's thickness must be under one em of the struck type. At one em or more the thing is a plate and the occlusion probe already owns plates. One em is the type's own unit.",
+          "how much crossed": "a horizontal rule must cross at least one em of the line, so a clipped corner is not a strike. A vertical rule must stand at least one em inside both ends of the line box, because a column divider brushing the end of a line box is ordinary and a vertical rule inside a run of words is not.",
+          "can a reader see it": "WCAG 2.1 SC 1.4.11's 3.0:1 non-text contrast floor, MEASURED off the PNG between the strip's worst scan line and the paper beside it. An external published standard, so it cannot ratchet the way a figure derived from our own corpus would. Under it the strip is the quiet divider GATE_LESSONS 7 says is allowed to be quiet, and this gate says nothing about it.",
+          "paint order": "deliberately not consulted, and that is not an oversight. The rule that shipped painted under the footnote and read as a strikethrough regardless."
+        },
+        "verification": "python3 .claude/skills/carousel-engine/qa.py --self-test, 13 cases over THREE REAL CHROMIUM RENDERS of slide-09.html, cropped and re-based, because GATE_LESSONS 15 says a fixture written by the detector's author agrees with the detector. The pre-repair slide was reconstructed from score.json's recorded repair (table bottom 132px, footnote bottom 84px), re-rendered, and reproduced the scorer's exact numbers: minutes row 1155..1218, footnote line box [84,1204,691,31]. Case 2 is the deck AS SHIPPED and must be clean. Case 3 holds the geometry identical and swaps the 2px near-black rule for the table's own 1px rgba(95,115,80,0.45) hairline, so only the WCAG floor separates it from the defect. Case 7 runs the real entry point end to end through argparse and asserts exit 1: the first draft of that case grepped the source for a call to rule_strikes and stayed GREEN when the call was neutered to `[] and rule_strikes(...)`, which is GATE_LESSONS 13 reproduced inside the fix for something else. Four mutants were watched go red: the WCAG floor set to 0.0, the band widened to the whole line box, the thickness test loosened, and the call unwired. Separately, qa.py --render-dir over a fresh render of the shipped nine slide deck reports clean, so the check is not too blunt for slide 7's ruled empty box, slide 9's bounded empty fields or slide 5's labels above tiles.",
+        "revert": "this commit. render.py's `out.rules` block and qa.py's rule_strikes / strip_visibility / _text_mask are self contained, and the call site is four lines.",
+        "how_i_would_know_this_was_wrong": "a run reports a strike on a design where the rule is MEANT to touch the type, a fieldset legend sitting on its own border or a word set deliberately struck out. The escape hatch is data-overlap-ok, which demotes it to a WARN, and a second sighting would mean the em box band is the wrong shape rather than the floor being wrong. The opposite tell is silence: if a strikethrough ships again while this reports clean, the cause is a mark this probe does not emit, which today is canvas ink (owned by glyph_ink_contamination), an SVG <path>, or a diagonal line."
+      },
+      {
+        "what": "claims_check.py owns the fact-checker's schema as well as the check. A --template flag prints a valid skeleton built from the file's own constants, and --self-test runs check() over the JSON example in the agent's spec and asserts that spec names every required field and every source type.",
+        "why": "the fact-checker's output was rejected on four separate field names in one run: source_url for url, journalism for secondary_reported, dropped for rejected, and no retrieved at all. The showrunner repaired it by hand across four round trips. The gate was right every time. The AGENT was guessing, because its only schema was a worked example carrying \"url\": \"the page you fetched\", which would itself have failed the gate, and because the four value source taxonomy appeared nowhere in the spec it reads. The sibling's recorded cost for this class of drift is an empty verification record on 14 of 18 decks.",
+        "files": [
+          "scripts/carousel/claims_check.py",
+          ".claude/agents/carousel-fact-checker.md"
+        ],
+        "verification": "python3 scripts/carousel/claims_check.py --self-test. Four new cases replay the 2026-08-18 output field by field. Three assert the spec check itself can go red: a spec with the taxonomy renamed to journalism is CAUGHT, a spec whose example uses source_url is CAUGHT, and the template this file prints must pass this file's own check. Nothing in the gate's strictness was relaxed and every sibling drift case still fails.",
+        "revert": "this commit. template(), spec_problems() and the --template flag are additive, and the agent spec change is a documentation edit.",
+        "how_i_would_know_this_was_wrong": "the spec check goes red on a spec edit that is actually an improvement, which would mean it is asserting prose rather than schema. It only requires each field name in backticks and each source type as a literal, so a rewrite that keeps the table keeps passing. If a future run still guesses a field name with all of this in place, the fix is not more documentation, it is piping --template into the agent's prompt, which is a proposal below."
+      },
+      {
+        "what": "aggregate_check.py gains a third declaration route, `quoted_from` with `quote`, for a figure the SOURCE wrote rather than one the deck computed, and refuses a `computed_by` that describes quoting",
+        "why": "run No.2 had five quoted figures (two schools, four hours, 110 minutes, three blocks) and two routes to declare them. The count rule wants one claim id per unit counted, so 'two schools' would have had to name two claims, which is a lie in the shape that rule expects. So all five went through `computed_by`, a field whose name asserts the opposite of what happened and whose only check is that the prose runs to three words. The honest route was the unchecked one, and the aggregates file's _note carried the whole burden of explaining it.",
+        "files": [
+          "scripts/carousel/aggregate_check.py"
+        ],
+        "this_is_a_tightening_not_a_loosening": "quoted_from verifies that the declared string actually occurs in the named claim and that the declared value is a numeral inside that string. Under computed_by, a quoted figure the source does not contain passed on a sentence nobody read.",
+        "verification": "python3 scripts/carousel/aggregate_check.py --self-test, seven new cases including four abuse paths (a quote the claim does not contain, a value that is not the number the source wrote, a claim id that does not exist, a claim id with no quote) and the 2026-08-18 workaround declaration word for word, which must now fail and must name the route that replaces it. Verified against REAL DATA as well: the shipped out/2026-08-18/aggregates.json now fails on four declarations, and rewriting those four to quoted_from against the run's real claims.json passes clean.",
+        "revert": "this commit. _rederive_quoted() and one branch at the top of rederive().",
+        "how_i_would_know_this_was_wrong": "a run finds a legitimate computed_by refused because its prose happens to contain the words 'quoted from'. The pattern is narrow and a self-test case proves an honest computed_by mentioning quoted names still passes, but a second false refusal would mean the check should read the field's structure rather than its wording."
+      }
+    ],
+    "found_while_logging_this": {
+      "what": "ledger/carousel/upgrades.json could not receive its first entry",
+      "detail": "ownership.yaml marks this path append_only and ownership_check implements that as 'no removed line in the diff'. Adding the first element to the `entries` array rewrites the line `\"entries\": []`, so the check refused it. The rule and the file's shape had disagreed since the day both were written and nothing had ever tried to write the file, which is the same shape as GATE_LESSONS 19: a law whose mechanism nobody had ever exercised. The rule was NOT loosened. ownership.yaml belongs to the human actor and was not touched. The file's shape moved instead, to one top level key per run date with the comma leading, which grows by pure insertion. See _shape above."
+    },
+    "proposals_out_of_lane": [
+      {
+        "what": "run `.claude/skills/carousel-engine/qa.py --self-test` as a step in guards.yml, beside the scripts/carousel/*.py self-tests",
+        "owner": "human (.github/workflows/** is not the upgrade lane)",
+        "why": "qa.py now has a self-test that replays a defect which shipped, and nothing in CI runs it. GATE_LESSONS 13 is about evidence one inference away from the question, and a self-test nobody invokes is that shape. The step needs pillow and numpy, which guards.yml already installs."
+      },
+      {
+        "what": "have the fact-checker run `claims_check.py --file` on its own output before returning, or paste `claims_check.py --template` into its task text",
+        "owner": "human (prompts/daily_routine.md is not the upgrade lane, and a run that rewrites the instructions it is executing is how a machine drifts without anyone noticing)",
+        "why": "the schema now lives in the agent spec and in the gate and each is checked against the other. What is still missing is the agent checking its own output before the showrunner does. Four rejections in one run is four round trips one command would have saved."
+      },
+      {
+        "what": "an entry in knowledge/shared/GATE_LESSONS.md for the strikethrough, under the heading 'a collision gate that only knows two kinds of thing'",
+        "owner": "human (knowledge/shared/** is not the upgrade lane)",
+        "why": "that file's own instruction is that an upgrade adding a gate belongs in it. The generalisation is worth more than this instance: when a checker compares A against B, ask what the THIRD kind of B is. Here A was text, B was text and opaque boxes, and drawn geometry was a third kind nobody had enumerated."
+      },
+      {
+        "what": "either fold the dead `entries` array away or move this ledger to .jsonl like every other append_only ledger in the repo",
+        "owner": "human (ownership.yaml and a rewrite of existing lines here are both outside the upgrade lane)",
+        "why": "see found_while_logging_this. The current shape works and is documented, but a dead key at the top of a ledger is a thing somebody will eventually write into by mistake."
+      }
+    ]
+  }
 }
