@@ -1,0 +1,185 @@
+<!doctype html>
+<!-- SLIDE 4 — THE ORDINARY MORNING.
+     Line and node as engineering stationing over a heat shimmer band. The claim is a path
+     with terminals, which is what line and node is for. The line is LIFTED IN VALUE and
+     carries no carve and no shadow, because a stationing line over ground reads as a crack
+     in that ground, which is this technique's recorded failure.
+     This slide also teaches the deck's evidence grammar: filled means the source states it,
+     outline means the source calls it optional. Claims c3, c4. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #E9EAE6; position: relative; font-family: "Manrope", sans-serif; }
+
+  canvas#art { position: absolute; inset: 0; width: 1080px; height: 1350px; }
+
+  .hd { position: absolute; top: 100px; left: 84px; right: 84px; }
+  .kick { font-family: "JetBrains Mono", monospace; font-size: 25px;
+          letter-spacing: 0.13em; text-transform: uppercase; color: #3E5340;
+          margin-bottom: 22px; }
+  h2 { font-family: "Fraunces", serif; font-weight: 800; font-size: 82px;
+       line-height: 1.0; letter-spacing: -0.018em; color: #2C3A34;
+       font-variation-settings: "opsz" 84; }
+
+  .span { position: absolute; top: 340px; left: 84px;
+          font-family: "JetBrains Mono", monospace; font-size: 31px;
+          color: #2C3A34; letter-spacing: 0.01em; line-height: 1.5; }
+  .span .opt { color: #2C3A34; }
+
+  .subs { position: absolute; top: 560px; left: 84px; }
+  .subs li { list-style: none; font-family: "Fraunces", serif; font-weight: 600;
+             font-size: 46px; line-height: 1.34; color: #2C3A34; }
+
+  .legend { position: absolute; left: 84px; right: 300px; bottom: 116px;
+            font-family: "JetBrains Mono", monospace; font-size: 25px;
+            color: #2C3A34; line-height: 1.7;
+            /* A knockout plate, because the shimmer ground is mid value and neither a dark
+               nor a light ink clears 4.5 to 1 against it. Type over art needs a declared
+               defense, and this is the least plate that gives one. */
+            background: #E9EAE6; padding: 16px 20px 18px; }
+  .legend .lrow { white-space: nowrap; }
+  .legend .sw { display: inline-block; width: 30px; height: 16px;
+                margin-right: 12px; vertical-align: -2px; }
+  .legend .filled { background: #6C8C7C; }
+  .legend .outlined { border: 2px solid #7A6A55; }
+  .legend .rule { height: 1px; background: #5F7350; opacity: 0.6; margin-bottom: 16px; }
+
+  .counter { position: absolute; right: 84px; bottom: 132px;
+             font-family: "JetBrains Mono", monospace; font-size: 24px; color: #7A6A55; }
+</style>
+</head>
+<body>
+  <canvas id="art" width="2160" height="2700"></canvas>
+
+  <div class="hd">
+    <div class="kick">Before anything is different</div>
+    <h2>The first four hours<br>are ordinary</h2>
+  </div>
+
+  <div class="span">
+    Instruction 7:30 a.m. to 4:00 p.m.<br>
+    <span class="opt">Optional programming to 6:00 p.m.</span>
+  </div>
+
+  <ul class="subs">
+    <li>Reading</li>
+    <li>Writing</li>
+    <li>Math</li>
+    <li>Science</li>
+    <li>Art of Thinking</li>
+  </ul>
+
+  <div class="legend">
+    <div class="rule"></div>
+    <div class="lrow"><span class="sw filled"></span>as the district states it</div>
+    <div class="lrow"><span class="sw outlined"></span>as the district calls it optional</div>
+  </div>
+  <div class="counter" data-decorative>04 / 09</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260818;
+  TX.reseed(SEED);
+  var R = TX.rng(SEED);
+
+  var cv = document.getElementById("art");
+  var ctx = cv.getContext("2d");
+  ctx.scale(2, 2);
+  var W = 1080, H = 1350;
+
+  /* ---- the ground and its heat shimmer -------------------------------------------
+     Houston in August already has heat coming off the asphalt at 7:30 in the morning.
+     HARD RULE: the warp amplitude is clipped to ZERO above HORIZON, because this
+     technique's recorded failure is shimmer touching type. */
+  var HORIZON = 1046;                  /* below every type baseline on this slide */
+  var AMP_MAX = 5.4;                   /* under the 6px ceiling the library names */
+
+  for (var y = HORIZON; y < H; y++) {
+    var t = (y - HORIZON) / (H - HORIZON);
+    var amp = AMP_MAX * t;
+    for (var x = 0; x < W; x += 2) {
+      var warp = Math.sin((x * 0.021) + TX.simplex2(x * 0.006, y * 0.02) * 3.1) * amp;
+      var shade = 0.50 + 0.20 * TX.fbm2((x + warp) * 0.004, y * 0.010, { octaves: 3 });
+      /* asphalt to prairie clay, never reaching the value of the page */
+      var r = Math.round(120 + 46 * shade);
+      var g = Math.round(114 + 44 * shade);
+      var b = Math.round(100 + 40 * shade);
+      ctx.fillStyle = "rgb(" + r + "," + g + "," + b + ")";
+      ctx.fillRect(x, y, 2, 1);
+    }
+  }
+  /* soften the ground's own top edge so it reads as distance rather than as a band */
+  var grad = ctx.createLinearGradient(0, HORIZON - 30, 0, HORIZON + 46);
+  grad.addColorStop(0, "rgba(233,234,230,1)");
+  grad.addColorStop(1, "rgba(233,234,230,0)");
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, HORIZON - 30, W, 76);
+
+  /* ---- the stationing line -------------------------------------------------------
+     LIFTED IN VALUE, no carve, no shadow. */
+  var LY = 960;                        /* the run sits above the ground plane */
+  /* X0 and XE are the run's end points. XT is the 4:00 p.m. boundary AT TRUE POSITION,
+     from compute.py axis_instruction_terminus_px. It was typed at 660 on the first build,
+     which drew the boundary at 63 percent of a run whose true share is 81 percent, beside
+     ten minute ticks that were themselves to scale. A drawn proportion is a published
+     quantity and this one is now computed like any other. */
+  var X0 = 84, XT = 822, XE = 996;
+
+  ctx.lineCap = "butt";
+
+  /* filled portion: instruction, as the district states it */
+  ctx.strokeStyle = "#6C8C7C";
+  ctx.lineWidth = 7;
+  ctx.beginPath(); ctx.moveTo(X0, LY); ctx.lineTo(XT, LY); ctx.stroke();
+
+  /* outlined portion: optional programming. Two hairlines, no fill. */
+  ctx.strokeStyle = "#7A6A55";
+  ctx.lineWidth = 1.6;
+  ctx.beginPath(); ctx.moveTo(XT, LY - 3.5); ctx.lineTo(XE, LY - 3.5); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(XT, LY + 3.5); ctx.lineTo(XE, LY + 3.5); ctx.stroke();
+
+  /* ten minute ticks, heavier on the hour. The run is 7:30 to 6:00 p.m. */
+  var totalMin = (18 * 60) - (7 * 60 + 30);
+  var pxPerMin = (XE - X0) / totalMin;
+  for (var m = 0; m <= totalMin; m += 10) {
+    var x = X0 + m * pxPerMin;
+    var onHour = ((7 * 60 + 30 + m) % 60) === 0;
+    var past = x > XT + 0.5;
+    ctx.strokeStyle = past ? "#7A6A55" : "#4A5A52";
+    ctx.globalAlpha = past ? 0.55 : 0.85;
+    ctx.lineWidth = onHour ? 1.8 : 1.0;
+    var h = onHour ? 17 : 9;
+    ctx.beginPath(); ctx.moveTo(x, LY + 9); ctx.lineTo(x, LY + 9 + h); ctx.stroke();
+  }
+  ctx.globalAlpha = 1;
+
+  /* the two hard boundaries, as full neatline drops */
+  [[X0, "7:30 a.m."], [XT, "4:00 p.m."]].forEach(function (n) {
+    ctx.strokeStyle = "#2C3A34";
+    ctx.lineWidth = 1.6;
+    ctx.beginPath(); ctx.moveTo(n[0], LY - 42); ctx.lineTo(n[0], LY + 42); ctx.stroke();
+  });
+  /* the optional terminus, drawn as an open stop rather than a boundary */
+  ctx.strokeStyle = "#7A6A55";
+  ctx.lineWidth = 1.4;
+  ctx.beginPath(); ctx.moveTo(XE, LY - 24); ctx.lineTo(XE, LY + 24); ctx.stroke();
+
+  var g = new Image();
+  g.onload = function () {
+    ctx.globalAlpha = 0.030;
+    ctx.fillStyle = ctx.createPattern(g, "repeat");
+    ctx.fillRect(0, 0, W, H);
+    ctx.globalAlpha = 1;
+    resolve();
+  };
+  g.onerror = function () { resolve(); };
+  g.src = TX.grainTile(255, 38, SEED);
+});
+</script>
+</body>
+</html>

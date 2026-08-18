@@ -11,7 +11,7 @@ The Killeen Planning and Zoning Commission voted in late April 2026 against a co
 - Public access: Public meeting
 - Take part: https://www.kwtx.com/2026/04/28/killeen-planning-commission-denies-permit-proposed-data-center/
 
-- Last checked: 2026-08-14
+- Last checked: 2026-08-18
 
 ## Dates
 

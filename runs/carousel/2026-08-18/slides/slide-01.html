@@ -1,0 +1,145 @@
+<!doctype html>
+<!-- SLIDE 1 — THE VOID.
+     A 16:9 recess carved into a block of buff school brick, rendered as a signed distance
+     subtraction so the absence has real bevels, real interior occlusion and measurable depth.
+     The subject is a removal, and a drawn rectangle is a shape where a carved one is a fact
+     about a solid. Claims c6, c2. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #E9EAE6; position: relative;
+         font-family: "Manrope", sans-serif; }
+
+  canvas#art { position: absolute; inset: 0; width: 1080px; height: 1350px; }
+
+  .sky { position: absolute; left: 0; right: 0; top: 0; height: 470px;
+         background: linear-gradient(180deg, #EFF0EC 0%, #E9EAE6 62%, #E4E5E0 100%); }
+
+  .hd { position: absolute; top: 118px; left: 84px; right: 84px; }
+  .kicker { font-family: "JetBrains Mono", monospace; font-size: 25px;
+            letter-spacing: 0.15em; text-transform: uppercase;
+            color: #3E5340; margin-bottom: 26px; }
+  h1 { font-family: "Fraunces", serif; font-weight: 800; font-size: 92px;
+       line-height: 0.98; letter-spacing: -0.020em; color: #2C3A34;
+       font-variation-settings: "opsz" 96; }
+
+  .dek { position: absolute; left: 84px; right: 150px; bottom: 208px;
+         font-size: 33px; line-height: 1.44; color: #2C3A34;
+         background: rgba(233, 234, 230, 0.94);
+         padding: 20px 24px 20px 22px;
+         border-left: 4px solid #5F7350; }
+
+  .tb { position: absolute; left: 84px; right: 84px; bottom: 140px;
+        display: flex; justify-content: space-between; align-items: flex-end;
+        font-family: "JetBrains Mono", monospace; font-size: 24px;
+        color: #4A5A52; }
+  .tb .rule { position: absolute; left: 0; right: 0; top: -22px;
+              height: 1px; background: #5F7350; opacity: 0.55; }
+</style>
+</head>
+<body>
+  <canvas id="art" width="2160" height="2700"></canvas>
+  <div class="sky"></div>
+
+  <div class="hd">
+    <div class="kicker">Houston ISD &middot; Future 2</div>
+    <h1>Afternoon<br>experiences are<br>screen free</h1>
+  </div>
+
+  <div class="dek">
+    The district says this of its afternoon experiences. The first four hours of the day
+    follow its standard curriculum.
+  </div>
+
+  <div class="tb">
+    <div class="rule"></div>
+    <div>c6 &middot; c2</div>
+    <div>01 / 09</div>
+  </div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txsdf.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260818;
+  TX.reseed(SEED);
+  if (TXSDF.reseed) TXSDF.reseed(SEED);
+
+  var cv = document.getElementById("art");
+  var ctx = cv.getContext("2d");
+  ctx.scale(2, 2);                                  /* 2x backing store */
+
+  var S = TXSDF;
+
+  /* The block. Half extents in world units. Front face sits at z = +1.15. */
+  /* Y_DROP moves the whole mass below the headline. On the previous render the recess
+     opened directly under the third line and the display type sat dark-on-dark across the
+     void, which is both a contrast failure and art crossing glyphs. The type did not move,
+     the block did, because the hook belongs at the top of the frame. */
+  var Y_DROP = -0.46;
+  var BLK = [2.55, 1.72, 1.15];
+  /* The recess, 16 by 9. Cut centre pushed forward so it opens through the front face
+     and stops 0.44 deep inside the solid. Sized large so the void is the subject rather
+     than a detail, and the interior stays the darkest region in the frame. */
+  var CUT_HALF = [1.30, 0.731, 0.44];               /* 1.30 / 0.731 = 16:9 */
+  var CUT_AT   = [-0.10, -0.02 + Y_DROP, 1.12];
+
+  var scene = function (p) {
+    var block = S.sdBox(S.sub(p, [0, Y_DROP, 0]), BLK);
+    var cut   = S.sdBox(S.sub(p, CUT_AT), CUT_HALF);
+    var d = S.opSub(block, cut);                    /* max(block, -cut) carves the void */
+
+    /* Material 2 is the recess interior, so the inside of the void reads as chalkboard
+       slate rather than as brick in shadow. Tested on the cut's own bounds. */
+    var inCut = Math.abs(p[0] - CUT_AT[0]) < CUT_HALF[0] + 0.02 &&
+                Math.abs(p[1] - CUT_AT[1]) < CUT_HALF[1] + 0.02 &&
+                p[2] < BLK[2] - 0.015;
+    return [d, inCut ? 2 : 1];
+  };
+
+  S.render(ctx, {
+    scene: scene,
+    width: 540, height: 675,                        /* internal res, drawn to fit box */
+    box: [0, 0, 1080, 1350],
+    cam: { pos: [2.55, 1.28, 4.30], look: [-0.14, -0.10, 0.60], fov: 44 },
+    light: [0.62, 0.74, 0.42],                      /* declared upper left, shallow */
+    mats: {
+      1: { color: [0.760, 0.596, 0.400], spec: 0.14 },   /* buff face brick, held saturated */
+      2: { color: [0.062, 0.086, 0.076], spec: 0.05 }    /* recess interior, the deck's true black */
+    },
+    sky: [0.914, 0.918, 0.902],                     /* #E9EAE6 Gulf overcast */
+    /* Fog and a pale shadow together washed the brick to the value of the sky on the first
+       render, which collapsed figure into ground and left the type as the darkest thing on a
+       slide whose subject is a void. Fog is now nearly off and the shadow side is a real
+       overcast shadow rather than a bounce. */
+    fog: 0.008,
+    keyColor: [1.0, 0.972, 0.922],
+    shadowColor: [0.300, 0.330, 0.302],             /* overcast shadow, not a blue night */
+    eps: 0.0011, maxSteps: 128, maxDist: 34,
+    shadows: true, ao: true,
+    deadlineMs: 22000,
+    seed: SEED
+  });
+
+  /* Grain over the whole frame. An untextured render reads as an unfinished export on a
+     phone, which on THIS deck would destroy the argument rather than just look flat. */
+  var g = new Image();
+  g.onload = function () {
+    var pat = ctx.createPattern(g, "repeat");
+    ctx.save();
+    ctx.globalAlpha = 0.032;
+    ctx.fillStyle = pat;
+    ctx.fillRect(0, 0, 1080, 1350);
+    ctx.restore();
+    resolve();
+  };
+  g.onerror = function () { resolve(); };
+  g.src = TX.grainTile(260, 40, SEED);
+});
+</script>
+</body>
+</html>
