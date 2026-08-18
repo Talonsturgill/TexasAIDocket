@@ -1800,10 +1800,12 @@ figcaption {{ font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
   align-items:center; gap:.3rem; width:100%; }}
 .qmissr {{ width:70%; border-top:1px dashed color-mix(in srgb, var(--granite) 45%, transparent);
   height:0; }}
+/* NOT DIMMED. The first version faded both the word and the month to signal absence, which
+   put "May" at 3.49 against a floor of 4.5 and was caught by tests/text_contrast. Fading is
+   also the wrong instrument: it says "absent" in colour alone, which is the signal this file
+   refuses everywhere else. The dashed rule and the word carry it, at full legibility. */
 .qmisst {{ font-family:var(--mono); font-size:clamp(7.5px,1.9vw,11px); line-height:1.6;
-  color:color-mix(in srgb, var(--granite) 72%, var(--paper));
-  letter-spacing:.06em; order:-1; }}
-.qgrp.qnone .qm {{ color:color-mix(in srgb, var(--granite) 72%, var(--paper)); }}
+  color:var(--granite); letter-spacing:.06em; order:-1; }}
 .qb.qa .qbf {{ background:var(--granite); }}
 .qb.qd .qbf {{ background:color-mix(in srgb, var(--granite) 42%, var(--paper)); }}
 /* THE VALUE SITS ABOVE ITS OWN BAR and is always present, never revealed on hover. A number a
