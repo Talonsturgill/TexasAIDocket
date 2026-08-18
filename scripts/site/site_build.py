@@ -69,6 +69,11 @@ SITE_NAME = "Texas AI Docket"
 # front of the site moved no href at all. Only the absolute URLs built from here had to change,
 # which is the canonical tag, og:url, the sitemap, the feeds and the structured data.
 SITE_URL = "https://texasaidocket.com"
+# THE LICENCE, AS ONE STRING. Named here because it is printed in three places and its
+# version number is a numeral, so the string and the authorisation that lets it through
+# the numeral gate have to come from the same constant. Written out at each call site
+# they can disagree, and the failure looks like a build error rather than a typo.
+LICENCE = "CC BY 4.0"
 
 # THE MARK IS COMPUTED FROM THE STATUTE. It used to be a star path typed into this file, whose
 # points were not equidistant from its center and whose inner vertices were not on a common
@@ -112,7 +117,13 @@ NAV = [("", "Home"), ("record/", "Docket"), ("articles/", "Articles"),
 # it, so the way out at the bottom of the page is where somebody who did not find what they
 # came for actually looks. It also means no hub is itself an orphan, which is the fault they
 # were built to fix.
-FOOTNAV = NAV[1:] + [("topic/", "Beats"), ("place/", "Places"),
+# SOURCES JOINS THEM, and the masthead is still eight. The archive became a family of 51
+# publisher pages on 2026-08-18 and had no link from any page on the site, which made the whole
+# family reachable only from the sitemap and from `llms.txt`. It is the same kind of thing as
+# Beats and Places, a way INTO the record rather than a section beside it, and the argument
+# above for keeping those out of the top bar applies to this one word for word. A link in the
+# footer is a link on all 221 pages, which is what the family needed and all it needed.
+FOOTNAV = NAV[1:] + [("topic/", "Beats"), ("place/", "Places"), ("sources/", "Sources"),
                      ("scan/", "Scan"), ("data/", "Data")]
 
 # WHERE THIS RECORD IS, ELSEWHERE ON THE WEB.
@@ -593,17 +604,29 @@ def claims_html(it: dict) -> str:
     Putting the source's own words on the page is the whole trust mechanism. A reader does not
     have to believe the summary; they can read what the filing actually said.
     """
+    from urllib.parse import urlparse
     out = []
     for c in it.get("claims", []):
         kind = {"primary_official": "Primary source, official",
                 "primary_corporate": "Primary source, the company",
                 "journalism": "Journalism"}.get(c.get("source_type"), "")
+        # THE PUBLISHER, AS A DOOR RATHER THAN A LABEL. The citation goes out to the document,
+        # which is right and is where a reader checking one fact wants to land. A reader
+        # weighing the record wants the other question, which is what else this publisher is
+        # carrying here and how much rests on it, and until the archive had a page per
+        # publisher there was nowhere to send them.
+        host = urlparse(c.get("source_url") or "").netloc.removeprefix("www.")
+        # THE SEPARATOR IS LOAD BEARING. Set straight after the kind, "PRIMARY SOURCE, OFFICIAL
+        # INTERCHANGE.PUC.TEXAS.GOV" reads as one label with the host swallowed into it. The
+        # middot is what the rest of the site uses to divide two facts on one line.
+        via = (f' · <a class="via" href="../../sources/{e(_host_slug(host))}/">{e(host)}</a>'
+               if host else "")
         out.append(
             f'<div class="claim">'
             f'<blockquote>{e(c["verbatim_quote"])}</blockquote>'
             f'<cite><a href="{e(c["source_url"])}" rel="nofollow noopener">'
             f'{e(c.get("source_title") or c["source_url"][:70])}</a></cite> '
-            f'<span class="kind" data-prose="data">{e(kind)}</span></div>')
+            f'<span class="kind" data-prose="data">{e(kind)}{via}</span></div>')
     return "".join(out)
 
 
@@ -1810,11 +1833,60 @@ def item_where(it: dict) -> str:
     return "".join(parts)
 
 
+def item_timeline(it: dict, today: str) -> str:
+    """The decision's dates as a strip, with today standing in its own place in the order.
+
+    THIS REPLACED THE DATES TABLE RATHER THAN JOINING IT. Two renderings of one field is two
+    things to keep in step, and the table's own failure was that it answered "what are the
+    dates" while a reader arrives asking "has this happened yet". A table cannot answer the
+    second question, because the answer is not in the data, it is in where the data sits
+    relative to now. Putting today in the sequence is the whole idea. Everything above the
+    marker has happened and everything below it has not, and no sentence has to say so.
+
+    THE NEXT DATE IS THE ONE A READER CAME FOR, so it is named and counted. The count is
+    computed here and authorised where the page's numerals are assembled, per the law that no
+    published numeral is ever typed.
+
+    `data-prose="data"` on the list, for the reason the deadline cards carry it. A date chip
+    and a five word label are not running prose, and measuring comma density over a strip of
+    them says nothing about whether the page breathes. It narrows DENSITY only. The
+    construction rules still apply to every word in here, which is why the dates go in `<time>`
+    elements that render their own value rather than as bare abbreviations.
+    """
+    ks = sorted((k for k in (it.get("key_dates") or []) if k.get("date")),
+                key=lambda d: d["date"])
+    if not ks:
+        return ""
+    t = _dt.date.fromisoformat(today)
+    nxt = next((k for k in ks if _dt.date.fromisoformat(k["date"]) > t), None)
+
+    rows, marked = [], False
+    for k in ks:
+        d = _dt.date.fromisoformat(k["date"])
+        if d > t and not marked:
+            rows.append('<li class="now"><span class="dot"></span>'
+                        '<span class="lbl">Today</span></li>')
+            marked = True
+        when = ""
+        if nxt is not None and k is nxt:
+            out = (d - t).days
+            when = f'<span class="out">{out} day{"" if out == 1 else "s"} out</span>'
+        note = k.get("note") or ""
+        note_html = f"<p>{e(note)}</p>" if note else ""
+        rows.append(
+            f'<li class="{"ahead" if d > t else "past"}"><span class="dot"></span>'
+            f'<time datetime="{e(k["date"])}">{e(short_date(k["date"]))}</time>'
+            f'<span class="lbl">{e(k["kind"].replace("_", " "))}</span>'
+            f'{note_html}{when}</li>')
+    if not marked:
+        rows.append('<li class="now"><span class="dot"></span>'
+                    '<span class="lbl">Today</span></li>')
+    return ('<section><h2>Timeline</h2><ol class="tl" data-prose="data">'
+            + "".join(rows) + "</ol></section>")
+
+
 def item_page(it: dict, today: str) -> str:
-    dates = "".join(
-        f'<tr><td class="num">{e(k["date"])}</td><td>{e(k["kind"].replace("_", " "))}</td>'
-        f'<td>{e(k.get("note") or "")}</td></tr>'
-        for k in sorted(it.get("key_dates", []), key=lambda d: d["date"]))
+    timeline = item_timeline(it, today)
     # HOW THIS DECISION MOVED. One dated line per check, oldest first, including the checks
     # where nothing moved. Added 2026-08-18 on the owner's call: the field already existed, the
     # routine only wrote to it on a change, and NOTHING RENDERED IT, so 57 of 61 items showed a
@@ -1831,6 +1903,80 @@ def item_page(it: dict, today: str) -> str:
         '<section><h2>How this decision moved</h2><div class="prose"><p>One dated line per '
         'check, oldest first. A line that says nothing changed means somebody looked and it '
         f'had not.</p></div><ol class="moved">{moved}</ol></section>\n\n') if moved else ""
+
+    # THE QUESTIONS, WHICH THIS SITE HAS BEEN ANSWERING FOR MACHINES ONLY.
+    #
+    # `schema.qa_pairs` has produced up to twelve answered questions per item for as long as it
+    # has existed, every one assembled from named fields and arithmetic, and the item page has
+    # shipped them in an invisible FAQPage node. A crawler could read them. The person the page
+    # is for could not. That is the same defect as the movement log one section down, found the
+    # same afternoon, and the fix is the same shape: render what is already produced.
+    #
+    # THE SAME CALL, not a second copy. The visible block and the structured data come out of
+    # one function, so they can never answer one question two ways.
+    #
+    # THE SUBJECT IS DROPPED HERE AND ONLY HERE. Every frame reads "<title>. Who decides it?",
+    # because those questions travel alone into a search result where nothing has named the
+    # subject. On this page the h1 has just named it, so printing the headline twelve more times
+    # would be noise. `shape_of` is what removes it, and it lives beside the frames for that
+    # reason rather than being reversed out with a string replace here.
+    # AND THE QUESTION IS THE CROSS LINK. The first draft put the hub's heading under each
+    # question as a mono kicker, which is what the reference page does. Read back, every one of
+    # them was the question again in capitals: "Who decides it?" over WHO DECIDES. The kicker
+    # only carries information on a page where the question still names its subject, and this
+    # page has just dropped that. So the question itself becomes the door to the same question
+    # asked of the whole record, which is the cross link that section wanted and one line of
+    # furniture less rather than one more.
+    qa = schema.qa_pairs(SCHEMA_CTX, it, today)
+    qa_slugs = {shape: slug for shape, slug, _head, _b in schema.QUESTION_KINDS}
+    qa_rows = []
+    for q, a in qa:
+        shape = schema.shape_of(q, it["title"])
+        # `data-prose="data"` on the one shape whose commas are delimiters, by the rule
+        # `LIST_ANSWER_SHAPES` already states and `list_answer_ok` already proves. A county list
+        # is not a writer leaning on commas and there is no way to split it into sentences.
+        data = ' data-prose="data"' if shape in schema.LIST_ANSWER_SHAPES else ""
+        slug = qa_slugs.get(shape)
+        head = (f'<a href="../../questions/{e(slug)}/">{e(shape)}?</a>' if slug
+                else f"{e(shape)}?")
+        qa_rows.append(f'<div class="qa"><h3>{head}</h3><p{data}>{e(a)}</p></div>')
+    qa_block = ('<section><h2>Questions about this decision</h2><div class="prose"><p>Answered '
+                'from the record itself. Every answer is assembled from stored fields, so an '
+                f'answer the record has no basis for is left out rather than guessed.</p></div>'
+                f'{"".join(qa_rows)}</section>\n\n') if qa_rows else ""
+
+    # CITE THIS, because a public record that is hard to cite gets paraphrased instead, and a
+    # paraphrase is where the number goes wrong. One line a reader can copy whole, carrying the
+    # publisher, the entry, the two dates that bound what is being cited, the canonical URL, the
+    # licence and the item id that pulls the same entry out of the JSON.
+    #
+    # BOTH DATES OR NEITHER. "Last verified" alone invites a reader to date the decision to the
+    # day somebody looked at it, and "tracked since" alone hides how stale the citation may be.
+    # The pair is the honest interval and it is the thing a citation is actually asserting.
+    #
+    # `data-prose="data"` for the density measurement only. A citation is a row of fields with
+    # separators, not a sentence that breathes, and the house cure for a comma is to split the
+    # sentence at it, which would turn one copyable line into six.
+    seen = sorted([k["date"] for k in (it.get("key_dates") or []) if k.get("date")]
+                  + [h["date"] for h in (it.get("history") or [])
+                     if isinstance(h, dict) and h.get("date")])
+    since = (f'Tracked since {ordinal(_dt.date.fromisoformat(seen[0]))}, {seen[0][:4]}. '
+             if seen else "")
+    cite = (
+        f'<section><h2>Cite this</h2><div class="prose"><p class="cite" data-prose="data">'
+        f'{e(SITE_NAME)}, {e(it["title"])}. {since}'
+        f'Last verified {e(ordinal(_dt.date.fromisoformat(it["last_verified"])))}, '
+        f'{e(it["last_verified"][:4])}. '
+        f'<a href="{SITE_URL}/item/{e(it["id"])}/">{SITE_URL}/item/{e(it["id"])}/</a>. '
+        f'Reuse permitted under {LICENCE} with attribution. The same entry is in the docket '
+        f'JSON as item {e(it["id"])}.</p></div></section>')
+
+    # THE BEAT, AS A LINK RATHER THAN A CHIP. The topic hub has always existed and the item page
+    # has always printed the topic as dead text, so the one page that proves a decision belongs
+    # to a beat was the one page that would not take a reader to the rest of that beat.
+    beat = (f'<section><h2>Beat</h2><div class="prose"><p>Filed under '
+            f'<a href="../../topic/{e(it["topic"])}/">{e(topic_label(it["topic"]))}</a>, '
+            f'with every other decision on that beat.</p></div></section>')
 
     pa = it.get("public_access") or {}
     how = pa.get("how") or ""
@@ -1853,13 +1999,17 @@ def item_page(it: dict, today: str) -> str:
 
 <section><h2>Where</h2><div class="prose" data-prose="data">{item_where(it)}</div></section>
 
-{'<section><h2>Dates</h2><table><thead><tr><th>Date</th><th>What</th><th>Note</th></tr></thead><tbody>' + dates + '</tbody></table></section>' if dates else ''}
+{timeline}
 
 {moved_block}<section>
   <h2>The evidence</h2>
   <div class="prose"><p>Every fact above rests on one of these. The words are the source's own.</p></div>
   {claims_html(it)}
 </section>
+
+{qa_block}{cite}
+
+{beat}
 
 <p class="meta" data-prose="data"><span class="num">Last checked {e(it["last_verified"])}</span></p>
 </article>
@@ -3036,6 +3186,135 @@ def questions_kind_page(items: list, today: str, kind: tuple) -> tuple:
                                               (head, f"questions/{slug}/")])])
 
 
+def _src_stat(claims: int, primary: int, docs: int, entries: int) -> str:
+    """The four figures a publisher carries, as one line, built once for both surfaces.
+
+    EACH PAIR IS ITS OWN UNBREAKABLE SPAN. Written as a flat run of numbers and words the line
+    wrapped between a figure and the word it belongs to, and "7" ended a line with "ENTRIES"
+    starting the next one. A reader then has to pair them by meaning, which is the one job a
+    stat line exists to do for them. Nowrap inside a pair and a wide gap between pairs is the
+    whole rule, and it only works while both come from here rather than from two call sites.
+    """
+    def pair(n, one, many):
+        return (f'<span class="st"><span class="num">{n}</span>'
+                f'{one if n == 1 else many}</span>')
+    return (pair(claims, "claim", "claims") + pair(primary, "primary", "primary")
+            + pair(docs, "document", "documents") + pair(entries, "entry", "entries"))
+
+
+def _host_slug(host: str) -> str:
+    """A publisher's own page path, derived from its host and from nothing else.
+
+    NOT A TITLE SLUG. A source title is the document's words and changes when the publisher
+    retitles a page, and a URL that moves loses whatever rank it had. The host is the one part
+    of a citation that is stable for as long as the publisher exists, so it is what the address
+    is built from. `interchange.puc.texas.gov` becomes `interchange-puc-texas-gov`, which is
+    ugly and permanent, and permanent is the half that matters for an address.
+    """
+    return re.sub(r"[^a-z0-9]+", "-", host.lower()).strip("-")
+
+
+def source_pages(items: list, today: str) -> list:
+    """One page per publisher, which is the form this archive has to take to be found.
+
+    WHY NOT ONE LONG PAGE, which is what it was.
+    A search engine indexes a URL. Forty publishers on one URL is one thing to rank, competing
+    with itself for every query, and a reader arriving from a search for one of them lands at
+    the top of a list of the other thirty nine. The archive already held everything a page
+    about a publisher needs, which is what it has been cited for, how much of the record rests
+    on it, and which decisions those are. It was just not addressable.
+
+    WHAT MAKES THIS NOT A DOORWAY PAGE, and the distinction is the whole reason it is allowed.
+    A doorway page is one that exists for a crawler and carries nothing for a reader. Every
+    sentence and every figure here is computed from the ledger, each page carries the actual
+    documents and the actual entries that rest on them, and a reader who followed a citation
+    back to a publisher gets exactly what they came for. The pages are also the missing half
+    of the item page's evidence block, which lists a source and until now was a dead end.
+
+    THE LINK GOES BOTH WAYS, which is the part a sitemap cannot do for you. The hub ranks and
+    links down, each publisher page links back to every entry that cites it, and every entry's
+    evidence block links out to the publisher. A crawler that finds any one of the three finds
+    the other two.
+    """
+    from urllib.parse import urlparse
+    hosts = {}
+    for it in items:
+        for c in it.get("claims") or []:
+            u = c.get("source_url")
+            if not u:
+                continue
+            h = urlparse(u).netloc.removeprefix("www.")
+            d = hosts.setdefault(h, {}).setdefault(
+                u, {"title": c.get("source_title") or u, "type": c.get("source_type"),
+                    "items": {}, "claims": 0})
+            d["items"][it["id"]] = it["title"]
+            d["claims"] += 1
+
+    out = []
+    for h in sorted(hosts):
+        docs = hosts[h]
+        n_claims = sum(d["claims"] for d in docs.values())
+        n_primary = sum(1 for d in docs.values()
+                        if str(d.get("type") or "").startswith("primary"))
+        ent = {i: t for d in docs.values() for i, t in d["items"].items()}
+        stat = _src_stat(n_claims, n_primary, len(docs), len(ent))
+        rows = "".join(
+            f'<li><a href="{e(u)}" rel="nofollow noopener"><cite>{e(d["title"])}</cite></a> '
+            # THE VERB AGREES WITH THE COUNT, which is the fault `schema.py` caught as "One
+            # source back it" and pinned with a self-test over every answer it can produce.
+            # Pluralising the noun and leaving the verb alone reads correctly on the many and
+            # wrong on the one, and most documents here carry several claims, so the broken
+            # form only surfaces on the handful that carry exactly one.
+            f'<span class="meta">{e((d["type"] or "").replace("_", " "))}, '
+            f'<span class="num">{d["claims"]}</span> '
+            f'{"claim rests" if d["claims"] == 1 else "claims rest"} on it</span></li>'
+            for u, d in sorted(docs.items(), key=lambda kv: (-kv[1]["claims"], kv[1]["title"])))
+        ents = "".join(
+            f'<li><a href="../../item/{e(i)}/">{e(t)}</a></li>'
+            for i, t in sorted(ent.items(), key=lambda kv: kv[1]))
+        slug = _host_slug(h)
+        body = f"""
+<h1>{e(h)}</h1>
+<div class="prose">
+  <p>What the Texas AI Docket has checked against documents published at {e(h)}, and which
+  decisions rest on them. Every quote in the record is the source's own words, fetched rather
+  than remembered.</p>
+</div>
+<p class="srcstat" data-prose="data">{stat}</p>
+<h2>The documents</h2>
+<ul class="sources" data-prose="data">{rows}</ul>
+<h2>The decisions that rest on them</h2>
+<ul class="plainlist" data-prose="data">{ents}</ul>
+<p class="meta" data-prose="data"><a href="../">Every source</a> ·
+<a href="../../record/">All decisions</a></p>
+"""
+        # THE ENTRY TITLES THIS PAGE LISTS, on the record layer's own judgement about what in a
+        # title is an identifier rather than a figure. "Ordinance 20260423-029" is the ordinance's
+        # name and the item page already prints it on that basis, so the page that links to the
+        # item inherits the same authority rather than re-deciding it here.
+        figures = ({str(n_claims), str(n_primary), str(len(docs)), str(len(ent))}
+                   | {str(d["claims"]) for d in docs.values()})
+        for _t in ent.values():
+            figures |= _identifier_numerals(str(_t))
+        out.append((slug, figures, page(
+            title=f"{h} · Sources · {SITE_NAME}", depth=2, active="record/",
+            desc=f"The {len(docs)} document(s) from {h} that the Texas AI Docket has checked a "
+                 f"claim against, and the {len(ent)} decision(s) that rest on them.",
+            body=body, today=today, canonical=f"sources/{slug}/",
+            extra_ld=[
+                schema.collection_node(
+                    SCHEMA_CTX, name=h, path=f"sources/{slug}/",
+                    description=f"Documents published at {h} that the Texas AI Docket has "
+                                f"checked a claim against.",
+                    count=len(docs),
+                    elements=[(t, f"item/{i}/") for i, t in
+                              sorted(ent.items(), key=lambda kv: kv[1])]),
+                schema.breadcrumbs(SCHEMA_CTX, [(SITE_NAME, ""), ("Sources", "sources/"),
+                                                (h, f"sources/{slug}/")]),
+            ])))
+    return out
+
+
 def sources_page(items: list, today: str) -> str:
     """Every document a claim in this record was checked against, grouped by who published it.
 
@@ -3055,51 +3334,95 @@ def sources_page(items: list, today: str) -> str:
                 continue
             h = urlparse(u).netloc.removeprefix("www.")
             hosts.setdefault(h, {}).setdefault(u, {"title": c.get("source_title") or u,
-                                                   "type": c.get("source_type"), "items": set()})
+                                                   "type": c.get("source_type"), "items": set(),
+                                                   "claims": 0})
             hosts[h][u]["items"].add(it["id"])
+            # CLAIMS, NOT DOCUMENTS, is the weight that matters. Two entries can cite one filing
+            # once each and a third can rest four separate facts on it, and only the claim count
+            # tells those apart. It is how much of the record would fall over if the document
+            # turned out to be wrong.
+            hosts[h][u]["claims"] += 1
+
+    def primary(d) -> bool:
+        return str(d.get("type") or "").startswith("primary")
+
+    # WHAT EACH PUBLISHER CARRIES, computed once and used for both the sort and the line the
+    # reader sees, so the ranking and the figures explaining it can never disagree.
+    tally = {h: {"docs": len(v),
+                 "primary": sum(1 for d in v.values() if primary(d)),
+                 "claims": sum(d["claims"] for d in v.values()),
+                 "items": len({i for d in v.values() for i in d["items"]})}
+             for h, v in hosts.items()}
 
     blocks = []
-    for h in sorted(hosts):
-        rows = "".join(
-            f'<li><a href="{e(u)}" rel="nofollow noopener"><cite>{e(d["title"])}</cite></a> '
-            f'<span class="meta">{e((d["type"] or "").replace("_", " "))}, cited by '
-            f'<span class="num">{len(d["items"])}</span> '
-            f'{"entry" if len(d["items"]) == 1 else "entries"}</span></li>'
-            for u, d in sorted(hosts[h].items(), key=lambda kv: kv[1]["title"]))
-        n = len(hosts[h])
+    # SORTED BY HOW MUCH OF THE RECORD RESTS ON THEM, not alphabetically. An alphabetical
+    # archive ranks nothing, so a reader who wants to know who this record leans on has to read
+    # all of it and keep a tally in their head. The page already had the counts to answer that
+    # on the first screen and was sorting by the one field that carries no information. Ties
+    # break on the host name, so the order is stable and the build stays deterministic.
+    # THE HUB RANKS AND STOPS THERE. It used to print every document under every publisher,
+    # which was the only sensible shape while this was one page. It stopped being sensible the
+    # moment each publisher got its own, because then the hub and the fifty one pages carried
+    # the same lists word for word, and a hub that duplicates the page it links to competes
+    # with it for the query they both answer. So the hub does the one thing only it can do,
+    # which is rank, and the documents live on the page that is about them.
+    for h in sorted(hosts, key=lambda k: (-tally[k]["claims"], -tally[k]["docs"], k)):
+        st = tally[h]
+        stat = _src_stat(st["claims"], st["primary"], st["docs"], st["items"])
         blocks.append(
-            f'<section><h2>{e(h)}</h2><p class="meta" data-prose="data">'
-            f'<span class="num">{n}</span> {"document" if n == 1 else "documents"}</p>'
-            f'<ul class="sources" data-prose="data">{rows}</ul></section>')
+            f'<li><h2><a href="{e(_host_slug(h))}/">{e(h)}</a></h2>'
+            f'<p class="srcstat" data-prose="data">{stat}</p></li>')
 
     n_docs = sum(len(v) for v in hosts.values())
-    # THE FIGURES THIS PAGE COMPUTED, handed back with it. Authorising them at the call site by
-    # guessing what the page prints is how an allowlist drifts from its page; returning them
-    # from the computation that produced them is the only version that cannot.
-    figures = {str(n_docs), str(len(hosts))}
-    figures |= {str(len(v)) for v in hosts.values()}
-    figures |= {str(len(d["items"])) for v in hosts.values() for d in v.values()}
+    n_claims = sum(t["claims"] for t in tally.values())
+    n_primary = sum(d["claims"] for v in hosts.values() for d in v.values() if primary(d))
+
+    # THE NUMBER THAT TESTS THE PROMISE RATHER THAN DESCRIBING THE PILE.
+    #
+    # This page used to open with documents and publishers, which are facts about the archive's
+    # SIZE. The claim the whole record makes is about its QUALITY, that a fact here rests on the
+    # filing or the statute rather than on a report about one, and the share of claims sourced
+    # to a primary document is the only figure that puts a number on it. Publishing it is worth
+    # more than the count, in both directions: a share this project is not proud of is a share
+    # its readers are entitled to see, and one it is proud of is worth more than saying so.
     body = f"""
 <article>
 <h1>Every source this record rests on</h1>
 <div class="prose">
   <p>Each entry in the record carries a verbatim quote from a document that was fetched. At
   least one of those documents has to be the filing, the statute or the agency itself rather
-  than a report about it. This is all of them.</p>
-  <p><span class="num">{n_docs}</span> documents from
+  than a report about it. This is all of them, heaviest first.</p>
+  <p><span class="num">{n_primary}</span> of <span class="num">{n_claims}</span> claims rest on
+  a primary document, across <span class="num">{n_docs}</span> documents from
   <span class="num">{len(hosts)}</span> publishers.</p>
 </div>
-{"".join(blocks)}
+<ol class="srclist">{"".join(blocks)}</ol>
 </article>
 """
+    # THE FIGURES THIS PAGE COMPUTED, handed back with it. Authorising them at the call site by
+    # guessing what the page prints is how an allowlist drifts from its page; returning them
+    # from the computation that produced them is the only version that cannot.
+    figures = {str(n_docs), str(len(hosts)), str(n_claims), str(n_primary)}
+    figures |= {str(len(v)) for v in hosts.values()}
+    figures |= {str(len(d["items"])) for v in hosts.values() for d in v.values()}
+    figures |= {str(n) for t in tally.values() for n in t.values()}
     return figures, page(title=f"Sources · {SITE_NAME}", depth=1, active="record/",
                 desc="Every document a claim in the Texas AI Docket was checked against, "
                      "grouped by publisher.",
                 body=body, today=today, canonical="sources/",
+                # THE HUB'S LIST NAMES ITS MEMBERS. A collection node carrying a count and no
+                # elements tells a crawler how big the family is and nothing about where it
+                # lives, which is the defect this file already fixed once for the beats. The
+                # publishers go in ranked, so the node agrees with the page above it.
                 extra_ld=[schema.collection_node(
                               SCHEMA_CTX, name="Sources", path="sources/",
-                              description="Every document a claim was checked against.",
-                              count=n_docs),
+                              description="Every document a claim was checked against, "
+                                          "grouped by publisher and ranked by how much of the "
+                                          "record rests on each one.",
+                              count=len(hosts),
+                              elements=[(h, f"sources/{_host_slug(h)}/") for h in
+                                        sorted(hosts, key=lambda k: (-tally[k]["claims"],
+                                                                     -tally[k]["docs"], k))]),
                           schema.breadcrumbs(SCHEMA_CTX,
                                              [(SITE_NAME, ""), ("Sources", "sources/")])])
 
@@ -3165,6 +3488,26 @@ def llms_txt(items: list, today: str) -> str:
     parts += [f"- [{head}]({SITE_URL}/questions/{slug}/): {blurb}"
               for _shape, slug, head, blurb in schema.QUESTION_KINDS]
     parts += [""]
+
+    # THE PUBLISHERS, NAMED, for the same reason the question pages are. A model asked "what
+    # does the Texas AI Docket rest on" can answer it from this file without crawling 51 pages,
+    # and a model checking whether a specific agency's filings are tracked here gets a URL
+    # rather than a hub. Ranked by how much of the record rests on each, so the order carries
+    # the same information the page does.
+    from urllib.parse import urlparse as _up
+    _weight = {}
+    for _it in items:
+        for _c in _it.get("claims") or []:
+            _h = _up(_c.get("source_url") or "").netloc.removeprefix("www.")
+            if _h:
+                _weight[_h] = _weight.get(_h, 0) + 1
+    if _weight:
+        parts += ["## What the record rests on, by publisher", "",
+                  "Every document a claim here was checked against, grouped by who published "
+                  "it. Heaviest first.", ""]
+        parts += [f"- [{h}]({SITE_URL}/sources/{_host_slug(h)}/)"
+                  for h in sorted(_weight, key=lambda k: (-_weight[k], k))]
+        parts += [""]
 
     if open_now:
         parts += ["## Open right now", "",
@@ -3297,7 +3640,7 @@ def _identifier_numerals(text: str) -> set:
     return out
 
 
-def _item_numerals(it: dict) -> set:
+def _item_numerals(it: dict, today: str) -> set:
     """One item's own figures, for the pages that render THAT item and no others.
 
     PER ITEM, because the record's set is the union of thirteen items and unioning it
@@ -3326,6 +3669,17 @@ def _item_numerals(it: dict) -> set:
         a.add(kd.get("date"), *str(kd.get("date", "")).split("-"))
         a.add(*_identifier_numerals(str(kd.get("what", "")) + " " + str(kd.get("note", ""))))
 
+    # THE COUNT ON THE TIMELINE'S NEXT STATION, computed here by the same subtraction the
+    # strip does and authorised because of it rather than in spite of it. This is the shape the
+    # law asks for. The page does not get to print a figure and have the gate wave it through
+    # for being small, so the figure is derived twice from the same two dates and the second
+    # derivation is what lets it through.
+    ks = sorted(k["date"] for k in (it.get("key_dates") or []) if k.get("date"))
+    t = _dt.date.fromisoformat(today)
+    nxt = next((k for k in ks if _dt.date.fromisoformat(k) > t), None)
+    if nxt:
+        a.add((_dt.date.fromisoformat(nxt) - t).days)
+
     # THE MOVEMENT LOG, and this is a carve-out rather than an oversight. `docket_build`'s
     # numeral gate excludes history notes for a structural reason, and the site layer has to
     # make the same exclusion or the record passes and the page it produces fails. A movement
@@ -3346,6 +3700,12 @@ def _item_numerals(it: dict) -> set:
         for n in dk.NUMERAL.findall(str(h.get("note", "")) + " " + str(h.get("date", ""))):
             a.add(n, n.replace(",", "").rstrip("%"))
         a.add(*str(h.get("date", "")).split("-"))
+
+    # THE LICENCE VERSION, WHICH IS A NAME AND NOT A MEASUREMENT. "CC BY 4.0" names a document,
+    # the same way "H.B. 149" and "Chapter 552" do, and the record layer already treats those as
+    # identifiers rather than figures. Taken from `LICENCE` rather than written here, so a page
+    # that starts printing a different licence fails this gate instead of quietly passing it.
+    a.add(*dk.NUMERAL.findall(LICENCE))
 
     # THE CONTROL NUMBER A READER NEEDS IN ORDER TO ACT. `public_access.how` says which
     # docket to file under, and that number is the single most consequential string on the
@@ -3513,7 +3873,7 @@ def build(out: Path, today: str) -> dict:
     # The authorised set is assembled from the projection rather than declared, so a page
     # is entitled to exactly what the build worked out and nothing else.
     authorised = _authorised_numerals(items, today)
-    by_item = {it["id"]: _item_numerals(it) for it in items}
+    by_item = {it["id"]: _item_numerals(it, today) for it in items}
     unauthorised: list[str] = []
 
     def w(path: str, text: str, extra: set | None = None):
@@ -3619,6 +3979,12 @@ def build(out: Path, today: str) -> dict:
         w(f"questions/{_kind[1]}/index.html", _khtml, extra=_allnums | _quoted | _kfig)
     _sfig, _shtml = sources_page(items, today)
     w("sources/index.html", _shtml, extra=_quoted | _sfig)
+    # ONE PAGE PER PUBLISHER, written straight after the hub that ranks them, so the family
+    # reads as a family here the way the beats and the question kinds do. Each one lands in
+    # the sitemap by being an index.html, which is the rule the loop at the end of this build
+    # already applies to every other page.
+    for _sslug, _ssfig, _sshtml in source_pages(items, today):
+        w(f"sources/{_sslug}/index.html", _sshtml, extra=_quoted | _ssfig)
     w("llms.txt", llms_txt(items, today))
     # THE WHOLE RECORD IN ONE FETCH, built from the same twins the item pages ship so the one
     # fetch and the 58 fetches can never disagree.

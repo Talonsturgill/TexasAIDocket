@@ -1350,6 +1350,86 @@ main > section > h2::after {{ content:""; position:absolute;
 .claim .kind {{ font-family:var(--mono); font-size:var(--s-2); letter-spacing:.06em;
   text-transform:uppercase; color:var(--ink-mute); }}
 
+/* ---- the answered questions --------------------------------------------- */
+/* THE QUESTION IS THE HEADING AND THE ANSWER IS THE PARAGRAPH, which is the whole layout. A
+   reader scanning for one of these is scanning the questions, so they get the type size and
+   the answer does not compete with them. The mono kicker above each answer is what the
+   question-hub pages call this kind of question, so a reader who follows one of those links
+   lands on a page using the same words. */
+.qa {{ margin:1.4rem 0; }}
+.qa h3 {{ font-size:var(--s0); line-height:1.3; margin:0; }}
+.qa h3 a {{ text-decoration:none; border-bottom:var(--hair) solid var(--rule); }}
+.qa h3 a:hover {{ color:var(--ink-bright); border-bottom-color:var(--accent); }}
+.qa p {{ margin:.35rem 0 0; max-width:38rem; }}
+
+/* ---- the source archive's stat line -------------------------------------- */
+/* FOUR FIGURES IN A ROW, each with its own label, reading as a meter rather than a sentence.
+   The figure leads and the word follows it, because the eye is scanning the numbers down the
+   page and the words only matter once it stops. */
+/* THE GAP BETWEEN PAIRS HAS TO BEAT THE GAP INSIDE ONE, or "25 CLAIMS 3 PRIMARY" reads as four
+   loose tokens and the eye has to pair them by meaning. Mono type at a wide letter-spacing
+   already carries air inside every word, so the column gap is set well clear of it. */
+p.srcstat {{ display:flex; flex-wrap:wrap; gap:.35rem 1.9rem; margin:.35rem 0 1.6rem;
+  font-family:var(--mono); font-size:var(--s-2); letter-spacing:.05em;
+  text-transform:uppercase; color:var(--ink-mute); }}
+p.srcstat .st {{ white-space:nowrap; }}
+p.srcstat .num {{ color:var(--ink); margin-right:.3rem; }}
+
+/* The ranked hub. A numbered list would print a rank beside each publisher, which is a figure
+   nothing computed and a claim the page is not making. The order carries the ranking. */
+ol.srclist {{ list-style:none; margin:1.4rem 0 0; padding:0; }}
+ol.srclist > li {{ padding:.9rem 0; border-top:var(--hair) solid var(--rule); }}
+ol.srclist > li:last-child {{ border-bottom:var(--hair) solid var(--rule); }}
+ol.srclist h2 {{ font-size:var(--s0); margin:0; }}
+ol.srclist h2 a {{ text-decoration:none; border-bottom:var(--hair) solid var(--rule); }}
+ol.srclist h2 a:hover {{ color:var(--ink-bright); border-bottom-color:var(--accent); }}
+/* The stat line's clearance is for the heading that follows it on a publisher's own page. In
+   a hub row the row's own padding is the separation, so the extra would just be a gap. */
+ol.srclist p.srcstat {{ margin-bottom:0; }}
+
+/* ---- cite this ----------------------------------------------------------- */
+/* ONE LINE A READER CAN SELECT WHOLE. It is set in the mono face because it is a record to be
+   copied rather than prose to be read, and the box exists so a triple click takes the whole
+   citation and nothing either side of it. */
+p.cite {{ font-family:var(--mono); font-size:var(--s-1); line-height:1.65;
+  padding:.9rem 1rem; border:var(--hair) solid var(--rule); border-radius:2px;
+  color:var(--ink); overflow-wrap:anywhere; }}
+
+/* ---- the timeline: where this decision sits relative to now -------------- */
+/* A SPINE WITH STATIONS, and today is one of them. The point of the strip is that a reader
+   can see whether the thing has happened without reading a word, so the marker for now has
+   to sit IN the sequence rather than beside it. Everything above it is done and everything
+   below it is not.
+   The past is dimmed and the future is not. That is the only severity this strip carries,
+   and it encodes a fact about the calendar rather than a judgement about the decision. */
+ol.tl {{ list-style:none; margin:1rem 0 0; padding:0; position:relative; }}
+ol.tl::before {{ content:""; position:absolute; left:.3rem; top:.55rem; bottom:.55rem;
+  border-left:var(--hair) solid var(--rule); }}
+ol.tl > li {{ position:relative; padding:0 0 1.1rem 1.6rem; }}
+ol.tl > li:last-child {{ padding-bottom:0; }}
+ol.tl > li > .dot {{ position:absolute; left:0; top:.42rem; width:.65rem; height:.65rem;
+  border-radius:50%; border:2px solid var(--rule-strong); background:var(--bg); }}
+ol.tl > li time {{ font-family:var(--mono); font-size:var(--s-2); letter-spacing:.06em;
+  color:var(--ink-mute); margin-right:.6rem; }}
+ol.tl > li > .lbl {{ font-size:var(--s-1); color:var(--ink); }}
+ol.tl > li > p {{ margin:.2rem 0 0; font-size:var(--s-1); line-height:1.55;
+  color:var(--ink-mute); max-width:34rem; }}
+/* THE PAST IS QUIETER, NOT GREYED OUT. A date that has passed is still evidence and a reader
+   still reads it, so this is a step down in emphasis rather than a disabled state. */
+ol.tl > li.past {{ opacity:.72; }}
+/* TODAY. The one filled marker on the strip, in the accent, with no date beside it because
+   the reader supplies that. */
+ol.tl > li.now {{ padding-bottom:1.1rem; }}
+ol.tl > li.now > .dot {{ background:var(--accent); border-color:var(--accent); }}
+ol.tl > li.now > .lbl {{ font-family:var(--mono); font-size:var(--s-2); letter-spacing:.1em;
+  text-transform:uppercase; color:var(--accent); }}
+/* THE NEXT DATE IS THE ONE THEY CAME FOR. A count, on its own line, in the mono face the rest
+   of the site uses for a figure. It is not red and it is not a badge, because a date being
+   near is not an alarm. */
+ol.tl > li > .out {{ display:block; margin-top:.2rem; font-family:var(--mono);
+  font-size:var(--s-2); letter-spacing:.04em; color:var(--ink-mute); }}
+ol.tl > li.ahead > .dot {{ border-color:var(--ink-mute); }}
+
 /* ---- the movement log: a decision being watched -------------------------- */
 /* THE LIST MARKER IS SUPPRESSED ON PURPOSE. This is an `ol` because the order is the
    meaning, oldest first, so the markup has to say ordered. What it must not do is PRINT
