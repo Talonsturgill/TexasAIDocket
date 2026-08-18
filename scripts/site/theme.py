@@ -1551,6 +1551,48 @@ figcaption {{ font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
 /* The monthly series. Paired bars per month, cleared then drawing, so a reader sees that
    neither has moved. Shape carries it, not colour: the pair is always left-then-right and the
    two are separated by a gap rather than by hue alone. */
+/* ---- BEYOND ERCOT: WHO IS HERE, AND WHAT IS BEING BUILT ----
+   Two feeds that are not ERCOT and do not share its cadence, so they say when they were read
+   and say it LOUDLY when they stop. A stopped collector publishes the same last figure
+   forever and is indistinguishable from a working one; the read date is the only difference,
+   so it ships beside the figure rather than in a commit log. */
+.beyond {{ margin:0 0 var(--band); }}
+.beyond .blede {{ font-family:var(--display); font-size:var(--s2); line-height:1.25;
+  max-width:28ch; margin:1.1rem 0 var(--gap); color:var(--ink-bright); }}
+.srcline {{ display:flex; align-items:center; gap:.45rem; font-family:var(--mono);
+  font-size:var(--s-2); letter-spacing:.05em; text-transform:uppercase;
+  color:var(--ink-mute); margin:0 0 .4rem; }}
+.srcdot {{ width:.4rem; height:.4rem; border-radius:50%; background:var(--gold); flex:none; }}
+/* THE STALE STATE IS A SENTENCE, NOT A COLOUR. A reader who cannot see the tint still reads
+   that the feed stopped, because the copy says so and the copy is what carries it. */
+.srcline.stale {{ text-transform:none; letter-spacing:0; font-family:var(--body);
+  font-size:var(--s-1); color:var(--ink-bright); border-left:2px solid var(--gold);
+  padding-left:.7rem; max-width:var(--measure); display:block; }}
+
+/* A year, a bar and a count. The same row shape serves the registry and the county list, so
+   the two read as one instrument rather than two chart styles on one page. */
+.ryears {{ list-style:none; padding:0; margin:0 0 .6rem; max-width:none;
+  display:flex; flex-direction:column; gap:.28rem; }}
+.ryr {{ display:grid; grid-template-columns:4.6rem minmax(0,1fr) 3.4rem; gap:.7rem;
+  align-items:center; }}
+.rk {{ font-family:var(--mono); font-size:var(--s-2); color:var(--ink-mute);
+  letter-spacing:.05em; overflow-wrap:anywhere; }}
+.rb {{ height:.8rem; background:var(--ember); border-radius:1px; min-width:2px; }}
+.rv {{ font-family:var(--mono); font-size:var(--s-2); color:var(--ink-bright);
+  text-align:right; font-variant-numeric:tabular-nums; }}
+
+.ops {{ list-style:none; padding:0; margin:0 0 .6rem; max-width:none;
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(16rem,1fr)); gap:0 1.6rem; }}
+.ops li {{ display:grid; grid-template-columns:1fr auto; gap:.6rem; align-items:baseline;
+  padding:.36rem 0; border-bottom:var(--hair) solid var(--line); font-size:var(--s-1); }}
+.ops .on {{ color:var(--ink-bright); overflow-wrap:anywhere; }}
+.ops .os {{ font-family:var(--mono); font-size:var(--s-2); color:var(--ink-mute);
+  font-variant-numeric:tabular-nums; }}
+
+@media (max-width:30rem) {{
+  .ryr {{ grid-template-columns:4.2rem minmax(0,1fr) 3rem; gap:.5rem; }}
+}}
+
 /* ---- THE DAILY READING, AS AN INSTRUMENT PANEL ----
    The section held a settled reading every day and read like an essay about one: seven equal
    weight headings, two tables, and prose explaining the page to itself. What follows gives the

@@ -1,128 +1,78 @@
-# WORKLOG — the item page overhaul, from quote wall to tracked decision
+# WORKLOG — beyond ERCOT: naming the data centers, and generation by county
 
-Opened 2026-08-18 on the owner's call. **Read this first and resume from the wave table.**
+Approved 2026-08-18 by the owner ("build it all") off the source investigation at
+https://claude.ai/code/artifact/31afdbd6-daeb-48cd-83e6-8a03e6605135
 
-## The complaint, and it is correct
+## Why
 
-> "we need an overhaul of what you are actually tracking. I looked at the Texas page and it looks
-> like for some reason all ur doing is quote collecting. When the Alaska page is actually keeping
-> a timeline of each decision."
+The grid page measured ERCOT and left attribution to inference. Two public sources
+were probed live and change that:
 
-Measured against the two pages the owner linked. The reference item page carries a section headed
-**How this decision moved**, "one dated line per material change, oldest first", and on the LNG
-tax item it runs to roughly 27 dated entries from July 8th to August 15th. Many of those lines
-say nothing changed, in as many words. "Checked and unchanged." "Re-verified. Nothing has moved."
-"Carried forward against reporting from July 16 and July 21."
+  A  Texas Comptroller data center registry. 149 named facilities, owner/occupant/
+     operator, effective dates 2013 to 2026. Keyless HTML table. THE ONLY SOURCE
+     TESTED THAT NAMES DATA CENTERS.
+  B  EIA-860M generator inventory. Monthly xlsx, ~14MB, keyless with a UA. County,
+     Balancing Authority, lat/long, nameplate MW, and separate Operating / Planned /
+     Retired / Canceled sheets. Joins to the 50 counties the docket already lights.
 
-That is the whole difference. A reader of that page sees a decision being watched. A reader of
-ours sees a stack of quotes with one date on it.
+Dead, confirmed by probe, do not revisit: FERC 714 (403 to bots) and Chapter 403
+JETI (excludes data centers by statute).
 
-## Root cause, and there are two, both ours
+## Laws this work does not bend
 
-**1. The routine throws the fact away.** `prompts/daily_routine.md` Phase 3 says, in bold:
+- NO LOAD ATTRIBUTION. Nothing tested publishes a data center's power draw. The
+  registry names facilities, ERCOT gives a system total, and the distance is the gap
+  this page already publishes honestly. A modelled per-site figure would trade the
+  page's best property for a number.
+- Neither collector joins the DAILY cron. An outage on Comptroller or EIA must never
+  cost an ERCOT demand day, which is the one irreversible failure here.
+- Every published numeral is computed and authorised where it is computed.
+- No reliability verdict. Bars, never dials.
 
-> Add a history note **only when something changed**.
+## File map
 
-So every "checked and unchanged" observation is discarded at the moment it is made. This directly
-contradicts the rule three lines above it, which is right and which the run already follows for
-the stamp:
+  scripts/gridwatch/datacenters_collect.py   registry reader + self-test        [A]
+  scripts/gridwatch/generators_collect.py    EIA-860M reader + self-test        [B]
+  scripts/site/datacenters_panel.py          renderer + numeral authorisation   [C]
+  scripts/site/generators_panel.py           renderer + numeral authorisation   [D]
+  ledger/gridwatch/datacenters.json          current roster, full               [A]
+  ledger/gridwatch/datacenters.jsonl         one line per read, counts only     [A]
+  ledger/gridwatch/generators.jsonl          one line per report month          [B]
+  .github/workflows/datacenters.yml          weekly                             [E]
+  .github/workflows/generators.yml           monthly                            [E]
 
-> Set `last_verified` **even when nothing changed.** "Checked and unchanged" is a fact about the
-> item, and an unset stamp is indistinguishable from never having looked.
+## The trap already paid for
 
-The stamp keeps that fact. The history does not. **57 of 61 items carry no movement log at all.**
+EIA-860M's sheet XML OMITS EMPTY CELLS, so positional column indexing silently
+shifts and produces a confidently wrong join. Cost two passes during research. The
+parser MUST read each cell's r="A1" reference and the self-test MUST replay a row
+with a gap in it.
 
-**2. Nothing renders it even when it exists.** `scripts/site/site_build.py` mentions `history`
-exactly once, in a comment, on a line about something else. The four items that DO carry an entry
-show a reader nothing. The field is also absent from `gate_schema`, so it is unvalidated as well
-as unrendered.
+## Tasks
 
-A field that is written, never validated and never displayed is not a feature, it is a habit.
+| # | task | status |
+|---|---|---|
+| A1 | datacenters_collect.py, parse + plausibility + self-test | DONE |
+| A2 | live collect, commit the roster | DONE 149 facilities |
+| B1 | generators_collect.py, cell-ref parser + self-test | DONE |
+| B2 | live collect, commit the series | DONE 202,461 MW op |
+| C  | datacenters_panel.py, the registry curve and operators | DONE |
+| D  | generators_panel.py, county generation | DONE |
+| E  | two workflows, own cadence, never the daily cron | DONE |
+| F  | wire panels into grid_page, numeral union | DONE |
+| G  | full gates incl. browser suites, PR, merge | IN PROGRESS |
 
-## What we may NOT do, and it needs saying before anyone starts
+## Wrap
 
-**We cannot backfill.** Writing "2026-08-14, checked and unchanged" for a check nobody recorded
-would be inventing an observation, on the one surface whose entire promise is that it does not.
-The log starts from the first run that writes it and grows forward. The only honest seed is a
-single dated `Tracked.` line per item, built from dates the record ALREADY holds, and even that
-is a wave 3 decision rather than an assumption.
+W1 delete this file when G is done.
 
-## Waves
+## Bugs found while building, both silent
 
-| # | what | owner lane | status |
-|---|---|---|---|
-| 1 | Flip the rule so every re-verification writes a dated line, unchanged included | `human` (`prompts/`) | DONE |
-| 2 | Render `How this decision moved` on the item page, oldest first | `human` (`scripts/site/`) | DONE |
-| 3 | Validate history in `gate_schema` so it can never drift or narrate | `human` (`scripts/site/`) | DONE |
-| 4 | Write today's lines for every item re-verified this run | `daily` (`ledger/`) | DONE |
-| 5 | The dated timeline strip, key dates with TODAY marked and the next date called | `human` | TODO |
-| 6 | Per item questions block, generated from the record | `human` | TODO |
-| 7 | Cite this block, and beat cross links | `human` | TODO |
-| 8 | Decide whether `key_dates[].note` joins the copy gates, with the evidence below | `human` | TODO |
-
-## What waves 1 to 4 actually turned up, and three of them were nothing to do with history
-
-**Wave 4 was marked DONE before it was.** Twelve items carried `last_verified: 2026-08-18` and
-one of them carried a movement line. That is the exact defect this whole overhaul exists to fix,
-sitting in the ledger while the wave table said the wave was finished. Eleven lines were written
-from what the run had already recorded, in the run record and in commit `7d5fccc`'s own message,
-so nothing was invented. **The lesson is that a wave table is a claim like any other and the
-thing to check is the artifact, not the row.**
-
-**The numeral gate needed the same carve-out twice.** `docket_build` excludes history notes from
-its numeral gate for a structural reason, a movement line's whole job being to cite a value that
-is by definition no longer in any current claim. The site layer has its own numeral set and had
-no such exclusion, so the record validated clean and the site it produced failed the build. A
-carve-out made at one layer and not the other is not a carve-out, it is a discrepancy waiting for
-a run to hit it. Both are now written down where they are made.
-
-**Item pages were never spaced, they were spaced by accident.** `main > section` sets the band on
-every section on the site and has never matched an item page, because item pages wrap their
-sections in `<article>` and that selector does not reach inside. Computed top margin on all 61
-pages was zero. What separated the sections was the previous section's last paragraph, borrowed.
-The moment a section ended in a table the next heading landed against it, which "The evidence"
-has been doing under the Dates table on every page that has one, unnoticed, until the movement
-log went between them and made it impossible to keep missing. `article > section` now carries its
-own margin. **This is the third entry in this repo of a rule styling by document shape and
-silently missing the pages nobody screenshotted**, and the comment above it in `theme.py` had
-already written the lesson down for the previous two.
-
-**The Markdown twin carries the log too.** Leaving it out would have rebuilt, one layer down, the
-exact gap the section was opened to close, and the twin is what a machine reader gets.
-
-## Wave 8, found while wiring wave 3, and deliberately not acted on
-
-`key_dates[].note` renders in the Dates table on every item page and is outside every copy gate,
-which is the same hole history notes were in. Folding it into `_reader_text` was tried and
-reverted in the same session, because it does two different things at once and only one of them
-is obviously right.
-
-**Right:** a key date note must not narrate the machine, and must keep the punctuation rules.
-
-**Not obviously right:** the comma rule is a MEASURED ceiling, calibrated on running prose. A key
-date note is a label fragment. Folding fragments into the density measure moves a number that was
-measured on something else, which is the exact error CLAUDE.md warns about when it says the
-ceiling is measured on running prose and not on whole-page text.
-
-It found three real defects in copy readers already see, and they are worth fixing whatever is
-decided about the gate:
-
-- `tx-2026-0031` "August 12th and 13th, 2026". The numeral gate reads the `13` as an untraceable
-  figure. It is an ordinal date, so this is likely the extractor rather than the copy.
-- `tx-2026-0041` "NewsChannel 6". The `6` is part of a broadcaster's name. Same shape of false
-  positive, and a warning that widening a numeral gate over proper nouns needs care.
-- `tx-2026-0034` comma rate 4.62 against the 3.97 ceiling, but only once fragments are counted.
-  This is the measurement question above rather than a defect in the sentence.
-
-Waves 5 to 7 are the rest of "more robust" and are worth doing in that order. Wave 5 is the one a
-reader feels next, because it answers "when does this move" without reading a table.
-
-## The house rule that constrains the prose
-
-The reference log writes lines like "Alaska Beacon returned HTTP 403 on re-fetch this run". **We
-may not.** `gate_narration` refuses machine narration in reader copy and it is right to. A Texas
-movement line is about the DECISION and is dated. If a source could not be reached, the honest
-line names what is therefore unconfirmed, not what the fetcher did.
-
-Good: "Checked and unchanged. The August 21st open meeting is still on the calendar."
-Bad: "Re-fetched this run, source 403'd, carried forward."
+1. The registry nests a <ul class="dc-list"> inside a cell when a site has several
+   operators. Flattening it welded "C1 Dallas - Allen (LOT 1) LLC" and "Oracle
+   America, Inc." into one operator that belongs to neither. Cells now yield lists.
+2. sharedStrings.xml holds rich text as several <r><t> runs inside ONE <si>.
+   Counting each <t> as an entry shifted every index after the first formatted
+   cell, which put the header one column left of its data: 'Entity Name' above the
+   Entity ID values, every county read as a balancing authority. Nothing raised.
+   One string per <si> now, and the plausibility floor is what caught it.

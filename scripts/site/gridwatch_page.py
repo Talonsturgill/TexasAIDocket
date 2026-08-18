@@ -49,6 +49,7 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import numeral_lint
+import beyond_panel                                              # noqa: E402
 import queue_panel                                                # noqa: E402
 
 READINGS = REPO_ROOT / "ledger" / "gridwatch" / "readings.jsonl"
@@ -708,6 +709,8 @@ def body(records: list[dict], today: str, queue_data: dict | None = None) -> str
   {acc_block}
 </section>
 
+{beyond_panel.panels(beyond_panel.load(), today)}
+
 <div class="prose gridnote">
   <div class="gap">
     <p><strong>Nobody outside ERCOT can say what any single data center drew.</strong> Per site
@@ -771,7 +774,18 @@ def authorised(f: dict) -> set[str]:
     # build the page's scoped set. A union that lived only in lint() would pass the page's own
     # check and fail the build's, which is precisely the drift that puts a renderer and its
     # allow-list in one module in the first place.
-    return acc.set | queue_panel.authorised(f.get("queue") or {})
+    # Each panel authorises its own figures where they are computed, and the union is taken
+    # here because site_build reads this function through `_watch_numerals` to build the
+    # page's scoped set. A union that lived only in lint() would pass the page's own check
+    # and fail the build's, which is the drift this project has now paid for twice.
+    bd = beyond_panel.load()
+    beyond = beyond_panel.authorised(beyond_panel.figures(bd))
+    for x in beyond_panel.freshness(bd, _dt.date.today().isoformat()):
+        if x.get("read"):
+            beyond.add(beyond_panel.ordinal_date(x["read"]))
+        if x.get("age_days") is not None:
+            beyond |= {beyond_panel.n0(x["age_days"]), beyond_panel.n0(x.get("limit"))}
+    return acc.set | queue_panel.authorised(f.get("queue") or {}) | beyond
 
 
 def lint(html_body: str, f: dict) -> list[str]:
