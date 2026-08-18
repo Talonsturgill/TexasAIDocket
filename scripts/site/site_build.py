@@ -3668,6 +3668,14 @@ def _item_numerals(it: dict, today: str) -> set:
     for kd in (it.get("key_dates") or []):
         a.add(kd.get("date"), *str(kd.get("date", "")).split("-"))
         a.add(*_identifier_numerals(str(kd.get("what", "")) + " " + str(kd.get("note", ""))))
+        # A NAME WITH A NUMBER IN IT, on the record layer's judgement rather than this one's.
+        # "NewsChannel 6" is a broadcaster and `dk._name_numerals` decides that by asking
+        # whether the item's own evidence carries the name, which is the same inheritance this
+        # function already makes for statutes and dates. Stated here because without it the
+        # page passed by luck: a single digit is almost always in the site-wide set from some
+        # unrelated computation, so the gate was waving the name through for the wrong reason
+        # and would have failed the day the number was less common.
+        a.add(*dk._name_numerals(it, str(kd.get("note", ""))))
 
     # THE COUNT ON THE TIMELINE'S NEXT STATION, computed here by the same subtraction the
     # strip does and authorised because of it rather than in spite of it. This is the shape the
