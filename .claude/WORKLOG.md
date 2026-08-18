@@ -55,10 +55,89 @@ is a wave 3 decision rather than an assumption.
 | 2 | Render `How this decision moved` on the item page, oldest first | `human` (`scripts/site/`) | DONE |
 | 3 | Validate history in `gate_schema` so it can never drift or narrate | `human` (`scripts/site/`) | DONE |
 | 4 | Write today's lines for every item re-verified this run | `daily` (`ledger/`) | DONE |
-| 5 | The dated timeline strip, key dates with TODAY marked and the next date called | `human` | TODO |
-| 6 | Per item questions block, generated from the record | `human` | TODO |
-| 7 | Cite this block, and beat cross links | `human` | TODO |
+| 5 | The dated timeline strip, key dates with TODAY marked and the next date called | `human` | DONE |
+| 6 | Per item questions block, generated from the record | `human` | DONE |
+| 7 | Cite this block, and beat cross links | `human` | DONE |
 | 8 | Decide whether `key_dates[].note` joins the copy gates, with the evidence below | `human` | TODO |
+| 9 | Rank `/sources/` by weight, lead with the primary share, one page per publisher | `human` | DONE |
+| 10 | Put `/sources/` in the daily routine's eyes-on list, beside the grid page | `human` (`prompts/`) | DONE |
+
+## Waves 9 and 10, the source archive, opened on the owner's call 2026-08-18
+
+> "the other thing we forgot to add into the site and also incorporate into our daily upkeep
+> https://alaskaaihq.com/sources/"
+
+**We have the page.** `/sources/` exists, groups every fetched document by host, and gives each
+one a citation count. What it does not do is the thing that makes the reference version worth
+reading.
+
+**Sorted alphabetically, which ranks nothing.** The reference page sorts by how much of the
+record rests on each source, so the first screen answers "who is this record leaning on". Ours
+opens on whichever host starts with the earliest letter, and a reader has to read all of it to
+learn the same thing. The data for the better sort is already computed on the page.
+
+**The one figure that tests the promise is missing.** The reference page leads with the share of
+claims that rest on a primary document rather than on a report about one. That is the single
+number that says whether "every fact traces to a fetched source" is a standard or a slogan, and
+it is the number this project should most want to publish about itself, in both directions. Ours
+prints documents and publishers, which are facts about the archive's size rather than its
+quality. `source_type` is already stored on every claim, so this is arithmetic on data we hold
+and no new fetching.
+
+**Per source, the counts are thinner than they need to be.** The reference gives primary count,
+claim count and article count per source. Ours gives one entry count. All three are derivable.
+
+Wave 10 is the upkeep half of the ask. The routine already looks at the grid page every run and
+may fix presentation only. `/sources/` deserves the same standing look, and the run record for
+2026-08-18 is evidence for it: `/sources/` was signed off as fine that day on a glance at how
+titles render, and `/questions/` was recorded honestly as NOT LOOKED AT. A page nobody is told
+to open is a page that gets signed off from memory.
+
+**Nothing about either wave lets a run edit the archive.** The page is generated from
+`ledger/docket.json` like every other, so the routine's standing look is a presentation check in
+`scripts/site/`, exactly as the grid page's is, and the same sentence in `ownership.yaml`
+governs it.
+
+### What was built, and the discovery argument for it
+
+> "the sources tab will be a robust thing and will need to be upkeep daily by the automation so
+> you'll need to wire then it and how, properly, its huge for indexing so u wanna do it in the
+> way that helps us get discovered"
+
+**One page per publisher, 51 of them.** The archive already held everything a page about a
+publisher needs. It was not addressable, and a search engine indexes a URL. Forty publishers on
+one URL is one thing to rank, competing with itself for every query, and a reader arriving from
+a search for one of them landed at the top of a list of the other fifty. The site went from 170
+pages to 221.
+
+**Why this is not a doorway farm, which is the fair objection.** A doorway page exists for a
+crawler and carries nothing for a reader. Every sentence and every figure on these is computed
+from the ledger, each page carries the actual documents and the actual entries that rest on
+them, and a reader who followed a citation back to a publisher gets what they came for. They are
+also the missing half of the item page's evidence block, which listed a source and dead ended.
+
+**The link goes three ways, which is the part a sitemap cannot do.** The hub ranks and links
+down, each publisher page links back to every entry that cites it, and every entry's evidence
+block now links out to the publisher. A crawler that finds any one finds the other two.
+
+**Everything downstream came for free, by design rather than by luck.** The sitemap takes any
+`index.html`, so all 51 are in it. `pages.yml` submits the day's changed URLs to IndexNow off
+the sitemap's own `lastmod`. Each page carries a `CollectionPage` node naming its members and a
+breadcrumb. `llms.txt` names every publisher with its URL, ranked, so a model asked what this
+record rests on answers from one fetch. None of that needed a new mechanism, which is the
+argument for the page family having been the right shape.
+
+**The address is built from the host and never from the title.** A source title is the
+document's words and changes when a publisher retitles a page. A URL that moves loses whatever
+rank it had. `interchange-puc-texas-gov` is ugly and permanent, and permanent is the half that
+matters for an address.
+
+**The share is the point of the hub.** It publishes how many claims rest on a primary document
+rather than on a report about one. The page used to open with documents and publishers, which
+are facts about the archive's size, while the claim the record makes is about its quality. The
+routine is now told to read that share every run and to treat a fall as a finding about the
+record rather than a defect on the page, because the only way to move it is to go and find the
+filing.
 
 ## What waves 1 to 4 actually turned up, and three of them were nothing to do with history
 

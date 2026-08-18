@@ -512,9 +512,27 @@ was opened and what it showed.
 - **The `Open right now` section of `llms.txt`.** It lists what still has a dated way in. Cross
   it against the open windows Phase 3 re-verified. If a window closed today and it is still
   listed, the build ran before the record moved and the merge order is wrong.
-- **A source title in `/sources/`.** Quoted material is exempt from the punctuation and numeral
-  rules by design. Confirm the exemption is still doing that and not hiding one of our own
-  sentences.
+- **`/sources/`, which is now a page family and the record's own report card.** Three things,
+  and the first is the one that matters.
+  **Read the share at the top.** It says how many of the record's claims rest on a primary
+  document rather than on a report about one. That is the only published figure that tests the
+  promise the whole record makes, and a run that admitted items on journalism alone moves it
+  down. **A falling share is not a defect to fix on this page, it is a finding about the
+  record**, and the honest response is a line in the run record naming the share and what moved
+  it, never a change to the page. It is computed from `source_type` on every claim, so the only
+  way to move it is to go and find the filing.
+  **Open the top publisher's own page**, at `/sources/<host>/`. The hub ranks by how much of the
+  record rests on each one, so the first entry is what this record leans on hardest. Does its
+  document list read as documents, and does its list of decisions match the entries you would
+  expect? A publisher at the top of that list that nobody would call a primary source is worth a
+  sentence in the run record.
+  **Then the old check, which still holds.** Quoted material is exempt from the punctuation and
+  numeral rules by design. Confirm the exemption is still doing that and not hiding one of our
+  own sentences.
+  **The pages are generated and this phase may not edit them.** A publisher page is a pure
+  function of the claims in `ledger/docket.json`, and the way to change what it says is to
+  change what the record cites. An item admitted in Phase 5 with a new host gets its own page,
+  its sitemap entry and its line in `llms.txt` on this run's build, with nothing to remember.
 - **`/topic/`, counting one card against its own page.** Open the hub, pick the beat this run
   touched, and check the count on the card equals the number of decisions listed on the beat's
   page. Then read the `still open to comment` figure. It is a claim about TODAY rather than
