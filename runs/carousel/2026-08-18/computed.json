@@ -1,0 +1,64 @@
+{
+  "tile_coursework_px": {
+    "value": 305,
+    "label": "measured",
+    "from": [
+      "c5"
+    ],
+    "how": "560 * 60 / 110, true proportion of the longest block",
+    "published": false,
+    "source_writes_it_as": "one hour"
+  },
+  "tile_experiences_px": {
+    "value": 560,
+    "label": "measured",
+    "from": [
+      "c5"
+    ],
+    "how": "560 * 110 / 110, true proportion of the longest block",
+    "published": false,
+    "source_writes_it_as": "110 minutes"
+  },
+  "tile_workshop_px": {
+    "value": 458,
+    "label": "measured",
+    "from": [
+      "c5"
+    ],
+    "how": "560 * 90 / 110, true proportion of the longest block",
+    "published": false,
+    "source_writes_it_as": "90 minutes"
+  },
+  "tile_ratio_check": {
+    "value": "60:110:90",
+    "label": "measured",
+    "from": [
+      "c5"
+    ],
+    "how": "the three block durations as the source gives them, for verifying tile lengths",
+    "published": false
+  },
+  "axis_instruction_terminus_px": {
+    "value": 822,
+    "label": "measured",
+    "from": [
+      "c4"
+    ],
+    "how": "84 + 912 * 510 / 630, the 4:00 p.m. boundary at true position on the 7:30 a.m. to 6:00 p.m. run",
+    "published": false
+  },
+  "axis_instruction_share": {
+    "value": 81.0,
+    "label": "measured",
+    "from": [
+      "c4"
+    ],
+    "how": "100 * 510 / 630, the share of the drawn run that is instruction",
+    "published": false
+  },
+  "_not_computed": {
+    "residual_minutes": {
+      "why_not": "c4 does not state that the three parts are disjoint from c3's first four hours, so summing them may double count and any residual is an artefact of that assumption. Not published in any form."
+    }
+  }
+}

@@ -1,0 +1,188 @@
+<!doctype html>
+<!-- SLIDE 2 — PLACED AND DATED.
+     Single-county spotlight. Harris is small and east where the 254-county mesh is dense,
+     which is this technique's recorded failure, so the leader line to a label outside the
+     mesh is mandatory rather than decorative. No campus dots: the claims carry no
+     coordinates and a dot would imply a location the record does not have. Claim c2. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #E9EAE6; position: relative; font-family: "Manrope", sans-serif; }
+
+  canvas#grain { position: absolute; inset: 0; width: 1080px; height: 1350px; }
+  svg.map { position: absolute; inset: 0; }
+
+  .hd { position: absolute; top: 104px; left: 84px; right: 84px; }
+  .stamp { font-family: "JetBrains Mono", monospace; font-size: 25px;
+           letter-spacing: 0.13em; text-transform: uppercase; color: #3E5340;
+           padding-bottom: 16px; border-bottom: 1px solid #5F7350; }
+  h2 { font-family: "Fraunces", serif; font-weight: 800; font-size: 78px;
+       line-height: 1.0; letter-spacing: -0.018em; color: #2C3A34;
+       margin-top: 26px; font-variation-settings: "opsz" 80; }
+
+  .pair { position: absolute; left: 84px; right: 84px; bottom: 150px; }
+  .pair .top-rule { height: 2px; background: #2C3A34; }
+  .pair .row { display: flex; justify-content: space-between; align-items: baseline;
+               padding: 20px 2px 18px; border-bottom: 1px solid rgba(95,115,80,0.5); }
+  .pair .row:last-of-type { border-bottom: 0; }
+  .pair .nm { font-family: "Fraunces", serif; font-weight: 700; font-size: 42px;
+              color: #2C3A34; }
+  .pair .to { font-family: "JetBrains Mono", monospace; font-size: 27px; color: #4A5A52; }
+  .pair .note { font-size: 27px; color: #4A5A52; padding-top: 16px; line-height: 1.4; }
+
+  .counter { position: absolute; right: 84px; bottom: 40px;
+             font-family: "JetBrains Mono", monospace; font-size: 24px; color: #7A6A55; }
+</style>
+</head>
+<body>
+  <canvas id="grain" width="2160" height="2700"></canvas>
+  <svg class="map" id="map" width="1080" height="1350" viewBox="0 0 1080 1350"></svg>
+
+  <div class="hd">
+    <div class="stamp">Announced February 2026</div>
+    <h2>Two schools,<br>converting</h2>
+  </div>
+
+  <div class="pair">
+    <div class="top-rule"></div>
+    <div class="row"><div class="nm">C. Martinez</div><div class="to">to pre-K-8</div></div>
+    <div class="row"><div class="nm">Gregg</div><div class="to">to pre-K-8</div></div>
+    <div class="note">Both convert for the 2026 to 2027 school year.</div>
+  </div>
+  <div class="counter" data-decorative>02 / 09</div>
+
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script src="@@ASSETS@@/js/topojson-client.min.js"></script>
+<script src="@@ASSETS@@/js/txgeo.js"></script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260818;
+  TX.reseed(SEED);
+
+  fetch("@@ASSETS@@/geo/tx-counties.topo.json").then(function (r) { return r.json(); })
+  .then(function (topo) {
+    var counties = TXGeo.counties(topo);
+    var state    = TXGeo.outline(topo);
+    var svg = d3.select("#map");
+
+    /* Fit the FULL state, never a small bbox. A conic fit to a small polygon becomes a
+       giant disc without erroring. */
+    var proj = TXGeo.texasProjection(state, [[150, 420], [930, 966]]);
+    var path = d3.geoPath(proj);
+
+    var HARRIS = /harris/i;
+    var feats = counties.features;
+    var harris = feats.filter(function (f) {
+      var n = (f.properties && (f.properties.NAME || f.properties.name || f.properties.COUNTY)) || "";
+      return HARRIS.test(n);
+    })[0];
+
+    /* every county, one even value */
+    svg.append("g").selectAll("path").data(feats).enter().append("path")
+       .attr("d", path)
+       .attr("fill", "#DCD6C8")
+       .attr("stroke", "#E9EAE6")
+       .attr("stroke-width", 0.7);
+
+    /* the state edge */
+    svg.append("path").attr("d", path(state))
+       .attr("fill", "none").attr("stroke", "#7A6A55").attr("stroke-width", 2.0);
+
+    /* Harris lifted exactly ONE step in value. No ramp across other counties, because a
+       ramp would read as a quantity and this is a location marker. */
+    var at = [700, 700];
+    if (harris) {
+      svg.append("path").attr("d", path(harris))
+         .attr("fill", "#EBD9BE")
+         .attr("stroke", "#2C3A34").attr("stroke-width", 2.0);
+      at = path.centroid(harris);
+    }
+
+    /* The leader terminates ON the county's own centroid, authored as a world coordinate
+       rather than as an offset from the label. */
+    /* Held back from the right edge so the measured plate stays inside the 80px safe
+       margin. LinkedIn crops and the crop is not announced. */
+    var labelAnchor = [688, 486];
+    var leader = [[labelAnchor[0], labelAnchor[1] + 16], [at[0] + 52, at[1] - 48], at];
+    svg.append("path")
+       .attr("d", "M" + leader.map(function (p) { return p[0] + "," + p[1]; }).join("L"))
+       .attr("fill", "none").attr("stroke", "#2C3A34").attr("stroke-width", 1.7);
+    /* NO terminus marker. The leader stops on the centroid and puts no ink there,
+       because a filled dot inside the polygon reads as a location pin and the claims
+       carry no coordinates. */
+
+    window.__txLeaders = [{ target: "the Harris County polygon's own centroid",
+                            at: at, to: leader[leader.length - 1] }];
+
+    /* the label, outside the mesh, with its plate measured from the laid-out text */
+    var g = svg.append("g");
+    var t = g.append("text")
+      .attr("x", labelAnchor[0]).attr("y", labelAnchor[1])
+      .attr("font-family", "JetBrains Mono, monospace")
+      .attr("font-size", 30).attr("fill", "#2C3A34")
+      .text("HARRIS COUNTY");
+
+    document.fonts.ready.then(function () {
+      TX.svgPlate(t.node(), { padX: 14, padY: 10, fill: "#E9EAE6", stroke: "#5F7350" });
+
+      /* grain, so the flat mesh field does not read as an unfinished export on a phone */
+      var cv = document.getElementById("grain");
+      var ctx = cv.getContext("2d");
+      ctx.scale(2, 2);
+
+      /* THE BOTTOM BAND'S OWN FURNITURE. The first render read as top loaded, with the
+         lower third at 70% of the slide's own craft density, because the record pair is
+         DOM type on bare paper. The survey furniture runs down into the band instead of
+         answering it with more quiet. */
+      ctx.strokeStyle = "rgba(95,115,80,0.50)";
+      for (var ty = 1040; ty <= 1300; ty += 15) {
+        var major = ((ty - 1040) % 75) === 0;
+        ctx.lineWidth = major ? 1.5 : 0.9;
+        ctx.beginPath();
+        ctx.moveTo(56, ty);
+        ctx.lineTo(56 + (major ? 18 : 10), ty);
+        ctx.stroke();
+      }
+      ctx.beginPath();
+      ctx.moveTo(56, 1040); ctx.lineTo(56, 1300);
+      ctx.strokeStyle = "rgba(95,115,80,0.42)"; ctx.lineWidth = 1.1; ctx.stroke();
+
+      var band = ctx.createLinearGradient(0, 1000, 0, 1350);
+      band.addColorStop(0, "rgba(122,106,85,0.00)");
+      band.addColorStop(1, "rgba(122,106,85,0.105)");
+      ctx.fillStyle = band;
+      ctx.fillRect(0, 1000, 1080, 350);
+
+      ctx.save();
+      ctx.strokeStyle = "rgba(122,106,85,0.14)";
+      ctx.lineWidth = 1;
+      for (var hx = -240; hx < 1200; hx += 14) {
+        var j = TX.fbm2(hx * 0.011, 7.3, { octaves: 3 }) * 14;
+        ctx.beginPath();
+        ctx.moveTo(hx + j, 1046);
+        ctx.lineTo(hx + 170 + j, 1330);
+        ctx.stroke();
+      }
+      ctx.restore();
+
+      var img = new Image();
+      img.onload = function () {
+        ctx.globalAlpha = 0.030;
+        ctx.fillStyle = ctx.createPattern(img, "repeat");
+        ctx.fillRect(0, 0, 1080, 1350);
+        resolve();
+      };
+      img.onerror = function () { resolve(); };
+      img.src = TX.grainTile(240, 38, SEED);
+    });
+  }).catch(function () { resolve(); });
+});
+</script>
+</body>
+</html>

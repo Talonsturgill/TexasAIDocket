@@ -11,7 +11,7 @@ Laredo City Council declined to impose a temporary moratorium on data center per
 - Public access: Public meeting
 - Take part: https://www.kgns.tv/2026/07/31/laredo-council-moves-freeze-data-center-applications-amid-regulatory-gap/
 
-- Last checked: 2026-08-14
+- Last checked: 2026-08-18
 
 ## Dates
 

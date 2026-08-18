@@ -1,0 +1,162 @@
+<!doctype html>
+<!-- SLIDE 5 — THREE BLOCKS, NO STATED ORDER.
+     Three known lengths without assigned sockets. A bar chart would place them on a track
+     and thereby assert an order the source withholds, so the tiles lie BESIDE an open rule,
+     deliberately out of alignment with it, and nothing on the frame implies sequence.
+     Tile lengths come from compute.py, never typed. The source writes the first duration in
+     WORDS and the other two as NUMERALS, and that inconsistency is reproduced because
+     regularising it would be editing a quotation of a schedule. Claims c5, c4. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #DCD6C8; position: relative; font-family: "Manrope", sans-serif; }
+
+  canvas#art { position: absolute; inset: 0; width: 1080px; height: 1350px; }
+
+  .hd { position: absolute; top: 100px; left: 84px; right: 84px; }
+  .kick { font-family: "JetBrains Mono", monospace; font-size: 25px;
+          letter-spacing: 0.13em; text-transform: uppercase; color: #3E5340;
+          margin-bottom: 22px; }
+  h2 { font-family: "Fraunces", serif; font-weight: 800; font-size: 82px;
+       line-height: 1.0; letter-spacing: -0.018em; color: #2C3A34;
+       font-variation-settings: "opsz" 84; }
+
+  .windowlbl { position: absolute; top: 344px; left: 84px;
+               font-family: "JetBrains Mono", monospace; font-size: 25px;
+               color: #7A6A55; letter-spacing: 0.06em; }
+
+  /* Labels sit ABOVE their tile, never beside it. On the first render the tile was painted
+     across "AI literacy and design thinking" and the glyphs sat on gold at almost their own
+     value, which is the art-crossing-glyphs failure. */
+  .lbl { position: absolute; font-family: "JetBrains Mono", monospace;
+         font-size: 30px; color: #2C3A34; }
+  .lbl .what { color: #2C3A34; font-size: 26px; display: block; margin-top: 4px; }
+
+  .foot { position: absolute; left: 84px; right: 84px; bottom: 150px; }
+  .foot .rule { height: 2px; background: #2C3A34; margin-bottom: 20px; }
+  .foot p { font-size: 31px; line-height: 1.44; color: #2C3A34; }
+  .counter { position: absolute; right: 84px; bottom: 88px;
+             font-family: "JetBrains Mono", monospace; font-size: 24px; color: #7A6A55; }
+</style>
+</head>
+<body>
+  <canvas id="art" width="2160" height="2700"></canvas>
+
+  <div class="hd">
+    <div class="kick">Lengths only</div>
+    <h2>Three blocks,<br>no stated order</h2>
+  </div>
+
+
+  <div class="lbl" id="l1" style="left:286px; top:466px;">one hour<span class="what">AI literacy and design thinking</span></div>
+  <div class="lbl" id="l2" style="left:168px; top:648px;">110 minutes<span class="what">experiences</span></div>
+  <div class="lbl" id="l3" style="left:402px; top:852px;">90 minutes<span class="what">workshop</span></div>
+
+  <div class="foot">
+    <div class="rule"></div>
+    <p>The schedule gives each block a length. It never says which block follows the morning.</p>
+  </div>
+  <div class="counter" data-decorative>05 / 09</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txrelief.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260818;
+  TX.reseed(SEED);
+
+  var cv = document.getElementById("art");
+  var ctx = cv.getContext("2d");
+  ctx.scale(2, 2);
+  var W = 1080, H = 1350;
+
+  /* Tile lengths as computed by compute.py from the c5 durations. Copied as data, not
+     eyeballed: 560 * minutes / 110.
+     EACH TILE HAS ITS OWN START X. They share no left edge, so the group cannot be read
+     as bars rising from a common baseline, which is exactly the reading the source does
+     not support. The first render started them all at one x and it read as a bar chart. */
+  var TILES = [
+    { x: 286, y: 560, len: 305, rot: -0.070 },   /* one hour */
+    { x: 168, y: 742, len: 560, rot:  0.052 },   /* 110 minutes */
+    { x: 402, y: 946, len: 458, rot: -0.034 }    /* 90 minutes */
+  ];
+  var TILE_H = 68;
+
+  /* ---- the three tiles, relit under the deck's declared upper left light ---------- */
+  function tile(x, y, w, h) {
+    /* body */
+    var gr = ctx.createLinearGradient(0, y, 0, y + h);
+    gr.addColorStop(0.00, "#DDBB8E");     /* lit upper edge, buff face brick */
+    gr.addColorStop(0.22, "#C9A67B");
+    gr.addColorStop(1.00, "#A9835A");
+    ctx.fillStyle = gr;
+    ctx.fillRect(x, y, w, h);
+
+    /* lit top bevel, upper left declared */
+    ctx.fillStyle = "rgba(255,240,214,0.55)";
+    ctx.fillRect(x, y, w, 2.5);
+    ctx.fillStyle = "rgba(255,240,214,0.30)";
+    ctx.fillRect(x, y, 2.5, h);
+
+    /* shadow side */
+    ctx.fillStyle = "rgba(44,58,52,0.30)";
+    ctx.fillRect(x + w - 2.5, y, 2.5, h);
+    ctx.fillRect(x, y + h - 2.5, w, 2.5);
+
+    /* TWO PART contact shadow. A one part blur reads as a drop shadow and the object
+       floats. The tight core is what makes it sit. */
+    var core = ctx.createLinearGradient(0, y + h, 0, y + h + 6);
+    core.addColorStop(0, "rgba(38,32,22,0.42)");
+    core.addColorStop(1, "rgba(38,32,22,0.10)");
+    ctx.fillStyle = core;
+    ctx.fillRect(x + 2, y + h, w - 2, 6);
+    var sg = ctx.createLinearGradient(0, y + h, 0, y + h + 26);
+    sg.addColorStop(0, "rgba(60,52,38,0.20)");
+    sg.addColorStop(1, "rgba(60,52,38,0)");
+    ctx.fillStyle = sg;
+    ctx.fillRect(x + 6, y + h, w, 26);
+
+    /* tooth on the face so it reads as a material rather than a swatch */
+    for (var i = 0; i < Math.floor(w * 0.5); i++) {
+      var px = x + 3 + TX.simplex2(i * 0.37, y * 0.11) * 0.5 * w + w * 0.5;
+      var py = y + 4 + ((i * 7919) % (h - 8));
+      if (px < x + 2 || px > x + w - 2) continue;
+      ctx.fillStyle = "rgba(255,238,208," + (0.020 + 0.030 * (i % 3) / 3) + ")";
+      ctx.fillRect(px, py, 1.6, 1.6);
+    }
+  }
+
+  TILES.forEach(function (t) {
+    ctx.save();
+    ctx.translate(t.x + t.len / 2, t.y + TILE_H / 2);
+    ctx.rotate(t.rot);
+    ctx.translate(-(t.x + t.len / 2), -(t.y + TILE_H / 2));
+    tile(t.x, t.y, t.len, TILE_H);
+    ctx.restore();
+  });
+
+  /* the bottom band's own tone, so the strip below the closing rule is not bare paper */
+  var bw = ctx.createLinearGradient(0, 1120, 0, 1350);
+  bw.addColorStop(0, "rgba(122,106,85,0.00)");
+  bw.addColorStop(1, "rgba(122,106,85,0.130)");
+  ctx.fillStyle = bw;
+  ctx.fillRect(0, 1120, W, 230);
+
+  var g = new Image();
+  g.onload = function () {
+    ctx.globalAlpha = 0.032;
+    ctx.fillStyle = ctx.createPattern(g, "repeat");
+    ctx.fillRect(0, 0, W, H);
+    ctx.globalAlpha = 1;
+    resolve();
+  };
+  g.onerror = function () { resolve(); };
+  g.src = TX.grainTile(248, 40, SEED);
+});
+</script>
+</body>
+</html>

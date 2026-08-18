@@ -40,12 +40,68 @@
 
 <h1>Texas Grid Watch</h1>
 <div class="prose">
-  <p class="lede">A daily numeric record of how the ERCOT grid is absorbing large constant
-  load. This page does not predict, grade or reassure. It publishes measurements, the
-  arithmetic done on them and the size of what nobody outside ERCOT can see.</p>
+  <p class="lede">What large load has asked the Texas grid for, and what it is actually
+  drawing. Measured, never predicted.</p>
 </div>
 
-<h2>August 17th, 2026</h2>
+<section class="queuegap" data-reveal>
+  <h2>The Queue Gap</h2>
+  <p class="qlede">Large load has asked ERCOT for <strong class="num">410 GW</strong>.
+  <strong class="num">4.4 GW</strong> of it is drawing power.</p>
+
+  <div class="qgap">
+  <div class="qrow">
+    <div class="qlab"><span class="qk">Asked for</span>
+      <span class="qv num">410 GW</span></div>
+    <div class="qbar"><div class="qfill" style="width:100%"></div></div>
+  </div>
+  <div class="qrow">
+    <div class="qlab"><span class="qk">Drawing power</span>
+      <span class="qv num">4.4 GW</span></div>
+    <div class="qbar"><div class="qfill" style="width:1.07%"></div></div>
+  </div>
+</div>
+
+  <p class="qnote"><span class="num">87%</span> of the queue is data
+  centers. Queue read <a href="https://www.ercot.com/files/docs/2026/04/01/ERCOT_LargeLoad_Update_April2026_B-C_-Hearing.pdf">March 26th, 2026</a>. The rest read
+  <a href="https://www.ercot.com/files/docs/2026/08/17/ERCOT-Monthly-Operational-Overview-July-2026.pdf">July 2026</a>. Both from ERCOT.</p>
+
+  <h3>For scale</h3>
+  <div class="qgap">
+  <div class="qrow">
+    <div class="qlab"><span class="qk">The queue</span>
+      <span class="qv num">410 GW</span></div>
+    <div class="qbar"><div class="qfill" style="width:100%"></div></div>
+  </div>
+  <div class="qrow">
+    <div class="qlab"><span class="qk">Record peak, all of Texas</span>
+      <span class="qv num">91.1 GW</span></div>
+    <div class="qbar"><div class="qfill" style="width:22.2%"></div></div>
+  </div>
+</div>
+  <p class="qnote">The queue is <span class="num">4.5</span>
+  times the most power Texas has ever used at once.</p>
+
+  <h3>Where it stands</h3>
+  <ol class="qstages" data-prose="data"><li><span class="qk">Asked for</span><span class="qv num">410 GW</span><span class="qs">100%</span></li><li><span class="qk">Cleared to switch on</span><span class="qv num">9.5 GW</span><span class="qs">2.3%</span></li><li><span class="qk">Actually drawing</span><span class="qv num">4.4 GW</span><span class="qs">1.1%</span></li></ol>
+  <p class="qnote">ERCOT publishes two more stages between the first and the second. Both are
+  drawn in a chart with no text behind it. Neither is collected and neither is shown here.</p>
+
+  <h3>It has not moved all year</h3>
+<div class="qchart">
+  <svg viewBox="0 0 100 100" preserveAspectRatio="none" role="img"
+       aria-label="Cleared to switch on and actually drawing, by month, from
+       January 2026 to July 2026. Both sit flat.">
+    <rect class="qa" x="2.67" y="17.03" width="5.00" height="82.97"/><rect class="qd" x="8.67" y="61.77" width="5.00" height="38.23"/><rect class="qa" x="19.33" y="14.61" width="5.00" height="85.39"/><rect class="qd" x="25.33" y="61.88" width="5.00" height="38.12"/><rect class="qa" x="36.00" y="14.62" width="5.00" height="85.38"/><rect class="qd" x="42.00" y="62.16" width="5.00" height="37.84"/><rect class="qa" x="52.67" y="14.91" width="5.00" height="85.09"/><rect class="qd" x="58.67" y="62.17" width="5.00" height="37.83"/><rect class="qa" x="69.33" y="15.72" width="5.00" height="84.28"/><rect class="qd" x="75.33" y="62.55" width="5.00" height="37.45"/><rect class="qa" x="86.00" y="10.71" width="5.00" height="89.29"/><rect class="qd" x="92.00" y="58.74" width="5.00" height="41.26"/>
+  </svg>
+  <div class="qticks" aria-hidden="true"><span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>Jun</span><span>Jul</span></div>
+</div>
+<p class="qnote">Each month since January 2026. Left bar cleared to switch
+on. Right bar actually drawing.</p>
+</section>
+
+<h2>Yesterday on the grid</h2>
+<p class="qnote">August 17th, 2026. What the whole system actually did, settled overnight.</p>
 <figure class="shape">
 <svg viewBox="0 0 720 412" role="img" class="loadshape"
      aria-label="Measured ERCOT demand hour by hour against ERCOT's day ahead forecast, with
@@ -100,14 +156,11 @@ of the generation capacity ERCOT had committed for that hour. This bar has one c
 value on purpose. It is a measurement rather than a judgement about whether the grid was
 comfortable. No number on this page can tell you that.</p>
 
-<h2>The load factor, and why it is the number to watch</h2>
+<h2>Load factor</h2>
 <div class="prose">
-  <p>A day's mean demand divided by its peak. On August 17th, 2026 it was
-  <strong class="num">82.1%</strong>.</p>
-  <p>Peak is a weather story. Shape is the story. A data center draws about as much at four in
-  the morning as at five in the afternoon, so constant load lifts the overnight floor faster
-  than the afternoon ceiling. Weather lifts both.</p>
-  <p>One day can't show that. A year can.</p>
+  <p>Mean demand over peak. On August 17th, 2026 it was <strong class="num">82.1%</strong>. A data center
+  draws about as much at four in the morning as at five in the afternoon. Constant load lifts
+  the overnight floor faster than the afternoon ceiling. Weather lifts both.</p>
 </div>
 
 <h2>The fingerprint</h2>
@@ -118,16 +171,13 @@ comfortable. No number on this page can tell you that.</p>
   Nothing is drawn from fewer, because a line through two points is noise with a slope.</div>
 </div>
 
-<h2>Checking the forecast against what happened</h2>
+<h2>Forecast accuracy</h2>
 <div class="prose">
-  <p>ERCOT publishes a forecast then what happened. The gap is arithmetic rather than
-  opinion. Across <strong class="num">8</strong>
+  <p>Across <strong class="num">8</strong>
   days its day ahead peak forecast missed by
   <strong class="num">1,012 MW</strong> on average, or
   <strong class="num">1.2%</strong> of peak. Worst so far
   <strong class="num">2,503 MW</strong>.</p>
-  <p>Published whichever way it falls. A page that checks its inputs in public beats one that
-  asserts they are good.</p>
 </div>
 
 <h2>What served the load</h2>
@@ -136,42 +186,24 @@ comfortable. No number on this page can tell you that.</p>
 <tbody><tr><td>Natural Gas</td><td class="n num">864,440</td><td class="n num">49.15</td></tr><tr><td>Solar</td><td class="n num">353,489</td><td class="n num">20.10</td></tr><tr><td>Wind</td><td class="n num">214,724</td><td class="n num">12.21</td></tr><tr><td>Coal and Lignite</td><td class="n num">204,254</td><td class="n num">11.61</td></tr><tr><td>Nuclear</td><td class="n num">119,136</td><td class="n num">6.77</td></tr><tr><td>Other</td><td class="n num">1,450</td><td class="n num">0.08</td></tr><tr><td>Hydro</td><td class="n num">1,375</td><td class="n num">0.08</td></tr><tr><td>Power Storage</td><td class="n num">-5,225</td><td class="n num">charging</td></tr><tr><td><strong>Gross generation</strong></td><td class="n num"><strong>1,758,869</strong></td><td class="n num">100.00</td></tr><tr><td>Net after storage</td><td class="n num">1,753,644</td><td></td></tr><tr><td>Measured load</td><td class="n num">1,756,839</td><td></td></tr></tbody>
 </table>
 <div class="prose">
-  <p>Integrated from ERCOT's five minute telemetry. Storage is signed. It reads negative when
-  batteries absorb more than they return. Shares count positive generation only.</p>
+  <p>Integrated from five minute telemetry. Storage is signed. It reads negative when
+  batteries absorb more than they return.
   <p>Separate feeds, and everything generated inside the grid is consumed inside it, so they
   must agree. They differ by <strong class="num">0.2%</strong>, about what ties
-  and losses account for. Both print because this catches either reader breaking.</p>
+  and losses account for. Both print because this catches either reader breaking.</p></p>
 </div>
 
-<h2>The size of what is not public</h2>
+<h2>What is not public</h2>
 <div class="prose">
   <div class="gap">
     <p><strong>Nobody outside ERCOT can say what any single data center drew.</strong> Per site
-    large load metering is confidential. What is public is the system total, which is what this
-    page publishes.</p>
-    <p>So this page can show the shape of Texas demand changing. It can't attribute that change
-    to a named facility, and it does not try. Where an attribution is wanted and can't be
-    computed, the gap is printed instead of an estimate.</p>
+    metering is confidential. This page publishes the system total and never an attribution.</p>
   </div>
-  <p>The record holds <strong class="num">8</strong>
-  days, of which
-  <strong class="num">8</strong>
-  are complete settled days and
-  <strong class="num">0</strong>
-  are marked unverified. An unverified
-  day carries no numbers at all rather than yesterday's. A gap that says it is a gap is honest.
-  A gap filled with the last known figure is a fabrication nothing downstream can detect.</p>
-</div>
-
-<h2>How this is collected</h2>
-<div class="prose">
-  <p>Once a day the settled previous day is read whole from ERCOT's dashboard feeds. Demand
-  hour by hour, the day ahead forecast, committed capacity and generation by fuel. Raw responses
-  are archived first.</p>
-  <p>The full hourly series is stored, so every figure here can be recomputed from
+  <p><strong class="num">8</strong>
+  days held,
+  <strong class="num">0</strong> unverified. An unverified day carries
+  no numbers rather than yesterday's. Everything here recomputes from
   <a href="../gridwatch.json">the open data</a>.</p>
-  <p>ERCOT keeps no archive. A missed day is gone for good, so the collector runs on its own
-  schedule.</p>
 </div>
 
 </main>

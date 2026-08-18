@@ -1,0 +1,144 @@
+<!doctype html>
+<!-- SLIDE 6 — THE DISTRICT'S OWN REASON.
+     The afternoon the district describes is an open field with nothing scheduled onto it,
+     and Harris County is genuinely that flat, so a near flat heightfield running to a hazy
+     horizon is regionally true rather than decorative. Marfa discipline: the open field IS
+     the composition on this frame.
+     The horizon is computed from the camera arithmetic rather than guessed, per the library
+     note, and fog begins BEYOND the last resolved relief feature so no subject is flattened
+     by it. Claims c6, c7. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #E9EAE6; position: relative; font-family: "Manrope", sans-serif; }
+
+  canvas#art { position: absolute; inset: 0; width: 1080px; height: 1350px; }
+
+  .kick { position: absolute; top: 104px; left: 84px;
+          font-family: "JetBrains Mono", monospace; font-size: 25px;
+          letter-spacing: 0.13em; text-transform: uppercase; color: #3E5340; }
+  h2 { position: absolute; top: 168px; left: 84px; right: 120px;
+       font-family: "Fraunces", serif; font-weight: 800; font-size: 76px;
+       line-height: 1.02; letter-spacing: -0.018em; color: #2C3A34;
+       font-variation-settings: "opsz" 78; }
+
+  .quote { position: absolute; left: 84px; right: 84px; bottom: 214px;
+           background: rgba(233,234,230,0.90);
+           border-top: 2px solid #5F7350; border-bottom: 2px solid #5F7350;
+           padding: 24px 26px 24px 4px;
+           font-family: "Fraunces", serif; font-weight: 500; font-size: 37px;
+           line-height: 1.33; color: #2C3A34; }
+  .attrib { position: absolute; left: 84px; bottom: 150px;
+            font-family: "JetBrains Mono", monospace; font-size: 25px; color: #F4F5F0;
+            font-weight: 500; }
+  .counter { position: absolute; right: 84px; bottom: 132px;
+             font-family: "JetBrains Mono", monospace; font-size: 24px; color: #EDEEE8; }
+</style>
+</head>
+<body>
+  <canvas id="art" width="2160" height="2700"></canvas>
+
+  <div class="kick">Why the district says it does this</div>
+  <h2>Enrichment that can<br>cost thousands outside school</h2>
+
+  <div class="quote">
+    "Along with being screen-free, afternoon experiences provide enrichment opportunities
+    that can cost thousands of dollars outside of school."
+  </div>
+  <div class="attrib">Houston ISD</div>
+  <div class="counter" data-decorative>06 / 09</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/tx3d.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260818;
+  TX.reseed(SEED);
+
+  var cv = document.getElementById("art");
+  var ctx = cv.getContext("2d");
+  ctx.scale(2, 2);
+  var W = 1080, H = 1350;
+
+  /* ---- composition arithmetic, done BEFORE rendering ---------------------------
+     f = (h/2) / tan(fov/2);  horizonY = cy + tan(-pitch) * f
+     Target: the horizon at 0.545 of frame height, which puts it just under the
+     headline block and leaves the whole lower half as ground. */
+  /* CY is the lever, not pitch. Raising pitch pushed the horizon DOWN and left 72 percent
+     of the frame as blank sky. Solved for the horizon at 40 percent of frame height, which
+     gives the ground the lower three fifths and turns the emptiness into air rather than
+     unused page. */
+  var FOV = 56, PITCH = -0.085, CY = 430;
+  var f = (H / 2) / Math.tan(FOV * Math.PI / 180 / 2);
+  var horizonY = CY + Math.tan(-PITCH) * f;
+
+  /* sky, held open and empty above the horizon */
+  /* Graded hard enough that the band reads as sky rather than as the deck's default page
+     ground. A flat fill at the page value is what made this frame read as unused space. */
+  var sky = ctx.createLinearGradient(0, 0, 0, horizonY + 60);
+  sky.addColorStop(0.00, "#F2F3EF");
+  sky.addColorStop(0.55, "#DEDFD7");
+  sky.addColorStop(1.00, "#C9CBC0");
+  ctx.fillStyle = sky;
+  ctx.fillRect(0, 0, W, H);      /* full frame, so no compositing step at the horizon */
+
+  var cam = TX3D.camera({ pos: [0, 3.1, 24], yaw: 0, pitch: PITCH, fov: FOV, w: W, h: H });
+
+  /* Low amplitude, LONG wavelength relief. A near flat plane renders as a grey fill and
+     looks like a bug, which is the real risk on this frame, so the surface carries enough
+     structure to read as ground plus one lit swale in the near field. */
+  var mesh = TX3D.heightfield({
+    xmin: -46, xmax: 46, zmin: -54, zmax: 22, nx: 132, nz: 112,
+    y: function (x, z) {
+      var base = 2.85 * TX.fbm2(x * 0.017, z * 0.017, { octaves: 5 })
+               + 1.05 * TX.fbm2(x * 0.055, z * 0.055, { octaves: 3 })
+               + 0.42 * TX.fbm2(x * 0.140, z * 0.140, { octaves: 2 });
+      /* the swale: a broad lit rise and bowl in the NEAR field, where the camera resolves
+         it. The first pass put it small and far and the fog washed it flat. */
+      var dx = (x + 6) / 19, dz = (z - 6) / 14;
+      var swale = -2.60 * Math.exp(-(dx * dx + dz * dz));
+      var rise = 2.20 * Math.exp(-(((x - 15) / 16) ** 2 + ((z - 2) / 12) ** 2));
+      return base + swale + rise;
+    },
+    color: function (x, z, y) {
+      var t = Math.min(1, Math.max(0, (y + 2.6) / 5.2));
+      return TX3D.mix("#5A5838", "#B4AF82", t);      /* bayou silt to prairie clay */
+    }
+  });
+
+  TX3D.render(ctx, cam, mesh.faces, {
+    light: [0.55, 1, 0.34],              /* the deck's declared upper left */
+    ambient: 0.34,
+    stroke: null,                        /* NO wireframe. A wire overlay on a heightfield
+                                            reads as a viewport and its lines were running
+                                            straight through the attribution line. */
+    /* Fog starts BEYOND the last relief feature the camera resolves, so the swale and the
+       near ground are never flattened by it. */
+    fog: { color: "#DFE0DA", near: 46, far: 78 }
+  });
+
+  /* haze gathering at the horizon, drawn after the mesh so the joint is soft */
+  var haze = ctx.createLinearGradient(0, horizonY - 30, 0, horizonY + 72);
+  haze.addColorStop(0, "rgba(223,224,218,0.90)");
+  haze.addColorStop(1, "rgba(223,224,218,0)");
+  ctx.fillStyle = haze;
+  ctx.fillRect(0, horizonY - 30, W, 104);
+
+  var g = new Image();
+  g.onload = function () {
+    ctx.globalAlpha = 0.030;
+    ctx.fillStyle = ctx.createPattern(g, "repeat");
+    ctx.fillRect(0, 0, W, H);
+    ctx.globalAlpha = 1;
+    resolve();
+  };
+  g.onerror = function () { resolve(); };
+  g.src = TX.grainTile(252, 38, SEED);
+});
+</script>
+</body>
+</html>
