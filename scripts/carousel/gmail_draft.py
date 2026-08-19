@@ -65,7 +65,7 @@ def raw() -> str:
     return f"{RAW_BASE}/{_REF}"
 
 
-SITE = "https://talonsturgill.github.io/TexasAIDocket"
+SITE = "https://texasaidocket.com"
 
 
 def e(s) -> str:

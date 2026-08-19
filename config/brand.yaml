@@ -315,7 +315,11 @@ visual:
     # FIXED on every deck. Everything else about a deck rotates; these do not, because the
     # recognition comes from the parts that never move.
     wordmark: "TEXAS AI DOCKET"
-    site: "talonsturgill.github.io/TexasAIDocket"   # close slide, small, mono face, near the mark
+    site: "texasaidocket.com"   # close slide, small, mono face, near the mark
+    # THE CANONICAL PUBLIC URL. It is the domain, never the GitHub Pages host that served the
+    # site before the domain was pointed at it. That host carries the owner's personal name and
+    # it was printing on the footer of every published slide. docs/CNAME has said
+    # texasaidocket.com since the move. This line had not.
     mark: >
       A single solid five-pointed star. The Lone Star is the one Texas symbol that is
       simultaneously statutory, geometric, abstract and not kitsch, and it reads at 16px.
