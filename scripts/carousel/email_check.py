@@ -143,6 +143,8 @@ def shipped_runs() -> list:
 def self_test() -> int:
     """Prove it bites, on each of the four failures that have actually happened."""
     import tempfile
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import gmail_draft                                              # noqa: E402
     failures = 0
 
     def ok(label, cond, extra=""):
@@ -164,8 +166,12 @@ def self_test() -> int:
         if not with_thumb:
             body = body.replace("slide-01-thumb.webp ", "")
         if payload:
+            # THE ADDRESS COMES FROM `gmail_draft.DRAFT_TO`, never typed again here. CLAUDE.md
+            # says the mailbox lives in exactly two places so a repoint is one edit, and a
+            # fixture that hardcodes it is a third. `port_audit`'s residue rule caught this
+            # copy, which is the rule doing precisely its job.
             (d / PAYLOAD).write_text(json.dumps(
-                {"to": "docket@alaskaaihq.com", "subject": "s", "body": body,
+                {"to": gmail_draft.DRAFT_TO, "subject": "s", "body": body,
                  "isHtml": is_html}), encoding="utf-8")
         return d
 
