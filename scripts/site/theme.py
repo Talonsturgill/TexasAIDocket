@@ -2076,6 +2076,10 @@ caption {{ caption-side:bottom; text-align:left; padding-top:.75rem; font-size:v
   aspect-ratio:4/5; object-fit:cover; background:var(--panel); }}
 .deckgrid .deck h3, .vcard h3 {{ margin:.35rem 0 0; font-size:var(--s0); line-height:1.25; }}
 .deckgrid .deck .meta, .vcard .meta {{ margin:0; }}
+/* The one line under a card title that says what the article is about. A title names
+   the piece and a name is not a summary, so the card carried only half its job. */
+.deckgrid .deck .tease {{ margin:.3rem 0 0; font-size:var(--s-1); line-height:1.45;
+  color:var(--ink-mute); }}
 .deckgrid .deck > :not(img), .vcard figcaption {{ padding:0 .9rem; }}
 .deckgrid .deck {{ padding-bottom:1rem; transition:border-color .2s,transform .2s; }}
 .deckgrid .deck:hover {{ border-color:var(--accent); transform:translateY(-2px); }}

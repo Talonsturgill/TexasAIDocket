@@ -719,7 +719,23 @@ def load_runs() -> list:
         except Exception:                                            # noqa: BLE001
             pass
 
-        out.append({"date": d.name, "title": str(title),
+        # THE TEASE. One sentence, the deck's own, so a card says what the article is about
+        # rather than only what it is called. A title is a name and a name is not a summary.
+        #
+        # It comes from the FIRST prose the deck speaks, which is slide one's line under the
+        # hook, and it stops at the first full stop. Never a quotation, because a source's own
+        # words under this project's house rules is the exact thing `house_style_check` exempts
+        # `blockquote` to avoid. Derived here so the card and the article page cannot disagree.
+        tease = ""
+        for block in prose:
+            said = next((x for x in block if not x["quote"] and x["text"]), None)
+            if said:
+                first = said["text"].split(". ")[0].strip().rstrip(".")
+                if 12 <= len(first) <= 120:
+                    tease = first + "."
+                break
+
+        out.append({"date": d.name, "title": str(title), "tease": tease,
                     "hook": str(copy.get("hook") or copy.get("subtitle") or ""),
                     "story": str(copy.get("story") or ""),
                     "slides": len(files), "files": files, "missing": missing,
@@ -928,7 +944,8 @@ def articles_page(runs: list, today: str) -> str:
        loading="lazy" alt="Cover slide, {e(r["title"])}">
   <span class="meta" data-prose="data"><span class="tag">{e(ordinal(
     _dt.date.fromisoformat(r["date"])))}</span><span>{r["slides"]} slides</span></span>
-  <h3>{e(r["title"])}</h3></a>""" for r in runs)
+  <h3>{e(r["title"])}</h3>
+  {f'<p class="tease">{e(r["tease"])}</p>' if r.get("tease") else ""}</a>""" for r in runs)
 
     body = f"""
 <h1>Articles</h1>
@@ -1088,7 +1105,6 @@ def latest_article(runs: list, items: list) -> str:
     return f"""
 <section data-reveal>
   <h2>The latest article</h2>
-  <p class="sub">One verified Texas and AI story, drawn as a swipeable carousel.</p>
   <div class="latest">
     <a class="cover" href="articles/{e(r["date"])}/"><img
       src="{RAW}/runs/carousel/{e(r["date"])}/{e(r["cover"])}"
@@ -1324,8 +1340,7 @@ def home(items: list, today: str) -> str:
 <section class="hero rise">
   {telemetry(today)}
   <h1>AI is coming <em>South</em>.</h1>
-  <p class="herolede">Every AI decision in Texas and the source behind it. Green means a door is
-  open to you.</p>
+  <p class="herolede">Every AI decision in Texas and the source behind it.</p>
   <div class="ctarow">
     <a class="cta solid" href="record/">The docket</a>
     <a class="cta ghost" href="grid/">The grid</a>
@@ -1339,9 +1354,9 @@ def home(items: list, today: str) -> str:
 
 <section data-reveal>
   <h2>Where</h2>
-  <div class="prose"><p>Every county in Texas, drawn from the state's own geometry. The lit
-  counties are the ones this record currently touches, <span class="num">{n_counties}</span>
-  of <span class="num">{_place_facts()["counties"]}</span>.</p></div>
+  <div class="prose"><p>The lit counties are the ones this record currently touches,
+  <span class="num">{n_counties}</span> of
+  <span class="num">{_place_facts()["counties"]}</span>.</p></div>
   {svg}
   <p class="mapread" id="mapread" role="status" aria-live="polite" data-prose="data"></p>
   <button type="button" class="mapreset" id="mapreset" hidden>Show all of Texas</button>
@@ -1434,8 +1449,7 @@ def docket_index(items: list, today: str) -> str:
     body = f"""
 <h1>The record</h1>
 <div class="prose">
-  <p>Every decision on the record, <strong>ordered by how soon a reader can still act</strong>,
-  not by when it was filed. <span class="num">{n_open}</span> of
+  <p><span class="num">{n_open}</span> of
   <span class="num">{len(items)}</span> are open to comment now.</p>
 </div>
 {topics}
@@ -1763,7 +1777,7 @@ def covers_section(items: list, today: str) -> tuple:
   <h2><a href="topic/">What this record covers</a></h2>
   <div class="prose"><p>Every decision is filed under one of
   <span class="num">{len(by)}</span> beats. Each keeps its own page whether or not it moved
-  this week. Each says whether a Texan still has a way in.</p></div>
+  this week.</p></div>
   <ul class="covers front">{"".join(cards)}</ul>
   <p class="meta" data-prose="data"><a href="topic/">All beats</a> ·
   <a href="place/">Browse by place</a> ·
@@ -2792,7 +2806,7 @@ def about_page(today: str) -> str:
   <h2>What this is</h2>
   <p>AI is arriving in Texas the way oil and rail once did. As land. As load. As water
   rights. As filings nobody reads until the concrete is poured. The docket tracks those
-  decisions one at a time with the source attached, so a Texan can see it coming.</p>
+  decisions one at a time with the source attached.</p>
   <p>The same desk runs a working AI studio. Agentic systems and digital employees.
   Paperwork engines and assistants trained on a company's own files. That work lives on the
   <a href="../services/">services page</a>. Writing the beat every morning is exactly why the
@@ -4012,7 +4026,12 @@ def build(out: Path, today: str) -> dict:
     for t in sorted({i["topic"] for i in items}):
         w(f"topic/{t}/index.html", topic_page(t, items, today),
           listed([i for i in items if i["topic"] == t]))
-    w("articles/index.html", articles_page(runs, today))
+    # THE INDEX SHOWS EVERY RUN, so its authorised set is the union of every run's own
+    # figures and not a byte wider. `_run_numerals` derives each from that run's claims and
+    # its `computed.json`, never from what a slide happened to print, so this stays the
+    # non-circular allowlist the per-article pages already use.
+    w("articles/index.html", articles_page(runs, today),
+      extra=set().union(*(_run_numerals(r) for r in runs)) if runs else set())
     w("videos/index.html", videos_page(today))
     # THE FEED ITSELF IS EXTERNAL DATA and is copied through byte for byte. It is written by
     # `TexasAIDispatch` and `ownership.yaml` gives it to that actor, so no build here may
@@ -4183,12 +4202,10 @@ def self_test() -> int:
         # a headline is a copy of the copy, and it only ever fails for the wrong reason.
         check("the home page counts the ways a reader can still act",
               'class="n hot"' in idx and "Doors open to you" in idx)
-        # Matched against COLLAPSED whitespace, because the lede is a multi line f-string and
-        # HTML whitespace is not semantic. Searching the raw source for a phrase that wraps finds
-        # nothing and reports that the page lost the sentence it is looking at.
-        flat = " ".join(idx.split())
-        check("...and teaches the signal that marks them",
-              "Green means a door is open to you" in flat)
+        # THE SENTENCE THIS USED TO CHECK IS GONE, on the owner's call that every word has to
+        # earn its space. It read "Green means a door is open to you", and the check asserted the
+        # page taught the signal. The counted, hot-marked figure above is what carries the answer
+        # now, and a check with no subject left is worse than no check at all.
         check("the map is inline, so it needs no second request", "<svg class=\"txmap\"" in idx)
         check("Dataset structured data is emitted", '"@type":"Dataset"' in idx)
         check("robots says yes rather than no",

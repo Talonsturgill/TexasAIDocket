@@ -875,6 +875,8 @@ caption { caption-side:bottom; text-align:left; padding-top:.75rem; font-size:va
   aspect-ratio:4/5; object-fit:cover; background:var(--panel); }
 .deckgrid .deck h3, .vcard h3 { margin:.35rem 0 0; font-size:var(--s0); line-height:1.25; }
 .deckgrid .deck .meta, .vcard .meta { margin:0; }
+.deckgrid .deck .tease { margin:.3rem 0 0; font-size:var(--s-1); line-height:1.45;
+  color:var(--ink-mute); }
 .deckgrid .deck > :not(img), .vcard figcaption { padding:0 .9rem; }
 .deckgrid .deck { padding-bottom:1rem; transition:border-color .2s,transform .2s; }
 .deckgrid .deck:hover { border-color:var(--accent); transform:translateY(-2px); }
