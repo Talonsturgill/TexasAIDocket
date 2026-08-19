@@ -235,6 +235,38 @@ window.renderReady = new Promise(function(resolve){
   bulb.addColorStop(1,'rgba(255,228,176,0)');
   ctx.fillStyle=bulb; ctx.beginPath(); ctx.arc(LX,LY,190,0,6.283); ctx.fill();
 
+  // THE FLOOR UNDER THE TABLE. The base measured 26 percent of this frame's own craft density
+  // against a top third at 51, which is a lit table standing in a void. A table in a room has a
+  // floor, the lamp reaches it past the table's front edge, and the table throws a shadow onto it.
+  var flr=ctx.createLinearGradient(0,SLAB_BOT,0,H);
+  flr.addColorStop(0,'#0E0C09'); flr.addColorStop(0.30,'#1A1610'); flr.addColorStop(1,'#100D09');
+  ctx.fillStyle=flr; ctx.fillRect(0,SLAB_BOT,W,H-SLAB_BOT);
+  // boards, running away from the reader, and the lamp finds them on the bulb's side
+  (function(){ var Rw=TX.rng(20260819+616);
+    for(var k=0;k<7;k++){
+      var byy=SLAB_BOT+8+k*26;
+      ctx.fillStyle='rgba(0,0,0,0.50)'; ctx.fillRect(0,byy,W,2);
+      ctx.fillStyle='rgba(255,240,214,0.075)'; ctx.fillRect(0,byy+2,W,1.2);
+    }
+    for(var g=0;g<300;g++){
+      var gy=SLAB_BOT+Rw()*(H-SLAB_BOT), gx=Rw()*W, gw=40+Rw()*260, a=0.010+Rw()*0.038;
+      var near=1-(gx/W)*0.35;
+      ctx.strokeStyle=Rw()<0.45?'rgba(226,206,168,'+(a*near).toFixed(3)+')':'rgba(0,0,0,'+(a*1.7).toFixed(3)+')';
+      ctx.lineWidth=0.6+Rw()*1.6;
+      ctx.beginPath(); ctx.moveTo(gx,gy); ctx.lineTo(gx+gw,gy+(Rw()-0.5)*3); ctx.stroke();
+    } })();
+  // the lamp's own throw past the table's front edge, and the table's shadow cut out of it
+  var throwF=ctx.createRadialGradient(LX-40, SLAB_BOT+130, 60, LX-40, SLAB_BOT+130, 760);
+  throwF.addColorStop(0,'rgba(255,236,192,0.16)'); throwF.addColorStop(0.45,'rgba(255,236,192,0.06)');
+  throwF.addColorStop(1,'rgba(255,236,192,0)');
+  ctx.fillStyle=throwF; ctx.fillRect(0,SLAB_BOT,W,H-SLAB_BOT);
+  var tCast=ctx.createLinearGradient(0,SLAB_BOT-4,0,SLAB_BOT+86);
+  tCast.addColorStop(0,'rgba(0,0,0,0.86)'); tCast.addColorStop(0.34,'rgba(0,0,0,0.46)');
+  tCast.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=tCast; ctx.fillRect(0,SLAB_BOT-4,W,90);
+  // the slab's front lip, lit, so the table has a thickness the floor can sit behind
+  ctx.fillStyle='rgba(255,240,214,0.22)'; ctx.fillRect(0,SLAB_BOT-6,W,3);
+
   // grain over everything, under 4 percent, seeded
   (function(){
     var R = TX.rng(20260819);

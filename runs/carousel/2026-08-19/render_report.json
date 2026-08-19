@@ -47,7 +47,7 @@
           "anc": []
         },
         {
-          "text": "ERCOT said it would not tell service providers how any large load was classified by that date. It passed 12 days ago.",
+          "text": "The directive stopped ERCOT's Batch Zero clock on August 3rd. The classification date it set passed 12 days ago.",
           "x": 80,
           "y": 1069,
           "w": 700,
@@ -62,19 +62,19 @@
             [
               80,
               1069,
-              677,
+              639,
               45
             ],
             [
               80,
               1116,
-              695,
+              685,
               45
             ],
             [
               80,
               1163,
-              327,
+              356,
               45
             ]
           ],
@@ -327,7 +327,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 849,
+      "render_ms": 1028,
       "ok": true,
       "canvases": [
         {
@@ -340,8 +340,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 45.5,
-          "variance": 3199.3
+          "mean": 48,
+          "variance": 3234.2
         }
       ],
       "breather": false,
@@ -566,7 +566,7 @@
           "anc": []
         },
         {
-          "text": "ERCOT will not notify each Interconnecting Distribution Service Provider and Transmission Service Provider of how any Large Load is classified in the Batch Zero Interconnection Study by August 7, 2026",
+          "text": "\"ERCOT will not notify each Interconnecting Distribution Service Provider and Transmission Service Provider of how any Large Load is classified in the Batch Zero Interconnection Study by August 7, 2026\"",
           "x": 80,
           "y": 981,
           "w": 880,
@@ -581,7 +581,7 @@
             [
               80,
               1004,
-              866,
+              878,
               41
             ],
             [
@@ -599,7 +599,7 @@
             [
               80,
               1135,
-              204,
+              216,
               41
             ]
           ],
@@ -735,7 +735,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1331,
+      "render_ms": 1837,
       "ok": true,
       "canvases": [
         {
@@ -748,8 +748,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 33.3,
-          "variance": 438.7
+          "mean": 36.6,
+          "variance": 394.1
         }
       ],
       "breather": false,
@@ -995,7 +995,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1368,
+      "render_ms": 1390,
       "ok": true,
       "canvases": [
         {
@@ -1008,8 +1008,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 33.6,
-          "variance": 627.2
+          "mean": 34.5,
+          "variance": 615.8
         }
       ],
       "breather": false,
@@ -1373,7 +1373,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1795,
+      "render_ms": 1920,
       "ok": true,
       "canvases": [
         {
@@ -1386,8 +1386,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 33.9,
-          "variance": 533.1
+          "mean": 36.2,
+          "variance": 553.2
         }
       ],
       "breather": false,
@@ -1452,11 +1452,11 @@
           "anc": []
         },
         {
-          "text": "The PUCT and ERCOT must complete this audit before any data center project moves forward.",
+          "text": "\"The PUCT and ERCOT must complete this audit before any data center project moves forward.\"",
           "x": 126,
           "y": 389,
           "w": 368,
-          "h": 273,
+          "h": 319,
           "font_px": 35,
           "weight": "500",
           "family": "Fraunces",
@@ -1467,31 +1467,31 @@
             [
               126,
               411,
-              368,
+              249,
               43
             ],
             [
               126,
               457,
-              310,
+              214,
               43
             ],
             [
               126,
               503,
-              344,
+              311,
               43
             ],
             [
               126,
               550,
-              111,
+              363,
               43
             ],
             [
               126,
-              596,
-              141,
+              642,
+              151,
               43
             ]
           ],
@@ -1499,8 +1499,8 @@
         },
         {
           "text": "project moves",
-          "x": 237,
-          "y": 550,
+          "x": 126,
+          "y": 596,
           "w": 229,
           "h": 43,
           "font_px": 35,
@@ -1511,8 +1511,8 @@
           "overlap_ok": false,
           "lines": [
             [
-              237,
-              550,
+              126,
+              596,
               229,
               43
             ]
@@ -1524,7 +1524,7 @@
         {
           "text": "Office of the Governor \u00b7 c11",
           "x": 126,
-          "y": 662,
+          "y": 708,
           "w": 368,
           "h": 84,
           "font_px": 24,
@@ -1536,13 +1536,13 @@
           "lines": [
             [
               126,
-              684,
+              730,
               346,
               31
             ],
             [
               126,
-              715,
+              761,
               43,
               31
             ]
@@ -1572,7 +1572,7 @@
           "anc": []
         },
         {
-          "text": "before any additional data centers are approved to move forward",
+          "text": "\"before any additional data centers are approved to move forward\"",
           "x": 586,
           "y": 389,
           "w": 368,
@@ -1587,7 +1587,7 @@
             [
               586,
               411,
-              180,
+              192,
               43
             ],
             [
@@ -1599,7 +1599,7 @@
             [
               586,
               550,
-              133,
+              145,
               43
             ]
           ],
@@ -1607,7 +1607,7 @@
         },
         {
           "text": "additional",
-          "x": 766,
+          "x": 778,
           "y": 411,
           "w": 166,
           "h": 43,
@@ -1619,7 +1619,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              766,
+              778,
               411,
               166,
               43
@@ -1688,7 +1688,7 @@
           "anc": []
         },
         {
-          "text": "The marked words are where the letter narrows what the release says. The signed letter halts approvals. The release halts all forward movement. Both are on the record and they are not interchangeable.",
+          "text": "The marked words are where the letter narrows what the release says. The letter's condition is on approvals. The release's condition is on all forward movement. Both are on the record and they are not interchangeable.",
           "x": 80,
           "y": 1063,
           "w": 920,
@@ -1709,13 +1709,13 @@
             [
               80,
               1124,
-              918,
+              894,
               37
             ],
             [
               80,
               1162,
-              637,
+              845,
               37
             ]
           ],
@@ -1875,7 +1875,7 @@
         {
           "kind": "border",
           "x": 126,
-          "y": 660.9,
+          "y": 707.1,
           "w": 368,
           "h": 1,
           "by": "q",
@@ -1947,7 +1947,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1079,
+      "render_ms": 1321,
       "ok": true,
       "canvases": [
         {
@@ -1960,8 +1960,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 228.3,
-          "variance": 187
+          "mean": 227.1,
+          "variance": 233.8
         }
       ],
       "breather": false,
@@ -2010,7 +2010,7 @@
           "anc": []
         },
         {
-          "text": "Said on August 18th. It is a statement about his own standards rather than a measured result.",
+          "text": "Said on August 18th by the Governor's office. It is a statement about the standards that office set rather than a measured result.",
           "x": 104,
           "y": 326,
           "w": 872,
@@ -2025,13 +2025,13 @@
             [
               104,
               325,
-              850,
+              833,
               37
             ],
             [
               104,
               362,
-              293,
+              736,
               37
             ]
           ],
@@ -2126,7 +2126,7 @@
           "anc": []
         },
         {
-          "text": "I established clear guardrails to ensure data centers protect our electric grid, conserve our water, respect our neighborhoods, and pay their own way ...",
+          "text": "\"I established clear guardrails to ensure data centers protect our electric grid, conserve our water, respect our neighborhoods, and pay their own way ...\"",
           "x": 104,
           "y": 1043,
           "w": 872,
@@ -2141,7 +2141,7 @@
             [
               104,
               1063,
-              844,
+              856,
               40
             ],
             [
@@ -2153,7 +2153,7 @@
             [
               104,
               1144,
-              264,
+              275,
               40
             ]
           ],
@@ -2289,7 +2289,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1715,
+      "render_ms": 2091,
       "ok": true,
       "canvases": [
         {
@@ -2302,8 +2302,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 40.4,
-          "variance": 1084.4
+          "mean": 42,
+          "variance": 936.1
         }
       ],
       "breather": false,
@@ -2340,7 +2340,7 @@
           "anc": []
         },
         {
-          "text": "\u201cOne data center that could not comply chose to end operations before even beginning construction.\u201d",
+          "text": "\"One data center that could not comply chose to end operations before even beginning construction.\"",
           "x": 80,
           "y": 153,
           "w": 920,
@@ -2355,7 +2355,7 @@
             [
               80,
               174,
-              904,
+              900,
               62
             ],
             [
@@ -2367,7 +2367,7 @@
             [
               80,
               288,
-              573,
+              569,
               62
             ]
           ],
@@ -2699,7 +2699,7 @@
         }
       ],
       "nondeterminism": [],
-      "render_ms": 2130,
+      "render_ms": 1997,
       "ok": true,
       "canvases": [
         {
@@ -3133,7 +3133,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1102,
+      "render_ms": 1272,
       "ok": true,
       "canvases": [
         {

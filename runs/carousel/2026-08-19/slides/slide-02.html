@@ -64,9 +64,9 @@
   <div class="dek2">ERCOT gave the market 4 days of notice. The letter has now stood 16 days.</div>
   <div class="quote">
     <div class="rule"></div>
-    <div class="q">ERCOT will not notify each Interconnecting Distribution Service Provider and
-      Transmission Service Provider of how any Large Load is classified in the Batch Zero
-      Interconnection Study by August 7, 2026</div>
+    <div class="q">"ERCOT will not notify each Interconnecting Distribution Service Provider
+      and Transmission Service Provider of how any Large Load is classified in the Batch Zero
+      Interconnection Study by August 7, 2026"</div>
     <div class="src">ERCOT market notice M-A080326-01 &middot; c2</div>
   </div>
 
@@ -206,6 +206,24 @@ window.renderReady = new Promise(function(resolve){
   spill.addColorStop(0,'rgba(185,141,70,0.16)'); spill.addColorStop(0.34,'rgba(185,141,70,0.05)');
   spill.addColorStop(1,'rgba(185,141,70,0.012)');
   ctx.fillStyle=spill; ctx.fillRect(0,y0,W,H-y0);
+  // THE FLOOR the plate stands on. The base measured 14 percent of this frame's own craft density
+  // and it is the band a reader finishes on. The plate throws a shadow down onto it and the
+  // channel's brass spills back across it, and the stone under both is tooled.
+  var plCast=ctx.createLinearGradient(0,PB-8,0,PB+120);
+  plCast.addColorStop(0,'rgba(0,0,0,0.82)'); plCast.addColorStop(0.30,'rgba(0,0,0,0.44)');
+  plCast.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=plCast; ctx.fillRect(0,PB-8,W,128);
+  var flPool=ctx.createRadialGradient(400, PB+150, 80, 400, PB+150, 820);
+  flPool.addColorStop(0,'rgba(226,214,188,0.135)'); flPool.addColorStop(0.44,'rgba(226,214,188,0.055)');
+  flPool.addColorStop(1,'rgba(226,214,188,0)');
+  ctx.fillStyle=flPool; ctx.fillRect(0,PB,W,H-PB);
+  (function(){ var Rf=TX.rng(20260819+909);
+    for(var s=0;s<240;s++){
+      var sy=PB+16+Rf()*(H-PB-16), sx=Rf()*W, sw=50+Rf()*300, a=0.010+Rf()*0.034;
+      ctx.strokeStyle=Rf()<0.5?'rgba(226,214,188,'+a.toFixed(3)+')':'rgba(0,0,0,'+(a*1.7).toFixed(3)+')';
+      ctx.lineWidth=0.6+Rf()*1.5;
+      ctx.beginPath(); ctx.moveTo(sx,sy); ctx.lineTo(sx+sw,sy+(Rf()-0.5)*4); ctx.stroke();
+    } })();
 
   // grain over everything, under 4 percent, seeded
   (function(){

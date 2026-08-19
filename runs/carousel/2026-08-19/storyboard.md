@@ -46,6 +46,20 @@ with the notice identifier, on the grounds that a story with no place has a dock
 It is a good argument and `config/brand.yaml` is human owned, so the footer stays. It resolves to
 Travis County from the gazetteer, where the commission that has to act on this sits.
 
+## THE FOCAL LAW, written at the tenth scoring pass
+
+**A declared focal must be an AREA carrying one extreme of the frame's value range. Never a line.**
+
+Three dossiers below broke this and all three shipped a frame whose declared focal lost: slide 2
+named the origin tick, slide 5 named the column hairline, slide 6 named the band boundaries. A
+hairline cannot win an eye at 432 pixels however well the frame around it is lit, so those three
+frames had their art and their plan arguing about different pictures.
+
+The two frames repaired earlier in this run were both repaired the same way and nobody named the
+pattern at the time. Slide 3's empty key went from a 54px swatch to a lit ruled block in the bed's
+darkest quarter. Slide 7's NAME field went from a bright keyline round a dark box to a lit recess
+in a cool plate. Both fixes turned a LINE into a LIT AREA, which is the rule stated above.
+
 ## The three laws this deck is built on
 
 1. **No horizon anywhere.** No sky, no ground, no landscape. Every frame is a sheet, a field or an
@@ -125,8 +139,13 @@ art:
 type:
   hook: "August 7th came and went."
   dek: >
-    ERCOT set itself a date to tell service providers how every large load was classified. That
-    date passed 12 days ago.
+    The directive stopped ERCOT's Batch Zero clock on August 3rd. The classification date it set
+    passed 12 days ago.
+
+    Rewritten at the tenth pass, twice. It first read that ERCOT set itself a date, which is not in
+    c2, the only claim this slide cites. It then read as c2's own sentence, which put the same fact
+    on slides 1, 2 and 3 in near identical words. This frame carries the CLOCK and slide 3 carries
+    who was not told.
   labels: ["AUGUST 2026", "ERCOT MARKET NOTICE M-A080326-01"]
 acceptance:
   - "the weekday alignment of the month sheet is computed in Python from the date, never placed by hand"
@@ -162,8 +181,11 @@ composition:
     the longest measured object in the frame, over a contour ground whose tone deepens toward the
     base and takes the ruled quote and its attribution on top of that modeled falloff.
   focal: >
-    The origin tick where the two bars meet, because it is the only place in the frame where two
-    different measures touch.
+    The four day span, which is the brightest AREA in the deck's first five frames and its
+    shortest measure. Rewritten under the focal law at the top of this file. It named the origin
+    tick, a dark hairline the eye never found, while the cream span next to it won every render.
+    The tick still does its job, which is to prove neither axis is truncated, and that is structure
+    rather than a focal.
 art:
   technique: "contour set as ground, with the true rate day rule over it and TX.canvasLabel knockouts"
   why_this_technique: >
@@ -244,10 +266,14 @@ art:
   motion: >
     None by design. The eye wanders the field, finds no differentiation, and settles on the legend.
 type:
-  hook: "Nobody was told the answer."
+  hook: "No provider was to be told by the 7th."
   dek: >
-    The classification was to say how each large load falls. No service provider was told which
-    class anything landed in.
+    No service provider was to be told how any large load was classified by August 7th.
+
+    Rewritten at the tenth pass. It read "Nobody was told the answer", which asserts a completed
+    outcome about the world covering every day since the 8th, and c2 is an August 3rd notice
+    stating what ERCOT would not do by a date. It was also broader than c2, which names
+    Interconnecting Distribution Service Providers and Transmission Service Providers.
   labels: ["UPDATE REGARDING BATCH ZERO TIMELINES AND PROCESSES", "no class stated"]
 acceptance:
   - "no cell differs in fill, material or treatment from any other cell in the field. One key falls across the whole bed and every panel is drawn by the same rule, so a value difference between two panels is a fact about where the lamp is and never about what either panel was assigned"
@@ -282,8 +308,10 @@ composition:
     over the stone with the per row attribution set into it, and the plate shadows under the last
     row are the darkest modeled tone in the frame.
   focal: >
-    The first row's figure, which is the largest type in the table and the number the letter
-    itself opens with.
+    The first row's plate, which sits closest to the lamp and carries the most light of the three.
+    It used to say the largest type in the table, and all three figures render at 46px, so the
+    stated reason was never true and nothing checked it. The three rows are equal in type because
+    the record does not rank them. What ranks the first is where the lamp is standing.
 art:
   technique: "mid century oil chart table with TX.svgPlate measured plates and tabular mono"
   why_this_technique: >
@@ -334,8 +362,11 @@ composition:
     across the paper toward the base, with the attribution and the primary document line sitting on
     that texture rather than on a flat field.
   focal: >
-    The vertical hairline between the two columns, which is the only mark in the frame that
-    separates rather than describes.
+    The marked words, which are the only pecos on a frame that is otherwise ink on paper and are
+    the entire argument of the slide. Rewritten under the focal law at the top of this file. It
+    named the column hairline, a 1px low contrast rule that loses to a 74px headline and to the
+    marked words themselves, so the plan was pointing at the divider while the frame pointed at
+    what the divider separates.
 art:
   technique: "survey sheet on the paper register, flat and untextured, with a hard neatline and TX.fitText"
   why_this_technique: >
@@ -379,20 +410,29 @@ job: >
 claims: [c16, c18]
 composition:
   structure: >
-    Four equal vertical bands seen straight down, in the manner of the Capitol rotunda's geometric
-    inlay, one guardrail word set into each band. Four named demands is a division of a field
-    rather than a quantity, and equal widths are deliberate, because unequal areas would imply a
-    proportion no source states.
+    Four equal terrazzo courses run ACROSS the frame, seen straight on, in the manner of the
+    Capitol rotunda's geometric inlay, one guardrail word set along each course. Four named demands
+    is a division of a field rather than a quantity, and equal heights are deliberate, because
+    unequal areas would imply a proportion no source states.
+
+    This ran DOWN the frame for the first nine passes, which forced all four display words to 90
+    degrees and put a near-black plate under each one so it could be read, and the frame ended up
+    carrying eight hard verticals at higher contrast than the four it is about. A course 148px tall
+    and 1080px wide holds PAY THEIR OWN WAY on one horizontal line with room to spare. The rotation
+    was never buying the layout anything.
   bands: >
-    Top third carries the lead line stating who said this and when, over the terrazzo ground.
-    Middle third is where the four guardrail words sit, inlaid into the four bands at their widest
-    reading size, and it is the only place in the frame carrying type at display scale. The four
-    inlay bands themselves run full height through all three thirds, so the bottom third is
-    terrazzo texture and the graded tone of the four stones, with the quoted guardrail sentence set
-    over that inlay rather than under it.
+    Top third carries the lead line stating who said this and when, on unlit ground above the
+    courses. The four courses fill the middle band from 430 to 1022 and each carries its word at
+    display scale, which is the only type at that size in the frame. Bottom third is the stone the
+    courses are set into, and it is MODELED rather than furniture: the last course throws a cast
+    shadow down onto it and spills its own bounced light back across it, so the base carries a
+    graded warm pool falling away toward the frame's corners with the quoted guardrail sentence
+    sitting on that modeled tone rather than on a flat plate ruled under the art.
   focal: >
-    The band boundaries, because four hard vertical edges in a deck that has had almost none read
-    as structure the moment the frame opens.
+    The four guardrail words, which are the brightest areas in the frame and the only cream at
+    display scale in it. Under the focal law above this is the honest declaration: the words won
+    the eye in every render, and naming the boundaries instead was a plan arguing with its own
+    picture. The seams are structure and structure is not a focal.
 art:
   technique: "terrazzo inlay, four equal bands, straight down, under the rotunda inlay licence"
   why_this_technique: >
@@ -404,25 +444,31 @@ art:
     cordova, pecos, patina and brass as the four bands, on the terrazzo ground. This is the deck's
     only appearance of all four together and the second of only two appearances of patina.
   value_structure: >
-    The widest value spread inside any single frame in the deck, which is what makes it land as a
-    beat coming out of the inversion. No band is lighter than another by enough to rank them.
+    Every course is dropped to its own night value, so the four sit inside one narrow value band
+    and none can be ranked above another. The lightest thing in the frame is the four words and the
+    darkest is the seam between two courses. One key rakes all four from the left, so a course is
+    brighter at its start than at its end, and that gradient belongs to the lamp rather than to any
+    guardrail.
   motion: >
-    Left to right across the four bands, in the order the Governor names them.
+    Down the four courses, in the order the Governor names them, entering each at its lit left end.
 type:
-  hook: "The sector said it will comply."
+  hook: "The Governor's office said the sector's membership body will comply."
   dek: >
-    The Governor's office said this on August 18th. It is a statement about his own policy rather
-    than a measured result.
+    Said on August 18th by the Governor's office. It is a statement about the standards that office
+    set rather than a measured result.
   labels: ["GRID", "WATER", "NEIGHBORHOODS", "PAY THEIR OWN WAY"]
 acceptance:
-  - "all four bands are identical in width, measured rather than judged"
+  - "all four courses are identical in height, measured rather than judged, and the varying dimension is height and never width"
+  - "one ink carries all four words, which means every course must sit in a value band that ink clears at its WORST point and not at its box mean"
+  - "the aggregate is angular, because a round chip with a concentric highlight is a droplet on glass and terrazzo is crushed rock"
   - "no circle, pie, arc or dial appears anywhere in the frame"
-  - "the attribution states that the Governor's office said this, never that it is established"
+  - "the attribution states that the Governor's office said this, never that it is established, and it names the office rather than leaving a pronoun with no antecedent on the frame"
   - "the four band words are the Governor's own, in his order, and none is paraphrased"
   - "patina appears on this slide and on no other, which is what artwork.json records"
 risks:
   - "the courthouse palette can drift into heritage nostalgia and patina is the colour that does it"
-  - "four equal bands can read as a chart with four equal values rather than as four named things"
+  - "four equal courses can read as a chart with four equal values rather than as four named things"
+  - "flat colour fields with a speckle over them read as vinyl, and the answer is graded angular aggregate with a sawn facet catching the key, not more speckle"
 ```
 
 ```yaml
@@ -462,10 +508,14 @@ art:
   motion: >
     Down the filled fields in order, arriving at the empty one last.
 type:
-  hook: "One project is not named."
+  hook: "\"One data center that could not comply chose to end operations before even beginning construction.\""
   dek: >
-    The August 18th release says a data centre ended operations before construction began. It names
-    no company, no county and no project.
+    The August 18th release says this. It names no company, no county and no project.
+
+    The frame carries c17 verbatim rather than a line of ours about it, with a mono kicker reading
+    THE AUGUST 18TH RELEASE SAYS above the rule, straight quotation marks on the sentence, and the
+    publisher and claim id under it. A judge read the unmarked version as the Docket asserting an
+    interested party's characterization of the world in its own headline face.
   labels: ["DATE", "PUBLISHER", "SOURCE", "NAME", "NOT NAMED IN THE SOURCE"]
 acceptance:
   - "no company, project, county or sector guess appears anywhere in the frame"

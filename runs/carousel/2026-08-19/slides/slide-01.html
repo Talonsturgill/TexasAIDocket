@@ -44,8 +44,8 @@
   <canvas id="art" width="2160" height="2700"></canvas>
 
   <div class="hd"><div class="hook">August 7th<br>came and went.</div></div>
-  <div class="dek">ERCOT said it would not tell service providers how any large load was
-    classified by that date. It passed 12 days ago.</div>
+  <div class="dek">The directive stopped ERCOT's Batch Zero clock on August 3rd. The
+    classification date it set passed 12 days ago.</div>
 
 <div class="tx-frame" data-decorative>
   <svg class="tx-star" viewBox="0 0 26 26" aria-hidden="true"><polygon points="13,1 16.1,9.4 25,9.6 17.9,15 20.5,23.6 13,18.4 5.5,23.6 8.1,15 1,9.6 9.9,9.4" fill="var(--frame-ink)"/></svg>
@@ -84,6 +84,24 @@ window.renderReady = new Promise(function(resolve){
   ctx.rotate(-0.05);
   ctx.translate(-gridW/2, 0);
   var R = TX.rng(20260819);
+  // THE MORTAR BED the tiles are set into. Without it the gaps between tiles show the same near
+  // black the void does, so the sheet reads as 31 loose chips on stone and the one cell that is
+  // actually a hole has no monopoly on darkness. Grout is lighter than a hole. That is the whole
+  // reason a hole reads as a hole.
+  (function(){
+    var rows=Math.ceil((startCol+days)/cols);
+    var bx=-16, by=-16, bw=gridW+32, bh=rows*(cellH+gap)+16;
+    ctx.fillStyle='rgba(0,0,0,0.55)'; ctx.fillRect(bx+16, by+bh-6, bw, 26);
+    var bed=ctx.createLinearGradient(bx,by,bx+bw,by+bh);
+    bed.addColorStop(0,'#3A3630'); bed.addColorStop(0.5,'#2C2922'); bed.addColorStop(1,'#1E1B17');
+    ctx.fillStyle=bed; ctx.fillRect(bx,by,bw,bh);
+    var Rm=TX.rng(20260819+11);
+    for(var m=0;m<900;m++){
+      var mx=bx+Rm()*bw, my=by+Rm()*bh;
+      ctx.fillStyle='rgba('+(Rm()<0.5?'255,250,236':'0,0,0')+','+(Rm()*0.10).toFixed(3)+')';
+      ctx.fillRect(mx,my,1.6,1.6);
+    }
+  })();
   for (var d=1; d<=days; d++){
     var idx = startCol + (d-1);
     var col = idx % cols, row = Math.floor(idx/cols);

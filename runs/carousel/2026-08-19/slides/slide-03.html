@@ -196,10 +196,24 @@ window.renderReady = new Promise(function(resolve){
   var occ=ctx.createRadialGradient(KX+KW/2, KY+KH/2, 60, KX+KW/2, KY+KH/2, 330);
   occ.addColorStop(0,'rgba(0,0,0,0.62)'); occ.addColorStop(1,'rgba(0,0,0,0)');
   ctx.fillStyle=occ; ctx.fillRect(KX-330, KY-330, KW+660, KH+660);
-  ctx.fillStyle='rgba(6,5,9,0.94)'; ctx.fillRect(KX, KY, KW, KH);
-  ctx.strokeStyle='#B98D46'; ctx.lineWidth=3; ctx.strokeRect(KX+1.5, KY+1.5, KW-3, KH-3);
-  ctx.strokeStyle='rgba(255,246,224,0.22)'; ctx.lineWidth=1;
-  ctx.strokeRect(KX+8.5, KY+8.5, KW-17, KH-17);
+  // It shipped as a near-black box with a bright keyline, which is the exact construction that
+  // was removed from slide 7 for reading as a redaction bar. The deck was then drawing an empty
+  // field two opposite ways four frames apart and teaching a reader neither. One grammar: a blank
+  // field is bare material LIGHTER than what surrounds it, ruled, and never inked.
+  var kw=ctx.createLinearGradient(KX,KY,KX+KW,KY+KH);
+  kw.addColorStop(0,'#4A4335'); kw.addColorStop(0.55,'#3B3529'); kw.addColorStop(1,'#2C2720');
+  ctx.fillStyle=kw; ctx.fillRect(KX, KY, KW, KH);
+  var klT=ctx.createLinearGradient(0,KY,0,KY+16);
+  klT.addColorStop(0,'rgba(0,0,0,0.72)'); klT.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=klT; ctx.fillRect(KX, KY, KW, 16);
+  var klL=ctx.createLinearGradient(KX,0,KX+16,0);
+  klL.addColorStop(0,'rgba(0,0,0,0.62)'); klL.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=klL; ctx.fillRect(KX, KY, 16, KH);
+  ctx.fillStyle='rgba(255,246,224,0.34)'; ctx.fillRect(KX, KY+KH-2, KW, 2);
+  ctx.fillStyle='rgba(255,246,224,0.24)'; ctx.fillRect(KX+KW-2, KY, 2, KH);
+  ctx.strokeStyle='#B98D46'; ctx.lineWidth=2.4; ctx.strokeRect(KX+1.2, KY+1.2, KW-2.4, KH-2.4);
+  ctx.strokeStyle='rgba(185,141,70,0.34)'; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(KX+18, KY+KH-16); ctx.lineTo(KX+KW-18, KY+KH-16); ctx.stroke();
   ctx.restore();
   // the neatline, struck after the clip so it reads as the frame of the object
   ctx.strokeStyle='rgba(185,141,70,0.9)'; ctx.lineWidth=2.5;

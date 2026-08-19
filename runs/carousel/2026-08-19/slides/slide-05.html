@@ -62,20 +62,20 @@
   <div class="cols">
     <div class="col">
       <div class="h">The press release</div>
-      <div class="q">The PUCT and ERCOT must complete this audit before any data center
-        <span class="d">project moves</span> forward.</div>
+      <div class="q">"The PUCT and ERCOT must complete this audit before any data center
+        <span class="d">project moves</span> forward."</div>
       <div class="src">Office of the Governor &middot; c11</div>
     </div>
     <div class="col">
       <div class="h">The signed letter</div>
-      <div class="q">before any <span class="d">additional</span> data centers
-        <span class="d">are approved to move</span> forward</div>
+      <div class="q">"before any <span class="d">additional</span> data centers
+        <span class="d">are approved to move</span> forward"</div>
       <div class="src">Office of the Governor &middot; c12</div>
     </div>
   </div>
   <div class="foot">The marked words are where the letter narrows what the release says. The
-    signed letter halts approvals. The release halts all forward movement. Both are on the record
-    and they are not interchangeable.</div>
+    letter's condition is on approvals. The release's condition is on all forward movement. Both
+    are on the record and they are not interchangeable.</div>
   <div class="filing" data-decorative><span>tx-2026-0072</span><span>August 3rd, 2026</span></div>
 
 <div class="tx-frame" data-decorative>
@@ -148,12 +148,22 @@ window.renderReady = new Promise(function(resolve){
     ctx.strokeStyle='rgba(255,255,255,0.55)'; ctx.lineWidth=1;
     ctx.beginPath(); ctx.moveTo(-640,1.6); ctx.lineTo(720,1.6); ctx.stroke();
     // its own ruled lines, running on out of frame
-    ctx.strokeStyle='rgba(35,32,43,0.10)'; ctx.lineWidth=1;
-    for(var i=1;i<19;i++){ ctx.beginPath(); ctx.moveTo(-600,i*32); ctx.lineTo(700,i*32); ctx.stroke(); }
+    ctx.strokeStyle='rgba(35,32,43,0.155)'; ctx.lineWidth=1;
+    for(var i=1;i<31;i++){ ctx.beginPath(); ctx.moveTo(-600,i*19); ctx.lineTo(700,i*19); ctx.stroke(); }
+    (function(){ var Rp=TX.rng(20260819+818);
+      for(var q2=0;q2<620;q2++){
+        var px=-620+Rp()*1360, py=Rp()*620;
+        ctx.fillStyle='rgba(35,32,43,'+(Rp()*0.075).toFixed(3)+')';
+        ctx.fillRect(px,py,1.5,1.5);
+      } })();
     // A THIRD SHEET under the second, so the base of the frame is a stack of documents rather
     // than one pale field. The bottom third measured 8 percent of this frame's own craft density
     // with two sheets, which is a covered dead zone and not a filled one.
-    ctx.save(); ctx.translate(-360, 372); ctx.rotate(0.038);
+    // Its edge landed at y 1172, which is the last line of the annotation, so a hard edge and a
+    // cast shadow ran straight through 'are on the record and they are not interchangeable'. The
+    // stack now breaks ABOVE the annotation and the annotation is printed on the sheet.
+    var Rq=TX.rng(20260819+515);
+    ctx.save(); ctx.translate(-360, 196); ctx.rotate(0.020);
     var sh3=ctx.createLinearGradient(0,-18,0,24);
     sh3.addColorStop(0,'rgba(35,32,43,0.30)'); sh3.addColorStop(1,'rgba(35,32,43,0)');
     ctx.fillStyle=sh3; ctx.fillRect(-260,-18,1500,42);
@@ -162,8 +172,20 @@ window.renderReady = new Promise(function(resolve){
     ctx.fillStyle=u3; ctx.fillRect(-260,0,1500,300);
     ctx.strokeStyle='rgba(35,32,43,0.32)'; ctx.lineWidth=1.5;
     ctx.beginPath(); ctx.moveTo(-260,0); ctx.lineTo(1240,0); ctx.stroke();
-    ctx.strokeStyle='rgba(35,32,43,0.09)'; ctx.lineWidth=1;
-    for(var k3=1;k3<9;k3++){ ctx.beginPath(); ctx.moveTo(-220,k3*30); ctx.lineTo(1200,k3*30); ctx.stroke(); }
+    // The register's ruling, at the pitch a legal pad actually uses. It ran at 30px and the base
+    // measured 15 percent of this frame's own craft density, which is the paper inversion reading
+    // as blank rather than as quiet. Uniform ruling under running prose is what ruled paper IS,
+    // and it is not the thing three judges caught, which was a hard sheet edge and its shadow.
+    ctx.strokeStyle='rgba(35,32,43,0.185)'; ctx.lineWidth=1;
+    for(var k3=1;k3<23;k3++){ ctx.beginPath(); ctx.moveTo(-220,k3*19); ctx.lineTo(1200,k3*19); ctx.stroke(); }
+    // A margin rule was drawn down this sheet and it crossed the annotation, which is the same
+    // defect three judges caught on the sheet edges. Nothing decorative runs under published prose
+    // on this frame. The base carries its tone in the paper's own tooth instead.
+    for(var q=0;q<520;q++){
+      var qx=-220+Rq()*1420, qy=Rq()*300;
+      ctx.fillStyle='rgba(35,32,43,'+(Rq()*0.075).toFixed(3)+')';
+      ctx.fillRect(qx,qy,1.5,1.5);
+    }
     ctx.restore();
     ctx.restore();
   })();
