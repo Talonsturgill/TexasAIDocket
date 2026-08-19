@@ -3857,6 +3857,11 @@ def _watch_numerals(mod) -> set:
     return a.set
 
 
+# Files this build must preserve rather than produce. Externally owned, listed rather than
+# pattern-matched so adding one is a deliberate act with a name attached.
+CARRY_THROUGH = (Path("videos") / "videos.json",)
+
+
 def build(out: Path, today: str) -> dict:
     items = dk.load(LEDGER)
     runs = load_runs()
@@ -3873,9 +3878,35 @@ def build(out: Path, today: str) -> dict:
         print("site_build: BUILDING ANYWAY, but the record is stale and `--validate` will fail. "
               "Re-verify the items named above. This is a debt, not a pass.")
 
+    # THE ONE FILE THIS BUILD DOES NOT OWN AND MUST NOT DESTROY.
+    #
+    # `ownership.yaml` says of `docs/videos/videos.json`: "No build in this repo may write,
+    # reformat, or delete it, and site_build copies it through verbatim." It did not copy it
+    # through. The wipe below removes everything not in this build's manifest, and the feed is
+    # written by the publish step in `TexasAIDispatch` rather than produced here, so an in-place
+    # rebuild deleted the sibling repo's only artifact in this repo.
+    #
+    # Worse, and this is why it went unnoticed: `video_feed()` reads the file from the repo root,
+    # so after the wipe a rebuild counted ZERO videos and wrote an index that disagreed with the
+    # feed still sitting in git. `site_fresh_check` cannot see any of it, because it builds into
+    # a temp directory where the deletion never touches the real file.
+    #
+    # Found on 2026-08-19, when the first Dispatch feed entry was published and CI went red on a
+    # single stat tile. Carried through here, byte for byte, exactly as the ownership note says.
+    carried: dict[Path, bytes] = {}
+    for rel in CARRY_THROUGH:
+        src = out / rel
+        if src.is_file():
+            carried[rel] = src.read_bytes()
+
     if out.exists():
         shutil.rmtree(out)
     out.mkdir(parents=True)
+
+    for rel, blob in carried.items():
+        dest = out / rel
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        dest.write_bytes(blob)
 
     written = []
     # THE NUMERAL GATE, OVER EVERY PAGE, and it had never run over one of them.

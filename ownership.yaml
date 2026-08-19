@@ -275,9 +275,24 @@ rules:
   - path: "prompts/ask_routine.md"
     owner: human
 
+  # `dispatch` was added on 2026-08-19, on the owner's explicit instruction, and the reason is
+  # a structural one rather than a convenience. The publish step owns `docs/videos/videos.json`
+  # and nothing else, but writing that file CHANGES A NUMBER THE SITE DISPLAYS, so a Dispatch
+  # publish could not leave this site consistent with its own ledgers. The first video published
+  # took the count from zero to one, `index.html` still said zero, and CI went red on a PR whose
+  # only content was the file the Dispatch is contracted to write.
+  #
+  # Waiting for the next `daily` run to reconcile it is the wrong trade: the video is live and
+  # the site says there are none, for a whole cycle, on the one surface a reader looks at. A run
+  # that publishes a thing regenerates the pages that count it.
+  #
+  # This does NOT widen what `dispatch` may author. `docs/` is generated output and nobody may
+  # edit it by hand; `site_fresh_check` still proves byte equality against a fresh build, so the
+  # worst a bad publish can do is fail that check rather than corrupt a page.
   - path: "docs/**"
+    owner: human
     generated: true
-    rebuild_by: [daily, gridwatch, human]
+    rebuild_by: [daily, gridwatch, human, dispatch]
     note: >
       A pure deterministic function of the ledgers. site_fresh_check.py rebuilds into a temp
       dir and proves byte equality, which is what makes it impossible for a run to corrupt
@@ -293,7 +308,7 @@ rules:
       site_build copies it through verbatim.
   - path: "docs/videos/index.html"
     owner: human
-    rebuild_by: [daily, gridwatch]
+    rebuild_by: [daily, gridwatch, dispatch]
     note: >
       GENERATED, and this rule changed on 2026-08-13. It was written as a hand-built static
       passthrough, copied verbatim and never regenerated, which is how the sibling product
