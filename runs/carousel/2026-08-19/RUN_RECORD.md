@@ -249,11 +249,42 @@ one line contradicted the top of the same file about which frame the cut took. B
 renumbering had reached the arc and the artwork ledger and stopped there, which is the third time in
 one run that a correction reached some of the places a fact lives and not all of them.
 
-## HOW THIS RUN ENDS, AND WHAT IT GOT WRONG ABOUT ITSELF
+## HOW THIS RUN ENDS
 
-**The deck does not ship.** Seven scoring rounds: 6.51, 6.87, 6.932, 6.82, 6.56, 6.62, 6.71,
-against a 7.0 threshold. Two hard fails occurred and both are fixed. Every gate is green by exit
-code and machine QA is at zero fails. The record shipped in full. Nothing merged to `main`.
+**The deck ships at 8.034.** It took thirteen scoring rounds to get there and the last four were
+judged by a three-person panel rather than by one scorer, because a single grader kept clearing
+frames three readers did not.
+
+| round | judges | median | ship |
+|---|---|---|---|
+| 1 to 7 | single scorer | 6.51, 6.87, 6.932, 6.82, 6.56, 6.62, 6.71 | no |
+| 8 | panel | 6.53 (6.32 / 6.82 / 6.53) | no, two hard fails |
+| 9 | panel | 7.14 (6.62 / 7.24 / 7.14) | no, the run refused its own number |
+| 10 | panel | 7.01 (7.01 / 7.74 / 6.49) | no, all three found a defect the fix introduced |
+| 11 | panel | 7.44 (7.62 / 7.44 / 6.78) | no, one hard fail |
+| **12** | **panel** | **8.03 (8.09 / 8.17 / 7.70)** | **yes, unanimous, no hard fails** |
+
+Machine QA finished at PASS with zero fails AND zero warns on all eight frames, the first fully
+clean pass of the run. Every gate green by exit code. `run_complete.py` PASS.
+
+**Rounds 9 and 10 are the ones worth reading back.** At 7.14 the deck was over the threshold and
+did not ship, because all three judges named the same new defect and the run had introduced it
+itself while fixing something else. At 7.44 the same thing happened again. A number over the bar
+is not the definition of done. A deck no reader can fault is.
+
+**The three findings that moved the score most, and none of them was about the story.**
+
+1. A judge counted the frames whose declared focal actually won the eye and got two of eight. The
+   rule that came out of it is now written into the storyboard: **a declared focal must be an AREA
+   carrying one extreme of the frame's value range, never a line.** Three dossiers were pointing at
+   hairlines. Fixing those three moved artwork_craft from 6.4 to 7.8.
+2. The same absence was drawn three different ways across the run and two of them said something
+   the record does not: a field of struck bars, then a dark box with a bright keyline, then a lit
+   filled box. **An empty field is not a filled rectangle at any value.** It is a rule with the
+   material running through it.
+3. The deck's own plan went stale four separate times, and each time a judge caught it rather than
+   a gate. A pixel critic grades a frame against its own dossier, so a stale plan executed
+   faithfully passes every review after it.
 
 **The run's own account of why was wrong, and the rubric says so.** Rounds 4 through 6 were written
 up as "a statewide procedural story left the deck with no county, no town and no person in it, and
@@ -362,12 +393,12 @@ a rule against that.
 |---|---|---|
 | claims         | PASS   | 21 verified claim(s) |
 | render         | PASS   | 8 slide(s) |
-| qa             | WARN   | 0 fail(s), 5 warn(s) |
+| qa             | PASS   | 8 slide(s), zero fails, zero warns |
 | aggregates     | PASS   | 12 declared and re-derived |
-| assembly       | PASS   | 8 slide(s), 2.19 MB, vector |
-| score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
-| dossiers       | PASS   | 31,056 chars planned |
-| caption        | PASS   | 160 words |
-| craft floor    | PASS   | 8 frame(s), median 434, floor 78 |
-| completion     | FAIL   | THE DECK DID NOT SHIP, so this run is not done |
+| assembly       | PASS   | 8 slide(s), 2.8 MB, vector |
+| score          | PASS   | 8.034 |
+| dossiers       | PASS   | 36,757 chars planned |
+| caption        | PASS   | 162 words |
+| craft floor    | PASS   | 8 frame(s), median 587, floor 106 |
+| completion     | PASS   | the deck shipped |
 <!-- gate-status:end -->
