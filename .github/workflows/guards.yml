@@ -94,8 +94,12 @@ jobs:
         run: |
           # Exit 2 means an item is past twice its re-verification limit while still live,
           # which is the record quietly going stale in public.
+          # NO --budget. The owner removed it on 2026-08-18 and this line still carried the old
+          # 6, so on every run CI printed "Raise --budget" under a list of due items, advising a
+          # flag the routine no longer has. The rotten check never depended on it. Uncapped is
+          # also the honest report: it names every item past the leash rather than the first six.
           if [ -f ledger/docket.json ]; then
-            python3 scripts/site/docket_staleness.py --budget 6 || \
+            python3 scripts/site/docket_staleness.py || \
               { [ $? -eq 2 ] && echo "ROTTEN items present" && exit 1; }
           fi
 
