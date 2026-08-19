@@ -719,6 +719,7 @@ python3 scripts/carousel/absence_check.py     --date <date>
 python3 scripts/carousel/craft_floor.py       --date <date>
 python3 scripts/carousel/coherence_check.py   --date <date>
 python3 scripts/carousel/texan_check.py       --date <date>
+python3 scripts/carousel/noun_trace.py        --date <date>
 ```
 
 **`plan_render_check` — the frame has to be the one the dossier described.** `dossier_check`
@@ -735,6 +736,12 @@ one a machine can check, and it costs the writing nothing.
 **`absence_check` — a negative needs a document behind it.** Every honest absence in three decks
 names where it looked. Every fabricated one named nothing. This flags a sentence that says
 something is missing without naming the document it is missing from.
+
+**`noun_trace` — a named thing has to come from a source.** The positive half of what
+`absence_check` does for negatives. It shipped a county judge renamed ITS EXECUTIVE, a filled
+dot in HARRIS COUNTY for a claim carrying no coordinates, and MAP, a product name, on the frame
+whose entire claim is that no product is named. It warns and never fails, because a copywriter
+legitimately writes a short form the claim spells out in full. Read the list, it takes seconds.
 
 **`craft_floor` — no frame ships that nobody drew.** Per frame, not per deck. Slide 2 of
 2026-08-19 shipped at two hundred times flatter than slide 1 and broke no rule because no rule
