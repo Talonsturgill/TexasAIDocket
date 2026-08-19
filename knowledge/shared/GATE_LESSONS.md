@@ -1089,3 +1089,108 @@ number the front page prints, and that agreement is checkable by hand in one lin
 **Generalises to.** Any enum that describes a kind of thing being read as a statement about that
 thing's current state. A status, a room, a category, a type. If the answer depends on the date,
 the field alone can't give it.
+
+---
+
+## 27. Generated, validated, and shown to nobody
+
+Three fields on the same page, found on one afternoon in August 2026, each written by something
+and read by nothing a person could see.
+
+`history` had existed on every item since the record did. The routine wrote to it only when
+something changed, so every "checked and unchanged" observation was discarded at the instant it
+was made, and no builder rendered the field at all. **57 of 61 items carried no movement log**,
+and the four that did showed a reader nothing.
+
+`schema.qa_pairs` produced up to twelve answered questions per item, every one assembled from
+named fields and arithmetic, every one governed by its own self-tests for punctuation, voice and
+subject-verb agreement. All of it shipped inside a `FAQPage` JSON-LD node. **A crawler could read
+those answers. The person the page was built for could not.**
+
+`key_dates[].note` rendered in the Dates table where a reader read it, and sat outside every copy
+gate on both layers, because the gates were written against a list of fields somebody maintained
+by hand and nobody had asked whether this one was on it.
+
+Every gate was green throughout. There is no gate for this, and that is the point: a build gate
+answers "is what we published correct", and none of the three was incorrect. Two of them were not
+published at all, and the third was published outside the gates' field list.
+
+**What to check instead.** For each field the record carries, ask three separate questions and
+expect three separate answers. **Who writes it. What validates it. Where a reader sees it.** A
+field with a gap in any column is not a feature yet. The `history` field had a writer and nothing
+else, `qa_pairs` had a writer and a validator and no reader, and `key_dates[].note` had a writer
+and a reader and no validator. Three different gaps, one shape.
+
+**Generalises to.** Any field added in a hurry to carry state, then never wired to a surface. The
+tell is that grepping the field name finds the write and a comment, and nothing else. That grep
+takes ten seconds and is worth running over the schema once a quarter.
+
+---
+
+## 28. A self-test proved the gate could go red, on a sentence nobody writes
+
+`gate_narration` refuses machine narration in reader copy. Its self-tests were real, it had been
+watched going red, and one of its branches read `(?:could|couldn't|can't) be verified`.
+
+The sentence a person actually writes is "**the date could not be verified**".
+
+The negation sits between the modal and the verb, so the branch missed it. The neighbouring
+`not verified` alternative missed it too, because the string is "not BE verified". The gate whose
+entire subject is that phrase was blind to its most natural form, and had been for as long as it
+had existed.
+
+It was found by widening the gate to a new field and then deliberately trying to make the new
+coverage fail. Three test phrasings were tried. Two went red, and the third passed when it
+plainly should not have, which is the only reason anybody looked at the pattern.
+
+**What to check instead.** "Every gate can go red" is necessary and it is not sufficient. A gate
+that goes red on the phrasing its author had in mind proves the wiring works, not that the rule
+is covered. When a gate targets a PHRASE rather than a structure, write out three or four ways a
+person would really say it, including the negated form, and check that each one fails. Negation,
+contraction and passive voice are where a phrase pattern leaks, in that order.
+
+**Generalises to.** Any check built on a list of literal phrases rather than on a structural
+property. Banned-word lists, narration detectors, hedge detectors, tone checks. The structural
+gates in this repo do not have this failure mode, because a semicolon is a semicolon.
+
+---
+
+## 29. The exemption an allowlist would have been, and the pass that was luck
+
+A key date note on `tx-2026-0041` reads "Date NewsChannel 6 reported the Planning and Zoning
+Commission approval". The `6` is half a broadcaster's name. It is not a measurement, it traces to
+no computation, and it never will, so the numeral gate could not read those notes at all and they
+stayed outside it while every other field moved inside.
+
+**The obvious fix is a list of station names, and a list is a hole with a list attached to it.**
+The moment "Channel 12" goes on it, "Channel 12" is authorised on every page of this site forever,
+whether or not any source ever mentioned it, and the gate has quietly stopped being about
+evidence.
+
+**What was done instead.** The candidate span is found structurally, a capitalised run followed by
+a number, and then it has to MATCH A NAME THE ITEM'S OWN EVIDENCE ALREADY CARRIES: a source URL's
+host, a source title, the deciding body, the item's title. `NewsChannel 6` is authorised on that
+item because that item cites `newschannel6now.com`, whose host squashes to `newschannel6nowcom`
+and carries `newschannel6`. `NewsChannel 9` is authorised nowhere, because nothing in the record
+is called that. The exemption is **earned per item**, which is the same shape as
+`schema.list_answer_ok`, where the comma exemption is checked against the counties the record
+actually holds rather than granted to a region of the page.
+
+**And then the second half, which is the part worth remembering.** With the record layer fixed,
+the site layer's build passed. It had been passing all along. Not because the site layer had
+solved this, but because `6` is a single digit and a single digit is nearly always in the
+site-wide authorised set already, put there by some unrelated computation on some unrelated page.
+
+**The gate was returning the right answer for a reason that had nothing to do with the question.**
+It would have gone red the first day a broadcaster's number was less common, on a change that had
+nothing to do with broadcasters. Both layers now derive the same answer from the same function.
+
+**What to check instead.** When a gate passes on the case you were worried about, find out WHY it
+passed before you move on. A pass is evidence about the gate only if you know which rule produced
+it. This one was reached by asking the authorised set directly, item by item, instead of reading
+the build's exit code, which is the same instruction as "run a gate by exit code, never by reading
+the last line", one level in.
+
+**Generalises to.** Any allowlist shared across a whole site where the values are small integers,
+short strings, or common tokens. The wider the set, the more often it is right by coincidence, and
+coincidence does not survive a refactor.
