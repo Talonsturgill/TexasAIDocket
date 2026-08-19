@@ -125,12 +125,27 @@ def findings(page_html: str, records: list, today: str,
     if re.search(r'class="fill [a-z]', low):
         out.append("the gauge fill has gained a severity class; one hue at every value")
 
-    if last not in page_html and _fmt(last) not in page_html:
+    # SEARCHED IN THE DAILY SECTION, NOT THE WHOLE PAGE. This looked for the newest reading's
+    # date anywhere in the bytes, which was fine while the page carried a handful of dates and
+    # became a gate passing by collision the moment it carried many: the registry roster prints
+    # an effective date for all 149 facilities, two of them took effect on 2026-08-10, and a
+    # page deliberately built one day stale against a ledger ending 2026-08-10 reported itself
+    # current. Changing the fixture's date would have hidden it rather than fixed it, because
+    # the registry gains rows daily and any day a facility's effective date equals the newest
+    # grid reading the real check would go blind in exactly the same way.
+    #
+    # The newest reading belongs to the daily panel, so that is where it has to appear. If the
+    # section cannot be found the whole page is used, because a missing section is a different
+    # finding and this check should not silently become unfailable.
+    daily = DAILY.search(page_html)
+    where = daily.group(1) if daily else page_html
+    if last not in where and _fmt(last) not in where:
         out.append(f"the published page does not show the newest reading ({last}); "
                    f"the site is stale against the ledger")
     return out
 
 
+DAILY = re.compile(r'(<section class="daily".*?</section>)', re.DOTALL | re.IGNORECASE)
 MAIN = re.compile(r"<main\b[^>]*>(.*)</main>", re.DOTALL | re.IGNORECASE)
 
 

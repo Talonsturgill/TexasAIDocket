@@ -10,13 +10,19 @@ The Public Utility Commission of Texas has proposed a new rule governing demand 
 - Comment closes: 2026-09-04
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-08-16
+- Last checked: 2026-08-19
 
 ## Dates
 
 - 2026-07-24 · ordered: Staff memo and proposal for publication with a September 4th comment deadline
 - 2026-07-30 · comment opens: Proposal for publication of new Section 25.521 filed
 - 2026-09-04 · comment closes: Comment deadline in the Texas Register acknowledgement
+
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-19 · The docket moved. The filing index reached 34 with a comment from Modern Tex Consulting on August 18th, on performance reporting and evaluation under the proposed rule. The September 4th public comment deadline is still published on the commission's calendar.
 
 ## Evidence
 

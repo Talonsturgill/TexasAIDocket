@@ -75,6 +75,14 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 # character 80 of a single string is invisible here. **The cure for that is widening the render's
 # window, never loosening this comparison**, and there is a self-test below pinning the limit so
 # nobody later mistakes it for a bug in the matcher and "fixes" it by shortening the needle.
+# THE WINDOW IS THE REPORT'S, NOT THIS FILE'S. render.py stores each text node truncated, and
+# that figure moved from 80 to 320 on 2026-08-19. Comparing today's constant against a report
+# written at 80 mis-truncates every authored string longer than 80 characters and fails decks that
+# were correct when they shipped. It did exactly that to the 2026-08-16 deck within one CI run of
+# the widening, and this self-test caught it.
+#
+# So the report DECLARES its window and this reads it. `RENDER_WINDOW` is the fallback for reports
+# written before the field existed, and it is 80 because that is what those reports actually hold.
 RENDER_WINDOW = 80
 
 # A DENYLIST, AND IT USED TO BE AN ALLOWLIST. THAT WAS THE HOLE.
@@ -279,6 +287,7 @@ def compare(copy: dict, report: dict, claims: dict | None) -> tuple[list[str], l
     drifted, uncited = [], []
     slides = normalize_slides(copy.get("slides"))
     laid_out = rendered_text(report)
+    window = int(report.get("text_window") or RENDER_WINDOW)
 
     for key in sorted(slides, key=lambda k: (slide_no(k) or 0)):
         n = slide_no(key)
@@ -292,7 +301,7 @@ def compare(copy: dict, report: dict, claims: dict | None) -> tuple[list[str], l
             # Collapse whitespace first, then truncate, then skeletonise: the same order
             # render.py applies, so the needle is exactly what a dedicated node would hold.
             collapsed = re.sub(r"\s+", " ", str(s).strip())
-            needle = skeleton(collapsed[:RENDER_WINDOW])
+            needle = skeleton(collapsed[:window])
             if not needle:
                 continue
             if needle not in haystack:
@@ -541,14 +550,30 @@ def self_test() -> int:
         sd, su = compare(json.loads((shipped / "copy.json").read_text(encoding="utf-8")),
                          json.loads((shipped / "render_report.json").read_text(encoding="utf-8")),
                          json.loads((shipped / "claims.json").read_text(encoding="utf-8")))
-        ok("the first shipped deck passes both directions", sd == [] and su == [],
+        # THE WINDOW REGRESSION, pinned. On 2026-08-19 render.py's window widened from 80 to 320 and
+    # this file's constant widened with it, which mis-truncated every authored string longer than
+    # 80 characters when replayed against a report written at 80. The 2026-08-16 deck failed in CI
+    # within one run. The window belongs to the REPORT, and a report without the field is 80.
+    _long = "x" * 200
+    _rep80 = {"slides": [{"n": 1, "text_nodes": [{"text": _long[:80]}]}]}
+    _rep320 = {"text_window": 320, "slides": [{"n": 1, "text_nodes": [{"text": _long}]}]}
+    _copy = {"slides": {"S1": {"body": _long}}}
+    ok("a report written at 80 is compared at 80, not at today's constant",
+       compare(_copy, _rep80, None)[0] == [], str(compare(_copy, _rep80, None)[0]))
+    ok("...and a report that declares 320 is compared at 320",
+       compare(_copy, _rep320, None)[0] == [], str(compare(_copy, _rep320, None)[0]))
+    ok("...and real drift past character 80 is still caught at 320",
+       compare({"slides": {"S1": {"body": _long + " and a sentence never rendered."}}},
+               _rep320, None)[0] != [])
+
+    ok("the first shipped deck passes both directions", sd == [] and su == [],
            str(sd + su)[:300])
 
     if failures:
         print(f"\ncopy_sync_check self-test: {failures} FAILED", file=sys.stderr)
         return 1
-    print(f"\ncopy_sync_check self-test: all passed (render window {RENDER_WINDOW} chars, which "
-          f"is the limit of what the artifact records)")
+    print(f"\ncopy_sync_check self-test: all passed (each report is compared at the window it "
+          f"declares, falling back to {RENDER_WINDOW} chars for reports written before the field)")
     return 0
 
 

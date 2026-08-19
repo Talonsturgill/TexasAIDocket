@@ -8,11 +8,17 @@ Every state agency and local government that deploys a public facing AI system m
 - Status: pending
 - Public access: Write to the decider
 
-- Last checked: 2026-08-16
+- Last checked: 2026-08-19
 
 ## Dates
 
 - 2025-09-01 · effective: SB 1964 took effect
+
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-19 · The posting duty is unconfirmed this run. The published chapter text available runs only as far as Section 2054.0702, and the notice provision sits beyond that point.
 
 ## Evidence
 

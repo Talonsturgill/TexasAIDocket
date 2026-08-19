@@ -1,6 +1,6 @@
 {
   "_spec": {
-    "generated": "2026-08-18",
+    "generated": "2026-08-19",
     "note": "Observed daily maximum and minimum at one anchor station, from NCEI daily summaries. A day with no observation is absent rather than zero. Normals are the 1991 to 2020 period computed from the same record and shipped beside it."
   },
   "normals": {
@@ -11828,6 +11828,16 @@
       "station": "USW00003927",
       "tmax_f": 102,
       "tmin_f": 81,
+      "verified": true
+    },
+    {
+      "_spec": 2,
+      "date": "2026-08-16",
+      "prcp_in": 0.0,
+      "source": "ncei daily-summaries",
+      "station": "USW00003927",
+      "tmax_f": 104,
+      "tmin_f": 82,
       "verified": true
     }
   ]

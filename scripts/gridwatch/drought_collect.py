@@ -73,7 +73,7 @@ FIRST_YEAR = 2000
 # samples and the chip would rank it against the others as though it were as well founded.
 MIN_WEEKS_SAMPLED = 10
 
-UA = ("TexasAIDocket/1.0 (+https://talonsturgill.github.io/TexasAIDocket; "
+UA = ("TexasAIDocket/1.0 (+https://texasaidocket.com; "
       "weekly public-interest drought record; one request per week)")
 
 SPEC = 1

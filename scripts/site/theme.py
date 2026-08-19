@@ -1631,6 +1631,122 @@ figcaption {{ font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
 /* The monthly series. Paired bars per month, cleared then drawing, so a reader sees that
    neither has moved. Shape carries it, not colour: the pair is always left-then-right and the
    two are separated by a gap rather than by hue alone. */
+/* ---- BEYOND ERCOT: WHO IS HERE, AND WHAT IS BEING BUILT ----
+   Two feeds that are not ERCOT and do not share its cadence, so they say when they were read
+   and say it LOUDLY when they stop. A stopped collector publishes the same last figure
+   forever and is indistinguishable from a working one; the read date is the only difference,
+   so it ships beside the figure rather than in a commit log. */
+.beyond {{ margin:0 0 var(--band); }}
+.beyond .blede {{ font-family:var(--display); font-size:var(--s2); line-height:1.25;
+  max-width:28ch; margin:1.1rem 0 var(--gap); color:var(--ink-bright); }}
+.srcline {{ display:flex; align-items:center; gap:.45rem; font-family:var(--mono);
+  font-size:var(--s-2); letter-spacing:.05em; text-transform:uppercase;
+  color:var(--ink-mute); margin:0 0 .4rem; }}
+.srcdot {{ width:.4rem; height:.4rem; border-radius:50%; background:var(--gold); flex:none; }}
+/* THE STALE STATE IS A SENTENCE, NOT A COLOUR. A reader who cannot see the tint still reads
+   that the feed stopped, because the copy says so and the copy is what carries it. */
+.srcline.stale {{ text-transform:none; letter-spacing:0; font-family:var(--body);
+  font-size:var(--s-1); color:var(--ink-bright); border-left:2px solid var(--gold);
+  padding-left:.7rem; max-width:var(--measure); display:block; }}
+
+/* A year, a bar and a count. The same row shape serves the registry and the county list, so
+   the two read as one instrument rather than two chart styles on one page. */
+.ryears {{ list-style:none; padding:0; margin:0 0 .6rem; max-width:none;
+  display:flex; flex-direction:column; gap:.28rem; }}
+.ryr {{ display:grid; grid-template-columns:4.6rem minmax(0,1fr) 3.4rem; gap:.7rem;
+  align-items:center; }}
+.rk {{ font-family:var(--mono); font-size:var(--s-2); color:var(--ink-mute);
+  letter-spacing:.05em; overflow-wrap:anywhere; }}
+.rb {{ height:.8rem; background:var(--ember); border-radius:1px; min-width:2px; }}
+.rv {{ font-family:var(--mono); font-size:var(--s-2); color:var(--ink-bright);
+  text-align:right; font-variant-numeric:tabular-nums; }}
+
+/* THREE ROLES SIDE BY SIDE, because the registry records three and they answer different
+   questions. They stack on a narrow screen rather than shrinking to unreadable columns. */
+/* min() on the track floor and min-width:0 on the cell. Without both, a long filer name sets
+   a min-content width the 1fr track cannot go below, the grid grows past its container, and
+   the third column's counts are cut off at the edge of the page. */
+.rroles {{ display:grid; gap:1.4rem 2rem; margin:.6rem 0 0;
+  grid-template-columns:repeat(auto-fit, minmax(min(15rem, 100%), 1fr)); }}
+.rrole {{ min-width:0; }}
+.rrole h4 {{ font-size:var(--s-1); margin:0 0 .4rem; }}
+.rrole .ops li {{ gap:.6rem; }}
+.rrole .on {{ min-width:0; overflow-wrap:anywhere; }}
+.newest {{ list-style:none; margin:.4rem 0 0; padding:0; max-width:none;
+  display:grid; gap:.1rem; }}
+.newest li {{ display:grid; grid-template-columns:9.5rem 1fr 1fr; gap:.6rem;
+  padding:.4rem 0; border-bottom:var(--hair) solid var(--rule); align-items:baseline; }}
+.nwd {{ font-family:var(--mono); font-size:var(--s-2); color:var(--dust); }}
+.nwn {{ font-weight:500; }}
+.nwo {{ color:var(--dust); font-size:var(--s-1); }}
+@media (max-width:34rem) {{
+  .newest li {{ grid-template-columns:1fr; gap:.1rem; }}
+}}
+/* THE WHOLE ROSTER. 149 rows is the actual record and it is the thing nobody else publishes
+   as a table, so it ships in full rather than as a top ten. It scrolls inside its own box so a
+   wide table never makes the PAGE scroll sideways. */
+/* THE HIDDEN HALF ANNOUNCES ITSELF. At 390px the table is 704px wide inside a 356px box, so
+   exactly half of it, the operator and the date, was off screen with nothing at the right edge
+   saying so: the last column simply stopped mid word and read as the end of the table.
+
+   THE FADE IS A SIBLING, NOT AN ANCESTOR, and that is the whole engineering of it. The first
+   version put the gradient on the scroll box itself, which works and looks right and cost
+   1,482 runs of text: tests/text_contrast composites the ANCESTOR stack and declines to
+   measure a run whose ground is a gradient rather than guess at it, so a gradient on the
+   scroller made the roster, the largest block of text on the page, invisible to the gate that
+   checks whether text is legible. Declines went 126 to 1,608 and guards still went green,
+   which is the point. A pseudo element on the wrapper paints over the same pixels without
+   entering any cell's ancestor chain, so every cell stays measured.
+
+   A scrollbar was tried first and does not work here: overlay scrollbars reserve no space and
+   appear only while scrolling, which is exactly when the reader no longer needs telling.
+   Measured, the gutter is 2px with or without `scrollbar-gutter: stable`, and that 2px is the
+   border. */
+.rtfield {{ position:relative; }}
+.rtfield::after {{ content:""; position:absolute; top:1px; right:1px; bottom:1px; width:2.2rem;
+  pointer-events:none; border-radius:0 3px 3px 0;
+  background:linear-gradient(to left, var(--night), transparent); }}
+@media (min-width:46.01rem) {{
+  .rtfield::after {{ display:none; }}
+}}
+.rtwrap {{ overflow-x:auto; overflow-y:auto; max-height:32rem; margin:.5rem 0 0;
+  border:var(--hair) solid var(--rule); border-radius:3px;
+  scrollbar-width:thin; scrollbar-color:var(--dust) transparent; }}
+.rtwrap::-webkit-scrollbar {{ height:9px; width:9px; }}
+.rtwrap::-webkit-scrollbar-thumb {{ background:var(--dust); border-radius:5px; }}
+/* And the words, on the widths where the table actually overflows. */
+.rthint {{ display:none; }}
+@media (max-width:46rem) {{
+  .rthint {{ display:block; }}
+}}
+.rtable {{ border-collapse:collapse; width:100%; min-width:44rem;
+  table-layout:fixed; font-size:var(--s-1); }}
+.rtable col.cf {{ width:19%; }}
+.rtable col.co {{ width:24%; }}
+.rtable col.cu {{ width:22%; }}
+.rtable col.cp {{ width:22%; }}
+.rtable col.cd {{ width:13%; }}
+.rtable td {{ overflow-wrap:anywhere; }}
+.rtable th, .rtable td {{ text-align:left; padding:.45rem .7rem; vertical-align:top;
+  border-bottom:var(--hair) solid var(--rule); }}
+.rtable th {{ position:sticky; top:0; background:var(--panel); font-family:var(--mono);
+  font-size:var(--s-2); letter-spacing:.06em; text-transform:uppercase;
+  color:var(--dust); z-index:1; }}
+.rtable td.num {{ font-family:var(--mono); font-size:var(--s-2); white-space:nowrap;
+  color:var(--dust); }}
+.rtable tbody tr:hover {{ background:color-mix(in srgb, var(--dust) 8%, transparent); }}
+.ops {{ list-style:none; padding:0; margin:0 0 .6rem; max-width:none;
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(16rem,1fr)); gap:0 1.6rem; }}
+.ops li {{ display:grid; grid-template-columns:1fr auto; gap:.6rem; align-items:baseline;
+  padding:.36rem 0; border-bottom:var(--hair) solid var(--line); font-size:var(--s-1); }}
+.ops .on {{ color:var(--ink-bright); overflow-wrap:anywhere; }}
+.ops .os {{ font-family:var(--mono); font-size:var(--s-2); color:var(--ink-mute);
+  font-variant-numeric:tabular-nums; }}
+
+@media (max-width:30rem) {{
+  .ryr {{ grid-template-columns:4.2rem minmax(0,1fr) 3rem; gap:.5rem; }}
+}}
+
 /* ---- THE DAILY READING, AS AN INSTRUMENT PANEL ----
    The section held a settled reading every day and read like an essay about one: seven equal
    weight headings, two tables, and prose explaining the page to itself. What follows gives the
@@ -1725,14 +1841,46 @@ figcaption {{ font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
 .qgrp:hover, .qgrp:focus-visible {{
   background:color-mix(in srgb, var(--granite) 9%, transparent); outline:none; }}
 .qgrp:focus-visible {{ box-shadow:0 0 0 2px var(--granite); }}
-.qbars {{ display:flex; align-items:flex-end; justify-content:center;
-  gap:clamp(2px,.6vw,5px); width:100%; flex:1; }}
-/* The column is transparent and full height; the FILL is the bar. That separation is what
-   lets the value label sit on the card rather than on the bar, which is both what a reader
-   sees and what the contrast check measures. */
-.qb {{ width:clamp(9px,3.2vw,26px); height:100%; display:flex; flex-direction:column;
-  justify-content:flex-end; align-items:center; }}
-.qbf {{ width:100%; min-height:2px; border-radius:1px 1px 0 0; }}
+/* The pair is CAPPED and centred so the two bars read as one month's reading. Letting the
+   columns take the whole group set the two bars of a pair as far apart as two neighbouring
+   months, and the pairing stopped being visible. The cap is wide enough for both value labels
+   at every width tested; tightening it further is what puts them back into each other. */
+/* THE PAIR SHARES ONE BOX, AND THERE IS NO OTHER BOX. .qbars is the plot: it holds the
+   height, it is the positioning context, and both bars are absolutely positioned in it. The
+   .qb wrapper is display:contents, so it contributes NO box at all and only carries --h down
+   to the two children that need it.
+   That last part is the fix. Every previous version kept .qb as a real box and tried to make it
+   fill its row, and every version got it wrong in a different direction: too tall and the
+   labels left the figure, too short and the bars stood on two baselines 22.4px apart, drawing
+   4,049 at 1.66 times the height its value earns. A bar chart with two baselines is not a bar
+   chart, and the reliable way to have one baseline is to have one box. Both fills now resolve
+   `bottom:0` and `height:var(--h)` against the SAME element, so a shared baseline and a shared
+   scale are not properties to be maintained, they are the only thing the markup can express. */
+.qbars {{ position:relative; width:100%; max-width:clamp(4.6rem,13vw,7.5rem);
+  margin-inline:auto; flex:1; }}
+.qb {{ display:contents; }}
+.qbf {{ position:absolute; bottom:0; transform:translateX(-50%);
+  width:clamp(9px,3.2vw,26px); height:var(--h); min-height:2px;
+  border-radius:1px 1px 0 0; }}
+/* THE LABEL RIDES ITS OWN BAR: same --h, so it sits at the bar's top edge whatever the value.
+   The band at the top of the column was what left a short bar's number floating 64px above the
+   thing it names. */
+.qbv {{ position:absolute; bottom:var(--h); transform:translateX(-50%);
+  margin-bottom:.2rem; white-space:nowrap; }}
+.qb.qa .qbf, .qb.qa .qbv {{ left:27%; }}
+.qb.qd .qbf, .qb.qd .qbv {{ left:73%; }}
+.qb.qa .qbf {{ background:var(--granite); }}
+.qb.qd .qbf {{ background:color-mix(in srgb, var(--granite) 42%, var(--paper)); }}
+.qmiss {{ height:100%; display:flex; flex-direction:column; justify-content:flex-end;
+  align-items:center; gap:.3rem; width:100%; }}
+.qmissr {{ width:70%; border-top:1px dashed color-mix(in srgb, var(--granite) 45%, transparent);
+  height:0; }}
+/* NOT DIMMED. The first version faded both the word and the month to signal absence, which
+   put "May" at 3.49 against a floor of 4.5 and was caught by tests/text_contrast. Fading is
+   also the wrong instrument: it says "absent" in colour alone, which is the signal this file
+   refuses everywhere else. The dashed rule and the word carry it, at full legibility. */
+.qmisst {{ font-family:var(--mono); font-size:clamp(7.5px,1.9vw,11px); line-height:1.6;
+  color:var(--granite); letter-spacing:.06em; order:-1; }}
 .qb.qa .qbf {{ background:var(--granite); }}
 .qb.qd .qbf {{ background:color-mix(in srgb, var(--granite) 42%, var(--paper)); }}
 /* THE VALUE SITS ABOVE ITS OWN BAR and is always present, never revealed on hover. A number a
@@ -1928,6 +2076,10 @@ caption {{ caption-side:bottom; text-align:left; padding-top:.75rem; font-size:v
   aspect-ratio:4/5; object-fit:cover; background:var(--panel); }}
 .deckgrid .deck h3, .vcard h3 {{ margin:.35rem 0 0; font-size:var(--s0); line-height:1.25; }}
 .deckgrid .deck .meta, .vcard .meta {{ margin:0; }}
+/* The one line under a card title that says what the article is about. A title names
+   the piece and a name is not a summary, so the card carried only half its job. */
+.deckgrid .deck .tease {{ margin:.3rem 0 0; font-size:var(--s-1); line-height:1.45;
+  color:var(--ink-mute); }}
 .deckgrid .deck > :not(img), .vcard figcaption {{ padding:0 .9rem; }}
 .deckgrid .deck {{ padding-bottom:1rem; transition:border-color .2s,transform .2s; }}
 .deckgrid .deck:hover {{ border-color:var(--accent); transform:translateY(-2px); }}
@@ -2349,6 +2501,36 @@ def self_test() -> int:
     t = tokens()
     check("tokens load from brand.yaml", len(t["colour"]) >= 12, str(len(t["colour"])))
     sheet = css()
+
+    # THE CHART'S TWO GEOMETRIC PROMISES, ASSERTED IN THE STYLESHEET THAT MAKES THEM.
+    # Both bars are pinned to the bottom of the SHARED box, which is what gives the pair one
+    # baseline and one scale; and each label is pinned to its own bar's height, which is what
+    # keeps a short bar's number with the short bar. Both shipped broken while the markup looked
+    # right, so they are asserted here, where they are actually decided.
+    check("both bars are pinned to the bottom of the shared plot",
+          ".qbf { position:absolute; bottom:0;" in sheet)
+    check("...and the plot box is the thing that is positioned",
+          ".qbars { position:relative;" in sheet)
+    check("...and the column contributes no box of its own to get mis-sized",
+          ".qb { display:contents; }" in sheet)
+
+    # THE HIDDEN HALF OF THE ROSTER HAS TO ANNOUNCE ITSELF. Half the table is off screen at
+    # phone width, and the shadows are what say so. `local` on two of the four layers is the
+    # whole mechanism: without it they are a static fade that lies at the end of the travel.
+    # The affordance must not be a gradient under the text. A gradient ground is one
+    # tests/text_contrast declines to measure, and putting one on the roster hid 1,482 runs
+    # from the gate that checks legibility without turning anything red.
+    # The fade must be a SIBLING of the table, never a background on one of its ancestors.
+    # A gradient ancestor is a ground tests/text_contrast declines to measure, and putting one
+    # on the scroll box hid 1,482 runs from the gate that checks legibility while guards stayed
+    # green. This asserts the shape that keeps them measured.
+    check("the roster's edge fade is painted by a sibling, not by the scroll box",
+          ".rtfield::after { content:\"\";" in sheet
+          and "background" not in sheet.split(".rtwrap {")[1].split("}")[0])
+    check("...and the words appear at the widths where it actually overflows",
+          ".rthint { display:none; }" in sheet and ".rthint { display:block; }" in sheet)
+    check("...and each label is pinned to the height of its own bar",
+          ".qbv { position:absolute; bottom:var(--h);" in sheet)
 
     # ---- the colour maths itself, before anything trusts it ------------------
     check("contrast is the WCAG ratio (black on white is 21)",

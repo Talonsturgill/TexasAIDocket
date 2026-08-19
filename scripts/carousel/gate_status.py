@@ -71,7 +71,8 @@ BAD = (FAIL, STALE)
 # writes it never ran. `--strict` is that reading, and the end-to-end proof is what found the
 # gap. Everything self-tested green while a run with no claims file and no score could have
 # printed a clean block on its way out the door.
-STRICT_REQUIRED = ("claims", "render", "qa", "assembly", "score", "dossiers", "caption")
+STRICT_REQUIRED = ("claims", "render", "qa", "assembly", "score", "dossiers", "caption",
+                   "craft floor", "plan vs render", "absences", "completion")
 
 # WHICH ROWS THE STALENESS RULE APPLIES TO, and the end-to-end proof is what forced this list to
 # exist. The rule was applied to every artifact, and it is only true of artifacts that DESCRIBE
@@ -166,6 +167,86 @@ def rows_for(d: Path) -> list[Row]:
     out.append(Row("caption", PASS if cap.exists() else ABSENT,
                    f"{len(cap.read_text(encoding='utf-8').split()):,} words"
                    if cap.exists() else "caption.txt not written yet"))
+
+    # TWO ROWS ADDED 2026-08-19, and they are here because the run record's gate table is the one
+    # place a run cannot quietly skip. Both answer questions no other row asked.
+    #
+    # `craft floor` is the per-frame one. Every other row is deck-level or claim-level, and that
+    # is how a frame at canvas variance 15.9, beside another at 3160, shipped seven times breaking
+    # no rule. `completion` is the one that refuses to let a run call itself finished under the
+    # threshold, because a score is a judgment a run can reason about and an exit code is not.
+    import sys as _sys
+    _sys.path.insert(0, str(Path(__file__).resolve().parent))
+    rr = d / "render" / "render_report.json"
+    if not rr.exists():
+        out.append(Row("craft floor", ABSENT, "nothing rendered yet"))
+    else:
+        try:
+            import craft_floor
+            qp = d / "render" / "machine_qa.json"
+            cf, cw, cm = craft_floor.check(
+                json.loads(rr.read_text(encoding="utf-8")),
+                json.loads(qp.read_text(encoding="utf-8")) if qp.exists() else None)
+            detail = (f"{len(cm.get('rows', []))} frame(s), median {cm.get('median', 0):.0f}, "
+                      f"floor {cm.get('floor', 0):.0f}")
+            out.append(Row("craft floor",
+                           FAIL if cf else (WARN if cw else PASS),
+                           detail + (f", {len(cf)} frame(s) NOT DRAWN" if cf else
+                                     f", {len(cw)} quiet" if cw else "")))
+        except Exception as exc:                       # noqa: BLE001
+            out.append(Row("craft floor", FAIL, f"could not be measured ({exc})"))
+
+    # THE PLAN AGAINST THE RENDER, and the absences against their documents. Both are in this
+    # table rather than only in a log, because the two defects they exist for are the two that
+    # appeared in all three shipped runs and were found by a judge every single time.
+    sb = d / "storyboard.md"
+    if not (rr.exists() and sb.exists()):
+        out.append(Row("plan vs render", ABSENT, "nothing rendered yet"))
+    else:
+        try:
+            import plan_render_check
+            pf, pw, ps = plan_render_check.check(
+                sb.read_text(encoding="utf-8"), d / "slides",
+                json.loads(rr.read_text(encoding="utf-8")))
+            tot = ps.get("checkable", 0) + ps.get("prose", 0)
+            out.append(Row("plan vs render",
+                           FAIL if pf else (WARN if pw else PASS),
+                           f"{ps.get('checkable', 0)} of {tot} acceptance item(s) checkable" +
+                           (f", {len(pf)} frame(s) off plan" if pf else "")))
+        except Exception as exc:                       # noqa: BLE001
+            out.append(Row("plan vs render", FAIL, f"could not be measured ({exc})"))
+
+    cj = d / "copy.json"
+    if not cj.exists():
+        out.append(Row("absences", ABSENT, "no copy yet"))
+    else:
+        try:
+            import absence_check
+            af, aw, as_ = absence_check.check(
+                json.loads(cj.read_text(encoding="utf-8")),
+                json.loads(rr.read_text(encoding="utf-8")) if rr.exists() else None)
+            out.append(Row("absences",
+                           FAIL if af else (WARN if aw else PASS),
+                           f"{as_.get('scoped', 0)} of {as_.get('absences', 0)} scoped to a "
+                           f"named document" + (f", {len(aw)} unscoped" if aw else "")))
+        except Exception as exc:                       # noqa: BLE001
+            out.append(Row("absences", FAIL, f"could not be measured ({exc})"))
+
+    # ABSENT UNTIL THERE IS A SCORE TO JUDGE, for the reason stated at the top of this file: a row
+    # that is red at Phase 8 for not having a Phase 16 artifact is a row every later phase learns
+    # to ignore. Once a score exists this row is FAIL or nothing, and --strict already treats an
+    # absent required artifact as the phase never having run.
+    if not (d / "score.json").exists():
+        out.append(Row("completion", ABSENT, "not scored yet"))
+    else:
+        try:
+            import run_complete
+            probs = run_complete.check(d, run_complete.threshold())
+            out.append(Row("completion", PASS if not probs else FAIL,
+                           "the deck shipped" if not probs else
+                           "THE DECK DID NOT SHIP, so this run is not done"))
+        except Exception as exc:                       # noqa: BLE001
+            out.append(Row("completion", FAIL, f"could not be judged ({exc})"))
     return out
 
 
@@ -230,7 +311,13 @@ def _assembly(a, d: Path) -> Row:
 
 
 def _score(s) -> Row:
-    val = s.get("score") or s.get("total") or s.get("weighted")
+    # THE SCORER'S OWN FIELD NAME FIRST. `weighted_score` is what this repo's rubric writes and it
+    # was missing from this list, so the status block printed "None, below threshold" on a run that
+    # had a perfectly good 6.82 in score.json. email_check carries the identical fix and the
+    # identical comment: a check that cannot find the number it checks still prints a row, and a
+    # row that says None reads as a run that produced nothing rather than as a lookup that missed.
+    val = next((s[k] for k in
+                ("weighted_score", "score", "weighted_total", "total", "weighted") if k in s), None)
     ship = s.get("ship")
     hard = s.get("hard_fails") or []
     if hard:
@@ -465,6 +552,18 @@ def self_test() -> int:
     if failures:
         print(f"\ngate_status self-test: {failures} FAILED", file=sys.stderr)
         return 1
+    # THE FIELD NAME THIS REPO ACTUALLY WRITES. Missing from the lookup, so a real score
+    # rendered as "None, below threshold".
+    ok("the score row reads this repo's own weighted_score field",
+       "6.82" in _score({"weighted_score": 6.82, "ship": False}).detail,
+       _score({"weighted_score": 6.82, "ship": False}).detail)
+    ok("...and a held run still says it is below the threshold",
+       "below threshold" in _score({"weighted_score": 6.82, "ship": False}).detail)
+    ok("...and a shipped run reads PASS",
+       _score({"weighted_score": 7.4, "ship": True}).status == PASS)
+    ok("...and the older field names still work",
+       "7.1" in _score({"total": 7.1, "ship": True}).detail)
+
     print("\ngate_status self-test: all passed (artifacts parsed, binaries checked by magic "
           "bytes, nothing measured by length)")
     return 0

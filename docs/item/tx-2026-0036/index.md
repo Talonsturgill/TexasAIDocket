@@ -11,11 +11,17 @@ Guadalupe County Sheriff Joshua Ray asked the Commissioners Court for permission
 - Public access: Public meeting
 - Take part: https://www.guadalupetx.gov/page/commcourt.agendas
 
-- Last checked: 2026-08-14
+- Last checked: 2026-08-19
 
 ## Dates
 
 - 2026-08-04 · ordered: Commissioners Court approved the sheriff's request to terminate the Flock Safety contract, as reported by the Seguin Gazette
+
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-19 · Whether the court has revisited the agreement is unconfirmed. The county publishes no meeting dates or item text on its agendas page and carries nothing dated July or August.
 
 ## Evidence
 

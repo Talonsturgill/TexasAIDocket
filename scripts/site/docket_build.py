@@ -848,10 +848,51 @@ def window_state(item: dict, today: str) -> str:
         return "none"
 
 
+# The day the routine was told to write a dated line every time it checks an item, unchanged
+# included. Items stamped before this are exempt, and that exemption is not laziness: writing a
+# line for a check nobody recorded would be inventing an observation, on the one surface whose
+# entire promise is that it does not. The log starts here and grows forward.
+MOVEMENT_RULE_DATE = "2026-08-18"
+
+
+def gate_movement(items: list) -> Result:
+    """A re-verification stamp with no movement line beside it.
+
+    THE RULE WAS WRITTEN INTO THE ROUTINE AND ENFORCED BY NOTHING, and it took one day to be
+    broken. On 2026-08-19 four items arrived on `main` carrying `last_verified: 2026-08-19` and
+    no history entry for that date. Some run had looked at them, advanced the stamp, and thrown
+    the observation away, which is precisely the defect the movement log was opened to fix.
+
+    That is the same shape as the email a run hand-wrote past a builder nothing checked. A rule
+    that lives only in a prompt is a suggestion, and the fix is the same both times: make the
+    artifact prove it.
+
+    WHAT IS CHECKED IS NOT "DID SOMETHING CHANGE". It is that a stamp and a line agree, which is
+    a fact about the file and needs no previous version to judge. `last_verified` says somebody
+    looked on that date, so the log has to carry a line saying what they saw. "Checked and
+    unchanged" is the answer on most days and it is a fact about the decision, not filler.
+    """
+    r = Result("movement")
+    checked = 0
+    for it in items:
+        lv = str(it.get("last_verified") or "")
+        if lv < MOVEMENT_RULE_DATE:
+            continue
+        checked += 1
+        dates = {str(h.get("date")) for h in (it.get("history") or []) if isinstance(h, dict)}
+        if lv not in dates:
+            r.fail(f"{it.get('id', '?')}: last_verified is {lv} and the movement log carries no "
+                   f"line for that date. A stamp with no line beside it is a check a reader "
+                   f"cannot see. Write what was observed, including that nothing changed")
+    if r.status == "PASS":
+        r.note(f"{checked} item(s) checked since {MOVEMENT_RULE_DATE}, every stamp with a line")
+    return r
+
+
 GATES = {
     "schema": gate_schema, "claims": gate_claims, "numerals": gate_numerals,
     "narration": gate_narration, "house style": gate_house_style,
-    "cross references": gate_cross_references,
+    "cross references": gate_cross_references, "movement": gate_movement,
 }
 DATED_GATES = {"staleness": gate_staleness, "deadlines": gate_deadlines}
 
@@ -1300,6 +1341,22 @@ def self_test() -> int:
                "url": None, "closes": "2026-09-04"})]), "FAIL")
     expect("house style catches a bare date",
            gate_house_style([base(summary="Comments close September 4.")]), "FAIL")
+
+    # A STAMP WITH NO LINE BESIDE IT. Four items reached main in exactly this state one day
+    # after the rule was written, because the rule lived in a prompt and nothing read the file.
+    expect("movement passes a stamp that carries its line",
+           gate_movement([base(last_verified="2026-08-19",
+                               history=[{"date": "2026-08-19", "note": "Checked and unchanged."}])]),
+           "PASS")
+    expect("...and catches a stamp with no line for that date",
+           gate_movement([base(last_verified="2026-08-19", history=[])]), "FAIL")
+    expect("...and a line for the WRONG date does not satisfy it",
+           gate_movement([base(last_verified="2026-08-19",
+                               history=[{"date": "2026-08-18", "note": "Checked."}])]), "FAIL")
+    # The exemption, and it is load bearing. Backfilling a check nobody recorded would be
+    # inventing an observation, so items stamped before the rule are left alone.
+    expect("...but an item stamped before the rule is exempt, never backfilled",
+           gate_movement([base(last_verified="2026-08-11", history=[])]), "PASS")
     # THE KEY DATE NOTE, which renders on the timeline and was outside every gate on both
     # layers until 2026-08-18. Three cases, and the third is the point of the other two: the
     # construction rules apply to a fragment exactly as they apply to a sentence, and the comma

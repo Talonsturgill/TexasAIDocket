@@ -11,12 +11,18 @@ A small emergency services district in Pecos noticed a public hearing to accept 
 - Public access: Public meeting
 - Take part: https://rcesd.org/app/uploads/2026/02/RCESD2_Notice-of-Public-Hearing-Energy-Forge-One-2026-03-25.pdf
 
-- Last checked: 2026-08-14
+- Last checked: 2026-08-19
 
 ## Dates
 
 - 2025-11-24 · ordered: Energy Forge One Reinvestment Zone established, per the district's notice
 - 2026-03-25 · hearing: Public hearing to consider the reinvestment zone and accept the Chapter 312 tax abatement application
+
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-19 · Checked and unchanged. The notice still sets the hearing for March 25th at 5:30 p.m. at the district office in Pecos and still puts the project cost at 6 billion dollars.
 
 ## Evidence
 

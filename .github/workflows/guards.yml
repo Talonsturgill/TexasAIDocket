@@ -29,6 +29,12 @@ on:
 permissions:
   contents: read
 
+# PINNED, because it was not. Every run did an unpinned `npm install playwright`, so the
+# version could change under us between two runs of the same commit, and a green yesterday
+# proved nothing about a red today.
+env:
+  PLAYWRIGHT_VERSION: "1.56.1"
+
 concurrency:
   group: guards-${{ github.ref }}
   cancel-in-progress: true
@@ -94,8 +100,12 @@ jobs:
         run: |
           # Exit 2 means an item is past twice its re-verification limit while still live,
           # which is the record quietly going stale in public.
+          # NO --budget. The owner removed it on 2026-08-18 and this line still carried the old
+          # 6, so on every run CI printed "Raise --budget" under a list of due items, advising a
+          # flag the routine no longer has. The rotten check never depended on it. Uncapped is
+          # also the honest report: it names every item past the leash rather than the first six.
           if [ -f ledger/docket.json ]; then
-            python3 scripts/site/docket_staleness.py --budget 6 || \
+            python3 scripts/site/docket_staleness.py || \
               { [ $? -eq 2 ] && echo "ROTTEN items present" && exit 1; }
           fi
 
@@ -245,6 +255,68 @@ jobs:
       - name: Gmail draft self-test (drafts only, and the address is a constant)
         run: python3 scripts/carousel/gmail_draft.py --self-test
 
+      - name: Email check self-test (the run's email is postable, not an essay)
+        run: |
+          # Run 2's email was a plaintext essay with no post copy, no first comment and no
+          # images, because the run hand-wrote it instead of calling the builder. This gate
+          # replays that and each of the other three ways the email has failed to be postable.
+          python3 scripts/carousel/email_check.py --self-test
+
+      - name: Every shipped run carries a postable email
+        run: |
+          # Not a self-test. This reads the real gmail_payload.json committed beside each deck
+          # and fails if any run's email is missing, hand-written, or does not carry the post
+          # copy and the first comment verbatim with every linked file on disk. A run that
+          # shipped a deck and no postable email did not finish its one human-facing job.
+          python3 scripts/carousel/email_check.py --all
+
+      - name: The gates run against every deck this project has published
+        run: |
+          # THE ONE STEP THAT MAKES THE REST OF THEM REAL.
+          #
+          # An audit on 2026-08-19 found that of the fifteen carousel steps above, THIRTEEN are
+          # --self-test. The only two touching a real artifact were `email_check --all` and the
+          # bespoke check against examples/demo-deck, which is a demo rather than anything this
+          # project ever published. So CI proved every run that the checkers CAN go red, and
+          # almost never asked them whether the product was clean.
+          #
+          # coherence_check, craft_floor, run_complete, sources_block, plan_render_check and
+          # absence_check were in CI in no form at all. Six gates, all of them written BY these
+          # runs to catch defects these runs shipped, protecting only the runs that remembered
+          # to call them, which is the exact defect each one was written for.
+          #
+          # ONE STEP, not nine, on purpose. This file is `human` owned so a routine cannot wire
+          # its own gate, and three gates have already waited on a maintainer to do it. The
+          # registry lives in shipped_check.py, which the upgrade lane owns, so the next gate is
+          # a one-line addition there rather than another wait on this file.
+          python3 scripts/carousel/shipped_check.py
+
+      - name: The shipped-deck runner can go red, and every gate in it is reachable
+        run: |
+          # Its self-test asserts that EVERY registered gate actually runs on the newest deck.
+          # That assertion earned its place immediately by catching two loaders written against
+          # the wrong signature: both threw, both were silently skipped, and both would have
+          # reported clean forever. Same shape as craft_floor reading a key qa.py never wrote.
+          python3 scripts/carousel/shipped_check.py --self-test
+
+      - name: Plan versus render self-test (the frame matches the plan it was drawn from)
+        run: python3 scripts/carousel/plan_render_check.py --self-test
+
+      - name: Absence self-test (a negative needs a document behind it)
+        run: python3 scripts/carousel/absence_check.py --self-test
+
+      - name: Craft floor self-test (no frame ships that nobody drew)
+        run: python3 scripts/carousel/craft_floor.py --self-test
+
+      - name: Coherence self-test (the deck reads as one object, and the footer is the domain)
+        run: python3 scripts/carousel/coherence_check.py --self-test
+
+      - name: Completion self-test (a run cannot call itself done under the threshold)
+        run: python3 scripts/carousel/run_complete.py --self-test
+
+      - name: Machine QA self-test (replayed against real captured renders)
+        run: python3 .claude/skills/carousel-engine/qa.py --self-test
+
       - name: House style self-test (our prose is checked, a quote never is)
         run: python3 scripts/site/house_style_check.py --self-test
 
@@ -389,14 +461,44 @@ jobs:
           # a stale build. It is the guarantee behind "docs/ is generated, never hand-edited".
           python3 scripts/site/site_fresh_check.py
 
+      # THE BROWSER IS INSTALLED ONCE, CACHED, AND ON A CLOCK.
+      #
+      # Six later steps need a browser and the first of them used to install it inline. That
+      # put three uncached network operations behind one step name: an unpinned npm install, a
+      # browser download, and an apt-get from `--with-deps`. When those hung, the run showed a
+      # test in progress for ninety minutes with no output, and the obvious reading of that is
+      # "the test is slow", which is the wrong place to go looking. It cost most of a night.
+      #
+      # So: pinned and cached, so the usual case touches the network for nothing; separated
+      # from the test, so a failure names the install rather than the check; and timed out, so
+      # a hang becomes a red X in eight minutes instead of an invisible hour.
+      #
+      # `--with-deps` is gone deliberately. It runs apt-get, which is the slowest and most
+      # lock-prone part of the three, and the ubuntu-latest image already carries the shared
+      # libraries chromium needs. If that ever stops being true this fails loudly at launch,
+      # in seconds, which is a better failure than the one it replaces.
+      - name: Cache the browser
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/ms-playwright
+            node_modules
+          key: pw-${{ runner.os }}-${{ env.PLAYWRIGHT_VERSION }}
+
+      - name: Browser for the read-time checks
+        timeout-minutes: 8
+        run: |
+          npm install --no-save --silent "playwright@${PLAYWRIGHT_VERSION}"
+          npx playwright install chromium
+          node -e "require('playwright').chromium.launch().then(b=>b.close()).then(
+            ()=>console.log('chromium launches'), e=>{console.error(e); process.exit(1)})"
+
       - name: The ask engine answers every question it catalogues
         run: |
           # This one needs a browser, because the engine writes its prose at READ time and no
           # build-time lint can reach the sentence a reader actually sees. It asks every
           # catalogued question in a real page, checks no answer claims more than the record
           # holds, and cuts the network to prove the page phones nobody.
-          npm install --no-save --silent playwright
-          npx --yes playwright install --with-deps chromium
           SITE=docs node tests/ask_engine.mjs
 
       # The other lane, in the same browser. The worker is stubbed; the streaming, the thread
@@ -458,7 +560,6 @@ jobs:
         run: |
           # No browser needed: the UMD libraries load under node, which is the point of
           # testing the projection here rather than only inside a rendered slide.
-          npm install --no-save --silent playwright >/dev/null 2>&1 || true
           node tests/txgeo.mjs
 
       # A LANE IS SCOPED TO A COMMIT, NOT TO A BRANCH.

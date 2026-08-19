@@ -74,6 +74,57 @@ STRING = re.compile(r"\"[^\"]*\"|'[^']*'")
 NUMBER = re.compile(r"\b\d+(?:\.\d+)?\b")
 TOKEN = re.compile(r"[A-Za-z_][A-Za-z0-9_.]*")
 
+# THE STANDING MASTHEAD, added to every slide of every deck on 2026-08-19.
+#
+# The coherence upgrade that run made the wordmark, the star, the kicker, the site line and the
+# NN / NN counter identical on all eight frames, which is the whole point of them: they are what
+# makes eight drawings read as one publication. This gate then scored that consistency as
+# sameness. Measured on the 2026-08-19 deck, the closest pair shared 50 tokens and exactly ONE of
+# them was a drawing call. The other 49 were the masthead's markup, its class names and its text.
+# The deck failed at 0.5508 against a 0.55 line on furniture alone.
+#
+# That is the same fault the FURNITURE set above was written for, one layer up. FURNITURE is a
+# vocabulary of CSS and JS keywords, so it could never have caught markup the deck introduced
+# afterwards. Anything carrying a `tx-` class is standing furniture by construction, so it is
+# removed here with its subtree, along with the CSS rules that style it.
+MASTHEAD_CSS = re.compile(r"\.tx-[A-Za-z0-9_-]+\s*\{[^}]*\}")
+MASTHEAD_OPEN = re.compile(r"<([A-Za-z][A-Za-z0-9]*)\b[^>]*\bclass\s*=\s*[\"'][^\"']*\btx-")
+VOID = {"br", "img", "input", "hr", "meta", "link", "source", "use", "path", "polygon", "circle"}
+
+
+def strip_masthead(html: str) -> str:
+    """Remove every element carrying a `tx-` class, subtree and all, plus its CSS rules.
+
+    Written as a scanner rather than a regex because the masthead nests: the frame container
+    holds the wordmark, the star, the kicker, the site line and the counter, and a non-greedy
+    regex closes on the first inner `</div>` and leaves the rest of the block behind, which is
+    the failure mode that made this look fixed while four of five tokens survived.
+    """
+    out = html
+    while True:
+        m = MASTHEAD_OPEN.search(out)
+        if not m:
+            break
+        tag = m.group(1).lower()
+        gt = out.find(">", m.end())
+        if gt < 0:
+            break
+        if tag in VOID or out[gt - 1] == "/":
+            out = out[:m.start()] + " " + out[gt + 1:]
+            continue
+        depth, i = 1, gt + 1
+        open_re = re.compile(rf"<(/?){re.escape(tag)}\b", re.IGNORECASE)
+        while depth and i < len(out):
+            nxt = open_re.search(out, i)
+            if not nxt:
+                i = len(out)
+                break
+            depth += -1 if nxt.group(1) else 1
+            i = out.find(">", nxt.end())
+            i = len(out) if i < 0 else i + 1
+        out = out[:m.start()] + " " + out[i:]
+    return MASTHEAD_CSS.sub(" ", out)
+
 # THE TYPE FURNITURE IS SUPPOSED TO BE THE SAME. A deck has one kicker style, one headline
 # style, one footer, and that consistency is the visual system working rather than a template
 # failing. Counting it as similarity buries the signal: measured on the demo deck, the single
@@ -109,6 +160,7 @@ def _informative(tok: str) -> bool:
 def normalise(html: str) -> Counter:
     """The shape of the drawing, with everything shared or incidental removed."""
     s = COMMENT.sub(" ", html)
+    s = strip_masthead(s)
     s = BOILERPLATE.sub(" ", s)
     s = STRING.sub(" ", s)
     s = NUMBER.sub(" ", s)
@@ -273,6 +325,35 @@ def self_test() -> int:
     ok("the fail line sits well clear of both fitted decks",
        mb["median"] < WARN_AT < FAIL_AT < mt["median"],
        f"{mb['median']} < {WARN_AT} < {FAIL_AT} < {mt['median']}")
+
+    # THE 2026-08-19 DEFECT, replayed. Two slides that draw nothing alike, each carrying the
+    # standing masthead the coherence upgrade put on every frame.
+    MAST = ('<style>.tx-frame{position:absolute;inset:0}.tx-wordmark{font-size:25px;'
+            'letter-spacing:.16em}.tx-counter{font-variant-numeric:tabular-nums}</style>'
+            '<div class="tx-frame" data-decorative>'
+            '<svg class="tx-star" viewBox="0 0 26 26"><polygon points="1,2"/></svg>'
+            '<div class="tx-wordmark">TEXAS AI DOCKET</div>'
+            '<div class="tx-kicker">ERCOT MARKET NOTICE</div>'
+            '<div class="tx-site">texasaidocket.com</div>'
+            '<div class="tx-counter">03 / 08</div></div>')
+    art_a = '<script>stoneGround(); embossMonthSheet(cellW, deadline); rakingShadow();</script>'
+    art_b = '<script>voronoiPartition(seeds); neatline(); hatchCell(idx);</script>'
+    bare = similarity(normalise(art_a), normalise(art_b))
+    with_mast = similarity(normalise(art_a + MAST), normalise(art_b + MAST))
+    ok("the standing masthead does not put a floor under an unrelated pair",
+       with_mast <= bare + 0.02, f"bare {bare:.4f} against {with_mast:.4f} with the masthead")
+    ok("...and the frame is removed with its subtree, not up to the first close tag",
+       "wordmark" not in strip_masthead(MAST) and "counter" not in strip_masthead(MAST)
+       and "DOCKET" not in strip_masthead(MAST), strip_masthead(MAST))
+    ok("...and its css rules go with it", "letter-spacing" not in strip_masthead(MAST),
+       strip_masthead(MAST))
+    ok("a slide with no masthead is untouched",
+       strip_masthead(art_a) == art_a)
+    ok("...so a deck that never carried one measures exactly as it did before",
+       normalise(art_b) == normalise(strip_masthead(art_b)))
+    # The drawing must still be visible through the strip, or this traded one blindness for another.
+    ok("two slides that DO share a drawing still score high through the masthead",
+       similarity(normalise(art_a + MAST), normalise(art_a + MAST)) == 1.0)
 
     if failures:
         print(f"\nbespoke_check self-test: {failures} FAILED", file=sys.stderr)

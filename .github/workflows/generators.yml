@@ -1,0 +1,51 @@
+name: generator inventory
+
+# EIA-860M, the generator inventory, read MONTHLY.
+#
+# MONTHLY BECAUSE THAT IS THE PUBLICATION CADENCE. EIA issues one workbook a month and it is
+# fourteen megabytes; reading it daily would download the same file thirty times to learn
+# nothing. The schedule fires daily and the collector EXITS EARLY once the month is held and
+# verified, because the publication day inside the month moves and guessing it wrong means
+# waiting another month for a reading nobody can backfill.
+#
+# ITS OWN WORKFLOW, same reason as every other collector here.
+
+on:
+  schedule:
+    - cron: "40 15 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/gridwatch/generators_collect.py"
+      - ".github/workflows/generators.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: generators
+  cancel-in-progress: false
+
+jobs:
+  read:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prove the collector's checks can go red
+        run: python3 scripts/gridwatch/generators_collect.py --self-test
+
+      - name: Read the newest published inventory
+        run: |
+          python3 scripts/gridwatch/generators_collect.py --collect || rc=$?
+          if [ "${rc:-0}" -gt 2 ]; then exit "$rc"; fi
+
+      - name: Commit the reading
+        run: |
+          git config user.name  "texas-ai-docket-bot"
+          git config user.email "bot@texasaidocket.com"
+          git add ledger/gridwatch/generators.jsonl ledger/gridwatch/raw || true
+          git diff --cached --quiet && echo "nothing new" && exit 0
+          git commit -m "generators: EIA-860M reading"
+          git push

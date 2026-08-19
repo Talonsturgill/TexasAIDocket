@@ -141,3 +141,92 @@ had the tidied form and one had the faithful one, which is how it was noticed at
 `<description>`, escaped, so a verifier that strips tags BEFORE unescaping sees
 `&lt;strong&gt;` as visible text and a correct quote reads as missing. Unescape first, then
 strip. This produced one false negative in today's check and would produce one every run.
+
+---
+
+## 2026-08-19, the daily run
+
+**THE STANDING RULE FIRED FOR A THIRD TIME, AND THIS RUN NEARLY FILED FOUR ITEMS ON IT.**
+`interchange.puc.texas.gov` and `puc.texas.gov/agency/calendar/GetCalendarRss.aspx` both returned
+**HTTP 503 to every WebFetch attempt** across this whole run, and to the scout's attempts before
+that. Four items were written up as unconfirmed on the strength of it.
+
+Retested with `curl` and a browser User-Agent, per this file's own entry from 2026-08-16:
+
+| url | WebFetch | curl, browser UA |
+|---|---|---|
+| `puc.texas.gov/agency/calendar/GetCalendarRss.aspx` | 503 | **200, 12,722 bytes, 32 items** |
+| `interchange.puc.texas.gov` control 58000 | 503 | **200, 60,737 bytes, 67 filings** |
+| `interchange.puc.texas.gov` control 58482 | 503 | **200, 37,109 bytes, 34 filings** |
+| `interchange.puc.texas.gov` control 59315 | 503 | **200, 1,398,029 bytes, 2,000 filings** |
+
+- the calendar needs `-L`. It 301s from `GetCalendarRss.aspx` to the lowercased path, and a client
+  that does not follow the redirect sees 180 bytes and concludes nothing is there
+- so: three different status codes have now been recorded against these hosts by three different
+  clients on three different days, 402, 503 and 200, and the host was serving on all three. **The
+  status code a fetch returns is a fact about the fetcher.** Retest before writing anything down
+- what it was worth: four items moved from unconfirmed to verified, and Project 58482 turned out to
+  have taken a comment on August 18th that would otherwise have gone unrecorded
+
+**`www.federalregister.gov` HTML now 302s to `unblock.federalregister.gov`** for document pages,
+which is a bot wall rather than a redirect worth following.
+- the API is unaffected. `federalregister.gov/api/v1/documents.json` answers fully, takes
+  `conditions[term]`, `conditions[comment_date][gte]` and a `fields[]` list, and returns
+  `comments_close_on` directly
+- so: **query the API and never the document page.** Two items were verified this way after the
+  HTML route failed
+
+**`tcss.legis.texas.gov/resources/GV/htm/GV.2054.htm` is served in full but arrives truncated.**
+A fetch of Chapter 2054 stops at Section 2054.0702, which is short of all three Subchapter S
+enactments, so the AI provisions this record rests on sit past the cut.
+- a run re-verifying `tx-2026-0008` or `tx-2026-0025` from that URL will appear to find that
+  Subchapter S does not exist. It does. The file is roughly 480 KB and the retrieval is the limit
+- do not conclude from a truncated fetch that a provision was repealed
+
+**`webapi.legistar.com` is the route into any Legistar city, and the HTML calendar is not.**
+Legistar HTML calendars publish meeting dates and no item text, so nine items were left partly
+unconfirmed before this was tried. The Web API serves the item text as JSON.
+- `webapi.legistar.com/v1/<tenant>/matters?$filter=MatterIntroDate+gt+datetime'YYYY-MM-DD'&$orderby=MatterIntroDate+desc&$top=40`
+- confirmed tenants: `leaguecity`, `brazoriacountytx`, `elpasotexas`, `denton-tx`, `cityofdallas`.
+  A scout recorded HTTP 500 for every Fort Worth tenant name tried
+- **`MatterStatusName` AND `MatterPassedDate` ARE NOT EVIDENCE.** Both El Paso items read
+  "Agenda Ready" with a null passed date, which is the exact shape that flagged the Houston ISD
+  board policy last run. `/v1/<tenant>/Matters/<id>/Histories` carries the actual motion, the
+  second, the action date and a `PassedFlag`. Both El Paso items show `PassedFlag` 1. **This run
+  came close to writing down two correct items as overstated on the strength of a workflow field**
+
+**Hosts that refused this run**, each retried at least twice and none routed around.
+
+- `www.usda.gov` 403 on every path including the August 11th press release. `aphis.usda.gov` served
+  normally, so the screwworm material is reachable and the department's own releases are not
+- `hhs.texas.gov` and `pfd.hhs.texas.gov` 403 including on `robots.txt`. This blocks the Rural
+  Health Transformation Program and its Lone Star Advanced AI and Telehealth initiative, which is a
+  statewide state-run AI procurement and the largest unworked lead this run produced
+- `texasattorneygeneral.gov` 402 on the press release index
+- `www.fortworthtexas.gov` 403 on `/` and on `/robots.txt`, so the host's own policy could not be
+  read. `apps.fortworthtexas.gov` and `fortworth.granicus.com` both 404. No Fort Worth primary
+  document was reachable by any route tried, which left a real August 11th council action on
+  journalism alone
+- `hpcwire.com`, `texasmonthly.com`, `beckershospitalreview.com`, `fortworthreport.org`,
+  `houstonpublicmedia.org` all 403
+- `assets-ir.tesla.com` 403 and `digitalassets.tesla.com` 404
+- `www.brazoscountytx.gov` timed out at 60 seconds twice
+
+**A PDF is read as a document or it is not read.** The Governor's directive letter answered 200 at
+153 KB and the fetch tool's text extractor refused it. Read as a binary it yielded both a text
+layer and rendered pages, which is the only reason this run can be exact about the 474 figure.
+- and the figure is worth the trouble. **The signed letter says "approximately 474 gigawatts". The
+  press release from the same office on the same day says "approximately over 474 gigawatts".**
+  The letter is the primary document and its wording is the one to publish
+- the same letter writes **PUC** throughout where the press release writes **PUCT**, and its
+  information bullets end with a semicolon and the word "and" where the release drops them. A quote
+  carries whichever form its own source uses
+
+**A FETCH SUMMARY IS NOT A QUOTE, AND THIS BIT TWICE.** A scout recorded that two passes over one
+`nsf.gov` page returned two different sentences attributed to the same speaker, meaning the
+retrieval paraphrased on at least one pass. It excluded every quote from that page rather than
+publish one.
+- the fact checker hit the same thing on `ercot.com`, where a first pass returned a summary and a
+  second pass with an explicit transcription instruction returned the body verbatim
+- so: **a quote is verified by a fetch that was asked to transcribe, not by one that was asked what
+  a page says.** Ask twice and compare when a numeral or a quote is going to be published

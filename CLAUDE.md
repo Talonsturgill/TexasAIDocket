@@ -183,6 +183,30 @@ ONLY. Never write to them from a session working here. Their ledger memory must 
 copied into this repo: the dedupe and divergence gates compare against recent history, and
 Alaska's history would poison them.
 
+## The public URL (AUTHORITATIVE)
+
+**The site is `texasaidocket.com`. That is the only URL this project publishes, on any surface.**
+
+Never `talonsturgill.github.io/TexasAIDocket`. That is the GitHub Pages host that served the site
+before the domain was pointed at it, and it carries the owner's personal name. It is not a brand
+URL and it must never appear on a slide, in an email, in a caption, in a User-Agent or on a page.
+
+`docs/CNAME` has said `texasaidocket.com` since the move on 2026-08-15 and `site_build.SITE_URL`
+was changed with it, so the SITE has been right the whole time. What was wrong was every surface
+that kept its own copy of the string instead of reading the one in `config/brand.yaml`:
+
+- `config/brand.yaml` `visual.constellation.site`, which is the source of truth for the footer
+- `frame.py`, which hardcoded it and printed it on the bottom of all eight slides of three
+  published decks
+- `gmail_draft.SITE`, so every run's email linked it
+- four `scripts/gridwatch/*_collect.py` User-Agent strings, which announced it to every server
+  this project fetches from
+
+This is the same defect as the missing hashtags and the missing progress counter, for the third
+time: a rule stated in config, a surface that keeps its own copy, and nothing in between checking
+they agree. `coherence_check.py` now asserts the rendered site line equals the brand.yaml value on
+every frame, so a fourth one fails the build instead of shipping.
+
 ## Layout
 
 - `prompts/` — `daily_routine.md` is the single source of truth for the one daily routine, which

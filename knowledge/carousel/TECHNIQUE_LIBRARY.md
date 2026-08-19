@@ -203,6 +203,90 @@ fact. `dossier_check.py` catches it before anything is drawn, which is where it 
 
 ---
 
+## COHERENCE — the art varies, the frame does not
+
+This section is in tension with everything above it, and holding both at once is the craft.
+`bespoke_check.py` demands the nine DRAWINGS differ. This demands the FRAME around them does not.
+A deck that breaks the first rule is a template. A deck that breaks the second is not a
+publication, it is nine posters that happened to arrive on the same day.
+
+**The measurement that produced this section.** The first two decks this product shipped:
+
+| | slides | slide counter | furniture type sizes on every slide |
+|---|---|---|---|
+| 2026-08-16 | 8 | **none anywhere** | 24px, 25px |
+| 2026-08-18 | 9 | `01 / 09` on all nine | 24px, 25px |
+
+Both were green on every gate that existed. A reader following the account got a numbered nine
+part deck one day and an unnumbered eight part deck the next. The type furniture held by accident
+rather than by rule, and the numbering did not hold at all.
+
+`scripts/carousel/coherence_check.py` now measures this. What it enforces:
+
+- **The counter spine is all or nothing, then correct.** Number every slide or number none.
+  Numbering some is a missing slide as far as a reader can tell, and a counter promising a total
+  the deck does not deliver is an untruth printed on the page in the reader's own arithmetic.
+- **Some type size appears on every slide.** The kicker, the counter and the source line are the
+  deck's furniture and they do not get redesigned per slide.
+- **No two slides lead with the same line.** Two slides saying one thing is one slide.
+
+**What it deliberately does NOT gate, and why that matters as much.** Display type sizes vary
+wildly across a good deck, 132 and 112 and 66 on one, 92 and 82 and 78 on another, because
+`TX.fitText` fits each headline to its own box, which this file requires two sections up. A gate
+on that would have failed both shipped decks for doing the right thing, and would have pushed the
+next run toward hand-sized type. Colour count is left alone for the same reason. **A gate that
+fires on correct behaviour gets switched off, and then it protects nothing.**
+
+---
+
+## READABILITY — the reader is giving this two seconds
+
+A slide is read at 432px inside a scroll. It is SCANNED, not read, and the most common way a deck
+fails is not ugliness. It is a slide that is a paragraph set in a large face.
+
+- **Sixty five words is the ceiling and it is a backstop, not a target.** The shipped decks run a
+  mean of 28.6 and 35.2 words a slide with a heaviest slide of 54, so the ceiling fails on
+  regression rather than on good writing. If a slide is near it, the slide has two ideas in it.
+- **One idea per slide.** The tell is the claim count. A slide citing five or more claims is
+  usually an argument that wants two slides, and the gate warns on it rather than failing,
+  because a summary slide legitimately gathers many.
+- **The opening line is four to seven words.** Slide 1 is the only slide most people see. Every
+  word past seven is a word spent before the reader has decided to stay.
+- **Read every slide with the images off.** If the strings alone do not carry the decision, the
+  art is doing work the copy should be doing, and the art disappears on a slow connection.
+
+---
+
+## ENGAGEMENT — the unit is the swipe, not the slide
+
+A nine slide carousel is not nine slides. It is **eight decisions to swipe**, and each one is made
+in about a second on the strength of what the slide just did. Pretty is what stops the scroll.
+Owing the reader something is what moves them to slide 2.
+
+**Every slide except the last must end owing the reader something.** Four ways to build that debt,
+and they rotate like everything else here.
+
+- **The open loop.** Name the thing and withhold the number. "The schedule gives each block a
+  length. It never says which block follows the morning." The reader swipes to find out what does.
+- **The withheld actor.** Name the decision and not who made it, then land the decider next.
+- **The turn.** A slide that reverses what the previous three built. Best placed at 5 or 6, which
+  is where attention sags, and it is the single most reliable way to rescue a middle.
+- **The counter-image.** Every claim in this record has one, and it is usually the most
+  interesting thing on the page. The award is not a running machine. The robot is built in Austin
+  and starts its shift in Illinois. **Put the counter-image on its own slide.** A deck that only
+  argues one way reads as promotion, and this record's whole standing is that it does not.
+
+**The value arc.** Nine slides at one brightness is a deck nobody remembers, however good each
+frame is. Plan the deck's value structure across the SEQUENCE before any slide is coded, and give
+it one deliberate inversion, the way 2026-08-16 put a single paper slide at position 5 in an
+otherwise dark deck. The inversion is what a reader remembers the deck by.
+
+**Judge the strip, never the slide.** The contact sheet is the real design surface, because it is
+how the flow critic sees the deck and how a reader's memory stores it. A deck can be nine strong
+frames and a weak strip. Open the contact sheet before the pixel critics, not after.
+
+---
+
 ## HOW TO CHOOSE
 
 In order.

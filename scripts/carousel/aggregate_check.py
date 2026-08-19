@@ -290,6 +290,42 @@ def rederive(decl: dict, claims: dict) -> tuple[bool, str]:
         if got != stated:
             return False, (f"the slide says {stated} and it names {got} claim id(s). "
                            f"One of those is wrong, and the slide is the one a reader sees")
+        # THE NOUN HAS TO MEAN WHAT IT SAYS, and this is the defect that got past this gate.
+        #
+        # On 2026-08-19 slide 5 was headlined "Three figures, three sources." and declared
+        # `from_claims: [c6, c8, c9]`. Three ids, so `got == stated` and the gate passed it. But
+        # c6 and c8 carry the SAME url, the signed directive letter, so the slide published three
+        # figures drawn from TWO documents, directly above its own footer printing "the letter"
+        # twice. A reader counts two before they finish the frame.
+        #
+        # A count of CLAIMS is not a count of sources, documents, publishers, filings or counties.
+        # `from_claims` re-derives the first and says nothing about the rest, so when the phrase
+        # names one of those, the tally is taken over the DISTINCT values the claims carry.
+        # The scorer caught this one. A gate that only ever re-derives the number it was handed is
+        # the exact shape of defect it exists to catch.
+        noun_field = {
+            "source": "url", "sources": "url",
+            "document": "url", "documents": "url",
+            "publisher": "publisher", "publishers": "publisher",
+        }
+        phrase = str(decl.get("phrase") or "").lower()
+        for noun, field in noun_field.items():
+            if re.search(rf"(?<![a-z]){re.escape(noun)}(?![a-z])", phrase):
+                by_id = {c.get("id"): c for c in (claims.get("claims") or [])
+                         if isinstance(c, dict)}
+                vals = set()
+                for cid in ids:
+                    c = by_id.get(cid) or {}
+                    v = c.get(field) or c.get("source_" + field) or c.get("source_url")
+                    if v:
+                        vals.add(str(v).strip())
+                if vals and len(vals) != stated:
+                    return False, (
+                        f"the phrase counts {noun!r}, so it is a tally of distinct {field}(s) and "
+                        f"not of claim ids. The claims named carry {len(vals)} distinct {field}(s) "
+                        f"and the slide says {stated}. Either the slide is wrong or the phrase "
+                        f"names the wrong thing")
+                break
         return True, ""
     if kind == "ratio":
         whole = decl.get("of")
@@ -388,6 +424,32 @@ def self_test() -> int:
             failures += 1
 
     ok("a count in words is detected", detect("FOUR PUCT FILINGS")[0]["kind"] == "count")
+
+    # THE NOUN RULE, replaying the 2026-08-19 defect this gate passed.
+    #
+    # Slide 5 said "three sources" and named three claim ids, two of which shared one url. The
+    # tally matched the id count and the gate went green over a published miscount.
+    _two_docs = {"claims": [
+        {"id": "c6", "url": "https://gov.texas.gov/letter.pdf", "publisher": "Office of the Governor"},
+        {"id": "c8", "url": "https://gov.texas.gov/letter.pdf", "publisher": "Office of the Governor"},
+        {"id": "c9", "url": "https://gov.texas.gov/release", "publisher": "Office of the Governor"},
+    ]}
+    _bad = {"phrase": "three sources", "kind": "count", "value": 3,
+            "from_claims": ["c6", "c8", "c9"]}
+    okd, why = rederive(_bad, _two_docs)
+    ok("THE REAL DEFECT: 'three sources' over two distinct urls fails", not okd, why)
+    ok("...and the message names the real count", "2 distinct url" in why, why)
+    _good = {"phrase": "two documents", "kind": "count", "value": 2,
+             "computed_by": "distinct source_url over claims c6, c8 and c9"}
+    ok("...while the corrected 'two documents' passes", rederive(_good, _two_docs)[0])
+    _pub = {"phrase": "three publishers", "kind": "count", "value": 3,
+            "from_claims": ["c6", "c8", "c9"]}
+    ok("'publishers' is tallied over publishers, not ids", not rederive(_pub, _two_docs)[0])
+    # A count whose noun names none of those still re-derives against the claim ids, unchanged.
+    _plain = {"phrase": "three filings", "kind": "count", "value": 3,
+              "from_claims": ["c6", "c8", "c9"]}
+    ok("a noun the rule does not name still counts claim ids",
+       rederive(_plain, _two_docs)[0], str(rederive(_plain, _two_docs)))
     ok("...and in digits", detect("4 PUCT FILINGS")[0]["kind"] == "count")
     ok("a duration is detected", detect("21 DAYS LEFT")[0]["kind"] == "duration")
     ok("a ratio is detected", detect("4 of 9 counties")[0]["kind"] == "ratio")

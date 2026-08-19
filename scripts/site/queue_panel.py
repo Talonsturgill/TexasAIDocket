@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+import re
 
 import numeral_lint
 
@@ -136,6 +137,21 @@ def figures(data: dict) -> dict:
                     "approved_mw": float(r["approved_to_energize_mw"]),
                     "drawing_mw": float(r["observed_operational_mw"])}
                    for r in live]
+    # THE TIMELINE KEEPS THE MONTHS THE SERIES DROPS. `series` is verified-only because it is
+    # what `change` measures and what authorised() permits, and an unverified month has no
+    # number to contribute to either. But the CHART drew off `series` and so closed the gap
+    # silently: May 2026 has no Monthly Operational Overview yet, the collector wrote the
+    # explicit unverified record the rules require, and the picture then set April beside June
+    # as though they were adjacent. The collector paid for that honesty and the renderer spent
+    # it. The timeline carries every month the record holds, verified or not, and a month with
+    # no reading publishes no number: it gets its name and a mark saying nothing was published.
+    f["timeline"] = [{"month": r["month"],
+                      "verified": bool(r.get("verified")),
+                      "approved_mw": (float(r["approved_to_energize_mw"])
+                                      if r.get("verified") else None),
+                      "drawing_mw": (float(r["observed_operational_mw"])
+                                     if r.get("verified") else None)}
+                     for r in sorted(data["records"], key=lambda r: r["month"])]
     if len(f["series"]) >= 2:
         first, latest = f["series"][0], f["series"][-1]
         f["change"] = {
@@ -224,6 +240,9 @@ def stages(f: dict) -> str:
     return f'<ol class="qstages" data-prose="data">{"".join(out)}</ol>'
 
 
+PLOT_MAX = 76.0  # per cent of the plot the tallest bar may use; the rest is label room
+
+
 def flatline(f: dict) -> str:
     """The series, as a readable instrument rather than a picture of bars.
 
@@ -254,34 +273,62 @@ def flatline(f: dict) -> str:
     ch = f.get("change")
     if len(s) < 2 or not ch:
         return ""
-    top = max(r["approved_mw"] for r in s) * 1.12
+    # Drawn from the TIMELINE, which holds every month on the record, and scaled by the
+    # verified ones, which are the only months carrying a number.
+    tl = f.get("timeline") or [dict(r, verified=True) for r in s]
+    top = max(r["approved_mw"] for r in s)
 
     groups = []
-    for r in s:
+    for r in tl:
         label = MONTHS[int(r["month"][5:]) - 1][:3]
-        # THE LABEL IS A SIBLING OF THE FILL, NOT A CHILD OF IT. It was nested inside the
-        # coloured bar and positioned above it, so visually it sat on the card while its
-        # ancestor background was the bar. tests/text_contrast composites the ancestor stack
-        # and measured granite on the pale bar at 3.12, under the floor. Structure now matches
-        # what a reader sees: the column is transparent, the fill is the bar, the value labels
-        # the bar from the card.
+        if not r["verified"]:
+            # A MONTH WITH NO READING IS DRAWN AS A MONTH WITH NO READING. Not skipped, which
+            # would set the months either side of it side by side and quietly claim the series
+            # is continuous. Not filled from the month before, which is the carry-forward the
+            # collector is forbidden to do and would be no better done in CSS. The slot keeps
+            # its width and its name, and where the bars would be there is a rule and a mark.
+            groups.append(
+                f'<li class="qgrp qnone" tabindex="0" aria-label="{month_label(r["month"])}, '
+                f'no monthly operational overview published, so nothing is plotted">'
+                f'<span class="qbars"><span class="qmiss" aria-hidden="true">'
+                f'<span class="qmissr"></span><span class="qmisst">none</span></span></span>'
+                f'<time class="qm" datetime="{r["month"]}">{label}</time></li>')
+            continue
+        # THE LABEL GETS ITS OWN BAND, and the bar is drawn in what is left. It was a sibling
+        # of the fill in a column both shared, with the fill at a percentage of the WHOLE
+        # column, so a tall bar and its label were asked to fit in more space than the column
+        # had and the value came down on top of the bar. tests/text_contrast did not catch it,
+        # and could not: it composites a run of text against its ANCESTOR stack, the label's
+        # ancestor is the transparent column, and the bar it visually lands on is a sibling the
+        # check has no reason to look at. An earlier version of this nesting DID fail that gate
+        # at 3.12 and I made the failure invisible rather than fixing it, which is a gate
+        # passing by collision. The band below makes the overlap impossible to construct: the
+        # label is laid out first, the plot is the remainder, and the fill is a percentage of
+        # the PLOT rather than of the column.
+        # ONE BOX, ONE BASELINE, ONE SCALE. Both bars are positioned inside the SAME box, the
+        # group's .qbars, pinned to its bottom. That is not a style choice, it is the only way
+        # the picture can be true: when each bar resolved its percentage against its own nested
+        # box, the two columns of a pair ended up with different heights AND different bottoms,
+        # so the chart drew 4,049 at 1.66 times the height its value earns and sat it on a
+        # baseline 22.4px below the bar it is meant to be compared with. A bar chart with two
+        # baselines is not a bar chart. Sharing the box makes both properties structural.
+        #
+        # THE LABEL RIDES ITS OWN BAR, at the bar's top edge, rather than sitting in a band at
+        # the top of the column. The band was what put the short bars' labels 64px away from the
+        # thing they label, floating with nothing under them.
+        #
+        # PLOT_MAX leaves the top of the box for the labels, so the tallest bar's label has
+        # somewhere to go and no label can leave the figure.
         bars = "".join(
-            f'<span class="qb {cls}">'
+            f'<span class="qb {cls}" style="--h:{r[key] / top * PLOT_MAX:.2f}%">'
             f'<span class="qbv num">{n0(r[key])}</span>'
-            f'<span class="qbf" style="height:{r[key] / top * 100.0:.1f}%"></span></span>'
+            f'<span class="qbf"></span></span>'
             for key, cls in (("approved_mw", "qa"), ("drawing_mw", "qd")))
-        # tabindex so the readout is reachable without a pointer. A group is not a control and
-        # gets no role: it is a labelled region of a figure, and `aria-label` carries the whole
-        # reading so focus announces the month and both values together.
         groups.append(
             f'<li class="qgrp" tabindex="0" aria-label="{month_label(r["month"])}, '
             f'cleared to switch on {n0(r["approved_mw"])} megawatts, '
             f'actually drawing {n0(r["drawing_mw"])} megawatts">'
             f'<span class="qbars">{bars}</span>'
-            # A <time>, not a span. The axis labels a month, the element says which month in a
-            # machine readable form, and house_style_check's exemption is satisfied because the
-            # visible text is a faithful rendering of that attribute rather than a bare date
-            # sitting loose beside a figure.
             f'<time class="qm" datetime="{r["month"]}">{label}</time></li>')
 
     return f"""<figure class="qchart">
@@ -404,6 +451,49 @@ def self_test() -> int:
               f"share {share:.3f}% rendered {rendered:.3f}%")
         check("and the floor is not engaged at today's figures", share >= 0.35,
               f"share {share:.3f}%")
+
+    # A MONTH WITH NO READING KEEPS ITS SLOT. The chart drew off the verified-only series and
+    # so closed the gap silently, setting April next to June as though the record ran straight
+    # through. Both fixtures below are hermetic: an unverified month must produce a slot, and a
+    # record with no gap must produce none, so the check fails in both directions.
+    holed = {"records": [
+        {"month": "2026-01", "verified": True, "approved_to_energize_mw": 8787,
+         "observed_operational_mw": 4049},
+        {"month": "2026-02", "verified": False, "note": "nothing published"},
+        {"month": "2026-03", "verified": True, "approved_to_energize_mw": 9042,
+         "observed_operational_mw": 4008}],
+        "requested": data.get("requested")}
+    hf = figures(holed)
+    hh = flatline(hf)
+    check("a month with no reading is drawn as a gap, not skipped",
+          hh.count('class="qgrp') == 3 and "qmiss" in hh)
+    check("...and that gap publishes no number of its own", not lint(hh, hf))
+    solid = {"records": [r for r in holed["records"] if r.get("verified")],
+             "requested": data.get("requested")}
+    check("...and a record with no hole draws no gap",
+          "qmiss" not in flatline(figures(solid)))
+
+    # THE VALUE CANNOT LAND ON THE BAR. Not "does not today" but cannot: the label is laid out
+    # above a plot wrapper and the fill's percentage resolves against that wrapper, so full
+    # scale reaches the top of the plot and stops. This asserts the STRUCTURE, because the
+    # thing that went wrong was a structure whose overlap tests/text_contrast could not see
+    # (it composites a run of text against its ancestors, and the bar was a sibling).
+    # THE TWO BARS OF A PAIR MUST BE ON ONE SCALE. This is the check that was missing when the
+    # chart shipped drawing 4,049 at 1.66 times the height its value earns, because each bar
+    # resolved its height against its own box. Both --h now come from the same `top`, so the
+    # ratio of the drawn heights has to equal the ratio of the measured values, and this asserts
+    # exactly that rather than asserting the markup that happens to produce it.
+    hs = [float(x) for x in re.findall(r'--h:([\d.]+)%', html)]
+    check("every bar carries a drawn height", len(hs) == 2 * len(f["series"]))
+    scale_ok, worst = True, ""
+    for r, (ha, hd) in zip(f["series"], zip(hs[0::2], hs[1::2])):
+        want = r["drawing_mw"] / r["approved_mw"]
+        got = hd / ha if ha else 0.0
+        if abs(want - got) > 0.005:
+            scale_ok, worst = False, f'{r["month"]} drawn {got:.3f} vs measured {want:.3f}'
+    check("...and the two bars of a month are drawn on one scale", scale_ok, worst)
+    check("...and no bar is drawn past the room left for the labels",
+          all(h <= PLOT_MAX + 1e-9 for h in hs), f"max {max(hs) if hs else 0:.2f}%")
 
     check("no dial, no severity ramp", "dial" not in html and "severity" not in html)
     print("\nqueue_panel self-test " + ("clean" if not failures else f"{failures} FAILED"))
