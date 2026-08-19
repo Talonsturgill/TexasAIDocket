@@ -83,6 +83,34 @@ interesting part and wants to get out. **Resist the urge to summarise.** The rea
 
 ---
 
+## The tag block, which is required and is not a closing move
+
+**Every post ends with exactly the number of hashtags `config/brand.yaml` sets, standing alone on
+the last line, after the closing move.** The count lives in `linkedin_post.hashtags_exactly` and
+is read from there by `scripts/carousel/caption_check.py`, which hard fails on the wrong number,
+on a tag inside a sentence, on prose sharing the last line, and on a duplicate. Do not type the
+number into a caption brief. The config is where it is decided.
+
+The tags are the last thing written and the first thing forgotten, so they are stated here as a
+separate requirement rather than folded into the closing moves above. A closing move is a choice
+between five options. This is not a choice.
+
+**Niche over broad.** A tag naming this story's county, body or system is worth more than a tag
+naming an industry. `#GrimesCounty` and `#ERCOT` place the post in front of people who follow
+that place and that system. `#AI` and `#Innovation` place it in front of nobody, because those
+feeds are unreadable. Prefer the county, the agency, the utility, the district, the named
+program. Rotate them with the story, and never carry yesterday's set forward out of habit.
+
+**Why this had to be written down.** `brand.yaml` has always said the post takes three. It also
+says "no hashtags" in `visual.on_slide_text_rules`, which is about SLIDE text, where a hashtag
+would be absurd. This file then listed "any hashtag" under engagement bait, applying the slide
+rule to the post, and the caption room reads this file. Run No. 1 on 2026-08-16 shipped
+"#GrimesCounty #ERCOT #Terafab". Run No. 2 on 2026-08-18 shipped none, and every gate was green
+both times because no gate had been connected to either rule. The post surface and the slide
+surface take opposite answers to this question and always have.
+
+---
+
 ## Banned furniture
 
 Mechanically enforced where possible, judged where not. These are the phrases that make copy
@@ -93,7 +121,11 @@ clear", "Make no mistake", "Here is the thing", "The bottom line", "At the end o
 "Simply put", "Needless to say".
 
 Engagement bait: "Thoughts?", "What do you think?", "Drop a comment", "Agree or disagree",
-"Share if you", "Follow for more", "Read that again", any hashtag, any emoji.
+"Share if you", "Follow for more", "Read that again", any emoji.
+
+**A hashtag is NOT on this list, and it used to be. That mistake cost run No. 2 its tags.** See
+the section below. What is banned is a hashtag used as bait or dropped into a sentence. The tag
+block at the very end is required.
 
 Hype: "game changer", "revolutionary", "unprecedented" unless it is literally true and sourced,
 "massive", "explosive", "staggering", "shocking", "the future of".
