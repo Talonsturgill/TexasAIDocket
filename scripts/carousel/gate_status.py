@@ -216,6 +216,21 @@ def rows_for(d: Path) -> list[Row]:
         except Exception as exc:                       # noqa: BLE001
             out.append(Row("plan vs render", FAIL, f"could not be measured ({exc})"))
 
+    # CAN A TEXAN TELL WHERE THIS HAPPENED AND WHAT TO DO NEXT. Never a FAIL, by design: a
+    # statewide story names no county and the rubric scores that 7, not 0. It is here so the
+    # profile is VISIBLE in the run record, because this is the one finding that appeared in
+    # every round of every panel and was never once attacked.
+    cj0 = d / "copy.json"
+    if not cj0.exists():
+        out.append(Row("texan", ABSENT, "no copy yet"))
+    else:
+        try:
+            import texan_check
+            _tf, tw, tp = texan_check.check(json.loads(cj0.read_text(encoding="utf-8")))
+            out.append(Row("texan", WARN if tw else PASS, texan_check.render(tp)))
+        except Exception as exc:                       # noqa: BLE001
+            out.append(Row("texan", WARN, f"could not be measured ({exc})"))
+
     cj = d / "copy.json"
     if not cj.exists():
         out.append(Row("absences", ABSENT, "no copy yet"))
