@@ -1,4 +1,4 @@
-# Fort Worth City Council voted unanimously to start a 90 day data center moratorium and adopted grid filing requirements for applicants
+# Fort Worth City Council unanimously began a 90 day data center moratorium and adopted grid filing requirements over one dissent
 
 The Fort Worth City Council took three data center votes on August 11th, 2026. Members unanimously approved the first steps toward a 90 day moratorium on accepting, processing and approving new data center applications inside the city. Two further items passed over a single dissent. One creates a Data Center and Infrastructure Commission. The other amends the city code so applicants must document their filings for connection to the Texas grid. The pause is not in force yet. Under the city timeline it takes effect on February 16th after public hearings and further votes, and zoning applications filed before then stay outside it.
 
@@ -11,7 +11,7 @@ The Fort Worth City Council took three data center votes on August 11th, 2026. M
 - Public access: Public meeting
 - Take part: https://www.keranews.org/news/2026-08-12/data-center-moratorium-takes-first-steps-after-fort-worth-city-councils-unanimous-vote
 
-- Last checked: 2026-08-14
+- Last checked: 2026-08-19
 
 ## Dates
 
