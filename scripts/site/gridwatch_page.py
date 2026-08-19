@@ -38,6 +38,8 @@ at n=1 and to get richer, never to pretend. The trend blocks appear when there i
 """
 from __future__ import annotations
 
+import datetime as _dt
+import html as _html
 import json
 import re
 import sys
@@ -47,6 +49,7 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import numeral_lint
+import beyond_panel                                              # noqa: E402
 import queue_panel                                                # noqa: E402
 
 READINGS = REPO_ROOT / "ledger" / "gridwatch" / "readings.jsonl"
@@ -478,10 +481,108 @@ def reserve_bar(latest: dict) -> str:
      had committed for that hour.">
   <div class="fill" style="width:{min(float(share), 100.0):.1f}%"></div>
 </div>
-<p class="barnote">At the peak hour, demand reached <strong class="num">{pct(share)}%</strong>
-of the generation capacity ERCOT had committed for that hour. This bar has one color at every
-value on purpose. It is a measurement rather than a judgement about whether the grid was
-comfortable. No number on this page can tell you that.</p>"""
+<p class="barnote">Demand at the peak hour reached <strong class="num">{pct(share)}%</strong>
+of the capacity ERCOT had committed for it. One color at every value on purpose. This is a
+measurement and not a judgement about whether the grid was comfortable.</p>"""
+
+
+def _esc(t) -> str:
+    """Fuel names come from ERCOT and are printed, so they are escaped like any other
+    external string. None of today's names need it, which is exactly when this stops
+    being done and starts being assumed."""
+    return _html.escape(str(t), quote=True)
+
+
+# ------------------------------------------------------------------ the instrument furniture
+def live_strip(f: dict, L: dict) -> str:
+    """THE THING THAT SAYS THIS IS AN INSTRUMENT AND NOT AN ARTICLE.
+
+    The page held a settled reading every day and read like an essay about one, because the
+    only sign of a series was a date in a subtitle. A reader could not tell whether this was
+    written once or is written every morning. So the state of the machine goes at the top, in
+    the machine's own voice: what was read, when, how many readings are held, and when the
+    next one lands.
+
+    The dot is decoration with a job. It carries no value and no verdict, it only says the
+    collector ran, and it stops moving for anyone who asked their system not to animate.
+    """
+    nxt = (_dt.date.fromisoformat(L["date"]) + _dt.timedelta(days=2)).isoformat()
+    return f"""<div class="livebar" data-prose="data">
+  <span class="livedot" aria-hidden="true"></span>
+  <span class="livenow"><strong>Settled</strong> {ordinal_date(L['date'])}</span>
+  <span class="livesep" aria-hidden="true"></span>
+  <span><strong class="num">{n0(f['days_verified'])}</strong>
+    {plural(f['days_verified'], 'day', 'days')} held</span>
+  <span class="livesep" aria-hidden="true"></span>
+  <span>next reading {ordinal_date(nxt)}</span>
+</div>"""
+
+
+def stat_strip(L: dict, lfpct: str | None, err_dir: str) -> str:
+    """Six figures as a row of tiles, where a seven row table used to be.
+
+    A TABLE IS THE LEAST DESIGNED WAY TO SHOW SIX NUMBERS. It gives every figure the same
+    weight, spends a column on prose that explains each one, and reads as a spreadsheet
+    pasted into a page. These are the day's vital signs and they should read like a panel.
+
+    The unit sits under the figure rather than beside it, so the numbers align on a single
+    optical line and a reader compares magnitudes without reading a word.
+    """
+    tiles = [
+        ("Peak", gw(L["peak_mw"]), "GW", hour(L["peak_hour_ending"])),
+        ("Trough", gw(L["min_mw"]), "GW", hour(L["min_hour_ending"])),
+        ("Mean", gw(L["mean_mw"]), "GW", "across the day"),
+    ]
+    if lfpct:
+        tiles.append(("Load factor", lfpct, "%", "mean over peak"))
+    # WHICH WAY IT MISSED IS HALF THE FIGURE. A miss with no direction is a magnitude
+    # a reader cannot use, and the page said so in a table column before this row existed.
+    tiles.append(("Forecast miss", n0(L["peak_forecast_error_mw"]), "MW", err_dir))
+    cells = "".join(
+        f'<div class="stile"><span class="sk">{k}</span>'
+        f'<span class="sv num">{v}<span class="su">{u}</span></span>'
+        f'<span class="sn">{note}</span></div>'
+        for k, v, u, note in tiles)
+    return f'<div class="stiles" data-prose="data">{cells}</div>'
+
+
+def fuel_bar(L: dict) -> str:
+    """What served the load, as one bar rather than eight table rows.
+
+    THE SHARES ARE THE STORY AND A TABLE HIDES THEM. Eight rows of MWh ask a reader to divide
+    in their head to learn that gas served about half the day. One stacked bar says it before
+    a word is read, and the figures stay on the page underneath rather than being replaced by
+    the picture.
+
+    STORAGE IS SIGNED AND IS NOT DRAWN. A negative value means batteries absorbed more than
+    they returned, which is not a share of anything served, and giving it a segment would be
+    drawing a quantity that did not exist. It keeps its figure in the list below.
+    """
+    fuel = L.get("fuel_energy_mwh") or {}
+    served = sum(v for v in fuel.values() if isinstance(v, (int, float)) and v > 0)
+    if not served:
+        return ""
+    rows = sorted(((k, v) for k, v in fuel.items() if isinstance(v, (int, float))),
+                  key=lambda kv: -kv[1])
+    segs, keys = [], []
+    for i, (k, v) in enumerate([r for r in rows if r[1] > 0]):
+        pcts = v / served * 100.0
+        segs.append(f'<span class="fseg f{i}" style="width:{pcts:.2f}%" '
+                    f'title="{_esc(k)}, {share(pcts)} percent"></span>')
+        keys.append(f'<li><span class="fkey f{i}" aria-hidden="true"></span>'
+                    f'<span class="fn">{_esc(k)}</span>'
+                    f'<span class="fp num">{share(pcts)}%</span>'
+                    f'<span class="fm num">{n0(v)}</span></li>')
+    for k, v in rows:
+        if v <= 0:
+            keys.append(f'<li class="fneg"><span class="fkey fnone" aria-hidden="true"></span>'
+                        f'<span class="fn">{_esc(k)}</span>'
+                        f'<span class="fp">charging</span>'
+                        f'<span class="fm num">{n0(v)}</span></li>')
+    return f"""<div class="fuelbar" role="img"
+     aria-label="What served the load, by share of energy generated.">{''.join(segs)}</div>
+<ul class="fuelkey" data-prose="data">{''.join(keys)}</ul>
+<p class="funit" data-prose="data">Share of generation, then megawatt hours.</p>"""
 
 
 # --------------------------------------------------------------------------- the page body
@@ -530,7 +631,7 @@ def body(records: list[dict], today: str, queue_data: dict | None = None) -> str
     acc_block = ""
     if acc:
         acc_block = f"""
-<h2>Forecast accuracy</h2>
+<h4>Forecast accuracy</h4>
 <div class="prose">
   <p>Across <strong class="num">{n0(acc['days'])}</strong>
   {plural(acc['days'], 'day', 'days')} its day ahead peak forecast missed by
@@ -543,7 +644,7 @@ def body(records: list[dict], today: str, queue_data: dict | None = None) -> str
     t = f["trend"]
     if t and t.get("trough_change_mw") is not None:
         trend_block = f"""
-<h2>The fingerprint</h2>
+<h4>The fingerprint</h4>
 <div class="prose">
   <p>Over the <strong class="num">{n0(t['window_days'])}</strong> days held, the overnight
   trough moved by <strong class="num">{n0(t['trough_change_mw'])} MW</strong> and the daily
@@ -554,7 +655,7 @@ def body(records: list[dict], today: str, queue_data: dict | None = None) -> str
 </div>"""
     elif f["days_verified"] < 14:
         trend_block = f"""
-<h2>The fingerprint</h2>
+<h4>The fingerprint</h4>
 <div class="prose">
   <div class="gap"><strong>Not yet.</strong> Comparing the trough against the peak needs at
   least <strong class="num">14</strong> settled days, so that a weekday and weekend pattern has
@@ -580,60 +681,38 @@ def body(records: list[dict], today: str, queue_data: dict | None = None) -> str
 <h1>Texas Grid Watch</h1>
 <div class="prose">
   <p class="lede">What large load has asked the Texas grid for, and what it is actually
-  drawing. Measured, never predicted.</p>
+  drawing. Most of that queue is data centers, and this page names the ones the state
+  has registered. Measured, never predicted.</p>
 </div>
 
 {queue}
 
-<h2>Yesterday on the grid</h2>
-<p class="qnote">{d}. What the whole system actually did, settled overnight.</p>
-{load_shape_svg(L)}
+<section class="daily" data-reveal>
+  <h2>Yesterday on the grid</h2>
+  {live_strip(f, L)}
+  {load_shape_svg(L)}
+  {stat_strip(L, lfpct, err_dir)}
 
-<table class="figures">
-<thead><tr><th>Figure</th><th class="n">Value</th><th>What it is</th></tr></thead>
-<tbody>
-<tr><td>Peak demand</td><td class="n num">{gw(L['peak_mw'])} GW</td>
-    <td>measured, {hour(L['peak_hour_ending'])}</td></tr>
-<tr><td>Overnight trough</td><td class="n num">{gw(L['min_mw'])} GW</td>
-    <td>measured, {hour(L['min_hour_ending'])}</td></tr>
-<tr><td>Mean across the day</td><td class="n num">{gw(L['mean_mw'])} GW</td>
-    <td>computed from the hourly series</td></tr>
-<tr><td>Load factor</td><td class="n num">{lfpct}%</td>
-    <td>computed, mean over peak</td></tr>
-<tr><td>Energy served</td><td class="n num">{n0(L['energy_mwh'])} MWh</td>
-    <td>computed from the hourly series</td></tr>
-<tr><td>ERCOT day ahead peak forecast</td><td class="n num">{gw(L['forecast_peak_mw'])} GW</td>
-    <td>modeled by ERCOT, published the day before</td></tr>
-<tr><td>Forecast miss at the peak</td>
-    <td class="n num">{n0(L['peak_forecast_error_mw'])} MW</td>
-    <td>computed, {err_dir}</td></tr>
-</tbody>
-</table>
+  <h4>Demand against committed capacity</h4>
+  {reserve_bar(L)}
 
-<h2>Demand against committed capacity</h2>
-{reserve_bar(L)}
+  <h3>What served it</h3>
+  {fuel_bar(L)}
+  {recon_block}
 
-<h2>Load factor</h2>
-<div class="prose">
-  <p>Mean demand over peak. On {d} it was <strong class="num">{lfpct}%</strong>. A data center
-  draws about as much at four in the morning as at five in the afternoon. Constant load lifts
-  the overnight floor faster than the afternoon ceiling. Weather lifts both.</p>
-</div>
-{trend_block}
-{acc_block}
+  <h3>The shape is the story</h3>
+  <div class="prose">
+    <p>A data center draws about as much at four in the morning as at five in the afternoon.
+    Constant load lifts the overnight floor faster than the afternoon ceiling. Weather lifts
+    both. The floor is where new demand shows first.</p>
+  </div>
+  {trend_block}
+  {acc_block}
+</section>
 
-<h2>What served the load</h2>
-<table class="figures">
-<thead><tr><th>Fuel</th><th class="n">MWh</th><th class="n">Share</th></tr></thead>
-<tbody>{fuel_rows}</tbody>
-</table>
-<div class="prose">
-  <p>Integrated from five minute telemetry. Storage is signed. It reads negative when
-  batteries absorb more than they return.{recon_block}</p>
-</div>
+{beyond_panel.panels(beyond_panel.load(), today)}
 
-<h2>What is not public</h2>
-<div class="prose">
+<div class="prose gridnote">
   <div class="gap">
     <p><strong>Nobody outside ERCOT can say what any single data center drew.</strong> Per site
     metering is confidential. This page publishes the system total and never an attribution.</p>
@@ -660,6 +739,11 @@ def authorised(f: dict) -> set[str]:
     add(n0(f["days_held"]), n0(f["days_verified"]), n0(f["days_unverified"]), "14")
     L = f.get("latest")
     if L:
+        # The next reading's date is computed the same way live_strip computes it, from the
+        # newest settled day. A figure the page prints has to be authorised where it is
+        # derived, and this one is derived twice or it is not authorised at all.
+        add(ordinal_date((_dt.date.fromisoformat(L["date"])
+                          + _dt.timedelta(days=2)).isoformat()))
         add(ordinal_date(L["date"]), gw(L["peak_mw"]), gw(L["min_mw"]), gw(L["mean_mw"]),
             gw(L["forecast_peak_mw"]), n0(L["energy_mwh"]), n0(L["peak_forecast_error_mw"]),
             hour(L["peak_hour_ending"]), hour(L["min_hour_ending"]),
@@ -691,7 +775,18 @@ def authorised(f: dict) -> set[str]:
     # build the page's scoped set. A union that lived only in lint() would pass the page's own
     # check and fail the build's, which is precisely the drift that puts a renderer and its
     # allow-list in one module in the first place.
-    return acc.set | queue_panel.authorised(f.get("queue") or {})
+    # Each panel authorises its own figures where they are computed, and the union is taken
+    # here because site_build reads this function through `_watch_numerals` to build the
+    # page's scoped set. A union that lived only in lint() would pass the page's own check
+    # and fail the build's, which is the drift this project has now paid for twice.
+    bd = beyond_panel.load()
+    beyond = beyond_panel.authorised(beyond_panel.figures(bd))
+    for x in beyond_panel.freshness(bd, _dt.date.today().isoformat()):
+        if x.get("read"):
+            beyond.add(beyond_panel.ordinal_date(x["read"]))
+        if x.get("age_days") is not None:
+            beyond |= {beyond_panel.n0(x["age_days"]), beyond_panel.n0(x.get("limit"))}
+    return acc.set | queue_panel.authorised(f.get("queue") or {}) | beyond
 
 
 def lint(html_body: str, f: dict) -> list[str]:
@@ -824,8 +919,18 @@ def self_test() -> int:
 
     # HOUSE STYLE AND HONEST ROUNDING, both checked on the real rendered page.
     check("no page prints day(s), which is a machine talking", "day(s)" not in b + bm)
+    # THE VISIBLE TEXT, NOT THE BYTES. The rule is that a READER never sees an ISO date; a
+    # `datetime` attribute is machine metadata and is the correct place for one, which is the
+    # whole point of a <time> element and is what the rest of the site already relies on. This
+    # used to test the raw bytes, so the roster table publishing 149 dates as
+    # <time datetime="2026-08-10">August 10th, 2026</time> failed a rule it actually obeys.
+    # It still goes red on an ISO date printed as copy, which is the thing being forbidden.
+    visible = re.sub(r'\sdatetime="[^"]*"', "", b)
     check("the date reads in house style, not ISO",
-          "August 10th, 2026" in b and "2026-08-10" not in b)
+          "August 10th, 2026" in visible and "2026-08-10" not in visible)
+    check("...and the check still catches an ISO date printed as copy",
+          "2026-08-10" in re.sub(r'\sdatetime="[^"]*"', "",
+                                 visible.replace("August 10th, 2026", "2026-08-10")))
     check("a share that is not zero is never published as zero",
           share(0.0437) == "0.04" and share(0.0004) == "0.0004" and share(0.0) == "0.00",
           f"{share(0.0437)} {share(0.0004)} {share(0.0)}")

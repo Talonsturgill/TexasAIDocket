@@ -134,13 +134,17 @@
           "fetched": "2026-08-16"
         }
       ],
-      "last_verified": "2026-08-16",
+      "last_verified": "2026-08-19",
       "confidence": "high",
       "notes_for_editor": "This is the rulemaking most directly downstream of SB 6 (89R). The docket record itself does not recite SB 6 in the case style, so the SB 6 linkage is asserted separately in the SB 6 item and should not be presented here as something the PUCT record states. The underlying proposal PDF is at https://interchange.puc.texas.gov/Documents/58000_9_1664204.PDF and was NOT parsed: no PDF text extractor was available in this environment. A follow up should read it and pull the four coincident peak allocation language directly. Party names are reproduced exactly as the Interchange spells them, including its truncation of long filing descriptions.",
       "history": [
         {
           "date": "2026-08-16",
           "note": "The filing index moved from 66 to 67 with a late comment from Antora Energy. The proposal for publication also creates a new Section 25.252, which the earlier summary did not carry. Checked against the PUCT Interchange filing index for control number 58000."
+        },
+        {
+          "date": "2026-08-19",
+          "note": "Checked and unchanged. The filing index still stands at 67, and the most recent entry is still the August 11th comment from Antora Energy."
         }
       ]
     },
@@ -275,9 +279,15 @@
           "fetched": "2026-08-16"
         }
       ],
-      "last_verified": "2026-08-16",
+      "last_verified": "2026-08-19",
       "confidence": "high",
-      "notes_for_editor": "This is the single most actionable item in the seed set: a live comment window a reader can still use. The proposed rule text is at https://interchange.puc.texas.gov/Documents/58482_30_1669532.PDF and was NOT parsed, for the same missing PDF extractor reason. A follow up should confirm what Section 25.521 actually requires of large loads before the docket summarises its substance beyond the case style."
+      "notes_for_editor": "This is the single most actionable item in the seed set: a live comment window a reader can still use. The proposed rule text is at https://interchange.puc.texas.gov/Documents/58482_30_1669532.PDF and was NOT parsed, for the same missing PDF extractor reason. A follow up should confirm what Section 25.521 actually requires of large loads before the docket summarises its substance beyond the case style.",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "The docket moved. The filing index reached 34 with a comment from Modern Tex Consulting on August 18th, on performance reporting and evaluation under the proposed rule. The September 4th public comment deadline is still published on the commission's calendar."
+        }
+      ]
     },
     {
       "id": "tx-2026-0003",
@@ -327,7 +337,7 @@
         {
           "date": "2026-08-21",
           "kind": "hearing",
-          "note": "Open meeting on the PUCT calendar feed. The entry no longer names this docket and gives an off site address"
+          "note": "Open meeting on the PUCT calendar feed, which no longer names Docket 59315"
         }
       ],
       "public_access": {
@@ -392,13 +402,17 @@
           "fetched": "2026-08-18"
         }
       ],
-      "last_verified": "2026-08-18",
+      "last_verified": "2026-08-19",
       "confidence": "high",
       "notes_for_editor": "The 765 kV designation and the 22 county list are taken verbatim from the commission's own case style, not computed. Note for numeral_lint: 765 kV and the docket number are identifiers inside a quoted official title, not measurements this project derived. The Interchange web view rendered only the first 2000 filing rows while reporting 5782 filings, so the item count is quoted from the index line rather than counted from the table. This docket is included on the AI beat because 765 kV backbone capacity is the physical answer to large load growth, but the record fetched does NOT state that any particular data center drives this line, and the docket must not be described as a data center project without that link being established.",
       "history": [
         {
           "date": "2026-08-18",
-          "note": "The filing index moved from 5782 to 5790. The calendar entry for the August 21st open meeting no longer names this docket. That entry now gives the AT&T Hotel and Conference Center rather than Commissioners Hearing Room 7-100."
+          "note": "The filing index moved from 5782 to 5790. The calendar entry for the August 21st open meeting no longer names Docket 59315. That entry now gives the AT&T Hotel and Conference Center rather than Commissioners Hearing Room 7-100."
+        },
+        {
+          "date": "2026-08-19",
+          "note": "Checked and unchanged. The filing index stands at 2,000 and the most recent entries are still the intervention requests and protestor comments of March 17th."
         }
       ]
     },
@@ -503,7 +517,13 @@
       ],
       "last_verified": "2026-08-18",
       "confidence": "high",
-      "notes_for_editor": "Sourced to the enacted statute rather than to the bill history, which is both the better primary source and an allowed one. Dollar figures appear only inside verbatim statutory quotes. Note the chapter title is Artificial Intelligence Protection, not the act's popular name."
+      "notes_for_editor": "Sourced to the enacted statute rather than to the bill history, which is both the better primary source and an allowed one. Dollar figures appear only inside verbatim statutory quotes. Note the chapter title is Artificial Intelligence Protection, not the act's popular name.",
+      "history": [
+        {
+          "date": "2026-08-18",
+          "note": "Checked and unchanged. Chapter 552 stands in force with enforcement resting solely with the Attorney General."
+        }
+      ]
     },
     {
       "id": "tx-2026-0007",
@@ -565,7 +585,13 @@
       ],
       "last_verified": "2026-08-18",
       "confidence": "high",
-      "notes_for_editor": "This item exists to give readers the legal frame for the August 3rd audit directive. It states what the statute says and stops there. It does NOT assert that the governor's directive was improper: the section binds the commission's directives to ERCOT, and a governor's letter to both agencies is a different instrument. Any characterisation beyond the quoted text needs a lawyer and a named source."
+      "notes_for_editor": "This item exists to give readers the legal frame for the August 3rd audit directive. It states what the statute says and stops there. It does NOT assert that the governor's directive was improper: the section binds the commission's directives to ERCOT, and a governor's letter to both agencies is a different instrument. Any characterisation beyond the quoted text needs a lawyer and a named source.",
+      "history": [
+        {
+          "date": "2026-08-18",
+          "note": "Checked and unchanged. The statute still bars a verbal directive and still limits an official action to a contested case, a rulemaking or a written order."
+        }
+      ]
     },
     {
       "id": "tx-2026-0008",
@@ -643,9 +669,15 @@
           "fetched": "2026-08-16"
         }
       ],
-      "last_verified": "2026-08-16",
+      "last_verified": "2026-08-19",
       "confidence": "high",
-      "notes_for_editor": "Found by reading the code, not reported anywhere we saw, and it is the strongest original finding in this seed set. The conflict is real and is visible in the state's own published text. One caution for the write up: duplicate subchapter designations are a routine artefact of a busy session and are usually cleaned up in the next non substantive revision bill, so the honest framing is that the code currently carries a conflict, not that anyone did something wrong. Worth checking whether the 89th Legislature's later called sessions already fixed it."
+      "notes_for_editor": "Found by reading the code, not reported anywhere we saw, and it is the strongest original finding in this seed set. The conflict is real and is visible in the state's own published text. One caution for the write up: duplicate subchapter designations are a routine artefact of a busy session and are usually cleaned up in the next non substantive revision bill, so the honest framing is that the code currently carries a conflict, not that anyone did something wrong. Worth checking whether the 89th Legislature's later called sessions already fixed it.",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Which Subchapter S governs remains unconfirmed. The published chapter text available this run runs only as far as Section 2054.0702. That stops short of the three Subchapter S enactments the item rests on."
+        }
+      ]
     },
     {
       "id": "tx-2026-0009",
@@ -730,7 +762,13 @@
       ],
       "last_verified": "2026-08-18",
       "confidence": "high",
-      "notes_for_editor": "CORRECTION TO A COMMON BELIEF, please keep it in the published item. The regulatory sandbox is widely attributed to TRAIGA. It is not in TRAIGA. It is Section 2054.706, added by SB 1964, and it took effect September 1st, 2025, four months before TRAIGA did. Whether DIR has actually stood the program up was NOT verified: no DIR page was fetched. That is the obvious follow up and the honest hook is the November 30th, 2026 report."
+      "notes_for_editor": "CORRECTION TO A COMMON BELIEF, please keep it in the published item. The regulatory sandbox is widely attributed to TRAIGA. It is not in TRAIGA. It is Section 2054.706, added by SB 1964, and it took effect September 1st, 2025, four months before TRAIGA did. Whether DIR has actually stood the program up was NOT verified: no DIR page was fetched. That is the obvious follow up and the honest hook is the November 30th, 2026 report.",
+      "history": [
+        {
+          "date": "2026-08-18",
+          "note": "Checked and unchanged. The sandbox program stands required of the Department of Information Resources and the report to the Legislature is still due November 30th, 2026."
+        }
+      ]
     },
     {
       "id": "tx-2026-0012",
@@ -774,7 +812,13 @@
       ],
       "last_verified": "2026-08-18",
       "confidence": "high",
-      "notes_for_editor": "Kept as its own item because it is the provision most likely to collide with the local data center fights elsewhere in this docket. IMPORTANT DISTINCTION a fact checker must preserve: this preempts local rules about the USE OF AI SYSTEMS. A city zoning ordinance about data center buildings is land use regulation, not AI use regulation, so San Marcos's ban is NOT obviously preempted by this section. Do not let the two be conflated in the write up."
+      "notes_for_editor": "Kept as its own item because it is the provision most likely to collide with the local data center fights elsewhere in this docket. IMPORTANT DISTINCTION a fact checker must preserve: this preempts local rules about the USE OF AI SYSTEMS. A city zoning ordinance about data center buildings is land use regulation, not AI use regulation, so San Marcos's ban is NOT obviously preempted by this section. Do not let the two be conflated in the write up.",
+      "history": [
+        {
+          "date": "2026-08-18",
+          "note": "Checked and unchanged. Chapter 552 still supersedes any local ordinance or rule about the use of AI systems."
+        }
+      ]
     },
     {
       "id": "tx-2026-0013",
@@ -821,7 +865,13 @@
       ],
       "last_verified": "2026-08-18",
       "confidence": "high",
-      "notes_for_editor": "Verified: prior research was right. The project type strings are reproduced verbatim and in the order the page prints them, including the page's own mid word truncations, so a checker can diff them against the live table. The row count is deliberately not stated in prose: it should be computed by the build from the captured rows rather than typed. CAVEAT ON SCOPE, which the item must carry: JETI is the school district value limitation program only. A data center can still receive city or county tax abatements under Local Government Code Chapter 312, Chapter 380 or 381 agreements, and freeport exemptions, none of which appear on this page. The honest claim is that data centers are absent from THIS list, not that they get no Texas tax breaks."
+      "notes_for_editor": "Verified: prior research was right. The project type strings are reproduced verbatim and in the order the page prints them, including the page's own mid word truncations, so a checker can diff them against the live table. The row count is deliberately not stated in prose: it should be computed by the build from the captured rows rather than typed. CAVEAT ON SCOPE, which the item must carry: JETI is the school district value limitation program only. A data center can still receive city or county tax abatements under Local Government Code Chapter 312, Chapter 380 or 381 agreements, and freeport exemptions, none of which appear on this page. The honest claim is that data centers are absent from THIS list, not that they get no Texas tax breaks.",
+      "history": [
+        {
+          "date": "2026-08-18",
+          "note": "Checked and unchanged. The Comptroller's current JETI agreements list still names no data center project."
+        }
+      ]
     },
     {
       "id": "tx-2026-0015",
@@ -844,6 +894,11 @@
           "date": "2026-07-16",
           "kind": "comment_opens",
           "note": "Proposed rule published in the Federal Register"
+        },
+        {
+          "date": "2026-07-27",
+          "kind": "filed",
+          "note": "Correction to the proposed rule published in the Federal Register"
         },
         {
           "date": "2026-08-31",
@@ -877,9 +932,15 @@
           "fetched": "2026-08-16"
         }
       ],
-      "last_verified": "2026-08-16",
+      "last_verified": "2026-08-19",
       "confidence": "high",
-      "notes_for_editor": "Included because it is actionable and time limited, which is the highest value class of item for readers. The Texas relevance is real but INDIRECT and the item should say so plainly: this is a national rulemaking, not a Texas proceeding. The regulations_dot_gov_info comment_url came back null from the API, so the Federal Register document page is given as the participation URL instead of a direct regulations.gov deep link."
+      "notes_for_editor": "Included because it is actionable and time limited, which is the highest value class of item for readers. The Texas relevance is real but INDIRECT and the item should say so plainly: this is a national rulemaking, not a Texas proceeding. The regulations_dot_gov_info comment_url came back null from the API, so the Federal Register document page is given as the participation URL instead of a direct regulations.gov deep link.",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "The comment window is still open and still closes August 31st. A correction to the proposed rule was published on July 27th."
+        }
+      ]
     },
     {
       "id": "tx-2026-0016",
@@ -935,9 +996,15 @@
           "fetched": "2026-08-16"
         }
       ],
-      "last_verified": "2026-08-16",
+      "last_verified": "2026-08-19",
       "confidence": "high",
-      "notes_for_editor": "This was the ONLY document with artificial intelligence in its title that had an open comment period on the query date. Worth stating plainly in any roundup: the federal AI comment docket is thin right now, and that is itself informative. Texas relevance is national, not specific."
+      "notes_for_editor": "This was the ONLY document with artificial intelligence in its title that had an open comment period on the query date. Worth stating plainly in any roundup: the federal AI comment docket is thin right now, and that is itself informative. Texas relevance is national, not specific.",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Checked and unchanged. The comment window still closes September 8th."
+        }
+      ]
     },
     {
       "id": "tx-2026-0024",
@@ -1007,13 +1074,17 @@
           "fetched": "2026-08-16"
         }
       ],
-      "last_verified": "2026-08-16",
+      "last_verified": "2026-08-19",
       "confidence": "high",
       "notes_for_editor": "This is an infrastructure item rather than a decision, and the docket may prefer to use the feed as a collector and not publish it as an item. Keeping it has one strong argument: it tells a reader where the calendar actually lives, which is the single most useful thing this docket can hand someone who wants to participate. Its dates are the spine of the recurring collector.",
       "history": [
         {
           "date": "2026-08-16",
           "note": "The August 21st entry no longer names Docket 59315 and no longer lists Commissioners Hearing Room 7-100. It now gives the AT&T Hotel and Conference Center. An open meeting on August 20th has been added. Checked against the PUCT calendar feed."
+        },
+        {
+          "date": "2026-08-19",
+          "note": "Checked and unchanged. The feed still publishes 32 entries. The August 20th and August 21st open meetings both still stand, and the September 4th public comment deadline for Project 58482 is still listed."
         }
       ]
     },
@@ -1066,9 +1137,15 @@
           "fetched": "2026-08-16"
         }
       ],
-      "last_verified": "2026-08-16",
+      "last_verified": "2026-08-19",
       "confidence": "high",
-      "notes_for_editor": "Statutory duty verified from the code. Whether DIR has published the form, and whether any agency is posting the notice, was NOT checked. This is the most checkable AI transparency duty in Texas law: a reader can look for the notice on any state agency site that uses a chatbot. That makes it a good candidate for a recurring audit rather than a one time item."
+      "notes_for_editor": "Statutory duty verified from the code. Whether DIR has published the form, and whether any agency is posting the notice, was NOT checked. This is the most checkable AI transparency duty in Texas law: a reader can look for the notice on any state agency site that uses a chatbot. That makes it a good candidate for a recurring audit rather than a one time item.",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "The posting duty is unconfirmed this run. The published chapter text available runs only as far as Section 2054.0702, and the notice provision sits beyond that point."
+        }
+      ]
     },
     {
       "title": "Temple Planning and Zoning Commission takes up a Unified Development Code amendment that would require a Conditional Use Permit for every future data center",
@@ -1148,7 +1225,13 @@
         }
       ],
       "id": "tx-2026-0026",
-      "last_verified": "2026-08-16"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Whether the commission has acted is unconfirmed. The city's data center page carries no dated action by the Planning and Zoning Commission and its most recent item is a council briefing from May 7th."
+        }
+      ]
     },
     {
       "title": "City of Taylor noticed an amended tax abatement agreement with Compal Technology for a $200 Million electronics project at the Taylor Port Building",
@@ -1219,7 +1302,13 @@
         }
       ],
       "id": "tx-2026-0027",
-      "last_verified": "2026-08-18"
+      "last_verified": "2026-08-18",
+      "history": [
+        {
+          "date": "2026-08-18",
+          "note": "Checked and unchanged. The amended abatement notice for Compal still posts on the City of Taylor newsflash."
+        }
+      ]
     },
     {
       "title": "Hays County Commissioners Court adopted a 180-day emergency water review period for high water use developments and created a review board",
@@ -1281,7 +1370,13 @@
         }
       ],
       "id": "tx-2026-0028",
-      "last_verified": "2026-08-14"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Whether the emergency order has been extended or allowed to lapse is unconfirmed. The court's minutes archive carries nothing dated July or August."
+        }
+      ]
     },
     {
       "title": "Williamson County Commissioners Court granted Compal USA Technology a Chapter 312 abatement for a Georgetown server service center",
@@ -1394,7 +1489,13 @@
         }
       ],
       "id": "tx-2026-0029",
-      "last_verified": "2026-08-14"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Checked and unchanged. The county's announcement of the Chapter 312 abatement agreement for the Georgetown server service center still stands as published on April 15th. Construction is still due to finish by February 18th, 2027."
+        }
+      ]
     },
     {
       "title": "Austin City Council adopted Ordinance 20260423-029 creating City Code Chapter 2-19 on surveillance technology",
@@ -1461,7 +1562,13 @@
         }
       ],
       "id": "tx-2026-0030",
-      "last_verified": "2026-08-14"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Checked and unchanged. The ordinance still adds Chapter 2-19 to Title 2 of the city code. It still governs the adoption and acquisition and deployment and use and review of surveillance technology by any city department."
+        }
+      ]
     },
     {
       "title": "UT System Board of Regents approved a School of Computing at UT Austin uniting computer science, information, statistics and data sciences",
@@ -1537,7 +1644,13 @@
         }
       ],
       "id": "tx-2026-0031",
-      "last_verified": "2026-08-14"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Whether the regents have revisited the approval is unconfirmed. The board met on August 12th and 13th and the item texts for that meeting are not published on the board's own meetings page."
+        }
+      ]
     },
     {
       "title": "Killeen Planning and Zoning Commission voted against a conditional use permit for a $30 million ONMINE data center",
@@ -1608,7 +1721,13 @@
         }
       ],
       "id": "tx-2026-0032",
-      "last_verified": "2026-08-18"
+      "last_verified": "2026-08-18",
+      "history": [
+        {
+          "date": "2026-08-18",
+          "note": "Checked and unchanged. Killeen's council has taken the data center subject up as a future agenda item."
+        }
+      ]
     },
     {
       "title": "El Paso City Council adopts a Data Center Policy Framework requiring a Special Permit for hyperscale projects",
@@ -1675,7 +1794,13 @@
         }
       ],
       "id": "tx-2026-0033",
-      "last_verified": "2026-08-14"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Checked and unchanged. The city's own action record still carries the July 20th motion approving the resolution and still marks it passed."
+        }
+      ]
     },
     {
       "title": "El Paso City Council to vote August 18th on a letter asking Governor Abbott to clarify his data center directives",
@@ -1733,7 +1858,13 @@
         }
       ],
       "id": "tx-2026-0034",
-      "last_verified": "2026-08-18"
+      "last_verified": "2026-08-18",
+      "history": [
+        {
+          "date": "2026-08-18",
+          "note": "Checked and unchanged. The matter reads Agenda Ready for the August 18th agenda with no passed date recorded."
+        }
+      ]
     },
     {
       "title": "El Paso City Council amends its state legislative agenda to seek protection for residential ratepayers from data center utility costs",
@@ -1791,7 +1922,13 @@
         }
       ],
       "id": "tx-2026-0035",
-      "last_verified": "2026-08-14"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Checked and unchanged. The city's own action record still carries the June 23rd motion by Representative Fierro, seconded by Representative Chavez, and still marks it passed."
+        }
+      ]
     },
     {
       "title": "Guadalupe County Commissioners Court unanimously approves ending the county's Flock Safety license plate reader contract",
@@ -1862,7 +1999,13 @@
         }
       ],
       "id": "tx-2026-0036",
-      "last_verified": "2026-08-14"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Whether the court has revisited the agreement is unconfirmed. The county publishes no meeting dates or item text on its agendas page and carries nothing dated July or August."
+        }
+      ]
     },
     {
       "title": "Laredo City Council rejects a data center moratorium and directs staff to draft permanent standards for heavy water and utility users",
@@ -1947,7 +2090,13 @@
         }
       ],
       "id": "tx-2026-0037",
-      "last_verified": "2026-08-18"
+      "last_verified": "2026-08-18",
+      "history": [
+        {
+          "date": "2026-08-18",
+          "note": "Checked and unchanged."
+        }
+      ]
     },
     {
       "title": "Harlingen Waterworks System board approves an effluent water supply agreement with RGV Property LLC for a proposed data center",
@@ -2009,7 +2158,13 @@
         }
       ],
       "id": "tx-2026-0038",
-      "last_verified": "2026-08-14"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Whether the agreement has changed is unconfirmed. The board publishes the minutes of that meeting only as a scanned document with no readable text."
+        }
+      ]
     },
     {
       "title": "National Science Foundation names UT El Paso in the first round of CyberAICorps Scholarship for Service awards",
@@ -2080,7 +2235,13 @@
         }
       ],
       "id": "tx-2026-0039",
-      "last_verified": "2026-08-14"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "The federal designation is unconfirmed against the university's own program page. That page names the university a National Center of Academic Excellence in Cyber Defense and does not attribute the scholarship program to the National Science Foundation."
+        }
+      ]
     },
     {
       "title": "UT System Board of Regents approves $25 million to finish San Pedro II for UTSA's College of AI, Cyber and Computing",
@@ -2160,7 +2321,13 @@
         }
       ],
       "id": "tx-2026-0040",
-      "last_verified": "2026-08-14"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Whether the appropriation has changed is unconfirmed. The board's page for the May 20th meeting publishes no item text."
+        }
+      ]
     },
     {
       "title": "Wichita Falls Planning and Zoning Commission approves a conditional use permit for a DataNovaX data center on Airport Drive",
@@ -2240,7 +2407,13 @@
         }
       ],
       "id": "tx-2026-0041",
-      "last_verified": "2026-08-14"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Whether the permit has been revisited is unconfirmed. The city's agenda archive lists no meeting dates or item text and carries nothing dated July or August."
+        }
+      ]
     },
     {
       "title": "Young County Commissioners Court receives the Project Saltworks tax abatement application and ratifies a developer funded escrow for consultants",
@@ -2316,7 +2489,13 @@
         }
       ],
       "id": "tx-2026-0042",
-      "last_verified": "2026-08-16"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Checked and unchanged. The county still received the application on August 10th with no vote taken on it, and the 5 to 0 escrow ratification still stands. Whether the court began considering the abatement when it reconvened on August 17th is unconfirmed."
+        }
+      ]
     },
     {
       "title": "Archer County Commissioners Court unanimously denies a tax abatement for a Dynamo Ventures data center",
@@ -2396,7 +2575,13 @@
         }
       ],
       "id": "tx-2026-0043",
-      "last_verified": "2026-08-14"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Checked and unchanged. The court's unanimous denial of the abatement on June 22nd still stands. The county judge's stated reason remains a wish to see what restrictions the Legislature sets first."
+        }
+      ]
     },
     {
       "title": "Angelina County Commissioners Court adopts Resolution 010-26 asking the Legislature for authority over data centers",
@@ -2476,7 +2661,13 @@
         }
       ],
       "id": "tx-2026-0044",
-      "last_verified": "2026-08-14"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Whether the resolution has been revisited is unconfirmed. The court has met on July 14th, July 28th and August 11th, and the item texts for those meetings are not published on the court's own page."
+        }
+      ]
     },
     {
       "title": "Lubbock County Commissioners Court passes a non binding disclosure resolution on large scale industrial development, four to one",
@@ -2556,7 +2747,13 @@
         }
       ],
       "id": "tx-2026-0045",
-      "last_verified": "2026-08-14"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Checked and unchanged. The resolution passed 4 to 1 on August 10th and still states that nothing in it creates or expands county authority."
+        }
+      ]
     },
     {
       "title": "Carson County Commissioners Court approves a phased tax abatement agreement with Fermi America for the Project Matador HyperGrid campus",
@@ -2645,7 +2842,13 @@
         }
       ],
       "id": "tx-2026-0046",
-      "last_verified": "2026-08-14"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Checked and unchanged. The abatement agreement of October 27th still covers 15 phases with a possible extension to 25 years, at 3 dollars a square foot on the data center side."
+        }
+      ]
     },
     {
       "title": "Amarillo City Council authorizes a twenty year water supply agreement selling city water to Fermi America's Project Matador",
@@ -2750,7 +2953,13 @@
         }
       ],
       "id": "tx-2026-0047",
-      "last_verified": "2026-08-14"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Checked and unchanged. The city's project page still gives the final water supply agreement dated October 30th, 2025 as its most recent document."
+        }
+      ]
     },
     {
       "title": "League City City Council ordered a November 3rd special election on whether police may keep using automated license plate reader cameras",
@@ -2813,7 +3022,13 @@
         }
       ],
       "id": "tx-2026-0048",
-      "last_verified": "2026-08-14"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Checked and unchanged. The ordinance ordering the November 3rd special election is on the city's record with an August 11th agenda date. It asks whether the police department may keep using automated license plate reader cameras at fixed locations. The city published the ballot wording on August 12th."
+        }
+      ]
     },
     {
       "title": "Harris County Commissioners Court renewed its Flock Group license plate reader and sound detection contract, then amended it to run county-wide",
@@ -2899,7 +3114,13 @@
         }
       ],
       "id": "tx-2026-0049",
-      "last_verified": "2026-08-14"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Whether the license has been revisited is unconfirmed. The court has met on August 17th and has meetings set for August 20th and August 25th. The item texts for those meetings are not published on the court's own calendar."
+        }
+      ]
     },
     {
       "title": "Corpus Christi City Council directed staff to write a zoning amendment prohibiting data centers in every zoning district and to prepare a moratorium process",
@@ -2966,7 +3187,13 @@
         }
       ],
       "id": "tx-2026-0050",
-      "last_verified": "2026-08-14"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Whether staff has returned with the zoning ordinance is unconfirmed. The city's agendas page publishes no item text and carries nothing dated August."
+        }
+      ]
     },
     {
       "title": "Brazoria County Commissioners Court voted 5 to 0 to deny the reinvestment zone that four data center and power plant abatement applications depended on",
@@ -3038,7 +3265,13 @@
         }
       ],
       "id": "tx-2026-0051",
-      "last_verified": "2026-08-14"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Checked and unchanged. Nothing about data centers, abatements or reinvestment zones has come before the court since July 15th, so the denial stands."
+        }
+      ]
     },
     {
       "title": "Brazoria County Commissioners Court adopted a resolution stating conditions it wants on data center development",
@@ -3105,7 +3338,13 @@
         }
       ],
       "id": "tx-2026-0052",
-      "last_verified": "2026-08-14"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Checked and unchanged. Nothing about data centers, abatements or reinvestment zones has come before the court since July 15th, so the resolution stands. The court did adopt two separate license plate reader agreements on July 31st, with the Department of Public Safety and with the Houston High Intensity Drug Trafficking Area."
+        }
+      ]
     },
     {
       "title": "Houston ISD carried an artificial intelligence board policy to a second reading",
@@ -3177,7 +3416,13 @@
         }
       ],
       "id": "tx-2026-0053",
-      "last_verified": "2026-08-18"
+      "last_verified": "2026-08-18",
+      "history": [
+        {
+          "date": "2026-08-18",
+          "note": "Checked and unchanged. Policy CQD(LOCAL) sits on the August 13th agenda with no recorded action and no passed flag."
+        }
+      ]
     },
     {
       "title": "Houston-Galveston Area Council put AI consulting services on its HGACBuy purchasing catalog under contract AI05-26",
@@ -3239,7 +3484,13 @@
         }
       ],
       "id": "tx-2026-0054",
-      "last_verified": "2026-08-14"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Checked and unchanged. The cooperative contract for artificial intelligence consulting runs from May 1st, 2026 to April 30th, 2030 and remains active, with 27 qualified contractors listed against it."
+        }
+      ]
     },
     {
       "title": "Conroe City Council fell short of the votes needed to put its Flock camera contract on the November ballot",
@@ -3320,7 +3571,13 @@
         }
       ],
       "id": "tx-2026-0055",
-      "last_verified": "2026-08-16"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Whether the council has taken the question up again is unconfirmed. The city's agendas page publishes no meeting dates or item text for August."
+        }
+      ]
     },
     {
       "title": "Texas Water Development Board denied a petition to give data centers their own water demand category and adopted the 2027 State Water Plan the same day",
@@ -3394,7 +3651,13 @@
         }
       ],
       "id": "tx-2026-0056",
-      "last_verified": "2026-08-14"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "The petition is confirmed to have reached the board. The July 23rd agenda carries an item to consider acting on a petition for rulemaking on a dedicated industrial water use category for data centers and crypto mining operations. That agenda does not record how the board voted."
+        }
+      ]
     },
     {
       "title": "TCEQ canceled the Carson County public meeting on Fermi Equipment Holdco's new air permits and says it will be rescheduled",
@@ -3453,7 +3716,13 @@
         }
       ],
       "id": "tx-2026-0057",
-      "last_verified": "2026-08-14"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Checked and unchanged. The Carson County meeting on the Fermi Equipment Holdco permits is still canceled and no new date is posted."
+        }
+      ]
     },
     {
       "title": "TCEQ canceled the San Antonio notice and comment hearing on Vantage Data Centers TX11's air permit O4791",
@@ -3512,7 +3781,13 @@
         }
       ],
       "id": "tx-2026-0058",
-      "last_verified": "2026-08-16"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Checked and unchanged. The notice states the hearing will be rescheduled for a later date, and no new date is given."
+        }
+      ]
     },
     {
       "title": "Tarrant Regional Water District says it has signed no water supply contract for a data center and that the Cedar Creek request was withdrawn",
@@ -3580,7 +3855,13 @@
         }
       ],
       "id": "tx-2026-0059",
-      "last_verified": "2026-08-14"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Checked and unchanged. The district still states it has entered into no new water supply contracts to serve data center projects and has increased no contract volumes for that purpose. The page carries a July 27th stamp."
+        }
+      ]
     },
     {
       "title": "Blanco-Pedernales Groundwater Conservation District signed a resolution asking the Legislature to clarify district authority over data centers",
@@ -3633,7 +3914,13 @@
         }
       ],
       "id": "tx-2026-0060",
-      "last_verified": "2026-08-14"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Checked and unchanged. The district's April 16th resolution requesting legislative clarification on the regulation of data centers is still the most recent action of its kind on the district's record."
+        }
+      ]
     },
     {
       "title": "San Marcos City Council voted 4 to 3 to define data centers in its land development code and make them ineligible citywide",
@@ -3700,10 +3987,16 @@
         }
       ],
       "id": "tx-2026-0061",
-      "last_verified": "2026-08-14"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "The council's data center definition is unconfirmed against the city's own code page. That page records the amended Land Development Code adopted June 16th with 283 amendments and names no data center provision among them."
+        }
+      ]
     },
     {
-      "title": "Fort Worth City Council voted unanimously to start a 90 day data center moratorium and adopted grid filing requirements for applicants",
+      "title": "Fort Worth City Council unanimously began a 90 day data center moratorium and adopted grid filing requirements over one dissent",
       "summary": "The Fort Worth City Council took three data center votes on August 11th, 2026. Members unanimously approved the first steps toward a 90 day moratorium on accepting, processing and approving new data center applications inside the city. Two further items passed over a single dissent. One creates a Data Center and Infrastructure Commission. The other amends the city code so applicants must document their filings for connection to the Texas grid. The pause is not in force yet. Under the city timeline it takes effect on February 16th after public hearings and further votes, and zoning applications filed before then stay outside it.",
       "topic": "land-water-and-permitting",
       "decider": {
@@ -3749,7 +4042,7 @@
         },
         {
           "text": "The pause would not begin until February 16th and only after public hearings and further votes.",
-          "verbatim_quote": "If a moratorium is ultimately approved, the 90-day pause will take effect Feb. 16, after public hearings have been held and votes taken.",
+          "verbatim_quote": "If a moratorium is ultimately approved, the 90-day pause will take effect Feb. 16, after public hearings have been held and votes taken as required by state law and reports and studies from the city's Data Center & Infrastructure Committee have been submitted to Fort Worth officials.",
           "source_url": "https://www.keranews.org/news/2026-08-12/data-center-moratorium-takes-first-steps-after-fort-worth-city-councils-unanimous-vote",
           "source_title": "Data center moratorium takes first steps after Fort Worth City Council's unanimous vote | KERA News",
           "source_type": "journalism",
@@ -3758,7 +4051,13 @@
         }
       ],
       "id": "tx-2026-0062",
-      "last_verified": "2026-08-14"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Checked and unchanged. The 90 day pause still takes effect February 16th and only after public hearings and further votes."
+        }
+      ]
     },
     {
       "title": "TCEQ has four data center air permit applications posted with published public notices, including Crusoe's two Texas campuses",
@@ -3818,7 +4117,13 @@
         }
       ],
       "id": "tx-2026-0063",
-      "last_verified": "2026-08-14"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Checked and unchanged. The pending notice list still carries all four data center applications, Aligned at ADC Plano, Amazon at TXZ5 and Crusoe at both Longhorn and Goodnight."
+        }
+      ]
     },
     {
       "title": "TCEQ issues preliminary decision and opens comment on Crusoe's gas power plant at the Abilene data center campus",
@@ -3912,7 +4217,13 @@
         }
       ],
       "id": "tx-2026-0064",
-      "last_verified": "2026-08-18"
+      "last_verified": "2026-08-18",
+      "history": [
+        {
+          "date": "2026-08-18",
+          "note": "Checked and unchanged. The notice still names permits 182126, PSDTX1688 and GHGPSDTX263 for Crusoe Technologies. The comment window runs 30 days from newspaper publication."
+        }
+      ]
     },
     {
       "title": "San Angelo City Council caps data center cooling water by ordinance",
@@ -4020,7 +4331,13 @@
         }
       ],
       "id": "tx-2026-0065",
-      "last_verified": "2026-08-14"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Checked and unchanged. The city's data center page lists the water usage ordinance approved June 16th as the most recent council action and carries nothing from July or August."
+        }
+      ]
     },
     {
       "title": "San Angelo writes data centers into its zoning code and makes them a conditional use only",
@@ -4138,7 +4455,13 @@
         }
       ],
       "id": "tx-2026-0066",
-      "last_verified": "2026-08-14"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Checked and unchanged. The land use regulations approved May 19th are still the governing action listed, and the city's page carries nothing from July or August."
+        }
+      ]
     },
     {
       "title": "San Angelo sets reporting rules for data center coolant discharged into the city sewer",
@@ -4237,7 +4560,13 @@
         }
       ],
       "id": "tx-2026-0067",
-      "last_verified": "2026-08-14"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Checked and unchanged. The sewer and discharge ordinance approved June 2nd is still the governing action listed, and the city's page carries nothing from July or August."
+        }
+      ]
     },
     {
       "title": "Reeves County Emergency Services District No. 2 takes up a Chapter 312 abatement for a gas plant built to run data centers",
@@ -4313,7 +4642,13 @@
         }
       ],
       "id": "tx-2026-0068",
-      "last_verified": "2026-08-14"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Checked and unchanged. The notice still sets the hearing for March 25th at 5:30 p.m. at the district office in Pecos and still puts the project cost at 6 billion dollars."
+        }
+      ]
     },
     {
       "title": "Pecos-Barstow-Toyah ISD's JETI agreement for the Energy Forge One power plant is executed and posted",
@@ -4347,6 +4682,11 @@
           "date": "2026-07-24",
           "kind": "signed",
           "note": "Executed agreement posted by the Comptroller"
+        },
+        {
+          "date": "2026-07-24",
+          "kind": "filed",
+          "note": "Agreement document posted to the state's application record"
         }
       ],
       "public_access": {
@@ -4412,7 +4752,13 @@
         }
       ],
       "id": "tx-2026-0069",
-      "last_verified": "2026-08-14"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "The agreement itself is now posted. The state's application record for the Energy Forge One project added an agreement document dated July 24th, and the application has still not been executed."
+        }
+      ]
     },
     {
       "title": "Tom Green County Commissioners Court declines a Precinct 4 moratorium on data centers and large energy projects",
@@ -4465,7 +4811,13 @@
         }
       ],
       "id": "tx-2026-0070",
-      "last_verified": "2026-08-14"
+      "last_verified": "2026-08-19",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Checked and unchanged. The court still declines to pursue a temporary moratorium on large scale energy and data center development in Precinct 4. The reasoning given remains the limits of county authority and the risk of litigation."
+        }
+      ]
     },
     {
       "id": "tx-2026-0071",
@@ -4563,13 +4915,19 @@
           "fetched": "2026-08-16"
         }
       ],
-      "last_verified": "2026-08-16",
+      "last_verified": "2026-08-19",
       "confidence": "high",
-      "notes_for_editor": "Raw HTML fetched with a browser User-Agent. gov.texas.gov serves no robots.txt."
+      "notes_for_editor": "Raw HTML fetched with a browser User-Agent. gov.texas.gov serves no robots.txt.",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Checked and unchanged. The state's announcement of August 6th still gives a capital investment of more than 16.8 billion dollars and 3,000 new jobs. The Texas Enterprise Fund grant is still 30 million dollars."
+        }
+      ]
     },
     {
       "id": "tx-2026-0072",
-      "title": "Governor Abbott directs the utility commission and ERCOT to audit every data center in the interconnection queue before any of them advances",
+      "title": "Governor Abbott directs the utility commission and ERCOT to audit every data center in the interconnection queue before any advances",
       "summary": "Governor Greg Abbott issued a directive on August 3rd, 2026. It tells the Public Utility Commission of Texas and ERCOT to run a verification and audit of every data center moving through the interconnection process. The audit must finish before any data center project moves forward. The directive names five things the agencies must obtain from each project. They are public financial assistance received or expected. They are whether the project brings its own power and whether it brings and reuses its own water. They are what it does to reduce effects on neighbors and who owns and controls it. The letter states the queue at approximately 474 gigawatts and puts the data center share of new power requests at approximately 90 percent. It gives a reason. Some data centers did not answer the commission's own survey of water and power use.",
       "topic": "data-centers",
       "decider": {
@@ -4588,6 +4946,11 @@
           "date": "2026-08-03",
           "kind": "ordered",
           "note": "Directive issued"
+        },
+        {
+          "date": "2026-08-07",
+          "kind": "statutory_deadline",
+          "note": "Batch Zero classification deadline set in the ERCOT Planning Guide passed with no classification notified"
         },
         {
           "date": "2026-08-20",
@@ -4675,13 +5038,17 @@
           "fetched": "2026-08-16"
         }
       ],
-      "last_verified": "2026-08-16",
+      "last_verified": "2026-08-19",
       "confidence": "high",
       "notes_for_editor": "Raw HTML fetched with a browser User-Agent, quotes checked character for character.",
       "history": [
         {
           "date": "2026-08-16",
           "note": "The directive letter itself is now the cited source rather than the press release about it. The release reads 'approximately over 474 gigawatts' where the letter reads 'approximately 474 gigawatts'."
+        },
+        {
+          "date": "2026-08-19",
+          "note": "The directive has already moved a deadline. ERCOT stated on August 3rd that it would not tell service providers how any large load is classified in the Batch Zero study by the August 7th deadline. It said it would ask the utility commission for a good cause exception ahead of the August 20th open meeting. The Governor's office said on August 18th that the Data Center Coalition will comply. That release also says one data center that could not comply ended operations before construction began."
         }
       ]
     },
@@ -4766,9 +5133,15 @@
           "fetched": "2026-08-16"
         }
       ],
-      "last_verified": "2026-08-16",
+      "last_verified": "2026-08-19",
       "confidence": "high",
-      "notes_for_editor": "lrl.texas.gov robots.txt carries content signals and no path disallow."
+      "notes_for_editor": "lrl.texas.gov robots.txt carries content signals and no path disallow.",
+      "history": [
+        {
+          "date": "2026-08-19",
+          "note": "Both hearings still stand. The Legislative Reference Library's posting for the week of August 17th lists the State Affairs data centers charge on August 19th. It lists the Public Health artificial intelligence charge on August 20th."
+        }
+      ]
     }
   ]
 }

@@ -1,0 +1,57 @@
+name: data center registry
+
+# The Texas Comptroller's registry of data centers, read DAILY.
+#
+# DAILY BECAUSE IT CHANGES WHENEVER A FACILITY REGISTERS, with no schedule and no
+# announcement. The page is one small HTML table, so a daily read costs almost nothing and
+# a weekly one would date every reading by up to six days for no saving. The collector
+# writes the full roster and appends a counts-only record, so a day with no change costs
+# one short line rather than 149 rows.
+#
+# ITS OWN WORKFLOW AND NOT A STEP IN gridwatch.yml. A Comptroller outage must never be able
+# to cost an ERCOT demand day, which is the one irreversible failure in this repository.
+
+on:
+  schedule:
+    - cron: "0 13 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/gridwatch/datacenters_collect.py"
+      - ".github/workflows/datacenters.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: datacenters
+  cancel-in-progress: false
+
+jobs:
+  read:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Hermetic, no network. A collector whose own checks are broken has no business
+      # appending to a series, so this gates the fetch rather than reporting after it.
+      - name: Prove the collector's checks can go red
+        run: python3 scripts/gridwatch/datacenters_collect.py --self-test
+
+      # Exit 2 is "read, but unverified", which is the correct OUTPUT when the Comptroller
+      # changes the table or the fetch fails. Only a crash fails the job.
+      - name: Read the registry
+        run: |
+          python3 scripts/gridwatch/datacenters_collect.py --collect || rc=$?
+          if [ "${rc:-0}" -gt 2 ]; then exit "$rc"; fi
+
+      - name: Commit the reading
+        run: |
+          git config user.name  "texas-ai-docket-bot"
+          git config user.email "bot@texasaidocket.com"
+          git add ledger/gridwatch/datacenters.json ledger/gridwatch/datacenters.jsonl \
+                  ledger/gridwatch/raw || true
+          git diff --cached --quiet && echo "nothing new" && exit 0
+          git commit -m "datacenters: registry reading"
+          git push

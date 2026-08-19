@@ -9,13 +9,20 @@ The Public Utility Commission publishes its open meetings and public comment dea
 - Public access: Public meeting
 - Take part: https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
 
-- Last checked: 2026-08-16
+- Last checked: 2026-08-19
 
 ## Dates
 
 - 2026-08-20 · hearing: Open meeting in Commissioners Hearing Room 7-100
 - 2026-08-21 · hearing: Open meeting listed at an off site hotel and conference center
 - 2026-09-04 · comment closes: Public comment deadline for Project 58482
+
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-16 · The August 21st entry no longer names Docket 59315 and no longer lists Commissioners Hearing Room 7-100. It now gives the AT&T Hotel and Conference Center. An open meeting on August 20th has been added. Checked against the PUCT calendar feed.
+- 2026-08-19 · Checked and unchanged. The feed still publishes 32 entries. The August 20th and August 21st open meetings both still stand, and the September 4th public comment deadline for Project 58482 is still listed.
 
 ## Evidence
 

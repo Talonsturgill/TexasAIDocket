@@ -76,6 +76,14 @@
       "evidence": "A dashed leader added to clear slide 9's dead lower zone ran from the no-action node into an empty passed-date field, which is a causal drawing and turned a record into an accusation.",
       "confirmed": [],
       "contradicted": []
+    },
+    {
+      "id": "one-geometry-two-layers-will-drift",
+      "learned": "2026-08-19",
+      "instinct": "State a shared geometry ONCE in the builder and substitute it into both the canvas layer and the CSS layer.",
+      "evidence": "Carousel No. 3 slide 6. The four terrazzo bands were drawn full bleed at W/4 and the four label plates were laid out in a safe-area box inset 80px, so the outer two words straddled a band boundary by 37px. The safe-zone breach had been fixed on the type layer and the art layer was never told. The scorer measured it at the third pass; no gate could, because each layer was internally correct.",
+      "confirmed": [],
+      "contradicted": []
     }
   ]
 }

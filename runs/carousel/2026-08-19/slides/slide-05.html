@@ -1,0 +1,203 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body { background:#F6F1E4; position:relative; font-family:'Manrope',sans-serif;
+          --frame-ink:#23202B; --frame-dim:#5a5348; }
+  canvas#art { position:absolute; inset:0; width:1080px; height:1350px; }
+
+  /* ---- the invariant frame. Identical on every slide of every deck. ---------------- */
+  .tx-frame { position:absolute; inset:0; pointer-events:none; z-index:60; }
+  .tx-wordmark {
+    position:absolute; top:56px; left:80px;
+    font-family:'JetBrains Mono',monospace; font-size:25px; font-weight:500;
+    letter-spacing:.16em; color:var(--frame-ink); }
+  .tx-star { position:absolute; top:54px; left:80px; width:26px; height:26px; }
+  .tx-counter {
+    position:absolute; bottom:56px; right:80px;
+    font-family:'JetBrains Mono',monospace; font-size:25px; font-weight:500;
+    font-variant-numeric:tabular-nums; letter-spacing:.10em; color:var(--frame-ink); }
+  .tx-site {
+    position:absolute; bottom:56px; left:80px;
+    font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:400;
+    letter-spacing:.04em; color:var(--frame-dim); }
+  .tx-kicker {
+    position:absolute; top:56px; right:80px; max-width:620px; text-align:right;
+    font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:500;
+    letter-spacing:.10em; text-transform:uppercase; color:var(--frame-dim); }
+
+
+  .hook { position:absolute; top:96px; left:80px; right:80px;
+          font-family:'Fraunces',serif; font-weight:800; font-size:74px; line-height:.98;
+          letter-spacing:-.02em; color:#23202B; font-variation-settings:'opsz' 74; }
+  .cols { position:absolute; top:340px; left:80px; right:80px; height:620px; display:flex; }
+  .col { flex:1; padding:0 46px; }
+  .col .h { font-family:'JetBrains Mono',monospace; font-size:24px; letter-spacing:.05em;
+            color:#5a5348; text-transform:uppercase; padding-bottom:18px; }
+  /* ruled means quoted: a hairline above and below each quoted block, the deck's own grammar */
+  .col .q { font-family:'Fraunces',serif; font-weight:500; font-size:35px; line-height:1.32;
+            color:#23202B; border-top:1px solid #B98D46; border-bottom:1px solid #B98D46;
+            padding:20px 0; }
+  .col .q .d { color:#8E4B3A; }
+  .col .src { font-family:'JetBrains Mono',monospace; font-size:24px; color:#5a5348;
+              padding-top:22px; }
+  .foot { position:absolute; left:80px; right:80px; bottom:150px;
+          font-family:'Manrope',sans-serif; font-size:27px; line-height:1.4; color:#3a3630;
+          border-top:2px solid #B98D46; padding-top:22px; }
+  .filing { position:absolute; left:80px; right:80px; bottom:104px;
+            display:flex; justify-content:space-between; border-top:1px solid #B98D46;
+            padding-top:12px; font-family:'JetBrains Mono',monospace; font-size:22px;
+            color:#6a6358; letter-spacing:.04em; }
+
+</style>
+</head>
+<body>
+  <canvas id="art" width="2160" height="2700"></canvas>
+
+  <div class="hook">One office. The same day. Two wordings.</div>
+  <div class="cols">
+    <div class="col">
+      <div class="h">The press release</div>
+      <div class="q">"The PUCT and ERCOT must complete this audit before any data center
+        <span class="d">project moves</span> forward."</div>
+      <div class="src">Office of the Governor &middot; c11</div>
+    </div>
+    <div class="col">
+      <div class="h">The signed letter</div>
+      <div class="q">"before any <span class="d">additional</span> data centers
+        <span class="d">are approved to move</span> forward"</div>
+      <div class="src">Office of the Governor &middot; c12</div>
+    </div>
+  </div>
+  <div class="foot">The marked words are where the letter narrows what the release says. The
+    letter's condition is on approvals. The release's condition is on all forward movement. Both
+    are on the record and they are not interchangeable.</div>
+  <div class="filing" data-decorative><span>tx-2026-0072</span><span>August 3rd, 2026</span></div>
+
+<div class="tx-frame" data-decorative>
+  <svg class="tx-star" viewBox="0 0 26 26" aria-hidden="true"><polygon points="13,1 16.1,9.4 25,9.6 17.9,15 20.5,23.6 13,18.4 5.5,23.6 8.1,15 1,9.6 9.9,9.4" fill="var(--frame-ink)"/></svg>
+  <div class="tx-wordmark" style="left:118px">TEXAS AI DOCKET</div>
+  <div class="tx-kicker">The two documents</div>
+  <div class="tx-site">texasaidocket.com</div>
+  <div class="tx-counter">05 / 08</div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+
+<script>
+window.renderReady = new Promise(function(resolve){
+  TX.reseed(20260819);
+  var cv = document.getElementById('art');
+  var ctx = cv.getContext('2d');
+  ctx.scale(2,2);
+  var W=1080, H=1350;
+  function lerp(a,b,t){return a+(b-a)*t;}
+
+  // a warm masonry ground with a faint vertical falloff so the base carries tone
+  function stoneGround(top, bottom){
+    var grad = ctx.createLinearGradient(0,0,0,H);
+    grad.addColorStop(0, top); grad.addColorStop(1, bottom);
+    ctx.fillStyle = grad; ctx.fillRect(0,0,W,H);
+  }
+
+  // the paper register: flat, neatlined, grain at 2 percent
+  ctx.fillStyle='#F6F1E4'; ctx.fillRect(0,0,W,H);
+  // the center divider, drawn ONLY through the two-column band so it never strikes the foot text
+  ctx.strokeStyle='#B98D46'; ctx.lineWidth=1;
+  // ...and it stops where the shorter column's citation stops, rather than running on into
+  // blank paper, which is a rule dividing nothing.
+  ctx.beginPath(); ctx.moveTo(W/2, 340); ctx.lineTo(W/2, 790); ctx.stroke();
+  // a lighting falloff toward the base so the bottom third carries real tone rather than flat paper
+  var pf = ctx.createLinearGradient(0,H*0.58,0,H);
+  pf.addColorStop(0,'rgba(0,0,0,0)'); pf.addColorStop(1,'rgba(35,32,43,0.20)');
+  ctx.fillStyle=pf; ctx.fillRect(0,0,W,H);
+  // a press-plate impression across the lower third, a broad tonal field for the base band
+  var plate = ctx.createRadialGradient(W/2, H*0.86, 120, W/2, H*0.86, 620);
+  plate.addColorStop(0,'rgba(35,32,43,0.09)'); plate.addColorStop(1,'rgba(35,32,43,0)');
+  ctx.fillStyle=plate; ctx.fillRect(0,0,W,H);
+  // faint deckle laid-lines across the lower third, the register's own texture
+  ctx.strokeStyle='rgba(35,32,43,0.06)'; ctx.lineWidth=1;
+  for(var ly=H*0.68; ly<H*0.92; ly+=13){
+    ctx.beginPath(); ctx.moveTo(80,ly); ctx.lineTo(W-80,ly); ctx.stroke();
+  }
+  // hard neatline frame
+  // THE SECOND SHEET. This is the two documents frame and it drew one sheet, leaving its lower
+  // forty percent empty ruled paper. The release lies under the letter, corner out, and its edge
+  // and shadow are what give the base of the frame an object.
+  // Its top edge used to land at y 1080, which is where the annotation paragraph starts, so the
+  // sheet's hard edge and its cast shadow ran straight through three lines of type and read as a
+  // render artefact. The edge now sits at 800, in the band of blank paper the frame had nothing
+  // in, and the annotation is printed ON the under sheet rather than struck through by it.
+  (function(){
+    ctx.save();
+    ctx.translate(660, 800); ctx.rotate(-0.055);
+    // the letter's shadow falling across the sheet beneath it
+    var sh=ctx.createLinearGradient(0,-22,0,30);
+    sh.addColorStop(0,'rgba(35,32,43,0.34)'); sh.addColorStop(1,'rgba(35,32,43,0)');
+    ctx.fillStyle=sh; ctx.fillRect(-640,-22,1360,52);
+    // the under sheet itself, a shade cooler than the one above it, running off the base
+    var us=ctx.createLinearGradient(-640,0,720,620);
+    us.addColorStop(0,'#EEE8D9'); us.addColorStop(1,'#DCD5C2');
+    ctx.fillStyle=us; ctx.fillRect(-640,0,1360,620);
+    ctx.strokeStyle='rgba(35,32,43,0.34)'; ctx.lineWidth=1.5;
+    ctx.beginPath(); ctx.moveTo(-640,0); ctx.lineTo(720,0); ctx.stroke();
+    ctx.strokeStyle='rgba(255,255,255,0.55)'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(-640,1.6); ctx.lineTo(720,1.6); ctx.stroke();
+    // its own ruled lines, running on out of frame
+    ctx.strokeStyle='rgba(35,32,43,0.155)'; ctx.lineWidth=1;
+    for(var i=1;i<31;i++){ ctx.beginPath(); ctx.moveTo(-600,i*19); ctx.lineTo(700,i*19); ctx.stroke(); }
+    (function(){ var Rp=TX.rng(20260819+818);
+      for(var q2=0;q2<620;q2++){
+        var px=-620+Rp()*1360, py=Rp()*620;
+        ctx.fillStyle='rgba(35,32,43,'+(Rp()*0.075).toFixed(3)+')';
+        ctx.fillRect(px,py,1.5,1.5);
+      } })();
+    // A THIRD SHEET under the second, so the base of the frame is a stack of documents rather
+    // than one pale field. The bottom third measured 8 percent of this frame's own craft density
+    // with two sheets, which is a covered dead zone and not a filled one.
+    // Its edge landed at y 1172, which is the last line of the annotation, so a hard edge and a
+    // cast shadow ran straight through 'are on the record and they are not interchangeable'. The
+    // stack now breaks ABOVE the annotation and the annotation is printed on the sheet.
+    var Rq=TX.rng(20260819+515);
+    ctx.save(); ctx.translate(-360, 196); ctx.rotate(0.020);
+    var sh3=ctx.createLinearGradient(0,-18,0,24);
+    sh3.addColorStop(0,'rgba(35,32,43,0.30)'); sh3.addColorStop(1,'rgba(35,32,43,0)');
+    ctx.fillStyle=sh3; ctx.fillRect(-260,-18,1500,42);
+    var u3=ctx.createLinearGradient(-260,0,1240,300);
+    u3.addColorStop(0,'#E7E0CF'); u3.addColorStop(1,'#D4CCB8');
+    ctx.fillStyle=u3; ctx.fillRect(-260,0,1500,300);
+    ctx.strokeStyle='rgba(35,32,43,0.32)'; ctx.lineWidth=1.5;
+    ctx.beginPath(); ctx.moveTo(-260,0); ctx.lineTo(1240,0); ctx.stroke();
+    // The register's ruling, at the pitch a legal pad actually uses. It ran at 30px and the base
+    // measured 15 percent of this frame's own craft density, which is the paper inversion reading
+    // as blank rather than as quiet. Uniform ruling under running prose is what ruled paper IS,
+    // and it is not the thing three judges caught, which was a hard sheet edge and its shadow.
+    ctx.strokeStyle='rgba(35,32,43,0.185)'; ctx.lineWidth=1;
+    for(var k3=1;k3<23;k3++){ ctx.beginPath(); ctx.moveTo(-220,k3*19); ctx.lineTo(1200,k3*19); ctx.stroke(); }
+    // A margin rule was drawn down this sheet and it crossed the annotation, which is the same
+    // defect three judges caught on the sheet edges. Nothing decorative runs under published prose
+    // on this frame. The base carries its tone in the paper's own tooth instead.
+    for(var q=0;q<520;q++){
+      var qx=-220+Rq()*1420, qy=Rq()*300;
+      ctx.fillStyle='rgba(35,32,43,'+(Rq()*0.075).toFixed(3)+')';
+      ctx.fillRect(qx,qy,1.5,1.5);
+    }
+    ctx.restore();
+    ctx.restore();
+  })();
+  ctx.strokeStyle='#23202B'; ctx.lineWidth=2; ctx.strokeRect(46,46,W-92,H-92);
+  // grain at 2 percent, markedly denser toward the base so the bottom third reads as worked stone
+  (function(){ var R=TX.rng(20260819);
+    for(var i=0;i<9000;i++){ var x=R()*W,y=R()*H;
+      var boost = y>H*0.66 ? 0.06 : 0.018;
+      ctx.fillStyle='rgba(35,32,43,'+(R()*boost).toFixed(3)+')'; ctx.fillRect(x,y,1.3,1.3);} })();
+
+  (window.__fontsReady||document.fonts.ready).then(function(){ resolve(); });
+});
+</script>
+</body>
+</html>

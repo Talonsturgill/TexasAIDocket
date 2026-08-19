@@ -1,0 +1,99 @@
+{
+ "date": "2026-08-19",
+ "story": "tx-2026-0072",
+ "aggregates": [
+  {
+   "slide": "slide-01.html",
+   "phrase": "12 days",
+   "kind": "duration",
+   "value": 12,
+   "computed_by": "out/2026-08-19/compute.py spans.days_since_deadline_passed, the August 7th deadline to the run date",
+   "note": "This figure was invisible to the gate until the render report window widened from 80 characters to 320. It was correct all along and nothing had checked it."
+  },
+  {
+   "slide": "slide-02.html",
+   "phrase": "16 days",
+   "kind": "duration",
+   "value": 16,
+   "computed_by": "out/2026-08-19/compute.py spans.days_since_directive, the letter's own date to the run date",
+   "note": "How long the letter has been standing. The August 3rd letter to the run date, computed from the source date and the run date.",
+   "from_date": "2026-08-03",
+   "to_date": "2026-08-19",
+   "from_claims": [
+    "c1"
+   ]
+  },
+  {
+   "slide": "slide-02.html",
+   "phrase": "4 days",
+   "kind": "duration",
+   "value": 4,
+   "computed_by": "out/2026-08-19/compute.py spans.days_directive_to_deadline, the letter's own date to the deadline the notice set",
+   "note": "The warning the notice gave itself. The August 3rd letter to the August 7th deadline, computed from the two source dates.",
+   "from_date": "2026-08-03",
+   "to_date": "2026-08-07",
+   "from_claims": [
+    "c1",
+    "c2"
+   ]
+  },
+  {
+   "slide": "slide-03.html",
+   "phrase": "Zero Timelines and Processes",
+   "kind": "count",
+   "value": 0,
+   "quoted_from": "c5",
+   "quote": "Update Regarding Batch Zero Timelines and Processes",
+   "note": "Not a count the deck invented. Batch Zero is the program name in the notice's own subject line, c5. The numeral zero is the source's own word."
+  },
+  {
+   "slide": "slide-04.html",
+   "phrase": "474 gigawatts",
+   "kind": "count",
+   "value": 474,
+   "quoted_from": "c6",
+   "quote": "is currently considering approximately 474 gigawatts of requests to connect to the Texas grid",
+   "note": "The letter's own figure, quoted, not computed."
+  },
+  {
+   "slide": "slide-04.html",
+   "phrase": "Three figures",
+   "kind": "count",
+   "value": 3,
+   "from_claims": [
+    "c6",
+    "c8",
+    "c9"
+   ],
+   "note": "Three quoted figures sit on the slide, one per claim c6, c8, c9."
+  },
+  {
+   "slide": "slide-04.html",
+   "phrase": "five times",
+   "kind": "count",
+   "value": 5,
+   "quoted_from": "c9",
+   "quote": "more than five times Texas' record peak electricity demand for ERCOT",
+   "note": "The source's own ratio, quoted as it states it, never recomputed."
+  },
+  {
+   "slide": "slide-04.html",
+   "phrase": "two documents",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "distinct source_url over claims c6, c8 and c9 in out/2026-08-19/claims.json",
+   "note": "c6 and c8 are both the signed directive letter PDF and c9 is the press release, so three figures rest on two documents from one office. The earlier declaration said three sources and counted claim ids, which is not what the word names."
+  },
+  {
+   "slide": "slide-05.html",
+   "phrase": "Two wordings",
+   "kind": "count",
+   "value": 2,
+   "from_claims": [
+    "c11",
+    "c12"
+   ],
+   "note": "Two wordings of the one gate, one per claim c11 and c12."
+  }
+ ]
+}

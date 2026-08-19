@@ -77,20 +77,41 @@ TAG = re.compile(r"<[^>]+>")
 # violation and left in the prose stream, so the element cannot be used as a wrapper to smuggle
 # a sentence past the date rules. That is the difference between an exemption that is a promise
 # about content and one that is a promise about a region.
+_MONTH_ONLY = re.compile(r"\d{4}-\d{2}")
 TIME_EL = re.compile(r'<time\b[^>]*\bdatetime="([^"]+)"[^>]*>(.*?)</time>',
                      re.DOTALL | re.IGNORECASE)
 
 
 def _renderings(iso: str) -> set:
-    """Every way this project is allowed to print one date, derived from the date itself."""
+    """Every way this project is allowed to print one date, derived from the date itself.
+
+    A MONTH-PRECISION VALUE RENDERS A MONTH, which is the same promise one step up. A chart
+    axis labels a month and not a day, and `<time datetime="2026-01">Jan</time>` satisfies this
+    exemption's actual test exactly: the visible text is a faithful rendering of its own
+    attribute. Without this the axis had to print a bare "Jan" next to a figure, which the date
+    rule correctly read as an abbreviated date loose in the prose stream.
+
+    The day rules are untouched. `2026-01-08` still may not print as "Jan" here, because a
+    value that knows its day and hides it is not rendering itself faithfully.
+    """
+    if _MONTH_ONLY.fullmatch(iso.strip()):
+        y, m = (int(x) for x in iso.strip().split("-"))
+        d = _dt.date(y, m, 1)
+        return {f"{d:%b}", f"{d:%b}".upper(), f"{d:%B}", f"{d:%B} {y}", f"{y}-{m:02d}"}
     try:
         d = _dt.date.fromisoformat(iso[:10])
     except ValueError:
         return set()
     n = d.day
     suf = "th" if 11 <= n <= 13 else {1: "st", 2: "nd", 3: "rd"}.get(n % 10, "th")
+    # THE ORDINAL FORM WITH ITS YEAR. "August 10th, 2026" is the house form for a full date and
+    # was the one shape this set did not list, so a <time> could render its own value correctly
+    # in the house style and still be reported. It matters wherever a list spans years: the
+    # registry roster runs from 2013 to this month, and "August 10th" alone does not identify a
+    # row in it. The rejections that matter are untouched: "10 August", a bare "August 10", and
+    # a day-precision value that prints only its month.
     return {f"{d:%b} {n}".upper(), f"{d:%B} {n}{suf}", d.isoformat(),
-            f"{d:%B} {d.year}", f"{d:%b} {n}"}
+            f"{d:%B} {d.year}", f"{d:%b} {n}", f"{d:%B} {n}{suf}, {d.year}"}
 
 
 def _time_chips(body: str) -> tuple:

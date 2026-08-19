@@ -11,7 +11,7 @@ Harris County Commissioners Court approved a renewal option with Flock Group, In
 - Public access: Public meeting
 - Take part: https://agenda.harriscountytx.gov/
 
-- Last checked: 2026-08-14
+- Last checked: 2026-08-19
 
 ## Dates
 
@@ -19,6 +19,12 @@ Harris County Commissioners Court approved a renewal option with Flock Group, In
 - 2026-05-28 · ordered: Commissioners Court approved the renewal as agenda item 86
 - 2026-06-06 · effective: Start of the contract period stated in the approved item
 - 2026-07-09 · ordered: Court approved the amendment making the agreement available county-wide at no additional cost
+
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-19 · Whether the license has been revisited is unconfirmed. The court has met on August 17th and has meetings set for August 20th and August 25th. The item texts for those meetings are not published on the court's own calendar.
 
 ## Evidence
 

@@ -290,8 +290,23 @@ a standard.
 **Geography is never typed at a grain the record does not hold.** Name counties. The metro is
 derived from them by `places.py` and the build fails if a hand-typed `metro` disagrees with what
 the counties compute to.
-- Add a history note **only when something changed**, and write it as three dry sentences: the
-  right answer, where you checked it, stop.
+- **WRITE A DATED MOVEMENT LINE EVERY TIME YOU CHECK AN ITEM, INCLUDING WHEN NOTHING CHANGED.**
+  This is the item's own record of being watched, it renders on the page as **How this decision
+  moved**, and it is the difference between a tracked decision and a stack of quotes. Until
+  2026-08-18 this rule said the opposite, to write a note only on a change, and the result was
+  that 57 of 61 items carried no movement log at all while their `last_verified` stamps advanced
+  every week. The stamp kept the fact and the reader never saw it.
+
+  It is the same argument the stamp rule three bullets up already makes. "Checked and unchanged"
+  is a fact about the item. A reader who sees six dated lines saying the window is still open
+  knows somebody looked six times. A reader who sees one date does not.
+
+  Three dry sentences at most, oldest first, about the DECISION:
+  - changed: what the right answer is now, and what moved.
+  - unchanged: say so plainly, and name the thing you confirmed is still true.
+  - unreachable: name what is therefore **unconfirmed**, never what the fetcher did. A source
+    that would not answer is a fact about the record's certainty, and "returned a 403 this run"
+    is machine narration that `gate_narration` refuses and should.
 
 **A correction is not an incident report.** The sibling product once appended 160 words to a
 public item explaining which four surfaces had been wrong and what gate now guarded it. Every word
@@ -497,9 +512,27 @@ was opened and what it showed.
 - **The `Open right now` section of `llms.txt`.** It lists what still has a dated way in. Cross
   it against the open windows Phase 3 re-verified. If a window closed today and it is still
   listed, the build ran before the record moved and the merge order is wrong.
-- **A source title in `/sources/`.** Quoted material is exempt from the punctuation and numeral
-  rules by design. Confirm the exemption is still doing that and not hiding one of our own
-  sentences.
+- **`/sources/`, which is now a page family and the record's own report card.** Three things,
+  and the first is the one that matters.
+  **Read the share at the top.** It says how many of the record's claims rest on a primary
+  document rather than on a report about one. That is the only published figure that tests the
+  promise the whole record makes, and a run that admitted items on journalism alone moves it
+  down. **A falling share is not a defect to fix on this page, it is a finding about the
+  record**, and the honest response is a line in the run record naming the share and what moved
+  it, never a change to the page. It is computed from `source_type` on every claim, so the only
+  way to move it is to go and find the filing.
+  **Open the top publisher's own page**, at `/sources/<host>/`. The hub ranks by how much of the
+  record rests on each one, so the first entry is what this record leans on hardest. Does its
+  document list read as documents, and does its list of decisions match the entries you would
+  expect? A publisher at the top of that list that nobody would call a primary source is worth a
+  sentence in the run record.
+  **Then the old check, which still holds.** Quoted material is exempt from the punctuation and
+  numeral rules by design. Confirm the exemption is still doing that and not hiding one of our
+  own sentences.
+  **The pages are generated and this phase may not edit them.** A publisher page is a pure
+  function of the claims in `ledger/docket.json`, and the way to change what it says is to
+  change what the record cites. An item admitted in Phase 5 with a new host gets its own page,
+  its sitemap entry and its line in `llms.txt` on this run's build, with nothing to remember.
 - **`/topic/`, counting one card against its own page.** Open the hub, pick the beat this run
   touched, and check the count on the card equals the number of decisions listed on the beat's
   page. Then read the `still open to comment` figure. It is a claim about TODAY rather than
@@ -855,17 +888,48 @@ a lane this branch may stamp. Nothing else is added, and `human` can never be.
 
 ## PHASE 18 — GMAIL DRAFT
 
-The only human touchpoint, and it gates the POST, not the merge. Subject:
-`Texas AI Docket — Carousel No. N — <date> — <title>`.
+The only human touchpoint, and it gates the POST, not the merge. The reader has about ninety
+seconds and a phone, and the one thing they must be able to do from this email is **post the
+deck** without opening the repository.
 
-Cover both deliverables, because one email is now the whole day's account: the honest score, what
-the gates said, what degraded if anything, **what the record did** (verified, admitted, held,
-deferred) and the machine upgrades from Phase 17.
+**THE EMAIL IS BUILT BY `scripts/carousel/gmail_draft.py`. YOU DO NOT HAND-WRITE IT.** This is
+the rule and it is here because run No. 2 broke it. That run hand-wrote a long plaintext essay
+about how the day had gone, accurate in every fact, with no post copy, no first comment, no PDF
+link and no images, and closed by telling the reader which two files to go open. An essay about
+the run is not the artifact this phase produces. The builder assembles the post copy, the first
+comment, the PDF, the contact sheet and one thumbnail per rendered slide, verifies every linked
+file is on disk, escapes the copy so markup cannot break the mail, and puts the score at the top.
+Run it, do not reproduce it by hand:
+
+```bash
+# gates, degraded and upgrades are small JSON files you write from this run's own results.
+python3 scripts/carousel/gmail_draft.py --run <date> --n <N> --title "<title>" \
+  --score <score> --threshold <t> \
+  --gates-file <gates.json> --degraded-file <degraded.json> --upgrades-file <upgrades.json>
+```
+
+It writes `runs/carousel/<date>/gmail_payload.json`, a committed artifact beside the deck. Then
+**prove it is postable before you draft it**, by exit code:
+
+```bash
+python3 scripts/carousel/email_check.py --run <date>
+```
+
+That gate fails if the payload is missing, is not HTML, omits the post copy or the first comment
+verbatim, links a file that is not on disk, or does not state the score. It is the thing that
+makes hand-writing the email impossible to ship: a run with no `gmail_payload.json` fails CI, and
+a payload that is an essay fails it too. When it passes, pass the payload's `to`, `subject` and
+`body` to the Gmail connector's `create_draft`. The body is already HTML, so draft it as HTML.
 
 The mailbox is the `DRAFT_TO` module constant in the draft scripts, and it is documented in
 `CLAUDE.md`. It is written down in exactly those two places on purpose, so a repoint is one edit.
 Never pass the account-relative `me`: the connector rejects it outright, and every run that tries
 burns a step rediscovering the address.
+
+The prose you DO write is the account of the day, and it goes in the fields the builder takes,
+not around them: the honest score, what the gates said, what degraded through `--degraded-file`,
+and the machine upgrades from Phase 17 through `--upgrades-file`. What the record did (verified,
+admitted, held, deferred) belongs in `--notes`. Everything a reader acts on, the builder places.
 
 **DRAFT ONLY. NEVER SEND.**
 

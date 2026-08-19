@@ -14,6 +14,12 @@ Chapter 552 of the Business and Commerce Code supersedes and preempts any local 
 
 - 2026-01-01 · effective: Chapter 552 took effect, including the preemption section
 
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-18 · Checked and unchanged. Chapter 552 still supersedes any local ordinance or rule about the use of AI systems.
+
 ## Evidence
 
 Every fact above rests on one of these. The words are the source's own.

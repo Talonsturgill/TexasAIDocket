@@ -19,6 +19,12 @@ The El Paso City Council has a letter to Governor Greg Abbott set for action at 
 - 2026-08-11 · filed: Matter 26-0955 introduced
 - 2026-08-18 · hearing: Regular City Council meeting, 9:00 AM, item scheduled for discussion and action
 
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-18 · Checked and unchanged. The matter reads Agenda Ready for the August 18th agenda with no passed date recorded.
+
 ## Evidence
 
 Every fact above rests on one of these. The words are the source's own.

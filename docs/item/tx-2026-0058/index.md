@@ -11,12 +11,18 @@ The Texas Commission on Environmental Quality had set a notice and comment heari
 - Public access: Public meeting
 - Take part: https://www.tceq.texas.gov/agency/decisions/hearings/notice-and-comment-hearing-vantage-data-centers-tx11-llc-o4791
 
-- Last checked: 2026-08-16
+- Last checked: 2026-08-19
 
 ## Dates
 
 - 2026-08-11 · filed: last modified date shown on the TCEQ cancelation page
 - 2026-08-17 · hearing: notice and comment hearing as originally scheduled, 7:00 PM Central, Courtyard by Marriott San Antonio SeaWorld/Westover Hills, since canceled
+
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-19 · Checked and unchanged. The notice states the hearing will be rescheduled for a later date, and no new date is given.
 
 ## Evidence
 

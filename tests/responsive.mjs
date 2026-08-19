@@ -300,6 +300,51 @@ for (const w of [280, 300, 320, 360, 375, 390, 414, 440, 480, 540, 600, 680, 768
 check(`every chart label clears the drawing by ${MARGIN} units and lands on no other`,
       cut.length === 0, cut.slice(0, 4).join(" | "));
 
+// THE MONTHLY QUEUE CHART KEEPS ITS PARTS INSIDE ITSELF.
+//
+// This one shipped. The value labels were positioned by a percentage height resolved against a
+// flex item that was itself sized by `flex:1`, which has no definite containing block, and the
+// whole column landed 22.4px off its own row. The labels for the six tall bars rendered ABOVE
+// the chart's box, at every width from 560px up. Nothing clipped them, so the page looked
+// right, and every check that existed passed: they were not on a bar and not touching each
+// other, which is what was being measured. Containment was not.
+//
+// So the invariant here is containment, and it is measured in a real browser because the defect
+// was a used layout value and no build-time lint can see one. A label or a bar outside the
+// figure's own box is a defect whether or not it happens to land in whitespace today.
+const QOUT = [];
+for (const w of [320, 380, 430, 480, 560, 680, 768, 900, 1100, 1280, 1440, 1800]) {
+  await pg.setViewportSize({ width: w, height: 900 });
+  await pg.goto("file://" + path.join(SITE, "grid", "index.html"));
+  const r = await pg.evaluate(() => {
+    const g = document.querySelector(".qgroups");
+    if (!g) return [];
+    const box = g.getBoundingClientRect(), out = [];
+    const bases = new Set();
+    for (const qb of document.querySelectorAll(".qb")) {
+      const v = qb.querySelector(".qbv"), f = qb.querySelector(".qbf");
+      if (!v || !f) continue;
+      const vr = v.getBoundingClientRect(), fr = f.getBoundingClientRect();
+      if (vr.top < box.top - 0.5 || vr.bottom > box.bottom + 0.5)
+        out.push(`label ${v.textContent} outside the chart`);
+      if (fr.top < box.top - 0.5 || fr.bottom > box.bottom + 0.5)
+        out.push(`bar beside ${v.textContent} outside the chart`);
+      // The label names the bar it sits on, so it has to sit ON it: a short bar whose number
+      // floats in a band far above has stopped labelling anything.
+      if (fr.top - vr.bottom > 12)
+        out.push(`label ${v.textContent} is ${Math.round(fr.top - vr.bottom)}px off its bar`);
+      bases.add(Math.round(fr.bottom * 2) / 2);
+    }
+    // ONE BASELINE. Bars on two baselines are not comparable by eye, which is the only thing a
+    // bar chart is for. This shipped: the dark bars stood 22.4px above the light ones.
+    if (bases.size > 1) out.push(`bars on ${bases.size} baselines: ${[...bases].join(", ")}`);
+    return out;
+  });
+  if (r && r.length) QOUT.push(`${w}px ${r[0]}`);
+}
+check("the monthly queue chart keeps every label and bar inside its own box",
+      QOUT.length === 0, QOUT.slice(0, 4).join(" | "));
+
 // THE MAP UNDER A THUMB, ON A DEVICE THAT HAS ONE.
 //
 // A phone has no hover, so before this the only way to ask the map what a county was, was to

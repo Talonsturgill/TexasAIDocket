@@ -953,6 +953,17 @@ html.js .rise > *:nth-child(5) {{ animation-delay:.42s; }}
    which is what this is. */
 main > section {{ margin-block:var(--band); }}
 main > section:first-child {{ margin-top:calc(var(--band) * .55); }}
+/* AN ITEM PAGE'S SECTIONS WERE SPACED BY ACCIDENT, and the accident held for as long as every
+   section happened to end in a paragraph. They sit inside `<article>`, so the rule above has
+   never matched one of them, and their computed top margin is zero on all 61 pages. What
+   separated them was the trailing paragraph's own bottom margin, borrowed. The moment a
+   section ended in a table the next heading landed against it, which is what "The evidence"
+   has been doing under the Dates table all along and what the movement log made impossible to
+   keep missing. Spacing that depends on the shape of the last child is not spacing.
+   NOT `var(--band)`. That token is the full page band and would re-space every item page well
+   past what the paragraph was giving, which is a redesign rather than a repair. This matches
+   `.asksection`, already in this sheet, and collapses with the paragraph margin it replaces. */
+article > section {{ margin-top:2.25rem; }}
 /* AN INNER PAGE OPENS WITH AN H1 RATHER THAN A HERO, and the hero is what was carrying the
    clearance under the sticky bar. Without it the page title sits against the navigation.
    THIS IS ON `main`, NOT ON THE HEADING, because the heading version was written as
@@ -1339,6 +1350,104 @@ main > section > h2::after {{ content:""; position:absolute;
 .claim .kind {{ font-family:var(--mono); font-size:var(--s-2); letter-spacing:.06em;
   text-transform:uppercase; color:var(--ink-mute); }}
 
+/* ---- the answered questions --------------------------------------------- */
+/* THE QUESTION IS THE HEADING AND THE ANSWER IS THE PARAGRAPH, which is the whole layout. A
+   reader scanning for one of these is scanning the questions, so they get the type size and
+   the answer does not compete with them. The mono kicker above each answer is what the
+   question-hub pages call this kind of question, so a reader who follows one of those links
+   lands on a page using the same words. */
+.qa {{ margin:1.4rem 0; }}
+.qa h3 {{ font-size:var(--s0); line-height:1.3; margin:0; }}
+.qa h3 a {{ text-decoration:none; border-bottom:var(--hair) solid var(--rule); }}
+.qa h3 a:hover {{ color:var(--ink-bright); border-bottom-color:var(--accent); }}
+.qa p {{ margin:.35rem 0 0; max-width:38rem; }}
+
+/* ---- the source archive's stat line -------------------------------------- */
+/* FOUR FIGURES IN A ROW, each with its own label, reading as a meter rather than a sentence.
+   The figure leads and the word follows it, because the eye is scanning the numbers down the
+   page and the words only matter once it stops. */
+/* THE GAP BETWEEN PAIRS HAS TO BEAT THE GAP INSIDE ONE, or "25 CLAIMS 3 PRIMARY" reads as four
+   loose tokens and the eye has to pair them by meaning. Mono type at a wide letter-spacing
+   already carries air inside every word, so the column gap is set well clear of it. */
+p.srcstat {{ display:flex; flex-wrap:wrap; gap:.35rem 1.9rem; margin:.35rem 0 1.6rem;
+  font-family:var(--mono); font-size:var(--s-2); letter-spacing:.05em;
+  text-transform:uppercase; color:var(--ink-mute); }}
+p.srcstat .st {{ white-space:nowrap; }}
+p.srcstat .num {{ color:var(--ink); margin-right:.3rem; }}
+
+/* The ranked hub. A numbered list would print a rank beside each publisher, which is a figure
+   nothing computed and a claim the page is not making. The order carries the ranking. */
+ol.srclist {{ list-style:none; margin:1.4rem 0 0; padding:0; }}
+ol.srclist > li {{ padding:.9rem 0; border-top:var(--hair) solid var(--rule); }}
+ol.srclist > li:last-child {{ border-bottom:var(--hair) solid var(--rule); }}
+ol.srclist h2 {{ font-size:var(--s0); margin:0; }}
+ol.srclist h2 a {{ text-decoration:none; border-bottom:var(--hair) solid var(--rule); }}
+ol.srclist h2 a:hover {{ color:var(--ink-bright); border-bottom-color:var(--accent); }}
+/* The stat line's clearance is for the heading that follows it on a publisher's own page. In
+   a hub row the row's own padding is the separation, so the extra would just be a gap. */
+ol.srclist p.srcstat {{ margin-bottom:0; }}
+
+/* ---- cite this ----------------------------------------------------------- */
+/* ONE LINE A READER CAN SELECT WHOLE. It is set in the mono face because it is a record to be
+   copied rather than prose to be read, and the box exists so a triple click takes the whole
+   citation and nothing either side of it. */
+p.cite {{ font-family:var(--mono); font-size:var(--s-1); line-height:1.65;
+  padding:.9rem 1rem; border:var(--hair) solid var(--rule); border-radius:2px;
+  color:var(--ink); overflow-wrap:anywhere; }}
+
+/* ---- the timeline: where this decision sits relative to now -------------- */
+/* A SPINE WITH STATIONS, and today is one of them. The point of the strip is that a reader
+   can see whether the thing has happened without reading a word, so the marker for now has
+   to sit IN the sequence rather than beside it. Everything above it is done and everything
+   below it is not.
+   The past is dimmed and the future is not. That is the only severity this strip carries,
+   and it encodes a fact about the calendar rather than a judgement about the decision. */
+ol.tl {{ list-style:none; margin:1rem 0 0; padding:0; position:relative; }}
+ol.tl::before {{ content:""; position:absolute; left:.3rem; top:.55rem; bottom:.55rem;
+  border-left:var(--hair) solid var(--rule); }}
+ol.tl > li {{ position:relative; padding:0 0 1.1rem 1.6rem; }}
+ol.tl > li:last-child {{ padding-bottom:0; }}
+ol.tl > li > .dot {{ position:absolute; left:0; top:.42rem; width:.65rem; height:.65rem;
+  border-radius:50%; border:2px solid var(--rule-strong); background:var(--bg); }}
+ol.tl > li time {{ font-family:var(--mono); font-size:var(--s-2); letter-spacing:.06em;
+  color:var(--ink-mute); margin-right:.6rem; }}
+ol.tl > li > .lbl {{ font-size:var(--s-1); color:var(--ink); }}
+ol.tl > li > p {{ margin:.2rem 0 0; font-size:var(--s-1); line-height:1.55;
+  color:var(--ink-mute); max-width:34rem; }}
+/* THE PAST IS QUIETER, NOT GREYED OUT. A date that has passed is still evidence and a reader
+   still reads it, so this is a step down in emphasis rather than a disabled state. */
+ol.tl > li.past {{ opacity:.72; }}
+/* TODAY. The one filled marker on the strip, in the accent, with no date beside it because
+   the reader supplies that. */
+ol.tl > li.now {{ padding-bottom:1.1rem; }}
+ol.tl > li.now > .dot {{ background:var(--accent); border-color:var(--accent); }}
+ol.tl > li.now > .lbl {{ font-family:var(--mono); font-size:var(--s-2); letter-spacing:.1em;
+  text-transform:uppercase; color:var(--accent); }}
+/* THE NEXT DATE IS THE ONE THEY CAME FOR. A count, on its own line, in the mono face the rest
+   of the site uses for a figure. It is not red and it is not a badge, because a date being
+   near is not an alarm. */
+ol.tl > li > .out {{ display:block; margin-top:.2rem; font-family:var(--mono);
+  font-size:var(--s-2); letter-spacing:.04em; color:var(--ink-mute); }}
+ol.tl > li.ahead > .dot {{ border-color:var(--ink-mute); }}
+
+/* ---- the movement log: a decision being watched -------------------------- */
+/* THE LIST MARKER IS SUPPRESSED ON PURPOSE. This is an `ol` because the order is the
+   meaning, oldest first, so the markup has to say ordered. What it must not do is PRINT
+   a counter beside each line, because a reader arriving at "3." next to a date reads a
+   figure about the decision rather than a position in a list. The date is the marker.
+   It also keeps the one rule this project will not bend on: every numeral a reader sees
+   was computed from data, and a CSS counter is a number the build never computed.
+   The rule down the left is the same device the claims block uses, for the same reason.
+   These are observations of the record, and they hang off one spine. */
+ol.moved {{ list-style:none; margin:1rem 0 0; padding:0 0 0 1rem;
+  border-left:2px solid var(--rule-strong); }}
+ol.moved > li {{ margin:0 0 1rem; }}
+ol.moved > li:last-child {{ margin-bottom:0; }}
+ol.moved > li > .num {{ display:block; font-size:var(--s-2); letter-spacing:.04em;
+  color:var(--ink-mute); }}
+ol.moved > li > p {{ margin:.15rem 0 0; font-size:var(--s-1); line-height:1.6;
+  color:var(--ink); max-width:34rem; }}
+
 /* Mid-century oil charts: heavy rules top and bottom, hairlines between. The weight tells a
    reader where the table starts and stops without a box around it. */
 table {{ border-collapse:collapse; width:100%; font-size:var(--s-1);
@@ -1484,9 +1593,6 @@ figcaption {{ font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
 .queuegap .qfill {{ background:var(--granite); }}
 .queuegap .qstages li {{ border-bottom-color:var(--paper-rule); }}
 .queuegap .qstages .qs {{ color:var(--granite); }}
-.queuegap .qchart .qa {{ fill:var(--granite); }}
-.queuegap .qchart .qd {{ fill:var(--granite); opacity:.55; }}
-.queuegap .qticks span {{ color:var(--granite); }}
 /* The page's first section sits under a sticky masthead, so its heading needs the same
    clearance an anchored jump would get. */
 .queuegap > h2:first-child {{ padding-top:.35rem; }}
@@ -1525,16 +1631,285 @@ figcaption {{ font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
 /* The monthly series. Paired bars per month, cleared then drawing, so a reader sees that
    neither has moved. Shape carries it, not colour: the pair is always left-then-right and the
    two are separated by a gap rather than by hue alone. */
-/* BARS STRETCH, TYPE DOES NOT. The viewBox is stretched so the bars fill the column at any
-   width, which distorts anything drawn inside it, so the month labels are HTML in a grid that
-   matches the bar columns rather than <text> in the drawing. */
-.qchart svg {{ width:100%; height:clamp(4.5rem,15vw,6.5rem); display:block; }}
-.qchart .qa {{ fill:var(--accent-deep); }}
-.qchart .qd {{ fill:var(--gold); }}
-.qchart {{ padding-bottom:.4rem; }}
-.qticks {{ display:grid; grid-auto-flow:column; grid-auto-columns:1fr; margin-top:.3rem; }}
-.qticks span {{ font-family:var(--mono); font-size:var(--s-2); color:var(--ink-mute);
-  text-align:center; }}
+/* ---- BEYOND ERCOT: WHO IS HERE, AND WHAT IS BEING BUILT ----
+   Two feeds that are not ERCOT and do not share its cadence, so they say when they were read
+   and say it LOUDLY when they stop. A stopped collector publishes the same last figure
+   forever and is indistinguishable from a working one; the read date is the only difference,
+   so it ships beside the figure rather than in a commit log. */
+.beyond {{ margin:0 0 var(--band); }}
+.beyond .blede {{ font-family:var(--display); font-size:var(--s2); line-height:1.25;
+  max-width:28ch; margin:1.1rem 0 var(--gap); color:var(--ink-bright); }}
+.srcline {{ display:flex; align-items:center; gap:.45rem; font-family:var(--mono);
+  font-size:var(--s-2); letter-spacing:.05em; text-transform:uppercase;
+  color:var(--ink-mute); margin:0 0 .4rem; }}
+.srcdot {{ width:.4rem; height:.4rem; border-radius:50%; background:var(--gold); flex:none; }}
+/* THE STALE STATE IS A SENTENCE, NOT A COLOUR. A reader who cannot see the tint still reads
+   that the feed stopped, because the copy says so and the copy is what carries it. */
+.srcline.stale {{ text-transform:none; letter-spacing:0; font-family:var(--body);
+  font-size:var(--s-1); color:var(--ink-bright); border-left:2px solid var(--gold);
+  padding-left:.7rem; max-width:var(--measure); display:block; }}
+
+/* A year, a bar and a count. The same row shape serves the registry and the county list, so
+   the two read as one instrument rather than two chart styles on one page. */
+.ryears {{ list-style:none; padding:0; margin:0 0 .6rem; max-width:none;
+  display:flex; flex-direction:column; gap:.28rem; }}
+.ryr {{ display:grid; grid-template-columns:4.6rem minmax(0,1fr) 3.4rem; gap:.7rem;
+  align-items:center; }}
+.rk {{ font-family:var(--mono); font-size:var(--s-2); color:var(--ink-mute);
+  letter-spacing:.05em; overflow-wrap:anywhere; }}
+.rb {{ height:.8rem; background:var(--ember); border-radius:1px; min-width:2px; }}
+.rv {{ font-family:var(--mono); font-size:var(--s-2); color:var(--ink-bright);
+  text-align:right; font-variant-numeric:tabular-nums; }}
+
+/* THREE ROLES SIDE BY SIDE, because the registry records three and they answer different
+   questions. They stack on a narrow screen rather than shrinking to unreadable columns. */
+/* min() on the track floor and min-width:0 on the cell. Without both, a long filer name sets
+   a min-content width the 1fr track cannot go below, the grid grows past its container, and
+   the third column's counts are cut off at the edge of the page. */
+.rroles {{ display:grid; gap:1.4rem 2rem; margin:.6rem 0 0;
+  grid-template-columns:repeat(auto-fit, minmax(min(15rem, 100%), 1fr)); }}
+.rrole {{ min-width:0; }}
+.rrole h4 {{ font-size:var(--s-1); margin:0 0 .4rem; }}
+.rrole .ops li {{ gap:.6rem; }}
+.rrole .on {{ min-width:0; overflow-wrap:anywhere; }}
+.newest {{ list-style:none; margin:.4rem 0 0; padding:0; max-width:none;
+  display:grid; gap:.1rem; }}
+.newest li {{ display:grid; grid-template-columns:9.5rem 1fr 1fr; gap:.6rem;
+  padding:.4rem 0; border-bottom:var(--hair) solid var(--rule); align-items:baseline; }}
+.nwd {{ font-family:var(--mono); font-size:var(--s-2); color:var(--dust); }}
+.nwn {{ font-weight:500; }}
+.nwo {{ color:var(--dust); font-size:var(--s-1); }}
+@media (max-width:34rem) {{
+  .newest li {{ grid-template-columns:1fr; gap:.1rem; }}
+}}
+/* THE WHOLE ROSTER. 149 rows is the actual record and it is the thing nobody else publishes
+   as a table, so it ships in full rather than as a top ten. It scrolls inside its own box so a
+   wide table never makes the PAGE scroll sideways. */
+/* THE HIDDEN HALF ANNOUNCES ITSELF. At 390px the table is 704px wide inside a 356px box, so
+   exactly half of it, the operator and the date, was off screen with nothing at the right edge
+   saying so: the last column simply stopped mid word and read as the end of the table.
+
+   THE FADE IS A SIBLING, NOT AN ANCESTOR, and that is the whole engineering of it. The first
+   version put the gradient on the scroll box itself, which works and looks right and cost
+   1,482 runs of text: tests/text_contrast composites the ANCESTOR stack and declines to
+   measure a run whose ground is a gradient rather than guess at it, so a gradient on the
+   scroller made the roster, the largest block of text on the page, invisible to the gate that
+   checks whether text is legible. Declines went 126 to 1,608 and guards still went green,
+   which is the point. A pseudo element on the wrapper paints over the same pixels without
+   entering any cell's ancestor chain, so every cell stays measured.
+
+   A scrollbar was tried first and does not work here: overlay scrollbars reserve no space and
+   appear only while scrolling, which is exactly when the reader no longer needs telling.
+   Measured, the gutter is 2px with or without `scrollbar-gutter: stable`, and that 2px is the
+   border. */
+.rtfield {{ position:relative; }}
+.rtfield::after {{ content:""; position:absolute; top:1px; right:1px; bottom:1px; width:2.2rem;
+  pointer-events:none; border-radius:0 3px 3px 0;
+  background:linear-gradient(to left, var(--night), transparent); }}
+@media (min-width:46.01rem) {{
+  .rtfield::after {{ display:none; }}
+}}
+.rtwrap {{ overflow-x:auto; overflow-y:auto; max-height:32rem; margin:.5rem 0 0;
+  border:var(--hair) solid var(--rule); border-radius:3px;
+  scrollbar-width:thin; scrollbar-color:var(--dust) transparent; }}
+.rtwrap::-webkit-scrollbar {{ height:9px; width:9px; }}
+.rtwrap::-webkit-scrollbar-thumb {{ background:var(--dust); border-radius:5px; }}
+/* And the words, on the widths where the table actually overflows. */
+.rthint {{ display:none; }}
+@media (max-width:46rem) {{
+  .rthint {{ display:block; }}
+}}
+.rtable {{ border-collapse:collapse; width:100%; min-width:44rem;
+  table-layout:fixed; font-size:var(--s-1); }}
+.rtable col.cf {{ width:19%; }}
+.rtable col.co {{ width:24%; }}
+.rtable col.cu {{ width:22%; }}
+.rtable col.cp {{ width:22%; }}
+.rtable col.cd {{ width:13%; }}
+.rtable td {{ overflow-wrap:anywhere; }}
+.rtable th, .rtable td {{ text-align:left; padding:.45rem .7rem; vertical-align:top;
+  border-bottom:var(--hair) solid var(--rule); }}
+.rtable th {{ position:sticky; top:0; background:var(--panel); font-family:var(--mono);
+  font-size:var(--s-2); letter-spacing:.06em; text-transform:uppercase;
+  color:var(--dust); z-index:1; }}
+.rtable td.num {{ font-family:var(--mono); font-size:var(--s-2); white-space:nowrap;
+  color:var(--dust); }}
+.rtable tbody tr:hover {{ background:color-mix(in srgb, var(--dust) 8%, transparent); }}
+.ops {{ list-style:none; padding:0; margin:0 0 .6rem; max-width:none;
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(16rem,1fr)); gap:0 1.6rem; }}
+.ops li {{ display:grid; grid-template-columns:1fr auto; gap:.6rem; align-items:baseline;
+  padding:.36rem 0; border-bottom:var(--hair) solid var(--line); font-size:var(--s-1); }}
+.ops .on {{ color:var(--ink-bright); overflow-wrap:anywhere; }}
+.ops .os {{ font-family:var(--mono); font-size:var(--s-2); color:var(--ink-mute);
+  font-variant-numeric:tabular-nums; }}
+
+@media (max-width:30rem) {{
+  .ryr {{ grid-template-columns:4.2rem minmax(0,1fr) 3rem; gap:.5rem; }}
+}}
+
+/* ---- THE DAILY READING, AS AN INSTRUMENT PANEL ----
+   The section held a settled reading every day and read like an essay about one: seven equal
+   weight headings, two tables, and prose explaining the page to itself. What follows gives the
+   day one hierarchy, one chart, one bar and one row of tiles, so a reader meets four KINDS of
+   thing rather than seven paragraphs. */
+
+/* The state of the machine, in the machine's voice. The dot carries no value and no verdict,
+   it only says the collector ran, and it holds still for anyone who asked it to. */
+.livebar {{ display:flex; flex-wrap:wrap; align-items:center; gap:.4rem .9rem;
+  font-family:var(--mono); font-size:var(--s-1); color:var(--ink-mute);
+  padding:.55rem 0 1.1rem; border-bottom:var(--hair) solid var(--line); margin-bottom:1.4rem; }}
+.livebar strong {{ color:var(--ink-bright); font-weight:500; }}
+.livedot {{ width:.5rem; height:.5rem; border-radius:50%; background:var(--gold);
+  box-shadow:0 0 0 0 color-mix(in srgb, var(--gold) 70%, transparent);
+  animation:livepulse 2.6s ease-out infinite; flex:none; }}
+@keyframes livepulse {{
+  0% {{ box-shadow:0 0 0 0 color-mix(in srgb, var(--gold) 60%, transparent); }}
+  70% {{ box-shadow:0 0 0 .5rem color-mix(in srgb, var(--gold) 0%, transparent); }}
+  100% {{ box-shadow:0 0 0 0 color-mix(in srgb, var(--gold) 0%, transparent); }}
+}}
+@media (prefers-reduced-motion:reduce) {{ .livedot {{ animation:none; }} }}
+.livesep {{ width:var(--hair); height:.9rem; background:var(--line); flex:none; }}
+
+/* The day's vital signs. A table gave six numbers the same weight and spent a column
+   explaining each one; these align on one optical line so magnitudes compare by eye. */
+.stiles {{ display:grid; gap:1px; background:var(--line); border:var(--hair) solid var(--line);
+  grid-template-columns:repeat(auto-fit,minmax(8.5rem,1fr)); margin:1.6rem 0 0;
+  border-radius:var(--radius); overflow:hidden; }}
+.stile {{ background:var(--deep); padding:.85rem .9rem 1rem; display:flex;
+  flex-direction:column; gap:.15rem; }}
+.sk {{ font-family:var(--mono); font-size:var(--s-2); letter-spacing:.09em;
+  text-transform:uppercase; color:var(--ink-mute); }}
+.sv {{ font-family:var(--display); font-size:clamp(1.35rem,3.2vw,1.9rem); line-height:1.05;
+  color:var(--ink-bright); font-variant-numeric:tabular-nums; }}
+.su {{ font-family:var(--mono); font-size:.42em; color:var(--ink-mute); margin-left:.28em;
+  letter-spacing:.04em; }}
+.sn {{ font-size:var(--s-2); color:var(--ink-mute); }}
+
+/* What served the load. One bar says gas served about half the day before a word is read;
+   the figures stay underneath rather than being replaced by the picture. */
+.fuelbar {{ display:flex; height:1.5rem; border-radius:2px; overflow:hidden; margin:.2rem 0 1rem;
+  border:var(--hair) solid var(--line); }}
+.fseg {{ display:block; height:100%; }}
+.fseg.f0 {{ background:var(--ember); }}
+.fseg.f1 {{ background:var(--gold); }}
+.fseg.f2 {{ background:color-mix(in srgb, var(--gold) 62%, var(--panel)); }}
+.fseg.f3 {{ background:color-mix(in srgb, var(--ember) 58%, var(--panel)); }}
+.fseg.f4 {{ background:color-mix(in srgb, var(--caliche) 46%, var(--panel)); }}
+.fseg.f5 {{ background:color-mix(in srgb, var(--caliche) 30%, var(--panel)); }}
+.fseg.f6 {{ background:color-mix(in srgb, var(--dust) 26%, var(--panel)); }}
+.fseg.f7 {{ background:color-mix(in srgb, var(--dust) 16%, var(--panel)); }}
+.fuelkey {{ list-style:none; padding:0; margin:0 0 .5rem; max-width:none;
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(15rem,1fr)); gap:.1rem 1.6rem; }}
+.fuelkey li {{ display:grid; grid-template-columns:auto 1fr auto auto; align-items:baseline;
+  gap:.55rem; padding:.32rem 0; border-bottom:var(--hair) solid var(--line);
+  font-size:var(--s-1); }}
+.fkey {{ width:.65rem; height:.65rem; border-radius:1px; align-self:center; }}
+.fkey.f0 {{ background:var(--ember); }}
+.fkey.f1 {{ background:var(--gold); }}
+.fkey.f2 {{ background:color-mix(in srgb, var(--gold) 62%, var(--panel)); }}
+.fkey.f3 {{ background:color-mix(in srgb, var(--ember) 58%, var(--panel)); }}
+.fkey.f4 {{ background:color-mix(in srgb, var(--caliche) 46%, var(--panel)); }}
+.fkey.f5 {{ background:color-mix(in srgb, var(--caliche) 30%, var(--panel)); }}
+.fkey.f6 {{ background:color-mix(in srgb, var(--dust) 26%, var(--panel)); }}
+.fkey.f7 {{ background:color-mix(in srgb, var(--dust) 16%, var(--panel)); }}
+.fkey.fnone {{ border:var(--hair) dashed var(--rule-strong); }}
+.fuelkey .fn {{ color:var(--ink-bright); }}
+.fuelkey .fp, .fuelkey .fm {{ font-family:var(--mono); font-size:var(--s-2);
+  color:var(--ink-mute); font-variant-numeric:tabular-nums; }}
+.fuelkey .fp {{ min-width:3.6rem; text-align:right; }}
+.fuelkey .fm {{ min-width:5rem; text-align:right; }}
+.fuelkey .fneg .fn {{ color:var(--ink-mute); }}
+.funit {{ font-family:var(--mono); font-size:var(--s-2); letter-spacing:.06em;
+  text-transform:uppercase; color:var(--ink-mute); margin:0 0 var(--gap); }}
+
+.daily h3 {{ margin-top:var(--band); }}
+.daily h4 {{ font-family:var(--mono); font-size:var(--s-1); letter-spacing:.08em;
+  text-transform:uppercase; color:var(--ink-mute); margin:1.8rem 0 .5rem; font-weight:500; }}
+.gridnote {{ margin-top:var(--band); }}
+
+/* THE SERIES, AS AN INSTRUMENT RATHER THAN A PICTURE. Built from HTML boxes and not SVG so the
+   values are real text: selectable, readable by a screen reader, visible to the numeral gate,
+   and never distorted by a stretched viewBox. Hover and keyboard focus both raise a group,
+   because a chart nobody can interrogate is a screenshot with extra steps. */
+.qchart {{ margin:0; padding:0; }}
+.qgroups {{ list-style:none; margin:0; padding:0; max-width:none;
+  display:grid; grid-auto-flow:column; grid-auto-columns:1fr; gap:clamp(.2rem,1.4vw,1rem);
+  align-items:end; height:clamp(7rem,20vw,10rem); }}
+.qgrp {{ display:flex; flex-direction:column; align-items:center; justify-content:flex-end;
+  height:100%; gap:.35rem; border-radius:2px; padding:.2rem .1rem;
+  transition:background .18s ease; }}
+.qgrp:hover, .qgrp:focus-visible {{
+  background:color-mix(in srgb, var(--granite) 9%, transparent); outline:none; }}
+.qgrp:focus-visible {{ box-shadow:0 0 0 2px var(--granite); }}
+/* The pair is CAPPED and centred so the two bars read as one month's reading. Letting the
+   columns take the whole group set the two bars of a pair as far apart as two neighbouring
+   months, and the pairing stopped being visible. The cap is wide enough for both value labels
+   at every width tested; tightening it further is what puts them back into each other. */
+/* THE PAIR SHARES ONE BOX, AND THERE IS NO OTHER BOX. .qbars is the plot: it holds the
+   height, it is the positioning context, and both bars are absolutely positioned in it. The
+   .qb wrapper is display:contents, so it contributes NO box at all and only carries --h down
+   to the two children that need it.
+   That last part is the fix. Every previous version kept .qb as a real box and tried to make it
+   fill its row, and every version got it wrong in a different direction: too tall and the
+   labels left the figure, too short and the bars stood on two baselines 22.4px apart, drawing
+   4,049 at 1.66 times the height its value earns. A bar chart with two baselines is not a bar
+   chart, and the reliable way to have one baseline is to have one box. Both fills now resolve
+   `bottom:0` and `height:var(--h)` against the SAME element, so a shared baseline and a shared
+   scale are not properties to be maintained, they are the only thing the markup can express. */
+.qbars {{ position:relative; width:100%; max-width:clamp(4.6rem,13vw,7.5rem);
+  margin-inline:auto; flex:1; }}
+.qb {{ display:contents; }}
+.qbf {{ position:absolute; bottom:0; transform:translateX(-50%);
+  width:clamp(9px,3.2vw,26px); height:var(--h); min-height:2px;
+  border-radius:1px 1px 0 0; }}
+/* THE LABEL RIDES ITS OWN BAR: same --h, so it sits at the bar's top edge whatever the value.
+   The band at the top of the column was what left a short bar's number floating 64px above the
+   thing it names. */
+.qbv {{ position:absolute; bottom:var(--h); transform:translateX(-50%);
+  margin-bottom:.2rem; white-space:nowrap; }}
+.qb.qa .qbf, .qb.qa .qbv {{ left:27%; }}
+.qb.qd .qbf, .qb.qd .qbv {{ left:73%; }}
+.qb.qa .qbf {{ background:var(--granite); }}
+.qb.qd .qbf {{ background:color-mix(in srgb, var(--granite) 42%, var(--paper)); }}
+.qmiss {{ height:100%; display:flex; flex-direction:column; justify-content:flex-end;
+  align-items:center; gap:.3rem; width:100%; }}
+.qmissr {{ width:70%; border-top:1px dashed color-mix(in srgb, var(--granite) 45%, transparent);
+  height:0; }}
+/* NOT DIMMED. The first version faded both the word and the month to signal absence, which
+   put "May" at 3.49 against a floor of 4.5 and was caught by tests/text_contrast. Fading is
+   also the wrong instrument: it says "absent" in colour alone, which is the signal this file
+   refuses everywhere else. The dashed rule and the word carry it, at full legibility. */
+.qmisst {{ font-family:var(--mono); font-size:clamp(7.5px,1.9vw,11px); line-height:1.6;
+  color:var(--granite); letter-spacing:.06em; order:-1; }}
+.qb.qa .qbf {{ background:var(--granite); }}
+.qb.qd .qbf {{ background:color-mix(in srgb, var(--granite) 42%, var(--paper)); }}
+/* THE VALUE SITS ABOVE ITS OWN BAR and is always present, never revealed on hover. A number a
+   reader has to hunt for is a number the page did not really publish. It turns upright rather
+   than disappearing on a narrow screen, so six months still fit at 380px. */
+.qbv {{ font-family:var(--mono); font-size:clamp(7.5px,1.9vw,11px); line-height:1.6;
+  color:var(--granite); font-variant-numeric:tabular-nums; white-space:nowrap; }}
+.qgrp:hover .qbv, .qgrp:focus-visible .qbv {{ color:var(--night); font-weight:500; }}
+.qm {{ font-family:var(--mono); font-size:var(--s-2); color:var(--granite);
+  letter-spacing:.06em; }}
+.qlegend {{ display:flex; flex-wrap:wrap; align-items:center; gap:.35rem 1rem;
+  font-family:var(--mono); font-size:var(--s-2); color:var(--granite);
+  letter-spacing:.06em; text-transform:uppercase; margin:.9rem 0 .5rem; }}
+.qkey {{ width:.7rem; height:.7rem; border-radius:1px; display:inline-block;
+  margin-right:.3rem; vertical-align:-1px; }}
+.qkey.qa {{ background:var(--granite); }}
+.qkey.qd {{ background:color-mix(in srgb, var(--granite) 42%, var(--paper)); }}
+.qlegend .qunit {{ margin-left:auto; opacity:.75; }}
+/* NARROW SCREENS TURN THE VALUE UPRIGHT, and the container has to make room for it or the
+   tallest bars push their own labels off the top. The first phone render clipped five of six
+   to "8,78" and "9,04", which is worse than no label. The padding is inside the fixed height,
+   so the bars simply get shorter and every value stays whole. */
+@media (max-width:30rem) {{
+  .qgroups {{ height:13rem; padding-top:3.4rem; }}
+  .qbv {{ writing-mode:vertical-rl; transform:rotate(180deg);
+    font-size:9.5px; letter-spacing:.02em; }}
+  .qlegend {{ font-size:9.5px; gap:.3rem .6rem; }}
+  .qlegend .qunit {{ margin-left:0; }}
+}}
 
 /* Meng To's Sylva easing. A long tail that settles rather than stops, which suits a bar whose
    length IS the measurement: it arrives at its value and stays there instead of bouncing. */
@@ -2126,6 +2501,36 @@ def self_test() -> int:
     t = tokens()
     check("tokens load from brand.yaml", len(t["colour"]) >= 12, str(len(t["colour"])))
     sheet = css()
+
+    # THE CHART'S TWO GEOMETRIC PROMISES, ASSERTED IN THE STYLESHEET THAT MAKES THEM.
+    # Both bars are pinned to the bottom of the SHARED box, which is what gives the pair one
+    # baseline and one scale; and each label is pinned to its own bar's height, which is what
+    # keeps a short bar's number with the short bar. Both shipped broken while the markup looked
+    # right, so they are asserted here, where they are actually decided.
+    check("both bars are pinned to the bottom of the shared plot",
+          ".qbf { position:absolute; bottom:0;" in sheet)
+    check("...and the plot box is the thing that is positioned",
+          ".qbars { position:relative;" in sheet)
+    check("...and the column contributes no box of its own to get mis-sized",
+          ".qb { display:contents; }" in sheet)
+
+    # THE HIDDEN HALF OF THE ROSTER HAS TO ANNOUNCE ITSELF. Half the table is off screen at
+    # phone width, and the shadows are what say so. `local` on two of the four layers is the
+    # whole mechanism: without it they are a static fade that lies at the end of the travel.
+    # The affordance must not be a gradient under the text. A gradient ground is one
+    # tests/text_contrast declines to measure, and putting one on the roster hid 1,482 runs
+    # from the gate that checks legibility without turning anything red.
+    # The fade must be a SIBLING of the table, never a background on one of its ancestors.
+    # A gradient ancestor is a ground tests/text_contrast declines to measure, and putting one
+    # on the scroll box hid 1,482 runs from the gate that checks legibility while guards stayed
+    # green. This asserts the shape that keeps them measured.
+    check("the roster's edge fade is painted by a sibling, not by the scroll box",
+          ".rtfield::after { content:\"\";" in sheet
+          and "background" not in sheet.split(".rtwrap {")[1].split("}")[0])
+    check("...and the words appear at the widths where it actually overflows",
+          ".rthint { display:none; }" in sheet and ".rthint { display:block; }" in sheet)
+    check("...and each label is pinned to the height of its own bar",
+          ".qbv { position:absolute; bottom:var(--h);" in sheet)
 
     # ---- the colour maths itself, before anything trusts it ------------------
     check("contrast is the WCAG ratio (black on white is 21)",

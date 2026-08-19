@@ -11,12 +11,18 @@ Amarillo City Council voted five to nothing on first reading to authorize a wate
 - Public access: Public meeting
 - Take part: https://www.amarillo.gov/fermi-project/
 
-- Last checked: 2026-08-14
+- Last checked: 2026-08-19
 
 ## Dates
 
 - 2025-10-28 · ordered: Second reading of the water supply agreement scheduled by the City of Amarillo, per the city's Fermi Project page
 - 2025-10-30 · signed: The city posts a document titled Final Fermi Water Supply Agreement 10-30-2025 on its Fermi Project page
+
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-19 · Checked and unchanged. The city's project page still gives the final water supply agreement dated October 30th, 2025 as its most recent document.
 
 ## Evidence
 

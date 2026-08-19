@@ -10,12 +10,18 @@ The House Committee on State Affairs meets on August 19th, 2026 on a charge cove
 - Comment closes: 2026-08-20
 - Take part: https://lrl.texas.gov/whatsNew/client/index.cfm/2026/8/12/Interim-Hearings--Week-of-August-17-2026
 
-- Last checked: 2026-08-16
+- Last checked: 2026-08-19
 
 ## Dates
 
 - 2026-08-19 · hearing: House Committee on State Affairs, data centers charge
 - 2026-08-20 · hearing: House Committee on Public Health, artificial intelligence charge
+
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-19 · Both hearings still stand. The Legislative Reference Library's posting for the week of August 17th lists the State Affairs data centers charge on August 19th. It lists the Public Health artificial intelligence charge on August 20th.
 
 ## Evidence
 

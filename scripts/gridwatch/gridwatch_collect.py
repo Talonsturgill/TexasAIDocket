@@ -78,7 +78,7 @@ FEEDS = {
 
 # A descriptive agent is the courteous thing and it is also what keeps this working. ERCOT does
 # not disallow /api/ in robots.txt; a nameless scraper is what gets a path closed.
-UA = ("TexasAIDocket/1.0 (+https://talonsturgill.github.io/TexasAIDocket; "
+UA = ("TexasAIDocket/1.0 (+https://texasaidocket.com; "
       "daily public-interest grid record; two requests per day)")
 
 SPEC = 1

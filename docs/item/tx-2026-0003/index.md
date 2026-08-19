@@ -17,12 +17,19 @@ Oncor Electric Delivery has applied to amend its certificate of convenience and 
 - Public access: Public meeting
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59315&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-08-18
+- Last checked: 2026-08-19
 
 ## Dates
 
 - 2026-02-02 · filed: Oncor requested a docket number
-- 2026-08-21 · hearing: Open meeting on the PUCT calendar feed. The entry no longer names this docket and gives an off site address
+- 2026-08-21 · hearing: Open meeting on the PUCT calendar feed, which no longer names Docket 59315
+
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-18 · The filing index moved from 5782 to 5790. The calendar entry for the August 21st open meeting no longer names Docket 59315. That entry now gives the AT&T Hotel and Conference Center rather than Commissioners Hearing Room 7-100.
+- 2026-08-19 · Checked and unchanged. The filing index stands at 2,000 and the most recent entries are still the intervention requests and protestor comments of March 17th.
 
 ## Evidence
 

@@ -1,0 +1,2031 @@
+{
+ "_spec": 1,
+ "read": "2026-08-19",
+ "source": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
+ "digest": "5b8023302ff23ba0",
+ "facilities": [
+  {
+   "name": "NADC",
+   "effective": "2013-09-01",
+   "owners": [
+    "Microsoft Corporation"
+   ],
+   "occupants": [
+    "Chevron USA Inc."
+   ],
+   "operators": [
+    "McKinstry Essention, LLC"
+   ]
+  },
+  {
+   "name": "Microsoft Corporation",
+   "effective": "2013-12-01",
+   "owners": [
+    "Microsoft Corporation"
+   ],
+   "occupants": [
+    "Microsoft Corporation"
+   ],
+   "operators": [
+    "Microsoft Corporation"
+   ]
+  },
+  {
+   "name": "LinkedIn Richardson Texas Data Center",
+   "effective": "2014-02-20",
+   "owners": [
+    "Collins Technology Park Partners LLC"
+   ],
+   "occupants": [
+    "LinkedIn Corporation"
+   ],
+   "operators": [
+    "Collins Technology Park Partners LLC"
+   ]
+  },
+  {
+   "name": "State Farm Richardson Data Center",
+   "effective": "2015-06-01",
+   "owners": [
+    "JDM III SF Dallas DC LLC"
+   ],
+   "occupants": [
+    "State Farm Mutual Auto Ins. Co."
+   ],
+   "operators": [
+    "State Farm Mutual Auto Ins. Co."
+   ]
+  },
+  {
+   "name": "Winner LLC d/b/a Ernst LLC",
+   "effective": "2015-06-22",
+   "owners": [
+    "Winner LLC d/b/a Ernst LLC"
+   ],
+   "occupants": [
+    "Winner LLC d/b/a Ernst LLC"
+   ],
+   "operators": [
+    "Winner LLC d/b/a Ernst LLC"
+   ]
+  },
+  {
+   "name": "Microsoft Corporation (SAT09 - SAT13)",
+   "effective": "2015-12-15",
+   "owners": [
+    "Microsoft Corporation"
+   ],
+   "occupants": [
+    "Microsoft Corporation"
+   ],
+   "operators": [
+    "Microsoft Corporation"
+   ]
+  },
+  {
+   "name": "San Antonio Data Center II",
+   "effective": "2016-05-04",
+   "owners": [
+    "CyrusOne LLC"
+   ],
+   "occupants": [
+    "Microsoft Corporation"
+   ],
+   "operators": [
+    "CyrusOne LLC"
+   ]
+  },
+  {
+   "name": "San Antonio Data Center III",
+   "effective": "2017-05-25",
+   "owners": [
+    "CyrusOne LLC"
+   ],
+   "occupants": [
+    "Microsoft Corporation"
+   ],
+   "operators": [
+    "CyrusOne LLC"
+   ]
+  },
+  {
+   "name": "Sharka Data Center",
+   "effective": "2018-10-01",
+   "owners": [
+    "Sharka LLC"
+   ],
+   "occupants": [
+    "Design LLC"
+   ],
+   "operators": [
+    "Google LLC"
+   ]
+  },
+  {
+   "name": "Whinstone US Data Center",
+   "effective": "2020-06-30",
+   "owners": [
+    "Whinstone US Inc."
+   ],
+   "occupants": [
+    "Whinstone US Inc."
+   ],
+   "operators": [
+    "Whinstone US Inc."
+   ]
+  },
+  {
+   "name": "Rellis Campus Data and Research Center",
+   "effective": "2020-09-15",
+   "owners": [
+    "Rellis Campus Data and Research Center LLC"
+   ],
+   "occupants": [
+    "Rellis Campus Data and Research Center LLC"
+   ],
+   "operators": [
+    "Rellis Campus Data and Research Center LLC"
+   ]
+  },
+  {
+   "name": "ALE60 Data Center",
+   "effective": "2021-01-01",
+   "owners": [
+    "COPT San Antonio LP"
+   ],
+   "occupants": [
+    "Amazon Data Services Inc."
+   ],
+   "operators": [
+    "Amazon Data Services Inc."
+   ]
+  },
+  {
+   "name": "ALE61 Data Center",
+   "effective": "2021-01-01",
+   "owners": [
+    "Amazon Data Services Inc."
+   ],
+   "occupants": [
+    "Amazon Data Services Inc."
+   ],
+   "operators": [
+    "Amazon Data Services Inc."
+   ]
+  },
+  {
+   "name": "ALE62 Data Center",
+   "effective": "2021-01-01",
+   "owners": [
+    "Amazon Data Services Inc."
+   ],
+   "occupants": [
+    "Amazon Data Services Inc."
+   ],
+   "operators": [
+    "Amazon Data Services Inc."
+   ]
+  },
+  {
+   "name": "HELO1 DC",
+   "effective": "2021-06-08",
+   "owners": [
+    "GALAXY HELIOS I"
+   ],
+   "occupants": [
+    "COREWEAVE, INC."
+   ],
+   "operators": [
+    "GALAXY HELIOS I",
+    "Coreweave Compute Acquisition Co. III, LLC"
+   ]
+  },
+  {
+   "name": "Temple Green Data Center",
+   "effective": "2021-07-23",
+   "owners": [
+    "Rowan Moriah LLC."
+   ],
+   "occupants": [
+    "Rhodium Renewables LLC"
+   ],
+   "operators": [
+    "Rowan Moriah LLC."
+   ]
+  },
+  {
+   "name": "Microsoft San Antonio (SAT14)",
+   "effective": "2021-08-18",
+   "owners": [
+    "Microsoft Corporation"
+   ],
+   "occupants": [
+    "Microsoft Corporation"
+   ],
+   "operators": [
+    "Microsoft Corporation"
+   ]
+  },
+  {
+   "name": "Fort Blocks LLC Data Center",
+   "effective": "2022-01-01",
+   "owners": [
+    "Fort Blocks LLC"
+   ],
+   "occupants": [
+    "Fort Blocks LLC"
+   ],
+   "operators": [
+    "Fort Blocks LLC"
+   ]
+  },
+  {
+   "name": "Cyrusone LLC - Houston West III Data Center",
+   "effective": "2022-01-31",
+   "owners": [
+    "Cyrusone LLC"
+   ],
+   "occupants": [
+    "Paile LLC"
+   ],
+   "operators": [
+    "Cyrusone LLC"
+   ]
+  },
+  {
+   "name": "Stream DFW VII Data Center",
+   "effective": "2022-02-07",
+   "owners": [
+    "SDC DFW VII LP"
+   ],
+   "occupants": [
+    "OBOE LLC"
+   ],
+   "operators": [
+    "SDC Technology Services, LLC"
+   ]
+  },
+  {
+   "name": "Polmer LLC Data Center",
+   "effective": "2022-02-11",
+   "owners": [
+    "Polmer LLC"
+   ],
+   "occupants": [
+    "Polmer LLC"
+   ],
+   "operators": [
+    "Polmer LLC"
+   ]
+  },
+  {
+   "name": "Red Oak Texas Data Center",
+   "effective": "2022-02-14",
+   "owners": [
+    "Compass Datacenters DFW IIIA, LLC",
+    "Compass Datacenters DFW III, LLC",
+    "Compass Datacenters DFW IIIB, LLC",
+    "Compass Datacenters DFW IIIC, LLC",
+    "Compass Datacenters DFW IIID, LLC",
+    "Compass Datacenters DFW IIIE, LLC"
+   ],
+   "occupants": [
+    "Microsoft Corporation"
+   ],
+   "operators": [
+    "Compass Datacenters, LLC"
+   ]
+  },
+  {
+   "name": "Lonestar Taproot LLC - Pyote",
+   "effective": "2022-02-15",
+   "owners": [
+    "Lonestar Dream Inc."
+   ],
+   "occupants": [
+    "Lonestar Dream Inc."
+   ],
+   "operators": [
+    "Lonestar Dream Inc."
+   ]
+  },
+  {
+   "name": "Lonestar Taproot LLC - Tarbush",
+   "effective": "2022-02-15",
+   "owners": [
+    "Lonestar Dream Inc."
+   ],
+   "occupants": [
+    "Lonestar Dream Inc."
+   ],
+   "operators": [
+    "Lonestar Dream Inc."
+   ]
+  },
+  {
+   "name": "Microsoft Corporation (SAT 80-85)",
+   "effective": "2022-03-31",
+   "owners": [
+    "Microsoft Corporation"
+   ],
+   "occupants": [
+    "Microsoft Corporation"
+   ],
+   "operators": [
+    "Microsoft Corporation"
+   ]
+  },
+  {
+   "name": "Lewisville DFW38",
+   "effective": "2022-04-01",
+   "owners": [
+    "DDI Lewisville, LLC"
+   ],
+   "occupants": [
+    "Wells Fargo Bank National Association"
+   ],
+   "operators": [
+    "DDI Lewisville, LLC"
+   ]
+  },
+  {
+   "name": "USBTC Pecos Data Center",
+   "effective": "2022-04-01",
+   "owners": [
+    "U.S. Data Lone Star, Inc."
+   ],
+   "occupants": [
+    "U.S. Data Lone Star, Inc."
+   ],
+   "operators": [
+    "U.S. Data Lone Star, Inc."
+   ]
+  },
+  {
+   "name": "West Texas Data Center",
+   "effective": "2022-05-04",
+   "owners": [
+    "WTDM OZB LLC"
+   ],
+   "occupants": [
+    "WTDM OZB LLC"
+   ],
+   "operators": [
+    "WTDM OZB LLC TNDS US Corp"
+   ]
+  },
+  {
+   "name": "Lancium Abilene Clean Campus",
+   "effective": "2022-05-26",
+   "owners": [
+    "Lancium LLC",
+    "Abilene DC 1, LLC"
+   ],
+   "occupants": [
+    "Oracle America Cloud Services, LLC"
+   ],
+   "operators": [
+    "Oracle America, Inc.",
+    "Lancium LLC",
+    "Lancium Abilene, LLC"
+   ]
+  },
+  {
+   "name": "Digital Garland",
+   "effective": "2022-06-13",
+   "owners": [
+    "DDI Garland, LLC"
+   ],
+   "occupants": [
+    "Wells Fargo Bank, NA"
+   ],
+   "operators": [
+    "DDI Garland, LLC"
+   ]
+  },
+  {
+   "name": "Pyote Data Center",
+   "effective": "2022-07-11",
+   "owners": [
+    "DDH (North America) Inc."
+   ],
+   "occupants": [
+    "DDH (North America) Inc."
+   ],
+   "operators": [
+    "DDH (North America) Inc."
+   ]
+  },
+  {
+   "name": "Lancium Fort Stockton Clean Campus",
+   "effective": "2022-07-20",
+   "owners": [
+    "Lancium LLC"
+   ],
+   "occupants": [
+    "Lancium LLC"
+   ],
+   "operators": [
+    "Lancium LLC"
+   ]
+  },
+  {
+   "name": "Childress Data Center",
+   "effective": "2022-08-10",
+   "owners": [
+    "IE US Development Holdings 3 Inc."
+   ],
+   "occupants": [
+    "IE US Hardware 4 Inc."
+   ],
+   "operators": [
+    "IE US Development Holdings 3 Inc."
+   ]
+  },
+  {
+   "name": "NTT Global Data Centers Americas - Dallas TX3",
+   "effective": "2022-10-01",
+   "owners": [
+    "NTT Global Data Centers TX, LLC"
+   ],
+   "occupants": [
+    "Amazon Data Services, Inc."
+   ],
+   "operators": [
+    "NTT Global Data Centers Americas, Inc."
+   ]
+  },
+  {
+   "name": "NTT Global Data Centers Americas - Dallas TX2",
+   "effective": "2022-10-20",
+   "owners": [
+    "NTT Global Data Centers TX, LLC"
+   ],
+   "occupants": [
+    "Amazon Data Services, Inc."
+   ],
+   "operators": [
+    "NTT Global Data Centers Americas, Inc."
+   ]
+  },
+  {
+   "name": "Alamo Data Center",
+   "effective": "2022-11-02",
+   "owners": [
+    "Alamo Mission LLC"
+   ],
+   "occupants": [
+    "Design LLC"
+   ],
+   "operators": [
+    "Google LLC"
+   ]
+  },
+  {
+   "name": "Cipher Mining Technologies Inc. - Odessa Site",
+   "effective": "2023-01-24",
+   "owners": [
+    "Cipher Mining Technologies Inc."
+   ],
+   "occupants": [
+    "Cipher Mining Technologies Inc."
+   ],
+   "operators": [
+    "Cipher Mining Technologies Inc."
+   ]
+  },
+  {
+   "name": "Lincoln Rackhouse",
+   "effective": "2023-03-21",
+   "owners": [],
+   "occupants": [
+    "Coreweave, Inc."
+   ],
+   "operators": [
+    "Coreweave, Inc.",
+    "Coreweave Compute Acquisition Co. II, LLC"
+   ]
+  },
+  {
+   "name": "SDC DFW VIII, L.P.",
+   "effective": "2023-03-27",
+   "owners": [
+    "SDC DFW VIII, L.P."
+   ],
+   "occupants": [
+    "GOOGLE LLC"
+   ],
+   "operators": [
+    "SDC DFW VIII, L.P.",
+    "Jones Lang La Salle Amercias, Inc.",
+    "Design, LLC"
+   ]
+  },
+  {
+   "name": "Dory Creek LLC Data Center",
+   "effective": "2023-04-03",
+   "owners": [
+    "Bitdeer Inc."
+   ],
+   "occupants": [
+    "Dory Creek LLC"
+   ],
+   "operators": [
+    "Dory Creek LLC"
+   ]
+  },
+  {
+   "name": "Microsoft Corporation (SAT 15-17)",
+   "effective": "2023-04-04",
+   "owners": [
+    "Microsoft Corporation"
+   ],
+   "occupants": [
+    "Microsoft Corporation"
+   ],
+   "operators": [
+    "Microsoft Corporation"
+   ]
+  },
+  {
+   "name": "Riot Corsicana Data Center",
+   "effective": "2023-08-22",
+   "owners": [
+    "Riot Corsicana, LLC"
+   ],
+   "occupants": [
+    "Riot Corsicana, LLC"
+   ],
+   "operators": [
+    "Riot Corsicana, LLC"
+   ]
+  },
+  {
+   "name": "Bastrop Project One",
+   "effective": "2023-12-06",
+   "owners": [
+    "Ocean Blockchain LLC"
+   ],
+   "occupants": [
+    "Ocean Blockchain LLC"
+   ],
+   "operators": [
+    "Ocean Blockchain LLC"
+   ]
+  },
+  {
+   "name": "Fort Haskell Data Center",
+   "effective": "2024-01-16",
+   "owners": [
+    "Fort Haskell LLC"
+   ],
+   "occupants": [
+    "Fort Haskell LLC"
+   ],
+   "operators": [
+    "Fort Haskell LLC"
+   ]
+  },
+  {
+   "name": "Cedarvale, Barslow/Pyote TX Data Center",
+   "effective": "2024-01-30",
+   "owners": [
+    "Ionic Digital Cedarvale LLC"
+   ],
+   "occupants": [
+    "Ionic Digital Mining LLC"
+   ],
+   "operators": [
+    "Ionic Digital Mining LLC"
+   ]
+  },
+  {
+   "name": "QTS Irving DC3 Data Center",
+   "effective": "2024-02-09",
+   "owners": [
+    "QTS Irving DC3, LLC"
+   ],
+   "occupants": [
+    "Microsoft Corporation"
+   ],
+   "operators": [
+    "QTS Irving DC3, LLC",
+    "Quality Technology Services, LLC"
+   ]
+  },
+  {
+   "name": "Cipher Black Pearl LLC Data Center",
+   "effective": "2024-02-15",
+   "owners": [
+    "Cipher Black Pearl LLC"
+   ],
+   "occupants": [
+    "Cipher Black Pearl LLC"
+   ],
+   "operators": [
+    "Cipher Black Pearl LLC"
+   ]
+  },
+  {
+   "name": "3301 Hibbetts Road Data Center",
+   "effective": "2024-02-20",
+   "owners": [],
+   "occupants": [
+    "Coreweave, Inc."
+   ],
+   "operators": [
+    "Core Scientific, Inc.",
+    "Coreweave Compute Acquisition Co. II. LLC",
+    "CCAC IV.II, LLC"
+   ]
+  },
+  {
+   "name": "1102 McKinzie LLC Data Center",
+   "effective": "2024-02-23",
+   "owners": [
+    "1102 McKinzie LLC"
+   ],
+   "occupants": [
+    "1102 McKinzie LLC"
+   ],
+   "operators": [
+    "1102 McKinzie LLC"
+   ]
+  },
+  {
+   "name": "TX11 Data Center",
+   "effective": "2024-03-06",
+   "owners": [
+    "Vantage Data Centers TX11, LLC"
+   ],
+   "occupants": [
+    "Microsoft Corporation"
+   ],
+   "operators": [
+    "Vantage Data Centers TX11, LLC",
+    "Vantage Data Centers Management Company LLC"
+   ]
+  },
+  {
+   "name": "SDC SATB1",
+   "effective": "2024-03-10",
+   "owners": [
+    "SDC SA III, L.P."
+   ],
+   "occupants": [
+    "Microsoft Corporation"
+   ],
+   "operators": [
+    "SDC SA III, L.P."
+   ]
+  },
+  {
+   "name": "SDC - Austin Tandem Data Center",
+   "effective": "2024-03-13",
+   "owners": [
+    "SDC - Austin LLC"
+   ],
+   "occupants": [
+    "Cirrascale Cloud Services, LLC"
+   ],
+   "operators": [
+    "SDC - Austin LLC"
+   ]
+  },
+  {
+   "name": "Red Oak Texas Data Center 2",
+   "effective": "2024-03-14",
+   "owners": [
+    "Compass Datacenters DFW IIIJ, LLC",
+    "Compass Datacenters DFW III, LLC",
+    "Compass Datacenters DFW IIIF, LLC",
+    "Compass Datacenters DFW IIIG, LLC",
+    "Compass Datacenters DFW IIIH, LLC",
+    "Compass Datacenters DFW III-I, LLC"
+   ],
+   "occupants": [
+    "Microsoft Corporation"
+   ],
+   "operators": [
+    "Compass Datacenters, LLC"
+   ]
+  },
+  {
+   "name": "Giga Texas Datacenter",
+   "effective": "2024-03-25",
+   "owners": [
+    "Tesla, Inc."
+   ],
+   "occupants": [
+    "Tesla, Inc."
+   ],
+   "operators": [
+    "Tesla, Inc."
+   ]
+  },
+  {
+   "name": "Microsoft Corporation (SAT 89-90)",
+   "effective": "2024-04-04",
+   "owners": [
+    "Microsoft Corporation"
+   ],
+   "occupants": [
+    "Microsoft Corporation"
+   ],
+   "operators": [
+    "Microsoft Corporation"
+   ]
+  },
+  {
+   "name": "Giga Texas Datacenter",
+   "effective": "2024-04-10",
+   "owners": [
+    "Tesla, Inc."
+   ],
+   "occupants": [
+    "Tesla, Inc."
+   ],
+   "operators": [
+    "Tesla, Inc."
+   ]
+  },
+  {
+   "name": "NTT Global Data Centers Americas - Dallas TX4",
+   "effective": "2024-04-18",
+   "owners": [
+    "NTT Global Data Centers TX, LLC"
+   ],
+   "occupants": [
+    "Amazon Data Services, Inc."
+   ],
+   "operators": [
+    "NTT Global Data Centers Americas, Inc."
+   ]
+  },
+  {
+   "name": "1242 McKinzie LLC Data Center",
+   "effective": "2024-06-11",
+   "owners": [
+    "1242 McKinzie LLC"
+   ],
+   "occupants": [
+    "1242 McKinzie LLC"
+   ],
+   "operators": [
+    "1102 McKinzie LLC"
+   ]
+  },
+  {
+   "name": "Hockley Data Center",
+   "effective": "2024-07-20",
+   "owners": [
+    "SF HOUH LLC"
+   ],
+   "occupants": [
+    "SF HOUH LLC"
+   ],
+   "operators": [
+    "SF HOUH LLC"
+   ]
+  },
+  {
+   "name": "Hockley Data Center",
+   "effective": "2024-08-20",
+   "owners": [
+    "SF HOUH LLC"
+   ],
+   "occupants": [
+    "SF HOUH LLC"
+   ],
+   "operators": [
+    "SF HOUH LLC"
+   ]
+  },
+  {
+   "name": "Independence Data Center",
+   "effective": "2024-08-20",
+   "owners": [],
+   "occupants": [
+    "Core42 Holding US LLC"
+   ],
+   "operators": [
+    "Core42 Holding US LLC"
+   ]
+  },
+  {
+   "name": "Canadian Breaks Data Center",
+   "effective": "2024-09-05",
+   "owners": [
+    "Zephyr Infrastructure LLC"
+   ],
+   "occupants": [
+    "American Bitcoin Operating LLC"
+   ],
+   "operators": [
+    "Zephyr Infrastructure LLC"
+   ]
+  },
+  {
+   "name": "Denton Data Center",
+   "effective": "2024-09-19",
+   "owners": [],
+   "occupants": [
+    "Coreweave Compute Acquisition Co V LLC"
+   ],
+   "operators": [
+    "Core Scientific, Inc.",
+    "Coreweave, Inc."
+   ]
+  },
+  {
+   "name": "Cutten Data Center",
+   "effective": "2024-10-10",
+   "owners": [
+    "SF HOUC, LLC"
+   ],
+   "occupants": [
+    "SF HOUC, LLC"
+   ],
+   "operators": [
+    "SF HOUC, LLC"
+   ]
+  },
+  {
+   "name": "C1 Dallas - Allen (LOT 1) LLC",
+   "effective": "2024-11-01",
+   "owners": [
+    "C1 Dallas - Allen (LOT 1) LLC"
+   ],
+   "occupants": [
+    "Oracle America Cloud Services LLC"
+   ],
+   "operators": [
+    "C1 Dallas - Allen (LOT 1) LLC",
+    "Oracle America, Inc."
+   ]
+  },
+  {
+   "name": "Bull Data Center",
+   "effective": "2024-11-04",
+   "owners": [
+    "IE US Development Holdings 5 Inc."
+   ],
+   "occupants": [
+    "IE US Hardware 1 Inc."
+   ],
+   "operators": [
+    "IE US Development Holdings 5 Inc."
+   ]
+  },
+  {
+   "name": "Austin Data Center 2 LLC",
+   "effective": "2025-01-15",
+   "owners": [
+    "Austin Data Center 2 LLC"
+   ],
+   "occupants": [
+    "Design, LLC"
+   ],
+   "operators": [
+    "Google, LLC"
+   ]
+  },
+  {
+   "name": "Lancium Abilene Clean Campus III",
+   "effective": "2025-01-28",
+   "owners": [
+    "Abilene DC 3 LLC"
+   ],
+   "occupants": [
+    "Oracle America Cloud Services, LLC"
+   ],
+   "operators": [
+    "Oracle America, Inc.",
+    "Lancium LLC",
+    "Lancium Abilene, LLC"
+   ]
+  },
+  {
+   "name": "PowerCampus Dallas by Lancaster Data Center Campus LP",
+   "effective": "2025-02-21",
+   "owners": [
+    "Lancaster Data Center Campus LP"
+   ],
+   "occupants": [
+    "Design, LLC"
+   ],
+   "operators": [
+    "Google, LLC"
+   ]
+  },
+  {
+   "name": "Hutto Data Center Campus LLC",
+   "effective": "2025-03-10",
+   "owners": [
+    "Hutto Data Center Campus LLC"
+   ],
+   "occupants": [
+    "Design LLC"
+   ],
+   "operators": [
+    "Google LLC"
+   ]
+  },
+  {
+   "name": "Lancium Abilene Clean Campus IV",
+   "effective": "2025-03-16",
+   "owners": [
+    "Abilene DC 4, LLC"
+   ],
+   "occupants": [
+    "Oracle America Cloud Services, LLC"
+   ],
+   "operators": [
+    "Oracle America, Inc.",
+    "Lancium LLC",
+    "Lancium Abilene, LLC"
+   ]
+  },
+  {
+   "name": "Lancium Abilene Clean Campus V",
+   "effective": "2025-03-16",
+   "owners": [
+    "Abilene DC 5 LLC"
+   ],
+   "occupants": [
+    "Oracle America Cloud Services, LLC"
+   ],
+   "operators": [
+    "Oracle America, Inc.",
+    "Lancium, LLC",
+    "Lancium Abilene, LLC"
+   ]
+  },
+  {
+   "name": "Lancium Abilene Clean Campus VI",
+   "effective": "2025-03-16",
+   "owners": [
+    "Abilene DC 6 LLC"
+   ],
+   "occupants": [
+    "Oracle America Cloud Services, LLC"
+   ],
+   "operators": [
+    "Oracle America, Inc.",
+    "Lancium LLC",
+    "Lancium Abilene, LLC"
+   ]
+  },
+  {
+   "name": "Lancium Abilene Clean Campus VII",
+   "effective": "2025-03-16",
+   "owners": [
+    "Abilene DC 7 LLC"
+   ],
+   "occupants": [
+    "Oracle America Cloud Services, LLC"
+   ],
+   "operators": [
+    "Oracle America, Inc.",
+    "Lancium, LLC",
+    "Lancium Abilene, LLC"
+   ]
+  },
+  {
+   "name": "Lancium Abilene Clean Campus VIII",
+   "effective": "2025-03-16",
+   "owners": [
+    "Abilene DC 8 LLC"
+   ],
+   "occupants": [
+    "Oracle America Cloud Services, LLC"
+   ],
+   "operators": [
+    "Oracle America, Inc.",
+    "Lancium, LLC",
+    "Lancium Abilene, LLC"
+   ]
+  },
+  {
+   "name": "Lancium Clean Campus - Childress 1",
+   "effective": "2025-03-25",
+   "owners": [
+    "Lancium LLC"
+   ],
+   "occupants": [
+    "Lancium LLC"
+   ],
+   "operators": [
+    "Lancium LLC"
+   ]
+  },
+  {
+   "name": "C1 Richardson LLC Data Center",
+   "effective": "2025-05-08",
+   "owners": [
+    "C1 Richardson LLC"
+   ],
+   "occupants": [
+    "Coreweave, Inc."
+   ],
+   "operators": [
+    "C1 Richardson LLC"
+   ]
+  },
+  {
+   "name": "DFW 37",
+   "effective": "2025-05-14",
+   "owners": [
+    "Digital Garland Campbell, L.P."
+   ],
+   "occupants": [
+    "LinkedIn Corporation"
+   ],
+   "operators": [
+    "Digital Garland Campbell, L.P."
+   ]
+  },
+  {
+   "name": "Project Goodnight",
+   "effective": "2025-06-20",
+   "owners": [
+    "GN DC1, LLC",
+    "GN DC2, LLC"
+   ],
+   "occupants": [
+    "GN DC1, LLC"
+   ],
+   "operators": [
+    "GN DC1, LLC",
+    "GN DC2, LLC"
+   ]
+  },
+  {
+   "name": "Switch AUS 4",
+   "effective": "2025-06-26",
+   "owners": [
+    "Switch, LTD"
+   ],
+   "occupants": [
+    "Coreweave, Inc."
+   ],
+   "operators": [
+    "Switch, LTD",
+    "Coreweave Compute Acquistion Co. III, LLC",
+    "Coreweave Financing DDTL V-V, LLC"
+   ]
+  },
+  {
+   "name": "EdgeConneX AU02",
+   "effective": "2025-07-11",
+   "owners": [
+    "DFW33220N, LLC"
+   ],
+   "occupants": [
+    "Coreweave, Inc."
+   ],
+   "operators": [
+    "DFW33220N Operations 1, LLC"
+   ]
+  },
+  {
+   "name": "Sweetwater II",
+   "effective": "2025-07-15",
+   "owners": [
+    "IE US DEVELOPMENT HOLDINGS 7 INC."
+   ],
+   "occupants": [
+    "IE US HARDWARE 1 INC."
+   ],
+   "operators": [
+    "IE US DEVELOPMENT HOLDINGS 7 INC."
+   ]
+  },
+  {
+   "name": "Nexus Data Centers",
+   "effective": "2025-07-21",
+   "owners": [
+    "Nexus Data Centers, LLC",
+    "Nexus Hubbard Power, LLC",
+    "Nexus Data Centers Hubbard LLC",
+    "Nexus Data Center Hubbard B1 LLC",
+    "Nexus Data Center Hubbard B2 LLC",
+    "Nexus Data Center Hubbard B3 LLC",
+    "Nexus Data Center Hubbard B4 LLC",
+    "Nexus Hubbard Power B1 LLC",
+    "Nexus Hubbard Power B2 LLC",
+    "Nexus Hubbard Power B3 LLC",
+    "Nexus Hubbard Power B4 LLC",
+    "Nexus Hubbard Power CFCO LLC",
+    "Nexus Hubbard Power DFCO A-1 LLC",
+    "Nexus Data Center Hubbard CFCO LLC"
+   ],
+   "occupants": [
+    "Anthropic, PBC"
+   ],
+   "operators": [
+    "Nexus Data Centers, LLC",
+    "Nexus Operations Hubbard LLC",
+    "Nexus Employee Holdco LLC"
+   ]
+  },
+  {
+   "name": "Horizon",
+   "effective": "2025-07-24",
+   "owners": [
+    "IE US Development Holdings 3 Inc."
+   ],
+   "occupants": [
+    "IE US HARDWARE 3 LLC"
+   ],
+   "operators": [
+    "IE US Development Holdings 3 Inc."
+   ]
+  },
+  {
+   "name": "Fermi Data Center 1",
+   "effective": "2025-09-05",
+   "owners": [
+    "Fermi Inc.",
+    "Fermi Equipment Holdco, LLC",
+    "Firebird Equipment Holdco, LLC",
+    "Fermi Campus 1, LLC",
+    "Fermi Warehouse, LLC",
+    "Fermi High Voltage Warehouse, LLC",
+    "Fermi Turbine Warehouse, LLC",
+    "Fermi Mobile Gen, LLC",
+    "Fermi Construction LLC"
+   ],
+   "occupants": [
+    "Fermi Equipment Holdco, LLC"
+   ],
+   "operators": [
+    "Fermi Equipment Holdco, LLC"
+   ]
+  },
+  {
+   "name": "Cinco Data Center",
+   "effective": "2025-09-11",
+   "owners": [
+    "Rowan Cinco LLC"
+   ],
+   "occupants": [
+    "Design LLC"
+   ],
+   "operators": [
+    "Google LLC"
+   ]
+  },
+  {
+   "name": "Cottonwood Data Center",
+   "effective": "2025-09-12",
+   "owners": [
+    "Core Scientific Inc."
+   ],
+   "occupants": [
+    "Core Scientific Inc."
+   ],
+   "operators": [
+    "Core Scientific Inc."
+   ]
+  },
+  {
+   "name": "Wurldwide LLC DBA Statue LLC",
+   "effective": "2025-09-17",
+   "owners": [
+    "Wurldwide LLC DBA Statue LLC"
+   ],
+   "occupants": [
+    "Wurldwide LLC DBA Statue LLC"
+   ],
+   "operators": [
+    "Wurldwide LLC DBA Statue LLC"
+   ]
+  },
+  {
+   "name": "DFW 10",
+   "effective": "2025-10-01",
+   "owners": [
+    "DB Data Center Red Oak, LLC"
+   ],
+   "occupants": [
+    "Oracle America Cloud Services LLC"
+   ],
+   "operators": [
+    "Databank Holdings LTD"
+   ]
+  },
+  {
+   "name": "DFW 11",
+   "effective": "2025-10-01",
+   "owners": [
+    "DB Data Center Red Oak, LLC"
+   ],
+   "occupants": [
+    "Oracle America Cloud Services LLC"
+   ],
+   "operators": [
+    "Databank Holdings LTD"
+   ]
+  },
+  {
+   "name": "DFW 12",
+   "effective": "2025-10-01",
+   "owners": [
+    "DB Data Center Red Oak, LLC"
+   ],
+   "occupants": [
+    "Oracle America Cloud Services LLC"
+   ],
+   "operators": [
+    "Databank Holdings LTD"
+   ]
+  },
+  {
+   "name": "DFW 9",
+   "effective": "2025-10-01",
+   "owners": [
+    "DB Data Center Red Oak, LLC"
+   ],
+   "occupants": [
+    "Oracle America Cloud Services LLC"
+   ],
+   "operators": [
+    "Databank Holdings LTD"
+   ]
+  },
+  {
+   "name": "Riot Rockdale",
+   "effective": "2025-10-03",
+   "owners": [
+    "Riot Platforms, Inc."
+   ],
+   "occupants": [
+    "Riot Platforms, Inc."
+   ],
+   "operators": [
+    "Riot Platforms, Inc.",
+    "Whinstone US, Inc.",
+    "Riot Data Centers, LLC"
+   ]
+  },
+  {
+   "name": "TX 301 Data Center",
+   "effective": "2025-10-08",
+   "owners": [
+    "Vantage Data Centers TX301, LLC"
+   ],
+   "occupants": [
+    "Oracle America Cloud Services LLC"
+   ],
+   "operators": [
+    "Vantage Data Centers TX301, LLC"
+   ]
+  },
+  {
+   "name": "TX 302 Data Center",
+   "effective": "2025-10-08",
+   "owners": [
+    "Vantage Data Centers TX302, LLC"
+   ],
+   "occupants": [
+    "Oracle America Cloud Services LLC"
+   ],
+   "operators": [
+    "Vantage Data Centers TX302, LLC"
+   ]
+  },
+  {
+   "name": "TX 303 Data Center",
+   "effective": "2025-10-08",
+   "owners": [
+    "Vantage Data Centers TX303, LLC"
+   ],
+   "occupants": [
+    "Oracle America Cloud Services LLC"
+   ],
+   "operators": [
+    "Vantage Data Centers TX303, LLC"
+   ]
+  },
+  {
+   "name": "TX 304 Data Center",
+   "effective": "2025-10-08",
+   "owners": [
+    "Vantage Data Centers TX304, LLC"
+   ],
+   "occupants": [
+    "Oracle America Cloud Services LLC"
+   ],
+   "operators": [
+    "Vantage Data Centers TX304, LLC"
+   ]
+  },
+  {
+   "name": "TX 305 Data Center",
+   "effective": "2025-10-08",
+   "owners": [
+    "Vantage Data Centers TX305, LLC"
+   ],
+   "occupants": [
+    "Oracle America Cloud Services LLC"
+   ],
+   "operators": [
+    "Vantage Data Centers TX305, LLC"
+   ]
+  },
+  {
+   "name": "TX 306 Data Center",
+   "effective": "2025-10-08",
+   "owners": [
+    "Vantage Data Centers TX306, LLC"
+   ],
+   "occupants": [
+    "Oracle America Cloud Services LLC"
+   ],
+   "operators": [
+    "Vantage Data Centers TX306, LLC"
+   ]
+  },
+  {
+   "name": "TX 307 Data Center",
+   "effective": "2025-10-08",
+   "owners": [
+    "Vantage Data Centers TX307, LLC"
+   ],
+   "occupants": [
+    "Oracle America Cloud Services LLC"
+   ],
+   "operators": [
+    "Vantage Data Centers TX307, LLC"
+   ]
+  },
+  {
+   "name": "TX 308 Data Center",
+   "effective": "2025-10-08",
+   "owners": [
+    "Vantage Data Centers TX308, LLC"
+   ],
+   "occupants": [
+    "Oracle America Cloud Services LLC"
+   ],
+   "operators": [
+    "Vantage Data Centers TX308, LLC"
+   ]
+  },
+  {
+   "name": "TX 309 Data Center",
+   "effective": "2025-10-08",
+   "owners": [
+    "Vantage Data Centers TX309, LLC"
+   ],
+   "occupants": [
+    "Oracle America Cloud Services LLC"
+   ],
+   "operators": [
+    "Vantage Data Centers TX309, LLC"
+   ]
+  },
+  {
+   "name": "TX 310 Data Center",
+   "effective": "2025-10-08",
+   "owners": [
+    "Vantage Data Centers TX310, LLC"
+   ],
+   "occupants": [
+    "Oracle America Cloud Services LLC"
+   ],
+   "operators": [
+    "Vantage Data Centers TX310, LLC"
+   ]
+  },
+  {
+   "name": "Poolside Data Center, Pecos County I",
+   "effective": "2025-10-23",
+   "owners": [
+    "Poolside LF Phase 1 DC OPS, LLC"
+   ],
+   "occupants": [
+    "Poolside LF Phase 1 DC OPS, LLC"
+   ],
+   "operators": [
+    "Poolside LF Phase 1 DC OPS, LLC"
+   ]
+  },
+  {
+   "name": "DFW02 LANCASTER (STACK)",
+   "effective": "2025-10-31",
+   "owners": [
+    "SI DFW02A, LLC"
+   ],
+   "occupants": [
+    "SI DFW02A, LLC"
+   ],
+   "operators": [
+    "SI DFW02A, LLC",
+    "Stack Infrastructure III TRC, LLC"
+   ]
+  },
+  {
+   "name": "TX11-12 Data Center",
+   "effective": "2025-11-05",
+   "owners": [
+    "Vantage Data Centers TX11, LLC",
+    "Vantage Data Centers TX12, LLC"
+   ],
+   "occupants": [
+    "Oracle America Cloud Services, LLC"
+   ],
+   "operators": [
+    "Vantage Data Centers Management Company, LLC"
+   ]
+  },
+  {
+   "name": "TX21-22 Data Center",
+   "effective": "2025-11-05",
+   "owners": [
+    "Vantage Data Centers TX21, LLC",
+    "Vantage Data Centers TX22, LLC"
+   ],
+   "occupants": [
+    "Oracle America Cloud Services, LLC"
+   ],
+   "operators": [
+    "Vantage Data Centers Management Company, LLC"
+   ]
+  },
+  {
+   "name": "Cipher Barber Lake LLC Data Center",
+   "effective": "2025-11-07",
+   "owners": [
+    "Cipher Barber Lake LLC"
+   ],
+   "occupants": [
+    "Anthropic, PBC"
+   ],
+   "operators": [
+    "Fluidstack USA II INC."
+   ]
+  },
+  {
+   "name": "HEL02 DC",
+   "effective": "2025-11-07",
+   "owners": [
+    "Galaxy Helios II LLC"
+   ],
+   "occupants": [
+    "Coreweave, Inc."
+   ],
+   "operators": [
+    "Coreweave, Inc.",
+    "Galaxy Helios II LLC"
+   ]
+  },
+  {
+   "name": "Borden County Data Center",
+   "effective": "2025-11-11",
+   "owners": [
+    "Borden County DC, LLC"
+   ],
+   "occupants": [
+    "Borden County DC, LLC"
+   ],
+   "operators": [
+    "Borden County DC, LLC"
+   ]
+  },
+  {
+   "name": "Riot Rockdale Data Center 1",
+   "effective": "2025-11-18",
+   "owners": [
+    "Riot Platforms, Inc."
+   ],
+   "occupants": [
+    "Riot Platforms, Inc."
+   ],
+   "operators": [
+    "Riot Platforms, Inc.",
+    "Riot Rockdale Data Center 1",
+    "Riot Data Centers, LLC",
+    "Whinstone, US, Inc."
+   ]
+  },
+  {
+   "name": "Milam County Data Center",
+   "effective": "2025-12-09",
+   "owners": [
+    "MDC Building 1, LLC"
+   ],
+   "occupants": [
+    "Orion DC I, LLC"
+   ],
+   "operators": [
+    "Milam County DC, LLC"
+   ]
+  },
+  {
+   "name": "Riot Corsicana Data Center I",
+   "effective": "2025-12-12",
+   "owners": [
+    "Riot Platforms, Inc."
+   ],
+   "occupants": [
+    "Riot Platforms, Inc."
+   ],
+   "operators": [
+    "Riot Platforms, Inc.",
+    "Riot Corsicana Data Center I. LLC",
+    "Riot Data Centers, LLC 3",
+    "Riot Corsicana, LLC"
+   ]
+  },
+  {
+   "name": "Hackberry Data Center",
+   "effective": "2025-12-15",
+   "owners": [
+    "Silver Basin Digital Infrastructure LLC"
+   ],
+   "occupants": [
+    "American Bitcoin Operating LLC"
+   ],
+   "operators": [
+    "Silver Basin Digital Infrastructure LLC"
+   ]
+  },
+  {
+   "name": "EDC AUSTIN, LLC",
+   "effective": "2026-01-09",
+   "owners": [
+    "EDC Austin, LLC"
+   ],
+   "occupants": [
+    "EDC Austin, LLC"
+   ],
+   "operators": [
+    "EDC Austin, LLC"
+   ]
+  },
+  {
+   "name": "EDC Fort Worth, LLC",
+   "effective": "2026-01-09",
+   "owners": [
+    "EDC Fort Worth, LLC"
+   ],
+   "occupants": [
+    "EDC Fort Worth, LLC"
+   ],
+   "operators": [
+    "EDC Fort Worth, LLC",
+    "CDE Acquisitions, LLC",
+    "EDC OPCO, LLC"
+   ]
+  },
+  {
+   "name": "Fluidstack Abernathy Data Center",
+   "effective": "2026-01-20",
+   "owners": [
+    "FS AB LLC"
+   ],
+   "occupants": [
+    "Anthropic, PBC"
+   ],
+   "operators": [
+    "FS AB LLC"
+   ]
+  },
+  {
+   "name": "Temple Data Center",
+   "effective": "2026-01-21",
+   "owners": [
+    "Rowan Temple LLC"
+   ],
+   "occupants": [
+    "Polmer LLC"
+   ],
+   "operators": [
+    "Rowan Temple LLC"
+   ]
+  },
+  {
+   "name": "Cipher Black Pearl LLC Data Center",
+   "effective": "2026-01-23",
+   "owners": [
+    "Cipher Black Pearl, LLC"
+   ],
+   "occupants": [
+    "Amazon Data Services, Inc."
+   ],
+   "operators": [
+    "Amazon Data Services, Inc."
+   ]
+  },
+  {
+   "name": "Lancium Clean Campus - Turkey 1",
+   "effective": "2026-01-25",
+   "owners": [
+    "Lancium Turkey LLC"
+   ],
+   "occupants": [
+    "Lancium Turkey LLC"
+   ],
+   "operators": [
+    "Lancium Turkey LLC"
+   ]
+  },
+  {
+   "name": "DFW-04 Data Center",
+   "effective": "2026-01-27",
+   "owners": [
+    "Aligned Data Centers (Plano) Propco, LLC"
+   ],
+   "occupants": [
+    "Lambda Cloud Fund II MCI DAL, LLC"
+   ],
+   "operators": [
+    "Lambda, Inc."
+   ]
+  },
+  {
+   "name": "Poolside Data Center, Pecos County II",
+   "effective": "2026-03-06",
+   "owners": [
+    "Poolside LF Phase 2 DC OPS, LLC"
+   ],
+   "occupants": [
+    "Poolside LF Phase 2 DC OPS, LLC"
+   ],
+   "operators": [
+    "Poolside LF Phase 2 DC OPS, LLC"
+   ]
+  },
+  {
+   "name": "Cedarvale, Barslow/Pyote TX Data Center",
+   "effective": "2026-03-16",
+   "owners": [
+    "Ionic Digital Cedarvale LLC"
+   ],
+   "occupants": [
+    "Nscale Ward County Borrower SPV, LLC"
+   ],
+   "operators": [
+    "Nscale Ward County, LLC",
+    "Ionic Digital Mining, LLC"
+   ]
+  },
+  {
+   "name": "Freestone Data Center",
+   "effective": "2026-03-24",
+   "owners": [
+    "C1 Freestone 1, LLC"
+   ],
+   "occupants": [
+    "Paile, LLC"
+   ],
+   "operators": [
+    "Paile, LLC"
+   ]
+  },
+  {
+   "name": "Project Watertower",
+   "effective": "2026-03-24",
+   "owners": [
+    "Redwood Dallas SPV, LLC"
+   ],
+   "occupants": [
+    "Yondr USA, LLC"
+   ],
+   "operators": [
+    "Yondr USA, LLC"
+   ]
+  },
+  {
+   "name": "C1 Bosque I",
+   "effective": "2026-04-07",
+   "owners": [
+    "Bosque Parcel 2, LLC"
+   ],
+   "occupants": [
+    "Google, LLC"
+   ],
+   "operators": [
+    "Design, LLC"
+   ]
+  },
+  {
+   "name": "C1 Bosque II LLC",
+   "effective": "2026-04-13",
+   "owners": [
+    "C1 Bosque II LLC"
+   ],
+   "occupants": [
+    "Amazon Data Services, Inc."
+   ],
+   "operators": [
+    "C1 Bosque II LLC"
+   ]
+  },
+  {
+   "name": "Project Woodrow",
+   "effective": "2026-04-15",
+   "owners": [
+    "Nolan Ranch DC Owner LLC"
+   ],
+   "occupants": [
+    "Nolan Ranch DC Owner LLC"
+   ],
+   "operators": [
+    "Nolan Ranch DC Owner LLC"
+   ]
+  },
+  {
+   "name": "Lancium Abilene Clean Campus II",
+   "effective": "2026-04-17",
+   "owners": [
+    "Abilene DC 1, LLC"
+   ],
+   "occupants": [
+    "Oracle America Cloud Services, LLC"
+   ],
+   "operators": [
+    "Lancium Abilene, LLC",
+    "Oracle America, Inc."
+   ]
+  },
+  {
+   "name": "ECX AUS11-16",
+   "effective": "2026-04-24",
+   "owners": [
+    "EdgeConnex MCN Austin Property 5, LLC"
+   ],
+   "occupants": [
+    "EdgeConnex MCN Austin Operations 5, LLC"
+   ],
+   "operators": [
+    "EdgeConnex MCN Austin Operations 5, LLC"
+   ]
+  },
+  {
+   "name": "Meitner Data Center",
+   "effective": "2026-04-27",
+   "owners": [
+    "IP Meitner DTC, LLC"
+   ],
+   "occupants": [
+    "Google LLC"
+   ],
+   "operators": [
+    "IP Meitner, LLC",
+    "Design, LLC",
+    "Google LLC"
+   ]
+  },
+  {
+   "name": "Long Draw Data Center",
+   "effective": "2026-04-30",
+   "owners": [
+    "DDH-LONESTAR-4, LLC"
+   ],
+   "occupants": [
+    "DDH-LONESTAR-4, LLC"
+   ],
+   "operators": [
+    "DDH-LONESTAR-4, LLC"
+   ]
+  },
+  {
+   "name": "Gulf Horizon Data Center",
+   "effective": "2026-05-04",
+   "owners": [
+    "Amazon Data Services, Inc."
+   ],
+   "occupants": [
+    "Amazon Data Services, Inc."
+   ],
+   "operators": [
+    "Amazon Data Services, Inc."
+   ]
+  },
+  {
+   "name": "Riot Corsicana Data Center 02",
+   "effective": "2026-05-21",
+   "owners": [
+    "Riot Platforms, Inc."
+   ],
+   "occupants": [
+    "Riot Platforms, Inc."
+   ],
+   "operators": [
+    "Riot Platforms, Inc.",
+    "RPI Corsicana DC Holdings LLC",
+    "Riot Corsicana, LLC",
+    "RPI DC Master LLC",
+    "RPI Corsicana DC Campus LLC",
+    "RPI DFW02-01 DC LLC",
+    "Riot DC Logistics LLC"
+   ]
+  },
+  {
+   "name": "Spectrum Data Center",
+   "effective": "2026-05-21",
+   "owners": [
+    "Amazon Data Services, Inc."
+   ],
+   "occupants": [
+    "Amazon Data Services, Inc."
+   ],
+   "operators": [
+    "Amazon Data Services, Inc."
+   ]
+  },
+  {
+   "name": "Stampede Data Center",
+   "effective": "2026-05-21",
+   "owners": [
+    "Rowan Stampede LLC"
+   ],
+   "occupants": [
+    "Polmer LLC"
+   ],
+   "operators": [
+    "Rowan Stampede LLC"
+   ]
+  },
+  {
+   "name": "Project Star",
+   "effective": "2026-05-26",
+   "owners": [
+    "3350 Marquis LP"
+   ],
+   "occupants": [
+    "3350 Marquis LP"
+   ],
+   "operators": [
+    "3350 Marquis LP"
+   ]
+  },
+  {
+   "name": "Riot Rockdale Data Center 2",
+   "effective": "2026-06-01",
+   "owners": [
+    "Riot Platforms, Inc."
+   ],
+   "occupants": [
+    "Riot Platforms, Inc."
+   ],
+   "operators": [
+    "Riot Platforms, Inc.",
+    "RPI Rockdale DC Holdings LLC",
+    "RPI DC Master LLC",
+    "Whinstone US, Inc.",
+    "RPI Rockdale DC Campus LLC",
+    "RPI AUS01-0H DC LLC",
+    "Riot DC Logistics, LLC"
+   ]
+  },
+  {
+   "name": "Project Lightning",
+   "effective": "2026-06-04",
+   "owners": [
+    "Vector Lightning, LLC"
+   ],
+   "occupants": [
+    "Vector Lightning, LLC"
+   ],
+   "operators": [
+    "Vector Lightning Energy, LLC",
+    "Vector Power US LLC"
+   ]
+  },
+  {
+   "name": "Milam County Data Center Phase 2",
+   "effective": "2026-06-10",
+   "owners": [
+    "MDC Building 2, LLC"
+   ],
+   "occupants": [
+    "Orion DC I, LLC"
+   ],
+   "operators": [
+    "Milam County DC, LLC"
+   ]
+  },
+  {
+   "name": "STN OD1 - Project Landman",
+   "effective": "2026-06-18",
+   "owners": [
+    "RXT POWER, LLC",
+    "STN INCORPORATED"
+   ],
+   "occupants": [
+    "RXT POWER, LLC"
+   ],
+   "operators": [
+    "RXT POWER, LLC"
+   ]
+  },
+  {
+   "name": "Stingray",
+   "effective": "2026-06-26",
+   "owners": [
+    "Cipher Stingray LLC"
+   ],
+   "occupants": [
+    "Amazon Data Services, Inc."
+   ],
+   "operators": [
+    "Amazon Data Services, Inc."
+   ]
+  },
+  {
+   "name": "Princeton ProjectCo LLC",
+   "effective": "2026-06-30",
+   "owners": [
+    "Princeton ProjectCo LLC"
+   ],
+   "occupants": [
+    "Princeton ProjectCo LLC"
+   ],
+   "operators": [
+    "Princeton ProjectCo LLC"
+   ]
+  },
+  {
+   "name": "Walnut Springs ProjectCo LLC",
+   "effective": "2026-06-30",
+   "owners": [
+    "Walnut Springs ProjectCo LLC"
+   ],
+   "occupants": [
+    "Walnut Springs ProjectCo LLC"
+   ],
+   "operators": [
+    "Walnut Springs ProjectCo LLC"
+   ]
+  },
+  {
+   "name": "ECX AUS31-36",
+   "effective": "2026-07-08",
+   "owners": [
+    "EdgeConnex MCN Austin Property 7, LLC"
+   ],
+   "occupants": [
+    "EdgeConnex MCN Austin Operations 7, LLC"
+   ],
+   "operators": [
+    "EdgeConnex MCN Austin Operations 7, LLC"
+   ]
+  },
+  {
+   "name": "LBB01 Data Center",
+   "effective": "2026-07-10",
+   "owners": [
+    "ALIGNED DATA CENTERS (ABERNATHY) PROPCO, LLC"
+   ],
+   "occupants": [
+    "Lambda Procurement, LLC"
+   ],
+   "operators": [
+    "Lambda, Inc."
+   ]
+  },
+  {
+   "name": "Bexar 1",
+   "effective": "2026-07-24",
+   "owners": [
+    "Amazon Data Services, Inc."
+   ],
+   "occupants": [
+    "Amazon Data Services, Inc."
+   ],
+   "operators": [
+    "Amazon Data Services, Inc."
+   ]
+  },
+  {
+   "name": "Flamingo",
+   "effective": "2026-08-10",
+   "owners": [
+    "Amazon Data Services, Inc."
+   ],
+   "occupants": [
+    "Amazon Data Services, Inc."
+   ],
+   "operators": [
+    "Amazon Data Services, Inc."
+   ]
+  },
+  {
+   "name": "Pecos Ranch Data Center",
+   "effective": "2026-08-10",
+   "owners": [
+    "Amazon Data Services, Inc."
+   ],
+   "occupants": [
+    "Amazon Data Services, Inc."
+   ],
+   "operators": [
+    "Amazon Data Services, Inc."
+   ]
+  }
+ ]
+}
