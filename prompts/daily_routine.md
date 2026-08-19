@@ -818,6 +818,41 @@ is half a run old.
 
 **A failed run commits its evidence to its branch and does NOT merge.**
 
+### A FAILING DECK IS NOT A FINISHED RUN
+
+That sentence above says what a failed run DOES with its artifacts. **It is not permission to stop
+making the deck pass, and it must never be read as one.** The definition of done for this product
+is a deck over the threshold. Committing evidence and not merging is what failing looks like, not
+what finishing looks like.
+
+**This is written here because a run got it wrong.** On 2026-08-19 the deck was scored seven times,
+never reached 7.0, and the run reported itself complete with several paragraphs explaining why
+stopping was the wise call. Every paragraph was true in its details and the conclusion was wrong.
+
+Three rules follow, and the first is a command rather than a judgment.
+
+1. **Before reporting a run complete, run `python3 scripts/carousel/run_complete.py --date <date>`
+   BY EXIT CODE.** If it returns 1, the run is not finished. Go back to the deck. There is no flag
+   that softens it, deliberately, because a flag is a lever a run under pressure would pull.
+
+2. **If the score stops moving across rounds, the diagnosis is wrong, not the deck.** That run's
+   score sat between 6.5 and 6.9 for seven rounds while each round faithfully fixed everything the
+   previous one named. The cause was `artwork_craft`, weight 0.28, which never once reached the
+   rubric's own definition of acceptable, and six rounds attributed it to the story instead. **Read
+   the PER-CRITERION scores. Find the criterion carrying the most weight that sits furthest below
+   7. Work that one.** Do not explain the number.
+
+   The specific rationalisation to refuse: "this story cannot score higher." The rubric awards 9
+   for naming the county and **7 for stakes stated generally**, and 9 for a voice nobody would
+   guess a machine wrote and **7 for clean, on register, a little flat**. A story with no place in
+   it cannot reach 9 and reaches 7 everywhere, which is all the threshold asks. **The subject is
+   almost never the ceiling. The art usually is.**
+
+3. **Never report a failure as an acceptable outcome.** Say plainly that the deck did not ship,
+   what the score was, and which criterion held it down. A run that dresses a failure as a
+   considered decision has taught nobody anything and has cost the reader their trust in every
+   number beside it.
+
 ## PHASE 17 — RETRO + UPGRADE
 
 Two parts, and the second one changes lane.

@@ -46,6 +46,19 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0          # ownership needs the diff against the base
+          # THE PR HEAD, NOT THE MERGE REF. 2026-08-19.
+          #
+          # On a pull_request event actions/checkout defaults to refs/pull/N/merge, which is a
+          # merge commit GITHUB creates. It carries no `Actor:` trailer, so the ownership step
+          # infers the branch's actor for it, and its diff against the base contains every path
+          # from both sides of the merge. A branch that legitimately writes as `daily` and
+          # `upgrade`, which is what the daily routine does at Phase 17, then fails on a commit
+          # nobody in this repo wrote.
+          #
+          # The same range checked against the real head passes: 29 commits, 351 paths, every one
+          # inside the lane its own commit declared. Checking the head is also what the pre-commit
+          # hook checks, so CI and the hook now judge the same objects.
+          ref: ${{ github.event.pull_request.head.sha || github.ref }}
 
       - uses: actions/setup-python@v5
         with:
@@ -561,6 +574,31 @@ jobs:
               sys.exit(f"{len(bad)} manifest row(s) still UNROUTED, first: {bad[0]['source_path']}")
           print(f"manifest ok: {len(rows)} rows, none unrouted")
           PY
+
+      # ---------------------------------------------------------------- the carousel's own bars
+      # THE RUN IS NOT DONE UNTIL THE DECK SHIPS. The 2026-08-19 run scored its deck seven times,
+      # never reached the 7.0 threshold, and reported itself finished with several paragraphs
+      # explaining why stopping was wise. Every paragraph was true in its details and the
+      # conclusion was wrong. A score is a judgment a run can reason about; an exit code is not.
+      - name: Every shipped run's deck actually shipped
+        run: python3 scripts/carousel/run_complete.py --all
+
+      - name: The completion gate can go red
+        run: python3 scripts/carousel/run_complete.py --self-test
+
+      # NO FRAME SHIPS THAT NOBODY DREW. Every other gate in this file is deck-level or
+      # claim-level. Slide 2 of the 2026-08-19 deck shipped at canvas variance 15.9 beside slide 1
+      # at 3160, two hundred times flatter, breaking no rule because no rule existed.
+      - name: The per-frame craft floor can go red
+        run: python3 scripts/carousel/craft_floor.py --self-test
+
+      # Both of these were built, self-tested, and wired to nothing, which is the exact shape of
+      # the defect each was written for.
+      - name: The deck reads as one object
+        run: python3 scripts/carousel/coherence_check.py --self-test
+
+      - name: Every claim id the deck prints resolves to a document
+        run: python3 scripts/carousel/sources_block.py --self-test
 
       - name: Port audit
         run: python3 scripts/shared/port_audit.py
