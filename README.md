@@ -1,5 +1,7 @@
 # Texas AI Docket
 
+**[texasaidocket.com](https://texasaidocket.com)**
+
 A public, fact-checked record of AI decisions in Texas: who is deciding, by when, whether the
 public still has a way in, and a fetched primary source behind every fact.
 

@@ -442,6 +442,7 @@ python3 scripts/site/og.py --self-test        # the social cards and the text on
 python3 scripts/site/favicon.py --self-test   # the tab icon
 python3 scripts/site/truetype.py --self-test  # the glyph reader the cards depend on
 python3 scripts/site/indexnow.py --self-test  # the key file that verifies ownership
+python3 scripts/site/seo_check.py             # the record is findable, on the built site
 ```
 
 Exit 0 is clean, exit 2 wants attention, exit 1 means the checker itself broke. **This never
@@ -897,6 +898,12 @@ is half a run old.
    - `python3 scripts/shared/port_audit.py`
    - `python3 scripts/shared/ownership_check.py --actor daily --staged`
    - `python3 scripts/site/media_check.py`
+   - `python3 scripts/site/seo_check.py`
+
+   **`seo_check` is on this list because the defects it catches are invisible.** A sitemap
+   stamping the build date on every url, an article with no article schema, a description too
+   short to sell the page. None of those look wrong on the page and none is caught by anything
+   else here, and all three shipped while every other gate was green.
 
    **`schema_check` is on this list and not only in Phase 7**, because Phase 7 never blocks a
    run and this step does. Almost every page carries a `CollectionPage` naming its own children

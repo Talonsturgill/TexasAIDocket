@@ -383,6 +383,23 @@ jobs:
           # falsifying it, which is far worse than an inconsistent date.
           python3 scripts/site/house_style_check.py
 
+      - name: The record is findable, which no gate here was checking
+        run: |
+          # The site shipped valid structured data, a valid sitemap and a permissive
+          # robots.txt, and did not appear in Google at all. None of the green checks were
+          # wrong. They were pointed at the wrong things.
+          #
+          # What was actually wrong: all 222 urls carried the build date as their lastmod, so
+          # the field that says "this page changed" said it about everything every day and
+          # meant nothing; the three article pages carried no article schema, no date and the
+          # generic share card; and one shipped a twenty-five character description.
+          #
+          # By exit code. This report prints advice on failure and one clean line on success,
+          # which reads the same either way under tail -1.
+          python3 scripts/site/seo_check.py --self-test
+          python3 scripts/site/seo_check.py
+          python3 scripts/site/lastmod.py --self-test
+
       - name: Ask engine self-test (routes not cached answers, and it phones nobody)
         run: python3 scripts/site/ask_answers.py --self-test
 

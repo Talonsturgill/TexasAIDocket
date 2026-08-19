@@ -47,6 +47,7 @@ import docket_build as dk                                          # noqa: E402
 import favicon                                                     # noqa: E402
 import fonts_build                                                 # noqa: E402
 import indexnow                                                    # noqa: E402
+import lastmod                                                     # noqa: E402
 import og                                                          # noqa: E402
 import schema                                                      # noqa: E402
 import gridwatch_page                                              # noqa: E402
@@ -69,6 +70,26 @@ SITE_NAME = "Texas AI Docket"
 # front of the site moved no href at all. Only the absolute URLs built from here had to change,
 # which is the canonical tag, og:url, the sitemap, the feeds and the structured data.
 SITE_URL = "https://texasaidocket.com"
+
+# --------------------------------------------------------- proving the site is ours
+#
+# A SEARCH ENGINE WILL NOT SHOW A SITE IT HAS NEVER BEEN TOLD ABOUT. This record shipped with
+# a valid sitemap, a permissive robots.txt and structured data on every page, and did not
+# appear in Google at all, because none of that is a submission. Discovery is by link, the
+# domain was days old, and nothing on the indexed web pointed at it. The sitemap was never
+# handed to anyone.
+#
+# Verification is what opens that door. It is also the only way to see what the crawler
+# actually thinks: which pages are indexed, which were refused and why, and what the record
+# is already being found for.
+#
+# DNS IS THE BETTER METHOD AND NEEDS NEITHER OF THESE. A TXT record on the domain verifies
+# every subdomain and both protocols at once and cannot be lost in a rebuild. These two exist
+# for the case where editing DNS is not convenient, so the token is a one line change here
+# rather than a hunt through a generated page. Empty means the tag is not emitted at all,
+# because an empty verification tag is worse than none: it looks done.
+GOOGLE_SITE_VERIFICATION = ""     # the content= value from Search Console's HTML tag method
+BING_SITE_VERIFICATION = ""       # the content= value from Bing Webmaster Tools
 # THE LICENCE, AS ONE STRING. Named here because it is printed in three places and its
 # version number is a numeral, so the string and the authorisation that lets it through
 # the numeral gate have to come from the same constant. Written out at each call site
@@ -360,10 +381,21 @@ def rel(depth: int) -> str:
 
 
 # --------------------------------------------------------------------------- shell
+def _verification() -> str:
+    """The ownership tags, and nothing when there is nothing to say."""
+    out = ""
+    if GOOGLE_SITE_VERIFICATION:
+        out += f'\n<meta name="google-site-verification" content="{GOOGLE_SITE_VERIFICATION}">'
+    if BING_SITE_VERIFICATION:
+        out += f'\n<meta name="msvalidate.01" content="{BING_SITE_VERIFICATION}">'
+    return out
+
+
 def page(*, title: str, desc: str, body: str, depth: int, active: str,
          today: str, canonical: str, extra_ld: list | None = None,
          home_page: bool = False, og_image: str = "og.png",
-         og_alt: str | None = None) -> str:
+         og_alt: str | None = None, revised: bool = True,
+         og_type: str = "website") -> str:
     p = rel(depth)
     # `""` USED TO MEAN TWO THINGS AND ONE OF THEM WAS A LIE. It is Home's own href, and it
     # was also what a page with no nav entry passed to mean "none of these". So every item
@@ -393,7 +425,13 @@ def page(*, title: str, desc: str, body: str, depth: int, active: str,
     # on every page.
     colophon = "".join(f"<span>{e(s)}</span>" for s in (
         MADE_AT_LEDE,
-        f"Revised {ordinal(_dt.date.fromisoformat(today))}, {today[:4]}",
+        # THE PAGE'S OWN DATE, NOT THE BUILD'S. This printed the build date under every page
+        # on the site, so `/about/` told a reader it was revised this morning when its last
+        # real edit was days earlier. A reader cannot check that, which is what made it the
+        # wrong thing to print. `lastmod.py` works out when each page's published bytes last
+        # moved and substitutes it here at the end of the build, and the same date goes into
+        # the sitemap, so the two surfaces cannot disagree.
+        *([lastmod.TOKEN] if revised else []),
         _made_at(),
     ))
 
@@ -416,10 +454,10 @@ def page(*, title: str, desc: str, body: str, depth: int, active: str,
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{e(title)}</title>
 <meta name="description" content="{e(desc)}">
-<link rel="canonical" href="{SITE_URL}/{canonical}">
+<link rel="canonical" href="{SITE_URL}/{canonical}">{_verification()}
 <meta property="og:title" content="{e(title)}">
 <meta property="og:description" content="{e(desc)}">
-<meta property="og:type" content="website">
+<meta property="og:type" content="{og_type}">
 <meta property="og:url" content="{SITE_URL}/{canonical}">
 {og.head_html(p, SITE_URL, SITE_NAME, title, desc, og_image, og_alt)}
 {favicon.head_html(p)}
@@ -1724,9 +1762,36 @@ def article_page(r: dict, today: str, items: list) -> str:
 </article>
 """
     flat = [s["text"] for b in (r.get("prose") or []) for s in b if not s["quote"]]
-    desc = " ".join((flat or [r["title"]])[0].split())[:180]
+    # THE FIRST SENTENCE IS NOT A DESCRIPTION. This took `flat[0]` and stopped, so an article
+    # opening "August 7th came and went." shipped a twenty-five character description, which
+    # is what a search result then had to sell itself with. Sentences are added until there is
+    # enough to read, and the cut lands on a sentence boundary rather than mid-word.
+    desc = ""
+    for sentence in (flat or [r["title"]]):
+        nxt = (desc + " " + " ".join(sentence.split())).strip()
+        if desc and len(nxt) > 160:
+            break
+        desc = nxt
+        if len(desc) >= 110:
+            break
+    desc = desc[:180]
+
+    # THE ARTICLE SAYS WHAT IT IS. These three pages are the only reporting on the site and
+    # they were the only pages with no schema of their own, no article date, and the generic
+    # site card on every share. They are also the pages most likely to answer a topical
+    # question, which is exactly the case where a crawler needs to be told what it is holding.
+    art_url = f'{SITE_URL}/articles/{r["date"]}/'
+    story_item = next((i for i in items if i.get("id") == r.get("story")), None)
+    item_url = f'{SITE_URL}/item/{story_item["id"]}/' if story_item else None
+    card = f'og/article-{r["date"]}.png'
+    extra_ld = [
+        schema.article_node(SCHEMA_CTX, r, desc, f"{SITE_URL}/{card}", item_url),
+        schema.breadcrumbs(SCHEMA_CTX, [("Texas AI Docket", ""), ("Articles", "articles/"),
+                                        (r["title"], f'articles/{r["date"]}/')]),
+    ]
     return page(title=f'{r["title"]} · {SITE_NAME}', depth=2, active="articles/",
-                desc=desc, body=body, today=today,
+                desc=desc, body=body, today=today, extra_ld=extra_ld,
+                og_image=card, og_alt=r["title"], og_type="article",
                 canonical=f'articles/{r["date"]}/')
 
 
@@ -2064,7 +2129,13 @@ def home(items: list, today: str) -> str:
 
 {scan_teaser()}
 """
-    return page(title=f"{SITE_NAME}", depth=0, active="", home_page=True,
+    # THE TITLE TAG IS THE HIGHEST WEIGHTED THING ON THE PAGE and this spent it on the brand
+    # alone. The brand stays first, so the query "Texas AI Docket" still matches exactly, and
+    # the half that was empty now says what the site is for every query that is not the name.
+    # Same words as the hero lede, deliberately: a title that promises one thing and a page
+    # that opens on another is the mismatch a reader bounces off.
+    return page(title=f"{SITE_NAME} · Every AI decision in Texas and the source behind it",
+                depth=0, active="", home_page=True,
                 desc=("A fact-checked record of AI decisions in Texas. Who decided, by when, "
                       "and whether you can still comment."),
                 body=body, today=today, canonical="",
@@ -3513,7 +3584,7 @@ def about_page(today: str) -> str:
   <a href="../services/">services</a>.</p>
 </div>
 """
-    return page(title=f"About · {SITE_NAME}", depth=1, active="about/",
+    return page(title=f"About · {SITE_NAME}", depth=1, active="about/", revised=False,
                 desc="Texas AI Docket is a daily publication on AI in Texas and an AI studio "
                      "building for Texas businesses.",
                 body=body, today=today, canonical="about/")
@@ -4606,6 +4677,7 @@ def build(out: Path, today: str) -> dict:
     authorised = _authorised_numerals(items, today)
     by_item = {it["id"]: _item_numerals(it, today) for it in items}
     unauthorised: list[str] = []
+    pages: dict[str, tuple[str, set]] = {}
 
     def w(path: str, text: str, extra: set | None = None):
         """Write a page, and check every numeral it prints against what it may print.
@@ -4620,6 +4692,10 @@ def build(out: Path, today: str) -> dict:
         p.write_text(text, encoding="utf-8")
         written.append(path)
         if path.endswith(".html"):
+            # Held so the revision-date pass below can substitute the real date in and
+            # re-check the page it actually ships. The token carries no numeral, so linting
+            # here and again after substitution is the same check over strictly more text.
+            pages[path] = (text, extra or set())
             stray = numeral_lint.scan(text, authorised | (extra or set()))
             if stray:
                 unauthorised.append(f"{path}: {', '.join(stray[:8])}")
@@ -4658,7 +4734,7 @@ def build(out: Path, today: str) -> dict:
     # rather than committed by hand and hoped for.
     w(indexnow.KEY_FILE, indexnow.key_file_contents())
 
-    for name, blob in og.files(items).items():
+    for name, blob in og.files(items, runs).items():
         # The per-decision cards live in their own directory, which has to exist first. The
         # site card sits at the root beside the favicon.
         (out / name).parent.mkdir(parents=True, exist_ok=True)
@@ -4842,9 +4918,35 @@ def build(out: Path, today: str) -> dict:
       "User-agent: *\nAllow: /\n\n"
       f"Sitemap: {SITE_URL}/sitemap.xml\n")
 
+    # EVERY PAGE'S OWN REVISION DATE, computed once and spent twice.
+    #
+    # This stamped `today` on all 222 urls, which told Google the whole site changed this
+    # morning every morning. Google's position on a `lastmod` it finds unreliable is to stop
+    # reading it, so the one field that says "this page is worth fetching again" was being
+    # spent on 222 pages that were not worth fetching again. The colophon printed the same
+    # untruth in words under every page.
+    #
+    # `lastmod.py` derives the date from the only record that actually holds it, which is the
+    # history of the generated bytes themselves. The substitution happens here, after every
+    # page exists, because a page cannot be compared against its committed self while it is
+    # still being written.
+    revised = lastmod.dates_for({k: v[0] for k, v in pages.items()}, today)
+    for path, (text, extra) in pages.items():
+        iso = revised[path]
+        stamped = lastmod.apply(text, iso, ordinal)
+        d = _dt.date.fromisoformat(iso)
+        # The date is computed, so its numerals are authorised. Stated per page rather than
+        # site wide, because a page is entitled to its own date and not to another page's.
+        own = {str(d.day), f"{d.day:02d}", str(d.year), iso, *iso.split("-")}
+        stray = numeral_lint.scan(stamped, authorised | extra | own)
+        if stray:
+            unauthorised.append(f"{path}: {', '.join(stray[:8])}")
+        (out / path).write_text(stamped, encoding="utf-8")
+
     urls = [u for u in written if u.endswith("index.html")]
     locs = "".join(
-        f"<url><loc>{SITE_URL}/{u[:-10]}</loc><lastmod>{today}</lastmod></url>"
+        f"<url><loc>{SITE_URL}/{u[:-10]}</loc>"
+        f"<lastmod>{revised.get(u, today)}</lastmod></url>"
         for u in urls)
     w("sitemap.xml",
       f'<?xml version="1.0" encoding="UTF-8"?>'
