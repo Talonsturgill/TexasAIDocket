@@ -954,6 +954,101 @@ def strip_visibility(img_arr, tmask, r, scale, reach):
     return best
 
 
+def canvas_rules(nodes, img_arr, scale):
+    """FIND THE RULES THE DOM CANNOT DECLARE, so rule_strikes can judge them.
+
+    THE DEFECT. rule_strikes was built in 2026-08-18 for a table border struck through a
+    footnote, and it reads `rules` out of render_report.json, which is a DOM walk. On
+    2026-08-19 slide 5 a canvas-drawn SHEET EDGE ran through the last line of a paragraph,
+    twice, and the new gate never saw it, because a canvas edge is not a DOM element.
+
+    Every fix in this file so far has enumerated one more kind of thing that can cross a word:
+    text vs text, then opaque plates, then DOM rules. The class is ANYTHING DRAWN, and canvas
+    is the half the DOM cannot describe. So this does not add a fourth special case. It
+    recovers candidate strips FROM THE PIXELS and hands them to the existing judge, which
+    already knows about em bands, plates, corner clips and WCAG 1.4.11.
+
+    HOW A RULE IS TOLD FROM LETTERFORMS, which is the whole problem.
+
+    Both are dark pixels inside a line box. The difference is CONTINUITY: glyphs give short
+    runs broken by counters and side bearings, and a rule gives one unbroken run. So a row
+    counts only when its longest CONTIGUOUS off-paper run reaches one em, which is the same
+    unit rule_strikes already uses for "a character struck rather than a corner clipped", and
+    it scales with the type instead of being typed here.
+
+    Rows are merged into strips, and a strip at or over one em thick is dropped: that is a
+    plate, and the occlusion probe owns plates. Everything surviving goes to rule_strikes,
+    which measures it against the paper and stays silent under 3.0:1.
+    """
+    out = []
+    if img_arr is None:
+        return out
+    h_px, w_px = img_arr.shape[0], img_arr.shape[1]
+    grey = (0.2126 * img_arr[:, :, 0] + 0.7152 * img_arr[:, :, 1]
+            + 0.0722 * img_arr[:, :, 2]) if img_arr.ndim == 3 else img_arr.astype(float)
+    for n in nodes or []:
+        if n.get("decorative"):
+            continue
+        em = float(n.get("font_px") or 0)
+        if em <= 0:
+            continue
+        for bx, by, bw, bh in (n.get("lines") or [[n.get("x"), n.get("y"), n.get("w"), n.get("h")]]):
+            try:
+                bx, by, bw, bh = float(bx), float(by), float(bw), float(bh)
+            except (TypeError, ValueError):
+                continue
+            if bw <= 0 or bh <= 0:
+                continue
+            cy = by + bh / 2.0
+            b0, b1 = max(by, cy - em / 2.0), min(by + bh, cy + em / 2.0)
+            y0, y1 = int(b0 * scale), int(b1 * scale)
+            x0, x1 = int(bx * scale), int((bx + bw) * scale)
+            y0, y1 = max(0, y0), min(h_px, y1)
+            x0, x1 = max(0, x0), min(w_px, x1)
+            if y1 - y0 < 2 or x1 - x0 < 4:
+                continue
+            need = max(4, int(em * scale))          # one em of unbroken run
+            band = grey[y0:y1, x0:x1]
+            paper = float(np.median(band))
+            rows = []
+            for r in range(band.shape[0]):
+                off = np.abs(band[r] - paper) > 28.0   # clearly not the paper
+                if not off.any():
+                    continue
+                best = run = 0
+                for v in off:
+                    run = run + 1 if v else 0
+                    if run > best:
+                        best = run
+                if best >= need:
+                    rows.append(r)
+            # merge contiguous rows into strips
+            for grp in _groups(rows):
+                ry0, ry1 = grp[0], grp[-1] + 1
+                th = (ry1 - ry0) / float(scale)
+                if th <= 0 or th >= em:
+                    continue                          # a plate, not a rule
+                out.append({"x": bx, "y": (y0 + ry0) / float(scale),
+                            "w": bw, "h": th,
+                            "kind": "canvas edge", "by": "pixels"})
+    return out
+
+
+def _groups(idx):
+    """Contiguous runs of row indices."""
+    grp, out = [], []
+    for i in idx:
+        if grp and i == grp[-1] + 1:
+            grp.append(i)
+        else:
+            if grp:
+                out.append(grp)
+            grp = [i]
+    if grp:
+        out.append(grp)
+    return out
+
+
 def rule_strikes(nodes, rules, img_arr, scale):
     """TEXT STRUCK BY A DRAWN RULE (2026-08-18). The class of collision every
     other gate in this file is structurally unable to see.
@@ -1219,6 +1314,53 @@ def self_test():
         ok("...reporting it as a FAIL, not a warn",
            "FAIL: text struck by a drawn rule" in p.stdout, p.stdout[-600:])
 
+    # ---- CANVAS EDGES CROSSING TEXT (2026-08-19) ---------------------------------------
+    # rule_strikes is judged against three real captured renders above. What is new here is
+    # the DETECTOR that finds strips the DOM never declared, so these cases test continuity:
+    # a rule is one unbroken run, letterforms are short runs with gaps between them.
+    def _band(with_rule, glyphs=True, thick=1):
+        a = np.full((80, 400, 3), 235, dtype=np.uint8)      # paper
+        if glyphs:                                          # short runs, like letters
+            for x in range(10, 390, 17):
+                a[34:46, x:x + 9] = 40
+        if with_rule:                                       # one unbroken run
+            a[39:39 + thick, 5:395] = 40
+        return a
+
+    node = [{"text": "a line of set type", "font_px": 20, "decorative": False,
+             "lines": [[5, 15, 190, 20]], "x": 5, "y": 15, "w": 190, "h": 20}]
+
+    got = canvas_rules(node, _band(True), 2)
+    ok("a canvas edge running unbroken through the glyph band is DETECTED", len(got) >= 1, str(got))
+    got = canvas_rules(node, _band(False), 2)
+    ok("...and letterforms alone are NOT read as a rule", not got, str(got))
+    # A PLATE IS NOT A RULE, and the drop happens in rule_strikes rather than here. Asserted
+    # through the judge instead of the detector, because that is where the boundary lives: a
+    # strip at or over one em is a plate and the occlusion probe owns it. Worth stating that
+    # this detector is NOT reliable when a plate fills the glyph band, since the band's median
+    # then IS the plate and "off paper" inverts. That case is the occlusion probe's by design.
+    fat = [{"x": 5, "y": 15, "w": 190, "h": 20, "kind": "plate", "by": "test"}]
+    ok("a strip one em thick or more is dropped as a plate, not reported as a rule",
+       not rule_strikes(node, fat, _band(True), 2), str(rule_strikes(node, fat, _band(True), 2)))
+    got = canvas_rules([dict(node[0], decorative=True)], _band(True), 2)
+    ok("a decorative node is not judged", not got, str(got))
+
+    # THE REAL FRAME, when its PNG is on disk. 2026-08-19 slide 5 ships faint register lines
+    # from the paper sheet straight through the last line of a paragraph, and machine QA
+    # reported zero fails and zero warns on that slide before this detector existed.
+    _root = Path(__file__).resolve().parents[3]
+    _s5 = _root / "out" / "2026-08-19" / "render" / "slide-05.png"
+    _rp = _root / "out" / "2026-08-19" / "render" / "render_report.json"
+    if _s5.exists() and _rp.exists():
+        _rep = json.loads(_rp.read_text(encoding="utf-8"))
+        _rec = next((s for s in _rep.get("slides", []) if "05" in str(s.get("file", ""))), None)
+        if _rec:
+            _arr = np.asarray(Image.open(_s5).convert("RGB"))
+            _sc = _arr.shape[1] / 1080.0
+            _found = canvas_rules(_rec.get("text_nodes", []), _arr, _sc)
+            ok("the real slide 5 register lines are found on the shipped render",
+               len(_found) >= 1, f"found {len(_found)}")
+
     if failures:
         print(f"\nqa self-test: {failures} FAILED", file=sys.stderr)
         return 1
@@ -1476,7 +1618,12 @@ def main():
         if _missing:
             res["warns"].append(_missing)
         else:
-            for sev, msg in rule_strikes(rec.get("text_nodes", []), rec["rules"],
+            # DECLARED rules plus the ones recovered from pixels. A canvas edge is not a
+            # DOM element, and one ran through a paragraph twice on 2026-08-19 slide 5 while
+            # this gate, built for exactly that collision, saw nothing.
+            _nodes = rec.get("text_nodes", [])
+            _rules = list(rec["rules"] or []) + canvas_rules(_nodes, arr, scale)
+            for sev, msg in rule_strikes(_nodes, _rules,
                                          arr, scale):
                 (res["fails"] if sev == "fail" else res["warns"]).append(msg)
 

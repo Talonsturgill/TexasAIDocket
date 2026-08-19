@@ -299,6 +299,14 @@ jobs:
           # reported clean forever. Same shape as craft_floor reading a key qa.py never wrote.
           python3 scripts/carousel/shipped_check.py --self-test
 
+      - name: Noun trace self-test (a named thing needs a source, and a label is not a name)
+        run: |
+          # Matching every capitalised run raised thirty candidates on one deck and buried the
+          # real one, because decks set design annotations in all caps. Title case always
+          # counts; an all-caps run counts only when the gazetteer knows it as a place. That
+          # keeps HARRIS COUNTY and drops SAME HUE.
+          python3 scripts/carousel/noun_trace.py --self-test
+
       - name: Panel self-test (three judges, a per-criterion median, hard fails unioned)
         run: |
           # A single scorer graded the 2026-08-19 deck seven times and found ZERO hard fails.
