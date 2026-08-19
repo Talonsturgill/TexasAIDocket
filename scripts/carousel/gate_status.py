@@ -230,7 +230,13 @@ def _assembly(a, d: Path) -> Row:
 
 
 def _score(s) -> Row:
-    val = s.get("score") or s.get("total") or s.get("weighted")
+    # THE SCORER'S OWN FIELD NAME FIRST. `weighted_score` is what this repo's rubric writes and it
+    # was missing from this list, so the status block printed "None, below threshold" on a run that
+    # had a perfectly good 6.82 in score.json. email_check carries the identical fix and the
+    # identical comment: a check that cannot find the number it checks still prints a row, and a
+    # row that says None reads as a run that produced nothing rather than as a lookup that missed.
+    val = next((s[k] for k in
+                ("weighted_score", "score", "weighted_total", "total", "weighted") if k in s), None)
     ship = s.get("ship")
     hard = s.get("hard_fails") or []
     if hard:
@@ -465,6 +471,18 @@ def self_test() -> int:
     if failures:
         print(f"\ngate_status self-test: {failures} FAILED", file=sys.stderr)
         return 1
+    # THE FIELD NAME THIS REPO ACTUALLY WRITES. Missing from the lookup, so a real score
+    # rendered as "None, below threshold".
+    ok("the score row reads this repo's own weighted_score field",
+       "6.82" in _score({"weighted_score": 6.82, "ship": False}).detail,
+       _score({"weighted_score": 6.82, "ship": False}).detail)
+    ok("...and a held run still says it is below the threshold",
+       "below threshold" in _score({"weighted_score": 6.82, "ship": False}).detail)
+    ok("...and a shipped run reads PASS",
+       _score({"weighted_score": 7.4, "ship": True}).status == PASS)
+    ok("...and the older field names still work",
+       "7.1" in _score({"total": 7.1, "ship": True}).detail)
+
     print("\ngate_status self-test: all passed (artifacts parsed, binaries checked by magic "
           "bytes, nothing measured by length)")
     return 0
