@@ -1689,6 +1689,40 @@ figcaption {{ font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
 /* THE WHOLE ROSTER. 149 rows is the actual record and it is the thing nobody else publishes
    as a table, so it ships in full rather than as a top ten. It scrolls inside its own box so a
    wide table never makes the PAGE scroll sideways. */
+/* THE SCANNER'S FRONT DOOR. The question is set at display size in the reader's own voice,
+   and under it the crew that answers it is listed as a numbered run order rather than a feature
+   grid, because that is what it is: four agents, in sequence, each with one job. A feature grid
+   says "here are some benefits". A run order says "here is the machine, and here is what it
+   does first". */
+/* THE SCANNER'S FRONT DOOR, AS AN INSTRUMENT AND NOT AN EXPLAINER.
+   The first attempt answered a design brief with prose: four agents, four paragraphs, most of
+   a screen of text before the control. Owner's note, and it is right, was that a reader should
+   FEEL this rather than read it. So the words are cut to a fraction and the crew is drawn as
+   the signal chain it actually is, four stages on one line, each with a name and three or four
+   words. The control sits directly under the question where a front door belongs, and the chain
+   reads as the machine behind it rather than as a list of features. */
+.scanq {{ font-family:var(--display); font-size:var(--s3); line-height:1.1;
+  letter-spacing:-.015em; margin:0 0 .5rem; max-width:18ch; }}
+.scanlede {{ color:var(--dust); margin:0 0 1.2rem; max-width:34ch; }}
+.scanfoot {{ color:var(--dust); font-size:var(--s-1); margin:1.1rem 0 0; }}
+/* A LINE WITH FOUR STATIONS ON IT. The rule runs behind the dots, so the eye reads a chain
+   rather than four cards, which is the difference between a machine and a feature grid. */
+.chainlab {{ font-family:var(--mono); font-size:var(--s-2); letter-spacing:.1em;
+  text-transform:uppercase; color:var(--accent); margin:1.7rem 0 0; }}
+.chain {{ list-style:none; margin:.9rem 0 0; padding:0; max-width:none; position:relative;
+  display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:0 1rem; }}
+.chain::before {{ content:""; position:absolute; left:.3rem; right:.3rem; top:.34rem;
+  height:1px; background:var(--rule); }}
+.chain li {{ position:relative; padding-top:1.3rem; }}
+.chain li::before {{ content:""; position:absolute; left:0; top:0; width:.7rem; height:.7rem;
+  border-radius:50%; background:var(--bg); border:1px solid var(--accent); }}
+.chain b {{ display:block; font-weight:500; font-size:var(--s-1); }}
+.chain span {{ display:block; color:var(--dust); font-family:var(--mono);
+  font-size:var(--s-2); line-height:1.45; margin-top:.15rem; }}
+@media (max-width:42rem) {{
+  .chain {{ grid-template-columns:repeat(2, minmax(0, 1fr)); gap:1.1rem 1rem; }}
+  .chain::before {{ display:none; }}
+}}
 /* THE HIDDEN HALF ANNOUNCES ITSELF. At 390px the table is 704px wide inside a 356px box, so
    exactly half of it, the operator and the date, was off screen with nothing at the right edge
    saying so: the last column simply stopped mid word and read as the end of the table.
