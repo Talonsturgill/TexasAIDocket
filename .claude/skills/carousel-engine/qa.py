@@ -1291,6 +1291,20 @@ def main():
         fb = frame_balance(arr)
         if fb is not None:
             ratio, bands = fb
+            # PERSIST THE MEASUREMENT, not only the sentence about it.
+            #
+            # These three numbers were computed here and then thrown away into a message
+            # string. scripts/carousel/craft_floor.py reads a per-third band density to decide
+            # whether a THIN frame is a deliberate quiet frame (warn) or a frame nobody drew
+            # (fail), and it looked for exactly these keys and found nothing, on every run,
+            # because nothing ever wrote them. Its WARN tier was unreachable dead code and
+            # every thin frame was a hard fail on a test that never ran.
+            #
+            # Third time in this repo that a consumer read a key its producer does not write,
+            # after gate_status and email_check both missed `weighted_score`. The shape is
+            # always the same: two files agreeing about a name in one direction only.
+            res["bands"] = [round(b, 4) for b in bands]
+            res["band_ratio"] = round(ratio, 4)
             if ratio < FB_WARN:
                 where = f"top {bands[0]:.0%} / mid {bands[1]:.0%} / bottom {bands[2]:.0%} of cells carrying craft"
                 msg = (f"top-loaded composition: the bottom third carries {ratio:.0%} of "
