@@ -347,6 +347,10 @@ def annotated() -> str:
      One step, used everywhere, so the rhythm is a decision rather than an accident. */
   --band:clamp(3rem,7vw,5.5rem);
   --hair:1px;
+  /* The phone's own bottom furniture, the home indicator strip. The ask box reads this
+     when it parks the composer above the fold, so the field never sits under it. Zero
+     everywhere that has no such strip. */
+  --safe-bottom:env(safe-area-inset-bottom, 0px);
   --shell:72rem;
 }}
 

@@ -15,6 +15,7 @@
   --measure:68ch; --gap:clamp(1rem,3vw,1.75rem); --radius:3px; --radius-lg:12px;
   --band:clamp(3rem,7vw,5.5rem);
   --hair:1px;
+  --safe-bottom:env(safe-area-inset-bottom, 0px);
   --shell:72rem;
 }
 *,*::before,*::after { box-sizing:border-box; }

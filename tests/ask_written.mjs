@@ -148,6 +148,43 @@ ok("the starters step aside", await page.locator(".chips").isHidden());
 ok("the note steps aside", await page.locator(".asknote").isHidden());
 ok("the engine's live list steps aside", await page.locator("#ask .answer").isHidden());
 
+// THE FIELD STAYS DOWN AND THE TALK GROWS ABOVE IT.
+//
+// Nothing here measured scroll, so the box was free to throw the page anywhere on submit and
+// this suite stayed green. It did: it scrolled the QUESTION to just under the masthead, which
+// on a page where the box sits partway down put the composer near the TOP of the screen on the
+// first press. Asking a question moved the one control the reader was using.
+//
+// The two things that make it feel like every chat they have used are measured directly, at a
+// real viewport, after a real streamed answer.
+// SETTLE FIRST. The park is a SMOOTH scroll, so measuring the instant the answer lands reads a
+// position the page is still travelling through. The first version of this assertion did
+// exactly that and reported the composer 25px below the fold while the scroll it was racing
+// was already aimed at the right place. Wait for the page to stop moving, then measure.
+await page.waitForFunction(() => {
+  const y = Math.round(scrollY);
+  if (window.__lastY === y) { return true; }
+  window.__lastY = y;
+  return false;
+}, null, { timeout: 4000, polling: 120 });
+
+const seat = await page.evaluate(() => {
+  const f = document.querySelector("#ask form");
+  const t = document.querySelector("#askthread");
+  const fr = f.getBoundingClientRect();
+  return {
+    fromBottom: Math.round(innerHeight - fr.bottom),
+    onScreen: fr.top > 0 && fr.bottom <= innerHeight + 2,
+    threadAbove: t.getBoundingClientRect().bottom <= fr.top + 4,
+    threadHasText: t.textContent.trim().length > 0,
+  };
+});
+ok(`the field is parked near the bottom, ${seat.fromBottom}px up from it`,
+   seat.onScreen && seat.fromBottom >= 0 && seat.fromBottom < 140,
+   JSON.stringify(seat));
+ok("the talk sits above it rather than below", seat.threadAbove && seat.threadHasText,
+   JSON.stringify(seat));
+
 head("E. the closing offer waits in the field");
 ok("it is suggested in the placeholder, not in a button",
   (await page.getAttribute("#askq", "placeholder")) === "Show me the dates it moved on.",
