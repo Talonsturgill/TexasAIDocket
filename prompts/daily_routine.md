@@ -708,6 +708,48 @@ verification satisfies every other gate in the run.
 **Fix `copy.json` to say what the slide says.** Never edit the slide to match a stale record. The
 render is what a reader receives.
 
+## PHASE 12b — THE FOUR GATES BUILT AFTER THE 2026-08-19 RUN
+
+Run all four. Each exists for a defect that reached a published frame, and three of them are for
+defects that reached a published frame in ALL THREE shipped runs.
+
+```
+python3 scripts/carousel/plan_render_check.py --date <date>
+python3 scripts/carousel/absence_check.py     --date <date>
+python3 scripts/carousel/craft_floor.py       --date <date>
+python3 scripts/carousel/coherence_check.py   --date <date>
+python3 scripts/carousel/texan_check.py       --date <date>
+```
+
+**`plan_render_check` — the frame has to be the one the dossier described.** `dossier_check`
+proves a plan EXISTS and never that it was executed, and a pixel critic then grades each frame
+against that plan, so an unexecuted plan passes every review after it. Slide 5 of 2026-08-19 said
+the differing words are marked in pecos and shipped uniform ink for FIVE scoring passes, on the
+frame the whole deck turns on.
+
+It also prints the ratio of acceptance items that assert anything a render could contradict. On
+the deck that scored 8.03 that ratio was **0 of 46**. If yours is near zero, the acceptance lists
+are descriptions rather than tests. `knowledge/carousel/SLIDE_DOSSIER_SPEC.md` says how to write
+one a machine can check, and it costs the writing nothing.
+
+**`absence_check` — a negative needs a document behind it.** Every honest absence in three decks
+names where it looked. Every fabricated one named nothing. This flags a sentence that says
+something is missing without naming the document it is missing from.
+
+**`craft_floor` — no frame ships that nobody drew.** Per frame, not per deck. Slide 2 of
+2026-08-19 shipped at two hundred times flatter than slide 1 and broke no rule because no rule
+existed.
+
+**`texan_check` — can a reader tell where this happened and what to do next.** It never fails a
+placeless story and it is not a scold. It prints a profile, and the one line to act on is the
+closing frame. A story with no county is NOT capped: the 2026-08-19 deck named no Texas place
+anywhere and scored the highest story mark of the three. A story with no NEXT STEP is, and the
+closing frame is the cheapest frame in the deck to rewrite.
+
+Run `texan_check --text "<the candidate>"` back at SELECTION too. A run that knows on day one it
+has no county knows it must carry the score on art and on the closing frame, instead of learning
+it from a judge in round four.
+
 ## PHASE 13 — AGGREGATE GATE (every number the deck invented)
 
 ```
@@ -736,10 +778,58 @@ python3 .claude/skills/carousel-engine/assemble.py --slides-dir out/<date>/slide
 
 Confirm `assemble_report.json` says `pdf_mode: "vector"`.
 
-## PHASE 15 — SCORING
+## PHASE 15 — SCORING, BY A PANEL OF THREE
 
-Spawn 1 `carousel-scorer`. Honest weighted score, hard fails enforced, no rounding up. Record it
-whatever it says.
+Spawn **3** `carousel-scorer` agents IN PARALLEL, one per lens, and combine them with a script.
+Never one. Never sequentially, because a judge that can see another judge's answer is not a
+second reading.
+
+```
+lens: integrity   every claim, every numeral, every absence, every noun. Try to REFUTE the deck
+lens: craft       the art as a designer sees it. Value structure, focal, detail budget, per frame
+lens: reader      a Texan seeing this in the feed once. What do they learn, what can they do
+```
+
+Each returns its own report card. Then:
+
+```
+python3 scripts/carousel/panel.py --date <date> \
+    --judges out/<date>/score-integrity.json out/<date>/score-craft.json out/<date>/score-reader.json \
+    --out out/<date>/score.json
+```
+
+**WHY THREE, AND IT IS THE MOST EXPENSIVE LESSON THIS PROJECT HAS LEARNED.** On 2026-08-19 a
+single scorer graded one deck seven times:
+
+    single scorer, 7 rounds    6.51 6.87 6.93 6.82 6.56 6.62 6.71   ZERO hard fails found
+    panel of three, 5 rounds   6.53 7.14 7.01 7.44 8.03            FOUR hard fails found
+
+Two of those four were fabrications that had already survived every gate in the suite and a full
+pixel review. One grader cleared them seven times. On three separate rounds all three judges
+independently named the SAME defect, and twice that defect had been introduced by the previous
+round's own fix. A single scorer has no way to tell a real finding from its own taste, because
+there is nothing to compare against.
+
+**THE PANEL'S ARITHMETIC IS NOT YOURS TO DO.** `panel.py` takes the median of each CRITERION and
+weights it by the rubric, which is not the same as a median of the totals: on the round that
+shipped, the judges totalled 8.09, 8.17 and 7.70, whose median is 8.09, and the per-criterion
+medians weight out to 8.034. Do not compute this in your head or in the run record. Read
+`score.json`.
+
+**ANY ONE JUDGE'S HARD FAIL STOPS THE DECK**, whatever the median is and whatever the other two
+said. Two judges failing to notice something is not evidence it did not happen.
+
+**A NUMBER OVER THE BAR IS NOT DONE.** Twice on 2026-08-19 the deck cleared 7.0 and did not
+ship, at 7.14 and at 7.44, because all three judges named a defect the previous round's own fix
+had created. `run_complete.py` enforces the floor. Only the panel can tell you the deck is
+finished.
+
+If `score.json` carries a `note` about spread, the judges disagree by more than 0.75 and the
+deck is not understood yet. Read the outlier's reasoning before you touch a frame. If it carries
+`contested`, those are the criteria the judges split on, and they are the most useful lines in
+the file.
+
+Record it whatever it says.
 
 Before you write a word of the run record, and **again after every render round**:
 
