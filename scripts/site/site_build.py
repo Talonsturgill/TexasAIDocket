@@ -1350,8 +1350,6 @@ def home(items: list, today: str) -> str:
 
 {ask_box(items, today)}
 
-{latest_video()}
-
 <section data-reveal>
   <h2>Where</h2>
   <div class="prose"><p>The lit counties are the ones this record currently touches,
@@ -1383,6 +1381,8 @@ def home(items: list, today: str) -> str:
     agency itself rather than a news report about it.</p>
   </div>
 </section>
+
+{latest_video()}
 
 {scan_teaser()}
 """
