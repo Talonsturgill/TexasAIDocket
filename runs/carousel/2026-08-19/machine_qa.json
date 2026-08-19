@@ -15,15 +15,13 @@
     {
       "file": "slide-03.html",
       "fails": [],
-      "warns": [
-        "top-loaded composition: the bottom third carries 64% of this slide's own average craft density (top 12% / mid 0% / bottom 3% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
-      ]
+      "warns": []
     },
     {
       "file": "slide-04.html",
       "fails": [],
       "warns": [
-        "top-loaded composition: the bottom third carries 76% of this slide's own average craft density (top 53% / mid 25% / bottom 26% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
+        "worst-point contrast 3.1 on 'Each is quoted as its source states it. ' (box mean 8.6) -- below the rubric's 4.5 line somewhere along the run of the text"
       ]
     },
     {
@@ -34,14 +32,18 @@
     {
       "file": "slide-06.html",
       "fails": [],
-      "warns": []
+      "warns": [
+        "top-loaded composition: the bottom third carries 78% of this slide's own average craft density (top 15% / mid 20% / bottom 12% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
+      ]
     },
     {
       "file": "slide-07.html",
       "fails": [],
       "warns": [
-        "top-loaded composition: the bottom third carries 75% of this slide's own average craft density (top 16% / mid 7% / bottom 7% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
-        "contact shadow: 'the title block on stone': shadow L* 13.5 vs ground L* 21.4, dL 8.0 at 432w -- under the 8.0 L* comfort band; it reads, barely"
+        "art touching glyphs (3% of the ring around 'PUBLISHER', spanning 32%) -- pixel critic verify the label is not crossed"
+      ],
+      "contacts": [
+        "'the title block on stone': shadow L* 14.5 vs ground L* 30.2, dL 15.6 at 432w"
       ]
     },
     {
@@ -51,6 +53,6 @@
     }
   ],
   "fails": 0,
-  "warns": 5,
+  "warns": 4,
   "verdict": "WARN"
 }

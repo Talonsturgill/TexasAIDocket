@@ -105,19 +105,50 @@ window.renderReady = new Promise(function(resolve){
   var vor = del.voronoi([x0, y0, x1, y1]);
   ctx.save();
   ctx.beginPath(); ctx.rect(x0,y0,x1-x0,y1-y0); ctx.clip();
-  ctx.strokeStyle='rgba(185,141,70,0.72)'; ctx.lineWidth=1.4;
+  // the setting bed the panels sit in, so the mullions read as material and not as gaps
+  ctx.fillStyle='#0A0910'; ctx.fillRect(x0,y0,x1-x0,y1-y0);
+  // EVERY PANEL LIT TO THE SAME VALUE. That is the claim: a partition where nothing was assigned.
+  // Each is inset from its own cell so the mullion between any two is a real width, and each
+  // carries a soft glow from its own seed so the frame has depth instead of hairlines.
+  function poly(cell, inset, cx, cy){
+    ctx.beginPath();
+    for(var k=0;k<cell.length;k++){
+      var px=cell[k][0], py=cell[k][1];
+      var dx=px-cx, dy=py-cy, L=Math.sqrt(dx*dx+dy*dy)||1;
+      var sx=px-dx/L*inset, sy=py-dy/L*inset;
+      if(k===0) ctx.moveTo(sx,sy); else ctx.lineTo(sx,sy);
+    }
+    ctx.closePath();
+  }
   for(var i=0;i<pts.length;i++){
     var cell = vor.cellPolygon(i);
     if(!cell) continue;
-    ctx.beginPath();
-    for(var k=0;k<cell.length;k++){ if(k===0)ctx.moveTo(cell[k][0],cell[k][1]); else ctx.lineTo(cell[k][0],cell[k][1]); }
-    ctx.closePath(); ctx.stroke();
+    var cx=pts[i][0], cy=pts[i][1];
+    // the panel face, brightest at its own centre and falling to its edge
+    var g=ctx.createRadialGradient(cx,cy,2,cx,cy,86);
+    g.addColorStop(0,'rgba(232,222,198,0.50)');
+    g.addColorStop(0.55,'rgba(206,194,168,0.26)');
+    g.addColorStop(1,'rgba(150,140,120,0.11)');
+    poly(cell, 5, cx, cy); ctx.fillStyle=g; ctx.fill();
+    // the mullion's lit inner edge, one hairline per panel
+    poly(cell, 5, cx, cy);
+    ctx.strokeStyle='rgba(185,141,70,0.62)'; ctx.lineWidth=1.4; ctx.stroke();
+    poly(cell, 7.6, cx, cy);
+    ctx.strokeStyle='rgba(255,246,224,0.16)'; ctx.lineWidth=1; ctx.stroke();
   }
-  // a uniform brass nucleus dot at every seed. Every cell gets the same mark, so none is assigned,
-  // and the field carries ink through the whole box rather than reading as empty ground.
-  ctx.fillStyle='rgba(185,141,70,0.5)';
-  for(var s=0;s<pts.length;s++){ ctx.beginPath(); ctx.arc(pts[s][0],pts[s][1],2.4,0,Math.PI*2); ctx.fill(); }
+  // a uniform brass nucleus at every seed. Same mark on every cell, so none is assigned.
+  ctx.fillStyle='rgba(185,141,70,0.55)';
+  for(var s=0;s<pts.length;s++){ ctx.beginPath(); ctx.arc(pts[s][0],pts[s][1],2.6,0,Math.PI*2); ctx.fill(); }
+  // the whole field falls off toward its own edges, so the box is a lit object in a dark room
+  var vig=ctx.createRadialGradient((x0+x1)/2,(y0+y1)/2,180,(x0+x1)/2,(y0+y1)/2,620);
+  vig.addColorStop(0,'rgba(0,0,0,0)'); vig.addColorStop(1,'rgba(0,0,0,0.55)');
+  ctx.fillStyle=vig; ctx.fillRect(x0,y0,x1-x0,y1-y0);
   ctx.restore();
+  // the neatline, struck after the clip so it reads as the frame of the object
+  ctx.strokeStyle='rgba(185,141,70,0.9)'; ctx.lineWidth=2.5;
+  ctx.strokeRect(x0,y0,x1-x0,y1-y0);
+  ctx.strokeStyle='rgba(0,0,0,0.6)'; ctx.lineWidth=8;
+  ctx.strokeRect(x0-6,y0-6,x1-x0+12,y1-y0+12);
   // the neatline, clipped square, so it reads as a rectangle and never a map
   ctx.strokeStyle='#B98D46'; ctx.lineWidth=2; ctx.strokeRect(x0,y0,x1-x0,y1-y0);
 

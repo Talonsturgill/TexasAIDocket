@@ -327,7 +327,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 826,
+      "render_ms": 732,
       "ok": true,
       "canvases": [
         {
@@ -735,7 +735,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1296,
+      "render_ms": 1273,
       "ok": true,
       "canvases": [
         {
@@ -1039,7 +1039,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 722,
+      "render_ms": 1686,
       "ok": true,
       "canvases": [
         {
@@ -1052,8 +1052,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 23.3,
-          "variance": 134.4
+          "mean": 35.8,
+          "variance": 536.2
         }
       ],
       "breather": false,
@@ -1091,6 +1091,34 @@
               186,
               535,
               96
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Each is quoted as its source states it. None may be multiplied by another.",
+          "x": 80,
+          "y": 300,
+          "w": 880,
+          "h": 76,
+          "font_px": 27,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              300,
+              789,
+              37
+            ],
+            [
+              80,
+              338,
+              104,
+              37
             ]
           ],
           "anc": []
@@ -1389,7 +1417,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1778,
+      "render_ms": 2592,
       "ok": true,
       "canvases": [
         {
@@ -1963,7 +1991,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1291,
+      "render_ms": 1201,
       "ok": true,
       "canvases": [
         {
@@ -1976,8 +2004,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 225,
-          "variance": 302
+          "mean": 228.9,
+          "variance": 172.7
         }
       ],
       "breather": false,
@@ -2014,7 +2042,7 @@
           "anc": []
         },
         {
-          "text": "The Governor's office said so on August 18th. The release quotes nobody from the Coalition.",
+          "text": "The Governor's office said so on August 18th. It is a statement about his own standards rather than a measured result.",
           "x": 80,
           "y": 212,
           "w": 920,
@@ -2029,13 +2057,13 @@
             [
               104,
               225,
-              797,
+              837,
               37
             ],
             [
               104,
               262,
-              330,
+              607,
               37
             ]
           ],
@@ -2293,7 +2321,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1014,
+      "render_ms": 973,
       "ok": true,
       "canvases": [
         {
@@ -2540,7 +2568,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(217, 205, 180)",
+          "color": "rgb(242, 236, 221)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -2737,7 +2765,7 @@
         }
       ],
       "nondeterminism": [],
-      "render_ms": 1661,
+      "render_ms": 2072,
       "ok": true,
       "canvases": [
         {
@@ -2750,8 +2778,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 29.7,
-          "variance": 223.1
+          "mean": 38.1,
+          "variance": 561.8
         }
       ],
       "breather": false,
@@ -2916,7 +2944,7 @@
           "anc": []
         },
         {
-          "text": "Public comment deadline. The calendar names no docket against it.",
+          "text": "Public comment deadline, on the commission's own calendar.",
           "x": 416,
           "y": 964,
           "w": 584,
@@ -2931,13 +2959,13 @@
             [
               416,
               963,
-              553,
+              554,
               36
             ],
             [
               416,
               998,
-              243,
+              164,
               36
             ]
           ],
@@ -3171,7 +3199,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1624,
+      "render_ms": 1050,
       "ok": true,
       "canvases": [
         {

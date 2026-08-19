@@ -51,7 +51,8 @@
     "c6",
     "c8",
     "c9"
-   ]
+   ],
+   "nomult": "Each is quoted as its source states it. None may be multiplied by another."
   },
   "S5": {
    "hook": "One office. The same day. Two wordings.",
@@ -75,10 +76,9 @@
    "src": "Office of the Governor, August 18th \u00b7 c18",
    "claims": [
     "c16",
-    "c17",
     "c18"
    ],
-   "attrib": "The Governor's office said so on August 18th. The release quotes nobody from the Coalition."
+   "attrib": "The Governor's office said so on August 18th. It is a statement about his own standards rather than a measured result."
   },
   "S7": {
    "quote": "\"One data center that could not comply chose to end operations before even beginning construction.\"",
@@ -104,7 +104,7 @@
    "d2": "August 21st, 2026",
    "w2": "A second open meeting, on the commission's own calendar.",
    "d3": "September 4th, 2026",
-   "w3": "Public comment deadline. The calendar names no docket against it.",
+   "w3": "Public comment deadline, on the commission's own calendar.",
    "claims": [
     "c3",
     "c4",

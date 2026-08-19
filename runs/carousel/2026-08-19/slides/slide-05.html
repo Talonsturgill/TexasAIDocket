@@ -125,6 +125,27 @@ window.renderReady = new Promise(function(resolve){
     ctx.beginPath(); ctx.moveTo(80,ly); ctx.lineTo(W-80,ly); ctx.stroke();
   }
   // hard neatline frame
+  // THE SECOND SHEET. This is the two documents frame and it drew one sheet, leaving its lower
+  // forty percent empty ruled paper. The release lies under the letter, corner out, and its edge
+  // and shadow are what give the base of the frame an object.
+  (function(){
+    ctx.save();
+    ctx.translate(700, 1080); ctx.rotate(-0.055);
+    // the letter's shadow falling across the sheet beneath it
+    var sh=ctx.createLinearGradient(0,-16,0,26);
+    sh.addColorStop(0,'rgba(35,32,43,0.30)'); sh.addColorStop(1,'rgba(35,32,43,0)');
+    ctx.fillStyle=sh; ctx.fillRect(-540,-16,1180,42);
+    // the under sheet itself, a shade cooler than the one above it
+    var us=ctx.createLinearGradient(-540,0,640,300);
+    us.addColorStop(0,'#EDE7D8'); us.addColorStop(1,'#DFD8C6');
+    ctx.fillStyle=us; ctx.fillRect(-540,0,1180,300);
+    ctx.strokeStyle='rgba(35,32,43,0.30)'; ctx.lineWidth=1.5;
+    ctx.beginPath(); ctx.moveTo(-540,0); ctx.lineTo(640,0); ctx.stroke();
+    // its own ruled lines, running on out of frame
+    ctx.strokeStyle='rgba(35,32,43,0.07)'; ctx.lineWidth=1;
+    for(var i=1;i<9;i++){ ctx.beginPath(); ctx.moveTo(-500,i*30); ctx.lineTo(600,i*30); ctx.stroke(); }
+    ctx.restore();
+  })();
   ctx.strokeStyle='#23202B'; ctx.lineWidth=2; ctx.strokeRect(46,46,W-92,H-92);
   // grain at 2 percent, markedly denser toward the base so the bottom third reads as worked stone
   (function(){ var R=TX.rng(20260819);
