@@ -305,7 +305,8 @@ def registry_panel(f: dict) -> str:
   <ul class="newest" data-prose="data">{newest}</ul>
 
   <h3>Every registered facility</h3>
-  <div class="rtwrap">
+  <p class="qnote rthint">Scroll the table sideways to reach the operator and the date.</p>
+  <div class="rtfield"><div class="rtwrap">
   <table class="rtable" data-prose="data">
     <colgroup><col class="cf"><col class="co"><col class="cu"><col class="cp"><col class="cd">
     </colgroup>
@@ -313,7 +314,7 @@ def registry_panel(f: dict) -> str:
       <th>Took effect</th></tr></thead>
     <tbody>{rows}</tbody>
   </table>
-  </div>
+  </div></div>
 </section>"""
 
 
@@ -509,6 +510,8 @@ def self_test() -> int:
     check("...and two genuinely different filers are not merged",
           {x["name"] for x in r["top"]} >= {"Vantage Data Centers",
                                             "Vantage Data Centers Management"})
+    check("the roster says how to reach the columns a narrow screen hides",
+          'class="qnote rthint"' in html and "sideways" in html)
     check("...and the label shown is a spelling the registry actually uses",
           all(any(x["name"] in (fac.get("occupants") or []) for fac in fixture)
               for x in r["top"]))
