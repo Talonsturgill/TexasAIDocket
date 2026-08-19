@@ -150,6 +150,15 @@ def g_sources(d: Path):
     return list(m.check(d) or [])
 
 
+def g_nouns(d: Path):
+    import noun_trace as m
+    cp, cl = _load(d / "copy.json"), _load(d / "claims.json")
+    if not (cp and cl):
+        return None
+    fails, _w, _s = m.check(cp, cl)
+    return fails
+
+
 def g_completion(d: Path):
     import run_complete as m
     if not (d / "score.json").exists():
@@ -172,6 +181,7 @@ GATES = [
     ("craft floor", g_craft_floor, CURRENT),
     ("plan vs render", g_plan_render, CURRENT),
     ("absences", g_absences, HISTORY),
+    ("nouns", g_nouns, HISTORY),
     ("sources block", g_sources, HISTORY),
     ("completion", g_completion, HISTORY),
 ]
