@@ -40,10 +40,8 @@
       "file": "slide-07.html",
       "fails": [],
       "warns": [
-        "top-loaded composition: the bottom third carries 80% of this slide's own average craft density (top 15% / mid 6% / bottom 8% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
-      ],
-      "contacts": [
-        "'the title block on stone': shadow L* 13.0 vs ground L* 21.4, dL 8.5 at 432w"
+        "top-loaded composition: the bottom third carries 77% of this slide's own average craft density (top 15% / mid 6% / bottom 7% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "contact shadow: 'the title block on stone': shadow L* 13.5 vs ground L* 21.4, dL 8.0 at 432w -- under the 8.0 L* comfort band; it reads, barely"
       ]
     },
     {
@@ -53,6 +51,6 @@
     }
   ],
   "fails": 0,
-  "warns": 4,
+  "warns": 5,
   "verdict": "WARN"
 }

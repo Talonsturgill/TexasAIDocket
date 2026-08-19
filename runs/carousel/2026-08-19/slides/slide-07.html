@@ -97,19 +97,24 @@ window.renderReady = new Promise(function(resolve){
   var lx=150, rx=930, ry=470, lh=27, gap=13;
   var blank = 14;
   for (var i=0; ry < 1120; i++){
+    if (i === blank){
+      // ONE box, spanning the whole entry. The row was being segmented like every other row and
+      // each segment drawn hollow, so the one thing nobody inked rendered as three empty fields.
+      // This slide's own dossier forbids that in as many words: two would imply a count the
+      // record does not carry, and the record carries one unnamed data center.
+      ctx.strokeStyle='rgba(217,205,180,0.55)'; ctx.lineWidth=1.5;
+      ctx.strokeRect(lx, ry, rx-lx, lh);
+      ry += lh + gap;
+      continue;
+    }
     var segs = 2 + Math.floor(Rr()*3);
     var x = lx;
     for (var s2=0; s2<segs && x < rx-70; s2++){
       var w = 70 + Rr()*((rx-x)/segs);
       if (x + w > rx) w = rx - x;
-      if (i === blank){
-        ctx.strokeStyle='rgba(217,205,180,0.55)'; ctx.lineWidth=1.5;
-        ctx.strokeRect(x, ry, w, lh);
-      } else {
-        var a = 0.10 + Rr()*0.16;
-        ctx.fillStyle='rgba(217,205,180,'+a.toFixed(3)+')';
-        ctx.fillRect(x, ry, w, lh);
-      }
+      var a = 0.10 + Rr()*0.16;
+      ctx.fillStyle='rgba(217,205,180,'+a.toFixed(3)+')';
+      ctx.fillRect(x, ry, w, lh);
       x += w + 16;
     }
     ry += lh + gap;

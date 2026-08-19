@@ -1,0 +1,63 @@
+{
+  "date": "2026-08-19",
+  "story": "tx-2026-0072",
+  "rubric_version": 1,
+  "threshold": 7.0,
+  "pass": 4,
+  "weighted_score": 6.82,
+  "ship": false,
+  "verdict": "HOLD at 6.82 on the fourth pass, down from 6.932 on the third. The bookkeeping and sequence dimensions rose. Artwork, story and voice fell, and the scorer put all three losses on one cause: the deck is procedurally impeccable and has no place and no person in it. That is a story selection finding rather than a frame to redraw, so the run stops here and does not merge.",
+  "hard_fails": [],
+  "dimensions": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.28,
+      "score": 6.5,
+      "was": 6.8
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 7.5,
+      "was": 6.5
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.18,
+      "score": 6.5,
+      "was": 7.0
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.12,
+      "score": 7.5,
+      "was": 7.2
+    },
+    {
+      "name": "voice",
+      "weight": 0.12,
+      "score": 6.5,
+      "was": 7.2
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 6.5,
+      "was": 7.4
+    }
+  ],
+  "arithmetic": "1.820 + 1.500 + 1.170 + 0.900 + 0.780 + 0.650 = 6.820",
+  "passes": [
+    6.51,
+    6.87,
+    6.932,
+    6.82
+  ],
+  "fixed_after_this_pass": [
+    "slide 7 drew every segment of its blank row hollow, so the one entry nobody inked rendered as three empty fields, against that slide's own acceptance line that two would imply a count the record does not carry. One box now.",
+    "ledger/carousel/artwork.json recorded bespoke_median_similarity 0.5314, the figure measured while the gate was still counting the standing masthead. Corrected to 0.2817 with a note.",
+    "storyboard.md's value arc listed nine beats and named the inversion and the trough by their pre-cut slide numbers."
+  ],
+  "one_sentence_fix": "Rebuild slide 4 so the lamp is an object in the frame and the plate shadows are soft projected throws rather than hard black rectangles behind a flat trapezoid, because that frame alone holds artwork_craft, the heaviest criterion, at 6.5.",
+  "why_the_run_stops": "Four passes, and the score stopped climbing. The remaining finding is not a defect in a frame. It is that a statewide procedural story gave the deck no county, no town and no person, which the admission rule was right to enforce and which no amount of redrawing fixes. A fifth pass would be polishing away from the actual cause."
+}

@@ -67,13 +67,15 @@ movement's works, line colour. `pecos #8E4B3A` masonry red, fill only, never typ
 
 ## The value arc
 
-Mid dark with one void, darker with one bright rule, flat grey, dark with brass line only, a lit
-table, **PAPER, the inversion**, the only multi colour frame, **the deck's floor**, one lit cell
-resolving.
+Mid dark with one void, darker with one bright rule, flat grey, a lit table, **PAPER, the
+inversion**, the only multi colour frame, **the deck's floor**, one lit cell resolving.
 
-The inversion at 6 is a different kind from 2026-08-16's paper slide. That was handmade tooth with
+Eight beats for eight frames. The ninth, dark with a brass line only, was the frame cut after the
+second scoring pass.
+
+The inversion at 5 is a different kind from 2026-08-16's paper slide. That was handmade tooth with
 a torn deckle. This is machine flat, neatlined, grain at 2 percent. Same material, opposite
-treatment. The trough at 8 keeps the back half from coasting.
+treatment. The trough at 7 keeps the back half from coasting.
 
 ---
 
