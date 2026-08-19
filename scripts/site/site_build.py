@@ -1779,7 +1779,7 @@ def latest_article(runs: list, items: list) -> str:
 
     return f"""
 <section data-reveal>
-  <h2>The latest article</h2>
+  <h2 data-voice="house">Our latest article</h2>
   <div class="latest">
     <a class="cover" href="articles/{e(r["date"])}/"><img
       src="{RAW}/runs/carousel/{e(r["date"])}/{e(r["cover"])}"
@@ -1819,7 +1819,7 @@ def latest_video() -> str:
     """
     return """
 <section id="homevid" data-reveal hidden>
-  <h2>The latest video</h2>
+  <h2 data-voice="house">Our latest video</h2>
   <p class="sub">The newest from the daily feed.</p>
   <div class="latest">
     <!-- CONTROLS, ALWAYS. A roughly 60 second film looping forever beside the copy with no
@@ -1903,21 +1903,43 @@ def scan_teaser() -> str:
 
     NO DIGITS, deliberately, same as the scan page. `numeral_lint` refuses a numeral the build
     did not compute, and "about twenty minutes" is a claim nobody measured.
+
+    THE QUESTION IS THE READER'S, SO IT IS IN THEIR VOICE. The heading used to be "Would AI
+    actually help your business", which is the record asking a prospect a question, and it read
+    like a lead capture because that is the grammar of one. The question people actually have is
+    first person, and `data-voice="reader"` is the existing, deliberate exemption for exactly
+    that: the same mechanism the ask box's starter questions use. It does NOT license the record
+    to speak as "we" anywhere else in this section, and it does not here.
+
+    THE CREW IS NAMED BECAUSE IT IS REAL. Four agents run in the scanner repo and each has one
+    job: `footprint-analyst`, `industry-scout`, `feasibility-mapper`, `scan-critic`. Describing
+    what they each do is both the most futuristic thing this section can say and the most
+    checkable, which is the only kind of impressive this site is allowed to be. The wording of
+    each line is taken from that agent's own description, so it stays true by construction and a
+    reader who later reads the report recognises the machinery.
+
+    NOT COUNTED, deliberately. "Four agents" would be a figure about our own system that goes
+    stale the day a fifth is added, and the page states no figures at all for the same reason
+    the scan page does not: every number this section wants is a promise, not a measurement.
     """
     return """
 <section data-reveal id="scan">
-  <h2>Would AI actually help your business</h2>
-  <div class="prose">
-    <p>The scanner reads your public pages and maps where AI would carry real load. Where
-    ordinary software wins. Where it has no business at all.</p>
-    <p>Free. Every line links to the page it came from.</p>
-  </div>
+  <p class="scanq" data-voice="reader">Would AI actually do anything for my business?</p>
+  <p class="scanlede">Drop your url in and an agent team goes to work on it.</p>
   <form class="composer scanform" action="scan/" method="get">
     <label class="vh" for="scan-url">Your website</label>
     <input type="text" name="url" id="scan-url" required placeholder="yourbusiness.com"
       autocomplete="url" inputmode="url">
-    <button class="cta solid" type="submit">Scan it</button>
+    <button class="cta solid" type="submit">Run it</button>
   </form>
+  <p class="chainlab">The agents on your run</p>
+  <ol class="chain">
+    <li><b>Footprint</b><span>your pages, cited</span></li>
+    <li><b>Industry</b><span>what others already tried</span></li>
+    <li><b>Feasibility</b><span>the lowest honest rung</span></li>
+    <li><b>Critic</b><span>defaults to rejecting it</span></li>
+  </ol>
+  <p class="scanfoot">Free. One report. Every line links to the page it came from.</p>
 </section>
 """
 

@@ -623,6 +623,26 @@ figcaption { font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
 @media (max-width:34rem) {
   .newest li { grid-template-columns:1fr; gap:.1rem; }
 }
+.scanq { font-family:var(--display); font-size:var(--s3); line-height:1.1;
+  letter-spacing:-.015em; margin:0 0 .5rem; max-width:18ch; }
+.scanlede { color:var(--dust); margin:0 0 1.2rem; max-width:34ch; }
+.scanfoot { color:var(--dust); font-size:var(--s-1); margin:1.1rem 0 0; }
+.chainlab { font-family:var(--mono); font-size:var(--s-2); letter-spacing:.1em;
+  text-transform:uppercase; color:var(--accent); margin:1.7rem 0 0; }
+.chain { list-style:none; margin:.9rem 0 0; padding:0; max-width:none; position:relative;
+  display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:0 1rem; }
+.chain::before { content:""; position:absolute; left:.3rem; right:.3rem; top:.34rem;
+  height:1px; background:var(--rule); }
+.chain li { position:relative; padding-top:1.3rem; }
+.chain li::before { content:""; position:absolute; left:0; top:0; width:.7rem; height:.7rem;
+  border-radius:50%; background:var(--bg); border:1px solid var(--accent); }
+.chain b { display:block; font-weight:500; font-size:var(--s-1); }
+.chain span { display:block; color:var(--dust); font-family:var(--mono);
+  font-size:var(--s-2); line-height:1.45; margin-top:.15rem; }
+@media (max-width:42rem) {
+  .chain { grid-template-columns:repeat(2, minmax(0, 1fr)); gap:1.1rem 1rem; }
+  .chain::before { display:none; }
+}
 .rtfield { position:relative; }
 .rtfield::after { content:""; position:absolute; top:1px; right:1px; bottom:1px; width:2.2rem;
   pointer-events:none; border-radius:0 3px 3px 0;
