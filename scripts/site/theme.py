@@ -1771,7 +1771,12 @@ figcaption {{ font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
    columns take the whole group set the two bars of a pair as far apart as two neighbouring
    months, and the pairing stopped being visible. The cap is wide enough for both value labels
    at every width tested; tightening it further is what puts them back into each other. */
-.qbars {{ display:flex; align-items:flex-end; justify-content:center;
+/* STRETCH, NOT FLEX-END. With `align-items:flex-end` and a column at `height:100%`, the
+   column was laid out 22.4px ABOVE its own row rather than filling it, which put the six tall
+   bars' value labels outside the chart's box entirely. They still rendered, because nothing
+   clips them, so the page looked right while the labels were escaping into whatever sat above.
+   Stretch makes each column exactly its row, which is what the reserved label band assumed. */
+.qbars {{ display:flex; align-items:stretch; justify-content:center;
   gap:clamp(2px,.6vw,5px); width:100%; max-width:clamp(4.6rem,13vw,7.5rem);
   margin-inline:auto; flex:1; }}
 /* The column is transparent and full height; the FILL is the bar. That separation is what
@@ -1782,7 +1787,7 @@ figcaption {{ font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
    in the middle: "8,787" and "4,049" rendered as "8,7874,049", one nonsense number. Nothing in
    the DOM was wrong, which is why no lint could see it. Giving the column the width and the
    fill the bar keeps the two labels apart by layout instead of by luck. */
-.qb {{ flex:1 1 0; min-width:0; height:100%; display:flex; flex-direction:column;
+.qb {{ flex:1 1 0; min-width:0; align-self:stretch; display:flex; flex-direction:column;
   justify-content:flex-end; align-items:center; }}
 /* The label band is RESERVED, and the plot is what is left. The fill's percentage resolves
    against .qbp, so a bar at full scale reaches the top of the plot and stops there, under its
@@ -1790,9 +1795,17 @@ figcaption {{ font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
    value can no longer come down on top of the bar: not a colour choice, a layout that cannot
    express the overlap. */
 .qbv {{ flex:0 0 auto; }}
-.qbp {{ flex:1 1 auto; width:100%; display:flex; align-items:flex-end;
-  justify-content:center; min-height:0; }}
-.qbf {{ width:clamp(9px,3.2vw,26px); max-width:100%; min-height:2px;
+/* THE FILL IS OUT OF FLOW, and that is the point. It was an in-flow box whose height was a
+   percentage of a flex item that was itself sized by `flex:1`, which is the case where a
+   percentage height has no definite containing block to resolve against. The symptom was not a
+   wrong height, it was a wrong POSITION: the whole column sat 22.4px off its own row, first
+   above it and then, after a naive fix, below it, so the tall bars' labels rendered outside the
+   chart entirely. Absolute positioning resolves the percentage against .qbp's padding box,
+   which is definite once the stretch has run, and takes the fill out of .qbp's content sizing
+   so nothing is circular. */
+.qbp {{ flex:1 1 auto; width:100%; position:relative; min-height:0; }}
+.qbf {{ position:absolute; bottom:0; left:0; right:0; margin-inline:auto;
+  width:clamp(9px,3.2vw,26px); max-width:100%; min-height:2px;
   border-radius:1px 1px 0 0; }}
 /* A month the record holds with nothing published: a rule where the bars would be, and the
    word, so the slot reads as absent rather than as zero. */
