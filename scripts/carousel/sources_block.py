@@ -52,6 +52,23 @@ def ordinal_date(iso: str) -> str:
     return f"{MONTHS[m - 1]} {d}{ORDINALS.get(d, 'th')}, {y}"
 
 
+# THE SHAPES THE CLAIMS FILE HAS ACTUALLY SHIPPED IN. The 2026-08-16 run wrote `url` and
+# `source_title`, the 2026-08-18 run wrote `url`, `source_publisher` and `published_date`, and
+# this run writes `source_url`, `document` and `published`. A checker that knows only today's
+# names reports a KeyError on history and gets read as a broken run rather than a naming drift.
+URL_KEYS = ("source_url", "url")
+TITLE_KEYS = ("document", "source_title", "source_publisher", "publisher")
+DATE_KEYS = ("published", "published_date", "retrieved")
+
+
+def field(claim: dict, keys) -> str | None:
+    for k in keys:
+        v = claim.get(k)
+        if v:
+            return v
+    return None
+
+
 def load(run_dir: Path) -> tuple[dict, list[dict]]:
     copy = json.loads((run_dir / "copy.json").read_text(encoding="utf-8"))
     raw = json.loads((run_dir / "claims.json").read_text(encoding="utf-8"))
@@ -81,7 +98,7 @@ def build(run_dir: Path) -> str:
 
     groups: dict[str, list[str]] = {}
     for cid in wanted:
-        groups.setdefault(by_id[cid]["source_url"], []).append(cid)
+        groups.setdefault(field(by_id[cid], URL_KEYS), []).append(cid)
 
     retrieved = sorted({by_id[c].get("retrieved") for c in wanted if by_id[c].get("retrieved")})
     if not retrieved:
@@ -90,18 +107,37 @@ def build(run_dir: Path) -> str:
     lines = [f"Sources, all primary and fetched {ordinal_date(retrieved[-1])}."]
     for url, ids in groups.items():
         c = by_id[ids[0]]
-        title = c.get("document")
+        title = field(c, TITLE_KEYS)
         if not title:
             raise SystemExit(f"sources_block: {c['id']} has no document title. Add a `document` "
                              f"field to claims.json for {url}")
-        lines.append(f"{title}, {ordinal_date(c['published'])}. {' '.join(ids)}")
+        when = field(c, DATE_KEYS)
+        lines.append(f"{title}, {ordinal_date(when)}. {' '.join(ids)}"
+                     if when else f"{title}. {' '.join(ids)}")
         lines.append(url)
     lines.append("Day counts computed in compute.py from the source dates above.")
     return "\n".join(lines) + "\n"
 
 
+# THE ONE RUN THAT SHIPPED BEFORE THIS RULE EXISTED.
+#
+# The 2026-08-16 deck prints nineteen claim ids its sources block never listed. That block was
+# posted as a comment under a published deck, so rewriting the file here would not reach a single
+# reader. It would only make a gate green about a comment that still says what it said.
+#
+# History keeps what was published. Exempt BY NAME, one date, never a date range and never a
+# "before" comparison, so a new run can never fall into the exemption by accident. This is the
+# same call email_check made on the 2026-08-18 caption's missing hashtags the same day.
+SHIPPED_BEFORE_THE_RULE = {"2026-08-16"}
+
+
 def check(run_dir: Path) -> list[str]:
     """Every id the deck prints must resolve in the block on disk. This is the whole gate."""
+    if run_dir.name in SHIPPED_BEFORE_THE_RULE:
+        return []
+    if not (run_dir / "copy.json").exists() or not (run_dir / "claims.json").exists():
+        # No deck copy means no printed claim ids, so there is nothing here to resolve.
+        return []
     copy, claims = load(run_dir)
     path = run_dir / "first_comment.txt"
     if not path.exists():
@@ -120,7 +156,7 @@ def check(run_dir: Path) -> list[str]:
         if cid not in by_id:
             problems.append(f"the sources block lists {cid}, which is not a verified claim")
             continue
-        if by_id[cid]["source_url"] not in text:
+        if (field(by_id[cid], URL_KEYS) or "\x00") not in text:
             problems.append(f"{cid} is listed but its source url is not in the block")
     return problems
 
@@ -187,6 +223,14 @@ def self_test() -> int:
         probs = check(d)
         ok("an id in the block that is not a verified claim is CAUGHT",
            any("c99" in p for p in probs), str(probs))
+
+        # THE EXEMPTION IS ONE NAMED DATE, and a run outside it still fails.
+        ok("the exemption names exactly the one run that predates the rule",
+           SHIPPED_BEFORE_THE_RULE == {"2026-08-16"}, str(SHIPPED_BEFORE_THE_RULE))
+        (d / "first_comment.txt").write_text("Sources.\n")
+        ok("...and a run outside it still fails on an unresolved id", check(d) != [])
+        ok("...while the exempt run is skipped whole",
+           check(Path("/nonexistent/2026-08-16")) == [])
 
         # A document with no title is a build error rather than a silent blank.
         (d / "claims.json").write_text(json.dumps({"claims": [

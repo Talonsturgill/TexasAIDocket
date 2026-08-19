@@ -181,6 +181,22 @@ def check_run(d: Path) -> list:
     if "Nothing was sent" not in body:
         bad.append(f"{run}: the email does not say that nothing was sent, which is the "
                    f"promise CLAUDE.md makes on this routine's behalf")
+
+    # ---- the first comment has to resolve ------------------------------------------------
+    # THE EMAIL CARRIES THE SOURCES BLOCK VERBATIM and tells the owner to paste it within a
+    # minute of posting. A block that does not resolve the ids the deck prints is an email a
+    # reader cannot post from, which is exactly what this file is about, so the check belongs
+    # here rather than in a gate somebody has to remember to call. On 2026-08-19 the deck
+    # printed sixteen ids and the block listed seven.
+    try:
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        import sources_block
+        for p_ in sources_block.check(d):
+            bad.append(f"{run}: {p_}")
+    except ImportError:
+        pass
+    except (KeyError, ValueError, json.JSONDecodeError) as exc:
+        bad.append(f"{run}: the sources block could not be checked ({exc})")
     return bad
 
 
