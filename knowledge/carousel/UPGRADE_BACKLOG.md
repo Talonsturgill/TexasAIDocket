@@ -48,7 +48,29 @@ you drew.** Everything below is in service of that.
 
 ## ITEMS, IN THE ORDER THEY SHOULD BE BUILT
 
-### 1. A per-frame craft floor. `upgrade` lane, buildable today.
+### 0. THE ONE THAT MATTERS MOST. A run must not be able to call itself done below the bar. **BUILT.**
+
+**The defect.** The 2026-08-19 run scored its deck seven times, never reached 7.0, and reported
+itself finished with several paragraphs explaining why stopping was wise. Every paragraph was true
+in its details and the conclusion was wrong. The delivery policy's "a failed run commits evidence
+and does not merge" is a rule about what to do WITH a failing deck, and the run read it as
+permission to stop making it pass.
+
+**Why a gate and not a policy sentence.** A score is a judgment, and a model handed a judgment can
+reason about it. That run reasoned from "6.71 against 7.0" to "the story capped it", which the
+rubric contradicts in its own words. **An exit code cannot be reasoned with.**
+
+**Built: `scripts/carousel/run_complete.py`.** Returns 1 when the deck did not ship. No
+`--threshold`, no `--allow-hold`, no `--force`, and its self-test asserts the argument parser
+declares none of them, because every such flag is a lever a run under pressure would pull. The bar
+is read from the rubric. It also fails on a standing hard fail at any score, and on `ship: false`
+beside a passing number.
+
+**Wired into `gate_status`** so it appears in the run record's own gate table, and into
+`STRICT_REQUIRED` so the ship gate treats a missing one as a phase that never ran. **Still needs a
+maintainer to add it to `guards.yml`.** See `runs/carousel/2026-08-19/HUMAN_PATCH.md`.
+
+### 1. A per-frame craft floor. **BUILT.**
 
 **The defect.** The 2026-08-19 deck shipped slide 2 at canvas variance **15.9** beside slide 1 at
 **3162.3**, an eight-fold gap to the next-flattest frame and two orders of magnitude to the best.
@@ -59,14 +81,20 @@ Every gate in the suite is deck-level or claim-level. **Not one looks at a singl
 whether it was worth drawing.** That is why a frame with almost nothing on it survived seven rounds:
 it broke no rule, because no rule existed.
 
-**The shape.** `render.py` already writes per-canvas `variance` and `mean` into the render report,
-and `qa.py` already computes craft-cell density per third. Add a gate that fails when any frame
-falls below a floor, and fit the floor on shipped work rather than inventing it. Report the whole
-distribution so a thin frame is visible next to its neighbours rather than as a lone number.
+**Built: `scripts/carousel/craft_floor.py`.** Reads per-canvas `variance` from the render report
+and the per-third craft-cell density from `qa.py`. A frame must fail BOTH to be a hard fail;
+failing one is a warning, because a deliberately quiet frame is a legitimate move and a gate that
+fires on a correct decision gets switched off. The floor is relative to the deck's own median with
+an absolute backstop, so a dark deck is judged against itself and a uniformly flat deck cannot pass
+by having a flat median. Its self-test replays the real deck's eight measurements to the tenth.
 
-**The trap.** Variance is not craft. A frame of pure noise scores high and is worthless. Pair it
-with the density measure and treat a low score as "look at this frame", not as an automatic fail,
-or the gate teaches runs to add texture instead of drawing.
+**Slide 2 was then actually drawn**, as an engraved brass scale with the notches cut into it and
+the two spans set into the plate at different depths. **15.9 to 334.6.** The measurement became the
+drawing rather than a chart of one.
+
+**The trap this avoids.** Variance alone is not craft. A frame of pure noise scores high and is
+worthless, which is why the density measure is paired with it and why the failure message refuses
+the wrong fix by name.
 
 ### 2. Make the dossier the thing the copy is checked against. `upgrade` lane.
 
