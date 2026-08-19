@@ -806,6 +806,36 @@ def _reads_as_prose(text: str) -> bool:
     return len(t.split()) >= 4 and t.rstrip().endswith((".", "?", "!"))
 
 
+def js_feed_date() -> str:
+    """The house date, in JavaScript, for the two surfaces that render the feed client side.
+
+    ONE COPY, BECAUSE THERE WERE TWO AND ONE OF THEM WAS WRONG. The front page and the videos
+    page both take a `date` out of `videos.json` and both have to print it in the house form,
+    which is the ordinal, month first. `toLocaleDateString` has no ordinal, so each page wrote
+    its own line, and the front page's said "August 18, 2026" for as long as the feed existed.
+
+    Nothing caught it, and this is worth naming because it is the third instance of the shape.
+    `house_style_check` reads rendered pages, this text is assembled in the reader's browser
+    from a file the build does not own, and a rule enforced on the served HTML cannot see a
+    string that does not exist until somebody loads the page. The cure is not a cleverer gate.
+    It is one function, so there is only one place for the rule to be.
+
+    Returns an expression-free block defining `fmtFeedDate`.
+    """
+    return """
+  /* The house form is the ordinal, month first. toLocaleDateString has no ordinal, so the
+     suffix is derived from the number rather than looked up in a table. */
+  var ordDay=function(n){var t=n%100;
+    if(t>=11&&t<=13)return n+'th';
+    return n+({1:'st',2:'nd',3:'rd'}[n%10]||'th');};
+  var fmtFeedDate=function(d){try{
+    var dt=new Date(d+'T12:00:00');
+    return dt.toLocaleDateString('en-US',{month:'long'})+' '+ordDay(dt.getDate())+', '+
+      dt.getFullYear();
+  }catch(err){return d}};
+"""
+
+
 def video_feed() -> dict:
     """The Dispatch feed, or an empty one.
 
@@ -869,66 +899,711 @@ def telemetry(today: str) -> str:
 
 
 def videos_page(today: str) -> str:
-    """The Dispatch feed, rendered in the reader's browser from the feed file.
+    """The Dispatch feed as a full-bleed vertical feed, one film per screen.
 
-    GENERATED, NOT A HAND-BUILT PASSTHROUGH, and that is a deliberate departure from how the
-    sibling product does it. A standalone page carries its own copy of the masthead, and this
-    site's masthead changed twice in one afternoon. A hand-maintained nav does not go wrong
-    loudly, it goes wrong by still pointing at a tab that no longer exists, on the one page
-    nobody regenerates. So the shell is generated like every other page and only the DATA is
-    external.
+    GENERATED, AND STILL GENERATED NOW THAT IT HAS ITS OWN SHELL. The page used to be a grid
+    inside the site's standard `page()` chrome, on the reasoning that a standalone page carries
+    a hand-maintained copy of the masthead and this site's masthead changed twice in one
+    afternoon. That reasoning was right about the failure and wrong about the cause. The danger
+    is a nav somebody TYPES, not a nav that lives outside `page()`. So this document is built
+    here, from `NAV` and `SITE_NAME` and the same palette every other page reads, and a section
+    added to the site appears in this top bar without anyone touching this function.
 
-    THE FEED IS FETCHED RATHER THAN BAKED for the same reason the front page fetches it:
-    `docs/videos/videos.json` is written by `TexasAIDispatch` on its own schedule, and a
-    build cannot know what shipped after it ran.
+    WHY IT IS NOT A GRID ANY MORE. A grid of posters asks a reader to choose before they have
+    seen anything, and what they choose from is a still frame of a 2.5D film whose whole
+    argument is that it moves. The sibling product's feed is one film per screen, muted, already
+    rolling, and a thumb-flick away from the next one, which is the form every reader already
+    knows. The measured difference is not subtle: a poster grid is a page you look at and a feed
+    is a thing you stay in.
 
-    WORKS WITH NO FEED AT ALL. Before the first video the file does not exist, the fetch
-    fails, and the page says so in a sentence. It never renders a heading over an empty grid.
+    THE FEED IS FETCHED RATHER THAN BAKED, unchanged and for the same reason as before:
+    `docs/videos/videos.json` is written by `TexasAIDispatch` on its own schedule, and a build
+    cannot know what shipped after it ran.
+
+    WORKS WITH NO FEED AT ALL. Before the first video the file does not exist, the fetch fails,
+    and the page says so in a sentence. It never renders a feed over nothing.
+
+    Four things in the script below are load bearing and each is there for a failure the
+    sibling shipped first, so none of them is decoration:
+
+    - **Every feed value is HTML escaped before it reaches `innerHTML`.** A title carrying
+      markup would otherwise run as script on this origin.
+    - **The preload window is bounded.** Only the current card and its neighbour buffer, the
+      two beyond them hold metadata, and everything else is DETACHED outright. Without it a
+      reader who flicks through thirty entries leaves thirty live video elements behind and a
+      phone gives up.
+    - **The download resolves the URL before it checks the scheme.** Checking first rejects a
+      relative `media_base` and leaves a dead button.
+    - **The scrub sets `touch-action:none` on the grab area and the fill, not only on the
+      track.** `touch-action` is not inherited, so setting it in one place lets the browser
+      decide mid drag that the gesture was a scroll and take the feed out from under the thumb.
+
+    And one that is this site's own: `prefers-reduced-motion` is honoured. Nothing autoplays for
+    a reader who asked for that, the poster stays up, and the play glyph is the invitation. The
+    sibling has no such branch, which for a page that is nothing but moving pictures is the one
+    accessibility gap worth closing before copying anything else.
     """
-    body = """
-<h1>Videos</h1>
-<div class="prose">
-  <p>One short film a day about artificial intelligence in Texas. Narrated, sourced, and
-  built by the same machine that keeps the docket.</p>
-</div>
-<div id="vidgrid" class="deckgrid"></div>
-<p id="vidnone" class="gap">No video has shipped yet. The first one appears here the day it
-does.</p>
-<script>
-(function(){
-  var grid=document.getElementById('vidgrid'), none=document.getElementById('vidnone');
-  if(!window.fetch)return;
-  var esc=function(t){return String(t==null?'':t).replace(/[&<>"]/g,function(m){
-    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m];});};
-  fetch('videos.json').then(function(r){
-    if(!r.ok)throw 0; return r.json();
-  }).then(function(m){
-    var base=m.media_base||'';
-    var vs=(m.videos||[]).filter(function(v){return v&&v.video});
-    if(!vs.length)return;
-    var abs=function(u){return /^https?:\/\//.test(u)?u:base+u};
-    grid.innerHTML=vs.map(function(v){
-      var when=v.date||'';
-      try{when=new Date(v.date+'T12:00:00').toLocaleDateString('en-US',
-        {month:'long',day:'numeric',year:'numeric'})}catch(e){}
-      /* preload none and poster only. A grid of autoplaying files is a data bill for a
-         reader who came to look at one of them. */
-      return '<figure class="vcard"><video controls playsinline preload="none" poster="'+
-        esc(abs(v.poster||''))+'" src="'+esc(abs(v.video_mobile||v.video))+
-        '" aria-label="'+esc(v.title||'Texas AI video')+'"></video>'+
-        '<figcaption><span class="meta" data-prose="data"><span class="tag">'+esc(when)+
-        '</span></span><h3>'+esc(v.title||'')+'</h3><p>'+esc(v.caption||'')+
-        '</p></figcaption></figure>';
-    }).join('');
-    none.hidden=true;
-  }).catch(function(){});
-})();
-</script>
+    c = theme.palette()["dark"]
+    flag = theme.tokens()["colour"]
+    # The feed's palette IS the site's palette. Named locally only so the CSS below reads as
+    # a feed rather than as a lookup, and sourced from `theme` so a token change reaches here.
+    #
+    # THE FLAG TOKENS ARE HERE BECAUSE THE MARK CAME OUT BLACK. `mark.flag_svg()` paints
+    # nothing itself. Every one of its shapes carries a class and the fills live in
+    # `site.css`, which this page does not load, so the first build of it put a black
+    # rectangle in the masthead where the Lone Star goes. A standalone page pays for its
+    # independence exactly here, and the way to pay it is to read the same tokens rather than
+    # to type three hexes that will be right until brand.yaml moves.
+    tokens = (
+        f"--night:{c['bg']};--deep:{c['surface']};--panel:{c['raised']};--line:{c['rule']};"
+        f"--snow:{c['ink-bright']};--body:{c['ink']};--mute:{c['ink-mute']};"
+        f"--accent:{c['accent']};--deepaccent:{c['accent-deep']};--good:{c['sig-open']};"
+        f"--flag-red:{flag['flag_red']};--flag-blue:{flag['flag_blue']};"
+        f"--star:{flag['flag_white']};"
+    )
+
+    # THE TOP BAR IS THE SITE'S NAV, GENERATED. `hidesm` is applied by RULE rather than by
+    # name, so a section added to `NAV` needs no edit here and cannot silently crowd a phone.
+    #
+    # The rule is the way out and where you are, and nothing else, because a phone has room for
+    # two. Keeping the first four instead put eight items and a wordmark on a 390 px bar and
+    # ran the last one off the right edge, which is the shape a hand-maintained nav goes wrong
+    # in and the reason this one is generated at all.
+    links = []
+    for h, t in NAV:
+        here = h == "videos/"
+        cls = "on" if here else ("" if h == "" else "hidesm")
+        a = f' class="{cls}"' if cls else ""
+        links.append(f'<a href="../{h}"{a}>{e(t.upper())}</a>')
+    nav = "".join(links)
+
+    desc = ("One short film a day on artificial intelligence in Texas. Narrated, sourced, and "
+            "built by the same machine that keeps the docket.")
+
+    # THE MEDIA HOST, READ OUT OF THE FEED RATHER THAN TYPED. The films are served from
+    # wherever `videos.json` says, which is a field `TexasAIDispatch` owns and this build only
+    # reads. A preconnect saves the reader the TLS handshake on the first film, and getting it
+    # from the feed means the hint can never point somewhere the media is not. No feed yet, or
+    # a relative `media_base`, and there is simply no hint, which is correct rather than a
+    # fallback: a preconnect to a host nothing is fetched from is a wasted connection.
+    preconnect = ""
+    host = str(video_feed().get("media_base") or "")
+    m = re.match(r"(https://[^/]+)", host)
+    if m:
+        preconnect = f'<link rel="preconnect" href="{e(m.group(1))}" crossorigin>\n'
+
+    css = """
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:var(--night);color:var(--body);
+font-family:var(--body-face);overscroll-behavior-y:contain}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+a{color:inherit}
+
+/* ---------- top bar, an overlay so the film keeps the whole screen ---------- */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;align-items:center;
+justify-content:space-between;gap:12px;padding:calc(10px + env(safe-area-inset-top)) 16px 10px;
+background:linear-gradient(180deg,rgba(8,6,15,.9),rgba(8,6,15,.55) 70%,transparent);
+pointer-events:none}
+.topbar>*{pointer-events:auto}
+.wordmark{display:flex;align-items:center;gap:9px;text-decoration:none;white-space:nowrap;
+font-family:var(--mono-face);font-size:12.5px;letter-spacing:.14em;color:var(--snow)}
+@media(max-width:520px){.wordmark{font-size:11px;letter-spacing:.1em}}
+/* The mark carries classes and no fills of its own, because on every other page the fills
+   come from site.css. This page does not load site.css, so it paints them here from the same
+   tokens. Without this the Lone Star renders as a black rectangle. */
+.wordmark svg{height:17px;width:auto;display:block;flex:none}
+.m-blue{fill:var(--flag-blue)}
+.m-white{fill:var(--star)}
+.m-red{fill:var(--flag-red)}
+.m-star{fill:var(--star)}
+.f-lit{fill:#FFFFFF;opacity:.55}
+.f-shade{fill:var(--flag-blue);opacity:.14}
+.navlinks{display:flex;gap:14px;font-family:var(--mono-face);font-size:10.5px;letter-spacing:.12em}
+.navlinks a{text-decoration:none;color:var(--mute);padding:6px 2px}
+.navlinks a:hover{color:var(--snow)}
+.navlinks a.on{color:var(--accent)}
+@media(max-width:760px){.navlinks a.hidesm{display:none}}
+
+/* ---------- the feed ---------- */
+.feed{height:100dvh;overflow-y:scroll;scroll-snap-type:y mandatory;scrollbar-width:none}
+.feed::-webkit-scrollbar{display:none}
+.card{position:relative;height:100dvh;scroll-snap-align:start;scroll-snap-stop:always;
+display:flex;align-items:center;justify-content:center;background:var(--night)}
+/* the 9:16 stage. Full bleed on a phone, a centred column on a wide screen, because a
+   letterboxed vertical film on a desktop is worse than an honest column. */
+.stage{position:relative;height:100%;aspect-ratio:9/16;max-width:100vw;background:#000;
+overflow:hidden}
+@media(min-width:700px){.stage{height:min(94dvh,1000px);border-radius:14px;
+border:1px solid var(--line);box-shadow:0 30px 80px rgba(0,0,0,.6)}}
+.stage video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000}
+.stage .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+transition:opacity .35s}
+.stage.playing .poster{opacity:0;pointer-events:none}
+
+/* tap layer */
+.tap{position:absolute;inset:0;border:0;background:transparent;cursor:pointer}
+.pauseglyph{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.8);
+width:82px;height:82px;border-radius:50%;background:rgba(8,6,15,.55);border:1px solid var(--line);
+display:flex;align-items:center;justify-content:center;opacity:0;
+transition:opacity .2s,transform .2s;pointer-events:none}
+.card.paused .pauseglyph{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.pauseglyph svg{width:33px;height:33px;fill:var(--snow);margin-left:5px}
+
+/* the words over the picture */
+.meta{position:absolute;left:0;right:64px;bottom:0;
+padding:18px 16px calc(20px + env(safe-area-inset-bottom));
+background:linear-gradient(0deg,rgba(8,6,15,.88),rgba(8,6,15,.45) 60%,transparent);
+pointer-events:none}
+.meta>*{pointer-events:auto}
+.kicker{font-family:var(--mono-face);font-size:10px;letter-spacing:.16em;color:var(--accent);
+text-transform:uppercase;margin-bottom:6px;display:flex;flex-wrap:wrap;gap:5px 9px}
+.kicker .where{color:var(--mute)}
+.title{font-family:var(--display-face);font-weight:600;font-size:clamp(19px,4.6vw,25px);
+line-height:1.15;color:var(--snow);margin-bottom:7px;text-wrap:balance}
+.cap{font-size:13.5px;line-height:1.5;color:var(--body);max-width:52ch;cursor:pointer;
+display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.cap.open{-webkit-line-clamp:unset}
+
+/* the right rail */
+.rail{position:absolute;right:8px;bottom:calc(86px + env(safe-area-inset-bottom));z-index:5;
+display:flex;flex-direction:column;gap:15px;align-items:center}
+.rbtn{width:45px;height:45px;border-radius:50%;border:1px solid var(--line);cursor:pointer;
+background:rgba(25,21,48,.72);display:flex;align-items:center;justify-content:center;
+transition:transform .12s,border-color .12s;backdrop-filter:blur(6px)}
+.rbtn:hover{transform:scale(1.08);border-color:var(--accent)}
+.rbtn svg{width:21px;height:21px;fill:none;stroke:var(--snow);stroke-width:1.8;
+stroke-linecap:round;stroke-linejoin:round}
+.rbtn.toast svg{stroke:var(--good)}
+.rbtn.busy{opacity:.45}
+
+/* The progress hairline is scaleX only and never touches layout. Paused it becomes a real
+   scrubber: the track thickens, a knob appears, and a thumb-sized grab area opens along the
+   bottom. That area exists ONLY while the scrubber is up, since a permanent 44px strip would
+   swallow every bottom-edge tap meant for play and pause. */
+.prog{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(237,230,214,.14);
+z-index:6;touch-action:none;transition:height .16s,background-color .16s}
+.prog i{display:block;height:100%;width:100%;
+background:linear-gradient(90deg,var(--deepaccent),var(--accent));
+transform:scaleX(0);transform-origin:0 50%;will-change:transform;touch-action:none}
+.prog::before{content:"";position:absolute;left:0;right:0;bottom:0;height:0;touch-action:none}
+.card.paused .prog::before,.card.scrubbing .prog::before{height:44px}
+.card.paused .prog,.card.scrubbing .prog{height:6px;background:rgba(237,230,214,.26)}
+.knob{position:absolute;top:50%;left:0;width:15px;height:15px;margin:-7.5px 0 0 -7.5px;
+border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px rgba(224,149,106,.22);
+opacity:0;pointer-events:none;transition:opacity .16s}
+.card.paused .knob,.card.scrubbing .knob{opacity:1}
+
+/* double tap to skip, flashed on the side that was tapped */
+.skip{position:absolute;top:50%;transform:translateY(-50%);width:34%;z-index:5;
+pointer-events:none;display:flex;flex-direction:column;align-items:center;gap:5px;opacity:0;
+transition:opacity .3s;font-family:var(--mono-face);font-size:11px;letter-spacing:.1em;
+color:var(--snow)}
+.skip.back{left:0}
+.skip.fwd{right:0}
+.skip.on{opacity:1;transition:opacity .06s}
+.skip svg{width:31px;height:31px;fill:var(--snow)}
+
+/* buffering */
+.spin{position:absolute;top:50%;left:50%;width:34px;height:34px;margin:-17px 0 0 -17px;z-index:4;
+border-radius:50%;border:3px solid rgba(237,230,214,.18);border-top-color:var(--accent);
+opacity:0;transition:opacity .25s .2s;pointer-events:none;animation:vspin .8s linear infinite}
+.card.buffering .spin{opacity:1}
+@keyframes vspin{to{transform:rotate(360deg)}}
+
+/* the sound invitation, up only while the feed is muted */
+.unmute{position:fixed;z-index:45;left:50%;transform:translateX(-50%);
+top:calc(58px + env(safe-area-inset-top));display:none;align-items:center;gap:8px;
+background:rgba(25,21,48,.85);border:1px solid var(--accent);color:var(--snow);cursor:pointer;
+font-family:var(--mono-face);font-size:11px;letter-spacing:.1em;padding:9px 16px;
+border-radius:99px;backdrop-filter:blur(6px)}
+body.feedready.muted .unmute{display:flex}
+.unmute svg{width:15px;height:15px;fill:var(--accent)}
+
+/* a mouse has no thumb, so a wide screen gets buttons */
+.stepper{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:40;
+display:none;flex-direction:column;gap:10px}
+@media(min-width:900px){body.feedready .stepper{display:flex}}
+.stepper button{width:43px;height:43px;border-radius:50%;border:1px solid var(--line);
+background:rgba(25,21,48,.72);color:var(--snow);font-size:16px;cursor:pointer}
+.stepper button:hover{border-color:var(--accent);color:var(--accent)}
+
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.notice{height:100dvh;display:flex;align-items:center;justify-content:center;text-align:center;
+padding:0 24px;font-family:var(--mono-face);font-size:12px;letter-spacing:.14em;
+line-height:2;color:var(--mute)}
+noscript div{padding:40vh 22px 0;text-align:center;font-family:var(--mono-face);
+font-size:12px;line-height:2;color:var(--mute)}
+
+/* A reader who asked for less motion gets a still frame and a button, never an autoplay.
+   CSS cannot reach media playback, so this only styles the state the script puts the page in. */
+@media(prefers-reduced-motion:reduce){
+  .stage .poster{transition:none}
+  .pauseglyph{transition:none}
+  .spin{animation:none}
+}
 """
-    return page(title=f"Videos · {SITE_NAME}", depth=1, active="videos/",
-                desc="Every video Texas AI Docket has published. One short film a day on "
-                     "artificial intelligence in Texas.",
-                body=body, today=today, canonical="videos/")
+
+    script = r"""
+(async function(){
+  var feed = document.getElementById('feed');
+  var notice = document.getElementById('notice');
+  var calm = window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  var manifest;
+  try{ manifest = await (await fetch('videos.json')).json(); }
+  catch(err){ notice.textContent = 'THE FEED DID NOT LOAD. TRY A REFRESH.'; return; }
+
+  var base = manifest.media_base || '';
+  var vids = (manifest.videos || []).filter(function(v){ return v && v.video; });
+  if(!vids.length){ notice.textContent = 'NO FILM HAS SHIPPED YET. THE FIRST ONE APPEARS HERE THE DAY IT DOES.'; return; }
+
+  var abs = function(u){ return /^https?:\/\//.test(u) ? u : base + u; };
+  /* Every value below is written into innerHTML, so it is escaped first. A title or a caption
+     carrying markup would otherwise run as script on this origin. */
+  var esc = function(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(ch){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]; }); };
+
+""" + js_feed_date() + r"""  /* A deep link needs a stable handle. The publish step writes `id`; an entry from before it
+     did gets one derived from its own date and title, which is stable for that entry. */
+  var idOf = function(v, i){
+    if(v.id) return String(v.id);
+    var slug = String(v.title || '').toLowerCase().replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-|-$/g, '').slice(0, 60);
+    return (v.date || ('v' + i)) + (slug ? '-' + slug : '');
+  };
+
+  /* Source selection. A phone on a frontage road gets the 720p rendition and the jpeg thumb
+     when the feed carries them; a wide screen on a healthy connection gets the master. An
+     entry published before the renditions existed carries neither, so both fall back. */
+  var conn = navigator.connection || {};
+  var slowNet = !!(conn.saveData || /2g$/.test(conn.effectiveType || ''));
+  var wantFull = window.innerWidth >= 900 && !slowNet;
+  var srcOf = function(v){ return (!wantFull && v.video_mobile) ? abs(v.video_mobile) : abs(v.video); };
+  var posterOf = function(v){
+    var p = (!wantFull && v.poster_thumb) ? v.poster_thumb : v.poster;
+    return p ? abs(p) : '';
+  };
+
+  var frag = document.createDocumentFragment();
+  vids.forEach(function(v, i){
+    var card = document.createElement('section');
+    card.className = 'card' + (calm ? ' paused' : '');
+    card.id = idOf(v, i);
+    card.dataset.idx = i;
+    var psrc = posterOf(v);
+    var where = v.county ? '<span class="where">' + esc(v.county) + ' County</span>' : '';
+    card.innerHTML =
+      '<div class="stage">' +
+        '<video playsinline loop muted preload="none" ' +
+          (psrc ? 'poster="' + esc(psrc) + '" ' : '') +
+          'data-src="' + esc(srcOf(v)) + '" aria-label="' + esc(v.title || 'Texas AI Dispatch') + '"></video>' +
+        (psrc ? '<img class="poster" src="' + esc(psrc) + '" alt="" loading="lazy">' : '') +
+        '<button class="tap" type="button" aria-label="Play or pause"></button>' +
+        '<div class="pauseglyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>' +
+        '<div class="spin" aria-hidden="true"></div>' +
+        '<div class="meta">' +
+          '<div class="kicker"><span>Texas AI Dispatch</span><span>' + esc(fmtFeedDate(v.date)) + '</span>' + where + '</div>' +
+          '<h2 class="title">' + esc(v.title || '') + '</h2>' +
+          (v.caption ? '<p class="cap" title="Tap to expand">' + esc(v.caption) + '</p>' : '') +
+        '</div>' +
+        '<div class="rail">' +
+          '<button class="rbtn mutebtn" type="button" aria-label="Toggle sound">' +
+            '<svg viewBox="0 0 24 24"><path class="spk" d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5H4z"/>' +
+            '<path class="wave" d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.8a7.6 7.6 0 0 1 0 10.4"/></svg>' +
+          '</button>' +
+          '<button class="rbtn sharebtn" type="button" aria-label="Share this film">' +
+            '<svg viewBox="0 0 24 24"><path d="M12 15V4m0 0L8 8m4-4 4 4M5 14v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-5"/></svg>' +
+          '</button>' +
+          '<button class="rbtn dlbtn" type="button" aria-label="Download this film">' +
+            '<svg viewBox="0 0 24 24"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 14v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-5"/></svg>' +
+          '</button>' +
+        '</div>' +
+        '<div class="skip back" aria-hidden="true">' +
+          '<svg viewBox="0 0 24 24"><path d="M11 6v12L2 12l9-6Zm11 0v12l-9-6 9-6Z"/></svg><span>10s</span></div>' +
+        '<div class="skip fwd" aria-hidden="true">' +
+          '<svg viewBox="0 0 24 24"><path d="M13 6v12l9-6-9-6ZM2 6v12l9-6L2 6Z"/></svg><span>10s</span></div>' +
+        '<div class="prog" aria-hidden="true"><i></i><b class="knob"></b></div>' +
+      '</div>';
+    var vd = card.querySelector('video');
+    vd.addEventListener('waiting', function(){ card.classList.add('buffering'); });
+    vd.addEventListener('playing', function(){ card.classList.remove('buffering'); });
+    vd.addEventListener('canplay', function(){ card.classList.remove('buffering'); });
+    frag.appendChild(card);
+  });
+  notice.remove();
+  feed.appendChild(frag);
+  /* THE CONTROLS ARE GATED ON A FEED THAT LOADED. The sound pill and the desktop stepper are
+     in the markup so they need no layout shift to appear, and their listeners are attached at
+     the bottom of this function. Between those two facts is a window where a failed fetch
+     leaves a reader looking at a button that does nothing, which is worse than no button. */
+  document.body.classList.add('feedready');
+
+  var cards = Array.prototype.slice.call(feed.querySelectorAll('.card'));
+  var soundOn = false;
+  var current = null;
+  var videoOf = function(c){ return c.querySelector('video'); };
+
+  /* A BOUNDED PRELOAD WINDOW. The current card and the next buffer in full, the previous and
+     the one after next hold metadata, and every other card is DETACHED outright, src removed
+     and reloaded empty. Without this a reader who flicks through a month of films leaves a
+     month of live video elements behind and a phone gives up. */
+  function attach(vd, pl){
+    vd.preload = pl;
+    if(!vd.getAttribute('src')) vd.src = vd.dataset.src;
+  }
+  function detach(c){
+    var vd = videoOf(c);
+    if(vd && vd.getAttribute('src')){
+      if(!vd.paused) vd.pause();
+      vd.removeAttribute('src');
+      vd.load();
+      c.querySelector('.stage').classList.remove('playing');
+      c.classList.remove('buffering');
+    }
+  }
+  function applyWindow(i){
+    cards.forEach(function(c, j){
+      var d = j - i;
+      if(d === 0 || d === 1) attach(videoOf(c), 'auto');
+      else if(d === -1 || d === 2) attach(videoOf(c), 'metadata');
+      else detach(c);
+    });
+  }
+
+  function play(c){
+    var vd = videoOf(c);
+    attach(vd, 'auto');
+    vd.muted = !soundOn;
+    vd.play().then(function(){
+      c.querySelector('.stage').classList.add('playing');
+      c.classList.remove('paused');
+    }).catch(function(err){
+      /* A real refusal, which on a phone in low power mode is the common one, has to leave the
+         play glyph up so the poster is not a dead end. An AbortError from a fast flick is noise. */
+      if(err && err.name === 'NotAllowedError') c.classList.add('paused');
+    });
+  }
+  function pause(c){ var vd = videoOf(c); if(vd && !vd.paused) vd.pause(); }
+
+  /* The incoming card starts as it crosses 40 percent mid flick, so it is already rolling when
+     the snap settles, and it is committed as current at 60 percent. */
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      var c = en.target;
+      if(en.intersectionRatio >= 0.6){
+        if(current && current !== c) pause(current);
+        current = c;
+        applyWindow(+c.dataset.idx);
+        if(!calm) play(c);
+        bindProgress(c);
+        history.replaceState(null, '', '#' + c.id);
+      }else if(en.intersectionRatio >= 0.4){
+        if(c !== current && !calm) play(c);
+      }else{
+        if(c !== current) pause(c);
+      }
+    });
+  }, {root: feed, threshold: [0, .4, .6]});
+
+  var SKIP = 10;
+  function paint(c, f){
+    var bar = c.querySelector('.prog i'), kn = c.querySelector('.knob');
+    if(bar) bar.style.transform = 'scaleX(' + f + ')';
+    if(kn) kn.style.left = (f * 100) + '%';
+  }
+  function flashSkip(c, dir){
+    var el = c.querySelector(dir > 0 ? '.skip.fwd' : '.skip.back');
+    if(!el) return;
+    el.classList.add('on');
+    clearTimeout(el._t);
+    el._t = setTimeout(function(){ el.classList.remove('on'); }, 420);
+  }
+  function nudge(c, secs){
+    var vd = videoOf(c);
+    if(!vd || !isFinite(vd.duration) || !vd.duration) return;
+    vd.currentTime = Math.max(0, Math.min(vd.duration, vd.currentTime + secs));
+    paint(c, vd.currentTime / vd.duration);
+    flashSkip(c, secs);
+  }
+
+  var tapT = 0, tapCard = null, tapWasPlaying = false;
+  feed.addEventListener('click', function(ev){
+    var tap = ev.target.closest('.tap');
+    if(tap){
+      var c = tap.closest('.card'), vd = videoOf(c);
+      var r = tap.getBoundingClientRect();
+      var rel = (ev.clientX - r.left) / r.width;
+      var zone = rel < .35 ? -1 : (rel > .65 ? 1 : 0);
+      var now = Date.now();
+      /* A second tap on the same side inside 320ms UNDOES the play or pause the first one did,
+         then seeks. Undoing is what keeps a single tap instant. Waiting 320ms to disambiguate
+         would make every pause feel late, which is a worse trade than a brief flicker. */
+      if(zone && tapCard === c && now - tapT < 320){
+        if(tapWasPlaying){ play(c); } else { vd.pause(); c.classList.add('paused'); }
+        nudge(c, zone * SKIP);
+        tapT = 0; tapCard = null;
+        return;
+      }
+      tapT = now; tapCard = c; tapWasPlaying = !vd.paused;
+      if(vd.paused){ play(c); } else { vd.pause(); c.classList.add('paused'); }
+      return;
+    }
+    var cap = ev.target.closest('.cap');
+    if(cap){ cap.classList.toggle('open'); return; }
+    var mb = ev.target.closest('.mutebtn');
+    if(mb){ setSound(!soundOn); return; }
+    var sb = ev.target.closest('.sharebtn');
+    if(sb){
+      var sc = sb.closest('.card');
+      var url = location.origin + location.pathname + '#' + sc.id;
+      var title = sc.querySelector('.title').textContent;
+      if(navigator.share){
+        navigator.share({title: title + ' - Texas AI Docket', url}).catch(function(){});
+      }else if(navigator.clipboard){
+        navigator.clipboard.writeText(url).then(function(){
+          sb.classList.add('toast');
+          setTimeout(function(){ sb.classList.remove('toast'); }, 1200);
+        }).catch(function(){});
+      }
+      return;
+    }
+    var db = ev.target.closest('.dlbtn');
+    if(db){
+      var dc = db.closest('.card'), dv = videoOf(dc);
+      var raw = dv && dv.dataset.src;
+      if(!raw || db.classList.contains('busy')) return;
+      /* Resolve against the document FIRST, then check the scheme. A bare scheme test rejects a
+         relative media_base outright and leaves a dead button. Resolving handles both forms and
+         still keeps javascript: and data: out of an href. */
+      var src;
+      try{ src = new URL(raw, location.href); }catch(err){ return; }
+      if(src.protocol !== 'http:' && src.protocol !== 'https:') return;
+      src = src.href;
+      var name = (String(dc.id || '').replace(/[^a-z0-9_-]/gi, '') || 'texas-ai-dispatch') + '.mp4';
+      var save = function(href){
+        var a = document.createElement('a');
+        a.href = href; a.download = name; a.rel = 'noopener';
+        document.body.appendChild(a); a.click(); a.remove();
+      };
+      /* Blob first, because the download attribute is IGNORED cross origin and a plain link to
+         the media host would navigate to the mp4 instead of saving it. The fetch fails only
+         when CORS is absent, and then the plain link is still better than a dead button. */
+      db.classList.add('busy');
+      fetch(src).then(function(r){ return r.ok ? r.blob() : Promise.reject(0); }).then(function(b){
+        var u = URL.createObjectURL(b);
+        save(u);
+        setTimeout(function(){ URL.revokeObjectURL(u); }, 60000);
+        db.classList.remove('busy');
+        db.classList.add('toast');
+        setTimeout(function(){ db.classList.remove('toast'); }, 1400);
+      }).catch(function(){ db.classList.remove('busy'); save(src); });
+    }
+  });
+
+  /* SCRUB. The drag is tracked by pointer id rather than re-derived from the event target on
+     every move, because deriving it ends the drag the instant the finger wanders off the strip,
+     which on a phone is most of the way through a normal thumb roll. Moves are listened for on
+     window for the same reason. Once the finger is down the bar owns the gesture until it lifts. */
+  var drag = null, pendingF = -1, seekRaf = 0;
+  function fracAt(c, clientX){
+    var r = c.querySelector('.prog').getBoundingClientRect();
+    return Math.min(1, Math.max(0, (clientX - r.left) / r.width));
+  }
+  function durOf(c){
+    var vd = videoOf(c);
+    return (vd && isFinite(vd.duration) && vd.duration) ? vd : null;
+  }
+  /* Painting is one transform and costs nothing, so it runs on every move and the bar tracks the
+     thumb exactly. Assigning currentTime kicks a decoder seek and pointermove fires far faster
+     than a phone can serve those, so the seek is coalesced to one a frame. */
+  function commitSeek(){
+    seekRaf = 0;
+    if(!drag || pendingF < 0) return;
+    var vd = durOf(drag.card);
+    if(vd) vd.currentTime = pendingF * vd.duration;
+  }
+  function scrub(c, clientX){
+    var f = fracAt(c, clientX);
+    paint(c, f);
+    pendingF = f;
+    if(!seekRaf) seekRaf = requestAnimationFrame(commitSeek);
+  }
+  feed.addEventListener('pointerdown', function(ev){
+    var pr = ev.target.closest('.prog');
+    if(!pr || drag) return;
+    var c = pr.closest('.card');
+    drag = {card: c, id: ev.pointerId, bar: pr};
+    c.classList.add('scrubbing');
+    try{ pr.setPointerCapture(ev.pointerId); }catch(err){}
+    scrub(c, ev.clientX);
+    ev.preventDefault();
+  });
+  window.addEventListener('pointermove', function(ev){
+    if(!drag || ev.pointerId !== drag.id) return;
+    scrub(drag.card, ev.clientX);
+    ev.preventDefault();
+  }, {passive: false});
+  function endScrub(ev){
+    if(!drag || ev.pointerId !== drag.id) return;
+    var c = drag.card;
+    /* Land exactly where the finger left off. The last move may have been coalesced away by the
+       frame budget, so the release seeks outright. */
+    var vd = durOf(c), f = fracAt(c, ev.clientX);
+    if(vd) vd.currentTime = f * vd.duration;
+    paint(c, f);
+    c.classList.remove('scrubbing');
+    try{ drag.bar.releasePointerCapture(drag.id); }catch(err){}
+    if(seekRaf){ cancelAnimationFrame(seekRaf); seekRaf = 0; }
+    drag = null; pendingF = -1;
+  }
+  window.addEventListener('pointerup', endScrub);
+  window.addEventListener('pointercancel', endScrub);
+
+  function setSound(on){
+    soundOn = on;
+    document.body.classList.toggle('muted', !on);
+    cards.forEach(function(c){ var vd = videoOf(c); if(vd) vd.muted = !on; });
+    document.querySelectorAll('.mutebtn .wave').forEach(function(w){ w.style.opacity = on ? 1 : .25; });
+    if(on && current && !calm){ var vd = videoOf(current); if(vd.paused) play(current); }
+  }
+  document.getElementById('unmute').addEventListener('click', function(){ setSound(true); });
+  setSound(false);
+
+  /* The hairline is driven by requestVideoFrameCallback on the active film, which is one paint
+     aligned update a presented frame and suspends itself while paused. timeupdate is the
+     fallback. scaleX never causes layout. */
+  var hasRVFC = 'requestVideoFrameCallback' in HTMLVideoElement.prototype;
+  var progVd = null, progBar = null, progKnob = null, progId = 0;
+  function progTick(){
+    if(progVd && progVd.duration){
+      var f = progVd.currentTime / progVd.duration;
+      progBar.style.transform = 'scaleX(' + f + ')';
+      if(progKnob) progKnob.style.left = (f * 100) + '%';
+    }
+  }
+  function progLoop(){
+    progTick();
+    progId = progVd.requestVideoFrameCallback(progLoop);
+  }
+  function bindProgress(c){
+    var vd = videoOf(c);
+    if(vd === progVd) return;
+    if(progVd){
+      if(hasRVFC && progId) progVd.cancelVideoFrameCallback(progId);
+      if(!hasRVFC) progVd.removeEventListener('timeupdate', progTick);
+      if(progBar) progBar.style.transform = 'scaleX(0)';
+    }
+    progVd = vd;
+    progBar = c.querySelector('.prog i');
+    progKnob = c.querySelector('.knob');
+    if(hasRVFC){ progId = vd.requestVideoFrameCallback(progLoop); }
+    else{ vd.addEventListener('timeupdate', progTick); }
+  }
+
+  function step(dir){
+    var i = current ? +current.dataset.idx : 0;
+    var t = cards[Math.min(cards.length - 1, Math.max(0, i + dir))];
+    if(t) t.scrollIntoView({behavior: calm ? 'auto' : 'smooth'});
+  }
+  document.getElementById('prev').addEventListener('click', function(){ step(-1); });
+  document.getElementById('next').addEventListener('click', function(){ step(1); });
+  window.addEventListener('keydown', function(ev){
+    if(ev.key === 'ArrowDown' || ev.key === 'PageDown'){ ev.preventDefault(); step(1); }
+    if(ev.key === 'ArrowUp' || ev.key === 'PageUp'){ ev.preventDefault(); step(-1); }
+    if(ev.key === ' '){
+      ev.preventDefault();
+      if(current){
+        var vd = videoOf(current);
+        if(vd.paused){ play(current); } else { vd.pause(); current.classList.add('paused'); }
+      }
+    }
+    /* The keyboard equivalent of the double tap, which is also how seeking reaches anyone who
+       cannot use a pointer at all. */
+    if(ev.key === 'ArrowRight'){ ev.preventDefault(); if(current) nudge(current, SKIP); }
+    if(ev.key === 'ArrowLeft'){ ev.preventDefault(); if(current) nudge(current, -SKIP); }
+    if(ev.key.toLowerCase() === 'm'){ setSound(!soundOn); }
+  });
+
+  /* Jump before observing, so the observer's first pass attaches the linked card's window
+     rather than card zero's. */
+  if(location.hash){
+    var t = document.getElementById(location.hash.slice(1));
+    if(t) t.scrollIntoView();
+  }
+  cards.forEach(function(c){ io.observe(c); });
+})();
+"""
+
+    ld = [{
+        "@context": "https://schema.org", "@type": "CollectionPage",
+        "@id": f"{SITE_URL}/videos/#page",
+        "name": f"Videos · {SITE_NAME}", "url": f"{SITE_URL}/videos/",
+        "description": desc, "inLanguage": "en-US",
+        "isPartOf": {"@id": f"{SITE_URL}/#website"},
+        "publisher": {"@id": f"{SITE_URL}/#org"},
+    }]
+
+    return f"""<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Videos · {e(SITE_NAME)}</title>
+<meta name="description" content="{e(desc)}">
+<link rel="canonical" href="{SITE_URL}/videos/">
+<meta property="og:title" content="Videos · {e(SITE_NAME)}">
+<meta property="og:description" content="{e(desc)}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{SITE_URL}/videos/">
+{og.head_html("../", SITE_URL, SITE_NAME, f"Videos · {SITE_NAME}", desc, "og.png", None)}
+{favicon.head_html("../")}
+{preconnect}<link rel="preload" href="videos.json" as="fetch" crossorigin>
+<link rel="preload" href="../fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/jetbrainsmono.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">{json.dumps(ld, separators=(",", ":"))}</script>
+<style>
+@font-face{{font-family:Fraunces;src:url(../fonts/fraunces.woff2) format("woff2");
+font-weight:100 900;font-display:swap}}
+@font-face{{font-family:Manrope;src:url(../fonts/manrope.woff2) format("woff2");
+font-weight:200 800;font-display:swap}}
+@font-face{{font-family:JBMono;src:url(../fonts/jetbrainsmono.woff2) format("woff2");
+font-weight:400 600;font-display:swap}}
+:root{{{tokens}
+--display-face:Fraunces,Georgia,"Times New Roman",serif;
+--body-face:Manrope,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+--mono-face:JBMono,ui-monospace,SFMono-Regular,Menlo,monospace}}
+{css}</style>
+</head>
+<body>
+
+<nav class="topbar" aria-label="Sections">
+  <a class="wordmark" href="../">{HOIST}<span>{e(SITE_NAME.upper())}</span></a>
+  <div class="navlinks">{nav}</div>
+</nav>
+
+<button class="unmute" id="unmute" type="button">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg>
+  TAP FOR SOUND
+</button>
+
+<div class="stepper" aria-hidden="true">
+  <button id="prev" title="Previous film, or the up arrow">&#9650;</button>
+  <button id="next" title="Next film, or the down arrow">&#9660;</button>
+</div>
+
+<h1 class="sr">Videos</h1>
+<main class="feed" id="feed" tabindex="0" aria-label="Video feed">
+  <div class="notice" id="notice">LOADING THE FEED</div>
+</main>
+
+<noscript><div>The feed needs JavaScript. Every film is also linked from
+<a href="../">the front page</a>.</div></noscript>
+
+<script>{script}</script>
+</body>
+</html>
+"""
 
 
 def articles_page(runs: list, today: str) -> str:
@@ -1164,7 +1839,7 @@ def latest_video() -> str:
 <script>
 (function(){
   var sec=document.getElementById('homevid');
-  if(!sec||!window.fetch)return;
+  if(!sec||!window.fetch)return;""" + js_feed_date() + """
   fetch('videos/videos.json').then(function(r){return r.json()}).then(function(m){
     var base=m.media_base||'';
     var vs=(m.videos||[]).filter(function(v){return v&&v.video});
@@ -1176,13 +1851,16 @@ def latest_video() -> str:
     if(!vs.length)return;
     var v=vs[0], abs=function(u){return /^https?:\/\//.test(u)?u:base+u};
     var el=document.getElementById('hv');
-    if(v.poster)el.poster=abs(v.poster);
+    /* The thumb and the rendition when the publish step made them, the masters when it did
+       not. This block is one frame and one film beside a paragraph, so it never needs the
+       845 KB poster or the 3.5 Mbit master, and an entry from before the renditions existed
+       still works. */
+    var p=v.poster_thumb||v.poster;
+    if(p)el.poster=abs(p);
     el.dataset.src=abs(v.video_mobile||v.video);
     document.getElementById('hvtitle').textContent=v.title||'';
     document.getElementById('hvcap').textContent=v.caption||'';
-    var d=document.getElementById('hvdate');
-    try{d.textContent=new Date(v.date+'T12:00:00').toLocaleDateString('en-US',
-      {month:'long',day:'numeric',year:'numeric'})}catch(e){d.textContent=v.date||''}
+    document.getElementById('hvdate').textContent=fmtFeedDate(v.date);
     sec.hidden=false;
     var io=new IntersectionObserver(function(es){es.forEach(function(en){
       if(!en.isIntersecting)return;

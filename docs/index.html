@@ -1053,6 +1053,17 @@ window.__ASK_CATALOGUE__=[{"q":"What can I still comment on?","route":{"view":"o
 (function(){
   var sec=document.getElementById('homevid');
   if(!sec||!window.fetch)return;
+  /* The house form is the ordinal, month first. toLocaleDateString has no ordinal, so the
+     suffix is derived from the number rather than looked up in a table. */
+  var ordDay=function(n){var t=n%100;
+    if(t>=11&&t<=13)return n+'th';
+    return n+({1:'st',2:'nd',3:'rd'}[n%10]||'th');};
+  var fmtFeedDate=function(d){try{
+    var dt=new Date(d+'T12:00:00');
+    return dt.toLocaleDateString('en-US',{month:'long'})+' '+ordDay(dt.getDate())+', '+
+      dt.getFullYear();
+  }catch(err){return d}};
+
   fetch('videos/videos.json').then(function(r){return r.json()}).then(function(m){
     var base=m.media_base||'';
     var vs=(m.videos||[]).filter(function(v){return v&&v.video});
@@ -1064,13 +1075,16 @@ window.__ASK_CATALOGUE__=[{"q":"What can I still comment on?","route":{"view":"o
     if(!vs.length)return;
     var v=vs[0], abs=function(u){return /^https?:\/\//.test(u)?u:base+u};
     var el=document.getElementById('hv');
-    if(v.poster)el.poster=abs(v.poster);
+    /* The thumb and the rendition when the publish step made them, the masters when it did
+       not. This block is one frame and one film beside a paragraph, so it never needs the
+       845 KB poster or the 3.5 Mbit master, and an entry from before the renditions existed
+       still works. */
+    var p=v.poster_thumb||v.poster;
+    if(p)el.poster=abs(p);
     el.dataset.src=abs(v.video_mobile||v.video);
     document.getElementById('hvtitle').textContent=v.title||'';
     document.getElementById('hvcap').textContent=v.caption||'';
-    var d=document.getElementById('hvdate');
-    try{d.textContent=new Date(v.date+'T12:00:00').toLocaleDateString('en-US',
-      {month:'long',day:'numeric',year:'numeric'})}catch(e){d.textContent=v.date||''}
+    document.getElementById('hvdate').textContent=fmtFeedDate(v.date);
     sec.hidden=false;
     var io=new IntersectionObserver(function(es){es.forEach(function(en){
       if(!en.isIntersecting)return;

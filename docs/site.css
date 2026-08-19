@@ -869,20 +869,18 @@ caption { caption-side:bottom; text-align:left; padding-top:.75rem; font-size:va
 }
 .deckgrid { display:grid; gap:var(--gap); margin:1.75rem 0 0;
   grid-template-columns:repeat(auto-fill,minmax(min(100%,17rem),1fr)); }
-.deckgrid .deck, .vcard { display:block; margin:0; text-decoration:none; color:inherit;
+.deckgrid .deck { display:block; margin:0; text-decoration:none; color:inherit;
   border:var(--hair) solid var(--rule); border-radius:var(--radius); overflow:hidden;
   background:var(--surface); }
-.deckgrid .deck img, .vcard video { display:block; width:100%; height:auto;
+.deckgrid .deck img { display:block; width:100%; height:auto;
   aspect-ratio:4/5; object-fit:cover; background:var(--panel); }
-.deckgrid .deck h3, .vcard h3 { margin:.35rem 0 0; font-size:var(--s0); line-height:1.25; }
-.deckgrid .deck .meta, .vcard .meta { margin:0; }
+.deckgrid .deck h3 { margin:.35rem 0 0; font-size:var(--s0); line-height:1.25; }
+.deckgrid .deck .meta { margin:0; }
 .deckgrid .deck .tease { margin:.3rem 0 0; font-size:var(--s-1); line-height:1.45;
   color:var(--ink-mute); }
-.deckgrid .deck > :not(img), .vcard figcaption { padding:0 .9rem; }
+.deckgrid .deck > :not(img) { padding:0 .9rem; }
 .deckgrid .deck { padding-bottom:1rem; transition:border-color .2s,transform .2s; }
 .deckgrid .deck:hover { border-color:var(--accent); transform:translateY(-2px); }
-.vcard figcaption { padding-bottom:1rem; }
-.vcard p { margin:.4rem 0 0; font-size:var(--s-1); color:var(--ink-mute); }
 .latest { display:grid; gap:var(--gap); margin:1.25rem 0 0; align-items:start;
   grid-template-columns:minmax(0,15rem) minmax(0,1fr); }
 .latest .cover img, .latest .vidwrap video { display:block; width:100%; height:auto;
