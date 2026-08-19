@@ -245,6 +245,21 @@ jobs:
       - name: Gmail draft self-test (drafts only, and the address is a constant)
         run: python3 scripts/carousel/gmail_draft.py --self-test
 
+      - name: Email check self-test (the run's email is postable, not an essay)
+        run: |
+          # Run 2's email was a plaintext essay with no post copy, no first comment and no
+          # images, because the run hand-wrote it instead of calling the builder. This gate
+          # replays that and each of the other three ways the email has failed to be postable.
+          python3 scripts/carousel/email_check.py --self-test
+
+      - name: Every shipped run carries a postable email
+        run: |
+          # Not a self-test. This reads the real gmail_payload.json committed beside each deck
+          # and fails if any run's email is missing, hand-written, or does not carry the post
+          # copy and the first comment verbatim with every linked file on disk. A run that
+          # shipped a deck and no postable email did not finish its one human-facing job.
+          python3 scripts/carousel/email_check.py --all
+
       - name: House style self-test (our prose is checked, a quote never is)
         run: python3 scripts/site/house_style_check.py --self-test
 
