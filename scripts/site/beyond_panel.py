@@ -16,10 +16,20 @@ gaps, for a number nobody can check.
 """
 from __future__ import annotations
 
+import collections
 import json
+import re
+import sys
 from pathlib import Path
 
 import numeral_lint
+
+# THE COLLECTOR'S KEY, NOT A SECOND COPY OF IT. datacenters_collect.opkey already folds the
+# spelling variants the Comptroller files under, and its docstring is the record of why the
+# rule is exactly as conservative as it is. Restating the rule here is how the two drift and
+# how a leaderboard starts disagreeing with the count printed beside it.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "gridwatch"))
+from datacenters_collect import opkey  # noqa: E402
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 ROSTER = REPO_ROOT / "ledger" / "gridwatch" / "datacenters.json"
@@ -128,6 +138,40 @@ def e(t) -> str:
 
 
 # --------------------------------------------------------------------------- the numbers
+def _role(facs: list[dict], role: str, n: int = 8) -> dict:
+    """One of the three roles the registry records, tallied.
+
+    THE REGISTRY RECORDS THREE DIFFERENT ANSWERS and the page published one of them. Owner,
+    occupant and operator are not synonyms: the company that owns the building, the company
+    whose computing happens in it, and the company that runs the floor are frequently three
+    different firms, and which one a reader cares about depends entirely on the question they
+    came with. Publishing only the operator answered "who runs the floor" and silently dropped
+    the other two, which are the ones most people mean when they ask whose data center it is.
+
+    THE VARIANT SPELLINGS ARE ONE FILER. The registry writes "Amazon Data Services, Inc." and
+    "Amazon Data Services Inc." for the same company, and "Oracle America Cloud Services LLC"
+    beside "Oracle America Cloud Services, LLC". Tallying the raw strings published those as
+    separate firms with a fraction of their real count against each, which is a wrong number
+    with a right-looking name on it. Grouping uses the collector's own key; the label shown is
+    the spelling the registry uses most often for that key.
+    """
+    tally: collections.Counter = collections.Counter()
+    spellings: dict = {}
+    for fac in facs:
+        for v in (fac.get(role) or []):
+            v = re.sub(r"\s+", " ", v or "").strip()
+            if not v:
+                continue
+            k = opkey(v)
+            tally[k] += 1
+            spellings.setdefault(k, collections.Counter())[v] += 1
+    return {"distinct": len(tally),
+            "mentions": sum(tally.values()),
+            "named": sum(1 for fac in facs if fac.get(role)),
+            "top": [{"name": spellings[k].most_common(1)[0][0], "count": c}
+                    for k, c in tally.most_common(n)]}
+
+
 def figures(data: dict) -> dict:
     """Every number these panels publish, computed here. Nothing downstream computes."""
     f: dict = {"dc": None, "gen": None}
@@ -149,6 +193,29 @@ def figures(data: dict) -> dict:
             "read": roster.get("read") or dc.get("date"),
             "first_effective": (roster.get("facilities") or [{}])[0].get("effective"),
         }
+        # EVERYTHING ELSE THE REGISTRY ALREADY HELD. The record carries a name, a date and
+        # three named parties for all 149 facilities, and the page was publishing a year
+        # histogram and eight operators. What follows is not new collection, it is the same
+        # file read properly.
+        facs = list(roster.get("facilities") or [])
+        if facs:
+            byname = sorted(facs, key=lambda x: (x.get("effective") or "", x.get("name") or ""),
+                            reverse=True)
+            f["dc"].update({
+                "owners": _role(facs, "owners"),
+                "occupants": _role(facs, "occupants"),
+                "operator_roles": _role(facs, "operators"),
+                # The most recently certified, which is the part of this record that moves.
+                "newest": [{"name": x.get("name"), "effective": x.get("effective"),
+                            "occupants": x.get("occupants") or [],
+                            "owners": x.get("owners") or []} for x in byname[:10]],
+                "roster": [{"name": x.get("name"), "effective": x.get("effective"),
+                            "owners": x.get("owners") or [],
+                            "occupants": x.get("occupants") or [],
+                            "operators": x.get("operators") or []} for x in byname],
+                "newest_effective": byname[0].get("effective"),
+                "oldest_effective": min(x.get("effective") or "9999" for x in facs),
+            })
     gen = data.get("gen")
     if gen and gen.get("operating"):
         op, pl = gen["operating"], gen["planned"]
@@ -181,13 +248,37 @@ def registry_panel(f: dict) -> str:
         f'<span class="rb" style="width:{y["count"] / top * 100.0:.1f}%"></span>'
         f'<span class="rv num">{n0(y["count"])}</span></li>'
         for y in d["by_year"])
-    ops = "".join(
-        # A <cite>, because these are the Comptroller's spellings and not this project's
-        # prose. "Whinstone US, Inc." tripped the first person check on the word "US", which
-        # is the same class of false positive the sibling hit on "the US Army Corps": house
-        # style governs what we write and stops at the quotation mark.
-        f'<li><span class="on"><cite>{e(o["name"])}</cite></span>'
-        f'<span class="os num">{n0(o["sites"])}</span></li>' for o in d["operators"])
+    def role_block(key: str, heading: str, noun: str) -> str:
+        r = d.get(key)
+        if not r:
+            return ""
+        rows = "".join(
+            # A <cite>, because these are the Comptroller's spellings and not this project's
+            # prose. "Whinstone US, Inc." tripped the first person check on the word "US",
+            # which is the same class of false positive the sibling hit on "the US Army
+            # Corps": house style governs what we write and stops at the quotation mark.
+            f'<li><span class="on"><cite>{e(x["name"])}</cite></span>'
+            f'<span class="os num">{n0(x["count"])}</span></li>' for x in r["top"])
+        return (f'<div class="rrole"><h4>{heading}</h4>'
+                f'<ul class="ops" data-prose="data">{rows}</ul>'
+                f'<p class="qnote"><strong class="num">{n0(r["distinct"])}</strong> {noun} in '
+                f'all. A site with more than one counts for each.</p></div>')
+
+    newest = "".join(
+        f'<li><span class="nwd"><time datetime="{e(x["effective"])}">'
+        f'{ordinal_date(x["effective"])}</time></span>'
+        f'<span class="nwn"><cite>{e(x["name"])}</cite></span>'
+        f'<span class="nwo">{"".join(f"<cite>{e(o)}</cite>" for o in x["occupants"][:1])}</span>'
+        f'</li>' for x in d.get("newest") or [])
+
+    rows = "".join(
+        f'<tr><td><cite>{e(x["name"])}</cite></td>'
+        f'<td><cite>{e(", ".join(x["owners"]))}</cite></td>'
+        f'<td><cite>{e(", ".join(x["occupants"]))}</cite></td>'
+        f'<td><cite>{e(", ".join(x["operators"]))}</cite></td>'
+        f'<td class="num"><time datetime="{e(x["effective"])}">'
+        f'{ordinal_date(x["effective"])}</time></td></tr>' for x in d.get("roster") or [])
+
     return f"""<section class="beyond" data-reveal>
   <h2>Who is here</h2>
   <p class="qnote">The state names them. <a href="{DC_URL}">The Comptroller's registry</a>
@@ -201,10 +292,28 @@ def registry_panel(f: dict) -> str:
   <ul class="ryears" data-prose="data">{bars}</ul>
   <p class="qnote">{e(d['latest_year'])} is a part year and is not finished.</p>
 
-  <h3>Who runs them</h3>
-  <ul class="ops" data-prose="data">{ops}</ul>
-  <p class="qnote"><strong class="num">{n0(d['distinct_operators'])}</strong> operators in
-  all. A site with more than one operator counts for each.</p>
+  <h3>Who owns them, who uses them, who runs them</h3>
+  <p class="qnote">The registry records three parties for each site and they are often three
+  different companies. Which one matters depends on the question.</p>
+  <div class="rroles">
+    {role_block("owners", "Who owns them", "owners")}
+    {role_block("occupants", "Who uses them", "occupants")}
+    {role_block("operator_roles", "Who runs them", "operators")}
+  </div>
+
+  <h3>Most recently registered</h3>
+  <ul class="newest" data-prose="data">{newest}</ul>
+
+  <h3>Every registered facility</h3>
+  <div class="rtwrap">
+  <table class="rtable" data-prose="data">
+    <colgroup><col class="cf"><col class="co"><col class="cu"><col class="cp"><col class="cd">
+    </colgroup>
+    <thead><tr><th>Facility</th><th>Owner</th><th>Occupant</th><th>Operator</th>
+      <th>Took effect</th></tr></thead>
+    <tbody>{rows}</tbody>
+  </table>
+  </div>
 </section>"""
 
 
@@ -284,6 +393,16 @@ def authorised(f: dict) -> set[str]:
             add(y["year"], n0(y["count"]))
         for o in d["operators"]:
             add(n0(o["sites"]))
+        for key in ("owners", "occupants", "operator_roles"):
+            r = d.get(key)
+            if not r:
+                continue
+            add(n0(r["distinct"]))
+            for x in r["top"]:
+                add(n0(x["count"]))
+        # Every date the roster and the newest list print, in the form they print it.
+        for x in (d.get("roster") or []) + (d.get("newest") or []):
+            add(ordinal_date(x["effective"]), x["effective"])
     g = f.get("gen")
     if g:
         add(gw(g["operating_mw"]), gw(g["planned_mw"]), gw(g["canceled_mw"]),
@@ -359,10 +478,40 @@ def self_test() -> int:
     # THE STATE'S SPELLINGS ARE QUOTED, NOT ADOPTED. An operator called "Whinstone US, Inc."
     # is not this project writing "us", and a county is not this project's word either.
     check("operator names are marked as quoted", "<cite>" in html)
-    check("...and every operator is inside one",
-          all(f"<cite>{o['name']}</cite>" in html.replace("&amp;", "&")
-              or "&" in o["name"] for o in (f["dc"]["operators"] if f.get("dc") else [])),
-          "an operator name is not cited")
+    # Every named party the page prints, across all three roles and the roster, has to be
+    # inside a <cite>. The check used to look only at the operator leaderboard, which was the
+    # only place names appeared; the page now names owners, occupants and all 149 facilities,
+    # and an uncited name is a company's own capitalisation being measured as our prose.
+    plain = html.replace("&amp;", "&")
+    missing = []
+    dcf = f.get("dc") or {}
+    for key in ("owners", "occupants", "operator_roles"):
+        for x in (dcf.get(key) or {}).get("top", []):
+            if "&" not in x["name"] and f"<cite>{x['name']}</cite>" not in plain:
+                missing.append(x["name"])
+    for x in (dcf.get("roster") or [])[:40]:
+        if "&" not in (x["name"] or "") and f"<cite>{x['name']}</cite>" not in plain:
+            missing.append(x["name"])
+    check("...and every named party is inside one", not missing,
+          "; ".join(missing[:3]))
+
+    # THE VARIANT SPELLINGS MUST MERGE, and this is proved on a fixture rather than trusted,
+    # because the failure is silent: two rows that each look like a real company, each carrying
+    # a fraction of the true count. It shipped that way, with Oracle Cloud split 15 and 10.
+    fixture = [{"occupants": ["Amazon Data Services, Inc."]},
+               {"occupants": ["Amazon Data Services Inc."]},
+               {"occupants": ["Amazon  Data   Services, Inc. "]},
+               {"occupants": ["Vantage Data Centers"]},
+               {"occupants": ["Vantage Data Centers Management"]}]
+    r = _role(fixture, "occupants")
+    check("spelling variants of one filer are counted once",
+          r["distinct"] == 3 and r["top"][0]["count"] == 3, str(r["top"]))
+    check("...and two genuinely different filers are not merged",
+          {x["name"] for x in r["top"]} >= {"Vantage Data Centers",
+                                            "Vantage Data Centers Management"})
+    check("...and the label shown is a spelling the registry actually uses",
+          all(any(x["name"] in (fac.get("occupants") or []) for fac in fixture)
+              for x in r["top"]))
 
     print("\nbeyond_panel self-test " + ("clean" if not failures else f"{failures} FAILED"))
     return 1 if failures else 0

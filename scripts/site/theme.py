@@ -1661,6 +1661,51 @@ figcaption {{ font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
 .rv {{ font-family:var(--mono); font-size:var(--s-2); color:var(--ink-bright);
   text-align:right; font-variant-numeric:tabular-nums; }}
 
+/* THREE ROLES SIDE BY SIDE, because the registry records three and they answer different
+   questions. They stack on a narrow screen rather than shrinking to unreadable columns. */
+/* min() on the track floor and min-width:0 on the cell. Without both, a long filer name sets
+   a min-content width the 1fr track cannot go below, the grid grows past its container, and
+   the third column's counts are cut off at the edge of the page. */
+.rroles {{ display:grid; gap:1.4rem 2rem; margin:.6rem 0 0;
+  grid-template-columns:repeat(auto-fit, minmax(min(15rem, 100%), 1fr)); }}
+.rrole {{ min-width:0; }}
+.rrole h4 {{ font-size:var(--s-1); margin:0 0 .4rem; }}
+.rrole .ops li {{ gap:.6rem; }}
+.rrole .on {{ min-width:0; overflow-wrap:anywhere; }}
+.newest {{ list-style:none; margin:.4rem 0 0; padding:0; max-width:none;
+  display:grid; gap:.1rem; }}
+.newest li {{ display:grid; grid-template-columns:9.5rem 1fr 1fr; gap:.6rem;
+  padding:.4rem 0; border-bottom:var(--hair) solid var(--rule); align-items:baseline; }}
+.nwd {{ font-family:var(--mono); font-size:var(--s-2); color:var(--dust); }}
+.nwn {{ font-weight:500; }}
+.nwo {{ color:var(--dust); font-size:var(--s-1); }}
+@media (max-width:34rem) {{
+  .newest li {{ grid-template-columns:1fr; gap:.1rem; }}
+}}
+/* THE WHOLE ROSTER. 149 rows is the actual record and it is the thing nobody else publishes
+   as a table, so it ships in full rather than as a top ten. It scrolls inside its own box so a
+   wide table never makes the PAGE scroll sideways. */
+.rtwrap {{ overflow-x:auto; overflow-y:auto; max-height:32rem; margin:.5rem 0 0;
+  border:var(--hair) solid var(--rule); border-radius:3px; }}
+/* Fixed layout, so one unusually long filer name cannot take the width from every other
+   column. Without it "ALIGNED DATA CENTERS (ABERNATHY) PROPCO, LLC" set the owner column and
+   squeezed the occupant into a three line wrap on every row. */
+.rtable {{ border-collapse:collapse; width:100%; min-width:44rem;
+  table-layout:fixed; font-size:var(--s-1); }}
+.rtable col.cf {{ width:19%; }}
+.rtable col.co {{ width:24%; }}
+.rtable col.cu {{ width:22%; }}
+.rtable col.cp {{ width:22%; }}
+.rtable col.cd {{ width:13%; }}
+.rtable td {{ overflow-wrap:anywhere; }}
+.rtable th, .rtable td {{ text-align:left; padding:.45rem .7rem; vertical-align:top;
+  border-bottom:var(--hair) solid var(--rule); }}
+.rtable th {{ position:sticky; top:0; background:var(--panel); font-family:var(--mono);
+  font-size:var(--s-2); letter-spacing:.06em; text-transform:uppercase;
+  color:var(--dust); z-index:1; }}
+.rtable td.num {{ font-family:var(--mono); font-size:var(--s-2); white-space:nowrap;
+  color:var(--dust); }}
+.rtable tbody tr:hover {{ background:color-mix(in srgb, var(--dust) 8%, transparent); }}
 .ops {{ list-style:none; padding:0; margin:0 0 .6rem; max-width:none;
   display:grid; grid-template-columns:repeat(auto-fit,minmax(16rem,1fr)); gap:0 1.6rem; }}
 .ops li {{ display:grid; grid-template-columns:1fr auto; gap:.6rem; align-items:baseline;
@@ -1771,44 +1816,32 @@ figcaption {{ font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
    columns take the whole group set the two bars of a pair as far apart as two neighbouring
    months, and the pairing stopped being visible. The cap is wide enough for both value labels
    at every width tested; tightening it further is what puts them back into each other. */
-/* STRETCH, NOT FLEX-END. With `align-items:flex-end` and a column at `height:100%`, the
-   column was laid out 22.4px ABOVE its own row rather than filling it, which put the six tall
-   bars' value labels outside the chart's box entirely. They still rendered, because nothing
-   clips them, so the page looked right while the labels were escaping into whatever sat above.
-   Stretch makes each column exactly its row, which is what the reserved label band assumed. */
-.qbars {{ display:flex; align-items:stretch; justify-content:center;
-  gap:clamp(2px,.6vw,5px); width:100%; max-width:clamp(4.6rem,13vw,7.5rem);
+/* THE PAIR SHARES ONE BOX, AND THERE IS NO OTHER BOX. .qbars is the plot: it holds the
+   height, it is the positioning context, and both bars are absolutely positioned in it. The
+   .qb wrapper is display:contents, so it contributes NO box at all and only carries --h down
+   to the two children that need it.
+   That last part is the fix. Every previous version kept .qb as a real box and tried to make it
+   fill its row, and every version got it wrong in a different direction: too tall and the
+   labels left the figure, too short and the bars stood on two baselines 22.4px apart, drawing
+   4,049 at 1.66 times the height its value earns. A bar chart with two baselines is not a bar
+   chart, and the reliable way to have one baseline is to have one box. Both fills now resolve
+   `bottom:0` and `height:var(--h)` against the SAME element, so a shared baseline and a shared
+   scale are not properties to be maintained, they are the only thing the markup can express. */
+.qbars {{ position:relative; width:100%; max-width:clamp(4.6rem,13vw,7.5rem);
   margin-inline:auto; flex:1; }}
-/* The column is transparent and full height; the FILL is the bar. That separation is what
-   lets the value label sit on the card rather than on the bar, which is both what a reader
-   sees and what the contrast check measures. */
-/* THE COLUMN TAKES HALF THE GROUP; THE BAR INSIDE IT STAYS NARROW. The column was as narrow
-   as the bar, so each value label overflowed its column evenly on both sides and the pair met
-   in the middle: "8,787" and "4,049" rendered as "8,7874,049", one nonsense number. Nothing in
-   the DOM was wrong, which is why no lint could see it. Giving the column the width and the
-   fill the bar keeps the two labels apart by layout instead of by luck. */
-.qb {{ flex:1 1 0; min-width:0; align-self:stretch; display:flex; flex-direction:column;
-  justify-content:flex-end; align-items:center; }}
-/* The label band is RESERVED, and the plot is what is left. The fill's percentage resolves
-   against .qbp, so a bar at full scale reaches the top of the plot and stops there, under its
-   own label, instead of being asked to share a box the label is also in. This is why the
-   value can no longer come down on top of the bar: not a colour choice, a layout that cannot
-   express the overlap. */
-.qbv {{ flex:0 0 auto; }}
-/* THE FILL IS OUT OF FLOW, and that is the point. It was an in-flow box whose height was a
-   percentage of a flex item that was itself sized by `flex:1`, which is the case where a
-   percentage height has no definite containing block to resolve against. The symptom was not a
-   wrong height, it was a wrong POSITION: the whole column sat 22.4px off its own row, first
-   above it and then, after a naive fix, below it, so the tall bars' labels rendered outside the
-   chart entirely. Absolute positioning resolves the percentage against .qbp's padding box,
-   which is definite once the stretch has run, and takes the fill out of .qbp's content sizing
-   so nothing is circular. */
-.qbp {{ flex:1 1 auto; width:100%; position:relative; min-height:0; }}
-.qbf {{ position:absolute; bottom:0; left:0; right:0; margin-inline:auto;
-  width:clamp(9px,3.2vw,26px); max-width:100%; min-height:2px;
+.qb {{ display:contents; }}
+.qbf {{ position:absolute; bottom:0; transform:translateX(-50%);
+  width:clamp(9px,3.2vw,26px); height:var(--h); min-height:2px;
   border-radius:1px 1px 0 0; }}
-/* A month the record holds with nothing published: a rule where the bars would be, and the
-   word, so the slot reads as absent rather than as zero. */
+/* THE LABEL RIDES ITS OWN BAR: same --h, so it sits at the bar's top edge whatever the value.
+   The band at the top of the column was what left a short bar's number floating 64px above the
+   thing it names. */
+.qbv {{ position:absolute; bottom:var(--h); transform:translateX(-50%);
+  margin-bottom:.2rem; white-space:nowrap; }}
+.qb.qa .qbf, .qb.qa .qbv {{ left:27%; }}
+.qb.qd .qbf, .qb.qd .qbv {{ left:73%; }}
+.qb.qa .qbf {{ background:var(--granite); }}
+.qb.qd .qbf {{ background:color-mix(in srgb, var(--granite) 42%, var(--paper)); }}
 .qmiss {{ height:100%; display:flex; flex-direction:column; justify-content:flex-end;
   align-items:center; gap:.3rem; width:100%; }}
 .qmissr {{ width:70%; border-top:1px dashed color-mix(in srgb, var(--granite) 45%, transparent);
@@ -2435,6 +2468,20 @@ def self_test() -> int:
     t = tokens()
     check("tokens load from brand.yaml", len(t["colour"]) >= 12, str(len(t["colour"])))
     sheet = css()
+
+    # THE CHART'S TWO GEOMETRIC PROMISES, ASSERTED IN THE STYLESHEET THAT MAKES THEM.
+    # Both bars are pinned to the bottom of the SHARED box, which is what gives the pair one
+    # baseline and one scale; and each label is pinned to its own bar's height, which is what
+    # keeps a short bar's number with the short bar. Both shipped broken while the markup looked
+    # right, so they are asserted here, where they are actually decided.
+    check("both bars are pinned to the bottom of the shared plot",
+          ".qbf { position:absolute; bottom:0;" in sheet)
+    check("...and the plot box is the thing that is positioned",
+          ".qbars { position:relative;" in sheet)
+    check("...and the column contributes no box of its own to get mis-sized",
+          ".qb { display:contents; }" in sheet)
+    check("...and each label is pinned to the height of its own bar",
+          ".qbv { position:absolute; bottom:var(--h);" in sheet)
 
     # ---- the colour maths itself, before anything trusts it ------------------
     check("contrast is the WCAG ratio (black on white is 21)",

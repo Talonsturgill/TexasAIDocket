@@ -681,7 +681,8 @@ def body(records: list[dict], today: str, queue_data: dict | None = None) -> str
 <h1>Texas Grid Watch</h1>
 <div class="prose">
   <p class="lede">What large load has asked the Texas grid for, and what it is actually
-  drawing. Measured, never predicted.</p>
+  drawing. Most of that queue is data centers, and this page names the ones the state
+  has registered. Measured, never predicted.</p>
 </div>
 
 {queue}
@@ -918,8 +919,18 @@ def self_test() -> int:
 
     # HOUSE STYLE AND HONEST ROUNDING, both checked on the real rendered page.
     check("no page prints day(s), which is a machine talking", "day(s)" not in b + bm)
+    # THE VISIBLE TEXT, NOT THE BYTES. The rule is that a READER never sees an ISO date; a
+    # `datetime` attribute is machine metadata and is the correct place for one, which is the
+    # whole point of a <time> element and is what the rest of the site already relies on. This
+    # used to test the raw bytes, so the roster table publishing 149 dates as
+    # <time datetime="2026-08-10">August 10th, 2026</time> failed a rule it actually obeys.
+    # It still goes red on an ISO date printed as copy, which is the thing being forbidden.
+    visible = re.sub(r'\sdatetime="[^"]*"', "", b)
     check("the date reads in house style, not ISO",
-          "August 10th, 2026" in b and "2026-08-10" not in b)
+          "August 10th, 2026" in visible and "2026-08-10" not in visible)
+    check("...and the check still catches an ISO date printed as copy",
+          "2026-08-10" in re.sub(r'\sdatetime="[^"]*"', "",
+                                 visible.replace("August 10th, 2026", "2026-08-10")))
     check("a share that is not zero is never published as zero",
           share(0.0437) == "0.04" and share(0.0004) == "0.0004" and share(0.0) == "0.00",
           f"{share(0.0437)} {share(0.0004)} {share(0.0)}")

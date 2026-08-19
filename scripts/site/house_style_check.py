@@ -104,8 +104,14 @@ def _renderings(iso: str) -> set:
         return set()
     n = d.day
     suf = "th" if 11 <= n <= 13 else {1: "st", 2: "nd", 3: "rd"}.get(n % 10, "th")
+    # THE ORDINAL FORM WITH ITS YEAR. "August 10th, 2026" is the house form for a full date and
+    # was the one shape this set did not list, so a <time> could render its own value correctly
+    # in the house style and still be reported. It matters wherever a list spans years: the
+    # registry roster runs from 2013 to this month, and "August 10th" alone does not identify a
+    # row in it. The rejections that matter are untouched: "10 August", a bare "August 10", and
+    # a day-precision value that prints only its month.
     return {f"{d:%b} {n}".upper(), f"{d:%B} {n}{suf}", d.isoformat(),
-            f"{d:%B} {d.year}", f"{d:%b} {n}"}
+            f"{d:%B} {d.year}", f"{d:%b} {n}", f"{d:%B} {n}{suf}, {d.year}"}
 
 
 def _time_chips(body: str) -> tuple:
