@@ -690,15 +690,15 @@ figcaption { font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
 .qgrp:hover, .qgrp:focus-visible {
   background:color-mix(in srgb, var(--granite) 9%, transparent); outline:none; }
 .qgrp:focus-visible { box-shadow:0 0 0 2px var(--granite); }
-.qbars { display:flex; align-items:flex-end; justify-content:center;
+.qbars { display:flex; align-items:stretch; justify-content:center;
   gap:clamp(2px,.6vw,5px); width:100%; max-width:clamp(4.6rem,13vw,7.5rem);
   margin-inline:auto; flex:1; }
-.qb { flex:1 1 0; min-width:0; height:100%; display:flex; flex-direction:column;
+.qb { flex:1 1 0; min-width:0; align-self:stretch; display:flex; flex-direction:column;
   justify-content:flex-end; align-items:center; }
 .qbv { flex:0 0 auto; }
-.qbp { flex:1 1 auto; width:100%; display:flex; align-items:flex-end;
-  justify-content:center; min-height:0; }
-.qbf { width:clamp(9px,3.2vw,26px); max-width:100%; min-height:2px;
+.qbp { flex:1 1 auto; width:100%; position:relative; min-height:0; }
+.qbf { position:absolute; bottom:0; left:0; right:0; margin-inline:auto;
+  width:clamp(9px,3.2vw,26px); max-width:100%; min-height:2px;
   border-radius:1px 1px 0 0; }
 .qmiss { height:100%; display:flex; flex-direction:column; justify-content:flex-end;
   align-items:center; gap:.3rem; width:100%; }
