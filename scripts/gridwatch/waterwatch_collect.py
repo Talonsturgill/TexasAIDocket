@@ -62,7 +62,7 @@ LEDGER = REPO_ROOT / "ledger" / "gridwatch" / "water.jsonl"
 RAW = REPO_ROOT / "ledger" / "gridwatch" / "raw"
 
 FEED = "https://www.waterdatafortexas.org/reservoirs/recent-conditions.json"
-UA = ("TexasAIDocket/1.0 (+https://talonsturgill.github.io/TexasAIDocket; "
+UA = ("TexasAIDocket/1.0 (+https://texasaidocket.com; "
       "daily public-interest water record; one request per day)")
 
 SPEC = 1

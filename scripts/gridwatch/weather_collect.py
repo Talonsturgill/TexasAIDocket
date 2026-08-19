@@ -112,7 +112,7 @@ NORMALS_BASE = (1991, 2020)
 # unmeasured year in as though it were a mild one biases every normal downward.
 MIN_YEAR_COVERAGE = 0.95
 
-UA = ("TexasAIDocket/1.0 (+https://talonsturgill.github.io/TexasAIDocket; "
+UA = ("TexasAIDocket/1.0 (+https://texasaidocket.com; "
       "daily public-interest climate record; one request per day)")
 
 SPEC = 2

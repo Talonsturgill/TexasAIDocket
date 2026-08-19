@@ -334,7 +334,7 @@ def self_test() -> int:
             '<svg class="tx-star" viewBox="0 0 26 26"><polygon points="1,2"/></svg>'
             '<div class="tx-wordmark">TEXAS AI DOCKET</div>'
             '<div class="tx-kicker">ERCOT MARKET NOTICE</div>'
-            '<div class="tx-site">talonsturgill.github.io/TexasAIDocket</div>'
+            '<div class="tx-site">texasaidocket.com</div>'
             '<div class="tx-counter">03 / 08</div></div>')
     art_a = '<script>stoneGround(); embossMonthSheet(cellW, deadline); rakingShadow();</script>'
     art_b = '<script>voronoiPartition(seeds); neatline(); hatchCell(idx);</script>'

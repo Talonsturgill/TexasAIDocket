@@ -36,7 +36,7 @@ are what matter. Register the domain, add the address, rebuild.
 
 ## 2. Pages is on and the site is live. DONE, and here is what it cost.
 
-**https://talonsturgill.github.io/TexasAIDocket/** serves every page.
+**https://texasaidocket.com/** serves every page.
 
 Left in place because the same trap catches the next repository, and because the failure mode
 is a deploy job that fails in about one second with no steps and no logs.
@@ -70,7 +70,7 @@ branches qualify and `main` is not special. The fix was **Settings → Environme
 github-pages → Deployment branches → No restriction**. Same one-second, no-log failure, a
 different cause, and the two are indistinguishable from the run page.
 
-The site is at **https://talonsturgill.github.io/TexasAIDocket/** until the domain in item 1
+The site is at **https://texasaidocket.com/** until the domain in item 1
 replaces it. `SITE_URL` in `scripts/site/site_build.py` is the one key to change.
 
 ---

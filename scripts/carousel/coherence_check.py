@@ -214,6 +214,81 @@ def check_type_spine(slides_dir: Path) -> tuple:
     return [], []
 
 
+BRAND_YAML = Path(__file__).resolve().parents[2] / "config" / "brand.yaml"
+SITE_LINE = re.compile(r'class="tx-site"[^>]*>([^<]+)<')
+
+
+def brand_site() -> str | None:
+    """The one site string, read from config/brand.yaml rather than kept as a copy here.
+
+    Reading it is the entire point. A constant in this file would be a fourth copy of the same
+    fact and this gate exists because there were already three.
+
+    It is `visual.constellation.site` specifically. A first draft of this function took the first
+    line starting with `site:`, which is a different key several sections earlier with no value on
+    it, so the function returned None and the gate passed on a deck carrying the wrong URL on all
+    eight frames. A checker that cannot find its own input reports clean, which is the failure
+    this repo keeps rediscovering.
+    """
+    if not BRAND_YAML.exists():
+        return None
+    try:
+        import yaml  # type: ignore
+        d = yaml.safe_load(BRAND_YAML.read_text(encoding="utf-8")) or {}
+        v = (d.get("visual") or {}).get("constellation", {}).get("site")
+        if isinstance(v, str) and v.strip():
+            return v.strip()
+    except Exception:
+        pass
+    # no yaml available: walk to constellation: and take the site: under it
+    inside = False
+    for line in BRAND_YAML.read_text(encoding="utf-8").splitlines():
+        if re.match(r"^\s*constellation:\s*$", line):
+            inside = True
+            continue
+        if inside and re.match(r"^\s{0,4}\S", line) and not line.strip().startswith("#"):
+            if not re.match(r"^\s{4,}", line):
+                inside = False
+        if inside:
+            m = re.match(r"^\s*site:\s*(.+)$", line)
+            if m:
+                v = m.group(1).split("#", 1)[0].strip().strip('"').strip("'")
+                if v:
+                    return v
+    return None
+
+
+def check_site_line(slides_dir: Path) -> tuple:
+    """Every frame's footer prints the site brand.yaml names, and no other host.
+
+    THE DEFECT. `config/brand.yaml` has carried the site string since the first deck and
+    `frame.py` kept its own hardcoded copy of it. When the project moved to its own domain on
+    2026-08-15, `docs/CNAME` and `site_build.SITE_URL` moved and the slide footer did not, so
+    three published decks printed the OWNER'S PERSONAL GitHub Pages host across the bottom of
+    every slide. Every gate was green for all three, because not one of them compared the
+    rendered footer against the config that governs it.
+
+    Same shape as the missing hashtags and the missing progress counter: a rule stated in
+    config, a surface keeping its own copy, and nothing in between checking they agree.
+    """
+    want = brand_site()
+    if not want:
+        return [], ["config/brand.yaml names no visual.constellation.site, so the footer was not checked"]
+    files = sorted(slides_dir.glob("slide-*.html"))
+    if not files:
+        return [], [f"no slide html in {slides_dir}, so the site line was not measured"]
+    bad = []
+    for f in files:
+        got = SITE_LINE.findall(f.read_text(encoding="utf-8"))
+        if not got:
+            bad.append(f"{f.name} prints no site line, and the constellation fixes one on every frame")
+        elif got[0].strip() != want:
+            bad.append(f"{f.name} prints '{got[0].strip()}' and config/brand.yaml says '{want}'. "
+                       f"The footer is published on every slide, so a stale copy here is a wrong "
+                       f"URL on the whole deck")
+    return bad, []
+
+
 def run(copy_path: Path, slides_dir: Path | None, *, quiet: bool = False) -> int:
     copy = json.loads(copy_path.read_text(encoding="utf-8"))
     fails, warns = check_copy(copy)
@@ -221,6 +296,9 @@ def run(copy_path: Path, slides_dir: Path | None, *, quiet: bool = False) -> int
         f2, w2 = check_type_spine(slides_dir)
         fails += f2
         warns += w2
+        f3, w3 = check_site_line(slides_dir)
+        fails += f3
+        warns += w3
 
     if not quiet:
         slides = ordered(copy)
@@ -331,6 +409,28 @@ def self_test() -> int:
        "DISPLAY TYPE SIZES ARE NOT GATED" in src and "fitText" in src)
     ok("...and the measurement that produced that decision is recorded",
        "132" in src and "24px and 25px" in src)
+    # ---- THE FOOTER, against config/brand.yaml -----------------------------------------
+    # The red case is the real one: three decks shipped the owner's personal GitHub Pages host
+    # on the bottom of every slide while brand.yaml named the domain. A gate that cannot go red
+    # on that is not a gate, and the first draft of brand_site() returned None and passed.
+    import tempfile
+    want = brand_site()
+    ok("brand.yaml resolves to a non-empty site string", bool(want), f"got {want!r}")
+    ok("...and it is the domain rather than a github.io host",
+       bool(want) and "github.io" not in want, f"got {want!r}")
+    with tempfile.TemporaryDirectory() as d:
+        dd = Path(d)
+        (dd / "slide-01.html").write_text(f'<div class="tx-site">{want}</div>', encoding="utf-8")
+        bad, _ = check_site_line(dd)
+        ok("a frame printing the brand.yaml site passes", not bad, str(bad))
+        (dd / "slide-02.html").write_text(
+            '<div class="tx-site">talonsturgill.github.io/TexasAIDocket</div>', encoding="utf-8")
+        bad, _ = check_site_line(dd)
+        ok("a frame printing the old github.io host is CAUGHT", len(bad) == 1, str(bad))
+        (dd / "slide-03.html").write_text("<div>no footer here</div>", encoding="utf-8")
+        bad, _ = check_site_line(dd)
+        ok("a frame printing no site line at all is CAUGHT", len(bad) == 2, str(bad))
+
 
     print(f"\ncoherence_check self-test: "
           + ("all passed" if not failures else f"{failures} FAILED"))
