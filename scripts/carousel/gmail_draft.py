@@ -4,9 +4,11 @@
 WHAT THIS EMAIL IS FOR
 
 It is the only human touchpoint in an otherwise autonomous product, and it gates the POST, not
-the merge. By the time it arrives the deck has already merged to main, because the image URLs
-in it point at main. So this is not an approval request. It is an honest account of what
-shipped, written for somebody who was not watching and has about ninety seconds.
+the merge. When a run SHIPS, the deck has already merged by the time this arrives and the image
+URLs point at main. When a run HOLDS it has not merged, `--ref` carries the run branch, and the
+email says so in two places rather than linking a reader to eight 404s. Either way this is not an
+approval request. It is an honest account of what happened, written for somebody who was not
+watching and has about ninety seconds.
 
 That shapes everything below. The score goes near the top whatever it says. What degraded is
 named rather than omitted. The machine's own upgrades are listed, because a routine that edits
@@ -37,9 +39,32 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 # The mailbox. One place, plus the paragraph in CLAUDE.md. Never "me".
 DRAFT_TO = "docket@alaskaaihq.com"
 
-# Images are served from the merged commit on main, which is why the merge lands before the
-# email. A raw URL against a branch that later moves would rot.
-RAW = "https://raw.githubusercontent.com/Talonsturgill/TexasAIDocket/main"
+# Images are served from the merged commit on main when a run ships, which is why the merge lands
+# before the email.
+RAW_BASE = "https://raw.githubusercontent.com/Talonsturgill/TexasAIDocket"
+DEFAULT_REF = "main"
+
+# WHICH COMMIT THE IMAGES COME FROM, 2026-08-19.
+#
+# This was the literal string "main", which is right for the case the file was written for: a run
+# that passes its gates merges before the email goes out, so main has the artifacts. A run that
+# HOLDS does not merge, and the same email then linked eight thumbnails, a PDF and a contact sheet
+# to paths that do not exist on main. Every image a broken box, in the one message a reader gets,
+# which is the exact failure `require` was written to prevent one line further down.
+#
+# The ref is now a parameter. A held run passes its run branch and the email says so.
+_REF = DEFAULT_REF
+
+
+def set_ref(ref: str) -> None:
+    global _REF
+    _REF = ref or DEFAULT_REF
+
+
+def raw() -> str:
+    return f"{RAW_BASE}/{_REF}"
+
+
 SITE = "https://talonsturgill.github.io/TexasAIDocket"
 
 
@@ -66,7 +91,7 @@ def require(run: str, name: str) -> str:
     if not (run_dir(run) / name).exists():
         raise MissingAsset(f"{run}/{name} is not in the run directory, so the email would "
                            f"link to a 404")
-    return f"{RAW}/runs/carousel/{run}/{name}"
+    return f"{raw()}/runs/carousel/{run}/{name}"
 
 
 # The formats a thumbnail has actually shipped in. `.png` on 2026-08-16 and `.webp` on
@@ -95,7 +120,7 @@ def thumbs(run: str, slides: int | None = None) -> list:
         raise MissingAsset(f"{run}: {slides} slide(s) declared and {len(found)} thumbnail(s) "
                            f"on disk. The email would show a different deck from the one that "
                            f"shipped")
-    return [f"{RAW}/runs/carousel/{run}/thumbs/{p.name}" for p in found]
+    return [f"{raw()}/runs/carousel/{run}/thumbs/{p.name}" for p in found]
 
 
 def ordinal_date(iso: str) -> str:
@@ -106,7 +131,10 @@ def ordinal_date(iso: str) -> str:
 
 
 def subject(n: int, run: str, title: str) -> str:
-    return f"Texas AI Docket — Carousel No. {n} — {ordinal_date(run)} — {title}"
+    # Commas, not em dashes. The house rule in CLAUDE.md is "no em dashes or en dashes anywhere"
+    # and it does not carve out the subject line. This template had shipped three of them in the
+    # one string the owner sees first, on every email the project has ever built.
+    return f"Texas AI Docket, Carousel No. {n}, {ordinal_date(run)}, {title}"
 
 
 def body(*, run: str, n: int, title: str, caption: str, first_comment: str,
@@ -127,7 +155,18 @@ def body(*, run: str, n: int, title: str, caption: str, first_comment: str,
 
     degraded_block = ""
     if degraded:
-        items = "".join(f"<li>{e(d)}</li>" for d in degraded)
+        # BOTH SHAPES. This took a list of strings and every caller has passed a list of
+        # {what, why} objects, the same shape the upgrades block below already renders properly.
+        # The result was Python dict reprs, quotes escaped to &#x27; and all, printed into the one
+        # section of the email whose whole job is explaining what went wrong.
+        def _one(d):
+            if isinstance(d, dict):
+                what, why = d.get("what"), d.get("why")
+                return (f"<li><strong>{e(what)}</strong>"
+                        + (f"<br><span style=\"color:#5A5064\">{e(why)}</span>" if why else "")
+                        + "</li>")
+            return f"<li>{e(d)}</li>"
+        items = "".join(_one(d) for d in degraded)
         degraded_block = (
             f'<h3>What degraded</h3><ul>{items}</ul>'
             f'<p style="color:#5A5064">Named here rather than left out. A run that quietly '
@@ -152,7 +191,12 @@ def body(*, run: str, n: int, title: str, caption: str, first_comment: str,
 <p style="margin:0 0 18px;color:#5A5064">Carousel No. {n}, {e(ordinal_date(run))}</p>
 
 <p style="font-size:17px;margin:0 0 18px"><strong>{e(verdict)}</strong>{
-    "" if shipped else " &mdash; read before posting."}</p>
+    "" if shipped else ". Read before posting."}</p>
+{"" if _REF == DEFAULT_REF else
+ f'<p style="border-left:3px solid #B98D46;padding-left:12px;color:#5A5064">'
+ f'This run did not merge, so the images below come from the run branch '
+ f'<code>{e(_REF)}</code> rather than from main. They stop resolving if that branch is '
+ f'deleted.</p>'}
 
 <div style="border:1px solid #D9CFBC;padding:12px 16px;margin-bottom:18px">
 <table style="border-collapse:collapse;font-size:14px">{gate_rows}</table>
@@ -180,8 +224,11 @@ a minute of posting.</p>
 {f'<h3>Notes</h3><p>{e(notes)}</p>' if notes else ''}
 
 <p style="color:#5A5064;font-size:13px;margin-top:24px">
-This is a draft. Nothing was sent. The deck is already merged to main, so these links are
-live; posting is the only step left, and it is yours.</p>
+This is a draft. Nothing was sent. {
+    "The deck is already merged to main, so these links are live. Posting is the only step left, "
+    "and it is yours." if _REF == DEFAULT_REF else
+    "The deck did NOT merge, so nothing here is on main and there is nothing to post. The links "
+    "resolve against the run branch for as long as it exists."}</p>
 </div>"""
 
 
@@ -219,13 +266,33 @@ def self_test() -> int:
     ok("the subject carries the number, the date and the title",
        "No. 1" in p["subject"] and ordinal_date(REAL) in p["subject"]
        and "Abilene" in p["subject"], p["subject"])
+    ok("the subject carries no em dash and no en dash, which the house rule bans anywhere",
+       "\u2014" not in p["subject"] and "\u2013" not in p["subject"], p["subject"])
+    ok("...and neither does the body, in any of its encodings",
+       not any(m in p["body"] for m in ("\u2014", "\u2013", "&mdash;", "&ndash;", "&#8212;")),
+       [m for m in ("\u2014", "\u2013", "&mdash;", "&ndash;", "&#8212;") if m in p["body"]])
     ok("the date in the subject is house style, not ISO", "2026-08-11" not in p["subject"])
 
     # THE VERDICT IS NEVER SOFTENED.
     ok("a passing score is stated plainly", "Shipped at 7.4" in p["body"])
     low = payload(**{**base, "score": 6.9})
     ok("a failing score says so first, and says read before posting",
-       "Did NOT meet the bar: 6.9" in low["body"] and "read before posting" in low["body"])
+       "Did NOT meet the bar: 6.9" in low["body"] and "Read before posting" in low["body"])
+    # A HELD RUN'S IMAGES ARE NOT ON MAIN, because a held run does not merge. This shipped
+    # pointing at main regardless, so every image in the email would have been a broken box.
+    try:
+        set_ref("claude/daily-2026-08-19")
+        held = payload(**{**base, "score": 6.8})
+        ok("a held run's images point at the ref it was given, not at main",
+           "/claude/daily-2026-08-19/runs/" in held["body"]
+           and "/main/runs/" not in held["body"])
+        ok("...and the email says so rather than leaving the reader to find out",
+           "did not merge" in held["body"] and "claude/daily-2026-08-19" in held["body"])
+    finally:
+        set_ref(DEFAULT_REF)
+    back = payload(**base)
+    ok("...and the default is still main", "/main/runs/" in back["body"])
+
     none = payload(**{**base, "score": None})
     ok("a missing score is reported, not silently omitted",
        "No score recorded" in none["body"])
@@ -235,6 +302,13 @@ def self_test() -> int:
     ok("...and a clean run carries no degradation block",
        "What degraded" not in p["body"])
 
+    # A DICT REPR IN THE EMAIL. Every caller passes {what, why} and this rendered str(dict).
+    obj = payload(**{**base, "degraded": [{"what": "the deck holds", "why": "it scored 6.8"}]})
+    ok("a degraded entry given as an object renders as prose, not as a python repr",
+       "the deck holds" in obj["body"] and "it scored 6.8" in obj["body"]
+       and "&#x27;what&#x27;" not in obj["body"] and "{'what'" not in obj["body"])
+    ok("...and a plain string still renders",
+       "just a string" in payload(**{**base, "degraded": ["just a string"]})["body"])
     up = payload(**{**base, "upgrades": [{"what": "tightened the numeral gate",
                                           "why": "it missed a negative figure"}]})
     ok("machine upgrades are reported to the human",
@@ -285,6 +359,15 @@ def self_test() -> int:
        "This is a draft. Nothing was sent." in p["body"])
     ok("...and that the merge already happened",
        "already merged to main" in p["body"])
+    # A HELD RUN MUST NOT CLAIM THE MERGE. The footer said the deck was on main whatever the score.
+    try:
+        set_ref("some/run-branch")
+        held = payload(**{**base, "score": 6.8})
+        ok("a held run's footer does not claim a merge that did not happen",
+           "already merged to main" not in held["body"]
+           and "did NOT merge" in held["body"])
+    finally:
+        set_ref(DEFAULT_REF)
 
     ok("nothing in this file can send", "send" not in
        {n for n in dir(sys.modules[__name__]) if not n.startswith("_")})
@@ -311,6 +394,10 @@ def main() -> int:
     # from the thumbnails on disk, which is the only number that describes what actually
     # rendered. Pass it only to ASSERT a count, and a disagreement is then an error.
     ap.add_argument("--slides", type=int, default=None)
+    ap.add_argument("--ref", default=DEFAULT_REF,
+                    help="the git ref the image URLs point at. A run that HOLDS "
+                         "does not merge, so it passes its run branch here or the "
+                         "email links eight broken images on main")
     ap.add_argument("--caption-file")
     ap.add_argument("--comment-file")
     ap.add_argument("--gates-file", help="json object of gate name to result")
@@ -320,6 +407,7 @@ def main() -> int:
     ap.add_argument("--out", help="write the payload here for the connector call")
     ap.add_argument("--self-test", action="store_true")
     a = ap.parse_args()
+    set_ref(a.ref)
 
     if a.self_test:
         return self_test()
