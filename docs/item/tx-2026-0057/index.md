@@ -18,6 +18,12 @@ The Texas Commission on Environmental Quality had scheduled a public meeting for
 - 2026-08-12 · filed: last modified date shown on the TCEQ cancelation page
 - 2026-08-24 · hearing: public meeting as originally scheduled, 7:00 PM Central, Panhandle High School Auditorium, since canceled
 
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-19 · Checked and unchanged. The Carson County meeting on the Fermi Equipment Holdco permits is still canceled and no new date is posted.
+
 ## Evidence
 
 Every fact above rests on one of these. The words are the source's own.

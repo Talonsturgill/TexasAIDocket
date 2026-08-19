@@ -27,6 +27,7 @@ from __future__ import annotations
 
 import argparse
 import html
+import pathlib
 import json
 import sys
 from pathlib import Path
@@ -44,6 +45,57 @@ SITE = "https://talonsturgill.github.io/TexasAIDocket"
 
 def e(s) -> str:
     return html.escape(str(s if s is not None else ""), quote=True)
+
+
+def run_dir(run: str) -> Path:
+    return REPO_ROOT / "runs" / "carousel" / run
+
+
+class MissingAsset(Exception):
+    """A file this email would link to is not in the run directory."""
+
+
+def require(run: str, name: str) -> str:
+    """The URL for one shipped artifact, and it has to be on disk before it goes in the mail.
+
+    A DEAD LINK IN THIS EMAIL IS WORSE THAN A MISSING SECTION, because the reader cannot tell a
+    404 from a run that produced nothing, and this email is the only thing they see. The sibling
+    routine already learned this and wrote it down as "the routine forbids putting an unverified
+    link in a draft". The same rule belongs here, enforced rather than remembered.
+    """
+    if not (run_dir(run) / name).exists():
+        raise MissingAsset(f"{run}/{name} is not in the run directory, so the email would "
+                           f"link to a 404")
+    return f"{RAW}/runs/carousel/{run}/{name}"
+
+
+# The formats a thumbnail has actually shipped in. `.png` on 2026-08-16 and `.webp` on
+# 2026-08-18, which is the whole reason this is a list and not a constant. See `thumbs`.
+THUMB_EXTS = (".png", ".webp", ".jpg", ".jpeg")
+
+
+def thumbs(run: str, slides: int | None = None) -> list:
+    """One URL per rendered slide, discovered from the run directory rather than assumed.
+
+    THIS WAS HARDCODED TO `.png` AND THE 2026-08-18 RUN SHIPPED `.webp`. Every image in that
+    email would have been a broken box, and nothing would have said so: the builder does not
+    fetch, the connector does not fetch, and the reader finds out. The extension is not a fact
+    about the email, it is a fact about what the render step happened to write that day, so it
+    is read from disk.
+
+    THE COUNT IS MEASURED, NOT DECLARED. If a caller says nine slides and eight thumbs exist,
+    that is a broken email either way, and the honest failure is here rather than in the
+    reader's inbox. `--slides` is checked against what is on disk and disagreeing is an error.
+    """
+    d = run_dir(run) / "thumbs"
+    found = sorted(p for p in d.glob("slide-*-thumb.*") if p.suffix.lower() in THUMB_EXTS)
+    if not found:
+        raise MissingAsset(f"{run}/thumbs holds no slide thumbnail in any of {THUMB_EXTS}")
+    if slides is not None and len(found) != slides:
+        raise MissingAsset(f"{run}: {slides} slide(s) declared and {len(found)} thumbnail(s) "
+                           f"on disk. The email would show a different deck from the one that "
+                           f"shipped")
+    return [f"{RAW}/runs/carousel/{run}/thumbs/{p.name}" for p in found]
 
 
 def ordinal_date(iso: str) -> str:
@@ -89,10 +141,11 @@ def body(*, run: str, n: int, title: str, caption: str, first_comment: str,
         upgrade_block = (f"<h3>The machine changed itself</h3><ul>{items}</ul>"
                          f'<p style="color:#5A5064">Each reverts on its own commit.</p>')
 
-    thumbs = "".join(
-        f'<img src="{RAW}/runs/carousel/{run}/thumbs/slide-{i:02d}-thumb.png" '
-        f'width="216" style="margin:0 6px 6px 0;border:1px solid #D9CFBC" alt="Slide {i}">'
-        for i in range(1, slides + 1))
+    urls = thumbs(run, slides)
+    thumb_html = "".join(
+        f'<img src="{u}" width="216" style="margin:0 6px 6px 0;border:1px solid #D9CFBC" '
+        f'alt="Slide {i}">' for i, u in enumerate(urls, 1))
+    pdf, sheet = require(run, "carousel.pdf"), require(run, "contact_sheet.png")
 
     return f"""<div style="font:15px/1.6 -apple-system,Segoe UI,Roboto,sans-serif;color:#241E2E">
 <h2 style="margin:0 0 4px">{e(title)}</h2>
@@ -107,17 +160,19 @@ def body(*, run: str, n: int, title: str, caption: str, first_comment: str,
 
 {degraded_block}
 
-<h3>The deck</h3>
-<p>{thumbs}</p>
-<p><a href="{RAW}/runs/carousel/{run}/carousel.pdf">carousel.pdf</a> &nbsp;
-   <a href="{RAW}/runs/carousel/{run}/contact_sheet.png">contact sheet</a> &nbsp;
+<h3>Post this</h3>
+<p style="margin:0 0 10px">Upload the PDF to LinkedIn as a <strong>document</strong>, title it
+<strong>{e(title)}</strong>, paste the post copy under it, then paste the first comment within
+a minute of posting.</p>
+<p><a href="{pdf}">carousel.pdf</a> &nbsp; <a href="{sheet}">contact sheet</a> &nbsp;
    <a href="{SITE}/">the site</a></p>
+<p>{thumb_html}</p>
 
-<h3>The post copy</h3>
+<h3>1. The post copy</h3>
 <pre style="white-space:pre-wrap;font:14px/1.6 ui-monospace,Menlo,monospace;
             background:#F3EEE2;padding:14px;border:1px solid #D9CFBC">{e(caption)}</pre>
 
-<h3>First comment</h3>
+<h3>2. The first comment</h3>
 <pre style="white-space:pre-wrap;font:13px/1.6 ui-monospace,Menlo,monospace;
             background:#F3EEE2;padding:14px;border:1px solid #D9CFBC">{e(first_comment)}</pre>
 
@@ -146,9 +201,15 @@ def self_test() -> int:
         if not cond:
             failures += 1
 
-    base = dict(run="2026-08-11", n=1, title="Abilene approves the substation",
+    # A REAL SHIPPED RUN, deliberately. The old fixture used a run name that has never existed,
+    # so every assertion below was made against a deck on no disk anywhere, and the one defect
+    # that reached a reader, a thumbnail extension that did not match what the render step
+    # wrote, was exactly the kind a fixture cannot see. Pointing the happy path at real
+    # artifacts means this test fails the day the run directory's shape changes again.
+    REAL = "2026-08-18"
+    base = dict(run=REAL, n=1, title="Abilene approves the substation",
                 caption="The commission met August 11th.", first_comment="Source: ...",
-                score=7.4, threshold=7.0, slides=9,
+                score=7.4, threshold=7.0, slides=None,
                 gates={"machine QA": "pass", "caption lint": "pass", "bespoke": "0.06"},
                 degraded=[], upgrades=[])
 
@@ -156,7 +217,7 @@ def self_test() -> int:
     ok("the payload addresses the mailbox as a constant", p["to"] == DRAFT_TO)
     ok("...and never the account-relative me", p["to"] != "me" and "@" in p["to"])
     ok("the subject carries the number, the date and the title",
-       "No. 1" in p["subject"] and "August 11th, 2026" in p["subject"]
+       "No. 1" in p["subject"] and ordinal_date(REAL) in p["subject"]
        and "Abilene" in p["subject"], p["subject"])
     ok("the date in the subject is house style, not ISO", "2026-08-11" not in p["subject"])
 
@@ -180,9 +241,43 @@ def self_test() -> int:
        "tightened the numeral gate" in up["body"] and "it missed a negative figure" in up["body"])
 
     ok("images point at main, not at a run branch",
-       "/main/runs/carousel/2026-08-11/" in p["body"] and "carousel/2026-08-11/carousel.pdf"
-       in p["body"])
-    ok("one thumb per slide", p["body"].count("slide-0") >= 9)
+       f"/main/runs/carousel/{REAL}/" in p["body"]
+       and f"carousel/{REAL}/carousel.pdf" in p["body"])
+
+    # THE DEFECT THAT WOULD HAVE REACHED A READER. The thumbnail extension was hardcoded to
+    # `.png` while the 2026-08-18 render wrote `.webp`, so every image in that email would have
+    # been a broken box and nothing in the pipeline fetches a URL to find out.
+    on_disk = sorted(x.name for x in (run_dir(REAL) / "thumbs").glob("slide-*-thumb.*"))
+    ok(f"every thumbnail on disk is in the email ({len(on_disk)} of them)",
+       all(n in p["body"] for n in on_disk), str(on_disk[:2]))
+    ok("...and the extension comes from disk rather than from this file",
+       all(f'thumb{pathlib.Path(n).suffix}"' in p["body"] for n in on_disk[:1]))
+
+    # A LINK THIS EMAIL CANNOT VERIFY IS NOT SENT. Both failure modes, by exception.
+    try:
+        payload(**{**base, "run": "1999-01-01"})
+        ok("a run with no artifacts refuses to build an email", False, "it built one")
+    except MissingAsset:
+        ok("a run with no artifacts refuses to build an email", True)
+    try:
+        payload(**{**base, "slides": 999})
+        ok("...and a declared slide count that disagrees with disk is an error", False)
+    except MissingAsset:
+        ok("...and a declared slide count that disagrees with disk is an error", True)
+
+    # THE PAYLOAD IS A SHIPPED ARTIFACT. It defaulted under gitignored `out/`, so no run has
+    # ever committed the email it produced and no gate could read one.
+    ok("the payload's home is the run directory, not scratch",
+       "runs" in str(run_dir(REAL)) and "out" not in run_dir(REAL).parts)
+
+    # THE POST IS ACTIONABLE FROM THE EMAIL ALONE. This is the whole complaint that opened
+    # this file's second draft: an email that describes the run and does not carry the post is
+    # a status report, and the reader still has to go and find the repository.
+    ok("the email carries the post copy verbatim",
+       e(base["caption"]) in p["body"])
+    ok("...and the first comment verbatim", e(base["first_comment"]) in p["body"])
+    ok("...and says what to do with them", "as a <strong>document</strong>" in p["body"]
+       and "first comment within" in p["body"].replace("\n", " "))
     ok("the caption is escaped, so markup in copy cannot break the email",
        "&lt;b&gt;" in payload(**{**base, "caption": "<b>x</b>"})["body"])
 
@@ -211,10 +306,17 @@ def main() -> int:
     ap.add_argument("--title", default="")
     ap.add_argument("--score", type=float)
     ap.add_argument("--threshold", type=float, default=7.0)
-    ap.add_argument("--slides", type=int, default=9)
+    # NO DEFAULT. Nine was the default and nine is the usual deck, so a run that shipped eight
+    # would have been emailed as nine with one dead image. Left unset the count is measured
+    # from the thumbnails on disk, which is the only number that describes what actually
+    # rendered. Pass it only to ASSERT a count, and a disagreement is then an error.
+    ap.add_argument("--slides", type=int, default=None)
     ap.add_argument("--caption-file")
     ap.add_argument("--comment-file")
     ap.add_argument("--gates-file", help="json object of gate name to result")
+    ap.add_argument("--degraded-file", help="json array of what this run did not do in full")
+    ap.add_argument("--upgrades-file", help="json array of {what, why} the machine changed")
+    ap.add_argument("--notes-file", help="the account of the day: verified, admitted, held")
     ap.add_argument("--out", help="write the payload here for the connector call")
     ap.add_argument("--self-test", action="store_true")
     a = ap.parse_args()
@@ -228,16 +330,40 @@ def main() -> int:
     def read(p):
         return Path(p).read_text(encoding="utf-8").strip() if p and Path(p).exists() else ""
 
-    p = payload(run=a.run, n=a.n, title=a.title, caption=read(a.caption_file),
-                first_comment=read(a.comment_file), score=a.score, threshold=a.threshold,
+    # THE CAPTION AND THE FIRST COMMENT DEFAULT TO THE RUN'S OWN FILES. Every run writes them
+    # to the same two names, so making the caller pass paths was one more thing to get wrong on
+    # the way to the one email a human reads.
+    cap = a.caption_file or run_dir(a.run) / "caption.txt"
+    com = a.comment_file or run_dir(a.run) / "first_comment.txt"
+    caption, first_comment = read(cap), read(com)
+    if not caption:
+        print(f"gmail_draft: {cap} is empty or missing. An email with no post copy is the "
+              f"defect this builder exists to prevent", file=sys.stderr)
+        return 1
+    if not first_comment:
+        print(f"gmail_draft: {com} is empty or missing. The source block is the half of the "
+              f"post that carries the evidence", file=sys.stderr)
+        return 1
+
+    p = payload(run=a.run, n=a.n, title=a.title, caption=caption,
+                first_comment=first_comment, score=a.score, threshold=a.threshold,
                 slides=a.slides,
-                gates=json.loads(read(a.gates_file) or "{}"), degraded=[], upgrades=[])
-    out = Path(a.out) if a.out else REPO_ROOT / "out" / a.run / "gmail_payload.json"
+                gates=json.loads(read(a.gates_file) or "{}"),
+                degraded=json.loads(read(a.degraded_file) or "[]"),
+                upgrades=json.loads(read(a.upgrades_file) or "[]"),
+                notes=read(a.notes_file))
+    # THE PAYLOAD IS A SHIPPED ARTIFACT, NOT SCRATCH. It used to default under `out/`, which is
+    # gitignored, so no run has ever committed the email it sent and there was nothing for a
+    # gate to check. `email_check.py` reads this file, and it can only do that if the file is
+    # in the run directory beside the deck it describes.
+    out = Path(a.out) if a.out else run_dir(a.run) / "gmail_payload.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(p, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"gmail_draft: payload written to {out}")
     print(f"  to: {p['to']}\n  subject: {p['subject']}")
-    print("  DRAFT ONLY. Pass this to the Gmail connector's create_draft. Never send.")
+    print(f"  {len(thumbs(a.run, a.slides))} slide thumbnail(s), every linked file verified "
+          f"present")
+    print("  DRAFT ONLY. Pass this file to the Gmail connector's create_draft. Never send.")
     return 0
 
 

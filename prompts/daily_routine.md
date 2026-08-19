@@ -888,17 +888,48 @@ a lane this branch may stamp. Nothing else is added, and `human` can never be.
 
 ## PHASE 18 — GMAIL DRAFT
 
-The only human touchpoint, and it gates the POST, not the merge. Subject:
-`Texas AI Docket — Carousel No. N — <date> — <title>`.
+The only human touchpoint, and it gates the POST, not the merge. The reader has about ninety
+seconds and a phone, and the one thing they must be able to do from this email is **post the
+deck** without opening the repository.
 
-Cover both deliverables, because one email is now the whole day's account: the honest score, what
-the gates said, what degraded if anything, **what the record did** (verified, admitted, held,
-deferred) and the machine upgrades from Phase 17.
+**THE EMAIL IS BUILT BY `scripts/carousel/gmail_draft.py`. YOU DO NOT HAND-WRITE IT.** This is
+the rule and it is here because run No. 2 broke it. That run hand-wrote a long plaintext essay
+about how the day had gone, accurate in every fact, with no post copy, no first comment, no PDF
+link and no images, and closed by telling the reader which two files to go open. An essay about
+the run is not the artifact this phase produces. The builder assembles the post copy, the first
+comment, the PDF, the contact sheet and one thumbnail per rendered slide, verifies every linked
+file is on disk, escapes the copy so markup cannot break the mail, and puts the score at the top.
+Run it, do not reproduce it by hand:
+
+```bash
+# gates, degraded and upgrades are small JSON files you write from this run's own results.
+python3 scripts/carousel/gmail_draft.py --run <date> --n <N> --title "<title>" \
+  --score <score> --threshold <t> \
+  --gates-file <gates.json> --degraded-file <degraded.json> --upgrades-file <upgrades.json>
+```
+
+It writes `runs/carousel/<date>/gmail_payload.json`, a committed artifact beside the deck. Then
+**prove it is postable before you draft it**, by exit code:
+
+```bash
+python3 scripts/carousel/email_check.py --run <date>
+```
+
+That gate fails if the payload is missing, is not HTML, omits the post copy or the first comment
+verbatim, links a file that is not on disk, or does not state the score. It is the thing that
+makes hand-writing the email impossible to ship: a run with no `gmail_payload.json` fails CI, and
+a payload that is an essay fails it too. When it passes, pass the payload's `to`, `subject` and
+`body` to the Gmail connector's `create_draft`. The body is already HTML, so draft it as HTML.
 
 The mailbox is the `DRAFT_TO` module constant in the draft scripts, and it is documented in
 `CLAUDE.md`. It is written down in exactly those two places on purpose, so a repoint is one edit.
 Never pass the account-relative `me`: the connector rejects it outright, and every run that tries
 burns a step rediscovering the address.
+
+The prose you DO write is the account of the day, and it goes in the fields the builder takes,
+not around them: the honest score, what the gates said, what degraded through `--degraded-file`,
+and the machine upgrades from Phase 17 through `--upgrades-file`. What the record did (verified,
+admitted, held, deferred) belongs in `--notes`. Everything a reader acts on, the builder places.
 
 **DRAFT ONLY. NEVER SEND.**
 
