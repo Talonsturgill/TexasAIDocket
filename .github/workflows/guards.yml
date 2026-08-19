@@ -270,6 +270,53 @@ jobs:
           # shipped a deck and no postable email did not finish its one human-facing job.
           python3 scripts/carousel/email_check.py --all
 
+      - name: The gates run against every deck this project has published
+        run: |
+          # THE ONE STEP THAT MAKES THE REST OF THEM REAL.
+          #
+          # An audit on 2026-08-19 found that of the fifteen carousel steps above, THIRTEEN are
+          # --self-test. The only two touching a real artifact were `email_check --all` and the
+          # bespoke check against examples/demo-deck, which is a demo rather than anything this
+          # project ever published. So CI proved every run that the checkers CAN go red, and
+          # almost never asked them whether the product was clean.
+          #
+          # coherence_check, craft_floor, run_complete, sources_block, plan_render_check and
+          # absence_check were in CI in no form at all. Six gates, all of them written BY these
+          # runs to catch defects these runs shipped, protecting only the runs that remembered
+          # to call them, which is the exact defect each one was written for.
+          #
+          # ONE STEP, not nine, on purpose. This file is `human` owned so a routine cannot wire
+          # its own gate, and three gates have already waited on a maintainer to do it. The
+          # registry lives in shipped_check.py, which the upgrade lane owns, so the next gate is
+          # a one-line addition there rather than another wait on this file.
+          python3 scripts/carousel/shipped_check.py
+
+      - name: The shipped-deck runner can go red, and every gate in it is reachable
+        run: |
+          # Its self-test asserts that EVERY registered gate actually runs on the newest deck.
+          # That assertion earned its place immediately by catching two loaders written against
+          # the wrong signature: both threw, both were silently skipped, and both would have
+          # reported clean forever. Same shape as craft_floor reading a key qa.py never wrote.
+          python3 scripts/carousel/shipped_check.py --self-test
+
+      - name: Plan versus render self-test (the frame matches the plan it was drawn from)
+        run: python3 scripts/carousel/plan_render_check.py --self-test
+
+      - name: Absence self-test (a negative needs a document behind it)
+        run: python3 scripts/carousel/absence_check.py --self-test
+
+      - name: Craft floor self-test (no frame ships that nobody drew)
+        run: python3 scripts/carousel/craft_floor.py --self-test
+
+      - name: Coherence self-test (the deck reads as one object, and the footer is the domain)
+        run: python3 scripts/carousel/coherence_check.py --self-test
+
+      - name: Completion self-test (a run cannot call itself done under the threshold)
+        run: python3 scripts/carousel/run_complete.py --self-test
+
+      - name: Machine QA self-test (replayed against real captured renders)
+        run: python3 .claude/skills/carousel-engine/qa.py --self-test
+
       - name: House style self-test (our prose is checked, a quote never is)
         run: python3 scripts/site/house_style_check.py --self-test
 
