@@ -129,3 +129,18 @@ touched.
 3. **A county gazetteer for Texas cities.** `assets/geo/tx-places.json` carries counties and
    statistical areas but no cities, so a source naming a town cannot be resolved to a county and
    the item is held. That is the correct behaviour today and it costs real items.
+
+## Gate status
+
+<!-- gate-status:begin -->
+| gate | status | detail |
+|---|---|---|
+| claims         | PASS   | 18 verified claim(s) |
+| render         | PASS   | 9 slide(s) |
+| qa             | STALE  | render/machine_qa.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| aggregates     | PASS   | 7 declared and re-derived |
+| assembly       | PASS   | 9 slide(s), 2.38 MB, vector |
+| score          | ABSENT | score.json not written yet |
+| dossiers       | PASS   | 32,571 chars planned |
+| caption        | PASS   | 150 words |
+<!-- gate-status:end -->
