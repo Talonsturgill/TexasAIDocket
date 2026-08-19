@@ -327,7 +327,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 971,
+      "render_ms": 1003,
       "ok": true,
       "canvases": [
         {
@@ -735,7 +735,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1889,
+      "render_ms": 1755,
       "ok": true,
       "canvases": [
         {
@@ -749,7 +749,7 @@
           "backing_ratio": 2,
           "sample_ok": true,
           "mean": 36.3,
-          "variance": 386.7
+          "variance": 388.5
         }
       ],
       "breather": false,
@@ -808,7 +808,7 @@
           "anc": []
         },
         {
-          "text": "No service providerwas to be told by the 7th.",
+          "text": "No service provider wasto be told by the 7th.",
           "x": 80,
           "y": 248,
           "w": 920,
@@ -823,22 +823,22 @@
             [
               80,
               235,
-              722,
+              880,
               113
             ],
             [
               80,
               323,
-              891,
+              733,
               113
             ]
           ],
           "anc": []
         },
         {
-          "text": "No service provider was to be told how any large load was classified by August 7th. c2",
+          "text": "No service provider was to be told how any large load was classified by August 7th.",
           "x": 80,
-          "y": 1115,
+          "y": 1079,
           "w": 600,
           "h": 85,
           "font_px": 30,
@@ -850,14 +850,14 @@
           "lines": [
             [
               80,
-              1115,
+              1079,
               581,
               41
             ],
             [
               80,
-              1157,
-              542,
+              1121,
+              536,
               41
             ]
           ],
@@ -865,8 +865,8 @@
         },
         {
           "text": "c2",
-          "x": 622,
-          "y": 1165,
+          "x": 80,
+          "y": 1163,
           "w": 29,
           "h": 31,
           "font_px": 24,
@@ -877,15 +877,13 @@
           "overlap_ok": false,
           "lines": [
             [
-              622,
-              1165,
+              80,
+              1163,
               29,
               31
             ]
           ],
-          "anc": [
-            3
-          ]
+          "anc": []
         },
         {
           "text": "no class stated",
@@ -1032,7 +1030,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1455,
+      "render_ms": 1357,
       "ok": true,
       "canvases": [
         {
@@ -1410,7 +1408,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1982,
+      "render_ms": 1924,
       "ok": true,
       "canvases": [
         {
@@ -1984,7 +1982,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1465,
+      "render_ms": 1130,
       "ok": true,
       "canvases": [
         {
@@ -2332,7 +2330,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2380,
+      "render_ms": 2139,
       "ok": true,
       "canvases": [
         {
@@ -2742,7 +2740,7 @@
         }
       ],
       "nondeterminism": [],
-      "render_ms": 2051,
+      "render_ms": 2136,
       "ok": true,
       "canvases": [
         {
@@ -3251,7 +3249,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 997,
+      "render_ms": 1057,
       "ok": true,
       "canvases": [
         {

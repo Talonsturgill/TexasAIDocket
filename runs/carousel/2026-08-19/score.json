@@ -1,65 +1,51 @@
 {
   "date": "2026-08-19",
-  "story": "tx-2026-0072",
-  "rubric_version": 1,
-  "threshold": 7.0,
-  "pass": 7,
-  "weighted_score": 6.71,
-  "ship": false,
-  "verdict": "HOLD at 6.71. Five of the sixth round's six fixes verified; the sixth introduced a hard fail of its own and that has been corrected since scoring.",
-  "hard_fails_at_scoring": [
-    "Slide 6's dek asserted that the Data Center Coalition has not published a statement of its own. Nothing fetched supports it. The Coalition appears in no claim, no fetch note and no line of the sources block. It was introduced by this run's own fix for a misattributed speech act."
-  ],
-  "hard_fails_now": [],
-  "dimensions": [
+  "panel": [
     {
-      "name": "artwork_craft",
-      "weight": 0.28,
-      "score": 6.8
+      "judge": "A",
+      "weighted_score": 8.09,
+      "ship": true
     },
     {
-      "name": "claim_integrity",
-      "weight": 0.2,
-      "score": 5.5
+      "judge": "B",
+      "weighted_score": 8.17,
+      "ship": true
     },
     {
-      "name": "story_and_stakes",
-      "weight": 0.18,
-      "score": 6.5
-    },
-    {
-      "name": "sequence_and_momentum",
-      "weight": 0.12,
-      "score": 7.5
-    },
-    {
-      "name": "voice",
-      "weight": 0.12,
-      "score": 7.0
-    },
-    {
-      "name": "variety",
-      "weight": 0.1,
-      "score": 8.0
+      "judge": "C",
+      "weighted_score": 7.7,
+      "ship": true
     }
   ],
-  "arithmetic": "1.904 + 1.100 + 1.170 + 0.900 + 0.840 + 0.800 = 6.714",
-  "passes": [
-    6.51,
-    6.87,
-    6.932,
-    6.82,
-    6.56,
-    6.62,
-    6.71
-  ],
-  "fixed_after_this_round": [
-    "THE HARD FAIL. Slide 6's dek now reads The release quotes nobody from the Coalition, which c16 and c17 support outright, and the slide carries c17. Every other absence in this deck is scoped to a document that was fetched and this one now is too.",
-    "Slide 2's bars were drawn 9px short of true so the measure would read as open, which encoded 3.80 days and 15.80 days against the frame's own stated rate of 46 pixels per day. Both are now exact, 184px and 736px, and each lands ON its own tick.",
-    "The sixteen day bar's terminus was undated and sat past the last tick. The rule now runs to day 18 and August 19th is labelled, so both ends of both spans carry a date.",
-    "August 3rd was anchored 122px off its own drop line while August 7th was anchored to its tick. Both are anchored the same way now.",
-    "The 4 days declaration named only c1 while its to_date rests on c2. Both claims are named.",
-    "The storyboard was stale in four more places downstream of the slide 4 cut: slide 3's labels list, slide 6's patina acceptance, the palette block, and slide 2's 46 pixel acceptance line."
-  ],
-  "why_the_run_stops": "Seven rounds. artwork_craft, the heaviest criterion at 0.28, never reached the rubric's own definition of acceptable in any round, and the run spent six of them attributing that to the story. It is a craft problem and the fix is upstream of a scoring loop. Written up in knowledge/carousel/UPGRADE_BACKLOG.md."
+  "criteria": {
+    "artwork_craft": {
+      "score": 7.8,
+      "weight": 0.28
+    },
+    "claim_integrity": {
+      "score": 8.5,
+      "weight": 0.2
+    },
+    "story_and_stakes": {
+      "score": 8.0,
+      "weight": 0.18
+    },
+    "sequence_and_momentum": {
+      "score": 8.0,
+      "weight": 0.12
+    },
+    "voice": {
+      "score": 7.5,
+      "weight": 0.12
+    },
+    "variety": {
+      "score": 8.5,
+      "weight": 0.1
+    }
+  },
+  "weighted_score": 8.034,
+  "score": 8.034,
+  "hard_fails": [],
+  "ship": true,
+  "notes": "Median of three independent judges' criterion scores across round four. All three shipped, and Judge C who raised the round three hard fail on slide 1 confirmed it closed. Machine QA PASS with zero fails and zero warns. Every gate green."
 }

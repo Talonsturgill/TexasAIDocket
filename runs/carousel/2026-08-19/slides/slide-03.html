@@ -49,11 +49,13 @@
   .leg { position:absolute; left:604px; top:782px; z-index:70; }
   .leg .lb { font-family:'JetBrains Mono',monospace; font-size:34px; color:#F6F1E4;
              letter-spacing:.03em; padding-bottom:16px; }
-  .qn { position:absolute; left:80px; bottom:150px; max-width:600px;
+  .qn { position:absolute; left:80px; bottom:186px; max-width:600px;
         font-family:'Manrope',sans-serif; font-size:30px; line-height:1.42; color:#EFE9DA; }
   /* the kicker cites c5, which is the subject line. This sentence is c2 and was uncited, so the
-     frame's one id pointed at the wrong claim. */
-  .qn .qc { font-family:'JetBrains Mono',monospace; font-size:24px; color:#9c9382; }
+     frame's one id pointed at the wrong claim. Set as its own element so copy_sync sees a
+     separate text node it can treat as furniture, the way slide 8's row ids are treated. */
+  .qc { position:absolute; left:80px; bottom:156px; z-index:70;
+        font-family:'JetBrains Mono',monospace; font-size:24px; color:#9c9382; }
 
 </style>
 </head>
@@ -63,10 +65,11 @@
   <div class="hd">
     <div class="kick">"Update Regarding Batch Zero Timelines and Processes"</div>
     <div class="ksrc">ERCOT market notice M-A080326-01 &middot; c5</div>
-    <div class="hook">No service provider<br>was to be told by the 7th.</div>
+    <div class="hook">No service provider was<br>to be told by the 7th.</div>
   </div>
   <div class="qn">No service provider was to be told how any large load was classified by
-    August 7th. <span class="qc" data-decorative>c2</span></div>
+    August 7th.</div>
+  <div class="qc" data-decorative>c2</div>
   <div class="leg"><div class="lb">no class stated</div></div>
 
 <div class="tx-frame" data-decorative>

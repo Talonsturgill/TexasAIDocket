@@ -164,20 +164,40 @@ window.renderReady = new Promise(function(resolve){
 
   // THE NOTCHES. One per day. Each is a V cut: the wall facing the light is bright, the wall
   // facing away is black, which is what gives this frame its local contrast.
+  // Two judges read the four day bar as a countdown the letter lit, because it runs from the
+  // letter's own tick to the 7th. The 7th is not a terminus the letter set. It is ERCOT's own
+  // pre-existing date, so it is drawn as a FIXED POST standing full height through the whole
+  // instrument, there before the letter and after it, and the bar butts against it rather than
+  // ending it. The letter's tick (Aug 3) is a heavy notch the bar STARTS from. Now the drawing
+  // says what the dek says, that the notice ran up to a date already on ERCOT's calendar.
+  var AUG7 = 6;
   for(var d=0; d<=18; d++){
+    if(d===AUG7) continue;
     var x=ox+d*RATE;
-    var heavy=(d===2||d===6||d===18);
+    var heavy=(d===2||d===18);
     var w = heavy?7:4, h = heavy?chH+16:chH;
     var ny = heavy?chTop-8:chTop;
     ctx.fillStyle='#07050B'; ctx.fillRect(x-w/2, ny, w, h);
     ctx.fillStyle='rgba(239,233,218,'+(heavy?0.62:0.34)+')'; ctx.fillRect(x-w/2, ny, 1.6, h);
     ctx.fillStyle='rgba(0,0,0,0.8)'; ctx.fillRect(x+w/2-1.4, ny, 1.4, h);
     if(heavy){
-      // a dated notch is struck deeper and throws a short shadow onto the plate below
       ctx.fillStyle='rgba(0,0,0,0.42)'; ctx.fillRect(x+w/2, ny+h, 9, 7);
       ctx.fillStyle='rgba(185,141,70,0.85)'; ctx.fillRect(x-w/2, ny-4, w, 3);
     }
   }
+  // ERCOT's own date, the fixed post. Full height, brass, casting a shadow both ways, so it reads
+  // as a fixture the notice period ran up against and not as the end of a fuse.
+  (function(){
+    var x=ox+AUG7*RATE, w=8, top=648, bot=1010;
+    ctx.fillStyle='rgba(0,0,0,0.5)'; ctx.fillRect(x+w/2, top+8, 10, bot-top);
+    var g=ctx.createLinearGradient(x-w/2,0,x+w/2,0);
+    g.addColorStop(0,'#D8A758'); g.addColorStop(0.5,'#B98D46'); g.addColorStop(1,'#6B5028');
+    ctx.fillStyle=g; ctx.fillRect(x-w/2, top, w, bot-top);
+    ctx.fillStyle='rgba(255,240,210,0.55)'; ctx.fillRect(x-w/2, top, 1.8, bot-top);
+    ctx.fillStyle='rgba(0,0,0,0.5)'; ctx.fillRect(x+w/2-1.8, top, 1.8, bot-top);
+    // a cap and a foot, so it reads as a set post rather than a bar of the timeline
+    ctx.fillStyle='#B98D46'; ctx.fillRect(x-w/2-4, top, w+8, 5); ctx.fillRect(x-w/2-4, bot-5, w+8, 5);
+  })();
 
   // THE FOUR DAY SPAN, a polished strip set PROUD of the plate. It is a closed span, both ends
   // known, so it is a solid object with a cast shadow.
