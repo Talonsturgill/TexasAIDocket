@@ -75,7 +75,7 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 # character 80 of a single string is invisible here. **The cure for that is widening the render's
 # window, never loosening this comparison**, and there is a self-test below pinning the limit so
 # nobody later mistakes it for a bug in the matcher and "fixes" it by shortening the needle.
-RENDER_WINDOW = 80
+RENDER_WINDOW = 320
 
 # A DENYLIST, AND IT USED TO BE AN ALLOWLIST. THAT WAS THE HOLE.
 #

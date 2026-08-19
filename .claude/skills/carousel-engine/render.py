@@ -72,7 +72,7 @@ CANVAS_TEXT_HOOK_JS = """
         try {
           const s = (text == null ? '' : String(text));
           if (s.trim().length && window.__akCanvasText.length < 500) {
-            window.__akCanvasText.push({ text: s.slice(0, 80), fn: fn, font: this.font || '' });
+            window.__akCanvasText.push({ text: s.slice(0, 320), fn: fn, font: this.font || '' });
           }
         } catch (e) {}
         return orig.apply(this, arguments);
@@ -108,7 +108,14 @@ IN_PAGE_QA_JS = """
     if (cs.display === "none" || cs.visibility === "hidden" || parseFloat(cs.opacity) === 0) continue;
     const r = el.getBoundingClientRect();
     if (r.width === 0 || r.height === 0) continue;
-    const txt = el.textContent.trim().replace(/\\s+/g, " ").slice(0, 80);
+    // 320, NOT 80. `aggregate_check` scans this report for computed figures, and at 80 it
+    // structurally could not see past the 80th character of any sentence. The 2026-08-19
+    // deck is the proof: slide 1 stored as "...how every large load was class", so the
+    // phrase "That date passed 12 days ago" was invisible to the gate that exists to catch
+    // an invented number. The scorer found it, no gate could have. `copy_sync` truncates
+    // authored strings to the same window before comparing, so widening only widens what
+    // both can see.
+    const txt = el.textContent.trim().replace(/\\s+/g, " ").slice(0, 320);
     const fs = parseFloat(cs.fontSize);
     const fam = cs.fontFamily.split(",")[0].trim().replace(/["']/g, "");
     // For SVG text the ink is `fill`, not CSS `color`; the fill attribute or
