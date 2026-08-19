@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body { background:#16151C; position:relative; font-family:'Manrope',sans-serif;
+          --frame-ink:#EFE9DA; --frame-dim:#D9CDB4; }
+  canvas#art { position:absolute; inset:0; width:1080px; height:1350px; }
+
+  /* ---- the invariant frame. Identical on every slide of every deck. ---------------- */
+  .tx-frame { position:absolute; inset:0; pointer-events:none; z-index:60; }
+  .tx-wordmark {
+    position:absolute; top:56px; left:80px;
+    font-family:'JetBrains Mono',monospace; font-size:25px; font-weight:500;
+    letter-spacing:.16em; color:var(--frame-ink); }
+  .tx-star { position:absolute; top:54px; left:80px; width:26px; height:26px; }
+  .tx-counter {
+    position:absolute; bottom:56px; right:80px;
+    font-family:'JetBrains Mono',monospace; font-size:25px; font-weight:500;
+    font-variant-numeric:tabular-nums; letter-spacing:.10em; color:var(--frame-ink); }
+  .tx-site {
+    position:absolute; bottom:56px; left:80px;
+    font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:400;
+    letter-spacing:.04em; color:var(--frame-dim); }
+  .tx-kicker {
+    position:absolute; top:56px; right:80px; max-width:620px; text-align:right;
+    font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:500;
+    letter-spacing:.10em; text-transform:uppercase; color:var(--frame-dim); }
+
+
+  .hd { position:absolute; top:150px; left:80px; right:80px; z-index:70;
+        font-family:'Fraunces',serif; font-weight:800; font-size:104px; line-height:.94;
+        letter-spacing:-.02em; color:#EFE9DA; font-variation-settings:'opsz' 104; }
+  .rows { position:absolute; left:80px; right:80px; top:736px; z-index:70; }
+  .rows .rule { height:2px; background:#B98D46; }
+  .rows .cites { font-family:'JetBrains Mono',monospace; font-size:24px; color:#9c9382;
+                 padding-top:18px; letter-spacing:.03em; }
+  .open .r { display:flex; gap:24px; align-items:baseline; padding:16px 0;
+             border-bottom:1px solid rgba(185,141,70,.35); }
+  .open .r:last-child { border-bottom:0; }
+  .open .d { font-family:'JetBrains Mono',monospace; font-size:26px; color:#EFE9DA;
+             white-space:nowrap; font-variant-numeric:tabular-nums; width:312px; flex:none; }
+  .open .w { font-family:'Manrope',sans-serif; font-size:26px; line-height:1.38;
+             color:#D9CDB4; }
+  /* Every other frame in the deck prints an id beside the thing it sources. The close printed
+     five in one footer, so no row could be traced and one of the five was sourcing nothing on
+     the frame at all. */
+  .open .c { font-family:'JetBrains Mono',monospace; font-size:24px; color:#9c9382;
+             margin-left:auto; padding-left:20px; flex:none; }
+
+</style>
+</head>
+<body>
+  <canvas id="art" width="2160" height="2700"></canvas>
+
+  <div class="hd">What is still<br>open to you.</div>
+  <div class="rows">
+    <div class="rule"></div>
+    <div class="open">
+      <div class="r"><span class="d">August 20th, 2026</span>
+        <span class="w">Open meeting. ERCOT said it would file for a good cause exception ahead
+          of it.</span><span class="c" data-decorative>c3</span></div>
+      <div class="r"><span class="d">August 21st, 2026</span>
+        <span class="w">A second open meeting, on the commission's own calendar.</span><span class="c" data-decorative>c19</span></div>
+      <div class="r"><span class="d">September 4th, 2026</span>
+        <span class="w">Public comment deadline, on the commission's own calendar. No docket is named against it.</span><span class="c" data-decorative>c20</span></div>
+      <div class="r"><span class="d">Project 58482</span>
+        <span class="w">The proposed rule on Large Load Demand Management Service. It took a
+          comment on August 18th.</span><span class="c" data-decorative>c21</span></div>
+    </div>
+  </div>
+
+<div class="tx-frame" data-decorative>
+  <svg class="tx-star" viewBox="0 0 26 26" aria-hidden="true"><polygon points="13,1 16.1,9.4 25,9.6 17.9,15 20.5,23.6 13,18.4 5.5,23.6 8.1,15 1,9.6 9.9,9.4" fill="var(--frame-ink)"/></svg>
+  <div class="tx-wordmark" style="left:118px">TEXAS AI DOCKET</div>
+  <div class="tx-kicker">ERCOT and the PUCT</div>
+  <div class="tx-site">talonsturgill.github.io/TexasAIDocket</div>
+  <div class="tx-counter">08 / 08</div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+
+<script>
+window.renderReady = new Promise(function(resolve){
+  TX.reseed(20260819);
+  var cv = document.getElementById('art');
+  var ctx = cv.getContext('2d');
+  ctx.scale(2,2);
+  var W=1080, H=1350;
+  function lerp(a,b,t){return a+(b-a)*t;}
+
+  // a warm masonry ground with a faint vertical falloff so the base carries tone
+  function stoneGround(top, bottom){
+    var grad = ctx.createLinearGradient(0,0,0,H);
+    grad.addColorStop(0, top); grad.addColorStop(1, bottom);
+    ctx.fillStyle = grad; ctx.fillRect(0,0,W,H);
+  }
+
+  stoneGround('#161520', '#0C0B11');
+  // one cell lit from behind, the callback to slide 1's void, inverted.
+  // ROWS_TOP is passed in from the layout below so the light lands ON the list rather than
+  // stopping short of it. The frame was two compositions stacked with a gap between them.
+  var cx=540, cy=520, w=150, h=150;
+  var ROWS_TOP=736;
+  var glow=ctx.createRadialGradient(cx,cy,10, cx,cy,320);
+  glow.addColorStop(0,'rgba(239,233,218,0.55)'); glow.addColorStop(0.5,'rgba(239,233,218,0.12)');
+  glow.addColorStop(1,'rgba(239,233,218,0)');
+  ctx.fillStyle=glow; ctx.fillRect(cx-320,cy-320,640,640);
+  // the shaft the lit cell throws down onto the list, widening as it falls, so the payoff image
+  // and the payoff content are one object. No day tick: its label went with the rewrite and a
+  // mark with no label is an orphan a reader has to invent a meaning for.
+  var top=cy+h/2, bot=ROWS_TOP+150, halfTop=w/2, halfBot=w/2+250;
+  var shaft=ctx.createLinearGradient(0,top,0,bot);
+  shaft.addColorStop(0,'rgba(239,233,218,0.20)'); shaft.addColorStop(0.55,'rgba(239,233,218,0.07)');
+  shaft.addColorStop(1,'rgba(239,233,218,0)');
+  ctx.fillStyle=shaft; ctx.beginPath();
+  ctx.moveTo(cx-halfTop,top); ctx.lineTo(cx+halfTop,top);
+  ctx.lineTo(cx+halfBot,bot); ctx.lineTo(cx-halfBot,bot); ctx.closePath(); ctx.fill();
+  // the lit cell face, drawn after the shaft so the source stays the brightest thing on the frame
+  var cellg=ctx.createLinearGradient(cx-w/2,cy-h/2,cx+w/2,cy+h/2);
+  cellg.addColorStop(0,'#F4EFE2'); cellg.addColorStop(1,'#D9CDB4');
+  ctx.fillStyle=cellg; ctx.fillRect(cx-w/2,cy-h/2,w,h);
+  ctx.strokeStyle='rgba(239,233,218,0.5)'; ctx.lineWidth=2; ctx.strokeRect(cx-w/2,cy-h/2,w,h);
+
+  // grain over everything, under 4 percent, seeded
+  (function(){
+    var R = TX.rng(20260819);
+    var g = ctx.getImageData(0,0,1,1); // touch to ensure context ok
+    for (var i=0;i<5200;i++){
+      var x=R()*W, y=R()*H, a=R()*0.035;
+      ctx.fillStyle='rgba('+(R()<0.5?'255,255,255':'0,0,0')+','+a.toFixed(3)+')';
+      ctx.fillRect(x,y,1.3,1.3);
+    }
+  })();
+
+  (window.__fontsReady||document.fonts.ready).then(function(){ resolve(); });
+});
+</script>
+</body>
+</html>

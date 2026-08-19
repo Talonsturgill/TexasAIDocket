@@ -11,12 +11,18 @@ The Corpus Christi City Council passed a motion on July 21st, 2026 as agenda ite
 - Public access: Public meeting
 - Take part: https://www.corpuschristitx.gov/our-government/agendas-and-minutes/
 
-- Last checked: 2026-08-14
+- Last checked: 2026-08-19
 
 ## Dates
 
 - 2026-07-15 · filed: Motion introduced as the motion file
 - 2026-07-21 · ordered: Council passed the motion as agenda item 18
+
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-19 · Whether staff has returned with the zoning ordinance is unconfirmed. The city's agendas page publishes no item text and carries nothing dated August.
 
 ## Evidence
 

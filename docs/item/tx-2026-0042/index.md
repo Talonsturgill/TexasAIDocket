@@ -9,12 +9,18 @@ Young County Commissioners Court formally received a tax abatement application f
 - Public access: Public meeting
 - Take part: https://www.olneyenterprise.com/news/county-votes-data-center-abatement
 
-- Last checked: 2026-08-16
+- Last checked: 2026-08-19
 
 ## Dates
 
 - 2026-08-10 · filed: County received Headwaters Site Development's tax abatement application for Project Saltworks and voted 5 to 0 to ratify the escrow agreement
 - 2026-08-17 · hearing: Commissioners Court reconvenes to begin considering the abatement request, per Commissioner Alan Craig
+
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-19 · Checked and unchanged. The county still received the application on August 10th with no vote taken on it, and the 5 to 0 escrow ratification still stands. Whether the court began considering the abatement when it reconvened on August 17th is unconfirmed.
 
 ## Evidence
 

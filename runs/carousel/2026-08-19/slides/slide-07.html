@@ -1,0 +1,229 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body { background:#16151C; position:relative; font-family:'Manrope',sans-serif;
+          --frame-ink:#EFE9DA; --frame-dim:#D9CDB4; }
+  canvas#art { position:absolute; inset:0; width:1080px; height:1350px; }
+
+  /* ---- the invariant frame. Identical on every slide of every deck. ---------------- */
+  .tx-frame { position:absolute; inset:0; pointer-events:none; z-index:60; }
+  .tx-wordmark {
+    position:absolute; top:56px; left:80px;
+    font-family:'JetBrains Mono',monospace; font-size:25px; font-weight:500;
+    letter-spacing:.16em; color:var(--frame-ink); }
+  .tx-star { position:absolute; top:54px; left:80px; width:26px; height:26px; }
+  .tx-counter {
+    position:absolute; bottom:56px; right:80px;
+    font-family:'JetBrains Mono',monospace; font-size:25px; font-weight:500;
+    font-variant-numeric:tabular-nums; letter-spacing:.10em; color:var(--frame-ink); }
+  .tx-site {
+    position:absolute; bottom:56px; left:80px;
+    font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:400;
+    letter-spacing:.04em; color:var(--frame-dim); }
+  .tx-kicker {
+    position:absolute; top:56px; right:80px; max-width:620px; text-align:right;
+    font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:500;
+    letter-spacing:.10em; text-transform:uppercase; color:var(--frame-dim); }
+
+
+  .q { position:absolute; top:104px; left:80px; right:80px; z-index:70; }
+  .q .kick { font-family:'JetBrains Mono',monospace; font-size:24px; letter-spacing:.05em;
+             text-transform:uppercase; color:#8C8474; padding-bottom:16px; }
+  .q .rule { height:2px; background:rgba(185,141,70,.55); }
+  .q .t { font-family:'Fraunces',serif; font-weight:600; font-size:50px; line-height:1.14;
+          color:#B7AE9B; padding:24px 0; font-variation-settings:'opsz' 50; }
+  .q .src { font-family:'JetBrains Mono',monospace; font-size:24px; color:#8C8474; }
+  .block { position:absolute; z-index:70;
+           left:176px;
+           width:728px;
+           top:606px; }
+  .block .r { height:84px; display:flex; justify-content:space-between;
+              align-items:center; }
+  .block .k { font-family:"JetBrains Mono",monospace; font-size:24px; color:#C6B994;
+              letter-spacing:.05em; }
+  .block .v { font-family:'Manrope',sans-serif; font-size:30px; color:#FFF8E6; }
+  .block .r.blank .k { color:#EFE9DA; }
+  .note { position:absolute; z-index:70; left:176px;
+          width:728px; top:966px;
+          text-align:right; font-family:"JetBrains Mono",monospace; font-size:24px;
+          font-style:italic; color:#D9CDB4; }
+
+</style>
+</head>
+<body data-contacts='[{"what":"the title block on stone","shadow":[[160,1048,760,24]],"ground":[[160,1152,760,24]]}]'>
+  <canvas id="art" width="2160" height="2700"></canvas>
+
+  <div class="q">
+    <div class="kick">The August 18th release says</div>
+    <div class="rule"></div>
+    <div class="t">"One data center that could not comply chose to end operations before
+      even beginning construction."</div>
+    <div class="src">Office of the Governor, August 18th &middot; c17</div>
+  </div>
+  <div class="block">
+    <div class="r"><span class="k">DATE</span><span class="v">August 18th, 2026</span></div>
+    <div class="r"><span class="k">PUBLISHER</span><span class="v">Office of the Governor</span></div>
+    <div class="r"><span class="k">SOURCE</span><span class="v">gov.texas.gov &middot; c17</span></div>
+    <div class="r blank"><span class="k">NAME</span></div>
+  </div>
+  <div class="note">not named in the source</div>
+
+<div class="tx-frame" data-decorative>
+  <svg class="tx-star" viewBox="0 0 26 26" aria-hidden="true"><polygon points="13,1 16.1,9.4 25,9.6 17.9,15 20.5,23.6 13,18.4 5.5,23.6 8.1,15 1,9.6 9.9,9.4" fill="var(--frame-ink)"/></svg>
+  <div class="tx-wordmark" style="left:118px">TEXAS AI DOCKET</div>
+  <div class="tx-kicker">August 18th</div>
+  <div class="tx-site">talonsturgill.github.io/TexasAIDocket</div>
+  <div class="tx-counter">07 / 08</div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+
+<script>
+window.renderReady = new Promise(function(resolve){
+  TX.reseed(20260819);
+  var cv = document.getElementById('art');
+  var ctx = cv.getContext('2d');
+  ctx.scale(2,2);
+  var W=1080, H=1350;
+  function lerp(a,b,t){return a+(b-a)*t;}
+
+  // a warm masonry ground with a faint vertical falloff so the base carries tone
+  function stoneGround(top, bottom){
+    var grad = ctx.createLinearGradient(0,0,0,H);
+    grad.addColorStop(0, top); grad.addColorStop(1, bottom);
+    ctx.fillStyle = grad; ctx.fillRect(0,0,W,H);
+  }
+
+  stoneGround('#0B0A0F', '#040406');
+  var PL_L=128, PL_R=952;
+  var PL_T=548, PL_B=1040;
+  var BL_L=176, BL_R=904;
+  var BL_T=606, RH=84, NROW=4;
+  var BL_B = BL_T + RH*NROW;
+
+  // The plate bounces light onto the stone it rests on. Without this the whole lower frame is one
+  // flat black, the cast shadow has nothing to be darker THAN, and the contact probe reads two
+  // samples of the same nothing. A lit object in a dark room lights the room a little.
+  var spill = ctx.createRadialGradient((PL_L+PL_R)/2, (PL_T+PL_B)/2, 200,
+                                       (PL_L+PL_R)/2, (PL_T+PL_B)/2, 760);
+  spill.addColorStop(0,'rgba(226,214,188,0.115)');
+  spill.addColorStop(0.55,'rgba(226,214,188,0.045)');
+  spill.addColorStop(1,'rgba(226,214,188,0)');
+  ctx.fillStyle=spill; ctx.fillRect(0,0,W,H);
+  // and the floor DIRECTLY under the plate, which is where the cast shadow has to land. The first
+  // pass put the pool at the plate's own centre, so the ground beside the shadow measured L* 5.6
+  // and there was nothing left to subtract. A shadow needs a lit floor before it needs to be dark.
+  var floor = ctx.createRadialGradient(540, 1132, 60, 540, 1132, 560);
+  floor.addColorStop(0,'rgba(232,220,194,0.26)');
+  floor.addColorStop(0.45,'rgba(232,220,194,0.15)');
+  floor.addColorStop(1,'rgba(232,220,194,0)');
+  ctx.fillStyle=floor; ctx.fillRect(0, PL_T, W, H-PL_T);
+
+  // the cast shadow, thrown down and right because the key is high and left. It is drawn in two
+  // passes, a broad soft throw and a tight contact line, because a single soft blob under an
+  // object reads as a smudge and the tight line is what makes it sit on the surface.
+  var throwG = ctx.createLinearGradient(0, PL_B-10, 0, PL_B+92);
+  throwG.addColorStop(0,'rgba(0,0,0,0.80)');
+  throwG.addColorStop(0.35,'rgba(0,0,0,0.46)');
+  throwG.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=throwG; ctx.fillRect(PL_L+22, PL_B-10, PL_R-PL_L, 102);
+  var sideG = ctx.createLinearGradient(PL_R-8, 0, PL_R+70, 0);
+  sideG.addColorStop(0,'rgba(0,0,0,0.70)'); sideG.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=sideG; ctx.fillRect(PL_R-8, PL_T+26, 78, PL_B-PL_T);
+  ctx.fillStyle='rgba(0,0,0,0.88)'; ctx.fillRect(PL_L+10, PL_B, PL_R-PL_L-6, 7);
+
+  // THE PLATE. One key from the high left, so the face runs from lit at the top left corner to
+  // the frame's own floor at the lower right. This gradient is the frame's entire value range.
+  var face = ctx.createLinearGradient(PL_L, PL_T, PL_R, PL_B);
+  face.addColorStop(0,'#3D382E'); face.addColorStop(0.40,'#2A2630');
+  face.addColorStop(0.76,'#171420'); face.addColorStop(1,'#0E0C14');
+  ctx.fillStyle=face; ctx.fillRect(PL_L, PL_T, PL_R-PL_L, PL_B-PL_T);
+
+  ctx.save();
+  ctx.beginPath(); ctx.rect(PL_L, PL_T, PL_R-PL_L, PL_B-PL_T); ctx.clip();
+
+  // rolled metal, not paper. The tooling runs with the long axis and is close to invisible on its
+  // own. It exists so the plate's lit corner has something to catch and its dark corner does not.
+  var Rl = TX.rng(20260819+707);
+  for (var l=0; l<200; l++){
+    var ly = PL_T + Rl()*(PL_B-PL_T);
+    var lit = 1 - (ly-PL_T)/(PL_B-PL_T);
+    var a = (0.010 + Rl()*0.030) * (0.25 + lit);
+    ctx.strokeStyle = Rl()<0.55 ? 'rgba(232,222,198,'+a.toFixed(3)+')'
+                                : 'rgba(0,0,0,'+(a*1.7).toFixed(3)+')';
+    ctx.lineWidth = 0.6 + Rl()*1.4;
+    ctx.beginPath(); ctx.moveTo(PL_L-10, ly); ctx.lineTo(PL_R+10, ly+(Rl()-0.5)*3); ctx.stroke();
+  }
+
+  // the engraved row rules. Each is a cut, which is a dark groove with a lit lower lip, and not a
+  // drawn line. Five rules for four rows, so the block is closed top and bottom.
+  for (var r=0; r<=NROW; r++){
+    var ry = BL_T + r*RH;
+    var t = 1 - (ry-PL_T)/(PL_B-PL_T);
+    ctx.fillStyle='rgba(0,0,0,'+(0.42+0.22*t).toFixed(3)+')';
+    ctx.fillRect(BL_L, ry-1, BL_R-BL_L, 2.4);
+    ctx.fillStyle='rgba(255,246,224,'+(0.05+0.16*t).toFixed(3)+')';
+    ctx.fillRect(BL_L, ry+1.4, BL_R-BL_L, 1);
+  }
+
+  // THE EMPTY FIELD. Cut INTO the plate rather than drawn on it, so the one thing the record does
+  // not carry is the one place the frame's light does not reach. Its lips are the plate's bevel
+  // run backwards, shadow on the top and left, a catch of key on the bottom and right.
+  // AN EMPTY FIELD IS RULE ONLY.
+  //
+  // This has now been drawn three ways and two of them were wrong for the same reason. A field of
+  // struck bars said something was struck out. A dark box with a bright keyline said the same
+  // thing more quietly. Filling it with light to satisfy the focal law said it a third time, and
+  // it also made this frame and slide 3's legend the identical object four frames apart.
+  //
+  // What makes a redaction is a FILLED RECTANGLE, at any value. What makes an empty field is a
+  // RULE with the surrounding material running clean through where the writing would go. So the
+  // plate's own surface continues across it, the rule sits under it the way a form's fill line
+  // does, and the only marks are the rule and the two ticks that bound the field's width.
+  var NX = 486, NY = 858 + 16, NW = BL_R - NX, NH = RH - 32;
+  var RY = NY + NH - 10;
+  ctx.fillStyle='rgba(0,0,0,0.34)'; ctx.fillRect(NX, RY+2.6, NW, 2.2);
+  ctx.fillStyle='#B98D46'; ctx.fillRect(NX, RY, NW, 2.6);
+  ctx.fillStyle='rgba(255,246,224,0.34)'; ctx.fillRect(NX, RY-1.2, NW, 1.2);
+  // the two ticks that say how wide the field is, which is how the frame publishes the SIZE of
+  // what is missing rather than only that something is
+  ctx.fillStyle='rgba(185,141,70,0.8)';
+  ctx.fillRect(NX, RY-16, 2.4, 18); ctx.fillRect(NX+NW-2.4, RY-16, 2.4, 18);
+
+  ctx.restore();
+
+  // the plate's own bevel, struck outside the clip so the corners stay square
+  ctx.fillStyle='rgba(255,246,224,0.26)'; ctx.fillRect(PL_L, PL_T, PL_R-PL_L, 2.2);
+  ctx.fillStyle='rgba(255,246,224,0.16)'; ctx.fillRect(PL_L, PL_T, 2.2, PL_B-PL_T);
+  ctx.fillStyle='rgba(0,0,0,0.70)'; ctx.fillRect(PL_L, PL_B-2.2, PL_R-PL_L, 2.2);
+  ctx.fillStyle='rgba(0,0,0,0.60)'; ctx.fillRect(PL_R-2.2, PL_T, 2.2, PL_B-PL_T);
+  ctx.strokeStyle='rgba(185,141,70,0.55)'; ctx.lineWidth=1.4;
+  ctx.strokeRect(PL_L+9, PL_T+9, PL_R-PL_L-18, PL_B-PL_T-18);
+
+  // everything above the plate is stone the key never reaches. The quote is set on it in the
+  // frame's dimmest ink, so the block is what the eye finds first and the quote is what it reads.
+  var above = ctx.createLinearGradient(0, 0, 0, PL_T);
+  above.addColorStop(0,'rgba(0,0,0,0.42)'); above.addColorStop(1,'rgba(0,0,0,0.10)');
+  ctx.fillStyle=above; ctx.fillRect(0, 0, W, PL_T);
+
+  // grain over everything, under 4 percent, seeded
+  (function(){
+    var R = TX.rng(20260819);
+    var g = ctx.getImageData(0,0,1,1); // touch to ensure context ok
+    for (var i=0;i<5200;i++){
+      var x=R()*W, y=R()*H, a=R()*0.035;
+      ctx.fillStyle='rgba('+(R()<0.5?'255,255,255':'0,0,0')+','+a.toFixed(3)+')';
+      ctx.fillRect(x,y,1.3,1.3);
+    }
+  })();
+
+  (window.__fontsReady||document.fonts.ready).then(function(){ resolve(); });
+});
+</script>
+</body>
+</html>

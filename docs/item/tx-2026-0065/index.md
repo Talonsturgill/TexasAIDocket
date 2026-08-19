@@ -11,13 +11,19 @@ San Angelo passed Ordinance 2026-078, which adds Section 11.02.043 to the city w
 - Public access: Public meeting
 - Take part: https://www.sanangelo.gov/803/Data-Center-Information
 
-- Last checked: 2026-08-14
+- Last checked: 2026-08-19
 
 ## Dates
 
 - 2026-05-19 · hearing: Introduced with public hearing
 - 2026-06-16 · ordered: Finally passed by City Council, reported 7 to 0
 - 2026-06-16 · effective: Ordinance effective date
+
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-19 · Checked and unchanged. The city's data center page lists the water usage ordinance approved June 16th as the most recent council action and carries nothing from July or August.
 
 ## Evidence
 

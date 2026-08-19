@@ -1,0 +1,51 @@
+{
+  "date": "2026-08-19",
+  "panel": [
+    {
+      "judge": "A",
+      "weighted_score": 8.09,
+      "ship": true
+    },
+    {
+      "judge": "B",
+      "weighted_score": 8.17,
+      "ship": true
+    },
+    {
+      "judge": "C",
+      "weighted_score": 7.7,
+      "ship": true
+    }
+  ],
+  "criteria": {
+    "artwork_craft": {
+      "score": 7.8,
+      "weight": 0.28
+    },
+    "claim_integrity": {
+      "score": 8.5,
+      "weight": 0.2
+    },
+    "story_and_stakes": {
+      "score": 8.0,
+      "weight": 0.18
+    },
+    "sequence_and_momentum": {
+      "score": 8.0,
+      "weight": 0.12
+    },
+    "voice": {
+      "score": 7.5,
+      "weight": 0.12
+    },
+    "variety": {
+      "score": 8.5,
+      "weight": 0.1
+    }
+  },
+  "weighted_score": 8.034,
+  "score": 8.034,
+  "hard_fails": [],
+  "ship": true,
+  "notes": "Median of three independent judges' criterion scores across round four. All three shipped, and Judge C who raised the round three hard fail on slide 1 confirmed it closed. Machine QA PASS with zero fails and zero warns. Every gate green."
+}

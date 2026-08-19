@@ -12,11 +12,17 @@ The Temple Planning and Zoning Commission has three data center items on its Aug
 - Comment closes: 2026-08-17
 - Take part: https://www.templetx.gov/datacenters
 
-- Last checked: 2026-08-16
+- Last checked: 2026-08-19
 
 ## Dates
 
 - 2026-08-17 · hearing: Planning and Zoning Commission considers the UDC amendments, the Lasso zoning case and the Synergy Industrial Park plat
+
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-19 · Whether the commission has acted is unconfirmed. The city's data center page carries no dated action by the Planning and Zoning Commission and its most recent item is a council briefing from May 7th.
 
 ## Evidence
 

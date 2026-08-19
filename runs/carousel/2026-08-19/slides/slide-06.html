@@ -1,0 +1,242 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body { background:#16151C; position:relative; font-family:'Manrope',sans-serif;
+          --frame-ink:#EFE9DA; --frame-dim:#D9CDB4; }
+  canvas#art { position:absolute; inset:0; width:1080px; height:1350px; }
+
+  /* ---- the invariant frame. Identical on every slide of every deck. ---------------- */
+  .tx-frame { position:absolute; inset:0; pointer-events:none; z-index:60; }
+  .tx-wordmark {
+    position:absolute; top:56px; left:80px;
+    font-family:'JetBrains Mono',monospace; font-size:25px; font-weight:500;
+    letter-spacing:.16em; color:var(--frame-ink); }
+  .tx-star { position:absolute; top:54px; left:80px; width:26px; height:26px; }
+  .tx-counter {
+    position:absolute; bottom:56px; right:80px;
+    font-family:'JetBrains Mono',monospace; font-size:25px; font-weight:500;
+    font-variant-numeric:tabular-nums; letter-spacing:.10em; color:var(--frame-ink); }
+  .tx-site {
+    position:absolute; bottom:56px; left:80px;
+    font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:400;
+    letter-spacing:.04em; color:var(--frame-dim); }
+  .tx-kicker {
+    position:absolute; top:56px; right:80px; max-width:620px; text-align:right;
+    font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:500;
+    letter-spacing:.10em; text-transform:uppercase; color:var(--frame-dim); }
+
+
+  .lead { position:absolute; top:126px; left:104px; right:104px; z-index:70;
+          font-family:'Fraunces',serif; font-weight:700; font-size:56px; line-height:1.02;
+          letter-spacing:-.015em; color:#F6F1E4; font-variation-settings:'opsz' 56;
+          text-shadow:0 2px 18px rgba(0,0,0,.85); }
+  .attrib { position:absolute; top:326px; left:104px; right:104px; z-index:70;
+            font-family:'Manrope',sans-serif; font-size:27px; line-height:1.36; color:#D9CDB4;
+            text-shadow:0 2px 14px rgba(0,0,0,.85); }
+  .rails { position:absolute; inset:0; z-index:70; }
+  .rails .w { position:absolute; left:104px; right:104px;
+              height:148px;
+              display:flex; align-items:center; justify-content:flex-start; white-space:nowrap;
+              font-family:'Fraunces',serif; font-weight:800; font-size:66px;
+              letter-spacing:.005em; line-height:1; font-variation-settings:'opsz' 66; }
+  /* engraved, which is a dark cut below the stroke and the key catching its lower lip, over a
+     soft reserve so the worst point along the run clears the contrast line and not only the mean */
+  /* TWO PART. A tight contact where the letterform meets the stone and a wide soft occlusion
+     under it. TECHNIQUE_LIBRARY names the single soft blur as the failure that reads as a drop
+     shadow and cheapens the frame, and the frame shipped one. */
+  .rails .w.cream { color:#FFFAF0;
+                    text-shadow:0 1px 0 rgba(6,5,9,.92), 0 2px 1px rgba(6,5,9,.72),
+                                0 6px 22px rgba(6,5,9,.55),
+                                0 -1.5px 0 rgba(0,0,0,.50), 0 2.5px 0 rgba(255,250,236,.14); }
+  .q { position:absolute; left:104px; right:104px; bottom:122px; z-index:70; }
+  .q .rule { height:2px; background:#B98D46; }
+  .q .t { font-family:'Manrope',sans-serif; font-size:29px; line-height:1.4; color:#F6F1E4;
+          padding:20px 0 0; text-shadow:0 2px 14px rgba(0,0,0,.9); }
+  .q .src { font-family:'JetBrains Mono',monospace; font-size:24px; color:#D9CDB4; padding-top:12px;
+            text-shadow:0 2px 12px rgba(0,0,0,.9); }
+
+</style>
+</head>
+<body>
+  <canvas id="art" width="2160" height="2700"></canvas>
+
+  <div class="lead">The Governor's office said the Data Center Coalition will comply.</div>
+  <div class="attrib">The Coalition is the sector's membership body. Said on August 18th by the
+    Governor's office, about the standards that office set rather than a measured result.</div>
+  <div class="rails">
+    <div class="w cream" style="top:430px">GRID</div>
+    <div class="w cream" style="top:578px">WATER</div>
+    <div class="w cream" style="top:726px">NEIGHBORHOODS</div>
+    <div class="w cream" style="top:874px">PAY THEIR OWN WAY</div>
+  </div>
+  <div class="q">
+    <div class="rule"></div>
+    <div class="t">"I established clear guardrails to ensure data centers protect our electric
+      grid, conserve our water, respect our neighborhoods, and pay their own way ..."</div>
+    <div class="src">Office of the Governor, August 18th &middot; c18</div>
+  </div>
+
+<div class="tx-frame" data-decorative>
+  <svg class="tx-star" viewBox="0 0 26 26" aria-hidden="true"><polygon points="13,1 16.1,9.4 25,9.6 17.9,15 20.5,23.6 13,18.4 5.5,23.6 8.1,15 1,9.6 9.9,9.4" fill="var(--frame-ink)"/></svg>
+  <div class="tx-wordmark" style="left:118px">TEXAS AI DOCKET</div>
+  <div class="tx-kicker">The Governor's office</div>
+  <div class="tx-site">talonsturgill.github.io/TexasAIDocket</div>
+  <div class="tx-counter">06 / 08</div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+
+<script>
+window.renderReady = new Promise(function(resolve){
+  TX.reseed(20260819);
+  var cv = document.getElementById('art');
+  var ctx = cv.getContext('2d');
+  ctx.scale(2,2);
+  var W=1080, H=1350;
+  function lerp(a,b,t){return a+(b-a)*t;}
+
+  // FOUR TERRAZZO INLAY COURSES run ACROSS the frame, seen straight on, under ONE key from the
+  // high left. Each course is the same material treatment and the same aggregate density. What
+  // differs is the stone, because the four demands are four different things, and where the lamp
+  // falls, because there is one lamp.
+  var BT=430, BH=148, N=4;
+  var BB=BT+BH*N;
+  // The four stones, each dropped to the value it has at night. Cordova limestone and brass are
+  // light stones and they were carrying dark type, which collapsed to 2.8 at the dark end of the
+  // key where the lamp stops reaching. One ink on four courses needs four courses in one value
+  // band, and the palette is the courthouse AT NIGHT, so this is the honest tone for all of them.
+  var cols=['#D9CDB4','#8E4B3A','#4E6B62','#B98D46'];
+  // GRID read visibly lighter than the other three, which ranks a guardrail the record does not
+  // rank. Cordova is a light stone and it needed further to fall than the rest.
+  var dark=[-0.56,-0.07,-0.07,-0.38];
+  ctx.fillStyle='#0E0D12'; ctx.fillRect(0,0,W,H);
+  for(var i=0;i<N;i++){
+    var by=BT+i*BH;
+    // the course's own stone, keyed from the left and falling toward the base of the run, so the
+    // reader enters every course at the same corner and the four read down in order
+    var g=ctx.createLinearGradient(0,by,W,by+BH);
+    g.addColorStop(0, shade(cols[i], dark[i]+0.07));
+    g.addColorStop(0.42, shade(cols[i], dark[i]));
+    g.addColorStop(1, shade(cols[i], dark[i]-0.13));
+    ctx.fillStyle=g; ctx.fillRect(0,by,W,BH);
+    // terrazzo chips, ground stone rather than pixels: round, of varied size, and denser in the
+    // lit half because that is the half you can see them in
+    var R=TX.rng(20260819+i*97);
+    // REAL TERRAZZO. It shipped as one speckle at one density on all four courses, which is a
+    // texture standing in for a material. Ground stone is GRADED: a few large chips, many small
+    // ones, each with a lit face where the lamp catches its polished cut and a shadow on the far
+    // side, all bedded in a matrix that is a different tone from the chips.
+    // Chips are ANGULAR. Drawn as circles with a concentric highlight they read as droplets on
+    // glass, which is a bubble and not a stone. Terrazzo aggregate is crushed rock, so every chip
+    // is a small irregular polygon with a flat facet where the saw cut it, and the lamp catches
+    // that facet along one edge rather than at a centre.
+    for(var f=0;f<1150;f++){
+      var cx=R()*W, cy=by+R()*BH;
+      var u=R(); var rad=1.1+u*u*u*6.4;
+      var vis=1-(cx/W)*0.62;
+      var warm=R()<0.34;
+      var nv=5+Math.floor(R()*3), rot=R()*6.283, pts=[];
+      for(var v=0;v<nv;v++){
+        var ang=rot+v/nv*6.283, rr=rad*(0.66+R()*0.5);
+        pts.push([cx+Math.cos(ang)*rr, cy+Math.sin(ang)*rr]);
+      }
+      ctx.beginPath(); ctx.moveTo(pts[0][0],pts[0][1]);
+      for(var v2=1;v2<nv;v2++) ctx.lineTo(pts[v2][0],pts[v2][1]);
+      ctx.closePath();
+      ctx.fillStyle = warm ? 'rgba(226,214,188,'+(0.06+R()*0.17*vis).toFixed(3)+')'
+                           : 'rgba(0,0,0,'+(0.05+R()*0.16).toFixed(3)+')';
+      ctx.fill();
+      if(rad>2.9){
+        // the sawn facet, struck along the edges that face the lamp and nowhere else
+        for(var e=0;e<nv;e++){
+          var a1=pts[e], a2=pts[(e+1)%nv];
+          var ex=a2[0]-a1[0], ey=a2[1]-a1[1], eL=Math.sqrt(ex*ex+ey*ey)||1;
+          var nx=ey/eL, ny=-ex/eL;
+          if(nx*(cx-a1[0])+ny*(cy-a1[1])>0){ nx=-nx; ny=-ny; }
+          var dp = nx*-0.7071 + ny*-0.7071;
+          if(dp>0.15){
+            ctx.strokeStyle='rgba(255,250,236,'+(0.10+0.32*dp*vis).toFixed(3)+')';
+            ctx.lineWidth=1.0;
+          } else {
+            ctx.strokeStyle='rgba(0,0,0,'+(0.08+0.24*Math.max(0,-dp)).toFixed(3)+')';
+            ctx.lineWidth=1.2;
+          }
+          ctx.beginPath(); ctx.moveTo(a1[0],a1[1]); ctx.lineTo(a2[0],a2[1]); ctx.stroke();
+        }
+      }
+    }
+    // THE SEAM. The setting bed between two courses is a groove, so it has a wall the lamp misses
+    // and a lip it catches. Four seams, one operation, and they are the only hard lines here.
+    var sm=ctx.createLinearGradient(0,by-6,0,by+8);
+    sm.addColorStop(0,'rgba(10,9,13,0.55)'); sm.addColorStop(0.42,'rgba(6,5,9,0.94)');
+    sm.addColorStop(0.72,'rgba(6,5,9,0.88)'); sm.addColorStop(1,'rgba(10,9,13,0)');
+    ctx.fillStyle=sm; ctx.fillRect(0,by-6,W,14);
+    ctx.fillStyle='rgba(255,250,236,0.30)'; ctx.fillRect(0,by+3.4,W,1.8);
+  }
+  ctx.fillStyle='rgba(10,9,13,0.72)'; ctx.fillRect(0,BB-3,W,5);
+  // the whole run falls off toward the right, which is the one thing that tells a reader where
+  // the lamp is standing
+  var key=ctx.createLinearGradient(0,BT,W,BB);
+  key.addColorStop(0,'rgba(255,248,230,0.09)'); key.addColorStop(0.40,'rgba(255,248,230,0)');
+  key.addColorStop(1,'rgba(0,0,0,0.26)');
+  ctx.fillStyle=key; ctx.fillRect(0,BT,W,BB-BT);
+  // THE SCRIMS the copy sits on. Three hard black rectangles used to carry the three blocks of
+  // type, so the frame read as plates bolted to a colour chart. A scrim that falls off does the
+  // same job for legibility and puts no edge where the design has no edge.
+  var topS=ctx.createLinearGradient(0,0,0,BT);
+  topS.addColorStop(0,'rgba(10,9,13,0.97)'); topS.addColorStop(0.72,'rgba(10,9,13,0.92)');
+  topS.addColorStop(1,'rgba(10,9,13,0.55)');
+  ctx.fillStyle=topS; ctx.fillRect(0,0,W,BT);
+  // THE STONE THE COURSES ARE SET INTO. The base was a scrim over near black, which is flat
+  // furniture with a caption on it. The last course sits proud of this stone, throws a shadow
+  // down onto it and bounces its own light back across it, so the band the reader finishes on
+  // carries modeled tone rather than a plate.
+  var pool=ctx.createRadialGradient(300, BB+40, 60, 300, BB+40, 900);
+  pool.addColorStop(0,'rgba(226,214,188,0.20)'); pool.addColorStop(0.42,'rgba(226,214,188,0.085)');
+  pool.addColorStop(1,'rgba(226,214,188,0)');
+  ctx.fillStyle=pool; ctx.fillRect(0,BB,W,H-BB);
+  var castC=ctx.createLinearGradient(0,BB-6,0,BB+96);
+  castC.addColorStop(0,'rgba(0,0,0,0.86)'); castC.addColorStop(0.30,'rgba(0,0,0,0.50)');
+  castC.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=castC; ctx.fillRect(0,BB-6,W,102);
+  // the stone's own tooling, running out of the frame at the base
+  (function(){ var Rs=TX.rng(20260819+404);
+    for(var s=0;s<220;s++){
+      var sy=BB+20+Rs()*(H-BB-20), sx=Rs()*W, sw=60+Rs()*280, a=0.010+Rs()*0.032;
+      ctx.strokeStyle=Rs()<0.5?'rgba(226,214,188,'+a.toFixed(3)+')':'rgba(0,0,0,'+(a*1.7).toFixed(3)+')';
+      ctx.lineWidth=0.6+Rs()*1.5;
+      ctx.beginPath(); ctx.moveTo(sx,sy); ctx.lineTo(sx+sw,sy+(Rs()-0.5)*4); ctx.stroke();
+    } })();
+  var botS=ctx.createLinearGradient(0,H,0,BB+70);
+  botS.addColorStop(0,'rgba(10,9,13,0.86)'); botS.addColorStop(0.55,'rgba(10,9,13,0.62)');
+  botS.addColorStop(1,'rgba(10,9,13,0)');
+  ctx.fillStyle=botS; ctx.fillRect(0,BB+70,W,H-BB-70);
+  ctx.fillStyle='#16151C'; ctx.fillRect(0,0,W,102); ctx.fillRect(0,H-92,W,92);
+  function shade(hex,amt){
+    var n=parseInt(hex.slice(1),16), r=(n>>16)&255,g2=(n>>8)&255,b=n&255;
+    r=Math.max(0,Math.min(255,r+amt*255)); g2=Math.max(0,Math.min(255,g2+amt*255));
+    b=Math.max(0,Math.min(255,b+amt*255));
+    return 'rgb('+(r|0)+','+(g2|0)+','+(b|0)+')';
+  }
+
+  // grain over everything, under 4 percent, seeded
+  (function(){
+    var R = TX.rng(20260819);
+    var g = ctx.getImageData(0,0,1,1); // touch to ensure context ok
+    for (var i=0;i<5200;i++){
+      var x=R()*W, y=R()*H, a=R()*0.035;
+      ctx.fillStyle='rgba('+(R()<0.5?'255,255,255':'0,0,0')+','+a.toFixed(3)+')';
+      ctx.fillRect(x,y,1.3,1.3);
+    }
+  })();
+
+  (window.__fontsReady||document.fonts.ready).then(function(){ resolve(); });
+});
+</script>
+</body>
+</html>

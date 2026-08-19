@@ -1,0 +1,191 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body { background:#16151C; position:relative; font-family:'Manrope',sans-serif;
+          --frame-ink:#EFE9DA; --frame-dim:#D9CDB4; }
+  canvas#art { position:absolute; inset:0; width:1080px; height:1350px; }
+
+  /* ---- the invariant frame. Identical on every slide of every deck. ---------------- */
+  .tx-frame { position:absolute; inset:0; pointer-events:none; z-index:60; }
+  .tx-wordmark {
+    position:absolute; top:56px; left:80px;
+    font-family:'JetBrains Mono',monospace; font-size:25px; font-weight:500;
+    letter-spacing:.16em; color:var(--frame-ink); }
+  .tx-star { position:absolute; top:54px; left:80px; width:26px; height:26px; }
+  .tx-counter {
+    position:absolute; bottom:56px; right:80px;
+    font-family:'JetBrains Mono',monospace; font-size:25px; font-weight:500;
+    font-variant-numeric:tabular-nums; letter-spacing:.10em; color:var(--frame-ink); }
+  .tx-site {
+    position:absolute; bottom:56px; left:80px;
+    font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:400;
+    letter-spacing:.04em; color:var(--frame-dim); }
+  .tx-kicker {
+    position:absolute; top:56px; right:80px; max-width:620px; text-align:right;
+    font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:500;
+    letter-spacing:.10em; text-transform:uppercase; color:var(--frame-dim); }
+
+
+  .hd { position:absolute; top:150px; left:80px; right:80px; }
+  .hook { font-family:'Fraunces',serif; font-weight:800; font-size:132px; line-height:.92;
+          letter-spacing:-.02em; color:#EFE9DA; font-variation-settings:'opsz' 132; }
+  .dek { position:absolute; left:80px; right:300px; bottom:140px; z-index:70;
+         font-family:'Manrope',sans-serif; font-size:33px; line-height:1.42; color:#E4DAC4;
+         text-shadow:0 2px 16px rgba(0,0,0,.9); }
+
+</style>
+</head>
+<body>
+  <canvas id="art" width="2160" height="2700"></canvas>
+
+  <div class="hd"><div class="hook">August 7th<br>came and went.</div></div>
+  <div class="dek">The directive landed on August 3rd. ERCOT's own Batch Zero classification
+    date passed 12 days ago.</div>
+
+<div class="tx-frame" data-decorative>
+  <svg class="tx-star" viewBox="0 0 26 26" aria-hidden="true"><polygon points="13,1 16.1,9.4 25,9.6 17.9,15 20.5,23.6 13,18.4 5.5,23.6 8.1,15 1,9.6 9.9,9.4" fill="var(--frame-ink)"/></svg>
+  <div class="tx-wordmark" style="left:118px">TEXAS AI DOCKET</div>
+  <div class="tx-kicker">ERCOT Market Notice</div>
+  <div class="tx-site">talonsturgill.github.io/TexasAIDocket</div>
+  <div class="tx-counter">01 / 08</div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+
+<script>
+window.renderReady = new Promise(function(resolve){
+  TX.reseed(20260819);
+  var cv = document.getElementById('art');
+  var ctx = cv.getContext('2d');
+  ctx.scale(2,2);
+  var W=1080, H=1350;
+  function lerp(a,b,t){return a+(b-a)*t;}
+
+  // a warm masonry ground with a faint vertical falloff so the base carries tone
+  function stoneGround(top, bottom){
+    var grad = ctx.createLinearGradient(0,0,0,H);
+    grad.addColorStop(0, top); grad.addColorStop(1, bottom);
+    ctx.fillStyle = grad; ctx.fillRect(0,0,W,H);
+  }
+
+  stoneGround('#1C1A22', '#100F15');
+  // an August month grid embossed into limestone, tilted, one cell cut clean through.
+  // weekday alignment computed: Aug 1 2026 is a Saturday (col 6, 0=Sun). Deadline Aug 7 = the void.
+  var cols=7, startCol=6, days=31, deadline=7;
+  var cellW=92, cellH=92, gap=10;
+  var gridW = cols*cellW + (cols-1)*gap;
+  ctx.save();
+  ctx.translate(W*0.53, H*0.30);
+  ctx.rotate(-0.05);
+  ctx.translate(-gridW/2, 0);
+  var R = TX.rng(20260819);
+  // THE MORTAR BED the tiles are set into. Without it the gaps between tiles show the same near
+  // black the void does, so the sheet reads as 31 loose chips on stone and the one cell that is
+  // actually a hole has no monopoly on darkness. Grout is lighter than a hole. That is the whole
+  // reason a hole reads as a hole.
+  (function(){
+    // The bed was sized off the tile grid's own last row, which ends after the 31st tile, so
+    // its edge cut across tiles 30 and 31 and read as a clipping error on the frame more readers
+    // see than any other. A bed is a rectangle the whole sheet is laid into.
+    var rows=Math.ceil((startCol+days)/cols);
+    var bx=-22, by=-22, bw=gridW+44, bh=rows*(cellH+gap)+30;
+    ctx.fillStyle='rgba(0,0,0,0.55)'; ctx.fillRect(bx+16, by+bh-6, bw, 26);
+    var bed=ctx.createLinearGradient(bx,by,bx+bw,by+bh);
+    bed.addColorStop(0,'#3A3630'); bed.addColorStop(0.5,'#2C2922'); bed.addColorStop(1,'#1E1B17');
+    ctx.fillStyle=bed; ctx.fillRect(bx,by,bw,bh);
+    var Rm=TX.rng(20260819+11);
+    for(var m=0;m<900;m++){
+      var mx=bx+Rm()*bw, my=by+Rm()*bh;
+      ctx.fillStyle='rgba('+(Rm()<0.5?'255,250,236':'0,0,0')+','+(Rm()*0.10).toFixed(3)+')';
+      ctx.fillRect(mx,my,1.6,1.6);
+    }
+  })();
+  for (var d=1; d<=days; d++){
+    var idx = startCol + (d-1);
+    var col = idx % cols, row = Math.floor(idx/cols);
+    var x = col*(cellW+gap), y = row*(cellH+gap);
+    if (d===deadline){
+      // THE VOID as a real recessed hole: mouth, four interior walls lit on the key side
+      // (low left) and shadowed on the far side, and an inset floor catching a little bounce.
+      ctx.fillStyle='#050406'; ctx.fillRect(x,y,cellW,cellH);
+      var ins=22, shx=8;
+      var fx=x+ins-shx, fy=y+ins-shx, fw=cellW-ins*2, fh=cellH-ins*2;
+      // bottom interior wall, lit by the low-left key
+      ctx.fillStyle='rgba(150,130,95,0.34)';
+      ctx.beginPath(); ctx.moveTo(x,y+cellH); ctx.lineTo(x+cellW,y+cellH);
+      ctx.lineTo(fx+fw,fy+fh); ctx.lineTo(fx,fy+fh); ctx.closePath(); ctx.fill();
+      // left interior wall, lit dimmer
+      ctx.fillStyle='rgba(150,130,95,0.20)';
+      ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x,y+cellH);
+      ctx.lineTo(fx,fy+fh); ctx.lineTo(fx,fy); ctx.closePath(); ctx.fill();
+      // top interior wall, shadowed
+      ctx.fillStyle='rgba(0,0,0,0.55)';
+      ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x+cellW,y);
+      ctx.lineTo(fx+fw,fy); ctx.lineTo(fx,fy); ctx.closePath(); ctx.fill();
+      // right interior wall, deepest shadow
+      ctx.fillStyle='rgba(0,0,0,0.72)';
+      ctx.beginPath(); ctx.moveTo(x+cellW,y); ctx.lineTo(x+cellW,y+cellH);
+      ctx.lineTo(fx+fw,fy+fh); ctx.lineTo(fx+fw,fy); ctx.closePath(); ctx.fill();
+      // the floor, inset and shifted up-left, a shade above pure black so a bottom reads
+      var floor=ctx.createLinearGradient(fx,fy,fx+fw,fy+fh);
+      floor.addColorStop(0,'#161019'); floor.addColorStop(1,'#09080c');
+      ctx.fillStyle=floor; ctx.fillRect(fx,fy,fw,fh);
+      // bright mouth lip on the lower-left outer edge, the surface catching key before the drop
+      ctx.strokeStyle='rgba(240,233,218,0.40)'; ctx.lineWidth=3;
+      ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x,y+cellH);
+      ctx.lineTo(x+cellW,y+cellH); ctx.stroke();
+      continue;
+    }
+    // raised tile: lit top-left bevel (key from low left), shadow bottom-right
+    var tone = 0.86 + (R()-0.5)*0.10;
+    ctx.fillStyle = '#D9CDB4';
+    ctx.globalAlpha = tone; ctx.fillRect(x,y,cellW,cellH); ctx.globalAlpha=1;
+    ctx.fillStyle='rgba(255,250,235,0.28)'; ctx.fillRect(x,y,cellW,6); ctx.fillRect(x,y,6,cellH);
+    ctx.fillStyle='rgba(20,16,12,0.42)';
+    ctx.fillRect(x,y+cellH-7,cellW,7); ctx.fillRect(x+cellW-7,y,7,cellH);
+    ctx.fillStyle='rgba(30,24,18,0.30)';
+    ctx.font='500 27px JetBrains Mono, monospace';
+    ctx.fillText(('0'+d).slice(-2), x+11, y+37);
+  }
+  // the long raking shadow the tilted sheet throws down across the base
+  ctx.restore();
+  var sh = ctx.createLinearGradient(0, H*0.74, W, H);
+  sh.addColorStop(0,'rgba(0,0,0,0)'); sh.addColorStop(1,'rgba(0,0,0,0.5)');
+  ctx.fillStyle=sh; ctx.beginPath();
+  ctx.moveTo(0,H); ctx.lineTo(W,H); ctx.lineTo(W,H*0.82); ctx.lineTo(0,H*0.95); ctx.closePath();
+  ctx.fill();
+
+  // The dek used to sit in an opaque #100F15 rectangle, which is a caption band ruled under the
+  // art and is the one thing this frame's own dossier says not to do. The scrim does the same job
+  // for legibility and puts no edge where the design has no edge, and the long raking shadow the
+  // sheet throws is what the dossier already asked the bottom third to carry.
+  var castS = ctx.createLinearGradient(0, 940, 300, 1350);
+  castS.addColorStop(0,'rgba(0,0,0,0)'); castS.addColorStop(0.45,'rgba(0,0,0,0.30)');
+  castS.addColorStop(1,'rgba(0,0,0,0.52)');
+  ctx.fillStyle=castS; ctx.fillRect(0, 940, W, H-940);
+  var dekS = ctx.createLinearGradient(0, 980, 0, 1350);
+  dekS.addColorStop(0,'rgba(9,8,12,0)'); dekS.addColorStop(0.42,'rgba(9,8,12,0.70)');
+  dekS.addColorStop(1,'rgba(9,8,12,0.90)');
+  ctx.fillStyle=dekS; ctx.fillRect(0, 980, W, H-980);
+
+  // grain over everything, under 4 percent, seeded
+  (function(){
+    var R = TX.rng(20260819);
+    var g = ctx.getImageData(0,0,1,1); // touch to ensure context ok
+    for (var i=0;i<5200;i++){
+      var x=R()*W, y=R()*H, a=R()*0.035;
+      ctx.fillStyle='rgba('+(R()<0.5?'255,255,255':'0,0,0')+','+a.toFixed(3)+')';
+      ctx.fillRect(x,y,1.3,1.3);
+    }
+  })();
+
+  (window.__fontsReady||document.fonts.ready).then(function(){ resolve(); });
+});
+</script>
+</body>
+</html>

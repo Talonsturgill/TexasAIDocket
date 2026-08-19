@@ -1,0 +1,284 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body { background:#16151C; position:relative; font-family:'Manrope',sans-serif;
+          --frame-ink:#EFE9DA; --frame-dim:#D9CDB4; }
+  canvas#art { position:absolute; inset:0; width:1080px; height:1350px; }
+
+  /* ---- the invariant frame. Identical on every slide of every deck. ---------------- */
+  .tx-frame { position:absolute; inset:0; pointer-events:none; z-index:60; }
+  .tx-wordmark {
+    position:absolute; top:56px; left:80px;
+    font-family:'JetBrains Mono',monospace; font-size:25px; font-weight:500;
+    letter-spacing:.16em; color:var(--frame-ink); }
+  .tx-star { position:absolute; top:54px; left:80px; width:26px; height:26px; }
+  .tx-counter {
+    position:absolute; bottom:56px; right:80px;
+    font-family:'JetBrains Mono',monospace; font-size:25px; font-weight:500;
+    font-variant-numeric:tabular-nums; letter-spacing:.10em; color:var(--frame-ink); }
+  .tx-site {
+    position:absolute; bottom:56px; left:80px;
+    font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:400;
+    letter-spacing:.04em; color:var(--frame-dim); }
+  .tx-kicker {
+    position:absolute; top:56px; right:80px; max-width:620px; text-align:right;
+    font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:500;
+    letter-spacing:.10em; text-transform:uppercase; color:var(--frame-dim); }
+
+
+  .hd { position:absolute; top:120px; left:80px; right:80px; }
+  .hook { font-family:'Fraunces',serif; font-weight:800; font-size:96px; line-height:.95;
+          letter-spacing:-.02em; color:#EFE9DA; font-variation-settings:'opsz' 96; }
+  .quote { position:absolute; left:80px; right:120px; bottom:120px; }
+  .quote .rule { height:2px; background:#B98D46; }
+  .quote .q { font-family:'Manrope',sans-serif; font-size:30px; line-height:1.45; color:#EFE9DA;
+              padding:22px 0; }
+  .quote .src { font-family:'JetBrains Mono',monospace; font-size:24px; color:#D9CDB4;
+                letter-spacing:.02em; }
+  .barlab { position:absolute; font-family:'JetBrains Mono',monospace; letter-spacing:.04em; }
+  .barlab .n { font-size:52px; color:#EFE9DA; font-variant-numeric:tabular-nums; }
+  .barlab .u { font-size:26px; color:#D9CDB4; }
+  .axlab { position:absolute; font-family:'JetBrains Mono',monospace; font-size:25px;
+           letter-spacing:.08em; color:#D9CDB4; text-transform:uppercase; }
+  .dek2 { position:absolute; left:80px; right:120px; top:342px;
+          font-family:'Manrope',sans-serif; font-size:29px; line-height:1.42; color:#D9CDB4; }
+
+</style>
+</head>
+<body>
+  <canvas id="art" width="2160" height="2700"></canvas>
+
+  <div class="hd"><div class="hook">Four days<br>of warning.</div></div>
+  <div class="axlab" style="left:87px; top:548px;">August 3rd</div>
+  <div class="axlab" style="left:271px; top:590px;">August 7th</div>
+  <div class="axlab" style="left:812px; top:548px;">August 19th</div>
+  <div class="barlab" style="left:372px; top:612px;"><span class="n">4</span>
+    <span class="u">DAYS AHEAD</span></div>
+  <div class="barlab" style="left:166px; top:790px;"><span class="n">16</span>
+    <span class="u">DAYS SINCE THE LETTER</span></div>
+  <div class="dek2">ERCOT gave 4 days of notice before its own classification date. The letter
+    has stood 16 days.</div>
+  <div class="quote">
+    <div class="rule"></div>
+    <div class="q">"ERCOT will not notify each Interconnecting Distribution Service Provider
+      and Transmission Service Provider of how any Large Load is classified in the Batch Zero
+      Interconnection Study by August 7, 2026"</div>
+    <div class="src">ERCOT market notice M-A080326-01 &middot; c2</div>
+  </div>
+
+<div class="tx-frame" data-decorative>
+  <svg class="tx-star" viewBox="0 0 26 26" aria-hidden="true"><polygon points="13,1 16.1,9.4 25,9.6 17.9,15 20.5,23.6 13,18.4 5.5,23.6 8.1,15 1,9.6 9.9,9.4" fill="var(--frame-ink)"/></svg>
+  <div class="tx-wordmark" style="left:118px">TEXAS AI DOCKET</div>
+  <div class="tx-kicker">ERCOT Market Notice</div>
+  <div class="tx-site">talonsturgill.github.io/TexasAIDocket</div>
+  <div class="tx-counter">02 / 08</div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+
+<script>
+window.renderReady = new Promise(function(resolve){
+  TX.reseed(20260819);
+  var cv = document.getElementById('art');
+  var ctx = cv.getContext('2d');
+  ctx.scale(2,2);
+  var W=1080, H=1350;
+  function lerp(a,b,t){return a+(b-a)*t;}
+
+  // a warm masonry ground with a faint vertical falloff so the base carries tone
+  function stoneGround(top, bottom){
+    var grad = ctx.createLinearGradient(0,0,0,H);
+    grad.addColorStop(0, top); grad.addColorStop(1, bottom);
+    ctx.fillStyle = grad; ctx.fillRect(0,0,W,H);
+  }
+
+  stoneGround('#191821', '#0E0D12');
+  var R2 = TX.rng(20260819+202);
+
+  // AN ENGRAVED SCALE, cut into the plate rather than drawn on it.
+  //
+  // This frame measured canvas variance 15.9 against slide 1's 3160, two hundred times flatter
+  // and the lowest in the deck by an order of magnitude. It was 26 contour lines at five percent
+  // alpha behind an SVG hairline with tick marks on it, which is a chart of a measurement rather
+  // than the measurement itself. Every tick below is now a real notch with a lit wall and a
+  // shadowed one, and the two spans are metal set into the plate at different depths. The light
+  // rakes from the upper left, so the detail budget sits along the instrument and the plate
+  // falls away from it.
+  var RATE=46, ox=70, y0=700, origin=ox+2*RATE;
+
+  // the plate the scale is cut into, with a brushed tooth that catches the rake
+  var PT=560, PB=1010;
+  var plate=ctx.createLinearGradient(0,PT,0,PB);
+  // The first stop used to reach full value in 16 percent of the plate's height, which put a
+  // dead straight full-width tonal break across the frame. That is a horizon, and this deck's
+  // first stated law is that there are none.
+  plate.addColorStop(0,'rgba(36,31,42,0)'); plate.addColorStop(0.30,'#241F2A');
+  plate.addColorStop(0.46,'#2E2834'); plate.addColorStop(0.86,'#191521');
+  plate.addColorStop(1,'rgba(25,21,33,0)');
+  ctx.fillStyle=plate; ctx.fillRect(0,PT,W,PB-PT);
+  ctx.save(); ctx.beginPath(); ctx.rect(0,PT,W,PB-PT); ctx.clip();
+  // A CONTOUR SET, which is what this frame's dossier declared and what it never drew. It shipped
+  // as horizontal streaks, the same generator as slides 4 and 7, so three grounds were one mark.
+  // Isolines are nested closed loops around drifting centres, low contrast, and they carry texture
+  // without a value, which is exactly what a measured rule needs under it.
+  (function(){
+    var Rc=TX.rng(20260819+272);
+    var centres=[];
+    for(var c=0;c<5;c++) centres.push([Rc()*W, PT+Rc()*(PB-PT), 0.6+Rc()*0.8]);
+    for(var ring=0; ring<46; ring++){
+      var base=30+ring*15;
+      ctx.beginPath();
+      for(var a=0;a<=64;a++){
+        var th=a/64*6.283, r=base;
+        for(var k=0;k<centres.length;k++){
+          var dx=Math.cos(th), dy=Math.sin(th);
+          r += Math.sin(th*(k+2)+centres[k][0]*0.01)*centres[k][2]*14*(1-ring/70);
+        }
+        var px=W*0.5 + Math.cos(th)*r*1.9;
+        var py=(PT+PB)/2 + Math.sin(th)*r*0.62;
+        if(a===0) ctx.moveTo(px,py); else ctx.lineTo(px,py);
+      }
+      ctx.closePath();
+      var lit=1-(ring/46);
+      ctx.strokeStyle='rgba(217,205,180,'+(0.028*lit+0.012).toFixed(3)+')';
+      ctx.lineWidth=1; ctx.stroke();
+    }
+  })();
+  ctx.restore();  ctx.restore();
+
+  // THE CHANNEL. A groove cut across the plate, its far wall lit by the rake and its near wall
+  // in shadow, so the scale reads as removed material rather than as a painted line.
+  var chTop=y0-11, chH=22;
+  ctx.fillStyle='#100D16'; ctx.fillRect(0,chTop,W,chH);
+  ctx.fillStyle='rgba(239,233,218,0.20)'; ctx.fillRect(0,chTop,W,2);
+  ctx.fillStyle='rgba(0,0,0,0.70)'; ctx.fillRect(0,chTop+chH-3,W,3);
+  var gloss=ctx.createLinearGradient(0,chTop,0,chTop+chH);
+  gloss.addColorStop(0,'rgba(185,141,70,0.30)'); gloss.addColorStop(0.5,'rgba(185,141,70,0.06)');
+  gloss.addColorStop(1,'rgba(0,0,0,0.32)');
+  ctx.fillStyle=gloss; ctx.fillRect(0,chTop,W,chH);
+
+  // THE NOTCHES. One per day. Each is a V cut: the wall facing the light is bright, the wall
+  // facing away is black, which is what gives this frame its local contrast.
+  // Two judges read the four day bar as a countdown the letter lit, because it runs from the
+  // letter's own tick to the 7th. The 7th is not a terminus the letter set. It is ERCOT's own
+  // pre-existing date, so it is drawn as a FIXED POST standing full height through the whole
+  // instrument, there before the letter and after it, and the bar butts against it rather than
+  // ending it. The letter's tick (Aug 3) is a heavy notch the bar STARTS from. Now the drawing
+  // says what the dek says, that the notice ran up to a date already on ERCOT's calendar.
+  var AUG7 = 6;
+  for(var d=0; d<=18; d++){
+    if(d===AUG7) continue;
+    var x=ox+d*RATE;
+    var heavy=(d===2||d===18);
+    var w = heavy?7:4, h = heavy?chH+16:chH;
+    var ny = heavy?chTop-8:chTop;
+    ctx.fillStyle='#07050B'; ctx.fillRect(x-w/2, ny, w, h);
+    ctx.fillStyle='rgba(239,233,218,'+(heavy?0.62:0.34)+')'; ctx.fillRect(x-w/2, ny, 1.6, h);
+    ctx.fillStyle='rgba(0,0,0,0.8)'; ctx.fillRect(x+w/2-1.4, ny, 1.4, h);
+    if(heavy){
+      ctx.fillStyle='rgba(0,0,0,0.42)'; ctx.fillRect(x+w/2, ny+h, 9, 7);
+      ctx.fillStyle='rgba(185,141,70,0.85)'; ctx.fillRect(x-w/2, ny-4, w, 3);
+    }
+  }
+  // ERCOT's own date, the fixed post. Full height, brass, casting a shadow both ways, so it reads
+  // as a fixture the notice period ran up against and not as the end of a fuse.
+  (function(){
+    var x=ox+AUG7*RATE, w=8, top=648, bot=1010;
+    ctx.fillStyle='rgba(0,0,0,0.5)'; ctx.fillRect(x+w/2, top+8, 10, bot-top);
+    var g=ctx.createLinearGradient(x-w/2,0,x+w/2,0);
+    g.addColorStop(0,'#D8A758'); g.addColorStop(0.5,'#B98D46'); g.addColorStop(1,'#6B5028');
+    ctx.fillStyle=g; ctx.fillRect(x-w/2, top, w, bot-top);
+    ctx.fillStyle='rgba(255,240,210,0.55)'; ctx.fillRect(x-w/2, top, 1.8, bot-top);
+    ctx.fillStyle='rgba(0,0,0,0.5)'; ctx.fillRect(x+w/2-1.8, top, 1.8, bot-top);
+    // a cap and a foot, so it reads as a set post rather than a bar of the timeline
+    ctx.fillStyle='#B98D46'; ctx.fillRect(x-w/2-4, top, w+8, 5); ctx.fillRect(x-w/2-4, bot-5, w+8, 5);
+  })();
+
+  // THE FOUR DAY SPAN, a polished strip set PROUD of the plate. It is a closed span, both ends
+  // known, so it is a solid object with a cast shadow.
+  (function(){
+    var x=origin, w=4*RATE, y=y0-64, h=16;
+    ctx.fillStyle='rgba(0,0,0,0.62)'; ctx.fillRect(x+7, y+h, w, 11);
+    ctx.fillStyle='rgba(0,0,0,0.40)'; ctx.fillRect(x+w, y+6, 8, h);
+    var g=ctx.createLinearGradient(x,y,x,y+h);
+    g.addColorStop(0,'#FFFBF0'); g.addColorStop(0.42,'#EFE9DA'); g.addColorStop(1,'#9A9384');
+    ctx.fillStyle=g; ctx.fillRect(x,y,w,h);
+    ctx.fillStyle='rgba(255,255,255,0.75)'; ctx.fillRect(x,y,w,2);
+    ctx.fillStyle='rgba(0,0,0,0.45)'; ctx.fillRect(x,y+h-2,w,2);
+    // the two ends squared off against their own notches, so the span is bounded by the dates
+    ctx.fillStyle='rgba(0,0,0,0.5)'; ctx.fillRect(x-2,y,2,h); ctx.fillRect(x+w,y,2,h);
+  })();
+
+  // THE SIXTEEN DAY SPAN. It shipped as a 9px inlaid rule against the four day span's 16px raised
+  // strip, so the frame put a slab beside a hairline and asked a reader to compare them AS
+  // DURATIONS. Two measures on one rule have to be the same kind of object or the drawing is
+  // comparing materials instead of lengths. Same construction, same height, same cast shadow.
+  // What differs is length and value, which is exactly what the dossier asked for: dial at full
+  // value for the short one, brass at just over half for the long one.
+  (function(){
+    var x=origin, w=16*RATE, y=y0+48, h=16;
+    ctx.fillStyle='rgba(0,0,0,0.62)'; ctx.fillRect(x+7, y+h, w, 11);
+    var g=ctx.createLinearGradient(x,y,x,y+h);
+    g.addColorStop(0,'#D8A758'); g.addColorStop(0.42,'#B98D46'); g.addColorStop(1,'#6B5028');
+    ctx.fillStyle=g; ctx.fillRect(x,y,w,h);
+    ctx.fillStyle='rgba(255,240,210,0.55)'; ctx.fillRect(x,y,w,2);
+    ctx.fillStyle='rgba(0,0,0,0.5)'; ctx.fillRect(x,y+h-2,w,2);
+    ctx.fillStyle='rgba(0,0,0,0.5)'; ctx.fillRect(x-2,y,2,h);
+    // ...and its far end is left OPEN rather than capped, because the span is still running. The
+    // strip fades out over its last day instead of stopping at a squared edge.
+    var open=ctx.createLinearGradient(x+w-RATE,0,x+w,0);
+    open.addColorStop(0,'rgba(25,21,33,0)'); open.addColorStop(1,'rgba(25,21,33,0.92)');
+    ctx.fillStyle=open; ctx.fillRect(x+w-RATE, y-1, RATE+2, h+2);
+  })();
+
+  // the rake itself, brightest at the upper left where the light enters, so the plate has a
+  // direction and the base of the frame falls into the room
+  var rake=ctx.createLinearGradient(0,PT,W,PB);
+  rake.addColorStop(0,'rgba(255,246,224,0.15)'); rake.addColorStop(0.45,'rgba(255,246,224,0.02)');
+  rake.addColorStop(1,'rgba(0,0,0,0.26)');
+  ctx.fillStyle=rake; ctx.fillRect(0,PT,W,PB-PT);
+  // the channel's own spill down the plate, so the base of the frame is lit BY the instrument
+  var spill=ctx.createLinearGradient(0,y0,0,H);
+  spill.addColorStop(0,'rgba(185,141,70,0.16)'); spill.addColorStop(0.34,'rgba(185,141,70,0.05)');
+  spill.addColorStop(1,'rgba(185,141,70,0.012)');
+  ctx.fillStyle=spill; ctx.fillRect(0,y0,W,H-y0);
+  // THE FLOOR the plate stands on. The base measured 14 percent of this frame's own craft density
+  // and it is the band a reader finishes on. The plate throws a shadow down onto it and the
+  // channel's brass spills back across it, and the stone under both is tooled.
+  var plCast=ctx.createLinearGradient(0,PB-8,0,PB+120);
+  plCast.addColorStop(0,'rgba(0,0,0,0.82)'); plCast.addColorStop(0.30,'rgba(0,0,0,0.44)');
+  plCast.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=plCast; ctx.fillRect(0,PB-8,W,128);
+  var flPool=ctx.createRadialGradient(400, PB+150, 80, 400, PB+150, 820);
+  flPool.addColorStop(0,'rgba(226,214,188,0.135)'); flPool.addColorStop(0.44,'rgba(226,214,188,0.055)');
+  flPool.addColorStop(1,'rgba(226,214,188,0)');
+  ctx.fillStyle=flPool; ctx.fillRect(0,PB,W,H-PB);
+  (function(){ var Rf=TX.rng(20260819+909);
+    for(var s=0;s<240;s++){
+      var sy=PB+16+Rf()*(H-PB-16), sx=Rf()*W, sw=50+Rf()*300, a=0.010+Rf()*0.034;
+      ctx.strokeStyle=Rf()<0.5?'rgba(226,214,188,'+a.toFixed(3)+')':'rgba(0,0,0,'+(a*1.7).toFixed(3)+')';
+      ctx.lineWidth=0.6+Rf()*1.5;
+      ctx.beginPath(); ctx.moveTo(sx,sy); ctx.lineTo(sx+sw,sy+(Rf()-0.5)*4); ctx.stroke();
+    } })();
+
+  // grain over everything, under 4 percent, seeded
+  (function(){
+    var R = TX.rng(20260819);
+    var g = ctx.getImageData(0,0,1,1); // touch to ensure context ok
+    for (var i=0;i<5200;i++){
+      var x=R()*W, y=R()*H, a=R()*0.035;
+      ctx.fillStyle='rgba('+(R()<0.5?'255,255,255':'0,0,0')+','+a.toFixed(3)+')';
+      ctx.fillRect(x,y,1.3,1.3);
+    }
+  })();
+
+  (window.__fontsReady||document.fonts.ready).then(function(){ resolve(); });
+});
+</script>
+</body>
+</html>

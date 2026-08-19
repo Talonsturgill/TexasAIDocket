@@ -11,13 +11,19 @@ Brazoria County Commissioners Court opened and closed a public hearing on the cr
 - Public access: Public meeting
 - Take part: https://brazoriacountytx.legistar.com/MainBody.aspx
 
-- Last checked: 2026-08-14
+- Last checked: 2026-08-19
 
 ## Dates
 
 - 2026-02-10 · filed: Orders setting hearing dates on the four abatement applications introduced
 - 2026-03-10 · hearing: Public hearing on creation of Brazoria County Reinvestment Zone No. 26-01 opened and closed
 - 2026-03-10 · ordered: Court denied creation of the reinvestment zone, and the four abatement items were left with no action
+
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-19 · Checked and unchanged. Nothing about data centers, abatements or reinvestment zones has come before the court since July 15th, so the denial stands.
 
 ## Evidence
 

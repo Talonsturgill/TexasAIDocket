@@ -11,12 +11,18 @@ The El Paso City Council voted on July 20th, 2026 to adopt a Data Center Policy 
 - Public access: Public meeting
 - Take part: https://webapi.legistar.com/v1/elpasotexas/Matters/15758
 
-- Last checked: 2026-08-14
+- Last checked: 2026-08-19
 
 ## Dates
 
 - 2026-06-22 · filed: Matter 26-0778 introduced
 - 2026-07-20 · ordered: City Council Work Session approved the resolution adopting the framework
+
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-19 · Checked and unchanged. The city's own action record still carries the July 20th motion approving the resolution and still marks it passed.
 
 ## Evidence
 
