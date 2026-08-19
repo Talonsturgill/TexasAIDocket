@@ -623,7 +623,21 @@ figcaption { font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
   .newest li { grid-template-columns:1fr; gap:.1rem; }
 }
 .rtwrap { overflow-x:auto; overflow-y:auto; max-height:32rem; margin:.5rem 0 0;
-  border:var(--hair) solid var(--rule); border-radius:3px; }
+  border:var(--hair) solid var(--rule); border-radius:3px;
+  background-color:var(--night);
+  background-image:
+    linear-gradient(to right, var(--night), transparent),
+    linear-gradient(to left, var(--night), transparent),
+    linear-gradient(to right, color-mix(in srgb, var(--dust) 38%, transparent), transparent),
+    linear-gradient(to left, color-mix(in srgb, var(--dust) 38%, transparent), transparent);
+  background-position:left center, right center, left center, right center;
+  background-repeat:no-repeat;
+  background-size:34px 100%, 34px 100%, 14px 100%, 14px 100%;
+  background-attachment:local, local, scroll, scroll; }
+.rthint { display:none; }
+@media (max-width:46rem) {
+  .rthint { display:block; }
+}
 .rtable { border-collapse:collapse; width:100%; min-width:44rem;
   table-layout:fixed; font-size:var(--s-1); }
 .rtable col.cf { width:19%; }

@@ -1685,8 +1685,37 @@ figcaption {{ font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
 /* THE WHOLE ROSTER. 149 rows is the actual record and it is the thing nobody else publishes
    as a table, so it ships in full rather than as a top ten. It scrolls inside its own box so a
    wide table never makes the PAGE scroll sideways. */
+/* THE HIDDEN HALF ANNOUNCES ITSELF. At 390px the table is 704px wide inside a 356px box, so
+   exactly half of it, the operator and the date, was off screen with nothing at the right edge
+   saying so: the last column simply stopped mid word and read as the end of the table. These
+   are scroll shadows, not a static fade, so they are honest about direction. Two layers scroll
+   WITH the content and two stay PUT, which means each shadow appears only while there is more
+   in that direction and vanishes at the end of the travel. No script, and nothing to keep in
+   sync with the scroll position.
+
+   THE SHADOW IS LIGHT, because the ground is not. The first version used the standard recipe
+   straight out of the article it comes from, which casts a dark shadow, and on a page whose
+   background is rgb(8, 6, 15) that painted nothing at all: the markup was right, the mechanism
+   worked, and the edge looked exactly as bare as before. On a dark ground the thing that reads
+   as "there is more this way" is a light edge. */
 .rtwrap {{ overflow-x:auto; overflow-y:auto; max-height:32rem; margin:.5rem 0 0;
-  border:var(--hair) solid var(--rule); border-radius:3px; }}
+  border:var(--hair) solid var(--rule); border-radius:3px;
+  background-color:var(--night);
+  background-image:
+    linear-gradient(to right, var(--night), transparent),
+    linear-gradient(to left, var(--night), transparent),
+    linear-gradient(to right, color-mix(in srgb, var(--dust) 38%, transparent), transparent),
+    linear-gradient(to left, color-mix(in srgb, var(--dust) 38%, transparent), transparent);
+  background-position:left center, right center, left center, right center;
+  background-repeat:no-repeat;
+  background-size:34px 100%, 34px 100%, 14px 100%, 14px 100%;
+  background-attachment:local, local, scroll, scroll; }}
+/* And the shadow is a hint, not an instruction, so the words are there too on the widths where
+   the table actually overflows. */
+.rthint {{ display:none; }}
+@media (max-width:46rem) {{
+  .rthint {{ display:block; }}
+}}
 /* Fixed layout, so one unusually long filer name cannot take the width from every other
    column. Without it "ALIGNED DATA CENTERS (ABERNATHY) PROPCO, LLC" set the owner column and
    squeezed the occupant into a three line wrap on every row. */
@@ -2480,6 +2509,14 @@ def self_test() -> int:
           ".qbars { position:relative;" in sheet)
     check("...and the column contributes no box of its own to get mis-sized",
           ".qb { display:contents; }" in sheet)
+
+    # THE HIDDEN HALF OF THE ROSTER HAS TO ANNOUNCE ITSELF. Half the table is off screen at
+    # phone width, and the shadows are what say so. `local` on two of the four layers is the
+    # whole mechanism: without it they are a static fade that lies at the end of the travel.
+    check("the roster's overflow is shadowed, not silent",
+          "background-attachment:local, local, scroll, scroll;" in sheet)
+    check("...and the words appear at the widths where it actually overflows",
+          ".rthint { display:none; }" in sheet and ".rthint { display:block; }" in sheet)
     check("...and each label is pinned to the height of its own bar",
           ".qbv { position:absolute; bottom:var(--h);" in sheet)
 
