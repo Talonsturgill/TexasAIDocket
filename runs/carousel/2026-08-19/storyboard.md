@@ -287,7 +287,7 @@ art:
   motion: >
     Straight down the table, row to row, held by the hairlines.
 type:
-  hook: "Three figures, three sources."
+  hd: "Three figures, two documents."
   dek: >
     Each of these is quoted as its own document words it. None of them may be multiplied by
     another.
@@ -341,7 +341,7 @@ art:
   motion: >
     Left column top to bottom, then right column top to bottom, then back to the hairline.
 type:
-  hook: "One office. One day. Two wordings."
+  hook: "One office. The same day. Two wordings."
   dek: >
     The signed letter words it more narrowly than the press release does. Both are on the record
     and they are not interchangeable.
@@ -468,52 +468,51 @@ risks:
 ```yaml
 slide: 8
 job: >
-  Close on the one thing a reader can still watch, which is tomorrow's open meeting, and say
-  exactly what ERCOT committed to and nothing beyond it.
-claims: [c3, c4]
+  Close on everything a reader can still watch or file into, each item saying exactly what its own
+  source verifies and nothing beyond it.
+claims: [c3, c4, c19, c20, c21]
 numerals:
-  - computed_by: "out/2026-08-19/compute.py, spans.days_until_open_meeting"
+  - value_from: c21
 composition:
   structure: >
-    One cell lit from behind in a mostly empty field, the callback to slide 1's void inverted. The
-    last tick of the day rule sits beneath it at the deck's same constant rate, labelled one day
-    out, so the closing frame is measured on the same scale as the opening argument.
+    One cell lit from behind in a mostly empty field, the callback to slide 1's void inverted, with
+    the light it throws falling down onto the dated list beneath. The cell and the list are one
+    composition rather than two stacked, and the shaft is what joins them.
   bands: >
-    Top third is unlit field, deliberately, because the frame has to breathe after slide 8. Middle
-    third holds the lit cell. The cell's glow spills down across the bottom third and grades out
-    into the stone, and the day tick sits inside that falloff, so the base of the closing frame is
-    modeled light rather than a footer band.
+    Top third carries the headline. Middle third holds the lit cell and the top of its shaft. The
+    shaft widens as it falls and washes the first rows of the list, so the bottom third is modeled
+    light rather than a footer band.
   focal: >
     The lit cell, because it is the only source of light in the frame and it is the same cell the
     deck opened by cutting a hole in.
 art:
-  technique: "a single cell lit from behind in a Marfa field, with TXPOST bloom on that one element as a finish"
+  technique: "a single cell lit from behind, throwing a widening shaft down onto a dated list"
   why_this_technique: >
     The callback to slide 1, inverted. That cell was a hole a light died in. This is the same cell
     with the light behind it, which is the register's payoff and the reason this deck never needed
-    to draw a dial. Bloom is a finish here rather than a rescue, applied to one element on a frame
-    whose value structure is already resolved.
+    to draw a dial. The shaft exists because the third scoring pass found the payoff image and the
+    payoff content sitting in the same frame without meeting.
   palette: >
-    tower ground, the cell in dial lit from behind, the day tick in brass, everything else unlit.
+    tower ground, the cell in dial lit from behind, the list ruled in brass, everything else unlit.
   value_structure: >
-    Resolves to mid dark after the floor at slide 8. The lit cell is the only light and it is the
+    Resolves to mid dark after the floor at slide 7. The lit cell is the only light and it is the
     deck's last word, so the value rises once at the very end rather than fading out.
   motion: >
-    Down from the empty top band to the lit cell, then to the tick beneath it.
+    Down from the headline to the lit cell, then down the shaft into the list.
 type:
-  hook: "The commission meets in 1 day."
-  dek: >
-    ERCOT said it would file for a good cause exception ahead of the August 20th open meeting, and
-    said it would update the notice once that filing is made.
-  labels: ["AUGUST 20TH, 2026", "1 DAY OUT", "PLANNING GUIDE SECTIONS 5 AND 9"]
+  hd: "What is still open to you."
+  rows: >
+    Four, each one fact from one source. August 20th and the good cause exception filing. August
+    21st, a second open meeting on the commission's own calendar. September 4th, a public comment
+    deadline, said plainly to have no docket named against it. Project 58482, the proposed rule on
+    Large Load Demand Management Service, which took a comment on August 18th.
 acceptance:
   - "the copy says ERCOT committed to file, and never that it has filed or has not filed"
-  - "nothing on the slide asserts any outcome of the August 20th meeting"
-  - "the meeting date is attributed to ERCOT's own notice, since the commission's calendar is a separate source"
-  - "the day tick uses the same 46 pixels per day rate as slide 2, measured"
-  - "the closing card carries the site URL footer, since this deck has no county for a coordinate footer"
-  - "the counter reads 09 / 09, and the Lone Star brand mark sits in the masthead as on every slide"
+  - "nothing on the slide asserts any outcome of either open meeting"
+  - "the September 4th deadline and the Project 58482 filing sit on SEPARATE rows, because c20 names no docket and c21 names no deadline, and nothing fetched links them"
+  - "the counter reads 08 / 08, and the Lone Star brand mark sits in the masthead as on every slide"
+  - "no date column string overruns its own column, measured on the ink rather than the element box"
 risks:
   - "a closing slide about a future meeting invites a prediction, and the copy discipline is the only thing stopping one"
-  - "bloom applied too hard turns the payoff into a glow effect and loses the cell's edges"
+  - "four rows under one headline reads as a list of equivalent things, and only the third row's own sentence says the deadline has no docket attached"
 ```

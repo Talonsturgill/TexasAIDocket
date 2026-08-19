@@ -34,18 +34,16 @@
   .hd { position:absolute; top:150px; left:80px; right:80px; z-index:70;
         font-family:'Fraunces',serif; font-weight:800; font-size:104px; line-height:.94;
         letter-spacing:-.02em; color:#EFE9DA; font-variation-settings:'opsz' 104; }
-  .rows { position:absolute; left:80px; right:80px; bottom:180px; z-index:70; }
+  .rows { position:absolute; left:80px; right:80px; top:736px; z-index:70; }
   .rows .rule { height:2px; background:#B98D46; }
-  .rows .t { font-family:'Manrope',sans-serif; font-size:29px; line-height:1.42; color:#EFE9DA;
-             padding:22px 0 0; }
   .rows .cites { font-family:'JetBrains Mono',monospace; font-size:24px; color:#9c9382;
                  padding-top:18px; letter-spacing:.03em; }
-  .open .r { display:flex; gap:26px; align-items:baseline; padding:20px 0;
+  .open .r { display:flex; gap:24px; align-items:baseline; padding:16px 0;
              border-bottom:1px solid rgba(185,141,70,.35); }
   .open .r:last-child { border-bottom:0; }
-  .open .d { font-family:'JetBrains Mono',monospace; font-size:27px; color:#EFE9DA;
-             white-space:nowrap; font-variant-numeric:tabular-nums; }
-  .open .w { font-family:'Manrope',sans-serif; font-size:27px; line-height:1.38;
+  .open .d { font-family:'JetBrains Mono',monospace; font-size:26px; color:#EFE9DA;
+             white-space:nowrap; font-variant-numeric:tabular-nums; width:312px; flex:none; }
+  .open .w { font-family:'Manrope',sans-serif; font-size:26px; line-height:1.38;
              color:#D9CDB4; }
 
 </style>
@@ -63,8 +61,10 @@
       <div class="r"><span class="d">August 21st, 2026</span>
         <span class="w">A second open meeting, on the commission's own calendar.</span></div>
       <div class="r"><span class="d">September 4th, 2026</span>
-        <span class="w">Public comment deadline. Project 58482 took a comment on August
-          18th.</span></div>
+        <span class="w">Public comment deadline. The calendar names no docket against it.</span></div>
+      <div class="r"><span class="d">Project 58482</span>
+        <span class="w">The proposed rule on Large Load Demand Management Service. It took a
+          comment on August 18th.</span></div>
     </div>
     <div class="cites" data-decorative>c3, c4, c19, c20, c21</div>
   </div>
@@ -96,23 +96,30 @@ window.renderReady = new Promise(function(resolve){
   }
 
   stoneGround('#161520', '#0C0B11');
-  // one cell lit from behind, the callback to slide 1's void, inverted
-  var cx=540, cy=560, w=150, h=150;
+  // one cell lit from behind, the callback to slide 1's void, inverted.
+  // ROWS_TOP is passed in from the layout below so the light lands ON the list rather than
+  // stopping short of it. The frame was two compositions stacked with a gap between them.
+  var cx=540, cy=520, w=150, h=150;
+  var ROWS_TOP=736;
   var glow=ctx.createRadialGradient(cx,cy,10, cx,cy,320);
   glow.addColorStop(0,'rgba(239,233,218,0.55)'); glow.addColorStop(0.5,'rgba(239,233,218,0.12)');
   glow.addColorStop(1,'rgba(239,233,218,0)');
   ctx.fillStyle=glow; ctx.fillRect(cx-320,cy-320,640,640);
-  // the lit cell face
+  // the shaft the lit cell throws down onto the list, widening as it falls, so the payoff image
+  // and the payoff content are one object. No day tick: its label went with the rewrite and a
+  // mark with no label is an orphan a reader has to invent a meaning for.
+  var top=cy+h/2, bot=ROWS_TOP+150, halfTop=w/2, halfBot=w/2+250;
+  var shaft=ctx.createLinearGradient(0,top,0,bot);
+  shaft.addColorStop(0,'rgba(239,233,218,0.20)'); shaft.addColorStop(0.55,'rgba(239,233,218,0.07)');
+  shaft.addColorStop(1,'rgba(239,233,218,0)');
+  ctx.fillStyle=shaft; ctx.beginPath();
+  ctx.moveTo(cx-halfTop,top); ctx.lineTo(cx+halfTop,top);
+  ctx.lineTo(cx+halfBot,bot); ctx.lineTo(cx-halfBot,bot); ctx.closePath(); ctx.fill();
+  // the lit cell face, drawn after the shaft so the source stays the brightest thing on the frame
   var cellg=ctx.createLinearGradient(cx-w/2,cy-h/2,cx+w/2,cy+h/2);
   cellg.addColorStop(0,'#F4EFE2'); cellg.addColorStop(1,'#D9CDB4');
   ctx.fillStyle=cellg; ctx.fillRect(cx-w/2,cy-h/2,w,h);
   ctx.strokeStyle='rgba(239,233,218,0.5)'; ctx.lineWidth=2; ctx.strokeRect(cx-w/2,cy-h/2,w,h);
-  // the day tick beneath, same 46px/day rate, glow spilling into the base
-  ctx.strokeStyle='#B98D46'; ctx.lineWidth=2;
-  ctx.beginPath(); ctx.moveTo(cx-23,cy+140); ctx.lineTo(cx+23,cy+140); ctx.stroke();
-  var spill=ctx.createRadialGradient(cx,cy+120,40, cx,cy+120,620);
-  spill.addColorStop(0,'rgba(239,233,218,0.07)'); spill.addColorStop(1,'rgba(239,233,218,0)');
-  ctx.fillStyle=spill; ctx.fillRect(0,0,W,H);
 
   // grain over everything, under 4 percent, seeded
   (function(){

@@ -35,13 +35,13 @@
           background:#16151C; padding:22px 24px;
           font-family:'Fraunces',serif; font-weight:700; font-size:56px; line-height:1.02;
           letter-spacing:-.015em; color:#EFE9DA; font-variation-settings:'opsz' 56; }
-  .bands { position:absolute; top:0; bottom:0; left:80px; right:80px; display:flex; }
-  .bands .band .w { max-width:200px; margin:0 auto; }
-  .band { flex:1; position:relative; }
-  .band .w { position:absolute; left:0; right:0; top:560px; height:190px; display:flex; align-items:center; justify-content:center; text-align:center; padding:14px 10px; hyphens:none; overflow-wrap:normal;
-             background:#16151C; padding:18px 8px;
-             font-family:'Fraunces',serif; font-weight:800; font-size:40px; color:#EFE9DA;
-             letter-spacing:-.01em; line-height:1.06; }
+  .rails { position:absolute; inset:0; z-index:70; }
+  .rails .w { position:absolute; width:640px;
+              height:80px;
+              transform:rotate(-90deg); transform-origin:center center;
+              display:flex; align-items:center; justify-content:center; white-space:nowrap;
+              font-family:'Fraunces',serif; font-weight:800; font-size:54px; color:#EFE9DA;
+              letter-spacing:.01em; line-height:1; }
   .q { position:absolute; left:80px; right:80px; bottom:104px; z-index:70;
        background:#16151C; padding:22px 24px; }
   .q .rule { height:2px; background:#B98D46; }
@@ -55,11 +55,11 @@
   <canvas id="art" width="2160" height="2700"></canvas>
 
   <div class="lead">The sector said it will comply.</div>
-  <div class="bands">
-    <div class="band"><div class="w">GRID</div></div>
-    <div class="band"><div class="w">WATER</div></div>
-    <div class="band"><div class="w">NEIGHBOR<br>HOODS</div></div>
-    <div class="band"><div class="w">PAY THEIR OWN WAY</div></div>
+  <div class="rails">
+    <div class="w" style="left:-185px; top:620px">GRID</div>
+    <div class="w" style="left:85px; top:620px">WATER</div>
+    <div class="w" style="left:355px; top:620px">NEIGHBORHOODS</div>
+    <div class="w" style="left:625px; top:620px">PAY THEIR OWN WAY</div>
   </div>
   <div class="q">
     <div class="rule"></div>
@@ -87,24 +87,35 @@ window.renderReady = new Promise(function(resolve){
   var W=1080, H=1350;
   function lerp(a,b,t){return a+(b-a)*t;}
 
-  // four equal terrazzo inlay bands, full height, each a graded stone
+  // Four equal terrazzo inlay bands run DOWN the frame, full bleed, seen straight on. Each word
+  // is set ALONG its band, so the band's 1350px length is what bounds it rather than its 270px
+  // width, and no word needs a size of its own to fit.
+  var BW=270, N=4;
+  var MID=660, LEN=640;
   var cols=['#D9CDB4','#8E4B3A','#4E6B62','#B98D46'];
-  var bw=W/4;
-  for(var i=0;i<4;i++){
-    var g=ctx.createLinearGradient(0,0,0,H);
-    g.addColorStop(0, cols[i]); g.addColorStop(1, shade(cols[i],-0.32));
-    ctx.fillStyle=g; ctx.fillRect(i*bw,0,bw,H);
-    // terrazzo fleck
+  for(var i=0;i<N;i++){
+    var bx=i*BW;
+    var g=ctx.createLinearGradient(bx,0,bx+BW,H);
+    g.addColorStop(0, cols[i]); g.addColorStop(1, shade(cols[i],-0.34));
+    ctx.fillStyle=g; ctx.fillRect(bx,0,BW,H);
+    // terrazzo chips, which are ground stone rather than pixels: round and of varied size
     var R=TX.rng(20260819+i*97);
-    for(var f=0;f<420;f++){ var x=i*bw+R()*bw, y=R()*H;
-      ctx.fillStyle='rgba('+(R()<0.5?'255,255,255':'0,0,0')+','+(R()*0.10).toFixed(3)+')';
-      ctx.fillRect(x,y,2.2,2.2); }
+    for(var f=0;f<520;f++){
+      var cx=bx+R()*BW, cy=R()*H, rad=1.1+R()*3.4;
+      ctx.beginPath(); ctx.arc(cx,cy,rad,0,6.283);
+      ctx.fillStyle='rgba('+(R()<0.5?'255,255,255':'0,0,0')+','+(R()*0.13).toFixed(3)+')';
+      ctx.fill();
+    }
+    // the setting bed between bands, a dark seam rather than a drawn line
+    if(i) { ctx.fillStyle='rgba(12,10,16,0.5)'; ctx.fillRect(bx-2,0,4,H); }
+    // THE KNOCKOUT the word sits in, centred on THIS band's centre and on the same MID and LEN
+    // the type takes. One statement of the geometry, consumed by both layers.
+    ctx.fillStyle='rgba(22,21,28,0.90)';
+    ctx.fillRect(bx+BW/2-46, MID-LEN/2-14, 92, LEN+28);
   }
   // solid tower bars behind the top and bottom masthead furniture, so the wordmark, site and
-  // counter read even where a light inlay band sits under them. The type plates for the lead, the
-  // band words and the quote are solid CSS knockouts, so the canvas only owns the furniture strips.
-  ctx.fillStyle='#16151C'; ctx.fillRect(0,0,W,102);
-  ctx.fillStyle='#16151C'; ctx.fillRect(0,H-92,W,92);
+  // counter read even where a light inlay band sits under them
+  ctx.fillStyle='#16151C'; ctx.fillRect(0,0,W,102); ctx.fillRect(0,H-92,W,92);
   function shade(hex,amt){
     var n=parseInt(hex.slice(1),16), r=(n>>16)&255,g=(n>>8)&255,b=n&255;
     r=Math.max(0,Math.min(255,r+amt*255)); g=Math.max(0,Math.min(255,g+amt*255));

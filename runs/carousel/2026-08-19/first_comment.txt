@@ -1,9 +1,14 @@
 Sources, all primary and fetched August 19th, 2026.
-c1 ERCOT Market Notice M-A080326-01, letter received August 3rd, 2026. https://www.ercot.com/services/comm/mkt_notices/M-A080326-01
-c2 ERCOT will not notify providers of Batch Zero classification by August 7th, 2026, same notice. https://www.ercot.com/services/comm/mkt_notices/M-A080326-01
-c3 ERCOT will file a good cause exception request ahead of the PUCT's August 20th, 2026 open meeting, same notice. https://www.ercot.com/services/comm/mkt_notices/M-A080326-01
-c11 Press release wording, before any data center project moves forward. https://gov.texas.gov/news/post/governor-abbott-directs-comprehensive-data-center-audit
-c12 Signed letter wording, before any additional data centers are approved to move forward. https://gov.texas.gov/uploads/files/press/Thomas_Gleeson_Pablo_Vegas_Data_Centers_Directive_Letter_to_PUCT_ERCOT_August_2026_.pdf
-c16 Data Center Coalition will comply, Office of the Governor, August 18th, 2026. https://gov.texas.gov/news/post/governor-abbott-announces-data-center-coalition-commits-to-comply-with-his-data-center-standards
-c17 One data center ended operations before construction, unnamed in the release, same source. https://gov.texas.gov/news/post/governor-abbott-announces-data-center-coalition-commits-to-comply-with-his-data-center-standards
-Day counts computed in out/2026-08-19/compute.py from the source dates above.
+ERCOT Market Notice M-A080326-01, Update Regarding Batch Zero Timelines and Processes, August 3rd, 2026. c1 c2 c3 c4 c5
+https://www.ercot.com/services/comm/mkt_notices/M-A080326-01
+The Governor's signed directive letter to the PUCT and ERCOT, August 3rd, 2026. c6 c8 c12
+https://gov.texas.gov/uploads/files/press/Thomas_Gleeson_Pablo_Vegas_Data_Centers_Directive_Letter_to_PUCT_ERCOT_August_2026_.pdf
+Office of the Governor press release, Governor Abbott Directs Comprehensive Data Center Audit, August 3rd, 2026. c9 c11
+https://gov.texas.gov/news/post/governor-abbott-directs-comprehensive-data-center-audit
+Office of the Governor press release, Data Center Coalition Commits To Comply, August 18th, 2026. c16 c17 c18
+https://gov.texas.gov/news/post/governor-abbott-announces-data-center-coalition-commits-to-comply-with-his-data-center-standards
+The Public Utility Commission's own calendar feed, August 19th, 2026. c19 c20
+https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
+PUCT Interchange, the filing list for Project 58482, August 18th, 2026. c21
+https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
+Day counts computed in compute.py from the source dates above.

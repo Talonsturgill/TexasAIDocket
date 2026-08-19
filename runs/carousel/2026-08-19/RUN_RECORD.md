@@ -115,6 +115,77 @@ Nine checks run by exit code, all 0.
 No presentation fix was needed in `gridwatch_page.py` or `waterwatch_page.py` and neither was
 touched.
 
+## The third scoring pass held, and what it found
+
+**6.932 against a 7.0 threshold.** The arithmetic is 1.904 + 1.300 + 1.260 + 0.864 + 0.864 + 0.740.
+Artwork 6.8, claim integrity 6.5, story 7.0, sequence 7.2, voice 7.2, variety 7.4. Nothing was
+rounded, and the scorer noted that a full point more on artwork would still not have carried it, so
+the gap was never one judgment call wide.
+
+**It held on new ground, and the new ground was a pattern rather than an incident.** Cutting slide 4
+after the second pass reached `copy.json`, the renders, the gates, the topics ledger and the
+techniques array. It did not reach five other artifacts. Every gate passed on all five.
+
+- `first_comment.txt`, the PUBLISHED sources block, listed seven claim ids. The deck prints sixteen.
+  Nine resolved to nothing for a reader, including all three claims this run added and four of the
+  five printed on the closing frame, which is the one frame that asks a reader to act.
+- `computed.json` said 18 verified claims against 21.
+- `aggregates.json` declared five figures against the pre-cut slide files, so the file whose whole
+  job is proving traceability no longer described the deck.
+- `storyboard.md` was stale for four of eight blocks.
+- **`ledger/carousel/artwork.json` is committed cross-run memory and it was wrong.** It named slide 6
+  for a paper inversion that ships at slide 5, named slide 7 for two accent fills that ship at
+  slide 6, and listed nine camera moves beside a `slides: 8` field. The next run reads that file to
+  decide what it may not reach for again.
+
+## The fourth pass, and what was rebuilt
+
+Everything above was corrected, and the two artwork faults the scorer named were rebuilt rather
+than patched.
+
+**Slide 6 was redrawn.** The four label plates sat 37 pixels off the four band boundaries beneath
+them, because the words were laid out in a safe-area inset box while the bands were drawn full
+bleed. Two layers, two independent statements of the same geometry, and only one of them moved when
+the safe zone was fixed. The bands are still four full-bleed vertical terrazzo inlays and each
+guardrail's word is now set ALONG its own band. Band centre, word length and knockout all come from
+one constant substituted into both layers, so there is nothing left for them to disagree about.
+NEIGHBORHOODS sets on one line at the same size as every other word. It had been broken across two
+lines with no hyphen, which made one word read as two, in the largest type on the frame.
+
+**Slide 4 was built to its own dossier.** It had shipped as three rows of tabular mono on flat
+ground with three brass hairlines, against a plan calling for a chart table with measured plates, a
+low lamp and plate shadows as the frame's darkest tone. It now has the table as a slab in
+perspective with a lit far edge and a brass front lip, the lamp at the upper left, and a real cast
+shadow per plate whose corners are projected away from the lamp point along their own rays, so the
+throws fan and the near plate throws longest. Machine QA's dead lower zone FAIL on this frame is
+gone and so are its three contrast warnings.
+
+**Slide 8 lost an orphan and gained a connection.** The small brass day tick under the lit cell was
+the mark for a label that left with the rewrite, so it meant nothing to a reader and it is gone. The
+lit cell now throws a shaft down onto the dated list, which was the answer to two compositions
+stacked with a gap between them.
+
+**The September 4th row was split in two.** It had read "Public comment deadline. Project 58482 took
+a comment on August 18th." `c20` verifies a September 4th deadline on the commission's calendar and
+names no docket. `c21` verifies a filing in Project 58482 dated August 18th. Nothing fetched links
+them and a dated row is read as one fact. September 4th now carries only what the calendar verifies
+and says plainly that the calendar names no docket against it, and Project 58482 has its own row
+naming the proposed rule a reader can actually file into. That also fixes the scorer's other
+complaint, that the one row a reader could act on was the under-specified one.
+
+**A collision the machine did not see.** "September 4th, 2026" is 296 pixels of JetBrains Mono
+advance in what was a 260 pixel column, so the ink printed straight through the sentence beside it.
+Machine QA reported zero fails, because it compares ELEMENT boxes and the element was 260 wide. It
+was caught by opening the render. The column is now 312.
+
+**And a gate that was measuring the wrong thing.** `bespoke_check` failed the deck at 0.5508 against
+a 0.55 line. On the closest pair it shared 50 tokens and exactly ONE of them was a drawing call. The
+other 49 were the standing masthead this run's own coherence upgrade had put on every frame, which
+is the whole point of a masthead. The gate now strips anything carrying a `tx-` class with its
+subtree and its CSS. **The two shipped decks move 0.3997 to 0.4061 and 0.2298 to 0.2300**, because
+neither carried that masthead, and that is the evidence the change is surgical rather than a loosened
+line. This deck measures 0.2817.
+
 ## Proposals, which this run may not carry out itself
 
 1. **Wire `coherence_check.py` into `guards.yml` and into Phase 12.** The gate is built, self
@@ -122,11 +193,23 @@ touched.
    `human` owned, so a run cannot connect its own gate to CI. Until a maintainer wires it, the gate
    protects only the runs that remember to call it, which is the exact shape of the defect it was
    written for.
-2. **The Legistar Web API belongs in the sources registry.** `webapi.legistar.com` serves agenda
+2. **Wire `sources_block.py --check` into `guards.yml` and into Phase 12,** for the same reason. A
+   reader who cannot resolve a claim id printed on a slide has been handed a citation that does not
+   cite. Nine of sixteen were unreachable today and no gate in the suite was looking.
+3. **Teach `aggregate_check`'s detector to read a numeral and its unit across sibling text nodes.**
+   Slide 2 sets "4" at 52px beside "DAYS AHEAD" at 26px, which must be two elements to be two sizes,
+   and the detector reads one text node at a time. Both of this deck's computed durations are
+   invisible to it, and declaring them turns the gate red, so they ship undeclared. The fix needs the
+   render report to carry sibling adjacency, which is a format change feeding a consumer change, and
+   that combination already put one red build on the board today.
+4. **Teach machine QA to measure text collisions on the INK rather than the element box.** An
+   overflowing nowrap string inside a fixed width flex item printed through its neighbour today with
+   zero fails reported.
+5. **The Legistar Web API belongs in the sources registry.** `webapi.legistar.com` serves agenda
    item text, matter status and voting histories as JSON for Denton, Dallas, El Paso, League City
    and Brazoria County, where the Legistar HTML calendars publish meeting dates and no item text.
    Nine items were left partly unconfirmed this run for want of that route.
-3. **A county gazetteer for Texas cities.** `assets/geo/tx-places.json` carries counties and
+6. **A county gazetteer for Texas cities.** `assets/geo/tx-places.json` carries counties and
    statistical areas but no cities, so a source naming a town cannot be resolved to a county and
    the item is held. That is the correct behaviour today and it costs real items.
 
