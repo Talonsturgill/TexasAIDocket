@@ -59,7 +59,7 @@
   <div class="axlab" style="left:812px; top:548px;">August 19th</div>
   <div class="barlab" style="left:372px; top:612px;"><span class="n">4</span>
     <span class="u">DAYS AHEAD</span></div>
-  <div class="barlab" style="left:166px; top:756px;"><span class="n">16</span>
+  <div class="barlab" style="left:166px; top:790px;"><span class="n">16</span>
     <span class="u">DAYS SINCE THE LETTER</span></div>
   <div class="dek2">ERCOT gave the market 4 days of notice. The letter has now stood 16 days.</div>
   <div class="quote">
@@ -118,12 +118,15 @@ window.renderReady = new Promise(function(resolve){
   plate.addColorStop(1,'rgba(25,21,33,0)');
   ctx.fillStyle=plate; ctx.fillRect(0,PT,W,PB-PT);
   ctx.save(); ctx.beginPath(); ctx.rect(0,PT,W,PB-PT); ctx.clip();
-  for(var b=0;b<220;b++){
-    var by=PT+R2()*(PB-PT), a=0.015+R2()*0.05;
-    ctx.strokeStyle = R2()<0.45 ? 'rgba(217,205,180,'+a.toFixed(3)+')'
+  // Tooling marks, which are SHORT. Drawn edge to edge they were 220 full-width streaks and the
+  // whole plate read as one horizontal smear with no direction in it.
+  for(var b=0;b<340;b++){
+    var by=PT+R2()*(PB-PT), bxs=R2()*W, bw=40+R2()*230, a=0.018+R2()*0.055;
+    var lit = 1-(by-PT)/(PB-PT);
+    ctx.strokeStyle = R2()<0.45 ? 'rgba(226,214,188,'+(a*(0.4+lit)).toFixed(3)+')'
                                 : 'rgba(0,0,0,'+(a*1.5).toFixed(3)+')';
-    ctx.lineWidth=0.6+R2()*1.6;
-    ctx.beginPath(); ctx.moveTo(-20,by); ctx.lineTo(W+20,by+(R2()-0.5)*5); ctx.stroke();
+    ctx.lineWidth=0.6+R2()*1.8;
+    ctx.beginPath(); ctx.moveTo(bxs,by); ctx.lineTo(bxs+bw,by+(R2()-0.5)*4); ctx.stroke();
   }
   ctx.restore();
 
@@ -170,16 +173,26 @@ window.renderReady = new Promise(function(resolve){
     ctx.fillStyle='rgba(0,0,0,0.5)'; ctx.fillRect(x-2,y,2,h); ctx.fillRect(x+w,y,2,h);
   })();
 
-  // THE SIXTEEN DAY SPAN, INLAID rather than raised. It is still running, so it is set flush into
-  // the plate and its far end stops at the notch for the run date rather than at a squared cap.
+  // THE SIXTEEN DAY SPAN. It shipped as a 9px inlaid rule against the four day span's 16px raised
+  // strip, so the frame put a slab beside a hairline and asked a reader to compare them AS
+  // DURATIONS. Two measures on one rule have to be the same kind of object or the drawing is
+  // comparing materials instead of lengths. Same construction, same height, same cast shadow.
+  // What differs is length and value, which is exactly what the dossier asked for: dial at full
+  // value for the short one, brass at just over half for the long one.
   (function(){
-    var x=origin, w=16*RATE, y=y0+20, h=9;
-    ctx.fillStyle='rgba(0,0,0,0.66)'; ctx.fillRect(x,y-3,w,3);
-    var g=ctx.createLinearGradient(x,y,x+w,y+h);
-    g.addColorStop(0,'#D8A758'); g.addColorStop(0.45,'#B98D46'); g.addColorStop(1,'#7C5D2E');
+    var x=origin, w=16*RATE, y=y0+48, h=16;
+    ctx.fillStyle='rgba(0,0,0,0.62)'; ctx.fillRect(x+7, y+h, w, 11);
+    var g=ctx.createLinearGradient(x,y,x,y+h);
+    g.addColorStop(0,'#D8A758'); g.addColorStop(0.42,'#B98D46'); g.addColorStop(1,'#6B5028');
     ctx.fillStyle=g; ctx.fillRect(x,y,w,h);
-    ctx.fillStyle='rgba(255,240,210,0.42)'; ctx.fillRect(x,y,w,1.6);
-    ctx.fillStyle='rgba(0,0,0,0.5)'; ctx.fillRect(x,y+h-1.6,w,1.6);
+    ctx.fillStyle='rgba(255,240,210,0.55)'; ctx.fillRect(x,y,w,2);
+    ctx.fillStyle='rgba(0,0,0,0.5)'; ctx.fillRect(x,y+h-2,w,2);
+    ctx.fillStyle='rgba(0,0,0,0.5)'; ctx.fillRect(x-2,y,2,h);
+    // ...and its far end is left OPEN rather than capped, because the span is still running. The
+    // strip fades out over its last day instead of stopping at a squared edge.
+    var open=ctx.createLinearGradient(x+w-RATE,0,x+w,0);
+    open.addColorStop(0,'rgba(25,21,33,0)'); open.addColorStop(1,'rgba(25,21,33,0.92)');
+    ctx.fillStyle=open; ctx.fillRect(x+w-RATE, y-1, RATE+2, h+2);
   })();
 
   // the rake itself, brightest at the upper left where the light enters, so the plate has a

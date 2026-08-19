@@ -67,8 +67,8 @@ movement's works, line colour. `pecos #8E4B3A` masonry red, fill only, never typ
 
 ## The value arc
 
-Mid dark with one void, darker with one bright rule, flat grey, a lit table, **PAPER, the
-inversion**, the only multi colour frame, **the deck's floor**, one lit cell resolving.
+Mid dark with one void, darker with one bright rule, a raked bed of identical panels, a lit table,
+**PAPER, the inversion**, the only multi colour frame, **the deck's floor**, one lit cell resolving.
 
 Eight beats for eight frames. The ninth beat, dark with a brass line only, belonged to the old
 slide 4 named at the top of this file, the frame cut after the second scoring pass.
@@ -229,8 +229,18 @@ art:
     tower ground, cells outlined in brass hairline at one weight, legend swatches ruled in cordova
     and left unfilled.
   value_structure: >
-    Flat throughout, and it is the only flat frame in the deck. Nothing is lit because nothing was
-    resolved, which makes the flatness the argument rather than a shortfall.
+    Every panel is one identical material at one identical value, because nothing was assigned.
+    The panels do not differ. The LIGHT does, because there is one key in the room and it rakes
+    across the whole bed from the high left, so an edge facing the lamp catches it and an edge
+    facing away sits in its own shadow. No panel owns any part of that gradient and no panel is
+    lit differently from its neighbour, so the partition still carries no assignment.
+
+    This line was rewritten during the scoring rounds and the reason is on the record. It asked
+    for a completely flat frame, and its own risks list already named what that produces, which is
+    a frame that reads as an unfinished render. The deck shipped exactly that failure once already
+    on slide 7, where two judges independently read an under-drawn frame as one that had not
+    finished rendering. A flat frame is not the only honest way to draw an unassigned partition.
+    Identical panels under one light is honest about the same thing and is worth looking at.
   motion: >
     None by design. The eye wanders the field, finds no differentiation, and settles on the legend.
 type:
@@ -240,7 +250,7 @@ type:
     class anything landed in.
   labels: ["UPDATE REGARDING BATCH ZERO TIMELINES AND PROCESSES", "no class stated"]
 acceptance:
-  - "no cell differs in value or fill from any other cell in the field"
+  - "no cell differs in fill, material or treatment from any other cell in the field. One key falls across the whole bed and every panel is drawn by the same rule, so a value difference between two panels is a fact about where the lamp is and never about what either panel was assigned"
   - "the legend carries EXACTLY ONE row, reading no class stated, which is what c2 supports and nothing more"
   - "no legend label names a classification category, because no source publishes one. An earlier draft of this file asked for at least two empty swatches so the emptiness would read as a pattern, and the frame shipped three NAMED categories instead. A key with one entry that says nothing can be keyed is the honest drawing"
   - "the field is clipped square at all four edges and reads as a rectangle rather than as a region"

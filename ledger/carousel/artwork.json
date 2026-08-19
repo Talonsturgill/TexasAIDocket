@@ -78,12 +78,12 @@
       "register": "night inside a public building, no horizon on any frame, lit only from behind glass and off brass, with one bright paper sheet at slide 5",
       "techniques": [
         "an August month sheet embossed into limestone with one cell cut clean through, lit by a raking key that finds no floor",
-        "a constant-rate day rule with two bars sharing one origin, above and below",
-        "a true space-filling Voronoi partition, every cell identical and unassigned, inside a hard neatline",
+        "a constant-rate day rule with two spans of one construction sharing one origin, above and below, one capped and one left open",
+        "a true space-filling Voronoi bed of identical unassigned panels under ONE raking key, per-edge lit and shadowed, inside a hard neatline",
         "a mid century oil chart table under a low lamp, tabular mono, three quoted figures from two documents",
-        "a flat neatlined survey sheet on the paper register, two equal quoted columns",
-        "four equal terrazzo inlay bands seen straight down",
-        "a redaction field of struck bars with the one entry nobody inked left hollow and ruled",
+        "a flat neatlined survey sheet on the paper register, two equal quoted columns over a stack of sheets",
+        "four terrazzo inlay courses run ACROSS the frame under one key, each course a different stone at one night value, the seams cut as grooves",
+        "an engraved survey title block on stone, every field filled from the record and one ruled empty",
         "a lit cell over a dated list of what is still open, the opening void inverted"
       ],
       "palette": {
@@ -104,11 +104,12 @@
         "no cartography at all, the first deck here with none"
       ],
       "bespoke_median_similarity": 0.2687,
-      "camera": "one tilted sheet, then a flat rule, then straight down on a field, then a lit table, then a flat sheet, then straight down on a floor, then a block on stone, then one lit cell",
+      "camera": "one tilted sheet, then a flat rule, then straight down on a bed, then a lit table, then a flat sheet, then straight on at four courses, then a block on stone, then one lit cell",
       "slides": 8,
       "cut": "Slide 4, whose water and whose power, was cut after scoring. Its headline promised power and the frame delivered only water, and it sat before the deck's densest frame. The freed frame went to the close, which had no way for a reader to act.",
       "renumbered_after_the_cut": "Recorded at the third scoring pass. The register, three palette notes and the camera line were all written against the nine slide plan and survived the cut of slide 4 unchanged, so this entry named the wrong frame for the paper inversion, for both accent fills and in every camera move after the fourth. Nothing checked it, because the variety ledgers are written at ship and no gate reads them back against the deck.",
-      "bespoke_measurement_note": "0.5314 was this deck's first measurement and it was wrong about the deck, not about the gate's arithmetic. bespoke_check was still counting the standing masthead, which this run put on every frame: on the closest pair it shared 50 tokens and exactly one was a drawing call. The gate now strips anything carrying a tx- class. RE-MEASURED under the corrected gate, the two earlier decks move only 0.3997 to 0.4061 and 0.2298 to 0.2300, because neither carried that masthead. Their own entries keep the figures they shipped with, which is what those runs were judged on."
+      "bespoke_measurement_note": "0.5314 was this deck's first measurement and it was wrong about the deck, not about the gate's arithmetic. bespoke_check was still counting the standing masthead, which this run put on every frame: on the closest pair it shared 50 tokens and exactly one was a drawing call. The gate now strips anything carrying a tx- class. RE-MEASURED under the corrected gate, the two earlier decks move only 0.3997 to 0.4061 and 0.2298 to 0.2300, because neither carried that masthead. Their own entries keep the figures they shipped with, which is what those runs were judged on.",
+      "rebuilt_at_the_ninth_pass": "Three techniques in this list named frames that were replaced during scoring and were caught by two judges reading the ledger against the renders. Slide 7 was recorded as a redaction field of struck bars, which is a drawing nobody made: two judges read the struck bars as an assertion that something had been struck out, which c17 does not support, and it was rebuilt as the survey title block its own dossier had asked for. Slide 3 was recorded as a flat field of identical cells and was rebuilt under one raking key, because a flat frame reads as an unfinished render and its own risks list said so. Slide 6 ran its courses DOWN, which forced four display words to 90 degrees under four near-black plates, and now runs them across. The ledger is the next run's only memory of what not to reuse, so a technique recorded here that never shipped blocks tomorrow from a drawing nobody made and leaves the drawing that ran unrecorded. This entry is now written against the renders rather than against the plan."
     }
   ]
 }

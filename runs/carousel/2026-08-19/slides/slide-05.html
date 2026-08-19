@@ -73,9 +73,9 @@
       <div class="src">Office of the Governor &middot; c12</div>
     </div>
   </div>
-  <div class="foot">Marked in red, where the letter narrows what the release says. The signed
-    letter halts approvals. The release halts all forward movement. Both are on the record and they
-    are not interchangeable.</div>
+  <div class="foot">The marked words are where the letter narrows what the release says. The
+    signed letter halts approvals. The release halts all forward movement. Both are on the record
+    and they are not interchangeable.</div>
   <div class="filing" data-decorative><span>tx-2026-0072</span><span>August 3rd, 2026</span></div>
 
 <div class="tx-frame" data-decorative>
@@ -128,22 +128,43 @@ window.renderReady = new Promise(function(resolve){
   // THE SECOND SHEET. This is the two documents frame and it drew one sheet, leaving its lower
   // forty percent empty ruled paper. The release lies under the letter, corner out, and its edge
   // and shadow are what give the base of the frame an object.
+  // Its top edge used to land at y 1080, which is where the annotation paragraph starts, so the
+  // sheet's hard edge and its cast shadow ran straight through three lines of type and read as a
+  // render artefact. The edge now sits at 800, in the band of blank paper the frame had nothing
+  // in, and the annotation is printed ON the under sheet rather than struck through by it.
   (function(){
     ctx.save();
-    ctx.translate(700, 1080); ctx.rotate(-0.055);
+    ctx.translate(660, 800); ctx.rotate(-0.055);
     // the letter's shadow falling across the sheet beneath it
-    var sh=ctx.createLinearGradient(0,-16,0,26);
-    sh.addColorStop(0,'rgba(35,32,43,0.30)'); sh.addColorStop(1,'rgba(35,32,43,0)');
-    ctx.fillStyle=sh; ctx.fillRect(-540,-16,1180,42);
-    // the under sheet itself, a shade cooler than the one above it
-    var us=ctx.createLinearGradient(-540,0,640,300);
-    us.addColorStop(0,'#EDE7D8'); us.addColorStop(1,'#DFD8C6');
-    ctx.fillStyle=us; ctx.fillRect(-540,0,1180,300);
-    ctx.strokeStyle='rgba(35,32,43,0.30)'; ctx.lineWidth=1.5;
-    ctx.beginPath(); ctx.moveTo(-540,0); ctx.lineTo(640,0); ctx.stroke();
+    var sh=ctx.createLinearGradient(0,-22,0,30);
+    sh.addColorStop(0,'rgba(35,32,43,0.34)'); sh.addColorStop(1,'rgba(35,32,43,0)');
+    ctx.fillStyle=sh; ctx.fillRect(-640,-22,1360,52);
+    // the under sheet itself, a shade cooler than the one above it, running off the base
+    var us=ctx.createLinearGradient(-640,0,720,620);
+    us.addColorStop(0,'#EEE8D9'); us.addColorStop(1,'#DCD5C2');
+    ctx.fillStyle=us; ctx.fillRect(-640,0,1360,620);
+    ctx.strokeStyle='rgba(35,32,43,0.34)'; ctx.lineWidth=1.5;
+    ctx.beginPath(); ctx.moveTo(-640,0); ctx.lineTo(720,0); ctx.stroke();
+    ctx.strokeStyle='rgba(255,255,255,0.55)'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(-640,1.6); ctx.lineTo(720,1.6); ctx.stroke();
     // its own ruled lines, running on out of frame
-    ctx.strokeStyle='rgba(35,32,43,0.07)'; ctx.lineWidth=1;
-    for(var i=1;i<9;i++){ ctx.beginPath(); ctx.moveTo(-500,i*30); ctx.lineTo(600,i*30); ctx.stroke(); }
+    ctx.strokeStyle='rgba(35,32,43,0.10)'; ctx.lineWidth=1;
+    for(var i=1;i<19;i++){ ctx.beginPath(); ctx.moveTo(-600,i*32); ctx.lineTo(700,i*32); ctx.stroke(); }
+    // A THIRD SHEET under the second, so the base of the frame is a stack of documents rather
+    // than one pale field. The bottom third measured 8 percent of this frame's own craft density
+    // with two sheets, which is a covered dead zone and not a filled one.
+    ctx.save(); ctx.translate(-360, 372); ctx.rotate(0.038);
+    var sh3=ctx.createLinearGradient(0,-18,0,24);
+    sh3.addColorStop(0,'rgba(35,32,43,0.30)'); sh3.addColorStop(1,'rgba(35,32,43,0)');
+    ctx.fillStyle=sh3; ctx.fillRect(-260,-18,1500,42);
+    var u3=ctx.createLinearGradient(-260,0,1240,300);
+    u3.addColorStop(0,'#E7E0CF'); u3.addColorStop(1,'#D4CCB8');
+    ctx.fillStyle=u3; ctx.fillRect(-260,0,1500,300);
+    ctx.strokeStyle='rgba(35,32,43,0.32)'; ctx.lineWidth=1.5;
+    ctx.beginPath(); ctx.moveTo(-260,0); ctx.lineTo(1240,0); ctx.stroke();
+    ctx.strokeStyle='rgba(35,32,43,0.09)'; ctx.lineWidth=1;
+    for(var k3=1;k3<9;k3++){ ctx.beginPath(); ctx.moveTo(-220,k3*30); ctx.lineTo(1200,k3*30); ctx.stroke(); }
+    ctx.restore();
     ctx.restore();
   })();
   ctx.strokeStyle='#23202B'; ctx.lineWidth=2; ctx.strokeRect(46,46,W-92,H-92);

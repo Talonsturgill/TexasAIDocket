@@ -34,9 +34,9 @@
   .hd { position:absolute; top:150px; left:80px; right:80px; }
   .hook { font-family:'Fraunces',serif; font-weight:800; font-size:132px; line-height:.92;
           letter-spacing:-.02em; color:#EFE9DA; font-variation-settings:'opsz' 132; }
-  .dek { position:absolute; left:80px; right:340px; bottom:132px;
-         background:#100F15; padding:20px 22px;
-         font-family:'Manrope',sans-serif; font-size:33px; line-height:1.42; color:#D9CDB4; }
+  .dek { position:absolute; left:80px; right:300px; bottom:140px; z-index:70;
+         font-family:'Manrope',sans-serif; font-size:33px; line-height:1.42; color:#E4DAC4;
+         text-shadow:0 2px 16px rgba(0,0,0,.9); }
 
 </style>
 </head>
@@ -44,8 +44,8 @@
   <canvas id="art" width="2160" height="2700"></canvas>
 
   <div class="hd"><div class="hook">August 7th<br>came and went.</div></div>
-  <div class="dek">ERCOT set itself a date to tell service providers how every large load was
-    classified. That date passed 12 days ago.</div>
+  <div class="dek">ERCOT said it would not tell service providers how any large load was
+    classified by that date. It passed 12 days ago.</div>
 
 <div class="tx-frame" data-decorative>
   <svg class="tx-star" viewBox="0 0 26 26" aria-hidden="true"><polygon points="13,1 16.1,9.4 25,9.6 17.9,15 20.5,23.6 13,18.4 5.5,23.6 8.1,15 1,9.6 9.9,9.4" fill="var(--frame-ink)"/></svg>
@@ -138,6 +138,19 @@ window.renderReady = new Promise(function(resolve){
   ctx.fillStyle=sh; ctx.beginPath();
   ctx.moveTo(0,H); ctx.lineTo(W,H); ctx.lineTo(W,H*0.82); ctx.lineTo(0,H*0.95); ctx.closePath();
   ctx.fill();
+
+  // The dek used to sit in an opaque #100F15 rectangle, which is a caption band ruled under the
+  // art and is the one thing this frame's own dossier says not to do. The scrim does the same job
+  // for legibility and puts no edge where the design has no edge, and the long raking shadow the
+  // sheet throws is what the dossier already asked the bottom third to carry.
+  var castS = ctx.createLinearGradient(0, 940, 300, 1350);
+  castS.addColorStop(0,'rgba(0,0,0,0)'); castS.addColorStop(0.45,'rgba(0,0,0,0.30)');
+  castS.addColorStop(1,'rgba(0,0,0,0.52)');
+  ctx.fillStyle=castS; ctx.fillRect(0, 940, W, H-940);
+  var dekS = ctx.createLinearGradient(0, 980, 0, 1350);
+  dekS.addColorStop(0,'rgba(9,8,12,0)'); dekS.addColorStop(0.42,'rgba(9,8,12,0.70)');
+  dekS.addColorStop(1,'rgba(9,8,12,0.90)');
+  ctx.fillStyle=dekS; ctx.fillRect(0, 980, W, H-980);
 
   // grain over everything, under 4 percent, seeded
   (function(){

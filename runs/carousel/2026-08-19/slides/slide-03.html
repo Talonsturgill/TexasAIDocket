@@ -39,11 +39,13 @@
           padding-top:12px; letter-spacing:.03em; }
   .hook { font-family:'Fraunces',serif; font-weight:800; font-size:92px; line-height:.96;
           letter-spacing:-.02em; color:#EFE9DA; margin-top:22px; font-variation-settings:'opsz' 92; }
-  .leg { position:absolute; right:80px; bottom:150px; text-align:right; }
-  .leg .row { display:flex; align-items:center; justify-content:flex-end; gap:16px; margin:14px 0; }
-  .leg .sw { width:54px; height:30px; border:1.5px solid #B98D46; }
-  .leg .lb { font-family:'JetBrains Mono',monospace; font-size:24px; color:#D9CDB4; }
-  .qn { position:absolute; left:80px; bottom:158px; max-width:520px;
+  /* THE KEY. It shipped at 24px in the corner outside the neatline, where it was the frame's
+     declared focal and could not be found at contact-sheet scale. It is now inside the field, at
+     display size, in the one part of the bed the lamp does not reach. */
+  .leg { position:absolute; left:604px; top:782px; z-index:70; }
+  .leg .lb { font-family:'JetBrains Mono',monospace; font-size:34px; color:#F6F1E4;
+             letter-spacing:.03em; padding-bottom:16px; }
+  .qn { position:absolute; left:80px; bottom:150px; max-width:600px;
         font-family:'Manrope',sans-serif; font-size:30px; line-height:1.42; color:#EFE9DA; }
 
 </style>
@@ -54,12 +56,11 @@
   <div class="hd">
     <div class="kick">Update Regarding Batch Zero Timelines and Processes</div>
     <div class="ksrc">ERCOT market notice M-A080326-01 &middot; c2</div>
-    <div class="hook">Nobody was<br>told the answer.</div>
+    <div class="hook">No provider was to<br>be told by the 7th.</div>
   </div>
-  <div class="qn">No service provider was told how any large load was classified.</div>
-  <div class="leg">
-    <div class="row"><span class="lb">no class stated</span><span class="sw"></span></div>
-  </div>
+  <div class="qn">No service provider was to be told how any large load was classified by
+    August 7th.</div>
+  <div class="leg"><div class="lb">no class stated</div></div>
 
 <div class="tx-frame" data-decorative>
   <svg class="tx-star" viewBox="0 0 26 26" aria-hidden="true"><polygon points="13,1 16.1,9.4 25,9.6 17.9,15 20.5,23.6 13,18.4 5.5,23.6 8.1,15 1,9.6 9.9,9.4" fill="var(--frame-ink)"/></svg>
@@ -91,7 +92,7 @@ window.renderReady = new Promise(function(resolve){
   // a TRUE space-filling Voronoi partition, every cell one identical value, no fill, inside a
   // hard neatline. A sorting drawn with no assignment is the claim. Seeds spread evenly across
   // the whole box, including the top band, so the field reads uniform rather than bottom-weighted.
-  var x0=80,y0=452,x1=1000,y1=1044;
+  var x0=80,y0=444,x1=1000,y1=1004;
   var R = TX.rng(20260819);
   // jittered grid of seeds: even coverage, no clustering, reaches all four edges. The box runs
   // down into the lower third so the field is not top-loaded.
@@ -107,9 +108,15 @@ window.renderReady = new Promise(function(resolve){
   ctx.beginPath(); ctx.rect(x0,y0,x1-x0,y1-y0); ctx.clip();
   // the setting bed the panels sit in, so the mullions read as material and not as gaps
   ctx.fillStyle='#0A0910'; ctx.fillRect(x0,y0,x1-x0,y1-y0);
-  // EVERY PANEL LIT TO THE SAME VALUE. That is the claim: a partition where nothing was assigned.
-  // Each is inset from its own cell so the mullion between any two is a real width, and each
-  // carries a soft glow from its own seed so the frame has depth instead of hairlines.
+  // EVERY PANEL AT ONE IDENTICAL VALUE, which is the claim: a partition where nothing was
+  // assigned. The panels do not differ. The LIGHT differs, because there is one key in the room
+  // and it falls where it falls.
+  //
+  // An earlier pass gave each panel its own radial gradient centred on its own seed. Every panel
+  // then carried the same little dome of light, and the frame's detail came out spread perfectly
+  // evenly across forty-five cells, which is texture rather than craft and is the fault the
+  // rubric names by that word. One key over the whole field is the fix, and it also happens to be
+  // what a bed of identical metal panels under one lamp actually looks like.
   function poly(cell, inset, cx, cy){
     ctx.beginPath();
     for(var k=0;k<cell.length;k++){
@@ -120,29 +127,79 @@ window.renderReady = new Promise(function(resolve){
     }
     ctx.closePath();
   }
+  function inset(cell, d, cx, cy){
+    var out=[];
+    for(var k=0;k<cell.length;k++){
+      var px=cell[k][0], py=cell[k][1];
+      var dx=px-cx, dy=py-cy, L=Math.sqrt(dx*dx+dy*dy)||1;
+      out.push([px-dx/L*d, py-dy/L*d]);
+    }
+    return out;
+  }
   for(var i=0;i<pts.length;i++){
     var cell = vor.cellPolygon(i);
     if(!cell) continue;
     var cx=pts[i][0], cy=pts[i][1];
-    // the panel face, brightest at its own centre and falling to its edge
-    var g=ctx.createRadialGradient(cx,cy,2,cx,cy,86);
-    g.addColorStop(0,'rgba(232,222,198,0.50)');
-    g.addColorStop(0.55,'rgba(206,194,168,0.26)');
-    g.addColorStop(1,'rgba(150,140,120,0.11)');
-    poly(cell, 5, cx, cy); ctx.fillStyle=g; ctx.fill();
-    // the mullion's lit inner edge, one hairline per panel
     poly(cell, 5, cx, cy);
-    ctx.strokeStyle='rgba(185,141,70,0.62)'; ctx.lineWidth=1.4; ctx.stroke();
-    poly(cell, 7.6, cx, cy);
-    ctx.strokeStyle='rgba(255,246,224,0.16)'; ctx.lineWidth=1; ctx.stroke();
+    ctx.fillStyle='rgba(214,202,176,0.26)'; ctx.fill();
+  }
+  // THE KEY. One source, high and left, raking across the whole bed. This is the frame's entire
+  // value range and no panel owns any part of it.
+  var kg = ctx.createLinearGradient(x0, y0, x1, y1);
+  kg.addColorStop(0,'rgba(255,247,228,0.42)');
+  kg.addColorStop(0.26,'rgba(255,247,228,0.16)');
+  kg.addColorStop(0.52,'rgba(0,0,0,0.24)');
+  kg.addColorStop(0.78,'rgba(0,0,0,0.68)');
+  kg.addColorStop(1,'rgba(0,0,0,0.90)');
+  ctx.fillStyle=kg; ctx.fillRect(x0,y0,x1-x0,y1-y0);
+  // ...and the same key struck edge by edge. An edge facing the lamp catches it and an edge
+  // facing away is in its own shadow, which is what makes forty-five identical panels read as
+  // raised metal rather than as a drawing of tiles. The RULE is one rule for every panel.
+  var lx=-0.7071, ly=-0.7071;
+  for(var i2=0;i2<pts.length;i2++){
+    var cell2 = vor.cellPolygon(i2);
+    if(!cell2) continue;
+    var c2x=pts[i2][0], c2y=pts[i2][1];
+    var ring = inset(cell2, 5, c2x, c2y);
+    for(var e=0;e<ring.length-1;e++){
+      var ax=ring[e][0], ay=ring[e][1], bx=ring[e+1][0], by=ring[e+1][1];
+      var ex=bx-ax, ey=by-ay, eL=Math.sqrt(ex*ex+ey*ey)||1;
+      var nx=ey/eL, ny=-ex/eL;                       // outward normal, cells wound consistently
+      if((nx*(c2x-ax)+ny*(c2y-ay))>0){ nx=-nx; ny=-ny; }
+      var d = nx*lx + ny*ly;                         // +1 faces the lamp, -1 faces away
+      var t2 = 1 - ((ax+ay)-(x0+y0))/((x1+y1)-(x0+y0));   // and the lamp falls off across the bed
+      if(d>0){
+        ctx.strokeStyle='rgba(255,248,230,'+(0.10+0.52*d*(0.30+0.70*t2)).toFixed(3)+')';
+        ctx.lineWidth=2.2;
+      } else {
+        ctx.strokeStyle='rgba(0,0,0,'+(0.16+0.50*(-d)).toFixed(3)+')';
+        ctx.lineWidth=2.6;
+      }
+      ctx.beginPath(); ctx.moveTo(ax,ay); ctx.lineTo(bx,by); ctx.stroke();
+    }
+    // the brass mullion between panels, one weight everywhere, so the partition itself is the
+    // one thing in the frame the light does not get to modulate
+    poly(cell2, 5, c2x, c2y);
+    ctx.strokeStyle='rgba(185,141,70,0.42)'; ctx.lineWidth=1.2; ctx.stroke();
   }
   // a uniform brass nucleus at every seed. Same mark on every cell, so none is assigned.
   ctx.fillStyle='rgba(185,141,70,0.55)';
   for(var s=0;s<pts.length;s++){ ctx.beginPath(); ctx.arc(pts[s][0],pts[s][1],2.6,0,Math.PI*2); ctx.fill(); }
-  // the whole field falls off toward its own edges, so the box is a lit object in a dark room
-  var vig=ctx.createRadialGradient((x0+x1)/2,(y0+y1)/2,180,(x0+x1)/2,(y0+y1)/2,620);
-  vig.addColorStop(0,'rgba(0,0,0,0)'); vig.addColorStop(1,'rgba(0,0,0,0.55)');
-  ctx.fillStyle=vig; ctx.fillRect(x0,y0,x1-x0,y1-y0);
+  // THE EMPTY KEY, struck INSIDE the field at display scale and in the one region the lamp does
+  // not reach, so the frame's declared focal is the brightest edge in its darkest quarter. It
+  // used to be a 54px swatch in the corner outside the neatline. A key promises to explain the
+  // field and this one supplies nothing, which is the claim, and it can only make that argument
+  // where the reader actually looks.
+  var KX=604, KY=856, KW=316, KH=112;
+  // a soft occlusion rather than a hard rectangle, which was a plate around the thing whose whole
+  // argument is that it is not a plate
+  var occ=ctx.createRadialGradient(KX+KW/2, KY+KH/2, 60, KX+KW/2, KY+KH/2, 330);
+  occ.addColorStop(0,'rgba(0,0,0,0.62)'); occ.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=occ; ctx.fillRect(KX-330, KY-330, KW+660, KH+660);
+  ctx.fillStyle='rgba(6,5,9,0.94)'; ctx.fillRect(KX, KY, KW, KH);
+  ctx.strokeStyle='#B98D46'; ctx.lineWidth=3; ctx.strokeRect(KX+1.5, KY+1.5, KW-3, KH-3);
+  ctx.strokeStyle='rgba(255,246,224,0.22)'; ctx.lineWidth=1;
+  ctx.strokeRect(KX+8.5, KY+8.5, KW-17, KH-17);
   ctx.restore();
   // the neatline, struck after the clip so it reads as the frame of the object
   ctx.strokeStyle='rgba(185,141,70,0.9)'; ctx.lineWidth=2.5;
@@ -151,6 +208,24 @@ window.renderReady = new Promise(function(resolve){
   ctx.strokeRect(x0-6,y0-6,x1-x0+12,y1-y0+12);
   // the neatline, clipped square, so it reads as a rectangle and never a map
   ctx.strokeStyle='#B98D46'; ctx.lineWidth=2; ctx.strokeRect(x0,y0,x1-x0,y1-y0);
+  // the bed is a slab lying on stone and it throws a shadow, so the band the reader finishes on
+  // carries the object's own weight rather than a flat ground under a caption
+  var cast=ctx.createLinearGradient(0,y1,0,y1+210);
+  cast.addColorStop(0,'rgba(0,0,0,0.72)'); cast.addColorStop(0.35,'rgba(0,0,0,0.34)');
+  cast.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=cast; ctx.fillRect(x0+24, y1, x1-x0, 210);
+  var bounce=ctx.createLinearGradient(0,y1+40,0,H);
+  bounce.addColorStop(0,'rgba(217,205,180,0.00)'); bounce.addColorStop(0.45,'rgba(217,205,180,0.055)');
+  bounce.addColorStop(1,'rgba(217,205,180,0.015)');
+  ctx.fillStyle=bounce; ctx.fillRect(0,y1+40,W,H-y1-40);
+  // the stone's own tooling under it, running down out of the frame
+  (function(){ var Rb=TX.rng(20260819+303);
+    for(var b=0;b<180;b++){
+      var byy=y1+30+Rb()*(H-y1-30), a=0.008+Rb()*0.030;
+      ctx.strokeStyle=Rb()<0.5?'rgba(217,205,180,'+a.toFixed(3)+')':'rgba(0,0,0,'+(a*1.7).toFixed(3)+')';
+      ctx.lineWidth=0.6+Rb()*1.4;
+      ctx.beginPath(); ctx.moveTo(0,byy); ctx.lineTo(W,byy+(Rb()-0.5)*5); ctx.stroke();
+    } })();
 
   // grain over everything, under 4 percent, seeded
   (function(){

@@ -31,40 +31,44 @@
     letter-spacing:.10em; text-transform:uppercase; color:var(--frame-dim); }
 
 
-  .lead { position:absolute; top:104px; left:80px; right:80px; z-index:70;
-          background:#16151C; padding:22px 24px;
+  .lead { position:absolute; top:126px; left:104px; right:104px; z-index:70;
           font-family:'Fraunces',serif; font-weight:700; font-size:56px; line-height:1.02;
-          letter-spacing:-.015em; color:#EFE9DA; font-variation-settings:'opsz' 56; }
-  .attrib { position:absolute; top:212px; left:80px; right:80px; z-index:70;
-            background:#16151C; padding:14px 24px 18px;
-            font-family:'Manrope',sans-serif; font-size:27px; line-height:1.36; color:#D9CDB4; }
+          letter-spacing:-.015em; color:#F6F1E4; font-variation-settings:'opsz' 56;
+          text-shadow:0 2px 18px rgba(0,0,0,.85); }
+  .attrib { position:absolute; top:326px; left:104px; right:104px; z-index:70;
+            font-family:'Manrope',sans-serif; font-size:27px; line-height:1.36; color:#D9CDB4;
+            text-shadow:0 2px 14px rgba(0,0,0,.85); }
   .rails { position:absolute; inset:0; z-index:70; }
-  .rails .w { position:absolute; width:640px;
-              height:80px;
-              transform:rotate(-90deg); transform-origin:center center;
-              display:flex; align-items:center; justify-content:center; white-space:nowrap;
-              font-family:'Fraunces',serif; font-weight:800; font-size:54px; color:#EFE9DA;
-              letter-spacing:.01em; line-height:1; }
-  .q { position:absolute; left:80px; right:80px; bottom:104px; z-index:70;
-       background:#16151C; padding:22px 24px; }
+  .rails .w { position:absolute; left:104px; right:104px;
+              height:148px;
+              display:flex; align-items:center; justify-content:flex-start; white-space:nowrap;
+              font-family:'Fraunces',serif; font-weight:800; font-size:66px;
+              letter-spacing:.005em; line-height:1; font-variation-settings:'opsz' 66; }
+  /* engraved, which is a dark cut below the stroke and the key catching its lower lip, over a
+     soft reserve so the worst point along the run clears the contrast line and not only the mean */
+  .rails .w.cream { color:#FFFAF0;
+                    text-shadow:0 0 20px rgba(6,5,9,.60), 0 0 8px rgba(6,5,9,.55),
+                                0 -1.5px 0 rgba(0,0,0,.55), 0 2px 0 rgba(255,250,236,.16); }
+  .q { position:absolute; left:104px; right:104px; bottom:122px; z-index:70; }
   .q .rule { height:2px; background:#B98D46; }
-  .q .t { font-family:'Manrope',sans-serif; font-size:29px; line-height:1.4; color:#EFE9DA;
-          padding:20px 0 0; }
-  .q .src { font-family:'JetBrains Mono',monospace; font-size:24px; color:#D9CDB4; padding-top:12px;}
+  .q .t { font-family:'Manrope',sans-serif; font-size:29px; line-height:1.4; color:#F6F1E4;
+          padding:20px 0 0; text-shadow:0 2px 14px rgba(0,0,0,.9); }
+  .q .src { font-family:'JetBrains Mono',monospace; font-size:24px; color:#D9CDB4; padding-top:12px;
+            text-shadow:0 2px 12px rgba(0,0,0,.9); }
 
 </style>
 </head>
 <body>
   <canvas id="art" width="2160" height="2700"></canvas>
 
-  <div class="lead">The sector said it will comply.</div>
-  <div class="attrib">The Governor's office said so on August 18th. It is a statement about his
-    own standards rather than a measured result.</div>
+  <div class="lead">The Governor's office said the sector's membership body will comply.</div>
+  <div class="attrib">Said on August 18th. It is a statement about his own standards rather
+    than a measured result.</div>
   <div class="rails">
-    <div class="w" style="left:-185px; top:620px">GRID</div>
-    <div class="w" style="left:85px; top:620px">WATER</div>
-    <div class="w" style="left:355px; top:620px">NEIGHBORHOODS</div>
-    <div class="w" style="left:625px; top:620px">PAY THEIR OWN WAY</div>
+    <div class="w cream" style="top:430px">GRID</div>
+    <div class="w cream" style="top:578px">WATER</div>
+    <div class="w cream" style="top:726px">NEIGHBORHOODS</div>
+    <div class="w cream" style="top:874px">PAY THEIR OWN WAY</div>
   </div>
   <div class="q">
     <div class="rule"></div>
@@ -92,40 +96,67 @@ window.renderReady = new Promise(function(resolve){
   var W=1080, H=1350;
   function lerp(a,b,t){return a+(b-a)*t;}
 
-  // Four equal terrazzo inlay bands run DOWN the frame, full bleed, seen straight on. Each word
-  // is set ALONG its band, so the band's 1350px length is what bounds it rather than its 270px
-  // width, and no word needs a size of its own to fit.
-  var BW=270, N=4;
-  var MID=660, LEN=640;
+  // FOUR TERRAZZO INLAY COURSES run ACROSS the frame, seen straight on, under ONE key from the
+  // high left. Each course is the same material treatment and the same aggregate density. What
+  // differs is the stone, because the four demands are four different things, and where the lamp
+  // falls, because there is one lamp.
+  var BT=430, BH=148, N=4;
+  var BB=BT+BH*N;
+  // The four stones, each dropped to the value it has at night. Cordova limestone and brass are
+  // light stones and they were carrying dark type, which collapsed to 2.8 at the dark end of the
+  // key where the lamp stops reaching. One ink on four courses needs four courses in one value
+  // band, and the palette is the courthouse AT NIGHT, so this is the honest tone for all of them.
   var cols=['#D9CDB4','#8E4B3A','#4E6B62','#B98D46'];
+  var dark=[-0.42,-0.07,-0.07,-0.34];
+  ctx.fillStyle='#0E0D12'; ctx.fillRect(0,0,W,H);
   for(var i=0;i<N;i++){
-    var bx=i*BW;
-    var g=ctx.createLinearGradient(bx,0,bx+BW,H);
-    g.addColorStop(0, cols[i]); g.addColorStop(1, shade(cols[i],-0.34));
-    ctx.fillStyle=g; ctx.fillRect(bx,0,BW,H);
-    // terrazzo chips, which are ground stone rather than pixels: round and of varied size
+    var by=BT+i*BH;
+    // the course's own stone, keyed from the left and falling toward the base of the run, so the
+    // reader enters every course at the same corner and the four read down in order
+    var g=ctx.createLinearGradient(0,by,W,by+BH);
+    g.addColorStop(0, shade(cols[i], dark[i]+0.07));
+    g.addColorStop(0.42, shade(cols[i], dark[i]));
+    g.addColorStop(1, shade(cols[i], dark[i]-0.13));
+    ctx.fillStyle=g; ctx.fillRect(0,by,W,BH);
+    // terrazzo chips, ground stone rather than pixels: round, of varied size, and denser in the
+    // lit half because that is the half you can see them in
     var R=TX.rng(20260819+i*97);
-    for(var f=0;f<520;f++){
-      var cx=bx+R()*BW, cy=R()*H, rad=1.1+R()*3.4;
+    for(var f=0;f<620;f++){
+      var cx=R()*W, cy=by+R()*BH, rad=1.1+R()*3.6;
+      var vis=1-(cx/W)*0.55;
       ctx.beginPath(); ctx.arc(cx,cy,rad,0,6.283);
-      ctx.fillStyle='rgba('+(R()<0.5?'255,255,255':'0,0,0')+','+(R()*0.13).toFixed(3)+')';
+      ctx.fillStyle='rgba('+(R()<0.5?'255,255,255':'0,0,0')+','+(R()*0.14*vis).toFixed(3)+')';
       ctx.fill();
     }
-    // the setting bed between bands, a dark seam rather than a drawn line
-    if(i) { ctx.fillStyle='rgba(12,10,16,0.5)'; ctx.fillRect(bx-2,0,4,H); }
-    // THE KNOCKOUT the word sits in, centred on THIS band's centre and on the same MID and LEN
-    // the type takes. One statement of the geometry, consumed by both layers.
-    ctx.fillStyle='rgba(22,21,28,0.90)';
-    ctx.fillRect(bx+BW/2-46, MID-LEN/2-14, 92, LEN+28);
+    // THE SEAM. The setting bed between two courses is a groove, so it has a wall the lamp misses
+    // and a lip it catches. Four seams, one operation, and they are the only hard lines here.
+    ctx.fillStyle='rgba(10,9,13,0.72)'; ctx.fillRect(0,by-3,W,5);
+    ctx.fillStyle='rgba(255,250,236,0.26)'; ctx.fillRect(0,by+2,W,1.6);
   }
-  // solid tower bars behind the top and bottom masthead furniture, so the wordmark, site and
-  // counter read even where a light inlay band sits under them
+  ctx.fillStyle='rgba(10,9,13,0.72)'; ctx.fillRect(0,BB-3,W,5);
+  // the whole run falls off toward the right, which is the one thing that tells a reader where
+  // the lamp is standing
+  var key=ctx.createLinearGradient(0,BT,W,BB);
+  key.addColorStop(0,'rgba(255,248,230,0.09)'); key.addColorStop(0.40,'rgba(255,248,230,0)');
+  key.addColorStop(1,'rgba(0,0,0,0.26)');
+  ctx.fillStyle=key; ctx.fillRect(0,BT,W,BB-BT);
+  // THE SCRIMS the copy sits on. Three hard black rectangles used to carry the three blocks of
+  // type, so the frame read as plates bolted to a colour chart. A scrim that falls off does the
+  // same job for legibility and puts no edge where the design has no edge.
+  var topS=ctx.createLinearGradient(0,0,0,BT);
+  topS.addColorStop(0,'rgba(10,9,13,0.97)'); topS.addColorStop(0.72,'rgba(10,9,13,0.92)');
+  topS.addColorStop(1,'rgba(10,9,13,0.55)');
+  ctx.fillStyle=topS; ctx.fillRect(0,0,W,BT);
+  var botS=ctx.createLinearGradient(0,H,0,BB-40);
+  botS.addColorStop(0,'rgba(10,9,13,0.98)'); botS.addColorStop(0.62,'rgba(10,9,13,0.94)');
+  botS.addColorStop(1,'rgba(10,9,13,0.30)');
+  ctx.fillStyle=botS; ctx.fillRect(0,BB-40,W,H-BB+40);
   ctx.fillStyle='#16151C'; ctx.fillRect(0,0,W,102); ctx.fillRect(0,H-92,W,92);
   function shade(hex,amt){
-    var n=parseInt(hex.slice(1),16), r=(n>>16)&255,g=(n>>8)&255,b=n&255;
-    r=Math.max(0,Math.min(255,r+amt*255)); g=Math.max(0,Math.min(255,g+amt*255));
+    var n=parseInt(hex.slice(1),16), r=(n>>16)&255,g2=(n>>8)&255,b=n&255;
+    r=Math.max(0,Math.min(255,r+amt*255)); g2=Math.max(0,Math.min(255,g2+amt*255));
     b=Math.max(0,Math.min(255,b+amt*255));
-    return 'rgb('+(r|0)+','+(g|0)+','+(b|0)+')';
+    return 'rgb('+(r|0)+','+(g2|0)+','+(b|0)+')';
   }
 
   // grain over everything, under 4 percent, seeded

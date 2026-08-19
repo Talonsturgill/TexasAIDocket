@@ -31,37 +31,47 @@
     letter-spacing:.10em; text-transform:uppercase; color:var(--frame-dim); }
 
 
-  .q { position:absolute; top:120px; left:80px; right:80px; }
-  .q .rule { height:2px; background:#B98D46; }
+  .q { position:absolute; top:104px; left:80px; right:80px; z-index:70; }
+  .q .kick { font-family:'JetBrains Mono',monospace; font-size:24px; letter-spacing:.05em;
+             text-transform:uppercase; color:#8C8474; padding-bottom:16px; }
+  .q .rule { height:2px; background:rgba(185,141,70,.55); }
   .q .t { font-family:'Fraunces',serif; font-weight:600; font-size:50px; line-height:1.14;
-          color:#EFE9DA; padding:24px 0; font-variation-settings:'opsz' 50; }
-  .q .src { font-family:'JetBrains Mono',monospace; font-size:24px; color:#D9CDB4; }
-  .block { position:absolute; left:150px; right:150px; bottom:300px; }
-  .block .r { display:flex; justify-content:space-between; align-items:baseline;
-              padding:20px 0; border-bottom:1px solid rgba(185,141,70,.4); }
-  .block .k { font-family:"JetBrains Mono",monospace; font-size:24px; color:#D9CDB4;
+          color:#B7AE9B; padding:24px 0; font-variation-settings:'opsz' 50; }
+  .q .src { font-family:'JetBrains Mono',monospace; font-size:24px; color:#8C8474; }
+  .block { position:absolute; z-index:70;
+           left:176px;
+           width:728px;
+           top:606px; }
+  .block .r { height:84px; display:flex; justify-content:space-between;
+              align-items:center; }
+  .block .k { font-family:"JetBrains Mono",monospace; font-size:24px; color:#C6B994;
               letter-spacing:.05em; }
-  .block .v { font-family:'Manrope',sans-serif; font-size:28px; color:#EFE9DA; }
-  .block .empty { font-family:"JetBrains Mono",monospace; font-size:24px; color:#F2ECDD;
-                  font-style:italic; }
+  .block .v { font-family:'Manrope',sans-serif; font-size:30px; color:#FFF8E6; }
+  .block .r.blank .k { color:#EFE9DA; }
+  .note { position:absolute; z-index:70; left:176px;
+          width:728px; top:966px;
+          text-align:right; font-family:"JetBrains Mono",monospace; font-size:24px;
+          font-style:italic; color:#D9CDB4; }
 
 </style>
 </head>
-<body data-contacts='[{"what":"the title block on stone","shadow":[[150,1015,780,26]],"ground":[[150,880,780,26]]}]'>
+<body data-contacts='[{"what":"the title block on stone","shadow":[[160,1048,760,24]],"ground":[[160,1152,760,24]]}]'>
   <canvas id="art" width="2160" height="2700"></canvas>
 
   <div class="q">
+    <div class="kick">The August 18th release says</div>
     <div class="rule"></div>
-    <div class="t">One data center that could not comply chose to end operations before even
-      beginning construction.</div>
+    <div class="t">&ldquo;One data center that could not comply chose to end operations before
+      even beginning construction.&rdquo;</div>
     <div class="src">Office of the Governor, August 18th &middot; c17</div>
   </div>
   <div class="block">
     <div class="r"><span class="k">DATE</span><span class="v">August 18th, 2026</span></div>
     <div class="r"><span class="k">PUBLISHER</span><span class="v">Office of the Governor</span></div>
     <div class="r"><span class="k">SOURCE</span><span class="v">gov.texas.gov &middot; c17</span></div>
-    <div class="r"><span class="k">NAME</span><span class="empty">not named in the source</span></div>
+    <div class="r blank"><span class="k">NAME</span></div>
   </div>
+  <div class="note">not named in the source</div>
 
 <div class="tx-frame" data-decorative>
   <svg class="tx-star" viewBox="0 0 26 26" aria-hidden="true"><polygon points="13,1 16.1,9.4 25,9.6 17.9,15 20.5,23.6 13,18.4 5.5,23.6 8.1,15 1,9.6 9.9,9.4" fill="var(--frame-ink)"/></svg>
@@ -89,78 +99,115 @@ window.renderReady = new Promise(function(resolve){
     ctx.fillStyle = grad; ctx.fillRect(0,0,W,H);
   }
 
-  stoneGround('#141319', '#09080C');
-  // THE SHEET the record is printed on, lit from the left. The bars used to sit on flat ground
-  // with a contact shadow the scorer measured at dL 8.0, which is "it reads, barely".
-  var SH_T=392, SH_B=1176, SH_L=104, SH_R=976;
-  ctx.fillStyle='rgba(0,0,0,0.62)';
-  ctx.fillRect(SH_L+13, SH_T+15, SH_R-SH_L, SH_B-SH_T);
-  var sheet=ctx.createLinearGradient(SH_L,SH_T,SH_R,SH_B);
-  sheet.addColorStop(0,'#1B1822'); sheet.addColorStop(0.5,'#151219'); sheet.addColorStop(1,'#0D0B11');
-  ctx.fillStyle=sheet; ctx.fillRect(SH_L,SH_T,SH_R-SH_L,SH_B-SH_T);
-  ctx.save(); ctx.beginPath(); ctx.rect(SH_L,SH_T,SH_R-SH_L,SH_B-SH_T); ctx.clip();
-  var Rl = TX.rng(20260819+707);
-  for(var l=0;l<130;l++){
-    var ly=SH_T+Rl()*(SH_B-SH_T), a=0.012+Rl()*0.04;
-    ctx.strokeStyle = Rl()<0.5 ? 'rgba(217,205,180,'+a.toFixed(3)+')'
-                               : 'rgba(0,0,0,'+(a*1.6).toFixed(3)+')';
-    ctx.lineWidth=0.6+Rl()*1.5;
-    ctx.beginPath(); ctx.moveTo(SH_L-10,ly); ctx.lineTo(SH_R+10,ly+(Rl()-0.5)*4); ctx.stroke();
-  }
-  var key=ctx.createLinearGradient(SH_L,SH_T,SH_R,SH_B);
-  key.addColorStop(0,'rgba(255,246,224,0.13)'); key.addColorStop(0.5,'rgba(255,246,224,0.02)');
-  key.addColorStop(1,'rgba(0,0,0,0.28)');
-  ctx.fillStyle=key; ctx.fillRect(SH_L,SH_T,SH_R-SH_L,SH_B-SH_T);
-  ctx.restore();
-  ctx.fillStyle='rgba(255,246,224,0.20)'; ctx.fillRect(SH_L,SH_T,SH_R-SH_L,2);
-  ctx.fillStyle='rgba(255,246,224,0.12)'; ctx.fillRect(SH_L,SH_T,2,SH_B-SH_T);
-  ctx.fillStyle='rgba(0,0,0,0.55)'; ctx.fillRect(SH_L,SH_B-2,SH_R-SH_L,2);
-  // the title block stands proud of the sheet, and this is the shadow the frame DECLARES in its
-  // data-contacts. It has to be drawn, or the probe reads two samples of the same paper.
-  var tb=ctx.createLinearGradient(0,1008,0,1052);
-  tb.addColorStop(0,'rgba(0,0,0,0.90)'); tb.addColorStop(0.45,'rgba(0,0,0,0.55)');
-  tb.addColorStop(1,'rgba(0,0,0,0)');
-  ctx.fillStyle=tb; ctx.fillRect(140,1008,800,44);
-  // ...and the ground the probe compares it against is lifted, so the pair separates
-  var gl=ctx.createLinearGradient(0,860,0,940);
-  gl.addColorStop(0,'rgba(226,214,188,0.05)'); gl.addColorStop(0.5,'rgba(226,214,188,0.11)');
-  gl.addColorStop(1,'rgba(226,214,188,0.05)');
-  ctx.fillStyle=gl; ctx.fillRect(140,860,800,80);
+  stoneGround('#0B0A0F', '#040406');
+  var PL_L=128, PL_R=952;
+  var PL_T=548, PL_B=1040;
+  var BL_L=176, BL_R=904;
+  var BL_T=606, RH=84, NROW=4;
+  var BL_B = BL_T + RH*NROW;
 
-  // A REDACTION FIELD, drawn rather than washed. Every other entry in the record is a struck bar
-  // of set type, ruled and filled. The entry with no name is the one bar nobody inked, so the
-  // absence is a shape in a column of shapes rather than a caption about a gap.
-  var Rr = TX.rng(20260819);
-  var lx=150, rx=930, ry=470, lh=27, gap=13;
-  var blank = 14;
-  for (var i=0; ry < 1120; i++){
-    if (i === blank){
-      // ONE box, spanning the whole entry. The row was being segmented like every other row and
-      // each segment drawn hollow, so the one thing nobody inked rendered as three empty fields.
-      // This slide's own dossier forbids that in as many words: two would imply a count the
-      // record does not carry, and the record carries one unnamed data center.
-      ctx.strokeStyle='rgba(217,205,180,0.55)'; ctx.lineWidth=1.5;
-      ctx.strokeRect(lx, ry, rx-lx, lh);
-      ry += lh + gap;
-      continue;
-    }
-    var segs = 2 + Math.floor(Rr()*3);
-    var x = lx;
-    for (var s2=0; s2<segs && x < rx-70; s2++){
-      var w = 70 + Rr()*((rx-x)/segs);
-      if (x + w > rx) w = rx - x;
-      var a = 0.14 + Rr()*0.22;
-      ctx.fillStyle='rgba(0,0,0,0.45)'; ctx.fillRect(x+3, ry+3, w, lh);
-      ctx.fillStyle='rgba(226,214,188,'+a.toFixed(3)+')';
-      ctx.fillRect(x, ry, w, lh);
-      ctx.fillStyle='rgba(255,248,228,'+(a*0.5).toFixed(3)+')'; ctx.fillRect(x, ry, w, 1.4);
-      x += w + 16;
-    }
-    ry += lh + gap;
+  // The plate bounces light onto the stone it rests on. Without this the whole lower frame is one
+  // flat black, the cast shadow has nothing to be darker THAN, and the contact probe reads two
+  // samples of the same nothing. A lit object in a dark room lights the room a little.
+  var spill = ctx.createRadialGradient((PL_L+PL_R)/2, (PL_T+PL_B)/2, 200,
+                                       (PL_L+PL_R)/2, (PL_T+PL_B)/2, 760);
+  spill.addColorStop(0,'rgba(226,214,188,0.115)');
+  spill.addColorStop(0.55,'rgba(226,214,188,0.045)');
+  spill.addColorStop(1,'rgba(226,214,188,0)');
+  ctx.fillStyle=spill; ctx.fillRect(0,0,W,H);
+  // and the floor DIRECTLY under the plate, which is where the cast shadow has to land. The first
+  // pass put the pool at the plate's own centre, so the ground beside the shadow measured L* 5.6
+  // and there was nothing left to subtract. A shadow needs a lit floor before it needs to be dark.
+  var floor = ctx.createRadialGradient(540, 1132, 60, 540, 1132, 560);
+  floor.addColorStop(0,'rgba(232,220,194,0.26)');
+  floor.addColorStop(0.45,'rgba(232,220,194,0.15)');
+  floor.addColorStop(1,'rgba(232,220,194,0)');
+  ctx.fillStyle=floor; ctx.fillRect(0, PL_T, W, H-PL_T);
+
+  // the cast shadow, thrown down and right because the key is high and left. It is drawn in two
+  // passes, a broad soft throw and a tight contact line, because a single soft blob under an
+  // object reads as a smudge and the tight line is what makes it sit on the surface.
+  var throwG = ctx.createLinearGradient(0, PL_B-10, 0, PL_B+92);
+  throwG.addColorStop(0,'rgba(0,0,0,0.80)');
+  throwG.addColorStop(0.35,'rgba(0,0,0,0.46)');
+  throwG.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=throwG; ctx.fillRect(PL_L+22, PL_B-10, PL_R-PL_L, 102);
+  var sideG = ctx.createLinearGradient(PL_R-8, 0, PL_R+70, 0);
+  sideG.addColorStop(0,'rgba(0,0,0,0.70)'); sideG.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=sideG; ctx.fillRect(PL_R-8, PL_T+26, 78, PL_B-PL_T);
+  ctx.fillStyle='rgba(0,0,0,0.88)'; ctx.fillRect(PL_L+10, PL_B, PL_R-PL_L-6, 7);
+
+  // THE PLATE. One key from the high left, so the face runs from lit at the top left corner to
+  // the frame's own floor at the lower right. This gradient is the frame's entire value range.
+  var face = ctx.createLinearGradient(PL_L, PL_T, PL_R, PL_B);
+  face.addColorStop(0,'#3D382E'); face.addColorStop(0.40,'#2A2630');
+  face.addColorStop(0.76,'#171420'); face.addColorStop(1,'#0E0C14');
+  ctx.fillStyle=face; ctx.fillRect(PL_L, PL_T, PL_R-PL_L, PL_B-PL_T);
+
+  ctx.save();
+  ctx.beginPath(); ctx.rect(PL_L, PL_T, PL_R-PL_L, PL_B-PL_T); ctx.clip();
+
+  // rolled metal, not paper. The tooling runs with the long axis and is close to invisible on its
+  // own. It exists so the plate's lit corner has something to catch and its dark corner does not.
+  var Rl = TX.rng(20260819+707);
+  for (var l=0; l<200; l++){
+    var ly = PL_T + Rl()*(PL_B-PL_T);
+    var lit = 1 - (ly-PL_T)/(PL_B-PL_T);
+    var a = (0.010 + Rl()*0.030) * (0.25 + lit);
+    ctx.strokeStyle = Rl()<0.55 ? 'rgba(232,222,198,'+a.toFixed(3)+')'
+                                : 'rgba(0,0,0,'+(a*1.7).toFixed(3)+')';
+    ctx.lineWidth = 0.6 + Rl()*1.4;
+    ctx.beginPath(); ctx.moveTo(PL_L-10, ly); ctx.lineTo(PL_R+10, ly+(Rl()-0.5)*3); ctx.stroke();
   }
-  var pool = ctx.createRadialGradient(540,900,140, 540,900,700);
-  pool.addColorStop(0,'rgba(217,205,180,0.13)'); pool.addColorStop(1,'rgba(217,205,180,0)');
-  ctx.fillStyle=pool; ctx.fillRect(0,0,W,H);
+
+  // the engraved row rules. Each is a cut, which is a dark groove with a lit lower lip, and not a
+  // drawn line. Five rules for four rows, so the block is closed top and bottom.
+  for (var r=0; r<=NROW; r++){
+    var ry = BL_T + r*RH;
+    var t = 1 - (ry-PL_T)/(PL_B-PL_T);
+    ctx.fillStyle='rgba(0,0,0,'+(0.42+0.22*t).toFixed(3)+')';
+    ctx.fillRect(BL_L, ry-1, BL_R-BL_L, 2.4);
+    ctx.fillStyle='rgba(255,246,224,'+(0.05+0.16*t).toFixed(3)+')';
+    ctx.fillRect(BL_L, ry+1.4, BL_R-BL_L, 1);
+  }
+
+  // THE EMPTY FIELD. Cut INTO the plate rather than drawn on it, so the one thing the record does
+  // not carry is the one place the frame's light does not reach. Its lips are the plate's bevel
+  // run backwards, shadow on the top and left, a catch of key on the bottom and right.
+  var NX = 486, NY = 858 + 16, NW = BL_R - NX, NH = RH - 32;
+  var well = ctx.createLinearGradient(NX, NY, NX+NW, NY+NH);
+  well.addColorStop(0,'#4A4335'); well.addColorStop(0.55,'#3B3529'); well.addColorStop(1,'#2C2720');
+  ctx.fillStyle=well; ctx.fillRect(NX, NY, NW, NH);
+  var lipT = ctx.createLinearGradient(0, NY, 0, NY+14);
+  lipT.addColorStop(0,'rgba(0,0,0,0.72)'); lipT.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=lipT; ctx.fillRect(NX, NY, NW, 14);
+  var lipL = ctx.createLinearGradient(NX, 0, NX+14, 0);
+  lipL.addColorStop(0,'rgba(0,0,0,0.62)'); lipL.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=lipL; ctx.fillRect(NX, NY, 14, NH);
+  ctx.fillStyle='rgba(255,246,224,0.34)'; ctx.fillRect(NX, NY+NH-1.6, NW, 1.6);
+  ctx.fillStyle='rgba(255,246,224,0.24)'; ctx.fillRect(NX+NW-1.6, NY, 1.6, NH);
+  ctx.strokeStyle='rgba(185,141,70,0.70)'; ctx.lineWidth=1.4;
+  ctx.strokeRect(NX+0.7, NY+0.7, NW-1.4, NH-1.4);
+  // and it is RULED, which is what a form does to a field it expects someone to write in. The
+  // rule is the whole difference between a field left blank and a field struck out.
+  ctx.strokeStyle='rgba(185,141,70,0.34)'; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(NX+16, NY+NH-12); ctx.lineTo(NX+NW-16, NY+NH-12); ctx.stroke();
+
+  ctx.restore();
+
+  // the plate's own bevel, struck outside the clip so the corners stay square
+  ctx.fillStyle='rgba(255,246,224,0.26)'; ctx.fillRect(PL_L, PL_T, PL_R-PL_L, 2.2);
+  ctx.fillStyle='rgba(255,246,224,0.16)'; ctx.fillRect(PL_L, PL_T, 2.2, PL_B-PL_T);
+  ctx.fillStyle='rgba(0,0,0,0.70)'; ctx.fillRect(PL_L, PL_B-2.2, PL_R-PL_L, 2.2);
+  ctx.fillStyle='rgba(0,0,0,0.60)'; ctx.fillRect(PL_R-2.2, PL_T, 2.2, PL_B-PL_T);
+  ctx.strokeStyle='rgba(185,141,70,0.55)'; ctx.lineWidth=1.4;
+  ctx.strokeRect(PL_L+9, PL_T+9, PL_R-PL_L-18, PL_B-PL_T-18);
+
+  // everything above the plate is stone the key never reaches. The quote is set on it in the
+  // frame's dimmest ink, so the block is what the eye finds first and the quote is what it reads.
+  var above = ctx.createLinearGradient(0, 0, 0, PL_T);
+  above.addColorStop(0,'rgba(0,0,0,0.42)'); above.addColorStop(1,'rgba(0,0,0,0.10)');
+  ctx.fillStyle=above; ctx.fillRect(0, 0, W, PL_T);
 
   // grain over everything, under 4 percent, seeded
   (function(){

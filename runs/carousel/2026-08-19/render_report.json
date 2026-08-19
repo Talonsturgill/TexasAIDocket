@@ -47,34 +47,34 @@
           "anc": []
         },
         {
-          "text": "ERCOT set itself a date to tell service providers how every large load was classified. That date passed 12 days ago.",
+          "text": "ERCOT said it would not tell service providers how any large load was classified by that date. It passed 12 days ago.",
           "x": 80,
-          "y": 1037,
-          "w": 660,
-          "h": 181,
+          "y": 1069,
+          "w": 700,
+          "h": 141,
           "font_px": 33,
           "weight": "400",
           "family": "Manrope",
-          "color": "rgb(217, 205, 180)",
+          "color": "rgb(228, 218, 196)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              102,
-              1057,
-              555,
+              80,
+              1069,
+              677,
               45
             ],
             [
-              102,
-              1104,
-              523,
+              80,
+              1116,
+              695,
               45
             ],
             [
-              102,
-              1151,
-              613,
+              80,
+              1163,
+              327,
               45
             ]
           ],
@@ -327,7 +327,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 732,
+      "render_ms": 849,
       "ok": true,
       "canvases": [
         {
@@ -340,8 +340,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 47.9,
-          "variance": 3160.7
+          "mean": 45.5,
+          "variance": 3199.3
         }
       ],
       "breather": false,
@@ -496,7 +496,7 @@
         {
           "text": "16",
           "x": 166,
-          "y": 756,
+          "y": 790,
           "w": 64,
           "h": 69,
           "font_px": 52,
@@ -508,7 +508,7 @@
           "lines": [
             [
               166,
-              756,
+              790,
               64,
               69
             ]
@@ -518,7 +518,7 @@
         {
           "text": "DAYS SINCE THE LETTER",
           "x": 240,
-          "y": 782,
+          "y": 816,
           "w": 341,
           "h": 35,
           "font_px": 26,
@@ -530,7 +530,7 @@
           "lines": [
             [
               240,
-              782,
+              816,
               341,
               35
             ]
@@ -735,7 +735,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1273,
+      "render_ms": 1331,
       "ok": true,
       "canvases": [
         {
@@ -748,8 +748,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 32.7,
-          "variance": 334.6
+          "mean": 33.3,
+          "variance": 438.7
         }
       ],
       "breather": false,
@@ -808,7 +808,7 @@
           "anc": []
         },
         {
-          "text": "Nobody wastold the answer.",
+          "text": "No provider was tobe told by the 7th.",
           "x": 80,
           "y": 233,
           "w": 920,
@@ -823,23 +823,23 @@
             [
               80,
               220,
-              453,
+              692,
               113
             ],
             [
               80,
               308,
-              590,
+              645,
               113
             ]
           ],
           "anc": []
         },
         {
-          "text": "No service provider was told how any large load was classified.",
+          "text": "No service provider was to be told how any large load was classified by August 7th.",
           "x": 80,
-          "y": 1107,
-          "w": 520,
+          "y": 1115,
+          "w": 600,
           "h": 85,
           "font_px": 30,
           "weight": "400",
@@ -850,14 +850,14 @@
           "lines": [
             [
               80,
-              1107,
-              504,
+              1115,
+              581,
               41
             ],
             [
               80,
-              1149,
-              340,
+              1157,
+              536,
               41
             ]
           ],
@@ -865,22 +865,22 @@
         },
         {
           "text": "no class stated",
-          "x": 714,
-          "y": 1155,
-          "w": 216,
-          "h": 31,
-          "font_px": 24,
+          "x": 604,
+          "y": 782,
+          "w": 321,
+          "h": 61,
+          "font_px": 34,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(217, 205, 180)",
+          "color": "rgb(246, 241, 228)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              714,
-              1155,
-              216,
-              31
+              604,
+              782,
+              321,
+              45
             ]
           ],
           "anc": []
@@ -990,56 +990,12 @@
           "skip": [
             0
           ]
-        },
-        {
-          "kind": "border",
-          "x": 946,
-          "y": 1155.5,
-          "w": 54,
-          "h": 1,
-          "by": "sw",
-          "color": "rgb(185, 141, 70)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "border",
-          "x": 946,
-          "y": 1184.5,
-          "w": 54,
-          "h": 1,
-          "by": "sw",
-          "color": "rgb(185, 141, 70)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "border",
-          "x": 946,
-          "y": 1155.5,
-          "w": 1,
-          "h": 30,
-          "by": "sw",
-          "color": "rgb(185, 141, 70)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "border",
-          "x": 999,
-          "y": 1155.5,
-          "w": 1,
-          "h": 30,
-          "by": "sw",
-          "color": "rgb(185, 141, 70)",
-          "decorative": false,
-          "skip": []
         }
       ],
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1686,
+      "render_ms": 1368,
       "ok": true,
       "canvases": [
         {
@@ -1052,8 +1008,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 35.8,
-          "variance": 536.2
+          "mean": 33.6,
+          "variance": 627.2
         }
       ],
       "breather": false,
@@ -1098,26 +1054,26 @@
         {
           "text": "Each is quoted as its source states it. None may be multiplied by another.",
           "x": 80,
-          "y": 300,
-          "w": 880,
+          "y": 296,
+          "w": 560,
           "h": 76,
           "font_px": 27,
           "weight": "400",
           "family": "Manrope",
-          "color": "rgb(217, 205, 180)",
+          "color": "rgb(242, 236, 221)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               80,
-              300,
-              789,
+              296,
+              532,
               37
             ],
             [
               80,
-              338,
-              104,
+              334,
+              361,
               37
             ]
           ],
@@ -1417,7 +1373,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2592,
+      "render_ms": 1795,
       "ok": true,
       "canvases": [
         {
@@ -1732,7 +1688,7 @@
           "anc": []
         },
         {
-          "text": "Marked in red, where the letter narrows what the release says. The signed letter halts approvals. The release halts all forward movement. Both are on the record and they are not interchangeable.",
+          "text": "The marked words are where the letter narrows what the release says. The signed letter halts approvals. The release halts all forward movement. Both are on the record and they are not interchangeable.",
           "x": 80,
           "y": 1063,
           "w": 920,
@@ -1747,19 +1703,19 @@
             [
               80,
               1087,
-              909,
+              918,
               37
             ],
             [
               80,
               1124,
-              912,
+              918,
               37
             ],
             [
               80,
               1162,
-              554,
+              637,
               37
             ]
           ],
@@ -1991,7 +1947,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1201,
+      "render_ms": 1079,
       "ok": true,
       "canvases": [
         {
@@ -2004,8 +1960,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 228.9,
-          "variance": 172.7
+          "mean": 228.3,
+          "variance": 187
         }
       ],
       "breather": false,
@@ -2020,33 +1976,45 @@
       "fonts_missing": [],
       "text_nodes": [
         {
-          "text": "The sector said it will comply.",
-          "x": 80,
-          "y": 104,
-          "w": 920,
-          "h": 101,
+          "text": "The Governor's office said the sector's membership body will comply.",
+          "x": 104,
+          "y": 126,
+          "w": 872,
+          "h": 171,
           "font_px": 56,
           "weight": "700",
           "family": "Fraunces",
-          "color": "rgb(239, 233, 218)",
+          "color": "rgb(246, 241, 228)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               104,
               120,
-              757,
+              761,
+              69
+            ],
+            [
+              104,
+              177,
+              780,
+              69
+            ],
+            [
+              104,
+              234,
+              205,
               69
             ]
           ],
           "anc": []
         },
         {
-          "text": "The Governor's office said so on August 18th. It is a statement about his own standards rather than a measured result.",
-          "x": 80,
-          "y": 212,
-          "w": 920,
-          "h": 105,
+          "text": "Said on August 18th. It is a statement about his own standards rather than a measured result.",
+          "x": 104,
+          "y": 326,
+          "w": 872,
+          "h": 73,
           "font_px": 27,
           "weight": "400",
           "family": "Manrope",
@@ -2056,14 +2024,14 @@
           "lines": [
             [
               104,
-              225,
-              837,
+              325,
+              850,
               37
             ],
             [
               104,
-              262,
-              607,
+              362,
+              293,
               37
             ]
           ],
@@ -2071,88 +2039,88 @@
         },
         {
           "text": "GRID",
-          "x": 95,
-          "y": 340,
-          "w": 80,
-          "h": 640,
-          "font_px": 54,
+          "x": 104,
+          "y": 430,
+          "w": 872,
+          "h": 148,
+          "font_px": 66,
           "weight": "800",
           "family": "Fraunces",
-          "color": "rgb(239, 233, 218)",
+          "color": "rgb(255, 250, 240)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              101,
-              584,
-              67,
-              152
+              104,
+              463,
+              182,
+              82
             ]
           ],
           "anc": []
         },
         {
           "text": "WATER",
-          "x": 365,
-          "y": 340,
-          "w": 80,
-          "h": 640,
-          "font_px": 54,
+          "x": 104,
+          "y": 578,
+          "w": 872,
+          "h": 148,
+          "font_px": 66,
           "weight": "800",
           "family": "Fraunces",
-          "color": "rgb(239, 233, 218)",
+          "color": "rgb(255, 250, 240)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              371,
-              553,
-              67,
-              213
+              104,
+              611,
+              255,
+              82
             ]
           ],
           "anc": []
         },
         {
           "text": "NEIGHBORHOODS",
-          "x": 635,
-          "y": 340,
-          "w": 80,
-          "h": 640,
-          "font_px": 54,
+          "x": 104,
+          "y": 726,
+          "w": 872,
+          "h": 148,
+          "font_px": 66,
           "weight": "800",
           "family": "Fraunces",
-          "color": "rgb(239, 233, 218)",
+          "color": "rgb(255, 250, 240)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              641,
-              396,
-              67,
-              528
+              104,
+              759,
+              633,
+              82
             ]
           ],
           "anc": []
         },
         {
           "text": "PAY THEIR OWN WAY",
-          "x": 905,
-          "y": 340,
-          "w": 80,
-          "h": 640,
-          "font_px": 54,
+          "x": 104,
+          "y": 874,
+          "w": 872,
+          "h": 148,
+          "font_px": 66,
           "weight": "800",
           "family": "Fraunces",
-          "color": "rgb(239, 233, 218)",
+          "color": "rgb(255, 250, 240)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              911,
-              354,
-              67,
-              612
+              104,
+              907,
+              730,
+              82
             ]
           ],
           "anc": []
@@ -2160,31 +2128,31 @@
         {
           "text": "I established clear guardrails to ensure data centers protect our electric grid, conserve our water, respect our neighborhoods, and pay their own way ...",
           "x": 104,
-          "y": 1039,
+          "y": 1043,
           "w": 872,
           "h": 142,
           "font_px": 29,
           "weight": "400",
           "family": "Manrope",
-          "color": "rgb(239, 233, 218)",
+          "color": "rgb(246, 241, 228)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               104,
-              1059,
+              1063,
               844,
               40
             ],
             [
               104,
-              1100,
+              1104,
               868,
               40
             ],
             [
               104,
-              1140,
+              1144,
               264,
               40
             ]
@@ -2194,7 +2162,7 @@
         {
           "text": "Office of the Governor, August 18th \u00b7 c18",
           "x": 104,
-          "y": 1181,
+          "y": 1185,
           "w": 872,
           "h": 43,
           "font_px": 24,
@@ -2206,7 +2174,7 @@
           "lines": [
             [
               104,
-              1193,
+              1197,
               590,
               31
             ]
@@ -2309,7 +2277,7 @@
         {
           "kind": "fill",
           "x": 104,
-          "y": 1037.2,
+          "y": 1041.2,
           "w": 872,
           "h": 2,
           "by": "rule",
@@ -2321,7 +2289,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 973,
+      "render_ms": 1715,
       "ok": true,
       "canvases": [
         {
@@ -2334,8 +2302,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 68.6,
-          "variance": 2315
+          "mean": 40.4,
+          "variance": 1084.4
         }
       ],
       "breather": false,
@@ -2350,34 +2318,56 @@
       "fonts_missing": [],
       "text_nodes": [
         {
-          "text": "One data center that could not comply chose to end operations before even beginning construction.",
+          "text": "The August 18th release says",
           "x": 80,
-          "y": 122,
+          "y": 104,
           "w": 920,
-          "h": 219,
-          "font_px": 50,
-          "weight": "600",
-          "family": "Fraunces",
-          "color": "rgb(239, 233, 218)",
+          "h": 47,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(140, 132, 116)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               80,
-              143,
-              882,
+              104,
+              437,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\u201cOne data center that could not comply chose to end operations before even beginning construction.\u201d",
+          "x": 80,
+          "y": 153,
+          "w": 920,
+          "h": 219,
+          "font_px": 50,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(183, 174, 155)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              174,
+              904,
               62
             ],
             [
               80,
-              200,
+              231,
               828,
               62
             ],
             [
               80,
-              257,
-              554,
+              288,
+              573,
               62
             ]
           ],
@@ -2386,19 +2376,19 @@
         {
           "text": "Office of the Governor, August 18th \u00b7 c17",
           "x": 80,
-          "y": 341,
+          "y": 372,
           "w": 920,
           "h": 31,
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(217, 205, 180)",
+          "color": "rgb(140, 132, 116)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               80,
-              341,
+              372,
               590,
               31
             ]
@@ -2407,20 +2397,20 @@
         },
         {
           "text": "DATE",
-          "x": 150,
-          "y": 767,
+          "x": 176,
+          "y": 633,
           "w": 62,
           "h": 31,
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(217, 205, 180)",
+          "color": "rgb(198, 185, 148)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              150,
-              767,
+              176,
+              633,
               62,
               31
             ]
@@ -2429,42 +2419,42 @@
         },
         {
           "text": "August 18th, 2026",
-          "x": 696,
-          "y": 761,
-          "w": 234,
-          "h": 38,
-          "font_px": 28,
+          "x": 654,
+          "y": 628,
+          "w": 250,
+          "h": 41,
+          "font_px": 30,
           "weight": "400",
           "family": "Manrope",
-          "color": "rgb(239, 233, 218)",
+          "color": "rgb(255, 248, 230)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              696,
-              761,
-              234,
-              38
+              654,
+              628,
+              250,
+              41
             ]
           ],
           "anc": []
         },
         {
           "text": "PUBLISHER",
-          "x": 150,
-          "y": 846,
+          "x": 176,
+          "y": 717,
           "w": 140,
           "h": 31,
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(217, 205, 180)",
+          "color": "rgb(198, 185, 148)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              150,
-              846,
+              176,
+              717,
               140,
               31
             ]
@@ -2473,42 +2463,42 @@
         },
         {
           "text": "Office of the Governor",
-          "x": 646,
-          "y": 840,
-          "w": 284,
-          "h": 38,
-          "font_px": 28,
+          "x": 600,
+          "y": 712,
+          "w": 304,
+          "h": 41,
+          "font_px": 30,
           "weight": "400",
           "family": "Manrope",
-          "color": "rgb(239, 233, 218)",
+          "color": "rgb(255, 248, 230)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              646,
-              840,
-              284,
-              38
+              600,
+              712,
+              304,
+              41
             ]
           ],
           "anc": []
         },
         {
           "text": "SOURCE",
-          "x": 150,
-          "y": 925,
+          "x": 176,
+          "y": 801,
           "w": 94,
           "h": 31,
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(217, 205, 180)",
+          "color": "rgb(198, 185, 148)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              150,
-              925,
+              176,
+              801,
               94,
               31
             ]
@@ -2517,31 +2507,53 @@
         },
         {
           "text": "gov.texas.gov \u00b7 c17",
-          "x": 696,
-          "y": 919,
-          "w": 235,
-          "h": 38,
-          "font_px": 28,
+          "x": 653,
+          "y": 796,
+          "w": 251,
+          "h": 41,
+          "font_px": 30,
           "weight": "400",
           "family": "Manrope",
-          "color": "rgb(239, 233, 218)",
+          "color": "rgb(255, 248, 230)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              696,
-              919,
-              235,
-              38
+              653,
+              796,
+              251,
+              41
             ]
           ],
           "anc": []
         },
         {
           "text": "NAME",
-          "x": 150,
-          "y": 998,
+          "x": 176,
+          "y": 885,
           "w": 62,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 233, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              176,
+              885,
+              62,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "not named in the source",
+          "x": 176,
+          "y": 966,
+          "w": 728,
           "h": 31,
           "font_px": 24,
           "weight": "400",
@@ -2551,30 +2563,8 @@
           "overlap_ok": false,
           "lines": [
             [
-              150,
-              998,
-              62,
-              31
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "not named in the source",
-          "x": 599,
-          "y": 998,
-          "w": 331,
-          "h": 31,
-          "font_px": 24,
-          "weight": "400",
-          "family": "JetBrains Mono",
-          "color": "rgb(242, 236, 221)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              599,
-              998,
+              573,
+              966,
               331,
               31
             ]
@@ -2677,69 +2667,13 @@
         {
           "kind": "fill",
           "x": 80,
-          "y": 120,
+          "y": 151,
           "w": 920,
           "h": 2,
           "by": "rule",
-          "color": "rgb(185, 141, 70)",
+          "color": "rgba(185, 141, 70, 0.55)",
           "decorative": false,
           "skip": []
-        },
-        {
-          "kind": "border",
-          "x": 150,
-          "y": 819,
-          "w": 780,
-          "h": 1,
-          "by": "r",
-          "color": "rgba(185, 141, 70, 0.4)",
-          "decorative": false,
-          "skip": [
-            2,
-            3
-          ]
-        },
-        {
-          "kind": "border",
-          "x": 150,
-          "y": 898,
-          "w": 780,
-          "h": 1,
-          "by": "r",
-          "color": "rgba(185, 141, 70, 0.4)",
-          "decorative": false,
-          "skip": [
-            4,
-            5
-          ]
-        },
-        {
-          "kind": "border",
-          "x": 150,
-          "y": 977,
-          "w": 780,
-          "h": 1,
-          "by": "r",
-          "color": "rgba(185, 141, 70, 0.4)",
-          "decorative": false,
-          "skip": [
-            6,
-            7
-          ]
-        },
-        {
-          "kind": "border",
-          "x": 150,
-          "y": 1049,
-          "w": 780,
-          "h": 1,
-          "by": "r",
-          "color": "rgba(185, 141, 70, 0.4)",
-          "decorative": false,
-          "skip": [
-            8,
-            9
-          ]
         }
       ],
       "encodings": [],
@@ -2748,24 +2682,24 @@
           "what": "the title block on stone",
           "shadow": [
             [
-              150,
-              1015,
-              780,
-              26
+              160,
+              1048,
+              760,
+              24
             ]
           ],
           "ground": [
             [
-              150,
-              880,
-              780,
-              26
+              160,
+              1152,
+              760,
+              24
             ]
           ]
         }
       ],
       "nondeterminism": [],
-      "render_ms": 2072,
+      "render_ms": 2130,
       "ok": true,
       "canvases": [
         {
@@ -2778,8 +2712,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 38.1,
-          "variance": 561.8
+          "mean": 26,
+          "variance": 275.4
         }
       ],
       "breather": false,
@@ -2944,7 +2878,7 @@
           "anc": []
         },
         {
-          "text": "Public comment deadline, on the commission's own calendar.",
+          "text": "Public comment deadline, on the commission's own calendar. No docket is named against it.",
           "x": 416,
           "y": 964,
           "w": 584,
@@ -2965,7 +2899,7 @@
             [
               416,
               998,
-              164,
+              527,
               36
             ]
           ],
@@ -3199,7 +3133,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1050,
+      "render_ms": 1102,
       "ok": true,
       "canvases": [
         {

@@ -3,9 +3,7 @@
     {
       "file": "slide-01.html",
       "fails": [],
-      "warns": [
-        "top-loaded composition: the bottom third carries 70% of this slide's own average craft density (top 11% / mid 42% / bottom 16% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
-      ]
+      "warns": []
     },
     {
       "file": "slide-02.html",
@@ -21,29 +19,27 @@
       "file": "slide-04.html",
       "fails": [],
       "warns": [
-        "worst-point contrast 3.1 on 'Each is quoted as its source states it. ' (box mean 8.6) -- below the rubric's 4.5 line somewhere along the run of the text"
+        "top-loaded composition: the bottom third carries 77% of this slide's own average craft density (top 51% / mid 25% / bottom 26% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
       ]
     },
     {
       "file": "slide-05.html",
       "fails": [],
-      "warns": []
+      "warns": [
+        "top-loaded composition: the bottom third carries 71% of this slide's own average craft density (top 23% / mid 21% / bottom 13% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
+      ]
     },
     {
       "file": "slide-06.html",
       "fails": [],
-      "warns": [
-        "top-loaded composition: the bottom third carries 78% of this slide's own average craft density (top 15% / mid 20% / bottom 12% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
-      ]
+      "warns": []
     },
     {
       "file": "slide-07.html",
       "fails": [],
-      "warns": [
-        "art touching glyphs (3% of the ring around 'PUBLISHER', spanning 32%) -- pixel critic verify the label is not crossed"
-      ],
+      "warns": [],
       "contacts": [
-        "'the title block on stone': shadow L* 14.5 vs ground L* 30.2, dL 15.6 at 432w"
+        "'the title block on stone': shadow L* 10.3 vs ground L* 24.4, dL 14.0 at 432w"
       ]
     },
     {
@@ -53,6 +49,6 @@
     }
   ],
   "fails": 0,
-  "warns": 4,
+  "warns": 2,
   "verdict": "WARN"
 }

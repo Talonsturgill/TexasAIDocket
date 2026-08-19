@@ -34,8 +34,12 @@
   .hd { position:absolute; top:120px; left:80px; right:80px; z-index:70;
         font-family:'Fraunces',serif; font-weight:800; font-size:78px; line-height:.98;
         letter-spacing:-.02em; color:#EFE9DA; font-variation-settings:'opsz' 78; }
-  .nomult { position:absolute; top:300px; left:80px; right:120px; z-index:70;
-            font-family:'Manrope',sans-serif; font-size:27px; line-height:1.4; color:#D9CDB4; }
+  /* It ran to x 960, which is under the lamp's own hot spot, and the worst point along the run
+     measured 3.1 against a 4.5 line while the box mean read a comfortable 8.6. A mean is not a
+     reading. The line now stops well short of the wash and carries its own reserve. */
+  .nomult { position:absolute; top:296px; left:80px; right:440px; z-index:70;
+            font-family:'Manrope',sans-serif; font-size:27px; line-height:1.4; color:#F2ECDD;
+            text-shadow:0 0 24px rgba(6,5,9,.92), 0 0 10px rgba(6,5,9,.85); }
   .tbl { position:absolute; inset:0; z-index:70; }
   .tbl .row { position:absolute; left:104px; right:104px; padding:0 26px;
               display:flex; flex-direction:column; justify-content:center; }
