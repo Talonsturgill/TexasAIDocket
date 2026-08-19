@@ -1631,6 +1631,48 @@ figcaption {{ font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
 /* The monthly series. Paired bars per month, cleared then drawing, so a reader sees that
    neither has moved. Shape carries it, not colour: the pair is always left-then-right and the
    two are separated by a gap rather than by hue alone. */
+/* ---- BEYOND ERCOT: WHO IS HERE, AND WHAT IS BEING BUILT ----
+   Two feeds that are not ERCOT and do not share its cadence, so they say when they were read
+   and say it LOUDLY when they stop. A stopped collector publishes the same last figure
+   forever and is indistinguishable from a working one; the read date is the only difference,
+   so it ships beside the figure rather than in a commit log. */
+.beyond {{ margin:0 0 var(--band); }}
+.beyond .blede {{ font-family:var(--display); font-size:var(--s2); line-height:1.25;
+  max-width:28ch; margin:1.1rem 0 var(--gap); color:var(--ink-bright); }}
+.srcline {{ display:flex; align-items:center; gap:.45rem; font-family:var(--mono);
+  font-size:var(--s-2); letter-spacing:.05em; text-transform:uppercase;
+  color:var(--ink-mute); margin:0 0 .4rem; }}
+.srcdot {{ width:.4rem; height:.4rem; border-radius:50%; background:var(--gold); flex:none; }}
+/* THE STALE STATE IS A SENTENCE, NOT A COLOUR. A reader who cannot see the tint still reads
+   that the feed stopped, because the copy says so and the copy is what carries it. */
+.srcline.stale {{ text-transform:none; letter-spacing:0; font-family:var(--body);
+  font-size:var(--s-1); color:var(--ink-bright); border-left:2px solid var(--gold);
+  padding-left:.7rem; max-width:var(--measure); display:block; }}
+
+/* A year, a bar and a count. The same row shape serves the registry and the county list, so
+   the two read as one instrument rather than two chart styles on one page. */
+.ryears {{ list-style:none; padding:0; margin:0 0 .6rem; max-width:none;
+  display:flex; flex-direction:column; gap:.28rem; }}
+.ryr {{ display:grid; grid-template-columns:4.6rem minmax(0,1fr) 3.4rem; gap:.7rem;
+  align-items:center; }}
+.rk {{ font-family:var(--mono); font-size:var(--s-2); color:var(--ink-mute);
+  letter-spacing:.05em; overflow-wrap:anywhere; }}
+.rb {{ height:.8rem; background:var(--ember); border-radius:1px; min-width:2px; }}
+.rv {{ font-family:var(--mono); font-size:var(--s-2); color:var(--ink-bright);
+  text-align:right; font-variant-numeric:tabular-nums; }}
+
+.ops {{ list-style:none; padding:0; margin:0 0 .6rem; max-width:none;
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(16rem,1fr)); gap:0 1.6rem; }}
+.ops li {{ display:grid; grid-template-columns:1fr auto; gap:.6rem; align-items:baseline;
+  padding:.36rem 0; border-bottom:var(--hair) solid var(--line); font-size:var(--s-1); }}
+.ops .on {{ color:var(--ink-bright); overflow-wrap:anywhere; }}
+.ops .os {{ font-family:var(--mono); font-size:var(--s-2); color:var(--ink-mute);
+  font-variant-numeric:tabular-nums; }}
+
+@media (max-width:30rem) {{
+  .ryr {{ grid-template-columns:4.2rem minmax(0,1fr) 3rem; gap:.5rem; }}
+}}
+
 /* ---- THE DAILY READING, AS AN INSTRUMENT PANEL ----
    The section held a settled reading every day and read like an essay about one: seven equal
    weight headings, two tables, and prose explaining the page to itself. What follows gives the
@@ -1725,14 +1767,45 @@ figcaption {{ font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
 .qgrp:hover, .qgrp:focus-visible {{
   background:color-mix(in srgb, var(--granite) 9%, transparent); outline:none; }}
 .qgrp:focus-visible {{ box-shadow:0 0 0 2px var(--granite); }}
+/* The pair is CAPPED and centred so the two bars read as one month's reading. Letting the
+   columns take the whole group set the two bars of a pair as far apart as two neighbouring
+   months, and the pairing stopped being visible. The cap is wide enough for both value labels
+   at every width tested; tightening it further is what puts them back into each other. */
 .qbars {{ display:flex; align-items:flex-end; justify-content:center;
-  gap:clamp(2px,.6vw,5px); width:100%; flex:1; }}
+  gap:clamp(2px,.6vw,5px); width:100%; max-width:clamp(4.6rem,13vw,7.5rem);
+  margin-inline:auto; flex:1; }}
 /* The column is transparent and full height; the FILL is the bar. That separation is what
    lets the value label sit on the card rather than on the bar, which is both what a reader
    sees and what the contrast check measures. */
-.qb {{ width:clamp(9px,3.2vw,26px); height:100%; display:flex; flex-direction:column;
+/* THE COLUMN TAKES HALF THE GROUP; THE BAR INSIDE IT STAYS NARROW. The column was as narrow
+   as the bar, so each value label overflowed its column evenly on both sides and the pair met
+   in the middle: "8,787" and "4,049" rendered as "8,7874,049", one nonsense number. Nothing in
+   the DOM was wrong, which is why no lint could see it. Giving the column the width and the
+   fill the bar keeps the two labels apart by layout instead of by luck. */
+.qb {{ flex:1 1 0; min-width:0; height:100%; display:flex; flex-direction:column;
   justify-content:flex-end; align-items:center; }}
-.qbf {{ width:100%; min-height:2px; border-radius:1px 1px 0 0; }}
+/* The label band is RESERVED, and the plot is what is left. The fill's percentage resolves
+   against .qbp, so a bar at full scale reaches the top of the plot and stops there, under its
+   own label, instead of being asked to share a box the label is also in. This is why the
+   value can no longer come down on top of the bar: not a colour choice, a layout that cannot
+   express the overlap. */
+.qbv {{ flex:0 0 auto; }}
+.qbp {{ flex:1 1 auto; width:100%; display:flex; align-items:flex-end;
+  justify-content:center; min-height:0; }}
+.qbf {{ width:clamp(9px,3.2vw,26px); max-width:100%; min-height:2px;
+  border-radius:1px 1px 0 0; }}
+/* A month the record holds with nothing published: a rule where the bars would be, and the
+   word, so the slot reads as absent rather than as zero. */
+.qmiss {{ height:100%; display:flex; flex-direction:column; justify-content:flex-end;
+  align-items:center; gap:.3rem; width:100%; }}
+.qmissr {{ width:70%; border-top:1px dashed color-mix(in srgb, var(--granite) 45%, transparent);
+  height:0; }}
+/* NOT DIMMED. The first version faded both the word and the month to signal absence, which
+   put "May" at 3.49 against a floor of 4.5 and was caught by tests/text_contrast. Fading is
+   also the wrong instrument: it says "absent" in colour alone, which is the signal this file
+   refuses everywhere else. The dashed rule and the word carry it, at full legibility. */
+.qmisst {{ font-family:var(--mono); font-size:clamp(7.5px,1.9vw,11px); line-height:1.6;
+  color:var(--granite); letter-spacing:.06em; order:-1; }}
 .qb.qa .qbf {{ background:var(--granite); }}
 .qb.qd .qbf {{ background:color-mix(in srgb, var(--granite) 42%, var(--paper)); }}
 /* THE VALUE SITS ABOVE ITS OWN BAR and is always present, never revealed on hover. A number a
