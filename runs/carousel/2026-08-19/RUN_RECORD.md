@@ -249,6 +249,26 @@ one line contradicted the top of the same file about which frame the cut took. B
 renumbering had reached the arc and the artwork ledger and stopped there, which is the third time in
 one run that a correction reached some of the places a fact lives and not all of them.
 
+## Why CI was red, which was not what it looked like
+
+**CI failed on every head this run, and for the last several hours it was failing on a commit that
+is not this run's.** `0fa4c61`, PR #99, merged to `main` after this branch was cut from `da2d472`.
+It carries no `Actor:` trailer, so the checker inferred `daily` from this branch's prefix and judged
+it against `.github/workflows/guards.yml`, `scripts/gridwatch/gridwatch_pagecheck.py` and four site
+scripts none of which `daily` owns. **All 21 commits from this run passed their lane, every time.**
+
+That is the failure CLAUDE.md describes in its own words. A commit landed unstamped, and the cost is
+paid by whoever's branch is open when the checker next runs. Stamping it would mean rewriting
+published history on `main`, which this run does not get to do. Merging `main` moves the merge base
+past it, which is the ordinary fix for a branch that is behind, and that is what was done.
+
+**The lesson is about reading a red build rather than about ownership.** Several rounds were spent
+fixing real defects that CI surfaced first, a missing email payload and a page scrolling sideways at
+390px, while the ownership section sat further up the same log saying something else entirely. A CI
+log reports whichever step failed, not the most important thing wrong. Reading only the tail is the
+same mistake as running a gate by its last line instead of its exit code, and this repo already has
+a rule against that.
+
 ## Proposals, which this run may not carry out itself
 
 1. **Wire `coherence_check.py` into `guards.yml` and into Phase 12.** The gate is built, self
