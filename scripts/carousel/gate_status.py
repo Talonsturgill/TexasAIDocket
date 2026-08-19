@@ -71,7 +71,8 @@ BAD = (FAIL, STALE)
 # writes it never ran. `--strict` is that reading, and the end-to-end proof is what found the
 # gap. Everything self-tested green while a run with no claims file and no score could have
 # printed a clean block on its way out the door.
-STRICT_REQUIRED = ("claims", "render", "qa", "assembly", "score", "dossiers", "caption")
+STRICT_REQUIRED = ("claims", "render", "qa", "assembly", "score", "dossiers", "caption",
+                   "craft floor", "completion")
 
 # WHICH ROWS THE STALENESS RULE APPLIES TO, and the end-to-end proof is what forced this list to
 # exist. The rule was applied to every artifact, and it is only true of artifacts that DESCRIBE
@@ -166,6 +167,50 @@ def rows_for(d: Path) -> list[Row]:
     out.append(Row("caption", PASS if cap.exists() else ABSENT,
                    f"{len(cap.read_text(encoding='utf-8').split()):,} words"
                    if cap.exists() else "caption.txt not written yet"))
+
+    # TWO ROWS ADDED 2026-08-19, and they are here because the run record's gate table is the one
+    # place a run cannot quietly skip. Both answer questions no other row asked.
+    #
+    # `craft floor` is the per-frame one. Every other row is deck-level or claim-level, and that
+    # is how a frame at canvas variance 15.9, beside another at 3160, shipped seven times breaking
+    # no rule. `completion` is the one that refuses to let a run call itself finished under the
+    # threshold, because a score is a judgment a run can reason about and an exit code is not.
+    import sys as _sys
+    _sys.path.insert(0, str(Path(__file__).resolve().parent))
+    rr = d / "render" / "render_report.json"
+    if not rr.exists():
+        out.append(Row("craft floor", ABSENT, "nothing rendered yet"))
+    else:
+        try:
+            import craft_floor
+            qp = d / "render" / "machine_qa.json"
+            cf, cw, cm = craft_floor.check(
+                json.loads(rr.read_text(encoding="utf-8")),
+                json.loads(qp.read_text(encoding="utf-8")) if qp.exists() else None)
+            detail = (f"{len(cm.get('rows', []))} frame(s), median {cm.get('median', 0):.0f}, "
+                      f"floor {cm.get('floor', 0):.0f}")
+            out.append(Row("craft floor",
+                           FAIL if cf else (WARN if cw else PASS),
+                           detail + (f", {len(cf)} frame(s) NOT DRAWN" if cf else
+                                     f", {len(cw)} quiet" if cw else "")))
+        except Exception as exc:                       # noqa: BLE001
+            out.append(Row("craft floor", FAIL, f"could not be measured ({exc})"))
+
+    # ABSENT UNTIL THERE IS A SCORE TO JUDGE, for the reason stated at the top of this file: a row
+    # that is red at Phase 8 for not having a Phase 16 artifact is a row every later phase learns
+    # to ignore. Once a score exists this row is FAIL or nothing, and --strict already treats an
+    # absent required artifact as the phase never having run.
+    if not (d / "score.json").exists():
+        out.append(Row("completion", ABSENT, "not scored yet"))
+    else:
+        try:
+            import run_complete
+            probs = run_complete.check(d, run_complete.threshold())
+            out.append(Row("completion", PASS if not probs else FAIL,
+                           "the deck shipped" if not probs else
+                           "THE DECK DID NOT SHIP, so this run is not done"))
+        except Exception as exc:                       # noqa: BLE001
+            out.append(Row("completion", FAIL, f"could not be judged ({exc})"))
     return out
 
 
