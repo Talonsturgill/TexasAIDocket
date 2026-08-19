@@ -56,11 +56,12 @@
   <div class="hd"><div class="hook">Four days<br>of warning.</div></div>
   <svg id="rule" width="1080" height="1350" viewBox="0 0 1080 1350"
        style="position:absolute; inset:0;"></svg>
-  <div class="axlab" style="left:80px; top:588px;">August 3rd</div>
-  <div class="axlab" style="left:392px; top:588px;">August 7th</div>
-  <div class="barlab" style="left:404px; top:612px;"><span class="n">4</span>
+  <div class="axlab" style="left:87px; top:588px;">August 3rd</div>
+  <div class="axlab" style="left:271px; top:588px;">August 7th</div>
+  <div class="axlab" style="left:812px; top:588px;">August 19th</div>
+  <div class="barlab" style="left:372px; top:612px;"><span class="n">4</span>
     <span class="u">DAYS AHEAD</span></div>
-  <div class="barlab" style="left:206px; top:756px;"><span class="n">16</span>
+  <div class="barlab" style="left:166px; top:756px;"><span class="n">16</span>
     <span class="u">DAYS SINCE THE LETTER</span></div>
   <div class="dek2">ERCOT gave the market 4 days of notice. The letter has now stood 16 days.</div>
   <div class="quote">
@@ -125,16 +126,16 @@ window.renderReady = new Promise(function(resolve){
   })();
 
   // the day rule with two bars sharing one origin, drawn in SVG for crisp ticks
-  var RATE=46, y0=700, ox=110;
+  var RATE=46, y0=700, ox=70;
   var svg=document.getElementById('rule');
   function el(t,a){var e=document.createElementNS('http://www.w3.org/2000/svg',t);
     for(var k in a)e.setAttribute(k,a[k]);return e;}
   svg.appendChild(el('line',{x1:ox,y1:y0,x2:W-70,y2:y0,stroke:'#D9CDB4',
     'stroke-width':1.5,opacity:0.55}));
   // day ticks across, heavier on the 3rd, 7th, 19th, 20th relative to Aug 1
-  for(var d=0; d<=17; d++){
+  for(var d=0; d<=18; d++){
     var x=ox+d*RATE;
-    var heavy=(d===2||d===6);
+    var heavy=(d===2||d===6||d===18);
     svg.appendChild(el('line',{x1:x,y1:y0-(heavy?12:6),x2:x,y2:y0+(heavy?12:6),
       stroke:'#D9CDB4','stroke-width':heavy?2:1,opacity:heavy?0.9:0.4}));
     if(heavy){
@@ -145,9 +146,9 @@ window.renderReady = new Promise(function(resolve){
   // four-day bar ABOVE, dial full value. It stops a few px SHORT of the Aug 7 tick so the
   // measure reads as stopping open rather than landing on the deadline, and it carries no cap.
   var origin=ox+2*RATE;
-  svg.appendChild(el('rect',{x:origin,y:y0-64,width:4*RATE-9,height:14,fill:'#EFE9DA'}));
+  svg.appendChild(el('rect',{x:origin,y:y0-64,width:4*RATE,height:14,fill:'#EFE9DA'}));
   // sixteen-day bar BELOW, brass 55 percent, longer and dimmer, also stopping short and open
-  svg.appendChild(el('rect',{x:origin,y:y0+20,width:16*RATE-9,height:6,fill:'#B98D46',opacity:0.75}));
+  svg.appendChild(el('rect',{x:origin,y:y0+20,width:16*RATE,height:6,fill:'#B98D46',opacity:0.75}));
 
   (window.__fontsReady||document.fonts.ready).then(function(){ resolve(); });
 });

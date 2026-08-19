@@ -3,26 +3,29 @@
   "story": "tx-2026-0072",
   "rubric_version": 1,
   "threshold": 7.0,
-  "pass": 6,
-  "weighted_score": 6.62,
+  "pass": 7,
+  "weighted_score": 6.71,
   "ship": false,
-  "verdict": "HOLD at 6.62. Both hard fails are cleared, which is what this pass was for. The fifth pass found an invented taxonomy on slide 3 that four passes and every gate had missed, and that is fixed.",
-  "hard_fails": [],
+  "verdict": "HOLD at 6.71. Five of the sixth round's six fixes verified; the sixth introduced a hard fail of its own and that has been corrected since scoring.",
+  "hard_fails_at_scoring": [
+    "Slide 6's dek asserted that the Data Center Coalition has not published a statement of its own. Nothing fetched supports it. The Coalition appears in no claim, no fetch note and no line of the sources block. It was introduced by this run's own fix for a misattributed speech act."
+  ],
+  "hard_fails_now": [],
   "dimensions": [
     {
       "name": "artwork_craft",
       "weight": 0.28,
-      "score": 6.5
+      "score": 6.8
     },
     {
       "name": "claim_integrity",
       "weight": 0.2,
-      "score": 6.0
+      "score": 5.5
     },
     {
       "name": "story_and_stakes",
       "weight": 0.18,
-      "score": 7.0
+      "score": 6.5
     },
     {
       "name": "sequence_and_momentum",
@@ -37,25 +40,26 @@
     {
       "name": "variety",
       "weight": 0.1,
-      "score": 6.0
+      "score": 8.0
     }
   ],
-  "arithmetic": "1.820 + 1.200 + 1.260 + 0.900 + 0.840 + 0.600 = 6.620",
+  "arithmetic": "1.904 + 1.100 + 1.170 + 0.900 + 0.840 + 0.800 = 6.714",
   "passes": [
     6.51,
     6.87,
     6.932,
     6.82,
     6.56,
-    6.62
+    6.62,
+    6.71
   ],
-  "hard_fail_cleared": "Slide 3's legend printed base load, studied and excluded as Batch Zero classification categories under a c2 attribution chip. No claim names any category. It is now one row reading no class stated.",
-  "fixed_after_this_pass": [
-    "Slide 2 was an undated ruler and shipped without the axis labels its own dossier specified. August 3rd and August 7th now sit at the ends of the four day bar with drop lines to their ticks, and a dek states both spans in running prose.",
-    "That dek also made the two numerals visible to aggregate_check, which reads one text node at a time and could never see a 52px figure beside a 26px unit. Both spans are now declared with dated inputs, which is what claims.json's own rule demanded and no run had satisfied.",
-    "Slide 6 read The sector said it will comply with only the Governor's office sourced. It now carries the attribution its dossier wrote and the deck never shipped.",
-    "Slide 5's foot promised the words that differ and marked a subset. It now says where the letter narrows the release, which is what is marked.",
-    "Slide 3's dossier acceptance line still demanded at least two empty swatches after the hard fail fix left one.",
-    "ledger/carousel/artwork.json recorded pecos as a slide 6 band fill after it shipped as type on slide 5."
-  ]
+  "fixed_after_this_round": [
+    "THE HARD FAIL. Slide 6's dek now reads The release quotes nobody from the Coalition, which c16 and c17 support outright, and the slide carries c17. Every other absence in this deck is scoped to a document that was fetched and this one now is too.",
+    "Slide 2's bars were drawn 9px short of true so the measure would read as open, which encoded 3.80 days and 15.80 days against the frame's own stated rate of 46 pixels per day. Both are now exact, 184px and 736px, and each lands ON its own tick.",
+    "The sixteen day bar's terminus was undated and sat past the last tick. The rule now runs to day 18 and August 19th is labelled, so both ends of both spans carry a date.",
+    "August 3rd was anchored 122px off its own drop line while August 7th was anchored to its tick. Both are anchored the same way now.",
+    "The 4 days declaration named only c1 while its to_date rests on c2. Both claims are named.",
+    "The storyboard was stale in four more places downstream of the slide 4 cut: slide 3's labels list, slide 6's patina acceptance, the palette block, and slide 2's 46 pixel acceptance line."
+  ],
+  "why_the_run_stops": "Seven rounds. artwork_craft, the heaviest criterion at 0.28, never reached the rubric's own definition of acceptable in any round, and the run spent six of them attributing that to the story. It is a craft problem and the fix is upstream of a scoring loop. Written up in knowledge/carousel/UPGRADE_BACKLOG.md."
 }

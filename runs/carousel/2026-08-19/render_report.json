@@ -327,7 +327,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 871,
+      "render_ms": 1148,
       "ok": true,
       "canvases": [
         {
@@ -341,7 +341,7 @@
           "backing_ratio": 2,
           "sample_ok": true,
           "mean": 47.9,
-          "variance": 3162.3
+          "variance": 3160.7
         }
       ],
       "breather": false,
@@ -385,7 +385,7 @@
         },
         {
           "text": "August 3rd",
-          "x": 80,
+          "x": 87,
           "y": 588,
           "w": 170,
           "h": 34,
@@ -397,7 +397,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              80,
+              87,
               588,
               170,
               34
@@ -407,7 +407,7 @@
         },
         {
           "text": "August 7th",
-          "x": 392,
+          "x": 271,
           "y": 588,
           "w": 170,
           "h": 34,
@@ -419,7 +419,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              392,
+              271,
               588,
               170,
               34
@@ -428,8 +428,30 @@
           "anc": []
         },
         {
+          "text": "August 19th",
+          "x": 812,
+          "y": 588,
+          "w": 187,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              812,
+              588,
+              187,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
           "text": "4",
-          "x": 404,
+          "x": 372,
           "y": 612,
           "w": 32,
           "h": 69,
@@ -441,7 +463,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              404,
+              372,
               612,
               32,
               69
@@ -451,7 +473,7 @@
         },
         {
           "text": "DAYS AHEAD",
-          "x": 446,
+          "x": 414,
           "y": 638,
           "w": 162,
           "h": 35,
@@ -463,7 +485,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              446,
+              414,
               638,
               162,
               35
@@ -473,7 +495,7 @@
         },
         {
           "text": "16",
-          "x": 206,
+          "x": 166,
           "y": 756,
           "w": 64,
           "h": 69,
@@ -485,7 +507,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              206,
+              166,
               756,
               64,
               69
@@ -495,7 +517,7 @@
         },
         {
           "text": "DAYS SINCE THE LETTER",
-          "x": 280,
+          "x": 240,
           "y": 782,
           "w": 341,
           "h": 35,
@@ -507,7 +529,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              280,
+              240,
               782,
               341,
               35
@@ -700,9 +722,9 @@
       "rules": [
         {
           "kind": "svg",
-          "x": 110,
+          "x": 70,
           "y": 700,
-          "w": 900,
+          "w": 940,
           "h": 1.5,
           "by": "line",
           "color": "rgb(217, 205, 180)",
@@ -711,7 +733,7 @@
         },
         {
           "kind": "svg",
-          "x": 110,
+          "x": 70,
           "y": 694,
           "w": 1,
           "h": 12,
@@ -722,7 +744,7 @@
         },
         {
           "kind": "svg",
-          "x": 156,
+          "x": 116,
           "y": 694,
           "w": 1,
           "h": 12,
@@ -733,7 +755,7 @@
         },
         {
           "kind": "svg",
-          "x": 202,
+          "x": 162,
           "y": 688,
           "w": 2,
           "h": 24,
@@ -744,7 +766,7 @@
         },
         {
           "kind": "svg",
-          "x": 202,
+          "x": 162,
           "y": 624,
           "w": 1,
           "h": 64,
@@ -755,7 +777,7 @@
         },
         {
           "kind": "svg",
-          "x": 248,
+          "x": 208,
           "y": 694,
           "w": 1,
           "h": 12,
@@ -766,7 +788,7 @@
         },
         {
           "kind": "svg",
-          "x": 294,
+          "x": 254,
           "y": 694,
           "w": 1,
           "h": 12,
@@ -777,7 +799,7 @@
         },
         {
           "kind": "svg",
-          "x": 340,
+          "x": 300,
           "y": 694,
           "w": 1,
           "h": 12,
@@ -788,7 +810,7 @@
         },
         {
           "kind": "svg",
-          "x": 386,
+          "x": 346,
           "y": 688,
           "w": 2,
           "h": 24,
@@ -799,7 +821,7 @@
         },
         {
           "kind": "svg",
-          "x": 386,
+          "x": 346,
           "y": 624,
           "w": 1,
           "h": 64,
@@ -810,7 +832,7 @@
         },
         {
           "kind": "svg",
-          "x": 432,
+          "x": 392,
           "y": 694,
           "w": 1,
           "h": 12,
@@ -821,7 +843,7 @@
         },
         {
           "kind": "svg",
-          "x": 478,
+          "x": 438,
           "y": 694,
           "w": 1,
           "h": 12,
@@ -832,7 +854,7 @@
         },
         {
           "kind": "svg",
-          "x": 524,
+          "x": 484,
           "y": 694,
           "w": 1,
           "h": 12,
@@ -843,7 +865,7 @@
         },
         {
           "kind": "svg",
-          "x": 570,
+          "x": 530,
           "y": 694,
           "w": 1,
           "h": 12,
@@ -854,7 +876,7 @@
         },
         {
           "kind": "svg",
-          "x": 616,
+          "x": 576,
           "y": 694,
           "w": 1,
           "h": 12,
@@ -865,7 +887,7 @@
         },
         {
           "kind": "svg",
-          "x": 662,
+          "x": 622,
           "y": 694,
           "w": 1,
           "h": 12,
@@ -876,7 +898,7 @@
         },
         {
           "kind": "svg",
-          "x": 708,
+          "x": 668,
           "y": 694,
           "w": 1,
           "h": 12,
@@ -887,7 +909,7 @@
         },
         {
           "kind": "svg",
-          "x": 754,
+          "x": 714,
           "y": 694,
           "w": 1,
           "h": 12,
@@ -898,7 +920,7 @@
         },
         {
           "kind": "svg",
-          "x": 800,
+          "x": 760,
           "y": 694,
           "w": 1,
           "h": 12,
@@ -909,7 +931,7 @@
         },
         {
           "kind": "svg",
-          "x": 846,
+          "x": 806,
           "y": 694,
           "w": 1,
           "h": 12,
@@ -920,10 +942,32 @@
         },
         {
           "kind": "svg",
-          "x": 892,
+          "x": 852,
           "y": 694,
           "w": 1,
           "h": 12,
+          "by": "line",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 898,
+          "y": 688,
+          "w": 2,
+          "h": 24,
+          "by": "line",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 898,
+          "y": 624,
+          "w": 1,
+          "h": 64,
           "by": "line",
           "color": "rgb(217, 205, 180)",
           "decorative": false,
@@ -931,9 +975,9 @@
         },
         {
           "kind": "fill",
-          "x": 202,
+          "x": 162,
           "y": 636,
-          "w": 175,
+          "w": 184,
           "h": 14,
           "by": "rect",
           "color": "rgb(239, 233, 218)",
@@ -942,9 +986,9 @@
         },
         {
           "kind": "fill",
-          "x": 202,
+          "x": 162,
           "y": 720,
-          "w": 727,
+          "w": 736,
           "h": 6,
           "by": "rect",
           "color": "rgb(185, 141, 70)",
@@ -966,7 +1010,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 966,
+      "render_ms": 1103,
       "ok": true,
       "canvases": [
         {
@@ -1270,7 +1314,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1227,
+      "render_ms": 1084,
       "ok": true,
       "canvases": [
         {
@@ -1620,7 +1664,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1882,
+      "render_ms": 2244,
       "ok": true,
       "canvases": [
         {
@@ -2194,7 +2238,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1324,
+      "render_ms": 1373,
       "ok": true,
       "canvases": [
         {
@@ -2245,7 +2289,7 @@
           "anc": []
         },
         {
-          "text": "The Governor's office said so on August 18th. The Data Center Coalition has not published a statement of its own.",
+          "text": "The Governor's office said so on August 18th. The release quotes nobody from the Coalition.",
           "x": 80,
           "y": 212,
           "w": 920,
@@ -2260,13 +2304,13 @@
             [
               104,
               225,
-              763,
+              797,
               37
             ],
             [
               104,
               262,
-              627,
+              330,
               37
             ]
           ],
@@ -2524,7 +2568,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1151,
+      "render_ms": 1101,
       "ok": true,
       "canvases": [
         {
@@ -2968,7 +3012,7 @@
         }
       ],
       "nondeterminism": [],
-      "render_ms": 1684,
+      "render_ms": 1883,
       "ok": true,
       "canvases": [
         {
@@ -3402,7 +3446,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1109,
+      "render_ms": 1255,
       "ok": true,
       "canvases": [
         {

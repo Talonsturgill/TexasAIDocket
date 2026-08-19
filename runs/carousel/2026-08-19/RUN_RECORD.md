@@ -249,6 +249,51 @@ one line contradicted the top of the same file about which frame the cut took. B
 renumbering had reached the arc and the artwork ledger and stopped there, which is the third time in
 one run that a correction reached some of the places a fact lives and not all of them.
 
+## HOW THIS RUN ENDS, AND WHAT IT GOT WRONG ABOUT ITSELF
+
+**The deck does not ship.** Seven scoring rounds: 6.51, 6.87, 6.932, 6.82, 6.56, 6.62, 6.71,
+against a 7.0 threshold. Two hard fails occurred and both are fixed. Every gate is green by exit
+code and machine QA is at zero fails. The record shipped in full. Nothing merged to `main`.
+
+**The run's own account of why was wrong, and the rubric says so.** Rounds 4 through 6 were written
+up as "a statewide procedural story left the deck with no county, no town and no person in it, and
+no redraw fixes that". That reads as a ceiling and it is not one.
+`config/carousel/scoring_rubric.yaml` scores `story_and_stakes` at 9 for "Names the county, the body
+and the deadline" and **at 7 for "Clear and accurate, stakes stated generally"**. `voice` scores 9
+for "Nobody would guess a machine wrote it" and **7 for "Clean, on register, a little flat"**. A
+placeless story cannot reach 9. It reaches 7 on every criterion, which is the whole of what the
+threshold asks.
+
+**What actually held it under.**
+
+| criterion | weight | rounds 3 to 7 |
+|---|---|---|
+| **artwork_craft** | **0.28** | **6.8, 6.5, 6.5, 6.8** |
+| claim_integrity | 0.20 | 6.5, 7.5, 6.0, 5.5 |
+| story_and_stakes | 0.18 | 7.0, 6.5, 7.0, 6.5 |
+| sequence_and_momentum | 0.12 | 7.2, 7.5, 7.5, 7.5 |
+| voice | 0.12 | 7.2, 6.5, 7.0, 7.0 |
+| variety | 0.10 | 7.4, 6.5, 6.0, 8.0 |
+
+**The heaviest criterion never once reached the rubric's own definition of acceptable.** Sequence
+and variety were fine throughout. The scorer said the same thing in four separate rounds, in
+different words, and each time the run treated it as a list of frames to patch rather than as one
+verdict about the deck's craft floor. Slide 2 shipped at canvas variance **15.9** against slide 1's
+**3162.3** and was rebuilt three times without moving, because the problem was in its plan and every
+round arrived after the art was already built.
+
+**The process finding.** Every gate here is deck-level or claim-level. **Not one looks at a single
+frame and asks whether it was worth drawing.** That is the gap a variance-15.9 frame walked through
+seven times, breaking no rule because no rule existed. The full backlog, with the evidence behind
+each item, is in `knowledge/carousel/UPGRADE_BACKLOG.md`.
+
+**And the second fabricated fact was introduced by this run's own fix for the first kind.** Slide
+6's dek asserted "The Data Center Coalition has not published a statement of its own", which nothing
+was fetched to support, written hours after this file recorded the slide 3 taxonomy. It now reads
+"The release quotes nobody from the Coalition", which `c16` and `c17` support outright. **Every
+honest absence in this deck is scoped to a document that was fetched. Both fabrications were scoped
+to nothing. That is the signature to look for.**
+
 ## Why CI was red, which was not what it looked like
 
 **CI failed on every head this run, and for the last several hours it was failing on a commit that
@@ -317,10 +362,10 @@ a rule against that.
 |---|---|---|
 | claims         | PASS   | 21 verified claim(s) |
 | render         | PASS   | 8 slide(s) |
-| qa             | WARN   | 0 fail(s), 6 warn(s) |
+| qa             | WARN   | 0 fail(s), 5 warn(s) |
 | aggregates     | PASS   | 12 declared and re-derived |
-| assembly       | PASS   | 8 slide(s), 2.25 MB, vector |
-| score          | FAIL   | 6.62, below threshold |
-| dossiers       | PASS   | 30,755 chars planned |
+| assembly       | PASS   | 8 slide(s), 2.15 MB, vector |
+| score          | FAIL   | 6.71, below threshold |
+| dossiers       | PASS   | 31,056 chars planned |
 | caption        | PASS   | 160 words |
 <!-- gate-status:end -->

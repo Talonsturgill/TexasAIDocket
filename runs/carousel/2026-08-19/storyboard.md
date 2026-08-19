@@ -63,7 +63,7 @@ public schedule gets posted and a public clock gets kept.
 Bend night. `dial #EFE9DA` enameled cast iron lit from behind, the deck's light and its only near
 white on dark. `cordova #D9CDB4` Cordova cream limestone, Williamson County. `brass #B98D46` the
 movement's works, line colour. `pecos #8E4B3A` masonry red, fill only, never type on dark.
-`patina #4E6B62` oxidized copper, two slides only. `paper #F6F1E4` on `ink #23202B`, slide 6 alone.
+`patina #4E6B62` oxidized copper, slide 6 alone. `paper #F6F1E4` on `ink #23202B`, slide 5 alone.
 
 ## The value arc
 
@@ -187,7 +187,7 @@ type:
     days have passed since the letter arrived.
   labels: ["AUGUST 3RD", "AUGUST 7TH", "4 DAYS", "16 DAYS"]
 acceptance:
-  - "the rate holds at 46 pixels per day across both bars, measured, not eyeballed"
+  - "the rate holds at 46 pixels per day across both bars, measured, not eyeballed. The four day bar is 184px and lands ON the August 7th tick. The sixteen day bar is 736px and lands ON the August 19th tick, which is the run date. An earlier draft drew both 9px short so the measure would read as open, which encoded 3.80 and 15.80 days at this frame's own stated rate"
   - "both bars begin at the same drawn origin tick and neither axis is truncated"
   - "the terminal tick on the four day bar is drawn open rather than closed, so the measure stops without landing"
   - "no fill sits under either bar and no zone shading appears, because a measure that falls reads as a verdict"
@@ -238,7 +238,7 @@ type:
   dek: >
     The classification was to say how each large load falls. No service provider was told which
     class anything landed in.
-  labels: ["UPDATE REGARDING BATCH ZERO TIMELINES AND PROCESSES", "CLASS", "NOT ISSUED"]
+  labels: ["UPDATE REGARDING BATCH ZERO TIMELINES AND PROCESSES", "no class stated"]
 acceptance:
   - "no cell differs in value or fill from any other cell in the field"
   - "the legend carries EXACTLY ONE row, reading no class stated, which is what c2 supports and nothing more"
@@ -409,7 +409,7 @@ acceptance:
   - "no circle, pie, arc or dial appears anywhere in the frame"
   - "the attribution states that the Governor's office said this, never that it is established"
   - "the four band words are the Governor's own, in his order, and none is paraphrased"
-  - "patina appears here and on only one other slide in the deck"
+  - "patina appears on this slide and on no other, which is what artwork.json records"
 risks:
   - "the courthouse palette can drift into heritage nostalgia and patina is the colour that does it"
   - "four equal bands can read as a chart with four equal values rather than as four named things"
