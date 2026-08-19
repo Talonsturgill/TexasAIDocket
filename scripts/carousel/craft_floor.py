@@ -84,7 +84,24 @@ def variance_of(slide: dict) -> float:
 
 
 def bands_of(qa_slide: dict) -> list:
-    """Craft-cell density per third, if machine QA recorded it."""
+    """Craft-cell density per third, if machine QA recorded it.
+
+    THE CONTRACT, and the bug it is written against. qa.py's frame_balance() computes these
+    three numbers on every slide and, until 2026-08-19, formatted them into a warning string
+    and discarded them. This function looked for them and always got nothing, so `bands` was
+    always empty, `lopsided` was always False, and the `thin and (lopsided or not bands)`
+    branch below made EVERY thin frame a hard fail. The WARN tier three lines under it, the
+    one that lets a deliberately quiet frame through, was unreachable dead code from the day
+    this file was written.
+
+    The self-test below already asserted that tier worked, and passed, every time, because it
+    built its own qa dict WITH the key. The logic was never wrong. The data never arrived and
+    nothing compared the two files. So the assertion that matters now reads a REAL shipped
+    machine_qa.json and checks the producer actually writes what this reads.
+
+    Third time in this repo a consumer read a key its producer does not write, after
+    gate_status and email_check both missed `weighted_score`.
+    """
     for k in ("bands", "thirds", "craft_bands"):
         v = qa_slide.get(k)
         if isinstance(v, (list, tuple)) and len(v) == 3:
@@ -187,6 +204,23 @@ def self_test() -> int:
        0.0 < RELATIVE < 1.0 and ABSOLUTE > 0)
     ok("...and the measurement is returned so a reader sees the distribution",
        "rows" in m and len(m["rows"]) == 8 and "median" in m)
+
+    # ---- THE PRODUCER WRITES WHAT THIS GATE READS (2026-08-19) --------------------------
+    # THE ASSERTION THAT WOULD HAVE CAUGHT THE BUG. Every other case in this file builds its
+    # own qa dict with the key already in it, which is exactly why they all passed for the
+    # entire life of a dead WARN tier. This one reaches across to the PRODUCER and checks the
+    # link itself, so removing the write in qa.py turns this file red.
+    _qa_src = REPO_ROOT / ".claude" / "skills" / "carousel-engine" / "qa.py"
+    if _qa_src.exists():
+        _src = _qa_src.read_text(encoding="utf-8")
+        _writes = any(f'res["{k}"]' in _src or f"res['{k}']" in _src
+                      for k in ("bands", "thirds", "craft_bands"))
+        ok("qa.py PERSISTS the per-third bands this gate reads",
+           _writes,
+           "qa.py assigns none of bands/thirds/craft_bands onto its slide record, so "
+           "bands_of() always returns [] and the WARN tier is dead again")
+    else:
+        print("  note  qa.py not found, so the producer contract was not checked")
 
     print("\ncraft_floor self-test: " + ("all passed" if not fails else f"{fails} FAILED"))
     return 1 if fails else 0

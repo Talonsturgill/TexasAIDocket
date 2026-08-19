@@ -28,7 +28,7 @@ composition:
     reads the scale before the number" is.
   bands: >
     What occupies the top, middle and bottom third. All three must have an answer.
-  focal: "what the eye lands on first, and what pulls it there"
+  focal: "what the eye lands on first, and what pulls it there. AN AREA, NEVER A LINE"
 
 art:
   technique: "named, from knowledge/carousel/TECHNIQUE_LIBRARY.md"
@@ -52,6 +52,31 @@ risks:
   - "what could make this frame fall flat, named before it does"
 ```
 
+## THE FOCAL LAW
+
+**A declared focal must be an AREA carrying one extreme of the frame's value range. Never a
+line.**
+
+Written into the 2026-08-19 storyboard and migrated here, because a lesson that lives in one
+run's plan is a lesson the next run does not read.
+
+A judge counted the frames whose declared focal actually won the eye across that deck and got
+**two of eight**, then named why: slide 2 declared the origin tick, slide 5 the column hairline,
+slide 6 the band boundaries. A hairline cannot win an eye at 432 pixels however well the frame
+around it is lit, so those three frames had their art and their plan arguing about different
+pictures. Rewriting those three declarations to the area each frame actually leads with moved
+`artwork_craft` from 6.4 to 7.8, which is the largest single movement in the criterion that
+carries the heaviest weight in the rubric.
+
+The two frames repaired earlier in the same run were repaired the same way and nobody noticed
+the pattern at the time. Slide 3's empty key went from a 54px swatch to a lit ruled block in the
+bed's darkest quarter. Slide 7's NAME field went from a bright keyline round a dark box to a
+recess in a lit plate. Both fixes turned a LINE into an AREA.
+
+The test to apply while writing the dossier, before any code: **name the lightest thing in the
+frame and the darkest thing in the frame. If the focal is neither, and is not the one place the
+light dies, it will lose.**
+
 ## What makes an acceptance item good
 
 **It is checkable by looking.** "Well composed" is not an acceptance item. "The bottom third
@@ -62,6 +87,34 @@ something specific could go wrong, not because a template had five slots.
 
 **It is written before the render.** An item added after seeing the output is a description, and
 descriptions always pass.
+
+**Where it asserts a STRING, a COLOUR or a COUNT, it writes that thing in a form a gate can
+find.** Added 2026-08-19, and it is the most expensive line on this page.
+
+`scripts/carousel/plan_render_check.py` was built to compare the plan against the render, and
+run against the deck that scored 8.03 it reported **0 of 46 acceptance items carrying an
+assertion a render could contradict**. Not one. Every item was true, careful and written before
+the render, and no machine could check any of them, because they are prose ABOUT the frame
+rather than claims about it.
+
+That is why the plan-versus-render defect appeared in all three shipped runs and roughly fifteen
+times. The gate was missing, and under it there was nothing to check.
+
+Three cheap habits fix it, and none of them costs the writing anything:
+
+- quote the exact string. `the legend carries EXACTLY ONE row, reading no class stated` becomes
+  `the legend carries exactly one row, reading "no class stated"`. Now a gate can look.
+- name the colour by its palette token. `the differing words are marked in pecos` already does
+  this, and it is the item that shipped broken for five scoring passes, so the token is what
+  makes the check possible.
+- give the number and the unit. `the rate holds at 46 pixels per day` is checkable.
+  `the rate is consistent` is not.
+
+An item that is genuinely about judgement stays prose, and should. `the void reads as a hole
+rather than as a dark tile at 432px` cannot be mechanised and is one of the best items ever
+written on this deck. The rule is not that every item must be checkable. It is that an item
+which HAPPENS to assert a string, a colour or a count should not throw that away in the
+phrasing, because the phrasing is the only reason it was uncheckable.
 
 ## Nine dossiers, nine different jobs
 

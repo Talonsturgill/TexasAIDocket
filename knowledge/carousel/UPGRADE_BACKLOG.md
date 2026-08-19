@@ -96,7 +96,7 @@ drawing rather than a chart of one.
 worthless, which is why the density measure is paired with it and why the failure message refuses
 the wrong fix by name.
 
-### 2. Make the dossier the thing the copy is checked against. `upgrade` lane.
+### 2. Make the dossier the thing the copy is checked against. **BUILT, and it found something worse.**
 
 **The defect.** Every round from 4 onward found at least one frame shipping a sentence or a
 measurement its own acceptance line did not describe:
@@ -117,7 +117,7 @@ against the render report. Start with the two kinds this run actually broke: a s
 and a stated count of an element. A line the gate cannot check is fine and should be marked as
 prose so the split is explicit.
 
-### 3. Trace NOUNS, not only numerals. `upgrade` lane. The integrity item.
+### 3. Trace NOUNS, not only numerals. **BUILT for absences, the half that shipped fabrications.**
 
 **The defect. Two fabricated facts shipped into rendered frames in one run.**
 
@@ -203,3 +203,100 @@ its own threshold, and `knowledge/shared/GATE_LESSONS.md` is a catalogue of that
 **Loosening anything to reach 7.0.** The rubric says it in its own words: do not round up, not to
 reach the threshold, not because the run worked hard. Every score in this run was recorded as
 measured and the deck did not merge.
+
+
+---
+
+## WHAT THE 2026-08-19 UPGRADE PASS ACTUALLY FOUND
+
+Written after cataloguing 125 defects across all three shipped runs and auditing every gate for
+what it cannot see. The ranking is by HOW MANY RUNS a root cause appears in, because a thing
+that happened once is an incident and a thing that happened in all three is the machine.
+
+### Item 2 is built, and the measurement under it is worse than the defect
+
+`plan_render_check.py` compares the plan to the render. Palette tokens a dossier names must be
+on the frame. A quoted string an acceptance item says the frame carries must be in the rendered
+text. A quoted string it says appears nowhere must not be. Zero false positives on all eight
+frames of the shipped deck, and it catches the 2026-08-16 slide 2 and 2026-08-19 slide 5 palette
+defects.
+
+Then it reported the thing worth knowing:
+
+    0 of 46 acceptance items carry a machine-checkable assertion
+
+**Not one.** Every item on the deck that scored 8.03 is true, careful, written before the render
+and unverifiable by any machine, because they are prose ABOUT the frame rather than claims about
+it. `the legend carries EXACTLY ONE row, reading no class stated` asserts something exact and
+throws it away in the phrasing.
+
+So this defect survived three runs of people actively looking for it because the gate was
+missing AND there was nothing underneath to check. `SLIDE_DOSSIER_SPEC.md` now says how to write
+a checkable item, and `gate_status` prints the ratio in every run record so the number has to go
+up in public.
+
+### Item 3 is built for absences
+
+`absence_check.py`. Every honest absence in three decks names the document it looked in. Every
+fabricated one names nothing. The gate asks whether the frame says WHERE IT LOOKED, which is the
+one part of this a machine can see.
+
+Calibrated: 7 of 7 scoped on 08-16, 5 of 6 on 08-18, 8 of 8 on 08-19. The single warning across
+three shipped decks lands on 08-18 slide 7, the frame the run record documents as printing a
+product name on the frame whose entire claim is that no product is named.
+
+The proper-noun half of item 3 is NOT built. A first pass raised 33, 10 and 8 candidates per
+deck, and the noise is sentence-initial capitals and all-caps design furniture. It needs a
+session that is not also shipping a deck, exactly as this item said when it was written.
+
+### NEW, and it outranks everything else on this page
+
+**CI proves the checkers can go red and almost never runs them on the product.**
+
+Of the fifteen carousel steps in `guards.yml`, THIRTEEN are `--self-test`. The only two that
+touch a real artifact are `email_check --all` and `bespoke_check --slides-dir
+examples/demo-deck/slides`, and that second one points at a demo deck rather than at anything
+this project ever published.
+
+`coherence_check`, `craft_floor`, `run_complete`, `sources_block`, `plan_render_check`,
+`absence_check`, `qa.py` and `render.py` are in CI in no form at all. Six of those eight were
+built BY these runs to catch defects these runs shipped.
+
+A gate nothing runs protects only the runs that remember to call it, which is the exact defect
+each was written for. This is item 6 and it is now the most valuable unbuilt thing here, because
+it is the multiplier on every other gate in the suite.
+
+### NEW. The scoring phase is one agent, and it never found a hard fail
+
+`prompts/daily_routine.md` Phase 15 spawns one `carousel-scorer`. On 2026-08-19 that single
+scorer ran seven rounds and found ZERO hard fails. A three-judge panel then ran five rounds and
+found FOUR, two of which were fabrications that had already survived every gate and a pixel
+review.
+
+The panel also caught what a single grader structurally cannot: on three separate rounds all
+three judges independently named the SAME defect, and twice that defect had been introduced by
+the previous round's fix. One grader has no way to distinguish a real finding from its own taste.
+
+### NEW. The two criteria nobody ever attacked
+
+`story_and_stakes` and `voice` are 0.30 of the rubric between them. Across all five panel rounds,
+from all three judges, NEITHER EVER REACHED 8.0, and every judge gave the same reason in nearly
+the same words: no county, no town, no person, nothing a reader could not read as any state's
+utility commission. The 2026-08-18 scorer wrote "Change three nouns and this is Ohio."
+
+Twelve scoring rounds went into artwork. Zero went into this. It is the only finding that
+appeared in every round of every panel and was never once attacked, and the reason is that the
+run kept treating it as a property of the story rather than as a thing the selection and copy
+phases could be asked for.
+
+### NEW. A live bug, found by auditing rather than by a defect
+
+`craft_floor.bands_of()` read three key names that `qa.py` has never written, so its WARN tier
+was unreachable dead code and every thin frame was a hard fail on a condition that never ran.
+Third instance in this repo of a consumer reading a key its producer does not write, after
+`gate_status` and `email_check` both missed `weighted_score`.
+
+The self-test had asserted that tier worked, and passed, on every run of the broken build,
+because it built its own fixture with the key already in it. **A self-test that only ever reads
+a fixture the consumer wrote for itself cannot see a broken contract.** Both new gates in this
+pass assert against a real shipped artifact or against the producer's own source for that reason.
