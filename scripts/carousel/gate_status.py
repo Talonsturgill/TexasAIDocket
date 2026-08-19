@@ -72,7 +72,7 @@ BAD = (FAIL, STALE)
 # gap. Everything self-tested green while a run with no claims file and no score could have
 # printed a clean block on its way out the door.
 STRICT_REQUIRED = ("claims", "render", "qa", "assembly", "score", "dossiers", "caption",
-                   "craft floor", "completion")
+                   "craft floor", "plan vs render", "absences", "completion")
 
 # WHICH ROWS THE STALENESS RULE APPLIES TO, and the end-to-end proof is what forced this list to
 # exist. The rule was applied to every artifact, and it is only true of artifacts that DESCRIBE
@@ -195,6 +195,42 @@ def rows_for(d: Path) -> list[Row]:
                                      f", {len(cw)} quiet" if cw else "")))
         except Exception as exc:                       # noqa: BLE001
             out.append(Row("craft floor", FAIL, f"could not be measured ({exc})"))
+
+    # THE PLAN AGAINST THE RENDER, and the absences against their documents. Both are in this
+    # table rather than only in a log, because the two defects they exist for are the two that
+    # appeared in all three shipped runs and were found by a judge every single time.
+    sb = d / "storyboard.md"
+    if not (rr.exists() and sb.exists()):
+        out.append(Row("plan vs render", ABSENT, "nothing rendered yet"))
+    else:
+        try:
+            import plan_render_check
+            pf, pw, ps = plan_render_check.check(
+                sb.read_text(encoding="utf-8"), d / "slides",
+                json.loads(rr.read_text(encoding="utf-8")))
+            tot = ps.get("checkable", 0) + ps.get("prose", 0)
+            out.append(Row("plan vs render",
+                           FAIL if pf else (WARN if pw else PASS),
+                           f"{ps.get('checkable', 0)} of {tot} acceptance item(s) checkable" +
+                           (f", {len(pf)} frame(s) off plan" if pf else "")))
+        except Exception as exc:                       # noqa: BLE001
+            out.append(Row("plan vs render", FAIL, f"could not be measured ({exc})"))
+
+    cj = d / "copy.json"
+    if not cj.exists():
+        out.append(Row("absences", ABSENT, "no copy yet"))
+    else:
+        try:
+            import absence_check
+            af, aw, as_ = absence_check.check(
+                json.loads(cj.read_text(encoding="utf-8")),
+                json.loads(rr.read_text(encoding="utf-8")) if rr.exists() else None)
+            out.append(Row("absences",
+                           FAIL if af else (WARN if aw else PASS),
+                           f"{as_.get('scoped', 0)} of {as_.get('absences', 0)} scoped to a "
+                           f"named document" + (f", {len(aw)} unscoped" if aw else "")))
+        except Exception as exc:                       # noqa: BLE001
+            out.append(Row("absences", FAIL, f"could not be measured ({exc})"))
 
     # ABSENT UNTIL THERE IS A SCORE TO JUDGE, for the reason stated at the top of this file: a row
     # that is red at Phase 8 for not having a Phase 16 artifact is a row every later phase learns
