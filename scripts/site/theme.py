@@ -2068,27 +2068,29 @@ caption {{ caption-side:bottom; text-align:left; padding-top:.75rem; font-size:v
   .leadform button {{ width:auto; justify-self:start; min-width:13rem; }}
 }}
 
-/* ---- published work: the article and video feeds --------------------------- */
-/* TWO COLUMNS AT READING WIDTH, ONE ON A PHONE, and the image leads. A carousel cover and a
-   video poster are both 4:5 portrait, so the same grid holds either without a second rule. */
+/* ---- published work: the article feed -------------------------------------- */
+/* TWO COLUMNS AT READING WIDTH, ONE ON A PHONE, and the image leads.
+   IT USED TO CARRY `.vcard` TOO, back when the videos page was a grid of posters beside this
+   one. That page is a full-bleed vertical feed now with its own document and its own styles,
+   so every `.vcard` selector here matched nothing. Dead CSS in a shared selector list is the
+   worst kind: it reads as a live rule, so the next person to change the grid keeps it working
+   for a page that stopped existing. */
 .deckgrid {{ display:grid; gap:var(--gap); margin:1.75rem 0 0;
   grid-template-columns:repeat(auto-fill,minmax(min(100%,17rem),1fr)); }}
-.deckgrid .deck, .vcard {{ display:block; margin:0; text-decoration:none; color:inherit;
+.deckgrid .deck {{ display:block; margin:0; text-decoration:none; color:inherit;
   border:var(--hair) solid var(--rule); border-radius:var(--radius); overflow:hidden;
   background:var(--surface); }}
-.deckgrid .deck img, .vcard video {{ display:block; width:100%; height:auto;
+.deckgrid .deck img {{ display:block; width:100%; height:auto;
   aspect-ratio:4/5; object-fit:cover; background:var(--panel); }}
-.deckgrid .deck h3, .vcard h3 {{ margin:.35rem 0 0; font-size:var(--s0); line-height:1.25; }}
-.deckgrid .deck .meta, .vcard .meta {{ margin:0; }}
+.deckgrid .deck h3 {{ margin:.35rem 0 0; font-size:var(--s0); line-height:1.25; }}
+.deckgrid .deck .meta {{ margin:0; }}
 /* The one line under a card title that says what the article is about. A title names
    the piece and a name is not a summary, so the card carried only half its job. */
 .deckgrid .deck .tease {{ margin:.3rem 0 0; font-size:var(--s-1); line-height:1.45;
   color:var(--ink-mute); }}
-.deckgrid .deck > :not(img), .vcard figcaption {{ padding:0 .9rem; }}
+.deckgrid .deck > :not(img) {{ padding:0 .9rem; }}
 .deckgrid .deck {{ padding-bottom:1rem; transition:border-color .2s,transform .2s; }}
 .deckgrid .deck:hover {{ border-color:var(--accent); transform:translateY(-2px); }}
-.vcard figcaption {{ padding-bottom:1rem; }}
-.vcard p {{ margin:.4rem 0 0; font-size:var(--s-1); color:var(--ink-mute); }}
 
 /* THE LATEST ONE, on the front page. Cover beside copy above the fold width, stacked below
    it, because a 4:5 image next to a paragraph at 30rem leaves neither enough room. */
