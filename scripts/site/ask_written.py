@@ -370,6 +370,49 @@ _CLIENT = r"""
     input.dispatchEvent(new Event("input", { bubbles: true }));
   }
 
+  /* ---- keeping the field where the thumb already is ----------------------- */
+  /* GAP is the breathing room under the composer. Plus the phone's own home indicator strip,
+     which is real estate the browser will happily let a control sit under. */
+  var GAP = 20;
+
+  /* A reader who scrolls up to re-read is DRIVING, and a chat that drags them back to the
+     bottom mid-sentence is the single most irritating thing this pattern does. Following is
+     given up the moment the newest line is well clear of the composer, and taken back the
+     moment they return to it. */
+  var following = true;
+
+  function bottomGapNow() {
+    var last = thread.lastElementChild;
+    if (!last) return 0;
+    return form.getBoundingClientRect().top - last.getBoundingClientRect().bottom;
+  }
+
+  addEventListener("scroll", function () {
+    if (parking) return;
+    /* Anything under a screenful means they are still reading the live end of it. */
+    following = bottomGapNow() < innerHeight * 0.6;
+  }, { passive: true });
+
+  var parking = 0;
+  function park() {
+    if (!following) return;
+    var calm = matchMedia && matchMedia("(prefers-reduced-motion:reduce)").matches;
+    var r = form.getBoundingClientRect();
+    var safe = 0;
+    try {
+      safe = parseFloat(getComputedStyle(document.documentElement)
+        .getPropertyValue("--safe-bottom")) || 0;
+    } catch (e) { safe = 0; }
+    /* Where the composer's bottom edge should sit: one gap above the bottom of the glass. */
+    var delta = r.bottom - (innerHeight - GAP - safe);
+    if (Math.abs(delta) < 2) return;
+    parking++;
+    scrollBy({ top: delta, behavior: calm ? "auto" : "smooth" });
+    /* The flag is dropped a beat later so the smooth scroll's own events are not read as the
+       reader taking over, which would switch following off on the very first press. */
+    setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
+  }
+
   /* ---- asking ------------------------------------------------------------ */
   function ask(question) {
     if (busy) return;
@@ -377,6 +420,8 @@ _CLIENT = r"""
     send.disabled = true;
     send.setAttribute("aria-busy", "true");
     box.classList.add("answering");
+    /* A new question is always a return to the live end, whatever they were reading before. */
+    following = true;
     thread.hidden = false;
     clearTrailing();
 
@@ -399,15 +444,16 @@ _CLIENT = r"""
     input.placeholder = "%%followup%%";
     send.setAttribute("aria-label", "%%send%%");
 
-    /* The question goes to the top and the answer arrives under it, the way a conversation
-       moves. Not scrollIntoView: the masthead is sticky, so start-of-element lands under it.
-       Its height is measured rather than guessed, because a guess is wrong on one phone. */
-    var nav = document.querySelector(".masthead, nav.main");
-    window.scrollTo({
-      behavior: "smooth",
-      top: asked.getBoundingClientRect().top + window.pageYOffset -
-           ((nav ? nav.getBoundingClientRect().height : 0) + 16)
-    });
+    /* THE FIELD STAYS DOWN AND THE TALK GROWS ABOVE IT, which is how every chat a reader has
+       ever used behaves and is the one thing this box got wrong.
+       It used to scroll the QUESTION to just under the masthead. On a page where the box sits
+       partway down, with an empty thread, that put the composer near the TOP of the screen on
+       the first press, so asking a question threw the page somewhere else and moved the one
+       control the reader was using.
+       Parking the composer near the bottom instead needs no sticky, no fixed element and no
+       nested scroller, so it behaves the same on a phone, a tablet and a desktop and it can
+       never float over another section. */
+    park();
 
     /* The first press is the intent that arms the human check. Everything before it, focus
        and typing included, leaves the page alone. */
@@ -423,6 +469,7 @@ _CLIENT = r"""
         body.appendChild(stageEl);
       }
       stageEl.textContent = text;
+      park();
     }
     function dropStage() {
       if (stageEl) { stageEl.remove(); stageEl = null; }
@@ -435,6 +482,7 @@ _CLIENT = r"""
       span.className = "askseg";
       renderCites(span, (para.childNodes.length ? " " : "") + t);
       para.appendChild(span);
+      park();
     }
 
     function finish() {
@@ -491,6 +539,12 @@ _CLIENT = r"""
       });
       foot.appendChild(say);
       thread.appendChild(foot);
+
+      /* ONE LAST PARK, because this footer is the tallest thing appended after the sentences
+         stop. Without it the provenance line, Start over and the feedback control push the
+         composer off the bottom of the glass at the exact moment the reader looks down to type
+         the next question, which is the fault this whole change exists to remove. */
+      park();
     }
 
     function handle(ev) {
