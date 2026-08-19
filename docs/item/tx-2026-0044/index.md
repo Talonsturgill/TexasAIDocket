@@ -11,11 +11,17 @@ Angelina County Commissioners Court voted unanimously on July 14th, 2026 to adop
 - Public access: Public meeting
 - Take part: https://www.angelinacounty.net/comcourt/
 
-- Last checked: 2026-08-14
+- Last checked: 2026-08-19
 
 ## Dates
 
 - 2026-07-14 · ordered: Commissioners Court unanimously approved Resolution 010-26 at its regular Tuesday session in Lufkin
+
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-19 · Whether the resolution has been revisited is unconfirmed. The court has met on July 14th, July 28th and August 11th, and the item texts for those meetings are not published on the court's own page.
 
 ## Evidence
 

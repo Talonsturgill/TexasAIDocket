@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body { background:#16151C; position:relative; font-family:'Manrope',sans-serif;
+          --frame-ink:#EFE9DA; --frame-dim:#D9CDB4; }
+  canvas#art { position:absolute; inset:0; width:1080px; height:1350px; }
+
+  /* ---- the invariant frame. Identical on every slide of every deck. ---------------- */
+  .tx-frame { position:absolute; inset:0; pointer-events:none; z-index:60; }
+  .tx-wordmark {
+    position:absolute; top:56px; left:80px;
+    font-family:'JetBrains Mono',monospace; font-size:25px; font-weight:500;
+    letter-spacing:.16em; color:var(--frame-ink); }
+  .tx-star { position:absolute; top:54px; left:80px; width:26px; height:26px; }
+  .tx-counter {
+    position:absolute; bottom:56px; right:80px;
+    font-family:'JetBrains Mono',monospace; font-size:25px; font-weight:500;
+    font-variant-numeric:tabular-nums; letter-spacing:.10em; color:var(--frame-ink); }
+  .tx-site {
+    position:absolute; bottom:56px; left:80px;
+    font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:400;
+    letter-spacing:.04em; color:var(--frame-dim); }
+  .tx-kicker {
+    position:absolute; top:56px; right:80px; max-width:620px; text-align:right;
+    font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:500;
+    letter-spacing:.10em; text-transform:uppercase; color:var(--frame-dim); }
+
+
+  .top { position:absolute; top:130px; left:80px; right:80px;
+         font-family:'Fraunces',serif; font-weight:700; font-size:60px; line-height:1.02;
+         letter-spacing:-.015em; color:#EFE9DA; font-variation-settings:'opsz' 60; }
+  .q { position:absolute; left:80px; right:110px; bottom:140px; }
+  .q .rule { height:2px; background:#B98D46; }
+  .q .t { font-family:'Manrope',sans-serif; font-size:31px; line-height:1.44; color:#EFE9DA;
+          padding:22px 0; }
+  .q .src { font-family:'JetBrains Mono',monospace; font-size:24px; color:#D9CDB4; }
+  .lab { position:absolute; font-family:'JetBrains Mono',monospace; font-size:26px; color:#B98D46;
+         letter-spacing:.04em; }
+
+</style>
+</head>
+<body>
+  <canvas id="art" width="2160" height="2700"></canvas>
+
+  <div class="top">Whose water,<br>and whose power.</div>
+  <div class="lab" style="left:210px; top:560px;">CLOSED</div>
+  <div class="lab" style="left:640px; top:560px;">OPEN</div>
+  <div class="q">
+    <div class="rule"></div>
+    <div class="t">The extent to which data centers are bringing their own water and reusing their
+      own water as opposed to using water needed by local communities.</div>
+    <div class="src">Directive to the PUCT and ERCOT &middot; c15</div>
+  </div>
+
+<div class="tx-frame" data-decorative>
+  <svg class="tx-star" viewBox="0 0 26 26" aria-hidden="true"><polygon points="13,1 16.1,9.4 25,9.6 17.9,15 20.5,23.6 13,18.4 5.5,23.6 8.1,15 1,9.6 9.9,9.4" fill="var(--frame-ink)"/></svg>
+  <div class="tx-wordmark" style="left:118px">TEXAS AI DOCKET</div>
+  <div class="tx-kicker">The stated reason</div>
+  <div class="tx-site">talonsturgill.github.io/TexasAIDocket</div>
+  <div class="tx-counter">04 / 09</div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+
+<script>
+window.renderReady = new Promise(function(resolve){
+  TX.reseed(20260819);
+  var cv = document.getElementById('art');
+  var ctx = cv.getContext('2d');
+  ctx.scale(2,2);
+  var W=1080, H=1350;
+  function lerp(a,b,t){return a+(b-a)*t;}
+
+  // a warm masonry ground with a faint vertical falloff so the base carries tone
+  function stoneGround(top, bottom){
+    var grad = ctx.createLinearGradient(0,0,0,H);
+    grad.addColorStop(0, top); grad.addColorStop(1, bottom);
+    ctx.fillStyle = grad; ctx.fillRect(0,0,W,H);
+  }
+
+  // A WARMER, DENSER FRAME THAN SLIDE 3, deliberately. The flow critic found 3 and 4 reading as
+  // a matched pair of thin gold linework on black, which flattened the middle of the dark run.
+  // The idea is unchanged and the WEIGHT is not: warmer ground, much heavier line, and the closed
+  // loop carries a fill because a closed loop is the only one of the two that encloses an area.
+  stoneGround('#1E1B22', '#100E14');
+  var lg = ctx.createRadialGradient(430,660,60, 430,660,760);
+  lg.addColorStop(0,'rgba(185,141,70,0.16)'); lg.addColorStop(1,'rgba(185,141,70,0)');
+  ctx.fillStyle=lg; ctx.fillRect(0,0,W,H);
+  ctx.strokeStyle='#B98D46'; ctx.lineWidth=8; ctx.lineJoin='round'; ctx.lineCap='round';
+  // closed loop, left. Filled, because it encloses. Same stroke weight as the open one.
+  ctx.beginPath();
+  var cx=300, cy=700, rx=150, ry=95;
+  for(var t=0;t<=1.0001;t+=0.01){
+    var a=t*Math.PI*2;
+    var x=cx+Math.cos(a)*rx + Math.sin(a*2)*12;
+    var y=cy+Math.sin(a)*ry;
+    if(t===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+  }
+  ctx.closePath();
+  ctx.fillStyle='rgba(185,141,70,0.22)'; ctx.fill();
+  ctx.stroke();
+  // open loop, right. Its line leaves through the RIGHT EDGE, well above the quote block, so it
+  // never crosses the body copy the way a straight drop through the gutter did.
+  ctx.beginPath();
+  var ox=700, oy=700;
+  for(var t2=0.02;t2<=0.72;t2+=0.01){
+    var a2=t2*Math.PI*2;
+    var x2=ox+Math.cos(a2)*150 + Math.sin(a2*2)*12;
+    var y2=oy+Math.sin(a2)*95;
+    if(t2===0.02)ctx.moveTo(x2,y2);else ctx.lineTo(x2,y2);
+  }
+  // tail runs level to the right and exits the right edge above the quote
+  ctx.lineTo(920, 665);
+  ctx.lineTo(W+20, 640);
+  ctx.stroke();
+
+  // grain over everything, under 4 percent, seeded
+  (function(){
+    var R = TX.rng(20260819);
+    var g = ctx.getImageData(0,0,1,1); // touch to ensure context ok
+    for (var i=0;i<5200;i++){
+      var x=R()*W, y=R()*H, a=R()*0.035;
+      ctx.fillStyle='rgba('+(R()<0.5?'255,255,255':'0,0,0')+','+a.toFixed(3)+')';
+      ctx.fillRect(x,y,1.3,1.3);
+    }
+  })();
+
+  (window.__fontsReady||document.fonts.ready).then(function(){ resolve(); });
+});
+</script>
+</body>
+</html>

@@ -11,11 +11,17 @@ The Hays County Commissioners Court approved a resolution on June 23rd, 2026 est
 - Public access: Public meeting
 - Take part: https://www.hayscountytx.gov/877/Commissioners-Court-Minutes
 
-- Last checked: 2026-08-14
+- Last checked: 2026-08-19
 
 ## Dates
 
 - 2026-06-23 · ordered: Commissioners Court approved the resolution establishing the review period and the review board
+
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-19 · Whether the emergency order has been extended or allowed to lapse is unconfirmed. The court's minutes archive carries nothing dated July or August.
 
 ## Evidence
 

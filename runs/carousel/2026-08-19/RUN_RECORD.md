@@ -137,10 +137,10 @@ touched.
 |---|---|---|
 | claims         | PASS   | 18 verified claim(s) |
 | render         | PASS   | 9 slide(s) |
-| qa             | STALE  | render/machine_qa.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| qa             | WARN   | 0 fail(s), 5 warn(s) |
 | aggregates     | PASS   | 7 declared and re-derived |
-| assembly       | PASS   | 9 slide(s), 2.38 MB, vector |
+| assembly       | PASS   | 9 slide(s), 2.27 MB, vector |
 | score          | ABSENT | score.json not written yet |
-| dossiers       | PASS   | 32,571 chars planned |
+| dossiers       | PASS   | 32,599 chars planned |
 | caption        | PASS   | 150 words |
 <!-- gate-status:end -->

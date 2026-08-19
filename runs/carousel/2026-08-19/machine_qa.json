@@ -1,0 +1,64 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 72% of this slide's own average craft density (top 11% / mid 42% / bottom 16% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "outside safe zone: 'ERCOT set itself a date to tell service ' at 64,1037 676x181 (margin 80px)"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 70% of this slide's own average craft density (top 12% / mid 0% / bottom 3% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'The sector said it will comply.' at 56,104 968x101 (margin 80px)",
+        "outside safe zone: 'GRID' at 22,560 226x190 (margin 80px)",
+        "outside safe zone: 'PAY THEIR OWN WAY' at 832,560 226x190 (margin 80px)"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the title block on stone': shadow L* 9.3 vs ground L* 22.4, dL 13.1 at 432w"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": []
+    }
+  ],
+  "fails": 0,
+  "warns": 6,
+  "verdict": "WARN"
+}

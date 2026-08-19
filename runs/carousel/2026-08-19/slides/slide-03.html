@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body { background:#16151C; position:relative; font-family:'Manrope',sans-serif;
+          --frame-ink:#EFE9DA; --frame-dim:#D9CDB4; }
+  canvas#art { position:absolute; inset:0; width:1080px; height:1350px; }
+
+  /* ---- the invariant frame. Identical on every slide of every deck. ---------------- */
+  .tx-frame { position:absolute; inset:0; pointer-events:none; z-index:60; }
+  .tx-wordmark {
+    position:absolute; top:56px; left:80px;
+    font-family:'JetBrains Mono',monospace; font-size:25px; font-weight:500;
+    letter-spacing:.16em; color:var(--frame-ink); }
+  .tx-star { position:absolute; top:54px; left:80px; width:26px; height:26px; }
+  .tx-counter {
+    position:absolute; bottom:56px; right:80px;
+    font-family:'JetBrains Mono',monospace; font-size:25px; font-weight:500;
+    font-variant-numeric:tabular-nums; letter-spacing:.10em; color:var(--frame-ink); }
+  .tx-site {
+    position:absolute; bottom:56px; left:80px;
+    font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:400;
+    letter-spacing:.04em; color:var(--frame-dim); }
+  .tx-kicker {
+    position:absolute; top:56px; right:80px; max-width:620px; text-align:right;
+    font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:500;
+    letter-spacing:.10em; text-transform:uppercase; color:var(--frame-dim); }
+
+
+  .hd { position:absolute; top:118px; left:80px; right:80px; }
+  .kick { font-family:'JetBrains Mono',monospace; font-size:26px; letter-spacing:.06em;
+          color:#B98D46; padding-bottom:14px; border-bottom:1px solid rgba(185,141,70,.5);
+          text-transform:uppercase; }
+  .ksrc { font-family:'JetBrains Mono',monospace; font-size:24px; color:#9c9382;
+          padding-top:12px; letter-spacing:.03em; }
+  .hook { font-family:'Fraunces',serif; font-weight:800; font-size:92px; line-height:.96;
+          letter-spacing:-.02em; color:#EFE9DA; margin-top:22px; font-variation-settings:'opsz' 92; }
+  .leg { position:absolute; right:80px; bottom:150px; text-align:right; }
+  .leg .row { display:flex; align-items:center; justify-content:flex-end; gap:16px; margin:14px 0; }
+  .leg .sw { width:54px; height:30px; border:1.5px solid #B98D46; }
+  .leg .lb { font-family:'JetBrains Mono',monospace; font-size:24px; color:#D9CDB4; }
+  .qn { position:absolute; left:80px; bottom:158px; max-width:520px;
+        font-family:'Manrope',sans-serif; font-size:30px; line-height:1.42; color:#EFE9DA; }
+
+</style>
+</head>
+<body>
+  <canvas id="art" width="2160" height="2700"></canvas>
+
+  <div class="hd">
+    <div class="kick">Update Regarding Batch Zero Timelines and Processes</div>
+    <div class="ksrc">ERCOT market notice M-A080326-01 &middot; c2</div>
+    <div class="hook">Nobody was<br>told the answer.</div>
+  </div>
+  <div class="qn">No service provider was told how any large load was classified.</div>
+  <div class="leg">
+    <div class="row"><span class="lb">base load</span><span class="sw"></span></div>
+    <div class="row"><span class="lb">studied</span><span class="sw"></span></div>
+    <div class="row"><span class="lb">excluded</span><span class="sw"></span></div>
+  </div>
+
+<div class="tx-frame" data-decorative>
+  <svg class="tx-star" viewBox="0 0 26 26" aria-hidden="true"><polygon points="13,1 16.1,9.4 25,9.6 17.9,15 20.5,23.6 13,18.4 5.5,23.6 8.1,15 1,9.6 9.9,9.4" fill="var(--frame-ink)"/></svg>
+  <div class="tx-wordmark" style="left:118px">TEXAS AI DOCKET</div>
+  <div class="tx-kicker">PUCT and ERCOT</div>
+  <div class="tx-site">talonsturgill.github.io/TexasAIDocket</div>
+  <div class="tx-counter">03 / 09</div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script>
+window.renderReady = new Promise(function(resolve){
+  TX.reseed(20260819);
+  var cv = document.getElementById('art');
+  var ctx = cv.getContext('2d');
+  ctx.scale(2,2);
+  var W=1080, H=1350;
+  function lerp(a,b,t){return a+(b-a)*t;}
+
+  // a warm masonry ground with a faint vertical falloff so the base carries tone
+  function stoneGround(top, bottom){
+    var grad = ctx.createLinearGradient(0,0,0,H);
+    grad.addColorStop(0, top); grad.addColorStop(1, bottom);
+    ctx.fillStyle = grad; ctx.fillRect(0,0,W,H);
+  }
+
+  stoneGround('#181720', '#100F15');
+  // a TRUE space-filling Voronoi partition, every cell one identical value, no fill, inside a
+  // hard neatline. A sorting drawn with no assignment is the claim. Seeds spread evenly across
+  // the whole box, including the top band, so the field reads uniform rather than bottom-weighted.
+  var x0=80,y0=452,x1=1000,y1=1044;
+  var R = TX.rng(20260819);
+  // jittered grid of seeds: even coverage, no clustering, reaches all four edges. The box runs
+  // down into the lower third so the field is not top-loaded.
+  var pts=[], cols=9, rows=7;
+  for(var r=0;r<rows;r++) for(var c=0;c<cols;c++){
+    var jx=(R()-0.5)*70, jy=(R()-0.5)*70;
+    pts.push([x0 + (c+0.5)/cols*(x1-x0) + jx, y0 + (r+0.5)/rows*(y1-y0) + jy]);
+  }
+  var flat=[]; for(var q=0;q<pts.length;q++){ flat.push(pts[q][0], pts[q][1]); }
+  var del = d3.Delaunay.from(pts);
+  var vor = del.voronoi([x0, y0, x1, y1]);
+  ctx.save();
+  ctx.beginPath(); ctx.rect(x0,y0,x1-x0,y1-y0); ctx.clip();
+  ctx.strokeStyle='rgba(185,141,70,0.72)'; ctx.lineWidth=1.4;
+  for(var i=0;i<pts.length;i++){
+    var cell = vor.cellPolygon(i);
+    if(!cell) continue;
+    ctx.beginPath();
+    for(var k=0;k<cell.length;k++){ if(k===0)ctx.moveTo(cell[k][0],cell[k][1]); else ctx.lineTo(cell[k][0],cell[k][1]); }
+    ctx.closePath(); ctx.stroke();
+  }
+  // a uniform brass nucleus dot at every seed. Every cell gets the same mark, so none is assigned,
+  // and the field carries ink through the whole box rather than reading as empty ground.
+  ctx.fillStyle='rgba(185,141,70,0.5)';
+  for(var s=0;s<pts.length;s++){ ctx.beginPath(); ctx.arc(pts[s][0],pts[s][1],2.4,0,Math.PI*2); ctx.fill(); }
+  ctx.restore();
+  // the neatline, clipped square, so it reads as a rectangle and never a map
+  ctx.strokeStyle='#B98D46'; ctx.lineWidth=2; ctx.strokeRect(x0,y0,x1-x0,y1-y0);
+
+  // grain over everything, under 4 percent, seeded
+  (function(){
+    var R = TX.rng(20260819);
+    var g = ctx.getImageData(0,0,1,1); // touch to ensure context ok
+    for (var i=0;i<5200;i++){
+      var x=R()*W, y=R()*H, a=R()*0.035;
+      ctx.fillStyle='rgba('+(R()<0.5?'255,255,255':'0,0,0')+','+a.toFixed(3)+')';
+      ctx.fillRect(x,y,1.3,1.3);
+    }
+  })();
+
+  (window.__fontsReady||document.fonts.ready).then(function(){ resolve(); });
+});
+</script>
+</body>
+</html>

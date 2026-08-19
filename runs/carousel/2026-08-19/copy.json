@@ -1,0 +1,120 @@
+{
+  "date": "2026-08-19",
+  "story": "tx-2026-0072",
+  "document_title": "Batch Zero, and the calendar with a hole in it",
+  "slides": {
+    "S1": {
+      "hook": "August 7th came and went.",
+      "dek": "ERCOT set itself a date to tell service providers how every large load was classified. That date passed 12 days ago.",
+      "claims": [
+        "c2"
+      ]
+    },
+    "S2": {
+      "hook": "Four days of warning.",
+      "quote": "\"ERCOT will not notify each Interconnecting Distribution Service Provider and Transmission Service Provider of how any Large Load is classified in the Batch Zero Interconnection Study by August 7, 2026\"",
+      "src": "ERCOT market notice M-A080326-01 · c2",
+      "labels": [
+        "4 DAYS AHEAD",
+        "16 DAYS SINCE THE LETTER"
+      ],
+      "claims": [
+        "c1",
+        "c2"
+      ]
+    },
+    "S3": {
+      "kick": "\"Update Regarding Batch Zero Timelines and Processes\"",
+      "hook": "Nobody was told the answer.",
+      "qn": "No service provider was told how any large load was classified.",
+      "labels": [
+        "base load",
+        "studied",
+        "excluded"
+      ],
+      "claims": [
+        "c2",
+        "c5"
+      ]
+    },
+    "S4": {
+      "top": "Whose water, and whose power.",
+      "labels": [
+        "CLOSED",
+        "OPEN"
+      ],
+      "quote": "\"The extent to which data centers are bringing their own water and reusing their own water as opposed to using water needed by local communities.\"",
+      "src": "Directive to the PUCT and ERCOT · c15",
+      "claims": [
+        "c13",
+        "c15"
+      ]
+    },
+    "S5": {
+      "hd": "Three figures, two documents.",
+      "f1": "approximately 474 gigawatts",
+      "o1": "of requests to connect to the Texas grid",
+      "f2": "Approximately 90 percent",
+      "o2": "of the new power requests are data centers",
+      "f3": "more than five times",
+      "o3": "Texas' record peak electricity demand for ERCOT",
+      "claims": [
+        "c6",
+        "c8",
+        "c9"
+      ]
+    },
+    "S6": {
+      "hook": "One office. The same day. Two wordings.",
+      "q1": "\"The PUCT and ERCOT must complete this audit before any data center project moves forward.\"",
+      "q2": "\"before any additional data centers are approved to move forward\"",
+      "foot": "The signed letter words it more narrowly than the press release does. Both are on the record and they are not interchangeable.",
+      "claims": [
+        "c11",
+        "c12"
+      ]
+    },
+    "S7": {
+      "lead": "The sector said it will comply.",
+      "labels": [
+        "GRID",
+        "WATER",
+        "NEIGHBORHOODS",
+        "PAY THEIR OWN WAY"
+      ],
+      "quote": "\"I established clear guardrails to ensure data centers protect our electric grid, conserve our water, respect our neighborhoods, and pay their own way ...\"",
+      "src": "Office of the Governor, August 18th · c18",
+      "claims": [
+        "c16",
+        "c18"
+      ]
+    },
+    "S8": {
+      "quote": "\"One data center that could not comply chose to end operations before even beginning construction.\"",
+      "src": "Office of the Governor, August 18th · c17",
+      "labels": [
+        "DATE",
+        "August 18th, 2026",
+        "PUBLISHER",
+        "Office of the Governor",
+        "SOURCE",
+        "gov.texas.gov · c17",
+        "NAME",
+        "not named in the source"
+      ],
+      "claims": [
+        "c17"
+      ]
+    },
+    "S9": {
+      "hd": "The commission meets in 1 day.",
+      "rows": "ERCOT said it would file for a good cause exception ahead of the August 20th, 2026 open meeting, and said it would update the notice once the filing is made.",
+      "lab": "ERCOT market notice. August 20th, 2026, 1 day out. Planning Guide Sections 5 and 9.",
+      "claims": [
+        "c3",
+        "c4"
+      ],
+      "cites": "c3, c4"
+    }
+  }
+}

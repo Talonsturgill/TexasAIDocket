@@ -9,12 +9,18 @@ The Texas Water Development Board took up a petition for rulemaking on July 23rd
 - Public access: Public meeting
 - Take part: https://www.twdb.texas.gov/board/2026/07/board/index.asp
 
-- Last checked: 2026-08-14
+- Last checked: 2026-08-19
 
 ## Dates
 
 - 2026-07-22 · statutory deadline: deadline for remote speakers to submit the visitor registration form for that meeting
 - 2026-07-23 · ordered: TWDB board meeting at which the petition for rulemaking was considered and the 2027 State Water Plan (Phase I) was taken up for adoption
+
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-19 · The petition is confirmed to have reached the board. The July 23rd agenda carries an item to consider acting on a petition for rulemaking on a dedicated industrial water use category for data centers and crypto mining operations. That agenda does not record how the board voted.
 
 ## Evidence
 

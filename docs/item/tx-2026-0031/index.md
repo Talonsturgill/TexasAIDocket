@@ -11,12 +11,18 @@ The University of Texas System Board of Regents approved the creation of a Schoo
 - Public access: Public meeting
 - Take part: https://www.utsystem.edu/board-of-regents/meetings
 
-- Last checked: 2026-08-14
+- Last checked: 2026-08-19
 
 ## Dates
 
 - 2026-02-19 · ordered: Board of Regents approved creation of the School of Computing
 - 2026-08-12 · hearing: Board's next regular meeting, held in Austin on August 12th and 13th, 2026
+
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-19 · Whether the regents have revisited the approval is unconfirmed. The board met on August 12th and 13th and the item texts for that meeting are not published on the board's own meetings page.
 
 ## Evidence
 

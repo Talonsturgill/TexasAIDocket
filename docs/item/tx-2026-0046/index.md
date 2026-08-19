@@ -11,11 +11,17 @@ Carson County Commissioners Court approved a tax abatement agreement with Fermi 
 - Public access: Public meeting
 - Take part: https://www.newschannel10.com/2025/10/28/carson-county-approves-tax-abatement-fermi-america-development/
 
-- Last checked: 2026-08-14
+- Last checked: 2026-08-19
 
 ## Dates
 
 - 2025-10-28 · ordered: Date NewsChannel 10 reported the Carson County Commissioners Court approval of the abatement agreement. The exact meeting date was not confirmed against a county record.
+
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-19 · Checked and unchanged. The abatement agreement of October 27th still covers 15 phases with a possible extension to 25 years, at 3 dollars a square foot on the data center side.
 
 ## Evidence
 

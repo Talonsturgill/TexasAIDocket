@@ -1,4 +1,4 @@
-# Governor Abbott directs the utility commission and ERCOT to audit every data center in the interconnection queue before any of them advances
+# Governor Abbott directs the utility commission and ERCOT to audit every data center in the interconnection queue before any advances
 
 Governor Greg Abbott issued a directive on August 3rd, 2026. It tells the Public Utility Commission of Texas and ERCOT to run a verification and audit of every data center moving through the interconnection process. The audit must finish before any data center project moves forward. The directive names five things the agencies must obtain from each project. They are public financial assistance received or expected. They are whether the project brings its own power and whether it brings and reuses its own water. They are what it does to reduce effects on neighbors and who owns and controls it. The letter states the queue at approximately 474 gigawatts and puts the data center share of new power requests at approximately 90 percent. It gives a reason. Some data centers did not answer the commission's own survey of water and power use.
 
@@ -9,11 +9,12 @@ Governor Greg Abbott issued a directive on August 3rd, 2026. It tells the Public
 - Public access: Public meeting
 - Take part: https://gov.texas.gov/uploads/files/press/Thomas_Gleeson_Pablo_Vegas_Data_Centers_Directive_Letter_to_PUCT_ERCOT_August_2026_.pdf
 
-- Last checked: 2026-08-16
+- Last checked: 2026-08-19
 
 ## Dates
 
 - 2026-08-03 · ordered: Directive issued
+- 2026-08-07 · statutory deadline: Batch Zero classification deadline set in the ERCOT Planning Guide passed with no classification notified
 - 2026-08-20 · hearing: Next utility commission open meeting after the directive
 
 ## How this decision moved
@@ -21,6 +22,7 @@ Governor Greg Abbott issued a directive on August 3rd, 2026. It tells the Public
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-08-16 · The directive letter itself is now the cited source rather than the press release about it. The release reads 'approximately over 474 gigawatts' where the letter reads 'approximately 474 gigawatts'.
+- 2026-08-19 · The directive has already moved a deadline. ERCOT stated on August 3rd that it would not tell service providers how any large load is classified in the Batch Zero study by the August 7th deadline. It said it would ask the utility commission for a good cause exception ahead of the August 20th open meeting. The Governor's office said on August 18th that the Data Center Coalition will comply. That release also says one data center that could not comply ended operations before construction began.
 
 ## Evidence
 

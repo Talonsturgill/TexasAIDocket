@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body { background:#16151C; position:relative; font-family:'Manrope',sans-serif;
+          --frame-ink:#EFE9DA; --frame-dim:#D9CDB4; }
+  canvas#art { position:absolute; inset:0; width:1080px; height:1350px; }
+
+  /* ---- the invariant frame. Identical on every slide of every deck. ---------------- */
+  .tx-frame { position:absolute; inset:0; pointer-events:none; z-index:60; }
+  .tx-wordmark {
+    position:absolute; top:56px; left:80px;
+    font-family:'JetBrains Mono',monospace; font-size:25px; font-weight:500;
+    letter-spacing:.16em; color:var(--frame-ink); }
+  .tx-star { position:absolute; top:54px; left:80px; width:26px; height:26px; }
+  .tx-counter {
+    position:absolute; bottom:56px; right:80px;
+    font-family:'JetBrains Mono',monospace; font-size:25px; font-weight:500;
+    font-variant-numeric:tabular-nums; letter-spacing:.10em; color:var(--frame-ink); }
+  .tx-site {
+    position:absolute; bottom:56px; left:80px;
+    font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:400;
+    letter-spacing:.04em; color:var(--frame-dim); }
+  .tx-kicker {
+    position:absolute; top:56px; right:80px; max-width:620px; text-align:right;
+    font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:500;
+    letter-spacing:.10em; text-transform:uppercase; color:var(--frame-dim); }
+
+
+  .hd { position:absolute; top:120px; left:80px; right:80px; }
+  .hook { font-family:'Fraunces',serif; font-weight:800; font-size:96px; line-height:.95;
+          letter-spacing:-.02em; color:#EFE9DA; font-variation-settings:'opsz' 96; }
+  .quote { position:absolute; left:80px; right:120px; bottom:120px; }
+  .quote .rule { height:2px; background:#B98D46; }
+  .quote .q { font-family:'Manrope',sans-serif; font-size:30px; line-height:1.45; color:#EFE9DA;
+              padding:22px 0; }
+  .quote .src { font-family:'JetBrains Mono',monospace; font-size:24px; color:#D9CDB4;
+                letter-spacing:.02em; }
+  .barlab { position:absolute; font-family:'JetBrains Mono',monospace; letter-spacing:.04em; }
+  .barlab .n { font-size:52px; color:#EFE9DA; font-variant-numeric:tabular-nums; }
+  .barlab .u { font-size:26px; color:#D9CDB4; }
+
+</style>
+</head>
+<body>
+  <canvas id="art" width="2160" height="2700"></canvas>
+
+  <div class="hd"><div class="hook">Four days<br>of warning.</div></div>
+  <svg id="rule" width="1080" height="1350" viewBox="0 0 1080 1350"
+       style="position:absolute; inset:0;"></svg>
+  <div class="barlab" style="left:206px; top:660px;"><span class="n">4</span>
+    <span class="u">DAYS AHEAD</span></div>
+  <div class="barlab" style="left:206px; top:846px;"><span class="n">16</span>
+    <span class="u">DAYS SINCE THE LETTER</span></div>
+  <div class="quote">
+    <div class="rule"></div>
+    <div class="q">ERCOT will not notify each Interconnecting Distribution Service Provider and
+      Transmission Service Provider of how any Large Load is classified in the Batch Zero
+      Interconnection Study by August 7, 2026</div>
+    <div class="src">ERCOT market notice M-A080326-01 &middot; c2</div>
+  </div>
+
+<div class="tx-frame" data-decorative>
+  <svg class="tx-star" viewBox="0 0 26 26" aria-hidden="true"><polygon points="13,1 16.1,9.4 25,9.6 17.9,15 20.5,23.6 13,18.4 5.5,23.6 8.1,15 1,9.6 9.9,9.4" fill="var(--frame-ink)"/></svg>
+  <div class="tx-wordmark" style="left:118px">TEXAS AI DOCKET</div>
+  <div class="tx-kicker">ERCOT Market Notice</div>
+  <div class="tx-site">talonsturgill.github.io/TexasAIDocket</div>
+  <div class="tx-counter">02 / 09</div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+
+<script>
+window.renderReady = new Promise(function(resolve){
+  TX.reseed(20260819);
+  var cv = document.getElementById('art');
+  var ctx = cv.getContext('2d');
+  ctx.scale(2,2);
+  var W=1080, H=1350;
+  function lerp(a,b,t){return a+(b-a)*t;}
+
+  // a warm masonry ground with a faint vertical falloff so the base carries tone
+  function stoneGround(top, bottom){
+    var grad = ctx.createLinearGradient(0,0,0,H);
+    grad.addColorStop(0, top); grad.addColorStop(1, bottom);
+    ctx.fillStyle = grad; ctx.fillRect(0,0,W,H);
+  }
+
+  stoneGround('#191821', '#0E0D12');
+  // contour set ground, deepening toward the base
+  var R = TX.rng(20260819);
+  ctx.lineWidth=1;
+  for (var k=0;k<26;k++){
+    ctx.beginPath();
+    var baseY = 120 + k*44;
+    for (var x=0;x<=W;x+=8){
+      var y = baseY + TX.fbm2(x*0.0016, k*0.5, 4)*120 - 60;
+      if (x===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+    }
+    var a = 0.05 + (k/26)*0.06;   // deeper contrast toward the bottom
+    ctx.strokeStyle='rgba(217,205,180,'+a.toFixed(3)+')';
+    ctx.stroke();
+  }
+
+  // grain over everything, under 4 percent, seeded
+  (function(){
+    var R = TX.rng(20260819);
+    var g = ctx.getImageData(0,0,1,1); // touch to ensure context ok
+    for (var i=0;i<5200;i++){
+      var x=R()*W, y=R()*H, a=R()*0.035;
+      ctx.fillStyle='rgba('+(R()<0.5?'255,255,255':'0,0,0')+','+a.toFixed(3)+')';
+      ctx.fillRect(x,y,1.3,1.3);
+    }
+  })();
+
+  // the day rule with two bars sharing one origin, drawn in SVG for crisp ticks
+  var RATE=46, y0=590, ox=110;
+  var svg=document.getElementById('rule');
+  function el(t,a){var e=document.createElementNS('http://www.w3.org/2000/svg',t);
+    for(var k in a)e.setAttribute(k,a[k]);return e;}
+  svg.appendChild(el('line',{x1:ox,y1:y0,x2:W-70,y2:y0,stroke:'#D9CDB4',
+    'stroke-width':1.5,opacity:0.55}));
+  // day ticks across, heavier on the 3rd, 7th, 19th, 20th relative to Aug 1
+  for(var d=0; d<=17; d++){
+    var x=ox+d*RATE;
+    var heavy=(d===2||d===6);
+    svg.appendChild(el('line',{x1:x,y1:y0-(heavy?12:6),x2:x,y2:y0+(heavy?12:6),
+      stroke:'#D9CDB4','stroke-width':heavy?2:1,opacity:heavy?0.9:0.4}));
+  }
+  // four-day bar ABOVE, dial full value. It stops a few px SHORT of the Aug 7 tick so the
+  // measure reads as stopping open rather than landing on the deadline, and it carries no cap.
+  var origin=ox+2*RATE;
+  svg.appendChild(el('rect',{x:origin,y:y0-64,width:4*RATE-9,height:14,fill:'#EFE9DA'}));
+  // sixteen-day bar BELOW, brass 55 percent, longer and dimmer, also stopping short and open
+  svg.appendChild(el('rect',{x:origin,y:y0+20,width:16*RATE-9,height:6,fill:'#B98D46',opacity:0.75}));
+
+  (window.__fontsReady||document.fonts.ready).then(function(){ resolve(); });
+});
+</script>
+</body>
+</html>

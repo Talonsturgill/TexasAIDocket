@@ -1,0 +1,11 @@
+{"run_date": "2026-08-19", "phases": {
+  "wake": "done", "craft": "done", "sweep": "done", "reverify": "done",
+  "discover": "done", "admit": "held", "claims": "running", "instrument": "done",
+  "selection": "done", "directors": "pending", "copy": "pending", "art": "pending",
+  "pixel": "pending", "aggregate": "pending", "assembly": "pending", "scoring": "pending",
+  "ship": "pending", "retro": "pending", "email": "pending"},
+ "artifacts": {
+  "scouts": ["out/2026-08-19/scout-ai-in-the-field.json","out/2026-08-19/scout-clinic-and-classroom.json",
+             "out/2026-08-19/scout-research-and-machines.json","out/2026-08-19/scout-what-texas-makes.json",
+             "out/2026-08-19/scout-power-and-compute.json","out/2026-08-19/scout-policy-and-money.json"],
+  "story": "tx-2026-0072"}}

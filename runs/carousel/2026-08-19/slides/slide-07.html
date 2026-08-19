@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body { background:#16151C; position:relative; font-family:'Manrope',sans-serif;
+          --frame-ink:#EFE9DA; --frame-dim:#D9CDB4; }
+  canvas#art { position:absolute; inset:0; width:1080px; height:1350px; }
+
+  /* ---- the invariant frame. Identical on every slide of every deck. ---------------- */
+  .tx-frame { position:absolute; inset:0; pointer-events:none; z-index:60; }
+  .tx-wordmark {
+    position:absolute; top:56px; left:80px;
+    font-family:'JetBrains Mono',monospace; font-size:25px; font-weight:500;
+    letter-spacing:.16em; color:var(--frame-ink); }
+  .tx-star { position:absolute; top:54px; left:80px; width:26px; height:26px; }
+  .tx-counter {
+    position:absolute; bottom:56px; right:80px;
+    font-family:'JetBrains Mono',monospace; font-size:25px; font-weight:500;
+    font-variant-numeric:tabular-nums; letter-spacing:.10em; color:var(--frame-ink); }
+  .tx-site {
+    position:absolute; bottom:56px; left:80px;
+    font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:400;
+    letter-spacing:.04em; color:var(--frame-dim); }
+  .tx-kicker {
+    position:absolute; top:56px; right:80px; max-width:620px; text-align:right;
+    font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:500;
+    letter-spacing:.10em; text-transform:uppercase; color:var(--frame-dim); }
+
+
+  .lead { position:absolute; top:104px; left:56px; right:56px; z-index:70;
+          background:#16151C; padding:22px 24px;
+          font-family:'Fraunces',serif; font-weight:700; font-size:56px; line-height:1.02;
+          letter-spacing:-.015em; color:#EFE9DA; font-variation-settings:'opsz' 56; }
+  .bands { position:absolute; inset:0; display:flex; }
+  .band { flex:1; position:relative; }
+  .band .w { position:absolute; left:22px; right:22px; top:560px; height:190px; display:flex; align-items:center; justify-content:center; text-align:center; padding:14px 12px;
+             background:#16151C; padding:18px 8px;
+             font-family:'Fraunces',serif; font-weight:800; font-size:40px; color:#EFE9DA;
+             letter-spacing:-.01em; line-height:1.06; }
+  .q { position:absolute; left:56px; right:56px; bottom:104px; z-index:70;
+       background:#16151C; padding:22px 24px; }
+  .q .rule { height:2px; background:#B98D46; }
+  .q .t { font-family:'Manrope',sans-serif; font-size:29px; line-height:1.4; color:#EFE9DA;
+          padding:20px 0 0; }
+  .q .src { font-family:'JetBrains Mono',monospace; font-size:24px; color:#D9CDB4; padding-top:12px;}
+
+</style>
+</head>
+<body>
+  <canvas id="art" width="2160" height="2700"></canvas>
+
+  <div class="lead">The sector said it will comply.</div>
+  <div class="bands">
+    <div class="band"><div class="w">GRID</div></div>
+    <div class="band"><div class="w">WATER</div></div>
+    <div class="band"><div class="w">NEIGHBOR&shy;HOODS</div></div>
+    <div class="band"><div class="w">PAY THEIR OWN WAY</div></div>
+  </div>
+  <div class="q">
+    <div class="rule"></div>
+    <div class="t">I established clear guardrails to ensure data centers protect our electric grid,
+      conserve our water, respect our neighborhoods, and pay their own way ...</div>
+    <div class="src">Office of the Governor, August 18th &middot; c18</div>
+  </div>
+
+<div class="tx-frame" data-decorative>
+  <svg class="tx-star" viewBox="0 0 26 26" aria-hidden="true"><polygon points="13,1 16.1,9.4 25,9.6 17.9,15 20.5,23.6 13,18.4 5.5,23.6 8.1,15 1,9.6 9.9,9.4" fill="var(--frame-ink)"/></svg>
+  <div class="tx-wordmark" style="left:118px">TEXAS AI DOCKET</div>
+  <div class="tx-kicker">The Governor's office</div>
+  <div class="tx-site">talonsturgill.github.io/TexasAIDocket</div>
+  <div class="tx-counter">07 / 09</div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+
+<script>
+window.renderReady = new Promise(function(resolve){
+  TX.reseed(20260819);
+  var cv = document.getElementById('art');
+  var ctx = cv.getContext('2d');
+  ctx.scale(2,2);
+  var W=1080, H=1350;
+  function lerp(a,b,t){return a+(b-a)*t;}
+
+  // four equal terrazzo inlay bands, full height, each a graded stone
+  var cols=['#D9CDB4','#8E4B3A','#4E6B62','#B98D46'];
+  var bw=W/4;
+  for(var i=0;i<4;i++){
+    var g=ctx.createLinearGradient(0,0,0,H);
+    g.addColorStop(0, cols[i]); g.addColorStop(1, shade(cols[i],-0.32));
+    ctx.fillStyle=g; ctx.fillRect(i*bw,0,bw,H);
+    // terrazzo fleck
+    var R=TX.rng(20260819+i*97);
+    for(var f=0;f<420;f++){ var x=i*bw+R()*bw, y=R()*H;
+      ctx.fillStyle='rgba('+(R()<0.5?'255,255,255':'0,0,0')+','+(R()*0.10).toFixed(3)+')';
+      ctx.fillRect(x,y,2.2,2.2); }
+  }
+  // solid tower bars behind the top and bottom masthead furniture, so the wordmark, site and
+  // counter read even where a light inlay band sits under them. The type plates for the lead, the
+  // band words and the quote are solid CSS knockouts, so the canvas only owns the furniture strips.
+  ctx.fillStyle='#16151C'; ctx.fillRect(0,0,W,102);
+  ctx.fillStyle='#16151C'; ctx.fillRect(0,H-92,W,92);
+  function shade(hex,amt){
+    var n=parseInt(hex.slice(1),16), r=(n>>16)&255,g=(n>>8)&255,b=n&255;
+    r=Math.max(0,Math.min(255,r+amt*255)); g=Math.max(0,Math.min(255,g+amt*255));
+    b=Math.max(0,Math.min(255,b+amt*255));
+    return 'rgb('+(r|0)+','+(g|0)+','+(b|0)+')';
+  }
+
+  // grain over everything, under 4 percent, seeded
+  (function(){
+    var R = TX.rng(20260819);
+    var g = ctx.getImageData(0,0,1,1); // touch to ensure context ok
+    for (var i=0;i<5200;i++){
+      var x=R()*W, y=R()*H, a=R()*0.035;
+      ctx.fillStyle='rgba('+(R()<0.5?'255,255,255':'0,0,0')+','+a.toFixed(3)+')';
+      ctx.fillRect(x,y,1.3,1.3);
+    }
+  })();
+
+  (window.__fontsReady||document.fonts.ready).then(function(){ resolve(); });
+});
+</script>
+</body>
+</html>

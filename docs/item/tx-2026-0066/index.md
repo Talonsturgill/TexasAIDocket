@@ -11,7 +11,7 @@ San Angelo created Section 430 of its zoning ordinance, the first full land use 
 - Public access: Public meeting
 - Take part: https://www.sanangelo.gov/803/Data-Center-Information
 
-- Last checked: 2026-08-14
+- Last checked: 2026-08-19
 
 ## Dates
 
@@ -20,6 +20,12 @@ San Angelo created Section 430 of its zoning ordinance, the first full land use 
 - 2026-05-05 · hearing: Introduced with public hearing
 - 2026-05-19 · ordered: Finally passed by City Council, reported 6 to 0
 - 2026-05-19 · effective: Ordinance effective date
+
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-19 · Checked and unchanged. The land use regulations approved May 19th are still the governing action listed, and the city's page carries nothing from July or August.
 
 ## Evidence
 

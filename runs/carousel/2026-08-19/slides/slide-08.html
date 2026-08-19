@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body { background:#16151C; position:relative; font-family:'Manrope',sans-serif;
+          --frame-ink:#EFE9DA; --frame-dim:#D9CDB4; }
+  canvas#art { position:absolute; inset:0; width:1080px; height:1350px; }
+
+  /* ---- the invariant frame. Identical on every slide of every deck. ---------------- */
+  .tx-frame { position:absolute; inset:0; pointer-events:none; z-index:60; }
+  .tx-wordmark {
+    position:absolute; top:56px; left:80px;
+    font-family:'JetBrains Mono',monospace; font-size:25px; font-weight:500;
+    letter-spacing:.16em; color:var(--frame-ink); }
+  .tx-star { position:absolute; top:54px; left:80px; width:26px; height:26px; }
+  .tx-counter {
+    position:absolute; bottom:56px; right:80px;
+    font-family:'JetBrains Mono',monospace; font-size:25px; font-weight:500;
+    font-variant-numeric:tabular-nums; letter-spacing:.10em; color:var(--frame-ink); }
+  .tx-site {
+    position:absolute; bottom:56px; left:80px;
+    font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:400;
+    letter-spacing:.04em; color:var(--frame-dim); }
+  .tx-kicker {
+    position:absolute; top:56px; right:80px; max-width:620px; text-align:right;
+    font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:500;
+    letter-spacing:.10em; text-transform:uppercase; color:var(--frame-dim); }
+
+
+  .q { position:absolute; top:120px; left:80px; right:80px; }
+  .q .rule { height:2px; background:#B98D46; }
+  .q .t { font-family:'Fraunces',serif; font-weight:600; font-size:50px; line-height:1.14;
+          color:#EFE9DA; padding:24px 0; font-variation-settings:'opsz' 50; }
+  .q .src { font-family:'JetBrains Mono',monospace; font-size:24px; color:#D9CDB4; }
+  .block { position:absolute; left:150px; right:150px; bottom:300px; }
+  .block .r { display:flex; justify-content:space-between; align-items:baseline;
+              padding:20px 0; border-bottom:1px solid rgba(185,141,70,.4); }
+  .block .k { font-family:"JetBrains Mono",monospace; font-size:24px; color:#D9CDB4;
+              letter-spacing:.05em; }
+  .block .v { font-family:'Manrope',sans-serif; font-size:28px; color:#EFE9DA; }
+  .block .empty { font-family:"JetBrains Mono",monospace; font-size:24px; color:#D9CDB4;
+                  font-style:italic; }
+
+</style>
+</head>
+<body data-contacts='[{"what":"the title block on stone","shadow":[[150,1015,780,26]],"ground":[[150,880,780,26]]}]'>
+  <canvas id="art" width="2160" height="2700"></canvas>
+
+  <div class="q">
+    <div class="rule"></div>
+    <div class="t">One data center that could not comply chose to end operations before even
+      beginning construction.</div>
+    <div class="src">Office of the Governor, August 18th &middot; c17</div>
+  </div>
+  <div class="block">
+    <div class="r"><span class="k">DATE</span><span class="v">August 18th, 2026</span></div>
+    <div class="r"><span class="k">PUBLISHER</span><span class="v">Office of the Governor</span></div>
+    <div class="r"><span class="k">SOURCE</span><span class="v">gov.texas.gov &middot; c17</span></div>
+    <div class="r"><span class="k">NAME</span><span class="empty">not named in the source</span></div>
+  </div>
+
+<div class="tx-frame" data-decorative>
+  <svg class="tx-star" viewBox="0 0 26 26" aria-hidden="true"><polygon points="13,1 16.1,9.4 25,9.6 17.9,15 20.5,23.6 13,18.4 5.5,23.6 8.1,15 1,9.6 9.9,9.4" fill="var(--frame-ink)"/></svg>
+  <div class="tx-wordmark" style="left:118px">TEXAS AI DOCKET</div>
+  <div class="tx-kicker">August 18th</div>
+  <div class="tx-site">talonsturgill.github.io/TexasAIDocket</div>
+  <div class="tx-counter">08 / 09</div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+
+<script>
+window.renderReady = new Promise(function(resolve){
+  TX.reseed(20260819);
+  var cv = document.getElementById('art');
+  var ctx = cv.getContext('2d');
+  ctx.scale(2,2);
+  var W=1080, H=1350;
+  function lerp(a,b,t){return a+(b-a)*t;}
+
+  // a warm masonry ground with a faint vertical falloff so the base carries tone
+  function stoneGround(top, bottom){
+    var grad = ctx.createLinearGradient(0,0,0,H);
+    grad.addColorStop(0, top); grad.addColorStop(1, bottom);
+    ctx.fillStyle = grad; ctx.fillRect(0,0,W,H);
+  }
+
+  stoneGround('#141319', '#09080C');
+  // LIGHT THE GROUND FIRST, then cast into it, per the engine's contact-shadow rule. A shadow on a
+  // near-black ground is a one L* change and reads as nothing. This warm pool sits under the block
+  // and through the middle third, so the base carries modeled tone and the shadow has something to
+  // subtract from.
+  var pool = ctx.createRadialGradient(540,820,120, 540,820,720);
+  pool.addColorStop(0,'rgba(217,205,180,0.24)'); pool.addColorStop(0.7,'rgba(217,205,180,0.08)');
+  pool.addColorStop(1,'rgba(217,205,180,0)');
+  ctx.fillStyle=pool; ctx.fillRect(0,0,W,H);
+  // the block's contact shadow, cast down into the LIT pool just below the block's last row
+  var sh=ctx.createLinearGradient(0,1000,0,1150);
+  sh.addColorStop(0,'rgba(0,0,0,0.55)'); sh.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=sh; ctx.fillRect(150,1000,780,150);
+
+  // grain over everything, under 4 percent, seeded
+  (function(){
+    var R = TX.rng(20260819);
+    var g = ctx.getImageData(0,0,1,1); // touch to ensure context ok
+    for (var i=0;i<5200;i++){
+      var x=R()*W, y=R()*H, a=R()*0.035;
+      ctx.fillStyle='rgba('+(R()<0.5?'255,255,255':'0,0,0')+','+a.toFixed(3)+')';
+      ctx.fillRect(x,y,1.3,1.3);
+    }
+  })();
+
+  (window.__fontsReady||document.fonts.ready).then(function(){ resolve(); });
+});
+</script>
+</body>
+</html>

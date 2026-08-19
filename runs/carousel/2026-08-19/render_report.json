@@ -1,0 +1,3554 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "August 7thcame and went.",
+          "x": 80,
+          "y": 150,
+          "w": 920,
+          "h": 243,
+          "font_px": 132,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(239, 233, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              129,
+              580,
+              163
+            ],
+            [
+              80,
+              250,
+              811,
+              163
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ERCOT set itself a date to tell service providers how every large load was class",
+          "x": 64,
+          "y": 1037,
+          "w": 676,
+          "h": 181,
+          "font_px": 33,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              86,
+              1057,
+              555,
+              45
+            ],
+            [
+              86,
+              1104,
+              523,
+              45
+            ],
+            [
+              86,
+              1151,
+              613,
+              45
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TEXAS AI DOCKET",
+          "x": 118,
+          "y": 56,
+          "w": 285,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 233, 218)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              118,
+              56,
+              285,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ERCOT Market Notice",
+          "x": 681,
+          "y": 56,
+          "w": 319,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 205, 180)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              681,
+              56,
+              319,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "talonsturgill.github.io/TexasAIDocket",
+          "x": 80,
+          "y": 1263,
+          "w": 568,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 205, 180)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1263,
+              568,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 877,
+          "y": 1260,
+          "w": 123,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 233, 218)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              877,
+              1260,
+              123,
+              34
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [
+        {
+          "text": "01",
+          "fn": "fillText",
+          "font": "500 27px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "02",
+          "fn": "fillText",
+          "font": "500 27px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "03",
+          "fn": "fillText",
+          "font": "500 27px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "04",
+          "fn": "fillText",
+          "font": "500 27px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "05",
+          "fn": "fillText",
+          "font": "500 27px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "06",
+          "fn": "fillText",
+          "font": "500 27px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "08",
+          "fn": "fillText",
+          "font": "500 27px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "09",
+          "fn": "fillText",
+          "font": "500 27px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "10",
+          "fn": "fillText",
+          "font": "500 27px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "11",
+          "fn": "fillText",
+          "font": "500 27px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "12",
+          "fn": "fillText",
+          "font": "500 27px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "13",
+          "fn": "fillText",
+          "font": "500 27px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "14",
+          "fn": "fillText",
+          "font": "500 27px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "15",
+          "fn": "fillText",
+          "font": "500 27px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "16",
+          "fn": "fillText",
+          "font": "500 27px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "17",
+          "fn": "fillText",
+          "font": "500 27px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "18",
+          "fn": "fillText",
+          "font": "500 27px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "19",
+          "fn": "fillText",
+          "font": "500 27px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "20",
+          "fn": "fillText",
+          "font": "500 27px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "21",
+          "fn": "fillText",
+          "font": "500 27px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "22",
+          "fn": "fillText",
+          "font": "500 27px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "23",
+          "fn": "fillText",
+          "font": "500 27px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "24",
+          "fn": "fillText",
+          "font": "500 27px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "25",
+          "fn": "fillText",
+          "font": "500 27px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "26",
+          "fn": "fillText",
+          "font": "500 27px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "27",
+          "fn": "fillText",
+          "font": "500 27px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "28",
+          "fn": "fillText",
+          "font": "500 27px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "29",
+          "fn": "fillText",
+          "font": "500 27px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "30",
+          "fn": "fillText",
+          "font": "500 27px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "31",
+          "fn": "fillText",
+          "font": "500 27px \"JetBrains Mono\", monospace"
+        }
+      ],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 626,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 47.9,
+          "variance": 3160.7
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "Four daysof warning.",
+          "x": 80,
+          "y": 120,
+          "w": 920,
+          "h": 182,
+          "font_px": 96,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(239, 233, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              106,
+              382,
+              118
+            ],
+            [
+              80,
+              197,
+              441,
+              118
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "4",
+          "x": 206,
+          "y": 660,
+          "w": 32,
+          "h": 69,
+          "font_px": 52,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 233, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              206,
+              660,
+              32,
+              69
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "DAYS AHEAD",
+          "x": 248,
+          "y": 686,
+          "w": 162,
+          "h": 35,
+          "font_px": 26,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              248,
+              686,
+              162,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "16",
+          "x": 206,
+          "y": 846,
+          "w": 64,
+          "h": 69,
+          "font_px": 52,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 233, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              206,
+              846,
+              64,
+              69
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "DAYS SINCE THE LETTER",
+          "x": 280,
+          "y": 872,
+          "w": 341,
+          "h": 35,
+          "font_px": 26,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              280,
+              872,
+              341,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ERCOT will not notify each Interconnecting Distribution Service Provider and Tra",
+          "x": 80,
+          "y": 981,
+          "w": 880,
+          "h": 218,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(239, 233, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1004,
+              866,
+              41
+            ],
+            [
+              80,
+              1048,
+              828,
+              41
+            ],
+            [
+              80,
+              1091,
+              830,
+              41
+            ],
+            [
+              80,
+              1135,
+              204,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ERCOT market notice M-A080326-01 \u00b7 c2",
+          "x": 80,
+          "y": 1199,
+          "w": 880,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1199,
+              551,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TEXAS AI DOCKET",
+          "x": 118,
+          "y": 56,
+          "w": 285,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 233, 218)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              118,
+              56,
+              285,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ERCOT Market Notice",
+          "x": 681,
+          "y": 56,
+          "w": 319,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 205, 180)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              681,
+              56,
+              319,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "talonsturgill.github.io/TexasAIDocket",
+          "x": 80,
+          "y": 1263,
+          "w": 568,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 205, 180)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1263,
+              568,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 877,
+          "y": 1260,
+          "w": 123,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 233, 218)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              877,
+              1260,
+              123,
+              34
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "svg",
+          "x": 110,
+          "y": 590,
+          "w": 900,
+          "h": 1.5,
+          "by": "line",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 110,
+          "y": 584,
+          "w": 1,
+          "h": 12,
+          "by": "line",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 156,
+          "y": 584,
+          "w": 1,
+          "h": 12,
+          "by": "line",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 202,
+          "y": 578,
+          "w": 2,
+          "h": 24,
+          "by": "line",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 248,
+          "y": 584,
+          "w": 1,
+          "h": 12,
+          "by": "line",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 294,
+          "y": 584,
+          "w": 1,
+          "h": 12,
+          "by": "line",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 340,
+          "y": 584,
+          "w": 1,
+          "h": 12,
+          "by": "line",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 386,
+          "y": 578,
+          "w": 2,
+          "h": 24,
+          "by": "line",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 432,
+          "y": 584,
+          "w": 1,
+          "h": 12,
+          "by": "line",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 478,
+          "y": 584,
+          "w": 1,
+          "h": 12,
+          "by": "line",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 524,
+          "y": 584,
+          "w": 1,
+          "h": 12,
+          "by": "line",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 570,
+          "y": 584,
+          "w": 1,
+          "h": 12,
+          "by": "line",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 616,
+          "y": 584,
+          "w": 1,
+          "h": 12,
+          "by": "line",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 662,
+          "y": 584,
+          "w": 1,
+          "h": 12,
+          "by": "line",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 708,
+          "y": 584,
+          "w": 1,
+          "h": 12,
+          "by": "line",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 754,
+          "y": 584,
+          "w": 1,
+          "h": 12,
+          "by": "line",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 800,
+          "y": 584,
+          "w": 1,
+          "h": 12,
+          "by": "line",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 846,
+          "y": 584,
+          "w": 1,
+          "h": 12,
+          "by": "line",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 892,
+          "y": 584,
+          "w": 1,
+          "h": 12,
+          "by": "line",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 202,
+          "y": 526,
+          "w": 175,
+          "h": 14,
+          "by": "rect",
+          "color": "rgb(239, 233, 218)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 202,
+          "y": 610,
+          "w": 727,
+          "h": 6,
+          "by": "rect",
+          "color": "rgb(185, 141, 70)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 80,
+          "y": 979,
+          "w": 880,
+          "h": 2,
+          "by": "rule",
+          "color": "rgb(185, 141, 70)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 997,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 21.4,
+          "variance": 15.9
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "Update Regarding Batch Zero Timelines and Processes",
+          "x": 80,
+          "y": 118,
+          "w": 920,
+          "h": 50,
+          "font_px": 26,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 141, 70)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              118,
+              875,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ERCOT market notice M-A080326-01 \u00b7 c2",
+          "x": 80,
+          "y": 168,
+          "w": 920,
+          "h": 43,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(156, 147, 130)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              180,
+              559,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Nobody wastold the answer.",
+          "x": 80,
+          "y": 233,
+          "w": 920,
+          "h": 177,
+          "font_px": 92,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(239, 233, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              220,
+              453,
+              113
+            ],
+            [
+              80,
+              308,
+              590,
+              113
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "No service provider was told how any large load was classified.",
+          "x": 80,
+          "y": 1107,
+          "w": 520,
+          "h": 85,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(239, 233, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1107,
+              504,
+              41
+            ],
+            [
+              80,
+              1149,
+              340,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "base load",
+          "x": 800,
+          "y": 1065,
+          "w": 130,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              800,
+              1065,
+              130,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "studied",
+          "x": 829,
+          "y": 1110,
+          "w": 101,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              829,
+              1110,
+              101,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "excluded",
+          "x": 815,
+          "y": 1155,
+          "w": 115,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              815,
+              1155,
+              115,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TEXAS AI DOCKET",
+          "x": 118,
+          "y": 56,
+          "w": 285,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 233, 218)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              118,
+              56,
+              285,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PUCT and ERCOT",
+          "x": 765,
+          "y": 56,
+          "w": 235,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 205, 180)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              765,
+              56,
+              235,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "talonsturgill.github.io/TexasAIDocket",
+          "x": 80,
+          "y": 1263,
+          "w": 568,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 205, 180)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1263,
+              568,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 877,
+          "y": 1260,
+          "w": 123,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 233, 218)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              877,
+              1260,
+              123,
+              34
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "border",
+          "x": 80,
+          "y": 167,
+          "w": 920,
+          "h": 1,
+          "by": "kick",
+          "color": "rgba(185, 141, 70, 0.5)",
+          "decorative": false,
+          "skip": [
+            0
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 946,
+          "y": 1065.5,
+          "w": 54,
+          "h": 1,
+          "by": "sw",
+          "color": "rgb(185, 141, 70)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "border",
+          "x": 946,
+          "y": 1094.5,
+          "w": 54,
+          "h": 1,
+          "by": "sw",
+          "color": "rgb(185, 141, 70)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "border",
+          "x": 946,
+          "y": 1065.5,
+          "w": 1,
+          "h": 30,
+          "by": "sw",
+          "color": "rgb(185, 141, 70)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "border",
+          "x": 999,
+          "y": 1065.5,
+          "w": 1,
+          "h": 30,
+          "by": "sw",
+          "color": "rgb(185, 141, 70)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "border",
+          "x": 946,
+          "y": 1110.5,
+          "w": 54,
+          "h": 1,
+          "by": "sw",
+          "color": "rgb(185, 141, 70)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "border",
+          "x": 946,
+          "y": 1139.5,
+          "w": 54,
+          "h": 1,
+          "by": "sw",
+          "color": "rgb(185, 141, 70)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "border",
+          "x": 946,
+          "y": 1110.5,
+          "w": 1,
+          "h": 30,
+          "by": "sw",
+          "color": "rgb(185, 141, 70)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "border",
+          "x": 999,
+          "y": 1110.5,
+          "w": 1,
+          "h": 30,
+          "by": "sw",
+          "color": "rgb(185, 141, 70)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "border",
+          "x": 946,
+          "y": 1155.5,
+          "w": 54,
+          "h": 1,
+          "by": "sw",
+          "color": "rgb(185, 141, 70)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "border",
+          "x": 946,
+          "y": 1184.5,
+          "w": 54,
+          "h": 1,
+          "by": "sw",
+          "color": "rgb(185, 141, 70)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "border",
+          "x": 946,
+          "y": 1155.5,
+          "w": 1,
+          "h": 30,
+          "by": "sw",
+          "color": "rgb(185, 141, 70)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "border",
+          "x": 999,
+          "y": 1155.5,
+          "w": 1,
+          "h": 30,
+          "by": "sw",
+          "color": "rgb(185, 141, 70)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 665,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 23.3,
+          "variance": 134.4
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "Whose water,and whose power.",
+          "x": 80,
+          "y": 130,
+          "w": 920,
+          "h": 122,
+          "font_px": 60,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(239, 233, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              123,
+              374,
+              74
+            ],
+            [
+              80,
+              184,
+              489,
+              74
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "CLOSED",
+          "x": 210,
+          "y": 560,
+          "w": 100,
+          "h": 35,
+          "font_px": 26,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 141, 70)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              210,
+              560,
+              100,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "OPEN",
+          "x": 640,
+          "y": 560,
+          "w": 67,
+          "h": 35,
+          "font_px": 26,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 141, 70)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              640,
+              560,
+              67,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The extent to which data centers are bringing their own water and reusing their ",
+          "x": 80,
+          "y": 1001,
+          "w": 890,
+          "h": 178,
+          "font_px": 31,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(239, 233, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1024,
+              873,
+              42
+            ],
+            [
+              80,
+              1069,
+              775,
+              42
+            ],
+            [
+              80,
+              1113,
+              423,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Directive to the PUCT and ERCOT \u00b7 c15",
+          "x": 80,
+          "y": 1179,
+          "w": 890,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1179,
+              533,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TEXAS AI DOCKET",
+          "x": 118,
+          "y": 56,
+          "w": 285,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 233, 218)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              118,
+              56,
+              285,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The stated reason",
+          "x": 714,
+          "y": 56,
+          "w": 286,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 205, 180)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              714,
+              56,
+              286,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "talonsturgill.github.io/TexasAIDocket",
+          "x": 80,
+          "y": 1263,
+          "w": 568,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 205, 180)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1263,
+              568,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 877,
+          "y": 1260,
+          "w": 123,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 233, 218)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              877,
+              1260,
+              123,
+              34
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 80,
+          "y": 999.1,
+          "w": 890,
+          "h": 2,
+          "by": "rule",
+          "color": "rgb(185, 141, 70)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1258,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 32.1,
+          "variance": 148.6
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "Three figures,two documents.",
+          "x": 80,
+          "y": 120,
+          "w": 920,
+          "h": 153,
+          "font_px": 78,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(239, 233, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              110,
+              478,
+              96
+            ],
+            [
+              80,
+              186,
+              535,
+              96
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "approximately 474 gigawatts",
+          "x": 84,
+          "y": 373,
+          "w": 567,
+          "h": 138,
+          "font_px": 52,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 233, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              373,
+              530,
+              69
+            ],
+            [
+              84,
+              442,
+              281,
+              69
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "of requests to connect to the Texas grid",
+          "x": 651,
+          "y": 397,
+          "w": 345,
+          "h": 73,
+          "font_px": 28,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              668,
+              396,
+              328,
+              38
+            ],
+            [
+              816,
+              432,
+              180,
+              38
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Approximately 90 percent",
+          "x": 84,
+          "y": 572,
+          "w": 522,
+          "h": 138,
+          "font_px": 52,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 233, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              572,
+              499,
+              69
+            ],
+            [
+              84,
+              641,
+              218,
+              69
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "of the new power requests are data centers",
+          "x": 606,
+          "y": 596,
+          "w": 390,
+          "h": 73,
+          "font_px": 28,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              653,
+              595,
+              343,
+              38
+            ],
+            [
+              785,
+              631,
+              211,
+              38
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "more than five times",
+          "x": 84,
+          "y": 771,
+          "w": 482,
+          "h": 138,
+          "font_px": 52,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 233, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              771,
+              437,
+              69
+            ],
+            [
+              84,
+              840,
+              156,
+              69
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Texas' record peak electricity demand for ERCOT",
+          "x": 566,
+          "y": 795,
+          "w": 430,
+          "h": 73,
+          "font_px": 28,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              623,
+              794,
+              373,
+              38
+            ],
+            [
+              754,
+              830,
+              242,
+              38
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "the letter \u00b7 c6",
+          "x": 80,
+          "y": 963,
+          "w": 216,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(156, 147, 130)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              963,
+              216,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "the letter \u00b7 c8",
+          "x": 382,
+          "y": 963,
+          "w": 216,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(156, 147, 130)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              382,
+              963,
+              216,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "the press release \u00b7 c9",
+          "x": 683,
+          "y": 963,
+          "w": 317,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(156, 147, 130)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              683,
+              963,
+              317,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TEXAS AI DOCKET",
+          "x": 118,
+          "y": 56,
+          "w": 285,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 233, 218)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              118,
+              56,
+              285,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The letter and the release",
+          "x": 563,
+          "y": 56,
+          "w": 437,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 205, 180)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              563,
+              56,
+              437,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "talonsturgill.github.io/TexasAIDocket",
+          "x": 80,
+          "y": 1263,
+          "w": 568,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 205, 180)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1263,
+              568,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 877,
+          "y": 1260,
+          "w": 123,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 233, 218)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              877,
+              1260,
+              123,
+              34
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 80,
+          "y": 340,
+          "w": 920,
+          "h": 3,
+          "by": "toprule",
+          "color": "rgb(185, 141, 70)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "border",
+          "x": 80,
+          "y": 541,
+          "w": 920,
+          "h": 1,
+          "by": "row",
+          "color": "rgba(185, 141, 70, 0.4)",
+          "decorative": false,
+          "skip": [
+            1,
+            2
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 80,
+          "y": 740,
+          "w": 920,
+          "h": 1,
+          "by": "row",
+          "color": "rgba(185, 141, 70, 0.4)",
+          "decorative": false,
+          "skip": [
+            3,
+            4
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 80,
+          "y": 939,
+          "w": 920,
+          "h": 1,
+          "by": "row",
+          "color": "rgba(185, 141, 70, 0.4)",
+          "decorative": false,
+          "skip": [
+            5,
+            6
+          ]
+        },
+        {
+          "kind": "fill",
+          "x": 80,
+          "y": 940,
+          "w": 920,
+          "h": 3,
+          "by": "botrule",
+          "color": "rgb(185, 141, 70)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1417,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 42.6,
+          "variance": 73.4
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "One office. The same day. Two wordings.",
+          "x": 80,
+          "y": 96,
+          "w": 920,
+          "h": 145,
+          "font_px": 74,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(35, 32, 43)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              86,
+              825,
+              91
+            ],
+            [
+              80,
+              159,
+              486,
+              91
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The press release",
+          "x": 126,
+          "y": 340,
+          "w": 368,
+          "h": 49,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(90, 83, 72)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              126,
+              340,
+              265,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The PUCT and ERCOT must complete this audit before any data center project moves",
+          "x": 126,
+          "y": 389,
+          "w": 368,
+          "h": 273,
+          "font_px": 35,
+          "weight": "500",
+          "family": "Fraunces",
+          "color": "rgb(35, 32, 43)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              126,
+              411,
+              368,
+              43
+            ],
+            [
+              126,
+              457,
+              310,
+              43
+            ],
+            [
+              126,
+              503,
+              344,
+              43
+            ],
+            [
+              126,
+              550,
+              340,
+              43
+            ],
+            [
+              126,
+              596,
+              141,
+              43
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Office of the Governor \u00b7 c11",
+          "x": 126,
+          "y": 662,
+          "w": 368,
+          "h": 84,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(90, 83, 72)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              126,
+              684,
+              346,
+              31
+            ],
+            [
+              126,
+              715,
+              43,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The signed letter",
+          "x": 586,
+          "y": 340,
+          "w": 368,
+          "h": 49,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(90, 83, 72)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              586,
+              340,
+              265,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "before any additional data centers are approved to move forward",
+          "x": 586,
+          "y": 389,
+          "w": 368,
+          "h": 227,
+          "font_px": 35,
+          "weight": "500",
+          "family": "Fraunces",
+          "color": "rgb(35, 32, 43)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              586,
+              411,
+              346,
+              43
+            ],
+            [
+              586,
+              457,
+              260,
+              43
+            ],
+            [
+              586,
+              503,
+              291,
+              43
+            ],
+            [
+              586,
+              550,
+              133,
+              43
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Office of the Governor \u00b7 c12",
+          "x": 586,
+          "y": 616,
+          "w": 368,
+          "h": 84,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(90, 83, 72)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              586,
+              638,
+              346,
+              31
+            ],
+            [
+              586,
+              669,
+              43,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The signed letter words it more narrowly than the press release does. Both are o",
+          "x": 80,
+          "y": 1100,
+          "w": 920,
+          "h": 100,
+          "font_px": 27,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(58, 54, 48)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1124,
+              919,
+              37
+            ],
+            [
+              80,
+              1162,
+              637,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "tx-2026-0072",
+          "x": 80,
+          "y": 1217,
+          "w": 169,
+          "h": 29,
+          "font_px": 22,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(106, 99, 88)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1217,
+              169,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "August 3rd, 2026",
+          "x": 775,
+          "y": 1217,
+          "w": 225,
+          "h": 29,
+          "font_px": 22,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(106, 99, 88)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              775,
+              1217,
+              225,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TEXAS AI DOCKET",
+          "x": 118,
+          "y": 56,
+          "w": 285,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(35, 32, 43)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              118,
+              56,
+              285,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The two documents",
+          "x": 714,
+          "y": 56,
+          "w": 286,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(90, 83, 72)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              714,
+              56,
+              286,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "talonsturgill.github.io/TexasAIDocket",
+          "x": 80,
+          "y": 1263,
+          "w": 568,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(90, 83, 72)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1263,
+              568,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 877,
+          "y": 1260,
+          "w": 123,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(35, 32, 43)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              877,
+              1260,
+              123,
+              34
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "border",
+          "x": 126,
+          "y": 389,
+          "w": 368,
+          "h": 1,
+          "by": "q",
+          "color": "rgb(185, 141, 70)",
+          "decorative": false,
+          "skip": [
+            2
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 126,
+          "y": 660.9,
+          "w": 368,
+          "h": 1,
+          "by": "q",
+          "color": "rgb(185, 141, 70)",
+          "decorative": false,
+          "skip": [
+            2
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 586,
+          "y": 389,
+          "w": 368,
+          "h": 1,
+          "by": "q",
+          "color": "rgb(185, 141, 70)",
+          "decorative": false,
+          "skip": [
+            5
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 586,
+          "y": 614.8,
+          "w": 368,
+          "h": 1,
+          "by": "q",
+          "color": "rgb(185, 141, 70)",
+          "decorative": false,
+          "skip": [
+            5
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 80,
+          "y": 1100.4,
+          "w": 920,
+          "h": 2,
+          "by": "foot",
+          "color": "rgb(185, 141, 70)",
+          "decorative": false,
+          "skip": [
+            7
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 80,
+          "y": 1204,
+          "w": 920,
+          "h": 1,
+          "by": "filing",
+          "color": "rgb(185, 141, 70)",
+          "decorative": true,
+          "skip": [
+            8,
+            9
+          ]
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1160,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 225,
+          "variance": 302
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "The sector said it will comply.",
+          "x": 56,
+          "y": 104,
+          "w": 968,
+          "h": 101,
+          "font_px": 56,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(239, 233, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              120,
+              757,
+              69
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "GRID",
+          "x": 22,
+          "y": 560,
+          "w": 226,
+          "h": 190,
+          "font_px": 40,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(239, 233, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              79,
+              630,
+              111,
+              49
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "WATER",
+          "x": 292,
+          "y": 560,
+          "w": 226,
+          "h": 190,
+          "font_px": 40,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(239, 233, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              327,
+              630,
+              156,
+              49
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "NEIGHBOR\u00adHOODS",
+          "x": 562,
+          "y": 560,
+          "w": 226,
+          "h": 190,
+          "font_px": 40,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(239, 233, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              552,
+              609,
+              231,
+              49
+            ],
+            [
+              783,
+              609,
+              15,
+              49
+            ],
+            [
+              598,
+              651,
+              154,
+              49
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PAY THEIR OWN WAY",
+          "x": 832,
+          "y": 560,
+          "w": 226,
+          "h": 190,
+          "font_px": 40,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(239, 233, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              903,
+              587,
+              83,
+              49
+            ],
+            [
+              876,
+              630,
+              138,
+              49
+            ],
+            [
+              840,
+              672,
+              209,
+              49
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "I established clear guardrails to ensure data centers protect our electric grid,",
+          "x": 80,
+          "y": 1039,
+          "w": 920,
+          "h": 142,
+          "font_px": 29,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(239, 233, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1059,
+              844,
+              40
+            ],
+            [
+              80,
+              1100,
+              868,
+              40
+            ],
+            [
+              80,
+              1140,
+              264,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Office of the Governor, August 18th \u00b7 c18",
+          "x": 80,
+          "y": 1181,
+          "w": 920,
+          "h": 43,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1193,
+              590,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TEXAS AI DOCKET",
+          "x": 118,
+          "y": 56,
+          "w": 285,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 233, 218)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              118,
+              56,
+              285,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The Governor's office",
+          "x": 647,
+          "y": 56,
+          "w": 353,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 205, 180)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              647,
+              56,
+              353,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "talonsturgill.github.io/TexasAIDocket",
+          "x": 80,
+          "y": 1263,
+          "w": 568,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 205, 180)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1263,
+              568,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 877,
+          "y": 1260,
+          "w": 123,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 233, 218)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              877,
+              1260,
+              123,
+              34
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 80,
+          "y": 1037.2,
+          "w": 920,
+          "h": 2,
+          "by": "rule",
+          "color": "rgb(185, 141, 70)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 597,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 80,
+          "variance": 2428.1
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "One data center that could not comply chose to end operations before even beginn",
+          "x": 80,
+          "y": 122,
+          "w": 920,
+          "h": 219,
+          "font_px": 50,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(239, 233, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              143,
+              882,
+              62
+            ],
+            [
+              80,
+              200,
+              828,
+              62
+            ],
+            [
+              80,
+              257,
+              554,
+              62
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Office of the Governor, August 18th \u00b7 c17",
+          "x": 80,
+          "y": 341,
+          "w": 920,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              341,
+              590,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "DATE",
+          "x": 150,
+          "y": 767,
+          "w": 62,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              150,
+              767,
+              62,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "August 18th, 2026",
+          "x": 696,
+          "y": 761,
+          "w": 234,
+          "h": 38,
+          "font_px": 28,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(239, 233, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              696,
+              761,
+              234,
+              38
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PUBLISHER",
+          "x": 150,
+          "y": 846,
+          "w": 140,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              150,
+              846,
+              140,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Office of the Governor",
+          "x": 646,
+          "y": 840,
+          "w": 284,
+          "h": 38,
+          "font_px": 28,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(239, 233, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              646,
+              840,
+              284,
+              38
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SOURCE",
+          "x": 150,
+          "y": 925,
+          "w": 94,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              150,
+              925,
+              94,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "gov.texas.gov \u00b7 c17",
+          "x": 696,
+          "y": 919,
+          "w": 235,
+          "h": 38,
+          "font_px": 28,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(239, 233, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              696,
+              919,
+              235,
+              38
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "NAME",
+          "x": 150,
+          "y": 998,
+          "w": 62,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              150,
+              998,
+              62,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "not named in the source",
+          "x": 599,
+          "y": 998,
+          "w": 331,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              599,
+              998,
+              331,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TEXAS AI DOCKET",
+          "x": 118,
+          "y": 56,
+          "w": 285,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 233, 218)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              118,
+              56,
+              285,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "August 18th",
+          "x": 815,
+          "y": 56,
+          "w": 185,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 205, 180)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              815,
+              56,
+              185,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "talonsturgill.github.io/TexasAIDocket",
+          "x": 80,
+          "y": 1263,
+          "w": 568,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 205, 180)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1263,
+              568,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 877,
+          "y": 1260,
+          "w": 123,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 233, 218)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              877,
+              1260,
+              123,
+              34
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 80,
+          "y": 120,
+          "w": 920,
+          "h": 2,
+          "by": "rule",
+          "color": "rgb(185, 141, 70)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "border",
+          "x": 150,
+          "y": 819,
+          "w": 780,
+          "h": 1,
+          "by": "r",
+          "color": "rgba(185, 141, 70, 0.4)",
+          "decorative": false,
+          "skip": [
+            2,
+            3
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 150,
+          "y": 898,
+          "w": 780,
+          "h": 1,
+          "by": "r",
+          "color": "rgba(185, 141, 70, 0.4)",
+          "decorative": false,
+          "skip": [
+            4,
+            5
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 150,
+          "y": 977,
+          "w": 780,
+          "h": 1,
+          "by": "r",
+          "color": "rgba(185, 141, 70, 0.4)",
+          "decorative": false,
+          "skip": [
+            6,
+            7
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 150,
+          "y": 1049,
+          "w": 780,
+          "h": 1,
+          "by": "r",
+          "color": "rgba(185, 141, 70, 0.4)",
+          "decorative": false,
+          "skip": [
+            8,
+            9
+          ]
+        }
+      ],
+      "encodings": [],
+      "contacts": [
+        {
+          "what": "the title block on stone",
+          "shadow": [
+            [
+              150,
+              1015,
+              780,
+              26
+            ]
+          ],
+          "ground": [
+            [
+              150,
+              880,
+              780,
+              26
+            ]
+          ]
+        }
+      ],
+      "nondeterminism": [],
+      "render_ms": 2082,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 33.6,
+          "variance": 136.5
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "The commissionmeets in 1 day.",
+          "x": 80,
+          "y": 150,
+          "w": 920,
+          "h": 196,
+          "font_px": 104,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(239, 233, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              134,
+              693,
+              129
+            ],
+            [
+              80,
+              232,
+              591,
+              129
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ERCOT said it would file for a good cause exception ahead of the August 20th, 20",
+          "x": 80,
+          "y": 895,
+          "w": 920,
+          "h": 146,
+          "font_px": 29,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(239, 233, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              917,
+              850,
+              40
+            ],
+            [
+              80,
+              959,
+              918,
+              40
+            ],
+            [
+              80,
+              1000,
+              305,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ERCOT market notice. August 20th, 2026, 1 day out. Planning Guide Sections 5 and",
+          "x": 80,
+          "y": 1041,
+          "w": 920,
+          "h": 88,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1059,
+              892,
+              31
+            ],
+            [
+              80,
+              1095,
+              348,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c3, c4",
+          "x": 80,
+          "y": 1129,
+          "w": 920,
+          "h": 41,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(156, 147, 130)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1139,
+              91,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TEXAS AI DOCKET",
+          "x": 118,
+          "y": 56,
+          "w": 285,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 233, 218)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              118,
+              56,
+              285,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ERCOT and the PUCT",
+          "x": 698,
+          "y": 56,
+          "w": 302,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 205, 180)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              698,
+              56,
+              302,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "talonsturgill.github.io/TexasAIDocket",
+          "x": 80,
+          "y": 1263,
+          "w": 568,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 205, 180)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1263,
+              568,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 877,
+          "y": 1260,
+          "w": 123,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 233, 218)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              877,
+              1260,
+              123,
+              34
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 80,
+          "y": 893.5,
+          "w": 920,
+          "h": 2,
+          "by": "rule",
+          "color": "rgb(185, 141, 70)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1458,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 29.7,
+          "variance": 654.2
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    }
+  ]
+}

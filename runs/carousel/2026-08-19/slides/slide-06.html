@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body { background:#F6F1E4; position:relative; font-family:'Manrope',sans-serif;
+          --frame-ink:#23202B; --frame-dim:#5a5348; }
+  canvas#art { position:absolute; inset:0; width:1080px; height:1350px; }
+
+  /* ---- the invariant frame. Identical on every slide of every deck. ---------------- */
+  .tx-frame { position:absolute; inset:0; pointer-events:none; z-index:60; }
+  .tx-wordmark {
+    position:absolute; top:56px; left:80px;
+    font-family:'JetBrains Mono',monospace; font-size:25px; font-weight:500;
+    letter-spacing:.16em; color:var(--frame-ink); }
+  .tx-star { position:absolute; top:54px; left:80px; width:26px; height:26px; }
+  .tx-counter {
+    position:absolute; bottom:56px; right:80px;
+    font-family:'JetBrains Mono',monospace; font-size:25px; font-weight:500;
+    font-variant-numeric:tabular-nums; letter-spacing:.10em; color:var(--frame-ink); }
+  .tx-site {
+    position:absolute; bottom:56px; left:80px;
+    font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:400;
+    letter-spacing:.04em; color:var(--frame-dim); }
+  .tx-kicker {
+    position:absolute; top:56px; right:80px; max-width:620px; text-align:right;
+    font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:500;
+    letter-spacing:.10em; text-transform:uppercase; color:var(--frame-dim); }
+
+
+  .hook { position:absolute; top:96px; left:80px; right:80px;
+          font-family:'Fraunces',serif; font-weight:800; font-size:74px; line-height:.98;
+          letter-spacing:-.02em; color:#23202B; font-variation-settings:'opsz' 74; }
+  .cols { position:absolute; top:340px; left:80px; right:80px; height:620px; display:flex; }
+  .col { flex:1; padding:0 46px; }
+  .col .h { font-family:'JetBrains Mono',monospace; font-size:24px; letter-spacing:.05em;
+            color:#5a5348; text-transform:uppercase; padding-bottom:18px; }
+  /* ruled means quoted: a hairline above and below each quoted block, the deck's own grammar */
+  .col .q { font-family:'Fraunces',serif; font-weight:500; font-size:35px; line-height:1.32;
+            color:#23202B; border-top:1px solid #B98D46; border-bottom:1px solid #B98D46;
+            padding:20px 0; }
+  .col .src { font-family:'JetBrains Mono',monospace; font-size:24px; color:#5a5348;
+              padding-top:22px; }
+  .foot { position:absolute; left:80px; right:80px; bottom:150px;
+          font-family:'Manrope',sans-serif; font-size:27px; line-height:1.4; color:#3a3630;
+          border-top:2px solid #B98D46; padding-top:22px; }
+  .filing { position:absolute; left:80px; right:80px; bottom:104px;
+            display:flex; justify-content:space-between; border-top:1px solid #B98D46;
+            padding-top:12px; font-family:'JetBrains Mono',monospace; font-size:22px;
+            color:#6a6358; letter-spacing:.04em; }
+
+</style>
+</head>
+<body>
+  <canvas id="art" width="2160" height="2700"></canvas>
+
+  <div class="hook">One office. The same day. Two wordings.</div>
+  <div class="cols">
+    <div class="col">
+      <div class="h">The press release</div>
+      <div class="q">The PUCT and ERCOT must complete this audit before any data center project
+        moves forward.</div>
+      <div class="src">Office of the Governor &middot; c11</div>
+    </div>
+    <div class="col">
+      <div class="h">The signed letter</div>
+      <div class="q">before any additional data centers are approved to move forward</div>
+      <div class="src">Office of the Governor &middot; c12</div>
+    </div>
+  </div>
+  <div class="foot">The signed letter words it more narrowly than the press release does. Both are
+    on the record and they are not interchangeable.</div>
+  <div class="filing" data-decorative><span>tx-2026-0072</span><span>August 3rd, 2026</span></div>
+
+<div class="tx-frame" data-decorative>
+  <svg class="tx-star" viewBox="0 0 26 26" aria-hidden="true"><polygon points="13,1 16.1,9.4 25,9.6 17.9,15 20.5,23.6 13,18.4 5.5,23.6 8.1,15 1,9.6 9.9,9.4" fill="var(--frame-ink)"/></svg>
+  <div class="tx-wordmark" style="left:118px">TEXAS AI DOCKET</div>
+  <div class="tx-kicker">The two documents</div>
+  <div class="tx-site">talonsturgill.github.io/TexasAIDocket</div>
+  <div class="tx-counter">06 / 09</div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+
+<script>
+window.renderReady = new Promise(function(resolve){
+  TX.reseed(20260819);
+  var cv = document.getElementById('art');
+  var ctx = cv.getContext('2d');
+  ctx.scale(2,2);
+  var W=1080, H=1350;
+  function lerp(a,b,t){return a+(b-a)*t;}
+
+  // a warm masonry ground with a faint vertical falloff so the base carries tone
+  function stoneGround(top, bottom){
+    var grad = ctx.createLinearGradient(0,0,0,H);
+    grad.addColorStop(0, top); grad.addColorStop(1, bottom);
+    ctx.fillStyle = grad; ctx.fillRect(0,0,W,H);
+  }
+
+  // the paper register: flat, neatlined, grain at 2 percent
+  ctx.fillStyle='#F6F1E4'; ctx.fillRect(0,0,W,H);
+  // the center divider, drawn ONLY through the two-column band so it never strikes the foot text
+  ctx.strokeStyle='#B98D46'; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(W/2, 340); ctx.lineTo(W/2, 940); ctx.stroke();
+  // a lighting falloff toward the base so the bottom third carries real tone rather than flat paper
+  var pf = ctx.createLinearGradient(0,H*0.58,0,H);
+  pf.addColorStop(0,'rgba(0,0,0,0)'); pf.addColorStop(1,'rgba(35,32,43,0.20)');
+  ctx.fillStyle=pf; ctx.fillRect(0,0,W,H);
+  // a press-plate impression across the lower third, a broad tonal field for the base band
+  var plate = ctx.createRadialGradient(W/2, H*0.86, 120, W/2, H*0.86, 620);
+  plate.addColorStop(0,'rgba(35,32,43,0.09)'); plate.addColorStop(1,'rgba(35,32,43,0)');
+  ctx.fillStyle=plate; ctx.fillRect(0,0,W,H);
+  // faint deckle laid-lines across the lower third, the register's own texture
+  ctx.strokeStyle='rgba(35,32,43,0.06)'; ctx.lineWidth=1;
+  for(var ly=H*0.68; ly<H*0.92; ly+=13){
+    ctx.beginPath(); ctx.moveTo(80,ly); ctx.lineTo(W-80,ly); ctx.stroke();
+  }
+  // hard neatline frame
+  ctx.strokeStyle='#23202B'; ctx.lineWidth=2; ctx.strokeRect(46,46,W-92,H-92);
+  // grain at 2 percent, markedly denser toward the base so the bottom third reads as worked stone
+  (function(){ var R=TX.rng(20260819);
+    for(var i=0;i<9000;i++){ var x=R()*W,y=R()*H;
+      var boost = y>H*0.66 ? 0.06 : 0.018;
+      ctx.fillStyle='rgba(35,32,43,'+(R()*boost).toFixed(3)+')'; ctx.fillRect(x,y,1.3,1.3);} })();
+
+  (window.__fontsReady||document.fonts.ready).then(function(){ resolve(); });
+});
+</script>
+</body>
+</html>

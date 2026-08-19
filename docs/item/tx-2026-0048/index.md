@@ -12,13 +12,19 @@ On August 11th, 2026 the League City City Council approved Ordinance No. 2026-27
 - Comment closes: 2026-11-03
 - Take part: https://leaguecity.legistar.com/Calendar.aspx
 
-- Last checked: 2026-08-14
+- Last checked: 2026-08-19
 
 ## Dates
 
 - 2026-08-05 · filed: Introduced as the election order file, internally named Election Order - Flock Camera Prop
 - 2026-08-11 · ordered: Council approved Ordinance No. 2026-27 on first and final reading
 - 2026-11-03 · effective: Date of the special election set by the ordinance
+
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-19 · Checked and unchanged. The ordinance ordering the November 3rd special election is on the city's record with an August 11th agenda date. It asks whether the police department may keep using automated license plate reader cameras at fixed locations. The city published the ballot wording on August 12th.
 
 ## Evidence
 

@@ -11,13 +11,19 @@ Conroe City Council voted late on August 13th, 2026 on whether to place a bindin
 - Public access: Public meeting
 - Take part: https://www.cityofconroe.org/government/city_council/agendas_minutes/index.php
 
-- Last checked: 2026-08-16
+- Last checked: 2026-08-19
 
 ## Dates
 
 - 2026-07-23 · ordered: Council voted unanimously to table two Flock camera proposals indefinitely
 - 2026-08-13 · ordered: Motion to place a Flock proposition on the November ballot failed for lack of a third vote
 - 2026-08-17 · statutory deadline: Reported deadline to place items on the November ballot
+
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-19 · Whether the council has taken the question up again is unconfirmed. The city's agendas page publishes no meeting dates or item text for August.
 
 ## Evidence
 
