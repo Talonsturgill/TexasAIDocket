@@ -28,15 +28,36 @@ decision moved" rendered empty on the majority of the record. Every item now has
   Department of Public Safety and with the Houston High Intensity Drug Trafficking Area. Those are
   discovery candidates rather than movement on the item itself.
 
-**Sources that would not answer** are recorded as what is therefore UNCONFIRMED, never as what a
-fetch did.
+**THE RUN'S OWN WORST MOMENT, AND WHAT CAUGHT IT.** The commission's filing search and calendar
+feed returned HTTP 503 to every fetch across the whole run, and to the scouts before that.
+`tx-2026-0001`, `tx-2026-0002`, `tx-2026-0003` and `tx-2026-0024` were written up as unconfirmed
+and committed that way.
 
-- The commission's filing search and its calendar feed returned nothing to any request made today,
-  which leaves `tx-2026-0001`, `tx-2026-0002`, `tx-2026-0003` and `tx-2026-0024` unread.
+Reading `SOURCES_FIELD_LOG.md` to write this run's entry is what caught it. That file already
+carries the rule, in this project's own words, that a tool-level failure is not a property of the
+source, and an entry from 2026-08-16 recording these exact hosts answering 200 to curl with a
+browser User-Agent after returning 402 to a different client.
+
+Retested. All four answered 200. The calendar returned 12,722 bytes and 32 entries, and the three
+dockets returned 67, 34 and 2,000 filings. **Project 58482 had taken a comment from Modern Tex
+Consulting on August 18th that this run was about to miss entirely.** The August 20th and
+August 21st open meetings and the September 4th comment deadline are now confirmed against the feed
+rather than resting on a market notice that names one of them in passing. All four notes were
+replaced rather than left standing beside the truth.
+
+Three status codes have now been recorded against these hosts by three clients on three days, 402
+and 503 and 200, and the host was serving on all three. The lesson is not about PUCT. It is that a
+status code is a fact about the fetcher, and that a run which writes its field log entry BEFORE it
+finishes its worklist gets to use what the file already knows.
+
+**What remains genuinely unconfirmed**, recorded as what is unknown rather than as what a fetch did.
+
 - Government Code Chapter 2054 is published in a form that stops at Section 2054.0702, short of the
-  three Subchapter S enactments `tx-2026-0008` and `tx-2026-0025` rest on.
+  three Subchapter S enactments `tx-2026-0008` and `tx-2026-0025` rest on. The provisions are not
+  gone. The retrieval is.
 - Nine items sit on agenda portals that publish meeting dates without item text, so what is
-  confirmed for them is that the body met and not what it did.
+  confirmed for them is that the body met and not what it did. The Legistar Web API fixed five of
+  those and there is no equivalent for the rest.
 
 **A near miss worth recording.** Two El Paso items were close to being written down as overstated.
 The Legistar Matters endpoint shows both "Agenda Ready" with a null passed date, which is the exact
