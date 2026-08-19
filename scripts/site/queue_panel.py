@@ -240,6 +240,9 @@ def stages(f: dict) -> str:
     return f'<ol class="qstages" data-prose="data">{"".join(out)}</ol>'
 
 
+PLOT_MAX = 76.0  # per cent of the plot the tallest bar may use; the rest is label room
+
+
 def flatline(f: dict) -> str:
     """The series, as a readable instrument rather than a picture of bars.
 
@@ -302,11 +305,24 @@ def flatline(f: dict) -> str:
         # passing by collision. The band below makes the overlap impossible to construct: the
         # label is laid out first, the plot is the remainder, and the fill is a percentage of
         # the PLOT rather than of the column.
+        # ONE BOX, ONE BASELINE, ONE SCALE. Both bars are positioned inside the SAME box, the
+        # group's .qbars, pinned to its bottom. That is not a style choice, it is the only way
+        # the picture can be true: when each bar resolved its percentage against its own nested
+        # box, the two columns of a pair ended up with different heights AND different bottoms,
+        # so the chart drew 4,049 at 1.66 times the height its value earns and sat it on a
+        # baseline 22.4px below the bar it is meant to be compared with. A bar chart with two
+        # baselines is not a bar chart. Sharing the box makes both properties structural.
+        #
+        # THE LABEL RIDES ITS OWN BAR, at the bar's top edge, rather than sitting in a band at
+        # the top of the column. The band was what put the short bars' labels 64px away from the
+        # thing they label, floating with nothing under them.
+        #
+        # PLOT_MAX leaves the top of the box for the labels, so the tallest bar's label has
+        # somewhere to go and no label can leave the figure.
         bars = "".join(
-            f'<span class="qb {cls}">'
+            f'<span class="qb {cls}" style="--h:{r[key] / top * PLOT_MAX:.2f}%">'
             f'<span class="qbv num">{n0(r[key])}</span>'
-            f'<span class="qbp"><span class="qbf" '
-            f'style="height:{r[key] / top * 100.0:.1f}%"></span></span></span>'
+            f'<span class="qbf"></span></span>'
             for key, cls in (("approved_mw", "qa"), ("drawing_mw", "qd")))
         groups.append(
             f'<li class="qgrp" tabindex="0" aria-label="{month_label(r["month"])}, '
@@ -462,15 +478,22 @@ def self_test() -> int:
     # scale reaches the top of the plot and stops. This asserts the STRUCTURE, because the
     # thing that went wrong was a structure whose overlap tests/text_contrast could not see
     # (it composites a run of text against its ancestors, and the bar was a sibling).
-    plots = re.findall(r'<span class="qbp">(.*?)</span></span>', html)
-    check("the fill is inside the plot box, and no label is in there with it",
-          bool(plots) and all('qbv' not in inner for inner in plots)
-          and all('qbf' in inner for inner in plots))
-    check("...and every bar's label is laid out before its plot box",
-          all(bar.index('qbv') < bar.index('qbp')
-              for bar in re.findall(r'<span class="qb q[ad]">(.*?)</span></span></span>', html)))
-    check("and no bar is scaled past the plot it is drawn in",
-          all(float(v) <= 100.0 for v in re.findall(r'class="qbf" style="height:([\d.]+)%', html)))
+    # THE TWO BARS OF A PAIR MUST BE ON ONE SCALE. This is the check that was missing when the
+    # chart shipped drawing 4,049 at 1.66 times the height its value earns, because each bar
+    # resolved its height against its own box. Both --h now come from the same `top`, so the
+    # ratio of the drawn heights has to equal the ratio of the measured values, and this asserts
+    # exactly that rather than asserting the markup that happens to produce it.
+    hs = [float(x) for x in re.findall(r'--h:([\d.]+)%', html)]
+    check("every bar carries a drawn height", len(hs) == 2 * len(f["series"]))
+    scale_ok, worst = True, ""
+    for r, (ha, hd) in zip(f["series"], zip(hs[0::2], hs[1::2])):
+        want = r["drawing_mw"] / r["approved_mw"]
+        got = hd / ha if ha else 0.0
+        if abs(want - got) > 0.005:
+            scale_ok, worst = False, f'{r["month"]} drawn {got:.3f} vs measured {want:.3f}'
+    check("...and the two bars of a month are drawn on one scale", scale_ok, worst)
+    check("...and no bar is drawn past the room left for the labels",
+          all(h <= PLOT_MAX + 1e-9 for h in hs), f"max {max(hs) if hs else 0:.2f}%")
 
     check("no dial, no severity ramp", "dial" not in html and "severity" not in html)
     print("\nqueue_panel self-test " + ("clean" if not failures else f"{failures} FAILED"))
