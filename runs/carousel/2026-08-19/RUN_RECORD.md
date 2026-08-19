@@ -363,9 +363,11 @@ a rule against that.
 | claims         | PASS   | 21 verified claim(s) |
 | render         | PASS   | 8 slide(s) |
 | qa             | WARN   | 0 fail(s), 5 warn(s) |
-| aggregates     | PASS   | 12 declared and re-derived |
-| assembly       | PASS   | 8 slide(s), 2.15 MB, vector |
-| score          | FAIL   | 6.71, below threshold |
+| aggregates     | STALE  | aggregate_report.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| assembly       | STALE  | final/assemble_report.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
 | dossiers       | PASS   | 31,056 chars planned |
 | caption        | PASS   | 160 words |
+| craft floor    | PASS   | 8 frame(s), median 434, floor 78 |
+| completion     | FAIL   | THE DECK DID NOT SHIP, so this run is not done |
 <!-- gate-status:end -->
