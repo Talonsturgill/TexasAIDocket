@@ -320,6 +320,7 @@ for (const w of [320, 380, 430, 480, 560, 680, 768, 900, 1100, 1280, 1440, 1800]
     const g = document.querySelector(".qgroups");
     if (!g) return [];
     const box = g.getBoundingClientRect(), out = [];
+    const bases = new Set();
     for (const qb of document.querySelectorAll(".qb")) {
       const v = qb.querySelector(".qbv"), f = qb.querySelector(".qbf");
       if (!v || !f) continue;
@@ -328,7 +329,15 @@ for (const w of [320, 380, 430, 480, 560, 680, 768, 900, 1100, 1280, 1440, 1800]
         out.push(`label ${v.textContent} outside the chart`);
       if (fr.top < box.top - 0.5 || fr.bottom > box.bottom + 0.5)
         out.push(`bar beside ${v.textContent} outside the chart`);
+      // The label names the bar it sits on, so it has to sit ON it: a short bar whose number
+      // floats in a band far above has stopped labelling anything.
+      if (fr.top - vr.bottom > 12)
+        out.push(`label ${v.textContent} is ${Math.round(fr.top - vr.bottom)}px off its bar`);
+      bases.add(Math.round(fr.bottom * 2) / 2);
     }
+    // ONE BASELINE. Bars on two baselines are not comparable by eye, which is the only thing a
+    // bar chart is for. This shipped: the dark bars stood 22.4px above the light ones.
+    if (bases.size > 1) out.push(`bars on ${bases.size} baselines: ${[...bases].join(", ")}`);
     return out;
   });
   if (r && r.length) QOUT.push(`${w}px ${r[0]}`);
