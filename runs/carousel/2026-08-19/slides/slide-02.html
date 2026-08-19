@@ -54,11 +54,9 @@
   <canvas id="art" width="2160" height="2700"></canvas>
 
   <div class="hd"><div class="hook">Four days<br>of warning.</div></div>
-  <svg id="rule" width="1080" height="1350" viewBox="0 0 1080 1350"
-       style="position:absolute; inset:0;"></svg>
-  <div class="axlab" style="left:87px; top:588px;">August 3rd</div>
-  <div class="axlab" style="left:271px; top:588px;">August 7th</div>
-  <div class="axlab" style="left:812px; top:588px;">August 19th</div>
+  <div class="axlab" style="left:87px; top:548px;">August 3rd</div>
+  <div class="axlab" style="left:271px; top:590px;">August 7th</div>
+  <div class="axlab" style="left:812px; top:548px;">August 19th</div>
   <div class="barlab" style="left:372px; top:612px;"><span class="n">4</span>
     <span class="u">DAYS AHEAD</span></div>
   <div class="barlab" style="left:166px; top:756px;"><span class="n">16</span>
@@ -99,20 +97,102 @@ window.renderReady = new Promise(function(resolve){
   }
 
   stoneGround('#191821', '#0E0D12');
-  // contour set ground, deepening toward the base
-  var R = TX.rng(20260819);
-  ctx.lineWidth=1;
-  for (var k=0;k<26;k++){
-    ctx.beginPath();
-    var baseY = 120 + k*44;
-    for (var x=0;x<=W;x+=8){
-      var y = baseY + TX.fbm2(x*0.0016, k*0.5, 4)*120 - 60;
-      if (x===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
-    }
-    var a = 0.05 + (k/26)*0.06;   // deeper contrast toward the bottom
-    ctx.strokeStyle='rgba(217,205,180,'+a.toFixed(3)+')';
-    ctx.stroke();
+  var R2 = TX.rng(20260819+202);
+
+  // AN ENGRAVED SCALE, cut into the plate rather than drawn on it.
+  //
+  // This frame measured canvas variance 15.9 against slide 1's 3160, two hundred times flatter
+  // and the lowest in the deck by an order of magnitude. It was 26 contour lines at five percent
+  // alpha behind an SVG hairline with tick marks on it, which is a chart of a measurement rather
+  // than the measurement itself. Every tick below is now a real notch with a lit wall and a
+  // shadowed one, and the two spans are metal set into the plate at different depths. The light
+  // rakes from the upper left, so the detail budget sits along the instrument and the plate
+  // falls away from it.
+  var RATE=46, ox=70, y0=700, origin=ox+2*RATE;
+
+  // the plate the scale is cut into, with a brushed tooth that catches the rake
+  var PT=560, PB=1010;
+  var plate=ctx.createLinearGradient(0,PT,0,PB);
+  plate.addColorStop(0,'rgba(36,31,42,0)'); plate.addColorStop(0.16,'#241F2A');
+  plate.addColorStop(0.46,'#2E2834'); plate.addColorStop(0.86,'#191521');
+  plate.addColorStop(1,'rgba(25,21,33,0)');
+  ctx.fillStyle=plate; ctx.fillRect(0,PT,W,PB-PT);
+  ctx.save(); ctx.beginPath(); ctx.rect(0,PT,W,PB-PT); ctx.clip();
+  for(var b=0;b<220;b++){
+    var by=PT+R2()*(PB-PT), a=0.015+R2()*0.05;
+    ctx.strokeStyle = R2()<0.45 ? 'rgba(217,205,180,'+a.toFixed(3)+')'
+                                : 'rgba(0,0,0,'+(a*1.5).toFixed(3)+')';
+    ctx.lineWidth=0.6+R2()*1.6;
+    ctx.beginPath(); ctx.moveTo(-20,by); ctx.lineTo(W+20,by+(R2()-0.5)*5); ctx.stroke();
   }
+  ctx.restore();
+
+  // THE CHANNEL. A groove cut across the plate, its far wall lit by the rake and its near wall
+  // in shadow, so the scale reads as removed material rather than as a painted line.
+  var chTop=y0-11, chH=22;
+  ctx.fillStyle='#100D16'; ctx.fillRect(0,chTop,W,chH);
+  ctx.fillStyle='rgba(239,233,218,0.20)'; ctx.fillRect(0,chTop,W,2);
+  ctx.fillStyle='rgba(0,0,0,0.70)'; ctx.fillRect(0,chTop+chH-3,W,3);
+  var gloss=ctx.createLinearGradient(0,chTop,0,chTop+chH);
+  gloss.addColorStop(0,'rgba(185,141,70,0.30)'); gloss.addColorStop(0.5,'rgba(185,141,70,0.06)');
+  gloss.addColorStop(1,'rgba(0,0,0,0.32)');
+  ctx.fillStyle=gloss; ctx.fillRect(0,chTop,W,chH);
+
+  // THE NOTCHES. One per day. Each is a V cut: the wall facing the light is bright, the wall
+  // facing away is black, which is what gives this frame its local contrast.
+  for(var d=0; d<=18; d++){
+    var x=ox+d*RATE;
+    var heavy=(d===2||d===6||d===18);
+    var w = heavy?7:4, h = heavy?chH+16:chH;
+    var ny = heavy?chTop-8:chTop;
+    ctx.fillStyle='#07050B'; ctx.fillRect(x-w/2, ny, w, h);
+    ctx.fillStyle='rgba(239,233,218,'+(heavy?0.62:0.34)+')'; ctx.fillRect(x-w/2, ny, 1.6, h);
+    ctx.fillStyle='rgba(0,0,0,0.8)'; ctx.fillRect(x+w/2-1.4, ny, 1.4, h);
+    if(heavy){
+      // a dated notch is struck deeper and throws a short shadow onto the plate below
+      ctx.fillStyle='rgba(0,0,0,0.42)'; ctx.fillRect(x+w/2, ny+h, 9, 7);
+      ctx.fillStyle='rgba(185,141,70,0.85)'; ctx.fillRect(x-w/2, ny-4, w, 3);
+    }
+  }
+
+  // THE FOUR DAY SPAN, a polished strip set PROUD of the plate. It is a closed span, both ends
+  // known, so it is a solid object with a cast shadow.
+  (function(){
+    var x=origin, w=4*RATE, y=y0-64, h=16;
+    ctx.fillStyle='rgba(0,0,0,0.62)'; ctx.fillRect(x+7, y+h, w, 11);
+    ctx.fillStyle='rgba(0,0,0,0.40)'; ctx.fillRect(x+w, y+6, 8, h);
+    var g=ctx.createLinearGradient(x,y,x,y+h);
+    g.addColorStop(0,'#FFFBF0'); g.addColorStop(0.42,'#EFE9DA'); g.addColorStop(1,'#9A9384');
+    ctx.fillStyle=g; ctx.fillRect(x,y,w,h);
+    ctx.fillStyle='rgba(255,255,255,0.75)'; ctx.fillRect(x,y,w,2);
+    ctx.fillStyle='rgba(0,0,0,0.45)'; ctx.fillRect(x,y+h-2,w,2);
+    // the two ends squared off against their own notches, so the span is bounded by the dates
+    ctx.fillStyle='rgba(0,0,0,0.5)'; ctx.fillRect(x-2,y,2,h); ctx.fillRect(x+w,y,2,h);
+  })();
+
+  // THE SIXTEEN DAY SPAN, INLAID rather than raised. It is still running, so it is set flush into
+  // the plate and its far end stops at the notch for the run date rather than at a squared cap.
+  (function(){
+    var x=origin, w=16*RATE, y=y0+20, h=9;
+    ctx.fillStyle='rgba(0,0,0,0.66)'; ctx.fillRect(x,y-3,w,3);
+    var g=ctx.createLinearGradient(x,y,x+w,y+h);
+    g.addColorStop(0,'#D8A758'); g.addColorStop(0.45,'#B98D46'); g.addColorStop(1,'#7C5D2E');
+    ctx.fillStyle=g; ctx.fillRect(x,y,w,h);
+    ctx.fillStyle='rgba(255,240,210,0.42)'; ctx.fillRect(x,y,w,1.6);
+    ctx.fillStyle='rgba(0,0,0,0.5)'; ctx.fillRect(x,y+h-1.6,w,1.6);
+  })();
+
+  // the rake itself, brightest at the upper left where the light enters, so the plate has a
+  // direction and the base of the frame falls into the room
+  var rake=ctx.createLinearGradient(0,PT,W,PB);
+  rake.addColorStop(0,'rgba(255,246,224,0.15)'); rake.addColorStop(0.45,'rgba(255,246,224,0.02)');
+  rake.addColorStop(1,'rgba(0,0,0,0.26)');
+  ctx.fillStyle=rake; ctx.fillRect(0,PT,W,PB-PT);
+  // the channel's own spill down the plate, so the base of the frame is lit BY the instrument
+  var spill=ctx.createLinearGradient(0,y0,0,H);
+  spill.addColorStop(0,'rgba(185,141,70,0.16)'); spill.addColorStop(0.34,'rgba(185,141,70,0.05)');
+  spill.addColorStop(1,'rgba(185,141,70,0.012)');
+  ctx.fillStyle=spill; ctx.fillRect(0,y0,W,H-y0);
 
   // grain over everything, under 4 percent, seeded
   (function(){
@@ -124,31 +204,6 @@ window.renderReady = new Promise(function(resolve){
       ctx.fillRect(x,y,1.3,1.3);
     }
   })();
-
-  // the day rule with two bars sharing one origin, drawn in SVG for crisp ticks
-  var RATE=46, y0=700, ox=70;
-  var svg=document.getElementById('rule');
-  function el(t,a){var e=document.createElementNS('http://www.w3.org/2000/svg',t);
-    for(var k in a)e.setAttribute(k,a[k]);return e;}
-  svg.appendChild(el('line',{x1:ox,y1:y0,x2:W-70,y2:y0,stroke:'#D9CDB4',
-    'stroke-width':1.5,opacity:0.55}));
-  // day ticks across, heavier on the 3rd, 7th, 19th, 20th relative to Aug 1
-  for(var d=0; d<=18; d++){
-    var x=ox+d*RATE;
-    var heavy=(d===2||d===6||d===18);
-    svg.appendChild(el('line',{x1:x,y1:y0-(heavy?12:6),x2:x,y2:y0+(heavy?12:6),
-      stroke:'#D9CDB4','stroke-width':heavy?2:1,opacity:heavy?0.9:0.4}));
-    if(heavy){
-      svg.appendChild(el('line',{x1:x,y1:y0-12,x2:x,y2:624,
-        stroke:'#D9CDB4','stroke-width':1,opacity:0.32}));
-    }
-  }
-  // four-day bar ABOVE, dial full value. It stops a few px SHORT of the Aug 7 tick so the
-  // measure reads as stopping open rather than landing on the deadline, and it carries no cap.
-  var origin=ox+2*RATE;
-  svg.appendChild(el('rect',{x:origin,y:y0-64,width:4*RATE,height:14,fill:'#EFE9DA'}));
-  // sixteen-day bar BELOW, brass 55 percent, longer and dimmer, also stopping short and open
-  svg.appendChild(el('rect',{x:origin,y:y0+20,width:16*RATE,height:6,fill:'#B98D46',opacity:0.75}));
 
   (window.__fontsReady||document.fonts.ready).then(function(){ resolve(); });
 });

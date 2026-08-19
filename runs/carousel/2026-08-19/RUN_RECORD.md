@@ -363,8 +363,8 @@ a rule against that.
 | claims         | PASS   | 21 verified claim(s) |
 | render         | PASS   | 8 slide(s) |
 | qa             | WARN   | 0 fail(s), 5 warn(s) |
-| aggregates     | STALE  | aggregate_report.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
-| assembly       | STALE  | final/assemble_report.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| aggregates     | PASS   | 12 declared and re-derived |
+| assembly       | PASS   | 8 slide(s), 2.19 MB, vector |
 | score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
 | dossiers       | PASS   | 31,056 chars planned |
 | caption        | PASS   | 160 words |

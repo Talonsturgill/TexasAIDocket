@@ -327,7 +327,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1148,
+      "render_ms": 826,
       "ok": true,
       "canvases": [
         {
@@ -386,7 +386,7 @@
         {
           "text": "August 3rd",
           "x": 87,
-          "y": 588,
+          "y": 548,
           "w": 170,
           "h": 34,
           "font_px": 25,
@@ -398,7 +398,7 @@
           "lines": [
             [
               87,
-              588,
+              548,
               170,
               34
             ]
@@ -408,7 +408,7 @@
         {
           "text": "August 7th",
           "x": 271,
-          "y": 588,
+          "y": 590,
           "w": 170,
           "h": 34,
           "font_px": 25,
@@ -420,7 +420,7 @@
           "lines": [
             [
               271,
-              588,
+              590,
               170,
               34
             ]
@@ -430,7 +430,7 @@
         {
           "text": "August 19th",
           "x": 812,
-          "y": 588,
+          "y": 548,
           "w": 187,
           "h": 34,
           "font_px": 25,
@@ -442,7 +442,7 @@
           "lines": [
             [
               812,
-              588,
+              548,
               187,
               34
             ]
@@ -721,281 +721,6 @@
       "svg_plates": [],
       "rules": [
         {
-          "kind": "svg",
-          "x": 70,
-          "y": 700,
-          "w": 940,
-          "h": 1.5,
-          "by": "line",
-          "color": "rgb(217, 205, 180)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "svg",
-          "x": 70,
-          "y": 694,
-          "w": 1,
-          "h": 12,
-          "by": "line",
-          "color": "rgb(217, 205, 180)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "svg",
-          "x": 116,
-          "y": 694,
-          "w": 1,
-          "h": 12,
-          "by": "line",
-          "color": "rgb(217, 205, 180)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "svg",
-          "x": 162,
-          "y": 688,
-          "w": 2,
-          "h": 24,
-          "by": "line",
-          "color": "rgb(217, 205, 180)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "svg",
-          "x": 162,
-          "y": 624,
-          "w": 1,
-          "h": 64,
-          "by": "line",
-          "color": "rgb(217, 205, 180)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "svg",
-          "x": 208,
-          "y": 694,
-          "w": 1,
-          "h": 12,
-          "by": "line",
-          "color": "rgb(217, 205, 180)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "svg",
-          "x": 254,
-          "y": 694,
-          "w": 1,
-          "h": 12,
-          "by": "line",
-          "color": "rgb(217, 205, 180)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "svg",
-          "x": 300,
-          "y": 694,
-          "w": 1,
-          "h": 12,
-          "by": "line",
-          "color": "rgb(217, 205, 180)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "svg",
-          "x": 346,
-          "y": 688,
-          "w": 2,
-          "h": 24,
-          "by": "line",
-          "color": "rgb(217, 205, 180)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "svg",
-          "x": 346,
-          "y": 624,
-          "w": 1,
-          "h": 64,
-          "by": "line",
-          "color": "rgb(217, 205, 180)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "svg",
-          "x": 392,
-          "y": 694,
-          "w": 1,
-          "h": 12,
-          "by": "line",
-          "color": "rgb(217, 205, 180)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "svg",
-          "x": 438,
-          "y": 694,
-          "w": 1,
-          "h": 12,
-          "by": "line",
-          "color": "rgb(217, 205, 180)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "svg",
-          "x": 484,
-          "y": 694,
-          "w": 1,
-          "h": 12,
-          "by": "line",
-          "color": "rgb(217, 205, 180)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "svg",
-          "x": 530,
-          "y": 694,
-          "w": 1,
-          "h": 12,
-          "by": "line",
-          "color": "rgb(217, 205, 180)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "svg",
-          "x": 576,
-          "y": 694,
-          "w": 1,
-          "h": 12,
-          "by": "line",
-          "color": "rgb(217, 205, 180)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "svg",
-          "x": 622,
-          "y": 694,
-          "w": 1,
-          "h": 12,
-          "by": "line",
-          "color": "rgb(217, 205, 180)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "svg",
-          "x": 668,
-          "y": 694,
-          "w": 1,
-          "h": 12,
-          "by": "line",
-          "color": "rgb(217, 205, 180)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "svg",
-          "x": 714,
-          "y": 694,
-          "w": 1,
-          "h": 12,
-          "by": "line",
-          "color": "rgb(217, 205, 180)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "svg",
-          "x": 760,
-          "y": 694,
-          "w": 1,
-          "h": 12,
-          "by": "line",
-          "color": "rgb(217, 205, 180)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "svg",
-          "x": 806,
-          "y": 694,
-          "w": 1,
-          "h": 12,
-          "by": "line",
-          "color": "rgb(217, 205, 180)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "svg",
-          "x": 852,
-          "y": 694,
-          "w": 1,
-          "h": 12,
-          "by": "line",
-          "color": "rgb(217, 205, 180)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "svg",
-          "x": 898,
-          "y": 688,
-          "w": 2,
-          "h": 24,
-          "by": "line",
-          "color": "rgb(217, 205, 180)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "svg",
-          "x": 898,
-          "y": 624,
-          "w": 1,
-          "h": 64,
-          "by": "line",
-          "color": "rgb(217, 205, 180)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "fill",
-          "x": 162,
-          "y": 636,
-          "w": 184,
-          "h": 14,
-          "by": "rect",
-          "color": "rgb(239, 233, 218)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "fill",
-          "x": 162,
-          "y": 720,
-          "w": 736,
-          "h": 6,
-          "by": "rect",
-          "color": "rgb(185, 141, 70)",
-          "decorative": false,
-          "skip": []
-        },
-        {
           "kind": "fill",
           "x": 80,
           "y": 979,
@@ -1010,7 +735,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1103,
+      "render_ms": 1296,
       "ok": true,
       "canvases": [
         {
@@ -1023,8 +748,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 21.4,
-          "variance": 15.9
+          "mean": 32.7,
+          "variance": 334.6
         }
       ],
       "breather": false,
@@ -1314,7 +1039,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1084,
+      "render_ms": 722,
       "ok": true,
       "canvases": [
         {
@@ -1664,7 +1389,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2244,
+      "render_ms": 1778,
       "ok": true,
       "canvases": [
         {
@@ -2238,7 +1963,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1373,
+      "render_ms": 1291,
       "ok": true,
       "canvases": [
         {
@@ -2568,7 +2293,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1101,
+      "render_ms": 1014,
       "ok": true,
       "canvases": [
         {
@@ -3012,7 +2737,7 @@
         }
       ],
       "nondeterminism": [],
-      "render_ms": 1883,
+      "render_ms": 1661,
       "ok": true,
       "canvases": [
         {
@@ -3446,7 +3171,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1255,
+      "render_ms": 1624,
       "ok": true,
       "canvases": [
         {
