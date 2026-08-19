@@ -30,6 +30,11 @@ WHAT IT CHECKS, AND WHY EACH ONE IS HERE
                    center needs electricity. Most cooling designs need water too", never "A
                    data center needs electricity and, in most cooling designs, water".
     comma density  Hard fail ABOVE THE CEILING FOR THE CALLING SURFACE. See below.
+    hashtags       CAPTION ONLY, and a hard fail. Exactly the count `config/brand.yaml` sets,
+                   standing alone on the last line, no duplicates. The post takes hashtags and
+                   the slides and the site do not, and treating those as one rule is what shipped
+                   a tagless post on 2026-08-18. Applied in `run()` and never inside `check()`,
+                   because `check()` also judges the website.
 
 THE COMMA CEILING IS PER SURFACE, AND ONE OF THE TWO IS DELIBERATELY UNSET
 
@@ -259,6 +264,108 @@ SENTENCE_CEILING = 30
 ISO = re.compile(r"\b\d{4}-\d{2}-\d{2}\b")
 URL = re.compile(r"https?://\S+")
 
+# --------------------------------------------------------------------------- HASHTAGS
+#
+# THE POST TAKES HASHTAGS. THE SLIDES AND THE SITE DO NOT. That distinction is the whole rule,
+# and collapsing it is what cost run No. 2 its tags.
+#
+# `config/brand.yaml` has always carried `linkedin_post.hashtags_exactly: 3`. It also carries
+# `visual.on_slide_text_rules`, which says "no hashtags" about SLIDE text, where a hashtag would
+# be absurd. `knowledge/carousel/CAPTION_CRAFT.md` then listed "any hashtag" under engagement
+# bait, applying the slide rule to the post. The caption room reads CAPTION_CRAFT, so it wrote a
+# caption with no tags, and nothing here checked, because this file had no hashtag rule at all.
+#
+# Run No. 1 on 2026-08-16 shipped "#GrimesCounty #ERCOT #Terafab". Run No. 2 on 2026-08-18
+# shipped none. Two runs, two different answers to a question the config had already settled,
+# and a fully green suite both times. That is the exact shape GATE_LESSONS.md is about: the rule
+# existed, the surfaces disagreed, and no gate was connected to either.
+#
+# THE COUNT IS READ FROM brand.yaml AND NEVER TYPED HERE. brand.yaml is `human` owned, so the
+# number stays a decision a maintainer makes in one place, and this file only enforces it. A
+# missing file or a missing key FAILS rather than skips, because a hashtag gate that quietly
+# turns itself off is worse than no hashtag gate: it reports clean on the run it should catch.
+HASHTAG = re.compile(r"#[A-Za-z][A-Za-z0-9]*")
+# What a tag may look like. A trailing "#" or "#2026" is a typo or a number, not a tag, and is
+# reported rather than silently ignored.
+MALFORMED_TAG = re.compile(r"#(?![A-Za-z])\S*|#[A-Za-z][A-Za-z0-9]*[^\sA-Za-z0-9#]+")
+
+
+def hashtags_required() -> int:
+    """How many hashtags the post takes, per `config/brand.yaml`. Never a literal in this file."""
+    import yaml
+    path = REPO_ROOT / "config" / "brand.yaml"
+    doc = yaml.safe_load(path.read_text(encoding="utf-8"))
+
+    # Searched by key rather than by a fixed path. brand.yaml is human owned and its top level
+    # has already been reorganised once, and a gate that goes quiet because a maintainer moved a
+    # section is a gate that fails open on the day it is needed.
+    def find(node):
+        if isinstance(node, dict):
+            if isinstance(node.get("linkedin_post"), dict):
+                got = node["linkedin_post"].get("hashtags_exactly")
+                if got is not None:
+                    return got
+            for v in node.values():
+                got = find(v)
+                if got is not None:
+                    return got
+        return None
+
+    n = find(doc)
+    if not isinstance(n, int):
+        raise SystemExit(
+            "caption_check: config/brand.yaml has no linkedin_post.hashtags_exactly. That key is "
+            "where the post's hashtag count is decided, and this gate will not guess it. Restore "
+            "the key rather than removing this check")
+    return n
+
+
+def hashtag_problems(text: str, required: int | None = None) -> list[str]:
+    """The post's hashtag block, judged. CAPTION SURFACE ONLY.
+
+    Deliberately NOT part of `check()`. `check()` is imported by `docket_build`,
+    `house_style_check` and `waterwatch_page` to judge the SITE's reader copy, and a hashtag rule
+    living in there would demand hashtags on every page of the record. The post is the one
+    surface this applies to, so it is applied on the one code path that reads a caption.
+
+    Three things are checked and each has failed somewhere in this product's short life:
+      count      exactly what brand.yaml says. Zero is the regression this gate exists for.
+      placement  the tags are the LAST line and appear nowhere earlier. A tag mid-sentence is
+                 the engagement-bait tic the craft doctrine is right to hate.
+      duplicates two spellings of one tag is a wasted slot out of a very small budget.
+    """
+    required = hashtags_required() if required is None else required
+    problems: list[str] = []
+    body = ISO.sub(" ", URL.sub(" ", text))        # a URL fragment is not a tag
+
+    tags = HASHTAG.findall(body)
+    if len(tags) != required:
+        problems.append(
+            f"{len(tags)} hashtag(s), and the post takes exactly {required}. "
+            f"config/brand.yaml sets the count and says niche over broad, at the very end. "
+            f"A post that ships without them reaches the audience that already follows it")
+
+    for m in set(MALFORMED_TAG.findall(body)):
+        problems.append(f'"{m.strip()}" is not a hashtag: a tag is "#" then a letter, then '
+                        f"letters and digits only")
+
+    lowered = [t.lower() for t in tags]
+    for t in sorted({t for t in lowered if lowered.count(t) > 1}):
+        problems.append(f'duplicate hashtag "{t}": {required} slots is the whole budget')
+
+    if tags:
+        lines = [ln for ln in body.strip().splitlines() if ln.strip()]
+        last = lines[-1] if lines else ""
+        in_last = len(HASHTAG.findall(last))
+        if in_last != len(tags):
+            problems.append(
+                f"{len(tags) - in_last} hashtag(s) sit above the last line. The tags are a block "
+                f"at the very end, never inside a sentence")
+        elif HASHTAG.sub("", last).strip():
+            problems.append("the last line mixes prose with the hashtags. The tags stand alone "
+                            "on the final line, after the closing move")
+    return problems
+
 
 def _ordinal(month_day: str) -> str:
     """"August 11" to "August 11th", with the RIGHT suffix.
@@ -411,6 +518,8 @@ def rate_problem(text: str, ceiling: float | None = COMMA_CEILING) -> str | None
 
 def run(text: str, *, quiet: bool = False) -> int:
     problems = check(text)
+    # CAPTION SURFACE ONLY, and this is the only path that reaches it. See `hashtag_problems`.
+    problems += hashtag_problems(text)
     rate, commas, words = comma_rate(text)
     rp = rate_problem(text)
     if rp:
@@ -419,7 +528,10 @@ def run(text: str, *, quiet: bool = False) -> int:
     if not quiet:
         ceil = ("no ceiling yet, measured after 20 shipped captions"
                 if COMMA_CEILING is None else f"ceiling {COMMA_CEILING}")
+        tags = HASHTAG.findall(text)
         print(f"caption_check: {words} words, {commas} commas, {rate} per 100 words ({ceil})")
+        print(f"caption_check: {len(tags)} hashtag(s) of {hashtags_required()} required"
+              + (f", {' '.join(tags)}" if tags else ""))
 
     if problems:
         print(f"\ncaption_check: {len(problems)} house-rule violation(s)\n", file=sys.stderr)
@@ -613,6 +725,48 @@ def self_test() -> int:
     ok("...and a list comma between numbers still is",
        comma_rate("It holds 6,180, 4,200 and 900 megawatts.")[1] == 1,
        str(comma_rate("It holds 6,180, 4,200 and 900 megawatts.")))
+    # THE HASHTAG RULE, and the regression it was written for.
+    #
+    # Run No. 1 shipped three tags, run No. 2 shipped none, and every gate was green both times,
+    # because brand.yaml said one thing, CAPTION_CRAFT.md said the opposite, and nothing checked.
+    # These cases prove this gate goes red on the run that actually happened.
+    need = hashtags_required()
+    ok("the required count is read from brand.yaml, not typed here", need == 3, str(need))
+    tagged = "The commission met.\n\n#Texas #ERCOT #DataCenters"
+    ok("a correctly tagged post passes", not hashtag_problems(tagged), str(hashtag_problems(tagged)))
+
+    # THE ACTUAL 2026-08-18 REGRESSION.
+    ok("a post with NO hashtags fails",
+       any("takes exactly" in p for p in hashtag_problems("The commission met.")),
+       str(hashtag_problems("The commission met.")))
+    ok("...and the real shipped caption that lost them fails this gate",
+       any("takes exactly" in p for p in
+           hashtag_problems("Everyone guesses more screens.\n\nBoard policy reached "
+                            "second reading.")))
+    ok("too few hashtags fails",
+       any("takes exactly" in p for p in hashtag_problems("It met.\n\n#Texas #ERCOT")))
+    ok("too many hashtags fails",
+       any("takes exactly" in p for p in
+           hashtag_problems("It met.\n\n#Texas #ERCOT #Data #Grid")))
+    ok("a hashtag mid-sentence fails on placement",
+       any("above the last line" in p for p in
+           hashtag_problems("The #ERCOT queue grew.\n\n#Texas #Grid")))
+    ok("prose sharing the last line with the tags fails",
+       any("mixes prose" in p for p in
+           hashtag_problems("It met.\n\nRead more #Texas #ERCOT #Grid")))
+    ok("a duplicate tag fails",
+       any("duplicate hashtag" in p for p in
+           hashtag_problems("It met.\n\n#Texas #texas #Grid")))
+    ok("a url fragment is not counted as a hashtag",
+       not hashtag_problems("See https://example.com/a#section here.\n\n#Texas #ERCOT #Grid"),
+       str(hashtag_problems("See https://example.com/a#section here.\n\n#Texas #ERCOT #Grid")))
+
+    # THE SEPARATION THAT KEEPS THE WEBSITE OUT OF THIS.
+    ok("check() does NOT demand hashtags, because it also judges the site",
+       not any("hashtag" in p for p in check("The commission met on August 11th.")))
+    ok("...and run() DOES, because that is the caption path",
+       "hashtag_problems(text)" in open(__file__, encoding="utf-8").read())
+
     src = open(__file__, encoding="utf-8").read()
     ok("the ceiling's provenance is written down where it can be found",
        "4.41" in src and "3,853 words" in src)
