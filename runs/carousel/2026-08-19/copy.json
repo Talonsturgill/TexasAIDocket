@@ -38,19 +38,6 @@
       ]
     },
     "S4": {
-      "top": "Whose water, and whose power.",
-      "labels": [
-        "CLOSED",
-        "OPEN"
-      ],
-      "quote": "\"The extent to which data centers are bringing their own water and reusing their own water as opposed to using water needed by local communities.\"",
-      "src": "Directive to the PUCT and ERCOT · c15",
-      "claims": [
-        "c13",
-        "c15"
-      ]
-    },
-    "S5": {
       "hd": "Three figures, two documents.",
       "f1": "approximately 474 gigawatts",
       "o1": "of requests to connect to the Texas grid",
@@ -64,7 +51,7 @@
         "c9"
       ]
     },
-    "S6": {
+    "S5": {
       "hook": "One office. The same day. Two wordings.",
       "q1": "\"The PUCT and ERCOT must complete this audit before any data center project moves forward.\"",
       "q2": "\"before any additional data centers are approved to move forward\"",
@@ -74,7 +61,7 @@
         "c12"
       ]
     },
-    "S7": {
+    "S6": {
       "lead": "The sector said it will comply.",
       "labels": [
         "GRID",
@@ -89,7 +76,7 @@
         "c18"
       ]
     },
-    "S8": {
+    "S7": {
       "quote": "\"One data center that could not comply chose to end operations before even beginning construction.\"",
       "src": "Office of the Governor, August 18th · c17",
       "labels": [
@@ -106,15 +93,21 @@
         "c17"
       ]
     },
-    "S9": {
-      "hd": "The commission meets in 1 day.",
-      "rows": "ERCOT said it would file for a good cause exception ahead of the August 20th, 2026 open meeting, and said it would update the notice once the filing is made.",
-      "lab": "ERCOT market notice. August 20th, 2026, 1 day out. Planning Guide Sections 5 and 9.",
+    "S8": {
+      "hd": "What is still open to you.",
+      "d1": "August 20th, 2026",
+      "w1": "Open meeting. ERCOT said it would file for a good cause exception ahead of it.",
+      "d2": "August 21st, 2026",
+      "w2": "A second open meeting, on the commission's own calendar.",
+      "d3": "September 4th, 2026",
+      "w3": "Public comment deadline. Project 58482 took a comment on August 18th.",
       "claims": [
         "c3",
-        "c4"
-      ],
-      "cites": "c3, c4"
+        "c4",
+        "c19",
+        "c20",
+        "c21"
+      ]
     }
   }
 }

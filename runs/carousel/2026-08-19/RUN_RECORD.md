@@ -135,12 +135,12 @@ touched.
 <!-- gate-status:begin -->
 | gate | status | detail |
 |---|---|---|
-| claims         | PASS   | 18 verified claim(s) |
-| render         | PASS   | 9 slide(s) |
-| qa             | WARN   | 0 fail(s), 5 warn(s) |
-| aggregates     | PASS   | 7 declared and re-derived |
-| assembly       | PASS   | 9 slide(s), 2.27 MB, vector |
+| claims         | PASS   | 21 verified claim(s) |
+| render         | PASS   | 8 slide(s) |
+| qa             | WARN   | 0 fail(s), 3 warn(s) |
+| aggregates     | PASS   | 8 declared and re-derived |
+| assembly       | PASS   | 8 slide(s), 2.14 MB, vector |
 | score          | ABSENT | score.json not written yet |
-| dossiers       | PASS   | 32,599 chars planned |
-| caption        | PASS   | 150 words |
+| dossiers       | PASS   | 30,284 chars planned |
+| caption        | PASS   | 159 words |
 <!-- gate-status:end -->

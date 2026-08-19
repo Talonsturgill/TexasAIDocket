@@ -61,12 +61,12 @@
       "note": "Two wordings of the one gate, one per claim c11 and c12."
     },
     {
-      "slide": "slide-09.html",
-      "phrase": "1 day",
+      "slide": "slide-01.html",
+      "phrase": "12 days",
       "kind": "duration",
-      "value": 1,
-      "note": "days_until_open_meeting from out/2026-08-19/compute.py, the run date to the August 20th open meeting.",
-      "computed_by": "out/2026-08-19/compute.py spans.days_until_open_meeting, run date to the August 20th meeting"
+      "value": 12,
+      "computed_by": "out/2026-08-19/compute.py spans.days_since_deadline_passed, the August 7th deadline to the run date",
+      "note": "This figure was invisible to the gate until the render report window widened from 80 characters to 320. It was correct all along and nothing had checked it."
     }
   ]
 }

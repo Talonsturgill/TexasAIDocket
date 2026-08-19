@@ -31,48 +31,44 @@
     letter-spacing:.10em; text-transform:uppercase; color:var(--frame-dim); }
 
 
-  .lead { position:absolute; top:104px; left:56px; right:56px; z-index:70;
-          background:#16151C; padding:22px 24px;
-          font-family:'Fraunces',serif; font-weight:700; font-size:56px; line-height:1.02;
-          letter-spacing:-.015em; color:#EFE9DA; font-variation-settings:'opsz' 56; }
-  .bands { position:absolute; inset:0; display:flex; }
-  .band { flex:1; position:relative; }
-  .band .w { position:absolute; left:22px; right:22px; top:560px; height:190px; display:flex; align-items:center; justify-content:center; text-align:center; padding:14px 12px;
-             background:#16151C; padding:18px 8px;
-             font-family:'Fraunces',serif; font-weight:800; font-size:40px; color:#EFE9DA;
-             letter-spacing:-.01em; line-height:1.06; }
-  .q { position:absolute; left:56px; right:56px; bottom:104px; z-index:70;
-       background:#16151C; padding:22px 24px; }
+  .q { position:absolute; top:120px; left:80px; right:80px; }
   .q .rule { height:2px; background:#B98D46; }
-  .q .t { font-family:'Manrope',sans-serif; font-size:29px; line-height:1.4; color:#EFE9DA;
-          padding:20px 0 0; }
-  .q .src { font-family:'JetBrains Mono',monospace; font-size:24px; color:#D9CDB4; padding-top:12px;}
+  .q .t { font-family:'Fraunces',serif; font-weight:600; font-size:50px; line-height:1.14;
+          color:#EFE9DA; padding:24px 0; font-variation-settings:'opsz' 50; }
+  .q .src { font-family:'JetBrains Mono',monospace; font-size:24px; color:#D9CDB4; }
+  .block { position:absolute; left:150px; right:150px; bottom:300px; }
+  .block .r { display:flex; justify-content:space-between; align-items:baseline;
+              padding:20px 0; border-bottom:1px solid rgba(185,141,70,.4); }
+  .block .k { font-family:"JetBrains Mono",monospace; font-size:24px; color:#D9CDB4;
+              letter-spacing:.05em; }
+  .block .v { font-family:'Manrope',sans-serif; font-size:28px; color:#EFE9DA; }
+  .block .empty { font-family:"JetBrains Mono",monospace; font-size:24px; color:#D9CDB4;
+                  font-style:italic; }
 
 </style>
 </head>
-<body>
+<body data-contacts='[{"what":"the title block on stone","shadow":[[150,1015,780,26]],"ground":[[150,880,780,26]]}]'>
   <canvas id="art" width="2160" height="2700"></canvas>
 
-  <div class="lead">The sector said it will comply.</div>
-  <div class="bands">
-    <div class="band"><div class="w">GRID</div></div>
-    <div class="band"><div class="w">WATER</div></div>
-    <div class="band"><div class="w">NEIGHBOR&shy;HOODS</div></div>
-    <div class="band"><div class="w">PAY THEIR OWN WAY</div></div>
-  </div>
   <div class="q">
     <div class="rule"></div>
-    <div class="t">I established clear guardrails to ensure data centers protect our electric grid,
-      conserve our water, respect our neighborhoods, and pay their own way ...</div>
-    <div class="src">Office of the Governor, August 18th &middot; c18</div>
+    <div class="t">One data center that could not comply chose to end operations before even
+      beginning construction.</div>
+    <div class="src">Office of the Governor, August 18th &middot; c17</div>
+  </div>
+  <div class="block">
+    <div class="r"><span class="k">DATE</span><span class="v">August 18th, 2026</span></div>
+    <div class="r"><span class="k">PUBLISHER</span><span class="v">Office of the Governor</span></div>
+    <div class="r"><span class="k">SOURCE</span><span class="v">gov.texas.gov &middot; c17</span></div>
+    <div class="r"><span class="k">NAME</span><span class="empty">not named in the source</span></div>
   </div>
 
 <div class="tx-frame" data-decorative>
   <svg class="tx-star" viewBox="0 0 26 26" aria-hidden="true"><polygon points="13,1 16.1,9.4 25,9.6 17.9,15 20.5,23.6 13,18.4 5.5,23.6 8.1,15 1,9.6 9.9,9.4" fill="var(--frame-ink)"/></svg>
   <div class="tx-wordmark" style="left:118px">TEXAS AI DOCKET</div>
-  <div class="tx-kicker">The Governor's office</div>
+  <div class="tx-kicker">August 18th</div>
   <div class="tx-site">talonsturgill.github.io/TexasAIDocket</div>
-  <div class="tx-counter">07 / 09</div>
+  <div class="tx-counter">07 / 08</div>
 </div>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script src="@@ASSETS@@/js/txtype.js"></script>
@@ -86,30 +82,41 @@ window.renderReady = new Promise(function(resolve){
   var W=1080, H=1350;
   function lerp(a,b,t){return a+(b-a)*t;}
 
-  // four equal terrazzo inlay bands, full height, each a graded stone
-  var cols=['#D9CDB4','#8E4B3A','#4E6B62','#B98D46'];
-  var bw=W/4;
-  for(var i=0;i<4;i++){
-    var g=ctx.createLinearGradient(0,0,0,H);
-    g.addColorStop(0, cols[i]); g.addColorStop(1, shade(cols[i],-0.32));
-    ctx.fillStyle=g; ctx.fillRect(i*bw,0,bw,H);
-    // terrazzo fleck
-    var R=TX.rng(20260819+i*97);
-    for(var f=0;f<420;f++){ var x=i*bw+R()*bw, y=R()*H;
-      ctx.fillStyle='rgba('+(R()<0.5?'255,255,255':'0,0,0')+','+(R()*0.10).toFixed(3)+')';
-      ctx.fillRect(x,y,2.2,2.2); }
+  // a warm masonry ground with a faint vertical falloff so the base carries tone
+  function stoneGround(top, bottom){
+    var grad = ctx.createLinearGradient(0,0,0,H);
+    grad.addColorStop(0, top); grad.addColorStop(1, bottom);
+    ctx.fillStyle = grad; ctx.fillRect(0,0,W,H);
   }
-  // solid tower bars behind the top and bottom masthead furniture, so the wordmark, site and
-  // counter read even where a light inlay band sits under them. The type plates for the lead, the
-  // band words and the quote are solid CSS knockouts, so the canvas only owns the furniture strips.
-  ctx.fillStyle='#16151C'; ctx.fillRect(0,0,W,102);
-  ctx.fillStyle='#16151C'; ctx.fillRect(0,H-92,W,92);
-  function shade(hex,amt){
-    var n=parseInt(hex.slice(1),16), r=(n>>16)&255,g=(n>>8)&255,b=n&255;
-    r=Math.max(0,Math.min(255,r+amt*255)); g=Math.max(0,Math.min(255,g+amt*255));
-    b=Math.max(0,Math.min(255,b+amt*255));
-    return 'rgb('+(r|0)+','+(g|0)+','+(b|0)+')';
+
+  stoneGround('#141319', '#09080C');
+  // A REDACTION FIELD, drawn rather than washed. Every other entry in the record is a struck bar
+  // of set type, ruled and filled. The entry with no name is the one bar nobody inked, so the
+  // absence is a shape in a column of shapes rather than a caption about a gap.
+  var Rr = TX.rng(20260819);
+  var lx=150, rx=930, ry=470, lh=27, gap=13;
+  var blank = 14;
+  for (var i=0; ry < 1120; i++){
+    var segs = 2 + Math.floor(Rr()*3);
+    var x = lx;
+    for (var s2=0; s2<segs && x < rx-70; s2++){
+      var w = 70 + Rr()*((rx-x)/segs);
+      if (x + w > rx) w = rx - x;
+      if (i === blank){
+        ctx.strokeStyle='rgba(217,205,180,0.55)'; ctx.lineWidth=1.5;
+        ctx.strokeRect(x, ry, w, lh);
+      } else {
+        var a = 0.10 + Rr()*0.16;
+        ctx.fillStyle='rgba(217,205,180,'+a.toFixed(3)+')';
+        ctx.fillRect(x, ry, w, lh);
+      }
+      x += w + 16;
+    }
+    ry += lh + gap;
   }
+  var pool = ctx.createRadialGradient(540,900,140, 540,900,700);
+  pool.addColorStop(0,'rgba(217,205,180,0.13)'); pool.addColorStop(1,'rgba(217,205,180,0)');
+  ctx.fillStyle=pool; ctx.fillRect(0,0,W,H);
 
   // grain over everything, under 4 percent, seeded
   (function(){

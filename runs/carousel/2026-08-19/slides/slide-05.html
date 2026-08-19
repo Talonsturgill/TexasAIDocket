@@ -6,8 +6,8 @@
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   html, body { width:1080px; height:1350px; overflow:hidden; }
-  body { background:#16151C; position:relative; font-family:'Manrope',sans-serif;
-          --frame-ink:#EFE9DA; --frame-dim:#D9CDB4; }
+  body { background:#F6F1E4; position:relative; font-family:'Manrope',sans-serif;
+          --frame-ink:#23202B; --frame-dim:#5a5348; }
   canvas#art { position:absolute; inset:0; width:1080px; height:1350px; }
 
   /* ---- the invariant frame. Identical on every slide of every deck. ---------------- */
@@ -31,46 +31,56 @@
     letter-spacing:.10em; text-transform:uppercase; color:var(--frame-dim); }
 
 
-  .hd { position:absolute; top:120px; left:80px; right:80px;
-        font-family:'Fraunces',serif; font-weight:800; font-size:78px; line-height:.98;
-        letter-spacing:-.02em; color:#EFE9DA; font-variation-settings:'opsz' 78; }
-  .tbl { position:absolute; left:80px; right:80px; top:340px; }
-  .tbl .toprule { height:3px; background:#B98D46; }
-  .tbl .botrule { height:3px; background:#B98D46; }
-  .tbl .row { display:flex; align-items:baseline; justify-content:space-between;
-              padding:30px 4px; border-bottom:1px solid rgba(185,141,70,.4); }
-  .tbl .fig { font-family:'JetBrains Mono',monospace; font-size:52px; color:#EFE9DA;
-              font-variant-numeric:tabular-nums; }
-  .tbl .of { font-family:'Manrope',sans-serif; font-size:28px; color:#D9CDB4; max-width:430px;
-             text-align:right; line-height:1.3; }
-  .tbl .src { display:flex; justify-content:space-between; padding-top:20px;
-              font-family:'JetBrains Mono',monospace; font-size:24px; color:#9c9382; }
+  .hook { position:absolute; top:96px; left:80px; right:80px;
+          font-family:'Fraunces',serif; font-weight:800; font-size:74px; line-height:.98;
+          letter-spacing:-.02em; color:#23202B; font-variation-settings:'opsz' 74; }
+  .cols { position:absolute; top:340px; left:80px; right:80px; height:620px; display:flex; }
+  .col { flex:1; padding:0 46px; }
+  .col .h { font-family:'JetBrains Mono',monospace; font-size:24px; letter-spacing:.05em;
+            color:#5a5348; text-transform:uppercase; padding-bottom:18px; }
+  /* ruled means quoted: a hairline above and below each quoted block, the deck's own grammar */
+  .col .q { font-family:'Fraunces',serif; font-weight:500; font-size:35px; line-height:1.32;
+            color:#23202B; border-top:1px solid #B98D46; border-bottom:1px solid #B98D46;
+            padding:20px 0; }
+  .col .src { font-family:'JetBrains Mono',monospace; font-size:24px; color:#5a5348;
+              padding-top:22px; }
+  .foot { position:absolute; left:80px; right:80px; bottom:150px;
+          font-family:'Manrope',sans-serif; font-size:27px; line-height:1.4; color:#3a3630;
+          border-top:2px solid #B98D46; padding-top:22px; }
+  .filing { position:absolute; left:80px; right:80px; bottom:104px;
+            display:flex; justify-content:space-between; border-top:1px solid #B98D46;
+            padding-top:12px; font-family:'JetBrains Mono',monospace; font-size:22px;
+            color:#6a6358; letter-spacing:.04em; }
 
 </style>
 </head>
 <body>
   <canvas id="art" width="2160" height="2700"></canvas>
 
-  <div class="hd">Three figures,<br>two documents.</div>
-  <div class="tbl">
-    <div class="toprule"></div>
-    <div class="row"><span class="fig">approximately 474 gigawatts</span>
-      <span class="of">of requests to connect to the Texas grid</span></div>
-    <div class="row"><span class="fig">Approximately 90 percent</span>
-      <span class="of">of the new power requests are data centers</span></div>
-    <div class="row"><span class="fig">more than five times</span>
-      <span class="of">Texas' record peak electricity demand for ERCOT</span></div>
-    <div class="botrule"></div>
-    <div class="src"><span>the letter &middot; c6</span><span>the letter &middot; c8</span>
-      <span>the press release &middot; c9</span></div>
+  <div class="hook">One office. The same day. Two wordings.</div>
+  <div class="cols">
+    <div class="col">
+      <div class="h">The press release</div>
+      <div class="q">The PUCT and ERCOT must complete this audit before any data center project
+        moves forward.</div>
+      <div class="src">Office of the Governor &middot; c11</div>
+    </div>
+    <div class="col">
+      <div class="h">The signed letter</div>
+      <div class="q">before any additional data centers are approved to move forward</div>
+      <div class="src">Office of the Governor &middot; c12</div>
+    </div>
   </div>
+  <div class="foot">The signed letter words it more narrowly than the press release does. Both are
+    on the record and they are not interchangeable.</div>
+  <div class="filing" data-decorative><span>tx-2026-0072</span><span>August 3rd, 2026</span></div>
 
 <div class="tx-frame" data-decorative>
   <svg class="tx-star" viewBox="0 0 26 26" aria-hidden="true"><polygon points="13,1 16.1,9.4 25,9.6 17.9,15 20.5,23.6 13,18.4 5.5,23.6 8.1,15 1,9.6 9.9,9.4" fill="var(--frame-ink)"/></svg>
   <div class="tx-wordmark" style="left:118px">TEXAS AI DOCKET</div>
-  <div class="tx-kicker">The letter and the release</div>
+  <div class="tx-kicker">The two documents</div>
   <div class="tx-site">talonsturgill.github.io/TexasAIDocket</div>
-  <div class="tx-counter">05 / 09</div>
+  <div class="tx-counter">05 / 08</div>
 </div>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script src="@@ASSETS@@/js/txtype.js"></script>
@@ -91,28 +101,31 @@ window.renderReady = new Promise(function(resolve){
     ctx.fillStyle = grad; ctx.fillRect(0,0,W,H);
   }
 
-  stoneGround('#1A1922', '#0E0D14');
-  // a low lamp on the table: bright at top, falling off deep across the base so the lower third
-  // is a modeled lit surface rather than flat ground
-  var lamp = ctx.createLinearGradient(0,260,0,H);
-  lamp.addColorStop(0,'rgba(239,233,218,0.13)'); lamp.addColorStop(0.55,'rgba(239,233,218,0.03)');
-  lamp.addColorStop(1,'rgba(0,0,0,0.42)');
-  ctx.fillStyle=lamp; ctx.fillRect(0,0,W,H);
-  // a soft pool under the table body and a shadow beneath the last row, so the base carries tone
-  var pool = ctx.createRadialGradient(W/2, 1120, 120, W/2, 1120, 640);
-  pool.addColorStop(0,'rgba(217,205,180,0.06)'); pool.addColorStop(1,'rgba(217,205,180,0)');
-  ctx.fillStyle=pool; ctx.fillRect(0,0,W,H);
-
-  // grain over everything, under 4 percent, seeded
-  (function(){
-    var R = TX.rng(20260819);
-    var g = ctx.getImageData(0,0,1,1); // touch to ensure context ok
-    for (var i=0;i<5200;i++){
-      var x=R()*W, y=R()*H, a=R()*0.035;
-      ctx.fillStyle='rgba('+(R()<0.5?'255,255,255':'0,0,0')+','+a.toFixed(3)+')';
-      ctx.fillRect(x,y,1.3,1.3);
-    }
-  })();
+  // the paper register: flat, neatlined, grain at 2 percent
+  ctx.fillStyle='#F6F1E4'; ctx.fillRect(0,0,W,H);
+  // the center divider, drawn ONLY through the two-column band so it never strikes the foot text
+  ctx.strokeStyle='#B98D46'; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(W/2, 340); ctx.lineTo(W/2, 940); ctx.stroke();
+  // a lighting falloff toward the base so the bottom third carries real tone rather than flat paper
+  var pf = ctx.createLinearGradient(0,H*0.58,0,H);
+  pf.addColorStop(0,'rgba(0,0,0,0)'); pf.addColorStop(1,'rgba(35,32,43,0.20)');
+  ctx.fillStyle=pf; ctx.fillRect(0,0,W,H);
+  // a press-plate impression across the lower third, a broad tonal field for the base band
+  var plate = ctx.createRadialGradient(W/2, H*0.86, 120, W/2, H*0.86, 620);
+  plate.addColorStop(0,'rgba(35,32,43,0.09)'); plate.addColorStop(1,'rgba(35,32,43,0)');
+  ctx.fillStyle=plate; ctx.fillRect(0,0,W,H);
+  // faint deckle laid-lines across the lower third, the register's own texture
+  ctx.strokeStyle='rgba(35,32,43,0.06)'; ctx.lineWidth=1;
+  for(var ly=H*0.68; ly<H*0.92; ly+=13){
+    ctx.beginPath(); ctx.moveTo(80,ly); ctx.lineTo(W-80,ly); ctx.stroke();
+  }
+  // hard neatline frame
+  ctx.strokeStyle='#23202B'; ctx.lineWidth=2; ctx.strokeRect(46,46,W-92,H-92);
+  // grain at 2 percent, markedly denser toward the base so the bottom third reads as worked stone
+  (function(){ var R=TX.rng(20260819);
+    for(var i=0;i<9000;i++){ var x=R()*W,y=R()*H;
+      var boost = y>H*0.66 ? 0.06 : 0.018;
+      ctx.fillStyle='rgba(35,32,43,'+(R()*boost).toFixed(3)+')'; ctx.fillRect(x,y,1.3,1.3);} })();
 
   (window.__fontsReady||document.fonts.ready).then(function(){ resolve(); });
 });

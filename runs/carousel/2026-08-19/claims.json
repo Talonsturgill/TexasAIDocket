@@ -253,12 +253,54 @@
       "retrieved": "2026-08-19",
       "fetched": true,
       "confidence": "high"
+    },
+    {
+      "id": "c19",
+      "text": "The commission's calendar lists an open meeting on Friday, August 21st, 2026, the day after the meeting ERCOT named.",
+      "quote": "Open Meeting - Friday, August 21, 2026",
+      "url": "https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx",
+      "source_type": "primary_official",
+      "publisher": "Public Utility Commission of Texas",
+      "published": "2026-08-19",
+      "retrieved": "2026-08-19",
+      "fetched": true,
+      "confidence": "high",
+      "verbatim_quote": "Open Meeting - Friday, August 21, 2026",
+      "source_url": "https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx"
+    },
+    {
+      "id": "c20",
+      "text": "The commission's calendar lists a public comment deadline on Friday, September 4th, 2026.",
+      "quote": "Public Comment Deadline - Friday, September 4, 2026",
+      "url": "https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx",
+      "source_type": "primary_official",
+      "publisher": "Public Utility Commission of Texas",
+      "published": "2026-08-19",
+      "retrieved": "2026-08-19",
+      "fetched": true,
+      "confidence": "high",
+      "verbatim_quote": "Public Comment Deadline - Friday, September 4, 2026",
+      "source_url": "https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx"
+    },
+    {
+      "id": "c21",
+      "text": "Project 58482, the proposed rule on Large Load Demand Management Service, took a comment on August 18th, 2026 from Modern Tex Consulting.",
+      "quote": "Comments of Modern Tex Consulting LLC on Performance Reporting and Evaluation Under Proposed 16 TAC § 25.521",
+      "url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+      "source_type": "primary_official",
+      "publisher": "Public Utility Commission of Texas",
+      "published": "2026-08-18",
+      "retrieved": "2026-08-19",
+      "fetched": true,
+      "confidence": "high",
+      "verbatim_quote": "Comments of Modern Tex Consulting LLC on Performance Reporting and Evaluation Under Proposed 16 TAC § 25.521",
+      "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending"
     }
   ],
   "rejected": [
     {
       "finding": "An August 20th, 2026 PUCT open meeting confirmed by the commission's calendar feed",
-      "reason": "The feed returned HTTP 503 to the fact checker and to every scout. It was later retested from a second client and answered 200 with 32 entries, confirming the August 20th and August 21st open meetings and the September 4th comment deadline. The deck still carries the date through c3, on ERCOT's own notice, because that is the source the slide cites."
+      "reason": "The feed returned HTTP 503 to the fact checker and to every scout. A later retest from a second client answered 200 with 32 entries and confirmed the August 20th and August 21st open meetings and the September 4th comment deadline. The deck cites ERCOT's own notice for the meeting date because that is the source the slide names."
     },
     {
       "finding": "ERCOT filed its good cause exception request",
@@ -288,7 +330,7 @@
   "dropped": [
     {
       "finding": "An August 20th, 2026 PUCT open meeting confirmed by the commission's calendar feed",
-      "reason": "The feed returned HTTP 503 with no body on every attempt. The date survives only in c3, where ERCOT's own notice names it."
+      "reason": "The feed returned HTTP 503 to the fact checker and to every scout. A later retest from a second client answered 200 with 32 entries and confirmed the August 20th and August 21st open meetings and the September 4th comment deadline. The deck cites ERCOT's own notice for the meeting date because that is the source the slide names."
     },
     {
       "finding": "ERCOT filed its good cause exception request",

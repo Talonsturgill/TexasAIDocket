@@ -31,38 +31,46 @@
     letter-spacing:.10em; text-transform:uppercase; color:var(--frame-dim); }
 
 
-  .top { position:absolute; top:130px; left:80px; right:80px;
-         font-family:'Fraunces',serif; font-weight:700; font-size:60px; line-height:1.02;
-         letter-spacing:-.015em; color:#EFE9DA; font-variation-settings:'opsz' 60; }
-  .q { position:absolute; left:80px; right:110px; bottom:140px; }
-  .q .rule { height:2px; background:#B98D46; }
-  .q .t { font-family:'Manrope',sans-serif; font-size:31px; line-height:1.44; color:#EFE9DA;
-          padding:22px 0; }
-  .q .src { font-family:'JetBrains Mono',monospace; font-size:24px; color:#D9CDB4; }
-  .lab { position:absolute; font-family:'JetBrains Mono',monospace; font-size:26px; color:#B98D46;
-         letter-spacing:.04em; }
+  .hd { position:absolute; top:120px; left:80px; right:80px;
+        font-family:'Fraunces',serif; font-weight:800; font-size:78px; line-height:.98;
+        letter-spacing:-.02em; color:#EFE9DA; font-variation-settings:'opsz' 78; }
+  .tbl { position:absolute; left:80px; right:80px; top:340px; }
+  .tbl .toprule { height:3px; background:#B98D46; }
+  .tbl .botrule { height:3px; background:#B98D46; }
+  .tbl .row { display:flex; align-items:baseline; justify-content:space-between;
+              padding:30px 4px; border-bottom:1px solid rgba(185,141,70,.4); }
+  .tbl .fig { font-family:'JetBrains Mono',monospace; font-size:52px; color:#EFE9DA;
+              font-variant-numeric:tabular-nums; }
+  .tbl .of { font-family:'Manrope',sans-serif; font-size:28px; color:#D9CDB4; max-width:430px;
+             text-align:right; line-height:1.3; }
+  .tbl .src { display:flex; justify-content:space-between; padding-top:20px;
+              font-family:'JetBrains Mono',monospace; font-size:24px; color:#9c9382; }
 
 </style>
 </head>
 <body>
   <canvas id="art" width="2160" height="2700"></canvas>
 
-  <div class="top">Whose water,<br>and whose power.</div>
-  <div class="lab" style="left:210px; top:560px;">CLOSED</div>
-  <div class="lab" style="left:640px; top:560px;">OPEN</div>
-  <div class="q">
-    <div class="rule"></div>
-    <div class="t">The extent to which data centers are bringing their own water and reusing their
-      own water as opposed to using water needed by local communities.</div>
-    <div class="src">Directive to the PUCT and ERCOT &middot; c15</div>
+  <div class="hd">Three figures,<br>two documents.</div>
+  <div class="tbl">
+    <div class="toprule"></div>
+    <div class="row"><span class="fig">approximately 474 gigawatts</span>
+      <span class="of">of requests to connect to the Texas grid</span></div>
+    <div class="row"><span class="fig">Approximately 90 percent</span>
+      <span class="of">of the new power requests are data centers</span></div>
+    <div class="row"><span class="fig">more than five times</span>
+      <span class="of">Texas' record peak electricity demand for ERCOT</span></div>
+    <div class="botrule"></div>
+    <div class="src"><span>the letter &middot; c6</span><span>the letter &middot; c8</span>
+      <span>the press release &middot; c9</span></div>
   </div>
 
 <div class="tx-frame" data-decorative>
   <svg class="tx-star" viewBox="0 0 26 26" aria-hidden="true"><polygon points="13,1 16.1,9.4 25,9.6 17.9,15 20.5,23.6 13,18.4 5.5,23.6 8.1,15 1,9.6 9.9,9.4" fill="var(--frame-ink)"/></svg>
   <div class="tx-wordmark" style="left:118px">TEXAS AI DOCKET</div>
-  <div class="tx-kicker">The stated reason</div>
+  <div class="tx-kicker">The letter and the release</div>
   <div class="tx-site">talonsturgill.github.io/TexasAIDocket</div>
-  <div class="tx-counter">04 / 09</div>
+  <div class="tx-counter">04 / 08</div>
 </div>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script src="@@ASSETS@@/js/txtype.js"></script>
@@ -83,41 +91,17 @@ window.renderReady = new Promise(function(resolve){
     ctx.fillStyle = grad; ctx.fillRect(0,0,W,H);
   }
 
-  // A WARMER, DENSER FRAME THAN SLIDE 3, deliberately. The flow critic found 3 and 4 reading as
-  // a matched pair of thin gold linework on black, which flattened the middle of the dark run.
-  // The idea is unchanged and the WEIGHT is not: warmer ground, much heavier line, and the closed
-  // loop carries a fill because a closed loop is the only one of the two that encloses an area.
-  stoneGround('#1E1B22', '#100E14');
-  var lg = ctx.createRadialGradient(430,660,60, 430,660,760);
-  lg.addColorStop(0,'rgba(185,141,70,0.16)'); lg.addColorStop(1,'rgba(185,141,70,0)');
-  ctx.fillStyle=lg; ctx.fillRect(0,0,W,H);
-  ctx.strokeStyle='#B98D46'; ctx.lineWidth=8; ctx.lineJoin='round'; ctx.lineCap='round';
-  // closed loop, left. Filled, because it encloses. Same stroke weight as the open one.
-  ctx.beginPath();
-  var cx=300, cy=700, rx=150, ry=95;
-  for(var t=0;t<=1.0001;t+=0.01){
-    var a=t*Math.PI*2;
-    var x=cx+Math.cos(a)*rx + Math.sin(a*2)*12;
-    var y=cy+Math.sin(a)*ry;
-    if(t===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
-  }
-  ctx.closePath();
-  ctx.fillStyle='rgba(185,141,70,0.22)'; ctx.fill();
-  ctx.stroke();
-  // open loop, right. Its line leaves through the RIGHT EDGE, well above the quote block, so it
-  // never crosses the body copy the way a straight drop through the gutter did.
-  ctx.beginPath();
-  var ox=700, oy=700;
-  for(var t2=0.02;t2<=0.72;t2+=0.01){
-    var a2=t2*Math.PI*2;
-    var x2=ox+Math.cos(a2)*150 + Math.sin(a2*2)*12;
-    var y2=oy+Math.sin(a2)*95;
-    if(t2===0.02)ctx.moveTo(x2,y2);else ctx.lineTo(x2,y2);
-  }
-  // tail runs level to the right and exits the right edge above the quote
-  ctx.lineTo(920, 665);
-  ctx.lineTo(W+20, 640);
-  ctx.stroke();
+  stoneGround('#1A1922', '#0E0D14');
+  // a low lamp on the table: bright at top, falling off deep across the base so the lower third
+  // is a modeled lit surface rather than flat ground
+  var lamp = ctx.createLinearGradient(0,260,0,H);
+  lamp.addColorStop(0,'rgba(239,233,218,0.13)'); lamp.addColorStop(0.55,'rgba(239,233,218,0.03)');
+  lamp.addColorStop(1,'rgba(0,0,0,0.42)');
+  ctx.fillStyle=lamp; ctx.fillRect(0,0,W,H);
+  // a soft pool under the table body and a shadow beneath the last row, so the base carries tone
+  var pool = ctx.createRadialGradient(W/2, 1120, 120, W/2, 1120, 640);
+  pool.addColorStop(0,'rgba(217,205,180,0.06)'); pool.addColorStop(1,'rgba(217,205,180,0)');
+  ctx.fillStyle=pool; ctx.fillRect(0,0,W,H);
 
   // grain over everything, under 4 percent, seeded
   (function(){

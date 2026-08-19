@@ -1,6 +1,12 @@
 # Storyboard, August 19th, 2026
 
-Carousel No. 3. Story `tx-2026-0072`. Nine slides.
+Carousel No. 3. Story `tx-2026-0072`. Eight slides.
+
+**Slide 4 was cut after scoring.** Its headline promised "Whose water, and whose power" and the
+frame delivered only water, and it sat directly before the deck's densest frame. The scorer named
+it the most cuttable frame twice. The water theme survives on the guardrails frame, which already
+names WATER as one of the four. The freed frame went to the close, which had no way for a reader
+to act.
 
 ## The synthesis, and why this one
 
@@ -245,58 +251,6 @@ risks:
 ```yaml
 slide: 4
 job: >
-  Give the stated reason for the audit and the one demand a reader can feel, which is water, and
-  do it without asserting any facility design the record does not describe.
-claims: [c13, c15]
-composition:
-  structure: >
-    Two water loops in line only, side by side across the middle band, one closed on itself and
-    one open with its line running off the right edge past the safe margin. The binary is the
-    whole content, so the drawing is reduced to the one thing the claim contains, a loop that
-    closes and a loop that does not.
-  bands: >
-    Top third carries the stated reason in our own words. Middle third holds the two loops. The
-    open loop's line runs down and out through the bottom third, and the ground there carries a
-    graded falloff in tone away from the brass light, so the base is a lit surface with a line
-    crossing it rather than a rule with type under it.
-  focal: >
-    The open loop's line leaving the frame, because it is the only element that breaks the
-    composition's edge and the eye follows an exit.
-art:
-  technique: "Zdog scene, vector line, two loops in brass at one stroke weight"
-  why_this_technique: >
-    The claim is a genuine binary and topology draws a binary better than a bar does. Zdog's named
-    failure is terrain, which does not apply. Drawing a labelled cooling tower would assert a
-    cooling design no source describes, so the object is reduced to the topology the sentence
-    actually carries.
-  palette: >
-    tower ground at the deck's darkest before slide 8, brass line as the only light in the frame,
-    no fill in either loop.
-  value_structure: >
-    Darkest ground in the first half. The brass line is the sole light source and carries every
-    edge, so the frame is read entirely by line rather than by mass.
-  motion: >
-    The eye circles the closed loop, fails to circle the open one, and exits right.
-type:
-  hook: "Whose water, and whose power."
-  dek: >
-    The letter grounds the audit in a survey some projects did not answer, and now asks each one
-    where its water comes from.
-  labels: ["CLOSED", "OPEN"]
-acceptance:
-  - "nothing in the frame identifies a facility type, a vendor, a county or a piece of equipment"
-  - "the open loop's line exits the frame rather than terminating inside it"
-  - "both loops are drawn at one identical stroke weight, so neither is privileged"
-  - "the quoted demand appears in full and is not cut mid clause"
-  - "brass line holds 4.5 to 1 or better against the tower ground along its whole run"
-risks:
-  - "two loops can read as a diagram of a specific plant, which the record does not support"
-  - "line only art at thumb size can thin into invisibility"
-```
-
-```yaml
-slide: 5
-job: >
   Put the three figures the two documents actually state side by side, with their own wordings and
   their own sources, in the one form that presents them without implying arithmetic between them.
 claims: [c6, c8, c9]
@@ -350,7 +304,7 @@ risks:
 ```
 
 ```yaml
-slide: 6
+slide: 5
 job: >
   The turn. Show that one office worded the same instruction two ways on the same day, and let the
   reader find the difference without one word of accusation from us.
@@ -405,7 +359,7 @@ risks:
 ```
 
 ```yaml
-slide: 7
+slide: 6
 job: >
   Argue the other way. The counter-image, where the sector says it will comply and the four
   guardrails are named in the Governor's own words.
@@ -459,7 +413,7 @@ risks:
 ```
 
 ```yaml
-slide: 8
+slide: 7
 job: >
   The deck's floor and its emotional centre. One project ended before construction, no source names
   it, and the frame publishes the size of that gap instead of filling it.
@@ -512,7 +466,7 @@ risks:
 ```
 
 ```yaml
-slide: 9
+slide: 8
 job: >
   Close on the one thing a reader can still watch, which is tomorrow's open meeting, and say
   exactly what ERCOT committed to and nothing beyond it.

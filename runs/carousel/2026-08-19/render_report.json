@@ -46,10 +46,10 @@
           "anc": []
         },
         {
-          "text": "ERCOT set itself a date to tell service providers how every large load was class",
-          "x": 64,
+          "text": "ERCOT set itself a date to tell service providers how every large load was classified. That date passed 12 days ago.",
+          "x": 80,
           "y": 1037,
-          "w": 676,
+          "w": 660,
           "h": 181,
           "font_px": 33,
           "weight": "400",
@@ -59,19 +59,19 @@
           "overlap_ok": false,
           "lines": [
             [
-              86,
+              102,
               1057,
               555,
               45
             ],
             [
-              86,
+              102,
               1104,
               523,
               45
             ],
             [
-              86,
+              102,
               1151,
               613,
               45
@@ -146,7 +146,7 @@
           "anc": []
         },
         {
-          "text": "01 / 09",
+          "text": "01 / 08",
           "x": 877,
           "y": 1260,
           "w": 123,
@@ -326,7 +326,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 626,
+      "render_ms": 614,
       "ok": true,
       "canvases": [
         {
@@ -471,7 +471,7 @@
           "anc": []
         },
         {
-          "text": "ERCOT will not notify each Interconnecting Distribution Service Provider and Tra",
+          "text": "ERCOT will not notify each Interconnecting Distribution Service Provider and Transmission Service Provider of how any Large Load is classified in the Batch Zero Interconnection Study by August 7, 2026",
           "x": 80,
           "y": 981,
           "w": 880,
@@ -599,7 +599,7 @@
           "anc": []
         },
         {
-          "text": "02 / 09",
+          "text": "02 / 08",
           "x": 877,
           "y": 1260,
           "w": 123,
@@ -871,7 +871,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 997,
+      "render_ms": 608,
       "ok": true,
       "canvases": [
         {
@@ -1132,7 +1132,7 @@
           "anc": []
         },
         {
-          "text": "03 / 09",
+          "text": "03 / 08",
           "x": 877,
           "y": 1260,
           "w": 123,
@@ -1307,7 +1307,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 665,
+      "render_ms": 867,
       "ok": true,
       "canvases": [
         {
@@ -1330,270 +1330,6 @@
     {
       "file": "slide-04.html",
       "png": "slide-04.png",
-      "console_errors": [],
-      "page_errors": [],
-      "overflow_warnings": [],
-      "fonts_missing": [],
-      "text_nodes": [
-        {
-          "text": "Whose water,and whose power.",
-          "x": 80,
-          "y": 130,
-          "w": 920,
-          "h": 122,
-          "font_px": 60,
-          "weight": "700",
-          "family": "Fraunces",
-          "color": "rgb(239, 233, 218)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              80,
-              123,
-              374,
-              74
-            ],
-            [
-              80,
-              184,
-              489,
-              74
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "CLOSED",
-          "x": 210,
-          "y": 560,
-          "w": 100,
-          "h": 35,
-          "font_px": 26,
-          "weight": "400",
-          "family": "JetBrains Mono",
-          "color": "rgb(185, 141, 70)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              210,
-              560,
-              100,
-              35
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "OPEN",
-          "x": 640,
-          "y": 560,
-          "w": 67,
-          "h": 35,
-          "font_px": 26,
-          "weight": "400",
-          "family": "JetBrains Mono",
-          "color": "rgb(185, 141, 70)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              640,
-              560,
-              67,
-              35
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "The extent to which data centers are bringing their own water and reusing their ",
-          "x": 80,
-          "y": 1001,
-          "w": 890,
-          "h": 178,
-          "font_px": 31,
-          "weight": "400",
-          "family": "Manrope",
-          "color": "rgb(239, 233, 218)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              80,
-              1024,
-              873,
-              42
-            ],
-            [
-              80,
-              1069,
-              775,
-              42
-            ],
-            [
-              80,
-              1113,
-              423,
-              42
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "Directive to the PUCT and ERCOT \u00b7 c15",
-          "x": 80,
-          "y": 1179,
-          "w": 890,
-          "h": 31,
-          "font_px": 24,
-          "weight": "400",
-          "family": "JetBrains Mono",
-          "color": "rgb(217, 205, 180)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              80,
-              1179,
-              533,
-              31
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "TEXAS AI DOCKET",
-          "x": 118,
-          "y": 56,
-          "w": 285,
-          "h": 34,
-          "font_px": 25,
-          "weight": "500",
-          "family": "JetBrains Mono",
-          "color": "rgb(239, 233, 218)",
-          "decorative": true,
-          "overlap_ok": false,
-          "lines": [
-            [
-              118,
-              56,
-              285,
-              34
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "The stated reason",
-          "x": 714,
-          "y": 56,
-          "w": 286,
-          "h": 31,
-          "font_px": 24,
-          "weight": "500",
-          "family": "JetBrains Mono",
-          "color": "rgb(217, 205, 180)",
-          "decorative": true,
-          "overlap_ok": false,
-          "lines": [
-            [
-              714,
-              56,
-              286,
-              31
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "talonsturgill.github.io/TexasAIDocket",
-          "x": 80,
-          "y": 1263,
-          "w": 568,
-          "h": 31,
-          "font_px": 24,
-          "weight": "400",
-          "family": "JetBrains Mono",
-          "color": "rgb(217, 205, 180)",
-          "decorative": true,
-          "overlap_ok": false,
-          "lines": [
-            [
-              80,
-              1263,
-              568,
-              31
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "04 / 09",
-          "x": 877,
-          "y": 1260,
-          "w": 123,
-          "h": 34,
-          "font_px": 25,
-          "weight": "500",
-          "family": "JetBrains Mono",
-          "color": "rgb(239, 233, 218)",
-          "decorative": true,
-          "overlap_ok": false,
-          "lines": [
-            [
-              877,
-              1260,
-              123,
-              34
-            ]
-          ],
-          "anc": []
-        }
-      ],
-      "body_overflow": false,
-      "canvas_text": [],
-      "svg_plates": [],
-      "rules": [
-        {
-          "kind": "fill",
-          "x": 80,
-          "y": 999.1,
-          "w": 890,
-          "h": 2,
-          "by": "rule",
-          "color": "rgb(185, 141, 70)",
-          "decorative": false,
-          "skip": []
-        }
-      ],
-      "encodings": [],
-      "contacts": [],
-      "nondeterminism": [],
-      "render_ms": 1258,
-      "ok": true,
-      "canvases": [
-        {
-          "x": 0,
-          "y": 0,
-          "w": 1080,
-          "h": 1350,
-          "bw": 2160,
-          "bh": 2700,
-          "area_frac": 1,
-          "backing_ratio": 2,
-          "sample_ok": true,
-          "mean": 32.1,
-          "variance": 148.6
-        }
-      ],
-      "breather": false,
-      "leaders": []
-    },
-    {
-      "file": "slide-05.html",
-      "png": "slide-05.png",
       "console_errors": [],
       "page_errors": [],
       "overflow_warnings": [],
@@ -1928,7 +1664,7 @@
           "anc": []
         },
         {
-          "text": "05 / 09",
+          "text": "04 / 08",
           "x": 877,
           "y": 1260,
           "w": 123,
@@ -2022,7 +1758,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1417,
+      "render_ms": 964,
       "ok": true,
       "canvases": [
         {
@@ -2043,8 +1779,8 @@
       "leaders": []
     },
     {
-      "file": "slide-06.html",
-      "png": "slide-06.png",
+      "file": "slide-05.html",
+      "png": "slide-05.png",
       "console_errors": [],
       "page_errors": [],
       "overflow_warnings": [],
@@ -2101,7 +1837,7 @@
           "anc": []
         },
         {
-          "text": "The PUCT and ERCOT must complete this audit before any data center project moves",
+          "text": "The PUCT and ERCOT must complete this audit before any data center project moves forward.",
           "x": 126,
           "y": 389,
           "w": 368,
@@ -2265,7 +2001,7 @@
           "anc": []
         },
         {
-          "text": "The signed letter words it more narrowly than the press release does. Both are o",
+          "text": "The signed letter words it more narrowly than the press release does. Both are on the record and they are not interchangeable.",
           "x": 80,
           "y": 1100,
           "w": 920,
@@ -2403,7 +2139,7 @@
           "anc": []
         },
         {
-          "text": "06 / 09",
+          "text": "05 / 08",
           "x": 877,
           "y": 1260,
           "w": 123,
@@ -2512,7 +2248,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1160,
+      "render_ms": 954,
       "ok": true,
       "canvases": [
         {
@@ -2533,8 +2269,8 @@
       "leaders": []
     },
     {
-      "file": "slide-07.html",
-      "png": "slide-07.png",
+      "file": "slide-06.html",
+      "png": "slide-06.png",
       "console_errors": [],
       "page_errors": [],
       "overflow_warnings": [],
@@ -2542,9 +2278,9 @@
       "text_nodes": [
         {
           "text": "The sector said it will comply.",
-          "x": 56,
+          "x": 80,
           "y": 104,
-          "w": 968,
+          "w": 920,
           "h": 101,
           "font_px": 56,
           "weight": "700",
@@ -2554,7 +2290,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              80,
+              104,
               120,
               757,
               69
@@ -2564,9 +2300,9 @@
         },
         {
           "text": "GRID",
-          "x": 22,
+          "x": 95,
           "y": 560,
-          "w": 226,
+          "w": 200,
           "h": 190,
           "font_px": 40,
           "weight": "800",
@@ -2576,7 +2312,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              79,
+              139,
               630,
               111,
               49
@@ -2586,9 +2322,9 @@
         },
         {
           "text": "WATER",
-          "x": 292,
+          "x": 325,
           "y": 560,
-          "w": 226,
+          "w": 200,
           "h": 190,
           "font_px": 40,
           "weight": "800",
@@ -2598,7 +2334,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              327,
+              347,
               630,
               156,
               49
@@ -2607,10 +2343,10 @@
           "anc": []
         },
         {
-          "text": "NEIGHBOR\u00adHOODS",
-          "x": 562,
+          "text": "NEIGHBORHOODS",
+          "x": 555,
           "y": 560,
-          "w": 226,
+          "w": 200,
           "h": 190,
           "font_px": 40,
           "weight": "800",
@@ -2620,19 +2356,13 @@
           "overlap_ok": false,
           "lines": [
             [
-              552,
+              540,
               609,
               231,
               49
             ],
             [
-              783,
-              609,
-              15,
-              49
-            ],
-            [
-              598,
+              578,
               651,
               154,
               49
@@ -2642,9 +2372,9 @@
         },
         {
           "text": "PAY THEIR OWN WAY",
-          "x": 832,
+          "x": 785,
           "y": 560,
-          "w": 226,
+          "w": 200,
           "h": 190,
           "font_px": 40,
           "weight": "800",
@@ -2654,31 +2384,37 @@
           "overlap_ok": false,
           "lines": [
             [
-              903,
-              587,
+              843,
+              566,
               83,
               49
             ],
             [
-              876,
-              630,
+              816,
+              609,
               138,
               49
             ],
             [
-              840,
-              672,
-              209,
+              833,
+              651,
+              104,
+              49
+            ],
+            [
+              836,
+              693,
+              97,
               49
             ]
           ],
           "anc": []
         },
         {
-          "text": "I established clear guardrails to ensure data centers protect our electric grid,",
-          "x": 80,
+          "text": "I established clear guardrails to ensure data centers protect our electric grid, conserve our water, respect our neighborhoods, and pay their own way ...",
+          "x": 104,
           "y": 1039,
-          "w": 920,
+          "w": 872,
           "h": 142,
           "font_px": 29,
           "weight": "400",
@@ -2688,19 +2424,19 @@
           "overlap_ok": false,
           "lines": [
             [
-              80,
+              104,
               1059,
               844,
               40
             ],
             [
-              80,
+              104,
               1100,
               868,
               40
             ],
             [
-              80,
+              104,
               1140,
               264,
               40
@@ -2710,9 +2446,9 @@
         },
         {
           "text": "Office of the Governor, August 18th \u00b7 c18",
-          "x": 80,
+          "x": 104,
           "y": 1181,
-          "w": 920,
+          "w": 872,
           "h": 43,
           "font_px": 24,
           "weight": "400",
@@ -2722,7 +2458,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              80,
+              104,
               1193,
               590,
               31
@@ -2797,7 +2533,7 @@
           "anc": []
         },
         {
-          "text": "07 / 09",
+          "text": "06 / 08",
           "x": 877,
           "y": 1260,
           "w": 123,
@@ -2825,9 +2561,9 @@
       "rules": [
         {
           "kind": "fill",
-          "x": 80,
+          "x": 104,
           "y": 1037.2,
-          "w": 920,
+          "w": 872,
           "h": 2,
           "by": "rule",
           "color": "rgb(185, 141, 70)",
@@ -2838,7 +2574,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 597,
+      "render_ms": 536,
       "ok": true,
       "canvases": [
         {
@@ -2859,15 +2595,15 @@
       "leaders": []
     },
     {
-      "file": "slide-08.html",
-      "png": "slide-08.png",
+      "file": "slide-07.html",
+      "png": "slide-07.png",
       "console_errors": [],
       "page_errors": [],
       "overflow_warnings": [],
       "fonts_missing": [],
       "text_nodes": [
         {
-          "text": "One data center that could not comply chose to end operations before even beginn",
+          "text": "One data center that could not comply chose to end operations before even beginning construction.",
           "x": 80,
           "y": 122,
           "w": 920,
@@ -3165,7 +2901,7 @@
           "anc": []
         },
         {
-          "text": "08 / 09",
+          "text": "07 / 08",
           "x": 877,
           "y": 1260,
           "w": 123,
@@ -3282,7 +3018,7 @@
         }
       ],
       "nondeterminism": [],
-      "render_ms": 2082,
+      "render_ms": 1395,
       "ok": true,
       "canvases": [
         {
@@ -3295,23 +3031,23 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 33.6,
-          "variance": 136.5
+          "mean": 29.8,
+          "variance": 226.1
         }
       ],
       "breather": false,
       "leaders": []
     },
     {
-      "file": "slide-09.html",
-      "png": "slide-09.png",
+      "file": "slide-08.html",
+      "png": "slide-08.png",
       "console_errors": [],
       "page_errors": [],
       "overflow_warnings": [],
       "fonts_missing": [],
       "text_nodes": [
         {
-          "text": "The commissionmeets in 1 day.",
+          "text": "What is stillopen to you.",
           "x": 80,
           "y": 150,
           "w": 920,
@@ -3326,86 +3062,174 @@
             [
               80,
               134,
-              693,
+              487,
               129
             ],
             [
               80,
               232,
-              591,
+              500,
               129
             ]
           ],
           "anc": []
         },
         {
-          "text": "ERCOT said it would file for a good cause exception ahead of the August 20th, 20",
+          "text": "August 20th, 2026",
           "x": 80,
-          "y": 895,
-          "w": 920,
-          "h": 146,
-          "font_px": 29,
+          "y": 797,
+          "w": 275,
+          "h": 36,
+          "font_px": 27,
           "weight": "400",
-          "family": "Manrope",
+          "family": "JetBrains Mono",
           "color": "rgb(239, 233, 218)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               80,
-              917,
-              850,
-              40
-            ],
-            [
-              80,
-              959,
-              918,
-              40
-            ],
-            [
-              80,
-              1000,
-              305,
-              40
+              797,
+              275,
+              36
             ]
           ],
           "anc": []
         },
         {
-          "text": "ERCOT market notice. August 20th, 2026, 1 day out. Planning Guide Sections 5 and",
-          "x": 80,
-          "y": 1041,
-          "w": 920,
-          "h": 88,
-          "font_px": 24,
+          "text": "Open meeting. ERCOT said it would file for a good cause exception ahead of it.",
+          "x": 381,
+          "y": 796,
+          "w": 619,
+          "h": 75,
+          "font_px": 27,
           "weight": "400",
-          "family": "JetBrains Mono",
+          "family": "Manrope",
           "color": "rgb(217, 205, 180)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              80,
-              1059,
-              892,
-              31
+              381,
+              796,
+              607,
+              37
             ],
             [
-              80,
-              1095,
+              381,
+              833,
               348,
-              31
+              37
             ]
           ],
           "anc": []
         },
         {
-          "text": "c3, c4",
+          "text": "August 21st, 2026",
           "x": 80,
-          "y": 1129,
+          "y": 912,
+          "w": 275,
+          "h": 36,
+          "font_px": 27,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 233, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              912,
+              275,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A second open meeting, on the commission's own calendar.",
+          "x": 381,
+          "y": 911,
+          "w": 619,
+          "h": 75,
+          "font_px": 27,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              381,
+              911,
+              614,
+              37
+            ],
+            [
+              381,
+              948,
+              113,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "September 4th, 2026",
+          "x": 80,
+          "y": 1028,
+          "w": 308,
+          "h": 36,
+          "font_px": 27,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 233, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1028,
+              308,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Public comment deadline. Project 58482 took a comment on August 18th.",
+          "x": 414,
+          "y": 1027,
+          "w": 586,
+          "h": 75,
+          "font_px": 27,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              414,
+              1027,
+              579,
+              37
+            ],
+            [
+              414,
+              1064,
+              317,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c3, c4, c19, c20, c21",
+          "x": 80,
+          "y": 1121,
           "w": 920,
-          "h": 41,
+          "h": 49,
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
@@ -3416,7 +3240,7 @@
             [
               80,
               1139,
-              91,
+              318,
               31
             ]
           ],
@@ -3489,7 +3313,7 @@
           "anc": []
         },
         {
-          "text": "09 / 09",
+          "text": "08 / 08",
           "x": 877,
           "y": 1260,
           "w": 123,
@@ -3518,19 +3342,47 @@
         {
           "kind": "fill",
           "x": 80,
-          "y": 893.5,
+          "y": 773.5,
           "w": 920,
           "h": 2,
           "by": "rule",
           "color": "rgb(185, 141, 70)",
           "decorative": false,
           "skip": []
+        },
+        {
+          "kind": "border",
+          "x": 80,
+          "y": 890,
+          "w": 920,
+          "h": 1,
+          "by": "r",
+          "color": "rgba(185, 141, 70, 0.35)",
+          "decorative": false,
+          "skip": [
+            1,
+            2
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 80,
+          "y": 1005.5,
+          "w": 920,
+          "h": 1,
+          "by": "r",
+          "color": "rgba(185, 141, 70, 0.35)",
+          "decorative": false,
+          "skip": [
+            3,
+            4
+          ]
         }
       ],
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1458,
+      "render_ms": 1652,
       "ok": true,
       "canvases": [
         {
