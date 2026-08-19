@@ -101,3 +101,37 @@ full-size image gives the right answer and hides the problem.
 a slide is for. `3` and `5` are the pair to watch. A figure that a reader misreads is worse
 than one they cannot read at all, because a blur invites a second look and a wrong glyph does
 not.
+
+
+---
+
+## THE FINDING TWELVE SCORING ROUNDS NEVER TOUCHED (2026-08-19)
+
+`story_and_stakes` and `voice` are **0.30 of the rubric between them**. Across five panel
+rounds, from three independent judges, **neither ever reached 8.0**, and every judge gave the
+same reason in nearly the same words.
+
+    2026-08-18 scorer   "Change three nouns and this is Ohio."
+    2026-08-18 scorer   "What it never does is tell a Texan what to do next."
+    2026-08-19 panel    named it in all five rounds, all three judges
+
+Twelve rounds of work went into artwork. **Zero went into this.** The mechanism is worth
+knowing because it will happen again: a run reads a craft note as a task and a voice note as an
+opinion. So craft got twelve rounds of code and voice got a sentence in a run record each time.
+
+**What actually moves it, from the rubric's own words.** A 9 for story is "Names the county,
+the body and the deadline. A reader knows what to do next." That is four things, and three of
+them are facts a run either has or does not.
+
+`scripts/carousel/texan_check.py` measures all four and prints the profile in the run record.
+It never fails a placeless story, because the rubric scores that 7 and the 2026-08-19 deck
+proved it: **it named no Texas place anywhere and still scored the highest story mark of the
+three decks**, because its closing frame gave a reader four dated things to act on.
+
+The lesson is the opposite of the one that run reached for six rounds. A story with no county
+is not capped. A story with no NEXT STEP is, and that one is always fixable, because the
+closing frame is the cheapest frame in the deck to rewrite.
+
+Run it at selection, not at the ship gate:
+
+    python3 scripts/carousel/texan_check.py --text "<the candidate story>"
