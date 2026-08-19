@@ -39,6 +39,9 @@ from pathlib import Path
 
 from playwright.sync_api import sync_playwright
 
+# How many characters of each text node the report stores. See the report header note.
+TEXT_WINDOW = 320
+
 REPO_ROOT = Path(__file__).resolve().parents[3]
 ASSETS_DIR = REPO_ROOT / "assets"
 
@@ -72,7 +75,7 @@ CANVAS_TEXT_HOOK_JS = """
         try {
           const s = (text == null ? '' : String(text));
           if (s.trim().length && window.__akCanvasText.length < 500) {
-            window.__akCanvasText.push({ text: s.slice(0, 320), fn: fn, font: this.font || '' });
+            window.__akCanvasText.push({ text: s.slice(0, __TEXT_WINDOW__), fn: fn, font: this.font || '' });
           }
         } catch (e) {}
         return orig.apply(this, arguments);
@@ -115,7 +118,7 @@ IN_PAGE_QA_JS = """
     // an invented number. The scorer found it, no gate could have. `copy_sync` truncates
     // authored strings to the same window before comparing, so widening only widens what
     // both can see.
-    const txt = el.textContent.trim().replace(/\\s+/g, " ").slice(0, 320);
+    const txt = el.textContent.trim().replace(/\\s+/g, " ").slice(0, __TEXT_WINDOW__);
     const fs = parseFloat(cs.fontSize);
     const fam = cs.fontFamily.split(",")[0].trim().replace(/["']/g, "");
     // For SVG text the ink is `fill`, not CSS `color`; the fill attribute or
@@ -880,7 +883,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
     t0 = time.time()
     page = browser.new_page(viewport={"width": width, "height": height},
                             device_scale_factor=scale)
-    page.add_init_script(CANVAS_TEXT_HOOK_JS)
+    page.add_init_script(CANVAS_TEXT_HOOK_JS.replace("__TEXT_WINDOW__", str(TEXT_WINDOW)))
     page.on("console", lambda m: rec["console_errors"].append(m.text)
             if m.type in ("error",) else None)
     page.on("pageerror", lambda e: rec["page_errors"].append(str(e)))
@@ -893,7 +896,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
                           "new Promise((_, rej) => setTimeout(() => rej('renderReady timeout'), 30000))])")
         else:
             page.wait_for_timeout(400)
-        qa = page.evaluate(IN_PAGE_QA_JS)
+        qa = page.evaluate(IN_PAGE_QA_JS.replace("__TEXT_WINDOW__", str(TEXT_WINDOW)))
         rec.update({k: qa[k] for k in ("text_nodes", "overflow_warnings",
                                        "fonts_missing", "body_overflow", "canvases",
                                        "canvas_text", "breather", "svg_plates",
@@ -966,6 +969,13 @@ def main():
     report = {
         "canvas": {"width": args.width, "height": args.height, "scale": args.scale,
                    "px": [int(args.width * args.scale), int(args.height * args.scale)]},
+        # THE REPORT DECLARES ITS OWN TEXT WINDOW, so a reader of it never has to assume one.
+        # This value moved from 80 to 320 on 2026-08-19, and every report written before that is
+        # truncated at 80. `copy_sync_check` truncates authored strings to the same figure before
+        # comparing, so a consumer that assumes the current constant will mis-compare every
+        # historical report and fail decks that were correct when they shipped. It did exactly
+        # that on the 2026-08-16 deck within one CI run of the widening.
+        "text_window": TEXT_WINDOW,
         "slides": merged,
     }
     report_path.write_text(json.dumps(report, indent=2))
