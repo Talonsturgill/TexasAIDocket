@@ -42,6 +42,7 @@
   .col .q { font-family:'Fraunces',serif; font-weight:500; font-size:35px; line-height:1.32;
             color:#23202B; border-top:1px solid #B98D46; border-bottom:1px solid #B98D46;
             padding:20px 0; }
+  .col .q .d { color:#8E4B3A; }
   .col .src { font-family:'JetBrains Mono',monospace; font-size:24px; color:#5a5348;
               padding-top:22px; }
   .foot { position:absolute; left:80px; right:80px; bottom:150px;
@@ -61,18 +62,20 @@
   <div class="cols">
     <div class="col">
       <div class="h">The press release</div>
-      <div class="q">The PUCT and ERCOT must complete this audit before any data center project
-        moves forward.</div>
+      <div class="q">The PUCT and ERCOT must complete this audit before any data center
+        <span class="d">project moves</span> forward.</div>
       <div class="src">Office of the Governor &middot; c11</div>
     </div>
     <div class="col">
       <div class="h">The signed letter</div>
-      <div class="q">before any additional data centers are approved to move forward</div>
+      <div class="q">before any <span class="d">additional</span> data centers
+        <span class="d">are approved to move</span> forward</div>
       <div class="src">Office of the Governor &middot; c12</div>
     </div>
   </div>
-  <div class="foot">The signed letter words it more narrowly than the press release does. Both are
-    on the record and they are not interchangeable.</div>
+  <div class="foot">Marked in red, where the letter narrows what the release says. The signed
+    letter halts approvals. The release halts all forward movement. Both are on the record and they
+    are not interchangeable.</div>
   <div class="filing" data-decorative><span>tx-2026-0072</span><span>August 3rd, 2026</span></div>
 
 <div class="tx-frame" data-decorative>
@@ -105,7 +108,9 @@ window.renderReady = new Promise(function(resolve){
   ctx.fillStyle='#F6F1E4'; ctx.fillRect(0,0,W,H);
   // the center divider, drawn ONLY through the two-column band so it never strikes the foot text
   ctx.strokeStyle='#B98D46'; ctx.lineWidth=1;
-  ctx.beginPath(); ctx.moveTo(W/2, 340); ctx.lineTo(W/2, 940); ctx.stroke();
+  // ...and it stops where the shorter column's citation stops, rather than running on into
+  // blank paper, which is a rule dividing nothing.
+  ctx.beginPath(); ctx.moveTo(W/2, 340); ctx.lineTo(W/2, 790); ctx.stroke();
   // a lighting falloff toward the base so the bottom third carries real tone rather than flat paper
   var pf = ctx.createLinearGradient(0,H*0.58,0,H);
   pf.addColorStop(0,'rgba(0,0,0,0)'); pf.addColorStop(1,'rgba(35,32,43,0.20)');

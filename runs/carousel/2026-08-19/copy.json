@@ -15,22 +15,23 @@
    "quote": "\"ERCOT will not notify each Interconnecting Distribution Service Provider and Transmission Service Provider of how any Large Load is classified in the Batch Zero Interconnection Study by August 7, 2026\"",
    "src": "ERCOT market notice M-A080326-01 \u00b7 c2",
    "labels": [
+    "August 3rd",
+    "August 7th",
     "4 DAYS AHEAD",
     "16 DAYS SINCE THE LETTER"
    ],
    "claims": [
     "c1",
     "c2"
-   ]
+   ],
+   "dek": "ERCOT gave the market 4 days of notice. The letter has now stood 16 days."
   },
   "S3": {
    "kick": "\"Update Regarding Batch Zero Timelines and Processes\"",
    "hook": "Nobody was told the answer.",
    "qn": "No service provider was told how any large load was classified.",
    "labels": [
-    "base load",
-    "studied",
-    "excluded"
+    "no class stated"
    ],
    "claims": [
     "c2",
@@ -55,7 +56,7 @@
    "hook": "One office. The same day. Two wordings.",
    "q1": "\"The PUCT and ERCOT must complete this audit before any data center project moves forward.\"",
    "q2": "\"before any additional data centers are approved to move forward\"",
-   "foot": "The signed letter words it more narrowly than the press release does. Both are on the record and they are not interchangeable.",
+   "foot": "Marked in red, where the letter narrows what the release says. The signed letter halts approvals. The release halts all forward movement. Both are on the record and they are not interchangeable.",
    "claims": [
     "c11",
     "c12"
@@ -74,7 +75,8 @@
    "claims": [
     "c16",
     "c18"
-   ]
+   ],
+   "attrib": "The Governor's office said so on August 18th. The Data Center Coalition has not published a statement of its own."
   },
   "S7": {
    "quote": "\"One data center that could not comply chose to end operations before even beginning construction.\"",

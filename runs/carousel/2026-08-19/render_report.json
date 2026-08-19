@@ -327,7 +327,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 700,
+      "render_ms": 871,
       "ok": true,
       "canvases": [
         {
@@ -341,7 +341,7 @@
           "backing_ratio": 2,
           "sample_ok": true,
           "mean": 47.9,
-          "variance": 3160.7
+          "variance": 3162.3
         }
       ],
       "breather": false,
@@ -384,9 +384,53 @@
           "anc": []
         },
         {
+          "text": "August 3rd",
+          "x": 80,
+          "y": 588,
+          "w": 170,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              588,
+              170,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "August 7th",
+          "x": 392,
+          "y": 588,
+          "w": 170,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              392,
+              588,
+              170,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
           "text": "4",
-          "x": 206,
-          "y": 660,
+          "x": 404,
+          "y": 612,
           "w": 32,
           "h": 69,
           "font_px": 52,
@@ -397,8 +441,8 @@
           "overlap_ok": false,
           "lines": [
             [
-              206,
-              660,
+              404,
+              612,
               32,
               69
             ]
@@ -407,8 +451,8 @@
         },
         {
           "text": "DAYS AHEAD",
-          "x": 248,
-          "y": 686,
+          "x": 446,
+          "y": 638,
           "w": 162,
           "h": 35,
           "font_px": 26,
@@ -419,8 +463,8 @@
           "overlap_ok": false,
           "lines": [
             [
-              248,
-              686,
+              446,
+              638,
               162,
               35
             ]
@@ -430,7 +474,7 @@
         {
           "text": "16",
           "x": 206,
-          "y": 846,
+          "y": 756,
           "w": 64,
           "h": 69,
           "font_px": 52,
@@ -442,7 +486,7 @@
           "lines": [
             [
               206,
-              846,
+              756,
               64,
               69
             ]
@@ -452,7 +496,7 @@
         {
           "text": "DAYS SINCE THE LETTER",
           "x": 280,
-          "y": 872,
+          "y": 782,
           "w": 341,
           "h": 35,
           "font_px": 26,
@@ -464,9 +508,37 @@
           "lines": [
             [
               280,
-              872,
+              782,
               341,
               35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ERCOT gave the market 4 days of notice. The letter has now stood 16 days.",
+          "x": 80,
+          "y": 342,
+          "w": 880,
+          "h": 82,
+          "font_px": 29,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              342,
+              871,
+              40
+            ],
+            [
+              80,
+              383,
+              105,
+              40
             ]
           ],
           "anc": []
@@ -629,7 +701,7 @@
         {
           "kind": "svg",
           "x": 110,
-          "y": 590,
+          "y": 700,
           "w": 900,
           "h": 1.5,
           "by": "line",
@@ -640,7 +712,7 @@
         {
           "kind": "svg",
           "x": 110,
-          "y": 584,
+          "y": 694,
           "w": 1,
           "h": 12,
           "by": "line",
@@ -651,7 +723,7 @@
         {
           "kind": "svg",
           "x": 156,
-          "y": 584,
+          "y": 694,
           "w": 1,
           "h": 12,
           "by": "line",
@@ -662,7 +734,7 @@
         {
           "kind": "svg",
           "x": 202,
-          "y": 578,
+          "y": 688,
           "w": 2,
           "h": 24,
           "by": "line",
@@ -672,8 +744,19 @@
         },
         {
           "kind": "svg",
+          "x": 202,
+          "y": 624,
+          "w": 1,
+          "h": 64,
+          "by": "line",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
           "x": 248,
-          "y": 584,
+          "y": 694,
           "w": 1,
           "h": 12,
           "by": "line",
@@ -684,7 +767,7 @@
         {
           "kind": "svg",
           "x": 294,
-          "y": 584,
+          "y": 694,
           "w": 1,
           "h": 12,
           "by": "line",
@@ -695,7 +778,7 @@
         {
           "kind": "svg",
           "x": 340,
-          "y": 584,
+          "y": 694,
           "w": 1,
           "h": 12,
           "by": "line",
@@ -706,7 +789,7 @@
         {
           "kind": "svg",
           "x": 386,
-          "y": 578,
+          "y": 688,
           "w": 2,
           "h": 24,
           "by": "line",
@@ -716,8 +799,19 @@
         },
         {
           "kind": "svg",
+          "x": 386,
+          "y": 624,
+          "w": 1,
+          "h": 64,
+          "by": "line",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
           "x": 432,
-          "y": 584,
+          "y": 694,
           "w": 1,
           "h": 12,
           "by": "line",
@@ -728,7 +822,7 @@
         {
           "kind": "svg",
           "x": 478,
-          "y": 584,
+          "y": 694,
           "w": 1,
           "h": 12,
           "by": "line",
@@ -739,7 +833,7 @@
         {
           "kind": "svg",
           "x": 524,
-          "y": 584,
+          "y": 694,
           "w": 1,
           "h": 12,
           "by": "line",
@@ -750,7 +844,7 @@
         {
           "kind": "svg",
           "x": 570,
-          "y": 584,
+          "y": 694,
           "w": 1,
           "h": 12,
           "by": "line",
@@ -761,7 +855,7 @@
         {
           "kind": "svg",
           "x": 616,
-          "y": 584,
+          "y": 694,
           "w": 1,
           "h": 12,
           "by": "line",
@@ -772,7 +866,7 @@
         {
           "kind": "svg",
           "x": 662,
-          "y": 584,
+          "y": 694,
           "w": 1,
           "h": 12,
           "by": "line",
@@ -783,7 +877,7 @@
         {
           "kind": "svg",
           "x": 708,
-          "y": 584,
+          "y": 694,
           "w": 1,
           "h": 12,
           "by": "line",
@@ -794,7 +888,7 @@
         {
           "kind": "svg",
           "x": 754,
-          "y": 584,
+          "y": 694,
           "w": 1,
           "h": 12,
           "by": "line",
@@ -805,7 +899,7 @@
         {
           "kind": "svg",
           "x": 800,
-          "y": 584,
+          "y": 694,
           "w": 1,
           "h": 12,
           "by": "line",
@@ -816,7 +910,7 @@
         {
           "kind": "svg",
           "x": 846,
-          "y": 584,
+          "y": 694,
           "w": 1,
           "h": 12,
           "by": "line",
@@ -827,7 +921,7 @@
         {
           "kind": "svg",
           "x": 892,
-          "y": 584,
+          "y": 694,
           "w": 1,
           "h": 12,
           "by": "line",
@@ -838,7 +932,7 @@
         {
           "kind": "fill",
           "x": 202,
-          "y": 526,
+          "y": 636,
           "w": 175,
           "h": 14,
           "by": "rect",
@@ -849,7 +943,7 @@
         {
           "kind": "fill",
           "x": 202,
-          "y": 610,
+          "y": 720,
           "w": 727,
           "h": 6,
           "by": "rect",
@@ -872,7 +966,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 802,
+      "render_ms": 966,
       "ok": true,
       "canvases": [
         {
@@ -1001,54 +1095,10 @@
           "anc": []
         },
         {
-          "text": "base load",
-          "x": 800,
-          "y": 1065,
-          "w": 130,
-          "h": 31,
-          "font_px": 24,
-          "weight": "400",
-          "family": "JetBrains Mono",
-          "color": "rgb(217, 205, 180)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              800,
-              1065,
-              130,
-              31
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "studied",
-          "x": 829,
-          "y": 1110,
-          "w": 101,
-          "h": 31,
-          "font_px": 24,
-          "weight": "400",
-          "family": "JetBrains Mono",
-          "color": "rgb(217, 205, 180)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              829,
-              1110,
-              101,
-              31
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "excluded",
-          "x": 815,
+          "text": "no class stated",
+          "x": 714,
           "y": 1155,
-          "w": 115,
+          "w": 216,
           "h": 31,
           "font_px": 24,
           "weight": "400",
@@ -1058,9 +1108,9 @@
           "overlap_ok": false,
           "lines": [
             [
-              815,
+              714,
               1155,
-              115,
+              216,
               31
             ]
           ],
@@ -1175,94 +1225,6 @@
         {
           "kind": "border",
           "x": 946,
-          "y": 1065.5,
-          "w": 54,
-          "h": 1,
-          "by": "sw",
-          "color": "rgb(185, 141, 70)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "border",
-          "x": 946,
-          "y": 1094.5,
-          "w": 54,
-          "h": 1,
-          "by": "sw",
-          "color": "rgb(185, 141, 70)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "border",
-          "x": 946,
-          "y": 1065.5,
-          "w": 1,
-          "h": 30,
-          "by": "sw",
-          "color": "rgb(185, 141, 70)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "border",
-          "x": 999,
-          "y": 1065.5,
-          "w": 1,
-          "h": 30,
-          "by": "sw",
-          "color": "rgb(185, 141, 70)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "border",
-          "x": 946,
-          "y": 1110.5,
-          "w": 54,
-          "h": 1,
-          "by": "sw",
-          "color": "rgb(185, 141, 70)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "border",
-          "x": 946,
-          "y": 1139.5,
-          "w": 54,
-          "h": 1,
-          "by": "sw",
-          "color": "rgb(185, 141, 70)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "border",
-          "x": 946,
-          "y": 1110.5,
-          "w": 1,
-          "h": 30,
-          "by": "sw",
-          "color": "rgb(185, 141, 70)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "border",
-          "x": 999,
-          "y": 1110.5,
-          "w": 1,
-          "h": 30,
-          "by": "sw",
-          "color": "rgb(185, 141, 70)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "border",
-          "x": 946,
           "y": 1155.5,
           "w": 54,
           "h": 1,
@@ -1308,7 +1270,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 652,
+      "render_ms": 1227,
       "ok": true,
       "canvases": [
         {
@@ -1658,7 +1620,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1700,
+      "render_ms": 1882,
       "ok": true,
       "canvases": [
         {
@@ -1671,8 +1633,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 40.2,
-          "variance": 455
+          "mean": 33.9,
+          "variance": 533.1
         }
       ],
       "breather": false,
@@ -1770,7 +1732,7 @@
             [
               126,
               550,
-              340,
+              111,
               43
             ],
             [
@@ -1781,6 +1743,30 @@
             ]
           ],
           "anc": []
+        },
+        {
+          "text": "project moves",
+          "x": 237,
+          "y": 550,
+          "w": 229,
+          "h": 43,
+          "font_px": 35,
+          "weight": "500",
+          "family": "Fraunces",
+          "color": "rgb(142, 75, 58)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              237,
+              550,
+              229,
+              43
+            ]
+          ],
+          "anc": [
+            2
+          ]
         },
         {
           "text": "Office of the Governor \u00b7 c11",
@@ -1848,19 +1834,13 @@
             [
               586,
               411,
-              346,
+              180,
               43
             ],
             [
               586,
               457,
-              260,
-              43
-            ],
-            [
-              586,
-              503,
-              291,
+              207,
               43
             ],
             [
@@ -1871,6 +1851,60 @@
             ]
           ],
           "anc": []
+        },
+        {
+          "text": "additional",
+          "x": 766,
+          "y": 411,
+          "w": 166,
+          "h": 43,
+          "font_px": 35,
+          "weight": "500",
+          "family": "Fraunces",
+          "color": "rgb(142, 75, 58)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              766,
+              411,
+              166,
+              43
+            ]
+          ],
+          "anc": [
+            6
+          ]
+        },
+        {
+          "text": "are approved to move",
+          "x": 586,
+          "y": 457,
+          "w": 291,
+          "h": 89,
+          "font_px": 35,
+          "weight": "500",
+          "family": "Fraunces",
+          "color": "rgb(142, 75, 58)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              793,
+              457,
+              53,
+              43
+            ],
+            [
+              586,
+              503,
+              291,
+              43
+            ]
+          ],
+          "anc": [
+            6
+          ]
         },
         {
           "text": "Office of the Governor \u00b7 c12",
@@ -1901,11 +1935,11 @@
           "anc": []
         },
         {
-          "text": "The signed letter words it more narrowly than the press release does. Both are on the record and they are not interchangeable.",
+          "text": "Marked in red, where the letter narrows what the release says. The signed letter halts approvals. The release halts all forward movement. Both are on the record and they are not interchangeable.",
           "x": 80,
-          "y": 1100,
+          "y": 1063,
           "w": 920,
-          "h": 100,
+          "h": 137,
           "font_px": 27,
           "weight": "400",
           "family": "Manrope",
@@ -1915,14 +1949,20 @@
           "lines": [
             [
               80,
+              1087,
+              909,
+              37
+            ],
+            [
+              80,
               1124,
-              919,
+              912,
               37
             ],
             [
               80,
               1162,
-              637,
+              554,
               37
             ]
           ],
@@ -2075,7 +2115,8 @@
           "color": "rgb(185, 141, 70)",
           "decorative": false,
           "skip": [
-            2
+            2,
+            3
           ]
         },
         {
@@ -2088,7 +2129,8 @@
           "color": "rgb(185, 141, 70)",
           "decorative": false,
           "skip": [
-            2
+            2,
+            3
           ]
         },
         {
@@ -2101,7 +2143,9 @@
           "color": "rgb(185, 141, 70)",
           "decorative": false,
           "skip": [
-            5
+            6,
+            7,
+            8
           ]
         },
         {
@@ -2114,20 +2158,22 @@
           "color": "rgb(185, 141, 70)",
           "decorative": false,
           "skip": [
-            5
+            6,
+            7,
+            8
           ]
         },
         {
           "kind": "border",
           "x": 80,
-          "y": 1100.4,
+          "y": 1062.6,
           "w": 920,
           "h": 2,
           "by": "foot",
           "color": "rgb(185, 141, 70)",
           "decorative": false,
           "skip": [
-            7
+            10
           ]
         },
         {
@@ -2140,15 +2186,15 @@
           "color": "rgb(185, 141, 70)",
           "decorative": true,
           "skip": [
-            8,
-            9
+            11,
+            12
           ]
         }
       ],
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1016,
+      "render_ms": 1324,
       "ok": true,
       "canvases": [
         {
@@ -2194,6 +2240,34 @@
               120,
               757,
               69
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The Governor's office said so on August 18th. The Data Center Coalition has not published a statement of its own.",
+          "x": 80,
+          "y": 212,
+          "w": 920,
+          "h": 105,
+          "font_px": 27,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(217, 205, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              104,
+              225,
+              763,
+              37
+            ],
+            [
+              104,
+              262,
+              627,
+              37
             ]
           ],
           "anc": []
@@ -2450,7 +2524,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 853,
+      "render_ms": 1151,
       "ok": true,
       "canvases": [
         {
@@ -2894,7 +2968,7 @@
         }
       ],
       "nondeterminism": [],
-      "render_ms": 1226,
+      "render_ms": 1684,
       "ok": true,
       "canvases": [
         {
@@ -3328,7 +3402,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 793,
+      "render_ms": 1109,
       "ok": true,
       "canvases": [
         {

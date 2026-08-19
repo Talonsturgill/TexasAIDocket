@@ -92,7 +92,7 @@
         "dial": "#EFE9DA enameled cast iron lit from behind, the deck's light",
         "cordova": "#D9CDB4 Cordova cream limestone, Williamson County",
         "brass": "#B98D46 the movement's works, line colour",
-        "pecos": "#8E4B3A masonry red, fill only, slide 6 band only",
+        "pecos": "#8E4B3A masonry red. A band fill on slide 6, and set as TYPE on slide 5 to mark where the signed letter narrows the press release.",
         "patina": "#4E6B62 oxidized copper, slide 6 only",
         "paper": "#F6F1E4 on ink #23202B, slide 5 only"
       },
@@ -103,12 +103,12 @@
         "ruled means quoted, a hairline above and below with attribution and claim id beneath",
         "no cartography at all, the first deck here with none"
       ],
-      "bespoke_median_similarity": 0.2717,
+      "bespoke_median_similarity": 0.2687,
       "camera": "one tilted sheet, then a flat rule, then straight down on a field, then a lit table, then a flat sheet, then straight down on a floor, then a block on stone, then one lit cell",
       "slides": 8,
       "cut": "Slide 4, whose water and whose power, was cut after scoring. Its headline promised power and the frame delivered only water, and it sat before the deck's densest frame. The freed frame went to the close, which had no way for a reader to act.",
       "renumbered_after_the_cut": "Recorded at the third scoring pass. The register, three palette notes and the camera line were all written against the nine slide plan and survived the cut of slide 4 unchanged, so this entry named the wrong frame for the paper inversion, for both accent fills and in every camera move after the fourth. Nothing checked it, because the variety ledgers are written at ship and no gate reads them back against the deck.",
-      "bespoke_measurement_note": "0.5314 was measured while bespoke_check was still counting the standing masthead, which this run put on every frame. On the closest pair it shared 50 tokens and exactly one was a drawing call. The gate now strips anything carrying a tx- class, and the two decks that never carried one move only 0.3997 to 0.4061 and 0.2298 to 0.2300."
+      "bespoke_measurement_note": "0.5314 was this deck's first measurement and it was wrong about the deck, not about the gate's arithmetic. bespoke_check was still counting the standing masthead, which this run put on every frame: on the closest pair it shared 50 tokens and exactly one was a drawing call. The gate now strips anything carrying a tx- class. RE-MEASURED under the corrected gate, the two earlier decks move only 0.3997 to 0.4061 and 0.2298 to 0.2300, because neither carried that masthead. Their own entries keep the figures they shipped with, which is what those runs were judged on."
     }
   ]
 }

@@ -86,64 +86,146 @@ window.renderReady = new Promise(function(resolve){
   var SLAB_TOP=296, SLAB_BOT=1186;
   var TBL_TOP=470, ROW_H=200, ROWS=3;
 
-  // THE LAMP. One low source off the upper left, so everything below has a direction to fall in.
-  var cone=ctx.createRadialGradient(150,120,40, 150,120,1250);
-  cone.addColorStop(0,'rgba(239,233,218,0.22)'); cone.addColorStop(0.42,'rgba(239,233,218,0.05)');
-  cone.addColorStop(1,'rgba(239,233,218,0)');
-  ctx.fillStyle=cone; ctx.fillRect(0,0,W,H);
+  var R4 = TX.rng(20260819+404);
 
-  // THE TABLE, seen from above and slightly off its far end, so it recedes. Built as a polygon
-  // rather than a band: a slab drawn as a rectangle is the same drawing as slide 6's rails, and
-  // the third scoring pass counted four of eight frames as type and rules on flat ground.
-  var LX=118, LY=54;                                  // the lamp, and the origin of every shadow
+  // THE BULB IS THE ORIGIN OF EVERYTHING ON THIS FRAME. Every shadow below is projected from
+  // this one point, and the shade that holds it is drawn as an object rather than implied by a
+  // gradient. The fourth scoring pass said the low lamp was not in the frame, and it was right:
+  // a radial gradient in the corner is a claim about light with no source a reader can find.
+  var LX=930, LY=262;
   var farL=44, farR=W-44, nearL=-26, nearR=W+26;
   function slabPath(){
     ctx.beginPath();
     ctx.moveTo(farL,SLAB_TOP); ctx.lineTo(farR,SLAB_TOP);
     ctx.lineTo(nearR,SLAB_BOT); ctx.lineTo(nearL,SLAB_BOT); ctx.closePath();
   }
-  var slab=ctx.createLinearGradient(0,SLAB_TOP,0,SLAB_BOT);
-  slab.addColorStop(0,'#332C39'); slab.addColorStop(0.45,'#241F2C'); slab.addColorStop(1,'#15111D');
-  slabPath(); ctx.fillStyle=slab; ctx.fill();
-  // the raking wash the lamp lays across the slab, strongest nearest the light
-  var rake=ctx.createRadialGradient(LX,LY,60, LX,LY,1180);
-  rake.addColorStop(0,'rgba(239,233,218,0.20)'); rake.addColorStop(0.5,'rgba(239,233,218,0.04)');
-  rake.addColorStop(1,'rgba(0,0,0,0.34)');
-  slabPath(); ctx.fillStyle=rake; ctx.fill();
-  // the far edge catching the lamp, and the near lip in brass with the room falling away past it
-  ctx.strokeStyle='rgba(239,233,218,0.22)'; ctx.lineWidth=3;
-  ctx.beginPath(); ctx.moveTo(farL,SLAB_TOP); ctx.lineTo(farR,SLAB_TOP); ctx.stroke();
-  ctx.strokeStyle='#B98D46'; ctx.lineWidth=4;
-  ctx.beginPath(); ctx.moveTo(nearL,SLAB_BOT); ctx.lineTo(nearR,SLAB_BOT); ctx.stroke();
-  ctx.strokeStyle='rgba(217,205,180,0.26)'; ctx.lineWidth=10;
-  ctx.beginPath(); ctx.moveTo(nearL,SLAB_BOT-9); ctx.lineTo(nearR,SLAB_BOT-9); ctx.stroke();
-  var below=ctx.createLinearGradient(0,SLAB_BOT,0,H);
-  below.addColorStop(0,'rgba(0,0,0,0.66)'); below.addColorStop(1,'rgba(0,0,0,0.22)');
-  ctx.fillStyle=below; ctx.fillRect(0,SLAB_BOT,W,H-SLAB_BOT);
 
-  // THE PLATES. Three measured plates on the table, each throwing a REAL cast shadow: every
-  // corner projected away from the lamp point along its own ray, so the shadows fan outward and
-  // the lowest plate throws the longest one. That fan is the frame's darkest modeled tone and it
-  // is what makes the lower third an object rather than a gradient.
+  // THE TABLE, seen from above and slightly off its far end, so it recedes. A warm dark ground
+  // rather than the flat lavender grey the fourth pass called out, and grained, because the last
+  // drawing was a trapezoid carrying no material.
+  var slab=ctx.createLinearGradient(0,SLAB_TOP,0,SLAB_BOT);
+  slab.addColorStop(0,'#2B261E'); slab.addColorStop(0.45,'#1F1A15'); slab.addColorStop(1,'#12100C');
+  slabPath(); ctx.fillStyle=slab; ctx.fill();
+
+  // WOOD, drawn. Long grain running the length of the table, wandering the way sawn timber does,
+  // clipped to the slab so the room either side stays room.
+  ctx.save(); slabPath(); ctx.clip();
+  for(var g=0; g<150; g++){
+    var gy = SLAB_TOP + R4()*(SLAB_BOT-SLAB_TOP);
+    var pale = R4()<0.42;
+    var a = 0.018 + R4()*0.055;
+    ctx.strokeStyle = pale ? 'rgba(217,205,180,'+a.toFixed(3)+')'
+                           : 'rgba(0,0,0,'+(a*1.7).toFixed(3)+')';
+    ctx.lineWidth = 0.7 + R4()*2.6;
+    ctx.beginPath(); ctx.moveTo(-60, gy);
+    ctx.bezierCurveTo(W*0.32, gy+(R4()-0.5)*13, W*0.68, gy+(R4()-0.5)*13, W+60, gy+(R4()-0.5)*8);
+    ctx.stroke();
+  }
+  // a few tighter knots of figure, so the grain is not one uniform texture
+  for(var k=0; k<7; k++){
+    var kx = R4()*W, ky = SLAB_TOP + R4()*(SLAB_BOT-SLAB_TOP);
+    for(var r=0; r<5; r++){
+      ctx.strokeStyle='rgba(0,0,0,'+(0.05+R4()*0.05).toFixed(3)+')'; ctx.lineWidth=1.1;
+      ctx.beginPath(); ctx.ellipse(kx, ky, 26+r*13, 7+r*3.4, (R4()-0.5)*0.5, 0, 6.283); ctx.stroke();
+    }
+  }
+  // THE POOL the bulb actually lays on the wood, centred under the lamp and falling off with
+  // distance, which is what makes the grain readable near the light and not far from it.
+  var pool=ctx.createRadialGradient(LX,LY+120,60, LX,LY+120,1080);
+  pool.addColorStop(0,'rgba(247,232,200,0.22)'); pool.addColorStop(0.40,'rgba(233,220,190,0.09)');
+  pool.addColorStop(0.78,'rgba(0,0,0,0.08)'); pool.addColorStop(1,'rgba(0,0,0,0.26)');
+  ctx.fillStyle=pool; ctx.fillRect(0,0,W,H);
+  ctx.restore();
+
+  // the far edge catching the lamp, and the near lip in brass with the room falling away past it
+  ctx.strokeStyle='rgba(239,233,218,0.20)'; ctx.lineWidth=3;
+  ctx.beginPath(); ctx.moveTo(farL,SLAB_TOP); ctx.lineTo(farR,SLAB_TOP); ctx.stroke();
+  ctx.strokeStyle='rgba(217,205,180,0.30)'; ctx.lineWidth=12;
+  ctx.beginPath(); ctx.moveTo(nearL,SLAB_BOT-10); ctx.lineTo(nearR,SLAB_BOT-10); ctx.stroke();
+  ctx.strokeStyle='#B98D46'; ctx.lineWidth=5;
+  ctx.beginPath(); ctx.moveTo(nearL,SLAB_BOT); ctx.lineTo(nearR,SLAB_BOT); ctx.stroke();
+  // THE APRON. The table does not stop at its lip, it turns down, and drawing that turn is what
+  // gives the bottom third an object instead of a falloff. Same timber, seen edge on, so the
+  // grain runs the other way and the whole band reads as the near face of the same table.
+  var APRON = SLAB_BOT + 84;
+  var ap=ctx.createLinearGradient(0,SLAB_BOT,0,APRON);
+  ap.addColorStop(0,'#241C15'); ap.addColorStop(0.35,'#1B150F'); ap.addColorStop(1,'#0E0A07');
+  ctx.fillStyle=ap; ctx.fillRect(0,SLAB_BOT,W,APRON-SLAB_BOT);
+  ctx.save(); ctx.beginPath(); ctx.rect(0,SLAB_BOT,W,APRON-SLAB_BOT); ctx.clip();
+  for(var v=0; v<120; v++){
+    var vx = R4()*W, a2 = 0.02 + R4()*0.05;
+    ctx.strokeStyle = R4()<0.4 ? 'rgba(217,205,180,'+a2.toFixed(3)+')'
+                               : 'rgba(0,0,0,'+(a2*1.6).toFixed(3)+')';
+    ctx.lineWidth = 0.7 + R4()*2.0;
+    ctx.beginPath(); ctx.moveTo(vx, SLAB_BOT-4);
+    ctx.lineTo(vx + (R4()-0.5)*9, APRON+4); ctx.stroke();
+  }
+  // the bulb still reaches the apron on its own side, so the band is lit rather than flat
+  var apl=ctx.createLinearGradient(0,0,W,0);
+  apl.addColorStop(0,'rgba(0,0,0,0.30)'); apl.addColorStop(0.72,'rgba(255,232,186,0.07)');
+  apl.addColorStop(1,'rgba(255,232,186,0.04)');
+  ctx.fillStyle=apl; ctx.fillRect(0,SLAB_BOT,W,APRON-SLAB_BOT);
+  ctx.restore();
+  // and the floor beyond it, which is the only part of this frame that gets to be empty
+  var below=ctx.createLinearGradient(0,APRON,0,H);
+  below.addColorStop(0,'rgba(0,0,0,0.72)'); below.addColorStop(1,'rgba(0,0,0,0.34)');
+  ctx.fillStyle=below; ctx.fillRect(0,APRON,W,H-APRON);
+  ctx.fillStyle='rgba(0,0,0,0.42)'; ctx.fillRect(0,APRON,W,3);
+
+  // THE SHADOWS, all of them, BEFORE any plate is drawn. Every corner is projected away from the
+  // bulb along its own ray, so the throws fan and the near plate throws longest, and each is laid
+  // down four times at growing scale and falling alpha so the edge has a penumbra rather than the
+  // hard black rectangle the fourth pass measured. Drawing them all first is also what stops one
+  // plate's throw from being clipped by the plate below it.
   function project(px,py,s){ return [LX+(px-LX)*s, LY+(py-LY)*s]; }
+  function plateBox(i){ return [104, TBL_TOP+i*ROW_H+12, W-208, ROW_H-30]; }
   for(var i=0;i<ROWS;i++){
-    var x=104, y=TBL_TOP+i*ROW_H+12, w=W-208, h=ROW_H-30;
-    var lift=1.048+i*0.020;                          // the near plates sit a little prouder
-    var a=project(x,y,lift), b=project(x+w,y,lift);
-    var c=project(x+w,y+h,lift), e=project(x,y+h,lift);
-    ctx.beginPath();
-    ctx.moveTo(a[0],a[1]); ctx.lineTo(b[0],b[1]); ctx.lineTo(c[0],c[1]); ctx.lineTo(e[0],e[1]);
-    ctx.closePath();
-    ctx.fillStyle='rgba(6,4,10,0.72)'; ctx.fill();
-    // the plate face, lit along the lamp's own direction
-    var pf=ctx.createLinearGradient(x,y,x+w,y+h);
-    pf.addColorStop(0,'#413950'); pf.addColorStop(1,'#251F2E');
+    var bx=plateBox(i), x=bx[0], y=bx[1], w=bx[2], h=bx[3];
+    var lift=1.026+i*0.015;
+    for(var s2=3; s2>=0; s2--){
+      var sc = lift*(1+s2*0.013);
+      var a=project(x,y,sc), b=project(x+w,y,sc);
+      var c=project(x+w,y+h,sc), e=project(x,y+h,sc);
+      ctx.beginPath();
+      ctx.moveTo(a[0],a[1]); ctx.lineTo(b[0],b[1]); ctx.lineTo(c[0],c[1]); ctx.lineTo(e[0],e[1]);
+      ctx.closePath();
+      ctx.fillStyle='rgba(4,3,2,'+(0.16+(3-s2)*0.13).toFixed(3)+')'; ctx.fill();
+    }
+  }
+
+  // THE PLATES. Set on the wood, each lit across its own width from the bulb's side.
+  for(var i=0;i<ROWS;i++){
+    var bx=plateBox(i), x=bx[0], y=bx[1], w=bx[2], h=bx[3];
+    var pf=ctx.createLinearGradient(x+w,y,x,y+h);
+    pf.addColorStop(0,'#443F36'); pf.addColorStop(0.55,'#2E2A24'); pf.addColorStop(1,'#201D19');
     ctx.fillStyle=pf; ctx.fillRect(x,y,w,h);
-    // bevel: lamp side bright, far side dark, and the brass measure down the leading edge
-    ctx.fillStyle='rgba(239,233,218,0.16)'; ctx.fillRect(x,y,w,2); ctx.fillRect(x,y,2,h);
-    ctx.fillStyle='rgba(0,0,0,0.50)'; ctx.fillRect(x,y+h-2,w,2); ctx.fillRect(x+w-2,y,2,h);
+    // bevel: bulb side bright on the right and the top, far side dark
+    ctx.fillStyle='rgba(255,240,214,0.17)'; ctx.fillRect(x,y,w,2); ctx.fillRect(x+w-2,y,2,h);
+    ctx.fillStyle='rgba(0,0,0,0.52)'; ctx.fillRect(x,y+h-2,w,2); ctx.fillRect(x,y,2,h);
     ctx.fillStyle='#B98D46'; ctx.fillRect(x,y,5,h);
   }
+
+  // THE LAMP ITSELF, last, so it sits over the table it is lighting. A shade on a stem, its
+  // mouth glowing, and the bulb at LX,LY where every shadow above was projected from.
+  ctx.strokeStyle='#2A2620'; ctx.lineWidth=7;
+  ctx.beginPath(); ctx.moveTo(946,0); ctx.lineTo(946,150); ctx.stroke();
+  ctx.strokeStyle='rgba(239,233,218,0.16)'; ctx.lineWidth=2;
+  ctx.beginPath(); ctx.moveTo(943,0); ctx.lineTo(943,150); ctx.stroke();
+  var shade=ctx.createLinearGradient(820,150,1050,250);
+  shade.addColorStop(0,'#4B4437'); shade.addColorStop(0.5,'#332D24'); shade.addColorStop(1,'#1D1913');
+  ctx.beginPath();
+  ctx.moveTo(906,150); ctx.lineTo(986,150); ctx.lineTo(1052,248); ctx.lineTo(840,248);
+  ctx.closePath(); ctx.fillStyle=shade; ctx.fill();
+  ctx.strokeStyle='#B98D46'; ctx.lineWidth=3; ctx.stroke();
+  // the lit inside of the mouth, and the bulb under it
+  var mouth=ctx.createLinearGradient(840,240,1052,258);
+  mouth.addColorStop(0,'rgba(255,232,180,0.55)'); mouth.addColorStop(0.5,'rgba(255,244,214,0.95)');
+  mouth.addColorStop(1,'rgba(255,232,180,0.55)');
+  ctx.fillStyle=mouth; ctx.fillRect(840,242,212,9);
+  var bulb=ctx.createRadialGradient(LX,LY,2, LX,LY,190);
+  bulb.addColorStop(0,'rgba(255,248,226,0.90)'); bulb.addColorStop(0.18,'rgba(255,234,186,0.34)');
+  bulb.addColorStop(1,'rgba(255,228,176,0)');
+  ctx.fillStyle=bulb; ctx.beginPath(); ctx.arc(LX,LY,190,0,6.283); ctx.fill();
 
   // grain over everything, under 4 percent, seeded
   (function(){

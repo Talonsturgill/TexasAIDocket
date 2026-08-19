@@ -16,7 +16,7 @@ strongest signal the room produced.
 - **No map, unanimously.** The record carries no geography for this item. All three directors
   reached the same conclusion by different routes, and two of them named it as the variety move as
   well as the honest one. Both shipped decks led with cartography. This one has none.
-- **Slide 6 is the inversion, and it is `c11` against `c12`.** All three put the deck's one bright
+- **Slide 5 is the inversion, and it is `c11` against `c12`.** All three put the deck's one bright
   frame on the same fact, that one office worded the same instruction two ways on the same day.
 - **The counter-image is an absence.** All three built it on the unnamed project in `c17`.
 - **The reserved red stays unspent.** No comment window on this story is open to a reader.
@@ -70,8 +70,8 @@ movement's works, line colour. `pecos #8E4B3A` masonry red, fill only, never typ
 Mid dark with one void, darker with one bright rule, flat grey, a lit table, **PAPER, the
 inversion**, the only multi colour frame, **the deck's floor**, one lit cell resolving.
 
-Eight beats for eight frames. The ninth, dark with a brass line only, was the frame cut after the
-second scoring pass.
+Eight beats for eight frames. The ninth beat, dark with a brass line only, belonged to the old
+slide 4 named at the top of this file, the frame cut after the second scoring pass.
 
 The inversion at 5 is a different kind from 2026-08-16's paper slide. That was handmade tooth with
 a torn deckle. This is machine flat, neatlined, grain at 2 percent. Same material, opposite
@@ -241,7 +241,8 @@ type:
   labels: ["UPDATE REGARDING BATCH ZERO TIMELINES AND PROCESSES", "CLASS", "NOT ISSUED"]
 acceptance:
   - "no cell differs in value or fill from any other cell in the field"
-  - "every legend swatch is empty, and the legend carries at least two swatches so the emptiness is a pattern"
+  - "the legend carries EXACTLY ONE row, reading no class stated, which is what c2 supports and nothing more"
+  - "no legend label names a classification category, because no source publishes one. An earlier draft of this file asked for at least two empty swatches so the emptiness would read as a pattern, and the frame shipped three NAMED categories instead. A key with one entry that says nothing can be keyed is the honest drawing"
   - "the field is clipped square at all four edges and reads as a rectangle rather than as a region"
   - "no state silhouette, county boundary or coastline appears anywhere in the frame"
   - "the subject line is quoted verbatim from the notice and carries its attribution under the rule"

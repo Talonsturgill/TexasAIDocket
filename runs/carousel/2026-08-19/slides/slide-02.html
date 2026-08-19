@@ -43,6 +43,10 @@
   .barlab { position:absolute; font-family:'JetBrains Mono',monospace; letter-spacing:.04em; }
   .barlab .n { font-size:52px; color:#EFE9DA; font-variant-numeric:tabular-nums; }
   .barlab .u { font-size:26px; color:#D9CDB4; }
+  .axlab { position:absolute; font-family:'JetBrains Mono',monospace; font-size:25px;
+           letter-spacing:.08em; color:#D9CDB4; text-transform:uppercase; }
+  .dek2 { position:absolute; left:80px; right:120px; top:342px;
+          font-family:'Manrope',sans-serif; font-size:29px; line-height:1.42; color:#D9CDB4; }
 
 </style>
 </head>
@@ -52,10 +56,13 @@
   <div class="hd"><div class="hook">Four days<br>of warning.</div></div>
   <svg id="rule" width="1080" height="1350" viewBox="0 0 1080 1350"
        style="position:absolute; inset:0;"></svg>
-  <div class="barlab" style="left:206px; top:660px;"><span class="n">4</span>
+  <div class="axlab" style="left:80px; top:588px;">August 3rd</div>
+  <div class="axlab" style="left:392px; top:588px;">August 7th</div>
+  <div class="barlab" style="left:404px; top:612px;"><span class="n">4</span>
     <span class="u">DAYS AHEAD</span></div>
-  <div class="barlab" style="left:206px; top:846px;"><span class="n">16</span>
+  <div class="barlab" style="left:206px; top:756px;"><span class="n">16</span>
     <span class="u">DAYS SINCE THE LETTER</span></div>
+  <div class="dek2">ERCOT gave the market 4 days of notice. The letter has now stood 16 days.</div>
   <div class="quote">
     <div class="rule"></div>
     <div class="q">ERCOT will not notify each Interconnecting Distribution Service Provider and
@@ -118,7 +125,7 @@ window.renderReady = new Promise(function(resolve){
   })();
 
   // the day rule with two bars sharing one origin, drawn in SVG for crisp ticks
-  var RATE=46, y0=590, ox=110;
+  var RATE=46, y0=700, ox=110;
   var svg=document.getElementById('rule');
   function el(t,a){var e=document.createElementNS('http://www.w3.org/2000/svg',t);
     for(var k in a)e.setAttribute(k,a[k]);return e;}
@@ -130,6 +137,10 @@ window.renderReady = new Promise(function(resolve){
     var heavy=(d===2||d===6);
     svg.appendChild(el('line',{x1:x,y1:y0-(heavy?12:6),x2:x,y2:y0+(heavy?12:6),
       stroke:'#D9CDB4','stroke-width':heavy?2:1,opacity:heavy?0.9:0.4}));
+    if(heavy){
+      svg.appendChild(el('line',{x1:x,y1:y0-12,x2:x,y2:624,
+        stroke:'#D9CDB4','stroke-width':1,opacity:0.32}));
+    }
   }
   // four-day bar ABOVE, dial full value. It stops a few px SHORT of the Aug 7 tick so the
   // measure reads as stopping open rather than landing on the deadline, and it carries no cap.

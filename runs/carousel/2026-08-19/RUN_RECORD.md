@@ -212,6 +212,43 @@ of taste.
 And the caption said the deck closes on three dates. Splitting the September 4th row made it four
 ways in, so it now says every date and docket.
 
+## THE WORST THING IN THIS RUN, found on the fifth pass
+
+**Slide 3 printed a taxonomy nobody published.** Its legend read `base load`, `studied`, `excluded`,
+set as three named classification categories directly under the attribution chip
+`ERCOT market notice M-A080326-01 c2`. **No claim in the claims file names any Batch Zero
+classification category.** `c2` says only that ERCOT would not notify providers of "how any Large
+Load is classified". The storyboard's own plan for that frame used generic labels. The shipped copy
+substituted an invented taxonomy, and a reader would take those three words as ERCOT's classes.
+
+It survived four scoring passes, every gate in the suite and a pixel review. `claims_check` proves
+each claim is fetched and quoted. `copy_sync_check` proves the slides say what the copy says, and
+the copy said it. `aggregate_check` reads numerals, and these are words. Nothing in the machine asks
+the one question that would have caught it, which is whether a NOUN on a slide traces to a source
+the way a numeral has to.
+
+That is the founding promise of this project broken, on the single frame whose entire argument is
+that nobody was told the answer. The legend is now one row reading **`no class stated`**, which is
+what `c2` supports and nothing more, so the key has exactly one entry and that entry says nothing
+can be keyed. The frame is stronger for it.
+
+**The generalisation belongs in `GATE_LESSONS.md`.** The compute-not-generate law is enforced on
+numerals by `numeral_lint` and `aggregate_check`, and a named category is a claim about the world in
+exactly the way a number is. A machine that checks its arithmetic and not its nouns has secured half
+the surface.
+
+## Two more the fifth pass found
+
+**Slide 5 never executed its own acceptance line.** That dossier says the words differing between
+the two wordings are marked in pecos, and both quotes shipped as uniform ink for five passes, so the
+turn the whole deck is built around gave a reader no help finding the difference. They are now
+marked, the words themselves untouched and still verbatim, and the foot says what the colour means.
+
+**The storyboard's synthesis still carried pre-cut numbering** after the value arc was fixed, and
+one line contradicted the top of the same file about which frame the cut took. Both corrected. The
+renumbering had reached the arc and the artwork ledger and stopped there, which is the third time in
+one run that a correction reached some of the places a fact lives and not all of them.
+
 ## Proposals, which this run may not carry out itself
 
 1. **Wire `coherence_check.py` into `guards.yml` and into Phase 12.** The gate is built, self
@@ -235,12 +272,21 @@ ways in, so it now says every date and docket.
    item text, matter status and voting histories as JSON for Denton, Dallas, El Paso, League City
    and Brazoria County, where the Legistar HTML calendars publish meeting dates and no item text.
    Nine items were left partly unconfirmed this run for want of that route.
-6. **An entry in `knowledge/shared/GATE_LESSONS.md` for the masthead measurement.** The
+6. **A gate that traces NOUNS, not only numerals.** This is the run's most important proposal and
+   it comes straight off the slide 3 defect above. Every numeral on a slide must resolve to a
+   computed value or a quoted figure, and `numeral_lint` and `aggregate_check` enforce it. A named
+   category, a named body, a named place or a named status is a claim about the world in exactly
+   the same way, and nothing checks those at all. The shape is the one `sources_block` uses: pull
+   the proper nouns and quoted-looking terms out of `copy.json`, and fail any that appear in no
+   claim's text, quote or publisher. `scripts/carousel/**` is the upgrade lane and this is buildable
+   there, but it needs a run that is not also shipping a deck, because a first pass will be noisy
+   and tuning it against real copy is the work.
+7. **An entry in `knowledge/shared/GATE_LESSONS.md` for the masthead measurement.** The
    generalisation is worth more than the instance. When a gate subtracts what a deck shares on
    purpose, the subtraction is a LIST, and a list goes stale the moment the product starts sharing
    something new. The question to ask a gate is not whether its exclusions are correct. It is what
    the product began sharing after those exclusions were written.
-7. **A county gazetteer for Texas cities.** `assets/geo/tx-places.json` carries counties and
+8. **A county gazetteer for Texas cities.** `assets/geo/tx-places.json` carries counties and
    statistical areas but no cities, so a source naming a town cannot be resolved to a county and
    the item is held. That is the correct behaviour today and it costs real items.
 
@@ -251,10 +297,10 @@ ways in, so it now says every date and docket.
 |---|---|---|
 | claims         | PASS   | 21 verified claim(s) |
 | render         | PASS   | 8 slide(s) |
-| qa             | WARN   | 0 fail(s), 5 warn(s) |
-| aggregates     | PASS   | 8 declared and re-derived |
-| assembly       | PASS   | 8 slide(s), 2.1 MB, vector |
-| score          | FAIL   | 6.82, below threshold |
-| dossiers       | PASS   | 30,370 chars planned |
+| qa             | WARN   | 0 fail(s), 6 warn(s) |
+| aggregates     | PASS   | 12 declared and re-derived |
+| assembly       | PASS   | 8 slide(s), 2.25 MB, vector |
+| score          | FAIL   | 6.62, below threshold |
+| dossiers       | PASS   | 30,755 chars planned |
 | caption        | PASS   | 160 words |
 <!-- gate-status:end -->

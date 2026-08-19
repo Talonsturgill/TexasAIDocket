@@ -16,13 +16,15 @@
       "file": "slide-03.html",
       "fails": [],
       "warns": [
-        "top-loaded composition: the bottom third carries 70% of this slide's own average craft density (top 12% / mid 0% / bottom 3% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
+        "top-loaded composition: the bottom third carries 64% of this slide's own average craft density (top 12% / mid 0% / bottom 3% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
       ]
     },
     {
       "file": "slide-04.html",
       "fails": [],
-      "warns": []
+      "warns": [
+        "top-loaded composition: the bottom third carries 75% of this slide's own average craft density (top 53% / mid 26% / bottom 26% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
+      ]
     },
     {
       "file": "slide-05.html",
@@ -33,7 +35,7 @@
       "file": "slide-06.html",
       "fails": [],
       "warns": [
-        "top-loaded composition: the bottom third carries 79% of this slide's own average craft density (top 14% / mid 20% / bottom 12% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
+        "top-loaded composition: the bottom third carries 78% of this slide's own average craft density (top 15% / mid 20% / bottom 12% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
       ]
     },
     {
@@ -51,6 +53,6 @@
     }
   ],
   "fails": 0,
-  "warns": 5,
+  "warns": 6,
   "verdict": "WARN"
 }
