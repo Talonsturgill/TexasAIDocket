@@ -622,18 +622,18 @@ figcaption { font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
 @media (max-width:34rem) {
   .newest li { grid-template-columns:1fr; gap:.1rem; }
 }
+.rtfield { position:relative; }
+.rtfield::after { content:""; position:absolute; top:1px; right:1px; bottom:1px; width:2.2rem;
+  pointer-events:none; border-radius:0 3px 3px 0;
+  background:linear-gradient(to left, var(--night), transparent); }
+@media (min-width:46.01rem) {
+  .rtfield::after { display:none; }
+}
 .rtwrap { overflow-x:auto; overflow-y:auto; max-height:32rem; margin:.5rem 0 0;
   border:var(--hair) solid var(--rule); border-radius:3px;
-  background-color:var(--night);
-  background-image:
-    linear-gradient(to right, var(--night), transparent),
-    linear-gradient(to left, var(--night), transparent),
-    linear-gradient(to right, color-mix(in srgb, var(--dust) 38%, transparent), transparent),
-    linear-gradient(to left, color-mix(in srgb, var(--dust) 38%, transparent), transparent);
-  background-position:left center, right center, left center, right center;
-  background-repeat:no-repeat;
-  background-size:34px 100%, 34px 100%, 14px 100%, 14px 100%;
-  background-attachment:local, local, scroll, scroll; }
+  scrollbar-width:thin; scrollbar-color:var(--dust) transparent; }
+.rtwrap::-webkit-scrollbar { height:9px; width:9px; }
+.rtwrap::-webkit-scrollbar-thumb { background:var(--dust); border-radius:5px; }
 .rthint { display:none; }
 @media (max-width:46rem) {
   .rthint { display:block; }

@@ -1687,38 +1687,38 @@ figcaption {{ font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
    wide table never makes the PAGE scroll sideways. */
 /* THE HIDDEN HALF ANNOUNCES ITSELF. At 390px the table is 704px wide inside a 356px box, so
    exactly half of it, the operator and the date, was off screen with nothing at the right edge
-   saying so: the last column simply stopped mid word and read as the end of the table. These
-   are scroll shadows, not a static fade, so they are honest about direction. Two layers scroll
-   WITH the content and two stay PUT, which means each shadow appears only while there is more
-   in that direction and vanishes at the end of the travel. No script, and nothing to keep in
-   sync with the scroll position.
+   saying so: the last column simply stopped mid word and read as the end of the table.
 
-   THE SHADOW IS LIGHT, because the ground is not. The first version used the standard recipe
-   straight out of the article it comes from, which casts a dark shadow, and on a page whose
-   background is rgb(8, 6, 15) that painted nothing at all: the markup was right, the mechanism
-   worked, and the edge looked exactly as bare as before. On a dark ground the thing that reads
-   as "there is more this way" is a light edge. */
+   THE FADE IS A SIBLING, NOT AN ANCESTOR, and that is the whole engineering of it. The first
+   version put the gradient on the scroll box itself, which works and looks right and cost
+   1,482 runs of text: tests/text_contrast composites the ANCESTOR stack and declines to
+   measure a run whose ground is a gradient rather than guess at it, so a gradient on the
+   scroller made the roster, the largest block of text on the page, invisible to the gate that
+   checks whether text is legible. Declines went 126 to 1,608 and guards still went green,
+   which is the point. A pseudo element on the wrapper paints over the same pixels without
+   entering any cell's ancestor chain, so every cell stays measured.
+
+   A scrollbar was tried first and does not work here: overlay scrollbars reserve no space and
+   appear only while scrolling, which is exactly when the reader no longer needs telling.
+   Measured, the gutter is 2px with or without `scrollbar-gutter: stable`, and that 2px is the
+   border. */
+.rtfield {{ position:relative; }}
+.rtfield::after {{ content:""; position:absolute; top:1px; right:1px; bottom:1px; width:2.2rem;
+  pointer-events:none; border-radius:0 3px 3px 0;
+  background:linear-gradient(to left, var(--night), transparent); }}
+@media (min-width:46.01rem) {{
+  .rtfield::after {{ display:none; }}
+}}
 .rtwrap {{ overflow-x:auto; overflow-y:auto; max-height:32rem; margin:.5rem 0 0;
   border:var(--hair) solid var(--rule); border-radius:3px;
-  background-color:var(--night);
-  background-image:
-    linear-gradient(to right, var(--night), transparent),
-    linear-gradient(to left, var(--night), transparent),
-    linear-gradient(to right, color-mix(in srgb, var(--dust) 38%, transparent), transparent),
-    linear-gradient(to left, color-mix(in srgb, var(--dust) 38%, transparent), transparent);
-  background-position:left center, right center, left center, right center;
-  background-repeat:no-repeat;
-  background-size:34px 100%, 34px 100%, 14px 100%, 14px 100%;
-  background-attachment:local, local, scroll, scroll; }}
-/* And the shadow is a hint, not an instruction, so the words are there too on the widths where
-   the table actually overflows. */
+  scrollbar-width:thin; scrollbar-color:var(--dust) transparent; }}
+.rtwrap::-webkit-scrollbar {{ height:9px; width:9px; }}
+.rtwrap::-webkit-scrollbar-thumb {{ background:var(--dust); border-radius:5px; }}
+/* And the words, on the widths where the table actually overflows. */
 .rthint {{ display:none; }}
 @media (max-width:46rem) {{
   .rthint {{ display:block; }}
 }}
-/* Fixed layout, so one unusually long filer name cannot take the width from every other
-   column. Without it "ALIGNED DATA CENTERS (ABERNATHY) PROPCO, LLC" set the owner column and
-   squeezed the occupant into a three line wrap on every row. */
 .rtable {{ border-collapse:collapse; width:100%; min-width:44rem;
   table-layout:fixed; font-size:var(--s-1); }}
 .rtable col.cf {{ width:19%; }}
@@ -2513,8 +2513,16 @@ def self_test() -> int:
     # THE HIDDEN HALF OF THE ROSTER HAS TO ANNOUNCE ITSELF. Half the table is off screen at
     # phone width, and the shadows are what say so. `local` on two of the four layers is the
     # whole mechanism: without it they are a static fade that lies at the end of the travel.
-    check("the roster's overflow is shadowed, not silent",
-          "background-attachment:local, local, scroll, scroll;" in sheet)
+    # The affordance must not be a gradient under the text. A gradient ground is one
+    # tests/text_contrast declines to measure, and putting one on the roster hid 1,482 runs
+    # from the gate that checks legibility without turning anything red.
+    # The fade must be a SIBLING of the table, never a background on one of its ancestors.
+    # A gradient ancestor is a ground tests/text_contrast declines to measure, and putting one
+    # on the scroll box hid 1,482 runs from the gate that checks legibility while guards stayed
+    # green. This asserts the shape that keeps them measured.
+    check("the roster's edge fade is painted by a sibling, not by the scroll box",
+          ".rtfield::after { content:\"\";" in sheet
+          and "background" not in sheet.split(".rtwrap {")[1].split("}")[0])
     check("...and the words appear at the widths where it actually overflows",
           ".rthint { display:none; }" in sheet and ".rthint { display:block; }" in sheet)
     check("...and each label is pinned to the height of its own bar",

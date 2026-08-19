@@ -306,7 +306,7 @@ def registry_panel(f: dict) -> str:
 
   <h3>Every registered facility</h3>
   <p class="qnote rthint">Scroll the table sideways to reach the operator and the date.</p>
-  <div class="rtwrap">
+  <div class="rtfield"><div class="rtwrap">
   <table class="rtable" data-prose="data">
     <colgroup><col class="cf"><col class="co"><col class="cu"><col class="cp"><col class="cd">
     </colgroup>
@@ -314,7 +314,7 @@ def registry_panel(f: dict) -> str:
       <th>Took effect</th></tr></thead>
     <tbody>{rows}</tbody>
   </table>
-  </div>
+  </div></div>
 </section>"""
 
 
