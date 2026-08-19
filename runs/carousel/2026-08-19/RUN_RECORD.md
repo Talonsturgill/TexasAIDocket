@@ -186,6 +186,32 @@ subtree and its CSS. **The two shipped decks move 0.3997 to 0.4061 and 0.2298 to
 neither carried that masthead, and that is the evidence the change is surgical rather than a loosened
 line. This deck measures 0.2817.
 
+## The fourth pass held too, and the run stops
+
+**6.82, down from 6.932.** Claim integrity rose 6.5 to 7.5 and sequence rose 7.2 to 7.5, which is
+the bookkeeping and the close. Artwork fell 6.8 to 6.5, story 7.0 to 6.5 and voice 7.2 to 6.5, and
+the scorer put all three on one cause in one sentence. **The deck is procedurally impeccable and has
+no place and no person in it.** Swap ERCOT for PJM and every line survives.
+
+That is not a frame to redraw. It is what the admission rule produced when it correctly refused to
+guess a county for a statewide procedural story, and a fifth pass would be polishing further away
+from it. Four passes, 6.51 to 6.87 to 6.932 to 6.82, and the number stopped climbing. The run
+commits its evidence to this branch and merges nothing.
+
+Three findings from that pass were still fixed, because each was simply wrong rather than a matter
+of taste.
+
+- **Slide 7 drew three hollow boxes where the record has one gap.** The blank row was being
+  segmented like every other row and each segment drawn hollow. That slide's own acceptance line
+  says exactly one field is empty, because two would imply a count the record does not carry.
+- **`ledger/carousel/artwork.json` still carried 0.5314**, the bespoke figure measured while the
+  gate was counting the masthead. It is 0.2717.
+- **The storyboard's value arc still listed nine beats** and named the inversion and the trough by
+  their pre-cut numbers.
+
+And the caption said the deck closes on three dates. Splitting the September 4th row made it four
+ways in, so it now says every date and docket.
+
 ## Proposals, which this run may not carry out itself
 
 1. **Wire `coherence_check.py` into `guards.yml` and into Phase 12.** The gate is built, self
@@ -209,7 +235,12 @@ line. This deck measures 0.2817.
    item text, matter status and voting histories as JSON for Denton, Dallas, El Paso, League City
    and Brazoria County, where the Legistar HTML calendars publish meeting dates and no item text.
    Nine items were left partly unconfirmed this run for want of that route.
-6. **A county gazetteer for Texas cities.** `assets/geo/tx-places.json` carries counties and
+6. **An entry in `knowledge/shared/GATE_LESSONS.md` for the masthead measurement.** The
+   generalisation is worth more than the instance. When a gate subtracts what a deck shares on
+   purpose, the subtraction is a LIST, and a list goes stale the moment the product starts sharing
+   something new. The question to ask a gate is not whether its exclusions are correct. It is what
+   the product began sharing after those exclusions were written.
+7. **A county gazetteer for Texas cities.** `assets/geo/tx-places.json` carries counties and
    statistical areas but no cities, so a source naming a town cannot be resolved to a county and
    the item is held. That is the correct behaviour today and it costs real items.
 
@@ -220,10 +251,10 @@ line. This deck measures 0.2817.
 |---|---|---|
 | claims         | PASS   | 21 verified claim(s) |
 | render         | PASS   | 8 slide(s) |
-| qa             | WARN   | 0 fail(s), 3 warn(s) |
+| qa             | WARN   | 0 fail(s), 5 warn(s) |
 | aggregates     | PASS   | 8 declared and re-derived |
-| assembly       | PASS   | 8 slide(s), 2.14 MB, vector |
-| score          | ABSENT | score.json not written yet |
-| dossiers       | PASS   | 30,284 chars planned |
-| caption        | PASS   | 159 words |
+| assembly       | PASS   | 8 slide(s), 2.1 MB, vector |
+| score          | FAIL   | 6.82, below threshold |
+| dossiers       | PASS   | 30,370 chars planned |
+| caption        | PASS   | 160 words |
 <!-- gate-status:end -->
