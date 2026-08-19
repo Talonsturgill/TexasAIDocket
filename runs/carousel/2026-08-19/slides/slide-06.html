@@ -65,9 +65,9 @@
 <body>
   <canvas id="art" width="2160" height="2700"></canvas>
 
-  <div class="lead">The Governor's office said the sector's membership body will comply.</div>
-  <div class="attrib">Said on August 18th by the Governor's office. It is a statement about
-    the standards that office set rather than a measured result.</div>
+  <div class="lead">The Governor's office said the Data Center Coalition will comply.</div>
+  <div class="attrib">The Coalition is the sector's membership body. Said on August 18th by the
+    Governor's office, about the standards that office set rather than a measured result.</div>
   <div class="rails">
     <div class="w cream" style="top:430px">GRID</div>
     <div class="w cream" style="top:578px">WATER</div>
@@ -111,7 +111,9 @@ window.renderReady = new Promise(function(resolve){
   // key where the lamp stops reaching. One ink on four courses needs four courses in one value
   // band, and the palette is the courthouse AT NIGHT, so this is the honest tone for all of them.
   var cols=['#D9CDB4','#8E4B3A','#4E6B62','#B98D46'];
-  var dark=[-0.42,-0.07,-0.07,-0.34];
+  // GRID read visibly lighter than the other three, which ranks a guardrail the record does not
+  // rank. Cordova is a light stone and it needed further to fall than the rest.
+  var dark=[-0.56,-0.07,-0.07,-0.38];
   ctx.fillStyle='#0E0D12'; ctx.fillRect(0,0,W,H);
   for(var i=0;i<N;i++){
     var by=BT+i*BH;
@@ -133,9 +135,9 @@ window.renderReady = new Promise(function(resolve){
     // glass, which is a bubble and not a stone. Terrazzo aggregate is crushed rock, so every chip
     // is a small irregular polygon with a flat facet where the saw cut it, and the lamp catches
     // that facet along one edge rather than at a centre.
-    for(var f=0;f<560;f++){
+    for(var f=0;f<1150;f++){
       var cx=R()*W, cy=by+R()*BH;
-      var u=R(); var rad=0.9+u*u*u*5.2;
+      var u=R(); var rad=1.1+u*u*u*6.4;
       var vis=1-(cx/W)*0.62;
       var warm=R()<0.34;
       var nv=5+Math.floor(R()*3), rot=R()*6.283, pts=[];

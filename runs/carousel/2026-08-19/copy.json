@@ -5,9 +5,11 @@
  "slides": {
   "S1": {
    "hook": "August 7th came and went.",
-   "dek": "The directive stopped ERCOT's Batch Zero clock on August 3rd. The classification date it set passed 12 days ago.",
+   "dek": "The directive landed on August 3rd. ERCOT's own Batch Zero classification date passed 12 days ago.",
    "claims": [
-    "c2"
+    "c1",
+    "c2",
+    "c3"
    ]
   },
   "S2": {
@@ -25,11 +27,11 @@
     "c1",
     "c2"
    ],
-   "dek": "ERCOT gave the market 4 days of notice. The letter has now stood 16 days."
+   "dek": "ERCOT gave 4 days of notice before its own classification date. The letter has stood 16 days."
   },
   "S3": {
    "kick": "\"Update Regarding Batch Zero Timelines and Processes\"",
-   "hook": "No provider was to be told by the 7th.",
+   "hook": "No service provider was to be told by the 7th.",
    "qn": "No service provider was to be told how any large load was classified by August 7th.",
    "labels": [
     "no class stated"
@@ -52,7 +54,7 @@
     "c8",
     "c9"
    ],
-   "nomult": "Each is quoted as its source states it. None may be multiplied by another."
+   "nomult": "Each figure is its source's own wording. None may be multiplied by another."
   },
   "S5": {
    "hook": "One office. The same day. Two wordings.",
@@ -65,7 +67,7 @@
    ]
   },
   "S6": {
-   "lead": "The Governor's office said the sector's membership body will comply.",
+   "lead": "The Governor's office said the Data Center Coalition will comply.",
    "labels": [
     "GRID",
     "WATER",
@@ -78,7 +80,7 @@
     "c16",
     "c18"
    ],
-   "attrib": "Said on August 18th by the Governor's office. It is a statement about the standards that office set rather than a measured result."
+   "attrib": "The Coalition is the sector's membership body. Said on August 18th by the Governor's office, about the standards that office set rather than a measured result."
   },
   "S7": {
    "quote": "\"One data center that could not comply chose to end operations before even beginning construction.\"",
@@ -113,7 +115,11 @@
     "c21"
    ],
    "d4": "Project 58482",
-   "w4": "The proposed rule on Large Load Demand Management Service. It took a comment on August 18th."
+   "w4": "The proposed rule on Large Load Demand Management Service. It took a comment on August 18th.",
+   "c1": "c3",
+   "c2": "c19",
+   "c3": "c20",
+   "c4": "c21"
   }
  }
 }

@@ -32,9 +32,13 @@
 
 
   .hd { position:absolute; top:118px; left:80px; right:80px; }
-  .kick { font-family:'JetBrains Mono',monospace; font-size:26px; letter-spacing:.06em;
-          color:#B98D46; padding-bottom:14px; border-bottom:1px solid rgba(185,141,70,.5);
-          text-transform:uppercase; }
+  /* RULED MEANS QUOTED, a hairline ABOVE and BELOW. This carried one rule, below, and dropped
+     the quotation marks copy.json stores, and set a verbatim title in full caps. Three ways of
+     making a source's own words look like a label of ours. */
+  .kick { font-family:'JetBrains Mono',monospace; font-size:26px; letter-spacing:.04em;
+          color:#B98D46; padding:14px 0;
+          border-top:1px solid rgba(185,141,70,.5);
+          border-bottom:1px solid rgba(185,141,70,.5); }
   .ksrc { font-family:'JetBrains Mono',monospace; font-size:24px; color:#9c9382;
           padding-top:12px; letter-spacing:.03em; }
   .hook { font-family:'Fraunces',serif; font-weight:800; font-size:92px; line-height:.96;
@@ -47,6 +51,9 @@
              letter-spacing:.03em; padding-bottom:16px; }
   .qn { position:absolute; left:80px; bottom:150px; max-width:600px;
         font-family:'Manrope',sans-serif; font-size:30px; line-height:1.42; color:#EFE9DA; }
+  /* the kicker cites c5, which is the subject line. This sentence is c2 and was uncited, so the
+     frame's one id pointed at the wrong claim. */
+  .qn .qc { font-family:'JetBrains Mono',monospace; font-size:24px; color:#9c9382; }
 
 </style>
 </head>
@@ -54,12 +61,12 @@
   <canvas id="art" width="2160" height="2700"></canvas>
 
   <div class="hd">
-    <div class="kick">Update Regarding Batch Zero Timelines and Processes</div>
-    <div class="ksrc">ERCOT market notice M-A080326-01 &middot; c2</div>
-    <div class="hook">No provider was to<br>be told by the 7th.</div>
+    <div class="kick">"Update Regarding Batch Zero Timelines and Processes"</div>
+    <div class="ksrc">ERCOT market notice M-A080326-01 &middot; c5</div>
+    <div class="hook">No service provider<br>was to be told by the 7th.</div>
   </div>
   <div class="qn">No service provider was to be told how any large load was classified by
-    August 7th.</div>
+    August 7th. <span class="qc" data-decorative>c2</span></div>
   <div class="leg"><div class="lb">no class stated</div></div>
 
 <div class="tx-frame" data-decorative>
@@ -191,29 +198,20 @@ window.renderReady = new Promise(function(resolve){
   // field and this one supplies nothing, which is the claim, and it can only make that argument
   // where the reader actually looks.
   var KX=604, KY=856, KW=316, KH=112;
-  // a soft occlusion rather than a hard rectangle, which was a plate around the thing whose whole
-  // argument is that it is not a plate
+  // AN EMPTY LEGEND SWATCH IS AN OUTLINE. A key promises to name what fills a field, and this one
+  // has nothing to name, so the swatch is ruled and the BED RUNS THROUGH IT. Filling it with any
+  // value would assign it one, which is the single thing this frame exists to say did not happen,
+  // and it would also make this object identical to slide 7's NAME field, which is a different
+  // absence and must not be drawn the same way.
   var occ=ctx.createRadialGradient(KX+KW/2, KY+KH/2, 60, KX+KW/2, KY+KH/2, 330);
-  occ.addColorStop(0,'rgba(0,0,0,0.62)'); occ.addColorStop(1,'rgba(0,0,0,0)');
+  occ.addColorStop(0,'rgba(0,0,0,0.52)'); occ.addColorStop(1,'rgba(0,0,0,0)');
   ctx.fillStyle=occ; ctx.fillRect(KX-330, KY-330, KW+660, KH+660);
-  // It shipped as a near-black box with a bright keyline, which is the exact construction that
-  // was removed from slide 7 for reading as a redaction bar. The deck was then drawing an empty
-  // field two opposite ways four frames apart and teaching a reader neither. One grammar: a blank
-  // field is bare material LIGHTER than what surrounds it, ruled, and never inked.
-  var kw=ctx.createLinearGradient(KX,KY,KX+KW,KY+KH);
-  kw.addColorStop(0,'#4A4335'); kw.addColorStop(0.55,'#3B3529'); kw.addColorStop(1,'#2C2720');
-  ctx.fillStyle=kw; ctx.fillRect(KX, KY, KW, KH);
-  var klT=ctx.createLinearGradient(0,KY,0,KY+16);
-  klT.addColorStop(0,'rgba(0,0,0,0.72)'); klT.addColorStop(1,'rgba(0,0,0,0)');
-  ctx.fillStyle=klT; ctx.fillRect(KX, KY, KW, 16);
-  var klL=ctx.createLinearGradient(KX,0,KX+16,0);
-  klL.addColorStop(0,'rgba(0,0,0,0.62)'); klL.addColorStop(1,'rgba(0,0,0,0)');
-  ctx.fillStyle=klL; ctx.fillRect(KX, KY, 16, KH);
-  ctx.fillStyle='rgba(255,246,224,0.34)'; ctx.fillRect(KX, KY+KH-2, KW, 2);
-  ctx.fillStyle='rgba(255,246,224,0.24)'; ctx.fillRect(KX+KW-2, KY, 2, KH);
-  ctx.strokeStyle='#B98D46'; ctx.lineWidth=2.4; ctx.strokeRect(KX+1.2, KY+1.2, KW-2.4, KH-2.4);
-  ctx.strokeStyle='rgba(185,141,70,0.34)'; ctx.lineWidth=1;
-  ctx.beginPath(); ctx.moveTo(KX+18, KY+KH-16); ctx.lineTo(KX+KW-18, KY+KH-16); ctx.stroke();
+  ctx.strokeStyle='rgba(0,0,0,0.65)'; ctx.lineWidth=5;
+  ctx.strokeRect(KX+3.5, KY+3.5, KW-7, KH-7);
+  ctx.strokeStyle='#B98D46'; ctx.lineWidth=3;
+  ctx.strokeRect(KX+1.5, KY+1.5, KW-3, KH-3);
+  ctx.strokeStyle='rgba(255,246,224,0.30)'; ctx.lineWidth=1.2;
+  ctx.strokeRect(KX+8, KY+8, KW-16, KH-16);
   ctx.restore();
   // the neatline, struck after the clip so it reads as the frame of the object
   ctx.strokeStyle='rgba(185,141,70,0.9)'; ctx.lineWidth=2.5;

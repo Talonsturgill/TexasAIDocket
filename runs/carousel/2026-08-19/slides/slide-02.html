@@ -61,7 +61,8 @@
     <span class="u">DAYS AHEAD</span></div>
   <div class="barlab" style="left:166px; top:790px;"><span class="n">16</span>
     <span class="u">DAYS SINCE THE LETTER</span></div>
-  <div class="dek2">ERCOT gave the market 4 days of notice. The letter has now stood 16 days.</div>
+  <div class="dek2">ERCOT gave 4 days of notice before its own classification date. The letter
+    has stood 16 days.</div>
   <div class="quote">
     <div class="rule"></div>
     <div class="q">"ERCOT will not notify each Interconnecting Distribution Service Provider
@@ -113,22 +114,42 @@ window.renderReady = new Promise(function(resolve){
   // the plate the scale is cut into, with a brushed tooth that catches the rake
   var PT=560, PB=1010;
   var plate=ctx.createLinearGradient(0,PT,0,PB);
-  plate.addColorStop(0,'rgba(36,31,42,0)'); plate.addColorStop(0.16,'#241F2A');
+  // The first stop used to reach full value in 16 percent of the plate's height, which put a
+  // dead straight full-width tonal break across the frame. That is a horizon, and this deck's
+  // first stated law is that there are none.
+  plate.addColorStop(0,'rgba(36,31,42,0)'); plate.addColorStop(0.30,'#241F2A');
   plate.addColorStop(0.46,'#2E2834'); plate.addColorStop(0.86,'#191521');
   plate.addColorStop(1,'rgba(25,21,33,0)');
   ctx.fillStyle=plate; ctx.fillRect(0,PT,W,PB-PT);
   ctx.save(); ctx.beginPath(); ctx.rect(0,PT,W,PB-PT); ctx.clip();
-  // Tooling marks, which are SHORT. Drawn edge to edge they were 220 full-width streaks and the
-  // whole plate read as one horizontal smear with no direction in it.
-  for(var b=0;b<340;b++){
-    var by=PT+R2()*(PB-PT), bxs=R2()*W, bw=40+R2()*230, a=0.018+R2()*0.055;
-    var lit = 1-(by-PT)/(PB-PT);
-    ctx.strokeStyle = R2()<0.45 ? 'rgba(226,214,188,'+(a*(0.4+lit)).toFixed(3)+')'
-                                : 'rgba(0,0,0,'+(a*1.5).toFixed(3)+')';
-    ctx.lineWidth=0.6+R2()*1.8;
-    ctx.beginPath(); ctx.moveTo(bxs,by); ctx.lineTo(bxs+bw,by+(R2()-0.5)*4); ctx.stroke();
-  }
-  ctx.restore();
+  // A CONTOUR SET, which is what this frame's dossier declared and what it never drew. It shipped
+  // as horizontal streaks, the same generator as slides 4 and 7, so three grounds were one mark.
+  // Isolines are nested closed loops around drifting centres, low contrast, and they carry texture
+  // without a value, which is exactly what a measured rule needs under it.
+  (function(){
+    var Rc=TX.rng(20260819+272);
+    var centres=[];
+    for(var c=0;c<5;c++) centres.push([Rc()*W, PT+Rc()*(PB-PT), 0.6+Rc()*0.8]);
+    for(var ring=0; ring<46; ring++){
+      var base=30+ring*15;
+      ctx.beginPath();
+      for(var a=0;a<=64;a++){
+        var th=a/64*6.283, r=base;
+        for(var k=0;k<centres.length;k++){
+          var dx=Math.cos(th), dy=Math.sin(th);
+          r += Math.sin(th*(k+2)+centres[k][0]*0.01)*centres[k][2]*14*(1-ring/70);
+        }
+        var px=W*0.5 + Math.cos(th)*r*1.9;
+        var py=(PT+PB)/2 + Math.sin(th)*r*0.62;
+        if(a===0) ctx.moveTo(px,py); else ctx.lineTo(px,py);
+      }
+      ctx.closePath();
+      var lit=1-(ring/46);
+      ctx.strokeStyle='rgba(217,205,180,'+(0.028*lit+0.012).toFixed(3)+')';
+      ctx.lineWidth=1; ctx.stroke();
+    }
+  })();
+  ctx.restore();  ctx.restore();
 
   // THE CHANNEL. A groove cut across the plate, its far wall lit by the rake and its near wall
   // in shadow, so the scale reads as removed material rather than as a painted line.

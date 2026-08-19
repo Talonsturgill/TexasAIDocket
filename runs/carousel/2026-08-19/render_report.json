@@ -47,7 +47,7 @@
           "anc": []
         },
         {
-          "text": "The directive stopped ERCOT's Batch Zero clock on August 3rd. The classification date it set passed 12 days ago.",
+          "text": "The directive landed on August 3rd. ERCOT's own Batch Zero classification date passed 12 days ago.",
           "x": 80,
           "y": 1069,
           "w": 700,
@@ -62,19 +62,19 @@
             [
               80,
               1069,
-              639,
+              670,
               45
             ],
             [
               80,
               1116,
-              685,
+              678,
               45
             ],
             [
               80,
               1163,
-              356,
+              143,
               45
             ]
           ],
@@ -327,7 +327,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1028,
+      "render_ms": 971,
       "ok": true,
       "canvases": [
         {
@@ -340,8 +340,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 48,
-          "variance": 3234.2
+          "mean": 48.1,
+          "variance": 3229.4
         }
       ],
       "breather": false,
@@ -538,7 +538,7 @@
           "anc": []
         },
         {
-          "text": "ERCOT gave the market 4 days of notice. The letter has now stood 16 days.",
+          "text": "ERCOT gave 4 days of notice before its own classification date. The letter has stood 16 days.",
           "x": 80,
           "y": 342,
           "w": 880,
@@ -553,13 +553,13 @@
             [
               80,
               342,
-              871,
+              830,
               40
             ],
             [
               80,
               383,
-              105,
+              379,
               40
             ]
           ],
@@ -735,7 +735,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1837,
+      "render_ms": 1889,
       "ok": true,
       "canvases": [
         {
@@ -748,8 +748,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 36.6,
-          "variance": 394.1
+          "mean": 36.3,
+          "variance": 386.7
         }
       ],
       "breather": false,
@@ -764,11 +764,11 @@
       "fonts_missing": [],
       "text_nodes": [
         {
-          "text": "Update Regarding Batch Zero Timelines and Processes",
+          "text": "\"Update Regarding Batch Zero Timelines and Processes\"",
           "x": 80,
           "y": 118,
           "w": 920,
-          "h": 50,
+          "h": 65,
           "font_px": 26,
           "weight": "400",
           "family": "JetBrains Mono",
@@ -778,17 +778,17 @@
           "lines": [
             [
               80,
-              118,
-              875,
+              133,
+              882,
               35
             ]
           ],
           "anc": []
         },
         {
-          "text": "ERCOT market notice M-A080326-01 \u00b7 c2",
+          "text": "ERCOT market notice M-A080326-01 \u00b7 c5",
           "x": 80,
-          "y": 168,
+          "y": 183,
           "w": 920,
           "h": 43,
           "font_px": 24,
@@ -800,7 +800,7 @@
           "lines": [
             [
               80,
-              180,
+              195,
               559,
               31
             ]
@@ -808,9 +808,9 @@
           "anc": []
         },
         {
-          "text": "No provider was tobe told by the 7th.",
+          "text": "No service providerwas to be told by the 7th.",
           "x": 80,
-          "y": 233,
+          "y": 248,
           "w": 920,
           "h": 177,
           "font_px": 92,
@@ -822,21 +822,21 @@
           "lines": [
             [
               80,
-              220,
-              692,
+              235,
+              722,
               113
             ],
             [
               80,
-              308,
-              645,
+              323,
+              891,
               113
             ]
           ],
           "anc": []
         },
         {
-          "text": "No service provider was to be told how any large load was classified by August 7th.",
+          "text": "No service provider was to be told how any large load was classified by August 7th. c2",
           "x": 80,
           "y": 1115,
           "w": 600,
@@ -857,11 +857,35 @@
             [
               80,
               1157,
-              536,
+              542,
               41
             ]
           ],
           "anc": []
+        },
+        {
+          "text": "c2",
+          "x": 622,
+          "y": 1165,
+          "w": 29,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(156, 147, 130)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              622,
+              1165,
+              29,
+              31
+            ]
+          ],
+          "anc": [
+            3
+          ]
         },
         {
           "text": "no class stated",
@@ -981,7 +1005,20 @@
         {
           "kind": "border",
           "x": 80,
-          "y": 167,
+          "y": 118,
+          "w": 920,
+          "h": 1,
+          "by": "kick",
+          "color": "rgba(185, 141, 70, 0.5)",
+          "decorative": false,
+          "skip": [
+            0
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 80,
+          "y": 182,
           "w": 920,
           "h": 1,
           "by": "kick",
@@ -995,7 +1032,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1390,
+      "render_ms": 1455,
       "ok": true,
       "canvases": [
         {
@@ -1008,8 +1045,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 34.5,
-          "variance": 615.8
+          "mean": 33.8,
+          "variance": 621.2
         }
       ],
       "breather": false,
@@ -1052,7 +1089,7 @@
           "anc": []
         },
         {
-          "text": "Each is quoted as its source states it. None may be multiplied by another.",
+          "text": "Each figure is its source's own wording. None may be multiplied by another.",
           "x": 80,
           "y": 296,
           "w": 560,
@@ -1067,7 +1104,7 @@
             [
               80,
               296,
-              532,
+              554,
               37
             ],
             [
@@ -1373,7 +1410,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1920,
+      "render_ms": 1982,
       "ok": true,
       "canvases": [
         {
@@ -1947,7 +1984,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1321,
+      "render_ms": 1465,
       "ok": true,
       "canvases": [
         {
@@ -1976,7 +2013,7 @@
       "fonts_missing": [],
       "text_nodes": [
         {
-          "text": "The Governor's office said the sector's membership body will comply.",
+          "text": "The Governor's office said the Data Center Coalition will comply.",
           "x": 104,
           "y": 126,
           "w": 872,
@@ -1997,7 +2034,7 @@
             [
               104,
               177,
-              780,
+              663,
               69
             ],
             [
@@ -2010,11 +2047,11 @@
           "anc": []
         },
         {
-          "text": "Said on August 18th by the Governor's office. It is a statement about the standards that office set rather than a measured result.",
+          "text": "The Coalition is the sector's membership body. Said on August 18th by the Governor's office, about the standards that office set rather than a measured result.",
           "x": 104,
           "y": 326,
           "w": 872,
-          "h": 73,
+          "h": 110,
           "font_px": 27,
           "weight": "400",
           "family": "Manrope",
@@ -2025,13 +2062,19 @@
             [
               104,
               325,
-              833,
+              861,
               37
             ],
             [
               104,
               362,
-              736,
+              869,
+              37
+            ],
+            [
+              104,
+              398,
+              210,
               37
             ]
           ],
@@ -2289,7 +2332,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2091,
+      "render_ms": 2380,
       "ok": true,
       "canvases": [
         {
@@ -2302,8 +2345,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 42,
-          "variance": 936.1
+          "mean": 38.3,
+          "variance": 732.4
         }
       ],
       "breather": false,
@@ -2699,7 +2742,7 @@
         }
       ],
       "nondeterminism": [],
-      "render_ms": 1997,
+      "render_ms": 2051,
       "ok": true,
       "canvases": [
         {
@@ -2712,8 +2755,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 26,
-          "variance": 275.4
+          "mean": 25.7,
+          "variance": 266.7
         }
       ],
       "breather": false,
@@ -2781,7 +2824,7 @@
           "text": "Open meeting. ERCOT said it would file for a good cause exception ahead of it.",
           "x": 416,
           "y": 754,
-          "w": 584,
+          "w": 511,
           "h": 72,
           "font_px": 26,
           "weight": "400",
@@ -2793,14 +2836,36 @@
             [
               416,
               753,
-              518,
+              498,
               36
             ],
             [
               416,
               789,
-              402,
+              422,
               36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c3",
+          "x": 951,
+          "y": 757,
+          "w": 49,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(156, 147, 130)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              971,
+              757,
+              29,
+              31
             ]
           ],
           "anc": []
@@ -2831,7 +2896,7 @@
           "text": "A second open meeting, on the commission's own calendar.",
           "x": 416,
           "y": 859,
-          "w": 584,
+          "w": 497,
           "h": 72,
           "font_px": 26,
           "weight": "400",
@@ -2843,14 +2908,36 @@
             [
               416,
               858,
-              536,
+              371,
               36
             ],
             [
               416,
               894,
-              164,
+              329,
               36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c19",
+          "x": 937,
+          "y": 862,
+          "w": 63,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(156, 147, 130)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              957,
+              862,
+              43,
+              31
             ]
           ],
           "anc": []
@@ -2881,8 +2968,8 @@
           "text": "Public comment deadline, on the commission's own calendar. No docket is named against it.",
           "x": 416,
           "y": 964,
-          "w": 584,
-          "h": 72,
+          "w": 497,
+          "h": 108,
           "font_px": 26,
           "weight": "400",
           "family": "Manrope",
@@ -2893,14 +2980,42 @@
             [
               416,
               963,
-              554,
+              389,
               36
             ],
             [
               416,
               998,
-              527,
+              481,
               36
+            ],
+            [
+              416,
+              1034,
+              206,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c20",
+          "x": 937,
+          "y": 967,
+          "w": 63,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(156, 147, 130)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              957,
+              967,
+              43,
+              31
             ]
           ],
           "anc": []
@@ -2908,7 +3023,7 @@
         {
           "text": "Project 58482",
           "x": 80,
-          "y": 1068,
+          "y": 1104,
           "w": 312,
           "h": 35,
           "font_px": 26,
@@ -2920,7 +3035,7 @@
           "lines": [
             [
               80,
-              1068,
+              1104,
               203,
               35
             ]
@@ -2930,8 +3045,8 @@
         {
           "text": "The proposed rule on Large Load Demand Management Service. It took a comment on August 18th.",
           "x": 416,
-          "y": 1068,
-          "w": 584,
+          "y": 1104,
+          "w": 497,
           "h": 108,
           "font_px": 26,
           "weight": "400",
@@ -2942,31 +3057,31 @@
           "lines": [
             [
               416,
-              1067,
+              1103,
               494,
               36
             ],
             [
               416,
-              1103,
-              515,
+              1139,
+              479,
               36
             ],
             [
               416,
-              1139,
-              150,
+              1175,
+              186,
               36
             ]
           ],
           "anc": []
         },
         {
-          "text": "c3, c4, c19, c20, c21",
-          "x": 80,
-          "y": 1192,
-          "w": 920,
-          "h": 49,
+          "text": "c21",
+          "x": 937,
+          "y": 1107,
+          "w": 63,
+          "h": 31,
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
@@ -2975,9 +3090,9 @@
           "overlap_ok": false,
           "lines": [
             [
-              80,
-              1210,
-              318,
+              957,
+              1107,
+              43,
               31
             ]
           ],
@@ -3098,7 +3213,8 @@
           "decorative": false,
           "skip": [
             1,
-            2
+            2,
+            3
           ]
         },
         {
@@ -3111,29 +3227,31 @@
           "color": "rgba(185, 141, 70, 0.35)",
           "decorative": false,
           "skip": [
-            3,
-            4
+            4,
+            5,
+            6
           ]
         },
         {
           "kind": "border",
           "x": 80,
-          "y": 1051.3,
+          "y": 1087.1,
           "w": 920,
           "h": 1,
           "by": "r",
           "color": "rgba(185, 141, 70, 0.35)",
           "decorative": false,
           "skip": [
-            5,
-            6
+            7,
+            8,
+            9
           ]
         }
       ],
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1272,
+      "render_ms": 997,
       "ok": true,
       "canvases": [
         {

@@ -434,7 +434,7 @@ composition:
     the eye in every render, and naming the boundaries instead was a plan arguing with its own
     picture. The seams are structure and structure is not a focal.
 art:
-  technique: "terrazzo inlay, four equal bands, straight down, under the rotunda inlay licence"
+  technique: "terrazzo inlay, four equal courses run ACROSS the frame, seen straight on, under the rotunda inlay licence"
   why_this_technique: >
     This is the deck's counter-image and a deck that only argues one way reads as promotion. Four
     named guardrails is a division of a field, and the Capitol's own geometric inlay is the state's
@@ -458,7 +458,7 @@ type:
     set rather than a measured result.
   labels: ["GRID", "WATER", "NEIGHBORHOODS", "PAY THEIR OWN WAY"]
 acceptance:
-  - "all four courses are identical in height, measured rather than judged, and the varying dimension is height and never width"
+  - "all four courses are identical in height, measured rather than judged. Width is the full frame on every course, so the only dimension that could rank one guardrail above another is value, and value is held in one band"
   - "one ink carries all four words, which means every course must sit in a value band that ink clears at its WORST point and not at its box mean"
   - "the aggregate is angular, because a round chip with a concentric highlight is a droplet on glass and terrazzo is crushed rock"
   - "no circle, pie, arc or dial appears anywhere in the frame"

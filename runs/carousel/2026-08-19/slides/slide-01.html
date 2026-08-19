@@ -44,8 +44,8 @@
   <canvas id="art" width="2160" height="2700"></canvas>
 
   <div class="hd"><div class="hook">August 7th<br>came and went.</div></div>
-  <div class="dek">The directive stopped ERCOT's Batch Zero clock on August 3rd. The
-    classification date it set passed 12 days ago.</div>
+  <div class="dek">The directive landed on August 3rd. ERCOT's own Batch Zero classification
+    date passed 12 days ago.</div>
 
 <div class="tx-frame" data-decorative>
   <svg class="tx-star" viewBox="0 0 26 26" aria-hidden="true"><polygon points="13,1 16.1,9.4 25,9.6 17.9,15 20.5,23.6 13,18.4 5.5,23.6 8.1,15 1,9.6 9.9,9.4" fill="var(--frame-ink)"/></svg>
@@ -89,8 +89,11 @@ window.renderReady = new Promise(function(resolve){
   // actually a hole has no monopoly on darkness. Grout is lighter than a hole. That is the whole
   // reason a hole reads as a hole.
   (function(){
+    // The bed was sized off the tile grid's own last row, which ends after the 31st tile, so
+    // its edge cut across tiles 30 and 31 and read as a clipping error on the frame more readers
+    // see than any other. A bed is a rectangle the whole sheet is laid into.
     var rows=Math.ceil((startCol+days)/cols);
-    var bx=-16, by=-16, bw=gridW+32, bh=rows*(cellH+gap)+16;
+    var bx=-22, by=-22, bw=gridW+44, bh=rows*(cellH+gap)+30;
     ctx.fillStyle='rgba(0,0,0,0.55)'; ctx.fillRect(bx+16, by+bh-6, bw, 26);
     var bed=ctx.createLinearGradient(bx,by,bx+bw,by+bh);
     bed.addColorStop(0,'#3A3630'); bed.addColorStop(0.5,'#2C2922'); bed.addColorStop(1,'#1E1B17');

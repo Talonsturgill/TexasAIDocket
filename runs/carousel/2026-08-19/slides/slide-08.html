@@ -45,6 +45,11 @@
              white-space:nowrap; font-variant-numeric:tabular-nums; width:312px; flex:none; }
   .open .w { font-family:'Manrope',sans-serif; font-size:26px; line-height:1.38;
              color:#D9CDB4; }
+  /* Every other frame in the deck prints an id beside the thing it sources. The close printed
+     five in one footer, so no row could be traced and one of the five was sourcing nothing on
+     the frame at all. */
+  .open .c { font-family:'JetBrains Mono',monospace; font-size:24px; color:#9c9382;
+             margin-left:auto; padding-left:20px; flex:none; }
 
 </style>
 </head>
@@ -57,16 +62,15 @@
     <div class="open">
       <div class="r"><span class="d">August 20th, 2026</span>
         <span class="w">Open meeting. ERCOT said it would file for a good cause exception ahead
-          of it.</span></div>
+          of it.</span><span class="c" data-decorative>c3</span></div>
       <div class="r"><span class="d">August 21st, 2026</span>
-        <span class="w">A second open meeting, on the commission's own calendar.</span></div>
+        <span class="w">A second open meeting, on the commission's own calendar.</span><span class="c" data-decorative>c19</span></div>
       <div class="r"><span class="d">September 4th, 2026</span>
-        <span class="w">Public comment deadline, on the commission's own calendar. No docket is named against it.</span></div>
+        <span class="w">Public comment deadline, on the commission's own calendar. No docket is named against it.</span><span class="c" data-decorative>c20</span></div>
       <div class="r"><span class="d">Project 58482</span>
         <span class="w">The proposed rule on Large Load Demand Management Service. It took a
-          comment on August 18th.</span></div>
+          comment on August 18th.</span><span class="c" data-decorative>c21</span></div>
     </div>
-    <div class="cites" data-decorative>c3, c4, c19, c20, c21</div>
   </div>
 
 <div class="tx-frame" data-decorative>

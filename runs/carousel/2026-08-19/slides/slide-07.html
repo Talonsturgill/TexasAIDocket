@@ -174,24 +174,26 @@ window.renderReady = new Promise(function(resolve){
   // THE EMPTY FIELD. Cut INTO the plate rather than drawn on it, so the one thing the record does
   // not carry is the one place the frame's light does not reach. Its lips are the plate's bevel
   // run backwards, shadow on the top and left, a catch of key on the bottom and right.
+  // AN EMPTY FIELD IS RULE ONLY.
+  //
+  // This has now been drawn three ways and two of them were wrong for the same reason. A field of
+  // struck bars said something was struck out. A dark box with a bright keyline said the same
+  // thing more quietly. Filling it with light to satisfy the focal law said it a third time, and
+  // it also made this frame and slide 3's legend the identical object four frames apart.
+  //
+  // What makes a redaction is a FILLED RECTANGLE, at any value. What makes an empty field is a
+  // RULE with the surrounding material running clean through where the writing would go. So the
+  // plate's own surface continues across it, the rule sits under it the way a form's fill line
+  // does, and the only marks are the rule and the two ticks that bound the field's width.
   var NX = 486, NY = 858 + 16, NW = BL_R - NX, NH = RH - 32;
-  var well = ctx.createLinearGradient(NX, NY, NX+NW, NY+NH);
-  well.addColorStop(0,'#4A4335'); well.addColorStop(0.55,'#3B3529'); well.addColorStop(1,'#2C2720');
-  ctx.fillStyle=well; ctx.fillRect(NX, NY, NW, NH);
-  var lipT = ctx.createLinearGradient(0, NY, 0, NY+14);
-  lipT.addColorStop(0,'rgba(0,0,0,0.72)'); lipT.addColorStop(1,'rgba(0,0,0,0)');
-  ctx.fillStyle=lipT; ctx.fillRect(NX, NY, NW, 14);
-  var lipL = ctx.createLinearGradient(NX, 0, NX+14, 0);
-  lipL.addColorStop(0,'rgba(0,0,0,0.62)'); lipL.addColorStop(1,'rgba(0,0,0,0)');
-  ctx.fillStyle=lipL; ctx.fillRect(NX, NY, 14, NH);
-  ctx.fillStyle='rgba(255,246,224,0.34)'; ctx.fillRect(NX, NY+NH-1.6, NW, 1.6);
-  ctx.fillStyle='rgba(255,246,224,0.24)'; ctx.fillRect(NX+NW-1.6, NY, 1.6, NH);
-  ctx.strokeStyle='rgba(185,141,70,0.70)'; ctx.lineWidth=1.4;
-  ctx.strokeRect(NX+0.7, NY+0.7, NW-1.4, NH-1.4);
-  // and it is RULED, which is what a form does to a field it expects someone to write in. The
-  // rule is the whole difference between a field left blank and a field struck out.
-  ctx.strokeStyle='rgba(185,141,70,0.34)'; ctx.lineWidth=1;
-  ctx.beginPath(); ctx.moveTo(NX+16, NY+NH-12); ctx.lineTo(NX+NW-16, NY+NH-12); ctx.stroke();
+  var RY = NY + NH - 10;
+  ctx.fillStyle='rgba(0,0,0,0.34)'; ctx.fillRect(NX, RY+2.6, NW, 2.2);
+  ctx.fillStyle='#B98D46'; ctx.fillRect(NX, RY, NW, 2.6);
+  ctx.fillStyle='rgba(255,246,224,0.34)'; ctx.fillRect(NX, RY-1.2, NW, 1.2);
+  // the two ticks that say how wide the field is, which is how the frame publishes the SIZE of
+  // what is missing rather than only that something is
+  ctx.fillStyle='rgba(185,141,70,0.8)';
+  ctx.fillRect(NX, RY-16, 2.4, 18); ctx.fillRect(NX+NW-2.4, RY-16, 2.4, 18);
 
   ctx.restore();
 
