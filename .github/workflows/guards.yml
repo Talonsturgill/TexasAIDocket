@@ -299,6 +299,24 @@ jobs:
           # reported clean forever. Same shape as craft_floor reading a key qa.py never wrote.
           python3 scripts/carousel/shipped_check.py --self-test
 
+      - name: Panel self-test (three judges, a per-criterion median, hard fails unioned)
+        run: |
+          # A single scorer graded the 2026-08-19 deck seven times and found ZERO hard fails.
+          # Three judges graded it five times and found FOUR, two of which were fabrications
+          # that had already survived every gate in this file and a full pixel review.
+          #
+          # The assertions that matter are the arithmetic ones: the real per-criterion scores
+          # must reproduce the 8.034 that shipped and NOT the 8.09 a median of totals gives,
+          # and a 9.0 median with one judge's hard fail must not ship.
+          python3 scripts/carousel/panel.py --self-test
+
+      - name: Texan self-test (where it happened, and what a reader can do next)
+        run: |
+          # story_and_stakes and voice are 0.30 of the rubric and neither reached 8.0 in any
+          # round from any judge. This mechanises the rubric's own definition of a 9 and is
+          # calibrated against all three shipped decks, so drift shows up as a number.
+          python3 scripts/carousel/texan_check.py --self-test
+
       - name: Plan versus render self-test (the frame matches the plan it was drawn from)
         run: python3 scripts/carousel/plan_render_check.py --self-test
 
