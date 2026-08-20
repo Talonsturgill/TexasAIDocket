@@ -111,10 +111,23 @@ def _renderings(iso: str) -> set:
     The day rules are untouched. `2026-01-08` still may not print as "Jan" here, because a
     value that knows its day and hides it is not rendering itself faithfully.
     """
+    # A YEAR-PRECISION VALUE RENDERS A YEAR, which is the same promise one step up again. The
+    # record's year view heads each block with the year it holds, and `<time datetime="2021">`
+    # is exactly what that is. The rejections that matter are untouched: a value that knows its
+    # month or its day and prints only the year is still not rendering itself faithfully,
+    # because those values do not reach this branch.
+    if re.fullmatch(r"\d{4}", iso.strip()):
+        return {iso.strip()}
     if _MONTH_ONLY.fullmatch(iso.strip()):
         y, m = (int(x) for x in iso.strip().split("-"))
         d = _dt.date(y, m, 1)
-        return {f"{d:%b}", f"{d:%b}".upper(), f"{d:%B}", f"{d:%B} {y}", f"{y}-{m:02d}"}
+        # THE WALL CALENDAR FORM. A month page prints its own number beside its name and year,
+        # which is what the paper object on a wall does and what the record's month view now
+        # does. It is a faithful rendering of a month-precision value: every part of it comes
+        # out of the value and none of it is a day. Without this the header had to choose
+        # between the house's own date rule and looking like a calendar.
+        return {f"{d:%b}", f"{d:%b}".upper(), f"{d:%B}", f"{d:%B} {y}", f"{y}-{m:02d}",
+                f"{m:02d} {d:%B} {y}", f"{m:02d}{d:%B}{y}"}
     try:
         d = _dt.date.fromisoformat(iso[:10])
     except ValueError:
