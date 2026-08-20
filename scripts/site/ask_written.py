@@ -919,6 +919,15 @@ _CLIENT = r"""
     if (!document.body.classList.contains("asking")) lastY = window.pageYOffset;
   }, { passive: true });
   input.addEventListener("pointerdown", function () { wasAt = window.pageYOffset; });
+  /* A STARTER IS A QUESTION, so pressing one has to take the screen exactly as tapping the
+     field does. It did not, because immersion hung off focus and a button press never focuses
+     the input. The owner pressed "What can I still comment on?" on a phone and got the answer
+     rendered inline with the hero, the footer and every other section still there, with the
+     box grown to 917px inside a 780px screen and scrolled off the top. Captured on the
+     starter's own pointerdown, before anything moves. */
+  box.querySelectorAll(".chips [data-ask]").forEach(function (btn) {
+    btn.addEventListener("pointerdown", function () { wasAt = window.pageYOffset; });
+  });
   /* THE SAME BREAKPOINT THE STYLESHEET USES, asked of the browser rather than guessed. Setting
      the class at every width was harmless while the rules were scoped, and it left one real
      trap: a reader focused on a laptop and then narrowing the window, or turning a tablet, would
@@ -1005,6 +1014,13 @@ _CLIENT = r"""
     if (!input.value.trim() && acceptPending()) return;
     var q = input.value.trim();
     if (!q) return;
+    /* IMMERSION FOLLOWS ASKING, NOT FOCUSING, and that distinction is the bug the owner hit.
+       It hung off the field's focus event, and a starter chip is a button that never focuses
+       the field, so pressing "What can I still comment on?" on a phone answered INLINE with
+       the hero, the footer and every section still on screen, and the box grew to 917px
+       inside a 780px viewport and scrolled off the top.
+       Here it covers every way a question can be asked: a starter, the arrow, and Enter. */
+    immerse();
     ask(q);
   });
 })();

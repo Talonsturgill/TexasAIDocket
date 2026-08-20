@@ -381,6 +381,27 @@ head("I2. on a phone the box takes the screen, and gives it back");
   });
   ok("focusing the field takes the screen", on.asking && on.covers, JSON.stringify(on));
   ok("the hero and the nav are gone", !on.hero && !on.nav, JSON.stringify(on));
+
+  /* EVERY SELECTOR THE FULL SCREEN RULE HIDES MUST MATCH SOMETHING.
+     The rule named `.sitefoot`, which matches nothing on any page here, so the footer stayed
+     under the box in full screen mode and the owner found it on a phone. The probe that was
+     meant to catch it read `document.querySelector(".sitefoot")` as null and treated null as
+     "not visible", which is the most reassuring possible reading of "you are asking about an
+     element that does not exist".
+     So presence and visibility are checked SEPARATELY. A missing element fails as loudly as a
+     visible one, because a check whose subject does not exist is worse than no check. */
+  const covered = await ph.evaluate(() => {
+    const out = {};
+    for (const sel of [".sky", ".masthead", ".hero", "footer.site"]) {
+      const el = document.querySelector(sel);
+      out[sel] = el === null ? "MISSING" : (el.offsetParent !== null ? "VISIBLE" : "hidden");
+    }
+    return out;
+  });
+  for (const [sel, state] of Object.entries(covered)) {
+    ok(`${sel} exists on the page at all`, state !== "MISSING", state);
+    ok(`...and is hidden while the box has the screen`, state === "hidden", state);
+  }
   ok("and there is a visible way out", on.closeSeen, JSON.stringify(on));
 
   // WHAT THE AGENT IS DOING IS THE ONLY THING LEFT. Owner: "we want to make it so that they
@@ -424,6 +445,32 @@ head("I2. on a phone the box takes the screen, and gives it back");
     asking: document.body.classList.contains("asking"), y: Math.round(scrollY) }));
   ok("closing hands the screen back", !off.asking, JSON.stringify(off));
   ok("...and puts them back where they were", Math.abs(off.y - 600) < 40, JSON.stringify(off));
+
+  /* A STARTER TAKES THE SCREEN TOO, and this is the exact press the owner made.
+     Immersion hung off the field's FOCUS, and a starter is a button that never focuses the
+     field, so the answer rendered inline with the hero, the footer and every section still
+     there, and the box grew past the viewport and scrolled off the top. */
+  /* START OVER FIRST. The box is still in its answering state from the question above, and
+     `.answering` hides the starters, so a click on one waits forever for something that is
+     deliberately not there. */
+  await ph.click(".askagain");
+  await ph.waitForTimeout(400);
+  await ph.click(".chips [data-ask]");
+  await ph.waitForTimeout(900);
+  const viaChip = await ph.evaluate(() => {
+    const vis = (s) => { const e = document.querySelector(s); return e ? e.offsetParent !== null : false; };
+    const r = document.getElementById("ask").getBoundingClientRect();
+    return { asking: document.body.classList.contains("asking"),
+             fits: Math.round(r.top) === 0 && Math.round(r.height) <= innerHeight + 1,
+             hero: vis(".hero"), footer: vis("footer.site"),
+             answered: !!(document.querySelector(".askreply") || {}).textContent };
+  });
+  ok("a starter answers", viaChip.answered, JSON.stringify(viaChip));
+  ok("...and takes the screen like a typed question",
+     viaChip.asking && viaChip.fits, JSON.stringify(viaChip));
+  ok("...with nothing else left on it",
+     !viaChip.hero && !viaChip.footer, JSON.stringify(viaChip));
+
   await ph.close();
 }
 

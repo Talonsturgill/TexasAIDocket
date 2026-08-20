@@ -1064,7 +1064,7 @@ caption { caption-side:bottom; text-align:left; padding-top:.75rem; font-size:va
 @media (max-width:37.5rem) {
   body.asking { overflow:hidden; }
   body.asking .sky, body.asking .masthead, body.asking main > *:not(.asksection),
-  body.asking .sitefoot { display:none; }
+  body.asking footer.site { display:none; }
   body.asking .asksection { margin:0; }
   body.asking main { padding:0; }
   body.asking #ask { position:fixed; inset:0; z-index:60; overflow-y:auto;
