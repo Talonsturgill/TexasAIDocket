@@ -5279,6 +5279,304 @@
      "note": "Both hearings are confirmed against the Legislature's own notices. The State Affairs notice of August 19th carries a second charge, on the regulatory and planning processes for the proposed 765 kV transmission lines, which the earlier record did not name. It took invited and public testimony, limited to two minutes a witness, with registration closing at 10:00 am that day. The Public Health notice for August 20th takes invited testimony only, so the only way a Texan is heard on the artificial intelligence in health care charge is the written one, open until the hearing is adjourned."
     }
    ]
+  },
+  {
+   "id": "tx-2026-0074",
+   "title": "League City puts its police license plate reader cameras on the November ballot and tells voters the answer does not bind the council",
+   "summary": "The League City Council voted on August 11th, 2026 to call a referendum placing a proposition on the November 3rd, 2026 ballot on the police department's use of Flock Safety license plate reader cameras. The ballot language the city published opens by telling voters the result is a nonbinding statement of preference. The council keeps the decision either way. The cameras read plates at fixed locations on public roadways and are already running.",
+   "topic": "surveillance-and-policing",
+   "decider": {
+    "name": "League City City Council",
+    "type": "city"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Galveston"
+    ],
+    "metro": null,
+    "on_ercot": true
+   },
+   "status": "open",
+   "key_dates": [
+    {
+     "date": "2026-08-11",
+     "kind": "ordered",
+     "note": "Council voted to call the referendum"
+    },
+    {
+     "date": "2026-11-03",
+     "kind": "comment_closes",
+     "note": "Election day, the last day a voter can answer the question"
+    }
+   ],
+   "public_access": {
+    "room": "open_comment",
+    "how": "The question goes to the voters of League City on November 3rd, 2026. The city published the ballot language in advance, so a voter can read the proposition before the ballot is in front of them. The council retains the authority to set policy whichever way the vote falls, which the proposition itself says.",
+    "url": "https://www.leaguecitytx.gov/m/newsflash/Home/Detail/6318",
+    "closes": "2026-11-03"
+   },
+   "claims": [
+    {
+     "id": "tx-2026-0074-c1",
+     "text": "The city published the exact wording voters will be asked.",
+     "verbatim_quote": "As a nonbinding statement of voter preference, should the League City Police Department continue using automated license plate reader cameras at fixed locations on public roadways for law enforcement purposes?",
+     "source_url": "https://www.leaguecitytx.gov/m/newsflash/Home/Detail/6318",
+     "source_title": "City of League City, News Flash, Proposition on November Ballot Regarding City's Use of Flock Cameras",
+     "source_type": "primary_official",
+     "fetched": "2026-08-20"
+    },
+    {
+     "id": "tx-2026-0074-c2",
+     "text": "The city states when the council acted and what it called.",
+     "verbatim_quote": "At their meeting on Tuesday, August 11, the League City Council voted to call for a referendum to place a proposition on the November 3, 2026, ballot regarding the City's use of Flock Safety license plate reader (LPR) cameras.",
+     "source_url": "https://www.leaguecitytx.gov/m/newsflash/Home/Detail/6318",
+     "source_title": "City of League City, News Flash, posted August 12th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-08-20"
+    }
+   ],
+   "last_verified": "2026-08-20",
+   "confidence": "high",
+   "notes_for_editor": "The city's own posting spells nonbinding as one word and that spelling is carried verbatim. Reporting on this vote gives a council count that the city's posting does not state, so no count is published here.",
+   "history": [
+    {
+     "date": "2026-08-20",
+     "note": "Admitted. The city's own posting carries the ballot language and the date of the council's action. The proposition tells a voter in its first clause that the result is a statement of preference rather than an instruction."
+    }
+   ]
+  },
+  {
+   "id": "tx-2026-0075",
+   "title": "Pflugerville asks voters to write artificial intelligence and surveillance protections into the city charter",
+   "summary": "The Pflugerville City Council approved on second reading on August 11th, 2026 an ordinance ordering a special election on November 3rd, 2026 on amendments to the city's home rule charter. One amendment recommended by the 2026 Charter Review Commission adds a new Section 2.03 titled Artificial Intelligence Protections. It would require the council to adopt protections covering data, facial recognition and surveillance technology. It would also require transparent approval processes for those technologies and a responsible artificial intelligence framework. A charter section outlives the council that writes it, which an ordinary policy does not.",
+   "topic": "surveillance-and-policing",
+   "decider": {
+    "name": "Pflugerville City Council",
+    "type": "city"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Travis",
+     "Williamson"
+    ],
+    "metro": null,
+    "on_ercot": true
+   },
+   "status": "open",
+   "key_dates": [
+    {
+     "date": "2026-08-11",
+     "kind": "ordered",
+     "note": "Ordinance ordering the election approved on second reading"
+    },
+    {
+     "date": "2026-11-03",
+     "kind": "comment_closes",
+     "note": "Election day, the last day a voter can answer the question"
+    }
+   ],
+   "public_access": {
+    "room": "open_comment",
+    "how": "The charter amendments go to Pflugerville voters on November 3rd, 2026. The Charter Review Commission's report, filed with the ordinance, carries the full text of the proposed Section 2.03, so a voter can read the words that would enter the charter.",
+    "url": "https://legistar1.granicus.com/Pflugerville/attachments/1d648f39-3bbb-4159-a4a7-a3c19b80bfcd.pdf",
+    "closes": "2026-11-03"
+   },
+   "claims": [
+    {
+     "id": "tx-2026-0075-c1",
+     "text": "The proposed charter section states what the council would be required to adopt.",
+     "verbatim_quote": "City Council shall adopt protections governing the collection, use, retention, and oversight of data, facial recognition, and surveillance technologies; establish transparent approval processes for such technologies; require a responsible AI (artificial intelligence) framework; ensuring this information is used locally for a legitimate basis established by law.",
+     "source_url": "https://legistar1.granicus.com/Pflugerville/attachments/1d648f39-3bbb-4159-a4a7-a3c19b80bfcd.pdf",
+     "source_title": "Report of the 2026 Pflugerville Charter Review Commission, proposed Section 2.03",
+     "source_type": "primary_official",
+     "fetched": "2026-08-20"
+    },
+    {
+     "id": "tx-2026-0075-c2",
+     "text": "The commission's summary of amendments names the new section and its subject.",
+     "verbatim_quote": "Add a new Section 2.03 to address the City's use of artificial intelligence.",
+     "source_url": "https://legistar1.granicus.com/Pflugerville/attachments/1d648f39-3bbb-4159-a4a7-a3c19b80bfcd.pdf",
+     "source_title": "Report of the 2026 Pflugerville Charter Review Commission, Summary of Proposed Amendments, item 4",
+     "source_type": "primary_official",
+     "fetched": "2026-08-20"
+    }
+   ],
+   "last_verified": "2026-08-20",
+   "confidence": "high",
+   "notes_for_editor": "The quoted charter text carries semicolons and the abbreviation AI as the commission wrote them. It is quoted material and exempt from the house punctuation rules by design. The exact ballot proposition letter and caption live in an exhibit that was not read, so no proposition letter is published here.",
+   "history": [
+    {
+     "date": "2026-08-20",
+     "note": "Admitted. The Charter Review Commission's filed report carries the full text of the proposed Section 2.03 and the ordinance setting the election date."
+    }
+   ]
+  },
+  {
+   "id": "tx-2026-0076",
+   "title": "PUCT Docket 59029, Oncor application for a second 765 kV line across ten west Texas counties",
+   "summary": "Oncor Electric Delivery has applied to amend its certificate of convenience and necessity to build the Longshore Switch to Drill Hole Switch transmission line. The application covers ten named counties in west Texas. The commission has it set for discussion and possible action at the open meeting on August 21st, 2026, on an agenda that carries this application and the Dinosaur Switch to Longshore Switch application and nothing else. The two lines meet at Longshore Switch.",
+   "topic": "power-and-the-grid",
+   "decider": {
+    "name": "Public Utility Commission of Texas",
+    "type": "state-agency"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Andrews",
+     "Culberson",
+     "Ector",
+     "Glasscock",
+     "Howard",
+     "Loving",
+     "Martin",
+     "Midland",
+     "Reeves",
+     "Winkler"
+    ],
+    "metro": null,
+    "on_ercot": true
+   },
+   "status": "pending",
+   "key_dates": [
+    {
+     "date": "2026-08-21",
+     "kind": "hearing",
+     "note": "Open meeting, agenda item 2, discussion and possible action"
+    }
+   ],
+   "public_access": {
+    "room": "open_meeting",
+    "how": "The docket is set for the open meeting on August 21st, 2026 at the AT&T Hotel and Conference Center on University Avenue in Austin, listed as open to the public. That agenda opens with a public comment period on any matter within the commission's jurisdiction, with speakers limited to three minutes each. Filings in the docket are made through the Interchange under control number 59029.",
+    "url": "https://ftp.puc.texas.gov/public/puct-info/agency/om/082126Final.pdf",
+    "closes": null
+   },
+   "claims": [
+    {
+     "id": "tx-2026-0076-c1",
+     "text": "The docket's official case style names the applicant, the project and every county crossed.",
+     "verbatim_quote": "APPLICATION OF ONCOR ELECTRIC DELIVERY COMPANY LLC TO AMEND ITS CERTIFICATE OF CONVENIENCE AND NECESSITY FOR THE LONGSHORE SWITCH-DRILL HOLE SWITCH 765 KV TRANSMISSION LINE PROJECT IN ANDREWS, CULBERSON, ECTOR, GLASSCOCK, HOWARD, LOVING, MARTIN, MIDLAND, REEVES, AND WINKLER COUNTIES",
+     "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59029&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending",
+     "source_title": "PUCT Interchange, Filings for 59029, Case Style",
+     "source_type": "primary_official",
+     "fetched": "2026-08-20"
+    },
+    {
+     "id": "tx-2026-0076-c2",
+     "text": "The commission's agenda names the application and the counties it crosses.",
+     "verbatim_quote": "Application of Oncor Electric Delivery Company LLC to Amend Its Certificate of Convenience and Necessity for the",
+     "source_url": "https://ftp.puc.texas.gov/public/puct-info/agency/om/082126Final.pdf",
+     "source_title": "PUCT open meeting agenda, August 21st, 2026, item 2, Docket No. 59029, Longshore Switch to Drill Hole Switch 765 kV line in Andrews, Culberson, Ector, Glasscock, Howard, Loving, Martin, Midland, Reeves and Winkler Counties",
+     "source_type": "primary_official",
+     "fetched": "2026-08-20"
+    },
+    {
+     "id": "tx-2026-0076-c3",
+     "text": "The agenda opens with a public comment period and states the limit on a speaker.",
+     "verbatim_quote": "In the interest of time, speakers will be limited to three minutes each.",
+     "source_url": "https://ftp.puc.texas.gov/public/puct-info/agency/om/082126Final.pdf",
+     "source_title": "PUCT open meeting agenda, August 21st, 2026, item 1, Public Comment",
+     "source_type": "primary_official",
+     "fetched": "2026-08-20"
+    },
+    {
+     "id": "tx-2026-0076-c4",
+     "text": "The filing index records the number of filings in this docket.",
+     "verbatim_quote": "489 filing(s).",
+     "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59029&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending",
+     "source_title": "PUCT Interchange, Filings for 59029",
+     "source_type": "primary_official",
+     "fetched": "2026-08-20"
+    }
+   ],
+   "last_verified": "2026-08-20",
+   "confidence": "high",
+   "notes_for_editor": "The 765 kV designation and the county list come from the commission's own agenda entry, not computed. This is the companion application to Docket 59315, and the record does not state that any particular data center drives either line.",
+   "history": [
+    {
+     "date": "2026-08-20",
+     "note": "Admitted. The commission's published agenda for August 21st, 2026 names this application as item 2, alongside the Dinosaur Switch to Longshore Switch application as item 3."
+    }
+   ]
+  },
+  {
+   "id": "tx-2026-0077",
+   "title": "Senate Transportation sets an August 25th hearing on how driverless vehicles are being deployed under SB 2807",
+   "summary": "The Senate Committee on Transportation posted notice of a public hearing for August 25th, 2026 in the Capitol. One of three interim charges covers the deployment of autonomous vehicle technology authorized by SB 2807 of the 89th Session, including the rules adopted by the Department of Public Safety, the Department of Motor Vehicles and the Department of Licensing and Regulation. The charge directs the committee to quantify the impact on traffic related collisions. The committee will hear invited and public testimony.",
+   "topic": "state-policy",
+   "decider": {
+    "name": "Texas Senate Committee on Transportation",
+    "type": "legislature"
+   },
+   "geography": {
+    "statewide": true,
+    "counties": [],
+    "metro": null,
+    "on_ercot": false
+   },
+   "status": "open",
+   "key_dates": [
+    {
+     "date": "2026-08-25",
+     "kind": "hearing",
+     "note": "Public hearing, 9:00 AM, hearing room E1.016"
+    }
+   ],
+   "public_access": {
+    "room": "open_meeting",
+    "how": "The hearing is at 9:00 AM on August 25th, 2026 in hearing room E1.016 at the Capitol in Austin, and the committee takes public as well as invited testimony. A speaker gets two minutes. Written testimony goes to the committee clerk in fifteen copies with the submitter's name on each one. The notice describes no electronic comment channel, unlike the House notices posted for the same week.",
+    "url": "https://capitol.texas.gov/tlodocs/89R/schedules/pdf/C6402026082509001.PDF",
+    "closes": "2026-08-25"
+   },
+   "claims": [
+    {
+     "id": "tx-2026-0077-c1",
+     "text": "The notice states what the committee will study about driverless vehicles.",
+     "verbatim_quote": "Studying the Deployment of Autonomous Vehicle Technology: Study the deployment of autonomous vehicle technology as authorized by SB 2807, (89th Session), including rule-making adopted by the Texas Department of Public Safety, the Texas Department of Motor Vehicles and the Texas Department of Licensing and Regulation. Quantify the impact on traffic-related collisions.",
+     "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/pdf/C6402026082509001.PDF",
+     "source_title": "Senate, Notice of Public Hearing, Committee on Transportation, August 25th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-08-20"
+    },
+    {
+     "id": "tx-2026-0077-c2",
+     "text": "The notice states the committee takes public testimony and what a member of the public must do to file in writing.",
+     "verbatim_quote": "Public testimony will be limited to 2 minutes. If submitting written testimony, please provide 15 copies to the committee clerk with your name on each copy.",
+     "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/pdf/C6402026082509001.PDF",
+     "source_title": "Senate, Notice of Public Hearing, Committee on Transportation, August 25th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-08-20"
+    },
+    {
+     "id": "tx-2026-0077-c3",
+     "text": "The notice names the time and the date.",
+     "verbatim_quote": "TIME & DATE: 9:00 AM, Tuesday, August 25, 2026",
+     "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/pdf/C6402026082509001.PDF",
+     "source_title": "Senate, Notice of Public Hearing, Committee on Transportation, August 25th, 2026, header",
+     "source_type": "primary_official",
+     "fetched": "2026-08-20"
+    },
+    {
+     "id": "tx-2026-0077-c4",
+     "text": "The notice names the room.",
+     "verbatim_quote": "PLACE: E1.016 (Hearing Room)",
+     "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/pdf/C6402026082509001.PDF",
+     "source_title": "Senate, Notice of Public Hearing, Committee on Transportation, August 25th, 2026, header",
+     "source_type": "primary_official",
+     "fetched": "2026-08-20"
+    }
+   ],
+   "last_verified": "2026-08-20",
+   "confidence": "high",
+   "notes_for_editor": "Statewide because the charge covers deployment on Texas roads generally. The room is in Travis County and the subject is not.",
+   "history": [
+    {
+     "date": "2026-08-20",
+     "note": "Admitted. The Legislature's own notice carries the charge, the date, the room and the terms on which a member of the public may be heard."
+    }
+   ]
   }
  ]
 }
