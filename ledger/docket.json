@@ -3016,7 +3016,7 @@
   },
   {
    "title": "League City City Council ordered a November 3rd special election on whether police may keep using automated license plate reader cameras",
-   "summary": "On August 11th, 2026 the League City City Council approved Ordinance No. 2026-27 on first and final reading. The ordinance orders a special election on November 3rd, 2026. It asks voters about the police department's continued use of automated license plate reader cameras at fixed locations on public roadways. Mayor Long sponsored the item and asked for approval on first and final reading. Council member Courtney Chadwell moved it and the council passed it twice that evening, once on first reading and once on first and final reading. Voters rather than the council will now settle whether the cameras stay. Reporting in the Houston region identifies the cameras as Flock Safety devices.",
+   "summary": "On August 11th, 2026 the League City City Council approved Ordinance No. 2026-27 on first and final reading. The ordinance orders a special election on November 3rd, 2026. It asks voters about the police department's continued use of automated license plate reader cameras at fixed locations on public roadways. The wording the city published opens by telling voters the result is a nonbinding statement of preference, so the council keeps the decision either way. Mayor Long sponsored the item and asked for approval on first and final reading. Council member Courtney Chadwell moved it and the council passed it twice that evening, once on first reading and once on first and final reading. Reporting in the Houston region identifies the cameras as Flock Safety devices.",
    "topic": "surveillance-and-policing",
    "decider": {
     "name": "League City City Council",
@@ -3072,14 +3072,27 @@
      "source_type": "primary_official",
      "fetched": "2026-08-14",
      "id": "tx-2026-0048-c2"
+    },
+    {
+     "id": "tx-2026-0048-c3",
+     "text": "The city published the exact wording voters will be asked, and it opens by telling them the result does not bind the council.",
+     "verbatim_quote": "As a nonbinding statement of voter preference, should the League City Police Department continue using automated license plate reader cameras at fixed locations on public roadways for law enforcement purposes?",
+     "source_url": "https://www.leaguecitytx.gov/m/newsflash/Home/Detail/6318",
+     "source_title": "City of League City, News Flash, Proposition on November Ballot Regarding City's Use of Flock Cameras, posted August 12th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-08-20"
     }
    ],
    "id": "tx-2026-0048",
-   "last_verified": "2026-08-19",
+   "last_verified": "2026-08-20",
    "history": [
     {
      "date": "2026-08-19",
      "note": "Checked and unchanged. The ordinance ordering the November 3rd special election is on the city's record with an August 11th agenda date. It asks whether the police department may keep using automated license plate reader cameras at fixed locations. The city published the ballot wording on August 12th."
+    },
+    {
+     "date": "2026-08-20",
+     "note": "The ballot wording is now on the record verbatim from the city's own posting. It opens by calling itself a nonbinding statement of voter preference, which means the council retains the decision whichever way the vote falls. The ordinance ordering the November 3rd election is otherwise unchanged."
     }
    ]
   },
@@ -5277,72 +5290,6 @@
     {
      "date": "2026-08-20",
      "note": "Both hearings are confirmed against the Legislature's own notices. The State Affairs notice of August 19th carries a second charge, on the regulatory and planning processes for the proposed 765 kV transmission lines, which the earlier record did not name. It took invited and public testimony, limited to two minutes a witness, with registration closing at 10:00 am that day. The Public Health notice for August 20th takes invited testimony only, so the only way a Texan is heard on the artificial intelligence in health care charge is the written one, open until the hearing is adjourned."
-    }
-   ]
-  },
-  {
-   "id": "tx-2026-0074",
-   "title": "League City puts its police license plate reader cameras on the November ballot and tells voters the answer does not bind the council",
-   "summary": "The League City Council voted on August 11th, 2026 to call a referendum placing a proposition on the November 3rd, 2026 ballot on the police department's use of Flock Safety license plate reader cameras. The ballot language the city published opens by telling voters the result is a nonbinding statement of preference. The council keeps the decision either way. The cameras read plates at fixed locations on public roadways and are already running.",
-   "topic": "surveillance-and-policing",
-   "decider": {
-    "name": "League City City Council",
-    "type": "city"
-   },
-   "geography": {
-    "statewide": false,
-    "counties": [
-     "Galveston"
-    ],
-    "metro": null,
-    "on_ercot": true
-   },
-   "status": "open",
-   "key_dates": [
-    {
-     "date": "2026-08-11",
-     "kind": "ordered",
-     "note": "Council voted to call the referendum"
-    },
-    {
-     "date": "2026-11-03",
-     "kind": "comment_closes",
-     "note": "Election day, the last day a voter can answer the question"
-    }
-   ],
-   "public_access": {
-    "room": "open_comment",
-    "how": "The question goes to the voters of League City on November 3rd, 2026. The city published the ballot language in advance, so a voter can read the proposition before the ballot is in front of them. The council retains the authority to set policy whichever way the vote falls, which the proposition itself says.",
-    "url": "https://www.leaguecitytx.gov/m/newsflash/Home/Detail/6318",
-    "closes": "2026-11-03"
-   },
-   "claims": [
-    {
-     "id": "tx-2026-0074-c1",
-     "text": "The city published the exact wording voters will be asked.",
-     "verbatim_quote": "As a nonbinding statement of voter preference, should the League City Police Department continue using automated license plate reader cameras at fixed locations on public roadways for law enforcement purposes?",
-     "source_url": "https://www.leaguecitytx.gov/m/newsflash/Home/Detail/6318",
-     "source_title": "City of League City, News Flash, Proposition on November Ballot Regarding City's Use of Flock Cameras",
-     "source_type": "primary_official",
-     "fetched": "2026-08-20"
-    },
-    {
-     "id": "tx-2026-0074-c2",
-     "text": "The city states when the council acted and what it called.",
-     "verbatim_quote": "At their meeting on Tuesday, August 11, the League City Council voted to call for a referendum to place a proposition on the November 3, 2026, ballot regarding the City's use of Flock Safety license plate reader (LPR) cameras.",
-     "source_url": "https://www.leaguecitytx.gov/m/newsflash/Home/Detail/6318",
-     "source_title": "City of League City, News Flash, posted August 12th, 2026",
-     "source_type": "primary_official",
-     "fetched": "2026-08-20"
-    }
-   ],
-   "last_verified": "2026-08-20",
-   "confidence": "high",
-   "notes_for_editor": "The city's own posting spells nonbinding as one word and that spelling is carried verbatim. Reporting on this vote gives a council count that the city's posting does not state, so no count is published here.",
-   "history": [
-    {
-     "date": "2026-08-20",
-     "note": "Admitted. The city's own posting carries the ballot language and the date of the council's action. The proposition tells a voter in its first clause that the result is a statement of preference rather than an instruction."
     }
    ]
   },
