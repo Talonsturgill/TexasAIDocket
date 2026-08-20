@@ -5003,7 +5003,7 @@ def build(out: Path, today: str) -> dict:
         # substitution ever reaches inside a script or a style block, the hash it invalidates
         # is caught on this line rather than by a reader whose page quietly stopped working.
         if path.endswith(".html"):
-            broken.extend(f"{path}: {v}" for v in csp.audit(stamped))
+            broken.extend(f"{path}: {v}" for v in csp.audit(stamped, SITE_URL))
         (out / path).write_text(stamped, encoding="utf-8")
 
     # A url with no honest date carries no `lastmod`. The element is optional and an absent one
