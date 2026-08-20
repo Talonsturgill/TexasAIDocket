@@ -220,6 +220,94 @@ check("...and a request to any other host is still caught",
       external.some((u) => u.startsWith("https://analytics.example.com/")),
       external.join(", ") || "nothing was caught, so the exclusion is too wide");
 
+/* ------------------------------------------------------------------ where the answer lands
+ *
+ * AN ANSWER NOBODY CAN SEE IS NOT AN ANSWER, and this shipped that way. The live list used to
+ * sit BELOW the composer with the starter chips. It has no height until a reader types, so it
+ * grew downward out of a field that was already near the bottom of the screen, and measured on
+ * the built page three matching rows landed 427px past the fold on a 390 wide phone and 248px
+ * past it on a 1280 desktop. NONE of the list was on screen in either case. Every assertion in
+ * this file passed the whole time, because they all read the DOM and none of them asked where
+ * on the glass it was.
+ *
+ * So this section is about geometry and nothing else. Two things a reader needs, at sizes that
+ * disagree about whether there is room for both:
+ *
+ *   THE FIRST ROW IS ON SCREEN. It is the best match, so it is the one that has to be seen.
+ *   THE FIELD IS ON SCREEN. A reader has to be able to keep typing.
+ *
+ * On a screen with room the field also must not MOVE, because the correction runs on every
+ * keystroke and a field that drifts and snaps back per character is worse than one that
+ * scrolls once. On a 320x568 phone the list is taller than the room above the field, so those
+ * two cannot both hold, and the clamp is asserted to give way to the list rather than the
+ * other way round.
+ */
+console.log("\n  where the answer lands, at seven sizes");
+for (const vp of [{ width: 320, height: 568 }, { width: 360, height: 640 },
+                  { width: 390, height: 780 }, { width: 414, height: 896 },
+                  { width: 768, height: 1024 }, { width: 1280, height: 800 },
+                  { width: 1680, height: 1050 }]) {
+  const p2 = await browser.newPage({ viewport: vp });
+  await p2.route("**://challenges.cloudflare.com/**", (r) => r.abort());
+  await p2.goto("file://" + path.join(SITE, "index.html"));
+  await p2.waitForTimeout(300);
+  /* THE FORM INTO VIEW, NOT THE BOX. Scrolling `#ask` into view satisfies the browser once
+     any part of the box is showing, which on a short screen leaves the FIELD itself hanging
+     below the fold. The anchoring then correctly pulls it fully on screen, and this test read
+     that necessary correction as drift and failed at 14 to 16px, intermittently, depending on
+     where the scroll happened to land. The seat has to be measured from a state where the
+     field is already fully visible or it is not a seat. */
+  await p2.locator("#ask form").scrollIntoViewIfNeeded();
+  await p2.waitForTimeout(200);
+  const seat = await p2.evaluate(() =>
+    Math.round(document.querySelector("#ask form").getBoundingClientRect().top));
+  // Typed a character at a time, because the correction runs per keystroke and a single
+  // fill() would exercise it once instead of seven times.
+  await p2.click("#askq");
+  for (const ch of "comment") { await p2.keyboard.type(ch); await p2.waitForTimeout(45); }
+  await p2.waitForTimeout(250);
+  const g = await p2.evaluate((seat) => {
+    const f = document.querySelector("#ask form").getBoundingClientRect();
+    const a = document.querySelector("#ask .answer");
+    const ar = a && !a.hidden ? a.getBoundingClientRect() : null;
+    const li = a && a.querySelector("li") ? a.querySelector("li").getBoundingClientRect() : null;
+    return {
+      rows: a ? a.querySelectorAll("li").length : 0,
+      firstRowSeen: li ? li.top >= 0 && li.bottom <= innerHeight : false,
+      aboveField: ar ? ar.bottom <= f.top + 2 : false,
+      fieldSeen: f.top >= 0 && f.bottom <= innerHeight,
+      drift: Math.abs(Math.round(f.top) - seat),
+      /* ROOMY IS MEASURED, NOT GUESSED. A viewport-height constant cannot express it: the
+         list is TALLER on a narrow screen because its rows wrap, so 1280x800 has room where
+         390x780 does not. The honest predicate is whether the list actually fits in the
+         space above where the field was sitting, which is exactly the condition under which
+         the clamp does not bind and the field must therefore not move. */
+      roomy: ar ? ar.height + 8 <= seat : false,
+    };
+  }, seat);
+  const at = `${vp.width}x${vp.height}`;
+  check(`${at}: the list answered`, g.rows > 0, JSON.stringify(g));
+  check(`${at}: its first row is on screen`, g.firstRowSeen, JSON.stringify(g));
+  check(`${at}: it sits above the field, not below it`, g.aboveField, JSON.stringify(g));
+  check(`${at}: the field is still on screen`, g.fieldSeen, JSON.stringify(g));
+  if (g.roomy) {
+    /* NOT ZERO, AND THE NUMBER IS MEASURED RATHER THAN CHOSEN. This page has scroll-linked
+       layout, so the scroll that compensates for the list slightly changes the thing it is
+       compensating for, leaving a settle of 7px when the list first appears and up to 16px
+       once it has resized twice. That is below the threshold of noticing and chasing it to
+       zero would mean fighting the atmosphere layer for no reader-visible gain.
+       24px is that measured residual with room, and it is still an order of magnitude under
+       the defect this guards: the list rendered 248px past the fold on this desktop and 427px
+       past it on a 390 phone. A regression to that shape fails this by 10x. */
+    check(`${at}: and the field did not jump while typing`, g.drift <= 24, JSON.stringify(g));
+  } else {
+    // Where they cannot both fit, the field is the one that must survive. Asserted rather
+    // than assumed, because the first version of the clamp let it fall off a 320x568 screen.
+    check(`${at}: the list gave way rather than the field`, g.fieldSeen, JSON.stringify(g));
+  }
+  await p2.close();
+}
+
 await browser.close();
 console.log(failures ? `\nask_engine: ${failures} FAILED` : "\nask_engine: all passed");
 process.exit(failures ? 1 : 0);

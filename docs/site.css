@@ -960,8 +960,8 @@ caption { caption-side:bottom; text-align:left; padding-top:.75rem; font-size:va
   background:transparent; color:var(--ink-mute);
   border:var(--hair) solid var(--rule-strong); border-radius:999px; cursor:pointer; }
 .askbox .chips button:hover { color:var(--ink-bright); border-color:var(--accent); }
-.askbox .answer { margin-top:1.25rem; padding-top:1.1rem;
-  border-top:var(--hair) solid var(--rule); }
+.askbox .answer { margin-bottom:1.25rem; padding-bottom:1.1rem;
+  border-bottom:var(--hair) solid var(--rule); }
 .askbox .answer h3 { margin:0 0 .6rem; font-size:var(--s1); }
 .askbox .answer ul { list-style:none; padding:0; margin:.5rem 0 0; display:grid; gap:.7rem; }
 .askbox .answer .meta { font-size:var(--s-1); color:var(--ink-mute);

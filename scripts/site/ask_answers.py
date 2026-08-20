@@ -480,6 +480,7 @@ def engine_js() -> str:
   var BASE = box.getAttribute("data-base") || "";
   var input = box.querySelector("input");
   var out = box.querySelector(".answer");
+  var form = box.querySelector("form");
 
   function run() {
     /* STAND DOWN WHILE A WRITTEN ANSWER IS ON SCREEN. Pressing enter hands the question to the
@@ -492,13 +493,63 @@ def engine_js() -> str:
     // AN EMPTY FIELD IS NOT A FAILED QUESTION. `best("")` is null and `answer(null)` heads
     // "No answer for that yet.", so backspacing to empty, or pressing Start over, told the
     // reader the box had failed at the moment they had asked nothing at all.
-    if (!input.value.trim()) { out.hidden = true; out.innerHTML = ""; return; }
+    if (!input.value.trim()) {
+      return anchored(function () { out.hidden = true; out.innerHTML = ""; });
+    }
     var a = answer(best(input.value));
-    out.innerHTML = "<h3>" + esc(a.head) + "</h3>" + a.body;
-    out.hidden = false;
+    anchored(function () {
+      out.innerHTML = "<h3>" + esc(a.head) + "</h3>" + a.body;
+      out.hidden = false;
+    });
+  }
+
+  /* THE FIELD STAYS PUT WHILE THE LIST GROWS ABOVE IT.
+     The list is above the composer now, so every row it gains pushes the composer down the
+     document by exactly that much. Left alone, a reader typing a third character watches the
+     box they are typing into slide away from their cursor, on every keystroke.
+     So the composer's screen position is read before the change and restored after it by
+     scrolling the page by the difference. The field does not move and the list opens upward.
+
+     MEASURED EITHER SIDE OF THE WRITE, never cached. A rect is only true at the instant it is
+     taken and the whole point here is that the layout is about to change.
+
+     `behavior: "instant"` IS LOAD BEARING AND "auto" WOULD BE WRONG. This site sets
+     `scroll-behavior: smooth` on `html`, and "auto" means "use the CSS value", so the
+     correction would animate over about half a second. On a keystroke that reads as the field
+     drifting away and gliding back, once per character, which is worse than not correcting at
+     all. "instant" is the one value that overrides the sheet. */
+  function anchored(write) {
+    var seat = form.getBoundingClientRect().top;
+    write();
+    var f = form.getBoundingClientRect();
+    var d = f.top - seat;                    // the scroll that puts the field back on its seat
+
+    /* THREE THINGS WANT THE SAME PIXELS, AND ON A SHORT SCREEN THEY CANNOT ALL HAVE THEM.
+       Holding the field still pushes the list up by however much it grew. On a 320x568 phone
+       the list is taller than the room above the field, so a perfect hold puts the first row,
+       which is the best match, off the top of the glass.
+       The order of precedence, tightest last:
+         1. put the list's top on screen, since the first row is the one worth seeing
+         2. never let the field leave the bottom of the glass, because it is the control the
+            reader is typing into and losing it mid-question is the worst outcome here
+         3. never push the field off the top either
+       On any screen with room for both, none of these bind and the field does not move at
+       all, which is what matters most since this runs on every keystroke. */
+    var M = 8;
+    if (out && !out.hidden) {
+      d = Math.min(d, out.getBoundingClientRect().top - M);
+    }
+    d = Math.max(d, f.bottom - innerHeight + M);
+    d = Math.min(d, f.top);
+
+    /* `behavior: "instant"` IS LOAD BEARING AND "auto" WOULD BE WRONG. This site sets
+       `scroll-behavior: smooth` on `html`, and "auto" means "use the CSS value", so the
+       correction would animate for about half a second. Per keystroke that reads as the field
+       drifting away and gliding back. "instant" is the one value that overrides the sheet. */
+    if (Math.abs(d) >= 1) scrollBy({ top: d, behavior: "instant" });
   }
   input.addEventListener("input", run);
-  box.querySelector("form").addEventListener("submit", function (e) { e.preventDefault(); run(); });
+  form.addEventListener("submit", function (e) { e.preventDefault(); run(); });
   box.querySelectorAll("[data-ask]").forEach(function (b) {
     b.addEventListener("click", function () { input.value = b.dataset.ask; run(); });
   });

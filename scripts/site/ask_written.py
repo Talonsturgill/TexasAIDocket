@@ -407,7 +407,10 @@ _CLIENT = r"""
     var delta = r.bottom - (innerHeight - GAP - safe);
     if (Math.abs(delta) < 2) return;
     parking++;
-    scrollBy({ top: delta, behavior: calm ? "auto" : "smooth" });
+    /* "auto" MEANS "USE THE STYLESHEET", NOT "JUMP", and this sheet sets
+       `scroll-behavior: smooth` on `html`. So the reduced motion branch was asking for
+       exactly the animation it exists to avoid. "instant" is the value that overrides it. */
+    scrollBy({ top: delta, behavior: calm ? "instant" : "smooth" });
     /* The flag is dropped a beat later so the smooth scroll's own events are not read as the
        reader taking over, which would switch following off on the very first press. */
     setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
