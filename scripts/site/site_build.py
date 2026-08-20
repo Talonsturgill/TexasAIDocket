@@ -57,6 +57,7 @@ import frontchip                                                   # noqa: E402
 import sky                                                         # noqa: E402
 import texas_map                                                   # noqa: E402
 import waterwatch_page                                             # noqa: E402
+import watch_page as watch_stage                                  # noqa: E402
 import grain                                                       # noqa: E402
 import mark                                                        # noqa: E402
 import csp                                                        # noqa: E402
@@ -385,6 +386,17 @@ def rel(depth: int) -> str:
 
 
 # --------------------------------------------------------------------------- shell
+def _body_class(home_page: bool, extra: str) -> str:
+    """The body's classes, from a bool that predates the string and a string that supersedes it.
+
+    `home_page` shipped first and marks exactly one page. The watch stage needs a second, so the
+    bool is folded in here rather than left as a parallel mechanism, which is how a page ends up
+    able to be both and neither.
+    """
+    names = (["home"] if home_page else []) + ([extra] if extra else [])
+    return f' class="{" ".join(names)}"' if names else ""
+
+
 def _verification() -> str:
     """The ownership tags, and nothing when there is nothing to say."""
     out = ""
@@ -435,7 +447,7 @@ def _css_version() -> str:
 
 def page(*, title: str, desc: str, body: str, depth: int, active: str,
          today: str, canonical: str, extra_ld: list | None = None,
-         home_page: bool = False, og_image: str = "og.png",
+         home_page: bool = False, body_class: str = "", og_image: str = "og.png",
          og_alt: str | None = None, revised: bool = True,
          og_type: str = "website", extra_css: str = "") -> str:
     p = rel(depth)
@@ -511,7 +523,7 @@ def page(*, title: str, desc: str, body: str, depth: int, active: str,
 <link rel="alternate" type="application/atom+xml" title="{e(SITE_NAME)}" href="{p}atom.xml">
 <script type="application/ld+json">{json.dumps(ld, separators=(",", ":"))}</script>
 </head>
-<body{' class="home"' if home_page else ''}>
+<body{_body_class(home_page, body_class)}>
 <a class="skip" href="#main">Skip to the record</a>
 {sky.sky_markup()}
 <header class="masthead">
@@ -3636,6 +3648,13 @@ _SCAN_JS = """
           // thing to show: somebody asked about this business recently and here is what came
           // back. The link is relative, and this form is served at /scan/.
           if (res.body && res.body.token) {
+            // THE WATCH PAGE SHOWS WHOSE SCAN IT IS, and this is where it learns that. The
+            // token is the only thing in the link, deliberately, so the subject travels in
+            // sessionStorage instead: same origin, never in the address bar, never in a
+            // referrer, gone when the tab closes. A shared link therefore carries no business
+            // name, which is the property the token was chosen for in the first place, and the
+            // watch page simply says less when it opens without one.
+            try { sessionStorage.setItem('wsubject', val('website') || ''); } catch (e) {}
             location.href = 'watch/?t=' + encodeURIComponent(res.body.token);
             return;
           }
@@ -3796,163 +3815,18 @@ SCAN_RESULT_URL = f"{SCAN_WORKER}/result"
 def watch_page(today: str) -> str:
     """Watching your own scan run, which is the one page here that DOES phone somewhere.
 
-    THIS PAGE MAKES REQUESTS AND SAYS SO. Everything else on this site is static and the ask
-    box goes out of its way to prove it phones nobody. This one cannot: a live view of a
-    running job is a request, repeated. So the page states that in its own copy, above the
-    feed, before anything is sent, which is the same rule the ask box follows about its
-    buttons. Never weaken that sentence without changing what the code does.
+    THE STAGE LIVES IN `scripts/site/watch_page.py`, and it is the only page on this site whose
+    register is different. The reasoning, the promises it still keeps, and its own self-test are
+    all in that module's docstring. Owner's call, 2026-08-20, after watching a run and finding
+    the honest version of it genuinely dull to sit through.
 
-    IT ASKS FOR NOTHING BUT THE TOKEN. The token is in the link the requester was handed, it
-    is a hundred and twenty eight bits of gen_random_bytes, and it is the whole credential.
-    There is no account, no cookie and no identifier of any other kind on this page, so a
-    shared link shows one scan and nothing else reachable.
-
-    IT STOPS. Polling forever against somebody else's bill is rude, and a job that has gone
-    quiet is a thing to say plainly rather than to keep asking about. The interval backs off
-    and the page gives up with an honest line and the link to try again.
-
-    NO NUMERALS IN THE SHELL. Everything with a figure in it arrives at read time from the
-    feed, so the built page states none and `numeral_lint` has nothing to authorise. The
-    intervals live in the script, which the gate does not read as reader copy.
+    `body_html` takes the result endpoint rather than reading it, so the page and the policy in
+    `csp.py` cannot end up pointing at two different workers.
     """
-    body = f"""
-<section class="watch" id="watch">
-  <h1>Your scan</h1>
-  <p class="sub">This page asks the scanner how your run is going, and keeps asking while it
-  runs. That is the one thing on this site that sends anything. It sends your token and
-  nothing else.</p>
-
-  <p class="watchstate" id="wstate" data-idle="Waiting for the token in your link.">Waiting
-  for the token in your link.</p>
-
-  <ol class="chain watchchain" id="wchain">
-    <li data-phase="footprint"><b>Footprint</b><span>your pages, cited</span></li>
-    <li data-phase="industry"><b>Industry</b><span>what others already tried</span></li>
-    <li data-phase="feasibility"><b>Feasibility</b><span>the lowest honest rung</span></li>
-    <li data-phase="critic"><b>Critic</b><span>defaults to rejecting it</span></li>
-  </ol>
-
-  <ol class="wfeed" id="wfeed"></ol>
-
-  <p class="watchdone" id="wdone" hidden></p>
-  <p class="sub" id="whelp" hidden>The report goes to the address you gave. You can close this
-  page and it will still arrive.</p>
-</section>
-<script>
-(function () {{
-  var END = {SCAN_RESULT_URL!r};
-  var PHASES = ["footprint", "industry", "feasibility", "critic"];
-  var state = document.getElementById("wstate");
-  var feed  = document.getElementById("wfeed");
-  var chain = document.getElementById("wchain");
-  var done  = document.getElementById("wdone");
-  var help  = document.getElementById("whelp");
-  var token = new URLSearchParams(location.search).get("t") || "";
-  var seen = 0, tries = 0, wait = 3000, atPhase = "";
-
-  function say(t) {{ state.textContent = t; }}
-
-  // The feed is APPENDED, never rebuilt, so a line a reader already read cannot move or
-  // vanish under them when the next poll returns the same rows plus one.
-  function draw(rows, ended) {{
-    for (var i = seen; i < rows.length; i++) {{
-      var r = rows[i] || {{}};
-      var ph = String(r.phase || "").toLowerCase();
-      var turn = ph !== "" && ph !== atPhase;
-      var li = document.createElement("li");
-      if (turn) {{ li.className = "wturn"; atPhase = ph; }}
-      // THE STATION IS NAMED WHERE IT CHANGES, not on every line, so the feed reads as runs
-      // of work under a station rather than as the same word repeated down the page.
-      var g = document.createElement("span");
-      g.className = "wphase";
-      g.textContent = turn ? ph : "";
-      var n = document.createElement("span");
-      n.className = "wnote";
-      n.textContent = String(r.note || r.phase || "");
-      li.appendChild(g);
-      li.appendChild(n);
-      feed.appendChild(li);
-    }}
-    seen = rows.length;
-    // THE CHAIN ONLY EVER MOVES FORWARD, and it has to, because this reads ONE ordered feed
-    // that TWO parallel lanes write into. The routine says so itself on the way in: one lane
-    // reads the requester's own pages while the other reads published results, and they never
-    // share state. So their lines interleave, and taking the phase of the LAST line made the
-    // stations oscillate: industry lights, the next footprint line lands, industry goes dark
-    // again. A progress indicator that moves backwards is telling a reader something untrue
-    // about work that has already happened.
-    //
-    // The furthest station any line has reached is the honest answer, and it is also the one
-    // that survives a line arriving late or out of order.
-    var at = -1;
-    for (var k = 0; k < rows.length; k++) {{
-      var ph = String((rows[k] || {{}}).phase || "").toLowerCase();
-      var idx = PHASES.indexOf(ph);
-      if (idx > at) at = idx;
-    }}
-    var items = chain.children;
-    for (var j = 0; j < items.length; j++) {{
-      // A FINISHED RUN LEAVES NOTHING LIVE. The last station reported is the one the run
-      // ended on, and leaving it pulsing says work is still happening when it is not, which
-      // is the one thing this page cannot afford to say.
-      items[j].dataset.state = at < 0 ? ""
-        : (j < at ? "done" : (j === at ? (ended ? "done" : "live") : ""));
-    }}
-  }}
-
-  function stop(msg, showHelp) {{
-    say(msg);
-    if (showHelp) help.hidden = false;
-  }}
-
-  function poll() {{
-    tries++;
-    fetch(END, {{
-      method: "POST",
-      headers: {{ "content-type": "application/json" }},
-      body: JSON.stringify({{ token: token }})
-    }}).then(function (r) {{
-      return r.json().catch(function () {{ return {{}}; }}).then(function (b) {{
-        return {{ ok: r.ok, body: b }};
-      }});
-    }}).then(function (res) {{
-      if (!res.ok) {{
-        stop(res.body && res.body.error === "not found"
-          ? "That link does not match a scan. Check the address you were given."
-          : "The scanner could not be reached just now.", true);
-        return;
-      }}
-      var b = res.body || {{}};
-      var ended = b.status === "done" || b.status === "degraded" || b.status === "failed";
-      draw(Array.isArray(b.progress) ? b.progress : [], ended);
-      if (b.status === "done" || b.status === "degraded") {{
-        say("Finished.");
-        if (b.headline) {{ done.textContent = String(b.headline); done.hidden = false; }}
-        help.hidden = false;
-        return;
-      }}
-      if (b.status === "failed") {{ stop("This run stopped before it finished.", true); return; }}
-      say(b.status === "queued" ? "Queued." : "Running.");
-      // Backing off, and giving up rather than asking forever.
-      if (tries > 200) {{ stop("Still going, longer than this page waits.", true); return; }}
-      if (tries > 20) {{ wait = 10000; }}
-      setTimeout(poll, wait);
-    }}).catch(function () {{
-      stop("The scanner could not be reached just now.", true);
-    }});
-  }}
-
-  if (!token) {{ stop("This page needs the link you were given when the scan started.", false); }}
-  else {{ say("Asking."); poll(); }}
-}})();
-</script>
-"""
-    # depth TWO: this page is at scan/watch/, so every relative asset needs two hops. At depth
-    # one it linked ../site.css, which 404s from here, and the page rendered as bare markup.
     return page(title=f"Your scan · {SITE_NAME}", depth=2, active="",
                 desc="Watch a bottleneck scan run, by the token in your link.",
-                body=body, today=today, canonical="scan/watch/")
-
+                body=watch_stage.body_html(SCAN_RESULT_URL), today=today,
+                canonical="scan/watch/", body_class="stage")
 
 def services_page(items: list, today: str) -> str:
     """The commercial wing, argued from the record rather than from adjectives.
