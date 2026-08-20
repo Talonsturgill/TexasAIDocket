@@ -129,17 +129,17 @@ so this is a proposal.
 | gate | status | detail |
 |---|---|---|
 | claims         | PASS   | 16 verified claim(s) |
-| render         | PASS   | 8 slide(s) |
+| render         | PASS   | 7 slide(s) |
 | qa             | WARN   | 0 fail(s), 2 warn(s) |
-| aggregates     | PASS   | 4 declared and re-derived |
-| assembly       | PASS   | 8 slide(s), 3.08 MB, vector |
+| aggregates     | PASS   | 3 declared and re-derived |
+| assembly       | PASS   | 7 slide(s), 2.72 MB, vector |
 | score          | ABSENT | score.json not written yet |
-| dossiers       | PASS   | 38,447 chars planned |
+| dossiers       | PASS   | 34,896 chars planned |
 | caption        | PASS   | 136 words |
-| craft floor    | WARN   | 8 frame(s), median 878, floor 158, 1 quiet |
-| plan vs render | WARN   | 7 of 52 acceptance item(s) checkable |
-| texan          | WARN   | places Galveston County / body yes / deadline yes / next step NO |
-| absences       | WARN   | 1 of 8 scoped to a named document, 7 unscoped |
+| craft floor    | WARN   | 7 frame(s), median 1033, floor 186, 2 quiet |
+| plan vs render | WARN   | 6 of 44 acceptance item(s) checkable |
+| texan          | WARN   | places NONE / body yes / deadline yes / next step yes |
+| absences       | WARN   | 1 of 5 scoped to a named document, 4 unscoped |
 | completion     | ABSENT | not scored yet |
 <!-- gate-status:end -->
 
@@ -260,3 +260,21 @@ Then this run did it again, reassembling during round two.
 **The fix is not a gate, it is an order of operations.** Freeze `out/<date>/` before the panel is
 spawned and do not touch it until every judge has returned. A judge reading a directory that is
 being written is not a second reading of the deck, it is a race. This is recorded as an instinct.
+
+## The variety ledger repeated a fault its own predecessor documents
+
+Round three's reader judge found the 2026-08-20 artwork entry written against the eight slide plan
+rather than against the renders. It recorded `slides: 8`, a technique that never shipped (the three
+county polygons), the red on a slide number that does not exist, an eight move camera line, and a
+`bespoke_closest_pair` naming a file that was deleted. The county frame that was actually cut was
+recorded as shipped.
+
+**The 2026-08-19 entry documents this exact fault at length, in its own `renumbered_after_the_cut`
+field, and states the reason it matters.** A technique recorded there that never shipped blocks
+tomorrow from a drawing nobody made, and leaves the drawing that ran unrecorded. The very next run
+reproduced it.
+
+Twice is a pattern and the cause is the same both times. **The entry is written from the plan while
+the deck is still moving.** The fix is the same one this run applied to `copy.json` after the second
+panel: write it from `render/render_report.json` after the last render, never from the dossier. The
+entry has been rewritten from the renders and the proposal is below.
