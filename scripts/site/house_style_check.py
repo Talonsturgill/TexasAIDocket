@@ -55,8 +55,25 @@ CODE = re.compile(r"<(script|style)\b.*?</\1>", re.DOTALL | re.IGNORECASE)
 # rule exists so the record does not speak as "we"; it was never meant to stop the page quoting
 # the reader back to themselves. Marked explicitly at the source rather than inferred, so the
 # exemption is a decision somebody made and can be found.
-READER_VOICE = re.compile(r'<([a-z]+)\b[^>]*\bdata-voice="reader"[^>]*>.*?</\1>',
+# `[a-z][a-z0-9]*` for the same reason the house-voice pattern below needs it: `[a-z]+` matches
+# only the "h" of <h2> and then fails its own \b against the digit, so the exemption never fires
+# on a heading. It went unnoticed while both exemptions were used on <div> and <span> only.
+READER_VOICE = re.compile(r'<([a-z][a-z0-9]*)\b[^>]*\bdata-voice="reader"[^>]*>.*?</\1>',
                           re.DOTALL | re.IGNORECASE)
+# THE HOUSE NAMING ITS OWN WORK, which is the one place "our" is not the record editorialising.
+# The no-first-person rule is about CLAIMS: a docket item that says "we verified" has put an
+# author between the reader and the source, and that is what it exists to stop. A shelf label
+# over this site's own article and its own video makes no claim at all, it says whose shelf it
+# is, and the owner asked for it in those words (2026-08-19).
+#
+# Narrow on purpose, and marked at the source rather than inferred, so it is a decision somebody
+# made and can be found, exactly like the reader-voice exemption above. It does not license
+# first person in a sentence that asserts anything.
+# `[a-z0-9]+` and not `[a-z]+`: on <h2> the latter matches "h" and then fails its own \b
+# against the "2", so the exemption silently never fired on any heading, which is the only
+# place it is used.
+HOUSE_VOICE = re.compile(r'<([a-z][a-z0-9]*)\b[^>]*\bdata-voice="house"[^>]*>.*?</\1>',
+                         re.DOTALL | re.IGNORECASE)
 TAG = re.compile(r"<[^>]+>")
 
 # A DATE CHIP, AND THE ONE EXEMPTION IT HAS TO EARN.
@@ -153,7 +170,7 @@ def _stripped(page_html: str) -> str:
     """The shared work: main, minus quotes, code, SVG, reader voice and verified date chips."""
     m = MAIN.search(page_html)
     body = m.group(1) if m else page_html
-    body = READER_VOICE.sub(" ", QUOTED.sub(" ", CODE.sub(" ", SVG.sub(" ", body))))
+    body = HOUSE_VOICE.sub(" ", READER_VOICE.sub(" ", QUOTED.sub(" ", CODE.sub(" ", SVG.sub(" ", body)))))
     return _time_chips(body)[0]
 
 
