@@ -23,7 +23,7 @@
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <meta name="theme-color" content="#00205B">
-<link rel="stylesheet" href="../site.css?v=08891e95c9">
+<link rel="stylesheet" href="../site.css?v=77c92213b3">
 <link rel="preload" href="../fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="alternate" type="application/atom+xml" title="Texas AI Docket" href="../atom.xml">
 <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebSite","@id":"https://texasaidocket.com/#website","name":"Texas AI Docket","url":"https://texasaidocket.com","inLanguage":"en-US","publisher":{"@id":"https://texasaidocket.com/#org"}},{"@context":"https://schema.org","@type":"Organization","@id":"https://texasaidocket.com/#org","name":"Texas AI Docket","url":"https://texasaidocket.com/","description":"A public, fact-checked record of decisions about artificial intelligence in Texas.","sameAs":["https://www.linkedin.com/company/texasaidocket/","https://www.facebook.com/Texasaidocket"]},{"@context":"https://schema.org","@type":"Dataset","@id":"https://texasaidocket.com/record/#dataset","name":"Texas AI Docket, the tracked record","description":"Every tracked decision about artificial intelligence in Texas, with the body that decides, the dates that matter, whether the public has a way in, and a fetched source behind every fact.","url":"https://texasaidocket.com/record/","license":"https://creativecommons.org/licenses/by/4.0/","isAccessibleForFree":true,"inLanguage":"en-US","creator":{"@id":"https://texasaidocket.com/#org"},"publisher":{"@id":"https://texasaidocket.com/#org"},"dateModified":"2026-08-20","keywords":["Texas","artificial intelligence","data centers","ERCOT","public records","state policy"],"spatialCoverage":{"@type":"State","name":"Texas"},"distribution":[{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://texasaidocket.com/docket.json"}],"variableMeasured":[{"@type":"PropertyValue","name":"status","description":"Whether the decision is pending, decided or withdrawn."},{"@type":"PropertyValue","name":"public_access","description":"Whether a member of the public has a dated way to take part."},{"@type":"PropertyValue","name":"claims","description":"Each fact with its verbatim quote and the source it was fetched from."}],"temporalCoverage":"2021-06-08/2027-02-18"},{"@context":"https://schema.org","@type":"CollectionPage","name":"The record","description":"Every tracked decision about artificial intelligence in Texas.","url":"https://texasaidocket.com/record/","isPartOf":{"@id":"https://texasaidocket.com/#org"},"mainEntity":{"@type":"ItemList","numberOfItems":61}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Texas AI Docket","item":"https://texasaidocket.com/"},{"@type":"ListItem","position":2,"name":"The record","item":"https://texasaidocket.com/record/"}]}]</script>
@@ -61,6 +61,16 @@
          aria-live polite because sentences arrive one at a time after the press, and a reader
          on a screen reader would otherwise be told nothing was happening at all. -->
     <div class="askthread" id="askthread" hidden aria-live="polite" aria-atomic="false"></div>
+    <!-- THE LIVE LIST IS ABOVE THE FIELD TOO, and it used to sit below with the starters.
+         Below was not a small inconsistency, it was the typed lane not working at all. The
+         list has no height until a reader types, so it grew DOWNWARD out of a field already
+         near the bottom of the screen. Measured on the built page: three matching rows landed
+         427px past the fold on a 390 wide phone and 248px past it on a 1280 desktop, with
+         NONE of the list on screen in either case. A reader typed a question and watched
+         nothing happen.
+         Above the field it grows the way the thread grows, so the box has one place where
+         answers appear rather than two facing opposite directions. -->
+    <div class="answer" hidden></div>
     <form class="composer" role="search">
       <label class="vh" for="askq">Ask the record a question</label>
       <input id="askq" type="search" autocomplete="off"
@@ -69,7 +79,6 @@
     </form>
     <p class="asknote">Model in training. <button type="button" class="asklink" id="askfbopen">Send feedback</button></p>
     <div class="chips" data-voice="reader"><button type="button" data-ask="What can I still comment on?">What can I still comment on?</button><button type="button" data-ask="What is happening in Abilene?">What is happening in Abilene?</button><button type="button" data-ask="What is in the record about data centers?">What is in the record about data centers?</button></div>
-    <div class="answer" hidden></div>
     <!-- Turnstile renders here, and only after the field is focused. A reader who never asks
          anything never fetches Cloudflare's script, which is what keeps the note above
          literally true rather than nearly true. -->
@@ -358,6 +367,7 @@ window.__ASK_CATALOGUE__=[{"q":"What can I still comment on?","route":{"view":"o
   var BASE = box.getAttribute("data-base") || "";
   var input = box.querySelector("input");
   var out = box.querySelector(".answer");
+  var form = box.querySelector("form");
 
   function run() {
     /* STAND DOWN WHILE A WRITTEN ANSWER IS ON SCREEN. Pressing enter hands the question to the
@@ -370,13 +380,63 @@ window.__ASK_CATALOGUE__=[{"q":"What can I still comment on?","route":{"view":"o
     // AN EMPTY FIELD IS NOT A FAILED QUESTION. `best("")` is null and `answer(null)` heads
     // "No answer for that yet.", so backspacing to empty, or pressing Start over, told the
     // reader the box had failed at the moment they had asked nothing at all.
-    if (!input.value.trim()) { out.hidden = true; out.innerHTML = ""; return; }
+    if (!input.value.trim()) {
+      return anchored(function () { out.hidden = true; out.innerHTML = ""; });
+    }
     var a = answer(best(input.value));
-    out.innerHTML = "<h3>" + esc(a.head) + "</h3>" + a.body;
-    out.hidden = false;
+    anchored(function () {
+      out.innerHTML = "<h3>" + esc(a.head) + "</h3>" + a.body;
+      out.hidden = false;
+    });
+  }
+
+  /* THE FIELD STAYS PUT WHILE THE LIST GROWS ABOVE IT.
+     The list is above the composer now, so every row it gains pushes the composer down the
+     document by exactly that much. Left alone, a reader typing a third character watches the
+     box they are typing into slide away from their cursor, on every keystroke.
+     So the composer's screen position is read before the change and restored after it by
+     scrolling the page by the difference. The field does not move and the list opens upward.
+
+     MEASURED EITHER SIDE OF THE WRITE, never cached. A rect is only true at the instant it is
+     taken and the whole point here is that the layout is about to change.
+
+     `behavior: "instant"` IS LOAD BEARING AND "auto" WOULD BE WRONG. This site sets
+     `scroll-behavior: smooth` on `html`, and "auto" means "use the CSS value", so the
+     correction would animate over about half a second. On a keystroke that reads as the field
+     drifting away and gliding back, once per character, which is worse than not correcting at
+     all. "instant" is the one value that overrides the sheet. */
+  function anchored(write) {
+    var seat = form.getBoundingClientRect().top;
+    write();
+    var f = form.getBoundingClientRect();
+    var d = f.top - seat;                    // the scroll that puts the field back on its seat
+
+    /* THREE THINGS WANT THE SAME PIXELS, AND ON A SHORT SCREEN THEY CANNOT ALL HAVE THEM.
+       Holding the field still pushes the list up by however much it grew. On a 320x568 phone
+       the list is taller than the room above the field, so a perfect hold puts the first row,
+       which is the best match, off the top of the glass.
+       The order of precedence, tightest last:
+         1. put the list's top on screen, since the first row is the one worth seeing
+         2. never let the field leave the bottom of the glass, because it is the control the
+            reader is typing into and losing it mid-question is the worst outcome here
+         3. never push the field off the top either
+       On any screen with room for both, none of these bind and the field does not move at
+       all, which is what matters most since this runs on every keystroke. */
+    var M = 8;
+    if (out && !out.hidden) {
+      d = Math.min(d, out.getBoundingClientRect().top - M);
+    }
+    d = Math.max(d, f.bottom - innerHeight + M);
+    d = Math.min(d, f.top);
+
+    /* `behavior: "instant"` IS LOAD BEARING AND "auto" WOULD BE WRONG. This site sets
+       `scroll-behavior: smooth` on `html`, and "auto" means "use the CSS value", so the
+       correction would animate for about half a second. Per keystroke that reads as the field
+       drifting away and gliding back. "instant" is the one value that overrides the sheet. */
+    if (Math.abs(d) >= 1) scrollBy({ top: d, behavior: "instant" });
   }
   input.addEventListener("input", run);
-  box.querySelector("form").addEventListener("submit", function (e) { e.preventDefault(); run(); });
+  form.addEventListener("submit", function (e) { e.preventDefault(); run(); });
   box.querySelectorAll("[data-ask]").forEach(function (b) {
     b.addEventListener("click", function () { input.value = b.dataset.ask; run(); });
   });
@@ -625,7 +685,10 @@ window.__ASK_CATALOGUE__=[{"q":"What can I still comment on?","route":{"view":"o
     var delta = r.bottom - (innerHeight - GAP - safe);
     if (Math.abs(delta) < 2) return;
     parking++;
-    scrollBy({ top: delta, behavior: calm ? "auto" : "smooth" });
+    /* "auto" MEANS "USE THE STYLESHEET", NOT "JUMP", and this sheet sets
+       `scroll-behavior: smooth` on `html`. So the reduced motion branch was asking for
+       exactly the animation it exists to avoid. "instant" is the value that overrides it. */
+    scrollBy({ top: delta, behavior: calm ? "instant" : "smooth" });
     /* The flag is dropped a beat later so the smooth scroll's own events are not read as the
        reader taking over, which would switch following off on the very first press. */
     setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);

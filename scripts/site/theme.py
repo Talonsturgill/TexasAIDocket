@@ -2234,8 +2234,11 @@ caption {{ caption-side:bottom; text-align:left; padding-top:.75rem; font-size:v
   background:transparent; color:var(--ink-mute);
   border:var(--hair) solid var(--rule-strong); border-radius:999px; cursor:pointer; }}
 .askbox .chips button:hover {{ color:var(--ink-bright); border-color:var(--accent); }}
-.askbox .answer {{ margin-top:1.25rem; padding-top:1.1rem;
-  border-top:var(--hair) solid var(--rule); }}
+/* The rule sits UNDER the list now, because the list sits above the field. A border-top
+   drew the line between the thread and the answer and welded the answer to the composer,
+   which is backwards: the answer belongs to the talk, not to the control. */
+.askbox .answer {{ margin-bottom:1.25rem; padding-bottom:1.1rem;
+  border-bottom:var(--hair) solid var(--rule); }}
 .askbox .answer h3 {{ margin:0 0 .6rem; font-size:var(--s1); }}
 .askbox .answer ul {{ list-style:none; padding:0; margin:.5rem 0 0; display:grid; gap:.7rem; }}
 .askbox .answer .meta {{ font-size:var(--s-1); color:var(--ink-mute);
