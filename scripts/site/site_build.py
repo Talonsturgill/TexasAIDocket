@@ -1721,7 +1721,7 @@ def articles_page(runs: list, today: str) -> str:
   <span class="meta" data-prose="data"><span class="tag">{e(ordinal(
     _dt.date.fromisoformat(r["date"])))}</span><span>{r["slides"]} slides</span></span>
   <h3>{e(r["title"])}</h3>
-  {f'<p class="tease">{e(r["tease"])}</p>' if r.get("tease") else ""}</a>""" for r in runs)
+  {f'<p class="tease">{e(deck_preview(r))}</p>' if deck_preview(r) else ""}</a>""" for r in runs)
 
     body = f"""
 <h1>Articles</h1>
@@ -1858,6 +1858,56 @@ def article_page(r: dict, today: str, items: list) -> str:
                 canonical=f'articles/{r["date"]}/')
 
 
+def deck_preview(r: dict, sentences: int = 2, budget: int = 210) -> str:
+    """The deck's own opening lines, for a card that would otherwise carry a title and a gap.
+
+    WHAT WAS THERE AND WHY IT WENT BLANK. The card printed `copy.json`'s top level `hook`, which
+    does not exist, so it rendered an empty paragraph. The repair pointed it at the title of the
+    DECISION the deck is about, which is real prose and correctly gated, and which is empty on
+    any run whose `story` is empty. Two of the three shipped runs carry no story, so the front
+    page and the articles index both ended up showing a headline, two buttons and nothing in
+    between. A card that says only what it is called is not a preview.
+
+    THE DECK'S OWN WORDS ARE THE PREVIEW, and they are safe to publish here for the same reason
+    the article page publishes them. Every figure in them traces to that run's claims, and
+    `_run_numerals` hands exactly those to whichever page renders them. The `tease` field is one
+    sentence, which is what made the articles index thin in the first place, so this reads the
+    opening slide instead and takes whole sentences up to a budget.
+
+    QUOTED BLOCKS ARE SKIPPED. A quotation needs its attribution beside it to be honest, a card
+    has no room for one, and house style exempts quoted material from rules this text is being
+    shown under. The first slide with prose of its own supplies the preview, so a deck that
+    opens on a quote is previewed by the words around it rather than by somebody else's.
+    """
+    picked: list[str] = []
+    for slide in (r.get("prose") or []):
+        for block in slide or []:
+            if (block or {}).get("quote"):
+                continue
+            text = " ".join(str((block or {}).get("text") or "").split())
+            if text:
+                picked.append(text)
+        if picked:
+            break
+    joined = " ".join(picked)
+    if not joined:
+        return " ".join(str(r.get("tease") or "").split())
+
+    out, used = [], 0
+    for part in re.split(r"(?<=[.!?])\s+", joined):
+        if not part:
+            continue
+        # WHOLE SENTENCES ONLY. A preview cut mid clause reads as a fault rather than as a
+        # taste, and the budget is a ceiling on what gets in rather than a place to chop.
+        if out and used + len(part) > budget:
+            break
+        out.append(part)
+        used += len(part) + 1
+        if len(out) >= sentences:
+            break
+    return " ".join(out)
+
+
 def latest_article(runs: list, items: list) -> str:
     """The newest carousel, baked at build time.
 
@@ -1894,13 +1944,14 @@ def latest_article(runs: list, items: list) -> str:
     #
     # The item title says what happened without dating it, so the only date on the card is the
     # one in the tag, and the tag now says what that date IS.
-    blurb = ""
-    for it in items:
-        if it.get("id") == r.get("story"):
-            blurb = " ".join(str(it.get("title") or "").split())
-            break
+    # The decision's title reads well and is empty on any run with no `story`, which is most of
+    # them, so it is the SECOND choice now rather than the only one. See `deck_preview`.
+    blurb = deck_preview(r)
     if not blurb:
-        blurb = str(r["hook"])
+        for it in items:
+            if it.get("id") == r.get("story"):
+                blurb = " ".join(str(it.get("title") or "").split())
+                break
 
     story_link = (f'<a href="item/{e(r["story"])}/">the decision it is about</a>'
                   if r.get("story") else "")
@@ -2187,8 +2238,6 @@ def home(items: list, today: str) -> str:
   <button type="button" class="mapreset" id="mapreset" hidden>Show all of Texas</button>
 </section>
 
-{latest_article(runs, items)}
-
 {'<section data-reveal><h2>Closing next</h2><ul class="deck">' + rows + '</ul>'
    '<p class="meta" data-prose="data"><a href="record/">See all ' + str(n_items) + ' decisions</a></p>'
    '</section>' if rows else
@@ -2208,6 +2257,8 @@ def home(items: list, today: str) -> str:
     agency itself rather than a news report about it.</p>
   </div>
 </section>
+
+{latest_article(runs, items)}
 
 {latest_video()}
 
@@ -5205,7 +5256,8 @@ def build(out: Path, today: str) -> dict:
     written.append("fonts/OFL.txt")
 
     w("index.html", home(items, today),
-      _home_numerals(items, today) | listed(items) | covers_section(items, today)[0])
+      _home_numerals(items, today) | listed(items) | covers_section(items, today)[0]
+      | (_run_numerals(runs[0]) if runs else set()))
     # THE VERSION THE LEDGER ALREADY CARRIES, PUBLISHED RATHER THAN DISCARDED.
     #
     # This rebuilt `_spec` from scratch with only the build date, so `version` and `gates`
@@ -5541,6 +5593,36 @@ def self_test() -> int:
         items = dk.load(LEDGER)
         one = (Path(td) / "a" / "item" / items[0]["id"] / "index.html").read_text(encoding="utf-8")
         check("an item page quotes its sources", "<blockquote>" in one)
+
+        # A CARD THAT SAYS ONLY WHAT IT IS CALLED IS NOT A PREVIEW, and this has now gone
+        # blank twice for two different reasons, which is what makes it worth a check rather
+        # than a careful edit. First the card printed `copy.json`'s top level `hook`, a field
+        # that does not exist, so the paragraph rendered empty. The repair pointed it at the
+        # title of the DECISION the deck is about, which is real prose and correctly gated and
+        # is empty on any run carrying no `story`. Two of the three shipped runs carry none, so
+        # the front page and the articles index both went back to a headline, two buttons and a
+        # gap in between.
+        #
+        # Neither failure could redden anything. An empty paragraph is valid HTML, the numeral
+        # gate has no numeral to trace, and house style has no words to judge, so every gate on
+        # this site agreed the page was fine while the page said nothing. That is the shape
+        # GATE_LESSONS keeps recording: the checks all observed the copy and not the ABSENCE of
+        # it. So this counts the cards and reads what is under each title, on the BUILT page.
+        arts = (Path(td) / "a" / "articles" / "index.html").read_text(encoding="utf-8")
+        cards = re.findall(r"<h3>(.*?)</h3>\s*(?:<p class=\"tease\">(.*?)</p>)?", arts, re.S)
+        bare = [" ".join(re.sub(r"<[^>]+>", "", t).split()) for t, tease in cards
+                if len(re.sub(r"<[^>]+>", "", tease or "").split()) < 8]
+        check(f"every article card carries a preview and not just a title ({len(cards)} card(s))",
+              cards and not bare, f"thin: {bare[:3]}; widen deck_preview's sentence budget")
+        # The same card on the front page, which is where a reader meets it first and where the
+        # blank one was found. It is built by a different function off the same helper, so one
+        # of the two staying right proves nothing about the other.
+        home_card = idx[idx.find("Our latest article"):]
+        home_card = home_card[:home_card.find("</section>")]
+        blurbs = [" ".join(re.sub(r"<[^>]+>", "", m).split())
+                  for m in re.findall(r"<p[^>]*>(.*?)</p>", home_card, re.S)]
+        check("...and so does the one on the front page",
+              any(len(b.split()) >= 8 for b in blurbs), f"got: {blurbs}")
 
         # THE PLACE LINKS RUN BOTH WAYS. The place pages listed their items from the
         # first build and nothing pointed back, which looks correct from either end: every
