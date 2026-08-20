@@ -113,6 +113,14 @@ rules:
       changes go through a maintainer session.
 
   # ---------------------------------------------------------------- shared identity
+  - path: "config/schema_contract.json"
+    owner: human
+    note: >
+      The shape docket.json promises its readers, and the reason it is human's rather than
+      daily's. A routine adds ITEMS and never FIELDS, so this will not block a run. When the
+      shape does move it is a change to a public contract published under CC BY, and a person
+      deciding whether it breaks anybody is exactly the friction that belongs there. A
+      contract the process that changes the data can also rewrite is not a contract.
   - path: "config/brand.yaml"
     owner: human
     note: >

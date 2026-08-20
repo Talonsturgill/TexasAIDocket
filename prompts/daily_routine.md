@@ -899,6 +899,7 @@ is half a run old.
    - `python3 scripts/shared/ownership_check.py --actor daily --staged`
    - `python3 scripts/site/media_check.py`
    - `python3 scripts/site/seo_check.py`
+   - `python3 scripts/site/schema_contract.py`
 
    **`seo_check` is on this list because the defects it catches are invisible.** A sitemap
    stamping the build date on every url, an article with no article schema, a description too

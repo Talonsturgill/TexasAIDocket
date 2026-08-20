@@ -5023,8 +5023,20 @@ def build(out: Path, today: str) -> dict:
 
     w("index.html", home(items, today),
       _home_numerals(items, today) | listed(items) | covers_section(items, today)[0])
-    w("docket.json", json.dumps({"_spec": {"generated": today}, "items": items},
-                                indent=2, ensure_ascii=False) + "\n")
+    # THE VERSION THE LEDGER ALREADY CARRIES, PUBLISHED RATHER THAN DISCARDED.
+    #
+    # This rebuilt `_spec` from scratch with only the build date, so `version` and `gates`
+    # existed in `ledger/docket.json` and reached no reader. The file is open data under
+    # CC BY, so the one thing a consumer needs, which is whether their parser still works,
+    # was the one thing the publish step dropped. Same shape as the site URL, the hashtags
+    # and the progress counter: a value stated in one place and a surface keeping its own
+    # copy of it. `dk.SPEC_VERSION` carries the rule that governs when it moves.
+    w("docket.json", json.dumps(
+        {"_spec": {"version": dk.SPEC_VERSION, "generated": today,
+                   "license": schema.LICENSE,
+                   "rule": "version rises only when a parser would break. A new field or a "
+                           "new topic never moves it."},
+         "items": items}, indent=2, ensure_ascii=False) + "\n")
     for it in items:
         w(f'item/{it["id"]}/index.html', item_page(it, today), by_item[it["id"]])
         # The Markdown twin. A crawler that fetches this gets the record without parsing HTML,
@@ -5117,7 +5129,7 @@ def build(out: Path, today: str) -> dict:
     # The grid watch as open data, in the same shape the page was built from. A reader who
     # doubts a figure here can recompute it without refetching anything from ERCOT.
     w("gridwatch.json", json.dumps(
-        {"_spec": {"generated": today,
+        {"_spec": {"version": dk.SPEC_VERSION, "generated": today,
                    "note": "One settled ERCOT day per record. Hourly series included so every "
                            "published figure is recomputable. Unverified days carry no "
                            "numbers rather than yesterday's."},
@@ -5132,7 +5144,7 @@ def build(out: Path, today: str) -> dict:
     w("services/index.html", services_page(items, today))
     w("water/index.html", water_page(today), _watch_numerals(waterwatch_page))
     w("waterwatch.json", json.dumps(
-        {"_spec": {"generated": today,
+        {"_spec": {"version": dk.SPEC_VERSION, "generated": today,
                    "note": "One day per record, per reservoir, so every roll up is "
                            "recomputable. Out of state reservoirs and flood control dams with "
                            "no conservation pool are excluded, and both exclusions are named "
@@ -5162,7 +5174,7 @@ def build(out: Path, today: str) -> dict:
     # of its own, because it is one line at the top of the front page rather than a subject,
     # so the data page is where a reader finds it.
     w("weather.json", json.dumps(
-        {"_spec": {"generated": today,
+        {"_spec": {"version": dk.SPEC_VERSION, "generated": today,
                    "note": "Observed daily maximum and minimum at one anchor station, from "
                            "NCEI daily summaries. A day with no observation is absent rather "
                            "than zero. Normals are the 1991 to 2020 period computed from the "

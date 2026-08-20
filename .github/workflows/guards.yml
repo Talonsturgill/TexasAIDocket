@@ -389,6 +389,18 @@ jobs:
           # falsifying it, which is far worse than an inconsistent date.
           python3 scripts/site/house_style_check.py
 
+      - name: The published shape cannot move without saying so
+        run: |
+          # docket.json is open data under CC BY. It carried a version in the ledger and the
+          # publish step dropped it, so the one thing a consumer needs, which is whether their
+          # parser still works, never reached them.
+          #
+          # Publishing the number is the easy half and alone it makes things worse: a version
+          # nothing is obliged to move is a false promise, and it talks a consumer out of
+          # checking. This is the half that makes it true.
+          python3 scripts/site/schema_contract.py --self-test
+          python3 scripts/site/schema_contract.py
+
       - name: The liveness checker can still go red
         run: |
           # The check itself runs on its own schedule in livecheck.yml, because whether the
@@ -426,11 +438,27 @@ jobs:
           # site_fresh_check proves docs/ is a pure function of the ledgers, and that proof is
           # what makes it impossible for a run to corrupt the live site. This proves the same
           # thing against the variable that broke it: one commit of history, identical output.
+          # RE-RUNNABLE. `git clone` into a directory that already has something in it exits
+          # 128, so running this twice in one environment failed the second time with a git
+          # error rather than a real finding. Harmless on a fresh runner and not harmless
+          # anywhere a workspace is reused, which includes every local run of guards_local.
+          # BOTH SIDES FROM COMMITTED STATE, so the only variable is the clone depth.
+          #
+          # The first version built the shallow clone and compared it against the WORKING TREE,
+          # which mixes in every uncommitted edit and made this fail on every local run that
+          # had any. A check that goes red for a reason the author cannot act on is one they
+          # learn to skip, which is how the shallow-clone property would have stopped being
+          # checked at all.
+          #
+          # RE-RUNNABLE TOO. `git clone` into a non-empty directory exits 128, so a reused
+          # workspace failed the second run with a git error rather than a finding.
+          rm -rf /tmp/shallow /tmp/full /tmp/shallowsite /tmp/fullsite
           git clone --depth 1 --quiet "file://$PWD" /tmp/shallow
-          cd /tmp/shallow && git log --oneline | wc -l
-          python3 scripts/site/site_build.py --out /tmp/shallowsite --today "$(date -u +%F)"
-          cd "$GITHUB_WORKSPACE"
-          python3 scripts/site/site_build.py --out /tmp/fullsite --today "$(date -u +%F)"
+          git clone --quiet "file://$PWD" /tmp/full
+          echo "shallow has $(cd /tmp/shallow && git log --oneline | wc -l) commit(s), full has $(cd /tmp/full && git log --oneline | wc -l)"
+          DAY="$(date -u +%F)"
+          (cd /tmp/shallow && python3 scripts/site/site_build.py --out /tmp/shallowsite --today "$DAY")
+          (cd /tmp/full    && python3 scripts/site/site_build.py --out /tmp/fullsite    --today "$DAY")
           diff -r /tmp/shallowsite /tmp/fullsite
 
       - name: Ask engine self-test (routes not cached answers, and it phones nobody)

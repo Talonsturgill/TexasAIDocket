@@ -112,15 +112,35 @@ title, a sitemap that parses, and a `docket.json` whose item count matches the c
 It fails loudly, which for a scheduled workflow means GitHub emails the owner. Cheap, and it
 closes the one fault class this project has already suffered.
 
-### Gap 2. The published data has no schema version
+### Gap 2. The published data has no schema version. CLOSED 2026-08-20
 
-`docket.json` is published as open data under CC BY and is meant to be consumed by other people
-and by machines. It carries `_spec.generated`, a date, and no version. A consumer has no way to
-detect that a field changed meaning or went away.
+**And the first description of it here was wrong, which is worth keeping.** The version was not
+missing. `ledger/docket.json` carried `_spec.version` all along and the publish step rebuilt the
+block from scratch with only the build date, so it existed and reached no reader. That is the
+same shape as the site URL, the hashtags and the progress counter: a value stated in one place
+and a surface keeping its own copy. Looking before writing found it; writing from the summary
+would not have.
 
-**The plan.** A `_spec.version` following semantic versioning, asserted by a gate that requires
-the major to rise whenever a required field is removed or retyped. The rule matters more than
-the number, because a version nobody is obliged to bump is decoration.
+**What shipped.** All four published data files carry the version now. The rule that governs it
+lives beside the constant in `docket_build.SPEC_VERSION`, and `schema_contract.py` enforces it
+against `config/schema_contract.json`.
+
+**The rule, on the owner's call.** An integer rather than semver, because `_spec.generated`
+already answers "did the content change" and that leaves exactly one question, which is "will
+my code still work". Breaking is a required field removed or demoted, any field retyped, or a
+value removed from a vocabulary. **Adding is never breaking**, including adding a topic, because
+a version that rises every time a beat is added is a version nobody reads.
+
+**The part worth copying.** Publishing the number is the easy half and on its own it makes
+things WORSE. A version nothing is obliged to move is not a weak promise, it is a false one: a
+consumer who pins to it and receives a silently reshaped file is worse off than one who knew
+there was no guarantee, because the number talked them out of checking.
+
+**Two design choices that keep the gate honest.** "Required" is read from the validator's own
+tuple rather than from what today's items happen to contain, so an optional field every current
+item carries is not mistaken for a promise. And the contract file is owned by `human` rather
+than `daily`, because a contract the process that changes the data can also rewrite is not a
+contract.
 
 ### Gap 3. The whole system has one point of failure, and it is the GitHub account
 

@@ -1,0 +1,157 @@
+{
+  "version": 1,
+  "required": [
+    "id",
+    "title",
+    "summary",
+    "topic",
+    "decider",
+    "geography",
+    "status",
+    "key_dates",
+    "public_access",
+    "claims",
+    "last_verified"
+  ],
+  "fields": {
+    "claims": [
+      "array"
+    ],
+    "claims[].fetched": [
+      "string"
+    ],
+    "claims[].id": [
+      "string"
+    ],
+    "claims[].source_title": [
+      "string"
+    ],
+    "claims[].source_type": [
+      "string"
+    ],
+    "claims[].source_url": [
+      "string"
+    ],
+    "claims[].text": [
+      "string"
+    ],
+    "claims[].verbatim_quote": [
+      "string"
+    ],
+    "confidence": [
+      "string"
+    ],
+    "decider": [
+      "object"
+    ],
+    "decider.name": [
+      "string"
+    ],
+    "decider.type": [
+      "string"
+    ],
+    "geography": [
+      "object"
+    ],
+    "geography.counties": [
+      "array"
+    ],
+    "geography.metro": [
+      "null",
+      "string"
+    ],
+    "geography.on_ercot": [
+      "bool"
+    ],
+    "geography.statewide": [
+      "bool"
+    ],
+    "history": [
+      "array"
+    ],
+    "history[].date": [
+      "string"
+    ],
+    "history[].note": [
+      "string"
+    ],
+    "id": [
+      "string"
+    ],
+    "key_dates": [
+      "array"
+    ],
+    "key_dates[].canceled": [
+      "bool"
+    ],
+    "key_dates[].date": [
+      "string"
+    ],
+    "key_dates[].kind": [
+      "string"
+    ],
+    "key_dates[].note": [
+      "string"
+    ],
+    "last_verified": [
+      "string"
+    ],
+    "notes_for_editor": [
+      "string"
+    ],
+    "public_access": [
+      "object"
+    ],
+    "public_access.closes": [
+      "null",
+      "string"
+    ],
+    "public_access.how": [
+      "string"
+    ],
+    "public_access.room": [
+      "string"
+    ],
+    "public_access.url": [
+      "null",
+      "string"
+    ],
+    "status": [
+      "string"
+    ],
+    "summary": [
+      "string"
+    ],
+    "title": [
+      "string"
+    ],
+    "topic": [
+      "string"
+    ]
+  },
+  "vocabularies": {
+    "topic": [
+      "data-centers",
+      "defense-and-federal",
+      "health-and-education",
+      "land-water-and-permitting",
+      "power-and-the-grid",
+      "research-and-science",
+      "state-policy",
+      "surveillance-and-policing"
+    ],
+    "status": [
+      "decided",
+      "open",
+      "pending",
+      "unknown",
+      "withdrawn"
+    ],
+    "public_access.room": [
+      "closed",
+      "contact_only",
+      "open_comment",
+      "open_meeting"
+    ]
+  }
+}
