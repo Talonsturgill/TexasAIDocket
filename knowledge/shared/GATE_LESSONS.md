@@ -1319,3 +1319,49 @@ nobody believes has negative value, not zero.
 rather than on what it is. Environment versus argument, header versus query string, attribute
 versus child element, annotation versus config file. Ask what the producer is ALLOWED to do,
 not what it happened to do the day the consumer was written.
+
+---
+
+## 39. The ownership guard did not run at all inside a git worktree, and nothing said so
+
+**2026-08-20.** `.githooks/pre-commit` is the ownership guard. It is what stops one of this
+repo's several unattended automations writing into another's lane, and CLAUDE.md's own first
+commands section calls it load bearing by name, because the cost of it not running was already
+paid once: a whole run of commits landing with no ownership check on any of them.
+
+It ran. It just could not find the stamp, and it is written to treat a missing stamp as a
+maintainer session that owns everything.
+
+```
+[ -f "$root/.git/ACTOR" ] && actor="$(tr -d '[:space:]' < "$root/.git/ACTOR")"
+```
+
+In a plain clone `$root/.git` is a directory and that path is the stamp. In a linked **worktree**
+`$root/.git` is a FILE holding a gitdir pointer, so `$root/.git/ACTOR` is a path underneath a
+file, `[ -f ]` is false, `actor` stays `human`, and the guard cheerfully approves a write to any
+path in the repo. `commit-msg` reads the stamp the same way and exits 0 before writing anything,
+so those commits also reached CI with no `Actor:` trailer.
+
+**Both halves of the check were switched off by the same line, in the environment a session is
+most likely to be isolated in.** An agent given a worktree for isolation had less enforcement than
+one working in the main tree, which is exactly backwards.
+
+**Nothing was red.** `ownership_check.py --self-test` passes, because the checker is fine. The
+hook is not covered by anything: it is shell, it is invoked by git, and its failure mode is to
+exit 0. `guards_local.py` runs the CI suite and CI reads the trailer, so an unstamped commit falls
+back to the branch's actor, which for a maintainer branch is "owns everything" and looks correct.
+
+**What to check instead.** For any guard whose failure mode is "does nothing", the test is not
+"does it pass on a clean tree". It is **make it go red on purpose in the environment you actually
+work in**. That is one command: stamp a routine actor, stage a write outside that lane, and watch
+the commit be refused. Two minutes, in the worktree, and it would have caught this the first day
+anybody used one.
+
+**Generalises to.** Every path a script builds by string-joining onto `.git`, and more broadly
+every guard that resolves its own configuration by convention instead of by asking the tool.
+`git rev-parse --git-dir` answers correctly in a clone, a worktree, a submodule and a bare repo
+with a work tree attached. The convention answers correctly in one of the four.
+
+The wider shape is entries 13, 30, 37 and 38 again, in its quietest form yet: **a checker that
+CANNOT go red prints the same clean line as a checker that went green on a clean product.** The
+run has no way to tell those two apart from the output, so it must occasionally force the red.
