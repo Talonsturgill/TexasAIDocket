@@ -59,6 +59,7 @@ from __future__ import annotations
 import argparse
 import json
 import datetime as _dt
+import pathlib
 import re
 import sys
 from pathlib import Path
@@ -89,6 +90,33 @@ FIRST_PERSON = (" i ", " we ", " our ", " us ", " my ", " ours ")
 # Types this record must never wear. A tracked decision is not a news story, and the sibling
 # ships 122 NewsArticle nodes only because its item pages really are written articles.
 BANNED_TYPES = {"NewsArticle", "Article", "BlogPosting"}
+
+# THE ONE REGION WHERE AN ARTICLE TYPE IS TRUE, and the exemption is a promise about what is
+# in it rather than about the path.
+#
+# `/articles/<date>/` is the daily carousel's written companion. It has a headline, a body of
+# prose, a publisher and a date it was published, which is what `NewsArticle` describes and
+# what the rest of this site is not. Refusing it there was the ban reaching past the thing it
+# was written to protect: the record pages, where calling a filing a news story would be a
+# claim the record cannot support.
+#
+# THE CARVE-OUT IS NARROW ON PURPOSE. One type, not three, because the ban's real job is to
+# stop a decision being dressed as journalism and `Article` on an item page would do that just
+# as well. And the node must carry `datePublished`, so the exemption cannot be taken by an
+# article-shaped node that is not dated, which is the shape a mistake would have.
+ARTICLE_REGION = "articles/"
+ARTICLE_TYPE = "NewsArticle"
+
+
+def article_type_ok(rel, node: dict) -> bool:
+    """True when this node is the one kind of article node this site is entitled to.
+
+    `rel` is a path relative to `docs/`, and the caller has it as a `Path`. Coerced here with
+    `as_posix` rather than `str` so the answer does not depend on the separator the host uses.
+    """
+    rel = pathlib.PurePath(rel).as_posix()
+    return (rel.startswith(ARTICLE_REGION) and rel != ARTICLE_REGION + "index.html"
+            and node.get("@type") == ARTICLE_TYPE and bool(node.get("datePublished")))
 
 
 def blocks(html: str) -> list:
@@ -163,7 +191,7 @@ def check(verbose: bool = True) -> list:
                     referenced.setdefault(n["@id"], set()).add(str(rel))
                 elif n.get("@id"):
                     defined.add(n["@id"])
-                if n.get("@type") in BANNED_TYPES:
+                if n.get("@type") in BANNED_TYPES and not article_type_ok(rel, n):
                     bad.append(f"{rel}: a node is marked {n['@type']}. These pages are a "
                                f"record, not news stories, and the type is a claim.")
             walk(b, note)
@@ -275,6 +303,20 @@ def self_test() -> int:
     ok("a dangling reference is detectable",
        "z" not in {"a", "b"})
     ok("NewsArticle is on the banned list", "NewsArticle" in BANNED_TYPES)
+    # THE CARVE-OUT, PROVED IN BOTH DIRECTIONS. An exemption nothing tests is a hole with a
+    # comment over it.
+    dated = {"@type": "NewsArticle", "datePublished": "2026-08-19"}
+    ok("an article page may carry a dated NewsArticle",
+       article_type_ok("articles/2026-08-19/index.html", dated))
+    ok("a record page may not, even dated",
+       not article_type_ok("item/tx-2026-0001/index.html", dated))
+    ok("the articles index may not, it lists articles and is not one",
+       not article_type_ok("articles/index.html", dated))
+    ok("an undated node may not, whatever page it is on",
+       not article_type_ok("articles/2026-08-19/index.html", {"@type": "NewsArticle"}))
+    ok("and the carve-out is one type, not three",
+       not article_type_ok("articles/2026-08-19/index.html",
+                           {"@type": "BlogPosting", "datePublished": "2026-08-19"}))
 
     real = check(verbose=False)
     ok("the built site is clean", not real, "\n      " + "\n      ".join(real[:6]))

@@ -236,11 +236,19 @@ def png() -> bytes:
     return card("The Texas AI Docket")
 
 
-def files(items: list | None = None) -> dict:
-    """The site card, plus one per decision when the record is handed over."""
+def files(items: list | None = None, runs: list | None = None) -> dict:
+    """The site card, plus one per decision and one per article.
+
+    THE ARTICLES USED TO SHARE THE SITE CARD. Every decision got its own headline on a card
+    and the three pages carrying actual writing got the generic one, so a link to an article
+    posted anywhere looked like a link to the front page. Same drawing, same rasteriser, the
+    article's own headline on it.
+    """
     out = {"og.png": png()}
     for it in items or []:
         out[f"og/{it['id']}.png"] = card(it["title"])
+    for r in runs or []:
+        out[f"og/article-{r['date']}.png"] = card(r["title"])
     return out
 
 

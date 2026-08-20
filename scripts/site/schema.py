@@ -670,6 +670,49 @@ def faq_node(ctx: Ctx, it: dict, today: str) -> dict | None:
     }
 
 
+def article_node(ctx: Ctx, r: dict, desc: str, image: str, item_url: str | None) -> dict:
+    """One published article, as the news object it is.
+
+    WHY THIS EXISTS. The articles are the only pages here that are reporting rather than
+    record, and they were the only pages carrying no schema of their own beyond the
+    site-wide publisher. So the three pages most likely to be surfaced for a topical
+    question, and most likely to be quoted by an answer engine, were the three telling a
+    crawler the least about themselves. `Report` covers the decisions and `FAQPage` covers
+    the questions. Nothing covered the writing.
+
+    `dateModified` EQUALS `datePublished` AND THAT IS NOT AN OVERSIGHT. A shipped article is
+    not revised here. Claiming a later modification date to look fresh is the same move as
+    stamping every page with today's build date, and it fails the same way.
+    """
+    url = ctx.url(f"articles/{r['date']}/")
+    node = {
+        "@context": "https://schema.org",
+        "@type": "NewsArticle",
+        "@id": url + "#article",
+        "headline": r["title"],
+        "description": desc,
+        "url": url,
+        "mainEntityOfPage": {"@type": "WebPage", "@id": url},
+        "inLanguage": "en-US",
+        "isAccessibleForFree": True,
+        "license": LICENSE,
+        "datePublished": r["date"],
+        "dateModified": r["date"],
+        "author": {"@id": ctx.url("#org")},
+        "publisher": {"@id": ctx.url("#org")},
+        "image": [image],
+        "articleSection": "Texas artificial intelligence",
+        "keywords": ["Texas", "artificial intelligence", "data centers", "ERCOT"],
+    }
+    # THE ARTICLE POINTS AT THE DECISION IT IS ABOUT. Without it the writing and the record
+    # are two unconnected islands to a crawler, and the whole argument for this site is that
+    # the writing rests on the record.
+    if item_url:
+        node["about"] = {"@id": item_url + "#report"}
+        node["citation"] = {"@id": item_url + "#report"}
+    return node
+
+
 def breadcrumbs(ctx: Ctx, trail: list) -> dict:
     """`trail` is [(name, path)], site root first, current page last."""
     return {
