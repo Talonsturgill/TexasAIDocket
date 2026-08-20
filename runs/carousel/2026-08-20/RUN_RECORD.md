@@ -122,3 +122,141 @@ so this is a proposal.
    which is true about when a Texan can still act and imprecise about how. The schema is in
    `docket_build.py`.
 6. **A long item title truncates on a function word in its social card.** See the signoff above.
+
+## Gate status
+
+<!-- gate-status:begin -->
+| gate | status | detail |
+|---|---|---|
+| claims         | PASS   | 16 verified claim(s) |
+| render         | PASS   | 8 slide(s) |
+| qa             | WARN   | 0 fail(s), 2 warn(s) |
+| aggregates     | PASS   | 4 declared and re-derived |
+| assembly       | PASS   | 8 slide(s), 3.08 MB, vector |
+| score          | ABSENT | score.json not written yet |
+| dossiers       | PASS   | 38,447 chars planned |
+| caption        | PASS   | 136 words |
+| craft floor    | WARN   | 8 frame(s), median 878, floor 158, 1 quiet |
+| plan vs render | WARN   | 7 of 52 acceptance item(s) checkable |
+| texan          | WARN   | places Galveston County / body yes / deadline yes / next step NO |
+| absences       | WARN   | 1 of 8 scoped to a named document, 7 unscoped |
+| completion     | ABSENT | not scored yet |
+<!-- gate-status:end -->
+
+
+---
+
+## The record
+
+**Worklist cleared in full.** Five items due, five re-verified against a primary source, every one
+carrying a dated line whether or not it moved. `docket_staleness` reports 0 due after the pass.
+Nothing rotten. The backlog held at its three by-name exemptions and did not grow.
+
+**A wrong public fact was corrected.** The record said the utility commission's August 21st open
+meeting no longer named Docket 59315, Oncor's 765 kV Dinosaur Switch to Longshore Switch
+application. The agenda published for that meeting names it as item 3, marked for discussion and
+possible action, and names a second Oncor 765 kV application as item 2.
+
+The reading was wrong because the calendar feed's description field never carries a docket number
+for any entry, so its absence there says nothing about what will be taken up. That is now written
+into the item's editor note, into the feed item's own access note and into the field log.
+
+**Four items admitted, three published.** tx-2026-0075 Pflugerville's November election on charter
+amendments including a section on the city's use of artificial intelligence, tx-2026-0076 PUCT
+Docket 59029, Oncor's second 765 kV application across ten west Texas counties, and tx-2026-0077
+Senate Transportation's August 25th hearing on driverless vehicle deployment under SB 2807.
+
+**The fourth was withdrawn before it published, and that is the run's own defect.** tx-2026-0074
+was admitted as League City's November ballot when the record already carried that decision as
+tx-2026-0048, from the city's Legistar record, with the ordinance number and the motion that
+passed it. It was caught by reading `llms.txt` during the discoverability signoff, where League
+City appeared twice under two ids. That is luck rather than a mechanism, and the proposal is
+above.
+
+## The deck
+
+Story `tx-2026-0048`. League City put its police license plate reader cameras on the November 3rd
+ballot and the first clause of the ballot question tells the voter the result is a nonbinding
+statement of voter preference.
+
+**Two rounds of a three judge panel.** Round one: craft 7.23 ship, reader 6.82 stop, integrity 6.81
+stop. Four hard fails across two judges, and the routine's rule is that any one judge's hard fail
+stops the deck whatever the median says.
+
+**What the panel caught that every machine gate had passed.**
+
+- **An unsourced fact on a published frame.** Slide 4 read "Galveston County is crushed oyster
+  shell. Pflugerville sits on the Blackland Prairie, the state soil." It carried two claim ids and
+  neither claim mentions soil. Nothing fetched this run supports it, and the integrity judge noted
+  Galveston County's mapped soils are coastal clays, so it was probably also wrong. It came from
+  the storyboard's own palette rationale, grafted from a losing treatment, and nothing between the
+  palette and the frame asked whether a colour's justification had become a claim. The frame now
+  states the county sets, which the record does hold, and a structural law was added: the palette
+  is craft and never evidence.
+- **The record of what the deck says had stopped describing the deck.** `copy.json` was
+  hand-written, slides were re-rendered after it during repair, and two strings reached slide 9
+  having passed through no gate. `copy.json` is now DERIVED from `render/render_report.json` and
+  declares `derived_from`, so the drift is impossible rather than merely checked for.
+- **A frame all three judges wanted gone.** The old slide 6 read as a bar chart, which was its own
+  dossier's named risk, and it argued slide 5's point a second time in a weaker drawing. It was
+  cut and the deck renumbered to eight.
+- **Three smaller integrity repairs.** Slide 5 said the ordinance "passed" where its quote records
+  a motion made and seconded. The closing frame implied the camera question is on the August 25th
+  agenda, which nothing establishes. c16's own note said the address and date were asserted on no
+  slide while the closing frame set both at 38px.
+
+**Two defects the showrunner introduced and the machine caught.**
+
+- **A fabricated numeral in a director brief.** One lens brief said the two cities are eleven miles
+  apart. They are two metros apart, the figure is in no claim, and a treatment director refused to
+  build on it. No distance appears anywhere in the deck, and slide 4 draws the dimension and labels
+  the gap "not measured" rather than dropping it.
+- **A wrong computed count in the largest type on a frame.** Slide 2's hook read "Read the first
+  six words." The clause is seven words. `aggregate_check` refused the undeclared count, the count
+  was then computed in code from claim c1's own quote, and both frames were corrected.
+
+## Craft findings for the next run
+
+**Contrast was computed before any code and it changed a frame.** The winning treatment planned
+Section 2.03's body in the dropout green on the ballot stock. That measures 1.48 to 1. It is now a
+printed shape and never type on paper. The reserved red measures 5.12 on stock and 2.89 on the
+soil, which is why the close can carry it and no other frame could.
+
+**`plan_render_check` went from 0 of 46 checkable acceptance items on the last deck to 8 of 58
+here, and the declared-colour half of it caught three plan-versus-render disagreements** before any
+judge saw them, including two frames whose plans named a mark colour the frames could not legibly
+draw.
+
+## Two more proposals, from the deck side
+
+7. **`plan_render_check` hand-parses the storyboard's YAML instead of loading it.** An acceptance
+   item written the way `SLIDE_DOSSIER_SPEC.md` asks, quoting the exact string, needs YAML escaping
+   for its quotes, and the escape survives into the needle as a literal backslash. The item can then
+   never match a render. Six of this deck's nine items failed that way on the first pass and the
+   fix was to requote them, which works and hides the defect from the next run. The gate rewards
+   exactly the habit the spec mandates and cannot pass it. It lives in the `upgrade` lane.
+
+8. **The engine's thumbnails are re-rendered rather than downscaled from the shipped PNGs.** Round
+   one's reader judge found a broken frame sitting behind a clean thumbnail and could not tell which
+   was the product. A thumbnail that is a separate generation of the deck cannot be evidence about
+   the deck. Downscale the render.
+
+9. **`SKILL.md` documents `fetch()` for the committed geodata and this Chromium refuses it**, with
+   `URL scheme "file" is not supported`, which `--allow-file-access-from-files` does not reach. The
+   slide rendered in 407ms with an empty canvas. `render.py` caught it as an error rather than
+   shipping a blank frame, which is the gate working. `XMLHttpRequest` still honours the flag and is
+   what slide 4 uses. The skill's example should change.
+
+## A process fault this run committed twice
+
+**The artifacts were changed while the panel was reading them.** Round one's reader judge reported
+a broken frame behind a clean thumbnail and a `copy.json` describing a different deck. Both were
+true when it looked, and both were mid-repair states rather than the product. It was right to stop
+the deck and its root-cause reading was correct, but two of its four findings were about a moving
+target.
+
+Then this run did it again, reassembling during round two.
+
+**The fix is not a gate, it is an order of operations.** Freeze `out/<date>/` before the panel is
+spawned and do not touch it until every judge has returned. A judge reading a directory that is
+being written is not a second reading of the deck, it is a race. This is recorded as an instinct.

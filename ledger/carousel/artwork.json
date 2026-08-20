@@ -1,115 +1,160 @@
 {
-  "_spec": {
-    "version": 1,
-    "purpose": "The variety engine. No two decks visually alike.",
-    "why": "Each run records the techniques, palette, structure and camera it used, and the next run reads this to know what it may not reach for again. Without it a machine converges on whatever worked once, which is how a daily product develops a house style nobody chose.",
-    "enforced_by": "scripts/carousel/bespoke_check.py measures WITHIN a deck. This ledger constrains ACROSS decks. Both are needed: a deck can be nine different drawings that all look like last Tuesday.",
-    "written_by": "carousel"
+ "_spec": {
+  "version": 1,
+  "purpose": "The variety engine. No two decks visually alike.",
+  "why": "Each run records the techniques, palette, structure and camera it used, and the next run reads this to know what it may not reach for again. Without it a machine converges on whatever worked once, which is how a daily product develops a house style nobody chose.",
+  "enforced_by": "scripts/carousel/bespoke_check.py measures WITHIN a deck. This ledger constrains ACROSS decks. Both are needed: a deck can be nine different drawings that all look like last Tuesday.",
+  "written_by": "carousel"
+ },
+ "recent_window": 14,
+ "entries": [
+  {
+   "date": "2026-08-16",
+   "carousel_no": 1,
+   "register": "dark, Big Bend at dusk, with one deliberate paper inversion at slide 5",
+   "techniques": [
+    "extruded county with a true scale overlay",
+    "parallax planes with a two part contact shadow",
+    "engraving, white line intaglio",
+    "the residual bar at true ratio",
+    "stipple tooth on a paper register with a torn deckle",
+    "arrested flow field with a norther front stop",
+    "hachured soil section over layered horizons",
+    "Big Bend dusk field with one dust column"
+   ],
+   "palette": {
+    "source": "Post Oak Savannah, Grimes County",
+    "oak": "#4A5236 post oak canopy in late summer",
+    "bluestem": "#C9A063 little bluestem seed head in August",
+    "loam": "#A85433 iron red sandy loam at a road cut",
+    "sand": "#D8C9AB the pale leached quartz horizon over it",
+    "paper": "#F6F1E4 used on one slide only",
+    "granite": "#9A3B2A the Capitol sunset granite, on the paper slide"
+   },
+   "red_spent": false,
+   "red_note": "No comment window on this story closes in a period a reader can act on, so the reserved red stayed unspent.",
+   "camera": "one county at close range, then an object stack, then flat type, then two masses, then a sheet, then a field with a hard stop, then a section below grade, then the dusk horizon",
+   "light_decks_used": 1,
+   "bespoke_median": 0.3997,
+   "bespoke_closest_pair": "After the cut, the closest pair no longer involves cartography. bespoke_median 0.3997 was measured on the nine slide deck; the shipped deck is eight and the pair that produced 0.8859 is the frame that was cut.",
+   "slides": 8,
+   "cut": "Slide 2, the state locator, cut after the third scoring pass. Three independent reviews called it the most cuttable frame, it was the closest visual pair, and its only unique content was a county land area."
   },
-  "recent_window": 14,
-  "entries": [
-    {
-      "date": "2026-08-16",
-      "carousel_no": 1,
-      "register": "dark, Big Bend at dusk, with one deliberate paper inversion at slide 5",
-      "techniques": [
-        "extruded county with a true scale overlay",
-        "parallax planes with a two part contact shadow",
-        "engraving, white line intaglio",
-        "the residual bar at true ratio",
-        "stipple tooth on a paper register with a torn deckle",
-        "arrested flow field with a norther front stop",
-        "hachured soil section over layered horizons",
-        "Big Bend dusk field with one dust column"
-      ],
-      "palette": {
-        "source": "Post Oak Savannah, Grimes County",
-        "oak": "#4A5236 post oak canopy in late summer",
-        "bluestem": "#C9A063 little bluestem seed head in August",
-        "loam": "#A85433 iron red sandy loam at a road cut",
-        "sand": "#D8C9AB the pale leached quartz horizon over it",
-        "paper": "#F6F1E4 used on one slide only",
-        "granite": "#9A3B2A the Capitol sunset granite, on the paper slide"
-      },
-      "red_spent": false,
-      "red_note": "No comment window on this story closes in a period a reader can act on, so the reserved red stayed unspent.",
-      "camera": "one county at close range, then an object stack, then flat type, then two masses, then a sheet, then a field with a hard stop, then a section below grade, then the dusk horizon",
-      "light_decks_used": 1,
-      "bespoke_median": 0.3997,
-      "bespoke_closest_pair": "After the cut, the closest pair no longer involves cartography. bespoke_median 0.3997 was measured on the nine slide deck; the shipped deck is eight and the pair that produced 0.8859 is the frame that was cut.",
-      "slides": 8,
-      "cut": "Slide 2, the state locator, cut after the third scoring pass. Three independent reviews called it the most cuttable frame, it was the closest visual pair, and its only unique content was a county land area."
-    },
-    {
-      "date": "2026-08-18",
-      "carousel_no": 2,
-      "register": "daylight throughout, a Gulf Coast overcast working sheet, with exactly one dark interior at slide 7",
-      "techniques": [
-        "SDF raymarch, a 16 by 9 recess carved into a brick mass",
-        "single-county spotlight with a leader line to a label outside the mesh",
-        "grid decay threshold-driven from an fBm field",
-        "line and node as engineering stationing over a heat shimmer band",
-        "relit tiles at true duration, rotated and overlapping, on no shared baseline",
-        "heightfield terrain with a horizon solved from the projection centre",
-        "a lit panel in a shadowed interior with a plate measured for a line the record does not contain",
-        "axonometric plaques, one pairing per row, widths following the names",
-        "line and node with an unfilled ring, over an oil-chart field table"
-      ],
-      "palette": {
-        "source": "a post-war Houston ISD elementary building on the Gulf Coast prairie, Harris County",
-        "overcast": "#E9EAE6 the flat August lid over Houston",
-        "brick": "#C9A67B buff face brick",
-        "terrazzo": "#DCD6C8 corridor pale",
-        "slate": "#2C3A34 chalkboard, the deck's true dark",
-        "bayou": "#5F7350 Buffalo Bayou at slack water",
-        "ochre": "#D2A03C pencil lacquer",
-        "clay": "#7A6A55 coastal prairie"
-      },
-      "red_spent": false,
-      "structural_laws": [
-        "no circles anywhere except one path node, argued for by name",
-        "filled means the source states it, outlined means the source calls it optional or does not describe it"
-      ],
-      "bespoke_median_similarity": 0.2298
-    },
-    {
-      "date": "2026-08-19",
-      "carousel_no": 3,
-      "register": "night inside a public building, no horizon on any frame, lit only from behind glass and off brass, with one bright paper sheet at slide 5",
-      "techniques": [
-        "an August month sheet embossed into limestone with one cell cut clean through, lit by a raking key that finds no floor",
-        "a constant-rate day rule with two spans of one construction sharing one origin, above and below, one capped and one left open",
-        "a true space-filling Voronoi bed of identical unassigned panels under ONE raking key, per-edge lit and shadowed, inside a hard neatline",
-        "a mid century oil chart table under a low lamp, tabular mono, three quoted figures from two documents",
-        "a flat neatlined survey sheet on the paper register, two equal quoted columns over a stack of sheets",
-        "four terrazzo inlay courses run ACROSS the frame under one key, each course a different stone at one night value, the seams cut as grooves",
-        "an engraved survey title block on stone, every field filled from the record and one ruled empty",
-        "a lit cell over a dated list of what is still open, the opening void inverted"
-      ],
-      "palette": {
-        "source": "the Texas county courthouse at night, which every county has, so a statewide story takes a statewide material rather than one place's soil",
-        "tower": "#16151C masonry in shadow, warm neutral with no violet so it is not the house Big Bend night",
-        "dial": "#EFE9DA enameled cast iron lit from behind, the deck's light",
-        "cordova": "#D9CDB4 Cordova cream limestone, Williamson County",
-        "brass": "#B98D46 the movement's works, line colour",
-        "pecos": "#8E4B3A masonry red. A band fill on slide 6, and set as TYPE on slide 5 to mark where the signed letter narrows the press release.",
-        "patina": "#4E6B62 oxidized copper, slide 6 only",
-        "paper": "#F6F1E4 on ink #23202B, slide 5 only"
-      },
-      "red_spent": false,
-      "structural_laws": [
-        "no horizon anywhere, because the story has no place",
-        "one day is 46 pixels on every frame that draws time, and no axis is truncated",
-        "ruled means quoted, a hairline above and below with attribution and claim id beneath",
-        "no cartography at all, the first deck here with none"
-      ],
-      "bespoke_median_similarity": 0.2687,
-      "camera": "one tilted sheet, then a flat rule, then straight down on a bed, then a lit table, then a flat sheet, then straight on at four courses, then a block on stone, then one lit cell",
-      "slides": 8,
-      "cut": "Slide 4, whose water and whose power, was cut after scoring. Its headline promised power and the frame delivered only water, and it sat before the deck's densest frame. The freed frame went to the close, which had no way for a reader to act.",
-      "renumbered_after_the_cut": "Recorded at the third scoring pass. The register, three palette notes and the camera line were all written against the nine slide plan and survived the cut of slide 4 unchanged, so this entry named the wrong frame for the paper inversion, for both accent fills and in every camera move after the fourth. Nothing checked it, because the variety ledgers are written at ship and no gate reads them back against the deck.",
-      "bespoke_measurement_note": "0.5314 was this deck's first measurement and it was wrong about the deck, not about the gate's arithmetic. bespoke_check was still counting the standing masthead, which this run put on every frame: on the closest pair it shared 50 tokens and exactly one was a drawing call. The gate now strips anything carrying a tx- class. RE-MEASURED under the corrected gate, the two earlier decks move only 0.3997 to 0.4061 and 0.2298 to 0.2300, because neither carried that masthead. Their own entries keep the figures they shipped with, which is what those runs were judged on.",
-      "rebuilt_at_the_ninth_pass": "Three techniques in this list named frames that were replaced during scoring and were caught by two judges reading the ledger against the renders. Slide 7 was recorded as a redaction field of struck bars, which is a drawing nobody made: two judges read the struck bars as an assertion that something had been struck out, which c17 does not support, and it was rebuilt as the survey title block its own dossier had asked for. Slide 3 was recorded as a flat field of identical cells and was rebuilt under one raking key, because a flat frame reads as an unfinished render and its own risks list said so. Slide 6 ran its courses DOWN, which forced four display words to 90 degrees under four near-black plates, and now runs them across. The ledger is the next run's only memory of what not to reuse, so a technique recorded here that never shipped blocks tomorrow from a drawing nobody made and leaves the drawing that ran unrecorded. This entry is now written against the renders rather than against the plan."
-    }
-  ]
+  {
+   "date": "2026-08-18",
+   "carousel_no": 2,
+   "register": "daylight throughout, a Gulf Coast overcast working sheet, with exactly one dark interior at slide 7",
+   "techniques": [
+    "SDF raymarch, a 16 by 9 recess carved into a brick mass",
+    "single-county spotlight with a leader line to a label outside the mesh",
+    "grid decay threshold-driven from an fBm field",
+    "line and node as engineering stationing over a heat shimmer band",
+    "relit tiles at true duration, rotated and overlapping, on no shared baseline",
+    "heightfield terrain with a horizon solved from the projection centre",
+    "a lit panel in a shadowed interior with a plate measured for a line the record does not contain",
+    "axonometric plaques, one pairing per row, widths following the names",
+    "line and node with an unfilled ring, over an oil-chart field table"
+   ],
+   "palette": {
+    "source": "a post-war Houston ISD elementary building on the Gulf Coast prairie, Harris County",
+    "overcast": "#E9EAE6 the flat August lid over Houston",
+    "brick": "#C9A67B buff face brick",
+    "terrazzo": "#DCD6C8 corridor pale",
+    "slate": "#2C3A34 chalkboard, the deck's true dark",
+    "bayou": "#5F7350 Buffalo Bayou at slack water",
+    "ochre": "#D2A03C pencil lacquer",
+    "clay": "#7A6A55 coastal prairie"
+   },
+   "red_spent": false,
+   "structural_laws": [
+    "no circles anywhere except one path node, argued for by name",
+    "filled means the source states it, outlined means the source calls it optional or does not describe it"
+   ],
+   "bespoke_median_similarity": 0.2298
+  },
+  {
+   "date": "2026-08-19",
+   "carousel_no": 3,
+   "register": "night inside a public building, no horizon on any frame, lit only from behind glass and off brass, with one bright paper sheet at slide 5",
+   "techniques": [
+    "an August month sheet embossed into limestone with one cell cut clean through, lit by a raking key that finds no floor",
+    "a constant-rate day rule with two spans of one construction sharing one origin, above and below, one capped and one left open",
+    "a true space-filling Voronoi bed of identical unassigned panels under ONE raking key, per-edge lit and shadowed, inside a hard neatline",
+    "a mid century oil chart table under a low lamp, tabular mono, three quoted figures from two documents",
+    "a flat neatlined survey sheet on the paper register, two equal quoted columns over a stack of sheets",
+    "four terrazzo inlay courses run ACROSS the frame under one key, each course a different stone at one night value, the seams cut as grooves",
+    "an engraved survey title block on stone, every field filled from the record and one ruled empty",
+    "a lit cell over a dated list of what is still open, the opening void inverted"
+   ],
+   "palette": {
+    "source": "the Texas county courthouse at night, which every county has, so a statewide story takes a statewide material rather than one place's soil",
+    "tower": "#16151C masonry in shadow, warm neutral with no violet so it is not the house Big Bend night",
+    "dial": "#EFE9DA enameled cast iron lit from behind, the deck's light",
+    "cordova": "#D9CDB4 Cordova cream limestone, Williamson County",
+    "brass": "#B98D46 the movement's works, line colour",
+    "pecos": "#8E4B3A masonry red. A band fill on slide 6, and set as TYPE on slide 5 to mark where the signed letter narrows the press release.",
+    "patina": "#4E6B62 oxidized copper, slide 6 only",
+    "paper": "#F6F1E4 on ink #23202B, slide 5 only"
+   },
+   "red_spent": false,
+   "structural_laws": [
+    "no horizon anywhere, because the story has no place",
+    "one day is 46 pixels on every frame that draws time, and no axis is truncated",
+    "ruled means quoted, a hairline above and below with attribution and claim id beneath",
+    "no cartography at all, the first deck here with none"
+   ],
+   "bespoke_median_similarity": 0.2687,
+   "camera": "one tilted sheet, then a flat rule, then straight down on a bed, then a lit table, then a flat sheet, then straight on at four courses, then a block on stone, then one lit cell",
+   "slides": 8,
+   "cut": "Slide 4, whose water and whose power, was cut after scoring. Its headline promised power and the frame delivered only water, and it sat before the deck's densest frame. The freed frame went to the close, which had no way for a reader to act.",
+   "renumbered_after_the_cut": "Recorded at the third scoring pass. The register, three palette notes and the camera line were all written against the nine slide plan and survived the cut of slide 4 unchanged, so this entry named the wrong frame for the paper inversion, for both accent fills and in every camera move after the fourth. Nothing checked it, because the variety ledgers are written at ship and no gate reads them back against the deck.",
+   "bespoke_measurement_note": "0.5314 was this deck's first measurement and it was wrong about the deck, not about the gate's arithmetic. bespoke_check was still counting the standing masthead, which this run put on every frame: on the closest pair it shared 50 tokens and exactly one was a drawing call. The gate now strips anything carrying a tx- class. RE-MEASURED under the corrected gate, the two earlier decks move only 0.3997 to 0.4061 and 0.2298 to 0.2300, because neither carried that masthead. Their own entries keep the figures they shipped with, which is what those runs were judged on.",
+   "rebuilt_at_the_ninth_pass": "Three techniques in this list named frames that were replaced during scoring and were caught by two judges reading the ledger against the renders. Slide 7 was recorded as a redaction field of struck bars, which is a drawing nobody made: two judges read the struck bars as an assertion that something had been struck out, which c17 does not support, and it was rebuilt as the survey title block its own dossier had asked for. Slide 3 was recorded as a flat field of identical cells and was rebuilt under one raking key, because a flat frame reads as an unfinished render and its own risks list said so. Slide 6 ran its courses DOWN, which forced four display words to 90 degrees under four near-black plates, and now runs them across. The ledger is the next run's only memory of what not to reuse, so a technique recorded here that never shipped blocks tomorrow from a drawing nobody made and leaves the drawing that ran unrecorded. This entry is now written against the renders rather than against the plan."
+  },
+  {
+   "date": "2026-08-20",
+   "carousel_no": 4,
+   "register": "a press proof, ballot stock at working distance printed in two plates and annotated in graphite, with three frames on the other city's dark ground",
+   "techniques": [
+    "felt-pen wick on fiber stock, an ink boundary displaced by the same field that draws the pulp",
+    "a misregistered second impression of one clause, offset 7 and 3, in the dropout plate's ink",
+    "printed optical scan ovals, empty, outline in ink and interior in dropout",
+    "a banded charter section stack running off both frame edges with one course lit",
+    "three real county polygons at true relative position, two fills, no state silhouette",
+    "an open dimension with witness ticks and no figure between them",
+    "a raking slab with two-part contact shadows and individually lit stacked sheet edges",
+    "a bounded hard-edge figure inside an unbounded warped wash that reaches every frame edge",
+    "the empty field, bounded by a neatline and dimension ticks",
+    "a punched perforation, unbroken, each hole with its own lit lip and cast shadow",
+    "the ballot's foot reset as a drawing sheet's title block"
+   ],
+   "palette": {
+    "source": "a Galveston County election printing job, with the other city's side carried on a warm neutral black",
+    "stock": "#EFE6D2 bulk uncoated offset ballot stock",
+    "stock_deep": "#DCCFB2 the same stock on the shadow side of a raking light",
+    "ink": "#16141A election printing black wicking into fiber",
+    "dropout": "#A6C6BE the pale ink an optical scan oval is printed in, a printed shape and never type",
+    "houston": "#17140F warm neutral black with no violet, so it is not the house night",
+    "clay": "#6E6154 the same black one stop up",
+    "graphite": "#56525C every hand-added mark on paper",
+    "chalk": "#BFB3A0 the same hand on the dark ground, where graphite is under the contrast floor"
+   },
+   "red_spent": true,
+   "red_note": "Spent once, on slide 8, on the event, the date and the hour of the League City council's next open meeting, plus a solid rule under it so the focal is an area. November 3rd is deliberately DENIED the red on every frame it appears on, because a nonbinding election is not a deadline and the deck's whole argument is that the date which looks like the decision is not the one. Measured 5.12 to 1 on the stock and 2.89 on the soil, which is why only a paper frame could carry it.",
+   "camera": "one centimetre off the paper, backing away one readable step per frame, flat copy stand at 3 and 4, the table tilts once at 5 and holds through 6, plan view over an almost empty card at 7, square to the foot of the ballot at 8",
+   "light_decks_used": 1,
+   "slides": 8,
+   "bespoke_median_similarity": 0.3408,
+   "bespoke_closest_pair": "slide-07.html and slide-08.html at 0.7463, the two pale typographic frames the deck ends on",
+   "cut": "Slide 6, the duration-as-extent inversion, cut after the first scoring panel. All three judges named slides 5 and 6 as one argument made twice and 6 as the weaker drawing, and its own dossier had named the risk that two vertical runs read as a bar chart. They did.",
+   "structural_laws": [
+    "every mark is either printed or added, never both",
+    "the two grounds never mix, and the palette is craft and never evidence, so no frame names a soil",
+    "an oval is never furniture, and it is empty or filled, never partly",
+    "the perforation never tears, because the election has not happened",
+    "the stock is new, no stains, no yellowing, no deckle",
+    "no numeral appears that is not in claims.json, and no distance between the two cities appears at all"
+   ]
+  }
+ ]
 }
