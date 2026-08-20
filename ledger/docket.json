@@ -3016,7 +3016,7 @@
   },
   {
    "title": "League City City Council ordered a November 3rd special election on whether police may keep using automated license plate reader cameras",
-   "summary": "On August 11th, 2026 the League City City Council approved Ordinance No. 2026-27 on first and final reading. The ordinance orders a special election on November 3rd, 2026. It asks voters about the police department's continued use of automated license plate reader cameras at fixed locations on public roadways. The wording the city published opens by telling voters the result is a nonbinding statement of preference, so the council keeps the decision either way. Mayor Long sponsored the item and asked for approval on first and final reading. Council member Courtney Chadwell moved it and the council passed it twice that evening, once on first reading and once on first and final reading. Reporting in the Houston region identifies the cameras as Flock Safety devices.",
+   "summary": "On August 11th, 2026 the League City City Council approved Ordinance No. 2026-27 on first and final reading. The ordinance orders a special election on November 3rd, 2026. It asks voters about the police department's continued use of automated license plate reader cameras at fixed locations on public roadways. The wording the city published opens by telling voters the result is a nonbinding statement of preference, so the council keeps the decision either way. Mayor Long sponsored the item and asked for approval on first and final reading. Council member Chadwell moved it, seconded by Council member Cones. Reporting in the Houston region identifies the cameras as Flock cameras.",
    "topic": "surveillance-and-policing",
    "decider": {
     "name": "League City City Council",
@@ -3050,7 +3050,7 @@
    ],
    "public_access": {
     "room": "open_meeting",
-    "how": "League City City Council meets in Council Chambers at 200 West Walker Street. The next regular meeting on the city's Legistar calendar is August 25th, 2026 at 6:00 PM with a Council Budget and CIP Workshop at 5:00 PM. The decision itself now goes to registered voters at the November 3rd, 2026 election.",
+    "how": "League City City Council meets in Council Chambers at 200 West Walker Street. The next regular meeting on the city's Legistar calendar is August 25th, 2026 at 6:00 PM with a Council Budget and CIP Workshop at 5:00 PM. The proposition goes to registered voters at the November 3rd, 2026 election, and the published wording says the result does not bind the council.",
     "url": "https://leaguecity.legistar.com/Calendar.aspx",
     "closes": "2026-11-03"
    },
@@ -3093,8 +3093,13 @@
     {
      "date": "2026-08-20",
      "note": "The ballot wording is now on the record verbatim from the city's own posting. It opens by calling itself a nonbinding statement of voter preference, which means the council retains the decision whichever way the vote falls. The ordinance ordering the November 3rd election is otherwise unchanged."
+    },
+    {
+     "date": "2026-08-20",
+     "note": "The motion record names Chadwell as the mover and Cones as the seconder, and gives neither a first name. It establishes one motion, on first and final reading. Reporting in the Houston region calls the cameras Flock cameras. The proposition reaches registered voters on November 3rd, 2026, and the wording the city published says the result is a nonbinding statement of voter preference, so the council keeps the decision either way."
     }
-   ]
+   ],
+   "notes_for_editor": "2026-08-20, three corrections to this item's own prose and none to a fetched fact. The summary gave the mover a first name, Courtney, that no fetched record carries, and dropped the seconder the quote names. It also said the council passed the ordinance twice that evening, once on first reading and once on first and final reading, where the quote establishes one motion on first and final reading and nothing establishes a second. It called the cameras Flock Safety devices where the reporting says Flock cameras and Pflugerville's own item title says Flock Group, Inc. The heavier one was in public_access.how, which read 'The decision itself now goes to registered voters at the November 3rd, 2026 election'. That sat four lines below this item's own sentence saying the council keeps the decision either way, and against the ballot's published first clause, in the field the site prints under how to take part. Root cause: the field was written on 2026-08-14 from the ordinance, which orders an election, and was never revisited when the ballot wording arrived on 2026-08-20 and turned the election into a preference poll. A field that describes access was carrying a claim about effect."
   },
   {
    "title": "Harris County Commissioners Court renewed its Flock Group license plate reader and sound detection contract, then amended it to run county-wide",
