@@ -59,6 +59,7 @@ import texas_map                                                   # noqa: E402
 import waterwatch_page                                             # noqa: E402
 import grain                                                       # noqa: E402
 import mark                                                        # noqa: E402
+import csp                                                        # noqa: E402
 import numeral_lint                                                # noqa: E402
 import theme                                                       # noqa: E402
 
@@ -469,7 +470,10 @@ def page(*, title: str, desc: str, body: str, depth: int, active: str,
         "publisher": {"@id": f"{SITE_URL}/#org"},
     }, {"@context": "https://schema.org", **schema.org_node(SCHEMA_CTX)}] + (extra_ld or [])
 
-    return f"""<!doctype html>
+    # THE POLICY IS COMPUTED FROM THE FINISHED PAGE, which is why this is a variable and not a
+    # return. `csp.apply` hashes every inline block in the exact bytes that ship, so the thing
+    # hashed and the thing served cannot be different strings. See scripts/site/csp.py.
+    _doc = f"""<!doctype html>
 <html lang="en-US">
 <head>
 <meta charset="utf-8">
@@ -514,6 +518,7 @@ def page(*, title: str, desc: str, body: str, depth: int, active: str,
 </body>
 </html>
 """
+    return csp.apply(_doc)
 
 
 # --------------------------------------------------------------------------- pieces
@@ -1603,7 +1608,10 @@ font-size:12px;line-height:2;color:var(--mute)}
         "publisher": {"@id": f"{SITE_URL}/#org"},
     }]
 
-    return f"""<!doctype html>
+    # ITS OWN SHELL MEANS ITS OWN POLICY. This page does not go through `page()`, so the
+    # CSP that every other page inherits there has to be applied here too. It carries the
+    # feed loader inline, which is exactly the kind of script the policy exists to pin.
+    _doc = f"""<!doctype html>
 <html lang="en-US">
 <head>
 <meta charset="utf-8">
@@ -1664,6 +1672,8 @@ font-weight:400 600;font-display:swap}}
 </body>
 </html>
 """
+    return csp.apply(_doc)
+
 
 
 def articles_page(runs: list, today: str) -> str:
@@ -4720,6 +4730,7 @@ def build(out: Path, today: str) -> dict:
     authorised = _authorised_numerals(items, today)
     by_item = {it["id"]: _item_numerals(it, today) for it in items}
     unauthorised: list[str] = []
+    broken: list[str] = []          # content security policy findings, per page
     pages: dict[str, tuple[str, set]] = {}
 
     def w(path: str, text: str, extra: set | None = None):
@@ -4986,6 +4997,13 @@ def build(out: Path, today: str) -> dict:
         stray = numeral_lint.scan(stamped, authorised | extra | own)
         if stray:
             unauthorised.append(f"{path}: {', '.join(stray[:8])}")
+        # THE POLICY IS CHECKED HERE, AGAINST `stamped`, and the position is the point. The
+        # policy was computed inside `page()` and `lastmod.apply` has rewritten the document
+        # since, so auditing any earlier string would check bytes nobody serves. If that
+        # substitution ever reaches inside a script or a style block, the hash it invalidates
+        # is caught on this line rather than by a reader whose page quietly stopped working.
+        if path.endswith(".html"):
+            broken.extend(f"{path}: {v}" for v in csp.audit(stamped))
         (out / path).write_text(stamped, encoding="utf-8")
 
     # A url with no honest date carries no `lastmod`. The element is optional and an absent one
@@ -5003,6 +5021,18 @@ def build(out: Path, today: str) -> dict:
 
     # THE GATE FIRES HERE, after every page is written, so the report names all of them
     # rather than the first. A build that would publish a typed numeral does not publish.
+    # A CSP FAILURE IS SILENT AND TOTAL, so it stops the build the same way a typed numeral does.
+    # A policy that misses one inline script does not warn anybody: the browser refuses that
+    # script, the page half works, and every other gate here stays green.
+    if broken:
+        for line in broken:
+            print(f"  csp: {line}", file=sys.stderr)
+        raise SystemExit(
+            f"site_build: {len(broken)} content security policy finding(s). A page loads or "
+            f"posts to an origin its own policy refuses, or carries an inline block nobody "
+            f"hashed. Add the origin in scripts/site/csp.py if the page should be loading it, "
+            f"and otherwise the page should not be loading it.")
+
     if unauthorised:
         for line in unauthorised:
             print(f"  numeral: {line}", file=sys.stderr)
