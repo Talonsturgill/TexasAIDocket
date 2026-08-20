@@ -66,6 +66,24 @@ FRAME_HOSTS = (
 IMG_HOSTS = (
     "https://raw.githubusercontent.com",   # the article pages' shipped carousel slides
 )
+# MEDIA IS A SEPARATE DIRECTIVE FROM IMAGES AND IT WAS NEVER WRITTEN, so `media-src` fell back to
+# `default-src 'self'` and every film on this site was refused by the reader's own browser:
+#
+#   Refused to load media from 'https://raw.githubusercontent.com/.../dispatch-720.mp4' because
+#   it violates the following Content Security Policy directive: "default-src 'self'". Note that
+#   'media-src' was not explicitly set, so 'default-src' is used as a fallback.
+#
+# The POSTER beside it loaded, because it is an <img> and `img-src` names that host. So the
+# videos page showed a still, a play button and a spinner that never resolved, and it read as a
+# video that would not autoplay rather than as a video that was blocked. Same host, two
+# directives, one of them written.
+#
+# It is the same host as IMG_HOSTS and it is NOT spelled as `IMG_HOSTS + (...)`. The two are
+# allowed to diverge, and a policy whose media allowance silently tracks its image allowance is
+# the next version of this defect.
+MEDIA_HOSTS = (
+    "https://raw.githubusercontent.com",   # TexasAIDispatch's films and their posters
+)
 # THE TWO WORKERS THIS SITE TALKS TO, DEFINED HERE AND IMPORTED BY THE CODE THAT CALLS THEM,
 # rather than typed in both places. That is the same lesson as `site_url` below, learned the
 # same way and one commit later: the ask box's endpoint lived in ask_written.py, the policy
@@ -128,6 +146,7 @@ def policy(html: str) -> str:
         # Named separately so the concession is visible rather than buried in `style-src`.
         "style-src-attr 'unsafe-inline'",
         f"img-src 'self' data: {' '.join(IMG_HOSTS)}",
+        f"media-src 'self' {' '.join(MEDIA_HOSTS)}",
         "font-src 'self'",
         f"connect-src 'self' {' '.join(CONNECT_HOSTS)}",
         f"frame-src {' '.join(FRAME_HOSTS)}",
@@ -155,7 +174,46 @@ _RES = {
     "img-src": r'<img[^>]+src="([^"]+)"',
     "frame-src": r'<iframe[^>]+src="([^"]+)"',
     "form-action": r'<form[^>]+action="([^"]+)"',
+    # A <video src> or a <source src> written into the markup. Neither video surface on this
+    # site does that, which is exactly why the media hole survived: see `media_targets`.
+    "media-src": r'<(?:video|audio|source)[^>]+src="([^"]+)"',
 }
+
+# MEDIA-SRC IS THE SECOND DIRECTIVE THE AUDIT COULD NOT SEE, and it went the same way as
+# connect-src did. Every pattern above reads an HTML attribute. Both video surfaces here build
+# the address in JAVASCRIPT out of `media_base` in docs/videos/videos.json, so the URL never
+# appears as an attribute in any page and the regex above finds nothing on a site whose films
+# were all being refused.
+#
+# The film addresses are not this repo's to write. TexasAIDispatch owns videos.json and is the
+# only thing allowed to touch it, so the origin can change without a single byte of this repo
+# changing, and a policy that was audited only against this repo's own markup would go green
+# through that too. The manifest is read as the source of truth it is.
+_MEDIA_BASE_KEYS = ("media_base",)
+
+
+def media_targets(manifest: dict | None) -> set[str]:
+    """Every origin the video manifest points a film or a poster at.
+
+    Returns origins only, never paths. An empty or relative `media_base` means same origin and
+    is covered by 'self'.
+    """
+    out = set()
+    for key in _MEDIA_BASE_KEYS:
+        base = str((manifest or {}).get(key) or "").strip()
+        if base.startswith(("http://", "https://")):
+            out.add("/".join(base.split("/")[:3]))
+    return out
+
+
+def unaudited_media(manifest: dict | None, site_url: str) -> list[str]:
+    """The manifest's own origin, checked against the policy this build writes."""
+    allowed = " ".join(MEDIA_HOSTS)
+    return [f"media-src would refuse {origin}, which is where videos.json points every film. "
+            f"The poster beside it is an <img> and loads, so this fails as a video that will "
+            f"not play rather than as a policy error."
+            for origin in sorted(media_targets(manifest))
+            if origin.rstrip("/") != site_url.rstrip("/") and origin not in allowed]
 
 # CONNECT-SRC IS THE DIRECTIVE THE AUDIT COULD NOT SEE, and it is the one that broke first.
 # Every pattern above reads an HTML attribute, and a fetch target is not an attribute: it is a
@@ -315,6 +373,33 @@ def self_test() -> int:
     # The two limits this file admits to, asserted so a future edit cannot quietly reverse them.
     ok("frame-ancestors is absent, because a meta tag cannot deliver it",
        "frame-ancestors" not in policy(page))
+    # THE DEFECT THIS FILE SHIPPED. media-src was never written, so it fell back to
+    # default-src 'self' and every film on the site was refused, while the poster beside it
+    # loaded because it is an <img> and img-src names the same host. Both halves are replayed:
+    # the directive is in the policy, and the manifest origin is audited even though it appears
+    # in no page's markup, which is the reason nothing caught it.
+    ok("media-src is written and does not fall back to default-src",
+       "media-src 'self'" in policy("<head></head>"), policy("<head></head>"))
+    ok("...and it names the host the films are actually served from",
+       "https://raw.githubusercontent.com" in re.search(
+           r"(?:^|; )media-src ([^;]*)", policy("<head></head>")).group(1))
+    vid_html = ('<head></head><video src="https://cdn.example/x.mp4"></video>'
+                '<source src="https://cdn.example/x.webm">')
+    ok("caught: a film written into the markup from an origin nobody allowed",
+       any("media-src would refuse https://cdn.example" in x
+           for x in audit(apply(vid_html), SELF)))
+    # The half the attribute patterns structurally cannot see. Both video surfaces build the
+    # address in JS out of videos.json, so this is the check that would have gone red.
+    ok("caught: a manifest pointing the films at an origin nobody allowed",
+       any("media-src would refuse https://cdn.example" in x
+           for x in unaudited_media({"media_base": "https://cdn.example/films"}, SELF)))
+    ok("...and the shipped manifest origin passes",
+       not unaudited_media({"media_base": "https://raw.githubusercontent.com/x/y"}, SELF))
+    ok("a same-origin or relative media_base needs no allowance",
+       not unaudited_media({"media_base": ""}, SELF)
+       and not unaudited_media({"media_base": SELF + "/films"}, SELF)
+       and not unaudited_media(None, SELF))
+
     ok("the style attribute concession is explicit and is scoped to attributes only",
        "style-src-attr 'unsafe-inline'" in policy(page))
 

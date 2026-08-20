@@ -1365,3 +1365,57 @@ with a work tree attached. The convention answers correctly in one of the four.
 The wider shape is entries 13, 30, 37 and 38 again, in its quietest form yet: **a checker that
 CANNOT go red prints the same clean line as a checker that went green on a clean product.** The
 run has no way to tell those two apart from the output, so it must occasionally force the red.
+
+---
+
+## 40. Every film on the site was refused, and it read as a video that would not autoplay
+
+**2026-08-20.** The owner said the videos were not autoplaying. They were not playing at all, and
+they never had. The browser says so in one line:
+
+```
+Refused to load media from 'https://raw.githubusercontent.com/.../dispatch-720.mp4' because it
+violates the following Content Security Policy directive: "default-src 'self'". Note that
+'media-src' was not explicitly set, so 'default-src' is used as a fallback.
+```
+
+`csp.py` writes `script-src`, `style-src`, `img-src`, `font-src`, `connect-src`, `frame-src` and
+`form-action`. It never wrote `media-src`, so media fell back to `default-src 'self'` and the
+films, which are served from `raw.githubusercontent.com`, were refused.
+
+**The POSTER loaded.** It is an `<img>`, `img-src` names that host for the article pages' shipped
+slides, and the same host was refused for the `<video>` one attribute away. So the page showed a
+still, a play button and a spinner that never resolved. **The symptom was indistinguishable from
+an autoplay policy**, which is the most common reason a video does not start on its own, so the
+report that reached this repo was about autoplay and the cause was a directive nobody had written.
+
+**Why the gate could not see it, which is the part worth keeping.** `csp.audit` reads HTML
+attributes: `<script src>`, `<img src>`, `<iframe src>`, `<form action>`. Neither video surface
+writes an address into markup. The feed builds `<video data-src=...>` and attaches the real `src`
+in JavaScript, and the home page reads `media_base` out of `docs/videos/videos.json` and assigns
+`el.src`. **The URL appears in no page's markup anywhere on the site.** A regex over the built
+HTML finds nothing on a site whose every film is blocked.
+
+This is entry 30's shape and it is written into `csp.py` already, about `connect-src`: "Every
+pattern above reads an HTML attribute, and a fetch target is not an attribute." The file diagnosed
+its own blind spot, fixed it for one directive, and left the same hole open for the next one.
+
+**What to check instead.** Audit against the SOURCE OF TRUTH, not against the rendered markup.
+`media_targets` reads `media_base` out of `videos.json` and `unaudited_media` checks that origin
+against the policy the build just wrote. That matters twice over here, because `videos.json` is
+owned by `TexasAIDispatch` and is the one file it writes into this repo: the origin can change
+without a byte of this repo changing, and a policy audited only against this repo's own markup
+would go green straight through that too.
+
+The self-test replays both halves, and the fix was verified by forcing the red, by setting
+`MEDIA_HOSTS = ()` and confirming the gate fails on the real shipped manifest.
+
+**Generalises to.** Every CSP directive whose resource is addressed at runtime rather than in
+markup, which is most of them on any page with JavaScript: `media-src`, `connect-src`,
+`worker-src`, `img-src` for a lazy-loaded gallery. And more widely, any allowlist audited against
+a RENDERING instead of against the data the rendering is generated from.
+
+**One more thing this cost.** A resource type was widened for one element and not for its sibling,
+on the same host, in the same feature. When adding a host to any allowlist, ask which OTHER
+directive the same feature needs, because the feature is what has the requirement and the
+directive is only how it is spelled.
