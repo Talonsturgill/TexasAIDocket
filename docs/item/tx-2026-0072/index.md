@@ -9,13 +9,13 @@ Governor Greg Abbott issued a directive on August 3rd, 2026. It tells the Public
 - Public access: Public meeting
 - Take part: https://gov.texas.gov/uploads/files/press/Thomas_Gleeson_Pablo_Vegas_Data_Centers_Directive_Letter_to_PUCT_ERCOT_August_2026_.pdf
 
-- Last checked: 2026-08-19
+- Last checked: 2026-08-20
 
 ## Dates
 
 - 2026-08-03 · ordered: Directive issued
 - 2026-08-07 · statutory deadline: Batch Zero classification deadline set in the ERCOT Planning Guide passed with no classification notified
-- 2026-08-20 · hearing: Next utility commission open meeting after the directive
+- 2026-08-20 · hearing: Utility commission open meeting carrying ERCOT's request for a good cause exception, agenda item 22
 
 ## How this decision moved
 
@@ -23,6 +23,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-08-16 · The directive letter itself is now the cited source rather than the press release about it. The release reads 'approximately over 474 gigawatts' where the letter reads 'approximately 474 gigawatts'.
 - 2026-08-19 · The directive has already moved a deadline. ERCOT stated on August 3rd that it would not tell service providers how any large load is classified in the Batch Zero study by the August 7th deadline. It said it would ask the utility commission for a good cause exception ahead of the August 20th open meeting. The Governor's office said on August 18th that the Data Center Coalition will comply. That release also says one data center that could not comply ended operations before construction began.
+- 2026-08-20 · The exception ERCOT said it would seek is on the commission's agenda today. The published agenda for the August 20th open meeting lists Project 59142, the review of ERCOT's interconnection processes for large loads. The item includes discussion and possible action on an ERCOT request for a good cause exception. The same agenda lists Project 58481, the rulemaking to implement large load interconnection standards. Neither item is on the agenda's list of matters to be taken up without discussion.
 
 ## Evidence
 
@@ -75,4 +76,22 @@ Source (primary_official): https://puc.texas.gov/agency/calendar/GetCalendarRss.
 > The failure of some data centers to comply with the PUC's survey measuring water and power usage under the General Appropriations Act makes this necessary.
 
 Source (primary_official): https://gov.texas.gov/uploads/files/press/Thomas_Gleeson_Pablo_Vegas_Data_Centers_Directive_Letter_to_PUCT_ERCOT_August_2026_.pdf
+
+### The commission's published agenda for the August 20th open meeting carries ERCOT's request for a good cause exception.
+
+> (Discussion and possible action, including discussion and possible action on ERCOT request for a good cause exception)
+
+Source (primary_official): https://ftp.puc.texas.gov/public/puct-info/agency/om/082026Final.pdf
+
+### A separate rulemaking on large load interconnection standards sits on the same agenda.
+
+> Rulemaking to Implement Large Load Interconnection Standards Under PURA 37.0561
+
+Source (primary_official): https://ftp.puc.texas.gov/public/puct-info/agency/om/082026Final.pdf
+
+### The commission's open meetings begin with a public comment period on any matter in its jurisdiction.
+
+> In the interest of time, speakers will be limited to three minutes each.
+
+Source (primary_official): https://ftp.puc.texas.gov/public/puct-info/agency/om/082026Final.pdf
 

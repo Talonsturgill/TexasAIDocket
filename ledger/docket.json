@@ -292,7 +292,7 @@
   {
    "id": "tx-2026-0003",
    "title": "PUCT Docket 59315, Oncor application for a 765 kV transmission line across 22 counties",
-   "summary": "Oncor Electric Delivery has applied to amend its certificate of convenience and necessity to build the Dinosaur Switch to Longshore Switch transmission line. The application covers a corridor crossing 22 named counties in central and west Texas. The docket has drawn one of the largest volumes of landowner filings in recent PUCT practice. Those filings include intervention requests, protests and a county resolution. The commission has the docket set for discussion and possible action at its open meeting on August 21st, 2026, held at a hotel ballroom in Austin rather than in the hearing room. That meeting takes up two Oncor 765 kV applications and nothing else before it closes.",
+   "summary": "Oncor Electric Delivery has applied to amend its certificate of convenience and necessity to build the Dinosaur Switch to Longshore Switch transmission line. The application covers a corridor crossing 22 named counties in central and west Texas. The docket has drawn one of the largest volumes of landowner filings in recent PUCT practice. Those filings include intervention requests, protests and a county resolution. The commission has the docket set for discussion and possible action at its open meeting on August 21st, 2026. That meeting is in a hotel ballroom in Austin rather than in the hearing room. That meeting takes up two Oncor 765 kV applications and nothing else before it closes.",
    "topic": "power-and-the-grid",
    "decider": {
     "name": "Public Utility Commission of Texas",
@@ -342,7 +342,7 @@
    ],
    "public_access": {
     "room": "open_meeting",
-    "how": "The docket is set for the open meeting on August 21st, 2026, listed as open to the public and held at the AT&T Hotel and Conference Center on University Avenue in Austin. The published agenda names the docket as item 3 and opens with a public comment period, with speakers limited to three minutes each. Affected landowners have intervened and filed protests directly through the Interchange under control number 59315, and the record shows individuals doing so in their own names.",
+    "how": "The docket is set for the open meeting on August 21st, 2026, listed as open to the public. It is held at the AT&T Hotel and Conference Center on University Avenue in Austin. The published agenda names the docket as item 3 and opens with a public comment period, with speakers limited to three minutes each. Affected landowners have intervened and filed protests directly through the Interchange under control number 59315, and the record shows individuals doing so in their own names.",
     "url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59315&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
     "closes": null
    },
@@ -3050,8 +3050,8 @@
    ],
    "public_access": {
     "room": "open_meeting",
-    "how": "League City City Council meets in Council Chambers at 200 West Walker Street. The next regular meeting on the city's Legistar calendar is August 25th, 2026 at 6:00 PM with a Council Budget and CIP Workshop at 5:00 PM. The proposition goes to registered voters at the November 3rd, 2026 election, and the published wording says the result does not bind the council.",
-    "url": "https://leaguecity.legistar.com/Calendar.aspx",
+    "how": "League City City Council meets in Council Chambers at 200 West Walker Street. The next regular meeting is August 25th, 2026 at 6:00 PM with a Council Budget and CIP Workshop at 5:00 PM. That agenda is posted final and names no automated license plate reader item, so the camera question is not before the council on that date. The proposition goes to registered voters at the November 3rd, 2026 election, and the wording the city published says the result does not bind the council.",
+    "url": "https://leaguecity.legistar.com/MeetingDetail.aspx?LEGID=2222&GID=84&G=2D7DD9CC-BD32-4A4F-B8D5-83638663C82D",
     "closes": "2026-11-03"
    },
    "claims": [
@@ -3081,6 +3081,15 @@
      "source_title": "City of League City, News Flash, Proposition on November Ballot Regarding City's Use of Flock Cameras, posted August 12th, 2026",
      "source_type": "primary_official",
      "fetched": "2026-08-20"
+    },
+    {
+     "id": "tx-2026-0048-c4",
+     "text": "The council's next regular meeting is August 25th, 2026 at 6:00 PM in Council Chambers at 200 West Walker Street, and that agenda is posted final with no item naming automated license plate readers.",
+     "verbatim_quote": "The physical meeting space shall be the following location:  Council Chambers - 200 West Walker Street, League City, Texas.",
+     "source_url": "https://webapi.legistar.com/v1/leaguecity/events/2222/eventitems",
+     "source_title": "Legistar API, City of League City, Event 2222 agenda items",
+     "source_type": "primary_official",
+     "fetched": "2026-08-20"
     }
    ],
    "id": "tx-2026-0048",
@@ -3096,10 +3105,14 @@
     },
     {
      "date": "2026-08-20",
-     "note": "The motion record names Chadwell as the mover and Cones as the seconder, and gives neither a first name. It establishes one motion, on first and final reading. Reporting in the Houston region calls the cameras Flock cameras. The proposition reaches registered voters on November 3rd, 2026, and the wording the city published says the result is a nonbinding statement of voter preference, so the council keeps the decision either way."
+     "note": "The motion record names Chadwell as the mover and Cones as the seconder, and gives neither a first name. It establishes one motion, on first and final reading. Reporting in the Houston region calls the cameras Flock cameras. The proposition reaches registered voters on November 3rd, 2026. The wording the city published says the result is a nonbinding statement of voter preference, so the council keeps the decision either way."
+    },
+    {
+     "date": "2026-08-20",
+     "note": "The council's next regular meeting is August 25th, 2026 at 6:00 PM in Council Chambers at 200 West Walker Street. That agenda is posted final. None of its items names an automated license plate reader, Flock or a camera, so the camera question is not before the council on that date. The proposition itself is on the November 3rd ballot and the published wording says the result does not bind the council."
     }
    ],
-   "notes_for_editor": "2026-08-20, three corrections to this item's own prose and none to a fetched fact. The summary gave the mover a first name, Courtney, that no fetched record carries, and dropped the seconder the quote names. It also said the council passed the ordinance twice that evening, once on first reading and once on first and final reading, where the quote establishes one motion on first and final reading and nothing establishes a second. It called the cameras Flock Safety devices where the reporting says Flock cameras and Pflugerville's own item title says Flock Group, Inc. The heavier one was in public_access.how, which read 'The decision itself now goes to registered voters at the November 3rd, 2026 election'. That sat four lines below this item's own sentence saying the council keeps the decision either way, and against the ballot's published first clause, in the field the site prints under how to take part. Root cause: the field was written on 2026-08-14 from the ordinance, which orders an election, and was never revisited when the ballot wording arrived on 2026-08-20 and turned the election into a preference poll. A field that describes access was carrying a claim about effect."
+   "notes_for_editor": "2026-08-20, three corrections to this item's own prose and none to a fetched fact. The summary gave the mover a first name, Courtney, that no fetched record carries, and dropped the seconder the quote names. It also said the council passed the ordinance twice that evening, once on first reading and once on first and final reading, where the quote establishes one motion on first and final reading and nothing establishes a second. It called the cameras Flock Safety devices where the reporting says Flock cameras and Pflugerville's own item title says Flock Group, Inc. The heavier one was in public_access.how, which read 'The decision itself now goes to registered voters at the November 3rd, 2026 election'. That sat four lines below this item's own sentence saying the council keeps the decision either way, and against the ballot's published first clause, in the field the site prints under how to take part. Root cause: the field was written on 2026-08-14 from the ordinance, which orders an election, and was never revisited when the ballot wording arrived on 2026-08-20 and turned the election into a preference poll. A field that describes access was carrying a claim about effect.\n\n2026-08-20, second pass. The address, the date and the hour had been carried in public_access prose since the 14th with no quote behind them, and the day's deck was printing all three as its largest type. The meeting's own agenda was fetched instead, Legistar event 2222, and it carries the room and the street verbatim in item 1. Going to get it turned up the stronger finding: the agenda is FINAL with 61 titled items and not one names a licence plate reader, Flock or a camera. Until today this item could only say the record did not establish the question WAS on that agenda. It can now say the posted final agenda does not carry it. What that does NOT say, and this item must not: that the council will not reach the question on another date, or that the agenda's own ITEMS ADDED AFTER ELECTRONIC AGENDA COMPLETED placeholder will stay empty."
   },
   {
    "title": "Harris County Commissioners Court renewed its Flock Group license plate reader and sound detection contract, then amended it to run county-wide",
@@ -3795,7 +3808,7 @@
     },
     {
      "date": "2026-08-20",
-     "note": "Checked and unchanged. The cancelation notice for the Carson County meeting on the Fermi Equipment Holdco air permits still stands and still says the meeting will be rescheduled. No replacement date appears on it or on the agency's list of public meetings and hearings on permitting cases, so the date a Texan in Panhandle could speak is still unset."
+     "note": "Checked and unchanged. The cancelation notice for the Carson County meeting on the Fermi Equipment Holdco air permits still stands and still says the meeting will be rescheduled. No replacement date appears on it or on the agency's list of public meetings and hearings on permitting cases. The date a Texan in Panhandle could speak is still unset."
     }
    ]
   },
@@ -5154,7 +5167,7 @@
     },
     {
      "date": "2026-08-20",
-     "note": "The exception ERCOT said it would seek is on the commission's agenda today. The published agenda for the August 20th open meeting lists Project 59142, the review of ERCOT's interconnection processes for large loads, and states the item includes discussion and possible action on an ERCOT request for a good cause exception. The same agenda lists Project 58481, the rulemaking to implement large load interconnection standards. Neither item is on the agenda's list of matters to be taken up without discussion."
+     "note": "The exception ERCOT said it would seek is on the commission's agenda today. The published agenda for the August 20th open meeting lists Project 59142, the review of ERCOT's interconnection processes for large loads. The item includes discussion and possible action on an ERCOT request for a good cause exception. The same agenda lists Project 58481, the rulemaking to implement large load interconnection standards. Neither item is on the agenda's list of matters to be taken up without discussion."
     }
    ]
   },
@@ -5294,7 +5307,7 @@
     },
     {
      "date": "2026-08-20",
-     "note": "Both hearings are confirmed against the Legislature's own notices. The State Affairs notice of August 19th carries a second charge, on the regulatory and planning processes for the proposed 765 kV transmission lines, which the earlier record did not name. It took invited and public testimony, limited to two minutes a witness, with registration closing at 10:00 am that day. The Public Health notice for August 20th takes invited testimony only, so the only way a Texan is heard on the artificial intelligence in health care charge is the written one, open until the hearing is adjourned."
+     "note": "Both hearings are confirmed against the Legislature's own notices. The State Affairs notice of August 19th carries a second charge. It covers the regulatory and planning processes for the proposed 765 kV transmission lines, which the earlier record did not name. It took invited and public testimony, limited to two minutes a witness, with registration closing at 10:00 am that day. The Public Health notice for August 20th takes invited testimony only. The written comment is the one route a Texan has on the artificial intelligence in health care charge, and it stays open until the hearing is adjourned."
     }
    ]
   },
@@ -5390,7 +5403,7 @@
   {
    "id": "tx-2026-0076",
    "title": "PUCT Docket 59029, Oncor application for a second 765 kV line across ten west Texas counties",
-   "summary": "Oncor Electric Delivery has applied to amend its certificate of convenience and necessity to build the Longshore Switch to Drill Hole Switch transmission line. The application covers ten named counties in west Texas. The commission has it set for discussion and possible action at the open meeting on August 21st, 2026, on an agenda that carries this application and the Dinosaur Switch to Longshore Switch application and nothing else. The two lines meet at Longshore Switch.",
+   "summary": "Oncor Electric Delivery has applied to amend its certificate of convenience and necessity to build the Longshore Switch to Drill Hole Switch transmission line. The application covers ten named counties in west Texas. The commission has it set for discussion and possible action at the open meeting on August 21st, 2026. That agenda carries this application and the Dinosaur Switch to Longshore Switch application and nothing else. The two lines meet at Longshore Switch.",
    "topic": "power-and-the-grid",
    "decider": {
     "name": "Public Utility Commission of Texas",
@@ -5478,7 +5491,7 @@
   {
    "id": "tx-2026-0077",
    "title": "Senate Transportation sets an August 25th hearing on how driverless vehicles are being deployed under SB 2807",
-   "summary": "The Senate Committee on Transportation posted notice of a public hearing for August 25th, 2026 in the Capitol. One of three interim charges covers the deployment of autonomous vehicle technology authorized by SB 2807 of the 89th Session, including the rules adopted by the Department of Public Safety, the Department of Motor Vehicles and the Department of Licensing and Regulation. The charge directs the committee to quantify the impact on traffic related collisions. The committee will hear invited and public testimony.",
+   "summary": "The Senate Committee on Transportation posted notice of a public hearing for August 25th, 2026 in the Capitol. One of three interim charges covers the deployment of autonomous vehicle technology authorized by SB 2807 of the 89th Session. It reaches the rules adopted by the Department of Public Safety, the Department of Motor Vehicles and the Department of Licensing and Regulation. The charge directs the committee to quantify the impact on traffic related collisions. The committee will hear invited and public testimony.",
    "topic": "state-policy",
    "decider": {
     "name": "Texas Senate Committee on Transportation",
