@@ -1,0 +1,740 @@
+{
+ "_spec": 1,
+ "source": "waterdatafortexas.org recent-conditions.json, archived under ledger/gridwatch/raw by waterwatch_collect",
+ "note": "Gauge positions, which do not change. Storage and capacity are not here: those move daily and live in ledger/gridwatch/water.jsonl. Built by scripts/shared/reservoirs.py, never hand-edited.",
+ "count": 122,
+ "reservoirs": {
+  "Abilene": {
+   "name": "Lake Abilene",
+   "lon": -99.88898,
+   "lat": 32.23458,
+   "texas": true
+  },
+  "Addicks": {
+   "name": "Addicks Reservoir",
+   "lon": -95.62356,
+   "lat": 29.79134,
+   "texas": true
+  },
+  "AlanHenry": {
+   "name": "Lake Alan Henry",
+   "lon": -101.04763,
+   "lat": 33.06288,
+   "texas": true
+  },
+  "Amistad": {
+   "name": "Amistad Reservoir",
+   "lon": -101.05583,
+   "lat": 29.44972,
+   "texas": true
+  },
+  "AmonGCarter": {
+   "name": "Lake Amon G Carter",
+   "lon": -97.86309,
+   "lat": 33.47427,
+   "texas": true
+  },
+  "Aquilla": {
+   "name": "Aquilla Lake",
+   "lon": -97.20279,
+   "lat": 31.89988,
+   "texas": true
+  },
+  "Arlington": {
+   "name": "Lake Arlington",
+   "lon": -97.19251,
+   "lat": 32.71624,
+   "texas": true
+  },
+  "Arrowhead": {
+   "name": "Lake Arrowhead",
+   "lon": -98.37172,
+   "lat": 33.76427,
+   "texas": true
+  },
+  "Athens": {
+   "name": "Lake Athens",
+   "lon": -95.765,
+   "lat": 32.21056,
+   "texas": true
+  },
+  "Austin": {
+   "name": "Lake Austin",
+   "lon": -97.78639,
+   "lat": 30.31548,
+   "texas": true
+  },
+  "BASteinhagen": {
+   "name": "B. A. Steinhagen Lake",
+   "lon": -94.18019,
+   "lat": 30.79548,
+   "texas": true
+  },
+  "Bardwell": {
+   "name": "Bardwell Lake",
+   "lon": -96.64721,
+   "lat": 32.25015,
+   "texas": true
+  },
+  "Barker": {
+   "name": "Barker Reservoir",
+   "lon": -95.64717,
+   "lat": 29.76995,
+   "texas": true
+  },
+  "Belton": {
+   "name": "Belton Lake",
+   "lon": -97.47473,
+   "lat": 31.10629,
+   "texas": true
+  },
+  "Benbrook": {
+   "name": "Benbrook Lake",
+   "lon": -97.44863,
+   "lat": 32.65069,
+   "texas": true
+  },
+  "BobSandlin": {
+   "name": "Lake Bob Sandlin",
+   "lon": -95.00216,
+   "lat": 33.08012,
+   "texas": true
+  },
+  "BoisDArc": {
+   "name": "Bois d'Arc Lake",
+   "lon": -95.96472,
+   "lat": 33.70833,
+   "texas": true
+  },
+  "Bonham": {
+   "name": "Lake Bonham",
+   "lon": -96.16415,
+   "lat": 33.64538,
+   "texas": true
+  },
+  "BradyCreek": {
+   "name": "Brady Creek Reservoir",
+   "lon": -99.38561,
+   "lat": 31.13822,
+   "texas": true
+  },
+  "Bridgeport": {
+   "name": "Bridgeport Reservoir",
+   "lon": -97.83198,
+   "lat": 33.22289,
+   "texas": true
+  },
+  "Brownwood": {
+   "name": "Lake Brownwood",
+   "lon": -99.00394,
+   "lat": 31.83709,
+   "texas": true
+  },
+  "Buchanan": {
+   "name": "Lake Buchanan",
+   "lon": -98.41837,
+   "lat": 30.75157,
+   "texas": true
+  },
+  "Caddo": {
+   "name": "Caddo Lake",
+   "lon": -93.91463,
+   "lat": 32.71014,
+   "texas": true
+  },
+  "Canyon": {
+   "name": "Canyon Lake",
+   "lon": -98.1989,
+   "lat": 29.86883,
+   "texas": true
+  },
+  "CedarCreek": {
+   "name": "Cedar Creek Reservoir",
+   "lon": -96.14081,
+   "lat": 32.2432,
+   "texas": true
+  },
+  "ChampionCreek": {
+   "name": "Champion Creek Reservoir",
+   "lon": -100.85873,
+   "lat": 32.28151,
+   "texas": true
+  },
+  "Cherokee": {
+   "name": "Lake Cherokee",
+   "lon": -94.66856,
+   "lat": 32.36919,
+   "texas": true
+  },
+  "ChokeCanyon": {
+   "name": "Choke Canyon Reservoir",
+   "lon": -98.24584,
+   "lat": 28.48388,
+   "texas": true
+  },
+  "Cisco": {
+   "name": "Lake Cisco",
+   "lon": -98.98563,
+   "lat": 32.43791,
+   "texas": true
+  },
+  "Coleman": {
+   "name": "Lake Coleman",
+   "lon": -99.46535,
+   "lat": 32.03014,
+   "texas": true
+  },
+  "ColetoCreek": {
+   "name": "Coleto Creek Reservoir",
+   "lon": -97.16499,
+   "lat": 28.7311,
+   "texas": true
+  },
+  "ColoradoCity": {
+   "name": "Lake Colorado City",
+   "lon": -100.91984,
+   "lat": 32.34484,
+   "texas": true
+  },
+  "ComancheCreek": {
+   "name": "Comanche Creek Reservoir",
+   "lon": -97.78697,
+   "lat": 32.30014,
+   "texas": true
+  },
+  "Conroe": {
+   "name": "Lake Conroe",
+   "lon": -95.56105,
+   "lat": 30.35854,
+   "texas": true
+  },
+  "CorpusChristi": {
+   "name": "Lake Corpus Christi",
+   "lon": -97.87111,
+   "lat": 28.03835,
+   "texas": true
+  },
+  "Crook": {
+   "name": "Lake Crook",
+   "lon": -95.5669,
+   "lat": 33.72844,
+   "texas": true
+  },
+  "CypressSprings": {
+   "name": "Lake Cypress Springs",
+   "lon": -95.15889,
+   "lat": 33.06611,
+   "texas": true
+  },
+  "EVSpence": {
+   "name": "E. V. Spence Reservoir",
+   "lon": -100.51732,
+   "lat": 31.87959,
+   "texas": true
+  },
+  "EagleMountain": {
+   "name": "Eagle Mountain Reservoir",
+   "lon": -97.47502,
+   "lat": 32.87763,
+   "texas": true
+  },
+  "ElephantButte": {
+   "name": "Elephant Butte Lake",
+   "lon": -107.1911,
+   "lat": 33.1542,
+   "texas": false
+  },
+  "Falcon": {
+   "name": "Falcon Reservoir",
+   "lon": -99.16056,
+   "lat": 26.55722,
+   "texas": true
+  },
+  "Fork": {
+   "name": "Lake Fork Reservoir",
+   "lon": -95.52801,
+   "lat": 32.81346,
+   "texas": true
+  },
+  "FortPhantomHill": {
+   "name": "Fort Phantom Hill Reservoir",
+   "lon": -99.68064,
+   "lat": 32.59623,
+   "texas": true
+  },
+  "Georgetown": {
+   "name": "Lake Georgetown",
+   "lon": -97.72751,
+   "lat": 30.66769,
+   "texas": true
+  },
+  "GibbonsCreek": {
+   "name": "Gibbons Creek Reservoir",
+   "lon": -96.06541,
+   "lat": 30.60941,
+   "texas": true
+  },
+  "Graham": {
+   "name": "Lake Graham",
+   "lon": -98.61367,
+   "lat": 33.13456,
+   "texas": true
+  },
+  "Granbury": {
+   "name": "Lake Granbury",
+   "lon": -97.68919,
+   "lat": 32.37431,
+   "texas": true
+  },
+  "Granger": {
+   "name": "Granger Lake",
+   "lon": -97.32639,
+   "lat": 30.69297,
+   "texas": true
+  },
+  "Grapevine": {
+   "name": "Grapevine Lake",
+   "lon": -97.0564,
+   "lat": 32.97263,
+   "texas": true
+  },
+  "Greenbelt": {
+   "name": "Greenbelt Lake",
+   "lon": -100.89487,
+   "lat": 35.00061,
+   "texas": true
+  },
+  "Halbert": {
+   "name": "Halbert Lake",
+   "lon": -96.41609,
+   "lat": 32.07127,
+   "texas": true
+  },
+  "HordsCreek": {
+   "name": "Hords Creek Lake",
+   "lon": -99.56091,
+   "lat": 31.83292,
+   "texas": true
+  },
+  "Houston": {
+   "name": "Lake Houston",
+   "lon": -95.14132,
+   "lat": 29.91633,
+   "texas": true
+  },
+  "HoustonCounty": {
+   "name": "Houston County Lake",
+   "lon": -95.6019,
+   "lat": 31.40685,
+   "texas": true
+  },
+  "HubbardCreek": {
+   "name": "Hubbard Creek Reservoir",
+   "lon": -98.96785,
+   "lat": 32.83151,
+   "texas": true
+  },
+  "HubertHMoss": {
+   "name": "Moss Lake",
+   "lon": -97.21418,
+   "lat": 33.77399,
+   "texas": true
+  },
+  "Inks": {
+   "name": "Inks Lake",
+   "lon": -98.38503,
+   "lat": 30.73129,
+   "texas": true
+  },
+  "JBThomas": {
+   "name": "Lake J.B. Thomas",
+   "lon": -101.13818,
+   "lat": 32.59317,
+   "texas": true
+  },
+  "Jacksonville": {
+   "name": "Lake Jacksonville",
+   "lon": -95.30995,
+   "lat": 31.9085,
+   "texas": true
+  },
+  "JimChapman": {
+   "name": "Cooper (Chapman) Lake",
+   "lon": -95.62524,
+   "lat": 33.33344,
+   "texas": true
+  },
+  "JoePool": {
+   "name": "Joe Pool Lake",
+   "lon": -97.00111,
+   "lat": 32.64347,
+   "texas": true
+  },
+  "Kemp": {
+   "name": "Lake Kemp",
+   "lon": -99.15118,
+   "lat": 33.75843,
+   "texas": true
+  },
+  "Kickapoo": {
+   "name": "Lake Kickapoo",
+   "lon": -98.77895,
+   "lat": 33.66315,
+   "texas": true
+  },
+  "Lake O' the Pines": {
+   "name": "Lake O the Pines",
+   "lon": -94.49937,
+   "lat": 32.75514,
+   "texas": true
+  },
+  "Lavon": {
+   "name": "Lavon Lake",
+   "lon": -96.48249,
+   "lat": 33.03179,
+   "texas": true
+  },
+  "Leon": {
+   "name": "Leon Reservoir",
+   "lon": -98.67561,
+   "lat": 32.36374,
+   "texas": true
+  },
+  "Lewisville": {
+   "name": "Lewisville Lake",
+   "lon": -96.96445,
+   "lat": 33.06929,
+   "texas": true
+  },
+  "Limestone": {
+   "name": "Lake Limestone",
+   "lon": -96.31914,
+   "lat": 31.32518,
+   "texas": true
+  },
+  "Livingston": {
+   "name": "Livingston Reservoir",
+   "lon": -95.01022,
+   "lat": 30.63353,
+   "texas": true
+  },
+  "LostCreek": {
+   "name": "Lost Creek Reservoir",
+   "lon": -98.12004,
+   "lat": 33.24345,
+   "texas": true
+  },
+  "LyndonBJohnson": {
+   "name": "Lake L. B. Johnson",
+   "lon": -98.33836,
+   "lat": 30.55602,
+   "texas": true
+  },
+  "Mackenzie": {
+   "name": "Mackenzie Reservoir",
+   "lon": -101.43822,
+   "lat": 34.54534,
+   "texas": true
+  },
+  "MarbleFalls": {
+   "name": "Lake Marble Falls",
+   "lon": -98.25722,
+   "lat": 30.55583,
+   "texas": true
+  },
+  "Martin": {
+   "name": "Martin Lake",
+   "lon": -94.57326,
+   "lat": 32.26183,
+   "texas": true
+  },
+  "Medina": {
+   "name": "Medina Lake",
+   "lon": -98.93392,
+   "lat": 29.54023,
+   "texas": true
+  },
+  "Meredith": {
+   "name": "Lake Meredith",
+   "lon": -101.55128,
+   "lat": 35.7106,
+   "texas": true
+  },
+  "MillersCreek": {
+   "name": "Millers Creek Reservoir",
+   "lon": -99.38897,
+   "lat": 33.40899,
+   "texas": true
+  },
+  "MineralWells": {
+   "name": "Lake Mineral Wells",
+   "lon": -98.04198,
+   "lat": 32.8168,
+   "texas": true
+  },
+  "Monticello": {
+   "name": "Monticello Reservoir",
+   "lon": -95.04355,
+   "lat": 33.08012,
+   "texas": true
+  },
+  "MountainCreek": {
+   "name": "Mountain Creek Lake",
+   "lon": -96.94334,
+   "lat": 32.73207,
+   "texas": true
+  },
+  "Murvaul": {
+   "name": "Murvaul Lake",
+   "lon": -94.42104,
+   "lat": 32.03461,
+   "texas": true
+  },
+  "Nacogdoches": {
+   "name": "Lake Nacogdoches",
+   "lon": -94.82549,
+   "lat": 31.58879,
+   "texas": true
+  },
+  "Nasworthy": {
+   "name": "Lake Nasworthy",
+   "lon": -100.4781,
+   "lat": 31.3886,
+   "texas": true
+  },
+  "NavarroMills": {
+   "name": "Navarro Mills Lake",
+   "lon": -96.68944,
+   "lat": 31.95766,
+   "texas": true
+  },
+  "NewTerrellCity": {
+   "name": "New Terrell City Lake",
+   "lon": -96.17358,
+   "lat": 32.72846,
+   "texas": true
+  },
+  "Nocona": {
+   "name": "Lake Nocona (Farmer's Creek)",
+   "lon": -97.6528,
+   "lat": 33.8826,
+   "texas": true
+  },
+  "NorthForkBuffaloCreek": {
+   "name": "North Fork Buffalo Creek Reservoir",
+   "lon": -98.75201,
+   "lat": 33.98676,
+   "texas": true
+  },
+  "OCFisher": {
+   "name": "O. C. Fisher Lake",
+   "lon": -100.48176,
+   "lat": 31.4846,
+   "texas": true
+  },
+  "OHIvie": {
+   "name": "O. H. Ivie Reservoir",
+   "lon": -99.6684,
+   "lat": 31.50016,
+   "texas": true
+  },
+  "OakCreek": {
+   "name": "Oak Creek Reservoir",
+   "lon": -100.26842,
+   "lat": 32.04069,
+   "texas": true
+  },
+  "Palestine": {
+   "name": "Lake Palestine",
+   "lon": -95.4369,
+   "lat": 32.05349,
+   "texas": true
+  },
+  "PaloDuro": {
+   "name": "Palo Duro Reservoir",
+   "lon": -101.16444,
+   "lat": 36.34778,
+   "texas": true
+  },
+  "PaloPinto": {
+   "name": "Lake Palo Pinto",
+   "lon": -98.26921,
+   "lat": 32.64763,
+   "texas": true
+  },
+  "PatCleburne": {
+   "name": "Lake Pat Cleburne",
+   "lon": -97.4153,
+   "lat": 32.28904,
+   "texas": true
+  },
+  "PatMayse": {
+   "name": "Pat Mayse Lake",
+   "lon": -95.54468,
+   "lat": 33.85288,
+   "texas": true
+  },
+  "PossumKingdom": {
+   "name": "Possum Kingdom Lake",
+   "lon": -98.42589,
+   "lat": 32.87234,
+   "texas": true
+  },
+  "Proctor": {
+   "name": "Proctor Lake",
+   "lon": -98.48616,
+   "lat": 31.96876,
+   "texas": true
+  },
+  "RayHubbard": {
+   "name": "Lake Ray Hubbard",
+   "lon": -96.4961,
+   "lat": 32.80013,
+   "texas": true
+  },
+  "RayRoberts": {
+   "name": "Ray Roberts Lake",
+   "lon": -97.05001,
+   "lat": 33.35539,
+   "texas": true
+  },
+  "RedBluff": {
+   "name": "Red Bluff Reservoir",
+   "lon": -103.91019,
+   "lat": 31.90124,
+   "texas": true
+  },
+  "RichlandChambers": {
+   "name": "Richland-Chambers Reservoir",
+   "lon": -96.20664,
+   "lat": 32.04044,
+   "texas": true
+  },
+  "SamRayburn": {
+   "name": "Sam Rayburn Reservoir",
+   "lon": -94.10603,
+   "lat": 31.06075,
+   "texas": true
+  },
+  "Somerville": {
+   "name": "Somerville Lake",
+   "lon": -96.5258,
+   "lat": 30.32243,
+   "texas": true
+  },
+  "Stamford": {
+   "name": "Lake Stamford",
+   "lon": -99.57953,
+   "lat": 33.06261,
+   "texas": true
+  },
+  "StillhouseHollow": {
+   "name": "Stillhouse Hollow Lake",
+   "lon": -97.53279,
+   "lat": 31.0224,
+   "texas": true
+  },
+  "Striker": {
+   "name": "Lake Striker",
+   "lon": -94.97566,
+   "lat": 31.93408,
+   "texas": true
+  },
+  "SulphurSprings": {
+   "name": "Lake Sulphur Springs",
+   "lon": -95.6419,
+   "lat": 33.16789,
+   "texas": true
+  },
+  "Sweetwater": {
+   "name": "Lake Sweetwater",
+   "lon": -100.30371,
+   "lat": 32.43873,
+   "texas": true
+  },
+  "Tawakoni": {
+   "name": "Lake Tawakoni",
+   "lon": -95.91969,
+   "lat": 32.80873,
+   "texas": true
+  },
+  "Texana": {
+   "name": "Lake Texana",
+   "lon": -96.57775,
+   "lat": 28.89193,
+   "texas": true
+  },
+  "Texoma": {
+   "name": "Lake Texoma",
+   "lon": -96.57222,
+   "lat": 33.81806,
+   "texas": true
+  },
+  "ToledoBend": {
+   "name": "Toledo Bend Reservoir",
+   "lon": -93.57212,
+   "lat": 31.1963,
+   "texas": true
+  },
+  "Travis": {
+   "name": "Lake Travis",
+   "lon": -97.90723,
+   "lat": 30.39187,
+   "texas": true
+  },
+  "TwinButtes": {
+   "name": "Twin Buttes Reservoir",
+   "lon": -100.53843,
+   "lat": 31.38211,
+   "texas": true
+  },
+  "Tyler": {
+   "name": "Lake Tyler",
+   "lon": -95.17606,
+   "lat": 32.24182,
+   "texas": true
+  },
+  "Waco": {
+   "name": "Waco Lake",
+   "lon": -97.19778,
+   "lat": 31.57961,
+   "texas": true
+  },
+  "Waxahachie": {
+   "name": "Lake Waxahachie",
+   "lon": -96.80527,
+   "lat": 32.34181,
+   "texas": true
+  },
+  "Weatherford": {
+   "name": "Lake Weatherford",
+   "lon": -97.67475,
+   "lat": 32.77263,
+   "texas": true
+  },
+  "WhiteRiver": {
+   "name": "White River Reservoir",
+   "lon": -101.08403,
+   "lat": 33.45787,
+   "texas": true
+  },
+  "Whitney": {
+   "name": "Whitney Lake",
+   "lon": -97.37196,
+   "lat": 31.86544,
+   "texas": true
+  },
+  "Worth": {
+   "name": "Lake Worth",
+   "lon": -97.4164,
+   "lat": 32.7893,
+   "texas": true
+  },
+  "WrightPatman": {
+   "name": "Wright Patman Lake",
+   "lon": -94.16074,
+   "lat": 33.30457,
+   "texas": true
+  }
+ }
+}

@@ -79,6 +79,24 @@ jobs:
             || { echo "tx-places.json is not reproducible from tx-counties.topo.json"; exit 1; }
           echo "places record reproduces byte-for-byte"
 
+      - name: Reservoir positions self-test (the pins the water map is drawn from)
+        run: python3 scripts/shared/reservoirs.py --self-test
+
+      - name: Reservoir positions agree with the archive they came from
+        run: |
+          # Same discipline as the place record above, with one difference stated in the
+          # script: this rebuilds by UNION rather than from zero, because its source is a
+          # directory of dated snapshots and a snapshot directory eventually gets thinned. A
+          # build that replaced would then drop pins for a reason that has nothing to do with
+          # water. So the property checked is IDEMPOTENCE. Rebuild, and require that nothing
+          # moved. A gauge does not move, so a coordinate that disagrees is an error rather
+          # than an update, and the build refuses it rather than picking a side.
+          cp assets/geo/tx-reservoirs.json /tmp/tx-reservoirs.committed.json
+          python3 scripts/shared/reservoirs.py build
+          diff -q /tmp/tx-reservoirs.committed.json assets/geo/tx-reservoirs.json \
+            || { echo "tx-reservoirs.json disagrees with ledger/gridwatch/raw"; exit 1; }
+          echo "reservoir positions reproduce byte-for-byte"
+
       - name: Docket gates self-test (prove every gate can go red)
         run: python3 scripts/site/docket_build.py --self-test
 
