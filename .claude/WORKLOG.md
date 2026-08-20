@@ -79,7 +79,7 @@ it is open to a keyboard and a screen reader by default.
 | G | Wire into `docket_index`, fold the full list | DONE |
 | H | Styles, and a SECOND SHEET so 240 pages do not pay for one | DONE |
 | I | `tests/docket_calendar.mjs`, plus a stress phase | DONE, 33 checks |
-| J | Full sweep, now TEN suites, plus site fresh | IN PROGRESS |
+| J | Full sweep, all TEN suites named, plus site fresh | DONE |
 
 ## Wrap
 
