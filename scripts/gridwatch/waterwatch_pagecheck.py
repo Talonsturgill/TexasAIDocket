@@ -220,21 +220,24 @@ def findings(page_html: str, records: list, today: str) -> list[str]:
         out.append("the page no longer says percent full is computed from storage over "
                    "capacity; that sentence is the provenance promise for its headline number")
 
-    # A METRO WITH NO LINE IS A GAP, NEVER A DRY CITY. The state's water data tags reservoirs to
-    # some statistical areas and not others, and San Antonio is one it does not tag. Publishing
-    # that as an absence would read as a city with no water, which is exactly backwards.
-    latest = max(records, key=lambda r: r.get("date") or "")
-    cov = (latest.get("coverage") or {}) if isinstance(latest.get("coverage"), dict) else {}
-    # `metros` is a dict keyed by slug, so the slugs are what name the metros with a line.
-    metro_slugs = " ".join(str(k).lower().replace("-", " ").replace("_", " ")
-                           for k in (latest.get("metros") or {}))
-    if "san antonio" not in metro_slugs and "san antonio" not in low:
-        out.append("San Antonio has no line and the page does not explain why; an untagged "
-                   "metro read as a dry one is exactly backwards")
-
-    if latest.get("excluded_out_of_state") and "el paso" not in low:
-        out.append("out of state reservoirs are excluded and the page does not say so; "
-                   "El Paso's absence needs the sentence that explains it")
+    # THE SAN ANTONIO AND EL PASO DISCLOSURE RULES ARE GONE, on the owner's explicit
+    # instruction, 2026-08-20. Recorded here because it reverses a rule this repo argued for.
+    #
+    # They required the page to explain that the state's water data does not tag San Antonio,
+    # and that El Paso's only tagged reservoir is Elephant Butte Lake in New Mexico. The
+    # reasoning was that a page which simply omitted San Antonio reads as a city with no water,
+    # which is exactly backwards. That reasoning is still sound. The owner's call is that the
+    # sentences are not worth the screen space they cost a reader, and what a page is FOR is
+    # the owner's decision rather than this checker's.
+    #
+    # THE RULE AND ITS COPY WENT TOGETHER, which is the part worth keeping in mind. A gate left
+    # standing over copy nobody intends to write again is a permanently red advisory, and this
+    # project has already learned twice what that does: a finding that is always there trains
+    # whoever reads it to skim past the one that is real. See the verdict scan above, which was
+    # exactly that for months.
+    #
+    # The facts are still published. `waterwatch.json` carries the exclusions per reservoir and
+    # the metro tagging is visible in the roll up itself.
 
     if last not in page_html and _fmt(last) not in page_html:
         out.append(f"the published page does not show the newest reading ({last}); "
@@ -361,14 +364,6 @@ def self_test() -> int:
     f = findings(shell(good_body.replace("storage over capacity", "the feed")), records, today)
     check("dropping the provenance sentence is caught",
           any("storage over capacity" in x for x in f), str(f))
-
-    f = findings(shell(good_body.replace("San Antonio", "That city")), records, today)
-    check("San Antonio's absence going unexplained is caught",
-          any("San Antonio" in x for x in f), str(f))
-
-    f = findings(shell(good_body.replace("El Paso", "That city")), records, today)
-    check("El Paso's exclusion going unexplained is caught",
-          any("El Paso" in x for x in f), str(f))
 
     f = findings(shell(good_body + "<p>1,234,567 acre feet appeared from nowhere.</p>"),
                  records, today)
