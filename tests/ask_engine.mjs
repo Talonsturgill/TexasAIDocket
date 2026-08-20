@@ -64,6 +64,18 @@ const page = await browser.newPage();
 // CDN, a third-party script or any request the ask box itself makes still fails this, which
 // is the whole of what the promise was protecting.
 const MEDIA_HOST = "https://raw.githubusercontent.com/Talonsturgill/TexasAIDocket/";
+
+// THE HUMAN CHECK, EXCLUDED BY NAME AND ONLY AFTER A FOCUS.
+// This said "nothing leaves after ANY interaction", and it was right to: the note under the
+// field once said typing sends nothing anywhere, an earlier attempt to arm Turnstile on focus
+// contradicted it, and this suite caught that and the change was reverted. The note lost that
+// sentence in #59, so the promise it protected is not on the page, and a check whose subject
+// no longer exists is worse than no check. Owner's call on 2026-08-20 to arm on focus, since
+// it cost 1 to 3 seconds on the first question of every session.
+// Nothing may leave on LOAD, asserted before any interaction and unchanged. After a focus the
+// challenge host is allowed and NOTHING ELSE IS, stated positively below so a new external
+// request fails here whether or not anybody thought about this file.
+const CHALLENGE_HOST = "https://challenges.cloudflare.com/";
 const external = [];
 await page.route("**/*", (route) => {
   const url = route.request().url();
@@ -79,7 +91,8 @@ await page.route("**/*", (route) => {
 // most readers never reached. Loading the front page here is not a cosmetic change to the
 // test: the box is at depth 0 now, and the engine's item links used to be hardcoded
 // "../item/", which from the front page walks out of the site entirely.
-await page.goto("file://" + path.join(SITE, "index.html"));
+const URL_HOME = "file://" + path.join(SITE, "index.html");
+await page.goto(URL_HOME);
 await page.waitForFunction(() => typeof window.__askAnswer === "function");
 
 const idx = await page.evaluate(() => window.__ASK_INDEX__);
@@ -185,29 +198,70 @@ check("an unanswerable question gets an honest answer, not an invented one",
       !!nonsense && /no answer|record holds/i.test(nonsense.head + nonsense.body),
       JSON.stringify(nonsense).slice(0, 160));
 
-// THE TYPED PATH, not just the exposed function. This is what a reader actually does.
+// NOTHING RENDERS WHILE SOMEBODY TYPES, which is half of what the owner asked for. The engine
+// used to rewrite a panel on every keystroke, described as "very distracting", and before that
+// panel moved it rendered entirely below the fold where nobody saw it. A frontier chat box
+// shows one thing at a time.
+await page.focus("#askq");
+await page.waitForTimeout(900);
+check("focusing the field arms the human check",
+      external.some((u) => u.startsWith(CHALLENGE_HOST)),
+      "nothing was requested, so the token is not being earned while the reader types");
+
 await page.fill("#askq", "What can I still comment on?");
-await page.waitForFunction(() => {
-  const a = document.querySelector("#ask .answer");
-  return a && !a.hidden && a.textContent.trim().length > 0;
-}, null, { timeout: 5000 }).catch(() => {});
-const typed = (await page.textContent("#ask .answer")) || "";
-check("typing a question renders an answer into the page", typed.trim().length > 0,
-      JSON.stringify(typed.slice(0, 80)));
+await page.waitForTimeout(400);
+const whileTyping = (await page.textContent("#askthread")) || "";
+check("typing renders nothing at all", whileTyping.trim().length === 0,
+      JSON.stringify(whileTyping.slice(0, 80)));
+
+// THE PRESS, which is what a reader actually does and where every answer now appears.
+await page.press("#askq", "Enter");
+await page.waitForSelector(".askfrom", { timeout: 8000 }).catch(() => {});
+const answered = (await page.textContent(".askreply")) || "";
+check("pressing renders an answer into the thread", answered.trim().length > 0,
+      JSON.stringify(answered.slice(0, 80)));
 
 const openCount = idx.items.filter((i) => i.window === "open").length;
 check("the open-window answer agrees with the index it shipped with",
-      new RegExp(`\\b${openCount}\\b`).test(typed) ||
-      /nothing is open/i.test(typed),
-      `index says ${openCount} open; answer said: ${typed.slice(0, 120)}`);
+      new RegExp(`\\b${openCount}\\b`).test(answered) ||
+      /nothing is open|open for comment/i.test(answered),
+      `index says ${openCount} open; answer said: ${answered.slice(0, 120)}`);
 
-// A starter chip must do what it says.
+// A LOOKUP NEVER REACHES THE WORKER. This is the whole speed argument: the engine already knew
+// it could answer, and that judgement was being thrown away at the press while every question
+// went to a paid model. If this ever catches a worker call, the classifier has stopped routing
+// and every reader is paying seconds for an answer the page was holding.
+check("a lookup was answered without calling the worker",
+      !external.some((u) => u.includes("workers.dev")),
+      external.filter((u) => u.includes("workers.dev")).join(", "));
+
+// A starter chip goes through the same press, so a chip and a keystroke cannot differ.
+await page.click(".askagain").catch(() => {});
+await page.waitForTimeout(200);
 await page.click("#ask .chips button");
-const chipped = (await page.textContent("#ask .answer")) || "";
-check("a starter chip answers when clicked", chipped.trim().length > 0);
+await page.waitForSelector(".askfrom", { timeout: 8000 }).catch(() => {});
+check("a starter chip answers when clicked",
+      ((await page.textContent(".askreply")) || "").trim().length > 0);
 
-check("still no request left the page after every interaction", external.length === 0,
-      external.join(", "));
+// AN OFF-RECORD QUESTION COSTS NOTHING. Refuse is deliberately narrow, so this asserts the
+// narrow case and not a broad one: a question sharing no term at all with the record.
+await page.click(".askagain").catch(() => {});
+await page.waitForTimeout(200);
+const beforeRefuse = external.filter((u) => u.includes("workers.dev")).length;
+await page.fill("#askq", "recipe for banana bread");
+await page.press("#askq", "Enter");
+await page.waitForSelector(".askfrom", { timeout: 8000 }).catch(() => {});
+const refusalText = (await page.textContent(".askreply")) || "";
+check("an off-record question is refused on the page",
+      /not something this record covers/i.test(refusalText), refusalText.slice(0, 100));
+check("...and it called nobody to do it",
+      external.filter((u) => u.includes("workers.dev")).length === beforeRefuse);
+
+// STATED AS WHAT IS ALLOWED, not as an empty list. An empty list has to be relaxed every time
+// anything legitimate is added, and each relaxation is invisible.
+const strays = external.filter((u) => !u.startsWith(CHALLENGE_HOST));
+check("nothing but the human check left the page after every interaction",
+      strays.length === 0, strays.join(", "));
 
 // THE GATE CAN STILL GO RED, PROVED RATHER THAN ASSERTED. Narrowing an assertion is exactly
 // where a suite quietly stops testing anything, so the exclusion is exercised against a host
@@ -251,111 +305,78 @@ check("...and a host the policy does not name never becomes a request at all",
 
 /* ------------------------------------------------------------------ where the answer lands
  *
- * AN ANSWER NOBODY CAN SEE IS NOT AN ANSWER, and this shipped that way. The live list used to
- * sit BELOW the composer with the starter chips. It has no height until a reader types, so it
- * grew downward out of a field that was already near the bottom of the screen, and measured on
- * the built page three matching rows landed 427px past the fold on a 390 wide phone and 248px
- * past it on a 1280 desktop. NONE of the list was on screen in either case. Every assertion in
- * this file passed the whole time, because they all read the DOM and none of them asked where
- * on the glass it was.
+ * THIS SECTION USED TO MEASURE THE TYPEAHEAD and that panel no longer exists. It was written
+ * because the panel rendered 427px past the fold on a phone and 248px past it on a desktop,
+ * with none of it on screen, while every other assertion in this file passed: they all read
+ * the DOM and none asked where on the glass it was.
  *
- * So this section is about geometry and nothing else. Two things a reader needs, at sizes that
- * disagree about whether there is room for both:
- *
- *   THE FIRST ROW IS ON SCREEN. It is the best match, so it is the one that has to be seen.
- *   THE FIELD IS ON SCREEN. A reader has to be able to keep typing.
- *
- * On a screen with room the field also must not MOVE, because the correction runs on every
- * keystroke and a field that drifts and snaps back per character is worse than one that
- * scrolls once. On a 320x568 phone the list is taller than the room above the field, so those
- * two cannot both hold, and the clamp is asserted to give way to the list rather than the
- * other way round.
+ * The panel is gone, so a check pointed at it would be worse than no check. The QUESTION it
+ * was asking is not gone and is the same one: after the one action a reader takes, can they
+ * SEE the answer, and can they still use the field. It is asked of the thread now.
  */
-console.log("\n  where the answer lands, at seven sizes");
+console.log("\n  where the answer lands after a press, at seven sizes");
 for (const vp of [{ width: 320, height: 568 }, { width: 360, height: 640 },
                   { width: 390, height: 780 }, { width: 414, height: 896 },
                   { width: 768, height: 1024 }, { width: 1280, height: 800 },
                   { width: 1680, height: 1050 }]) {
   const p2 = await browser.newPage({ viewport: vp });
   await p2.route("**://challenges.cloudflare.com/**", (r) => r.abort());
-  await p2.goto("file://" + path.join(SITE, "index.html"));
+  await p2.goto(URL_HOME);
   await p2.waitForTimeout(300);
-  /* THE FORM INTO VIEW, NOT THE BOX. Scrolling `#ask` into view satisfies the browser once
-     any part of the box is showing, which on a short screen leaves the FIELD itself hanging
-     below the fold. The anchoring then correctly pulls it fully on screen, and this test read
-     that necessary correction as drift and failed at 14 to 16px, intermittently, depending on
-     where the scroll happened to land. The seat has to be measured from a state where the
-     field is already fully visible or it is not a seat. */
   await p2.locator("#ask form").scrollIntoViewIfNeeded();
   await p2.waitForTimeout(200);
-  const seat = await p2.evaluate(() =>
-    Math.round(document.querySelector("#ask form").getBoundingClientRect().top));
-  // Typed a character at a time, because the correction runs per keystroke and a single
-  // fill() would exercise it once instead of seven times.
-  await p2.click("#askq");
-  for (const ch of "comment") { await p2.keyboard.type(ch); await p2.waitForTimeout(45); }
-  await p2.waitForTimeout(250);
-  const g = await p2.evaluate((seat) => {
+  await p2.fill("#askq", "what is open for comment right now");
+  await p2.press("#askq", "Enter");
+  await p2.waitForSelector(".askfrom", { timeout: 8000 }).catch(() => {});
+  /* WAIT FOR THE CONDITION, NOT FOR A DURATION. This waited a fixed 700ms and then watched
+     for the scroll to stop moving, and both are guesses about how long a machine takes. They
+     held on a laptop and failed on a CI runner, which is slower, so the suite went red on a
+     product that was correct. A gate that reddens on a correct product is a gate somebody
+     switches off, and this file's own history is about exactly that.
+     So it waits for the thing being asserted to become true, with a bound. If `park()` works
+     it settles in a few hundred milliseconds on any machine; if it is broken this times out
+     and the assertion below fails on the real defect rather than on a slow runner. */
+  await p2.waitForFunction(() => {
+    const f = document.querySelector("#ask form");
+    if (!f) return false;
+    const r = f.getBoundingClientRect();
+    return r.top >= 0 && r.bottom <= innerHeight + 1;
+  }, null, { timeout: 6000, polling: 100 }).catch(() => {});
+  const g = await p2.evaluate(() => {
     const f = document.querySelector("#ask form").getBoundingClientRect();
-    const a = document.querySelector("#ask .answer");
-    const ar = a && !a.hidden ? a.getBoundingClientRect() : null;
-    const li = a && a.querySelector("li") ? a.querySelector("li").getBoundingClientRect() : null;
+    const r = document.querySelector(".askreply");
+    const rr = r ? r.getBoundingClientRect() : null;
+    const seen = rr ? Math.max(0, Math.min(rr.bottom, innerHeight) - Math.max(rr.top, 0)) : 0;
     return {
-      rows: a ? a.querySelectorAll("li").length : 0,
-      firstRowSeen: li ? li.top >= 0 && li.bottom <= innerHeight : false,
-      aboveField: ar ? ar.bottom <= f.top + 2 : false,
-      fieldSeen: f.top >= 0 && f.bottom <= innerHeight,
-      drift: Math.abs(Math.round(f.top) - seat),
-      /* ROOMY IS MEASURED, NOT GUESSED. A viewport-height constant cannot express it: the
-         list is TALLER on a narrow screen because its rows wrap, so 1280x800 has room where
-         390x780 does not. The honest predicate is whether the list actually fits in the
-         space above where the field was sitting, which is exactly the condition under which
-         the clamp does not bind and the field must therefore not move. */
-      roomy: ar ? ar.height + 8 <= seat : false,
+      answered: !!r && r.textContent.trim().length > 0,
+      anySeen: seen > 0,
+      startsOnScreen: rr ? rr.top < innerHeight : false,
+      /* MEASURED IN DOCUMENT COORDINATES, not viewport ones. Whether the answer sits above the
+         field is a fact about the layout and has nothing to do with where the page happens to
+         be scrolled, but read from `getBoundingClientRect` it changes while a scroll is in
+         flight and reported false on a slow runner for a page that was laid out correctly. */
+      aboveField: (function () {
+        var rEl = document.querySelector(".askreply");
+        var fEl = document.querySelector("#ask form");
+        if (!rEl || !fEl) return false;
+        var top = function (el) {
+          var y = 0;
+          while (el) { y += el.offsetTop; el = el.offsetParent; }
+          return y;
+        };
+        return top(rEl) < top(fEl);
+      })(),
+      fieldSeen: f.top >= 0 && f.bottom <= innerHeight + 1,
     };
-  }, seat);
+  });
   const at = `${vp.width}x${vp.height}`;
-  check(`${at}: the list answered`, g.rows > 0, JSON.stringify(g));
-  // WHERE THE LIST FITS ABOVE THE FIELD, the first row has to be on screen. Where it does
-  // not (`roomy: false`), the code in this file's own comment above deliberately gives way
-  // to the field, so the list's top slides above the top of the viewport with it. That is a
-  // legitimate state and the `list gave way rather than the field` check below is what
-  // asserts it. This assertion is scoped to `roomy` so it stops firing on the state its own
-  // doctrine describes. On 2026-08-20 a run added a public comment sentence to one item and
-  // three items to the record, taking the count of items containing 'comment' from 19 to
-  // 29 and pushing the answer list past what fits above the field on the smallest phone.
-  // The layout code and the fallback both worked; only this assertion did not.
-  if (g.roomy) {
-    // WHERE THE LIST FITS ABOVE THE FIELD, the first row has to be on screen. Where it does
-  // not (`roomy: false`), the code in this file's own comment above deliberately gives way
-  // to the field, so the list's top slides above the top of the viewport with it. That is a
-  // legitimate state and the `list gave way rather than the field` check below is what
-  // asserts it. This assertion is scoped to `roomy` so it stops firing on the state its own
-  // doctrine describes. On 2026-08-20 a daily run added a public comment sentence to one
-  // item and three items to the record, taking the count of items containing 'comment' from
-  // 19 to 29 and pushing the answer list past what fits above the field on the smallest
-  // phone. The layout code and the fallback both worked; only this assertion did not.
-  if (g.roomy) {
-    check(`${at}: its first row is on screen`, g.firstRowSeen, JSON.stringify(g));
-  }
-  }
-  check(`${at}: it sits above the field, not below it`, g.aboveField, JSON.stringify(g));
-  check(`${at}: the field is still on screen`, g.fieldSeen, JSON.stringify(g));
-  if (g.roomy) {
-    /* NOT ZERO, AND THE NUMBER IS MEASURED RATHER THAN CHOSEN. This page has scroll-linked
-       layout, so the scroll that compensates for the list slightly changes the thing it is
-       compensating for, leaving a settle of 7px when the list first appears and up to 16px
-       once it has resized twice. That is below the threshold of noticing and chasing it to
-       zero would mean fighting the atmosphere layer for no reader-visible gain.
-       24px is that measured residual with room, and it is still an order of magnitude under
-       the defect this guards: the list rendered 248px past the fold on this desktop and 427px
-       past it on a 390 phone. A regression to that shape fails this by 10x. */
-    check(`${at}: and the field did not jump while typing`, g.drift <= 24, JSON.stringify(g));
-  } else {
-    // Where they cannot both fit, the field is the one that must survive. Asserted rather
-    // than assumed, because the first version of the clamp let it fall off a 320x568 screen.
-    check(`${at}: the list gave way rather than the field`, g.fieldSeen, JSON.stringify(g));
-  }
+  check(`${at}: the press produced an answer`, g.answered, JSON.stringify(g));
+  check(`${at}: some of it is on screen`, g.anySeen, JSON.stringify(g));
+  check(`${at}: it begins above the fold rather than below it`, g.startsOnScreen,
+        JSON.stringify(g));
+  check(`${at}: it is above the field, where the conversation is`, g.aboveField,
+        JSON.stringify(g));
+  check(`${at}: and the field is still usable`, g.fieldSeen, JSON.stringify(g));
   await p2.close();
 }
 

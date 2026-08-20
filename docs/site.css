@@ -986,12 +986,6 @@ caption { caption-side:bottom; text-align:left; padding-top:.75rem; font-size:va
   background:transparent; color:var(--ink-mute);
   border:var(--hair) solid var(--rule-strong); border-radius:999px; cursor:pointer; }
 .askbox .chips button:hover { color:var(--ink-bright); border-color:var(--accent); }
-.askbox .answer { margin-bottom:1.25rem; padding-bottom:1.1rem;
-  border-bottom:var(--hair) solid var(--rule); }
-.askbox .answer h3 { margin:0 0 .6rem; font-size:var(--s1); }
-.askbox .answer ul { list-style:none; padding:0; margin:.5rem 0 0; display:grid; gap:.7rem; }
-.askbox .answer .meta { font-size:var(--s-1); color:var(--ink-mute);
-  font-family:var(--mono); }
 .asknote { margin:.75rem 0 0; font-size:var(--s-1); line-height:1.55; color:var(--ink-mute);
   max-width:52ch; }
 .asknote b { color:var(--ink-bright); font-weight:500; }
@@ -1066,8 +1060,24 @@ caption { caption-side:bottom; text-align:left; padding-top:.75rem; font-size:va
   cursor:pointer; border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent); }
 .askagain:hover { border-bottom-color:var(--accent); }
 .askbox.answering .chips,
-.askbox.answering .asknote,
-.askbox.answering .answer { display:none; }
+.askbox.answering .asknote { display:none; }
+@media (max-width:37.5rem) {
+  body.asking { overflow:hidden; }
+  body.asking .sky, body.asking .masthead, body.asking main > *:not(.asksection),
+  body.asking .sitefoot { display:none; }
+  body.asking .asksection { margin:0; }
+  body.asking main { padding:0; }
+  body.asking #ask { position:fixed; inset:0; z-index:60; overflow-y:auto;
+    padding:.9rem var(--gap) calc(.9rem + var(--safe-bottom));
+    background:var(--bg); display:flex; flex-direction:column; justify-content:flex-end; }
+  body.asking #ask .askthread { flex:1 1 auto; overflow-y:auto; }
+  body.asking .askclose { display:flex; }
+}
+.askclose { display:none; position:absolute; top:.5rem; right:.5rem; z-index:61;
+  width:2.75rem; height:2.75rem; align-items:center; justify-content:center;
+  border:0; border-radius:999px; background:transparent; color:var(--ink-mute);
+  font-size:1.5rem; line-height:1; cursor:pointer; }
+.askclose:hover, .askclose:focus-visible { color:var(--ink-bright); }
 .askbox button[type="submit"][aria-busy="true"] svg { display:none; }
 .askbox button[type="submit"][aria-busy="true"]::after { content:""; width:.95rem;
   height:.95rem; border-radius:50%; border:2px solid color-mix(in srgb,var(--on-accent) 35%,transparent);
