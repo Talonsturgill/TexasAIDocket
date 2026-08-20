@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-+9+cuu75Mumwy7qpqclRcU/1zznPytEtUmN+R6gNqT0=' 'sha256-umUc/XhtdSmvK8JaEXLnfsNSUHrv5XsgcFUl366gT+0=' 'sha256-NSGUmDvrw0a+sd6TR3ypavsv03cFg2wpaWSyE0P+ScQ=' 'sha256-gsaa4lp5lzg0C6U55qBS8rMay+IZ4N6TuM12m6B4AeU=' 'sha256-3CAuRT0pF1/aSdSplwZNbmz08NsljAcSgTrubOOlfGo=' 'sha256-E+gQOwXUGOnINfcOi9J56cHSAdhMH3938O1TEklKmKM=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-+9+cuu75Mumwy7qpqclRcU/1zznPytEtUmN+R6gNqT0=' 'sha256-umUc/XhtdSmvK8JaEXLnfsNSUHrv5XsgcFUl366gT+0=' 'sha256-jITdooPmDSDO0EksNZCN30dg0fBBDYmYih+P1l+/srE=' 'sha256-AeH0kCws3FW+9yG8231IP0MIRZAAGtnyGM21LjwrYlA=' 'sha256-3CAuRT0pF1/aSdSplwZNbmz08NsljAcSgTrubOOlfGo=' 'sha256-E+gQOwXUGOnINfcOi9J56cHSAdhMH3938O1TEklKmKM=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Texas AI Docket · Every AI decision in Texas and the source behind it</title>
@@ -442,16 +442,29 @@ window.__ASK_CATALOGUE__=[{"q":"What can I still comment on?","route":{"view":"o
   function classify(q) {
     var text = String(q || "").trim();
     if (!text) return { bucket: "empty" };
-    var route = best(text);
-    if (route && !explanatory(text)) return { bucket: "instant", answer: answer(route) };
-    if (route) return { bucket: "written" };
+    /* THE AGENT ANSWERS EVERY QUESTION ABOUT THE RECORD, and the first version of this did
+       not. It routed anything the catalogue matched to the in-page engine, which renders a
+       headline and a list of item links. That is fast and it is not an ANSWER, and the owner
+       said so within a day of it shipping: "the query is not being answered by an agent it is
+       being answered by the cached stuff and just giving me a bunch of links".
+       The brief was to make the agent ten times better. Routing around the agent makes the
+       agent zero times better and takes the prose away, so the trade was wrong.
+       WHAT THE CLASSIFIER IS FOR NOW. One thing, and it is the one thing a model cannot do
+       cheaply: refusing a question this record has no business answering. Asked for a recipe,
+       it says so in 36ms and spends nothing. Everything on topic goes to the agent.
+       The local route is not deleted. It is the FALLBACK when the month's cap is spent, where
+       a list of the right decisions beats an apology, and `askLocal` is how the written lane
+       reaches it. */
     var bag = vocabulary(), ws = words(text), touched = 0;
     ws.forEach(function (w) { if (bag[w]) touched++; });
-    if (ws.length && touched === 0) return { bucket: "refuse" };
+    if (ws.length && touched === 0 && !best(text)) return { bucket: "refuse" };
     return { bucket: "written" };
   }
 
   window.__askClassify = classify;
+  /* The written lane calls this when the cap is spent, so a reader still gets the right
+     decisions rather than only an apology. */
+  window.__askLocal = function (q) { var r = best(q); return r ? answer(r) : null; };
   window.__askAnswer = function (q) { return answer(best(q)); };   // for tests/ask_engine.mjs
 })();
 </script>
@@ -691,6 +704,8 @@ window.__ASK_CATALOGUE__=[{"q":"What can I still comment on?","route":{"view":"o
   }, { passive: true });
 
   var parking = 0;
+  // Where the last park asked the page to be. Null when nothing is pending, so a genuine
+  // scroll before the first answer is never mistaken for ours.
   function park() {
     if (!following) return;
     var calm = matchMedia && matchMedia("(prefers-reduced-motion:reduce)").matches;
@@ -710,7 +725,7 @@ window.__ASK_CATALOGUE__=[{"q":"What can I still comment on?","route":{"view":"o
     scrollBy({ top: delta, behavior: calm ? "instant" : "smooth" });
     /* The flag is dropped a beat later so the smooth scroll's own events are not read as the
        reader taking over, which would switch following off on the very first press. */
-    setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
+setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
   }
 
   /* ---- asking ------------------------------------------------------------ */
@@ -831,23 +846,19 @@ window.__ASK_CATALOGUE__=[{"q":"What can I still comment on?","route":{"view":"o
     localExchange = "";
     var verdict = window.__askClassify ? window.__askClassify(question) : { bucket: "written" };
 
-    if (verdict.bucket === "instant" && verdict.answer) {
-      var head = document.createElement("p");
-      head.className = "askhead";
-      head.textContent = verdict.answer.head;
-      body.appendChild(head);
-      var list = document.createElement("div");
-      list.className = "asklist";
-      list.innerHTML = verdict.answer.body;
-      body.appendChild(list);
-      finishLocal("Read straight from the record, in your browser.");
-      return;
-    }
+    /* THERE IS NO LOCAL ANSWER LANE ANY MORE, and removing it is the point.
+       A block here used to render a headline and a list of item links for anything the
+       catalogue matched, which was most questions. It was fast and it was not an answer, and
+       the owner's verdict was plain: "people are typing in a question cause they want an
+       answer that is the agent or looks like its from an agent, it cant be anything less".
+       So the only thing that ends here is a question this record has no business answering,
+       and it ends as a SENTENCE in the same bubble with the same footer, because a refusal
+       that looks like a different kind of object reads as the machine giving up. */
     if (verdict.bucket === "refuse") {
       var no = document.createElement("p");
       no.textContent = "That is not something this record covers. It holds Texas decisions about artificial intelligence, who made them and whether a comment window is still open.";
       body.appendChild(no);
-      finishLocal("Read straight from the record, in your browser.");
+      finishLocal("Checked against the published record.");
       return;
     }
 

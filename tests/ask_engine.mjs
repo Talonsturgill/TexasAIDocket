@@ -221,11 +221,25 @@ const answered = (await page.textContent(".askreply")) || "";
 check("pressing renders an answer into the thread", answered.trim().length > 0,
       JSON.stringify(answered.slice(0, 80)));
 
+/* THE ENGINE IS CHECKED AS THE ENGINE, not as what is on screen.
+   This read the rendered answer, because the engine used to BE the answer for anything the
+   catalogue matched. It is not any more: the owner's verdict on a page of item links was that
+   "people are typing in a question cause they want an answer that is the agent or looks like
+   its from an agent, it cant be anything less", so every on-topic question goes to the agent
+   and the screen no longer shows the engine's work.
+   The engine still exists and still has to be right, because it is what a reader gets when the
+   month's cap is spent, where the right decisions beat an apology. So it is called directly. */
 const openCount = idx.items.filter((i) => i.window === "open").length;
-check("the open-window answer agrees with the index it shipped with",
-      new RegExp(`\\b${openCount}\\b`).test(answered) ||
-      /nothing is open|open for comment/i.test(answered),
-      `index says ${openCount} open; answer said: ${answered.slice(0, 120)}`);
+const local = await page.evaluate(() => {
+  const a = window.__askLocal("What can I still comment on?");
+  return a ? a.head + " " + a.body : null;
+});
+check("the engine still answers the open-window question", local !== null,
+      "__askLocal returned nothing, so the cap fallback has no answer to give");
+check("...and its count agrees with the index it shipped with",
+      local !== null && (new RegExp(`\\b${openCount}\\b`).test(local) ||
+                         /nothing is open|open for comment/i.test(local)),
+      `index says ${openCount} open; engine said: ${String(local).slice(0, 120)}`);
 
 // A LOOKUP NEVER REACHES THE WORKER. This is the whole speed argument: the engine already knew
 // it could answer, and that judgement was being thrown away at the press while every question
@@ -321,6 +335,20 @@ for (const vp of [{ width: 320, height: 568 }, { width: 360, height: 640 },
                   { width: 1680, height: 1050 }]) {
   const p2 = await browser.newPage({ viewport: vp });
   await p2.route("**://challenges.cloudflare.com/**", (r) => r.abort());
+  await p2.route("**/answer", (route) => route.fulfill({
+    status: 200, contentType: "application/x-ndjson",
+    body: [{ stage: "Reading the record" },
+           { sentence: "Four comment windows are open right now." },
+           { sentence: "The nearest closes at the PUCT." },
+           { done: true }].map((l) => JSON.stringify(l)).join("\n") + "\n",
+  }));
+  /* THE HUMAN CHECK IS STUBBED, because the real one is aborted above and a press without a
+     token never reaches the answer at all. Without this the section waited out the token, took
+     the failure message, and measured the geometry of an apology. */
+  await p2.addInitScript(() => {
+    window.turnstile = { render: (el, o) => { setTimeout(() => o.callback("t"), 5); return 1; },
+                         reset: () => {}, remove: () => {} };
+  });
   await p2.goto(URL_HOME);
   await p2.waitForTimeout(300);
   await p2.locator("#ask form").scrollIntoViewIfNeeded();
@@ -336,12 +364,21 @@ for (const vp of [{ width: 320, height: 568 }, { width: 360, height: 640 },
      So it waits for the thing being asserted to become true, with a bound. If `park()` works
      it settles in a few hundred milliseconds on any machine; if it is broken this times out
      and the assertion below fails on the real defect rather than on a slow runner. */
-  await p2.waitForFunction(() => {
+  /* THE WAIT IS THE ASSERTION. Waiting for the field to be seated, swallowing the timeout,
+     and then measuring it again in a separate `evaluate` leaves a gap in which the page is
+     still free to move, so a check that genuinely passed can be re-read as failed. It failed
+     about one run in four at a single viewport, with `park()` exactly as it stands on main,
+     while an isolated trace at that viewport seated every time. That is a race in the harness,
+     not a fault in the page.
+     Collapsed, the result of the wait IS the finding: `seated` is taken at the instant the
+     condition became true. If the field never seats this comes back false and the assertion
+     below reports the real defect. */
+  const seated = await p2.waitForFunction(() => {
     const f = document.querySelector("#ask form");
     if (!f) return false;
     const r = f.getBoundingClientRect();
     return r.top >= 0 && r.bottom <= innerHeight + 1;
-  }, null, { timeout: 6000, polling: 100 }).catch(() => {});
+  }, null, { timeout: 12000, polling: 100 }).then(() => true).catch(() => false);
   const g = await p2.evaluate(() => {
     const f = document.querySelector("#ask form").getBoundingClientRect();
     const r = document.querySelector(".askreply");
@@ -376,7 +413,7 @@ for (const vp of [{ width: 320, height: 568 }, { width: 360, height: 640 },
         JSON.stringify(g));
   check(`${at}: it is above the field, where the conversation is`, g.aboveField,
         JSON.stringify(g));
-  check(`${at}: and the field is still usable`, g.fieldSeen, JSON.stringify(g));
+  check(`${at}: and the field is still usable`, seated, JSON.stringify(g));
   await p2.close();
 }
 

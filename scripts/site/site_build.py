@@ -62,6 +62,7 @@ import grain                                                       # noqa: E402
 import mark                                                        # noqa: E402
 import csp                                                        # noqa: E402
 import numeral_lint                                                # noqa: E402
+import docket_calendar as dcal                                     # noqa: E402
 import theme                                                       # noqa: E402
 
 LEDGER = REPO_ROOT / "ledger" / "docket.json"
@@ -406,6 +407,24 @@ def _verification() -> str:
     return out
 
 @functools.lru_cache(maxsize=1)
+def _extra_sheet(name: str, p: str) -> str:
+    """A second sheet, for a page whose component the other pages do not have.
+
+    Versioned on its own CONTENT for the same reason site.css is: markup and stylesheet are
+    cached independently, so for the length of one cache window a reader can hold new markup
+    and the previous sheet, and what they see is the page rendered as bare bones.
+    """
+    if not name:
+        return ""
+    return f'\n<link rel="stylesheet" href="{p}{name}?v={_sheet_version(name)}">'
+
+
+@functools.lru_cache(maxsize=4)
+def _sheet_version(name: str) -> str:
+    body = {"record.css": theme.record_css}[name]()
+    return hashlib.sha256(body.encode("utf-8")).hexdigest()[:10]
+
+
 def _css_version() -> str:
     """A content hash on the stylesheet URL, because shipping is not the same as being seen.
 
@@ -430,7 +449,7 @@ def page(*, title: str, desc: str, body: str, depth: int, active: str,
          today: str, canonical: str, extra_ld: list | None = None,
          home_page: bool = False, body_class: str = "", og_image: str = "og.png",
          og_alt: str | None = None, revised: bool = True,
-         og_type: str = "website") -> str:
+         og_type: str = "website", extra_css: str = "") -> str:
     p = rel(depth)
     # `""` USED TO MEAN TWO THINGS AND ONE OF THEM WAS A LIE. It is Home's own href, and it
     # was also what a page with no nav entry passed to mean "none of these". So every item
@@ -499,7 +518,7 @@ def page(*, title: str, desc: str, body: str, depth: int, active: str,
 <meta property="og:url" content="{SITE_URL}/{canonical}">
 {og.head_html(p, SITE_URL, SITE_NAME, title, desc, og_image, og_alt)}
 {favicon.head_html(p)}
-<link rel="stylesheet" href="{p}site.css?v={_css_version()}">
+<link rel="stylesheet" href="{p}site.css?v={_css_version()}">{_extra_sheet(extra_css, p)}
 <link rel="preload" href="{p}fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="alternate" type="application/atom+xml" title="{e(SITE_NAME)}" href="{p}atom.xml">
 <script type="application/ld+json">{json.dumps(ld, separators=(",", ":"))}</script>
@@ -2216,8 +2235,13 @@ def home(items: list, today: str) -> str:
                            **schema.dataset_node(SCHEMA_CTX, items, today)}])
 
 
-def docket_index(items: list, today: str) -> str:
-    """Sorted by urgency, because that is the order the reader needs, not the order we filed."""
+def docket_index(items: list, today: str) -> tuple:
+    """The record, twice: by when you can act, and by when it happens.
+
+    Returns (html, the numerals it prints). The calendar computes counts, day numbers and years
+    that no other page authorises, and a set built where the figures are computed is the only
+    arrangement in which the shown number and the allowed number cannot disagree.
+    """
     def key(it):
         st = dk.window_state(it, today)
         if st == "open":
@@ -2231,6 +2255,7 @@ def docket_index(items: list, today: str) -> str:
         f'{item_meta(it, today)}</li>'
         for it in sorted(items, key=key))
 
+    a = numeral_lint.Authorised()
     n_open = sum(1 for i in items if dk.window_state(i, today) == "open")
     tx = _place_facts()
     proj = dk.project(items, today)
@@ -2298,9 +2323,21 @@ def docket_index(items: list, today: str) -> str:
     <th class="n">Counties</th><th>Kind</th></tr></thead><tbody>{mrows}</tbody></table>
 </details>
 
-<ul class="items" data-prose="data">{rows}</ul>
+{docket_calendar_section(items, today, 1, a)}
+
+<!-- THE COMPLETE LIST IS KEPT, AND FOLDED. The record has to stay wholly browsable, and the
+     calendar above is an index rather than a replacement: it plots dated moments, so an item
+     carrying no readable date would otherwise have nowhere to be. What the list stops being is
+     the first thing a reader meets, which was the whole complaint. `details` is already the
+     pattern on this page for the county tables, needs no script, and is open to a keyboard and
+     a screen reader by default. -->
+<details class="fold">
+  <summary>Every item, listed by how soon you can act</summary>
+  <ul class="items" data-prose="data">{rows}</ul>
+</details>
 """
     return page(title=f"The record · {SITE_NAME}", depth=1, active="record/",
+                extra_css="record.css",
                 desc="Every AI decision on the Texas record, ordered by how soon you can act.",
                 body=body, today=today, canonical="record/",
                 # The page that IS the dataset carries its node, which is where a crawler
@@ -2312,7 +2349,283 @@ def docket_index(items: list, today: str) -> str:
                               description="Every tracked decision about artificial "
                                           "intelligence in Texas.", count=len(items)),
                           schema.breadcrumbs(SCHEMA_CTX,
-                                             [(SITE_NAME, ""), ("The record", "record/")])])
+                                             [(SITE_NAME, ""), ("The record", "record/")])]), a.set
+
+
+# --------------------------------------------------------------------------- the calendar
+# THE SCRIPT IS KEPT OUT OF THE f-STRING, same reason _SCAN_JS is: every brace below would
+# have to be doubled to survive one, and a doubled brace is a typo waiting to happen.
+#
+# WHAT IT DOES AND WHAT IT IS NOT NEEDED FOR. Every month panel is in the document and visible
+# without it, so a reader with no JavaScript gets the record grouped by month, which is already
+# better than the flat list this replaces. The rail entries are real anchors and jump to their
+# month. All this adds is showing one month at a time, which is a convenience and not the
+# content.
+_CAL_JS = """
+  <script>
+  (function () {
+    var cal = document.getElementById('cal');
+    if (!cal) return;
+    var panels = [].slice.call(cal.querySelectorAll('.calmonth'));
+    var links = [].slice.call(cal.querySelectorAll('a.calm'));
+    if (!panels.length || !links.length) return;
+
+    // The class is added by script, so the one-at-a-time CSS only ever applies where the
+    // script that drives it is running. Without this the no-script reader gets one month and
+    // no way to reach the others.
+    cal.classList.add('js');
+
+    function show(key, focus) {
+      var found = false;
+      panels.forEach(function (p) {
+        var mine = p.getAttribute('data-month') === key;
+        p.hidden = !mine;
+        if (mine) found = true;
+      });
+      links.forEach(function (a) {
+        var mine = a.getAttribute('data-month') === key;
+        a.setAttribute('aria-current', mine ? 'true' : 'false');
+      });
+      if (found && focus) {
+        var h = cal.querySelector('.calmonth:not([hidden]) .calmh');
+        if (h) {
+          // FOCUS WITHOUT THE JUMP, THEN SCROLL DELIBERATELY. Moving focus to the new heading
+          // is what tells a screen reader the view changed, and a bare focus() also scrolls,
+          // by whatever distance the browser decides. Measured, that was the difference
+          // between a 37ms switch and a 269ms one: not work, just a long smooth scroll to a
+          // month the reader could already see. `nearest` moves only if it has to.
+          h.setAttribute('tabindex', '-1');
+          h.focus({ preventScroll: true });
+          h.scrollIntoView({ block: 'nearest' });
+        }
+      }
+      return found;
+    }
+
+    links.forEach(function (a) {
+      a.addEventListener('click', function (ev) {
+        // A modified click is the reader asking for a new tab. Leave it alone.
+        if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey || ev.button) return;
+        ev.preventDefault();
+        if (show(a.getAttribute('data-month'), true)) {
+          history.replaceState(null, '', a.getAttribute('href'));
+        }
+      });
+    });
+
+    // A LINK SHARED INTO THE MONTH STILL LANDS THERE. Somebody who was handed
+    // /record/#cal-2026-06 gets June, not August, and the back button keeps working.
+    function fromHash() {
+      var m = (location.hash || '').match(/^#cal-(\\d{4}-\\d{2})$/);
+      return m ? m[1] : null;
+    }
+    window.addEventListener('hashchange', function () {
+      var k = fromHash(); if (k) show(k, true);
+    });
+    // THE STEPPER. Months with nothing in them have no panel, so stepping walks the months
+    // that exist rather than the calendar's, and it stops at the ends instead of wrapping.
+    // Wrapping from December 2027 back to June 2021 is a jump a reader did not ask for and
+    // cannot undo with the same button.
+    var order = panels.map(function (p) { return p.getAttribute('data-month'); });
+    var prev = document.getElementById('calprev');
+    var next = document.getElementById('calnext');
+    var now = document.getElementById('calnow');
+    var home = cal.getAttribute('data-open');
+
+    function at() {
+      var shown = cal.querySelector('.calmonth:not([hidden])');
+      return shown ? order.indexOf(shown.getAttribute('data-month')) : order.indexOf(home);
+    }
+    function step(by) {
+      var i = at() + by;
+      if (i < 0 || i >= order.length) return;
+      show(order[i], true);
+      history.replaceState(null, '', '#cal-' + order[i]);
+      edges();
+    }
+    function edges() {
+      var i = at();
+      prev.disabled = i <= 0;
+      next.disabled = i >= order.length - 1;
+      now.disabled = order[i] === home;
+    }
+    prev.addEventListener('click', function () { step(-1); });
+    next.addEventListener('click', function () { step(1); });
+    now.addEventListener('click', function () {
+      show(home, true); history.replaceState(null, '', '#cal-' + home); edges();
+    });
+
+    // ONLY WHAT CAN STILL BE ACTED ON. Most of a record is history by definition, and a
+    // reader who came to find out whether they can still say something should not have to
+    // read the history to find out. The hiding is CSS, so nothing is removed from the
+    // document and turning it back off costs no work.
+    var acts = document.getElementById('calacts');
+    acts.addEventListener('change', function () {
+      cal.classList.toggle('acts', acts.checked);
+    });
+
+    show(fromHash() || home, false);
+    edges();
+  })();
+  </script>
+"""
+
+
+def docket_calendar_section(items: list, today: str, depth: int, a) -> str:
+    """The record laid out by WHEN, which is the half a list sorted by urgency cannot show.
+
+    An item with a hearing in June and an order in August belongs in both months. A flat list
+    can only put it under one, so the second date is invisible, and it is often the one a
+    reader is looking for.
+
+    `a` is the page's `Authorised` set. Every figure here is added to it as it is computed,
+    which is what makes the numeral law a mechanism rather than a promise.
+    """
+    cal = dcal.summarise(items, today)
+    keys, months, cur = cal["month_keys"], cal["by_month"], cal["current"]
+    if not keys:
+        return ""
+
+    a.add(cal["n_events"], cal["n_live"], len(items))
+    # Every day of the month a grid can print, and every year the rail can show.
+    a.add(*range(1, 32))
+    years = list(range(int(keys[0][:4]), int(keys[-1][:4]) + 1))
+    a.add(*years)
+    for k in keys:
+        a.add(len(months.get(k, [])))
+
+    # ------------------------------------------------------------------ the rail
+    #
+    # IT IS A CHART, NOT A ROW OF BUTTONS. Every month carries a bar whose height is its own
+    # count against the busiest month, so the shape of the record is visible before a single
+    # word is read: the August spike that holds more than a third of everything, the thin
+    # years, and the stretches where nothing happened at all.
+    #
+    # THE BAR IS GEOMETRY AND THE LABEL IS TEXT, and they are kept apart on purpose. Text sitting
+    # on a gradient is the one thing the contrast gate cannot measure, so it declines to judge
+    # it, and a run of declines is how a page ships unreadable. Nothing here is written over a
+    # fill.
+    peak = max((len(v) for v in months.values()), default=1) or 1
+    rows = []
+    for y in years:
+        cells = []
+        for m in range(1, 13):
+            k = f"{y:04d}-{m:02d}"
+            evs_m = months.get(k, [])
+            n = len(evs_m)
+            short = dcal.month_short(k)
+            if not n:
+                # PRESENT, AND INERT. An empty month is a fact about the record and closing
+                # the gap up would say the record is continuous when it is not.
+                cells.append(f'<li><span class="calm none">'
+                             f'<span class="calbar"><i></i></span>'
+                             f'<time class="calmn" datetime="{k}">{e(short)}</time></span></li>')
+                continue
+            act = sum(1 for ev in evs_m if ev["actionable"])
+            a.add(act)
+            # Rounded to whole percent so two builds of the same ledger are byte identical.
+            pct = round(n / peak * 100)
+            cells.append(
+                f'<li><a class="calm has{" act" if act else ""}" href="#cal-{k}" '
+                f'data-month="{k}" aria-current="{"true" if k == cur else "false"}" '
+                f'aria-label="{e(dcal.month_label(k))}, {n} dated">'
+                f'<span class="calbar"><i style="--h:{pct}%"></i></span>'
+                f'<time class="calmn" datetime="{k}">{e(short)}</time>'
+                f'<span class="calmc num">{n}</span></a></li>')
+        live = sum(len(months.get(f"{y:04d}-{m:02d}", [])) for m in range(1, 13))
+        a.add(live)
+        rows.append(f'<div class="calyear{"" if live else " quiet"}" data-prose="data">'
+                    f'<b class="caly num">{y}</b>'
+                    f'<ol class="calmonths">{"".join(cells)}</ol>'
+                    f'<span class="calyn num">{live}</span></div>')
+
+    # ------------------------------------------------------------------ the panels
+    panels = []
+    for k in keys:
+        evs = months.get(k)
+        if not evs:
+            continue                      # 50 empty grids would say nothing, at length
+        days = dcal.by_day(evs)
+        cells = []
+        for week in dcal.weeks(k):
+            for d in week:
+                if d is None:
+                    cells.append('<li class="calday out" aria-hidden="true"></li>')
+                    continue
+                iso = d.isoformat()
+                mine = days.get(iso) or []
+                klass = " today" if iso == today else ""
+                if not mine:
+                    cells.append(
+                        f'<li class="calday{klass}"><b class="caldn num">{d.day}</b></li>')
+                    continue
+                if any(ev["actionable"] for ev in mine):
+                    klass += " hasact"
+                evl = "".join(
+                    f'<li><a class="calev{" act" if ev["actionable"] else ""}" '
+                    f'href="{rel(depth)}item/{e(ev["item_id"])}/">'
+                    f'<span class="cke">{e(dcal.kind_label(ev["kind"]))}</span>'
+                    f'<span class="ckt">{e(ev["title"])}</span></a></li>'
+                    for ev in mine)
+                cells.append(
+                    f'<li class="calday full{klass}"><b class="caldn num">{d.day}</b>'
+                    f'<time class="caldd" datetime="{iso}">{e(ordinal(d))}</time>'
+                    f'<ul class="calevs">{evl}</ul></li>')
+        n = len(evs)
+        act = sum(1 for ev in evs if ev["actionable"])
+        a.add(n, act)
+        # "1 dated" is not a sentence. The count decides the noun, computed rather than typed.
+        word = "date" if n == 1 else "dates"
+        acts = (f' <span class="calact"><span class="num">{act}</span> you can still act on</span>'
+                if act else "")
+        panels.append(
+            f'<section class="calmonth" id="cal-{k}" data-month="{k}" data-act="{act}" '
+            f'aria-label="{e(dcal.month_label(k))}">'
+            f'<h3 class="calmh"><time datetime="{k}">{e(dcal.month_label(k))}</time> '
+            f'<span class="calmn2"><span class="num">{n}</span> {word}</span>{acts}</h3>'
+            f'<ol class="calhead" aria-hidden="true">'
+            + "".join(f"<li>{d}</li>" for d in ("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"))
+            + f'</ol><ol class="caldays">{"".join(cells)}</ol></section>')
+
+    dropped = (f'<p class="meta"><span class="num">{cal["dropped"]}</span> dated entries could '
+               f'not be read and are not shown.</p>' if cal["dropped"] else "")
+    a.add(cal["dropped"])
+
+    return f"""
+<section class="cal" id="cal" data-open="{cur}">
+  <h2>When it happens</h2>
+  <p class="sub">The same record, by date. <span class="num">{cal["n_events"]}</span> dated
+  moments across <span class="num">{cal["n_live"]}</span> months, and a decision with a hearing
+  in one month and an order in another appears in both. Pick a month, then pick a day.</p>
+  <!-- DATA, NOT PROSE, and marked as such the way the county tally already is. The rail is a
+       row of month labels and counts, so with the tags stripped it reads as "May  10" and the
+       house style checker calls that a badly written date. It is not a sentence; it is a
+       chart's axis. `data-prose="data"` is the mechanism this project already has for that,
+       and it narrows the prose rules rather than switching a checker off. -->
+  <div class="calrail">{"".join(rows)}</div>
+
+  <!-- BOTH CONTROLS ARE HIDDEN UNTIL THE SCRIPT CLAIMS THEM. A button that does nothing is
+       worse than no button: it is a promise a reader tests once and then distrusts the page
+       for. Without script every month is already on the page and the rail entries are real
+       anchors, so nothing here is the only route to anything. -->
+  <div class="calstep">
+    <button type="button" id="calprev" aria-label="The month before">Prev</button>
+    <button type="button" id="calnext" aria-label="The month after">Next</button>
+    <button type="button" id="calnow" class="calnow">This month</button>
+  </div>
+  <!-- THE READER'S OWN WORDS, declared as such. Published copy carries no I, we or our,
+       because the record speaks rather than its author; a control the reader operates is the
+       one place a first person is right, and `data-voice="reader"` is the marker this site
+       already uses for exactly that on the front page's scan question. -->
+  <label class="calfilter" data-voice="reader">
+    <input type="checkbox" id="calacts">
+    <span>Only what I can still act on</span>
+  </label>
+
+  <div class="calpanels" data-prose="data">{"".join(panels)}</div>
+  {dropped}
+</section>
+{_CAL_JS}"""
 
 
 def topic_label(topic: str) -> str:
@@ -4834,6 +5147,9 @@ def build(out: Path, today: str) -> dict:
         return set().union(*(by_item[i["id"]] for i in subset)) if subset else set()
 
     w("site.css", theme.css())
+    # SERVED TO THE ONE PAGE THAT HAS A CALENDAR. See theme.record_css for why it is not in
+    # the sheet every other page waits on.
+    w("record.css", theme.record_css())
 
     # THE CUSTOM DOMAIN, told to GitHub Pages. Derived from SITE_URL rather than typed, so the
     # domain the pages claim as canonical and the domain Pages actually serves cannot disagree.
@@ -4944,7 +5260,11 @@ def build(out: Path, today: str) -> dict:
     # unknown path, and without one a mistyped decision id lands a reader on the host's default
     # page with no navigation, no search and no sign the site is even ours.
     w("404.html", not_found_page(today, items))
-    w("record/index.html", docket_index(items, today), listed(items))
+    # THE RECORD AUTHORISES ITS OWN ARITHMETIC. `listed` covers the figures the items carry;
+    # the calendar's counts, day numbers and years are computed on the page and come back with
+    # it, so the two sets are unioned rather than one silently standing in for the other.
+    _rec_html, _rec_figs = docket_index(items, today)
+    w("record/index.html", _rec_html, listed(items) | _rec_figs)
     # THE HUB, THEN THE BEATS. Written above the loop so the family reads as a family, and
     # so a reader or a crawler arriving at /topic/ finds a page rather than a 404.
     _tfig, _thtml = topics_index(items, today)
@@ -5263,7 +5583,20 @@ def self_test() -> int:
         real_docket, real_home = docket_index, home
 
         def planted(fn, find, ins):
-            return lambda *a, **k: fn(*a, **k).replace(find, find + ins, 1)
+            """Plant a figure in a page builder's html, whatever shape it hands back.
+
+            `docket_index` returns (html, the numerals it computed) so the calendar's counts
+            can be authorised where they are computed. A helper that assumed a bare string
+            broke this gate the moment that changed, which would have been a self-test failing
+            for a reason that has nothing to do with the law it guards.
+            """
+            def go(*a, **k):
+                out = fn(*a, **k)
+                if isinstance(out, tuple):
+                    html, *rest = out
+                    return (html.replace(find, find + ins, 1), *rest)
+                return out.replace(find, find + ins, 1)
+            return go
 
         for label, name, real, ins, want in (
                 ("a figure nothing computed", "docket_index", real_docket,
