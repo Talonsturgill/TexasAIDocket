@@ -79,6 +79,24 @@ ok("marks the finished stage done and the current one live",
    r.chain[0] === "done" && r.chain[1] === "live", JSON.stringify(r.chain));
 ok("nothing is requested from any other host", r.other.length === 0, JSON.stringify(r.other.slice(0,2)));
 
+// THE CHAIN ONLY EVER MOVES FORWARD. Two lanes run in parallel and write into one ordered
+// feed, so an industry line lands between two footprint lines as a matter of course. Reading
+// the last line's phase made the stations oscillate backwards, which is a progress indicator
+// telling a reader something untrue about work already done. Taken from a real run's shape.
+console.log("=== the chain does not go backwards ===");
+r = await run("tok", [{body:{status:"running", progress:[
+  {phase:"intake",    note:"Request picked up"},
+  {phase:"footprint", note:"Reading the homepage"},
+  {phase:"industry",  note:"Searching for what comparable firms published"},
+  {phase:"footprint", note:"Reading the careers page"},
+]}}]);
+ok("an industry line between two footprint lines does not unlight industry",
+   r.chain[1] === "live", JSON.stringify(r.chain));
+ok("...and footprint stays done rather than reverting to live",
+   r.chain[0] === "done", JSON.stringify(r.chain));
+ok("a phase the chain does not know does not blank the stations",
+   r.chain.some(c => c), JSON.stringify(r.chain));
+
 console.log("=== the feed only grows ===");
 r = await run("tok", [
   {body:{status:"running", progress:[{phase:"footprint", note:"one"}]}},

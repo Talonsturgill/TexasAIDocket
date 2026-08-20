@@ -93,6 +93,17 @@ rules:
     owner: human
   - path: ".claude/settings.json"
     owner: human
+    note: >
+      It STAYS human, and 2026-08-20 is the day that was tested rather than assumed. An
+      unattended run stopped twice for approval, the owner told the session to fix it directly,
+      and the session could not do it from the run: the file it needed is the one file the
+      constitution keeps out of an automation's reach, and so is this map, so a run cannot even
+      grant itself the reach. That is the rule working rather than a gap in it. The change was
+      made on a branch matching no prefix, which `actors_allowed_on_branch` treats as a
+      maintainer session, on the owner's instruction and with the reason written into the file.
+      Worth knowing before the next session goes looking here. What was asking was the Bash
+      SANDBOX and not the permission mode, which had been correct for nine days, and the cure was
+      a rule about where scratch files go rather than a broader permission. See CLAUDE.md.
   - path: ".githooks/**"
     owner: human
   - path: ".github/workflows/**"

@@ -1319,3 +1319,103 @@ nobody believes has negative value, not zero.
 rather than on what it is. Environment versus argument, header versus query string, attribute
 versus child element, annotation versus config file. Ask what the producer is ALLOWED to do,
 not what it happened to do the day the consumer was written.
+
+---
+
+## 39. The ownership guard did not run at all inside a git worktree, and nothing said so
+
+**2026-08-20.** `.githooks/pre-commit` is the ownership guard. It is what stops one of this
+repo's several unattended automations writing into another's lane, and CLAUDE.md's own first
+commands section calls it load bearing by name, because the cost of it not running was already
+paid once: a whole run of commits landing with no ownership check on any of them.
+
+It ran. It just could not find the stamp, and it is written to treat a missing stamp as a
+maintainer session that owns everything.
+
+```
+[ -f "$root/.git/ACTOR" ] && actor="$(tr -d '[:space:]' < "$root/.git/ACTOR")"
+```
+
+In a plain clone `$root/.git` is a directory and that path is the stamp. In a linked **worktree**
+`$root/.git` is a FILE holding a gitdir pointer, so `$root/.git/ACTOR` is a path underneath a
+file, `[ -f ]` is false, `actor` stays `human`, and the guard cheerfully approves a write to any
+path in the repo. `commit-msg` reads the stamp the same way and exits 0 before writing anything,
+so those commits also reached CI with no `Actor:` trailer.
+
+**Both halves of the check were switched off by the same line, in the environment a session is
+most likely to be isolated in.** An agent given a worktree for isolation had less enforcement than
+one working in the main tree, which is exactly backwards.
+
+**Nothing was red.** `ownership_check.py --self-test` passes, because the checker is fine. The
+hook is not covered by anything: it is shell, it is invoked by git, and its failure mode is to
+exit 0. `guards_local.py` runs the CI suite and CI reads the trailer, so an unstamped commit falls
+back to the branch's actor, which for a maintainer branch is "owns everything" and looks correct.
+
+**What to check instead.** For any guard whose failure mode is "does nothing", the test is not
+"does it pass on a clean tree". It is **make it go red on purpose in the environment you actually
+work in**. That is one command: stamp a routine actor, stage a write outside that lane, and watch
+the commit be refused. Two minutes, in the worktree, and it would have caught this the first day
+anybody used one.
+
+**Generalises to.** Every path a script builds by string-joining onto `.git`, and more broadly
+every guard that resolves its own configuration by convention instead of by asking the tool.
+`git rev-parse --git-dir` answers correctly in a clone, a worktree, a submodule and a bare repo
+with a work tree attached. The convention answers correctly in one of the four.
+
+The wider shape is entries 13, 30, 37 and 38 again, in its quietest form yet: **a checker that
+CANNOT go red prints the same clean line as a checker that went green on a clean product.** The
+run has no way to tell those two apart from the output, so it must occasionally force the red.
+
+---
+
+## 40. Every film on the site was refused, and it read as a video that would not autoplay
+
+**2026-08-20.** The owner said the videos were not autoplaying. They were not playing at all, and
+they never had. The browser says so in one line:
+
+```
+Refused to load media from 'https://raw.githubusercontent.com/.../dispatch-720.mp4' because it
+violates the following Content Security Policy directive: "default-src 'self'". Note that
+'media-src' was not explicitly set, so 'default-src' is used as a fallback.
+```
+
+`csp.py` writes `script-src`, `style-src`, `img-src`, `font-src`, `connect-src`, `frame-src` and
+`form-action`. It never wrote `media-src`, so media fell back to `default-src 'self'` and the
+films, which are served from `raw.githubusercontent.com`, were refused.
+
+**The POSTER loaded.** It is an `<img>`, `img-src` names that host for the article pages' shipped
+slides, and the same host was refused for the `<video>` one attribute away. So the page showed a
+still, a play button and a spinner that never resolved. **The symptom was indistinguishable from
+an autoplay policy**, which is the most common reason a video does not start on its own, so the
+report that reached this repo was about autoplay and the cause was a directive nobody had written.
+
+**Why the gate could not see it, which is the part worth keeping.** `csp.audit` reads HTML
+attributes: `<script src>`, `<img src>`, `<iframe src>`, `<form action>`. Neither video surface
+writes an address into markup. The feed builds `<video data-src=...>` and attaches the real `src`
+in JavaScript, and the home page reads `media_base` out of `docs/videos/videos.json` and assigns
+`el.src`. **The URL appears in no page's markup anywhere on the site.** A regex over the built
+HTML finds nothing on a site whose every film is blocked.
+
+This is entry 30's shape and it is written into `csp.py` already, about `connect-src`: "Every
+pattern above reads an HTML attribute, and a fetch target is not an attribute." The file diagnosed
+its own blind spot, fixed it for one directive, and left the same hole open for the next one.
+
+**What to check instead.** Audit against the SOURCE OF TRUTH, not against the rendered markup.
+`media_targets` reads `media_base` out of `videos.json` and `unaudited_media` checks that origin
+against the policy the build just wrote. That matters twice over here, because `videos.json` is
+owned by `TexasAIDispatch` and is the one file it writes into this repo: the origin can change
+without a byte of this repo changing, and a policy audited only against this repo's own markup
+would go green straight through that too.
+
+The self-test replays both halves, and the fix was verified by forcing the red, by setting
+`MEDIA_HOSTS = ()` and confirming the gate fails on the real shipped manifest.
+
+**Generalises to.** Every CSP directive whose resource is addressed at runtime rather than in
+markup, which is most of them on any page with JavaScript: `media-src`, `connect-src`,
+`worker-src`, `img-src` for a lazy-loaded gallery. And more widely, any allowlist audited against
+a RENDERING instead of against the data the rendering is generated from.
+
+**One more thing this cost.** A resource type was widened for one element and not for its sibling,
+on the same host, in the same feature. When adding a host to any allowlist, ask which OTHER
+directive the same feature needs, because the feature is what has the requirement and the
+directive is only how it is spelled.

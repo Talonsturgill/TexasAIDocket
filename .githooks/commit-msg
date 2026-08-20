@@ -17,9 +17,13 @@ set -uo pipefail
 
 msg_file="$1"
 root="$(git rev-parse --show-toplevel 2>/dev/null || echo .)"
-[ -f "$root/.git/ACTOR" ] || exit 0
+# Found through git rev-parse, never by joining "$root/.git". See the note in pre-commit: in a
+# linked worktree that join points under a FILE and the stamp is never found, so every commit
+# made in a worktree reached CI unstamped.
+gitdir="$(git rev-parse --git-dir 2>/dev/null || echo "$root/.git")"
+[ -f "$gitdir/ACTOR" ] || exit 0
 
-actor="$(tr -d '[:space:]' < "$root/.git/ACTOR")"
+actor="$(tr -d '[:space:]' < "$gitdir/ACTOR")"
 [ -n "$actor" ] || exit 0
 
 # Already stamped, by an amend or a cherry-pick carrying the trailer forward. Leave it alone

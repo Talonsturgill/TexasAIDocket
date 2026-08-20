@@ -3561,8 +3561,22 @@ def watch_page(today: str) -> str:
       feed.appendChild(li);
     }}
     seen = rows.length;
-    var last = rows.length ? String((rows[rows.length - 1] || {{}}).phase || "") : "";
-    var at = PHASES.indexOf(last.toLowerCase());
+    // THE CHAIN ONLY EVER MOVES FORWARD, and it has to, because this reads ONE ordered feed
+    // that TWO parallel lanes write into. The routine says so itself on the way in: one lane
+    // reads the requester's own pages while the other reads published results, and they never
+    // share state. So their lines interleave, and taking the phase of the LAST line made the
+    // stations oscillate: industry lights, the next footprint line lands, industry goes dark
+    // again. A progress indicator that moves backwards is telling a reader something untrue
+    // about work that has already happened.
+    //
+    // The furthest station any line has reached is the honest answer, and it is also the one
+    // that survives a line arriving late or out of order.
+    var at = -1;
+    for (var k = 0; k < rows.length; k++) {{
+      var ph = String((rows[k] || {{}}).phase || "").toLowerCase();
+      var idx = PHASES.indexOf(ph);
+      if (idx > at) at = idx;
+    }}
     var items = chain.children;
     for (var j = 0; j < items.length; j++) {{
       // A FINISHED RUN LEAVES NOTHING LIVE. The last station reported is the one the run
@@ -5220,6 +5234,11 @@ def build(out: Path, today: str) -> dict:
     # intake outlived the intake by a day and no gate said so, because an over-wide policy
     # refuses nothing and therefore reports nothing.
     broken.extend(csp.unused_connect(connect_seen))
+    # THE FILMS' OWN ORIGIN, checked against the policy this build just wrote. Neither video
+    # surface writes the address into markup, so `csp.audit`'s attribute patterns see nothing on
+    # a site whose every film is being refused. The manifest is where the origin actually lives,
+    # and TexasAIDispatch can change it without a byte of this repo changing.
+    broken.extend(csp.unaudited_media(video_feed(), SITE_URL))
 
     # THE GATE FIRES HERE, after every page is written, so the report names all of them
     # rather than the first. A build that would publish a typed numeral does not publish.

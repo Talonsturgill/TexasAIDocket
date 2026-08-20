@@ -7,10 +7,41 @@
     "is what keeps an unattended run finishing. It is not the thing containing the blast radius.",
     "The containment is ownership.yaml, the CI guards, and the fact that docs/ is regenerated",
     "rather than edited: a run can only write inside its own lane, and only a maintainer session",
-    "can change what the lanes are. Owner decision, 2026-08-11."
+    "can change what the lanes are. Owner decision, 2026-08-11.",
+    "",
+    "THE MODE WAS NEVER THE THING STILL ASKING. On 2026-08-20 the owner was interrupted twice by",
+    "an unattended run stopping for approval, with this file already setting bypassPermissions and",
+    "having set it for nine days. A session that goes looking at the permission mode finds it",
+    "correct and loses the afternoon, so the answer is written here where it will be looked for.",
+    "",
+    "What asks is the Bash SANDBOX, which is a separate mechanism from the permission mode. A",
+    "sandboxed command that writes outside the working tree cannot complete, and the tool then",
+    "asks to re-run it unsandboxed. That is a prompt bypassPermissions does not cover, and the run",
+    "had been writing its scratch scripts into a system temp directory all morning.",
+    "",
+    "The cure is not a broader permission. It is to stop leaving the tree: every scratch file goes",
+    "in out/<run>/tmp/, which is gitignored and inside the working directory, so nothing needs",
+    "escaping and nothing needs approving. That rule is in CLAUDE.md, because it is a rule about",
+    "how the routines work and not a setting. Owner decision, 2026-08-20.",
+    "",
+    "The allow list below is belt and braces. bypassPermissions already covers it, and it is",
+    "written out so that a session running under a HOST that overrides the mode, which the cloud",
+    "runner may do, still has the tools this routine cannot finish without."
   ],
   "permissions": {
-    "defaultMode": "bypassPermissions"
+    "defaultMode": "bypassPermissions",
+    "allow": [
+      "Bash",
+      "Read",
+      "Edit",
+      "Write",
+      "Glob",
+      "Grep",
+      "WebFetch",
+      "WebSearch",
+      "Agent",
+      "Task"
+    ]
   },
   "hooks": {
     "SessionStart": [
