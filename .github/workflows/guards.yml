@@ -130,6 +130,16 @@ jobs:
       - name: Grid watch collector self-test (hermetic, gates every collection)
         run: python3 scripts/gridwatch/gridwatch_collect.py --self-test
 
+      - name: Calendar arithmetic self-test (an item is not a date, and a gap is information)
+        run: |
+          # The record page plots 122 EVENTS rather than 64 items, because half the items carry
+          # more than one key_date and a flat list can only ever show a decision under one of
+          # them. This is the bucketing, tested without a browser: the empty months that must be
+          # kept, the Sunday-first grid, the leap February, and the guard that every date kind on
+          # the shipped ledger has an explicit English label so a new one cannot reach a reader
+          # as a raw slug.
+          python3 scripts/site/docket_calendar.py --self-test
+
       - name: Numeral lint self-test (the gate behind "no number is ever typed")
         run: python3 scripts/site/numeral_lint.py
 
@@ -646,6 +656,21 @@ jobs:
       # over file:// would assert the address bar and prove nothing about the page.
       - name: The watch page sends the token and nothing else
         run: SITE=docs node tests/scan_watch.mjs
+
+      - name: The record calendar, every month by every route
+        run: |
+          # Everything interesting about the calendar happens at READ TIME: which month shows,
+          # what the stepper does at the ends of the range, whether the filter hides the right
+          # things, whether a shared link lands on the month it names.
+          #
+          # THE FIRST CHECK IS THE ONE THAT MATTERS MOST. Every month is in the document and
+          # readable with no script at all. A calendar that is only a calendar when JavaScript
+          # runs is a record some readers cannot browse.
+          #
+          # It also walks all 18 months, steps the whole range both ways, hammers the filter in
+          # every one, fires five taps with no pause to catch a handler racing itself, measures
+          # switch latency in the page, and checks 12 widths.
+          SITE=docs node tests/docket_calendar.mjs
 
       - name: The browser is asked what the policy actually refuses
         run: |

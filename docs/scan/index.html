@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-q70ohTjTWe13cEHglii1obWkfKJc4uV6Rp35KF0oTpA=' 'sha256-S9o8Q22wa+D1Yh4iMeU17g3pgAdk5LfQq/3L29K/NvE=' 'sha256-E+gQOwXUGOnINfcOi9J56cHSAdhMH3938O1TEklKmKM=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-q70ohTjTWe13cEHglii1obWkfKJc4uV6Rp35KF0oTpA=' 'sha256-zeuYRLlQqx6c5G0SiJ5aigf7KVoLhM3jM055p06UD0k=' 'sha256-E+gQOwXUGOnINfcOi9J56cHSAdhMH3938O1TEklKmKM=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Bottleneck scan · Texas AI Docket</title>
@@ -23,7 +23,7 @@
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <meta name="theme-color" content="#00205B">
-<link rel="stylesheet" href="../site.css?v=95cc20cf58">
+<link rel="stylesheet" href="../site.css?v=a8d0e2eb05">
 <link rel="preload" href="../fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="alternate" type="application/atom+xml" title="Texas AI Docket" href="../atom.xml">
 <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebSite","@id":"https://texasaidocket.com/#website","name":"Texas AI Docket","url":"https://texasaidocket.com","inLanguage":"en-US","publisher":{"@id":"https://texasaidocket.com/#org"}},{"@context":"https://schema.org","@type":"Organization","@id":"https://texasaidocket.com/#org","name":"Texas AI Docket","url":"https://texasaidocket.com/","description":"A public, fact-checked record of decisions about artificial intelligence in Texas.","sameAs":["https://www.linkedin.com/company/texasaidocket/","https://www.facebook.com/Texasaidocket"]}]</script>
@@ -138,6 +138,13 @@
           // thing to show: somebody asked about this business recently and here is what came
           // back. The link is relative, and this form is served at /scan/.
           if (res.body && res.body.token) {
+            // THE WATCH PAGE SHOWS WHOSE SCAN IT IS, and this is where it learns that. The
+            // token is the only thing in the link, deliberately, so the subject travels in
+            // sessionStorage instead: same origin, never in the address bar, never in a
+            // referrer, gone when the tab closes. A shared link therefore carries no business
+            // name, which is the property the token was chosen for in the first place, and the
+            // watch page simply says less when it opens without one.
+            try { sessionStorage.setItem('wsubject', val('website') || ''); } catch (e) {}
             location.href = 'watch/?t=' + encodeURIComponent(res.body.token);
             return;
           }

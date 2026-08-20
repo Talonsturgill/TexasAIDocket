@@ -50,13 +50,18 @@ await page.route("**/answer", async (route) => {
       ? [{ stage: "Reading the record" },
          { sentence: "Four comment windows are open right now." },
          { long: true }]
-    : /one more/.test(q)
+    : /why one more/.test(q)
       ? [{ capped: true }]
     : /when did it close/.test(q)
       ? [{ stage: "Reading the record" },
          { sentence: "The comment window has closed." },
          { withheld: "numeral" }]
-    : /who decides/.test(q)
+    : /why does it matter/.test(q)
+      ? [{ stage: "Reading the record" },
+         { sentence: "The body that decides sets the deadline and the rules." },
+         { sentence: "Want the dates it moved on?" },
+         { done: true }]
+    : /why did the PUCT/.test(q)
       ? [{ stage: "Reading the record" },
          { sentence: "The Public Utility Commission of Texas decides it." },
          { sentence: "See [[tx-2026-0001]] for the filings." },
@@ -90,14 +95,6 @@ ok("the starters are offered", (await page.locator(".chips button").count()) > 0
 // The promise is only true if nothing has actually gone out yet.
 ok("no request has been made", seen.length === 0);
 
-head("B. typing answers in the page and still sends nothing");
-await page.fill("#askq", "what can I still comment on");
-await page.waitForTimeout(150);
-ok("the engine answered", await page.locator("#ask .answer").isVisible());
-ok("and it sent nothing to do it", seen.length === 0, `${seen.length} requests`);
-
-// ------------------------------------------------------------------ asking
-head("C. pressing enter hands it to the written lane");
 // The widget the way Cloudflare drives it, with the network taken out.
 await page.evaluate(() => {
   let cb = null;
@@ -108,9 +105,8 @@ await page.evaluate(() => {
     // fifteen second fallback, which reads exactly like a page bug.
     reset: () => { setTimeout(() => cb && cb("test-token"), 5); },
   };
-  /* The box arms on the FIRST SUBMIT now, not on focus, so askTurnstileReady does not exist
-     yet. Stand in for Cloudflare's loader: when the box appends the script tag, call the
-     callback it registered. */
+  /* The box arms on FOCUS now, so this stands in for Cloudflare's loader either way: when
+     the box appends the script tag, call the callback it registered. */
   const realAppend = document.head.appendChild.bind(document.head);
   document.head.appendChild = function (node) {
     if (node.tagName === "SCRIPT" && /challenges\.cloudflare/.test(node.src || "")) {
@@ -122,7 +118,23 @@ await page.evaluate(() => {
 });
 await page.waitForTimeout(60);
 
-await page.fill("#askq", "who decides the ERCOT transmission rule");
+head("B. typing renders nothing at all, which is the point");
+// The engine used to rewrite a panel on every keystroke. The owner: "very distracting". The
+// answer arrives at the PRESS now and nowhere else, so a reader is looking at one thing.
+await page.fill("#askq", "what can I still comment on");
+await page.waitForTimeout(250);
+ok("the thread stays empty while typing",
+   ((await page.textContent("#askthread")) || "").trim().length === 0);
+ok("and it sent nothing to do it", seen.length === 0, `${seen.length} requests`);
+
+// ------------------------------------------------------------------ asking
+head("C. pressing enter hands it to the written lane");
+
+// AN EXPLANATORY QUESTION, because a lookup no longer leaves the page at all. "who decides
+// the ERCOT transmission rule" was here and the classifier now answers it from the record in
+// under half a second, which is the improvement and also means it can no longer exercise the
+// written lane. A "why" is what the model is for.
+await page.fill("#askq", "why did the PUCT delay the comment deadline");
 await page.press("#askq", "Enter");
 await page.waitForSelector(".askfrom", { timeout: 8000 });
 
@@ -130,7 +142,7 @@ ok("exactly one request went out", seen.length === 1, `${seen.length}`);
 ok("and it carried only the question", seen[0].messages.length === 1,
   JSON.stringify(seen[0].messages));
 ok("the question is read back", (await page.locator(".askturn").first().textContent())
-  .includes("ERCOT"));
+  .includes("PUCT"));
 const reply = await page.locator(".askreply").first().textContent();
 ok("every sentence landed",
   reply.includes("Public Utility Commission") && reply.includes("Want the dates"), reply);
@@ -208,7 +220,9 @@ ok("the placeholder goes back to normal",
 head("F. writing your own question puts the suggestion away");
 // Earn a real suggestion rather than setting the placeholder by hand, which would leave the
 // client's own state untouched and test nothing.
-await page.fill("#askq", "who decides it then");
+// EXPLANATORY, so it reaches the written lane. A lookup is answered from the page now and
+// the page does not offer follow-ups, the model does.
+await page.fill("#askq", "why does it matter who decides it");
 await page.press("#askq", "Enter");
 await page.waitForSelector(".askfrom", { timeout: 8000 });
 ok("a fresh answer suggests again",
@@ -248,7 +262,9 @@ ok("every exchange is still on screen", (await page.locator(".askturn").count())
 
 // ------------------------------------------------------------------ capped
 head("H. the month running out says so in this page's own words");
-await page.fill("#askq", "one more");
+// EXPLANATORY, so it reaches the worker. "one more" was here and the classifier now answers
+// it from the page, so it never got as far as the cap it was written to test.
+await page.fill("#askq", "why one more comment window matters");
 await page.press("#askq", "Enter");
 await page.waitForTimeout(600);
 const capped = await page.locator(".askreply").last().textContent();
@@ -338,6 +354,142 @@ await page.waitForTimeout(600);
 ok("clean console", errs.length === 0, errs.join(" | "));
 
 console.log("");
+// ------------------------------------------------------------------ the screen
+head("I2. on a phone the box takes the screen, and gives it back");
+{
+  const ph = await b.newPage({ viewport: { width: 390, height: 780 } });
+  await ph.route("**://challenges.cloudflare.com/**", (r) => r.abort());
+  await ph.goto(URL_);
+  await ph.waitForTimeout(400);
+  await ph.evaluate(() => scrollTo(0, 600));
+  await ph.waitForTimeout(150);
+
+  /* TAPPED, NOT FOCUSED PROGRAMMATICALLY. `focus()` skips pointerdown, and a browser scrolls a
+     focused input into view BEFORE the focus handler runs, so the position the box remembers
+     would be the one the browser had just moved them to rather than the one they were reading.
+     A phone user taps. Clicking fires the same pointerdown a tap does, and that is where the
+     scroll position is captured. */
+  await ph.click("#askq");
+  await ph.waitForTimeout(350);
+  const on = await ph.evaluate(() => {
+    const vis = (s) => { const e = document.querySelector(s); return e ? e.offsetParent !== null : false; };
+    const r = document.getElementById("ask").getBoundingClientRect();
+    return { asking: document.body.classList.contains("asking"),
+             hero: vis(".hero"), nav: vis(".masthead"), chips: vis(".chips"),
+             covers: Math.round(r.height) >= innerHeight - 4,
+             closeSeen: vis(".askclose") };
+  });
+  ok("focusing the field takes the screen", on.asking && on.covers, JSON.stringify(on));
+  ok("the hero and the nav are gone", !on.hero && !on.nav, JSON.stringify(on));
+  ok("and there is a visible way out", on.closeSeen, JSON.stringify(on));
+
+  // WHAT THE AGENT IS DOING IS THE ONLY THING LEFT. Owner: "we want to make it so that they
+  // can just see what's happening as far as what the agent's doing, not everything else".
+  await ph.evaluate(() => {
+    const real = window.fetch;
+    window.fetch = function (u, o) {
+      if (String(u).includes("/answer")) {
+        const enc = new TextEncoder();
+        return Promise.resolve(new Response(new ReadableStream({ start(c) {
+          c.enqueue(enc.encode(JSON.stringify({ stage: "Reading the record" }) + "\n")); } }),
+          { status: 200, headers: { "content-type": "application/x-ndjson" } }));
+      }
+      return real(u, o);
+    };
+    window.turnstile = { render: (el, o) => { setTimeout(() => o.callback("t"), 5); return 1; },
+                         reset: () => {} };
+  });
+  await ph.fill("#askq", "why does the deadline keep moving");
+  await ph.press("#askq", "Enter");
+  await ph.waitForTimeout(800);
+  const mid = await ph.evaluate(() => {
+    const vis = (s) => { const e = document.querySelector(s); return e ? e.offsetParent !== null : false; };
+    return { stage: (document.querySelector(".askstage") || {}).textContent || "",
+             question: (document.querySelector(".askturn") || {}).textContent || "",
+             chips: vis(".chips"), note: vis(".asknote"), hero: vis(".hero") };
+  });
+  ok("while it works, it says what it is doing", mid.stage.trim().length > 0, JSON.stringify(mid));
+  ok("the question is still read back", mid.question.length > 0, JSON.stringify(mid));
+  ok("and nothing else is competing for the eye",
+     !mid.chips && !mid.note && !mid.hero, JSON.stringify(mid));
+
+  // THE WAY BACK PUTS THE READER WHERE THEY WERE. Hiding the page collapses it, so without
+  // remembering the offset the browser returns them to the top, which feels like losing
+  // their place because it is.
+  await ph.click("#askclose");
+  // THE RESTORE RETRIES FOR HALF A SECOND, because the page regains its height in stages and
+  // an early scroll is clamped. Measuring inside that window reads a position still on its way.
+  await ph.waitForTimeout(900);
+  const off = await ph.evaluate(() => ({
+    asking: document.body.classList.contains("asking"), y: Math.round(scrollY) }));
+  ok("closing hands the screen back", !off.asking, JSON.stringify(off));
+  ok("...and puts them back where they were", Math.abs(off.y - 600) < 40, JSON.stringify(off));
+  await ph.close();
+}
+
+// A LAPTOP HAS ROOM FOR CONTEXT, so none of that applies there.
+{
+  const wide = await b.newPage({ viewport: { width: 1280, height: 800 } });
+  await wide.route("**://challenges.cloudflare.com/**", (r) => r.abort());
+  await wide.goto(URL_);
+  await wide.waitForTimeout(400);
+  await wide.focus("#askq");
+  await wide.waitForTimeout(300);
+  const g = await wide.evaluate(() => {
+    const h = document.querySelector(".hero");
+    return { asking: document.body.classList.contains("asking"),
+             hero: h ? h.offsetParent !== null : false };
+  });
+  ok("a laptop is not thrown into full screen", !g.asking, JSON.stringify(g));
+  ok("and keeps its context", g.hero, JSON.stringify(g));
+  await wide.close();
+}
+
+// ------------------------------------------------------------------ the ceiling
+head("J. the eight second ceiling");
+/* A STREAM THAT NEVER CLOSES, patched into the page itself.
+   `route.fulfill` always ENDS the response, so a stubbed body arrives complete and the stream
+   finishes in under a second, which tests the happy path wearing a hang's clothes. A real
+   socket that holds open cannot be reached either, because `route.continue` refuses to cross
+   from https to http.
+   So the page's own `fetch` hands back a ReadableStream that emits a stage and a sentence and
+   then simply never closes, which is the exact shape of a model that stalls mid-answer, and it
+   is what a ceiling has to survive. */
+await page.evaluate(() => {
+  const real = window.fetch;
+  window.fetch = function (u, o) {
+    if (String(u).includes("/answer")) {
+      const enc = new TextEncoder();
+      return Promise.resolve(new Response(new ReadableStream({
+        start(c) {
+          c.enqueue(enc.encode(JSON.stringify({ stage: "Reading the record" }) + "\n"));
+          c.enqueue(enc.encode(JSON.stringify({ sentence: "The first part arrived." }) + "\n"));
+          // and never c.close()
+        },
+      }), { status: 200, headers: { "content-type": "application/x-ndjson" } }));
+    }
+    return real(u, o);
+  };
+});
+await page.click(".askagain").catch(() => {});
+await page.waitForTimeout(200);
+const t0 = Date.now();
+await page.fill("#askq", "why does the deadline keep moving");
+await page.press("#askq", "Enter");
+await page.waitForSelector(".askfrom", { timeout: 15000 });
+const took = Date.now() - t0;
+
+ok("it closed the answer inside the ceiling", took < 11000, `${took}ms`);
+ok("...and not before the work had a chance", took > 7000, `${took}ms`);
+const cutText = (await page.textContent(".askreply")) || "";
+// IT CUTS, IT DOES NOT DISCARD. Throwing away what arrived would trade a slow answer for no
+// answer, which is not what a ceiling is for.
+ok("what did arrive is still on screen", /The first part arrived/.test(cutText),
+   cutText.slice(0, 90));
+ok("and it says the rest was cut for time", /cut at eight seconds/i.test(cutText),
+   cutText.slice(-90));
+ok("the box is usable again", !(await page.getAttribute("#askq", "disabled")));
+
 console.log(fail === 0 ? `ask_written: all passed, ${pass} checks`
                        : `ask_written: FAILED, ${fail} of ${pass + fail}`);
 await b.close();

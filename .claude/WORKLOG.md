@@ -1,192 +1,154 @@
-# WORKLOG: carousel root causes, opened 2026-08-19
+# WORKLOG — the record becomes a calendar
 
-The owner's brief: three runs are on the record now. Find the REPEAT OFFENDERS that keep
-holding the deck under the eval gates, attack the root causes rather than the incidents, and
-fill the biggest holes. Scope is the CAROUSEL POST only. The reasoning given is the one that
-matters: **if the agents can wow the judges, they can wow the humans.**
+Opened 2026-08-20 on the owner's call: the record page lists the items open for
+comment first, which is right, "but then after that, the fact that it just goes
+into a big list of everything else, it's just not very digestible or readable".
+Wanted: "a calendar view... the months laid out where everything is, the details
+of everything, and they're able to click into specific things". Told to go slow
+and make it robust.
 
-This file exists because the task is too large for one context. Resume from the wave table.
+**Read this first.** Resume from the task table at the bottom.
 
-## THE EVIDENCE THIS IS BUILT ON
+## What the data actually is, measured before designing
 
-Twelve independent judge reports from 2026-08-19 (four rounds, three judges), the score
-history of all three runs, every RUN_RECORD, GATE_LESSONS.md, UPGRADE_BACKLOG.md,
-upgrades.json and instincts.json, plus a full audit of what each gate can and cannot see.
+    64 items, 122 dated events, 9 kinds of date
+    ordered 41 | hearing 26 | filed 19 | effective 14 | comment_closes 6
+    statutory_deadline 6 | comment_opens 5 | signed 4 | decided 1
 
-Score history, and it is the shape of the problem rather than the size of it:
+    range      2021-06-08 -> 2027-02-18   (68 months)
+    statuses   decided 38 | pending 15 | open 11
 
-| run | rounds | scores | shipped at |
-|---|---|---|---|
-| 2026-08-16 | not recorded per round | | 7.0 |
-| 2026-08-18 | not recorded per round | | 7.01 |
-| 2026-08-19 | 12 | 6.51 6.87 6.93 6.82 6.56 6.62 6.71 / 6.53 7.14 7.01 7.44 8.03 | 8.03 |
+    density is LUMPY and this is the whole design problem:
+      2026-08  28 items      <- more than a third of the record, in one month
+      2026-07  13
+      2026-06  12
+      most other months 1 to 5
+      2026-10, 2026-12, 2027-01 and all of 2022 to 2024 are EMPTY
 
-Two decks shipped within 0.01 of the bar and the third took twelve rounds. That is not three
-stories of differing quality. That is a machine with no way to find its own defects before a
-judge does.
+## The design, and why it is not a wall of day grids
 
-## WAVE TABLE
+**AN ITEM IS NOT A DATE.** Half the items carry two or more key_dates and one
+carries five. So the calendar plots EVENTS, 122 of them, and an event links to
+the item it belongs to. An item with a hearing in June and an order in August
+appears in both months, which is true and is the thing a flat list hides.
 
-| wave | what | status |
-|---|---|---|
-| 0 | Evidence: defect catalogue, gate blind-spot map, rubric extract | DONE |
-| 1 | Rank repeat offenders by rounds-lost, pick the root causes worth code | DONE |
-| 2 | Build the gates that close them, each with a self-test that replays the REAL defect | DONE, PR #104 |
-| 3 | Wire into guards.yml + gate_status + daily_routine, prove red then green | gate_status DONE. guards.yml is human lane, next |
-| 4 | Doctrine: fold the durable lessons into the knowledge base | |
+**TWO LEVELS, because one does not fit the data.** A 7 column day grid is right
+for August, which has 28 items to spread over 31 days, and is 90 percent
+whitespace for a month holding two. Sixty eight of those stacked is not a page.
 
-## RULES THIS WORK OBEYS
+  1. A YEAR RAIL, revised while building C: years as ROWS, twelve month cells
+     each, which is the classic year at a glance. A flat run of 68 chips was the
+     first idea and it is worse: it hides that the gap is three whole years.
+     Seven rows shows the record's real span in the height of a paragraph.
+  2. A MONTH PANEL. The selected month as a real calendar, one cell per day,
+     events sitting on their day, each a link into the item.
 
-- A gate, not a paragraph. The owner's standing correction: prose is not a boundary.
-- Every gate's self-test must replay a REAL historical defect from a named run, not a
-  synthetic case. A self-test that only proves the checker's logic is how a green suite
-  shipped the wrong URL on three decks.
-- Prove the gate goes RED on the historical artifact before believing it green on today's.
-- No gate may be added without also being wired into guards.yml. UPGRADE_BACKLOG item 6 is
-  a list of gates that exist and are connected to nothing.
+**Opens on the current month**, which is where a reader's question lives, and
+which happens to be the dense one.
 
+**The complete list is kept, folded.** The record has to stay wholly browsable;
+what it stops being is the first thing you meet. `<details class="fold">` is
+already the pattern on this page for the county tables, it needs no script, and
+it is open to a keyboard and a screen reader by default.
 
----
+## The rules this has to hold, none of which are optional
 
-# WAVE 1: THE ANALYSIS
+- **Numerals are computed, never typed.** Every count here comes from the
+  ledger; `numeral_lint` fails the build otherwise.
+- **The CSP hashes inline scripts.** Anything added runs through `csp.apply`,
+  and `csp_runtime.mjs` will ask a browser what it refuses.
+- **Contrast is gated** on every run of text against its composited ground.
+- **Responsive at 12 widths, nothing overflows sideways.** A 7 column grid of
+  text on a 390px phone does not work, so the month panel is a day grid on wide
+  and a day-ordered list on narrow. That is a real fork, not a media query on
+  font size.
+- **House voice**: no em dash, no emoji, straight quotes, "can't" not "cannot",
+  dates as "August 10th" with the month first.
+- **docs/ is generated.** Never hand edited.
 
-125 defects catalogued across the three runs. Ranked by how many RUNS each root cause appears
-in, because a thing that happened once is an incident and a thing that happened in all three is
-the machine.
+## Tasks
 
-## THE REPEAT OFFENDERS, RANKED
+| # | task | state |
+| --- | --- | --- |
+| A | Measure the data, read the current page, decide the shape | DONE |
+| B | This worklog | DONE |
+| C | `docket_calendar.py`: bucket events by month and day, pure, self-tested | DONE, 26 checks |
+| D | The year rail, now a CHART: a bar per month against the busiest | DONE |
+| E | The month panel: day grid wide, day-ordered list narrow | DONE |
+| F | Selection, stepper, act-filter, today marker, deep links | DONE |
+| G | Wire into `docket_index`, fold the full list | DONE |
+| H | Styles, and a SECOND SHEET so 240 pages do not pay for one | DONE |
+| I | `tests/docket_calendar.mjs`, plus a stress phase | DONE, 33 checks |
+| J | Full sweep, all TEN suites named, plus site fresh | DONE |
 
-### RC-A. The plan is never checked against the render. THREE RUNS, ~15 incidents.
+## Wrap
 
-08-16: slide 2's declared palette never drawn, slide 8's declared focal never drawn, two
-acceptance items satisfiable by rendering NOTHING. 08-18: all five of slide 5's acceptance items
-passed while the frame was a Gantt chart that contradicted its own caption; slide 9 printed a
-word its first acceptance line forbids. 08-19: five frames shipped against their own lines, the
-worst being slide 5's pecos marking, which is the acceptance line of the frame the whole deck
-turns on and shipped as uniform ink for five passes.
+W1. Delete this file when every task is DONE.
 
-**`dossier_check` validates FORMAT and never CORRESPONDENCE.** It proves a plan EXISTS. A pixel
-critic then grades each frame against that plan, so a stale or unexecuted plan passes every
-review after it. This is UPGRADE_BACKLOG item 2, written after run 1, never built.
+## Decided while building, worth keeping
 
-### RC-B. Nouns are not traced. THREE RUNS, ~10 incidents.
+**Only the months that HOLD something get a panel.** 18 of the 68 do. Rendering
+all 68 would put roughly 2,400 empty day cells into a page that already runs
+333KB, to say nothing. The rail still shows all 68, because the rail is where
+the gaps are the point.
 
-08-16: "SB 6" in no quote, a county judge renamed "ITS EXECUTIVE", a hook reading "Four
-signatures" over four rows carrying no signature. 08-18: fabricated Gantt start times, "MAP" on
-the frame whose claim is that no product is named, a filled dot for a claim with no coordinates.
-08-19: three invented Batch Zero categories under a c2 attribution chip that survived four
-passes and every gate; an invented Coalition statement introduced BY THE FIX for the first one.
+**No script is required to read it.** Every panel is in the page and visible;
+the script's whole job is to show one at a time and wire the rail. With
+JavaScript off the reader gets the record grouped by month, which is already
+better than the flat list this replaces. Nothing is behind a click that is not
+also in the document.
 
-**The compute-not-generate law is enforced on numerals and on nothing else.** `claims_check`
-proves claims are fetched, `copy_sync_check` proves the slide says what copy.json says and the
-copy said it, `aggregate_check` reads numerals. Nothing asks whether a NOUN came from a source.
-UPGRADE_BACKLOG item 3, never built.
+**One markup, two readings.** The day grid and the phone list are the same
+cells: `grid-template-columns:repeat(7,1fr)` wide, `display:block` narrow with
+the empty days hidden. A 7 column grid of text at 390px does not work, and a
+second markup for phones is a second thing to keep true.
 
-### RC-C. CI proves the checkers can go red and almost never runs them on the product.
+## The stylesheet budget, which forced a real decision
 
-VERIFIED BY HAND. Of 15 carousel steps in guards.yml, 13 are `--self-test`. The only two that
-touch real artifacts are `email_check --all` and `bespoke_check --slides-dir
-examples/demo-deck/slides`, and that second one points at a DEMO DECK, not at anything shipped.
+`theme.py` gates the sheet at the TCP initial congestion window, 14,600 compressed
+bytes: inside it a page paints in one round trip, a byte over costs two, on EVERY
+page. The calendar put it 79 bytes over.
 
-`coherence_check`, `craft_floor`, `run_complete`, `sources_block`, `qa.py` and `render.py` are
-in CI in no form at all. Four of those six were built BY these runs to catch defects these runs
-shipped. **A gate nothing runs is a gate that protects the runs that remember to call it**,
-which is the exact defect each was written for. UPGRADE_BACKLOG item 6.
+Squeezing the CSS was the wrong answer twice over. It would have cost the design
+the owner asked to be bigger, and it would have come back the moment anything
+else was added. So the calendar is a SECOND SHEET, `record.css`, linked by the
+one page that has a calendar. 240 pages stopped paying, in the currency a reader
+perceives, for markup they never receive. Same reasoning as the grain texture
+already in this file, one step further out.
 
-### RC-D. Machine QA measures boxes, and defects arrive as ink. TWO RUNS, 4 incidents.
+## What the owner asked for after the first build
 
-08-18 slide 9: a 2px table border struck a footnote and QA reported PASS, zero fails, zero
-warns. A gate was built for it, `rule_strikes`. 08-19 slide 5: a CANVAS-drawn sheet edge ran
-through the last line of the same kind of paragraph, twice, and the new gate did not see it
-because it enumerates DOM rules. 08-19 also shipped 296px of type in a 260px column with zero
-fails, because the collision detector measures the ELEMENT and the defect was the INK.
+- **10x the design flair.** The rail became a chart rather than a row of chips:
+  every month carries a bar against the busiest month, so the August spike that
+  holds a third of the record, and the three dead years, arrive before any word
+  is read.
+- **Phone first, because most people are on phones.** The rail cell is 27px wide
+  at 390px, which is under every touch target guideline there is, so the phone
+  gets a thumb-sized stepper as its real control and the month abbreviations
+  drop out of the rail. Jan to Dec by position is a thing every reader knows.
+- **Features a real user would want.** Prev, next, this month, a today marker,
+  deep-linkable months, and the one that earns its place: **only what I can
+  still act on**. Most of a record is history by definition and a reader who
+  came to find out whether they can still say something should not have to read
+  the history to find out. Off by default, because the record is the point.
 
-**Every fix here has enumerated one more kind of thing that can cross a word.** The class is
-"anything drawn", and canvas is the half the DOM cannot describe.
+## Two things the stress phase caught that a smaller test would not
 
-### RC-E. A fix is where the next defect comes from. TWO RUNS, 4 incidents.
+**My latency measurement was wrong, and flattering to nobody.** It timed
+`playwright.click`, which SCROLLS the target into view before clicking, so it
+reported a 37ms month switch as 540ms and I nearly went optimising a page that
+was already fast. Measured properly, dispatch to the next paint inside the page:
+38 to 55ms median, 81 to 83ms worst on a phone even at six times slower CPU.
 
-08-18: a dashed leader added to satisfy the dead-lower-zone gate drew a causal accusation.
-08-19: the slide 6 dek fabrication was written while fixing slide 3; the round-10 panel found a
-defect round 9's fix created; the round-11 hard fail was created by round 10's fix.
+What the bad number did point at was real, though. `focus()` on the new month
+heading also scrolls, by whatever distance the browser picks, and that was the
+263ms outlier: not work, a long smooth scroll to a month already on screen. It
+is `focus({preventScroll:true})` plus an explicit `scrollIntoView({block:
+'nearest'})` now, which moves only if it has to.
 
-Judge A named the mechanism in one line: **a fix with no gate behind it always looks like this.**
-
-### RC-F. One scorer, and the run grades itself.
-
-Seven single-scorer rounds on 08-19 found ZERO hard fails. Five panel rounds found FOUR. The
-routine spawns exactly one scorer (daily_routine.md line 741). `run_complete` then reads a
-score.json the graded run wrote.
-
-### RC-G. A correction reaches some of the places a fact lives. TWO RUNS.
-
-Cutting one slide on 08-19 reached copy.json, the renders and the gates, and did not reach
-first_comment.txt, computed.json, aggregates.json, storyboard.md or artwork.json. It took three
-further sweeps and a judge each time. 08-16's variety ledgers went stale the same way and
-variety scored lowest of six criteria.
-
-### RC-H. Two frames of one deck, and neither ever cleared the bar.
-
-story_and_stakes and voice are 0.30 of the rubric between them. Across all five panel rounds on
-08-19, from all three judges, NEITHER EVER REACHED 8.0, and every judge gave the same reason in
-almost the same words: no county, no town, no person, nothing a Texan could not read as any
-state's utility commission. 08-18's scorer wrote "Change three nouns and this is Ohio."
-
-Nothing was ever built for this. It is the only finding that appeared in every round of every
-panel and was never once attacked.
-
-## LIVE BUG FOUND WHILE AUDITING
-
-**`craft_floor.bands_of()` reads keys that do not exist.** It looks for `bands` / `thirds` /
-`craft_bands` in each qa slide record. Verified against the shipped machine_qa.json: the only
-keys are `file`, `fails`, `warns`. So `bands` is ALWAYS empty, `lopsided` is ALWAYS False, and
-the branch `thin and (lopsided or not bands)` makes every thin frame a HARD FAIL. The documented
-WARN tier for a deliberately quiet frame is unreachable dead code.
-
-`qa.py`'s `frame_balance()` computes those bands and throws them away into a message string.
-
-This gate was written in this run, by me, to protect against a frame not worth drawing, and it
-has been making a decision on data it never had. Same shape as the `weighted_score` lookup miss
-in gate_status and email_check: **a consumer reading a key its producer does not write.** Third
-instance in this repo.
-
-
----
-
-# WAVE 2, BUILT. PR #104
-
-| what | closes | proof it can go red |
-|---|---|---|
-| `qa.py` persists per-third bands | a live bug | removing the write turns craft_floor's self-test red |
-| `craft_floor` asserts the PRODUCER writes what it reads | RC live bug | shown red then green |
-| `plan_render_check.py` | RC-A, 3 runs ~15 incidents | replays the 08-19 pecos defect |
-| `SLIDE_DOSSIER_SPEC` checkable-item rule + focal law | RC-A's other half | n/a, doctrine |
-| `absence_check.py` | RC-B, 3 runs ~10 fabrications | replays the 08-19 Coalition fabrication |
-| `shipped_check.py` | RC-C, the multiplier | self-test asserts every gate is REACHABLE |
-| `gate_status` rows | visibility | the 0-of-46 ratio now prints in every run record |
-
-## THE NUMBER THAT MATTERS MOST
-
-**0 of 46 acceptance items on the 8.03 deck carry a machine-checkable assertion.**
-
-The plan-versus-render defect survived three runs of people actively hunting it because the gate
-was missing AND there was nothing underneath to check. Fixing the gate alone would have shipped
-a green check over an empty test.
-
-## STILL OPEN, IN PRIORITY ORDER
-
-1. **guards.yml wiring.** Human lane. Until `shipped_check` is in CI it is one more gate that
-   protects only the runs that remember to call it, which is the defect it exists for.
-2. **The panel.** Phase 15 spawns ONE scorer. Seven single-scorer rounds found zero hard fails;
-   five panel rounds found four. Three judges also caught what one structurally cannot: on three
-   rounds all three independently named the same defect, and twice that defect had been
-   introduced by the previous round's fix.
-3. **story_and_stakes and voice.** 0.30 of the rubric, never reached 8.0 in any round from any
-   judge across the whole run, same reason every time, and nothing has ever been built for it.
-   Twelve rounds went into artwork and zero went into this.
-4. **Proper-noun tracing.** The other half of RC-B. A first pass raised 33, 10 and 8 candidates
-   per deck; the noise is sentence-initial capitals and all-caps design furniture. Needs a
-   session that is not also shipping a deck.
-5. **Canvas geometry crossing text.** RC-D. Every fix so far has enumerated one more kind of
-   thing that can cross a word. The class is "anything drawn", and canvas is the half the DOM
-   cannot describe.
+**The suite took thirteen and a half minutes and I nearly shipped that.** Almost
+all of it was Playwright waiting on DISABLED buttons: actionability includes
+"enabled", so every deliberate click past the end of the range burned the full
+30 second default. Clicking past the end is the point of those loops, so they
+carry a 400ms timeout now. 13m29s to 38s, same checks. A test slow enough to be
+skipped is a test that is not run.

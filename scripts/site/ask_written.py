@@ -66,6 +66,19 @@ COPY = {
     "capped":       "That is this month's last written answer. Typing still searches the "
                     "whole record instantly and for nothing, which is most of what this box does.",
     "provenance":   "Written from the published record. Every figure checked against it.",
+    # Said when the ceiling cut a stream that had already begun. It names the limit rather
+    # than blaming the network, because the limit is ours and a narrower question is the
+    # thing a reader can actually do about it.
+    "cut_time":     "The rest was cut at eight seconds. A narrower question gets a whole "
+                    "answer inside it.",
+    "too_slow":     "That one did not come back inside eight seconds. Typing a narrower "
+                    "question searches the whole record instantly and for nothing.",
+    # Said under an answer the page produced itself, which is most of them. It is not the
+    # same claim as the written lane's: nothing was written, the record was read.
+    "from_record":  "Read straight from the record, in your browser.",
+    "off_record":   "That is not something this record covers. It holds Texas decisions about "
+                    "artificial intelligence, who made them and whether a comment window is "
+                    "still open.",
     "again":        "Start over",
     "send":         "Ask",
     "accept":       "Use the suggested question",
@@ -212,7 +225,14 @@ _CLIENT = r"""
   var turns = [];
 
   /* ---- the human check ---------------------------------------------------
-     ARMED ON THE FIRST SUBMIT, AND NOT BEFORE.
+     ARMED ON FOCUS, AND THIS HAS BEEN BOTH WAYS. The history is the point.
+     It was on focus once and was reverted, correctly: the note under the field then said
+     typing sends nothing anywhere, and tests/ask_engine.mjs caught the contradiction.
+     THAT SENTENCE LEFT THE NOTE IN #59. It reads "Model in training" and claims nothing about
+     typing, so the promise the revert protected is not on the page, while the cost it bought
+     was still being paid. ask_engine.mjs now allows the challenge host BY NAME, asserts focus
+     really arms it, and still fails on any other host. The paragraph below is the old
+     reasoning, kept because it was right at the time.
      This was on focus, which was faster and was wrong. The note above the field says typing
      sends nothing anywhere, and arming on focus fetched Cloudflare's script the moment a
      caret landed in the field, so a request left the page during what that note calls typing.
@@ -420,6 +440,53 @@ _CLIENT = r"""
   }
 
   /* ---- asking ------------------------------------------------------------ */
+  /* The close-out for an answer that never left the page. The streamed lane has its own,
+     which also handles provenance, the cut reasons and the follow-up offer. This one exists
+     because an instant answer has none of those and should not pretend to: it is the record
+     read directly, so it says so and stops. */
+  var localExchange = "";
+
+  function finishLocal(note) {
+    var foot = document.createElement("p");
+    foot.className = "askfrom";
+    var prov = document.createElement("span");
+    prov.textContent = note;
+    foot.appendChild(prov);
+    var again = document.createElement("button");
+    again.type = "button";
+    again.className = "askagain";
+    again.textContent = "%%again%%";
+    again.addEventListener("click", reset);
+    foot.appendChild(again);
+    /* FEEDBACK BELONGS UNDER AN INSTANT ANSWER TOO, and leaving it out was the first version's
+       mistake. The written lane offers it because the moment somebody has just watched an
+       answer be wrong is the moment they can say so usefully. An answer read straight from
+       the record can be wrong in exactly the same way, by matching the wrong item, and it now
+       arrives for most questions, so omitting it here would have quietly removed feedback from
+       the majority of answers this box gives. */
+    var say = document.createElement("button");
+    say.type = "button";
+    say.className = "askagain";
+    say.textContent = "%%feedback%%";
+    say.addEventListener("click", function () {
+      var open = document.getElementById("askfbopen");
+      if (open) open.click();
+    });
+    foot.appendChild(say);
+    thread.appendChild(foot);
+    // `:last-of-type` MATCHES THE LAST DIV, NOT THE LAST OF THE CLASS. Both of these are
+    // divs among many divs, so the selector picked whatever div happened to be last and the
+    // attachment came out as "Q. " with nothing after it.
+    var qs = thread.querySelectorAll(".askturn"), as = thread.querySelectorAll(".askreply");
+    var q = qs[qs.length - 1], a = as[as.length - 1];
+    localExchange = "Q. " + (q ? q.textContent : "") + "\n\nA. " + (a ? a.textContent : "");
+    busy = false;
+    send.disabled = false;
+    send.removeAttribute("aria-busy");
+    input.value = "";
+    park();
+  }
+
   function ask(question) {
     if (busy) return;
     busy = true;
@@ -443,7 +510,73 @@ _CLIENT = r"""
 
     var body = document.createElement("div");
     body.className = "askreply";
+    // APPENDED BEFORE THE CLASSIFIER RUNS, not after the stream starts. The instant and refuse
+    // lanes return early, and the original append sat past that return, so both rendered into
+    // an element that was never in the document. The thread showed a question, a provenance
+    // line and nothing between them.
     thread.appendChild(body);
+
+    /* ---- the classifier decides whether this costs anything at all ------------
+       THE CHEAPEST ANSWER IS THE ONE THAT NEVER LEAVES THE PAGE, and the engine in
+       ask_answers.py already knew which questions those were. It scores against a catalogue
+       and refuses below a floor, so it can say "I have this" or "I do not", and that judgement
+       was being thrown away at the press while every question went to a model taking seconds.
+       Asked here, before the request is built. A lookup is answered from the page in no time
+       and for nothing. An off-record question is refused without calling anybody. Only a
+       question that genuinely needs prose reaches the worker, which is what makes an eight
+       second ceiling a promise rather than a hope: most questions never start the clock. */
+    /* ---- THE EIGHT SECOND CEILING -------------------------------------------
+       Owner's brief: "an eight second execution ceiling, so it's fast when users are asking
+       it questions".
+       IT CUTS, IT DOES NOT DISCARD. Aborting at the ceiling and showing nothing would trade a
+       slow answer for no answer, which is not what a ceiling is for. What arrived stays on
+       screen, the stream is stopped, and the reader is told the rest was cut for time and
+       offered the thing that actually helps, which is a narrower question.
+       WHY EIGHT IS ACHIEVABLE AT ALL. Most questions never start this clock, because the
+       classifier answers them from the page. The ceiling only has to hold for questions that
+       genuinely need a model, and the token is already in hand by the time one is pressed.
+       THE CLOCK STARTS AT THE PRESS, not at the fetch, because it is a promise to the reader
+       about how long they wait and they are waiting from the moment they press. */
+    var CEILING_MS = 8000;
+    var overran = false;
+    var ceiling = setTimeout(function () {
+      if (!busy) return;
+      overran = true;
+      if (stopStream) { try { stopStream(); } catch (e) {} }
+      dropStage();
+      if (!started && !body.textContent) body.textContent = "%%too_slow%%";
+      else {
+        var cut = document.createElement("p");
+        cut.className = "askstop";
+        cut.textContent = "%%cut_time%%";
+        body.appendChild(cut);
+      }
+      finish();
+    }, CEILING_MS);
+
+    localExchange = "";
+    var verdict = window.__askClassify ? window.__askClassify(question) : { bucket: "written" };
+
+    if (verdict.bucket === "instant" && verdict.answer) {
+      var head = document.createElement("p");
+      head.className = "askhead";
+      head.textContent = verdict.answer.head;
+      body.appendChild(head);
+      var list = document.createElement("div");
+      list.className = "asklist";
+      list.innerHTML = verdict.answer.body;
+      body.appendChild(list);
+      finishLocal("%%from_record%%");
+      return;
+    }
+    if (verdict.bucket === "refuse") {
+      var no = document.createElement("p");
+      no.textContent = "%%off_record%%";
+      body.appendChild(no);
+      finishLocal("%%from_record%%");
+      return;
+    }
+
 
     input.value = "";
     pending = null;
@@ -466,6 +599,7 @@ _CLIENT = r"""
     armTurnstile();
 
     var stageEl = null, started = false, para = null, said = [];
+    var stopStream = null;
 
     function stage(text) {
       if (!stageEl) {
@@ -492,6 +626,13 @@ _CLIENT = r"""
     }
 
     function finish() {
+      /* CALLED ONCE, WHATEVER GETS HERE FIRST. The stream finishing and the ceiling firing are
+         a race by design, and both end the answer. Without the guard a stream that lands just
+         after the cut appends a second footer, pushes a second assistant turn into `turns` and
+         re-enables a control that is already enabled. */
+      if (!busy) return;
+      clearTimeout(ceiling);
+
       /* What it SAID goes back into the thread, not what it tried to say. A sentence the
          reader never saw must not be one the model can build on either, or a refused claim
          re-enters through the back door on the next question. */
@@ -625,9 +766,13 @@ _CLIENT = r"""
         });
       }
       var reader = r.body.getReader(), dec = new TextDecoder(), buf = "";
+      // Handed to the ceiling so it can stop the stream rather than let it go on writing into
+      // a thread that has already been closed off and footed.
+      stopStream = function () { try { reader.cancel(); } catch (e) {} };
       return (function pump() {
+        if (overran) return;
         return reader.read().then(function (res) {
-          if (res.done) {
+          if (overran || res.done) {
             if (buf.trim()) { try { handle(JSON.parse(buf)); } catch (e) {} }
             return;
           }
@@ -671,7 +816,15 @@ _CLIENT = r"""
     /* The last exchange, as text, or nothing. Read from `turns` rather than scraped off the
        page, so what gets attached is exactly what was said and not what the DOM happens to
        hold after a Start over. */
+    /* AN INSTANT ANSWER IS AN EXCHANGE TOO, and it is not in `turns`.
+       `turns` is the MODEL's conversation and only guard-approved sentences go into it, which
+       is a rule worth keeping: a page-generated answer pushed in there would come back as
+       context the model treats as its own prior words. So an answer read from the record is
+       remembered separately, purely so feedback about it can carry it.
+       Without this, feedback on the majority of answers this box now gives would arrive with
+       nothing attached, which is the half of a bug report that makes it actionable. */
     function lastExchange() {
+      if (localExchange) return localExchange;
       for (var i = turns.length - 1; i > 0; i--) {
         if (turns[i].role === "assistant") {
           return "Q. " + turns[i - 1].content + "\n\nA. " + turns[i].content;
@@ -733,6 +886,102 @@ _CLIENT = r"""
 
   /* Writing your own question puts the suggestion away. A placeholder that lingers under
      text somebody is typing is just noise behind their sentence. */
+  /* FOCUS ARMS THE CHECK, AND THE POINT IS WHERE THE WAITING HAPPENS.
+     Armed by the press before this, on the reasoning that focus is not intent to ask. That
+     cost 1 to 3 seconds on the FIRST question of every session and nothing on any after it,
+     because spending a token resets the widget and the next is earned while the reader types.
+     The first question, the one that forms the impression, was the only one paying.
+     Managed mode solves in the background with no interaction, so on focus it solves DURING
+     typing, which is the slowest thing in the sequence, and the press has nothing left to wait
+     for. Somebody who pastes and submits inside a second still polls, exactly as before.
+     Never slower. Owner's call, 2026-08-20, made knowing it had been tried and reverted. */
+  input.addEventListener("focus", armTurnstile, { once: true });
+
+  /* ---- THE BOX TAKES THE SCREEN ON A PHONE ---------------------------------
+     Owner: "when a user clicks onto the search bar, we really want everything else on the
+     screen to just disappear", and after a press on a phone, "there's so much stuff on screen,
+     your eyes don't even go to the right spot".
+     A CLASS ON `body`, NOT A NEW ELEMENT. Everything that is not the box is taken out of the
+     flow by the stylesheet at phone widths, so there is nothing to build, nothing to keep in
+     sync with the page it covers, and on a laptop the rule simply does not apply.
+     THE SCROLL POSITION IS REMEMBERED AND PUT BACK. Hiding the page collapses it, so the
+     browser forgets where the reader was and dumps them at the top when it returns, which
+     feels like having lost their place because they have. */
+  /* CAPTURED BEFORE THE BROWSER MOVES THEM, which is why this is not simply read at focus.
+     A browser scrolls a focused input into view itself, and it does that BEFORE the focus
+     handler runs, so reading the offset there records where the browser had just put them and
+     not where they were reading. Measured: a reader at 600 was recorded at 74 and handed back
+     to 74, which is the bug this was meant to prevent wearing a fix's clothes.
+     `pointerdown` fires before focus and before that scroll. The scroll listener is the
+     fallback for a reader who arrives by keyboard, where nothing has moved yet anyway. */
+  var wasAt = 0, lastY = 0;
+  addEventListener("scroll", function () {
+    if (!document.body.classList.contains("asking")) lastY = window.pageYOffset;
+  }, { passive: true });
+  input.addEventListener("pointerdown", function () { wasAt = window.pageYOffset; });
+  /* THE SAME BREAKPOINT THE STYLESHEET USES, asked of the browser rather than guessed. Setting
+     the class at every width was harmless while the rules were scoped, and it left one real
+     trap: a reader focused on a laptop and then narrowing the window, or turning a tablet, would
+     be thrown into a full screen mode they never asked for. */
+  var PHONE = window.matchMedia ? window.matchMedia("(max-width:37.5rem)") : null;
+  function immerse() {
+    if (PHONE && !PHONE.matches) return;
+    if (document.body.classList.contains("asking")) return;
+    // A pointerdown a moment ago is the truest reading. Otherwise the last settled scroll,
+    // and only then the current offset, which by now may already have been moved.
+    if (!wasAt) wasAt = lastY || window.pageYOffset;
+    document.body.classList.add("asking");
+  }
+  function surface() {
+    if (!document.body.classList.contains("asking")) return;
+    document.body.classList.remove("asking");
+    var target = wasAt;
+    wasAt = 0;
+    /* RESTORED AFTER THE PAGE HAS ITS HEIGHT BACK. Removing the class un-hides the hero, the
+       nav and every section, and until that layout has happened the document is barely taller
+       than the viewport, so a scroll to 600 is clamped to whatever fits and the reader lands
+       near the top anyway. Measured: it came back at 74 instead of 600. Two frames is one to
+       apply the style and one to lay it out. */
+    /* IT VERIFIES ITSELF RATHER THAN FIRING ONCE AND HOPING. One frame put the reader at 74
+       instead of 600 and two frames at 169, because the page regains its height in stages as
+       sections, fonts and images lay back out, and a scroll past the current bottom is clamped
+       silently. So it asks for the position again on each of the next few frames and stops as
+       soon as it sticks. Bounded, so a page that genuinely cannot reach that offset any more,
+       which is a real case if the thread is long, settles at the nearest it can. */
+    /* IT VERIFIES ITSELF, AND IT WAITS IN TIME RATHER THAN IN FRAMES. The page regains its
+       height in stages as sections, fonts and images lay back out, and a scroll past the
+       current bottom is clamped silently, so a single call landed the reader at 74 instead of
+       600 and two frames at 169. Eight frames was not enough either once a thread had been
+       added, which is about 130ms against a page that takes longer than that to come back.
+       Bounded at half a second, after which the nearest reachable offset is the honest answer:
+       a long thread really can make the old position unreachable. */
+    var until = 500, step = 40, waited = 0;
+    (function restore() {
+      window.scrollTo({ top: target, behavior: "instant" });
+      if (Math.abs(window.pageYOffset - target) > 2 && waited < until) {
+        waited += step;
+        setTimeout(restore, step);
+      }
+    })();
+  }
+  input.addEventListener("focus", immerse);
+  var closer = document.getElementById("askclose");
+  if (closer) closer.addEventListener("click", function () { surface(); input.blur(); });
+  /* ESCAPE LEAVES, which is what a keyboard reader reaches for, and it must not also clear the
+     field: a search input treats Escape as clear on its own, so the default is stopped. */
+  input.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && document.body.classList.contains("asking")) {
+      e.preventDefault();
+      surface();
+      input.blur();
+    }
+  });
+  /* Start over hands the screen back as well, since the reader has said they are finished. */
+  box.addEventListener("click", function (e) {
+    if (e.target && e.target.classList && e.target.classList.contains("askagain") &&
+        e.target.textContent === "%%again%%") surface();
+  });
+
   input.addEventListener("input", function () { if (input.value) dropPending(); });
 
   /* Tab and the right arrow accept it, which is the convention everywhere else a field
@@ -832,8 +1081,9 @@ def self_test() -> int:
     check("the client does nothing without an endpoint", 'if (!EP) return;' in js)
     # The promise above the field is only true if NOTHING goes out before the press. Focus is
     # not intent to ask, and tests/ask_engine.mjs asserts exactly this from the outside.
-    check("turnstile is armed by the press, not by focus or load",
-          "armTurnstile();" in js and 'addEventListener("focus", armTurnstile' not in js)
+    check("turnstile is armed by focus", 'addEventListener("focus", armTurnstile' in js)
+    check("...and it is armed once, not on every focus",
+          '"focus", armTurnstile, { once: true }' in js)
     check("only guard approved text goes back to the model",
           'turns.push({ role: "assistant", content: said.join(" ") })' in js)
 

@@ -57,10 +57,12 @@ import frontchip                                                   # noqa: E402
 import sky                                                         # noqa: E402
 import texas_map                                                   # noqa: E402
 import waterwatch_page                                             # noqa: E402
+import watch_page as watch_stage                                  # noqa: E402
 import grain                                                       # noqa: E402
 import mark                                                        # noqa: E402
 import csp                                                        # noqa: E402
 import numeral_lint                                                # noqa: E402
+import docket_calendar as dcal                                     # noqa: E402
 import theme                                                       # noqa: E402
 
 LEDGER = REPO_ROOT / "ledger" / "docket.json"
@@ -384,6 +386,17 @@ def rel(depth: int) -> str:
 
 
 # --------------------------------------------------------------------------- shell
+def _body_class(home_page: bool, extra: str) -> str:
+    """The body's classes, from a bool that predates the string and a string that supersedes it.
+
+    `home_page` shipped first and marks exactly one page. The watch stage needs a second, so the
+    bool is folded in here rather than left as a parallel mechanism, which is how a page ends up
+    able to be both and neither.
+    """
+    names = (["home"] if home_page else []) + ([extra] if extra else [])
+    return f' class="{" ".join(names)}"' if names else ""
+
+
 def _verification() -> str:
     """The ownership tags, and nothing when there is nothing to say."""
     out = ""
@@ -394,6 +407,24 @@ def _verification() -> str:
     return out
 
 @functools.lru_cache(maxsize=1)
+def _extra_sheet(name: str, p: str) -> str:
+    """A second sheet, for a page whose component the other pages do not have.
+
+    Versioned on its own CONTENT for the same reason site.css is: markup and stylesheet are
+    cached independently, so for the length of one cache window a reader can hold new markup
+    and the previous sheet, and what they see is the page rendered as bare bones.
+    """
+    if not name:
+        return ""
+    return f'\n<link rel="stylesheet" href="{p}{name}?v={_sheet_version(name)}">'
+
+
+@functools.lru_cache(maxsize=4)
+def _sheet_version(name: str) -> str:
+    body = {"record.css": theme.record_css}[name]()
+    return hashlib.sha256(body.encode("utf-8")).hexdigest()[:10]
+
+
 def _css_version() -> str:
     """A content hash on the stylesheet URL, because shipping is not the same as being seen.
 
@@ -416,9 +447,9 @@ def _css_version() -> str:
 
 def page(*, title: str, desc: str, body: str, depth: int, active: str,
          today: str, canonical: str, extra_ld: list | None = None,
-         home_page: bool = False, og_image: str = "og.png",
+         home_page: bool = False, body_class: str = "", og_image: str = "og.png",
          og_alt: str | None = None, revised: bool = True,
-         og_type: str = "website") -> str:
+         og_type: str = "website", extra_css: str = "") -> str:
     p = rel(depth)
     # `""` USED TO MEAN TWO THINGS AND ONE OF THEM WAS A LIE. It is Home's own href, and it
     # was also what a page with no nav entry passed to mean "none of these". So every item
@@ -487,12 +518,12 @@ def page(*, title: str, desc: str, body: str, depth: int, active: str,
 <meta property="og:url" content="{SITE_URL}/{canonical}">
 {og.head_html(p, SITE_URL, SITE_NAME, title, desc, og_image, og_alt)}
 {favicon.head_html(p)}
-<link rel="stylesheet" href="{p}site.css?v={_css_version()}">
+<link rel="stylesheet" href="{p}site.css?v={_css_version()}">{_extra_sheet(extra_css, p)}
 <link rel="preload" href="{p}fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="alternate" type="application/atom+xml" title="{e(SITE_NAME)}" href="{p}atom.xml">
 <script type="application/ld+json">{json.dumps(ld, separators=(",", ":"))}</script>
 </head>
-<body{' class="home"' if home_page else ''}>
+<body{_body_class(home_page, body_class)}>
 <a class="skip" href="#main">Skip to the record</a>
 {sky.sky_markup()}
 <header class="masthead">
@@ -2204,8 +2235,13 @@ def home(items: list, today: str) -> str:
                            **schema.dataset_node(SCHEMA_CTX, items, today)}])
 
 
-def docket_index(items: list, today: str) -> str:
-    """Sorted by urgency, because that is the order the reader needs, not the order we filed."""
+def docket_index(items: list, today: str) -> tuple:
+    """The record, twice: by when you can act, and by when it happens.
+
+    Returns (html, the numerals it prints). The calendar computes counts, day numbers and years
+    that no other page authorises, and a set built where the figures are computed is the only
+    arrangement in which the shown number and the allowed number cannot disagree.
+    """
     def key(it):
         st = dk.window_state(it, today)
         if st == "open":
@@ -2219,6 +2255,7 @@ def docket_index(items: list, today: str) -> str:
         f'{item_meta(it, today)}</li>'
         for it in sorted(items, key=key))
 
+    a = numeral_lint.Authorised()
     n_open = sum(1 for i in items if dk.window_state(i, today) == "open")
     tx = _place_facts()
     proj = dk.project(items, today)
@@ -2286,9 +2323,21 @@ def docket_index(items: list, today: str) -> str:
     <th class="n">Counties</th><th>Kind</th></tr></thead><tbody>{mrows}</tbody></table>
 </details>
 
-<ul class="items" data-prose="data">{rows}</ul>
+{docket_calendar_section(items, today, 1, a)}
+
+<!-- THE COMPLETE LIST IS KEPT, AND FOLDED. The record has to stay wholly browsable, and the
+     calendar above is an index rather than a replacement: it plots dated moments, so an item
+     carrying no readable date would otherwise have nowhere to be. What the list stops being is
+     the first thing a reader meets, which was the whole complaint. `details` is already the
+     pattern on this page for the county tables, needs no script, and is open to a keyboard and
+     a screen reader by default. -->
+<details class="fold">
+  <summary>Every item, listed by how soon you can act</summary>
+  <ul class="items" data-prose="data">{rows}</ul>
+</details>
 """
     return page(title=f"The record · {SITE_NAME}", depth=1, active="record/",
+                extra_css="record.css",
                 desc="Every AI decision on the Texas record, ordered by how soon you can act.",
                 body=body, today=today, canonical="record/",
                 # The page that IS the dataset carries its node, which is where a crawler
@@ -2300,7 +2349,283 @@ def docket_index(items: list, today: str) -> str:
                               description="Every tracked decision about artificial "
                                           "intelligence in Texas.", count=len(items)),
                           schema.breadcrumbs(SCHEMA_CTX,
-                                             [(SITE_NAME, ""), ("The record", "record/")])])
+                                             [(SITE_NAME, ""), ("The record", "record/")])]), a.set
+
+
+# --------------------------------------------------------------------------- the calendar
+# THE SCRIPT IS KEPT OUT OF THE f-STRING, same reason _SCAN_JS is: every brace below would
+# have to be doubled to survive one, and a doubled brace is a typo waiting to happen.
+#
+# WHAT IT DOES AND WHAT IT IS NOT NEEDED FOR. Every month panel is in the document and visible
+# without it, so a reader with no JavaScript gets the record grouped by month, which is already
+# better than the flat list this replaces. The rail entries are real anchors and jump to their
+# month. All this adds is showing one month at a time, which is a convenience and not the
+# content.
+_CAL_JS = """
+  <script>
+  (function () {
+    var cal = document.getElementById('cal');
+    if (!cal) return;
+    var panels = [].slice.call(cal.querySelectorAll('.calmonth'));
+    var links = [].slice.call(cal.querySelectorAll('a.calm'));
+    if (!panels.length || !links.length) return;
+
+    // The class is added by script, so the one-at-a-time CSS only ever applies where the
+    // script that drives it is running. Without this the no-script reader gets one month and
+    // no way to reach the others.
+    cal.classList.add('js');
+
+    function show(key, focus) {
+      var found = false;
+      panels.forEach(function (p) {
+        var mine = p.getAttribute('data-month') === key;
+        p.hidden = !mine;
+        if (mine) found = true;
+      });
+      links.forEach(function (a) {
+        var mine = a.getAttribute('data-month') === key;
+        a.setAttribute('aria-current', mine ? 'true' : 'false');
+      });
+      if (found && focus) {
+        var h = cal.querySelector('.calmonth:not([hidden]) .calmh');
+        if (h) {
+          // FOCUS WITHOUT THE JUMP, THEN SCROLL DELIBERATELY. Moving focus to the new heading
+          // is what tells a screen reader the view changed, and a bare focus() also scrolls,
+          // by whatever distance the browser decides. Measured, that was the difference
+          // between a 37ms switch and a 269ms one: not work, just a long smooth scroll to a
+          // month the reader could already see. `nearest` moves only if it has to.
+          h.setAttribute('tabindex', '-1');
+          h.focus({ preventScroll: true });
+          h.scrollIntoView({ block: 'nearest' });
+        }
+      }
+      return found;
+    }
+
+    links.forEach(function (a) {
+      a.addEventListener('click', function (ev) {
+        // A modified click is the reader asking for a new tab. Leave it alone.
+        if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey || ev.button) return;
+        ev.preventDefault();
+        if (show(a.getAttribute('data-month'), true)) {
+          history.replaceState(null, '', a.getAttribute('href'));
+        }
+      });
+    });
+
+    // A LINK SHARED INTO THE MONTH STILL LANDS THERE. Somebody who was handed
+    // /record/#cal-2026-06 gets June, not August, and the back button keeps working.
+    function fromHash() {
+      var m = (location.hash || '').match(/^#cal-(\\d{4}-\\d{2})$/);
+      return m ? m[1] : null;
+    }
+    window.addEventListener('hashchange', function () {
+      var k = fromHash(); if (k) show(k, true);
+    });
+    // THE STEPPER. Months with nothing in them have no panel, so stepping walks the months
+    // that exist rather than the calendar's, and it stops at the ends instead of wrapping.
+    // Wrapping from December 2027 back to June 2021 is a jump a reader did not ask for and
+    // cannot undo with the same button.
+    var order = panels.map(function (p) { return p.getAttribute('data-month'); });
+    var prev = document.getElementById('calprev');
+    var next = document.getElementById('calnext');
+    var now = document.getElementById('calnow');
+    var home = cal.getAttribute('data-open');
+
+    function at() {
+      var shown = cal.querySelector('.calmonth:not([hidden])');
+      return shown ? order.indexOf(shown.getAttribute('data-month')) : order.indexOf(home);
+    }
+    function step(by) {
+      var i = at() + by;
+      if (i < 0 || i >= order.length) return;
+      show(order[i], true);
+      history.replaceState(null, '', '#cal-' + order[i]);
+      edges();
+    }
+    function edges() {
+      var i = at();
+      prev.disabled = i <= 0;
+      next.disabled = i >= order.length - 1;
+      now.disabled = order[i] === home;
+    }
+    prev.addEventListener('click', function () { step(-1); });
+    next.addEventListener('click', function () { step(1); });
+    now.addEventListener('click', function () {
+      show(home, true); history.replaceState(null, '', '#cal-' + home); edges();
+    });
+
+    // ONLY WHAT CAN STILL BE ACTED ON. Most of a record is history by definition, and a
+    // reader who came to find out whether they can still say something should not have to
+    // read the history to find out. The hiding is CSS, so nothing is removed from the
+    // document and turning it back off costs no work.
+    var acts = document.getElementById('calacts');
+    acts.addEventListener('change', function () {
+      cal.classList.toggle('acts', acts.checked);
+    });
+
+    show(fromHash() || home, false);
+    edges();
+  })();
+  </script>
+"""
+
+
+def docket_calendar_section(items: list, today: str, depth: int, a) -> str:
+    """The record laid out by WHEN, which is the half a list sorted by urgency cannot show.
+
+    An item with a hearing in June and an order in August belongs in both months. A flat list
+    can only put it under one, so the second date is invisible, and it is often the one a
+    reader is looking for.
+
+    `a` is the page's `Authorised` set. Every figure here is added to it as it is computed,
+    which is what makes the numeral law a mechanism rather than a promise.
+    """
+    cal = dcal.summarise(items, today)
+    keys, months, cur = cal["month_keys"], cal["by_month"], cal["current"]
+    if not keys:
+        return ""
+
+    a.add(cal["n_events"], cal["n_live"], len(items))
+    # Every day of the month a grid can print, and every year the rail can show.
+    a.add(*range(1, 32))
+    years = list(range(int(keys[0][:4]), int(keys[-1][:4]) + 1))
+    a.add(*years)
+    for k in keys:
+        a.add(len(months.get(k, [])))
+
+    # ------------------------------------------------------------------ the rail
+    #
+    # IT IS A CHART, NOT A ROW OF BUTTONS. Every month carries a bar whose height is its own
+    # count against the busiest month, so the shape of the record is visible before a single
+    # word is read: the August spike that holds more than a third of everything, the thin
+    # years, and the stretches where nothing happened at all.
+    #
+    # THE BAR IS GEOMETRY AND THE LABEL IS TEXT, and they are kept apart on purpose. Text sitting
+    # on a gradient is the one thing the contrast gate cannot measure, so it declines to judge
+    # it, and a run of declines is how a page ships unreadable. Nothing here is written over a
+    # fill.
+    peak = max((len(v) for v in months.values()), default=1) or 1
+    rows = []
+    for y in years:
+        cells = []
+        for m in range(1, 13):
+            k = f"{y:04d}-{m:02d}"
+            evs_m = months.get(k, [])
+            n = len(evs_m)
+            short = dcal.month_short(k)
+            if not n:
+                # PRESENT, AND INERT. An empty month is a fact about the record and closing
+                # the gap up would say the record is continuous when it is not.
+                cells.append(f'<li><span class="calm none">'
+                             f'<span class="calbar"><i></i></span>'
+                             f'<time class="calmn" datetime="{k}">{e(short)}</time></span></li>')
+                continue
+            act = sum(1 for ev in evs_m if ev["actionable"])
+            a.add(act)
+            # Rounded to whole percent so two builds of the same ledger are byte identical.
+            pct = round(n / peak * 100)
+            cells.append(
+                f'<li><a class="calm has{" act" if act else ""}" href="#cal-{k}" '
+                f'data-month="{k}" aria-current="{"true" if k == cur else "false"}" '
+                f'aria-label="{e(dcal.month_label(k))}, {n} dated">'
+                f'<span class="calbar"><i style="--h:{pct}%"></i></span>'
+                f'<time class="calmn" datetime="{k}">{e(short)}</time>'
+                f'<span class="calmc num">{n}</span></a></li>')
+        live = sum(len(months.get(f"{y:04d}-{m:02d}", [])) for m in range(1, 13))
+        a.add(live)
+        rows.append(f'<div class="calyear{"" if live else " quiet"}" data-prose="data">'
+                    f'<b class="caly num">{y}</b>'
+                    f'<ol class="calmonths">{"".join(cells)}</ol>'
+                    f'<span class="calyn num">{live}</span></div>')
+
+    # ------------------------------------------------------------------ the panels
+    panels = []
+    for k in keys:
+        evs = months.get(k)
+        if not evs:
+            continue                      # 50 empty grids would say nothing, at length
+        days = dcal.by_day(evs)
+        cells = []
+        for week in dcal.weeks(k):
+            for d in week:
+                if d is None:
+                    cells.append('<li class="calday out" aria-hidden="true"></li>')
+                    continue
+                iso = d.isoformat()
+                mine = days.get(iso) or []
+                klass = " today" if iso == today else ""
+                if not mine:
+                    cells.append(
+                        f'<li class="calday{klass}"><b class="caldn num">{d.day}</b></li>')
+                    continue
+                if any(ev["actionable"] for ev in mine):
+                    klass += " hasact"
+                evl = "".join(
+                    f'<li><a class="calev{" act" if ev["actionable"] else ""}" '
+                    f'href="{rel(depth)}item/{e(ev["item_id"])}/">'
+                    f'<span class="cke">{e(dcal.kind_label(ev["kind"]))}</span>'
+                    f'<span class="ckt">{e(ev["title"])}</span></a></li>'
+                    for ev in mine)
+                cells.append(
+                    f'<li class="calday full{klass}"><b class="caldn num">{d.day}</b>'
+                    f'<time class="caldd" datetime="{iso}">{e(ordinal(d))}</time>'
+                    f'<ul class="calevs">{evl}</ul></li>')
+        n = len(evs)
+        act = sum(1 for ev in evs if ev["actionable"])
+        a.add(n, act)
+        # "1 dated" is not a sentence. The count decides the noun, computed rather than typed.
+        word = "date" if n == 1 else "dates"
+        acts = (f' <span class="calact"><span class="num">{act}</span> you can still act on</span>'
+                if act else "")
+        panels.append(
+            f'<section class="calmonth" id="cal-{k}" data-month="{k}" data-act="{act}" '
+            f'aria-label="{e(dcal.month_label(k))}">'
+            f'<h3 class="calmh"><time datetime="{k}">{e(dcal.month_label(k))}</time> '
+            f'<span class="calmn2"><span class="num">{n}</span> {word}</span>{acts}</h3>'
+            f'<ol class="calhead" aria-hidden="true">'
+            + "".join(f"<li>{d}</li>" for d in ("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"))
+            + f'</ol><ol class="caldays">{"".join(cells)}</ol></section>')
+
+    dropped = (f'<p class="meta"><span class="num">{cal["dropped"]}</span> dated entries could '
+               f'not be read and are not shown.</p>' if cal["dropped"] else "")
+    a.add(cal["dropped"])
+
+    return f"""
+<section class="cal" id="cal" data-open="{cur}">
+  <h2>When it happens</h2>
+  <p class="sub">The same record, by date. <span class="num">{cal["n_events"]}</span> dated
+  moments across <span class="num">{cal["n_live"]}</span> months, and a decision with a hearing
+  in one month and an order in another appears in both. Pick a month, then pick a day.</p>
+  <!-- DATA, NOT PROSE, and marked as such the way the county tally already is. The rail is a
+       row of month labels and counts, so with the tags stripped it reads as "May  10" and the
+       house style checker calls that a badly written date. It is not a sentence; it is a
+       chart's axis. `data-prose="data"` is the mechanism this project already has for that,
+       and it narrows the prose rules rather than switching a checker off. -->
+  <div class="calrail">{"".join(rows)}</div>
+
+  <!-- BOTH CONTROLS ARE HIDDEN UNTIL THE SCRIPT CLAIMS THEM. A button that does nothing is
+       worse than no button: it is a promise a reader tests once and then distrusts the page
+       for. Without script every month is already on the page and the rail entries are real
+       anchors, so nothing here is the only route to anything. -->
+  <div class="calstep">
+    <button type="button" id="calprev" aria-label="The month before">Prev</button>
+    <button type="button" id="calnext" aria-label="The month after">Next</button>
+    <button type="button" id="calnow" class="calnow">This month</button>
+  </div>
+  <!-- THE READER'S OWN WORDS, declared as such. Published copy carries no I, we or our,
+       because the record speaks rather than its author; a control the reader operates is the
+       one place a first person is right, and `data-voice="reader"` is the marker this site
+       already uses for exactly that on the front page's scan question. -->
+  <label class="calfilter" data-voice="reader">
+    <input type="checkbox" id="calacts">
+    <span>Only what I can still act on</span>
+  </label>
+
+  <div class="calpanels" data-prose="data">{"".join(panels)}</div>
+  {dropped}
+</section>
+{_CAL_JS}"""
 
 
 def topic_label(topic: str) -> str:
@@ -3167,17 +3492,10 @@ def ask_box(items: list, today: str, base: str = "") -> str:
          reader wants is the one that keeps moving away from them.
          aria-live polite because sentences arrive one at a time after the press, and a reader
          on a screen reader would otherwise be told nothing was happening at all. -->
+    <button type="button" class="askclose" id="askclose" aria-label="Close the search">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
     <div class="askthread" id="askthread" hidden aria-live="polite" aria-atomic="false"></div>
-    <!-- THE LIVE LIST IS ABOVE THE FIELD TOO, and it used to sit below with the starters.
-         Below was not a small inconsistency, it was the typed lane not working at all. The
-         list has no height until a reader types, so it grew DOWNWARD out of a field already
-         near the bottom of the screen. Measured on the built page: three matching rows landed
-         427px past the fold on a 390 wide phone and 248px past it on a 1280 desktop, with
-         NONE of the list on screen in either case. A reader typed a question and watched
-         nothing happen.
-         Above the field it grows the way the thread grows, so the box has one place where
-         answers appear rather than two facing opposite directions. -->
-    <div class="answer" hidden></div>
     <form class="composer" role="search">
       <label class="vh" for="askq">Ask the record a question</label>
       <input id="askq" type="search" autocomplete="off"
@@ -3323,6 +3641,13 @@ _SCAN_JS = """
           // thing to show: somebody asked about this business recently and here is what came
           // back. The link is relative, and this form is served at /scan/.
           if (res.body && res.body.token) {
+            // THE WATCH PAGE SHOWS WHOSE SCAN IT IS, and this is where it learns that. The
+            // token is the only thing in the link, deliberately, so the subject travels in
+            // sessionStorage instead: same origin, never in the address bar, never in a
+            // referrer, gone when the tab closes. A shared link therefore carries no business
+            // name, which is the property the token was chosen for in the first place, and the
+            // watch page simply says less when it opens without one.
+            try { sessionStorage.setItem('wsubject', val('website') || ''); } catch (e) {}
             location.href = 'watch/?t=' + encodeURIComponent(res.body.token);
             return;
           }
@@ -3483,163 +3808,18 @@ SCAN_RESULT_URL = f"{SCAN_WORKER}/result"
 def watch_page(today: str) -> str:
     """Watching your own scan run, which is the one page here that DOES phone somewhere.
 
-    THIS PAGE MAKES REQUESTS AND SAYS SO. Everything else on this site is static and the ask
-    box goes out of its way to prove it phones nobody. This one cannot: a live view of a
-    running job is a request, repeated. So the page states that in its own copy, above the
-    feed, before anything is sent, which is the same rule the ask box follows about its
-    buttons. Never weaken that sentence without changing what the code does.
+    THE STAGE LIVES IN `scripts/site/watch_page.py`, and it is the only page on this site whose
+    register is different. The reasoning, the promises it still keeps, and its own self-test are
+    all in that module's docstring. Owner's call, 2026-08-20, after watching a run and finding
+    the honest version of it genuinely dull to sit through.
 
-    IT ASKS FOR NOTHING BUT THE TOKEN. The token is in the link the requester was handed, it
-    is a hundred and twenty eight bits of gen_random_bytes, and it is the whole credential.
-    There is no account, no cookie and no identifier of any other kind on this page, so a
-    shared link shows one scan and nothing else reachable.
-
-    IT STOPS. Polling forever against somebody else's bill is rude, and a job that has gone
-    quiet is a thing to say plainly rather than to keep asking about. The interval backs off
-    and the page gives up with an honest line and the link to try again.
-
-    NO NUMERALS IN THE SHELL. Everything with a figure in it arrives at read time from the
-    feed, so the built page states none and `numeral_lint` has nothing to authorise. The
-    intervals live in the script, which the gate does not read as reader copy.
+    `body_html` takes the result endpoint rather than reading it, so the page and the policy in
+    `csp.py` cannot end up pointing at two different workers.
     """
-    body = f"""
-<section class="watch" id="watch">
-  <h1>Your scan</h1>
-  <p class="sub">This page asks the scanner how your run is going, and keeps asking while it
-  runs. That is the one thing on this site that sends anything. It sends your token and
-  nothing else.</p>
-
-  <p class="watchstate" id="wstate" data-idle="Waiting for the token in your link.">Waiting
-  for the token in your link.</p>
-
-  <ol class="chain watchchain" id="wchain">
-    <li data-phase="footprint"><b>Footprint</b><span>your pages, cited</span></li>
-    <li data-phase="industry"><b>Industry</b><span>what others already tried</span></li>
-    <li data-phase="feasibility"><b>Feasibility</b><span>the lowest honest rung</span></li>
-    <li data-phase="critic"><b>Critic</b><span>defaults to rejecting it</span></li>
-  </ol>
-
-  <ol class="wfeed" id="wfeed"></ol>
-
-  <p class="watchdone" id="wdone" hidden></p>
-  <p class="sub" id="whelp" hidden>The report goes to the address you gave. You can close this
-  page and it will still arrive.</p>
-</section>
-<script>
-(function () {{
-  var END = {SCAN_RESULT_URL!r};
-  var PHASES = ["footprint", "industry", "feasibility", "critic"];
-  var state = document.getElementById("wstate");
-  var feed  = document.getElementById("wfeed");
-  var chain = document.getElementById("wchain");
-  var done  = document.getElementById("wdone");
-  var help  = document.getElementById("whelp");
-  var token = new URLSearchParams(location.search).get("t") || "";
-  var seen = 0, tries = 0, wait = 3000, atPhase = "";
-
-  function say(t) {{ state.textContent = t; }}
-
-  // The feed is APPENDED, never rebuilt, so a line a reader already read cannot move or
-  // vanish under them when the next poll returns the same rows plus one.
-  function draw(rows, ended) {{
-    for (var i = seen; i < rows.length; i++) {{
-      var r = rows[i] || {{}};
-      var ph = String(r.phase || "").toLowerCase();
-      var turn = ph !== "" && ph !== atPhase;
-      var li = document.createElement("li");
-      if (turn) {{ li.className = "wturn"; atPhase = ph; }}
-      // THE STATION IS NAMED WHERE IT CHANGES, not on every line, so the feed reads as runs
-      // of work under a station rather than as the same word repeated down the page.
-      var g = document.createElement("span");
-      g.className = "wphase";
-      g.textContent = turn ? ph : "";
-      var n = document.createElement("span");
-      n.className = "wnote";
-      n.textContent = String(r.note || r.phase || "");
-      li.appendChild(g);
-      li.appendChild(n);
-      feed.appendChild(li);
-    }}
-    seen = rows.length;
-    // THE CHAIN ONLY EVER MOVES FORWARD, and it has to, because this reads ONE ordered feed
-    // that TWO parallel lanes write into. The routine says so itself on the way in: one lane
-    // reads the requester's own pages while the other reads published results, and they never
-    // share state. So their lines interleave, and taking the phase of the LAST line made the
-    // stations oscillate: industry lights, the next footprint line lands, industry goes dark
-    // again. A progress indicator that moves backwards is telling a reader something untrue
-    // about work that has already happened.
-    //
-    // The furthest station any line has reached is the honest answer, and it is also the one
-    // that survives a line arriving late or out of order.
-    var at = -1;
-    for (var k = 0; k < rows.length; k++) {{
-      var ph = String((rows[k] || {{}}).phase || "").toLowerCase();
-      var idx = PHASES.indexOf(ph);
-      if (idx > at) at = idx;
-    }}
-    var items = chain.children;
-    for (var j = 0; j < items.length; j++) {{
-      // A FINISHED RUN LEAVES NOTHING LIVE. The last station reported is the one the run
-      // ended on, and leaving it pulsing says work is still happening when it is not, which
-      // is the one thing this page cannot afford to say.
-      items[j].dataset.state = at < 0 ? ""
-        : (j < at ? "done" : (j === at ? (ended ? "done" : "live") : ""));
-    }}
-  }}
-
-  function stop(msg, showHelp) {{
-    say(msg);
-    if (showHelp) help.hidden = false;
-  }}
-
-  function poll() {{
-    tries++;
-    fetch(END, {{
-      method: "POST",
-      headers: {{ "content-type": "application/json" }},
-      body: JSON.stringify({{ token: token }})
-    }}).then(function (r) {{
-      return r.json().catch(function () {{ return {{}}; }}).then(function (b) {{
-        return {{ ok: r.ok, body: b }};
-      }});
-    }}).then(function (res) {{
-      if (!res.ok) {{
-        stop(res.body && res.body.error === "not found"
-          ? "That link does not match a scan. Check the address you were given."
-          : "The scanner could not be reached just now.", true);
-        return;
-      }}
-      var b = res.body || {{}};
-      var ended = b.status === "done" || b.status === "degraded" || b.status === "failed";
-      draw(Array.isArray(b.progress) ? b.progress : [], ended);
-      if (b.status === "done" || b.status === "degraded") {{
-        say("Finished.");
-        if (b.headline) {{ done.textContent = String(b.headline); done.hidden = false; }}
-        help.hidden = false;
-        return;
-      }}
-      if (b.status === "failed") {{ stop("This run stopped before it finished.", true); return; }}
-      say(b.status === "queued" ? "Queued." : "Running.");
-      // Backing off, and giving up rather than asking forever.
-      if (tries > 200) {{ stop("Still going, longer than this page waits.", true); return; }}
-      if (tries > 20) {{ wait = 10000; }}
-      setTimeout(poll, wait);
-    }}).catch(function () {{
-      stop("The scanner could not be reached just now.", true);
-    }});
-  }}
-
-  if (!token) {{ stop("This page needs the link you were given when the scan started.", false); }}
-  else {{ say("Asking."); poll(); }}
-}})();
-</script>
-"""
-    # depth TWO: this page is at scan/watch/, so every relative asset needs two hops. At depth
-    # one it linked ../site.css, which 404s from here, and the page rendered as bare markup.
     return page(title=f"Your scan · {SITE_NAME}", depth=2, active="",
                 desc="Watch a bottleneck scan run, by the token in your link.",
-                body=body, today=today, canonical="scan/watch/")
-
+                body=watch_stage.body_html(SCAN_RESULT_URL), today=today,
+                canonical="scan/watch/", body_class="stage")
 
 def services_page(items: list, today: str) -> str:
     """The commercial wing, argued from the record rather than from adjectives.
@@ -4967,6 +5147,9 @@ def build(out: Path, today: str) -> dict:
         return set().union(*(by_item[i["id"]] for i in subset)) if subset else set()
 
     w("site.css", theme.css())
+    # SERVED TO THE ONE PAGE THAT HAS A CALENDAR. See theme.record_css for why it is not in
+    # the sheet every other page waits on.
+    w("record.css", theme.record_css())
 
     # THE CUSTOM DOMAIN, told to GitHub Pages. Derived from SITE_URL rather than typed, so the
     # domain the pages claim as canonical and the domain Pages actually serves cannot disagree.
@@ -5077,7 +5260,11 @@ def build(out: Path, today: str) -> dict:
     # unknown path, and without one a mistyped decision id lands a reader on the host's default
     # page with no navigation, no search and no sign the site is even ours.
     w("404.html", not_found_page(today, items))
-    w("record/index.html", docket_index(items, today), listed(items))
+    # THE RECORD AUTHORISES ITS OWN ARITHMETIC. `listed` covers the figures the items carry;
+    # the calendar's counts, day numbers and years are computed on the page and come back with
+    # it, so the two sets are unioned rather than one silently standing in for the other.
+    _rec_html, _rec_figs = docket_index(items, today)
+    w("record/index.html", _rec_html, listed(items) | _rec_figs)
     # THE HUB, THEN THE BEATS. Written above the loop so the family reads as a family, and
     # so a reader or a crawler arriving at /topic/ finds a page rather than a 404.
     _tfig, _thtml = topics_index(items, today)
@@ -5396,7 +5583,20 @@ def self_test() -> int:
         real_docket, real_home = docket_index, home
 
         def planted(fn, find, ins):
-            return lambda *a, **k: fn(*a, **k).replace(find, find + ins, 1)
+            """Plant a figure in a page builder's html, whatever shape it hands back.
+
+            `docket_index` returns (html, the numerals it computed) so the calendar's counts
+            can be authorised where they are computed. A helper that assumed a bare string
+            broke this gate the moment that changed, which would have been a self-test failing
+            for a reason that has nothing to do with the law it guards.
+            """
+            def go(*a, **k):
+                out = fn(*a, **k)
+                if isinstance(out, tuple):
+                    html, *rest = out
+                    return (html.replace(find, find + ins, 1), *rest)
+                return out.replace(find, find + ins, 1)
+            return go
 
         for label, name, real, ins, want in (
                 ("a figure nothing computed", "docket_index", real_docket,
