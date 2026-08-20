@@ -454,8 +454,13 @@ absence was written up as a proposal, because the two are the same shape of thin
 a file and a builder renders it, and neither of them would notice the page going wrong. They are
 separate files rather than one parameterised checker because the promises differ. The water page
 also promises that percent full is computed from storage over capacity rather than read from the
-feed's own field, that a metro with no line is a gap in the source's tagging rather than a dry
-city, and that out of state reservoirs are excluded rather than counted as empty.
+feed's own field.
+
+**THE COVERAGE AND EXCLUSION PROMISES ARE GONE**, on the owner's instruction, 2026-08-20. The
+page used to say that a metro with no line is a gap in the source's tagging rather than a dry
+city, and that out of state reservoirs are excluded rather than counted as empty. Both sentences
+and the rules that required them came off together. Do not restore either. If a run reads this
+section and reaches for that copy, it is reading a description that was true and is not.
 
 **THE SCANNER'S DAILY CEILING.** The scan form fires its routine on submit, so the only thing
 between a public form and a bill is `daily_cap` in the scanner project's `scanner.config`. A
@@ -565,17 +570,19 @@ verification silently.
 receives, which is the whole of `knowledge/shared/GATE_LESSONS.md`. Three things a green suite
 has been wrong about here and cannot answer for you:
 
-- **The water page's coverage sentence.** It names how many of the state's statistical areas the
-  water data tags and calls out San Antonio, which has none. If the source starts tagging San
-  Antonio that paragraph must stop appearing, and only reading it tells you.
+- **The water map's pins against the day's reservoir count.** The map draws one circle per
+  reservoir it holds a gauge position for and SKIPS a lake it has none for, silently, because a
+  missing pin must never cost the page its figures. The collector rebuilds those positions from
+  its own archive every run, so the usual case is that they agree. Count the pins against the
+  reservoir count in the readout. A drawing that is one lake short still looks like a map.
 - **A place page for a metro where the record just landed something.** Does the count in the
   headline match the items listed under it, and are the untouched counties still named?
 - **The `backlog:` lines the build prints.** They are the same lines Phase 3 works from. If one
   has grown rather than shrunk, that is a failure of this run and not a note for the next one.
 
-A water page check belongs beside the grid one and does not exist. It would live in
-`scripts/gridwatch/`, which the daily routine does not own, so it is a proposal in the run
-record rather than something a run writes.
+That water page check now EXISTS and Phase 7 runs it. This paragraph used to say it did not,
+which was true when it was written and stopped being true on 2026-08-16. A routine that reads
+its own instructions as current is only as good as the day somebody last corrected them.
 
 ## PHASE 8 — SELECTION + DEDUPE GATE
 
