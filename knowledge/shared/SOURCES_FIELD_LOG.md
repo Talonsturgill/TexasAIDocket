@@ -230,3 +230,55 @@ publish one.
   second pass with an explicit transcription instruction returned the body verbatim
 - so: **a quote is verified by a fetch that was asked to transcribe, not by one that was asked what
   a page says.** Ask twice and compare when a numeral or a quote is going to be published
+
+---
+
+## August 20th, 2026
+
+**`puc.texas.gov` 402s a default agent, and the registry only said that about the Interchange.**
+`GetCalendarRss.aspx` returned 402 to the fetch tool and 200 to a browser User-Agent. The registry
+carries the 402 finding for `interchange.puc.texas.gov` and not for the main `puc.texas.gov` host.
+Both behave the same way.
+- **the RSS url also 301s**, from `GetCalendarRss.aspx` to the lowercase `getcalendarrss.aspx`. A
+  fetch that does not follow redirects gets 180 bytes and no feed. Follow it.
+
+**THE CALENDAR FEED NEVER NAMES A DOCKET, FOR ANY ENTRY, AND THIS COST A WRONG PUBLIC FACT.** The
+`<description>` of a PUCT calendar entry carries the room and whether it is public. That is all it
+has ever carried. A previous run read the absence of a docket number from the August 21st entry as
+the docket having come off the agenda and published that, when the docket was item 3 on the agenda
+the entry links.
+- **the agenda is one click away and is where the matters live.** Each `AppointmentDetail.aspx`
+  page carries an `[Agenda]` link to a PDF at `ftp.puc.texas.gov/public/puct-info/agency/om/`,
+  named `MMDDYYFinal.pdf`. It lists every docket and project number, who is presenting, which items
+  are taken up without discussion and which will not be taken up at all
+- that PDF answered 200 to a browser User-Agent and extracted cleanly with `pypdf`
+
+**The Interchange filing index reports the true count and renders only the first page of rows.**
+Docket 59315 reports 5793 filings and the web view returned 2000 rows across three pages. A count
+taken from the rows understates the docket by a factor. **Quote the index line, never count the
+table.** A previous run published 2,000 as though it were the filing count.
+
+**`capitol.texas.gov` hearing notices are the cheapest primary source in this repo.** Both the HTML
+form at `/tlodocs/89R/schedules/html/<code>.htm` and the PDF at `/tlodocs/89R/schedules/pdf/<code>.PDF`
+answered 200 to a browser User-Agent. They carry the committee, the chair, the room, the time,
+every interim charge in full, whether testimony is invited only or public, the per witness time
+limit and the electronic comment url. A whole item can be built from one of them.
+
+**`lagovistatexas.gov` is the dot gov, and `lagovistatexas.org` does not resolve.** Its CivicPlus
+AgendaCenter served 2023 agendas only and its search returned nothing for a term that is in the
+news, so **no 2026 minutes or agendas appear to be published there**. A council vote covered by
+four outlets could not be sourced to the city that took it.
+
+**`leaguecitytx.gov` publishes ballot language on its news page, verbatim.**
+`/m/newsflash/Home/Detail/<id>` answered 200 to a browser User-Agent and carried the full
+proposition text. **It spells nonbinding as one word where every outlet covering it wrote
+non-binding.** That is the reason to fetch the city rather than the coverage.
+
+**`legistar1.granicus.com` attachment PDFs are primary and extract cleanly.** A city's charter
+review commission report, filed with the ordinance, carried the full proposed charter text.
+
+**Hosts that refused this run, recorded as observation only.** `usda.gov` returned 403 on three
+attempts to a scout. `fortworthreport.org`, `texastribune.org`, `kxan.com` and `newsradioklbj.com`
+returned 403 to a default agent. `globenewswire.com` and `investors.kodiak.ai` returned 503.
+`tacc.utexas.edu` returned 403, and that one is **a disallow rather than a failure**, recorded in
+the registry, and was not routed around.
