@@ -278,3 +278,93 @@ Twice is a pattern and the cause is the same both times. **The entry is written 
 the deck is still moving.** The fix is the same one this run applied to `copy.json` after the second
 panel: write it from `render/render_report.json` after the last render, never from the dossier. The
 entry has been rewritten from the renders and the proposal is below.
+
+## Panel round four, and the finding all three judges reached alone
+
+Round four returned no hard fail from any judge. The reader scored 7.05 and shipped, craft 7.27 and
+shipped, integrity 6.72 and did not, on the number rather than on a condition. Three judges reading
+the deck separately arrived at the same sentence.
+
+**Seven slides about a referendum and the election date was on none of them.** The reader put it
+hardest. A reader who never opens the caption is told at 96px that a November vote is nonbinding and
+is never told when it is, which makes the product complicit in the thing it is reporting. November
+3rd, 2026 is quoted verbatim in c2 for League City and in c12 for Pflugerville, so putting it on a
+frame completes a claim the deck already leans on rather than adding one. It is on frames 3, 4 and 7
+now, in ink, and it takes no red on any of them, per the structural law that until today governed
+frames which did not exist. That is the shape of the fault. **A law written for a frame is not a law
+about the deck**, and this one read as satisfied for six frames because the thing it governed was
+never drawn.
+
+**Slide 4's dek was a weld.** It read "Ordinance No. 2026-27, moved and seconded on first and final
+reading, August 11th, 2026." c16's quote gives the ordinance number and the reading. c2's quote
+gives the date. Nothing this run fetched puts that number on that date, and c13's editor note shows
+the run knew how to record an unquoted API field and did not do it here. Two true halves welded into
+an assertion no source makes is harder to catch than a fabrication, because every part of it traces.
+The dek is now the election date, which both bound claims quote, and it answers its own hook for the
+first time.
+
+**The closing frame said by layout what its sentences refused to say.** c16's note is explicit that
+the record does NOT establish the license plate reader question is on the August 25th agenda, and
+the copy stayed inside that fence. The composition did not. A bare OPEN MEETING in the reserved red,
+under an eyebrow reading "where it gets decided", sends a reader to a meeting this record has not
+seen the agenda for. **No gate can see a verdict delivered by composition**, and no gate saw this
+one. The label is now the record's own wording, next regular meeting, and both dates stand on the
+frame with the red spent on one of them.
+
+## Three ledgers were carrying the plan rather than the run
+
+The 08-19 entry documents this fault. The 08-20 entry was rewritten from the renders after round
+three found it again. Round four found it a third time, in three more places, and one of them was
+inside the very entry that had just been repaired.
+
+- **`artwork.json`'s `structural_laws` was a copy of the plan.** Its second law said the two grounds
+  never mix, and three shipped frames put stock value on the dark ground: the charter's lit course
+  on 3, the ballot card on 4, the bounded figure on 5. The renders had already contradicted the law
+  when the entry claiming to be written from them recorded it as held. The law is amended, in the
+  storyboard and in the ledger, and says what the deck does: a frame's GROUND is stock or it is
+  houston_black and never both, and lit paper is not a ground.
+- **`topics.json` listed three counties** for a deck that cut its only cartographic frame precisely
+  because no claim names a county, and says so in its own storyboard. Left there, the dedupe gate
+  would compare future runs against entities this record never established.
+- **`captions.json`'s `structures_recent`** read ledger, pivot, question and answer, when the last
+  three shipped structures were ledger, two columns, question and answer. One hand edit dropped a
+  structure that IS off the table and held one that is not, so the exclusion list handed to the next
+  caption room was wrong in both directions. All three lists are now recomputed from `entries`.
+
+## The line break that hid the largest numeral in the deck
+
+Every hook in this deck is set with a manual `<br>`. In `textContent`, which is what `copy.json` and
+every gate read, a `<br>` with no space before it closes the two words up. Slide 2's largest line
+reached `aggregate_check` all run as "Read the firstseven words." and the gate saw no aggregate on
+that frame. The single most important computed numeral in the deck, the one whose first render said
+six and had to be corrected to seven, was invisible to the gate that exists to catch exactly that.
+
+Every `<br>` in the deck now carries a space before it. The space renders as nothing, because a
+trailing space before a forced break is collapsed, and it makes the string in the record equal the
+string on the frame. `aggregate_check` now reports four computed figures where it reported three.
+
+**This is the fifth entry in a row with the same shape.** A rule stated in one place, a surface
+keeping its own copy, and nothing in between checking they agree. Here the two copies were the frame
+and its own `textContent`, which is as close as two copies can possibly be.
+
+## The permission interruption, and where it can and cannot be fixed
+
+The owner interrupted twice in this run because an unattended routine stopped to ask. The committed
+`.claude/settings.json` already sets `defaultMode: bypassPermissions` and has since 2026-08-11, and
+its own comment explains why: a prompt in an unattended container has nobody to answer it, so the
+run does not fail, it wedges until the container is reclaimed.
+
+What was still asking is not the permission mode. It is the Bash SANDBOX, which asks to be escaped
+when a command writes outside the working tree, and this run wrote its scratch scripts to a system
+temp directory. Every scratch file now goes in `out/<date>/tmp/`, which is gitignored and inside the
+tree, so no escape is needed and nothing has to be approved.
+
+`.claude/settings.local.json` is not the fix. It is gitignored, so it dies with the container and
+the next run starts without it. That was already true of the copy this run wrote at wake.
+
+**The one file that could hold a permanent fix is the one file this repo's law says an automation
+may not edit.** `ownership.yaml` puts `.claude/settings.json` under the constitution, alongside
+`CLAUDE.md` and `prompts/daily_routine.md`, with the note that no automation edits its own
+permissions because that is the rule which makes every other rule hold. That is not a mistake in the
+map the way `guards_local.py` was. It is the map working. So the sandbox change above is made, and
+anything further is written down as a proposal rather than taken.

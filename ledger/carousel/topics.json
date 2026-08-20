@@ -104,9 +104,8 @@
     "League City",
     "League City City Council",
     "League City Police Department",
-    "Flock Safety",
+    "Flock Group, Inc.",
     "Nick Long",
-    "Courtney Chadwell",
     "Pflugerville",
     "Pflugerville City Council",
     "2026 Pflugerville Charter Review Commission",
@@ -127,7 +126,7 @@
     "surveillance",
     "open meeting"
    ],
-   "entities_note": "Three counties were listed here and NOT ONE claim in this run names a county. The deck cut its cartographic frame for exactly that reason and says so in its own storyboard, and the variety ledger went on carrying the counties anyway, where the dedupe gate would have compared future runs against entities this record never established. Dropped: Galveston County, Travis County, Williamson County."
+   "entities_note": "Three counties were listed here and NOT ONE claim in this run names a county. The deck cut its cartographic frame for exactly that reason and says so in its own storyboard, and the variety ledger went on carrying the counties anyway, where the dedupe gate would have compared future runs against entities this record never established. Dropped: Galveston County, Travis County, Williamson County. The fifth panel then found the same defect two names further down the same list. 'Courtney Chadwell' is dropped because c16 quotes only 'Mr. Chadwell' and no fetched record gives the first name, and 'Flock Safety' is corrected to 'Flock Group, Inc.', which is the name c14's quoted item title uses. A list written from memory rather than from the claims file gets the well-known name right and the record's name wrong."
   }
  ]
 }
