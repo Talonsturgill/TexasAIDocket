@@ -114,14 +114,12 @@
   {
    "date": "2026-08-20",
    "carousel_no": 4,
+   "written_from": "render/render_report.json and the gates' own output, never from the storyboard. The 2026-08-19 entry recorded a technique that never shipped and wrote down why that is corrosive, and the very next run did it again on the frame it had cut. An entry written while the deck is still moving describes a deck that did not ship.",
    "register": "a press proof, ballot stock at working distance printed in two plates and annotated in graphite, with three frames on the other city's dark ground",
    "techniques": [
     "felt-pen wick on fiber stock, an ink boundary displaced by the same field that draws the pulp",
     "a misregistered second impression of one clause, offset 7 and 3, in the dropout plate's ink",
-    "printed optical scan ovals, empty, outline in ink and interior in dropout",
     "a banded charter section stack running off both frame edges with one course lit",
-    "three real county polygons at true relative position, two fills, no state silhouette",
-    "an open dimension with witness ticks and no figure between them",
     "a raking slab with two-part contact shadows and individually lit stacked sheet edges",
     "a bounded hard-edge figure inside an unbounded warped wash that reaches every frame edge",
     "the empty field, bounded by a neatline and dimension ticks",
@@ -129,31 +127,34 @@
     "the ballot's foot reset as a drawing sheet's title block"
    ],
    "palette": {
-    "source": "a Galveston County election printing job, with the other city's side carried on a warm neutral black",
-    "stock": "#EFE6D2 bulk uncoated offset ballot stock",
-    "stock_deep": "#DCCFB2 the same stock on the shadow side of a raking light",
-    "ink": "#16141A election printing black wicking into fiber",
-    "dropout": "#A6C6BE the pale ink an optical scan oval is printed in, a printed shape and never type",
-    "houston": "#17140F warm neutral black with no violet, so it is not the house night",
-    "clay": "#6E6154 the same black one stop up",
-    "graphite": "#56525C every hand-added mark on paper",
-    "chalk": "#BFB3A0 the same hand on the dark ground, where graphite is under the contrast floor"
+    "source": "the materials of a Texas election printing job, with the second city's side on a warm neutral black",
+    "stock": "#EFE6D2",
+    "stock_deep": "#DCCFB2",
+    "ink": "#16141A",
+    "dropout": "#A6C6BE",
+    "houston": "#17140F",
+    "clay": "#6E6154",
+    "graphite": "#56525C",
+    "chalk": "#BFB3A0"
    },
    "red_spent": true,
-   "red_note": "Spent once, on slide 8, on the event, the date and the hour of the League City council's next open meeting, plus a solid rule under it so the focal is an area. November 3rd is deliberately DENIED the red on every frame it appears on, because a nonbinding election is not a deadline and the deck's whole argument is that the date which looks like the decision is not the one. Measured 5.12 to 1 on the stock and 2.89 on the soil, which is why only a paper frame could carry it.",
-   "camera": "one centimetre off the paper, backing away one readable step per frame, flat copy stand at 3 and 4, the table tilts once at 5 and holds through 6, plan view over an almost empty card at 7, square to the foot of the ballot at 8",
+   "red_on_slide": [
+    7
+   ],
+   "red_note": "Spent once, on the closing frame, on the event, the date and the hour of the League City council's next open meeting, with a solid rule beneath so the focal is an area. November 3rd is DENIED the red on every frame it appears on, because a nonbinding election is not a deadline and the deck's argument is that the date which looks like the decision is not the one. Measured 5.12 to 1 on the stock and 2.89 on the dark ground, which is why only a paper frame could carry it.",
+   "camera": "one centimetre off the paper, backing away one readable step per frame, flat copy stand at 2 and 3, the table tilts once at 4 and holds through 5, plan view over an almost empty card at 6, square to the foot of the ballot at 7",
    "light_decks_used": 1,
-   "slides": 8,
-   "bespoke_median_similarity": 0.3408,
-   "bespoke_closest_pair": "slide-07.html and slide-08.html at 0.7463, the two pale typographic frames the deck ends on",
-   "cut": "Slide 6, the duration-as-extent inversion, cut after the first scoring panel. All three judges named slides 5 and 6 as one argument made twice and 6 as the weaker drawing, and its own dossier had named the risk that two vertical runs read as a bar chart. They did.",
+   "slides": 7,
+   "bespoke_median_similarity": 0.295,
+   "bespoke_closest_pair": "slide-06.html and slide-07.html at 0.7412, the two pale typographic frames the deck ends on",
+   "cut": "TWO frames were cut, both by scoring panels rather than by the showrunner. The duration-as-extent inversion went after panel one, where all three judges called it slide 5's argument made twice in a weaker drawing and its own dossier had named the bar chart risk that landed. The county map went after panel two, which found it asserting a county membership no claim supports and a universal negative that is probably wrong. NO CARTOGRAPHY SHIPPED and no county is named anywhere in this deck.",
    "structural_laws": [
     "every mark is either printed or added, never both",
     "the two grounds never mix, and the palette is craft and never evidence, so no frame names a soil",
     "an oval is never furniture, and it is empty or filled, never partly",
     "the perforation never tears, because the election has not happened",
     "the stock is new, no stains, no yellowing, no deckle",
-    "no numeral appears that is not in claims.json, and no distance between the two cities appears at all"
+    "no numeral appears that is not in claims.json, and no county and no distance appears at all"
    ]
   }
  ]
