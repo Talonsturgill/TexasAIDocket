@@ -1280,3 +1280,42 @@ uses.
 against a browser, a linter against a compiler, a schema validator against the consumer, a
 permissions model against the API that actually decides. The question is not "does my checker
 pass" but "does my checker run the thing that says no".
+
+## 38. A security fix moved one line, and the pre-push runner went red on every clean checkout
+
+`guards_local.py` runs what CI runs, here, before pushing. It reads `guards.yml` rather than
+keeping its own step list, and it skips the steps that need a CI context, recognised by a
+`${{ }}` expression in the step's `run:` block.
+
+On 2026-08-19 the Ownership step's branch name moved out of `run:` and into `env:`, because
+`github.head_ref` on a fork pull request is whatever a stranger typed and interpolating it into
+a shell is a command injection. That fix was correct and it is still there.
+
+Its side effect was that the step no longer carried a `${{ }}` anywhere the runner looked. The
+step stopped being classified CI-only, ran locally with `BRANCH_NAME` unset, and
+`guards_local.py` exited 1 on a clean checkout of `main` from that push onward. The daily
+routine's Phase 0 sends a run to fix a gate that is red at wake before anything else, and it
+found one it did not own, on the first morning after.
+
+**Nothing edited the broken file.** Its own suite stayed green, because every case in it wrote
+the expression into `run:`, which is the half that still worked. This is the same shape as
+entries 13 and 30 and the `craft_floor` bands bug, and it now has enough instances to name:
+**a CONSUMER reading one of the several places a PRODUCER may write.** The producer here is the
+GitHub Actions step schema, which offers two routes for a context expression. The consumer knew
+one. Nobody changed the contract; somebody used the other half of it.
+
+**What to check instead.** A checker that classifies a thing must assert its classification
+against the REAL artifact, not only against a fixture it wrote. The new case does both. It
+replays the `env:` shape synthetically, and then it goes and finds the actual Ownership step in
+`guards.yml` and asserts THAT step lands on the skip side. The synthetic half proves the logic
+can tell them apart. Only the second half would have gone red on 2026-08-19, and it is one line.
+
+**And the cost of the failure mode is worse than it looks.** A gate that is red when the product
+is broken is doing its job. A pre-push runner that is red on a clean checkout teaches whoever
+runs it that its red means nothing, and the next real failure is read the same way. A tool
+nobody believes has negative value, not zero.
+
+**Generalises to.** Any dispatcher, router or classifier keyed on where a value is written
+rather than on what it is. Environment versus argument, header versus query string, attribute
+versus child element, annotation versus config file. Ask what the producer is ALLOWED to do,
+not what it happened to do the day the consumer was written.

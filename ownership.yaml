@@ -257,6 +257,32 @@ rules:
 
   # Carve-outs, each naming ONE file. A glob here would hand back the gates the rule above
   # just took away.
+
+  # THE LOCAL GATE RUNNER, opened to `upgrade` on 2026-08-20 on the owner's explicit call.
+  #
+  # It is not a gate. It is the thing that RUNS the gates on this machine, and it keeps no
+  # opinion of its own about what should pass: it reads guards.yml and executes what is there,
+  # by exit code. So it cannot be loosened to make a run pass, which is the property that makes
+  # every other file in `scripts/shared/**` maintainer-owned. Loosening this one only stops the
+  # gates running, which shows up as a smaller step count in its own summary.
+  #
+  # What made this urgent: it broke without anybody editing it. A security fix moved a `${{ }}`
+  # expression from a step's `run:` block into its `env:` block, this runner watched only
+  # `run:`, and from that push it ran a CI-only step with an unset variable and exited 1 on a
+  # clean checkout of main. The routine's Phase 0 tells a run to fix a gate that is red at wake
+  # before doing anything else, and the map told it the fix belonged to somebody who was not
+  # there. A pre-push runner that is permanently red is worse than none, because the next run
+  # learns to push past it.
+  #
+  # `upgrade` and not `daily`, deliberately. This stays out of reach during the record and the
+  # deck, and is reachable only from Phase 17, the phase whose whole job is editing the machine.
+  # `branch_also_allows` already lets a `claude/daily-` branch carry `upgrade` commits.
+  - path: "scripts/shared/guards_local.py"
+    owner: upgrade
+    note: >
+      The runner, not a gate. It reads guards.yml rather than keeping its own step list, so it
+      cannot quietly narrow what CI checks. Phase 17's lane, never the record's.
+
   - path: "scripts/site/ask_*.py"
     owner: human
     note: The answer engine is a gate on what the site may claim. Maintainer-owned.
