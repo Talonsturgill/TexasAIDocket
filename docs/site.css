@@ -624,7 +624,8 @@ figcaption { font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
   .newest li { grid-template-columns:1fr; gap:.1rem; }
 }
 .scanq { font-family:var(--display); font-size:var(--s3); line-height:1.1;
-  letter-spacing:-.015em; margin:0 0 .5rem; max-width:18ch; }
+  letter-spacing:-.015em; margin:0 0 .5rem; }
+.scanq span { display:block; max-width:18ch; }
 .scanlede { color:var(--dust); margin:0 0 1.2rem; max-width:34ch; }
 .scanfoot { color:var(--dust); font-size:var(--s-1); margin:1.1rem 0 0; }
 .chainlab { font-family:var(--mono); font-size:var(--s-2); letter-spacing:.1em;

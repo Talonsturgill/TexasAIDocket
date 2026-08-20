@@ -30,6 +30,8 @@ from __future__ import annotations
 
 import argparse
 import datetime as _dt
+import functools
+import hashlib
 import html
 import json
 import re
@@ -360,6 +362,28 @@ def rel(depth: int) -> str:
 
 
 # --------------------------------------------------------------------------- shell
+
+@functools.lru_cache(maxsize=1)
+def _css_version() -> str:
+    """A content hash on the stylesheet URL, because shipping is not the same as being seen.
+
+    The sheet is served from a fixed name with `cache-control: max-age=600`, and so is the HTML
+    that links it, INDEPENDENTLY. So for ten minutes after any deploy a visitor can hold one and
+    fetch the other, and the page they get is new markup wearing the previous stylesheet. That
+    is not hypothetical: the owner watched the scanner section render as a bare ordered list on
+    a page whose own bytes were correct, and whose stylesheet, fetched at that same moment,
+    already held every rule the section needed.
+
+    HASHING THE CONTENT AND NOT THE BUILD TIME. A timestamp would bust the cache on every run,
+    including the daily ones that change nothing here, and hand every returning reader a fresh
+    download for nothing. This changes only when the CSS does.
+
+    theme.css() is deterministic, which its own self-test asserts by building twice and
+    comparing bytes, so this is stable within a build and identical across identical builds.
+    """
+    return hashlib.sha256(theme.css().encode("utf-8")).hexdigest()[:10]
+
+
 def page(*, title: str, desc: str, body: str, depth: int, active: str,
          today: str, canonical: str, extra_ld: list | None = None,
          home_page: bool = False, og_image: str = "og.png",
@@ -423,7 +447,7 @@ def page(*, title: str, desc: str, body: str, depth: int, active: str,
 <meta property="og:url" content="{SITE_URL}/{canonical}">
 {og.head_html(p, SITE_URL, SITE_NAME, title, desc, og_image, og_alt)}
 {favicon.head_html(p)}
-<link rel="stylesheet" href="{p}site.css">
+<link rel="stylesheet" href="{p}site.css?v={_css_version()}">
 <link rel="preload" href="{p}fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="alternate" type="application/atom+xml" title="{e(SITE_NAME)}" href="{p}atom.xml">
 <script type="application/ld+json">{json.dumps(ld, separators=(",", ":"))}</script>
@@ -1820,7 +1844,6 @@ def latest_video() -> str:
     return """
 <section id="homevid" data-reveal hidden>
   <h2 data-voice="house">Our latest video</h2>
-  <p class="sub">The newest from the daily feed.</p>
   <div class="latest">
     <!-- CONTROLS, ALWAYS. A roughly 60 second film looping forever beside the copy with no
          pause, stop or hide is a WCAG 2.2.2 failure, and `prefers-reduced-motion` cannot
@@ -1924,7 +1947,7 @@ def scan_teaser() -> str:
     """
     return """
 <section data-reveal id="scan">
-  <p class="scanq" data-voice="reader">Would AI actually do anything for my business?</p>
+  <h2 class="scanq" data-voice="reader"><span>Would AI actually do anything for my business?</span></h2>
   <p class="scanlede">Drop your url in and an agent team goes to work on it.</p>
   <form class="composer scanform" action="scan/" method="get">
     <label class="vh" for="scan-url">Your website</label>

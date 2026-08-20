@@ -55,7 +55,10 @@ CODE = re.compile(r"<(script|style)\b.*?</\1>", re.DOTALL | re.IGNORECASE)
 # rule exists so the record does not speak as "we"; it was never meant to stop the page quoting
 # the reader back to themselves. Marked explicitly at the source rather than inferred, so the
 # exemption is a decision somebody made and can be found.
-READER_VOICE = re.compile(r'<([a-z]+)\b[^>]*\bdata-voice="reader"[^>]*>.*?</\1>',
+# `[a-z][a-z0-9]*` for the same reason the house-voice pattern below needs it: `[a-z]+` matches
+# only the "h" of <h2> and then fails its own \b against the digit, so the exemption never fires
+# on a heading. It went unnoticed while both exemptions were used on <div> and <span> only.
+READER_VOICE = re.compile(r'<([a-z][a-z0-9]*)\b[^>]*\bdata-voice="reader"[^>]*>.*?</\1>',
                           re.DOTALL | re.IGNORECASE)
 # THE HOUSE NAMING ITS OWN WORK, which is the one place "our" is not the record editorialising.
 # The no-first-person rule is about CLAIMS: a docket item that says "we verified" has put an

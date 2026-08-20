@@ -1701,8 +1701,16 @@ figcaption {{ font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
    the signal chain it actually is, four stages on one line, each with a name and three or four
    words. The control sits directly under the question where a front door belongs, and the chain
    reads as the machine behind it rather than as a list of features. */
+/* An <h2>, so it takes the same top rule and accent stub every other section heading gets
+   from `main > section > h2`. It IS this section's heading; it was a <p> only because it is
+   phrased as the reader's question, and that is what data-voice is for. */
+/* FULL WIDTH FOR THE RULE, SHORT MEASURE FOR THE WORDS. The separator every section wears is
+   the h2's own border-top, so the heading has to span the section or the line comes up short:
+   at 1400px the others are 1152px wide and this one was 391px, which is why its rule looked
+   like a stub instead of a seam. The max-width belongs to the TEXT, so it moves inside. */
 .scanq {{ font-family:var(--display); font-size:var(--s3); line-height:1.1;
-  letter-spacing:-.015em; margin:0 0 .5rem; max-width:18ch; }}
+  letter-spacing:-.015em; margin:0 0 .5rem; }}
+.scanq span {{ display:block; max-width:18ch; }}
 .scanlede {{ color:var(--dust); margin:0 0 1.2rem; max-width:34ch; }}
 .scanfoot {{ color:var(--dust); font-size:var(--s-1); margin:1.1rem 0 0; }}
 /* A LINE WITH FOUR STATIONS ON IT. The rule runs behind the dots, so the eye reads a chain
