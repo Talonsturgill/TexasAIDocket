@@ -1,0 +1,62 @@
+name: livecheck
+
+# THE ONE CHECK THAT LOOKS AT THE LIVE SITE.
+#
+# Every other workflow here proves the BUILD is right. None of them opens the URL a reader
+# opens. So the whole suite is green in the one case that matters most, which is the site being
+# dark: a lapsed domain, a clobbered CNAME, a DNS record edited by hand, a Pages project
+# unpublished. Nothing in the repository changes and nobody can read the record.
+#
+# GATE_LESSONS entry 10 is this shape already happening once. A merge left the live site on the
+# previous build with every gate green, because no run had started at all. The fix then was a
+# two-hourly deploy backstop, which re-deploys blindly. This is the half that looks at what
+# came out.
+#
+# ITS OWN WORKFLOW, NOT A STEP IN guards.yml, and the reason is the same one the collectors
+# have. guards runs on every pull request, where the live site is irrelevant and an outage
+# somewhere else would red a branch that is perfectly fine. A check that fails for reasons the
+# author cannot act on is a check the author learns to ignore.
+on:
+  schedule:
+    # Every six hours. Often enough that a dark site is found the same day, rare enough that a
+    # deploy in flight is never what it catches.
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: livecheck
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Prove the checker's own failure paths can go red
+        run: python3 scripts/shared/livecheck.py --self-test
+
+      - name: The published site answers
+        run: |
+          # BY EXIT CODE, and the three outcomes are not the same thing.
+          #   0  up and current
+          #   2  up and serving an older record, which is a deploy still in flight and is not
+          #      worth failing a run over
+          #   1  dark, which needs a person
+          # A scheduled workflow that fails emails the owner, and that notification is the
+          # entire point of this file. There is no human at the keyboard to notice otherwise.
+          set +e
+          python3 scripts/shared/livecheck.py
+          code=$?
+          set -e
+          if [ "$code" = "2" ]; then
+            echo "::warning::the site is up and behind this repository; a deploy has not landed"
+            exit 0
+          fi
+          exit $code

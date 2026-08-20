@@ -389,6 +389,16 @@ jobs:
           # falsifying it, which is far worse than an inconsistent date.
           python3 scripts/site/house_style_check.py
 
+      - name: The liveness checker can still go red
+        run: |
+          # The check itself runs on its own schedule in livecheck.yml, because whether the
+          # live site is up is not something a pull request author can act on and a check that
+          # fails for reasons outside the diff is one people learn to ignore.
+          #
+          # Its SELF-TEST is hermetic and belongs here, so the checker cannot quietly rot
+          # between firings and be found broken on the morning the site is actually down.
+          python3 scripts/shared/livecheck.py --self-test
+
       - name: The record is findable, which no gate here was checking
         run: |
           # The site shipped valid structured data, a valid sitemap and a permissive
