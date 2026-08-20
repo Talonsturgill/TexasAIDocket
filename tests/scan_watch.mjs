@@ -15,7 +15,15 @@
 //
 //     SITE=docs node tests/scan_watch.mjs
 
-import pw from '/opt/node22/lib/node_modules/playwright/index.js'; const { chromium } = pw;
+import { chromium } from "playwright";
+/* Some environments ship a chromium whose build number does not match the npm package's
+   pinned one. Where a preinstalled binary exists, use it rather than downloading a second
+   copy; where it does not, let playwright resolve its own. Hardcoding either breaks the
+   other, and this test has to run both on a dev container and on a CI runner. */
+import fs from "node:fs";
+const PREINSTALLED = process.env.PLAYWRIGHT_CHROMIUM || "/opt/pw-browsers/chromium";
+const LAUNCH = fs.existsSync(PREINSTALLED) ? { executablePath: PREINSTALLED } : {};
+
 import path from 'node:path';
 import http from 'node:http';
 import { createReadStream, statSync } from 'node:fs';
@@ -28,7 +36,7 @@ const ok = (label, cond, extra="") => {
   console.log(`  ${cond ? "ok  " : "FAIL"}  ${label}${cond ? "" : "  " + extra}`);
   if (!cond) fails++;
 };
-const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
+const b = await chromium.launch(LAUNCH);
 
 async function run(token, replies) {
   const p = await b.newPage({ viewport:{width:900,height:900} });
@@ -156,6 +164,35 @@ console.log("=== the form hands the requester over ===");
   const st = await p.evaluate(() => document.getElementById("wstate")?.textContent.trim() || "");
   ok("...and it says the run is queued rather than showing an empty page", /queued/i.test(st), st);
   await p.close();
+
+  // ABSENCE IS NOT A REFUSAL, and the difference is a lost request. A Worker that has not been
+  // deployed answers on its own hostname with a 404, which does not throw, so the form used to
+  // read it as a decision and show it to the requester. The mail path exists for exactly this
+  // and never ran. A cap or a captcha IS a decision and must not fall through, or the daily
+  // cap can be posted around, so both directions are checked.
+  for (const [code, label, shouldMail] of [
+    [404, "a gatekeeper that is not deployed", true],
+    [503, "a gatekeeper that is broken", true],
+    [429, "a gatekeeper that says the cap is reached", false],
+    [403, "a gatekeeper that says the captcha failed", false],
+  ]) {
+    const q = await b.newPage({ viewport:{width:900,height:900} });
+    let mailed = false;
+    await q.route("**/request", r => r.fulfill({ status: code, contentType:"application/json",
+      body: JSON.stringify({ error: "nope" }) }));
+    await q.route("**/formsubmit.co/**", r => { mailed = true; r.fulfill({ status:200, body:"ok" }); });
+    await q.goto(`${origin}/scan/`, {waitUntil:"load"});
+    // BOTH REQUIRED FIELDS, or the browser blocks the submit on its own validation and the
+    // handler under test never runs. The first draft of this loop filled only the url and read
+    // "no mail was sent" as a product failure, when nothing had been submitted at all.
+    await q.fill("#start form.leadform [name=website]", "https://example.com");
+    await q.fill("#start form.leadform [name=email]", "someone@example.com");
+    await q.click("#start form.leadform button[type=submit]");
+    await q.waitForTimeout(900);
+    ok(`${label} ${shouldMail ? "falls back to the mailbox" : "is shown, not posted around"}`,
+       mailed === shouldMail, `mailed=${mailed}`);
+    await q.close();
+  }
   await new Promise(r => server.close(r));
 }
 

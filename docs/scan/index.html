@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-q70ohTjTWe13cEHglii1obWkfKJc4uV6Rp35KF0oTpA=' 'sha256-icDvO3zBg5pjgQOXCKx5f1JVnKbKLpUkxJNX74iJl1s=' 'sha256-E+gQOwXUGOnINfcOi9J56cHSAdhMH3938O1TEklKmKM=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-q70ohTjTWe13cEHglii1obWkfKJc4uV6Rp35KF0oTpA=' 'sha256-S9o8Q22wa+D1Yh4iMeU17g3pgAdk5LfQq/3L29K/NvE=' 'sha256-E+gQOwXUGOnINfcOi9J56cHSAdhMH3938O1TEklKmKM=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Bottleneck scan · Texas AI Docket</title>
@@ -127,7 +127,7 @@
         })
       }).then(function (r) {
         return r.json().catch(function () { return {}; }).then(function (b) {
-          return { ok: r.ok, body: b };
+          return { ok: r.ok, status: r.status, body: b };
         });
       }).then(function (res) {
         if (res.ok) {
@@ -149,7 +149,17 @@
         }
         // A REFUSAL IS A DECISION AND IS NOT RETRIED. Falling through to the email path on a
         // 429 would post around the daily cap, which is the one thing standing between a
-        // public form and a bill.
+        // public form and a bill. Same for a 403 from the captcha and a 400 for a bad url:
+        // the gatekeeper answered, and its answer is the point.
+        //
+        // BUT A GATEKEEPER THAT IS NOT THERE HAS NOT DECIDED ANYTHING. A 404 is what an
+        // undeployed Worker's own hostname returns, and a 5xx is one that is broken or
+        // unconfigured. Both used to land here and be shown to the requester as a refusal,
+        // which loses the request: the fetch did not throw, so the email path below never ran.
+        // That made the day between shipping this page and deploying the Worker a day with a
+        // dead form and no queue behind it. Absence is an accident, so it takes the same path
+        // an accident takes.
+        if (res.status === 404 || res.status >= 500) { form.submit(); return; }
         button.disabled = false;
         if (window.turnstile) window.turnstile.reset();
         say(res.body.error || 'That did not go through. Try again in a moment.');

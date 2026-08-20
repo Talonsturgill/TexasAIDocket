@@ -3312,7 +3312,7 @@ _SCAN_JS = """
         })
       }).then(function (r) {
         return r.json().catch(function () { return {}; }).then(function (b) {
-          return { ok: r.ok, body: b };
+          return { ok: r.ok, status: r.status, body: b };
         });
       }).then(function (res) {
         if (res.ok) {
@@ -3334,7 +3334,17 @@ _SCAN_JS = """
         }
         // A REFUSAL IS A DECISION AND IS NOT RETRIED. Falling through to the email path on a
         // 429 would post around the daily cap, which is the one thing standing between a
-        // public form and a bill.
+        // public form and a bill. Same for a 403 from the captcha and a 400 for a bad url:
+        // the gatekeeper answered, and its answer is the point.
+        //
+        // BUT A GATEKEEPER THAT IS NOT THERE HAS NOT DECIDED ANYTHING. A 404 is what an
+        // undeployed Worker's own hostname returns, and a 5xx is one that is broken or
+        // unconfigured. Both used to land here and be shown to the requester as a refusal,
+        // which loses the request: the fetch did not throw, so the email path below never ran.
+        // That made the day between shipping this page and deploying the Worker a day with a
+        // dead form and no queue behind it. Absence is an accident, so it takes the same path
+        // an accident takes.
+        if (res.status === 404 || res.status >= 500) { form.submit(); return; }
         button.disabled = false;
         if (window.turnstile) window.turnstile.reset();
         say(res.body.error || 'That did not go through. Try again in a moment.');

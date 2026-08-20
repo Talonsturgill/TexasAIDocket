@@ -32,7 +32,7 @@
  *
  * Exit 0 clean, 1 a violation, 2 could not run.
  */
-import pw from '/opt/node22/lib/node_modules/playwright/index.js'; const { chromium } = pw;
+import { chromium } from "playwright";
 import { readFileSync, existsSync, readdirSync, statSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 
@@ -85,9 +85,14 @@ const say = (ok, label, extra = '') => {
 };
 
 // ---------------------------------------------------------------- the browser pass
-// Same launch every other suite in this directory uses. A bare `chromium.launch()`
-// looks for the headless shell, which this image does not ship.
-const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
+/* Some environments ship a chromium whose build number does not match the npm package's
+   pinned one. Where a preinstalled binary exists, use it rather than downloading a second
+   copy; where it does not, let playwright resolve its own. Hardcoding either breaks the
+   other, and this test has to run both on a dev container and on a CI runner. */
+import fs from "node:fs";
+const PREINSTALLED = process.env.PLAYWRIGHT_CHROMIUM || "/opt/pw-browsers/chromium";
+const LAUNCH = fs.existsSync(PREINSTALLED) ? { executablePath: PREINSTALLED } : {};
+const browser = await chromium.launch(LAUNCH);
 const ctx = await browser.newContext();
 
 for (const file of sample) {
