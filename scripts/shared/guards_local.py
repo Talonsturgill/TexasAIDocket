@@ -81,13 +81,38 @@ NODE_SUITE_MARKERS = ("node tests/",)
 
 
 class Step:
-    def __init__(self, name: str, run: str):
+    def __init__(self, name: str, run: str, env: dict | None = None):
         self.name = name
         self.run = run
+        # THE STEP'S `env:` BLOCK, AND WHY THIS RUNNER HAS TO READ IT.
+        #
+        # A step's CI context can reach bash by two routes, and until 2026-08-20 this file knew
+        # only one. `${{ }}` interpolated straight into `run:` is the route it watched for. The
+        # other is `env:`, where the expression sits beside the script rather than inside it.
+        #
+        # On 2026-08-19 the Ownership step moved its branch name from `run:` to `env:`, because
+        # a branch name is attacker controlled and interpolating one into a shell is a command
+        # injection. That fix was right. Its side effect was that this runner stopped seeing any
+        # `${{ }}` in the step at all, classified a CI-only step as an ordinary local check, and
+        # ran it with `BRANCH_NAME` unset. It failed on every clean checkout from that day on.
+        #
+        # A `guards_local` that is red on a clean checkout is worse than one that is missing.
+        # The whole point of it is that a person runs it before pushing and believes the answer,
+        # and a check that is always red teaches them to stop reading it. Same shape as the
+        # faults GATE_LESSONS collects: a CONSUMER reading only half of what the PRODUCER writes.
+        self.env = env or {}
 
     @property
     def needs_ci(self) -> bool:
-        return bool(CI_EXPR.search(self.run))
+        """True if anything the step depends on comes from the event payload.
+
+        Both routes count. The `env:` values are joined and searched with the same pattern,
+        because an expression is CI-only wherever it is written.
+        """
+        haystack = self.run + "\n" + "\n".join(
+            f"{k}={v}" for k, v in self.env.items()
+        )
+        return bool(CI_EXPR.search(haystack))
 
     @property
     def is_setup(self) -> bool:
@@ -120,7 +145,12 @@ def steps(workflow: Path = WORKFLOW) -> list[Step]:
             run = step.get("run")
             if not run:
                 continue                       # a `uses:` step: nothing to run here
-            found.append(Step(step.get("name") or f"{job_name} step {i + 1}", run))
+            # `env:` comes along because a CI expression can live there instead of in `run:`.
+            # See Step.__init__ for the run this cost.
+            env = step.get("env") or {}
+            if not isinstance(env, dict):
+                env = {}
+            found.append(Step(step.get("name") or f"{job_name} step {i + 1}", run, env))
     return found
 
 
@@ -336,6 +366,50 @@ jobs:
 """)
     ok("a step carrying a CI expression is recognised", ci[0].needs_ci)
     ok("...and a plain one is not", not got[0].needs_ci)
+
+    # THE 2026-08-20 DEFECT, REPLAYED IN THE SHAPE IT ACTUALLY SHIPPED IN.
+    #
+    # The Ownership step's branch name moved out of `run:` and into `env:` on 2026-08-19, to
+    # close a command injection. From that push until this fix, `needs_ci` searched only `run:`,
+    # found no expression, ran the step locally with BRANCH_NAME unset, and guards_local exited
+    # 1 on a clean checkout of main. Nothing in this file's suite could see it, because every
+    # case here put the expression in `run:`.
+    env_ci = parse("""
+jobs:
+  g:
+    steps:
+      - name: Ownership check
+        env:
+          BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+        run: |
+          python3 scripts/shared/ownership_check.py --branch "$BRANCH_NAME"
+""")
+    ok("an expression in `env:` makes the step CI-only, same as one in `run:`",
+       env_ci[0].needs_ci,
+       "it would run here with the variable unset and fail on a clean checkout")
+    ok("...and the env block is carried onto the step rather than dropped at parse",
+       "github.head_ref" in "".join(str(v) for v in env_ci[0].env.values()))
+    ok("...while a step with a plain env block is still an ordinary local check",
+       not parse("""
+jobs:
+  g:
+    steps:
+      - name: Plain
+        env:
+          SITE: docs
+        run: python3 scripts/x.py --self-test
+""")[0].needs_ci)
+
+    # AND THE PRODUCT, NOT ONLY THE LOGIC. The case above proves the classifier can tell the
+    # two apart. This asserts the REAL workflow's own Ownership step is on the skip side of it,
+    # which is the thing that was actually broken. A checker that only tests its own synthetic
+    # fixture is the wrong half, which is the lesson in this file's own docstring.
+    real = [s for s in steps() if "ownership_check.py --branch" in s.run]
+    ok("the real workflow still has an Ownership step to classify", len(real) == 1,
+       f"found {len(real)}; if it was renamed or removed, this assertion is stale")
+    ok("...and this checkout classifies it as CI-only, so it does not run here",
+       all(s.needs_ci for s in real),
+       "guards_local would run it with no branch and go red on a clean checkout")
 
     setup = parse("""
 jobs:
