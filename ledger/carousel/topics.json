@@ -107,12 +107,9 @@
     "Flock Safety",
     "Nick Long",
     "Courtney Chadwell",
-    "Galveston County",
     "Pflugerville",
     "Pflugerville City Council",
     "2026 Pflugerville Charter Review Commission",
-    "Travis County",
-    "Williamson County",
     "Lago Vista"
    ],
    "keywords": [
@@ -129,7 +126,8 @@
     "special election",
     "surveillance",
     "open meeting"
-   ]
+   ],
+   "entities_note": "Three counties were listed here and NOT ONE claim in this run names a county. The deck cut its cartographic frame for exactly that reason and says so in its own storyboard, and the variety ledger went on carrying the counties anyway, where the dedupe gate would have compared future runs against entities this record never established. Dropped: Galveston County, Travis County, Williamson County."
   }
  ]
 }

@@ -15,7 +15,8 @@
    "first_line": "the actual first line, VERBATIM. Stored because the critic's real job is catching a sentence skeleton that survived a change of nouns, and it can only do that with the real lines in front of it",
    "words": "measured by caption_check.py, never typed",
    "commas_per_100w": "measured by caption_check.py, never typed. This is the corpus the ceiling will be computed from"
-  }
+  },
+  "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries, newest first, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
   "the object",
@@ -73,7 +74,7 @@
  ],
  "structures_recent": [
   "ledger",
-  "pivot",
+  "two columns",
   "question and answer"
  ],
  "closing_moves_recent": [

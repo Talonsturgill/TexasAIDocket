@@ -123,7 +123,7 @@
     "a raking slab with two-part contact shadows and individually lit stacked sheet edges",
     "a bounded hard-edge figure inside an unbounded warped wash that reaches every frame edge",
     "the empty field, bounded by a neatline and dimension ticks",
-    "a punched perforation, unbroken, each hole with its own lit lip and cast shadow",
+    "a punched perforation, unbroken, each hole a lit lip and a cast shadow drawn as FILLED crescents with the far wall of the hole visible low and right",
     "the ballot's foot reset as a drawing sheet's title block"
    ],
    "palette": {
@@ -141,7 +141,7 @@
    "red_on_slide": [
     7
    ],
-   "red_note": "Spent once, on the closing frame, on the event, the date and the hour of the League City council's next open meeting, with a solid rule beneath so the focal is an area. November 3rd is DENIED the red on every frame it appears on, because a nonbinding election is not a deadline and the deck's argument is that the date which looks like the decision is not the one. Measured 5.12 to 1 on the stock and 2.89 on the dark ground, which is why only a paper frame could carry it.",
+   "red_note": "Spent once, on the closing frame, on the label, the date and the hour of the League City council's next regular meeting, with a solid rule beneath so the focal is an area. November 3rd is DENIED the red on every frame it appears on, because a nonbinding election is not a deadline and the deck's argument is that the date which looks like the decision is not the one. Measured 5.12 to 1 on the stock and 2.89 on the dark ground, which is why only a paper frame could carry it.",
    "camera": "one centimetre off the paper, backing away one readable step per frame, flat copy stand at 2 and 3, the table tilts once at 4 and holds through 5, plan view over an almost empty card at 6, square to the foot of the ballot at 7",
    "light_decks_used": 1,
    "slides": 7,
@@ -149,12 +149,20 @@
    "bespoke_closest_pair": "slide-06.html and slide-07.html at 0.7412, the two pale typographic frames the deck ends on",
    "cut": "TWO frames were cut, both by scoring panels rather than by the showrunner. The duration-as-extent inversion went after panel one, where all three judges called it slide 5's argument made twice in a weaker drawing and its own dossier had named the bar chart risk that landed. The county map went after panel two, which found it asserting a county membership no claim supports and a universal negative that is probably wrong. NO CARTOGRAPHY SHIPPED and no county is named anywhere in this deck.",
    "structural_laws": [
-    "every mark is either printed or added, never both",
-    "the two grounds never mix, and the palette is craft and never evidence, so no frame names a soil",
+    "every mark is either printed or added, never both, and a press artifact is a third thing. Slide 2's second impression of the opening clause is letterforms and is nobody's line to read, declared aria-hidden and decorative at a measured 1.47 to 1",
+    "the two GROUNDS never mix, and lit paper is not a ground. A frame stands on stock or on houston_black and never both. Stock VALUE appears on three of the dark frames, on the charter's lit course, the ballot card and the bounded figure, because paper under the deck's one lamp reads as paper wherever it lies. The law as first written said stock never crosses at all, and the fourth panel was right that the renders had already contradicted it",
+    "the palette is craft and never evidence, so no frame names a soil",
     "an oval is never furniture, and it is empty or filled, never partly",
     "the perforation never tears, because the election has not happened",
     "the stock is new, no stains, no yellowing, no deckle",
     "no numeral appears that is not in claims.json, and no county and no distance appears at all"
+   ],
+   "fourth_panel_repairs": [
+    "November 3rd, 2026 is now printed on frames 3, 4 and 7. Seven slides about a referendum named the election on none of them, and the caption is the only place it appeared. It takes no red on any of the three, per the law that already governed frames which did not exist",
+    "slide 4's dek was an ordinance citation welded out of two claims that nothing joins. c16's quote gives Ordinance No. 2026-27 and c2's gives August 11th, and no fetched record puts that number on that date. The dek is now the election date, which both c2 and c12 quote",
+    "the closing frame's eyebrow read 'where it gets decided' over a bare OPEN MEETING. The sentences stayed inside c16's fence and the LAYOUT did not, which is a verdict delivered by composition and no gate can see it. The label is now the record's own 'next regular meeting'",
+    "the perforation was drawn as hairline ARCS, a near-white stroke on cream and a dark stroke against a dark hole. Both were invisible and the ledger had recorded them as shipped. Redrawn as filled bodies stacked in light order",
+    "every <br> in the deck now carries a space before it. Without one the two words close up in textContent, which is what every gate reads, and slide 2's 'Read the first seven words.' was invisible to aggregate_check for the whole run as 'Read the firstseven words.'"
    ]
   }
  ]
