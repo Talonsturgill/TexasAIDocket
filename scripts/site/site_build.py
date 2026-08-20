@@ -5234,6 +5234,11 @@ def build(out: Path, today: str) -> dict:
     # intake outlived the intake by a day and no gate said so, because an over-wide policy
     # refuses nothing and therefore reports nothing.
     broken.extend(csp.unused_connect(connect_seen))
+    # THE FILMS' OWN ORIGIN, checked against the policy this build just wrote. Neither video
+    # surface writes the address into markup, so `csp.audit`'s attribute patterns see nothing on
+    # a site whose every film is being refused. The manifest is where the origin actually lives,
+    # and TexasAIDispatch can change it without a byte of this repo changing.
+    broken.extend(csp.unaudited_media(video_feed(), SITE_URL))
 
     # THE GATE FIRES HERE, after every page is written, so the report names all of them
     # rather than the first. A build that would publish a typed numeral does not publish.

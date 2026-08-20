@@ -207,6 +207,26 @@ time: a rule stated in config, a surface that keeps its own copy, and nothing in
 they agree. `coherence_check.py` now asserts the rendered site line equals the brand.yaml value on
 every frame, so a fourth one fails the build instead of shipping.
 
+## Scratch never leaves the working tree (AUTHORITATIVE)
+
+**Every temporary file a run writes goes in `out/<run>/tmp/`. Never `/tmp`, never a system
+scratchpad, never anywhere outside this directory.** `out/` is gitignored, so nothing there is
+ever committed, and it is inside the tree, which is the whole point.
+
+This is not tidiness. The Bash sandbox and the permission mode are two different mechanisms, and
+knowing that is worth an afternoon. `.claude/settings.json` has set `bypassPermissions` since
+2026-08-11 and it is correct. A SANDBOXED command that writes outside the working tree still
+cannot complete, and the tool then stops and asks to re-run it unsandboxed, which is a prompt the
+permission mode does not reach. An unattended run has nobody to answer it.
+
+On 2026-08-20 the owner was interrupted twice by exactly this, on a run whose permissions had been
+right for nine days, and the session went looking at the permission mode first because that is
+where the word permission is. A run that keeps its scratch inside the tree never has the problem
+and never has to work out why it had it.
+
+The exception a session will reach for and must not take: writing outside the tree "just this
+once" for a big file. `out/<run>/tmp/` takes big files.
+
 ## Layout
 
 - `prompts/` — `daily_routine.md` is the single source of truth for the one daily routine, which
