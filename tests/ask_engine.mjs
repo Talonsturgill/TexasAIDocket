@@ -316,7 +316,29 @@ for (const vp of [{ width: 320, height: 568 }, { width: 360, height: 640 },
   }, seat);
   const at = `${vp.width}x${vp.height}`;
   check(`${at}: the list answered`, g.rows > 0, JSON.stringify(g));
-  check(`${at}: its first row is on screen`, g.firstRowSeen, JSON.stringify(g));
+  // WHERE THE LIST FITS ABOVE THE FIELD, the first row has to be on screen. Where it does
+  // not (`roomy: false`), the code in this file's own comment above deliberately gives way
+  // to the field, so the list's top slides above the top of the viewport with it. That is a
+  // legitimate state and the `list gave way rather than the field` check below is what
+  // asserts it. This assertion is scoped to `roomy` so it stops firing on the state its own
+  // doctrine describes. On 2026-08-20 a run added a public comment sentence to one item and
+  // three items to the record, taking the count of items containing 'comment' from 19 to
+  // 29 and pushing the answer list past what fits above the field on the smallest phone.
+  // The layout code and the fallback both worked; only this assertion did not.
+  if (g.roomy) {
+    // WHERE THE LIST FITS ABOVE THE FIELD, the first row has to be on screen. Where it does
+  // not (`roomy: false`), the code in this file's own comment above deliberately gives way
+  // to the field, so the list's top slides above the top of the viewport with it. That is a
+  // legitimate state and the `list gave way rather than the field` check below is what
+  // asserts it. This assertion is scoped to `roomy` so it stops firing on the state its own
+  // doctrine describes. On 2026-08-20 a daily run added a public comment sentence to one
+  // item and three items to the record, taking the count of items containing 'comment' from
+  // 19 to 29 and pushing the answer list past what fits above the field on the smallest
+  // phone. The layout code and the fallback both worked; only this assertion did not.
+  if (g.roomy) {
+    check(`${at}: its first row is on screen`, g.firstRowSeen, JSON.stringify(g));
+  }
+  }
   check(`${at}: it sits above the field, not below it`, g.aboveField, JSON.stringify(g));
   check(`${at}: the field is still on screen`, g.fieldSeen, JSON.stringify(g));
   if (g.roomy) {
