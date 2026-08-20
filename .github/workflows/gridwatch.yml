@@ -127,6 +127,30 @@ jobs:
           # an ERCOT day, and the step order puts the irreplaceable one first.
           python3 scripts/gridwatch/waterwatch_collect.py --collect
 
+      # THE MAP'S PINS FOLLOW THE COLLECTOR'S OWN ARCHIVE.
+      #
+      # Reservoir positions live in a committed asset because a gauge does not move and storing
+      # a constant in a daily series is waste. The day TWDB adds a reservoir, the payload above
+      # carries it and the asset does not, so the water map silently draws one pin short and
+      # the reproducibility check in guards goes red on main. On a site with nobody watching,
+      # red on main is where it stays.
+      #
+      # So the collector keeps its own pins current. It can only ADD: `reservoirs.py` refuses a
+      # coordinate that disagrees with the one on file rather than picking a side, which is
+      # what makes this safe to hand to a cron. A moved gauge is still a human's problem, and
+      # it fails loudly rather than being resolved quietly.
+      #
+      # `continue-on-error`, on the same reasoning as the collection above. A pin file that did
+      # not update must never cost the day's reading.
+      - name: Keep the reservoir pins in step with the archive
+        id: pins
+        continue-on-error: true
+        run: python3 scripts/shared/reservoirs.py build
+
+      - name: Say plainly if the pins did not update
+        if: steps.pins.outcome == 'failure'
+        run: echo "::warning::reservoir positions did not rebuild; the map may be a pin short"
+
       - name: Say plainly if the water collection failed
         if: steps.water.outcome == 'failure'
         run: echo "::warning::the reservoir reading did not land; the grid reading is unaffected"
