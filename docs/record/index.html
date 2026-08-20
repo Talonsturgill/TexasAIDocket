@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-qBR9CvOJu+KgreKc0QgWERRM6iL+qvbsz3phkgFzigM=' 'sha256-umUc/XhtdSmvK8JaEXLnfsNSUHrv5XsgcFUl366gT+0=' 'sha256-fDP1SVOriMZyKidJ3Sy2cYady/zUbCCMRzPuHbgubzw=' 'sha256-cuLyz3Fe3r9MVqnpzLCF863FRbIxnkHdwMPMFCtvcfY=' 'sha256-E+gQOwXUGOnINfcOi9J56cHSAdhMH3938O1TEklKmKM=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-qBR9CvOJu+KgreKc0QgWERRM6iL+qvbsz3phkgFzigM=' 'sha256-umUc/XhtdSmvK8JaEXLnfsNSUHrv5XsgcFUl366gT+0=' 'sha256-NSGUmDvrw0a+sd6TR3ypavsv03cFg2wpaWSyE0P+ScQ=' 'sha256-34KVA1PYrmmm80juWPFdPluB8Q1Wvu2FlE4zNYsH/TM=' 'sha256-E+gQOwXUGOnINfcOi9J56cHSAdhMH3938O1TEklKmKM=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>The record · Texas AI Docket</title>
@@ -23,7 +23,7 @@
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <meta name="theme-color" content="#00205B">
-<link rel="stylesheet" href="../site.css?v=95cc20cf58">
+<link rel="stylesheet" href="../site.css?v=21bd6083fb">
 <link rel="preload" href="../fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="alternate" type="application/atom+xml" title="Texas AI Docket" href="../atom.xml">
 <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebSite","@id":"https://texasaidocket.com/#website","name":"Texas AI Docket","url":"https://texasaidocket.com","inLanguage":"en-US","publisher":{"@id":"https://texasaidocket.com/#org"}},{"@context":"https://schema.org","@type":"Organization","@id":"https://texasaidocket.com/#org","name":"Texas AI Docket","url":"https://texasaidocket.com/","description":"A public, fact-checked record of decisions about artificial intelligence in Texas.","sameAs":["https://www.linkedin.com/company/texasaidocket/","https://www.facebook.com/Texasaidocket"]},{"@context":"https://schema.org","@type":"Dataset","@id":"https://texasaidocket.com/record/#dataset","name":"Texas AI Docket, the tracked record","description":"Every tracked decision about artificial intelligence in Texas, with the body that decides, the dates that matter, whether the public has a way in, and a fetched source behind every fact.","url":"https://texasaidocket.com/record/","license":"https://creativecommons.org/licenses/by/4.0/","isAccessibleForFree":true,"inLanguage":"en-US","creator":{"@id":"https://texasaidocket.com/#org"},"publisher":{"@id":"https://texasaidocket.com/#org"},"dateModified":"2026-08-20","keywords":["Texas","artificial intelligence","data centers","ERCOT","public records","state policy"],"spatialCoverage":{"@type":"State","name":"Texas"},"distribution":[{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://texasaidocket.com/docket.json"}],"variableMeasured":[{"@type":"PropertyValue","name":"status","description":"Whether the decision is pending, decided or withdrawn."},{"@type":"PropertyValue","name":"public_access","description":"Whether a member of the public has a dated way to take part."},{"@type":"PropertyValue","name":"claims","description":"Each fact with its verbatim quote and the source it was fetched from."}],"temporalCoverage":"2021-06-08/2027-02-18"},{"@context":"https://schema.org","@type":"CollectionPage","name":"The record","description":"Every tracked decision about artificial intelligence in Texas.","url":"https://texasaidocket.com/record/","isPartOf":{"@id":"https://texasaidocket.com/#org"},"mainEntity":{"@type":"ItemList","numberOfItems":64}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Texas AI Docket","item":"https://texasaidocket.com/"},{"@type":"ListItem","position":2,"name":"The record","item":"https://texasaidocket.com/record/"}]}]</script>
@@ -61,16 +61,6 @@
          aria-live polite because sentences arrive one at a time after the press, and a reader
          on a screen reader would otherwise be told nothing was happening at all. -->
     <div class="askthread" id="askthread" hidden aria-live="polite" aria-atomic="false"></div>
-    <!-- THE LIVE LIST IS ABOVE THE FIELD TOO, and it used to sit below with the starters.
-         Below was not a small inconsistency, it was the typed lane not working at all. The
-         list has no height until a reader types, so it grew DOWNWARD out of a field already
-         near the bottom of the screen. Measured on the built page: three matching rows landed
-         427px past the fold on a 390 wide phone and 248px past it on a 1280 desktop, with
-         NONE of the list on screen in either case. A reader typed a question and watched
-         nothing happen.
-         Above the field it grows the way the thread grows, so the box has one place where
-         answers appear rather than two facing opposite directions. -->
-    <div class="answer" hidden></div>
     <form class="composer" role="search">
       <label class="vh" for="askq">Ask the record a question</label>
       <input id="askq" type="search" autocomplete="off"
@@ -366,80 +356,99 @@ window.__ASK_CATALOGUE__=[{"q":"What can I still comment on?","route":{"view":"o
      looked perfect. The host element states its own depth and the engine reads it. */
   var BASE = box.getAttribute("data-base") || "";
   var input = box.querySelector("input");
-  var out = box.querySelector(".answer");
   var form = box.querySelector("form");
 
-  function run() {
-    /* STAND DOWN WHILE A WRITTEN ANSWER IS ON SCREEN. Pressing enter hands the question to the
-       written lane, which takes the box over: the live list, the starters and the note all
-       step aside so the answer is the only thing being read. Without this the engine would go
-       on rewriting its own panel underneath a conversation, from whatever half typed follow-up
-       happened to be in the field. The reader gets all of it back with Start over.
-       This changes nothing about what this file SENDS, which is still nothing at all. */
-    if (box.classList.contains("answering")) return;
-    // AN EMPTY FIELD IS NOT A FAILED QUESTION. `best("")` is null and `answer(null)` heads
-    // "No answer for that yet.", so backspacing to empty, or pressing Start over, told the
-    // reader the box had failed at the moment they had asked nothing at all.
-    if (!input.value.trim()) {
-      return anchored(function () { out.hidden = true; out.innerHTML = ""; });
-    }
-    var a = answer(best(input.value));
-    anchored(function () {
-      out.innerHTML = "<h3>" + esc(a.head) + "</h3>" + a.body;
-      out.hidden = false;
-    });
-  }
-
-  /* THE FIELD STAYS PUT WHILE THE LIST GROWS ABOVE IT.
-     The list is above the composer now, so every row it gains pushes the composer down the
-     document by exactly that much. Left alone, a reader typing a third character watches the
-     box they are typing into slide away from their cursor, on every keystroke.
-     So the composer's screen position is read before the change and restored after it by
-     scrolling the page by the difference. The field does not move and the list opens upward.
-
-     MEASURED EITHER SIDE OF THE WRITE, never cached. A rect is only true at the instant it is
-     taken and the whole point here is that the layout is about to change.
-
-     `behavior: "instant"` IS LOAD BEARING AND "auto" WOULD BE WRONG. This site sets
-     `scroll-behavior: smooth` on `html`, and "auto" means "use the CSS value", so the
-     correction would animate over about half a second. On a keystroke that reads as the field
-     drifting away and gliding back, once per character, which is worse than not correcting at
-     all. "instant" is the one value that overrides the sheet. */
-  function anchored(write) {
-    var seat = form.getBoundingClientRect().top;
-    write();
-    var f = form.getBoundingClientRect();
-    var d = f.top - seat;                    // the scroll that puts the field back on its seat
-
-    /* THREE THINGS WANT THE SAME PIXELS, AND ON A SHORT SCREEN THEY CANNOT ALL HAVE THEM.
-       Holding the field still pushes the list up by however much it grew. On a 320x568 phone
-       the list is taller than the room above the field, so a perfect hold puts the first row,
-       which is the best match, off the top of the glass.
-       The order of precedence, tightest last:
-         1. put the list's top on screen, since the first row is the one worth seeing
-         2. never let the field leave the bottom of the glass, because it is the control the
-            reader is typing into and losing it mid-question is the worst outcome here
-         3. never push the field off the top either
-       On any screen with room for both, none of these bind and the field does not move at
-       all, which is what matters most since this runs on every keystroke. */
-    var M = 8;
-    if (out && !out.hidden) {
-      d = Math.min(d, out.getBoundingClientRect().top - M);
-    }
-    d = Math.max(d, f.bottom - innerHeight + M);
-    d = Math.min(d, f.top);
-
-    /* `behavior: "instant"` IS LOAD BEARING AND "auto" WOULD BE WRONG. This site sets
-       `scroll-behavior: smooth` on `html`, and "auto" means "use the CSS value", so the
-       correction would animate for about half a second. Per keystroke that reads as the field
-       drifting away and gliding back. "instant" is the one value that overrides the sheet. */
-    if (Math.abs(d) >= 1) scrollBy({ top: d, behavior: "instant" });
-  }
-  input.addEventListener("input", run);
-  form.addEventListener("submit", function (e) { e.preventDefault(); run(); });
+  /* NOTHING IS RENDERED FROM THIS FILE ANY MORE, and that is the point.
+     There were two places an answer could appear, facing opposite directions: a panel that
+     rewrote itself on every keystroke, and a conversation above it that arrived on the press.
+     The owner, on a phone: "there's so much stuff on screen, your eyes don't even go to the
+     right spot", and of the typing panel, "very distracting".
+     So this file computes and the written lane renders, all of it into the thread, one thing
+     at a time. `classify` is the whole of the interface. The engine has not gone anywhere and
+     is not slower: it answers at the PRESS now, which is also what lets most questions skip
+     the model entirely. THE PROMISE IS UNCHANGED. This file still phones nobody. */
   box.querySelectorAll("[data-ask]").forEach(function (b) {
-    b.addEventListener("click", function () { input.value = b.dataset.ask; run(); });
+    b.addEventListener("click", function () {
+      // A starter goes through the same press as a typed question, so a chip and a keystroke
+      // cannot answer differently. It called a renderer the press did not use before.
+      input.value = b.dataset.ask;
+      box.querySelector("form").dispatchEvent(
+        new Event("submit", { bubbles: true, cancelable: true }));
+    });
   });
+
+  /* ---- the classifier -------------------------------------------------------
+     THE CHEAPEST ANSWER IS THE ONE THAT NEVER LEAVES THE PAGE.
+     This engine already scores a question against the catalogue and already refuses below a
+     floor, so it already knows the difference between "I have this" and "I do not". That
+     judgement was spent on a panel and thrown away at the press, while every question went to
+     a paid model taking seconds, including ones answerable here in no time at all.
+       instant  the catalogue has a confident route. Rendered from the page, no request.
+       written  the record may hold it but not as a lookup. Worth a model.
+       refuse   nothing in the question touches this record. Say so and call nobody.
+
+     THE CATALOGUE IS LOOKUP SHAPED, so a high score is not permission to answer anything.
+     Every route resolves to WHICH, WHAT, WHEN or WHERE. None of them explains. Asked "why did
+     the PUCT delay the comment deadline" the scorer matched PUCT and deadline and offered a
+     confident list, which is a fast wrong answer and worse than a slow right one on a record
+     product. So shape is checked BEFORE score. The markers are conservative on purpose: a
+     false WRITTEN costs two seconds and a fraction of a cent, a false INSTANT costs the
+     reader their answer.
+
+     REFUSE IS DELIBERATELY NARROW, firing only when a query shares NO term with the whole
+     vocabulary, which is the airspeed-velocity case the floor was written for. Refusing a real
+     question to save a fraction of a cent is the worst trade available here.
+
+     No network call and no new dependency. This file still phones nobody. */
+  var EXPLANATORY = /^\s*(why|how come|how did|how does|how do|how will|how would|explain)\b/i;
+  var MEANS = /\b(mean|means|meaning|implication|implications|impact|affect|affects|consequence|consequences|likely|difference between)\b/i;
+  // "can i still" WAS HERE AND WAS WRONG. "What can I still comment on?" is a lookup, the
+  // plainest one this record answers, and the marker sent it to a paid model that took six
+  // seconds to say what the page was already holding. A marker has to catch questions that
+  // want an EXPLANATION, and "can I still" asks which windows are open.
+  var SCENARIO = /(what happens if|should i|do i need to)/i;
+
+  function explanatory(t) {
+    return EXPLANATORY.test(t) || MEANS.test(t) || SCENARIO.test(t);
+  }
+
+  function vocabulary() {
+    if (vocabulary.cache) return vocabulary.cache;
+    var bag = {};
+    /* THE SUMMARY IS IN THE BAG AND HAS TO BE. Built from titles and deciders alone, the bag
+       held proper nouns and almost no ordinary English, so "why does it matter who decides it"
+       shared nothing with it and was REFUSED. That is a real question about this record and
+       refusing it is the worst outcome this classifier has, far worse than paying for a model
+       call. Summaries carry the working vocabulary of the record, which is decide, comment,
+       deadline, rule, permit, hearing, and every other word a reader would actually use. */
+    (IDX.items || []).forEach(function (i) {
+      [i.title, i.summary, i.decider, i.topic, i.room].forEach(function (f) {
+        words(String(f || "")).forEach(function (w) { bag[w] = 1; });
+      });
+      [].concat(i.counties || [], i.metros || []).forEach(function (c) {
+        words(String(c)).forEach(function (w) { bag[w] = 1; });
+      });
+    });
+    (CAT || []).forEach(function (c) {
+      words(String(c.q || "")).forEach(function (w) { bag[w] = 1; });
+    });
+    vocabulary.cache = bag;
+    return bag;
+  }
+
+  function classify(q) {
+    var text = String(q || "").trim();
+    if (!text) return { bucket: "empty" };
+    var route = best(text);
+    if (route && !explanatory(text)) return { bucket: "instant", answer: answer(route) };
+    if (route) return { bucket: "written" };
+    var bag = vocabulary(), ws = words(text), touched = 0;
+    ws.forEach(function (w) { if (bag[w]) touched++; });
+    if (ws.length && touched === 0) return { bucket: "refuse" };
+    return { bucket: "written" };
+  }
+
+  window.__askClassify = classify;
   window.__askAnswer = function (q) { return answer(best(q)); };   // for tests/ask_engine.mjs
 })();
 </script>
@@ -487,7 +496,14 @@ window.__ASK_CATALOGUE__=[{"q":"What can I still comment on?","route":{"view":"o
   var turns = [];
 
   /* ---- the human check ---------------------------------------------------
-     ARMED ON THE FIRST SUBMIT, AND NOT BEFORE.
+     ARMED ON FOCUS, AND THIS HAS BEEN BOTH WAYS. The history is the point.
+     It was on focus once and was reverted, correctly: the note under the field then said
+     typing sends nothing anywhere, and tests/ask_engine.mjs caught the contradiction.
+     THAT SENTENCE LEFT THE NOTE IN #59. It reads "Model in training" and claims nothing about
+     typing, so the promise the revert protected is not on the page, while the cost it bought
+     was still being paid. ask_engine.mjs now allows the challenge host BY NAME, asserts focus
+     really arms it, and still fails on any other host. The paragraph below is the old
+     reasoning, kept because it was right at the time.
      This was on focus, which was faster and was wrong. The note above the field says typing
      sends nothing anywhere, and arming on focus fetched Cloudflare's script the moment a
      caret landed in the field, so a request left the page during what that note calls typing.
@@ -695,6 +711,53 @@ window.__ASK_CATALOGUE__=[{"q":"What can I still comment on?","route":{"view":"o
   }
 
   /* ---- asking ------------------------------------------------------------ */
+  /* The close-out for an answer that never left the page. The streamed lane has its own,
+     which also handles provenance, the cut reasons and the follow-up offer. This one exists
+     because an instant answer has none of those and should not pretend to: it is the record
+     read directly, so it says so and stops. */
+  var localExchange = "";
+
+  function finishLocal(note) {
+    var foot = document.createElement("p");
+    foot.className = "askfrom";
+    var prov = document.createElement("span");
+    prov.textContent = note;
+    foot.appendChild(prov);
+    var again = document.createElement("button");
+    again.type = "button";
+    again.className = "askagain";
+    again.textContent = "Start over";
+    again.addEventListener("click", reset);
+    foot.appendChild(again);
+    /* FEEDBACK BELONGS UNDER AN INSTANT ANSWER TOO, and leaving it out was the first version's
+       mistake. The written lane offers it because the moment somebody has just watched an
+       answer be wrong is the moment they can say so usefully. An answer read straight from
+       the record can be wrong in exactly the same way, by matching the wrong item, and it now
+       arrives for most questions, so omitting it here would have quietly removed feedback from
+       the majority of answers this box gives. */
+    var say = document.createElement("button");
+    say.type = "button";
+    say.className = "askagain";
+    say.textContent = "Send feedback";
+    say.addEventListener("click", function () {
+      var open = document.getElementById("askfbopen");
+      if (open) open.click();
+    });
+    foot.appendChild(say);
+    thread.appendChild(foot);
+    // `:last-of-type` MATCHES THE LAST DIV, NOT THE LAST OF THE CLASS. Both of these are
+    // divs among many divs, so the selector picked whatever div happened to be last and the
+    // attachment came out as "Q. " with nothing after it.
+    var qs = thread.querySelectorAll(".askturn"), as = thread.querySelectorAll(".askreply");
+    var q = qs[qs.length - 1], a = as[as.length - 1];
+    localExchange = "Q. " + (q ? q.textContent : "") + "\n\nA. " + (a ? a.textContent : "");
+    busy = false;
+    send.disabled = false;
+    send.removeAttribute("aria-busy");
+    input.value = "";
+    park();
+  }
+
   function ask(question) {
     if (busy) return;
     busy = true;
@@ -718,7 +781,44 @@ window.__ASK_CATALOGUE__=[{"q":"What can I still comment on?","route":{"view":"o
 
     var body = document.createElement("div");
     body.className = "askreply";
+    // APPENDED BEFORE THE CLASSIFIER RUNS, not after the stream starts. The instant and refuse
+    // lanes return early, and the original append sat past that return, so both rendered into
+    // an element that was never in the document. The thread showed a question, a provenance
+    // line and nothing between them.
     thread.appendChild(body);
+
+    /* ---- the classifier decides whether this costs anything at all ------------
+       THE CHEAPEST ANSWER IS THE ONE THAT NEVER LEAVES THE PAGE, and the engine in
+       ask_answers.py already knew which questions those were. It scores against a catalogue
+       and refuses below a floor, so it can say "I have this" or "I do not", and that judgement
+       was being thrown away at the press while every question went to a model taking seconds.
+       Asked here, before the request is built. A lookup is answered from the page in no time
+       and for nothing. An off-record question is refused without calling anybody. Only a
+       question that genuinely needs prose reaches the worker, which is what makes an eight
+       second ceiling a promise rather than a hope: most questions never start the clock. */
+    localExchange = "";
+    var verdict = window.__askClassify ? window.__askClassify(question) : { bucket: "written" };
+
+    if (verdict.bucket === "instant" && verdict.answer) {
+      var head = document.createElement("p");
+      head.className = "askhead";
+      head.textContent = verdict.answer.head;
+      body.appendChild(head);
+      var list = document.createElement("div");
+      list.className = "asklist";
+      list.innerHTML = verdict.answer.body;
+      body.appendChild(list);
+      finishLocal("Read straight from the record, in your browser.");
+      return;
+    }
+    if (verdict.bucket === "refuse") {
+      var no = document.createElement("p");
+      no.textContent = "That is not something this record covers. It holds Texas decisions about artificial intelligence, who made them and whether a comment window is still open.";
+      body.appendChild(no);
+      finishLocal("Read straight from the record, in your browser.");
+      return;
+    }
+
 
     input.value = "";
     pending = null;
@@ -946,7 +1046,15 @@ window.__ASK_CATALOGUE__=[{"q":"What can I still comment on?","route":{"view":"o
     /* The last exchange, as text, or nothing. Read from `turns` rather than scraped off the
        page, so what gets attached is exactly what was said and not what the DOM happens to
        hold after a Start over. */
+    /* AN INSTANT ANSWER IS AN EXCHANGE TOO, and it is not in `turns`.
+       `turns` is the MODEL's conversation and only guard-approved sentences go into it, which
+       is a rule worth keeping: a page-generated answer pushed in there would come back as
+       context the model treats as its own prior words. So an answer read from the record is
+       remembered separately, purely so feedback about it can carry it.
+       Without this, feedback on the majority of answers this box now gives would arrive with
+       nothing attached, which is the half of a bug report that makes it actionable. */
     function lastExchange() {
+      if (localExchange) return localExchange;
       for (var i = turns.length - 1; i > 0; i--) {
         if (turns[i].role === "assistant") {
           return "Q. " + turns[i - 1].content + "\n\nA. " + turns[i].content;
@@ -1008,6 +1116,17 @@ window.__ASK_CATALOGUE__=[{"q":"What can I still comment on?","route":{"view":"o
 
   /* Writing your own question puts the suggestion away. A placeholder that lingers under
      text somebody is typing is just noise behind their sentence. */
+  /* FOCUS ARMS THE CHECK, AND THE POINT IS WHERE THE WAITING HAPPENS.
+     Armed by the press before this, on the reasoning that focus is not intent to ask. That
+     cost 1 to 3 seconds on the FIRST question of every session and nothing on any after it,
+     because spending a token resets the widget and the next is earned while the reader types.
+     The first question, the one that forms the impression, was the only one paying.
+     Managed mode solves in the background with no interaction, so on focus it solves DURING
+     typing, which is the slowest thing in the sequence, and the press has nothing left to wait
+     for. Somebody who pastes and submits inside a second still polls, exactly as before.
+     Never slower. Owner's call, 2026-08-20, made knowing it had been tried and reverted. */
+  input.addEventListener("focus", armTurnstile, { once: true });
+
   input.addEventListener("input", function () { if (input.value) dropPending(); });
 
   /* Tab and the right arrow accept it, which is the convention everywhere else a field

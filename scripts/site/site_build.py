@@ -3168,16 +3168,6 @@ def ask_box(items: list, today: str, base: str = "") -> str:
          aria-live polite because sentences arrive one at a time after the press, and a reader
          on a screen reader would otherwise be told nothing was happening at all. -->
     <div class="askthread" id="askthread" hidden aria-live="polite" aria-atomic="false"></div>
-    <!-- THE LIVE LIST IS ABOVE THE FIELD TOO, and it used to sit below with the starters.
-         Below was not a small inconsistency, it was the typed lane not working at all. The
-         list has no height until a reader types, so it grew DOWNWARD out of a field already
-         near the bottom of the screen. Measured on the built page: three matching rows landed
-         427px past the fold on a 390 wide phone and 248px past it on a 1280 desktop, with
-         NONE of the list on screen in either case. A reader typed a question and watched
-         nothing happen.
-         Above the field it grows the way the thread grows, so the box has one place where
-         answers appear rather than two facing opposite directions. -->
-    <div class="answer" hidden></div>
     <form class="composer" role="search">
       <label class="vh" for="askq">Ask the record a question</label>
       <input id="askq" type="search" autocomplete="off"

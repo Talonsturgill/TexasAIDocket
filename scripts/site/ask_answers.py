@@ -479,80 +479,99 @@ def engine_js() -> str:
      looked perfect. The host element states its own depth and the engine reads it. */
   var BASE = box.getAttribute("data-base") || "";
   var input = box.querySelector("input");
-  var out = box.querySelector(".answer");
   var form = box.querySelector("form");
 
-  function run() {
-    /* STAND DOWN WHILE A WRITTEN ANSWER IS ON SCREEN. Pressing enter hands the question to the
-       written lane, which takes the box over: the live list, the starters and the note all
-       step aside so the answer is the only thing being read. Without this the engine would go
-       on rewriting its own panel underneath a conversation, from whatever half typed follow-up
-       happened to be in the field. The reader gets all of it back with Start over.
-       This changes nothing about what this file SENDS, which is still nothing at all. */
-    if (box.classList.contains("answering")) return;
-    // AN EMPTY FIELD IS NOT A FAILED QUESTION. `best("")` is null and `answer(null)` heads
-    // "No answer for that yet.", so backspacing to empty, or pressing Start over, told the
-    // reader the box had failed at the moment they had asked nothing at all.
-    if (!input.value.trim()) {
-      return anchored(function () { out.hidden = true; out.innerHTML = ""; });
-    }
-    var a = answer(best(input.value));
-    anchored(function () {
-      out.innerHTML = "<h3>" + esc(a.head) + "</h3>" + a.body;
-      out.hidden = false;
-    });
-  }
-
-  /* THE FIELD STAYS PUT WHILE THE LIST GROWS ABOVE IT.
-     The list is above the composer now, so every row it gains pushes the composer down the
-     document by exactly that much. Left alone, a reader typing a third character watches the
-     box they are typing into slide away from their cursor, on every keystroke.
-     So the composer's screen position is read before the change and restored after it by
-     scrolling the page by the difference. The field does not move and the list opens upward.
-
-     MEASURED EITHER SIDE OF THE WRITE, never cached. A rect is only true at the instant it is
-     taken and the whole point here is that the layout is about to change.
-
-     `behavior: "instant"` IS LOAD BEARING AND "auto" WOULD BE WRONG. This site sets
-     `scroll-behavior: smooth` on `html`, and "auto" means "use the CSS value", so the
-     correction would animate over about half a second. On a keystroke that reads as the field
-     drifting away and gliding back, once per character, which is worse than not correcting at
-     all. "instant" is the one value that overrides the sheet. */
-  function anchored(write) {
-    var seat = form.getBoundingClientRect().top;
-    write();
-    var f = form.getBoundingClientRect();
-    var d = f.top - seat;                    // the scroll that puts the field back on its seat
-
-    /* THREE THINGS WANT THE SAME PIXELS, AND ON A SHORT SCREEN THEY CANNOT ALL HAVE THEM.
-       Holding the field still pushes the list up by however much it grew. On a 320x568 phone
-       the list is taller than the room above the field, so a perfect hold puts the first row,
-       which is the best match, off the top of the glass.
-       The order of precedence, tightest last:
-         1. put the list's top on screen, since the first row is the one worth seeing
-         2. never let the field leave the bottom of the glass, because it is the control the
-            reader is typing into and losing it mid-question is the worst outcome here
-         3. never push the field off the top either
-       On any screen with room for both, none of these bind and the field does not move at
-       all, which is what matters most since this runs on every keystroke. */
-    var M = 8;
-    if (out && !out.hidden) {
-      d = Math.min(d, out.getBoundingClientRect().top - M);
-    }
-    d = Math.max(d, f.bottom - innerHeight + M);
-    d = Math.min(d, f.top);
-
-    /* `behavior: "instant"` IS LOAD BEARING AND "auto" WOULD BE WRONG. This site sets
-       `scroll-behavior: smooth` on `html`, and "auto" means "use the CSS value", so the
-       correction would animate for about half a second. Per keystroke that reads as the field
-       drifting away and gliding back. "instant" is the one value that overrides the sheet. */
-    if (Math.abs(d) >= 1) scrollBy({ top: d, behavior: "instant" });
-  }
-  input.addEventListener("input", run);
-  form.addEventListener("submit", function (e) { e.preventDefault(); run(); });
+  /* NOTHING IS RENDERED FROM THIS FILE ANY MORE, and that is the point.
+     There were two places an answer could appear, facing opposite directions: a panel that
+     rewrote itself on every keystroke, and a conversation above it that arrived on the press.
+     The owner, on a phone: "there's so much stuff on screen, your eyes don't even go to the
+     right spot", and of the typing panel, "very distracting".
+     So this file computes and the written lane renders, all of it into the thread, one thing
+     at a time. `classify` is the whole of the interface. The engine has not gone anywhere and
+     is not slower: it answers at the PRESS now, which is also what lets most questions skip
+     the model entirely. THE PROMISE IS UNCHANGED. This file still phones nobody. */
   box.querySelectorAll("[data-ask]").forEach(function (b) {
-    b.addEventListener("click", function () { input.value = b.dataset.ask; run(); });
+    b.addEventListener("click", function () {
+      // A starter goes through the same press as a typed question, so a chip and a keystroke
+      // cannot answer differently. It called a renderer the press did not use before.
+      input.value = b.dataset.ask;
+      box.querySelector("form").dispatchEvent(
+        new Event("submit", { bubbles: true, cancelable: true }));
+    });
   });
+
+  /* ---- the classifier -------------------------------------------------------
+     THE CHEAPEST ANSWER IS THE ONE THAT NEVER LEAVES THE PAGE.
+     This engine already scores a question against the catalogue and already refuses below a
+     floor, so it already knows the difference between "I have this" and "I do not". That
+     judgement was spent on a panel and thrown away at the press, while every question went to
+     a paid model taking seconds, including ones answerable here in no time at all.
+       instant  the catalogue has a confident route. Rendered from the page, no request.
+       written  the record may hold it but not as a lookup. Worth a model.
+       refuse   nothing in the question touches this record. Say so and call nobody.
+
+     THE CATALOGUE IS LOOKUP SHAPED, so a high score is not permission to answer anything.
+     Every route resolves to WHICH, WHAT, WHEN or WHERE. None of them explains. Asked "why did
+     the PUCT delay the comment deadline" the scorer matched PUCT and deadline and offered a
+     confident list, which is a fast wrong answer and worse than a slow right one on a record
+     product. So shape is checked BEFORE score. The markers are conservative on purpose: a
+     false WRITTEN costs two seconds and a fraction of a cent, a false INSTANT costs the
+     reader their answer.
+
+     REFUSE IS DELIBERATELY NARROW, firing only when a query shares NO term with the whole
+     vocabulary, which is the airspeed-velocity case the floor was written for. Refusing a real
+     question to save a fraction of a cent is the worst trade available here.
+
+     No network call and no new dependency. This file still phones nobody. */
+  var EXPLANATORY = /^\s*(why|how come|how did|how does|how do|how will|how would|explain)\b/i;
+  var MEANS = /\b(mean|means|meaning|implication|implications|impact|affect|affects|consequence|consequences|likely|difference between)\b/i;
+  // "can i still" WAS HERE AND WAS WRONG. "What can I still comment on?" is a lookup, the
+  // plainest one this record answers, and the marker sent it to a paid model that took six
+  // seconds to say what the page was already holding. A marker has to catch questions that
+  // want an EXPLANATION, and "can I still" asks which windows are open.
+  var SCENARIO = /(what happens if|should i|do i need to)/i;
+
+  function explanatory(t) {
+    return EXPLANATORY.test(t) || MEANS.test(t) || SCENARIO.test(t);
+  }
+
+  function vocabulary() {
+    if (vocabulary.cache) return vocabulary.cache;
+    var bag = {};
+    /* THE SUMMARY IS IN THE BAG AND HAS TO BE. Built from titles and deciders alone, the bag
+       held proper nouns and almost no ordinary English, so "why does it matter who decides it"
+       shared nothing with it and was REFUSED. That is a real question about this record and
+       refusing it is the worst outcome this classifier has, far worse than paying for a model
+       call. Summaries carry the working vocabulary of the record, which is decide, comment,
+       deadline, rule, permit, hearing, and every other word a reader would actually use. */
+    (IDX.items || []).forEach(function (i) {
+      [i.title, i.summary, i.decider, i.topic, i.room].forEach(function (f) {
+        words(String(f || "")).forEach(function (w) { bag[w] = 1; });
+      });
+      [].concat(i.counties || [], i.metros || []).forEach(function (c) {
+        words(String(c)).forEach(function (w) { bag[w] = 1; });
+      });
+    });
+    (CAT || []).forEach(function (c) {
+      words(String(c.q || "")).forEach(function (w) { bag[w] = 1; });
+    });
+    vocabulary.cache = bag;
+    return bag;
+  }
+
+  function classify(q) {
+    var text = String(q || "").trim();
+    if (!text) return { bucket: "empty" };
+    var route = best(text);
+    if (route && !explanatory(text)) return { bucket: "instant", answer: answer(route) };
+    if (route) return { bucket: "written" };
+    var bag = vocabulary(), ws = words(text), touched = 0;
+    ws.forEach(function (w) { if (bag[w]) touched++; });
+    if (ws.length && touched === 0) return { bucket: "refuse" };
+    return { bucket: "written" };
+  }
+
+  window.__askClassify = classify;
   window.__askAnswer = function (q) { return answer(best(q)); };   // for tests/ask_engine.mjs
 })();
 """

@@ -66,6 +66,12 @@ COPY = {
     "capped":       "That is this month's last written answer. Typing still searches the "
                     "whole record instantly and for nothing, which is most of what this box does.",
     "provenance":   "Written from the published record. Every figure checked against it.",
+    # Said under an answer the page produced itself, which is most of them. It is not the
+    # same claim as the written lane's: nothing was written, the record was read.
+    "from_record":  "Read straight from the record, in your browser.",
+    "off_record":   "That is not something this record covers. It holds Texas decisions about "
+                    "artificial intelligence, who made them and whether a comment window is "
+                    "still open.",
     "again":        "Start over",
     "send":         "Ask",
     "accept":       "Use the suggested question",
@@ -212,7 +218,14 @@ _CLIENT = r"""
   var turns = [];
 
   /* ---- the human check ---------------------------------------------------
-     ARMED ON THE FIRST SUBMIT, AND NOT BEFORE.
+     ARMED ON FOCUS, AND THIS HAS BEEN BOTH WAYS. The history is the point.
+     It was on focus once and was reverted, correctly: the note under the field then said
+     typing sends nothing anywhere, and tests/ask_engine.mjs caught the contradiction.
+     THAT SENTENCE LEFT THE NOTE IN #59. It reads "Model in training" and claims nothing about
+     typing, so the promise the revert protected is not on the page, while the cost it bought
+     was still being paid. ask_engine.mjs now allows the challenge host BY NAME, asserts focus
+     really arms it, and still fails on any other host. The paragraph below is the old
+     reasoning, kept because it was right at the time.
      This was on focus, which was faster and was wrong. The note above the field says typing
      sends nothing anywhere, and arming on focus fetched Cloudflare's script the moment a
      caret landed in the field, so a request left the page during what that note calls typing.
@@ -420,6 +433,53 @@ _CLIENT = r"""
   }
 
   /* ---- asking ------------------------------------------------------------ */
+  /* The close-out for an answer that never left the page. The streamed lane has its own,
+     which also handles provenance, the cut reasons and the follow-up offer. This one exists
+     because an instant answer has none of those and should not pretend to: it is the record
+     read directly, so it says so and stops. */
+  var localExchange = "";
+
+  function finishLocal(note) {
+    var foot = document.createElement("p");
+    foot.className = "askfrom";
+    var prov = document.createElement("span");
+    prov.textContent = note;
+    foot.appendChild(prov);
+    var again = document.createElement("button");
+    again.type = "button";
+    again.className = "askagain";
+    again.textContent = "%%again%%";
+    again.addEventListener("click", reset);
+    foot.appendChild(again);
+    /* FEEDBACK BELONGS UNDER AN INSTANT ANSWER TOO, and leaving it out was the first version's
+       mistake. The written lane offers it because the moment somebody has just watched an
+       answer be wrong is the moment they can say so usefully. An answer read straight from
+       the record can be wrong in exactly the same way, by matching the wrong item, and it now
+       arrives for most questions, so omitting it here would have quietly removed feedback from
+       the majority of answers this box gives. */
+    var say = document.createElement("button");
+    say.type = "button";
+    say.className = "askagain";
+    say.textContent = "%%feedback%%";
+    say.addEventListener("click", function () {
+      var open = document.getElementById("askfbopen");
+      if (open) open.click();
+    });
+    foot.appendChild(say);
+    thread.appendChild(foot);
+    // `:last-of-type` MATCHES THE LAST DIV, NOT THE LAST OF THE CLASS. Both of these are
+    // divs among many divs, so the selector picked whatever div happened to be last and the
+    // attachment came out as "Q. " with nothing after it.
+    var qs = thread.querySelectorAll(".askturn"), as = thread.querySelectorAll(".askreply");
+    var q = qs[qs.length - 1], a = as[as.length - 1];
+    localExchange = "Q. " + (q ? q.textContent : "") + "\n\nA. " + (a ? a.textContent : "");
+    busy = false;
+    send.disabled = false;
+    send.removeAttribute("aria-busy");
+    input.value = "";
+    park();
+  }
+
   function ask(question) {
     if (busy) return;
     busy = true;
@@ -443,7 +503,44 @@ _CLIENT = r"""
 
     var body = document.createElement("div");
     body.className = "askreply";
+    // APPENDED BEFORE THE CLASSIFIER RUNS, not after the stream starts. The instant and refuse
+    // lanes return early, and the original append sat past that return, so both rendered into
+    // an element that was never in the document. The thread showed a question, a provenance
+    // line and nothing between them.
     thread.appendChild(body);
+
+    /* ---- the classifier decides whether this costs anything at all ------------
+       THE CHEAPEST ANSWER IS THE ONE THAT NEVER LEAVES THE PAGE, and the engine in
+       ask_answers.py already knew which questions those were. It scores against a catalogue
+       and refuses below a floor, so it can say "I have this" or "I do not", and that judgement
+       was being thrown away at the press while every question went to a model taking seconds.
+       Asked here, before the request is built. A lookup is answered from the page in no time
+       and for nothing. An off-record question is refused without calling anybody. Only a
+       question that genuinely needs prose reaches the worker, which is what makes an eight
+       second ceiling a promise rather than a hope: most questions never start the clock. */
+    localExchange = "";
+    var verdict = window.__askClassify ? window.__askClassify(question) : { bucket: "written" };
+
+    if (verdict.bucket === "instant" && verdict.answer) {
+      var head = document.createElement("p");
+      head.className = "askhead";
+      head.textContent = verdict.answer.head;
+      body.appendChild(head);
+      var list = document.createElement("div");
+      list.className = "asklist";
+      list.innerHTML = verdict.answer.body;
+      body.appendChild(list);
+      finishLocal("%%from_record%%");
+      return;
+    }
+    if (verdict.bucket === "refuse") {
+      var no = document.createElement("p");
+      no.textContent = "%%off_record%%";
+      body.appendChild(no);
+      finishLocal("%%from_record%%");
+      return;
+    }
+
 
     input.value = "";
     pending = null;
@@ -671,7 +768,15 @@ _CLIENT = r"""
     /* The last exchange, as text, or nothing. Read from `turns` rather than scraped off the
        page, so what gets attached is exactly what was said and not what the DOM happens to
        hold after a Start over. */
+    /* AN INSTANT ANSWER IS AN EXCHANGE TOO, and it is not in `turns`.
+       `turns` is the MODEL's conversation and only guard-approved sentences go into it, which
+       is a rule worth keeping: a page-generated answer pushed in there would come back as
+       context the model treats as its own prior words. So an answer read from the record is
+       remembered separately, purely so feedback about it can carry it.
+       Without this, feedback on the majority of answers this box now gives would arrive with
+       nothing attached, which is the half of a bug report that makes it actionable. */
     function lastExchange() {
+      if (localExchange) return localExchange;
       for (var i = turns.length - 1; i > 0; i--) {
         if (turns[i].role === "assistant") {
           return "Q. " + turns[i - 1].content + "\n\nA. " + turns[i].content;
@@ -733,6 +838,17 @@ _CLIENT = r"""
 
   /* Writing your own question puts the suggestion away. A placeholder that lingers under
      text somebody is typing is just noise behind their sentence. */
+  /* FOCUS ARMS THE CHECK, AND THE POINT IS WHERE THE WAITING HAPPENS.
+     Armed by the press before this, on the reasoning that focus is not intent to ask. That
+     cost 1 to 3 seconds on the FIRST question of every session and nothing on any after it,
+     because spending a token resets the widget and the next is earned while the reader types.
+     The first question, the one that forms the impression, was the only one paying.
+     Managed mode solves in the background with no interaction, so on focus it solves DURING
+     typing, which is the slowest thing in the sequence, and the press has nothing left to wait
+     for. Somebody who pastes and submits inside a second still polls, exactly as before.
+     Never slower. Owner's call, 2026-08-20, made knowing it had been tried and reverted. */
+  input.addEventListener("focus", armTurnstile, { once: true });
+
   input.addEventListener("input", function () { if (input.value) dropPending(); });
 
   /* Tab and the right arrow accept it, which is the convention everywhere else a field
@@ -832,8 +948,9 @@ def self_test() -> int:
     check("the client does nothing without an endpoint", 'if (!EP) return;' in js)
     # The promise above the field is only true if NOTHING goes out before the press. Focus is
     # not intent to ask, and tests/ask_engine.mjs asserts exactly this from the outside.
-    check("turnstile is armed by the press, not by focus or load",
-          "armTurnstile();" in js and 'addEventListener("focus", armTurnstile' not in js)
+    check("turnstile is armed by focus", 'addEventListener("focus", armTurnstile' in js)
+    check("...and it is armed once, not on every focus",
+          '"focus", armTurnstile, { once: true }' in js)
     check("only guard approved text goes back to the model",
           'turns.push({ role: "assistant", content: said.join(" ") })' in js)
 

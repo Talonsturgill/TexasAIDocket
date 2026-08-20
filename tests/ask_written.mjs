@@ -50,13 +50,18 @@ await page.route("**/answer", async (route) => {
       ? [{ stage: "Reading the record" },
          { sentence: "Four comment windows are open right now." },
          { long: true }]
-    : /one more/.test(q)
+    : /why one more/.test(q)
       ? [{ capped: true }]
     : /when did it close/.test(q)
       ? [{ stage: "Reading the record" },
          { sentence: "The comment window has closed." },
          { withheld: "numeral" }]
-    : /who decides/.test(q)
+    : /why does it matter/.test(q)
+      ? [{ stage: "Reading the record" },
+         { sentence: "The body that decides sets the deadline and the rules." },
+         { sentence: "Want the dates it moved on?" },
+         { done: true }]
+    : /why did the PUCT/.test(q)
       ? [{ stage: "Reading the record" },
          { sentence: "The Public Utility Commission of Texas decides it." },
          { sentence: "See [[tx-2026-0001]] for the filings." },
@@ -90,14 +95,6 @@ ok("the starters are offered", (await page.locator(".chips button").count()) > 0
 // The promise is only true if nothing has actually gone out yet.
 ok("no request has been made", seen.length === 0);
 
-head("B. typing answers in the page and still sends nothing");
-await page.fill("#askq", "what can I still comment on");
-await page.waitForTimeout(150);
-ok("the engine answered", await page.locator("#ask .answer").isVisible());
-ok("and it sent nothing to do it", seen.length === 0, `${seen.length} requests`);
-
-// ------------------------------------------------------------------ asking
-head("C. pressing enter hands it to the written lane");
 // The widget the way Cloudflare drives it, with the network taken out.
 await page.evaluate(() => {
   let cb = null;
@@ -108,9 +105,8 @@ await page.evaluate(() => {
     // fifteen second fallback, which reads exactly like a page bug.
     reset: () => { setTimeout(() => cb && cb("test-token"), 5); },
   };
-  /* The box arms on the FIRST SUBMIT now, not on focus, so askTurnstileReady does not exist
-     yet. Stand in for Cloudflare's loader: when the box appends the script tag, call the
-     callback it registered. */
+  /* The box arms on FOCUS now, so this stands in for Cloudflare's loader either way: when
+     the box appends the script tag, call the callback it registered. */
   const realAppend = document.head.appendChild.bind(document.head);
   document.head.appendChild = function (node) {
     if (node.tagName === "SCRIPT" && /challenges\.cloudflare/.test(node.src || "")) {
@@ -122,7 +118,23 @@ await page.evaluate(() => {
 });
 await page.waitForTimeout(60);
 
-await page.fill("#askq", "who decides the ERCOT transmission rule");
+head("B. typing renders nothing at all, which is the point");
+// The engine used to rewrite a panel on every keystroke. The owner: "very distracting". The
+// answer arrives at the PRESS now and nowhere else, so a reader is looking at one thing.
+await page.fill("#askq", "what can I still comment on");
+await page.waitForTimeout(250);
+ok("the thread stays empty while typing",
+   ((await page.textContent("#askthread")) || "").trim().length === 0);
+ok("and it sent nothing to do it", seen.length === 0, `${seen.length} requests`);
+
+// ------------------------------------------------------------------ asking
+head("C. pressing enter hands it to the written lane");
+
+// AN EXPLANATORY QUESTION, because a lookup no longer leaves the page at all. "who decides
+// the ERCOT transmission rule" was here and the classifier now answers it from the record in
+// under half a second, which is the improvement and also means it can no longer exercise the
+// written lane. A "why" is what the model is for.
+await page.fill("#askq", "why did the PUCT delay the comment deadline");
 await page.press("#askq", "Enter");
 await page.waitForSelector(".askfrom", { timeout: 8000 });
 
@@ -130,7 +142,7 @@ ok("exactly one request went out", seen.length === 1, `${seen.length}`);
 ok("and it carried only the question", seen[0].messages.length === 1,
   JSON.stringify(seen[0].messages));
 ok("the question is read back", (await page.locator(".askturn").first().textContent())
-  .includes("ERCOT"));
+  .includes("PUCT"));
 const reply = await page.locator(".askreply").first().textContent();
 ok("every sentence landed",
   reply.includes("Public Utility Commission") && reply.includes("Want the dates"), reply);
@@ -208,7 +220,9 @@ ok("the placeholder goes back to normal",
 head("F. writing your own question puts the suggestion away");
 // Earn a real suggestion rather than setting the placeholder by hand, which would leave the
 // client's own state untouched and test nothing.
-await page.fill("#askq", "who decides it then");
+// EXPLANATORY, so it reaches the written lane. A lookup is answered from the page now and
+// the page does not offer follow-ups, the model does.
+await page.fill("#askq", "why does it matter who decides it");
 await page.press("#askq", "Enter");
 await page.waitForSelector(".askfrom", { timeout: 8000 });
 ok("a fresh answer suggests again",
@@ -248,7 +262,9 @@ ok("every exchange is still on screen", (await page.locator(".askturn").count())
 
 // ------------------------------------------------------------------ capped
 head("H. the month running out says so in this page's own words");
-await page.fill("#askq", "one more");
+// EXPLANATORY, so it reaches the worker. "one more" was here and the classifier now answers
+// it from the page, so it never got as far as the cap it was written to test.
+await page.fill("#askq", "why one more comment window matters");
 await page.press("#askq", "Enter");
 await page.waitForTimeout(600);
 const capped = await page.locator(".askreply").last().textContent();

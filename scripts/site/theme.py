@@ -2276,15 +2276,6 @@ caption {{ caption-side:bottom; text-align:left; padding-top:.75rem; font-size:v
   background:transparent; color:var(--ink-mute);
   border:var(--hair) solid var(--rule-strong); border-radius:999px; cursor:pointer; }}
 .askbox .chips button:hover {{ color:var(--ink-bright); border-color:var(--accent); }}
-/* The rule sits UNDER the list now, because the list sits above the field. A border-top
-   drew the line between the thread and the answer and welded the answer to the composer,
-   which is backwards: the answer belongs to the talk, not to the control. */
-.askbox .answer {{ margin-bottom:1.25rem; padding-bottom:1.1rem;
-  border-bottom:var(--hair) solid var(--rule); }}
-.askbox .answer h3 {{ margin:0 0 .6rem; font-size:var(--s1); }}
-.askbox .answer ul {{ list-style:none; padding:0; margin:.5rem 0 0; display:grid; gap:.7rem; }}
-.askbox .answer .meta {{ font-size:var(--s-1); color:var(--ink-mute);
-  font-family:var(--mono); }}
 
 /* ---- the written lane --------------------------------------------------- */
 /* Typing is answered here in the browser and sends nothing. Pressing enter sends the question
@@ -2402,8 +2393,8 @@ caption {{ caption-side:bottom; text-align:left; padding-top:.75rem; font-size:v
 /* ANSWERING TAKES THE SCREEN. The starters, the note and the engine's live list all step
    aside, so the answer is the only thing being read. They come back with Start over. */
 .askbox.answering .chips,
-.askbox.answering .asknote,
-.askbox.answering .answer {{ display:none; }}
+.askbox.answering .asknote {{ display:none; }}
+
 
 /* The send control while it is working. The spinner replaces the arrow rather than sitting
    beside it, so the control keeps its size and the layout does not shift under a thumb. */
