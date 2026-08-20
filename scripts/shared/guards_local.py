@@ -257,9 +257,26 @@ def main() -> int:
     skipped: list[tuple[Step, str]] = []
     ran = 0
 
+    # ONE RUN PER DISTINCT COMMAND, because the workflow is several jobs now.
+    #
+    # CI splits these across parallel runners, and a runner that needs a browser has to install
+    # one whether or not another runner already did. So the browser install step appears in
+    # three jobs, correctly, and the pip install in three more. Locally there is one machine and
+    # one checkout, and running the identical command a second time proves nothing that the
+    # first run did not. It only makes the local check slower than CI, which is the direction
+    # that stops people running it.
+    #
+    # Keyed on the COMMAND rather than the step name, since the same command under two names is
+    # still one thing to run, and two different commands sharing a name would both survive.
+    seen_cmds: set[str] = set()
+
     for s in all_steps:
         if args.only and args.only.lower() not in (s.name + s.run).lower():
             continue
+        key = s.run.strip()
+        if key in seen_cmds:
+            continue
+        seen_cmds.add(key)
         if s.is_setup:
             skipped.append((s, "sets up the runner, not a check"))
             continue
