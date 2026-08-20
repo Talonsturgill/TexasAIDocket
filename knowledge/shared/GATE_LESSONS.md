@@ -1232,3 +1232,51 @@ has all its history.
 **Generalises to.** Any build step reading the clock, the environment, the filesystem outside
 the repository, the network, or git itself. The question is not "is this value correct" but
 "would a different machine compute the same one".
+
+## 37. The gate enforced ten rules and could observe four
+
+A content security policy was added to every page, hashing each inline script so an injected one
+has a hash nobody authorised and does not run. The policy names ten directives. The checker
+written beside it reads `<script src>`, `<img src>`, `<iframe src>` and `<form action>`, which
+are resource ATTRIBUTES, and that is four.
+
+`connect-src` is not among them, because a fetch target does not live in an attribute the way an
+image does. It lives in a `data-endpoint` attribute and in a JavaScript string literal. So the
+ask box's Worker origin was never added to the allowlist, the browser refused every submitted
+question in production, and the checker reported the page clean because it had never looked at
+the place the answer was.
+
+**The part worth sitting with is how it was confirmed.** The change was verified by fetching ten
+deployed pages from the live site and auditing each one. All ten passed. The site was broken at
+the time, in a way those exact ten pages demonstrated, and the audit could not see it because
+the audit and the defect had the same author and therefore the same blind spot. Fetching the
+real site felt like the strong form of checking and was not, because the only thing being asked
+was a question that had already been answered wrong.
+
+**A gate you wrote is not evidence that the thing you wrote works.** It is evidence about the
+part you thought of. Where those two are the same set, the gate reports on itself.
+
+**What to check instead. Ask the enforcer, not a model of it.** A browser dispatches
+`securitypolicyviolation` every time it refuses something, against the whole policy, including
+the directives no parser here knows to look for. `tests/csp_runtime.mjs` loads each page in
+Chromium and records those events. Replayed against the shipped fault it names both halves of
+it, the refused inline scripts and the endpoint the policy omits, and it passes the eight other
+sampled pages, so it is not failing indiscriminately.
+
+**And when a gate approximates a spec, count the spec.** Ten directives, four observable, and
+nothing anywhere said so. A checker covering four tenths of what it appears to cover is more
+dangerous than no checker at all, because the missing six produce confidence rather than doubt.
+State the coverage where the checker is defined, so the next person reads a boundary instead of
+inferring a guarantee.
+
+**One trap in the obvious repair.** Deriving the allowlist from what the pages reference would
+close this and hollow the policy out, because an injected `fetch` would then allowlist itself at
+build time and the gate would go green on a compromised page. The shape that works is the one
+`numeral_lint` already uses here. Keep a DECLARED list, OBSERVE what the pages actually target,
+and fail on a mismatch in either direction, an undeclared target and a declared origin nothing
+uses.
+
+**Generalises to.** Any checker that approximates an enforcer it does not run. A policy parser
+against a browser, a linter against a compiler, a schema validator against the consumer, a
+permissions model against the API that actually decides. The question is not "does my checker
+pass" but "does my checker run the thing that says no".
