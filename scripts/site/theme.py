@@ -329,77 +329,154 @@ def record_css() -> str:
 .cal > .sub {{ max-width:var(--measure); color:var(--ink-mute); }}
 
 /* ------------------------------------------------------------------------------- the rail */
-.calrail {{ margin:1.4rem 0 2rem; display:grid; gap:.15rem;
-  border-top:var(--hair) solid var(--rule); padding-top:.9rem; }}
-.calyear {{ display:grid; grid-template-columns:3.4rem minmax(0,1fr) 2.6rem;
-  align-items:end; gap:.6rem; padding:.18rem 0; }}
-.caly, .calyn {{ font-family:var(--mono); color:var(--ink-mute); line-height:1;
-  padding-bottom:.35rem; }}
-.caly {{ font-size:var(--s-1); letter-spacing:.06em; }}
-.calyn {{ font-size:var(--s-2); text-align:right; }}
-/* A YEAR THAT HELD NOTHING IS A HAIRLINE, not twelve empty boxes. It is still there, because
-   three silent years is a fact about this record, and it takes the height of one line to say
-   so instead of the height of a paragraph. */
-.calyear.quiet {{ opacity:.42; }}
-.calyear.quiet .calbar {{ height:3px; }}
-.calyear.quiet .calmn {{ opacity:.5; }}
+/* --------------------------------------------------------- the year, as twelve calendars
+   A year view of a calendar is twelve small calendars. The shape of the record still reads
+   straight out of it, and better than a bar chart did: a month holding something is dense
+   with marked days and a quiet one is visibly bare. */
+.calrail {{ margin:0 0 2rem; position:relative; }}
+.calyr[hidden] {{ display:none; }}
+.calyh {{ display:flex; align-items:baseline; gap:.9rem; margin:0 0 1.1rem;
+  font-family:var(--display); font-size:var(--s3); line-height:1;
+  border-top:none; padding-top:0; }}
+.calyn {{ font-family:var(--mono); font-size:var(--s-1); color:var(--ink-mute);
+  letter-spacing:.1em; text-transform:uppercase; }}
+.minis {{ list-style:none; margin:0; padding:0; display:grid; gap:.9rem;
+  grid-template-columns:repeat(4,minmax(0,1fr)); }}
+.mini {{ display:grid; gap:.3rem; padding:.7rem .6rem .75rem; text-decoration:none;
+  color:inherit; border-radius:3px; border:var(--hair) solid var(--rule);
+  background:color-mix(in srgb,var(--panel) 40%,transparent);
+  grid-template-columns:1fr auto; align-items:baseline;
+  transition:border-color .16s ease, background .16s ease; }}
+.mini.has:hover {{ border-color:var(--accent);
+  background:color-mix(in srgb,var(--accent) 12%,transparent); }}
+.mini.has:focus-visible {{ outline:2px solid var(--accent); outline-offset:3px; }}
+.mini.none {{ opacity:.4; }}
+.minm {{ font-family:var(--mono); font-size:var(--s-1); letter-spacing:.14em;
+  text-transform:uppercase; color:var(--dust); }}
+.mini.has:hover .minm {{ color:var(--limestone); }}
+.minc {{ font-family:var(--mono); font-size:var(--s-2); color:var(--accent); text-align:right; }}
+.mini.none .minc {{ display:none; }}
+.minh, .ming {{ grid-column:1 / -1; display:grid; grid-template-columns:repeat(7,1fr);
+  gap:1px; }}
+.minh {{ margin-top:.15rem; }}
+.minh > i {{ font-family:var(--mono); font-size:.56rem; line-height:1.4; text-align:center;
+  color:var(--ink-mute); font-style:normal; letter-spacing:.04em; }}
+.ming > i {{ font-family:var(--mono); font-size:.58rem; line-height:1.5; text-align:center;
+  font-style:normal; color:var(--ink-mute); border-radius:2px; }}
+/* A DAY THAT HOLDS SOMETHING IS FILLED, which is what makes twelve small grids legible as a
+   year at a glance rather than as twelve identical stamps. */
+.ming > i.mh {{ background:color-mix(in srgb,var(--accent) 26%,transparent);
+  color:var(--limestone); }}
+.ming > i.mh.act {{ background:var(--accent); color:var(--night); }}
+.ming > i.mt {{ box-shadow:inset 0 0 0 1px var(--accent); }}
+.ming > i.mo {{ visibility:hidden; }}
+@media (max-width:60rem) {{ .minis {{ grid-template-columns:repeat(3,minmax(0,1fr)); }} }}
+@media (max-width:44rem) {{ .minis {{ grid-template-columns:repeat(2,minmax(0,1fr)); }}
+  .calybar {{ margin-top:0; }} }}
 
-.calmonths {{ list-style:none; margin:0; padding:0; min-width:0;
-  display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:2px;
-  align-items:end; }}
-.calmonths > li {{ min-width:0; }}
-.calm {{ display:grid; gap:.2rem; justify-items:center; padding:.25rem .1rem .3rem;
-  border-radius:var(--radius); text-decoration:none; color:inherit;
-  transition:background .16s ease, transform .16s ease; }}
-.calbar {{ display:block; width:100%; height:34px; position:relative;
+/* ------------------------------------------------------------------------- the controls
+   These were three default buttons and a raw checkbox in a row, which the owner correctly
+   called something coded thirty years ago. A control a reader is meant to enjoy using has to
+   look built. */
+/* A TOOLBAR, laid out the way Notion lays one out: the view switcher at the left beside the
+   thing being viewed, the controls that act on the current view at the right. */
+.calbar {{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap;
+  gap:.8rem 1.4rem; margin:0 0 1.3rem; padding-bottom:.7rem;
   border-bottom:var(--hair) solid var(--rule); }}
-/* The fill grows from the baseline, so a tall month reads as more and not merely as other. */
-.calbar > i {{ position:absolute; left:12%; right:12%; bottom:0; height:var(--h,2px);
-  min-height:2px; border-radius:1px 1px 0 0; display:block;
-  background:linear-gradient(to top, var(--accent-deep), var(--accent));
-  opacity:.55; transition:opacity .16s ease; }}
-.calm.none .calbar > i {{ background:var(--rule-strong); opacity:.5; height:2px; }}
-.calmn, .calmc {{ font-family:var(--mono); font-size:var(--s-2); line-height:1; }}
-.calmn {{ color:var(--ink-mute); }}
-.calmc {{ color:var(--dust); }}
-.calm.none .calmc {{ display:none; }}
+.caltabs {{ display:flex; align-items:center; gap:.2rem; }}
+/* Underlined text rather than a segmented pill, which is the idiom this site's own masthead
+   already uses for the page you are on. */
+.caltab {{ font-family:var(--mono); font-size:var(--s-1); letter-spacing:.1em;
+  text-transform:uppercase; line-height:1; padding:.55rem .75rem; border:0; cursor:pointer;
+  background:transparent; color:var(--ink-mute); border-bottom:2px solid transparent;
+  transition:color .16s ease, border-color .16s ease; }}
+.caltab:hover {{ color:var(--limestone); }}
+.caltab[aria-pressed="true"] {{ color:var(--accent); border-bottom-color:var(--accent); }}
+.caltab:focus-visible {{ outline:2px solid var(--accent); outline-offset:2px; }}
+.calctl {{ display:flex; align-items:center; gap:1rem; flex-wrap:wrap; }}
+.calpage {{ display:flex; align-items:center; gap:.45rem; }}
+.calpage[hidden] {{ display:none; }}
+.calnav {{ display:flex; align-items:center; gap:.45rem; }}
+.calarrow {{ width:2.6rem; height:2.6rem; display:grid; place-items:center; padding:0;
+  border-radius:50%; cursor:pointer;
+  border:var(--hair) solid var(--rule-strong);
+  background:color-mix(in srgb,var(--panel) 70%,transparent);
+  transition:border-color .16s ease, background .16s ease, transform .12s ease; }}
+.calarrow svg {{ width:1.15rem; height:1.15rem; fill:none; stroke:var(--dust);
+  stroke-width:2; stroke-linecap:round; stroke-linejoin:round; transition:stroke .16s ease; }}
+.calarrow:hover:not([disabled]) {{ border-color:var(--accent);
+  background:color-mix(in srgb,var(--accent) 14%,transparent); }}
+.calarrow:hover:not([disabled]) svg {{ stroke:var(--limestone); }}
+.calarrow:active:not([disabled]) {{ transform:scale(.94); }}
+.calarrow[disabled] {{ opacity:.3; cursor:default; }}
+.calpill {{ font-family:var(--mono); font-size:var(--s-2); letter-spacing:.1em;
+  text-transform:uppercase; line-height:1; padding:.72rem 1rem; margin-left:.3rem;
+  border-radius:2rem; cursor:pointer; color:var(--dust);
+  border:var(--hair) solid var(--rule-strong);
+  background:color-mix(in srgb,var(--panel) 70%,transparent);
+  transition:border-color .16s ease, background .16s ease, color .16s ease; }}
+.calpill:hover:not([disabled]) {{ border-color:var(--accent); color:var(--limestone);
+  background:color-mix(in srgb,var(--accent) 14%,transparent); }}
+.calpill[disabled] {{ opacity:.3; cursor:default; }}
+.calarrow:focus-visible, .calpill:focus-visible, .calsegb:focus-visible {{
+  outline:2px solid var(--accent); outline-offset:3px; }}
 
-/* A MONTH THAT CAN STILL BE ACTED ON IS THE ONE WORTH FINDING, so it is the only thing in the
-   rail wearing full accent. Everything else is a record of something already done. */
-.calm.has.act .calbar > i {{ opacity:.95; }}
-.calm.has:hover {{ background:color-mix(in srgb,var(--accent) 10%,transparent); }}
-.calm.has:hover .calbar > i {{ opacity:1; }}
-.calm.has:hover .calmn, .calm[aria-current="true"] .calmn {{ color:var(--limestone); }}
-.calm[aria-current="true"] {{ background:color-mix(in srgb,var(--accent) 16%,transparent);
-  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--accent) 42%,transparent); }}
-.calm[aria-current="true"] .calbar > i {{ opacity:1; }}
+/* A SEGMENTED CONTROL, because the two views are one choice rather than two buttons. The
+   pressed one is filled, so which view you are in is readable without reading. */
+.calseg {{ display:inline-flex; padding:3px; gap:3px; border-radius:2rem;
+  border:var(--hair) solid var(--rule); background:color-mix(in srgb,var(--deep) 60%,transparent); }}
+.calsegb {{ font-family:var(--mono); font-size:var(--s-2); letter-spacing:.1em;
+  text-transform:uppercase; line-height:1; padding:.6rem 1.05rem; border:0; cursor:pointer;
+  border-radius:2rem; color:var(--ink-mute); background:transparent;
+  transition:background .16s ease, color .16s ease; }}
+.calsegb:hover {{ color:var(--limestone); }}
+.calsegb[aria-pressed="true"] {{ color:var(--night);
+  background:linear-gradient(180deg,var(--accent),var(--accent-deep)); }}
+.cal:not(.js) .calbar {{ display:none; }}
 
-/* THE STEPPER is the phone's real control. A rail cell is 27px across on a 390px screen,
-   which is under every touch target guideline there is, and a reader on a phone is using a
-   thumb. Prev and next are thumb sized, they are the movement somebody actually wants, and
-   they are present on desktop too because paging month by month is a reasonable thing to
-   want with a mouse. */
-.calstep {{ display:flex; align-items:center; gap:.5rem; margin:0 0 .2rem;
-  flex-wrap:wrap; }}
-.calstep button {{ font-family:var(--mono); font-size:var(--s-1); line-height:1;
-  color:var(--dust); background:color-mix(in srgb,var(--panel) 70%,transparent);
-  border:var(--hair) solid var(--rule-strong); border-radius:var(--radius);
-  min-width:2.75rem; min-height:2.75rem; cursor:pointer;
-  transition:background .16s ease, border-color .16s ease; }}
-.calstep button:hover:not([disabled]) {{ border-color:var(--accent);
-  background:color-mix(in srgb,var(--accent) 12%,transparent); color:var(--limestone); }}
-.calstep button[disabled] {{ opacity:.32; cursor:default; }}
-.calstep button:focus-visible {{ outline:2px solid var(--accent); outline-offset:2px; }}
-.calnow {{ margin-left:auto; }}
-.cal:not(.js) .calstep {{ display:none; }}
+/* A SWITCH, not a checkbox. It is the one control here a reader toggles back and forth, so
+   it gets the affordance that says so. The input stays a real checkbox underneath, which is
+   what a keyboard and a screen reader operate. */
+.calswitch {{ display:inline-flex; align-items:center; gap:.7rem; margin:0;
+  cursor:pointer; font-family:var(--mono); font-size:var(--s-1); color:var(--ink-mute);
+  transition:color .16s ease; }}
+.calswitch:hover {{ color:var(--limestone); }}
+.calswitch input {{ position:absolute; opacity:0; width:0; height:0; }}
+.calswtrack {{ flex:none; width:2.7rem; height:1.5rem; border-radius:1rem; position:relative;
+  border:var(--hair) solid var(--rule-strong);
+  background:color-mix(in srgb,var(--deep) 70%,transparent);
+  transition:background .18s ease, border-color .18s ease; }}
+.calswknob {{ position:absolute; top:50%; left:3px; width:1.05rem; height:1.05rem;
+  border-radius:50%; background:var(--ink-mute); transform:translateY(-50%);
+  transition:transform .18s ease, background .18s ease; }}
+.calswitch input:checked + .calswtrack {{ border-color:var(--accent);
+  background:color-mix(in srgb,var(--accent) 34%,transparent); }}
+.calswitch input:checked + .calswtrack .calswknob {{ background:var(--accent);
+  transform:translateY(-50%) translateX(1.16rem); }}
+.calswitch input:focus-visible + .calswtrack {{ outline:2px solid var(--accent);
+  outline-offset:3px; }}
+.calswitch input:checked ~ .calswlabel {{ color:var(--limestone); }}
+.cal:not(.js) .calswitch {{ display:none; }}
 
-/* ONLY WHAT CAN STILL BE ACTED ON. Most of this record is history, and a reader who came to
-   find out whether they can still say something does not want to read it. This is the filter
-   that answers that question, and it is off by default because the record is the point. */
-.calfilter {{ display:flex; align-items:center; gap:.55rem; margin:.1rem 0 1rem;
-  font-family:var(--mono); font-size:var(--s-1); color:var(--ink-mute); cursor:pointer; }}
-.calfilter input {{ width:1.05rem; height:1.05rem; accent-color:var(--accent); cursor:pointer; }}
-.cal:not(.js) .calfilter {{ display:none; }}
+/* MONTH IS THE DEFAULT VIEW. The rail is a map for finding your way, not a thing to read, so
+   it is behind the toggle and the calendar is what a reader lands on. */
+/* ONE VIEW AT A TIME, and only once the script is running. Without it all three are in the
+   document and readable, which is the point: a calendar that is only a calendar when
+   JavaScript runs is a record some readers cannot browse. */
+.callist {{ margin-top:1.4rem; }}
+.cal.js .calrail, .cal.js .calpanels, .cal.js .callist {{ display:none; }}
+.cal.js[data-view="year"] .calrail {{ display:block; }}
+.cal.js[data-view="month"] .calpanels {{ display:block; }}
+.cal.js[data-view="list"] .callist {{ display:grid; }}
+.cal.js[data-view="list"] .calswitch {{ display:none; }}
+/* THE FILTER HAS TO MEAN SOMETHING IN EVERY VIEW IT IS OFFERED IN. It hides closed items in
+   the month, and in the year it drops the marks for days nothing can be acted on, so twelve
+   grids show at a glance where a reader still has a say. A control that is visible and inert
+   is the same broken promise as a button that does nothing. */
+.cal.js[data-view="year"].acts .ming > i.mh:not(.act) {{ background:transparent;
+  color:var(--ink-mute); }}
+.cal.js[data-view="year"].acts .mini.has:not(.hasact) {{ opacity:.45; }}
+.cal.js[data-view="year"].acts .minc {{ display:none; }}
 .cal.acts .calday.full:not(.hasact) {{ display:none; }}
 .cal.acts .calev:not(.act) {{ display:none; }}
 .cal.acts .calmonth[data-act="0"] .caldays::after {{ content:"Nothing in this month is still
@@ -407,7 +484,8 @@ def record_css() -> str:
   font-size:var(--s-1); color:var(--ink-mute); padding:.9rem .2rem; }}
 
 /* TODAY, marked. A calendar that does not say where you are makes a reader count columns. */
-.calday.today {{ box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--accent) 55%,transparent); }}
+.calday.today {{ box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--accent) 62%,transparent);
+  background:color-mix(in srgb,var(--accent) 9%,transparent); }}
 .calday.today .caldn {{ color:var(--accent); }}
 .caldn.num::after {{ content:""; }}
 .calday.today .caldn::after {{ content:" today"; letter-spacing:.08em; }}
@@ -415,9 +493,16 @@ def record_css() -> str:
 /* ---------------------------------------------------------------------------- the month */
 .calmonth {{ margin:0 0 2.2rem; }}
 .calmonth[hidden] {{ display:none; }}
-.calmh {{ font-family:var(--display); font-size:var(--s3); line-height:1.05; margin:0 0 .1rem;
-  display:flex; flex-wrap:wrap; align-items:baseline; gap:.3rem .8rem;
-  border-top:none; padding-top:0; }}
+/* THE HEADER OF A WALL CALENDAR: the month's number, its name, the year. */
+.calmh {{ margin:0; border-top:none; padding-top:0; font-weight:400; }}
+.calmh > time {{ display:flex; align-items:baseline; justify-content:space-between;
+  gap:.6rem 1rem; }}
+.calmnum, .calmyear {{ font-family:var(--mono); font-size:var(--s1); color:var(--ink-mute);
+  letter-spacing:.04em; line-height:1; }}
+.calmname {{ font-family:var(--display); font-size:var(--s4); line-height:1;
+  letter-spacing:.02em; text-transform:uppercase; color:var(--limestone); }}
+.calmsum {{ margin:.5rem 0 0; font-family:var(--mono); font-size:var(--s-1);
+  letter-spacing:.06em; text-transform:uppercase; color:var(--ink-mute); }}
 .calmh:focus {{ outline:none; }}
 .calmh:focus-visible {{ outline:2px solid var(--accent); outline-offset:4px; }}
 .calmn2, .calact {{ font-family:var(--mono); font-size:var(--s-1);
@@ -425,22 +510,32 @@ def record_css() -> str:
 .calmn2 {{ color:var(--ink-mute); }}
 .calact {{ color:var(--accent); }}
 
-.calhead {{ list-style:none; margin:1rem 0 .2rem; padding:0;
-  display:grid; grid-template-columns:repeat(7,1fr); gap:2px; }}
-.calhead > li {{ font-family:var(--mono); font-size:var(--s-2); color:var(--ink-mute);
-  letter-spacing:.12em; text-transform:uppercase; padding-left:.4rem; }}
+/* A WALL CALENDAR, which is what the owner asked for and is a different object from a chart
+   with a grid under it. The month is the page: ruled boxes, a real weekday rule across the
+   top, and day numerals big enough to find without reading. */
+.calhead {{ list-style:none; margin:1.1rem 0 0; padding:0 0 .5rem;
+  display:grid; grid-template-columns:repeat(7,1fr);
+  border-bottom:2px solid var(--rule-strong); }}
+.calhead > li {{ font-family:var(--mono); font-size:var(--s-2); color:var(--dust);
+  letter-spacing:.16em; text-transform:uppercase; text-align:center; }}
+/* THE RULES ARE THE GRID'S OWN. One hairline per box would double up on every shared edge and
+   read as a heavier line in the middle than at the rim, which is the tell of a table drawn by
+   somebody who did not look at it. The container draws top and left, each cell draws right
+   and bottom, so every rule is exactly one hairline. */
 .caldays {{ list-style:none; margin:0; padding:0;
-  display:grid; grid-template-columns:repeat(7,1fr); gap:2px; }}
-.calday {{ min-height:5.6rem; padding:.35rem .4rem .45rem;
-  border-top:var(--hair) solid var(--rule); border-radius:2px;
-  display:flex; flex-direction:column; gap:.3rem; min-width:0; }}
-.calday.out {{ border-top:0; }}
+  display:grid; grid-template-columns:repeat(7,1fr);
+  border-left:var(--hair) solid var(--rule); }}
+.calday {{ min-height:8.4rem; padding:.5rem .55rem .6rem;
+  border-right:var(--hair) solid var(--rule);
+  border-bottom:var(--hair) solid var(--rule);
+  display:flex; flex-direction:column; gap:.35rem; min-width:0; }}
+.calday.out {{ background:color-mix(in srgb,var(--deep) 34%,transparent); }}
 /* A DAY THAT HOLDS SOMETHING IS RAISED, so the month's rhythm is visible as texture rather
    than as a wall of identical boxes a reader has to parse line by line. */
-.calday.full {{ background:color-mix(in srgb,var(--panel) 62%,transparent);
-  border-top-color:color-mix(in srgb,var(--accent) 34%,var(--rule)); }}
-.caldn {{ font-family:var(--mono); font-size:var(--s-2); color:var(--ink-mute); line-height:1; }}
-.calday.full .caldn {{ color:var(--dust); }}
+.calday.full {{ background:color-mix(in srgb,var(--panel) 62%,transparent); }}
+.caldn {{ font-family:var(--mono); font-size:var(--s0); color:var(--ink-mute); line-height:1;
+  letter-spacing:.02em; }}
+.calday.full .caldn {{ color:var(--limestone); }}
 .caldd {{ display:none; }}
 
 .calevs {{ list-style:none; margin:0; padding:0; display:grid; gap:.25rem; }}

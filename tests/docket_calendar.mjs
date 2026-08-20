@@ -69,6 +69,20 @@ const open = async (opts = {}, hash = "") => {
   await load(hash);
   return { p: PAGE, ctx: { close: async () => {} } };
 };
+
+// REACHING A MONTH IS A TWO STEP MOVE NOW, and doing it hopefully is how a suite goes flaky.
+// The tab click was wrapped in a catch, so when the sticky masthead happened to cover the
+// toolbar after a previous scroll, the click timed out silently, the year view never opened,
+// and the mini calendar that was supposed to be clicked next sat invisible until the full
+// thirty second default expired. Scroll first, then assert the view actually changed, then
+// click. A failure now says which step failed instead of timing out on the one after it.
+async function openMonth(p, key) {
+  await p.evaluate(() => window.scrollTo(0, 0));
+  await p.click("#calvy", { timeout: 5000 });
+  await p.waitForSelector(`a.mini[data-month="${key}"]`, { state: "visible", timeout: 5000 });
+  await p.click(`a.mini[data-month="${key}"]`, { timeout: 5000 });
+}
+
 const state = (p) => p.evaluate(() => {
   const c = document.getElementById("cal");
   if (!c) return null;
@@ -78,8 +92,8 @@ const state = (p) => p.evaluate(() => {
     panels: panels.length,
     shown: shown.length,
     showing: shown.length === 1 ? shown[0].getAttribute("data-month") : null,
-    railCurrent: (c.querySelector('a.calm[aria-current="true"]') || {}).getAttribute
-      ? c.querySelector('a.calm[aria-current="true"]').getAttribute("data-month") : null,
+    view: c.getAttribute("data-view"),
+    tab: (c.querySelector('.caltab[aria-pressed="true"]') || {}).id || null,
     today: c.querySelectorAll(".calday.today").length,
     events: c.querySelectorAll(".calev").length,
     badLinks: [...c.querySelectorAll(".calev")].filter((a) => !/\/item\/[^/]+\/$/.test(
@@ -97,7 +111,7 @@ console.log("=== with no script at all ===");
     const panels = [...c.querySelectorAll(".calmonth")];
     return { panels: panels.length,
              readable: panels.filter((x) => x.offsetParent !== null).length,
-             anchors: c.querySelectorAll('a.calm[href^="#cal-"]').length,
+             anchors: c.querySelectorAll('a.mini.has[href^="#cal-"]').length,
              events: c.querySelectorAll(".calev").length };
   });
   ok("every month is in the document", s.panels > 1, String(s.panels));
@@ -113,13 +127,13 @@ console.log("\n=== with script, one month at a time ===");
   const { p, ctx } = await open();
   let s = await state(p);
   ok("exactly one month is showing", s.shown === 1, String(s.shown));
-  ok("...and the rail agrees with the panel", s.railCurrent === s.showing,
-     `${s.railCurrent} vs ${s.showing}`);
+  ok("...and the month tab is the one lit", s.view === "month" && s.tab === "calvm",
+     `${s.view}/${s.tab}`);
   ok("today is marked, so a reader is not counting columns", s.today === 1, String(s.today));
   ok("every event links to an item page", s.badLinks === 0, String(s.badLinks));
 
   const first = s.showing;
-  await p.click('a.calm[data-month="2026-06"]');
+  await openMonth(p, "2026-06");
   await p.waitForTimeout(300);
   s = await state(p);
   ok("clicking a month in the rail shows that month", s.showing === "2026-06", s.showing);
@@ -158,7 +172,7 @@ console.log("\n=== only what I can still act on ===");
   const before = await p.evaluate(() =>
     [...document.querySelectorAll(".calmonth:not([hidden]) .calev")]
       .filter((x) => getComputedStyle(x).display !== "none").length);
-  await p.click("#calacts"); await p.waitForTimeout(300);
+  await p.click(".calswitch"); await p.waitForTimeout(300);
   const after = await p.evaluate(() => {
     const vis = [...document.querySelectorAll(".calmonth:not([hidden]) .calev")]
       .filter((x) => getComputedStyle(x).display !== "none");
@@ -167,7 +181,7 @@ console.log("\n=== only what I can still act on ===");
   ok("the filter hides something", after.n < before, `${before} -> ${after.n}`);
   ok("...and what is left is only what can be acted on", after.allAct);
   ok("...and it leaves some of them, rather than emptying the month", after.n > 0, String(after.n));
-  await p.click("#calacts"); await p.waitForTimeout(300);
+  await p.click(".calswitch"); await p.waitForTimeout(300);
   const back = await p.evaluate(() =>
     [...document.querySelectorAll(".calmonth:not([hidden]) .calev")]
       .filter((x) => getComputedStyle(x).display !== "none").length);
@@ -217,13 +231,13 @@ console.log("\n=== every month, by every route ===");
 
   let railBad = [];
   for (const k of all) {
-    await p.click(`a.calm[data-month="${k}"]`);
+    await openMonth(p, k);
     await p.waitForFunction(
       (m) => { const s = document.querySelector(".calmonth:not([hidden])");
                return s && s.getAttribute("data-month") === m; }, k, { timeout: 2000 })
       .catch(() => railBad.push(k));
     const s = await state(p);
-    if (s.shown !== 1 || s.showing !== k || s.railCurrent !== k) railBad.push(k);
+    if (s.shown !== 1 || s.showing !== k) railBad.push(k);
   }
   ok(`every one of the ${all.length} months opens from the rail`, !railBad.length,
      [...new Set(railBad)].join(", "));
@@ -234,7 +248,7 @@ console.log("\n=== every month, by every route ===");
   // second. What a thumb feels is dispatch to the next paint, and that is what this takes.
   const lat = await p.evaluate(async () => {
     const ms = [];
-    for (const a of [...document.querySelectorAll("a.calm.has")]) {
+    for (const a of [...document.querySelectorAll("a.mini.has")]) {
       const t0 = performance.now();
       a.click();
       await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
@@ -262,6 +276,23 @@ console.log("\n=== every month, by every route ===");
     const s = await state(p);
     if (s.showing !== k || s.shown !== 1) linkBad.push(`${k}->${s.showing}`);
   }
+  // AND IT ARRIVES AT THE CALENDAR, not a screenful above it. The native anchor jump cannot
+  // work here, because the panel it names is still hidden when the browser tries.
+  await load("#cal-2026-06");
+  // THE MONTH ITSELF, not the section that contains it. The first version of this check
+  // asked whether `#cal` was on screen, which it is even when the rail fills the viewport and
+  // the month the link named is a screenful below the fold. A check that passes for the wrong
+  // reason is worse than no check: it says the thing was verified.
+  const where = await p.evaluate(() => {
+    const h = document.querySelector(".calmonth:not([hidden]) .calmh");
+    const r = h.getBoundingClientRect();
+    return { top: Math.round(r.top), vh: window.innerHeight,
+             month: h.closest(".calmonth").getAttribute("data-month") };
+  });
+  ok("a shared month puts THAT month on screen, not just the calendar",
+     where.month === "2026-06" && where.top >= 0 && where.top < where.vh,
+     JSON.stringify(where));
+
   ok(`a month can be linked to directly (${[...new Set(sample)].length} sampled of ${all.length})`,
      !linkBad.length, linkBad.join(" "));
   await ctx.close();
@@ -272,7 +303,7 @@ console.log("\n=== stepping the whole range, both ways ===");
   const { p, ctx } = await open();
   const all = await p.evaluate(() =>
     [...document.querySelectorAll(".calmonth")].map((x) => x.getAttribute("data-month")));
-  await p.click("a.calm[data-month=\"" + all[0] + "\"]");
+  await openMonth(p, all[0]);
   await p.waitForTimeout(150);
   const seen = [];
   for (let i = 0; i < all.length + 4; i++) {
@@ -305,11 +336,10 @@ console.log("\n=== the third rapid tap ===");
   await p.waitForTimeout(400);
   const s = await state(p);
   ok("five taps with no pause leave exactly one month showing", s.shown === 1, String(s.shown));
-  ok("...and the rail still agrees with it", s.railCurrent === s.showing,
-     `${s.railCurrent} vs ${s.showing}`);
+  ok("...and the month view is the one showing", s.view === "month", String(s.view));
 
   // The filter, toggled hard, in a month that has both kinds.
-  for (let i = 0; i < 8; i++) { await p.click("#calacts", { timeout: 400 }).catch(() => {}); }
+  for (let i = 0; i < 8; i++) { await p.click(".calswitch", { timeout: 400 }).catch(() => {}); }
   await p.waitForTimeout(300);
   const on = await p.evaluate(() => document.getElementById("calacts").checked);
   const cls = await p.evaluate(() => document.getElementById("cal").classList.contains("acts"));
@@ -321,12 +351,13 @@ console.log("\n=== the third rapid tap ===");
 console.log("\n=== the filter, in every month ===");
 {
   const { p, ctx } = await open();
-  await p.click("#calacts"); await p.waitForTimeout(200);
+  await p.click(".calswitch"); await p.waitForTimeout(200);
   const all = await p.evaluate(() =>
     [...document.querySelectorAll(".calmonth")].map((x) => x.getAttribute("data-month")));
   let leak = [], blank = [];
   for (const k of all) {
-    await p.click(`a.calm[data-month="${k}"]`); await p.waitForTimeout(60);
+    await openMonth(p, k);
+    await p.waitForTimeout(40);
     const r = await p.evaluate(() => {
       const m = document.querySelector(".calmonth:not([hidden])");
       const vis = [...m.querySelectorAll(".calev")]
@@ -343,6 +374,51 @@ console.log("\n=== the filter, in every month ===");
   ok("...and a month with nothing open still renders rather than going blank", !blank.length,
      blank.join(", "));
   await ctx.close();
+}
+
+// THREE VIEWS, and the one a reader lands on. A view switcher that opens on the wrong view,
+// or leaves a control visible in a view it cannot act on, is the kind of thing that only ever
+// shows up in front of somebody.
+console.log("\n=== the three views ===");
+{
+  const p = await load();
+  let s = await state(p);
+  ok("it opens on the month, which is what a wall calendar is",
+     s.view === "month" && s.tab === "calvm", `${s.view}/${s.tab}`);
+
+  const seen = [];
+  for (const [id, want] of [["calvy", "year"], ["calvl", "list"], ["calvm", "month"]]) {
+    await p.click(`#${id}`);
+    await p.waitForTimeout(120);
+    const r = await p.evaluate(() => {
+      const c = document.getElementById("cal");
+      const vis = (sel) => {
+        const el = c.querySelector(sel);
+        return el ? getComputedStyle(el).display !== "none" : false;
+      };
+      return { view: c.getAttribute("data-view"), rail: vis(".calrail"),
+               panels: vis(".calpanels"), list: vis(".callist"),
+               paging: !document.querySelector(".calpage").hidden,
+               pressed: [...c.querySelectorAll('.caltab[aria-pressed="true"]')].length };
+    });
+    seen.push(`${want}:${JSON.stringify(r)}`);
+    const only = { month: r.panels && !r.rail && !r.list,
+                   year: r.rail && !r.panels && !r.list,
+                   list: r.list && !r.panels && !r.rail }[want];
+    if (!only || r.view !== want || r.pressed !== 1) seen.push(`WRONG ${want}`);
+    // Paging is the month's own control and has no meaning in the other two.
+    if ((want === "month") !== r.paging) seen.push(`PAGING ${want}`);
+  }
+  ok("each view shows itself and hides the other two, with one tab lit",
+     !seen.some((x) => x.startsWith("WRONG")), seen.filter((x) => x.startsWith("WRONG")).join(" "));
+  ok("...and the pager is offered only where it can move something",
+     !seen.some((x) => x.startsWith("PAGING")), seen.filter((x) => x.startsWith("PAGING")).join(" "));
+
+  // Picking a month out of the year hands the reader back to the month.
+  await openMonth(p, "2026-06"); await p.waitForTimeout(180);
+  s = await state(p);
+  ok("picking a month in the year view opens that month, in the month view",
+     s.view === "month" && s.showing === "2026-06", `${s.view}/${s.showing}`);
 }
 
 console.log("\n=== every width the site is tested at ===");
