@@ -361,6 +361,12 @@ jobs:
           python3 scripts/site/scanner_sync_check.py --self-test
           python3 scripts/site/scanner_sync_check.py
 
+      - name: The content security policy, and the checker that proves it can go red
+        # GitHub Pages cannot set response headers, so a meta policy is the only hardening this
+        # site can carry, and its failure mode is silent: a hash it misses means a reader's
+        # browser refuses the site's own script and every other gate here stays green.
+        run: python3 scripts/site/csp.py --self-test
+
       - name: The structured data is checked as the published copy it is
         run: |
           # house_style_check strips every <script> before it lints, correctly, because the ask
