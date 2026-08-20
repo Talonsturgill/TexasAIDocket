@@ -66,6 +66,13 @@ COPY = {
     "capped":       "That is this month's last written answer. Typing still searches the "
                     "whole record instantly and for nothing, which is most of what this box does.",
     "provenance":   "Written from the published record. Every figure checked against it.",
+    # Said when the ceiling cut a stream that had already begun. It names the limit rather
+    # than blaming the network, because the limit is ours and a narrower question is the
+    # thing a reader can actually do about it.
+    "cut_time":     "The rest was cut at eight seconds. A narrower question gets a whole "
+                    "answer inside it.",
+    "too_slow":     "That one did not come back inside eight seconds. Typing a narrower "
+                    "question searches the whole record instantly and for nothing.",
     # Said under an answer the page produced itself, which is most of them. It is not the
     # same claim as the written lane's: nothing was written, the record was read.
     "from_record":  "Read straight from the record, in your browser.",
@@ -518,6 +525,35 @@ _CLIENT = r"""
        and for nothing. An off-record question is refused without calling anybody. Only a
        question that genuinely needs prose reaches the worker, which is what makes an eight
        second ceiling a promise rather than a hope: most questions never start the clock. */
+    /* ---- THE EIGHT SECOND CEILING -------------------------------------------
+       Owner's brief: "an eight second execution ceiling, so it's fast when users are asking
+       it questions".
+       IT CUTS, IT DOES NOT DISCARD. Aborting at the ceiling and showing nothing would trade a
+       slow answer for no answer, which is not what a ceiling is for. What arrived stays on
+       screen, the stream is stopped, and the reader is told the rest was cut for time and
+       offered the thing that actually helps, which is a narrower question.
+       WHY EIGHT IS ACHIEVABLE AT ALL. Most questions never start this clock, because the
+       classifier answers them from the page. The ceiling only has to hold for questions that
+       genuinely need a model, and the token is already in hand by the time one is pressed.
+       THE CLOCK STARTS AT THE PRESS, not at the fetch, because it is a promise to the reader
+       about how long they wait and they are waiting from the moment they press. */
+    var CEILING_MS = 8000;
+    var overran = false;
+    var ceiling = setTimeout(function () {
+      if (!busy) return;
+      overran = true;
+      if (stopStream) { try { stopStream(); } catch (e) {} }
+      dropStage();
+      if (!started && !body.textContent) body.textContent = "%%too_slow%%";
+      else {
+        var cut = document.createElement("p");
+        cut.className = "askstop";
+        cut.textContent = "%%cut_time%%";
+        body.appendChild(cut);
+      }
+      finish();
+    }, CEILING_MS);
+
     localExchange = "";
     var verdict = window.__askClassify ? window.__askClassify(question) : { bucket: "written" };
 
@@ -563,6 +599,7 @@ _CLIENT = r"""
     armTurnstile();
 
     var stageEl = null, started = false, para = null, said = [];
+    var stopStream = null;
 
     function stage(text) {
       if (!stageEl) {
@@ -589,6 +626,13 @@ _CLIENT = r"""
     }
 
     function finish() {
+      /* CALLED ONCE, WHATEVER GETS HERE FIRST. The stream finishing and the ceiling firing are
+         a race by design, and both end the answer. Without the guard a stream that lands just
+         after the cut appends a second footer, pushes a second assistant turn into `turns` and
+         re-enables a control that is already enabled. */
+      if (!busy) return;
+      clearTimeout(ceiling);
+
       /* What it SAID goes back into the thread, not what it tried to say. A sentence the
          reader never saw must not be one the model can build on either, or a refused claim
          re-enters through the back door on the next question. */
@@ -722,9 +766,13 @@ _CLIENT = r"""
         });
       }
       var reader = r.body.getReader(), dec = new TextDecoder(), buf = "";
+      // Handed to the ceiling so it can stop the stream rather than let it go on writing into
+      // a thread that has already been closed off and footed.
+      stopStream = function () { try { reader.cancel(); } catch (e) {} };
       return (function pump() {
+        if (overran) return;
         return reader.read().then(function (res) {
-          if (res.done) {
+          if (overran || res.done) {
             if (buf.trim()) { try { handle(JSON.parse(buf)); } catch (e) {} }
             return;
           }
@@ -848,6 +896,91 @@ _CLIENT = r"""
      for. Somebody who pastes and submits inside a second still polls, exactly as before.
      Never slower. Owner's call, 2026-08-20, made knowing it had been tried and reverted. */
   input.addEventListener("focus", armTurnstile, { once: true });
+
+  /* ---- THE BOX TAKES THE SCREEN ON A PHONE ---------------------------------
+     Owner: "when a user clicks onto the search bar, we really want everything else on the
+     screen to just disappear", and after a press on a phone, "there's so much stuff on screen,
+     your eyes don't even go to the right spot".
+     A CLASS ON `body`, NOT A NEW ELEMENT. Everything that is not the box is taken out of the
+     flow by the stylesheet at phone widths, so there is nothing to build, nothing to keep in
+     sync with the page it covers, and on a laptop the rule simply does not apply.
+     THE SCROLL POSITION IS REMEMBERED AND PUT BACK. Hiding the page collapses it, so the
+     browser forgets where the reader was and dumps them at the top when it returns, which
+     feels like having lost their place because they have. */
+  /* CAPTURED BEFORE THE BROWSER MOVES THEM, which is why this is not simply read at focus.
+     A browser scrolls a focused input into view itself, and it does that BEFORE the focus
+     handler runs, so reading the offset there records where the browser had just put them and
+     not where they were reading. Measured: a reader at 600 was recorded at 74 and handed back
+     to 74, which is the bug this was meant to prevent wearing a fix's clothes.
+     `pointerdown` fires before focus and before that scroll. The scroll listener is the
+     fallback for a reader who arrives by keyboard, where nothing has moved yet anyway. */
+  var wasAt = 0, lastY = 0;
+  addEventListener("scroll", function () {
+    if (!document.body.classList.contains("asking")) lastY = window.pageYOffset;
+  }, { passive: true });
+  input.addEventListener("pointerdown", function () { wasAt = window.pageYOffset; });
+  /* THE SAME BREAKPOINT THE STYLESHEET USES, asked of the browser rather than guessed. Setting
+     the class at every width was harmless while the rules were scoped, and it left one real
+     trap: a reader focused on a laptop and then narrowing the window, or turning a tablet, would
+     be thrown into a full screen mode they never asked for. */
+  var PHONE = window.matchMedia ? window.matchMedia("(max-width:37.5rem)") : null;
+  function immerse() {
+    if (PHONE && !PHONE.matches) return;
+    if (document.body.classList.contains("asking")) return;
+    // A pointerdown a moment ago is the truest reading. Otherwise the last settled scroll,
+    // and only then the current offset, which by now may already have been moved.
+    if (!wasAt) wasAt = lastY || window.pageYOffset;
+    document.body.classList.add("asking");
+  }
+  function surface() {
+    if (!document.body.classList.contains("asking")) return;
+    document.body.classList.remove("asking");
+    var target = wasAt;
+    wasAt = 0;
+    /* RESTORED AFTER THE PAGE HAS ITS HEIGHT BACK. Removing the class un-hides the hero, the
+       nav and every section, and until that layout has happened the document is barely taller
+       than the viewport, so a scroll to 600 is clamped to whatever fits and the reader lands
+       near the top anyway. Measured: it came back at 74 instead of 600. Two frames is one to
+       apply the style and one to lay it out. */
+    /* IT VERIFIES ITSELF RATHER THAN FIRING ONCE AND HOPING. One frame put the reader at 74
+       instead of 600 and two frames at 169, because the page regains its height in stages as
+       sections, fonts and images lay back out, and a scroll past the current bottom is clamped
+       silently. So it asks for the position again on each of the next few frames and stops as
+       soon as it sticks. Bounded, so a page that genuinely cannot reach that offset any more,
+       which is a real case if the thread is long, settles at the nearest it can. */
+    /* IT VERIFIES ITSELF, AND IT WAITS IN TIME RATHER THAN IN FRAMES. The page regains its
+       height in stages as sections, fonts and images lay back out, and a scroll past the
+       current bottom is clamped silently, so a single call landed the reader at 74 instead of
+       600 and two frames at 169. Eight frames was not enough either once a thread had been
+       added, which is about 130ms against a page that takes longer than that to come back.
+       Bounded at half a second, after which the nearest reachable offset is the honest answer:
+       a long thread really can make the old position unreachable. */
+    var until = 500, step = 40, waited = 0;
+    (function restore() {
+      window.scrollTo({ top: target, behavior: "instant" });
+      if (Math.abs(window.pageYOffset - target) > 2 && waited < until) {
+        waited += step;
+        setTimeout(restore, step);
+      }
+    })();
+  }
+  input.addEventListener("focus", immerse);
+  var closer = document.getElementById("askclose");
+  if (closer) closer.addEventListener("click", function () { surface(); input.blur(); });
+  /* ESCAPE LEAVES, which is what a keyboard reader reaches for, and it must not also clear the
+     field: a search input treats Escape as clear on its own, so the default is stopped. */
+  input.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && document.body.classList.contains("asking")) {
+      e.preventDefault();
+      surface();
+      input.blur();
+    }
+  });
+  /* Start over hands the screen back as well, since the reader has said they are finished. */
+  box.addEventListener("click", function (e) {
+    if (e.target && e.target.classList && e.target.classList.contains("askagain") &&
+        e.target.textContent === "%%again%%") surface();
+  });
 
   input.addEventListener("input", function () { if (input.value) dropPending(); });
 

@@ -2395,6 +2395,38 @@ caption {{ caption-side:bottom; text-align:left; padding-top:.75rem; font-size:v
 .askbox.answering .chips,
 .askbox.answering .asknote {{ display:none; }}
 
+/* ---- THE BOX TAKES THE SCREEN ON A PHONE -----------------------------------------------
+   Owner, after asking a question on a phone: "there's so much stuff on screen, your eyes
+   don't even go to the right spot", and of the field, "when a user clicks onto the search
+   bar, we really want everything else on the screen to just disappear".
+   A hero, a stat row, a nav and a sky sit behind this box, and on a 390px screen they are all
+   still there while somebody is trying to read an answer. On a laptop there is room for
+   context, so this is scoped to the width where there is not.
+   NOT `position: fixed` ON THE BOX. Fixing the box inside a scrolled document leaves the rest
+   of the page scrolling underneath it on iOS and fights the parking arithmetic that keeps the
+   field seated. The PAGE is held still and everything that is not the box is taken out of the
+   flow, so the box is simply the only thing there is. */
+@media (max-width:37.5rem) {{
+  body.asking {{ overflow:hidden; }}
+  body.asking .sky, body.asking .masthead, body.asking main > *:not(.asksection),
+  body.asking .sitefoot {{ display:none; }}
+  body.asking .asksection {{ margin:0; }}
+  body.asking main {{ padding:0; }}
+  /* The safe-area token keeps the field off the home indicator on a notched phone. */
+  body.asking #ask {{ position:fixed; inset:0; z-index:60; overflow-y:auto;
+    padding:.9rem var(--gap) calc(.9rem + var(--safe-bottom));
+    background:var(--bg); display:flex; flex-direction:column; justify-content:flex-end; }}
+  body.asking #ask .askthread {{ flex:1 1 auto; overflow-y:auto; }}
+  /* THE WAY OUT IS VISIBLE. A full screen mode with no exit is a trap, and Escape is not
+     discoverable on a phone at all. */
+  body.asking .askclose {{ display:flex; }}
+}}
+.askclose {{ display:none; position:absolute; top:.5rem; right:.5rem; z-index:61;
+  width:2.75rem; height:2.75rem; align-items:center; justify-content:center;
+  border:0; border-radius:999px; background:transparent; color:var(--ink-mute);
+  font-size:1.5rem; line-height:1; cursor:pointer; }}
+.askclose:hover, .askclose:focus-visible {{ color:var(--ink-bright); }}
+
 
 /* The send control while it is working. The spinner replaces the arrow rather than sitting
    beside it, so the control keeps its size and the layout does not shift under a thumb. */

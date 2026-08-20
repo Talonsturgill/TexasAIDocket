@@ -354,6 +354,142 @@ await page.waitForTimeout(600);
 ok("clean console", errs.length === 0, errs.join(" | "));
 
 console.log("");
+// ------------------------------------------------------------------ the screen
+head("I2. on a phone the box takes the screen, and gives it back");
+{
+  const ph = await b.newPage({ viewport: { width: 390, height: 780 } });
+  await ph.route("**://challenges.cloudflare.com/**", (r) => r.abort());
+  await ph.goto(URL_);
+  await ph.waitForTimeout(400);
+  await ph.evaluate(() => scrollTo(0, 600));
+  await ph.waitForTimeout(150);
+
+  /* TAPPED, NOT FOCUSED PROGRAMMATICALLY. `focus()` skips pointerdown, and a browser scrolls a
+     focused input into view BEFORE the focus handler runs, so the position the box remembers
+     would be the one the browser had just moved them to rather than the one they were reading.
+     A phone user taps. Clicking fires the same pointerdown a tap does, and that is where the
+     scroll position is captured. */
+  await ph.click("#askq");
+  await ph.waitForTimeout(350);
+  const on = await ph.evaluate(() => {
+    const vis = (s) => { const e = document.querySelector(s); return e ? e.offsetParent !== null : false; };
+    const r = document.getElementById("ask").getBoundingClientRect();
+    return { asking: document.body.classList.contains("asking"),
+             hero: vis(".hero"), nav: vis(".masthead"), chips: vis(".chips"),
+             covers: Math.round(r.height) >= innerHeight - 4,
+             closeSeen: vis(".askclose") };
+  });
+  ok("focusing the field takes the screen", on.asking && on.covers, JSON.stringify(on));
+  ok("the hero and the nav are gone", !on.hero && !on.nav, JSON.stringify(on));
+  ok("and there is a visible way out", on.closeSeen, JSON.stringify(on));
+
+  // WHAT THE AGENT IS DOING IS THE ONLY THING LEFT. Owner: "we want to make it so that they
+  // can just see what's happening as far as what the agent's doing, not everything else".
+  await ph.evaluate(() => {
+    const real = window.fetch;
+    window.fetch = function (u, o) {
+      if (String(u).includes("/answer")) {
+        const enc = new TextEncoder();
+        return Promise.resolve(new Response(new ReadableStream({ start(c) {
+          c.enqueue(enc.encode(JSON.stringify({ stage: "Reading the record" }) + "\n")); } }),
+          { status: 200, headers: { "content-type": "application/x-ndjson" } }));
+      }
+      return real(u, o);
+    };
+    window.turnstile = { render: (el, o) => { setTimeout(() => o.callback("t"), 5); return 1; },
+                         reset: () => {} };
+  });
+  await ph.fill("#askq", "why does the deadline keep moving");
+  await ph.press("#askq", "Enter");
+  await ph.waitForTimeout(800);
+  const mid = await ph.evaluate(() => {
+    const vis = (s) => { const e = document.querySelector(s); return e ? e.offsetParent !== null : false; };
+    return { stage: (document.querySelector(".askstage") || {}).textContent || "",
+             question: (document.querySelector(".askturn") || {}).textContent || "",
+             chips: vis(".chips"), note: vis(".asknote"), hero: vis(".hero") };
+  });
+  ok("while it works, it says what it is doing", mid.stage.trim().length > 0, JSON.stringify(mid));
+  ok("the question is still read back", mid.question.length > 0, JSON.stringify(mid));
+  ok("and nothing else is competing for the eye",
+     !mid.chips && !mid.note && !mid.hero, JSON.stringify(mid));
+
+  // THE WAY BACK PUTS THE READER WHERE THEY WERE. Hiding the page collapses it, so without
+  // remembering the offset the browser returns them to the top, which feels like losing
+  // their place because it is.
+  await ph.click("#askclose");
+  // THE RESTORE RETRIES FOR HALF A SECOND, because the page regains its height in stages and
+  // an early scroll is clamped. Measuring inside that window reads a position still on its way.
+  await ph.waitForTimeout(900);
+  const off = await ph.evaluate(() => ({
+    asking: document.body.classList.contains("asking"), y: Math.round(scrollY) }));
+  ok("closing hands the screen back", !off.asking, JSON.stringify(off));
+  ok("...and puts them back where they were", Math.abs(off.y - 600) < 40, JSON.stringify(off));
+  await ph.close();
+}
+
+// A LAPTOP HAS ROOM FOR CONTEXT, so none of that applies there.
+{
+  const wide = await b.newPage({ viewport: { width: 1280, height: 800 } });
+  await wide.route("**://challenges.cloudflare.com/**", (r) => r.abort());
+  await wide.goto(URL_);
+  await wide.waitForTimeout(400);
+  await wide.focus("#askq");
+  await wide.waitForTimeout(300);
+  const g = await wide.evaluate(() => {
+    const h = document.querySelector(".hero");
+    return { asking: document.body.classList.contains("asking"),
+             hero: h ? h.offsetParent !== null : false };
+  });
+  ok("a laptop is not thrown into full screen", !g.asking, JSON.stringify(g));
+  ok("and keeps its context", g.hero, JSON.stringify(g));
+  await wide.close();
+}
+
+// ------------------------------------------------------------------ the ceiling
+head("J. the eight second ceiling");
+/* A STREAM THAT NEVER CLOSES, patched into the page itself.
+   `route.fulfill` always ENDS the response, so a stubbed body arrives complete and the stream
+   finishes in under a second, which tests the happy path wearing a hang's clothes. A real
+   socket that holds open cannot be reached either, because `route.continue` refuses to cross
+   from https to http.
+   So the page's own `fetch` hands back a ReadableStream that emits a stage and a sentence and
+   then simply never closes, which is the exact shape of a model that stalls mid-answer, and it
+   is what a ceiling has to survive. */
+await page.evaluate(() => {
+  const real = window.fetch;
+  window.fetch = function (u, o) {
+    if (String(u).includes("/answer")) {
+      const enc = new TextEncoder();
+      return Promise.resolve(new Response(new ReadableStream({
+        start(c) {
+          c.enqueue(enc.encode(JSON.stringify({ stage: "Reading the record" }) + "\n"));
+          c.enqueue(enc.encode(JSON.stringify({ sentence: "The first part arrived." }) + "\n"));
+          // and never c.close()
+        },
+      }), { status: 200, headers: { "content-type": "application/x-ndjson" } }));
+    }
+    return real(u, o);
+  };
+});
+await page.click(".askagain").catch(() => {});
+await page.waitForTimeout(200);
+const t0 = Date.now();
+await page.fill("#askq", "why does the deadline keep moving");
+await page.press("#askq", "Enter");
+await page.waitForSelector(".askfrom", { timeout: 15000 });
+const took = Date.now() - t0;
+
+ok("it closed the answer inside the ceiling", took < 11000, `${took}ms`);
+ok("...and not before the work had a chance", took > 7000, `${took}ms`);
+const cutText = (await page.textContent(".askreply")) || "";
+// IT CUTS, IT DOES NOT DISCARD. Throwing away what arrived would trade a slow answer for no
+// answer, which is not what a ceiling is for.
+ok("what did arrive is still on screen", /The first part arrived/.test(cutText),
+   cutText.slice(0, 90));
+ok("and it says the rest was cut for time", /cut at eight seconds/i.test(cutText),
+   cutText.slice(-90));
+ok("the box is usable again", !(await page.getAttribute("#askq", "disabled")));
+
 console.log(fail === 0 ? `ask_written: all passed, ${pass} checks`
                        : `ask_written: FAILED, ${fail} of ${pass + fail}`);
 await b.close();

@@ -3167,6 +3167,9 @@ def ask_box(items: list, today: str, base: str = "") -> str:
          reader wants is the one that keeps moving away from them.
          aria-live polite because sentences arrive one at a time after the press, and a reader
          on a screen reader would otherwise be told nothing was happening at all. -->
+    <button type="button" class="askclose" id="askclose" aria-label="Close the search">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
     <div class="askthread" id="askthread" hidden aria-live="polite" aria-atomic="false"></div>
     <form class="composer" role="search">
       <label class="vh" for="askq">Ask the record a question</label>
