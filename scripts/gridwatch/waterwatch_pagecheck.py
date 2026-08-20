@@ -93,6 +93,57 @@ def _main_of(page_html: str) -> str | None:
     return m.group(1) if m else None
 
 
+# THE COPY A PERSON READS, which is a smaller thing than the document that carries it.
+CODE = re.compile(r"<(script|style)\b.*?</\1>", re.DOTALL | re.IGNORECASE)
+# The head is published copy too. A verdict in the sentence that represents this page in a
+# search result or a shared link is still a verdict, and more people read that sentence than
+# read the page, so it is scanned with the body rather than left out of the rule.
+HEAD = re.compile(r"<head\b[^>]*>(.*?)</head>", re.DOTALL | re.IGNORECASE)
+HEAD_COPY = re.compile(
+    r"<title\b[^>]*>(?P<title>.*?)</title>"
+    r'|<meta\b[^>]*\bname="description"[^>]*\bcontent="(?P<desc>[^"]*)"',
+    re.DOTALL | re.IGNORECASE)
+
+
+def _reader_copy(page_html: str, main: str) -> str:
+    """Everything on this page a person actually reads, lowercased, and nothing else.
+
+    WHY THE VERDICT SCAN NEEDED ITS OWN VIEW OF THE PAGE.
+
+    It read `page_html.lower()`, the whole document, two lines after `findings` had carefully
+    separated `main` from the chrome around it. So it matched the "safe" inside
+    `style-src-attr 'unsafe-inline'` in the content security policy meta tag, and reported
+    **supply verdict language on the one page whose entire promise is that it publishes no
+    verdict**. Every run, on a correct page.
+
+    It is advisory and never blocks, which made it worse rather than better. A finding that is
+    always there and always wrong is how a reader learns to skim past the one that is real. The
+    same argument this repo makes about a liveness check that cries wolf about a deploy in
+    flight.
+
+    IT WENT UNCAUGHT BECAUSE THE FIXTURE WAS NOT THE PAGE. `shell()` says in its own docstring
+    that wrapping the test bodies in real chrome is what proves the check reads copy and not
+    chrome, and its chrome had no policy meta in it. So the one piece of chrome that breaks the
+    rule was the one piece the fixture left out. It is in there now.
+
+    Script and style come out for the same reason they come out of `numeral_lint` and
+    `house_style_check`. A stylesheet is not prose, and the water page carries its drawings'
+    stylesheet inline, so leaving it in would put several kilobytes of CSS in front of a scan
+    looking for English words.
+    """
+    parts = [CODE.sub(" ", main or "")]
+    # SCOPED TO `<head>`, NOT SEARCHED ACROSS THE DOCUMENT. `<title>` is also an SVG element,
+    # where it is the accessible name of a shape and the thing a browser shows on hover, and
+    # the water map carries one per reservoir. Pointed at the whole page this pulled a hundred
+    # and nineteen lake tooltips into a scan looking for English verdicts. The page title lives
+    # in the head, so that is where it is read from.
+    head = HEAD.search(page_html)
+    if head:
+        for m in HEAD_COPY.finditer(head.group(1)):
+            parts.append(m.group("title") or m.group("desc") or "")
+    return " ".join(parts).lower()
+
+
 def _fmt(iso: str) -> str:
     d = _dt.date.fromisoformat(iso)
     suf = "th" if 11 <= d.day <= 13 else {1: "st", 2: "nd", 3: "rd"}.get(d.day % 10, "th")
@@ -148,7 +199,7 @@ def findings(page_html: str, records: list, today: str) -> list[str]:
                    + ", ".join(stray[:8]))
 
     low = page_html.lower()
-    said = [w for w in VERDICTS if w in low]
+    said = [w for w in VERDICTS if w in _reader_copy(page_html, main)]
     if said:
         out.append("supply verdict language on a page that promises never to publish one: "
                    + ", ".join(said))
@@ -232,6 +283,14 @@ def self_test() -> int:
         """
         return ('<!doctype html><html lang="en-US"><head>'
                 '<meta name="viewport" content="width=device-width,initial-scale=1">'
+                # THE CONTENT SECURITY POLICY IS PART OF THE CHROME, and leaving it out is what
+                # let a false positive live here. `style-src-attr 'unsafe-inline'` carries the
+                # letters of "safe", so the real page reported a supply verdict every run while
+                # this fixture reported none. A fixture that is missing the one piece of chrome
+                # that breaks the rule is not testing the rule.
+                '<meta http-equiv="Content-Security-Policy" content="default-src \'self\'; '
+                "style-src 'self' 'sha256-AAAA'; style-src-attr 'unsafe-inline'; "
+                'object-src \'none\'">'
                 '<script type="application/ld+json">{"@type":"Dataset","dateModified":'
                 '"2026-08-16","version":3}</script></head><body>'
                 '<header class="masthead"><a href="./">Texas AI Docket</a></header>'
@@ -266,6 +325,25 @@ def self_test() -> int:
     check("a supply verdict is CAUGHT", any("verdict language" in x for x in f), str(f))
     f = findings(shell(good_body + "<p>Supplies are safe.</p>"), records, today)
     check("...including a reassuring one, which is equally a verdict",
+          any("verdict language" in x for x in f), str(f))
+
+    # THE FALSE POSITIVE THAT LIVED HERE, REPLAYED. The chrome above now carries a real content
+    # security policy, and `style-src-attr 'unsafe-inline'` contains the letters of "safe". This
+    # asserts the scan reads copy, so the policy can say what it has to say without the page
+    # being accused of grading the water supply.
+    f = findings(shell(good_body), records, today)
+    check("the policy meta's own unsafe-inline is not read as a verdict",
+          not any("verdict language" in x for x in f), str(f))
+
+    # ...AND THE SCAN DID NOT SIMPLY NARROW TO NOTHING. Scoping a check to fix a false positive
+    # is one edit away from scoping it until it cannot fail, so the head is still read: the
+    # description is the sentence that represents this page in a search result and in a shared
+    # link, and more people read it than read the page.
+    verdict_head = shell(good_body).replace(
+        '<meta name="viewport"',
+        '<meta name="description" content="Texas water supplies are safe"><meta name="viewport"')
+    f = findings(verdict_head, records, today)
+    check("...while a verdict in the page description is still caught",
           any("verdict language" in x for x in f), str(f))
 
     # ...but a fetched drought classification is reporting, not grading, and must stay quiet.
