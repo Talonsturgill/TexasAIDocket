@@ -455,12 +455,19 @@ a file and a builder renders it, and neither of them would notice the page going
 separate files rather than one parameterised checker because the promises differ. The water page
 also promises that percent full is computed from storage over capacity rather than read from the
 feed's own field.
+<!-- onpage water/ "storage over capacity" -->
 
 **THE COVERAGE AND EXCLUSION PROMISES ARE GONE**, on the owner's instruction, 2026-08-20. The
 page used to say that a metro with no line is a gap in the source's tagging rather than a dry
 city, and that out of state reservoirs are excluded rather than counted as empty. Both sentences
 and the rules that required them came off together. Do not restore either. If a run reads this
 section and reaches for that copy, it is reading a description that was true and is not.
+
+That instruction is CHECKED rather than trusted, because "do not restore this" is exactly the
+kind of sentence a run can read and still get wrong. `routine_claims.py` fails the suite if
+either sentence comes back, and fails it the other way if the promise above stops being kept.
+<!-- offpage water/ "San Antonio has no line" -->
+<!-- offpage water/ "Elephant Butte" -->
 
 **THE SCANNER'S DAILY CEILING.** The scan form fires its routine on submit, so the only thing
 between a public form and a bill is `daily_cap` in the scanner project's `scanner.config`. A

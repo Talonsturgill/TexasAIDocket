@@ -108,6 +108,16 @@ jobs:
       - name: Every guard job is behind the required check
         run: python3 scripts/shared/guards_shape.py
 
+      # THE ROUTINE'S OWN CLAIMS ABOUT PUBLISHED COPY. An unattended run reads
+      # prompts/daily_routine.md to know what to do, and part of that file describes what the
+      # pages say. A description that has gone stale is not wrong about a fact, it is wrong
+      # about an INTENTION, and the run acts on it. Self-test first, same rule as the rest.
+      - name: Routine claims self-test (prove it can go red)
+        run: python3 scripts/shared/routine_claims.py --self-test
+
+      - name: The routine describes the site it actually publishes
+        run: python3 scripts/shared/routine_claims.py
+
       - name: Places self-test (the canonical place record and its resolver)
         run: python3 scripts/shared/places.py --self-test
 
