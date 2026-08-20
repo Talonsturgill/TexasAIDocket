@@ -459,12 +459,6 @@ STAGE_CSS = """
   var(--wd,0s) backwards}
 @keyframes wrise{from{opacity:0;transform:translateY(9px)}}
 
-/* The two accounting drawings sit side by side where there is room and stack where there is
-   not. Neither is worth a scrollbar and neither is worth half a screen on a phone. */
-.wcounts{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));
-  gap:1.5rem 2rem;margin:1.5rem 0}
-.wcounts figure{margin:0}
-
 /* THE MAP. The mesh is the faintest thing on the page on purpose: it is there so a reader can
    find their own county under the water, and the moment it competes with a reservoir it has
    stopped doing that and started being decoration. */
@@ -523,19 +517,6 @@ STAGE_CSS = """
 @keyframes wcaustic{from{transform:translate(-3%,-2%) scale(1)}
   to{transform:translate(4%,3%) scale(1.09)}}
 
-/* THE COVERAGE GRID and THE UNIT DOTS. Two colours here and they are the only two on the page,
-   because they distinguish MEASURED from SET ASIDE, which is a statement about the data rather
-   than about the water. Nothing about a hollow cell says a place is dry. */
-.waterviz.waffle{max-width:15rem}
-.waterviz .cv{fill:none;stroke:var(--rule-strong);stroke-width:1.2;
-  vector-effect:non-scaling-stroke}
-.waterviz .cv.on{fill:var(--accent-deep);stroke:none}
-.waterviz.units{max-width:19rem}
-.waterviz .ex{fill:var(--accent-deep)}
-.waterviz .ex.no,.waterviz .ex.out{fill:none;stroke:var(--ink-mute);stroke-width:1.1;
-  vector-effect:non-scaling-stroke}
-.waterviz .ex.out{stroke-dasharray:1.6 1.4}
-
 /* THE SPARKLINE. Sized in the row rather than by the drawing, and `preserveAspectRatio:none`
    is deliberate: the cell is short and wide, the shape being read is a slope over time, and
    letting it letterbox would waste the only dimension that carries the reading. */
@@ -564,16 +545,13 @@ td.sparkcell{width:6rem;vertical-align:middle}
   .waterviz .ax,.waterviz .mklab{font-size:15px}.waterviz .ax.unit{font-size:12px}}
 
 /* ---- the show, all of it FROM hidden TO resting, never the other way ---- */
-.wviz .rv,.wviz .mv,.waterviz .wf,.waterviz .cv,.waterviz .ex{transform-box:fill-box;
+.wviz .rv,.wviz .mv,.waterviz .wf{transform-box:fill-box;
   transform-origin:50% 100%}
 [data-reveal].in .rv,[data-reveal].in .mv{animation:wgrow .7s cubic-bezier(.2,.75,.25,1)
   var(--wd,0s) backwards}
 @keyframes wgrow{from{transform:scaleY(0)}}
 [data-reveal].in .wf{animation:wgrow .9s cubic-bezier(.3,.7,.3,1) var(--wd,0s) backwards}
 [data-reveal].in .rim{animation:wfade .5s ease var(--wd,0s) backwards}
-[data-reveal].in .cv,[data-reveal].in .ex{animation:wpop .45s cubic-bezier(.2,.8,.3,1)
-  var(--wd,0s) backwards}
-@keyframes wpop{from{opacity:0;transform:scale(.4)}}
 @keyframes wfade{from{opacity:0}}
 /* THE LINE DRAWS ITSELF, and the dash length is the path's OWN measured length, computed in
    Python and handed over in `--len`. A guessed constant either stops short of the end or sits
@@ -1190,76 +1168,6 @@ def sparkline(values: list, window: float) -> str:
             f'<circle class="mk" cx="{last[0]}" cy="{last[1]}" r="1.9"/></svg>')
 
 
-def coverage_grid(cov: dict) -> str:
-    """The source's municipal tagging, drawn as the grid of areas it either reaches or does not.
-
-    THIS REPLACES A PARAGRAPH AND SAYS MORE THAN IT DID. The sentence was accurate and it asked
-    a reader to hold two numbers and a subtraction in their head to picture a coverage gap. The
-    picture is the point, so here is the picture: every statistical area in Texas as one cell,
-    filled where the water data tags a reservoir to it and hollow where it does not.
-
-    IT IS NOT A MAP AND MUST NOT BECOME ONE. These cells are in no geographic order, and that
-    is deliberate: the page already carries a real map drawn from real geometry, and a second
-    arrangement of squares that merely LOOKED like Texas would invite a reader to locate a gap
-    that the drawing does not actually know the position of.
-    """
-    if not cov or not cov.get("areas"):
-        return ""
-    total, lined = int(cov["areas"]), int(cov["lined"])
-    cols = 12
-    cell, gap2 = 15.0, 5.0
-    rows_n = (total + cols - 1) // cols
-    w = cols * cell + (cols - 1) * gap2
-    h = rows_n * cell + (rows_n - 1) * gap2
-    cells = []
-    for k in range(total):
-        cx = (k % cols) * (cell + gap2)
-        cy = (k // cols) * (cell + gap2)
-        on = k < lined
-        cells.append(f'<rect class="cv{" on" if on else ""}{_delay(k, total)}" '
-                     f'x="{cx:g}" y="{cy:g}" '
-                     f'width="{cell:g}" height="{cell:g}" rx="2"/>')
-    return (f'<svg class="waterviz waffle" viewBox="0 0 {w:g} {h:g}" role="img" '
-            f'aria-label="Every statistical area in Texas as one cell. The filled cells are '
-            f'the ones the state water data tags a reservoir to." '
-            f'preserveAspectRatio="xMidYMid meet">{"".join(cells)}</svg>')
-
-
-def exclusions_dots(L: dict) -> str:
-    """What is counted and what is set aside, as one dot each, because the counts are small.
-
-    A PROPORTIONAL BAR WOULD BE A LIE OF SCALE HERE. Two flood control dams and one out of state
-    reservoir against a hundred and nineteen counted is a sliver a reader cannot see and cannot
-    click, and a drawing whose smallest category is invisible has hidden the exact thing it was
-    drawn to disclose. At these counts one dot per reservoir is both exact and readable, and
-    nobody has to trust an area judgement.
-    """
-    counted = len(L.get("reservoirs") or [])
-    no_pool = len(L.get("excluded_no_pool") or [])
-    out = len(L.get("excluded_out_of_state") or [])
-    if not counted:
-        return ""
-    cols = 26
-    r, pitch = 3.4, 10.0
-    groups = [("in", counted), ("no", no_pool), ("out", out)]
-    total = sum(n for _c, n in groups)
-    rows_n = (total + cols - 1) // cols
-    w = (cols - 1) * pitch + 2 * r
-    h = (rows_n - 1) * pitch + 2 * r
-    dots, k = [], 0
-    for cls, n in groups:
-        for _ in range(n):
-            cx = r + (k % cols) * pitch
-            cy = r + (k // cols) * pitch
-            dots.append(f'<circle class="ex {cls}{_delay(k, total)}" cx="{cx:g}" '
-                        f'cy="{cy:g}" r="{r:g}"/>')
-            k += 1
-    return (f'<svg class="waterviz units" viewBox="0 0 {w:g} {h:g}" role="img" '
-            f'aria-label="One dot per reservoir in the day\'s payload. The filled dots are '
-            f'counted in the state total. The hollow ones are set aside, and the legend beside '
-            f'this says why." preserveAspectRatio="xMidYMid meet">{"".join(dots)}</svg>')
-
-
 def metro_bars(metros: list[dict], walk: list | None = None,
                series: dict | None = None) -> str:
     """Nineteen metros, sorted driest first, one bar each.
@@ -1415,32 +1323,26 @@ def body(records: list[dict], today: str) -> str:
   <strong class="num">{pt(L['agreement'])}</strong> of a point.</p>"""
 
     cov = L.get("coverage") or {}
+    # THE COVERAGE AND EXCLUSION NOTES ARE OFF THE PAGE, ON THE OWNER'S EXPLICIT INSTRUCTION,
+    # 2026-08-20. Written down because it reverses a rule this repo argued for at length.
+    #
+    # What came off: the "What is counted" section with its coverage grid and exclusion dots,
+    # then the two sentences that survived it, which said that San Antonio has no line because
+    # the state's water data does not tag it and that El Paso's only tagged reservoir sits in
+    # New Mexico. The owner's judgement is that it is irrelevant to a reader and was costing
+    # screen space, and that is a call about what this page is for rather than about whether
+    # the sentences were true.
+    #
+    # THE RULE WENT WITH THE COPY, DELIBERATELY. `waterwatch_pagecheck` used to fail the page
+    # if either went unexplained. Leaving that gate standing over copy nobody intends to
+    # restore would have meant a permanently red advisory, which is the exact failure mode this
+    # project keeps writing down: a finding that is always there teaches a reader to skim past
+    # the one that is real. A rule and the thing it guards are removed together or not at all.
+    #
+    # WHAT IS NOT LOST. `coverage()` still computes the crosswalk, because `metro_bars` needs
+    # the walk for the federal names, and `waterwatch.json` still publishes the exclusions per
+    # reservoir. The facts are in the open data. They are no longer in the copy.
     gap = ""
-    if cov and cov.get("san_antonio"):
-        sa = cov["san_antonio"]
-        stranded = (f'{" and ".join(cov["stranded"])} sit in today\'s reservoir record carrying '
-                    f'no municipal tag at all. ' if len(cov["stranded"]) == 2 else "")
-        gap = f"""<figure class="wviz" data-reveal>{coverage_grid(cov)}
-    <figcaption>Every statistical area in Texas, one to a cell, filled where the state's water
-    data tags a reservoir to it. It reaches
-    <strong class="num">{af(cov['lined'])}</strong> of
-    <strong class="num">{af(cov['areas'])}</strong>. {sa['name']} is not one of them.
-    {stranded}A missing line above is a gap in the source's tagging rather than an absence of
-    water. Reading it as a dry metro would be exactly backwards.</figcaption></figure>"""
-
-    counted = len(L["reservoirs"])
-    out_n = len(L["excluded_out_of_state"])
-    pool_n = len(L["excluded_no_pool"])
-    elpaso = ("" if not out_n else
-              f""" <strong class="num">{af(out_n)}</strong>
-    {plural(out_n, 'sits', 'sit')} out of state. That is Elephant Butte Lake in New Mexico and
-    it is why El Paso has no line above.""")
-    excl = f"""<figure class="wviz" data-reveal>{exclusions_dots(L)}
-    <figcaption>One dot per reservoir in today's payload.
-    <strong class="num">{af(counted)}</strong> are counted in the state total.
-    <strong class="num">{af(pool_n)}</strong> flood control dams have no conservation pool and
-    are set aside rather than counted as empty. They stand dry by design and would drag the
-    state total down for doing their job.{elpaso}</figcaption></figure>"""
 
     # THE STAGE TRAVELS WITH THE PAGE. Emitted here rather than linked, so the drawings and the
     # rules that style them arrive in one response and there is no width at which a reader sees
@@ -1467,14 +1369,11 @@ def body(records: list[dict], today: str) -> str:
 
 <div data-reveal>{distribution_svg(f)}</div>
 
-<h2>What is counted</h2>
-<div class="wcounts">{gap}{excl}</div>
-
 <div class="prose">
   <div class="gap">
     <p><strong>This measures surface water in reservoirs and nothing else.</strong> A city also
     runs on groundwater and reuse and purchased water. The Ogallala and the Edwards are not
-    measured here.</p>
+    measured here.</p>{gap}
     <p>A low bar is not a conclusion about a city's supply and a full bar is not a promise.
     Some reservoirs are drawn down deliberately. Some refill in a week from one storm. These
     are the figures for the day and nothing more.</p>
@@ -1519,18 +1418,23 @@ def authorised(f: dict) -> set[str]:
             ordinal_date(L["date"]),
             maf(L["storage_af"]), maf(L["capacity_af"]), maf(L.get("headroom_af")),
             pct(L["percent_full"]), af(L["reservoir_count"]), pt(L.get("agreement")),
-            pct(L.get("below_average")),
-            af(len(L["excluded_no_pool"])), af(len(L["excluded_out_of_state"])),
-            af(len(L["reservoirs"])))
+            pct(L.get("below_average")))
+        # THE EXCLUSION COUNTS CAME OFF WITH THE SECTION THAT PRINTED THEM. "2 flood control
+        # dams", "1 sits out of state" and the counted total all lived in the exclusion dots
+        # caption, and that block is gone. The orphan gate named all three the moment it did.
         for m in L["metros"]:
             add(pct(m["percent_full"]), af(m["storage_af"]))
-        cov = L.get("coverage") or {}
-        add(af(cov.get("lined")), af(cov.get("areas")))
+        # `cov` lined and areas are computed and no longer published, so they are not
+        # authorised. An authorisation for a figure nothing prints is a hole the width of
+        # that number, which is what the orphan check below exists to refuse.
     c = f.get("change")
     if c:
         add(af(abs(c["storage_af"])))
     sp = f.get("span")
-    if sp:
+    # GUARDED ON THE SAME CONDITION THE READOUT USES. The across-the-record chip only renders
+    # when the record holds more than one day, and on a single day the move is zero, so an
+    # unguarded authorisation stood there permitting a bare "0" that nothing printed.
+    if sp and sp["days"] > 1:
         add(af(abs(sp["storage_af"])))
     return acc.set
 
@@ -1619,8 +1523,6 @@ def self_test() -> int:
           'class="fill"' in b and "fill low" not in b and "fill crit" not in b)
 
     # THE EL PASO TRAP, said out loud on the page rather than only handled in code.
-    check("El Paso's absence is explained rather than silently correct",
-          "Elephant Butte" in b and "New Mexico" in b)
     check("El Paso is not given a bar", "el_paso" not in b)
 
     check("no orphaned quoted numeral survives the copy it was admitted for",
@@ -1725,9 +1627,7 @@ def self_test() -> int:
         live_b = body(load(), live_f["latest"]["date"])
         for name, drawn in (("the map", reservoir_map_svg(live_f)),
                             ("the trend", state_trend_svg(live_f)),
-                            ("the distribution", distribution_svg(live_f)),
-                            ("the coverage grid", coverage_grid(live_f["latest"]["coverage"])),
-                            ("the exclusion dots", exclusions_dots(live_f["latest"]))):
+                            ("the distribution", distribution_svg(live_f))):
             check(f"{name} renders from the record", bool(drawn) and drawn.startswith("<"))
 
         # THE EL PASO TRAP AGAIN, ON THE ONE SURFACE THAT COULD REOPEN IT. The ledger excludes
