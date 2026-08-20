@@ -125,8 +125,15 @@ const PREINSTALLED = process.env.CHROME_PATH || process.env.PLAYWRIGHT_CHROMIUM
   || '/opt/pw-browsers/chromium';
 const browser = await chromium.launch(
   existsSync(PREINSTALLED) ? { executablePath: PREINSTALLED } : {});
+  // bypassCSP, because this test INSTRUMENTS the page rather than reading it. The strip below
+  // hides the chrome and freezes motion so two machines compare the same register, and it goes
+  // in through addStyleTag, which the policy from #119 refuses under `style-src 'self'`. The
+  // page's own stylesheet is same-origin and unaffected, so what is measured is unchanged; the
+  // only thing bypassed is the harness's own injection. The policy itself is checked in
+  // tests/csp_runtime.mjs, by a browser, where bypassing it would be the whole bug.
 const ctx = await browser.newContext({
   colorScheme: 'dark', viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1,
+  bypassCSP: true,
 });
 const p = await ctx.newPage();
 await p.goto(page_url);
@@ -154,6 +161,7 @@ const spots = {
 {
   const lightCtx = await browser.newContext({
     colorScheme: 'light', viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1,
+    bypassCSP: true,
   });
   const lp = await lightCtx.newPage();
   await lp.goto(page_url);
