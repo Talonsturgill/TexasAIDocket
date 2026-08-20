@@ -68,8 +68,15 @@ def findings(site: Path) -> list[str]:
     else:
         xml = sm.read_text(encoding="utf-8")
         locs, mods = LOC.findall(xml), LASTMOD.findall(xml)
-        if len(locs) != len(mods):
-            bad.append(f"sitemap.xml: {len(locs)} urls but {len(mods)} lastmod values")
+        # A url may carry no `lastmod`, and that is a decision rather than a gap. The pages of
+        # prose about the project have no ledger field saying when their words changed, and an
+        # absent element reads as "no claim" where a wrong one costs the field its credibility
+        # everywhere. What is NOT allowed is more dates than urls, which would mean the two
+        # lists cannot be paired at all.
+        if len(mods) > len(locs):
+            bad.append(f"sitemap.xml: {len(mods)} lastmod values for {len(locs)} urls")
+        if not mods:
+            bad.append("sitemap.xml: no url carries a lastmod at all")
         # THE DEFECT THIS FILE EXISTS FOR. Every url carrying the same date is the signature
         # of a build stamping `today` rather than deriving a date, and it is indistinguishable
         # from a correct sitemap by every other check.
@@ -193,8 +200,10 @@ def self_test() -> int:
                 (tmp / rel / "index.html").write_text(html)
             keys = list(pages) if listed is None else listed
             mods = mods or ["2026-08-1" + str(8 + i % 2) for i in range(len(keys))]
-            locs = "".join(f"<url><loc>https://x/{r}</loc><lastmod>{m}</lastmod></url>"
-                           for r, m in zip(keys, mods))
+            locs = "".join(
+                f"<url><loc>https://x/{r}</loc>"
+                + (f"<lastmod>{m}</lastmod>" if m else "") + "</url>"
+                for r, m in zip(keys, mods))
             (tmp / "sitemap.xml").write_text(f"<urlset>{locs}</urlset>")
             (tmp / "robots.txt").write_text(robots)
             return findings(tmp)
@@ -207,6 +216,9 @@ def self_test() -> int:
     check("every url sharing one lastmod",
           any("share one lastmod" in f for f in run(ten, mods=["2026-08-19"] * 11)),
           str(run(ten, mods=["2026-08-19"] * 11)[:2]))
+    check("a sitemap where no url carries a date at all",
+          any("no url carries a lastmod" in f for f in
+              run(mods=["", ""])), "")
     check("a sitemap that misses a built page",
           any("does not list" in f for f in run(listed=[""])), str(run(listed=[""])))
     got = run({"": pg(), "a/": pg(desc="August 7th came and went.")})

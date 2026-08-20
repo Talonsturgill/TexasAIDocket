@@ -400,6 +400,23 @@ jobs:
           python3 scripts/site/seo_check.py
           python3 scripts/site/lastmod.py --self-test
 
+      - name: The build reads the ledgers and nothing about the clone
+        run: |
+          # GATE_LESSONS 30. The revision date was first derived from git history, which is an
+          # input that varies by clone depth and by checkout ref, and on a pull request HEAD is
+          # a synthetic merge commit that exists in no branch. The laptop and the runner built
+          # different bytes from the same ledgers and neither was corrupt.
+          #
+          # site_fresh_check proves docs/ is a pure function of the ledgers, and that proof is
+          # what makes it impossible for a run to corrupt the live site. This proves the same
+          # thing against the variable that broke it: one commit of history, identical output.
+          git clone --depth 1 --quiet "file://$PWD" /tmp/shallow
+          cd /tmp/shallow && git log --oneline | wc -l
+          python3 scripts/site/site_build.py --out /tmp/shallowsite --today "$(date -u +%F)"
+          cd "$GITHUB_WORKSPACE"
+          python3 scripts/site/site_build.py --out /tmp/fullsite --today "$(date -u +%F)"
+          diff -r /tmp/shallowsite /tmp/fullsite
+
       - name: Ask engine self-test (routes not cached answers, and it phones nobody)
         run: python3 scripts/site/ask_answers.py --self-test
 
