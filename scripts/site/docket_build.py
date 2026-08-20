@@ -57,6 +57,38 @@ LEDGER = REPO_ROOT / "ledger" / "docket.json"
 sys.path.insert(0, str(REPO_ROOT / "scripts" / "carousel"))
 import caption_check                                               # noqa: E402
 
+# EVERY FIELD AN ITEM MUST CARRY. Named rather than written inline in the validator, because
+# `schema_contract.py` checks the published shape against this exact list. Two copies of a
+# required-field list is one of them going stale, and the stale one is always the check.
+REQUIRED_FIELDS = ("id", "title", "summary", "topic", "decider", "geography",
+                   "status", "key_dates", "public_access", "claims", "last_verified")
+
+# THE VERSION OF THE PUBLISHED SHAPE, AND THE RULE THAT GOVERNS IT.
+#
+# `docket.json` is published as open data under CC BY and is meant to be parsed by other
+# people and by machines. A version number is the only way a consumer can tell whether their
+# parser still works, and it is worse than useless if nothing obliges it to move: a number
+# that asserts stability nothing is tracking leaves a consumer more confident and no safer.
+#
+# **BREAKING, so this must rise:**
+#   - a field in REQUIRED_FIELDS is removed, or stops being required
+#   - any published field changes type
+#   - a value is removed from TOPICS, STATUSES or ROOMS
+#
+# **NOT BREAKING, so this stays put:**
+#   - a new field is added, anywhere
+#   - a value is ADDED to TOPICS, STATUSES or ROOMS. A consumer switching on the values it
+#     knows still works and simply meets one it does not. Bumping for every new beat would
+#     make the number rise so often that nobody would read it, which costs more than it buys.
+#     (Owner's call, 2026-08-20.)
+#
+# An integer and not semver, on the same call. `_spec.generated` already answers "did the
+# content change", so this has exactly one question left to answer, which is "will my code
+# still work". An integer answers it, and a minor and patch split only earns its keep beside
+# a changelog people actually follow.
+#
+# `scripts/site/schema_contract.py` enforces all of the above against
+# `config/schema_contract.json`, so this constant cannot be a promise nobody keeps.
 SPEC_VERSION = 1
 
 # --------------------------------------------------------------------------- vocabularies
@@ -516,8 +548,7 @@ def gate_schema(items: list) -> Result:
         if not isinstance(it, dict):
             r.fail(f"{who}: not an object")
             continue
-        for field in ("id", "title", "summary", "topic", "decider", "geography",
-                      "status", "key_dates", "public_access", "claims", "last_verified"):
+        for field in REQUIRED_FIELDS:
             if field not in it:
                 r.fail(f"{who}: missing required field '{field}'")
         if it.get("id") in seen_ids:
