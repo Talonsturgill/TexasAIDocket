@@ -328,20 +328,20 @@ for (const vp of [{ width: 320, height: 568 }, { width: 360, height: 640 },
   await p2.fill("#askq", "what is open for comment right now");
   await p2.press("#askq", "Enter");
   await p2.waitForSelector(".askfrom", { timeout: 8000 }).catch(() => {});
-  // WAIT FOR THE PAGE TO STOP MOVING, and let it START first. `park()` scrolls smoothly over
-  // about 420ms, so measuring straight away reports the field off screen while the scroll that
-  // puts it back is still running. #118 hit that and added a settle loop.
-  // THE SETTLE LOOP ALONE IS NOT ENOUGH and this is the same trap wearing a different coat:
-  // polling twice in the gap BEFORE the scroll begins sees one unchanged value and declares
-  // the page settled, so it still measures mid-flight. The pause lets the scroll start, then
-  // the loop waits for it to finish.
-  await p2.waitForTimeout(700);
+  /* WAIT FOR THE CONDITION, NOT FOR A DURATION. This waited a fixed 700ms and then watched
+     for the scroll to stop moving, and both are guesses about how long a machine takes. They
+     held on a laptop and failed on a CI runner, which is slower, so the suite went red on a
+     product that was correct. A gate that reddens on a correct product is a gate somebody
+     switches off, and this file's own history is about exactly that.
+     So it waits for the thing being asserted to become true, with a bound. If `park()` works
+     it settles in a few hundred milliseconds on any machine; if it is broken this times out
+     and the assertion below fails on the real defect rather than on a slow runner. */
   await p2.waitForFunction(() => {
-    const y = Math.round(scrollY);
-    if (window.__lastY === y) return true;
-    window.__lastY = y;
-    return false;
-  }, null, { timeout: 4000, polling: 150 }).catch(() => {});
+    const f = document.querySelector("#ask form");
+    if (!f) return false;
+    const r = f.getBoundingClientRect();
+    return r.top >= 0 && r.bottom <= innerHeight + 1;
+  }, null, { timeout: 6000, polling: 100 }).catch(() => {});
   const g = await p2.evaluate(() => {
     const f = document.querySelector("#ask form").getBoundingClientRect();
     const r = document.querySelector(".askreply");
@@ -351,7 +351,21 @@ for (const vp of [{ width: 320, height: 568 }, { width: 360, height: 640 },
       answered: !!r && r.textContent.trim().length > 0,
       anySeen: seen > 0,
       startsOnScreen: rr ? rr.top < innerHeight : false,
-      aboveField: rr ? rr.top < f.top : false,
+      /* MEASURED IN DOCUMENT COORDINATES, not viewport ones. Whether the answer sits above the
+         field is a fact about the layout and has nothing to do with where the page happens to
+         be scrolled, but read from `getBoundingClientRect` it changes while a scroll is in
+         flight and reported false on a slow runner for a page that was laid out correctly. */
+      aboveField: (function () {
+        var rEl = document.querySelector(".askreply");
+        var fEl = document.querySelector("#ask form");
+        if (!rEl || !fEl) return false;
+        var top = function (el) {
+          var y = 0;
+          while (el) { y += el.offsetTop; el = el.offsetParent; }
+          return y;
+        };
+        return top(rEl) < top(fEl);
+      })(),
       fieldSeen: f.top >= 0 && f.bottom <= innerHeight + 1,
     };
   });
