@@ -1731,6 +1731,48 @@ figcaption {{ font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
   .chain {{ grid-template-columns:repeat(2, minmax(0, 1fr)); gap:1.1rem 1rem; }}
   .chain::before {{ display:none; }}
 }}
+/* WATCHING A RUN. The chain is the same four stations the front door shows, so the thing a
+   reader was promised is the thing they watch, and the state moves along it. Done is filled,
+   live pulses, ahead is an empty ring. The pulse stops under prefers-reduced-motion, same as
+   the daily reading's dot. */
+.watch .watchchain li[data-state="done"]::before {{ background:var(--accent);
+  border-color:var(--accent); }}
+/* Live carries a halo AS WELL AS the pulse, because the pulse is the only thing separating
+   live from done and prefers-reduced-motion turns it off. A distinction that exists only in
+   motion does not exist for the reader who asked for no motion. */
+.watch .watchchain li[data-state="live"]::before {{ background:var(--accent);
+  border-color:var(--accent); animation:livepulse 1.8s ease-in-out infinite;
+  box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 26%,transparent); }}
+.watchstate {{ font-family:var(--mono); font-size:var(--s-1); color:var(--accent);
+  letter-spacing:.06em; text-transform:uppercase; margin:1.2rem 0 0; }}
+.wfeed {{ list-style:none; margin:1.4rem 0 0; padding:0; max-width:none;
+  display:grid; gap:.1rem; }}
+/* THE FEED IS NOT PROSE AND DOES NOT TAKE THE PROSE MEASURE. `p,li` caps every list item at
+   --measure, which is right for a paragraph and wrong here: these are short monospace lines,
+   and capping them left the feed as a narrow ragged column in the left half of a wide page
+   with the rules stopping in mid air. The lane runs the width of the column it is in. */
+.wfeed li {{ max-width:none; padding:.5rem 0; border-top:var(--hair) solid var(--rule);
+  display:grid; grid-template-columns:minmax(0,7.5rem) 1fr; gap:0 1.2rem;
+  align-items:baseline; }}
+/* AND THE STATION IS PRINTED WHERE IT CHANGES, not on every line. Repeating the same word
+   twelve times says nothing. Printing it once, at the turn, is what makes the depth legible:
+   a reader sees how many things happened under footprint before industry started. */
+.wfeed li.wturn {{ border-top-color:color-mix(in srgb,var(--accent) 34%,var(--rule)); }}
+.wphase {{ font-family:var(--mono); font-size:var(--s-2); letter-spacing:.14em;
+  text-transform:uppercase; color:var(--accent); line-height:1.5; }}
+.wnote {{ color:var(--dust); font-family:var(--mono); font-size:var(--s-2);
+  line-height:1.5; }}
+@media (max-width:46rem) {{
+  /* On a phone the gutter would eat a third of the line, so the station sits on its own row
+     above the run it opens, and the lines that do not open one give the row back. */
+  .wfeed li {{ grid-template-columns:1fr; gap:.2rem; }}
+  .wphase:empty {{ display:none; }}
+}}
+.watchdone {{ font-family:var(--display); font-size:var(--s1); line-height:1.2;
+  margin:1.3rem 0 0; max-width:34ch; }}
+@media (prefers-reduced-motion:reduce) {{
+  .watch .watchchain li[data-state="live"]::before {{ animation:none; }}
+}}
 /* THE HIDDEN HALF ANNOUNCES ITSELF. At 390px the table is 704px wide inside a 356px box, so
    exactly half of it, the operator and the date, was off screen with nothing at the right edge
    saying so: the last column simply stopped mid word and read as the end of the table.

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-q70ohTjTWe13cEHglii1obWkfKJc4uV6Rp35KF0oTpA=' 'sha256-aekjyVBX26mXZwFy2WfwduSIFxQWvzc5vs0F/w38v9M=' 'sha256-E+gQOwXUGOnINfcOi9J56cHSAdhMH3938O1TEklKmKM=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://fbcxboktppalytugeqin.supabase.co; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-q70ohTjTWe13cEHglii1obWkfKJc4uV6Rp35KF0oTpA=' 'sha256-icDvO3zBg5pjgQOXCKx5f1JVnKbKLpUkxJNX74iJl1s=' 'sha256-E+gQOwXUGOnINfcOi9J56cHSAdhMH3938O1TEklKmKM=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Bottleneck scan · Texas AI Docket</title>
@@ -23,7 +23,7 @@
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <meta name="theme-color" content="#00205B">
-<link rel="stylesheet" href="../site.css?v=77c92213b3">
+<link rel="stylesheet" href="../site.css?v=95cc20cf58">
 <link rel="preload" href="../fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="alternate" type="application/atom+xml" title="Texas AI Docket" href="../atom.xml">
 <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebSite","@id":"https://texasaidocket.com/#website","name":"Texas AI Docket","url":"https://texasaidocket.com","inLanguage":"en-US","publisher":{"@id":"https://texasaidocket.com/#org"}},{"@context":"https://schema.org","@type":"Organization","@id":"https://texasaidocket.com/#org","name":"Texas AI Docket","url":"https://texasaidocket.com/","description":"A public, fact-checked record of decisions about artificial intelligence in Texas.","sameAs":["https://www.linkedin.com/company/texasaidocket/","https://www.facebook.com/Texasaidocket"]}]</script>
@@ -95,7 +95,7 @@
   (function () {
     var form = document.querySelector('#start form.leadform');
     if (!form) return;
-    var endpoint = 'https://fbcxboktppalytugeqin.supabase.co/functions/v1/scan-request';
+    var endpoint = 'https://texas-scan.talon-sturgill.workers.dev/request';
     // The homepage teaser hands the url over as ?url=. Prefill rather than making
     // somebody type it a second time, and never overwrite what they typed here.
     var q = new URLSearchParams(location.search).get('url');
@@ -131,6 +131,18 @@
         });
       }).then(function (res) {
         if (res.ok) {
+          // THE TOKEN IS THE PAYOFF. The homepage says an agent team goes to work on your url
+          // and that you can watch them; this is the moment that becomes true, so the requester
+          // is taken to the page that watches rather than told to go away and wait. A cached
+          // scan lands on the same page and finds it already finished, which is the honest
+          // thing to show: somebody asked about this business recently and here is what came
+          // back. The link is relative, and this form is served at /scan/.
+          if (res.body && res.body.token) {
+            location.href = 'watch/?t=' + encodeURIComponent(res.body.token);
+            return;
+          }
+          // A 200 with no token should not happen. If it does, say the true thing rather than
+          // sending somebody to a page with nothing to watch.
           form.innerHTML = '<p class="scan-status">Got it. The report goes to the address you ' +
             'gave, once a person has read it.</p>';
           return;

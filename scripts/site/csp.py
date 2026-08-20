@@ -66,10 +66,22 @@ FRAME_HOSTS = (
 IMG_HOSTS = (
     "https://raw.githubusercontent.com",   # the article pages' shipped carousel slides
 )
+# THE TWO WORKERS THIS SITE TALKS TO, DEFINED HERE AND IMPORTED BY THE CODE THAT CALLS THEM,
+# rather than typed in both places. That is the same lesson as `site_url` below, learned the
+# same way and one commit later: the ask box's endpoint lived in ask_written.py, the policy
+# kept its own list here, and the two disagreed the moment the policy shipped, so every
+# submitted question on the homepage was refused by the browser. An allowlist that is a second
+# copy of the truth is a list that will be wrong.
+ASK_ORIGIN = "https://texas-ask.talon-sturgill.workers.dev"
+SCAN_ORIGIN = "https://texas-scan.talon-sturgill.workers.dev"
+
 # POST targets. `connect-src` covers fetch/XHR, `form-action` covers a real form submit.
 CONNECT_HOSTS = (
     "https://formsubmit.co",
-    "https://fbcxboktppalytugeqin.supabase.co",   # the scan intake, until that is retired
+    "https://challenges.cloudflare.com",   # Turnstile calls home from the page, not only in
+                                           # its iframe, which is Cloudflare's own guidance
+    ASK_ORIGIN,     # the ask box's written lane
+    SCAN_ORIGIN,    # the scan gatekeeper, the watch page's feed, and nothing else
 )
 FORM_HOSTS = (
     "https://formsubmit.co",
@@ -90,6 +102,13 @@ def inline_scripts(html: str) -> list[str]:
     whose failure mode is a blank page for a reader.
     """
     return [b for a, b in _SCRIPT.findall(html) if not _HAS_SRC.search(a)]
+
+
+def executable_scripts(html: str) -> list[str]:
+    """The inline scripts a browser actually RUNS, so ld+json data is not read as behaviour."""
+    return [m.group(2) for m in re.finditer(
+        r"<script([^>]*)>(.*?)</script>", html, re.DOTALL)
+        if "application/ld+json" not in m.group(1)]
 
 
 def inline_styles(html: str) -> list[str]:
@@ -138,6 +157,57 @@ _RES = {
     "form-action": r'<form[^>]+action="([^"]+)"',
 }
 
+# CONNECT-SRC IS THE DIRECTIVE THE AUDIT COULD NOT SEE, and it is the one that broke first.
+# Every pattern above reads an HTML attribute, and a fetch target is not an attribute: it is a
+# string inside a script, or a data-* the script reads. So the policy shipped refusing the ask
+# box's own worker and nothing here noticed, because nothing here was looking.
+#
+# Read from QUOTED STRINGS ONLY, deliberately. A url in a comment is not a url this page calls,
+# and a checker that fails on prose teaches people to allowlist hosts they never contact.
+_CONNECT_ATTR = re.compile(r'data-endpoint="(https?://[^"]+)"')
+_CONNECT_STR = re.compile(r"""["'](https?://[^"'\s]+)["']""")
+# A FORM ACTION IS A CONNECT TARGET TOO whenever a script intercepts the submit and posts it
+# itself, which is what the feedback dialog does with formsubmit's ajax address. Nothing here
+# can tell a native submit from an intercepted one, so an action counts as targeted for both
+# directives. That over-counts in the OBSERVED direction only, which can make the unused check
+# below more forgiving and can never invent a target the page does not have.
+_CONNECT_FORM = re.compile(r'<form[^>]+action="(https?://[^"]+)"')
+
+
+def connect_targets(html: str) -> set[str]:
+    """Every origin this page could send a fetch or an intercepted form post to.
+
+    READ FROM QUOTED STRINGS AND ATTRIBUTES ONLY, never from comments. A url in a comment is not
+    a url this page calls, and a checker that fails on prose teaches people to allowlist hosts
+    they never contact, which is how an allowlist gets padded until it means nothing.
+    """
+    urls = _CONNECT_ATTR.findall(html) + _CONNECT_FORM.findall(html)
+    # CODE ONLY. `inline_scripts` deliberately returns the JSON-LD blocks too, because they are
+    # hashed, and they are full of urls that are DESCRIBED rather than called: a license, an
+    # @id, the canonical address of the page itself. Auditing those as fetch targets asks
+    # somebody to allowlist creativecommons.org.
+    for body in executable_scripts(html):
+        urls += _CONNECT_STR.findall(body)
+    return {"/".join(u.split("/")[:3]) for u in urls}
+
+
+def unused_connect(seen: set[str]) -> list[str]:
+    """Declared origins that no page anywhere targets.
+
+    THE CHECK RUNS BOTH WAYS, and this is the half that is easy to leave out. An allowlist only
+    means something while every entry is load bearing: the entry for the scan intake outlived
+    the intake by a day and nobody noticed, because an over-wide policy refuses nothing and so
+    reports nothing.
+
+    It is a DECLARED list checked against observation, not a list derived from observation. The
+    difference is the whole point of the policy: if the allowlist were built from what the pages
+    reference, an injected `fetch("https://evil")` would authorise itself at build time and this
+    gate would go green on a compromised page.
+    """
+    return [f"connect-src declares {h}, and no page on the site targets it. An allowlist entry "
+            f"nothing uses widens the policy for free, so either something should be calling "
+            f"it or it should go." for h in CONNECT_HOSTS if h not in seen]
+
 
 def audit(html: str, site_url: str) -> list[str]:
     """Everything this page loads or posts to that its own policy would refuse.
@@ -177,6 +247,14 @@ def audit(html: str, site_url: str) -> list[str]:
                 continue                      # same origin written absolute
             if origin not in allowed:
                 out.append(f"{directive} would refuse {origin}")
+
+    connect = re.search(r"(?:^|; )connect-src ([^;]*)", pol)
+    connect = connect.group(1) if connect else ""
+    for origin in connect_targets(html):
+        if origin.rstrip("/") == site_url.rstrip("/"):
+            continue
+        if origin not in connect:
+            out.append(f"connect-src would refuse {origin}")
     return sorted(set(out))
 
 

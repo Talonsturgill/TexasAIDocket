@@ -1,11 +1,13 @@
 <!-- The scan form.
      Served from the docket site at /scan/.
 
-     TWO PATHS, ON PURPOSE. With JavaScript it posts to the `scan-request` Edge Function, which
-     verifies the captcha, enforces the caps and FIRES THE SCAN ROUTINE immediately. Without
+     TWO PATHS, ON PURPOSE. With JavaScript it posts to the scan Worker's `/request` route,
+     which verifies the captcha, enforces the caps and FIRES THE SCAN ROUTINE immediately, then
+     hands back a token and sends the requester to a page that watches the run. Without
      JavaScript, or if that request never reaches the network, the plain form POST to FormSubmit
      still happens and the maintainer still gets the email. The old path is the fallback rather
      than the ex-path, because a migration that can take the form down is a migration that will.
+     (That route was a Supabase Edge Function until 2026-08-20.)
 
      THE PROMISE ON THIS PAGE IS THE CONTRACT. It says one report, to one address, and no list.
      The routine holds every part of that: it drafts to the address typed here and nowhere else,

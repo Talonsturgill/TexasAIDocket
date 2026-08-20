@@ -578,6 +578,31 @@ jobs:
       - name: The written lane holds a conversation, and says what it sends
         run: SITE=docs node tests/ask_written.mjs
 
+      # THE ONE PAGE HERE THAT SENDS ANYTHING. Everything else is static and the ask box goes
+      # out of its way to prove it phones nobody; the watch page cannot, because a live view of
+      # a running job IS a request, repeated. So what leaves it is checked: the token and
+      # nothing else, to that endpoint and no other host. Plus the two properties a feed like
+      # this gets wrong, which are duplicating a line a reader already read, and never stopping.
+      #
+      # One section of it serves the built site over HTTP rather than reading it off disk. The
+      # handoff from the form navigates to `watch/?t=`, a DIRECTORY url, and a directory url
+      # serves index.html on a web server and a file listing on file://. Checking that join
+      # over file:// would assert the address bar and prove nothing about the page.
+      - name: The watch page sends the token and nothing else
+        run: SITE=docs node tests/scan_watch.mjs
+
+      - name: The browser is asked what the policy actually refuses
+        run: |
+          # scripts/site/csp.py audits the policy by PARSING, and it passed on a site it had
+          # broken, twice on the same day. It reads resource attributes, so it could not see an
+          # endpoint named in a data- attribute and reached from a JS string, and the ask box's
+          # Worker was refused in production while the checker reported clean.
+          #
+          # A static reader sees what it knows how to parse. A reader's browser enforces the
+          # whole policy against everything the page does. So this asks the browser, and records
+          # every securitypolicyviolation the page fires.
+          SITE=docs node tests/csp_runtime.mjs
+
       - name: The page actually renders as night
         run: |
           # This one needs a browser because the bug it exists for lived in the COMPOSITE.
