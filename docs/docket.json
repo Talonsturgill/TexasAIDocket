@@ -283,7 +283,7 @@
     {
       "id": "tx-2026-0003",
       "title": "PUCT Docket 59315, Oncor application for a 765 kV transmission line across 22 counties",
-      "summary": "Oncor Electric Delivery has applied to amend its certificate of convenience and necessity to build the Dinosaur Switch to Longshore Switch transmission line. The application covers a corridor crossing 22 named counties in central and west Texas. The docket has drawn one of the largest volumes of landowner filings in recent PUCT practice. Those filings include intervention requests, protests and a county resolution. The commission has the matter set for an open meeting on August 21st, 2026.",
+      "summary": "Oncor Electric Delivery has applied to amend its certificate of convenience and necessity to build the Dinosaur Switch to Longshore Switch transmission line. The application covers a corridor crossing 22 named counties in central and west Texas. The docket has drawn one of the largest volumes of landowner filings in recent PUCT practice. Those filings include intervention requests, protests and a county resolution. The commission has the docket set for discussion and possible action at its open meeting on August 21st, 2026. That meeting is in a hotel ballroom in Austin rather than in the hearing room. That meeting takes up two Oncor 765 kV applications and nothing else before it closes.",
       "topic": "power-and-the-grid",
       "decider": {
         "name": "Public Utility Commission of Texas",
@@ -328,12 +328,12 @@
         {
           "date": "2026-08-21",
           "kind": "hearing",
-          "note": "Open meeting on the PUCT calendar feed, which no longer names Docket 59315"
+          "note": "Open meeting, agenda item 3, discussion and possible action"
         }
       ],
       "public_access": {
         "room": "open_meeting",
-        "how": "The docket is set for an open meeting on August 21st, 2026 in Commissioners Hearing Room 7-100, listed as open to the public. Affected landowners have intervened and filed protests directly through the Interchange under control number 59315, and the record shows individuals doing so in their own names.",
+        "how": "The docket is set for the open meeting on August 21st, 2026, listed as open to the public. It is held at the AT&T Hotel and Conference Center on University Avenue in Austin. The published agenda names the docket as item 3 and opens with a public comment period, with speakers limited to three minutes each. Affected landowners have intervened and filed protests directly through the Interchange under control number 59315, and the record shows individuals doing so in their own names.",
         "url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59315&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
         "closes": null
       },
@@ -391,11 +391,38 @@
           "source_title": "PUCT calendar RSS, entry titled Open Meeting - Friday, August 21, 2026",
           "source_type": "primary_official",
           "fetched": "2026-08-18"
+        },
+        {
+          "id": "tx-2026-0003-c7",
+          "text": "The commission's published agenda for the August 21st open meeting carries this docket for discussion and possible action.",
+          "verbatim_quote": "Application of Oncor Electric Delivery Company LLC to Amend Its Certificate of Convenience and Necessity for the",
+          "source_url": "https://ftp.puc.texas.gov/public/puct-info/agency/om/082126Final.pdf",
+          "source_title": "PUCT open meeting agenda, August 21st, 2026, item 3, Docket No. 59315, marked Discussion and possible action",
+          "source_type": "primary_official",
+          "fetched": "2026-08-20"
+        },
+        {
+          "id": "tx-2026-0003-c8",
+          "text": "The filing index records the number of filings in the docket.",
+          "verbatim_quote": "5793 filing(s).",
+          "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59315&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending",
+          "source_title": "PUCT Interchange, Filings for 59315",
+          "source_type": "primary_official",
+          "fetched": "2026-08-20"
+        },
+        {
+          "id": "tx-2026-0003-c9",
+          "text": "That agenda names the venue for the meeting.",
+          "verbatim_quote": "Zlotnik Family Ballroom",
+          "source_url": "https://ftp.puc.texas.gov/public/puct-info/agency/om/082126Final.pdf",
+          "source_title": "PUCT open meeting agenda, August 21st, 2026, meeting header",
+          "source_type": "primary_official",
+          "fetched": "2026-08-20"
         }
       ],
-      "last_verified": "2026-08-19",
+      "last_verified": "2026-08-20",
       "confidence": "high",
-      "notes_for_editor": "The 765 kV designation and the 22 county list are taken verbatim from the commission's own case style, not computed. Note for numeral_lint: 765 kV and the docket number are identifiers inside a quoted official title, not measurements this project derived. The Interchange web view rendered only the first 2000 filing rows while reporting 5782 filings, so the item count is quoted from the index line rather than counted from the table. This docket is included on the AI beat because 765 kV backbone capacity is the physical answer to large load growth, but the record fetched does NOT state that any particular data center drives this line, and the docket must not be described as a data center project without that link being established.",
+      "notes_for_editor": "The 765 kV designation and the 22 county list are taken verbatim from the commission's own case style, not computed. Note for numeral_lint, 765 kV and the docket number are identifiers inside a quoted official title, not measurements this project derived. The Interchange web view renders only the first page of filing rows while reporting the full count on its index line, so the item count is quoted from that line and never counted from the table. The calendar feed's description field never carries a docket number for any entry, so its absence there is not evidence a matter has been dropped. Read the agenda PDF the entry links. This docket is included on the AI beat because 765 kV backbone capacity is the physical answer to large load growth, but the record fetched does NOT state that any particular data center drives this line, and the docket must not be described as a data center project without that link being established.",
       "history": [
         {
           "date": "2026-08-18",
@@ -404,6 +431,10 @@
         {
           "date": "2026-08-19",
           "note": "Checked and unchanged. The filing index stands at 2,000 and the most recent entries are still the intervention requests and protestor comments of March 17th."
+        },
+        {
+          "date": "2026-08-20",
+          "note": "The docket is on the August 21st agenda after all. The published agenda for that open meeting names Docket 59315 as item 3, marked for discussion and possible action, and names a second Oncor 765 kV application as item 2. The calendar feed's entry for the meeting names no docket because no feed entry names one. The filing index now reports 5793 filings, and the web view lists only its first page of them, so a count taken from the rows on screen understates the docket."
         }
       ]
     },
@@ -1000,7 +1031,7 @@
     {
       "id": "tx-2026-0024",
       "title": "PUCT open meeting calendar published as a live feed through mid 2027",
-      "summary": "The Public Utility Commission publishes its open meetings and public comment deadlines as a machine readable feed. Every entry is marked open to the public and names the room. The schedule runs into 2027, so a reader can see in advance when the commission will take up large load and transmission matters. The listings move as the calendar firms up. The August 21st open meeting now names no docket and no hearing room. It gives an off site address on University Avenue in Austin. A further open meeting has appeared on August 20th.",
+      "summary": "The Public Utility Commission publishes its open meetings and public comment deadlines as a machine readable feed. Every entry is marked open to the public and names the room. The schedule runs into 2027, so a reader can see in advance when the commission will take up large load and transmission matters. The listings move as the calendar firms up. The August 21st open meeting names no hearing room and gives an off site address on University Avenue in Austin. The feed carries one public comment deadline, for Project 58482 on September 4th, 2026. No feed entry names a docket number, so the agenda published for each meeting is where a reader finds out what will be taken up.",
       "topic": "power-and-the-grid",
       "decider": {
         "name": "Public Utility Commission of Texas",
@@ -1032,7 +1063,7 @@
       ],
       "public_access": {
         "room": "open_meeting",
-        "how": "Open meetings are held in Commissioners Hearing Room 7-100 at commission headquarters in Austin and the feed marks each one open to the public. Subscribing to the feed is the simplest way for a member of the public to see a comment deadline before it passes rather than after.",
+        "how": "Open meetings are held in Commissioners Hearing Room 7-100 at commission headquarters in Austin and the feed marks each one open to the public. A feed entry gives the date, the room and whether it is public, and never the dockets. Each entry links the agenda, which is where the matters to be taken up are named. Subscribing to the feed is the simplest way for a member of the public to see a comment deadline before it passes rather than after.",
         "url": "https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx",
         "closes": null
       },
@@ -1063,9 +1094,27 @@
           "source_title": "PUCT calendar RSS, entry title",
           "source_type": "primary_official",
           "fetched": "2026-08-16"
+        },
+        {
+          "id": "tx-2026-0024-c4",
+          "text": "The feed's one public comment deadline names the project it belongs to.",
+          "verbatim_quote": "Project 58482 Commissioners Hearing Room 7-100 ( Open To Public )",
+          "source_url": "https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx",
+          "source_title": "PUCT calendar RSS, entry titled Public Comment Deadline - Friday, September 4, 2026",
+          "source_type": "primary_official",
+          "fetched": "2026-08-20"
+        },
+        {
+          "id": "tx-2026-0024-c5",
+          "text": "The commission's filing index gives that project a name.",
+          "verbatim_quote": "Large Load Demand Management Service",
+          "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending",
+          "source_title": "PUCT Interchange, Filings for 58482, Case Style",
+          "source_type": "primary_official",
+          "fetched": "2026-08-20"
         }
       ],
-      "last_verified": "2026-08-19",
+      "last_verified": "2026-08-20",
       "confidence": "high",
       "notes_for_editor": "This is an infrastructure item rather than a decision, and the docket may prefer to use the feed as a collector and not publish it as an item. Keeping it has one strong argument: it tells a reader where the calendar actually lives, which is the single most useful thing this docket can hand someone who wants to participate. Its dates are the spine of the recurring collector.",
       "history": [
@@ -1076,6 +1125,10 @@
         {
           "date": "2026-08-19",
           "note": "Checked and unchanged. The feed still publishes 32 entries. The August 20th and August 21st open meetings both still stand, and the September 4th public comment deadline for Project 58482 is still listed."
+        },
+        {
+          "date": "2026-08-20",
+          "note": "Checked. The feed now publishes 31 entries and runs to July 29th, 2027, one fewer than at the last check. The August 20th and August 21st open meetings both still stand and the September 4th public comment deadline for Project 58482 is still listed. Project 58482 is the Large Load Demand Management Service, and the agenda for each meeting names the dockets that a feed entry does not."
         }
       ]
     },
@@ -2954,7 +3007,7 @@
     },
     {
       "title": "League City City Council ordered a November 3rd special election on whether police may keep using automated license plate reader cameras",
-      "summary": "On August 11th, 2026 the League City City Council approved Ordinance No. 2026-27 on first and final reading. The ordinance orders a special election on November 3rd, 2026. It asks voters about the police department's continued use of automated license plate reader cameras at fixed locations on public roadways. Mayor Long sponsored the item and asked for approval on first and final reading. Council member Courtney Chadwell moved it and the council passed it twice that evening, once on first reading and once on first and final reading. Voters rather than the council will now settle whether the cameras stay. Reporting in the Houston region identifies the cameras as Flock Safety devices.",
+      "summary": "On August 11th, 2026 the League City City Council approved Ordinance No. 2026-27 on first and final reading. The ordinance orders a special election on November 3rd, 2026. It asks voters about the police department's continued use of automated license plate reader cameras at fixed locations on public roadways. The wording the city published opens by telling voters the result is a nonbinding statement of preference, so the council keeps the decision either way. Mayor Long sponsored the item and asked for approval on first and final reading. Council member Chadwell moved it, seconded by Council member Cones. Reporting in the Houston region identifies the cameras as Flock cameras.",
       "topic": "surveillance-and-policing",
       "decider": {
         "name": "League City City Council",
@@ -2988,8 +3041,8 @@
       ],
       "public_access": {
         "room": "open_meeting",
-        "how": "League City City Council meets in Council Chambers at 200 West Walker Street. The next regular meeting on the city's Legistar calendar is August 25th, 2026 at 6:00 PM with a Council Budget and CIP Workshop at 5:00 PM. The decision itself now goes to registered voters at the November 3rd, 2026 election.",
-        "url": "https://leaguecity.legistar.com/Calendar.aspx",
+        "how": "League City City Council meets in Council Chambers at 200 West Walker Street. The next regular meeting is August 25th, 2026 at 6:00 PM. That agenda is posted final and names no automated license plate reader item, and public comment there may be general in nature. The proposition goes to registered voters at the November 3rd, 2026 election, and the wording the city published says the result does not bind the council.",
+        "url": "https://leaguecity.legistar.com/MeetingDetail.aspx?LEGID=2222&GID=84&G=2D7DD9CC-BD32-4A4F-B8D5-83638663C82D",
         "closes": "2026-11-03"
       },
       "claims": [
@@ -3010,16 +3063,47 @@
           "source_type": "primary_official",
           "fetched": "2026-08-14",
           "id": "tx-2026-0048-c2"
+        },
+        {
+          "id": "tx-2026-0048-c3",
+          "text": "The city published the exact wording voters will be asked, and it opens by telling them the result does not bind the council.",
+          "verbatim_quote": "As a nonbinding statement of voter preference, should the League City Police Department continue using automated license plate reader cameras at fixed locations on public roadways for law enforcement purposes?",
+          "source_url": "https://www.leaguecitytx.gov/m/newsflash/Home/Detail/6318",
+          "source_title": "City of League City, News Flash, Proposition on November Ballot Regarding City's Use of Flock Cameras, posted August 12th, 2026",
+          "source_type": "primary_official",
+          "fetched": "2026-08-20"
+        },
+        {
+          "id": "tx-2026-0048-c4",
+          "text": "The council's next regular meeting is August 25th, 2026 at 6:00 PM in Council Chambers at 200 West Walker Street, and that agenda is posted final with no item naming automated license plate readers.",
+          "verbatim_quote": "The physical meeting space shall be the following location:  Council Chambers - 200 West Walker Street, League City, Texas.",
+          "source_url": "https://webapi.legistar.com/v1/leaguecity/events/2222/eventitems",
+          "source_title": "Legistar API, City of League City, Event 2222 agenda items",
+          "source_type": "primary_official",
+          "fetched": "2026-08-20"
         }
       ],
       "id": "tx-2026-0048",
-      "last_verified": "2026-08-19",
+      "last_verified": "2026-08-20",
       "history": [
         {
           "date": "2026-08-19",
           "note": "Checked and unchanged. The ordinance ordering the November 3rd special election is on the city's record with an August 11th agenda date. It asks whether the police department may keep using automated license plate reader cameras at fixed locations. The city published the ballot wording on August 12th."
+        },
+        {
+          "date": "2026-08-20",
+          "note": "The ballot wording is now on the record verbatim from the city's own posting. It opens by calling itself a nonbinding statement of voter preference, which means the council retains the decision whichever way the vote falls. The ordinance ordering the November 3rd election is otherwise unchanged."
+        },
+        {
+          "date": "2026-08-20",
+          "note": "The motion record names Chadwell as the mover and Cones as the seconder, and gives neither a first name. It establishes one motion, on first and final reading. Reporting in the Houston region calls the cameras Flock cameras. The proposition reaches registered voters on November 3rd, 2026. The wording the city published says the result is a nonbinding statement of voter preference, so the council keeps the decision either way."
+        },
+        {
+          "date": "2026-08-20",
+          "note": "The council's next regular meeting is August 25th, 2026 at 6:00 PM in Council Chambers at 200 West Walker Street. That agenda is posted final. None of its items names an automated license plate reader, Flock or a camera, and public comment there may be general in nature. The proposition itself is on the November 3rd ballot and the published wording says the result does not bind the council."
         }
-      ]
+      ],
+      "notes_for_editor": "2026-08-20, three corrections to this item's own prose and none to a fetched fact. The summary gave the mover a first name, Courtney, that no fetched record carries, and dropped the seconder the quote names. It also said the council passed the ordinance twice that evening, once on first reading and once on first and final reading, where the quote establishes one motion on first and final reading and nothing establishes a second. It called the cameras Flock Safety devices where the reporting says Flock cameras and Pflugerville's own item title says Flock Group, Inc. The heavier one was in public_access.how, which read 'The decision itself now goes to registered voters at the November 3rd, 2026 election'. That sat four lines below this item's own sentence saying the council keeps the decision either way, and against the ballot's published first clause, in the field the site prints under how to take part. Root cause: the field was written on 2026-08-14 from the ordinance, which orders an election, and was never revisited when the ballot wording arrived on 2026-08-20 and turned the election into a preference poll. A field that describes access was carrying a claim about effect.\n\n2026-08-20, second pass. The address, the date and the hour had been carried in public_access prose since the 14th with no quote behind them, and the day's deck was printing all three as its largest type. The meeting's own agenda was fetched instead, Legistar event 2222, and it carries the room and the street verbatim in item 1. Going to get it turned up the stronger finding: the agenda is FINAL with 61 titled items and not one names a licence plate reader, Flock or a camera. Until today this item could only say the record did not establish the question WAS on that agenda. It can now say the posted final agenda does not carry it. What that does NOT say, and this item must not: that the council will not reach the question on another date, or that the agenda's own ITEMS ADDED AFTER ELECTRONIC AGENDA COMPLETED placeholder will stay empty.\n\n2026-08-20, third pass. public_access.how still carried 'with a Council Budget and CIP Workshop at 5:00 PM', an hour no claim in this run establishes, in the same field whose note two paragraphs up was written to get unquoted particulars OUT of it. The event fetch returned exactly one League City event between August 20th and August 31st and it is the 6:00 PM council meeting. The workshop and its hour are removed. A correction that names a fault and then leaves an instance of it in the same paragraph is the fault surviving its own repair."
     },
     {
       "title": "Harris County Commissioners Court renewed its Flock Group license plate reader and sound detection contract, then amended it to run county-wide",
@@ -3707,11 +3791,15 @@
         }
       ],
       "id": "tx-2026-0057",
-      "last_verified": "2026-08-19",
+      "last_verified": "2026-08-20",
       "history": [
         {
           "date": "2026-08-19",
           "note": "Checked and unchanged. The Carson County meeting on the Fermi Equipment Holdco permits is still canceled and no new date is posted."
+        },
+        {
+          "date": "2026-08-20",
+          "note": "Checked and unchanged. The cancelation notice for the Carson County meeting on the Fermi Equipment Holdco air permits still stands and still says the meeting will be rescheduled. No replacement date appears on it or on the agency's list of public meetings and hearings on permitting cases. The date a Texan in Panhandle could speak is still unset."
         }
       ]
     },
@@ -4946,12 +5034,12 @@
         {
           "date": "2026-08-20",
           "kind": "hearing",
-          "note": "Next utility commission open meeting after the directive"
+          "note": "Utility commission open meeting carrying ERCOT's request for a good cause exception, agenda item 22"
         }
       ],
       "public_access": {
         "room": "open_meeting",
-        "how": "The commission carries this out in its own open meetings, which its calendar feed lists as open to the public in Commissioners Hearing Room 7-100 in Austin. The next one after the directive falls on August 20th, 2026. Subscribing to that feed is the way to see an item before it is taken up rather than after.",
+        "how": "The commission carries this out in its own open meetings, which its calendar feed lists as open to the public in Commissioners Hearing Room 7-100 in Austin. The August 20th, 2026 meeting takes up ERCOT's request for a good cause exception as item 22. That agenda opens with a public comment period on any matter within the commission's jurisdiction, with speakers limited to three minutes each. Subscribing to the calendar feed is the way to see an item before it is taken up rather than after.",
         "url": "https://gov.texas.gov/uploads/files/press/Thomas_Gleeson_Pablo_Vegas_Data_Centers_Directive_Letter_to_PUCT_ERCOT_August_2026_.pdf",
         "closes": null
       },
@@ -5027,9 +5115,36 @@
           "source_title": "Office of the Texas Governor, directive letter to the utility commission chairman and the ERCOT chief executive",
           "source_type": "primary_official",
           "fetched": "2026-08-16"
+        },
+        {
+          "id": "tx-2026-0072-c9",
+          "text": "The commission's published agenda for the August 20th open meeting carries ERCOT's request for a good cause exception.",
+          "verbatim_quote": "(Discussion and possible action, including discussion and possible action on ERCOT request for a good cause exception)",
+          "source_url": "https://ftp.puc.texas.gov/public/puct-info/agency/om/082026Final.pdf",
+          "source_title": "PUCT open meeting agenda, August 20th, 2026, item 22, Project No. 59142",
+          "source_type": "primary_official",
+          "fetched": "2026-08-20"
+        },
+        {
+          "id": "tx-2026-0072-c10",
+          "text": "A separate rulemaking on large load interconnection standards sits on the same agenda.",
+          "verbatim_quote": "Rulemaking to Implement Large Load Interconnection Standards Under PURA 37.0561",
+          "source_url": "https://ftp.puc.texas.gov/public/puct-info/agency/om/082026Final.pdf",
+          "source_title": "PUCT open meeting agenda, August 20th, 2026, item 21, Project No. 58481",
+          "source_type": "primary_official",
+          "fetched": "2026-08-20"
+        },
+        {
+          "id": "tx-2026-0072-c11",
+          "text": "The commission's open meetings begin with a public comment period on any matter in its jurisdiction.",
+          "verbatim_quote": "In the interest of time, speakers will be limited to three minutes each.",
+          "source_url": "https://ftp.puc.texas.gov/public/puct-info/agency/om/082026Final.pdf",
+          "source_title": "PUCT open meeting agenda, August 20th, 2026, item 1, Public Comment",
+          "source_type": "primary_official",
+          "fetched": "2026-08-20"
         }
       ],
-      "last_verified": "2026-08-19",
+      "last_verified": "2026-08-20",
       "confidence": "high",
       "notes_for_editor": "Raw HTML fetched with a browser User-Agent, quotes checked character for character.",
       "history": [
@@ -5040,13 +5155,17 @@
         {
           "date": "2026-08-19",
           "note": "The directive has already moved a deadline. ERCOT stated on August 3rd that it would not tell service providers how any large load is classified in the Batch Zero study by the August 7th deadline. It said it would ask the utility commission for a good cause exception ahead of the August 20th open meeting. The Governor's office said on August 18th that the Data Center Coalition will comply. That release also says one data center that could not comply ended operations before construction began."
+        },
+        {
+          "date": "2026-08-20",
+          "note": "The exception ERCOT said it would seek is on the commission's agenda today. The published agenda for the August 20th open meeting lists Project 59142, the review of ERCOT's interconnection processes for large loads. The item includes discussion and possible action on an ERCOT request for a good cause exception. The same agenda lists Project 58481, the rulemaking to implement large load interconnection standards. Neither item is on the agenda's list of matters to be taken up without discussion."
         }
       ]
     },
     {
       "id": "tx-2026-0073",
       "title": "Two Texas House committees take up data centers and AI in health care on August 19th and August 20th",
-      "summary": "The House Committee on State Affairs meets on August 19th, 2026 on a charge covering data center development in Texas. The same charge names SB 6 and the large load batch study process the grid operator proposed, and its posted reading list carries the Governor's August 3rd directive letter. The House Committee on Public Health meets the following day on a charge covering artificial intelligence in health care. Both sit in the interim, before the 90th Legislature convenes.",
+      "summary": "The House Committee on State Affairs met on August 19th, 2026 on a charge covering data center development in Texas. That charge names SB 6 and the large load batch study process the grid operator proposed. The same notice carries a second charge on the regulatory and planning processes for the proposed 765 kV transmission lines. The House Committee on Public Health meets the following day on a charge covering artificial intelligence in health care. That hearing takes invited testimony only, and the notice states online public comment is open on the artificial intelligence charge. Both sit in the interim, before the 90th Legislature convenes.",
       "topic": "state-policy",
       "decider": {
         "name": "Texas House of Representatives",
@@ -5058,7 +5177,7 @@
         "metro": null,
         "on_ercot": false
       },
-      "status": "pending",
+      "status": "decided",
       "key_dates": [
         {
           "date": "2026-08-19",
@@ -5073,7 +5192,7 @@
       ],
       "public_access": {
         "room": "open_meeting",
-        "how": "Interim committee hearings are public and take invited and public testimony in Austin. The Legislative Reference Library posts the week's hearings with links to each agenda, and the agenda is where the room and the start time are published. A Texan who wants to be heard on a data center or on AI in a clinic has two dated chances this week.",
+        "how": "Both notices are posted by the Legislature and give the room and the start time. The State Affairs hearing on August 19th took invited and public testimony, limited to two minutes a witness, with registration closing at 10:00 am that day. The Public Health hearing on August 20th takes invited testimony only, so the way in is the written one. Texas residents may submit comments electronically on the artificial intelligence in health care charge until that hearing is adjourned.",
         "url": "https://lrl.texas.gov/whatsNew/client/index.cfm/2026/8/12/Interim-Hearings--Week-of-August-17-2026",
         "closes": "2026-08-20"
       },
@@ -5122,15 +5241,318 @@
           "source_title": "Legislative Reference Library of Texas, hearings calendar for the week",
           "source_type": "primary_official",
           "fetched": "2026-08-16"
+        },
+        {
+          "id": "tx-2026-0073-c6",
+          "text": "The State Affairs notice carries a second charge on the transmission lines, alongside the data centers charge.",
+          "verbatim_quote": "Review the regulatory and planning processes regarding the proposed 765-kV transmission lines.",
+          "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C4502026081908001.htm",
+          "source_title": "House of Representatives, Notice of Public Hearing, Committee on State Affairs, August 19th, 2026",
+          "source_type": "primary_official",
+          "fetched": "2026-08-20"
+        },
+        {
+          "id": "tx-2026-0073-c7",
+          "text": "That hearing limited how long a member of the public could speak.",
+          "verbatim_quote": "Public Testimony may be limited to two (2) minutes per witness.",
+          "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C4502026081908001.htm",
+          "source_title": "House of Representatives, Notice of Public Hearing, Committee on State Affairs, August 19th, 2026",
+          "source_type": "primary_official",
+          "fetched": "2026-08-20"
+        },
+        {
+          "id": "tx-2026-0073-c8",
+          "text": "The Public Health notice states the committee will not take public testimony in the room.",
+          "verbatim_quote": "The Committee on Public Health will hear invited testimony only on the following interim charges:",
+          "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/pdf/C4102026082009001.PDF",
+          "source_title": "House of Representatives, Notice of Public Hearing, Committee on Public Health, August 20th, 2026",
+          "source_type": "primary_official",
+          "fetched": "2026-08-20"
+        },
+        {
+          "id": "tx-2026-0073-c9",
+          "text": "The same notice states the written channel is open on the artificial intelligence charge.",
+          "verbatim_quote": "Online submission of public comments will be available on the following topics:",
+          "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/pdf/C4102026082009001.PDF",
+          "source_title": "House of Representatives, Notice of Public Hearing, Committee on Public Health, August 20th, 2026",
+          "source_type": "primary_official",
+          "fetched": "2026-08-20"
+        },
+        {
+          "id": "tx-2026-0073-c10",
+          "text": "The Public Health charge on artificial intelligence names what the committee is studying.",
+          "verbatim_quote": "Artificial Intelligence Use in Health Care: Study the use of artificial intelligence in the health care system to improve access, quality, and efficiency of care, while evaluating potential risks to patient safety, privacy, and access to care for Texans.",
+          "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/pdf/C4102026082009001.PDF",
+          "source_title": "House of Representatives, Notice of Public Hearing, Committee on Public Health, August 20th, 2026",
+          "source_type": "primary_official",
+          "fetched": "2026-08-20"
         }
       ],
-      "last_verified": "2026-08-19",
+      "last_verified": "2026-08-20",
       "confidence": "high",
       "notes_for_editor": "lrl.texas.gov robots.txt carries content signals and no path disallow.",
       "history": [
         {
           "date": "2026-08-19",
           "note": "Both hearings still stand. The Legislative Reference Library's posting for the week of August 17th lists the State Affairs data centers charge on August 19th. It lists the Public Health artificial intelligence charge on August 20th."
+        },
+        {
+          "date": "2026-08-20",
+          "note": "Both hearings are confirmed against the Legislature's own notices. The State Affairs notice of August 19th carries a second charge. It covers the regulatory and planning processes for the proposed 765 kV transmission lines, which the earlier record did not name. It took invited and public testimony, limited to two minutes a witness, with registration closing at 10:00 am that day. The Public Health notice for August 20th takes invited testimony only. The written comment is the one route a Texan has on the artificial intelligence in health care charge, and it stays open until the hearing is adjourned."
+        }
+      ]
+    },
+    {
+      "id": "tx-2026-0075",
+      "title": "Pflugerville orders a November election on charter amendments, one of them a section on the city's use of artificial intelligence",
+      "summary": "The Pflugerville City Council approved on second reading on August 11th, 2026 an ordinance ordering a special election on November 3rd, 2026 on amendments to the city's home rule charter. The 2026 Charter Review Commission put 21 amendments forward for the city's voters. One of them adds a new Section 2.03 titled Artificial Intelligence Protections. It would require the council to adopt protections covering data, facial recognition and surveillance technology. It would also require transparent approval processes for those technologies and a responsible artificial intelligence framework. A charter section outlives the council that writes it, which an ordinary policy does not.",
+      "topic": "surveillance-and-policing",
+      "decider": {
+        "name": "Pflugerville City Council",
+        "type": "city"
+      },
+      "geography": {
+        "statewide": false,
+        "counties": [
+          "Travis",
+          "Williamson"
+        ],
+        "metro": null,
+        "on_ercot": true
+      },
+      "status": "open",
+      "key_dates": [
+        {
+          "date": "2026-08-11",
+          "kind": "ordered",
+          "note": "Ordinance ordering the election approved on second reading"
+        },
+        {
+          "date": "2026-11-03",
+          "kind": "comment_closes",
+          "note": "Election day, the last day a voter can answer the question"
+        }
+      ],
+      "public_access": {
+        "room": "open_comment",
+        "how": "The charter amendments go to Pflugerville voters on November 3rd, 2026, with polls open from 7:00 a.m. to 7:00 p.m. The Charter Review Commission's report carries the full text of the proposed Section 2.03, so a voter can read the words that would enter the charter. The ordinance submits the measures as listed in its own exhibit, which is where the proposition captions live.",
+        "url": "https://legistar1.granicus.com/Pflugerville/attachments/1d648f39-3bbb-4159-a4a7-a3c19b80bfcd.pdf",
+        "closes": "2026-11-03"
+      },
+      "claims": [
+        {
+          "id": "tx-2026-0075-c1",
+          "text": "The proposed charter section states what the council would be required to adopt.",
+          "verbatim_quote": "City Council shall adopt protections governing the collection, use, retention, and oversight of data, facial recognition, and surveillance technologies; establish transparent approval processes for such technologies; require a responsible AI (artificial intelligence) framework; ensuring this information is used locally for a legitimate basis established by law.",
+          "source_url": "https://legistar1.granicus.com/Pflugerville/attachments/1d648f39-3bbb-4159-a4a7-a3c19b80bfcd.pdf",
+          "source_title": "Report of the 2026 Pflugerville Charter Review Commission, proposed Section 2.03",
+          "source_type": "primary_official",
+          "fetched": "2026-08-20"
+        },
+        {
+          "id": "tx-2026-0075-c2",
+          "text": "The commission's summary of amendments names the new section and its subject.",
+          "verbatim_quote": "Add a new Section 2.03 to address the City's use of artificial intelligence.",
+          "source_url": "https://legistar1.granicus.com/Pflugerville/attachments/1d648f39-3bbb-4159-a4a7-a3c19b80bfcd.pdf",
+          "source_title": "Report of the 2026 Pflugerville Charter Review Commission, Summary of Proposed Amendments, item 4",
+          "source_type": "primary_official",
+          "fetched": "2026-08-20"
+        },
+        {
+          "id": "tx-2026-0075-c3",
+          "text": "The commission states how many amendments it put forward for the city's voters.",
+          "verbatim_quote": "the report identifies 21 amendments that we believe should be submitted to City voters for consideration",
+          "source_url": "https://legistar1.granicus.com/Pflugerville/attachments/1d648f39-3bbb-4159-a4a7-a3c19b80bfcd.pdf",
+          "source_title": "Report of the 2026 Pflugerville Charter Review Commission, June 4th, 2026, transmittal",
+          "source_type": "primary_official",
+          "fetched": "2026-08-20"
+        },
+        {
+          "id": "tx-2026-0075-c4",
+          "text": "The election ordinance sets the date and the polling hours.",
+          "verbatim_quote": "on the 3rd day of November 2026, between the hours of 7:00 a.m. and 7:00 p.m. to consider amendments to the City of Pflugerville's Home Rule Charter.",
+          "source_url": "https://legistar1.granicus.com/Pflugerville/attachments/b3422f0d-5bf2-4eb9-8a6f-f6b6c2537696.pdf",
+          "source_title": "Ordinance of the City of Pflugerville ordering a special election on proposed amendments to the Home Rule Charter",
+          "source_type": "primary_official",
+          "fetched": "2026-08-20"
+        }
+      ],
+      "last_verified": "2026-08-20",
+      "confidence": "high",
+      "notes_for_editor": "The quoted charter text carries semicolons and the abbreviation AI as the commission wrote them. It is quoted material and exempt from the house punctuation rules by design. The commission's report is a recommendation to the council. The ordinance submits the measures as listed in an exhibit that was not readable, so the record says the commission recommends this section and never that a ballot proposition carries this wording. The proposition letters are not published here for the same reason.",
+      "history": [
+        {
+          "date": "2026-08-20",
+          "note": "Admitted. The Charter Review Commission's filed report carries the full text of the proposed Section 2.03 and the ordinance setting the election date."
+        },
+        {
+          "date": "2026-08-20",
+          "note": "The election ordinance itself is now on the record beside the commission's report. It sets November 3rd, 2026 with polls open from 7:00 a.m. to 7:00 p.m. The commission put 21 amendments forward. The wording each proposition will carry on the ballot is in an exhibit to the ordinance and is unconfirmed, so what is published here is the section the commission recommends."
+        }
+      ]
+    },
+    {
+      "id": "tx-2026-0076",
+      "title": "PUCT Docket 59029, Oncor application for a second 765 kV line across ten west Texas counties",
+      "summary": "Oncor Electric Delivery has applied to amend its certificate of convenience and necessity to build the Longshore Switch to Drill Hole Switch transmission line. The application covers ten named counties in west Texas. The commission has it set for discussion and possible action at the open meeting on August 21st, 2026. That agenda carries this application and the Dinosaur Switch to Longshore Switch application and nothing else. The two lines meet at Longshore Switch.",
+      "topic": "power-and-the-grid",
+      "decider": {
+        "name": "Public Utility Commission of Texas",
+        "type": "state-agency"
+      },
+      "geography": {
+        "statewide": false,
+        "counties": [
+          "Andrews",
+          "Culberson",
+          "Ector",
+          "Glasscock",
+          "Howard",
+          "Loving",
+          "Martin",
+          "Midland",
+          "Reeves",
+          "Winkler"
+        ],
+        "metro": null,
+        "on_ercot": true
+      },
+      "status": "pending",
+      "key_dates": [
+        {
+          "date": "2026-08-21",
+          "kind": "hearing",
+          "note": "Open meeting, agenda item 2, discussion and possible action"
+        }
+      ],
+      "public_access": {
+        "room": "open_meeting",
+        "how": "The docket is set for the open meeting on August 21st, 2026 at the AT&T Hotel and Conference Center on University Avenue in Austin, listed as open to the public. That agenda opens with a public comment period on any matter within the commission's jurisdiction, with speakers limited to three minutes each. Filings in the docket are made through the Interchange under control number 59029.",
+        "url": "https://ftp.puc.texas.gov/public/puct-info/agency/om/082126Final.pdf",
+        "closes": null
+      },
+      "claims": [
+        {
+          "id": "tx-2026-0076-c1",
+          "text": "The docket's official case style names the applicant, the project and every county crossed.",
+          "verbatim_quote": "APPLICATION OF ONCOR ELECTRIC DELIVERY COMPANY LLC TO AMEND ITS CERTIFICATE OF CONVENIENCE AND NECESSITY FOR THE LONGSHORE SWITCH-DRILL HOLE SWITCH 765 KV TRANSMISSION LINE PROJECT IN ANDREWS, CULBERSON, ECTOR, GLASSCOCK, HOWARD, LOVING, MARTIN, MIDLAND, REEVES, AND WINKLER COUNTIES",
+          "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59029&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending",
+          "source_title": "PUCT Interchange, Filings for 59029, Case Style",
+          "source_type": "primary_official",
+          "fetched": "2026-08-20"
+        },
+        {
+          "id": "tx-2026-0076-c2",
+          "text": "The commission's agenda names the application and the counties it crosses.",
+          "verbatim_quote": "Application of Oncor Electric Delivery Company LLC to Amend Its Certificate of Convenience and Necessity for the",
+          "source_url": "https://ftp.puc.texas.gov/public/puct-info/agency/om/082126Final.pdf",
+          "source_title": "PUCT open meeting agenda, August 21st, 2026, item 2, Docket No. 59029, Longshore Switch to Drill Hole Switch 765 kV line in Andrews, Culberson, Ector, Glasscock, Howard, Loving, Martin, Midland, Reeves and Winkler Counties",
+          "source_type": "primary_official",
+          "fetched": "2026-08-20"
+        },
+        {
+          "id": "tx-2026-0076-c3",
+          "text": "The agenda opens with a public comment period and states the limit on a speaker.",
+          "verbatim_quote": "In the interest of time, speakers will be limited to three minutes each.",
+          "source_url": "https://ftp.puc.texas.gov/public/puct-info/agency/om/082126Final.pdf",
+          "source_title": "PUCT open meeting agenda, August 21st, 2026, item 1, Public Comment",
+          "source_type": "primary_official",
+          "fetched": "2026-08-20"
+        },
+        {
+          "id": "tx-2026-0076-c4",
+          "text": "The filing index records the number of filings in this docket.",
+          "verbatim_quote": "489 filing(s).",
+          "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59029&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending",
+          "source_title": "PUCT Interchange, Filings for 59029",
+          "source_type": "primary_official",
+          "fetched": "2026-08-20"
+        }
+      ],
+      "last_verified": "2026-08-20",
+      "confidence": "high",
+      "notes_for_editor": "The 765 kV designation and the county list come from the commission's own agenda entry, not computed. This is the companion application to Docket 59315, and the record does not state that any particular data center drives either line.",
+      "history": [
+        {
+          "date": "2026-08-20",
+          "note": "Admitted. The commission's published agenda for August 21st, 2026 names this application as item 2, alongside the Dinosaur Switch to Longshore Switch application as item 3."
+        }
+      ]
+    },
+    {
+      "id": "tx-2026-0077",
+      "title": "Senate Transportation sets an August 25th hearing on how driverless vehicles are being deployed under SB 2807",
+      "summary": "The Senate Committee on Transportation posted notice of a public hearing for August 25th, 2026 in the Capitol. One of three interim charges covers the deployment of autonomous vehicle technology authorized by SB 2807 of the 89th Session. It reaches the rules adopted by the Department of Public Safety, the Department of Motor Vehicles and the Department of Licensing and Regulation. The charge directs the committee to quantify the impact on traffic related collisions. The committee will hear invited and public testimony.",
+      "topic": "state-policy",
+      "decider": {
+        "name": "Texas Senate Committee on Transportation",
+        "type": "legislature"
+      },
+      "geography": {
+        "statewide": true,
+        "counties": [],
+        "metro": null,
+        "on_ercot": false
+      },
+      "status": "open",
+      "key_dates": [
+        {
+          "date": "2026-08-25",
+          "kind": "hearing",
+          "note": "Public hearing, 9:00 AM, hearing room E1.016"
+        }
+      ],
+      "public_access": {
+        "room": "open_meeting",
+        "how": "The hearing is at 9:00 AM on August 25th, 2026 in hearing room E1.016 at the Capitol in Austin, and the committee takes public as well as invited testimony. A speaker gets two minutes. Written testimony goes to the committee clerk in fifteen copies with the submitter's name on each one. The notice describes no electronic comment channel, unlike the House notices posted for the same week.",
+        "url": "https://capitol.texas.gov/tlodocs/89R/schedules/pdf/C6402026082509001.PDF",
+        "closes": "2026-08-25"
+      },
+      "claims": [
+        {
+          "id": "tx-2026-0077-c1",
+          "text": "The notice states what the committee will study about driverless vehicles.",
+          "verbatim_quote": "Studying the Deployment of Autonomous Vehicle Technology: Study the deployment of autonomous vehicle technology as authorized by SB 2807, (89th Session), including rule-making adopted by the Texas Department of Public Safety, the Texas Department of Motor Vehicles and the Texas Department of Licensing and Regulation. Quantify the impact on traffic-related collisions.",
+          "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/pdf/C6402026082509001.PDF",
+          "source_title": "Senate, Notice of Public Hearing, Committee on Transportation, August 25th, 2026",
+          "source_type": "primary_official",
+          "fetched": "2026-08-20"
+        },
+        {
+          "id": "tx-2026-0077-c2",
+          "text": "The notice states the committee takes public testimony and what a member of the public must do to file in writing.",
+          "verbatim_quote": "Public testimony will be limited to 2 minutes. If submitting written testimony, please provide 15 copies to the committee clerk with your name on each copy.",
+          "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/pdf/C6402026082509001.PDF",
+          "source_title": "Senate, Notice of Public Hearing, Committee on Transportation, August 25th, 2026",
+          "source_type": "primary_official",
+          "fetched": "2026-08-20"
+        },
+        {
+          "id": "tx-2026-0077-c3",
+          "text": "The notice names the time and the date.",
+          "verbatim_quote": "TIME & DATE: 9:00 AM, Tuesday, August 25, 2026",
+          "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/pdf/C6402026082509001.PDF",
+          "source_title": "Senate, Notice of Public Hearing, Committee on Transportation, August 25th, 2026, header",
+          "source_type": "primary_official",
+          "fetched": "2026-08-20"
+        },
+        {
+          "id": "tx-2026-0077-c4",
+          "text": "The notice names the room.",
+          "verbatim_quote": "PLACE: E1.016 (Hearing Room)",
+          "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/pdf/C6402026082509001.PDF",
+          "source_title": "Senate, Notice of Public Hearing, Committee on Transportation, August 25th, 2026, header",
+          "source_type": "primary_official",
+          "fetched": "2026-08-20"
+        }
+      ],
+      "last_verified": "2026-08-20",
+      "confidence": "high",
+      "notes_for_editor": "Statewide because the charge covers deployment on Texas roads generally. The room is in Travis County and the subject is not.",
+      "history": [
+        {
+          "date": "2026-08-20",
+          "note": "Admitted. The Legislature's own notice carries the charge, the date, the room and the terms on which a member of the public may be heard."
         }
       ]
     }

@@ -1,0 +1,91 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.1954,
+        0.2101,
+        0.2298
+      ],
+      "band_ratio": 1.081
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "text collision (92% overprint): 'As a nonbinding statement of voter p' x 'As a nonbinding statement of voter p' near 80,358 [marked data-overlap-ok]"
+      ],
+      "bands": [
+        0.1954,
+        0.1702,
+        0.2022
+      ],
+      "band_ratio": 1.0651
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.5378,
+        0.4118,
+        0.5643
+      ],
+      "band_ratio": 1.1123
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "contact shadow: 'the ballot card lying on the table': shadow L* 21.7 vs ground L* 29.1, dL 7.4 at 432w -- under the 8.0 L* comfort band; it reads, barely"
+      ],
+      "bands": [
+        0.4475,
+        0.8782,
+        0.7151
+      ],
+      "band_ratio": 1.0488,
+      "contacts": [
+        "'the charter standing on its stacked edges': shadow L* 10.6 vs ground L* 20.4, dL 9.8 at 432w"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.1492,
+        0.1555,
+        0.1452
+      ],
+      "band_ratio": 0.9699
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.1492,
+        0.1555,
+        0.2298
+      ],
+      "band_ratio": 1.2731
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.1639,
+        0.1534,
+        0.1471
+      ],
+      "band_ratio": 0.9524
+    }
+  ],
+  "fails": 0,
+  "warns": 2,
+  "verdict": "WARN"
+}

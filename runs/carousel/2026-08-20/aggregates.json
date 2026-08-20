@@ -1,0 +1,36 @@
+{
+ "run_date": "2026-08-20",
+ "aggregates": [
+  {
+   "phrase": "seven words",
+   "kind": "count",
+   "value": 7,
+   "computed_by": "scripts/carousel, len(quote.split(',')[0].split()) over claim c1's verbatim quote. The clause before the comma is As, a, nonbinding, statement, of, voter, preference. The first render of this deck printed six in the largest type on slide 2 and the aggregate gate is what caught it",
+   "claim_ids": [
+    "c1"
+   ]
+  },
+  {
+   "phrase": "Three things this",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "counted from the claims this run could not raise above medium confidence or could not source primarily, c5, c6 and c7. Declared under the phrase the DETECTOR reports rather than the two words a reader sees. Slide 6's hook is 'Three things this record can't confirm.' and the count regex takes the noun plus the word after it when that word ends in s. The gate's own note says the declaration keys on the detector's phrase, and the alternative was to reword a frame to suit a regex, which is the wrong way round",
+   "claim_ids": [
+    "c5",
+    "c6",
+    "c7"
+   ]
+  },
+  {
+   "phrase": "four cameras",
+   "kind": "quoted",
+   "value": 4,
+   "quoted_from": "c7",
+   "computed_by": "not computed. Quoted from c7, which reads Four cameras remain installed, though none are operational",
+   "claim_ids": [
+    "c7"
+   ],
+   "quote": "Four cameras remain installed, though none are operational."
+  }
+ ]
+}

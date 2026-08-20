@@ -1,98 +1,132 @@
 {
-  "_spec": {
-    "version": 1,
-    "purpose": "The dedupe ledger. No topic repeats within 30 days.",
-    "why": "A daily record that returns to the same story every week stops being a record and becomes a feed. The window is enforced in code, not remembered, because the run that most wants to repeat a topic is the run that found nothing else.",
-    "law": "No other product's ledger memory is ever copied in here. The dedupe gate compares against recent history, and a sibling product's history would poison it.",
-    "written_by": "carousel"
+ "_spec": {
+  "version": 1,
+  "purpose": "The dedupe ledger. No topic repeats within 30 days.",
+  "why": "A daily record that returns to the same story every week stops being a record and becomes a feed. The window is enforced in code, not remembered, because the run that most wants to repeat a topic is the run that found nothing else.",
+  "law": "No other product's ledger memory is ever copied in here. The dedupe gate compares against recent history, and a sibling product's history would poison it.",
+  "written_by": "carousel"
+ },
+ "window_days": 30,
+ "entries": [
+  {
+   "date": "2026-08-16",
+   "carousel_no": 1,
+   "docket_item": "tx-2026-0071",
+   "topic": "a state funded semiconductor plant in Grimes County, and the interconnection queue it is reported to sit outside",
+   "angle": "the manufacturing end of the application layer, and the queue this plant is reported not to join",
+   "entities": [
+    "SpaceX",
+    "Terafab",
+    "TeraFab AI, LLC",
+    "Office of the Texas Governor",
+    "Grimes County",
+    "Iola ISD",
+    "Anderson-Shiro CISD",
+    "ERCOT",
+    "Public Utility Commission of Texas"
+   ],
+   "keywords": [
+    "semiconductor",
+    "fab",
+    "AI chips",
+    "Texas Enterprise Fund",
+    "JETI",
+    "interconnection queue",
+    "data center audit",
+    "Post Oak Savannah",
+    "Navasota River"
+   ]
   },
-  "window_days": 30,
-  "entries": [
-    {
-      "date": "2026-08-16",
-      "carousel_no": 1,
-      "docket_item": "tx-2026-0071",
-      "topic": "a state funded semiconductor plant in Grimes County, and the interconnection queue it is reported to sit outside",
-      "angle": "the manufacturing end of the application layer, and the queue this plant is reported not to join",
-      "entities": [
-        "SpaceX",
-        "Terafab",
-        "TeraFab AI, LLC",
-        "Office of the Texas Governor",
-        "Grimes County",
-        "Iola ISD",
-        "Anderson-Shiro CISD",
-        "ERCOT",
-        "Public Utility Commission of Texas"
-      ],
-      "keywords": [
-        "semiconductor",
-        "fab",
-        "AI chips",
-        "Texas Enterprise Fund",
-        "JETI",
-        "interconnection queue",
-        "data center audit",
-        "Post Oak Savannah",
-        "Navasota River"
-      ]
-    },
-    {
-      "date": "2026-08-18",
-      "carousel_no": 2,
-      "docket_item": "tx-2026-0053",
-      "topic": "Houston ISD's Future 2 school model, whose afternoon experiences the district states are screen-free, and the board AI policy that shows no recorded action",
-      "angle": "the application layer inside a classroom, and the gap between a model already running and the rule that would govern it",
-      "entities": [
-        "Houston Independent School District",
-        "Mike Miles",
-        "C. Martinez Elementary",
-        "Gregg Elementary",
-        "Houston ISD School Board",
-        "Katy Independent School District",
-        "The Texan",
-        "Harris County"
-      ],
-      "keywords": [
-        "Future 2",
-        "AI literacy",
-        "screen-free",
-        "CQD(LOCAL)",
-        "board policy",
-        "second reading",
-        "MAP",
-        "NES curriculum",
-        "pre-K-8",
-        "school day"
-      ]
-    },
-    {
-      "date": "2026-08-19",
-      "carousel_no": 3,
-      "docket_item": "tx-2026-0072",
-      "topic": "the Governor's data center audit directive and the ERCOT Batch Zero classification deadline it stopped",
-      "angle": "the schedule the directive broke, rather than the policy it announced, and the two different wordings one office gave the same instruction on one day",
-      "entities": [
-        "Office of the Texas Governor",
-        "Greg Abbott",
-        "Public Utility Commission of Texas",
-        "ERCOT",
-        "Data Center Coalition",
-        "Thomas Gleeson",
-        "Pablo Vegas"
-      ],
-      "keywords": [
-        "Batch Zero",
-        "interconnection",
-        "large load",
-        "good cause exception",
-        "Planning Guide Sections 5 and 9",
-        "open meeting",
-        "474 gigawatts",
-        "data center audit",
-        "guardrails",
-        "market notice"
-      ]
-    }
-  ]
+  {
+   "date": "2026-08-18",
+   "carousel_no": 2,
+   "docket_item": "tx-2026-0053",
+   "topic": "Houston ISD's Future 2 school model, whose afternoon experiences the district states are screen-free, and the board AI policy that shows no recorded action",
+   "angle": "the application layer inside a classroom, and the gap between a model already running and the rule that would govern it",
+   "entities": [
+    "Houston Independent School District",
+    "Mike Miles",
+    "C. Martinez Elementary",
+    "Gregg Elementary",
+    "Houston ISD School Board",
+    "Katy Independent School District",
+    "The Texan",
+    "Harris County"
+   ],
+   "keywords": [
+    "Future 2",
+    "AI literacy",
+    "screen-free",
+    "CQD(LOCAL)",
+    "board policy",
+    "second reading",
+    "MAP",
+    "NES curriculum",
+    "pre-K-8",
+    "school day"
+   ]
+  },
+  {
+   "date": "2026-08-19",
+   "carousel_no": 3,
+   "docket_item": "tx-2026-0072",
+   "topic": "the Governor's data center audit directive and the ERCOT Batch Zero classification deadline it stopped",
+   "angle": "the schedule the directive broke, rather than the policy it announced, and the two different wordings one office gave the same instruction on one day",
+   "entities": [
+    "Office of the Texas Governor",
+    "Greg Abbott",
+    "Public Utility Commission of Texas",
+    "ERCOT",
+    "Data Center Coalition",
+    "Thomas Gleeson",
+    "Pablo Vegas"
+   ],
+   "keywords": [
+    "Batch Zero",
+    "interconnection",
+    "large load",
+    "good cause exception",
+    "Planning Guide Sections 5 and 9",
+    "open meeting",
+    "474 gigawatts",
+    "data center audit",
+    "guardrails",
+    "market notice"
+   ]
+  },
+  {
+   "date": "2026-08-20",
+   "carousel_no": 4,
+   "docket_item": "tx-2026-0048",
+   "topic": "League City's November ballot on its police license plate reader cameras, whose first clause tells the voter the result is nonbinding",
+   "angle": "the instrument rather than the technology, and the gap between a vote that looks like the decision and the room the decision actually sits in",
+   "entities": [
+    "League City",
+    "League City City Council",
+    "League City Police Department",
+    "Flock Group, Inc.",
+    "Nick Long",
+    "Pflugerville",
+    "Pflugerville City Council",
+    "2026 Pflugerville Charter Review Commission",
+    "Lago Vista"
+   ],
+   "keywords": [
+    "automated license plate reader",
+    "ALPR",
+    "Flock",
+    "nonbinding",
+    "statement of voter preference",
+    "referendum",
+    "Ordinance No. 2026-27",
+    "home rule charter",
+    "Section 2.03",
+    "Artificial Intelligence Protections",
+    "special election",
+    "surveillance",
+    "open meeting"
+   ],
+   "entities_note": "Three counties were listed here and NOT ONE claim in this run names a county. The deck cut its cartographic frame for exactly that reason and says so in its own storyboard, and the variety ledger went on carrying the counties anyway, where the dedupe gate would have compared future runs against entities this record never established. Dropped: Galveston County, Travis County, Williamson County. The fifth panel then found the same defect two names further down the same list. 'Courtney Chadwell' is dropped because c16 quotes only 'Mr. Chadwell' and no fetched record gives the first name, and 'Flock Safety' is corrected to 'Flock Group, Inc.', which is the name c14's quoted item title uses. A list written from memory rather than from the claims file gets the well-known name right and the record's name wrong."
+  }
+ ]
 }

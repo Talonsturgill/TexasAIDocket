@@ -1,16 +1,16 @@
 # Two Texas House committees take up data centers and AI in health care on August 19th and August 20th
 
-The House Committee on State Affairs meets on August 19th, 2026 on a charge covering data center development in Texas. The same charge names SB 6 and the large load batch study process the grid operator proposed, and its posted reading list carries the Governor's August 3rd directive letter. The House Committee on Public Health meets the following day on a charge covering artificial intelligence in health care. Both sit in the interim, before the 90th Legislature convenes.
+The House Committee on State Affairs met on August 19th, 2026 on a charge covering data center development in Texas. That charge names SB 6 and the large load batch study process the grid operator proposed. The same notice carries a second charge on the regulatory and planning processes for the proposed 765 kV transmission lines. The House Committee on Public Health meets the following day on a charge covering artificial intelligence in health care. That hearing takes invited testimony only, and the notice states online public comment is open on the artificial intelligence charge. Both sit in the interim, before the 90th Legislature convenes.
 
 - Topic: state-policy
 - Decided by: Texas House of Representatives (legislature)
 - Where: Statewide
-- Status: pending
+- Status: decided
 - Public access: Public meeting
 - Comment closes: 2026-08-20
 - Take part: https://lrl.texas.gov/whatsNew/client/index.cfm/2026/8/12/Interim-Hearings--Week-of-August-17-2026
 
-- Last checked: 2026-08-19
+- Last checked: 2026-08-20
 
 ## Dates
 
@@ -22,6 +22,7 @@ The House Committee on State Affairs meets on August 19th, 2026 on a charge cove
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-08-19 · Both hearings still stand. The Legislative Reference Library's posting for the week of August 17th lists the State Affairs data centers charge on August 19th. It lists the Public Health artificial intelligence charge on August 20th.
+- 2026-08-20 · Both hearings are confirmed against the Legislature's own notices. The State Affairs notice of August 19th carries a second charge. It covers the regulatory and planning processes for the proposed 765 kV transmission lines, which the earlier record did not name. It took invited and public testimony, limited to two minutes a witness, with registration closing at 10:00 am that day. The Public Health notice for August 20th takes invited testimony only. The written comment is the one route a Texan has on the artificial intelligence in health care charge, and it stays open until the hearing is adjourned.
 
 ## Evidence
 
@@ -56,4 +57,34 @@ Source (primary_official): https://lrl.texas.gov/whatsNew/client/index.cfm/2026/
 > August 19, 2026 House Committee on Delivery of Government Efficiency House Committee on State Affairs August 20, 2026 House Committee on Public Health
 
 Source (primary_official): https://lrl.texas.gov/whatsNew/client/index.cfm/2026/8/12/Interim-Hearings--Week-of-August-17-2026
+
+### The State Affairs notice carries a second charge on the transmission lines, alongside the data centers charge.
+
+> Review the regulatory and planning processes regarding the proposed 765-kV transmission lines.
+
+Source (primary_official): https://capitol.texas.gov/tlodocs/89R/schedules/html/C4502026081908001.htm
+
+### That hearing limited how long a member of the public could speak.
+
+> Public Testimony may be limited to two (2) minutes per witness.
+
+Source (primary_official): https://capitol.texas.gov/tlodocs/89R/schedules/html/C4502026081908001.htm
+
+### The Public Health notice states the committee will not take public testimony in the room.
+
+> The Committee on Public Health will hear invited testimony only on the following interim charges:
+
+Source (primary_official): https://capitol.texas.gov/tlodocs/89R/schedules/pdf/C4102026082009001.PDF
+
+### The same notice states the written channel is open on the artificial intelligence charge.
+
+> Online submission of public comments will be available on the following topics:
+
+Source (primary_official): https://capitol.texas.gov/tlodocs/89R/schedules/pdf/C4102026082009001.PDF
+
+### The Public Health charge on artificial intelligence names what the committee is studying.
+
+> Artificial Intelligence Use in Health Care: Study the use of artificial intelligence in the health care system to improve access, quality, and efficiency of care, while evaluating potential risks to patient safety, privacy, and access to care for Texans.
+
+Source (primary_official): https://capitol.texas.gov/tlodocs/89R/schedules/pdf/C4102026082009001.PDF
 

@@ -1,0 +1,128 @@
+{
+ "run_date": "2026-08-20",
+ "title": "The ballot that decides nothing",
+ "derived_from": "render/render_report.json",
+ "slides": {
+  "S1": {
+   "lines": [
+    "League City, Texas",
+    "As a nonbinding statement of voter preference",
+    "This ballot decides nothing.",
+    "The first seven words say so before the question asks anything.",
+    "01 / 07",
+    "texasaidocket.com"
+   ],
+   "claims": [
+    "c1"
+   ]
+  },
+  "S2": {
+   "lines": [
+    "The question, entire",
+    "Read the first seven words.",
+    "As a nonbinding statement of voter preference,",
+    "As a nonbinding statement of voter preference,",
+    "should the League City Police Department continue using automated license plate reader cameras at fixed locations on public roadways for law enforcement purposes?",
+    "The rest of the sentence is a real question. The opening is not.",
+    "the clause and the question are one printed sentence. the council called it on August 11th, 2026",
+    "02 / 07",
+    "texasaidocket.com"
+   ],
+   "claims": [
+    "c1",
+    "c2"
+   ]
+  },
+  "S3": {
+   "lines": [
+    "Pflugerville, Texas",
+    "The same day, a heavier instrument.",
+    "SECTION 2.03",
+    "Artificial Intelligence Protections",
+    "City Council shall adopt protections governing the collection, use, retention, and oversight of data, facial recognition, and surveillance technologies ... require a responsible AI (artificial intelligence) framework",
+    "A charter section outlives the council that writes it.",
+    "the commission recommends it. the council ordered a November 3rd election on charter amendments. this record has not read the ballot text",
+    "03 / 07",
+    "texasaidocket.com"
+   ],
+   "claims": [
+    "c9",
+    "c10",
+    "c12",
+    "c13",
+    "c17"
+   ]
+  },
+  "S4": {
+   "lines": [
+    "The table tilts once",
+    "One of these has a side.",
+    "a ballot line",
+    "a charter section",
+    "Both cities vote on November 3rd, 2026.",
+    "04 / 07",
+    "texasaidocket.com"
+   ],
+   "claims": [
+    "c2",
+    "c12"
+   ]
+  },
+  "S5": {
+   "lines": [
+    "The turn",
+    "The heavier one is the vaguer one.",
+    "the recommended section names a category",
+    "data, facial recognition, and surveillance technologies",
+    "the ballot names a device",
+    "automated license plate reader cameras at fixed locations on public roadways",
+    "Durability trades against specificity, and each document names its own subject.",
+    "05 / 07",
+    "texasaidocket.com"
+   ],
+   "claims": [
+    "c1",
+    "c10"
+   ]
+  },
+  "S6": {
+   "lines": [
+    "The size of the gap",
+    "Three things this record can't confirm.",
+    "a first in Texas, said by Mayor Nick Long",
+    "Lago Vista's vote, reported, no city record",
+    "four cameras left there, reported",
+    "Named here rather than left out, because the size of the gap is part of the record.",
+    "06 / 07",
+    "texasaidocket.com"
+   ],
+   "claims": [
+    "c5",
+    "c6",
+    "c7"
+   ]
+  },
+  "S7": {
+   "lines": [
+    "League City City Council · the calendar",
+    "The room, not the ballot.",
+    "COUNCIL CHAMBERS",
+    "200 WEST WALKER STREET",
+    "NEXT COUNCIL MEETING",
+    "AUGUST 25TH 2026 · 6:00 PM",
+    "THE ELECTION",
+    "NOVEMBER 3RD 2026",
+    "The ballot is nonbinding and the council keeps the decision. Its August 25th agenda names no camera item, and public comment there may be general in nature.",
+    "07 / 07",
+    "texasaidocket.com"
+   ],
+   "claims": [
+    "c2",
+    "c12",
+    "c18",
+    "c19",
+    "c20"
+   ]
+  }
+ }
+}

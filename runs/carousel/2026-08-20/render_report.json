@@ -1,0 +1,1777 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "League City, Texas",
+          "x": 80,
+          "y": 96,
+          "w": 342,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(86, 82, 92)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              96,
+              342,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "As a nonbinding statement of voter preference",
+          "x": 80,
+          "y": 150,
+          "w": 920,
+          "h": 51,
+          "font_px": 41,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(22, 20, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              152,
+              787,
+              45
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "This ballot decides nothing.",
+          "x": 80,
+          "y": 790,
+          "w": 920,
+          "h": 223,
+          "font_px": 117.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(22, 20, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              773,
+              488,
+              145
+            ],
+            [
+              80,
+              885,
+              746,
+              145
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The first seven words say so before the question asks anything.",
+          "x": 80,
+          "y": 1054,
+          "w": 800,
+          "h": 90,
+          "font_px": 34,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(22, 20, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1053,
+              767,
+              46
+            ],
+            [
+              80,
+              1098,
+              231,
+              46
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 07",
+          "x": 80,
+          "y": 1223,
+          "w": 111,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(65, 62, 72)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1223,
+              111,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 731,
+          "y": 1223,
+          "w": 269,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(65, 62, 72)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              731,
+              1223,
+              269,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 2714,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 206.1,
+          "variance": 1039.3
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "The question, entire",
+          "x": 80,
+          "y": 96,
+          "w": 380,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(86, 82, 92)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              96,
+              380,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Read the first seven words.",
+          "x": 80,
+          "y": 150,
+          "w": 920,
+          "h": 163,
+          "font_px": 81.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(22, 20, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              140,
+              451,
+              101
+            ],
+            [
+              80,
+              222,
+              432,
+              101
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "As a nonbinding statement of voter preference,",
+          "x": 73,
+          "y": 355,
+          "w": 811,
+          "h": 42,
+          "font_px": 39,
+          "weight": "700",
+          "family": "Archivo",
+          "color": "rgb(166, 198, 190)",
+          "decorative": true,
+          "overlap_ok": true,
+          "lines": [
+            [
+              73,
+              355,
+              811,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "As a nonbinding statement of voter preference,",
+          "x": 80,
+          "y": 358,
+          "w": 811,
+          "h": 42,
+          "font_px": 39,
+          "weight": "700",
+          "family": "Archivo",
+          "color": "rgb(22, 20, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              358,
+              811,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "should the League City Police Department continue using automated license plate reader cameras at fixed locations on public roadways for law enforcement purposes?",
+          "x": 80,
+          "y": 413,
+          "w": 885,
+          "h": 208,
+          "font_px": 39,
+          "weight": "500",
+          "family": "Archivo",
+          "color": "rgb(43, 40, 51)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              413,
+              844,
+              42
+            ],
+            [
+              80,
+              469,
+              885,
+              42
+            ],
+            [
+              80,
+              524,
+              811,
+              42
+            ],
+            [
+              80,
+              580,
+              178,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The rest of the sentence is a real question. The opening is not.",
+          "x": 80,
+          "y": 760,
+          "w": 840,
+          "h": 90,
+          "font_px": 34,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(22, 20, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              759,
+              742,
+              46
+            ],
+            [
+              80,
+              804,
+              234,
+              46
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "the clause and the question are one printed sentence. the council called it on August 11th, 2026",
+          "x": 100,
+          "y": 1066,
+          "w": 600,
+          "h": 111,
+          "font_px": 26,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(65, 62, 72)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              100,
+              1066,
+              564,
+              35
+            ],
+            [
+              100,
+              1103,
+              580,
+              35
+            ],
+            [
+              100,
+              1140,
+              371,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 07",
+          "x": 80,
+          "y": 1223,
+          "w": 111,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(65, 62, 72)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1223,
+              111,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 731,
+          "y": 1223,
+          "w": 269,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(65, 62, 72)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              731,
+              1223,
+              269,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 2723,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 217.7,
+          "variance": 340.6
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "Pflugerville, Texas",
+          "x": 80,
+          "y": 96,
+          "w": 361,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(191, 179, 160)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              96,
+              361,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The same day, a heavier instrument.",
+          "x": 80,
+          "y": 146,
+          "w": 900,
+          "h": 168,
+          "font_px": 85.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(239, 230, 210)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              134,
+              488,
+              106
+            ],
+            [
+              80,
+              218,
+              728,
+              106
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SECTION 2.03",
+          "x": 104,
+          "y": 592,
+          "w": 266,
+          "h": 40,
+          "font_px": 30,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(22, 20, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              104,
+              592,
+              266,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Artificial Intelligence Protections",
+          "x": 104,
+          "y": 636,
+          "w": 800,
+          "h": 48,
+          "font_px": 44,
+          "weight": "700",
+          "family": "Archivo",
+          "color": "rgb(22, 20, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              104,
+              636,
+              641,
+              48
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "City Council shall adopt protections governing the collection, use, retention, and oversight of data, facial recognition, and surveillance technologies ... require a responsible AI (artificial intelligence) framework",
+          "x": 104,
+          "y": 700,
+          "w": 850,
+          "h": 109,
+          "font_px": 27,
+          "weight": "500",
+          "family": "Archivo",
+          "color": "rgb(43, 38, 32)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              104,
+              703,
+              738,
+              30
+            ],
+            [
+              104,
+              739,
+              755,
+              30
+            ],
+            [
+              104,
+              775,
+              822,
+              30
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A charter section outlives the council that writes it.",
+          "x": 80,
+          "y": 906,
+          "w": 840,
+          "h": 45,
+          "font_px": 34,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(217, 207, 188)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              905,
+              810,
+              46
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "the commission recommends it. the council ordered a November 3rd election on charter amendments. this record has not read the ballot text",
+          "x": 80,
+          "y": 1052,
+          "w": 760,
+          "h": 108,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(191, 179, 160)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1053,
+              760,
+              34
+            ],
+            [
+              80,
+              1089,
+              713,
+              34
+            ],
+            [
+              80,
+              1125,
+              620,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 07",
+          "x": 80,
+          "y": 1223,
+          "w": 111,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(191, 179, 160)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1223,
+              111,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 731,
+          "y": 1223,
+          "w": 269,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(191, 179, 160)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              731,
+              1223,
+              269,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1301,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 85.4,
+          "variance": 4631.7
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "The table tilts once",
+          "x": 80,
+          "y": 96,
+          "w": 380,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(191, 179, 160)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              96,
+              380,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "One of these has a side.",
+          "x": 80,
+          "y": 146,
+          "w": 900,
+          "h": 179,
+          "font_px": 91.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(239, 230, 210)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              134,
+              448,
+              112
+            ],
+            [
+              80,
+              224,
+              361,
+              112
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "a ballot line",
+          "x": 120,
+          "y": 1022,
+          "w": 220,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 207, 188)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              120,
+              1022,
+              220,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "a charter section",
+          "x": 640,
+          "y": 1022,
+          "w": 287,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 207, 188)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              640,
+              1022,
+              287,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Both cities vote on November 3rd, 2026.",
+          "x": 80,
+          "y": 1100,
+          "w": 880,
+          "h": 44,
+          "font_px": 33,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(217, 207, 188)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1099,
+              613,
+              45
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 07",
+          "x": 80,
+          "y": 1223,
+          "w": 111,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(191, 179, 160)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1223,
+              111,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 731,
+          "y": 1223,
+          "w": 269,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(191, 179, 160)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              731,
+              1223,
+              269,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [
+        {
+          "what": "the ballot card lying on the table",
+          "shadow": [
+            [
+              170,
+              884,
+              300,
+              16
+            ]
+          ],
+          "ground": [
+            [
+              170,
+              966,
+              300,
+              16
+            ]
+          ]
+        },
+        {
+          "what": "the charter standing on its stacked edges",
+          "shadow": [
+            [
+              650,
+              884,
+              280,
+              16
+            ]
+          ],
+          "ground": [
+            [
+              650,
+              966,
+              280,
+              16
+            ]
+          ]
+        }
+      ],
+      "nondeterminism": [],
+      "render_ms": 2360,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 57.3,
+          "variance": 1033.4
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "The turn",
+          "x": 80,
+          "y": 96,
+          "w": 152,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(191, 179, 160)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              96,
+              152,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The heavier one is the vaguer one.",
+          "x": 80,
+          "y": 146,
+          "w": 920,
+          "h": 164,
+          "font_px": 83.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(239, 230, 210)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              135,
+              540,
+              103
+            ],
+            [
+              80,
+              217,
+              582,
+              103
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "the recommended section names a category",
+          "x": 104,
+          "y": 340,
+          "w": 691,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(160, 147, 127)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              104,
+              340,
+              691,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "data, facial recognition, and surveillance technologies",
+          "x": 104,
+          "y": 386,
+          "w": 872,
+          "h": 102,
+          "font_px": 40,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(217, 207, 188)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              104,
+              390,
+              697,
+              43
+            ],
+            [
+              104,
+              441,
+              226,
+              43
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "the ballot names a device",
+          "x": 150,
+          "y": 672,
+          "w": 432,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(92, 86, 72)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              150,
+              672,
+              432,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "automated license plate reader cameras at fixed locations on public roadways",
+          "x": 150,
+          "y": 714,
+          "w": 780,
+          "h": 99,
+          "font_px": 40,
+          "weight": "600",
+          "family": "Archivo",
+          "color": "rgb(22, 20, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              150,
+              717,
+              730,
+              43
+            ],
+            [
+              150,
+              767,
+              595,
+              43
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Durability trades against specificity, and each document names its own subject.",
+          "x": 80,
+          "y": 1108,
+          "w": 900,
+          "h": 86,
+          "font_px": 33,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(217, 207, 188)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1106,
+              865,
+              45
+            ],
+            [
+              80,
+              1149,
+              354,
+              45
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 07",
+          "x": 80,
+          "y": 1223,
+          "w": 111,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(191, 179, 160)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1223,
+              111,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 731,
+          "y": 1223,
+          "w": 269,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(191, 179, 160)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              731,
+              1223,
+              269,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 2208,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 65.9,
+          "variance": 5374.4
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "The size of the gap",
+          "x": 108,
+          "y": 124,
+          "w": 361,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(86, 82, 92)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              108,
+              124,
+              361,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Three things this record can't confirm.",
+          "x": 108,
+          "y": 174,
+          "w": 864,
+          "h": 155,
+          "font_px": 77.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(22, 20, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              108,
+              164,
+              557,
+              96
+            ],
+            [
+              108,
+              242,
+              687,
+              96
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "a first in Texas, said by Mayor Nick Long",
+          "x": 143,
+          "y": 812,
+          "w": 250,
+          "h": 98,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(65, 62, 72)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              144,
+              812,
+              249,
+              31
+            ],
+            [
+              173,
+              845,
+              190,
+              31
+            ],
+            [
+              202,
+              877,
+              132,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Lago Vista's vote, reported, no city record",
+          "x": 415,
+          "y": 812,
+          "w": 250,
+          "h": 98,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(65, 62, 72)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              452,
+              812,
+              176,
+              31
+            ],
+            [
+              430,
+              845,
+              220,
+              31
+            ],
+            [
+              438,
+              877,
+              205,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "four cameras left there, reported",
+          "x": 687,
+          "y": 812,
+          "w": 250,
+          "h": 65,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(65, 62, 72)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              688,
+              812,
+              249,
+              31
+            ],
+            [
+              702,
+              845,
+              220,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Named here rather than left out, because the size of the gap is part of the record.",
+          "x": 108,
+          "y": 1000,
+          "w": 850,
+          "h": 83,
+          "font_px": 32,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(22, 20, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              108,
+              998,
+              836,
+              44
+            ],
+            [
+              108,
+              1040,
+              365,
+              44
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 07",
+          "x": 108,
+          "y": 1187,
+          "w": 111,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(65, 62, 72)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              108,
+              1187,
+              111,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 703,
+          "y": 1187,
+          "w": 269,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(65, 62, 72)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              703,
+              1187,
+              269,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 4007,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 216,
+          "variance": 244.6
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "League City City Council \u00b7 the calendar",
+          "x": 80,
+          "y": 376,
+          "w": 741,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(86, 82, 92)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              376,
+              741,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The room, not the ballot.",
+          "x": 80,
+          "y": 424,
+          "w": 900,
+          "h": 187,
+          "font_px": 95.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(22, 20, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              412,
+              397,
+              117
+            ],
+            [
+              80,
+              506,
+              513,
+              117
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "COUNCIL CHAMBERS",
+          "x": 80,
+          "y": 678,
+          "w": 397,
+          "h": 41,
+          "font_px": 38,
+          "weight": "700",
+          "family": "Archivo",
+          "color": "rgb(22, 20, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              678,
+              397,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "200 WEST WALKER STREET",
+          "x": 80,
+          "y": 728,
+          "w": 511,
+          "h": 41,
+          "font_px": 38,
+          "weight": "700",
+          "family": "Archivo",
+          "color": "rgb(22, 20, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              728,
+              511,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "NEXT COUNCIL MEETING",
+          "x": 80,
+          "y": 800,
+          "w": 504,
+          "h": 53,
+          "font_px": 40,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(191, 10, 48)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              800,
+              504,
+              53
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "AUGUST 25TH 2026 \u00b7 6:00 PM",
+          "x": 80,
+          "y": 850,
+          "w": 655,
+          "h": 53,
+          "font_px": 40,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(191, 10, 48)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              850,
+              655,
+              53
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "THE ELECTION",
+          "x": 80,
+          "y": 942,
+          "w": 231,
+          "h": 35,
+          "font_px": 26,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(86, 82, 92)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              942,
+              231,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "NOVEMBER 3RD 2026",
+          "x": 80,
+          "y": 984,
+          "w": 428,
+          "h": 53,
+          "font_px": 40,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(22, 20, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              984,
+              428,
+              53
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The ballot is nonbinding and the council keeps the decision. Its August 25th agenda names no camera item, and public comment there may be general in nature.",
+          "x": 80,
+          "y": 1090,
+          "w": 900,
+          "h": 109,
+          "font_px": 28,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(65, 62, 72)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1089,
+              816,
+              38
+            ],
+            [
+              80,
+              1125,
+              844,
+              38
+            ],
+            [
+              80,
+              1162,
+              405,
+              38
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 07",
+          "x": 80,
+          "y": 1223,
+          "w": 111,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(65, 62, 72)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1223,
+              111,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 731,
+          "y": 1223,
+          "w": 269,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(65, 62, 72)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              731,
+              1223,
+              269,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 2284,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 213.6,
+          "variance": 288.9
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    }
+  ]
+}
