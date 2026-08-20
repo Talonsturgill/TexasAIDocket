@@ -16,8 +16,17 @@ root="$(git rev-parse --show-toplevel 2>/dev/null || echo .)"
 checker="$root/scripts/shared/ownership_check.py"
 [ -f "$checker" ] || exit 0                       # not built yet, nothing to enforce
 
+# THE STAMP IS FOUND THROUGH git rev-parse AND NEVER BY JOINING "$root/.git".
+# In a linked WORKTREE, $root/.git is a FILE holding a gitdir pointer, so $root/.git/ACTOR is a
+# path under a file and the test for it is simply false. Both hooks read the stamp that way
+# until 2026-08-20, which meant a session working in a worktree got NO ownership check on any
+# commit and no message saying so. A guard that silently does not run is worse than no guard,
+# because the run reports a clean commit either way. --git-dir resolves in a plain clone and in
+# a worktree alike.
+gitdir="$(git rev-parse --git-dir 2>/dev/null || echo "$root/.git")"
+
 actor="human"
-[ -f "$root/.git/ACTOR" ] && actor="$(tr -d '[:space:]' < "$root/.git/ACTOR")"
+[ -f "$gitdir/ACTOR" ] && actor="$(tr -d '[:space:]' < "$gitdir/ACTOR")"
 [ -n "$actor" ] || actor="human"
 
 if ! python3 "$checker" --actor "$actor" --staged; then
