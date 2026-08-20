@@ -31,7 +31,10 @@ import sys
 # The worker. Its own subdomain rather than a path on this site, because it is a different
 # thing with a different deploy and a different failure mode, and pretending otherwise would
 # make an outage here look like an outage there.
-ENDPOINT = "https://texas-ask.talon-sturgill.workers.dev"
+# IMPORTED, not typed. The policy has to allowlist whatever this is, and when the two were
+# separate strings the policy shipped without this one and every submitted question was
+# refused by the browser. csp.py owns it now, so they cannot disagree.
+from csp import ASK_ORIGIN as ENDPOINT
 
 # Public by design. It identifies the widget to Cloudflare and is meant to be read by anyone
 # who views source. The SECRET half lives in the worker and appears nowhere in this repository.

@@ -171,7 +171,7 @@ alaskaaicarousels	research/broadband/pipeline.py	13277	314	14	DROP		DROPPED	Alas
 alaskaaicarousels	research/broadband/test_pipeline.py	5139	119	3	DROP		DROPPED	Alaska USAC data; a Texas analogue is a later project, not this port
 alaskaaicarousels	scripts/aggregate_check.py	35914	776	6	PORT_RETHEMED	scripts/carousel/aggregate_check.py	DONE	
 alaskaaicarousels	scripts/ask_answers.py	62727	1366	65	PORT_RETHEMED	scripts/site/ask_answers.py	DONE	
-alaskaaicarousels	scripts/site_build.py:ASK_JS	0	0	0	PORT_RETHEMED	scripts/site/ask_written.py	DONE	the written lane client, pulled out of the sibling's site_build into its own module so the free engine's "phones nobody" self-test stays meaningful
+alaskaaicarousels	scripts/site_build.py:ASK_JS	0	0	0	PORT_RETHEMED	scripts/site/ask_written.py	DONE	"the written lane client, pulled out of the sibling's site_build into its own module so the free engine's ""phones nobody"" self-test stays meaningful"
 alaskaaicarousels	scripts/ask_corpus.py	8998	222	6	PORT_RETHEMED	scripts/site/ask_corpus.py	DONE	rewritten, not retyped. The allow-list is derived from the PACK and not the ledger, because authorising a whole time series admits nearly every small number that exists
 alaskaaicarousels	scripts/ask_pack.py	29069	575	8	PORT_RETHEMED	scripts/site/ask_pack.py	DONE	rewritten for the Texas schema and house voice. No colons, no first person, ordinal dates, claims trimmed to text and quote
 alaskaaicarousels	scripts/bespoke_check.py	9630	218	1	PORT_RETHEMED	scripts/carousel/bespoke_check.py	DONE	
@@ -530,9 +530,9 @@ alaska-ai-scanner	samples/sample-scan.json	4250	68	1	REBUILD	TexasAIScanner:samp
 alaska-ai-scanner	scripts/build_scan_page.py	19487	434	13	PORT_RETHEMED	TexasAIScanner:scripts/build_scan_page.py	TODO	
 alaska-ai-scanner	scripts/normalize_domain.py	1123	37	2	PORT_RETHEMED	TexasAIScanner:scripts/normalize_domain.py	TODO	
 alaska-ai-scanner	scripts/scan_notify.py	6884	156	4	PORT_RETHEMED	TexasAIScanner:scripts/scan_notify.py	TODO	
-alaska-ai-scanner	supabase/functions/_shared/normalize.ts	986	28	2	PORT_RETHEMED	TexasAIScanner:supabase/functions/_shared/normalize.ts	TODO	
-alaska-ai-scanner	supabase/functions/scan-notify-me/index.ts	2423	54	0	PORT_RETHEMED	TexasAIScanner:supabase/functions/scan-notify-me/index.ts	TODO	
-alaska-ai-scanner	supabase/functions/scan-optin/index.ts	3293	59	2	PORT_RETHEMED	TexasAIScanner:supabase/functions/scan-optin/index.ts	TODO	
-alaska-ai-scanner	supabase/functions/scan-request/index.ts	6681	141	1	PORT_RETHEMED	TexasAIScanner:supabase/functions/scan-request/index.ts	TODO	
-alaska-ai-scanner	supabase/functions/scan-result/index.ts	3252	68	0	PORT_RETHEMED	TexasAIScanner:supabase/functions/scan-result/index.ts	TODO	
+alaska-ai-scanner	supabase/functions/_shared/normalize.ts	986	28	2	PORT_RETHEMED	TexasAIScanner:workers/scan/	TODO	the Deno function layer it targeted was replaced by a Cloudflare Worker on 2026-08-20, so this ports into workers/scan/ rather than beside it
+alaska-ai-scanner	supabase/functions/scan-notify-me/index.ts	2423	54	0	PORT_RETHEMED	TexasAIScanner:workers/scan/	TODO	the Deno function layer it targeted was replaced by a Cloudflare Worker on 2026-08-20, so this ports into workers/scan/ rather than beside it
+alaska-ai-scanner	supabase/functions/scan-optin/index.ts	3293	59	2	PORT_RETHEMED	TexasAIScanner:workers/scan/	TODO	the Deno function layer it targeted was replaced by a Cloudflare Worker on 2026-08-20, so this ports into workers/scan/ rather than beside it
+alaska-ai-scanner	supabase/functions/scan-request/index.ts	6681	141	1	PORT_RETHEMED	TexasAIScanner:workers/scan/	TODO	the Deno function layer it targeted was replaced by a Cloudflare Worker on 2026-08-20, so this ports into workers/scan/ rather than beside it
+alaska-ai-scanner	supabase/functions/scan-result/index.ts	3252	68	0	PORT_RETHEMED	TexasAIScanner:workers/scan/	TODO	the Deno function layer it targeted was replaced by a Cloudflare Worker on 2026-08-20, so this ports into workers/scan/ rather than beside it
 alaska-ai-scanner	web/scan.html	41382	811	11	PORT_RETHEMED	TexasAIScanner:web/scan.html	TODO	

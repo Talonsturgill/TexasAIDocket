@@ -3250,16 +3250,25 @@ FORM_ACTION = "https://formsubmit.co/228f72bce4f9b0e50b49d8d501374771"
 # is an offer made to somebody who came to read a record, at the moment they are reading it.
 BOOKING_URL = "https://calendly.com/talon-sturgill-ixzj/new-meeting"
 
-# THE SCAN FORM HAS A SECOND PATH AS OF 2026-08-15. With JavaScript it posts to the
-# `scan-request` Edge Function, which verifies the captcha, enforces the daily and per-IP caps
-# and FIRES THE SCAN ROUTINE immediately. Without JavaScript, or if that request never reaches
-# the network, the plain FormSubmit POST above still happens and the maintainer still gets the
-# email. The old path is the fallback rather than the ex-path, because a migration that can take
-# the form down is a migration that will.
+# THE SCAN FORM HAS A SECOND PATH AS OF 2026-08-15. With JavaScript it posts to the gatekeeper,
+# which verifies the captcha, enforces the daily and per-IP caps, FIRES THE SCAN ROUTINE
+# immediately, and hands back the token that opens the watch page. Without JavaScript, or if
+# that request never reaches the network, the plain FormSubmit POST above still happens and the
+# maintainer still gets the email. The old path is the fallback rather than the ex-path, because
+# a migration that can take the form down is a migration that will.
 #
-# The SITE key is public and is meant to ship in the page. Its matching SECRET lives in the
-# scanner project's `scanner.config` table and appears nowhere in this repo.
-SCAN_ENDPOINT = "https://fbcxboktppalytugeqin.supabase.co/functions/v1/scan-request"
+# THE GATEKEEPER MOVED ON 2026-08-20, from a Supabase Edge Function to a Cloudflare Worker, on
+# the owner's call that Supabase was a flaky second vendor. Same host as the ask box's worker,
+# which is the same account that already serves this domain and its Turnstile. The scanner repo
+# holds its source at `workers/scan/` and the reasoning in its CLAUDE.md.
+#
+# The SITE key is public and is meant to ship in the page. Its matching SECRET is a Worker
+# secret and appears nowhere in this repo.
+# IMPORTED for the same reason ask_written imports its own: the policy in csp.py has to
+# allowlist this host, and an allowlist that keeps a second copy of an address is a list
+# that goes stale the first time the address moves.
+SCAN_WORKER = csp.SCAN_ORIGIN
+SCAN_ENDPOINT = f"{SCAN_WORKER}/request"
 TURNSTILE_SITE_KEY = "0x4AAAAAAEQ2csplf8Pifi79"
 
 # Kept OUT of the page f-string on purpose: every brace in this script would have to be doubled
@@ -3303,17 +3312,39 @@ _SCAN_JS = """
         })
       }).then(function (r) {
         return r.json().catch(function () { return {}; }).then(function (b) {
-          return { ok: r.ok, body: b };
+          return { ok: r.ok, status: r.status, body: b };
         });
       }).then(function (res) {
         if (res.ok) {
+          // THE TOKEN IS THE PAYOFF. The homepage says an agent team goes to work on your url
+          // and that you can watch them; this is the moment that becomes true, so the requester
+          // is taken to the page that watches rather than told to go away and wait. A cached
+          // scan lands on the same page and finds it already finished, which is the honest
+          // thing to show: somebody asked about this business recently and here is what came
+          // back. The link is relative, and this form is served at /scan/.
+          if (res.body && res.body.token) {
+            location.href = 'watch/?t=' + encodeURIComponent(res.body.token);
+            return;
+          }
+          // A 200 with no token should not happen. If it does, say the true thing rather than
+          // sending somebody to a page with nothing to watch.
           form.innerHTML = '<p class="scan-status">Got it. The report goes to the address you ' +
             'gave, once a person has read it.</p>';
           return;
         }
         // A REFUSAL IS A DECISION AND IS NOT RETRIED. Falling through to the email path on a
         // 429 would post around the daily cap, which is the one thing standing between a
-        // public form and a bill.
+        // public form and a bill. Same for a 403 from the captcha and a 400 for a bad url:
+        // the gatekeeper answered, and its answer is the point.
+        //
+        // BUT A GATEKEEPER THAT IS NOT THERE HAS NOT DECIDED ANYTHING. A 404 is what an
+        // undeployed Worker's own hostname returns, and a 5xx is one that is broken or
+        // unconfigured. Both used to land here and be shown to the requester as a refusal,
+        // which loses the request: the fetch did not throw, so the email path below never ran.
+        // That made the day between shipping this page and deploying the Worker a day with a
+        // dead form and no queue behind it. Absence is an accident, so it takes the same path
+        // an accident takes.
+        if (res.status === 404 || res.status >= 500) { form.submit(); return; }
         button.disabled = false;
         if (window.turnstile) window.turnstile.reset();
         say(res.body.error || 'That did not go through. Try again in a moment.');
@@ -3441,6 +3472,159 @@ def scan_page(today: str) -> str:
                 desc="An honest read of where AI would help a Texas business. Where ordinary "
                      "software is cheaper. What the industry has already published.",
                 body=body, today=today, canonical="scan/")
+
+
+
+# The read-only route on the same worker. The token is the credential and the browser never
+# holds anything else.
+SCAN_RESULT_URL = f"{SCAN_WORKER}/result"
+
+
+def watch_page(today: str) -> str:
+    """Watching your own scan run, which is the one page here that DOES phone somewhere.
+
+    THIS PAGE MAKES REQUESTS AND SAYS SO. Everything else on this site is static and the ask
+    box goes out of its way to prove it phones nobody. This one cannot: a live view of a
+    running job is a request, repeated. So the page states that in its own copy, above the
+    feed, before anything is sent, which is the same rule the ask box follows about its
+    buttons. Never weaken that sentence without changing what the code does.
+
+    IT ASKS FOR NOTHING BUT THE TOKEN. The token is in the link the requester was handed, it
+    is a hundred and twenty eight bits of gen_random_bytes, and it is the whole credential.
+    There is no account, no cookie and no identifier of any other kind on this page, so a
+    shared link shows one scan and nothing else reachable.
+
+    IT STOPS. Polling forever against somebody else's bill is rude, and a job that has gone
+    quiet is a thing to say plainly rather than to keep asking about. The interval backs off
+    and the page gives up with an honest line and the link to try again.
+
+    NO NUMERALS IN THE SHELL. Everything with a figure in it arrives at read time from the
+    feed, so the built page states none and `numeral_lint` has nothing to authorise. The
+    intervals live in the script, which the gate does not read as reader copy.
+    """
+    body = f"""
+<section class="watch" id="watch">
+  <h1>Your scan</h1>
+  <p class="sub">This page asks the scanner how your run is going, and keeps asking while it
+  runs. That is the one thing on this site that sends anything. It sends your token and
+  nothing else.</p>
+
+  <p class="watchstate" id="wstate" data-idle="Waiting for the token in your link.">Waiting
+  for the token in your link.</p>
+
+  <ol class="chain watchchain" id="wchain">
+    <li data-phase="footprint"><b>Footprint</b><span>your pages, cited</span></li>
+    <li data-phase="industry"><b>Industry</b><span>what others already tried</span></li>
+    <li data-phase="feasibility"><b>Feasibility</b><span>the lowest honest rung</span></li>
+    <li data-phase="critic"><b>Critic</b><span>defaults to rejecting it</span></li>
+  </ol>
+
+  <ol class="wfeed" id="wfeed"></ol>
+
+  <p class="watchdone" id="wdone" hidden></p>
+  <p class="sub" id="whelp" hidden>The report goes to the address you gave. You can close this
+  page and it will still arrive.</p>
+</section>
+<script>
+(function () {{
+  var END = {SCAN_RESULT_URL!r};
+  var PHASES = ["footprint", "industry", "feasibility", "critic"];
+  var state = document.getElementById("wstate");
+  var feed  = document.getElementById("wfeed");
+  var chain = document.getElementById("wchain");
+  var done  = document.getElementById("wdone");
+  var help  = document.getElementById("whelp");
+  var token = new URLSearchParams(location.search).get("t") || "";
+  var seen = 0, tries = 0, wait = 3000, atPhase = "";
+
+  function say(t) {{ state.textContent = t; }}
+
+  // The feed is APPENDED, never rebuilt, so a line a reader already read cannot move or
+  // vanish under them when the next poll returns the same rows plus one.
+  function draw(rows, ended) {{
+    for (var i = seen; i < rows.length; i++) {{
+      var r = rows[i] || {{}};
+      var ph = String(r.phase || "").toLowerCase();
+      var turn = ph !== "" && ph !== atPhase;
+      var li = document.createElement("li");
+      if (turn) {{ li.className = "wturn"; atPhase = ph; }}
+      // THE STATION IS NAMED WHERE IT CHANGES, not on every line, so the feed reads as runs
+      // of work under a station rather than as the same word repeated down the page.
+      var g = document.createElement("span");
+      g.className = "wphase";
+      g.textContent = turn ? ph : "";
+      var n = document.createElement("span");
+      n.className = "wnote";
+      n.textContent = String(r.note || r.phase || "");
+      li.appendChild(g);
+      li.appendChild(n);
+      feed.appendChild(li);
+    }}
+    seen = rows.length;
+    var last = rows.length ? String((rows[rows.length - 1] || {{}}).phase || "") : "";
+    var at = PHASES.indexOf(last.toLowerCase());
+    var items = chain.children;
+    for (var j = 0; j < items.length; j++) {{
+      // A FINISHED RUN LEAVES NOTHING LIVE. The last station reported is the one the run
+      // ended on, and leaving it pulsing says work is still happening when it is not, which
+      // is the one thing this page cannot afford to say.
+      items[j].dataset.state = at < 0 ? ""
+        : (j < at ? "done" : (j === at ? (ended ? "done" : "live") : ""));
+    }}
+  }}
+
+  function stop(msg, showHelp) {{
+    say(msg);
+    if (showHelp) help.hidden = false;
+  }}
+
+  function poll() {{
+    tries++;
+    fetch(END, {{
+      method: "POST",
+      headers: {{ "content-type": "application/json" }},
+      body: JSON.stringify({{ token: token }})
+    }}).then(function (r) {{
+      return r.json().catch(function () {{ return {{}}; }}).then(function (b) {{
+        return {{ ok: r.ok, body: b }};
+      }});
+    }}).then(function (res) {{
+      if (!res.ok) {{
+        stop(res.body && res.body.error === "not found"
+          ? "That link does not match a scan. Check the address you were given."
+          : "The scanner could not be reached just now.", true);
+        return;
+      }}
+      var b = res.body || {{}};
+      var ended = b.status === "done" || b.status === "degraded" || b.status === "failed";
+      draw(Array.isArray(b.progress) ? b.progress : [], ended);
+      if (b.status === "done" || b.status === "degraded") {{
+        say("Finished.");
+        if (b.headline) {{ done.textContent = String(b.headline); done.hidden = false; }}
+        help.hidden = false;
+        return;
+      }}
+      if (b.status === "failed") {{ stop("This run stopped before it finished.", true); return; }}
+      say(b.status === "queued" ? "Queued." : "Running.");
+      // Backing off, and giving up rather than asking forever.
+      if (tries > 200) {{ stop("Still going, longer than this page waits.", true); return; }}
+      if (tries > 20) {{ wait = 10000; }}
+      setTimeout(poll, wait);
+    }}).catch(function () {{
+      stop("The scanner could not be reached just now.", true);
+    }});
+  }}
+
+  if (!token) {{ stop("This page needs the link you were given when the scan started.", false); }}
+  else {{ say("Asking."); poll(); }}
+}})();
+</script>
+"""
+    # depth TWO: this page is at scan/watch/, so every relative asset needs two hops. At depth
+    # one it linked ../site.css, which 404s from here, and the page rendered as bare markup.
+    return page(title=f"Your scan · {SITE_NAME}", depth=2, active="",
+                desc="Watch a bottleneck scan run, by the token in your link.",
+                body=body, today=today, canonical="scan/watch/")
 
 
 def services_page(items: list, today: str) -> str:
@@ -4739,7 +4923,8 @@ def build(out: Path, today: str) -> dict:
     authorised = _authorised_numerals(items, today)
     by_item = {it["id"]: _item_numerals(it, today) for it in items}
     unauthorised: list[str] = []
-    broken: list[str] = []          # content security policy findings, per page
+    broken: list[str] = []
+    connect_seen: set[str] = set()          # content security policy findings, per page
     pages: dict[str, tuple[str, set]] = {}
 
     def w(path: str, text: str, extra: set | None = None):
@@ -4929,6 +5114,7 @@ def build(out: Path, today: str) -> dict:
     # the coincidence `numeral_lint`'s docstring admits it cannot see through.
 
     w("scan/index.html", scan_page(today))
+    w("scan/watch/index.html", watch_page(today))
     w("services/index.html", services_page(items, today))
     w("water/index.html", water_page(today), _watch_numerals(waterwatch_page))
     w("waterwatch.json", json.dumps(
@@ -5013,6 +5199,7 @@ def build(out: Path, today: str) -> dict:
         # is caught on this line rather than by a reader whose page quietly stopped working.
         if path.endswith(".html"):
             broken.extend(f"{path}: {v}" for v in csp.audit(stamped, SITE_URL))
+            connect_seen |= csp.connect_targets(stamped)
         (out / path).write_text(stamped, encoding="utf-8")
 
     # A url with no honest date carries no `lastmod`. The element is optional and an absent one
@@ -5028,6 +5215,12 @@ def build(out: Path, today: str) -> dict:
       f'<?xml version="1.0" encoding="UTF-8"?>'
       f'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{locs}</urlset>')
 
+    # AND THE OTHER DIRECTION, which needs every page and so cannot live in a per-page audit.
+    # A declared origin nothing targets widens the policy for free. The entry for the scan
+    # intake outlived the intake by a day and no gate said so, because an over-wide policy
+    # refuses nothing and therefore reports nothing.
+    broken.extend(csp.unused_connect(connect_seen))
+
     # THE GATE FIRES HERE, after every page is written, so the report names all of them
     # rather than the first. A build that would publish a typed numeral does not publish.
     # A CSP FAILURE IS SILENT AND TOTAL, so it stops the build the same way a typed numeral does.
@@ -5038,9 +5231,11 @@ def build(out: Path, today: str) -> dict:
             print(f"  csp: {line}", file=sys.stderr)
         raise SystemExit(
             f"site_build: {len(broken)} content security policy finding(s). A page loads or "
-            f"posts to an origin its own policy refuses, or carries an inline block nobody "
-            f"hashed. Add the origin in scripts/site/csp.py if the page should be loading it, "
-            f"and otherwise the page should not be loading it.")
+            f"posts to an origin its own policy refuses, carries an inline block nobody "
+            f"hashed, or the policy declares an origin no page targets. The allowlist is "
+            f"scripts/site/csp.py and it is checked BOTH WAYS: add the origin there if a page "
+            f"should be reaching it, remove it if nothing does, and otherwise the page should "
+            f"not be reaching it.")
 
     if unauthorised:
         for line in unauthorised:

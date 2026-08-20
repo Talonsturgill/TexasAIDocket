@@ -136,7 +136,14 @@ ROUTES: list[tuple[str, str, str, str, str]] = [
 
     # ---- scanner, which lands in TexasAIScanner ----
     ("alaska-ai-scanner", r"^web/", "PORT_RETHEMED", "TexasAIScanner:web/", ""),
-    ("alaska-ai-scanner", r"^supabase/", "PORT_RETHEMED", "TexasAIScanner:supabase/", ""),
+    # The Deno function layer these targeted was replaced by a Cloudflare Worker on
+    # 2026-08-20, so an Alaska edge function ports INTO workers/scan/ rather than beside
+    # it. The rule moved with the destination; the five TODO rows it had already routed
+    # were repointed in the same commit rather than left describing a directory that no
+    # longer exists.
+    ("alaska-ai-scanner", r"^supabase/", "PORT_RETHEMED", "TexasAIScanner:workers/scan/",
+     "the Deno function layer it targeted was replaced by a Cloudflare Worker on "
+     "2026-08-20, so this ports into workers/scan/ rather than beside it"),
     ("alaska-ai-scanner", r"^db/", "PORT_RETHEMED", "TexasAIScanner:db/", ""),
     ("alaska-ai-scanner", r"^prompts/", "PORT_RETHEMED", "TexasAIScanner:prompts/", ""),
     ("alaska-ai-scanner", r"^knowledge/", "PORT_RETHEMED", "TexasAIScanner:knowledge/", ""),

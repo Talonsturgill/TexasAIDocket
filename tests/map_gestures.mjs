@@ -26,6 +26,7 @@
 // =============================================================================
 
 import {chromium} from 'playwright';
+import fs from 'node:fs';
 import path from 'node:path';
 import {MEASURE} from './lib/contrast.mjs';
 
@@ -36,7 +37,15 @@ const ok = (label, cond, detail = '') => {
   else { failures++; console.log(`  FAIL ${label}${detail ? `\n       ${detail}` : ''}`); }
 };
 
-const browser = await chromium.launch();
+/* Some environments ship a chromium whose build number does not match the npm package's
+   pinned one. Where a preinstalled binary exists, use it rather than downloading a second
+   copy; where it does not, let playwright resolve its own. Hardcoding either breaks the
+   other, and this test has to run both on a dev container and on a CI runner.
+   It was the only suite here without this, so it was the only one that could not be run
+   before pushing, which is how a CI-only failure stays invisible until CI finds it. */
+const PREINSTALLED = process.env.PLAYWRIGHT_CHROMIUM || "/opt/pw-browsers/chromium";
+const browser = await chromium.launch(
+  fs.existsSync(PREINSTALLED) ? { executablePath: PREINSTALLED } : {});
 // A PHONE, declared as one. The whole feature is behind `'ontouchstart' in window`, so a
 // desktop context would silently exercise nothing and report green.
 const ctx = await browser.newContext({

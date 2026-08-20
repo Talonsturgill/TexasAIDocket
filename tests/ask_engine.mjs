@@ -213,12 +213,41 @@ check("still no request left the page after every interaction", external.length 
 // where a suite quietly stops testing anything, so the exclusion is exercised against a host
 // it does not cover. If this ever stops catching the beacon, the narrowing above has widened
 // into "no request is ever checked" and the promise is gone with it.
-const beacon = "https://analytics.example.com/collect?q=test";
+//
+// THE BEACON MOVED TO AN ALLOWED ORIGIN ON 2026-08-20, and the reason is worth writing down
+// because it looks like a weakening and is not. The content security policy that shipped in
+// #119 refuses `connect-src` to any host it does not name, so the old beacon at
+// analytics.example.com never became a request at all: the browser killed it in the page, the
+// route below never saw it, and this check went red reporting "the exclusion is too wide" when
+// the exclusion had not changed. A gate that fails for a reason it does not name is worse than
+// no gate, and this one was accusing the wrong code.
+//
+// Every request here is fulfilled by the route below and nothing leaves the machine, so the
+// origin is chosen purely so the browser lets the request START. The thing being proved is
+// unchanged: a request to a host the exclusion does not name is still caught.
+const beacon = "https://formsubmit.co/__ask_engine_probe";
 await page.evaluate((u) => fetch(u).catch(() => {}), beacon);
 await page.waitForTimeout(150);
 check("...and a request to any other host is still caught",
-      external.some((u) => u.startsWith("https://analytics.example.com/")),
+      external.some((u) => u.startsWith("https://formsubmit.co/__ask_engine_probe")),
       external.join(", ") || "nothing was caught, so the exclusion is too wide");
+
+// AND THE POLICY IS LIVE, which is the other half and is new. The collision above is worth
+// keeping as a check rather than only working around: a host the policy does not name must be
+// refused by the browser before it can become a request, which is a promise no static reader
+// of the html can make.
+const refused = await page.evaluate(async () => {
+  const seen = [];
+  const on = (e) => seen.push(e.blockedURI);
+  document.addEventListener("securitypolicyviolation", on);
+  await fetch("https://analytics.example.com/collect?q=test").catch(() => {});
+  await new Promise((r) => setTimeout(r, 120));
+  document.removeEventListener("securitypolicyviolation", on);
+  return seen;
+});
+check("...and a host the policy does not name never becomes a request at all",
+      refused.some((u) => u.startsWith("https://analytics.example.com/")),
+      refused.join(", ") || "the policy allowed it, so connect-src is wider than it reads");
 
 /* ------------------------------------------------------------------ where the answer lands
  *
