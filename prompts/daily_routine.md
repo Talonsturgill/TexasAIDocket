@@ -521,6 +521,35 @@ site is byte identical to a fresh build. So a decision admitted in Phase 5 is in
 the feeds, in the structured data and on its own card by the time this run merges, with no step
 here to remember.
 
+**THE FRONT PAGE COUNTER ROW IS THE SAME KIND OF THING, and it has one figure worth naming.**
+
+The row under the masthead is a PRIORITY LIST, not a fixed set. Six candidates are offered and
+the first five with something in them are printed, so a count at zero is left out rather than
+advertised as `00`, and it comes back on its own the day the thing it counts exists. Every one
+of them is computed by `site_build.home` from the ledger this run just wrote, so the row is
+current the moment Phase 16 finishes and there is no step here either.
+
+`Sources cited` was added to that row on 2026-08-21 and it is the one to protect. It had been
+sixth of six behind a cap of four, which meant it never rendered at all, and it survived being
+invisible only because the sentence under `What this is` carried the same figure. That section
+came off the same day. A row that counts decisions, articles and videos and never says how many
+QUOTED SOURCES stand behind them has dropped the only number on the page that supports the
+project's actual claim. Sixty four decisions is a size. Sixty four decisions behind two hundred
+and eighty three quoted sources is an argument, and it is the argument this whole record is for.
+<!-- onpage index.html "Sources cited" -->
+
+**`WHAT THIS IS` IS GONE FROM THE FRONT PAGE**, on the owner's instruction, 2026-08-21. It was
+two paragraphs under that heading explaining what the record is and how an entry is admitted. A
+returning reader does not need to be told what the site is every visit, and the front page is
+the most expensive space on it. Do not restore it. If a run reads this section and reaches for
+that copy, it is reading a description that was true and is not.
+
+Checked rather than trusted, for the same reason the water page's removed promises are. This
+run may edit `site_build.py`, so the section it deleted is exactly the kind of thing a later run
+puts back while every other gate stays green, since restored copy is true, computed and in
+house style. The marker fails the suite if it comes back.
+<!-- offpage index.html "What this is" -->
+
 **What that guarantee does NOT cover, and what this phase is for.** A gate answers the question
 it was given. None of the five above can tell you the product is any good. So look, and then
 **sign off in the run record by name**, one line each, under a heading spelled exactly
