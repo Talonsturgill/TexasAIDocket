@@ -127,6 +127,16 @@ jobs:
       - name: Every researched fact names a source that exists
         run: python3 scripts/site/facility_dossier.py
 
+      # WHO IS BEHIND THE REGISTRY. Resolution is mechanical and the self-test carries the comma
+      # that split the largest occupant in the state into two smaller ones. The curated parent
+      # groups are checked for a stated reason, because a grouping nobody explained is one
+      # nobody can disagree with.
+      - name: Entity resolution self-test (the comma that hid the largest occupant)
+        run: python3 scripts/site/entities.py --self-test
+
+      - name: Every entity resolves and every group states its reason
+        run: python3 scripts/site/entities.py
+
       # THE ROUTINE'S OWN CLAIMS ABOUT PUBLISHED COPY. An unattended run reads
       # prompts/daily_routine.md to know what to do, and part of that file describes what the
       # pages say. A description that has gone stale is not wrong about a fact, it is wrong
@@ -902,6 +912,12 @@ jobs:
       - name: The facility dossiers, page and dialog
         run: |
           SITE=docs node tests/facility_dossier.mjs
+
+      # The company pages, whose expectations are computed from the ledgers by the test rather
+      # than typed, so the next Comptroller list cannot turn a correct page red.
+      - name: The registry read by company
+        run: |
+          SITE=docs node tests/company.mjs
 
   browser-render:
     # What the page actually paints, and how it moves under a thumb.

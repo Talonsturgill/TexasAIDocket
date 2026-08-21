@@ -81,6 +81,57 @@ name.
 A dossier for a facility with more than one row should carry both rows and say what moved between
 them. Deduplicating by name throws away the only longitudinal signal this source has.
 
+## A CERTIFICATION IS NOT A BUILDING, AND POOLSIDE IS THE PROOF
+
+The single most important caveat on this whole surface, learned the hard way in batch three.
+
+Poolside held two certifications on a Pecos County site for Project Horizon, a two gigawatt
+campus. CoreWeave signed as anchor tenant for the first 250 MW and then TERMINATED that lease in
+the spring of 2026 after Poolside's funding round failed to close. Trade coverage called it the
+most prominent failure in the Texas pipeline.
+
+**The state certified phase two on March 6th, 2026, days before that termination was reported,
+and nothing in the registry has changed since.**
+
+So the list records exemptions the Comptroller granted. It does not record buildings that exist,
+buildings that are energized, or projects that are still alive. A dossier may say the state
+certified a facility on a date. It may NEVER say a facility is operating, and no page here does.
+
+## READ DOWN THE COLUMNS, NOT JUST ACROSS THE ROWS
+
+Batch three's whole yield came from this. Reading one facility at a time hides everything that
+matters about who is building Texas.
+
+- **Oracle America Cloud Services is the occupant of record on twenty five facilities**, the
+  largest single relationship in the state. It was invisible because the state filed it under two
+  spellings that differ by a comma. Ten of those are Vantage buildings certified on one day and
+  eight are the Abilene campus.
+- **Sixteen companies are split across multiple spellings.** Google appears three ways, Whinstone
+  three ways. Counting strings instead of companies gets the ranking wrong.
+- **Entity names give away the business model.** Nexus files a POWER company beside every building
+  company at Hubbard, which is exactly the behind the meter gas design its coverage describes.
+  Fermi files a turbine warehouse and a mobile generation entity. Neither of those is something a
+  colocation landlord files.
+- **An SPV family reveals scale.** Ten numbered Vantage entities, eight Abilene DC entities,
+  sixteen Nexus entities, twelve Compass entities. A campus is usually one entity per building
+  because that is how each building gets financed separately.
+
+`scripts/site/entities.py` does the resolution and publishes it at `/company/`. The mechanical
+layer needs no judgment. The parent grouping does, so it lives in `config/entity_groups.json`
+where every grouping states its reason.
+
+## NAME THE ROW, NOT THE REGISTRY
+
+A correction worth keeping, because it was published live before it was caught.
+
+A Cedarvale dossier said Microsoft "does not appear in the registry at all". Microsoft appears on
+**fourteen facilities**. What was true is that Microsoft is not named on THAT row, where the
+certified occupant is an Nscale borrowing entity.
+
+The corrected sentence is both accurate and better: Microsoft holds fourteen certifications of its
+own, so its absence from one row is not avoidance, it is the difference between being the
+occupant and being the occupant's customer. **Before writing that a company is absent, count.**
+
 ## The research ladder, in the order that pays
 
 Worked out against the first batch. Higher rungs are primary and load bearing, lower rungs fill in
