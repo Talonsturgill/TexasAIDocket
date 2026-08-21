@@ -75,7 +75,9 @@ COPY = {
                     "question searches the whole record instantly and for nothing.",
     # Said under an answer the page produced itself, which is most of them. It is not the
     # same claim as the written lane's: nothing was written, the record was read.
-    "from_record":  "Read straight from the record, in your browser.",
+    # The refusal wears the same provenance line an answer does. A separate one announced that
+    # a different machine had handled it, which is true and is not the reader's problem.
+    "checked":      "Checked against the published record.",
     "off_record":   "That is not something this record covers. It holds Texas decisions about "
                     "artificial intelligence, who made them and whether a comment window is "
                     "still open.",
@@ -417,6 +419,8 @@ _CLIENT = r"""
   }, { passive: true });
 
   var parking = 0;
+  // Where the last park asked the page to be. Null when nothing is pending, so a genuine
+  // scroll before the first answer is never mistaken for ours.
   function park() {
     if (!following) return;
     var calm = matchMedia && matchMedia("(prefers-reduced-motion:reduce)").matches;
@@ -436,7 +440,7 @@ _CLIENT = r"""
     scrollBy({ top: delta, behavior: calm ? "instant" : "smooth" });
     /* The flag is dropped a beat later so the smooth scroll's own events are not read as the
        reader taking over, which would switch following off on the very first press. */
-    setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
+setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
   }
 
   /* ---- asking ------------------------------------------------------------ */
@@ -557,23 +561,19 @@ _CLIENT = r"""
     localExchange = "";
     var verdict = window.__askClassify ? window.__askClassify(question) : { bucket: "written" };
 
-    if (verdict.bucket === "instant" && verdict.answer) {
-      var head = document.createElement("p");
-      head.className = "askhead";
-      head.textContent = verdict.answer.head;
-      body.appendChild(head);
-      var list = document.createElement("div");
-      list.className = "asklist";
-      list.innerHTML = verdict.answer.body;
-      body.appendChild(list);
-      finishLocal("%%from_record%%");
-      return;
-    }
+    /* THERE IS NO LOCAL ANSWER LANE ANY MORE, and removing it is the point.
+       A block here used to render a headline and a list of item links for anything the
+       catalogue matched, which was most questions. It was fast and it was not an answer, and
+       the owner's verdict was plain: "people are typing in a question cause they want an
+       answer that is the agent or looks like its from an agent, it cant be anything less".
+       So the only thing that ends here is a question this record has no business answering,
+       and it ends as a SENTENCE in the same bubble with the same footer, because a refusal
+       that looks like a different kind of object reads as the machine giving up. */
     if (verdict.bucket === "refuse") {
       var no = document.createElement("p");
       no.textContent = "%%off_record%%";
       body.appendChild(no);
-      finishLocal("%%from_record%%");
+      finishLocal("%%checked%%");
       return;
     }
 
@@ -919,6 +919,15 @@ _CLIENT = r"""
     if (!document.body.classList.contains("asking")) lastY = window.pageYOffset;
   }, { passive: true });
   input.addEventListener("pointerdown", function () { wasAt = window.pageYOffset; });
+  /* A STARTER IS A QUESTION, so pressing one has to take the screen exactly as tapping the
+     field does. It did not, because immersion hung off focus and a button press never focuses
+     the input. The owner pressed "What can I still comment on?" on a phone and got the answer
+     rendered inline with the hero, the footer and every other section still there, with the
+     box grown to 917px inside a 780px screen and scrolled off the top. Captured on the
+     starter's own pointerdown, before anything moves. */
+  box.querySelectorAll(".chips [data-ask]").forEach(function (btn) {
+    btn.addEventListener("pointerdown", function () { wasAt = window.pageYOffset; });
+  });
   /* THE SAME BREAKPOINT THE STYLESHEET USES, asked of the browser rather than guessed. Setting
      the class at every width was harmless while the rules were scoped, and it left one real
      trap: a reader focused on a laptop and then narrowing the window, or turning a tablet, would
@@ -1005,6 +1014,13 @@ _CLIENT = r"""
     if (!input.value.trim() && acceptPending()) return;
     var q = input.value.trim();
     if (!q) return;
+    /* IMMERSION FOLLOWS ASKING, NOT FOCUSING, and that distinction is the bug the owner hit.
+       It hung off the field's focus event, and a starter chip is a button that never focuses
+       the field, so pressing "What can I still comment on?" on a phone answered INLINE with
+       the hero, the footer and every section still on screen, and the box grew to 917px
+       inside a 780px viewport and scrolled off the top.
+       Here it covers every way a question can be asked: a starter, the arrow, and Enter. */
+    immerse();
     ask(q);
   });
 })();

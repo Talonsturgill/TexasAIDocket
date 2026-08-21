@@ -2765,8 +2765,15 @@ caption {{ caption-side:bottom; text-align:left; padding-top:.75rem; font-size:v
    flow, so the box is simply the only thing there is. */
 @media (max-width:37.5rem) {{
   body.asking {{ overflow:hidden; }}
+  /* `footer.site`, WHICH IS WHAT IT IS CALLED. This said `.sitefoot`, which matches nothing
+     on any page of this site, so the footer sat under the box in full screen mode and the
+     owner found it on a phone. The probe that was supposed to catch it printed `footer: null`,
+     meaning the selector found no element, and a null read as "not visible" rather than as
+     "you are asking about something that is not there". A check whose subject does not exist
+     is worse than no check, and `ask_written.mjs` now fails when one of these matches nothing
+     rather than quietly passing. */
   body.asking .sky, body.asking .masthead, body.asking main > *:not(.asksection),
-  body.asking .sitefoot {{ display:none; }}
+  body.asking footer.site {{ display:none; }}
   body.asking .asksection {{ margin:0; }}
   body.asking main {{ padding:0; }}
   /* The safe-area token keeps the field off the home indicator on a notched phone. */

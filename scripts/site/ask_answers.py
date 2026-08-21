@@ -562,16 +562,29 @@ def engine_js() -> str:
   function classify(q) {
     var text = String(q || "").trim();
     if (!text) return { bucket: "empty" };
-    var route = best(text);
-    if (route && !explanatory(text)) return { bucket: "instant", answer: answer(route) };
-    if (route) return { bucket: "written" };
+    /* THE AGENT ANSWERS EVERY QUESTION ABOUT THE RECORD, and the first version of this did
+       not. It routed anything the catalogue matched to the in-page engine, which renders a
+       headline and a list of item links. That is fast and it is not an ANSWER, and the owner
+       said so within a day of it shipping: "the query is not being answered by an agent it is
+       being answered by the cached stuff and just giving me a bunch of links".
+       The brief was to make the agent ten times better. Routing around the agent makes the
+       agent zero times better and takes the prose away, so the trade was wrong.
+       WHAT THE CLASSIFIER IS FOR NOW. One thing, and it is the one thing a model cannot do
+       cheaply: refusing a question this record has no business answering. Asked for a recipe,
+       it says so in 36ms and spends nothing. Everything on topic goes to the agent.
+       The local route is not deleted. It is the FALLBACK when the month's cap is spent, where
+       a list of the right decisions beats an apology, and `askLocal` is how the written lane
+       reaches it. */
     var bag = vocabulary(), ws = words(text), touched = 0;
     ws.forEach(function (w) { if (bag[w]) touched++; });
-    if (ws.length && touched === 0) return { bucket: "refuse" };
+    if (ws.length && touched === 0 && !best(text)) return { bucket: "refuse" };
     return { bucket: "written" };
   }
 
   window.__askClassify = classify;
+  /* The written lane calls this when the cap is spent, so a reader still gets the right
+     decisions rather than only an apology. */
+  window.__askLocal = function (q) { var r = best(q); return r ? answer(r) : null; };
   window.__askAnswer = function (q) { return answer(best(q)); };   // for tests/ask_engine.mjs
 })();
 """
