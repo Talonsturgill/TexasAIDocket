@@ -291,6 +291,45 @@ these. The pixel critics read the frames and found craft. The gates read the fil
 Only a judge told to refute the deck went and read the builder to see whether a number on a slide
 was a number the code produced.
 
+## What four scoring panels cost, and what they were worth
+
+Twelve judgments across four panels. The scores went 6.67 6.75 6.81, then 6.41 6.51 6.88, then
+6.85 7.07 7.47. Not one of the eighteen findings below was caught by any gate in the suite, and
+the suite ran green on every one of those rounds.
+
+Counting them by KIND rather than by frame is the useful cut, because the kinds repeat and the
+frames do not.
+
+**Six numerals typed beside the code that computes them.** 254 counties on the one frame that
+loads the county file. "Five of seven" beside `TAIL_MARKS` and `len(SEQ)`. 392 beside
+`SPAN_TO_AUTH`. A `FRAME WIDTH` in feet on all nine frames, contradicting its own drawing on at
+least two. Three coordinate pairs, two of them wrong against the committed gazetteer's own
+centroids. The pattern is not carelessness about arithmetic. It is that every one of them lived in
+FURNITURE, and furniture is where a run stops thinking of a string as a claim.
+
+**Four place stamps naming a place no cited claim names.** PERMIAN BASIN on an Aurora only cover.
+PERMIAN BASIN again on a Kodiak filing frame whose claims name a conveyor. STATEWIDE on two more.
+Each was fixed one frame at a time as each panel caught one, which is the shape of a defect that is
+being treated as an incident. Checking all nine at once was what ended it.
+
+**Three sentences that overreached their own source.** A dek saying the federal header row "begins
+with" two fields the drawing above it shows it does not. An absence record claiming three pages
+were "the three the committee's own charge points at" when the charge names a fourth agency and
+not one of these. A closing sentence turning the source's expressly non-exhaustive "including"
+into a closed list, on the deck's sharpest finding.
+
+**Two artefacts that had drifted from the pixels.** The storyboard, three of whose repairs existed
+only on the frames. `first_comment.txt`, which did not resolve a claim id two frames printed.
+
+**One date on three surfaces with no claim quoting it,** living in a `source_title`, which is a
+field a run writes rather than one a page carries.
+
+The single most useful thing a panel did was read the BUILDER. Two judges opened
+`build_slides.py` and found a string literal where the code beside it was computing the same
+number. No pixel critic could have seen it, because the pixels were correct. No gate could,
+because `.geo` is `data-decorative` and the exemption was written for a footer this run had
+already deleted.
+
 ## The deck
 
 ### Selection, and why this story and not the others
