@@ -1521,3 +1521,77 @@ gate that makes its own reasoning unwritable loses the reasoning at the first re
 **Generalises to.** Every law in `CLAUDE.md` that governs a file which is not `CLAUDE.md`. Ask,
 on the day the rule is written, what would catch the file that breaks it, and write that instead
 of a second paragraph.
+## 43. Three checks passed on work that never happened, because a click cost more than its timeout
+
+The record calendar's browser suite failed about one run in four. It failed in CI on
+`walking all the way back lands on the first month`, reporting `2025-04`, and then passed
+four times running, which is the signature that gets a suite labelled flaky and then ignored.
+
+**The cause is not in the calendar.** The page is correct. Every page on this site carries
+infinite decorative animations, one of which shimmers a full width blurred layer that cannot be
+composited, so a headless renderer with no GPU repaints and re-blurs it every frame. Playwright's
+actionability loop is measured in frames. Measured on `docs/record/`, one `page.click` costs
+**426 to 875ms** with motion on and **49 to 215ms** under `reducedMotion: "reduce"`. Every walk
+loop in the suite gave a click `{ timeout: 400 }` and then swallowed the failure with
+`.catch(() => {})`.
+
+So the loops were dropping steps and asserting wherever they had run out of iterations.
+
+**The part worth keeping is what the swallow did to the OTHER checks.** The end of range
+assertion at least failed. Three more passed:
+
+- the backward walk timed out on **15 of 22** iterations while `#calprev` was still enabled
+- `the third rapid tap` delivered **0 of 5** taps, and both of its assertions passed on a
+  calendar nobody had touched
+- eight filter flips were swallowed, and the assertion was true of a filter nobody toggled
+
+A swallowed interaction does not make a check fail. It makes the check TRUE, about an initial
+state, forever. That is worse than the flake, because the flake at least announced itself.
+
+The forward walk had a fourth version of it in a different disguise. It compared
+`seen.filter((v, i) => v !== seen[i - 1])`, dropping consecutive repeats, and a dropped click
+produces exactly a consecutive repeat. The filter deleted the evidence of the fault it would
+otherwise have caught.
+
+**What to check instead.**
+
+- **Never swallow an interaction.** `.catch(() => {})` on a click is a lie told to the assertion
+  that follows it. If a click can fail without the test failing, the test is not about the click.
+- **Assert on the STATE CHANGE, not on the call returning.** `walk()` clicks and then waits for
+  the shown month to differ from the one it recorded, and stops on the control's own `disabled`
+  state rather than on an iteration count. A cap is a runaway guard, and reaching it is a failure.
+- **Count what the handlers actually received.** The rapid tap now fires its clicks in the page
+  and asserts the listeners saw five. The filter flips are counted the same way. A test that
+  cannot say how many events it delivered cannot say what it proved.
+- **Never normalise away a duplicate you have not explained.** A repeat is either the behaviour or
+  the bug, and a filter that removes it decides which without looking.
+
+**A concurrency trap in the same block.** Five `page.click` calls in a `Promise.all` share one
+mouse and interleave, so a mousedown on prev with a mouseup on next fires the click on the pair's
+common ancestor and neither button hears it. That delivered two to five taps per run, with nothing
+rejected. Firing them synchronously in the page is both deterministic and a harsher race than a
+thumb can make, because the handlers run back to back with no frame between them.
+
+**And `goto` to a url that differs only in its fragment is a SAME DOCUMENT navigation.** Nothing
+reloads, `hashchange` fires, and the startup path that parses the hash never runs. The block
+headed "A DEEP LINK NEEDS A FRESH DOCUMENT" had been testing the listener and reporting it as the
+cold parse. A visit counter in the query makes each load a real load.
+
+**Turning motion off is right, and it leaves a hole that has to be named.** `reducedMotion` is
+what a CI runner should emulate, the site honours it in its own stylesheet, and nothing the suite
+asserts is about motion. Except one thing. `html` carries `scroll-behavior:smooth`, which reduced
+motion turns to `auto`, so the deep link check is the ONE assertion whose subject is where the
+viewport ends up, and it is the one the setting changes. Arriving at `#cal-2026-06`, the panel
+sits at 1517, 1517, 1164 and 0 at 0ms, 200ms, 500ms and 1000ms under default motion, and at 0 on
+the first frame under `reduce`. The page is right either way. So that assertion is asked a second
+time in the mode the suite no longer covers, waiting for the scroll to STOP MOVING rather than
+sleeping a guessed interval, which would be the same guess that flaked to begin with.
+
+**Generalises to.** Every browser suite in this repo, and to any timeout written as a constant
+next to an interaction. A per action timeout is a claim about how long the product takes, made by
+somebody who was not measuring. If a suite needs one, measure the action first and then say in
+the comment what it measured, or the number is a guess that will come back as a one in four
+failure on a machine nobody was thinking about.
+
+**Result.** Two minutes fifty seven with two failures, to thirty five seconds clean, eight
+consecutive green runs, and the checks now fail when the interaction does not land.

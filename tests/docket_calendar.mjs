@@ -45,21 +45,39 @@ await new Promise((r) => server.listen(0, "127.0.0.1", r));
 const ORIGIN = `http://127.0.0.1:${server.address().port}`;
 const browser = await chromium.launch(LAUNCH);
 
+// REDUCED MOTION, AND IT IS THE FIX FOR THE FLAKE THIS SUITE HAD. The site decorates every
+// page with infinite animations, one of which shimmers a full width blurred layer that is not
+// compositable, so a headless renderer with no GPU repaints and re-blurs it every frame.
+// Playwright's actionability loop is measured in frames, so on this page a single `page.click`
+// cost 426 to 875ms, measured, against loops below that gave it 400ms and swallowed the
+// failure. Half the clicks in a walk were being dropped and the end of range assertion landed
+// on whatever month it ran out of iterations on. With `reduce` the same click costs 49 to
+// 215ms. This is not a workaround: it is the setting a CI runner should emulate anyway, the
+// site honours it in its own stylesheet, and nothing this suite asserts is about motion.
+const CTX_OPTS = { viewport: { width: 1280, height: 900 }, reducedMotion: "reduce" };
+
 // ONE CONTEXT, ONE PAGE, REUSED. The first version opened a fresh context and reloaded a
 // 330KB page for every section, which was most of a suite that ran for ten minutes. A test
 // slow enough to be skipped is a test that is not run, so the cost is part of the design:
 // a reload happens only where a FRESH DOCUMENT is the thing under test, and a viewport
 // change is a resize rather than a new browser.
-const CTX = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+const CTX = await browser.newContext(CTX_OPTS);
 const PAGE = await CTX.newPage();
+// A FRESH DOCUMENT EVERY TIME, WHICH IS WHAT THIS FUNCTION ALWAYS CLAIMED TO GIVE. `goto` to a
+// url that differs from the current one ONLY in its fragment is a SAME DOCUMENT navigation:
+// nothing reloads, `hashchange` fires, and the startup path that reads the hash never runs.
+// Proved by leaving a marker on `window` and watching it survive the goto. So every deep link
+// check below was exercising the listener and reporting it as the cold parse. The counter
+// makes each visit a different url, so a load is a load; the server ignores the query.
+let visit = 0;
 const load = async (hash = "") => {
-  await PAGE.goto(`${ORIGIN}/record/${hash}`, { waitUntil: "load" });
+  await PAGE.goto(`${ORIGIN}/record/?v=${++visit}${hash}`, { waitUntil: "load" });
   await PAGE.waitForFunction(() => !!document.getElementById("calprev"), null, { timeout: 8000 });
   return PAGE;
 };
 const open = async (opts = {}, hash = "") => {
   if (opts.javaScriptEnabled === false) {
-    const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 }, ...opts });
+    const ctx = await browser.newContext({ ...CTX_OPTS, ...opts });
     const p = await ctx.newPage();
     await p.goto(`${ORIGIN}/record/${hash}`, { waitUntil: "load" });
     return { p, ctx };
@@ -82,6 +100,40 @@ async function openMonth(p, key) {
   await p.waitForSelector(`a.mini[data-month="${key}"]`, { state: "visible", timeout: 5000 });
   await p.click(`a.mini[data-month="${key}"]`, { timeout: 5000 });
 }
+
+// A STEP IS A MONTH THAT CHANGED, NOT A CLICK THAT WAS ATTEMPTED. Every walk here used to be
+// a fixed number of `click(...{timeout: 400}).catch(() => {})` calls, which on this page is
+// below the cost of one click, so the loop dropped steps and then asserted where it had ended
+// up. That is how "walking all the way back lands on the first month" reported 2025-04. The
+// stepper's own end condition is the button going disabled, so use that rather than counting.
+// The iteration cap is a runaway guard, not the mechanism: reaching it is a failure.
+async function walk(p, id, cap) {
+  const shown = () => p.evaluate(() => {
+    const s = document.querySelector(".calmonth:not([hidden])");
+    return s ? s.getAttribute("data-month") : null;
+  });
+  const seen = [];
+  for (let i = 0; i < cap; i++) {
+    const at = await shown();
+    seen.push(at);
+    if (await p.$eval(`#${id}`, (b) => b.disabled)) break;
+    await p.click(`#${id}`);
+    await p.waitForFunction((prev) => {
+      const s = document.querySelector(".calmonth:not([hidden])");
+      return !!s && s.getAttribute("data-month") !== prev;
+    }, at, { timeout: 5000 });
+  }
+  return seen;
+}
+
+// TODAY IS THE BUILD'S TODAY, NOT THE RUNNER'S. `docs/` is committed, so the day this page
+// marks is the day the site was last built, and a literal month written in here rots the whole
+// suite on the first of the next one. Read it off the single cell the builder marked.
+const todayMonth = (p) => p.evaluate(() => {
+  const d = document.querySelector("#cal .calday.today");
+  return d ? d.closest(".calmonth").getAttribute("data-month") : null;
+});
+let TODAY = null;
 
 const state = (p) => p.evaluate(() => {
   const c = document.getElementById("cal");
@@ -125,6 +177,7 @@ console.log("=== with no script at all ===");
 console.log("\n=== with script, one month at a time ===");
 {
   const { p, ctx } = await open();
+  TODAY = await todayMonth(p);
   let s = await state(p);
   ok("exactly one month is showing", s.shown === 1, String(s.shown));
   ok("...and the month tab is the one lit", s.view === "month" && s.tab === "calvm",
@@ -140,7 +193,7 @@ console.log("\n=== with script, one month at a time ===");
   ok("...and it is the only one showing", s.shown === 1, String(s.shown));
   ok("...and the address bar carries it, so the view can be shared",
      p.url().endsWith("#cal-2026-06"), p.url());
-  ok("the month it opened on was today's", first === "2026-08", first);
+  ok("the month it opened on was today's", !!TODAY && first === TODAY, `${first} vs ${TODAY}`);
   await ctx.close();
 }
 
@@ -156,13 +209,18 @@ console.log("\n=== the stepper, which is the control a thumb uses ===");
 
   // IT STOPS RATHER THAN WRAPPING. Wrapping off the end lands a reader five years away with
   // no way back using the button they just pressed.
-  for (let i = 0; i < 30; i++) await p.click("#calprev", { timeout: 400 }).catch(() => {});
-  await p.waitForTimeout(250);
+  await walk(p, "calprev", 60);
   const s = await state(p);
   ok("walking off the front stops at the first month, it does not wrap", s.prevOff === true);
   ok("...and the panel is still a real month", !!s.showing, String(s.showing));
-  await p.click("#calnow", { timeout: 400 }).catch(() => {}); await p.waitForTimeout(200);
-  ok("'this month' comes home", (await state(p)).showing === "2026-08");
+  // NOT SWALLOWED. This click is the thing the next line asserts on, so a click that never
+  // landed has to be a failure here rather than a confusing failure one line down.
+  await p.click("#calnow");
+  await p.waitForFunction((m) => {
+    const x = document.querySelector(".calmonth:not([hidden])");
+    return !!x && x.getAttribute("data-month") === m;
+  }, TODAY, { timeout: 5000 }).catch(() => {});
+  ok("'this month' comes home", (await state(p)).showing === TODAY);
   await ctx.close();
 }
 
@@ -269,7 +327,7 @@ console.log("\n=== every month, by every route ===");
   // of the eighteen rather than all of them: the two ends, the month it opens on, and one in
   // between. The path is identical for every month and the rail loop above already proved
   // each one resolves; what these check is the parse of the hash on a cold page.
-  const sample = [all[0], all[Math.floor(all.length / 2)], all[all.length - 1], "2026-08"];
+  const sample = [all[0], all[Math.floor(all.length / 2)], all[all.length - 1], TODAY];
   let linkBad = [];
   for (const k of [...new Set(sample)]) {
     await load(`#cal-${k}`);
@@ -293,6 +351,40 @@ console.log("\n=== every month, by every route ===");
      where.month === "2026-06" && where.top >= 0 && where.top < where.vh,
      JSON.stringify(where));
 
+  // THE SAME LINK, WITH THE MOTION A READER ACTUALLY HAS, because the suite runs the whole
+  // rest of its work under `reduce` and that setting is not what most people browse with.
+  //
+  // The check above is the one that flaked, and this is where it came from. `html` carries
+  // `scroll-behavior:smooth`, which `prefers-reduced-motion` turns to `auto`, so under `reduce`
+  // the deep link is on screen on the first frame and under default motion the browser spends
+  // about a second animating there. Measured, arriving at 0ms, 200ms, 500ms and 1000ms: the
+  // panel sits at 1517, 1517, 1164 and then 0. Nothing is wrong with the page in either mode.
+  // What was wrong was reading the answer while the browser was still travelling to it.
+  //
+  // Turning motion off for the suite is right and it leaves a hole exactly here, since this is
+  // the ONE assertion in the file whose subject is where the viewport ends up. So it is asked
+  // a second time in the mode that is not otherwise covered, and given the settle it needs
+  // rather than a fixed sleep, which would be the same guess that flaked in the first place.
+  {
+    const mctx = await browser.newContext({ viewport: { width: 1280, height: 900 },
+                                            reducedMotion: "no-preference" });
+    const mp = await mctx.newPage();
+    await mp.goto(`${ORIGIN}/record/?v=${++visit}#cal-2026-06`, { waitUntil: "load" });
+    // SETTLED MEANS IT STOPPED MOVING, which is the only honest end condition for an animation
+    // whose duration the browser picks. Two equal readings a frame apart, or the timeout.
+    const landed = await mp.waitForFunction(() => {
+      const h = document.querySelector(".calmonth:not([hidden]) .calmh");
+      if (!h) return false;
+      const y = Math.round(h.getBoundingClientRect().top);
+      const prev = window.__lastY;
+      window.__lastY = y;
+      return prev === y && y >= 0 && y < window.innerHeight ? { top: y } : false;
+    }, null, { timeout: 8000, polling: 100 }).then((h) => h.jsonValue()).catch(() => null);
+    ok("...and it still arrives there when the reader has motion switched on",
+       !!landed, landed ? "" : "never settled on screen within 8s");
+    await mctx.close();
+  }
+
   ok(`a month can be linked to directly (${[...new Set(sample)].length} sampled of ${all.length})`,
      !linkBad.length, linkBad.join(" "));
   await ctx.close();
@@ -305,20 +397,19 @@ console.log("\n=== stepping the whole range, both ways ===");
     [...document.querySelectorAll(".calmonth")].map((x) => x.getAttribute("data-month")));
   await openMonth(p, all[0]);
   await p.waitForTimeout(150);
-  const seen = [];
-  for (let i = 0; i < all.length + 4; i++) {
-    seen.push((await state(p)).showing);
-    await p.click("#calnext", { timeout: 400 }).catch(() => {});
-    await p.waitForTimeout(30);
-  }
-  const walked = seen.filter((v, i) => v !== seen[i - 1]);
+  // NO DUPLICATE FILTER ANY MORE. `walked` used to be `seen` with consecutive repeats removed,
+  // which is exactly the shape that hid a dropped click: a step that never happened shows up
+  // as a repeat and the filter deletes the evidence. `walk` waits for the month to change, so
+  // what comes back is the months it really visited and it can be compared as it stands.
+  const walked = await walk(p, "calnext", all.length + 4);
   ok("stepping forward visits every month in order, once",
      JSON.stringify(walked) === JSON.stringify(all), walked.slice(0, 4).join(","));
   const end = await state(p);
   ok("...and stops at the last one rather than running off", end.nextOff === true);
   ok("...with the panel still real", end.showing === all[all.length - 1], end.showing);
-  for (let i = 0; i < all.length + 4; i++) { await p.click("#calprev", { timeout: 400 }).catch(() => {});
-                                             await p.waitForTimeout(25); }
+  const back = await walk(p, "calprev", all.length + 4);
+  ok("...and stepping back visits every month in order too",
+     JSON.stringify(back) === JSON.stringify([...all].reverse()), back.slice(0, 4).join(","));
   const home = await state(p);
   ok("walking all the way back lands on the first month", home.showing === all[0], home.showing);
   ok("...and prev is spent", home.prevOff === true);
@@ -330,17 +421,39 @@ console.log("\n=== the third rapid tap ===");
   const { p, ctx } = await open();
   // No waiting between clicks. A handler that races itself leaves two panels visible, or
   // leaves the rail pointing at a month the panel is not showing.
-  await Promise.all([p.click("#calnext", { timeout: 400 }), p.click("#calnext", { timeout: 400 }),
-                     p.click("#calnext", { timeout: 400 }), p.click("#calprev", { timeout: 400 }),
-                     p.click("#calnext", { timeout: 400 })]).catch(() => {});
+  //
+  // FIRED IN THE PAGE, AND COUNTED, for the same reason the latency measurement above is. Five
+  // concurrent `page.click` calls share one mouse, so they interleave: a mousedown on prev
+  // followed by a mouseup on next fires the click on the pair's common ancestor and the button
+  // never hears it. Measured, that delivered anywhere between two and five taps with nothing
+  // rejected, and while the same five clicks were given 400ms on an animated page it delivered
+  // NONE of them and the two assertions below passed on a calendar nobody had touched. Five
+  // synchronous calls in one task is both deterministic and a harsher race than a thumb can
+  // produce: the handlers run back to back with no frame in between.
+  const taps = await p.evaluate(() => {
+    let n = 0;
+    ["calprev", "calnext"].forEach((id) => document.getElementById(id)
+      .addEventListener("click", () => { n++; }));
+    const next = document.getElementById("calnext"), prev = document.getElementById("calprev");
+    [next, next, next, prev, next].forEach((b) => b.click());
+    return n;
+  });
   await p.waitForTimeout(400);
+  ok("all five taps actually reached the stepper", taps === 5, String(taps));
   const s = await state(p);
   ok("five taps with no pause leave exactly one month showing", s.shown === 1, String(s.shown));
   ok("...and the month view is the one showing", s.view === "month", String(s.view));
 
   // The filter, toggled hard, in a month that has both kinds.
-  for (let i = 0; i < 8; i++) { await p.click(".calswitch", { timeout: 400 }).catch(() => {}); }
+  await p.evaluate(() => {
+    window.__flips = 0;
+    document.getElementById("calacts")
+      .addEventListener("click", () => { window.__flips++; });
+  });
+  for (let i = 0; i < 8; i++) await p.click(".calswitch");
   await p.waitForTimeout(300);
+  const flips = await p.evaluate(() => window.__flips);
+  ok("...and all eight flips of the filter reached it", flips === 8, String(flips));
   const on = await p.evaluate(() => document.getElementById("calacts").checked);
   const cls = await p.evaluate(() => document.getElementById("cal").classList.contains("acts"));
   ok("the filter and its box never disagree, however fast it is toggled", on === cls,
