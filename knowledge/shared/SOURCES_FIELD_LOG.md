@@ -394,3 +394,13 @@ host "usable and currently unexploited" and the single best addition to the coll
 `usda.gov` returned 403 where `aphis.usda.gov` answered. `www.hoodcountytexas.gov` did not
 resolve. `puc.texas.gov` returned 503 to one scout across every path while answering 200 to
 `curl` with a browser User-Agent from this same run, minutes apart.
+
+**August 21st, 2026, second pass. `waymo.com` re-fetched to attest a date the deck was already
+printing.** August 20th, 2026 appeared on three surfaces of this run's deck and on no claim's
+quote. It lived only in a `source_title` field, which is a field a run writes rather than one a
+page carries, on a run that had written three separate claims solely to quote Aurora's datelines.
+A scoring judge found it. `robots.txt` re-checked and reads `User-agent: * / Allow: /`. The page
+carries the date contiguously in its own `<title>`, as `August 20, 2026 - From the road - Waymo`,
+which is now c37. **The lesson is about the shape of the gap rather than about this host.** A date
+that reaches published copy through a metadata field nobody quotes is exactly as untraced as a
+number typed into a slide, and neither `claims_check` nor `aggregate_check` looks at either.

@@ -314,8 +314,14 @@ on that frame. Amazon's Prime Air expansion is undated on its own page and came 
 false exact match on a shortened string, so it is out of the deck entirely.
 
 **The honest absence the deck will carry**, verified and cleared: none of the three Texas agency
-pages the committee's own charge points at publishes a count of crashes involving driverless
-vehicles. It names where it looked. A second absence, that the federal file is the ONLY public
+pages this record checked publishes a count of crashes involving driverless vehicles. It names
+where it looked. It first said "the three pages the committee's own charge points at" and the
+scoring panel was right that this is not what those three are. c4's quote names the Department of
+Public Safety, the Department of Motor Vehicles and the Department of Licensing and Regulation, and
+the Department of Transportation is not among them. The three checked are the Legislative Reference
+Library's own resource list beneath the charge. The mismatch is the sharper finding and it is on
+slide 9 now rather than only in the caption: the charge asking for a collision count leaves out the
+agency that keeps the state's crash records. A second absence, that the federal file is the ONLY public
 source, was offered and REFUSED, because the two pages that would settle it returned 403.
 
 ## Gate status
@@ -323,17 +329,17 @@ source, was offered and REFUSED, because the two pages that would settle it retu
 <!-- gate-status:begin -->
 | gate | status | detail |
 |---|---|---|
-| claims         | PASS   | 31 verified claim(s) |
+| claims         | PASS   | 32 verified claim(s) |
 | render         | PASS   | 9 slide(s) |
-| qa             | WARN   | 0 fail(s), 23 warn(s) |
+| qa             | WARN   | 0 fail(s), 22 warn(s) |
 | aggregates     | PASS   | 9 declared and re-derived |
-| assembly       | PASS   | 9 slide(s), 4.54 MB, vector |
+| assembly       | PASS   | 9 slide(s), 4.66 MB, vector |
 | score          | ABSENT | score.json not written yet |
-| dossiers       | PASS   | 40,514 chars planned |
+| dossiers       | PASS   | 41,834 chars planned |
 | caption        | PASS   | 178 words |
 | craft floor    | WARN   | 9 frame(s), median 216, floor 60, 4 quiet |
-| plan vs render | WARN   | 6 of 64 acceptance item(s) checkable |
+| plan vs render | WARN   | 6 of 65 acceptance item(s) checkable |
 | texan          | WARN   | places NONE / body yes / deadline yes / next step NO |
-| absences       | WARN   | 3 of 7 scoped to a named document, 4 unscoped |
+| absences       | WARN   | 4 of 8 scoped to a named document, 4 unscoped |
 | completion     | ABSENT | not scored yet |
 <!-- gate-status:end -->
