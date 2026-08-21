@@ -2487,5 +2487,73 @@
     "note": "Admitted. The Legislature's own notice carries the charge, the date, the room and the terms on which a member of the public may be heard."
    }
   ]
+ },
+ {
+  "title": "Waymo opened its Houston driverless ride service to anyone with the app",
+  "summary": "Waymo ended the interest list phase of its Houston service on August 20th, 2026 and made a fully autonomous ride available to any resident who downloads the app. The company states it has welcomed more than 100,000 riders in Houston from that list since the service opened in February. It also states it carried World Cup visitors to and from games. Texas requires no state permit to run a driverless vehicle on a public road, so there is no agency filing to check the launch against.",
+  "topic": "ai-in-the-field",
+  "decider": {
+   "name": "Waymo LLC",
+   "type": "company"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Harris"
+   ],
+   "metro": "Houston-Pasadena-The Woodlands, TX",
+   "on_ercot": true
+  },
+  "status": "decided",
+  "confidence": "high",
+  "key_dates": [
+   {
+    "date": "2026-08-20",
+    "kind": "ordered",
+    "note": "Date the company published the change"
+   }
+  ],
+  "claims": [
+   {
+    "text": "The company states the service is now open to anyone in Houston.",
+    "verbatim_quote": "Starting today, anyone in Houston can download the Waymo app and hail a fully autonomous ride.",
+    "source_url": "https://waymo.com/blog/shorts/houston-open-to-all/",
+    "source_title": "Waymo, Waypoint blog, From the road, August 20th, 2026",
+    "source_type": "primary_corporate",
+    "fetched": "2026-08-21"
+   },
+   {
+    "text": "The company states how many riders came off the interest list before the change.",
+    "verbatim_quote": "Since opening our service in February, we’ve welcomed more than 100,000 riders in Houston from our interest list to experience the safety, reliability, and magic of Waymo, and now we’re offering our service to everyone.",
+    "source_url": "https://waymo.com/blog/shorts/houston-open-to-all/",
+    "source_title": "Waymo, Waypoint blog, From the road, August 20th, 2026",
+    "source_type": "primary_corporate",
+    "fetched": "2026-08-21"
+   },
+   {
+    "text": "A disability advocacy officer is quoted on what the change means for blind riders.",
+    "verbatim_quote": "The National Federation of the Blind of Texas is happy to hear the news that Waymo will be fully available in Houston. This means better independence and greater accessibility for blind riders.",
+    "source_url": "https://waymo.com/blog/shorts/houston-open-to-all/",
+    "source_title": "Waymo, Waypoint blog, From the road, August 20th, 2026",
+    "source_type": "primary_corporate",
+    "fetched": "2026-08-21"
+   }
+  ],
+  "id": "tx-2026-0083",
+  "last_verified": "2026-08-21",
+  "public_access": {
+   "room": "contact_only",
+   "how": "The company published the change itself and the service is open to anyone who downloads the app. Texas requires no state permit to operate a driverless vehicle on a public road, so no agency holds a filing a resident could read or comment on.",
+   "url": "https://waymo.com/blog/shorts/houston-open-to-all/",
+   "closes": null
+  },
+  "history": [
+   {
+    "date": "2026-08-21",
+    "note": "Held. The company's own post carries the change and every claim is verbatim from it. The record has no beat for a driverless deployment and no decider type for a company, so there is nowhere true to file it."
+   }
+  ],
+  "notes_for_editor": "Verified against the company's own post and ready in every other respect. There is no beat in the record's topic vocabulary for a driverless deployment, and adding one is a two file change in `docket_build.TOPICS` and `site_build.TOPIC_BLURBS`, both of which are maintainer owned. Admitting it under an existing beat would file a robotaxi launch as state policy or as research, and neither is true.",
+  "held_reason": "Two vocabulary gaps, both in maintainer owned files. `docket_build.TOPICS` carries no beat for AI in the field, and `docket_build.DECIDER_TYPES` carries no type for a company. The second is the larger one, because it means the record can hold a decision ABOUT a deployment and not a decision BY the deployer. Filing this under an existing beat as a state agency would be false on both fields. Promote it the run after a lane exists."
  }
 ]

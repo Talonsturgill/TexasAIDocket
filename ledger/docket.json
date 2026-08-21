@@ -5755,6 +5755,384 @@
      "note": "Checked and unchanged. The Legislature's own upcoming meetings listing still carries the Transportation Committee for 9:00 AM on Tuesday, August 25th, 2026 in hearing room E1.016. The autonomous vehicle charge under SB 2807 still stands, and it still directs the committee to quantify the impact on traffic related collisions."
     }
    ]
+  },
+  {
+   "title": "House State Affairs held an interim hearing on data center development and the proposed 765 kV transmission lines",
+   "summary": "The Texas House Committee on State Affairs met on August 19th, 2026 on two interim charges. The first directs it to study the development of data centers in Texas, to review the regulatory framework governing that development, and to study the implementation of SB 6 and the Large Load Batch Study Process proposed by ERCOT as it relates to data centers. The second directs it to review the regulatory and planning processes regarding the proposed 765 kV transmission lines. Those are the same lines the commission has two Oncor applications for. The committee's product is a report to the next Legislature rather than an order, so nothing binds until the session convenes in January 2027.",
+   "topic": "data-centers",
+   "decider": {
+    "name": "Texas House Committee on State Affairs",
+    "type": "legislature"
+   },
+   "geography": {
+    "statewide": true,
+    "counties": [],
+    "metro": null,
+    "on_ercot": true
+   },
+   "status": "pending",
+   "confidence": "high",
+   "key_dates": [
+    {
+     "date": "2026-08-19",
+     "kind": "hearing",
+     "note": "Committee meeting at 8:00 AM, as listed on the Legislature's own committee meetings page"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "The hearing has been held. The committee clerk is named on the Legislature's committee meetings page with a phone number and a room, and that page is where the hearing notice, minutes, witness list and handouts for the meeting are posted as they are filed.",
+    "url": "https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=H&CmteCode=C450",
+    "closes": null
+   },
+   "claims": [
+    {
+     "text": "The Legislature's own committee page lists the committee, the meeting date and the time.",
+     "verbatim_quote": "House Committee on State Affairs (C450) Clerk: Megan Quijano Phone: (512) 463-0814 Room: EXT E2.108 Date and Time Hearing Notice Minutes Witness List Handouts Comments August 19, 2026 8:00 AM",
+     "source_url": "https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=H&CmteCode=C450",
+     "source_title": "Texas Legislature Online, House Committee Meetings, C450",
+     "source_type": "primary_official",
+     "fetched": "2026-08-21",
+     "id": "tx-2026-0078-c1"
+    },
+    {
+     "text": "The data center charge states what the committee is directed to study.",
+     "verbatim_quote": "Charge: Data Centers: Study the development of data centers in Texas, including its importance to global competitiveness and national security.",
+     "source_url": "https://lrl.texas.gov/whatsNew/client/index.cfm/2026/8/12/Interim-Hearings--Week-of-August-17-2026",
+     "source_title": "Legislative Reference Library of Texas, Interim Hearings, Week of August 17th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-08-21",
+     "id": "tx-2026-0078-c2"
+    },
+    {
+     "text": "The same charge reaches the existing regulatory framework and the large load process ERCOT has proposed.",
+     "verbatim_quote": "Review the existing regulatory framework governing data center development and recommend proposals to streamline regulations while enabling communities to plan and manage growth responsibly. Study the implementation of SB 6 and the Large Load Batch Study Process proposed by the Electric Reliability Council of Texas, as it relates to data centers, and identify how grid-connected data center facilities and co-located resources can support grid resilience and reliability.",
+     "source_url": "https://lrl.texas.gov/whatsNew/client/index.cfm/2026/8/12/Interim-Hearings--Week-of-August-17-2026",
+     "source_title": "Legislative Reference Library of Texas, Interim Hearings, Week of August 17th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-08-21",
+     "id": "tx-2026-0078-c3"
+    },
+    {
+     "text": "A second charge on the same agenda covers the transmission lines.",
+     "verbatim_quote": "Charge: 765-kV Transmission Lines: Review the regulatory and planning processes regarding the proposed 765-kV transmission lines.",
+     "source_url": "https://lrl.texas.gov/whatsNew/client/index.cfm/2026/8/12/Interim-Hearings--Week-of-August-17-2026",
+     "source_title": "Legislative Reference Library of Texas, Interim Hearings, Week of August 17th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-08-21",
+     "id": "tx-2026-0078-c4"
+    }
+   ],
+   "id": "tx-2026-0078",
+   "last_verified": "2026-08-21",
+   "history": [
+    {
+     "date": "2026-08-21",
+     "note": "Admitted. The Legislature's own committee page carries the meeting and the Legislative Reference Library carries both charges in full, so the record has the data center charge and the 765 kV charge on the same August 19th agenda."
+    }
+   ]
+  },
+  {
+   "title": "House Public Health held an interim hearing on artificial intelligence use in health care",
+   "summary": "The Texas House Committee on Public Health met on August 20th, 2026 on a charge about clinical artificial intelligence. It directs the committee to study the use of artificial intelligence in the health care system to improve access and quality and efficiency of care. The same charge tells the committee to evaluate potential risks to patient safety and privacy and access to care for Texans. A second charge on the same agenda covers what social media platforms and artificial intelligence technologies do to the mental health and the cognitive development of minors. This is the committee that would write any statute governing clinical AI in the next session. Clinical AI is already running in Texas hospitals.",
+   "topic": "health-and-education",
+   "decider": {
+    "name": "Texas House Committee on Public Health",
+    "type": "legislature"
+   },
+   "geography": {
+    "statewide": true,
+    "counties": [],
+    "metro": null,
+    "on_ercot": false
+   },
+   "status": "pending",
+   "confidence": "high",
+   "key_dates": [
+    {
+     "date": "2026-08-20",
+     "kind": "hearing",
+     "note": "Committee meeting at 9:00 AM, as listed on the Legislature's own committee meetings page"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "The hearing has been held. The committee clerk is named on the Legislature's committee meetings page with a phone number and a room, and that page is where the hearing notice, minutes, witness list and handouts for the meeting are posted as they are filed.",
+    "url": "https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=H&CmteCode=C410",
+    "closes": null
+   },
+   "claims": [
+    {
+     "text": "The Legislature's own committee page lists the committee, the meeting date and the time.",
+     "verbatim_quote": "House Committee on Public Health (C410) Clerk: Scott Crownover Phone: (512) 463-0806 Room: EXT E2.172 Date and Time Hearing Notice Minutes Witness List Handouts Comments August 20, 2026 9:00 AM",
+     "source_url": "https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=H&CmteCode=C410",
+     "source_title": "Texas Legislature Online, House Committee Meetings, C410",
+     "source_type": "primary_official",
+     "fetched": "2026-08-21",
+     "id": "tx-2026-0079-c1"
+    },
+    {
+     "text": "The charge states what the committee is directed to study about clinical AI.",
+     "verbatim_quote": "Charge: Artificial Intelligence Use in Health Care: Study the use of artificial intelligence in the health care system to improve access, quality, and efficiency of care, while evaluating potential risks to patient safety, privacy, and access to care for Texans.",
+     "source_url": "https://lrl.texas.gov/whatsNew/client/index.cfm/2026/8/12/Interim-Hearings--Week-of-August-17-2026",
+     "source_title": "Legislative Reference Library of Texas, Interim Hearings, Week of August 17th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-08-21",
+     "id": "tx-2026-0079-c2"
+    },
+    {
+     "text": "A second charge on the same agenda reaches minors.",
+     "verbatim_quote": "Charge: Social Media’s Impact on Youth Health and Well-Being: Study the impact of social media platforms and artificial intelligence technologies on the mental health, cognitive development, and behavioral well-being of minors in Texas.",
+     "source_url": "https://lrl.texas.gov/whatsNew/client/index.cfm/2026/8/12/Interim-Hearings--Week-of-August-17-2026",
+     "source_title": "Legislative Reference Library of Texas, Interim Hearings, Week of August 17th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-08-21",
+     "id": "tx-2026-0079-c3"
+    }
+   ],
+   "id": "tx-2026-0079",
+   "last_verified": "2026-08-21",
+   "history": [
+    {
+     "date": "2026-08-21",
+     "note": "Admitted. The Legislature's own committee page carries the August 20th meeting and the charge on artificial intelligence use in health care is on the record in full."
+    }
+   ]
+  },
+  {
+   "title": "NSF awarded Prairie View A and M a grant to let AI split up the grid optimization problem across processor cores",
+   "summary": "The National Science Foundation made an award to Prairie View A and M University on August 11th, 2026 under its HBCU Excellence in Research program. The project builds a framework that uses graph based artificial intelligence and reinforcement learning to decide how to break up electric grid optimization problems, then assigns the pieces to processor cores as the work runs. The award record states the obligation as FY 2026 = $699,999.00 and runs the project from October 1st, 2026 through September 30th, 2029. The math it targets is the math that decides which generators run in a grid the size of the one carrying the state's new load.",
+   "topic": "research-and-science",
+   "decider": {
+    "name": "U.S. National Science Foundation",
+    "type": "federal"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Waller"
+    ],
+    "metro": "Houston-Pasadena-The Woodlands, TX",
+    "on_ercot": true
+   },
+   "status": "decided",
+   "confidence": "high",
+   "key_dates": [
+    {
+     "date": "2026-08-11",
+     "kind": "ordered",
+     "note": "Award date recorded in the National Science Foundation award record"
+    },
+    {
+     "date": "2029-09-30",
+     "kind": "expires",
+     "note": "Expiration date recorded in the award record"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "The award record is public and keyless at the National Science Foundation award service, where the abstract, the obligation, the program and the principal investigator are all published. The awardee institution is a public university and its research office is reachable.",
+    "url": "https://api.nsf.gov/services/v1/awards/2602962.json?printFields=abstractText",
+    "closes": null
+   },
+   "claims": [
+    {
+     "text": "The award record names the awardee.",
+     "verbatim_quote": "\"awardeeName\":\"Prairie View A & M University\"",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2602962.json?printFields=abstractText",
+     "source_title": "National Science Foundation, award 2602962",
+     "source_type": "primary_official",
+     "fetched": "2026-08-21",
+     "id": "tx-2026-0080-c1"
+    },
+    {
+     "text": "The abstract states what the project is for.",
+     "verbatim_quote": "This project aims to create faster, more reliable, and more adaptable methods to make optimal operational decisions in managing the electric power grid and maintain its reliability, affordability, and resilience.",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2602962.json?printFields=abstractText",
+     "source_title": "National Science Foundation, award 2602962, abstract",
+     "source_type": "primary_official",
+     "fetched": "2026-08-21",
+     "id": "tx-2026-0080-c2"
+    },
+    {
+     "text": "The abstract states where the approaches will be run.",
+     "verbatim_quote": "The approaches will be evaluated by using diverse electric-grid test systems on multicore workstations and high-performance computing platforms.",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2602962.json?printFields=abstractText",
+     "source_title": "National Science Foundation, award 2602962, abstract",
+     "source_type": "primary_official",
+     "fetched": "2026-08-21",
+     "id": "tx-2026-0080-c3"
+    },
+    {
+     "text": "The award record states the obligation.",
+     "verbatim_quote": "\"fundsObligated\":[\"FY 2026 = $699,999.00\"]",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2602962.json?printFields=abstractText",
+     "source_title": "National Science Foundation, award 2602962",
+     "source_type": "primary_official",
+     "fetched": "2026-08-21",
+     "id": "tx-2026-0080-c4"
+    }
+   ],
+   "id": "tx-2026-0080",
+   "last_verified": "2026-08-21",
+   "history": [
+    {
+     "date": "2026-08-21",
+     "note": "Admitted. The award record names Prairie View A and M, states the obligation and dates the award to August 11th, 2026."
+    }
+   ]
+  },
+  {
+   "title": "NSF awarded UT Austin a grant to replace hand written robot safety rules with a model trained on demonstrated safe behavior",
+   "summary": "The National Science Foundation made an award to the University of Texas at Austin on August 13th, 2026 under its Foundational Research in Robotics program. The project trains a model on expert demonstrations and uses it as a filter that pulls a robot's action back toward behavior that was demonstrated as safe. The award record states the obligation as FY 2026 = $360,000.00 and runs the project from October 1st, 2026 through September 30th, 2029. Its own abstract is the argument for it, because it says engineers today must define every dangerous situation by hand.",
+   "topic": "research-and-science",
+   "decider": {
+    "name": "U.S. National Science Foundation",
+    "type": "federal"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Travis"
+    ],
+    "metro": "Austin-Round Rock-San Marcos, TX",
+    "on_ercot": true
+   },
+   "status": "decided",
+   "confidence": "high",
+   "key_dates": [
+    {
+     "date": "2026-08-13",
+     "kind": "ordered",
+     "note": "Award date recorded in the National Science Foundation award record"
+    },
+    {
+     "date": "2029-09-30",
+     "kind": "expires",
+     "note": "Expiration date recorded in the award record"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "The award record is public and keyless at the National Science Foundation award service, where the abstract, the obligation, the program and the principal investigator are all published. The awardee institution is a public university and its research office is reachable.",
+    "url": "https://api.nsf.gov/services/v1/awards/2535276.json?printFields=abstractText",
+    "closes": null
+   },
+   "claims": [
+    {
+     "text": "The award record names the awardee.",
+     "verbatim_quote": "\"awardeeName\":\"University of Texas at Austin\"",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2535276.json?printFields=abstractText",
+     "source_title": "National Science Foundation, award 2535276",
+     "source_type": "primary_official",
+     "fetched": "2026-08-21",
+     "id": "tx-2026-0081-c1"
+    },
+    {
+     "text": "The abstract states how robot safety is specified today.",
+     "verbatim_quote": "For a robot to work safely alongside people, engineers today must manually define every dangerous situation the robot might encounter and write rules to avoid each one.",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2535276.json?printFields=abstractText",
+     "source_title": "National Science Foundation, award 2535276, abstract",
+     "source_type": "primary_official",
+     "fetched": "2026-08-21",
+     "id": "tx-2026-0081-c2"
+    },
+    {
+     "text": "The abstract states what is wrong with the existing methods.",
+     "verbatim_quote": "Existing safety methods in robotics require explicit mathematical descriptions of which states are safe, but these descriptions are difficult to specify, computationally expensive to enforce, and brittle in novel situations.",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2535276.json?printFields=abstractText",
+     "source_title": "National Science Foundation, award 2535276, abstract",
+     "source_type": "primary_official",
+     "fetched": "2026-08-21",
+     "id": "tx-2026-0081-c3"
+    },
+    {
+     "text": "The award record states the obligation.",
+     "verbatim_quote": "\"fundsObligated\":[\"FY 2026 = $360,000.00\"]",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2535276.json?printFields=abstractText",
+     "source_title": "National Science Foundation, award 2535276",
+     "source_type": "primary_official",
+     "fetched": "2026-08-21",
+     "id": "tx-2026-0081-c4"
+    }
+   ],
+   "id": "tx-2026-0081",
+   "last_verified": "2026-08-21",
+   "history": [
+    {
+     "date": "2026-08-21",
+     "note": "Admitted. The award record names the University of Texas at Austin, states the obligation and dates the award to August 13th, 2026."
+    }
+   ]
+  },
+  {
+   "title": "UTMB moved its Epic health record into Microsoft's cloud and named advanced technologies as the reason",
+   "summary": "The University of Texas Medical Branch migrated its electronic health record from servers it runs itself onto Microsoft's Azure platform, and announced the move on August 13th, 2026. The institution states the cutover took nineteen minutes and that the migration was first announced as part of a five year agreement with Microsoft in May 2025. Its own account names a stronger foundation for advanced technologies that support patient care, research, education and operations. Where a public hospital's patient records physically sit is the decision that has to be made before any clinical AI tool reaches a bedside.",
+   "topic": "health-and-education",
+   "decider": {
+    "name": "The University of Texas Medical Branch",
+    "type": "state-agency"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Galveston"
+    ],
+    "metro": "Houston-Pasadena-The Woodlands, TX",
+    "on_ercot": true
+   },
+   "status": "decided",
+   "confidence": "high",
+   "key_dates": [
+    {
+     "date": "2026-08-13",
+     "kind": "ordered",
+     "note": "Date the institution published its account of the completed migration"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "The institution published its own account of the migration and names the chief information officer who describes it. UTMB is a public institution of the University of Texas System and its communications office is reachable.",
+    "url": "https://www.utmb.edu/news/article/utmb-news/2026/08/13/utmb-moves-health-data-to-cloud-based-system--enhancing-digitally-connected-care-initiatives",
+    "closes": null
+   },
+   "claims": [
+    {
+     "text": "The institution states what moved and where it moved to.",
+     "verbatim_quote": "The University of Texas Medical Branch (UTMB) has migrated its electronic health record (EHR) system Epic from an on-premises environment to Microsoft’s cloud-based Azure platform.",
+     "source_url": "https://www.utmb.edu/news/article/utmb-news/2026/08/13/utmb-moves-health-data-to-cloud-based-system--enhancing-digitally-connected-care-initiatives",
+     "source_title": "The University of Texas Medical Branch, UTMB News, August 13th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-08-21",
+     "id": "tx-2026-0082-c1"
+    },
+    {
+     "text": "The institution names what the move is designed to support.",
+     "verbatim_quote": "The move is designed to enhance security, improve disaster recovery, increase system scalability, accelerate innovation, and provide a stronger foundation for advanced technologies that support patient care, research, education, and operations across UTMB.",
+     "source_url": "https://www.utmb.edu/news/article/utmb-news/2026/08/13/utmb-moves-health-data-to-cloud-based-system--enhancing-digitally-connected-care-initiatives",
+     "source_title": "The University of Texas Medical Branch, UTMB News, August 13th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-08-21",
+     "id": "tx-2026-0082-c2"
+    },
+    {
+     "text": "The institution states the length of the cutover and the agreement it sits under.",
+     "verbatim_quote": "The initiative, first announced as part of a five-year agreement between UTMB and Microsoft in May 2025, was completed with a brief cutover window of just 19 minutes, according to Jayson Laban , vice president of Information Services and chief information officer.",
+     "source_url": "https://www.utmb.edu/news/article/utmb-news/2026/08/13/utmb-moves-health-data-to-cloud-based-system--enhancing-digitally-connected-care-initiatives",
+     "source_title": "The University of Texas Medical Branch, UTMB News, August 13th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-08-21",
+     "id": "tx-2026-0082-c3"
+    }
+   ],
+   "id": "tx-2026-0082",
+   "last_verified": "2026-08-21",
+   "history": [
+    {
+     "date": "2026-08-21",
+     "note": "Admitted. The institution's own account states that Epic moved to Azure and names what the move is designed to support."
+    }
+   ]
   }
  ]
 }
