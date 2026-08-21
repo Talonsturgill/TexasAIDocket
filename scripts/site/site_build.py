@@ -5571,95 +5571,137 @@ def companies_index(data: dict, today: str) -> str:
 
 
 def construction_page(data: dict, reg: dict, today: str) -> str:
-    """What the OTHER state register says, and where the two disagree.
+    """What Texas filed to BUILD, beside what it certified for a tax exemption.
 
-    Every figure on this page comes out of `tdlr_projects`, which computes it from the filings.
-    Nothing here is typed, and nothing here asserts that a filing and a certification are the
-    same building, because the state never published that join.
+    Every figure comes out of `tdlr_projects`, computed from the filings. Nothing is typed. The
+    page states the rule that decides which filings count, because a reader who disagrees with
+    the rule should be able to see it rather than infer it.
     """
     n0 = entities.n0
     recs = data.get("projects") or []
-    sa = tdlr_projects.scoped(recs, ("Bexar", "Medina"))
-    t = tdlr_projects.totals(sa)
-    groups = tdlr_projects.by_designation(sa)
-    conflicts = tdlr_projects.county_conflicts(recs)
+    tracked = [r for r in recs if tdlr_projects.brand(r)]
+    dc = [r for r in tracked if tdlr_projects.is_datacenter(r)]
+    other = [r for r in tracked if not tdlr_projects.is_datacenter(r)]
+    t = tdlr_projects.totals(dc)
+    ot = tdlr_projects.totals(other)
+    years = tdlr_projects.by_year(dc)
+    brands = tdlr_projects.by_brand(dc)
+    dupes = tdlr_projects.shared_buildings(dc)
+    conflicts = tdlr_projects.county_conflicts(dc)
 
-    def money(v):
+    def bn(v):
         return f"${v / 1_000_000_000:.2f} billion" if v >= 1_000_000_000 else f"${n0(v)}"
 
-    def row(g):
-        sq = f'<strong class="num">{n0(g["sqft"])}</strong> sq ft' if g["sqft"] else ""
-        nf = n0(g["filings"])
-        fil = f'{nf} filing' + ("" if g["filings"] == 1 else "s")
-        if len(g["buildings"]) > 1:
-            fil += f', {n0(len(g["buildings"]))} buildings'
-        return (f'<div class="cbrow"><span class="cbd">{e(g["designation"])}</span>'
-                f'<span class="cbm"><strong class="num">{e(money(g["cost"]))}</strong></span>'
-                f'<span class="cbs">{sq}</span>'
-                f'<span class="cbf">{fil}</span>'
-                f'<span class="cbc">{e(", ".join(g["counties"]))}</span></div>')
+    counties = {}
+    for r in dc:
+        c = r.get("county")
+        if c:
+            counties[c] = counties.get(c, 0) + (r.get("cost") or 0)
+    top = sorted(counties.items(), key=lambda kv: -kv[1])[:12]
 
-    rows = "".join(row(g) for g in groups)
+    crow = "".join(
+        f'<div class="cbrow"><span class="cbd">{e(c)}</span>'
+        f'<span class="cbm"><strong class="num">{e(bn(v))}</strong></span>'
+        f'<span class="cbf">{n0(sum(1 for r in dc if r.get("county") == c))} '
+        f'{"filing" if sum(1 for r in dc if r.get("county") == c) == 1 else "filings"}</span>'
+        f'<span class="cbc"></span><span class="cbc"></span></div>' for c, v in top)
 
-    # The two registers, side by side, with no claim that a row and a filing are one building.
-    certified = sorted({f["name"] for f in reg.get("facilities") or []
-                        if any("Microsoft" in x for x in (f.get("occupants") or []))
-                        and "SAT" in f["name"].upper()})
-    named = tdlr_projects.covered(sa)
+    brow = "".join(
+        f'<div class="cbrow"><span class="cbd">{e(b["brand"])}</span>'
+        f'<span class="cbm"><strong class="num">{e(bn(b["cost"]))}</strong></span>'
+        f'<span class="cbs"><strong class="num">{n0(b["sqft"])}</strong> sq ft</span>'
+        f'<span class="cbf">{n0(b["filings"])} '
+        f'{"filing" if b["filings"] == 1 else "filings"}</span>'
+        f'<span class="cbc">{n0(len(b["counties"]))} '
+        f'{"county" if len(b["counties"]) == 1 else "counties"}</span></div>'
+        for b in brands)
 
-    conf = ""
-    for c in conflicts:
-        lines = "".join(
-            f'<li><cite>{e(f["project"])}</cite> gives <cite>{e(f["county"])}</cite> '
-            f'at <cite>{e(f["address"])}</cite></li>' for f in c["filings"])
-        conf += (f'<h3>One postcode, two counties</h3>'
-                 f'<p>Postcode <strong class="num">{e(c["postcode"])}</strong> carries filings '
-                 f'naming {e(" and ".join(c["counties"]))}. This page reports the disagreement '
-                 f'rather than choosing a side.</p>'
-                 f'<ul class="rcl" data-prose="data">{lines}</ul>')
+    # THE JOIN. Both registers published it, on the single purpose entities that appear in each.
+    by_party = {}
+    for r in dc:
+        by_party.setdefault(entities.normalise(r.get("owner", "")), []).append(r)
+    parties = [{entities.normalise(x) for k in ("owners", "occupants", "operators")
+                for x in (f.get(k) or [])} for f in reg.get("facilities") or []]
+    specific = tdlr_projects.joinable(parties)
+    joined = []
+    for f, ps in zip(reg.get("facilities") or [], parties):
+        m = tdlr_projects.filings_for(ps, specific, by_party)
+        if m:
+            joined.append((f["name"], m, sum(x.get("cost") or 0 for x in m)))
+    joined.sort(key=lambda x: -x[2])
+    jrow = "".join(
+        f'<div class="cbrow"><span class="cbd"><cite>{e(name)}</cite></span>'
+        f'<span class="cbm"><strong class="num">{e(bn(cost))}</strong></span>'
+        f'<span class="cbs"></span>'
+        f'<span class="cbf">{n0(len(m))} filing{"" if len(m) == 1 else "s"}</span>'
+        f'<span class="cbc">{e(m[0].get("county", ""))}</span></div>'
+        for name, m, cost in joined)
+
+    silent = ", ".join(tdlr_projects.NO_FILINGS)
 
     body = (
         f'<article class="prose construction">'
         f'<p class="crumb"><a href="../grid/">The Grid Watch</a> '
         f'<span aria-hidden="true">/</span> The construction register.</p>'
-        f'<h1>What the builders told a different agency</h1>'
-        f'<p>The Comptroller certifies who holds a tax exemption on a data center. It records no '
-        f'address, no size and no cost. A second state register does. Every large commercial '
-        f'project is registered with the Department of Licensing and Regulation. That filing '
-        f'carries a street address, a county, a square footage, an estimated cost and a '
-        f'schedule.</p>'
-        f'<p>Reading both is how the shape of a buildout becomes visible. This page holds '
-        f'Microsoft in the San Antonio area. That is where the two registers diverge most.</p>'
+        f'<h1>What Texas filed to build</h1>'
+        f'<p>The Comptroller certifies who holds a tax exemption. It records no address, no '
+        f'size and no cost. A second state register does. Every large commercial project is '
+        f'filed with the Department of Licensing and Regulation. That filing carries a street '
+        f'address, a county, a square footage, an estimated cost and a schedule.</p>'
         f'<p class="qnote" data-prose="data">'
+        f'<strong class="num">{e(bn(t["cost"]))}</strong> across '
         f'<strong class="num">{n0(t["filings"])}</strong> filings, '
-        f'<strong class="num">{n0(t["new_build"])}</strong> of them new construction, '
-        f'<strong class="num">{e(money(t["cost"]))}</strong> estimated, '
-        f'<strong class="num">{n0(t["sqft"])}</strong> sq ft across '
-        f'<strong class="num">{n0(t["sqft_known"])}</strong> of them, first started '
-        f'<time datetime="{e(t["first"])}">{e(facility_dossier.ordinal(t["first"]))}</time>.</p>'
-        f'<h2>By designation, as filed</h2>'
-        f'<p>A designation filed twice is one row here and two filings. A cost counted once per '
-        f'filing would report a building twice. A filing naming a range of buildings keeps its '
-        f'single cost for the same reason.</p>'
-        f'<div class="cbtable" data-prose="data">{rows}</div>'
-        f'<h2>What each register names</h2>'
-        f'<p>Neither list is wrong. They record different acts, and only one of them is about '
-        f'buildings.</p>'
-        f'<div class="ctwo" data-prose="data">'
-        f'<div><h3>Certified for the exemption</h3><ul class="rcl">'
-        + "".join(f"<li><cite>{e(x)}</cite></li>" for x in certified) + '</ul></div>'
-        f'<div><h3>Named in a construction filing</h3><ul class="rcl">'
-        + "".join(f"<li><cite>{e(x)}</cite></li>" for x in named) + '</ul></div>'
-        f'</div>'
-        + conf +
+        f'<strong class="num">{n0(t["sqft"])}</strong> sq ft in '
+        f'<strong class="num">{n0(t["sqft_known"])}</strong> of them, '
+        f'<strong class="num">{n0(t["counties"])}</strong> counties, from '
+        f'<time datetime="{e(t["first"])}">{e(facility_dossier.ordinal(t["first"]))}</time> to '
+        f'<time datetime="{e(t["last"])}">{e(facility_dossier.ordinal(t["last"]))}</time>.</p>'
+
+        f'<h2>Filed per year</h2>'
+        f'<p>By the year a project was scheduled to start. A year with nothing filed is drawn '
+        f'empty rather than left out. Drop the quiet years and a rush looks like a trend.</p>'
+        f'<div class="cywrap">{tdlr_projects.columns(years, "cost")}</div>'
+
+        f'<h2>Where the money is going</h2>'
+        f'<p>Counties by capital filed. The largest is not a metro.</p>'
+        f'<div class="cbtable" data-prose="data">{crow}</div>'
+
+        f'<h2>By company</h2>'
+        f'<div class="cbtable" data-prose="data">{brow}</div>'
+        f'<p class="qnote">Several operators file nothing under their own name. {e(silent)}. '
+        f'That is not an absence of building. It is the difference between a company that builds '
+        f'and one that leases what somebody else built.</p>'
+
+        f'<h2>Where the two registers meet</h2>'
+        f'<p>The state published this link on both sides. A certification names an owner and a '
+        f'construction filing names the same entity. These are the certified facilities whose '
+        f'own buildings can be priced.</p>'
+        f'<p>The match is made only on an entity specific enough to mean one project. A parent '
+        f'company named on many certifications identifies a company and not a building. Joining '
+        f'on one would attach every Microsoft filing in the state to a single row.</p>'
+        f'<div class="cbtable" data-prose="data">{jrow}</div>'
+
+        f'<h2>What counts, and what does not</h2>'
+        f'<p>A filing counts when it names a data center, a colocation building, a data hall, '
+        f'a substation or a critical power system. The test is what the filer wrote. Exclusions '
+        f'run first. A warehouse and a data hall share the airport code naming convention. '
+        f'Without that a fulfillment center lands in a figure about compute.</p>'
+        f'<p class="qnote" data-prose="data">The same companies filed '
+        f'<strong class="num">{e(bn(ot["cost"]))}</strong> of other work in Texas across '
+        f'<strong class="num">{n0(ot["filings"])}</strong> filings. That is counted here and '
+        f'added to nothing above.</p>'
+        f'<p>Membership is decided on the owner each filing carries. It is never decided on the '
+        f'search that found it. That endpoint matches a substring, so a query for one operator '
+        f'returns a metal building supplier and a nail bar.</p>'
+        f'<p class="qnote">A campus counted twice would show as two filings at one address for '
+        f'one cost under two owners. There are none.</p>'
         f'<p class="qnote">This page names no person. A filing carries the contact who submitted '
-        f'it and the specialist who inspects it. The parser drops both before anything reaches a '
-        f'file here.</p>'
+        f'it and the specialist who inspects it. The parser drops both.</p>'
         f'</article>')
     return page(
-        title=f"The construction register \u00b7 {SITE_NAME}",
-        desc="Texas registers every large commercial construction project with a second agency. "
-             "What Microsoft filed in the San Antonio area, beside what it certified.",
+        title=f"What Texas filed to build \u00b7 {SITE_NAME}",
+        desc="Texas registers every large construction project with a second agency. What the "
+             "data center operators filed to build, by county, by company and by year.",
         body=body, depth=1, active=None, today=today,
         canonical="construction/", revised=False, extra_css="facility.css")
 
@@ -5976,23 +6018,49 @@ def build(out: Path, today: str) -> dict:
             if _f.get("effective"):
                 _rcnums.add(str(_f["effective"]))
         w("registry-changes/index.html", registry_changes_page(_rc, today), _rcnums)
-    # THE SECOND STATE REGISTER. Every numeral on it is computed by tdlr_projects from the
-    # filings, so the authorised set is built the same way rather than listed by hand.
+    # THE SECOND STATE REGISTER. Every numeral on that page is computed by tdlr_projects from
+    # the filings, so the authorised set is built by calling the same functions rather than by
+    # listing figures here.
     _tp = tdlr_projects.load()
     if _tp.get("projects"):
-        _sa = tdlr_projects.scoped(_tp["projects"], ("Bexar", "Medina"))
-        _tt = tdlr_projects.totals(_sa)
-        _tnums = {entities.n0(_tt[k]) for k in ("filings", "new_build", "sqft", "sqft_known")}
-        _tnums |= {f"${_tt['cost'] / 1_000_000_000:.2f} billion",
-                   facility_dossier.ordinal(_tt["first"]), _tt["first"]}
-        for _g in tdlr_projects.by_designation(_sa):
-            _tnums |= {entities.n0(_g["filings"]), entities.n0(_g["sqft"]),
-                       entities.n0(len(_g["buildings"])), _g["designation"]}
-            _tnums.add(f"${_g['cost'] / 1_000_000_000:.2f} billion" if _g["cost"] >= 1_000_000_000
-                       else f"${entities.n0(_g['cost'])}")
-        for _c in tdlr_projects.county_conflicts(_tp["projects"]):
-            _tnums.add(_c["postcode"])
-        _tnums |= set(tdlr_projects.covered(_sa))
+        _tracked = [r for r in _tp["projects"] if tdlr_projects.brand(r)]
+        _dc = [r for r in _tracked if tdlr_projects.is_datacenter(r)]
+        _other = [r for r in _tracked if not tdlr_projects.is_datacenter(r)]
+
+        def _bn(v):
+            return (f"${v / 1_000_000_000:.2f} billion" if v >= 1_000_000_000
+                    else f"${entities.n0(v)}")
+
+        _tnums = set()
+        for _set in (_dc, _other):
+            _t = tdlr_projects.totals(_set)
+            _tnums |= {entities.n0(_t[k]) for k in ("filings", "sqft", "sqft_known", "counties")}
+            _tnums |= {_bn(_t["cost"]), _t["first"], _t["last"],
+                       facility_dossier.ordinal(_t["first"]),
+                       facility_dossier.ordinal(_t["last"])}
+        for _y in tdlr_projects.by_year(_dc):
+            _tnums.add(str(_y["year"]))
+        for _b in tdlr_projects.by_brand(_dc):
+            _tnums |= {_bn(_b["cost"]), entities.n0(_b["sqft"]), entities.n0(_b["filings"]),
+                       entities.n0(len(_b["counties"]))}
+        _cty = {}
+        for _r in _dc:
+            if _r.get("county"):
+                _cty[_r["county"]] = _cty.get(_r["county"], 0) + (_r.get("cost") or 0)
+        for _c, _v in _cty.items():
+            _tnums |= {_bn(_v), entities.n0(sum(1 for _r in _dc if _r.get("county") == _c))}
+        # The join, priced per facility, by the same call the page makes.
+        _byp = {}
+        for _r in _dc:
+            _byp.setdefault(entities.normalise(_r.get("owner", "")), []).append(_r)
+        _parties = [{entities.normalise(_x) for _k in ("owners", "occupants", "operators")
+                     for _x in (_f.get(_k) or [])} for _f in _ent["facilities"]]
+        _spec = tdlr_projects.joinable(_parties)
+        for _f, _ps in zip(_ent["facilities"], _parties):
+            _m = tdlr_projects.filings_for(_ps, _spec, _byp)
+            if _m:
+                _tnums |= {_bn(sum(_x.get("cost") or 0 for _x in _m)), entities.n0(len(_m)),
+                           _f["name"]}
         for _f in _ent["facilities"]:
             _tnums.add(_f["name"])
         w("construction/index.html", construction_page(_tp, _ent, today), _tnums)

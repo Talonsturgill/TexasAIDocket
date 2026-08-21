@@ -77,6 +77,7 @@ calendar: with script off the row is a plain link to the page.
 | D4 | Batch 4: the network field, the change log, three gate defects | DONE, 30 dossiers and 213 facts |
 | D5 | Batch 5: nine more, and two tenants the announcements withheld | DONE, 39 dossiers and 271 facts |
 | D6 | Batch 6: the construction register, and two faults in shipped pages | DONE, 32 filings and /construction/ |
+| D7 | Batch 7: the register at scale, and the join between the two | DONE, 626 filings, $36.97bn, 17 joined |
 | E | Dossier schema + `ledger/facilities/dossiers.json` | DONE |
 | F | `facility_dossier.py` gate, 24 self-tests | DONE |
 | G | Per-facility page at `/facility/<slug>/`, in the sitemap | DONE |
@@ -354,7 +355,50 @@ by URL with nothing on the site linking to them. `questions` was simply left out
 list its siblings are in. `scripts/site/link_check.py` checks both faults and carries an allowlist
 where an unlinked page needs a stated reason.
 
-## Batch 7 candidates
+## Batch 7: the register at scale, $36.97 billion
+
+626 filings pulled, 480 with an owner this project tracks, 201 of them data center work.
+**$36.97 billion, 38.9 million square feet, 20 counties, 2008 to 2029.**
+
+The chart is the finding. Filings sit near zero for fifteen years and go vertical in 2024. The
+largest county is **Shackelford**, population under four thousand, at $10.6 billion of Vantage
+buildings. Then Dickens at $4.31 billion (Galaxy Helios Phase 2), Medina at $3.19 billion
+(Microsoft), Wharton at $3.00 billion (Amazon's Project Eagle, four buildings at $300 million
+each), Floyd at $1.20 billion (Horizon Junction, and one filing named CONFIDENTIAL DATA CENTER).
+
+**The two registers join and the state published the join on both sides.** Vantage's Shackelford
+filings are owned by `Vantage Data Centers TX304, LLC`, which is an owner of record on a
+Comptroller row. Seventeen certified facilities can now be priced building by building.
+
+### Six traps, every one of them real in this data
+
+1. **The owner search is a substring match.** Meta returns Metal Building Supplies. Core Scientific
+   returns Core & Main and a nail bar. Membership is decided on the owner field the filing carries.
+2. **Not every filing by an operator is a data center.** Classification is on what the filer wrote,
+   with exclusions first. $3.7 billion of other work by the same companies is counted separately.
+3. **A warehouse and a data hall share the airport code convention.** `Fulfillment Center DFW7`
+   matched the include list on its first version.
+4. **A parent company is not a building.** Joining on `Microsoft Corporation` attached all
+   twenty two Microsoft filings, and $3.6 billion, to one facility. The join now requires an entity
+   naming at most two certified facilities.
+5. **A campus could be filed by two owners and counted twice.** Checked every build, none found.
+   Lancium and Crusoe both filed a $292 million Abilene building and they are two buildings.
+6. **A designation can be filed twice, and a range names several buildings under one cost.**
+   Carried over from batch 6 and still live at this scale.
+
+**Several operators file nothing under their own name**: CoreWeave, EdgeConneX, Nscale, Anthropic,
+Whinstone, Poolside. They lease. The construction register alone would badly understate who is in
+Texas, which is why the page says so.
+
+`tdlr_projects.py` is now 53 self-tests. The chart is deterministic, one hue, no ramp, and draws
+an empty column for a year with nothing filed rather than dropping it.
+
+## Batch 8 candidates
+
+The four owner queries too loose to pull (Prologis 682 rows, Core Scientific 398, Applied Digital
+233, Meta 85) need a name filter on the search results before fetching. Beyond that: a per facility
+panel showing that facility's own filings, which the join now makes possible, and the Oracle spine
+(17 undossiered rows across Vantage TX 302 to 310 and Lancium Abilene III to VIII).
 
 Unchanged from batch 4 and still the best targets: the five Amazon codenames want a county
 appraisal district pass, and CoreWeave Denton, CoreWeave Plano, the Microsoft San Antonio cluster,
