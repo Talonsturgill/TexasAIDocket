@@ -338,6 +338,7 @@ def check_per_commit(omap: OwnershipMap, branch: str, diff_range: str,
                      cwd: Path = REPO_ROOT) -> int:
     """Walk a range one commit at a time, judging each against the actor it declares."""
     branch_actor = omap.actor_for_branch(branch)
+    prefix_source = omap.prefix_for_branch(branch)
     allowed = omap.actors_allowed_on_branch(branch)
     if branch_actor is None:
         print(f"ownership: branch '{branch}' maps to no actor, treating as a maintainer session")
@@ -355,6 +356,7 @@ def check_per_commit(omap: OwnershipMap, branch: str, diff_range: str,
 
     failed = 0
     checked = 0
+    inherited_failures = 0
     for sha in shas:
         actor, stamped = commit_actor(sha, branch_actor, cwd=cwd)
         subject = git("show", "-s", "--format=%s", sha, cwd=cwd).strip()
@@ -386,7 +388,10 @@ def check_per_commit(omap: OwnershipMap, branch: str, diff_range: str,
         print(line if not violations else line, file=sys.stdout if not violations else sys.stderr)
         for v in violations:
             print(f"          {v.path}\n              {v.reason}", file=sys.stderr)
-        failed += 1 if violations else 0
+        if violations:
+            failed += 1
+            if not stamped:
+                inherited_failures += 1
 
     if failed:
         print(f"\nownership: FAIL, {failed} of {len(shas)} commit(s) wrote outside their lane.",
@@ -394,6 +399,23 @@ def check_per_commit(omap: OwnershipMap, branch: str, diff_range: str,
         print("  A lane is scoped to a COMMIT here. Stamp the right actor at the phase that "
               "changes lane,\n  or record the change as a proposal and let a maintainer make "
               "it. The map is ownership.yaml.", file=sys.stderr)
+        # THE CAUSE THIS MESSAGE NEVER NAMED, and it is the likeliest one when nothing stamped
+        # itself. A routine stamps its actor, so an unstamped commit judged as a routine is
+        # almost always a MAINTAINER session on a branch whose NAME claims that routine's lane.
+        # A session working on the ask box called its branch claude/ask-effort-and-usage, which
+        # is the prefix belonging to the ask box's archive routine, and every commit was then
+        # judged against a lane the work was never in. The remedy is not a stamp and not a
+        # proposal, both of which the paragraph above offers and neither of which can work,
+        # since `human` may never be stamped on a prefixed branch and rightly so. It is to stop
+        # claiming the lane.
+        if inherited_failures and prefix_source:
+            print(f"\n  {inherited_failures} of those stamped nothing and were judged as "
+                  f"'{branch_actor}' because the branch\n"
+                  f"  starts with '{prefix_source}'. If this is a maintainer session rather "
+                  f"than that routine,\n"
+                  f"  the branch NAME is the fault. Rename it to something matching no prefix "
+                  f"in\n  ownership.yaml and every commit is judged as 'human', which owns "
+                  f"every path.", file=sys.stderr)
         return 1
     print(f"\nownership: OK, {len(shas)} commit(s), {checked} path(s), every one inside the "
           f"lane its commit declared")
