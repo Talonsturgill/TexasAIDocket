@@ -78,6 +78,7 @@ calendar: with script off the row is a plain link to the page.
 | D5 | Batch 5: nine more, and two tenants the announcements withheld | DONE, 39 dossiers and 271 facts |
 | D6 | Batch 6: the construction register, and two faults in shipped pages | DONE, 32 filings and /construction/ |
 | D7 | Batch 7: the register at scale, and the join between the two | DONE, 626 filings, $36.97bn, 17 joined |
+| D8 | Batch 8: the join on the facility pages, and a merge that saves the ledger | DONE, 650 filings, $37.55bn |
 | E | Dossier schema + `ledger/facilities/dossiers.json` | DONE |
 | F | `facility_dossier.py` gate, 24 self-tests | DONE |
 | G | Per-facility page at `/facility/<slug>/`, in the sitemap | DONE |
@@ -393,7 +394,39 @@ Texas, which is why the page says so.
 `tdlr_projects.py` is now 53 self-tests. The chart is deterministic, one hue, no ramp, and draws
 an empty column for a year with nothing filed rather than dropping it.
 
-## Batch 8 candidates
+## Batch 8: the second register lands on the facility pages
+
+**The join now shows on the page a reader opens.** `tdlr_projects.facility_panel()` puts a
+facility's own construction filings under its dossier, priced, dated and named, reached only
+through a single purpose entity that facility's row itself names. Red Oak Texas Data Center 2
+carries $968,925,000 across 16 filings and 4,920,822 square feet, with Compass naming its
+buildings after Looney Tunes characters and Bond films.
+
+Computed once for the whole registry rather than per page, because deciding whether a party is a
+single purpose entity or a parent company is a question about all 151 rows.
+
+**Two more operators, found by widening the pull.** Stream holds one certification and files.
+Digital Realty files seven times and holds NONE, which is a fact about it rather than a gap in
+the list. The page now states the mirror of the file-nothing finding: Crusoe and Digital Realty
+build here and appear nowhere in the certified list. Total is $37.55 billion across 213 filings.
+
+**A substring needs a boundary on both ends.** `\bvantage` keeps EVANTAGE HOLDINGS out, 27 filings
+that are not Vantage. `stream\b` keeps Streamline out. Both guards now have self-tests.
+
+**The near miss worth remembering.** The container was re-provisioned mid-session and `out/` was
+wiped, so 25 raw pages sat where 626 had been. `tdlr_fetch --build` rebuilt the ledger from disk,
+so running it would have written 25 filings over 626 and deleted $30 billion, with every gate
+green over the result. It merges on the project number now. GATE_LESSONS entry 61 ("The build that
+would have deleted thirty billion dollars because its scratch was gone").
+
+The four loose queries yielded nothing that passes the owner test, which is the clean answer to
+the question batch 7 left open.
+
+## Batch 9 candidates
+
+The Oracle spine, still 17 undossiered rows across Vantage TX 302 to 310 and Lancium Abilene III
+to VIII. The construction panel now prices them automatically, so a dossier there adds narrative
+and sources on top of figures that are already published.
 
 The four owner queries too loose to pull (Prologis 682 rows, Core Scientific 398, Applied Digital
 233, Meta 85) need a name filter on the search results before fetching. Beyond that: a per facility

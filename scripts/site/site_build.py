@@ -5444,7 +5444,31 @@ def _facility_desc(summary: str, limit: int = 180) -> str:
     return cut[:cut.rindex(" ")].strip() if " " in cut else cut
 
 
-def facility_page(d: dict, today: str) -> str:
+def facility_filings(reg: dict, projects: dict) -> dict:
+    """Every certified facility's OWN construction filings, keyed by facility name.
+
+    Computed once for the whole build rather than per page, because the join needs to know how
+    many facilities each party names before it can tell a single purpose entity from a parent
+    company, and that is a question about the whole registry.
+    """
+    dc = [r for r in (projects.get("projects") or [])
+          if tdlr_projects.brand(r) and tdlr_projects.is_datacenter(r)]
+    by_party: dict[str, list] = {}
+    for r in dc:
+        by_party.setdefault(entities.normalise(r.get("owner", "")), []).append(r)
+    facs = reg.get("facilities") or []
+    parties = [{entities.normalise(x) for k in ("owners", "occupants", "operators")
+                for x in (f.get(k) or [])} for f in facs]
+    specific = tdlr_projects.joinable(parties)
+    out = {}
+    for f, ps in zip(facs, parties):
+        m = tdlr_projects.filings_for(ps, specific, by_party)
+        if m:
+            out[f["name"]] = m
+    return out
+
+
+def facility_page(d: dict, today: str, filings: list | None = None) -> str:
     """One certified data center, and everything the research could source about it."""
     name = d["name"]
     body = (
@@ -5453,6 +5477,7 @@ def facility_page(d: dict, today: str) -> str:
         f'<span aria-hidden="true">/</span> Every registered facility.</p>'
         f'<h1><cite>{e(name)}</cite></h1>'
         f'{facility_dossier.panel(d, heading=2)}'
+        f'{tdlr_projects.facility_panel(filings or [], e)}'
         f'<p class="dfoot">The registry entry for this facility comes from the Texas '
         f'Comptroller\'s certified list of data centers holding a sales tax exemption. '
         f'Owner, occupant and operator are roles in that filing rather than descriptions '
@@ -5639,6 +5664,17 @@ def construction_page(data: dict, reg: dict, today: str) -> str:
 
     silent = ", ".join(tdlr_projects.NO_FILINGS)
 
+    # THE MIRROR OF THAT. A company can build in Texas and hold no certification at all, which
+    # is computed from the two records rather than asserted.
+    _words = []
+    for _f in reg.get("facilities") or []:
+        _words.append(_f.get("name", ""))
+        for _k in ("owners", "occupants", "operators"):
+            _words.extend(_f.get(_k) or [])
+    certified_blob = " ".join(_words).lower()
+    uncertified = sorted({b["brand"] for b in brands
+                          if b["brand"].lower() not in certified_blob})
+
     body = (
         f'<article class="prose construction">'
         f'<p class="crumb"><a href="../grid/">The Grid Watch</a> '
@@ -5672,6 +5708,13 @@ def construction_page(data: dict, reg: dict, today: str) -> str:
         f'That is not an absence of building. It is the difference between a company that builds '
         f'and one that leases what somebody else built.</p>'
 
+        + (f'<p class="qnote">The mirror of that also happens. '
+           f'{e(", ".join(uncertified))} '
+           + ("files" if len(uncertified) == 1 else "file")
+           + f' construction here and hold'
+           + ("s" if len(uncertified) == 1 else "")
+           + f' no certification at all. A reader working from the tax record alone would not '
+           f'know they build in Texas.</p>' if uncertified else "") +
         f'<h2>Where the two registers meet</h2>'
         f'<p>The state published this link on both sides. A certification names an owner and a '
         f'construction filing names the same entity. These are the certified facilities whose '
@@ -5995,9 +6038,22 @@ def build(out: Path, today: str) -> dict:
     # so a reader who searches the facility by name can land on it. The dialog on the grid
     # page renders the SAME `panel` call, so the two surfaces cannot drift.
     _doss = facility_dossier.load()
+    # THE SECOND REGISTER, ON THE PAGE A READER ACTUALLY OPENS. Computed once for the whole
+    # registry, because deciding whether a party is a single purpose entity or a parent company
+    # is a question about all 151 rows and not about one of them.
+    _fil = facility_filings(entities.load(), tdlr_projects.load())
     for _d in _doss.get("dossiers") or []:
-        w(f"facility/{_d['slug']}/index.html", facility_page(_d, today),
-          facility_dossier.authorised({"dossiers": [_d]}))
+        _m = _fil.get(_d["name"]) or []
+        _n = facility_dossier.authorised({"dossiers": [_d]})
+        if _m:
+            _t = tdlr_projects.totals(_m)
+            _n |= {tdlr_projects.money(_t["cost"]), f"{_t['filings']:,}", f"{_t['sqft']:,}"}
+            for _r in _m:
+                _n |= {tdlr_projects.money(_r.get("cost")), (_r.get("start") or "")[:4]}
+                if _r.get("sqft"):
+                    _n.add(f"{_r['sqft']:,}")
+                _n |= set(re.findall(r"\d[\d,]*", _r.get("project") or ""))
+        w(f"facility/{_d['slug']}/index.html", facility_page(_d, today, _m), _n)
 
     # WHO IS BEHIND THE REGISTRY. The same 151 rows read down their columns. Every count on
     # these pages is computed from the certified list, and the resolution that makes the counts

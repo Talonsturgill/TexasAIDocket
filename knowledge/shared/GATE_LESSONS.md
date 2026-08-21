@@ -1790,3 +1790,38 @@ centre of that box is empty space.
 motion, hit targets, focus order. Write the gates for what is checkable, and then RENDER IT AND
 LOOK AT IT, and DRIVE IT AND CHECK WHAT LIT UP. Those are two separate steps and neither implies
 the other.
+
+---
+
+## 61. The build that would have deleted thirty billion dollars because its scratch was gone
+
+`tdlr_fetch.py --build` parsed every raw filing in `out/tabs/` and wrote the result to
+`ledger/facilities/projects.json`. That is correct exactly once, on the machine that did the
+fetching, and wrong every time after.
+
+`out/` is gitignored scratch. The ledger is the committed artifact. When the container was
+re-provisioned mid-session the 626 raw pages were gone and the ledger was still complete, so the
+next `--build` would have written the 25 pages that happened to be on disk over the top of it.
+201 data center filings and $36.97 billion would have become whatever those 25 held.
+
+**Nothing would have gone red.** The ledger would still parse. `tdlr_projects` would still pass
+its gate, because every remaining record is well formed. `site_fresh_check` would prove `docs/`
+matches the ledgers byte for byte, which it would, because a smaller ledger produces a smaller
+site perfectly faithfully. The published page would have shown a smaller number with total
+confidence.
+
+**What caught it** was noticing that `ls out/tabs/*.html` returned 25 where it had returned 626,
+before running the build rather than after.
+
+**The fix is a merge, not a replace.** `merge()` is keyed on the project number, the newest parse
+wins, and the ledger survives having no scratch beside it. Five self-tests, including that a
+re-parse replaces rather than doubles and that a record with no number never enters.
+
+**Generalises to.** Any step that rebuilds a committed artifact from an ephemeral input. A cache
+warm that writes through. A "regenerate the index from the files on disk". A migration that reads
+a directory. Ask what the step does when its input is EMPTY, and if the answer is "writes an empty
+artifact", it is a delete with extra steps.
+
+**And to this project specifically.** `site_fresh_check` proves the site is a function of the
+ledgers. It has never had anything to say about whether the ledgers are complete, and this is the
+second time that gap has mattered.
