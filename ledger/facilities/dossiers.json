@@ -3626,7 +3626,7 @@
   {
    "name": "Switch AUS 4",
    "slug": "switch-aus-4",
-   "summary": "A Switch building in Austin certified with CoreWeave as occupant and no public announcement anywhere. Its operator column is the strongest evidence in this registry that operator is a legal position rather than a description of who runs a building.",
+   "summary": "A Switch building certified with CoreWeave as occupant. Its operator column is the strongest evidence in this registry that operator is a legal position rather than a description of who runs a building.",
    "facts": [
     {
      "label": "Owner of record",
@@ -3645,6 +3645,23 @@
      "text": "Switch, LTD / Coreweave Compute Acquistion Co. III, LLC / Coreweave Financing DDTL V-V, LLC",
      "source": "s0",
      "as_of": "2025-06-26"
+    },
+    {
+     "label": "What the name suggests",
+     "text": "The airport code for Austin",
+     "source": "s0"
+    },
+    {
+     "label": "Switch's Texas campus",
+     "text": "The Rock, beside Dell's headquarters at Round Rock, north of Austin",
+     "source": "s1"
+    },
+    {
+     "label": "Floor area Switch announced for that campus",
+     "value": 1500000,
+     "unit": "sqft",
+     "source": "s1",
+     "kind": "reported"
     }
    ],
    "notes": [
@@ -3659,9 +3676,17 @@
      "sources": [
       "s0"
      ]
+    },
+    {
+     "text": "Switch's Texas campus is The Rock, beside Dell's headquarters at Round Rock, which is north of Austin rather than in it. The name is a hint and the record gives no location, so nothing here says where this building stands.",
+     "sources": [
+      "s0",
+      "s1"
+     ]
     }
    ],
    "gaps": [
+    "The county and the address are not in the record",
     "No capacity figure is public",
     "No announcement from Switch or CoreWeave names this building",
     "Square footage, acreage and the address are not public",
@@ -3674,6 +3699,14 @@
      "title": "Certified Data Centers",
      "publisher": "Texas Comptroller of Public Accounts",
      "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://www.switch.com/switch-announces-fifth-prime-expansion-with-development-of-exascale-data-center-campus-in-texas/",
+     "title": "Switch Announces Fifth Prime Campus Expansion in Texas",
+     "publisher": "Switch",
+     "rung": 2,
      "retrieved": "2026-08-21"
     }
    ]
