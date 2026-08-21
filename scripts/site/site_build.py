@@ -29,6 +29,7 @@ THREE RULES THIS FILE OBEYS
 from __future__ import annotations
 
 import argparse
+import calendar
 import datetime as _dt
 import functools
 import hashlib
@@ -1721,7 +1722,7 @@ def articles_page(runs: list, today: str) -> str:
   <span class="meta" data-prose="data"><span class="tag">{e(ordinal(
     _dt.date.fromisoformat(r["date"])))}</span><span>{r["slides"]} slides</span></span>
   <h3>{e(r["title"])}</h3>
-  {f'<p class="tease">{e(r["tease"])}</p>' if r.get("tease") else ""}</a>""" for r in runs)
+  {f'<p class="tease">{e(deck_preview(r))}</p>' if deck_preview(r) else ""}</a>""" for r in runs)
 
     body = f"""
 <h1>Articles</h1>
@@ -1858,6 +1859,56 @@ def article_page(r: dict, today: str, items: list) -> str:
                 canonical=f'articles/{r["date"]}/')
 
 
+def deck_preview(r: dict, sentences: int = 2, budget: int = 210) -> str:
+    """The deck's own opening lines, for a card that would otherwise carry a title and a gap.
+
+    WHAT WAS THERE AND WHY IT WENT BLANK. The card printed `copy.json`'s top level `hook`, which
+    does not exist, so it rendered an empty paragraph. The repair pointed it at the title of the
+    DECISION the deck is about, which is real prose and correctly gated, and which is empty on
+    any run whose `story` is empty. Two of the three shipped runs carry no story, so the front
+    page and the articles index both ended up showing a headline, two buttons and nothing in
+    between. A card that says only what it is called is not a preview.
+
+    THE DECK'S OWN WORDS ARE THE PREVIEW, and they are safe to publish here for the same reason
+    the article page publishes them. Every figure in them traces to that run's claims, and
+    `_run_numerals` hands exactly those to whichever page renders them. The `tease` field is one
+    sentence, which is what made the articles index thin in the first place, so this reads the
+    opening slide instead and takes whole sentences up to a budget.
+
+    QUOTED BLOCKS ARE SKIPPED. A quotation needs its attribution beside it to be honest, a card
+    has no room for one, and house style exempts quoted material from rules this text is being
+    shown under. The first slide with prose of its own supplies the preview, so a deck that
+    opens on a quote is previewed by the words around it rather than by somebody else's.
+    """
+    picked: list[str] = []
+    for slide in (r.get("prose") or []):
+        for block in slide or []:
+            if (block or {}).get("quote"):
+                continue
+            text = " ".join(str((block or {}).get("text") or "").split())
+            if text:
+                picked.append(text)
+        if picked:
+            break
+    joined = " ".join(picked)
+    if not joined:
+        return " ".join(str(r.get("tease") or "").split())
+
+    out, used = [], 0
+    for part in re.split(r"(?<=[.!?])\s+", joined):
+        if not part:
+            continue
+        # WHOLE SENTENCES ONLY. A preview cut mid clause reads as a fault rather than as a
+        # taste, and the budget is a ceiling on what gets in rather than a place to chop.
+        if out and used + len(part) > budget:
+            break
+        out.append(part)
+        used += len(part) + 1
+        if len(out) >= sentences:
+            break
+    return " ".join(out)
+
+
 def latest_article(runs: list, items: list) -> str:
     """The newest carousel, baked at build time.
 
@@ -1894,13 +1945,14 @@ def latest_article(runs: list, items: list) -> str:
     #
     # The item title says what happened without dating it, so the only date on the card is the
     # one in the tag, and the tag now says what that date IS.
-    blurb = ""
-    for it in items:
-        if it.get("id") == r.get("story"):
-            blurb = " ".join(str(it.get("title") or "").split())
-            break
+    # The decision's title reads well and is empty on any run with no `story`, which is most of
+    # them, so it is the SECOND choice now rather than the only one. See `deck_preview`.
+    blurb = deck_preview(r)
     if not blurb:
-        blurb = str(r["hook"])
+        for it in items:
+            if it.get("id") == r.get("story"):
+                blurb = " ".join(str(it.get("title") or "").split())
+                break
 
     story_link = (f'<a href="item/{e(r["story"])}/">the decision it is about</a>'
                   if r.get("story") else "")
@@ -2187,15 +2239,11 @@ def home(items: list, today: str) -> str:
   <button type="button" class="mapreset" id="mapreset" hidden>Show all of Texas</button>
 </section>
 
-{latest_article(runs, items)}
-
 {'<section data-reveal><h2>Closing next</h2><ul class="deck">' + rows + '</ul>'
    '<p class="meta" data-prose="data"><a href="record/">See all ' + str(n_items) + ' decisions</a></p>'
    '</section>' if rows else
    '<section data-reveal>' + lede + '<p class="meta" data-prose="data"><a href="record/">See all '
    + str(n_items) + ' decisions</a></p></section>'}
-
-{covers_html}
 
 <section data-reveal>
   <h2>What this is</h2>
@@ -2208,6 +2256,10 @@ def home(items: list, today: str) -> str:
     agency itself rather than a news report about it.</p>
   </div>
 </section>
+
+{covers_html}
+
+{latest_article(runs, items)}
 
 {latest_video()}
 
@@ -2323,18 +2375,8 @@ def docket_index(items: list, today: str) -> tuple:
     <th class="n">Counties</th><th>Kind</th></tr></thead><tbody>{mrows}</tbody></table>
 </details>
 
-{docket_calendar_section(items, today, 1, a)}
+{docket_calendar_section(items, today, 1, a, rows)}
 
-<!-- THE COMPLETE LIST IS KEPT, AND FOLDED. The record has to stay wholly browsable, and the
-     calendar above is an index rather than a replacement: it plots dated moments, so an item
-     carrying no readable date would otherwise have nowhere to be. What the list stops being is
-     the first thing a reader meets, which was the whole complaint. `details` is already the
-     pattern on this page for the county tables, needs no script, and is open to a keyboard and
-     a screen reader by default. -->
-<details class="fold">
-  <summary>Every item, listed by how soon you can act</summary>
-  <ul class="items" data-prose="data">{rows}</ul>
-</details>
 """
     return page(title=f"The record · {SITE_NAME}", depth=1, active="record/",
                 extra_css="record.css",
@@ -2367,8 +2409,7 @@ _CAL_JS = """
     var cal = document.getElementById('cal');
     if (!cal) return;
     var panels = [].slice.call(cal.querySelectorAll('.calmonth'));
-    var links = [].slice.call(cal.querySelectorAll('a.calm'));
-    if (!panels.length || !links.length) return;
+    if (!panels.length) return;
 
     // The class is added by script, so the one-at-a-time CSS only ever applies where the
     // script that drives it is running. Without this the no-script reader gets one month and
@@ -2381,10 +2422,6 @@ _CAL_JS = """
         var mine = p.getAttribute('data-month') === key;
         p.hidden = !mine;
         if (mine) found = true;
-      });
-      links.forEach(function (a) {
-        var mine = a.getAttribute('data-month') === key;
-        a.setAttribute('aria-current', mine ? 'true' : 'false');
       });
       if (found && focus) {
         var h = cal.querySelector('.calmonth:not([hidden]) .calmh');
@@ -2402,16 +2439,6 @@ _CAL_JS = """
       return found;
     }
 
-    links.forEach(function (a) {
-      a.addEventListener('click', function (ev) {
-        // A modified click is the reader asking for a new tab. Leave it alone.
-        if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey || ev.button) return;
-        ev.preventDefault();
-        if (show(a.getAttribute('data-month'), true)) {
-          history.replaceState(null, '', a.getAttribute('href'));
-        }
-      });
-    });
 
     // A LINK SHARED INTO THE MONTH STILL LANDS THERE. Somebody who was handed
     // /record/#cal-2026-06 gets June, not August, and the back button keeps working.
@@ -2464,6 +2491,41 @@ _CAL_JS = """
       cal.classList.toggle('acts', acts.checked);
     });
 
+    // THREE VIEWS. Month is the default and is what a wall calendar is; year is twelve of
+    // them at a glance; list is the record in one column by urgency. Different readers want
+    // different things, which is the whole reason a view switcher exists.
+    var views = { month: 'calvm', year: 'calvy', list: 'calvl' };
+    var page = document.querySelector('.calpage');
+
+    function view(which) {
+      cal.setAttribute('data-view', which);
+      Object.keys(views).forEach(function (k) {
+        document.getElementById(views[k]).setAttribute('aria-pressed',
+          k === which ? 'true' : 'false');
+      });
+      // PAGING BELONGS TO THE MONTH. Leaving prev and next sitting there in a view they cannot
+      // move is the same broken promise as a button that does nothing.
+      if (page) page.hidden = which !== 'month';
+    }
+    Object.keys(views).forEach(function (k) {
+      document.getElementById(views[k]).addEventListener('click', function () { view(k); });
+    });
+
+    // PICKING A MONTH OUT OF THE YEAR MEANS "SHOW ME THAT MONTH", so it hands the reader to
+    // the month view rather than leaving them on the grid they just used.
+    [].slice.call(cal.querySelectorAll('a.mini.has')).forEach(function (a) {
+      a.addEventListener('click', function (ev) {
+        if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey || ev.button) return;
+        ev.preventDefault();
+        view('month');
+        if (show(a.getAttribute('data-month'), true)) {
+          history.replaceState(null, '', a.getAttribute('href'));
+        }
+        edges();
+      });
+    });
+
+    view('month');
     show(fromHash() || home, false);
     edges();
   })();
@@ -2471,12 +2533,16 @@ _CAL_JS = """
 """
 
 
-def docket_calendar_section(items: list, today: str, depth: int, a) -> str:
+def docket_calendar_section(items: list, today: str, depth: int, a, rows: str) -> str:
     """The record laid out by WHEN, which is the half a list sorted by urgency cannot show.
 
     An item with a hearing in June and an order in August belongs in both months. A flat list
     can only put it under one, so the second date is invisible, and it is often the one a
     reader is looking for.
+
+    `rows` is the record as list items, already sorted by urgency by the caller. The LIST
+    view is that same markup: one view of three rather than a separate fold below, because a
+    reader choosing "list" has chosen it and should not then have to open a disclosure.
 
     `a` is the page's `Authorised` set. Every figure here is added to it as it is computed,
     which is what makes the numeral law a mechanism rather than a promise.
@@ -2489,55 +2555,65 @@ def docket_calendar_section(items: list, today: str, depth: int, a) -> str:
     a.add(cal["n_events"], cal["n_live"], len(items))
     # Every day of the month a grid can print, and every year the rail can show.
     a.add(*range(1, 32))
-    years = list(range(int(keys[0][:4]), int(keys[-1][:4]) + 1))
+    # ONLY THE YEARS THAT HOLD SOMETHING. This drew every year from the first event to the
+    # last, so three entirely empty rows sat in the middle saying nothing at length. The
+    # argument for keeping them was that a gap is information, and it is, but three identical
+    # rows of greyed months is a worse way to say "nothing happened" than not drawing them:
+    # the years are labelled, so a reader sees 2021 followed by 2025 and the gap is plain.
+    years = sorted({int(k[:4]) for k in keys if months.get(k)})
     a.add(*years)
     for k in keys:
         a.add(len(months.get(k, [])))
 
-    # ------------------------------------------------------------------ the rail
+    # ------------------------------------------------------ the year, as twelve calendars
+    # THREE VIEWS, because different readers want different things and the owner asked for the
+    # choice. The MONTH is the default and the one a wall calendar is: one month, paged. The
+    # YEAR is twelve small calendars, which is the same object at a different scale and reads
+    # the shape of the record at a glance. The LIST is the record in one column, by urgency,
+    # for somebody who wants to scan rather than to browse.
     #
-    # IT IS A CHART, NOT A ROW OF BUTTONS. Every month carries a bar whose height is its own
-    # count against the busiest month, so the shape of the record is visible before a single
-    # word is read: the August spike that holds more than a third of everything, the thin
-    # years, and the stretches where nothing happened at all.
-    #
-    # THE BAR IS GEOMETRY AND THE LABEL IS TEXT, and they are kept apart on purpose. Text sitting
-    # on a gradient is the one thing the contrast gate cannot measure, so it declines to judge
-    # it, and a run of declines is how a page ships unreadable. Nothing here is written over a
-    # fill.
-    peak = max((len(v) for v in months.values()), default=1) or 1
-    rows = []
+    # Only the years that hold anything are drawn. Three empty rows saying nothing at length
+    # was the first version and the owner was right that it was stupid to include.
+    yblocks = []
     for y in years:
-        cells = []
+        minis = []
         for m in range(1, 13):
             k = f"{y:04d}-{m:02d}"
-            evs_m = months.get(k, [])
-            n = len(evs_m)
-            short = dcal.month_short(k)
-            if not n:
-                # PRESENT, AND INERT. An empty month is a fact about the record and closing
-                # the gap up would say the record is continuous when it is not.
-                cells.append(f'<li><span class="calm none">'
-                             f'<span class="calbar"><i></i></span>'
-                             f'<time class="calmn" datetime="{k}">{e(short)}</time></span></li>')
-                continue
-            act = sum(1 for ev in evs_m if ev["actionable"])
-            a.add(act)
-            # Rounded to whole percent so two builds of the same ledger are byte identical.
-            pct = round(n / peak * 100)
-            cells.append(
-                f'<li><a class="calm has{" act" if act else ""}" href="#cal-{k}" '
-                f'data-month="{k}" aria-current="{"true" if k == cur else "false"}" '
-                f'aria-label="{e(dcal.month_label(k))}, {n} dated">'
-                f'<span class="calbar"><i style="--h:{pct}%"></i></span>'
-                f'<time class="calmn" datetime="{k}">{e(short)}</time>'
-                f'<span class="calmc num">{n}</span></a></li>')
+            n = len(months.get(k, []))
+            days = dcal.by_day(months.get(k, []))
+            cells = []
+            for week in dcal.weeks(k):
+                for d in week:
+                    if d is None:
+                        cells.append('<i class="mo"></i>')
+                        continue
+                    iso = d.isoformat()
+                    mine = days.get(iso) or []
+                    cls = ""
+                    if mine:
+                        cls = " mh act" if any(x["actionable"] for x in mine) else " mh"
+                    if iso == today:
+                        cls += " mt"
+                    cells.append(f'<i class="{cls.strip() or "md"}">{d.day}</i>')
+            head = "".join(f"<i>{w}</i>" for w in ("S", "M", "T", "W", "T", "F", "S"))
+            inner = (f'<b class="minm"><time datetime="{k}">{e(dcal.month_short(k))}</time></b>'
+                     f'<span class="minc num">{n}</span>'
+                     f'<span class="minh">{head}</span>'
+                     f'<span class="ming">{"".join(cells)}</span>')
+            act_n = sum(1 for ev in months.get(k, []) if ev["actionable"])
+            if n:
+                minis.append(f'<li><a class="mini has{" hasact" if act_n else ""}" '
+                             f'href="#cal-{k}" data-month="{k}" '
+                             f'aria-label="{e(dcal.month_label(k))}, {n} dated">{inner}</a></li>')
+            else:
+                minis.append(f'<li><span class="mini none">{inner}</span></li>')
         live = sum(len(months.get(f"{y:04d}-{m:02d}", [])) for m in range(1, 13))
-        a.add(live)
-        rows.append(f'<div class="calyear{"" if live else " quiet"}" data-prose="data">'
-                    f'<b class="caly num">{y}</b>'
-                    f'<ol class="calmonths">{"".join(cells)}</ol>'
-                    f'<span class="calyn num">{live}</span></div>')
+        a.add(live, y)
+        yblocks.append(
+            f'<section class="calyr" data-year="{y}" aria-label="{y}">'
+            f'<h3 class="calyh"><time datetime="{y}"><span class="num">{y}</span></time>'
+            f'<span class="calyn"><span class="num">{live}</span> dated</span></h3>'
+            f'<ol class="minis">{"".join(minis)}</ol></section>')
 
     # ------------------------------------------------------------------ the panels
     panels = []
@@ -2581,8 +2657,11 @@ def docket_calendar_section(items: list, today: str, depth: int, a) -> str:
         panels.append(
             f'<section class="calmonth" id="cal-{k}" data-month="{k}" data-act="{act}" '
             f'aria-label="{e(dcal.month_label(k))}">'
-            f'<h3 class="calmh"><time datetime="{k}">{e(dcal.month_label(k))}</time> '
-            f'<span class="calmn2"><span class="num">{n}</span> {word}</span>{acts}</h3>'
+            f'<h3 class="calmh"><time datetime="{k}">'
+            f'<span class="calmnum num">{k[5:7]}</span>'
+            f'<span class="calmname">{e(calendar.month_name[int(k[5:7])])}</span>'
+            f'<span class="calmyear num">{k[:4]}</span></time></h3>'
+            f'<p class="calmsum" data-prose="data"><span class="num">{n}</span> {word}{acts}</p>'
             f'<ol class="calhead" aria-hidden="true">'
             + "".join(f"<li>{d}</li>" for d in ("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"))
             + f'</ol><ol class="caldays">{"".join(cells)}</ol></section>')
@@ -2602,27 +2681,51 @@ def docket_calendar_section(items: list, today: str, depth: int, a) -> str:
        house style checker calls that a badly written date. It is not a sentence; it is a
        chart's axis. `data-prose="data"` is the mechanism this project already has for that,
        and it narrows the prose rules rather than switching a checker off. -->
-  <div class="calrail">{"".join(rows)}</div>
+  <!-- EVERY CONTROL IS HIDDEN UNTIL THE SCRIPT CLAIMS IT. A button that does nothing is worse
+       than no button: it is a promise a reader tests once and then distrusts the page for.
+       Without script every month is already on the page and the rail entries are real anchors,
+       so nothing here is the only route to anything.
 
-  <!-- BOTH CONTROLS ARE HIDDEN UNTIL THE SCRIPT CLAIMS THEM. A button that does nothing is
-       worse than no button: it is a promise a reader tests once and then distrusts the page
-       for. Without script every month is already on the page and the rail entries are real
-       anchors, so nothing here is the only route to anything. -->
-  <div class="calstep">
-    <button type="button" id="calprev" aria-label="The month before">Prev</button>
-    <button type="button" id="calnext" aria-label="The month after">Next</button>
-    <button type="button" id="calnow" class="calnow">This month</button>
+       THE MONTH IS THE DEFAULT VIEW and the year is the other one. A reader arriving at a
+       record wants what is happening, not a chart of the last six years, and the year rail is
+       for finding your way rather than for reading. -->
+  <!-- LAID OUT THE WAY NOTION LAYS OUT A DATABASE, because the owner asked me to look at it
+       and it is right: the VIEW SWITCHER is tabs at the top left, next to the thing being
+       viewed, and the controls that act on the current view sit at the top right. I had it
+       mirrored, with the paging on the left and the view choice in a pill on the right, which
+       reads as two unrelated widgets rather than one toolbar.
+
+       The tabs are underlined text rather than a segmented pill, which is also what this
+       site's own masthead nav already does for the page you are on. One idiom, twice. -->
+  <div class="calbar">
+    <div class="caltabs" role="group" aria-label="How to see the record">
+      <button type="button" id="calvm" class="caltab" aria-pressed="true">Month</button>
+      <button type="button" id="calvy" class="caltab" aria-pressed="false">Year</button>
+      <button type="button" id="calvl" class="caltab" aria-pressed="false">List</button>
+    </div>
+    <div class="calctl">
+      <!-- THE READER'S OWN WORDS, declared as such. Published copy carries no I, we or our,
+           because the record speaks rather than its author; a control the reader operates is
+           the one place a first person is right. -->
+      <label class="calswitch" data-voice="reader">
+        <input type="checkbox" id="calacts">
+        <span class="calswtrack" aria-hidden="true"><span class="calswknob"></span></span>
+        <span class="calswlabel">Only what I can still act on</span>
+      </label>
+      <span class="calpage">
+        <button type="button" id="calprev" class="calarrow" aria-label="The month before">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 4 7 12l8 8"/></svg>
+        </button>
+        <button type="button" id="calnext" class="calarrow" aria-label="The month after">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 4l8 8-8 8"/></svg>
+        </button>
+        <button type="button" id="calnow" class="calpill">Today</button>
+      </span>
+    </div>
   </div>
-  <!-- THE READER'S OWN WORDS, declared as such. Published copy carries no I, we or our,
-       because the record speaks rather than its author; a control the reader operates is the
-       one place a first person is right, and `data-voice="reader"` is the marker this site
-       already uses for exactly that on the front page's scan question. -->
-  <label class="calfilter" data-voice="reader">
-    <input type="checkbox" id="calacts">
-    <span>Only what I can still act on</span>
-  </label>
-
+  <div class="calrail" data-prose="data">{"".join(yblocks)}</div>
   <div class="calpanels" data-prose="data">{"".join(panels)}</div>
+  <ul class="callist items" data-prose="data">{rows}</ul>
   {dropped}
 </section>
 {_CAL_JS}"""
@@ -5205,7 +5308,8 @@ def build(out: Path, today: str) -> dict:
     written.append("fonts/OFL.txt")
 
     w("index.html", home(items, today),
-      _home_numerals(items, today) | listed(items) | covers_section(items, today)[0])
+      _home_numerals(items, today) | listed(items) | covers_section(items, today)[0]
+      | (_run_numerals(runs[0]) if runs else set()))
     # THE VERSION THE LEDGER ALREADY CARRIES, PUBLISHED RATHER THAN DISCARDED.
     #
     # This rebuilt `_spec` from scratch with only the build date, so `version` and `gates`
@@ -5541,6 +5645,36 @@ def self_test() -> int:
         items = dk.load(LEDGER)
         one = (Path(td) / "a" / "item" / items[0]["id"] / "index.html").read_text(encoding="utf-8")
         check("an item page quotes its sources", "<blockquote>" in one)
+
+        # A CARD THAT SAYS ONLY WHAT IT IS CALLED IS NOT A PREVIEW, and this has now gone
+        # blank twice for two different reasons, which is what makes it worth a check rather
+        # than a careful edit. First the card printed `copy.json`'s top level `hook`, a field
+        # that does not exist, so the paragraph rendered empty. The repair pointed it at the
+        # title of the DECISION the deck is about, which is real prose and correctly gated and
+        # is empty on any run carrying no `story`. Two of the three shipped runs carry none, so
+        # the front page and the articles index both went back to a headline, two buttons and a
+        # gap in between.
+        #
+        # Neither failure could redden anything. An empty paragraph is valid HTML, the numeral
+        # gate has no numeral to trace, and house style has no words to judge, so every gate on
+        # this site agreed the page was fine while the page said nothing. That is the shape
+        # GATE_LESSONS keeps recording: the checks all observed the copy and not the ABSENCE of
+        # it. So this counts the cards and reads what is under each title, on the BUILT page.
+        arts = (Path(td) / "a" / "articles" / "index.html").read_text(encoding="utf-8")
+        cards = re.findall(r"<h3>(.*?)</h3>\s*(?:<p class=\"tease\">(.*?)</p>)?", arts, re.S)
+        bare = [" ".join(re.sub(r"<[^>]+>", "", t).split()) for t, tease in cards
+                if len(re.sub(r"<[^>]+>", "", tease or "").split()) < 8]
+        check(f"every article card carries a preview and not just a title ({len(cards)} card(s))",
+              cards and not bare, f"thin: {bare[:3]}; widen deck_preview's sentence budget")
+        # The same card on the front page, which is where a reader meets it first and where the
+        # blank one was found. It is built by a different function off the same helper, so one
+        # of the two staying right proves nothing about the other.
+        home_card = idx[idx.find("Our latest article"):]
+        home_card = home_card[:home_card.find("</section>")]
+        blurbs = [" ".join(re.sub(r"<[^>]+>", "", m).split())
+                  for m in re.findall(r"<p[^>]*>(.*?)</p>", home_card, re.S)]
+        check("...and so does the one on the front page",
+              any(len(b.split()) >= 8 for b in blurbs), f"got: {blurbs}")
 
         # THE PLACE LINKS RUN BOTH WAYS. The place pages listed their items from the
         # first build and nothing pointed back, which looks correct from either end: every

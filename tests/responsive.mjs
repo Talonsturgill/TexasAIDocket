@@ -219,12 +219,23 @@ check("the mark is shown at every width and lands on nothing",
 // site is mostly read on. Nothing in the markup differs between those two widths, so no
 // build-time check could see it. This multiplies the computed font size by the sheet's actual
 // scale and requires the result to stay readable.
+// EVERY CHART ON THE SITE, NOT ONLY THE GRID'S. This swept `svg.loadshape` alone, which was
+// the whole population when it was written and stopped being it the day the water page grew
+// five drawings of its own. Those shipped with axis type under six pixels on a phone, which is
+// the identical defect this check exists for, and it went green because the selector named one
+// chart rather than the class of thing a chart is.
+const CHARTS = [["grid/index.html", "svg.loadshape"],
+                ["water/index.html", "svg.waterviz.trend"],
+                ["water/index.html", "svg.waterviz.dist"],
+                ["water/index.html", "svg.waterviz.resmap"]];
+
 const tiny = [];
-for (const w of [320, 360, 390, 414, 480, 540, 600, 680, 768, 900, 1180, 1440]) {
+for (const w of [320, 360, 390, 414, 480, 540, 600, 680, 768, 900, 1180, 1440])
+for (const [pageRel, sel] of CHARTS) {
   await pg.setViewportSize({ width: w, height: 900 });
-  await pg.goto("file://" + path.join(SITE, "grid", "index.html"));
-  const worst = await pg.evaluate(() => {
-    const svg = document.querySelector("svg.loadshape");
+  await pg.goto("file://" + path.join(SITE, pageRel));
+  const worst = await pg.evaluate((sel) => {
+    const svg = document.querySelector(sel);
     if (!svg) return null;
     const k = svg.getBoundingClientRect().width / svg.viewBox.baseVal.width;
     // TWO FLOORS, because the labels do two jobs. An axis number and a peak callout are
@@ -241,12 +252,12 @@ for (const w of [320, 360, 390, 414, 480, 540, 600, 680, 768, 900, 1180, 1440]) 
     }
     return { data: data === Infinity ? null : +data.toFixed(1),
              unit: unit === Infinity ? null : +unit.toFixed(1) };
-  });
+  }, sel);
   if (!worst) continue;
-  if (worst.data !== null && worst.data < 10) tiny.push(`${w}px data ${worst.data}px`);
-  if (worst.unit !== null && worst.unit < 8) tiny.push(`${w}px unit ${worst.unit}px`);
+  if (worst.data !== null && worst.data < 10) tiny.push(`${sel} ${w}px data ${worst.data}px`);
+  if (worst.unit !== null && worst.unit < 8) tiny.push(`${sel} ${w}px unit ${worst.unit}px`);
 }
-check("every label on the load chart stays readable at every width",
+check("every label on every chart stays readable at every width",
       tiny.length === 0, tiny.slice(0, 4).join(" | "));
 
 // AND READABLE IS NOT ENOUGH: IT HAS TO BE THERE.
@@ -271,11 +282,12 @@ check("every label on the load chart stays readable at every width",
 // typed. A pass this close to the edge is a failure waiting for a different machine.
 const MARGIN = 2;
 const cut = [];
-for (const w of [280, 300, 320, 360, 375, 390, 414, 440, 480, 540, 600, 680, 768, 900, 1180]) {
+for (const w of [280, 300, 320, 360, 375, 390, 414, 440, 480, 540, 600, 680, 768, 900, 1180])
+for (const [pageRel, sel] of CHARTS) {
   await pg.setViewportSize({ width: w, height: 900 });
-  await pg.goto("file://" + path.join(SITE, "grid", "index.html"));
-  const r = await pg.evaluate((margin) => {
-    const svg = document.querySelector("svg.loadshape");
+  await pg.goto("file://" + path.join(SITE, pageRel));
+  const r = await pg.evaluate(({margin, sel}) => {
+    const svg = document.querySelector(sel);
     if (!svg) return null;
     const vb = svg.viewBox.baseVal;
     const T = [...svg.querySelectorAll("text")].filter((t) => t.textContent.trim());
@@ -294,8 +306,8 @@ for (const w of [280, 300, 320, 360, 375, 390, 414, 440, 480, 540, 600, 680, 768
         out.push(`${T[i].textContent} on ${T[j].textContent}`);
     }
     return out;
-  }, MARGIN);
-  if (r && r.length) cut.push(`${w}px ${r[0]}`);
+  }, {margin: MARGIN, sel});
+  if (r && r.length) cut.push(`${sel} ${w}px ${r[0]}`);
 }
 check(`every chart label clears the drawing by ${MARGIN} units and lands on no other`,
       cut.length === 0, cut.slice(0, 4).join(" | "));

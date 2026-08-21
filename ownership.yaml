@@ -155,6 +155,31 @@ rules:
   - path: "assets/**"
     owner: human
 
+  # ONE DERIVED FILE UNDER assets/, NAMED RATHER THAN GLOBBED, AND HERE IS WHY.
+  #
+  # `tx-reservoirs.json` is where each reservoir's gauge sits, and it is a pure function of
+  # `ledger/gridwatch/raw/**`, which the collector already owns and already writes. It is under
+  # `assets/` because it is committed geodata rather than a time series, not because a person
+  # authored it. Nobody types a coordinate into it.
+  #
+  # THE HOLE THIS CLOSES. The day TWDB adds a reservoir, the collector writes the payload, the
+  # water map skips the new lake because it has no pin, and the reproducibility check goes RED
+  # ON MAIN. Every actor that could fix it is locked out, because `assets/**` is human owned,
+  # so a site with no humans in it stays red and stays a pin short until somebody notices.
+  # That is precisely the dependency this project calls its worst failure, one level down from
+  # a missed reading.
+  #
+  # WHAT THIS DOES NOT WIDEN. It is one path, not a glob, so the fonts, the art and the county
+  # topology stay human owned. The builder refuses a coordinate that DISAGREES with the record
+  # rather than picking a side, so the collector can add a gauge and can never move one, which
+  # is the property that makes handing it over safe.
+  - path: "assets/geo/tx-reservoirs.json"
+    owner: gridwatch
+    note: >
+      Derived from the collector's own raw archive by scripts/shared/reservoirs.py. Owned by
+      the collector so a new reservoir gets a pin without a person, and refused rather than
+      resolved when a position disagrees with the one on file.
+
   # ---------------------------------------------------------------- the public record
   - path: "ledger/docket.json"
     owner: daily

