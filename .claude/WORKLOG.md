@@ -78,7 +78,7 @@ Everything below is deterministic code that runs in a worker or a browser and co
 | 1 | eval harness, free, no model calls | **DONE** | 232 cases, 85.8% found / 83.2% first |
 | 2 | body search + two real router bugs | **DONE** | 99.1% found, nonsense 75% -> 100% |
 | 3 | the worker retrieves | **DONE** | 48,124 -> 8,246 tokens, recall 99.6% |
-| 4 | verify, rebuild, ship | IN PROGRESS | guards_local green, docs fresh, merged |
+| 4 | verify, rebuild, ship | **DONE** 85924a77 | merged to main, PR #156, all seven CI jobs green |
 
 ## THE ONE STEP THIS REPO CANNOT DO FOR ITSELF
 
@@ -86,10 +86,18 @@ Everything below is deterministic code that runs in a worker or a browser and co
 deploys the worker, and nothing in this repo can tell that it has not been deployed, which is
 why the bundle now has a freshness check and why `/_config` reports the prompt's shape.
 
-Until the paste happens the live worker keeps running the old whole-pack design and keeps
-working, because the published pack still carries `pack` in full and the new `index` field is
-simply ignored by a worker that does not read it. Nothing breaks in the meantime and nothing
-improves either.
+**IT IS FURTHER BEHIND THAN THIS WORKSTREAM.** Checked against the live endpoint on
+2026-08-21, after the merge. `/_config` carries no `effort` field and no `usage` field, which
+means the deployed worker predates WAVE 0 and not merely wave 3. So the paste is not the last
+step of this work, it is the only delivery any of the three waves has had. What is live right
+now still thinks hard about every lookup, still sends all 69 decisions, and still cannot say
+what a question cost.
+
+It answers correctly, which is the part that makes this easy to miss. `/_probe` returns ok and
+the published pack still carries `pack` in full, so the `index` field added today is read by
+nothing and breaks nothing. Seventeen of this month's two hundred calls are spent.
+
+Until the paste happens, nothing breaks and nothing improves.
 
 **After pasting, check `https://texas-ask.talon-sturgill.workers.dev/_config`.** The `prompt`
 object is the whole verification. `mode` should read `slice`, `shown` something like `6 of 69`,
