@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-aTNwFbyAm0QpvDaMkT7xrnM+mrsPwhlWRbtTb7OfeyM=' 'sha256-8LN1YP4/TWz/BlJE7RIJHu/aNR9VgkXo+KDggY9/5RU=' 'sha256-YuJZ2gVgjdpx99LTXtLJrb/pX/eWudymo6usbPbs+dA=' 'sha256-AeH0kCws3FW+9yG8231IP0MIRZAAGtnyGM21LjwrYlA=' 'sha256-lUdIgctNtjcGmdnpl1l2te9lG9RBPZIap0Jc+JGXCmc=' 'sha256-eAen8T4O8pfBp3CJGFTcr2AfHKEky06NoHfEJVd9yeE=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-aTNwFbyAm0QpvDaMkT7xrnM+mrsPwhlWRbtTb7OfeyM=' 'sha256-8LN1YP4/TWz/BlJE7RIJHu/aNR9VgkXo+KDggY9/5RU=' 'sha256-ulFs02CkNFqBGpCqHyODmQNLzGukDC1GuzsmqMZBM7I=' 'sha256-AqdAaqyS5KQbXDK9sN135RVMUGEsqNly+hsJ53wRXGE=' 'sha256-lUdIgctNtjcGmdnpl1l2te9lG9RBPZIap0Jc+JGXCmc=' 'sha256-eAen8T4O8pfBp3CJGFTcr2AfHKEky06NoHfEJVd9yeE=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>The record · Texas AI Docket</title>
@@ -151,8 +151,29 @@ function askIndex(items) {
 /* BM25. `idf` is the Robertson form with the +1 that keeps a term appearing in EVERY document
    at zero rather than negative: a word every decision uses says nothing about which one is
    meant, and a negative score would actively push the right answer down. */
+/* The frame of a question, dropped from the QUERY and never from the documents. The reasoning,
+   which is long and is not a reader's to download, is in scripts/site/ask_retrieval.py under
+   THE FRAME OF A QUESTION. Short version: IDF cannot tell "how" from a rare topical word, and
+   "how" is in nearly every question a person types. "may" is absent because it is a month. */
+var askFrame = new Set(("what which who whom whose when where why how whether " +
+  "is are was were be been being am do does did done doing " +
+  "can could will would shall should must ought " +
+  "have has had having " +
+  "the and but for nor yet so than that this these those there here " +
+  "about above across after against along among around before behind below beneath beside " +
+  "between beyond during except from inside into near onto outside over through throughout " +
+  "under underneath until upon with within without " +
+  "all any both each either few many more most much neither none once only other some such " +
+  "her hers him his its our ours she her their theirs them they you your yours mine my " +
+  "tell tells told say says said know knows get gets got give gives show shows " +
+  "want wants need needs please thanks thank hello " +
+  "anything something everything nothing anyone someone everyone " +
+  "just also very really still even ever never always").split(" "));
+
 function askBm25(idx, query) {
-  var qs = askTokens(query).filter(function (w) { return w.length > 2; });
+  var qs = askTokens(query).filter(function (w) {
+    return w.length > 2 && !askFrame.has(w);
+  });
   if (!qs.length) return [];
   var out = [];
   idx.docs.forEach(function (d) {
@@ -675,21 +696,19 @@ function askFuse(lists) {
 
   /* ---- the human check ---------------------------------------------------
      ARMED ON FOCUS, AND THIS HAS BEEN BOTH WAYS. The history is the point.
-     It was on focus once and was reverted, correctly: the note under the field then said
-     typing sends nothing anywhere, and tests/ask_engine.mjs caught the contradiction.
-     THAT SENTENCE LEFT THE NOTE IN #59. It reads "Model in training" and claims nothing about
-     typing, so the promise the revert protected is not on the page, while the cost it bought
-     was still being paid. ask_engine.mjs now allows the challenge host BY NAME, asserts focus
-     really arms it, and still fails on any other host. The paragraph below is the old
-     reasoning, kept because it was right at the time.
-     This was on focus, which was faster and was wrong. The note above the field says typing
-     sends nothing anywhere, and arming on focus fetched Cloudflare's script the moment a
-     caret landed in the field, so a request left the page during what that note calls typing.
-     tests/ask_engine.mjs caught it, because that suite asserts no request leaves the page
-     after ANY interaction, and it was right to.
-     The cost is about a second on the first question while the widget loads and solves. That
-     is bounded, it happens once, and the stage line says what the wait is for. A promise that
-     is literally true is worth more than a second. */
+     It was on focus once and was reverted, correctly at the time: the note under the field
+     then said typing sends nothing anywhere, arming on focus fetched Cloudflare's script the
+     moment a caret landed in the field, and tests/ask_engine.mjs caught the contradiction.
+     THAT SENTENCE LEFT THE NOTE IN #59 and is not coming back. The note reads "Model in
+     training" and claims nothing about typing, so the revert was buying a promise that had
+     stopped being made while still paying 1 to 3 seconds for it on the first question of every
+     session. Owner's call on 2026-08-20 to arm on focus.
+     WHAT STILL HOLDS IS THE PART THAT WAS NEVER ABOUT COPY. The challenge host is named in
+     ask_engine.mjs, it is armed once per session rather than per keystroke, and any other host
+     appearing on this page still fails that suite. A request per keystroke would spend a cap
+     counted in calls a month inside an afternoon, and an unannounced host would carry what a
+     reader is typing to somebody nobody chose. Neither of those was ever a sentence under a
+     field. */
   var tsId = null, tsToken = "";
   function armTurnstile() {
     if (box.dataset.ts || !SITEKEY) return;

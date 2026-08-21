@@ -45,16 +45,26 @@ const browser = await chromium.launch(
   fs.existsSync(PREINSTALLED) ? { executablePath: PREINSTALLED } : {});
 const page = await browser.newPage();
 
-// THE NETWORK IS CUT AFTER LOAD. The page promises the reader that the BOX sends nothing
-// anywhere; this is that promise, tested rather than asserted. Every request after the
-// document itself fails, and the box must still answer every question.
+// THE NETWORK IS CUT AFTER LOAD, and the box must still answer every question. Every request
+// after the document itself fails.
 //
-// WHAT THIS ASSERTION IS ACTUALLY FOR, narrowed 2026-08-16 on the owner's call, in the run
-// that first tripped it. The promise the reader is given is about the ASK LANE: typing a
-// question sends nothing, so the box works on a phone with no signal in a county meeting
-// room. It was never a promise that the page loads no pictures.
+// WHAT THIS ASSERTION IS FOR, now that the copy it once defended is gone. The note under the
+// field used to tell a reader that typing sends nothing anywhere. That sentence came off in
+// #59 on the owner's call and is not coming back, so this is no longer a promise being kept.
+// Two reasons it stays anyway, and both are stronger than the copy was.
 //
-// It read as the wider promise only because it had never been tested against a page that
+// A REQUEST PER KEYSTROKE IS A BILL. The written lane is capped in calls a month. A box that
+// reached the network while somebody typed would spend the month in an afternoon, and the
+// failure would look like the box being broken rather than like the box being expensive.
+//
+// AND AN UNANNOUNCED HOST IS A LEAK. An analytics beacon, a font CDN or a third-party script
+// arriving on this page would carry what a reader is typing about a public record to somebody
+// nobody chose. That is what the positive list below is really guarding, and it never had
+// anything to do with what the copy said.
+//
+// It was narrowed on 2026-08-16, in the run that first tripped it, because it also read as a
+// promise that the page loads no pictures. It read that way only because it had never been
+// tested against a page that
 // carried one. `runs/carousel/` was empty until the first deck shipped, so the front page
 // emitted no external reference at all and the assertion passed vacuously for its whole
 // life. The first shipped carousel put its cover on the front page from the repository's
@@ -66,12 +76,12 @@ const page = await browser.newPage();
 const MEDIA_HOST = "https://raw.githubusercontent.com/Talonsturgill/TexasAIDocket/";
 
 // THE HUMAN CHECK, EXCLUDED BY NAME AND ONLY AFTER A FOCUS.
-// This said "nothing leaves after ANY interaction", and it was right to: the note under the
-// field once said typing sends nothing anywhere, an earlier attempt to arm Turnstile on focus
-// contradicted it, and this suite caught that and the change was reverted. The note lost that
-// sentence in #59, so the promise it protected is not on the page, and a check whose subject
-// no longer exists is worse than no check. Owner's call on 2026-08-20 to arm on focus, since
-// it cost 1 to 3 seconds on the first question of every session.
+// This said "nothing leaves after ANY interaction" and was right to at the time: an earlier
+// attempt to arm Turnstile on focus contradicted the note under the field, this suite caught
+// it, and the change was reverted. The note lost that sentence in #59 and the owner's call on
+// 2026-08-20 was to arm on focus after all, since it cost 1 to 3 seconds on the first question
+// of every session. The challenge host is a host somebody chose, named here, and paid for
+// once per session rather than per keystroke.
 // Nothing may leave on LOAD, asserted before any interaction and unchanged. After a focus the
 // challenge host is allowed and NOTHING ELSE IS, stated positively below so a new external
 // request fails here whether or not anybody thought about this file.
@@ -296,10 +306,9 @@ check("...and it called nobody to do it",
    verdict on a page of item links was that an answer has to be the agent or look like it, so
    a press goes to the agent and the page contacts the worker by design.
 
-   WHAT IS UNCHANGED IS THE PART A READER WAS PROMISED. Typing still sends nothing anywhere,
-   and that is asserted separately above and on its own. What the two lists say together is
-   that the page contacts exactly two hosts, the human check and the agent, and only when
-   somebody presses. */
+   WHAT IS UNCHANGED IS THE PART THAT COSTS MONEY. Typing still reaches nothing, asserted
+   separately above and on its own. What the two lists say together is that the page contacts
+   exactly two hosts, the human check and the agent, and only when somebody presses. */
 const ANSWER_HOST = "https://texas-ask.talon-sturgill.workers.dev/";
 const ALLOWED = [CHALLENGE_HOST, ANSWER_HOST];
 const strays = external.filter((u) => !ALLOWED.some((h) => u.startsWith(h)));

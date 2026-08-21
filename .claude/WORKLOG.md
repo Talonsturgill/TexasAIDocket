@@ -77,8 +77,119 @@ Everything below is deterministic code that runs in a worker or a browser and co
 | 0 | effort low + usage counters | **DONE** 787b45c7 | 91 assertions, effort fallback proved red |
 | 1 | eval harness, free, no model calls | **DONE** | 232 cases, 85.8% found / 83.2% first |
 | 2 | body search + two real router bugs | **DONE** | 99.1% found, nonsense 75% -> 100% |
-| 3 | the worker retrieves | TODO | token drop measured, ceiling pressure gone |
-| 4 | verify, rebuild, ship | TODO | guards_local green, docs fresh, merged |
+| 3 | the worker retrieves | **DONE** | 48,124 -> 8,246 tokens, recall 99.6% |
+| 4 | verify, rebuild, ship | IN PROGRESS | guards_local green, docs fresh, merged |
+
+## What wave 3 built, and the three things the measurement found
+
+The design held. Three system blocks, the index always whole, the bodies a slice, one model
+call. What it cost, measured against the real record on 2026-08-21:
+
+    the whole pack        48,124 tokens
+    a mean question        8,246 tokens     5.8x smaller
+    of which cacheable     5,463 tokens     66% of it, read at 0.1x after the first question
+    a nonsense question    5,463 tokens     no body at all, the index answers it
+
+    recall against the same 232 gold cases the browser lane is scored on
+
+      kind          n     sent    first
+      county        30     100%     60%
+      decider       52     100%   98.1%
+      nonsense       4     100%    100%     no decision sent, which is the pass condition
+      phrase        69     100%    100%
+      title         69     100%    100%
+      topic_item     8    87.5%   87.5%
+      OVERALL      232    99.6%     94%
+
+`sent` is the number that matters here and `first` is not. The worker shows the model every
+body it retrieves, so being second in the list costs nothing. The page's lane is the opposite
+and that is exactly why both are measured.
+
+**The numeral promise had to be re-derived or it would have quietly broken.** ask_corpus.py
+authorises every numeral in the WHOLE pack, and while the whole pack was the prompt those were
+the same set. They are not any more. Reading the published list after retrieval would authorise
+figures out of decisions the model never saw, which is the confident nonsense the gate exists
+to stop arriving through the gate itself. The allow-list is now read off the assembled prompt,
+so the promise is the one that file always made, kept exactly, and strictly tighter than the
+published file. Slugs are NOT narrowed, because every decision has an index line and so every
+id really was shown.
+
+### Three bugs the gold set found, all of them the same bug in new costumes
+
+**Fusion let the noisy list win.** "Erath county" put the one decision naming Erath first in
+the body list and nowhere in the title list, while twenty eight decisions matched "county" in
+both. Reciprocal rank fusion correctly preferred what both lists agreed on, and the agreement
+was about a word that means nothing. Each list is now cut to hits carrying at least one
+informative word BEFORE it is fused. County recall went 56.7% to 100%.
+
+**"How" and "what" cleared the informativeness bar.** They sit in 15 and 18 of 69 decisions,
+rare enough for any sensible IDF threshold, and they are in nearly every question a person
+types. That is how "how do i bake sourdough bread overnight" pulled three decisions into a
+prompt with not one word of it about the record. The frame of a question is now stripped from
+the QUERY before scoring, never from the documents. This is a stopword list and the file
+refuses to maintain one, so the distinction is written down where it lives: a topical stopword
+list is a judgement about a particular record that rots as the record grows, and IDF does that
+job better. This is the closed class of English words that turn a statement into a question.
+They will not become topical. "may" is deliberately absent, because it is a month.
+
+**A word the record has never used is evidence, and every scorer threw it away.** "Best way to
+train for a marathon" survived everything above, because "best" is in one decision, "way" is in
+five and "trains" is in one, all by accident, and a coincidence with three halves looks exactly
+like a signal. What tells them apart is the word nothing was reading. "Marathon" is in no
+decision at all, and BM25 cannot use that, since a term in no document contributes nothing to
+any score. This is the mirror of the bug wave 2 found, where an UNSEEN word scored as the most
+distinctive word there is. Same mistake read the other way, opposite correction.
+
+**And it is counted, not weighed.** The first version refused when half or more of a question's
+content words were unknown. That question is three quarters familiar, so the three coincidences
+outvoted the one word that meant anything, which is the shape of every bug in this retriever's
+history. One unknown word now stops the guess. It bites ONLY where corroboration already
+failed, so it never touches a question with two matching words in one decision, which is nearly
+every real one. What it refuses is the intersection of thin evidence and a word pointing
+elsewhere.
+
+**Which made an inflection fold necessary, and it had to stop at inflection.** With one unknown
+word decisive, "withdrawal permits" against a record that says "withdrawals" is a real reader
+refused over an "s". A word now counts as known if the record uses the same word in the other
+number, both directions, and nothing further. A first attempt also folded "ed", "ing", "al" and
+"ion", which is derivation and not inflection, and it read "train" as known because the record
+contains "training". Those are two different words, one is what a model does and the other is
+what a person does before a marathon, and folding them handed the marathon question three real
+decisions again. Recall fell 99.6 to 99.1 in the same move, which is how it was caught.
+
+That rule also refuses to guess for "anything about NVIDIA in Sherman" when the record has the
+county and not the company. Said out loud rather than discovered: that reader still gets an
+answer, from the index, naming the decision and what its line says. A degraded answer is the
+right side to fail on. The other way round puts three unrelated real decisions in front of a
+model asked about running, and a plausible answer assembled out of real text is the one thing
+nothing downstream can catch.
+
+### What else was not there and is now
+
+- **`bundled.js` had no freshness check at all.** It is what actually gets deployed, by being
+  pasted into a dashboard, and nothing compared it to the modules the tests run against. A
+  stale one would ship the previous design with every assertion passing. `bundle.mjs --check`
+  is a row in `workers/ask/test.js` now. The header also claimed a `test-bundle.mjs` that has
+  never existed.
+- **`workers/ask/retriever.js` is generated** by `ask_retrieval.py --write-worker` and its
+  self-test fails when the checked in copy drifts. The worker has no build step that could
+  notice, which is the whole reason.
+- **`/_config` reports the prompt's shape**, because the two things that turn retrieval off, a
+  pack with no index and a record small enough to send whole, are both invisible from outside.
+- **Three escape hatches, in order of how likely they are to fire.** `ASK_RETRIEVAL=off` sends
+  the whole pack, one dashboard variable and no deploy. A pack with no index sends everything,
+  which is what a worker deployed ahead of a site rebuild reads. A record under 40,000
+  characters of bodies sends everything, so if the record ever shrinks past the point where a
+  slice saves anything, this turns itself off with nobody maintaining a threshold.
+
+### The promise about typing, dropped
+
+Owner's call, verbatim: drop it. The copy came off the page in #59 already, so what was left
+was comments and test rationale still grounded in a promise the page had stopped making. The
+BEHAVIOUR stays and its reason is now written down honestly. A request per keystroke against a
+cap counted in calls a month is a bill that would empty the month in an afternoon, and an
+unannounced host on that page would carry what a reader is typing to somebody nobody chose.
+Neither of those was ever a sentence under a field.
 
 ## What wave 1 measured, and the two bugs it found
 

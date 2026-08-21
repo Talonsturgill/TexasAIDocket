@@ -273,6 +273,163 @@ ok("a broken counter cannot take the answer down with it", !threw);
 ok("and an empty rollup is all zeroes rather than undefined",
   Object.values(emptyUsage()).every((v) => v === 0));
 
+// ------------------------------------------- what the model was shown, and only that
+head("O. retrieval may not weaken the promise it inherited");
+const { allowedNumerals, systemBlocks } = await import("./answer.js");
+const { splitPack, queryOf } = await import("./retrieve.js");
+
+// A pack in miniature, with the shape ask_pack.py emits and asserts. Two things it has to be
+// rather than merely look like.
+//
+// BIG ENOUGH THAT RETRIEVAL TURNS ITSELF ON. Below the size where a slice stops saving
+// anything, assemble() correctly sends the whole record and this section would measure nothing.
+//
+// AND ENOUGH DECISIONS TO BE A CORPUS AT ALL. The retriever decides what counts as an
+// informative word from the record's own document frequencies, so in a fixture of three
+// documents a word in one of them appears in a third of everything and rightly scores as
+// telling you very little. Three items measured the threshold rather than the retrieval.
+const filler = (word) => (word + " ").repeat(700);
+const SUBJECTS = [
+  ["0001", "evaporative cooling", "8111", "alpha"],
+  ["0002", "transmission recovery", "8222", "beta"],
+  ["0003", "groundwater withdrawal", "8333", "gamma"],
+  ["0004", "curtailment reporting", "8444", "delta"],
+  ["0005", "interconnection queueing", "8555", "epsilon"],
+  ["0006", "abatement agreements", "8666", "zeta"],
+  ["0007", "biometric identifiers", "8777", "eta"],
+  ["0008", "procurement disclosure", "8888", "theta"],
+  ["0009", "reservoir accounting", "8999", "iota"],
+  ["0010", "spectrum licensing", "9111", "kappa"],
+  ["0011", "telemetry standards", "9222", "lambda"],
+  ["0012", "weatherisation credits", "9333", "mu"],
+];
+const body = ([n, subject, mw, pad]) =>
+  `[[tx-2026-${n}]] A decision about ${subject}\nThe topic is power and the grid. ` +
+  `Its status is decided.\nThe ${subject} was measured at ${mw} MW. ${filler(pad)}`;
+const FAKE = {
+  system: "INSTRUCTIONS. Answer from the record.",
+  index: "THE INDEX.\n" + SUBJECTS.map(([n, subject]) =>
+    `[[tx-2026-${n}]] ${subject}. decided.`).join("\n"),
+  pack: `THE COUNTS. It tracks ${SUBJECTS.length} decisions.\n\nTHE DECISIONS.\n\n` +
+        SUBJECTS.map(body).join("\n\n"),
+};
+
+// THE PROMISE ask_corpus.py MADE AND RETRIEVAL COULD HAVE QUIETLY BROKEN. The published
+// authorised list covers every numeral in the WHOLE pack. While the whole pack was the prompt
+// those were the same set. Reading the published list after retrieval would authorise figures
+// out of decisions the model never saw, which is the confident nonsense the gate exists to
+// stop, arriving through the gate itself.
+const blocks = systemBlocks(FAKE, [{ role: "user", content: "evaporative cooling" }], {});
+ok("a record this size is retrieved over rather than sent whole", blocks.length === 3,
+  String(blocks.length));
+const allow = allowedNumerals(blocks);
+ok("the allow-list is read off the assembled prompt, not off the whole record",
+  allow.has("8111") && !allow.has("8222") && !allow.has("8333"),
+  JSON.stringify([...allow].sort()));
+ok("...so a figure from a decision that was not sent is refused",
+  !checkNumerals("The transmission recovery was measured at 8222 MW.", allow).ok);
+ok("...and one from a decision that was sent passes",
+  checkNumerals("The evaporative cooling was measured at 8111 MW.", allow).ok);
+// The counts paragraph is in every prompt, so a count is always sayable. That is the point of
+// putting it above the breakpoint rather than treating it as one more retrievable passage.
+ok("the counts sit above the breakpoint, so a count is authorised on every question",
+  allow.has("12") && blocks[1].text.includes("It tracks 12 decisions"));
+
+// A SLUG IS NOT NARROWED THE SAME WAY, deliberately. Every decision has a line in the index
+// whatever the retriever thought, so every id really was shown and naming one is honest.
+ok("every decision stays citable, because every decision is indexed",
+  SUBJECTS.every(([n]) => blocks.some((b) => b.text.includes(`[[tx-2026-${n}]]`))));
+ok("...and the slice really is a slice, not the whole record under another name",
+  blocks[2].text.includes("8111") && !blocks[2].text.includes("8333"));
+
+head("P. the pack cuts back into its parts the way ask_pack.py promises");
+const cut = splitPack(FAKE.pack);
+ok("every block comes back out", cut.items.length === SUBJECTS.length,
+  String(cut.items.length));
+ok("the preamble stops at the mark", cut.preamble === "THE COUNTS. It tracks 12 decisions.",
+  JSON.stringify(cut.preamble));
+ok("each block keeps its id and its whole text",
+  cut.items[0].id === "tx-2026-0001" && cut.items[0].text.includes("measured at 8111 MW"));
+// A SHAPE CHANGE ON THE BUILDER'S SIDE MUST NOT PRODUCE A HALF EMPTY PROMPT. If the mark is
+// gone the cut fails loudly by returning nothing, and assemble() falls back to the whole pack.
+ok("a pack that lost its mark returns no items rather than guessing",
+  splitPack("THE COUNTS. Nothing else.").items.length === 0);
+ok("...and assemble sends everything when that happens",
+  systemBlocks({ ...FAKE, pack: "no mark" },
+               [{ role: "user", content: "x" }], {}).length === 2);
+
+head("Q. a follow-up is read next to the turn it follows");
+ok("the earlier user turn is part of the question",
+  queryOf([{ role: "user", content: "the Oncor line" },
+           { role: "assistant", content: "..." },
+           { role: "user", content: "and the dates" }]).includes("Oncor"));
+ok("...and the answerer's own words never are",
+  !queryOf([{ role: "user", content: "a" },
+            { role: "assistant", content: "ZZZ" }]).includes("ZZZ"));
+
+head("R. end to end, because the wiring is what the unit tests cannot see");
+// EVERYTHING ABOVE TESTS A FUNCTION. This tests the REQUEST, which is the only thing the API
+// ever sees, and it is where a correct assembler and a correct guard get joined up wrongly.
+// Nothing else here would notice systemBlocks being built and then the old whole-pack field
+// being sent, or the guard being handed the published allow-list instead of the narrowed one.
+const { answer: answerWhole } = await import("./answer.js");
+const FAKE_CORPUS = {
+  slugs: SUBJECTS.map(([n]) => `tx-2026-${n}`),
+  // Deliberately the WHOLE record's numerals, which is what the published file carries. If the
+  // worker reads this instead of the assembled prompt, the next assertion goes green wrongly
+  // and a figure out of an unsent decision reaches a reader.
+  authorised_numerals: ["3", "12", "8111", "8222", "8333", "8444", "8555", "8666",
+                        "8777", "8888", "8999", "9111", "9222", "9333"],
+};
+let sentBody = null;
+const realFetch = globalThis.fetch;
+globalThis.fetch = async (url, init) => {
+  const u = String(url);
+  if (u.endsWith("/pack.json")) return { ok: true, json: async () => FAKE };
+  if (u.endsWith("/corpus.json")) return { ok: true, json: async () => FAKE_CORPUS };
+  sentBody = JSON.parse(init.body);
+  return { ok: true, json: async () => ({
+    // One true sentence about what was retrieved, then one about a decision that was not.
+    content: [{ type: "text", text: "The evaporative cooling was measured at 8111 MW. " +
+                                     "The groundwater withdrawal was measured at 8333 MW." }],
+    usage: { input_tokens: 10, output_tokens: 20 },
+  }) };
+};
+const ENV = { ANTHROPIC_API_KEY: "test", ASK_PACK_URL: "https://x/pack.json",
+              ASK_CORPUS_URL: "https://x/corpus.json" };
+const out = await answerWhole([{ role: "user", content: "evaporative cooling" }], ENV,
+                              "2026-08-21T00:00:00Z");
+globalThis.fetch = realFetch;
+
+ok("the request carries three system blocks", sentBody?.system?.length === 3,
+  JSON.stringify(sentBody?.system?.length));
+ok("...with exactly one cache breakpoint, on the block that repeats",
+  sentBody.system.filter((b) => b.cache_control).length === 1 && !!sentBody.system[1].cache_control);
+ok("...and it is not the whole record under another name",
+  sentBody.system.map((b) => b.text).join("").length < FAKE.pack.length / 2,
+  `${sentBody.system.map((b) => b.text).join("").length} against ${FAKE.pack.length}`);
+ok("the sentence about what was retrieved is kept",
+  out.body.text.includes("8111"), JSON.stringify(out.body));
+// THE ASSERTION THIS WHOLE SECTION EXISTS FOR. 8333 is in the published allow-list and is NOT
+// in the prompt. If the worker reads the published file, this sentence is published.
+ok("the sentence about a decision that was not sent is withheld",
+  out.body.withheld === true && out.body.reason === "numeral", JSON.stringify(out.body));
+ok("...and the answer stops there rather than being quietly repaired",
+  !out.body.text.includes("8333"), JSON.stringify(out.body.text));
+
+head("S. the file that actually gets deployed is the one the tests ran against");
+// bundled.js is pasted into a dashboard by hand. Nothing else compares it to the modules, so a
+// stale one would ship the previous design with every assertion above passing.
+const { execFileSync } = await import("node:child_process");
+let bundleFresh = true, bundleWhy = "";
+try {
+  execFileSync("node", ["workers/ask/bundle.mjs", "--check"], { stdio: "pipe" });
+} catch (e) {
+  bundleFresh = false;
+  bundleWhy = String(e.stderr || e.message).trim();
+}
+ok("bundled.js is what the five modules produce", bundleFresh, bundleWhy);
+
 console.log("");
 console.log(fail === 0 ? `checks clean, ${pass} assertions`
                        : `checks FAILED, ${fail} of ${pass + fail}`);

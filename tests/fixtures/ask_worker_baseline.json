@@ -1,0 +1,44 @@
+{
+ "by_kind": {
+  "county": {
+   "n": 30,
+   "sent": 100,
+   "first": 60
+  },
+  "decider": {
+   "n": 52,
+   "sent": 100,
+   "first": 98.1
+  },
+  "nonsense": {
+   "n": 4,
+   "sent": 100,
+   "first": 100
+  },
+  "phrase": {
+   "n": 69,
+   "sent": 100,
+   "first": 100
+  },
+  "title": {
+   "n": 69,
+   "sent": 100,
+   "first": 100
+  },
+  "topic_item": {
+   "n": 8,
+   "sent": 87.5,
+   "first": 87.5
+  }
+ },
+ "total": {
+  "n": 232,
+  "sent": 99.6,
+  "first": 94
+ },
+ "tokens": {
+  "whole": 48124,
+  "mean": 8246,
+  "cached": 5463
+ }
+}

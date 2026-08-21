@@ -3843,11 +3843,13 @@ def ask_box(items: list, today: str, base: str = "") -> str:
     somebody deciding whether to trust the box rather than for somebody with a question.
 
     So the field is the first thing under the hero and the words are gone, except one line.
-    That line stays because "nothing is sent anywhere" is the one thing about this box a
-    reader cannot see by looking at it, and it is the whole reason it works on a phone with
-    no signal in a county meeting room.
+    That line went the same way twice more. It explained which half of the box sends and which
+    does not, which is a sentence about plumbing sitting where somebody is deciding what to
+    ask. What is left is the thing a reader can act on, that the answers come from a model
+    still being worked on and here is how to say when one is wrong.
 
-    The index and the catalogue still ship inline, so the box answers with no request.
+    The index and the catalogue still ship inline, so the box answers with no request. That is
+    still true and it is no longer advertised.
     """
     idx = ask_answers.index(items, today)
     cat = ask_answers.catalogue(idx)

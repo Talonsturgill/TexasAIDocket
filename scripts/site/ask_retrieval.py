@@ -31,6 +31,32 @@ numbers on unrelated scales; adding them lets whichever happens to have the larg
 every tie for no reason anybody chose. RRF throws the magnitudes away and keeps the ORDER,
 which is the only part of either score that means the same thing in both.
 
+THE FRAME OF A QUESTION IS NOT EVIDENCE ABOUT ITS SUBJECT
+
+`askFrame` is a stopword list, and the paragraph above refuses to maintain one, so the
+distinction has to be exact rather than convenient.
+
+A TOPICAL stopword list is a judgement about one particular record. It rots as that record
+grows, somebody has to revisit it every time a decision is filed, and IDF already does the job
+better and for free. That is the one this file will not have.
+
+`askFrame` is a different thing: the closed class of English words that turn a statement into a
+question. Interrogatives, auxiliaries, modals, pronouns, articles, prepositions. They are not
+about the subject in this record, they are not about the subject in any record, and they are
+not going to become about it.
+
+It exists because IDF cannot see the difference. "How" sits in 15 of 69 decisions and "what" in
+18. That is rare enough to clear any sensible informativeness threshold and both are in nearly
+every question a person types. It is how "how do i bake sourdough bread overnight" pulled three
+real decisions into a model's prompt when not one word of the question was about the record and
+the only word the retriever credited was "how".
+
+Dropped from the QUERY, never from the documents. Document frequencies stay exactly as the
+record made them, so nothing here can change what a word is worth. It only stops a reader's
+grammar being read as their subject.
+
+"may" is deliberately absent from the list. It is a month.
+
 ONE WORD IS A COINCIDENCE, TWO IS A SIGNAL
 
 The first version of the body search scored on BM25 alone and let a single common word decide.
@@ -110,8 +136,29 @@ function askIndex(items) {
 /* BM25. `idf` is the Robertson form with the +1 that keeps a term appearing in EVERY document
    at zero rather than negative: a word every decision uses says nothing about which one is
    meant, and a negative score would actively push the right answer down. */
+/* The frame of a question, dropped from the QUERY and never from the documents. The reasoning,
+   which is long and is not a reader's to download, is in scripts/site/ask_retrieval.py under
+   THE FRAME OF A QUESTION. Short version: IDF cannot tell "how" from a rare topical word, and
+   "how" is in nearly every question a person types. "may" is absent because it is a month. */
+var askFrame = new Set(("what which who whom whose when where why how whether " +
+  "is are was were be been being am do does did done doing " +
+  "can could will would shall should must ought " +
+  "have has had having " +
+  "the and but for nor yet so than that this these those there here " +
+  "about above across after against along among around before behind below beneath beside " +
+  "between beyond during except from inside into near onto outside over through throughout " +
+  "under underneath until upon with within without " +
+  "all any both each either few many more most much neither none once only other some such " +
+  "her hers him his its our ours she her their theirs them they you your yours mine my " +
+  "tell tells told say says said know knows get gets got give gives show shows " +
+  "want wants need needs please thanks thank hello " +
+  "anything something everything nothing anyone someone everyone " +
+  "just also very really still even ever never always").split(" "));
+
 function askBm25(idx, query) {
-  var qs = askTokens(query).filter(function (w) { return w.length > 2; });
+  var qs = askTokens(query).filter(function (w) {
+    return w.length > 2 && !askFrame.has(w);
+  });
   if (!qs.length) return [];
   var out = [];
   idx.docs.forEach(function (d) {
@@ -160,6 +207,47 @@ function askFuse(lists) {
    .replace("RRF_K", str(RRF_K)).replace("INFORMATIVE", str(INFORMATIVE))
 
 
+# --------------------------------------------------------------- the worker's copy
+# WHY THIS IS WRITTEN TO A FILE AND NOT IMPORTED.
+#
+# The browser lane gets this source inlined into the page by ask_answers.py at build time. The
+# worker cannot be built that way. It is deployed by pasting one file into a dashboard, it runs
+# on Cloudflare rather than on this repo's schedule, and it has no build step of its own.
+#
+# So its copy is a GENERATED FILE, checked in, and `--self-test` fails when it does not match
+# what js() produces. That is the whole guard: the two lanes cannot disagree about which
+# decision a question is about without something going red first, which is the failure this
+# repo keeps relearning under new names.
+WORKER_COPY = Path(__file__).resolve().parents[2] / "workers" / "ask" / "retriever.js"
+
+WORKER_HEAD = """// GENERATED FILE. Do not edit.
+//
+// The one retriever, emitted by scripts/site/ask_retrieval.py, which is where the reasoning
+// and the tests live. The browser lane gets the same source inlined into the page. Two copies
+// that agree today is the failure this repo keeps relearning, so neither is hand written and
+// `python3 scripts/site/ask_retrieval.py --self-test` goes red when they drift.
+//
+// Regenerate with:
+//
+//   python3 scripts/site/ask_retrieval.py --write-worker
+"""
+
+WORKER_TAIL = "\nexport { askTokens, askDoc, askIndex, askBm25, askFuse, askFrame };\n"
+
+
+def worker_js() -> str:
+    """Exactly what workers/ask/retriever.js must contain, byte for byte."""
+    return WORKER_HEAD + js().rstrip() + "\n" + WORKER_TAIL
+
+
+def write_worker() -> int:
+    WORKER_COPY.parent.mkdir(parents=True, exist_ok=True)
+    WORKER_COPY.write_text(worker_js(), encoding="utf-8")
+    print(f"{WORKER_COPY.relative_to(WORKER_COPY.parents[2])}  <-  ask_retrieval.js()")
+    return 0
+
+
+
 # --------------------------------------------------------------------------- self-test
 def _run(node_src: str) -> str:
     with tempfile.NamedTemporaryFile("w", suffix=".mjs", delete=False, encoding="utf-8") as fh:
@@ -186,6 +274,14 @@ def self_test() -> int:
        "K1" not in src.replace("askBm25", "") and "RRF_K" not in src
        and "INFORMATIVE" not in src)
     ok("...and the emitted source parses as JavaScript", True)
+
+    # THE WORKER'S COPY IS THIS COPY, or the build is red. Nothing else enforces it: the worker
+    # is pasted into a dashboard by hand and has no build step that could notice.
+    on_disk = WORKER_COPY.read_text(encoding="utf-8") if WORKER_COPY.exists() else ""
+    ok("the worker's checked in copy is byte for byte this one",
+       on_disk == worker_js(),
+       "run: python3 scripts/site/ask_retrieval.py --write-worker"
+       if on_disk else f"missing {WORKER_COPY}")
 
     # THE MATHS IS RUN, NOT ASSERTED. A retriever whose behaviour is described in a comment and
     # checked nowhere is a retriever that stops being what the comment says.
@@ -269,9 +365,13 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--self-test", action="store_true")
     ap.add_argument("--emit", action="store_true", help="print the JavaScript")
+    ap.add_argument("--write-worker", action="store_true",
+                    help="regenerate workers/ask/retriever.js")
     a = ap.parse_args()
     if a.self_test:
         return self_test()
+    if a.write_worker:
+        return write_worker()
     if a.emit:
         print(js())
     return 0

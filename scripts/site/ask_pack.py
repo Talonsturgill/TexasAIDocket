@@ -201,6 +201,63 @@ def tally(items: list, today: str) -> str:
     return "THE COUNTS, computed from the records below.\n" + _sentences(lines)
 
 
+INDEX_HEAD = """THE INDEX. Every decision the record holds, one line each, in the order they
+are filed. A line names what exists and never the detail. The full text of the decisions most
+likely to answer this question follows below, and it is a SLICE, so an item appearing here with
+no text below is still a real item this record carries.
+
+If the answer lies in an item whose full text is not below, say the record carries it, cite it
+by id and say what the line above states. Never state a figure, a date or a quote for an item
+whose full text is not below, because the line is all there is to go on.
+
+This index is a list. It is not a model for how to write, so do not answer in this shape."""
+
+
+def index_line(it: dict, today: str) -> str:
+    """One decision, compressed to what tells a reader whether it is the one they mean.
+
+    ID, title, topic, decider, status, place, window. Nothing else, and no figures beyond the
+    closing date of a window that is open, because a line is not evidence and a number on it
+    would authorise itself for an item whose body the model was never shown.
+    """
+    geo = it.get("geography") or {}
+    pa = it.get("public_access") or {}
+    dec = it.get("decider") or {}
+    counties = geo.get("counties") or []
+
+    bits = [TOPIC_WORDS.get(it["topic"], it["topic"].replace("-", " ")),
+            dec.get("name", "not recorded"),
+            it.get("status", "unknown")]
+    if geo.get("statewide"):
+        bits.append("statewide")
+    elif counties:
+        bits.append(" and ".join(counties) if len(counties) < 3
+                    else ", ".join(counties[:-1]) + " and " + counties[-1])
+    if geo.get("on_ercot"):
+        bits.append("on the ERCOT grid")
+
+    state = dk.window_state(it, today)
+    if state == "open":
+        closes = pa.get("closes")
+        bits.append(f"open until {longdate(closes)}" if closes else "open now")
+    elif state == "closed":
+        bits.append("window closed")
+
+    return f"[[{it['id']}]] {it['title'].rstrip('.')}. " + ", ".join(bits) + "."
+
+
+def index(items: list, today: str) -> str:
+    """The whole index, which is the block the model always gets whatever else it does not.
+
+    THIS IS THE SAFETY PROPERTY OF RETRIEVING AT ALL. A retrieval chatbot's worst failure is
+    not missing a passage, it is answering as though the missing thing does not exist, and a
+    reader has no way to see that happen. Handing over the complete list of what EXISTS costs
+    a fraction of the bodies and deletes that failure rather than mitigating it. It also lets
+    retrieval be generous, because being wrong about which bodies to send is now recoverable.
+    """
+    return INDEX_HEAD + "\n\n" + "\n".join(index_line(it, today) for it in items)
+
+
 def item_prose(it: dict, today: str) -> str:
     """One decision, as the model should read it.
 
@@ -416,13 +473,40 @@ def build(today: str = None, docs_dir=None) -> dict:
     parts.extend(item_prose(it, today) for it in items)
 
     pack = "\n\n".join(parts)
+    idx = index(items, today)
     return {
         "generated": today,
         "system": SYSTEM,
+        # THE WHOLE RECORD, STILL PUBLISHED WHOLE, and it stays that way even though the worker
+        # now sends a slice of it. This file is fetched by a worker that is deployed by hand,
+        # by pasting, and the site rebuilds itself every day without asking anybody. Dropping a
+        # field the live worker reads would take the ask box down the morning after a run, with
+        # nothing in this repo to show for it. It is also the escape hatch: ASK_RETRIEVAL=off
+        # sends this instead of a slice, one dashboard variable away, no deploy.
         "pack": pack,
+        # THE INDEX, which is what makes sending a slice safe rather than merely cheaper. Every
+        # decision gets a line whatever the retriever thinks, so the model always knows what
+        # EXISTS and the retrieval failure that a reader cannot see, answering as though the
+        # missing item is not there, is designed out instead of managed.
+        "index": idx,
+        "index_chars": len(idx),
         "chars": len(pack),
         "items": len(items),
     }
+
+
+# THE SPLIT CONTRACT, WRITTEN DOWN ON THE SIDE THAT PRODUCES THE PACK.
+#
+# The worker cuts `pack` back into a preamble and one block per decision, because shipping the
+# bodies a second time in the same JSON would double a file the record already fills. That cut
+# is only safe while the shape below holds, so the shape is asserted here rather than assumed
+# there, and `workers/ask/test.js` runs the same assertions from the other side.
+#
+#   1  the preamble runs to the line "THE DECISIONS." and nothing above it starts with "[["
+#   2  every decision block starts at the beginning of a line with "[[<id>]] "
+#   3  blocks are separated by a blank line
+#   4  ids are unique and there are exactly as many blocks as decisions
+DECISIONS_MARK = "THE DECISIONS."
 
 
 def self_test() -> int:
@@ -492,6 +576,63 @@ def self_test() -> int:
               str(third) not in text, f"found {third}")
     check("no hourly array reached the pack",
           "hour_ending" not in text and "load_mw" not in text)
+
+    print("the index, which is what makes sending a slice safe")
+    idx = p["index"]
+    check("every decision has a line in the index",
+          all(f"[[{it['id']}]]" in idx for it in items),
+          str([it["id"] for it in items if f"[[{it['id']}]]" not in idx][:3]))
+    check("the index has exactly one line per decision, plus its header",
+          len([l for l in idx.splitlines() if l.startswith("[[")]) == len(items),
+          str(len([l for l in idx.splitlines() if l.startswith("[[")])))
+    # WHAT AN INDEX LINE IS ALLOWED TO PUT IN A READER'S HANDS.
+    #
+    # The worker authorises the numerals in what it actually sent, so every figure on a line
+    # becomes sayable for an item whose body the model was never shown. That is correct for an
+    # IDENTIFIER, which is the whole point of naming the thing, and wrong for a MEASUREMENT,
+    # which is a claim about the world that only a body carries the evidence for.
+    #
+    # Docket numbers live in titles, so the line cannot be figure free without being useless.
+    # The two checkable properties are that a line never INVENTS a number the record does not
+    # already contain, and that no measurement rides on one.
+    import re as _re  # noqa: E402
+    line_nums = set()
+    for line in idx.splitlines():
+        if line.startswith("[["):
+            line_nums |= set(_re.findall(r"\d[\d,]*(?:\.\d+)?",
+                                        _re.sub(r"^\[\[[^\]]+\]\]", "", line)))
+    pack_nums = set(_re.findall(r"\d[\d,]*(?:\.\d+)?", text))
+    check("the index never introduces a number the record does not carry",
+          line_nums <= pack_nums, str(sorted(line_nums - pack_nums)[:3]))
+    units = [u for u in (" MW", " MWh", "acre feet", "percent", "kWh", " GW")
+             if any(u in l for l in idx.splitlines() if l.startswith("[["))]
+    check("no measurement rides on an index line, only identifiers and a closing date",
+          not units, str(units))
+    check("the index is a fraction of the bodies it stands in for",
+          p["index_chars"] < p["chars"] // 4,
+          f"{p['index_chars']} against {p['chars']}")
+
+    print("the split contract, which the worker cuts on")
+    # The worker cuts the pack back into a preamble and one block per decision rather than
+    # being handed the bodies a second time in the same JSON. That cut is only safe while this
+    # shape holds. workers/ask/test.js asserts the same thing from the other side.
+    fence = "\n\n" + DECISIONS_MARK + "\n\n"
+    check(f"the pack carries the {DECISIONS_MARK!r} mark once, fenced by blank lines",
+          text.count(fence) == 1, str(text.count(fence)))
+    pre, _, rest = text.partition(fence)
+    check("nothing above the mark could be mistaken for a decision block",
+          not any(l.startswith("[[") for l in pre.splitlines()))
+    blocks = [b for b in rest.split("\n\n") if b.strip()]
+    check("every block below the mark starts with an id at the start of a line",
+          all(b.startswith("[[") for b in blocks),
+          str([b[:40] for b in blocks if not b.startswith("[[")][:2]))
+    check("there are exactly as many blocks as decisions",
+          len(blocks) == len(items), f"{len(blocks)} blocks, {len(items)} decisions")
+    ids = [b[2:b.index("]]")] for b in blocks]
+    check("and the ids are unique and in the record's order",
+          ids == [it["id"] for it in items])
+    check("no decision body contains a blank line, which would split it in two",
+          all("\n\n" not in item_prose(it, p["generated"]) for it in items))
 
     print("size, which is a bill and not a warning")
     approx = round(len(text) / 4)

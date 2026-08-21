@@ -656,6 +656,11 @@ jobs:
         run: |
           python3 scripts/site/ask_pack.py --self-test
           python3 scripts/site/ask_corpus.py --self-test
+          # ONE RETRIEVER, TWO LANES. The browser routes a reader with it and the worker
+          # chooses which decision bodies go in the prompt with it. The worker's copy is a
+          # generated file, because the worker is deployed by pasting and has no build step
+          # that could notice it going stale, and this is what notices.
+          python3 scripts/site/ask_retrieval.py --self-test
 
       # The worker's checker, which is the only thing standing between a model's guess and a
       # published claim. Half of these assertions are sentences that must NOT trip a guard: a
@@ -663,6 +668,17 @@ jobs:
       # of decline, and it fails silently, because the answer still looks fine.
       - name: What a written answer is allowed to say
         run: node workers/ask/test.js
+
+      # WHICH DECISIONS THE WORKER PUTS IN FRONT OF THE MODEL, scored against the same gold set
+      # the page's router is scored against. Two lanes, one retriever, two different questions
+      # asked of it, so a change that helps one can hurt the other and only two numbers show it.
+      #
+      # No browser and no model call. It fails on one thing, the same one ask_eval fails on: a
+      # question sharing nothing with the record must not drag real decisions into a prompt,
+      # because a plausible answer assembled out of real text is what nothing downstream can
+      # catch. Everything else prints against the recorded baseline.
+      - name: What the worker retrieves, measured against the record
+        run: node tests/ask_worker_retrieval.mjs --against tests/fixtures/ask_worker_baseline.json
 
       # The client for the lane that leaves the page, and the copy a reader is shown. The copy
       # ships inside a JavaScript string where house_style_check cannot reach it, so the house
