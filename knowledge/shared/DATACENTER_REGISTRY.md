@@ -86,6 +86,51 @@ It ignores a date that was merely reformatted, because burying an owner swap und
 noise is how a watch stops being read. **The record starts on August 19th of 2026**, the first
 snapshot, and the page says so rather than implying the list was stable before anyone looked.
 
+## THERE IS A SECOND STATE REGISTER, AND IT IS ABOUT BUILDINGS
+
+The Comptroller's list records a TAX STATUS. It carries no address, no size, no cost and no
+schedule, because none of those is what an exemption is about.
+
+The Texas Department of Licensing and Regulation registers CONSTRUCTION. Every large commercial
+project is filed with it under the architectural barriers program, and the filing is public. Each
+one carries a project name, a street address, a county, a type of work, a scope in the filer's own
+words, a square footage, an estimated cost and a schedule.
+
+    THE TWO REGISTERS DISAGREE AND NEITHER IS WRONG. They record different acts. Microsoft's
+    certified rows in San Antonio name SAT designations 09 to 17, 80 to 85 and 89 to 90. Its
+    construction filings name SAT40, SAT46, SAT93 and SAT94 as well, and put the newest and
+    largest of them in MEDINA COUNTY, which carries no Microsoft row in the Comptroller's list at
+    all. Only reading both shows the shape of a buildout.
+
+The filings also confirm a registry oddity from the outside. The oldest row in the certified list
+is a Microsoft building whose occupant is Chevron, which reads like an error until a 2019
+construction filing turns up named "Microsoft Chevron/SN7 Colo 1".
+
+**Four things about this source that will produce a wrong number if they are forgotten.**
+
+- **The search endpoint ignores its city parameter.** A search for Microsoft in San Antonio
+  returns the Irving buildings too. Scope on the RECORDS, never on the request.
+- **A designation can be filed more than once.** SAT82 has two filings at two addresses. SAT93 and
+  SAT94 each have a large filing and a small later one. Summing every row as a separate building
+  overstates the buildout, so money is grouped by the designation AS FILED.
+- **A filing that names a range names several buildings and has ONE cost.** Spreading SAT11-14's
+  sixty two million across four rows reports it four times.
+- **The county field is filer entered.** Five filings share postcode 78245 on the Lambda Drive
+  campus and one of them says Medina where the other four say Bexar. The published page reports
+  that disagreement and does not resolve it. It also does NOT decide the question from the
+  postcode: ZIPs cross county lines, and an earlier version of that check invented a postcode to
+  county table and flagged four correct filings as errors against it.
+
+**It names people and this project does not.** Every filing carries the contact who submitted it
+and the registered accessibility specialist who inspects it, with direct phone numbers. The parser
+drops all of it at the point of parsing, and the gate checks again on what landed.
+
+`robots.txt` at tdlr.texas.gov disallows `/ithelp/` and `*.csv` and nothing else, so the search
+endpoint and the print view are both permitted. `scripts/site/tdlr_fetch.py` pulls and parses,
+writing the raw response to disk before reading it so a reparse costs no second visit.
+`scripts/site/tdlr_projects.py` computes every figure the page shows. Neither runs on a cron and
+neither is a routine phase. This is research, run by hand.
+
 ## THE RAW TABLE CARRIES A REGISTRATION NUMBER AND THE LEDGER DROPS IT
 
 Every party on every row has one, in the form `LD370879-OW1`, `-OC1`, `-OP1` for the owner, the

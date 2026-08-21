@@ -482,6 +482,27 @@ def facility_css() -> str:
 @media (max-width:34rem) { .glabel { font-size:17px; } .ggrid { opacity:.3; }
   .gnamed .glabel { opacity:0; } }
 
+/* THE CONSTRUCTION REGISTER. A row per designation, money and size on their own baselines so a
+   reader compares down a column rather than reading across a sentence. Mono throughout, because
+   every figure on this site is set in mono and a number that changes typeface between surfaces
+   reads as a different kind of number. */
+.cbtable { margin:1rem 0 0; border-top:var(--hair) solid var(--rule); }
+.cbrow { display:grid; grid-template-columns:6.5rem 9rem 8rem 1fr 6rem; gap:.2rem .9rem;
+  align-items:baseline; padding:.5rem 0; border-bottom:var(--hair) solid var(--rule);
+  font-family:var(--mono); font-size:var(--s-2); color:var(--ink-mute); }
+.cbd { color:var(--ink-bright); letter-spacing:.04em; }
+.cbm { color:var(--caliche); }
+.ctwo { display:grid; grid-template-columns:1fr 1fr; gap:0 2rem; margin:.6rem 0 0; }
+.ctwo h3 { font-family:var(--mono); font-size:var(--s-2); letter-spacing:.1em;
+  text-transform:uppercase; color:var(--ink-mute); margin:1rem 0 .4rem; font-weight:600; }
+.construction .rcl li { font-family:var(--mono); font-size:var(--s-2); }
+
+@media (max-width:44rem) {
+  .cbrow { grid-template-columns:6.5rem 1fr; gap:.1rem .8rem; }
+  .cbd { grid-row:span 4; }
+  .ctwo { grid-template-columns:1fr; }
+}
+
 /* WHAT THE REGISTRY CHANGED. A before and an after on the same row, so the two lines sit
    directly above one another and the eye can diff them without moving sideways. */
 .rcday { margin:2rem 0 0; padding-top:1rem; border-top:var(--hair) solid var(--rule); }

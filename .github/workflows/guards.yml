@@ -137,6 +137,19 @@ jobs:
       - name: Every entity resolves and every group states its reason
         run: python3 scripts/site/entities.py
 
+      # THE SECOND STATE REGISTER. The parser drops every person in a filing before anything
+      # reaches a file, and the gate checks again on what landed. The grouping self-tests carry
+      # the three real shapes that would overstate a buildout: a designation filed twice, a range
+      # that names four buildings under one cost, and a package number that is not a range.
+      - name: Construction register parser self-test (it keeps no person)
+        run: python3 scripts/site/tdlr_fetch.py --self-test
+
+      - name: Construction register self-test (a cost is never counted twice)
+        run: python3 scripts/site/tdlr_projects.py --self-test
+
+      - name: Every construction filing is well formed and names nobody
+        run: python3 scripts/site/tdlr_projects.py
+
       # WHAT THE REGISTRY CHANGED. The state edits rows in place, keeping the original effective
       # date while replacing the parties, so a diff of two snapshots is the only record that an
       # owner ever changed. Computed at build time from the raw snapshots, never a second ledger.
@@ -542,6 +555,16 @@ jobs:
 
       - name: Every var() in the built stylesheets resolves
         run: python3 scripts/site/css_tokens.py
+
+      # A CANONICAL IS MARKUP, so no copy lint ever read one. Five call sites handed page() an
+      # absolute URL where it wanted a path, and every facility and company page published
+      # its own host twice. An orphan is the same shape: in the sitemap, reachable by URL,
+      # linked from nowhere, and indistinguishable from a working page until someone looks.
+      - name: Link and canonical self-test (both faults, replayed)
+        run: python3 scripts/site/link_check.py --self-test
+
+      - name: Every canonical resolves and every page is reachable
+        run: python3 scripts/site/link_check.py
 
       - name: The published shape cannot move without saying so
         run: |

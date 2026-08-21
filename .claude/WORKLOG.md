@@ -76,6 +76,7 @@ calendar: with script off the row is a plain link to the page.
 | D3 | Batch 3: the entity layer, plus nine more dossiers | DONE, 29 dossiers and 197 facts |
 | D4 | Batch 4: the network field, the change log, three gate defects | DONE, 30 dossiers and 213 facts |
 | D5 | Batch 5: nine more, and two tenants the announcements withheld | DONE, 39 dossiers and 271 facts |
+| D6 | Batch 6: the construction register, and two faults in shipped pages | DONE, 32 filings and /construction/ |
 | E | Dossier schema + `ledger/facilities/dossiers.json` | DONE |
 | F | `facility_dossier.py` gate, 24 self-tests | DONE |
 | G | Per-facility page at `/facility/<slug>/`, in the sitemap | DONE |
@@ -300,7 +301,60 @@ Also added: `Hutto Data Center 3 LLC`, `PowerCampus Dallas by Lancaster Data Cen
 what the control is for. See GATE_LESSONS entry 59 ("CSS fails silently, and a green suite has
 never once looked at a colour").
 
-## Batch 6 candidates
+## Batch 6: a second state register
+
+The batch started as Microsoft's eleven San Antonio rows and turned into a new data source.
+
+**The Comptroller is not the only register.** Every large commercial project in Texas is filed
+with the Department of Licensing and Regulation under the architectural barriers program, and the
+filing is public: project name, street address, county, type of work, scope in the filer's own
+words, square footage, estimated cost, schedule and design firm. `robots.txt` permits both the
+search endpoint and the print view.
+
+For Microsoft in the San Antonio area that is 25 filings and $3.86 billion, and it names buildings
+the certified list does not: SAT40, SAT46, SAT93 and SAT94. The newest and largest of them are in
+**Medina County**, which carries no Microsoft row in the Comptroller's list at all. A 2019 filing
+named "Microsoft Chevron/SN7 Colo 1" also explains the oddest row in the certified list, where the
+oldest Microsoft building has Chevron as its occupant.
+
+`scripts/site/tdlr_fetch.py` pulls and parses, `scripts/site/tdlr_projects.py` computes every
+figure, `ledger/facilities/projects.json` holds the filings and `/construction/` publishes it.
+Neither script is a routine phase and neither runs on a cron.
+
+### Four ways this source produces a wrong number, all of them real
+
+- The search endpoint takes a city and ignores it. A Microsoft search scoped to San Antonio
+  returns the Irving buildings. Scoping happens on the records.
+- A designation can be filed twice. SAT82 has two filings at two addresses. Money is grouped by
+  the designation as filed so a building is not counted twice.
+- A filing naming a range names several buildings and has ONE cost. Spreading SAT11-14's sixty two
+  million across four rows would report it four times.
+- The county field is filer entered. Five filings share one postcode on the Lambda Drive campus
+  and one says Medina where four say Bexar. The page reports the disagreement.
+
+The first version of that last check invented a postcode to county table and flagged four correct
+filings against it. A postcode does not belong to a county. The check is now purely internal and
+makes no claim about geography.
+
+### The parser drops every person
+
+A filing carries the contact who submitted it and the accessibility specialist who inspects it,
+with direct phone numbers. None of it reaches a file. The gate checks again on what landed.
+
+### Two faults this batch found in pages already shipped
+
+**Every facility and company page had a doubled canonical.** `page()` prefixes the site to the
+canonical it is handed and five call sites handed it an absolute URL, so the tag read
+`https://texasaidocket.com/https://texasaidocket.com/facility/...`, along with og:url. A canonical
+is markup, so no copy lint ever read one, and it resolves in a browser so nothing looked broken.
+`page()` now refuses an absolute canonical at the point of use.
+
+**Three pages were orphans.** `registry-changes` and `questions` were in the sitemap and reachable
+by URL with nothing on the site linking to them. `questions` was simply left out of the footer
+list its siblings are in. `scripts/site/link_check.py` checks both faults and carries an allowlist
+where an unlinked page needs a stated reason.
+
+## Batch 7 candidates
 
 Unchanged from batch 4 and still the best targets: the five Amazon codenames want a county
 appraisal district pass, and CoreWeave Denton, CoreWeave Plano, the Microsoft San Antonio cluster,
