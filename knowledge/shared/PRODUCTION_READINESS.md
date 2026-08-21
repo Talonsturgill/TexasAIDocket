@@ -70,7 +70,7 @@ at the keyboard.
 | Clock skew | UTC everywhere, and the collector trusts the payload's own timestamp over HTTP freshness |
 | Infrastructure as code | The workflows and `config/` are the infrastructure. There is no cloud estate to declare |
 | Dependency hell | Structurally impossible. There are no dependencies |
-| Postmortems | `GATE_LESSONS.md`, 30 entries, each naming what to check instead |
+| Postmortems | `GATE_LESSONS.md`, 58 entries, each naming what to check instead |
 | Chaos engineering, lightly | Gates are proved by planting the real defect and watching them go red, and the build is proved against a one-commit shallow clone |
 | Observability, partially | `gridwatch_pagecheck.py` reads the published page daily and exits 2 when the collector has fallen behind |
 
@@ -102,7 +102,7 @@ Every gate proves the BUILD is correct. Not one of them opens `texasaidocket.com
 it answers. If DNS lapsed, the `CNAME` were clobbered, the domain expired or Pages unpublished
 the site, every check would stay green and the site would be dark.
 
-**This exact shape has already happened once.** `GATE_LESSONS` entry 10 records a merge that
+**This exact shape has already happened once.** `GATE_LESSONS` entry 11 ("A deploy that depends on who pushed") records a merge that
 left the live site on the previous build with every gate green, because a `GITHUB_TOKEN` push
 does not start a workflow, so no run had even begun. The fix was a two-hourly deploy backstop,
 which re-deploys blindly. It does not verify the result.

@@ -108,6 +108,16 @@ jobs:
       - name: Every guard job is behind the required check
         run: python3 scripts/shared/guards_shape.py
 
+      # THE CITATIONS INTO GATE_LESSONS. Scripts and prompts cite that file by entry number to
+      # reach the story behind a rule, and the numbering had drifted until one citation resolved
+      # to a different lesson entirely. A citation that resolves to the wrong thing reads exactly
+      # like one that resolves, so this is not a thing review catches. Self-test first.
+      - name: Lesson reference self-test (prove it can go red)
+        run: python3 scripts/shared/lesson_refs.py --self-test
+
+      - name: Every lesson citation names the lesson it points at
+        run: python3 scripts/shared/lesson_refs.py
+
       # THE ROUTINE'S OWN CLAIMS ABOUT PUBLISHED COPY. An unattended run reads
       # prompts/daily_routine.md to know what to do, and part of that file describes what the
       # pages say. A description that has gone stale is not wrong about a fact, it is wrong

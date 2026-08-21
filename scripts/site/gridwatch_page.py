@@ -610,8 +610,8 @@ def body(records: list[dict], today: str, queue_data: dict | None = None) -> str
         f'</td></tr>'
         for k, v in sorted(fuel.items(), key=lambda kv: -kv[1]) if isinstance(v, (int, float)))
     # THE ARITHMETIC A READER WOULD DO, SHOWN. Gross generation and the net after storage are
-    # different numbers, and the reconciliation below compares the net one. Printing only the
-    # gross would leave a reader subtracting our figures and landing somewhere we did not.
+    # different numbers. Printing only the gross would leave a reader subtracting our figures
+    # and landing somewhere we did not.
     net = sum(v for v in fuel.values() if isinstance(v, (int, float)))
     fuel_rows += (f'<tr><td><strong>Gross generation</strong></td>'
                   f'<td class="n num"><strong>{n0(served)}</strong></td>'
@@ -631,7 +631,7 @@ def body(records: list[dict], today: str, queue_data: dict | None = None) -> str
     acc_block = ""
     if acc:
         acc_block = f"""
-<h4>Forecast accuracy</h4>
+<h3>Forecast accuracy</h3>
 <div class="prose">
   <p>Across <strong class="num">{n0(acc['days'])}</strong>
   {plural(acc['days'], 'day', 'days')} its day ahead peak forecast missed by
@@ -644,7 +644,7 @@ def body(records: list[dict], today: str, queue_data: dict | None = None) -> str
     t = f["trend"]
     if t and t.get("trough_change_mw") is not None:
         trend_block = f"""
-<h4>The fingerprint</h4>
+<h3>The fingerprint</h3>
 <div class="prose">
   <p>Over the <strong class="num">{n0(t['window_days'])}</strong> days held, the overnight
   trough moved by <strong class="num">{n0(t['trough_change_mw'])} MW</strong> and the daily
@@ -655,21 +655,13 @@ def body(records: list[dict], today: str, queue_data: dict | None = None) -> str
 </div>"""
     elif f["days_verified"] < 14:
         trend_block = f"""
-<h4>The fingerprint</h4>
+<h3>The fingerprint</h3>
 <div class="prose">
   <div class="gap"><strong>Not yet.</strong> Comparing the trough against the peak needs at
   least <strong class="num">14</strong> settled days, so that a weekday and weekend pattern has
   repeated twice. The record holds <strong class="num">{n0(f['days_verified'])}</strong>.
   Nothing is drawn from fewer, because a line through two points is noise with a slope.</div>
 </div>"""
-
-    recon = L.get("reconciliation_pct")
-    recon_block = ""
-    if recon is not None:
-        recon_block = f"""
-  <p>Separate feeds, and everything generated inside the grid is consumed inside it, so they
-  must agree. They differ by <strong class="num">{pct(abs(recon))}%</strong>, about what ties
-  and losses account for. Both print because this catches either reader breaking.</p>"""
 
     # THE QUEUE GAP LEADS. It is the question every other one on this beat resolves to, and
     # the daily reading below is the measured answer to "and what is actually happening".
@@ -698,14 +690,7 @@ def body(records: list[dict], today: str, queue_data: dict | None = None) -> str
 
   <h3>What served it</h3>
   {fuel_bar(L)}
-  {recon_block}
 
-  <h3>The shape is the story</h3>
-  <div class="prose">
-    <p>A data center draws about as much at four in the morning as at five in the afternoon.
-    Constant load lifts the overnight floor faster than the afternoon ceiling. Weather lifts
-    both. The floor is where new demand shows first.</p>
-  </div>
   {trend_block}
   {acc_block}
 </section>
@@ -750,8 +735,6 @@ def authorised(f: dict) -> set[str]:
             pct(L.get("load_share_of_capacity_pct")))
         if L.get("load_factor"):
             add(pct(L["load_factor"] * 100.0))
-        if L.get("reconciliation_pct") is not None:
-            add(pct(abs(L["reconciliation_pct"])))
         served = sum(v for v in (L.get("fuel_energy_mwh") or {}).values()
                      if isinstance(v, (int, float)) and v > 0)
         if served:

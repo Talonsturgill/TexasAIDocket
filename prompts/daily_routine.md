@@ -606,7 +606,7 @@ was opened and what it showed.
 - **`/topic/`, counting one card against its own page.** Open the hub, pick the beat this run
   touched, and check the count on the card equals the number of decisions listed on the beat's
   page. Then read the `still open to comment` figure. It is a claim about TODAY rather than
-  about the record, and `GATE_LESSONS.md` entry 26 is what happens when those two are confused.
+  about the record, and `GATE_LESSONS.md` entry 44 ("A field's name is not a claim about today") is what happens when those two are confused.
   The per beat figures must sum to the number the front page's own counter prints.
 - **`/place/`, for the place this run landed something in.** Is that county or metro on the hub,
   and does its count match the page behind it? A place that took an item today and is not on the
