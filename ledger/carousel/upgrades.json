@@ -178,4 +178,77 @@
       }
     ]
   }
+  ,
+  "2026-08-21": {
+    "run": "carousel no. 6, driverless work in Texas and the August 25th transportation hearing",
+    "actor": "upgrade",
+    "upgrades": [
+      {
+        "what": "plan_render_check gains DECLARED: every display string a dossier's `type:` block declares must be on the frame that shipped",
+        "why": "build_slides.py refused this run's build over a slide 9 byline 72px too wide, printed the refusal to a stream the caller had suppressed, and its exit code was never read. The previous build's HTML was still in out/<date>/slides/, the renderer rendered it, every gate in the suite passed on it, and three scoring judges graded a deck that had never been built. Two repairs the run believed it had shipped existed only in storyboard.md. plan_render_check itself passed, because palettes and acceptance items are not the words. This is the tenth panel's own one sentence fix.",
+        "files": [
+          "scripts/carousel/plan_render_check.py"
+        ],
+        "verification": "python3 scripts/carousel/plan_render_check.py --self-test, twelve cases. Six are new: a hook that lives only in the plan is caught AND the message names what the frame printed instead; a dek that never reached the frame is caught; a label that drifted warns rather than failing; a hook the renderer joined across two spans with no space still passes; a storyboard declaring no display string at all FAILS; declared strings with nothing rendered to compare them to FAILS. Forced red on the REAL artifact through the real exit-code path: out/2026-08-21 with slide 4's dek reverted to its pre-repair wording exits 1 and names both strings. Replayed over all five shipped decks it is silent on 2026-08-20 and on 2026-08-21's hooks and deks, and names genuine drift on 2026-08-19 slide 3 (planned 'No provider', shipped 'No service provider') and slide 6 (planned 'the sector's membership body', shipped 'the Data Center Coalition'). shipped_check still exits 0 because the gate is CURRENT scope.",
+        "revert": "the upgrade commit for 2026-08-21, this file's hunk in plan_render_check.py alone",
+        "how_i_would_know_this_was_wrong": "if it starts failing frames that are correct. The one shape that would do it is a hook the renderer splits across nodes in a way squash() cannot see, which is why squash removes every space rather than collapsing it: collapsing produced 14 false failures on 2026-08-16 alone. If a future deck legitimately renders a declared string in two separate text nodes with other text between them, this fails a good frame and the answer is to compare per node with a join, never to widen the match.",
+        "honest_limit": "it can only compare a string the plan declares. Slide 9's source line is declared nowhere, so the other half of this run's defect, a byline filing a TxDOT claim under the Legislature, is still invisible. The coverage count is printed on success for exactly that reason."
+      },
+      {
+        "what": "sources_block.py can no longer report clean when it was handed nothing",
+        "why": "it was invoked as `--run 2026-08-21` for the whole run and there is no `--run`. Argparse prefix-matched `--run-dir`, the bare date became the path, the path did not exist, no printed ids were found, every printed id therefore resolved, and it printed `sources block: clean` and exited 0 every time it was asked, including immediately after slide 6 gained two claim ids the published block did not list. shipped_check caught the real state one step later. A checker whose empty case is indistinguishable from its clean case is worse than none, because it is trusted.",
+        "files": [
+          "scripts/carousel/sources_block.py"
+        ],
+        "verification": "python3 scripts/carousel/sources_block.py --self-test, twenty two cases. Six are new and each closes one of the silences: a run directory that does not exist is caught; an exempt-looking path that does not exist is caught too, because the existence test now runs BEFORE the name-keyed exemption; a deck that prints no claim id at all is caught; and three subprocess cases run the command line by exit code, proving `--run` is refused rather than prefix-matched, that a missing run directory exits non-zero, and that neither --build nor --check is refused. The old assertion that the exemption worked used /nonexistent/2026-08-16 and proved the opposite of what it claimed; it now builds a real directory. email_check --self-test, email_check --all and shipped_check are unchanged by it.",
+        "revert": "the upgrade commit for 2026-08-21, this file's hunk in sources_block.py alone",
+        "how_i_would_know_this_was_wrong": "if a legitimate caller starts failing on the zero-printed-ids case. That would mean a deck genuinely cites nothing on any frame, which this project has never shipped and which is itself the defect. The library still returns [] when copy.json is simply absent, so shipped_check and email_check keep reporting 'not applicable' rather than a failure, and only the command line refuses. If that split ever confuses somebody, the fix is to make the library say not-applicable explicitly rather than to soften the command line."
+      },
+      {
+        "what": "aggregate_check.to_int reads a thousands separator, so a quoted figure at or above 1,000 can be declared through quoted_from at all",
+        "why": "NUM was taught to consume a thousands separator in August after '2,600 streamlines' was reported as 600. to_int was not, so it tested '1,400' with str.isdigit(), got False, fell through to the number words and returned None. _rederive_quoted builds its token list from it, so the list collapsed to empty and the gate reported that the quoted string 'carries no numeral at all' about a string that reads 1,400. No figure of four digits or more could take the honest quoted route. Slide 4's 1,400 hit it this run and was routed through computed_by instead. A gate that refuses the honest route teaches a run that the shortcut passes.",
+        "files": [
+          "scripts/carousel/aggregate_check.py"
+        ],
+        "verification": "python3 scripts/carousel/aggregate_check.py --self-test, six new cases: '1,400' parses to 1400, a bare 1400 still does, a number word still does, a non-number is still None, a four digit quoted figure re-derives through quoted_from, and the WRONG value for that same figure is still caught. Forced red by restoring the shipped to_int and re-running the new case, which reproduces the exact message the run record quotes. aggregate_check --date 2026-08-21 stays clean at 10 figures and shipped_check stays at exit 0.",
+        "revert": "the upgrade commit for 2026-08-21, this file's hunk in aggregate_check.py alone",
+        "how_i_would_know_this_was_wrong": "if it turned a red declaration green that should have stayed red. It cannot make a passing declaration fail, because before the fix a comma-carrying token always parsed to None and always failed, so the only movement available is toward passing. The case to watch is a declaration whose stated value happens to match a DIFFERENT comma-carrying figure in the same quote, which the token list would now accept. The self-test's wrong-value case is the guard on that and it must stay red."
+      }
+    ],
+    "found_while_logging_this": {
+      "what": "the run's own scoring loop diverges from prompts/daily_routine.md in one place, and the divergence was right",
+      "detail": "The routine says any one judge's HARD FAIL stops the deck. panel.py ALSO stops on ship:false with no hard fail named, which is what the ninth panel's integrity judge returned at 6.96 while calling itself in writing 'a threshold miss' rather than a stop. The stricter rule held and paid: its one sentence fix was the caption's dateline, and applying it is what moved the tenth panel to 7.02 on the same lens. panel.py is this lane's and the routine is not, so the code is not being changed to match the prose. The prose should be changed to match the code, and that is filed below."
+    },
+    "red_at_this_phase_and_not_this_lane": {
+      "what": "guards_local.py --fast exits 1 on this branch, on one step, and it was red before this phase touched anything",
+      "detail": "The step is `email_check --all` and the finding is `2026-08-21: no gmail_payload.json. The email was hand-written or never built.` Proved pre-existing by stashing every change this phase made and re-running it, which exits 1 identically. runs/carousel/2026-08-21/ is the daily lane, so this phase cannot write the payload. The fix is one command in the run that owns it, python3 scripts/carousel/gmail_draft.py --run 2026-08-21, and it has to happen before the merge because guards.yml runs this step on every push. 83 of 84 steps pass.",
+      "checked_by": "python3 scripts/shared/guards_local.py --fast, by exit code. Log kept at out/2026-08-21/tmp/guards_fast.log"
+    },
+    "proposals_out_of_lane": [
+      {
+        "what": "have build_slides.py delete out/<date>/slides/ before it writes, so a refused build leaves nothing behind to render",
+        "owner": "daily (the deck builder is the run's own scratch, not scripts/carousel/**)",
+        "why": "this is the other half of the upgrade above. Checking the plan against the render catches a stale frame after the fact. Deleting the directory means a refused build cannot produce one. _footer_fit is the only build time assertion in the builder and it did its job perfectly; what failed is that a run can suppress it and carry on rendering yesterday's HTML."
+      },
+      {
+        "what": "state in prompts/daily_routine.md that panel.py stops on ship:false as well as on a hard fail",
+        "owner": "human (prompts/** is not the upgrade lane, and a run may not rewrite the instructions it is executing)",
+        "why": "the code is stricter than the prose and the code is right. A run reading only the prose will read a refusal with no hard fail as a gate misfiring and argue with it, which costs a round."
+      },
+      {
+        "what": "a GATE_LESSONS.md entry for the checker whose empty case printed its clean line",
+        "owner": "human (knowledge/shared/** is not the upgrade lane)",
+        "why": "the generalisation outlives the instance. An exit code proves nothing about a checker handed the wrong path, and the repo's existing rule about exit codes does not cover being pointed at nothing. The proposed text is written out in knowledge/carousel/UPGRADE_BACKLOG.md under 2026-08-21, in the maintainer's own voice, so folding it in is a paste rather than a rewrite."
+      },
+      {
+        "what": "declare the source line under type: in SLIDE_DOSSIER_SPEC.md, so plan_render_check can compare it",
+        "owner": "upgrade, but stated here because it is a spec change the next storyboard has to follow before the gate can use it",
+        "why": "the DECLARED check caught slide 4's dek and could not see slide 9's byline, because the byline is declared nowhere. One more key in the dossier closes the other half of this run's defect."
+      }
+    ],
+    "not_landed_and_why": {
+      "aggregate_check EXEMPT short circuit": "the fix is written and measured and does NOT ship today. Blanking the exempt spans and scanning the remainder surfaces six aggregates nothing declares, and five are on 2026-08-21, which is the newest deck, so shipped_check scopes them fatal and CI would go red on an artifact this lane does not own. Every one is a real aggregate, including the '392 days' this run tried to declare and could not. The five are listed in knowledge/carousel/UPGRADE_BACKLOG.md. The moment 2026-08-21 stops being the newest deck they become notes and the fix costs nothing, so the next upgrade phase should land it first and re-run the measurement rather than trusting the list.",
+      "texan_check DATE case sensitivity": "one character, re.I on DATE, plus a self-test case asserting an all caps closing date is seen. Not landed only because the ceiling is three upgrades and it costs the least of the four. It is GATE_LESSONS 35 one file over: a rule written against a rendered form by somebody who did not read the renderer."
+    }
+  }
 }

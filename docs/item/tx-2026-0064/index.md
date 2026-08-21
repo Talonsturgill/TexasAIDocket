@@ -11,7 +11,7 @@ The Texas Commission on Environmental Quality's executive director finished tech
 - Public access: Write to the decider
 - Take part: https://www.tceq.texas.gov/downloads/permitting/air/bilingual/pending-permit-notices/182126-napd-english.pdf
 
-- Last checked: 2026-08-18
+- Last checked: 2026-08-21
 
 ## Dates
 
@@ -23,6 +23,7 @@ The Texas Commission on Environmental Quality's executive director finished tech
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-08-18 · Checked and unchanged. The notice still names permits 182126, PSDTX1688 and GHGPSDTX263 for Crusoe Technologies. The comment window runs 30 days from newspaper publication.
+- 2026-08-21 · Checked and unchanged. The notice still carries a preliminary decision and draft permit for Crusoe Technologies LLC under permits 182126, PSDTX1688 and GHGPSDTX263, with a notice issuance date of August 5th, 2026. The comment window still runs thirty days from newspaper publication, and the notice still names no publication date.
 
 ## Evidence
 

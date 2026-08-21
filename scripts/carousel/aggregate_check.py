@@ -127,10 +127,27 @@ def is_slide_counter(text: str, m: re.Match, kind: str, n_slides: int | None) ->
 
 
 def to_int(tok: str) -> int | None:
-    t = tok.strip().lower()
+    """A token `NUM` matched, as an integer.
+
+    THE DEFECT, 2026-08-21. `NUM` was taught to consume a thousands separator in August, after
+    "2,600 streamlines" was reported as `600`. This function was not, so it read `1,400` with
+    `str.isdigit()`, got False, fell through to the number words and returned None.
+
+    What that cost is bigger than it looks. `_rederive_quoted` builds its token list from this,
+    so a quoted figure at or above 1,000 produced an EMPTY list and the gate reported that "the
+    quoted string carries no numeral at all" about a string whose numeral is in it. **No figure
+    of four digits or more could be declared through `quoted_from` at all**, which is most of
+    the figures a source actually writes down. Slide 4's `more than 1,400 loads` hit it and was
+    routed through `computed_by` instead, and the run wrote it up rather than editing the engine
+    it was running.
+
+    A gate that misreports a figure is worse than one that misses it, and a gate that refuses
+    the honest route teaches a run that the shortcut passes. This is both at once.
+    """
+    t = tok.strip().lower().replace(",", "")
     if t.isdigit():
         return int(t)
-    return WORDS.get(t)
+    return WORDS.get(tok.strip().lower())
 
 
 def detect(text: str, n_slides: int | None = None) -> list[dict]:
@@ -600,6 +617,28 @@ def self_test() -> int:
                                           quote="the launch of two Future 2 schools")]},
                  {"claims": [dict(qc["claims"][0],
                                   quote="with the  launch of two Future 2 schools")]}))
+
+    # THE THOUSANDS SEPARATOR (2026-08-21). `NUM` consumes it, `to_int` did not, so every
+    # figure at or above 1,000 came back None and the token list collapsed to empty. The gate
+    # then said the quoted string carried "no numeral at all" about a string that reads 1,400.
+    ok("a token carrying a thousands separator parses", to_int("1,400") == 1400,
+       repr(to_int("1,400")))
+    ok("...and a bare four digit token still does", to_int("1400") == 1400)
+    ok("...and a number word still does", to_int("Four") == 4)
+    ok("...and a token that is not a number is still None",
+       to_int("loads") is None and to_int("") is None)
+    kc = {"claims": [{"id": "c17", "text": "Kodiak reported more than 1,400 loads since February.",
+                      "quote": "more than 1,400 loads"}]}
+    kr = {"slides": [{"slide": "slide-04",
+                      "text_nodes": [{"text": "More than 1,400 loads since February."}]}]}
+    kd = {"aggregates": [{"phrase": "1,400 loads", "kind": "count", "value": 1400,
+                          "quoted_from": "c17", "quote": "more than 1,400 loads"}]}
+    ok("a quoted figure of four digits re-derives through quoted_from",
+       not check(kr, kd, kc), str(check(kr, kd, kc))[:200])
+    ok("...and the wrong value for it is still CAUGHT",
+       any("the quoted string carries" in p for p in
+           check(kr, {"aggregates": [dict(kd["aggregates"][0], value=400)]}, kc)),
+       str(check(kr, {"aggregates": [dict(kd["aggregates"][0], value=400)]}, kc))[:200])
 
     # AND THE WORKAROUND ITSELF. This is the declaration run No.2 actually shipped, word for
     # word. It passed. It must not again, and the message has to name the route that replaces it.

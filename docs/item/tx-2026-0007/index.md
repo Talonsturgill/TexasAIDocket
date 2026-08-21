@@ -4,12 +4,12 @@ Texas law restricts the channels through which the Public Utility Commission may
 
 - Topic: power-and-the-grid
 - Decided by: Texas Legislature (legislature)
-- Where: ERCOT region
+- Where: Statewide
 - Status: decided
 - Public access: Public meeting
 - Take part: https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
 
-- Last checked: 2026-08-18
+- Last checked: 2026-08-21
 
 ## Dates
 
@@ -20,6 +20,7 @@ Texas law restricts the channels through which the Public Utility Commission may
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-08-18 · Checked and unchanged. The statute still bars a verbal directive and still limits an official action to a contested case, a rulemaking or a written order.
+- 2026-08-21 · Checked and unchanged. The statute still bars a verbal directive and still limits an official action to a contested case, a rulemaking or a written order. It is state law binding a statewide agency, so its reach is the whole state rather than a list of counties, and the record now says so.
 
 ## Evidence
 

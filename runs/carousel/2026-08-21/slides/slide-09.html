@@ -1,0 +1,101 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;
+            background:#17181A;font-kerning:normal}
+  #art{position:absolute;inset:0;display:block}
+  .lyr{position:absolute;inset:0}
+  .kick{position:absolute;left:80px;top:80px;font-family:'JetBrains Mono',monospace;
+        font-size:26px;letter-spacing:0.16em;text-transform:uppercase;color:#9AA096;margin:0}
+  .hook{position:absolute;margin:0;font-family:Fraunces,serif;font-weight:700;
+        line-height:0.98;letter-spacing:-0.015em;color:#E9EFE6}
+  .dek{position:absolute;margin:0;font-family:Manrope,sans-serif;font-weight:500;
+       font-size:34px;line-height:1.34;color:#C9B393}
+  .src{position:absolute;left:80px;bottom:130px;font-family:'JetBrains Mono',monospace;
+       font-size:24px;letter-spacing:0.04em;color:#9AA096;margin:0}
+  .row{position:absolute;left:80px;right:80px;bottom:84px;display:flex;
+       justify-content:space-between;align-items:baseline;
+       font-family:'JetBrains Mono',monospace;font-size:26px;letter-spacing:0.08em;color:#9AA096}
+  .row span{font-variant-numeric:tabular-nums}
+  .geo{position:absolute;right:80px;bottom:130px;font-family:'JetBrains Mono',monospace;
+       font-size:22px;letter-spacing:0.04em;color:#9AA096;margin:0;text-align:right}
+  #ground{position:absolute;inset:0;background:radial-gradient(120% 70% at 50% 22%, #3A3128 0%, #221F1B 46%, #101012 100%)}
+  #sign{position:absolute;left:0;top:0;width:1080px;height:1350px}
+  .date{position:absolute;left:148px;top:250px;background:#BF0A30;color:#FFFFFF;font-family:'JetBrains Mono',monospace;font-size:44px;letter-spacing:0.06em;padding:16px 26px 14px;margin:0;font-variant-numeric:tabular-nums}
+  .cmte{position:absolute;left:148px;top:350px;width:790px;margin:0;font-family:Manrope,sans-serif;font-weight:600;font-size:34px;line-height:1.26;color:#C9D6CD}
+  .room{position:absolute;left:148px;top:520px;width:790px;margin:0;font-family:Fraunces,serif;font-weight:700;font-size:72px;line-height:0.98;color:#E9EFE6}
+  .chg{position:absolute;left:148px;width:790px;margin:0;font-family:Manrope,sans-serif;font-weight:600;font-size:32px;line-height:1.24;color:#DCE6DE}
+  .rsv{position:absolute;background:rgba(28,26,23,0.90)}
+
+</style>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+
+</head><body>
+<div id="ground"></div><svg id="sign" viewBox="0 0 1080 1350"></svg><div class="rsv" style="left:60px;top:62px;width:438px;height:74px"></div><div class="rsv" style="left:62px;top:1162px;width:958px;height:126px"></div>
+<p class="kick">What happens Tuesday</p>
+<p class="date">AUGUST 25TH, 2026</p>
+<p class="cmte">The Texas Senate Committee on Transportation meets in a public hearing.</p>
+<p class="cmte" style="top:452px">Hearing room E1.016</p>
+<h1 class="room" id="h9">The committee is told to quantify.</h1>
+<p class="chg" style="top:700px">Autonomous vehicle deployment under SB 2807</p>
+<p class="chg" style="top:766px">Rail grade crossings</p>
+<p class="chg" style="top:832px">Commercial driver licensing</p>
+<p class="dek" style="left:148px;top:890px;width:750px;font-size:28px;line-height:1.30;color:#9FB3A6">The charge names three agencies whose rule making is in scope. The Department of Transportation keeps the state&#39;s crash records and is not one of them.</p>
+<p class="dek" style="left:148px;top:1046px;width:750px;font-size:26px;line-height:1.28;color:#C9D6CD">The Legislature posts the meeting on capitol.texas.gov under Committees, Meetings Upcoming.</p>
+<p class="src">Legislature, TxDOT, c1 c2 c3 c4 c6 c7 c35 c36</p>
+<p class="geo" data-decorative>HEARING ROOM<br>E1.016</p>
+<div class="row"><span>09 / 09</span><span>FRONTAL</span><span class="tx-site">texasaidocket.com</span></div>
+<script>
+window.renderReady = (async () => {
+  await document.fonts.ready;
+
+  TX.reseed(20260821);
+
+  // SVG sheeting, so the closing frame's panel and its retroreflective tooth are vector, and
+  // the type on it stays vector into the PDF. A guide sign is the state's own instrument for
+  // telling the public what is ahead, and it is built to be read by returned light.
+  const NS = 'http://www.w3.org/2000/svg';
+  const svg = document.getElementById('sign');
+  function mk(name, attrs, parent){
+    const n = document.createElementNS(NS, name);
+    for (const k in attrs) n.setAttribute(k, attrs[k]);
+    (parent || svg).appendChild(n);
+    return n;
+  }
+  const defs = mk('defs', {});
+  const lg = mk('linearGradient', { id: 'face', x1: '0', y1: '0', x2: '0', y2: '1' }, defs);
+  mk('stop', { offset: '0', 'stop-color': '#1E6249' }, lg);
+  mk('stop', { offset: '0.42', 'stop-color': '#17503C' }, lg);
+  mk('stop', { offset: '1', 'stop-color': '#0F3A2A' }, lg);
+  const eg = mk('linearGradient', { id: 'edge', x1: '0', y1: '0', x2: '0', y2: '1' }, defs);
+  mk('stop', { offset: '0', 'stop-color': '#E9EFE6' }, eg);
+  mk('stop', { offset: '0.10', 'stop-color': '#A0A89E' }, eg);
+  mk('stop', { offset: '0.92', 'stop-color': '#141614' }, eg);
+  mk('stop', { offset: '1', 'stop-color': '#060608' }, eg);
+  const X = 96, Y = 196, W = 888, H = 946;
+  mk('rect', { x: X - 13, y: Y - 13, width: W + 26, height: H + 26, rx: 23, fill: 'url(#edge)' });
+  mk('rect', { x: X, y: Y, width: W, height: H, rx: 16, fill: 'url(#face)' });
+  // retroreflective tooth, one element per bead cluster, brighter where the lamp falls
+  const clip = mk('clipPath', { id: 'faceclip' }, defs);
+  mk('rect', { x: X, y: Y, width: W, height: H, rx: 16 }, clip);
+  const beads = mk('g', { 'clip-path': 'url(#faceclip)' });
+  const R = TX.rng(20260892);
+  for (let i = 0; i < 900; i++) {
+    const bx = X + R() * W, by = Y + R() * H;
+    const k = 1 - ((by - Y) / H) * 0.72;
+    mk('circle', {
+      // Held above 3 design px so the bead reads as bead at feed scale instead of aliasing
+      // into sensor noise, with the count cut to keep the density the same.
+      cx: bx.toFixed(1), cy: by.toFixed(1), r: (3.0 + R() * 2.2).toFixed(2),
+      fill: '#E9EFE6', 'fill-opacity': (R() * 0.16 * k).toFixed(3),
+    }, beads);
+  }
+  // The rolled edge was lit on the top and left and vanished on the bottom and right, so the
+  // sign stopped being an object with an edge all the way round. One dark rim closes it.
+  mk('rect', { x: X, y: Y, width: W, height: H, rx: 16, fill: 'none',
+               stroke: '#0A140F', 'stroke-opacity': '0.55', 'stroke-width': '5' });
+
+  TX.fitText(document.getElementById('h9'), {max:72, min:48, maxLines:2});
+})();
+</script></body></html>

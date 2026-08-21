@@ -300,3 +300,143 @@ The self-test had asserted that tier worked, and passed, on every run of the bro
 because it built its own fixture with the key already in it. **A self-test that only ever reads
 a fixture the consumer wrote for itself cannot see a broken contract.** Both new gates in this
 pass assert against a real shipped artifact or against the producer's own source for that reason.
+
+---
+
+# 2026-08-21, the upgrade phase
+
+Three landed, four filed. The three that landed are in `ledger/carousel/upgrades.json` with the
+commands that prove each can go red. What follows is the part a later session needs and a ledger
+entry cannot carry.
+
+## The lesson these three share, and it belongs in GATE_LESSONS.md
+
+`knowledge/shared/**` is `human` owned, so this cannot be written there. **Proposed as a new
+GATE_LESSONS entry, in the maintainer's words to keep the file one voice.**
+
+> **A checker's empty case and its clean case printed the same line.** `sources_block.py` was
+> invoked as `--run <date>` for a whole run. There is no `--run`. Argparse matched an unambiguous
+> prefix of `--run-dir`, the bare date became the path, the path did not exist, the gate found no
+> printed claim ids, concluded that every printed id resolved, printed `sources block: clean` and
+> exited 0, every time it was asked, including immediately after the deck gained two claim ids the
+> published block did not list. `shipped_check` caught the real state one step later.
+>
+> **An exit code proves nothing about a checker that was handed the wrong path.** The repo's own
+> rule is to run a gate by exit code rather than by reading its last line, and this arrives at the
+> same failure from the direction the rule does not cover: the code was 0, the line was reassuring,
+> and the gate had never been pointed at anything.
+>
+> **What to check instead.** Three separate things, because there were three separate silences.
+> Turn off prefix matching, so a flag that does not exist is an error rather than a guess. Fail on
+> an input path that does not exist. And fail on the empty result, because the empty set trivially
+> satisfies any "every X resolves" assertion. Ask of any gate: what does it print when it was given
+> nothing? If that is the same line it prints when the product is clean, it is not a gate.
+>
+> **And check the order of the guards.** The exemption here was keyed on the directory NAME and was
+> tested first, so any path at all ending in the exempt date passed without a byte being read. The
+> self-test asserting the exemption worked used `/nonexistent/2026-08-16` and proved the opposite of
+> what it claimed. Existence is now tested before the exemption, and the self-test builds a real
+> directory.
+
+## Filed, not landed, and why each one stopped
+
+**`aggregate_check` short-circuits a whole text node on `EXEMPT`, and the fix is measured and
+ready.** `if EXEMPT.search(text): return []` runs before any detection, so one bill number or bare
+year switches aggregate detection off for a whole sentence. The fix is four lines: blank the exempt
+spans with spaces, which preserves every offset `is_slide_counter` reads, and scan what is left.
+
+It did not land TODAY for one reason and the reason expires tomorrow. Replayed across every shipped
+deck it surfaces six aggregates nothing declares, and five of them are on **2026-08-21, which is
+the newest deck**, so `shipped_check` scopes them fatal and CI goes red on an artifact this lane
+does not own and cannot amend.
+
+    2026-08-18  slide 8  "nine campuses"
+    2026-08-21  slide 1  "100,000 driverless miles"
+    2026-08-21  slide 3  "35 driverless trucks"
+    2026-08-21  slide 5  "100,000 riders"
+    2026-08-21  slide 6  "392 days"  and  "392 days after the Dallas"
+
+Every one is a real aggregate that should have been declared, and "392 days" is the one this run
+tried to declare and could not, because the gate refused it as undetected. **The moment 2026-08-21
+stops being the newest deck those five become notes rather than failures**, and the fix costs
+nothing. The next upgrade phase should land it first, before it writes anything else, and should
+re-run the measurement above rather than trusting this list.
+
+**`texan_check`'s DATE regex is case sensitive while its ACTION regex is not.** `DATE` is compiled
+without `re.I` and `ACTION` with it, so a closing frame setting its date in caps reads as having no
+date. This run's slide 9 carries `AUGUST 25TH, 2026` in white mono on the red plate, the most
+prominent thing on the frame, and the gate reported `next step NO`. Add `re.I` and a self-test case
+asserting an all caps closing date is seen. This is GATE_LESSONS 35 exactly, one file over: a rule
+written against a rendered form by somebody who did not go and read the renderer.
+
+**The deck builder should delete `out/<date>/slides/` before it writes.** `_footer_fit` refused this
+run's build and the previous build's HTML was still on disk, so the renderer rendered it. A refused
+build must leave nothing behind to render. The builder is the run's own scratch and not this lane's.
+
+## What the `DECLARED` check in `plan_render_check` cannot see, stated so nobody infers a guarantee
+
+It compares only strings the plan DECLARES under `type:`. The 2026-08-21 defect had two halves.
+Slide 4's dek is declared, so it is caught. Slide 9's source line is declared nowhere, so a byline
+filing a TxDOT claim under the Legislature is still invisible to it. The natural next move is for
+`type:` to declare the source line too, which costs the dossier one key and closes the other half.
+
+## Why `--run` was typed at all, which is the finding under the finding
+
+`absence_check.py` takes `--date` for `out/<date>/` and `--run` for a shipped run under
+`runs/carousel/`. `sources_block.py` takes `--date` and `--run-dir`, and `--run-dir` is a PATH
+rather than a date. `shipped_check.py` takes `--run <date>`. Three sibling gates, three meanings
+for the same idea, and one of them silently accepted the neighbour's flag as a prefix.
+
+The operator error was correct behaviour applied to the wrong gate. `allow_abbrev=False` turns
+that into an error message, which is the fix that ends the story at the command line, and it
+leaves the real problem standing.
+
+**Proposed, in lane, bounded, for a later phase.** One vocabulary across `scripts/carousel/**`:
+`--date` means `out/<date>/` and `--run` means `runs/carousel/<date>/`, everywhere, with a check
+that walks every script in the directory, parses its `add_argument` calls, and fails on a gate
+that spells either of those two differently. That check can go red: rename one flag and watch it.
+Do it in the same pass as `allow_abbrev=False` on every parser in the directory, because a
+uniform vocabulary with prefix matching still on is a vocabulary with synonyms nobody chose.
+
+## Frontier scan, 2026-08-21. Focus area: verifying that a sentence says what its source says
+
+This run's two hard fails, three panels apart, are one defect. The cover asserted an absence the
+record had declined to establish. Slide 7 said DPS PUBLISHES first responder plans where its cited
+claim says the page TAKES them. In both cases the composition chose the word and the fact was
+fitted to it afterwards, and every gate stayed green, because a gate can check that a claim id
+resolves and cannot check that the sentence above it says what the claim says.
+
+Ten searches. Two findings worth acting on and one worth refusing.
+
+**Refused: an NLI model as a gate.** The 2026 literature is settled on decomposing generated text
+into atomic claims and running an entailment model against source chunks, and it is the right
+answer for a system that can carry the dependency. This one cannot. CI installs `pyyaml` and
+nothing else, and GATE_LESSONS 15 is the entry about a gate that passed fifteen times locally and
+failed on the first push for exactly that. A gate whose verdict is a model's is also a gate whose
+verdict moves when the model does, on a project whose whole argument is that its numbers are
+recomputable from the same inputs. Not this.
+
+**Worth acting on, and it is nearly free. Evidence ABSENCE is not evidence INSUFFICIENCY.** The
+fact-verification literature separates them and this repo currently does not. `absence_check` asks
+whether an absence names the document it is scoped to, which is the right first question and stops
+one step short. Panel 6's hard fail was an absence scoped to a page **that never rendered**, and
+the run's own rejected list said so in writing. So the second question is mechanical and the data
+to answer it is already in `claims.json`: an absence may not be scoped to a document this run
+failed to retrieve. A page that returned 403, or a query that never rendered, produces
+insufficiency, and publishing that as absence is the one error this deck's whole subject is about.
+**Bounded, in lane, and it can go red on a real artifact: replay panel 6's cover against this
+run's own rejected list.**
+
+**Worth acting on, cheaply, on the verb.** `noun_trace` does the positive half for named things and
+warns rather than fails, which is the right register. The same shape over the main verb attached to
+a named entity would have printed one line saying that PUBLISHES appears in no claim cited on slide
+7, where the claims say TAKES and ACCEPTS. Not a truth test and not a phrase list of banned words,
+which GATE_LESSONS 46 is the argument against. A LIST of the verbs a frame asserts that no cited
+claim uses, for a human to read in seconds. The literature's own note on lexical methods is that
+they cannot tell a paraphrase from a contradiction, which is precisely why this warns and never
+fails.
+
+**And the stale build half has a plain answer outside this repo.** Build systems treat this as
+settled: a failed build cleans its output tree unconditionally, and a cached failure is replayed as
+a failure rather than resolved from whatever is on disk. That is proposal 17 in the run record,
+stated by everybody else who has hit it.
