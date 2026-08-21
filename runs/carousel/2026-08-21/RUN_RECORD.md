@@ -290,6 +290,19 @@ data and still prints, for the reason in the proposals.
     HTML, because the slide files are still on disk from the previous build. **The proposal is for
     the builder to delete `out/<date>/slides/` before it writes**, so a refused build leaves no
     slides to render rather than leaving yesterday's.
+18. **The front page's Lone Star clears the telemetry strip by 7.5 pixels at 460px wide, and
+    that is not a margin.** `tests/responsive.mjs` went red on this PR with `460px overlaps
+    .hero .tele`, passed on a re-run, and passes locally. Measured in a browser, the mark's box
+    ends at y 154 and the strip begins at y 162 at 460, 440 and every width below the 480px
+    breakpoint where the hero compacts. At 480 the clearance is 69px. **The same 7.5px holds on
+    `main`'s own committed front page**, which I checked by building a worktree at `origin/main`
+    and measuring both pages side by side, so this run did not introduce it and main's guards
+    passed over it this morning. It is a latent defect that tips on nothing more than a font
+    metric, and the next time it tips it will be on a run that has no idea why. **The proposal is
+    to give the mark a real clearance below that breakpoint rather than the eight pixels it has**,
+    and to have the test report the MEASURED gap on success as well as on failure, so a margin
+    shrinking toward zero is visible before it crosses. `tests/**` and `scripts/site/**` are
+    `human` owned, so this run measured it and stopped.
 
 ## Four more panels after the deck was already scored, and what each one caught
 
