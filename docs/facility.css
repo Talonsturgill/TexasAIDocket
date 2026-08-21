@@ -45,6 +45,25 @@
 .dfoot { margin-top:2rem; padding-top:1rem;
   border-top:var(--hair) solid var(--rule);
   color:var(--ink-mute); font-size:var(--s-1); max-width:var(--measure); }
+.creach { font-family:var(--mono); font-size:var(--s-1); color:var(--ink-mute);
+  margin:0 0 1.4rem; }
+.csum { max-width:var(--measure); }
+.ckind { font-family:var(--mono); font-size:var(--s-2); letter-spacing:.06em;
+  text-transform:uppercase; color:var(--ink-mute); margin:0 0 1.2rem; }
+.crole { margin:1.8rem 0 0; }
+.crole h2 { font-family:var(--mono); font-size:var(--s-2); letter-spacing:.1em;
+  text-transform:uppercase; color:var(--accent); margin:0 0 .6rem; font-weight:600; }
+.cfacs, .clist, .csplit, .cvars { list-style:none; margin:0; padding:0; }
+.cfacs li, .clist li, .csplit li { padding:.4rem 0;
+  border-top:var(--hair) solid var(--rule); }
+.cvars li { padding:.2rem 0; color:var(--ink-mute); font-size:var(--s-1); }
+.cwhen { font-family:var(--mono); font-size:var(--s-2); color:var(--ink-mute);
+  margin-left:.4em; }
+.crolechip { font-family:var(--mono); font-size:var(--s-2); letter-spacing:.05em;
+  color:var(--ink-mute); margin-left:.5em; }
+.clist .num, .csplit .num { font-family:var(--mono); color:var(--accent);
+  display:inline-block; min-width:2.4em; }
+.companyindex h2 { margin-top:2.2rem; }
 @media (max-width:34rem) {
   .drow { grid-template-columns:1fr; gap:.15rem; }
   .dossbody { padding:1.3rem 1rem 1.2rem; }

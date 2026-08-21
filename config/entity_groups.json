@@ -1,0 +1,232 @@
+{
+  "_spec": 1,
+  "_why": "Mechanical resolution in scripts/site/entities.py joins strings that differ only by case, punctuation or a corporate suffix, and that needs no judgment. Saying two DIFFERENT legal entities belong to one company is a judgment, so it is written here where it can be read and argued with rather than buried in a regex. Every group states its reason. A group with no reason fails the gate.",
+  "_rule": "Members are named by their exact registry string. A member the registry does not contain is ignored rather than invented, so this file can name an entity before it appears.",
+  "groups": [
+    {
+      "name": "Oracle",
+      "note": "Oracle America Cloud Services is the occupant of record and Oracle America is the operator of record. Both are Oracle Corporation entities filing in different roles.",
+      "members": [
+        "Oracle America Cloud Services, LLC",
+        "Oracle America, Inc."
+      ]
+    },
+    {
+      "name": "Riot Platforms",
+      "note": "Riot Platforms files under its own name and under a family of site and logistics entities. It also files under an RPI prefix. Whinstone is the Rockdale developer Riot acquired.",
+      "members": [
+        "Riot Platforms, Inc.",
+        "Riot Data Centers, LLC",
+        "Riot Corsicana, LLC",
+        "Riot DC Logistics, LLC",
+        "Riot Corsicana Data Center I. LLC",
+        "Riot Data Centers, LLC 3",
+        "Riot Rockdale Data Center 1",
+        "Whinstone US Inc.",
+        "RPI DC Master LLC",
+        "RPI AUS01-0H DC LLC",
+        "RPI Corsicana DC Campus LLC",
+        "RPI Corsicana DC Holdings LLC",
+        "RPI DFW02-01 DC LLC",
+        "RPI Rockdale DC Campus LLC",
+        "RPI Rockdale DC Holdings LLC"
+      ]
+    },
+    {
+      "name": "Vantage Data Centers",
+      "note": "One management company and a numbered owning entity per building, which is how Vantage separates each data center for financing.",
+      "members": [
+        "Vantage Data Centers Management Company, LLC",
+        "Vantage Data Centers TX11, LLC",
+        "Vantage Data Centers TX12, LLC",
+        "Vantage Data Centers TX21, LLC",
+        "Vantage Data Centers TX22, LLC",
+        "Vantage Data Centers TX301, LLC",
+        "Vantage Data Centers TX302, LLC",
+        "Vantage Data Centers TX303, LLC",
+        "Vantage Data Centers TX304, LLC",
+        "Vantage Data Centers TX305, LLC",
+        "Vantage Data Centers TX306, LLC",
+        "Vantage Data Centers TX307, LLC",
+        "Vantage Data Centers TX308, LLC",
+        "Vantage Data Centers TX309, LLC",
+        "Vantage Data Centers TX310, LLC"
+      ]
+    },
+    {
+      "name": "Lancium",
+      "note": "Lancium holds the land and the power at the Abilene campus. The Abilene DC entities are the per building owners on that campus and are grouped here for that reason.",
+      "members": [
+        "Lancium LLC",
+        "Lancium Abilene, LLC",
+        "Lancium Turkey LLC",
+        "Abilene DC 1, LLC",
+        "Abilene DC 3 LLC",
+        "Abilene DC 4, LLC",
+        "Abilene DC 5 LLC",
+        "Abilene DC 6 LLC",
+        "Abilene DC 7 LLC",
+        "Abilene DC 8 LLC"
+      ]
+    },
+    {
+      "name": "CoreWeave",
+      "note": "CoreWeave files under its own name and under a series of compute acquisition and financing entities.",
+      "members": [
+        "Coreweave, Inc.",
+        "Coreweave Compute Acquisition Co. II, LLC",
+        "Coreweave Compute Acquisition Co V LLC",
+        "Coreweave Compute Acquisition Co. III, LLC",
+        "Coreweave Compute Acquistion Co. III, LLC",
+        "Coreweave Financing DDTL V-V, LLC"
+      ]
+    },
+    {
+      "name": "Compass Datacenters",
+      "note": "A lettered series of owning entities on one Dallas Fort Worth campus, plus the parent.",
+      "members": [
+        "Compass Datacenters, LLC",
+        "Compass Datacenters DFW III, LLC",
+        "Compass Datacenters DFW III-I, LLC",
+        "Compass Datacenters DFW IIIA, LLC",
+        "Compass Datacenters DFW IIIB, LLC",
+        "Compass Datacenters DFW IIIC, LLC",
+        "Compass Datacenters DFW IIID, LLC",
+        "Compass Datacenters DFW IIIE, LLC",
+        "Compass Datacenters DFW IIIF, LLC",
+        "Compass Datacenters DFW IIIG, LLC",
+        "Compass Datacenters DFW IIIH, LLC",
+        "Compass Datacenters DFW IIIJ, LLC"
+      ]
+    },
+    {
+      "name": "Nexus Data Centers",
+      "note": "A Hubbard campus filed as one entity per building, and a matching POWER entity per building beside it. The pairing is the notable part and is why the whole family is grouped.",
+      "members": [
+        "Nexus Data Centers, LLC",
+        "Nexus Data Centers Hubbard LLC",
+        "Nexus Data Center Hubbard B1 LLC",
+        "Nexus Data Center Hubbard B2 LLC",
+        "Nexus Data Center Hubbard B3 LLC",
+        "Nexus Data Center Hubbard B4 LLC",
+        "Nexus Data Center Hubbard CFCO LLC",
+        "Nexus Hubbard Power B1 LLC",
+        "Nexus Hubbard Power B2 LLC",
+        "Nexus Hubbard Power B3 LLC",
+        "Nexus Hubbard Power B4 LLC",
+        "Nexus Hubbard Power CFCO LLC",
+        "Nexus Hubbard Power DFCO A-1 LLC",
+        "Nexus Hubbard Power, LLC",
+        "Nexus Operations Hubbard LLC",
+        "Nexus Employee Holdco LLC"
+      ]
+    },
+    {
+      "name": "Fermi",
+      "note": "One certified facility carrying eight entities, including a turbine warehouse, a high voltage warehouse and a mobile generation entity. The generation entities are the reason this group is worth reading.",
+      "members": [
+        "Fermi Inc.",
+        "Fermi Campus 1, LLC",
+        "Fermi Construction LLC",
+        "Fermi Equipment Holdco, LLC",
+        "Fermi High Voltage Warehouse, LLC",
+        "Fermi Mobile Gen, LLC",
+        "Fermi Turbine Warehouse, LLC",
+        "Fermi Warehouse, LLC"
+      ]
+    },
+    {
+      "name": "Cipher",
+      "note": "One entity per site, plus the technology parent. Cipher renamed itself from Cipher Mining to Cipher Digital in 2026 and the registry still carries the older name.",
+      "members": [
+        "Cipher Mining Technologies Inc.",
+        "Cipher Barber Lake LLC",
+        "Cipher Black Pearl, LLC",
+        "Cipher Stingray LLC"
+      ]
+    },
+    {
+      "name": "Lambda",
+      "note": "Lambda takes space as occupant under a procurement entity and a fund entity, and operates under its own name.",
+      "members": [
+        "Lambda, Inc.",
+        "Lambda Cloud Fund II MCI DAL, LLC",
+        "Lambda Procurement, LLC"
+      ]
+    },
+    {
+      "name": "Aligned Data Centers",
+      "note": "One property holding entity per campus, at Abernathy and at Plano.",
+      "members": [
+        "ALIGNED DATA CENTERS (ABERNATHY) PROPCO, LLC",
+        "Aligned Data Centers (Plano) Propco, LLC"
+      ]
+    },
+    {
+      "name": "Ionic Digital",
+      "note": "The Cedarvale landowner and the mining occupant that held the site before it was re-certified for AI.",
+      "members": [
+        "Ionic Digital Cedarvale LLC",
+        "Ionic Digital Mining LLC"
+      ]
+    },
+    {
+      "name": "Nscale",
+      "note": "A site entity and a separate borrowing entity, which is the shape a financed lease takes.",
+      "members": [
+        "Nscale Ward County, LLC",
+        "Nscale Ward County Borrower SPV, LLC"
+      ]
+    },
+    {
+      "name": "EdgeConneX",
+      "note": "A property entity and an operations entity for each Austin building.",
+      "members": [
+        "EdgeConnex MCN Austin Operations 5, LLC",
+        "EdgeConnex MCN Austin Operations 7, LLC",
+        "EdgeConnex MCN Austin Property 5, LLC",
+        "EdgeConnex MCN Austin Property 7, LLC"
+      ]
+    },
+    {
+      "name": "DataBank",
+      "note": "The Red Oak owning entity and the operating parent.",
+      "members": [
+        "DB Data Center Red Oak, LLC",
+        "Databank Holdings LTD"
+      ]
+    },
+    {
+      "name": "NTT",
+      "note": "A Texas property entity and the Americas operating entity.",
+      "members": [
+        "NTT Global Data Centers TX, LLC",
+        "NTT Global Data Centers Americas, Inc."
+      ]
+    },
+    {
+      "name": "Poolside",
+      "note": "Two phase entities on the Pecos County site, both carrying an LF prefix.",
+      "members": [
+        "Poolside LF Phase 1 DC OPS, LLC",
+        "Poolside LF Phase 2 DC OPS, LLC"
+      ]
+    },
+    {
+      "name": "Galaxy",
+      "note": "Two Helios entities, the first certified years before the second.",
+      "members": [
+        "GALAXY HELIOS I",
+        "Galaxy Helios II LLC"
+      ]
+    },
+    {
+      "name": "Intersect Power",
+      "note": "The two Meitner entities, the land holder and the data center holder, on the campus Google occupies.",
+      "members": [
+        "IP Meitner, LLC",
+        "IP Meitner DTC, LLC"
+      ]
+    }
+  ]
+}

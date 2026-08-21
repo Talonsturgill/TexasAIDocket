@@ -66,6 +66,7 @@ import numeral_lint                                                # noqa: E402
 import docket_calendar as dcal                                     # noqa: E402
 import theme                                                       # noqa: E402
 import facility_dossier
+import entities
 
 LEDGER = REPO_ROOT / "ledger" / "docket.json"
 
@@ -5277,6 +5278,81 @@ def facility_page(d: dict, today: str) -> str:
         revised=False, extra_css="facility.css")
 
 
+
+def company_page(item: dict, data: dict, dossiers: dict, is_group: bool, today: str) -> str:
+    """One company, and every certified facility the state puts it on."""
+    name = item["name"]
+    kind = "group of entities" if is_group else "entity as the state files it"
+    body = (
+        f'<article class="prose companypage" data-proper-name="{e(name)}">'
+        f'<p class="crumb"><a href="../../grid/">The Grid Watch</a> '
+        f'<span aria-hidden="true">/</span> <a href="../">Who is behind the registry</a>.</p>'
+        f'<h1><cite>{e(name)}</cite></h1>'
+        f'<p class="ckind">Shown as a {kind}.</p>'
+        f'{entities.panel(item, data, dossiers, is_group=is_group)}'
+        f'<p class="dfoot">Owner, occupant and operator are roles in a sales tax exemption '
+        f'filing rather than descriptions of who runs a building. Counts here are computed from '
+        f"the Comptroller's certified list and nothing else.</p>"
+        f'</article>')
+    return page(
+        title=f"{name} · {SITE_NAME}",
+        desc=_facility_desc(f"Every Texas data center the certified registry puts "
+                            f"{name} on, by role."),
+        body=body, depth=2, active=None, today=today,
+        canonical=f"{SITE_URL}/company/{item['slug']}/",
+        revised=False, extra_css="facility.css")
+
+
+def companies_index(data: dict, today: str) -> str:
+    """The registry read down its columns instead of across its rows."""
+    ents, groups = entities.published(data)
+    split = entities.split_by_punctuation(data["entities"])
+    n0 = entities.n0
+
+    def row(x, is_group):
+        roles = " ".join(f'<span class="crolechip">{k} {n0(len(v))}</span>'
+                         for k, v in sorted(x["roles"].items()))
+        return (f'<li><a href="{x["slug"]}/"><cite>{e(x["name"])}</cite></a> '
+                f'<strong class="num">{n0(x["reach"])}</strong> {roles}</li>')
+
+    body = (
+        f'<article class="prose companyindex">'
+        f'<p class="crumb"><a href="../grid/">The Grid Watch</a> '
+        f'<span aria-hidden="true">/</span> Who is behind the registry.</p>'
+        f'<h1>Who is behind the registry</h1>'
+        f'<p>The certified list names <strong class="num">{n0(len(data["facilities"]))}</strong> '
+        f'facilities and reads as that many unrelated buildings. It is not. '
+        f'<strong class="num">{n0(sum(1 for x in data["entities"] if x["reach"] > 1))}</strong> '
+        f'companies appear on more than one, and the largest relationships in Texas are only '
+        f'visible reading down a column.</p>'
+        f'<h2>Filed under more than one spelling</h2>'
+        f'<p>Punctuation and capitalisation alone split '
+        f'<strong class="num">{n0(len(split))}</strong> companies into separate rows. Counting '
+        f'the strings rather than the companies reports the largest occupant in the state as two '
+        f'smaller ones.</p>'
+        f'<ul class="csplit" data-prose="data">'
+        + "".join(f'<li><strong class="num">{n0(x["reach"])}</strong> '
+                  + " ".join(f"<cite>{e(v)}</cite>" for v in x["variants"]) + "</li>"
+                  for x in split)
+        + f'</ul>'
+        f'<h2>Companies, as the state spells them</h2>'
+        f'<p class="qnote">Resolved mechanically. Case, punctuation and the corporate suffix are '
+        f'ignored. Nothing else is.</p>'
+        f'<ul class="clist" data-prose="data">' + "".join(row(x, False) for x in ents) + "</ul>"
+        f'<h2>Grouped by parent</h2>'
+        f'<p class="qnote">A judgment rather than a rule. Each grouping states its reason on '
+        f"its own page. Where the two layers disagree the mechanical one above is the "
+        f"defensible number.</p>"
+        f'<ul class="clist" data-prose="data">' + "".join(row(x, True) for x in groups) + "</ul>"
+        f'</article>')
+    return page(
+        title=f"Who is behind the registry · {SITE_NAME}",
+        desc="Every company the Texas data center registry names, resolved across the spellings "
+             "the state filed them under, with every facility and role.",
+        body=body, depth=1, active=None, today=today,
+        canonical=f"{SITE_URL}/company/", revised=False, extra_css="facility.css")
+
+
 def build(out: Path, today: str) -> dict:
     items = dk.load(LEDGER)
     runs = load_runs()
@@ -5509,6 +5585,21 @@ def build(out: Path, today: str) -> dict:
     for _d in _doss.get("dossiers") or []:
         w(f"facility/{_d['slug']}/index.html", facility_page(_d, today),
           facility_dossier.authorised({"dossiers": [_d]}))
+
+    # WHO IS BEHIND THE REGISTRY. The same 151 rows read down their columns. Every count on
+    # these pages is computed from the certified list, and the resolution that makes the counts
+    # correct is in entities.py with the comma problem it exists for.
+    _ent = entities.load()
+    _dmap = {x["name"]: x for x in (_doss.get("dossiers") or [])}
+    _enums = entities.authorised(_ent)
+    w("company/index.html", companies_index(_ent, today), _enums)
+    _elist, _glist = entities.published(_ent)
+    for _x in _elist:
+        w(f"company/{_x['slug']}/index.html",
+          company_page(_x, _ent, _dmap, False, today), _enums)
+    for _g in _glist:
+        w(f"company/{_g['slug']}/index.html",
+          company_page(_g, _ent, _dmap, True, today), _enums)
     # THE INDEX SHOWS EVERY RUN, so its authorised set is the union of every run's own
     # figures and not a byte wider. `_run_numerals` derives each from that run's claims and
     # its `computed.json`, never from what a slide happened to print, so this stays the

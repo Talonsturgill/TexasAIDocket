@@ -1055,7 +1055,7 @@
   {
    "name": "Cedarvale, Barslow/Pyote TX Data Center",
    "slug": "cedarvale-barslow-pyote-tx-data-center",
-   "summary": "A West Texas site that mined bitcoin and now hosts AI. The state record shows the handover in two certifications. Nscale leases the whole of it and is filling it with Nvidia hardware for Microsoft, though neither Nvidia nor Microsoft appears anywhere in the registry.",
+   "summary": "A West Texas site that mined bitcoin and now hosts AI. The state record shows the handover in two certifications. Nscale leases the whole of it and is filling it with Nvidia hardware for Microsoft, and neither of those companies is named on this facility's row.",
    "facts": [
     {
      "label": "Site capacity leased to Nscale",
@@ -1121,6 +1121,13 @@
      "text": "Re-certified for AI hosting",
      "source": "s0",
      "as_of": "2026-03-16"
+    },
+    {
+     "label": "Certifications Microsoft holds in its own name elsewhere in Texas",
+     "value": 14,
+     "unit": "facilities",
+     "source": "s0",
+     "kind": "measured"
     }
    ],
    "notes": [
@@ -1132,7 +1139,7 @@
      ]
     },
     {
-     "text": "Microsoft is the customer behind the hardware going into this building and does not appear in the registry at all. The certified occupant is a single purpose Nscale borrowing entity. This is what the difference between a tenant and a qualifying occupant looks like in practice.",
+     "text": "Microsoft is the customer behind the hardware going into this building and is not named on this row. It is not absent from the registry, though. Microsoft holds certifications of its own across San Antonio and Red Oak, so its absence here is not avoidance. At this site it is the occupant's customer rather than the occupant, and the certified occupant is a single purpose Nscale borrowing entity.",
      "as_of": "2026-03-16",
      "sources": [
       "s0",
@@ -1444,6 +1451,13 @@
      "text": "Vantage Data Centers Management Company, LLC",
      "source": "s0",
      "as_of": "2025-11-05"
+    },
+    {
+     "label": "Vantage certifications in the registry",
+     "value": 4,
+     "unit": "facilities",
+     "source": "s0",
+     "kind": "measured"
     }
    ],
    "notes": [
@@ -1454,14 +1468,16 @@
      ]
     },
     {
-     "text": "Vantage is building a very large campus in Shackelford County tied to Oracle and the Stargate program. Whether these two entities sit on that campus or on an older Vantage site is not established here. None of that campus's figures are published on this page.",
+     "text": "Vantage holds four certifications in Texas. This one and its sibling were filed on one date, and a separate group of ten numbered buildings was filed weeks earlier with the same occupant. Vantage has said its Shackelford campus is ten data centers, so this certification is not part of that group. Which campus it does sit on is still not established.",
+     "as_of": "2025-11-05",
      "sources": [
+      "s0",
       "s1"
      ]
     }
    ],
    "gaps": [
-    "Which Vantage campus these entities sit on is not established",
+    "Which Vantage campus these two entities sit on is still not established, though the group of ten is now ruled out",
     "Capacity, square footage and acreage are not public for this certification",
     "The street address is not public",
     "This entry is a candidate for a second pass once a filing names the buildings"
@@ -1776,6 +1792,954 @@
      "title": "Amazon files to develop two new data center campuses in Texas",
      "publisher": "Data Center Dynamics",
      "rung": 6,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "Poolside Data Center, Pecos County I",
+   "slug": "poolside-data-center-pecos-county-i",
+   "summary": "The certification that matters most on this page is the second one. Poolside held two for this Pecos County site, and the project behind them lost its anchor tenant. A certification records that the state granted an exemption. It is not evidence that a building exists or that anything is running in it.",
+   "facts": [
+    {
+     "label": "Announced campus capacity",
+     "value": 2,
+     "unit": "GW",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Site area",
+     "value": 568,
+     "unit": "acres",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Anchor lease CoreWeave took, then terminated",
+     "value": 250,
+     "unit": "MW",
+     "source": "s2",
+     "kind": "reported",
+     "as_of": "2026-03-31"
+    },
+    {
+     "label": "Capacity reserved for later expansion",
+     "value": 500,
+     "unit": "MW",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Nvidia GPUs planned from December of 2025",
+     "value": 40000,
+     "unit": "units",
+     "source": "s2",
+     "kind": "reported"
+    },
+    {
+     "label": "Location",
+     "text": "Longfellow Ranch, Pecos County, near Fort Stockton",
+     "source": "s1"
+    },
+    {
+     "label": "Project name",
+     "text": "Project Horizon",
+     "source": "s1"
+    },
+    {
+     "label": "Power design",
+     "text": "Behind the meter, beside a West Texas gas hub",
+     "source": "s1"
+    },
+    {
+     "label": "First certification",
+     "text": "Phase one operations entity",
+     "source": "s0",
+     "as_of": "2025-10-23"
+    },
+    {
+     "label": "Second certification",
+     "text": "Phase two operations entity",
+     "source": "s0",
+     "as_of": "2026-03-06"
+    }
+   ],
+   "notes": [
+    {
+     "text": "CoreWeave terminated its fifteen year anchor lease in the spring after Poolside's funding round failed to close. Trade coverage then described the campus as the most prominent failure in the Texas pipeline.",
+     "as_of": "2026-03-31",
+     "sources": [
+      "s2",
+      "s3"
+     ]
+    },
+    {
+     "text": "The state certified phase two of this site days before that termination was reported. Nothing in the registry has changed since. This is the clearest evidence on the site that a certification is a tax status rather than a building. It is why no page here says a facility is operating.",
+     "as_of": "2026-03-06",
+     "sources": [
+      "s0",
+      "s2"
+     ]
+    }
+   ],
+   "gaps": [
+    "Whether anything was built on the site is not established",
+    "Whether the certifications have been surrendered or lapsed is not public",
+    "Square footage and building count were never announced",
+    "The status of the second phase entity is not established"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
+     "title": "Data Center Lists",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://poolside.ai/blog/announcing-project-horizon",
+     "title": "Announcing Project Horizon, Why we're building a 2 gigawatt AI campus in Texas",
+     "publisher": "Poolside",
+     "rung": 2,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s2",
+     "url": "https://www.datacenterdynamics.com/en/news/ai-startup-poolside-teams-up-with-coreweave-on-2gw-data-center-in-texas/",
+     "title": "AI startup Poolside teams up with CoreWeave on 2GW data center in Texas",
+     "publisher": "Data Center Dynamics",
+     "rung": 6,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s3",
+     "url": "https://www.datacenterfrontier.com/machine-learning/article/55326541/how-coreweave-and-poolside-are-teaming-up-in-west-texas-to-build-the-next-generation-of-ai-data-centers",
+     "title": "How CoreWeave and Poolside Are Teaming Up in West Texas",
+     "publisher": "Data Center Frontier",
+     "rung": 6,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "Fermi Data Center 1",
+   "slug": "fermi-data-center-1",
+   "summary": "One certification carrying eight separate Fermi entities, among them a turbine warehouse, a high voltage warehouse and a mobile generation company. The entity list alone tells you this is a power project with a data center attached rather than the other way round.",
+   "facts": [
+    {
+     "label": "Campus area",
+     "value": 5769,
+     "unit": "acres",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Stated power potential",
+     "value": 11,
+     "unit": "GW",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Stated AI floor area",
+     "value": 18000000,
+     "unit": "sqft",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Phase one target",
+     "value": 1.1,
+     "unit": "GW",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Entities filed under this one certification",
+     "value": 8,
+     "unit": "units",
+     "source": "s0",
+     "kind": "measured"
+    },
+    {
+     "label": "Location",
+     "text": "Amarillo, in the Texas Panhandle, next to the Department of Energy Pantex site",
+     "source": "s1"
+    },
+    {
+     "label": "Project name",
+     "text": "Project Matador",
+     "source": "s1"
+    },
+    {
+     "label": "Generation plan",
+     "text": "Four AP1000 nuclear reactors under federal application, with gas and solar",
+     "source": "s1"
+    },
+    {
+     "label": "Partner",
+     "text": "A lease with the Texas Tech University System",
+     "source": "s2"
+    }
+   ],
+   "notes": [
+    {
+     "text": "Reading the entity list is the fastest way to understand this site. A turbine warehouse and a mobile generation entity are not things a colocation landlord files.",
+     "sources": [
+      "s0"
+     ]
+    },
+    {
+     "text": "The nuclear reactors are at federal application stage. Nothing here says any of them is approved or built, and the phase dates are the company's own targets.",
+     "sources": [
+      "s1"
+     ]
+    }
+   ],
+   "gaps": [
+    "No reactor is approved and the timeline is the company's own",
+    "Which buildings the single certification actually covers is not stated",
+    "Water sourcing for the campus is not public",
+    "Cooling design is not public"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
+     "title": "Data Center Lists",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://constructionreviewonline.com/fermi-america-unveils-plan-for-largest-u-s-energy-and-data-complex/",
+     "title": "Project Matador, Fermi America's Planned Power Campus in Amarillo, Texas",
+     "publisher": "Construction Review Online",
+     "rung": 6,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s2",
+     "url": "https://amarillotribune.org/2025/11/17/fermi-americas-lease-with-the-texas-tech-university-system-establishes-research-facilities-scholarship-fund-and-more/",
+     "title": "Fermi America's lease with the Texas Tech University System",
+     "publisher": "Amarillo Tribune",
+     "rung": 6,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "Nexus Data Centers",
+   "slug": "nexus-data-centers",
+   "summary": "A Hubbard campus that runs on its own gas turbines rather than on the grid. The registry shows the design before any coverage does, because it lists a power company for every building alongside the building itself.",
+   "facts": [
+    {
+     "label": "Filed power capacity",
+     "value": 600,
+     "unit": "MW",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Permitted building area",
+     "value": 491000,
+     "unit": "sqft",
+     "source": "s2",
+     "kind": "reported"
+    },
+    {
+     "label": "Campus area",
+     "value": 2900,
+     "unit": "acres",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Stated campus ambition",
+     "value": 7.7,
+     "unit": "GW",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Nexus entities in the registry",
+     "value": 16,
+     "unit": "units",
+     "source": "s0",
+     "kind": "measured"
+    },
+    {
+     "label": "Address",
+     "text": "357 HCR 3372, Hubbard, Hill County",
+     "source": "s2"
+    },
+    {
+     "label": "Power design",
+     "text": "Behind the meter, on site natural gas turbines, independent of the grid",
+     "source": "s1"
+    },
+    {
+     "label": "Construction window",
+     "text": "January of 2026 to October of 2027",
+     "source": "s2"
+    }
+   ],
+   "notes": [
+    {
+     "text": "The registry pairs a power entity to each building entity, B one with power B one and so on. That pattern is visible in the state's list alone and it is exactly the behind the meter design the coverage describes. The filing structure gave away the business model.",
+     "sources": [
+      "s0",
+      "s1"
+     ]
+    }
+   ],
+   "gaps": [
+    "The campus ambition figure is the developer's own and has no executed contract behind it here",
+    "No tenant is named in the registry or in the coverage read",
+    "Water use for the turbines and the halls is not public",
+    "Which of the sixteen entities the single certification covers is not stated"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
+     "title": "Data Center Lists",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://www.datacenterdynamics.com/en/news/600mw-natural-gas-powered-data-center-campus-proposed-in-hubbard-texas/",
+     "title": "600MW natural gas-powered data center campus proposed in Hubbard, Texas",
+     "publisher": "Data Center Dynamics",
+     "rung": 6,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s2",
+     "url": "https://mlq.ai/news/nexus-data-centers-files-permit-for-491000-sq-ft-data-center-in-hubbard-texas/",
+     "title": "Nexus Data Centers Files Permit for a Data Center in Hubbard, Texas",
+     "publisher": "MLQ News",
+     "rung": 7,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "DFW 9",
+   "slug": "dfw-9",
+   "summary": "One building on DataBank's Red Oak campus south of Dallas, with Oracle as the certified occupant. Four of these were certified on the same day and Oracle is the occupant of record on every one.",
+   "facts": [
+    {
+     "label": "Campus capacity",
+     "value": 480,
+     "unit": "MW",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Campus area",
+     "value": 292,
+     "unit": "acres",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Planned buildings on the campus",
+     "value": 8,
+     "unit": "buildings",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Gross area per building",
+     "value": 425000,
+     "unit": "sqft",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Owner of record",
+     "text": "DB Data Center Red Oak, LLC",
+     "source": "s0",
+     "as_of": "2025-10-01"
+    },
+    {
+     "label": "Operator of record",
+     "text": "Databank Holdings LTD",
+     "source": "s0",
+     "as_of": "2025-10-01"
+    },
+    {
+     "label": "Occupant of record",
+     "text": "Oracle America Cloud Services",
+     "source": "s0",
+     "as_of": "2025-10-01"
+    },
+    {
+     "label": "Location",
+     "text": "Red Oak, south of Dallas",
+     "source": "s1"
+    },
+    {
+     "label": "This building",
+     "text": "The first of the Red Oak buildings certified with Oracle as occupant.",
+     "source": "s2"
+    }
+   ],
+   "notes": [
+    {
+     "text": "DataBank has said Oracle is the tenant for the first four buildings on this campus. The registry agrees, naming Oracle as occupant of record on all four, certified the same day.",
+     "as_of": "2025-10-01",
+     "sources": [
+      "s0",
+      "s2"
+     ]
+    }
+   ],
+   "gaps": [
+    "Per building capacity is not separated from the campus total in the sources read",
+    "The certified square footage for this building is not public",
+    "Energization dates per building are not public"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
+     "title": "Data Center Lists",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://www.databank.com/resources/press-releases/databank-announces-development-of-480mw-data-center-campus-in-south-dallas/",
+     "title": "DataBank Announces Development of a Data Center Campus in South Dallas",
+     "publisher": "DataBank",
+     "rung": 2,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s2",
+     "url": "https://www.datacenterdynamics.com/en/news/databank-files-to-develop-two-more-data-centers-at-upcoming-red-oak-texas-campus/",
+     "title": "DataBank files to develop two more data centers at its Red Oak, Texas campus",
+     "publisher": "Data Center Dynamics",
+     "rung": 6,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "DFW 10",
+   "slug": "dfw-10",
+   "summary": "One building on DataBank's Red Oak campus south of Dallas, with Oracle as the certified occupant. Four of these were certified on the same day and Oracle is the occupant of record on every one.",
+   "facts": [
+    {
+     "label": "Campus capacity",
+     "value": 480,
+     "unit": "MW",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Campus area",
+     "value": 292,
+     "unit": "acres",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Planned buildings on the campus",
+     "value": 8,
+     "unit": "buildings",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Gross area per building",
+     "value": 425000,
+     "unit": "sqft",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Owner of record",
+     "text": "DB Data Center Red Oak, LLC",
+     "source": "s0",
+     "as_of": "2025-10-01"
+    },
+    {
+     "label": "Operator of record",
+     "text": "Databank Holdings LTD",
+     "source": "s0",
+     "as_of": "2025-10-01"
+    },
+    {
+     "label": "Occupant of record",
+     "text": "Oracle America Cloud Services",
+     "source": "s0",
+     "as_of": "2025-10-01"
+    },
+    {
+     "label": "Location",
+     "text": "Red Oak, south of Dallas",
+     "source": "s1"
+    },
+    {
+     "label": "This building",
+     "text": "Not to be confused with the CyrusOne building of the same designation in Bosque County. This one is DataBank's, at Red Oak, and the registry names its owner and operator.",
+     "source": "s2"
+    }
+   ],
+   "notes": [
+    {
+     "text": "DataBank has said Oracle is the tenant for the first four buildings on this campus. The registry agrees, naming Oracle as occupant of record on all four, certified the same day.",
+     "as_of": "2025-10-01",
+     "sources": [
+      "s0",
+      "s2"
+     ]
+    }
+   ],
+   "gaps": [
+    "Per building capacity is not separated from the campus total in the sources read",
+    "The certified square footage for this building is not public",
+    "Energization dates per building are not public"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
+     "title": "Data Center Lists",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://www.databank.com/resources/press-releases/databank-announces-development-of-480mw-data-center-campus-in-south-dallas/",
+     "title": "DataBank Announces Development of a Data Center Campus in South Dallas",
+     "publisher": "DataBank",
+     "rung": 2,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s2",
+     "url": "https://www.datacenterdynamics.com/en/news/databank-files-to-develop-two-more-data-centers-at-upcoming-red-oak-texas-campus/",
+     "title": "DataBank files to develop two more data centers at its Red Oak, Texas campus",
+     "publisher": "Data Center Dynamics",
+     "rung": 6,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "DFW 11",
+   "slug": "dfw-11",
+   "summary": "One building on DataBank's Red Oak campus south of Dallas, with Oracle as the certified occupant. Four of these were certified on the same day and Oracle is the occupant of record on every one.",
+   "facts": [
+    {
+     "label": "Campus capacity",
+     "value": 480,
+     "unit": "MW",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Campus area",
+     "value": 292,
+     "unit": "acres",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Planned buildings on the campus",
+     "value": 8,
+     "unit": "buildings",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Gross area per building",
+     "value": 425000,
+     "unit": "sqft",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Owner of record",
+     "text": "DB Data Center Red Oak, LLC",
+     "source": "s0",
+     "as_of": "2025-10-01"
+    },
+    {
+     "label": "Operator of record",
+     "text": "Databank Holdings LTD",
+     "source": "s0",
+     "as_of": "2025-10-01"
+    },
+    {
+     "label": "Occupant of record",
+     "text": "Oracle America Cloud Services",
+     "source": "s0",
+     "as_of": "2025-10-01"
+    },
+    {
+     "label": "Location",
+     "text": "Red Oak, south of Dallas",
+     "source": "s1"
+    },
+    {
+     "label": "This building",
+     "text": "Certified the same day as its three siblings.",
+     "source": "s2"
+    }
+   ],
+   "notes": [
+    {
+     "text": "DataBank has said Oracle is the tenant for the first four buildings on this campus. The registry agrees, naming Oracle as occupant of record on all four, certified the same day.",
+     "as_of": "2025-10-01",
+     "sources": [
+      "s0",
+      "s2"
+     ]
+    }
+   ],
+   "gaps": [
+    "Per building capacity is not separated from the campus total in the sources read",
+    "The certified square footage for this building is not public",
+    "Energization dates per building are not public"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
+     "title": "Data Center Lists",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://www.databank.com/resources/press-releases/databank-announces-development-of-480mw-data-center-campus-in-south-dallas/",
+     "title": "DataBank Announces Development of a Data Center Campus in South Dallas",
+     "publisher": "DataBank",
+     "rung": 2,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s2",
+     "url": "https://www.datacenterdynamics.com/en/news/databank-files-to-develop-two-more-data-centers-at-upcoming-red-oak-texas-campus/",
+     "title": "DataBank files to develop two more data centers at its Red Oak, Texas campus",
+     "publisher": "Data Center Dynamics",
+     "rung": 6,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "DFW 12",
+   "slug": "dfw-12",
+   "summary": "One building on DataBank's Red Oak campus south of Dallas, with Oracle as the certified occupant. Four of these were certified on the same day and Oracle is the occupant of record on every one.",
+   "facts": [
+    {
+     "label": "Campus capacity",
+     "value": 480,
+     "unit": "MW",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Campus area",
+     "value": 292,
+     "unit": "acres",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Planned buildings on the campus",
+     "value": 8,
+     "unit": "buildings",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Gross area per building",
+     "value": 425000,
+     "unit": "sqft",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Owner of record",
+     "text": "DB Data Center Red Oak, LLC",
+     "source": "s0",
+     "as_of": "2025-10-01"
+    },
+    {
+     "label": "Operator of record",
+     "text": "Databank Holdings LTD",
+     "source": "s0",
+     "as_of": "2025-10-01"
+    },
+    {
+     "label": "Occupant of record",
+     "text": "Oracle America Cloud Services",
+     "source": "s0",
+     "as_of": "2025-10-01"
+    },
+    {
+     "label": "Location",
+     "text": "Red Oak, south of Dallas",
+     "source": "s1"
+    },
+    {
+     "label": "This building",
+     "text": "The fourth Red Oak building, and the one the campus financing was upsized to cover.",
+     "source": "s2"
+    }
+   ],
+   "notes": [
+    {
+     "text": "DataBank has said Oracle is the tenant for the first four buildings on this campus. The registry agrees, naming Oracle as occupant of record on all four, certified the same day.",
+     "as_of": "2025-10-01",
+     "sources": [
+      "s0",
+      "s2"
+     ]
+    }
+   ],
+   "gaps": [
+    "Per building capacity is not separated from the campus total in the sources read",
+    "The certified square footage for this building is not public",
+    "Energization dates per building are not public"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
+     "title": "Data Center Lists",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://www.databank.com/resources/press-releases/databank-announces-development-of-480mw-data-center-campus-in-south-dallas/",
+     "title": "DataBank Announces Development of a Data Center Campus in South Dallas",
+     "publisher": "DataBank",
+     "rung": 2,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s2",
+     "url": "https://www.datacenterdynamics.com/en/news/databank-files-to-develop-two-more-data-centers-at-upcoming-red-oak-texas-campus/",
+     "title": "DataBank files to develop two more data centers at its Red Oak, Texas campus",
+     "publisher": "Data Center Dynamics",
+     "rung": 6,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "Lancium Abilene Clean Campus",
+   "slug": "lancium-abilene-clean-campus",
+   "summary": "The first certification on the Abilene campus, granted years before the site became the opening address of the Stargate program. Oracle is the occupant of record here and on every other building on this campus.",
+   "facts": [
+    {
+     "label": "Certifications the state has granted on this campus",
+     "value": 8,
+     "unit": "facilities",
+     "source": "s0",
+     "kind": "measured"
+    },
+    {
+     "label": "Secured campus power",
+     "value": 1.2,
+     "unit": "GW",
+     "source": "s2",
+     "kind": "reported",
+     "as_of": "2025-03-18"
+    },
+    {
+     "label": "Combined capital investment announced",
+     "value": 3400000000,
+     "unit": "usd",
+     "source": "s1",
+     "kind": "reported",
+     "as_of": "2024-11-19"
+    },
+    {
+     "label": "Crusoe building footprint",
+     "value": 998000,
+     "unit": "sqft",
+     "source": "s1",
+     "kind": "reported",
+     "as_of": "2024-11-19"
+    },
+    {
+     "label": "Location",
+     "text": "Abilene, Taylor County",
+     "source": "s1"
+    },
+    {
+     "label": "Occupant of record",
+     "text": "Oracle America Cloud Services",
+     "source": "s0",
+     "as_of": "2022-05-26"
+    },
+    {
+     "label": "Owner of record",
+     "text": "Abilene DC 1, LLC",
+     "source": "s0",
+     "as_of": "2022-05-26"
+    }
+   ],
+   "notes": [
+    {
+     "text": "This campus is eight separate certifications, numbered from the first through the eighth, and Oracle is the occupant of record on all of them. Five were certified on a single day. Reading any one of them alone gives no sense of the size of the thing.",
+     "sources": [
+      "s0"
+     ]
+    },
+    {
+     "text": "The state spells Oracle two ways across this campus and the Vantage buildings, with and without a comma. Counting the strings rather than the company splits the largest occupant in Texas into two smaller ones.",
+     "sources": [
+      "s0"
+     ]
+    }
+   ],
+   "gaps": [
+    "Which physical building each of the eight certifications covers is not stated",
+    "Water sourcing and cooling design are not public",
+    "Per building capacity is not public"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
+     "title": "Data Center Lists",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://developabilene.com/2024/11/19/the-development-corporation-of-abilene-city-of-abilene-and-taylor-county-announce-expanded-development-within-lanciums-clean-campus-through-crusoes-998000-square-foot-data-center/",
+     "title": "Expanded Development within Lancium's Clean Campus through Crusoe's 998,000 Square Foot Data Center",
+     "publisher": "Development Corporation of Abilene",
+     "rung": 3,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s2",
+     "url": "https://lancium.com/2025/03/18/crusoe-expands-ai-data-center-campus-in-abilene-to-1-2-gigawatts/",
+     "title": "Crusoe Expands AI Data Center Campus in Abilene to 1.2 Gigawatts",
+     "publisher": "Lancium",
+     "rung": 2,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "TX 301 Data Center",
+   "slug": "tx-301-data-center",
+   "summary": "One of ten buildings the state certified on a single day, each under its own numbered Vantage entity, with Oracle as occupant on every one. Vantage has said its Shackelford County campus is ten data centers.",
+   "facts": [
+    {
+     "label": "Buildings certified together on this day",
+     "value": 10,
+     "unit": "facilities",
+     "source": "s0",
+     "kind": "measured"
+    },
+    {
+     "label": "Campus capacity Vantage announced",
+     "value": 1.4,
+     "unit": "GW",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Campus area announced",
+     "value": 1200,
+     "unit": "acres",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Campus floor area announced",
+     "value": 3700000,
+     "unit": "sqft",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Announced investment",
+     "value": 25000000000,
+     "unit": "usd",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Owner and operator of record",
+     "text": "Vantage Data Centers TX301, LLC",
+     "source": "s0",
+     "as_of": "2025-10-08"
+    },
+    {
+     "label": "Occupant of record",
+     "text": "Oracle America Cloud Services",
+     "source": "s0",
+     "as_of": "2025-10-08"
+    },
+    {
+     "label": "Campus cooling",
+     "text": "Liquid cooling for high density racks, per the developer",
+     "source": "s1"
+    }
+   ],
+   "notes": [
+    {
+     "text": "The count matches. Vantage announced a campus of ten data centers and the state certified ten numbered buildings on one day with the same occupant. That correspondence is not a statement from either party and it is not published here as one.",
+     "sources": [
+      "s0",
+      "s1"
+     ]
+    },
+    {
+     "text": "Vantage holds other Texas certifications under lower numbers, filed separately and on a different date. Those are not part of this group of ten.",
+     "sources": [
+      "s0"
+     ]
+    }
+   ],
+   "gaps": [
+    "Vantage has not confirmed that these ten entities are the Shackelford campus",
+    "Per building capacity and square footage are not public",
+    "The street address is not public",
+    "Energization dates per building are not public"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
+     "title": "Data Center Lists",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://vantage-dc.com/news/vantage-data-centers-unveils-plans-for-frontier-a-25b-mega-campus-in-texas-to-meet-unprecedented-ai-demand/",
+     "title": "Vantage Data Centers Unveils Plans for Frontier, a Mega-campus in Texas",
+     "publisher": "Vantage Data Centers",
+     "rung": 2,
      "retrieved": "2026-08-21"
     }
    ]

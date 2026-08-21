@@ -72,7 +72,8 @@ calendar: with script off the row is a plain link to the page.
 | B | `knowledge/shared/DATACENTER_REGISTRY.md`, the program's real semantics | DONE |
 | C | This worklog | DONE |
 | D | Research batch 1, ten marquee AI facilities | DONE, shipped in #148 |
-| D2 | Research batch 2, ten more | DONE, 20 dossiers and 117 facts total |
+| D2 | Research batch 2, ten more | DONE, shipped in #149 |
+| D3 | Batch 3: the entity layer, plus nine more dossiers | DONE, 29 dossiers and 197 facts |
 | E | Dossier schema + `ledger/facilities/dossiers.json` | DONE |
 | F | `facility_dossier.py` gate, 24 self-tests | DONE |
 | G | Per-facility page at `/facility/<slug>/`, in the sitemap | DONE |
@@ -138,3 +139,40 @@ press release carries.
 
 Two units were added to the formatter across these batches, `units` for hardware counts. Any new
 unit needs a formatter or the gate refuses the fact, which is the intended behaviour.
+
+## Batch 3: reading down the columns
+
+The yield this time came from a structural change rather than more research. The registry was
+being read one row at a time and everything that matters is between the rows.
+
+**`scripts/site/entities.py`** resolves the companies and `/company/` publishes them.
+
+- **Oracle America Cloud Services is the occupant of record on twenty five facilities**, the
+  largest relationship in Texas, and it was hidden because the state filed it under two spellings
+  separated by a comma. Ten are Vantage buildings certified in one day. Eight are the Abilene
+  campus.
+- **Sixteen companies are split by punctuation alone.** Google three ways, Whinstone three ways.
+- **Resolution is mechanical, grouping is curated.** Case, punctuation and corporate suffix are
+  stripped for matching and nothing else is. Parent groups live in `config/entity_groups.json`
+  where each states its reason, because saying two different legal entities are one company is a
+  judgment and belongs somewhere a reader can argue with it.
+
+Nine dossiers added: Poolside Pecos I, Fermi Data Center 1, Nexus Data Centers, DFW 9 through 12,
+Lancium Abilene Clean Campus, TX 301.
+
+## Two corrections this batch forced, both worth keeping
+
+**A published claim was false.** The Cedarvale page said Microsoft "does not appear in the
+registry at all". Microsoft is on fourteen facilities. Corrected to name the ROW rather than the
+registry, which is both true and a better point. Count before writing that a company is absent.
+
+**A certification is not a building.** Poolside's Project Horizon lost its anchor tenant when
+CoreWeave terminated, and the state certified phase two days before that was reported. Nothing in
+the registry changed. No page here says a facility is operating and none ever should.
+
+## Batch 4 candidates
+
+The five Amazon codenames still want a county appraisal district pass. Beyond that: CoreWeave's
+eight, Microsoft's fourteen San Antonio and Red Oak sites, Galaxy Helios, Rowan's four codenamed
+sites, the IE US family, Compass DFW III, and Hutto, which shows the same power-entity-per-building
+pattern Nexus does and is worth checking for the same reason.
