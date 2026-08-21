@@ -325,7 +325,11 @@ def record_css() -> str:
    NO TEXT SITS ON A FILL anywhere below. Text over a gradient is the one thing the contrast
    gate cannot measure, so it declines to judge it, and a page full of declines is how an
    unreadable one ships green. Bars are geometry, labels are text, and they never overlap. */
-.cal {{ margin-top:calc(var(--gap) * 1.6); }}
+/* EVERY CONTROL IN HERE IS A THUMB TARGET. 44 CSS pixels is the floor a finger needs and
+   it is not a taste value; the view tabs were 32 and the Today pill 36, which is a control
+   you aim at rather than press. Declared on the section rather than on the toolbar, because
+   the year stepper's arrows sit in the rail and would otherwise have had no width at all. */
+.cal {{ margin-top:calc(var(--gap) * 1.6); --thumb:2.75rem; }}
 .cal > .sub {{ max-width:var(--measure); color:var(--ink-mute); }}
 
 /* ------------------------------------------------------------------------------- the rail */
@@ -338,6 +342,22 @@ def record_css() -> str:
 .calyh {{ display:flex; align-items:baseline; gap:.9rem; margin:0 0 1.1rem;
   font-family:var(--display); font-size:var(--s3); line-height:1;
   border-top:none; padding-top:0; }}
+/* ONE YEAR AT A TIME, and a bar that says which. Six years of twelve small calendars is 72
+   grids in a column, which is a scroll and not a view.
+   The bar IS the year view's heading once script runs, so the year blocks give theirs up
+   rather than printing the year twice four pixels apart. Without script there is no bar and
+   every block keeps its own heading, which is the same document read a second way. */
+.calyearbar {{ display:flex; align-items:center; justify-content:center; gap:1.1rem;
+  margin:0 0 1.4rem; padding-bottom:1rem;
+  border-bottom:var(--hair) solid var(--rule); }}
+.calyearnow {{ display:flex; align-items:baseline; gap:.8rem; font-weight:400;
+  min-width:11rem; justify-content:center; }}
+.calyeart {{ font-family:var(--display); font-size:var(--s3); line-height:1;
+  color:var(--limestone); letter-spacing:.02em; }}
+.calyearn {{ font-family:var(--mono); font-size:var(--s-1); color:var(--ink-mute);
+  letter-spacing:.1em; text-transform:uppercase; white-space:nowrap; }}
+.cal:not(.js) .calyearbar {{ display:none; }}
+.cal.js .calyh {{ display:none; }}
 .calyn {{ font-family:var(--mono); font-size:var(--s-1); color:var(--ink-mute);
   letter-spacing:.1em; text-transform:uppercase; }}
 .minis {{ list-style:none; margin:0; padding:0; display:grid; gap:.9rem;
@@ -371,8 +391,7 @@ def record_css() -> str:
 .ming > i.mt {{ box-shadow:inset 0 0 0 1px var(--accent); }}
 .ming > i.mo {{ visibility:hidden; }}
 @media (max-width:60rem) {{ .minis {{ grid-template-columns:repeat(3,minmax(0,1fr)); }} }}
-@media (max-width:44rem) {{ .minis {{ grid-template-columns:repeat(2,minmax(0,1fr)); }}
-  .calybar {{ margin-top:0; }} }}
+@media (max-width:44rem) {{ .minis {{ grid-template-columns:repeat(2,minmax(0,1fr)); }} }}
 
 /* ------------------------------------------------------------------------- the controls
    These were three default buttons and a raw checkbox in a row, which the owner correctly
@@ -380,7 +399,7 @@ def record_css() -> str:
    look built. */
 /* A TOOLBAR, laid out the way Notion lays one out: the view switcher at the left beside the
    thing being viewed, the controls that act on the current view at the right. */
-.calbar {{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap;
+.caltoolbar {{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap;
   gap:.8rem 1.4rem; margin:0 0 1.3rem; padding-bottom:.7rem;
   border-bottom:var(--hair) solid var(--rule); }}
 .caltabs {{ display:flex; align-items:center; gap:.2rem; }}
@@ -389,6 +408,7 @@ def record_css() -> str:
 .caltab {{ font-family:var(--mono); font-size:var(--s-1); letter-spacing:.1em;
   text-transform:uppercase; line-height:1; padding:.55rem .75rem; border:0; cursor:pointer;
   background:transparent; color:var(--ink-mute); border-bottom:2px solid transparent;
+  display:inline-flex; align-items:center; min-height:var(--thumb);
   transition:color .16s ease, border-color .16s ease; }}
 .caltab:hover {{ color:var(--limestone); }}
 .caltab[aria-pressed="true"] {{ color:var(--accent); border-bottom-color:var(--accent); }}
@@ -396,8 +416,8 @@ def record_css() -> str:
 .calctl {{ display:flex; align-items:center; gap:1rem; flex-wrap:wrap; }}
 .calpage {{ display:flex; align-items:center; gap:.45rem; }}
 .calpage[hidden] {{ display:none; }}
-.calnav {{ display:flex; align-items:center; gap:.45rem; }}
-.calarrow {{ width:2.6rem; height:2.6rem; display:grid; place-items:center; padding:0;
+.calarrow {{ width:var(--thumb); height:var(--thumb); display:grid; place-items:center;
+  padding:0;
   border-radius:50%; cursor:pointer;
   border:var(--hair) solid var(--rule-strong);
   background:color-mix(in srgb,var(--panel) 70%,transparent);
@@ -411,6 +431,7 @@ def record_css() -> str:
 .calarrow[disabled] {{ opacity:.3; cursor:default; }}
 .calpill {{ font-family:var(--mono); font-size:var(--s-2); letter-spacing:.1em;
   text-transform:uppercase; line-height:1; padding:.72rem 1rem; margin-left:.3rem;
+  display:inline-flex; align-items:center; min-height:var(--thumb);
   border-radius:2rem; cursor:pointer; color:var(--dust);
   border:var(--hair) solid var(--rule-strong);
   background:color-mix(in srgb,var(--panel) 70%,transparent);
@@ -418,21 +439,12 @@ def record_css() -> str:
 .calpill:hover:not([disabled]) {{ border-color:var(--accent); color:var(--limestone);
   background:color-mix(in srgb,var(--accent) 14%,transparent); }}
 .calpill[disabled] {{ opacity:.3; cursor:default; }}
-.calarrow:focus-visible, .calpill:focus-visible, .calsegb:focus-visible {{
+.calarrow:focus-visible, .calpill:focus-visible {{
   outline:2px solid var(--accent); outline-offset:3px; }}
 
-/* A SEGMENTED CONTROL, because the two views are one choice rather than two buttons. The
-   pressed one is filled, so which view you are in is readable without reading. */
-.calseg {{ display:inline-flex; padding:3px; gap:3px; border-radius:2rem;
-  border:var(--hair) solid var(--rule); background:color-mix(in srgb,var(--deep) 60%,transparent); }}
-.calsegb {{ font-family:var(--mono); font-size:var(--s-2); letter-spacing:.1em;
-  text-transform:uppercase; line-height:1; padding:.6rem 1.05rem; border:0; cursor:pointer;
-  border-radius:2rem; color:var(--ink-mute); background:transparent;
-  transition:background .16s ease, color .16s ease; }}
-.calsegb:hover {{ color:var(--limestone); }}
-.calsegb[aria-pressed="true"] {{ color:var(--night);
-  background:linear-gradient(180deg,var(--accent),var(--accent-deep)); }}
-.cal:not(.js) .calbar {{ display:none; }}
+/* EVERY CONTROL IS HIDDEN UNTIL THE SCRIPT CLAIMS IT. A button that does nothing is worse
+   than no button: it is a promise a reader tests once and then distrusts the page for. */
+.cal:not(.js) .caltoolbar {{ display:none; }}
 
 /* A SWITCH, not a checkbox. It is the one control here a reader toggles back and forth, so
    it gets the affordance that says so. The input stays a real checkbox underneath, which is
@@ -479,8 +491,12 @@ def record_css() -> str:
 .cal.js[data-view="year"].acts .minc {{ display:none; }}
 .cal.acts .calday.full:not(.hasact) {{ display:none; }}
 .cal.acts .calev:not(.act) {{ display:none; }}
-.cal.acts .calmonth[data-act="0"] .caldays::after {{ content:"Nothing in this month is still
-  open to act on."; display:block; grid-column:1 / -1; font-family:var(--mono);
+/* ONE LINE, because a string cannot hold a newline. Wrapped for the margin, this sentence
+   was a parse error and the declaration went on the floor, so a month with nothing open
+   under the filter rendered as an empty grid saying nothing at all. */
+.cal.acts .calmonth[data-act="0"] .caldays::after {{
+  content:"Nothing in this month is still open to act on."; display:block;
+  grid-column:1 / -1; font-family:var(--mono);
   font-size:var(--s-1); color:var(--ink-mute); padding:.9rem .2rem; }}
 
 /* TODAY, marked. A calendar that does not say where you are makes a reader count columns. */
@@ -493,6 +509,13 @@ def record_css() -> str:
 /* ---------------------------------------------------------------------------- the month */
 .calmonth {{ margin:0 0 2.2rem; }}
 .calmonth[hidden] {{ display:none; }}
+/* THE SECOND MONTH OF THE PAIR. Sixty days is the window, and the two months have to read as
+   one view rather than as a page that failed to stop. A rule between them and a smaller name
+   on the second is enough: which one is this month stays obvious, and the next one is still a
+   full month rather than a preview strip. Nothing is dimmed, because it is not less true. */
+.cal.js .calmonth[data-slot="next"] {{ margin-top:3rem; padding-top:2.2rem;
+  border-top:var(--hair) solid var(--rule); }}
+.cal.js .calmonth[data-slot="next"] .calmname {{ font-size:var(--s3); color:var(--dust); }}
 /* THE HEADER OF A WALL CALENDAR: the month's number, its name, the year. */
 .calmh {{ margin:0; border-top:none; padding-top:0; font-weight:400; }}
 .calmh > time {{ display:flex; align-items:baseline; justify-content:space-between;
@@ -505,9 +528,8 @@ def record_css() -> str:
   letter-spacing:.06em; text-transform:uppercase; color:var(--ink-mute); }}
 .calmh:focus {{ outline:none; }}
 .calmh:focus-visible {{ outline:2px solid var(--accent); outline-offset:4px; }}
-.calmn2, .calact {{ font-family:var(--mono); font-size:var(--s-1);
+.calact {{ font-family:var(--mono); font-size:var(--s-1);
   letter-spacing:.06em; text-transform:uppercase; }}
-.calmn2 {{ color:var(--ink-mute); }}
 .calact {{ color:var(--accent); }}
 
 /* A WALL CALENDAR, which is what the owner asked for and is a different object from a chart
@@ -571,21 +593,20 @@ def record_css() -> str:
   .caldd {{ display:block; font-family:var(--mono); font-size:var(--s-2);
     color:var(--accent); letter-spacing:.06em; margin-bottom:.35rem; }}
   .ckt {{ -webkit-line-clamp:4; }}
-  .calyear {{ grid-template-columns:2.4rem minmax(0,1fr); gap:.45rem; }}
   .calyn {{ display:none; }}
-  .calmn {{ display:none; }}
-  .calbar {{ height:22px; }}
-  .calmc {{ font-size:9px; }}
+  /* THE MONTH'S NAME IS SET IN ITS OWN SIZE, so scaling the heading did nothing to it and the
+     year on the right hand end hung 10px off a 320px screen. The name is what has to give:
+     it is the widest word on the line and the only one that can be read smaller and still be
+     read. The row wraps as well, so a longer month than August has somewhere to go. */
   .calmh {{ font-size:var(--s2); }}
+  .calmh > time {{ flex-wrap:wrap; }}
+  .calmname {{ font-size:var(--s2); }}
   .calev {{ padding:.24rem .35rem; }}
   .ckt {{ -webkit-line-clamp:2; }}
   .calday.full {{ margin-bottom:.4rem; padding:.45rem .5rem .5rem; }}
-  /* `margin-left:auto` pushed this off the right edge of a 390px screen, where a
-     button half out of the viewport reads as a broken page rather than a control. */
-  .calnow {{ margin-left:0; }}
 }}
 @media (prefers-reduced-motion:reduce) {{
-  .calm, .calbar > i, .calev {{ transition:none; }}
+  .calev, .mini {{ transition:none; }}
   .calev:hover {{ transform:none; }}
 }}
 """)
@@ -2969,6 +2990,51 @@ def print_contrast() -> int:
 
 
 # --------------------------------------------------------------------------- self-test
+def _css_shape(text: str) -> dict:
+    """Read a stylesheet the way a browser's tokeniser reads it, and report its shape.
+
+    `depth` is where the sheet ends and `low` is the deepest it ever went the wrong way; a
+    healthy sheet is 0 and 0. `broken` is the line number of every quoted value that runs off
+    the end of its line, which is not a style question: an unescaped newline inside a string
+    is a parse error, and the declaration carrying it is dropped.
+
+    Comments and strings are skipped for the brace count, because a brace inside either is not
+    a block, and a checker that counts it reports a sound sheet as broken and sends somebody
+    looking for a bug that is not there.
+    """
+    depth = low = 0
+    broken = []
+    i, n, line = 0, len(text), 1
+    while i < n:
+        c = text[i]
+        if c == "\n":
+            line += 1
+            i += 1
+            continue
+        if c == "/" and text.startswith("/*", i):
+            j = text.find("*/", i + 2)
+            line += text.count("\n", i, n if j < 0 else j + 2)
+            i = n if j < 0 else j + 2
+            continue
+        if c in ('"', "'"):
+            start = line
+            i += 1
+            while i < n and text[i] != c and text[i] != "\n":
+                i += 2 if text[i] == "\\" else 1
+            if i >= n or text[i] == "\n":
+                broken.append(start)
+                continue          # leave the newline for the top of the loop to count
+            i += 1
+            continue
+        if c == "{":
+            depth += 1
+        elif c == "}":
+            depth -= 1
+            low = min(low, depth)
+        i += 1
+    return {"depth": depth, "low": low, "broken": broken}
+
+
 def self_test() -> int:
     failures = 0
 
@@ -3205,6 +3271,28 @@ def self_test() -> int:
           f"{sheet.count('{')}/{sheet.count('}')} vs {full.count('{')}/{full.count('}')}")
     check("...and no comment marker hides inside a value",
           not _re.search(r'"[^"\n]*/\*', full))
+
+    # EVERY SHEET THIS MODULE EMITS, PARSED THE WAY A BROWSER PARSES IT. The check above ran on
+    # the main sheet only, and record.css shipped with one missing brace: an `@media (max-width:
+    # 44rem)` block that a pruned-out dead rule had taken the closing brace from. A browser does
+    # not stop at that. It swallows the whole rest of the file into the media query, so the
+    # calendar's every layout rule silently applied below 704px and nowhere else, and the page
+    # looked fine on the phone I was checking it on. Counting braces was never the point; the
+    # point is that the depth comes back to zero and never goes under, per sheet, with comments
+    # and quoted strings discounted so neither can fake it.
+    #
+    # A NEWLINE INSIDE A QUOTED VALUE IS THE SAME KIND OF SILENT, and `content` is the one
+    # property here carrying words a reader is meant to read, so losing that declaration costs
+    # a sentence rather than a border.
+    for name, text in (("site.css", sheet), ("site.css annotated", full),
+                       ("record.css", record_css())):
+        shape = _css_shape(text)
+        check(f"{name} closes every block it opens", shape["depth"] == 0,
+              f"ends at depth {shape['depth']}")
+        check(f"...and {name} never closes one it did not open", shape["low"] >= 0,
+              f"reached {shape['low']}")
+        check(f"...and no quoted value in {name} runs off its line", not shape["broken"],
+              f"line(s) {shape['broken']}")
     check("two builds are byte identical", css() == sheet)
 
     if failures:
