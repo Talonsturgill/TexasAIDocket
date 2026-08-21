@@ -7,7 +7,7 @@ name: livecheck
 # dark: a lapsed domain, a clobbered CNAME, a DNS record edited by hand, a Pages project
 # unpublished. Nothing in the repository changes and nobody can read the record.
 #
-# GATE_LESSONS entry 10 is this shape already happening once. A merge left the live site on the
+# GATE_LESSONS entry 11 ("A deploy that depends on who pushed") is this shape already happening once. A merge left the live site on the
 # previous build with every gate green, because no run had started at all. The fix then was a
 # two-hourly deploy backstop, which re-deploys blindly. This is the half that looks at what
 # came out.

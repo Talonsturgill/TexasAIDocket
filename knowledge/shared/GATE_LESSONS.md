@@ -101,7 +101,7 @@ reader.
 state, a single-item state, a paginated state, a "no data yet" state. Each is prose somebody
 eventually reads.
 
-## 9a. A mode nothing ever opens is a mode nothing ever checks
+## 10. A mode nothing ever opens is a mode nothing ever checks
 
 The same fault as 9, in a wider form, and it cost the same bug twice.
 
@@ -130,7 +130,7 @@ the accent in the headline and then on the Lone Star's halo, both warm because t
 be. There is no number that separates "warm on purpose" from "stained". There is a very simple
 check that a reader on a light machine gets the same page.
 
-## 10. A deploy that depends on who pushed
+## 11. A deploy that depends on who pushed
 
 `pages.yml` fired on `push` and nothing else. **A push made with `GITHUB_TOKEN` does not start a
 workflow** — deliberate, to stop a workflow triggering itself forever. So the deploy ran for a
@@ -152,7 +152,7 @@ published. Pin the ref.
 
 ---
 
-## 11. A gate that compares two renders must freeze the motion
+## 12. A gate that compares two renders must freeze the motion
 
 Once the sky was sped up to be visible, the check comparing a light-machine render against a dark
 one started failing in CI at **"off by 8"** while passing five times out of five locally. The two
@@ -173,7 +173,7 @@ ceiling has to hold while a lit cloud drifts over a gutter, so it is checked at 
 rewound with `animationDelay`, keeping the least favourable frame. One screenshot answers that by
 luck. Five fixed ones answer it, and the message names the second it happened.
 
-## 12. A rule can be repealed and still read perfectly
+## 13. A rule can be repealed and still read perfectly
 
 `ownership.yaml` is matched .gitignore style, last match wins. `scripts/site/**` was written near
 the top as `owner: human`, with the note **"the gates. A routine that can edit the gate that judges
@@ -206,7 +206,7 @@ something has to test that each entry still means what it says.**
 forced a re-read of who owns what. Consolidation is when this class of fault surfaces, so a merge
 is the moment to check the boundary rather than assume it survived.
 
-## 13. A self-test is not wiring
+## 14. A self-test is not wiring
 
 Found ten minutes after 12, during the same merge, and it is the same disease wearing different
 clothes.
@@ -240,7 +240,7 @@ because a lockfile lists it. A dead-code sweep that counts a function as live be
 it. **When the evidence and the question are one inference apart, the check answers the easier
 question and reports it as the harder one.**
 
-## 14. Your container is not the environment being checked
+## 15. Your container is not the environment being checked
 
 `ship_images` passed its self-test fifteen times locally and failed on the first push with
 `Pillow and numpy are required`. The development container had them. The CI runner installed
@@ -264,7 +264,7 @@ friendly error message.
 variable with a default in your shell profile. Every one of them is something the developer's
 machine supplies silently and a fresh runner does not.
 
-## 15. Fixtures written by the author of the detector agree with it
+## 16. Fixtures written by the author of the detector agree with it
 
 The end-to-end proof ran the whole chain on a real render for the first time. **Every gate's
 self-tests were green before it started.** It found five defects in under an hour, and not one was
@@ -300,7 +300,7 @@ is cheap: one render and one pass through every gate.
 
 ---
 
-## 16. A gate is only as strong as its narrowest scope
+## 17. A gate is only as strong as its narrowest scope
 
 `numeral_lint` checks a page's numerals against the set of values the build computed. The first
 wiring merged the grid watch's and water watch's authorised sets into one set shared by all 48
@@ -314,7 +314,7 @@ gate off, and it does not look like it. When a gate is scoped per page, plant a 
 legitimately authorised on a DIFFERENT page and require a red build. `site_build --self-test`
 does exactly that, with a real grid watch figure.
 
-## 17. Deleting authorised strings by substring dissolves every figure
+## 18. Deleting authorised strings by substring dissolves every figure
 
 Same gate, second and worse cause. The scanner removed each authorised string from the text and
 reported whatever digits survived. Any real page authorises all ten single digits within a few
@@ -331,7 +331,7 @@ which is what stops it splitting a figure it merely overlaps.
 **Generalises to.** Any checker that works by removing what is allowed and reporting the
 remainder. Subtraction over a shared alphabet is not filtering.
 
-## 18. A reference is a dependency even when it is not a link
+## 19. A reference is a dependency even when it is not a link
 
 Item `tx-2026-0006` tells a reader "See item tx-2026-0010 for that page's statutory basis", and
 there is no `tx-2026-0010`. Fact checking culled it and the pointer survived. Three checks nearly
@@ -345,7 +345,7 @@ another record is asserting that record exists.
 **And note the second half.** A test fixture demonstrating an exemption taught the suite that the
 broken id was fine. See entry 15: fixtures written beside a detector agree with it.
 
-## 19. A true count of the wrong set reads exactly like a true count
+## 20. A true count of the wrong set reads exactly like a true count
 
 The ask engine answered "El Paso" with "9 items in the El Paso area", one line above a note
 saying nothing had been found in either of El Paso's counties. All nine were statewide. Every
@@ -366,7 +366,7 @@ was COMPUTED cannot check whether it was the RIGHT figure. The compute-not-gener
 against a number nobody derived. It does not protect against a number derived from the wrong
 population, and only reading the sentence catches that.
 
-## 20. One value meaning two things
+## 21. One value meaning two things
 
 `page(active="")` marked the current nav entry. `""` is also Home's own href. So every item page
 and every topic page shipped `aria-current="page"` on Home, telling a screen reader it was on the
@@ -376,7 +376,7 @@ underline and Home is where a reader's eye is not.
 **What to check.** A sentinel that collides with a real value is not a sentinel. Use `None`, and
 test the sentinel before the comparison rather than letting it fall out of one.
 
-## 21. A workflow's implicit default is a repo setting, and a setting is not a rule
+## 22. A workflow's implicit default is a repo setting, and a setting is not a rule
 
 `gridwatch.yml` ran `actions/checkout@v4` with no `ref`, which takes the repository's default
 branch, and every push in the same job targeted `main`. Those were the same branch only because
@@ -406,7 +406,7 @@ printing the same rejection five times and buried the actual cause under the noi
 also refuses to push when it is more than one commit ahead of trunk, which is the check that would
 have caught the whole thing on day one.
 
-## 22. A CSS rule can be correct, matched, and dead, and it reads as fixed
+## 23. A CSS rule can be correct, matched, and dead, and it reads as fixed
 
 The front page chip wrapped onto a third line on a phone, carrying one word. The fix was to give
 up a little letter-spacing below 30rem, and it was written into the `max-width:30rem` block that
@@ -430,7 +430,7 @@ short of measuring the rendered box could tell the difference between this and a
 Every CSS change that claims a measurable effect gets measured after, in a browser, on the built
 page. Reading the diff is not verification of a stylesheet.
 
-## 23. A test that encodes the workaround defends the bug
+## 24. A test that encodes the workaround defends the bug
 
 The Lone Star was `display:none` below 30rem, because its glow landed in the wrapped
 navigation. Two tests then asserted that arrangement. `page_ground.mjs` required the mark to be
@@ -450,7 +450,7 @@ The sweep that found the truth also found a band nobody had looked at: from 488 
 mark sat directly on the "Services" and "About" links, at widths where it was never hidden and
 never tested.
 
-## 24. A clipped numeral is not a layout bug
+## 25. A clipped numeral is not a layout bug
 
 The load chart's axis type steps up to 27 user units on a phone so it survives being scaled
 down. The left gutter that type is drawn into was 52 units and fixed in Python, while the type
@@ -483,7 +483,7 @@ sticky elements at a stale offset, and a `fullPage` capture does not scroll, so 
 revealed sections photograph as a blank middle no reader ever sees. Both were investigated as
 layout bugs before being recognised. Scroll with `behavior:'instant'` and settle before capturing.
 
-## 25. A token pairing is not the colour a reader receives
+## 26. A token pairing is not the colour a reader receives
 
 `scripts/site/theme.py` measures contrast, and it measures TOKEN against TOKEN. That is exactly
 right for `--ink` on the page ground and blind to anything a rule composites out of two tokens.
@@ -505,7 +505,7 @@ over an image or gradient ground, because there is no single ground to measure, 
 count it declined on success as well as on failure, so a run that covered almost nothing cannot
 read as a run that found nothing.
 
-## 26. A gate that mis-parses its own input invents failures, and they are convincing
+## 27. A gate that mis-parses its own input invents failures, and they are convincing
 
 The first draft of that contrast gate scraped four numbers out of a computed colour with
 `/[\d.]+/g`. Correct for `rgb(180, 102, 79)`. Silently wrong for `color(srgb 1 1 1 / 0.34)`,
@@ -529,7 +529,7 @@ any colour syntax Chrome accepts including ones that do not exist yet. And prove
 against the defect it was written for: revert the fix, watch it go red at the expected number,
 restore. Ours prints 2.92, which is the figure hand arithmetic gives.
 
-## 27. Three small paddings are one big hole
+## 28. Three small paddings are one big hole
 
 A phone screenshot from the owner: the whole first screen of the about page was a wordmark, a
 navigation, and a field of stars, with the headline pushed off the bottom. Nothing in it looked
@@ -551,7 +551,7 @@ the thing that has a right answer: `responsive.mjs` now checks that the nav is O
 width AND that the last link can be scrolled into view, together. Either alone is passable by a
 fault, since a row that never wraps is trivially achieved by clipping four sections away.
 
-## 28. A pass by half a unit is a coin flip, and the runner calls it
+## 29. A pass by half a unit is a coin flip, and the runner calls it
 
 `responsive.mjs` asserts that no chart label falls outside the drawing. It passed locally and
 failed in CI **on the same commit and the same bytes**: `320px cut -2,500`.
@@ -580,7 +580,7 @@ at x=0, one antialiasing pixel from being clipped on any machine.
 inequality. A tolerance of zero turns every rounding difference between two machines into a
 flapping test, and flapping tests get their failures explained away.
 
-## 29. A gate that passes by collision is not passing
+## 30. A gate that passes by collision is not passing
 
 The water watch page printed four percentages that its own module did not authorise. It passed
 anyway, for months, because `_authorised_numerals` unions the whole record's counts and 42, 71,
@@ -602,7 +602,7 @@ records one level up: **a gate is only as strong as its narrowest scope, and a u
 scope.** If a page passes because some other page computed the same integer, nothing has been
 checked.
 
-## 30. Reader copy is every field a page renders, not the two the gate was told about
+## 31. Reader copy is every field a page renders, not the two the gate was told about
 
 `docket_build`'s copy gates read `title`, `summary` and `public_access.how`. The site renders
 more than that: a claim's own `text`, and the `note` on every key date. Neither was ever checked
@@ -619,7 +619,7 @@ fails on a ledger nobody edited.
 page renders, and it goes stale the moment a template starts rendering one more field. Diff the
 two: every string a builder interpolates into a page is reader copy, whoever wrote it.
 
-## 31. Nine green suites and nobody had looked at the page
+## 32. Nine green suites and nobody had looked at the page
 
 Every gate in this repository passed. `house_style_check` clean across 147 pages,
 `site_fresh_check` byte identical, `text_contrast` over 7,713 runs of text, `responsive`,
@@ -662,7 +662,7 @@ thing to lead with. **Look at the rendered pages after any change you did not vi
 confirm**, at the widths a reader uses, and treat a green suite as evidence that the things you
 thought to ask about are fine rather than that the product is.
 
-## 32. Running every self-test is not running the gates
+## 33. Running every self-test is not running the gates
 
 The homepage grew a scanner section whose button read "Scan my business". `house_style_check`
 refuses first person in published copy, it ran against the built site in CI, and it went red on
@@ -699,7 +699,7 @@ rule down changes that. Make the honest version one command.
 
 ---
 
-## 33. A gate's own exemption is where the next unread surface grows
+## 34. A gate's own exemption is where the next unread surface grows
 
 `house_style_check` strips `<script>` before it lints, and the reason is good and is written
 down: the ask page ships its whole engine inline, and a JavaScript identifier `i` was being read
@@ -834,7 +834,7 @@ centre to be a test reports itself as such instead of passing.
 context, assert the count PER CONTEXT. A phone pass that silently built nothing lands as a
 healthy total, because the desktop pass alone clears any threshold written against the sum.
 
-## 19. A law with no mechanism, reported as a skip
+## 37. A law with no mechanism, reported as a skip
 
 `ownership.yaml` is the boundary between several unattended automations sharing one git
 history, and `.githooks/pre-commit` is what enforces it locally. On 2026-08-16 the whole of a
@@ -863,7 +863,7 @@ down: not a rule that was overridden, but a rule with nothing implementing it. B
 by a person reading rather than by anything red. When a check exists to enforce a written rule,
 something has to assert THE CHECK IS CONNECTED, and that assertion has to be able to fail.
 
-## 20. Two enforcers disagreeing about what a lane is scoped to
+## 38. Two enforcers disagreeing about what a lane is scoped to
 
 The pre-commit hook checked the staged change against `.git/ACTOR`, so it scoped a lane to a
 COMMIT. CI pinned one actor from the branch prefix and checked the whole branch diff, so it
@@ -886,7 +886,7 @@ a routine that could stamp `human` would switch the whole map off from inside a 
 `actors_allowed_on_branch` drops `human` in code rather than trusting the map to be written
 carefully, and the self-test puts `human` in the test map on purpose to prove the drop happens.
 
-## 21. An allowlist of names is a gate that sleeps
+## 39. An allowlist of names is a gate that sleeps
 
 `copy_sync_check` decided what to check by matching KEY NAMES against a list: kicker, headline,
 subhead, body and eleven more. Slides here are bespoke and the copywriter names keys to suit the
@@ -915,7 +915,7 @@ narrow enough to state, not the absence of the check. Here the carve-outs are th
 STRIPPED from a node rather than exempting the node, because exempting anything containing a
 stamp would blind the gate to whatever sits beside it.
 
-## 22. A number can be right while the sentence around it is wrong
+## 40. A number can be right while the sentence around it is wrong
 
 `numeral_lint` is a hard build gate and it enforces something precise: every numeral in published
 copy traces to a value the build actually computed. It is structurally unable to see whether the
@@ -944,7 +944,7 @@ most wants: League City has decided, and what it decided was to order a special 
 November 3rd, which is precisely a dated way in. Computing a FUTURE DOOR keeps it and drops the
 finished votes, because a finished vote has no future door whatever its status says.
 
-## 23. A fact the code branches on, carried only in prose
+## 41. A fact the code branches on, carried only in prose
 
 `llms.txt` decides whether a dated hearing is still a door a reader can walk through. TCEQ
 called off two August 2026 hearings and the record kept the original dates with the
@@ -976,7 +976,7 @@ The asymmetry is deliberate. A note saying canceled REQUIRES the flag. A cancele
 no note at all. The gate exists to stop the prose contradicting the data, not to make writers
 describe every field twice.
 
-## 24. A test that lands inside the window the product suppresses
+## 42. A test that lands inside the window the product suppresses
 
 `responsive.mjs` asserts three things about the map on a phone, and says in its own comment that
 any two without the third is a defect: the readout fills under a dragging thumb, releasing the
@@ -1013,7 +1013,7 @@ and a re-run would have been green about a third of the time. A latent coin toss
 indistinguishable from an intermittent product fault until somebody reproduces it, and the only
 honest way to tell them apart is to reproduce it.
 
-## 25. Every gate green, and the page was broken
+## 43. Every gate green, and the page was broken
 
 The owner opened the site and said two slides had not rendered. They had not. The article page
 carried two broken images, silently published six slides of an eight slide deck, and told the
@@ -1055,7 +1055,7 @@ The rule underneath: **a defect the owner finds by looking at the site is a defe
 was supposed to find first.** Publishing is not the last step. Opening what you published is.
 
 
-## 26. A field's name is not a claim about today
+## 44. A field's name is not a claim about today
 
 The hub cards for the beats and the front page's index of them were built to carry one fact past
 the count, whether a Texan can still act on anything on that beat. The first cut read
@@ -1092,7 +1092,7 @@ the field alone can't give it.
 
 ---
 
-## 27. Generated, validated, and shown to nobody
+## 45. Generated, validated, and shown to nobody
 
 Three fields on the same page, found on one afternoon in August 2026, each written by something
 and read by nothing a person could see.
@@ -1127,7 +1127,7 @@ takes ten seconds and is worth running over the schema once a quarter.
 
 ---
 
-## 28. A self-test proved the gate could go red, on a sentence nobody writes
+## 46. A self-test proved the gate could go red, on a sentence nobody writes
 
 `gate_narration` refuses machine narration in reader copy. Its self-tests were real, it had been
 watched going red, and one of its branches read `(?:could|couldn't|can't) be verified`.
@@ -1155,7 +1155,7 @@ gates in this repo do not have this failure mode, because a semicolon is a semic
 
 ---
 
-## 29. The exemption an allowlist would have been, and the pass that was luck
+## 47. The exemption an allowlist would have been, and the pass that was luck
 
 A key date note on `tx-2026-0041` reads "Date NewsChannel 6 reported the Planning and Zoning
 Commission approval". The `6` is half a broadcaster's name. It is not a measurement, it traces to
@@ -1197,7 +1197,7 @@ coincidence does not survive a refactor.
 
 ---
 
-## 30. The build read git, so the build was not a function of its inputs
+## 48. The build read git, so the build was not a function of its inputs
 
 `docs/` gained a per page revision date, and the first version derived it from the history of
 the generated bytes. The reasoning looked airtight: `docs/` is committed, so git already holds
@@ -1233,7 +1233,7 @@ has all its history.
 the repository, the network, or git itself. The question is not "is this value correct" but
 "would a different machine compute the same one".
 
-## 37. The gate enforced ten rules and could observe four
+## 49. The gate enforced ten rules and could observe four
 
 A content security policy was added to every page, hashing each inline script so an injected one
 has a hash nobody authorised and does not run. The policy names ten directives. The checker
@@ -1281,7 +1281,7 @@ against a browser, a linter against a compiler, a schema validator against the c
 permissions model against the API that actually decides. The question is not "does my checker
 pass" but "does my checker run the thing that says no".
 
-## 38. A security fix moved one line, and the pre-push runner went red on every clean checkout
+## 50. A security fix moved one line, and the pre-push runner went red on every clean checkout
 
 `guards_local.py` runs what CI runs, here, before pushing. It reads `guards.yml` rather than
 keeping its own step list, and it skips the steps that need a CI context, recognised by a
@@ -1322,7 +1322,7 @@ not what it happened to do the day the consumer was written.
 
 ---
 
-## 39. The ownership guard did not run at all inside a git worktree, and nothing said so
+## 51. The ownership guard did not run at all inside a git worktree, and nothing said so
 
 **2026-08-20.** `.githooks/pre-commit` is the ownership guard. It is what stops one of this
 repo's several unattended automations writing into another's lane, and CLAUDE.md's own first
@@ -1368,7 +1368,7 @@ run has no way to tell those two apart from the output, so it must occasionally 
 
 ---
 
-## 40. Every film on the site was refused, and it read as a video that would not autoplay
+## 52. Every film on the site was refused, and it read as a video that would not autoplay
 
 **2026-08-20.** The owner said the videos were not autoplaying. They were not playing at all, and
 they never had. The browser says so in one line:
@@ -1420,7 +1420,7 @@ on the same host, in the same feature. When adding a host to any allowlist, ask 
 directive the same feature needs, because the feature is what has the requirement and the
 directive is only how it is spelled.
 
-## 41. Two instruments could stop and the whole board would stay green
+## 53. Two instruments could stop and the whole board would stay green
 
 **Date.** 2026-08-21. **Found by.** Asking what happens when a gate FIRES, having just finished
 checking that every gate was wired.
@@ -1486,7 +1486,7 @@ check step, substitutes a stub for the checker that exits with a chosen code, ru
 `bash -e`, and asserts what the step does. Grepping that block for `exit 3` would be a gate on
 spelling. The question is what the step DOES when the checker says 3, so the step is asked.
 
-## 42. The law was written the same evening the rule was broken, in the file that breaks it
+## 54. The law was written the same evening the rule was broken, in the file that breaks it
 
 **Date.** 2026-08-21. **Found by.** Reading `prompts/daily_routine.md` for something else.
 
@@ -1521,3 +1521,90 @@ gate that makes its own reasoning unwritable loses the reasoning at the first re
 **Generalises to.** Every law in `CLAUDE.md` that governs a file which is not `CLAUDE.md`. Ask,
 on the day the rule is written, what would catch the file that breaks it, and write that instead
 of a second paragraph.
+
+---
+
+## 55. A marker check is only as good as the marker, and a wrong marker reads as a broken deploy
+
+Three times in one session, a check grepped for an identifier that was never in the product, and
+the zero it got back was read as the feature being missing.
+
+The live site had just taken the ask box work. The verification grepped the served page for
+`caltoday`, `calstep` and `actonly`, got three zeros, and reported that the calendar's today
+marker, its phone stepper and its act filter had not shipped. All three had shipped. They are
+called `calnow`, `calprev` with `calnext`, and `calswitch`. The names were invented by the person
+writing the check, from what the features do, and never once compared against the code that emits
+them.
+
+The same shape twice more the same week, and one of them shipped. A phone layout check asserted
+that `.sitefoot` was hidden. The footer is `footer.site`. The selector matched nothing, so the
+assertion was true on a page with the footer standing wide open, which is exactly the bug a reader
+then reported. And a live bug check looked for a starter chip at `#ask .askstarters button`. The
+chips are `button[data-ask]`, so the check failed on a working product and cost a round of
+diagnosis pointed at the wrong thing.
+
+**Why it survives review.** A zero is not evidence of absence, it is evidence that the query found
+nothing, and those two are the same character on the screen. Every other assertion in a suite gets
+its truth from the product. A string match gets its truth from a string the author typed, and
+nothing in a green run distinguishes a marker that matched from a marker that could never match.
+
+**The gate now.** Before a check asserts on an identifier, the identifier is proved to exist in the
+source that emits it, and the check is proved to match when the feature is present. In practice
+that is one grep of the builder before the grep of the output, and it is what
+`scripts/shared/lesson_refs.py` does for the one class of marker this repo cites most, the
+`GATE_LESSONS` entry numbers. Twelve of those numbers had been used twice, one citation already
+resolved to the wrong lesson, and repairing that turned three correct citations into wrong ones
+without touching a character of them.
+
+**Generalises to.** Every assertion whose subject is named rather than found: CSS selectors, DOM
+ids, grep patterns, JSON keys, environment variable names. Ask what the check does when the name
+is wrong, and if the answer is "passes", the check is a decoration.
+
+---
+
+## 56. A measurement that includes the instrument's own work
+
+The calendar's month switch was timed with `playwright.click`, which scrolls the target into view
+before it clicks. It reported 540ms. The switch takes 37ms. The other five hundred were the test
+harness moving the page so it could reach a button.
+
+An afternoon nearly went into optimising a page that was already fast, on a number that was
+measuring the tape measure.
+
+What the bad number did point at was real, and would have been missed if the number had simply
+been thrown out. `focus()` on the new month heading also scrolls, by whatever distance the browser
+chooses, and that was a genuine 263ms of long smooth scroll to a month already on screen. It is
+`focus({preventScroll:true})` with an explicit `scrollIntoView({block:'nearest'})` now, which
+moves only when it has to.
+
+**The gate now.** Latency is measured inside the page, from the dispatch of the event to the next
+paint, never around a driver call. Measured that way the switch is 38 to 55ms median and 81 to
+83ms worst on a phone at six times slower CPU.
+
+**Generalises to.** Any timing taken from outside the thing being timed. The driver, the network
+stub, the screenshot, the await that resolves on a poll interval, all of them add their own work
+to the number and none of them announce it.
+
+---
+
+## 57. A suite slow enough to be skipped is a suite that is not run
+
+The calendar suite took thirteen and a half minutes, and it nearly shipped at that length.
+
+Almost none of it was work. Playwright's actionability check includes "enabled", so every
+deliberate click past the end of the month range waited the full thirty second default before
+giving up. Clicking past the end is the entire point of those loops, so the wait was the test
+doing exactly what it was asked, at a cost that made the suite unrunnable.
+
+Those clicks carry a 400ms timeout now. Thirteen minutes twenty nine seconds became thirty eight
+seconds, with the same checks and the same assertions.
+
+**Why this belongs in a file about gates.** A gate is only enforcement while somebody runs it. A
+suite that costs a quarter of an hour gets run at the end, then gets run on the pushes that felt
+risky, then gets skipped, and the day it is skipped it is worth exactly nothing while still
+appearing in the list of things this repo checks. Slowness is not a comfort problem. It is how a
+gate stops being a gate without anybody deciding to switch it off.
+
+**Generalises to.** Every default timeout in a test that expects a negative. A wait for something
+that is supposed to happen should be generous. A wait for something that is supposed to NOT happen
+must be short, because it will pay that cost on every run forever.

@@ -12,10 +12,11 @@ domain, a clobbered `CNAME`, an expired registration, a Pages project unpublishe
 record edited by hand. None of those touch a byte in this repository and every check would go
 on passing while nobody could read the record at all.
 
-**THIS SHAPE HAS ALREADY HAPPENED HERE.** `GATE_LESSONS` entry 10: a merge left the live site
-on the previous build with every gate green, because a `GITHUB_TOKEN` push does not start a
-workflow and no run had begun. The fix was a two-hourly deploy backstop, which re-deploys
-blindly and never looks at the result. This looks at the result.
+**THIS SHAPE HAS ALREADY HAPPENED HERE.** `GATE_LESSONS` entry 11 ("A deploy that depends on
+who pushed"): a merge left the live site on the previous build with every gate green, because a
+`GITHUB_TOKEN` push does not start a workflow and no run had begun. The fix was a two-hourly
+deploy backstop, which re-deploys blindly and never looks at the result. This looks at the
+result.
 
 WHAT IT ASSERTS, AND THE SPLIT BETWEEN LOUD AND QUIET
 
