@@ -741,8 +741,6 @@ somebody puts in X, and nobody tells the linter when that changes.
 
 ---
 
----
-
 ## The rule for setting a threshold
 
 Two thresholds here were set by measuring our own corpus, and only one of them was safe.
@@ -1524,7 +1522,82 @@ of a second paragraph.
 
 ---
 
-## 55. A marker check is only as good as the marker, and a wrong marker reads as a broken deploy
+## 55. Three checks passed on work that never happened, because a click cost more than its timeout
+
+The record calendar's browser suite failed about one run in four. It failed in CI on
+`walking all the way back lands on the first month`, reporting `2025-04`, and then passed
+four times running, which is the signature that gets a suite labelled flaky and then ignored.
+
+**The cause is not in the calendar.** The page is correct. Every page on this site carries
+infinite decorative animations, one of which shimmers a full width blurred layer that cannot be
+composited, so a headless renderer with no GPU repaints and re-blurs it every frame. Playwright's
+actionability loop is measured in frames. Measured on `docs/record/`, one `page.click` costs
+**426 to 875ms** with motion on and **49 to 215ms** under `reducedMotion: "reduce"`. Every walk
+loop in the suite gave a click `{ timeout: 400 }` and then swallowed the failure with
+`.catch(() => {})`.
+
+So the loops were dropping steps and asserting wherever they had run out of iterations.
+
+**The part worth keeping is what the swallow did to the OTHER checks.** The end of range
+assertion at least failed. Three more passed:
+
+- the backward walk timed out on **15 of 22** iterations while `#calprev` was still enabled
+- `the third rapid tap` delivered **0 of 5** taps, and both of its assertions passed on a
+  calendar nobody had touched
+- eight filter flips were swallowed, and the assertion was true of a filter nobody toggled
+
+A swallowed interaction does not make a check fail. It makes the check TRUE, about an initial
+state, forever. That is worse than the flake, because the flake at least announced itself.
+
+The forward walk had a fourth version of it in a different disguise. It compared
+`seen.filter((v, i) => v !== seen[i - 1])`, dropping consecutive repeats, and a dropped click
+produces exactly a consecutive repeat. The filter deleted the evidence of the fault it would
+otherwise have caught.
+
+**What to check instead.**
+
+- **Never swallow an interaction.** `.catch(() => {})` on a click is a lie told to the assertion
+  that follows it. If a click can fail without the test failing, the test is not about the click.
+- **Assert on the STATE CHANGE, not on the call returning.** `walk()` clicks and then waits for
+  the shown month to differ from the one it recorded, and stops on the control's own `disabled`
+  state rather than on an iteration count. A cap is a runaway guard, and reaching it is a failure.
+- **Count what the handlers actually received.** The rapid tap now fires its clicks in the page
+  and asserts the listeners saw five. The filter flips are counted the same way. A test that
+  cannot say how many events it delivered cannot say what it proved.
+- **Never normalise away a duplicate you have not explained.** A repeat is either the behaviour or
+  the bug, and a filter that removes it decides which without looking.
+
+**A concurrency trap in the same block.** Five `page.click` calls in a `Promise.all` share one
+mouse and interleave, so a mousedown on prev with a mouseup on next fires the click on the pair's
+common ancestor and neither button hears it. That delivered two to five taps per run, with nothing
+rejected. Firing them synchronously in the page is both deterministic and a harsher race than a
+thumb can make, because the handlers run back to back with no frame between them.
+
+**And `goto` to a url that differs only in its fragment is a SAME DOCUMENT navigation.** Nothing
+reloads, `hashchange` fires, and the startup path that parses the hash never runs. The block
+headed "A DEEP LINK NEEDS A FRESH DOCUMENT" had been testing the listener and reporting it as the
+cold parse. A visit counter in the query makes each load a real load.
+
+**Turning motion off is right, and it leaves a hole that has to be named.** `reducedMotion` is
+what a CI runner should emulate, the site honours it in its own stylesheet, and nothing the suite
+asserts is about motion. Except one thing. `html` carries `scroll-behavior:smooth`, which reduced
+motion turns to `auto`, so the deep link check is the ONE assertion whose subject is where the
+viewport ends up, and it is the one the setting changes. Arriving at `#cal-2026-06`, the panel
+sits at 1517, 1517, 1164 and 0 at 0ms, 200ms, 500ms and 1000ms under default motion, and at 0 on
+the first frame under `reduce`. The page is right either way. So that assertion is asked a second
+time in the mode the suite no longer covers, waiting for the scroll to STOP MOVING rather than
+sleeping a guessed interval, which would be the same guess that flaked to begin with.
+
+**Generalises to.** Every browser suite in this repo, and to any timeout written as a constant
+next to an interaction. A per action timeout is a claim about how long the product takes, made by
+somebody who was not measuring. If a suite needs one, measure the action first and then say in
+the comment what it measured, or the number is a guess that will come back as a one in four
+failure on a machine nobody was thinking about.
+
+**Result.** Two minutes fifty seven with two failures, to thirty five seconds clean, eight
+consecutive green runs, and the checks now fail when the interaction does not land.
+
+## 56. A marker check is only as good as the marker, and a wrong marker reads as a broken deploy
 
 Three times in one session, a check grepped for an identifier that was never in the product, and
 the zero it got back was read as the feature being missing.
@@ -1562,7 +1635,7 @@ is wrong, and if the answer is "passes", the check is a decoration.
 
 ---
 
-## 56. A measurement that includes the instrument's own work
+## 57. A measurement that includes the instrument's own work
 
 The calendar's month switch was timed with `playwright.click`, which scrolls the target into view
 before it clicks. It reported 540ms. The switch takes 37ms. The other five hundred were the test
@@ -1587,24 +1660,35 @@ to the number and none of them announce it.
 
 ---
 
-## 57. A suite slow enough to be skipped is a suite that is not run
+## 58. The speed fix that broke the suite, and the entry that nearly shipped praising it
 
-The calendar suite took thirteen and a half minutes, and it nearly shipped at that length.
+The calendar suite took thirteen and a half minutes. Almost none of it was work. Playwright's
+actionability check includes "enabled", so every deliberate click past the end of the month range
+waited the full thirty second default before giving up. Those clicks were given
+`{ timeout: 400 }`, the suite fell to thirty eight seconds, and the run log said the same checks
+passed. It was written up as a win, in a worklog, in the words "13m29s to 38s, same checks".
 
-Almost none of it was work. Playwright's actionability check includes "enabled", so every
-deliberate click past the end of the month range waited the full thirty second default before
-giving up. Clicking past the end is the entire point of those loops, so the wait was the test
-doing exactly what it was asked, at a cost that made the suite unrunnable.
+It was not the same checks. Entry 55 above is what that 400ms actually did. A click on this site
+costs 426 to 875ms with motion on, so the timeout was under the cost of the operation, and the
+loops silently dropped steps and asserted wherever they had run out. Three checks then passed on
+work that never happened.
 
-Those clicks carry a 400ms timeout now. Thirteen minutes twenty nine seconds became thirty eight
-seconds, with the same checks and the same assertions.
+**The two halves that look identical and are opposites.** A wait for something that is supposed
+to NOT happen must be short, because it is paid on every run forever. A wait for something that
+is supposed to succeed must be generous, because shortening it does not make the work faster, it
+makes the work optional. The same diff, the same units, and the second one converts a slow suite
+into a fast lie.
 
-**Why this belongs in a file about gates.** A gate is only enforcement while somebody runs it. A
-suite that costs a quarter of an hour gets run at the end, then gets run on the pushes that felt
-risky, then gets skipped, and the day it is skipped it is worth exactly nothing while still
-appearing in the list of things this repo checks. Slowness is not a comfort problem. It is how a
-gate stops being a gate without anybody deciding to switch it off.
+**What nearly shipped.** This entry was first written as "a suite slow enough to be skipped is a
+suite that is not run", holding up the 400ms as the fix, on the strength of the worklog that
+recorded it. Merging with `main` is the only reason it was read against entry 55 before landing.
+Two entries in this file would have given opposite advice about one line of code.
 
-**Generalises to.** Every default timeout in a test that expects a negative. A wait for something
-that is supposed to happen should be generous. A wait for something that is supposed to NOT happen
-must be short, because it will pay that cost on every run forever.
+**Generalises to.** Every performance win in a test suite. Ask what the suite stopped doing. If
+the answer is "waiting", ask what it was waiting FOR, because a test that no longer waits for the
+thing it asserts about is not faster, it is no longer a test.
+
+**And to the worklogs themselves.** A worklog is written by the session that made the change, at
+the moment it felt like a win, and it is the least adversarial account of that change that will
+ever exist. Its lessons are worth rescuing before the file is deleted, and they are worth
+re-reading against what has landed since. This one was four days old and already wrong.

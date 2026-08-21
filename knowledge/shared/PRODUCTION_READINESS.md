@@ -70,7 +70,7 @@ at the keyboard.
 | Clock skew | UTC everywhere, and the collector trusts the payload's own timestamp over HTTP freshness |
 | Infrastructure as code | The workflows and `config/` are the infrastructure. There is no cloud estate to declare |
 | Dependency hell | Structurally impossible. There are no dependencies |
-| Postmortems | `GATE_LESSONS.md`, 57 entries, each naming what to check instead |
+| Postmortems | `GATE_LESSONS.md`, 58 entries, each naming what to check instead |
 | Chaos engineering, lightly | Gates are proved by planting the real defect and watching them go red, and the build is proved against a one-commit shallow clone |
 | Observability, partially | `gridwatch_pagecheck.py` reads the published page daily and exits 2 when the collector has fallen behind |
 

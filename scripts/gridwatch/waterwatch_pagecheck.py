@@ -11,10 +11,10 @@ proposal because `scripts/gridwatch/` is not the daily routine's lane to write.
 Two instruments, two checks, and they are NOT merged into one parameterised checker. The
 promises differ. The grid watch promises never to publish a reliability verdict and that its
 gauge is a bar. The water watch promises those and three more that have no grid equivalent:
-percent full is computed from storage over capacity rather than read from the feed's own field,
-a metro with no line is a gap in the source's tagging rather than a dry city, and out of state
-reservoirs are excluded rather than counted. A shared checker would have to grow a flag per
-promise, and the flags would be where the promises quietly stopped being checked.
+its gauge is a bar and one hue at every value. Three more that it USED to make came off on the
+owner's call, and each took its rule with it, which is the part worth keeping in view. A shared
+checker would have to grow a flag per promise, and the flags would be where the promises quietly
+stopped being checked.
 
 WHO RUNS THIS, AND THE ONE THING IT IS ALLOWED TO FAIL OVER
 
@@ -275,13 +275,23 @@ def findings(page_html: str, records: list, today: str,
     if re.search(r'class="fill [a-z]', low):
         out.append("the gauge fill has gained a severity class; one hue at every value")
 
-    # PERCENT FULL IS COMPUTED, NEVER READ. The page says so in its own copy, and that sentence
-    # is the promise a reader is given about where the number came from. If the sentence goes,
-    # either the method changed and the page stopped saying so, or the page stopped explaining
-    # a method it still uses. Both are worth a look.
-    if "storage over capacity" not in low:
-        out.append("the page no longer says percent full is computed from storage over "
-                   "capacity; that sentence is the provenance promise for its headline number")
+    # THE PROVENANCE RULE IS GONE, on the owner's explicit instruction, 2026-08-21, and it is
+    # recorded here for the same reason the coverage rules below are.
+    #
+    # It required the page to keep saying that percent full is computed from storage over
+    # capacity rather than read from the feed's own field. The reasoning was that the sentence
+    # is the promise a reader is given about where the headline number came from. That
+    # reasoning is still sound. The owner's call is that a date serves the reader better than a
+    # paragraph about method, and what a page is FOR is the owner's decision rather than this
+    # checker's.
+    #
+    # THE RULE AND ITS COPY WENT TOGETHER. Leaving this standing would have failed the page
+    # every run from the moment the sentence came off, which is a permanently red advisory and
+    # is how a reader learns to skim past the finding that is real.
+    #
+    # The method has not changed. `waterwatch_page.figures` still computes percent full from
+    # storage over capacity and still records the largest disagreement, and
+    # `waterwatch.json` publishes it per day. It is open data rather than copy.
 
     # THE SAN ANTONIO AND EL PASO DISCLOSURE RULES ARE GONE, on the owner's explicit
     # instruction, 2026-08-20. Recorded here because it reverses a rule this repo argued for.
@@ -450,10 +460,6 @@ def self_test() -> int:
     check("a severity class on the fill is caught",
           any("severity class" in x for x in f), str(f))
 
-    f = findings(shell(good_body.replace("storage over capacity", "the feed")), records, today)
-    check("dropping the provenance sentence is caught",
-          any("storage over capacity" in x for x in f), str(f))
-
     f = findings(shell(good_body + "<p>1,234,567 acre feet appeared from nowhere.</p>"),
                  records, today)
     check("a numeral tracing to no computation is caught",
@@ -519,8 +525,7 @@ def self_test() -> int:
             ("a supply verdict", good_body + "<p>The state is running dry.</p>"),
             ("a typed numeral", good_body + "<p>1,234,567 acre feet appeared from nowhere.</p>"),
             ("a gauge turned into a dial", good_body.replace("<div", '<div class="dial"', 1)),
-            ("a dropped provenance sentence",
-             good_body.replace("storage over capacity", "the feed"))):
+            ("a severity class on the fill", good_body + '<span class="fill high"></span>')):
         f, h = split(shell(body), records)
         check(f"{label} is ADVISORY, and exits 2",
               f != [] and h == [] and code_for(f, h) == 2, str(h))

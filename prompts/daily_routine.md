@@ -465,22 +465,37 @@ thing on this page a human has to see.
 **Both instruments have a page check now.** The water one was missing until 2026-08-16 and its
 absence was written up as a proposal, because the two are the same shape of thing. A cron writes
 a file and a builder renders it, and neither of them would notice the page going wrong. They are
-separate files rather than one parameterised checker because the promises differ. The water page
-also promises that percent full is computed from storage over capacity rather than read from the
-feed's own field.
-<!-- onpage water/ "storage over capacity" -->
+separate files rather than one parameterised checker because the promises differ.
 
-**THE COVERAGE AND EXCLUSION PROMISES ARE GONE**, on the owner's instruction, 2026-08-20. The
-page used to say that a metro with no line is a gap in the source's tagging rather than a dry
-city, and that out of state reservoirs are excluded rather than counted as empty. Both sentences
-and the rules that required them came off together. Do not restore either. If a run reads this
-section and reaches for that copy, it is reading a description that was true and is not.
+**THE WATER PAGE EXPLAINS ITSELF LESS EVERY TIME THE OWNER LOOKS AT IT**, and that is the
+instruction rather than a drift. Four blocks have come off across two days, each on an explicit
+call, each taking its gate with it.
+
+- 2026-08-20, the coverage and exclusion notes. A metro with no line is a gap in the source's
+  tagging rather than a dry city, and out of state reservoirs are excluded rather than counted
+  as empty.
+- 2026-08-21, the lede's statewide arithmetic and the paragraph on why water sits beside the
+  grid. The readout strip prints the totals and the drawings are the spread.
+- 2026-08-21, the provenance note. Percent full is computed from storage over capacity and never
+  read from the feed's own field. A date stands there now.
+- 2026-08-21, the metro table's sixty two word caption. The column headings do that work.
+
+**Do not restore any of it.** The standing direction for this page is that a drawing beats a
+sentence about the drawing, and a run that finds a chart unexplained is looking at the intent.
+Every fact is still computed and still in `waterwatch.json`.
+
+That direction is CHECKED rather than trusted, because "do not put this back" is exactly the kind
+of sentence a run can read and still get wrong. `routine_claims.py` fails the suite if any of it
+returns.
 
 That instruction is CHECKED rather than trusted, because "do not restore this" is exactly the
 kind of sentence a run can read and still get wrong. `routine_claims.py` fails the suite if
 either sentence comes back, and fails it the other way if the promise above stops being kept.
 <!-- offpage water/ "San Antonio has no line" -->
 <!-- offpage water/ "Elephant Butte" -->
+<!-- offpage water/ "storage over capacity" -->
+<!-- offpage water/ "One color at every value" -->
+<!-- offpage water/ "A data center needs electricity" -->
 
 **THE SCANNER'S DAILY CEILING.** The scan form fires its routine on submit, so the only thing
 between a public form and a bill is `daily_cap` in the scanner project's `scanner.config`. A
