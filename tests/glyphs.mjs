@@ -31,10 +31,22 @@
  *
  * THE MEASUREMENT
  *
- * A character is drawn twice on a canvas: once in the family the page asks for, once in a family
- * that does not exist. Both fall back to the same system face when the asked-for family has no
- * glyph, so identical pixels mean the web font supplied nothing. The instrument checks itself
- * first, on a letter that must differ and a character no text font carries.
+ * A character is drawn on a canvas three ways, and it is MISSING from the asked-for family if
+ * either comparison says so.
+ *
+ *   Asked-for family versus a family that does not exist. Both fall back to the same system face
+ *   when the asked-for family has no glyph, so identical pixels mean it supplied nothing.
+ *
+ *   Asked-for family versus a codepoint no font on earth carries, in that same family. A missing
+ *   glyph can draw as the LAST RESORT BOX, and the box is drawn with the asked-for family's own
+ *   metrics, so it does not match the plain fallback and the first comparison alone reads it as
+ *   carried.
+ *
+ * The second half is here because the first half's control assertion failed on a CI runner and
+ * passed on a developer machine. A container with no CJK font at all draws the box; a machine
+ * with one draws the character. One measurement, two environments, opposite answers, and the
+ * wrong one was the reassuring one. The instrument checks itself before every run for exactly
+ * that reason, on a letter that must be carried and a character that must not be.
  *
  *   SITE=docs node tests/glyphs.mjs
  */
@@ -115,18 +127,25 @@ for (const file of all) {
 // The instrument, and its own proof. `drawn` reports whether the named family supplied the glyph.
 await page.goto(pathToFileURL(join(process.cwd(), all[0])).href);
 await page.evaluate(() => document.fonts.ready);
-const drawn = (family, ch) => page.evaluate(([family, ch]) => {
-  const shot = (fam) => {
+// A codepoint in the last private use plane. Nothing carries it, so whatever a family draws for
+// it IS that family's last resort box.
+const NOTDEF = '\u{10FFFD}';
+const drawn = (family, ch) => page.evaluate(([family, ch, notdef]) => {
+  const shot = (fam, text) => {
     const c = document.createElement('canvas');
     c.width = 96; c.height = 96;
     const x = c.getContext('2d');
     x.font = `64px ${fam}`;
     x.fillStyle = '#000';
-    x.fillText(ch, 8, 72);
+    x.fillText(text, 8, 72);
     return c.toDataURL();
   };
-  return shot(`"${family}", "__no_such_family__"`) !== shot('"__no_such_family__"');
-}, [family, ch]);
+  const asked = `"${family}", "__no_such_family__"`;
+  const mine = shot(asked, ch);
+  if (mine === shot('"__no_such_family__"', ch)) return false;   // the fallback drew it, not us
+  if (mine === shot(asked, notdef)) return false;                // our own last resort box
+  return true;
+}, [family, ch, NOTDEF]);
 
 console.log('=== no control character reached the copy ===');
 ok('published copy carries no control character', control.length === 0,

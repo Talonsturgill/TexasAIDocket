@@ -75,6 +75,7 @@ calendar: with script off the row is a plain link to the page.
 | D2 | Research batch 2, ten more | DONE, shipped in #149 |
 | D3 | Batch 3: the entity layer, plus nine more dossiers | DONE, 29 dossiers and 197 facts |
 | D4 | Batch 4: the network field, the change log, three gate defects | DONE, 30 dossiers and 213 facts |
+| D5 | Batch 5: nine more, and two tenants the announcements withheld | DONE, 39 dossiers and 271 facts |
 | E | Dossier schema + `ledger/facilities/dossiers.json` | DONE |
 | F | `facility_dossier.py` gate, 24 self-tests | DONE |
 | G | Per-facility page at `/facility/<slug>/`, in the sitemap | DONE |
@@ -259,7 +260,47 @@ resolver that guesses merges two real companies. Two rows currently defeat it:
 where the second is the state's typo. Any fix has to be a stated rule with its own self-test, not
 a similarity threshold.
 
-## Batch 5 candidates
+## Batch 5: nine dossiers, and two tenants the announcements withheld
+
+Thirty nine dossiers, 271 facts. The picks were made from the graph rather than alphabetically,
+which is what the graph was built for.
+
+**Hutto is the find.** `Hutto Data Center Campus LLC` is the exact name of the Skybox and Prologis
+joint venture that signed a ten year Chapter 312 abatement with the City of Hutto for a $10 billion
+campus on the megasite, six buildings and 3.9 million square feet, branded PowerCampus Austin. The
+reporting names the developers, the acreage and the money. **The state record names Google as the
+occupant.** No announcement does.
+
+Careful about what that row proves. Google did not appear on it for the first time this week. The
+state rewrote the row on August 21st and Google MOVED from the operator column into the occupant
+column while Design, LLC went the other way. What changed is a role, not the presence of a name.
+This is the third time a draft of a page here credited a registry row with more than it says, so
+the note states the movement rather than the arrival.
+
+**Red Oak is the same shape.** Compass announced the campus for "hyperscale, cloud and enterprise
+customers", which is what a developer writes when the lease forbids naming one, and coverage since
+has said the buildings are fully taken by a single unnamed tenant. The certified occupant is
+Microsoft, on two certifications with twelve single building entities between them. Red Oak also
+holds a second, unrelated hyperscale campus: DataBank with Oracle, already dossiered.
+
+**Switch AUS 4 carries the best evidence yet that operator is a legal position.** One of its
+operators of record is `Coreweave Financing DDTL V-V, LLC`. A delayed draw term loan vehicle does
+not run a data hall. Anyone reading this registry as an operations directory gets it wrong there
+first.
+
+**Two rows carry no owner of record at all**, Denton and the Austin Hibbetts Road building, both
+Core Scientific sites leased to CoreWeave. An empty owner column is rare here and it is
+information.
+
+Also added: `Hutto Data Center 3 LLC`, `PowerCampus Dallas by Lancaster Data Center Campus LP`
+(the same Design and Google pair, in swapped columns), `Red Oak Texas Data Center 2`, and
+`C1 Richardson LLC Data Center`.
+
+`tests/glyphs.mjs` failed CI on its own control assertion and passed locally, which is exactly
+what the control is for. See GATE_LESSONS entry 59 ("CSS fails silently, and a green suite has
+never once looked at a colour").
+
+## Batch 6 candidates
 
 Unchanged from batch 4 and still the best targets: the five Amazon codenames want a county
 appraisal district pass, and CoreWeave Denton, CoreWeave Plano, the Microsoft San Antonio cluster,
