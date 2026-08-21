@@ -17,7 +17,7 @@ Oncor Electric Delivery has applied to amend its certificate of convenience and 
 - Public access: Public meeting
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59315&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-08-20
+- Last checked: 2026-08-21
 
 ## Dates
 
@@ -31,6 +31,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-18 · The filing index moved from 5782 to 5790. The calendar entry for the August 21st open meeting no longer names Docket 59315. That entry now gives the AT&T Hotel and Conference Center rather than Commissioners Hearing Room 7-100.
 - 2026-08-19 · Checked and unchanged. The filing index stands at 2,000 and the most recent entries are still the intervention requests and protestor comments of March 17th.
 - 2026-08-20 · The docket is on the August 21st agenda after all. The published agenda for that open meeting names Docket 59315 as item 3, marked for discussion and possible action, and names a second Oncor 765 kV application as item 2. The calendar feed's entry for the meeting names no docket because no feed entry names one. The filing index now reports 5793 filings, and the web view lists only its first page of them, so a count taken from the rows on screen understates the docket.
+- 2026-08-21 · Checked. The commission's published agenda for the August 21st, 2026 open meeting still names Docket 59315 as item 3 for discussion and possible action. The filing index has moved from 5793 to 5797 since the last check.
 
 ## Evidence
 
@@ -89,4 +90,10 @@ Source (primary_official): https://interchange.puc.texas.gov/search/filings/?Uti
 > Zlotnik Family Ballroom
 
 Source (primary_official): https://ftp.puc.texas.gov/public/puct-info/agency/om/082126Final.pdf
+
+### The filing index records the number of filings in the docket.
+
+> 5797 filing(s).
+
+Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59315&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 

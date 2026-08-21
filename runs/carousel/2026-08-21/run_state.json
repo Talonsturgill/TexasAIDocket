@@ -1,0 +1,34 @@
+{
+ "run_date": "2026-08-21",
+ "phases": {
+  "wake": "done",
+  "craft": "done",
+  "sweep": "done",
+  "reverify": "done",
+  "discover": "done",
+  "admit": "done",
+  "claims": "done",
+  "instrument": "done",
+  "selection": "done",
+  "directors": "done",
+  "copy": "done",
+  "art": "done",
+  "pixel": "done",
+  "aggregate": "done",
+  "assembly": "done",
+  "scoring": "done",
+  "ship": "pending",
+  "retro": "pending",
+  "email": "pending"
+ },
+ "artifacts": {
+  "staleness": "out/2026-08-21/tmp/staleness.txt",
+  "fetches": "out/2026-08-21/tmp/fetch/",
+  "reverify_script": "out/2026-08-21/tmp/reverify.py",
+  "run_record": "runs/carousel/2026-08-21/RUN_RECORD.md",
+  "batch": "out/research/2026-08-21.json",
+  "held": "out/research/2026-08-21-held.json",
+  "site_preview": "out/2026-08-21/tmp/site",
+  "claims": "out/2026-08-21/claims.json"
+ }
+}

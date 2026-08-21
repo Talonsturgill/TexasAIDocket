@@ -1,0 +1,86 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;
+            background:#17181A;font-kerning:normal}
+  #art{position:absolute;inset:0;display:block}
+  .lyr{position:absolute;inset:0}
+  .kick{position:absolute;left:80px;top:80px;font-family:'JetBrains Mono',monospace;
+        font-size:26px;letter-spacing:0.16em;text-transform:uppercase;color:#9AA096;margin:0}
+  .hook{position:absolute;margin:0;font-family:Fraunces,serif;font-weight:700;
+        line-height:0.98;letter-spacing:-0.015em;color:#E9EFE6}
+  .dek{position:absolute;margin:0;font-family:Manrope,sans-serif;font-weight:500;
+       font-size:34px;line-height:1.34;color:#C9B393}
+  .src{position:absolute;left:80px;bottom:130px;font-family:'JetBrains Mono',monospace;
+       font-size:24px;letter-spacing:0.04em;color:#9AA096;margin:0}
+  .row{position:absolute;left:80px;right:80px;bottom:84px;display:flex;
+       justify-content:space-between;align-items:baseline;
+       font-family:'JetBrains Mono',monospace;font-size:26px;letter-spacing:0.08em;color:#9AA096}
+  .row span{font-variant-numeric:tabular-nums}
+  .geo{position:absolute;right:80px;bottom:130px;font-family:'JetBrains Mono',monospace;
+       font-size:22px;letter-spacing:0.04em;color:#9AA096;margin:0;text-align:right}
+  #ground{position:absolute;inset:0;background:radial-gradient(96% 54% at 34% 30%, #24262A 0%, #1B1C1F 46%, #121316 100%)}
+  #tally{position:absolute;left:0;top:0;width:1080px;height:1350px}
+  #belt{position:absolute;left:0;right:0;top:970px;height:58px;background:linear-gradient(180deg,#D08C3F 0%,#8C5E2A 34%,#3C2A18 100%);box-shadow:0 13px 0 rgba(8,8,10,0.62), 0 62px 52px rgba(8,8,10,0.46)}
+  #beltlip{position:absolute;left:0;right:0;top:970px;height:3px;background:rgba(233,239,230,0.55)}
+  #shoulder{position:absolute;left:0;right:0;top:1041px;bottom:0;background:linear-gradient(180deg,rgba(230,216,184,0.10) 0%,rgba(18,19,21,0) 62%)}
+  .rsv{position:absolute;background:rgba(26,27,30,0.90)}
+
+</style>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+
+</head><body>
+<div id="ground"></div><svg id="tally" viewBox="0 0 1080 1350"></svg><div id="belt"></div><div id="beltlip"></div><div id="shoulder"></div><div class="rsv" style="left:60px;top:62px;width:518px;height:74px"></div><div class="rsv" style="left:62px;top:158px;width:958px;height:158px"></div><div class="rsv" style="left:62px;top:1030px;width:958px;height:258px"></div>
+<p class="kick">The count somebody keeps</p>
+<h1 class="hook" id="h4" style="left:80px;top:170px;width:920px;font-size:64px">More than 1,400 loads since February.</h1>
+<p class="dek" style="left:80px;top:1046px;width:920px;font-size:26px;line-height:1.32">Kodiak&#39;s securities filing reports a second load out point on Atlas&#39;s 42 mile Dune Express conveyor. The drawing shows 1,400. The record says more.</p>
+<p class="src">Kodiak, SEC EDGAR, c17 c19 c20</p>
+<p class="geo" data-decorative>DUNE EXPRESS<br>42 MILE CONVEYOR</p>
+<div class="row"><span>04 / 09</span><span>PLAN</span><span class="tx-site">texasaidocket.com</span></div>
+<script>
+window.renderReady = (async () => {
+  await document.fonts.ready;
+
+  TX.reseed(20260821);
+
+  // SVG, built in the DOM. A tally is a counted object rather than a rendered surface, so it is
+  // made of elements a reader could in principle select, one per load.
+  const NS = 'http://www.w3.org/2000/svg';
+  const svg = document.getElementById('tally');
+  function el(name, attrs){
+    const n = document.createElementNS(NS, name);
+    for (const k in attrs) n.setAttribute(k, attrs[k]);
+    return n;
+  }
+  const MARKS = 1400, PER = 5, GROUPS = MARKS / PER;
+  const COLS = 20, ROWS = GROUPS / COLS;
+  const X0 = -6, Y0 = 340, GW = 54.4, GH = 44.0, TW = 4.0, TG = 8.4, TH = 30;
+  const frag = document.createDocumentFragment();
+  let drawn = 0;
+  for (let r = 0; r < ROWS; r++) {
+    for (let c = 0; c < COLS; c++) {
+      const gx = X0 + c * GW, gy = Y0 + r * GH;
+      const d = Math.sqrt(Math.pow(c / (COLS - 1), 2) + Math.pow(r / (ROWS - 1), 2)) / 1.4142;
+      const lift = 1.0 - 0.45 * d;
+      for (let k = 0; k < 4; k++) {
+        frag.appendChild(el('rect', {
+          x: gx + k * TG, y: gy, width: TW, height: TH,
+          fill: '#E9EFE6', 'fill-opacity': (0.52 * lift).toFixed(3),
+        }));
+        drawn++;
+      }
+      frag.appendChild(el('rect', {
+        x: 0, y: 0, width: TG * 3 + TW + 9, height: TW, fill: '#E9EFE6',
+        'fill-opacity': (0.86 * lift).toFixed(3),
+        transform: 'translate(' + (gx - 2.4) + ',' + (gy + TH * 0.60) + ') rotate(-23)',
+      }));
+      drawn++;
+    }
+  }
+  svg.appendChild(frag);
+  if (drawn !== MARKS) throw new Error('tally drew ' + drawn + ' marks, expected ' + MARKS);
+
+  TX.fitText(document.getElementById('h4'), {max:64, min:44, maxLines:2});
+})();
+</script></body></html>

@@ -330,6 +330,29 @@ number. No pixel critic could have seen it, because the pixels were correct. No 
 because `.geo` is `data-decorative` and the exemption was written for a footer this run had
 already deleted.
 
+## Why this deck names no county, and why that is an answer rather than a gap
+
+Every panel priced it and each was right that the rubric's 9 for story_and_stakes reads "names the
+county, the body and the deadline". Three judges suggested computing Harris for the Houston frame
+and Travis for the Capitol frame out of the committed gazetteer, the way slide 6's 254 is now a
+`len()` of the county topojson.
+
+**The record already answered it and the answer is none.** `ledger/docket.json`, tx-2026-0077,
+carries `geography: {statewide: true, counties: [], metro: null, on_ercot: false}`, computed and
+validated by `docket_build`. A Senate interim charge directing a committee to study a statewide
+deployment has no county, and the item this deck is built on says so in a field this project
+computes rather than types.
+
+The gazetteer cannot supply one either. It holds 254 counties, 67 metros, 13 combined areas and
+two divisions, and **no city records at all**, so Houston does not resolve to Harris from anything
+committed here. A run that wrote Harris on slide 5 would be typing a fact it could not compute,
+on the one deck whose whole argument is about a state that publishes an authorization and no count.
+
+So the cap stands and it is bought honestly. What is worth changing is not the county, it is that
+slide 6 draws all 254 outlines and points at none of them while stamping a word about scope. The
+frame's argument is that the requirement applies in every county equally, which is why it draws one
+class for all 254, and the drawing makes that argument without needing a label to assert it.
+
 ## The deck
 
 ### Selection, and why this story and not the others

@@ -127,6 +127,42 @@
     "open meeting"
    ],
    "entities_note": "Three counties were listed here and NOT ONE claim in this run names a county. The deck cut its cartographic frame for exactly that reason and says so in its own storyboard, and the variety ledger went on carrying the counties anyway, where the dedupe gate would have compared future runs against entities this record never established. Dropped: Galveston County, Travis County, Williamson County. The fifth panel then found the same defect two names further down the same list. 'Courtney Chadwell' is dropped because c16 quotes only 'Mr. Chadwell' and no fetched record gives the first name, and 'Flock Safety' is corrected to 'Flock Group, Inc.', which is the name c14's quoted item title uses. A list written from memory rather than from the claims file gets the well-known name right and the record's name wrong."
+  },
+  {
+   "date": "2026-08-21",
+   "carousel_no": 5,
+   "docket_item": "tx-2026-0077",
+   "topic": "Texas authorized commercial driverless operation 392 days after the first driverless lane opened, and the Senate Committee on Transportation meets August 25th to study the deployment and quantify the impact on traffic related collisions",
+   "angle": "the sequence rather than the technology, and the gap between what the machines measure continuously and what the state has a column for",
+   "entities": [
+    "Aurora Innovation",
+    "Kodiak",
+    "Atlas Energy Solutions",
+    "Waymo",
+    "Texas Department of Motor Vehicles",
+    "Texas Department of Public Safety",
+    "Texas Department of Transportation",
+    "Texas Senate Committee on Transportation",
+    "National Federation for the Blind of Texas",
+    "Raul Gallegos",
+    "NHTSA"
+   ],
+   "entities_note": "Written from claims.json rather than from memory. Every name here appears in a fetched quote or its dateline. No county is listed, because no claim in this run names one and the previous run's entry recorded three counties its own deck had refused to draw.",
+   "keywords": [
+    "driverless",
+    "autonomous vehicle",
+    "SB 2807",
+    "robotaxi",
+    "driverless trucking",
+    "triple trailers",
+    "Permian Basin",
+    "Dune Express",
+    "authorization",
+    "traffic related collisions",
+    "crash records",
+    "interim charge",
+    "public hearing"
+   ]
   }
  ]
 }

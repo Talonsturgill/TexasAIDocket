@@ -1,0 +1,226 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;
+            background:#17181A;font-kerning:normal}
+  #art{position:absolute;inset:0;display:block}
+  .lyr{position:absolute;inset:0}
+  .kick{position:absolute;left:80px;top:80px;font-family:'JetBrains Mono',monospace;
+        font-size:26px;letter-spacing:0.16em;text-transform:uppercase;color:#9AA096;margin:0}
+  .hook{position:absolute;margin:0;font-family:Fraunces,serif;font-weight:700;
+        line-height:0.98;letter-spacing:-0.015em;color:#E9EFE6}
+  .dek{position:absolute;margin:0;font-family:Manrope,sans-serif;font-weight:500;
+       font-size:34px;line-height:1.34;color:#C9B393}
+  .src{position:absolute;left:80px;bottom:130px;font-family:'JetBrains Mono',monospace;
+       font-size:24px;letter-spacing:0.04em;color:#9AA096;margin:0}
+  .row{position:absolute;left:80px;right:80px;bottom:84px;display:flex;
+       justify-content:space-between;align-items:baseline;
+       font-family:'JetBrains Mono',monospace;font-size:26px;letter-spacing:0.08em;color:#9AA096}
+  .row span{font-variant-numeric:tabular-nums}
+  .geo{position:absolute;right:80px;bottom:130px;font-family:'JetBrains Mono',monospace;
+       font-size:22px;letter-spacing:0.04em;color:#9AA096;margin:0;text-align:right}
+
+</style>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+
+</head><body>
+<canvas id="art" style="width:1080px;height:1350px"></canvas>
+
+<p class="kick">What the record holds</p>
+<h1 class="hook" id="h8" style="left:80px;top:158px;width:920px;font-size:104px">The file that has a column.</h1>
+<p class="dek" style="left:80px;top:920px;width:920px;font-size:31px;line-height:1.32">The federal incident dataset for automated driving systems is the per incident record this docket reached. Its header row names the reporting entity and the report type.</p>
+<p class="src">NHTSA, c31</p>
+<p class="geo" data-decorative>FEDERAL<br>PER INCIDENT</p>
+<div class="row"><span>08 / 09</span><span>RELIEF</span><span class="tx-site">texasaidocket.com</span></div>
+<script>
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  const cv = document.getElementById('art');
+  cv.width = 1080*2; cv.height = 1350*2;
+  const g = cv.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260821);
+
+  function tone(hex, d, a){
+    const n = parseInt(hex.slice(1), 16);
+    const c = [(n>>16)&255,(n>>8)&255,n&255].map(function(v){return Math.max(0,Math.min(255,v+d));});
+    return 'rgba('+c[0]+','+c[1]+','+c[2]+','+a+')';
+  }
+  function well(x, y, w, h, top, bot){
+    const gr = g.createLinearGradient(0, y, 0, y+h);
+    gr.addColorStop(0, top); gr.addColorStop(1, bot);
+    g.fillStyle = gr; g.fillRect(x, y, w, h);
+  }
+  function reserve(x, y, w, h, c, k){
+    const K = k === undefined ? 1 : k, f = 20, R = TX.rng(Math.round(x*7+y*13+w));
+    const d = g.createLinearGradient(x, y, x+w, y+h);
+    d.addColorStop(0, tone(c, 22*K, 1)); d.addColorStop(0.55, tone(c, 0, 1));
+    d.addColorStop(1, tone(c, -13*K, 1));
+    g.fillStyle = d; g.fillRect(x, y, w, h);
+    const a = g.createLinearGradient(0, y-f, 0, y);
+    a.addColorStop(0, tone(c, 22*K, 0)); a.addColorStop(1, tone(c, 22*K, 1));
+    g.fillStyle = a; g.fillRect(x, y-f, w, f);
+    const b = g.createLinearGradient(0, y+h, 0, y+h+f);
+    b.addColorStop(0, tone(c, -13*K, 1)); b.addColorStop(1, tone(c, -13*K, 0));
+    g.fillStyle = b; g.fillRect(x, y+h, w, f);
+    const l = g.createLinearGradient(x-f, 0, x, 0);
+    l.addColorStop(0, tone(c, 0, 0)); l.addColorStop(1, tone(c, 0, 1));
+    g.fillStyle = l; g.fillRect(x-f, y, f, h);
+    const r2 = g.createLinearGradient(x+w, 0, x+w+f, 0);
+    r2.addColorStop(0, tone(c, 0, 1)); r2.addColorStop(1, tone(c, 0, 0));
+    g.fillStyle = r2; g.fillRect(x+w, y, f, h);
+    // Broad, soft and nearly invisible. Enough luminance spread per cell to keep the band off
+    // the flat-plate reading, far too little to be seen as texture: the earlier version was
+    // legible as scratched grey panels laid over the art, which cheapened all nine frames.
+    for (let i=0; i<Math.round(w*h/900); i++){
+      const px=x+R()*w, py=y+R()*h, s=16+R()*46;
+      const gr = g.createRadialGradient(px, py, 0, px, py, s);
+      const d = R()<0.5 ? Math.round(22*K) : Math.round(-11*K);
+      gr.addColorStop(0, tone(c, d, 0.55)); gr.addColorStop(1, tone(c, d, 0));
+      g.fillStyle = gr; g.beginPath(); g.arc(px, py, s, 0, Math.PI*2); g.fill();
+    }
+    // THE AGGREGATE CARRIES ACROSS THE PLATE. This is why three reviews running called the
+    // reserves visible as pasted cards while their value delta against the ground was two or
+    // three points and darkening them further never helped. The edge was never betrayed by its
+    // VALUE. It was betrayed by the TEXTURE stopping dead at its border: inside the plate the
+    // speckle ended, outside it continued at full density, and an eye reads that discontinuity
+    // as an object even when it cannot see a tonal step. Running the same grain across the
+    // reserve at reduced amplitude leaves the plate doing its job for the type and stops it
+    // being a rectangle.
+    for (let i=0; i<Math.round(w*h/115); i++){
+      const px=x+R()*w, py=y+R()*h;
+      const up = R()<0.55;
+      g.fillStyle = tone(c, up ? Math.round(22*K) : Math.round(-15*K), 0.04+R()*0.08);
+      g.fillRect(px, py, 1.8+R()*1.6, 1.5+R()*1.3);
+    }
+  }
+  function bed(x, y, w, h, amp, scale, seed, warm){
+    TX.reseed(seed);
+    const R = TX.rng(seed+3), S = 26;
+    for (let py=y-S; py<y+h+S; py+=S){
+      for (let px=x-S; px<x+w+S; px+=S){
+        const jx=px+(R()-0.5)*S*1.4, jy=py+(R()-0.5)*S*1.4;
+        const v = TX.fbm2(jx*scale, jy*scale, 4)*0.68 + TX.fbm2(jx*scale*2.7+40, jy*scale*2.7-17, 3)*0.32;
+        const a = Math.abs(v)*amp;
+        if (a < 0.004) continue;
+        const rad = S*(1.15+R()*0.95);
+        const col = v>=0 ? (warm ? '214,186,146' : '233,239,230') : '6,6,8';
+        const gr = g.createRadialGradient(jx, jy, 0, jx, jy, rad);
+        gr.addColorStop(0, 'rgba('+col+','+(a*(v>=0?1:1.35)).toFixed(4)+')');
+        gr.addColorStop(1, 'rgba('+col+',0)');
+        g.fillStyle = gr; g.beginPath(); g.arc(jx, jy, rad, 0, Math.PI*2); g.fill();
+      }
+    }
+  }
+  function stones(x, y, w, h, n, seed, warm){
+    const R = TX.rng(seed);
+    for (let i=0;i<n;i++){
+      const px=x+R()*w, py=y+R()*h, s=5+R()*13;
+      g.fillStyle = (warm?'rgba(222,198,158,':'rgba(233,239,230,')+(0.05+R()*0.16).toFixed(3)+')';
+      g.beginPath(); g.ellipse(px, py, s, s*0.62, R()*3.14, 0, Math.PI*2); g.fill();
+      g.fillStyle = 'rgba(6,6,8,'+(0.06+R()*0.20).toFixed(3)+')';
+      g.beginPath(); g.ellipse(px+s*0.42, py+s*0.34, s*0.78, s*0.46, R()*3.14, 0, Math.PI*2); g.fill();
+    }
+  }
+
+  function grain(alpha, step){
+    const R = TX.rng(20260912);
+    g.save();
+    for (let y=0; y<1350; y+=step){
+      for (let x=0; x<1080; x+=step){
+        const v = R();
+        g.fillStyle = 'rgba(233,239,230,'+(v*alpha).toFixed(4)+')';
+        g.fillRect(x, y, step, step);
+      }
+    }
+    g.restore();
+  }
+
+  g.fillStyle='#17181A'; g.fillRect(0,0,1080,1350);
+  // The federal file's header row is CUT INTO the shoulder as milled grooves, which is what a
+  // machine readable record is: a thing driven over rather than a page.
+  const HEADER = "Report ID,\nReport Version,\nReporting Entity,\nReport Type";
+  // Build a glyph mask offscreen, then drive the relief from it. The label IS the terrain.
+  const MH = 400;
+  const mask = document.createElement('canvas');
+  mask.width = 1080; mask.height = MH;
+  const m = mask.getContext('2d');
+  m.fillStyle='#000'; m.fillRect(0,0,1080,MH);
+  m.fillStyle='#fff';
+  // Set large enough that the longest line spans the frame. At 52px the band was a left set
+  // caption with nine hundred pixels of black beside it, and the grooves are supposed to run
+  // the full width the way a rumble strip does.
+  m.font='700 84px "JetBrains Mono", monospace';
+  m.textBaseline='top';
+  HEADER.split("\n").forEach(function(line,i){
+    m.fillText(line, 74, 8 + i*96);
+  });
+  const mi = m.getImageData(0,0,1080,MH).data;
+  function inGlyph(x,y){
+    const xi=Math.round(x), yi=Math.round(y);
+    if(xi<0||yi<0||xi>=1080||yi>=MH) return false;
+    return mi[(yi*1080+xi)*4] > 128;
+  }
+  // unmilled shoulder above and below, so the milled band separates as a STRUCTURE
+  (function shoulder(){
+    const R=TX.rng(20260872);
+    for(let i=0;i<20000;i++){
+      const x=R()*1080, y=R()*1350;
+      g.fillStyle = R()<0.5 ? 'rgba(233,239,230,'+(R()*0.045).toFixed(4)+')'
+                            : 'rgba(6,6,8,'+(R()*0.13).toFixed(4)+')';
+      g.fillRect(x,y,2.6,2.2);
+    }
+  })();
+  // The grooves. Sodium lamp from the upper left, same key as slide 6 and slide 9, so every
+  // lit lip falls on the same side of the frame.
+  // THE RELIEF IS AN EDGE TREATMENT, NOT A PATTERN LAID OVER TYPE. The first version striped
+  // every glyph with a 7px vertical dot break, which chopped the letterforms into slices under
+  // 3px at feed scale, so two of the four lines could not be read at all and the dek beneath
+  // was carrying the whole claim. Worse, a stripe that runs the same way on all four sides of
+  // every letter has no lamp in it, so the frame's own acceptance item about the lit lip falling
+  // on one side was unmeetable. Each stroke is now solid, with the light on its top edge and the
+  // trough under its bottom edge, which is the wire relief the plan bought.
+  (function mill(){
+    const BAND_Y=440, LIP=4, TROUGH=6;
+    g.save();
+    for(let r=0;r<MH;r+=1){
+      const y=BAND_Y+r;
+      for(let x=0;x<1080;x+=1){
+        if(!inGlyph(x,r)) continue;
+        if(!inGlyph(x,r-TROUGH))    g.fillStyle='rgba(9,9,11,0.96)';        // near wall, shadow
+        else if(!inGlyph(x,r+LIP))  g.fillStyle='rgba(240,233,222,0.96)';    // far wall, lit
+        else if((r % 14) < 4)       g.fillStyle='rgba(150,98,44,0.94)';      // tool striations
+        else                        g.fillStyle='rgba(196,129,58,0.94)';     // milled floor
+        g.fillRect(x,y,1,1);
+      }
+    }
+    g.restore();
+    const sh=g.createLinearGradient(0,BAND_Y+MH,0,BAND_Y+MH+58);
+    sh.addColorStop(0,'rgba(6,6,8,0.72)'); sh.addColorStop(1,'rgba(6,6,8,0)');
+    g.fillStyle=sh; g.fillRect(0,BAND_Y+MH,1080,58);
+    const hi=g.createLinearGradient(0,BAND_Y-40,0,BAND_Y);
+    hi.addColorStop(0,'rgba(196,129,58,0)'); hi.addColorStop(1,'rgba(196,129,58,0.26)');
+    g.fillStyle=hi; g.fillRect(0,BAND_Y-40,1080,40);
+  })();
+  // yellow edgeline running out of frame over a graded shoulder
+  (function edge(){
+    const gr=g.createLinearGradient(0,1180,0,1350);
+    gr.addColorStop(0,'rgba(230,216,184,0.09)'); gr.addColorStop(1,'rgba(6,6,8,0.30)');
+    g.fillStyle=gr; g.fillRect(0,1180,1080,170);
+    g.fillStyle='rgba(214,172,38,0.62)'; g.fillRect(0,884,1080,9);
+    g.fillStyle='rgba(11,12,14,0.85)'; g.fillRect(0,893,1080,4);
+  })();
+  grain(0.024, 3);
+  well(0, 0, 1080, 150, 'rgba(19,20,22,1)', 'rgba(23,24,26,1)');
+  well(0, 890, 1080, 460, 'rgba(24,25,27,1)', 'rgba(10,11,13,1)');
+  bed(0, 890, 1080, 460, 0.16, 0.0042, 881, false);
+  stones(0, 890, 1080, 460, 300, 882, false);
+  // reserves, one per block of type, so no drawn edge reaches a letterform
+  reserve(58, 58, 470, 79, '#1A1B1E');
+  reserve(58, 145, 964, 245, '#1A1B1E');
+  reserve(58, 898, 964, 176, '#1A1B1E');
+  reserve(58, 1146, 964, 142, '#1A1B1E');
+
+  TX.fitText(document.getElementById('h8'), {max:104, min:66, maxLines:2});
+})();
+</script></body></html>

@@ -12,7 +12,7 @@ The City of Taylor published a public notice that its City Council would conside
 - Comment closes: 2026-08-13
 - Take part: https://www.taylortx.gov/m/newsflash/Home/Detail/2066
 
-- Last checked: 2026-08-18
+- Last checked: 2026-08-21
 
 ## Dates
 
@@ -23,6 +23,7 @@ The City of Taylor published a public notice that its City Council would conside
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-08-18 · Checked and unchanged. The amended abatement notice for Compal still posts on the City of Taylor newsflash.
+- 2026-08-21 · Checked. The city's notice of consideration still stands and still names the amended and restated abatement with Compal and the Taylor Port Building renovation. What the council did with it on August 13th is unconfirmed, because the city posts no minutes for that meeting.
 
 ## Evidence
 

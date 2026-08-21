@@ -1,0 +1,38 @@
+{
+ "run_date": "2026-08-21",
+ "source_dates": {
+  "aurora_dallas_houston": "2025-05-01",
+  "aurora_fort_worth_el_paso": "2025-10-28",
+  "dmv_authorization_required": "2026-05-28",
+  "kodiak_q2": "2026-06-30",
+  "aurora_second_generation": "2026-07-22",
+  "waymo_houston_open": "2026-08-20",
+  "hearing": "2026-08-25"
+ },
+ "gaps_days": [
+  180,
+  212,
+  33,
+  22,
+  29,
+  5
+ ],
+ "span_first_lane_to_hearing_days": 481,
+ "span_first_lane_to_authorization_days": 392,
+ "tail_window_days": 89,
+ "marks_in_tail_window": 5,
+ "tail_gaps_days": [
+  33,
+  22,
+  29,
+  5
+ ],
+ "marker_pads": 7,
+ "lit_prisms": 6,
+ "tally_marks": 1400,
+ "tally_groups": 280,
+ "counties": 254,
+ "charges_on_the_notice": 3,
+ "claims_verified": 32,
+ "absence_pages": 3
+}
