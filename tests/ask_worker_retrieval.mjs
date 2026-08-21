@@ -146,6 +146,34 @@ ok("a survey question is recognised as wanting breadth",
 ok("...and a question about one decision is not",
   !wantsBreadth("what did the groundwater district decide"));
 
+// ------------------------------------------------ context that helps, and context that does not
+head("E3. an earlier turn may add to a question and may not take it over");
+const ids = (turns) => assemble(PACK, turns, {}).chosen;
+const county = ITEMS_RAW.find((it) => ((it.geography || {}).counties || []).length)
+  .geography.counties[0];
+const inCounty = ITEMS_RAW.filter((it) => ((it.geography || {}).counties || []).includes(county))
+  .map((it) => it.id);
+// A REAL CONVERSATION THAT BROKE. The record carries the county and not the company, so the
+// joined query carries a word pointing off the record and the second question, which is
+// perfectly answerable on its own, got nothing. An earlier turn can only ADD words, so a
+// joined query finding nothing where the latest turn alone finds something is context getting
+// in the way rather than helping.
+const poisoned = ids([{ role: "user", content: "anything about NVIDIA" },
+                      { role: "assistant", content: "..." },
+                      { role: "user", content: `${county} county` }]);
+ok("a follow-up survives an earlier turn the record has never heard of",
+  poisoned.some((id) => inCounty.includes(id)), `${county}: ${poisoned.join(" ")}`);
+ok("...and the same question alone finds the same thing",
+  ids([{ role: "user", content: `${county} county` }]).some((id) => inCounty.includes(id)));
+// AND THE FALLBACK MUST NOT UNDO WHAT CONTEXT IS FOR. It only fires when the joined query
+// found nothing at all, so a follow-up that works because of its earlier turn still does.
+const followed = ids([{ role: "user", content: "the Oncor 765 kV transmission line" },
+                      { role: "assistant", content: "..." },
+                      { role: "user", content: "and the dates" }]);
+ok("a follow-up that only makes sense next to its earlier turn still does",
+  followed.length > 0 && followed.some((id) =>
+    (byId.get(id)?.title || "").toLowerCase().includes("oncor")), followed.join(" "));
+
 // ------------------------------------------------ words the record has never used
 head("E2. a word the record has never heard is evidence, and every scorer threw it away");
 // BM25 cannot use it. A term in no document contributes nothing to any score, so "marathon"

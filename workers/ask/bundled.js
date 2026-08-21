@@ -662,8 +662,24 @@ export function assemble(pack, turns, env) {
     };
   }
 
+  // THE CONVERSATION FIRST, THEN THE QUESTION ON ITS OWN IF THAT FOUND NOTHING.
+  //
+  // Reading the last few turns together is what makes "and the dates?" mean anything. It also
+  // means an earlier turn can poison a later one. Ask about NVIDIA, which this record does not
+  // carry, then ask about Bexar County, which it does, and the joined query carries a word
+  // pointing off the record while the second question on its own does not.
+  //
+  // An earlier turn can only ever ADD words. So a joined query that finds nothing, where the
+  // latest turn alone would have found something, is context getting in the way rather than
+  // helping, and the second pass costs one more BM25 sweep over 69 documents.
   const query = queryOf(turns);
-  const { chosen, corroborated, pinned } = pickItems(query, items, {});
+  let picked = pickItems(query, items, {});
+  const latest = queryOf(turns, 1);
+  if (!picked.chosen.length && latest && latest !== query) {
+    const retry = pickItems(latest, items, {});
+    if (retry.chosen.length) picked = retry;
+  }
+  const { chosen, corroborated, pinned } = picked;
   const byId = new Map(items.map((it) => [it.id, it]));
 
   const sent = [];

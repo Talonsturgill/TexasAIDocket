@@ -80,6 +80,22 @@ Everything below is deterministic code that runs in a worker or a browser and co
 | 3 | the worker retrieves | **DONE** | 48,124 -> 8,246 tokens, recall 99.6% |
 | 4 | verify, rebuild, ship | IN PROGRESS | guards_local green, docs fresh, merged |
 
+## THE ONE STEP THIS REPO CANNOT DO FOR ITSELF
+
+`workers/ask/bundled.js` has to be pasted into the Cloudflare dashboard. Nothing in this repo
+deploys the worker, and nothing in this repo can tell that it has not been deployed, which is
+why the bundle now has a freshness check and why `/_config` reports the prompt's shape.
+
+Until the paste happens the live worker keeps running the old whole-pack design and keeps
+working, because the published pack still carries `pack` in full and the new `index` field is
+simply ignored by a worker that does not read it. Nothing breaks in the meantime and nothing
+improves either.
+
+**After pasting, check `https://texas-ask.talon-sturgill.workers.dev/_config`.** The `prompt`
+object is the whole verification. `mode` should read `slice`, `shown` something like `6 of 69`,
+and `question_tokens` about 8,000 against `whole_tokens` about 48,000. A `mode` starting
+`whole` means retrieval is not happening and the reason is in the brackets.
+
 ## What wave 3 built, and the three things the measurement found
 
 The design held. Three system blocks, the index always whole, the bodies a slice, one model
@@ -163,6 +179,20 @@ answer, from the index, naming the decision and what its line says. A degraded a
 right side to fail on. The other way round puts three unrelated real decisions in front of a
 model asked about running, and a plausible answer assembled out of real text is the one thing
 nothing downstream can catch.
+
+### An earlier turn may add to a question and may not take it over
+
+Reading the last three user turns together is what makes "and the dates?" mean anything. It
+also means an earlier turn can poison a later one. Ask about NVIDIA, which this record does not
+carry, then ask about a county it does carry, and the joined query holds a word pointing off
+the record while the second question on its own does not. With one unknown word decisive, the
+follow-up got nothing.
+
+An earlier turn can only ever ADD words. So a joined query that finds nothing, where the latest
+turn alone would have found something, is context getting in the way rather than helping. The
+second pass costs one more BM25 sweep over 69 documents and only ever fires when the first
+found nothing at all, so a follow-up that works BECAUSE of its earlier turn is untouched. Both
+directions are asserted.
 
 ### What else was not there and is now
 
