@@ -1419,3 +1419,105 @@ a RENDERING instead of against the data the rendering is generated from.
 on the same host, in the same feature. When adding a host to any allowlist, ask which OTHER
 directive the same feature needs, because the feature is what has the requirement and the
 directive is only how it is spelled.
+
+## 41. Two instruments could stop and the whole board would stay green
+
+**Date.** 2026-08-21. **Found by.** Asking what happens when a gate FIRES, having just finished
+checking that every gate was wired.
+
+Both instrument page checks reported one code for every finding they could make. Exit 2, "wants
+attention". The reasoning was written at the top of both files and it is good reasoning: a check
+that can abort the run it rides along with is a check somebody eventually removes for costing a
+day's carousel over a stale chart. So `guards.yml` turned exit 2 into a `::warning::` and passed.
+
+**A `::warning::` does not fail a job and does not fail a build.** Nothing about a green check
+run distinguishes one from a clean pass unless somebody opens the log.
+
+Now put that beside the collector's own workflow, which is also correct on its own terms. The
+water collection step is `continue-on-error: true`, because TWDB being down must never cost an
+ERCOT day, and a failure there prints `::warning::the reservoir reading did not land`.
+
+**So a dead water collector produced a warning from the cron and a warning from the page check,
+and both jobs went green.** The record could stop growing entirely and the only evidence would be
+a page quietly showing an older number every day, on a site with nobody in it. This repo's own
+documentation calls a missed day the one irreversible failure it has.
+
+**The shape of the mistake.** Two severities sharing one exit code. "The page reads wrong" and
+"the instrument has stopped" are not the same event, and the argument for never failing a build
+is an argument about the first one that had been silently extended over the second. Everything in
+the design was right except that it could not tell them apart.
+
+**What to check instead.** Give the second severity its own code and fail on it. Exit 2 stays
+advisory and CI still turns it into a warning. Exit 3 means an instrument has stopped and CI
+fails, which matters because `guards.yml` runs on every push to `main` and the collector pushes
+straight to `main` twice a day. The alarm now rides the same path as the reading.
+
+**Which findings are halting is a judgement, and it is the part to get right.** A gap in the
+series and a day already recorded unverified are PERMANENT, because neither ERCOT nor TWDB keeps
+an archive to backfill from. Failing on those would make the build red forever with no action
+that could clear it, which is entry 38's lesson from the other direction: a permanently red gate
+is a gate somebody turns off, and it takes the real findings with it. Halting is reserved for
+what a fix can clear.
+
+**Two defects fell out of writing the self-test, and both were older than the split.**
+
+*The staleness rule was measuring the wrong thing.* It compared today against the newest record
+of ANY kind. Both pages publish only VERIFIED days, on purpose: an unverified record is the
+collector saying it fetched and could not trust what came back. So the rule was asking whether
+the collector was RUNNING and calling that the instrument working. A collector that runs every
+day and writes unverified every day passed it forever while the page froze on the last day that
+verified. That is the exact failure `queue_findings` had been written for one series over, three
+weeks earlier, and neither daily series was checking it. **A rule written for one series is worth
+reading against its siblings the same day.**
+
+*The water page's staleness check was passing by collision.* It asked whether the newest reading's
+date appeared anywhere in the file, and the head carries a `temporalCoverage` ending on exactly
+that date, computed by the builder from the same ledger. The check was answering a question about
+its own input rather than about the page, and it would agree with itself forever. The grid check
+had already learned this with the registry roster's effective dates and written it down. **Same
+defect, one file over, and the write-up did not travel.**
+
+**Generalises to.** Any check whose findings vary in kind but share an exit code, and any advisory
+channel that two independent systems both report into. Ask what the board looks like on the worst
+day the checks can describe. If that day is green, the severity is missing rather than the check.
+
+**And the enforcement is not prose.** `guards_shape.py` now EXTRACTS the shell out of each page
+check step, substitutes a stub for the checker that exits with a chosen code, runs it under
+`bash -e`, and asserts what the step does. Grepping that block for `exit 3` would be a gate on
+spelling. The question is what the step DOES when the checker says 3, so the step is asked.
+
+## 42. The law was written the same evening the rule was broken, in the file that breaks it
+
+**Date.** 2026-08-21. **Found by.** Reading `prompts/daily_routine.md` for something else.
+
+On 2026-08-20 the owner was interrupted twice by a sandboxed command trying to write outside the
+working tree. The session went looking at the permission mode first, because that is where the
+word permission is, and the answer was somewhere else entirely: the Bash sandbox and the
+permission mode are two different mechanisms, and a sandboxed write outside the tree stops and
+ASKS, which is a prompt no permission mode answers and no unattended run has anybody to answer.
+
+The law went into `CLAUDE.md` that evening. Every temporary file goes in `out/<run>/tmp/`. Never
+`/tmp`, never a system scratchpad. It is a good rule and the write-up is thorough.
+
+**Two lines of the routine went on saying `--out /tmp/site` anyway.** Phase 2 and Phase 7, both
+executed by the unattended run every morning, both writing exactly where the law says never.
+
+**The shape of the mistake.** A rule stated in one file and broken in another, with nothing in
+between checking they agree. That is the third time this repo has found the same shape written
+down: the missing hashtags, the missing progress counter, and the site URL that lived in five
+places at once. `coherence_check.py` exists because of the third one. This is the fourth.
+
+**What to check instead.** Read the rule out of the prose it governs. `routine_claims.py` now
+scans the routine's fenced shell blocks and refuses any command that writes to `/tmp`,
+`/var/tmp`, `/var/folders` or `~/.cache`. It runs in `guards.yml` already, so the rule went from
+being remembered to being enforced without adding a step.
+
+**The case that decides whether it is a rule or a substring search.** `out/<date>/tmp/site` is
+the correct answer and it contains the letters of the thing being forbidden. The pattern is
+anchored at the start of a path, and the self-test asserts that the FIX is not flagged as the
+defect. It also asserts that prose explaining the rule is not read as an instruction, because a
+gate that makes its own reasoning unwritable loses the reasoning at the first rewrite.
+
+**Generalises to.** Every law in `CLAUDE.md` that governs a file which is not `CLAUDE.md`. Ask,
+on the day the rule is written, what would catch the file that breaks it, and write that instead
+of a second paragraph.

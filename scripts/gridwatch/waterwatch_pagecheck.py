@@ -16,19 +16,32 @@ a metro with no line is a gap in the source's tagging rather than a dry city, an
 reservoirs are excluded rather than counted. A shared checker would have to grow a flag per
 promise, and the flags would be where the promises quietly stopped being checked.
 
-WHO RUNS THIS AND WHY IT CANNOT FAIL LOUDLY
+WHO RUNS THIS, AND THE ONE THING IT IS ALLOWED TO FAIL OVER
 
-The daily routine runs it once per run, read only.
+The daily routine runs it once per run, read only. CI runs it on every pull request and on every
+push to `main`, which includes the collector's own twice daily push, so this is the check that
+sees a reading land.
 
     EXIT 0  the page is current and holds its promises
-    EXIT 2  something wants attention
+    EXIT 2  something wants attention. ADVISORY, and CI turns it into a warning
+    EXIT 3  an instrument has STOPPED. Halting, and CI fails on it
     EXIT 1  reserved for this script itself being broken, and nothing else
 
-THE EXIT CODES ARE THE WHOLE DESIGN, copied deliberately from the sibling. A check that can
-abort the run it rides along with is a check that will eventually be removed for costing a day's
-carousel over a stale chart. So the finding is 2, the routine treats 2 as advisory, and a bad
-water watch never stops a good run. The inverse matters just as much: a bad run never stops the
-check, because the check reads the PUBLISHED site rather than anything the run produced.
+TWO SEVERITIES, BECAUSE THEY WERE ONE AND THAT WAS A HOLE. Everything here reported 2 and CI
+turned 2 into a `::warning::` and passed, on the stated reasoning that an instrument must never
+fail a build over presentation. That reasoning is right about a sentence that drifted. It is
+wrong about a collector that died, and until 2026-08-21 the two shared a code, so a dead water
+collector produced a warning from the cron and a warning from this check and BOTH JOBS WENT
+GREEN. The record could stop growing entirely and nothing would say so, on a site whose own
+documentation calls a missed day the one irreversible failure it has.
+
+So a page reading wrong stays advisory and an instrument that has stopped now fails. The
+original reasoning survives intact: exit 2 still cannot cost a day's carousel over a stale
+chart, and the routine still treats every finding as advisory, because the routine cannot fix a
+collector and stopping it would only cost the deck as well. CI is where a 3 is a red.
+
+The inverse still matters as much: a bad run never stops the check, because the check reads the
+PUBLISHED site rather than anything the run produced.
 
 WHAT THE ROUTINE MAY DO ABOUT WHAT IT FINDS
 
@@ -150,24 +163,74 @@ def _fmt(iso: str) -> str:
     return f"{d:%B} {d.day}{suf}, {d.year}"
 
 
-def findings(page_html: str, records: list, today: str) -> list[str]:
-    """Everything wrong with the published page, in the order a reader would meet it."""
+def findings(page_html: str, records: list, today: str,
+             halting: list | None = None) -> list[str]:
+    """Everything wrong with the published page, in the order a reader would meet it.
+
+    `halting` COLLECTS THE SUBSET THAT MEANS AN INSTRUMENT HAS STOPPED, and it exists because
+    this check was advisory in CI for every finding it could make.
+
+    That was right for most of them and badly wrong for a few. The workflow turns exit 2 into a
+    `::warning::` and passes, on the stated reasoning that an instrument must never fail a build
+    over presentation. True of a sentence that drifted. NOT true of a collector that died: a dead
+    water collector produced a warning from the cron and a warning from this check, and both jobs
+    went green. The record could stop growing entirely and nothing would say so, on a site whose
+    own documentation calls a missed day the one irreversible failure it has.
+
+    So the two severities stop sharing one exit code. A page reading wrong stays advisory. An
+    instrument that has stopped, or a site that is no longer being rebuilt, fails.
+
+    WHAT IS DELIBERATELY NOT HALTING. A gap in the series and an unverified day already in the
+    record are permanent, because TWDB keeps no archive to backfill from. Failing on those would
+    make the build red forever with no action that could clear it, which is the trap this repo
+    already knows: a check that is always red is a check somebody turns off. They stay findings.
+
+    Filled through a parameter rather than returned separately so there is ONE implementation of
+    each rule. Two functions computing staleness is two places for it to drift.
+    """
     import waterwatch_page as wp
 
     out: list[str] = []
+    halt = halting if halting is not None else []
+
+    def stop(msg: str) -> None:
+        """A finding that means something has stopped rather than read wrong."""
+        out.append(msg)
+        halt.append(msg)
+
     if not page_html.strip():
-        return ["the published water watch page is missing or empty"]
+        stop("the published water watch page is missing or empty")
+        return out
 
     if not records:
-        out.append("the record holds no readings at all; the collector has never succeeded")
+        stop("the record holds no readings at all; the collector has never succeeded")
         return out
 
     dates = [r["date"] for r in records if r.get("date")]
     last = max(dates)
-    behind = (_dt.date.fromisoformat(today) - _dt.date.fromisoformat(last)).days
+
+    # STALENESS IS MEASURED ON THE NEWEST VERIFIED READING, and it was measured on the newest
+    # record of any kind. The page publishes only verified days, deliberately: an unverified
+    # record is the collector saying it fetched and could not trust what came back, and the
+    # builder renders no figure from one.
+    #
+    # So the old rule asked whether the collector was RUNNING and called that the instrument
+    # working. A collector that runs every day and writes unverified every day passed it
+    # forever, while the page froze on the last day that verified. That is the exact failure
+    # `queue_findings` was written for one series over, and neither daily series was checking
+    # it. It also put this rule at odds with the site rule at the bottom of this function,
+    # which compares against the newest reading the page is ALLOWED to show.
+    ok_dates = [r["date"] for r in records if r.get("verified") and r.get("date")]
+    if not ok_dates:
+        stop("the record holds no verified reading at all; every day the collector has written "
+             "is a fetch it could not trust, and the page has nothing it may publish")
+        return out
+    last_ok = max(ok_dates)
+    behind = (_dt.date.fromisoformat(today) - _dt.date.fromisoformat(last_ok)).days
     if behind > STALE_DAYS:
-        out.append(f"the newest reading is {last}, which is {behind} days back; "
-                   f"the collector may have stopped")
+        stop(f"the newest verified reading is {last_ok}, which is {behind} days back; "
+             + (f"the collector is still writing ({last}) and no longer getting a reading it "
+                f"can trust" if last > last_ok else "the collector may have stopped"))
 
     span = (_dt.date.fromisoformat(last) - _dt.date.fromisoformat(min(dates))).days + 1
     if span > len(set(dates)):
@@ -239,10 +302,36 @@ def findings(page_html: str, records: list, today: str) -> list[str]:
     # The facts are still published. `waterwatch.json` carries the exclusions per reservoir and
     # the metro tagging is visible in the roll up itself.
 
-    if last not in page_html and _fmt(last) not in page_html:
-        out.append(f"the published page does not show the newest reading ({last}); "
-                   f"the site is stale against the ledger")
+    # SEARCHED IN THE READER'S VIEW, NOT IN THE WHOLE BYTES. This asked whether the newest
+    # reading's date appeared anywhere in the file, and the head carries a `temporalCoverage`
+    # ending on exactly that date, computed by the builder from the same ledger. So the check
+    # was answering a question about its own input rather than about the page: it passed
+    # because the structured data agreed with the ledger, which it always will.
+    #
+    # The sibling learned this first, with the registry roster's effective dates, and wrote it
+    # down. Same defect, one file over, found by the severity self-test below rather than by
+    # anything reading the rule. The promise is that a READER can see the newest reading, so
+    # the reader's half of the document is where it is checked. If there is no main element
+    # that is already its own finding above, and the whole page is used rather than letting
+    # this quietly become unfailable.
+    where = main or page_html
+    if last_ok not in where and _fmt(last_ok) not in where:
+        stop(f"the published page does not show the newest verified reading ({last_ok}); "
+             f"the site is stale against the ledger")
     return out
+
+
+def code_for(found: list[str], halting: list[str]) -> int:
+    """The exit code, as a pure function, so the self-test can assert on the CODE itself.
+
+    Inline in `main` this was three lines nothing could reach without writing fixture files and
+    rewriting `sys.argv`, so the self-test asserted on the findings list and simply trusted that
+    main mapped it correctly. That is the gap the whole severity split exists to close, one
+    level down: a rule that is right and a wiring that drops it.
+    """
+    if not found:
+        return 0
+    return 3 if halting else 2
 
 
 # --------------------------------------------------------------------------- self-test
@@ -375,10 +464,93 @@ def self_test() -> int:
     check("the site chrome's own numerals are not reported",
           findings(good, records, today) == [], str(findings(good, records, today)))
 
+    # ----------------------------------------------------------------- THE TWO SEVERITIES
+    # Every case above asserts a rule FIRES. These assert it fires at the right VOLUME, which
+    # is the half that was missing: every finding here reported exit 2, CI turned 2 into a
+    # warning, and a dead collector was therefore indistinguishable from a drifted sentence.
+    #
+    # Each check below states which side of the line it is on and why, because the line is a
+    # judgement and a judgement nobody wrote down gets redrawn by whoever edits next.
+
+    def split(html, recs, when=today):
+        halt: list[str] = []
+        return findings(html, recs, when, halt), halt
+
+    f, h = split(good, records)
+    check("a clean page is neither, and exits 0", (f, h, code_for(f, h)) == ([], [], 0), str(f))
+
+    # STOPPED. Nothing a page edit can reach, and every one of them means a number a reader is
+    # looking at is no longer being refreshed.
+    f, h = split(shell(wp.body(stale, today)), stale)
+    check("a collector that stopped is HALTING", any("days back" in x for x in h), str(h))
+    check("...so it exits 3, which CI fails on", code_for(f, h) == 3)
+
+    f, h = split("", records)
+    check("a missing page is HALTING", h != [] and code_for(f, h) == 3, str(h))
+    f, h = split(good, [])
+    check("a record with no readings at all is HALTING", h != [] and code_for(f, h) == 3, str(h))
+
+    # THE FAILURE THAT LOOKS LIKE HEALTH FROM OUTSIDE. The collector runs on schedule, writes a
+    # record every day and exits 0, and every one of those records says it could not trust what
+    # it fetched. Nothing is missing, nothing errors, the cron is green, and the page has been
+    # frozen on the last day that verified for as long as it has been going on.
+    dead = [rec("2026-08-02"), rec("2026-08-15", verified=False), rec(today, verified=False)]
+    f, h = split(shell(wp.body(dead, today)), dead)
+    check("a collector still writing but no longer VERIFYING is HALTING",
+          any("no longer getting a reading it can trust" in x for x in h), str(h))
+    check("...and it names both dates, so the two failures can be told apart",
+          any("2026-08-02" in x and today in x for x in h), str(h))
+
+    never = [rec("2026-08-15", verified=False), rec(today, verified=False)]
+    f, h = split(good, never)
+    check("a collector that has NEVER verified is HALTING",
+          any("no verified reading at all" in x for x in h), str(h))
+
+    # A site that stopped rebuilding. The reading landed and no reader can see it, which is the
+    # same outage from where a reader stands.
+    day_before = [rec("2026-08-14"), rec("2026-08-15")]
+    f, h = split(shell(wp.body(day_before, today)), records)
+    check("a site stale against its own ledger is HALTING",
+          any("stale against the ledger" in x for x in h), str(h))
+
+    # ADVISORY. Each of these is a page reading wrong, and a page reading wrong must never cost
+    # a build, because the fix is a commit and the cost of blocking is a day of everything else.
+    for label, body in (
+            ("a supply verdict", good_body + "<p>The state is running dry.</p>"),
+            ("a typed numeral", good_body + "<p>1,234,567 acre feet appeared from nowhere.</p>"),
+            ("a gauge turned into a dial", good_body.replace("<div", '<div class="dial"', 1)),
+            ("a dropped provenance sentence",
+             good_body.replace("storage over capacity", "the feed"))):
+        f, h = split(shell(body), records)
+        check(f"{label} is ADVISORY, and exits 2",
+              f != [] and h == [] and code_for(f, h) == 2, str(h))
+
+    # THE TWO THAT ARE DELIBERATELY NOT HALTING, and this is the check that records why.
+    # TWDB keeps no archive to backfill from, so a gap and an already-recorded unverified day
+    # are PERMANENT. Failing on them would make the build red forever with no action that could
+    # clear it, and this repo already knows what a permanently red gate becomes: a gate somebody
+    # turns off, taking the real findings with it.
+    f, h = split(shell(wp.body(gappy, today)), gappy)
+    check("a permanent hole in the series is reported but NOT halting",
+          any("missing from the series" in x for x in f) and h == [], str(h))
+    f, h = split(shell(wp.body(unver, today)), unver)
+    check("a day already recorded unverified is reported but NOT halting",
+          any("unverified" in x for x in f) and h == [], str(h))
+
+    # AND THE TWO CHANNELS DO NOT SWALLOW EACH OTHER. A page can be stale AND read wrong at the
+    # same time, and the likeliest way to get this split wrong is for one severity to short
+    # circuit the other: return early on the first halting finding and the presentation report
+    # goes quiet, so the day the collector dies is the day nobody hears about anything else.
+    f, h = split(shell(wp.body(stale, today) + "<p>The state is running dry.</p>"), stale)
+    check("a stopped collector and a verdict are reported TOGETHER",
+          any("days back" in x for x in h) and any("verdict language" in x for x in f), str(f))
+    check("...with only the collector halting, and the pair still exiting 3",
+          not any("verdict language" in x for x in h) and code_for(f, h) == 3, str(h))
+
     if failures:
         print(f"\nwaterwatch_pagecheck self-test: {failures} FAILED", file=sys.stderr)
         return 1
-    print("\nwaterwatch_pagecheck self-test: all passed (the check can go red)")
+    print("\nwaterwatch_pagecheck self-test: all passed (the check can go red, at two volumes)")
     return 0
 
 
@@ -395,14 +567,22 @@ def main() -> int:
 
     page = Path(a.page)
     html = page.read_text(encoding="utf-8") if page.exists() else ""
-    found = findings(html, load(Path(a.readings)), a.today)
+    halting: list[str] = []
+    found = findings(html, load(Path(a.readings)), a.today, halting)
 
-    if not found:
+    code = code_for(found, halting)
+    if code == 0:
         print("water watch page: current, and holding its promises")
         return 0
     print(f"water watch page: {len(found)} finding(s)", file=sys.stderr)
     for f in found:
-        print(f"  - {f}", file=sys.stderr)
+        print(f"  {'STOPPED' if f in halting else 'advisory'}  {f}", file=sys.stderr)
+
+    if code == 3:
+        print("\n  HALTING. The instrument has stopped rather than read wrong, so this fails "
+              "rather than\n  warns. Presentation fixes cannot reach it. The collector and the "
+              "ledgers belong to\n  cron and to whoever maintains it.", file=sys.stderr)
+        return 3
     print("\n  ADVISORY. This never blocks a run. Presentation fixes go in "
           "scripts/site/waterwatch_page.py\n  and nowhere else. The collector and the ledgers "
           "belong to cron.", file=sys.stderr)
