@@ -20,15 +20,24 @@ import { fileURLToPath } from "node:url";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 
-// Dependency order. checks.js depends on nothing, answer.js depends on checks.js, worker.js
-// depends on answer.js.
-const MODULES = ["checks.js", "answer.js", "worker.js"];
+// Dependency order. checks.js and retriever.js depend on nothing, retrieve.js depends on
+// retriever.js, answer.js depends on both of those and on checks.js, worker.js depends on
+// answer.js.
+const MODULES = ["checks.js", "retriever.js", "retrieve.js", "answer.js", "worker.js"];
 
 // Renames applied to a module's own top level declarations before it is appended, so two
 // modules may each keep the name that reads best in their own file.
 const RENAME = {};
 
 const IMPORT_RE = /^\s*import\s[^;]*?from\s*["']\.\/[^"']+["'];?\s*$/gm;
+
+// A BARE RE-EXPORT GOES THE SAME WAY AN IMPORT DOES, and for the same reason: it exists to
+// join two files that are about to become one. retriever.js is generated for two consumers, a
+// page that needs plain function declarations and a worker that needs them exported, so it
+// carries `export { ... };` at the end. Left in the bundle it would re-export a retriever's
+// internals from a Worker module, which is harmless and is also a promise nobody made.
+// `export default` is NOT touched: that one is the Worker's entry point.
+const REEXPORT_RE = /^\s*export\s*\{[^}]*\}\s*;?\s*$/gm;
 
 function topLevelNames(src) {
   const names = new Set();
@@ -50,7 +59,7 @@ const collisions = [];
 
 for (const file of MODULES) {
   let src = readFileSync(join(HERE, file), "utf8");
-  src = src.replace(IMPORT_RE, "");
+  src = src.replace(IMPORT_RE, "").replace(REEXPORT_RE, "");
 
   for (const [from, to] of Object.entries(RENAME[file] || {})) {
     src = renameIdent(src, from, to);
@@ -77,13 +86,30 @@ const header = `// GENERATED FILE. Do not edit.
 //
 //   node workers/ask/bundle.mjs
 //
-// Edit checks.js, answer.js or worker.js instead. The tests run against those, and
-// test-bundle.mjs runs the same assertions against this, so the two can't drift without
-// something going red.
+// Edit the modules instead. \`node workers/ask/bundle.mjs --check\` goes red when this file is
+// not what they produce, and workers/ask/test.js runs it, so a stale paste-file cannot pass CI.
 
 `;
 
 const out = join(HERE, "bundled.js");
-writeFileSync(out, header + parts.join("\n"));
+const built = header + parts.join("\n");
+
+// --check, WHICH IS THE HALF THAT WAS MISSING. bundled.js is what actually gets deployed, by
+// being pasted into a dashboard, and until now nothing anywhere compared it to the modules the
+// tests run against. A stale one would ship the previous design while every test passed
+// against the current one, which is the exact failure this file was written to prevent and the
+// only one it could not catch.
+if (process.argv.includes("--check")) {
+  let onDisk = "";
+  try { onDisk = readFileSync(out, "utf8"); } catch { /* absent counts as stale */ }
+  if (onDisk !== built) {
+    console.error("bundled.js is not what the modules produce. Run: node workers/ask/bundle.mjs");
+    process.exit(1);
+  }
+  console.log(`bundled.js is current  (${MODULES.length} modules, ${seen.size} names)`);
+  process.exit(0);
+}
+
+writeFileSync(out, built);
 console.log(`bundled.js  <-  ${MODULES.join(", ")}  ` +
             `(${seen.size} top level names, no collisions)`);

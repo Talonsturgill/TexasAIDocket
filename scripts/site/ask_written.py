@@ -228,21 +228,19 @@ _CLIENT = r"""
 
   /* ---- the human check ---------------------------------------------------
      ARMED ON FOCUS, AND THIS HAS BEEN BOTH WAYS. The history is the point.
-     It was on focus once and was reverted, correctly: the note under the field then said
-     typing sends nothing anywhere, and tests/ask_engine.mjs caught the contradiction.
-     THAT SENTENCE LEFT THE NOTE IN #59. It reads "Model in training" and claims nothing about
-     typing, so the promise the revert protected is not on the page, while the cost it bought
-     was still being paid. ask_engine.mjs now allows the challenge host BY NAME, asserts focus
-     really arms it, and still fails on any other host. The paragraph below is the old
-     reasoning, kept because it was right at the time.
-     This was on focus, which was faster and was wrong. The note above the field says typing
-     sends nothing anywhere, and arming on focus fetched Cloudflare's script the moment a
-     caret landed in the field, so a request left the page during what that note calls typing.
-     tests/ask_engine.mjs caught it, because that suite asserts no request leaves the page
-     after ANY interaction, and it was right to.
-     The cost is about a second on the first question while the widget loads and solves. That
-     is bounded, it happens once, and the stage line says what the wait is for. A promise that
-     is literally true is worth more than a second. */
+     It was on focus once and was reverted, correctly at the time: the note under the field
+     then said typing sends nothing anywhere, arming on focus fetched Cloudflare's script the
+     moment a caret landed in the field, and tests/ask_engine.mjs caught the contradiction.
+     THAT SENTENCE LEFT THE NOTE IN #59 and is not coming back. The note reads "Model in
+     training" and claims nothing about typing, so the revert was buying a promise that had
+     stopped being made while still paying 1 to 3 seconds for it on the first question of every
+     session. Owner's call on 2026-08-20 to arm on focus.
+     WHAT STILL HOLDS IS THE PART THAT WAS NEVER ABOUT COPY. The challenge host is named in
+     ask_engine.mjs, it is armed once per session rather than per keystroke, and any other host
+     appearing on this page still fails that suite. A request per keystroke would spend a cap
+     counted in calls a month inside an afternoon, and an unannounced host would carry what a
+     reader is typing to somebody nobody chose. Neither of those was ever a sentence under a
+     field. */
   var tsId = null, tsToken = "";
   function armTurnstile() {
     if (box.dataset.ts || !SITEKEY) return;

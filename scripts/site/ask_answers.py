@@ -48,6 +48,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+import ask_retrieval                                              # noqa: E402
 import docket_build as dk                                          # noqa: E402
 
 TOPIC_WORDS = {
@@ -225,11 +226,21 @@ def engine_js() -> str:
     Written as one self-contained script rather than a module because it ships inline: an
     external file is a second request, and on a record page the whole point is that a reader
     on a bad connection in a county meeting still gets an answer.
+
+    THE RETRIEVER IS SUBSTITUTED IN, NOT WRITTEN HERE. The worker embeds the same source, so a
+    copy in this file would be the two lanes disagreeing about which decision a question is
+    about the first time somebody edited one of them. ask_retrieval.py owns it.
     """
-    return r"""
+    return _ENGINE.replace("__RETRIEVER__", ask_retrieval.js())
+
+
+_ENGINE = r"""
 (function () {
   "use strict";
   var IDX = window.__ASK_INDEX__, CAT = window.__ASK_CATALOGUE__;
+__RETRIEVER__
+  /* Built once at load, not per keystroke. See the note in ask_retrieval.py. */
+  var BM = askIndex(IDX.items || []);
   if (!IDX || !CAT) return;
 
   function norm(s) {
@@ -257,6 +268,24 @@ def engine_js() -> str:
      says so. Below this floor the match is noise wearing a confident sentence. */
   var FLOOR = 0.9;
 
+  /* The body search's own floor, which is a different scale from the catalogue's and so cannot
+     share its number. Tuned against tests/ask_eval.mjs, whose `nonsense` cases are the ones it
+     exists to keep out. */
+  var BODY_FLOOR = 4.0;
+
+  /* ONE WORD IS A COINCIDENCE, TWO IS A SIGNAL, WITH NO EXCEPTIONS.
+     The first version let a single word stand alone if it was rare enough, on the reasoning
+     that a docket number or a person's name identifies a decision by itself. It does, but
+     rarity cannot tell those from a common English word the record happens to use once:
+     "way" appears in exactly one of 69 decisions, so "best way to train for a marathon"
+     cleared the bar on "way" alone and got a confident answer about licence plate readers.
+     Rarity in a corpus this size is not evidence of anything on its own, so the exception is
+     gone rather than patched. A single word query still routes: it goes through the county,
+     decider and topic matching above, which is where a one word question belongs. */
+  function corroborated(hit) {
+    return hit.terms >= 2;
+  }
+
   /* Scoring is deliberately simple and explainable: shared words, weighted by how rare the
      word is across the catalogue. A reader who types "abilene water" should reach the Taylor
      County water item, and should be able to see WHY it was chosen. An opaque ranker on a
@@ -279,9 +308,9 @@ def engine_js() -> str:
     if (!qw.length) return null;
     var top = null;
     CAT.forEach(function (c) {
-      var cw = words(c.q), score = 0;
+      var cw = words(c.q), score = 0, hitTerms = 0;
       qw.forEach(function (w) {
-        if (cw.indexOf(w) >= 0) { score += idf(w); return; }
+        if (cw.indexOf(w) >= 0) { score += idf(w); hitTerms += 1; return; }
         /* A PREFIX MATCH NEEDS ENOUGH PREFIX TO MEAN SOMETHING.
            This was any shared opening character, which is a fine rule for "permit" against
            "permits" and a bad one for "air" against "airspeed". The record grew a beat of TCEQ
@@ -292,13 +321,22 @@ def engine_js() -> str:
            be helpful. Four characters is the shortest shared stem that is a word rather than a
            coincidence, and BOTH sides must clear it so a long query word cannot claim a short
            catalogue one. */
-        var stemmy = cw.some(function (x) {
+        var stemmed = null;
+        cw.some(function (x) {
           if (x.length < 4 || w.length < 4) return false;
-          return x.indexOf(w) === 0 || w.indexOf(x) === 0;
+          if (x.indexOf(w) === 0 || w.indexOf(x) === 0) { stemmed = x; return true; }
+          return false;
         });
-        if (stemmy) score += idf(w) * 0.5;
+        /* THE MATCHED WORD'S RARITY, NOT THE TYPED WORD'S.
+           This scored `idf(w)`, the rarity of what the READER typed, and a word absent from the
+           catalogue has the highest rarity there is. So "train" stem matching "trained" scored
+           as if "train" were the most distinctive word in the record, and "best way to train
+           for a marathon" reached a grant about robot safety with total confidence. The
+           evidence for a catalogue entry is the catalogue's own word, so that is the one whose
+           rarity counts. */
+        if (stemmed) { score += idf(stemmed) * 0.5; hitTerms += 1; }
       });
-      if (!top || score > top.score) top = { c: c, score: score };
+      if (!top || score > top.score) top = { c: c, score: score, terms: hitTerms };
     });
     /* A direct mention of a county, a topic word or a decider outranks a fuzzy catalogue
        match, because it is what the reader actually said. */
@@ -336,7 +374,47 @@ def engine_js() -> str:
       });
     });
     if (direct && (!top || top.score < 2.5)) return direct;
-    return top && top.score >= FLOOR ? top.c.route : direct;
+    /* CORROBORATION IS FOR NAMING ONE DECISION, and only for that.
+       A single stem match used to be enough to clear the floor, which is how a question about
+       marathon training got a confident answer about a research grant. Two words agreeing is
+       the cheapest evidence that a reader meant that particular entry.
+
+       But the rule cannot be blanket, and the first version of it was. "What can I still
+       comment on?" carries exactly one word the scorer keeps, "comment", and that one word is
+       decisive: it means the open windows. Requiring two broke it and sent the reader to a
+       single decision that happened to contain the word.
+
+       So the size of the claim sets the evidence needed. Pointing at ONE decision out of
+       sixty nine is a strong claim and needs two words behind it. Answering with a view over
+       the whole record is a weak claim, it is nearly always the right shape when a reader asks
+       something broad, and one decisive word is enough for it. */
+    var names_one = top && top.c.route && top.c.route.view === "item";
+    var chosen = top && top.score >= FLOOR && (!names_one || top.terms >= 2)
+      ? top.c.route : direct;
+    if (chosen) return chosen;
+
+    /* NOTHING MATCHED THE CATALOGUE, SO SEARCH THE DECISIONS THEMSELVES.
+       Everything above scores a query against the catalogue's QUESTIONS, which are generated
+       from titles, counties, deciders and topics. A reader who remembers a detail from the
+       BODY of a decision matched none of it and got nothing back. Measured on a gold set built
+       from the record, that was 46 percent of exactly those questions.
+
+       The bodies were in the shipped index the whole time and never read. So this costs no
+       payload, only code.
+
+       IT RUNS LAST AND ONLY ON A MISS, which is what makes it safe to add. Everything the
+       catalogue and the direct mentions already answer is untouched by construction, and the
+       eval says both were at 100 percent before this line existed.
+
+       THE FLOOR IS THE WHOLE SAFETY PROPERTY. BM25 returns something for any query sharing one
+       word with anything, and a box that answers "what is the airspeed velocity of an unladen
+       swallow" with a confident item about air permits is worse than a box that says it does
+       not know. A hit has to clear a score only a genuinely rare word can reach. */
+    var hits = askBm25(BM, query);
+    if (hits.length && hits[0].score >= BODY_FLOOR && corroborated(hits[0])) {
+      return { view: "item", arg: hits[0].id };
+    }
+    return null;
   }
 
   function esc(s) {
@@ -586,6 +664,11 @@ def engine_js() -> str:
      decisions rather than only an apology. */
   window.__askLocal = function (q) { var r = best(q); return r ? answer(r) : null; };
   window.__askAnswer = function (q) { return answer(best(q)); };   // for tests/ask_engine.mjs
+  /* THE ROUTE, NOT THE RENDERED ANSWER, so the router can be scored on WHICH decision it chose
+     rather than on the prose it produced. tests/ask_eval.mjs is the only caller. A router
+     nobody can observe is a router tuned by whoever spoke last, which is the same argument as
+     the worker's usage counters and it was true here first. */
+  window.__askRoute = function (q) { return best(q); };
 })();
 """
 
@@ -674,6 +757,8 @@ def self_test() -> int:
                                  "indexedDB")))
     ok("the engine escapes what it prints", "function esc(" in js and "&amp;" in js)
     ok("it exposes an entry point the browser test can call", "__askAnswer" in js)
+    ok("...and the route itself, so the router can be scored rather than argued about",
+       "__askRoute" in js)
     ok("counts are computed in the engine, never baked into the index",
        "reduce(" in js and not re.search(r'"\d+ items in the record"', js))
     ok("the index carries no prose the engine will speak",
