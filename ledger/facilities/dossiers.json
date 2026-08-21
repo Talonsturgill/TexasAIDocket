@@ -1051,6 +1051,734 @@
      "retrieved": "2026-08-21"
     }
    ]
+  },
+  {
+   "name": "Cedarvale, Barslow/Pyote TX Data Center",
+   "slug": "cedarvale-barslow-pyote-tx-data-center",
+   "summary": "A West Texas site that mined bitcoin and now hosts AI. The state record shows the handover in two certifications. Nscale leases the whole of it and is filling it with Nvidia hardware for Microsoft, though neither Nvidia nor Microsoft appears anywhere in the registry.",
+   "facts": [
+    {
+     "label": "Site capacity leased to Nscale",
+     "value": 234,
+     "unit": "MW",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Contracted revenue over the lease",
+     "value": 2000000000,
+     "unit": "usd",
+     "source": "s1",
+     "kind": "reported",
+     "as_of": "2025-10-15"
+    },
+    {
+     "label": "Nvidia GB300 units to be deployed",
+     "value": 104000,
+     "unit": "units",
+     "source": "s2",
+     "kind": "reported",
+     "as_of": "2025-10-15"
+    },
+    {
+     "label": "Stated expansion ambition for the site",
+     "value": 1.2,
+     "unit": "GW",
+     "source": "s3",
+     "kind": "reported"
+    },
+    {
+     "label": "Further capacity Microsoft may take from late 2027",
+     "value": 700,
+     "unit": "MW",
+     "source": "s2",
+     "kind": "reported"
+    },
+    {
+     "label": "Address",
+     "text": "3013 FM 516, Barstow, Texas",
+     "source": "s1"
+    },
+    {
+     "label": "County",
+     "text": "Ward County",
+     "source": "s2"
+    },
+    {
+     "label": "Lease",
+     "text": "Ten year triple net lease with Nscale",
+     "source": "s1",
+     "as_of": "2025-10-15"
+    },
+    {
+     "label": "First certification, occupant Ionic Digital Mining LLC",
+     "text": "The site certified for mining use",
+     "source": "s0",
+     "as_of": "2024-01-30"
+    },
+    {
+     "label": "Second certification, occupant Nscale Ward County Borrower SPV, LLC",
+     "text": "Re-certified for AI hosting",
+     "source": "s0",
+     "as_of": "2026-03-16"
+    }
+   ],
+   "notes": [
+    {
+     "text": "The state spells the facility Barslow. The town is Barstow, and the address Ionic gives sits there. Published as the state published it, because a reader comparing this against the Comptroller's own list should find the same string.",
+     "sources": [
+      "s0",
+      "s1"
+     ]
+    },
+    {
+     "text": "Microsoft is the customer behind the hardware going into this building and does not appear in the registry at all. The certified occupant is a single purpose Nscale borrowing entity. This is what the difference between a tenant and a qualifying occupant looks like in practice.",
+     "as_of": "2026-03-16",
+     "sources": [
+      "s0",
+      "s2"
+     ]
+    }
+   ],
+   "gaps": [
+    "Square footage and acreage are not public",
+    "Cooling design is not public",
+    "The split between the mining build and the AI retrofit is not public",
+    "Whether the expansion ambition has any executed contract behind it is not established"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
+     "title": "Data Center Lists",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://www.davispolk.com/experience/ionic-digital-2-billion-lease-agreement-hyperscale-data-center-nscale",
+     "title": "Ionic Digital $2 billion lease agreement for hyperscale data center with Nscale",
+     "publisher": "Davis Polk",
+     "rung": 2,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s2",
+     "url": "https://theenergymag.com/news/2025-10-15/nscale-ai-microsoft-ionic",
+     "title": "Nscale Wins Microsoft AI Deal, Secures Texas Site",
+     "publisher": "The Energy Magazine",
+     "rung": 6,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s3",
+     "url": "https://www.nscale.com/ai-infrastructure",
+     "title": "AI Infrastructure",
+     "publisher": "Nscale",
+     "rung": 2,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "C1 Bosque I",
+   "slug": "c1-bosque-i",
+   "summary": "One of two certifications on a Bosque County campus, and the state names Google as its occupant. Its operator entity is the same one that operates Google's Panhandle campus.",
+   "facts": [
+    {
+     "label": "Occupant of record",
+     "text": "Google, LLC",
+     "source": "s0",
+     "as_of": "2026-04-07"
+    },
+    {
+     "label": "Owner of record",
+     "text": "Bosque Parcel 2, LLC",
+     "source": "s0",
+     "as_of": "2026-04-07"
+    },
+    {
+     "label": "Operator of record",
+     "text": "Design, LLC",
+     "source": "s0",
+     "as_of": "2026-04-07"
+    },
+    {
+     "label": "County",
+     "text": "Bosque County, from the facility name",
+     "source": "s0"
+    }
+   ],
+   "notes": [
+    {
+     "text": "Design, LLC also appears as an operator on the Meitner campus in the Panhandle, whose occupant is also Google. The same operator entity on two separate Google facilities is a pattern visible only by reading the registry across rows.",
+     "sources": [
+      "s0"
+     ]
+    },
+    {
+     "text": "CyrusOne is building a hyperscale campus in Bosque County beside a Calpine gas plant and has not named its tenant publicly. Whether these certifications cover that campus is not established by the sources read here, so no capacity or investment figure from it is published on this page.",
+     "sources": [
+      "s1",
+      "s2"
+     ]
+    }
+   ],
+   "gaps": [
+    "Capacity, square footage and acreage are not public for this certification",
+    "The street address is not public",
+    "Whether this is part of the CyrusOne Bosque County campus is not established",
+    "What distinguishes parcel one from parcel two is not stated in the record"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
+     "title": "Data Center Lists",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://www.cyrusone.com/data-centers/north-america/bosque-county-tx",
+     "title": "Bosque County Data Center",
+     "publisher": "CyrusOne",
+     "rung": 2,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s2",
+     "url": "https://www.datacenterdynamics.com/en/news/cyrusone-signs-190mw-deal-with-calpine-energy-to-power-data-center-in-bosque-county-texas/",
+     "title": "CyrusOne signs 190MW deal with Calpine Energy to power data center in Bosque County, Texas",
+     "publisher": "Data Center Dynamics",
+     "rung": 6,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "C1 Bosque II LLC",
+   "slug": "c1-bosque-ii-llc",
+   "summary": "The sibling certification to the other Bosque parcel, granted days later, and the state names a different hyperscaler as its occupant. Google on one parcel, Amazon on this one.",
+   "facts": [
+    {
+     "label": "Occupant of record",
+     "text": "Amazon Data Services, Inc.",
+     "source": "s0",
+     "as_of": "2026-04-13"
+    },
+    {
+     "label": "Owner of record",
+     "text": "C1 Bosque II LLC",
+     "source": "s0",
+     "as_of": "2026-04-13"
+    },
+    {
+     "label": "Operator of record",
+     "text": "C1 Bosque II LLC",
+     "source": "s0",
+     "as_of": "2026-04-13"
+    },
+    {
+     "label": "County",
+     "text": "Bosque County, from the facility name",
+     "source": "s0"
+    }
+   ],
+   "notes": [
+    {
+     "text": "Two certifications share the Bosque name and were granted days apart, and the occupants are different companies. Reading either row alone would give a reader one hyperscaler and no reason to suspect the other.",
+     "sources": [
+      "s0"
+     ]
+    }
+   ],
+   "gaps": [
+    "Capacity, square footage and acreage are not public for this certification",
+    "The street address is not public",
+    "The relationship between this entity and the other Bosque parcel is not stated in the record",
+    "Whether this is part of the CyrusOne Bosque County campus is not established"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
+     "title": "Data Center Lists",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "DFW-04 Data Center",
+   "slug": "dfw-04-data-center",
+   "summary": "Aligned's Plano building, occupied by Lambda. It is the second Aligned and Lambda pairing in this registry, the other being the Caprock campus at Abernathy.",
+   "facts": [
+    {
+     "label": "Investment",
+     "value": 700000000,
+     "unit": "usd",
+     "source": "s1",
+     "kind": "reported",
+     "as_of": "2025-05-07"
+    },
+    {
+     "label": "Building area",
+     "value": 425000,
+     "unit": "sqft",
+     "source": "s1",
+     "kind": "reported",
+     "as_of": "2025-05-07"
+    },
+    {
+     "label": "Site area",
+     "value": 44,
+     "unit": "acres",
+     "source": "s2",
+     "kind": "reported"
+    },
+    {
+     "label": "Capacity when complete",
+     "value": 72,
+     "unit": "MW",
+     "source": "s2",
+     "kind": "reported"
+    },
+    {
+     "label": "Delivery increment",
+     "value": 9,
+     "unit": "MW",
+     "source": "s2",
+     "kind": "reported"
+    },
+    {
+     "label": "Address",
+     "text": "401 N. Star Road, Plano, Texas",
+     "source": "s1"
+    },
+    {
+     "label": "Power",
+     "text": "An onsite substation serves the building",
+     "source": "s2"
+    },
+    {
+     "label": "Cooling",
+     "text": "Aligned air and liquid cooling",
+     "source": "s1"
+    },
+    {
+     "label": "Occupant",
+     "text": "Lambda, whose cloud platform is integrated into the building",
+     "source": "s1",
+     "as_of": "2025-05-07"
+    }
+   ],
+   "notes": [
+    {
+     "text": "Lambda appears in this registry twice, here and at the Caprock campus in Hale County. Aligned owns the building in both cases and Lambda is the certified occupant in both.",
+     "sources": [
+      "s0"
+     ]
+    },
+    {
+     "text": "One trade report gives this building a future capacity figure three orders of magnitude above every other account of it. It is not published here. Where sources disagree by that margin the smaller and better corroborated figure is the one carried.",
+     "sources": [
+      "s2"
+     ]
+    }
+   ],
+   "gaps": [
+    "The contracted portion Lambda holds is not separated from the building total",
+    "Job commitments and abatement terms are not public",
+    "Interconnection detail beyond the onsite substation is not public"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
+     "title": "Data Center Lists",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://aligneddc.com/press-release/aligned-and-lambda-partner-to-power-next-generation-ai-infrastructure-6/",
+     "title": "Aligned and Lambda Partner to Power Next-Generation AI Infrastructure",
+     "publisher": "Aligned Data Centers",
+     "rung": 2,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s2",
+     "url": "https://www.dallasnews.com/business/real-estate/2025/05/07/nvidia-backed-ai-computing-firm-has-plans-for-700m-plano-data-center/",
+     "title": "AI firm Lambda to occupy Plano data center",
+     "publisher": "The Dallas Morning News",
+     "rung": 6,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "TX11-12 Data Center",
+   "slug": "tx11-12-data-center",
+   "summary": "One certification covering two Vantage entities, with Oracle America Cloud Services as the occupant. Oracle is the certified occupant at two facilities in this registry, here and at the Abilene campus that opened the Stargate program.",
+   "facts": [
+    {
+     "label": "Occupant of record",
+     "text": "Oracle America Cloud Services, LLC",
+     "source": "s0",
+     "as_of": "2025-11-05"
+    },
+    {
+     "label": "Owners of record",
+     "text": "Vantage Data Centers TX11, LLC and Vantage Data Centers TX12, LLC",
+     "source": "s0",
+     "as_of": "2025-11-05"
+    },
+    {
+     "label": "Operator of record",
+     "text": "Vantage Data Centers Management Company, LLC",
+     "source": "s0",
+     "as_of": "2025-11-05"
+    }
+   ],
+   "notes": [
+    {
+     "text": "Two owning entities sit under one certification, which reads as two buildings certified together rather than one.",
+     "sources": [
+      "s0"
+     ]
+    },
+    {
+     "text": "Vantage is building a very large campus in Shackelford County tied to Oracle and the Stargate program. Whether these two entities sit on that campus or on an older Vantage site is not established here. None of that campus's figures are published on this page.",
+     "sources": [
+      "s1"
+     ]
+    }
+   ],
+   "gaps": [
+    "Which Vantage campus these entities sit on is not established",
+    "Capacity, square footage and acreage are not public for this certification",
+    "The street address is not public",
+    "This entry is a candidate for a second pass once a filing names the buildings"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
+     "title": "Data Center Lists",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://vantage-dc.com/news/vantage-data-centers-unveils-plans-for-frontier-a-25b-mega-campus-in-texas-to-meet-unprecedented-ai-demand/",
+     "title": "Vantage Data Centers Unveils Plans for Frontier, a Mega-campus in Texas",
+     "publisher": "Vantage Data Centers",
+     "rung": 2,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "Flamingo",
+   "slug": "flamingo",
+   "summary": "An Amazon facility certified under an internal codename. Amazon is owner, occupant and operator of record, so the filing discloses no landlord, no developer and no location, and this codename appears in no public reporting.",
+   "facts": [
+    {
+     "label": "Owner, occupant and operator of record",
+     "text": "Amazon Data Services, Inc. in all three roles",
+     "source": "s0",
+     "as_of": "2026-08-10"
+    },
+    {
+     "label": "What the name suggests",
+     "text": "Certified on the same day as Pecos Ranch, which suggests a pair of filings rather than a pair of sites.",
+     "source": "s0"
+    }
+   ],
+   "notes": [
+    {
+     "text": "Amazon files Texas projects under internal codenames rather than under its own brand. A state licensing filing for a San Antonio building carries the name Lavender Hill, and this registry carries a set of names that appear in no public reporting at all. For these facilities the Comptroller's list is the only public record that they exist.",
+     "sources": [
+      "s0",
+      "s1"
+     ]
+    }
+   ],
+   "gaps": [
+    "The county and address are not public",
+    "Capacity, square footage and acreage are not public",
+    "No filing or company release names this facility",
+    "This entry is deliberately thin and is a candidate for a county appraisal district pass"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
+     "title": "Data Center Lists",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://spectrumlocalnews.com/tx/san-antonio/news/2026/03/31/amazon-data-center-coming-to-san-antonio",
+     "title": "Amazon data center coming to San Antonio",
+     "publisher": "Spectrum News",
+     "rung": 6,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s2",
+     "url": "https://www.datacenterdynamics.com/en/news/amazon-files-to-develop-two-new-data-center-campuses-in-texas/",
+     "title": "Amazon files to develop two new data center campuses in Texas",
+     "publisher": "Data Center Dynamics",
+     "rung": 6,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "Pecos Ranch Data Center",
+   "slug": "pecos-ranch-data-center",
+   "summary": "An Amazon facility certified under an internal codename. Amazon is owner, occupant and operator of record, so the filing discloses no landlord, no developer and no location, and this codename appears in no public reporting.",
+   "facts": [
+    {
+     "label": "Owner, occupant and operator of record",
+     "text": "Amazon Data Services, Inc. in all three roles",
+     "source": "s0",
+     "as_of": "2026-08-10"
+    },
+    {
+     "label": "What the name suggests",
+     "text": "The name points west. Amazon holds a large campus in Pecos County, though nothing in the record ties this certification to it.",
+     "source": "s0"
+    }
+   ],
+   "notes": [
+    {
+     "text": "Amazon files Texas projects under internal codenames rather than under its own brand. A state licensing filing for a San Antonio building carries the name Lavender Hill, and this registry carries a set of names that appear in no public reporting at all. For these facilities the Comptroller's list is the only public record that they exist.",
+     "sources": [
+      "s0",
+      "s1"
+     ]
+    }
+   ],
+   "gaps": [
+    "The county and address are not public",
+    "Capacity, square footage and acreage are not public",
+    "No filing or company release names this facility",
+    "This entry is deliberately thin and is a candidate for a county appraisal district pass"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
+     "title": "Data Center Lists",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://spectrumlocalnews.com/tx/san-antonio/news/2026/03/31/amazon-data-center-coming-to-san-antonio",
+     "title": "Amazon data center coming to San Antonio",
+     "publisher": "Spectrum News",
+     "rung": 6,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s2",
+     "url": "https://www.datacenterdynamics.com/en/news/amazon-files-to-develop-two-new-data-center-campuses-in-texas/",
+     "title": "Amazon files to develop two new data center campuses in Texas",
+     "publisher": "Data Center Dynamics",
+     "rung": 6,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "Bexar 1",
+   "slug": "bexar-1",
+   "summary": "An Amazon facility certified under an internal codename. Amazon is owner, occupant and operator of record, so the filing discloses no landlord, no developer and no location, and this codename appears in no public reporting.",
+   "facts": [
+    {
+     "label": "Owner, occupant and operator of record",
+     "text": "Amazon Data Services, Inc. in all three roles",
+     "source": "s0",
+     "as_of": "2026-07-24"
+    },
+    {
+     "label": "What the name suggests",
+     "text": "The name points at Bexar County, where local reporting counts dozens of data centers built or coming.",
+     "source": "s0"
+    }
+   ],
+   "notes": [
+    {
+     "text": "Amazon files Texas projects under internal codenames rather than under its own brand. A state licensing filing for a San Antonio building carries the name Lavender Hill, and this registry carries a set of names that appear in no public reporting at all. For these facilities the Comptroller's list is the only public record that they exist.",
+     "sources": [
+      "s0",
+      "s1"
+     ]
+    }
+   ],
+   "gaps": [
+    "The county and address are not public",
+    "Capacity, square footage and acreage are not public",
+    "No filing or company release names this facility",
+    "This entry is deliberately thin and is a candidate for a county appraisal district pass"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
+     "title": "Data Center Lists",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://spectrumlocalnews.com/tx/san-antonio/news/2026/03/31/amazon-data-center-coming-to-san-antonio",
+     "title": "Amazon data center coming to San Antonio",
+     "publisher": "Spectrum News",
+     "rung": 6,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s2",
+     "url": "https://www.datacenterdynamics.com/en/news/amazon-files-to-develop-two-new-data-center-campuses-in-texas/",
+     "title": "Amazon files to develop two new data center campuses in Texas",
+     "publisher": "Data Center Dynamics",
+     "rung": 6,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "Spectrum Data Center",
+   "slug": "spectrum-data-center",
+   "summary": "An Amazon facility certified under an internal codename. Amazon is owner, occupant and operator of record, so the filing discloses no landlord, no developer and no location, and this codename appears in no public reporting.",
+   "facts": [
+    {
+     "label": "Owner, occupant and operator of record",
+     "text": "Amazon Data Services, Inc. in all three roles",
+     "source": "s0",
+     "as_of": "2026-05-21"
+    },
+    {
+     "label": "What the name suggests",
+     "text": "The name gives away nothing about where it stands.",
+     "source": "s0"
+    }
+   ],
+   "notes": [
+    {
+     "text": "Amazon files Texas projects under internal codenames rather than under its own brand. A state licensing filing for a San Antonio building carries the name Lavender Hill, and this registry carries a set of names that appear in no public reporting at all. For these facilities the Comptroller's list is the only public record that they exist.",
+     "sources": [
+      "s0",
+      "s1"
+     ]
+    }
+   ],
+   "gaps": [
+    "The county and address are not public",
+    "Capacity, square footage and acreage are not public",
+    "No filing or company release names this facility",
+    "This entry is deliberately thin and is a candidate for a county appraisal district pass"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
+     "title": "Data Center Lists",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://spectrumlocalnews.com/tx/san-antonio/news/2026/03/31/amazon-data-center-coming-to-san-antonio",
+     "title": "Amazon data center coming to San Antonio",
+     "publisher": "Spectrum News",
+     "rung": 6,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s2",
+     "url": "https://www.datacenterdynamics.com/en/news/amazon-files-to-develop-two-new-data-center-campuses-in-texas/",
+     "title": "Amazon files to develop two new data center campuses in Texas",
+     "publisher": "Data Center Dynamics",
+     "rung": 6,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "Gulf Horizon Data Center",
+   "slug": "gulf-horizon-data-center",
+   "summary": "An Amazon facility certified under an internal codename. Amazon is owner, occupant and operator of record, so the filing discloses no landlord, no developer and no location, and this codename appears in no public reporting.",
+   "facts": [
+    {
+     "label": "Owner, occupant and operator of record",
+     "text": "Amazon Data Services, Inc. in all three roles",
+     "source": "s0",
+     "as_of": "2026-05-04"
+    },
+    {
+     "label": "What the name suggests",
+     "text": "The name points at the coast, where Amazon has filed for capacity, though nothing in the record ties this certification to it.",
+     "source": "s0"
+    }
+   ],
+   "notes": [
+    {
+     "text": "Amazon files Texas projects under internal codenames rather than under its own brand. A state licensing filing for a San Antonio building carries the name Lavender Hill, and this registry carries a set of names that appear in no public reporting at all. For these facilities the Comptroller's list is the only public record that they exist.",
+     "sources": [
+      "s0",
+      "s1"
+     ]
+    }
+   ],
+   "gaps": [
+    "The county and address are not public",
+    "Capacity, square footage and acreage are not public",
+    "No filing or company release names this facility",
+    "This entry is deliberately thin and is a candidate for a county appraisal district pass"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
+     "title": "Data Center Lists",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://spectrumlocalnews.com/tx/san-antonio/news/2026/03/31/amazon-data-center-coming-to-san-antonio",
+     "title": "Amazon data center coming to San Antonio",
+     "publisher": "Spectrum News",
+     "rung": 6,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s2",
+     "url": "https://www.datacenterdynamics.com/en/news/amazon-files-to-develop-two-new-data-center-campuses-in-texas/",
+     "title": "Amazon files to develop two new data center campuses in Texas",
+     "publisher": "Data Center Dynamics",
+     "rung": 6,
+     "retrieved": "2026-08-21"
+    }
+   ]
   }
  ]
 }

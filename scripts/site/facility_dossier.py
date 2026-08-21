@@ -88,6 +88,7 @@ UNITS = {
     "jobs": lambda v: f"{plain(v)} jobs",
     "workers": lambda v: f"{plain(v)} workers",
     "buildings": lambda v: f"{plain(v)} buildings",
+    "units": lambda v: f"{plain(v)} units",
 }
 
 

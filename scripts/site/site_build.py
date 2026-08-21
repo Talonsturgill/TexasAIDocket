@@ -5261,7 +5261,7 @@ def facility_page(d: dict, today: str) -> str:
     body = (
         f'<article class="prose facilitypage" data-proper-name="{e(name)}">'
         f'<p class="crumb"><a href="../../grid/">The Grid Watch</a> '
-        f'<span aria-hidden="true">/</span> Every registered facility</p>'
+        f'<span aria-hidden="true">/</span> Every registered facility.</p>'
         f'<h1><cite>{e(name)}</cite></h1>'
         f'{facility_dossier.panel(d, heading=2)}'
         f'<p class="dfoot">The registry entry for this facility comes from the Texas '
