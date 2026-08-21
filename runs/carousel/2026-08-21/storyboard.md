@@ -371,7 +371,7 @@ art:
 type:
   hook: "Anyone in Houston can hail one."
   dek: "Waymo opened its Houston service to anyone with the app on August 20th, 2026, after more than 100,000 riders came off an interest list since February."
-  labels: ["05 / 09", "PARALLAX", "texasaidocket.com", "Raul Gallegos, First Vice President, National Federation for the Blind of Texas"]
+  labels: ["05 / 09", "PARALLAX", "texasaidocket.com", "Raul Gallegos. First Vice President, National Federation for the Blind of Texas."]
 acceptance:
   - "the four plane lightnesses differ by at least 0.10 OKLCH L from every other plane, declared in the source"
   - "the quoted string reads exactly 'The National Federation of the Blind of Texas is happy to hear the news that Waymo will be fully available in Houston.' with the word 'of'"
