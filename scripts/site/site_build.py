@@ -2202,18 +2202,28 @@ def home(items: list, today: str) -> str:
     # published work leads once it exists, because a daily product proving it ships daily is
     # the strongest thing this row can say, and it comes back on its own the day the first
     # article lands rather than needing anybody to remember this rule.
+    #
+    # SOURCES CITED SITS BESIDE DECISIONS TRACKED, and the row takes five rather than four.
+    # It used to be sixth of six behind a cap of four, which meant the figure never once
+    # rendered. That was survivable while the sentence under "What this is" carried it, and
+    # that section came off on 2026-08-21 as something a returning reader no longer needs.
+    # Taking the section without moving the number would have quietly deleted the only count
+    # on this page that says the record is SOURCED rather than merely long, which is the whole
+    # claim the project rests on. The two belong next to each other because one qualifies the
+    # other: sixty four decisions is a size, and sixty four decisions behind two hundred and
+    # eighty three quoted sources is an argument.
     candidates = [
         (len(runs), "Articles written", False, ""),
         (n_videos, "Videos published", False, ' id="vidstat"'),
         (n_items, "Decisions tracked", False, ""),
+        (n_claims, "Sources cited", False, ""),
         (len(act), "Doors open to you", True, ""),
         (n_counties, "Counties named", False, ""),
-        (n_claims, "Sources cited", False, ""),
     ]
     stats = "".join(
         f'<div class="stat"{attrs}><span class="n{" hot" if hot else ""}">{v:02d}</span>'
         f'<span class="l">{e(label)}</span></div>'
-        for v, label, hot, attrs in [c for c in candidates if c[0]][:4])
+        for v, label, hot, attrs in [c for c in candidates if c[0]][:5])
 
     body = f"""
 <section class="hero rise">
@@ -2245,17 +2255,6 @@ def home(items: list, today: str) -> str:
    '<section data-reveal>' + lede + '<p class="meta" data-prose="data"><a href="record/">See all '
    + str(n_items) + ' decisions</a></p></section>'}
 
-<section data-reveal>
-  <h2>What this is</h2>
-  <div class="prose">
-    <p>A record of decisions about artificial intelligence in Texas. Who decided. By when. Whether
-    the public still has a way in. It holds <span class="num">{n_items}</span> decisions
-    supported by <span class="num">{n_claims}</span> quoted sources.</p>
-    <p>An entry is admitted only when every fact in it carries a quote from a source that was
-    actually fetched. At least one of those sources has to be the filing, the statute or the
-    agency itself rather than a news report about it.</p>
-  </div>
-</section>
 
 {covers_html}
 
