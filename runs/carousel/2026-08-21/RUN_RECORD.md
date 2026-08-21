@@ -184,6 +184,35 @@ data and still prints, for the reason in the proposals.
    declaration says so and names c17 as the floor. It would not have been honest for a figure
    that was only ever quoted, and the next one will be.
 
+7. **`aggregate_check` short-circuits the whole text node on `EXEMPT`.** `if EXEMPT.search(text):
+   return []` runs before any detection, so a sentence containing a bill number or a bare year
+   switches aggregate detection off for its entire length. Slide 6's dek carries both "SB 2807" and
+   "2026", which is why "392 days" in the same sentence was never detected, and why a declaration
+   for it is refused as undetected. An integrity judge found it independently. The fix is to strip
+   the exempt spans and scan what is left, rather than dropping the node. Filed, not patched:
+   `scripts/carousel/` is the `upgrade` actor's lane.
+
+8. **`data-decorative` on the `.geo` footer is the largest hole in the numeral law, and it has now
+   hidden two separate defects in two consecutive panels.** `aggregate_check`'s `scan_report` skips
+   decorative nodes, which is right for a coordinate pair and wrong for everything else that block
+   has ever carried. Panel one found `254 COUNTIES` typed there as a string literal on the one frame
+   that loads the file it could be counted from. Panel two found `PERMIAN BASIN / OIL FIELDS` on a
+   frame whose own source line cites two Aurora claims, neither of which names that place. Neither
+   was visible to any gate. Two fixes, and they are different sizes. The cheap one, taken this run:
+   the deck's own law is now written into the storyboard, that **the location stamp names only what
+   a claim cited on that same frame names**, and no coordinate is printed at all. The real one, for
+   the upgrade actor: bind the stamp to a claim id from that frame's cited set and drop the
+   decorative exemption for it, so a stamp that names a place no cited claim names fails the build.
+
+9. **`texan_check`'s DATE regex is case sensitive and its ACTION regex is not, so a closing frame
+   that sets its date in caps reads as having no date.** Slide 9's date block is `AUGUST 25TH, 2026`
+   in white mono on the red plate, which is the most prominent thing on the frame, and the gate
+   reports `next step NO` on a frame carrying a dated public hearing, a room number and the page it
+   is posted on. `DATE` is compiled without `re.I` while `ACTION` is compiled with it. This is not a
+   defect in the deck and the run did not reword a frame to suit the regex, because that is the
+   wrong way round and this file says so elsewhere. Add `re.I` to `DATE`, and add a self test case
+   asserting an all caps closing date is seen. `scripts/carousel/` is the `upgrade` actor's lane.
+
 ## Two process errors this run made, and what they cost
 
 Both were mine and both are worth writing down, because each one wasted a full review round.
@@ -304,7 +333,7 @@ next step yes.** Run on the candidate before a word was drawn. The first pass na
 which is the warning the tool exists to give, and the fix was to anchor the deck in the two
 counties the story actually happens in rather than to carry it on art alone.
 
-**The claims gate is clean.** Thirty one verified claims and eleven rejected, and the rejections are
+**The claims gate is clean.** Thirty two verified claims and eleven rejected, and the rejections are
 the interesting half. The 9:00 AM start time of the hearing is on the Legislature's page and is
 NOT quotable, because it renders as an isolated table cell and the labelled form lives only in
 the notice under the disallowed directory. Kodiak's own page says "more than 1,400 loads" where
