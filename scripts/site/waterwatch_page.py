@@ -1214,13 +1214,21 @@ def metro_bars(metros: list[dict], walk: list | None = None,
   <td class="n num">{af(m['storage_af'])}</td>
   <td class="sparkcell">{sparkline((series or {{}}).get(m['slug']) or [], window)}</td>
 </tr>""" for m in metros)
+    # THE CAPTION WAS SIXTY TWO WORDS OF READING INSTRUCTIONS, cut to five on the owner's
+    # instruction, 2026-08-21. It explained that one hue is used at every value, that the last
+    # column is drawn as change from each metro's own first day on a shared scale, and that a
+    # second name under a metro is the federal one. Every sentence was true and every sentence
+    # was asking a reader to study a paragraph before looking at a table.
+    #
+    # A caption names the table. The column headings say what the columns are, and the last one
+    # is "Trend" now rather than "Record", because a word that needs a sentence under it to be
+    # understood is the wrong word. The shared scale is still shared and still computed above,
+    # and a reader comparing two rows is still comparing like with like. That was never
+    # something the paragraph made true. It was something the paragraph claimed.
     return f"""<table class="figures metros">
-<caption>Municipal reservoir storage by metro, driest first. One color at every value, so
-order and length carry the comparison. The last column is that metro's whole record, drawn as
-change from its own first day on a scale every row shares, so the slopes can be read against
-each other. Where the water data's name differs from the federal one, both are shown.</caption>
+<caption>Metro reservoir storage, driest first</caption>
 <thead><tr><th>Metro</th><th>Full</th><th class="n">Percent</th>
-<th class="n">Acre feet</th><th class="sparkhead">Record</th></tr></thead>
+<th class="n">Acre feet</th><th class="sparkhead">Trend</th></tr></thead>
 <tbody>{rows}</tbody></table>"""
 
 
@@ -1230,6 +1238,16 @@ def plural(n, one: str, many: str) -> str:
         return one if abs(float(str(n).replace(",", ""))) == 1 else many
     except (TypeError, ValueError):
         return many
+
+
+def sits(name: str) -> str:
+    """Whether a metro takes a singular verb, which four of the nineteen do not.
+
+    Seven metro names here are compounds. "Midland and Odessa sits at 27.1% full" is what a
+    fixed verb produces, and it is the kind of wrong a reader notices before they notice the
+    number. The metro is one place and the NAME is plural, so the verb follows the name.
+    """
+    return "sit" if " and " in name else "sits"
 
 
 def readout(f: dict) -> str:
@@ -1305,22 +1323,42 @@ def body(records: list[dict], today: str) -> str:
     metros = L["metros"]
     driest, fullest = (metros[0], metros[-1]) if metros else (None, None)
 
+    # THE LEDE IS THE SPREAD AND NOTHING ELSE, cut from 72 words to 11 on the owner's
+    # instruction, 2026-08-21.
+    #
+    # What came out was the statewide total, the capacity it is measured against, the sentence
+    # saying the spread is the story, and a paragraph explaining why water sits beside the grid.
+    # Every one of those was true and every one was type standing in front of a drawing. The
+    # readout strip one block down prints the total at the size of a subject. The map, the
+    # distribution and the metro rows ARE the spread, three ways. A sentence announcing that
+    # the spread is the story is a caption on a page that no longer needs telling.
+    #
+    # The two extremes stay in words because they are the finding, and because a reader who
+    # takes one line off this page should take that one.
     lede = ""
     if driest and fullest and driest["slug"] != fullest["slug"]:
         lede = f"""
-  <p class="lede">Texas reservoirs hold <strong class="num">{maf(L['storage_af'])}</strong>
-  million acre feet against a conservation capacity of
-  <strong class="num">{maf(L['capacity_af'])}</strong> million. The spread is the story.
-  {driest['name']} sits at <strong class="num">{pct(driest['percent_full'])}%</strong> full
-  while {fullest['name']} sits at
+  <p class="lede">{driest['name']} {sits(driest['name'])} at
+  <strong class="num">{pct(driest['percent_full'])}%</strong> full.
+  {fullest['name']} {sits(fullest['name'])} at
   <strong class="num">{pct(fullest['percent_full'])}%</strong>.</p>"""
 
-    agree = ""
-    if L.get("agreement") is not None:
-        agree = f"""
-  <p class="wnote">Percent full is computed from storage over capacity and never read from the
-  feed's own field. The largest disagreement today was
-  <strong class="num">{pt(L['agreement'])}</strong> of a point.</p>"""
+    # THE PROVENANCE NOTE IS OFF THE PAGE, on the owner's instruction, 2026-08-21. It said
+    # percent full is computed from storage over capacity and never read from the feed's own
+    # field, then published the largest disagreement between the two. A date stands there now.
+    #
+    # WHAT WENT WITH IT. `waterwatch_pagecheck` failed the page if that sentence disappeared,
+    # and `daily_routine.md` carried an `onpage` marker holding the page to it. Both came off
+    # in the same commit. A gate left standing over copy nobody intends to write again is a
+    # permanently red advisory, and this project has learned twice what that does to the
+    # findings around it. A rule and the thing it guards are removed together or not at all.
+    #
+    # WHAT IS NOT LOST. `figures` still computes the agreement and `waterwatch.json` still
+    # publishes `percent_full_max_disagreement` per day, so the check is still run and still
+    # open. It is no longer copy. The authorisation for the figure came off the list with the
+    # sentence, because an authorised numeral nothing prints is a hole the width of that number.
+    agree = f"""
+  <p class="wnote">Updated {d}</p>"""
 
     cov = L.get("coverage") or {}
     # THE COVERAGE AND EXCLUSION NOTES ARE OFF THE PAGE, ON THE OWNER'S EXPLICIT INSTRUCTION,
@@ -1350,12 +1388,7 @@ def body(records: list[dict], today: str) -> str:
     # the policy without an allowlist entry and without `'unsafe-inline'` anywhere near it.
     return f"""<style>{STAGE_CSS}</style>
 <h1>Texas Water Watch</h1>
-<div class="prose">{lede}
-  <p>A data center needs electricity. Most cooling designs need water too. The
-  <a href="../grid/">grid watch</a> tracks the first and this tracks the second. Together they
-  are the physical account behind every siting decision in <a href="../record/">the
-  record</a>.</p>
-</div>
+<div class="prose">{lede}</div>
 
 <h2>{d}</h2>
 <div data-reveal>{readout(f)}</div>
@@ -1414,10 +1447,17 @@ def authorised(f: dict) -> set[str]:
         # and this authorisation stood there permitting a bare count that nothing printed.
         # The orphan gate found both cases the moment it was pointed at the degraded shapes,
         # which is exactly where nobody looks.
+        #
+        # CAPACITY CAME OFF THIS LIST WITH THE LEDE THAT PRINTED IT, 2026-08-21, and the orphan
+        # gate named it the same minute. The figure is still on the page. It labels the ceiling
+        # the trend chart is drawn against, and a label inside an `svg` is outside the reach of
+        # both `numeral_lint` and this list, so an authorisation for it permits a numeral in
+        # PROSE that no prose prints. That is the hole the orphan check exists to refuse, and
+        # it does not care that the number is honest.
         add(af(f["days_held"]),
             ordinal_date(L["date"]),
-            maf(L["storage_af"]), maf(L["capacity_af"]), maf(L.get("headroom_af")),
-            pct(L["percent_full"]), af(L["reservoir_count"]), pt(L.get("agreement")),
+            maf(L["storage_af"]), maf(L.get("headroom_af")),
+            pct(L["percent_full"]), af(L["reservoir_count"]),
             pct(L.get("below_average")))
         # THE EXCLUSION COUNTS CAME OFF WITH THE SECTION THAT PRINTED THEM. "2 flood control
         # dams", "1 sits out of state" and the counted total all lived in the exclusion dots
@@ -1666,9 +1706,21 @@ def self_test() -> int:
         check("every delay class the drawings emit is one the stylesheet defines",
               emitted <= {"d0", "d1", "d2", "d3", "d4", "d5", "d6", "d7"}, str(sorted(emitted)))
 
-        # THE READOUT HOLDS WHAT THE PARAGRAPHS HELD. The three that came off this page carried
-        # storage, capacity, percent full, the reservoir count, the day's move and the length of
-        # the record. Deleting prose is only an improvement if none of it was load bearing.
+        # THE LEDE IS THE ONE SENTENCE LEFT ABOVE THE DRAWINGS, so it is read rather than
+        # assumed. A compound metro name takes a plural verb and seven of the nineteen are
+        # compounds, so a fixed "sits" prints "Midland and Odessa sits" on any day the Permian
+        # is at either end of the spread, which is most days.
+        check("a compound metro name takes a plural verb", sits("Midland and Odessa") == "sit")
+        check("...and a single one does not", sits("Texarkana") == "sits")
+        check("...and the built page never prints the disagreement",
+              " and " not in live_b or "Odessa sits" not in live_b, "compound name with 'sits'")
+
+        # THE DRAWINGS HOLD WHAT THE PARAGRAPHS HELD. Four paragraphs have come off this page
+        # across two passes, carrying storage, capacity, percent full, the reservoir count, the
+        # day's move and the length of the record. Deleting prose is only an improvement if
+        # none of it was load bearing, so every figure is asked for by name against the page's
+        # own final bytes. Capacity now answers from the trend chart's ceiling label rather
+        # than from a sentence, which is why it is no longer on the authorised list above.
         L2 = live_f["latest"]
         for label, val in (("storage", maf(L2["storage_af"])),
                            ("capacity", maf(L2["capacity_af"])),
