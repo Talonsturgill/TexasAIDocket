@@ -282,3 +282,115 @@ attempts to a scout. `fortworthreport.org`, `texastribune.org`, `kxan.com` and `
 returned 403 to a default agent. `globenewswire.com` and `investors.kodiak.ai` returned 503.
 `tacc.utexas.edu` returned 403, and that one is **a disallow rather than a failure**, recorded in
 the registry, and was not routed around.
+
+---
+
+## August 21st, 2026
+
+**`gov.texas.gov` NOW DISALLOWS US BY NAME, and the registry says it serves no robots.txt at all.**
+`https://gov.texas.gov/robots.txt` returned 200 to a browser User-Agent this run carrying
+`User-agent: GPTBot / Disallow: /`, then `User-agent: ClaudeBot / Disallow: /`, then the same for
+`Amazonbot`, `Applebot` and `PerplexityBot`, and a `User-agent: *` group that disallows only some
+`/Apps/` paths. So the host is open to a general crawler and closed to this one, by name.
+- the registry row reads "serves no robots.txt at all" and "Nothing is disallowed because nothing
+  is stated". That was true when it was written and is not true now
+- **this was the single most productive source of the first run to ship a deck.** The record
+  carries 14 claims across 2 entries on that host and they stay, because they were fetched when
+  they were fetchable. What changes is that no run may fetch it again
+- it was not fetched this run after robots was read, and no cache, mirror or proxy was used. The
+  Governor's Data Center Coalition announcement of August 18th was dropped for this reason and for
+  no other
+
+**`capitol.texas.gov` DISALLOWS `/TLODOCS/`, and yesterday's entry in this log recommends it.**
+The August 20th entry above calls the hearing notices at `/tlodocs/89R/schedules/` "the cheapest
+primary source in this repo" on the strength of a 200. The robots file was never read. It carries
+`Disallow: /TLODOCS/` under `User-agent: *`.
+- the live URL is lowercase `/tlodocs/` and the disallow is uppercase. Path matching in the robots
+  standard is case sensitive, so a literal reading lets it through. **Treating that as permission
+  is routing around a disallow on a technicality**, so it was not fetched this run
+- **`capitol.texas.gov/Committees/` is NOT disallowed and is the compliant substitute.**
+  `MeetingsUpcoming.aspx?Chamber=S` gives committee, date, time, room and hearing type.
+  `MeetingsByCmte.aspx?Leg=89&Chamber=H&CmteCode=<code>` gives the same plus the clerk, the phone
+  and the room, and lists every meeting the committee has held
+- what is lost is the charge text, the per witness time limit and the electronic comment url,
+  which live only in the notice. **`lrl.texas.gov` carries the charges in full** and is allowed,
+  so between the two nothing needed for an item is out of reach
+
+**Gray Television stations disallow ClaudeBot and anthropic-ai by name.** `www.kwtx.com` and
+`www.kgns.tv` both serve a robots group naming GPTBot, ChatGPT-User, Google-Extended, CCBot,
+Amazonbot, anthropic-ai, Bytespider, ClaudeBot, Claude-Web, FacebookBot, omgili, omgilibot and
+PerplexityBot with `Disallow: /`, then `User-agent: *` with `Allow: /news/`.
+- two record items rested on those two hosts. Neither was re-fetched. Both were re-verified
+  instead against the city's own record, which is what should have been cited in the first place,
+  and both turned out to be wrong about the date
+
+**`lrl.texas.gov`'s weekly URL is keyed on the POST date, not the week it covers, and a wrong
+date returns 200.** The registry gives the pattern as
+`/whatsNew/client/index.cfm/<yyyy>/<m>/<d>/Interim-Hearings--Week-of-<Month>-<D>-<YYYY>` and a run
+naturally builds `<d>` from the week start. The real path for the week of August 24th is
+`/2026/8/19/Interim-Hearings--Week-of-August-24-2026`, posted on the 19th.
+- **a wrong date does not 404.** It returns the blog index at full length, with the site
+  chrome, the archive list and the recent entries, and no hearing content at all. This is the
+  empty-shell trap in a new shape: same status, similar size, nothing in it
+- read the hrefs off any LRL page rather than constructing the path
+
+**Legistar records the outcome on the EVENT ITEM and the MATTER HISTORY, and leaves the MATTER
+stale.** El Paso matter 16074 still reads `MatterStatusName: Agenda Ready` with
+`MatterPassedDate: null` three days after the council approved it. The event item for the same
+matter carries `EventItemActionName: Approve`, `EventItemPassedFlagName: Pass` and the full motion
+text, and `/Matters/<id>/histories` carries the same action with its date.
+- a previous check read the matter alone and recorded the item unchanged. **Read
+  `/events/<id>/eventitems` or `/Matters/<id>/histories`, never the matter status alone**
+- Laredo matter 7693 shows the other half of the same lesson. Its history carries
+  `"MatterHistoryActionName":"no action taken"` for two separate meetings, which is a real
+  recorded outcome that no matter-level field expresses
+
+**`cityoflaredo.legistar.com` and `webapi.legistar.com/v1/cityoflaredo/` are live and current**,
+while `www.cityoflaredo.com` returns an Akamai 403 on `robots.txt` to every client tried. The
+Legistar instance answered with events through December 2026.
+- **the city's term of art is "High-Intensity Data Processing Facilities", not "data center".**
+  A keyword search for `data center` over its matters returns Microsoft server licences and
+  nothing else. A search for `moratorium` returns car washes
+- `webapi.legistar.com/v1/laredo/` returns 500. The client slug is `cityoflaredo`
+
+**`www.killeentexas.gov/AgendaCenter` publishes agendas and no minutes.** Every
+`ViewFile/Agenda/_MMDDYYYY-<id>` answered 200 and extracted cleanly with `pypdf`. Every
+`ViewFile/Minutes/` for the same id returned **404 with a 101 KB error page**, which is larger
+than several of the real agendas, so a size check would read it as a hit.
+- the AgendaCenter landing page loads only its first category and fetches the rest by POST to
+  `/AgendaCenter/UpdateCategoryList`, so the visible link list is partial
+- `/Search` is disallowed on that host
+
+**`waymo.com` is `User-agent: * / Allow: /`** and its Waypoint blog post carried the launch date,
+the change and an attributed quote. Note the page writes the same organisation two ways in two
+adjacent sentences, "National Federation for the Blind of Texas" in the speaker's title and
+"National Federation of the Blind of Texas" inside his quote. **Do not harmonise them.**
+
+**`dir.texas.gov` is behind a Cloudflare managed challenge** and returned 403 with a JavaScript
+interstitial on `robots.txt` itself, so its crawl policy could not be read at all. Nothing on that
+host was fetched.
+
+**`api.nsf.gov` is the citable NSF surface and `nsf.gov/awardsearch/show-award/` is not.** The
+award detail page renders client side and returns "No Award Specified" to a fetcher. The JSON at
+`/services/v1/awards/<id>.json` carries the abstract, the awardee, the obligation and the program
+in one response, keyless.
+- it ignores `printFields` restrictions and returns `abstractText` regardless
+- its `dateStart` filter is on the award ACTION date, so records with 2027 project starts appear
+  in an August 2026 window
+
+**`texasstandard.org/feed/` returned 403 to three separate scouts this run**, against a registry
+row calling it the best Texas text source found, at 300 items with full `content:encoded`.
+Recorded as observation. **`texastribune.org` 403d on both the article route and the
+`wp-json/wp/v2/posts` route**, and Creative Commons republications at small Texas papers carried
+the same text and answered 200.
+
+**`texreg.sos.state.tx.us` no longer serves the Texas Register.** Two scouts independently found it
+serving a redirect notice pointing at `texas-sos.appianportalsgov.com`. The registry calls that
+host "usable and currently unexploited" and the single best addition to the collector set.
+
+**Hosts that refused this run, recorded as observation only.** `texasattorneygeneral.gov` returned
+**402 Payment Required** on the site root, on `/news/releases` and on an individual release.
+`www.fortworthtexas.gov` and `www.cityoflaredo.com` returned Akamai 403 on `robots.txt`.
+`usda.gov` returned 403 where `aphis.usda.gov` answered. `www.hoodcountytexas.gov` did not
+resolve. `puc.texas.gov` returned 503 to one scout across every path while answering 200 to
+`curl` with a browser User-Agent from this same run, minutes apart.
