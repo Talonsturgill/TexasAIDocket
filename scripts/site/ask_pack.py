@@ -536,8 +536,13 @@ def self_test() -> int:
     print("the house voice, because the model writes what it reads")
     # A colon inside a quoted source is the source's and is left alone, so the check runs on
     # the pack with quoted spans removed. Clock times and ratios are numbers, not punctuation.
+    #
+    # THE INDEX IS CHECKED WITH IT. It is a separate field and it is a third of what the model
+    # reads on every question, so leaving it out of these checks would mean two thirds of the
+    # prompt keeping the house voice and one third teaching the model out of it.
     import re  # noqa: E402
-    unquoted = re.sub(r'"[^"]*"', '""', text)
+    voiced = text + "\n\n" + p["index"]
+    unquoted = re.sub(r'"[^"]*"', '""', voiced)
     unquoted = re.sub(r"\d{1,2}:\d{2}", "", unquoted)
     check("no colons outside a quoted source", ":" not in unquoted,
           repr(unquoted[max(0, unquoted.find(":") - 60):unquoted.find(":") + 20])
@@ -554,9 +559,9 @@ def self_test() -> int:
           repr(unquoted[max(0, min(unquoted.find(c) for c in "–—" if c in unquoted) - 50):][:90])
           if set("–—") & set(unquoted) else "")
     check("no curly quotes outside a quoted source", not set("‘’“”") & set(unquoted))
-    check("no bare url reached the pack", "http" not in text,
-          repr(text[max(0, text.find("http") - 50):text.find("http") + 40])
-          if "http" in text else "")
+    check("no bare url reached the pack", "http" not in voiced,
+          repr(voiced[max(0, voiced.find("http") - 50):voiced.find("http") + 40])
+          if "http" in voiced else "")
     # The prompt has to NAME what it forbids, so "cannot" appears inside the rule banning it.
     # Same exemption, same reason.
     sys_unquoted = re.sub(r'"[^"]*"', '""', SYSTEM)

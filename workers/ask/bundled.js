@@ -620,15 +620,14 @@ export function pickItems(query, items, opts = {}) {
 
 const SLICE_HEAD =
   "THE DECISIONS MOST LIKELY TO ANSWER THIS QUESTION, in full. The index above lists every " +
-  "decision the record holds. This is a slice of it, chosen by matching the question against " +
-  "the text of each one, so an item indexed above and absent here is still real and still " +
-  "citable. Nothing about such an item beyond its index line is known to you. Cite it, say " +
-  "what its line says, and stop there.";
+  "decision the record holds and this is a slice of it. An item indexed above and absent " +
+  "here is still real and still citable. Nothing about it beyond its index line is known to " +
+  "you. Cite it and say what its line says and stop there.";
 
 const NO_SLICE =
   "NO DECISION MATCHES THIS QUESTION closely enough to send its full text. The index above is " +
-  "the whole record. Answer from the counts and the index, or say plainly that the record " +
-  "does not carry this and name what it does carry instead.";
+  "the whole record. Answer from the counts and the index. If the record does not carry this " +
+  "say so plainly and name what it does carry instead.";
 
 /**
  * The three blocks, in the order the cache wants them.

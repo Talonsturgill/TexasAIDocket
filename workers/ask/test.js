@@ -358,6 +358,24 @@ ok("...and assemble sends everything when that happens",
   systemBlocks({ ...FAKE, pack: "no mark" },
                [{ role: "user", content: "x" }], {}).length === 2);
 
+head("P2. the block headers keep the house voice, because the model writes what it reads");
+// ask_pack.py bans colons, semicolons and dashes in the record and gates it in a self-test,
+// for the stated reason that a pack full of colons produces answers full of colons and the
+// checker then refuses the model's own reply. These two strings are the LAST thing in the
+// prompt and no Python gate can reach them, so the same rules are enforced here.
+for (const [name, copy] of [["the slice header", blocks[2].text.split("\n\n")[0]],
+                            ["the empty slice header",
+                             systemBlocks(FAKE, [{ role: "user", content: "zzzz qqqq" }], {})[2]
+                               .text]]) {
+  ok(`${name} carries no colon or semicolon`, !/[:;]/.test(copy), copy.slice(0, 60));
+  ok(`${name} carries no em or en dash`, !/[\u2013\u2014]/.test(copy));
+  ok(`${name} keeps its commas sparse, like the record it introduces`,
+    (copy.match(/,/g) || []).length / (copy.split(/\s+/).length / 100) < 6.2,
+    String(((copy.match(/,/g) || []).length /
+            (copy.split(/\s+/).length / 100)).toFixed(1)));
+  ok(`${name} does not speak in the first person`, !/\b(?:I|we|our|us)\b/.test(copy));
+}
+
 head("Q. a follow-up is read next to the turn it follows");
 ok("the earlier user turn is part of the question",
   queryOf([{ role: "user", content: "the Oncor line" },
