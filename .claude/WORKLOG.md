@@ -71,13 +71,14 @@ calendar: with script off the row is a plain link to the page.
 | A | Measure the registry, find its source, read the collector | DONE |
 | B | `knowledge/shared/DATACENTER_REGISTRY.md`, the program's real semantics | DONE |
 | C | This worklog | DONE |
-| D | Research batch 1, ten marquee AI facilities | DONE, 10 of 10, 77 sourced facts |
+| D | Research batch 1, ten marquee AI facilities | DONE, shipped in #148 |
+| D2 | Research batch 2, ten more | DONE, 20 dossiers and 117 facts total |
 | E | Dossier schema + `ledger/facilities/dossiers.json` | DONE |
 | F | `facility_dossier.py` gate, 24 self-tests | DONE |
 | G | Per-facility page at `/facility/<slug>/`, in the sitemap | DONE |
 | H | The dialog on the registry row, progressive enhancement | DONE |
 | I | `tests/facility_dossier.mjs`, 17 checks | DONE |
-| J | Full sweep, `guards_local.py`, ship | IN PROGRESS |
+| J | Full sweep, ship | DONE for batch 1 (#148), batch 2 in flight |
 
 ## Wrap
 
@@ -94,7 +95,7 @@ Chosen by signal rather than alphabetically. These are the rows a reader actuall
 are the ones with enough public record to prove the format works before it meets a small colo site
 with almost nothing findable.
 
-## Batch 2 starts here
+## Batch 2, shipped
 
 The next ten. Pick by signal again rather than alphabetically, and read
 `knowledge/shared/DATACENTER_REGISTRY.md` first, particularly the re-certification section,
@@ -108,3 +109,32 @@ so is worth doing early while that pattern is fresh.
 
 ECX AUS31-36 shipped deliberately thin and is the standing example of an honest sparse dossier.
 It is also the first candidate for a second pass if better sourcing turns up.
+
+## What batch 2 found
+
+- **Cedarvale is the re-certification working as advertised.** Ionic Digital Mining in 2024,
+  Nscale Ward County Borrower SPV in 2026, and behind the second row a lease of the whole site
+  with Nvidia hardware going in for Microsoft. **Microsoft appears nowhere in the registry.** The
+  certified occupant is a single purpose borrowing entity, which is the clearest example yet of
+  why occupant is a legal position and not a tenant.
+- **Two Bosque parcels, two different hyperscalers.** Google is the occupant of one and Amazon of
+  the other, certified six days apart. Trade coverage of the CyrusOne campus in that county says
+  the tenant is undisclosed. Whether these are the same campus is NOT established and is written
+  as a gap rather than an inference.
+- **Design, LLC operates two separate Google facilities**, here and at Meitner. A cross-row
+  pattern invisible to anyone reading one facility at a time.
+- **Amazon files under codenames.** Flamingo, Pecos Ranch, Bexar 1, Spectrum and Gulf Horizon
+  appear in no public reporting. A state licensing filing for a San Antonio building uses the name
+  Lavender Hill, so this is a documented practice rather than a guess. For those five the
+  Comptroller's list is the only public evidence the facilities exist, and their dossiers say so
+  rather than padding.
+
+## Batch 3 candidates
+
+Riot Rockdale 2 and Corsicana 02 (siblings of batch 1, cheap), plus the unresearched majors still
+in the roster. The five Amazon codenames are the best second-pass target: a county appraisal
+district search on Bexar, Pecos and the coastal counties would likely resolve addresses that no
+press release carries.
+
+Two units were added to the formatter across these batches, `units` for hardware counts. Any new
+unit needs a formatter or the gate refuses the fact, which is the intended behaviour.
