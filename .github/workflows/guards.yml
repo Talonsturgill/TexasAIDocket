@@ -137,6 +137,19 @@ jobs:
       - name: Every entity resolves and every group states its reason
         run: python3 scripts/site/entities.py
 
+      # WHAT THE REGISTRY CHANGED. The state edits rows in place, keeping the original effective
+      # date while replacing the parties, so a diff of two snapshots is the only record that an
+      # owner ever changed. Computed at build time from the raw snapshots, never a second ledger.
+      # The self-test carries the reformat that would otherwise bury an owner swap in punctuation.
+      - name: Registry change log self-test (an edit in place is not a new row)
+        run: python3 scripts/site/registry_changes.py --self-test
+
+      # THE GRAPH OF WHO SHARES A BUILDING. Layout is deterministic on purpose: no clock and no
+      # random seed, because `site_fresh_check` rebuilds the site and compares bytes, and a graph
+      # that settles somewhere new each run would fail that gate every single time.
+      - name: Registry graph self-test (the layout is deterministic, not seeded)
+        run: python3 scripts/site/registry_graph.py --self-test
+
       # THE ROUTINE'S OWN CLAIMS ABOUT PUBLISHED COPY. An unattended run reads
       # prompts/daily_routine.md to know what to do, and part of that file describes what the
       # pages say. A description that has gone stale is not wrong about a fact, it is wrong
@@ -477,6 +490,13 @@ jobs:
       - name: House style self-test (our prose is checked, a quote never is)
         run: python3 scripts/site/house_style_check.py --self-test
 
+      # CSS FAILS SILENTLY. `var(--signal-link)` where the token is `--sig-link` is not an
+      # error, it is a declaration the browser throws away, and the element renders with its
+      # initial value. It has shipped here three times, most recently drawing every filament of
+      # a network diagram with no stroke at all under a green suite.
+      - name: CSS token self-test (a name nothing defines is not a colour)
+        run: python3 scripts/site/css_tokens.py --self-test
+
       - name: The scan page and the scanner repo agree on the contract
         run: |
           # The scan form exists twice: docs/scan/index.html built by scan_page(), and the
@@ -519,6 +539,9 @@ jobs:
           # source text is stripped first: rewriting a quotation to fit house style would be
           # falsifying it, which is far worse than an inconsistent date.
           python3 scripts/site/house_style_check.py
+
+      - name: Every var() in the built stylesheets resolves
+        run: python3 scripts/site/css_tokens.py
 
       - name: The published shape cannot move without saying so
         run: |
@@ -915,6 +938,15 @@ jobs:
 
       # The company pages, whose expectations are computed from the ledgers by the test rather
       # than typed, so the next Comptroller list cannot turn a correct page red.
+      - name: Every character the site draws exists in the face it is drawn with
+        run: |
+          # A missing glyph is not an error. The browser substitutes, and where nothing can it
+          # draws a box with the codepoint printed inside. Nothing that reads markup or reads a
+          # stylesheet can see it. This also refuses a CONTROL CHARACTER in published copy,
+          # which is what `content:"\2192"` becomes when the stylesheet is built from a Python
+          # string and Python reads the octal escape first.
+          SITE=docs node tests/glyphs.mjs
+
       - name: The registry read by company
         run: |
           SITE=docs node tests/company.mjs

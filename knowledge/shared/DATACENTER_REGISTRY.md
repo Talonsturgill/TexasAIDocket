@@ -58,6 +58,61 @@ Do not silently clean these. The registry is the record and a reader comparing o
 the Comptroller's should find the same strings. Normalise for MATCHING if a lookup needs it, and
 render what the state published.
 
+## THE LIST IS EDITED IN PLACE, AND THAT GOVERNS EVERY SENTENCE ABOUT IT
+
+Proven, not assumed. Between the readings of August 19th and August 21st of 2026 the Comptroller
+added two rows and REWROTE two. `Hutto Data Center Campus LLC` had its owner replaced by three
+entities including a power company, against an unchanged effective date of March 10th, 2025.
+
+    A ROW'S PARTIES ARE CURRENT AS OF THE READING. The effective date says when the exemption
+    was granted. It does NOT say who held it then.
+
+`HELO1 DC` is the clearest case. Its effective date is June 2021. It names Galaxy, which bought
+that site from Argo in late 2022, and CoreWeave, which leased it in 2025. Nothing is wrong with
+the row. It is simply not a historical record, and reading it as one produces a confident
+sentence about 2021 that is false.
+
+**This corrected two pages that were already published.** Both said, in effect, that two rows
+record a site changing hands from mining to AI. Two rows show two LIVE certifications under one
+facility name with different dates and different occupants. The change of use at Cedarvale and at
+Black Pearl is real and is established by the LEASES, which are separately sourced. It is not
+established by the rows, and the rows no longer get the credit.
+
+So the safe form is narrow. Say the state certifies this facility, say when, say who is named
+now. Never say who was named then unless a snapshot proves it.
+
+`scripts/site/registry_changes.py` diffs the collector's raw snapshots and publishes what moved.
+It ignores a date that was merely reformatted, because burying an owner swap under punctuation
+noise is how a watch stops being read. **The record starts on August 19th of 2026**, the first
+snapshot, and the page says so rather than implying the list was stable before anyone looked.
+
+## THE RAW TABLE CARRIES A REGISTRATION NUMBER AND THE LEDGER DROPS IT
+
+Every party on every row has one, in the form `LD370879-OW1`, `-OC1`, `-OP1` for the owner, the
+occupant and the operator of one facility. `ledger/gridwatch/datacenters.json` holds none of them,
+because the collector discards the column.
+
+They are worth having, for two reasons that nothing else in the record supplies. The suffix states
+the ROLE explicitly, where the ledger infers it from which array a name sits in. The stem is a
+stable key for a facility ACROSS a re-certification, which is the one thing this record cannot
+currently follow, since the state edits rows in place and keeps the original effective date.
+
+`scripts/gridwatch/**` belongs to the `gridwatch` actor. A session in another lane writes this
+down and does not make the change. Whoever takes it should know that adding a field does not
+backfill the history, and that `ledger/gridwatch/raw/` is what a backfill would have to read.
+
+## A CELL CAN HOLD A LIST, AND STRIPPING THE TAGS GLUES IT
+
+Several parties in one role are marked up as `<ul><li>`, and the state does not always leave
+whitespace between the items. Removing tags alone turned three owners into
+`Hutto Data Center 1 LLC Hutto Data Center 2 LLC Hutto Data Center Campus Power LLC` and two
+registration numbers into `LD370879-OP2LD370879-OP3`, which is neither of them.
+
+It is not only unreadable. Two different lists can glue to the same string and one list can glue
+to two different strings, so any comparison of two readings is being made on a lossy rendering of
+the cell. `registry_changes.cells()` splits on the list item and the line break before it strips
+anything, and its self-test carries the exact markup that produced the fault.
+
 ## A REPEATED NAME IS A RE-CERTIFICATION, AND IT IS THE BEST THING IN THIS FILE
 
 Four names appear twice in the August 2026 read. They are not duplicates to be cleaned. A second

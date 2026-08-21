@@ -752,10 +752,11 @@
      ]
     },
     {
-     "text": "This facility holds two rows in the state registry rather than one. The earlier certification names Cipher itself as occupant and the later one names Amazon. Read together the two rows record a bitcoin site becoming an AI site, in the state's tax file rather than in an announcement.",
+     "text": "This facility holds two rows in the state registry rather than one. The earlier carries Cipher itself as occupant and the later carries Amazon. Both are live certifications as read, so the pair shows two exemptions running under one facility name rather than a dated handover. The move from mining to hosting here is established by the Amazon lease, not by the rows.",
      "as_of": "2026-01-23",
      "sources": [
-      "s0"
+      "s0",
+      "s1"
      ]
     }
    ],
@@ -763,7 +764,8 @@
     "Square footage, acreage and cooling design are not public",
     "Energization timeline is not public",
     "Primary filing was not read directly for this entry, so the figures here carry trade press rung",
-    "Whether the two certifications cover the same building or separate phases is not stated"
+    "Whether the two certifications cover the same building or separate phases is not stated",
+    "Whether the earlier certification still covers active mining is not public"
    ],
    "sources": [
     {
@@ -1055,7 +1057,7 @@
   {
    "name": "Cedarvale, Barslow/Pyote TX Data Center",
    "slug": "cedarvale-barslow-pyote-tx-data-center",
-   "summary": "A West Texas site that mined bitcoin and now hosts AI. The state record shows the handover in two certifications. Nscale leases the whole of it and is filling it with Nvidia hardware for Microsoft, and neither of those companies is named on this facility's row.",
+   "summary": "A West Texas site that mined bitcoin and now hosts AI. Nscale leases the whole of it and is filling it with Nvidia hardware for Microsoft, and neither of those companies is named on this facility's row.",
    "facts": [
     {
      "label": "Site capacity leased to Nscale",
@@ -1144,6 +1146,14 @@
      "sources": [
       "s0",
       "s2"
+     ]
+    },
+    {
+     "text": "Two certifications carry this facility name, an earlier one naming the mining occupant and a later one naming Nscale's borrowing entity. Both read as live. A registry row names who holds an exemption now rather than who held it when it was granted. So the pair is two live exemptions rather than a dated handover, and what the site became is established by the lease.",
+     "as_of": "2026-03-16",
+     "sources": [
+      "s0",
+      "s1"
      ]
     }
    ],
@@ -1681,7 +1691,7 @@
   {
    "name": "Spectrum Data Center",
    "slug": "spectrum-data-center",
-   "summary": "An Amazon facility certified under an internal codename. Amazon is owner, occupant and operator of record, so the filing discloses no landlord, no developer and no location, and this codename appears in no public reporting.",
+   "summary": "An Amazon codename that resolves. Project Spectrum is a Hood County campus planned beside a working nuclear station, and the certification is the only place the state names it.",
    "facts": [
     {
      "label": "Owner, occupant and operator of record",
@@ -1690,25 +1700,70 @@
      "as_of": "2026-05-21"
     },
     {
-     "label": "What the name suggests",
-     "text": "The name gives away nothing about where it stands.",
-     "source": "s0"
+     "label": "Announced investment",
+     "value": 5000000000,
+     "unit": "usd",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Site area",
+     "value": 1265,
+     "unit": "acres",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "First stage buildings",
+     "value": 18,
+     "unit": "buildings",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "First stage area",
+     "value": 435,
+     "unit": "acres",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "County",
+     "text": "Hood County",
+     "source": "s1"
+    },
+    {
+     "label": "Adjacent generation",
+     "text": "Vistra's Comanche Peak nuclear station, across the line in Somervell County",
+     "source": "s1"
+    },
+    {
+     "label": "Groundbreaking",
+     "text": "Expected in early 2027",
+     "source": "s1"
     }
    ],
    "notes": [
     {
-     "text": "Amazon files Texas projects under internal codenames rather than under its own brand. A state licensing filing for a San Antonio building carries the name Lavender Hill, and this registry carries a set of names that appear in no public reporting at all. For these facilities the Comptroller's list is the only public record that they exist.",
+     "text": "This is what a resolved codename looks like. The registry names the facility and nothing else, and the siting beside a nuclear station is the whole story. Neither fact is available from the other source alone.",
      "sources": [
       "s0",
       "s1"
      ]
+    },
+    {
+     "text": "Amazon files Texas projects under internal codenames rather than its own brand. A state licensing filing for a San Antonio building carries the name Lavender Hill.",
+     "sources": [
+      "s0",
+      "s2"
+     ]
     }
    ],
    "gaps": [
-    "The county and address are not public",
-    "Capacity, square footage and acreage are not public",
-    "No filing or company release names this facility",
-    "This entry is deliberately thin and is a candidate for a county appraisal district pass"
+    "Capacity in megawatts is not public",
+    "Square footage per building is not public",
+    "Whether the certification covers the whole campus or one stage is not stated",
+    "No power purchase arrangement with the adjacent station is public"
    ],
    "sources": [
     {
@@ -1721,17 +1776,17 @@
     },
     {
      "id": "s1",
-     "url": "https://spectrumlocalnews.com/tx/san-antonio/news/2026/03/31/amazon-data-center-coming-to-san-antonio",
-     "title": "Amazon data center coming to San Antonio",
-     "publisher": "Spectrum News",
-     "rung": 6,
+     "url": "https://baxtel.com/data-center/amazon-project-spectrum",
+     "title": "Amazon, Project Spectrum Data Center",
+     "publisher": "Baxtel",
+     "rung": 7,
      "retrieved": "2026-08-21"
     },
     {
      "id": "s2",
-     "url": "https://www.datacenterdynamics.com/en/news/amazon-files-to-develop-two-new-data-center-campuses-in-texas/",
-     "title": "Amazon files to develop two new data center campuses in Texas",
-     "publisher": "Data Center Dynamics",
+     "url": "https://spectrumlocalnews.com/tx/san-antonio/news/2026/03/31/amazon-data-center-coming-to-san-antonio",
+     "title": "Amazon data center coming to San Antonio",
+     "publisher": "Spectrum News",
      "rung": 6,
      "retrieved": "2026-08-21"
     }
@@ -2740,6 +2795,137 @@
      "title": "Vantage Data Centers Unveils Plans for Frontier, a Mega-campus in Texas",
      "publisher": "Vantage Data Centers",
      "rung": 2,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "HELO1 DC",
+   "slug": "helo1-dc",
+   "summary": "A Dickens County site that mined bitcoin under Argo. Galaxy bought it and now leases the whole of it to CoreWeave. Its row is the clearest proof on this site that a registry row names who holds a certification now rather than who held it when it was granted.",
+   "facts": [
+    {
+     "label": "Approved campus capacity CoreWeave has committed to lease",
+     "value": 800,
+     "unit": "MW",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Critical IT load committed across the first three phases",
+     "value": 526,
+     "unit": "MW",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Critical IT load delivered in the first phase",
+     "value": 133,
+     "unit": "MW",
+     "source": "s2",
+     "kind": "reported",
+     "as_of": "2026-07-10"
+    },
+    {
+     "label": "Gross power in service for that phase",
+     "value": 200,
+     "unit": "MW",
+     "source": "s2",
+     "kind": "reported",
+     "as_of": "2026-07-10"
+    },
+    {
+     "label": "Project financing facility",
+     "value": 1400000000,
+     "unit": "usd",
+     "source": "s3",
+     "kind": "reported",
+     "as_of": "2025-08-01"
+    },
+    {
+     "label": "Price Galaxy paid Argo for the site",
+     "value": 65000000,
+     "unit": "usd",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "County",
+     "text": "Dickens County",
+     "source": "s1"
+    },
+    {
+     "label": "Lease",
+     "text": "Fifteen years with two five year extension options",
+     "source": "s1"
+    },
+    {
+     "label": "Occupant of record",
+     "text": "CoreWeave",
+     "source": "s0",
+     "as_of": "2021-06-08"
+    },
+    {
+     "label": "Owner of record",
+     "text": "Galaxy Helios I",
+     "source": "s0",
+     "as_of": "2021-06-08",
+     "proper_name": true
+    }
+   ],
+   "notes": [
+    {
+     "text": "The effective date on this row is years before Galaxy bought the site and years before CoreWeave leased it. Nothing is wrong with the row. The state rewrites the parties on a certification while keeping its original date, so a row names the present and dates the past. Every page here is written to that rule.",
+     "as_of": "2021-06-08",
+     "sources": [
+      "s0",
+      "s1"
+     ]
+    },
+    {
+     "text": "A second Helios certification exists under a later date and names the same occupant. The state spells the first one with a letter where the second uses a digit.",
+     "sources": [
+      "s0"
+     ]
+    }
+   ],
+   "gaps": [
+    "Square footage and acreage are not public",
+    "Cooling design is not public",
+    "The split between retrofit and new build is not public",
+    "Which physical buildings each of the two certifications covers is not stated"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
+     "title": "Data Center Lists",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://cryptobriefing.com/galaxy-digital-coreweave-200mw-helios-lease/",
+     "title": "Galaxy Digital delivers first phase to CoreWeave under a fifteen year lease",
+     "publisher": "Crypto Briefing",
+     "rung": 6,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s2",
+     "url": "https://www.prnewswire.com/news-releases/galaxy-completes-phase-i-of-its-helios-data-center-campus-delivering-133-megawatts-of-critical-it-load-to-coreweave-302818664.html",
+     "title": "Galaxy Completes Phase I of Its Helios Data Center Campus, Delivering 133 Megawatts of Critical IT Load to CoreWeave",
+     "publisher": "Galaxy via PR Newswire",
+     "rung": 2,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s3",
+     "url": "https://www.datacenterdynamics.com/en/news/galaxy-digital-closes-14bn-debt-facility-for-helios-data-center-campus-in-texas/",
+     "title": "Galaxy Digital closes debt facility for Helios data center campus in Texas",
+     "publisher": "Data Center Dynamics",
+     "rung": 6,
      "retrieved": "2026-08-21"
     }
    ]

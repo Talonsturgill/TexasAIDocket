@@ -67,6 +67,8 @@ import docket_calendar as dcal                                     # noqa: E402
 import theme                                                       # noqa: E402
 import facility_dossier
 import entities
+import registry_changes
+import registry_graph
 
 LEDGER = REPO_ROOT / "ledger" / "docket.json"
 
@@ -5303,6 +5305,27 @@ def company_page(item: dict, data: dict, dossiers: dict, is_group: bool, today: 
         revised=False, extra_css="facility.css")
 
 
+
+def _registry_field(data: dict) -> str:
+    """The network, drawn from the same resolution the lists below are built from."""
+    g = registry_graph.build(data["entities"])
+    if not g["nodes"]:
+        return ""
+    n0 = entities.n0
+    return (
+        f'<div class="gwrap">'
+        f'<div class="gfield" id="gfield">{registry_graph.svg(g)}</div>'
+        f'<p class="gkey"><span>Each point is a company on more than one facility.</span>'
+        f'<span><b>Size</b> how many it appears on</span>'
+        f'<span><b>Line</b> a facility two of them share</span>'
+        f'<span><b>Thickness</b> how many they share</span></p>'
+        f'<p class="ghint">Hover a point to light its neighborhood. Drag one to pull the web. '
+        f'Every point is a link to that company, and the same information is listed below.</p>'
+        f'<script type="application/json" id="gdata">{registry_graph.payload(g)}</script>'
+        f'<script>{registry_graph.SCRIPT}</script>'
+        f'</div>')
+
+
 def companies_index(data: dict, today: str) -> str:
     """The registry read down its columns instead of across its rows."""
     ents, groups = entities.published(data)
@@ -5325,7 +5348,8 @@ def companies_index(data: dict, today: str) -> str:
         f'<strong class="num">{n0(sum(1 for x in data["entities"] if x["reach"] > 1))}</strong> '
         f'companies appear on more than one, and the largest relationships in Texas are only '
         f'visible reading down a column.</p>'
-        f'<h2>Filed under more than one spelling</h2>'
+        + _registry_field(data)
+        + f'<h2>Filed under more than one spelling</h2>'
         f'<p>Punctuation and capitalisation alone split '
         f'<strong class="num">{n0(len(split))}</strong> companies into separate rows. Counting '
         f'the strings rather than the companies reports the largest occupant in the state as two '
@@ -5351,6 +5375,67 @@ def companies_index(data: dict, today: str) -> str:
              "the state filed them under, with every facility and role.",
         body=body, depth=1, active=None, today=today,
         canonical=f"{SITE_URL}/company/", revised=False, extra_css="facility.css")
+
+
+
+def registry_changes_page(data: dict, today: str) -> str:
+    """What the state has quietly changed since anyone started looking."""
+    n0 = entities.n0
+    hist = list(reversed(data["history"]))
+    blocks = []
+    for h in hist:
+        parts = []
+        if h["added"]:
+            parts.append(f'<h3>Added <strong class="num">{n0(len(h["added"]))}</strong></h3>'
+                         f'<ul class="rcl" data-prose="data">'
+                         + "".join(f"<li><cite>{e(x)}</cite></li>" for x in h["added"]) + "</ul>")
+        if h["removed"]:
+            parts.append(f'<h3>Removed <strong class="num">{n0(len(h["removed"]))}</strong></h3>'
+                         f'<ul class="rcl" data-prose="data">'
+                         + "".join(f"<li><cite>{e(x)}</cite></li>" for x in h["removed"]) + "</ul>")
+        if h["substantive"]:
+            rows = ""
+            for c in h["substantive"]:
+                moved = "".join(
+                    f'<div class="rcf"><span class="rcfl">{e(f["label"])}</span>'
+                    f'<span class="rcwas"><span class="rcw">was</span>'
+                    f'<cite>{e(f["was"]) or "not stated"}</cite></span>'
+                    f'<span class="rcnow"><span class="rcw">now</span>'
+                    f'<cite>{e(f["now"]) or "not stated"}</cite></span>'
+                    f'</div>'
+                    for f in registry_changes.fields(c))
+                rows += f'<li><cite>{e(c["name"])}</cite>{moved}</li>'
+            parts.append(f'<h3>Rewritten in place '
+                         f'<strong class="num">{n0(len(h["substantive"]))}</strong></h3>'
+                         f'<ul class="rcl" data-prose="data">{rows}</ul>')
+        if not parts:
+            parts.append('<p class="qnote">Nothing moved.</p>')
+        blocks.append(f'<section class="rcday"><h2>'
+                      f'<time datetime="{e(h["to"])}">{e(h["to"])}</time></h2>'
+                      + "".join(parts) + "</section>")
+
+    body = (
+        f'<article class="prose regchanges">'
+        f'<p class="crumb"><a href="../grid/">The Grid Watch</a> '
+        f'<span aria-hidden="true">/</span> What the registry changed.</p>'
+        f'<h1>What the registry changed</h1>'
+        f'<p>The certified list is not append only. Rows are added, and existing rows are '
+        f'rewritten while keeping their original effective date. A row therefore names who holds '
+        f'an exemption now. It does not name who held it when the exemption was granted.</p>'
+        f'<p>This page compares every reading the collector has kept. It ignores a date that was '
+        f'only reformatted, because burying an owner swap under punctuation noise is how a watch '
+        f'stops being read.</p>'
+        f'<p class="qnote">The record begins with the first reading on '
+        f'<time datetime="{e(data["first"] or "")}">{e(data["first"] or "")}</time> and covers '
+        f'<strong class="num">{n0(data["readings"])}</strong> readings. Nothing before that can '
+        f'be reported, and the list was not necessarily stable before anyone was looking.</p>'
+        + "".join(blocks) + "</article>")
+    return page(
+        title=f"What the registry changed · {SITE_NAME}",
+        desc="The Texas certified data center list is edited in place. Every change between "
+             "readings, with the rows that were rewritten.",
+        body=body, depth=1, active=None, today=today,
+        canonical=f"{SITE_URL}/registry-changes/", revised=False, extra_css="facility.css")
 
 
 def build(out: Path, today: str) -> dict:
@@ -5593,6 +5678,18 @@ def build(out: Path, today: str) -> dict:
     _dmap = {x["name"]: x for x in (_doss.get("dossiers") or [])}
     _enums = entities.authorised(_ent)
     w("company/index.html", companies_index(_ent, today), _enums)
+
+    # WHAT THE STATE QUIETLY CHANGED. A pure function of the raw snapshots the collector keeps.
+    _rc = registry_changes.load()
+    if _rc["readings"] >= 2:
+        _rcnums = {entities.n0(_rc["readings"])}
+        for _h in _rc["history"]:
+            _rcnums |= {entities.n0(len(_h[k])) for k in ("added", "removed", "substantive")}
+            _rcnums |= {_h["from"], _h["to"]}
+        for _f in _ent["facilities"]:
+            if _f.get("effective"):
+                _rcnums.add(str(_f["effective"]))
+        w("registry-changes/index.html", registry_changes_page(_rc, today), _rcnums)
     _elist, _glist = entities.published(_ent)
     for _x in _elist:
         w(f"company/{_x['slug']}/index.html",

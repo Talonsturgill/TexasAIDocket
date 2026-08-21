@@ -393,7 +393,132 @@ def facility_css() -> str:
   display:inline-block; min-width:2.4em; }
 .companyindex h2 { margin-top:2.2rem; }
 
+/* ============================================================ THE REGISTRY AS A NETWORK
+   THE ONE SURFACE ON THIS SITE THAT DRAMATISES, on the owner's explicit call (2026-08-21).
+   Section 9 of the doctrine says the design never dramatises, and everywhere else it does not.
+   This field is the exception and it is written down as one rather than left as drift.
+
+   What is NOT relaxed: red stays reserved, so nothing here is flag red. Contrast is still
+   gated, so every word on the panel is a text token on a real ground rather than a glow.
+   The drawing is still deterministic, so the bytes on disk do not move. */
+.gwrap { margin:1.6rem 0 2.2rem; }
+.gfield { position:relative; background:
+    radial-gradient(120% 90% at 50% 0%, #12102a 0%, var(--night) 62%, #05040b 100%);
+  border:var(--hair) solid var(--rule); border-radius:.5rem; overflow:hidden;
+  touch-action:pan-y; }
+.gsvg { display:block; width:100%; height:auto; }
+.gfield.live .gsvg { cursor:crosshair; }
+.gfield.dragging .gsvg { cursor:grabbing; }
+
+/* The instrument under the drawing. A fine rule at fifty units reads as a survey sheet rather
+   than as decoration, which is the register the rest of the site is in. */
+.ggrid { stroke:#251F45; stroke-width:.5; opacity:.55; }
+/* The sheet slides a little against the drawing, which is what makes the field read as
+   depth rather than as a flat panel. It never moves far enough to be read as data. */
+.ggrids { transition:transform .35s cubic-bezier(.2,.7,.3,1); }
+.gneat { fill:none; stroke:#3B3468; stroke-width:1; opacity:.75; }
+/* Depth, so the field has a middle and an edge instead of being a flat panel. */
+.gvs0 { stop-color:#000; stop-opacity:0; }
+.gvs1 { stop-color:#000; stop-opacity:.55; }
+
+/* THE LIGHT UNDER THE POINTER. It is the one thing on this site that follows a cursor, and it
+   is here because a network is read by tracing it, so lighting where the eye already is helps
+   the reading rather than dressing it. Off the field until a pointer arrives. */
+.gcursorlight { opacity:0; transition:opacity .5s ease; pointer-events:none; }
+.gfield.near .gcursorlight { opacity:1; }
+.gcs0 { stop-color:var(--sig-link); stop-opacity:.26; }
+.gcs1 { stop-color:var(--sig-link); stop-opacity:.08; }
+.gcs2 { stop-color:var(--sig-link); stop-opacity:0; }
+.gvignette { pointer-events:none; }
+
+/* Filaments. Weight carries how many facilities two companies share. The group wears the
+   glow filter, so the bloom costs one composite rather than a second set of lines. */
+.gedge { stroke:var(--sig-link); stroke-width:var(--w,1); opacity:var(--o,.3);
+  stroke-linecap:round; transition:opacity .18s ease, stroke .18s ease; }
+.gfield.lit .gedge.off { opacity:.04; }
+.gedge.on { stroke:var(--gold); opacity:1; }
+
+.gdot { fill:var(--limestone); transition:fill .18s ease;
+  filter:drop-shadow(0 0 4px rgba(127,178,217,.55)); }
+.ghalo { fill:var(--sig-link); opacity:.11; transition:opacity .2s ease, fill .2s ease; }
+/* A ring rather than a bigger disc: two soft discs overlapping read as fog, two rings read as
+   two objects, and forty companies on one field need to stay countable. */
+.gring { fill:none; stroke:var(--sig-link); stroke-width:1; opacity:.3;
+  transition:opacity .2s ease, stroke .2s ease; }
+.ghit { fill:transparent; }
+.gnode { cursor:pointer; }
+.gnode:hover .ghalo, .gnode:focus .ghalo { opacity:.4; fill:var(--gold); }
+.gnode:hover .gring, .gnode:focus .gring { opacity:.9; stroke:var(--gold); }
+.gnode:hover .gdot, .gnode:focus .gdot { fill:var(--gold);
+  filter:drop-shadow(0 0 9px rgba(224,149,106,.9)); }
+.gfield.lit .gnode.off .ghalo { opacity:.03; }
+.gfield.lit .gnode.off .gring { opacity:.06; }
+.gfield.lit .gnode.off .gdot { fill:var(--sig-shut); filter:none; }
+.gnode.on .ghalo { opacity:.32; fill:var(--gold); }
+.gnode.on .gring { opacity:.75; stroke:var(--gold); }
+.gnode:focus { outline:none; }
+.gnode:focus-visible .gdot { stroke:var(--caliche); stroke-width:2; }
+
+/* Labels. The busiest handful stand quietly at all times, because a field of unlabelled dots
+   says nothing until it is interrogated. The rest arrive when they are pointed at. */
+.glabel { font-family:var(--mono); font-size:13px; fill:var(--caliche);
+  opacity:0; pointer-events:none; transition:opacity .16s ease; paint-order:stroke;
+  stroke:var(--night); stroke-width:3.5px; stroke-linejoin:round; }
+.gnamed .glabel { opacity:.62; }
+.gnode:hover .glabel, .gnode:focus .glabel, .gnode.on .glabel { opacity:1; }
+.gfield.lit .gnode.off .glabel { opacity:0; }
+
+.gkey { display:flex; flex-wrap:wrap; gap:.4rem 1.4rem; margin:.7rem 0 0;
+  font-family:var(--mono); font-size:var(--s-2); color:var(--ink-mute);
+  letter-spacing:.05em; }
+.gkey b { color:var(--caliche); font-weight:400; }
+.ghint { font-family:var(--mono); font-size:var(--s-2); color:var(--ink-mute);
+  margin:.5rem 0 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .gedge, .gdot, .ghalo, .gring, .glabel, .gcursorlight { transition:none; }
+  .gcursorlight { display:none; }
+}
+@media (max-width:34rem) { .glabel { font-size:17px; } .ggrid { opacity:.3; }
+  .gnamed .glabel { opacity:0; } }
+
+/* WHAT THE REGISTRY CHANGED. A before and an after on the same row, so the two lines sit
+   directly above one another and the eye can diff them without moving sideways. */
+.rcday { margin:2rem 0 0; padding-top:1rem; border-top:var(--hair) solid var(--rule); }
+.rcday h2 { font-family:var(--mono); font-size:var(--s0); color:var(--accent); margin:0 0 .8rem; }
+.rcday h3 { font-family:var(--mono); font-size:var(--s-2); letter-spacing:.1em;
+  text-transform:uppercase; color:var(--ink-mute); margin:1.2rem 0 .5rem; font-weight:600; }
+.rcl { list-style:none; margin:0; padding:0; }
+.rcl li { padding:.45rem 0; border-top:var(--hair) solid var(--rule); }
+/* ONE CHANGED COLUMN PER LINE, NAMED. The first version printed the whole row twice and left a
+   reader to diff two long strings by eye, which is the job this page exists to have done for
+   them. The old value sits above the new one so the eye compares down a column rather than
+   across a line, and the arrow is the label rather than a glyph in the copy. */
+.rcf { display:grid; grid-template-columns:9.5rem 2.6rem 1fr; gap:.1rem .9rem;
+  align-items:baseline; margin-top:.5rem; }
+.rcfl { font-family:var(--mono); font-size:var(--s-2); letter-spacing:.09em;
+  text-transform:uppercase; color:var(--ink-mute); grid-row:span 2; }
+/* The two states are WORDS and never a glyph.
+   This first shipped as an arrow and rendered as a box with "92" after it. The cause was not the
+   font, which carries U+2192 perfectly well. It was that the stylesheet is BUILT FROM A PYTHON
+   STRING, and `content:"\2192"` inside one is not a CSS escape, it is Python's OCTAL escape: the
+   parser takes `\21`, which is chr(17), and leaves `92` as text. Two escape languages, one
+   literal, and nothing in between checking that what came out the far end is what was meant.
+   `tests/glyphs.mjs` now refuses a control character in published copy, which is what that was.
+   A word needs no escape in either language. */
+.rcw { font-family:var(--mono); font-size:var(--s-2); letter-spacing:.06em;
+  text-transform:uppercase; }
+.rcwas .rcw { color:var(--ink-mute); }
+.rcnow .rcw { color:var(--accent); }
+.rcwas, .rcnow { font-family:var(--mono); font-size:var(--s-2); line-height:1.5;
+  overflow-wrap:anywhere; display:contents; }
+.rcwas cite { grid-column:3; color:var(--ink-mute); font-style:normal; }
+.rcnow cite { grid-column:3; color:var(--ink-bright); font-style:normal; }
+
 @media (max-width:34rem) {
+  .rcf { grid-template-columns:2.6rem 1fr; gap:.05rem .7rem; }
+  .rcfl { grid-row:auto; grid-column:span 2; }
+  .rcwas cite, .rcnow cite { grid-column:2; }
   .drow { grid-template-columns:1fr; gap:.15rem; }
   .dossbody { padding:1.3rem 1rem 1.2rem; }
   .dossdlg { width:100vw; max-width:100vw; max-height:100vh;
@@ -1641,7 +1766,7 @@ main > section > h2::after {{ content:""; position:absolute;
    the weight and the description follows in body type. */
 .filelist {{ list-style:none; padding:0; margin:1.4rem 0 0; display:grid; gap:.75rem; }}
 .filelist li {{ display:flex; flex-wrap:wrap; gap:.2rem .8rem; align-items:baseline;
-  padding-bottom:.75rem; border-bottom:var(--hair) solid var(--rule); color:var(--ink-dim); }}
+  padding-bottom:.75rem; border-bottom:var(--hair) solid var(--rule); color:var(--ink-mute); }}
 .filelist li:last-child {{ border-bottom:0; padding-bottom:0; }}
 .filelist a {{ font-family:var(--mono); font-size:var(--s-1); letter-spacing:.02em;
   color:var(--accent); text-decoration:none;
@@ -1764,17 +1889,17 @@ main > section > h2::after {{ content:""; position:absolute;
   .covers .cv-card a:hover h2, .covers .cv-card a:hover h3 {{ color:var(--ink-bright); }}
 }}
 .covers .cv-blurb {{ margin:.3rem 0 .45rem; font-size:var(--s-1); line-height:1.45;
-  color:var(--ink-quiet); }}
+  color:var(--ink-mute); }}
 /* The count and the open flag on one baseline, in mono, because every other figure on this
    site is set in mono and a count that changes typeface between surfaces reads as a different
    kind of number. */
 .covers .cv-foot {{ margin:0; font-family:var(--mono); font-size:var(--s-2);
-  letter-spacing:.04em; color:var(--ink-quiet); display:flex; flex-wrap:wrap; gap:.55rem; }}
+  letter-spacing:.04em; color:var(--ink-mute); display:flex; flex-wrap:wrap; gap:.55rem; }}
 /* OPEN IS THE ONE THING ON THIS CARD A READER CAN ACT ON, so it is the one thing that carries
    the accent. It is absent rather than zero when nothing is open, because "0 open" is a true
    sentence that reads as a dead beat. */
 .covers .cv-open {{ color:var(--accent); }}
-.covers .cv-open::before {{ content:"·"; margin-right:.55rem; color:var(--ink-quiet); }}
+.covers .cv-open::before {{ content:"·"; margin-right:.55rem; color:var(--ink-mute); }}
 /* On the front page the grid sits among full width sections, so it gets a little more air
    above it and a smaller floor, which lets it run four across on a wide screen. */
 .covers.front {{ grid-template-columns:repeat(auto-fit,minmax(15rem,1fr)); }}

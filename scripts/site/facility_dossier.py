@@ -52,6 +52,23 @@ DIGIT = re.compile(r"\d")
 SLUG_OK = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 PROSE_FIELDS = ("summary",)
 
+# A NAME THE STATE SPELLS, DECLARED FACT BY FACT.
+#
+# The registry names an owner "Galaxy Helios I" and a facility "Riot Corsicana Data Center I".
+# That trailing roman numeral is a first person pronoun to `house_style_check`, which was right
+# on the letter and wrong on the page: renaming either to satisfy a lint would publish a name no
+# filing uses, and on the Helios row the letter is the whole point, because a second Helios
+# certification spells the same occupant with a digit.
+#
+# So a fact DECLARES `proper_name` and `panel()` marks that exact string in the markup, which is
+# the mechanism the house checker already uses for a page title. It is bounded here rather than
+# there, because this is the module that owns the data: a declared name must be TEXT, never a
+# computed value, and it must be NAME SHAPED. A text fact is allowed to be a sentence, and
+# several are, so without that bound the flag would be a way to lift a whole sentence out of the
+# house rules.
+NAME_MAX_WORDS = 8
+NAME_BANNED = ":;"
+
 
 # ---------------------------------------------------------------- formatting
 def commas(n) -> str:
@@ -123,6 +140,29 @@ def by_name(doc: dict) -> dict[str, dict]:
 
 
 # ---------------------------------------------------------------- the gate
+def name_problems(fct: dict) -> list[str]:
+    """What disqualifies a fact from declaring its value a proper name.
+
+    The flag buys one thing, an exemption from the sentence rules, so it has to be impossible to
+    point at a sentence. A name is text, it is short, it does not end a thought and it carries no
+    clause punctuation."""
+    if "value" in fct:
+        return ["declares proper_name on a computed value, where the formatter owns the string"]
+    text = str(fct.get("text", "")).strip()
+    out = []
+    if not text:
+        out.append("declares proper_name with no text")
+        return out
+    if text.endswith((".", "?", "!")):
+        out.append("declares proper_name on a sentence, which ends in terminal punctuation")
+    if any(c in text for c in NAME_BANNED):
+        out.append("declares proper_name on text carrying clause punctuation")
+    if len(text.split()) > NAME_MAX_WORDS:
+        out.append(f"declares proper_name on {len(text.split())} words, "
+                   f"and a name runs to {NAME_MAX_WORDS}")
+    return out
+
+
 def problems(doc: dict, names: set[str]) -> list[str]:
     out: list[str] = []
     seen_slugs: dict[str, str] = {}
@@ -166,6 +206,9 @@ def problems(doc: dict, names: set[str]) -> list[str]:
                     out.append(f"{where} fact {fct.get('label')!r} has a non numeric value")
             elif not fct.get("text"):
                 out.append(f"{where} fact {fct.get('label')!r} has neither a value nor text")
+            if fct.get("proper_name"):
+                out.extend(f"{where} fact {fct.get('label')!r} {why}"
+                           for why in name_problems(fct))
 
         # THE LAW. A digit in a sentence is a number a model typed, and nothing downstream
         # would catch it. Numbers live in facts, where the formatter owns them.
@@ -282,8 +325,11 @@ def panel(d: dict, *, heading: int = 3) -> str:
     for f in d.get("facts") or []:
         when = (f'<span class="dwhen">as of {e(ordinal(f["as_of"]))}</span>'
                 if f.get("as_of") else "")
+        # The declaration travels with the value, so the exemption is visible in the markup at
+        # the point of use rather than asserted somewhere a reader of the page would not find it.
+        mark = f' data-proper-name="{e(show(f))}"' if f.get("proper_name") else ""
         rows.append(f'<div class="drow"><dt>{e(f.get("label", ""))}</dt>'
-                    f'<dd><span class="dval">{e(show(f))}</span>{cite(f.get("source"))}'
+                    f'<dd><span class="dval"{mark}>{e(show(f))}</span>{cite(f.get("source"))}'
                     f'{when}</dd></div>')
 
     notes = "".join(
@@ -397,6 +443,30 @@ def self_test() -> int:
     # The authorisation path is the display path.
     a = authorised({"dossiers": [good]})
     check("the authorised set carries the rendered figure", "168 MW" in a, sorted(a))
+
+    # A DECLARED PROPER NAME, and the four ways it is not one. The flag buys an exemption from
+    # the house sentence rules, so every one of these has to stay shut.
+    def named(**kw):
+        f = {"label": "Owner of record", "text": "Galaxy Helios I",
+             "source": "s1", "proper_name": True}
+        f.update(kw)
+        return one(lambda d: d.update(facts=[f]))
+
+    check("a name declares cleanly", named() == [], named())
+    check("a declared name that ends a sentence fails",
+          named(text="The name gives away nothing about where it stands.") != [])
+    check("a declared name carrying a colon fails", named(text="Owner: Galaxy") != [])
+    check("a declared name carrying a semicolon fails", named(text="Galaxy; Helios") != [])
+    check("a declared name longer than a name fails",
+          named(text="A lease with the Texas Tech University System and its regents") != [])
+    check("a declared name on a computed value fails",
+          named(text=None, value=168, unit="MW") != [])
+    check("the declaration reaches the markup",
+          'data-proper-name="Galaxy Helios I"' in panel(
+              {**good, "facts": [{"label": "Owner of record", "text": "Galaxy Helios I",
+                                  "source": "s1", "proper_name": True}]}))
+    check("an undeclared value carries no marker",
+          "data-proper-name" not in panel(good))
 
     passed = sum(checks)
     print(f"\nfacility_dossier self-test: {passed}/{len(checks)} passed")

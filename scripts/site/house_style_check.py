@@ -195,7 +195,7 @@ def time_chip_problems(page_html: str) -> list:
 
 def our_prose(page_html: str) -> str:
     """What this project wrote, with everything it merely reproduced taken out."""
-    return _html.unescape(TAG.sub(" ", _stripped(page_html)))
+    return _less_names(_html.unescape(TAG.sub(" ", _stripped(page_html))), page_html)
 
 
 def our_sentences(page_html: str) -> str:
@@ -216,7 +216,7 @@ def our_sentences(page_html: str) -> str:
     """
     body = DATA_REGION.sub(" ", _stripped(page_html))
     runs = [inner for _tag, inner in PARAGRAPH.findall(body)]
-    return _html.unescape(TAG.sub(" ", " ".join(runs)))
+    return _less_names(_html.unescape(TAG.sub(" ", " ".join(runs))), page_html)
 
 
 #
@@ -248,7 +248,30 @@ HEAD_TEXT = re.compile(
 # source in the same spirit as the reader-voice and house-voice exemptions above. It cannot
 # widen by accident: only the exact declared string is removed, never a pattern, and a page
 # that declares nothing is checked exactly as before.
+#
+# IT APPLIES TO THE BODY TOO, and for one run it did not. The head was where the problem was
+# first found, so the strip went in beside the metadata reader and nowhere else. A facility
+# dossier then printed "Galaxy Helios I" as the owner of record, in the body, and the same
+# roman numeral was reported again in the same words. The registry spells that row with a
+# letter where it spells the next one with a digit, which is the fact the page exists to show,
+# so the name was never the thing to change.
+#
+# The declaration is an ATTRIBUTE, so it has to be read off the markup before the tags come
+# out. Both callers do that and then subtract the declared strings from the text.
 PROPER_NAME = re.compile(r'\bdata-proper-name="(?P<name>[^"]*)"', re.IGNORECASE)
+
+
+def _declared(page_html: str) -> list[str]:
+    """The proper names this page declares, longest first so a name is never half removed by a
+    shorter one that happens to be its prefix."""
+    found = {_html.unescape(g.group("name")).strip() for g in PROPER_NAME.finditer(page_html)}
+    return sorted((n for n in found if n), key=len, reverse=True)
+
+
+def _less_names(text: str, page_html: str) -> str:
+    for name in _declared(page_html):
+        text = text.replace(name, " ")
+    return text
 
 
 def page_metadata(page_html: str) -> str:
@@ -257,12 +280,7 @@ def page_metadata(page_html: str) -> str:
     if not m:
         return ""
     found = [(g.group("title") or g.group("content") or "") for g in HEAD_TEXT.finditer(m.group(1))]
-    text = _html.unescape(TAG.sub(" ", " ".join(found)))
-    for g in PROPER_NAME.finditer(page_html):
-        declared = _html.unescape(g.group("name")).strip()
-        if declared:
-            text = text.replace(declared, " ")
-    return text
+    return _less_names(_html.unescape(TAG.sub(" ", " ".join(found))), page_html)
 
 
 def check_site(docs: Path) -> dict[str, list[str]]:
@@ -437,6 +455,24 @@ def self_test() -> int:
     ok("a run of chips with no full stop is not read as one long sentence",
        not caption_check.long_sentences(our_sentences(cards)),
        str(caption_check.long_sentences(our_sentences(cards)))[:90])
+
+    # A DECLARED PROPER NAME, IN THE BODY. The head was covered from the day the mechanism went
+    # in and the body was not, so the same roman numeral was reported twice in two places.
+    named = ('<html><head><title>Galaxy Helios I</title></head><main>'
+             '<article data-proper-name="Galaxy Helios I">'
+             '<p>The owner of record is Galaxy Helios I on that row.</p>'
+             '</article></main></html>')
+    ok("a declared name in the body is not read as first person",
+       not any("first person" in p for p in caption_check.check(our_prose(named))),
+       str(caption_check.check(our_prose(named)))[:120])
+    ok("...and the same name undeclared still fails",
+       any("first person" in p for p in
+           caption_check.check(our_prose(named.replace(' data-proper-name="Galaxy Helios I"', "")))))
+    ok("a declaration removes only the string it declares",
+       "on that row" in our_prose(named))
+    ok("a declaration on one page does not travel to another",
+       any("first person" in p for p in caption_check.check(our_prose(
+           '<html><main><p>The owner of record is Galaxy Helios I on that row.</p></main></html>'))))
 
     if failures:
         print(f"\nhouse_style_check self-test: {failures} FAILED", file=sys.stderr)

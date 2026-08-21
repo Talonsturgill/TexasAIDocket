@@ -1,0 +1,648 @@
+"""registry_graph.py — the registry as a network, laid out deterministically.
+
+WHY A NETWORK AND NOT A CHART
+
+The job of this data is IDENTITY AND RELATIONSHIP, not magnitude. Forty companies appear on more
+than one facility and forty four pairs of them share at least one. Which companies cluster, and
+around what, is the question, and no bar chart answers it.
+
+WHY THE LAYOUT IS COMPUTED HERE AND NOT IN THE BROWSER
+
+`site_fresh_check` proves `docs/` is a pure function of the ledgers by rebuilding and comparing
+byte for byte. A layout seeded with a random number would produce a different page every build
+and take that proof away. So the positions are relaxed here with a FIXED start, FIXED constants
+and a FIXED iteration count, and the same registry always draws the same picture.
+
+The browser then animates FROM those positions. Motion is a read time behaviour and never
+touches the bytes on disk, so the page stays deterministic and still moves under a cursor.
+
+WHAT IT LOOKS LIKE, AND THE DOCTRINE THAT DECIDES
+
+`TEXAS_DESIGN_DOCTRINE` section 9 is explicit that the design never dramatises, and that a
+sceptical reader trusts an instrument before an argument. So this is drawn as a SURVEY of the
+graph rather than a glowing brain:
+
+    ONE HUE. Node area carries reach and edge width carries shared facilities. There is no
+    categorical palette here to get wrong, and no status colour is borrowed for decoration.
+    A single accent marks the neighborhood under the cursor and nothing else.
+
+    A NEATLINE, like the county map. The field is bounded and the drawing sits inside it.
+
+    THE LIST BELOW IS THE TABLE VIEW. Every node is a row down the page with its counts, so
+    nothing here is reachable only by pointing at a picture.
+"""
+from __future__ import annotations
+
+import json
+import math
+import pathlib
+import sys
+from collections import defaultdict
+from itertools import combinations
+
+W, H = 1000.0, 620.0          # the field, in user units. The svg scales to its container.
+PAD = 26.0
+ITERS = 260                   # fixed. more is not better once it settles, and it must be fixed.
+MIN_R, MAX_R = 4.0, 19.0
+# The clear space every dot keeps. It is what turns a cluster from a ball into a web: relaxed
+# space is scaled to fit the field, so two nodes comfortably apart in the sim can end up
+# touching, and an edge shorter than the two dots it joins is an edge nobody can see.
+GAP = 17.0
+
+
+def graph(entities: list[dict], min_reach: int = 2) -> dict:
+    """Nodes are companies. An edge is a facility two of them both appear on."""
+    nodes = [e for e in entities if e["reach"] >= min_reach]
+    by_fac = defaultdict(set)
+    for e in nodes:
+        for f in e["facilities"]:
+            by_fac[f].add(e["key"])
+    weight: dict[tuple[str, str], int] = defaultdict(int)
+    for ks in by_fac.values():
+        for a, b in combinations(sorted(ks), 2):
+            weight[(a, b)] += 1
+    return {
+        "nodes": [{"key": n["key"], "name": n["name"], "slug": n["slug"],
+                   "reach": n["reach"],
+                   "roles": {r: len(v) for r, v in sorted(n["roles"].items())}}
+                  for n in sorted(nodes, key=lambda x: (-x["reach"], x["name"].lower()))],
+        "edges": [{"a": a, "b": b, "w": w} for (a, b), w in
+                  sorted(weight.items(), key=lambda kv: (-kv[1], kv[0]))],
+    }
+
+
+def _relax(nodes, edges, idx):
+    """Force relaxation with no wall and no randomness, and the three forces that need to be
+    there. It is unbounded on purpose: a layout that clamps to the frame while it settles does
+    not settle, it stacks against the edge, and the first version of this put thirty five of
+    forty nodes on the boundary and drew a rectangle of dots. The drawing is FITTED to the
+    frame afterwards instead, by a uniform scale, which cannot distort what the forces found."""
+    n = len(nodes)
+    cx, cy = W / 2.0, H / 2.0
+    # A deterministic start on a golden angle spiral, ordered by reach. Every quantity here
+    # comes out of the data or out of this file, so two builds begin identically.
+    pos = []
+    for i in range(n):
+        a = i * 2.39996322972865332
+        r = 30.0 + 26.0 * math.sqrt(i + 1)
+        pos.append([cx + r * math.cos(a), cy + r * math.sin(a)])
+
+    k = math.sqrt((W - 2 * PAD) * (H - 2 * PAD) / n) * 0.72
+    cut = k * 4.2                    # beyond this, two nodes are not each other's problem
+    temp = k * 0.9
+
+    for it in range(ITERS):
+        # A cooling curve rather than a straight line, so the shape is found early and the
+        # last third is settling rather than reshuffling.
+        t = temp * (1.0 - it / ITERS) ** 1.6
+        disp = [[0.0, 0.0] for _ in range(n)]
+        for i in range(n):
+            for j in range(i + 1, n):
+                dx = pos[i][0] - pos[j][0]
+                dy = pos[i][1] - pos[j][1]
+                d2 = dx * dx + dy * dy
+                if d2 < 1e-6:
+                    dx, dy, d2 = 0.01 * (i + 1), 0.01 * (j + 1), 1e-4
+                d = math.sqrt(d2)
+                if d > cut:
+                    continue
+                f = (k * k) / d
+                ux, uy = dx / d, dy / d
+                disp[i][0] += ux * f; disp[i][1] += uy * f
+                disp[j][0] -= ux * f; disp[j][1] -= uy * f
+        for ed in edges:
+            i, j = idx[ed["a"]], idx[ed["b"]]
+            dx = pos[i][0] - pos[j][0]
+            dy = pos[i][1] - pos[j][1]
+            d = math.sqrt(dx * dx + dy * dy) or 1e-4
+            # A heavier link pulls harder, so companies sharing a campus sit together.
+            f = (d * d) / k * (1.0 + math.log(1.0 + ed["w"]) * 0.55)
+            ux, uy = dx / d, dy / d
+            disp[i][0] -= ux * f; disp[i][1] -= uy * f
+            disp[j][0] += ux * f; disp[j][1] += uy * f
+        # GRAVITY, the force whose absence broke the first version. Repulsion is the only thing
+        # acting on a component nothing links to, so without a pull toward the middle every
+        # island accelerates away until a clamp catches it at the wall.
+        #
+        # It pulls HARDER VERTICALLY, in the SQUARE of the field's ratio. Relaxation with equal
+        # gravity settles into a round drawing, and a round drawing fitted into a landscape
+        # field is bound by its height and leaves a third of the width empty. Stretching the
+        # gravity instead of stretching the result keeps the fit uniform, so the shape the
+        # forces found is the shape on the page. The square rather than the ratio itself,
+        # because at the plain ratio the drawing still came out little more than half the width
+        # of the box it was fitted into.
+        #
+        # DERIVED AND NOT TUNED, deliberately. Relaxation is chaotic: this constant moved from
+        # 2.6 to 2.601 in a trial and the drawing's width moved by thirty units, because two
+        # clusters swapped which one sat above the other. Every layout of a given registry is
+        # identical, which is all `site_fresh_check` needs, but a constant hand fitted to a
+        # local best would sit on a cliff and the picture would reshuffle the day a facility is
+        # added. A ratio that comes out of the field's own shape does not have that problem.
+        gx = 0.075
+        gy = gx * (W / H) ** 2
+        for i in range(n):
+            disp[i][0] += (cx - pos[i][0]) * gx
+            disp[i][1] += (cy - pos[i][1]) * gy
+        for i in range(n):
+            dx, dy = disp[i]
+            d = math.sqrt(dx * dx + dy * dy) or 1e-9
+            step = min(d, t)
+            pos[i][0] += dx / d * step
+            pos[i][1] += dy / d * step
+    return pos
+
+
+def _fit(pos, rads, box):
+    """Scale and centre a relaxed drawing into a box, uniformly. Uniform is the whole point:
+    the forces found a shape and a non uniform fit would be a different shape."""
+    x0, y0, x1, y1 = box
+    lo_x = min(p[0] for p in pos); hi_x = max(p[0] for p in pos)
+    lo_y = min(p[1] for p in pos); hi_y = max(p[1] for p in pos)
+    w = max(hi_x - lo_x, 1e-6); h = max(hi_y - lo_y, 1e-6)
+    r = max(rads) if rads else 0.0
+    s = min((x1 - x0 - 2 * r) / w, (y1 - y0 - 2 * r) / h)
+    mx = (x0 + x1) / 2.0 - (lo_x + hi_x) / 2.0 * s
+    my = (y0 + y1) / 2.0 - (lo_y + hi_y) / 2.0 * s
+    return [[p[0] * s + mx, p[1] * s + my] for p in pos]
+
+
+def _uncrowd(pos, rads, rounds=90):
+    """Push apart anything overlapping, in FINAL coordinates. The fit is a scale, so two nodes
+    that were comfortably apart in relaxed space can touch after it, and a dot hidden under a
+    bigger dot is a company a reader cannot point at."""
+    n = len(pos)
+    for _ in range(rounds):
+        moved = 0.0
+        for i in range(n):
+            for j in range(i + 1, n):
+                dx = pos[j][0] - pos[i][0]
+                dy = pos[j][1] - pos[i][1]
+                d = math.sqrt(dx * dx + dy * dy)
+                want = rads[i] + rads[j] + GAP
+                if d >= want:
+                    continue
+                if d < 1e-6:
+                    dx, dy, d = 1.0, 0.35, 1.0616
+                push = (want - d) / 2.0
+                ux, uy = dx / d, dy / d
+                pos[i][0] -= ux * push; pos[i][1] -= uy * push
+                pos[j][0] += ux * push; pos[j][1] += uy * push
+                moved += push
+        if moved < 0.05:
+            break
+    for i in range(n):
+        pos[i][0] = min(W - PAD - rads[i], max(PAD + rads[i], pos[i][0]))
+        pos[i][1] = min(H - PAD - rads[i], max(PAD + rads[i], pos[i][1]))
+    return pos
+
+
+def layout(g: dict) -> dict:
+    """The field: a linked core, relaxed and fitted, inside a halo of what links to nothing.
+
+    THE HALO IS INFORMATION, NOT DECORATION. A company on several facilities that shares none
+    of them with another company is a real and different thing from one sitting in a cluster,
+    and mixing the two into one cloud hides it. Nine of the forty are in that position. They
+    ride an ellipse just inside the neatline, ordered by reach, so the reading is immediate:
+    everything on the ring stands alone.
+    """
+    nodes, edges = g["nodes"], g["edges"]
+    n = len(nodes)
+    if not n:
+        return g
+    idx = {x["key"]: i for i, x in enumerate(nodes)}
+
+    hi = max(x["reach"] for x in nodes)
+    lo = min(x["reach"] for x in nodes)
+    for node in nodes:
+        # Area carries reach, so the radius is a square root. A radius carrying it directly
+        # would overstate the biggest company by the square of its lead.
+        t = 0.0 if hi == lo else (node["reach"] - lo) / (hi - lo)
+        node["r"] = round(MIN_R + (MAX_R - MIN_R) * math.sqrt(t), 2)
+
+    linked = {e["a"] for e in edges} | {e["b"] for e in edges}
+    core = [x for x in nodes if x["key"] in linked]
+    loose = [x for x in nodes if x["key"] not in linked]
+
+    place: dict[str, list] = {}
+    if core:
+        ci = {x["key"]: i for i, x in enumerate(core)}
+        cp = _relax(core, edges, ci)
+        rads = [x["r"] for x in core]
+        # The core takes the middle of the field. The inset leaves the ring its lane, and
+        # collapses to the whole field when there is no ring to leave it for.
+        inset = 0.74 if loose else 0.98
+        bx = (W / 2.0) * (1.0 - inset) + PAD * inset
+        by = (H / 2.0) * (1.0 - inset) + PAD * inset
+        cp = _uncrowd(_fit(cp, rads, (bx, by, W - bx, H - by)), rads)
+        for i, x in enumerate(core):
+            place[x["key"]] = cp[i]
+
+    if loose:
+        rx = W / 2.0 - PAD - MAX_R
+        ry = H / 2.0 - PAD - MAX_R
+        for i, x in enumerate(loose):
+            # Ordered around the ring, and drawn a little inboard the busier it is, so the ring
+            # carries reach radially as well as in the size of the dot.
+            a = (i / len(loose)) * math.tau - math.pi / 2.0
+            t = 0.0 if hi == lo else (x["reach"] - lo) / (hi - lo)
+            pull = 1.0 - 0.085 * t
+            place[x["key"]] = [W / 2.0 + rx * pull * math.cos(a),
+                               H / 2.0 + ry * pull * math.sin(a)]
+
+    for node in nodes:
+        x, y = place[node["key"]]
+        node["x"] = round(min(W - PAD, max(PAD, x)), 2)
+        node["y"] = round(min(H - PAD, max(PAD, y)), 2)
+    return g
+
+
+def build(entities: list[dict]) -> dict:
+    return layout(graph(entities))
+
+
+def payload(g: dict) -> str:
+    """What the browser needs to animate, and nothing else."""
+    return json.dumps({
+        "w": W, "h": H,
+        "nodes": [{"k": n["key"], "n": n["name"], "s": n["slug"], "x": n["x"], "y": n["y"],
+                   "r": n["r"], "c": n["reach"]} for n in g["nodes"]],
+        "edges": [{"a": e["a"], "b": e["b"], "w": e["w"]} for e in g["edges"]],
+    }, separators=(",", ":"), sort_keys=True)
+
+
+# ---------------------------------------------------------------- rendering
+def e(t) -> str:
+    return (str(t).replace("&", "&amp;").replace("<", "&lt;")
+            .replace(">", "&gt;").replace('"', "&quot;"))
+
+
+# THE NAMES THAT STAND WITHOUT BEING ASKED FOR. Forty labels at once is a wall of type, and
+# none at all is a picture a reader has to interrogate before it says anything.
+#
+# The first version put every standing label at the same offset to the right of its dot, which
+# is fine until two busy companies sit near each other, and four of them did: "Lancium LLC" ran
+# straight through "Oracle America Cloud Services LLC" on the shipped page. So a label is placed
+# rather than offset. Each candidate side is tried in turn and the first one that clears every
+# label already placed, every dot, and the edge of the field wins. A name with nowhere to go
+# keeps its hover label and gives up its standing one, because a legible eight is worth more
+# than an unreadable twelve.
+LABELS = 12
+LFS = 13.0                 # the label's font size, matched to `.glabel` in the stylesheet
+LADV = 0.6                 # a monospaced advance, in ems. The face is JetBrains Mono.
+LSIDES = (("start", 1, 4), ("end", -1, 4), ("start", 1, -13), ("end", -1, -13),
+          ("start", 1, 20), ("end", -1, 20))
+
+
+def _boxes_hit(a, b) -> bool:
+    return not (a[2] <= b[0] or b[2] <= a[0] or a[3] <= b[1] or b[3] <= a[1])
+
+
+def standing(g: dict) -> dict:
+    """Which nodes wear their name with no pointer on them, and exactly where."""
+    ranked = sorted(g["nodes"], key=lambda n: (-n["reach"], n["name"].lower()))[:LABELS]
+    taken = [(n["x"] - n["r"] - 2, n["y"] - n["r"] - 2, n["x"] + n["r"] + 2, n["y"] + n["r"] + 2)
+             for n in g["nodes"]]
+    out = {}
+    for n in ranked:
+        w = len(n["name"]) * LFS * LADV
+        for anchor, side, dy in LSIDES:
+            off = (n["r"] + 7.0) * side
+            x0 = n["x"] + off - (w if side < 0 else 0.0)
+            box = (x0 - 2, n["y"] + dy - LFS, x0 + w + 2, n["y"] + dy + 4)
+            if box[0] < 2 or box[2] > W - 2 or box[1] < 2 or box[3] > H - 2:
+                continue
+            if any(_boxes_hit(box, t) for t in taken):
+                continue
+            taken.append(box)
+            out[n["key"]] = (round(off, 2), dy, anchor)
+            break
+    return out
+
+
+def svg(g: dict) -> str:
+    """The field, drawn server side so it exists with no script at all.
+
+    Every coordinate here is computed by `layout`. `numeral_lint` strips svg geometry for
+    exactly this reason: these are not figures a reader reads, they are the drawing itself.
+
+    THE GLOW IS A FILTER, NOT A SECOND SET OF ELEMENTS. A blurred copy of the filaments under
+    the crisp ones would double what the animation loop has to move on every frame. One
+    `feMerge` does it in the compositor instead, and the interactive layer stays forty links.
+    """
+    if not g["nodes"]:
+        return ""
+    at = {n["key"]: n for n in g["nodes"]}
+    hi = max(x["w"] for x in g["edges"]) if g["edges"] else 1
+
+    grid = "".join(
+        f'<line class="ggrid" x1="{x}" y1="0" x2="{x}" y2="{H}"/>'
+        for x in range(50, int(W), 50)) + "".join(
+        f'<line class="ggrid" x1="0" y1="{y}" x2="{W}" y2="{y}"/>'
+        for y in range(50, int(H), 50))
+
+    edges = "".join(
+        f'<line class="gedge" data-a="{e(x["a"])}" data-b="{e(x["b"])}" '
+        f'x1="{at[x["a"]]["x"]}" y1="{at[x["a"]]["y"]}" '
+        f'x2="{at[x["b"]]["x"]}" y2="{at[x["b"]]["y"]}" '
+        f'style="--w:{round(0.6 + 2.3 * (x["w"] / hi), 3)};'
+        f'--o:{round(0.3 + 0.55 * (x["w"] / hi), 3)}"/>'
+        for x in g["edges"])
+
+    stand = standing(g)
+
+    nodes = ""
+    for n in g["nodes"]:
+        roles = " ".join(f'{k} {v}' for k, v in n["roles"].items())
+        put = stand.get(n["key"])
+        lx, ly, anchor = put or (round(n["r"] + 7, 2), 4, "start")
+        nodes += (
+            f'<a class="gnode{" gnamed" if put else ""}" data-k="{e(n["key"])}" '
+            f'href="{e(n["slug"])}/" transform="translate({n["x"]},{n["y"]})" '
+            f'aria-label="{e(n["name"])}, on {n["reach"]} facilities">'
+            f'<circle class="ghalo" r="{round(n["r"] * 2.15, 2)}"/>'
+            f'<circle class="gring" r="{round(n["r"] + 3.2, 2)}"/>'
+            f'<circle class="gdot" r="{n["r"]}"/>'
+            f'<circle class="ghit" r="{max(16, n["r"] + 9)}"/>'
+            f'<text class="glabel" x="{lx}" y="{ly}" text-anchor="{anchor}">'
+            f'{e(n["name"])}</text>'
+            f'<title>{e(n["name"])}. {e(roles)}.</title></a>')
+
+    # The cursor light. It starts off the field, so the drawing on disk is the drawing with no
+    # pointer in it, and the script moves the gradient rather than adding anything.
+    defs = (
+        '<defs>'
+        '<filter id="gglow" x="-35%" y="-35%" width="170%" height="170%">'
+        '<feGaussianBlur stdDeviation="3.4" result="b"/>'
+        '<feMerge><feMergeNode in="b"/><feMergeNode in="b"/>'
+        '<feMergeNode in="SourceGraphic"/></feMerge></filter>'
+        '<radialGradient id="gcursor" gradientUnits="userSpaceOnUse" '
+        f'cx="{int(W / 2)}" cy="-{int(H)}" r="290">'
+        '<stop offset="0" class="gcs0"/><stop offset="0.55" class="gcs1"/>'
+        '<stop offset="1" class="gcs2"/></radialGradient>'
+        '<radialGradient id="gvig" gradientUnits="objectBoundingBox" cx="0.5" cy="0.42" r="0.78">'
+        '<stop offset="0.55" class="gvs0"/><stop offset="1" class="gvs1"/>'
+        '</radialGradient>'
+        '</defs>')
+
+    return (
+        f'<svg class="gsvg" viewBox="0 0 {int(W)} {int(H)}" role="img" '
+        f'aria-labelledby="gttl" preserveAspectRatio="xMidYMid meet">'
+        f'<title id="gttl">Every company on more than one certified Texas data center, '
+        f'linked where they share one.</title>'
+        f'{defs}'
+        f'<g class="ggrids" aria-hidden="true">{grid}</g>'
+        f'<rect class="gcursorlight" x="0" y="0" width="{int(W)}" height="{int(H)}" '
+        f'fill="url(#gcursor)" aria-hidden="true"/>'
+        f'<rect class="gvignette" x="0" y="0" width="{int(W)}" height="{int(H)}" '
+        f'fill="url(#gvig)" aria-hidden="true"/>'
+        f'<rect class="gneat" x="1" y="1" width="{int(W) - 2}" height="{int(H) - 2}"/>'
+        f'<g class="gedges" filter="url(#gglow)">{edges}</g>'
+        f'<g class="gnodes">{nodes}</g></svg>')
+
+
+SCRIPT = """
+(function () {
+  var root = document.getElementById('gfield');
+  if (!root) return;
+  var svg = root.querySelector('.gsvg');
+  var data = document.getElementById('gdata');
+  if (!svg || !data) return;
+  var G;
+  try { G = JSON.parse(data.textContent); } catch (err) { return; }
+
+  var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
+  var nodes = [].slice.call(svg.querySelectorAll('.gnode'));
+  var edges = [].slice.call(svg.querySelectorAll('.gedge'));
+  var lamp = svg.querySelector('#gcursor');
+  var sheet = svg.querySelector('.ggrids');
+  var byKey = {};
+  G.nodes.forEach(function (n) { byKey[n.k] = n; });
+
+  // Every node remembers where the BUILD put it and springs back to it. The drawing on disk
+  // stays the resting state, so motion never becomes the source of truth.
+  var P = G.nodes.map(function (n) {
+    return { k: n.k, hx: n.x, hy: n.y, x: n.x, y: n.y, vx: 0, vy: 0, r: n.r };
+  });
+  var pi = {};
+  P.forEach(function (p, i) { pi[p.k] = i; });
+  var links = G.edges.map(function (l) { return { a: pi[l.a], b: pi[l.b], w: l.w }; });
+
+  var neigh = {};
+  G.edges.forEach(function (l) {
+    (neigh[l.a] = neigh[l.a] || {})[l.b] = 1;
+    (neigh[l.b] = neigh[l.b] || {})[l.a] = 1;
+  });
+
+  var mx = -1e5, my = -1e5, near = false, held = null, raf = 0, calm = 0;
+
+  function toField(ev) {
+    var b = svg.getBoundingClientRect();
+    var sx = G.w / b.width, sy = G.h / b.height;
+    return [(ev.clientX - b.left) * sx, (ev.clientY - b.top) * sy];
+  }
+
+  function step() {
+    raf = 0;
+    var moved = 0;
+    for (var i = 0; i < P.length; i++) {
+      var p = P[i];
+      if (held === i) continue;
+      // Spring home.
+      p.vx += (p.hx - p.x) * 0.012;
+      p.vy += (p.hy - p.y) * 0.012;
+      // The cursor pushes a local well. Falls off fast so the whole field does not heave.
+      //
+      // AND IT LETS GO AT THE CENTRE. Every point here is a link to a company, and the first
+      // version pushed hardest exactly where the pointer was, so the node a reader was reaching
+      // for stepped aside as they arrived and neither the hover nor the click ever landed. The
+      // push ramps back to nothing inside the hit radius, so the field parts around the pointer
+      // and the node under it stays where it is.
+      if (near) {
+        var dx = p.x - mx, dy = p.y - my;
+        var d2 = dx * dx + dy * dy;
+        if (d2 < 42000 && d2 > 0.01) {
+          var d = Math.sqrt(d2);
+          var f = (1 - d / 205) * 3.4;
+          if (d < 42) f *= d / 42;
+          p.vx += (dx / d) * f;
+          p.vy += (dy / d) * f;
+        }
+      }
+      p.vx *= 0.86; p.vy *= 0.86;
+      p.x += p.vx; p.y += p.vy;
+      moved += Math.abs(p.vx) + Math.abs(p.vy);
+    }
+    // A dragged node drags its links, which is the whole point of a web.
+    if (held !== null) {
+      for (var L = 0; L < links.length; L++) {
+        var l = links[L];
+        var o = l.a === held ? P[l.b] : (l.b === held ? P[l.a] : null);
+        if (!o) continue;
+        var h = P[held];
+        o.vx += (h.x - o.x) * 0.006;
+        o.vy += (h.y - o.y) * 0.006;
+      }
+      moved += 1;
+    }
+    paint();
+    if (moved > 0.35) raf = requestAnimationFrame(step);
+    else { calm = 1; paint(); }
+  }
+
+  function paint() {
+    for (var i = 0; i < nodes.length; i++) {
+      var p = P[i];
+      nodes[i].setAttribute('transform', 'translate(' + p.x.toFixed(2) + ',' + p.y.toFixed(2) + ')');
+    }
+    for (var j = 0; j < edges.length; j++) {
+      var l = links[j], a = P[l.a], b = P[l.b];
+      edges[j].setAttribute('x1', a.x.toFixed(2)); edges[j].setAttribute('y1', a.y.toFixed(2));
+      edges[j].setAttribute('x2', b.x.toFixed(2)); edges[j].setAttribute('y2', b.y.toFixed(2));
+    }
+  }
+
+  function kick() { calm = 0; if (!raf) raf = requestAnimationFrame(step); }
+
+  function lightUp(key) {
+    root.classList.toggle('lit', !!key);
+    var near1 = key ? (neigh[key] || {}) : {};
+    nodes.forEach(function (el) {
+      var k = el.getAttribute('data-k');
+      el.classList.toggle('on', !!key && (k === key || !!near1[k]));
+      el.classList.toggle('off', !!key && k !== key && !near1[k]);
+    });
+    edges.forEach(function (el) {
+      var on = !!key && (el.getAttribute('data-a') === key || el.getAttribute('data-b') === key);
+      el.classList.toggle('on', on);
+      el.classList.toggle('off', !!key && !on);
+    });
+  }
+
+  if (!(still && still.matches)) {
+    svg.addEventListener('pointermove', function (ev) {
+      var f = toField(ev); mx = f[0]; my = f[1]; near = true;
+      // The light goes where the pointer is. Moving a gradient beats adding an element: the
+      // paint is one attribute pair per frame and nothing enters the interactive layer.
+      if (lamp) { lamp.setAttribute('cx', mx.toFixed(1)); lamp.setAttribute('cy', my.toFixed(1)); }
+      if (sheet) {
+        sheet.setAttribute('transform', 'translate(' + ((G.w / 2 - mx) * 0.018).toFixed(2) +
+          ',' + ((G.h / 2 - my) * 0.018).toFixed(2) + ')');
+      }
+      root.classList.add('near');
+      if (held !== null) { P[held].x = mx; P[held].y = my; P[held].vx = P[held].vy = 0; }
+      kick();
+    });
+    svg.addEventListener('pointerleave', function () {
+      near = false; held = null; root.classList.remove('near');
+      if (sheet) sheet.removeAttribute('transform');
+      kick();
+    });
+    svg.addEventListener('pointerdown', function (ev) {
+      var a = ev.target.closest && ev.target.closest('.gnode');
+      if (!a) return;
+      var i = pi[a.getAttribute('data-k')];
+      if (i === undefined) return;
+      held = i; root.classList.add('dragging');
+      try { svg.setPointerCapture(ev.pointerId); } catch (e2) {}
+    });
+    var drop = function () { held = null; root.classList.remove('dragging'); kick(); };
+    svg.addEventListener('pointerup', drop);
+    svg.addEventListener('pointercancel', drop);
+  }
+
+  // Hover and focus both light the neighborhood, so a keyboard reaches it too.
+  nodes.forEach(function (el) {
+    var k = el.getAttribute('data-k');
+    el.addEventListener('pointerenter', function () { lightUp(k); });
+    el.addEventListener('focus', function () { lightUp(k); });
+    el.addEventListener('blur', function () { lightUp(null); });
+  });
+  svg.addEventListener('pointerleave', function () { lightUp(null); });
+
+  // A drag should not also follow the link.
+  nodes.forEach(function (el) {
+    var sx = 0, sy = 0;
+    el.addEventListener('pointerdown', function (ev) { sx = ev.clientX; sy = ev.clientY; });
+    el.addEventListener('click', function (ev) {
+      if (Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) > 6) ev.preventDefault();
+    });
+  });
+
+  root.classList.add('live');
+})();
+"""
+
+
+def problems(g: dict) -> list[str]:
+    out = []
+    for n in g["nodes"]:
+        if not (PAD - 0.5 <= n["x"] <= W - PAD + 0.5 and PAD - 0.5 <= n["y"] <= H - PAD + 0.5):
+            out.append(f"node {n['name']!r} was laid out beyond the neatline")
+    keys = {n["key"] for n in g["nodes"]}
+    for e in g["edges"]:
+        if e["a"] not in keys or e["b"] not in keys:
+            out.append(f"edge {e['a']}-{e['b']} names a node that is not drawn")
+    return out
+
+
+def self_test() -> int:
+    checks = []
+
+    def ok(name, cond, extra=""):
+        checks.append(bool(cond))
+        print(f"  {'ok  ' if cond else 'FAIL'}  {name}{'' if cond else '  ' + str(extra)}")
+
+    def ent(key, reach, facs):
+        return {"key": key, "name": key.title(), "slug": key, "reach": reach,
+                "roles": {"owner": facs}, "facilities": facs}
+
+    es = [ent("a", 3, ["f1", "f2", "f3"]), ent("b", 2, ["f1", "f2"]),
+          ent("c", 2, ["f3", "f4"]), ent("d", 1, ["f9"])]
+    g = graph(es)
+    ok("a company on one facility is not a node", [n["key"] for n in g["nodes"]] == ["a", "b", "c"],
+       [n["key"] for n in g["nodes"]])
+    ok("an edge exists where two companies share a facility",
+       {(e["a"], e["b"]) for e in g["edges"]} == {("a", "b"), ("a", "c")},
+       g["edges"])
+    ok("...weighted by how many they share",
+       [e["w"] for e in g["edges"] if e["a"] == "a" and e["b"] == "b"] == [2], g["edges"])
+
+    # THE PROPERTY THE WHOLE BUILD DEPENDS ON.
+    one, two = build([dict(x) for x in es]), build([dict(x) for x in es])
+    ok("two layouts of the same registry are identical", payload(one) == payload(two))
+    ok("...and the positions are real numbers inside the field", not problems(one), problems(one))
+
+    ok("area carries reach, so the radius is its square root",
+       one["nodes"][0]["r"] > one["nodes"][1]["r"], [n["r"] for n in one["nodes"]])
+
+    big = build([ent(f"n{i}", 2 + (i % 5), [f"s{i}", f"s{(i+1) % 30}"]) for i in range(30)])
+    ok("a larger graph still lands inside the neatline", not problems(big), problems(big)[:2])
+    ok("...with every node placed", all("x" in n for n in big["nodes"]))
+
+    ok("an empty registry does not crash", build([])["nodes"] == [])
+
+    bad = {"nodes": [{"key": "a", "name": "A", "x": -50, "y": 5, "r": 4, "reach": 2}], "edges": []}
+    ok("a node outside the field is reported", problems(bad))
+    ok("an edge to a node that is not drawn is reported",
+       problems({"nodes": [], "edges": [{"a": "x", "b": "y", "w": 1}]}))
+
+    passed = sum(checks)
+    print(f"\nregistry_graph self-test: {passed}/{len(checks)} passed")
+    return 0 if passed == len(checks) else 1
+
+
+if __name__ == "__main__":
+    if "--self-test" in sys.argv:
+        sys.exit(self_test())
+    sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+    import entities as E
+    g = build(E.load()["entities"])
+    bad = problems(g)
+    if bad:
+        print(f"registry_graph: {len(bad)} problem(s)")
+        for b in bad:
+            print(f"  {b}")
+        sys.exit(1)
+    print(f"registry_graph: {len(g['nodes'])} nodes, {len(g['edges'])} edges, "
+          f"payload {len(payload(g)):,} bytes")
+    sys.exit(0)
