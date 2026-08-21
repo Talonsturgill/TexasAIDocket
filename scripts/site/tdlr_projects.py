@@ -47,6 +47,69 @@ PHONE = re.compile(r"\(?\d{3}\)?[ .-]\d{3}[ .-]\d{4}")
 DESIG = re.compile(r"\bSAT\s?0*(\d{1,3})(\s?[/-]\s?0*(\d{1,3}))?", re.I)
 
 
+# ---------------------------------------------------------------- what a filing IS
+# THE OWNER SEARCH IS A SUBSTRING MATCH AND IT CANNOT BE TRUSTED. A query for "Meta" returns
+# Metal Building Supplies. "Core Scientific" returns Core & Main, CORE Construction and a nail
+# bar. "Prologis" returns that landlord's entire Texas portfolio. A pull that believed the
+# endpoint would have summed a nail bar into a data centre headline.
+#
+# So membership is decided HERE, on the owner the filing itself carries, against a brand token
+# this project already tracks. `owner_is()` is the whole rule and it is deliberately strict.
+BRANDS = {
+    "amazon": "Amazon", "vantage": "Vantage", "compass": "Compass", "cyrusone": "CyrusOne",
+    "riot": "Riot", "qts": "QTS", "aligned": "Aligned", "ntt": "NTT", "oracle": "Oracle",
+    "switch": "Switch", "google": "Google", "databank": "DataBank", "galaxy": "Galaxy",
+    "microsoft": "Microsoft", "lancium": "Lancium", "cipher": "Cipher", "crusoe": "Crusoe",
+    "fermi": "Fermi", "lambda": "Lambda",
+}
+
+
+# OPERATORS THIS PROJECT TRACKS THAT FILE NOTHING UNDER THEIR OWN NAME. Checked, not assumed:
+# each returned zero rows from the owner search. It is a real fact about how they operate, and
+# saying it beats leaving a reader to wonder why a name they expect is missing.
+NO_FILINGS = ("CoreWeave", "EdgeConneX", "Nscale", "Anthropic", "Whinstone", "Poolside")
+
+
+def brand(rec: dict) -> str:
+    """The tracked company whose name appears in this filing's OWNER field, or an empty string.
+
+    Matched on the owner, never on the project name, because a project can be named for its
+    tenant while the filing belongs to a developer, and the owner is the field the state
+    actually verifies.
+    """
+    o = (rec.get("owner") or "").lower()
+    hits = [v for k, v in BRANDS.items() if re.search(rf"\b{re.escape(k)}", o)]
+    return sorted(hits, key=len, reverse=True)[0] if hits else ""
+
+
+# WHICH FILINGS ARE ABOUT A DATA CENTRE. Amazon builds fulfilment centres and Microsoft refreshes
+# cafes, and neither belongs in a figure about compute. The test is what the FILING says, in its
+# project name, its facility name or the scope the filer wrote, and the rule is stated on the
+# published page so a reader can disagree with it.
+# EXCLUDE FIRST. The airport code designation below is used by data centre operators AND by
+# Amazon for warehouses, so "Fulfillment Center DFW7" matched the include list on its first
+# version and would have put a warehouse into a figure about compute. A filing that names a
+# building type this is not is out, whatever else it says.
+NOT_DC = re.compile(
+    r"\b(fulfil?lment|warehouse|distribution\s?cent|sortation|delivery\s?station|air\s?hub|"
+    r"retail|store\b|restaurant|cafe|caf\u00e9|lobby|clinic|hotel|apartment|school|church|"
+    r"office\s?(?:refresh|fit|remodel|renovation)|parking\s?garage|showroom)", re.I)
+
+DC_WORDS = re.compile(
+    r"\b(data\s?cent(?:er|re)|datacent(?:er|re)|colo(?:cation)?|server\s?(?:room|hall)|"
+    r"white\s?space|data\s?hall|substation|generator\s?yard|chiller\s?(?:plant|yard)|"
+    r"critical\s?(?:power|load)|SAT\s?\d|AUS\s?\d{2}|DFW\s?\d{2}|SAN\s?\d{2}|"
+    r"TX\s?\d{2,3}\b)", re.I)
+
+
+def is_datacenter(rec: dict) -> bool:
+    """What the FILING says it is. The rule is published on the page so a reader can disagree."""
+    hay = " ".join(str(rec.get(k) or "") for k in ("project", "facility", "scope"))
+    if NOT_DC.search(hay):
+        return False
+    return bool(DC_WORDS.search(hay))
+
+
 def load(path: pathlib.Path = LEDGER) -> dict:
     if not path.exists():
         return {"_spec": 1, "projects": []}
@@ -163,6 +226,133 @@ def scoped(recs: list[dict], counties: tuple[str, ...]) -> list[dict]:
     return [r for r in recs if r.get("county") in counties]
 
 
+# ---------------------------------------------------------------- joining the two registers
+# THE STATE PUBLISHED THIS JOIN ON BOTH SIDES, so it is not invented. Vantage's Shackelford
+# filings are owned by "Vantage Data Centers TX304, LLC", and that exact entity is the owner of
+# record on a Comptroller row. Galaxy Helios II and DB Data Center Red Oak behave the same way.
+#
+# BUT ONLY FOR A SINGLE PURPOSE ENTITY. Joining on a parent company is not a building level link
+# and the first version did it: matching "Microsoft Corporation" attached all twenty two
+# Microsoft filings, and $3.6 billion, to a single facility called NADC. An entity named on many
+# certifications identifies a company, not a project.
+#
+# So a party joins only when it is SPECIFIC: it names at most this many certified facilities.
+# A number here is a judgement and it is stated rather than buried.
+SINGLE_PURPOSE_MAX = 2
+
+
+def joinable(parties_per_facility: list[set]) -> set:
+    """The party names specific enough to identify a project rather than a company."""
+    n: dict[str, int] = defaultdict(int)
+    for parties in parties_per_facility:
+        for p in parties:
+            n[p] += 1
+    return {p for p, c in n.items() if c <= SINGLE_PURPOSE_MAX}
+
+
+def filings_for(parties: set, specific: set, by_party: dict) -> list[dict]:
+    """Filings by the single purpose entities named on one facility's row."""
+    out, seen = [], set()
+    for p in parties & specific:
+        for r in by_party.get(p, ()):
+            if r["number"] not in seen:
+                seen.add(r["number"])
+                out.append(r)
+    return sorted(out, key=lambda r: (r.get("start") or "", r["number"]))
+
+
+def shared_buildings(recs: list[dict]) -> list[dict]:
+    """Filings that look like the same building filed by two different owners.
+
+    A statewide total adds up filings from many companies, and a campus where the landowner and
+    the builder both file would be counted twice. Two filings at the same address for the same
+    cost under different owners is the shape that would do it.
+
+    It has found nothing so far, which is worth saying out loud rather than assuming: Lancium and
+    Crusoe both filed a $292 million Abilene building, and they are two buildings on two streets
+    that happen to cost the same. A check that has never fired is only useful if somebody knows
+    it is running.
+    """
+    seen: dict[tuple, dict] = {}
+    out = []
+    for r in recs:
+        k = ((r.get("address") or "").lower().strip(), r.get("cost"))
+        if not k[0] or not k[1]:
+            continue
+        prev = seen.get(k)
+        if prev and (prev.get("owner") or "") != (r.get("owner") or ""):
+            out.append({"address": r.get("address", ""), "cost": r["cost"],
+                        "filings": [prev["number"], r["number"]],
+                        "owners": [prev.get("owner", ""), r.get("owner", "")]})
+        seen[k] = r
+    return out
+
+
+# ---------------------------------------------------------------- the year view
+def by_year(recs: list[dict]) -> list[dict]:
+    """Capital and floor area filed per year, by the year a project was scheduled to START.
+
+    EVERY YEAR IN THE SPAN APPEARS, including the empty ones. A chart that silently drops a year
+    with no filings compresses the gaps out of the picture and makes a lumpy buildout look
+    steady, which is the opposite of what this data says.
+    """
+    years = [int(r["start"][:4]) for r in recs if r.get("start")]
+    if not years:
+        return []
+    out = []
+    for y in range(min(years), max(years) + 1):
+        rows = [r for r in recs if (r.get("start") or "")[:4] == str(y)]
+        out.append({"year": y, "filings": len(rows),
+                    "cost": sum(r.get("cost") or 0 for r in rows),
+                    "sqft": sum(r.get("sqft") or 0 for r in rows)})
+    return out
+
+
+def by_brand(recs: list[dict]) -> list[dict]:
+    g: dict[str, list[dict]] = defaultdict(list)
+    for r in recs:
+        g[brand(r) or "(untracked)"].append(r)
+    out = [{"brand": k, **totals(v),
+            "counties": sorted({x.get("county") for x in v if x.get("county")})}
+           for k, v in g.items()]
+    return sorted(out, key=lambda d: (-d["cost"], d["brand"]))
+
+
+# ---------------------------------------------------------------- the drawing
+CW, CH = 1000.0, 300.0     # the field, in user units. The svg scales to its container.
+CPAD_L, CPAD_B, CPAD_T = 8.0, 34.0, 14.0
+
+
+def columns(rows: list[dict], key: str) -> str:
+    """One column per year, one hue, no ramp.
+
+    The grid watch bar carries no severity ramp because a colour ramp is a verdict. The same
+    holds here: the height is the whole message and every column is the same colour at the same
+    intensity. A reader compares lengths, which is the one comparison a bar chart is good at.
+    """
+    if not rows:
+        return ""
+    hi = max(r[key] for r in rows) or 1
+    n = len(rows)
+    gap = 6.0
+    w = (CW - CPAD_L * 2 - gap * (n - 1)) / n
+    floor = CH - CPAD_B
+    bars = ""
+    for i, r in enumerate(rows):
+        x = CPAD_L + i * (w + gap)
+        h = (r[key] / hi) * (floor - CPAD_T)
+        bars += (f'<g class="cyr"><rect class="cybar" x="{x:.2f}" y="{floor - h:.2f}" '
+                 f'width="{w:.2f}" height="{max(h, 1.0):.2f}" rx="2"/>'
+                 f'<text class="cylab" x="{x + w / 2:.2f}" y="{CH - 10:.2f}">{r["year"]}</text>'
+                 f'<title>{r["year"]}</title></g>')
+    return (f'<svg class="cysvg" viewBox="0 0 {int(CW)} {int(CH)}" role="img" '
+            f'aria-labelledby="cyttl" preserveAspectRatio="none">'
+            f'<title id="cyttl">Construction capital filed per year, by the year each project '
+            f'was scheduled to start.</title>'
+            f'<line class="cyaxis" x1="0" y1="{floor:.2f}" x2="{int(CW)}" y2="{floor:.2f}"/>'
+            f'{bars}</svg>')
+
+
 # ---------------------------------------------------------------- the gate
 def problems(doc: dict) -> list[str]:
     out = []
@@ -270,6 +460,77 @@ def self_test() -> int:
        (t["sqft"], t["sqft_known"]) == (1000, 1), t)
     ok("scoping is done on the records, never on the request",
        len(scoped([good, {**good, "number": "x", "county": "Dallas"}], ("Bexar",))) == 1)
+
+    # WHO A FILING BELONGS TO. The endpoint's owner search is a substring match and returns a
+    # nail bar for "Core Scientific", so membership is decided on the owner field here.
+    ok("a tracked owner is recognised", brand({"owner": "Amazon Data Services, Inc."}) == "Amazon")
+    ok("a substring match that is not the company is not",
+       brand({"owner": "Metal Building Supplies of Texas"}) == "",
+       brand({"owner": "Metal Building Supplies of Texas"}))
+    ok("...nor is a company that merely starts the same way",
+       brand({"owner": "Core & Main LP"}) == "", brand({"owner": "Core & Main LP"}))
+    ok("...nor a nail bar", brand({"owner": "AUREA NAIL BAR"}) == "")
+    ok("the brand comes off the OWNER, never the project name",
+       brand({"owner": "Some Developer LLC", "project": "Microsoft SAT99"}) == "",
+       brand({"owner": "Some Developer LLC", "project": "Microsoft SAT99"}))
+
+    # WHAT A FILING IS ABOUT. Exclusions run first, because the airport code convention is shared
+    # between data halls and warehouses.
+    ok("a data centre filing is one", is_datacenter({"project": "SAT46",
+                                                     "scope": "New data center building"}))
+    ok("a warehouse using the same naming convention is NOT",
+       not is_datacenter({"project": "Fulfillment Center DFW7", "scope": "Racking"}))
+    ok("...even with the designation first",
+       not is_datacenter({"project": "DFW7 Fulfillment", "scope": ""}))
+    ok("a cafe refresh is not", not is_datacenter({"project": "MICROSOFT CAFE REFRESH"}))
+    ok("a colocation building is", is_datacenter({"project": "AUS02",
+                                                  "scope": "New colocation facility"}))
+    ok("a substation on a campus is", is_datacenter({"scope": "New substation and switchgear"}))
+
+    # THE YEAR VIEW, and the gap it must not hide.
+    yrs = by_year([{"start": "2020-01-01", "cost": 10, "sqft": 1},
+                   {"start": "2022-01-01", "cost": 30, "sqft": 3}])
+    ok("a year with no filings still appears", [y["year"] for y in yrs] == [2020, 2021, 2022], yrs)
+    ok("...as a zero rather than a hole", yrs[1]["cost"] == 0 and yrs[1]["filings"] == 0, yrs)
+    ok("no filings at all is an empty view rather than a crash", by_year([]) == [])
+
+    svg = columns(yrs, "cost")
+    ok("the drawing has one column per year", svg.count("cybar") == 3, svg.count("cybar"))
+    ok("...and an empty year still draws a visible floor",
+       'height="1.00"' in svg, [x for x in svg.split() if x.startswith("height")])
+    ok("...and it is deterministic", columns(yrs, "cost") == svg)
+    ok("nothing to draw is an empty string, not a broken svg", columns([], "cost") == "")
+
+    # THE JOIN, and the overclaim it refuses. A parent company name is not a building.
+    facs = [{"a-corp", "vantage-tx304"}, {"a-corp", "vantage-tx305"}, {"a-corp"}]
+    spec = joinable(facs)
+    ok("a single purpose entity is joinable", "vantage-tx304" in spec, sorted(spec))
+    ok("a parent named on three facilities is not", "a-corp" not in spec, sorted(spec))
+    by = {"vantage-tx304": [{"number": "x"}], "a-corp": [{"number": "y"}]}
+    got = filings_for({"a-corp", "vantage-tx304"}, spec, by)
+    ok("...so the join takes the building and leaves the company",
+       [r["number"] for r in got] == ["x"], got)
+    ok("a facility naming no specific party joins nothing",
+       filings_for({"a-corp"}, spec, by) == [])
+    ok("one filing reached by two parties is not counted twice",
+       len(filings_for({"vantage-tx304", "vantage-tx305"},
+                       joinable([{"vantage-tx304", "vantage-tx305"}]),
+                       {"vantage-tx304": [{"number": "x"}],
+                        "vantage-tx305": [{"number": "x"}]})) == 1)
+
+    # DOUBLE COUNTING ACROSS OWNERS, which a statewide total is exposed to and a single
+    # company view is not.
+    same = [{"number": "a", "address": "1 Way", "cost": 5, "owner": "A LLC"},
+            {"number": "b", "address": "1 WAY", "cost": 5, "owner": "B LLC"}]
+    ok("one building filed by two owners is reported", len(shared_buildings(same)) == 1, same)
+    ok("...matching the address case insensitively",
+       shared_buildings(same)[0]["filings"] == ["a", "b"])
+    ok("the same owner filing twice is not a cross owner duplicate",
+       shared_buildings([same[0], {**same[1], "owner": "A LLC"}]) == [])
+    ok("two buildings that merely cost the same are not",
+       shared_buildings([same[0], {**same[1], "address": "2 Way"}]) == [])
+    ok("a filing with no cost is never paired",
+       shared_buildings([{**same[0], "cost": None}, {**same[1], "cost": None}]) == [])
 
     passed = sum(checks)
     print(f"\ntdlr_projects self-test: {passed}/{len(checks)} passed")

@@ -482,6 +482,19 @@ def facility_css() -> str:
 @media (max-width:34rem) { .glabel { font-size:17px; } .ggrid { opacity:.3; }
   .gnamed .glabel { opacity:0; } }
 
+/* CAPITAL FILED PER YEAR. One hue at one intensity on every column, for the same reason the grid
+   watch bar carries no severity ramp: a colour ramp is a verdict and the height is the whole
+   message. No gridlines behind it either, because a reader compares lengths here and a rule
+   across the middle invites reading a value off the wrong thing. The figures are in the table
+   below, which is the view that carries them. */
+.cywrap { margin:1.2rem 0 .4rem; }
+.cysvg { display:block; width:100%; height:clamp(140px,22vw,260px); }
+.cyaxis { stroke:var(--rule); stroke-width:1; }
+.cybar { fill:var(--accent); opacity:.62; transition:opacity .16s ease; }
+.cyr:hover .cybar { opacity:1; }
+.cylab { font-family:var(--mono); font-size:15px; fill:var(--ink-mute); text-anchor:middle; }
+@media (max-width:44rem) { .cylab { font-size:24px; } }
+
 /* THE CONSTRUCTION REGISTER. A row per designation, money and size on their own baselines so a
    reader compares down a column rather than reading across a sentence. Mono throughout, because
    every figure on this site is set in mono and a number that changes typeface between surfaces

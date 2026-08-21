@@ -106,6 +106,27 @@ The filings also confirm a registry oddity from the outside. The oldest row in t
 is a Microsoft building whose occupant is Chevron, which reads like an error until a 2019
 construction filing turns up named "Microsoft Chevron/SN7 Colo 1".
 
+**At statewide scale it is $36.97 billion.** 201 data center filings by the operators this
+project tracks, 38.9 million square feet, 20 counties, from 2008 to 2029. Almost none of it is
+old. The filings sit near zero for fifteen years and then go vertical in 2024, and the single
+largest county is **Shackelford**, population under four thousand, at $10.6 billion of Vantage
+buildings.
+
+**The two registers join, and the state published the join on both sides.** Vantage's Shackelford
+filings are owned by `Vantage Data Centers TX304, LLC`, and that exact entity is an owner of
+record on a Comptroller row. Galaxy Helios II and DB Data Center Red Oak behave the same way.
+Seventeen certified facilities can be priced this way.
+
+**The join is only valid on a SINGLE PURPOSE ENTITY.** A parent company name is not a building.
+The first version matched on `Microsoft Corporation` and attached all twenty two Microsoft filings,
+and $3.6 billion, to one facility called NADC. A party joins only when it names at most two
+certified facilities, which is a stated judgement rather than a buried one.
+
+**Several operators file nothing at all.** CoreWeave, EdgeConneX, Nscale, Anthropic, Whinstone and
+Poolside return zero rows from the owner search. That is not an absence of building. It is the
+difference between a company that builds and one that leases what somebody else built, and it is
+why the construction register alone would badly understate who is in Texas.
+
 **Four things about this source that will produce a wrong number if they are forgotten.**
 
 - **The search endpoint ignores its city parameter.** A search for Microsoft in San Antonio
@@ -115,6 +136,20 @@ construction filing turns up named "Microsoft Chevron/SN7 Colo 1".
   overstates the buildout, so money is grouped by the designation AS FILED.
 - **A filing that names a range names several buildings and has ONE cost.** Spreading SAT11-14's
   sixty two million across four rows reports it four times.
+- **The owner search is a SUBSTRING match and cannot be trusted.** A query for Meta returns Metal
+  Building Supplies. Core Scientific returns Core & Main, CORE Construction and a nail bar.
+  Prologis returns that landlord's whole Texas portfolio. Membership is decided on the owner field
+  the filing itself carries, never on the search that found it.
+- **An operator's filings are not all data centers.** Amazon builds fulfilment centres and
+  Microsoft refreshes cafes. Classification is on what the filer wrote, exclusions first, because
+  a warehouse and a data hall share the airport code naming convention and `Fulfillment Center
+  DFW7` matched the include list on its first version. The rule is published on the page so a
+  reader can disagree with it. The same companies filed $3.7 billion of other Texas work, counted
+  separately and added to nothing.
+- **A campus could be filed by two owners and counted twice.** Two filings at one address for one
+  cost under different owners is that shape. `shared_buildings()` checks every build and has found
+  none. Lancium and Crusoe both filed a $292 million Abilene building and they are two buildings on
+  two streets that happen to cost the same.
 - **The county field is filer entered.** Five filings share postcode 78245 on the Lambda Drive
   campus and one of them says Medina where the other four say Bexar. The published page reports
   that disagreement and does not resolve it. It also does NOT decide the question from the
