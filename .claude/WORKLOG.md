@@ -1,3 +1,130 @@
+# WORKLOG — the ask box learns to retrieve
+
+Opened 2026-08-21 on the owner's call, while a second workstream (the registry dossiers) is
+still live further down this file. Both are real. Read the one whose files you are touching.
+
+Owner's brief, verbatim in spirit: make the search agent the best in the world, **as long as it
+is free**, stay on Sonnet, go slow, think big. Free is a hard constraint and it is the reason
+several obvious moves below are refused rather than deferred.
+
+**Read this first, then resume from the wave table at the bottom of this section.**
+
+## What is actually there, measured before designing anything
+
+    the pack            189,365 chars   ~47,341 tokens   86% of the 220,000 hard ceiling
+    preamble             2,335 chars    counts, open windows, the daily instruments
+    69 decisions       187,030 chars    ~2,710 chars each, delimited by [[tx-2026-NNNN]]
+    corpus                 69 slugs, 266 authorised numerals
+    catalogue             ~500 questions, each paired with a route
+    cost                 ~$0.14 a question uncached, input to output about 7 to 1
+    cap                   200 model calls a month
+
+Two lanes, and only one of them is an LLM.
+
+**The typing lane** runs in the browser with no network. IDF weighted token overlap against the
+catalogue's QUESTIONS, plus a direct mention override for county, metro, decider and topic.
+Floor 0.9. No length normalisation, no item level index, no rerank.
+
+**The written lane** is one Sonnet 5 call in a Cloudflare worker with the WHOLE pack in the
+system block, sentence by sentence verification against the corpus, streaming. No tools, no
+loop, no retrieval.
+
+## The forcing function is the ceiling, not the bill
+
+At 200 calls a month the written lane costs under $30. Cost is not the problem. The problem is
+that the pack is at 86% of a ceiling whose crossing is a HARD BUILD FAILURE, and the registry
+dossier work further down this file is adding items faster than anything is removing them.
+
+"No retrieval" was a good decision and it has a shelf life measured in weeks.
+
+## The decision: retrieve in the worker, keep the index whole
+
+One model call, not an agent loop. An agentic tool loop was considered and refused: three or
+four sequential round trips is SLOWER than one call on a record this size, it multiplies the
+call count against a cap that counts calls, and it buys nothing that assembling the context
+deterministically does not.
+
+Three system blocks, in this order:
+
+    1  the instructions          cached, stable
+    2  preamble + a compact index of EVERY decision   cached, stable for a day
+    3  the full text of the decisions this question needs   not cached, small
+
+Block 2 is the safety property and the whole reason this is not a normal RAG bolt-on. The model
+always knows what EXISTS, even for items whose body it was not given, so the failure mode of
+retrieval — confidently answering as if the missing thing is not there — is designed out rather
+than mitigated. It can say "there is an item about that" and, better, retrieval can be generous
+because the index is cheap.
+
+Estimated ~9.4k tokens against 47.3k, and it stays flat as the record grows: only the index
+line grows, never the retrieved slice.
+
+## What is refused, and why
+
+- **Embeddings and a vector store.** Not free, and a second service to keep alive.
+- **A reranker model call.** Not free, and it doubles latency on the one part of the page a
+  reader is waiting on.
+- **An agent tool loop.** Slower here, and it spends the call cap three times faster.
+- **Opus.** Owner's call, explicitly.
+- **Raising the pack ceiling.** That is a bill on every question, and the owner said free.
+
+Everything below is deterministic code that runs in a worker or a browser and costs nothing.
+
+## Wave table
+
+| # | Wave | State | What it must prove |
+|---|------|-------|--------------------|
+| 0 | effort low + usage counters | **DONE** 787b45c7 | 91 assertions, effort fallback proved red |
+| 1 | eval harness, free, no model calls | **DONE** | 232 cases, 85.8% found / 83.2% first |
+| 2 | body search + two real router bugs | **DONE** | 99.1% found, nonsense 75% -> 100% |
+| 3 | the worker retrieves | TODO | token drop measured, ceiling pressure gone |
+| 4 | verify, rebuild, ship | TODO | guards_local green, docs fresh, merged |
+
+## What wave 1 measured, and the two bugs it found
+
+The gold set is 232 cases generated from the record: an item's title trimmed the way a person
+types, three rare words from its body, its county, its decider, its topic, plus negatives that
+share no vocabulary with the record at all.
+
+    baseline        found 85.8   first 83.2
+    after wave 2    found 99.1   first 95.7
+
+The headline was `phrase`, questions built from a detail in a decision's BODY, at **53.6%**.
+The bodies were shipped in the browser's index the whole time and never searched: the scorer
+only ever matched a query against the catalogue's QUESTIONS, which are generated from titles,
+counties, deciders and topics. Adding BM25 over the bodies cost no payload at all and took it
+to **97.1%**.
+
+Two real bugs, both pre-existing, both found by having a number rather than an opinion.
+
+**The unseen word scored highest.** The catalogue scorer credited a stem match with the rarity
+of the word the READER typed. A word absent from the catalogue has the maximum rarity there is,
+so "train" stem matching "trained" scored as the most distinctive word in the record, and "best
+way to train for a marathon" reached a grant about robot safety with total confidence. The
+evidence for a catalogue entry is the catalogue's own word, so that is the one whose rarity now
+counts.
+
+**Rarity is not evidence.** The first fix required a second corroborating word, with an escape
+hatch for a single word rare enough to identify a decision alone, on the reasoning that a docket
+number does exactly that. It does, and so does "way", which appears in exactly one of 69
+decisions by accident. The hatch is gone rather than patched.
+
+**And the rule had to be scoped, not blanket.** Requiring two words everywhere broke "What can I
+still comment on?", which carries exactly one word the scorer keeps and where that word is
+decisive. The size of the claim sets the evidence: naming ONE decision out of sixty nine needs
+two words behind it, answering with a view over the whole record does not.
+
+`tests/ask_eval.mjs` runs in CI and fails on one thing only, a query sharing nothing with the
+record getting an answer. Everything else prints against `tests/fixtures/ask_eval_baseline.json`
+and leaves the judgement to a person, because a measurement that fails a build is a measurement
+people learn to route around.
+
+Rules for this workstream. The retriever is ONE implementation generated into both lanes, never
+two that agree today. Every wave lands with its own red case. Nothing here may add a recurring
+cost. The sentence guard is never weakened to make retrieval look better.
+
+---
+
 # WORKLOG — the registry becomes a dossier
 
 Opened 2026-08-21 on the owner's call. The grid page lists 151 certified data centers with five
