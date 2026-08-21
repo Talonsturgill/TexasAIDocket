@@ -124,6 +124,18 @@ ok("a record small enough not to need retrieving is not retrieved",
   assemble(tiny, [{ role: "user", content: "water" }], {}).mode === "whole (fits)",
   assemble(tiny, [{ role: "user", content: "water" }], {}).mode);
 
+// A RECORD IN THE GAP BETWEEN THE TWO THRESHOLDS. The size where sending everything gets
+// cheaper is not the size where retrieval starts being worth doing, and between them a breadth
+// question asking for fourteen bodies plus the whole index adds up to more than the record it
+// is a slice of. Comparing the two assembled sizes closes that without anybody keeping two
+// numbers in step.
+const gapPack = { ...PACK,
+  pack: PACK.pack.slice(0, PACK.pack.indexOf("\n\n[[", PACK.chars / 3)) };
+const gap = assemble(gapPack, [{ role: "user", content: "how many decisions involve water" }], {});
+ok("a slice that would not be smaller than the whole record is not sent",
+  gap.chars <= gapPack.system.length + gapPack.pack.length,
+  `${gap.mode}, ${gap.chars} against ${gapPack.system.length + gapPack.pack.length}`);
+
 // ---------------------------------------------------------------- reading the question
 head("E. what counts as the question");
 ok("a follow-up carries the turn it is a follow-up to",

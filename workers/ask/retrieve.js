@@ -300,18 +300,19 @@ export function assemble(pack, turns, env) {
   // NO INDEX MEANS AN OLDER PACK. A worker deployed ahead of a site rebuild would otherwise
   // send a slice with nothing standing in for the rest, which is the exact failure the index
   // exists to prevent. Send everything instead, and say why in the mode.
-  const whole = off || !index || !items.length || bodies <= WHOLE_UNDER;
-  if (whole) {
-    const why = off ? "off" : !index ? "no index" : !items.length ? "unsplit" : "fits";
-    return {
-      blocks: [
-        { type: "text", text: pack.system },
-        { type: "text", text: pack.pack, cache_control: { type: "ephemeral" } },
-      ],
-      mode: `whole (${why})`, chosen: items.map((it) => it.id), shown: items.length,
-      of: items.length, chars: pack.system.length + pack.pack.length,
-    };
-  }
+  const sendWhole = (why) => ({
+    blocks: [
+      { type: "text", text: pack.system },
+      { type: "text", text: pack.pack, cache_control: { type: "ephemeral" } },
+    ],
+    mode: `whole (${why})`, chosen: items.map((it) => it.id), shown: items.length,
+    of: items.length, chars: pack.system.length + pack.pack.length,
+  });
+
+  if (off) return sendWhole("off");
+  if (!index) return sendWhole("no index");
+  if (!items.length) return sendWhole("unsplit");
+  if (bodies <= WHOLE_UNDER) return sendWhole("fits");
 
   // THE CONVERSATION FIRST, THEN THE QUESTION ON ITS OWN IF THAT FOUND NOTHING.
   //
@@ -347,6 +348,19 @@ export function assemble(pack, turns, env) {
     ? SLICE_HEAD + "\n\n" + sent.map((it) => it.text).join("\n\n")
     : NO_SLICE;
 
+  // RETRIEVAL MAY NEVER COST MORE THAN NOT RETRIEVING, and without this line it can. The index
+  // is paid on every question and the size where sending everything gets cheaper is a
+  // different number from the size where retrieval starts being worth doing. On a record just
+  // over the second, a breadth question asking for fourteen bodies plus the whole index adds
+  // up to more than the record it is a slice of.
+  //
+  // That gap is not reachable today at 187,030 characters of bodies and it is exactly the kind
+  // of thing that becomes reachable while nobody is looking. Comparing the two assembled sizes
+  // is unconditional and makes the guarantee one nobody has to keep two thresholds apart to
+  // maintain.
+  const assembled = pack.system.length + preamble.length + index.length + slice.length;
+  if (assembled >= pack.system.length + pack.pack.length) return sendWhole("slice is no smaller");
+
   return {
     blocks: [
       { type: "text", text: pack.system },
@@ -357,6 +371,6 @@ export function assemble(pack, turns, env) {
     mode: sent.length ? "slice" : "index only",
     chosen: sent.map((it) => it.id),
     shown: sent.length, of: items.length, corroborated, pinned,
-    chars: pack.system.length + preamble.length + index.length + slice.length,
+    chars: assembled,
   };
 }
