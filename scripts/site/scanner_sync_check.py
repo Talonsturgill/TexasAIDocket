@@ -80,8 +80,45 @@ VALUE_RE = re.compile(r"<input\b[^>]*\bname=\"{name}\"[^>]*\bvalue=\"([^\"]*)\""
 TAGS_RE = re.compile(r"<(script|style)\b.*?</\1>|<!--.*?-->|<[^>]+>", re.S | re.I)
 
 
+# THE SCAN FORM, NOT THE WHOLE DOCUMENT.
+#
+# This read every field on the page, which was right for exactly as long as the scan form was
+# the only form on it. The footer's contact dialog put a second one on every page of the site,
+# and the check went red saying the published page posts a `_template` the scanner has no
+# contract for. It does not: a different form does, in the footer, and the scanner has no
+# business knowing about it.
+#
+# The quieter half is the one worth naming. `hidden_value` takes the FIRST match in document
+# order, so `_captcha` was being read off whichever form came first in the file. The scan form
+# happens to sit above the footer, so it was still reading the right one, by luck rather than
+# by rule, and any future reordering would have had the scan page's captcha checked against a
+# dialog's.
+#
+# BOTH SIDES ARE SCOPED THE SAME WAY, by the class the vendored contract itself uses. If that
+# class is ever renamed this RAISES rather than falling back to the document, because a scoping
+# that silently stops scoping is worse than none: it goes green while checking the wrong thing.
+FORM_CLASS = "leadform"
+FORM_RE = re.compile(r"<form\b[^>]*\bclass=\"[^\"]*\bleadform\b[^\"]*\"[^>]*>(.*?)</form>",
+                     re.S | re.I)
+
+
+class NoScanForm(Exception):
+    """The document holds no form marked as the scan form."""
+
+
+def scan_form(html: str, where: str) -> str:
+    """The scan form's own markup, from a document that may hold several forms."""
+    m = FORM_RE.search(html)
+    if not m:
+        raise NoScanForm(
+            f"{where} holds no <form> with class {FORM_CLASS!r}, so there is nothing to read the "
+            f"contract off. Either the scan form was renamed, in which case rename it here too, "
+            f"or the page stopped carrying it, which is a bigger problem than this check.")
+    return m.group(1)
+
+
 def fields(html: str) -> set[str]:
-    """Every form field name the document posts."""
+    """Every field name the SCAN FORM posts."""
     return set(FIELD_RE.findall(html))
 
 
@@ -115,7 +152,12 @@ def compare(contract: str, published: str) -> list[str]:
     bad: list[str] = []
 
     # ---- the field names, exactly. This is the machine half of the contract.
-    cf, pf = fields(contract), fields(published)
+    try:
+        cform, pform = scan_form(contract, "the vendored contract"), \
+            scan_form(published, "the published page")
+    except NoScanForm as exc:
+        return [str(exc)]
+    cf, pf = fields(cform), fields(pform)
     for missing in sorted(cf - pf):
         bad.append(f"the published page has no field named {missing!r}, and the scanner's form "
                    f"does. Phase 0 parses that key out of the forwarded mail, so a request would "
@@ -126,7 +168,7 @@ def compare(contract: str, published: str) -> list[str]:
 
     # ---- the hidden values that are contract rather than presentation
     for name in CONTRACT_VALUES:
-        cv, pv = hidden_value(contract, name), hidden_value(published, name)
+        cv, pv = hidden_value(cform, name), hidden_value(pform, name)
         if cv is None and pv is None:
             continue
         if cv != pv:
@@ -169,7 +211,7 @@ def check(verbose: bool = True) -> list[str]:
 
     bad += compare(raw.decode("utf-8"), PUBLISHED.read_text(encoding="utf-8"))
     if verbose and not bad:
-        cf = fields(raw.decode("utf-8"))
+        cf = fields(scan_form(raw.decode("utf-8"), "the vendored contract"))
         print(f"scanner sync: clean. {len(cf)} field(s) and {len(PROMISES)} promise(s) agree, "
               f"vendored contract matches its pin")
     return bad
@@ -188,7 +230,8 @@ def self_test() -> int:
     base = """<section><p>One report to one address. No list, no follow-up sequence, no second
     email. Every line traces to a page on your own site. A person reads every report before it
     goes out.</p>
-    <form action="x"><input type="hidden" name="_subject" value="Texas AI Docket, scan">
+    <form class="leadform" action="x">
+    <input type="hidden" name="_subject" value="Texas AI Docket, scan">
     <input type="hidden" name="_captcha" value="true">
     <input type="text" name="_honey"><input name="website" type="text" required>
     <input name="email" type="email" required><textarea name="message"></textarea></form></section>"""
@@ -229,6 +272,28 @@ def self_test() -> int:
        any("not on the hook" in p for p in got), str(got[:1]))
 
     # NORMALISATION does not swallow a real difference into a match.
+    # ---- the scoping ---------------------------------------------------------
+    # A SECOND FORM ON THE PAGE IS NOT THE SCAN FORM'S BUSINESS. The footer's contact dialog put
+    # one on every page of the site, and unscoped this reported its `_template` as a field the
+    # scanner has no contract for. It has no contract for it because it is not its form.
+    footer = base + """<footer><dialog><form id="contactform" action="x">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_captcha" value="false">
+    <textarea name="message"></textarea></form></dialog></footer>"""
+    ok("another form on the page is not read as the scan form's",
+       not compare(base, footer), str(compare(base, footer)))
+    # And the quiet half: a hidden value must come off the scan form rather than off whichever
+    # form happens to appear first in the file.
+    above = """<footer><form id="contactform" action="x">
+    <input type="hidden" name="_captcha" value="false"></form></footer>""" + base
+    ok("...even when it sits ABOVE the scan form in the document",
+       not compare(base, above), str(compare(base, above)))
+    # A SCOPING THAT SILENTLY STOPS SCOPING IS WORSE THAN NONE, so a renamed class is loud.
+    renamed_form = base.replace('class="leadform"', 'class="scanform"')
+    problems = compare(base, renamed_form)
+    ok("a renamed form class fails loudly rather than falling back to the document",
+       len(problems) == 1 and "no <form> with class" in problems[0], str(problems))
+
     ok("normalise flattens punctuation but keeps the words",
        normalise("<p>One report, to one address!</p>") == "one report to one address")
 

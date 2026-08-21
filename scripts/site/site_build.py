@@ -196,26 +196,142 @@ SOCIALS = [
      "11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 "
      "2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 "
      "3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"),
+    ("Instagram", "https://www.instagram.com/texasaidocket",
+     "M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 "
+     "1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667"
+     ".072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 "
+     "1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 "
+     "4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 "
+     "1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015"
+     "-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21"
+     ".319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 "
+     "0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382"
+     ".896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s"
+     "-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419"
+     ".419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 "
+     "0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899"
+     "-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061"
+     "-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381"
+     ".419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859"
+     "-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 "
+     "3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4"
+     "s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44"
+     "-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"),
+    ("YouTube", "https://www.youtube.com/@TexasAIDocket",
+     "M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 "
+     "0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 "
+     "0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 "
+     "2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 "
+     "3.568z"),
+    # X, AT THE ADDRESS THE PROFILE ACTUALLY LIVES AT. twitter.com/TexasAIDocket still resolves,
+    # by a redirect the company runs and could stop running, and `sameAs` is a claim that should
+    # survive that. The mark is the current one for the same reason: a bird would be a drawing of
+    # a company that no longer exists next to a link to one that does.
+    ("X", "https://x.com/TexasAIDocket",
+     "M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 "
+     "1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"),
+    # ARRIVED AS A SHARE LINK TOO, tiktok.com/@texas.ai.docket?_r=1&_t=ZT-994j3vYObvh. The
+    # query is a share session, not the profile, and it is the same mistake the Facebook URL
+    # above was corrected for: it identifies who passed the link on rather than whose page it
+    # is, and `sameAs` is a claim about the page.
+    ("TikTok", "https://www.tiktok.com/@texas.ai.docket",
+     "M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 "
+     "4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 "
+     "8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03"
+     "-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 "
+     "3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 "
+     "1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 "
+     "2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"),
 ]
 SAME_AS = [url for _name, url, _path in SOCIALS]
 
+# THE CONTACT CONTROL IS NOT A PROFILE, AND IS DELIBERATELY NOT IN `SOCIALS`.
+#
+# It sits in the same row and wears the same 44px target, so it belongs with them visually.
+# It does NOT belong in `sameAs`, which is a claim that a given URL is this organisation
+# somewhere else on the web. A page on this site is not somewhere else, and putting it there
+# would be a false statement in the structured data to save one list.
+#
+# THE HREF IS A REAL DESTINATION, not a dead anchor waiting for script. Without JavaScript the
+# link goes to the form on the services page, which reaches the same mailbox by the same route.
+# With script it opens the dialog instead. A control that does nothing without JavaScript is a
+# promise a reader tests once.
+CONTACT = ("Send a message", "services/#start",
+           "M1.5 5.25A2.25 2.25 0 0 1 3.75 3h16.5a2.25 2.25 0 0 1 2.25 2.25v.38l-10.5 "
+           "6.3-10.5-6.3v-.38Zm0 2.87V18.75A2.25 2.25 0 0 0 3.75 21h16.5a2.25 2.25 0 0 0 "
+           "2.25-2.25V8.12l-9.92 5.95a1.5 1.5 0 0 1-1.66 0L1.5 8.12Z")
 
-def socials() -> str:
-    """The icon row, one link per profile.
+
+def socials(depth: int = 0) -> str:
+    """The icon row: one link per profile, then the way to send a message.
 
     `aria-label` NAMES THE DESTINATION, because the link's only visible content is a drawing.
     Without it a screen reader announces "link" and nothing else, which is the whole row gone.
     The mark itself is `aria-hidden`, so the name is announced once rather than twice.
 
-    `rel="noopener"` on every one. These open in a new tab, and a new tab opened from a link
-    gets a handle back to this page unless that is refused.
+    `rel="noopener"` on every profile. Those open in a new tab, and a new tab opened from a
+    link gets a handle back to this page unless that is refused. The contact control opens
+    nothing and stays in this tab, so it carries neither.
     """
+    name, href, path = CONTACT
+    icon = ('<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">'
+            f'<path d="{path}"/></svg>')
     return "".join(
         f'<li><a href="{url}" target="_blank" rel="noopener"'
-        f' aria-label="{e(SITE_NAME)} on {e(name)}">'
+        f' aria-label="{e(SITE_NAME)} on {e(sname)}">'
         f'<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">'
-        f'<path d="{path}"/></svg></a></li>'
-        for name, url, path in SOCIALS)
+        f'<path d="{spath}"/></svg></a></li>'
+        for sname, url, spath in SOCIALS) + (
+        f'<li><a href="{rel(depth)}{href}" id="contactopen"'
+        f' aria-label="{e(name)} to {e(SITE_NAME)}">{icon}</a></li>')
+
+def contact_dialog() -> str:
+    """A message to this desk, without the address being on the page.
+
+    THE READER NEVER SEES WHERE IT GOES, and that is the point rather than a side effect. The
+    action is FormSubmit's opaque alias for the mailbox, the same one the services form and the
+    search feedback already post to, so the raw address appears nowhere in the served bytes and
+    a scraper reading this page finds a hash. It also means no backend: there is no server to
+    keep running and no secret to rotate.
+
+    IT WEARS `askfb`, WHICH IS THE FEEDBACK DIALOG'S OWN DRESS. Not a shortcut. It is the same
+    object at a different door, a small form in a dialog posting to the same endpoint, and
+    giving it a second set of classes would be a second set of rules to keep in step with the
+    first. The stylesheet has 513 bytes of gzip left inside the initial congestion window, so a
+    duplicate would also have cost the whole site a second round trip to first paint.
+
+    A NATIVE <dialog>. It gets focus trapping, escape to close, an inert background and the
+    browser's top layer for free, and each of those is otherwise a few hundred lines of the
+    kind of code that is wrong on one phone and nobody's phone is the one it was tested on.
+    """
+    return (
+        '<dialog class="askfb" id="contactbox" aria-labelledby="contacth">\n'
+        f'  <form id="contactform" method="POST" action="{FORM_ACTION}">\n'
+        '    <h2 id="contacth">Send a message</h2>\n'
+        '    <p class="askfbnote">It reaches the desk that publishes this record. An address '
+        'below is only needed if a reply is wanted, and it is used for that and nothing '
+        'else.</p>\n'
+        '    <label class="askfbl" for="contactmsg">Your message</label>\n'
+        '    <textarea id="contactmsg" name="message" rows="5" required></textarea>\n'
+        '    <label class="askfbl" for="contactmail">Email, only if a reply is wanted</label>\n'
+        '    <input id="contactmail" name="email" type="email" autocomplete="email" '
+        'inputmode="email" spellcheck="false" placeholder="Optional">\n'
+        '    <input type="hidden" name="_subject" value="Texas AI Docket, a message from '
+        'the site">\n'
+        '    <input type="hidden" name="_captcha" value="false">\n'
+        '    <input type="hidden" name="_template" value="table">\n'
+        # THE HONEYPOT THE OTHER TWO FORMS ALREADY CARRY. A bot fills every field it finds;
+        # a reader cannot see this one, so anything in it came from something that is not one.
+        '    <input type="text" name="_honey" style="display:none" tabindex="-1" '
+        'autocomplete="off">\n'
+        '    <p class="askfbmsg" id="contactstatus" role="status" aria-live="polite"></p>\n'
+        '    <div class="askfbrow">\n'
+        '      <button type="submit" class="askfbsend" id="contactsend">Send</button>\n'
+        '      <button type="button" class="asklink" id="contactclose">Close</button>\n'
+        '    </div>\n'
+        '  </form>\n'
+        '</dialog>')
+
 
 # WHERE THIS WAS MADE. Austin sits on the Balcones Escarpment, the fault line where the Hill
 # Country drops to the coastal plain, which runs straight through the city.
@@ -368,6 +484,54 @@ if('IntersectionObserver' in window){
     // Drag, lift, drag again, then hold still on a county to read it, and the FIRST timer
     // fired at 2.6s and blanked the readout under a stationary thumb.
     clearTimeout(clearAt); clearAt=setTimeout(function(){ show(null); },2600);
+  });
+})();
+// SEND A MESSAGE WITHOUT LEARNING WHERE IT GOES.
+// The address is nowhere in this page and is not needed here: the form posts to FormSubmit's
+// opaque alias for the mailbox and that service forwards it. What the reader gets is a box to
+// type in; what a scraper gets is a hash.
+//
+// THE LINK UNDER THIS IS REAL. Without script the icon goes to the form on the services page,
+// which reaches the same mailbox by the same route, so nothing here is the only way through.
+// With script the navigation is refused and the dialog opens over the page instead.
+(function(){
+  var open=document.getElementById('contactopen'), box=document.getElementById('contactbox');
+  if(!open||!box) return;
+  var form=document.getElementById('contactform'), note=document.getElementById('contactstatus'),
+      send=document.getElementById('contactsend'), shut=document.getElementById('contactclose');
+  function close(){ if(typeof box.close==='function') box.close(); else box.removeAttribute('open'); }
+  open.addEventListener('click',function(ev){
+    // A MODIFIED CLICK IS A REQUEST FOR THE OTHER THING. Command, control, shift or a middle
+    // button means open it in a tab, and taking that away is taking away a browser.
+    if(ev.metaKey||ev.ctrlKey||ev.shiftKey||ev.altKey||ev.button) return;
+    ev.preventDefault();
+    note.textContent=''; send.disabled=false;
+    if(typeof box.showModal==='function') box.showModal(); else box.setAttribute('open','');
+    var t=document.getElementById('contactmsg'); if(t) t.focus();
+  });
+  shut.addEventListener('click',close);
+  form.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    send.disabled=true; note.textContent='Sending';
+    // THE AJAX ADDRESS IS DERIVED FROM THE ONE IN THE MARKUP rather than written a second
+    // time. The form carries the plain endpoint because that is what the policy's form-action
+    // is checked against, and a second copy of an endpoint is one of them going stale.
+    fetch(form.action.replace('formsubmit.co/','formsubmit.co/ajax/'),{
+      method:'POST',
+      headers:{'content-type':'application/json','accept':'application/json'},
+      body:JSON.stringify(Object.fromEntries(new FormData(form).entries()))
+    }).then(function(r){
+      if(!r.ok) throw new Error('bad status');
+      note.textContent='Thank you. That reached the desk.';
+      form.reset();
+      setTimeout(close,1600);
+    }).catch(function(){
+      // WHAT WAS TYPED STAYS IN THE BOX. Losing somebody's message and telling them it failed
+      // is two bad things where one would do.
+      note.textContent='That did not send. Nothing was lost, so try again or use the form on '
+        + 'the services page.';
+      send.disabled=false;
+    });
   });
 })();
 </script>"""
@@ -566,10 +730,11 @@ def page(*, title: str, desc: str, body: str, depth: int, active: str,
     {star("colophon")}
     <div>
       <ul class="footnav" data-prose="data">{footnav}</ul>
-      <ul class="socials" data-prose="data">{socials()}</ul>
+      <ul class="socials" data-prose="data">{socials(depth)}</ul>
       <p class="colophon-line" data-prose="data">{colophon}</p>
     </div>
   </div>
+  {contact_dialog()}
 </footer>
 {SHELL_JS}
 </body>

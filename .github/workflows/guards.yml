@@ -938,6 +938,14 @@ jobs:
       - name: The watch page sends the token and nothing else
         run: SITE=docs node tests/scan_watch.mjs
 
+      # THE SECOND THING ON THIS SITE THAT SENDS, and the one with a promise attached: a reader
+      # can write to this desk without being told where the message lands. The address is in
+      # none of the published bytes, which house_style_check proves; this proves the route
+      # still WORKS without it, that nothing of ours goes out in the body, and that the icon is
+      # a real link rather than a control that does nothing when script does not run.
+      - name: A message reaches the desk without the address being on the page
+        run: SITE=docs node tests/contact.mjs
+
       - name: The record calendar, every month by every route
         run: |
           # Everything interesting about the calendar happens at READ TIME: which month shows,
