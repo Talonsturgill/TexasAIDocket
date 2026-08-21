@@ -1,0 +1,391 @@
+{
+ "run_date": "2026-08-21",
+ "story": "Driverless vehicles are already ordinary work in Texas, and on August 25th the Senate Committee on Transportation meets to study their deployment under SB 2807 and to quantify the impact on traffic related collisions. The deployment came first.",
+ "claims": [
+  {
+   "id": "c1",
+   "text": "The Texas Senate's own upcoming committee meetings list carries an entry for Tuesday, August 25th, 2026.",
+   "quote": "Tuesday, August 25, 2026",
+   "url": "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S",
+   "source_type": "primary_official",
+   "retrieved": "2026-08-21",
+   "confidence": "high",
+   "source_title": "Texas Legislature Online, Upcoming Senate Committee Meetings"
+  },
+  {
+   "id": "c2",
+   "text": "The Senate Transportation entry on that date gives its location as hearing room E1.016.",
+   "quote": "Location: E1.016 (Hearing Room)",
+   "url": "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S",
+   "source_type": "primary_official",
+   "retrieved": "2026-08-21",
+   "confidence": "high",
+   "source_title": "Texas Legislature Online, Upcoming Senate Committee Meetings"
+  },
+  {
+   "id": "c3",
+   "text": "One charge before the Senate Committee on Transportation directs it to study how driverless vehicles have been deployed under Senate Bill 2807.",
+   "quote": "Study the deployment of autonomous vehicle technology as authorized by SB 2807",
+   "url": "https://lrl.texas.gov/whatsNew/client/index.cfm/2026/8/19/Interim-Hearings--Week-of-August-24-2026",
+   "source_type": "primary_official",
+   "retrieved": "2026-08-21",
+   "confidence": "high",
+   "source_title": "Legislative Reference Library of Texas, Interim Hearings, Week of August 24th, 2026"
+  },
+  {
+   "id": "c4",
+   "text": "The same charge names three Texas agencies whose rule making is in scope, then instructs the committee to quantify the effect on traffic related collisions.",
+   "quote": "including rule-making adopted by the Texas Department of Public Safety, the Texas Department of Motor Vehicles and the Texas Department of Licensing and Regulation. Quantify the impact on traffic-related collisions.",
+   "url": "https://lrl.texas.gov/whatsNew/client/index.cfm/2026/8/19/Interim-Hearings--Week-of-August-24-2026",
+   "source_type": "primary_official",
+   "retrieved": "2026-08-21",
+   "confidence": "high",
+   "source_title": "Legislative Reference Library of Texas, Interim Hearings, Week of August 24th, 2026"
+  },
+  {
+   "id": "c5",
+   "text": "The charge closes by asking for recommendations on continued driverless deployment and public safety.",
+   "quote": "Make recommendations to ensure that the continued deployment of autonomous vehicles prioritizes public safety and aligns with the evolving technological landscape on Texas roads.",
+   "url": "https://lrl.texas.gov/whatsNew/client/index.cfm/2026/8/19/Interim-Hearings--Week-of-August-24-2026",
+   "source_type": "primary_official",
+   "retrieved": "2026-08-21",
+   "confidence": "high",
+   "source_title": "Legislative Reference Library of Texas, Interim Hearings, Week of August 24th, 2026"
+  },
+  {
+   "id": "c6",
+   "text": "The driverless charge is not the committee's only business that day. A second charge covers rail grade crossings.",
+   "quote": "Prioritizing Public Safety at Rail-Grade Crossings",
+   "url": "https://lrl.texas.gov/whatsNew/client/index.cfm/2026/8/19/Interim-Hearings--Week-of-August-24-2026",
+   "source_type": "primary_official",
+   "retrieved": "2026-08-21",
+   "confidence": "high",
+   "source_title": "Legislative Reference Library of Texas, Interim Hearings, Week of August 24th, 2026"
+  },
+  {
+   "id": "c7",
+   "text": "A third charge before the same committee covers commercial driver licensing.",
+   "quote": "Strengthening Commercial Driver License Standards and Oversight",
+   "url": "https://lrl.texas.gov/whatsNew/client/index.cfm/2026/8/19/Interim-Hearings--Week-of-August-24-2026",
+   "source_type": "primary_official",
+   "retrieved": "2026-08-21",
+   "confidence": "high",
+   "source_title": "Legislative Reference Library of Texas, Interim Hearings, Week of August 24th, 2026"
+  },
+  {
+   "id": "c8",
+   "text": "Senate Bill 2807 of the 89th Regular Session is captioned as a bill about motor vehicles including automated motor vehicles.",
+   "quote": "Relating to motor vehicles, including automated motor vehicles; creating a criminal offense.",
+   "url": "https://lrl.texas.gov/legis/billsearch/BillDetails.cfm?legSession=89-0&billTypeDetail=SB&billnumberDetail=2807",
+   "source_type": "primary_official",
+   "retrieved": "2026-08-21",
+   "confidence": "high",
+   "source_title": "Legislative Reference Library of Texas, SB 2807, 89th R.S."
+  },
+  {
+   "id": "c9",
+   "text": "The Texas Department of Motor Vehicles states that SB 2807 created a required authorization for commercial driverless operation on Texas roads.",
+   "quote": "The 89th Texas Legislature passed Senate Bill 2807 (89R) in 2025 creating a required authorization for the commercial operation of automated vehicles on Texas roads.",
+   "url": "https://www.txdmv.gov/AVprogram",
+   "source_type": "primary_official",
+   "retrieved": "2026-08-21",
+   "confidence": "high",
+   "source_title": "Texas Department of Motor Vehicles, Automated Vehicles Regulatory Program"
+  },
+  {
+   "id": "c10",
+   "text": "That authorization became a live requirement on May 28th, 2026.",
+   "quote": "All companies operating automated vehicles commercially on or after May 28, 2026, are required to maintain an active authorization with TxDMV.",
+   "url": "https://www.txdmv.gov/AVprogram",
+   "source_type": "primary_official",
+   "retrieved": "2026-08-21",
+   "confidence": "high",
+   "source_title": "Texas Department of Motor Vehicles, Automated Vehicles Regulatory Program"
+  },
+  {
+   "id": "c11",
+   "text": "Waymo opened its Houston robotaxi service to the general public rather than to an invitation list.",
+   "quote": "Starting today, anyone in Houston can download the Waymo app and hail a fully autonomous ride.",
+   "url": "https://waymo.com/blog/shorts/houston-open-to-all/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-08-21",
+   "confidence": "high",
+   "source_title": "Waymo, From the road, August 20th, 2026"
+  },
+  {
+   "id": "c12",
+   "text": "Waymo states it carried more than one hundred thousand Houston riders off its interest list between February and the public opening.",
+   "quote": "Since opening our service in February, we’ve welcomed more than 100,000 riders in Houston from our interest list",
+   "url": "https://waymo.com/blog/shorts/houston-open-to-all/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-08-21",
+   "confidence": "high",
+   "source_title": "Waymo, From the road, August 20th, 2026"
+  },
+  {
+   "id": "c13",
+   "text": "Waymo's post identifies Raul Gallegos by the title First Vice President of the National Federation for the Blind of Texas.",
+   "quote": "Raul Gallegos, First Vice President of the National Federation for the Blind of Texas",
+   "url": "https://waymo.com/blog/shorts/houston-open-to-all/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-08-21",
+   "confidence": "high",
+   "source_title": "Waymo, From the road, August 20th, 2026"
+  },
+  {
+   "id": "c14",
+   "text": "Inside his quoted remark the organisation is named the National Federation of the Blind of Texas, and it welcomes the full Houston opening.",
+   "quote": "The National Federation of the Blind of Texas is happy to hear the news that Waymo will be fully available in Houston.",
+   "url": "https://waymo.com/blog/shorts/houston-open-to-all/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-08-21",
+   "confidence": "high",
+   "source_title": "Waymo, From the road, August 20th, 2026"
+  },
+  {
+   "id": "c15",
+   "text": "Kodiak states it launched driverless triple trailer hauling with its customer Atlas Energy Solutions.",
+   "quote": "We recently launched driverless technology that hauls triple trailers in collaboration with our customer, Atlas Energy Solutions.",
+   "url": "https://kodiak.ai/news/driverless-triple-trailers-permian-basin",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-08-21",
+   "confidence": "high",
+   "source_title": "Kodiak, How Kodiak Trained Its Driverless Tech To Haul Triple Trailers"
+  },
+  {
+   "id": "c16",
+   "text": "Kodiak states a fleet of 35 driverless trucks ran with nobody in the cab in the Permian Basin oil fields as of June 30th, 2026.",
+   "quote": "These triple-trailer trucks are now plying routes as part of a fleet of 35 driverless trucks with no humans in the cab as of June 30, 2026, and they’re owned and operated by Atlas in the oil fields of the Permian Basin.",
+   "url": "https://kodiak.ai/news/driverless-triple-trailers-permian-basin",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-08-21",
+   "confidence": "high",
+   "source_title": "Kodiak, How Kodiak Trained Its Driverless Tech To Haul Triple Trailers"
+  },
+  {
+   "id": "c17",
+   "text": "Kodiak states the driverless triples have carried more than 1,400 loads since February.",
+   "quote": "Since launching triples in February, the Kodiak Driver has carried more than 1,400 loads in the triples configuration.",
+   "url": "https://kodiak.ai/news/driverless-triple-trailers-permian-basin",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-08-21",
+   "confidence": "high",
+   "source_title": "Kodiak, How Kodiak Trained Its Driverless Tech To Haul Triple Trailers"
+  },
+  {
+   "id": "c19",
+   "text": "Kodiak's securities filing puts the same figure at 35 customer owned driverless vehicles at the end of the second quarter, up seven in the quarter.",
+   "quote": "Deployed seven additional driverless trucks, for a total of 35 Customer-Owned Driverless Vehicles as of the end of Q2",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001853138/000162828026054331/kodiakai-q2202663026xearni.htm",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-08-21",
+   "confidence": "high",
+   "source_title": "SEC EDGAR, Kodiak AI Reports Second Quarter 2026 Results"
+  },
+  {
+   "id": "c20",
+   "text": "The same filing says driverless trucks now cover a second simultaneous load out point on the 42 mile Dune Express sand conveyor.",
+   "quote": "Expanded driverless truck deployment to cover a second simultaneous load-out point along Atlas’s 42-mile Dune Express sand conveyor system",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001853138/000162828026054331/kodiakai-q2202663026xearni.htm",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-08-21",
+   "confidence": "high",
+   "source_title": "SEC EDGAR, Kodiak AI Reports Second Quarter 2026 Results"
+  },
+  {
+   "id": "c22",
+   "text": "Aurora began regular driverless freight deliveries between Dallas and Houston.",
+   "quote": "Aurora began regular driverless customer deliveries between Dallas and Houston this week.",
+   "url": "https://ir.aurora.tech/news-events/press-releases/detail/119/aurora-begins-commercial-driverless-trucking-in-texas-ushering-in-a-new-era-of-freight",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-08-21",
+   "confidence": "high",
+   "source_title": "Aurora Innovation, Aurora Begins Commercial Driverless Trucking in Texas"
+  },
+  {
+   "id": "c23",
+   "text": "That announcement is dated May 1st, 2025, which is the date every span in this run is measured from. c22's own words are that deliveries began that week, so the spans are floors.",
+   "quote": "May 01, 2025 6:00am EDT",
+   "url": "https://ir.aurora.tech/news-events/press-releases/detail/119/aurora-begins-commercial-driverless-trucking-in-texas-ushering-in-a-new-era-of-freight",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-08-21",
+   "confidence": "high",
+   "source_title": "Aurora Innovation, Aurora Begins Commercial Driverless Trucking in Texas"
+  },
+  {
+   "id": "c24",
+   "text": "At that launch Aurora reported over 1,200 driverless miles completed.",
+   "quote": "To date, the Aurora Driver has completed over 1,200 miles without a driver.",
+   "url": "https://ir.aurora.tech/news-events/press-releases/detail/119/aurora-begins-commercial-driverless-trucking-in-texas-ushering-in-a-new-era-of-freight",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-08-21",
+   "confidence": "high",
+   "source_title": "Aurora Innovation, Aurora Begins Commercial Driverless Trucking in Texas"
+  },
+  {
+   "id": "c26",
+   "text": "Aurora's second Texas lane runs 600 miles from Fort Worth to El Paso and opened six months after the Dallas to Houston route.",
+   "quote": "The launch of the 600-mile lane from Fort Worth to El Paso, just six months after the inaugural Dallas to Houston route, marks the fastest scaling to a second market in the U.S. self-driving industry.",
+   "url": "https://ir.aurora.tech/news-events/press-releases/detail/128/aurora-expands-driverless-trucking-service-from-fort-worth-to-el-paso",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-08-21",
+   "confidence": "high",
+   "source_title": "Aurora Innovation, Aurora Expands Driverless Trucking Service from Fort Worth to El Paso"
+  },
+  {
+   "id": "c27",
+   "text": "That expansion is dated October 28th, 2025.",
+   "quote": "October 28, 2025 4:15pm EDT",
+   "url": "https://ir.aurora.tech/news-events/press-releases/detail/128/aurora-expands-driverless-trucking-service-from-fort-worth-to-el-paso",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-08-21",
+   "confidence": "high",
+   "source_title": "Aurora Innovation, Aurora Expands Driverless Trucking Service from Fort Worth to El Paso"
+  },
+  {
+   "id": "c28",
+   "text": "By that announcement Aurora reported passing one hundred thousand driverless miles on public roads.",
+   "quote": "surpasses 100,000 driverless miles on public roads",
+   "url": "https://ir.aurora.tech/news-events/press-releases/detail/128/aurora-expands-driverless-trucking-service-from-fort-worth-to-el-paso",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-08-21",
+   "confidence": "high",
+   "source_title": "Aurora Innovation, Aurora Expands Driverless Trucking Service from Fort Worth to El Paso"
+  },
+  {
+   "id": "c29",
+   "text": "Aurora states its commercial network runs 10 driverless routes across the Sun Belt.",
+   "quote": "Aurora plans to deploy the new fleet across its commercial network, which currently encompasses 10 driverless routes throughout the U.S. Sun Belt, to serve additional customers.",
+   "url": "https://ir.aurora.tech/news-events/press-releases/detail/144/aurora-launches-second-generation-driverless-trucks-in-u-s-to-meet-customer-demand",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-08-21",
+   "confidence": "high",
+   "source_title": "Aurora Innovation, Aurora Launches Second-Generation Driverless Trucks"
+  },
+  {
+   "id": "c30",
+   "text": "The second generation driverless launch is dated July 22nd, 2026.",
+   "quote": "July 22, 2026 9:00am EDT",
+   "url": "https://ir.aurora.tech/news-events/press-releases/detail/144/aurora-launches-second-generation-driverless-trucks-in-u-s-to-meet-customer-demand",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-08-21",
+   "confidence": "high",
+   "source_title": "Aurora Innovation, Aurora Launches Second-Generation Driverless Trucks"
+  },
+  {
+   "id": "c31",
+   "text": "The federal incident dataset for automated driving systems records the reporting entity and the report type for each filing.",
+   "quote": "Report ID,Report Version,Reporting Entity,Report Type",
+   "url": "https://static.nhtsa.gov/odi/ffdd/sgo-2021-01/SGO-2021-01_Incident_Reports_ADS.csv",
+   "source_type": "primary_official",
+   "retrieved": "2026-08-21",
+   "confidence": "medium",
+   "source_title": "NHTSA, Standing General Order 2021-01 ADS Incident Reports dataset"
+  },
+  {
+   "id": "c34",
+   "text": "The Texas Department of Public Safety page on connected and autonomous vehicles takes first responder interaction plans and publishes no incident count.",
+   "quote": "Connected and Autonomous Vehicles",
+   "url": "https://www.dps.texas.gov/section/cav/connected-autonomous-vehicles",
+   "source_type": "primary_official",
+   "retrieved": "2026-08-21",
+   "confidence": "medium",
+   "source_title": "Texas Department of Public Safety, Connected and Autonomous Vehicles"
+  },
+  {
+   "id": "c35",
+   "text": "The Texas Department of Transportation publishes statewide crash records and its crash data page names no autonomous or automated driving category.",
+   "quote": "Crash Reports and Records",
+   "url": "https://www.txdot.gov/data-maps/crash-reports-records.html",
+   "source_type": "primary_official",
+   "retrieved": "2026-08-21",
+   "confidence": "medium",
+   "source_title": "Texas Department of Transportation, Crash Reports and Records"
+  },
+  {
+   "id": "c36",
+   "text": "The Legislature's own listing types the August 25th Transportation meeting as a public hearing and gives the room.",
+   "quote": "Transportation Type: Public Hearing Location: E1.016 (Hearing Room)",
+   "url": "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S",
+   "source_title": "Texas Legislature Online, Upcoming Senate Committee Meetings",
+   "source_type": "primary_official",
+   "retrieved": "2026-08-21",
+   "confidence": "high"
+  },
+  {
+   "id": "c37",
+   "text": "Waymo's Houston post is dated August 20th, 2026.",
+   "quote": "August 20, 2026 - From the road - Waymo",
+   "url": "https://waymo.com/blog/shorts/houston-open-to-all/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-08-21",
+   "confidence": "high",
+   "source_title": "Waymo, From the road, August 20th, 2026"
+  }
+ ],
+ "rejected": [
+  {
+   "finding": "The 9:00 AM start time of the August 25th Senate Transportation hearing",
+   "reason": "The value is on the Legislature's upcoming meetings page but renders as an isolated table cell between the date and the committee name, with no contiguous run containing it and no labelled 'Time: 9:00 AM' form. Quoting it would mean joining cells the page keeps apart. The labelled form is in the hearing notice, which is under capitol.texas.gov/TLODOCS/ and disallowed by that host's robots.txt this run."
+  },
+  {
+   "finding": "Kodiak has carried 'over 1,400 loads' in triple configuration since February",
+   "reason": "The page says 'more than 1,400 loads'. A first retrieval returned the paraphrase 'over' and a forced substring check returned NOT EXACT against the real wording. The figure survives as c17 with the source's own verb."
+  },
+  {
+   "finding": "Kodiak's triple trailer post names a Texas county",
+   "reason": "It does not. Checked explicitly. The page says 'Permian Basin' and locates it across West Texas and Eastern New Mexico. Any county on a slide would be invented."
+  },
+  {
+   "finding": "Aurora's July 22nd, 2026 second generation launch covers a named Texas lane",
+   "reason": "That release names no Texas city or lane. It says the network 'currently encompasses 10 driverless routes throughout the U.S. Sun Belt'. The Texas lanes are carried by c22 through c28 instead."
+  },
+  {
+   "finding": "Amazon Prime Air plans 'nearly 500 cities and towns by the end of 2026'",
+   "reason": "Not an exact substring. The page reads 'nearly 500 cities and towns in the United States by the end of 2026', and the retrieval returned a false exact match on the shortened form. Dropped rather than reconstructed. Prime Air is drones rather than road vehicles and is off this deck's spine anyway."
+  },
+  {
+   "finding": "A publication date for the Amazon Prime Air expansion page",
+   "reason": "The page carries none, confirmed by asking directly. Nothing on this deck may date that source."
+  },
+  {
+   "finding": "The statutory text of SB 2807's automated motor vehicle subchapter",
+   "reason": "statutes.capitol.texas.gov resolved to the Texas Constitution and Statutes homepage navigation rather than the chapter text, on two paths. capitol.texas.gov/TLODOCS/ and /BillLookup/ are disallowed. The bill's effect is carried by the TxDMV program page at c9 and c10 and by the caption at c8."
+  },
+  {
+   "finding": "A row count for the NHTSA automated driving system incident dataset",
+   "reason": "The retrieval reported '51 data rows' for a large CSV, which is a truncated read rather than a count of the file, and the number was produced by the retrieval rather than by counting. No incident count goes in the record."
+  },
+  {
+   "finding": "Whether the TxDOT CRIS public query tool exposes an autonomous vehicle field",
+   "reason": "The CRIS public query is a client rendered application and the fetch returned only its heading and a loading state. An absence cannot be asserted from a page that did not render."
+  },
+  {
+   "finding": "That the federal dataset is the ONLY public per incident source for automated driving system crashes",
+   "reason": "The two NHTSA pages that would settle it returned 403 and the Texas CRIS query did not render. The deck may say the federal dataset is the per incident record this record reached. It may not say it is the only one."
+  },
+  {
+   "finding": "That a member of the public may testify at the August 25th hearing, and the two minute limit on testimony",
+   "reason": "No allowed source states it. The wording lives in the posted Notice of Public Hearing under capitol.texas.gov/TLODOCS/, which that host's robots.txt disallows. The Legislature's upcoming meetings listing types the meeting as a public hearing and says nothing about who may speak. No slide and no caption may assert a right to testify."
+  }
+ ],
+ "absences": [
+  {
+   "assertion": "None of the three Texas agency pages this record checked publishes a count of crashes involving driverless vehicles.",
+   "looked_at": [
+    "https://www.txdmv.gov/AVprogram",
+    "https://www.dps.texas.gov/section/cav/connected-autonomous-vehicles",
+    "https://www.txdot.gov/data-maps/crash-reports-records.html"
+   ],
+   "what_they_showed": "The Texas Department of Motor Vehicles Automated Vehicles Regulatory Program page describes an authorization to operate and a route for safety complaints, and publishes no crash, collision or incident count. The Department of Public Safety Connected and Autonomous Vehicles page carries first responder interaction plans and a submissions address, and publishes no incident statistics. The Department of Transportation crash data page publishes statewide crash statistics drawn from the Crash Records Information System and names no autonomous, driverless or automated driving category. These are the Texas agency resources the Legislative Reference Library lists beneath the autonomous vehicle charge itself. CORRECTION MADE AT SCORING, and it is the sharper finding. The assertion first read \"the three Texas agency pages the committee's own charge points to\", and that is not what these three are. c4's quote names the Department of Public Safety, the Department of Motor Vehicles and the Texas Department of Licensing and Regulation. The Department of Transportation is NOT among them, and it is the agency that publishes the state's crash records. These three are the pages this record chose to check, which is the Legislative Reference Library's own resource list beneath the charge, and the mismatch between that list and the charge's own three agencies is a fact about the charge rather than a slip in the record.",
+   "claims": [
+    "c4",
+    "c9",
+    "c10",
+    "c34",
+    "c35"
+   ],
+   "safe_to_publish": true
+  }
+ ]
+}

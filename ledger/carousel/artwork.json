@@ -164,6 +164,56 @@
     "the perforation was drawn as hairline ARCS, a near-white stroke on cream and a dark stroke against a dark hole. Both were invisible and the ledger had recorded them as shipped. Redrawn as filled bodies stacked in light order",
     "every <br> in the deck now carries a space before it. Without one the two words close up in textContent, which is what every gate reads, and slide 2's 'Read the first seven words.' was invisible to aggregate_check for the whole run as 'Read the firstseven words.'"
    ]
+  },
+  {
+   "date": "2026-08-21",
+   "carousel_no": 5,
+   "written_from": "render/render_report.json, render/machine_qa.json and the gates' own exit codes, never from the storyboard. The plan changed five times during the render loop and the storyboard was reconciled to the frames afterwards, so the plan is a record of what was intended and this is a record of what ran.",
+   "register": "a Texas road at night in returned light, with one noon inversion. Retroreflective return is the deck's physical law and it carries the argument for free: a mark returns light when the record holds it, and the one mount that carries nothing returns nothing",
+   "techniques": [
+    "an axonometric instrument authored directly in SVG, mounted on a roof plane with thickness through a drawn pedestal casting an occlusion shadow on the sheet metal",
+    "a broken time scale, two lanes both linear in elapsed days at different rates, with a filled wedge whose top edge spans exactly the segment the lower lane redraws",
+    "a lit caliche haze band with the rig standing in it in silhouette, the air lit rather than the vehicle",
+    "an SVG tally of 1,400 marks in 280 groups of five, asserted at build time, under one emitter falloff computed per group index",
+    "four parallax planes and a crossing in pure CSS with no raster context on the frame at all",
+    "a single class county choropleth through TXGeo's Albers, lit on the seams by a raking sodium lamp so 254 identical fills do not read as a bed",
+    "a one point perspective road with the centre line's dashes placed by GROUND DISTANCE and projected, and retroreflective return kept as a separate term from diffuse ambient",
+    "a glyph mask driving corduroy striations INSIDE the letterforms with a lit offset edge, on pavement that stayed unmilled. WHAT SHIPPED, not what was planned. The plan was a milled band with the shadow on the near wall and the light on the far one so the type read as cut into the shoulder, and the sixth panel's craft judge measured the pavement behind the glyphs at the same value as the shoulder above and below it, so there is no band and no trough. The type reads as raised on the road rather than cut into it, which is the inverse of the technique, and the offset edge reads as misregistration. This line said the planned thing until that judge read the render and found the ledger had recorded a drawing nobody made, which is the one failure this file exists to make impossible",
+    "an SVG guide sign panel with its plate measured from the laid out legend"
+   ],
+   "palette": {
+    "source": "the materials of a Texas road at night, plus one Gulf Coast noon",
+    "asphalt": "#17181A",
+    "bitumen": "#0F1012",
+    "bead": "#E9EFE6",
+    "edgeline": "#F0C22A",
+    "amber": "#C4813A",
+    "fracsand": "#E6D8B8",
+    "dust": "#C9B393",
+    "gulf_sun": "#EDE9DE",
+    "signgreen": "#17503C",
+    "flag_red": "#BF0A30"
+   },
+   "red_spent": true,
+   "red_on_slide": [
+    9
+   ],
+   "red_note": "Spent once, on the closing frame, on the date block carrying August 25th, 2026 in white mono on the sign panel's green field. It is the deck's only dated public event and the only thing on any frame a reader can put in a calendar.",
+   "camera": "eight cameras and one register stamp naming each. The middle footer cell used to print FRAME WIDTH in feet and it was a typed numeral that contradicted its own drawing on at least two frames, so it now names how the frame is DRAWN and asserts no quantity",
+   "light_decks_used": 1,
+   "slides": 9,
+   "bespoke_median_similarity": 0.126,
+   "bespoke_closest_pair": "slide-03.html and slide-08.html at 0.8681",
+   "cut": "Nothing was cut. Two frames were REBUILT from the ground up after the pixel critics, slide 2 because a hook promising seven marks showed six at feed size, and slide 7 because its haze wedge had its apex on its own subject and its three stripes were painted out at full opacity by two band wells the frame drew over itself.",
+   "structural_laws": [
+    "returned light means the record holds it. The one mount carrying no date returns nothing and takes one rim of the lamp, and it is the darkest area in its lane",
+    "no numeral is typed. The first panel found three that were, on three frames, and each one is now interpolated from the code that computes it",
+    "no county is named anywhere, because no claim in this run names one and the committed gazetteer holds counties and metros but no cities, so Houston does not resolve to Harris from data this repo holds",
+    "no coordinate is printed. Three shipped in the first render and two of the three were wrong against the gazetteer's own computed centroids",
+    "every word on a frame is DOM text, and this deck BROKE IT on slide 8. A date on a chart is copy, and canvas fillText ships it as a bitmap that copy_sync, the vector PDF and a screen reader all miss. Slide 2's twelve raster labels were moved to the DOM when the first panel found them, and slide 8's four header strings were not, so the one frame whose entire subject is a machine readable header row ships that row as four bitmaps. machine_qa warns about it four times in the same file this entry says it was written from, and the law sat here stated and broken for three panels before the seventh read the warnings against the law and said so",
+    "a container's edge is not its content's edge. Three frames shipped a paragraph, a stripe or a tally row cut by a plate before this was written down"
+   ],
+   "panel_repairs": []
   }
  ]
 }

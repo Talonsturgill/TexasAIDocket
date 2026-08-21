@@ -1,0 +1,92 @@
+{
+ "run_date": "2026-08-21",
+ "aggregates": [
+  {
+   "phrase": "481 DAYS",
+   "kind": "duration",
+   "value": 481,
+   "computed_by": "out/2026-08-21/tmp/build_slides.py, (date(2026,8,25) - date(2025,5,1)).days over the run's date table. The first date is the Dallas to Houston launch in c23 and the last is the hearing in c1. No part of it is typed.",
+   "claim_ids": [
+    "c23",
+    "c1"
+   ]
+  },
+  {
+   "phrase": "89 DAYS",
+   "kind": "duration",
+   "value": 89,
+   "computed_by": "out/2026-08-21/tmp/build_slides.py, 481 minus 392, where 392 is (date(2026,5,28) - date(2025,5,1)).days from c10 back to c23. It is the stretch from the authorization becoming a live requirement to the hearing.",
+   "claim_ids": [
+    "c23",
+    "c10",
+    "c1"
+   ]
+  },
+  {
+   "phrase": "Five of seven",
+   "kind": "ratio",
+   "value": 5,
+   "computed_by": "out/2026-08-21/tmp/build_slides.py, sum(1 for d in SEQ if (d - SEQ[0]).days >= 392) over the seven dated marks, which counts the marks falling inside the 89 day window. Denominator is len(SEQ), the seven marks the deck draws.",
+   "claim_ids": [
+    "c10",
+    "c16",
+    "c30",
+    "c11",
+    "c1"
+   ]
+  },
+  {
+   "phrase": "35 trucks",
+   "kind": "quoted",
+   "value": 35,
+   "quoted_from": "c16",
+   "computed_by": "not computed. Quoted from c16, which states a fleet of 35 driverless trucks ran with nobody in the cab in the Permian Basin oil fields as of June 30th, 2026. c19 puts the same figure in the securities filing.",
+   "claim_ids": [
+    "c16",
+    "c19"
+   ],
+   "quote": "35 driverless trucks"
+  },
+  {
+   "phrase": "1,400 loads",
+   "kind": "count",
+   "value": 1400,
+   "computed_by": "out/2026-08-21/tmp/build_slides.py sets LOADS = 1400 and TALLY_GROUPS = LOADS // 5, and slide 4's SVG builder draws one element per mark and throws unless the elements it appended equal LOADS exactly, so the count on the frame is asserted at build time rather than trusted. The floor the count is set to is c17, which states more than 1,400 loads since February, and the frame's own dek says the drawing shows 1,400 and the record says more so a reader cannot take the drawn count as exact. PROVENANCE NOTE, and it belongs in the run record too: this figure is quoted as well as computed, and it cannot be declared through quoted_from, because to_int in aggregate_check parses a bare run of digits and returns None for a string carrying a thousands separator. Any quoted figure at or above 1,000 therefore fails to re-derive. scripts/carousel is the upgrade actor's lane and a routine does not edit the engine it is running, so it is filed as a proposal rather than patched here.",
+   "claim_ids": [
+    "c17"
+   ]
+  },
+  {
+   "phrase": "42 mile Dune Express",
+   "kind": "quoted",
+   "value": 42,
+   "quoted_from": "c20",
+   "computed_by": "not computed. Quoted from c20, which reports a second simultaneous load-out point along Atlas's 42-mile Dune Express sand conveyor system.",
+   "claim_ids": [
+    "c20"
+   ],
+   "quote": "42-mile Dune Express sand conveyor"
+  },
+  {
+   "phrase": "three agencies",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "counted off the names in c4's own quote, which reads 'including rule-making adopted by the Texas Department of Public Safety, the Texas Department of Motor Vehicles and the Texas Department of Licensing and Regulation'. Three agencies are named. It was first declared through quoted_from with the string 'names three Texas agencies', and that string is in the record's own paraphrase of c4 rather than in the fetched bytes, which a scoring judge correctly called a computation dressed as a quotation. The frame's wording keeps the source's 'whose rule making is in scope' for the same reason: 'including' is expressly non-exhaustive and the deck may not close a list the source leaves open.",
+   "claim_ids": [
+    "c4"
+   ]
+  },
+  {
+   "phrase": "3 pages",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "out/2026-08-21/tmp/build_slides.py sets N_ABSENCE_PAGES = len(claims.json absences[0].looked_at), so the number on slide 7 is the length of the list of agency pages this run actually fetched and read, not a count typed to match it. The three are TxDMV's AV program page, DPS's connected and autonomous vehicles page and TxDOT's crash reports and records page. It reached the frame at the fifth panel, when the kicker stopped saying WHAT NOBODY COUNTS, which asserted a universal the claims file had already refused, and started saying how many pages were looked at. The geo stamp carried the same figure before that and is data-decorative, which is why nothing needed this declaration until a frame said it in words a gate can read.",
+   "claim_ids": [
+    "c9",
+    "c34",
+    "c35"
+   ]
+  }
+ ],
+ "note_on_392": "392 is published on slide 6 and in the caption and it is NOT declared here, because aggregate_check refuses a declaration it did not itself detect and it cannot detect this one. Its scan short-circuits the whole text node on EXEMPT, and slide 6's dek carries both 'SB 2807' and '2026', so the sentence containing '392 days' switches off aggregate detection for its entire length. The figure is computed in out/2026-08-21/compute.py as (date(2026,5,28) - date(2025,5,1)).days from c10 and c23, it is written to computed.json as span_first_lane_to_authorization_days, the slide builder interpolates it rather than typing it, and the two paths refuse to agree unless they match. Filed as a proposal for the upgrade phase, which owns scripts/carousel, rather than patched mid-run."
+}

@@ -10,7 +10,7 @@ The Senate Committee on Transportation posted notice of a public hearing for Aug
 - Comment closes: 2026-08-25
 - Take part: https://capitol.texas.gov/tlodocs/89R/schedules/pdf/C6402026082509001.PDF
 
-- Last checked: 2026-08-20
+- Last checked: 2026-08-21
 
 ## Dates
 
@@ -21,6 +21,7 @@ The Senate Committee on Transportation posted notice of a public hearing for Aug
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-08-20 · Admitted. The Legislature's own notice carries the charge, the date, the room and the terms on which a member of the public may be heard.
+- 2026-08-21 · Checked and unchanged. The Legislature's own upcoming meetings listing still carries the Transportation Committee for 9:00 AM on Tuesday, August 25th, 2026 in hearing room E1.016. The autonomous vehicle charge under SB 2807 still stands, and it still directs the committee to quantify the impact on traffic related collisions.
 
 ## Evidence
 
@@ -49,4 +50,22 @@ Source (primary_official): https://capitol.texas.gov/tlodocs/89R/schedules/pdf/C
 > PLACE: E1.016 (Hearing Room)
 
 Source (primary_official): https://capitol.texas.gov/tlodocs/89R/schedules/pdf/C6402026082509001.PDF
+
+### The Legislature's own upcoming meetings listing carries the committee, the date, the time and the room.
+
+> Tuesday, August 25, 2026 9:00 AM Transportation Type: Public Hearing Location: E1.016 (Hearing Room)
+
+Source (primary_official): https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S
+
+### The Legislative Reference Library's weekly posting carries the charge the committee is meeting on.
+
+> Study the deployment of autonomous vehicle technology as authorized by SB 2807
+
+Source (primary_official): https://lrl.texas.gov/whatsNew/client/index.cfm/2026/8/19/Interim-Hearings--Week-of-August-24-2026
+
+### The same posting carries the rules the charge reaches and what the committee is directed to measure.
+
+> including rule-making adopted by the Texas Department of Public Safety, the Texas Department of Motor Vehicles and the Texas Department of Licensing and Regulation. Quantify the impact on traffic-related collisions.
+
+Source (primary_official): https://lrl.texas.gov/whatsNew/client/index.cfm/2026/8/19/Interim-Hearings--Week-of-August-24-2026
 

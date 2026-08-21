@@ -1,0 +1,214 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;
+            background:#17181A;font-kerning:normal}
+  #art{position:absolute;inset:0;display:block}
+  .lyr{position:absolute;inset:0}
+  .kick{position:absolute;left:80px;top:80px;font-family:'JetBrains Mono',monospace;
+        font-size:26px;letter-spacing:0.16em;text-transform:uppercase;color:#9AA096;margin:0}
+  .hook{position:absolute;margin:0;font-family:Fraunces,serif;font-weight:700;
+        line-height:0.98;letter-spacing:-0.015em;color:#E9EFE6}
+  .dek{position:absolute;margin:0;font-family:Manrope,sans-serif;font-weight:500;
+       font-size:34px;line-height:1.34;color:#C9B393}
+  .src{position:absolute;left:80px;bottom:130px;font-family:'JetBrains Mono',monospace;
+       font-size:24px;letter-spacing:0.04em;color:#9AA096;margin:0}
+  .row{position:absolute;left:80px;right:80px;bottom:84px;display:flex;
+       justify-content:space-between;align-items:baseline;
+       font-family:'JetBrains Mono',monospace;font-size:26px;letter-spacing:0.08em;color:#9AA096}
+  .row span{font-variant-numeric:tabular-nums}
+  .geo{position:absolute;right:80px;bottom:130px;font-family:'JetBrains Mono',monospace;
+       font-size:22px;letter-spacing:0.04em;color:#9AA096;margin:0;text-align:right}
+
+</style>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script src="@@ASSETS@@/js/topojson-client.min.js"></script>
+<script src="@@ASSETS@@/js/txgeo.js"></script>
+</head><body>
+<canvas id="art" style="width:1080px;height:1350px"></canvas>
+
+<p class="kick">The state's own act</p>
+<h1 class="hook" id="h6" style="left:80px;top:800px;width:920px;font-size:62px">The state&#39;s number is a permission.</h1>
+<p class="dek" style="left:80px;top:952px;width:920px;font-size:28px;line-height:1.32">SB 2807&#39;s TxDMV authorization became a live requirement for commercial automated vehicle operation on May 28th, 2026, which is 392 days after the Dallas to Houston lane opened.</p>
+<p class="src">TxDMV, c8 c9 c10 c22 c23</p>
+<p class="geo" data-decorative>SB 2807<br>254 COUNTIES</p>
+<div class="row"><span>06 / 09</span><span>ALBERS</span><span class="tx-site">texasaidocket.com</span></div>
+<script>
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  const cv = document.getElementById('art');
+  cv.width = 1080*2; cv.height = 1350*2;
+  const g = cv.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260821);
+
+  function tone(hex, d, a){
+    const n = parseInt(hex.slice(1), 16);
+    const c = [(n>>16)&255,(n>>8)&255,n&255].map(function(v){return Math.max(0,Math.min(255,v+d));});
+    return 'rgba('+c[0]+','+c[1]+','+c[2]+','+a+')';
+  }
+  function well(x, y, w, h, top, bot){
+    const gr = g.createLinearGradient(0, y, 0, y+h);
+    gr.addColorStop(0, top); gr.addColorStop(1, bot);
+    g.fillStyle = gr; g.fillRect(x, y, w, h);
+  }
+  function reserve(x, y, w, h, c, k){
+    const K = k === undefined ? 1 : k, f = 20, R = TX.rng(Math.round(x*7+y*13+w));
+    const d = g.createLinearGradient(x, y, x+w, y+h);
+    d.addColorStop(0, tone(c, 22*K, 1)); d.addColorStop(0.55, tone(c, 0, 1));
+    d.addColorStop(1, tone(c, -13*K, 1));
+    g.fillStyle = d; g.fillRect(x, y, w, h);
+    const a = g.createLinearGradient(0, y-f, 0, y);
+    a.addColorStop(0, tone(c, 22*K, 0)); a.addColorStop(1, tone(c, 22*K, 1));
+    g.fillStyle = a; g.fillRect(x, y-f, w, f);
+    const b = g.createLinearGradient(0, y+h, 0, y+h+f);
+    b.addColorStop(0, tone(c, -13*K, 1)); b.addColorStop(1, tone(c, -13*K, 0));
+    g.fillStyle = b; g.fillRect(x, y+h, w, f);
+    const l = g.createLinearGradient(x-f, 0, x, 0);
+    l.addColorStop(0, tone(c, 0, 0)); l.addColorStop(1, tone(c, 0, 1));
+    g.fillStyle = l; g.fillRect(x-f, y, f, h);
+    const r2 = g.createLinearGradient(x+w, 0, x+w+f, 0);
+    r2.addColorStop(0, tone(c, 0, 1)); r2.addColorStop(1, tone(c, 0, 0));
+    g.fillStyle = r2; g.fillRect(x+w, y, f, h);
+    // Broad, soft and nearly invisible. Enough luminance spread per cell to keep the band off
+    // the flat-plate reading, far too little to be seen as texture: the earlier version was
+    // legible as scratched grey panels laid over the art, which cheapened all nine frames.
+    for (let i=0; i<Math.round(w*h/900); i++){
+      const px=x+R()*w, py=y+R()*h, s=16+R()*46;
+      const gr = g.createRadialGradient(px, py, 0, px, py, s);
+      const d = R()<0.5 ? Math.round(22*K) : Math.round(-11*K);
+      gr.addColorStop(0, tone(c, d, 0.55)); gr.addColorStop(1, tone(c, d, 0));
+      g.fillStyle = gr; g.beginPath(); g.arc(px, py, s, 0, Math.PI*2); g.fill();
+    }
+    // THE AGGREGATE CARRIES ACROSS THE PLATE. This is why three reviews running called the
+    // reserves visible as pasted cards while their value delta against the ground was two or
+    // three points and darkening them further never helped. The edge was never betrayed by its
+    // VALUE. It was betrayed by the TEXTURE stopping dead at its border: inside the plate the
+    // speckle ended, outside it continued at full density, and an eye reads that discontinuity
+    // as an object even when it cannot see a tonal step. Running the same grain across the
+    // reserve at reduced amplitude leaves the plate doing its job for the type and stops it
+    // being a rectangle.
+    for (let i=0; i<Math.round(w*h/115); i++){
+      const px=x+R()*w, py=y+R()*h;
+      const up = R()<0.55;
+      g.fillStyle = tone(c, up ? Math.round(22*K) : Math.round(-15*K), 0.04+R()*0.08);
+      g.fillRect(px, py, 1.8+R()*1.6, 1.5+R()*1.3);
+    }
+  }
+  function bed(x, y, w, h, amp, scale, seed, warm){
+    TX.reseed(seed);
+    const R = TX.rng(seed+3), S = 26;
+    for (let py=y-S; py<y+h+S; py+=S){
+      for (let px=x-S; px<x+w+S; px+=S){
+        const jx=px+(R()-0.5)*S*1.4, jy=py+(R()-0.5)*S*1.4;
+        const v = TX.fbm2(jx*scale, jy*scale, 4)*0.68 + TX.fbm2(jx*scale*2.7+40, jy*scale*2.7-17, 3)*0.32;
+        const a = Math.abs(v)*amp;
+        if (a < 0.004) continue;
+        const rad = S*(1.15+R()*0.95);
+        const col = v>=0 ? (warm ? '214,186,146' : '233,239,230') : '6,6,8';
+        const gr = g.createRadialGradient(jx, jy, 0, jx, jy, rad);
+        gr.addColorStop(0, 'rgba('+col+','+(a*(v>=0?1:1.35)).toFixed(4)+')');
+        gr.addColorStop(1, 'rgba('+col+',0)');
+        g.fillStyle = gr; g.beginPath(); g.arc(jx, jy, rad, 0, Math.PI*2); g.fill();
+      }
+    }
+  }
+  function stones(x, y, w, h, n, seed, warm){
+    const R = TX.rng(seed);
+    for (let i=0;i<n;i++){
+      const px=x+R()*w, py=y+R()*h, s=5+R()*13;
+      g.fillStyle = (warm?'rgba(222,198,158,':'rgba(233,239,230,')+(0.05+R()*0.16).toFixed(3)+')';
+      g.beginPath(); g.ellipse(px, py, s, s*0.62, R()*3.14, 0, Math.PI*2); g.fill();
+      g.fillStyle = 'rgba(6,6,8,'+(0.06+R()*0.20).toFixed(3)+')';
+      g.beginPath(); g.ellipse(px+s*0.42, py+s*0.34, s*0.78, s*0.46, R()*3.14, 0, Math.PI*2); g.fill();
+    }
+  }
+
+  function grain(alpha, step){
+    const R = TX.rng(20260912);
+    g.save();
+    for (let y=0; y<1350; y+=step){
+      for (let x=0; x<1080; x+=step){
+        const v = R();
+        g.fillStyle = 'rgba(233,239,230,'+(v*alpha).toFixed(4)+')';
+        g.fillRect(x, y, step, step);
+      }
+    }
+    g.restore();
+  }
+
+  g.fillStyle='#17181A'; g.fillRect(0,0,1080,1350);
+  // Chromium 151 refuses fetch() on a file:// URL whatever --allow-file-access-from-files
+  // says, and this frame is the only one that loads committed geodata. XHR still reads it,
+  // so the county topojson arrives the same way it always did.
+  const topo = await new Promise((res, rej) => {
+    const x = new XMLHttpRequest();
+    x.open("GET", "@@ASSETS@@/geo/tx-counties.topo.json");
+    x.onload  = () => res(JSON.parse(x.responseText));
+    x.onerror = () => rej(new Error("county topojson did not load"));
+    x.send();
+  });
+  const counties = TXGeo.counties(topo);
+  const outline  = TXGeo.outline(topo);
+  const borders  = TXGeo.borders(topo);
+  // The fit box ends ABOVE the type plate. It used to run to y 926 under a reserve starting
+  // at 766, so the Rio Grande Valley was behind the plate and the state shipped with no
+  // point on it. A Texan reads this silhouette by its point.
+  const proj = TXGeo.texasProjection(outline, [[150, 176], [930, 714]]);
+  const path = d3.geoPath(proj, g);
+  // ONE class for 254 counties. The requirement applies on every road in every county
+  // equally, so a ramp here would assert a variation the record does not contain.
+  // Lifted clear of the ground so the state reads as a mass rather than as a wireframe on it.
+  // One value for all 254, because the requirement applies in every county equally.
+  const ONE_CLASS = '#2E3236';
+  g.save();
+  counties.features.forEach(function(f){
+    g.beginPath(); path(f); g.fillStyle=ONE_CLASS; g.fill();
+  });
+  g.restore();
+  // The sodium lamp rakes from the upper left, so the SEAMS carry the light and the fills
+  // stay flat. The falloff is what stops 254 identical fills reading as an even bed.
+  (function seams(){
+    const LAMP=[240,250];
+    g.save();
+    g.beginPath(); path(({type:'Feature',geometry:outline})); g.clip();
+    for(let pass=0;pass<3;pass++){
+      const grd=g.createRadialGradient(LAMP[0],LAMP[1],40,LAMP[0],LAMP[1],1180);
+      grd.addColorStop(0,'rgba(196,129,58,'+(0.95-pass*0.26).toFixed(2)+')');
+      grd.addColorStop(0.44,'rgba(196,129,58,'+(0.42-pass*0.12).toFixed(2)+')');
+      grd.addColorStop(1,'rgba(196,129,58,0.045)');
+      g.strokeStyle=grd; g.lineWidth=[2.4,1.4,0.8][pass];
+      g.beginPath(); path(borders); g.stroke();
+    }
+    g.restore();
+    // state outline, lit on the lamp side only
+    const og=g.createRadialGradient(LAMP[0],LAMP[1],40,LAMP[0],LAMP[1],1180);
+    og.addColorStop(0,'rgba(233,239,230,0.72)');
+    og.addColorStop(0.5,'rgba(233,239,230,0.26)');
+    og.addColorStop(1,'rgba(233,239,230,0.07)');
+    g.strokeStyle=og; g.lineWidth=3.2;
+    g.beginPath(); path(({type:'Feature',geometry:outline})); g.stroke();
+  })();
+  // graded ground falling away to the lower right, so the frame has a floor
+  (function floorwash(){
+    const w=g.createLinearGradient(180,220,980,1240);
+    w.addColorStop(0,'rgba(196,129,58,0.10)');
+    w.addColorStop(1,'rgba(8,8,10,0.55)');
+    g.fillStyle=w; g.fillRect(0,0,1080,1350);
+  })();
+  grain(0.028, 3);
+  well(0, 0, 1080, 150, 'rgba(19,20,22,1)', 'rgba(23,24,26,1)');
+  well(0, 954, 1080, 396, 'rgba(29,26,23,1)', 'rgba(11,11,13,1)');
+  bed(0, 900, 1080, 450, 0.34, 0.0046, 861, true);
+  stones(0, 900, 1080, 450, 620, 862, true);
+  // reserves, one per block of type, so no drawn edge reaches a letterform
+  reserve(58, 58, 419, 79, '#1B1A19');
+  // Two plates and a gap, not one slab. The four stale duplicates that used to sit here were
+  // carrying the bottom third's craft density by accident, on their own misregistered edges.
+  reserve(58, 770, 964, 320, '#1B1A19');
+  reserve(58, 1146, 964, 142, '#1B1A19');
+
+  TX.fitText(document.getElementById('h6'), {max:62, min:44, maxLines:2});
+})();
+</script></body></html>

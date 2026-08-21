@@ -1,0 +1,134 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;
+            background:#17181A;font-kerning:normal}
+  #art{position:absolute;inset:0;display:block}
+  .lyr{position:absolute;inset:0}
+  .kick{position:absolute;left:80px;top:80px;font-family:'JetBrains Mono',monospace;
+        font-size:26px;letter-spacing:0.16em;text-transform:uppercase;color:#9AA096;margin:0}
+  .hook{position:absolute;margin:0;font-family:Fraunces,serif;font-weight:700;
+        line-height:0.98;letter-spacing:-0.015em;color:#E9EFE6}
+  .dek{position:absolute;margin:0;font-family:Manrope,sans-serif;font-weight:500;
+       font-size:34px;line-height:1.34;color:#C9B393}
+  .src{position:absolute;left:80px;bottom:130px;font-family:'JetBrains Mono',monospace;
+       font-size:24px;letter-spacing:0.04em;color:#9AA096;margin:0}
+  .row{position:absolute;left:80px;right:80px;bottom:84px;display:flex;
+       justify-content:space-between;align-items:baseline;
+       font-family:'JetBrains Mono',monospace;font-size:26px;letter-spacing:0.08em;color:#9AA096}
+  .row span{font-variant-numeric:tabular-nums}
+  .geo{position:absolute;right:80px;bottom:130px;font-family:'JetBrains Mono',monospace;
+       font-size:22px;letter-spacing:0.04em;color:#9AA096;margin:0;text-align:right}
+  #ground{position:absolute;inset:0;background:radial-gradient(112% 58% at 50% 40%, #35383D 0%, #212327 44%, #121316 100%)}
+  #inst{position:absolute;left:0;top:0;width:1080px;height:1350px}
+  .rsv{position:absolute;background:rgba(25,26,29,0.90)}
+
+</style>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+
+</head><body>
+<div id="ground"></div><svg id="inst" viewBox="0 0 1080 1350"></svg><div class="rsv" style="left:60px;top:62px;width:330px;height:74px"></div><div class="rsv" style="left:62px;top:652px;width:958px;height:262px"></div><div class="rsv" style="left:62px;top:936px;width:958px;height:162px"></div><div class="rsv" style="left:62px;top:1160px;width:958px;height:126px"></div>
+<p class="kick">The instrument</p>
+<h1 class="hook" id="h1" style="left:80px;top:672px;width:920px;font-size:112px">Every mile is logged. Who counts the crashes?</h1>
+<p class="dek" style="left:80px;top:952px;width:880px">By October 28th, 2025 Aurora reported passing 100,000 driverless miles on public roads.</p>
+<p class="src">Aurora, c27 c28</p>
+<p class="geo" data-decorative>PUBLIC ROADS<br>100,000 MILES</p>
+<div class="row"><span>01 / 09</span><span>AXONOMETRIC</span><span class="tx-site">texasaidocket.com</span></div>
+<script>
+window.renderReady = (async () => {
+  await document.fonts.ready;
+
+  TX.reseed(20260821);
+
+  // Hand built SVG. An axonometric diagrammatic solid, which is the library's Zdog register
+  // authored directly in the DOM, because Zdog's SVG renderer would not initialise here. It is
+  // vector into the PDF, and it is the one frame in the deck that draws an OBJECT.
+  const NS = 'http://www.w3.org/2000/svg';
+  const svg = document.getElementById('inst');
+  function mk(name, attrs, parent){
+    const n = document.createElementNS(NS, name);
+    for (const k in attrs) n.setAttribute(k, attrs[k]);
+    (parent || svg).appendChild(n);
+    return n;
+  }
+  const defs = mk('defs', {});
+  function lin(id, stops){
+    const gr = mk('linearGradient', { id: id, x1: '0', y1: '0', x2: '0', y2: '1' }, defs);
+    stops.forEach(function(s){ mk('stop', { offset: s[0], 'stop-color': s[1] }, gr); });
+  }
+  lin('face', [['0', '#F2F6EF'], ['0.5', '#C8CFC6'], ['1', '#8E948C']]);
+  lin('top',  [['0', '#FFFFFF'], ['1', '#B9C0B6']]);
+  lin('side', [['0', '#3E4146'], ['1', '#22242A']]);
+  lin('roof', [['0', '#3B3E44'], ['1', '#1D1F23']]);
+  const pool = mk('radialGradient', { id: 'pool' }, defs);
+  mk('stop', { offset: '0',    'stop-color': '#E9EFE6', 'stop-opacity': '0.30' }, pool);
+  mk('stop', { offset: '0.46', 'stop-color': '#E9EFE6', 'stop-opacity': '0.11' }, pool);
+  mk('stop', { offset: '1',    'stop-color': '#E9EFE6', 'stop-opacity': '0' }, pool);
+  const glow = mk('radialGradient', { id: 'glow' }, defs);
+  mk('stop', { offset: '0', 'stop-color': '#C4813A', 'stop-opacity': '0.62' }, glow);
+  mk('stop', { offset: '1', 'stop-color': '#C4813A', 'stop-opacity': '0' }, glow);
+  // EVERYTHING BELOW y 652 IS BEHIND THE HEADLINE PLATE. The first version put the lit pool at
+  // y 1044 and ran the ray fan down to meet it, so the fan was amputated at the plate's top edge
+  // and the pool the plan calls the bottom band never appeared at all. The whole instrument is
+  // lifted and the fan lands inside the band the frame actually shows.
+  mk('ellipse', { cx: 604, cy: 598, rx: 486, ry: 74, fill: 'url(#pool)' });
+  // the roof as a PLANE with thickness, not a rule. A 3px line under a white box is why the
+  // housing read as a shoebox floating in black rather than as a thing bolted to a truck.
+  mk('polygon', { points: '0,496 1080,438 1080,502 0,560', fill: 'url(#roof)' });
+  mk('polygon', { points: '0,496 1080,438 1080,446 0,504', fill: '#6E737A', 'fill-opacity': '0.55' });
+  mk('polygon', { points: '0,560 1080,502 1080,540 0,598', fill: '#15171A' });
+  mk('path', { d: 'M 214 514 L 168 360 L 206 286', fill: 'none', stroke: '#33363C',
+               'stroke-width': 17, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' });
+  mk('path', { d: 'M 214 514 L 168 360', fill: 'none', stroke: '#7A8087',
+               'stroke-width': 5, 'stroke-linecap': 'round', 'stroke-opacity': '0.7' });
+  // the mount, and the shadow it casts on the sheet metal it is bolted to
+  mk('ellipse', { cx: 556, cy: 470, rx: 128, ry: 15, fill: '#07080A', 'fill-opacity': '0.62' });
+  mk('polygon', { points: '470,414 640,402 640,462 470,472', fill: 'url(#side)' });
+  mk('polygon', { points: '470,414 470,472 452,468 452,410', fill: '#15171A' });
+  mk('polygon', { points: '370,326 830,294 830,398 370,430', fill: 'url(#face)' });
+  mk('polygon', { points: '370,326 830,294 766,250 306,282', fill: 'url(#top)' });
+  mk('polygon', { points: '370,326 306,282 306,386 370,430', fill: 'url(#side)' });
+  mk('polygon', { points: '404,358 796,331 796,368 404,395', fill: '#0C0D0F' });
+  mk('polygon', { points: '404,358 796,331 796,337 404,364', fill: '#E9EFE6', 'fill-opacity': '0.28' });
+  mk('ellipse', { cx: 338, cy: 338, rx: 20, ry: 46, fill: '#DCE2DA' });
+  mk('ellipse', { cx: 338, cy: 338, rx: 11, ry: 27, fill: '#15171A' });
+  mk('circle', { cx: 912, cy: 456, r: 74, fill: 'url(#glow)' });
+  mk('ellipse', { cx: 912, cy: 456, rx: 17, ry: 10, fill: '#C4813A' });
+  const RR = TX.rng(20260824);
+  for (let i = 0; i < 26; i++) {
+    const f = i / 25;
+    const sx = 410 + f * 380, sy = 390 - f * 28;
+    const ex = 236 + f * 690, ey = 590 + Math.sin(f * 3.1) * 30;
+    mk('line', { x1: sx.toFixed(1), y1: sy.toFixed(1), x2: ex.toFixed(1), y2: ey.toFixed(1),
+                 stroke: '#E9EFE6', 'stroke-width': (1.3 + RR() * 1.5).toFixed(2),
+                 'stroke-opacity': (0.06 + RR() * 0.16).toFixed(3), 'stroke-linecap': 'round' });
+  }
+  for (let i = 0; i < 900; i++) {
+    const a = RR() * 6.283, r = Math.sqrt(RR()) * 480;
+    const px = 604 + Math.cos(a) * r, py = 598 + Math.sin(a) * r * 0.16;
+    if (py < 556 || py > 646) continue;
+    const k = 1 - r / 480;
+    mk('ellipse', { cx: px.toFixed(1), cy: py.toFixed(1),
+                    rx: (1.6 + RR() * 3.2).toFixed(2), ry: (1.1 + RR() * 2.0).toFixed(2),
+                    fill: '#E9EFE6', 'fill-opacity': (0.05 + k * 0.26 * RR()).toFixed(3) });
+  }
+  // The near shoulder, which runs under the type plates and out past them at both margins and
+  // along the bottom edge. Lifting the instrument left the lower third a flat slab, and the deck
+  // answers a dead lower zone with ground rather than with a bigger quiet area.
+  const near = mk('linearGradient', { id: 'near', x1: '0', y1: '0', x2: '0', y2: '1' }, defs);
+  mk('stop', { offset: '0',   'stop-color': '#E6D8B8', 'stop-opacity': '0.060' }, near);
+  mk('stop', { offset: '0.5', 'stop-color': '#E6D8B8', 'stop-opacity': '0.040' }, near);
+  mk('stop', { offset: '1',   'stop-color': '#E6D8B8', 'stop-opacity': '0.070' }, near);
+  mk('rect', { x: 0, y: 856, width: 1080, height: 494, fill: 'url(#near)' });
+  for (let i = 0; i < 4200; i++) {
+    const px = RR() * 1080, py = 856 + RR() * 494;
+    mk('ellipse', { cx: px.toFixed(1), cy: py.toFixed(1),
+                    rx: (2.2 + RR() * 4.4).toFixed(2), ry: (1.4 + RR() * 2.8).toFixed(2),
+                    fill: RR() < 0.60 ? '#E9EFE6' : '#08090B',
+                    'fill-opacity': (0.07 + 0.26 * RR()).toFixed(3) });
+  }
+
+  TX.fitText(document.getElementById('h1'), {max:112, min:70, maxLines:2});
+})();
+</script></body></html>

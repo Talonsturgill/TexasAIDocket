@@ -421,9 +421,18 @@
           "source_title": "PUCT open meeting agenda, August 21st, 2026, meeting header",
           "source_type": "primary_official",
           "fetched": "2026-08-20"
+        },
+        {
+          "id": "tx-2026-0003-c10",
+          "text": "The filing index records the number of filings in the docket.",
+          "verbatim_quote": "5797 filing(s).",
+          "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59315&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+          "source_title": "PUCT Interchange, Filings for 59315",
+          "source_type": "primary_official",
+          "fetched": "2026-08-21"
         }
       ],
-      "last_verified": "2026-08-20",
+      "last_verified": "2026-08-21",
       "confidence": "high",
       "notes_for_editor": "The 765 kV designation and the 22 county list are taken verbatim from the commission's own case style, not computed. Note for numeral_lint, 765 kV and the docket number are identifiers inside a quoted official title, not measurements this project derived. The Interchange web view renders only the first page of filing rows while reporting the full count on its index line, so the item count is quoted from that line and never counted from the table. The calendar feed's description field never carries a docket number for any entry, so its absence there is not evidence a matter has been dropped. Read the agenda PDF the entry links. This docket is included on the AI beat because 765 kV backbone capacity is the physical answer to large load growth, but the record fetched does NOT state that any particular data center drives this line, and the docket must not be described as a data center project without that link being established.",
       "history": [
@@ -438,6 +447,10 @@
         {
           "date": "2026-08-20",
           "note": "The docket is on the August 21st agenda after all. The published agenda for that open meeting names Docket 59315 as item 3, marked for discussion and possible action, and names a second Oncor 765 kV application as item 2. The calendar feed's entry for the meeting names no docket because no feed entry names one. The filing index now reports 5793 filings, and the web view lists only its first page of them, so a count taken from the rows on screen understates the docket."
+        },
+        {
+          "date": "2026-08-21",
+          "note": "Checked. The commission's published agenda for the August 21st, 2026 open meeting still names Docket 59315 as item 3 for discussion and possible action. The filing index has moved from 5793 to 5797 since the last check."
         }
       ]
     },
@@ -540,13 +553,17 @@
           "fetched": "2026-08-16"
         }
       ],
-      "last_verified": "2026-08-18",
+      "last_verified": "2026-08-21",
       "confidence": "high",
       "notes_for_editor": "Sourced to the enacted statute rather than to the bill history, which is both the better primary source and an allowed one. Dollar figures appear only inside verbatim statutory quotes. Note the chapter title is Artificial Intelligence Protection, not the act's popular name.",
       "history": [
         {
           "date": "2026-08-18",
           "note": "Checked and unchanged. Chapter 552 stands in force with enforcement resting solely with the Attorney General."
+        },
+        {
+          "date": "2026-08-21",
+          "note": "Checked and unchanged. Chapter 552 stands in force, enforcement still rests solely with the Attorney General, and the rebuttable presumption of reasonable care still stands."
         }
       ]
     },
@@ -560,7 +577,7 @@
         "type": "legislature"
       },
       "geography": {
-        "statewide": false,
+        "statewide": true,
         "counties": [],
         "metro": null,
         "on_ercot": true
@@ -608,13 +625,17 @@
           "fetched": "2026-08-11"
         }
       ],
-      "last_verified": "2026-08-18",
+      "last_verified": "2026-08-21",
       "confidence": "high",
       "notes_for_editor": "This item exists to give readers the legal frame for the August 3rd audit directive. It states what the statute says and stops there. It does NOT assert that the governor's directive was improper: the section binds the commission's directives to ERCOT, and a governor's letter to both agencies is a different instrument. Any characterisation beyond the quoted text needs a lawyer and a named source.",
       "history": [
         {
           "date": "2026-08-18",
           "note": "Checked and unchanged. The statute still bars a verbal directive and still limits an official action to a contested case, a rulemaking or a written order."
+        },
+        {
+          "date": "2026-08-21",
+          "note": "Checked and unchanged. The statute still bars a verbal directive and still limits an official action to a contested case, a rulemaking or a written order. It is state law binding a statewide agency, so its reach is the whole state rather than a list of counties, and the record now says so."
         }
       ]
     },
@@ -785,12 +806,16 @@
           "fetched": "2026-08-11"
         }
       ],
-      "last_verified": "2026-08-18",
+      "last_verified": "2026-08-21",
       "confidence": "high",
       "notes_for_editor": "CORRECTION TO A COMMON BELIEF, please keep it in the published item. The regulatory sandbox is widely attributed to TRAIGA. It is not in TRAIGA. It is Section 2054.706, added by SB 1964, and it took effect September 1st, 2025, four months before TRAIGA did. Whether DIR has actually stood the program up was NOT verified: no DIR page was fetched. That is the obvious follow up and the honest hook is the November 30th, 2026 report.",
       "history": [
         {
           "date": "2026-08-18",
+          "note": "Checked and unchanged. The sandbox program stands required of the Department of Information Resources and the report to the Legislature is still due November 30th, 2026."
+        },
+        {
+          "date": "2026-08-21",
           "note": "Checked and unchanged. The sandbox program stands required of the Department of Information Resources and the report to the Legislature is still due November 30th, 2026."
         }
       ]
@@ -835,13 +860,17 @@
           "fetched": "2026-08-11"
         }
       ],
-      "last_verified": "2026-08-18",
+      "last_verified": "2026-08-21",
       "confidence": "high",
       "notes_for_editor": "Kept as its own item because it is the provision most likely to collide with the local data center fights elsewhere in this docket. IMPORTANT DISTINCTION a fact checker must preserve: this preempts local rules about the USE OF AI SYSTEMS. A city zoning ordinance about data center buildings is land use regulation, not AI use regulation, so San Marcos's ban is NOT obviously preempted by this section. Do not let the two be conflated in the write up.",
       "history": [
         {
           "date": "2026-08-18",
           "note": "Checked and unchanged. Chapter 552 still supersedes any local ordinance or rule about the use of AI systems."
+        },
+        {
+          "date": "2026-08-21",
+          "note": "Checked and unchanged. Chapter 552 still supersedes any ordinance, resolution, rule or other regulation a political subdivision adopts about the use of artificial intelligence systems."
         }
       ]
     },
@@ -888,13 +917,17 @@
           "fetched": "2026-08-18"
         }
       ],
-      "last_verified": "2026-08-18",
+      "last_verified": "2026-08-21",
       "confidence": "high",
       "notes_for_editor": "Verified: prior research was right. The project type strings are reproduced verbatim and in the order the page prints them, including the page's own mid word truncations, so a checker can diff them against the live table. The row count is deliberately not stated in prose: it should be computed by the build from the captured rows rather than typed. CAVEAT ON SCOPE, which the item must carry: JETI is the school district value limitation program only. A data center can still receive city or county tax abatements under Local Government Code Chapter 312, Chapter 380 or 381 agreements, and freeport exemptions, none of which appear on this page. The honest claim is that data centers are absent from THIS list, not that they get no Texas tax breaks.",
       "history": [
         {
           "date": "2026-08-18",
           "note": "Checked and unchanged. The Comptroller's current JETI agreements list still names no data center project."
+        },
+        {
+          "date": "2026-08-21",
+          "note": "Checked and unchanged. The Comptroller's current JETI agreements list still names no data center project, and no entry on it is a data center, a semiconductor plant or a battery plant."
         }
       ]
     },
@@ -1117,7 +1150,7 @@
           "fetched": "2026-08-20"
         }
       ],
-      "last_verified": "2026-08-20",
+      "last_verified": "2026-08-21",
       "confidence": "high",
       "notes_for_editor": "This is an infrastructure item rather than a decision, and the docket may prefer to use the feed as a collector and not publish it as an item. Keeping it has one strong argument: it tells a reader where the calendar actually lives, which is the single most useful thing this docket can hand someone who wants to participate. Its dates are the spine of the recurring collector.",
       "history": [
@@ -1132,6 +1165,10 @@
         {
           "date": "2026-08-20",
           "note": "Checked. The feed now publishes 31 entries and runs to July 29th, 2027, one fewer than at the last check. The August 20th and August 21st open meetings both still stand and the September 4th public comment deadline for Project 58482 is still listed. Project 58482 is the Large Load Demand Management Service, and the agenda for each meeting names the dockets that a feed entry does not."
+        },
+        {
+          "date": "2026-08-21",
+          "note": "Checked and unchanged. The feed still runs through July 29th, 2027 and the September 4th public comment deadline for Project 58482 is still listed. The August 21st open meeting still stands at the off site hotel and conference center."
         }
       ]
     },
@@ -1349,11 +1386,15 @@
         }
       ],
       "id": "tx-2026-0027",
-      "last_verified": "2026-08-18",
+      "last_verified": "2026-08-21",
       "history": [
         {
           "date": "2026-08-18",
           "note": "Checked and unchanged. The amended abatement notice for Compal still posts on the City of Taylor newsflash."
+        },
+        {
+          "date": "2026-08-21",
+          "note": "Checked. The city's notice of consideration still stands and still names the amended and restated abatement with Compal and the Taylor Port Building renovation. What the council did with it on August 13th is unconfirmed, because the city posts no minutes for that meeting."
         }
       ]
     },
@@ -1701,7 +1742,7 @@
     },
     {
       "title": "Killeen Planning and Zoning Commission voted against a conditional use permit for a $30 million ONMINE data center",
-      "summary": "The Killeen Planning and Zoning Commission voted in late April 2026 against a conditional use permit for a $30 million data center proposed by the company ONMINE. City staff had recommended approval. The site is about two and a half acres on South Fort Hood Street on the outskirts of the city. The commission's vote is a recommendation, and the final decision on the zoning rests with the Killeen City Council. Two outlets report the tally differently, one as 4 to 1 to deny and one as 4 to 0 against with a single abstention.",
+      "summary": "The Killeen Planning and Zoning Commission voted against a conditional use permit for a $30 million data center proposed by the company ONMINE. It voted at its regular meeting on April 27th, 2026. City staff had recommended approval. The commission's own agenda files the request as Case Z26-07. It is a conditional use permit to allow a data center on about two and a half acres at 6509 South Fort Hood Street. The land is zoned University District. The applicant of record is Belton Engineering, Inc. on behalf of 4 Lazy J Properties, LLC. The commission's vote is a recommendation, and the final decision on the zoning rests with the Killeen City Council. Two outlets report the tally differently, one as 4 to 1 to deny and one as 4 to 0 against with a single abstention.",
       "topic": "data-centers",
       "decider": {
         "name": "City of Killeen Planning and Zoning Commission",
@@ -1718,9 +1759,9 @@
       "status": "open",
       "key_dates": [
         {
-          "date": "2026-04-28",
+          "date": "2026-04-27",
           "kind": "ordered",
-          "note": "Date KWTX reported the commission's denial. The exact commission meeting date was not confirmed from a fetched page, and the reporting places it in late April 2026"
+          "note": "Regular Planning and Zoning Commission meeting at which the conditional use permit was heard as public hearing PH-1, per the commission's own agenda"
         }
       ],
       "public_access": {
@@ -1765,14 +1806,36 @@
           "source_type": "journalism",
           "fetched": "2026-08-14",
           "id": "tx-2026-0032-c4"
+        },
+        {
+          "id": "tx-2026-0032-c5",
+          "text": "The commission's own agenda dates the meeting.",
+          "verbatim_quote": "AGENDA REGULAR MEETING PLANNING AND ZONING COMMISSION APRIL 27, 2026",
+          "source_url": "https://www.killeentexas.gov/AgendaCenter/ViewFile/Agenda/_04272026-1206",
+          "source_title": "City of Killeen, Planning and Zoning Commission regular meeting agenda, April 27th, 2026",
+          "source_type": "primary_official",
+          "fetched": "2026-08-21"
+        },
+        {
+          "id": "tx-2026-0032-c6",
+          "text": "The agenda files the request as a numbered case and names the applicant, the acreage, the zoning and the address.",
+          "verbatim_quote": "PH-1 Hold a public hearing and consider a request submitted by Belton Engineering, Inc. on behalf of 4 Lazy J Properties, LLC (Case# Z26-07) for a Conditional Use Permit (CUP) to allow a data center on property zoned “UD” (University District), being approximately 2.615 acres out of the M. T. Martin Survey, Abstract No. 963. The subject property is locally addressed as 6509 South Fort Hood Street, Killeen, Texas.",
+          "source_url": "https://www.killeentexas.gov/AgendaCenter/ViewFile/Agenda/_04272026-1206",
+          "source_title": "City of Killeen, Planning and Zoning Commission regular meeting agenda, April 27th, 2026, public hearing PH-1",
+          "source_type": "primary_official",
+          "fetched": "2026-08-21"
         }
       ],
       "id": "tx-2026-0032",
-      "last_verified": "2026-08-18",
+      "last_verified": "2026-08-21",
       "history": [
         {
           "date": "2026-08-18",
           "note": "Checked and unchanged. Killeen's council has taken the data center subject up as a future agenda item."
+        },
+        {
+          "date": "2026-08-21",
+          "note": "Corrected. The commission's own agenda dates the hearing to April 27th, 2026. It files the request as Case Z26-07, a conditional use permit for a data center at 6509 South Fort Hood Street on land zoned University District. The applicant of record is Belton Engineering, Inc. on behalf of 4 Lazy J Properties, LLC. No Killeen agenda posted through August 27th, 2026 carries the case, so the council decision the commission's vote feeds into has not been scheduled."
         }
       ]
     },
@@ -1850,8 +1913,8 @@
       ]
     },
     {
-      "title": "El Paso City Council to vote August 18th on a letter asking Governor Abbott to clarify his data center directives",
-      "summary": "The El Paso City Council has a letter to Governor Greg Abbott set for action at its regular meeting on August 18th, 2026. It seeks clarification on his directives on data center development. The item was introduced on August 11th, 2026 by a member of the City Council. The meeting begins at 9 a.m. in Council Chambers at City Hall, 300 North Campbell Street, and virtually. The question underneath it is jurisdictional, because El Paso is served by El Paso Electric in the Western Interconnection and statewide directives written around ERCOT do not automatically reach it.",
+      "title": "El Paso City Council adopted a letter asking Governor Abbott to clarify his data center directives",
+      "summary": "The El Paso City Council approved and adopted a letter to Governor Greg Abbott seeking clarification on his directives on data center development throughout Texas. The council took the item at its regular meeting on August 18th, 2026 as agenda item 34, and the motion carried. The item had been introduced on August 11th, 2026 by a member of the City Council. The question underneath it is jurisdictional, because El Paso is served by El Paso Electric in the Western Interconnection and statewide directives written around ERCOT do not automatically reach it.",
       "topic": "data-centers",
       "decider": {
         "name": "El Paso City Council",
@@ -1865,7 +1928,7 @@
         "metro": "El Paso, TX",
         "on_ercot": false
       },
-      "status": "pending",
+      "status": "decided",
       "key_dates": [
         {
           "date": "2026-08-11",
@@ -1876,13 +1939,18 @@
           "date": "2026-08-18",
           "kind": "hearing",
           "note": "Regular City Council meeting, 9:00 AM, item scheduled for discussion and action"
+        },
+        {
+          "date": "2026-08-18",
+          "kind": "decided",
+          "note": "Council approved and adopted the letter as agenda item 34, on a motion that carried"
         }
       ],
       "public_access": {
-        "room": "open_meeting",
-        "how": "Attend the regular City Council meeting on August 18th, 2026 at 9:00 AM in Council Chambers, City Hall, 300 North Campbell Street, or participate virtually. The agenda and the meeting detail page are published in the city's Legistar system.",
+        "room": "closed",
+        "how": "The council has acted and the letter goes to the Governor's office. The agenda, the item record and the matter's action history stay published in the city's Legistar system, where a resident can read who moved the item and who seconded it.",
         "url": "https://elpasotexas.legistar.com/MeetingDetail.aspx?LEGID=2572&GID=776&G=2431E662-8524-4328-8249-389E26A066A2",
-        "closes": "2026-08-18"
+        "closes": null
       },
       "claims": [
         {
@@ -1902,14 +1970,45 @@
           "source_type": "primary_official",
           "fetched": "2026-08-16",
           "id": "tx-2026-0034-c2"
+        },
+        {
+          "id": "tx-2026-0034-c3",
+          "text": "The council approved the letter on a motion that carried.",
+          "verbatim_quote": "A motion was made by Representative Limón, seconded by Representative Acevedo, to Approve the item. The motion carried by the following vote:",
+          "source_url": "https://webapi.legistar.com/v1/elpasotexas/events/2572/eventitems?AgendaNote=1&MinutesNote=1&Attachments=0",
+          "source_title": "City of El Paso Legistar, event 2572 item records, agenda item 34",
+          "source_type": "primary_official",
+          "fetched": "2026-08-21"
+        },
+        {
+          "id": "tx-2026-0034-c4",
+          "text": "The meeting's own item record carries the field EventItemPassedFlagName with the value Pass.",
+          "verbatim_quote": "Pass",
+          "source_url": "https://webapi.legistar.com/v1/elpasotexas/events/2572/eventitems?AgendaNote=1&MinutesNote=1&Attachments=0",
+          "source_title": "City of El Paso Legistar, event 2572 item records",
+          "source_type": "primary_official",
+          "fetched": "2026-08-21"
+        },
+        {
+          "id": "tx-2026-0034-c5",
+          "text": "The matter's own action history carries an entry dated August 18th, 2026 whose MatterHistoryActionName is Approve.",
+          "verbatim_quote": "Approve",
+          "source_url": "https://webapi.legistar.com/v1/elpasotexas/Matters/16074/histories",
+          "source_title": "City of El Paso Legistar, matter 16074 action history",
+          "source_type": "primary_official",
+          "fetched": "2026-08-21"
         }
       ],
       "id": "tx-2026-0034",
-      "last_verified": "2026-08-18",
+      "last_verified": "2026-08-21",
       "history": [
         {
           "date": "2026-08-18",
           "note": "Checked and unchanged. The matter reads Agenda Ready for the August 18th agenda with no passed date recorded."
+        },
+        {
+          "date": "2026-08-21",
+          "note": "Decided. The El Paso City Council approved and adopted the letter to Governor Abbott at its August 18th, 2026 regular meeting, as agenda item 34, on a motion that carried. The matter record still reads Agenda Ready with no passed date, and the meeting's own item record and the matter's action history both record the approval."
         }
       ]
     },
@@ -2055,8 +2154,8 @@
       ]
     },
     {
-      "title": "Laredo City Council rejects a data center moratorium and directs staff to draft permanent standards for heavy water and utility users",
-      "summary": "Laredo City Council declined to impose a temporary moratorium on data center permits. It instead directed city management and the city attorney's office, unanimously, to draft permanent regulations for industries that consume large amounts of water or place heavy demand on public utilities. The city attorney told the council that Laredo's existing Land Development Code already prohibits uses that are not specifically permitted. Planning staff reported that neither the city nor Webb County had received an application for a data center. Mayor Victor Trevino held a community town hall on August 11th, 2026 on the proposed regulations.",
+      "title": "Laredo City Council declined a data center moratorium, and its direction to write permanent rules has reached three agendas with no recorded action",
+      "summary": "Laredo City Council declined to impose a temporary moratorium on data center permits at its meeting on July 27th, 2026. The council item asks staff to evaluate the impacts of high intensity data processing facilities on municipal infrastructure, water resources, electrical demand and land use compatibility. It also asks staff to recommend regulatory standards. The city's own record carries that item on the June 15th and July 27th agendas and records no action taken at either meeting. It returned to the August 3rd, 2026 agenda and the city records no action there either. The city attorney told the council that Laredo's existing Land Development Code already prohibits uses that are not specifically permitted. Planning staff reported that neither the city nor Webb County had received an application for a data center.",
       "topic": "data-centers",
       "decider": {
         "name": "Laredo City Council",
@@ -2073,9 +2172,14 @@
       "status": "open",
       "key_dates": [
         {
-          "date": "2026-08-05",
-          "kind": "ordered",
-          "note": "Council rejected the moratorium and directed staff to draft permanent standards, as reported"
+          "date": "2026-07-27",
+          "kind": "hearing",
+          "note": "Regular City Council meeting at which the moratorium was declined and the direction to write rules was taken up, with no action recorded"
+        },
+        {
+          "date": "2026-08-03",
+          "kind": "hearing",
+          "note": "Regular City Council meeting at which the same council item returned as agenda item 65"
         },
         {
           "date": "2026-08-11",
@@ -2085,8 +2189,8 @@
       ],
       "public_access": {
         "room": "open_meeting",
-        "how": "The draft regulations return to Laredo City Council for public consideration, and the mayor has been holding community town halls on the proposals. Council agendas and matter records are published in the city's Legistar system.",
-        "url": "https://www.kgns.tv/2026/07/31/laredo-council-moves-freeze-data-center-applications-amid-regulatory-gap/",
+        "how": "The council item is still live and has returned to a regular City Council agenda three times. Agendas, item records and matter histories are published in the city's Legistar system, and a member of the public may speak at the regular meeting where it is taken up.",
+        "url": "https://cityoflaredo.legistar.com/Calendar.aspx",
         "closes": null
       },
       "claims": [
@@ -2134,14 +2238,54 @@
           "source_type": "journalism",
           "fetched": "2026-08-14",
           "id": "tx-2026-0037-c5"
+        },
+        {
+          "id": "tx-2026-0037-c6",
+          "text": "The city files the direction as a council item naming high intensity data processing facilities and listing what staff is asked to evaluate.",
+          "verbatim_quote": "Discussion and possible action directing City staff to evaluate the impacts of High-Intensity Data Processing Facilities on municipal infrastructure, water resources, electrical demand, and land-use compatibility, and to develop and present recommendations for regulatory standards related to water use, conservation, water reuse, cooling technologies, resource efficiency, and other operational and environmental considerations applicable to such facilities; and any other matter incident thereto.",
+          "source_url": "https://webapi.legistar.com/v1/cityoflaredo/Matters/7693",
+          "source_title": "City of Laredo Legistar, matter 7693, file 26-C-105",
+          "source_type": "primary_official",
+          "fetched": "2026-08-21"
+        },
+        {
+          "id": "tx-2026-0037-c7",
+          "text": "The matter's action history carries an entry dated June 15th, 2026 whose MatterHistoryActionName is the phrase below.",
+          "verbatim_quote": "no action taken",
+          "source_url": "https://webapi.legistar.com/v1/cityoflaredo/Matters/7693/histories",
+          "source_title": "City of Laredo Legistar, matter 7693 action history",
+          "source_type": "primary_official",
+          "fetched": "2026-08-21"
+        },
+        {
+          "id": "tx-2026-0037-c8",
+          "text": "The action history carries the same phrase on the July 27th, 2026 entry, which is the meeting the reporting describes.",
+          "verbatim_quote": "no action taken",
+          "source_url": "https://webapi.legistar.com/v1/cityoflaredo/Matters/7693/histories",
+          "source_title": "City of Laredo Legistar, matter 7693 action history",
+          "source_type": "primary_official",
+          "fetched": "2026-08-21"
+        },
+        {
+          "id": "tx-2026-0037-c9",
+          "text": "The item returned to the August agenda carrying the EventItemAgendaNumber below.",
+          "verbatim_quote": "65.",
+          "source_url": "https://webapi.legistar.com/v1/cityoflaredo/events/1331/eventitems?AgendaNote=1&MinutesNote=1&Attachments=0",
+          "source_title": "City of Laredo Legistar, event 1331 item records, August 3rd, 2026 City Council",
+          "source_type": "primary_official",
+          "fetched": "2026-08-21"
         }
       ],
       "id": "tx-2026-0037",
-      "last_verified": "2026-08-18",
+      "last_verified": "2026-08-21",
       "history": [
         {
           "date": "2026-08-18",
           "note": "Checked and unchanged."
+        },
+        {
+          "date": "2026-08-21",
+          "note": "Corrected. The council meeting was July 27th, 2026 rather than August 5th, which is the date the reporting published. The city files the direction to write rules as a council item on high intensity data processing facilities. It records no action taken on it at the June 15th and July 27th meetings. It returned to the August 3rd, 2026 agenda and the city records no action there either."
         }
       ]
     },
@@ -3494,11 +3638,15 @@
         }
       ],
       "id": "tx-2026-0053",
-      "last_verified": "2026-08-18",
+      "last_verified": "2026-08-21",
       "history": [
         {
           "date": "2026-08-18",
           "note": "Checked and unchanged. Policy CQD(LOCAL) sits on the August 13th agenda with no recorded action and no passed flag."
+        },
+        {
+          "date": "2026-08-21",
+          "note": "Checked and unchanged. Policy CQD(LOCAL) sits on the August 13th agenda in the consent section with no recorded action, no passed date and an empty action history."
         }
       ]
     },
@@ -3794,7 +3942,7 @@
         }
       ],
       "id": "tx-2026-0057",
-      "last_verified": "2026-08-20",
+      "last_verified": "2026-08-21",
       "history": [
         {
           "date": "2026-08-19",
@@ -3802,6 +3950,10 @@
         },
         {
           "date": "2026-08-20",
+          "note": "Checked and unchanged. The cancelation notice for the Carson County meeting on the Fermi Equipment Holdco air permits still stands and still says the meeting will be rescheduled. No replacement date appears on it or on the agency's list of public meetings and hearings on permitting cases. The date a Texan in Panhandle could speak is still unset."
+        },
+        {
+          "date": "2026-08-21",
           "note": "Checked and unchanged. The cancelation notice for the Carson County meeting on the Fermi Equipment Holdco air permits still stands and still says the meeting will be rescheduled. No replacement date appears on it or on the agency's list of public meetings and hearings on permitting cases. The date a Texan in Panhandle could speak is still unset."
         }
       ]
@@ -4299,11 +4451,15 @@
         }
       ],
       "id": "tx-2026-0064",
-      "last_verified": "2026-08-18",
+      "last_verified": "2026-08-21",
       "history": [
         {
           "date": "2026-08-18",
           "note": "Checked and unchanged. The notice still names permits 182126, PSDTX1688 and GHGPSDTX263 for Crusoe Technologies. The comment window runs 30 days from newspaper publication."
+        },
+        {
+          "date": "2026-08-21",
+          "note": "Checked and unchanged. The notice still carries a preliminary decision and draft permit for Crusoe Technologies LLC under permits 182126, PSDTX1688 and GHGPSDTX263, with a notice issuance date of August 5th, 2026. The comment window still runs thirty days from newspaper publication, and the notice still names no publication date."
         }
       ]
     },
@@ -5472,13 +5628,17 @@
           "fetched": "2026-08-20"
         }
       ],
-      "last_verified": "2026-08-20",
+      "last_verified": "2026-08-21",
       "confidence": "high",
       "notes_for_editor": "The 765 kV designation and the county list come from the commission's own agenda entry, not computed. This is the companion application to Docket 59315, and the record does not state that any particular data center drives either line.",
       "history": [
         {
           "date": "2026-08-20",
           "note": "Admitted. The commission's published agenda for August 21st, 2026 names this application as item 2, alongside the Dinosaur Switch to Longshore Switch application as item 3."
+        },
+        {
+          "date": "2026-08-21",
+          "note": "Checked and unchanged. The commission's published agenda for August 21st, 2026 still names this application as item 2 for discussion and possible action, and the filing index still stands at 489."
         }
       ]
     },
@@ -5547,15 +5707,414 @@
           "source_title": "Senate, Notice of Public Hearing, Committee on Transportation, August 25th, 2026, header",
           "source_type": "primary_official",
           "fetched": "2026-08-20"
+        },
+        {
+          "id": "tx-2026-0077-c5",
+          "text": "The Legislature's own upcoming meetings listing carries the committee, the date, the time and the room.",
+          "verbatim_quote": "Tuesday, August 25, 2026 9:00 AM Transportation Type: Public Hearing Location: E1.016 (Hearing Room)",
+          "source_url": "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S",
+          "source_title": "Texas Legislature Online, Upcoming Senate Committee Meetings",
+          "source_type": "primary_official",
+          "fetched": "2026-08-21"
+        },
+        {
+          "id": "tx-2026-0077-c6",
+          "text": "The Legislative Reference Library's weekly posting carries the charge the committee is meeting on.",
+          "verbatim_quote": "Study the deployment of autonomous vehicle technology as authorized by SB 2807",
+          "source_url": "https://lrl.texas.gov/whatsNew/client/index.cfm/2026/8/19/Interim-Hearings--Week-of-August-24-2026",
+          "source_title": "Legislative Reference Library of Texas, Interim Hearings, Week of August 24th, 2026",
+          "source_type": "primary_official",
+          "fetched": "2026-08-21"
+        },
+        {
+          "id": "tx-2026-0077-c7",
+          "text": "The same posting carries the rules the charge reaches and what the committee is directed to measure.",
+          "verbatim_quote": "including rule-making adopted by the Texas Department of Public Safety, the Texas Department of Motor Vehicles and the Texas Department of Licensing and Regulation. Quantify the impact on traffic-related collisions.",
+          "source_url": "https://lrl.texas.gov/whatsNew/client/index.cfm/2026/8/19/Interim-Hearings--Week-of-August-24-2026",
+          "source_title": "Legislative Reference Library of Texas, Interim Hearings, Week of August 24th, 2026",
+          "source_type": "primary_official",
+          "fetched": "2026-08-21"
         }
       ],
-      "last_verified": "2026-08-20",
+      "last_verified": "2026-08-21",
       "confidence": "high",
       "notes_for_editor": "Statewide because the charge covers deployment on Texas roads generally. The room is in Travis County and the subject is not.",
       "history": [
         {
           "date": "2026-08-20",
           "note": "Admitted. The Legislature's own notice carries the charge, the date, the room and the terms on which a member of the public may be heard."
+        },
+        {
+          "date": "2026-08-21",
+          "note": "Checked and unchanged. The Legislature's own upcoming meetings listing still carries the Transportation Committee for 9:00 AM on Tuesday, August 25th, 2026 in hearing room E1.016. The autonomous vehicle charge under SB 2807 still stands, and it still directs the committee to quantify the impact on traffic related collisions."
+        }
+      ]
+    },
+    {
+      "title": "House State Affairs held an interim hearing on data center development and the proposed 765 kV transmission lines",
+      "summary": "The Texas House Committee on State Affairs met on August 19th, 2026 on two interim charges. The first directs it to study the development of data centers in Texas and to review the regulatory framework governing that development. It also directs it to study the implementation of SB 6 and the Large Load Batch Study Process proposed by ERCOT as it relates to data centers. The second directs it to review the regulatory and planning processes regarding the proposed 765 kV transmission lines. Those are the same lines the commission has two Oncor applications for. The committee's product is a report to the next Legislature rather than an order, so nothing binds until the session convenes in January 2027.",
+      "topic": "data-centers",
+      "decider": {
+        "name": "Texas House Committee on State Affairs",
+        "type": "legislature"
+      },
+      "geography": {
+        "statewide": true,
+        "counties": [],
+        "metro": null,
+        "on_ercot": true
+      },
+      "status": "pending",
+      "confidence": "high",
+      "key_dates": [
+        {
+          "date": "2026-08-19",
+          "kind": "hearing",
+          "note": "Committee meeting at 8:00 AM, as listed on the Legislature's own committee meetings page"
+        }
+      ],
+      "public_access": {
+        "room": "contact_only",
+        "how": "The hearing has been held. The committee clerk is named on the Legislature's committee meetings page with a phone number and a room. That page is where the hearing notice, the minutes, the witness list and the handouts are posted as they are filed.",
+        "url": "https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=H&CmteCode=C450",
+        "closes": null
+      },
+      "claims": [
+        {
+          "text": "The Legislature's own committee page lists the committee, the meeting date and the time.",
+          "verbatim_quote": "House Committee on State Affairs (C450) Clerk: Megan Quijano Phone: (512) 463-0814 Room: EXT E2.108 Date and Time Hearing Notice Minutes Witness List Handouts Comments August 19, 2026 8:00 AM",
+          "source_url": "https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=H&CmteCode=C450",
+          "source_title": "Texas Legislature Online, House Committee Meetings, C450",
+          "source_type": "primary_official",
+          "fetched": "2026-08-21",
+          "id": "tx-2026-0078-c1"
+        },
+        {
+          "text": "The data center charge states what the committee is directed to study.",
+          "verbatim_quote": "Charge: Data Centers: Study the development of data centers in Texas, including its importance to global competitiveness and national security.",
+          "source_url": "https://lrl.texas.gov/whatsNew/client/index.cfm/2026/8/12/Interim-Hearings--Week-of-August-17-2026",
+          "source_title": "Legislative Reference Library of Texas, Interim Hearings, Week of August 17th, 2026",
+          "source_type": "primary_official",
+          "fetched": "2026-08-21",
+          "id": "tx-2026-0078-c2"
+        },
+        {
+          "text": "The same charge reaches the existing regulatory framework and the large load process ERCOT has proposed.",
+          "verbatim_quote": "Review the existing regulatory framework governing data center development and recommend proposals to streamline regulations while enabling communities to plan and manage growth responsibly. Study the implementation of SB 6 and the Large Load Batch Study Process proposed by the Electric Reliability Council of Texas, as it relates to data centers, and identify how grid-connected data center facilities and co-located resources can support grid resilience and reliability.",
+          "source_url": "https://lrl.texas.gov/whatsNew/client/index.cfm/2026/8/12/Interim-Hearings--Week-of-August-17-2026",
+          "source_title": "Legislative Reference Library of Texas, Interim Hearings, Week of August 17th, 2026",
+          "source_type": "primary_official",
+          "fetched": "2026-08-21",
+          "id": "tx-2026-0078-c3"
+        },
+        {
+          "text": "A second charge on the same agenda covers the transmission lines.",
+          "verbatim_quote": "Charge: 765-kV Transmission Lines: Review the regulatory and planning processes regarding the proposed 765-kV transmission lines.",
+          "source_url": "https://lrl.texas.gov/whatsNew/client/index.cfm/2026/8/12/Interim-Hearings--Week-of-August-17-2026",
+          "source_title": "Legislative Reference Library of Texas, Interim Hearings, Week of August 17th, 2026",
+          "source_type": "primary_official",
+          "fetched": "2026-08-21",
+          "id": "tx-2026-0078-c4"
+        }
+      ],
+      "id": "tx-2026-0078",
+      "last_verified": "2026-08-21",
+      "history": [
+        {
+          "date": "2026-08-21",
+          "note": "Admitted. The Legislature's own committee page carries the meeting and the Legislative Reference Library carries both charges in full. So the record has the data center charge and the 765 kV charge on the same August 19th agenda."
+        }
+      ]
+    },
+    {
+      "title": "House Public Health held an interim hearing on artificial intelligence use in health care",
+      "summary": "The Texas House Committee on Public Health met on August 20th, 2026 on a charge about clinical artificial intelligence. It directs the committee to study the use of artificial intelligence in the health care system to improve access and quality and efficiency of care. The same charge tells the committee to evaluate potential risks to patient safety and privacy and access to care for Texans. A second charge on the same agenda covers what social media platforms and artificial intelligence technologies do to the mental health and the cognitive development of minors. This is the committee that would write any statute governing clinical AI in the next session. Clinical AI is already running in Texas hospitals.",
+      "topic": "health-and-education",
+      "decider": {
+        "name": "Texas House Committee on Public Health",
+        "type": "legislature"
+      },
+      "geography": {
+        "statewide": true,
+        "counties": [],
+        "metro": null,
+        "on_ercot": false
+      },
+      "status": "pending",
+      "confidence": "high",
+      "key_dates": [
+        {
+          "date": "2026-08-20",
+          "kind": "hearing",
+          "note": "Committee meeting at 9:00 AM, as listed on the Legislature's own committee meetings page"
+        }
+      ],
+      "public_access": {
+        "room": "contact_only",
+        "how": "The hearing has been held. The committee clerk is named on the Legislature's committee meetings page with a phone number and a room. That page is where the hearing notice, the minutes, the witness list and the handouts are posted as they are filed.",
+        "url": "https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=H&CmteCode=C410",
+        "closes": null
+      },
+      "claims": [
+        {
+          "text": "The Legislature's own committee page lists the committee, the meeting date and the time.",
+          "verbatim_quote": "House Committee on Public Health (C410) Clerk: Scott Crownover Phone: (512) 463-0806 Room: EXT E2.172 Date and Time Hearing Notice Minutes Witness List Handouts Comments August 20, 2026 9:00 AM",
+          "source_url": "https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=H&CmteCode=C410",
+          "source_title": "Texas Legislature Online, House Committee Meetings, C410",
+          "source_type": "primary_official",
+          "fetched": "2026-08-21",
+          "id": "tx-2026-0079-c1"
+        },
+        {
+          "text": "The charge states what the committee is directed to study about clinical AI.",
+          "verbatim_quote": "Charge: Artificial Intelligence Use in Health Care: Study the use of artificial intelligence in the health care system to improve access, quality, and efficiency of care, while evaluating potential risks to patient safety, privacy, and access to care for Texans.",
+          "source_url": "https://lrl.texas.gov/whatsNew/client/index.cfm/2026/8/12/Interim-Hearings--Week-of-August-17-2026",
+          "source_title": "Legislative Reference Library of Texas, Interim Hearings, Week of August 17th, 2026",
+          "source_type": "primary_official",
+          "fetched": "2026-08-21",
+          "id": "tx-2026-0079-c2"
+        },
+        {
+          "text": "A second charge on the same agenda reaches minors.",
+          "verbatim_quote": "Charge: Social Media’s Impact on Youth Health and Well-Being: Study the impact of social media platforms and artificial intelligence technologies on the mental health, cognitive development, and behavioral well-being of minors in Texas.",
+          "source_url": "https://lrl.texas.gov/whatsNew/client/index.cfm/2026/8/12/Interim-Hearings--Week-of-August-17-2026",
+          "source_title": "Legislative Reference Library of Texas, Interim Hearings, Week of August 17th, 2026",
+          "source_type": "primary_official",
+          "fetched": "2026-08-21",
+          "id": "tx-2026-0079-c3"
+        }
+      ],
+      "id": "tx-2026-0079",
+      "last_verified": "2026-08-21",
+      "history": [
+        {
+          "date": "2026-08-21",
+          "note": "Admitted. The Legislature's own committee page carries the August 20th meeting and the charge on artificial intelligence use in health care is on the record in full."
+        }
+      ]
+    },
+    {
+      "title": "NSF awarded Prairie View A and M a grant to let AI split up the grid optimization problem across processor cores",
+      "summary": "The National Science Foundation made an award to Prairie View A and M University on August 11th, 2026 under its HBCU Excellence in Research program. The project builds a framework that uses graph based artificial intelligence and reinforcement learning to decide how to break up electric grid optimization problems. It then assigns the pieces to processor cores as the work runs. The award record states the obligation as FY 2026 = $699,999.00 and runs the project from October 1st, 2026 through September 30th, 2029. The math it targets is the math that decides which generators run in a grid the size of the one carrying the state's new load.",
+      "topic": "research-and-science",
+      "decider": {
+        "name": "U.S. National Science Foundation",
+        "type": "federal"
+      },
+      "geography": {
+        "statewide": false,
+        "counties": [
+          "Waller"
+        ],
+        "metro": "Houston-Pasadena-The Woodlands, TX",
+        "on_ercot": true
+      },
+      "status": "decided",
+      "confidence": "high",
+      "key_dates": [
+        {
+          "date": "2026-08-11",
+          "kind": "ordered",
+          "note": "Award date recorded in the National Science Foundation award record"
+        }
+      ],
+      "public_access": {
+        "room": "contact_only",
+        "how": "The award record is public and keyless at the National Science Foundation award service, where the abstract, the obligation, the program and the principal investigator are all published. The awardee institution is a public university and its research office is reachable.",
+        "url": "https://api.nsf.gov/services/v1/awards/2602962.json?printFields=abstractText",
+        "closes": null
+      },
+      "claims": [
+        {
+          "text": "The award record names the awardee.",
+          "verbatim_quote": "\"awardeeName\":\"Prairie View A & M University\"",
+          "source_url": "https://api.nsf.gov/services/v1/awards/2602962.json?printFields=abstractText",
+          "source_title": "National Science Foundation, award 2602962",
+          "source_type": "primary_official",
+          "fetched": "2026-08-21",
+          "id": "tx-2026-0080-c1"
+        },
+        {
+          "text": "The abstract states what the project is for.",
+          "verbatim_quote": "This project aims to create faster, more reliable, and more adaptable methods to make optimal operational decisions in managing the electric power grid and maintain its reliability, affordability, and resilience.",
+          "source_url": "https://api.nsf.gov/services/v1/awards/2602962.json?printFields=abstractText",
+          "source_title": "National Science Foundation, award 2602962, abstract",
+          "source_type": "primary_official",
+          "fetched": "2026-08-21",
+          "id": "tx-2026-0080-c2"
+        },
+        {
+          "text": "The abstract states where the approaches will be run.",
+          "verbatim_quote": "The approaches will be evaluated by using diverse electric-grid test systems on multicore workstations and high-performance computing platforms.",
+          "source_url": "https://api.nsf.gov/services/v1/awards/2602962.json?printFields=abstractText",
+          "source_title": "National Science Foundation, award 2602962, abstract",
+          "source_type": "primary_official",
+          "fetched": "2026-08-21",
+          "id": "tx-2026-0080-c3"
+        },
+        {
+          "text": "The award record states the obligation.",
+          "verbatim_quote": "\"fundsObligated\":[\"FY 2026 = $699,999.00\"]",
+          "source_url": "https://api.nsf.gov/services/v1/awards/2602962.json?printFields=abstractText",
+          "source_title": "National Science Foundation, award 2602962",
+          "source_type": "primary_official",
+          "fetched": "2026-08-21",
+          "id": "tx-2026-0080-c4"
+        }
+      ],
+      "id": "tx-2026-0080",
+      "last_verified": "2026-08-21",
+      "history": [
+        {
+          "date": "2026-08-21",
+          "note": "Admitted. The award record names Prairie View A and M, states the obligation and dates the award to August 11th, 2026."
+        }
+      ]
+    },
+    {
+      "title": "NSF awarded UT Austin a grant to replace hand written robot safety rules with a model trained on demonstrated safe behavior",
+      "summary": "The National Science Foundation made an award to the University of Texas at Austin on August 13th, 2026 under its Foundational Research in Robotics program. The project trains a model on expert demonstrations and uses it as a filter that pulls a robot's action back toward behavior that was demonstrated as safe. The award record states the obligation as FY 2026 = $360,000.00 and runs the project from October 1st, 2026 through September 30th, 2029. Its own abstract is the argument for it, because it says engineers today must define every dangerous situation by hand.",
+      "topic": "research-and-science",
+      "decider": {
+        "name": "U.S. National Science Foundation",
+        "type": "federal"
+      },
+      "geography": {
+        "statewide": false,
+        "counties": [
+          "Travis"
+        ],
+        "metro": "Austin-Round Rock-San Marcos, TX",
+        "on_ercot": true
+      },
+      "status": "decided",
+      "confidence": "high",
+      "key_dates": [
+        {
+          "date": "2026-08-13",
+          "kind": "ordered",
+          "note": "Award date recorded in the National Science Foundation award record"
+        }
+      ],
+      "public_access": {
+        "room": "contact_only",
+        "how": "The award record is public and keyless at the National Science Foundation award service, where the abstract, the obligation, the program and the principal investigator are all published. The awardee institution is a public university and its research office is reachable.",
+        "url": "https://api.nsf.gov/services/v1/awards/2535276.json?printFields=abstractText",
+        "closes": null
+      },
+      "claims": [
+        {
+          "text": "The award record names the awardee.",
+          "verbatim_quote": "\"awardeeName\":\"University of Texas at Austin\"",
+          "source_url": "https://api.nsf.gov/services/v1/awards/2535276.json?printFields=abstractText",
+          "source_title": "National Science Foundation, award 2535276",
+          "source_type": "primary_official",
+          "fetched": "2026-08-21",
+          "id": "tx-2026-0081-c1"
+        },
+        {
+          "text": "The abstract states how robot safety is specified today.",
+          "verbatim_quote": "For a robot to work safely alongside people, engineers today must manually define every dangerous situation the robot might encounter and write rules to avoid each one.",
+          "source_url": "https://api.nsf.gov/services/v1/awards/2535276.json?printFields=abstractText",
+          "source_title": "National Science Foundation, award 2535276, abstract",
+          "source_type": "primary_official",
+          "fetched": "2026-08-21",
+          "id": "tx-2026-0081-c2"
+        },
+        {
+          "text": "The abstract states what is wrong with the existing methods.",
+          "verbatim_quote": "Existing safety methods in robotics require explicit mathematical descriptions of which states are safe, but these descriptions are difficult to specify, computationally expensive to enforce, and brittle in novel situations.",
+          "source_url": "https://api.nsf.gov/services/v1/awards/2535276.json?printFields=abstractText",
+          "source_title": "National Science Foundation, award 2535276, abstract",
+          "source_type": "primary_official",
+          "fetched": "2026-08-21",
+          "id": "tx-2026-0081-c3"
+        },
+        {
+          "text": "The award record states the obligation.",
+          "verbatim_quote": "\"fundsObligated\":[\"FY 2026 = $360,000.00\"]",
+          "source_url": "https://api.nsf.gov/services/v1/awards/2535276.json?printFields=abstractText",
+          "source_title": "National Science Foundation, award 2535276",
+          "source_type": "primary_official",
+          "fetched": "2026-08-21",
+          "id": "tx-2026-0081-c4"
+        }
+      ],
+      "id": "tx-2026-0081",
+      "last_verified": "2026-08-21",
+      "history": [
+        {
+          "date": "2026-08-21",
+          "note": "Admitted. The award record names the University of Texas at Austin, states the obligation and dates the award to August 13th, 2026."
+        }
+      ]
+    },
+    {
+      "title": "UTMB moved its Epic health record into Microsoft's cloud and named advanced technologies as the reason",
+      "summary": "The University of Texas Medical Branch migrated its electronic health record from servers it runs itself onto Microsoft's Azure platform, and announced the move on August 13th, 2026. The institution states the cutover took nineteen minutes and that the migration was first announced as part of a five year agreement with Microsoft in May 2025. Its own account names a stronger foundation for advanced technologies that support patient care, research, education and operations. Where a public hospital's patient records physically sit is the decision that has to be made before any clinical AI tool reaches a bedside.",
+      "topic": "health-and-education",
+      "decider": {
+        "name": "The University of Texas Medical Branch",
+        "type": "state-agency"
+      },
+      "geography": {
+        "statewide": false,
+        "counties": [
+          "Galveston"
+        ],
+        "metro": "Houston-Pasadena-The Woodlands, TX",
+        "on_ercot": true
+      },
+      "status": "decided",
+      "confidence": "high",
+      "key_dates": [
+        {
+          "date": "2026-08-13",
+          "kind": "ordered",
+          "note": "Date the institution published its account of the completed migration"
+        }
+      ],
+      "public_access": {
+        "room": "contact_only",
+        "how": "The institution published its own account of the migration and names the chief information officer who describes it. UTMB is a public institution of the University of Texas System and its communications office is reachable.",
+        "url": "https://www.utmb.edu/news/article/utmb-news/2026/08/13/utmb-moves-health-data-to-cloud-based-system--enhancing-digitally-connected-care-initiatives",
+        "closes": null
+      },
+      "claims": [
+        {
+          "text": "The institution states what moved and where it moved to.",
+          "verbatim_quote": "The University of Texas Medical Branch (UTMB) has migrated its electronic health record (EHR) system Epic from an on-premises environment to Microsoft’s cloud-based Azure platform.",
+          "source_url": "https://www.utmb.edu/news/article/utmb-news/2026/08/13/utmb-moves-health-data-to-cloud-based-system--enhancing-digitally-connected-care-initiatives",
+          "source_title": "The University of Texas Medical Branch, UTMB News, August 13th, 2026",
+          "source_type": "primary_official",
+          "fetched": "2026-08-21",
+          "id": "tx-2026-0082-c1"
+        },
+        {
+          "text": "The institution names what the move is designed to support.",
+          "verbatim_quote": "The move is designed to enhance security, improve disaster recovery, increase system scalability, accelerate innovation, and provide a stronger foundation for advanced technologies that support patient care, research, education, and operations across UTMB.",
+          "source_url": "https://www.utmb.edu/news/article/utmb-news/2026/08/13/utmb-moves-health-data-to-cloud-based-system--enhancing-digitally-connected-care-initiatives",
+          "source_title": "The University of Texas Medical Branch, UTMB News, August 13th, 2026",
+          "source_type": "primary_official",
+          "fetched": "2026-08-21",
+          "id": "tx-2026-0082-c2"
+        },
+        {
+          "text": "The institution states the length of the cutover and the agreement it sits under.",
+          "verbatim_quote": "The initiative, first announced as part of a five-year agreement between UTMB and Microsoft in May 2025, was completed with a brief cutover window of just 19 minutes, according to Jayson Laban , vice president of Information Services and chief information officer.",
+          "source_url": "https://www.utmb.edu/news/article/utmb-news/2026/08/13/utmb-moves-health-data-to-cloud-based-system--enhancing-digitally-connected-care-initiatives",
+          "source_title": "The University of Texas Medical Branch, UTMB News, August 13th, 2026",
+          "source_type": "primary_official",
+          "fetched": "2026-08-21",
+          "id": "tx-2026-0082-c3"
+        }
+      ],
+      "id": "tx-2026-0082",
+      "last_verified": "2026-08-21",
+      "history": [
+        {
+          "date": "2026-08-21",
+          "note": "Admitted. The institution's own account states that Epic moved to Azure and names what the move is designed to support."
         }
       ]
     }

@@ -1,0 +1,238 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;
+            background:#101113;font-kerning:normal}
+  #art{position:absolute;inset:0;display:block}
+  .lyr{position:absolute;inset:0}
+  .kick{position:absolute;left:80px;top:80px;font-family:'JetBrains Mono',monospace;
+        font-size:26px;letter-spacing:0.16em;text-transform:uppercase;color:#9AA096;margin:0}
+  .hook{position:absolute;margin:0;font-family:Fraunces,serif;font-weight:700;
+        line-height:0.98;letter-spacing:-0.015em;color:#E9EFE6}
+  .dek{position:absolute;margin:0;font-family:Manrope,sans-serif;font-weight:500;
+       font-size:34px;line-height:1.34;color:#E6D8B8}
+  .src{position:absolute;left:80px;bottom:130px;font-family:'JetBrains Mono',monospace;
+       font-size:24px;letter-spacing:0.04em;color:#9AA096;margin:0}
+  .row{position:absolute;left:80px;right:80px;bottom:84px;display:flex;
+       justify-content:space-between;align-items:baseline;
+       font-family:'JetBrains Mono',monospace;font-size:26px;letter-spacing:0.08em;color:#9AA096}
+  .row span{font-variant-numeric:tabular-nums}
+  .geo{position:absolute;right:80px;bottom:130px;font-family:'JetBrains Mono',monospace;
+       font-size:22px;letter-spacing:0.04em;color:#9AA096;margin:0;text-align:right}
+
+</style>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+
+</head><body>
+<canvas id="art" style="width:1080px;height:1350px"></canvas>
+
+<p class="kick">The working fleet</p>
+<h1 class="hook" id="h3" style="left:80px;top:174px;width:920px;font-size:104px">35 trucks. No one in the cab.</h1>
+<p class="dek" style="left:80px;top:400px;width:900px;font-size:29px">Kodiak hauls triple trailers for Atlas Energy Solutions inside a fleet of 35 driverless trucks with no human in the cab. That was the count on June 30th, 2026.</p>
+<p class="src">Kodiak, c15 c16</p>
+<p class="geo" data-decorative>PERMIAN BASIN<br>OIL FIELDS</p>
+<div class="row"><span>03 / 09</span><span>ELEVATION</span><span class="tx-site">texasaidocket.com</span></div>
+<script>
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  const cv = document.getElementById('art');
+  cv.width = 1080*2; cv.height = 1350*2;
+  const g = cv.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260821);
+
+  function tone(hex, d, a){
+    const n = parseInt(hex.slice(1), 16);
+    const c = [(n>>16)&255,(n>>8)&255,n&255].map(function(v){return Math.max(0,Math.min(255,v+d));});
+    return 'rgba('+c[0]+','+c[1]+','+c[2]+','+a+')';
+  }
+  function well(x, y, w, h, top, bot){
+    const gr = g.createLinearGradient(0, y, 0, y+h);
+    gr.addColorStop(0, top); gr.addColorStop(1, bot);
+    g.fillStyle = gr; g.fillRect(x, y, w, h);
+  }
+  function reserve(x, y, w, h, c, k){
+    const K = k === undefined ? 1 : k, f = 20, R = TX.rng(Math.round(x*7+y*13+w));
+    const d = g.createLinearGradient(x, y, x+w, y+h);
+    d.addColorStop(0, tone(c, 22*K, 1)); d.addColorStop(0.55, tone(c, 0, 1));
+    d.addColorStop(1, tone(c, -13*K, 1));
+    g.fillStyle = d; g.fillRect(x, y, w, h);
+    const a = g.createLinearGradient(0, y-f, 0, y);
+    a.addColorStop(0, tone(c, 22*K, 0)); a.addColorStop(1, tone(c, 22*K, 1));
+    g.fillStyle = a; g.fillRect(x, y-f, w, f);
+    const b = g.createLinearGradient(0, y+h, 0, y+h+f);
+    b.addColorStop(0, tone(c, -13*K, 1)); b.addColorStop(1, tone(c, -13*K, 0));
+    g.fillStyle = b; g.fillRect(x, y+h, w, f);
+    const l = g.createLinearGradient(x-f, 0, x, 0);
+    l.addColorStop(0, tone(c, 0, 0)); l.addColorStop(1, tone(c, 0, 1));
+    g.fillStyle = l; g.fillRect(x-f, y, f, h);
+    const r2 = g.createLinearGradient(x+w, 0, x+w+f, 0);
+    r2.addColorStop(0, tone(c, 0, 1)); r2.addColorStop(1, tone(c, 0, 0));
+    g.fillStyle = r2; g.fillRect(x+w, y, f, h);
+    // Broad, soft and nearly invisible. Enough luminance spread per cell to keep the band off
+    // the flat-plate reading, far too little to be seen as texture: the earlier version was
+    // legible as scratched grey panels laid over the art, which cheapened all nine frames.
+    for (let i=0; i<Math.round(w*h/900); i++){
+      const px=x+R()*w, py=y+R()*h, s=16+R()*46;
+      const gr = g.createRadialGradient(px, py, 0, px, py, s);
+      const d = R()<0.5 ? Math.round(22*K) : Math.round(-11*K);
+      gr.addColorStop(0, tone(c, d, 0.55)); gr.addColorStop(1, tone(c, d, 0));
+      g.fillStyle = gr; g.beginPath(); g.arc(px, py, s, 0, Math.PI*2); g.fill();
+    }
+    // THE AGGREGATE CARRIES ACROSS THE PLATE. This is why three reviews running called the
+    // reserves visible as pasted cards while their value delta against the ground was two or
+    // three points and darkening them further never helped. The edge was never betrayed by its
+    // VALUE. It was betrayed by the TEXTURE stopping dead at its border: inside the plate the
+    // speckle ended, outside it continued at full density, and an eye reads that discontinuity
+    // as an object even when it cannot see a tonal step. Running the same grain across the
+    // reserve at reduced amplitude leaves the plate doing its job for the type and stops it
+    // being a rectangle.
+    for (let i=0; i<Math.round(w*h/115); i++){
+      const px=x+R()*w, py=y+R()*h;
+      const up = R()<0.55;
+      g.fillStyle = tone(c, up ? Math.round(22*K) : Math.round(-15*K), 0.04+R()*0.08);
+      g.fillRect(px, py, 1.8+R()*1.6, 1.5+R()*1.3);
+    }
+  }
+  function bed(x, y, w, h, amp, scale, seed, warm){
+    TX.reseed(seed);
+    const R = TX.rng(seed+3), S = 26;
+    for (let py=y-S; py<y+h+S; py+=S){
+      for (let px=x-S; px<x+w+S; px+=S){
+        const jx=px+(R()-0.5)*S*1.4, jy=py+(R()-0.5)*S*1.4;
+        const v = TX.fbm2(jx*scale, jy*scale, 4)*0.68 + TX.fbm2(jx*scale*2.7+40, jy*scale*2.7-17, 3)*0.32;
+        const a = Math.abs(v)*amp;
+        if (a < 0.004) continue;
+        const rad = S*(1.15+R()*0.95);
+        const col = v>=0 ? (warm ? '214,186,146' : '233,239,230') : '6,6,8';
+        const gr = g.createRadialGradient(jx, jy, 0, jx, jy, rad);
+        gr.addColorStop(0, 'rgba('+col+','+(a*(v>=0?1:1.35)).toFixed(4)+')');
+        gr.addColorStop(1, 'rgba('+col+',0)');
+        g.fillStyle = gr; g.beginPath(); g.arc(jx, jy, rad, 0, Math.PI*2); g.fill();
+      }
+    }
+  }
+  function stones(x, y, w, h, n, seed, warm){
+    const R = TX.rng(seed);
+    for (let i=0;i<n;i++){
+      const px=x+R()*w, py=y+R()*h, s=5+R()*13;
+      g.fillStyle = (warm?'rgba(222,198,158,':'rgba(233,239,230,')+(0.05+R()*0.16).toFixed(3)+')';
+      g.beginPath(); g.ellipse(px, py, s, s*0.62, R()*3.14, 0, Math.PI*2); g.fill();
+      g.fillStyle = 'rgba(6,6,8,'+(0.06+R()*0.20).toFixed(3)+')';
+      g.beginPath(); g.ellipse(px+s*0.42, py+s*0.34, s*0.78, s*0.46, R()*3.14, 0, Math.PI*2); g.fill();
+    }
+  }
+
+  function grain(alpha, step){
+    const R = TX.rng(20260912);
+    g.save();
+    for (let y=0; y<1350; y+=step){
+      for (let x=0; x<1080; x+=step){
+        const v = R();
+        g.fillStyle = 'rgba(233,239,230,'+(v*alpha).toFixed(4)+')';
+        g.fillRect(x, y, step, step);
+      }
+    }
+    g.restore();
+  }
+
+  // The darkest air in the deck sits above the beam. No sky, no horizon glow.
+  g.fillStyle='#101113'; g.fillRect(0,0,1080,1350);
+  // Caliche haze, lit from behind the camera, so the AIR is lit across the whole frame and the
+  // vehicle is the dark shape standing in it.
+  //
+  // The first version drew this as a wedge with its apex at (120, 690), which is where the
+  // tractor is. A wedge has no width at its apex, so the frame's stated focal reached every part
+  // of the picture except its subject, and the rig shipped near-black on near-black with four
+  // wheel circles and a row of marker lamps the only legible parts of it. A silhouette needs
+  // something behind it.
+  (function haze(){
+    const TOP=548, BOT=958;
+    const v=g.createLinearGradient(0,TOP,0,BOT);
+    v.addColorStop(0,'rgba(201,179,147,0.05)');
+    v.addColorStop(0.38,'rgba(230,216,184,0.50)');
+    v.addColorStop(0.70,'rgba(214,196,163,0.32)');
+    v.addColorStop(1,'rgba(201,179,147,0.03)');
+    g.fillStyle=v; g.fillRect(0,TOP,1080,BOT-TOP);
+    // one lateral term, brightest where the beam opens away from the camera
+    const h=g.createLinearGradient(0,0,1080,0);
+    h.addColorStop(0,'rgba(230,216,184,0.12)');
+    h.addColorStop(0.62,'rgba(230,216,184,0.04)');
+    h.addColorStop(1,'rgba(230,216,184,0)');
+    g.fillStyle=h; g.fillRect(0,TOP,1080,BOT-TOP);
+    // dust in the beam, kept dry rather than humid by holding the value low and the size small
+    const R=TX.rng(20260842);
+    for(let i=0;i<2600;i++){
+      const x=R()*1080, y=TOP+Math.pow(R(),0.85)*(BOT-TOP);
+      g.fillStyle='rgba(246,241,228,'+(0.02+R()*0.10).toFixed(3)+')';
+      g.fillRect(x,y,2.0+R()*3.0,1.6+R()*2.0);
+    }
+  })();
+  // The bermed lease road as a nested contour field, thinning toward the frame edges.
+  (function contours(){
+    const MIN_SPACING=6;   // design px, so it holds above 5px at 2x on the thumb
+    for(let k=0;k<26;k++){
+      const base=966 + k*(MIN_SPACING+2.4+k*0.9);
+      if(base>1350) break;
+      const fade=1-(k/26);
+      g.beginPath();
+      for(let x=-20;x<=1100;x+=6){
+        const n=TX.fbm2(x*0.0021, 4.2+k*0.19, 4);
+        const edge=Math.min(1,Math.min(x+20,1100-x)/300);   // thin toward the frame edges
+        const y=base + n*46*edge - k*1.1;
+        if(x<=-20) g.moveTo(x,y); else g.lineTo(x,y);
+      }
+      g.lineWidth=1.5;
+      g.strokeStyle='rgba(201,179,147,'+(0.07+fade*0.30).toFixed(3)+')';
+      g.stroke();
+    }
+    // graded near berm, the lit shelf the hook sits over
+    const bg2=g.createLinearGradient(0,1120,0,1350);
+    bg2.addColorStop(0,'rgba(230,216,184,0.16)');
+    bg2.addColorStop(1,'rgba(15,16,18,0.55)');
+    g.fillStyle=bg2; g.fillRect(0,1120,1080,230);
+  })();
+  // The rig, in silhouette. No interior detail and no window light anywhere on it.
+  (function rig(){
+    g.save(); g.fillStyle='#0B0C0D';
+    // tractor
+    g.beginPath(); g.roundRect(196,606,178,150,6); g.fill();
+    g.beginPath(); g.roundRect(228,566,120,52,5); g.fill();
+    // leading trailer, running off the frame's right edge
+    g.beginPath(); g.rect(384,590,700,150); g.fill();
+    // running gear
+    g.beginPath(); g.rect(196,756,888,20); g.fill();
+    [252,338,470,536,742,808].forEach(function(x){
+      g.beginPath(); g.ellipse(x,772,34,34,0,0,Math.PI*2); g.fill();
+    });
+    g.restore();
+    // the only bright marks on the vehicle: amber markers and white conspicuity tape
+    g.save();
+    [[236,572],[300,572],[352,572]].forEach(function(p){
+      g.fillStyle='#C4813A';
+      g.beginPath(); g.ellipse(p[0],p[1],7,5,0,0,Math.PI*2); g.fill();
+      const lg=g.createRadialGradient(p[0],p[1],1,p[0],p[1],26);
+      lg.addColorStop(0,'rgba(196,129,58,0.36)'); lg.addColorStop(1,'rgba(196,129,58,0)');
+      g.fillStyle=lg; g.beginPath(); g.arc(p[0],p[1],26,0,Math.PI*2); g.fill();
+    });
+    for(let x=396;x<1080;x+=76){
+      g.fillStyle='rgba(233,239,230,0.80)'; g.fillRect(x,726,38,11);
+      g.fillStyle='rgba(196,129,58,0.72)'; g.fillRect(x+38,726,38,11);
+    }
+    g.restore();
+  })();
+  grain(0.026, 3);
+  well(0, 0, 1080, 150, 'rgba(13,14,16,1)', 'rgba(16,17,19,1)');
+  well(0, 150, 1080, 430, 'rgba(28,26,23,1)', 'rgba(19,18,16,1)');
+  // Held well down. At 0.46 with 1250 stones this field was the lightest mass on the frame
+  // and it read as bokeh over a night photograph rather than as ground.
+  bed(0, 960, 1080, 390, 0.22, 0.0033, 831, true);
+  stones(0, 960, 1080, 390, 520, 832, true);
+  // reserves, one per block of type, so no drawn edge reaches a letterform
+  reserve(58, 58, 380, 79, '#1A1917');
+  reserve(58, 150, 964, 430, '#221E19');
+  reserve(58, 1146, 964, 142, '#1A1917');
+
+  TX.fitText(document.getElementById('h3'), {max:104, min:64});
+})();
+</script></body></html>
