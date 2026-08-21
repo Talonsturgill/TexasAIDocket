@@ -213,6 +213,12 @@ SOCIALS = [
      "3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4"
      "s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44"
      "-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"),
+    ("YouTube", "https://www.youtube.com/@TexasAIDocket",
+     "M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 "
+     "0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 "
+     "0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 "
+     "2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 "
+     "3.568z"),
     # X, AT THE ADDRESS THE PROFILE ACTUALLY LIVES AT. twitter.com/TexasAIDocket still resolves,
     # by a redirect the company runs and could stop running, and `sameAs` is a claim that should
     # survive that. The mark is the current one for the same reason: a bird would be a drawing of
