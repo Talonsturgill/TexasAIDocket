@@ -271,11 +271,31 @@ check("an off-record question is refused on the page",
 check("...and it called nobody to do it",
       external.filter((u) => u.includes("workers.dev")).length === beforeRefuse);
 
-// STATED AS WHAT IS ALLOWED, not as an empty list. An empty list has to be relaxed every time
-// anything legitimate is added, and each relaxation is invisible.
-const strays = external.filter((u) => !u.startsWith(CHALLENGE_HOST));
-check("nothing but the human check left the page after every interaction",
+/* STATED AS WHAT IS ALLOWED, not as an empty list. An empty list has to be relaxed every time
+   anything legitimate is added, and each relaxation is invisible.
+
+   THE WORKER IS ON THE LIST NOW, and this is a real change to the promise rather than a
+   relaxation to make a red gate green. This suite was written when the page ANSWERED every
+   matched question itself, so the only thing that ever left was the human check. The owner's
+   verdict on a page of item links was that an answer has to be the agent or look like it, so
+   a press goes to the agent and the page contacts the worker by design.
+
+   WHAT IS UNCHANGED IS THE PART A READER WAS PROMISED. Typing still sends nothing anywhere,
+   and that is asserted separately above and on its own. What the two lists say together is
+   that the page contacts exactly two hosts, the human check and the agent, and only when
+   somebody presses. */
+const ANSWER_HOST = "https://texas-ask.talon-sturgill.workers.dev/";
+const ALLOWED = [CHALLENGE_HOST, ANSWER_HOST];
+const strays = external.filter((u) => !ALLOWED.some((h) => u.startsWith(h)));
+check("nothing but the human check and the agent left the page",
       strays.length === 0, strays.join(", "));
+/* AND THE WIDENED LIST IS NOT COVERING A SILENCE, but that is proved in the OTHER suite and
+   deliberately not here. This file aborts the human check, so a press frequently never gets a
+   token and never reaches the worker at all: asserting the call happened here passes in CI,
+   where it got far enough, and fails locally, where it did not. That is a coin toss wearing an
+   assertion's clothes, which is what this file's own history is full of.
+   `ask_written.mjs` stubs the token and the worker and asserts "exactly one request went out"
+   carrying the question, which is the same property measured where it is deterministic. */
 
 // THE GATE CAN STILL GO RED, PROVED RATHER THAN ASSERTED. Narrowing an assertion is exactly
 // where a suite quietly stops testing anything, so the exclusion is exercised against a host
