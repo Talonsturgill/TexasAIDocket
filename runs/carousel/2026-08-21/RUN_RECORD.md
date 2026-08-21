@@ -205,6 +205,63 @@ and the standing proposal is a gate that asserts each thumb is not older than it
 exit code, so a re-render without a re-thumb fails the build instead of shipping the previous
 frame to the feed.
 
+## What the first scoring panel refused, and what it cost to fix
+
+Three judges, three lenses, three refusals at 6.67, 6.75 and 6.81. None of them cleared the 7.0
+floor and two of them carried hard fails. Every one of the findings below was real and none of
+them had been caught by any gate in the suite.
+
+**A typed numeral on the one frame that could have counted it.** `STATEWIDE / 254 COUNTIES` was
+a Python string literal, on slide 6, which loads `assets/geo/tx-counties.topo.json` to draw the
+mesh and never counts its geometries. The identical stamp on slide 2 was computed. Two of the
+three judges found it independently, one of them by reading the builder. It was invisible to
+`aggregate_check` because the `.geo` block carries `data-decorative`, and that exemption exists
+for a coordinates footer that this run had already deleted. `aggregate_check`'s own docstring uses
+"254 counties, `len()` of a topojson" as its canonical example of the computed route. The number
+was right and nothing in the pipeline made it right, which is the whole of the law.
+
+**A frame that refuted itself.** Slide 8's dek said the federal header row "begins with the
+reporting entity and the report type" while the frame drew `Report ID, Report Version, Reporting
+Entity, Report Type` at 84px directly above the sentence. The frame's acceptance list checked the
+milled header word for word against c31 and checked the dek for one required string and one
+forbidden word, and never checked the dek's second sentence against anything.
+
+**An absence that overreached its own source.** The absence record asserted that the three pages
+checked were "the three Texas agency pages the committee's own charge points to". c4's quote names
+the Department of Public Safety, the Department of Motor Vehicles and the Texas Department of
+Licensing and Regulation. The Department of Transportation is not among them, and it is the agency
+that publishes the state's crash records. The three pages checked are the Legislative Reference
+Library's resource list beneath the charge, which is a different set. Corrected in the claims file,
+the caption and the aggregates, and the mismatch is now published as what it is: the charge asking
+for a collision count names three agencies and leaves out the one that keeps the crash records.
+
+**Numerals typed beside the code that computes them.** "Five of seven" on slide 2 and "392" on
+slide 6 were both typed while `TAIL_MARKS`, `len(SEQ)` and `SPAN_TO_AUTH` sat computed and unused.
+Both are interpolated now, and the spelling of a small count is a function of the count.
+
+**A hook with no claim under it.** Slide 1 said "Every mile logged" over a dek about Dallas to
+Houston, and neither cited claim mentioned miles, logging or measuring. The dek now carries c28,
+which is Aurora reporting one hundred thousand driverless miles on public roads.
+
+**A city that did not do the thing.** Slide 5's headline read "Houston opened it to everyone".
+Waymo did. A reader who reads only headlines never reaches the dek that corrects it. The headline
+is now the source's own sentence.
+
+**A close with nothing to do.** `texan_check` had been reporting `next step NO` all run and the
+run had been treating it as the acceptable cost of refusing to assert a right to testify. The
+reader judge found the middle the run had missed: the Legislature's own upcoming meetings listing
+is the page c1, c2 and c36 were fetched from, and naming it asserts nothing about who may speak.
+
+**A plan describing a deck that no longer existed.** The `FRAME WIDTH` stamp was removed from the
+pixels earlier in the run and the storyboard's own prose still called it load bearing on every
+slide, as did the builder's docstring. The acceptance items had been updated and the narrative had
+not, which is how a fix silently reverts on the next run.
+
+The panel is the most expensive phase in this routine and it is the only one that has ever found
+these. The pixel critics read the frames and found craft. The gates read the files and found form.
+Only a judge told to refute the deck went and read the builder to see whether a number on a slide
+was a number the code produced.
+
 ## The deck
 
 ### Selection, and why this story and not the others
@@ -247,7 +304,7 @@ next step yes.** Run on the candidate before a word was drawn. The first pass na
 which is the warning the tool exists to give, and the fix was to anchor the deck in the two
 counties the story actually happens in rather than to carry it on art alone.
 
-**The claims gate is clean.** Thirty verified claims and ten rejected, and the rejections are
+**The claims gate is clean.** Thirty one verified claims and eleven rejected, and the rejections are
 the interesting half. The 9:00 AM start time of the hearing is on the Legislature's page and is
 NOT quotable, because it renders as an isolated table cell and the labelled form lives only in
 the notice under the disallowed directory. Kodiak's own page says "more than 1,400 loads" where
@@ -260,3 +317,23 @@ false exact match on a shortened string, so it is out of the deck entirely.
 pages the committee's own charge points at publishes a count of crashes involving driverless
 vehicles. It names where it looked. A second absence, that the federal file is the ONLY public
 source, was offered and REFUSED, because the two pages that would settle it returned 403.
+
+## Gate status
+
+<!-- gate-status:begin -->
+| gate | status | detail |
+|---|---|---|
+| claims         | PASS   | 31 verified claim(s) |
+| render         | PASS   | 9 slide(s) |
+| qa             | WARN   | 0 fail(s), 23 warn(s) |
+| aggregates     | PASS   | 9 declared and re-derived |
+| assembly       | PASS   | 9 slide(s), 4.54 MB, vector |
+| score          | ABSENT | score.json not written yet |
+| dossiers       | PASS   | 40,514 chars planned |
+| caption        | PASS   | 178 words |
+| craft floor    | WARN   | 9 frame(s), median 216, floor 60, 4 quiet |
+| plan vs render | WARN   | 6 of 64 acceptance item(s) checkable |
+| texan          | WARN   | places NONE / body yes / deadline yes / next step NO |
+| absences       | WARN   | 3 of 7 scoped to a named document, 4 unscoped |
+| completion     | ABSENT | not scored yet |
+<!-- gate-status:end -->
