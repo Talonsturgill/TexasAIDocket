@@ -658,7 +658,7 @@ export function assemble(pack, turns, env) {
         { type: "text", text: pack.pack, cache_control: { type: "ephemeral" } },
       ],
       mode: `whole (${why})`, chosen: items.map((it) => it.id), shown: items.length,
-      of: items.length, chars: pack.pack.length,
+      of: items.length, chars: pack.system.length + pack.pack.length,
     };
   }
 
