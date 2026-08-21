@@ -97,9 +97,43 @@ const open = async (opts = {}, hash = "") => {
 async function openMonth(p, key) {
   await p.evaluate(() => window.scrollTo(0, 0));
   await p.click("#calvy", { timeout: 5000 });
+  // THE YEAR VIEW SHOWS ONE YEAR NOW, so a month in another year is in the document and not
+  // on screen. Step the year bar to it first. Waiting on the mini to become visible without
+  // this is a five second wait for something that is never going to happen.
+  // A STEP IS A YEAR THAT CHANGED, same rule the month walk follows. Reading the label back
+  // straight after the click reads whatever was there before the handler ran, so the loop
+  // clicks again and overshoots the year it was aiming at. The cap is a runaway guard.
+  const want = key.slice(0, 4);
+  for (let i = 0; i < 12; i++) {
+    const at = await p.$eval("#calyeart", (t) => t.textContent);
+    if (at === want) break;
+    const id = at > want ? "#calyprev" : "#calynext";
+    if (await p.$eval(id, (b) => b.disabled)) break;
+    await p.click(id);
+    await yearChanged(p, at);
+  }
   await p.waitForSelector(`a.mini[data-month="${key}"]`, { state: "visible", timeout: 5000 });
   await p.click(`a.mini[data-month="${key}"]`, { timeout: 5000 });
 }
+
+// THE YEAR RAIL MOVED, rather than enough milliseconds having passed. Every wait in the year
+// checks below was a guessed sleep, and 60ms is shorter than a click costs on this page even
+// with motion reduced (49 to 215ms, measured in #143), so it was the same fault as the
+// swallowed click with the swallowing moved one line down.
+const yearChanged = (p, from) => p.waitForFunction(
+  (prev) => {
+    const t = document.getElementById("calyeart");
+    return !!t && t.textContent !== prev;
+  }, from, { timeout: 5000 });
+
+// The year the rail is showing, whatever it is.
+const yearNow = (p) => p.$eval("#calyeart", (t) => t.textContent);
+
+// THE VIEW SWITCHED, rather than a guessed interval having elapsed. Same rule again: the
+// thing to wait for is the state the next assertion reads.
+const viewIs = (p, which) => p.waitForFunction(
+  (w) => document.getElementById("cal").getAttribute("data-view") === w,
+  which, { timeout: 5000 });
 
 // A STEP IS A MONTH THAT CHANGED, NOT A CLICK THAT WAS ATTEMPTED. Every walk here used to be
 // a fixed number of `click(...{timeout: 400}).catch(() => {})` calls, which on this page is
@@ -108,8 +142,9 @@ async function openMonth(p, key) {
 // stepper's own end condition is the button going disabled, so use that rather than counting.
 // The iteration cap is a runaway guard, not the mechanism: reaching it is a failure.
 async function walk(p, id, cap) {
+  // THE MONTH YOU ARE ON, which is the first of a pair now rather than the only one shown.
   const shown = () => p.evaluate(() => {
-    const s = document.querySelector(".calmonth:not([hidden])");
+    const s = document.querySelector('.calmonth[data-slot="now"]:not([hidden])');
     return s ? s.getAttribute("data-month") : null;
   });
   const seen = [];
@@ -119,7 +154,7 @@ async function walk(p, id, cap) {
     if (await p.$eval(`#${id}`, (b) => b.disabled)) break;
     await p.click(`#${id}`);
     await p.waitForFunction((prev) => {
-      const s = document.querySelector(".calmonth:not([hidden])");
+      const s = document.querySelector('.calmonth[data-slot="now"]:not([hidden])');
       return !!s && s.getAttribute("data-month") !== prev;
     }, at, { timeout: 5000 });
   }
@@ -135,15 +170,24 @@ const todayMonth = (p) => p.evaluate(() => {
 });
 let TODAY = null;
 
+// `showing` IS THE MONTH YOU ARE ON, not "the only one on screen". The view is a pair now,
+// so a helper that only knew how to describe one month would have quietly returned null for
+// every state in the suite and taken most of the assertions green with it.
 const state = (p) => p.evaluate(() => {
   const c = document.getElementById("cal");
   if (!c) return null;
   const panels = [...c.querySelectorAll(".calmonth")];
   const shown = panels.filter((x) => !x.hidden);
+  const now = c.querySelector('.calmonth[data-slot="now"]:not([hidden])');
+  const nxt = c.querySelector('.calmonth[data-slot="next"]:not([hidden])');
+  const yrs = [...c.querySelectorAll(".calyr")];
   return {
     panels: panels.length,
     shown: shown.length,
-    showing: shown.length === 1 ? shown[0].getAttribute("data-month") : null,
+    showing: now ? now.getAttribute("data-month") : null,
+    alongside: nxt ? nxt.getAttribute("data-month") : null,
+    onScreen: shown.map((x) => x.getAttribute("data-month")),
+    order: panels.map((x) => x.getAttribute("data-month")),
     view: c.getAttribute("data-view"),
     tab: (c.querySelector('.caltab[aria-pressed="true"]') || {}).id || null,
     today: c.querySelectorAll(".calday.today").length,
@@ -152,8 +196,21 @@ const state = (p) => p.evaluate(() => {
       a.getAttribute("href") || "")).length,
     prevOff: document.getElementById("calprev").disabled,
     nextOff: document.getElementById("calnext").disabled,
+    years: yrs.map((x) => x.getAttribute("data-year")),
+    yearsShown: yrs.filter((x) => !x.hidden).map((x) => x.getAttribute("data-year")),
+    yearLabel: (document.getElementById("calyeart") || {}).textContent || null,
+    yearCount: (document.getElementById("calyearn") || {}).textContent || null,
+    yprevOff: document.getElementById("calyprev").disabled,
+    ynextOff: document.getElementById("calynext").disabled,
   };
 });
+
+// The pair is the month you are on and the NEXT PANEL, which is not always the next month on
+// the wall: a month holding nothing has no panel at all. So "consecutive" is checked against
+// the panel order rather than against the calendar.
+const isPair = (s) => s.alongside === null
+  ? s.order.indexOf(s.showing) === s.order.length - 1
+  : s.order.indexOf(s.alongside) === s.order.indexOf(s.showing) + 1;
 
 console.log("=== with no script at all ===");
 {
@@ -174,25 +231,37 @@ console.log("=== with no script at all ===");
   await ctx.close();
 }
 
-console.log("\n=== with script, one month at a time ===");
+console.log("\n=== with script, this month and the next ===");
 {
   const { p, ctx } = await open();
   TODAY = await todayMonth(p);
   let s = await state(p);
-  ok("exactly one month is showing", s.shown === 1, String(s.shown));
+  ok("this month and the one after it are showing", s.shown === 2, String(s.shown));
+  ok("...and they are consecutive in the record, not two months picked at random",
+     isPair(s), `${s.showing} + ${s.alongside}`);
+  ok("...and the second is marked as the second, so the pair reads as one view",
+     s.alongside !== null && s.alongside > s.showing, String(s.alongside));
   ok("...and the month tab is the one lit", s.view === "month" && s.tab === "calvm",
      `${s.view}/${s.tab}`);
   ok("today is marked, so a reader is not counting columns", s.today === 1, String(s.today));
   ok("every event links to an item page", s.badLinks === 0, String(s.badLinks));
 
   const first = s.showing;
-  await openMonth(p, "2026-06");
-  await p.waitForTimeout(300);
+  // A MONTH THE RECORD HOLDS, and one that is not already on screen, so the click has to
+  // change something. Named off the panel order rather than typed: the calendar reaches back
+  // a rolling two years now, so any month written in here stops existing on a date nobody is
+  // going to be watching for.
+  const target = s.order.find((k) => k !== s.showing && k !== s.alongside);
+  await openMonth(p, target);
+  await p.waitForFunction(
+    (k) => { const x = document.querySelector('.calmonth[data-slot="now"]:not([hidden])');
+             return !!x && x.getAttribute("data-month") === k; }, target, { timeout: 5000 });
   s = await state(p);
-  ok("clicking a month in the rail shows that month", s.showing === "2026-06", s.showing);
-  ok("...and it is the only one showing", s.shown === 1, String(s.shown));
+  ok("clicking a month in the rail shows that month", s.showing === target, s.showing);
+  ok("...and it brings its own next month with it, and nothing else",
+     s.shown === 2 && isPair(s), s.onScreen.join(" + "));
   ok("...and the address bar carries it, so the view can be shared",
-     p.url().endsWith("#cal-2026-06"), p.url());
+     p.url().endsWith(`#cal-${target}`), p.url());
   ok("the month it opened on was today's", !!TODAY && first === TODAY, `${first} vs ${TODAY}`);
   await ctx.close();
 }
@@ -204,8 +273,10 @@ console.log("\n=== the stepper, which is the control a thumb uses ===");
   const a = await state(p);
   await p.click("#calprev"); await p.waitForTimeout(250);
   const b = await state(p);
-  ok("next moves forward a month that exists", a.showing > "2026-08", a.showing);
-  ok("...and prev comes back", b.showing === "2026-08", b.showing);
+  // TODAY'S MONTH, not the month it was when this was written. The two literals left here
+  // rot on the first of the month exactly like the ones #143 replaced.
+  ok("next moves forward a month that exists", a.showing > TODAY, a.showing);
+  ok("...and prev comes back", b.showing === TODAY, b.showing);
 
   // IT STOPS RATHER THAN WRAPPING. Wrapping off the end lands a reader five years away with
   // no way back using the button they just pressed.
@@ -217,9 +288,9 @@ console.log("\n=== the stepper, which is the control a thumb uses ===");
   // landed has to be a failure here rather than a confusing failure one line down.
   await p.click("#calnow");
   await p.waitForFunction((m) => {
-    const x = document.querySelector(".calmonth:not([hidden])");
+    const x = document.querySelector('.calmonth[data-slot="now"]:not([hidden])');
     return !!x && x.getAttribute("data-month") === m;
-  }, TODAY, { timeout: 5000 }).catch(() => {});
+  }, TODAY, { timeout: 5000 });
   ok("'this month' comes home", (await state(p)).showing === TODAY);
   await ctx.close();
 }
@@ -249,8 +320,13 @@ console.log("\n=== only what I can still act on ===");
 
 console.log("\n=== a link into one month lands there ===");
 {
-  const { p, ctx } = await open({}, "#cal-2025-09");
-  ok("a shared month opens on that month", (await state(p)).showing === "2025-09");
+  // THE MONTH COMES OFF THE RECORD. The oldest one it holds is the interesting case, because
+  // it is the one the rolling window reaches first, and it is the one a typed key would have
+  // silently stopped naming.
+  const { p: p0 } = await open();
+  const key = (await state(p0)).order[0];
+  const { p, ctx } = await open({}, `#cal-${key}`);
+  ok("a shared month opens on that month", (await state(p)).showing === key, key);
   await ctx.close();
 }
 
@@ -261,7 +337,11 @@ console.log("\n=== on a phone ===");
     const w = document.documentElement.clientWidth;
     const off = [...document.querySelectorAll("#cal *")]
       .filter((el) => el.getBoundingClientRect().right > w + 1).length;
-    const btn = [...document.querySelectorAll("#cal .calstep button")]
+    // EVERY BUTTON IN THE CALENDAR, found by a selector that exists. This read `.calstep`,
+    // which was renamed out of the markup a while back, so it measured an empty list and
+    // `[].every()` is true: the check had been passing without looking at anything.
+    const btn = [...document.querySelectorAll("#cal button")]
+      .filter((b) => b.offsetParent !== null)      // a control in a view you are not in is not a target
       .map((b) => Math.round(Math.min(b.getBoundingClientRect().width,
                                       b.getBoundingClientRect().height)));
     const day = document.querySelector(".calmonth:not([hidden]) .calday.full");
@@ -271,8 +351,8 @@ console.log("\n=== on a phone ===");
   });
   ok("nothing in the calendar hangs off the side", s.off === 0, String(s.off));
   ok("...and the page does not scroll sideways", s.scrollX === false);
-  ok("every stepper button is a thumb sized target", s.btn.every((n) => n >= 44),
-     JSON.stringify(s.btn));
+  ok("every control on screen is a thumb sized target",
+     s.btn.length >= 4 && s.btn.every((n) => n >= 44), JSON.stringify(s.btn));
   ok("a day states its own date, since the column header is gone", s.dayStatesItsDate);
   await ctx.close();
 }
@@ -291,11 +371,11 @@ console.log("\n=== every month, by every route ===");
   for (const k of all) {
     await openMonth(p, k);
     await p.waitForFunction(
-      (m) => { const s = document.querySelector(".calmonth:not([hidden])");
+      (m) => { const s = document.querySelector('.calmonth[data-slot="now"]:not([hidden])');
                return s && s.getAttribute("data-month") === m; }, k, { timeout: 2000 })
       .catch(() => railBad.push(k));
     const s = await state(p);
-    if (s.shown !== 1 || s.showing !== k) railBad.push(k);
+    if (s.showing !== k || !isPair(s)) railBad.push(k);
   }
   ok(`every one of the ${all.length} months opens from the rail`, !railBad.length,
      [...new Set(railBad)].join(", "));
@@ -304,24 +384,31 @@ console.log("\n=== every month, by every route ===");
   // `playwright.click`, which scrolls the target into view before it clicks, so it was
   // reporting the harness's scroll as the page's latency and calling a 37ms switch half a
   // second. What a thumb feels is dispatch to the next paint, and that is what this takes.
+  // AND AGAINST AN IDLE BASELINE, not against a number of milliseconds. A fixed ceiling here
+  // measures the runner, not the page: on a loaded container two EMPTY frames took 266ms, so
+  // a switch that costs nothing at all reported 186ms and the gate went red at a page that
+  // had not changed. What is actually worth asserting is that the switch costs no more than
+  // doing nothing does, which is true on a fast machine and a slow one alike.
   const lat = await p.evaluate(async () => {
+    const frame = () => new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+    const med = (a) => { a.sort((x, y) => x - y); return a[Math.floor(a.length / 2)]; };
+    const idle = [];
+    for (let i = 0; i < 12; i++) { const t = performance.now(); await frame(); idle.push(performance.now() - t); }
     const ms = [];
     for (const a of [...document.querySelectorAll("a.mini.has")]) {
       const t0 = performance.now();
       a.click();
-      await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+      await frame();
       ms.push(performance.now() - t0);
     }
-    ms.sort((x, y) => x - y);
-    return { median: ms[Math.floor(ms.length / 2)], worst: ms[ms.length - 1] };
+    return { idle: med(idle), median: med(ms.slice()), worst: Math.max(...ms) };
   });
-  // A switch is a `hidden` toggle over panels the browser already parsed, so it belongs
-  // inside a couple of frames. The ceiling is loose enough for a shared CI runner and tight
-  // enough that work moving somewhere it should not be would show up here.
-  ok("a month switch lands within a couple of frames",
-     lat.median < 120, `median ${lat.median.toFixed(1)}ms`);
+  ok("a month switch costs no more than an idle frame does",
+     lat.median - lat.idle < 60,
+     `switch ${lat.median.toFixed(1)}ms against an idle ${lat.idle.toFixed(1)}ms`);
   ok("...and the slowest of them is not a different order of magnitude",
-     lat.worst < 400, `worst ${lat.worst.toFixed(1)}ms`);
+     lat.worst - lat.idle < 400,
+     `worst ${lat.worst.toFixed(1)}ms against an idle ${lat.idle.toFixed(1)}ms`);
 
   // A DEEP LINK NEEDS A FRESH DOCUMENT, which is the one thing here that costs a reload. Four
   // of the eighteen rather than all of them: the two ends, the month it opens on, and one in
@@ -332,11 +419,12 @@ console.log("\n=== every month, by every route ===");
   for (const k of [...new Set(sample)]) {
     await load(`#cal-${k}`);
     const s = await state(p);
-    if (s.showing !== k || s.shown !== 1) linkBad.push(`${k}->${s.showing}`);
+    if (s.showing !== k || !isPair(s)) linkBad.push(`${k}->${s.showing}+${s.alongside}`);
   }
   // AND IT ARRIVES AT THE CALENDAR, not a screenful above it. The native anchor jump cannot
   // work here, because the panel it names is still hidden when the browser tries.
-  await load("#cal-2026-06");
+  const deep = all[Math.floor(all.length / 2)];
+  await load(`#cal-${deep}`);
   // THE MONTH ITSELF, not the section that contains it. The first version of this check
   // asked whether `#cal` was on screen, which it is even when the rail fills the viewport and
   // the month the link named is a screenful below the fold. A check that passes for the wrong
@@ -348,8 +436,8 @@ console.log("\n=== every month, by every route ===");
              month: h.closest(".calmonth").getAttribute("data-month") };
   });
   ok("a shared month puts THAT month on screen, not just the calendar",
-     where.month === "2026-06" && where.top >= 0 && where.top < where.vh,
-     JSON.stringify(where));
+     where.month === deep && where.top >= 0 && where.top < where.vh,
+     JSON.stringify({ ...where, deep }));
 
   // THE SAME LINK, WITH THE MOTION A READER ACTUALLY HAS, because the suite runs the whole
   // rest of its work under `reduce` and that setting is not what most people browse with.
@@ -441,7 +529,8 @@ console.log("\n=== the third rapid tap ===");
   await p.waitForTimeout(400);
   ok("all five taps actually reached the stepper", taps === 5, String(taps));
   const s = await state(p);
-  ok("five taps with no pause leave exactly one month showing", s.shown === 1, String(s.shown));
+  ok("five taps with no pause leave exactly one pair showing", s.shown <= 2 && isPair(s),
+     s.onScreen.join(" + "));
   ok("...and the month view is the one showing", s.view === "month", String(s.view));
 
   // The filter, toggled hard, in a month that has both kinds.
@@ -472,7 +561,7 @@ console.log("\n=== the filter, in every month ===");
     await openMonth(p, k);
     await p.waitForTimeout(40);
     const r = await p.evaluate(() => {
-      const m = document.querySelector(".calmonth:not([hidden])");
+      const m = document.querySelector('.calmonth[data-slot="now"]:not([hidden])');
       const vis = [...m.querySelectorAll(".calev")]
         .filter((x) => getComputedStyle(x).display !== "none");
       return { n: vis.length, bad: vis.filter((x) => !x.classList.contains("act")).length,
@@ -527,11 +616,17 @@ console.log("\n=== the three views ===");
   ok("...and the pager is offered only where it can move something",
      !seen.some((x) => x.startsWith("PAGING")), seen.filter((x) => x.startsWith("PAGING")).join(" "));
 
-  // Picking a month out of the year hands the reader back to the month.
-  await openMonth(p, "2026-06"); await p.waitForTimeout(180);
+  // Picking a month out of the year hands the reader back to the month. The month is named
+  // off the record, and it waits for that month to be the one showing rather than for a
+  // guessed interval to pass.
+  const pick = (await state(p)).order.find((k) => k !== TODAY);
+  await openMonth(p, pick);
+  await p.waitForFunction(
+    (k) => { const x = document.querySelector('.calmonth[data-slot="now"]:not([hidden])');
+             return !!x && x.getAttribute("data-month") === k; }, pick, { timeout: 5000 });
   s = await state(p);
   ok("picking a month in the year view opens that month, in the month view",
-     s.view === "month" && s.showing === "2026-06", `${s.view}/${s.showing}`);
+     s.view === "month" && s.showing === pick, `${s.view}/${s.showing} for ${pick}`);
 }
 
 console.log("\n=== every width the site is tested at ===");
@@ -548,13 +643,149 @@ console.log("\n=== every width the site is tested at ===");
       const over = [...c.querySelectorAll("*")]
         .filter((el) => el.getBoundingClientRect().right > vw + 1).length;
       const shown = c.querySelectorAll(".calmonth:not([hidden])").length;
-      return { over, shown, sideways: document.documentElement.scrollWidth > vw };
+      // THE TOOLBAR SPILLING ONTO THE MONTH UNDER IT, which is the exact thing the owner saw
+      // at half a screen: a stale `height` clamped a flex row that had wrapped to four times
+      // that, so the buttons sat across the word AUGUST. The bar is measured against its own
+      // children rather than against a number, because the number is what was wrong.
+      const bar = c.querySelector(".caltoolbar");
+      const head = c.querySelector('.calmonth[data-slot="now"] .calmh');
+      let spill = 0, hit = false;
+      if (bar) {
+        const box = bar.getBoundingClientRect();
+        for (const kid of bar.querySelectorAll("*")) {
+          const k = kid.getBoundingClientRect();
+          if (!k.width && !k.height) continue;
+          spill = Math.max(spill, Math.round(k.bottom - box.bottom));
+          if (head && k.bottom > head.getBoundingClientRect().top + 1) hit = true;
+        }
+      }
+      return { over, shown, spill, hit, sideways: document.documentElement.scrollWidth > vw };
     });
-    if (r.over || r.shown !== 1 || r.sideways) bad.push(`${w}px:${JSON.stringify(r)}`);
+    if (r.over || r.shown < 1 || r.shown > 2 || r.sideways || r.spill > 0 || r.hit)
+      bad.push(`${w}px:${JSON.stringify(r)}`);
   }
   await p.setViewportSize({ width: 1280, height: 900 });
-  ok(`nothing overflows and one month shows, at all ${WIDTHS.length} widths`, !bad.length,
+  ok(`the pair shows and nothing overflows, at all ${WIDTHS.length} widths`, !bad.length,
      bad.slice(0, 3).join(" "));
+}
+
+// ===========================================================================================
+// THE STYLESHEET ACTUALLY REACHED THE PAGE. This is not a paranoid check. record.css shipped
+// with one missing brace, so a browser swallowed every rule after it into an unclosed
+// `@media (max-width:44rem)` and the calendar had no layout at all above 704px: the year rail
+// dumped its seventy two grids under the month view on every desktop screen. Nothing went red.
+// The month still showed one month, because `hidden` is an HTML attribute and needs no CSS,
+// and the phone widths this suite leaned on were inside the broken media query and looked
+// perfect. So: assert the VIEW RULES, at a desktop width, where the failure lives.
+console.log("\n=== the stylesheet reaches the page, at a desktop width ===");
+{
+  const p = await load();
+  await p.setViewportSize({ width: 1280, height: 900 });
+  // THE RESIZE LANDED, which is the state the rules below depend on. A guessed sleep here is
+  // a claim about how long a resize takes; `matchMedia` is the browser answering the question
+  // the stylesheet actually asks.
+  await p.waitForFunction(() => matchMedia("(min-width: 1200px)").matches, null,
+                          { timeout: 5000 });
+  const r = await p.evaluate(() => {
+    const d = (sel) => {
+      const el = document.querySelector(sel);
+      return el ? getComputedStyle(el).display : "MISSING";
+    };
+    return { rail: d(".calrail"), panels: d(".calpanels"), list: d(".callist"),
+             bar: d(".caltoolbar"), tabs: d(".caltabs"), yearbar: d(".calyearbar") };
+  });
+  ok("the month view hides the year rail on a wide screen too", r.rail === "none", r.rail);
+  ok("...and hides the list", r.list === "none", r.list);
+  ok("...and shows the panels", r.panels === "block", r.panels);
+  ok("the toolbar is laid out rather than left as stacked blocks",
+     r.bar === "flex" && r.tabs === "flex", `${r.bar}/${r.tabs}`);
+}
+
+// ===========================================================================================
+// ONE YEAR AT A TIME. Six years of twelve small calendars is a scroll, not a view, and the
+// owner asked for one year with a way to reach the others.
+console.log("\n=== the year view, one year at a time ===");
+{
+  const p = await load();
+  await p.setViewportSize({ width: 1280, height: 900 });
+  await p.evaluate(() => window.scrollTo(0, 0));
+  await p.click("#calvy");
+  await viewIs(p, "year");
+  const THISYEAR = TODAY.slice(0, 4);
+  let s = await state(p);
+  ok("the record spans more than one year, so there is something to step through",
+     s.years.length > 1, s.years.join(","));
+  ok("exactly one of them is on screen", s.yearsShown.length === 1, s.yearsShown.join(","));
+  ok("...and it is the year of the month the reader was on",
+     s.yearsShown[0] === THISYEAR, `${s.yearsShown[0]} against ${THISYEAR}`);
+  ok("...and the bar names that same year, rather than a year of its own",
+     s.yearLabel === s.yearsShown[0], `${s.yearLabel} vs ${s.yearsShown[0]}`);
+
+  // THE COUNT IN THE BAR IS THE YEAR BLOCK'S OWN. Script moves a published number; it never
+  // authors one. If these two ever disagree, a numeral has been invented at read time.
+  // `.num` IS WHAT MARKS A PUBLISHED FIGURE, and it colours it and spaces it off the word
+  // after it. Writing the whole phrase at read time took the wrapper with it, so this asks
+  // for the wrapper as well as the number, and asks again after the stepper has run.
+  const agree = () => p.evaluate(() => {
+    const y = [...document.querySelectorAll(".calyr")].find((x) => !x.hidden);
+    const from = ((y.querySelector(".calyn .num") || {}).textContent || "").trim();
+    const el = document.getElementById("calyearn") || { classList: { contains: () => false } };
+    return { same: from === (el.textContent || "").trim(),
+             wrapped: el.classList.contains("num"), from, shown: el.textContent };
+  });
+  const a0 = await agree();
+  ok("...and the count beside it is lifted from that block, not composed",
+     a0.same, `${a0.from} vs ${a0.shown}`);
+
+  // Walk to both ends. It stops rather than wrapping, same as the month stepper.
+  const walked = [];
+  for (let i = 0; i < 12; i++) {
+    if (await p.$eval("#calyprev", (b) => b.disabled)) break;
+    const at = await yearNow(p);
+    await p.click("#calyprev");
+    await yearChanged(p, at);
+    walked.push((await state(p)).yearsShown[0]);
+  }
+  s = await state(p);
+  ok("stepping back walks the years one at a time and stops at the first",
+     s.yprevOff === true && s.yearsShown[0] === s.years[0], `${s.yearsShown[0]} of ${s.years}`);
+  ok("...and only ever one year is on screen while it walks",
+     s.yearsShown.length === 1 && walked.length === s.years.indexOf(THISYEAR),
+     `${walked.join(">")} showing ${s.yearsShown.length}`);
+  for (let i = 0; i < 12; i++) {
+    if (await p.$eval("#calynext", (b) => b.disabled)) break;
+    const at = await yearNow(p);
+    await p.click("#calynext");
+    await yearChanged(p, at);
+  }
+  s = await state(p);
+  ok("stepping forward stops at the last year rather than wrapping",
+     s.ynextOff === true && s.yearsShown[0] === s.years[s.years.length - 1],
+     `${s.yearsShown[0]} of ${s.years}`);
+  ok("...and the bar followed it the whole way", s.yearLabel === s.yearsShown[0],
+     `${s.yearLabel} vs ${s.yearsShown[0]}`);
+  const a1 = await agree();
+  ok("...with the count still that year's, and still marked as a published figure",
+     a1.same && a1.wrapped, `${a1.from} vs ${a1.shown} wrapped=${a1.wrapped}`);
+
+  // THE TWO VIEWS AGREE ABOUT WHERE YOU ARE. Reading a month and then switching to the year
+  // should land on that month's year, not on wherever the rail was left.
+  // A MONTH IN A YEAR THAT IS NOT THIS ONE, chosen off the record rather than typed, so the
+  // check keeps meaning the same thing after the window has slid past 2025.
+  const elsewhere = (await state(p)).order.find((k) => k.slice(0, 4) !== THISYEAR);
+  await p.evaluate(() => window.scrollTo(0, 0));
+  await p.click("#calvm");
+  await viewIs(p, "month");
+  await openMonth(p, elsewhere);
+  await p.waitForFunction(
+    (k) => { const x = document.querySelector('.calmonth[data-slot="now"]:not([hidden])');
+             return !!x && x.getAttribute("data-month") === k; }, elsewhere, { timeout: 5000 });
+  await p.evaluate(() => window.scrollTo(0, 0));
+  await p.click("#calvy");
+  await viewIs(p, "year");
+  s = await state(p);
+  ok("opening the year after reading a month lands on that month's year",
+     s.yearsShown[0] === elsewhere.slice(0, 4), `${s.yearsShown.join(",")} for ${elsewhere}`);
 }
 
 console.log(fails ? `\ndocket_calendar: ${fails} FAILED` : "\ndocket_calendar: all passed");

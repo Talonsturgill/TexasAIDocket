@@ -257,14 +257,30 @@ await page.waitForSelector(".askfrom", { timeout: 8000 }).catch(() => {});
 check("a starter chip answers when clicked",
       ((await page.textContent(".askreply")) || "").trim().length > 0);
 
+// A COUNT IS ONLY A BOUNDARY IF NOTHING IS STILL IN FLIGHT. The press above calls the worker
+// by design, and the wait for its answer gives up quietly after eight seconds. On a loaded
+// runner that call can be recorded AFTER the line is drawn below, which charges the chip's
+// request to the refusal and turns an honest promise red at random. Nothing about the promise
+// changes here; the log is simply allowed to stop growing before the snapshot is taken.
+const settled = async (quiet = 400, cap = 8000) => {
+  const t0 = Date.now();
+  let n = external.length;
+  while (Date.now() - t0 < cap) {
+    await page.waitForTimeout(quiet);
+    if (external.length === n) return;
+    n = external.length;
+  }
+};
+
 // AN OFF-RECORD QUESTION COSTS NOTHING. Refuse is deliberately narrow, so this asserts the
 // narrow case and not a broad one: a question sharing no term at all with the record.
 await page.click(".askagain").catch(() => {});
-await page.waitForTimeout(200);
+await settled();
 const beforeRefuse = external.filter((u) => u.includes("workers.dev")).length;
 await page.fill("#askq", "recipe for banana bread");
 await page.press("#askq", "Enter");
 await page.waitForSelector(".askfrom", { timeout: 8000 }).catch(() => {});
+await settled();
 const refusalText = (await page.textContent(".askreply")) || "";
 check("an off-record question is refused on the page",
       /not something this record covers/i.test(refusalText), refusalText.slice(0, 100));

@@ -143,6 +143,20 @@ def month_short(key: str) -> str:
     return calendar.month_abbr[int(key[5:7])]
 
 
+# HOW FAR BACK THE CALENDAR REACHES. One event from 2021 dragged a whole year of empty grids
+# into the year view to show a single marked day, which the owner cut. This is a WINDOW rather
+# than a hardcoded year: it is computed from today every build, so the calendar keeps moving
+# and no date is ever typed. Anything older is still on the record and still reachable in the
+# list view and on its own page; it is just not worth twelve grids.
+YEARS_BACK = 2
+
+
+def horizon(today: str) -> str:
+    """The first day the calendar shows, computed from today and never typed."""
+    d = _dt.date.fromisoformat(today)
+    return f"{d.year - YEARS_BACK}-01-01"
+
+
 def summarise(items: list, today: str) -> dict:
     """Everything a page needs to render the calendar, computed once.
 
@@ -151,6 +165,11 @@ def summarise(items: list, today: str) -> dict:
     own dates a scroll away is a worse first impression than opening on the crowd.
     """
     evs, dropped = events(items)
+    # WINDOWED, and the count of what fell outside is kept so the page can say so rather than
+    # quietly showing less than the record holds.
+    floor = horizon(today)
+    older = sum(1 for ev in evs if ev["iso"] < floor)
+    evs = [ev for ev in evs if ev["iso"] >= floor]
     keys = month_keys(evs)
     months = by_month(evs)
     now = today[:7]
@@ -170,6 +189,8 @@ def summarise(items: list, today: str) -> dict:
         "n_months": len(keys),
         "n_live": sum(1 for k in keys if months.get(k)),
         "busiest": max(months, key=lambda k: (len(months[k]), k)) if months else "",
+        "older": older,
+        "horizon": floor,
     }
 
 
@@ -239,17 +260,73 @@ def _self_test() -> int:
 
         print("\nF. against the record as it actually stands")
         s = summarise(real, "2026-08-20")
-        ok("every dated event is present",
-           s["n_events"] == sum(len(it.get("key_dates") or []) for it in real) - s["dropped"],
-           s["n_events"])
+        ok("every dated event inside the window is present, and the rest are counted",
+           s["n_events"] + s["dropped"] + s["older"]
+           == sum(len(it.get("key_dates") or []) for it in real),
+           f"{s['n_events']}+{s['dropped']}+{s['older']}")
         ok("the rail covers the whole span with no month missing",
            s["n_months"] == len(s["month_keys"]) and s["n_months"] > s["n_live"])
         ok("it opens on today's month when the record has one", s["current"] == "2026-08")
-        ok("...and on the busiest month when it does not",
-           summarise(real, "2030-01-01")["current"] == s["busiest"], s["busiest"])
+        # A WINDOW THAT HAS MOVED PAST THE WHOLE RECORD IS AN EMPTY CALENDAR, and an empty one
+        # has to be a page that renders rather than a crash. The renderer returns nothing at
+        # all for this, which is the honest output: there is no month to draw.
+        far = summarise(real, "2031-01-01")
+        ok("a window past the end of the record is empty rather than broken",
+           far["n_events"] == 0 and far["month_keys"] == [] and far["older"] > 0,
+           f"n={far['n_events']} older={far['older']}")
+        ok("...and it still reports today's month, so a caller has something to say",
+           far["current"] == "2031-01", far["current"])
+        # And inside the window, a today with no events of its own opens on the busiest month.
+        mid = summarise(real, "2026-10-01")
+        ok("a quiet month opens on the busiest one instead of on nothing",
+           mid["current"] == mid["busiest"] and mid["current"] != "2026-10", mid["current"])
         ok("every event carries a link target", all(e["item_id"] for e in s["events"]))
+        ok("the calendar reaches back two whole years and no further",
+           s["horizon"] == "2024-01-01", s["horizon"])
+        ok("...so the lone 2021 date is outside it, and counted rather than dropped silently",
+           s["older"] >= 1 and all(k >= "2024" for k in s["month_keys"]),
+           f"older={s['older']} first={s['month_keys'][0]}")
+        ok("...and the window MOVES, because it is computed from today and never typed",
+           summarise(real, "2030-06-01")["horizon"] == "2028-01-01")
         ok("the actionable kinds are a subset of the labelled ones",
            ACTIONABLE <= set(KIND_LABEL))
+
+        # ------------------------------------------------------------------------------
+        # G. NOTHING HERE IS FROZEN.
+        #
+        # The site publishes with no human in the loop, so the failure that matters is not a
+        # wrong number, it is a number that WAS right. A year typed into a template, a count
+        # copied out of one build, a window pinned to the season somebody wrote it in: each of
+        # those is green on the day it ships and quietly false a month later, and nothing goes
+        # red. So this walks a ladder of dates and asserts that everything the page publishes
+        # actually MOVES, which is the property a frozen value cannot fake.
+        print("\nG. nothing on the page is frozen: every figure moves when the date does")
+        ladder = ["2026-08-20", "2027-01-05", "2028-06-01", "2029-06-01", "2030-06-01"]
+        walk = [summarise(real, d) for d in ladder]
+        ok("the window is always two whole years back from today, at every date",
+           all(w["horizon"] == f"{int(d[:4]) - YEARS_BACK}-01-01"
+               for d, w in zip(ladder, walk)),
+           [w["horizon"] for w in walk])
+        ok("...so it only ever moves forward as the dates do",
+           all(a["horizon"] < b["horizon"] or a["horizon"] == b["horizon"]
+               for a, b in zip(walk, walk[1:])) and walk[0]["horizon"] < walk[-1]["horizon"],
+           [w["horizon"] for w in walk])
+        ok("what the calendar shows shrinks as the window slides past the record",
+           all(a["n_events"] >= b["n_events"] for a, b in zip(walk, walk[1:]))
+           and walk[-1]["n_events"] < walk[0]["n_events"],
+           [w["n_events"] for w in walk])
+        # NOTHING IS LOST WHEN THE WINDOW MOVES, it is only moved into the sentence that says
+        # how much is older. A count that stopped adding up would mean the page had started
+        # publishing less than the record holds without saying so.
+        total = sum(len(it.get("key_dates") or []) for it in real)
+        ok("...and every date is still accounted for at every one of those dates",
+           all(w["n_events"] + w["older"] + w["dropped"] == total for w in walk),
+           [(w["n_events"], w["older"], w["dropped"]) for w in walk])
+        # The landing month is the other thing a reader would never catch going stale, because
+        # a calendar opening on a plausible wrong month looks exactly like one opening right.
+        ok("the month it opens on follows today, whenever the record holds today's month",
+           all(summarise(real, k + "-15")["current"] == k
+               for k in ("2026-06", "2026-08", "2026-11", "2027-02")))
 
     print(f"\ndocket_calendar self-test: {'all passed' if not fails else str(len(fails)) + ' FAILED'}")
     return 1 if fails else 0

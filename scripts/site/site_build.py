@@ -2409,21 +2409,37 @@ _CAL_JS = """
     if (!cal) return;
     var panels = [].slice.call(cal.querySelectorAll('.calmonth'));
     if (!panels.length) return;
+    var order = panels.map(function (p) { return p.getAttribute('data-month'); });
+    var home = cal.getAttribute('data-open');
 
     // The class is added by script, so the one-at-a-time CSS only ever applies where the
     // script that drives it is running. Without this the no-script reader gets one month and
     // no way to reach the others.
     cal.classList.add('js');
 
+    // TWO MONTHS AT ONCE, because a month is not the horizon anybody plans against. Standing
+    // in the last week of August, a single-month view has already run out, and the comment
+    // window that closes on the 4th of September is off the end of the page. Sixty days is
+    // the owner's number and it is the right one.
+    //
+    // The pair is the month you are on and whatever the record holds NEXT, which is not
+    // always the next month on the wall. A month with nothing in it has no panel at all, and
+    // drawing an empty grid to keep the sequence tidy would spend half the view saying
+    // nothing. Both months name themselves in full, so there is nothing to misread.
     function show(key, focus) {
-      var found = false;
-      panels.forEach(function (p) {
-        var mine = p.getAttribute('data-month') === key;
-        p.hidden = !mine;
-        if (mine) found = true;
+      var i = order.indexOf(key);
+      if (i < 0) return false;
+      panels.forEach(function (p, n) {
+        var slot = n === i ? 'now' : (n === i + 1 ? 'next' : '');
+        p.hidden = !slot;
+        if (slot) p.setAttribute('data-slot', slot);
+        else p.removeAttribute('data-slot');
       });
-      if (found && focus) {
-        var h = cal.querySelector('.calmonth:not([hidden]) .calmh');
+      // THE TWO VIEWS AGREE ABOUT WHERE YOU ARE. Reading June and then switching to the year
+      // should land on June's year, not on wherever the rail was left.
+      showYear(key.slice(0, 4));
+      if (focus) {
+        var h = cal.querySelector('.calmonth[data-slot="now"] .calmh');
         if (h) {
           // FOCUS WITHOUT THE JUMP, THEN SCROLL DELIBERATELY. Moving focus to the new heading
           // is what tells a screen reader the view changed, and a bare focus() also scrolls,
@@ -2435,14 +2451,47 @@ _CAL_JS = """
           h.scrollIntoView({ block: 'nearest' });
         }
       }
-      return found;
+      return true;
     }
 
+    // ONE YEAR AT A TIME. Six years of twelve small calendars is 72 grids in a column, which
+    // is a scroll rather than a view; the owner asked for one year with a way to reach the
+    // others and that is the whole of it.
+    //
+    // NO NUMERAL IS INVENTED HERE. The year and its count are lifted out of the year block's
+    // own markup, which the build wrote out of the ledger and the numeral gate has already
+    // passed. Script moves published numbers around; it never authors one.
+    var yblocks = [].slice.call(cal.querySelectorAll('.calyr'));
+    var yorder = yblocks.map(function (s) { return s.getAttribute('data-year'); });
+    var yprev = document.getElementById('calyprev');
+    var ynext = document.getElementById('calynext');
+    var ylabel = document.getElementById('calyeart');
+    var ycount = document.getElementById('calyearn');
+
+    function showYear(y) {
+      var i = yorder.indexOf(String(y));
+      if (i < 0) return false;
+      yblocks.forEach(function (s, n) { s.hidden = n !== i; });
+      ylabel.setAttribute('datetime', yorder[i]);
+      ylabel.textContent = yorder[i];
+      var n = yblocks[i].querySelector('.calyn .num');
+      ycount.textContent = n ? n.textContent.trim() : '';
+      yprev.disabled = i <= 0;
+      ynext.disabled = i >= yorder.length - 1;
+      return true;
+    }
+    function stepYear(by) {
+      var i = yorder.indexOf(ylabel.textContent) + by;
+      if (i < 0 || i >= yorder.length) return;
+      showYear(yorder[i]);
+    }
+    yprev.addEventListener('click', function () { stepYear(-1); });
+    ynext.addEventListener('click', function () { stepYear(1); });
 
     // A LINK SHARED INTO THE MONTH STILL LANDS THERE. Somebody who was handed
     // /record/#cal-2026-06 gets June, not August, and the back button keeps working.
     function fromHash() {
-      var m = (location.hash || '').match(/^#cal-(\\d{4}-\\d{2})$/);
+      var m = (location.hash || '').match(/^#cal-(\d{4}-\d{2})$/);
       return m ? m[1] : null;
     }
     window.addEventListener('hashchange', function () {
@@ -2450,16 +2499,15 @@ _CAL_JS = """
     });
     // THE STEPPER. Months with nothing in them have no panel, so stepping walks the months
     // that exist rather than the calendar's, and it stops at the ends instead of wrapping.
-    // Wrapping from December 2027 back to June 2021 is a jump a reader did not ask for and
-    // cannot undo with the same button.
-    var order = panels.map(function (p) { return p.getAttribute('data-month'); });
+    // Wrapping off the end lands a reader years away with no way back using the button they
+    // just pressed. It moves ONE month, not two: the pair is a window sliding over the
+    // record, not a book being turned two leaves at a time.
     var prev = document.getElementById('calprev');
     var next = document.getElementById('calnext');
     var now = document.getElementById('calnow');
-    var home = cal.getAttribute('data-open');
 
     function at() {
-      var shown = cal.querySelector('.calmonth:not([hidden])');
+      var shown = cal.querySelector('.calmonth[data-slot="now"]');
       return shown ? order.indexOf(shown.getAttribute('data-month')) : order.indexOf(home);
     }
     function step(by) {
@@ -2574,6 +2622,7 @@ def docket_calendar_section(items: list, today: str, depth: int, a, rows: str) -
     # Only the years that hold anything are drawn. Three empty rows saying nothing at length
     # was the first version and the owner was right that it was stupid to include.
     yblocks = []
+    year_live = {}
     for y in years:
         minis = []
         for m in range(1, 13):
@@ -2607,6 +2656,7 @@ def docket_calendar_section(items: list, today: str, depth: int, a, rows: str) -
             else:
                 minis.append(f'<li><span class="mini none">{inner}</span></li>')
         live = sum(len(months.get(f"{y:04d}-{m:02d}", [])) for m in range(1, 13))
+        year_live[y] = live
         a.add(live, y)
         yblocks.append(
             f'<section class="calyr" data-year="{y}" aria-label="{y}">'
@@ -2665,6 +2715,17 @@ def docket_calendar_section(items: list, today: str, depth: int, a, rows: str) -
             + "".join(f"<li>{d}</li>" for d in ("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"))
             + f'</ol><ol class="caldays">{"".join(cells)}</ol></section>')
 
+    # The bar opens on the landing month's year and says what that year holds. It reads the
+    # count the year block was drawn with rather than summing it again, so the two cannot
+    # disagree: a second copy of an arithmetic is how a heading and the thing it heads drift.
+    yhead = year_live[int(cur[:4])]
+
+    # "1 older than that ARE in the list" is not a sentence. The count picks the verb, computed
+    # rather than typed, the same way the month panel's own noun is.
+    older = (f' <span class="num">{cal["older"]}</span> older than that '
+             f'{"is" if cal["older"] == 1 else "are"} in the list.'
+             if cal["older"] else "")
+    a.add(cal["older"])
     dropped = (f'<p class="meta"><span class="num">{cal["dropped"]}</span> dated entries could '
                f'not be read and are not shown.</p>' if cal["dropped"] else "")
     a.add(cal["dropped"])
@@ -2672,9 +2733,8 @@ def docket_calendar_section(items: list, today: str, depth: int, a, rows: str) -
     return f"""
 <section class="cal" id="cal" data-open="{cur}">
   <h2>When it happens</h2>
-  <p class="sub">The same record, by date. <span class="num">{cal["n_events"]}</span> dated
-  moments across <span class="num">{cal["n_live"]}</span> months, and a decision with a hearing
-  in one month and an order in another appears in both. Pick a month, then pick a day.</p>
+  <p class="sub"><span class="num">{cal["n_events"]}</span> dated moments across
+  <span class="num">{cal["n_live"]}</span> months.{older}</p>
   <!-- DATA, NOT PROSE, and marked as such the way the county tally already is. The rail is a
        row of month labels and counts, so with the tags stripped it reads as "May  10" and the
        house style checker calls that a badly written date. It is not a sentence; it is a
@@ -2696,7 +2756,7 @@ def docket_calendar_section(items: list, today: str, depth: int, a, rows: str) -
 
        The tabs are underlined text rather than a segmented pill, which is also what this
        site's own masthead nav already does for the page you are on. One idiom, twice. -->
-  <div class="calbar">
+  <div class="caltoolbar">
     <div class="caltabs" role="group" aria-label="How to see the record">
       <button type="button" id="calvm" class="caltab" aria-pressed="true">Month</button>
       <button type="button" id="calvy" class="caltab" aria-pressed="false">Year</button>
@@ -2722,7 +2782,29 @@ def docket_calendar_section(items: list, today: str, depth: int, a, rows: str) -
       </span>
     </div>
   </div>
-  <div class="calrail" data-prose="data">{"".join(yblocks)}</div>
+  <!-- ONE YEAR, AND A WAY TO THE OTHERS. The bar is the year view's own heading once script is
+       running, which is why each year block's heading goes away under `.cal.js`: saying 2026
+       twice, once in the bar and once four pixels below it, is what a page looks like when
+       nobody read it back. Without script the bar is hidden and every year keeps its own
+       heading, so the same document reads correctly either way.
+
+       The year and the count in it are LIFTED from the year block the build wrote, never
+       composed here. A numeral typed into a template is a numeral nothing can keep true. -->
+  <div class="calrail" data-prose="data">
+    <div class="calyearbar">
+      <button type="button" id="calyprev" class="calarrow" aria-label="The year before">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 4 7 12l8 8"/></svg>
+      </button>
+      <b class="calyearnow" aria-live="polite">
+        <time class="calyeart num" id="calyeart" datetime="{cur[:4]}">{cur[:4]}</time>
+        <span class="calyearn"><span class="num" id="calyearn">{yhead}</span> dated</span>
+      </b>
+      <button type="button" id="calynext" class="calarrow" aria-label="The year after">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 4l8 8-8 8"/></svg>
+      </button>
+    </div>
+    {"".join(yblocks)}
+  </div>
   <div class="calpanels" data-prose="data">{"".join(panels)}</div>
   <ul class="callist items" data-prose="data">{rows}</ul>
   {dropped}
