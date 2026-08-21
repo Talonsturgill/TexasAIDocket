@@ -283,6 +283,45 @@ def page_metadata(page_html: str) -> str:
     return _less_names(_html.unescape(TAG.sub(" ", " ".join(found))), page_html)
 
 
+# THE ADDRESS IS NOT ON THE PAGE, AND THAT IS A PROMISE WITH A MECHANISM NOW.
+#
+# The footer's contact dialog and both forms post to FormSubmit's opaque alias for the mailbox,
+# so a reader sends a message without ever being told where it lands and a scraper reading the
+# source finds a hash. That only stays true while nobody types an address into a page, and the
+# residue check in port_audit that guards the domain everywhere else SKIPS `docs/` by design,
+# because the built site is generated rather than written. So the built site is checked here,
+# where every published page is already being read.
+#
+# IT NAMES NO DOMAIN, AND THAT IS THE STRONGER RULE ANYWAY. The first version matched the two
+# domains this desk holds, which put one of them in this file and turned port_audit's residue
+# check red, correctly. Matching ANY address instead catches a leak at a domain nobody thought
+# to list, and needs no domain written down to do it.
+#
+# A `mailto:` ANYWHERE IS A FAILURE, whoever it names. This site has no reason to publish one:
+# the contact route is a dialog, and a mailto is the shape a leak takes when somebody adds a
+# contact link the quick way.
+_ADDRESS = re.compile(r"mailto:|[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
+
+# A SOURCE'S OWN PUBLISHED CONTACT IS A FACT ABOUT THAT SOURCE, not a way to reach this desk,
+# and it belongs on the page beside the record it came from. Listed one at a time rather than
+# waved through by domain shape, so admitting the next one is a decision somebody writes down
+# instead of a rule that quietly widens.
+_CITED = {
+    # The Texas Water Development Board's own address, printed on the reservoir data it
+    # publishes and carried onto the water page with the figures.
+    "Customer_Service@twdb.texas.gov",
+}
+
+
+def leak_problems(page_html: str) -> list:
+    """Every way to reach somebody that a published page is carrying."""
+    return [f"{hit!r} is a way to reach somebody written into the page. This site publishes no "
+            f"address: the contact dialog posts to the mailbox alias instead. If it belongs to "
+            f"a source and is a fact about them, add it to _CITED and say why"
+            for hit in (m.group(0) for m in _ADDRESS.finditer(page_html))
+            if hit not in _CITED]
+
+
 def check_site(docs: Path) -> dict[str, list[str]]:
     out: dict[str, list[str]] = {}
     for page in sorted(docs.rglob("*.html")):
@@ -294,6 +333,7 @@ def check_site(docs: Path) -> dict[str, list[str]]:
         problems = caption_check.check(prose)
         # An exemption that reports nothing when it is misused is a hole with a comment over it.
         problems += time_chip_problems(text)
+        problems += leak_problems(text)
         problems += [f"{p} (in the page metadata, which is what a search result shows)"
                      for p in caption_check.check(page_metadata(text))]
         # The rate is judged per PAGE, which is the unit a reader actually reads. A single
@@ -473,6 +513,27 @@ def self_test() -> int:
     ok("a declaration on one page does not travel to another",
        any("first person" in p for p in caption_check.check(our_prose(
            '<html><main><p>The owner of record is Galaxy Helios I on that row.</p></main></html>'))))
+
+    # ---- the address never reaches a page --------------------------------------
+    # A gate that cannot go red is a comment. This one guards a promise the site makes to every
+    # reader who opens the contact dialog, so it is proved in both directions here rather than
+    # trusted because the built site happens to be clean today.
+    # BOTH HALVES, because a mailto link carries an address too and naming only one of them
+    # would leave the other reported as fixed when the link was rewritten around it.
+    ok("a mailto link is caught, and so is the address inside it",
+       len(leak_problems('<main><a href="mailto:x@example.org">Write</a></main>')) == 2)
+    ok("...and so is a plain address typed into the copy, at any domain",
+       len(leak_problems("<main><p>Reach the desk at hello@example.org any time.</p>"
+                         "</main>")) == 1)
+    # A SOURCE'S OWN PUBLISHED CONTACT IS NOT A LEAK. The water record cites an address at a
+    # state agency, which is a fact about that agency and belongs on the page. It is admitted
+    # by name, so a NEIGHBOURING address at the same agency is still caught.
+    ok("a cited source address is left alone",
+       not leak_problems("<main><p>Customer_Service@twdb.texas.gov</p></main>"))
+    ok("...while another address at that same source is not",
+       len(leak_problems("<main><p>someone_else@twdb.texas.gov</p></main>")) == 1)
+    ok("...and so is an ordinary page with no address at all",
+       not leak_problems("<main><p>The commission set the hearing for August 11th.</p></main>"))
 
     if failures:
         print(f"\nhouse_style_check self-test: {failures} FAILED", file=sys.stderr)
