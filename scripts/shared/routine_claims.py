@@ -35,6 +35,20 @@ THE SCOPE IS HONEST RATHER THAN COMPLETE. A marker covers one string on one page
 it can still drift, and no gate here can stop that. What it removes is the case where a claim
 was worth writing down and nothing was holding it to the page.
 
+THE SECOND RULE, AND IT NEEDS NO MARKER. Every command the routine tells a run to execute must
+keep its scratch inside the working tree.
+
+That is a house law with a cost attached and the cost has already been paid. The Bash sandbox
+and the permission mode are two different mechanisms: a sandboxed command that writes outside
+the tree cannot complete, and the tool then stops and asks to re-run it unsandboxed, which is a
+prompt no permission mode answers and no unattended run has anybody to answer. On 2026-08-20 the
+owner was interrupted twice by exactly that, and this file's own first paragraph is about a near
+miss on the same day.
+
+The law was written down that evening. Two lines of this routine went on saying `--out /tmp/site`
+anyway, because writing a rule in `CLAUDE.md` does nothing to the file that breaks it. So the
+rule is read out of the prose it governs. `out/<date>/tmp/` takes anything `/tmp` would.
+
     routine_claims.py --self-test
     routine_claims.py
 """
@@ -75,6 +89,39 @@ def page_text(site_path: str, docs: Path = DOCS) -> str | None:
     if not p.exists():
         return None
     return p.read_text(encoding="utf-8")
+
+
+# Fenced shell blocks, which is where a routine's executable instructions live. Prose may name
+# a system path while explaining why not to use one, and a rule that could not tell those apart
+# would make the explanation unwritable.
+FENCE = re.compile(r"^```(?:bash|sh|shell)\n(.*?)^```", re.MULTILINE | re.DOTALL)
+
+# The scratch roots outside the working tree. `out/` is gitignored and inside it, which is the
+# whole point: nothing there is ever committed and nothing there trips the sandbox.
+# ANCHORED AT THE START OF A PATH, not merely at a slash. `out/<date>/tmp/site` is the correct
+# answer to this rule and it contains the letters of the thing the rule forbids, so a pattern
+# that matched a bare `/tmp` anywhere would flag the fix as the defect.
+OUTSIDE = re.compile(
+    r"""(?:^|[\s=:'"(])(/tmp|/var/tmp|/var/folders|~/\.cache)(?=[/\s"']|$)""")
+
+
+def scratch_problems(root: Path = PROMPTS) -> list[str]:
+    """Commands the routine tells a run to execute that write outside the working tree."""
+    out = []
+    for md in sorted(root.glob("*.md")):
+        text = md.read_text(encoding="utf-8")
+        for fence in FENCE.finditer(text):
+            base = text[:fence.start(1)].count("\n") + 1
+            for i, line in enumerate(fence.group(1).splitlines()):
+                if line.lstrip().startswith("#"):
+                    continue
+                hit = OUTSIDE.search(line)
+                if hit:
+                    out.append(f"{md.name}:{base + i} tells a run to write to "
+                               f"{hit.group(1)}, which is outside the working tree. A "
+                               f"sandboxed write there stops and asks, and an unattended run "
+                               f"has nobody to answer. Use out/<date>/tmp/")
+    return out
 
 
 def problems(found: list[dict], docs: Path = DOCS) -> list[str]:
@@ -148,6 +195,42 @@ def self_test() -> int:
         check("prose with no marker makes no claim",
               write("The water page promises several things in ordinary prose.") == [])
 
+        # ---------------------------------------------------------- THE SCRATCH RULE
+        def fence(body):
+            (root / "prompts" / "r.md").write_text(body, encoding="utf-8")
+            return scratch_problems(root / "prompts")
+
+        sp = fence("Build it.\n\n```bash\npython3 build.py --out /tmp/site\n```\n")
+        check("a command writing to /tmp is CAUGHT",
+              any("outside the working tree" in x for x in sp), str(sp))
+        check("...and it is pointed at the line that does it",
+              any(":4 " in x for x in sp), str(sp))
+
+        # THE FIX IS NOT THE DEFECT. `out/<date>/tmp/site` is the correct answer and it carries
+        # the letters of what the rule forbids, so this is the case that decides whether the
+        # rule is a rule or a substring search.
+        check("the correct scratch path is NOT flagged",
+              fence("```bash\npython3 build.py --out out/<date>/tmp/site\n```\n") == [],
+              str(fence("```bash\npython3 build.py --out out/<date>/tmp/site\n```\n")))
+
+        # PROSE MAY NAME THE THING IT FORBIDS. A rule that could not tell an instruction from
+        # an explanation would make its own reasoning unwritable, and the reasoning is the part
+        # that survives a rewrite.
+        check("prose explaining the rule is not an instruction",
+              fence("Never write to /tmp. Use out/<date>/tmp/ instead.\n") == [])
+        check("...and neither is a commented out line inside a fence",
+              fence("```bash\n# do not do this: build.py --out /tmp/x\ntrue\n```\n") == [])
+
+        for bad in ("/var/tmp/x", "/var/folders/z/q", "~/.cache/site"):
+            sp = fence("```bash\npython3 build.py --out %s\n```\n" % bad)
+            check(f"{bad} is caught too, since the law is about the tree and not the word tmp",
+                  sp != [], str(sp))
+
+        # AND THE COMMITTED ROUTINE, which is the only reason the six above matter. Two lines of
+        # it said `--out /tmp/site` for the whole day after the law was written.
+        check("the committed prompts keep their scratch inside the tree",
+              not scratch_problems(), "; ".join(scratch_problems()))
+
     # AND THE COMMITTED PROMPTS, which is the only reason the rest of this matters.
     live = claims()
     check("the prompts carry at least one marked claim", bool(live), f"{len(live)} found")
@@ -168,14 +251,15 @@ def main() -> int:
     if a.self_test:
         return self_test()
     found = claims()
-    bad = problems(found)
+    bad = problems(found) + scratch_problems()
     if bad:
-        print("the routine describes copy the site does not match:", file=sys.stderr)
+        print("the routine is out of step with what it governs:", file=sys.stderr)
         for b in bad:
             print(f"  - {b}", file=sys.stderr)
         return 1
     on = sum(1 for c in found if c["kind"] == "onpage")
-    print(f"routine claims ok: {on} on-page and {len(found) - on} off-page claim(s) hold")
+    print(f"routine claims ok: {on} on-page and {len(found) - on} off-page claim(s) hold, "
+          f"and every command it gives keeps its scratch inside the tree")
     return 0
 
 

@@ -222,14 +222,32 @@ jobs:
 
       - name: The published grid watch page holds its promises
         run: |
-          # Advisory by design: exit 2 means the page wants attention, and the grid watch must
-          # never be able to fail a build over presentation. Exit 1 would mean the checker
-          # itself broke, which is a real failure.
-          python3 scripts/gridwatch/gridwatch_pagecheck.py || {
-            code=$?
-            [ "$code" = 2 ] && echo "::warning::the grid watch page wants attention" && exit 0
-            exit "$code"
-          }
+          # TWO SEVERITIES, AND THIS STEP USED TO SEE ONLY ONE.
+          #
+          # Exit 2 is a page READING WRONG and stays a warning. An instrument must never fail a
+          # build over presentation, because the cost of blocking is a day of everything else
+          # and the fix is a commit either way.
+          #
+          # Exit 3 is an instrument that has STOPPED, and it fails. The checker had no way to
+          # say that until 2026-08-21, so a dead collector reported 2, this step turned it into
+          # a warning, the collector's own cron turned its failure into a warning, and both
+          # jobs went green. ERCOT keeps no archive, so every hour that stays true is a reading
+          # nobody gets. This step is the alarm, and it runs on every push to main, which
+          # includes the collector's own twice daily push.
+          #
+          # Exit 1 means the checker itself broke, which has always been a real failure.
+          #
+          # `guards_shape.py` EXECUTES this block against a stubbed checker at each exit code
+          # and asserts the mapping, so the paragraph above is not the thing holding it up.
+          code=0
+          python3 scripts/gridwatch/gridwatch_pagecheck.py || code=$?
+          case "$code" in
+            0) ;;
+            2) echo "::warning::the grid watch page wants attention" ;;
+            3) echo "::error::the grid watch has STOPPED. A reading is no longer arriving, or is no longer reaching the page"
+               exit 3 ;;
+            *) exit "$code" ;;
+          esac
 
       - name: Media check self-test (it can go red)
         run: python3 scripts/site/media_check.py --self-test
@@ -245,14 +263,17 @@ jobs:
 
       - name: The published water watch page holds its promises
         run: |
-          # Advisory by design, exactly like the grid watch above and for the same reason: an
-          # instrument must never fail a build over presentation. Exit 2 is a finding, exit 1
-          # would mean the checker itself broke.
-          python3 scripts/gridwatch/waterwatch_pagecheck.py || {
-            code=$?
-            [ "$code" = 2 ] && echo "::warning::the water watch page wants attention" && exit 0
-            exit "$code"
-          }
+          # The same two severities as the grid watch above, and the same reasoning. A page
+          # reading wrong warns. An instrument that has stopped fails.
+          code=0
+          python3 scripts/gridwatch/waterwatch_pagecheck.py || code=$?
+          case "$code" in
+            0) ;;
+            2) echo "::warning::the water watch page wants attention" ;;
+            3) echo "::error::the water watch has STOPPED. A reading is no longer arriving, or is no longer reaching the page"
+               exit 3 ;;
+            *) exit "$code" ;;
+          esac
 
       - name: Caption lint self-test (the house rules, and that they can go red)
         run: python3 scripts/carousel/caption_check.py --self-test

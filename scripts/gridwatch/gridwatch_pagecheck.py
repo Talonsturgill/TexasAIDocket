@@ -8,13 +8,25 @@ and no reader: it is a cron that writes a file and a builder that renders it, an
 those would ever notice the page going wrong. Something has to look.
 
     EXIT 0  the page is current and holds its promises
-    EXIT 2  something wants attention
+    EXIT 2  something wants attention. ADVISORY, and CI turns it into a warning
+    EXIT 3  an instrument has STOPPED. Halting, and CI fails on it
     EXIT 1  reserved for this script itself being broken, and nothing else
 
-THE EXIT CODES ARE THE WHOLE DESIGN. A check that can abort the run it rides along with is a
-check that will eventually be removed for costing a day's carousel over a stale chart. So the
-finding is 2, the routine treats 2 as advisory, and a bad grid watch never stops a good run.
-The inverse matters just as much: a bad run never stops the check, because the check reads the
+TWO SEVERITIES, BECAUSE THEY WERE ONE AND THAT WAS A HOLE. Everything here reported 2 and CI
+turned 2 into a `::warning::` and passed, on the stated reasoning that an instrument must never
+fail a build over presentation. That reasoning is right about a sentence that drifted. It is
+wrong about a collector that died, and until 2026-08-21 the two shared a code, so a dead
+collector produced a warning from the cron and a warning from this check and BOTH JOBS WENT
+GREEN. ERCOT keeps no archive, and this repo's own documentation calls a missed day the one
+irreversible failure it has.
+
+So a page reading wrong stays advisory and an instrument that has stopped now fails. The
+original reasoning survives intact: exit 2 still cannot cost a day's carousel over a stale
+chart, and the ROUTINE still treats every finding as advisory, because a routine cannot fix a
+collector and stopping it would only cost the deck as well. CI is where a 3 is a red, and CI
+runs on every push to `main`, which includes this collector's own twice daily push.
+
+The inverse still matters as much: a bad run never stops the check, because the check reads the
 published site rather than anything the run produced.
 
 WHAT THE ROUTINE MAY DO ABOUT WHAT IT FINDS
@@ -71,7 +83,8 @@ def queue_rows(path: Path = QUEUE_LEDGER) -> list[dict]:
     return out
 
 
-def queue_findings(rows: list[dict], today: str) -> list[str]:
+def queue_findings(rows: list[dict], today: str,
+                   halting: list | None = None) -> list[str]:
     """Whether the large load queue reading is still arriving, and still verifying.
 
     THE HOLE THIS CLOSES, and it is the shape this project keeps finding. The queue is
@@ -93,32 +106,48 @@ def queue_findings(rows: list[dict], today: str) -> list[str]:
     newest verified month falling further behind the calendar. A collector that is still running
     and no longer UNDERSTANDS the report leaves a fresh unverified record on top of a stale
     verified one.
+
+    EVERY FINDING HERE IS HALTING, which is not true of the page rules above. There is no
+    presentation failure this function can report. Each of its four findings means a figure the
+    page publishes has stopped being refreshed, and each clears the moment a verified month
+    lands, so none of them can become the permanently red gate this repo keeps warning itself
+    about. `halting` is filled through a parameter for the same reason the caller's is: one
+    implementation of each rule, rather than two that can drift.
     """
     out: list[str] = []
+    halt = halting if halting is not None else []
+
+    def stop(msg: str) -> list[str]:
+        halt.append(msg)
+        out.append(msg)
+        return out
+
     if not rows:
-        return ["the queue ledger holds no readings at all; that collector has never succeeded"]
+        return stop("the queue ledger holds no readings at all; that collector has never "
+                    "succeeded")
 
     months = sorted(r["month"] for r in rows if r.get("month"))
     verified = sorted(r["month"] for r in rows if r.get("verified") and r.get("month"))
     if not verified:
-        return ["no queue reading has ever verified; the figures may have left the report's "
-                "text layer, and the page has nothing it may publish"]
+        return stop("no queue reading has ever verified; the figures may have left the "
+                    "report's text layer, and the page has nothing it may publish")
 
     newest, newest_ok = months[-1], verified[-1]
     behind = _months_between(newest_ok, today[:7])
     if behind > QUEUE_STALE_MONTHS:
-        out.append(f"the newest verified queue month is {newest_ok}, which is {behind} months "
-                   f"back; the large load reading may have stopped arriving")
+        stop(f"the newest verified queue month is {newest_ok}, which is {behind} months "
+             f"back; the large load reading may have stopped arriving")
     if newest > newest_ok:
-        out.append(f"the newest queue reading ({newest}) is unverified while the newest "
-                   f"verified one is {newest_ok}; the report's sentence may have moved and the "
-                   f"page is publishing an older month")
+        stop(f"the newest queue reading ({newest}) is unverified while the newest "
+             f"verified one is {newest_ok}; the report's sentence may have moved and the "
+             f"page is publishing an older month")
     return out
 
 
 def findings(page_html: str, records: list, today: str,
              queue_data: dict | None = None,
-             queue_months: list | None = None) -> list[str]:
+             queue_months: list | None = None,
+             halting: list | None = None) -> list[str]:
     """Everything wrong with the published page, in the order a reader would meet it.
 
     `queue_data` IS THE HERMETIC SEAM, and it exists for one reason worth stating. Production
@@ -134,25 +163,65 @@ def findings(page_html: str, records: list, today: str,
     That fix landed one file away and this one kept calling `figures` with the live ledger, so
     the same assertion here went quiet in exactly the same way. A gate that cannot fail is worse
     than no gate, because the suite reports it green.
+
+    `halting` COLLECTS THE SUBSET THAT MEANS AN INSTRUMENT HAS STOPPED, as opposed to a page
+    reading wrong. See the exit codes at the top of this file for why the two stopped sharing
+    one. Filled through a parameter rather than returned separately so there is ONE
+    implementation of each rule, because two functions computing staleness is two places for it
+    to drift.
+
+    WHAT IS DELIBERATELY NOT HALTING. A gap in the series and a day already recorded unverified
+    are PERMANENT, because ERCOT keeps no archive to backfill from. Failing on those would make
+    the build red forever with no action that could clear it, which is the trap this repo
+    already knows: a check that is always red is a check somebody turns off, and it takes the
+    real findings with it. They stay findings. So does every presentation rule below them.
     """
     import gridwatch_page as gp
 
     out: list[str] = []
+    halt = halting if halting is not None else []
+
+    def stop(msg: str) -> None:
+        """A finding that means something has stopped rather than read wrong."""
+        out.append(msg)
+        halt.append(msg)
+
     if not page_html.strip():
-        return ["the published grid watch page is missing or empty"]
+        stop("the published grid watch page is missing or empty")
+        return out
 
     if not records:
-        out.append("the record holds no readings at all; the collector has never succeeded")
+        stop("the record holds no readings at all; the collector has never succeeded")
         return out
 
     dates = [r["date"] for r in records if r.get("date")]
     last = max(dates)
-    behind = (_dt.date.fromisoformat(today) - _dt.date.fromisoformat(last)).days
+
+    # STALENESS IS MEASURED ON THE NEWEST VERIFIED READING, and it was measured on the newest
+    # record of any kind. The page publishes only verified days, deliberately: an unverified
+    # record is the collector saying it fetched and could not trust what came back, and the
+    # builder renders no figure from one.
+    #
+    # So the old rule asked whether the collector was RUNNING and called that the instrument
+    # working. A collector that runs every day and writes unverified every day passed it
+    # forever, while the page froze on the last day that verified. That is the exact failure
+    # `queue_findings` was written for, one series over, and neither daily series was checking
+    # it. It also put this rule at odds with the site rule at the bottom of this function,
+    # which compares against the newest reading the page is ALLOWED to show.
+    #
     # The collector files the SETTLED PREVIOUS day, so one day behind is the healthy steady
     # state and is not a finding. Anything past the threshold is.
+    ok_dates = [r["date"] for r in records if r.get("verified") and r.get("date")]
+    if not ok_dates:
+        stop("the record holds no verified reading at all; every day the collector has written "
+             "is a fetch it could not trust, and the page has nothing it may publish")
+        return out
+    last_ok = max(ok_dates)
+    behind = (_dt.date.fromisoformat(today) - _dt.date.fromisoformat(last_ok)).days
     if behind > STALE_DAYS:
-        out.append(f"the newest reading is {last}, which is {behind} days back; "
-                   f"the collector may have stopped")
+        stop(f"the newest verified reading is {last_ok}, which is {behind} days back; "
+             + (f"the collector is still writing ({last}) and no longer getting a reading it "
+                f"can trust" if last > last_ok else "the collector may have stopped"))
 
     span = (_dt.date.fromisoformat(last) - _dt.date.fromisoformat(min(dates))).days + 1
     if span > len(set(dates)):
@@ -170,7 +239,8 @@ def findings(page_html: str, records: list, today: str,
     # THE QUEUE, WHICH IS THE OTHER SERIES THIS PAGE PUBLISHES. Everything above is the demand
     # ledger. The queue arrives monthly on its own cron and nothing was watching whether it
     # still arrived. Its rows travel through the same hermetic seam the figures do.
-    out.extend(queue_findings(queue_rows() if queue_months is None else queue_months, today))
+    out.extend(queue_findings(queue_rows() if queue_months is None else queue_months,
+                              today, halt))
 
     # THE PROMISES, CHECKED AGAINST WHAT IS ACTUALLY PUBLISHED rather than against what the
     # builder would produce now. A hand edit or a half deployed build is exactly the case
@@ -217,10 +287,23 @@ def findings(page_html: str, records: list, today: str,
     # finding and this check should not silently become unfailable.
     daily = DAILY.search(page_html)
     where = daily.group(1) if daily else page_html
-    if last not in where and _fmt(last) not in where:
-        out.append(f"the published page does not show the newest reading ({last}); "
-                   f"the site is stale against the ledger")
+    if last_ok not in where and _fmt(last_ok) not in where:
+        stop(f"the published page does not show the newest verified reading ({last_ok}); "
+             f"the site is stale against the ledger")
     return out
+
+
+def code_for(found: list[str], halting: list[str]) -> int:
+    """The exit code, as a pure function, so the self-test can assert on the CODE itself.
+
+    Inline in `main` this was three lines nothing could reach without writing fixture files and
+    rewriting `sys.argv`, so the self-test asserted on the findings list and simply trusted that
+    main mapped it correctly. That is the gap the whole severity split exists to close, one
+    level down: a rule that is right and a wiring that drops it.
+    """
+    if not found:
+        return 0
+    return 3 if halting else 2
 
 
 DAILY = re.compile(r'(<section class="daily".*?</section>)', re.DOTALL | re.IGNORECASE)
@@ -364,7 +447,7 @@ def self_test() -> int:
     stale = shell(gp.body(good[:-1], "2026-08-11", gp.NO_QUEUE))
     f = findings(stale, good, "2026-08-11", gp.NO_QUEUE)
     check("a site stale against the ledger is caught",
-          any("does not show the newest reading" in x for x in f), str(f))
+          any("does not show the newest verified reading" in x for x in f), str(f))
 
     check("an empty page is a finding, not a crash",
           findings("", good, "2026-08-11", gp.NO_QUEUE) == ["the published grid watch page is missing or "
@@ -372,10 +455,107 @@ def self_test() -> int:
     check("an empty record is a finding, not a crash",
           any("never succeeded" in x for x in findings(html, [], "2026-08-11", gp.NO_QUEUE)))
 
+    # ----------------------------------------------------------------- THE TWO SEVERITIES
+    # Every case above asserts a rule FIRES. These assert it fires at the right VOLUME, which
+    # is the half that was missing: every finding here reported exit 2, CI turned 2 into a
+    # warning, and a dead collector was therefore indistinguishable from a drifted sentence.
+    #
+    # Each check below states which side of the line it is on and why, because the line is a
+    # judgement and a judgement nobody wrote down gets redrawn by whoever edits next.
+
+    def split(page, recs, when="2026-08-11", q=None, months=None):
+        halt: list[str] = []
+        return (findings(page, recs, when, gp.NO_QUEUE if q is None else q,
+                         healthy if months is None else months, halt), halt)
+
+    f, h = split(html, good)
+    check("a clean page is neither, and exits 0", (f, h, code_for(f, h)) == ([], [], 0), str(f))
+
+    # STOPPED. Nothing a page edit can reach, and every one means a number a reader is looking
+    # at is no longer being refreshed.
+    f, h = split(html, good, "2026-08-14")
+    check("a collector that stopped is HALTING", any("days back" in x for x in h), str(h))
+    check("...so it exits 3, which CI fails on", code_for(f, h) == 3)
+
+    f, h = split("", good)
+    check("a missing page is HALTING", h != [] and code_for(f, h) == 3, str(h))
+    f, h = split(html, [])
+    check("a record with no readings at all is HALTING", h != [] and code_for(f, h) == 3, str(h))
+
+    # THE FAILURE THAT LOOKS LIKE HEALTH FROM OUTSIDE. The collector runs on schedule, writes a
+    # record every day and exits 0, and every one of those records says it could not trust what
+    # it fetched. Nothing is missing, nothing errors, the cron is green, and the page has been
+    # frozen on the last day that verified for as long as it has been going on.
+    dead = [rec("2026-08-02"), rec("2026-08-09", verified=False),
+            rec("2026-08-10", verified=False)]
+    f, h = split(shell(gp.body(dead, "2026-08-11", gp.NO_QUEUE)), dead)
+    check("a collector still writing but no longer VERIFYING is HALTING",
+          any("no longer getting a reading it can trust" in x for x in h), str(h))
+    check("...and it names both dates, so the two failures can be told apart",
+          any("2026-08-02" in x and "2026-08-10" in x for x in h), str(h))
+
+    unverified_only = [rec("2026-08-09", verified=False), rec("2026-08-10", verified=False)]
+    f, h = split(html, unverified_only)
+    check("a collector that has NEVER verified is HALTING",
+          any("no verified reading at all" in x for x in h), str(h))
+
+    f, h = split(shell(gp.body(good[:-1], "2026-08-11", gp.NO_QUEUE)), good)
+    check("a site stale against its own ledger is HALTING",
+          any("stale against the ledger" in x for x in h), str(h))
+
+    # THE QUEUE, WHOSE EVERY FINDING IS HALTING. It publishes one figure a month and nothing
+    # about it is presentation, so there is no advisory half to get wrong.
+    stalled = [{"month": "2026-01", "verified": True}]
+    drifted = healthy + [{"month": "2026-08", "verified": False}]
+    virgin = [{"month": "2026-08", "verified": False}]
+    for label, months in (("a queue that stopped arriving", stalled),
+                          ("a queue that no longer verifies", drifted),
+                          ("a queue that never verified", virgin),
+                          ("an empty queue ledger", [])):
+        f, h = split(html, good, months=months)
+        check(f"{label} is HALTING, and exits 3",
+              h != [] and code_for(f, h) == 3, str(h))
+
+    # ADVISORY. Each of these is a page reading wrong, and a page reading wrong must never cost
+    # a build, because the fix is a commit and the cost of blocking is a day of everything else.
+    for label, page in (
+            ("a reliability verdict",
+             html.replace("</h1>", "</h1><p>ERCOT faces a shortfall</p>")),
+            ("a typed numeral", html.replace("</h1>", "</h1><p>roughly 8.9 GW</p>")),
+            ("a gauge turned into a dial", html.replace('class="bar"', 'class="dial"')),
+            ("a severity class on the fill",
+             html.replace('class="fill"', 'class="fill critical"'))):
+        f, h = split(page, good)
+        check(f"{label} is ADVISORY, and exits 2",
+              f != [] and h == [] and code_for(f, h) == 2, str(h))
+
+    # THE TWO THAT ARE DELIBERATELY NOT HALTING, and this is the check that records why.
+    # ERCOT keeps no archive to backfill from, so a gap and an already-recorded unverified day
+    # are PERMANENT. Failing on them would make the build red forever with no action that could
+    # clear it, and this repo already knows what a permanently red gate becomes: a gate somebody
+    # turns off, taking the real findings with it.
+    f, h = split(shell(gp.body(holed, "2026-08-11", gp.NO_QUEUE)), holed)
+    check("a permanent hole in the series is reported but NOT halting",
+          any("missing from the series" in x for x in f) and h == [], str(h))
+    f, h = split(shell(gp.body(unv, "2026-08-12", gp.NO_QUEUE)), unv, "2026-08-12")
+    check("a day already recorded unverified is reported but NOT halting",
+          any("unverified" in x for x in f) and h == [], str(h))
+
+    # AND THE TWO CHANNELS DO NOT SWALLOW EACH OTHER. A page can be stale AND read wrong at the
+    # same time, and the likeliest way to get this split wrong is for one severity to short
+    # circuit the other: return early on the first halting finding and the presentation report
+    # goes quiet, so the day the collector dies is the day nobody hears about anything else.
+    f, h = split(html.replace("</h1>", "</h1><p>ERCOT faces a shortfall</p>"), good, "2026-08-14")
+    check("a stopped collector and a verdict are reported TOGETHER",
+          any("days back" in x for x in h)
+          and any("reliability verdict" in x for x in f), str(f))
+    check("...with only the collector halting, and the pair still exiting 3",
+          not any("reliability verdict" in x for x in h) and code_for(f, h) == 3, str(h))
+
     if failures:
         print(f"\ngridwatch_pagecheck self-test: {failures} FAILED")
         return 1
-    print("\ngridwatch_pagecheck self-test: all passed")
+    print("\ngridwatch_pagecheck self-test: all passed (the check can go red, at two volumes)")
     return 0
 
 
@@ -390,17 +570,25 @@ def main() -> int:
 
     import gridwatch_page as gp
     page = Path(a.page)
+    halting: list[str] = []
     found = findings(page.read_text(encoding="utf-8") if page.exists() else "",
-                     gp.load(), a.today)
-    if not found:
+                     gp.load(), a.today, halting=halting)
+    code = code_for(found, halting)
+    if code == 0:
         print("gridwatch page: current, and holding its promises")
         return 0
-    print("gridwatch page: wants attention\n")
+    print(f"gridwatch page: {len(found)} finding(s)\n", file=sys.stderr)
     for x in found:
-        print(f"  - {x}")
-    print("\n  The routine may fix PRESENTATION only. The collector, the ledgers and the model\n"
-          "  config are off limits to it: cron writes those, and ERCOT keeps no archive to\n"
-          "  rebuild a series from. Anything else goes in the run record as a proposal.")
+        print(f"  {'STOPPED' if x in halting else 'advisory'}  {x}", file=sys.stderr)
+    if code == 3:
+        print("\n  HALTING. An instrument has stopped rather than read wrong, so this fails\n"
+              "  rather than warns. No presentation fix can reach it. ERCOT keeps no archive to\n"
+              "  rebuild a series from, so every hour this stays true is a reading nobody gets.",
+              file=sys.stderr)
+        return 3
+    print("\n  ADVISORY. The routine may fix PRESENTATION only. The collector, the ledgers and\n"
+          "  the model config are off limits to it: cron writes those. Anything else goes in\n"
+          "  the run record as a proposal.", file=sys.stderr)
     return 2
 
 

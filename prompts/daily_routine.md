@@ -268,7 +268,7 @@ For each item on the worklist, fetch **one primary source** and update it.
 green or not:
 
 ```
-python3 scripts/site/site_build.py --out /tmp/site --today <date>   # look at the `backlog:` lines
+python3 scripts/site/site_build.py --out out/<date>/tmp/site --today <date>   # read the `backlog:` lines
 ```
 
 Those lines are the only work in the record that a maintainer session structurally cannot do,
@@ -433,7 +433,7 @@ not rung (f).
 python3 scripts/gridwatch/gridwatch_pagecheck.py
 python3 scripts/gridwatch/waterwatch_pagecheck.py
 python3 scripts/site/waterwatch_page.py --self-test
-python3 scripts/site/site_build.py --out /tmp/site --today <date>
+python3 scripts/site/site_build.py --out out/<date>/tmp/site --today <date>
 
 # THE DISCOVERABILITY SURFACES. Run by exit code, never by reading the last line.
 python3 scripts/site/media_check.py           # every image the site points at exists
@@ -445,9 +445,22 @@ python3 scripts/site/indexnow.py --self-test  # the key file that verifies owner
 python3 scripts/site/seo_check.py             # the record is findable, on the built site
 ```
 
-Exit 0 is clean, exit 2 wants attention, exit 1 means the checker itself broke. **This never
-blocks the run.** You may fix presentation only, and only in `scripts/site/gridwatch_page.py` and
-`scripts/site/waterwatch_page.py`. Anything else is a proposal in the run record.
+Exit 0 is clean. Exit 2 is a page READING WRONG. Exit 3 is an instrument that has STOPPED. Exit 1
+means the checker itself broke.
+
+**None of them blocks the run**, and that has not changed. A run cannot fix a collector, so
+stopping the run over one costs the deck as well and fixes nothing. What changed on 2026-08-21 is
+that the checkers can now tell the two apart, and CI fails on a 3. CI runs on every push to
+`main`, which includes the collector's own twice daily push, so the alarm does not depend on a
+routine reading this paragraph.
+
+On a **2** you may fix presentation, and only in `scripts/site/gridwatch_page.py` and
+`scripts/site/waterwatch_page.py`.
+
+On a **3** you may fix nothing. The collector, the ledgers and the model config belong to cron
+and no run owns them. Put the finding at the TOP of the run record and name it in the email, in
+its own words rather than folded into a list of gate results. A stopped instrument is the one
+thing on this page a human has to see.
 
 **Both instruments have a page check now.** The water one was missing until 2026-08-16 and its
 absence was written up as a proposal, because the two are the same shape of thing. A cron writes
