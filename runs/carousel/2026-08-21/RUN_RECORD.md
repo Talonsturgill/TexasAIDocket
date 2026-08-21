@@ -213,9 +213,216 @@ data and still prints, for the reason in the proposals.
    wrong way round and this file says so elsewhere. Add `re.I` to `DATE`, and add a self test case
    asserting an all caps closing date is seen. `scripts/carousel/` is the `upgrade` actor's lane.
 
-## Two process errors this run made, and what they cost
+10. **`docket_calendar.KIND_LABEL` has no entry for `expires`, and CI found it before the merge.**
+    The two NSF awards admitted this run carry a September 30th, 2029 end date, and the kind that
+    fits it is `expires`. The calendar's label table holds nine kinds and none of them is that, so
+    its self test went red on `every kind on the real record has an explicit label`, and the 2029
+    date broke two more of its assertions about a window computed two years back from today.
+    `scripts/site/docket_calendar.py` is `human` owned so this run could not add the label. The
+    key dates came back out and the fact stays where it already was, in both summaries, which say
+    the project runs from October 1st, 2026 through September 30th, 2029. **The proposal is to add
+    `expires` to `KIND_LABEL` and to decide deliberately whether it belongs in `ACTIONABLE`**, which
+    it does not, since a grant ending is not a door. Worth saying plainly: the local gate suite the
+    routine runs before pushing does not include this self test, and CI does. That is the gap, not
+    the label.
+11. **`deck_preview` is a word count on the deck's headline, and nothing on the carousel side can
+    see it.** The article card's preview takes the first two sentences of the first slide that
+    speaks prose, and slide one always speaks its hook first, so the preview is the hook and only
+    the hook whenever the hook runs to two sentences. `site_build`'s own self test then requires
+    eight words under every card title. This deck's hook was seven. Every carousel gate was green,
+    the render was clean, the panel had passed it, and the defect lived in a counter on a different
+    surface owned by a different actor. **The proposal is to let `deck_preview` keep taking whole
+    sentences until it has eight words rather than stopping at two**, which is what its own budget
+    argument was already for, so a short headline is previewed by the headline AND the line under
+    it. `scripts/site/site_build.py` is `human` owned, so this run repaired the copy instead and the
+    repair is written up below.
+12. **The article description builder skips a block instead of trimming it, so a longer dek makes a
+    shorter description.** The meta description walks slide strings and appends whole ones until it
+    has 110 characters, breaking rather than cutting when the next one would carry it past 160. A
+    38 character hook followed by a 148 character dek therefore ships 38 characters, and
+    `seo_check` wants 50 to 200. The trap is that the failure gets WORSE as the copy gets richer,
+    which is the opposite of what an author would predict, and this run walked straight into it by
+    lengthening the dek to satisfy proposal 11's counter. **The proposal is to cut the final block
+    at a sentence boundary inside the budget rather than dropping it whole**, which is what the
+    function's own comment already says it does. Same file, same owner, same answer: the copy moved
+    instead.
+13. **The render engine's documented way to load committed geodata does not work in Chromium 151.**
+    `render.py` resolves `@@ASSETS@@` to a `file://` path and its own header tells a slide to reach
+    it with `fetch(...)`. Chromium refuses `fetch` on a `file://` URL whatever
+    `--allow-file-access-from-files` says, and it refuses it silently enough that the frame simply
+    throws. This is new since the deck first rendered on the same source this morning, so the
+    browser under the runner moved. `XMLHttpRequest` still reads the same URL, verified against the
+    committed county topojson at 495,034 bytes. **The proposal is to change the header's example to
+    XHR, or better, to have the renderer inline `@@ASSETS@@` JSON at resolve time** so a slide never
+    performs a network-shaped read at all. `.claude/skills/carousel-engine/render.py` is not this
+    actor's, so slide six's own art carries the XHR read and a comment saying why.
+14. **`sources_block.py` reports success when it was handed a path that does not exist.** Called
+    with `--run <date>`, argparse prefix-matches `--run-dir` and the script takes the bare date as
+    a directory. It then finds no printed ids, concludes every printed id resolves, prints
+    `sources block: clean` and exits 0. A checker whose empty case is indistinguishable from its
+    clean case is worse than no checker, because it is trusted. **The proposal is to fail when the
+    run directory does not exist, and to fail when the deck printed no claim ids at all**, since a
+    deck that cites nothing is a defect rather than a pass. Worth pairing with a second look at
+    every gate in `scripts/carousel/` for the same shape, because this one was invisible for a
+    whole run behind an exit code of 0.
+15. **`ownership.yaml` gives `ledger/carousel/**` to `daily`, which lets the record's own actor
+    rewrite the craft memory.** This run had to correct `artwork.json`, because the entry described
+    slide 8 as a milled relief with the shadow on the near wall, and the sixth panel's craft judge
+    measured the render and found no band and no trough. The correction was right and the file
+    said so, but the actor that made the drawing is also the actor that grades it in the ledger,
+    which is the arrangement `instincts.json` already refuses by keeping confidence out of the file
+    and deriving it in code. **The proposal is to state in `ownership.yaml` that an artwork entry
+    is written from the render reports and never from the plan, and to add a check that a technique
+    line naming a focal region can be pointed at pixels.** Filed rather than acted on, because
+    `ownership.yaml` is not this actor's to edit.
+16. **Nothing checks the shipped render against the plan's own declared strings, and this run
+    proved why that matters.** The tenth panel's integrity judge found that two repairs the run
+    believed it had shipped existed only in `storyboard.md`, because `build_slides.py` had refused
+    a footer collision and exited 1 while its output was suppressed. Three judges then graded a
+    deck that was never rendered. `plan_render_check` compares the plan to the render and passed,
+    because the fields it reads are not the hook and the byline. **The proposal is a gate that
+    diffs `copy.json`, which is derived from the render report, against the storyboard's declared
+    hooks, deks and bylines and fails on any mismatch in either direction.** It is the tenth
+    panel's own one sentence fix and it would have caught this in under a second.
+17. **`_footer_fit` is the only build time assertion in the deck builder and there is no gate that
+    it was ever reached.** It did its job perfectly, refusing a byline 72px too wide for its frame
+    and naming the overlap. What failed is that a run can suppress it and carry on rendering stale
+    HTML, because the slide files are still on disk from the previous build. **The proposal is for
+    the builder to delete `out/<date>/slides/` before it writes**, so a refused build leaves no
+    slides to render rather than leaving yesterday's.
 
-Both were mine and both are worth writing down, because each one wasted a full review round.
+## Four more panels after the deck was already scored, and what each one caught
+
+The deck was scored 7.27 on its fourth panel and pushed. CI then went red on three gates, all on
+the SITE side, all reading slide one, and repairing them changed copy the panel had judged. A
+changed frame makes the score STALE, which `gate_status` reads as a red row by design, so the deck
+went back to the panel. It went back three more times after that, and every round found something,
+which is the argument for the panel and the argument against stopping early in one table.
+
+| panel | integrity | craft | reader | what it caught |
+|---|---|---|---|---|
+| 5 | 7.25 | 7.31 | 7.22 | the caption glossed a quote, two frames cited numerals whose claims were not on them, a stamp used a scope word no claim uses, and two kickers were production vocabulary and a refused universal |
+| 6 | **6.61 HARD FAIL** | 7.41 | 7.27 | the cover asserted an absence the record had explicitly declined to establish |
+| 7 | 7.30 | 7.47 | 7.62 | the hard fail cleared, and five overstatements upheld that no earlier panel had named |
+| 8 | **6.92 HARD FAIL** | 7.22 | 7.50 | slide 7 said DPS PUBLISHES first responder plans where its own claim says the page takes them, and the storyboard's acceptance item had prescribed the verb |
+| 9 | 6.96 REFUSED | 7.19 | 7.43 | no hard fail, and a refusal anyway. The caption turned c22's "this week" into a flat "on May 1st, 2025", slide 4's headline dropped c17's "in the triples configuration", and slide 9's byline filed a TxDOT claim under the Legislature |
+| 10 | 7.02 | 7.18 | 7.42 | **unanimous ship, no hard fail, no refusal.** `panel.py` reads 7.42, spread 0.40, contested on claim integrity |
+
+**The ninth panel refused without failing anything, and `panel.py` is stricter than the routine.**
+The routine says any one judge's HARD FAIL stops the deck. `panel.py` also stops on `ship: false`
+with no hard fail named, which is what the ninth panel's integrity judge returned at 6.96 while
+calling itself in writing "a threshold miss" rather than a stop. The stricter rule is the right
+one and it held: its one sentence fix was the caption's dateline, and applying that fix is what
+moved the tenth panel's integrity judge to 7.02 on the same lens.
+
+**What the tenth panel read, stated exactly.** All three judges read the deck BEFORE two of their
+own integrity findings landed. Slide 4's dek did not yet carry c17's "in the triples configuration"
+and slide 9's byline did not yet name TxDOT. Both are now on the frames. The published 7.42 is
+therefore a floor rather than a ceiling: the deck that ships is the deck they scored plus the two
+citations they asked for, and neither adds an assertion. That is the conservative direction and it
+is written here rather than smoothed over.
+
+**Where the tenth panel's craft judge landed on slide 8, which five judges have now ruled on.** Six
+craft readings scored artwork craft at 6.0, 5.8, 6.5, 6.0, 6.2 and 6.0, and every one of them named
+the same three frames. All six ruled slide 8 a failed technique rather than an unfinished frame, and
+four said in writing that a judge ruling the other way would be reasonable and the deck should then
+stop. Nobody did. The frame is composed, the relief shader ran, and it ran on the figure instead of
+the ground, so the type reads raised where the plan wanted it cut. The ledger says so in its own
+words and the rebuild is the run's named debt.
+
+**Two hard fails, three panels apart, and they are the same defect.** The cover said "No column for
+it" because the deck wanted a rhetorical spine. Slide 7 said "DPS publishes" because an acceptance
+item had written the word PUBLISH into the plan. In both cases the composition chose the word and
+the fact was fitted to it afterwards, and in both cases every gate in the suite stayed green,
+because a gate can check that a claim id resolves and cannot check that the sentence above it says
+what the claim says. That is the finding of this run, and it costs more to learn than the deck did.
+
+**The eighth panel's fix changed the plan, not just the frame.** The acceptance item that said the
+dek must say "what each does publish" now says it must say what each page HOLDS, in the words the
+record actually read on it, with a line stating that an acceptance item may require a frame to be
+positive and may not choose its verb. Fixing only the sentence would have left the instruction that
+produced it sitting in the plan for the next run to execute again.
+
+**Panel 6 is the one that earned all of them.** Its integrity judge failed the cover. The hook read
+"Every mile is logged. No column for it." over the source line `Aurora, c27 c28`, where c27 is a
+dateline and c28 is Aurora's mileage figure, and neither supports an absence. The absence this run
+actually verified is narrower on both axes, a crash COUNT missing from three named pages, and the
+run's own rejected list says in writing that the TxDOT CRIS query never rendered and **an absence
+cannot be asserted from a page that did not render**. The deck had chosen its rhetorical spine
+before the record could verify it, and four panels, every carousel gate, a full pixel review and a
+flow critic had all read that cover and let it through.
+
+The cover now ASKS. "Every mile is logged. Who counts the crashes?" A question asserts nothing, and
+the deck answers it from verified material one swipe later, on slide 7 with the three pages and on
+slide 8 with the federal file. `fitText` was capped at two lines when the longer hook wrapped to
+three and machine QA caught it running through the dek, which is the gate doing its job on a change
+made to satisfy a judge.
+
+**Panel 7 upheld five findings without failing any, and four were corrected.** Slide 2 said "five
+of seven marks in the last 89 days" for a window that ends on the hearing, four days after
+publication, and counted the hearing as one of the five. It now says "in the final 89", which is a
+statement about the shape of the 481 day span rather than about days that have elapsed. Slide 6
+said "the first driverless lane", a superlative in no claim, and now names the Dallas to Houston
+lane. The caption said "its three charges" and closed a list nothing establishes as closed, two
+sentences after `aggregates.json` argues at length that the deck may not close a list a source
+leaves open. And `artwork.json` stated the law "every word on a frame is DOM text" beside a frame
+that ships four canvas bitmaps, so the entry now records the law AND that this deck broke it.
+
+**The fifth was left standing and it is written here rather than fixed.** 481, 392 and 89 all
+anchor on May 1st, 2025, taken from Aurora's announcement, whose own quoted words are that
+deliveries began "this week". The lane opened somewhere in a several day window, so three published
+day counts are floors printed as exact. The eighth panel's integrity judge ruled on it and did not
+fail it: a dated primary announcement of commencement is a legitimate anchor for a derived span,
+the `modeled` label governs estimates code produces from a model rather than a day count between
+two fetched documents, and the imprecision is bounded inside the announcement week and runs
+conservative. It is a real demerit and it is one word from being exactly true, which is what the
+next run should spend the word on.
+
+**What was NOT fixed, and is carried rather than hidden.** Three craft findings survived every
+panel because each is a frame rebuild rather than a copy change, and this run did not have the day
+left for one. Slide 8's declared focal, a milled band of lit groove lips about 880 by 260px, does
+not exist in the render, and what shipped is the inverse of the technique with the striations
+inside the letterforms; three craft judges each ruled it a failed technique rather than an
+unfinished frame, and two of the three said in writing that they would not argue against a judge
+who ruled the other way. Slide 5, the deck's declared turn, has a cast shadow with no caster in
+frame. Slide 3's rig reads as clip art at thumb size and shows one trailer for a dek about triples.
+Slide 8 also ships its four header strings as canvas bitmaps against this deck's own recorded law
+that every word on a frame is DOM text, which the artwork ledger now states along with the breach.
+
+**Two corrections were themselves caught by gates, which is worth more than the corrections.**
+`shipped_check` found that slide 6's two new claim ids never reached the published sources block,
+because `sources_block.py` had been called with a flag that does not exist for the whole run.
+`dossier_check` found that the storyboard note added for the superlative fix had closed a quote in
+the wrong place and destroyed slide 6's dossier. Neither would have been visible by reading.
+
+## Four process errors this run made, and what they cost
+
+All four were mine and all four are worth writing down, because each one wasted a review round.
+
+**A build that REFUSED was treated as a build that ran.** `build_slides.py` was invoked as
+`python3 ... >/dev/null 2>&1` and its exit code was never read. `_footer_fit` refused the run,
+correctly, naming a slide 9 byline 72px too wide for its frame, and printed the overlap to a
+suppressed stream. The previous build's HTML was still in `out/<date>/slides/`, so the renderer
+rendered it, every gate passed on it, and three scoring judges graded a deck that had never been
+built. One of them caught it by reading the pixels against the plan and said so in its first
+paragraph. **This is the repo's own stated law violated in the one place the law does not name.**
+`CLAUDE.md` says run a gate BY EXIT CODE and never by reading its last line. The gate here was not
+a gate, it was the builder, and its exit code was not read at all. Proposals 16 and 17 are the two
+halves of the fix: check the plan against what actually rendered, and have a refused build leave no
+slides behind for the next command to render.
+
+**`sources_block.py` was called with `--run` for the whole run, and there is no `--run`.** The
+flag is `--run-dir`, and argparse matches an unambiguous prefix, so `--run 2026-08-21` set the run
+DIRECTORY to the string `2026-08-21` and the script then reported `sources block: clean, every
+claim id the deck prints resolves to a document` and exited 0. It said that every time it was
+asked, including immediately after slide 6 gained two claim ids, and `shipped_check` caught the
+real state one step later: the deck printed c22 and the published sources block did not list it,
+so a reader could not reach the document. Building it needs `--build` and checking it needs
+`--check`, and with neither the script does something that looks like both. **This is the exact
+shape `CLAUDE.md` warns about, arrived at from a direction the warning does not cover.** The rule
+is to run a gate by exit code rather than by reading its last line, and the exit code was 0 and
+the last line was reassuring and the gate had not been pointed at the run at all. An exit code
+proves nothing about a checker that was handed the wrong path. The standing proposal is at 14.
 
 **The pixel critics were spawned before the storyboard was reconciled.** Slides 1, 2, 4, 5, 7
 and 9 had been rebuilt during the render loop and the dossiers still described the drawings that
@@ -291,11 +498,19 @@ these. The pixel critics read the frames and found craft. The gates read the fil
 Only a judge told to refute the deck went and read the builder to see whether a number on a slide
 was a number the code produced.
 
-## What four scoring panels cost, and what they were worth
+## What eight scoring panels cost, and what they were worth
 
-Twelve judgments across four panels. The scores went 6.67 6.75 6.81, then 6.41 6.51 6.88, then
-6.85 7.07 7.47. Not one of the eighteen findings below was caught by any gate in the suite, and
-the suite ran green on every one of those rounds.
+Twenty four judgments across eight panels. The scores went 6.67 6.75 6.81, then 6.41 6.51 6.88,
+then 6.85 7.07 7.47, then the fourth that shipped, then the four in the table above. Not one of the
+eighteen findings below was caught by any gate in the suite, and the suite ran green on every one
+of those rounds.
+
+**The last four panels change what this section concludes.** Written after the fourth, it said the
+panel had stopped paying and that a fifth would be scoring the same deck. Then the fifth found six
+defects, the sixth failed the cover outright, the seventh upheld five more, and the eighth ruled on
+the last one standing. The honest revision is that a panel keeps paying as long as the deck keeps
+moving, and this deck kept moving because each repair changed copy. What actually stopped paying
+was re-scoring a deck NOBODY had changed, which is not what any of the last four did.
 
 Counting them by KIND rather than by frame is the useful cut, because the kinds repeat and the
 frames do not.
@@ -422,15 +637,15 @@ source, was offered and REFUSED, because the two pages that would settle it retu
 |---|---|---|
 | claims         | PASS   | 32 verified claim(s) |
 | render         | PASS   | 9 slide(s) |
-| qa             | WARN   | 0 fail(s), 22 warn(s) |
-| aggregates     | PASS   | 9 declared and re-derived |
-| assembly       | PASS   | 9 slide(s), 4.66 MB, vector |
-| score          | ABSENT | score.json not written yet |
-| dossiers       | PASS   | 41,834 chars planned |
-| caption        | PASS   | 178 words |
-| craft floor    | WARN   | 9 frame(s), median 216, floor 60, 4 quiet |
-| plan vs render | WARN   | 6 of 65 acceptance item(s) checkable |
+| qa             | WARN   | 0 fail(s), 15 warn(s) |
+| aggregates     | PASS   | 10 declared and re-derived |
+| assembly       | PASS   | 9 slide(s), 4.59 MB, vector |
+| score          | PASS   | 7.42 |
+| dossiers       | PASS   | 43,820 chars planned |
+| caption        | PASS   | 177 words |
+| craft floor    | WARN   | 9 frame(s), median 208, floor 60, 4 quiet |
+| plan vs render | WARN   | 6 of 67 acceptance item(s) checkable |
 | texan          | WARN   | places NONE / body yes / deadline yes / next step NO |
-| absences       | WARN   | 4 of 8 scoped to a named document, 4 unscoped |
-| completion     | ABSENT | not scored yet |
+| absences       | WARN   | 3 of 6 scoped to a named document, 3 unscoped |
+| completion     | PASS   | the deck shipped |
 <!-- gate-status:end -->

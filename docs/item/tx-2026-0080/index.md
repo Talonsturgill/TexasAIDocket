@@ -16,7 +16,6 @@ The National Science Foundation made an award to Prairie View A and M University
 ## Dates
 
 - 2026-08-11 · ordered: Award date recorded in the National Science Foundation award record
-- 2029-09-30 · expires: Expiration date recorded in the award record
 
 ## How this decision moved
 

@@ -6,7 +6,7 @@
   "S1": {
    "lines": [
     "The instrument",
-    "Every mile logged. No column for it.",
+    "Every mile is logged. Who counts the crashes?",
     "By October 28th, 2025 Aurora reported passing 100,000 driverless miles on public roads.",
     "Aurora, c27 c28",
     "PUBLIC ROADS100,000 MILES",
@@ -36,11 +36,11 @@
     "AUGUST 25THTHE HEARING",
     "AUGUST 25TH",
     "ONE RATE. ALL 481 DAYS.",
-    "THE SAME LANE. THE LAST 89 DAYS.",
+    "THE SAME LANE. THE FINAL 89 DAYS.",
     "The sequence",
-    "481 days. Five of seven marks in the last 89 days.",
+    "481 days. Five of seven marks in the final 89.",
     "The seventh mount is the hearing on August 25th, 2026, and it carries nothing yet.",
-    "c23 c26 c27 c10 c16 c30 c11 c37",
+    "c23 c26 c27 c10 c16 c30 c11 c37 c1",
     "481 DAYS7 MARKS",
     "02 / 09",
     "BROKEN SCALE",
@@ -79,7 +79,7 @@
    "lines": [
     "The count somebody keeps",
     "More than 1,400 loads since February.",
-    "Kodiak's securities filing reports a second load out point on Atlas's 42 mile Dune Express conveyor. The drawing shows 1,400. The record says more.",
+    "Kodiak's securities filing counts these in the triples configuration, along Atlas's 42 mile Dune Express conveyor. The drawing shows 1,400. The record says more.",
     "Kodiak, SEC EDGAR, c17 c19 c20",
     "DUNE EXPRESS42 MILE CONVEYOR",
     "04 / 09",
@@ -94,7 +94,7 @@
   },
   "S5": {
    "lines": [
-    "The counter image",
+    "The day it opened",
     "Anyone in Houston can hail one.",
     "\"The National Federation of the Blind of Texas is happy to hear the news that Waymo will be fully available in Houston.\"",
     "Raul Gallegos. First Vice President, National Federation for the Blind of Texas.",
@@ -117,9 +117,9 @@
    "lines": [
     "The state's own act",
     "The state's number is a permission.",
-    "SB 2807's TxDMV authorization became a live requirement for commercial automated vehicle operation on May 28th, 2026, which is 392 days after the first driverless lane opened.",
-    "TxDMV, c9 c10",
-    "STATEWIDE254 COUNTIES",
+    "SB 2807's TxDMV authorization became a live requirement for commercial automated vehicle operation on May 28th, 2026, which is 392 days after the Dallas to Houston lane opened.",
+    "TxDMV, c8 c9 c10 c22 c23",
+    "SB 2807254 COUNTIES",
     "06 / 09",
     "ALBERS",
     "texasaidocket.com"
@@ -128,16 +128,17 @@
     "c8",
     "c9",
     "c10",
+    "c22",
     "c23"
    ]
   },
   "S7": {
    "lines": [
-    "What nobody counts",
+    "What 3 pages don't hold",
     "Where the paint ends.",
     "NO CRASH COUNTTXDMV, DPS, TXDOT",
     "TXDMV, DPS, TXDOT",
-    "TxDMV publishes the authorization SB 2807 requires. DPS publishes first responder interaction plans. TxDOT's crash data page names no automated driving category.",
+    "TxDMV publishes the authorization SB 2807 requires. The DPS page carries first responder interaction plans and a submissions address. TxDOT's crash data page names no automated driving category.",
     "TxDMV, DPS, TxDOT, c9 c34 c35",
     "3 PAGESNONE PUBLISHES ONE",
     "07 / 09",
@@ -177,7 +178,7 @@
     "Commercial driver licensing",
     "The charge names three agencies whose rule making is in scope. The Department of Transportation keeps the state's crash records and is not one of them.",
     "The Legislature posts the meeting on capitol.texas.gov under Committees, Meetings Upcoming.",
-    "Texas Legislature, c1 c2 c3 c4 c6 c7 c35 c36",
+    "Legislature, TxDOT, c1 c2 c3 c4 c6 c7 c35 c36",
     "HEARING ROOME1.016",
     "09 / 09",
     "FRONTAL",

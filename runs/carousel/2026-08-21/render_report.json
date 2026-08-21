@@ -41,12 +41,12 @@
           "anc": []
         },
         {
-          "text": "Every mile logged. No column for it.",
+          "text": "Every mile is logged. Who counts the crashes?",
           "x": 80,
           "y": 672,
           "w": 920,
-          "h": 219,
-          "font_px": 111.5,
+          "h": 178,
+          "font_px": 91,
           "weight": "700",
           "family": "Fraunces",
           "color": "rgb(233, 239, 230)",
@@ -55,15 +55,15 @@
           "lines": [
             [
               80,
-              658,
-              813,
-              137
+              660,
+              745,
+              112
             ],
             [
               80,
-              767,
-              735,
-              137
+              749,
+              917,
+              112
             ]
           ],
           "anc": []
@@ -562,7 +562,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1096,
+      "render_ms": 1048,
       "ok": true,
       "canvases": [],
       "breather": false,
@@ -921,10 +921,10 @@
           "anc": []
         },
         {
-          "text": "THE SAME LANE. THE LAST 89 DAYS.",
-          "x": 504,
+          "text": "THE SAME LANE. THE FINAL 89 DAYS.",
+          "x": 489,
           "y": 480,
-          "w": 492,
+          "w": 507,
           "h": 24,
           "font_px": 24,
           "weight": "400",
@@ -934,9 +934,9 @@
           "overlap_ok": false,
           "lines": [
             [
-              504,
+              489,
               476,
-              492,
+              507,
               31
             ]
           ],
@@ -965,7 +965,7 @@
           "anc": []
         },
         {
-          "text": "481 days. Five of seven marks in the last 89 days.",
+          "text": "481 days. Five of seven marks in the final 89.",
           "x": 80,
           "y": 920,
           "w": 920,
@@ -986,7 +986,7 @@
             [
               80,
               991,
-              863,
+              724,
               103
             ]
           ],
@@ -1021,10 +1021,10 @@
           "anc": []
         },
         {
-          "text": "c23 c26 c27 c10 c16 c30 c11 c37",
+          "text": "c23 c26 c27 c10 c16 c30 c11 c37 c1",
           "x": 80,
           "y": 1189,
-          "w": 476,
+          "w": 522,
           "h": 31,
           "font_px": 24,
           "weight": "400",
@@ -1036,7 +1036,7 @@
             [
               80,
               1189,
-              476,
+              522,
               31
             ]
           ],
@@ -1144,7 +1144,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1777,
+      "render_ms": 1642,
       "ok": true,
       "canvases": [
         {
@@ -1380,7 +1380,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1959,
+      "render_ms": 1988,
       "ok": true,
       "canvases": [
         {
@@ -1459,11 +1459,11 @@
           "anc": []
         },
         {
-          "text": "Kodiak's securities filing reports a second load out point on Atlas's 42 mile Dune Express conveyor. The drawing shows 1,400. The record says more.",
+          "text": "Kodiak's securities filing counts these in the triples configuration, along Atlas's 42 mile Dune Express conveyor. The drawing shows 1,400. The record says more.",
           "x": 80,
           "y": 1046,
           "w": 920,
-          "h": 69,
+          "h": 103,
           "font_px": 26,
           "weight": "500",
           "family": "Manrope",
@@ -1474,13 +1474,19 @@
             [
               80,
               1045,
-              888,
+              867,
               36
             ],
             [
               80,
               1079,
-              875,
+              917,
+              36
+            ],
+            [
+              80,
+              1114,
+              130,
               36
             ]
           ],
@@ -8211,7 +8217,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 806,
+      "render_ms": 785,
       "ok": true,
       "canvases": [],
       "breather": false,
@@ -8226,7 +8232,7 @@
       "fonts_missing": [],
       "text_nodes": [
         {
-          "text": "The counter image",
+          "text": "The day it opened",
           "x": 80,
           "y": 80,
           "w": 336,
@@ -8744,7 +8750,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 613,
+      "render_ms": 610,
       "ok": true,
       "canvases": [],
       "breather": false,
@@ -8809,7 +8815,7 @@
           "anc": []
         },
         {
-          "text": "SB 2807's TxDMV authorization became a live requirement for commercial automated vehicle operation on May 28th, 2026, which is 392 days after the first driverless lane opened.",
+          "text": "SB 2807's TxDMV authorization became a live requirement for commercial automated vehicle operation on May 28th, 2026, which is 392 days after the Dallas to Houston lane opened.",
           "x": 80,
           "y": 952,
           "w": 920,
@@ -8836,17 +8842,17 @@
             [
               80,
               1025,
-              605,
+              648,
               38
             ]
           ],
           "anc": []
         },
         {
-          "text": "TxDMV, c9 c10",
+          "text": "TxDMV, c8 c9 c10 c22 c23",
           "x": 80,
           "y": 1189,
-          "w": 200,
+          "w": 369,
           "h": 31,
           "font_px": 24,
           "weight": "400",
@@ -8858,14 +8864,14 @@
             [
               80,
               1189,
-              200,
+              369,
               31
             ]
           ],
           "anc": []
         },
         {
-          "text": "STATEWIDE254 COUNTIES",
+          "text": "SB 2807254 COUNTIES",
           "x": 831,
           "y": 1162,
           "w": 169,
@@ -8878,9 +8884,9 @@
           "overlap_ok": false,
           "lines": [
             [
-              873,
+              901,
               1162,
-              127,
+              99,
               29
             ],
             [
@@ -8966,7 +8972,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2071,
+      "render_ms": 1921,
       "ok": true,
       "canvases": [
         {
@@ -8995,10 +9001,10 @@
       "fonts_missing": [],
       "text_nodes": [
         {
-          "text": "What nobody counts",
+          "text": "What 3 pages don't hold",
           "x": 80,
           "y": 80,
-          "w": 356,
+          "w": 454,
           "h": 35,
           "font_px": 26,
           "weight": "400",
@@ -9010,7 +9016,7 @@
             [
               80,
               80,
-              356,
+              454,
               35
             ]
           ],
@@ -9091,12 +9097,12 @@
           ]
         },
         {
-          "text": "TxDMV publishes the authorization SB 2807 requires. DPS publishes first responder interaction plans. TxDOT's crash data page names no automated driving category.",
+          "text": "TxDMV publishes the authorization SB 2807 requires. The DPS page carries first responder interaction plans and a submissions address. TxDOT's crash data page names no automated driving category.",
           "x": 80,
-          "y": 1058,
-          "w": 920,
-          "h": 113,
-          "font_px": 29,
+          "y": 1046,
+          "w": 848,
+          "h": 101,
+          "font_px": 26,
           "weight": "500",
           "family": "Manrope",
           "color": "rgb(201, 179, 147)",
@@ -9105,21 +9111,21 @@
           "lines": [
             [
               80,
-              1056,
-              914,
-              40
+              1044,
+              814,
+              36
             ],
             [
               80,
-              1094,
-              881,
-              40
+              1078,
+              822,
+              36
             ],
             [
               80,
-              1131,
-              422,
-              40
+              1112,
+              769,
+              36
             ]
           ],
           "anc": []
@@ -9248,7 +9254,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1599,
+      "render_ms": 1362,
       "ok": true,
       "canvases": [
         {
@@ -9505,7 +9511,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1755,
+      "render_ms": 1401,
       "ok": true,
       "canvases": [
         {
@@ -9784,10 +9790,10 @@
           "anc": []
         },
         {
-          "text": "Texas Legislature, c1 c2 c3 c4 c6 c7 c35 c36",
+          "text": "Legislature, TxDOT, c1 c2 c3 c4 c6 c7 c35 c36",
           "x": 80,
           "y": 1189,
-          "w": 676,
+          "w": 691,
           "h": 31,
           "font_px": 24,
           "weight": "400",
@@ -9799,7 +9805,7 @@
             [
               80,
               1189,
-              676,
+              691,
               31
             ]
           ],
@@ -9996,7 +10002,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 743,
+      "render_ms": 590,
       "ok": true,
       "canvases": [],
       "breather": false,

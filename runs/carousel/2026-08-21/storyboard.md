@@ -99,7 +99,7 @@ the same reason, and the render that shipped them had two of its three coordinat
 the committed gazetteer's own computed centroids. The stamp is `data-decorative`, which is what
 kept both the coordinates and a typed county count out of every gate's reach, so what it may say
 is now a rule rather than a habit: **the location stamp names only what a claim cited on that same
-frame names, OR a value this run computed.** Stated loosely it was unenforceable and three panels each caught one more stamp breaking it, one frame at a time. Checked all nine at once, three more were breaking it: STATEWIDE on two frames and THIS RECORD CHECKED on a third are the deck describing its own scope in words no claim uses. Not fabrications about the world the way PERMIAN BASIN on an Aurora only frame was, and exactly the kind of exception that turns a rule into a habit.**
+frame names, OR a value this run computed.** Stated loosely it was unenforceable and three panels each caught one more stamp breaking it, one frame at a time. Checked all nine at once, three more were breaking it: STATEWIDE on two frames and THIS RECORD CHECKED on a third are the deck describing its own scope in words no claim uses. The last STATEWIDE outlived that sweep on slide 6 and two judges of the fifth panel found it there, which is the rule surviving a fourth reading and the sweep not surviving its own. Not fabrications about the world the way PERMIAN BASIN on an Aurora only frame was, and exactly the kind of exception that turns a rule into a habit.**
 
 ---
 
@@ -143,11 +143,11 @@ art:
     the housing read as mounted rather than floating.
   motion: "down and right, along the rays, from the housing to where they land"
 type:
-  hook: "Every mile logged. No column for it."
+  hook: "Every mile is logged. Who counts the crashes?"
   dek: "By October 28th, 2025 Aurora reported passing 100,000 driverless miles on public roads."
   labels: ["01 / 09", "AXONOMETRIC", "texasaidocket.com"]
 acceptance:
-  - "the hook reads exactly 'Every mile logged. No column for it.' and is set on a solid knockout plate, not a translucent one"
+  - "the hook reads exactly 'Every mile is logged. Who counts the crashes?' and is set on a solid knockout plate, not a translucent one. It ASKS rather than asserts, because the only absence this run verified is a crash count missing from three named Texas pages, and the cover cites neither those pages nor any absence claim"
   - "the sensor housing face is the lightest area in the frame, measured as median L* over its own region"
   - "the ground carries no relief and no heightfield, because the argument is an object"
   - "the counter reads '01 / 09' in JetBrains Mono at 26px, the same size it is on every other slide"
@@ -203,7 +203,7 @@ art:
     grain and separate the two rates from the ground between them.
   motion: "left to right twice, the second time slower, which is what a broken scale feels like"
 type:
-  hook: "481 days. Five of seven marks in the last 89 days."
+  hook: "481 days. Five of seven marks in the final 89."
   dek: "The seventh mount is the hearing on August 25th, 2026, and it carries nothing yet."
   labels: ["02 / 09", "BROKEN SCALE", "texasaidocket.com"]
 acceptance:
@@ -315,7 +315,7 @@ art:
   motion: "down the rows, then along the conveyor and off both edges"
 type:
   hook: "More than 1,400 loads since February."
-  dek: "Kodiak's securities filing reports a second load out point on Atlas's 42 mile Dune Express conveyor. The drawing shows 1,400. The record says more."
+  dek: "Kodiak's securities filing counts these in the triples configuration, along Atlas's 42 mile Dune Express conveyor. The drawing shows 1,400. The record says more."
   labels: ["04 / 09", "PLAN", "texasaidocket.com"]
 acceptance:
   - "exactly 1,400 marks are drawn, in 280 groups of five"
@@ -336,7 +336,7 @@ slide: 5
 job: >
   Break the deck's own light and put on the record a Texan who is glad this exists. This is the
   counter image and it is the only frame in the deck the sun is on.
-claims: [c11, c12, c13, c14]
+claims: [c11, c12, c13, c14, c37]
 numerals:
   - value_from: c12
 composition:
@@ -391,7 +391,7 @@ slide: 6
 job: >
   Show that Texas does issue a number for this, and that the number is a permission rather than a
   measurement. This is the only cartographic frame in the deck.
-claims: [c9, c10, c22]
+claims: [c8, c9, c10, c22, c23]
 numerals:
   - computed_by: "elapsed days between c23's May 1st, 2025 and c10's May 28th, 2026, giving 392"
 composition:
@@ -420,13 +420,13 @@ art:
   motion: "upper left to lower right, following the lamp's falloff across the mesh"
 type:
   hook: "The state's number is a permission."
-  dek: "SB 2807's TxDMV authorization became a live requirement for commercial automated vehicle operation on May 28th, 2026, which is 392 days after the first driverless lane opened."
+  dek: "SB 2807's TxDMV authorization became a live requirement for commercial automated vehicle operation on May 28th, 2026, which is 392 days after the Dallas to Houston lane opened."
   labels: ["06 / 09", "ALBERS", "texasaidocket.com"]
 acceptance:
   - "all 254 county polygons carry one identical fill value and no polygon is filled differently"
   - "county geometry comes from assets/geo/tx-counties.topo.json and no boundary is hand placed"
   - "no route line, no corridor band and no city dot appears anywhere on the mesh"
-  - "the dek contains the exact string '392 days after the first driverless lane opened'"
+  - "the dek contains the exact string '392 days after the Dallas to Houston lane opened'. It said FIRST driverless lane until the seventh panel, and no claim in this run carries that superlative. c26 scopes inaugural to Aurora's own routes, and the frame it sat on is a map of all 254 counties where a reader takes it as a Texas first"
   - "the label reads 'ALBERS', which names how the frame is drawn and asserts no quantity, because a frame width in feet is a numeral nothing computed"
   - "the state's southernmost drawn vertex sits at least 40px above any panel, plate or frame edge, so Texas keeps its point"
   - "the county fills read as a mass against the ground at 432px, at least 10 L* above the ground outside the outline, checked on the thumb"
@@ -440,7 +440,7 @@ slide: 7
 job: >
   Draw the missing count as a road that carries on with no paint on it. This is the honest absence
   and it is the deck's darkest frame.
-claims: [c31, c34, c35]
+claims: [c9, c34, c35]
 numerals: []
 composition:
   structure: >
@@ -477,10 +477,10 @@ art:
   motion: "from the reader's feet away into the dark, which is the only frame that recedes"
 type:
   hook: "Where the paint ends."
-  dek: "TxDMV publishes the authorization SB 2807 requires. DPS publishes first responder interaction plans. TxDOT's crash data page names no automated driving category."
+  dek: "TxDMV publishes the authorization SB 2807 requires. The DPS page carries first responder interaction plans and a submissions address. TxDOT's crash data page names no automated driving category."
   labels: ["07 / 09", "ONE POINT", "texasaidocket.com"]
 acceptance:
-  - "the dek names exactly three agencies, TxDMV, DPS and TxDOT, and says what each does publish rather than what it fails to publish"
+  - "the dek names exactly three agencies, TxDMV, DPS and TxDOT, and says what each page HOLDS rather than what it fails to hold. It said what each does PUBLISH until the eighth panel, and a prescribed verb is how a fact gets bent: the DPS line said publishes while c34 says the page takes those plans and the absence record says it carries them and a submissions address, which are opposite directions on the one frame whose subject is what each page holds. An acceptance item may require a frame to be positive. It may not choose the verb"
   - "no string on this frame says the federal file is the only public source anywhere"
   - "the nearest dash carries visible bead sparkle at full bead #E9EFE6, so the frame can't be read as underexposed"
   - "the road surface is still visible above the last dash at 432px, so the absence reads as unpainted road and not as the picture ending"
@@ -489,7 +489,7 @@ acceptance:
   - "the label reads 'ONE POINT', which names how the frame is drawn and asserts no quantity, because a frame width in feet is a numeral nothing computed"
 risks:
   - "it reads as an underexposed photograph or a lens vignette rather than as a surface. The guard is the full brightness near dash and the ambient term that keeps the far road present"
-  - "a reader takes the frame as an accusation. The guard is that every line states what each page does publish"
+  - "a reader takes the frame as an accusation. The guard is that every line states what each page holds, in the words the record actually read on it"
 ```
 
 ```yaml
@@ -540,7 +540,7 @@ acceptance:
   - "the kicker and the hook do not say the same words"
 risks:
   - "the grooves read as decorative corduroy rather than as glyphs. The guard is that the mask is real letterforms and the acceptance item requires the string to be readable"
-  - "a reader infers the state keeps no record of anything. The guard is that the dek says what this file is and slide 7 says what each Texas page does publish"
+  - "a reader infers the state keeps no record of anything. The guard is that the dek says what this file is and slide 7 says what each Texas page holds"
 ```
 
 ```yaml

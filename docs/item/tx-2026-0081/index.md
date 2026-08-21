@@ -16,7 +16,6 @@ The National Science Foundation made an award to the University of Texas at Aust
 ## Dates
 
 - 2026-08-13 · ordered: Award date recorded in the National Science Foundation award record
-- 2029-09-30 · expires: Expiration date recorded in the award record
 
 ## How this decision moved
 

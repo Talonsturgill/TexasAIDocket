@@ -48,15 +48,15 @@ Source (primary_official): https://webapi.legistar.com/v1/elpasotexas/Events?$fi
 
 Source (primary_official): https://webapi.legistar.com/v1/elpasotexas/events/2572/eventitems?AgendaNote=1&MinutesNote=1&Attachments=0
 
-### The meeting's own item record marks the item passed.
+### The meeting's own item record carries the field EventItemPassedFlagName with the value Pass.
 
-> "EventItemPassedFlagName":"Pass","EventItemRollCallFlag":0,"EventItemFlagExtra":null,"EventItemTitle":"Discussion and action to Approve and Adopt a letter by the El Paso City Council to Texas Governor Greg Abbott seeking clarification on his directives on data center development throughout the State of Texas."
+> Pass
 
 Source (primary_official): https://webapi.legistar.com/v1/elpasotexas/events/2572/eventitems?AgendaNote=1&MinutesNote=1&Attachments=0
 
-### The matter's own action history carries the same approval on the meeting date.
+### The matter's own action history carries an entry dated August 18th, 2026 whose MatterHistoryActionName is Approve.
 
-> "MatterHistoryActionDate":"2026-08-18T00:00:00","MatterHistoryActionId":383,"MatterHistoryActionName":"Approve"
+> Approve
 
 Source (primary_official): https://webapi.legistar.com/v1/elpasotexas/Matters/16074/histories
 

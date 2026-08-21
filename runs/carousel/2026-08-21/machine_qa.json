@@ -6,16 +6,16 @@
       "warns": [],
       "bands": [
         0.2248,
-        0.4727,
-        0.2904
+        0.5651,
+        0.296
       ],
-      "band_ratio": 0.8867
+      "band_ratio": 0.8245
     },
     {
       "file": "slide-02.html",
       "fails": [],
       "warns": [
-        "top-loaded composition: the bottom third carries 79% of this slide's own average craft density (top 75% / mid 80% / bottom 54% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "top-loaded composition: the bottom third carries 78% of this slide's own average craft density (top 75% / mid 79% / bottom 54% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
         "busy art under text (bg edge density 0.07) beneath 'MAY 1ST, 2025' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
         "busy art under text (bg edge density 0.07) beneath 'OCTOBER 28TH, 2025' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
         "busy art under text (bg edge density 0.08) beneath 'MAY 28TH' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
@@ -24,47 +24,47 @@
         "busy art under text (bg edge density 0.07) beneath 'AUGUST 20TH' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
         "busy art under text (bg edge density 0.07) beneath 'AUGUST 25TH' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
         "busy art under text (bg edge density 0.06) beneath 'ONE RATE. ALL 481 DAYS.' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
-        "busy art under text (bg edge density 0.05) beneath 'THE SAME LANE. THE LAST 89 DAYS.' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+        "busy art under text (bg edge density 0.05) beneath 'THE SAME LANE. THE FINAL 89 DAYS.' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
       ],
       "bands": [
-        0.7479,
-        0.7962,
-        0.5441
+        0.7521,
+        0.7941,
+        0.5386
       ],
-      "band_ratio": 0.7895
+      "band_ratio": 0.783
     },
     {
       "file": "slide-03.html",
       "fails": [],
       "warns": [],
       "bands": [
-        0.3971,
-        0.6282,
+        0.395,
+        0.6239,
         0.8438
       ],
-      "band_ratio": 1.3329
+      "band_ratio": 1.3371
     },
     {
       "file": "slide-04.html",
       "fails": [],
       "warns": [],
       "bands": [
-        0.2605,
+        0.2584,
         0.458,
-        0.4026
+        0.4044
       ],
-      "band_ratio": 1.0735
+      "band_ratio": 1.0784
     },
     {
       "file": "slide-05.html",
       "fails": [],
       "warns": [],
       "bands": [
-        0.1555,
+        0.1471,
         0.1912,
         0.4908
       ],
-      "band_ratio": 1.6997
+      "band_ratio": 1.7155
     },
     {
       "file": "slide-06.html",
@@ -74,21 +74,21 @@
       ],
       "bands": [
         0.7731,
-        0.8319,
+        0.834,
         0.4853
       ],
-      "band_ratio": 0.7062
+      "band_ratio": 0.7055
     },
     {
       "file": "slide-07.html",
       "fails": [],
       "warns": [],
       "bands": [
-        0.3655,
+        0.3697,
         0.9097,
-        0.6397
+        0.6728
       ],
-      "band_ratio": 1.0021
+      "band_ratio": 1.0323
     },
     {
       "file": "slide-08.html",
@@ -102,20 +102,20 @@
       "bands": [
         0.5021,
         0.7353,
-        0.568
+        0.5643
       ],
-      "band_ratio": 0.9463
+      "band_ratio": 0.9422
     },
     {
       "file": "slide-09.html",
       "fails": [],
       "warns": [],
       "bands": [
-        0.1261,
-        0.2374,
-        0.3621
+        0.1197,
+        0.2437,
+        0.3585
       ],
-      "band_ratio": 1.4642
+      "band_ratio": 1.4572
     }
   ],
   "fails": 0,

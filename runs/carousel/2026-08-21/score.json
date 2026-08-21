@@ -1,49 +1,40 @@
 {
- "weighted_score": 7.27,
+ "weighted_score": 7.42,
  "judges": [
-  7.13,
-  7.16,
-  7.21
+  7.02,
+  7.18,
+  7.42
  ],
- "spread": 0.08,
+ "spread": 0.4,
  "criteria": {
   "artwork_craft": {
-   "score": 6.5,
+   "score": 7.0,
    "weight": 0.28,
    "judges": [
-    6.5,
+    7.0,
     6.0,
-    6.8
+    7.0
    ]
   },
   "claim_integrity": {
-   "score": 7.5,
+   "score": 8.0,
    "weight": 0.2,
    "judges": [
-    6.8,
-    7.5,
+    6.0,
+    8.0,
     8.0
    ]
   },
   "story_and_stakes": {
-   "score": 7.5,
+   "score": 7.0,
    "weight": 0.18,
    "judges": [
+    7.0,
     7.5,
-    8.0,
-    6.5
+    7.0
    ]
   },
   "sequence_and_momentum": {
-   "score": 7.5,
-   "weight": 0.12,
-   "judges": [
-    7.5,
-    7.0,
-    7.5
-   ]
-  },
-  "voice": {
    "score": 7.5,
    "weight": 0.12,
    "judges": [
@@ -52,12 +43,21 @@
     7.0
    ]
   },
+  "voice": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    7.5,
+    8.0
+   ]
+  },
   "variety": {
    "score": 8.0,
    "weight": 0.1,
    "judges": [
     8.0,
-    8.0,
+    7.5,
     8.0
    ]
   }
@@ -67,6 +67,6 @@
  "ship": true,
  "method": "per-criterion median across three judges, then weighted by the rubric",
  "contested": [
-  "story_and_stakes"
+  "claim_integrity"
  ]
 }

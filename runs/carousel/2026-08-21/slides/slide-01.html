@@ -30,7 +30,7 @@
 </head><body>
 <div id="ground"></div><svg id="inst" viewBox="0 0 1080 1350"></svg><div class="rsv" style="left:60px;top:62px;width:330px;height:74px"></div><div class="rsv" style="left:62px;top:652px;width:958px;height:262px"></div><div class="rsv" style="left:62px;top:936px;width:958px;height:162px"></div><div class="rsv" style="left:62px;top:1160px;width:958px;height:126px"></div>
 <p class="kick">The instrument</p>
-<h1 class="hook" id="h1" style="left:80px;top:672px;width:920px;font-size:112px">Every mile logged. No column for it.</h1>
+<h1 class="hook" id="h1" style="left:80px;top:672px;width:920px;font-size:112px">Every mile is logged. Who counts the crashes?</h1>
 <p class="dek" style="left:80px;top:952px;width:880px">By October 28th, 2025 Aurora reported passing 100,000 driverless miles on public roads.</p>
 <p class="src">Aurora, c27 c28</p>
 <p class="geo" data-decorative>PUBLIC ROADS<br>100,000 MILES</p>
@@ -129,6 +129,6 @@ window.renderReady = (async () => {
                     'fill-opacity': (0.07 + 0.26 * RR()).toFixed(3) });
   }
 
-  TX.fitText(document.getElementById('h1'), {max:112, min:70});
+  TX.fitText(document.getElementById('h1'), {max:112, min:70, maxLines:2});
 })();
 </script></body></html>

@@ -66,21 +66,21 @@ Source (journalism): https://www.kgns.tv/2026/07/31/laredo-council-moves-freeze-
 
 Source (primary_official): https://webapi.legistar.com/v1/cityoflaredo/Matters/7693
 
-### The city records no action taken on the item at the June meeting.
+### The matter's action history carries an entry dated June 15th, 2026 whose MatterHistoryActionName is the phrase below.
 
-> "MatterHistoryActionDate":"2026-06-15T17:30:00","MatterHistoryActionId":388,"MatterHistoryActionName":"no action taken"
-
-Source (primary_official): https://webapi.legistar.com/v1/cityoflaredo/Matters/7693/histories
-
-### The city records no action taken on the item at the July meeting, which is the meeting the reporting describes.
-
-> "MatterHistoryActionDate":"2026-07-27T17:30:00","MatterHistoryActionId":388,"MatterHistoryActionName":"no action taken"
+> no action taken
 
 Source (primary_official): https://webapi.legistar.com/v1/cityoflaredo/Matters/7693/histories
 
-### The item returned to the August agenda under its own number.
+### The action history carries the same phrase on the July 27th, 2026 entry, which is the meeting the reporting describes.
 
-> "EventItemAgendaNumber":"65."
+> no action taken
+
+Source (primary_official): https://webapi.legistar.com/v1/cityoflaredo/Matters/7693/histories
+
+### The item returned to the August agenda carrying the EventItemAgendaNumber below.
+
+> 65.
 
 Source (primary_official): https://webapi.legistar.com/v1/cityoflaredo/events/1331/eventitems?AgendaNote=1&MinutesNote=1&Attachments=0
 

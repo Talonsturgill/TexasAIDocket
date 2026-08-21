@@ -75,6 +75,17 @@
    "claim_ids": [
     "c4"
    ]
+  },
+  {
+   "phrase": "3 pages",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "out/2026-08-21/tmp/build_slides.py sets N_ABSENCE_PAGES = len(claims.json absences[0].looked_at), so the number on slide 7 is the length of the list of agency pages this run actually fetched and read, not a count typed to match it. The three are TxDMV's AV program page, DPS's connected and autonomous vehicles page and TxDOT's crash reports and records page. It reached the frame at the fifth panel, when the kicker stopped saying WHAT NOBODY COUNTS, which asserted a universal the claims file had already refused, and started saying how many pages were looked at. The geo stamp carried the same figure before that and is data-decorative, which is why nothing needed this declaration until a frame said it in words a gate can read.",
+   "claim_ids": [
+    "c9",
+    "c34",
+    "c35"
+   ]
   }
  ],
  "note_on_392": "392 is published on slide 6 and in the caption and it is NOT declared here, because aggregate_check refuses a declaration it did not itself detect and it cannot detect this one. Its scan short-circuits the whole text node on EXEMPT, and slide 6's dek carries both 'SB 2807' and '2026', so the sentence containing '392 days' switches off aggregate detection for its entire length. The figure is computed in out/2026-08-21/compute.py as (date(2026,5,28) - date(2025,5,1)).days from c10 and c23, it is written to computed.json as span_first_lane_to_authorization_days, the slide builder interpolates it rather than typing it, and the two paths refuse to agree unless they match. Filed as a proposal for the upgrade phase, which owns scripts/carousel, rather than patched mid-run."

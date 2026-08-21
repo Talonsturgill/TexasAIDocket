@@ -31,9 +31,9 @@
 
 <p class="kick">The state's own act</p>
 <h1 class="hook" id="h6" style="left:80px;top:800px;width:920px;font-size:62px">The state&#39;s number is a permission.</h1>
-<p class="dek" style="left:80px;top:952px;width:920px;font-size:28px;line-height:1.32">SB 2807&#39;s TxDMV authorization became a live requirement for commercial automated vehicle operation on May 28th, 2026, which is 392 days after the first driverless lane opened.</p>
-<p class="src">TxDMV, c9 c10</p>
-<p class="geo" data-decorative>STATEWIDE<br>254 COUNTIES</p>
+<p class="dek" style="left:80px;top:952px;width:920px;font-size:28px;line-height:1.32">SB 2807&#39;s TxDMV authorization became a live requirement for commercial automated vehicle operation on May 28th, 2026, which is 392 days after the Dallas to Houston lane opened.</p>
+<p class="src">TxDMV, c8 c9 c10 c22 c23</p>
+<p class="geo" data-decorative>SB 2807<br>254 COUNTIES</p>
 <div class="row"><span>06 / 09</span><span>ALBERS</span><span class="tx-site">texasaidocket.com</span></div>
 <script>
 window.renderReady = (async () => {
@@ -139,7 +139,16 @@ window.renderReady = (async () => {
   }
 
   g.fillStyle='#17181A'; g.fillRect(0,0,1080,1350);
-  const topo = await (await fetch("@@ASSETS@@/geo/tx-counties.topo.json")).json();
+  // Chromium 151 refuses fetch() on a file:// URL whatever --allow-file-access-from-files
+  // says, and this frame is the only one that loads committed geodata. XHR still reads it,
+  // so the county topojson arrives the same way it always did.
+  const topo = await new Promise((res, rej) => {
+    const x = new XMLHttpRequest();
+    x.open("GET", "@@ASSETS@@/geo/tx-counties.topo.json");
+    x.onload  = () => res(JSON.parse(x.responseText));
+    x.onerror = () => rej(new Error("county topojson did not load"));
+    x.send();
+  });
   const counties = TXGeo.counties(topo);
   const outline  = TXGeo.outline(topo);
   const borders  = TXGeo.borders(topo);

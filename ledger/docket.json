@@ -1988,8 +1988,8 @@
     },
     {
      "id": "tx-2026-0034-c4",
-     "text": "The meeting's own item record marks the item passed.",
-     "verbatim_quote": "\"EventItemPassedFlagName\":\"Pass\",\"EventItemRollCallFlag\":0,\"EventItemFlagExtra\":null,\"EventItemTitle\":\"Discussion and action to Approve and Adopt a letter by the El Paso City Council to Texas Governor Greg Abbott seeking clarification on his directives on data center development throughout the State of Texas.\"",
+     "text": "The meeting's own item record carries the field EventItemPassedFlagName with the value Pass.",
+     "verbatim_quote": "Pass",
      "source_url": "https://webapi.legistar.com/v1/elpasotexas/events/2572/eventitems?AgendaNote=1&MinutesNote=1&Attachments=0",
      "source_title": "City of El Paso Legistar, event 2572 item records",
      "source_type": "primary_official",
@@ -1997,8 +1997,8 @@
     },
     {
      "id": "tx-2026-0034-c5",
-     "text": "The matter's own action history carries the same approval on the meeting date.",
-     "verbatim_quote": "\"MatterHistoryActionDate\":\"2026-08-18T00:00:00\",\"MatterHistoryActionId\":383,\"MatterHistoryActionName\":\"Approve\"",
+     "text": "The matter's own action history carries an entry dated August 18th, 2026 whose MatterHistoryActionName is Approve.",
+     "verbatim_quote": "Approve",
      "source_url": "https://webapi.legistar.com/v1/elpasotexas/Matters/16074/histories",
      "source_title": "City of El Paso Legistar, matter 16074 action history",
      "source_type": "primary_official",
@@ -2256,8 +2256,8 @@
     },
     {
      "id": "tx-2026-0037-c7",
-     "text": "The city records no action taken on the item at the June meeting.",
-     "verbatim_quote": "\"MatterHistoryActionDate\":\"2026-06-15T17:30:00\",\"MatterHistoryActionId\":388,\"MatterHistoryActionName\":\"no action taken\"",
+     "text": "The matter's action history carries an entry dated June 15th, 2026 whose MatterHistoryActionName is the phrase below.",
+     "verbatim_quote": "no action taken",
      "source_url": "https://webapi.legistar.com/v1/cityoflaredo/Matters/7693/histories",
      "source_title": "City of Laredo Legistar, matter 7693 action history",
      "source_type": "primary_official",
@@ -2265,8 +2265,8 @@
     },
     {
      "id": "tx-2026-0037-c8",
-     "text": "The city records no action taken on the item at the July meeting, which is the meeting the reporting describes.",
-     "verbatim_quote": "\"MatterHistoryActionDate\":\"2026-07-27T17:30:00\",\"MatterHistoryActionId\":388,\"MatterHistoryActionName\":\"no action taken\"",
+     "text": "The action history carries the same phrase on the July 27th, 2026 entry, which is the meeting the reporting describes.",
+     "verbatim_quote": "no action taken",
      "source_url": "https://webapi.legistar.com/v1/cityoflaredo/Matters/7693/histories",
      "source_title": "City of Laredo Legistar, matter 7693 action history",
      "source_type": "primary_official",
@@ -2274,8 +2274,8 @@
     },
     {
      "id": "tx-2026-0037-c9",
-     "text": "The item returned to the August agenda under its own number.",
-     "verbatim_quote": "\"EventItemAgendaNumber\":\"65.\"",
+     "text": "The item returned to the August agenda carrying the EventItemAgendaNumber below.",
+     "verbatim_quote": "65.",
      "source_url": "https://webapi.legistar.com/v1/cityoflaredo/events/1331/eventitems?AgendaNote=1&MinutesNote=1&Attachments=0",
      "source_title": "City of Laredo Legistar, event 1331 item records, August 3rd, 2026 City Council",
      "source_type": "primary_official",
@@ -5922,11 +5922,6 @@
      "date": "2026-08-11",
      "kind": "ordered",
      "note": "Award date recorded in the National Science Foundation award record"
-    },
-    {
-     "date": "2029-09-30",
-     "kind": "expires",
-     "note": "Expiration date recorded in the award record"
     }
    ],
    "public_access": {
@@ -6005,11 +6000,6 @@
      "date": "2026-08-13",
      "kind": "ordered",
      "note": "Award date recorded in the National Science Foundation award record"
-    },
-    {
-     "date": "2029-09-30",
-     "kind": "expires",
-     "note": "Expiration date recorded in the award record"
     }
    ],
    "public_access": {
