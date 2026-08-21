@@ -2245,8 +2245,6 @@ def home(items: list, today: str) -> str:
    '<section data-reveal>' + lede + '<p class="meta" data-prose="data"><a href="record/">See all '
    + str(n_items) + ' decisions</a></p></section>'}
 
-{covers_html}
-
 <section data-reveal>
   <h2>What this is</h2>
   <div class="prose">
@@ -2258,6 +2256,8 @@ def home(items: list, today: str) -> str:
     agency itself rather than a news report about it.</p>
   </div>
 </section>
+
+{covers_html}
 
 {latest_article(runs, items)}
 

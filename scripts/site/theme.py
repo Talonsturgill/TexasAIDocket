@@ -1201,17 +1201,74 @@ nav.main a[aria-current]::after {{ right:0; }}
 }}
 
 .ctarow {{ display:flex; gap:.9rem; flex-wrap:wrap; margin:2.4rem 0 0; }}
+/* THE TWO BUTTONS UNDER THE MASTHEAD, which are the first thing on this site a reader can
+   press. They were a flat rectangle and a grey outline, which is the shape a framework hands
+   you before anybody has made a decision. They are pressed plates now: lit along the top edge,
+   sitting a little off the page, taking a sweep of light across the face when a cursor finds
+   them, and pushing IN rather than down when they are pressed. The register is the one the
+   rest of the site is already in, which is stamped mono type on a dusk ground, so the whole
+   treatment is light and shadow rather than a colour nobody else on the page is wearing.
+
+   THE FACE STAYS ONE FLAT COLOUR, and that constraint shaped the design rather than limiting
+   it. `tests/text_contrast.mjs` composites the ancestor background stack and measures the
+   glyphs against what a reader actually receives, and it DECLINES to measure text over a
+   gradient, because there is no single ground there to measure against. A gradient face would
+   therefore have moved this button out of the gate's reach rather than through it, which is
+   exactly how a surface stops being checked with nothing going red. Every bit of dimension
+   below is painted OVER the face by a shadow or a pseudo-element, so the computed background
+   the gate reads is still one colour it can hold to a number.
+
+   AND THE FACE IS LIGHTER THAN IT WAS, which is the half of this that is not decoration. The
+   old fill measured 4.52 against its own label. The floor for text this size is 4.5, so it
+   passed by two hundredths, on a button carrying the primary action. It measures 5.5 now. */
 .cta {{ font-family:var(--mono); font-size:var(--s-1); letter-spacing:.12em;
-  text-transform:uppercase; text-decoration:none; padding:.95em 1.5em; border-radius:6px;
-  display:inline-block; position:relative; overflow:hidden;
-  transition:transform .2s,box-shadow .2s,border-color .2s,color .2s; }}
-.cta.solid {{ background:var(--accent-deep); color:var(--on-accent); font-weight:500;
-  border:var(--hair) solid transparent; }}
+  text-transform:uppercase; text-decoration:none; padding:1.05em 1.75em; border-radius:10px;
+  display:inline-block; position:relative; overflow:hidden; isolation:isolate;
+  transition:transform .18s cubic-bezier(.2,.8,.3,1),box-shadow .18s,
+             border-color .18s,color .18s,background-color .18s; }}
+
+/* THE SWEEP. A band of light crossing the face, parked off the left edge until a cursor
+   arrives. `z-index:-1` inside the button's own stacking context paints it above the face and
+   below the letters, so the light travels UNDER the type and never washes it out. */
+.cta::after {{ content:""; position:absolute; inset:0; z-index:-1; pointer-events:none;
+  background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.28) 50%,transparent 62%);
+  transform:translateX(-125%); transition:transform .62s cubic-bezier(.3,.7,.3,1); }}
+.cta:hover::after {{ transform:translateX(125%); }}
+
+.cta.solid {{ background:color-mix(in srgb,var(--accent) 34%,var(--accent-deep));
+  color:var(--on-accent); font-weight:600; border:var(--hair) solid transparent;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.30),inset 0 -1px 0 rgba(0,0,0,.22),
+             0 1px 2px rgba(0,0,0,.55),
+             0 9px 24px -9px color-mix(in srgb,var(--accent) 55%,transparent); }}
 .cta.solid:hover {{ transform:translateY(-2px);
-  box-shadow:0 10px 30px color-mix(in srgb,var(--accent) 28%,transparent); }}
-.cta.ghost {{ border:var(--hair) solid var(--rule-strong); color:var(--ink); }}
-.cta.ghost:hover {{ border-color:var(--accent); color:var(--ink-bright); transform:translateY(-2px); }}
-.cta:active {{ transform:translateY(0) scale(.985); }}
+  background:color-mix(in srgb,var(--accent) 46%,var(--accent-deep));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.38),inset 0 -1px 0 rgba(0,0,0,.22),
+             0 2px 4px rgba(0,0,0,.55),
+             0 18px 40px -12px color-mix(in srgb,var(--accent) 72%,transparent); }}
+
+/* The second button is not the quiet one, it is the OTHER one. A hairline of dead grey read as
+   disabled next to a lit plate, so it carries a warm edge and the faintest wash of the accent
+   it sits beside, and it fills rather than merely outlining itself on hover. */
+.cta.ghost {{ color:var(--ink-bright);
+  border:var(--hair) solid color-mix(in srgb,var(--accent) 40%,var(--rule-strong));
+  background:color-mix(in srgb,var(--accent) 7%,transparent);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07); }}
+.cta.ghost:hover {{ transform:translateY(-2px); border-color:var(--accent);
+  background:color-mix(in srgb,var(--accent) 15%,transparent);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.11),
+             0 14px 32px -14px color-mix(in srgb,var(--accent) 50%,transparent); }}
+
+/* PRESSED, not nudged. The old rule shrank the whole button by a percent and a half, which
+   reads as the page flinching. A plate that is lit from above goes DARK along its top edge
+   when it is pushed in, and that is the whole trick. */
+.cta:active {{ transform:translateY(1px);
+  box-shadow:inset 0 2px 6px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.08); }}
+.cta:focus-visible {{ outline:2px solid var(--accent); outline-offset:3px; }}
+@media (prefers-reduced-motion:reduce) {{
+  .cta, .cta::after {{ transition:none; }}
+  .cta:hover, .cta:active {{ transform:none; }}
+  .cta:hover::after {{ transform:translateX(-125%); }}
+}}
 
 /* The counters. Mono, tabular, and every one of them computed from the record on this build. */
 .statrow {{ display:flex; gap:clamp(1.5rem,4vw,2.6rem); flex-wrap:wrap; margin:2.8rem 0 0;
@@ -2453,8 +2510,13 @@ caption {{ caption-side:bottom; text-align:left; padding-top:.75rem; font-size:v
    for a page that stopped existing. */
 .deckgrid {{ display:grid; gap:var(--gap); margin:1.75rem 0 0;
   grid-template-columns:repeat(auto-fill,minmax(min(100%,17rem),1fr)); }}
+/* ROUNDED, AND THE CORNER IS THE POINT. These clipped at `--radius`, which is three pixels,
+   so a 4:5 poster inside them read as a square-cut tile and the page looked older than it is.
+   The sibling site rounds the same surface at twelve to fourteen and the difference is the
+   whole impression. `--radius-lg` is the step this system already has for a surface big enough
+   to show a corner, so it is used rather than a fourth number invented here. */
 .deckgrid .deck {{ display:block; margin:0; text-decoration:none; color:inherit;
-  border:var(--hair) solid var(--rule); border-radius:var(--radius); overflow:hidden;
+  border:var(--hair) solid var(--rule); border-radius:var(--radius-lg); overflow:hidden;
   background:var(--surface); }}
 .deckgrid .deck img {{ display:block; width:100%; height:auto;
   aspect-ratio:4/5; object-fit:cover; background:var(--panel); }}
@@ -2466,15 +2528,18 @@ caption {{ caption-side:bottom; text-align:left; padding-top:.75rem; font-size:v
   color:var(--ink-mute); }}
 .deckgrid .deck > :not(img) {{ padding:0 .9rem; }}
 .deckgrid .deck {{ padding-bottom:1rem; transition:border-color .2s,transform .2s; }}
-.deckgrid .deck:hover {{ border-color:var(--accent); transform:translateY(-2px); }}
+.deckgrid .deck {{ box-shadow:0 10px 30px -18px rgba(0,0,0,.85); }}
+.deckgrid .deck:hover {{ border-color:var(--accent); transform:translateY(-3px);
+  box-shadow:0 20px 44px -20px rgba(0,0,0,.95); }}
 
 /* THE LATEST ONE, on the front page. Cover beside copy above the fold width, stacked below
    it, because a 4:5 image next to a paragraph at 30rem leaves neither enough room. */
 .latest {{ display:grid; gap:var(--gap); margin:1.25rem 0 0; align-items:start;
   grid-template-columns:minmax(0,15rem) minmax(0,1fr); }}
 .latest .cover img, .latest .vidwrap video {{ display:block; width:100%; height:auto;
-  aspect-ratio:4/5; object-fit:cover; border-radius:var(--radius);
-  border:var(--hair) solid var(--rule); background:var(--panel); }}
+  aspect-ratio:4/5; object-fit:cover; border-radius:var(--radius-lg);
+  border:var(--hair) solid var(--rule); background:var(--panel);
+  box-shadow:0 22px 60px -26px rgba(0,0,0,.9); }}
 .latest h3 {{ margin:.4rem 0 .3rem; font-size:var(--s1); line-height:1.2; }}
 .latest p {{ margin:0 0 .9rem; color:var(--ink-mute); }}
 @media (max-width:40rem) {{
@@ -2485,8 +2550,8 @@ caption {{ caption-side:bottom; text-align:left; padding-top:.75rem; font-size:v
 /* Every slide of one shipped article, read top to bottom. */
 .slides {{ display:grid; gap:.75rem; margin:1.5rem 0 0;
   grid-template-columns:repeat(auto-fill,minmax(min(100%,20rem),1fr)); }}
-.slides img {{ display:block; width:100%; height:auto; border-radius:var(--radius);
-  border:var(--hair) solid var(--rule); }}
+.slides img {{ display:block; width:100%; height:auto; border-radius:var(--radius-lg);
+  border:var(--hair) solid var(--rule); box-shadow:0 14px 36px -20px rgba(0,0,0,.85); }}
 
 .askbox {{ border:var(--hair) solid var(--rule-strong); border-radius:var(--radius);
   padding:1.25rem var(--gap); background:var(--surface); margin:1.5rem 0; }}
