@@ -170,3 +170,93 @@ data and still prints, for the reason in the proposals.
    lowercase and the disallow is uppercase, and the owner should decide on purpose whether that
    is permission. This run treated it as a disallow. `/Committees/` is not disallowed and
    covers everything except the charge text, which `lrl.texas.gov` carries in full.
+
+6. **`aggregate_check.to_int` cannot parse a thousands separator, so no quoted figure at or
+   above 1,000 can ever be declared through `quoted_from`.** `NUM` matches `1,400` correctly.
+   `to_int` then does `t.isdigit()`, which is False for a string carrying a comma, and returns
+   `None`. The token list collapses to empty and the gate reports "the quoted string carries no
+   numeral at all" about a string whose numeral is right there. Slide 4's 1,400 hit it this run.
+   The fix is one line, `t.replace(",", "")` before the `isdigit` test, plus a self test case
+   asserting a quoted 1,400 re-derives. `scripts/carousel/` is the `upgrade` actor's lane and
+   CLAUDE.md says the routine does not edit the engine it is currently running, so this is filed
+   rather than patched. The figure was declared through `computed_by` instead, which is honest
+   here because the frame's 1,400 is a drawn count the builder asserts at build time, and the
+   declaration says so and names c17 as the floor. It would not have been honest for a figure
+   that was only ever quoted, and the next one will be.
+
+## Two process errors this run made, and what they cost
+
+Both were mine and both are worth writing down, because each one wasted a full review round.
+
+**The pixel critics were spawned before the storyboard was reconciled.** Slides 1, 2, 4, 5, 7
+and 9 had been rebuilt during the render loop and the dossiers still described the drawings that
+were planned rather than the ones that shipped. Two critics correctly reported "I am grading a
+render against an acceptance list written for a different drawing" and spent findings on the
+mismatch. Reconcile the plan to the frame FIRST, then review. A stale dossier does not just
+waste a review, it makes `dossier_check` green against nothing.
+
+**The thumbs were not regenerated after the last render.** `assemble.py` was run, then four
+slides were re-rendered, and the critics read thumbs that predated the fixes. Two of them caught
+it, one of them by comparing landmarks across six points to prove it was one file and not a
+pipeline failure, and both correctly said no perceptual item on those frames could be judged
+until it was fixed. Every string check in the suite reads the DOM and the DOM was right, so
+nothing else could have seen it. **Re-run `assemble.py` after every render, without exception**,
+and the standing proposal is a gate that asserts each thumb is not older than its own render, by
+exit code, so a re-render without a re-thumb fails the build instead of shipping the previous
+frame to the feed.
+
+## The deck
+
+### Selection, and why this story and not the others
+
+**The story: driverless vehicles are already ordinary work in Texas, and on August 25th the
+Senate Committee on Transportation meets to study their deployment under SB 2807 and to
+quantify the impact on traffic related collisions.**
+
+The record holds the decision. tx-2026-0077 was admitted yesterday and re-verified this run
+against the Legislature's own upcoming meetings listing, which is a compliant path on a host
+whose hearing notice directory is not. So this is a deck about a decision the docket carries,
+which is the Phase 8 bar.
+
+**Why this one.** Six candidates came back strong enough to build on. The Governor's Data
+Center Coalition announcement is downstream of a deck that shipped two days ago and rests on a
+host this project may no longer fetch. The House State Affairs hearing on data centers and 765
+kV is the biggest story of the week by turnout and it is the fourth data center or grid deck in
+six days, which is the drift `APPLICATIONS.md` exists to correct. Fort Worth's moratorium and
+the Westlake restraining order are both real and both rest on journalism this run could not get
+behind, because `fortworthtexas.gov` answers an edge 403 and a state district court order is not
+in any keyless database. The NSF awards are good record material and thin deck material,
+because a grant that starts in October 2026 has nothing a reader can see yet.
+
+This one wins on four counts a rubric actually measures. It is **AI in use** rather than a
+filing about AI, which is the beat balance the doctrine asks for and which four consecutive
+decks have missed. It has a **dated door four days out** that a Texan can walk through, which
+is the closing frame `texan_check` says a placeless story has to carry. Its **ordering is the
+argument**, so the deck has a spine rather than a list. And it carries a **genuine counter
+image from the primary source itself**, in a blind rider's welcome for the same empty seat the
+deck opens on, so the deck can't be read as one sided.
+
+**Dedupe: nothing close.** Four entries in the thirty day window and the tool found no overlap
+on entities or keywords. Read rather than trusted: the four shipped decks are a semiconductor
+fab in Grimes County, a Houston ISD school model, the Governor's data center audit, and a
+League City surveillance ballot. None of them is a vehicle, a road or a transportation
+committee.
+
+**`texan_check` at selection: places Harris County and Travis County, body yes, deadline yes,
+next step yes.** Run on the candidate before a word was drawn. The first pass named no place,
+which is the warning the tool exists to give, and the fix was to anchor the deck in the two
+counties the story actually happens in rather than to carry it on art alone.
+
+**The claims gate is clean.** Thirty verified claims and ten rejected, and the rejections are
+the interesting half. The 9:00 AM start time of the hearing is on the Legislature's page and is
+NOT quotable, because it renders as an isolated table cell and the labelled form lives only in
+the notice under the disallowed directory. Kodiak's own page says "more than 1,400 loads" where
+a first retrieval returned "over 1,400", and the figure survives with the source's verb. A
+county for the Permian trucks was checked for and does not exist on the page, so no county goes
+on that frame. Amazon's Prime Air expansion is undated on its own page and came back with a
+false exact match on a shortened string, so it is out of the deck entirely.
+
+**The honest absence the deck will carry**, verified and cleared: none of the three Texas agency
+pages the committee's own charge points at publishes a count of crashes involving driverless
+vehicles. It names where it looked. A second absence, that the federal file is the ONLY public
+source, was offered and REFUSED, because the two pages that would settle it returned 403.
