@@ -5315,12 +5315,18 @@ def _registry_field(data: dict) -> str:
     return (
         f'<div class="gwrap">'
         f'<div class="gfield" id="gfield">{registry_graph.svg(g)}</div>'
-        f'<p class="gkey"><span>Each point is a company on more than one facility.</span>'
+        # A LEGEND, not running prose. Four labelled chips with no full stop between them read as
+        # one thirty word sentence to the length backstop, which is the measurement narrowing this
+        # marker exists for. The construction rules still read every word of it.
+        f'<p class="gkey" data-prose="data">'
+        f'<span>Each point is a company on more than one facility.</span>'
         f'<span><b>Size</b> how many it appears on</span>'
         f'<span><b>Line</b> a facility two of them share</span>'
         f'<span><b>Thickness</b> how many they share</span></p>'
-        f'<p class="ghint">Hover a point to light its neighborhood. Drag one to pull the web. '
-        f'Every point is a link to that company, and the same information is listed below.</p>'
+        # "Hover" is a verb a phone cannot perform, and this line is read on a phone.
+        f'<p class="ghint">A pointer lights a company\'s neighborhood and can drag it across the '
+        f'field. Every point is a link to that company, and the same information is listed '
+        f'below.</p>'
         f'<script type="application/json" id="gdata">{registry_graph.payload(g)}</script>'
         f'<script>{registry_graph.SCRIPT}</script>'
         f'</div>')
