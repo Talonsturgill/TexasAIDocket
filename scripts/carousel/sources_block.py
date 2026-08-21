@@ -16,6 +16,30 @@ and the block was written by hand early in the run and never revisited when the 
 That is the same shape as the run's other two failures the same day. A rule stated somewhere real,
 a surface that drifted away from it, and nothing in between.
 
+THE SECOND DEFECT, 2026-08-21, WHICH IS THIS FILE LYING ABOUT ITSELF
+
+For a whole run this was invoked as `--run 2026-08-21`. There is no `--run`. Argparse matches an
+unambiguous prefix, so it set the run DIRECTORY to the string `2026-08-21`, which is not a path
+that exists. `check()` then found no printed ids, concluded that every printed id resolves,
+printed `sources block: clean, every claim id the deck prints resolves to a document` and exited
+0, every single time it was asked, including immediately after slide 6 gained two claim ids that
+the block did not list. `shipped_check` caught the real state one step later.
+
+**A checker whose empty case is indistinguishable from its clean case is worse than no checker,
+because it is trusted.** CLAUDE.md's rule is to run a gate by exit code rather than by reading
+its last line, and here the exit code was 0, the last line was reassuring, and the gate had never
+been pointed at the run at all. An exit code proves nothing about a checker handed the wrong path.
+
+Three things changed, and each one is a way the same silence was possible.
+
+  1. `allow_abbrev=False`. A flag this script does not have is an error rather than a guess.
+  2. A run directory that does not exist is a FAILURE, not an empty clean run.
+  3. A deck that prints no claim id at all is a FAILURE. Every deck this project has shipped
+     cites its sources on the frames, so zero printed ids means the copy was not read.
+
+And `--build` or `--check` is now required, because with neither this did something that looked
+like both.
+
 WHY IT GROUPS BY DOCUMENT RATHER THAN LISTING SIXTEEN IDS
 
 A reader wants the document. Sixteen lines that name the same PDF five times is a worse answer to
@@ -132,11 +156,22 @@ SHIPPED_BEFORE_THE_RULE = {"2026-08-16"}
 
 
 def check(run_dir: Path) -> list[str]:
-    """Every id the deck prints must resolve in the block on disk. This is the whole gate."""
+    """Every id the deck prints must resolve in the block on disk. This is the whole gate.
+
+    THE EXISTENCE TEST COMES BEFORE THE EXEMPTION, deliberately. The exemption is keyed on the
+    directory NAME, so checking it first meant any path at all ending in the exempt date passed
+    without anything being read, which is the same hole one level down.
+    """
+    if not run_dir.is_dir():
+        return [f"{run_dir} is not a directory, so nothing was read and nothing was checked. "
+                f"This is the 2026-08-21 defect: `--run` prefix-matched `--run-dir`, the bare "
+                f"date became the path, and the gate reported clean for a whole run"]
     if run_dir.name in SHIPPED_BEFORE_THE_RULE:
         return []
     if not (run_dir / "copy.json").exists() or not (run_dir / "claims.json").exists():
-        # No deck copy means no printed claim ids, so there is nothing here to resolve.
+        # No deck copy means no printed claim ids, so there is nothing here to resolve. The
+        # LIBRARY says not applicable; the CLI refuses, because an operator who typed --check
+        # asked about a deck. See main().
         return []
     copy, claims = load(run_dir)
     path = run_dir / "first_comment.txt"
@@ -147,6 +182,13 @@ def check(run_dir: Path) -> list[str]:
     listed = set(ID_LINE.findall(text))
     wanted = deck_claim_ids(copy)
     problems = []
+    if not wanted:
+        # ZERO IS NOT CLEAN. Every deck this project has shipped prints its claim ids on the
+        # frames, so an empty set means copy.json was not read rather than that the deck cites
+        # nothing, and reporting it as a pass is what this file spent a run doing.
+        return [f"{run_dir / 'copy.json'} names no claim id on any slide. A deck that cites "
+                f"nothing is a defect, and an empty set of printed ids trivially resolves, so "
+                f"this gate would otherwise report clean having checked nothing"]
     absent = [c for c in wanted if c not in listed]
     if absent:
         problems.append("the deck prints " + " ".join(absent) + " and the sources block does not "
@@ -229,8 +271,49 @@ def self_test() -> int:
            SHIPPED_BEFORE_THE_RULE == {"2026-08-16"}, str(SHIPPED_BEFORE_THE_RULE))
         (d / "first_comment.txt").write_text("Sources.\n")
         ok("...and a run outside it still fails on an unresolved id", check(d) != [])
-        ok("...while the exempt run is skipped whole",
-           check(Path("/nonexistent/2026-08-16")) == [])
+
+        # THE EXEMPT RUN IS SKIPPED, and it has to be a directory that EXISTS to be skipped.
+        # The old assertion here passed a path under /nonexistent and proved the opposite of
+        # what it claimed: any typo ending in the exempt date was silently clean.
+        exempt = Path(td) / "2026-08-16"
+        exempt.mkdir()
+        for f_ in ("copy.json", "claims.json", "first_comment.txt"):
+            (exempt / f_).write_text((d / f_).read_text())
+        ok("...while the exempt run, which exists, is skipped whole", check(exempt) == [],
+           str(check(exempt)))
+
+        # ---- THE 2026-08-21 DEFECT, all three ways it read as clean --------------------
+        ghost = Path(td) / "2026-08-21"          # the bare date, taken as a path by --run
+        ok("a run directory that does not exist is CAUGHT rather than reported clean",
+           any("is not a directory" in p for p in check(ghost)), str(check(ghost)))
+        ok("...and an exempt-looking path that does not exist is caught too, because the "
+           "existence test runs before the exemption",
+           check(Path(td) / "nope" / "2026-08-16") != [])
+
+        # A deck that prints no claim id at all.
+        empty = Path(td) / "empty"
+        empty.mkdir()
+        (empty / "copy.json").write_text(json.dumps({"slides": {"S1": {"claims": []}}}))
+        (empty / "claims.json").write_text(json.dumps({"claims": []}))
+        (empty / "first_comment.txt").write_text("Sources.\n")
+        ok("a deck that prints no claim id at all is CAUGHT",
+           any("names no claim id" in p for p in check(empty)), str(check(empty)))
+
+        # AND THE COMMAND LINE. `--run` is the flag that did not exist, and argparse used to
+        # take it as a prefix of --run-dir. Run by exit code, which is the whole lesson.
+        import subprocess
+        me = [sys.executable, str(Path(__file__).resolve())]
+        r = subprocess.run(me + ["--run", "2026-08-21", "--check"],
+                           capture_output=True, text=True)
+        ok("`--run` is refused at the command line rather than prefix-matched", r.returncode != 0,
+           f"exit {r.returncode}: {r.stdout[-160:]}{r.stderr[-160:]}")
+        r = subprocess.run(me + ["--run-dir", str(ghost), "--check"],
+                           capture_output=True, text=True)
+        ok("...and a run directory that does not exist exits non-zero", r.returncode != 0,
+           f"exit {r.returncode}: {r.stdout[-160:]}")
+        r = subprocess.run(me + ["--run-dir", str(d)], capture_output=True, text=True)
+        ok("...and neither --build nor --check is refused", r.returncode != 0,
+           f"exit {r.returncode}")
 
         # A document with no title is a build error rather than a silent blank.
         (d / "claims.json").write_text(json.dumps({"claims": [
@@ -248,7 +331,10 @@ def self_test() -> int:
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
+    # allow_abbrev=False. `--run 2026-08-21` prefix-matched `--run-dir` for a whole run and the
+    # gate reported clean on a path that does not exist. A flag this script does not have is now
+    # an error, which is the only version of that story that ends at the command line.
+    ap = argparse.ArgumentParser(description=__doc__.split("\n")[0], allow_abbrev=False)
     ap.add_argument("--date", help="run date, for out/<date>/")
     ap.add_argument("--run-dir")
     ap.add_argument("--build", action="store_true", help="write first_comment.txt")
@@ -259,7 +345,18 @@ def main() -> int:
         return self_test()
     if not (a.date or a.run_dir):
         ap.error("one of --date or --run-dir is required")
+    if not (a.build or a.check):
+        ap.error("one of --build or --check is required. With neither this did something that "
+                 "looked like both, and on 2026-08-21 that read as a pass")
     run_dir = Path(a.run_dir) if a.run_dir else REPO_ROOT / "out" / a.date
+    if not run_dir.is_dir():
+        print(f"sources_block: {run_dir} is not a directory. Nothing was checked",
+              file=sys.stderr)
+        return 2
+    if a.check and not (run_dir / "copy.json").exists():
+        print(f"sources_block: {run_dir / 'copy.json'} does not exist, so which claim ids the "
+              f"deck prints is unknown and nothing was checked", file=sys.stderr)
+        return 2
     if a.build:
         text = build(run_dir)
         (run_dir / "first_comment.txt").write_text(text, encoding="utf-8")
