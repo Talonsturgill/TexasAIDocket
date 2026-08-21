@@ -181,6 +181,17 @@ rules:
       resolved when a position disagrees with the one on file.
 
   # ---------------------------------------------------------------- the public record
+  # THE RESEARCHED DOSSIERS. Hand research, one facility at a time, each fact carrying the
+  # source it was read from. This is `human` for the same reason the docket is: a self editing
+  # routine that could rewrite a researched fact could quietly replace a sourced figure with a
+  # generated one, and nothing downstream would know. The registry it annotates stays
+  # `gridwatch`, so the collector and the research can never overwrite each other.
+  - path: "ledger/facilities/**"
+    owner: human
+    note: >
+      Researched facility dossiers. No routine may write these. Numbers live in fact fields
+      with a source id, never in prose, which scripts/site/facility_dossier.py enforces.
+
   - path: "ledger/docket.json"
     owner: daily
     note: >

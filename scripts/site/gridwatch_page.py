@@ -834,7 +834,12 @@ def self_test() -> int:
           not lint('<svg><path d="M12.5,300 L44,9"/></svg>', f))
 
     # A BAR AND NEVER A DIAL.
-    check("the gauge is a bar", 'class="bar"' in b and "dial" not in b.lower())
+    # A WHOLE WORD, NOT A SUBSTRING. The rule is that this gauge is never a dial, and it still
+    # is. But `"dial" in b` also matches the word DIALOG, so the day the page gained a
+    # <dialog> element the check reported a correct bar as a dial. Narrowing the match keeps
+    # the rule exactly as strict and stops it firing on an unrelated element.
+    check("the gauge is a bar",
+          'class="bar"' in b and not re.search(r"\bdial\b", b, re.I))
     check("the bar carries no severity class that a stylesheet could ramp",
           not re.search(r'class="fill [a-z]', b))
     verdicts = ("shortfall", "blackout", "all clear", "emergency", "at risk", "safe",

@@ -65,6 +65,7 @@ import csp                                                        # noqa: E402
 import numeral_lint                                                # noqa: E402
 import docket_calendar as dcal                                     # noqa: E402
 import theme                                                       # noqa: E402
+import facility_dossier
 
 LEDGER = REPO_ROOT / "ledger" / "docket.json"
 
@@ -422,7 +423,7 @@ def _extra_sheet(name: str, p: str) -> str:
 
 @functools.lru_cache(maxsize=4)
 def _sheet_version(name: str) -> str:
-    body = {"record.css": theme.record_css}[name]()
+    body = {"record.css": theme.record_css, "facility.css": theme.facility_css}[name]()
     return hashlib.sha256(body.encode("utf-8")).hexdigest()[:10]
 
 
@@ -3625,7 +3626,7 @@ def grid_page(today: str) -> str:
     return page(title=f"Texas Grid Watch · {SITE_NAME}", depth=1, active="grid/",
                 desc="A daily numeric record of how the ERCOT grid is absorbing large "
                      "constant load. Measured, computed, never estimated.",
-                body=body, today=today, canonical="grid/",
+                body=body, today=today, canonical="grid/", extra_css="facility.css",
                 extra_ld=[{
                     "@context": "https://schema.org", "@type": "Dataset",
                     "name": "Texas Grid Watch",
@@ -5235,6 +5236,47 @@ def _watch_numerals(mod) -> set:
 CARRY_THROUGH = (Path("videos") / "videos.json",)
 
 
+
+
+def _facility_desc(summary: str, limit: int = 180) -> str:
+    """A meta description, cut at a sentence and never mid word.
+
+    `summary[:180]` sliced the word "in" down to "i", and a bare "i" is a first person pronoun
+    to the house style checker, which was right to flag it. A truncation that can invent a word
+    is a truncation that can invent a claim.
+    """
+    s = " ".join(str(summary).split())
+    if len(s) <= limit:
+        return s
+    cut = s[:limit]
+    for stop in (". ", "? ", "! "):
+        if stop in cut:
+            return cut[:cut.rindex(stop) + 1].strip()
+    return cut[:cut.rindex(" ")].strip() if " " in cut else cut
+
+
+def facility_page(d: dict, today: str) -> str:
+    """One certified data center, and everything the research could source about it."""
+    name = d["name"]
+    body = (
+        f'<article class="prose facilitypage" data-proper-name="{e(name)}">'
+        f'<p class="crumb"><a href="../../grid/">The Grid Watch</a> '
+        f'<span aria-hidden="true">/</span> Every registered facility</p>'
+        f'<h1><cite>{e(name)}</cite></h1>'
+        f'{facility_dossier.panel(d, heading=2)}'
+        f'<p class="dfoot">The registry entry for this facility comes from the Texas '
+        f'Comptroller\'s certified list of data centers holding a sales tax exemption. '
+        f'Owner, occupant and operator are roles in that filing rather than descriptions '
+        f'of who runs the building.</p>'
+        f'</article>')
+    return page(
+        title=f"{name} · {SITE_NAME}",
+        desc=_facility_desc(d.get("summary") or ""),
+        body=body, depth=2, active=None, today=today,
+        canonical=f"{SITE_URL}/facility/{d['slug']}/",
+        revised=False, extra_css="facility.css")
+
+
 def build(out: Path, today: str) -> dict:
     items = dk.load(LEDGER)
     runs = load_runs()
@@ -5334,6 +5376,7 @@ def build(out: Path, today: str) -> dict:
     # SERVED TO THE ONE PAGE THAT HAS A CALENDAR. See theme.record_css for why it is not in
     # the sheet every other page waits on.
     w("record.css", theme.record_css())
+    w("facility.css", theme.facility_css())
 
     # THE CUSTOM DOMAIN, told to GitHub Pages. Derived from SITE_URL rather than typed, so the
     # domain the pages claim as canonical and the domain Pages actually serves cannot disagree.
@@ -5457,6 +5500,15 @@ def build(out: Path, today: str) -> dict:
     for t in sorted({i["topic"] for i in items}):
         w(f"topic/{t}/index.html", topic_page(t, items, today),
           listed([i for i in items if i["topic"] == t]))
+
+    # A PAGE PER RESEARCHED FACILITY. The registry names 151 data centers and gives five
+    # fields each. These are the ones somebody actually researched, and each gets a real url
+    # so a reader who searches the facility by name can land on it. The dialog on the grid
+    # page renders the SAME `panel` call, so the two surfaces cannot drift.
+    _doss = facility_dossier.load()
+    for _d in _doss.get("dossiers") or []:
+        w(f"facility/{_d['slug']}/index.html", facility_page(_d, today),
+          facility_dossier.authorised({"dossiers": [_d]}))
     # THE INDEX SHOWS EVERY RUN, so its authorised set is the union of every run's own
     # figures and not a byte wider. `_run_numerals` derives each from that run's claims and
     # its `computed.json`, never from what a slide happened to print, so this stays the

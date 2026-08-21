@@ -1,0 +1,1056 @@
+{
+ "_spec": 1,
+ "researched": "2026-08-21",
+ "dossiers": [
+  {
+   "name": "Fluidstack Abernathy Data Center",
+   "slug": "fluidstack-abernathy-data-center",
+   "summary": "A purpose built AI campus at Abernathy, north of Lubbock, developed by TeraWulf with Fluidstack and backed financially by Google. The state certified Anthropic as its qualifying occupant. It is one of two unrelated data center campuses in the same small town.",
+   "facts": [
+    {
+     "label": "Critical IT load",
+     "value": 168,
+     "unit": "MW",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Gross capacity",
+     "value": 240,
+     "unit": "MW",
+     "source": "s2",
+     "kind": "reported"
+    },
+    {
+     "label": "Site area",
+     "value": 120,
+     "unit": "acres",
+     "source": "s2",
+     "kind": "reported"
+    },
+    {
+     "label": "TeraWulf ownership of the joint venture",
+     "value": 50.1,
+     "unit": "percent",
+     "source": "s1",
+     "kind": "reported",
+     "as_of": "2026-07-06"
+    },
+    {
+     "label": "TeraWulf invested capital",
+     "value": 450000000,
+     "unit": "usd",
+     "source": "s1",
+     "kind": "reported",
+     "as_of": "2026-07-06"
+    },
+    {
+     "label": "Google lease backstop",
+     "value": 1300000000,
+     "unit": "usd",
+     "source": "s2",
+     "kind": "reported"
+    },
+    {
+     "label": "Location",
+     "text": "Abernathy, Hale County, north of Lubbock",
+     "source": "s2"
+    },
+    {
+     "label": "Delivery",
+     "text": "Expected in the second half of 2026",
+     "source": "s2"
+    }
+   ],
+   "notes": [
+    {
+     "text": "The Comptroller certified Anthropic, PBC as qualifying occupant. TeraWulf's own release places an Anthropic lease at a different campus and describes its majority interest in the Abernathy joint venture as sold to Fluidstack. Both statements can be true about different things and this record does not adjudicate between them.",
+     "as_of": "2026-07-06",
+     "sources": [
+      "s0",
+      "s1"
+     ]
+    },
+    {
+     "text": "Google is the financial anchor rather than a tenant, backstopping the lease obligations so the project could raise debt.",
+     "sources": [
+      "s2"
+     ]
+    }
+   ],
+   "gaps": [
+    "Building square footage is not public",
+    "Cooling design is not public",
+    "Generator count and permit numbers are not public",
+    "Interconnection detail is not public"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
+     "title": "Data Center Lists",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://investors.terawulf.com/news-events/press-releases/detail/142/terawulf-announces-anthropic-lease-at-justified-data-campus-and-sale-of-majority-interest-in-abernathy-joint-venture-to-fluidstack",
+     "title": "TeraWulf Announces Anthropic Lease at Justified Data Campus and Sale of Majority Interest in Abernathy Joint Venture to Fluidstack",
+     "publisher": "TeraWulf Inc.",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s2",
+     "url": "https://www.datacenterdynamics.com/en/news/terawulf-and-fluidstack-to-develop-texas-data-center-in-google-backed-deal/",
+     "title": "TeraWulf and Fluidstack to develop Texas data center in Google-backed deal",
+     "publisher": "Data Center Dynamics",
+     "rung": 6,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "Cipher Barber Lake LLC Data Center",
+   "slug": "cipher-barber-lake-llc-data-center",
+   "summary": "A former bitcoin mining site at Colorado City converted to AI hosting. Fluidstack leases the whole of it under agreements Google backstops, and the state certified Anthropic as qualifying occupant.",
+   "facts": [
+    {
+     "label": "Critical IT load",
+     "value": 168,
+     "unit": "MW",
+     "source": "s1",
+     "kind": "reported",
+     "as_of": "2025-09-25"
+    },
+    {
+     "label": "Gross capacity",
+     "value": 244,
+     "unit": "MW",
+     "source": "s1",
+     "kind": "reported",
+     "as_of": "2025-09-25"
+    },
+    {
+     "label": "Surrounding land held for expansion",
+     "value": 587,
+     "unit": "acres",
+     "source": "s1",
+     "kind": "reported",
+     "as_of": "2025-09-25"
+    },
+    {
+     "label": "Total site expansion potential",
+     "value": 500,
+     "unit": "MW",
+     "source": "s1",
+     "kind": "reported",
+     "as_of": "2025-09-25"
+    },
+    {
+     "label": "Contracted revenue, initial term",
+     "value": 3000000000,
+     "unit": "usd",
+     "source": "s1",
+     "kind": "reported",
+     "as_of": "2025-09-25"
+    },
+    {
+     "label": "Contracted revenue with both extensions",
+     "value": 7000000000,
+     "unit": "usd",
+     "source": "s1",
+     "kind": "reported",
+     "as_of": "2025-09-25"
+    },
+    {
+     "label": "Google backstop of lease obligations",
+     "value": 1400000000,
+     "unit": "usd",
+     "source": "s1",
+     "kind": "reported",
+     "as_of": "2025-09-25"
+    },
+    {
+     "label": "Google warrant stake, pro forma",
+     "value": 5.4,
+     "unit": "percent",
+     "source": "s1",
+     "kind": "reported",
+     "as_of": "2025-09-25"
+    },
+    {
+     "label": "Estimated project cost per critical IT megawatt, low",
+     "value": 9000000,
+     "unit": "usd",
+     "source": "s1",
+     "kind": "reported",
+     "as_of": "2025-09-25"
+    },
+    {
+     "label": "Estimated project cost per critical IT megawatt, high",
+     "value": 11000000,
+     "unit": "usd",
+     "source": "s1",
+     "kind": "reported",
+     "as_of": "2025-09-25"
+    },
+    {
+     "label": "Location",
+     "text": "Colorado City, Texas",
+     "source": "s1"
+    },
+    {
+     "label": "Lease",
+     "text": "Ten year colocation agreement with two five year extension options",
+     "source": "s1",
+     "as_of": "2025-09-25"
+    },
+    {
+     "label": "Expected delivery",
+     "text": "September of 2026",
+     "source": "s1",
+     "as_of": "2025-09-25"
+    }
+   ],
+   "notes": [
+    {
+     "text": "A later agreement that autumn took Fluidstack to the entire capacity of the site. Cipher Mining rebranded to Cipher Digital the following spring as its business moved from mining to hosting.",
+     "as_of": "2025-11-07",
+     "sources": [
+      "s2",
+      "s3"
+     ]
+    },
+    {
+     "text": "Google received warrants alongside the backstop, so its exposure here is both as guarantor and as a shareholder in the landlord.",
+     "sources": [
+      "s1"
+     ]
+    }
+   ],
+   "gaps": [
+    "Building square footage is not public",
+    "Cooling design is not public",
+    "Substation and interconnection detail is not public"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
+     "title": "Data Center Lists",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://www.sec.gov/Archives/edgar/data/1819989/000095010325012168/dp234624_ex9901.htm",
+     "title": "Cipher Mining Signs 168 MW, 10-Year AI Hosting Agreement with Fluidstack",
+     "publisher": "Cipher Mining Inc. via SEC EDGAR",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s2",
+     "url": "https://www.datacenterdynamics.com/en/news/fluidstack-signs-additional-39mw-lease-with-cipher-mining-in-texas-backed-by-google/",
+     "title": "Fluidstack signs additional lease with Cipher Mining in Texas, backed by Google",
+     "publisher": "Data Center Dynamics",
+     "rung": 6,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s3",
+     "url": "https://www.disruptionbanking.com/2025/10/20/from-bitcoin-to-big-data-inside-ciphers-hyperscale-power-play/",
+     "title": "From Bitcoin to Big Data, Inside Cipher's Hyperscale Power Play",
+     "publisher": "Disruption Banking",
+     "rung": 6,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "Lancium Abilene Clean Campus II",
+   "slug": "lancium-abilene-clean-campus-ii",
+   "summary": "The Abilene campus that opened the Stargate program. Lancium holds the land and the power, Crusoe built it, and Oracle America Cloud Services is the certified occupant running it for OpenAI workloads.",
+   "facts": [
+    {
+     "label": "Crusoe building footprint",
+     "value": 998000,
+     "unit": "sqft",
+     "source": "s1",
+     "kind": "reported",
+     "as_of": "2024-11-19"
+    },
+    {
+     "label": "Campus land annexed",
+     "value": 800,
+     "unit": "acres",
+     "source": "s1",
+     "kind": "reported",
+     "as_of": "2024-11-19"
+    },
+    {
+     "label": "Parcel leased to Crusoe",
+     "value": 90,
+     "unit": "acres",
+     "source": "s1",
+     "kind": "reported",
+     "as_of": "2024-11-19"
+    },
+    {
+     "label": "Campus substation",
+     "value": 200,
+     "unit": "MW",
+     "source": "s1",
+     "kind": "reported",
+     "as_of": "2024-11-19"
+    },
+    {
+     "label": "Combined capital investment",
+     "value": 3400000000,
+     "unit": "usd",
+     "source": "s1",
+     "kind": "reported",
+     "as_of": "2024-11-19"
+    },
+    {
+     "label": "Jobs through the initial phase",
+     "value": 100,
+     "unit": "jobs",
+     "source": "s1",
+     "kind": "reported",
+     "as_of": "2024-11-19"
+    },
+    {
+     "label": "Secured campus power",
+     "value": 1.2,
+     "unit": "GW",
+     "source": "s2",
+     "kind": "reported",
+     "as_of": "2025-03-18"
+    },
+    {
+     "label": "Location",
+     "text": "Abilene, Taylor County",
+     "source": "s1"
+    },
+    {
+     "label": "Announced by",
+     "text": "Development Corporation of Abilene, City of Abilene and Taylor County",
+     "source": "s1",
+     "as_of": "2024-11-19"
+    }
+   ],
+   "notes": [
+    {
+     "text": "The campus is known by three names depending on who is speaking. Lancium calls it the Clean Campus, Crusoe calls it the Abilene campus, and the Stargate program calls it the first site.",
+     "sources": [
+      "s1",
+      "s2"
+     ]
+    },
+    {
+     "text": "The announcement did not name the tenant, describing it only by size. The state record later named Oracle America Cloud Services as occupant.",
+     "as_of": "2024-11-19",
+     "sources": [
+      "s1",
+      "s0"
+     ]
+    }
+   ],
+   "gaps": [
+    "Water sourcing and cooling design are not public",
+    "Abatement terms and school district agreements were not in the announcement",
+    "Street address was not in the announcement"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
+     "title": "Data Center Lists",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://developabilene.com/2024/11/19/the-development-corporation-of-abilene-city-of-abilene-and-taylor-county-announce-expanded-development-within-lanciums-clean-campus-through-crusoes-998000-square-foot-data-center/",
+     "title": "Expanded Development within Lancium's Clean Campus through Crusoe's 998,000 Square Foot Data Center",
+     "publisher": "Development Corporation of Abilene",
+     "rung": 3,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s2",
+     "url": "https://lancium.com/2025/03/18/crusoe-expands-ai-data-center-campus-in-abilene-to-1-2-gigawatts/",
+     "title": "Crusoe Expands AI Data Center Campus in Abilene to 1.2 Gigawatts",
+     "publisher": "Lancium",
+     "rung": 2,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "LBB01 Data Center",
+   "slug": "lbb01-data-center",
+   "summary": "Aligned's Caprock campus, carrying the Lubbock airport code in its name but standing at Abernathy in Hale County. Lambda is the certified occupant. Its cooling is closed loop, which matters here because the campus sits over the Ogallala Aquifer.",
+   "facts": [
+    {
+     "label": "Campus capacity",
+     "value": 540,
+     "unit": "MW",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Site area",
+     "value": 313,
+     "unit": "acres",
+     "source": "s2",
+     "kind": "reported"
+    },
+    {
+     "label": "Planned buildings",
+     "value": 6,
+     "unit": "buildings",
+     "source": "s2",
+     "kind": "reported"
+    },
+    {
+     "label": "Planned campus area",
+     "value": 1650000,
+     "unit": "sqft",
+     "source": "s2",
+     "kind": "reported"
+    },
+    {
+     "label": "Address",
+     "text": "1498 County Road 315, Abernathy, Texas 79311",
+     "source": "s1"
+    },
+    {
+     "label": "County",
+     "text": "Hale County",
+     "source": "s1"
+    },
+    {
+     "label": "Campus name",
+     "text": "Caprock campus, first building LBB-01",
+     "source": "s1"
+    },
+    {
+     "label": "Cooling",
+     "text": "Delta cubed air cooling arrays with DeltaFlow liquid cooling capability",
+     "source": "s1"
+    },
+    {
+     "label": "Water design",
+     "text": "Closed loop chilled water system, with near zero water utilization efficiency claimed by the operator",
+     "source": "s1"
+    },
+    {
+     "label": "Power",
+     "text": "Stated as fully renewable by the operator",
+     "source": "s1"
+    },
+    {
+     "label": "Service date",
+     "text": "First building slated for the first quarter of 2027",
+     "source": "s2"
+    }
+   ],
+   "notes": [
+    {
+     "text": "Abernathy holds two unrelated data center campuses. This one is Aligned's, with Lambda as occupant. The other is the TeraWulf and Fluidstack building with Anthropic as occupant. Nothing in the state record connects them and nothing separates them either.",
+     "sources": [
+      "s0",
+      "s1"
+     ]
+    },
+    {
+     "text": "The closed loop design is the operator's own claim about protecting the aquifer beneath the site. It is not a figure this record can verify.",
+     "sources": [
+      "s1",
+      "s2"
+     ]
+    }
+   ],
+   "gaps": [
+    "Contracted load for Lambda specifically is not public",
+    "Investment figures and job commitments are not public",
+    "Interconnection and substation detail is not public"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
+     "title": "Data Center Lists",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://aligneddc.com/abernathy-tx-data-center/",
+     "title": "Abernathy TX Data Center, Caprock Campus",
+     "publisher": "Aligned Data Centers",
+     "rung": 2,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s2",
+     "url": "https://www.datacenterdynamics.com/en/news/aligned-breaks-ground-on-540mw-data-center-campus-in-texas/",
+     "title": "Aligned breaks ground on 540MW data center campus in Texas",
+     "publisher": "Data Center Dynamics",
+     "rung": 6,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "Meitner Data Center",
+   "slug": "meitner-data-center",
+   "summary": "Google and Intersect Power's power first campus in the Texas Panhandle, built beside its own generation rather than drawing from the grid alone. It is air cooled by design, which in this part of the state is the whole point.",
+   "facts": [
+    {
+     "label": "Co-located wind, solar and battery storage, stated as more than",
+     "value": 1,
+     "unit": "GW",
+     "source": "s2",
+     "kind": "reported",
+     "as_of": "2026-06-04"
+    },
+    {
+     "label": "Texas Water Impact Fund",
+     "value": 10000000,
+     "unit": "usd",
+     "source": "s2",
+     "kind": "reported",
+     "as_of": "2026-06-04"
+    },
+    {
+     "label": "Caprock Workforce Hub site",
+     "value": 800,
+     "unit": "acres",
+     "source": "s2",
+     "kind": "reported",
+     "as_of": "2026-06-04"
+    },
+    {
+     "label": "Workforce hub capacity",
+     "value": 3500,
+     "unit": "workers",
+     "source": "s2",
+     "kind": "reported",
+     "as_of": "2026-06-04"
+    },
+    {
+     "label": "Counties",
+     "text": "Gray and Roberts Counties",
+     "source": "s1"
+    },
+    {
+     "label": "Nearest town",
+     "text": "Pampa",
+     "source": "s2"
+    },
+    {
+     "label": "Cooling",
+     "text": "Air cooling, with water limited to small scale domestic use",
+     "source": "s1"
+    },
+    {
+     "label": "Generation mix",
+     "text": "Majority clean from the first day, with a minority of on site gas for reliability",
+     "source": "s2"
+    }
+   ],
+   "notes": [
+    {
+     "text": "Trade coverage has attached a headline investment figure and a data center load figure to this campus. Neither appears in Google's or Intersect's own announcements, so neither is published here.",
+     "sources": [
+      "s1",
+      "s2"
+     ]
+    },
+    {
+     "text": "The registry owner is IP Meitner DTC, LLC, an Intersect Power affiliate, while the certified occupant is Google LLC. Alphabet has moved to acquire Intersect Power, which would put landlord and occupant under one roof.",
+     "sources": [
+      "s0",
+      "s2"
+     ]
+    }
+   ],
+   "gaps": [
+    "Data center load in megawatts is not disclosed by either partner",
+    "Total investment is not disclosed by either partner",
+    "Building count and square footage are not disclosed",
+    "Tax and school district agreements are not disclosed"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
+     "title": "Data Center Lists",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/meitner-energy-center/",
+     "title": "Google and Intersect to build Meitner Energy Center in Texas",
+     "publisher": "Google",
+     "rung": 2,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s2",
+     "url": "https://www.intersect.com/news/google-and-intersect-deepen-texas-roots-with-new-data-center-and-energy-investments-in-gray-and-roberts-counties",
+     "title": "Google and Intersect Deepen Texas Roots with New Data Center and Energy Investments in Gray and Roberts Counties",
+     "publisher": "Intersect Power",
+     "rung": 2,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "Stingray",
+   "slug": "stingray",
+   "summary": "A Cipher site in Andrews County leased to Amazon, financed in the high yield market rather than on the balance sheet.",
+   "facts": [
+    {
+     "label": "Campus capacity",
+     "value": 100,
+     "unit": "MW",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Notes offering to fund remaining construction",
+     "value": 810000000,
+     "unit": "usd",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Location",
+     "text": "Andrews County, West Texas",
+     "source": "s1"
+    },
+    {
+     "label": "Lease",
+     "text": "Amazon, fifteen years",
+     "source": "s2"
+    }
+   ],
+   "notes": [
+    {
+     "text": "Cipher's filing named Amazon Web Services as the tenant at this site. The state record certifies Amazon Data Services, Inc. as both occupant and operator.",
+     "sources": [
+      "s2",
+      "s0"
+     ]
+    }
+   ],
+   "gaps": [
+    "Critical IT load as distinct from campus capacity is not clearly public",
+    "Square footage, acreage and cooling design are not public",
+    "Energization timeline is not public",
+    "Primary filing was not read directly for this entry, so the figures here carry trade press rung"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
+     "title": "Data Center Lists",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://mlq.ai/news/cipher-digital-seeks-810m-in-notes-to-fund-70mw-stingray-data-center-for-aws/",
+     "title": "Cipher Digital Seeks Notes to Fund Stingray Data Center for AWS",
+     "publisher": "MLQ News",
+     "rung": 7,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s2",
+     "url": "https://blockspace.media/insight/cipher-digital-aws-stingray-data-center/",
+     "title": "Cipher Digital SEC filing reveals AWS as tenant at Stingray site",
+     "publisher": "Blockspace",
+     "rung": 6,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "Cipher Black Pearl LLC Data Center",
+   "slug": "cipher-black-pearl-llc-data-center",
+   "summary": "Cipher's Winkler County site at Wink, leased to Amazon on the longest and largest single agreement in this batch.",
+   "facts": [
+    {
+     "label": "Gross capacity",
+     "value": 300,
+     "unit": "MW",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Critical IT load",
+     "value": 216,
+     "unit": "MW",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Lease value",
+     "value": 5500000000,
+     "unit": "usd",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Amazon cost overrun threshold per IT megawatt",
+     "value": 9500000,
+     "unit": "usd",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Location",
+     "text": "Wink, Winkler County",
+     "source": "s1"
+    },
+    {
+     "label": "Lease",
+     "text": "Amazon Data Services, fifteen years with three five year extension options",
+     "source": "s1"
+    },
+    {
+     "label": "First certification, occupant Cipher Black Pearl LLC",
+     "text": "Certified for the owner's own use",
+     "source": "s0",
+     "as_of": "2024-02-15"
+    },
+    {
+     "label": "Second certification, occupant Amazon Data Services",
+     "text": "Re-certified with a hyperscaler as occupant",
+     "source": "s0",
+     "as_of": "2026-01-23"
+    }
+   ],
+   "notes": [
+    {
+     "text": "The agreement puts construction cost overruns above a stated threshold per megawatt on Amazon rather than on the landlord, which is unusual enough to be worth noting.",
+     "sources": [
+      "s1"
+     ]
+    },
+    {
+     "text": "This facility holds two rows in the state registry rather than one. The earlier certification names Cipher itself as occupant and the later one names Amazon. Read together the two rows record a bitcoin site becoming an AI site, in the state's tax file rather than in an announcement.",
+     "as_of": "2026-01-23",
+     "sources": [
+      "s0"
+     ]
+    }
+   ],
+   "gaps": [
+    "Square footage, acreage and cooling design are not public",
+    "Energization timeline is not public",
+    "Primary filing was not read directly for this entry, so the figures here carry trade press rung",
+    "Whether the two certifications cover the same building or separate phases is not stated"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
+     "title": "Data Center Lists",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://thenextweb.com/news/cipher-digital-810m-junk-bond-amazon-data-center-texas",
+     "title": "Cipher Digital raises junk bonds to build another Amazon data centre in Texas",
+     "publisher": "The Next Web",
+     "rung": 6,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "Riot Rockdale Data Center 1",
+   "slug": "riot-rockdale-data-center-1",
+   "summary": "Riot's Milam County campus, the former Whinstone site, now converting from bitcoin mining to AI tenancy. It carries the largest contract Riot has signed.",
+   "facts": [
+    {
+     "label": "Contracted critical IT to an unnamed frontier AI lab",
+     "value": 191,
+     "unit": "MW",
+     "source": "s1",
+     "kind": "reported",
+     "as_of": "2026-08-10"
+    },
+    {
+     "label": "Initial contract revenue",
+     "value": 9100000000,
+     "unit": "usd",
+     "source": "s1",
+     "kind": "reported",
+     "as_of": "2026-08-10"
+    },
+    {
+     "label": "Contract revenue if both extensions are exercised",
+     "value": 16100000000,
+     "unit": "usd",
+     "source": "s1",
+     "kind": "reported",
+     "as_of": "2026-08-10"
+    },
+    {
+     "label": "AMD contracted capacity",
+     "value": 50,
+     "unit": "MW",
+     "source": "s1",
+     "kind": "reported",
+     "as_of": "2026-08-10"
+    },
+    {
+     "label": "Interim financing facility from Morgan Stanley",
+     "value": 573000000,
+     "unit": "usd",
+     "source": "s1",
+     "kind": "reported",
+     "as_of": "2026-08-10"
+    },
+    {
+     "label": "Combined contracted capacity at Rockdale",
+     "value": 241,
+     "unit": "MW",
+     "source": "s1",
+     "kind": "reported",
+     "as_of": "2026-08-10"
+    },
+    {
+     "label": "Lease term",
+     "text": "Twenty years running through June of 2048, with two optional five year extensions",
+     "source": "s1",
+     "as_of": "2026-08-10"
+    },
+    {
+     "label": "Phased delivery",
+     "text": "Initial portion expected December of 2027 and the full load by June of 2028",
+     "source": "s1",
+     "as_of": "2026-08-10"
+    },
+    {
+     "label": "Location",
+     "text": "Rockdale, Milam County",
+     "source": "s2"
+    }
+   ],
+   "notes": [
+    {
+     "text": "Riot's own results release describes the counterparty only as a frontier AI lab and does not name it. Trade coverage has attributed the lease to Anthropic. This record carries the filing's language and the attribution separately, and does not merge them.",
+     "sources": [
+      "s1",
+      "s3"
+     ]
+    },
+    {
+     "text": "The operator field in the state record lists four entities for this facility, including the Whinstone company that originally developed the Rockdale site.",
+     "sources": [
+      "s0"
+     ]
+    }
+   ],
+   "gaps": [
+    "Acreage and square footage are not in the results release",
+    "Cooling design for the AI conversion is not public",
+    "The frontier AI lab is not named in any filing"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
+     "title": "Data Center Lists",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://www.riotplatforms.com/riot-platforms-reports-second-quarter-2026-financial-results-and-strategic-highlights/",
+     "title": "Riot Platforms Reports Second Quarter 2026 Financial Results and Strategic Highlights",
+     "publisher": "Riot Platforms, Inc.",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s2",
+     "url": "https://www.riotplatforms.com/riot-announces-fee-simple-acquisition-of-land-and-first-data-center-lease-with-amd-at-the-rockdale-site/",
+     "title": "Riot Announces Fee Simple Acquisition of Land and First Data Center Lease with AMD at the Rockdale Site",
+     "publisher": "Riot Platforms, Inc.",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s3",
+     "url": "https://usdatacenterprojects.com/texas/riot-platforms-secures-usd-9-1-billion-20-year-lease-for-191-MW-at-rockdale-texas-campus",
+     "title": "Riot Platforms Secures Lease for 191 MW at Texas Campus",
+     "publisher": "US Data Center Projects",
+     "rung": 7,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "Riot Corsicana Data Center I",
+   "slug": "riot-corsicana-data-center-i",
+   "summary": "Riot's Navarro County campus, and the site of its first non bitcoin revenue after AMD doubled the space it takes.",
+   "facts": [
+    {
+     "label": "Campus approved power capacity",
+     "value": 400,
+     "unit": "MW",
+     "source": "s2",
+     "kind": "reported"
+    },
+    {
+     "label": "Capacity under formal AI and HPC evaluation",
+     "value": 600,
+     "unit": "MW",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "AMD contracted capacity after doubling",
+     "value": 50,
+     "unit": "MW",
+     "source": "s3",
+     "kind": "reported",
+     "as_of": "2026-04-30"
+    },
+    {
+     "label": "Location",
+     "text": "Corsicana, Navarro County",
+     "source": "s2"
+    },
+    {
+     "label": "Distance from Rockdale",
+     "text": "About one hundred miles apart",
+     "source": "s2"
+    }
+   ],
+   "notes": [
+    {
+     "text": "Riot paused further bitcoin mining buildout and opened a formal evaluation of AI and high performance computing uses for the remaining approved capacity here.",
+     "as_of": "2025-01-01",
+     "sources": [
+      "s1"
+     ]
+    },
+    {
+     "text": "The operator field in the state record carries visible data entry noise for this facility. It is published exactly as the state published it.",
+     "sources": [
+      "s0"
+     ]
+    }
+   ],
+   "gaps": [
+    "Acreage and square footage are not public",
+    "Energization timeline for the AI conversion is not public",
+    "Cooling design is not public"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
+     "title": "Data Center Lists",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://www.riotplatforms.com/riot-platforms-launches-formal-evaluation-of-potential-ai-hpc-uses-for-remaining-600-mw-of-power-capacity-at-corsicana-facility/",
+     "title": "Riot Platforms Launches Formal Evaluation of Potential AI and HPC Uses for Remaining Power Capacity at Corsicana Facility",
+     "publisher": "Riot Platforms, Inc.",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s2",
+     "url": "https://baxtel.com/data-center/riot-corsicana-campus",
+     "title": "Riot Corsicana Campus Data Center",
+     "publisher": "Baxtel",
+     "rung": 7,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s3",
+     "url": "https://www.datacenterdynamics.com/en/news/amd-signs-additional-25mw-data-center-lease-with-riot-in-texas/",
+     "title": "AMD signs additional 25MW data center lease with Riot in Texas",
+     "publisher": "Data Center Dynamics",
+     "rung": 6,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "ECX AUS31-36",
+   "slug": "ecx-aus31-36",
+   "summary": "An EdgeConneX facility in the Austin market, where the owner, occupant and operator are all the same EdgeConneX entity. The public record on this one is thin.",
+   "facts": [
+    {
+     "label": "Market",
+     "text": "Austin",
+     "source": "s1"
+    },
+    {
+     "label": "Roles",
+     "text": "Owner, occupant and operator are all EdgeConneX MCN Austin entities",
+     "source": "s0"
+    }
+   ],
+   "notes": [
+    {
+     "text": "EdgeConneX operates a Cedar Creek campus in the Austin market southeast of the city. Whether this certification covers that campus or another site is not established by the sources read, so no capacity or address is published here.",
+     "sources": [
+      "s1"
+     ]
+    }
+   ],
+   "gaps": [
+    "Which physical campus this certification covers is not established",
+    "Capacity, square footage and address are not public for this identifier",
+    "No primary filing or company release names this facility identifier",
+    "This entry is deliberately thin and is a candidate for a second research pass"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
+     "title": "Data Center Lists",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://www.edgeconnex.com/locations/americas/austin-texas/",
+     "title": "Austin, Texas",
+     "publisher": "EdgeConneX",
+     "rung": 2,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  }
+ ]
+}
