@@ -74,12 +74,14 @@ calendar: with script off the row is a plain link to the page.
 | D | Research batch 1, ten marquee AI facilities | DONE, shipped in #148 |
 | D2 | Research batch 2, ten more | DONE, shipped in #149 |
 | D3 | Batch 3: the entity layer, plus nine more dossiers | DONE, 29 dossiers and 197 facts |
+| D4 | Batch 4: the network field, the change log, three gate defects | DONE, 30 dossiers and 213 facts |
+| D5 | Batch 5: nine more, and two tenants the announcements withheld | DONE, 39 dossiers and 271 facts |
 | E | Dossier schema + `ledger/facilities/dossiers.json` | DONE |
 | F | `facility_dossier.py` gate, 24 self-tests | DONE |
 | G | Per-facility page at `/facility/<slug>/`, in the sitemap | DONE |
 | H | The dialog on the registry row, progressive enhancement | DONE |
 | I | `tests/facility_dossier.mjs`, 17 checks | DONE |
-| J | Full sweep, ship | DONE for batch 1 (#148), batch 2 in flight |
+| J | Full sweep, ship | DONE through batch 4 |
 
 ## Wrap
 
@@ -176,3 +178,130 @@ The five Amazon codenames still want a county appraisal district pass. Beyond th
 eight, Microsoft's fourteen San Antonio and Red Oak sites, Galaxy Helios, Rowan's four codenamed
 sites, the IE US family, Compass DFW III, and Hutto, which shows the same power-entity-per-building
 pattern Nexus does and is worth checking for the same reason.
+
+## Batch 4: the graph, and three defects it turned up
+
+One dossier this batch, HELO1 DC (Galaxy's Helios campus, leased to CoreWeave). The work went
+into the surface that the batch 3 entity layer made possible and into what building it exposed.
+
+**`scripts/site/registry_graph.py`** draws the registry as a network on `/company/`. Nodes are
+companies on more than one facility, edges are facilities two of them share, node AREA carries
+reach and edge width carries how many they share. Forty nodes, forty four edges. The layout is
+computed at build time with no clock and no random seed, because `site_fresh_check` rebuilds and
+compares bytes, and a graph that settles somewhere new each build would fail that gate forever.
+The browser animates FROM those positions, so motion is a read time behaviour that never touches
+the bytes on disk.
+
+**`scripts/site/registry_changes.py`** diffs consecutive raw registry snapshots and publishes what
+the state changed. It is a pure function of `ledger/gridwatch/raw/*-datacenters.html.gz` computed
+at build time, so it needs no new ledger and crosses no ownership lane.
+
+### Three defects, and what each one taught
+
+**A gate that reported a correct page as a violation.** `house_style_check` read "Galaxy Helios I"
+as a first person pronoun. It is how the state spells that owner, and on that row the letter is
+the point, because a second Helios certification spells the same occupant with a digit. The
+`data-proper-name` mechanism already existed for page titles and had never been applied to the
+body. It is now, and a fact declares `proper_name` in the ledger, and `facility_dossier` bounds
+what may be declared: text only, never a computed value, no terminal punctuation, no clause
+punctuation, eight words. A text fact IS allowed to be a sentence and several are, so without
+that bound the flag would be a way to lift a whole sentence out of the house rules.
+
+**Three CSS custom properties that nothing defined.** `--signal-link`, `--signal-shut` and
+`--dusk-gold`, written from memory instead of from the file that defines them. CSS discards a
+declaration it cannot resolve and logs nothing, so the graph drew forty four filaments with no
+stroke at all and every gate was green. `scripts/site/css_tokens.py` now checks that every
+`var()` resolves, and on its first run it also found `--ink-dim` and `--ink-quiet`, live on the
+published site and older than this batch. GATE_LESSONS entry 59 ("CSS fails silently, and a green
+suite has never once looked at a colour").
+
+**A control character in published copy, and a wrong diagnosis of it.** The registry changes page
+drew a box with "92" beside it where an arrow was meant. It was first read as a missing glyph and
+written up that way. The served mono face carries U+2192: the real cause is that the stylesheet is
+built from a Python string, where `content:"\2192"` is not a CSS escape but Python's octal
+escape, giving chr(17) followed by the text "92". Reading the cmap of the actual woff2 is what
+caught the wrong explanation before it shipped. `tests/glyphs.mjs` now refuses a control character
+in published copy and checks glyph coverage for the faces this project ships, measured in a
+browser because the served fonts are brotli compressed and this repo has no dependencies.
+
+**A layout that passed eleven of eleven and drew a rectangle of dots.** Textbook Fruchterman
+Reingold with no gravity, clamped to the field: thirty five of forty nodes ended up stacked
+against the wall, and every assertion the self-test could make was true of that picture. Rewritten
+with gravity, an unbounded relaxation fitted to the frame afterwards, a spacing pass in final
+coordinates, and a deliberate outer ring for the nine companies that share nothing with anyone.
+Found by rendering the page and looking at it. GATE_LESSONS entry 60 ("Thirty five of forty nodes were stacked against the wall and every
+gate said yes").
+
+The same page then had a second fault no gate has an opinion about: the cursor well pushed hardest
+exactly where the pointer was, so every node stepped aside as a reader reached for it and not one
+of the forty links could be clicked. The push now ramps to nothing inside the hit radius.
+
+## Proposal, out of lane: the registry drops its registration IDs
+
+The raw Comptroller HTML carries a registration number on every row, in the form `LD370879-OW1`,
+`-OC1`, `-OP1` for the owner, occupant and operator of one facility. `ledger/gridwatch/
+datacenters.json` holds none of them: the collector discards the column.
+
+They are worth having. The suffix states the ROLE explicitly, where the ledger infers it from
+which array a name sits in. The stem is a stable key for a facility across a re-certification,
+which is the one thing the current record cannot follow, since the state edits rows in place and
+keeps the original effective date.
+
+`scripts/gridwatch/**` belongs to the `gridwatch` actor. This session is `human` and does not get
+to make that change, so it is written down here instead. Whoever takes it should note that adding
+a field to the collector does not backfill the history, and the raw snapshots under
+`ledger/gridwatch/raw/` are what a backfill would have to read.
+
+## A second proposal: two registry typos split one company
+
+Entity resolution merges on case, punctuation and corporate suffix only, deliberately, because a
+resolver that guesses merges two real companies. Two rows currently defeat it:
+`Coreweave Compute Acquisition Co. III, LLC` and `Coreweave Compute Acquistion Co. III, LLC`,
+where the second is the state's typo. Any fix has to be a stated rule with its own self-test, not
+a similarity threshold.
+
+## Batch 5: nine dossiers, and two tenants the announcements withheld
+
+Thirty nine dossiers, 271 facts. The picks were made from the graph rather than alphabetically,
+which is what the graph was built for.
+
+**Hutto is the find.** `Hutto Data Center Campus LLC` is the exact name of the Skybox and Prologis
+joint venture that signed a ten year Chapter 312 abatement with the City of Hutto for a $10 billion
+campus on the megasite, six buildings and 3.9 million square feet, branded PowerCampus Austin. The
+reporting names the developers, the acreage and the money. **The state record names Google as the
+occupant.** No announcement does.
+
+Careful about what that row proves. Google did not appear on it for the first time this week. The
+state rewrote the row on August 21st and Google MOVED from the operator column into the occupant
+column while Design, LLC went the other way. What changed is a role, not the presence of a name.
+This is the third time a draft of a page here credited a registry row with more than it says, so
+the note states the movement rather than the arrival.
+
+**Red Oak is the same shape.** Compass announced the campus for "hyperscale, cloud and enterprise
+customers", which is what a developer writes when the lease forbids naming one, and coverage since
+has said the buildings are fully taken by a single unnamed tenant. The certified occupant is
+Microsoft, on two certifications with twelve single building entities between them. Red Oak also
+holds a second, unrelated hyperscale campus: DataBank with Oracle, already dossiered.
+
+**Switch AUS 4 carries the best evidence yet that operator is a legal position.** One of its
+operators of record is `Coreweave Financing DDTL V-V, LLC`. A delayed draw term loan vehicle does
+not run a data hall. Anyone reading this registry as an operations directory gets it wrong there
+first.
+
+**Two rows carry no owner of record at all**, Denton and the Austin Hibbetts Road building, both
+Core Scientific sites leased to CoreWeave. An empty owner column is rare here and it is
+information.
+
+Also added: `Hutto Data Center 3 LLC`, `PowerCampus Dallas by Lancaster Data Center Campus LP`
+(the same Design and Google pair, in swapped columns), `Red Oak Texas Data Center 2`, and
+`C1 Richardson LLC Data Center`.
+
+`tests/glyphs.mjs` failed CI on its own control assertion and passed locally, which is exactly
+what the control is for. See GATE_LESSONS entry 59 ("CSS fails silently, and a green suite has
+never once looked at a colour").
+
+## Batch 6 candidates
+
+Unchanged from batch 4 and still the best targets: the five Amazon codenames want a county
+appraisal district pass, and CoreWeave Denton, CoreWeave Plano, the Microsoft San Antonio cluster,
+Project Eagle at Wharton and Horizon Junction all have banked research waiting to be encoded.

@@ -64,7 +64,7 @@ HUB_PREFIXES = ("index.html", "record/", "topic/", "place/", "sources/", "questi
 
 # Prose about the project. No ledger field dates these, so they make no claim.
 UNDATED_PREFIXES = ("about/", "services/", "scan/", "data/", "videos/", "404.html",
-                    "grid/", "water/", "facility/", "company/")
+                    "grid/", "water/", "facility/", "company/", "registry-changes/")
 
 
 def _newest(items: list) -> str | None:

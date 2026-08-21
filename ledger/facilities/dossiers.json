@@ -752,10 +752,11 @@
      ]
     },
     {
-     "text": "This facility holds two rows in the state registry rather than one. The earlier certification names Cipher itself as occupant and the later one names Amazon. Read together the two rows record a bitcoin site becoming an AI site, in the state's tax file rather than in an announcement.",
+     "text": "This facility holds two rows in the state registry rather than one. The earlier carries Cipher itself as occupant and the later carries Amazon. Both are live certifications as read, so the pair shows two exemptions running under one facility name rather than a dated handover. The move from mining to hosting here is established by the Amazon lease, not by the rows.",
      "as_of": "2026-01-23",
      "sources": [
-      "s0"
+      "s0",
+      "s1"
      ]
     }
    ],
@@ -763,7 +764,8 @@
     "Square footage, acreage and cooling design are not public",
     "Energization timeline is not public",
     "Primary filing was not read directly for this entry, so the figures here carry trade press rung",
-    "Whether the two certifications cover the same building or separate phases is not stated"
+    "Whether the two certifications cover the same building or separate phases is not stated",
+    "Whether the earlier certification still covers active mining is not public"
    ],
    "sources": [
     {
@@ -1055,7 +1057,7 @@
   {
    "name": "Cedarvale, Barslow/Pyote TX Data Center",
    "slug": "cedarvale-barslow-pyote-tx-data-center",
-   "summary": "A West Texas site that mined bitcoin and now hosts AI. The state record shows the handover in two certifications. Nscale leases the whole of it and is filling it with Nvidia hardware for Microsoft, and neither of those companies is named on this facility's row.",
+   "summary": "A West Texas site that mined bitcoin and now hosts AI. Nscale leases the whole of it and is filling it with Nvidia hardware for Microsoft, and neither of those companies is named on this facility's row.",
    "facts": [
     {
      "label": "Site capacity leased to Nscale",
@@ -1144,6 +1146,14 @@
      "sources": [
       "s0",
       "s2"
+     ]
+    },
+    {
+     "text": "Two certifications carry this facility name, an earlier one naming the mining occupant and a later one naming Nscale's borrowing entity. Both read as live. A registry row names who holds an exemption now rather than who held it when it was granted. So the pair is two live exemptions rather than a dated handover, and what the site became is established by the lease.",
+     "as_of": "2026-03-16",
+     "sources": [
+      "s0",
+      "s1"
      ]
     }
    ],
@@ -1681,7 +1691,7 @@
   {
    "name": "Spectrum Data Center",
    "slug": "spectrum-data-center",
-   "summary": "An Amazon facility certified under an internal codename. Amazon is owner, occupant and operator of record, so the filing discloses no landlord, no developer and no location, and this codename appears in no public reporting.",
+   "summary": "An Amazon codename that resolves. Project Spectrum is a Hood County campus planned beside a working nuclear station, and the certification is the only place the state names it.",
    "facts": [
     {
      "label": "Owner, occupant and operator of record",
@@ -1690,25 +1700,70 @@
      "as_of": "2026-05-21"
     },
     {
-     "label": "What the name suggests",
-     "text": "The name gives away nothing about where it stands.",
-     "source": "s0"
+     "label": "Announced investment",
+     "value": 5000000000,
+     "unit": "usd",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Site area",
+     "value": 1265,
+     "unit": "acres",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "First stage buildings",
+     "value": 18,
+     "unit": "buildings",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "First stage area",
+     "value": 435,
+     "unit": "acres",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "County",
+     "text": "Hood County",
+     "source": "s1"
+    },
+    {
+     "label": "Adjacent generation",
+     "text": "Vistra's Comanche Peak nuclear station, across the line in Somervell County",
+     "source": "s1"
+    },
+    {
+     "label": "Groundbreaking",
+     "text": "Expected in early 2027",
+     "source": "s1"
     }
    ],
    "notes": [
     {
-     "text": "Amazon files Texas projects under internal codenames rather than under its own brand. A state licensing filing for a San Antonio building carries the name Lavender Hill, and this registry carries a set of names that appear in no public reporting at all. For these facilities the Comptroller's list is the only public record that they exist.",
+     "text": "This is what a resolved codename looks like. The registry names the facility and nothing else, and the siting beside a nuclear station is the whole story. Neither fact is available from the other source alone.",
      "sources": [
       "s0",
       "s1"
      ]
+    },
+    {
+     "text": "Amazon files Texas projects under internal codenames rather than its own brand. A state licensing filing for a San Antonio building carries the name Lavender Hill.",
+     "sources": [
+      "s0",
+      "s2"
+     ]
     }
    ],
    "gaps": [
-    "The county and address are not public",
-    "Capacity, square footage and acreage are not public",
-    "No filing or company release names this facility",
-    "This entry is deliberately thin and is a candidate for a county appraisal district pass"
+    "Capacity in megawatts is not public",
+    "Square footage per building is not public",
+    "Whether the certification covers the whole campus or one stage is not stated",
+    "No power purchase arrangement with the adjacent station is public"
    ],
    "sources": [
     {
@@ -1721,17 +1776,17 @@
     },
     {
      "id": "s1",
-     "url": "https://spectrumlocalnews.com/tx/san-antonio/news/2026/03/31/amazon-data-center-coming-to-san-antonio",
-     "title": "Amazon data center coming to San Antonio",
-     "publisher": "Spectrum News",
-     "rung": 6,
+     "url": "https://baxtel.com/data-center/amazon-project-spectrum",
+     "title": "Amazon, Project Spectrum Data Center",
+     "publisher": "Baxtel",
+     "rung": 7,
      "retrieved": "2026-08-21"
     },
     {
      "id": "s2",
-     "url": "https://www.datacenterdynamics.com/en/news/amazon-files-to-develop-two-new-data-center-campuses-in-texas/",
-     "title": "Amazon files to develop two new data center campuses in Texas",
-     "publisher": "Data Center Dynamics",
+     "url": "https://spectrumlocalnews.com/tx/san-antonio/news/2026/03/31/amazon-data-center-coming-to-san-antonio",
+     "title": "Amazon data center coming to San Antonio",
+     "publisher": "Spectrum News",
      "rung": 6,
      "retrieved": "2026-08-21"
     }
@@ -2740,6 +2795,982 @@
      "title": "Vantage Data Centers Unveils Plans for Frontier, a Mega-campus in Texas",
      "publisher": "Vantage Data Centers",
      "rung": 2,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "HELO1 DC",
+   "slug": "helo1-dc",
+   "summary": "A Dickens County site that mined bitcoin under Argo. Galaxy bought it and now leases the whole of it to CoreWeave. Its row is the clearest proof on this site that a registry row names who holds a certification now rather than who held it when it was granted.",
+   "facts": [
+    {
+     "label": "Approved campus capacity CoreWeave has committed to lease",
+     "value": 800,
+     "unit": "MW",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Critical IT load committed across the first three phases",
+     "value": 526,
+     "unit": "MW",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Critical IT load delivered in the first phase",
+     "value": 133,
+     "unit": "MW",
+     "source": "s2",
+     "kind": "reported",
+     "as_of": "2026-07-10"
+    },
+    {
+     "label": "Gross power in service for that phase",
+     "value": 200,
+     "unit": "MW",
+     "source": "s2",
+     "kind": "reported",
+     "as_of": "2026-07-10"
+    },
+    {
+     "label": "Project financing facility",
+     "value": 1400000000,
+     "unit": "usd",
+     "source": "s3",
+     "kind": "reported",
+     "as_of": "2025-08-01"
+    },
+    {
+     "label": "Price Galaxy paid Argo for the site",
+     "value": 65000000,
+     "unit": "usd",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "County",
+     "text": "Dickens County",
+     "source": "s1"
+    },
+    {
+     "label": "Lease",
+     "text": "Fifteen years with two five year extension options",
+     "source": "s1"
+    },
+    {
+     "label": "Occupant of record",
+     "text": "CoreWeave",
+     "source": "s0",
+     "as_of": "2021-06-08"
+    },
+    {
+     "label": "Owner of record",
+     "text": "Galaxy Helios I",
+     "source": "s0",
+     "as_of": "2021-06-08",
+     "proper_name": true
+    }
+   ],
+   "notes": [
+    {
+     "text": "The effective date on this row is years before Galaxy bought the site and years before CoreWeave leased it. Nothing is wrong with the row. The state rewrites the parties on a certification while keeping its original date, so a row names the present and dates the past. Every page here is written to that rule.",
+     "as_of": "2021-06-08",
+     "sources": [
+      "s0",
+      "s1"
+     ]
+    },
+    {
+     "text": "A second Helios certification exists under a later date and names the same occupant. The state spells the first one with a letter where the second uses a digit.",
+     "sources": [
+      "s0"
+     ]
+    }
+   ],
+   "gaps": [
+    "Square footage and acreage are not public",
+    "Cooling design is not public",
+    "The split between retrofit and new build is not public",
+    "Which physical buildings each of the two certifications covers is not stated"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
+     "title": "Data Center Lists",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://cryptobriefing.com/galaxy-digital-coreweave-200mw-helios-lease/",
+     "title": "Galaxy Digital delivers first phase to CoreWeave under a fifteen year lease",
+     "publisher": "Crypto Briefing",
+     "rung": 6,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s2",
+     "url": "https://www.prnewswire.com/news-releases/galaxy-completes-phase-i-of-its-helios-data-center-campus-delivering-133-megawatts-of-critical-it-load-to-coreweave-302818664.html",
+     "title": "Galaxy Completes Phase I of Its Helios Data Center Campus, Delivering 133 Megawatts of Critical IT Load to CoreWeave",
+     "publisher": "Galaxy via PR Newswire",
+     "rung": 2,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s3",
+     "url": "https://www.datacenterdynamics.com/en/news/galaxy-digital-closes-14bn-debt-facility-for-helios-data-center-campus-in-texas/",
+     "title": "Galaxy Digital closes debt facility for Helios data center campus in Texas",
+     "publisher": "Data Center Dynamics",
+     "rung": 6,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "Hutto Data Center Campus LLC",
+   "slug": "hutto-data-center-campus-llc",
+   "summary": "The certified name is the exact name of the Skybox and Prologis joint venture behind the campus on the Hutto megasite. That venture signed a ten year abatement with the city. The coverage of that agreement named the developers, the acreage and the money. It did not name a tenant. The state record names Google.",
+   "facts": [
+    {
+     "label": "Minimum capital investment under the abatement",
+     "value": 10000000000,
+     "unit": "usd",
+     "source": "s1",
+     "kind": "reported"
+    },
+    {
+     "label": "Site",
+     "value": 159,
+     "unit": "acres",
+     "source": "s2",
+     "kind": "reported"
+    },
+    {
+     "label": "Planned buildings",
+     "value": 6,
+     "unit": "buildings",
+     "source": "s2",
+     "kind": "reported"
+    },
+    {
+     "label": "Planned floor area",
+     "value": 3900000,
+     "unit": "sqft",
+     "source": "s2",
+     "kind": "reported"
+    },
+    {
+     "label": "Abatement term",
+     "text": "Ten years, under Chapter 312",
+     "source": "s1"
+    },
+    {
+     "label": "Location",
+     "text": "Hutto, Williamson County, northeast of Austin",
+     "source": "s2"
+    },
+    {
+     "label": "Frontage",
+     "text": "The Hutto megasite, on U.S. 79",
+     "source": "s2"
+    },
+    {
+     "label": "Developers",
+     "text": "Skybox Datacenters and Prologis",
+     "source": "s1"
+    },
+    {
+     "label": "Project name in the developers' own material",
+     "text": "PowerCampus Austin",
+     "source": "s2"
+    },
+    {
+     "label": "Occupant of record",
+     "text": "Google LLC",
+     "source": "s0",
+     "proper_name": true,
+     "as_of": "2025-03-10"
+    },
+    {
+     "label": "Owners of record",
+     "text": "Hutto Data Center 1 LLC / Hutto Data Center 2 LLC / Hutto Data Center Campus Power LLC",
+     "source": "s0",
+     "as_of": "2025-03-10"
+    },
+    {
+     "label": "Operators of record",
+     "text": "Design, LLC / Google LLC / Hutto Data Center TKD LLC",
+     "source": "s0",
+     "as_of": "2025-03-10"
+    }
+   ],
+   "notes": [
+    {
+     "text": "The certified name and the abatement counterparty are the same string. That is the whole finding. A reader working from the abatement coverage knows the acreage, the building count and the capital commitment, and does not learn who the buildings are for.",
+     "sources": [
+      "s0",
+      "s1"
+     ]
+    },
+    {
+     "text": "This row was rewritten in place two days before this page was written. Google did not appear on it for the first time. It moved from the operator column into the occupant column, Design, LLC moved the other way, and the owner became three entities where it had been one. What the state changed is a role and a party list, not the presence of a name.",
+     "sources": [
+      "s0"
+     ],
+     "as_of": "2026-08-21"
+    },
+    {
+     "text": "One of the owners of record is a power entity for the campus rather than a building. Nexus and Hutto both file that way, which is a pattern worth watching wherever a campus generates or steps down its own supply.",
+     "sources": [
+      "s0"
+     ]
+    },
+    {
+     "text": "Design, LLC is on this row and on the Lancaster PowerCampus row, and operates Google facilities at Meitner and at the first of the Bosque parcels. Reading one facility at a time hides it completely.",
+     "sources": [
+      "s0"
+     ]
+    }
+   ],
+   "gaps": [
+    "No megawatt figure for this campus is public",
+    "Which of the planned buildings this certification covers is not stated",
+    "The relationship between this row and the second Hutto certification is not stated in the record",
+    "Whether Google occupies the whole campus or part of it is not public"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/",
+     "title": "Certified Data Centers",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://communityimpact.com/austin/pflugerville-hutto/city-county/2023/07/21/tax-abatement-agreement-at-hutto-megasite-intended-to-lower-taxes-spur-business-growth/",
+     "title": "Tax abatement agreement at Hutto Megasite intended to lower taxes, spur business growth",
+     "publisher": "Community Impact",
+     "rung": 3,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s2",
+     "url": "https://therealdeal.com/texas/austin/2023/07/25/prologis-skybox-greenlighted-for-massive-data-center-near-austin/",
+     "title": "Prologis, Skybox Cleared to Build 159-Acre Data Center In Hutto",
+     "publisher": "The Real Deal",
+     "rung": 6,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "Hutto Data Center 3 LLC",
+   "slug": "hutto-data-center-3-llc",
+   "summary": "A second Hutto certification, granted on the same day as the campus row. It names the same occupant. The state files this megasite as more than one certification and does not say where the line between them falls.",
+   "facts": [
+    {
+     "label": "Occupant of record",
+     "text": "Google LLC",
+     "source": "s0",
+     "proper_name": true,
+     "as_of": "2025-03-10"
+    },
+    {
+     "label": "Owners of record",
+     "text": "Hutto Data Center 3 LLC / Hutto Data Center Campus Power LLC",
+     "source": "s0",
+     "as_of": "2025-03-10"
+    },
+    {
+     "label": "Operators of record",
+     "text": "Design, LLC / Google LLC",
+     "source": "s0",
+     "as_of": "2025-03-10"
+    },
+    {
+     "label": "Location",
+     "text": "Hutto, Williamson County, northeast of Austin",
+     "source": "s2"
+    },
+    {
+     "label": "Effective the same day as",
+     "text": "Hutto Data Center Campus LLC",
+     "source": "s0"
+    }
+   ],
+   "notes": [
+    {
+     "text": "Two certifications, one date, one occupant. They share a campus power entity between them. A campus certified building by building produces exactly this shape. It is why a count of rows is not a count of buildings and never a count of sites.",
+     "sources": [
+      "s0"
+     ]
+    }
+   ],
+   "gaps": [
+    "Capacity, square footage and acreage are not public for this certification",
+    "Which building or buildings it covers is not stated",
+    "No announcement names this entity"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/",
+     "title": "Certified Data Centers",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://communityimpact.com/austin/pflugerville-hutto/city-county/2023/07/21/tax-abatement-agreement-at-hutto-megasite-intended-to-lower-taxes-spur-business-growth/",
+     "title": "Tax abatement agreement at Hutto Megasite intended to lower taxes, spur business growth",
+     "publisher": "Community Impact",
+     "rung": 3,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s2",
+     "url": "https://therealdeal.com/texas/austin/2023/07/25/prologis-skybox-greenlighted-for-massive-data-center-near-austin/",
+     "title": "Prologis, Skybox Cleared to Build 159-Acre Data Center In Hutto",
+     "publisher": "The Real Deal",
+     "rung": 6,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "Red Oak Texas Data Center",
+   "slug": "red-oak-texas-data-center",
+   "summary": "Compass Datacenters bought the land in Red Oak and announced a campus for hyperscale customers without naming one. Coverage of the later expansion described the buildings as fully taken by a single tenant and did not name that tenant either. The certified occupant is Microsoft.",
+   "facts": [
+    {
+     "label": "Land Compass announced buying in Red Oak",
+     "value": 225,
+     "unit": "acres",
+     "source": "s1",
+     "kind": "reported",
+     "as_of": "2020-01-29"
+    },
+    {
+     "label": "Campus IT load Compass announced",
+     "value": 350,
+     "unit": "MW",
+     "source": "s1",
+     "kind": "reported",
+     "as_of": "2020-01-29"
+    },
+    {
+     "label": "First building announced for the campus",
+     "value": 6,
+     "unit": "MW",
+     "source": "s1",
+     "kind": "reported",
+     "as_of": "2020-01-29"
+    },
+    {
+     "label": "Later announced expansion",
+     "value": 300000000,
+     "unit": "usd",
+     "source": "s2",
+     "kind": "reported",
+     "as_of": "2024-09-27"
+    },
+    {
+     "label": "Occupant of record",
+     "text": "Microsoft Corporation",
+     "source": "s0",
+     "proper_name": true,
+     "as_of": "2022-02-14"
+    },
+    {
+     "label": "Operator of record",
+     "text": "Compass Datacenters, LLC",
+     "source": "s0",
+     "as_of": "2022-02-14"
+    },
+    {
+     "label": "Owners of record",
+     "text": "Six Compass Datacenters DFW III entities, A through E",
+     "source": "s0",
+     "as_of": "2022-02-14"
+    },
+    {
+     "label": "Location",
+     "text": "Red Oak, Ellis County, south of Dallas",
+     "source": "s1"
+    }
+   ],
+   "notes": [
+    {
+     "text": "Compass announced the campus for hyperscale, cloud and enterprise customers, which is the phrasing a developer uses when the lease forbids saying who. The tax record does not have that option.",
+     "sources": [
+      "s0",
+      "s1"
+     ]
+    },
+    {
+     "text": "One certification, six owning entities, one per building. A reader counting rows in this registry is counting certifications and not buildings, and this row is the clearest demonstration of the difference.",
+     "sources": [
+      "s0"
+     ]
+    },
+    {
+     "text": "Red Oak is a town of a few thousand people south of Dallas and it holds two separate hyperscale campuses in this registry. This one is Compass with Microsoft. The other is DataBank with Oracle, four buildings certified one by one. Nothing in the record connects them and nothing suggests they are one place.",
+     "sources": [
+      "s0"
+     ]
+    }
+   ],
+   "gaps": [
+    "The delivered capacity of this certification is not public",
+    "Square footage is not public",
+    "Whether Microsoft takes the whole campus or these buildings only is not stated",
+    "The split between this certification and the second Red Oak one is not stated"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/",
+     "title": "Certified Data Centers",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://www.compassdatacenters.com/news/compass-datacenters-adds-second-dallas-area-campus/",
+     "title": "Compass Datacenters Adds Second Dallas Area Campus",
+     "publisher": "Compass Datacenters",
+     "rung": 2,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s2",
+     "url": "https://www.dallasnews.com/business/real-estate/2024/09/27/dallas-firm-plans-300-million-expansion-to-red-oak-data-center-campus/",
+     "title": "Dallas firm plans $300 million expansion to Red Oak data center campus",
+     "publisher": "The Dallas Morning News",
+     "rung": 6,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "Red Oak Texas Data Center 2",
+   "slug": "red-oak-texas-data-center-2",
+   "summary": "The second Compass certification at Red Oak, two years after the first, naming Microsoft again and six more single building entities.",
+   "facts": [
+    {
+     "label": "Occupant of record",
+     "text": "Microsoft Corporation",
+     "source": "s0",
+     "proper_name": true,
+     "as_of": "2024-03-14"
+    },
+    {
+     "label": "Operator of record",
+     "text": "Compass Datacenters, LLC",
+     "source": "s0",
+     "as_of": "2024-03-14"
+    },
+    {
+     "label": "Owners of record",
+     "text": "Six more Compass Datacenters DFW III entities, F through J",
+     "source": "s0",
+     "as_of": "2024-03-14"
+    },
+    {
+     "label": "Location",
+     "text": "Red Oak, Ellis County, south of Dallas",
+     "source": "s1"
+    },
+    {
+     "label": "Announced expansion at the campus",
+     "value": 300000000,
+     "unit": "usd",
+     "source": "s2",
+     "kind": "reported",
+     "as_of": "2024-09-27"
+    }
+   ],
+   "notes": [
+    {
+     "text": "The lettering runs on from the first certification rather than restarting, so the two rows read as one campus filed in two tranches. The state does not say that and the naming is the only evidence for it.",
+     "sources": [
+      "s0"
+     ]
+    }
+   ],
+   "gaps": [
+    "Capacity and square footage are not public for this certification",
+    "Which buildings it covers is not stated",
+    "Whether it is the same campus as the first Red Oak certification is inferred from the entity names and is not stated anywhere"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/",
+     "title": "Certified Data Centers",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://www.compassdatacenters.com/news/compass-datacenters-adds-second-dallas-area-campus/",
+     "title": "Compass Datacenters Adds Second Dallas Area Campus",
+     "publisher": "Compass Datacenters",
+     "rung": 2,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s2",
+     "url": "https://www.dallasnews.com/business/real-estate/2024/09/27/dallas-firm-plans-300-million-expansion-to-red-oak-data-center-campus/",
+     "title": "Dallas firm plans $300 million expansion to Red Oak data center campus",
+     "publisher": "The Dallas Morning News",
+     "rung": 6,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "Denton Data Center",
+   "slug": "denton-data-center",
+   "summary": "A Core Scientific site north of Dallas, contracted to CoreWeave under a twelve year term before CoreWeave bought the company outright. Its row carries no owner of record at all, which only four rows in this registry do.",
+   "facts": [
+    {
+     "label": "Critical IT load once the contracted power is in",
+     "value": 260,
+     "unit": "MW",
+     "source": "s1",
+     "kind": "reported",
+     "as_of": "2025-02-26"
+    },
+    {
+     "label": "Additional contracted power in that announcement",
+     "value": 70,
+     "unit": "MW",
+     "source": "s1",
+     "kind": "reported",
+     "as_of": "2025-02-26"
+    },
+    {
+     "label": "Additional contracted revenue at this site",
+     "value": 1200000000,
+     "unit": "usd",
+     "source": "s1",
+     "kind": "reported",
+     "as_of": "2025-02-26"
+    },
+    {
+     "label": "Capital Core Scientific committed to fund",
+     "value": 104000000,
+     "unit": "usd",
+     "source": "s1",
+     "kind": "reported",
+     "as_of": "2025-02-26"
+    },
+    {
+     "label": "Contract term",
+     "text": "Twelve years, with the option of two further five year renewals",
+     "source": "s1"
+    },
+    {
+     "label": "Occupant of record",
+     "text": "Coreweave Compute Acquisition Co V LLC",
+     "source": "s0",
+     "as_of": "2024-09-19"
+    },
+    {
+     "label": "Operators of record",
+     "text": "Core Scientific, Inc. / Coreweave, Inc.",
+     "source": "s0",
+     "as_of": "2024-09-19"
+    },
+    {
+     "label": "Owner of record",
+     "text": "None is listed",
+     "source": "s0",
+     "as_of": "2024-09-19"
+    },
+    {
+     "label": "Location",
+     "text": "Denton, Denton County, north of Dallas",
+     "source": "s1"
+    }
+   ],
+   "notes": [
+    {
+     "text": "The occupant of record is a numbered acquisition company rather than CoreWeave itself, and CoreWeave appears separately as an operator. Occupant is a position in an exemption filing. It is not a tenant and it is not a brand.",
+     "sources": [
+      "s0"
+     ]
+    },
+    {
+     "text": "An empty owner column is rare here and it is information. Whoever holds the building did not claim that position in the filing, and the registry does not require the reader to be told why.",
+     "sources": [
+      "s0"
+     ]
+    }
+   ],
+   "gaps": [
+    "Square footage and acreage are not public",
+    "No owner of record is listed, so the landlord is not in the record",
+    "What the site draws today, as against what is contracted, is not public",
+    "Whether the certification survived the acquisition unchanged is not stated"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/",
+     "title": "Certified Data Centers",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://investors.corescientific.com/news-events/press-releases/detail/110/core-scientific-and-coreweave-announce-1-2-billion-expansion-at-denton-tx-site",
+     "title": "Core Scientific and CoreWeave Announce $1.2 Billion Expansion at Denton, TX Site",
+     "publisher": "Core Scientific",
+     "rung": 2,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s2",
+     "url": "https://www.sec.gov/Archives/edgar/data/1839341/000162828024009396/finalcorzcoreweaverelease0.htm",
+     "title": "Core Scientific to Provide CoreWeave up to 16 MW of Data Center Infrastructure",
+     "publisher": "Core Scientific, filed with the SEC on Form 8-K",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "3301 Hibbetts Road Data Center",
+   "slug": "3301-hibbetts-road-data-center",
+   "summary": "An Austin building that housed Hewlett Packard, taken over by Core Scientific and leased to CoreWeave in the deal that put the two companies back together. The certification is named for the street address rather than for either company.",
+   "facts": [
+    {
+     "label": "Capacity contracted to CoreWeave",
+     "value": 16,
+     "unit": "MW",
+     "source": "s2",
+     "kind": "reported",
+     "as_of": "2024-03-06"
+    },
+    {
+     "label": "Total potential revenue in the announcement",
+     "value": 100000000,
+     "unit": "usd",
+     "source": "s2",
+     "kind": "reported",
+     "as_of": "2024-03-06"
+    },
+    {
+     "label": "Occupant of record",
+     "text": "Coreweave, Inc.",
+     "source": "s0",
+     "as_of": "2024-02-20"
+    },
+    {
+     "label": "Operators of record",
+     "text": "Core Scientific, Inc. / Coreweave Compute Acquisition Co. II. LLC / CCAC IV.II, LLC",
+     "source": "s0",
+     "as_of": "2024-02-20"
+    },
+    {
+     "label": "Owner of record",
+     "text": "None is listed",
+     "source": "s0",
+     "as_of": "2024-02-20"
+    },
+    {
+     "label": "Location",
+     "text": "Austin, Travis County",
+     "source": "s2"
+    }
+   ],
+   "notes": [
+    {
+     "text": "The two companies had a history before this. Core Scientific hosted CoreWeave hardware from before the bankruptcy, stopped, and started again with this contract.",
+     "sources": [
+      "s2"
+     ]
+    },
+    {
+     "text": "The state writes one of the operators as Coreweave Compute Acquisition Co. II. LLC, with a full stop where the other rows use a comma. Entity resolution here strips punctuation for matching and publishes what the state wrote, so this row and its siblings resolve to one company and still read as filed.",
+     "sources": [
+      "s0"
+     ]
+    }
+   ],
+   "gaps": [
+    "Acreage is not public",
+    "No owner of record is listed",
+    "Whether the sixteen megawatts is delivered or only contracted is not stated in the record",
+    "The building's total capacity, as against CoreWeave's share, is not public"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/",
+     "title": "Certified Data Centers",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://investors.corescientific.com/news-events/press-releases/detail/110/core-scientific-and-coreweave-announce-1-2-billion-expansion-at-denton-tx-site",
+     "title": "Core Scientific and CoreWeave Announce $1.2 Billion Expansion at Denton, TX Site",
+     "publisher": "Core Scientific",
+     "rung": 2,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s2",
+     "url": "https://www.sec.gov/Archives/edgar/data/1839341/000162828024009396/finalcorzcoreweaverelease0.htm",
+     "title": "Core Scientific to Provide CoreWeave up to 16 MW of Data Center Infrastructure",
+     "publisher": "Core Scientific, filed with the SEC on Form 8-K",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "PowerCampus Dallas by Lancaster Data Center Campus LP",
+   "slug": "powercampus-dallas-lancaster",
+   "summary": "The second PowerCampus in this registry. It sits south of Dallas rather than at Hutto and it carries both Design, LLC and Google. The certified name is the developer's brand and the owning partnership in one string.",
+   "facts": [
+    {
+     "label": "Owner of record",
+     "text": "Lancaster Data Center Campus LP",
+     "source": "s0",
+     "as_of": "2025-02-21"
+    },
+    {
+     "label": "Occupant of record",
+     "text": "Design, LLC",
+     "source": "s0",
+     "as_of": "2025-02-21"
+    },
+    {
+     "label": "Operator of record",
+     "text": "Google, LLC",
+     "source": "s0",
+     "as_of": "2025-02-21"
+    },
+    {
+     "label": "Location",
+     "text": "Lancaster, Dallas County",
+     "source": "s0"
+    },
+    {
+     "label": "Brand shared with",
+     "text": "The Hutto campus, filed as PowerCampus Austin",
+     "source": "s2"
+    }
+   ],
+   "notes": [
+    {
+     "text": "Google and Design, LLC appear here in the opposite columns to the Hutto rows. Two campuses under one developer brand carry the same two names with the roles swapped. Nothing in the record explains the difference and this page does not guess at one.",
+     "sources": [
+      "s0"
+     ]
+    },
+    {
+     "text": "The state writes Google with a comma before the corporate suffix here and without one at Hutto. Same company. Two spellings. A naive count of the registry would report two companies.",
+     "sources": [
+      "s0"
+     ]
+    }
+   ],
+   "gaps": [
+    "Capacity, acreage and square footage are not public",
+    "No announcement ties this certification to a named investment figure",
+    "Whether the campus is built or planned is not stated in the record"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/",
+     "title": "Certified Data Centers",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://communityimpact.com/austin/pflugerville-hutto/city-county/2023/07/21/tax-abatement-agreement-at-hutto-megasite-intended-to-lower-taxes-spur-business-growth/",
+     "title": "Tax abatement agreement at Hutto Megasite intended to lower taxes, spur business growth",
+     "publisher": "Community Impact",
+     "rung": 3,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s2",
+     "url": "https://therealdeal.com/texas/austin/2023/07/25/prologis-skybox-greenlighted-for-massive-data-center-near-austin/",
+     "title": "Prologis, Skybox Cleared to Build 159-Acre Data Center In Hutto",
+     "publisher": "The Real Deal",
+     "rung": 6,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "Switch AUS 4",
+   "slug": "switch-aus-4",
+   "summary": "A Switch building certified with CoreWeave as occupant. Its operator column is the strongest evidence in this registry that operator is a legal position rather than a description of who runs a building.",
+   "facts": [
+    {
+     "label": "Owner of record",
+     "text": "Switch, LTD",
+     "source": "s0",
+     "as_of": "2025-06-26"
+    },
+    {
+     "label": "Occupant of record",
+     "text": "Coreweave, Inc.",
+     "source": "s0",
+     "as_of": "2025-06-26"
+    },
+    {
+     "label": "Operators of record",
+     "text": "Switch, LTD / Coreweave Compute Acquistion Co. III, LLC / Coreweave Financing DDTL V-V, LLC",
+     "source": "s0",
+     "as_of": "2025-06-26"
+    },
+    {
+     "label": "What the name suggests",
+     "text": "The airport code for Austin",
+     "source": "s0"
+    },
+    {
+     "label": "Switch's Texas campus",
+     "text": "The Rock, beside Dell's headquarters at Round Rock, north of Austin",
+     "source": "s1"
+    },
+    {
+     "label": "Floor area Switch announced for that campus",
+     "value": 1500000,
+     "unit": "sqft",
+     "source": "s1",
+     "kind": "reported"
+    }
+   ],
+   "notes": [
+    {
+     "text": "One of the operators of record is a CoreWeave financing vehicle. A lending structure does not run a data hall. It holds a position in the exemption filing and that is what the operator column records. Anyone reading this registry as an operations directory will get it wrong here first.",
+     "sources": [
+      "s0"
+     ]
+    },
+    {
+     "text": "The state misspells one operator where the same family of entities is spelled correctly elsewhere. Resolution here merges on case, punctuation and corporate suffix only. So that typo currently splits one company in two and is written down rather than guessed at.",
+     "sources": [
+      "s0"
+     ]
+    },
+    {
+     "text": "Switch's Texas campus is The Rock, beside Dell's headquarters at Round Rock, which is north of Austin rather than in it. The name is a hint and the record gives no location, so nothing here says where this building stands.",
+     "sources": [
+      "s0",
+      "s1"
+     ]
+    }
+   ],
+   "gaps": [
+    "The county and the address are not in the record",
+    "No capacity figure is public",
+    "No announcement from Switch or CoreWeave names this building",
+    "Square footage, acreage and the address are not public",
+    "What CoreWeave takes, as against the building's total, is not public"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/",
+     "title": "Certified Data Centers",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
+     "retrieved": "2026-08-21"
+    },
+    {
+     "id": "s1",
+     "url": "https://www.switch.com/switch-announces-fifth-prime-expansion-with-development-of-exascale-data-center-campus-in-texas/",
+     "title": "Switch Announces Fifth Prime Campus Expansion in Texas",
+     "publisher": "Switch",
+     "rung": 2,
+     "retrieved": "2026-08-21"
+    }
+   ]
+  },
+  {
+   "name": "C1 Richardson LLC Data Center",
+   "slug": "c1-richardson-llc-data-center",
+   "summary": "A CoreWeave certification in the Dallas suburbs whose owner and operator are the same single purpose entity. Its name opens with a prefix that appears across this registry on buildings that share nothing else.",
+   "facts": [
+    {
+     "label": "Owner of record",
+     "text": "C1 Richardson LLC",
+     "source": "s0",
+     "as_of": "2025-05-08"
+    },
+    {
+     "label": "Occupant of record",
+     "text": "Coreweave, Inc.",
+     "source": "s0",
+     "as_of": "2025-05-08"
+    },
+    {
+     "label": "Operator of record",
+     "text": "C1 Richardson LLC",
+     "source": "s0",
+     "as_of": "2025-05-08"
+    },
+    {
+     "label": "Location",
+     "text": "Richardson, Dallas County",
+     "source": "s0"
+    },
+    {
+     "label": "Name prefix",
+     "text": "C1",
+     "source": "s0"
+    }
+   ],
+   "notes": [
+    {
+     "text": "One entity in two of the three roles, and the tenant in the third. That is the simplest shape a certification takes and it is worth naming, because most of the large rows here are nothing like it.",
+     "sources": [
+      "s0"
+     ]
+    },
+    {
+     "text": "The same prefix opens the Bosque rows and a Dallas Allen row in this registry, on buildings with different owners and different occupants. A prefix is not a parent company and reading it as one would merge unrelated filings.",
+     "sources": [
+      "s0"
+     ]
+    }
+   ],
+   "gaps": [
+    "Capacity, square footage and acreage are not public",
+    "No announcement names this facility",
+    "Whether that prefix is a developer brand or a naming convention is not established"
+   ],
+   "sources": [
+    {
+     "id": "s0",
+     "url": "https://comptroller.texas.gov/taxes/data-centers/",
+     "title": "Certified Data Centers",
+     "publisher": "Texas Comptroller of Public Accounts",
+     "rung": 1,
      "retrieved": "2026-08-21"
     }
    ]

@@ -1692,3 +1692,101 @@ thing it asserts about is not faster, it is no longer a test.
 the moment it felt like a win, and it is the least adversarial account of that change that will
 ever exist. Its lessons are worth rescuing before the file is deleted, and they are worth
 re-reading against what has landed since. This one was four days old and already wrong.
+
+---
+
+## 59. CSS fails silently, and a green suite has never once looked at a colour
+
+`stroke: var(--signal-link)` where the token is actually `--sig-link` is not an error. It is a
+declaration the browser discards, and the element renders with its initial value. A stroke goes
+to none. A fill goes to black. Nothing is logged, no build step complains, and the page looks
+like a page somebody designed that way.
+
+It shipped here three times. Twice quietly, as `--ink-dim` and `--ink-quiet` on the file list and
+the cover cards, where the text simply inherited and nobody could tell. The third time it drew
+every filament of a network diagram with no stroke at all, on a page whose entire subject is the
+filaments, and the whole suite was green over it.
+
+**Why every existing gate was blind.** `numeral_lint` reads numerals. `house_style_check` reads
+prose. `site_fresh_check` proves the bytes match the ledgers, which they did: the build faithfully
+reproduced the wrong token every time. Nothing in the suite read a stylesheet as a stylesheet.
+
+**The gate.** `scripts/site/css_tokens.py`. Every `var(--x)` in the built stylesheets resolves to
+a definition in the built stylesheets, in the built markup, or to its own fallback. It found all
+three defects on its first run against a site that had passed everything else.
+
+**The two things it had to get right, and the second is the harder one.** A fallback passes,
+because `var(--x, #fff)` renders something the author chose either way. And a token set inline on
+an element counts as defined, because the queue chart writes `style="--h:41.20%"` on each bar and
+the sheet reads it back. A gate that reported that as missing would be reporting a correct
+product as a violation, and that is how a gate gets switched off.
+
+**Generalises to.** Every language that ignores what it cannot parse instead of refusing it. A
+mistyped CSS property. An `aria-labelledby` pointing at no id. A `<use href="#x">` with no `#x`.
+An SVG `filter:url(#y)` where `y` was renamed. All of them render, none of them complain, and
+none of them are wrong in a way a diff will show you.
+
+**The same afternoon, the same file, a second one, and the first diagnosis was wrong.** A right
+arrow on the same page rendered as a box with "92" beside it. That was written up here as a font
+subset problem and it was not: the served mono face carries U+2192 perfectly well. The stylesheet
+is BUILT FROM A PYTHON STRING, and `content:"\2192"` inside one is not a CSS escape. It is
+Python's OCTAL escape, which takes `\21`, produces chr(17), and leaves `92` as text. The page
+shipped a control character in its copy.
+
+Two escape languages had a turn at one literal and nothing in between checked what came out. The
+lesson that nearly shipped would have sent the next session to re-subset the fonts. Reading the
+cmap of the actual served file, which took one command, is what stopped it.
+
+**And the gate that came out of it, `tests/glyphs.mjs`, was nearly the wrong gate too.** Written
+for the font question, its first version collected only characters ABOVE the ASCII range, which
+is precisely the window a control character slips through. It now refuses any control character
+in published copy, which needs no font at all, and checks coverage only for the faces this
+project actually ships. Judging a system family would have failed the videos page for drawing a
+triangle in Arial, which every reader has and a headless container does not.
+
+**And its self check went red on CI while passing locally, which is the whole reason it has one.**
+The measurement compared a character drawn in the asked-for family against the same character
+drawn in a family that does not exist, on the theory that both fall back to the same face. They do
+not always. A missing glyph can draw as the LAST RESORT BOX, and the box carries the asked-for
+family's own metrics, so it does not match the plain fallback and the comparison reads a missing
+glyph as CARRIED. Locally the runner had a CJK font and drew the control character properly, so
+the flaw was invisible; the container had none and drew the box. One measurement, two
+environments, opposite answers, and the reassuring one was the wrong one.
+
+The fix is a second comparison against a codepoint no font carries, drawn in the same family, so
+the family's own box is recognised as a box. **A gate whose instrument is only checked on the
+machine that wrote it has been checked in the easy case.**
+
+---
+
+## 60. Thirty five of forty nodes were stacked against the wall and every gate said yes
+
+The company graph's first layout was textbook Fruchterman Reingold, clamped to the field. Its
+self-test passed eleven of eleven. It proved the layout was deterministic, that every node landed
+inside the neatline, and that no edge named a node that was not drawn. All three were true. The
+picture was a rectangle of dots around an empty middle.
+
+Classic force layout assumes a connected graph. This one is forty nodes and forty four edges,
+nine of them connected to nothing at all, so repulsion was the only force acting on a third of
+the field and there was no gravity to answer it. Everything accelerated outward until the clamp
+caught it, and the clamp is what made the result look deliberate: every node was inside the
+frame, which is exactly what the gate asked.
+
+**What the gate could not ask.** Whether the drawing was worth looking at. "Inside the field" and
+"laid out" are not the same predicate, and only the first one is checkable.
+
+**What found it.** Rendering the page in a browser and looking at the screenshot. Nothing else
+was ever going to.
+
+**The same session, the same page, a second one.** With the layout fixed, the cursor well pushed
+hardest exactly where the pointer was, so the node a reader reached for stepped aside as they
+arrived. Every point on that field is a link to a company and not one of them could be hovered or
+clicked. No gate has an opinion about that either. It took driving the page with a real pointer
+and asserting on the lit state afterwards, and the first two attempts to do that reported a false
+negative of their own, because an `<a>` in SVG has a bounding box that includes its label and the
+centre of that box is empty space.
+
+**Generalises to.** Anything whose output is a picture or a gesture. Layout, spacing, contrast,
+motion, hit targets, focus order. Write the gates for what is checkable, and then RENDER IT AND
+LOOK AT IT, and DRIVE IT AND CHECK WHAT LIT UP. Those are two separate steps and neither implies
+the other.
