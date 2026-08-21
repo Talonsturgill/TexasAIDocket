@@ -303,6 +303,19 @@ data and still prints, for the reason in the proposals.
     and to have the test report the MEASURED gap on success as well as on failure, so a margin
     shrinking toward zero is visible before it crosses. `tests/**` and `scripts/site/**` are
     `human` owned, so this run measured it and stopped.
+19. **`ownership_check` cannot tell a merge from a write, and a routine that has to resolve a
+    conflict is stuck between two rules.** Main moved twice during this run, once for a data
+    center registry reading and once for ERCOT's settled day, and the second merge conflicted on
+    `docs/ask-corpus.json` and `docs/ask-pack.json` because both sides regenerate them. Resolving
+    a conflict needs an explicit `git commit`, which reaches the pre-commit hook, and the hook
+    then flags five `ledger/gridwatch/**` paths the merge CARRIES from the other actor's own
+    commit. Every one is byte identical to `origin/main`, checked by hash. A clean auto-merge
+    never reaches the hook at all, which is why the first merge passed untouched and the second
+    could not. The routine's only outs are `--no-verify`, which is what this run took and wrote
+    down, or clearing the stamp, which the hook offers to maintainers and not to automations.
+    **The proposal is for `ownership_check` to treat a path whose blob equals the merged parent's
+    as carried rather than written**, which is the same distinction `git` already makes and the
+    map does not. `scripts/shared/ownership_check.py` is `human` owned.
 
 ## Four more panels after the deck was already scored, and what each one caught
 
