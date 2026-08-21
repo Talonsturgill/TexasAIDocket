@@ -267,11 +267,25 @@ await page.waitForSelector(".askfrom", { timeout: 8000 }).catch(() => {});
 check("a starter chip answers when clicked",
       ((await page.textContent(".askreply")) || "").trim().length > 0);
 
-// A COUNT IS ONLY A BOUNDARY IF NOTHING IS STILL IN FLIGHT. The press above calls the worker
-// by design, and the wait for its answer gives up quietly after eight seconds. On a loaded
-// runner that call can be recorded AFTER the line is drawn below, which charges the chip's
-// request to the refusal and turns an honest promise red at random. Nothing about the promise
-// changes here; the log is simply allowed to stop growing before the snapshot is taken.
+// A COUNT IS ONLY A BOUNDARY IF NOTHING IS STILL COMING, and quiet is not the same as done.
+//
+// This was a 400ms "the log stopped growing" wait, and it could not work. Every press in this
+// suite parks a FIFTEEN SECOND timer that ends in a call to the worker. `waitForToken` in
+// ask_written.py polls 150 times at 100ms for a Turnstile token and then gives up and sends
+// anyway, which is right for a reader on a bad connection and means that here, where the
+// challenge host is aborted, a token never arrives and every press has a call pending long
+// after the assertion about it has been made and passed.
+//
+// Nothing is on the wire during those fifteen seconds, so the log is perfectly quiet and the
+// old wait returned immediately. Then a press from two steps earlier landed inside the window
+// below and was charged to the refusal. CI went red on a worklog-only change while the same
+// code had been green an hour before, which is the signature of a boundary that depends on
+// how fast the runner is rather than on what the page did.
+//
+// So the line is drawn on a FRESH DOCUMENT. A reload destroys the old page and every timer it
+// was holding, which is the only thing that actually makes "nobody has been called yet" true.
+// `settled` stays for what it is genuinely good at, letting a call the refusal makes ITSELF
+// show up before the count is read.
 const settled = async (quiet = 400, cap = 8000) => {
   const t0 = Date.now();
   let n = external.length;
@@ -283,9 +297,11 @@ const settled = async (quiet = 400, cap = 8000) => {
 };
 
 // AN OFF-RECORD QUESTION COSTS NOTHING. Refuse is deliberately narrow, so this asserts the
-// narrow case and not a broad one: a question sharing no term at all with the record.
-await page.click(".askagain").catch(() => {});
-await settled();
+// narrow case and not a broad one: a question sharing no term at all with the record. The
+// classifier runs before the request is built and returns early, so a refusal that calls
+// anybody is a real defect and not a slow answer.
+await page.goto(URL_HOME);
+await page.waitForFunction(() => typeof window.__askAnswer === "function");
 const beforeRefuse = external.filter((u) => u.includes("workers.dev")).length;
 await page.fill("#askq", "recipe for banana bread");
 await page.press("#askq", "Enter");
