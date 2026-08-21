@@ -3,14 +3,18 @@
 // WHAT THIS IS FOR, AND WHAT IT IS NOT. The ask box on the front page answers most questions
 // with no request at all: the index and the catalogue ship inside the page, and the engine in
 // scripts/site/ask_answers.py routes every field read, filter, sort and count in the reader's
-// own browser. That lane is free, instant, works on a phone with no signal in a county meeting
-// room, and sends nothing anywhere. It is most of what the box does and this worker does not
-// touch it.
+// own browser. That lane is free, instant, and works on a phone with no signal in a county
+// meeting room. It is most of what the box does and this worker does not touch it.
 //
 // This is the other lane. SUBMITTING a question, by pressing enter or the arrow, calls a model
-// and costs money every time. The page says so above the button, before the press. Typing
-// still sends nothing and the page says that too. Neither statement may be weakened without
-// changing what the code actually does.
+// and costs money every time.
+//
+// TYPING STILL COSTS NOTHING, and that is now an engineering fact rather than a promise made
+// to a reader. The page used to say it under the field and the copy came off in #59, on the
+// owner's call, because it was a sentence about plumbing sitting where somebody was deciding
+// what to ask. The BEHAVIOUR is not up for the same review. A request per keystroke against a
+// cap counted in calls a month is a bill, not a feature, and it would empty the month inside
+// an afternoon.
 //
 // WHY A WORKER AND NOT A SERVER. It holds two secrets and forwards one call. The only thing it
 // stores is an answer that has already been checked, which expires by itself. There is no
@@ -21,7 +25,8 @@
 // passes checks.js against the published record before it is sent, and a sentence that fails
 // ends the answer there, visibly, with the reason named, rather than being quietly repaired.
 
-import { answer, answerStream, capOf, effectiveModel, probe, spendOf, turnsOf } from "./answer.js";
+import { answer, answerStream, capOf, effectiveEffort, effectiveModel, packInfo, probe,
+         spendOf, turnsOf, usageOf } from "./answer.js";
 
 const MAX_QUESTION = 400;
 const DEFAULT_ORIGIN = "https://texasaidocket.com";
@@ -82,6 +87,20 @@ export default {
         // which is the one question this endpoint exists to answer.
         model: effectiveModel(env),
         model_from: env.ASK_MODEL ? "ASK_MODEL variable" : "pinned in code",
+        // How hard it is being asked to think, reported for the same reason the model is: the
+        // variable name tells a debugger nothing about what it resolved to.
+        effort: effectiveEffort(env),
+        effort_from: env.ASK_EFFORT ? "ASK_EFFORT variable" : "default in code",
+        // WHAT THE MONTH ACTUALLY COST, which is a different question from how many calls it
+        // took. `cache_hit_rate` is the one to read: below about a fifth, the five minute cache
+        // is charging 25 percent extra to write entries nobody comes back for, and the TTL is
+        // the wrong length. `mean_first_ms` is the wait a reader feels before words appear.
+        usage: await usageOf(env, new Date().toISOString()),
+        // WHICH SHAPE THE PROMPT IS TAKING, and what it costs. Retrieval turns itself off
+        // for a pack with no index or a record small enough to send whole, and both of those
+        // are invisible from outside. Read `mode`: anything starting "whole" means the slice
+        // is not happening and the reason is in the brackets.
+        prompt: await packInfo(env),
         origin: env.ASK_ORIGIN || `${DEFAULT_ORIGIN} (default)`,
         // Every name the worker can actually see, so a typo shows up as the wrong string
         // rather than as a missing one.

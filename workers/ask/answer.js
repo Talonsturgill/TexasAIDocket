@@ -1,17 +1,25 @@
 // The written answer. One model call, the whole record in front of it, every sentence checked
 // against that record before it reaches a reader.
 //
-// NO RETRIEVAL. The record is about 37,600 tokens, which fits in one context with room over,
-// so there is no embedding step, no vector store, no chunking and no similarity threshold to
-// tune. The largest single source of wrong answers in a retrieval chatbot is retrieving the
-// wrong passage, and a record this size lets that failure mode be deleted rather than managed.
+// RETRIEVAL, AND THE ONE THING IT IS NOT ALLOWED TO COST. The whole record used to go in the
+// system block. It no longer fits with room to spare: the pack sits at 86 percent of a ceiling
+// whose crossing is a hard build failure, and the record grows every day. So retrieve.js sends
+// the bodies a question needs and the COMPLETE INDEX of everything the record holds, which
+// means the model always knows what exists even for an item whose text it was not given. The
+// worst failure of a retrieval chatbot, answering as though the missing thing is not there,
+// is designed out rather than mitigated. See retrieve.js for the reasoning and the numbers.
+//
+// No embedding step, no vector store, no second service. The retriever is BM25 over the
+// bodies fused with BM25 over the titles, generated from scripts/site/ask_retrieval.py, which
+// is the same source the page's own lane embeds. One implementation, never two.
 //
 // THE PACK AND THE CORPUS ARE FETCHED, NOT BUNDLED. Both are rebuilt daily with the record and
 // this worker is not. A worker carrying its own copy would answer from yesterday's docket the
 // morning after a run and nothing would say so. Both are held at Cloudflare's edge for fifteen
 // minutes, so answering does not pay a round trip to Pages for a file that changes once a day.
 
-import { checkSentence, splitSentences } from "./checks.js";
+import { checkSentence, numerals, splitSentences } from "./checks.js";
+import { assemble } from "./retrieve.js";
 
 const SITE = "https://texasaidocket.com";
 const PACK_URL = `${SITE}/ask-pack.json`;
@@ -136,28 +144,183 @@ export const loadPack = (env) => fetchJSON(env.ASK_PACK_URL || PACK_URL);
 export const loadCorpus = (env) => fetchJSON(env.ASK_CORPUS_URL || CORPUS_URL);
 
 /**
- * The prompt, in two blocks, and the split is the whole of the caching.
+ * The prompt, and the split is the whole of the caching.
  *
- * Block one is the instructions and is small. Block two is the record and is nearly all of the
- * tokens, and it carries the breakpoint. Caching is a BYTE EXACT PREFIX MATCH, so anything
- * that varies per request has to sit after the breakpoint or it invalidates everything above
- * it. The conversation is in messages, which is after both, so it never does.
+ * Three blocks now rather than two. The instructions, then the counts and the complete index
+ * of every decision, then the bodies this question actually needs. The breakpoint sits at the
+ * end of the second, because caching is a BYTE EXACT PREFIX MATCH and anything that varies per
+ * request has to live after it. The conversation is in messages, after all three, so it never
+ * invalidates anything.
+ *
+ * The instructions alone would be under the 1,024 token minimum a cache entry needs. With the
+ * index they are comfortably over it, which is the second reason the breakpoint goes there.
  *
  * Five minute TTL rather than an hour. The write costs 1.25x and a read costs 0.1x, so caching
  * pays once more than about 22 percent of questions land inside the window. Every follow-up in
  * a conversation is inside it by construction, and the downside if nobody follows up is a
  * bounded 25 percent on an isolated question.
  */
-export function systemBlocks(pack) {
-  return [
-    { type: "text", text: pack.system },
-    { type: "text", text: pack.pack, cache_control: { type: "ephemeral" } },
-  ];
+export function systemBlocks(pack, turns, env) {
+  return assemble(pack, turns, env).blocks;
 }
 
-function modelParams(env) {
+/**
+ * WHAT THE MODEL MAY STATE A NUMBER FROM, narrowed to what it was actually handed.
+ *
+ * ask-corpus.json authorises every numeral in the WHOLE pack, and while the whole pack was
+ * what went in the prompt those were the same set. They are not the same set any more. Reading
+ * the published list after retrieval would authorise figures out of decisions the model never
+ * saw, which is exactly the confident nonsense the guard exists to stop, and it would be the
+ * retrieval quietly weakening a promise that had nothing to do with it.
+ *
+ * So the list is read off the assembled prompt. The promise is the one ask_corpus.py always
+ * made, kept exactly, and now strictly tighter than the published file:
+ *
+ *     THE MODEL MAY STATE A NUMBER ONLY IF THAT NUMBER WAS IN WHAT IT WAS SHOWN.
+ *
+ * Same tokeniser as numeral_lint and as the page, because tests/ask_written.mjs runs strings
+ * through both and goes red if they ever disagree.
+ *
+ * SLUGS ARE NOT NARROWED THE SAME WAY, and that is deliberate. Every decision has a line in the
+ * index whatever the retriever thought, so every id really was shown and every one stays
+ * citable. Naming an item the record holds is the honest answer when its body is not below.
+ */
+export function allowedNumerals(blocks) {
+  const seen = new Set();
+  for (const b of blocks) for (const n of numerals(b.text || "")) seen.add(n);
+  return seen;
+}
+
+/**
+ * EFFORT, AND WHY IT IS LOW.
+ *
+ * On Sonnet 5 an omitted `thinking` still runs ADAPTIVE thinking, and `output_config.effort`
+ * defaults to `high`. So every question was thinking hard about a lookup over a record already
+ * sitting in front of it, and a reader was waiting through it on the one part of this page that
+ * talks back.
+ *
+ * Low is what this shape of work wants. The record is IN CONTEXT, so there is nothing to work
+ * out about where the answer lives; the answer is a summary of what is already there; and a
+ * sentence that overreaches is caught by the guard below rather than by the model's own
+ * deliberation. Deliberation is the expensive way to buy something this already has.
+ *
+ * ASK_EFFORT raises it if answers start reading thin. An unrecognised value falls back rather
+ * than reaching the API, because a typo in a dashboard variable should not 400 every question.
+ */
+const EFFORT = new Set(["low", "medium", "high", "xhigh", "max"]);
+const DEFAULT_EFFORT = "low";
+
+export function effectiveEffort(env) {
+  const want = String(env?.ASK_EFFORT ?? "").trim().toLowerCase();
+  return EFFORT.has(want) ? want : DEFAULT_EFFORT;
+}
+
+export function modelParams(env) {
   // No temperature, top_p or top_k. Sonnet 5 returns 400 on all three.
-  return { model: effectiveModel(env), max_tokens: MAX_TOKENS };
+  return {
+    model: effectiveModel(env),
+    max_tokens: MAX_TOKENS,
+    output_config: { effort: effectiveEffort(env) },
+  };
+}
+
+/**
+ * WHAT A QUESTION ACTUALLY COST, which nothing here could answer before.
+ *
+ * The call counter has always existed because the cap is enforced by reading it, and it says
+ * nothing about tokens, cache or time. So the two questions that decide every tuning choice
+ * were both unanswerable: is the prompt cache being READ or only written, and how long does a
+ * reader wait before the first sentence appears.
+ *
+ * THE CACHE ONE IS NOT ACADEMIC. A write costs 1.25x and a read 0.1x, so caching only pays once
+ * more than about a fifth of questions land inside the window. Below that it is a 25 percent
+ * surcharge dressed as an optimisation, and there was no way to tell which was happening.
+ *
+ * TIME TO FIRST SENTENCE, not total time. The guard releases a sentence the moment it passes,
+ * so what a reader experiences is the wait before anything appears, and total time is a number
+ * about the model rather than about them.
+ *
+ * READ MODIFY WRITE, AND NOT ATOMIC. Two questions answered in the same instant can lose one
+ * increment. At a cap of a few hundred calls a month that is a rounding error against what the
+ * counters are for, and the alternative is a Durable Object for a diagnostic. Said out loud
+ * here rather than discovered later in a total that does not tie out.
+ */
+export function usageKey(nowISO) {
+  return `use:${KV_PREFIX}:${String(nowISO).slice(0, 7)}`;
+}
+
+export function emptyUsage() {
+  return { calls: 0, input: 0, cache_read: 0, cache_write: 0, output: 0,
+           first_ms: 0, first_n: 0 };
+}
+
+export async function usageOf(env, nowISO) {
+  if (!env?.ASK_KV) return { note: "no KV bound" };
+  const raw = await env.ASK_KV.get(usageKey(nowISO));
+  const u = { ...emptyUsage(), ...(raw ? JSON.parse(raw) : {}) };
+  const cached = u.cache_read + u.cache_write;
+  return {
+    ...u,
+    // The number the 5 minute TTL decision rests on. Null rather than zero when nothing has
+    // been cached yet, because "no data" and "never read" are different answers.
+    cache_hit_rate: cached ? +(u.cache_read / cached).toFixed(3) : null,
+    mean_first_ms: u.first_n ? Math.round(u.first_ms / u.first_n) : null,
+  };
+}
+
+export async function recordUsage(env, usage, firstMs, nowISO) {
+  if (!env?.ASK_KV || !usage) return;
+  try {
+    const key = usageKey(nowISO);
+    const raw = await env.ASK_KV.get(key);
+    const u = { ...emptyUsage(), ...(raw ? JSON.parse(raw) : {}) };
+    u.calls += 1;
+    u.input += usage.input_tokens || 0;
+    u.cache_read += usage.cache_read_input_tokens || 0;
+    u.cache_write += usage.cache_creation_input_tokens || 0;
+    u.output += usage.output_tokens || 0;
+    if (Number.isFinite(firstMs)) { u.first_ms += firstMs; u.first_n += 1; }
+    await env.ASK_KV.put(key, JSON.stringify(u), { expirationTtl: 60 * 60 * 24 * 400 });
+  } catch (e) {
+    // A diagnostic must never be able to fail an answer.
+    console.log("usage not recorded", String(e));
+  }
+}
+
+/**
+ * WHAT THE PROMPT ACTUALLY LOOKS LIKE TODAY, which nothing could answer from outside.
+ *
+ * Retrieval is the kind of change that works in a test and quietly stops working in
+ * production, because the two things that turn it off, a pack with no index and a record small
+ * enough to send whole, are both invisible from here. /_config reports what is configured and
+ * /_probe reports whether the API answers. This reports which shape the prompt is taking and
+ * what it costs, from the same functions that build it, so enforcement and diagnosis cannot
+ * disagree.
+ *
+ * Never fails the endpoint. A worker that cannot describe itself must still answer questions.
+ */
+export async function packInfo(env) {
+  try {
+    const pack = await loadPack(env);
+    const sample = assemble(pack, [{ role: "user", content: "what is open for comment" }], env);
+    const t = (n) => Math.round(n / 4);
+    return {
+      generated: pack.generated,
+      decisions: pack.items,
+      indexed: !!pack.index,
+      mode: sample.mode,
+      shown: `${sample.shown} of ${sample.of}`,
+      // Tokens, roughly, at four characters each. Both numbers or neither: the saving is the
+      // only reason retrieval is here and a number without its comparison is decoration.
+      whole_tokens: t(pack.system.length + pack.pack.length),
+      question_tokens: t(sample.chars),
+      cached_tokens: t(sample.blocks.filter((b) => b.cache_control || b === sample.blocks[0])
+        .reduce((n, b) => n + b.text.length, 0)),
+      retrieval_from: env.ASK_RETRIEVAL ? "ASK_RETRIEVAL variable" : "on unless the pack is small",
+    };
+  } catch (e) {
+    return { error: String(e && e.message ? e.message : e) };
+  }
 }
 
 const HEADERS = (env) => ({
@@ -221,10 +384,15 @@ async function preflight(turns, env, now) {
   if (spent >= cap) return { capped: true };
 
   const corpus = await loadCorpus(env);
+  // ASSEMBLED ONCE, HERE, and the guard is built from the same object that gets sent. Building
+  // the prompt in one place and the allow-list in another is how the two come to describe
+  // different bytes, and the whole promise of the numeral gate is that they describe the same
+  // ones. Retrieval also costs a few milliseconds of BM25 and there is no reason to pay twice.
+  const prompt = assemble(pack, turns, env);
   return {
-    pack, key, mk, spent,
+    pack, key, mk, spent, prompt,
     ctx: {
-      allowed: new Set(corpus.authorised_numerals),
+      allowed: allowedNumerals(prompt.blocks),
       slugs: new Set(corpus.slugs),
     },
   };
@@ -237,13 +405,13 @@ export async function answer(turns, env, now) {
   if (pre.cached) return { status: 200, body: pre.cached };
   if (pre.capped) return { status: 200, body: { capped: true } };
 
-  const { pack, key, mk, spent, ctx } = pre;
+  const { key, mk, spent, ctx, prompt } = pre;
   const r = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
     headers: HEADERS(env),
     body: JSON.stringify({
       ...modelParams(env),
-      system: systemBlocks(pack),
+      system: prompt.blocks,
       messages: turns,
     }),
   });
@@ -255,6 +423,9 @@ export async function answer(turns, env, now) {
   if (env.ASK_KV) {
     await env.ASK_KV.put(mk, String(spent + 1), { expirationTtl: 60 * 60 * 24 * 70 });
   }
+  // No first-sentence time on this path: nothing is shown until the whole reply lands, so the
+  // wait a reader feels IS the whole call and there is no earlier moment to record.
+  await recordUsage(env, body.usage, NaN, now);
 
   const raw = (body.content || []).filter((c) => c.type === "text").map((c) => c.text).join("");
   const out = verify(raw, ctx);
@@ -313,15 +484,22 @@ export async function answerStream(turns, env, now) {
           return;
         }
 
-        const { pack, key, mk, spent, ctx } = pre;
-        send({ stage: "Reading the record" });
+        const { key, mk, spent, ctx, prompt } = pre;
+        const startedAt = Date.now();
+        // WHAT IT IS ACTUALLY DOING, not a reassuring noise. The reader is told how much of
+        // the record is being read closely, which is the honest description of a slice and
+        // the thing that would look like a lie if the stage line kept saying "the record".
+        send({ stage: prompt.shown && prompt.shown < prompt.of
+                 ? `Reading ${prompt.shown} of ${prompt.of} decisions closely`
+                 : "Reading the record",
+               shown: prompt.shown, of: prompt.of });
 
         const r = await fetch("https://api.anthropic.com/v1/messages", {
           method: "POST",
           headers: HEADERS(env),
           body: JSON.stringify({
             ...modelParams(env),
-            system: systemBlocks(pack),
+            system: prompt.blocks,
             messages: turns,
             stream: true,
           }),
@@ -339,6 +517,11 @@ export async function answerStream(turns, env, now) {
         const reader = r.body.getReader();
         const dec = new TextDecoder();
         let sse = "", prose = "", kept = [], stopped = null, ranLong = false;
+        // USAGE ARRIVES IN TWO PLACES ON A STREAM. `message_start` carries the input side,
+        // including the two cache counters, and `message_delta` carries the output count as it
+        // finishes. Neither is in the text events, so both are collected as they pass rather
+        // than asked for at the end.
+        let usage = null, firstMs = NaN;
 
         outer:
         while (true) {
@@ -355,6 +538,8 @@ export async function answerStream(turns, env, now) {
             // fragment looks identical whether the model simply did not end on a full stop or
             // whether it was cut off in the middle of a word.
             if (ev?.delta?.stop_reason === "max_tokens") ranLong = true;
+            if (ev?.type === "message_start" && ev.message?.usage) usage = { ...ev.message.usage };
+            if (ev?.type === "message_delta" && ev.usage) usage = { ...(usage || {}), ...ev.usage };
             const piece = ev?.delta?.text;
             if (typeof piece !== "string") continue;
             prose += piece;
@@ -363,6 +548,8 @@ export async function answerStream(turns, env, now) {
             for (const s of sentences) {
               const v = checkSentence(s, ctx);
               if (!v.ok) { stopped = v; break outer; }
+              // The moment the reader stops waiting, which is what latency means here.
+              if (!Number.isFinite(firstMs)) firstMs = Date.now() - startedAt;
               kept.push(s.trim());
               send({ sentence: s.trim() });
             }
@@ -390,6 +577,7 @@ export async function answerStream(turns, env, now) {
             reason: stopped?.reason ?? null,
           }), { expirationTtl: ANSWER_TTL });
         }
+        await recordUsage(env, usage, firstMs, now);
       } catch (e) {
         send({ error: "the answerer could not reply" });
         console.log("stream failed", String(e));

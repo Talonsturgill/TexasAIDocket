@@ -1,0 +1,37 @@
+{
+ "total": 232,
+ "found": 99.1,
+ "first": 95.7,
+ "by_kind": {
+  "county": {
+   "n": 30,
+   "found": 100,
+   "first": 100
+  },
+  "decider": {
+   "n": 52,
+   "found": 100,
+   "first": 100
+  },
+  "nonsense": {
+   "n": 4,
+   "found": 100,
+   "first": 0
+  },
+  "phrase": {
+   "n": 69,
+   "found": 97.1,
+   "first": 91.3
+  },
+  "title": {
+   "n": 69,
+   "found": 100,
+   "first": 100
+  },
+  "topic_item": {
+   "n": 8,
+   "found": 100,
+   "first": 100
+  }
+ }
+}
