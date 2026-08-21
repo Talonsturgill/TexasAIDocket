@@ -118,6 +118,15 @@ jobs:
       - name: Every lesson citation names the lesson it points at
         run: python3 scripts/shared/lesson_refs.py
 
+      # THE RESEARCHED DOSSIERS. Every figure is a field with a source and prose is forbidden a
+      # digit, which is the only shape in which hand research can satisfy the compute-not-generate
+      # law. Self-test first, same rule as the rest.
+      - name: Facility dossier self-test (prove it can go red)
+        run: python3 scripts/site/facility_dossier.py --self-test
+
+      - name: Every researched fact names a source that exists
+        run: python3 scripts/site/facility_dossier.py
+
       # THE ROUTINE'S OWN CLAIMS ABOUT PUBLISHED COPY. An unattended run reads
       # prompts/daily_routine.md to know what to do, and part of that file describes what the
       # pages say. A description that has gone stale is not wrong about a fact, it is wrong
@@ -887,6 +896,12 @@ jobs:
           # every one, fires five taps with no pause to catch a handler racing itself, measures
           # switch latency in the page, and checks 12 widths.
           SITE=docs node tests/docket_calendar.mjs
+
+      # The dossiers, read the way a reader reads them. The first checks run with JavaScript
+      # OFF, because the dialog is a convenience and the page is the product.
+      - name: The facility dossiers, page and dialog
+        run: |
+          SITE=docs node tests/facility_dossier.mjs
 
   browser-render:
     # What the page actually paints, and how it moves under a thumb.

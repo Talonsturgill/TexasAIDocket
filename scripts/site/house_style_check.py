@@ -237,13 +237,32 @@ HEAD_TEXT = re.compile(
     re.DOTALL | re.IGNORECASE)
 
 
+# A PROPER NAME IN A TITLE, DECLARED BY THE PAGE THAT CARRIES IT.
+#
+# `<cite>` exempts a quoted name in the body and there is no markup to do that inside a <title>.
+# The registry names a facility "Riot Corsicana Data Center I", and that trailing roman numeral
+# is a first person pronoun to this checker, which was right on the letter and wrong on the
+# page. Renaming the facility to satisfy the lint would publish a name no filing uses.
+#
+# So a page DECLARES its proper names and this strips exactly those strings, marked at the
+# source in the same spirit as the reader-voice and house-voice exemptions above. It cannot
+# widen by accident: only the exact declared string is removed, never a pattern, and a page
+# that declares nothing is checked exactly as before.
+PROPER_NAME = re.compile(r'\bdata-proper-name="(?P<name>[^"]*)"', re.IGNORECASE)
+
+
 def page_metadata(page_html: str) -> str:
     """The reader-facing strings in the head: the title and the social descriptions."""
     m = HEAD.search(page_html)
     if not m:
         return ""
     found = [(g.group("title") or g.group("content") or "") for g in HEAD_TEXT.finditer(m.group(1))]
-    return _html.unescape(TAG.sub(" ", " ".join(found)))
+    text = _html.unescape(TAG.sub(" ", " ".join(found)))
+    for g in PROPER_NAME.finditer(page_html):
+        declared = _html.unescape(g.group("name")).strip()
+        if declared:
+            text = text.replace(declared, " ")
+    return text
 
 
 def check_site(docs: Path) -> dict[str, list[str]]:

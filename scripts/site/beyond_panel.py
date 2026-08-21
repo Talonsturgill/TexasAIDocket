@@ -31,6 +31,8 @@ import numeral_lint
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "gridwatch"))
 from datacenters_collect import opkey  # noqa: E402
 
+import facility_dossier as fdoss
+
 REPO_ROOT = Path(__file__).resolve().parents[2]
 ROSTER = REPO_ROOT / "ledger" / "gridwatch" / "datacenters.json"
 DC_SERIES = REPO_ROOT / "ledger" / "gridwatch" / "datacenters.jsonl"
@@ -237,6 +239,31 @@ def figures(data: dict) -> dict:
 
 
 # --------------------------------------------------------------------------- the panels
+
+# ---------------------------------------------------------------- dossiers on the roster
+# A FACILITY WITH RESEARCH BEHIND IT IS A LINK. One without is plain text, because a link that
+# leads to five fields a reader has already read is a promise the page does not keep. The
+# dialog and the page render the same `fdoss.panel` call, so they cannot disagree.
+def _dossiers() -> dict:
+    try:
+        return fdoss.by_name(fdoss.load())
+    except Exception:
+        return {}
+
+
+def _dossier_attrs(name: str) -> str:
+    d = _dossiers().get(name)
+    return f' class="hasdoss" data-slug="{e(d["slug"])}"' if d else ""
+
+
+def _facility_cell(name: str) -> str:
+    d = _dossiers().get(name)
+    if not d:
+        return f"<cite>{e(name)}</cite>"
+    return (f'<a class="dosslink" href="../facility/{e(d["slug"])}/">'
+            f'<cite>{e(name)}</cite></a>')
+
+
 def registry_panel(f: dict) -> str:
     """The count of registered facilities, by the year each one took effect."""
     d = f.get("dc")
@@ -272,7 +299,7 @@ def registry_panel(f: dict) -> str:
         f'</li>' for x in d.get("newest") or [])
 
     rows = "".join(
-        f'<tr><td><cite>{e(x["name"])}</cite></td>'
+        f'<tr{_dossier_attrs(x["name"])}><td>{_facility_cell(x["name"])}</td>'
         f'<td><cite>{e(", ".join(x["owners"]))}</cite></td>'
         f'<td><cite>{e(", ".join(x["occupants"]))}</cite></td>'
         f'<td><cite>{e(", ".join(x["operators"]))}</cite></td>'
@@ -305,7 +332,8 @@ def registry_panel(f: dict) -> str:
   <ul class="newest" data-prose="data">{newest}</ul>
 
   <h3>Every registered facility</h3>
-  <p class="qnote rthint">Scroll the table sideways to reach the operator and the date.</p>
+  <p class="qnote rthint">Scroll the table sideways to reach the operator and the date.
+  A facility whose name is a link has a researched dossier behind it.</p>
   <div class="rtfield"><div class="rtwrap">
   <table class="rtable" data-prose="data">
     <colgroup><col class="cf"><col class="co"><col class="cu"><col class="cp"><col class="cd">
@@ -315,7 +343,68 @@ def registry_panel(f: dict) -> str:
     <tbody>{rows}</tbody>
   </table>
   </div></div>
+  {_dossier_dialog()}
 </section>"""
+
+
+
+def _dossier_dialog() -> str:
+    """The popup, and the reason it fetches rather than inlines.
+
+    Every researched facility already has a real page, so the dossier markup exists once. The
+    registry will eventually carry all of them, and inlining every dossier into the grid page
+    would put hundreds of kilobytes of markup in front of every reader to serve the one row
+    they clicked. The dialog pulls the page it is already linking to, same origin, and lifts
+    the panel out of it.
+
+    THE LINK IS THE FALLBACK AND IT IS NOT A COURTESY. With script off, with the fetch
+    refused, or with anything at all going wrong, the anchor navigates to the facility page
+    and the reader gets the whole dossier. Nothing here is reachable only through the script.
+    """
+    return """<dialog id="dossdlg" class="dossdlg" aria-label="Facility dossier">
+  <button type="button" class="dossclose" id="dossclose" aria-label="Close">Close</button>
+  <div class="dossbody" id="dossbody"></div>
+</dialog>
+<script>
+(function () {
+  var dlg = document.getElementById('dossdlg');
+  var body = document.getElementById('dossbody');
+  if (!dlg || !body || typeof dlg.showModal !== 'function') return;
+  var cache = {};
+
+  function open(html, href) {
+    body.innerHTML = html +
+      '<p class="dossmore"><a href="' + href + '">Open the full page for this facility</a></p>';
+    dlg.showModal();
+    body.scrollTop = 0;
+  }
+
+  document.addEventListener('click', function (ev) {
+    var a = ev.target.closest ? ev.target.closest('a.dosslink') : null;
+    if (!a) return;
+    // A modifier click is the reader asking for a new tab. Never swallow that.
+    if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey || ev.button !== 0) return;
+    var href = a.getAttribute('href');
+    if (cache[href]) { ev.preventDefault(); open(cache[href], href); return; }
+    ev.preventDefault();
+    fetch(href, { credentials: 'same-origin' })
+      .then(function (r) { if (!r.ok) throw new Error('status'); return r.text(); })
+      .then(function (t) {
+        var doc = new DOMParser().parseFromString(t, 'text/html');
+        var panel = doc.querySelector('.dossier');
+        if (!panel) throw new Error('no panel');
+        cache[href] = panel.innerHTML;
+        open(cache[href], href);
+      })
+      .catch(function () { window.location.href = href; });
+  });
+
+  document.getElementById('dossclose').addEventListener('click', function () { dlg.close(); });
+  // A click on the backdrop closes it. The dialog element itself is the backdrop's target.
+  dlg.addEventListener('click', function (ev) { if (ev.target === dlg) dlg.close(); });
+  dlg.addEventListener('close', function () { body.innerHTML = ''; });
+})();
+</script>"""
 
 
 def generation_panel(f: dict) -> str:
