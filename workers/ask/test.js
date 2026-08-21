@@ -201,6 +201,78 @@ ok("spendOf still reports a bare month, not the prefixed key",
     { ASK_MONTHLY_CAP: "200", ASK_KV: { get: async () => "7" } },
     "2026-08-15T00:00:00Z")).month === "2026-08");
 
+// ---------------------------------------------------------------- effort
+head("M. how hard it is asked to think, and what happens to a typo");
+const { effectiveEffort } = await import("./answer.js");
+ok("low by default, because the record is already in context",
+  effectiveEffort({}) === "low", effectiveEffort({}));
+ok("ASK_EFFORT raises it", effectiveEffort({ ASK_EFFORT: "high" }) === "high");
+ok("...and is read case and space insensitively, the way a dashboard field gets typed",
+  effectiveEffort({ ASK_EFFORT: " MEDIUM " }) === "medium");
+// A TYPO MUST NOT REACH THE API. `output_config.effort` is validated server side, so an
+// unrecognised value is a 400 on every question: a mistyped dashboard field would take the ask
+// box down rather than make it slower.
+ok("a value the API would refuse falls back instead of shipping",
+  effectiveEffort({ ASK_EFFORT: "maximum" }) === "low");
+ok("...and so does an empty one", effectiveEffort({ ASK_EFFORT: "" }) === "low");
+ok("...and a missing env object does not throw", effectiveEffort(undefined) === "low");
+// THE SHAPE THE API ACTUALLY WANTS. `effort` lives inside `output_config`, not at the top
+// level, and nothing else here would notice if it were sent flat: the request would simply be
+// refused, on every question, with the box looking broken rather than misconfigured.
+const { modelParams } = await import("./answer.js");
+const mp = modelParams({});
+ok("effort is sent inside output_config, where the API reads it",
+  mp.output_config?.effort === "low", JSON.stringify(mp));
+ok("...and not at the top level, where it would be ignored or refused",
+  mp.effort === undefined, JSON.stringify(mp));
+// Sonnet 5 returns 400 on all three of these. They have never been sent; this is the guard
+// against somebody adding one back for a determinism that model does not offer.
+ok("no sampling parameters ride along",
+  ["temperature", "top_p", "top_k"].every((k) => !(k in mp)), JSON.stringify(mp));
+
+// ---------------------------------------------------------------- usage
+head("N. what a question cost, which nothing could report before");
+const { emptyUsage, recordUsage, usageKey, usageOf } = await import("./answer.js");
+ok("the usage key names the site, like every other key here",
+  usageKey("2026-08-21T00:00:00Z") === "use:tx:2026-08", usageKey("2026-08-21T00:00:00Z"));
+
+// A KV stub that actually stores, so accumulation is exercised rather than asserted.
+const store = new Map();
+const KV = { get: async (k) => store.get(k) ?? null, put: async (k, v) => { store.set(k, v); } };
+await recordUsage({ ASK_KV: KV }, {
+  input_tokens: 12, cache_read_input_tokens: 0, cache_creation_input_tokens: 47000,
+  output_tokens: 300 }, 900, "2026-08-21T00:00:00Z");
+await recordUsage({ ASK_KV: KV }, {
+  input_tokens: 12, cache_read_input_tokens: 47000, cache_creation_input_tokens: 0,
+  output_tokens: 200 }, 500, "2026-08-21T00:00:00Z");
+const u = await usageOf({ ASK_KV: KV }, "2026-08-21T00:00:00Z");
+ok("two questions accumulate rather than overwrite", u.calls === 2, JSON.stringify(u));
+ok("...and the two cache counters are kept apart",
+  u.cache_write === 47000 && u.cache_read === 47000, JSON.stringify(u));
+// THE NUMBER THE TTL DECISION RESTS ON. One write and one read is a hit rate of a half, which
+// is well over the ~0.22 where a five minute cache starts paying for itself.
+ok("...so the hit rate is computed, not guessed", u.cache_hit_rate === 0.5,
+  String(u.cache_hit_rate));
+ok("time to first sentence is a mean over the calls that had one",
+  u.mean_first_ms === 700, String(u.mean_first_ms));
+// A month with nothing cached must not report a hit rate of zero, which reads as "never read"
+// when it means "nothing has happened yet".
+ok("no data reads as no data, not as a miss",
+  (await usageOf({ ASK_KV: { get: async () => null, put: async () => {} } },
+                 "2026-09-01T00:00:00Z")).cache_hit_rate === null);
+ok("with no KV bound it says so rather than inventing zeroes",
+  (await usageOf({}, "2026-08-21T00:00:00Z")).note === "no KV bound");
+// A DIAGNOSTIC MUST NEVER FAIL AN ANSWER. If KV throws, the question still gets answered.
+let threw = false;
+try {
+  await recordUsage({ ASK_KV: { get: async () => { throw new Error("kv down"); },
+                                put: async () => {} } },
+                    { input_tokens: 1 }, 10, "2026-08-21T00:00:00Z");
+} catch { threw = true; }
+ok("a broken counter cannot take the answer down with it", !threw);
+ok("and an empty rollup is all zeroes rather than undefined",
+  Object.values(emptyUsage()).every((v) => v === 0));
+
 console.log("");
 console.log(fail === 0 ? `checks clean, ${pass} assertions`
                        : `checks FAILED, ${fail} of ${pass + fail}`);

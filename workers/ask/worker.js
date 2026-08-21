@@ -21,7 +21,8 @@
 // passes checks.js against the published record before it is sent, and a sentence that fails
 // ends the answer there, visibly, with the reason named, rather than being quietly repaired.
 
-import { answer, answerStream, capOf, effectiveModel, probe, spendOf, turnsOf } from "./answer.js";
+import { answer, answerStream, capOf, effectiveEffort, effectiveModel, probe, spendOf,
+         turnsOf, usageOf } from "./answer.js";
 
 const MAX_QUESTION = 400;
 const DEFAULT_ORIGIN = "https://texasaidocket.com";
@@ -82,6 +83,15 @@ export default {
         // which is the one question this endpoint exists to answer.
         model: effectiveModel(env),
         model_from: env.ASK_MODEL ? "ASK_MODEL variable" : "pinned in code",
+        // How hard it is being asked to think, reported for the same reason the model is: the
+        // variable name tells a debugger nothing about what it resolved to.
+        effort: effectiveEffort(env),
+        effort_from: env.ASK_EFFORT ? "ASK_EFFORT variable" : "default in code",
+        // WHAT THE MONTH ACTUALLY COST, which is a different question from how many calls it
+        // took. `cache_hit_rate` is the one to read: below about a fifth, the five minute cache
+        // is charging 25 percent extra to write entries nobody comes back for, and the TTL is
+        // the wrong length. `mean_first_ms` is the wait a reader feels before words appear.
+        usage: await usageOf(env, new Date().toISOString()),
         origin: env.ASK_ORIGIN || `${DEFAULT_ORIGIN} (default)`,
         // Every name the worker can actually see, so a typo shows up as the wrong string
         // rather than as a missing one.

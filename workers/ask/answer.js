@@ -155,9 +155,100 @@ export function systemBlocks(pack) {
   ];
 }
 
-function modelParams(env) {
+/**
+ * EFFORT, AND WHY IT IS LOW.
+ *
+ * On Sonnet 5 an omitted `thinking` still runs ADAPTIVE thinking, and `output_config.effort`
+ * defaults to `high`. So every question was thinking hard about a lookup over a record already
+ * sitting in front of it, and a reader was waiting through it on the one part of this page that
+ * talks back.
+ *
+ * Low is what this shape of work wants. The record is IN CONTEXT, so there is nothing to work
+ * out about where the answer lives; the answer is a summary of what is already there; and a
+ * sentence that overreaches is caught by the guard below rather than by the model's own
+ * deliberation. Deliberation is the expensive way to buy something this already has.
+ *
+ * ASK_EFFORT raises it if answers start reading thin. An unrecognised value falls back rather
+ * than reaching the API, because a typo in a dashboard variable should not 400 every question.
+ */
+const EFFORT = new Set(["low", "medium", "high", "xhigh", "max"]);
+const DEFAULT_EFFORT = "low";
+
+export function effectiveEffort(env) {
+  const want = String(env?.ASK_EFFORT ?? "").trim().toLowerCase();
+  return EFFORT.has(want) ? want : DEFAULT_EFFORT;
+}
+
+export function modelParams(env) {
   // No temperature, top_p or top_k. Sonnet 5 returns 400 on all three.
-  return { model: effectiveModel(env), max_tokens: MAX_TOKENS };
+  return {
+    model: effectiveModel(env),
+    max_tokens: MAX_TOKENS,
+    output_config: { effort: effectiveEffort(env) },
+  };
+}
+
+/**
+ * WHAT A QUESTION ACTUALLY COST, which nothing here could answer before.
+ *
+ * The call counter has always existed because the cap is enforced by reading it, and it says
+ * nothing about tokens, cache or time. So the two questions that decide every tuning choice
+ * were both unanswerable: is the prompt cache being READ or only written, and how long does a
+ * reader wait before the first sentence appears.
+ *
+ * THE CACHE ONE IS NOT ACADEMIC. A write costs 1.25x and a read 0.1x, so caching only pays once
+ * more than about a fifth of questions land inside the window. Below that it is a 25 percent
+ * surcharge dressed as an optimisation, and there was no way to tell which was happening.
+ *
+ * TIME TO FIRST SENTENCE, not total time. The guard releases a sentence the moment it passes,
+ * so what a reader experiences is the wait before anything appears, and total time is a number
+ * about the model rather than about them.
+ *
+ * READ MODIFY WRITE, AND NOT ATOMIC. Two questions answered in the same instant can lose one
+ * increment. At a cap of a few hundred calls a month that is a rounding error against what the
+ * counters are for, and the alternative is a Durable Object for a diagnostic. Said out loud
+ * here rather than discovered later in a total that does not tie out.
+ */
+export function usageKey(nowISO) {
+  return `use:${KV_PREFIX}:${String(nowISO).slice(0, 7)}`;
+}
+
+export function emptyUsage() {
+  return { calls: 0, input: 0, cache_read: 0, cache_write: 0, output: 0,
+           first_ms: 0, first_n: 0 };
+}
+
+export async function usageOf(env, nowISO) {
+  if (!env?.ASK_KV) return { note: "no KV bound" };
+  const raw = await env.ASK_KV.get(usageKey(nowISO));
+  const u = { ...emptyUsage(), ...(raw ? JSON.parse(raw) : {}) };
+  const cached = u.cache_read + u.cache_write;
+  return {
+    ...u,
+    // The number the 5 minute TTL decision rests on. Null rather than zero when nothing has
+    // been cached yet, because "no data" and "never read" are different answers.
+    cache_hit_rate: cached ? +(u.cache_read / cached).toFixed(3) : null,
+    mean_first_ms: u.first_n ? Math.round(u.first_ms / u.first_n) : null,
+  };
+}
+
+export async function recordUsage(env, usage, firstMs, nowISO) {
+  if (!env?.ASK_KV || !usage) return;
+  try {
+    const key = usageKey(nowISO);
+    const raw = await env.ASK_KV.get(key);
+    const u = { ...emptyUsage(), ...(raw ? JSON.parse(raw) : {}) };
+    u.calls += 1;
+    u.input += usage.input_tokens || 0;
+    u.cache_read += usage.cache_read_input_tokens || 0;
+    u.cache_write += usage.cache_creation_input_tokens || 0;
+    u.output += usage.output_tokens || 0;
+    if (Number.isFinite(firstMs)) { u.first_ms += firstMs; u.first_n += 1; }
+    await env.ASK_KV.put(key, JSON.stringify(u), { expirationTtl: 60 * 60 * 24 * 400 });
+  } catch (e) {
+    // A diagnostic must never be able to fail an answer.
+    console.log("usage not recorded", String(e));
+  }
 }
 
 const HEADERS = (env) => ({
@@ -255,6 +346,9 @@ export async function answer(turns, env, now) {
   if (env.ASK_KV) {
     await env.ASK_KV.put(mk, String(spent + 1), { expirationTtl: 60 * 60 * 24 * 70 });
   }
+  // No first-sentence time on this path: nothing is shown until the whole reply lands, so the
+  // wait a reader feels IS the whole call and there is no earlier moment to record.
+  await recordUsage(env, body.usage, NaN, now);
 
   const raw = (body.content || []).filter((c) => c.type === "text").map((c) => c.text).join("");
   const out = verify(raw, ctx);
@@ -314,6 +408,7 @@ export async function answerStream(turns, env, now) {
         }
 
         const { pack, key, mk, spent, ctx } = pre;
+        const startedAt = Date.now();
         send({ stage: "Reading the record" });
 
         const r = await fetch("https://api.anthropic.com/v1/messages", {
@@ -339,6 +434,11 @@ export async function answerStream(turns, env, now) {
         const reader = r.body.getReader();
         const dec = new TextDecoder();
         let sse = "", prose = "", kept = [], stopped = null, ranLong = false;
+        // USAGE ARRIVES IN TWO PLACES ON A STREAM. `message_start` carries the input side,
+        // including the two cache counters, and `message_delta` carries the output count as it
+        // finishes. Neither is in the text events, so both are collected as they pass rather
+        // than asked for at the end.
+        let usage = null, firstMs = NaN;
 
         outer:
         while (true) {
@@ -355,6 +455,8 @@ export async function answerStream(turns, env, now) {
             // fragment looks identical whether the model simply did not end on a full stop or
             // whether it was cut off in the middle of a word.
             if (ev?.delta?.stop_reason === "max_tokens") ranLong = true;
+            if (ev?.type === "message_start" && ev.message?.usage) usage = { ...ev.message.usage };
+            if (ev?.type === "message_delta" && ev.usage) usage = { ...(usage || {}), ...ev.usage };
             const piece = ev?.delta?.text;
             if (typeof piece !== "string") continue;
             prose += piece;
@@ -363,6 +465,8 @@ export async function answerStream(turns, env, now) {
             for (const s of sentences) {
               const v = checkSentence(s, ctx);
               if (!v.ok) { stopped = v; break outer; }
+              // The moment the reader stops waiting, which is what latency means here.
+              if (!Number.isFinite(firstMs)) firstMs = Date.now() - startedAt;
               kept.push(s.trim());
               send({ sentence: s.trim() });
             }
@@ -390,6 +494,7 @@ export async function answerStream(turns, env, now) {
             reason: stopped?.reason ?? null,
           }), { expirationTtl: ANSWER_TTL });
         }
+        await recordUsage(env, usage, firstMs, now);
       } catch (e) {
         send({ error: "the answerer could not reply" });
         console.log("stream failed", String(e));
