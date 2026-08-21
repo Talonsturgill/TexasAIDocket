@@ -213,6 +213,13 @@ SOCIALS = [
      "3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4"
      "s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44"
      "-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"),
+    # X, AT THE ADDRESS THE PROFILE ACTUALLY LIVES AT. twitter.com/TexasAIDocket still resolves,
+    # by a redirect the company runs and could stop running, and `sameAs` is a claim that should
+    # survive that. The mark is the current one for the same reason: a bird would be a drawing of
+    # a company that no longer exists next to a link to one that does.
+    ("X", "https://x.com/TexasAIDocket",
+     "M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 "
+     "1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"),
     # ARRIVED AS A SHARE LINK TOO, tiktok.com/@texas.ai.docket?_r=1&_t=ZT-994j3vYObvh. The
     # query is a share session, not the profile, and it is the same mistake the Facebook URL
     # above was corrected for: it identifies who passed the link on rather than whose page it
