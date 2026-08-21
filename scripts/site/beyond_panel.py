@@ -334,7 +334,9 @@ def registry_panel(f: dict) -> str:
   <h3>Every registered facility</h3>
   <p class="qnote rthint">Scroll the table sideways to reach the operator and the date.
   A facility whose name is a link has a researched dossier behind it.
-  <a href="../company/">Read the registry by company instead</a>.</p>
+  <a href="../company/">Read the registry by company instead</a>,
+  see <a href="../registry-changes/">what the state has changed</a> since anyone started looking,
+  or read <a href="../construction/">what the builders told a different agency</a>.</p>
   <div class="rtfield"><div class="rtwrap">
   <table class="rtable" data-prose="data">
     <colgroup><col class="cf"><col class="co"><col class="cu"><col class="cp"><col class="cd">

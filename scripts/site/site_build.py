@@ -69,6 +69,7 @@ import facility_dossier
 import entities
 import registry_changes
 import registry_graph
+import tdlr_projects
 
 LEDGER = REPO_ROOT / "ledger" / "docket.json"
 
@@ -154,8 +155,11 @@ NAV = [("", "Home"), ("record/", "Docket"), ("articles/", "Articles"),
 # Beats and Places, a way INTO the record rather than a section beside it, and the argument
 # above for keeping those out of the top bar applies to this one word for word. A link in the
 # footer is a link on all 221 pages, which is what the family needed and all it needed.
+# `questions/` was built as one of these generated views and left out of this list, so it shipped
+# with nothing on the site linking to it. It was in the sitemap and reachable by URL, which is
+# exactly enough to look fine and to be unread. `link_check.py` is what found it.
 FOOTNAV = NAV[1:] + [("topic/", "Beats"), ("place/", "Places"), ("sources/", "Sources"),
-                     ("scan/", "Scan"), ("data/", "Data")]
+                     ("questions/", "Questions"), ("scan/", "Scan"), ("data/", "Data")]
 
 # WHERE THIS RECORD IS, ELSEWHERE ON THE WEB.
 #
@@ -450,6 +454,23 @@ def _css_version() -> str:
     return hashlib.sha256(theme.css().encode("utf-8")).hexdigest()[:10]
 
 
+def _canonical(path: str) -> str:
+    """The canonical is a path RELATIVE to the site, because `page()` prefixes the site itself.
+
+    Five call sites passed an absolute URL and every one of them shipped
+    `https://texasaidocket.com/https://texasaidocket.com/...` as its canonical and its og:url, on
+    every facility page and every company page. Nothing looked, because a canonical is markup
+    rather than copy and no gate here read markup for a doubled host.
+
+    So it is refused at the point of use. A path that already carries a scheme is a bug in the
+    caller and the build stops rather than publishing it.
+    """
+    if "://" in path:
+        raise ValueError(
+            f"canonical {path!r} is absolute. page() prefixes SITE_URL, so pass a relative path")
+    return path.lstrip("/")
+
+
 def page(*, title: str, desc: str, body: str, depth: int, active: str,
          today: str, canonical: str, extra_ld: list | None = None,
          home_page: bool = False, body_class: str = "", og_image: str = "og.png",
@@ -516,11 +537,11 @@ def page(*, title: str, desc: str, body: str, depth: int, active: str,
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{e(title)}</title>
 <meta name="description" content="{e(desc)}">
-<link rel="canonical" href="{SITE_URL}/{canonical}">{_verification()}
+<link rel="canonical" href="{SITE_URL}/{_canonical(canonical)}">{_verification()}
 <meta property="og:title" content="{e(title)}">
 <meta property="og:description" content="{e(desc)}">
 <meta property="og:type" content="{og_type}">
-<meta property="og:url" content="{SITE_URL}/{canonical}">
+<meta property="og:url" content="{SITE_URL}/{_canonical(canonical)}">
 {og.head_html(p, SITE_URL, SITE_NAME, title, desc, og_image, og_alt)}
 {favicon.head_html(p)}
 <link rel="stylesheet" href="{p}site.css?v={_css_version()}">{_extra_sheet(extra_css, p)}
@@ -5276,7 +5297,7 @@ def facility_page(d: dict, today: str) -> str:
         title=f"{name} · {SITE_NAME}",
         desc=_facility_desc(d.get("summary") or ""),
         body=body, depth=2, active=None, today=today,
-        canonical=f"{SITE_URL}/facility/{d['slug']}/",
+        canonical=f"facility/{d['slug']}/",
         revised=False, extra_css="facility.css")
 
 
@@ -5301,7 +5322,7 @@ def company_page(item: dict, data: dict, dossiers: dict, is_group: bool, today: 
         desc=_facility_desc(f"Every Texas data center the certified registry puts "
                             f"{name} on, by role."),
         body=body, depth=2, active=None, today=today,
-        canonical=f"{SITE_URL}/company/{item['slug']}/",
+        canonical=f"company/{item['slug']}/",
         revised=False, extra_css="facility.css")
 
 
@@ -5380,8 +5401,102 @@ def companies_index(data: dict, today: str) -> str:
         desc="Every company the Texas data center registry names, resolved across the spellings "
              "the state filed them under, with every facility and role.",
         body=body, depth=1, active=None, today=today,
-        canonical=f"{SITE_URL}/company/", revised=False, extra_css="facility.css")
+        canonical="company/", revised=False, extra_css="facility.css")
 
+
+
+def construction_page(data: dict, reg: dict, today: str) -> str:
+    """What the OTHER state register says, and where the two disagree.
+
+    Every figure on this page comes out of `tdlr_projects`, which computes it from the filings.
+    Nothing here is typed, and nothing here asserts that a filing and a certification are the
+    same building, because the state never published that join.
+    """
+    n0 = entities.n0
+    recs = data.get("projects") or []
+    sa = tdlr_projects.scoped(recs, ("Bexar", "Medina"))
+    t = tdlr_projects.totals(sa)
+    groups = tdlr_projects.by_designation(sa)
+    conflicts = tdlr_projects.county_conflicts(recs)
+
+    def money(v):
+        return f"${v / 1_000_000_000:.2f} billion" if v >= 1_000_000_000 else f"${n0(v)}"
+
+    def row(g):
+        sq = f'<strong class="num">{n0(g["sqft"])}</strong> sq ft' if g["sqft"] else ""
+        nf = n0(g["filings"])
+        fil = f'{nf} filing' + ("" if g["filings"] == 1 else "s")
+        if len(g["buildings"]) > 1:
+            fil += f', {n0(len(g["buildings"]))} buildings'
+        return (f'<div class="cbrow"><span class="cbd">{e(g["designation"])}</span>'
+                f'<span class="cbm"><strong class="num">{e(money(g["cost"]))}</strong></span>'
+                f'<span class="cbs">{sq}</span>'
+                f'<span class="cbf">{fil}</span>'
+                f'<span class="cbc">{e(", ".join(g["counties"]))}</span></div>')
+
+    rows = "".join(row(g) for g in groups)
+
+    # The two registers, side by side, with no claim that a row and a filing are one building.
+    certified = sorted({f["name"] for f in reg.get("facilities") or []
+                        if any("Microsoft" in x for x in (f.get("occupants") or []))
+                        and "SAT" in f["name"].upper()})
+    named = tdlr_projects.covered(sa)
+
+    conf = ""
+    for c in conflicts:
+        lines = "".join(
+            f'<li><cite>{e(f["project"])}</cite> gives <cite>{e(f["county"])}</cite> '
+            f'at <cite>{e(f["address"])}</cite></li>' for f in c["filings"])
+        conf += (f'<h3>One postcode, two counties</h3>'
+                 f'<p>Postcode <strong class="num">{e(c["postcode"])}</strong> carries filings '
+                 f'naming {e(" and ".join(c["counties"]))}. This page reports the disagreement '
+                 f'rather than choosing a side.</p>'
+                 f'<ul class="rcl" data-prose="data">{lines}</ul>')
+
+    body = (
+        f'<article class="prose construction">'
+        f'<p class="crumb"><a href="../grid/">The Grid Watch</a> '
+        f'<span aria-hidden="true">/</span> The construction register.</p>'
+        f'<h1>What the builders told a different agency</h1>'
+        f'<p>The Comptroller certifies who holds a tax exemption on a data center. It records no '
+        f'address, no size and no cost. A second state register does. Every large commercial '
+        f'project is registered with the Department of Licensing and Regulation. That filing '
+        f'carries a street address, a county, a square footage, an estimated cost and a '
+        f'schedule.</p>'
+        f'<p>Reading both is how the shape of a buildout becomes visible. This page holds '
+        f'Microsoft in the San Antonio area. That is where the two registers diverge most.</p>'
+        f'<p class="qnote" data-prose="data">'
+        f'<strong class="num">{n0(t["filings"])}</strong> filings, '
+        f'<strong class="num">{n0(t["new_build"])}</strong> of them new construction, '
+        f'<strong class="num">{e(money(t["cost"]))}</strong> estimated, '
+        f'<strong class="num">{n0(t["sqft"])}</strong> sq ft across '
+        f'<strong class="num">{n0(t["sqft_known"])}</strong> of them, first started '
+        f'<time datetime="{e(t["first"])}">{e(facility_dossier.ordinal(t["first"]))}</time>.</p>'
+        f'<h2>By designation, as filed</h2>'
+        f'<p>A designation filed twice is one row here and two filings. A cost counted once per '
+        f'filing would report a building twice. A filing naming a range of buildings keeps its '
+        f'single cost for the same reason.</p>'
+        f'<div class="cbtable" data-prose="data">{rows}</div>'
+        f'<h2>What each register names</h2>'
+        f'<p>Neither list is wrong. They record different acts, and only one of them is about '
+        f'buildings.</p>'
+        f'<div class="ctwo" data-prose="data">'
+        f'<div><h3>Certified for the exemption</h3><ul class="rcl">'
+        + "".join(f"<li><cite>{e(x)}</cite></li>" for x in certified) + '</ul></div>'
+        f'<div><h3>Named in a construction filing</h3><ul class="rcl">'
+        + "".join(f"<li><cite>{e(x)}</cite></li>" for x in named) + '</ul></div>'
+        f'</div>'
+        + conf +
+        f'<p class="qnote">This page names no person. A filing carries the contact who submitted '
+        f'it and the specialist who inspects it. The parser drops both before anything reaches a '
+        f'file here.</p>'
+        f'</article>')
+    return page(
+        title=f"The construction register \u00b7 {SITE_NAME}",
+        desc="Texas registers every large commercial construction project with a second agency. "
+             "What Microsoft filed in the San Antonio area, beside what it certified.",
+        body=body, depth=1, active=None, today=today,
+        canonical="construction/", revised=False, extra_css="facility.css")
 
 
 def registry_changes_page(data: dict, today: str) -> str:
@@ -5441,7 +5556,7 @@ def registry_changes_page(data: dict, today: str) -> str:
         desc="The Texas certified data center list is edited in place. Every change between "
              "readings, with the rows that were rewritten.",
         body=body, depth=1, active=None, today=today,
-        canonical=f"{SITE_URL}/registry-changes/", revised=False, extra_css="facility.css")
+        canonical="registry-changes/", revised=False, extra_css="facility.css")
 
 
 def build(out: Path, today: str) -> dict:
@@ -5696,6 +5811,27 @@ def build(out: Path, today: str) -> dict:
             if _f.get("effective"):
                 _rcnums.add(str(_f["effective"]))
         w("registry-changes/index.html", registry_changes_page(_rc, today), _rcnums)
+    # THE SECOND STATE REGISTER. Every numeral on it is computed by tdlr_projects from the
+    # filings, so the authorised set is built the same way rather than listed by hand.
+    _tp = tdlr_projects.load()
+    if _tp.get("projects"):
+        _sa = tdlr_projects.scoped(_tp["projects"], ("Bexar", "Medina"))
+        _tt = tdlr_projects.totals(_sa)
+        _tnums = {entities.n0(_tt[k]) for k in ("filings", "new_build", "sqft", "sqft_known")}
+        _tnums |= {f"${_tt['cost'] / 1_000_000_000:.2f} billion",
+                   facility_dossier.ordinal(_tt["first"]), _tt["first"]}
+        for _g in tdlr_projects.by_designation(_sa):
+            _tnums |= {entities.n0(_g["filings"]), entities.n0(_g["sqft"]),
+                       entities.n0(len(_g["buildings"])), _g["designation"]}
+            _tnums.add(f"${_g['cost'] / 1_000_000_000:.2f} billion" if _g["cost"] >= 1_000_000_000
+                       else f"${entities.n0(_g['cost'])}")
+        for _c in tdlr_projects.county_conflicts(_tp["projects"]):
+            _tnums.add(_c["postcode"])
+        _tnums |= set(tdlr_projects.covered(_sa))
+        for _f in _ent["facilities"]:
+            _tnums.add(_f["name"])
+        w("construction/index.html", construction_page(_tp, _ent, today), _tnums)
+
     _elist, _glist = entities.published(_ent)
     for _x in _elist:
         w(f"company/{_x['slug']}/index.html",
