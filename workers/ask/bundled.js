@@ -385,9 +385,19 @@ const FENCE = "\n\n" + DECISIONS_MARK + "\n\n";
 // gets more of them and a lower bar to clear.
 const TOP_N = 6;
 const BREADTH_N = 14;
-// Nothing matched, but the reader half remembered one word. Three bodies is cheap enough that
+// Nothing matched, but the reader half remembered one word. A few bodies are cheap enough that
 // guessing beats refusing to guess, and the index carries the rest of the answer anyway.
-const FLOOR_N = 3;
+//
+// SIX AND TWO, BOTH MEASURED. This path decides the whole answer for any question whose words
+// are each common inside the family that should answer them, which is most questions naming a
+// place: "bexar county construction" leaves one informative word per family and one does not
+// clear the corroboration bar anywhere. Three items in one round sent the leading family and
+// one token seat to each of the others, and the decisions could not be found at a depth of
+// one. Two rounds of the top three families took the whole gold set from 94.8 percent found to
+// 96.3. Three rounds bought 0.2 more for 200 tokens a question and four bought 0.2 again, so
+// the line is where the curve flattens rather than where the number stops rising.
+const FLOOR_N = 6;
+const FLOOR_DEPTH = 2;
 
 // THE HARD CAP ON A SLICE, in characters, about 15,000 tokens. Only a breadth question can
 // approach it. It is here so that a pathological query cannot quietly rebuild the whole pack.
@@ -575,6 +585,46 @@ const BREADTH_DEFAULT = 2;
  * total and a data center, and a single ranked list hands back six blocks from whichever family
  * happened to word things closest. It returned exactly one.
  */
+/**
+ * How much this question is ABOUT a family, as against about one block inside it.
+ *
+ * THE SIGNAL PER FAMILY INDEXING THROWS AWAY, and it has to be put back somewhere else.
+ *
+ * Indexing each family separately was right and it fixed what it was meant to fix: within the
+ * counties, "county" and "construction" appear in all sixty one blocks, so they carry nothing
+ * about WHICH county and are correctly discarded there. The trouble is that they carry almost
+ * everything about which FAMILY, and discarding them left nothing to tell the four apart.
+ *
+ * The measurement was blunt. "Bexar county construction" put the Bexar construction block
+ * first 4.9 percent of the time. It was in the slice nearly always, so the old decisions-only
+ * gold set could never see it, and the model was handed three decisions to read before the
+ * block that actually answered the question.
+ *
+ * So a word common to a whole family is read here as EVIDENCE FOR THAT FAMILY, which is the
+ * same fact the within-family pass reads as noise. Both readings are correct and they are
+ * about different questions.
+ *
+ * Weighted by the term's GLOBAL informativeness so that "the" and "in", which are also in every
+ * block of every family, contribute nothing to any of them.
+ */
+function affinity(query, group, globalIdx, n) {
+  const seen = new Set();
+  let total = 0;
+  for (const w of askTokens(query)) {
+    if (w.length <= 2 || askFrame.has(w) || seen.has(w)) continue;
+    seen.add(w);
+    const gdf = globalIdx.df[w] || 0;
+    if (!gdf) continue;
+    // The corpus wide inverse document frequency, the same shape BM25 uses, so a word most of
+    // the record carries is worth little wherever it is concentrated.
+    const idf = Math.log(1 + (n - gdf + 0.5) / (gdf + 0.5));
+    let inFamily = 0;
+    for (const it of group) if (askTokens(it.text).includes(w)) inFamily += 1;
+    total += idf * (inFamily / group.length);
+  }
+  return total;
+}
+
 export function pickItems(query, items, opts = {}) {
   const breadth = opts.breadth ?? wantsBreadth(query);
   const want = opts.top ?? (breadth ? BREADTH_N : TOP_N);
@@ -586,8 +636,8 @@ export function pickItems(query, items, opts = {}) {
   // Strangeness stays GLOBAL, and that is not an oversight. It asks whether the record has ever
   // used a word, and the record is all four families. A reservoir teaching the corpus the word
   // "storage" is the corpus learning it.
-  const strange = strangeness(query, askIndex(items.map(
-    (it) => ({ id: it.id, summary: it.text }))));
+  const globalIdx = askIndex(items.map((it) => ({ id: it.id, summary: it.text })));
+  const strange = strangeness(query, globalIdx);
 
   const families = new Map();
   for (const it of items) {
@@ -598,6 +648,7 @@ export function pickItems(query, items, opts = {}) {
 
   const lists = [];
   const terms = {};
+  const score = {};
   const spare = [];
   for (const [family, group] of families) {
     const bodyIdx = askIndex(group.map((it) => ({ id: it.id, summary: it.text })));
@@ -640,12 +691,15 @@ export function pickItems(query, items, opts = {}) {
       terms[h.id] = Math.max(terms[h.id] || 0, h.terms);
     }
 
-    const fused = askFuse([body, head]).map((r) => r.id);
+    const fusedRows = askFuse([body, head]);
+    for (const r of fusedRows) score[r.id] = r.score;
+    const fused = fusedRows.map((r) => r.id);
     const strong = fused.filter((id) => (terms[id] || 0) >= need);
     const share = breadth
       ? (BREADTH_SHARE[family] ?? BREADTH_DEFAULT)
       : (SHARE[family] ?? SHARE_DEFAULT);
     lists.push({ family, take: strong.slice(0, share), strong, fused,
+                 affinity: affinity(query, group, globalIdx, items.length),
                  muted: mute ? askFuse([rawBody, rawHead]).map((r) => r.id) : [] });
     // WHAT A FAMILY DID NOT USE GOES BACK IN THE POT. A question about one decision should
     // still get six decisions, and it would get four if a share nothing matched were simply
@@ -658,11 +712,40 @@ export function pickItems(query, items, opts = {}) {
   const push = (id) => { if (id && !chosen.includes(id)) chosen.push(id); };
   pinned.forEach(push);
 
-  // ROUND ROBIN, BEST FIRST, so a slice cut short by the character cap still carries every
-  // family that matched rather than the first family alphabetically.
-  const depth = Math.max(0, ...lists.map((l) => l.take.length));
+  // BY EVIDENCE, NOT BY FAMILY ORDER, and it was by family order and that was a real bug.
+  //
+  // Each family kept its share and then they were interleaved in the order the families
+  // happened to be built, which is the decisions first because that is the order the pack
+  // writes them. So slot one went to a decision on every question that matched one at all,
+  // whatever the question was about. "Bexar county construction" put the county's construction
+  // block first 4.9 percent of the time. It was IN the slice almost always, which is why the
+  // decisions-only gold set never saw this, and it was almost never the thing the model read
+  // first.
+  //
+  // Reciprocal rank fusion scores are 1/(k+rank) and carry no magnitude from the BM25 pass
+  // underneath, which is the whole reason this file fuses instead of adding. That makes them
+  // comparable ACROSS families, where the BM25 scores are not. An item its family ranked in
+  // both the body view and the head view scores about twice one ranked in a single view, so
+  // ordering by that score puts the block with two kinds of evidence ahead of the block with
+  // one, whatever family either came from. Corroborating term count breaks a tie, since it
+  // counts words of the question and means the same thing everywhere.
+  // ROUND ROBIN ACROSS FAMILIES, THE FAMILY THIS QUESTION IS MOST ABOUT GOING FIRST.
+  //
+  // Round robin rather than one sorted list, because the reciprocal rank scores are 1/(k+rank)
+  // and every family's best hit therefore ties with every other family's best hit. Sorting on
+  // a tie is sorting on nothing, and what broke it in practice was the order the families were
+  // built in, which is the decisions first because that is the order the pack writes them.
+  //
+  // Affinity orders the families and the within-family rank orders each family's own entries,
+  // so the block most likely to answer leads and the rest of the slice still spans everything
+  // that matched. A question that names no family strongly leaves the affinities close and the
+  // fused score breaks the tie, which is the old behaviour and the right one there.
+  const ordered = [...lists].sort((a, b) => (b.affinity - a.affinity)
+    || ((score[b.take[0]] || 0) - (score[a.take[0]] || 0))
+    || (a.family < b.family ? -1 : 1));
+  const depth = Math.max(0, ...ordered.map((l) => l.take.length));
   for (let i = 0; i < depth; i++) {
-    for (const l of lists) if (l.take[i]) push(l.take[i]);
+    for (const l of ordered) if (l.take[i]) push(l.take[i]);
   }
   spare.slice(0, Math.max(0, want - chosen.length)).forEach(push);
 
@@ -720,12 +803,25 @@ export function pickItems(query, items, opts = {}) {
   // left out. It costs a few hundred characters, because a block outside the decisions is
   // small, and it is the difference between a wide question being answered widely and being
   // answered by whichever family worded things closest.
+  //
+  // AND THIS PATH IS ORDERED BY AFFINITY TOO, which it was not, and that is where the whole
+  // 4.9 percent lived. "Bexar county construction" corroborates NOWHERE, because within each
+  // family the only informative word left is "bexar" and one word does not clear the bar, so
+  // every family's strong list is empty and this floor decides the entire answer. It was
+  // filling depth first from the families in build order, which is the decisions, so the
+  // county's own construction block came fifth on a question naming it twice.
   if (chosen.length < FLOOR_N && strange.unknown === 0) {
-    const weak = lists.map((l) => (l.fused.length ? l.fused : l.muted)
-      .filter((id) => !l.strong.includes(id)));
-    const flat = [];
-    for (const w of weak) flat.push(...w);
-    flat.slice(0, FLOOR_N - chosen.length).forEach(push);
+    const weak = [...lists]
+      .sort((a, b) => (b.affinity - a.affinity) || (a.family < b.family ? -1 : 1))
+      .map((l) => (l.fused.length ? l.fused : l.muted)
+        .filter((id) => !l.strong.includes(id)));
+    outer:
+    for (let i = 0; i < FLOOR_DEPTH; i++) {
+      for (const w of weak) {
+        if (chosen.length >= FLOOR_N) break outer;
+        if (w[i]) push(w[i]);
+      }
+    }
     const seated = new Set(chosen.map(familyOf));
     for (const w of weak) {
       if (w.length && !seated.has(familyOf(w[0]))) {

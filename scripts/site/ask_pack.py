@@ -493,7 +493,7 @@ def instruments(docs_dir=None) -> str:
 # THE METRO DISPLAY NAMES ARE THE WATER PAGE'S, IMPORTED AND NOT COPIED. Two spellings of
 # "Beaumont and Port Arthur" on one site is the kind of drift nobody notices until a
 # reader asks about the one this file invented.
-from waterwatch_page import METRO_NAMES
+from waterwatch_page import METRO_NAMES, reservoir_label
 
 FACILITIES = Path(REPO) / "ledger" / "facilities" / "dossiers.json"
 PROJECTS = Path(REPO) / "ledger" / "facilities" / "projects.json"
@@ -737,15 +737,23 @@ def reservoirs(feed: dict):
         if pct is not None:
             metro_lines.append(f"{name} {pct} percent")
 
+    # THE NAME A READER SAW IS THE NAME THIS HAS TO USE. TWDB's keys are names with the spaces
+    # taken out, so the feed says "AlanHenry" and "SamRayburn", and 48 of the 119 are like that.
+    # The water page has always spaced them back out for display, so the page teaches a reader
+    # "Alan Henry" and the pack was offering the model "AlanHenry". Nothing tokenises those the
+    # same, so those 48 reservoirs were unfindable by anybody who had read the page they came
+    # from. The gold set caught it the day it started scoring reservoirs, which is what it is
+    # for. The splitter is the page's own, imported and not copied.
     pool_lines = []
-    for name in sorted(pools):
-        p = pools[name] or {}
+    for key in sorted(pools):
+        p = pools[key] or {}
         cap, sto = p.get("capacity_af"), p.get("storage_af")
         if not cap or sto is None:
             continue
+        name = reservoir_label(key)
         pct = round(100.0 * sto / cap, 1)
         blocks.append(
-            f"[[water-lake-{_slug(name)}]] {name} reservoir\n"
+            f"[[water-lake-{_slug(key)}]] {name} reservoir\n"
             + _sentences([
                 f"{name} holds {sto:,.0f} acre feet against a conservation capacity of "
                 f"{cap:,.0f} acre feet, which is {pct} percent full",

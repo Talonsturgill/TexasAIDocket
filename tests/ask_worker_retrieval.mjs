@@ -249,6 +249,12 @@ const record = (kind, hit, first) => {
 // a county, a decider or a topic is scored on whether ANY decision carrying it was sent, which
 // is what those questions are actually asking for.
 const matches = (c, id) => {
+  // A CASE NAMING A BLOCK OUTSIDE THE DOCKET IS SCORED ON THE ID AND NOTHING ELSE, and until
+  // this line existed every such case scored zero. `byId` is built from ledger/docket.json, so
+  // the lookup below returned undefined for every dossier, county and reservoir and the
+  // function said false. The families were in the pack, in the index and in the slice, and the
+  // harness reported on none of them while printing a number that read like coverage.
+  if (c.item && !/^tx-\d{4}-\d{4}$/.test(c.item)) return c.item === id;
   const it = byId.get(id);
   if (!it) return false;
   if (c.item) return c.item === id;

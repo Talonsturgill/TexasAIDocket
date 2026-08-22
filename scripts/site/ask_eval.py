@@ -27,6 +27,25 @@ cases come from the ITEMS: their titles, the distinctive phrases in their summar
 counties and deciders. A reader types what they know about a decision, not the label somebody
 filed it under.
 
+EVERY CASE NAMES THE LANE THAT CAN ANSWER IT
+
+There are two lanes and for most of this file's life there was only one worth scoring. The
+free lane routes in the browser with no model call. The written lane sends a slice of the
+record to a model. Until the record meant only the decisions they answered the same questions,
+so a case did not have to say which lane it was for.
+
+The record now carries data center dossiers, the construction register and reservoir storage,
+and the written lane can answer about all three while the free lane still cannot. A gold set
+that ignored that would be wrong in one of two ways. Score the new cases in both lanes and the
+free lane's number collapses from 99 percent to something meaningless, for a gap nobody chose
+to leave open. Leave them out and the written lane's 100 percent is measured entirely on
+decisions, which is what it was, and it read like coverage of a record four times larger.
+
+So a case carries `lane`. "both" is a question either lane should answer. "written" is one only
+the model lane can answer today. The free lane's harness scores the first group and the
+written lane's harness scores everything, which makes the gap a number rather than a sentence
+in a worklog. Teaching the free lane a family is finished when its cases move to "both".
+
 THE NEGATIVES MATTER MORE THAN THE POSITIVES
 
 A box that answers everything scores perfectly on recall and is worthless. `nonsense` cases
@@ -116,6 +135,93 @@ def distinctive(items: list[dict], it: dict, n: int = 4) -> list[str]:
     return [w for w, _ in sorted(df.items(), key=lambda kv: (kv[1], kv[0]))[:n]]
 
 
+def _blocks(docs_dir=None) -> dict:
+    """The other three families, taken from the function that BUILDS them.
+
+    NOT FROM THE LEDGERS DIRECTLY, which would be a second derivation of the ids and would let
+    a case name a block the pack does not emit. `ask_pack.families` is what the pack itself
+    calls, so a case here can only ever reference something the model will actually be shown.
+    """
+    import ask_pack
+    dossiers, county_blocks, _ch, water_blocks, _wh = ask_pack.families(docs_dir)
+    out = {"facility": [], "county": [], "water": []}
+    for d in dossiers:
+        out["facility"].append({"id": f"facility-{d['slug']}",
+                                "name": (d.get("name") or "").strip(),
+                                "text": (d.get("summary") or "").strip()})
+    for fam, blocks in (("county", county_blocks), ("water", water_blocks)):
+        for b in blocks:
+            bid = b[2:b.index("]]")]
+            head = b[b.index("]]") + 2:b.index("\n")].strip()
+            out[fam].append({"id": bid, "name": head, "text": b})
+    return out
+
+
+def family_cases(docs_dir=None) -> list[dict]:
+    """A case per data center, per county of construction, and per reservoir.
+
+    WHAT EACH ONE ASKS IS WHAT A READER WOULD ASK, not what the block is titled. Somebody
+    wanting the Dallas construction total types "dallas county construction", not
+    "Construction registered in Dallas County", and somebody wanting a lake types "how full is
+    travis". A case built from the block's own title tests string matching and passes forever.
+
+    THESE ARE ALL `written` FOR NOW. The free lane has no route to any of them, so scoring
+    them there would measure a gap nobody chose rather than a regression anybody caused. See
+    the header for why the gap is carried as data instead of as a promise.
+    """
+    fams = _blocks(docs_dir)
+    cases: list[dict] = []
+
+    for f in fams["facility"]:
+        # THE NAME AS SOMEBODY WOULD TYPE IT. Content words alone dropped thirty of the fifty
+        # four, because a name like "Bexar 1" or "TX 301" is mostly the digits that make it a
+        # name, and stripping them leaves one word that half the register shares. The raw name
+        # lowercased is what a reader copies off the page.
+        nw = content_words(f["name"])
+        q = " ".join(nw[:5]) if len(nw) >= 2 else f["name"].lower().strip()
+        if q:
+            cases.append({"kind": "facility", "q": q, "item": f["id"], "lane": "written"})
+        # A DETAIL FROM THE DOSSIER RATHER THAN ITS NAME, which is the harder half. Somebody
+        # remembers the company or the town and not the certificate's title, and the certificate
+        # is often named for a street address nobody has heard of.
+        rare = _rarest(f["text"], [g["text"] for g in fams["facility"]], 3)
+        if len(rare) >= 3:
+            cases.append({"kind": "facility_phrase", "q": " ".join(rare), "item": f["id"],
+                          "lane": "written"})
+
+    for c in fams["county"]:
+        county = c["name"].replace("Construction registered in ", "").replace(" County", "")
+        cases.append({"kind": "construction", "q": f"{county.lower()} county construction",
+                      "item": c["id"], "lane": "written"})
+
+    for w in fams["water"]:
+        if w["id"].startswith("water-lake-"):
+            name = w["name"].replace(" reservoir", "")
+            cases.append({"kind": "reservoir", "q": f"how full is {name.lower()}",
+                          "item": w["id"], "lane": "written"})
+        else:
+            metro = w["name"].replace("Reservoir storage for the ", "").replace(" metro", "")
+            cases.append({"kind": "metro_water", "q": f"{metro.lower()} reservoir storage",
+                          "item": w["id"], "lane": "written"})
+    return cases
+
+
+def _rarest(text: str, corpus: list[str], n: int) -> list[str]:
+    """The words in this text that fewest others in its family also use.
+
+    The same idea as `distinctive`, computed WITHIN a family rather than across the decisions,
+    because that is the population the retriever now scores against. A word every dossier uses
+    is no evidence about which dossier is meant, and "data" and "center" are in nearly all of
+    them.
+    """
+    here = set(content_words(text))
+    df: dict[str, int] = {}
+    for other in corpus:
+        for w in here & set(content_words(other)):
+            df[w] = df.get(w, 0) + 1
+    return [w for w, _ in sorted(df.items(), key=lambda kv: (kv[1], kv[0]))[:n]]
+
+
 def build(items: list[dict]) -> list[dict]:
     """Every case, each carrying the kind it belongs to so failures are readable by kind."""
     vocab = vocabulary(items)
@@ -162,6 +268,12 @@ def build(items: list[dict]) -> list[dict]:
         if shared:
             continue
         cases.append({"kind": "nonsense", "q": q, "item": None, "expect_none": True})
+
+    # THE DECISION CASES ARE ANSWERABLE IN EITHER LANE and say so, so that a case with no lane
+    # is a case somebody forgot to think about rather than a silent default.
+    for c in cases:
+        c.setdefault("lane", "both")
+    cases.extend(family_cases())
 
     # Deduplicated on the query text. A county named by four decisions is one case, not four,
     # and counting it four times would weight the score by how busy a county is.
