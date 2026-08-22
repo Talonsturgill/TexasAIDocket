@@ -7,8 +7,13 @@ because a board never speculates about who is in the chair. That last property i
 It is the fact check's own limit turned into a drawing.
 
 Corrections applied to the treatment as pitched:
-- The treatment said 8 of 34 rows are quoted. The real count, taken in code, is TEN, and the
-  remainder is 24. Both are declared in aggregates.json. The typed pair would have shipped wrong.
+- The treatment said 8 of 34 rows are quoted. A first correction counted TEN, and that was wrong
+  in a worse way than the typed 8, because it counted index-row CLAIMS while the sentence on the
+  cover describes FRAMES. Rebuilding slide 6 as the stake frame then orphaned four of them. The
+  count is SIX, taken against render_report.json per token, because slides 4 and 5 lay a row out
+  across its own columns and a contiguous match undercounts. The remainder is 28. A number
+  computed over the wrong population is worse than a typed one, because it arrives wearing the
+  authority of a computation.
 - Every figure is set in JetBrains Mono with tabular numerals and never in Fraunces. FIELD_NOTES
   2026-08-12 records Fraunces rendering 3 as 5 at feed size, and this deck's figures are 75, 34,
   25.521, 58482 and September 4th.
@@ -60,7 +65,7 @@ art:
 type:
   hook: "The rule never says data center."
   dek: "Not once in the Texas Register text."
-  labels: ["10 rows are quoted on the frames that follow. The other 24 rows stand in the filing index and are not read here."]
+  labels: ["6 rows are quoted on the frames that follow. The other 28 rows stand in the filing index and are not read here."]
 acceptance:
   - "exactly 34 recesses are present and countable at 432px"
   - "exactly 6 recesses carry a lit block in trace #9FD3B4 and 28 do not"
@@ -363,7 +368,7 @@ acceptance:
   - "the section symbol renders as § and not as the word section"
   - "the hyphens inside the quoted descriptions are U+002D and are neither an em dash nor an en dash"
   - 'each of the three rows opens and closes with a straight quotation mark, because each is a verbatim index row and the site publishes an unmarked string as this project''s own prose'
-  - 'the hook counts only the rows on this frame and names no total, because the deck quotes 10 of 34 rows and has no standing to count over the index'
+  - 'the hook counts only the rows on this frame and names no total, because the deck quotes 6 of 34 rows and has no standing to count over the index'
 risks:
   - "amber is a second accent and accents creep, so it appears on this frame and slide 8 only"
 ```

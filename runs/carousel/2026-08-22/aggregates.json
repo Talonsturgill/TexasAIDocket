@@ -43,7 +43,7 @@
    "phrase": "2 rows",
    "kind": "count",
    "value": 2,
-   "computed_by": "the count of the three commission rows shown on slide 7 whose quoted Filing Description names the comment deadline. c10 carries 'w/Sept. 4 Comment Deadline' and c9 carries 'Comment Deadline 09/04/2026'. c8 carries neither. Counted in code over the frame's own claims. The hook says 'here' because the deck quotes 10 of 34 index rows and has no standing to count over the index, which is what the earlier wording did",
+   "computed_by": "the count of the three commission rows shown on slide 7 whose quoted Filing Description names the comment deadline. c10 carries 'w/Sept. 4 Comment Deadline' and c9 carries 'Comment Deadline 09/04/2026'. c8 carries neither. Counted in code over the frame's own claims. The hook says 'here' because the deck quotes 6 of 34 index rows and has no standing to count over the index, which is what the earlier wording did",
    "from_claims": [
     "c8",
     "c9",
@@ -54,7 +54,7 @@
    "phrase": "2 filings",
    "kind": "count",
    "value": 2,
-   "computed_by": "the count of the filings shown on slide 4 whose quoted file stamp is the same date. c15 carries 4/8/2026 and c17 carries 4/8/2026, so the count over this frame's own claims is 2. The hook says 'here' for the same reason slide 7's does. The deck quotes 10 of 34 index rows, so a bare 'two filed on the same day' would be a count over an index this deck has not read, which is the defect the slide 7 hook was repaired for",
+   "computed_by": "the count of the filings shown on slide 4 whose quoted file stamp is the same date. c15 carries 4/8/2026 and c17 carries 4/8/2026, so the count over this frame's own claims is 2. The hook says 'here' for the same reason slide 7's does. The deck quotes 6 of 34 index rows, so a bare 'two filed on the same day' would be a count over an index this deck has not read, which is the defect the slide 7 hook was repaired for",
    "from_claims": [
     "c15",
     "c17"
