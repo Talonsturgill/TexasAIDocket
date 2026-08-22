@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-qIW36fmxkr2ZdV1mmt2kRu6Bjg/Ren775Dpac1lk9+I=' 'sha256-/U3+nV6D+p2SWV3yEyer7UBe1XvQy9Azf+46WrHVsTU=' 'sha256-GMItZ/b6IxCFJh1aHLvrIuUw6YwM6EJodF4O+bCaXGw=' 'sha256-k8taCBE1CWdIULjJIzGsUbhAP+2Wv2rhKrSpR8iXZoU=' 'sha256-lUdIgctNtjcGmdnpl1l2te9lG9RBPZIap0Jc+JGXCmc=' 'sha256-eAen8T4O8pfBp3CJGFTcr2AfHKEky06NoHfEJVd9yeE=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-qIW36fmxkr2ZdV1mmt2kRu6Bjg/Ren775Dpac1lk9+I=' 'sha256-/U3+nV6D+p2SWV3yEyer7UBe1XvQy9Azf+46WrHVsTU=' 'sha256-GMItZ/b6IxCFJh1aHLvrIuUw6YwM6EJodF4O+bCaXGw=' 'sha256-X9dLS8MfjE1B8AUTmWc4Xf7p++38McznzXbB7wWCoHg=' 'sha256-lUdIgctNtjcGmdnpl1l2te9lG9RBPZIap0Jc+JGXCmc=' 'sha256-eAen8T4O8pfBp3CJGFTcr2AfHKEky06NoHfEJVd9yeE=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>The record · Texas AI Docket</title>
@@ -1169,7 +1169,19 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
     var stageEl = null, started = false, para = null, said = [];
     var stopStream = null;
 
+    /* THE STAGE LINE MAY NOT DESTROY AN ANSWER, AND IT COULD.
+       Creating the element cleared the whole body first, which is safe only while the body is
+       empty. It is not empty once a sentence has rendered, and `dropStage` sets stageEl back
+       to null the moment one does, so ANY later call recreated the element and wiped the
+       answer off the screen. An owner saw exactly that: the answer appeared and vanished.
+       The 250ms grace timer added a late caller, which is how a message meant to be quieter
+       ended up deleting the thing a reader was reading. The timer is not the fault. A function
+       that empties the body as a side effect of adding one line is.
+       It clears only what it is entitled to clear, which is nothing once the answer has begun,
+       and it refuses to speak at all after that: a stage line under a finished sentence is
+       noise even when it is harmless. */
     function stage(text) {
+      if (started || said.length) return;
       if (!stageEl) {
         body.textContent = "";
         stageEl = document.createElement("div");
