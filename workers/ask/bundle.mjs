@@ -81,8 +81,8 @@ if (collisions.length) {
 
 const header = `// GENERATED FILE. Do not edit.
 //
-// The ask worker's three modules flattened into one, so it can be deployed by pasting into
-// the Cloudflare dashboard without a terminal. Regenerate with:
+// The ask worker's ${MODULES.length} modules flattened into one, so it can be deployed by pasting
+// into the Cloudflare dashboard without a terminal. Regenerate with:
 //
 //   node workers/ask/bundle.mjs
 //
