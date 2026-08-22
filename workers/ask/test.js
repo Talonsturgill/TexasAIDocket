@@ -194,6 +194,13 @@ ok("the month key names the site",
   monthKey("2026-08-15T00:00:00Z"));
 const k = await cacheKey([{ role: "user", content: "what is open now" }], "2026-08-15");
 ok("the answer key names the site", k.startsWith("a:tx:2026-08-15:"), k);
+// THE KEY MOVES WHEN THE PROMPT MOVES, which a date could not do. The pack changed four times
+// in one afternoon while the prompt was being fixed, and readers kept getting answers written
+// against the version before, including a citation stutter that had been fixed twice by then.
+// It looked like the fix had not worked. The answers were simply old.
+const vA = await cacheKey([{ role: "user", content: "what is open now" }], "a63b2bff4953ccb1");
+const vB = await cacheKey([{ role: "user", content: "what is open now" }], "ffffffffffffffff");
+ok("the same question against a different pack version is a different key", vA !== vB);
 ok("and the same question on a different day is a different key",
   k !== await cacheKey([{ role: "user", content: "what is open now" }], "2026-08-16"));
 ok("spendOf still reports a bare month, not the prefixed key",

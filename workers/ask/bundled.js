@@ -829,11 +829,17 @@ export function normaliseQuestion(q) {
  * would serve one thread's answer into another's. Follow-ups mostly miss, and that is correct.
  */
 export async function cacheKey(turns, packDate) {
-  // THE DATE IS WHAT MAKES THIS KEY EXPIRE. Without it every day shares one key, so a reader
-  // gets an answer about a record that has since changed and nothing ever says so. A pack with
-  // no `generated` is a broken pack and it has never shipped, but the same missing fallback
-  // was found twice in this file on the same afternoon, once in usageKey and once here, so it
-  // is closed rather than argued about. Today's date keeps the daily rotation.
+  // WHAT MAKES A CACHED ANSWER EXPIRE, and a date was not enough.
+  //
+  // This keyed on the pack's `generated` date, so an answer written this morning was served
+  // all day. Correct while the pack only changes at the daily rebuild. It changed four times
+  // in one afternoon while the prompt was being fixed, and readers kept getting answers
+  // written against the version before, including a citation stutter that had been fixed
+  // twice by then. The fix looked like it had not worked, and the answers were simply old.
+  //
+  // ask_pack publishes `version`, a digest of the instructions plus the index plus the record,
+  // so the key moves whenever what the model is shown moves. The date is the fallback for a
+  // pack published before that field existed, and it still rotates daily on its own.
   const day = packDate || new Date().toISOString().slice(0, 10);
   const thread = turns.map((m) => m.role + ":" + normaliseQuestion(m.content)).join("\n");
   const digest = await crypto.subtle.digest("SHA-256",
@@ -1123,7 +1129,7 @@ export async function probe(env) {
 async function preflight(turns, env, now) {
   if (!env.ANTHROPIC_API_KEY) return { stop: { error: "the answerer is not configured" }, status: 503 };
   const pack = await loadPack(env);
-  const key = env.ASK_KV ? await cacheKey(turns, pack.generated) : null;
+  const key = env.ASK_KV ? await cacheKey(turns, pack.version || pack.generated) : null;
 
   if (key) {
     const hit = await env.ASK_KV.get(key);

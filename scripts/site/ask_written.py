@@ -701,7 +701,19 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
     var stageEl = null, started = false, para = null, said = [];
     var stopStream = null;
 
+    /* THE STAGE LINE MAY NOT DESTROY AN ANSWER, AND IT COULD.
+       Creating the element cleared the whole body first, which is safe only while the body is
+       empty. It is not empty once a sentence has rendered, and `dropStage` sets stageEl back
+       to null the moment one does, so ANY later call recreated the element and wiped the
+       answer off the screen. An owner saw exactly that: the answer appeared and vanished.
+       The 250ms grace timer added a late caller, which is how a message meant to be quieter
+       ended up deleting the thing a reader was reading. The timer is not the fault. A function
+       that empties the body as a side effect of adding one line is.
+       It clears only what it is entitled to clear, which is nothing once the answer has begun,
+       and it refuses to speak at all after that: a stage line under a finished sentence is
+       noise even when it is harmless. */
     function stage(text) {
+      if (started || said.length) return;
       if (!stageEl) {
         body.textContent = "";
         stageEl = document.createElement("div");

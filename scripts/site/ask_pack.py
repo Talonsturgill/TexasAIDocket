@@ -539,6 +539,18 @@ def build(today: str = None, docs_dir=None) -> dict:
         "index_chars": len(idx),
         "chars": len(pack),
         "items": len(items),
+        # WHAT THE ANSWER CACHE ROTATES ON, and the date was not enough.
+        #
+        # The worker keys a cached answer on the pack's `generated` date, so an answer written
+        # this morning is served all day. That is right when the pack only changes at the daily
+        # rebuild. It changed four times in one afternoon while the prompt was being fixed, and
+        # every one of those readers kept getting answers written against the version before,
+        # including the citation stutter that had just been fixed twice.
+        #
+        # A digest of what the model is actually shown. Change the instructions, the index or a
+        # decision, and the key moves with it.
+        "version": __import__("hashlib").sha256(
+            (SYSTEM + idx + pack).encode("utf-8")).hexdigest()[:16],
     }
 
 
