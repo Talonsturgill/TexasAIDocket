@@ -205,14 +205,14 @@ nav.main a[aria-current]::after { right:0; }
   .masthead .wrap { gap:.6rem; }
   nav.main { margin-left:0; gap:.5rem .9rem; font-size:var(--s-2); }
 }
-@media (max-width:28.9999rem) {
+@media (max-width:32.5rem) {
   nav.main { flex-wrap:nowrap; overflow-x:auto; overscroll-behavior-x:contain;
     -webkit-overflow-scrolling:touch; scrollbar-width:none; -ms-overflow-style:none;
     margin-inline:calc(var(--gap) * -1); padding-inline:var(--gap); }
   nav.main::-webkit-scrollbar { display:none; }
   nav.main a { flex:none; }
 }
-@media (max-width:37.5rem) {
+@media (max-width:42rem) {
   .home .sky .lonestar { top:6.3rem; right:5vw; width:min(16vw,54px); }
 }
 @media (min-width:30.01rem) and (max-width:56rem) {

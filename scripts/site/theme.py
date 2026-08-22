@@ -1411,7 +1411,14 @@ nav.main a[aria-current]::after {{ right:0; }}
    A SCROLLING ROW RATHER THAN A MENU BUTTON. Every section stays visible and reachable with a
    thumb, and nothing is hidden behind a control a reader has to discover. The row bleeds to
    both screen edges, because a strip that stops inside the gutter looks like it ends there. */
-@media (max-width:28.9999rem) {{
+/* RE-MEASURED ON 2026-08-22, when "Data centers" replaced "About" in the bar. The label is
+   seven characters longer and the wrap point moved with it, which is the whole reason this
+   number is measured rather than chosen. Stepping a pixel at a time, the bar takes a second
+   row from 465 to 506 and holds one row at 507. The old rule ended at 464, so the whole 42
+   pixel band was left to the desktop rules and wrapped, which is the fault CI caught.
+   32.5rem is 520, which covers the band and leaves fourteen pixels for the moment a web font
+   swaps in and every label gets fractionally wider. */
+@media (max-width:32.5rem) {{
   nav.main {{ flex-wrap:nowrap; overflow-x:auto; overscroll-behavior-x:contain;
     -webkit-overflow-scrolling:touch; scrollbar-width:none; -ms-overflow-style:none;
     margin-inline:calc(var(--gap) * -1); padding-inline:var(--gap); }}
@@ -1475,7 +1482,13 @@ nav.main a[aria-current]::after {{ right:0; }}
    every width down to 300 because both edges are set by content rather than by proportion. A
    54 pixel mark sits in it with eight to spare, which is why it is small here and not because
    small looks better: it is the size the clear field is. */
-@media (max-width:37.5rem) {{
+/* AND THIS EDGE MOVED FOR THE SAME REASON, on the same day. The big mark is placed from the
+   right, so the nav's last link and the mark's left edge approach each other as the viewport
+   narrows, and a longer bar meets it sooner. Measured with the mark forced on and every nav
+   link box compared, the collision band is 602 to 658. Before the label changed the mark's
+   left edge sat at 480 against a last link ending at 478, which is to say this cleared by two
+   pixels and nothing said so. 42rem is 672, which clears 658 by fourteen. */
+@media (max-width:42rem) {{
   .home .sky .lonestar {{ top:6.3rem; right:5vw; width:min(16vw,54px); }}
 }}
 /* AND THE TELEMETRY PILL STOPS RUNNING UNDER IT. Measured with the mark forced on and its box
