@@ -200,6 +200,17 @@ _CLIENT = r"""
   if (!form || !input || !send || !thread) return;
 
   var busy = false;
+  /* THE CEILING'S TIMER LIVES HERE AND NOT IN THE HANDLER, so every path that ends an answer
+     can cancel it. It used to be declared inside the send handler, where `finish` could reach
+     it and `finishLocal` could not, and `finishLocal` is what the instant refusal calls.
+     So a refused question left a live eight second timer behind. It was harmless on its own,
+     because the callback checks `busy` and a finished exchange is not busy. It was not
+     harmless when a reader asked something else within those eight seconds: the OLD timer
+     fired into the NEW answer, found `busy` true because the new question was running, and
+     stamped "the rest was cut at eight seconds" onto a reply that had not been cut at all.
+     Which is exactly what a reader who pushes back does. They ask, get refused, and type
+     "u sure?" straight away. */
+  var ceiling = null;
   /* The suggested follow-up, waiting in the placeholder. Held here rather than read back off
      the placeholder, because the placeholder is display and this is data. */
   var pending = null;
@@ -314,14 +325,25 @@ _CLIENT = r"""
      The first clause is the handle where there is one, which is why "PUCT Project 58000,
      rulemaking to update ERCOT transmission cost recovery, comment deadline reached" reads as
      "PUCT Project 58000". Most titles here carry no comma at all, so anything still long is cut
-     at a word boundary. The full title rides along as the link's tooltip and the whole thing is
-     one click away, so nothing is lost by not shouting it. */
+     The full title rides along as the link's tooltip either way. */
+  /* THE WHOLE FIRST CLAUSE, AND THE CAP THAT WAS THERE BEFORE WAS DOING REAL DAMAGE.
+     It kept 44 characters and truncated the rest with an ellipsis. That is right for the
+     titles shaped like a name, "PUCT Docket 59315", and this record has four of those. The
+     other sixty five are shaped like a sentence, "Archer County Commissioners Court
+     unanimously denies a tax abatement for a Dynamo Ventures data center", with a median first
+     clause of 109 characters. So nearly every citation a reader saw was a fragment ending in
+     an ellipsis, dropped into the middle of somebody else's sentence.
+     A long link reads as a long name. A cut one reads as broken prose, and the reader cannot
+     tell whether the machine ran out of words or out of record. The first clause is a complete
+     thought by construction, because it is what the title itself put before its first comma.
+     The remaining cap is a guard against a pathological title rather than a style, set above
+     the longest this record holds, and it still cuts at a word boundary if it ever fires. */
   function handle(id) {
     var t = TITLES[id];
     if (!t) return id;
     var first = t.split(",")[0];
-    if (first.length <= 44) return first;
-    var cut = first.slice(0, 40);
+    if (first.length <= 170) return first;
+    var cut = first.slice(0, 166);
     var sp = cut.lastIndexOf(" ");
     return (sp > 20 ? cut.slice(0, sp) : cut) + "...";
   }
@@ -482,6 +504,23 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
     var qs = thread.querySelectorAll(".askturn"), as = thread.querySelectorAll(".askreply");
     var q = qs[qs.length - 1], a = as[as.length - 1];
     localExchange = "Q. " + (q ? q.textContent : "") + "\n\nA. " + (a ? a.textContent : "");
+    /* AN INSTANT ANSWER GOES INTO THE THREAD, and leaving it out is what made "u sure?" get
+       the same canned sentence twice. The classifier only lets a follow-up through once this
+       box has ANSWERED something, and a refusal recorded nothing, so the next question was
+       judged as a first question and refused again. The box had spoken and its own transcript
+       did not know it.
+       IT IS SAFE TO SEND BACK for the reason the rule was written. Only guard approved text
+       may re-enter, and this text is the page's own copy or the engine's own render of the
+       record. No model wrote it, so there is nothing here a checker refused. And a reader
+       pushing back needs the model to see what it is being challenged on. */
+    if (a && a.textContent.trim()) {
+      turns.push({ role: "assistant", content: a.textContent.trim() });
+    } else {
+      turns.pop();
+    }
+    // An instant answer is an answer. It ends the exchange, so it stops the clock.
+    clearTimeout(ceiling);
+    ceiling = null;
     busy = false;
     send.disabled = false;
     send.removeAttribute("aria-busy");
@@ -541,7 +580,8 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
        about how long they wait and they are waiting from the moment they press. */
     var CEILING_MS = 8000;
     var overran = false;
-    var ceiling = setTimeout(function () {
+    clearTimeout(ceiling);
+    ceiling = setTimeout(function () {
       if (!busy) return;
       overran = true;
       if (stopStream) { try { stopStream(); } catch (e) {} }
@@ -557,7 +597,20 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
     }, CEILING_MS);
 
     localExchange = "";
-    var verdict = window.__askClassify ? window.__askClassify(question) : { bucket: "written" };
+    /* THE THREAD'S DEPTH GOES WITH THE QUESTION. A follow-up carries no record vocabulary by
+       its nature, so judged alone it looks exactly like somebody asking for a recipe.
+       COUNTED IN ANSWERS GIVEN, NOT TURNS TAKEN. `turns` already holds this question by the
+       time we get here, so its length is 1 on a first ask and `depth > 0` switched the refusal
+       off for everybody. tests/ask_engine.mjs caught it. An assistant turn is the unambiguous
+       thing being asked about: has this box already answered something in this thread. Nothing
+       else makes a bare "why" a follow-up rather than a fresh question about nothing. */
+    var answered = 0;
+    for (var ti = 0; ti < turns.length; ti++) {
+      if (turns[ti].role === "assistant") answered++;
+    }
+    var verdict = window.__askClassify
+      ? window.__askClassify(question, answered)
+      : { bucket: "written" };
 
     /* THERE IS NO LOCAL ANSWER LANE ANY MORE, and removing it is the point.
        A block here used to render a headline and a list of item links for anything the
@@ -630,6 +683,7 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
          re-enables a control that is already enabled. */
       if (!busy) return;
       clearTimeout(ceiling);
+      ceiling = null;
 
       /* What it SAID goes back into the thread, not what it tried to say. A sentence the
          reader never saw must not be one the model can build on either, or a refused claim

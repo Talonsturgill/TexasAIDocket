@@ -204,25 +204,28 @@ ok("spendOf still reports a bare month, not the prefixed key",
 // ---------------------------------------------------------------- effort
 head("M. how hard it is asked to think, and what happens to a typo");
 const { effectiveEffort } = await import("./answer.js");
-ok("low by default, because the record is already in context",
-  effectiveEffort({}) === "low", effectiveEffort({}));
-ok("ASK_EFFORT raises it", effectiveEffort({ ASK_EFFORT: "high" }) === "high");
+// MEDIUM, not low. Low could not find a county inside a twenty two county list in a decision
+// it had been given, and answered "the record does not answer that" instead.
+ok("medium by default, because finding a name in a list is work",
+  effectiveEffort({}) === "medium", effectiveEffort({}));
+ok("ASK_EFFORT moves it", effectiveEffort({ ASK_EFFORT: "high" }) === "high"
+  && effectiveEffort({ ASK_EFFORT: "low" }) === "low");
 ok("...and is read case and space insensitively, the way a dashboard field gets typed",
   effectiveEffort({ ASK_EFFORT: " MEDIUM " }) === "medium");
 // A TYPO MUST NOT REACH THE API. `output_config.effort` is validated server side, so an
 // unrecognised value is a 400 on every question: a mistyped dashboard field would take the ask
 // box down rather than make it slower.
 ok("a value the API would refuse falls back instead of shipping",
-  effectiveEffort({ ASK_EFFORT: "maximum" }) === "low");
-ok("...and so does an empty one", effectiveEffort({ ASK_EFFORT: "" }) === "low");
-ok("...and a missing env object does not throw", effectiveEffort(undefined) === "low");
+  effectiveEffort({ ASK_EFFORT: "maximum" }) === "medium");
+ok("...and so does an empty one", effectiveEffort({ ASK_EFFORT: "" }) === "medium");
+ok("...and a missing env object does not throw", effectiveEffort(undefined) === "medium");
 // THE SHAPE THE API ACTUALLY WANTS. `effort` lives inside `output_config`, not at the top
 // level, and nothing else here would notice if it were sent flat: the request would simply be
 // refused, on every question, with the box looking broken rather than misconfigured.
 const { modelParams } = await import("./answer.js");
 const mp = modelParams({});
 ok("effort is sent inside output_config, where the API reads it",
-  mp.output_config?.effort === "low", JSON.stringify(mp));
+  mp.output_config?.effort === "medium", JSON.stringify(mp));
 ok("...and not at the top level, where it would be ignored or refused",
   mp.effort === undefined, JSON.stringify(mp));
 // Sonnet 5 returns 400 on all three of these. They have never been sent; this is the guard
@@ -307,6 +310,7 @@ const body = ([n, subject, mw, pad]) =>
   `[[tx-2026-${n}]] A decision about ${subject}\nThe topic is power and the grid. ` +
   `Its status is decided.\nThe ${subject} was measured at ${mw} MW. ${filler(pad)}`;
 const FAKE = {
+  generated: "2026-08-21",
   system: "INSTRUCTIONS. Answer from the record.",
   index: "THE INDEX.\n" + SUBJECTS.map(([n, subject]) =>
     `[[tx-2026-${n}]] ${subject}. decided.`).join("\n"),
@@ -434,6 +438,44 @@ ok("the sentence about a decision that was not sent is withheld",
   out.body.withheld === true && out.body.reason === "numeral", JSON.stringify(out.body));
 ok("...and the answer stops there rather than being quietly repaired",
   !out.body.text.includes("8333"), JSON.stringify(out.body.text));
+
+head("R2. the counters land where /_config looks, called the way the worker calls it");
+// THE BUG THIS PINS SHIPPED AND RAN FOR NINE QUESTIONS. worker.js calls answerStream(turns,
+// env) with no third argument, and usageKey had no fallback for that, so every real request
+// wrote to `use:tx:undefin` while /_config read `use:tx:2026-08` and truthfully said zero.
+//
+// The old test called recordUsage with an explicit timestamp. It exercised the function and
+// never the CALL SITE, which is the only place the argument was missing. So this one omits
+// `now` exactly as the worker does, and reads the counter back through usageOf the way
+// /_config does, with no shared timestamp to paper over a mismatch.
+const liveStore = new Map();
+const LIVE_KV = { get: async (k) => liveStore.get(k) ?? null,
+                  put: async (k, v) => { liveStore.set(k, v); } };
+{
+  const realFetch2 = globalThis.fetch;
+  globalThis.fetch = async (url, init) => {
+    const u = String(url);
+    if (u.endsWith("/pack.json")) return { ok: true, json: async () => FAKE };
+    if (u.endsWith("/corpus.json")) return { ok: true, json: async () => FAKE_CORPUS };
+    return { ok: true, json: async () => ({
+      content: [{ type: "text", text: "The record holds 12 decisions." }],
+      usage: { input_tokens: 900, cache_read_input_tokens: 400,
+               cache_creation_input_tokens: 0, output_tokens: 30 },
+    }) };
+  };
+  // No third argument. This is the line worker.js runs.
+  await answerWhole([{ role: "user", content: "evaporative cooling" }],
+                    { ...ENV, ASK_KV: LIVE_KV });
+  globalThis.fetch = realFetch2;
+}
+const liveUsage = await usageOf({ ASK_KV: LIVE_KV }, new Date().toISOString());
+ok("a request with no pinned clock still counts",
+  liveUsage.calls === 1, JSON.stringify(liveUsage));
+ok("...and its tokens are readable, not stranded under another key",
+  liveUsage.input === 900 && liveUsage.cache_read === 400, JSON.stringify(liveUsage));
+ok("...and no key anywhere is built on an undefined",
+  ![...liveStore.keys()].some((k) => k.includes("undefin")),
+  [...liveStore.keys()].join(", "));
 
 head("S. the file that actually gets deployed is the one the tests ran against");
 // bundled.js is pasted into a dashboard by hand. Nothing else compares it to the modules, so a
