@@ -49,6 +49,13 @@ const doss = JSON.parse(fs.readFileSync("ledger/facilities/dossiers.json", "utf8
 const have = new Set(doss.map((d) => d.name));
 const EXPECT = reg.filter((r) => have.has(r.name)).length;
 
+// WHERE THE ROSTER LIVES. The certified roster sat on /grid/ until the data centers tab took
+// it, and this suite kept three copies of that path: the page it opens, the base it resolves
+// hrefs against, and the phone block. The first would have gone red and the other two would
+// have kept passing against a page with no roster on it, which is a suite disagreeing with
+// itself. One name, used three times.
+const ROSTER = "/datacenters/";
+
 const browser = await chromium.launch(LAUNCH);
 
 // ---------------------------------------------------------------- the page, with no script
@@ -69,7 +76,7 @@ const browser = await chromium.launch(LAUNCH);
   const p = await browser.newPage({ viewport: { width: 1280, height: 900 } });
   const errs = [];
   p.on("pageerror", (e) => errs.push(String(e)));
-  await p.goto(`${ORIGIN}/grid/`, { waitUntil: "domcontentloaded" });
+  await p.goto(`${ORIGIN}${ROSTER}`, { waitUntil: "domcontentloaded" });
   const n = await p.$$eval("a.dosslink", (a) => a.length);
   ok("every registry row with a dossier is a link", n === EXPECT, `${n} of ${EXPECT}`);
 
@@ -77,7 +84,7 @@ const browser = await chromium.launch(LAUNCH);
   const hrefs = await p.$$eval("a.dosslink", (a) => [...new Set(a.map((x) => x.getAttribute("href")))]);
   let dead = [];
   for (const h of hrefs) {
-    const res = await p.request.get(new URL(h, `${ORIGIN}/grid/`).href);
+    const res = await p.request.get(new URL(h, `${ORIGIN}${ROSTER}`).href);
     if (!res.ok()) dead.push(h);
   }
   ok("every dossier link resolves", dead.length === 0, dead.join(", "));
@@ -119,7 +126,7 @@ const browser = await chromium.launch(LAUNCH);
 // ---------------------------------------------------------------- the phone
 {
   const p = await browser.newPage({ viewport: { width: 390, height: 780 }, isMobile: true, hasTouch: true });
-  await p.goto(`${ORIGIN}/grid/`, { waitUntil: "domcontentloaded" });
+  await p.goto(`${ORIGIN}${ROSTER}`, { waitUntil: "domcontentloaded" });
   await p.click("a.dosslink");
   await p.waitForFunction(() => document.getElementById("dossdlg")?.open, null, { timeout: 8000 }).catch(() => {});
   const m = await p.evaluate(() => {
