@@ -3865,8 +3865,14 @@ def ask_box(items: list, today: str, base: str = "") -> str:
     # above, at 106 characters each, and shipping them twice would put 20,000 bytes on every
     # page to say what is already there. The renderer falls back to the index for anything this
     # map does not carry, which is exactly the decisions.
-    cites = {k: v for k, v in ask_pack.build(today)["cites"].items()
-             if not k.startswith("tx-")}
+    # WHICH COUNTIES HAVE A PAGE COMES FROM THE FUNCTION THAT MAKES THEM, not from counting
+    # what is on disk. Listing docs/place/ gave a different answer depending on whether the
+    # build was writing into docs/, which it wipes first, or into a temp directory, which
+    # leaves the committed site standing. Same commit, two different sites, and site_fresh
+    # _check went red on main.
+    cites = {k: v for k, v in ask_pack.cite_map(
+        today, places={pl["id"] for pl in all_places(items, today)}).items()
+        if not k.startswith("tx-")}
     starters = [c["q"] for c in cat if c["route"]["view"] in ("open_now", "counts")][:1] + \
                [c["q"] for c in cat if c["route"]["view"] == "by_metro"][:1] + \
                [c["q"] for c in cat if c["route"]["view"] == "by_topic"][:1]
