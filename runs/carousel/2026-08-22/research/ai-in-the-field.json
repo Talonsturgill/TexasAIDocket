@@ -1,0 +1,266 @@
+{
+ "beat": "ai-in-the-field",
+ "run_date": "2026-08-22",
+ "findings": [
+  {
+   "headline": "USDA has flown more than 1,000 drone surveillance flights over Texas livestock and wildlife since June 3rd, and signed an agreement this month to add AI and CBP aircraft to the screwworm hunt.",
+   "what_happened": "USDA's Animal and Plant Health Inspection Service says that since the first US New World screwworm case was confirmed in a Zavala County calf on June 3rd, 2026, it has run over 1,000 drone surveillance flights in Texas and watched footage from over 130 trail cameras, working with the Texas Parks and Wildlife Department. On August 11th Agriculture Secretary Brooke Rollins announced a memorandum of understanding with the Department of Homeland Security at Moore Air Base in the Rio Grande Valley that puts DHS unmanned aircraft and artificial intelligence into the detection effort. The drones carry thermal sensors and the AI is used to pick the one animal in a herd running a fever, because a screwworm infestation raises body temperature.",
+   "why_it_matters": "A rancher in an infested zone can no longer move a warm-blooded animal off the place without state authorization, so whether a fever shows up on a drone camera before it shows up in a pen is now a business fact and not a technology demonstration.",
+   "entities": [
+    "U.S. Department of Agriculture",
+    "Animal and Plant Health Inspection Service",
+    "U.S. Department of Homeland Security",
+    "U.S. Customs and Border Protection",
+    "Texas Animal Health Commission",
+    "Texas Parks and Wildlife Department",
+    "Brooke L. Rollins",
+    "Rodney Scott"
+   ],
+   "counties": [
+    "Zavala",
+    "Hidalgo",
+    "Bandera",
+    "Brewster",
+    "Coke",
+    "Crockett",
+    "Edwards",
+    "Gillespie",
+    "Jim Hogg",
+    "Kerr",
+    "Kimble",
+    "La Salle",
+    "Medina",
+    "Pecos",
+    "Presidio",
+    "Schleicher",
+    "Starr",
+    "Sutton",
+    "Terrell",
+    "Tom Green",
+    "Uvalde",
+    "Val Verde",
+    "Webb",
+    "Zapata"
+   ],
+   "statewide": true,
+   "decider": "U.S. Department of Agriculture, Animal and Plant Health Inspection Service, with the Texas Animal Health Commission setting the Texas movement restrictions",
+   "event_date": "2026-08-11",
+   "key_date": "2026-08-16",
+   "confidence": "high",
+   "is_docket_candidate": true,
+   "sources": [
+    {
+     "url": "https://www.aphis.usda.gov/animals/animal-health/livestock-and-poultry-disease/stop-screwworm/usda-continues-lead-aggressive",
+     "publisher": "aphis.usda.gov",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "Since June 3, 2026, USDA has conducted over 1,000 drone surveillance flights in Texas, observing over 20,000 animals, and has monitored footage from over 130 trail cameras in Texas, observing nearly 17,000 animals.",
+     "supports": "The scale of the aerial and camera surveillance operation in Texas and its start date. Page last modified July 31, 2026."
+    },
+    {
+     "url": "https://www.aphis.usda.gov/animals/animal-health/livestock-and-poultry-disease/stop-screwworm/usda-continues-lead-aggressive",
+     "publisher": "aphis.usda.gov",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "Since July 2025, USDA has been actively monitoring more than 100 NWS-specific traps and more than 8,000 insect traps across Texas, Arizona, New Mexico, and California.",
+     "supports": "The ground trapping network the drone program sits on top of."
+    },
+    {
+     "url": "https://www.tahc.texas.gov/emergency/nws.html",
+     "publisher": "tahc.texas.gov",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "All warm-blooded animals in an Infested Zone may not move out of the zone without prior authorization from the Texas Animal Health Commission (TAHC).",
+     "supports": "The concrete consequence for a Texas landowner inside a zone, which is what makes the detection question a live one."
+    },
+    {
+     "url": "https://www.tahc.texas.gov/emergency/nws.html",
+     "publisher": "tahc.texas.gov",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "Total Texas counties with cases: 16 Total Texas premises with cases: 36",
+     "supports": "The honest counter-image. The surveillance has scaled and the case count has not gone to zero. TAHC's most recent Executive Director Order on the page is dated August 16, 2026 for Crockett, Sutton and Val Verde Counties."
+    },
+    {
+     "url": "https://texasborderbusiness.com/usda-and-dhs-sign-agreement-to-strengthen-u-s-response-to-new-world-screwworm/",
+     "publisher": "texasborderbusiness.com",
+     "source_type": "journalism",
+     "fetched": true,
+     "quote": "The agencies will use technologies including artificial intelligence and unmanned aircraft systems to improve screening, detection and interdiction at and between ports of entry and within border enforcement zones.",
+     "supports": "That the August 11th USDA and DHS memorandum of understanding explicitly commits to artificial intelligence and unmanned aircraft. This outlet reproduces the USDA release text, which usda.gov itself would not serve."
+    },
+    {
+     "url": "https://www.krgv.com/news/federal-officials-launch-ai-equipped-drones-to-detect-screwworm-in-south-texas-livestock/",
+     "publisher": "krgv.com",
+     "source_type": "journalism",
+     "fetched": true,
+     "quote": "If the drones are seeing a herd of white-tailed deer, they can spot the deer, and then that technology can zero in on it if there is one or two that have a higher temperature than the others, there is a good chance they have a New World screwworm.",
+     "supports": "Rollins describing what the AI actually does on the imagery. KRGV dates its story Monday, August 10, 2026."
+    },
+    {
+     "url": "https://dronelife.com/2026/08/11/drone-screwworm-surveillance-texas/",
+     "publisher": "dronelife.com",
+     "source_type": "journalism",
+     "fetched": true,
+     "quote": "APHIS describes drones as a 'force multiplier.' They allow teams to cover large ranches, rugged terrain, brush country and wildlife habitat faster and more safely than ground teams alone.",
+     "supports": "How the flights are actually run, including a documented June 18 operation near Junction using forward-looking infrared shortly after sunrise."
+    }
+   ],
+   "unverified": [
+    "The exact day of the Moore Air Base announcement. KRGV publishes it as Monday, August 10, 2026, the USDA release URL is dated 2026/08/11, and the APHIS agency-announcement page opens with the word Yesterday. The MOU itself was not fetched.",
+    "usda.gov returned HTTP 403 on two attempts, so the full official release text was read only through the aphis.usda.gov summary and the Texas Border Business reproduction.",
+    "No source states how many DHS drones are assigned, how many infested animals the AI has actually flagged, or a false positive rate. A secondary report cites at least 200 DHS drones and that figure was NOT confirmed.",
+    "The APHIS confirmed-detections page is an embedded dashboard and returned no case table to the fetch."
+   ]
+  },
+  {
+   "headline": "TxDOT is running four miles of SH 130 near Pflugerville on AI-processed camera and sensor feeds, and says AI is now embedded in its everyday operations.",
+   "what_happened": "TxDOT and Cavnue put an integrated sensor platform on more than four miles of SH 130 between Pflugerville Parkway and Cameron Road, feeding AI-processed camera and sensor data to the Austin District Traffic Management Center so operators see crashes, stalled vehicles and debris as they happen rather than after a call comes in. In a February 18th, 2026 update to its AI Strategic Plan, TxDOT Executive Director Marc Williams said AI has moved out of the pilot stage at the agency, and the plan requires a human to review AI-assisted work.",
+   "why_it_matters": "A driver stalled on SH 130 is now spotted by a camera that decides something is wrong, which changes how fast a TxDOT truck rolls, and TxDOT says a person still signs off on every AI-assisted output.",
+   "entities": [
+    "Texas Department of Transportation",
+    "Cavnue",
+    "Marc Williams",
+    "Anh Selissen",
+    "Mike Arellano"
+   ],
+   "counties": [
+    "Travis"
+   ],
+   "statewide": false,
+   "decider": "Texas Department of Transportation",
+   "event_date": null,
+   "key_date": null,
+   "confidence": "medium",
+   "is_docket_candidate": false,
+   "sources": [
+    {
+     "url": "https://www.txdot.gov/about/newsroom/local/austin/txdot-launches-operations-of-sh130-smart-corridor.html",
+     "publisher": "txdot.gov",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "Starting at the intersection of SH 130 and Pflugerville Parkway and extending south toward Cameron Road, the corridor is equipped with an integrated sensor platform, including cameras, LTE antennas, fiber-optic connectivity, and AI-powered processing, all working together to give transportation operators a clearer, instantaneous, more complete picture of what is happening on the roadway.",
+     "supports": "What is physically installed and where."
+    },
+    {
+     "url": "https://www.txdot.gov/about/newsroom/stories/txdot-updates-ai-strategic-plan.html",
+     "publisher": "txdot.gov",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "AI is no longer experimental at TxDOT. It is a strategic asset that is now embedded in our workflows and delivering measurable results.",
+     "supports": "TxDOT Executive Director Marc Williams's own characterisation, in a February 18, 2026 update."
+    },
+    {
+     "url": "https://www.txdot.gov/about/newsroom/stories/txdot-updates-ai-strategic-plan.html",
+     "publisher": "txdot.gov",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "Human professionals remain accountable for all final decisions and outputs. Mandatory human-in-the-loop review is required for AI-assisted work.",
+     "supports": "The stated governance limit, the honest half of the same page."
+    },
+    {
+     "url": "https://www.route-fifty.com/artificial-intelligence/2026/08/how-texas-transportation-department-has-embraced-ai/415223/",
+     "publisher": "route-fifty.com",
+     "source_type": "journalism",
+     "fetched": true,
+     "quote": "We can get real-time information on the quality of those video cameras, so that at all times our infrastructure is in a good place.",
+     "supports": "TxDOT CIO Anh Selissen on AI checking the state's camera infrastructure, published August 5, 2026."
+    }
+   ],
+   "unverified": [
+    "The TxDOT SH 130 press release carries NO publication date on the page. Secondary coverage places the launch around May 20, 2026 and that date is not confirmed.",
+    "The widely reported figures of 33 poles, 66 sensors and a $6 million cost come from news coverage and do NOT appear in the fetched TxDOT release.",
+    "TxDOT claims measurable results and publishes no metric for the incident detection system. No before and after detection time has been verified."
+   ]
+  },
+  {
+   "headline": "A Texas A&M drone lab is mapping invasive plants inches tall across hundreds of acres in an hour and using AI to identify them for ranchers and agencies.",
+   "what_happened": "The Landscape Ecology and Drones Lab in the Texas A&M Department of Rangeland, Wildlife and Fisheries Management flies drones with remote sensors and hyperspectral imaging over Texas rangeland for ranchers, nonprofits and state and federal agencies, turning the imagery into maps of grazing impact, wildlife habitat, soil health and vegetation. One of its lines of work is identifying, treating and controlling invasive species across large areas using artificial intelligence.",
+   "why_it_matters": "Invasive brush and weeds are a cost a Texas rancher pays in forage, and a map of where they actually are is the difference between spraying a pasture and spraying a patch.",
+   "entities": [
+    "Texas A&M AgriLife Research",
+    "Landscape Ecology and Drones Lab",
+    "Texas A&M Department of Rangeland, Wildlife and Fisheries Management",
+    "Humberto Perotto"
+   ],
+   "counties": [
+    "Brazos"
+   ],
+   "statewide": true,
+   "decider": null,
+   "event_date": "2026-07-09",
+   "key_date": null,
+   "confidence": "medium",
+   "is_docket_candidate": false,
+   "sources": [
+    {
+     "url": "https://agrilifetoday.tamu.edu/2026/07/09/drone-on-the-range-improving-land-stewardship-with-spatial-technologies/",
+     "publisher": "agrilifetoday.tamu.edu",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "Imagine the ability to collect a comprehensive, geolocated map of invasive plants that stand only inches tall across hundreds of acres in a single hour.",
+     "supports": "The scale and resolution claim, in the institution's own words."
+    },
+    {
+     "url": "https://agrilifetoday.tamu.edu/2026/07/09/drone-on-the-range-improving-land-stewardship-with-spatial-technologies/",
+     "publisher": "agrilifetoday.tamu.edu",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "Yet another undertaking is the identification, treatment and control of invasive species across expansive swaths of land using artificial intelligence.",
+     "supports": "That AI is the identification layer, not just the drone."
+    }
+   ],
+   "unverified": [
+    "No acreage actually mapped, no number of ranches served, no accuracy figure. The article publishes capabilities rather than measured outcomes.",
+    "Which counties or ranches the lab has flown was not stated."
+   ]
+  },
+  {
+   "headline": "Texas A&M AgriLife published a machine learning model that forecasts western flower thrips in Panhandle tomato and pepper trials.",
+   "what_happened": "AgriLife Research entomologist Kiran Gadhave and colleagues built a model that combines 16 environmental variables with sticky trap counts from nearly 1,700 traps to forecast western flower thrips pressure, work carried out at the High Plains Research and Extension Center in Canyon and the research station at Bushland. The findings were published in the journal Ecological Informatics. Nothing in the article says a producer is running it on a commercial crop.",
+   "why_it_matters": "Thrips carry virus into tomato and pepper, and a week of warning is the difference between a spray that works and one that is too late, but this is still a paper and not a tool on a Panhandle grower's phone.",
+   "entities": [
+    "Texas A&M AgriLife Research",
+    "Kiran Gadhave",
+    "Texas A&M AgriLife Research and Extension Center at Canyon",
+    "Ecological Informatics"
+   ],
+   "counties": [
+    "Randall",
+    "Potter"
+   ],
+   "statewide": false,
+   "decider": null,
+   "event_date": "2026-04-30",
+   "key_date": null,
+   "confidence": "low",
+   "is_docket_candidate": false,
+   "sources": [
+    {
+     "url": "https://agrilifetoday.tamu.edu/2026/04/30/ai-powered-forecasts-sharpen-early-warning-for-destructive-crop-pest/",
+     "publisher": "agrilifetoday.tamu.edu",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "If we can see pest risk building even a week earlier, that changes everything",
+     "supports": "Gadhave on what the forecast is for."
+    }
+   ],
+   "unverified": [
+    "The accuracy figures of nearly 88 percent in open field and about 85 percent in high tunnels were returned by the fetch as SUMMARY, not as a copied sentence. Re-fetch and copy verbatim before publishing either number.",
+    "Whether any Texas producer is using this model operationally. No evidence that one is.",
+    "Bushland straddles Potter and Randall Counties and the article does not say which site sits where. County assignment is INFERENCE."
+   ]
+  }
+ ],
+ "source_notes": [
+  "usda.gov returned HTTP 403 Forbidden on two consecutive fetches of the August 11, 2026 Rollins press release. The aphis.usda.gov mirror served only a headline plus one paragraph with a Read More link. Texas Border Business carries what appears to be the full release text and was used instead.",
+  "texastribune.org returned HTTP 403 on two consecutive fetches. This matches the documented 402/403 on bot user agents, and the scout's WebFetch offers NO user agent override, so the Texas oilfield wastewater AI lead could not be verified this run. NOTE: curl with a browser UA does work on this host.",
+  "techdirt.com returned HTTP 403 on the August 17, 2026 screwworm surveillance critique, so the civil liberties counter-image on the drone program is unverified.",
+  "kxan.com returned HTTP 403 with Retry-After: 0.",
+  "investor.ovintiv.com returned HTTP 403, so the reported greater than 10 percent Permian oil productivity per foot improvement attributed to AI could not be traced to a primary and is NOT carried in any finding.",
+  "https://www.aphis.usda.gov/livestock-poultry-disease/cattle/nws returned HTTP 404. The working path is /animals/animal-health/livestock-and-poultry-disease/stop-screwworm/ .",
+  "The APHIS Confirmed Detections page is a live embedded dashboard. A fetch returns the explanatory shell and no case rows, so per-county case data has to come from tahc.texas.gov instead.",
+  "The TxDOT SH 130 Smart Corridor press release carries no visible publication date, a recurring problem with txdot.gov district newsroom pages.",
+  "Laredo's Multi-Energy Portal turned out to be a 2024 deployment. Foxconn's Houston humanoid robots trace to an October 2025 announcement. Neither is new."
+ ]
+}

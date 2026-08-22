@@ -1,0 +1,266 @@
+{
+ "beat": "policy-and-money",
+ "run_date": "2026-08-22",
+ "findings": [
+  {
+   "headline": "Brazos County commissioners transferred the tax abatement on the $700 million RELLIS data center to a new company after the original developer went bankrupt.",
+   "what_happened": "The Commissioners Court of Brazos County posted a Texas Tax Code Section 312.207 notice on July 17th that it would consider assigning the tax abatement agreement for the RELLIS Campus data and research center from RELLIS Campus Data and Research Center, LLC to ThisWay, Global, Inc. The court took the item up at its regular meeting at 10:00 a.m. on August 18th and approved the assignment 4-0 with one commissioner absent. The land sits on a 25 acre tract in RELLIS Reinvestment Zone No. 2 owned by The Texas A&M University System, which is currently non taxable.",
+   "why_it_matters": "A data center on university land pays no property tax until an abatement agreement puts it on the rolls, so who holds the agreement decides whether Brazos County collects anything from a $700,000,000 build.",
+   "entities": [
+    "Brazos County Commissioners Court",
+    "ThisWay, Global, Inc.",
+    "RELLIS Campus Data and Research Center, LLC",
+    "The Texas A&M University System",
+    "City of Bryan"
+   ],
+   "counties": [
+    "Brazos"
+   ],
+   "statewide": false,
+   "decider": "Commissioners Court of Brazos County",
+   "event_date": "2026-08-18",
+   "key_date": "2026-08-18",
+   "comment_close_date": null,
+   "confidence": "high",
+   "is_docket_candidate": true,
+   "sources": [
+    {
+     "url": "https://www.brazoscountytx.gov/m/newsflash/Home/Detail/388",
+     "publisher": "brazoscountytx.gov",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "The Commissioners Court of Brazos County will consider the approval of an amendment concerning an assignment of a tax abatement agreement entered into with RELLIS Campus Data and Research Center, LLC, originally approved on April 29, 2025, (the \"Tax Abatement Agreement\"), at a Regular Meeting of the Commissioners Court scheduled at 10:00 a.m. on August 18th, 2026, in the Commissioners Courtroom of the Brazos County Administration Building, 200 S. Texas Avenue, Suite 106, Bryan, Texas 77803.",
+     "supports": "The county itself noticed the date, the body, and that an assignment of a data center tax abatement was on the agenda."
+    },
+    {
+     "url": "https://www.brazoscountytx.gov/m/newsflash/Home/Detail/388",
+     "publisher": "brazoscountytx.gov",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "Estimated cost of improvements and tangible personal property is at minimum approximately $700,000,000 which will include real property improvements, new tangible personal property, machinery, and equipment.",
+     "supports": "The dollar figure, stated by the county in its own statutory notice."
+    },
+    {
+     "url": "https://www.brazoscountytx.gov/m/newsflash/Home/Detail/388",
+     "publisher": "brazoscountytx.gov",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "The name of the pending assignee of RELLIS Campus Data and Research Center, LLC's rights, responsibilities, obligations, liabilities, and interest in the Tax Abatement Agreement is ThisWay, Global, Inc.",
+     "supports": "Names the assignee."
+    },
+    {
+     "url": "https://www.kbtx.com/2026/08/18/brazos-county-commissioners-approve-new-owner-rellis-data-center-heres-what-it-means-your-wallet/",
+     "publisher": "kbtx.com",
+     "source_type": "journalism",
+     "fetched": true,
+     "quote": "On Tuesday, Brazos County commissioners approved transferring the tax abatement agreement tied to the $700 million data center project to a new company, ThisWay Global, Inc. The vote passed 4-0, with one commissioner absent.",
+     "supports": "The outcome and the vote count, which the county's own minutes do not yet publish."
+    }
+   ]
+  },
+  {
+   "headline": "The Texas House State Affairs Committee held an interim hearing on data center development and SB 6 implementation.",
+   "what_happened": "The House Committee on State Affairs, chaired by Rep. Ken King, met at 8:00 AM on Wednesday, August 19th in room JHR 140. Its posted charges were data center development in Texas and the regulatory and planning processes for the proposed 765-kV transmission lines. The data center charge names SB 6 and the Large Load Batch Study Process proposed by ERCOT by name.",
+   "why_it_matters": "This is the committee that writes the state's answer to the local data center fights, and its posted charge asks how to streamline regulation while still letting communities manage growth.",
+   "entities": [
+    "Texas House Committee on State Affairs",
+    "Ken King",
+    "Electric Reliability Council of Texas"
+   ],
+   "counties": [],
+   "statewide": true,
+   "decider": "Texas House Committee on State Affairs",
+   "event_date": "2026-08-19",
+   "key_date": "2026-08-19",
+   "comment_close_date": null,
+   "confidence": "high",
+   "is_docket_candidate": true,
+   "sources": [
+    {
+     "url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C4502026081908001.HTM",
+     "publisher": "capitol.texas.gov",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "Data Centers: Study the development of data centers in Texas, including its importance to global competitiveness and national security. Evaluate the direct and indirect economic growth potential fostered by in-state data center development, including growth multiplier effects and economic diversification. Identify existing secondary and post-secondary education and training opportunities and recommend pathways to satisfy increasing labor demands. Review the existing regulatory framework governing data center development and recommend proposals to streamline regulations while enabling communities to plan and manage growth responsibly. Study the implementation of SB 6 and the Large Load Batch Study Process proposed by the Electric Reliability Council of Texas, as it relates to data centers, and identify how grid-connected data center facilities and co-located resources can support grid resilience and reliability.",
+     "supports": "The full posted interim charge, verbatim from the official hearing notice."
+    },
+    {
+     "url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C4502026081908001.HTM",
+     "publisher": "capitol.texas.gov",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "765-kV Transmission Lines: Review the regulatory and planning processes regarding the proposed 765-kV transmission lines.",
+     "supports": "The second charge on the same notice."
+    }
+   ]
+  },
+  {
+   "headline": "A Texas House committee posted an interim charge to study using artificial intelligence to detect fraud, waste and abuse of taxpayer money.",
+   "what_happened": "The House Committee on Delivery of Government Efficiency, chaired by Rep. Giovanni Capriglione, met at 9:00 AM on Wednesday, August 19th in room E2.012. Its posted charges include studying how the state can use technology including artificial intelligence to detect fraud, and studying whether the Texas Data Privacy and Security Act adequately protects Texans. The same notice covers oversight of the Department of Information Resources and monitoring HB 150, which established the Texas Cyber Command.",
+   "why_it_matters": "This is state government proposing to point AI at its own spending, and the same committee is judging whether the state's data privacy law protects the people whose records would be scanned.",
+   "entities": [
+    "Texas House Committee on Delivery of Government Efficiency",
+    "Giovanni Capriglione",
+    "Texas Department of Information Resources",
+    "Texas Cyber Command",
+    "Texas Space Commission"
+   ],
+   "counties": [],
+   "statewide": true,
+   "decider": "Texas House Committee on Delivery of Government Efficiency",
+   "event_date": "2026-08-19",
+   "key_date": "2026-08-19",
+   "comment_close_date": null,
+   "confidence": "high",
+   "is_docket_candidate": true,
+   "sources": [
+    {
+     "url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C2332026081909001.HTM",
+     "publisher": "capitol.texas.gov",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "Preventing Fraud, Waste, and Abuse: Study methods by which the state can leverage technology, including artificial intelligence, to detect fraud, waste, and abuse of taxpayer resources.",
+     "supports": "The AI charge, verbatim from the official notice."
+    },
+    {
+     "url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C2332026081909001.HTM",
+     "publisher": "capitol.texas.gov",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "Data Privacy and Security: Study the implementation and effectiveness of the Texas Data Privacy and Security Act to determine whether the law provides adequate protection for Texas residents and businesses.",
+     "supports": "The counter-image charge on the same notice."
+    },
+    {
+     "url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C2332026081909001.HTM",
+     "publisher": "capitol.texas.gov",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "HB 150, relating to the establishment of the Texas Cyber Command and the transfer to it of certain powers and duties of the Department of Information Resources;",
+     "supports": "The committee is also monitoring the transfer of duties away from DIR, the agency that runs state AI procurement."
+    }
+   ]
+  },
+  {
+   "headline": "The Texas House Public Health Committee held an interim hearing on artificial intelligence in health care and on AI's effect on minors.",
+   "what_happened": "The House Committee on Public Health, chaired by Rep. Gary VanDeaver, met at 9:00 AM on Thursday, August 20th in room E2.030. Two of its four posted charges concern AI directly. One studies AI in the health care system for access, quality and efficiency while evaluating risks to patient safety, privacy and access to care. The other studies the impact of social media platforms and artificial intelligence technologies on the mental health, cognitive development and behavioral well being of minors in Texas.",
+   "why_it_matters": "The committee that writes Texas health law is now weighing AI in the exam room and AI in a teenager's phone in the same three hour sitting.",
+   "entities": [
+    "Texas House Committee on Public Health",
+    "Gary VanDeaver"
+   ],
+   "counties": [],
+   "statewide": true,
+   "decider": "Texas House Committee on Public Health",
+   "event_date": "2026-08-20",
+   "key_date": "2026-08-20",
+   "comment_close_date": null,
+   "confidence": "high",
+   "is_docket_candidate": true,
+   "sources": [
+    {
+     "url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C4102026082009001.HTM",
+     "publisher": "capitol.texas.gov",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "Artificial Intelligence Use in Health Care: Study the use of artificial intelligence in the health care system to improve access, quality, and efficiency of care, while evaluating potential risks to patient safety, privacy, and access to care for Texans.",
+     "supports": "The AI in health care charge, verbatim from the official notice."
+    },
+    {
+     "url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C4102026082009001.HTM",
+     "publisher": "capitol.texas.gov",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "Social Media's Impact on Youth Health and Well-Being: Study the impact of social media platforms and artificial intelligence technologies on the mental health, cognitive development, and behavioral well-being of minors in Texas.",
+     "supports": "The second AI charge on the same notice."
+    }
+   ]
+  },
+  {
+   "headline": "Denton City Council put a data center moratorium resolution and a schedule of required public hearings on its August 18th agenda.",
+   "what_happened": "Item ID 26-1287 on the Denton City Council agenda for August 18th asked the council to approve a resolution on a moratorium on accepting, processing and approving data center development applications inside the city limits, and to approve a schedule for the required notice and public hearings. The file was created on August 6th and the city's Legistar record shows no final action recorded yet.",
+   "why_it_matters": "Denton runs its own municipal electric utility, so a moratorium here is a city deciding whether to stop taking applications for loads it would have to serve itself.",
+   "entities": [
+    "Denton City Council",
+    "City of Denton",
+    "Denton Municipal Electric"
+   ],
+   "counties": [
+    "Denton"
+   ],
+   "statewide": false,
+   "decider": "Denton City Council",
+   "event_date": "2026-08-18",
+   "key_date": "2026-09-22",
+   "comment_close_date": null,
+   "confidence": "medium",
+   "is_docket_candidate": true,
+   "sources": [
+    {
+     "url": "https://denton-tx.legistar.com/LegislationDetail.aspx?ID=8169473&GUID=01691CB0-D683-4CB1-BBE2-9D9452063A32",
+     "publisher": "denton-tx.legistar.com",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "Consider approval of a resolution of the City of Denton regarding a moratorium on the acceptance, processing, and approval of applications for the development of data centers within the corporate limits of the City of Denton and approving a schedule for required notice and public hearings for such moratorium; providing for severability; and providing an effective date.",
+     "supports": "The exact text of the agenda item, from the city's own legislative record."
+    },
+    {
+     "url": "https://denton-tx.legistar.com/MeetingDetail.aspx?ID=1356104&GUID=2C80918D-F58E-4522-A845-6B78CAC3DB44",
+     "publisher": "denton-tx.legistar.com",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "Please note: this meeting's minutes have not been finalized yet. Actions taken on legislation and their results are not available.",
+     "supports": "The city has not yet published the outcome of the August 18th vote, which is why this finding's outcome is unverified."
+    },
+    {
+     "url": "https://communityimpact.com/denton/government/denton-officials-to-vote-on-public-hearings-for-data-center-moratorium-development-code-updates/",
+     "publisher": "communityimpact.com",
+     "source_type": "journalism",
+     "fetched": true,
+     "quote": "If passed, public hearings could occur as early as Sept. 22 and Oct. 27 based on the moratorium process Rosendahl outlined.",
+     "supports": "The prospective hearing dates, reported before the vote and not yet confirmed by a city document."
+    }
+   ]
+  },
+  {
+   "headline": "Fort Worth City Council started a moratorium process on data centers and now requires applicants to prove PUCT and ERCOT grid approval.",
+   "what_happened": "On August 11th the Fort Worth City Council took three data center votes. It unanimously approved initiating a 90 day moratorium process, voted 10-1 to require data center applications to include proof that the Public Utility Commission of Texas and ERCOT have approved their grid connection, and voted 10-1 to create the Data Center and Infrastructure Committee.",
+   "why_it_matters": "A city is now making its own building permit conditional on a state grid approval it does not control, which puts a municipal permit downstream of an ERCOT queue.",
+   "entities": [
+    "Fort Worth City Council",
+    "Public Utility Commission of Texas",
+    "Electric Reliability Council of Texas"
+   ],
+   "counties": [
+    "Tarrant"
+   ],
+   "statewide": false,
+   "decider": "Fort Worth City Council",
+   "event_date": "2026-08-11",
+   "key_date": null,
+   "comment_close_date": null,
+   "confidence": "medium",
+   "is_docket_candidate": true,
+   "sources": [
+    {
+     "url": "https://www.keranews.org/news/2026-08-12/data-center-moratorium-takes-first-steps-after-fort-worth-city-councils-unanimous-vote",
+     "publisher": "keranews.org",
+     "source_type": "journalism",
+     "fetched": true,
+     "quote": "Data center applications will have to include proof that the Public Utility Commission of Texas and the Electric Reliability Council of Texas have approved their connection to the state's electric grid.",
+     "supports": "The substance of the ordinance adopted August 11th."
+    }
+   ]
+  }
+ ],
+ "source_notes": [
+  "texasattorneygeneral.gov and oag.state.tx.us returned HTTP 402 Payment Required on every attempt through the agent proxy, on /news/releases, /pending-requests-opinions, /opinions/requests and the Consumer AI Rights page. NO AG finding could be anchored this run.",
+  "fortworthtexas.gov returned HTTP 403 Forbidden on every path tried. The Fort Worth finding therefore rests on journalism only.",
+  "fortworthreport.org returned HTTP 403 Forbidden.",
+  "www.sos.state.tx.us/texreg/archive/<Month><D><YYYY>/ returns 403 when the path is GUESSED but 200 when the exact href is taken from /texreg/sos/index.html. The current issue landing page is /texreg/sos/index.html, not the archive path.",
+  "lrl.texas.gov/currentLegislation/interimHearings/ and lrl.texas.gov/legis/interimhearings/ both 404. The working index is lrl.texas.gov/whatsNew/client/index.cfm and it carried no disallow.",
+  "puc.texas.gov/agency/resources/pubs/agendas/ returned HTTP 503 Service Unavailable.",
+  "cityofftworth.legistar.com, fortworth.legistar.com, cityofdenton.legistar.com and denton.legistar.com all return the literal string 'Invalid parameters!'. The working Denton host is denton-tx.legistar.com.",
+  "Denton Legistar's MeetingDetail page links its LegislationDetail under the www.cityofdenton.com host, a different host from the one serving the page. The denton-tx.legistar.com form fetched cleanly.",
+  "The August 21, 2026 Texas Register, Volume 51 Number 34, contains NO proposed rule mentioning artificial intelligence. The two candidates checked, TEA 19 TAC 74.1025 and 74.1027 and TSLAC 13 TAC 2.60, 2.61, 6.7 and 6.98, are unrelated. TEA's comment window is stated as beginning August 21, 2026 and ending September 21, 2026."
+ ]
+}

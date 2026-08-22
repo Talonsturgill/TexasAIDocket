@@ -1,0 +1,79 @@
+{
+ "aggregates": [
+  {
+   "phrase": "34 filings",
+   "kind": "count",
+   "value": 34,
+   "quoted_from": "c7",
+   "quote": "34 filing(s).",
+   "computed_by": "quoted verbatim from the index header, not computed"
+  },
+  {
+   "phrase": "75 megawatts",
+   "kind": "count",
+   "value": 75,
+   "quoted_from": "c6",
+   "quote": "75 megawatts (MW)",
+   "computed_by": "quoted verbatim from the rule text, not computed"
+  },
+  {
+   "phrase": "10 rows",
+   "kind": "count",
+   "value": 10,
+   "computed_by": "the count of claims in out/2026-08-22/claims.json whose url is the interchange filing index, excluding c7 which quotes the index header rather than a row. Items 10, 25, 26, 28, 29, 30, 31, 32, 33 and 34",
+   "from_claims": [
+    "c8",
+    "c9",
+    "c10",
+    "c11",
+    "c12",
+    "c13",
+    "c14",
+    "c15",
+    "c17",
+    "c18"
+   ]
+  },
+  {
+   "phrase": "24 rows",
+   "kind": "count",
+   "value": 24,
+   "computed_by": "34 filings quoted in c7 minus the 10 index rows this deck quotes, both counted in code rather than typed",
+   "from_claims": [
+    "c7"
+   ]
+  },
+  {
+   "phrase": "2 rows",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "the count of the three commission rows shown on slide 7 whose quoted Filing Description names the comment deadline. c10 carries 'w/Sept. 4 Comment Deadline' and c9 carries 'Comment Deadline 09/04/2026'. c8 carries neither. Counted in code over the frame's own claims. The hook says 'here' because the deck quotes 10 of 34 index rows and has no standing to count over the index, which is what the earlier wording did",
+   "from_claims": [
+    "c8",
+    "c9",
+    "c10"
+   ]
+  },
+  {
+   "phrase": "2 filings",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "the count of the filings shown on slide 4 whose quoted file stamp is the same date. c15 carries 4/8/2026 and c17 carries 4/8/2026, so the count over this frame's own claims is 2. The hook says 'here' for the same reason slide 7's does. The deck quotes 10 of 34 index rows, so a bare 'two filed on the same day' would be a count over an index this deck has not read, which is the defect the slide 7 hook was repaired for",
+   "from_claims": [
+    "c15",
+    "c17"
+   ]
+  }
+ ],
+ "_undeclarable": [
+  {
+   "phrase": "13 days",
+   "value": 13,
+   "computed_by": "August has 31 days, so (31 minus 22) plus 4 gives the days from August 22nd, 2026 to the September 4th, 2026 close quoted in c2. Computed in slide 8's own script and written into the DOM, never typed. Both ends of the interval are printed on the frame so a reader can re-derive it.",
+   "from_claims": [
+    "c2"
+   ],
+   "why_it_is_here": "aggregate_check's detector does not recognise a count carried inside a sentence, so it refuses the declaration and instructs that it be removed rather than left. The derivation is kept here and in the run record so the figure is not untraceable, which is the law the gate exists to serve."
+  }
+ ]
+}

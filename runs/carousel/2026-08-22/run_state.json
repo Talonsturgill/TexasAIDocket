@@ -1,0 +1,31 @@
+{
+ "run_date": "2026-08-22",
+ "phases": {
+  "wake": "done",
+  "craft": "pending",
+  "sweep": "done",
+  "reverify": "done",
+  "discover": "done",
+  "admit": "done",
+  "claims": "done",
+  "instrument": "done",
+  "selection": "done",
+  "directors": "pending",
+  "copy": "pending",
+  "art": "pending",
+  "pixel": "pending",
+  "aggregate": "pending",
+  "assembly": "pending",
+  "scoring": "pending",
+  "ship": "pending",
+  "retro": "pending",
+  "email": "pending"
+ },
+ "artifacts": {
+  "worklist": "out/2026-08-22/tmp/worklist.json",
+  "scouts": "out/research/*.json",
+  "reverify_commit": "a9e64e46",
+  "claims": "out/2026-08-22/claims.json",
+  "story": "PUCT Project 58482, 16 TAC 25.521 Large Load Demand Management Service"
+ }
+}

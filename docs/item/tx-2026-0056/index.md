@@ -9,7 +9,7 @@ The Texas Water Development Board took up a petition for rulemaking on July 23rd
 - Public access: Public meeting
 - Take part: https://www.twdb.texas.gov/board/2026/07/board/index.asp
 
-- Last checked: 2026-08-19
+- Last checked: 2026-08-22
 
 ## Dates
 
@@ -21,6 +21,7 @@ The Texas Water Development Board took up a petition for rulemaking on July 23rd
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-08-19 · The petition is confirmed to have reached the board. The July 23rd agenda carries an item to consider acting on a petition for rulemaking on a dedicated industrial water use category for data centers and crypto mining operations. That agenda does not record how the board voted.
+- 2026-08-22 · Checked and unchanged. The July 23rd board agenda still carries the item to consider acting on a petition for rulemaking. The petition asks for a dedicated water use category for data centers, and no later board action on it appears.
 
 ## Evidence
 

@@ -1,0 +1,285 @@
+{
+ "beat": "community-signal",
+ "run_date": "2026-08-22",
+ "findings": [
+  {
+   "headline": "Fort Worth residents packed council chambers on August 11th and the council voted unanimously to start a 90-day data center moratorium",
+   "what_happened": "Fort Worth City Council took the first procedural step toward a 90-day moratorium on data center construction after a long public hearing in which most speakers backed the pause. Council also voted 10-1 to require developers to show PUCT and ERCOT grid approval in their applications, and 10-1 to create a Data Center and Infrastructure Committee. The pressure point is Black Mountain's proposed 530-acre project in southeast Fort Worth, which borders Weston Gardens.",
+   "why_it_matters": "The largest city yet to move on a data center pause did it in the county where a $10 billion project is already sited, so the fight is no longer only rural.",
+   "the_argument": "Nobody on this council would live 200 feet from one of these, so stop putting them next to the neighborhoods that have no say.",
+   "entities": [
+    "Fort Worth City Council",
+    "Black Mountain",
+    "Edged Data Centers",
+    "Weston Gardens",
+    "Data Center and Infrastructure Committee",
+    "2871 Coalition",
+    "Community Design Fort Worth"
+   ],
+   "counties": [
+    "Tarrant"
+   ],
+   "statewide": false,
+   "event_date": "2026-08-11",
+   "confidence": "high",
+   "is_docket_candidate": false,
+   "sole_sourcing_warning": "this beat is salience only",
+   "sources": [
+    {
+     "url": "https://www.keranews.org/news/2026-08-12/data-center-moratorium-takes-first-steps-after-fort-worth-city-councils-unanimous-vote",
+     "publisher": "keranews.org",
+     "source_type": "journalism",
+     "fetched": true,
+     "quote": "I don't think there's one person on this city council that would like to have this data center 200 feet from their home. So why impose it on other neighborhoods?",
+     "speaker": "Gary Hogan, a southwest Fort Worth resident",
+     "supports": "The proximity-and-fairness argument, from a named resident at the August 11th hearing."
+    },
+    {
+     "url": "https://www.keranews.org/news/2026-08-12/data-center-moratorium-takes-first-steps-after-fort-worth-city-councils-unanimous-vote",
+     "publisher": "keranews.org",
+     "source_type": "journalism",
+     "fetched": true,
+     "quote": "Last September 30th, y'all told me you would find a way to protect the gardens, and I am going to hold you to that. We need to listen and take it seriously.",
+     "speaker": "Sue Weston, owner of Weston Gardens",
+     "supports": "A named property owner holding the council to a prior promise."
+    },
+    {
+     "url": "https://www.peoplesworld.org/article/fort-worth-residents-tell-city-council-no-data-centers/",
+     "publisher": "peoplesworld.org",
+     "source_type": "journalism",
+     "fetched": true,
+     "quote": "Being a resident should be a requirement, not a preference...qualified residents cannot be found here.",
+     "speaker": "Nathan Chase, local activist",
+     "supports": "That the advisory committee's membership is itself contested by residents."
+    }
+   ]
+  },
+  {
+   "headline": "A Keller homeowners association got a Tarrant County judge to block Westlake's data center vote hours before the meeting",
+   "what_happened": "Two residents and The Lakes at Marshall Ridge Homeowners Association obtained a temporary restraining order from Judge Kimberly Fitzpatrick of the 342nd State District Court in Fort Worth, issued about an hour before the Westlake Town Council met on Monday, August 17th. The council then voted unanimously to delay its decision on a development agreement with PowerHouse Data Centers for the roughly 88-acre Circle T Data Center, which sits inside Westlake town limits about 500 feet from the backyards of Keller residents. A judge is set to decide on a temporary injunction after August 26th.",
+   "why_it_matters": "Residents who could not stop a by-right project through zoning went to district court instead, and it worked long enough to stop a vote.",
+   "the_argument": "The people who will hear it and see it live in the next town over, and the town approving it does not answer to them.",
+   "entities": [
+    "Westlake Town Council",
+    "The Lakes at Marshall Ridge Homeowners Association",
+    "PowerHouse Data Centers",
+    "Circle T Data Center",
+    "342nd State District Court",
+    "Keller City Council"
+   ],
+   "counties": [
+    "Tarrant",
+    "Denton"
+   ],
+   "statewide": false,
+   "event_date": "2026-08-17",
+   "confidence": "high",
+   "is_docket_candidate": false,
+   "sole_sourcing_warning": "this beat is salience only",
+   "sources": [
+    {
+     "url": "https://www.keranews.org/news/2026-08-18/westlake-data-center-agreement-temporarily-blocked-by-tarrant-county-court",
+     "publisher": "keranews.org",
+     "source_type": "journalism",
+     "fetched": true,
+     "quote": "After 33 years in uniform from '89 to the summer of 2022, I'd hope for a nice house for my family, and some peace finally, where I can just live the rest of my life quietly and this data center is not going to afford that.",
+     "speaker": "Kevin Myers, who identified himself as a disabled Army veteran",
+     "supports": "The quality-of-life argument in a named resident's own words at a public meeting."
+    },
+    {
+     "url": "https://www.keranews.org/news/2026-08-18/westlake-data-center-agreement-temporarily-blocked-by-tarrant-county-court",
+     "publisher": "keranews.org",
+     "source_type": "journalism",
+     "fetched": true,
+     "quote": "Unfortunately, the residents living near this proposed data center have not received, in my opinion, the transparency or consideration that they deserve.",
+     "speaker": "Keller City Council member Greg Will",
+     "supports": "One city's elected official testifying against a neighboring town's project."
+    },
+    {
+     "url": "https://www.cbsnews.com/texas/news/data-center-westlake-texas-keller-tarrant-county/",
+     "publisher": "cbsnews.com",
+     "source_type": "journalism",
+     "fetched": true,
+     "quote": "After reviewing the application, Town staff concluded that the site plan satisfied every applicable approval requirement and, in several areas, including architecture, setbacks, buffering, and landscaping, exceeded the Town's minimum standards.",
+     "speaker": "Town of Westlake statement",
+     "supports": "The honest counter-image, that by the town's own rules the project already cleared every standard."
+    }
+   ]
+  },
+  {
+   "headline": "A House State Affairs hearing on August 19th filled two overflow rooms with Texans asking for local control over data centers",
+   "what_happened": "The House Committee on State Affairs, chaired by Rep. Ken King, met at 8:00 AM on Wednesday, August 19, 2026 in JHR 140 to take invited and public testimony on the development of data centers in Texas and on the proposed 765-kV transmission lines. Public testimony was limited to two minutes per witness and registration closed at 10:00 AM. Rural residents, a county commissioner and a city council member told the committee that counties have no regulatory authority over unincorporated land and that the approval process happened in closed session.",
+   "why_it_matters": "This is the record that next year's bills will be drafted from, and the loudest recurring ask in it is county authority rather than a statewide ban.",
+   "the_argument": "We found out too late, in executive session, and the county that could have said something has no power to say it.",
+   "entities": [
+    "Texas House Committee on State Affairs",
+    "Ken King",
+    "Leon County Commissioners Court",
+    "San Marcos City Council",
+    "City of Taylor",
+    "Office of Public Utility Counsel"
+   ],
+   "counties": [
+    "Williamson",
+    "Leon",
+    "Hays",
+    "Travis",
+    "Brazos"
+   ],
+   "statewide": true,
+   "event_date": "2026-08-19",
+   "confidence": "high",
+   "is_docket_candidate": true,
+   "sole_sourcing_warning": "this beat is salience only",
+   "sources": [
+    {
+     "url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C4502026081908001.htm",
+     "publisher": "capitol.texas.gov",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "the development of data centers in Texas, including its importance to global competitiveness and national security",
+     "speaker": "Texas House of Representatives, Notice of Public Hearing, Committee on State Affairs",
+     "supports": "The committee, date, time, place and the interim charge, from the official hearing notice."
+    },
+    {
+     "url": "https://www.cbsnews.com/texas/news/texas-data-center-hearing-residents-overflow-capitol-august-2026/",
+     "publisher": "cbsnews.com",
+     "source_type": "journalism",
+     "fetched": true,
+     "quote": "Lights, noise, water. I have four acres with a tank. I've got ducks, I've got egrets. I've got dogs. I've got cats. I've got animals. My neighbors have cows. At the end of the day, I'm worried they could affect our springs.",
+     "speaker": "Susan Tatro, who lives in unincorporated east Williamson County",
+     "supports": "What the objection actually sounds like from a rural landowner."
+    },
+    {
+     "url": "https://communityimpact.com/central-austin/texas-legislature/live-updates-local-officials-request-larger-role-in-data-center-oversight-regulation/",
+     "publisher": "communityimpact.com",
+     "source_type": "journalism",
+     "fetched": true,
+     "quote": "I'm upset about the process because it wasn't transparent: In January of this year, they had an initial meeting in executive session in the city of Taylor with this data center. Subsequently, there were four more meetings, and those were all in executive session.",
+     "speaker": "Taylor resident Susan Ross",
+     "supports": "The transparency complaint, dated and specific."
+    },
+    {
+     "url": "https://communityimpact.com/central-austin/texas-legislature/live-updates-local-officials-request-larger-role-in-data-center-oversight-regulation/",
+     "publisher": "communityimpact.com",
+     "source_type": "journalism",
+     "fetched": true,
+     "quote": "Approaching [data center] projects from a centralized, state-level perspective leaves individual communities, particularly in small rural areas, without the critical ability to tailor project requirements to any unique locational circumstances.",
+     "speaker": "Kyle Workman, Precinct 3 Commissioner, Leon County",
+     "supports": "A sitting county official asking the Legislature for authority his court does not have."
+    }
+   ]
+  },
+  {
+   "headline": "In four Texas jurisdictions the answer residents get is the same one, that a moratorium will be met with a lawsuit",
+   "what_happened": "KUT reported on August 19th that Taylor's council took no action on a petition with more than 1,400 signatures, that Hays County commissioners declined to vote on a countywide moratorium in February on legal advice, that Hill County passed a moratorium in May, was sued for $100 million and rescinded it in June, and that San Marcos changed its zoning 4-3 in June to make data centers ineligible. The recurring answer from officials is legal exposure to the state and to developers.",
+   "why_it_matters": "The argument in Texas towns has moved off whether the projects are wanted and onto whether a local government is legally allowed to say no.",
+   "the_argument": "We would lose the lawsuit, so we won't take the vote, and residents hear that as being told there is nothing to be done.",
+   "entities": [
+    "City of Taylor",
+    "Hays County Commissioners Court",
+    "San Marcos City Council",
+    "Hill County",
+    "Third Court of Appeals",
+    "Texas Politics Project"
+   ],
+   "counties": [
+    "Williamson",
+    "Hays",
+    "Hill"
+   ],
+   "statewide": true,
+   "event_date": "2026-08-19",
+   "confidence": "high",
+   "is_docket_candidate": false,
+   "sole_sourcing_warning": "this beat is salience only",
+   "sources": [
+    {
+     "url": "https://www.kut.org/energy-environment/2026-08-19/austin-tx-texas-data-centers-regulations-greg-abbott",
+     "publisher": "kut.org",
+     "source_type": "journalism",
+     "fetched": true,
+     "quote": "I will tell you that if we pass this as written, we're gonna get sued, and we're gonna lose,",
+     "speaker": "Hays County Commissioner Walt Smith",
+     "supports": "The legal-exposure answer, in a commissioner's own words at a public court meeting."
+    },
+    {
+     "url": "https://www.kut.org/energy-environment/2026-08-19/austin-tx-texas-data-centers-regulations-greg-abbott",
+     "publisher": "kut.org",
+     "source_type": "journalism",
+     "fetched": true,
+     "quote": "I think that if we closed at 3:00, we'd be sued by 4:00.",
+     "speaker": "Chase Young, assistant criminal district attorney for the county",
+     "supports": "That the advice is coming from county counsel, not from the officials' own preference."
+    },
+    {
+     "url": "https://www.kut.org/energy-environment/2026-08-19/austin-tx-texas-data-centers-regulations-greg-abbott",
+     "publisher": "kut.org",
+     "source_type": "journalism",
+     "fetched": true,
+     "quote": "State law does not allow a city to enact or change its zoning by popular vote. This is a determination about the legal process made available to the city,",
+     "speaker": "Mayor Pro Tem Kelly Cmerek, Taylor",
+     "supports": "Why a 1,400-signature petition in Taylor did not produce a ban."
+    },
+    {
+     "url": "https://www.kut.org/energy-environment/2026-08-19/austin-tx-texas-data-centers-regulations-greg-abbott",
+     "publisher": "kut.org",
+     "source_type": "journalism",
+     "fetched": true,
+     "quote": "The Governor established clear guidelines: Data centers must invest their own money, provide their own power, reuse their own water, ensure that the power grid is gaining power not losing power because of their operations and must not disturb neighborhoods,",
+     "speaker": "Abbott's press secretary Andrew Mahaleris",
+     "supports": "The state's position, the counter-image to the local-control argument."
+    }
+   ]
+  },
+  {
+   "headline": "Katy ISD put generative AI off limits through sixth grade as school opened, and the framing came from the district rather than from parents",
+   "what_happened": "Katy ISD, which serves roughly 100,000 students west of Houston, adopted a framework barring direct generative AI use in kindergarten through sixth grade, allowing limited teacher-directed supervised use in seventh grade, and permitting district-approved tools in eighth through twelfth grade with prior teacher permission. Assistant superintendent for teaching and learning Dr. Sanee Bell presented it to trustees in July and Covering Katy published the parent-facing explainer on August 11th as the year began.",
+   "why_it_matters": "This is the version of the AI argument that reaches Texas families who will never attend a data center hearing, and it is being settled district by district with no state mandate.",
+   "the_argument": "The tool is already in the kids' hands, so the question is whether the school teaches judgment about it or just blocks it.",
+   "entities": [
+    "Katy ISD",
+    "Texas Education Agency",
+    "University of Houston"
+   ],
+   "counties": [
+    "Harris",
+    "Fort Bend",
+    "Waller"
+   ],
+   "statewide": false,
+   "event_date": "2026-08-11",
+   "confidence": "medium",
+   "is_docket_candidate": false,
+   "sole_sourcing_warning": "this beat is salience only. Reported parent public comment at the Katy ISD board meeting could NOT be verified (Houston Public Media 403). No parent is quoted in any page fetched.",
+   "sources": [
+    {
+     "url": "https://coveringkaty.com/education/katy-isd-s-new-ai-rules-what-parents-and-students-need-to-kn/",
+     "publisher": "coveringkaty.com",
+     "source_type": "journalism",
+     "fetched": true,
+     "quote": "AI can support the learning process, but it cannot replace the thinking, the struggle, or the growth that learning requires.",
+     "speaker": "Dr. Sanee Bell, Katy ISD's assistant superintendent for teaching and learning",
+     "supports": "The district's own stated reason for restricting the tool by grade band."
+    },
+    {
+     "url": "https://abc13.com/post/katy-isd-sets-new-framework-artificial-intelligence-use-classrooms/19587218/",
+     "publisher": "abc13.com",
+     "source_type": "journalism",
+     "fetched": true,
+     "quote": "I think we want to make sure that our teachers really understand how these things work before we turn them loose in the classroom.",
+     "speaker": "Dr. Jaclyn Ocumpaugh, University of Houston",
+     "supports": "The counter-image, that the teachers are the untested variable rather than the students."
+    }
+   ]
+  }
+ ],
+ "source_notes": [
+  "fortworthreport.org returned 403 on direct fetch. Its identical article syndicates to keranews.org, which returned 200, so the Fort Worth quotes are cited to the KERA URL with the Fort Worth Report byline intact.",
+  "texastribune.org, nbcdfw.com, houstonpublicmedia.org, valleycentral.com and conchovalleyhomepage.com all returned 403 to this fetcher. None are cited.",
+  "texasfarmbureau.org returned 200 but the body came back truncated on two attempts, so the Texas Farm Bureau's landowner position on the 765-kV lines could NOT be quoted. Live lead.",
+  "CBS Texas places the August 19th hearing 'at the Capitol' while the official House notice places it in JHR 140, the John H. Reagan State Office Building. Use the notice for the room.",
+  "Extraction of the Fort Worth moratorium effective dates was internally inconsistent across two attempts on the same KERA page. NO moratorium date is published in these findings. Any date must be re-verified against the council agenda before it ships.",
+  "The Texas Association of Business data center page carries the industry position but has no publication date and no named quote, so it is not cited."
+ ]
+}

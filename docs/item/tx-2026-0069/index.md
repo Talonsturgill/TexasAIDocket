@@ -11,7 +11,7 @@ The Texas Comptroller now lists application J0022 among current agreements under
 - Public access: Write to the decider
 - Take part: https://comptroller.texas.gov/economy/development/prop-tax/jeti/application-details.php?id=J0022
 
-- Last checked: 2026-08-19
+- Last checked: 2026-08-22
 
 ## Dates
 
@@ -25,6 +25,7 @@ The Texas Comptroller now lists application J0022 among current agreements under
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-08-19 · The agreement itself is now posted. The state's application record for the Energy Forge One project added an agreement document dated July 24th, and the application has still not been executed.
+- 2026-08-22 · Checked and unchanged. The state's application record for the Energy Forge One project still carries the agreement document dated July 24th, and the application is still not executed.
 
 ## Evidence
 

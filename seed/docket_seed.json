@@ -2248,7 +2248,13 @@
   "last_verified": "2026-08-20",
   "confidence": "high",
   "notes_for_editor": "The city's own posting spells nonbinding as one word and that spelling is carried verbatim. Reporting on this vote gives a council count that the city's posting does not state, so no count is published here.",
-  "held_reason": "Duplicate of tx-2026-0048, which carries the same council action with the ordinance number and the vote history. Not admitted. The ballot wording it found was folded into tx-2026-0048 instead."
+  "held_reason": "Duplicate of tx-2026-0048, which carries the same council action with the ordinance number and the vote history. Not admitted. The ballot wording it found was folded into tx-2026-0048 instead.",
+  "history": [
+   {
+    "date": "2026-08-20",
+    "note": "The city's posted ballot language opens by calling the result a nonbinding statement of voter preference. The council's August 11th vote placed it on the November 3rd ballot."
+   }
+  ]
  },
  {
   "id": "tx-2026-0075",
@@ -2621,7 +2627,13 @@
   ],
   "last_verified": "2026-08-22",
   "confidence": "high",
-  "notes_for_editor": "The siting decision is Amazon's. The decider of record is the announcing office, which follows the record's own precedent for a company siting announced by the state. The exact site within Austin is reported in journalism and appears in neither primary release, so it is not carried. The Governor's release calls the development multi-billion-dollar and gives no capital figure."
+  "notes_for_editor": "The siting decision is Amazon's. The decider of record is the announcing office, which follows the record's own precedent for a company siting announced by the state. The exact site within Austin is reported in journalism and appears in neither primary release, so it is not carried. The Governor's release calls the development multi-billion-dollar and gives no capital figure.",
+  "history": [
+   {
+    "date": "2026-08-22",
+    "note": "Amazon's release and the Office of the Governor's announcement both name the Austin siting. The mayor is quoted in Amazon's release saying no incentives were requested."
+   }
+  ]
  },
  {
   "id": "tx-2026-0085",
@@ -2704,7 +2716,13 @@
   ],
   "last_verified": "2026-08-22",
   "confidence": "high",
-  "notes_for_editor": "The award abstract names SUNY Poly and the University of Texas at Austin as partners. The performance site on the award record is Houston, so the record carries Harris County only. The estimated total appears in the claim quote in the unformatted form the award record uses, because news.rice.edu returned a 406 on two attempts and no fetched source this run states the figure in a readable form."
+  "notes_for_editor": "The award abstract names SUNY Poly and the University of Texas at Austin as partners. The performance site on the award record is Houston, so the record carries Harris County only. The estimated total appears in the claim quote in the unformatted form the award record uses, because news.rice.edu returned a 406 on two attempts and no fetched source this run states the figure in a readable form.",
+  "history": [
+   {
+    "date": "2026-08-22",
+    "note": "The National Science Foundation award record carries the estimated total and the award dates. Its abstract describes a self driving laboratory and names Houston as the performance site."
+   }
+  ]
  },
  {
   "id": "tx-2026-0086",
@@ -2796,7 +2814,13 @@
   ],
   "last_verified": "2026-08-22",
   "confidence": "high",
-  "notes_for_editor": "The university's own release places the platform at the RELLIS Campus in Bryan while the award record's performance city is College Station. Both are Brazos County, so the county is safe and the city is not settled and is not published here. Figures in the university release on users per year and alloys per month do not appear in the award record and are not carried."
+  "notes_for_editor": "The university's own release places the platform at the RELLIS Campus in Bryan while the award record's performance city is College Station. Both are Brazos County, so the county is safe and the city is not settled and is not published here. Figures in the university release on users per year and alloys per month do not appear in the award record and are not carried.",
+  "history": [
+   {
+    "date": "2026-08-22",
+    "note": "The National Science Foundation award record and the university's announcement both name the platform. The award record carries the start and end dates and the estimated total."
+   }
+  ]
  },
  {
   "id": "tx-2026-0087",
@@ -2851,7 +2875,13 @@
   ],
   "last_verified": "2026-08-22",
   "confidence": "high",
-  "notes_for_editor": "The city's file number for the item is recorded in the source link rather than in reader copy. Whether the council adopted the resolution is not in the record. Prospective hearing dates of September 22nd and October 27th were reported before the meeting and are not confirmed by a city document, so they are not carried as key dates."
+  "notes_for_editor": "The city's file number for the item is recorded in the source link rather than in reader copy. Whether the council adopted the resolution is not in the record. Prospective hearing dates of September 22nd and October 27th were reported before the meeting and are not confirmed by a city document, so they are not carried as key dates.",
+  "history": [
+   {
+    "date": "2026-08-22",
+    "note": "The agenda item asks the council to approve the moratorium resolution. The city's legislative record shows no final action and the August 18th minutes are not finalized."
+   }
+  ]
  },
  {
   "id": "tx-2026-0088",
@@ -2929,7 +2959,13 @@
   ],
   "last_verified": "2026-08-22",
   "confidence": "high",
-  "notes_for_editor": "The vote count comes from KBTX because the county's own minutes for August 18th are not yet posted. The statutory notice is primary and carries the parties, the date and the dollar figure."
+  "notes_for_editor": "The vote count comes from KBTX because the county's own minutes for August 18th are not yet posted. The statutory notice is primary and carries the parties, the date and the dollar figure.",
+  "history": [
+   {
+    "date": "2026-08-22",
+    "note": "The county's posted Section 312.207 notice names the pending assignee and the estimated minimum cost. A local report says the Commissioners Court approved the transfer."
+   }
+  ]
  },
  {
   "id": "tx-2026-0089",
@@ -3000,6 +3036,12 @@
   ],
   "last_verified": "2026-08-22",
   "confidence": "high",
-  "notes_for_editor": "This is a third House committee taking up artificial intelligence in the same week, alongside State Affairs on August 19th and Public Health on August 20th, which the record already carries as tx-2026-0078 and tx-2026-0079. What was said in the room is not in the record, only the posted charges."
+  "notes_for_editor": "This is a third House committee taking up artificial intelligence in the same week, alongside State Affairs on August 19th and Public Health on August 20th, which the record already carries as tx-2026-0078 and tx-2026-0079. What was said in the room is not in the record, only the posted charges.",
+  "history": [
+   {
+    "date": "2026-08-22",
+    "note": "The committee's posted hearing notice carries both interim charges verbatim. The same notice names the committee's oversight of the Department of Information Resources and of HB 150."
+   }
+  ]
  }
 ]

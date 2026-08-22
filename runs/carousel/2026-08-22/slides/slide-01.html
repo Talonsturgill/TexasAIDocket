@@ -1,0 +1,112 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+:root{--room:#101A1B;--console:#24322F;--console_lit:#8FA396;--face_sun:#C7D2C4;
+      --legend:#E8EFE4;--trace:#9FD3B4;--amber:#D99A32;--key_dark:#060C0D;--red:#BF0A30}
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:var(--room);
+  -webkit-font-smoothing:antialiased}
+canvas{position:absolute;left:0;top:0}
+.kick{position:absolute;left:80px;top:88px;font:500 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.14em;color:var(--console_lit)}
+.cnt{position:absolute;right:80px;top:88px;font:500 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.10em;color:var(--console_lit);font-variant-numeric:tabular-nums}
+.tx-site{position:absolute;left:80px;bottom:74px;font:400 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.06em;color:var(--console_lit)}
+.star{position:absolute;right:80px;bottom:68px;width:22px;height:22px}
+.hook{position:absolute;left:80px;top:150px;width:830px;font:700 76px/1.02 "Fraunces",serif;
+  color:var(--legend);letter-spacing:-.015em}
+.dek{position:absolute;left:80px;top:268px;width:800px;font:400 30px/1.34 "Manrope",sans-serif;
+  color:var(--face_sun)}
+.figd{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums;
+  font-weight:700;font-size:0.88em;letter-spacing:-.02em}
+.big{position:absolute;left:80px;top:1000px;font:700 190px/0.86 "JetBrains Mono",monospace;
+  color:var(--legend);font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.gap{position:absolute;left:430px;top:1028px;width:560px;font:400 26px/1.42 "Manrope",sans-serif;
+  color:var(--console_lit)}
+</style></head><body>
+<canvas id="c" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+<div class="kick">PROJECT 58482</div>
+<div class="cnt">01 / 09</div>
+<div class="hook"><span class="figd">34</span> filings are already in.</div>
+<div class="dek">The case style reads Large Load Demand Management Service.</div>
+<div class="big">34</div>
+<div class="gap">10 rows are quoted on the frames that follow. The other 24 rows stand in the filing index and are not read here.</div>
+<div class="tx-site">texasaidocket.com</div>
+<svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6 L14.9 9.2 L23 9.6 L16.7 14.6 L18.9 22.4 L12 17.9 L5.1 22.4 L7.3 14.6 L1 9.6 L9.1 9.2 Z" fill="#8FA396"/></svg>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = new Promise(function(resolve){
+  var c=document.getElementById('c'), x=c.getContext('2d');
+  x.scale(2,2);
+  TX.reseed(20260822); var R=TX.rng(20260822);
+
+  // ---- the console plane, lit by one raking key from the upper left ----
+  var g=x.createLinearGradient(0,300,1080,1250);
+  g.addColorStop(0,'#3A4A45'); g.addColorStop(0.42,'#24322F'); g.addColorStop(1,'#0B1213');
+  x.fillStyle=g; x.fillRect(0,0,1080,1350);
+  // micro tooth so the plane is a surface, not a fill
+  for(var i=0;i<26000;i++){
+    var px=R()*1080, py=R()*1350, a=0.020+R()*0.045;
+    x.fillStyle=(R()<0.5?'rgba(232,239,228,':'rgba(6,12,13,')+a+')';
+    x.fillRect(px,py,1.6,1.6);
+  }
+
+  // ---- 34 milled recesses, 7 x 5 less one, plan oblique 25 degrees ----
+  var COLS=7, ROWS=5, N=34;
+  var CW=104, CH=88, GX=15, GY=13;
+  var SKEW=Math.tan(25*Math.PI/180)*0.42;
+  var BX=126, BY=392;
+  var LIT=[0,1,2,3,7,8,9,14,15,21];   // ten quoted rows, clustered upper left
+  var litSet={}; LIT.forEach(function(v){litSet[v]=1;});
+  var k=0;
+  for(var r=0;r<ROWS;r++){
+    for(var col=0;col<COLS;col++){
+      if(k>=N) break;
+      var ox = BX + col*(CW+GX) - r*(CH+GY)*SKEW;
+      var oy = BY + r*(CH+GY);
+      // two part contact shadow, cast into a plane that is already lit
+      x.save(); x.shadowColor='rgba(6,12,13,0.55)'; x.shadowBlur=34;
+      x.shadowOffsetX=10; x.shadowOffsetY=14;
+      x.fillStyle='rgba(6,12,13,0.42)';
+      x.fillRect(ox+2, oy+2, CW, CH);                    // 40px ambient, blurred
+      x.restore();
+      x.fillStyle='rgba(6,12,13,0.60)';
+      x.fillRect(ox+3, oy+3, CW, CH);                    // 6px core, offset into the lip
+      // the recess floor
+      x.fillStyle='#060C0D'; x.fillRect(ox,oy,CW,CH);
+      // the lit lip, upper and left, catching the raking key
+      x.fillStyle='rgba(160,180,168,0.55)';
+      x.fillRect(ox,oy,CW,3); x.fillRect(ox,oy,3,CH);
+      x.fillStyle='rgba(6,12,13,0.75)';
+      x.fillRect(ox,oy+CH-3,CW,3); x.fillRect(ox+CW-3,oy,3,CH);
+      // the block that sits in the recess. EVERY recess carries one.
+      var lit=!!litSet[k];
+      var bx=ox+16, by=oy+22, bw=CW-32, bh=CH-44;
+      if(lit){
+        x.fillStyle='#9FD3B4'; x.fillRect(bx,by,bw,bh);
+        x.fillStyle='rgba(159,211,180,0.22)'; x.fillRect(bx-7,by-7,bw+14,bh+14);
+      } else {
+        x.fillStyle='#24322F'; x.fillRect(bx,by,bw,bh);
+        x.fillStyle='rgba(232,239,228,0.10)'; x.fillRect(bx,by,bw,2);
+      }
+      k++;
+    }
+  }
+
+  // ---- the board's lower lip, and its shadow running into the bottom third ----
+  var LY = BY + ROWS*(CH+GY) + 16;
+  x.fillStyle='rgba(6,12,13,0.30)'; x.fillRect(0,LY,1080,54);
+  x.fillStyle='rgba(6,12,13,0.62)'; x.fillRect(0,LY,1080,13);
+  x.fillStyle='rgba(160,180,168,0.42)'; x.fillRect(0,LY-4,1080,4);
+  // the bottom plane the figure is cut into, lit and falling off to the bottom edge
+  var g2=x.createLinearGradient(0,LY+54,0,1350);
+  g2.addColorStop(0,'#2E3D38'); g2.addColorStop(1,'#0A1112');
+  x.fillStyle=g2; x.fillRect(0,LY+54,1080,1350-(LY+54));
+  for(var j=0;j<9000;j++){
+    var qx=R()*1080, qy=LY+54+R()*(1350-(LY+54)), b=0.02+R()*0.05;
+    x.fillStyle=(R()<0.5?'rgba(232,239,228,':'rgba(6,12,13,')+b+')';
+    x.fillRect(qx,qy,1.6,1.6);
+  }
+  resolve();
+});
+</script></body></html>

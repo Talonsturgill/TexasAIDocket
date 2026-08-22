@@ -1,0 +1,80 @@
+{
+ "weighted_score": 7.08,
+ "judges": [
+  6.68,
+  7.12,
+  7.29
+ ],
+ "spread": 0.61,
+ "criteria": {
+  "artwork_craft": {
+   "score": 7.0,
+   "weight": 0.28,
+   "judges": [
+    7.0,
+    6.8,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.5,
+   "weight": 0.2,
+   "judges": [
+    6.5,
+    8.5,
+    8.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.0,
+   "weight": 0.18,
+   "judges": [
+    7.0,
+    7.5,
+    6.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 6.5,
+   "weight": 0.12,
+   "judges": [
+    6.5,
+    7.0,
+    6.5
+   ]
+  },
+  "voice": {
+   "score": 6.5,
+   "weight": 0.12,
+   "judges": [
+    6.5,
+    6.5,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 6.0,
+   "weight": 0.1,
+   "judges": [
+    6.0,
+    5.5,
+    7.0
+   ]
+  }
+ },
+ "hard_fails": [
+  "judge returned ship: false with no hard fail named, which is a refusal either way"
+ ],
+ "hard_fails_by_judge": [
+  {
+   "judge": 1,
+   "fail": "judge returned ship: false with no hard fail named, which is a refusal either way"
+  }
+ ],
+ "ship": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "contested": [
+  "claim_integrity",
+  "variety"
+ ]
+}

@@ -11,7 +11,7 @@ Amarillo City Council voted five to nothing on first reading to authorize a wate
 - Public access: Public meeting
 - Take part: https://www.amarillo.gov/fermi-project/
 
-- Last checked: 2026-08-19
+- Last checked: 2026-08-22
 
 ## Dates
 
@@ -23,6 +23,7 @@ Amarillo City Council voted five to nothing on first reading to authorize a wate
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-08-19 · Checked and unchanged. The city's project page still gives the final water supply agreement dated October 30th, 2025 as its most recent document.
+- 2026-08-22 · Checked and unchanged. The city's project page still gives the final water supply agreement dated October 30th, 2025 as its most recent document, and no later water agreement appears.
 
 ## Evidence
 

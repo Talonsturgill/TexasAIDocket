@@ -23,6 +23,30 @@ This is exactly what `_item_numerals` warns about in its own comment, one order 
 name's digits waved through because a small number is almost always in the site-wide set from some
 unrelated computation. Today was the day it stopped being true.
 
+**MEASURED, not argued.** The paragraph above was reasoning when it was first written, and reasoning
+about a gate is how a wrong finding gets recorded as a true one. So the run ran it. A merged ledger
+of the 69 published items plus the 7 admissible ones was written to `out/2026-08-22/tmp/`,
+`ledger/docket.json` was swapped for it under a shell trap that restores the original whatever
+happens, and `site_build.py` was built into a scratch directory:
+
+```
+  numeral: construction/index.html: 44
+  numeral: construction/index.html: 44
+site_build: 2 page(s) print a numeral this build did not compute.
+site_build EXIT=1
+LEDGER RESTORED
+```
+
+The same build at 69 items exits 0. `open_meeting` counts 44 at 69 items and 47 at 76, both counted
+in code. The finding is a measurement, and the scratch ledger and the trial site were deleted.
+
+**A second reason the seven were held, and it was this run's own defect.** The promote gate refused
+all seven for `last_verified is <date> and the movement log carries no line for that date`. The
+first draft of this record claimed they passed every gate, and they did not. Seven movement lines
+were written into `seed/docket_seed.json`, each naming what the fetched source showed, and the gate
+now admits all seven. That is what made the measurement above possible at all, and it is why the
+claim in this section is now true rather than nearly true.
+
 **Proposal, out of lane.** In `site_build.py`, where `_tnums` is assembled for
 `construction/index.html`, authorise the numerals found inside project and campus names the way the
 item layer already does through `dk._name_numerals`. A filer's project name is an identifier taken
@@ -113,15 +137,15 @@ session, so the `scanner.scans` query could not be run. Recorded rather than ski
 |---|---|---|
 | claims         | PASS   | 19 verified claim(s) |
 | render         | PASS   | 9 slide(s) |
-| qa             | PASS   | 9 slide(s), zero fails, zero warns |
-| aggregates     | PASS   | 3 declared and re-derived |
-| assembly       | PASS   | 9 slide(s), 4.36 MB, vector |
-| score          | ABSENT | score.json not written yet |
-| dossiers       | PASS   | 26,081 chars planned |
+| qa             | STALE  | render/machine_qa.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| aggregates     | PASS   | 4 declared and re-derived |
+| assembly       | PASS   | 9 slide(s), 3.92 MB, vector |
+| score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| dossiers       | PASS   | 26,363 chars planned |
 | caption        | PASS   | 162 words |
-| craft floor    | PASS   | 9 frame(s), median 548, floor 99 |
-| plan vs render | WARN   | 6 of 44 acceptance item(s) checkable |
+| craft floor    | PASS   | 9 frame(s), median 460, floor 83 |
+| plan vs render | WARN   | 5 of 45 acceptance item(s) checkable |
 | texan          | WARN   | places NONE / body yes / deadline yes / next step yes |
-| absences       | WARN   | 5 of 7 scoped to a named document, 2 unscoped |
-| completion     | ABSENT | not scored yet |
+| absences       | WARN   | 6 of 7 scoped to a named document, 1 unscoped |
+| completion     | FAIL   | THE DECK DID NOT SHIP, so this run is not done |
 <!-- gate-status:end -->

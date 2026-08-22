@@ -1,0 +1,89 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+:root{--room:#101A1B;--console:#24322F;--console_lit:#8FA396;--face_sun:#C7D2C4;
+      --legend:#E8EFE4;--trace:#9FD3B4;--amber:#D99A32;--key_dark:#060C0D;--red:#BF0A30}
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:var(--room);
+  -webkit-font-smoothing:antialiased}
+canvas{position:absolute;left:0;top:0}
+.kick{position:absolute;left:80px;top:88px;font:500 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.14em;color:#8FA396}
+.cnt{position:absolute;right:80px;top:88px;font:500 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.10em;color:#8FA396;font-variant-numeric:tabular-nums}
+.tx-site{position:absolute;left:80px;bottom:74px;font:400 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.06em;color:#8FA396}
+.star{position:absolute;right:80px;bottom:68px;width:22px;height:22px}
+.figd{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums;
+  font-weight:700;font-size:0.88em;letter-spacing:-.02em}
+.mono{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums}
+
+.hook{position:absolute;left:80px;top:170px;width:900px;font:500 30px/1.3 "JetBrains Mono",monospace;
+  letter-spacing:.06em;color:var(--console_lit);text-transform:uppercase}
+.sent{position:absolute;left:80px;top:330px;width:920px;font:700 60px/1.14 "Fraunces",serif;
+  color:var(--legend);letter-spacing:-.012em}
+.lab{position:absolute;left:80px;top:906px;font:500 28px/1.3 "JetBrains Mono",monospace;
+  color:var(--face_sun);letter-spacing:.04em}
+
+</style></head><body>
+<canvas id="c" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+
+<div class="hook">What the rule would require</div>
+<div class="sent">"ERCOT must develop a Large Load Demand Management Service (LLDMS) to competitively procure demand reductions from large load customers consistent with this section."</div>
+<div class="lab">16 TAC Section <span class="figd">25.521</span>, proposed</div>
+
+<div class="kick">PROJECT 58482</div>
+<div class="cnt">03 / 09</div>
+<div class="tx-site">texasaidocket.com</div>
+<svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6 L14.9 9.2 L23 9.6 L16.7 14.6 L18.9 22.4 L12 17.9 L5.1 22.4 L7.3 14.6 L1 9.6 L9.1 9.2 Z" fill="#8FA396"/></svg>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txcarve.js"></script>
+<script>
+window.renderReady = new Promise(function(resolve){
+  var c=document.getElementById('c'), x=c.getContext('2d'); x.scale(2,2);
+  TX.reseed(20260822); var R=TX.rng(20260822 + 3);
+  function tooth(x0,y0,w,h,n,amp){ for(var i=0;i<n;i++){
+      var px=x0+R()*w, py=y0+R()*h, a=0.018+R()*(amp||0.045);
+      x.fillStyle=(R()<0.5?'rgba(232,239,228,':'rgba(6,12,13,')+a+')';
+      x.fillRect(px,py,1.6,1.6); } }
+  function plane(y0,y1,c0,c1){ var g=x.createLinearGradient(0,y0,0,y1);
+      g.addColorStop(0,c0); g.addColorStop(1,c1); x.fillStyle=g; x.fillRect(0,y0,1080,y1-y0); }
+  function contact(bx,by,bw,bh){                 // two part contact shadow, always both parts
+      x.save(); x.shadowColor='rgba(6,12,13,0.55)'; x.shadowBlur=34;
+      x.shadowOffsetX=10; x.shadowOffsetY=14; x.fillStyle='rgba(6,12,13,0.42)';
+      x.fillRect(bx+2,by+2,bw,bh); x.restore();
+      x.fillStyle='rgba(6,12,13,0.60)'; x.fillRect(bx+3,by+3,bw,bh); }
+
+  plane(0,1006,'#060C0D','#16221F'); tooth(0,0,1080,1006,14000,0.03);
+  // THE MACHINED FIELD. A wind-worked surface, so the lower plane is milled metal with a
+  // tool path across it rather than a gradient. TXCARVE.surface, per the dossier.
+  var stats = TXCARVE.surface(x, {
+    top: function(gx){ return 1030 + 26 * TX.fbm2(gx * 0.0042, 4.7, {octaves: 5}); },
+    bottom: 1350, x0: 0, x1: 1080,
+    lit: '#B6C4B8', shadow: '#080F10',
+    seed: 20260822, lightDeg: 118, windDeg: 204
+  });
+  // the tool path. a milled face carries the cutter's own arcs, and they are what say
+  // machined rather than eroded. Drawn along the wind direction the carve was worked to.
+  x.save(); x.globalAlpha=0.16; x.strokeStyle='#DCE6DC'; x.lineWidth=1.2;
+  for(var tp=0; tp<26; tp++){
+    var ty = 1044 + tp*12;
+    x.beginPath();
+    for(var tx0=0; tx0<=1080; tx0+=12){
+      var yy = ty + 5*Math.sin((tx0*0.021) + tp*0.7);
+      if(tx0===0) x.moveTo(tx0,yy); else x.lineTo(tx0,yy);
+    }
+    x.stroke();
+  }
+  x.restore();
+  window.__carveStats = stats;
+  // the seam itself. a groove with a lit upper lip and a dark floor, above the milled field.
+  x.fillStyle='rgba(198,207,211,0.62)'; x.fillRect(0,1002,1080,4);
+  x.fillStyle='#060C0D'; x.fillRect(0,1006,1080,16);
+  TXCARVE.contactShadow(x, {x: 540, y: 1024, w: 1080, color: '#0B1413'});
+
+  // THE FOOTER SHELF. A solid band so the deck's furniture never sits on working art.
+  x.fillStyle='#0C1516'; x.fillRect(0,1224,1080,126);
+  x.fillStyle='rgba(198,207,211,0.26)'; x.fillRect(0,1224,1080,3);
+  resolve();
+});
+</script></body></html>

@@ -1,0 +1,98 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+:root{--room:#101A1B;--console:#24322F;--console_lit:#8FA396;--face_sun:#C7D2C4;
+      --legend:#E8EFE4;--trace:#9FD3B4;--amber:#D99A32;--key_dark:#060C0D;--red:#BF0A30}
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:var(--room);
+  -webkit-font-smoothing:antialiased}
+canvas{position:absolute;left:0;top:0}
+.kick{position:absolute;left:80px;top:88px;font:500 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.14em;color:#8FA396}
+.cnt{position:absolute;right:80px;top:88px;font:500 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.10em;color:#8FA396;font-variant-numeric:tabular-nums}
+.tx-site{position:absolute;left:80px;bottom:74px;font:400 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.06em;color:#8FA396}
+.star{position:absolute;right:80px;bottom:68px;width:22px;height:22px}
+.figd{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums;
+  font-weight:700;font-size:0.88em;letter-spacing:-.02em}
+.mono{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums}
+
+.hook{position:absolute;left:80px;top:168px;width:900px;font:700 74px/1.03 "Fraunces",serif;
+  color:var(--legend);letter-spacing:-.015em}
+.rung{position:absolute;font:400 24px/1.44 "JetBrains Mono",monospace;color:var(--legend);
+  white-space:nowrap}
+.am{color:#D99A32;font-weight:700}
+.st{color:#8FA396}
+
+</style></head><body>
+<canvas id="c" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+
+<div class="hook"><span class="figd">2</span> rows here carry <br> the deadline.</div>
+<div class="rung" style="left:196px;top:420px">"<span class="st">7/24/2026</span> &nbsp;PUC RULES &amp; PROJECTS &nbsp;PRJ <br>OM Item No. 29 - Staff Memo &amp; PFP <br>w/<span class="am">Sept. 4</span> Comment Deadline"</div>
+<div class="rung" style="left:280px;top:648px">"<span class="st">7/30/2026</span> &nbsp;PUC OPDM &nbsp;PRJ <br>PROPOSAL FOR PUBLICATION NEW §25.521"</div>
+<div class="rung" style="left:364px;top:876px">"<span class="st">7/30/2026</span> &nbsp;RULES &amp; PROJECTS &nbsp;PRJ <br>Texas Register Acknowledgement of Receipt - <br>Comment Deadline <span class="am">09/04/2026</span>"</div>
+
+<div class="kick">PROJECT 58482</div>
+<div class="cnt">07 / 09</div>
+<div class="tx-site">texasaidocket.com</div>
+<svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6 L14.9 9.2 L23 9.6 L16.7 14.6 L18.9 22.4 L12 17.9 L5.1 22.4 L7.3 14.6 L1 9.6 L9.1 9.2 Z" fill="#8FA396"/></svg>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = new Promise(function(resolve){
+  var c=document.getElementById('c'), x=c.getContext('2d'); x.scale(2,2);
+  TX.reseed(20260822); var R=TX.rng(20260822 + 7);
+  function tooth(x0,y0,w,h,n,amp){ for(var i=0;i<n;i++){
+      var px=x0+R()*w, py=y0+R()*h, a=0.018+R()*(amp||0.045);
+      x.fillStyle=(R()<0.5?'rgba(232,239,228,':'rgba(6,12,13,')+a+')';
+      x.fillRect(px,py,1.6,1.6); } }
+  function plane(y0,y1,c0,c1){ var g=x.createLinearGradient(0,y0,0,y1);
+      g.addColorStop(0,c0); g.addColorStop(1,c1); x.fillStyle=g; x.fillRect(0,y0,1080,y1-y0); }
+  function contact(bx,by,bw,bh){                 // two part contact shadow, always both parts
+      x.save(); x.shadowColor='rgba(6,12,13,0.55)'; x.shadowBlur=34;
+      x.shadowOffsetX=10; x.shadowOffsetY=14; x.fillStyle='rgba(6,12,13,0.42)';
+      x.fillRect(bx+2,by+2,bw,bh); x.restore();
+      x.fillStyle='rgba(6,12,13,0.60)'; x.fillRect(bx+3,by+3,bw,bh); }
+
+  // ---- EVERY PLANE IS DRAWN BEFORE THE THINGS THAT STAND ON IT. ----
+  // This frame used to draw the spine and its foot first and then paint plane(1010,1350) over
+  // both, so the lit spine died at the console line, the foot was erased entirely, and a cast
+  // shadow was redrawn below with nothing left to cast it. That orphan bar then ran down through
+  // the texasaidocket.com glyph band at x 159 to 168, which is a drawn rule crossing type on the
+  // deck's own brand furniture. It is the same painted-out-element defect this run repaired on
+  // slide 6, and the sweep is the fix rather than the patch.
+  plane(0,1010,'#1A2624','#0D1817'); tooth(0,0,1080,1010,12000,0.030);
+  // the console face takes a raking key from the upper left
+  var g=x.createLinearGradient(0,300,760,980);
+  g.addColorStop(0,'rgba(198,207,211,0.13)'); g.addColorStop(1,'rgba(198,207,211,0)');
+  x.fillStyle=g; x.fillRect(0,300,1080,700);
+  // the lower console face, and the falloff to the right, both BEFORE the spine
+  plane(1010,1350,'#35463F','#090F10'); tooth(0,1010,1080,340,7500,0.05);
+  x.fillStyle='rgba(198,207,211,0.30)'; x.fillRect(0,1008,1080,3);
+  var bg=x.createLinearGradient(0,1010,1080,1350);
+  bg.addColorStop(0,'rgba(198,207,211,0.10)'); bg.addColorStop(1,'rgba(198,207,211,0)');
+  x.fillStyle=bg; x.fillRect(0,1010,1080,340);
+
+  // ---- the spine, and three rungs stepping right and down ----
+  // The spine ENDS on its own foot at 1200 and the foot closes above the footer shelf at 1224,
+  // so nothing drawn here reaches the site line at 1252.
+  var SX=150, SPINE_TOP=392, SPINE_END=1200;
+  x.fillStyle='rgba(6,12,13,0.55)'; x.fillRect(SX+9,SPINE_TOP+8,9,SPINE_END-SPINE_TOP);
+  x.fillStyle='#8FA396'; x.fillRect(SX,SPINE_TOP,7,SPINE_END-SPINE_TOP);
+  x.fillStyle='rgba(232,239,228,0.55)'; x.fillRect(SX,SPINE_TOP,2,SPINE_END-SPINE_TOP);
+  x.fillStyle='#24322F'; x.fillRect(SX-16,SPINE_END,40,24);          // the spine's foot
+  x.fillStyle='rgba(232,239,228,0.40)'; x.fillRect(SX-16,SPINE_END,40,3);
+  x.fillStyle='rgba(6,12,13,0.50)'; x.fillRect(SX-10,SPINE_END+24,52,6);   // the foot's contact
+  var rungs=[[420,196],[664,280],[892,364]];
+  for(var i=0;i<rungs.length;i++){
+    var ry=rungs[i][0]+16, rx=rungs[i][1];
+    x.fillStyle='rgba(6,12,13,0.50)'; x.fillRect(SX+9,ry+7,rx-SX-12,7);
+    x.fillStyle='#8FA396'; x.fillRect(SX+4,ry,rx-SX-10,5);
+    x.fillStyle='#C6CFD3'; x.fillRect(rx-16,ry-5,8,15);   // NOT amber. amber is the two dates only.
+  }
+  // THE FOOTER SHELF, as on slides 3 and 6, so the deck's furniture never sits on working art.
+  x.fillStyle='#101B1A'; x.fillRect(0,1236,1080,114);
+  x.fillStyle='rgba(198,207,211,0.24)'; x.fillRect(0,1236,1080,3);
+
+  resolve();
+});
+</script></body></html>
