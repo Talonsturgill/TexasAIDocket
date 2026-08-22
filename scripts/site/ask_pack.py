@@ -201,6 +201,21 @@ def tally(items: list, today: str) -> str:
     return "THE COUNTS, computed from the records below.\n" + _sentences(lines)
 
 
+# WHY THE HEADER BELOW SAYS WHAT A LINE CARRIES, AND WHY THAT REASONING IS HERE.
+#
+# It used to say a line "names what exists and never the detail", which was false: a line lists
+# the topic, the decider, the status and every county. A reader asking which decisions were in
+# Erath County was told the record did not answer that, while Erath sat in the county list on
+# that very line. The model had been told to disregard the field holding the answer, so it went
+# hunting through fourteen retrieved bodies for a county name buried in prose.
+#
+# THE FIRST FIX PUT THAT STORY IN THE PROMPT and it does not belong there. A prompt is read
+# literally, the discarded rule was quoted inside it in the past tense, and the example carried
+# a live citation the page would render. This file's own doctrine is that the model writes what
+# it reads, which is an argument against showing it the wrong rule at all, however it is
+# framed. It is also paid for on every question forever.
+#
+# So the prompt states what is true and this comment holds why.
 INDEX_HEAD = """THE INDEX. Every decision the record holds, one line each, in the order they
 are filed. Each line carries the decision's title, then its topic, its decider, its status, the
 counties it names or that it is statewide, whether it sits on the ERCOT grid, and whether a
@@ -209,9 +224,6 @@ public window is open, and it ends with the id to cite it by.
 ANSWER FROM THESE LINES WHENEVER THEY CARRY WHAT WAS ASKED. A question about which decisions
 name a county, who decided something, what is open, or what a decision is called is answered
 here, completely, and looking for it in the full text below is the slower way to get it wrong.
-An earlier version of this paragraph said a line named what exists and never the detail, and a
-reader asking which decisions were in Erath County was told the record did not answer that,
-while Erath sat in the county list on the line for [[tx-2026-0003]].
 
 The full text of the decisions most likely to answer this question follows below, and it is a
 SLICE. An item appearing here with no text below is still a real item this record carries.
