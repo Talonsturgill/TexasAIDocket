@@ -1,8 +1,8 @@
 {
  "_spec": 1,
- "read": "2026-08-21",
+ "read": "2026-08-22",
  "source": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
- "digest": "8f36379982394441",
+ "digest": "4327a842f5276b36",
  "facilities": [
   {
    "name": "NADC",
@@ -1553,8 +1553,8 @@
    ],
    "operators": [
     "Riot Platforms, Inc.",
-    "Riot Corsicana Data Center I. LLC",
-    "Riot Data Centers, LLC 3",
+    "RPI DC Master LLC",
+    "RPI Corsicana DC Holdings LLC",
     "Riot Corsicana, LLC"
    ]
   },
@@ -2059,6 +2059,33 @@
    ],
    "operators": [
     "Amazon Data Services, Inc."
+   ]
+  },
+  {
+   "name": "Rise Data Center",
+   "effective": "2026-08-10",
+   "owners": [
+    "Platon Investments LLC"
+   ],
+   "occupants": [
+    "Google LLC"
+   ],
+   "operators": [
+    "Design, LLC",
+    "Google Energy LLC"
+   ]
+  },
+  {
+   "name": "AUS 01 02 03 Data Center",
+   "effective": "2026-08-17",
+   "owners": [
+    "Lockhart Property LLC"
+   ],
+   "occupants": [
+    "Paile LLC"
+   ],
+   "operators": [
+    "Lockhart Property LLC"
    ]
   }
  ]
