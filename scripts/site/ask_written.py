@@ -415,12 +415,32 @@ _CLIENT = r"""
     if (!tag || label === tag) return label;
     return before.toLowerCase().indexOf(label.toLowerCase()) >= 0 ? tag : label;
   }
+  /* TWO CITATIONS IN A ROW THAT READ THE SAME ARE ONE CITATION AND SOME NOISE.
+     Fifty six of the sixty nine decisions carry no identifier of their own and cite "the
+     docket", which is right for one and unreadable for three: an answer listing several
+     decisions in a clause rendered "Ordinance 20260423-029 the docket the docket".
+     The second link is dropped rather than the label repeated. It is a real loss, and it is a
+     loss of something a reader could not have used: two adjacent links with identical text
+     give nobody a way to tell which is which or which to press. The first still resolves and
+     the rest of the sentence still names what it is about. */
   function renderCites(target, text) {
-    var at = 0, m;
+    var at = 0, m, lastLabel = "", lastEnd = -1;
     CITE.lastIndex = 0;
     while ((m = CITE.exec(text)) !== null) {
+      var between = text.slice(at, m.index);
+      var label = shown(m[1], text.slice(0, m.index));
+      if (label === lastLabel && at === lastEnd && /^[\s,]*$/.test(between)) {
+        // THE RUN HAS TO MOVE WITH THE SKIP. Dropping one and leaving lastEnd behind meant the
+        // THIRD citation compared itself against the boundary of the FIRST, found a gap, and
+        // rendered. Three collapsed to two rather than to one, which is the same defect
+        // reading slightly better.
+        at = lastEnd = m.index + m[0].length;
+        continue;
+      }
+      lastLabel = label;
+      lastEnd = m.index + m[0].length;
       if (m.index > at) {
-        target.appendChild(document.createTextNode(text.slice(at, m.index)));
+        target.appendChild(document.createTextNode(between));
       }
       var a = document.createElement("a");
       a.className = "cite";
@@ -435,7 +455,7 @@ _CLIENT = r"""
          label is already in what has been rendered, the citation falls back to naming its
          source, which is what a citation is for and what it would have said anyway if the
          record had given it no identifier. */
-      a.textContent = shown(m[1], text.slice(0, m.index));
+      a.textContent = label;
       a.title = citeTitle(m[1]) || m[1];
       target.appendChild(a);
       at = m.index + m[0].length;

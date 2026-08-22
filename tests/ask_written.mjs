@@ -67,6 +67,23 @@ await page.route("**/answer", async (route) => {
          { sentence: "The body that decides sets the deadline and the rules." },
          { sentence: "Want the dates it moved on?" },
          { done: true }]
+    : /instrument citation/.test(q)
+      ? [{ stage: "Reading the record" },
+         // THE GRID HAD NOTHING TO CITE AND THE MODEL SAID SO OUT LOUD, in the answer:
+         // "...the water record, actually that citation belongs to the grid watch". Every
+         // block has an id and the three preamble instruments had none.
+         { sentence: "The highest peak was 90352.7 MW on August 20th, 2026, [[grid]]." },
+         { sentence: "Statewide storage is 77.01 percent full, [[water]]." },
+         { done: true }]
+    : /stacked citations/.test(q)
+      ? [{ stage: "Reading the record" },
+         // Three decisions in one clause, none of which carries an identifier, so all three
+         // render "the docket" and the reader sees it three times in a row.
+         // Real ids, all three of which carry no identifier of their own, so all three render
+         // "the docket". A made up id renders as its raw slug and would test nothing.
+         { sentence: "Three counties carry one, [[tx-2026-0007]] [[tx-2026-0009]] "
+                     + "[[tx-2026-0012]]." },
+         { done: true }]
     : /surveillance ordinance/.test(q)
       ? [{ stage: "Reading the record" },
          // THE SENTENCE AN OWNER GOT BACK, verbatim in shape. The model names the identifier
@@ -379,6 +396,33 @@ ok("the sentence that did land is still shown",
 ok("and no fragment was published",
   !(await page.locator(".askreply").last().textContent()).match(/[a-z]{3}$/m) ||
   (await page.locator(".askreply").last().textContent()).includes("right now."));
+
+head("K4. the instruments can be cited, and a stack of them is not read three times");
+/* Every one of the 322 blocks has an id. The grid, the reservoirs and the weather live in the
+   preamble, which every question gets whether it asked or not, and for a while that meant they
+   had no id at all. The model is told to cite what it says, found nothing for a grid figure,
+   reached for the nearest thing and corrected itself in front of the reader. */
+await page.fill("#askq", "give me an instrument citation");
+await page.press("#askq", "Enter");
+await page.waitForSelector(".askfrom", { timeout: 12000 });
+{
+  const cited = Object.fromEntries(await page.locator("a.cite").evaluateAll(
+    (as) => as.map((a) => [a.getAttribute("href"), a.textContent])));
+  ok("the grid watch is citable and links to its own page",
+     cited["grid/"] === "the ERCOT grid watch", JSON.stringify(cited));
+  ok("and so is the reservoir record", cited["water/"] === "the water record",
+     JSON.stringify(cited));
+}
+await page.fill("#askq", "show me stacked citations");
+await page.press("#askq", "Enter");
+await page.waitForSelector(".askfrom", { timeout: 12000 });
+{
+  const reply = (await page.locator(".askreply").last().textContent()) || "";
+  ok("three citations that read the same are rendered once",
+     (reply.match(/the docket/g) || []).length === 1, reply.slice(0, 140));
+  ok("...and the one that survives is still a link",
+     (await page.locator(".askreply").last().locator("a.cite").count()) === 1);
+}
 
 head("K3. a citation may not repeat a name the sentence already used");
 /* Moving from the full title to a short identifier fixed the long stutter and left a short

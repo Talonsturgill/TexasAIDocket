@@ -411,7 +411,7 @@ def instruments(docs_dir=None) -> str:
         r = grid["readings"][-1]
         prev = grid["readings"][-2] if len(grid["readings"]) > 1 else None
         lines = [
-            f"ERCOT grid watch, measured for {longdate(r.get('date'))}",
+            f"ERCOT grid watch, measured for {longdate(r.get('date'))}, [[grid]]",
             f"Peak load reached {r.get('peak_load_mw')} MW in hour ending "
             f"{r.get('peak_hour_ending')}",
             f"Mean load across the day was {r.get('mean_load_mw')} MW and the minimum was "
@@ -443,7 +443,7 @@ def instruments(docs_dir=None) -> str:
         r = water["readings"][-1]
         prev = water["readings"][-2] if len(water["readings"]) > 1 else None
         lines = [
-            f"Texas reservoir storage, measured for {longdate(r.get('date'))}",
+            f"Texas reservoir storage, measured for {longdate(r.get('date'))}, [[water]]",
             f"Statewide storage was {r.get('storage_af')} acre feet against a conservation "
             f"capacity of {r.get('capacity_af')} acre feet, which is "
             f"{r.get('percent_full')} percent full",
@@ -802,7 +802,7 @@ def grid_series(feed: dict) -> str:
     peaks = [x for x in rs if x.get("peak_load_mw") is not None]
     top = max(peaks, key=lambda x: x["peak_load_mw"])
     return _sentences([
-        f"The grid watch holds {len(rs)} settled days, which are {days}",
+        f"The grid watch holds {len(rs)} settled days, which are {days}, [[grid]]",
         f"The highest peak among them was {top['peak_load_mw']} MW on "
         f"{longdate(top.get('date'))}",
         "These are measured days and none of them is a forecast of another one",
@@ -832,7 +832,7 @@ def weather(feed: dict) -> str:
                         + ", ".join(got[:-1]) + " and " + got[-1] if len(got) > 1
                         else f"The most recent day it holds is {longdate(last['date'])} with "
                              + got[0])
-    bits.append(f"It holds {len(rs)} days in all")
+    bits.append(f"It holds {len(rs)} days in all, [[weather]]")
     base = n.get("base_period") or []
     if len(base) == 2:
         bits.append(f"Normals are the {base[0]} to {base[1]} base period")
@@ -1131,13 +1131,38 @@ def cite_label(family: str, title: str, name: str = "") -> str:
 #
 # The authority is site_build.all_places, a pure function of the docket, which is what CREATES
 # those pages. Asking the thing that makes them beats counting what it made last time.
+# THE INSTRUMENTS ARE CITABLE, and for a while they were the only thing here that was not.
+#
+# The grid, the reservoirs and the weather live in the preamble, because they are small and
+# every question gets them whether it asked or not. That was the right call and it left them
+# with no id, while all 322 blocks below have one. The model is told to cite what it says, and
+# for a grid figure there was nothing to cite, so it reached for the nearest thing and then
+# corrected itself IN THE PUBLISHED ANSWER:
+#
+#   "the highest peak was 90352.7 MW on August 20th, 2026, the water record, actually that
+#    citation belongs to the grid watch, not a reservoir"
+#
+# A reader watched the machine think. Nothing downstream could catch it either, because every
+# sentence was true and every numeral was authorised.
+#
+# THE IDS GO MID LINE, NEVER AT THE START OF ONE. The worker splits the pack on a line opening
+# with "[[", so an instrument id at the head of a line would be cut out of the preamble and
+# handed over as a block with no body. The split contract's self-test asserts exactly that and
+# the tally has always placed its citations this way.
+INSTRUMENT_CITES = {
+    "grid": ["the ERCOT grid watch", "grid/", "ERCOT grid watch"],
+    "water": ["the water record", "water/", "Texas reservoir storage"],
+    "weather": ["the weather record", "data/", "Weather at the anchor station"],
+}
+
+
 def cites(items: list, dossiers: list, county_blocks: list, water_blocks: list,
           places: set = frozenset()) -> dict:
     """Every citable id, as [what the link says, where it goes, what it is].
 
     The first element is the LABEL and it is not the title. See `cite_label` for why.
     """
-    out = {}
+    out = dict(INSTRUMENT_CITES)
     for it in items:
         out[it["id"]] = [cite_label("tx", it["title"]), f"item/{it['id']}/", it["title"]]
     for d in dossiers:
@@ -1181,7 +1206,10 @@ def block_ids(pack: dict) -> list:
     text = pack.get("pack") or ""
     if fence not in text:
         return []
-    out = []
+    # THE INSTRUMENTS ARE CITABLE AND HAVE NO BLOCK, so a cut that only reads below the fence
+    # misses them and the worker refuses a true citation to the grid watch. They are listed
+    # here rather than derived, because there is nothing below the fence to derive them from.
+    out = [k for k in INSTRUMENT_CITES if "[[" + k + "]]" in text]
     for block in text.split(fence, 1)[1].split("\n\n"):
         b = block.strip()
         if b.startswith("[[") and "]]" in b:
