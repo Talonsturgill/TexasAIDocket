@@ -80,6 +80,138 @@ Everything below is deterministic code that runs in a worker or a browser and co
 | 3 | the worker retrieves | **DONE** | 48,124 -> 8,246 tokens, recall 99.6% |
 | 4 | verify, rebuild, ship | **DONE** 85924a77 | merged to main, PR #156, all seven CI jobs green |
 
+## Wave 5: the record stops meaning only decisions
+
+Opened 2026-08-22 on the owner's brief: "The page now has much more data than just the
+decisions, it has info on the grid page, and the water page, and a bunch on Data centers and
+the details of that stuff. We need to open up the query into all of our data so that people
+can ask wider questions."
+
+He is right and the gap is worse than it sounds. The ask box answers off `docket.json` and a
+two paragraph instrument summary. Everything else this site publishes is invisible to it: 54
+facility dossiers, a 650 project construction register worth $43.42 billion, 119 named
+reservoirs grouped into 19 metros, 12 settled grid days with hourly series, and 596 days of
+weather. A reader asking "how full is Lake Travis" or "who is building in Abilene" is told the
+record does not carry it. The record carries all of it. The ask box just could not see it.
+
+### What the frontier says, checked before designing
+
+Four searches, and three of them changed a number rather than confirming a prejudice.
+
+- **BM25 beats dense embeddings on domain terminology.** Precise domain-specific terms, company
+  names and standardised labels are what lexical matching is best at, and this corpus is almost
+  nothing else: county names, docket ids, reservoir names, company names. Staying free was
+  already the constraint. It is also the better retriever here, which is worth writing down
+  because it stops the next session treating embeddings as a deferred upgrade.
+- **Hybrid retrieval scores 41% Number Match on numeric QA against an oracle ceiling of 72 to
+  79%.** That is the single most useful number found. Retrieval over text is a BAD way to
+  answer a numeric question, and three of the four new sources are numeric. So the numbers do
+  not enter as retrievable rows. They enter as precomputed prose, which is what this file
+  already calls `tally()` and what the industry calls a semantic layer, benchmarked at or near
+  100% on the queries it covers where text-to-SQL stays fragile.
+- **Row level chunking of tabular data does not scale and loses aggregation.** 650 construction
+  rows as 650 blocks would be 162,000 characters, more than the entire current pack, and would
+  still fail "how much is being built in Dallas County" because that answer is a SUM no
+  retrieved row contains. Rolled up by county it is 61 blocks and the sum is already taken.
+- **Contextual retrieval, prepending a sentence saying where a chunk sits.** Already satisfied
+  here by construction and worth naming so it is not re-bought. Every block this pack emits is
+  standalone prose that names its own subject, because it was written for a model to read
+  rather than cut out of a document.
+
+### The design
+
+Four new block families, all using the existing `[[id]] ` opening convention, so `splitPack`,
+BM25, the RRF fusion, the slice cap and the numeral allow-list all work on them unchanged. That
+is the whole reason for the convention and this is the first time it pays.
+
+    family              id                  count   body      index
+    decisions           tx-2026-NNNN          69    existing  one line each, existing
+    facility dossiers   facility-<slug>       54    prose     one line each
+    construction        county-<slug>         61    rollup    ONE aggregate line
+    reservoirs          water-<metro>         19    rollup    ONE aggregate line
+
+Index lines are not uniform and that is deliberate. A decision earns a line because it is a
+unique event a reader might be hunting. Sixty one county rollups are a table, and a table reads
+better as one line naming all of them with their counts. The bodies stay individually
+retrievable either way, so asking about Dallas pulls the Dallas block, and a reader whose
+county was never retrieved still gets the count off the aggregate line.
+
+### The ceiling moved, because what it measured stopped costing anything
+
+`MAX_CHARS = 220_000` was set when the whole pack went into every question, and its comment
+prices it at about 11 cents a cold question. Wave 3 made that false. The pack is now sent to
+nobody. What is sent on every single question is the INDEX plus a slice capped at 60,000
+characters, so the index is the number that bills and the pack is the number that does not.
+
+Keeping one ceiling on the pack and none on the index measures the wrong thing in both
+directions. It would block this work for a cost nobody pays, and it would let the index grow
+without limit for a cost everybody pays. So the pack ceiling is re-based and its comment
+rewritten to say what it now guards, which is the `ASK_RETRIEVAL=off` escape hatch, and a
+second ceiling goes on the index where the money is.
+
+### Tasks
+
+| # | Task | State |
+|---|------|-------|
+| 5a | facility dossier blocks + index lines | **DONE** 54 blocks, 1,609 chars each |
+| 5b | construction rollup by county + aggregate line | **DONE** 61 blocks, 390 chars each |
+| 5c | reservoir rollup by metro and by lake | **DONE** 138 blocks, 212 chars each |
+| 5d | grid series and weather into the preamble | **DONE** GRID_DAYS=14 |
+| 5e | corpus slugs, citation map, SYSTEM, INDEX_HEAD | **DONE** 322 slugs, 253 cites |
+| 5f | family aware retrieval, both ceilings, eval | **DONE** 100% / 94.4% |
+
+### What it measured
+
+                          before        after
+    blocks                    69          322      four families, was one
+    pack chars           189,401      331,096      sent to nobody, guards the escape hatch
+    index chars           16,723       27,698      sent on EVERY question
+    corpus slugs              69          322      what a citation may name
+    authorised numerals      266          834      what an answer may state
+    recall, sent           99.6%         100%
+    recall, first            94%        94.4%
+    mean question tokens   8,229       12,044      +46% for 4.7x the record
+    cacheable share                      76.1%     read at a tenth
+
+The token line is the honest cost and it is worth stating plainly rather than burying. A
+question got about half again as expensive and can now be about four times as much of what
+this site publishes. Three quarters of it is the cached prefix, so a repeat question pays a
+tenth of that share.
+
+### Three things this found that were not the task
+
+**BM25 broke on a mixed corpus and the failure looked like a tuning problem.** Adding the
+other families took the corpus from 69 documents to 322 and cost the county questions half
+their recall in one build, 100 percent found and 60 first down to 86.7 and 30. Both of BM25's
+corpus-wide statistics had stopped meaning anything. "County" appears in 136 of 322 blocks now,
+so its informativeness fell under the floor and the word was thrown away as boilerplate, which
+it is among sixty one blocks titled "Construction registered in X County" and is not among the
+decisions. And length normalisation scores a document against the corpus mean, which is now
+dragged down by 138 reservoir blocks of 212 characters, so every decision looked bloated.
+Indexing, scoring and corroborating each family against its own population fixed both and put
+recall ABOVE where it started.
+
+**The evidence filter could silence a whole family.** "Data centers" is two words and both are
+boilerplate inside the two families best placed to answer it, so nothing anywhere carried an
+informative term and the decisions returned nothing at all, for a record holding nineteen
+decisions about data centers. Keeping the unfiltered order for that case only, drawn on by the
+floor and never fused, took topic questions from 87.5 percent to 100.
+
+**The pack has been shipping with no weather in it since the day weather was added.** The build
+wipes the out directory and starts empty, and the three series were written down among the
+pages that publish them, so for most of a run they do not exist. The pack escaped it by being
+written near the end, after the grid and the water and BEFORE the weather. Nothing could see
+this, because no gate compares the pack against a feed it never read. The ask box's citation
+map did not escape it and shipped covering two of its four families, which is how it was found.
+The three series are now written first, before any page renders.
+
+### What is NOT done, and it is the obvious next thing
+
+The FREE typing lane still only knows the decisions. Its eight views are all decision shaped,
+so a reader typing "how full is Lake Travis" sees no instant answer and has to press enter,
+which costs a model call. Everything needed is now on the page already, since `__ASK_CITES__`
+ships all four families, so this is a wave of its own and not a blocker on this one.
+
 ## THE ONE STEP THIS REPO CANNOT DO FOR ITSELF
 
 `workers/ask/bundled.js` has to be pasted into the Cloudflare dashboard. Nothing in this repo

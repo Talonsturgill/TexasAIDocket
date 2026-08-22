@@ -344,6 +344,20 @@ _CLIENT = r"""
     for (var i = 0; i < idx.items.length; i++) TITLES[idx.items[i].id] = idx.items[i].title;
   })();
 
+  /* THE RECORD IS FOUR FAMILIES NOW AND ONLY ONE OF THEM LIVES AT /item/.
+     The written lane can cite a data center, a county's construction total or a reservoir, and
+     this used to render every citation as the decision's title at BASE + "item/" + id. For the
+     other three that put the raw slug on the page, "facility-nexus-data-centers", linking to a
+     page that does not exist.
+     The map is built where the names are, in ask_pack, and shipped for the three families the
+     index above does not already carry. Anything missing from it is a decision, which is why
+     the fallback is the old behaviour rather than an error. */
+  var CITES = window.__ASK_CITES__ || {};
+  function citeTitle(id) { return (CITES[id] && CITES[id][0]) || TITLES[id] || ""; }
+  function citeHref(id) {
+    return BASE + ((CITES[id] && CITES[id][1]) || ("item/" + id + "/"));
+  }
+
   /* A LINK INSIDE A SENTENCE HAS TO BE A HANDLE, NOT A HEADLINE. Titles on this record are
      descriptive sentences, 106 characters on average, and dropping one whole into a paragraph
      buried the paragraph: four lines of gold link around six words of prose.
@@ -364,7 +378,7 @@ _CLIENT = r"""
      The remaining cap is a guard against a pathological title rather than a style, set above
      the longest this record holds, and it still cuts at a word boundary if it ever fires. */
   function handle(id) {
-    var t = TITLES[id];
+    var t = citeTitle(id);
     if (!t) return id;
     var first = t.split(",")[0];
     if (first.length <= 170) return first;
@@ -381,9 +395,9 @@ _CLIENT = r"""
       }
       var a = document.createElement("a");
       a.className = "cite";
-      a.href = BASE + "item/" + m[1] + "/";
+      a.href = citeHref(m[1]);
       a.textContent = handle(m[1]);
-      a.title = TITLES[m[1]] || m[1];
+      a.title = citeTitle(m[1]) || m[1];
       target.appendChild(a);
       at = m.index + m[0].length;
     }

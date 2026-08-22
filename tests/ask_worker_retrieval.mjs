@@ -21,7 +21,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
-import { assemble, pickItems, splitPack, queryOf, wantsBreadth, pinnedIds, strangeness }
+import { assemble, familyOf, pickItems, splitPack, queryOf, wantsBreadth, pinnedIds, strangeness }
   from "../workers/ask/retrieve.js";
 import { askIndex } from "../workers/ask/retriever.js";
 
@@ -51,14 +51,31 @@ const byId = new Map(ITEMS_RAW.map((it) => [it.id, it]));
 // ---------------------------------------------------------------- the split contract
 head("A. the pack cuts back into its parts, which is the whole of the plumbing");
 const { preamble, items } = splitPack(PACK.pack);
-ok("every decision comes back out as its own block",
-  items.length === PACK.items, `${items.length} of ${PACK.items}`);
+// THE PACK IS FOUR FAMILIES NOW AND THIS SECTION ASSERTED IT WAS ONE. `PACK.items` still
+// counts decisions, because a live worker reads it and a field vanishing under one is the
+// failure this repo is most careful about, so the count of everything is `PACK.blocks`.
+ok("every block comes back out of the cut",
+  items.length === PACK.blocks, `${items.length} of ${PACK.blocks}`);
 ok("the ids survive the cut intact",
-  items.every((it) => /^tx-\d{4}-\d{4}$/.test(it.id)),
-  JSON.stringify(items.filter((it) => !/^tx-\d{4}-\d{4}$/.test(it.id)).slice(0, 2)));
-ok("and they are the record's own ids, in the record's order",
-  JSON.stringify(items.map((i) => i.id)) === JSON.stringify(ITEMS_RAW.map((i) => i.id)));
-ok("no block loses its text", items.every((it) => it.chars > 200));
+  items.every((it) => /^[a-z0-9-]+$/.test(it.id)),
+  JSON.stringify(items.filter((it) => !/^[a-z0-9-]+$/.test(it.id)).slice(0, 2)));
+ok("the decisions come out first, in the record's own order",
+  JSON.stringify(items.slice(0, ITEMS_RAW.length).map((i) => i.id))
+  === JSON.stringify(ITEMS_RAW.map((i) => i.id)));
+// THE FAMILIES THE BUILDER DECLARED ARE THE FAMILIES THE CUT PRODUCES, which is the assertion
+// that catches a family silently losing its blocks. familyOf is the worker's own, so the two
+// sides cannot drift into disagreeing about what a family is.
+const cut = {};
+for (const it of items) cut[familyOf(it.id)] = (cut[familyOf(it.id)] || 0) + 1;
+ok("and every family the builder declared is present in the count it declared",
+  JSON.stringify(cut) === JSON.stringify(
+    Object.fromEntries(Object.entries(PACK.families).filter(([, n]) => n))),
+  `${JSON.stringify(cut)} against ${JSON.stringify(PACK.families)}`);
+// A RESERVOIR BLOCK IS 175 CHARACTERS AND A DECISION IS 2,708, so one floor across both is
+// either useless or wrong. What this is really guarding is a block arriving empty, which is
+// what a builder emitting a header and no body looks like.
+ok("no block loses its text", items.every((it) => it.chars > 120),
+  JSON.stringify(items.filter((it) => it.chars <= 120).slice(0, 2)));
 ok("the preamble stops before the first decision",
   preamble.includes("THE COUNTS")
   && !preamble.split("\n").some((l) => l.startsWith("[[")),
@@ -98,7 +115,7 @@ ok("the cached prefix clears the 1024 token minimum a cache entry needs",
   (asm.blocks[0].text.length + asm.blocks[1].text.length) / 4 > 1024,
   String(Math.round((asm.blocks[0].text.length + asm.blocks[1].text.length) / 4)));
 ok("the slice names itself as a slice, so the model does not read it as the whole record",
-  asm.blocks[2].text.startsWith("THE DECISIONS MOST LIKELY"));
+  asm.blocks[2].text.startsWith("WHAT IS MOST LIKELY TO ANSWER THIS QUESTION"));
 // TWO QUESTIONS, ONE CACHE ENTRY. If the stable blocks differed by a byte between questions
 // nothing above the breakpoint would ever be read back.
 const asm2 = assemble(PACK, [{ role: "user", content: "who decides transmission lines" }], {});

@@ -9,9 +9,17 @@ guarantees two things the answering layer has no way to provide for itself.
                         numeral_lint moved from build time to answer time, enforcing the same
                         law on model prose that it enforces on the page.
 
-  slugs                 every decision id. A citation to anything else is a failed check, so
-                        a plausible looking link to a decision that does not exist can't be
-                        returned.
+  slugs                 every id the pack can be cited by. A citation to anything else is a
+                        failed check, so a plausible looking link to something that does not
+                        exist can't be returned.
+
+                        THIS IS READ OFF THE PACK'S OWN BLOCKS AND NOT OFF THE LEDGER. It used
+                        to be the decision ids, because for two years the pack was the
+                        decisions. It now also carries data center dossiers, the construction
+                        register rolled up by county, and reservoir storage, all of them cited
+                        the same way. Listing only the decisions would refuse every true
+                        citation the other three families can produce, and a reader would watch
+                        a correct sentence about their own reservoir get cut for naming it.
 
 DERIVED FROM THE PACK, NOT FROM THE LEDGER, AND THAT IS THE WHOLE POINT. The sibling product
 authorises every numeral in its entire instrument series while showing the model only the
@@ -84,7 +92,10 @@ def build(today: str = None, docs_dir=None) -> dict:
     return {
         "generated": pack["generated"],
         "count": len(items),
-        "slugs": sorted(it["id"] for it in items),
+        # Every block the pack emits, whatever family it belongs to. Read off the pack for the
+        # same reason the numerals are: the pack is what the model was shown, and the ledger is
+        # only one of the four things now in it.
+        "slugs": sorted(ask_pack.block_ids(pack)),
         # Read off the pack's text, which is the exact thing the model is handed.
         "authorised_numerals": sorted(numerals(pack["pack"])),
         "pack_chars": pack["chars"],
@@ -155,11 +166,18 @@ def self_test() -> int:
 
     print("slugs")
     items = dk.load(LEDGER)
-    check("every decision has a slug", len(c["slugs"]) == len(items) == c["count"],
-          f"{c['count']} decisions")
+    pack = ask_pack.build()
+    check("every decision has a slug",
+          all(it["id"] in c["slugs"] for it in items), f"{c['count']} decisions")
+    check("and so does every other block the pack carries",
+          len(c["slugs"]) == pack["blocks"], f"{len(c['slugs'])} of {pack['blocks']}")
+    check("every family is represented",
+          all(any(ask_pack.familyOf(s) == fam for s in c["slugs"])
+              for fam, n in pack["families"].items() if n),
+          str(sorted({ask_pack.familyOf(s) for s in c["slugs"]})))
     check("slugs are unique", len(c["slugs"]) == len(set(c["slugs"])))
     check("a slug that does not exist is not listed",
-          "tx-9999-9999" not in c["slugs"])
+          "tx-9999-9999" not in c["slugs"] and "county-nowhere" not in c["slugs"])
 
     print("size")
     blob = json.dumps(c, separators=(",", ":"))

@@ -61,6 +61,12 @@ await page.route("**/answer", async (route) => {
          { sentence: "The body that decides sets the deadline and the rules." },
          { sentence: "Want the dates it moved on?" },
          { done: true }]
+    : /what is happening in Dallas/.test(q)
+      ? [{ stage: "Reading the record" },
+         { sentence: "Construction there is registered at $3.61 billion, [[county-dallas]]." },
+         { sentence: "One data center sits on the register, [[facility-bexar-1]]." },
+         { sentence: "The reservoir nearest it is [[water-lake-travis]]." },
+         { done: true }]
     : /why did the PUCT/.test(q)
       ? [{ stage: "Reading the record" },
          { sentence: "The Public Utility Commission of Texas decides it." },
@@ -346,6 +352,34 @@ ok("the sentence that did land is still shown",
 ok("and no fragment was published",
   !(await page.locator(".askreply").last().textContent()).match(/[a-z]{3}$/m) ||
   (await page.locator(".askreply").last().textContent()).includes("right now."));
+
+head("K2. a citation to something that is not a decision");
+// LAST IN THE SEQUENTIAL FLOW ON PURPOSE. Every section above reads the
+// state the previous answer left behind, the follow-up offer sitting in
+// the field and the count of exchanges on screen, so a question inserted
+// among them fails five assertions that are about something else
+// entirely. This one adds an exchange, so it goes after the last section
+// that counts them.
+// Three quarters of what the record now holds is not a decision. The renderer hardcoded /item/<id>/ and read titles out of the decision index, so
+// a dossier reached a reader as the literal string "facility-bexar-1" pointing at a page that
+// does not exist. The map that fixes it is built in ask_pack, where the names are, and this
+// asserts it arrived on the page rather than that the function exists.
+await page.fill("#askq", "what is happening in Dallas");
+await page.press("#askq", "Enter");
+await page.waitForSelector(".askfrom", { timeout: 8000 });
+const cites = page.locator(".askturn").first().locator("xpath=..").locator("a.cite");
+const hrefs = await page.locator("a.cite").evaluateAll(
+  (as) => as.map((a) => [a.getAttribute("href"), a.textContent]));
+const byHref = Object.fromEntries(hrefs);
+ok("a county's construction links to the register, under its own name",
+  byHref["construction/"] === "Construction registered in Dallas County",
+  JSON.stringify(hrefs));
+ok("a data center links to its own dossier page",
+  byHref["facility/bexar-1/"] === "Bexar 1", JSON.stringify(hrefs));
+ok("a reservoir links to the water record",
+  byHref["water/"] === "Travis reservoir", JSON.stringify(hrefs));
+ok("and no citation was left rendering as its raw id",
+  !hrefs.some(([, t]) => /^(facility|county|water)-/.test(t)), JSON.stringify(hrefs));
 
 head("L. nothing threw across any of that");
 // Let the page finish anything it defers on scroll before asking.
