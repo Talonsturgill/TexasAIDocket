@@ -353,39 +353,31 @@ _CLIENT = r"""
      index above does not already carry. Anything missing from it is a decision, which is why
      the fallback is the old behaviour rather than an error. */
   var CITES = window.__ASK_CITES__ || {};
-  function citeTitle(id) { return (CITES[id] && CITES[id][0]) || TITLES[id] || ""; }
+  /* [what the link says, where it goes, what it is]. The first is a LABEL and not a title:
+     "Docket 59315" where the record gives an identifier, "the water record" where it does
+     not. ask_pack.cite_label holds why. The third is the full title, kept for the tooltip, so
+     a reader who wants the whole name still has it without it landing in the sentence. */
+  function citeLabel(id) { return (CITES[id] && CITES[id][0]) || TITLES[id] || ""; }
+  function citeTitle(id) { return (CITES[id] && CITES[id][2]) || TITLES[id] || ""; }
   function citeHref(id) {
     return BASE + ((CITES[id] && CITES[id][1]) || ("item/" + id + "/"));
   }
 
-  /* A LINK INSIDE A SENTENCE HAS TO BE A HANDLE, NOT A HEADLINE. Titles on this record are
-     descriptive sentences, 106 characters on average, and dropping one whole into a paragraph
-     buried the paragraph: four lines of gold link around six words of prose.
-     The first clause is the handle where there is one, which is why "PUCT Project 58000,
-     rulemaking to update ERCOT transmission cost recovery, comment deadline reached" reads as
-     "PUCT Project 58000". Most titles here carry no comma at all, so anything still long is cut
-     The full title rides along as the link's tooltip either way. */
-  /* THE WHOLE FIRST CLAUSE, AND THE CAP THAT WAS THERE BEFORE WAS DOING REAL DAMAGE.
-     It kept 44 characters and truncated the rest with an ellipsis. That is right for the
-     titles shaped like a name, "PUCT Docket 59315", and this record has four of those. The
-     other sixty five are shaped like a sentence, "Archer County Commissioners Court
-     unanimously denies a tax abatement for a Dynamo Ventures data center", with a median first
-     clause of 109 characters. So nearly every citation a reader saw was a fragment ending in
-     an ellipsis, dropped into the middle of somebody else's sentence.
-     A long link reads as a long name. A cut one reads as broken prose, and the reader cannot
-     tell whether the machine ran out of words or out of record. The first clause is a complete
-     thought by construction, because it is what the title itself put before its first comma.
-     The remaining cap is a guard against a pathological title rather than a style, set above
-     the longest this record holds, and it still cuts at a word boundary if it ever fires. */
+  /* THE LABEL IS ALREADY THE RIGHT LENGTH, so nothing is cut here any more.
+     This function used to trim the title to fit a sentence, and the cap was wrong in both
+     directions: 44 characters made nearly every citation a fragment ending in an ellipsis, and
+     170 made it repeat the sentence it followed. A title that IS a sentence cannot be inlined
+     after a paraphrase of itself at any length, which is why the choice moved upstream to
+     ask_pack.cite_label and this reads what that decided. The longest label the record
+     produces is 30 characters. The guard stays because a builder is not a promise. */
   function handle(id) {
-    var t = citeTitle(id);
+    var t = citeLabel(id);
     if (!t) return id;
-    var first = t.split(",")[0];
-    if (first.length <= 170) return first;
-    var cut = first.slice(0, 166);
-    var sp = cut.lastIndexOf(" ");
+    if (t.length <= 40) return t;
+    var cut = t.slice(0, 36), sp = cut.lastIndexOf(" ");
     return (sp > 20 ? cut.slice(0, sp) : cut) + "...";
   }
+
   function renderCites(target, text) {
     var at = 0, m;
     CITE.lastIndex = 0;

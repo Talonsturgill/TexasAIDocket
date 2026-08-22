@@ -3861,18 +3861,20 @@ def ask_box(items: list, today: str, base: str = "") -> str:
     # /item/<id>/. For the other three families that produced the literal slug as link text,
     # pointing at a page that does not exist.
     #
-    # THE DECISIONS ARE LEFT OUT OF THIS MAP ON PURPOSE. Their titles already ship in the index
-    # above, at 106 characters each, and shipping them twice would put 20,000 bytes on every
-    # page to say what is already there. The renderer falls back to the index for anything this
-    # map does not carry, which is exactly the decisions.
     # WHICH COUNTIES HAVE A PAGE COMES FROM THE FUNCTION THAT MAKES THEM, not from counting
     # what is on disk. Listing docs/place/ gave a different answer depending on whether the
     # build was writing into docs/, which it wipes first, or into a temp directory, which
     # leaves the committed site standing. Same commit, two different sites, and site_fresh
     # _check went red on main.
-    cites = {k: v for k, v in ask_pack.cite_map(
-        today, places={pl["id"] for pl in all_places(items, today)}).items()
-        if not k.startswith("tx-")}
+    # THE DECISIONS ARE IN THIS MAP NOW AND THEIR TITLES ARE NOT. They were left out entirely,
+    # because their titles already ship in the index above at 106 characters each and sending
+    # them twice would put 20,000 bytes on every page. Their LABELS are 13 to 30 characters and
+    # cannot be derived from anything already on the page, so the label and the link ship and
+    # the title is dropped, which the renderer reads back out of the index as it always did.
+    cites = {}
+    for _k, _v in ask_pack.cite_map(
+            today, places={pl["id"] for pl in all_places(items, today)}).items():
+        cites[_k] = _v[:2] if _k.startswith("tx-") else _v
     starters = [c["q"] for c in cat if c["route"]["view"] in ("open_now", "counts")][:1] + \
                [c["q"] for c in cat if c["route"]["view"] == "by_metro"][:1] + \
                [c["q"] for c in cat if c["route"]["view"] == "by_topic"][:1]
