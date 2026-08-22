@@ -1911,37 +1911,52 @@ nobody is served. This is a test measuring an input the code never received. In 
 ran, printed green, and was about something other than the product.
 
 
-## 64. A lesson fixed at one call site and not carried to its sibling ten lines away
+## 64. A gate that was green because an unrelated timer was slower than the test
 
-`tests/ask_engine.mjs` asserts that a lookup is answered in the page without calling the paid
+`tests/ask_engine.mjs` asserted that a lookup was answered in the page without calling the paid
 worker. It read the request log ABSOLUTELY, as a total over everything the page had ever done,
 and it sat several steps after the press it was about.
 
-Every press in that suite parks a fifteen second timer that ends in a call to the worker. The
-suite aborts the challenge host, so a token never arrives, `waitForToken` gives up and sends
-anyway, and the call lands long after the assertion about that press has been made. Between the
-press and this check sat two `page.evaluate` calls that run the engine over the shipped index.
-**The index grows with the record.** The gap widened until it crossed fifteen seconds, and the
-timer's call was charged to the lookup.
+**It was never measuring what it claimed, and it was green for four months anyway.** A press
+parks the human check before the request goes out. The suite aborts the challenge host, so a
+token never arrives, the wait gives up and sends anyway, and the call landed AFTER this line had
+already run. The thing the assertion forbade was not absent. It was late.
 
-**The file had already learned this.** Its own comment, forty lines further down, describes the
-same fault charged to the refusal check, and calls it "the signature of a boundary that depends
-on how fast the runner is rather than on what the page did". The cure written then was a
-baseline and a delta. **It was applied to the refusal and not to the lookup**, which kept the
-absolute form that had just been proven wrong in the same file.
+Three attempts on it, and each one is the same fault wearing a different hat.
 
-**What made it look like somebody's fault.** Main was green alone. The branch was green alone.
-Only the merge was red, because only the merge had both records in the index. A session reading
-that will start looking for an interaction between two changes, and there is none. The proof
-took three full builds and two browser suites to establish, and every minute of it was spent on
-a boundary rather than on the product.
+**One. The timer got shorter than the test.** Between the press and the read sat engine calls
+that run over the shipped index, and the index grows with the record. Then the Turnstile wait
+was cut from fifteen seconds to six, for an owner watching the box sit there. The accident
+stopped working and the gate went red on changes that touched nothing in the ask lane. Main was
+green alone, the branch was green alone, only the merge was red, which sends a session hunting
+for an interaction between two changes when there is none.
 
-**The fix.** The assertion takes its baseline immediately before its own press and compares the
-delta across it. It still catches a real worker call for a lookup, which is the whole speed
-argument it protects, and it no longer measures how long the following steps took.
+**Two. Making the boundary honest was still wrong.** The first repair took a baseline
+immediately before the press and compared the delta across it. That is the right cure for an
+accumulating log and it is in this file for the refusal check. It did not apply here, because
+the assertion's SUBJECT had been deleted. #130 wrote it when a matched question was answered
+from the shipped index. #133 removed that lane outright, on the owner's verdict that an answer
+"cant be anything less" than the agent. A press reaching the worker is the design. Tightening
+the measurement did not fix the gate, it exposed that the gate was describing a product that had
+not existed since April.
 
-**Generalises to.** Any assertion over an accumulating log. Ask what else could have appended
-between the action and the read, and whether the answer grows with the data. And when a fault
-is fixed at one call site, grep the file for its siblings before closing it. A lesson applied
-once is a lesson half learned, and the half left behind fails later, on somebody else's change,
+**Three. Assert the engine, not the press.** The repair that holds reloads the page, because a
+reload destroys the old document and every timer it was holding, which is the only thing that
+makes "nobody has been called yet" true rather than merely unobserved. Then it zeroes the log
+and calls `window.__askLocal` directly. The claim and the measured thing are finally the same
+thing, and the promise it protects, that the record is readable with no network at all, is
+asserted where that promise is still true.
+
+**Generalises to.** When a gate goes red on a change that cannot have caused it, do not reach
+for the measurement first. Ask what the assertion's subject is and whether the product still has
+one. **A green assertion whose subject was deleted is not evidence, it is a race running in your
+favour**, and it will be handed to whoever next touches an unrelated file. When a lane is
+removed from a product, grep the suites for assertions about that lane in the same commit.
+
+And the sibling rule, which is what the fix for the refusal check should have taught here the
+first time. A fault fixed at one call site is a lesson half learned. Grep the file for its
+siblings before closing it, because the half left behind fails later, on somebody else's change,
 looking like their fault.
+
+**A boundary drawn on a moment that happens to precede the failure is not a boundary. It is a
+coincidence with good timing.**
