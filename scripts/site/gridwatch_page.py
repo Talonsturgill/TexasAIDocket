@@ -696,7 +696,6 @@ def body(records: list[dict], today: str, queue_data: dict | None = None) -> str
   {acc_block}
 </section>
 
-{beyond_panel.generation(beyond_panel.load(), today)}
 
 <div class="prose gridnote">
   <div class="gap">

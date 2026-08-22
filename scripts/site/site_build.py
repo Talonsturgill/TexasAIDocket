@@ -5689,6 +5689,11 @@ def datacenters_page(today: str) -> str:
     camps = tdlr_projects.campuses(dc)
     multi = sum(1 for x in data["entities"] if x["reach"] > 1)
     doss = facility_dossier.load().get("dossiers") or []
+    # BOTH BEYOND PANELS READ THE SAME FILE, so it is loaded once. Generation moved here from
+    # the grid page on the owner's call: what is being BUILT FOR these buildings is a data
+    # center fact, and the grid tab is for what the system is doing rather than for who is
+    # arriving on it.
+    _beyond = beyond_panel.load()
 
     def bn(v):
         return f"${v / 1_000_000_000:.2f} billion" if v >= 1_000_000_000 else f"${n0(v)}"
@@ -5724,7 +5729,8 @@ def datacenters_page(today: str) -> str:
         f'<div class="dctiles" data-prose="data">{tiles}</div>'
         f'</article>'
         + f'<div class="prose dcpage">'
-        + beyond_panel.registry(beyond_panel.load(), today)
+        + beyond_panel.registry(_beyond, today)
+        + beyond_panel.generation(_beyond, today)
         + f'</div>'
         + f'<article class="prose dcpage">'
         f'<h2>Campuses, as the builder filed them</h2>'
@@ -5733,7 +5739,7 @@ def datacenters_page(today: str) -> str:
         f'beside them.</p>'
         f'<div class="cbtable cbcamp" data-prose="data">{crow}</div>'
         f'<p class="qnote"><a href="../construction/">The whole construction register</a>, by '
-        f'year, by county and by company, with the rule that decides what counts.</p>'
+        f'year, by county and by company. It states the rule that decides what counts.</p>'
         f'<h2>Where to go from here</h2>'
         f'<ul class="dcways">'
         f'<li><a href="../company/">Who is behind the registry</a>. Every company the state '
