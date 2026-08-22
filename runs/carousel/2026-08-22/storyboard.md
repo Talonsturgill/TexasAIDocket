@@ -65,7 +65,7 @@ acceptance:
   - "exactly 34 recesses are present and countable at 432px"
   - "exactly 10 recesses carry a lit block in trace #9FD3B4 and 24 do not"
   - "no recess is empty of its block, because absence of light never means absence of a filing"
-  - 'the gap line reads exactly "10 of these 34 rows are quoted on the frames that follow. 24 are not read here."'
+  - 'the gap line reads exactly "10 rows are quoted on the frames that follow. The other 24 rows stand in the filing index and are not read here."'
   - "every contact shadow is two part, a 6px core and a 40px ambient, never a single drop"
   - "the figure 34 is set in JetBrains Mono, not Fraunces"
 risks:

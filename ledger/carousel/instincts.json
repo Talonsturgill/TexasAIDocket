@@ -148,6 +148,14 @@
       "evidence": "2026-08-22. Seven copy.json strings disagreed with the laid out text and copy_sync_check was green on all of them. The staged build published '7/16/2026Fedor Mikheev' and 'September 4th, 2026.Refer' as article prose.",
       "confirmed": [],
       "contradicted": []
+    },
+    {
+      "id": "an-absence-needs-a-claim-id-like-any-fact",
+      "learned": "2026-08-22",
+      "instinct": "Register an absence as a first-class claim with its own id, the document it is absent from, and the search that failed to find it, because a sentence with no claim id is the one assertion nothing downstream can check.",
+      "evidence": "2026-08-22. 'The rule as published in the Texas Register does not contain the words data center' ran on slide 2, in the caption and in the first comment while living only as prose inside claims.rejected. It is now c20, with occurrences counted in code from the fetched page.",
+      "confirmed": [],
+      "contradicted": []
     }
   ]
 }
