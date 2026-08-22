@@ -156,6 +156,30 @@
       "evidence": "2026-08-22. 'The rule as published in the Texas Register does not contain the words data center' ran on slide 2, in the caption and in the first comment while living only as prose inside claims.rejected. It is now c20, with occurrences counted in code from the fetched page.",
       "confirmed": [],
       "contradicted": []
+    },
+    {
+      "id": "the-plan-is-not-the-product",
+      "learned": "2026-08-22",
+      "instinct": "Rebuild every artifact DERIVED from a thing you just changed in the same commit that changes it, because a stale derived file is wrong by construction and no gate is watching the gap.",
+      "evidence": "2026-08-22. Committed new claims without rebuilding docs and the freshness gate went red. Committed a rewritten caption without rebuilding gmail_payload.json and email_check went red. Both were split off to clear a dirty tree.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "no-gloss-is-not-no-explanation",
+      "learned": "2026-08-22",
+      "instinct": "Go back to the source for a plain sentence before concluding one would be an inference, because the law forbids inventing a reading and never forbade quoting a clearer one.",
+      "evidence": "2026-08-22. Five scoring passes said the deck never told a Texan what the rule would do. All five were answered with 'that would be an inference'. The same Texas Register page carried a 54 million dollar cap and two plain conditions further down.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-count-must-name-the-population",
+      "learned": "2026-08-22",
+      "instinct": "State which population a published count measured, because a number computed over the wrong set is worse than a typed one and arrives wearing the authority of a computation.",
+      "evidence": "2026-08-22. The cover said 10 rows quoted when six were. The derivation counted index-row CLAIMS while the sentence described FRAMES. A note in the storyboard was congratulating the run for replacing a typed 8 with that computed 10.",
+      "confirmed": [],
+      "contradicted": []
     }
   ]
 }
