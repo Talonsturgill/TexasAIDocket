@@ -101,11 +101,17 @@ export function normaliseQuestion(q) {
  * would serve one thread's answer into another's. Follow-ups mostly miss, and that is correct.
  */
 export async function cacheKey(turns, packDate) {
+  // THE DATE IS WHAT MAKES THIS KEY EXPIRE. Without it every day shares one key, so a reader
+  // gets an answer about a record that has since changed and nothing ever says so. A pack with
+  // no `generated` is a broken pack and it has never shipped, but the same missing fallback
+  // was found twice in this file on the same afternoon, once in usageKey and once here, so it
+  // is closed rather than argued about. Today's date keeps the daily rotation.
+  const day = packDate || new Date().toISOString().slice(0, 10);
   const thread = turns.map((m) => m.role + ":" + normaliseQuestion(m.content)).join("\n");
   const digest = await crypto.subtle.digest("SHA-256",
-    new TextEncoder().encode(`${packDate}\n${thread}`));
+    new TextEncoder().encode(`${day}\n${thread}`));
   const hex = [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, "0")).join("");
-  return `a:${KV_PREFIX}:${packDate}:${hex.slice(0, 32)}`;
+  return `a:${KV_PREFIX}:${day}:${hex.slice(0, 32)}`;
 }
 
 export function monthKey(nowISO) {
@@ -192,23 +198,32 @@ export function allowedNumerals(blocks) {
 }
 
 /**
- * EFFORT, AND WHY IT IS LOW.
+ * EFFORT, AND WHY IT IS MEDIUM RATHER THAN LOW.
  *
  * On Sonnet 5 an omitted `thinking` still runs ADAPTIVE thinking, and `output_config.effort`
  * defaults to `high`. So every question was thinking hard about a lookup over a record already
  * sitting in front of it, and a reader was waiting through it on the one part of this page that
- * talks back.
+ * talks back. That much was worth fixing and still is.
  *
- * Low is what this shape of work wants. The record is IN CONTEXT, so there is nothing to work
- * out about where the answer lives; the answer is a summary of what is already there; and a
- * sentence that overreaches is caught by the guard below rather than by the model's own
- * deliberation. Deliberation is the expensive way to buy something this already has.
+ * LOW WAS A STEP TOO FAR, AND AN EVAL SESSION SHOWED IT. The reasoning for low was that the
+ * record is in context so there is nothing to work out about where the answer lives. That is
+ * true of the RECORD and false of a DECISION. Asked which decisions are in Erath County, with
+ * the right decision's full text in the prompt, it answered "the record does not answer that".
+ * Erath is one of twenty two counties listed inside that decision, and finding a name in a list
+ * inside a document is work. Low is the budget for a lookup and this is not one.
  *
- * ASK_EFFORT raises it if answers start reading thin. An unrecognised value falls back rather
- * than reaching the API, because a typo in a dashboard variable should not 400 every question.
+ * The same session showed the softer half of it. Asked what a groundwater district decided
+ * about evaporative cooling, it correctly said no groundwater district did, while holding in
+ * its prompt the Wichita Falls permit that BANS evaporative cooling. Right answer, and it never
+ * made the connection sitting in front of it.
+ *
+ * Medium rather than high, because high is where the original complaint came from and nothing
+ * here needs a model to deliberate over prose it can see. ASK_EFFORT moves it either way. An
+ * unrecognised value falls back rather than reaching the API, because a typo in a dashboard
+ * variable should not 400 every question.
  */
 const EFFORT = new Set(["low", "medium", "high", "xhigh", "max"]);
-const DEFAULT_EFFORT = "low";
+const DEFAULT_EFFORT = "medium";
 
 export function effectiveEffort(env) {
   const want = String(env?.ASK_EFFORT ?? "").trim().toLowerCase();
@@ -246,7 +261,16 @@ export function modelParams(env) {
  * here rather than discovered later in a total that does not tie out.
  */
 export function usageKey(nowISO) {
-  return `use:${KV_PREFIX}:${String(nowISO).slice(0, 7)}`;
+  // THE FALLBACK IS THE WHOLE POINT OF THIS LINE. worker.js calls answerStream(turns, env)
+  // with no third argument, because `now` exists for tests to pin a month. monthKey has always
+  // written `monthKey(now || new Date().toISOString())` and this did not, so every real
+  // request wrote its usage to `use:tx:undefin` while /_config read `use:tx:2026-08` and
+  // honestly reported zero.
+  //
+  // Nine questions were answered before anyone noticed, because the counter is a diagnostic
+  // and a broken diagnostic looks exactly like a quiet month. The spend counter was never
+  // affected, which is why the cap kept working and hid it.
+  return `use:${KV_PREFIX}:${String(nowISO || new Date().toISOString()).slice(0, 7)}`;
 }
 
 export function emptyUsage() {

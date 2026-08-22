@@ -637,8 +637,9 @@ __RETRIEVER__
     return bag;
   }
 
-  function classify(q) {
+  function classify(q, depth) {
     var text = String(q || "").trim();
+    depth = depth || 0;
     if (!text) return { bucket: "empty" };
     /* THE AGENT ANSWERS EVERY QUESTION ABOUT THE RECORD, and the first version of this did
        not. It routed anything the catalogue matched to the in-page engine, which renders a
@@ -653,6 +654,17 @@ __RETRIEVER__
        The local route is not deleted. It is the FALLBACK when the month's cap is spent, where
        a list of the right decisions beats an apology, and `askLocal` is how the written lane
        reaches it. */
+    /* A FOLLOW-UP IS NOT A NEW QUESTION AND MUST NOT BE JUDGED AS ONE.
+       This read one line at a time, so "u sure?" shared no word with the record and got the
+       same canned refusal, twice, verbatim. A reader who pushes back on an answer and is
+       handed the identical sentence back is talking to a wall, and the wall is a fixed string
+       that never reached the model at all.
+       The refusal exists to stop somebody asking for a recipe from spending money. It was
+       never meant to answer for the model in a conversation the model is already having, and
+       the words that carry a follow-up, "why", "u sure", "which one", "and the dates", share
+       no vocabulary with any record by their nature. Once a thread exists, the question goes
+       to the model with the thread and the model decides. */
+    if (depth > 0) return { bucket: "written" };
     var bag = vocabulary(), ws = words(text), touched = 0;
     ws.forEach(function (w) { if (bag[w]) touched++; });
     if (ws.length && touched === 0 && !best(text)) return { bucket: "refuse" };
