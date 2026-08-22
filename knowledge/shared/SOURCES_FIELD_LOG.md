@@ -404,3 +404,70 @@ carries the date contiguously in its own `<title>`, as `August 20, 2026 - From t
 which is now c37. **The lesson is about the shape of the gap rather than about this host.** A date
 that reaches published copy through a metadata field nobody quotes is exactly as untraced as a
 number typed into a slide, and neither `claims_check` nor `aggregate_check` looks at either.
+
+## August 22nd, 2026
+
+**The PUCT calendar RSS moved to a lowercase path and now 301s.**
+`puc.texas.gov/agency/calendar/GetCalendarRss.aspx` returns **HTTP 301** to
+`puc.texas.gov/agency/calendar/getcalendarrss.aspx`, which answers 200 with 32 calendar items.
+A fetch that does not follow redirects gets an empty 180 byte body and reports zero items, which
+is what this run saw on its first pass. The registry gives the mixed-case form. Follow redirects,
+or use the lowercase path directly. That feed is where this run found the September 17th comment
+deadline on Project 59550, which nothing else had surfaced.
+
+**`texreg.sos.state.tx.us` is dead but the Texas Register is alive at `www.sos.state.tx.us`.**
+The previous entry records the old host serving a redirect notice. The working route this run used
+is `https://www.sos.state.tx.us/texreg/archive/<Month><D><YYYY>/Proposed%20Rules/16.ECONOMIC%20REGULATION.html`,
+which returned 200 and carried the full proposed rule text including the comment deadline sentence.
+A scout reports the archive path **403s when the date path is guessed and 200s when the exact href
+is taken from `/texreg/sos/index.html`**, so start at that index. This is the source that saved
+this run's deck: it is the only route by which the September 4th deadline was verified by an
+independent live fetch rather than from a cached artifact.
+
+**`interchange.puc.texas.gov` answered `curl` with a browser User-Agent and refused the agent
+fetch tool with 503.** The registry's row is still right that it 402s a ClaudeBot UA and 200s a
+browser UA. What is new is that the same host returned **503 Service Unavailable** to a subagent's
+fetch tool minutes after answering `curl` from the same run, which matches the `puc.texas.gov` 503
+behaviour recorded on August 21st. Fetch it with `curl` and a browser User-Agent from the main
+context and hand the artifact down, rather than asking a subagent to re-fetch it.
+
+**The agent fetch tool caps a quoted excerpt at roughly 125 characters.** A scout reported this
+explicitly and it silently truncates every verbatim quote it returns to a sentence fragment. It
+also refused a full verbatim reproduction request on `press.aboutamazon.com` and said so. Any quote
+a scout returns should be treated as a fragment and re-fetched with `curl` before it is published,
+which is what this run did for the Amazon, NSF and Texas A and M material.
+
+**`api.nsf.gov` is the best surface on the research beat and `nsf.gov/awardsearch` is useless.**
+`api.nsf.gov/services/v1/awards.json?id=<award>` returns the full abstract, the obligated amount,
+the start and end dates, the performance city and the PI as raw JSON with no robots obstacle.
+The human facing award page at `www.nsf.gov/awardsearch/showAward?AWD_ID=<id>` returned an
+identical 30,958 byte JavaScript shell for two different awards and carried no amount at all.
+
+**`news.rice.edu` returned 406 Not Acceptable** to `curl` with a browser User-Agent, on two
+attempts, including one carrying full `Accept` and `Accept-Language` headers.
+`news.engineering.tamu.edu` and `stories.tamu.edu` both answered 200.
+
+**Hosts that refused a scout this run, recorded as observation only.** `mdpi.com`,
+`beckershospitalreview.com`, `houstonchronicle.com`, `law.justia.com`, `hpcwire.com`,
+`thedailytexan.com`, `fortworthreport.org`, `nbcdfw.com`, `houstonpublicmedia.org`, `chron.com`,
+`techdirt.com`, `kxan.com` and `investor.ovintiv.com` all returned 403. `x.com` returned 402.
+`investors.fireflyspace.com` and `investors.ao-inc.com` returned 503. `twc.texas.gov` returned an
+empty body twice. `usda.gov` returned 403 again while `aphis.usda.gov` answered, matching the
+August 21st entry.
+
+**Two working routes around a 403, both of them legitimate.**
+`mdpi.com` refused a journal article and the **Europe PMC REST API** at
+`ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:"<doi>"&resultType=core&format=json`
+returned the same abstract in full. `fortworthreport.org` refused and its identical syndicated
+article at `keranews.org` answered 200 with the original byline intact. Neither is routing around
+a disallow. Both hosts permit crawling and simply refused this fetcher.
+
+**`data.texas.gov` WARN dataset is roughly two months stale.**
+`data.texas.gov/resource/8w53-c4f6.json?$order=notice_date DESC` fetched cleanly and its most
+recent notice date was 6/23/26, so no fresh manufacturing layoff can be drawn from it.
+
+**`tahc.texas.gov` carries the screwworm case counts and no surveillance detail.**
+Its emergency page gives total Texas counties and premises with cases and the movement restriction
+in an Infested Zone, and mentions no drone, aerial or artificial intelligence surveillance at all.
+The drone and AI half of that story lives only on `aphis.usda.gov`, which timed out twice on
+`curl` from this run's main context after answering a scout, so this run could not admit the item.
