@@ -736,8 +736,15 @@ head("J1. a slow first solve is rescued by the retry, not met with a dead end");
   const reply = ((await cold.textContent(".askreply")) || "").trim();
   ok("the retry answered it", /Public Utility Commission/.test(reply),
      JSON.stringify(reply));
-  ok("...and it carried a token rather than posting without one",
-     asked.length > 0 && asked[0] === "t", JSON.stringify(asked));
+  /* HOW MANY POSTS IT TAKES IS THE MACHINE'S BUSINESS, NOT THIS TEST'S.
+     On a slow runner the first wait expires and the page posts without a token, is refused,
+     and the retry carries the token that was always coming. On a fast one the token lands
+     inside the first wait and there is a single post. Both are correct and this test exists
+     for the first, so asserting the FIRST post carried a token contradicted its own name and
+     went red on CI while passing here. What has to hold either way is that the request which
+     succeeded carried one. */
+  ok("...and the request that succeeded carried a token",
+     asked.length > 0 && asked[asked.length - 1] === "t", JSON.stringify(asked));
   ok("...so the reader never met a dead end", !/did not get through/i.test(reply), reply);
   /* A RESET IS CORRECT AFTER A TOKEN IS SPENT AND WRONG BEFORE ONE EXISTS.
      spendToken calls turnstile.reset, which DISCARDS a challenge in progress. Once the token
@@ -749,8 +756,8 @@ head("J1. a slow first solve is rescued by the retry, not met with a dead end");
   const resets = await cold.evaluate(() => window.__askResets || 0);
   ok("...and it re-armed once, after the token was spent rather than before it existed",
      resets === 1, String(resets));
-  ok("...and nothing was posted without a token first",
-     asked.filter((t) => !t).length === 0, JSON.stringify(asked));
+  ok("...and it took at most one refused attempt to get there",
+     asked.filter((t) => !t).length <= 1, JSON.stringify(asked));
   await cold.close();
 }
 
