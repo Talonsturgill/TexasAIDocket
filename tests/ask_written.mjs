@@ -646,12 +646,19 @@ head("J2. a token that lands after the ceiling may not blank the page");
    earned while the reader was reading, so only the first one can be slow enough. */
 {
   const slow = await b.newPage();
-  await pinCeiling(slow);
+  // NOT pinCeiling here. This page sets its own, lower, below, and two init scripts writing the
+  // same global in order is a thing a reader has to run in their head to understand.
   await slow.route("**://challenges.cloudflare.com/**", (r) => r.abort());
+  /* THREE SECONDS, NOT THE SUITE'S EIGHT, and the number is the whole premise.
+     This case needs a token that lands AFTER the ceiling has spoken. `waitForToken` gives up
+     after six seconds now, for an owner who watched the box sit there, so a token can never
+     arrive later than that and a ceiling at eight can never fire first. The order the bug needs
+     became unreachable, the test started measuring a race instead, and CI went red on the
+     assertion while the same code passed here. Pinning this page lower puts the ceiling at
+     three and the token at four and a half, which is the order this is about. */
+  await slow.addInitScript(() => { window.__ASK_CEILING_MS__ = 3000; });
   await slow.addInitScript(() => {
-    // Nine and a half seconds, which is past the eight second ceiling and inside the suite's
-    // patience. A real solve on a bad connection is the same shape.
-    window.turnstile = { render: (el, o) => { setTimeout(() => o.callback("t"), 9500); return 1; },
+    window.turnstile = { render: (el, o) => { setTimeout(() => o.callback("t"), 4500); return 1; },
                          reset: () => {} };
     /* THE PAGE ONLY CALLS render FROM THE TURNSTILE SCRIPT'S ONLOAD, and that script is
        aborted here, so nothing invokes it and the stub sits unused. A first version of this
@@ -670,11 +677,23 @@ head("J2. a token that lands after the ceiling may not blank the page");
   await slow.goto(URL_);
   await slow.waitForTimeout(300);
   await slow.fill("#askq", "why does the deadline keep moving");
+  await slow.evaluate(() => { window.__askPressedAt = performance.now(); });
   await slow.press("#askq", "Enter");
-  // Past the ceiling, past the token, and past whatever the token's arrival sets going.
-  // Past the ceiling at eight seconds and past the token at nine and a half, which is the
-  // window where the ending gets overwritten.
-  await slow.waitForTimeout(13000);
+  /* WAIT FOR THE ENDING, THEN WAIT PAST THE TOKEN, AND ONLY THEN LOOK.
+     Both halves are needed and the first version had only one. Waiting for "an ending appeared"
+     fires at three seconds, which is BEFORE the token lands at four and a half, so it read the
+     correct message a second and a half before the bug overwrites it and passed against code
+     that was broken. Waiting a fixed number of seconds instead is a bet on how several timers
+     interleave on whatever machine is running, which is what put a red on CI and a green here.
+     So: block until the ceiling has spoken, which is the state this is about, then block until
+     the token is certainly in and processed, then assert what survived. */
+  await slow.waitForFunction(() => {
+    var r = document.querySelector(".askreply");
+    return (((r && r.textContent) || "").trim()).length > 0
+      && !!document.querySelector(".askfrom");
+  }, null, { timeout: 25000 }).catch(() => {});
+  await slow.waitForFunction(() => (performance.now() - window.__askPressedAt) > 7000,
+                             null, { timeout: 25000 }).catch(() => {});
   const text = ((await slow.textContent(".askreply")) || "").trim();
   ok("the reader is not left looking at nothing", text.length > 0, JSON.stringify(text));
   ok("and what stands is an ending rather than a status line",
