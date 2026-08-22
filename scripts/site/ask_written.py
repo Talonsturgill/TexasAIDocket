@@ -78,13 +78,21 @@ COPY = {
     "capped":       "That is this month's last written answer. Typing still searches the "
                     "whole record instantly and for nothing, which is most of what this box does.",
     "provenance":   "Written from the published record. Every figure checked against it.",
-    # Said when the ceiling cut a stream that had already begun. It names the limit rather
-    # than blaming the network, because the limit is ours and a narrower question is the
-    # thing a reader can actually do about it.
-    "cut_time":     "The rest was cut at eight seconds. A narrower question gets a whole "
-                    "answer inside it.",
-    "too_slow":     "That one did not come back inside eight seconds. Typing a narrower "
-                    "question searches the whole record instantly and for nothing.",
+    # NEITHER OF THESE MENTIONS A CLOCK AND NEITHER ASKS THE READER TO ASK FOR LESS.
+    #
+    # They used to do both. "The rest was cut at eight seconds. A narrower question gets a
+    # whole answer inside it." Owner, on seeing it twice in one sitting: "that is a horrible
+    # thing to say to someone. Like no how about the model get better."
+    #
+    # He is right and it is worth writing down why, because the first version read as careful.
+    # A number in this sentence is the machine explaining its own budget to somebody who did
+    # not set it and cannot change it. And telling a reader their question was too broad makes
+    # the good question the reader's fault, when a wide question is exactly what a record
+    # product should be best at. The failure is ours in both directions.
+    #
+    # So they say what happened, they offer the one thing that actually helps, and they stop.
+    "cut_time":     "That answer ran long and stops here.",
+    "too_slow":     "That one did not come back. Asking again usually works.",
     # Said under an answer the page produced itself, which is most of them. It is not the
     # same claim as the written lane's: nothing was written, the record was read.
     # The refusal wears the same provenance line an answer does. A separate one announced that
@@ -621,7 +629,25 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
        being slow, it is a challenge the reader cannot skip, and it says so on screen while it
        runs. Restarting the clock at the fetch is what makes eight seconds mean the thing it
        claims to mean. */
-    var CEILING_MS = 8000;
+    // A HANG GUARD, NOT A BUDGET, and it used to be a budget.
+    //
+    // Eight seconds came from an owner's brief, "an eight second execution ceiling, so it's
+    // fast when users are asking", and it did make the box feel fast. It also put a stopwatch
+    // in front of readers, because eight seconds is inside the range a real answer to a real
+    // question takes, so the ceiling stopped being an exception and started being an
+    // experience. Same owner, later, watching it fire twice in a sitting: "we don't ever want
+    // that shit on screen. If it takes a couple seconds longer to get the right answer it is
+    // what it is."
+    //
+    // Forty five seconds is past anything the answerer does when it is working, including the
+    // first question of a session, which pays for a Turnstile solve, a rerank and a model call
+    // in series. What is left for this to catch is a request that is never coming back, which
+    // is what a ceiling is actually for.
+    // OVERRIDABLE FOR THE SUITE, and only there. A ceiling that is forty five seconds takes
+    // forty six seconds to test, three times over, and a suite nobody will sit through is a
+    // suite that gets skipped. Nothing on the published page sets this, so every reader gets
+    // the real number.
+    var CEILING_MS = Number(window.__ASK_CEILING_MS__) || 45000;
     var overran = false;
     /* WHICH ENDING GOT HERE FIRST, tracked explicitly rather than inferred from whether the
        body happens to have text in it. Two different endings both wrote "if nothing started
