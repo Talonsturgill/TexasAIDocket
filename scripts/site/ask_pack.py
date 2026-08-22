@@ -910,20 +910,42 @@ question this record can answer.
 """
 
 
+def families(docs_dir=None):
+    """The three families that are not the decisions, built once.
+
+    THE BLOCKS AND THE INDEX LINES ARE BUILT TOGETHER, ONE CALL EACH, because they have to
+    agree. A family with an index line and no blocks tells the model something exists that it
+    can never be shown, and a family with blocks and no line is invisible until retrieval
+    happens to guess right. Each builder returns both or neither.
+
+    IT IS A FUNCTION SO THAT TWO CALLERS CANNOT DISAGREE. `build` needs the blocks to write the
+    pack and `cite_map` needs them to name the links, and the second one used to reach into the
+    first one's published output for a copy. Ids drifting between the prompt and the page is a
+    citation to a page that does not exist, which is the whole failure the map exists to stop.
+    """
+    dossiers = (_ledger(FACILITIES) or {}).get("dossiers") or []
+    projects = (_ledger(PROJECTS) or {}).get("projects") or []
+    county_blocks, county_head = construction(projects)
+    water_blocks, water_head = reservoirs(_feed("waterwatch", docs_dir) or {})
+    return dossiers, county_blocks, county_head, water_blocks, water_head
+
+
+def cite_map(today: str = None, places=frozenset(), docs_dir=None) -> dict:
+    """Every citable id, with the name and the link the page should render it as.
+
+    Called by site_build, which is the only thing that reads it and the only thing that knows
+    which counties have a page of their own. See `cites` for why `places` is passed in.
+    """
+    today = today or _dt.date.today().isoformat()
+    dossiers, county_blocks, _ch, water_blocks, _wh = families(docs_dir)
+    return cites(dk.load(LEDGER), dossiers, county_blocks, water_blocks, places=places)
+
+
 def build(today: str = None, docs_dir=None) -> dict:
     today = today or _dt.date.today().isoformat()
     items = dk.load(LEDGER)
 
-    dossiers = (_ledger(FACILITIES) or {}).get("dossiers") or []
-    projects = (_ledger(PROJECTS) or {}).get("projects") or []
-    water = _feed("waterwatch", docs_dir) or {}
-
-    # THE BLOCKS AND THE INDEX LINES ARE BUILT TOGETHER, ONE CALL EACH, because they have to
-    # agree. A family with an index line and no blocks tells the model something exists that it
-    # can never be shown, and a family with blocks and no line is invisible until retrieval
-    # happens to guess right. Each builder returns both or neither.
-    county_blocks, county_head = construction(projects)
-    water_blocks, water_head = reservoirs(water)
+    dossiers, county_blocks, county_head, water_blocks, water_head = families(docs_dir)
 
     parts = [
         f"THE TEXAS AI DOCKET, as it stood on {longdate(today)}. "
@@ -987,10 +1009,11 @@ def build(today: str = None, docs_dir=None) -> dict:
         # deployed today still reads `items` and a field vanishing under a live worker is the
         # failure this file is most careful about.
         "blocks": len(items) + len(dossiers) + len(county_blocks) + len(water_blocks),
-        # The page reads this to render a citation as a name and a working link. It is not read
-        # by the worker, which only ever needs the ids, and it is published here because this is
-        # the one place that holds every family's names at once.
-        "cites": cites(items, dossiers, county_blocks, water_blocks, places=_places()),
+        # THE CITATION MAP IS NOT PUBLISHED HERE, and it was, for one commit. Only the page
+        # reads it and only site_build knows which counties have a page of their own, so a copy
+        # in this file could only ever be the version that did not know. Two maps that can
+        # disagree is worse than one map in the place that has the facts. `cites` below is the
+        # function, and site_build calls it with what it knows.
         "families": {
             "tx": len(items), "facility": len(dossiers),
             "county": len(county_blocks), "water": len(water_blocks),
@@ -1036,6 +1059,34 @@ def build(today: str = None, docs_dir=None) -> dict:
 # dossiers have one each. Sixty one counties of construction have twenty four between them, so
 # they point at the register, which is where their rows are published. Reservoirs have no page
 # of their own at all and point at the water record.
+#
+# `places` IS PASSED IN AND IS NEVER READ OFF DISK, and the first version of this did read it
+# off disk, by listing docs/place/. That is the previous build's output, so the answer depended
+# on what was already on the filesystem: building into docs/ wipes it first and found zero
+# county pages, building into a temp directory found twenty four, and the same commit produced
+# two different sites. site_fresh_check caught it, which is what that gate is for, and it
+# caught it after the merge rather than before.
+#
+# The authority is site_build.all_places, a pure function of the docket, which is what CREATES
+# those pages. Asking the thing that makes them beats counting what it made last time.
+def cites(items: list, dossiers: list, county_blocks: list, water_blocks: list,
+          places: set = frozenset()) -> dict:
+    out = {}
+    for it in items:
+        out[it["id"]] = [it["title"], f"item/{it['id']}/"]
+    for d in dossiers:
+        out[f"facility-{d['slug']}"] = [(d.get("name") or "").strip(),
+                                        f"facility/{d['slug']}/"]
+    for b in county_blocks:
+        bid = b[2:b.index("]]")]
+        name = b[b.index("]]") + 2:b.index("\n")].strip()
+        out[bid] = [name, f"place/{bid}/" if bid in places else "construction/"]
+    for b in water_blocks:
+        bid = b[2:b.index("]]")]
+        out[bid] = [b[b.index("]]") + 2:b.index("\n")].strip(), "water/"]
+    return out
+
+
 def cites(items: list, dossiers: list, county_blocks: list, water_blocks: list,
           places: set = frozenset()) -> dict:
     out = {}
@@ -1246,6 +1297,29 @@ def self_test() -> int:
           fams == {k: v for k, v in p["families"].items() if v}, f"{fams} against {p['families']}")
     check("no body contains a blank line, which would split it in two",
           not any("\n\n" in b for b in blocks))
+
+    # THE CITATION MAP IS A PURE FUNCTION OF WHAT IT IS HANDED, and for one commit it was not.
+    # It decided which counties have a page of their own by LISTING docs/place/, which is the
+    # previous build's output. Building into docs/ wipes that first and found none, building
+    # into a temp directory found twenty four, and the same commit produced two different
+    # sites. site_fresh_check went red on main, which is late.
+    #
+    # This is the same check that gate makes, made here, where it costs a second instead of
+    # three minutes. If a county href ever stops tracking the `places` argument exactly, some
+    # filesystem is being read again.
+    print("the citation map answers to its arguments and to nothing else")
+    none = cite_map(p["generated"], places=frozenset())
+    one = cite_map(p["generated"], places={"county-bexar"})
+    counties = [k for k in none if k.startswith("county-")]
+    check("with no place pages, every county points at the register",
+          counties and all(none[k][1] == "construction/" for k in counties),
+          str([none[k][1] for k in counties if none[k][1] != "construction/"][:3]))
+    check("naming one place page moves exactly that one county and no other",
+          one["county-bexar"][1] == "place/county-bexar/"
+          and sum(1 for k in counties if one[k][1] != "construction/") == 1,
+          str(sorted(k for k in counties if one[k][1] != "construction/")))
+    check("and the names never move, whatever the pages do",
+          all(none[k][0] == one[k][0] for k in none))
 
     print("size, which is a bill and not a warning")
     approx = round(len(text) / 4)
