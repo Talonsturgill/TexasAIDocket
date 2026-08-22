@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-qIW36fmxkr2ZdV1mmt2kRu6Bjg/Ren775Dpac1lk9+I=' 'sha256-/U3+nV6D+p2SWV3yEyer7UBe1XvQy9Azf+46WrHVsTU=' 'sha256-GMItZ/b6IxCFJh1aHLvrIuUw6YwM6EJodF4O+bCaXGw=' 'sha256-6hOKCargg/0Bvq2x83JmJGwBPJVXuqXHu22OUM0iX/g=' 'sha256-lUdIgctNtjcGmdnpl1l2te9lG9RBPZIap0Jc+JGXCmc=' 'sha256-eAen8T4O8pfBp3CJGFTcr2AfHKEky06NoHfEJVd9yeE=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-qIW36fmxkr2ZdV1mmt2kRu6Bjg/Ren775Dpac1lk9+I=' 'sha256-/U3+nV6D+p2SWV3yEyer7UBe1XvQy9Azf+46WrHVsTU=' 'sha256-GMItZ/b6IxCFJh1aHLvrIuUw6YwM6EJodF4O+bCaXGw=' 'sha256-7EUAgJIVMZcx4nam60N6GBjjm+9UgbuU+yogrtBRY6Q=' 'sha256-lUdIgctNtjcGmdnpl1l2te9lG9RBPZIap0Jc+JGXCmc=' 'sha256-eAen8T4O8pfBp3CJGFTcr2AfHKEky06NoHfEJVd9yeE=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>The record · Texas AI Docket</title>
@@ -1072,11 +1072,19 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
        claims to mean. */
     var CEILING_MS = 8000;
     var overran = false;
+    /* WHICH ENDING GOT HERE FIRST, tracked explicitly rather than inferred from whether the
+       body happens to have text in it. Two different endings both wrote "if nothing started
+       and the body is empty", which is a read of the DOM standing in for a fact about control
+       flow, and when an owner reported seeing one message replaced by the other there was no
+       way to tell from the page which path had run. A flag says so. */
+    var ended = "";
     function ceilingFired() {
       if (!busy) return;
       overran = true;
       if (stopStream) { try { stopStream(); } catch (e) {} }
       dropStage();
+      if (ended) return;
+      ended = "ceiling";
       if (!started && !body.textContent) body.textContent = "That one did not come back inside eight seconds. Typing a narrower question searches the whole record instantly and for nothing.";
       else {
         var cut = document.createElement("p");
@@ -1347,11 +1355,17 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
       })();
     }).then(function () {
       dropStage();
-      if (!started && !body.textContent) body.textContent = "The record does not answer that.";
+      if (!ended) {
+        ended = "stream";
+        if (!started && !body.textContent) body.textContent = "Nothing came back for that one. Asking again usually works, and typing searches the whole record instantly either way.";
+      }
       finish();
     }).catch(function () {
       dropStage();
-      if (!started) body.textContent = "That did not get through. Try again in a moment.";
+      if (!ended) {
+        ended = "failed";
+        if (!started) body.textContent = "That did not get through. Try again in a moment.";
+      }
       finish();
     });
   }
