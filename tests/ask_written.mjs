@@ -154,6 +154,14 @@ ok("every sentence landed",
   reply.includes("Public Utility Commission") && reply.includes("Want the dates"), reply);
 ok("the citation became a link to the decision",
   (await page.locator(".askreply a.cite").first().getAttribute("href")) === "item/tx-2026-0001/");
+// tx-2026-0001 is "PUCT Project 58000, rulemaking to update ERCOT transmission cost recovery,
+// comment deadline reached". The identifier is what a reader can look up, and the rest of that
+// sentence is what the answer already said.
+ok("...and it reads as the decision's identifier, not as its whole title",
+  (await page.locator(".askreply a.cite").first().textContent()) === "Project 58000",
+  await page.locator(".askreply a.cite").first().textContent());
+ok("...while the full title is still there to hover",
+  /PUCT Project 58000/.test(await page.locator(".askreply a.cite").first().getAttribute("title")));
 ok("provenance appears", (await page.locator(".askfrom").textContent())
   .includes("Every figure checked"));
 ok("the field is empty and ready", (await page.inputValue("#askq")) === "");
@@ -371,13 +379,18 @@ const cites = page.locator(".askturn").first().locator("xpath=..").locator("a.ci
 const hrefs = await page.locator("a.cite").evaluateAll(
   (as) => as.map((a) => [a.getAttribute("href"), a.textContent]));
 const byHref = Object.fromEntries(hrefs);
-ok("a county's construction links to the register, under its own name",
-  byHref["construction/"] === "Construction registered in Dallas County",
-  JSON.stringify(hrefs));
-ok("a data center links to its own dossier page",
+// A CITATION READS AS ATTRIBUTION, NOT AS THE THING'S DESCRIPTION. Rendering the title made
+// every citation repeat the sentence it followed, three times out of three in one answer an
+// owner ran. What ships now is the identifier where the record gives one and the source where
+// it does not, so the link text can never be the sentence again.
+ok("a county's construction cites the register it came from",
+  byHref["construction/"] === "the construction register", JSON.stringify(hrefs));
+ok("a data center cites its own name, which is what the register calls it",
   byHref["facility/bexar-1/"] === "Bexar 1", JSON.stringify(hrefs));
-ok("a reservoir links to the water record",
-  byHref["water/"] === "Travis reservoir", JSON.stringify(hrefs));
+ok("a reservoir cites the water record rather than repeating the lake",
+  byHref["water/"] === "the water record", JSON.stringify(hrefs));
+ok("and no citation is long enough to be mistaken for a sentence",
+  hrefs.every(([, t]) => (t || "").length <= 40), JSON.stringify(hrefs));
 ok("and no citation was left rendering as its raw id",
   !hrefs.some(([, t]) => /^(facility|county|water)-/.test(t)), JSON.stringify(hrefs));
 
