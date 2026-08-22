@@ -35,14 +35,15 @@ So every date below is a field this record already holds:
 
 WHAT CARRIES NO DATE AT ALL, WHICH IS THE HONEST HALF
 
-`/about/`, `/services/`, `/scan/`, `/data/` and `404` are prose about the project. No ledger
-field says when their words last changed, and the build date is not that. They get no
+`/services/`, `/scan/`, `/data/`, `/datacenters/` and `404` are prose about the project. No
+ledger field says when their words last changed, and the build date is not that. They get no
 `<lastmod>` and no footer stamp. `<lastmod>` is optional and a crawler treats an absent one as
 "no claim", which is exactly right, where a wrong one is a claim that costs the whole field its
 credibility. This is the compute-not-generate law in its usual form: where we cannot compute
 something, we say nothing rather than publish an estimate dressed as a measurement.
 
-`/about/` also carries no stamp by the owner's separate call on 2026-08-19, which agrees.
+`/about/` was on this list until 2026-08-22, when it folded into `/services/` and the route
+went away. Its stamp exemption was the owner's separate call on 2026-08-19, and it agreed.
 
     lastmod.py --self-test
 """
@@ -63,8 +64,9 @@ HUB_PREFIXES = ("index.html", "record/", "topic/", "place/", "sources/", "questi
                 "articles/index.html")
 
 # Prose about the project. No ledger field dates these, so they make no claim.
-UNDATED_PREFIXES = ("about/", "services/", "scan/", "data/", "videos/", "404.html",
-                    "grid/", "water/", "facility/", "company/", "registry-changes/")
+UNDATED_PREFIXES = ("services/", "scan/", "data/", "videos/", "404.html",
+                    "grid/", "water/", "facility/", "company/", "registry-changes/",
+                    "datacenters/")
 
 
 def _newest(items: list) -> str | None:
@@ -123,7 +125,8 @@ def self_test() -> int:
     items = [{"id": "tx-2026-0001", "last_verified": "2026-08-12"},
              {"id": "tx-2026-0002", "last_verified": "2026-08-18"}]
     runs = [{"date": "2026-08-19"}, {"date": "2026-08-16"}]
-    paths = ["index.html", "record/index.html", "about/index.html", "services/index.html",
+    paths = ["index.html", "record/index.html", "datacenters/index.html",
+             "services/index.html",
              "item/tx-2026-0001/index.html", "item/tx-2026-0002/index.html",
              "articles/index.html", "articles/2026-08-16/index.html",
              "topic/data-centers/index.html", "data/index.html", "404.html"]
@@ -147,7 +150,8 @@ def self_test() -> int:
           got["articles/index.html"] == "2026-08-19", got.get("articles/index.html"))
 
     print("\nand prose about the project makes no claim at all")
-    for p in ("about/index.html", "services/index.html", "data/index.html", "404.html"):
+    for p in ("datacenters/index.html", "services/index.html", "data/index.html",
+              "404.html"):
         check(f"{p} carries no date", p not in got, got.get(p, ""))
 
     print("\nthey are not all the same, which is the whole point")

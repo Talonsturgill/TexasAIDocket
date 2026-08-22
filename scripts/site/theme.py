@@ -1623,6 +1623,51 @@ nav.main a[aria-current]::after {{ right:0; }}
 .stat .l {{ display:block; font-size:var(--s-2); letter-spacing:.17em; text-transform:uppercase;
   color:var(--ink-mute); margin-top:.45rem; }}
 
+/* ---- the data centers tab ------------------------------------------------ */
+/* THE FIELD LEADS, so the lede above it is one line and the page gets out of its way. */
+.dclede {{ font-size:var(--s1); color:var(--ink-bright); max-width:46ch; }}
+
+/* FOUR COUNTS FROM THREE REGISTERS. Boxed rather than the bare .statrow the services page
+   uses, because they sit under a drawing rather than under a heading and need an edge to
+   read as a row instead of as more of the picture. Auto-fit so four become two on a phone
+   without a breakpoint deciding it. */
+/* FOUR ACROSS, STATED. auto-fit fitted three at the reading measure and dropped the fourth
+   onto a row of its own beside an empty cell, which reads as a broken grid rather than as a
+   row of counts. Two across on a phone, where four would be unreadable. */
+.dctiles {{ display:grid; gap:1px; margin:1.8rem 0 2.4rem;
+  grid-template-columns:repeat(4,1fr);
+  background:var(--rule); border:var(--hair) solid var(--rule); border-radius:.4rem;
+  overflow:hidden; }}
+.dctile {{ background:var(--night); padding:1rem .95rem 1.05rem; }}
+.dcn {{ display:block; font-family:var(--mono); font-size:clamp(1.1rem,2.1vw,1.45rem);
+  line-height:1; color:var(--ink-bright); font-variant-numeric:tabular-nums;
+  letter-spacing:-.01em; }}
+.dck {{ display:block; font-size:var(--s-2); letter-spacing:.15em; text-transform:uppercase;
+  color:var(--ink-mute); margin-top:.5rem; }}
+/* Two across on a phone, where four is a column of single characters. Stated in this sheet
+   beside the rule it overrides, because the narrow rule and the wide one drifting apart in
+   two files is a defect nobody finds by reading either. */
+@media (max-width:44rem) {{ .dctiles {{ grid-template-columns:repeat(2,1fr); }} }}
+
+/* WHERE TO GO FROM HERE. A list of routes, not a paragraph of them. The link carries the
+   destination and the sentence after it says what is there, so a reader scanning link text
+   alone still knows which one they want. */
+.dcways {{ list-style:none; padding:0; margin:1rem 0 0; }}
+.dcways li {{ padding:.85rem 0; border-top:var(--hair) solid var(--rule); }}
+.dcways li:last-child {{ border-bottom:var(--hair) solid var(--rule); }}
+.dcways a {{ font-weight:600; }}
+
+/* ---- what you can hold this desk to --------------------------------------- */
+/* The four promises, in a grid rather than four stacked paragraphs, because they are a list
+   of equals and stacked prose reads as one of them mattering most. */
+.holds {{ display:grid; gap:1px; margin:1.4rem 0 0;
+  grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));
+  background:var(--rule); border:var(--hair) solid var(--rule); border-radius:.4rem;
+  overflow:hidden; }}
+.hold {{ background:var(--night); padding:1.2rem 1.3rem 1.3rem; }}
+.hold h3 {{ margin:0 0 .5rem; font-size:var(--s0); color:var(--ink-bright); }}
+.hold p {{ margin:0; color:var(--ink-mute); }}
+
 /* The hero arrives rather than appearing. Staggered, short, and only with script on, so a
    no-script reader sees everything immediately rather than nothing at all. */
 html.js .rise > * {{ opacity:0; transform:translateY(20px);
