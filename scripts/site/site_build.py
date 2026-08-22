@@ -6360,32 +6360,42 @@ def self_test() -> int:
     # facility certified three times makes its own single purpose entity look like a company
     # naming three projects, and the join refuses the row it exists to serve. Both are replayed
     # here on the exact shape the live registry has.
+    # THE OWNER STRINGS CARRY A TRACKED BRAND ON PURPOSE. `facility_filings` drops any filing
+    # `brand()` does not recognise before it joins anything, so a fixture owner invented for the
+    # occasion is filtered out and every assertion below passes by finding nothing. The first
+    # cut of these tests did exactly that, and the one asserting an EMPTY result passed while
+    # proving nothing at all.
     _reg = {"facilities": [
-        {"name": "Twice Certified DC", "owners": ["Alpha SPE LLC"]},
-        {"name": "Twice Certified DC", "owners": ["Alpha SPE LLC", "Parent Holdings Inc"]},
-        {"name": "Thrice Certified DC", "owners": ["Beta SPE LLC"]},
-        {"name": "Thrice Certified DC", "owners": ["Beta SPE, LLC"]},
-        {"name": "Thrice Certified DC", "owners": ["Beta SPE LLC"]},
+        {"name": "Twice Certified DC", "owners": ["Vantage Alpha LLC"]},
+        {"name": "Twice Certified DC", "owners": ["Vantage Alpha LLC", "Vantage Parent Inc"]},
+        {"name": "Thrice Certified DC", "owners": ["Vantage Beta LLC"]},
+        {"name": "Thrice Certified DC", "owners": ["Vantage Beta, LLC"]},
+        {"name": "Thrice Certified DC", "owners": ["Vantage Beta LLC"]},
     ]}
     _pj = {"projects": [
-        {"number": "A1", "owner": "ALPHA SPE LLC", "project": "Data Center", "cost": 1,
+        {"number": "A1", "owner": "VANTAGE ALPHA LLC", "project": "Data Center", "cost": 1,
          "start": "2024-01-01"},
-        {"number": "B1", "owner": "BETA SPE LLC", "project": "Data Center", "cost": 2,
+        {"number": "B1", "owner": "VANTAGE BETA LLC", "project": "Data Center", "cost": 2,
          "start": "2024-01-01"},
     ]}
     _got = facility_filings(_reg, _pj)
+    check("the fixture reaches the join at all, rather than being filtered before it",
+          set(_got) == {"Twice Certified DC", "Thrice Certified DC"}, repr(sorted(_got)))
     check("a facility certified twice keeps every party either row named",
           [r["number"] for r in _got.get("Twice Certified DC", [])] == ["A1"], repr(_got))
     check("...and one certified three times is still one facility, not a parent company",
           [r["number"] for r in _got.get("Thrice Certified DC", [])] == ["B1"], repr(_got))
     # AND THE PARENT COMPANY REFUSAL STILL BITES, which is what stops the fix above from
-    # becoming a join on anything. A name on three DIFFERENT facilities is a company.
-    _wide = {"facilities": [{"name": f"Site {i}", "owners": ["Parent Holdings Inc"]}
-                            for i in range(3)]}
-    check("a party naming three different facilities joins to none of them",
-          facility_filings(_wide, {"projects": [
-              {"number": "P1", "owner": "PARENT HOLDINGS INC", "project": "Data Center",
-               "cost": 1, "start": "2024-01-01"}]}) == {})
+    # becoming a join on anything. A name on three DIFFERENT facilities is a company. Asserted
+    # against the same party joining fine on two, so an empty result cannot pass by accident.
+    _party = lambda n: {"facilities": [{"name": f"Site {i}", "owners": ["Vantage Parent Inc"]}
+                                       for i in range(n)]}
+    _one = {"projects": [{"number": "P1", "owner": "VANTAGE PARENT INC", "project": "Data Center",
+                          "cost": 1, "start": "2024-01-01"}]}
+    check("a party naming two facilities is specific enough to join on",
+          len(facility_filings(_party(2), _one)) == 2, repr(facility_filings(_party(2), _one)))
+    check("...and the same party naming three joins to none of them",
+          facility_filings(_party(3), _one) == {}, repr(facility_filings(_party(3), _one)))
     missing = sorted(dk.TOPICS - set(TOPIC_BLURBS))
     check(f"every admitted beat has a blurb (missing {missing or 'none'})", not missing,
           "add one line per slug to TOPIC_BLURBS in scripts/site/site_build.py")

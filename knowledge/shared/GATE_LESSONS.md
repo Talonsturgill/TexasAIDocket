@@ -1872,3 +1872,40 @@ measuring a font nobody is served will happily pass a table that wraps for a rea
 **And the standing lesson underneath it, now three entries deep.** Number 59 was a colour, 60 was
 thirty five nodes stacked on a wall, and this is a column. A gate reads the document. It has never
 once seen the page. Render it, open it, and measure the thing you are about to call finished.
+
+## 63. Three self-tests passed on a fixture the code never saw
+
+The join in `facility_filings` was rewritten to union registry rows by name, and it came with three
+self-tests built on a small fake registry and two fake filings. Two of them failed on the first
+run, which is how the third was noticed, and the third is the one worth writing down.
+
+**It asserted an EMPTY result.** A party named on three different facilities is a parent company
+and joins to nothing, so the test asserted `facility_filings(...) == {}` and got `{}` and passed.
+
+It would have passed if the function returned nothing for any reason at all. And that is exactly
+what was happening: `facility_filings` drops every filing whose owner `brand()` does not recognise
+before it joins anything, and the fixture owners were invented for the occasion. `ALPHA SPE LLC`
+is not a tracked brand. Nothing in that fixture ever reached the code under test.
+
+The two neighbours failed loudly because they asserted a specific non-empty answer. The one
+asserting absence had nothing to distinguish "the rule worked" from "the input was thrown away
+three steps earlier".
+
+**Two things fix it, and both are cheap.**
+
+- **Assert the fixture arrives.** One line before the others, checking the function returns the
+  rows the fixture is about. It fails first and names the real problem, instead of leaving three
+  confusing failures for someone to work backwards from.
+- **Pair every assertion of absence with one of presence, on the same input.** The parent company
+  rule is now checked as two: the same party joins fine when it names two facilities and joins to
+  nothing when it names three. An empty result can no longer pass by accident, because the test
+  beside it proves the pipeline was live.
+
+**Generalises to.** Every negative test in this repo. A gate self-test that plants a defect and
+asserts the checker goes red is safe, because red is specific. A test asserting nothing was
+returned, nothing was written, nothing was flagged, or no error was raised is passing on a
+condition that a dozen unrelated breakages also satisfy. Ask what else would make it green.
+
+**And it is the same shape as entry 62 one level up.** That one was a gate measuring a font
+nobody is served. This is a test measuring an input the code never received. In both, the check
+ran, printed green, and was about something other than the product.

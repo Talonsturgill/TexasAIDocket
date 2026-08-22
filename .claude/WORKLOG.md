@@ -727,6 +727,22 @@ names", and a reader on a facility page does not know what a row is. And a two i
 with a comma read like a sentence that lost its conjunction, so `andlist` follows the same serial
 rule the topic labels do.
 
+**Two faults the new work introduced, both caught, both worth the entry.**
+
+CI went red on `page_ground`: the construction page scrolled 16px sideways at 390px. A class
+selector outranks a media query no matter that the query is written later, so `.cbjoin` kept its
+five column desktop template on a phone. `.cbfile` had been given a rule inside the breakpoint and
+`.cbjoin` had not. Both are named there now, and the joined table stacks outright because its
+first column is a facility name.
+
+And the three self-tests written for the row-versus-name fix ran on a fixture the code never saw.
+`facility_filings` drops any filing whose owner `brand()` does not recognise, and the fixture
+owners were invented for the occasion, so nothing reached the join. Two of them failed loudly
+because they asserted a specific answer. The third asserted an EMPTY result and passed, proving
+nothing. It is two tests now, the same party joining on two facilities and refused on three, with
+a line before them asserting the fixture arrives at all. GATE_LESSONS entry 63 ("Three self-tests
+passed on a fixture the code never saw").
+
 ## Batch 9 candidates
 
 **The Oracle spine.** Seventeen undossiered rows across Vantage TX 302 to 310 and Lancium

@@ -542,6 +542,13 @@ def facility_css() -> str:
 @media (max-width:44rem) {
   .cbrow { grid-template-columns:6.5rem 1fr; gap:.1rem .8rem; }
   .cbfile .cbrow { grid-template-columns:2.8rem 1fr; }
+  /* AND THE OTHER MODIFIER HAS TO BE NAMED HERE TOO. A class selector outranks this
+     breakpoint no matter that the breakpoint is written later, so .cbjoin kept its five
+     column desktop template on a phone and pushed the construction page 16px sideways.
+     Its first column is a facility name, so it stacks outright rather than borrowing the
+     register's narrow first column. */
+  .cbjoin .cbrow { grid-template-columns:1fr; }
+  .cbjoin .cbd { grid-row:auto; }
   /* THE STACK UNDOES THE ALIGNMENT. Narrow, the four cells after the year stack in one
      column, and a right aligned dollar figure above a left aligned project name is not a
      column of numbers, it is two ragged edges. */

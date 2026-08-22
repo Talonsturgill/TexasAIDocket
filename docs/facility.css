@@ -148,6 +148,8 @@
 @media (max-width:44rem) {
   .cbrow { grid-template-columns:6.5rem 1fr; gap:.1rem .8rem; }
   .cbfile .cbrow { grid-template-columns:2.8rem 1fr; }
+  .cbjoin .cbrow { grid-template-columns:1fr; }
+  .cbjoin .cbd { grid-row:auto; }
   .cbfile .cbm, .cbfile .cbs { text-align:left; }
   .cbd { grid-row:span 4; }
   .ctwo { grid-template-columns:1fr; }
