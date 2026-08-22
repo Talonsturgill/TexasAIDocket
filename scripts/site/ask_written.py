@@ -299,17 +299,30 @@ _CLIENT = r"""
       try { turnstile.reset(tsId); } catch (e) {}
     }
   }
+  /* A WAIT NOBODY WOULD NOTICE IS NOT WORTH ANNOUNCING.
+     This said "Passing the human check" the instant it began waiting, before the first poll a
+     tenth of a second later. So a token that arrived almost at once still flashed the message,
+     and an owner watching an eval reported seeing it briefly on every single question after
+     the re-arm had already been moved earlier to make the wait short.
+     Both changes were needed and they fix different things. Moving the re-arm made the wait
+     short. This stops a short wait from being narrated. A quarter second of silence costs a
+     reader nothing and a message that appears and vanishes costs them the sense that something
+     went wrong.
+     The grace is cancelled the moment the token lands, so on a slow connection, where this
+     line is the honest explanation for why nothing is happening yet, it still appears. */
+  var STAGE_GRACE_MS = 250;
+
   function waitForToken(stage) {
     if (!SITEKEY) return Promise.resolve("");
     if (tsToken) return Promise.resolve(tsToken);
-    stage("%%stage_human%%");
+    var announce = setTimeout(function () { stage("%%stage_human%%"); }, STAGE_GRACE_MS);
     /* Keep waiting rather than giving up if the script is slow: a bad connection is not a
        failed check, and this box exists for people on bad connections. */
     return new Promise(function (resolve) {
       var n = 0;
       var t = setInterval(function () {
-        if (tsToken) { clearInterval(t); resolve(tsToken); return; }
-        if (++n > 150) { clearInterval(t); resolve(""); }
+        if (tsToken) { clearTimeout(announce); clearInterval(t); resolve(tsToken); return; }
+        if (++n > 150) { clearTimeout(announce); clearInterval(t); resolve(""); }
       }, 100);
     });
   }
