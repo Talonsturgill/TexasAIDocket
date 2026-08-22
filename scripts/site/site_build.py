@@ -5579,15 +5579,20 @@ def company_page(item: dict, data: dict, dossiers: dict, is_group: bool, today: 
 
 
 
-def _registry_field(data: dict) -> str:
-    """The network, drawn from the same resolution the lists below are built from."""
+def _registry_field(data: dict, base: str = "") -> str:
+    """The network, drawn from the same resolution the lists are built from.
+
+    `base` prefixes every node's href. The field lives on the data centers tab and the pages
+    it links to live under `/company/`, so it is `../company/` there and empty on the company
+    index itself, where a bare slug already resolves.
+    """
     g = registry_graph.build(data["entities"])
     if not g["nodes"]:
         return ""
     n0 = entities.n0
     return (
         f'<div class="gwrap">'
-        f'<div class="gfield" id="gfield">{registry_graph.svg(g)}</div>'
+        f'<div class="gfield" id="gfield">{registry_graph.svg(g, base)}</div>'
         # A LEGEND, not running prose. Four labelled chips with no full stop between them read as
         # one thirty word sentence to the length backstop, which is the measurement narrowing this
         # marker exists for. The construction rules still read every word of it.
@@ -5713,7 +5718,7 @@ def datacenters_page(today: str) -> str:
         f'many unrelated buildings. Read down the columns instead and the same companies keep '
         f'appearing.</p>'
         f'</article>'
-        + _registry_field(data)
+        + _registry_field(data, "../company/")
         + f'<article class="prose dcpage">'
         f'<div class="dctiles" data-prose="data">{tiles}</div>'
         f'</article>'

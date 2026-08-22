@@ -319,7 +319,12 @@ def standing(g: dict) -> dict:
     return out
 
 
-def svg(g: dict) -> str:
+def svg(g: dict, base: str = "") -> str:
+    """`base` is what a node's slug hangs off. The field draws links to company pages, and it
+    used to be drawn only on the company index, where a bare `slug/` resolves. Moved to the
+    data centers tab on 2026-08-22 the same bare href resolved under THAT directory and every
+    node pointed at a page that does not exist. Forty one broken links, and the page itself
+    looked perfectly well until one was clicked."""
     """The field, drawn server side so it exists with no script at all.
 
     Every coordinate here is computed by `layout`. `numeral_lint` strips svg geometry for
@@ -357,7 +362,7 @@ def svg(g: dict) -> str:
         lx, ly, anchor = put or (round(n["r"] + 7, 2), 4, "start")
         nodes += (
             f'<a class="gnode{" gnamed" if put else ""}" data-k="{e(n["key"])}" '
-            f'href="{e(n["slug"])}/" transform="translate({n["x"]},{n["y"]})" '
+            f'href="{e(base)}{e(n["slug"])}/" transform="translate({n["x"]},{n["y"]})" '
             f'aria-label="{e(n["name"])}, on {n["reach"]} facilities">'
             f'<circle class="ghalo" r="{round(n["r"] * 2.15, 2)}"/>'
             f'<circle class="gring" r="{round(n["r"] + 3.2, 2)}"/>'
