@@ -266,6 +266,20 @@ def palette() -> dict:
         # that reads beautifully on Big Bend night measures under 2 to 1 on caliche paper, and
         # the thing wearing it is the word telling a reader a comment window is open to them.
         # Authored once, solved twice, against every ground it lands on.
+        # THE WATER, DERIVED LIKE EVERYTHING ELSE RATHER THAN TYPED INTO A STYLESHEET.
+        #
+        # It would have been one line to put `#3E9CC4` in the water page's own CSS and nobody
+        # would have noticed. That is the defect this repo has now written down four times: a
+        # rule stated in config, a surface keeping its own copy, and nothing in between
+        # checking they agree. A colour that lives here is contrast solved against every ground
+        # it lands on and appears in the table `--contrast` prints.
+        #
+        # AA_NONTEXT, not AA_BODY, and the reason is what the mark IS. The water in a circle is
+        # a graphical object carrying information, which WCAG 1.4.11 asks 3 to 1 of. No word is
+        # ever set in it. Asking 4.5 here would push a spring blue toward white until it stopped
+        # being a colour anything comes out of the ground.
+        mode["water"] = lift_over(c["comal"], grounds, AA_NONTEXT)
+        mode["water-lit"] = lift_over(c["comal_lit"], grounds, AA_NONTEXT)
         for role in ("sig-open", "sig-soon", "sig-shut", "sig-link"):
             mode[role] = lift_over(c[role.replace("-", "_").replace("sig_", "signal_")],
                                    grounds, AA_BODY)
@@ -3260,6 +3274,8 @@ ON_EVERY_GROUND = [
     ("accent", AA_BODY, "links"),
     ("urgent", AA_BODY, "the closing countdown"),
     ("rule-strong", AA_NONTEXT, "an input or chip boundary, and the county mesh"),
+    ("water", AA_NONTEXT, "the water in a reservoir on the water map"),
+    ("water-lit", AA_NONTEXT, "the lit surface where that water meets air"),
 ]
 
 # Pairings whose background is not one of the three page grounds, so they cannot be generated.
