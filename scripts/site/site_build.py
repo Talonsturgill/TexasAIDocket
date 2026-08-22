@@ -55,6 +55,7 @@ import lastmod                                                     # noqa: E402
 import og                                                          # noqa: E402
 import schema                                                      # noqa: E402
 import gridwatch_page                                              # noqa: E402
+import beyond_panel                                                # noqa: E402
 import frontchip                                                   # noqa: E402
 import sky                                                         # noqa: E402
 import texas_map                                                   # noqa: E402
@@ -129,9 +130,13 @@ HOIST = mark.flag_svg()
 #
 # `Ask` is gone from the bar because the box is on the front page now. A search field a reader
 # has to navigate to is a search field a reader does not use.
-NAV = [("", "Home"), ("record/", "Docket"), ("articles/", "Articles"),
-       ("videos/", "Videos"), ("grid/", "Grid"),
-       ("water/", "Water"), ("services/", "Services"), ("about/", "About")]
+# DATA CENTERS SITS SECOND, immediately right of the docket, because it is the thing most
+# readers arrive for and the docket is the thing that gives it authority. About folded into
+# Services on the owner's call the same day, which is what keeps this at eight: a ninth tab
+# wraps the masthead to two rows and `responsive` measures that.
+NAV = [("", "Home"), ("record/", "Docket"), ("datacenters/", "Data centers"),
+       ("articles/", "Articles"), ("videos/", "Videos"), ("grid/", "Grid"),
+       ("water/", "Water"), ("services/", "Services")]
 
 # The footer's way out. Wider than the masthead nav, because the bottom of a page is where
 # somebody who did not find what they came for goes looking, and the machine-readable surfaces
@@ -671,7 +676,7 @@ def page(*, title: str, desc: str, body: str, depth: int, active: str,
     colophon = "".join(f"<span>{e(s)}</span>" for s in (
         MADE_AT_LEDE,
         # THE PAGE'S OWN DATE, NOT THE BUILD'S. This printed the build date under every page
-        # on the site, so `/about/` told a reader it was revised this morning when its last
+        # on the site, so the about page told a reader it was revised this morning when its last
         # real edit was days earlier. A reader cannot check that, which is what made it the
         # wrong thing to print. `lastmod.py` works out when each page's published bytes last
         # moved and substitutes it here at the end of the build, and the same date goes into
@@ -4237,6 +4242,13 @@ def services_page(items: list, today: str) -> str:
     SHORT ON PURPOSE. The version this replaced was a table of docket statistics with no offer
     on it, and the version before that explained the philosophy at length. A page that has to
     be read twice to find the price is not a page anybody buys from.
+
+    THE ABOUT PAGE FOLDED IN HERE on 2026-08-22, on the owner's call, so the masthead could
+    carry a data centers tab without reaching nine. Three sections arrived and the page grew by
+    two, because the desk's two jobs and the proof of them are one argument rather than two,
+    and the verification rules read better as a paragraph inside it than as a heading of their
+    own. What a reader can hold this desk to kept its own section, because it is the part of
+    this page that no competitor can copy without meaning it.
     """
     proj = dk.project(items, today)
     c = proj["counts"]
@@ -4321,7 +4333,16 @@ def services_page(items: list, today: str) -> str:
 </section>
 
 <section data-reveal>
-  <h2>The proof is the site you are on</h2>
+  <h2>One desk, two jobs</h2>
+  <p class="sub">AI is arriving in Texas the way oil and rail once did. As land. As load. As
+  water rights. As filings nobody reads until the concrete is poured.</p>
+  <p>The docket tracks those decisions one at a time with the source attached. Every fact
+  carries a claim id and traces to a fetched document. Every numeral is produced by code, and
+  a build gate fails on any figure that traces to no computation. Where something is not
+  public the gap is published instead of an estimate.</p>
+  <p>The same desk runs a working AI studio. Agentic systems and digital employees. Paperwork
+  engines and assistants trained on a company's own files. Writing the beat every morning is
+  exactly why the studio knows what actually pays.</p>
   <p class="sub">Every figure below is counted from the live record at the moment this page was
   built. It moves when the work does.</p>
   <div class="statrow">{stats}</div>
@@ -4339,6 +4360,23 @@ def services_page(items: list, today: str) -> str:
   <p class="sub">Every engagement ends with something you own. Scope and price are set on a
   call against your numbers.</p>
   <div class="offers">{offers}</div>
+</section>
+
+<section data-reveal>
+  <h2>What you can hold this desk to</h2>
+  <div class="holds">
+    <div class="hold"><h3>Your outcome outranks the invoice</h3>
+      <p>This desk recommends what it would do with its own money. Sometimes that is a smaller
+      build. Sometimes it is no.</p></div>
+    <div class="hold"><h3>Plain talk both directions</h3>
+      <p>Bad news arrives early and plain. No soft version. Same expected back. A problem said
+      early is still small.</p></div>
+    <div class="hold"><h3>The build gets guarded even from the brief</h3>
+      <p>Most AI projects die of enthusiasm. When the exciting ask and the right build
+      disagree, you hear it. That judgement is what you pay for.</p></div>
+    <div class="hold"><h3>Nobody chases this desk</h3>
+      <p>A reply lands inside one business day.</p></div>
+  </div>
 </section>
 
 <section id="start" data-reveal>
@@ -4374,60 +4412,6 @@ def services_page(items: list, today: str) -> str:
                 desc="AI systems built for Texas businesses by the desk that publishes the "
                      "Texas AI Docket. Three ways in, priced on a call.",
                 body=body, today=today, canonical="services/")
-
-
-def about_page(today: str) -> str:
-    """Who this is and what it is for, in the second person the house rule forces.
-
-    MODELLED ON THE SIBLING PRODUCT'S SHAPE and not its voice. That page is written in the
-    first person, which this one can't use, so every commitment is stated as what a client
-    gets rather than as what the desk promises. It reads harder that way, which is the right
-    direction for a page whose whole job is telling somebody what they can hold you to.
-    """
-    body = """
-<section class="hero rise">
-  <h1>Built for the <em>Lone Star State</em>.</h1>
-  <p class="herolede">Texas AI Docket is a daily publication about artificial intelligence in
-  Texas and an AI studio that builds for Texas businesses. One desk, two jobs.</p>
-</section>
-
-<div class="prose" data-reveal>
-  <h2>What this is</h2>
-  <p>AI is arriving in Texas the way oil and rail once did. As land. As load. As water
-  rights. As filings nobody reads until the concrete is poured. The docket tracks those
-  decisions one at a time with the source attached.</p>
-  <p>The same desk runs a working AI studio. Agentic systems and digital employees.
-  Paperwork engines and assistants trained on a company's own files. That work lives on the
-  <a href="../services/">services page</a>. Writing the beat every morning is exactly why the
-  studio knows what actually pays.</p>
-
-  <h2>How the work gets verified</h2>
-  <p>Every fact carries a claim id and traces to a fetched document. At least one source on
-  every item is the filing or the statute or the agency itself. An item that can't be
-  re-verified says so on <a href="../record/">its own page</a>.</p>
-  <p>Every numeral is produced by code. A build gate fails on any figure that traces to no
-  computation. Where something is not public the gap is published instead of an estimate.</p>
-
-  <h2>What you can hold this desk to</h2>
-  <p><strong>Your outcome outranks the invoice.</strong> This desk recommends what it would
-  do with its own money. Sometimes that is a smaller build. Sometimes it is no.</p>
-  <p><strong>Plain talk both directions.</strong> Bad news arrives early and plain. No soft
-  version. Same expected back. A problem said early is still small.</p>
-  <p><strong>The build gets guarded even from the brief.</strong> Most AI projects die of
-  enthusiasm. When the exciting ask and the right build disagree, you hear it. That judgement
-  is what you pay for.</p>
-  <p><strong>Nobody chases this desk.</strong> A reply lands inside one business day.</p>
-
-  <h2>Where to find it</h2>
-  <p>The record, the <a href="../articles/">articles</a> and the
-  <a href="../videos/">videos</a> live here. For the studio, start at
-  <a href="../services/">services</a>.</p>
-</div>
-"""
-    return page(title=f"About · {SITE_NAME}", depth=1, active="about/", revised=False,
-                desc="Texas AI Docket is a daily publication on AI in Texas and an AI studio "
-                     "building for Texas businesses.",
-                body=body, today=today, canonical="about/")
 
 
 def item_markdown(it: dict, today: str) -> str:
@@ -5078,7 +5062,6 @@ def llms_txt(items: list, today: str) -> str:
         f"- [The data, its schema and its licence]({SITE_URL}/data/)",
         f"- [Texas Grid Watch, the daily ERCOT record]({SITE_URL}/grid/)",
         f"- [Texas Water Watch]({SITE_URL}/water/)",
-        f"- [About this record]({SITE_URL}/about/)", "",
     ]
 
     # THE TWELVE QUESTION PAGES, NAMED. This file exists so a model can find the answer without
@@ -5553,7 +5536,7 @@ def facility_page(d: dict, today: str, filings: list | None = None) -> str:
     name = d["name"]
     body = (
         f'<article class="prose facilitypage" data-proper-name="{e(name)}">'
-        f'<p class="crumb"><a href="../../grid/">The Grid Watch</a> '
+        f'<p class="crumb"><a href="../../datacenters/">Texas data centers</a> '
         f'<span aria-hidden="true">/</span> Every registered facility.</p>'
         f'<h1><cite>{e(name)}</cite></h1>'
         f'{facility_dossier.panel(d, heading=2)}'
@@ -5578,7 +5561,7 @@ def company_page(item: dict, data: dict, dossiers: dict, is_group: bool, today: 
     kind = "group of entities" if is_group else "entity as the state files it"
     body = (
         f'<article class="prose companypage" data-proper-name="{e(name)}">'
-        f'<p class="crumb"><a href="../../grid/">The Grid Watch</a> '
+        f'<p class="crumb"><a href="../../datacenters/">Texas data centers</a> '
         f'<span aria-hidden="true">/</span> <a href="../">Who is behind the registry</a>.</p>'
         f'<h1><cite>{e(name)}</cite></h1>'
         f'<p class="ckind">Shown as a {kind}.</p>'
@@ -5597,15 +5580,20 @@ def company_page(item: dict, data: dict, dossiers: dict, is_group: bool, today: 
 
 
 
-def _registry_field(data: dict) -> str:
-    """The network, drawn from the same resolution the lists below are built from."""
+def _registry_field(data: dict, base: str = "") -> str:
+    """The network, drawn from the same resolution the lists are built from.
+
+    `base` prefixes every node's href. The field lives on the data centers tab and the pages
+    it links to live under `/company/`, so it is `../company/` there and empty on the company
+    index itself, where a bare slug already resolves.
+    """
     g = registry_graph.build(data["entities"])
     if not g["nodes"]:
         return ""
     n0 = entities.n0
     return (
         f'<div class="gwrap">'
-        f'<div class="gfield" id="gfield">{registry_graph.svg(g)}</div>'
+        f'<div class="gfield" id="gfield">{registry_graph.svg(g, base)}</div>'
         # A LEGEND, not running prose. Four labelled chips with no full stop between them read as
         # one thirty word sentence to the length backstop, which is the measurement narrowing this
         # marker exists for. The construction rules still read every word of it.
@@ -5637,7 +5625,7 @@ def companies_index(data: dict, today: str) -> str:
 
     body = (
         f'<article class="prose companyindex">'
-        f'<p class="crumb"><a href="../grid/">The Grid Watch</a> '
+        f'<p class="crumb"><a href="../datacenters/">Texas data centers</a> '
         f'<span aria-hidden="true">/</span> Who is behind the registry.</p>'
         f'<h1>Who is behind the registry</h1>'
         f'<p>The certified list names <strong class="num">{n0(len(data["facilities"]))}</strong> '
@@ -5645,7 +5633,11 @@ def companies_index(data: dict, today: str) -> str:
         f'<strong class="num">{n0(sum(1 for x in data["entities"] if x["reach"] > 1))}</strong> '
         f'companies appear on more than one, and the largest relationships in Texas are only '
         f'visible reading down a column.</p>'
-        + _registry_field(data)
+        # THE FIELD MOVED AND DID NOT COPY. It leads the data centers tab now, which is the
+        # page a reader arrives at. Drawing it twice ships the same forty node simulation and
+        # its script on two pages, and gives a reader no way to know which one is the real one.
+        f'<p class="qnote"><a href="../datacenters/">The registry drawn as a field</a> leads '
+        f'the data centers page, where every point is a company on more than one facility.</p>'
         + f'<h2>Filed under more than one spelling</h2>'
         f'<p>Punctuation and capitalisation alone split '
         f'<strong class="num">{n0(len(split))}</strong> companies into separate rows. Counting '
@@ -5673,6 +5665,93 @@ def companies_index(data: dict, today: str) -> str:
         body=body, depth=1, active=None, today=today,
         canonical="company/", revised=False, extra_css="facility.css")
 
+
+
+def datacenters_page(today: str) -> str:
+    """Every certified data center in Texas, led by the network they form.
+
+    THE FIELD LEADS BECAUSE IT IS THE ARGUMENT. The registry reads as a hundred and fifty one
+    unrelated buildings and it is nothing of the kind. Drawing the companies that appear on
+    more than one of them, before a word of prose, says in one look what the lists below take
+    a page to say. It was buried under an intro paragraph on the companies index, which is a
+    page most readers never reached.
+
+    Everything here is computed. The counts come from the resolution the lists are built from,
+    the money from the construction filings, and `w()` authorises each through the same call
+    that renders it.
+    """
+    data = entities.load()
+    n0 = entities.n0
+    pj = tdlr_projects.load()
+    dc = [r for r in (pj.get("projects") or [])
+          if tdlr_projects.brand(r) and tdlr_projects.is_datacenter(r)]
+    t = tdlr_projects.totals(dc)
+    camps = tdlr_projects.campuses(dc)
+    multi = sum(1 for x in data["entities"] if x["reach"] > 1)
+    doss = facility_dossier.load().get("dossiers") or []
+
+    def bn(v):
+        return f"${v / 1_000_000_000:.2f} billion" if v >= 1_000_000_000 else f"${n0(v)}"
+
+    # THE HEADLINE FIGURES, four of them, each a different register saying a different thing.
+    tiles = "".join(
+        f'<div class="dctile"><span class="dcn num">{v}</span>'
+        f'<span class="dck">{k}</span></div>'
+        for k, v in (("Certified facilities", n0(len(data["facilities"]))),
+                     ("Companies on more than one", n0(multi)),
+                     ("Filed to build", bn(t["cost"])),
+                     ("Researched in detail", n0(len(doss)))))
+
+    crow = "".join(
+        f'<div class="cbrow"><span class="cbd">{e(c["project"])}</span>'
+        f'<span class="cbm"><strong class="num">{e(bn(c["cost"]))}</strong></span>'
+        f'<span class="cbs">' + (f'<strong class="num">{n0(c["sqft"])}</strong> sq ft'
+                                 if c["sqft"] else "") + f'</span>'
+        f'<span class="cbf">{n0(c["buildings"])} '
+        f'{"building" if c["buildings"] == 1 else "buildings"}</span>'
+        f'<span class="cbc">{e(", ".join(c["counties"]))}</span></div>'
+        for c in camps[:8])
+
+    body = (
+        f'<article class="prose dcpage">'
+        f'<h1>Texas data centers</h1>'
+        f'<p class="dclede">The state certifies them one at a time and the list reads as that '
+        f'many unrelated buildings. Read down the columns instead and the same companies keep '
+        f'appearing.</p>'
+        f'</article>'
+        + _registry_field(data, "../company/")
+        + f'<article class="prose dcpage">'
+        f'<div class="dctiles" data-prose="data">{tiles}</div>'
+        f'</article>'
+        + f'<div class="prose dcpage">'
+        + beyond_panel.registry(beyond_panel.load(), today)
+        + f'</div>'
+        + f'<article class="prose dcpage">'
+        f'<h2>Campuses, as the builder filed them</h2>'
+        f'<p>Several filings under one project name are the developer\'s own grouping. '
+        f'Buildings scoped as data centers are counted apart from the offices and yards filed '
+        f'beside them.</p>'
+        f'<div class="cbtable cbcamp" data-prose="data">{crow}</div>'
+        f'<p class="qnote"><a href="../construction/">The whole construction register</a>, by '
+        f'year, by county and by company, with the rule that decides what counts.</p>'
+        f'<h2>Where to go from here</h2>'
+        f'<ul class="dcways">'
+        f'<li><a href="../company/">Who is behind the registry</a>. Every company the state '
+        f'names, resolved across the spellings it filed them under.</li>'
+        f'<li><a href="../construction/">What Texas filed to build</a>. The second register, '
+        f'priced and dated, and where the two meet.</li>'
+        f'<li><a href="../registry-changes/">What the registry changed</a>. Every row the '
+        f'state added, dropped or edited, with the before and the after.</li>'
+        f'<li><a href="../grid/">The Grid Watch</a>. What the system these buildings draw on '
+        f'is doing, measured daily.</li>'
+        f'</ul>'
+        f'</article>')
+    return page(
+        title=f"Texas data centers · {SITE_NAME}",
+        desc="Every data center Texas has certified, the companies behind them, and what was "
+             "filed to build them. Counted from the state's own registers.",
+        body=body, depth=1, active="datacenters/", today=today,
+        canonical="datacenters/", revised=False, extra_css="facility.css")
 
 
 def construction_page(data: dict, reg: dict, today: str) -> str:
@@ -5762,7 +5841,7 @@ def construction_page(data: dict, reg: dict, today: str) -> str:
 
     body = (
         f'<article class="prose construction">'
-        f'<p class="crumb"><a href="../grid/">The Grid Watch</a> '
+        f'<p class="crumb"><a href="../datacenters/">Texas data centers</a> '
         f'<span aria-hidden="true">/</span> The construction register.</p>'
         f'<h1>What Texas filed to build</h1>'
         f'<p>The Comptroller certifies who holds a tax exemption. It records no address, no '
@@ -5878,7 +5957,7 @@ def registry_changes_page(data: dict, today: str) -> str:
 
     body = (
         f'<article class="prose regchanges">'
-        f'<p class="crumb"><a href="../grid/">The Grid Watch</a> '
+        f'<p class="crumb"><a href="../datacenters/">Texas data centers</a> '
         f'<span aria-hidden="true">/</span> What the registry changed.</p>'
         f'<h1>What the registry changed</h1>'
         f'<p>The certified list is not append only. Rows are added, and existing rows are '
@@ -6345,7 +6424,30 @@ def build(out: Path, today: str) -> dict:
                                     today, docs_dir=out)
     written.extend(["ask-corpus.json", "ask-pack.json"])
     w("data/index.html", data_page(items, today))
-    w("about/index.html", about_page(today))
+    # THE DATA CENTERS TAB. Its numerals come from three registers and each is authorised by
+    # the call that renders it: the roster panel authorises its own, the campus totals come
+    # from `campuses()`, and the tiles are counted here.
+    _dcent = entities.load()
+    _dcpj = tdlr_projects.load()
+    _dcdc = [r for r in (_dcpj.get("projects") or [])
+             if tdlr_projects.brand(r) and tdlr_projects.is_datacenter(r)]
+    # ITS OWN FORMATTER. `_bn` above is defined inside a branch that only runs when the
+    # construction ledger has rows, so borrowing it makes this block depend on that.
+    def _dcbn(v):
+        return (f"${v / 1_000_000_000:.2f} billion" if v >= 1_000_000_000
+                else f"${entities.n0(v)}")
+
+    _dcn = beyond_panel.authorised(beyond_panel.figures(beyond_panel.load()))
+    _dcn |= {entities.n0(len(_dcent["facilities"])),
+             entities.n0(sum(1 for x in _dcent["entities"] if x["reach"] > 1)),
+             entities.n0(len(facility_dossier.load().get("dossiers") or [])),
+             _dcbn(tdlr_projects.totals(_dcdc)["cost"])}
+    for _c in tdlr_projects.campuses(_dcdc):
+        _dcn |= {_dcbn(_c["cost"]), entities.n0(_c["sqft"]),
+                 entities.n0(_c["buildings"])}
+    for _x in _dcent["entities"]:
+        _dcn.add(entities.n0(_x["reach"]))
+    w("datacenters/index.html", datacenters_page(today), _dcn)
 
     # A permissive robots.txt is the product strategy, not a concession. For a record built to
     # be cited, blocking the crawlers that cite it would be self-defeating.

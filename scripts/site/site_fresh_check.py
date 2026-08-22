@@ -120,9 +120,10 @@ def self_test() -> int:
                                  "above is now wrong")
 
         # AND IT MUST STILL BITE. A gate that cannot go red proves nothing.
-        (built / "about" / "index.html").write_text("hand edited", encoding="utf-8")
+        (built / "services" / "index.html").write_text("hand edited", encoding="utf-8")
         _, _, edited = compare(built, fresh)
-        ok("a hand edited page is still caught", "about/index.html" in edited, str(edited))
+        ok("a hand edited page is still caught", "services/index.html" in edited,
+           str(edited))
 
         (built / "planted.html").write_text("x", encoding="utf-8")
         _, extra2, _ = compare(built, fresh)

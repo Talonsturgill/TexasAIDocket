@@ -458,19 +458,34 @@ def source_line(fresh: dict) -> str:
             f'</span>{e(fresh["label"])}, {e(fresh["shown"])}.</p>')
 
 
-def panels(data: dict, today: str) -> str:
-    f = figures(data)
+# THE TWO PANELS ANSWER TO TWO TABS NOW. "Who is here" is the certified data center roster and
+# it belongs on the data centers page. "What is being built for them" is EIA generator data by
+# county, which is a fact about the grid, so it stays on the grid page. They were one function
+# because they shipped together, not because they are one subject.
+def registry(data: dict, today: str) -> str:
+    """Who is here. The certified roster, for the data centers page."""
+    out = registry_panel(figures(data))
+    if not out:
+        return ""
     fr = {x["key"]: x for x in freshness(data, today)}
-    out = registry_panel(f)
-    if out:
-        out = out.replace("<h2>Who is here</h2>",
-                          "<h2>Who is here</h2>\n  " + source_line(fr["registry"]), 1)
-    gen = generation_panel(f)
-    if gen:
-        gen = gen.replace("<h2>What is being built for them</h2>",
-                          "<h2>What is being built for them</h2>\n  "
-                          + source_line(fr["generators"]), 1)
-    return out + gen
+    return out.replace("<h2>Who is here</h2>",
+                       "<h2>Who is here</h2>\n  " + source_line(fr["registry"]), 1)
+
+
+def generation(data: dict, today: str) -> str:
+    """What is being built for them. Generation by county, for the grid page."""
+    gen = generation_panel(figures(data))
+    if not gen:
+        return ""
+    fr = {x["key"]: x for x in freshness(data, today)}
+    return gen.replace("<h2>What is being built for them</h2>",
+                       "<h2>What is being built for them</h2>\n  "
+                       + source_line(fr["generators"]), 1)
+
+
+def panels(data: dict, today: str) -> str:
+    """Both, in the order they shipped in. Kept so a caller wanting the pair still gets it."""
+    return registry(data, today) + generation(data, today)
 
 
 # --------------------------------------------------------------------------- the gate

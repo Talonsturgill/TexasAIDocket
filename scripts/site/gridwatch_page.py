@@ -459,9 +459,9 @@ def load_shape_svg(latest: dict) -> str:
   <text class="ax unit" x="4" y="{pad_t - 8}" text-anchor="start">GW</text>
   {res}
 </svg>
-<figcaption>Measured demand, peak and trough marked. The dashed line is ERCOT's forecast,
-close enough to overlap. The scale starts at zero, so the flatness is real. The strip below is
-forecast minus measured, scaled separately because a miss is one pixel up here.
+<figcaption>Measured demand, peak and trough marked. The dashed line is ERCOT's forecast.
+It sits close enough to overlap. The scale starts at zero, so the flatness is real. The strip
+below is forecast minus measured, scaled separately because a miss is one pixel up here.
 </figcaption></figure>"""
 
 
@@ -673,8 +673,9 @@ def body(records: list[dict], today: str, queue_data: dict | None = None) -> str
 <h1>Texas Grid Watch</h1>
 <div class="prose">
   <p class="lede">What large load has asked the Texas grid for, and what it is actually
-  drawing. Most of that queue is data centers, and this page names the ones the state
-  has registered. Measured, never predicted.</p>
+  drawing. Most of that queue is data centers. The
+  <a href="../datacenters/">data centers page</a> names the ones the state has registered.
+  Measured, never predicted.</p>
 </div>
 
 {queue}
@@ -695,7 +696,7 @@ def body(records: list[dict], today: str, queue_data: dict | None = None) -> str
   {acc_block}
 </section>
 
-{beyond_panel.panels(beyond_panel.load(), today)}
+{beyond_panel.generation(beyond_panel.load(), today)}
 
 <div class="prose gridnote">
   <div class="gap">
