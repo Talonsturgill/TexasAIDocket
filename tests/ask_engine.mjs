@@ -313,6 +313,45 @@ check("an off-record question is refused on the page",
 check("...and it called nobody to do it",
       external.filter((u) => u.includes("workers.dev")).length === beforeRefuse);
 
+/* AND THE SAME WORDS AS A FOLLOW-UP ARE NOT REFUSED, which is the other half of the rule and
+   the half that was missing. The refusal reads one line at a time, so "u sure?" shares no word
+   with the record and got the identical canned sentence back, twice. A reader who pushes back
+   on an answer and is handed the same string is talking to a wall, and the wall never called
+   the model at all.
+   The words that carry a follow-up, "why", "u sure", "which one", share no vocabulary with any
+   record by their nature. Once this box has ANSWERED something in the thread, the question
+   goes to the model with the thread.
+   THE COUNT IS ANSWERS GIVEN, NOT TURNS TAKEN, and getting that wrong switched the refusal off
+   for everybody. The thread already holds the current question by the time the classifier
+   runs, so a first ask looked like a follow-up and nothing was ever refused. This suite caught
+   it, which is why both directions are asserted here rather than one. */
+const refusalCopy = refusalText.trim();
+await page.fill("#askq", "u sure?");
+await page.press("#askq", "Enter");
+await page.waitForSelector(".askfrom", { timeout: 8000 }).catch(() => {});
+await settled();
+/* THE LAST REPLY, NOT THE FIRST. `page.textContent(".askreply")` returns the FIRST match in
+   the document, and a thread grows downward, so reading it after a second question hands back
+   the FIRST answer and every comparison between them passes or fails for the wrong reason.
+   This assertion failed three times against a page that was behaving correctly. */
+const lastReply = async () => ((await page.evaluate(() => {
+  const all = document.querySelectorAll(".askreply");
+  return all.length ? all[all.length - 1].textContent : "";
+})) || "").trim();
+const followUpText = await lastReply();
+check("a follow-up is not handed the same canned refusal",
+      followUpText !== refusalCopy, followUpText.slice(0, 90));
+
+// A FRESH PAGE, so the classifier is judging a first question again and the refusal must fire.
+await page.goto(URL_HOME);
+await page.waitForFunction(() => typeof window.__askAnswer === "function");
+await page.fill("#askq", "recipe for banana bread");
+await page.press("#askq", "Enter");
+await page.waitForSelector(".askfrom", { timeout: 8000 }).catch(() => {});
+check("...and a first question with nothing of the record in it still is",
+      /not something this record covers/i.test(await lastReply()),
+      (await lastReply()).slice(0, 90));
+
 /* STATED AS WHAT IS ALLOWED, not as an empty list. An empty list has to be relaxed every time
    anything legitimate is added, and each relaxation is invisible.
 
