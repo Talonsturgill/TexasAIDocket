@@ -109,7 +109,7 @@
           ]
         },
         {
-          "text": "The case style reads Large Load Demand Management Service.",
+          "text": "The rule as published in the Texas Register does not contain the words data center.",
           "x": 80,
           "y": 268,
           "w": 800,
@@ -124,13 +124,13 @@
             [
               80,
               267,
-              751,
+              714,
               41
             ],
             [
               80,
               307,
-              110,
+              420,
               41
             ]
           ],
@@ -222,7 +222,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1531,
+      "render_ms": 1528,
       "ok": true,
       "canvases": [
         {
@@ -235,8 +235,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 45.9,
-          "variance": 824.9
+          "mean": 46,
+          "variance": 824.5
         }
       ],
       "breather": false,
@@ -537,7 +537,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2310,
+      "render_ms": 2056,
       "ok": true,
       "canvases": [
         {
@@ -771,7 +771,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1293,
+      "render_ms": 1246,
       "ok": true,
       "canvases": [
         {
@@ -1253,7 +1253,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1031,
+      "render_ms": 1170,
       "ok": true,
       "canvases": [
         {
@@ -1665,7 +1665,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2684,
+      "render_ms": 2765,
       "ok": true,
       "canvases": [
         {
@@ -2099,7 +2099,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1236,
+      "render_ms": 1473,
       "ok": true,
       "canvases": [
         {
@@ -2112,8 +2112,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 34.6,
-          "variance": 189.9
+          "mean": 36.6,
+          "variance": 255.8
         }
       ],
       "breather": false,
@@ -2499,7 +2499,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1534,
+      "render_ms": 1239,
       "ok": true,
       "canvases": [
         {
@@ -2587,7 +2587,7 @@
         },
         {
           "text": "DAYS",
-          "x": 820,
+          "x": 700,
           "y": 906,
           "w": 112,
           "h": 40,
@@ -2599,7 +2599,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              820,
+              700,
               899,
               112,
               53
@@ -2725,7 +2725,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 759,
+      "render_ms": 743,
       "ok": true,
       "canvases": [
         {
@@ -3019,7 +3019,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 825,
+      "render_ms": 971,
       "ok": true,
       "canvases": [
         {

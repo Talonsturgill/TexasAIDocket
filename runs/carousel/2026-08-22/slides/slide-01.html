@@ -28,7 +28,7 @@ canvas{position:absolute;left:0;top:0}
 <div class="kick">PROJECT 58482</div>
 <div class="cnt">01 / 09</div>
 <div class="hook"><span class="figd">34</span> filings are already in.</div>
-<div class="dek">The case style reads Large Load Demand Management Service.</div>
+<div class="dek">The rule as published in the Texas Register does not contain the words data center.</div>
 <div class="big">34</div>
 <div class="gap">10 rows are quoted on the frames that follow. The other 24 rows stand in the filing index and are not read here.</div>
 <div class="tx-site">texasaidocket.com</div>
@@ -56,7 +56,11 @@ window.renderReady = new Promise(function(resolve){
   var CW=104, CH=88, GX=15, GY=13;
   var SKEW=Math.tan(25*Math.PI/180)*0.42;
   var BX=126, BY=392;
-  var LIT=[0,1,2,3,7,8,9,14,15,21];   // ten quoted rows, clustered upper left
+  // THE LIT CELLS ARE THE INDEX POSITIONS, not a shape. This read [0,1,2,3,7,8,9,14,15,21],
+  // a 4-3-2-1 staircase, which is the first thing the eye resolves on the cover and which drew
+  // a decline no claim supports. The ten rows this deck quotes are items 10, 25, 26, 28, 29, 30, 31, 32, 33, 34, so the
+  // board now shows one early filing and then the tail, which is what the reading actually was.
+  var LIT=[9, 24, 25, 27, 28, 29, 30, 31, 32, 33];
   var litSet={}; LIT.forEach(function(v){litSet[v]=1;});
   var k=0;
   for(var r=0;r<ROWS;r++){

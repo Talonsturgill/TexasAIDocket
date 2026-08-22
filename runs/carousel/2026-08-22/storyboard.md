@@ -27,7 +27,7 @@ slide: 1
 job: >
   State how many filings stand in the docket, and state in the same breath how many of them this
   deck actually quotes. No other frame carries the size of the room or the size of the gap.
-claims: [c7]
+claims: [c7, c20]
 numerals:
   - value_from: c7          # 34 filings, and the case style
   - computed_by: "aggregates.json, ten index rows carrying a verbatim quote, and 34 minus 10"
@@ -41,8 +41,8 @@ composition:
     contact shadow falling across it, and the figure 34 cut into the lit metal at 190px with the gap
     line beside it, so the lower third is modeled surface rather than type on a flat ground.
   focal: >
-    The lit cluster of ten recesses in the board's upper left quadrant, read as one bright area
-    against twenty four unlit ones.
+    The lit cells, one early and nine in the tail, read as the shape of what this deck actually
+    read against twenty four rows it did not.
 art:
   technique: "wind-worked carve, TXCARVE, with two part contact shadows under one raking key"
   why_this_technique: >
@@ -59,11 +59,13 @@ art:
   motion: "the eye lands on the lit cluster, reads the board's extent, then drops to the figure"
 type:
   hook: "34 filings are already in."
-  dek: "The case style reads Large Load Demand Management Service."
+  dek: "The rule as published in the Texas Register does not contain the words data center."
   labels: ["10 rows are quoted on the frames that follow. The other 24 rows stand in the filing index and are not read here."]
 acceptance:
   - "exactly 34 recesses are present and countable at 432px"
   - "exactly 10 recesses carry a lit block in trace #9FD3B4 and 24 do not"
+  - "the lit cells are the index positions of the ten rows this deck quotes, items 10 and 25
+    through 34, computed from aggregates.json rather than arranged into a shape"
   - "no recess is empty of its block, because absence of light never means absence of a filing"
   - 'the gap line reads exactly "10 rows are quoted on the frames that follow. The other 24 rows stand in the filing index and are not read here."'
   - "every contact shadow is two part, a 6px core and a 40px ambient, never a single drop"

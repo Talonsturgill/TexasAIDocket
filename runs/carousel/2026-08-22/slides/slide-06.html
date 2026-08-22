@@ -69,21 +69,28 @@ window.renderReady = new Promise(function(resolve){
   x.fillStyle=lg; x.fillRect(LGX,300,LGW,1050);
   x.fillStyle='rgba(214,226,214,0.42)'; x.fillRect(LGX,300,4,1050);      // the lit chamfer
   x.fillStyle='rgba(6,12,13,0.66)'; x.fillRect(LGX+LGW-5,300,5,1050);
-  // the lattice bracing on the leg, visible below the last plate
-  // the leg's own bracing, lit on the key side and dark on the other, so the lower band
-  // is structure carrying the plates rather than a texture behind them
-  // THE THIRD BRACE USED TO BE PAINTED OUT. It started at 1244 and the footer shelf fills from
-  // 1224, so two rods shipped where three were drawn. The run is spaced to land the last rod's
-  // low end exactly on the shelf line instead.
-  x.save(); x.lineWidth=11; x.lineCap='round';
-  for(var b=0;b<3;b++){
-    var by=1014+b*60;
-    x.strokeStyle='rgba(214,226,214,0.30)';
-    x.beginPath(); x.moveTo(LGX+26,by); x.lineTo(LGX+LGW-26,by+82); x.stroke();
-    x.strokeStyle='rgba(6,12,13,0.55)';
-    x.beginPath(); x.moveTo(LGX+26,by+8); x.lineTo(LGX+LGW-26,by+90); x.stroke();
+  // THE THREE DIAGONAL RODS ARE GONE. They were added this run to fill a lower third that
+  // read as dead, they were in no dossier line, and all three scoring lenses called them
+  // decoration that would fit any story at all. Removing them reopened the dead zone, so what
+  // replaces them is SURFACE rather than a shape: the leg is a vertical member, so it takes
+  // vertical mill flutes, tooth and the same raking key the plates stand in. Structure asserts
+  // nothing about rows this deck did not read, which is the fault slide 1's staircase had.
+  for(var i=0;i<11000;i++){
+    var px=LGX+R()*LGW, py=980+R()*244, a=0.016+R()*0.055;
+    x.fillStyle=(R()<0.5?'rgba(232,239,228,':'rgba(6,12,13,')+a+')';
+    x.fillRect(px,py,1.6,1.6);
   }
-  x.restore();
+  // the flutes run WITH the member, lit on the key side of each ridge and dark in each trough,
+  // and they stop at 1216 so nothing drawn reaches the footer shelf at 1224
+  for(var fx=LGX+34; fx<LGX+LGW-24; fx+=46){
+    x.fillStyle='rgba(6,12,13,0.42)'; x.fillRect(fx,982,7,234);
+    x.fillStyle='rgba(214,226,214,0.13)'; x.fillRect(fx-3,982,3,234);
+  }
+  // the member's own lower land, catching the key across its width
+  var lgk=x.createLinearGradient(LGX,982,LGX+LGW,1216);
+  lgk.addColorStop(0,'rgba(214,226,214,0.15)'); lgk.addColorStop(1,'rgba(214,226,214,0)');
+  x.fillStyle=lgk; x.fillRect(LGX,982,LGW,234);
+  x.fillStyle='rgba(232,239,228,0.30)'; x.fillRect(LGX,978,LGW,3);   // the land's lit top edge
   x.fillStyle='rgba(6,12,13,0.30)';
   for(var sy2=1008; sy2<1350; sy2+=3){ x.fillRect(0,sy2,1080,1); }
 
