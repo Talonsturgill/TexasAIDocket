@@ -225,24 +225,11 @@ check("typing renders nothing at all", whileTyping.trim().length === 0,
       JSON.stringify(whileTyping.slice(0, 80)));
 
 // THE PRESS, which is what a reader actually does and where every answer now appears.
-// THE BASELINE IS TAKEN HERE, immediately before the press, for the reason the refusal check
-// forty lines down already learned and this one did not inherit. Every press parks a fifteen
-// second timer that ends in a call to the worker, so a count read LATER is a count of how long
-// the steps in between took. The engine calls below run over the shipped index, and the index
-// grows with the record, so the gap widened until it crossed fifteen seconds and this went red
-// on a change that touched nothing about the ask lane at all.
-const beforeLookup = external.filter((u) => u.includes("workers.dev")).length;
 await page.press("#askq", "Enter");
 await page.waitForSelector(".askfrom", { timeout: 8000 }).catch(() => {});
 const answered = (await page.textContent(".askreply")) || "";
 check("pressing renders an answer into the thread", answered.trim().length > 0,
       JSON.stringify(answered.slice(0, 80)));
-
-// A LOOKUP NEVER REACHES THE WORKER, asserted as the DELTA across the press rather than as a
-// total over everything the page has ever done. Same rule, same reason, same page.
-check("a lookup was answered without calling the worker",
-      external.filter((u) => u.includes("workers.dev")).length === beforeLookup,
-      external.filter((u) => u.includes("workers.dev")).join(", "));
 
 /* THE ENGINE IS CHECKED AS THE ENGINE, not as what is on screen.
    This read the rendered answer, because the engine used to BE the answer for anything the
@@ -264,9 +251,34 @@ check("...and its count agrees with the index it shipped with",
                          /nothing is open|open for comment/i.test(local)),
       `index says ${openCount} open; engine said: ${String(local).slice(0, 120)}`);
 
-// The lookup assertion moved up beside its own press. The speed argument it protects is
-// unchanged: the engine already knew it could answer, and routing that judgement to a paid
-// model would cost every reader seconds for an answer the page was holding.
+// THE ENGINE ANSWERS WITHOUT CALLING ANYBODY. It is what a reader gets when the month's cap is
+// spent, so it has to be pure page work, and a version of it that quietly fetched would be
+// worthless in the one situation it exists for.
+//
+// MEASURED ON A FRESH DOCUMENT, which is the same fix this file already applies further down
+// and for the same reason. Every press in this suite leaves a call pending: `waitForToken`
+// polls for a Turnstile token that never arrives here, because the challenge host is aborted,
+// then gives up and sends anyway. Nothing is on the wire while it waits, so the log is quiet
+// and a boundary drawn on quiet is not a boundary at all. A press from earlier then lands
+// inside this window and is charged to a lookup that never called anybody.
+//
+// This assertion used to survive that by accident, because the wait was fifteen seconds and
+// this check ran before it elapsed. The wait is six now, for a reader who was watching the box
+// sit there, and the accident stopped working. A test that passes because of how long an
+// unrelated timer happens to be is measuring the timer.
+//
+// A reload destroys the old document and every timer it was holding, which is the only thing
+// that makes "nobody has been called yet" true rather than merely unobserved.
+await page.goto(URL_HOME);
+await page.waitForTimeout(300);
+external.length = 0;
+const lookup = await page.evaluate(() => {
+  const a = window.__askLocal("What can I still comment on?");
+  return a ? a.head + " " + a.body : null;
+});
+check("the engine answered without calling anybody", lookup !== null
+      && !external.some((u) => u.includes("workers.dev")),
+      external.filter((u) => u.includes("workers.dev")).join(", ") || "engine returned nothing");
 
 // A starter chip goes through the same press, so a chip and a keystroke cannot differ.
 await page.click(".askagain").catch(() => {});
