@@ -5452,21 +5452,32 @@ def facility_filings(reg: dict, projects: dict) -> dict:
     Computed once for the whole build rather than per page, because the join needs to know how
     many facilities each party names before it can tell a single purpose entity from a parent
     company, and that is a question about the whole registry.
+
+    A NAME IS THE PAGE AND A ROW IS NOT. Four names in the certified list carry two rows each,
+    because a campus can be certified twice, and both rows render to one slug and one dossier.
+    Keyed by row, the second row would silently overwrite the first and a page would show one
+    certification's parties as if they were all of them. Worse, the parent company test counts
+    how many FACILITIES a party names, so a facility certified three times would make its own
+    single purpose entity look like a company that names three projects and the join would
+    refuse the very row it exists to serve. The rows are unioned by name before either question
+    is asked, so a certification count can never be read as a facility count.
     """
     dc = [r for r in (projects.get("projects") or [])
           if tdlr_projects.brand(r) and tdlr_projects.is_datacenter(r)]
     by_party: dict[str, list] = {}
     for r in dc:
         by_party.setdefault(entities.normalise(r.get("owner", "")), []).append(r)
-    facs = reg.get("facilities") or []
-    parties = [{entities.normalise(x) for k in ("owners", "occupants", "operators")
-                for x in (f.get(k) or [])} for f in facs]
-    specific = tdlr_projects.joinable(parties)
+    parties: dict[str, set] = {}
+    for f in reg.get("facilities") or []:
+        parties.setdefault(f["name"], set()).update(
+            entities.normalise(x) for k in ("owners", "occupants", "operators")
+            for x in (f.get(k) or []))
+    specific = tdlr_projects.joinable(list(parties.values()))
     out = {}
-    for f, ps in zip(facs, parties):
+    for name, ps in parties.items():
         m = tdlr_projects.filings_for(ps, specific, by_party)
         if m:
-            out[f["name"]] = m
+            out[name] = m
     return out
 
 
@@ -5643,18 +5654,11 @@ def construction_page(data: dict, reg: dict, today: str) -> str:
         f'{"county" if len(b["counties"]) == 1 else "counties"}</span></div>'
         for b in brands)
 
-    # THE JOIN. Both registers published it, on the single purpose entities that appear in each.
-    by_party = {}
-    for r in dc:
-        by_party.setdefault(entities.normalise(r.get("owner", "")), []).append(r)
-    parties = [{entities.normalise(x) for k in ("owners", "occupants", "operators")
-                for x in (f.get(k) or [])} for f in reg.get("facilities") or []]
-    specific = tdlr_projects.joinable(parties)
-    joined = []
-    for f, ps in zip(reg.get("facilities") or [], parties):
-        m = tdlr_projects.filings_for(ps, specific, by_party)
-        if m:
-            joined.append((f["name"], m, sum(x.get("cost") or 0 for x in m)))
+    # THE JOIN, computed by the one function the facility pages also call. It was written twice
+    # for a week, and two copies of a rule about which parties are specific enough to join on is
+    # how this table and a facility page come to disagree about the same building.
+    joined = [(name, m, sum(x.get("cost") or 0 for x in m))
+              for name, m in facility_filings(reg, data).items()]
     joined.sort(key=lambda x: -x[2])
     jrow = "".join(
         f'<div class="cbrow"><span class="cbd"><cite>{e(name)}</cite></span>'
@@ -5664,7 +5668,7 @@ def construction_page(data: dict, reg: dict, today: str) -> str:
         f'<span class="cbc">{e(m[0].get("county", ""))}</span></div>'
         for name, m, cost in joined)
 
-    silent = ", ".join(tdlr_projects.NO_FILINGS)
+    silent = tdlr_projects.andlist(tdlr_projects.NO_FILINGS)
 
     # THE MIRROR OF THAT. A company can build in Texas and hold no certification at all, which
     # is computed from the two records rather than asserted.
@@ -5711,7 +5715,7 @@ def construction_page(data: dict, reg: dict, today: str) -> str:
         f'and one that leases what somebody else built.</p>'
 
         + (f'<p class="qnote">The mirror of that also happens. '
-           f'{e(", ".join(uncertified))} '
+           f'{e(tdlr_projects.andlist(uncertified))} '
            + ("files" if len(uncertified) == 1 else "file")
            + f' construction here and hold'
            + ("s" if len(uncertified) == 1 else "")
@@ -5724,7 +5728,7 @@ def construction_page(data: dict, reg: dict, today: str) -> str:
         f'<p>The match is made only on an entity specific enough to mean one project. A parent '
         f'company named on many certifications identifies a company and not a building. Joining '
         f'on one would attach every Microsoft filing in the state to a single row.</p>'
-        f'<div class="cbtable" data-prose="data">{jrow}</div>'
+        f'<div class="cbtable cbjoin" data-prose="data">{jrow}</div>'
 
         f'<h2>What counts, and what does not</h2>'
         f'<p>A filing counts when it names a data center, a colocation building, a data hall, '
@@ -6346,6 +6350,42 @@ def self_test() -> int:
     # So it is checked HERE, where it costs a second and CI runs it on the pull request that
     # adds the beat. The error names the missing side, because the whole point is that whoever
     # trips it should not have to read this file to know what to do.
+    # THE CERTIFIED LIST NAMES A FACILITY TWICE AND THE JOIN HAS TO SURVIVE IT.
+    #
+    # Four names in the registry carry two rows each, because a campus can be certified more than
+    # once. Both rows render to one slug and one dossier, so the join is a question about names
+    # and never about rows. Two things break if rows are counted instead. The second row's result
+    # overwrites the first, so a page shows one certification's parties as though they were all
+    # of them. And the parent company test counts how many FACILITIES a party names, so a
+    # facility certified three times makes its own single purpose entity look like a company
+    # naming three projects, and the join refuses the row it exists to serve. Both are replayed
+    # here on the exact shape the live registry has.
+    _reg = {"facilities": [
+        {"name": "Twice Certified DC", "owners": ["Alpha SPE LLC"]},
+        {"name": "Twice Certified DC", "owners": ["Alpha SPE LLC", "Parent Holdings Inc"]},
+        {"name": "Thrice Certified DC", "owners": ["Beta SPE LLC"]},
+        {"name": "Thrice Certified DC", "owners": ["Beta SPE, LLC"]},
+        {"name": "Thrice Certified DC", "owners": ["Beta SPE LLC"]},
+    ]}
+    _pj = {"projects": [
+        {"number": "A1", "owner": "ALPHA SPE LLC", "project": "Data Center", "cost": 1,
+         "start": "2024-01-01"},
+        {"number": "B1", "owner": "BETA SPE LLC", "project": "Data Center", "cost": 2,
+         "start": "2024-01-01"},
+    ]}
+    _got = facility_filings(_reg, _pj)
+    check("a facility certified twice keeps every party either row named",
+          [r["number"] for r in _got.get("Twice Certified DC", [])] == ["A1"], repr(_got))
+    check("...and one certified three times is still one facility, not a parent company",
+          [r["number"] for r in _got.get("Thrice Certified DC", [])] == ["B1"], repr(_got))
+    # AND THE PARENT COMPANY REFUSAL STILL BITES, which is what stops the fix above from
+    # becoming a join on anything. A name on three DIFFERENT facilities is a company.
+    _wide = {"facilities": [{"name": f"Site {i}", "owners": ["Parent Holdings Inc"]}
+                            for i in range(3)]}
+    check("a party naming three different facilities joins to none of them",
+          facility_filings(_wide, {"projects": [
+              {"number": "P1", "owner": "PARENT HOLDINGS INC", "project": "Data Center",
+               "cost": 1, "start": "2024-01-01"}]}) == {})
     missing = sorted(dk.TOPICS - set(TOPIC_BLURBS))
     check(f"every admitted beat has a blurb (missing {missing or 'none'})", not missing,
           "add one line per slug to TOPIC_BLURBS in scripts/site/site_build.py")

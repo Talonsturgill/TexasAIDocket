@@ -698,17 +698,47 @@ would have deleted thirty billion dollars because its scratch was gone").
 The four loose queries yielded nothing that passes the owner test, which is the clean answer to
 the question batch 7 left open.
 
+**Then the panel was opened in a browser and looked at, which found three more things.**
+
+The table wrapped. It reuses the construction register's row class, whose first column holds a
+county or a company, and this one holds a four digit year, so 6.5rem went to `2019` and the
+project name got 150px and three lines. Measured in the browser rather than guessed: the widest
+string in each column totals 32.4rem inside a 42.5rem row, so nothing was ever short of space.
+`.cbfile` carries its own template now, and its two numeric columns right align, because this
+table is sorted by DATE and a left aligned column of dollars gives a reader nothing to rank
+by. GATE_LESSONS entry 62 ("A table wrapped to three lines beside an empty gutter and 110 checks said yes"), and the third entry in a row whose lesson is that no gate here has
+ever seen the page.
+
+The join was written twice, once for the construction table and once for the facility pages. Two
+copies of the rule that decides which parties are specific enough to join on is how one surface
+comes to disagree with the other about the same building. The table calls `facility_filings` now.
+
+And that one function was keyed by registry ROW while the page it feeds is keyed by NAME. Four
+names carry two rows each, two of them dossiered, so the second row's result overwrote the first
+and a page would have shown one certification's parties as if they were all of them. Worse, the
+parent company test counts how many FACILITIES a party names, so a facility certified three times
+would make its own single purpose entity look like a company naming three projects and the join
+would refuse the row it exists to serve. Rows are unioned by name before either question is asked.
+Three self-tests on the exact shape the live registry has. The published figures are unchanged,
+which is the point: it was luck that the last row happened to be a superset both times.
+
+Copy, while there: the panel's opening line said the filings come from "an entity this row itself
+names", and a reader on a facility page does not know what a row is. And a two item list joined
+with a comma read like a sentence that lost its conjunction, so `andlist` follows the same serial
+rule the topic labels do.
+
 ## Batch 9 candidates
 
-The Oracle spine, still 17 undossiered rows across Vantage TX 302 to 310 and Lancium Abilene III
-to VIII. The construction panel now prices them automatically, so a dossier there adds narrative
-and sources on top of figures that are already published.
+**The Oracle spine.** Seventeen undossiered rows across Vantage TX 302 to 310 and Lancium
+Abilene III to VIII. The construction panel now prices them automatically, so a dossier there
+adds narrative and sources on top of figures that are already published rather than starting
+from nothing. Biggest single block of unwritten rows left.
 
-The four owner queries too loose to pull (Prologis 682 rows, Core Scientific 398, Applied Digital
-233, Meta 85) need a name filter on the search results before fetching. Beyond that: a per facility
-panel showing that facility's own filings, which the join now makes possible, and the Oracle spine
-(17 undossiered rows across Vantage TX 302 to 310 and Lancium Abilene III to VIII).
+**Banked research waiting to be encoded**, unchanged from batch 4 and still the best targets
+after the spine: the five Amazon codenames want a county appraisal district pass, and CoreWeave
+Denton, CoreWeave Plano, the Microsoft San Antonio cluster, Project Eagle at Wharton and Horizon
+Junction each have notes already gathered.
 
-Unchanged from batch 4 and still the best targets: the five Amazon codenames want a county
-appraisal district pass, and CoreWeave Denton, CoreWeave Plano, the Microsoft San Antonio cluster,
-Project Eagle at Wharton and Horizon Junction all have banked research waiting to be encoded.
+Closed in batch 8, recorded so it is not reopened: the four loose owner queries (Prologis 682
+rows, Core Scientific 398, Applied Digital 233, Meta 85) were pulled and yielded nothing passing
+the owner test, and the per facility panel shipped.

@@ -1825,3 +1825,50 @@ artifact", it is a delete with extra steps.
 **And to this project specifically.** `site_fresh_check` proves the site is a function of the
 ledgers. It has never had anything to say about whether the ledgers are complete, and this is the
 second time that gap has mattered.
+
+## 62. A table wrapped to three lines beside an empty gutter and 110 checks said yes
+
+The facility filings panel shipped its first build with `grid-template-columns:6.5rem 9rem 8rem
+1fr 6rem`, inherited from the construction register's tables because it reuses their class. Those
+tables put a county or a company name in the first column. This one puts a four digit year there.
+
+So 6.5rem went to `2019` and the project name got what was left, which was 150px, and
+`DFW III-II Building 3 Tenant Fit Out` wrapped to three lines with a hand's width of empty gutter
+sitting beside it on every row.
+
+**Nothing went red, and nothing could have.** The markup is valid. Every numeral traces to a
+computation. The house style gate reads text and has no opinion about where text lands.
+`site_fresh_check` proves the page is exactly what the ledgers produce, which it was. `css_tokens`
+proves every `var()` resolves, and every one did. The suite has 110 checks and not one of them
+knows what a column is.
+
+**What caught it** was opening the page in a browser and looking at it, then measuring rather than
+squinting: the widest string in each of the five columns is 1.75, 5.25, 6.56, 15.75 and 3.06rem,
+totalling 32.4rem inside a 42.5rem row. Every one of them fit on a single line the whole time. The
+space was not short. It was allocated to the column that needed none of it.
+
+**The fix is a modifier class, not a wider table.** `.cbfile .cbrow` carries its own template,
+measured from the content, with headroom for a figure an order of magnitude larger and a longer
+city. The register's tables keep theirs.
+
+**Generalises to.** Any class reused across surfaces whose content differs. A shared table, a
+shared card, a shared badge. The class says the two things look alike and says nothing about
+whether they hold alike, and the second surface inherits a layout tuned for the first.
+
+**Then writing the gate for it taught the harder half.** The first cut asserted the obvious
+thing, that a cell wraps only when the row has no room. It passed. Run under the other chromium
+on the same machine, on the same build, it failed and named the defect. The two binaries measure
+the same string about four percent apart, and the fault sat at the boundary: a hundred pixels of
+text in a hundred and four pixel track. **A gate asserting a hairline fit reports which binary it
+launched.** It asserts headroom now, five percent over the widest content in each column, which
+is a property of the design rather than of the measuring instrument, and both browsers agree in
+both directions.
+
+Two smaller things fell out of chasing that. It measures over HTTP rather than `file://`, because
+the web font resolved differently off disk and every column came out narrow. And it asserts the
+font it is measuring in is the font that loaded, because a fallback mono is narrower and a gate
+measuring a font nobody is served will happily pass a table that wraps for a reader.
+
+**And the standing lesson underneath it, now three entries deep.** Number 59 was a colour, 60 was
+thirty five nodes stacked on a wall, and this is a column. A gate reads the document. It has never
+once seen the page. Render it, open it, and measure the thing you are about to call finished.

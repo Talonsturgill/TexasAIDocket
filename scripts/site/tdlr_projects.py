@@ -334,6 +334,21 @@ def money(v) -> str:
     return f"${v / 1_000_000_000:.2f} billion" if v >= 1_000_000_000 else f"${v:,}"
 
 
+def andlist(names: list[str]) -> str:
+    """A, B and C. Two names take no comma, and ", ".join gets that wrong.
+
+    Same rule the topic labels follow. A serial list takes a comma between every item but the
+    last pair, so a list of six keeps its commas and a list of two reads "Crusoe and Digital
+    Realty" rather than a sentence that lost its conjunction. The sentences these lists sit
+    inside are generated and their length is data, so the rule is written once rather than
+    guessed at each call site.
+    """
+    names = list(names)
+    if len(names) < 3:
+        return " and ".join(names)
+    return ", ".join(names[:-1]) + " and " + names[-1]
+
+
 def facility_panel(recs: list[dict], e) -> str:
     """What the state was told about building THIS facility, on the facility's own page.
 
@@ -369,10 +384,11 @@ def facility_panel(recs: list[dict], e) -> str:
         head += f', <strong class="num">{t["sqft"]:,}</strong> sq ft'
     return (
         f'<h2>What was filed to build it</h2>'
-        f'<p>Texas registers every large construction project with a second agency. These are '
-        f'the filings by an entity this row itself names.</p>'
+        f'<p>Texas registers every large construction project with a second agency. These '
+        f'filings were made by a company this record already names.</p>'
         f'<p class="qnote" data-prose="data">{head}.</p>'
-        f'<div class="cbtable" data-prose="data">{"".join(row(r) for r in recs)}</div>'
+        f'<div class="cbtable cbfile" data-prose="data">'
+        f'{"".join(row(r) for r in recs)}</div>'
         f'<p class="qnote">An estimated cost at filing is not a final cost, and a filing is not '
         f'proof a building went up. <a href="../../construction/">How this register works</a>.</p>')
 
@@ -598,6 +614,13 @@ def self_test() -> int:
        shared_buildings([same[0], {**same[1], "address": "2 Way"}]) == [])
     ok("a filing with no cost is never paired",
        shared_buildings([{**same[0], "cost": None}, {**same[1], "cost": None}]) == [])
+
+    # THE JOINER, whose whole reason is the two item case a naive join reads wrong.
+    ok("two names take the conjunction and no comma", andlist(["A", "B"]) == "A and B")
+    ok("three names take commas and the conjunction", andlist(["A", "B", "C"]) == "A, B and C")
+    ok("one name is itself", andlist(["A"]) == "A")
+    ok("no names is nothing", andlist([]) == "")
+    ok("the list is not consumed", (lambda g: (andlist(g), len(g)))(["A", "B"])[1] == 2)
 
     passed = sum(checks)
     print(f"\ntdlr_projects self-test: {passed}/{len(checks)} passed")
