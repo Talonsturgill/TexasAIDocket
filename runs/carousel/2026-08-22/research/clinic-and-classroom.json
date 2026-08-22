@@ -1,0 +1,279 @@
+{
+ "beat": "clinic-and-classroom",
+ "run_date": "2026-08-22",
+ "findings": [
+  {
+   "headline": "A peer reviewed study found Houston Methodist's camera based operating room AI is associated with about 25 more cardiothoracic cases a month.",
+   "what_happened": "Houston Methodist researchers deployed an image based AI system of wall mounted cameras running a YOLO object detection model plus a transformer event detector in a 15 room cardiothoracic suite at Houston Methodist Hospital, and compared it against 11 Houston Methodist sites that had not deployed it. The paper ran in the Journal of Imaging on June 27th, 2026, and the vendor Apella publicised it on August 5th, 2026. The measured effect is throughput, not a patient outcome.",
+   "why_it_matters": "This is one of the few Texas AI deployments where a hospital published a controlled estimate of what the tool did rather than a testimonial, and the thing it moved was how many operations fit in a day.",
+   "entities": [
+    "Houston Methodist Hospital",
+    "Apella",
+    "Journal of Imaging",
+    "Roberta Schwartz"
+   ],
+   "counties": [
+    "Harris"
+   ],
+   "statewide": false,
+   "decider": "Houston Methodist Hospital",
+   "event_date": "2026-06-27",
+   "key_date": null,
+   "sources": [
+    {
+     "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.3390/jimaging12070283%22&resultType=core&format=json",
+     "publisher": "ebi.ac.uk",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "a statistically significant increase of approximately 25 cases per month (95% CI 8.3 to 41.0; p < 0.01; Bonferroni-adjusted p < 0.05)",
+     "supports": "The measured case volume effect and its confidence interval, from the paper's own abstract."
+    },
+    {
+     "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.3390/jimaging12070283%22&resultType=core&format=json",
+     "publisher": "ebi.ac.uk",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "Over a 16-month period spanning 6 months pre-deployment and 10 months post-deployment, the system monitored 5417 surgical cases",
+     "supports": "The size and duration of the deployment being studied."
+    },
+    {
+     "url": "https://www.prnewswire.com/news-releases/new-peer-reviewed-research-provides-first-independent-evidence-that-ambient-ai-increases-surgical-case-volume-302843663.html",
+     "publisher": "prnewswire.com",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "A 7% increase in case volume, or roughly 300 additional cases per year",
+     "supports": "The vendor's own framing of the same finding, dated SAN FRANCISCO, Aug. 5, 2026."
+    },
+    {
+     "url": "https://www.prnewswire.com/news-releases/new-peer-reviewed-research-provides-first-independent-evidence-that-ambient-ai-increases-surgical-case-volume-302843663.html",
+     "publisher": "prnewswire.com",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "Claims about AI's impact in surgery are often met with skepticism, and understandably so,",
+     "supports": "Houston Methodist's chief innovation officer Roberta Schwartz naming the credibility problem her own study is answering."
+    }
+   ],
+   "confidence": "high",
+   "is_docket_candidate": false,
+   "unverified": [
+    "Houston Methodist reportedly holds a minority equity interest in Apella and joined its Series B in January 2026, and Apella reportedly did not fund the study. NOT confirmed: mdpi.com returned 403 so the conflict of interest statement could not be read.",
+    "The 46 percentage point reduction in late-ending OR days and the 40 percent scheduling accuracy figure come from the Apella release, not the Journal of Imaging abstract."
+   ]
+  },
+  {
+   "headline": "The University of Texas System funded 12 health AI pilot projects across its institutions with competitive awards totaling more than $3.6 million.",
+   "what_happened": "UT REAL Health AI, the systemwide health AI lab the Legislature funded in 2025, selected 12 pilots from 120 systemwide submissions across three award categories. The projects include an AI clinical assistant called Leah at UT San Antonio, a smartphone fetal movement detector at UT Austin, referral triage at UTMB Galveston, and a no show reduction tool already running at UTHealth Houston that is expanding to UT Health San Antonio.",
+   "why_it_matters": "This is the state's own money buying AI inside public hospitals in Houston, San Antonio, Dallas, Galveston, Austin and Tyler, so the results are a public record rather than a vendor claim.",
+   "entities": [
+    "UT REAL Health AI",
+    "The University of Texas System",
+    "UTHealth Houston",
+    "UT Health San Antonio",
+    "UTMB Galveston",
+    "UT Southwestern",
+    "UT Austin",
+    "UT Tyler",
+    "UT MD Anderson Cancer Center"
+   ],
+   "counties": [
+    "Harris",
+    "Bexar",
+    "Galveston",
+    "Dallas",
+    "Travis",
+    "Smith"
+   ],
+   "statewide": true,
+   "decider": "The University of Texas System (UT REAL Health AI)",
+   "event_date": null,
+   "key_date": null,
+   "sources": [
+    {
+     "url": "https://www.utsystem.edu/sites/ut-real-health-ai/workgroups/pilot-program-phase-i",
+     "publisher": "utsystem.edu",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "The University of Texas Research, Engineering, and Application Laboratory for Healthcare Artificial Intelligence (UT REAL Health AI) today announced funding for 12 pilot projects",
+     "supports": "The number of funded pilots and the body that funded them."
+    },
+    {
+     "url": "https://www.utsystem.edu/sites/ut-real-health-ai/workgroups/pilot-program-phase-i",
+     "publisher": "utsystem.edu",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "Competitive awards totaling more than $3.6 million support AI innovation in emergency care, patient safety, clinical efficiency, and medical education",
+     "supports": "The award total and the four areas it covers."
+    },
+    {
+     "url": "https://www.utsystem.edu/sites/ut-real-health-ai/workgroups/pilot-program-phase-i",
+     "publisher": "utsystem.edu",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "already saved more than 6,500 appointments and $900,000 in revenue at UTHealth Houston",
+     "supports": "A result from a tool already in operation, not a projection."
+    },
+    {
+     "url": "https://www.utsystem.edu/sites/ut-real-health-ai/workgroups/pilot-program-phase-i",
+     "publisher": "utsystem.edu",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "an AI clinical assistant trained on more than 400,000 trauma cases",
+     "supports": "The BEACON project's Leah assistant at UT San Antonio and the training set behind it."
+    },
+    {
+     "url": "https://www.utsystem.edu/sites/health-intelligence-platform/blog/25-million-funding-granted-launch-ut-research-engineering-and-application-laboratory-healthcare-artificial-intelligence-ut-real-health-ai-initiative-2025-06-24",
+     "publisher": "utsystem.edu",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "The UT Research, Engineering, and Application Laboratory for Healthcare Artificial Intelligence (UT-REAL-Health-AI) initiative has received $25 million in total funding\u2014$15 million approved by the Texas Legislature and $10 million allocated by the UT System Board of Regents.",
+     "supports": "Where the money came from, and that the Legislature is the ultimate funder."
+    }
+   ],
+   "confidence": "medium",
+   "is_docket_candidate": true,
+   "unverified": [
+    "The Phase I page carries FOR IMMEDIATE RELEASE but shows no date, so there is no announcement date for the 12 awards.",
+    "A further $15 million reportedly moved forward by the Board of Regents Health Affairs Committee on August 12th, 2026 is NOT confirmed (x.com 402, agenda PDF would not decode).",
+    "The number of institutions is given as eight in one place and eleven in a search snippet. Unresolved. NO count should be published."
+   ]
+  },
+  {
+   "headline": "Texas has required health care providers to tell patients when AI is used in their care since January 1st, 2026.",
+   "what_happened": "Section 552.051 of the Texas Business and Commerce Code, added by House Bill 149, requires a provider using an AI system in a health care service or treatment to disclose it to the patient or the patient's representative. Senate Bill 1188 separately requires physicians using AI for diagnostic purposes to disclose that use and to review records the AI created. The Attorney General has exclusive enforcement of Chapter 552.",
+   "why_it_matters": "Every ambient scribe, triage model and imaging tool now running in a Texas clinic is supposed to come with a plain language notice to the patient, and a Texan can ask for one.",
+   "entities": [
+    "Texas Legislature",
+    "Texas Attorney General",
+    "Texas Medical Association",
+    "House Bill 149",
+    "Senate Bill 1188"
+   ],
+   "counties": [],
+   "statewide": true,
+   "decider": "Texas Legislature",
+   "event_date": "2026-01-01",
+   "key_date": "2026-01-01",
+   "sources": [
+    {
+     "url": "https://codes.findlaw.com/tx/business-and-commerce-code/bus-com-sect-552-051/",
+     "publisher": "codes.findlaw.com",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "not later than the date the service or treatment is first provided",
+     "supports": "The statutory deadline for disclosing AI use to a patient, from subsection (f)."
+    },
+    {
+     "url": "https://codes.findlaw.com/tx/business-and-commerce-code/bus-com-sect-552-051/",
+     "publisher": "codes.findlaw.com",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "must be written in plain language",
+     "supports": "The form the disclosure has to take, from subsection (d)(1)."
+    },
+    {
+     "url": "https://www.texmed.org/Template.aspx?id=66759",
+     "publisher": "texmed.org",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "Disclose such use of AI to their patients",
+     "supports": "The Texas Medical Association telling its own members what SB 1188 requires of physicians."
+    }
+   ],
+   "confidence": "medium",
+   "is_docket_candidate": true,
+   "unverified": [
+    "statutes.capitol.texas.gov served only its homepage for the Chapter 552 HTML path, so the quoted statutory text is FindLaw's reproduction, not the state's own posting. FindLaw labels it Current as of January 01, 2026.",
+    "law.justia.com returned HTTP 403.",
+    "A Becker's headline says University Health and Houston Methodist fold the disclosure into existing consent forms rather than building a separate one. NOT confirmed, beckershospitalreview.com returned 403. No health system's actual patient facing AI notice page was located.",
+    "The $5,000 to $250,000 civil penalty range came from the TMA page summary and the attaching statute was not confirmed."
+   ]
+  },
+  {
+   "headline": "MD Anderson reported that AI analysis of routine tumor biopsies predicted which rare cancer patients would respond to immunotherapy.",
+   "what_happened": "MD Anderson researchers used AI tools to measure baseline and dynamic changes in the tumor microenvironment as patients with rare cancers started immunotherapy. Patients with favorable signals had markedly better outcomes. The work was published in the Journal for ImmunoTherapy of Cancer and posted by MD Anderson on June 30th, 2026.",
+   "why_it_matters": "The inputs are pathology slides Texas hospitals already produce, so if it holds up it is a prediction made from material that is already sitting in the lab.",
+   "entities": [
+    "UT MD Anderson Cancer Center",
+    "Journal for ImmunoTherapy of Cancer",
+    "Aung Naing"
+   ],
+   "counties": [
+    "Harris"
+   ],
+   "statewide": false,
+   "decider": "UT MD Anderson Cancer Center",
+   "event_date": "2026-06-30",
+   "key_date": null,
+   "sources": [
+    {
+     "url": "https://www.mdanderson.org/newsroom/research-newsroom/ai-guided-pathology-analysis-can-help-predict-immunotherapy-response.h00-159856134.html",
+     "publisher": "mdanderson.org",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "a 64% lower risk of disease progression or death and lived nearly four times longer on average (median survival of 42 months vs. 10 months)",
+     "supports": "The size of the outcome difference between patients with and without favorable AI derived biomarker signals."
+    },
+    {
+     "url": "https://www.mdanderson.org/newsroom/research-newsroom/ai-guided-pathology-analysis-can-help-predict-immunotherapy-response.h00-159856134.html",
+     "publisher": "mdanderson.org",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "AI-based pathology has the potential to provide clinicians with useful information on both the tumor and its surrounding microenvironment, helping to guide personalized treatment decisions.",
+     "supports": "Dr. Aung Naing framing this as decision support, in the potential tense, not as deployed care."
+    }
+   ],
+   "confidence": "medium",
+   "is_docket_candidate": false,
+   "unverified": [
+    "Cohort size, cancer types included, and whether this is used in patient care at MD Anderson today. Not given on the newsroom page and the journal article was not fetched."
+   ]
+  },
+  {
+   "headline": "The UT System Board of Regents cleared the first billion dollars of the AI-native UT Dell Medical Center on August 12th, 2026.",
+   "what_happened": "The Board of Regents added the first phase of the UT Dell Medical Center in Austin to the UT Capital Improvement Program, which lets early design, site clearing and long lead ordering begin. Phase I is up to $1 billion against a $5 billion total, construction is expected to start this fall, and completion is targeted for December 2030. The hospital is to be operated with UT MD Anderson Cancer Center and has been marketed since April as the country's first AI-native hospital.",
+   "why_it_matters": "A hospital designed around AI from the foundation up is a different bet than bolting tools onto an existing one, and Travis County taxpayers and patients will live with the answer for decades.",
+   "entities": [
+    "The University of Texas System Board of Regents",
+    "UT Austin",
+    "Dell Medical School",
+    "UT MD Anderson Cancer Center",
+    "James Davis"
+   ],
+   "counties": [
+    "Travis"
+   ],
+   "statewide": false,
+   "decider": "The University of Texas System Board of Regents",
+   "event_date": "2026-08-12",
+   "key_date": null,
+   "sources": [
+    {
+     "url": "https://communityimpact.com/northwest-austin/development/ut-board-of-regents-approves-first-phase-of-the-ut-dell-medical-center/",
+     "publisher": "communityimpact.com",
+     "source_type": "journalism",
+     "fetched": true,
+     "quote": "This gives us the authority to begin spending so that we will be open on time and on budget with this project.",
+     "supports": "UT Austin President James Davis on what the August 12th vote actually authorises."
+    }
+   ],
+   "confidence": "low",
+   "is_docket_candidate": true,
+   "unverified": [
+    "No primary record was read. The Facilities Planning and Construction Committee agenda book PDF fetched as undecodable binary and minutes were not posted.",
+    "The Community Impact article contains NO mention of AI, so the AI-native framing is carried only by April 2026 coverage not fetched this run. Do NOT attribute an AI claim to this source.",
+    "The $56 million per year debt repayment, the 27 acre footprint and the 300 to 500 bed range are all unconfirmed."
+   ]
+  }
+ ],
+ "source_notes": [
+  "mdpi.com returned HTTP 403 for the Journal of Imaging article page. The abstract was obtained instead from the Europe PMC REST API, which returned it in full. Europe PMC is a usable primary route when a publisher 403s.",
+  "beckershospitalreview.com returned HTTP 403 on the article about two Texas health systems complying with the AI disclosure law. This was the best counter-image lead of the run and could not be opened.",
+  "houstonchronicle.com returned HTTP 403. Search snippets describe stroke door-to-treatment falling from an average of 84 minutes to under 25 minutes and a Texas Children's Hospital in-house bone age model. NEITHER IS VERIFIED and neither may be published from this run.",
+  "law.justia.com returned HTTP 403 for the Texas Business and Commerce Code section.",
+  "x.com returned HTTP 402 Payment Required.",
+  "statutes.capitol.texas.gov served its homepage rather than Chapter 552 at /Docs/BC/htm/BC.552.htm. A fetch or routing behaviour, not a robots refusal.",
+  "Both UT System Board of Regents agenda book PDFs downloaded successfully but could not be converted to text. Board PDFs are not usable as sources with the scout toolchain.",
+  "utsystem.edu/sites/ut-real-health-ai/pilot-program returned HTTP 403 while the sibling page /workgroups/pilot-program-phase-i returned 200 on the same host.",
+  "The UT REAL Health AI Phase I page carries a FOR IMMEDIATE RELEASE header with no date anywhere on it."
+ ]
+}

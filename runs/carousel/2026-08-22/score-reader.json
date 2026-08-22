@@ -1,0 +1,45 @@
+{
+ "lens": "reader",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 7.0,
+   "why": "Nine genuinely distinct techniques, not one drawing refilled: carved console grid (1), lit relief housing with an open dimension (2), empty field and seam (3), flat emissive table (4), inverted light ground with leader polylines (5), annunciator tiles (6), stepped bracket spine (7), seven-segment readout with dead segments drawn (8), red block (9). machine_qa band ratios run 1.06 to 1.97, so real light and real dark are measurable, not asserted. Slides 1, 6 and 8 are frames a designer would ask about, particularly the drawn dead segments on 8. Against it, the same defect three times: slide 5 has roughly 600px of blank ground between the dissected row and the two voids with only two hairline leaders crossing it, slide 7's spine runs alone for the bottom 350px with nothing on it, and slide 3 is a 70 percent empty field whose machined seam reads as a generic noise band rather than a lit groove. That is unresolved vertical emptiness, not composed negative space, and it is what a designer notices first."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "I counted the cover myself: 7+7+7+7+6 = 34 recesses, exactly 6 lit, and each lit cell maps to an index position quoted on a later frame (10 and 25 on slide 4, 29/30/31 on slide 7, 33 on slide 5) while items 26, 28, 32 and 34 are claims that never reach a frame and are correctly dark. Every other numeral traces: 75 to c6, 25.521 to c1, both 4/8/2026 to c15 and c17, $54 million to c21 unrounded, 13 days computed with both ends printed on the frame. All three sources are primary_official with retrieved 2026-08-22 and all are listed in first_comment.txt with claim ids. The rejected list is the strongest thing in the run, refusing to expand COM and PC because puc.texas.gov returned 503 and 402, and refusing 'most recent filing' as an inference a cached artifact can't support. Deducted two points because the record behind the fix is now wrong in five places: storyboard.md lines 10, 63 and 366 still assert ten rows and twenty four, and aggregates.json repeats 'the deck quotes 10 of 34 index rows' in two computed_by fields. The published surfaces are right and their own provenance contradicts them."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 6.5,
+   "why": "The action half is genuinely strong and better than most civic content: slide 8 gives 13 days with both ends printed and calendar corroboration, slide 9 gives the deadline, Project 58482, the literal host interchange.puc.texas.gov and a quoted authority that interested persons may file, and slide 5's 'Helen Bryant PC Objection to rule change' quietly demonstrates that an ordinary name can file a one-line objection. A reader can act. What they can't do is understand. The plain sentence, that this pays very large electricity users to switch off when the grid is tight, is derivable from c5 plus c22 plus c21 and is written nowhere in nine slides or seven caption paragraphs. Slide 3 hands over 'competitively procure demand reductions from large load customers' at deck-maximum size with no gloss beneath it. Slide 6's $54 million names no bearer and, unlike slide 5, does not mark the absence, so the deck's one dollar figure raises the only question a Texan has about it and then walks away. No county, correctly, and 'ERCOT REGION' is an honest substitute."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 6.5,
+   "why": "Two real turns. Slide 1 to 2 is the best beat in the deck, the absence of a name answered by the number that replaced it, and slide 5's ground-and-ink inversion is a genuine visual turn that marks the frame arguing against the deck's own lens. Against that, slide 3 stalls on an unglossed quote, and slide 7 is redundant with slide 8: three near-identical bureaucratic strings whose whole message is that the deadline appears in the record twice, placed immediately before the frame that states the deadline as a countdown. That is the cuttable frame, not slide 4, which I withdraw because it is the only place a data-center company appears anywhere in the deck. The cover does not earn its swipe on its own terms, since 'The rule never says data center' has no antecedent for 'the rule' on the frame. The close lands hard and the reserved red is spent exactly once."
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "'A number does the work a name would do' is the best sentence in the deck and a person wrote it. 'The party field in the filing index gives a name. It gives nothing else.' has real cadence and does an epistemic job in eleven words. The caption is clean, roughly two writer-chosen commas across 180 words, no colon, no semicolon, no dash, no first person, ordinals throughout, and it closes on the absence rather than on a plea. Against it, two of nine hooks are the same machine cadence three frames apart, 'N things here do X' on slides 4 and 7, and both count the deck rather than the state. Nothing anywhere sounds regionally Texan. The rubric asks for regional specificity over state-level abstraction and there is none, which is honest given the claims but is still the flat register the 7 describes."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Palette is new (mission-control room/console/trace greens with amber and one reserved red) and no technique here repeats one from the ledger's recent entries. The caption's opening move avoids all five recorded in opening_moves_recent. Not a topic repeat and I will not call one: the August 19th entry is Batch Zero classification and the Governor's audit directive, a different docket, decision and deadline from Project 58482 and 16 TAC 25.521. What a reader in the feed sees is the same cast twice in four days, PUCT plus ERCOT plus Data Center Coalition plus 'large load', and slide 9's shape of hook, red block, quoted mechanism, address block is the house close. Distinct, with one familiar move."
+  }
+ ],
+ "weighted_score": 7.05,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Build one plain sentence out of claims the deck already holds, that the rule would pay very large electricity users to switch off when the grid is tight, and put it on the cover as the dek so the reader gets the stake before the wordplay, demoting 'never says data center' to the line beneath it."
+}

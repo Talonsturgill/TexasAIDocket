@@ -1,0 +1,22 @@
+{
+ "winner": "B",
+ "opening_move": "the deadline",
+ "structure": "zoom in",
+ "closing_move": "name what is still not public, and how big that is",
+ "caption": "September 4th shuts the comment window.\n\nUntil then it is open on 16 TAC Section 25.521, the Large Load Demand Management Service rule proposed by the Public Utility Commission of Texas. It would have ERCOT competitively procure demand reductions from large load customers.\n\nThe rule never writes the words data center. It draws a line instead. A large load customer is an entity with peak demand at a single site of 75 megawatts or more.\n\nComments run through the interchange on the commission's website. Each should refer to Project Number 58482.\n\nThe index stands at 34 filings. The Data Center Coalition is in it. So is CyrusOne, LP. So is item 33, under the party name Helen Bryant with item type PC.\n\nThe deck carries the definition and the rows of the index.\n\nThat is all the index carries. A party name. A file stamp. An item type. A description. Nothing on that page says who Helen Bryant is.",
+ "hashtags": [
+  "#Project58482",
+  "#LargeLoadDemandManagement",
+  "#PUCT"
+ ],
+ "critic_changes": [
+  "CUT 'What shuts with it is the argument over 16 TAC Section 25.521' as an unsupported characterisation. Nothing in claims.json says the argument ends on September 4th. Replaced with 'Until then the window is open on...' which states the fact a reader can act on.",
+  "ADDED the deck summary line brand.yaml requires and B lacked, placed BEFORE the close so the close still lands last.",
+  "CHANGED the third hashtag from #ERCOT to #PUCT. ERCOT is the entity the rule directs, the commission is the body a reader files with.",
+  "TRIMMED to 900 characters or fewer to honour brand.yaml linkedin_post.caption_chars [300, 900], which caption_check.py does not read. Recorded as a proposal.",
+  "CHANGED 'Each must refer' to 'Each should refer'. The integrity judge caught the caption strengthening c3's own verb, which reads 'All comments should refer to Project Number 58482.'"
+ ],
+ "why_B_over_A": "A declared 'the number that is wrong' and never corrects a number. Its actual turn is 'the correction', which shipped on 2026-08-18 and is excluded. Both declared the same closing move, and A asserts the limit as a general statement while B demonstrates it on a row the reader has just met.",
+ "chars": 899,
+ "note_on_trim": "The 75 megawatt clause reads 'peak demand at a single site' here. The full phrase 'total non-coincident peak demand at a single site' is quoted verbatim on slide 2, the frame that carries the definition, so the exact statutory wording still reaches the reader."
+}

@@ -11,7 +11,7 @@ The Texas Commission on Environmental Quality had set a notice and comment heari
 - Public access: Public meeting
 - Take part: https://www.tceq.texas.gov/agency/decisions/hearings/notice-and-comment-hearing-vantage-data-centers-tx11-llc-o4791
 
-- Last checked: 2026-08-19
+- Last checked: 2026-08-22
 
 ## Dates
 
@@ -23,6 +23,7 @@ The Texas Commission on Environmental Quality had set a notice and comment heari
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-08-19 · Checked and unchanged. The notice states the hearing will be rescheduled for a later date, and no new date is given.
+- 2026-08-22 · Checked and unchanged. The cancelation notice still says the hearing will be rescheduled for a later date and gives no new date. The originally scheduled August 17th date has now passed with no replacement.
 
 ## Evidence
 

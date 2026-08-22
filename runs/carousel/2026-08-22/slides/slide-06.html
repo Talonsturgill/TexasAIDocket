@@ -1,0 +1,125 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+:root{--room:#101A1B;--console:#24322F;--console_lit:#8FA396;--face_sun:#C7D2C4;
+      --legend:#E8EFE4;--trace:#9FD3B4;--amber:#D99A32;--key_dark:#060C0D;--red:#BF0A30}
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:var(--room);
+  -webkit-font-smoothing:antialiased}
+canvas{position:absolute;left:0;top:0}
+.kick{position:absolute;left:80px;top:88px;font:500 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.14em;color:#8FA396}
+.cnt{position:absolute;right:80px;top:88px;font:500 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.10em;color:#8FA396;font-variant-numeric:tabular-nums}
+.tx-site{position:absolute;left:80px;bottom:74px;font:400 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.06em;color:#8FA396}
+.star{position:absolute;right:80px;bottom:68px;width:22px;height:22px}
+.figd{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums;
+  font-weight:700;font-size:0.88em;letter-spacing:-.02em}
+.mono{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums}
+
+.hook{position:absolute;left:80px;top:168px;width:900px;font:700 76px/1.03 "Fraunces",serif;
+  color:var(--legend);letter-spacing:-.015em}
+/* the two annunciator legends, set INSIDE their own tiles and measured from them */
+.lg{position:absolute;font:500 27px/1.34 "JetBrains Mono",monospace;color:#0B1412;
+  letter-spacing:.005em}
+.l1{left:118px;top:432px;width:844px}
+.l2{left:118px;top:660px;width:844px}
+.cap{position:absolute;left:80px;top:940px;width:520px;font:500 26px/1.36 "JetBrains Mono",monospace;
+  color:var(--console_lit);letter-spacing:.02em}
+.fig{
+  /* CUT, not set on. The key is upper left, so the figure takes a dark inner wall on that
+     side and a lit one opposite. Both files carried a comment calling this figure cut into
+     the metal and both rendered flat DOM type on a gradient. */
+  text-shadow:-2px -2px 0 rgba(6,12,13,0.88), -4px -4px 6px rgba(6,12,13,0.55),2px 2px 0 rgba(214,226,214,0.34), 3px 3px 5px rgba(214,226,214,0.14);
+  position:absolute;left:80px;top:1002px;width:920px;font:700 128px/1 "JetBrains Mono",monospace;
+  color:var(--legend);font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.per{position:absolute;left:668px;top:1064px;width:340px;font:500 27px/1.3 "JetBrains Mono",monospace;
+  color:var(--console_lit);letter-spacing:.02em}
+</style></head><body>
+<canvas id="c" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+
+<div class="hook">What it would do.</div>
+<div class="lg l1">"allow the transmission-voltage customers to be curtailed during firm load shed"</div>
+<div class="lg l2">"to be deployed in the event of an anticipated emergency condition"</div>
+<div class="cap">A MAXIMUM BUDGET OF</div>
+<div class="fig">$54<span style="font-size:0.42em"> MILLION</span></div>
+<div class="per">in a calendar year</div>
+
+<div class="kick">PROJECT 58482</div>
+<div class="cnt">06 / 09</div>
+<div class="tx-site">texasaidocket.com</div>
+<svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6 L14.9 9.2 L23 9.6 L16.7 14.6 L18.9 22.4 L12 17.9 L5.1 22.4 L7.3 14.6 L1 9.6 L9.1 9.2 Z" fill="#8FA396"/></svg>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = new Promise(function(resolve){
+  var c=document.getElementById('c'), x=c.getContext('2d'); x.scale(2,2);
+  TX.reseed(20260822); var R=TX.rng(20260822 + 6);
+
+  // ---- THE ANNUNCIATOR PANEL. ----
+  // Mission control's event panel is a wall of legend tiles that stay dark until their condition
+  // is true. This frame carries the two conditions the rule names, so a LIT tile is the drawing
+  // saying "this is when it runs" instead of a caption saying it. The two tiles are lit because
+  // both conditions are written into the proposed rule, and the money below is the cap on it.
+  function tooth(x0,y0,w,h,n,amp){ for(var i=0;i<n;i++){
+      var px=x0+R()*w, py=y0+R()*h, a=0.016+R()*(amp||0.045);
+      x.fillStyle=(R()<0.5?'rgba(232,239,228,':'rgba(6,12,13,')+a+')';
+      x.fillRect(px,py,1.6,1.6); } }
+  function contact(bx,by,bw,bh){                 // two part, always both parts
+      x.save(); x.shadowColor='rgba(6,12,13,0.58)'; x.shadowBlur=36;
+      x.shadowOffsetX=8; x.shadowOffsetY=16; x.fillStyle='rgba(6,12,13,0.44)';
+      x.fillRect(bx+2,by+2,bw,bh); x.restore();
+      x.fillStyle='rgba(6,12,13,0.62)'; x.fillRect(bx+3,by+3,bw,bh); }
+
+  // the panel face, and the raking key it takes from the upper left
+  var g=x.createLinearGradient(0,0,0,1350);
+  g.addColorStop(0,'#15211F'); g.addColorStop(0.62,'#0E1A19'); g.addColorStop(1,'#0A1211');
+  x.fillStyle=g; x.fillRect(0,0,1080,1350); tooth(0,0,1080,1350,15000,0.032);
+  var kg=x.createLinearGradient(60,240,900,1080);
+  kg.addColorStop(0,'rgba(198,207,211,0.12)'); kg.addColorStop(1,'rgba(198,207,211,0)');
+  x.fillStyle=kg; x.fillRect(0,240,1080,860);
+
+  // ---- two lit legend tiles, each a milled recess with the legend glowing through ----
+  function tile(ty,th){
+    var TX0=96, TW=888;
+    contact(TX0,ty,TW,th);
+    // the recess the tile sits in, cut into the panel
+    x.fillStyle='#080E0D'; x.fillRect(TX0-10,ty-10,TW+20,th+20);
+    x.fillStyle='rgba(6,12,13,0.85)'; x.fillRect(TX0-10,ty-10,TW+20,5);      // the recess's dark upper lip
+    x.fillStyle='rgba(214,226,214,0.30)'; x.fillRect(TX0-10,ty+th+5,TW+20,5); // and its lit lower lip
+    // the lit legend face, brightest at the centre where the lamp sits behind it
+    var lg=x.createRadialGradient(TX0+TW/2, ty+th/2, 20, TX0+TW/2, ty+th/2, TW*0.62);
+    lg.addColorStop(0,'#9FD3B4'); lg.addColorStop(0.55,'#7FBF9C'); lg.addColorStop(1,'#5E9C7C');
+    x.fillStyle=lg; x.fillRect(TX0,ty,TW,th);
+    x.fillStyle='rgba(255,255,255,0.22)'; x.fillRect(TX0,ty,TW,3);           // the face's own lit top edge
+    x.fillStyle='rgba(6,12,13,0.22)'; x.fillRect(TX0,ty+th-3,TW,3);
+    // the lamp's spill onto the panel just beyond the recess
+    x.save(); x.globalCompositeOperation='lighter';
+    var sp=x.createLinearGradient(0,ty-34,0,ty+th+34);
+    sp.addColorStop(0,'rgba(159,211,180,0)'); sp.addColorStop(0.5,'rgba(159,211,180,0.13)');
+    sp.addColorStop(1,'rgba(159,211,180,0)');
+    x.fillStyle=sp; x.fillRect(TX0-56,ty-34,TW+112,th+68); x.restore();
+  }
+  tile(408,152);
+  tile(636,124);
+
+  // ---- the money, cut into the panel's lower land ----
+  // a cut figure is a subtraction from the surface, so it gets a dark inner wall on the key side
+  // and a lit one opposite, which is what makes it read as depth rather than as type on metal.
+  x.fillStyle='rgba(198,207,211,0.26)'; x.fillRect(0,912,1080,3);
+  var lower=x.createLinearGradient(0,915,0,1350);
+  lower.addColorStop(0,'#2C3B36'); lower.addColorStop(1,'#0B1211');
+  x.fillStyle=lower; x.fillRect(0,915,1080,435); tooth(0,915,1080,435,9000,0.05);
+  // the mill's own travel across the land, stopping clear of every glyph band
+  for(var fx=60; fx<1020; fx+=58){
+    x.fillStyle='rgba(6,12,13,0.26)'; x.fillRect(fx,918,5,18);
+    x.fillStyle='rgba(214,226,214,0.10)'; x.fillRect(fx-2,918,2,18);
+  }
+  // the amber rule under the cap legend, the deck's second accent, used here and on slide 7 only
+  x.fillStyle='#D99A32'; x.fillRect(80,982,132,4);
+  x.fillStyle='rgba(6,12,13,0.55)'; x.fillRect(80,986,132,3);
+  // the footer shelf, so the deck's furniture never sits on working art
+  x.fillStyle='#0A1211'; x.fillRect(0,1216,1080,134);
+  x.fillStyle='rgba(198,207,211,0.24)'; x.fillRect(0,1216,1080,3);
+  resolve();
+});
+</script></body></html>

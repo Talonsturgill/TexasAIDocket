@@ -214,6 +214,55 @@
     "a container's edge is not its content's edge. Three frames shipped a paragraph, a stripe or a tally row cut by a plate before this was written down"
    ],
    "panel_repairs": []
+  },
+  {
+   "date": "2026-08-22",
+   "carousel_no": 6,
+   "written_from": "render/render_report.json, render/machine_qa.json and the gates' own exit codes, never from the storyboard. The storyboard was amended twice during the render loop to follow the frames rather than the reverse, and both amendments are recorded in the run record.",
+   "register": "the Houston flight control room read as a working object, because a docket index and a status board are the same thing, a fixed set of positions each carrying a name and a short code with a clock running on all of them. The register earns the story's hardest constraint for free: a board never speculates about who is in the chair, which is exactly what the filing index does not publish.",
+   "techniques": [
+    "thirty four milled recesses in a console plane under one raking key, ten lit in trace",
+    "TX.reliefShade over TX.reliefRect, a bevelled housing relit rather than drawn as four rectangles",
+    "an engineering OPEN DIMENSION with one terminator on the left running off the right frame edge with no cap, because equal to or greater than has no upper bound",
+    "TXCARVE.surface, a wind worked machined field with a drawn tool path",
+    "a flat emissive five column table with no drawn light on the rows, on a lit console base",
+    "TX.hachureField as the tooth of the deck's one light ground, with two ruled RECESSES cut into it",
+    "TX.svgPlate plates whose widths are the measured party strings, so the ragged right edge is data",
+    "a stepped bracket on a drawn spine with amber on the two date fragments only",
+    "a seven segment readout drawn as physical segments with the dead segments left visible",
+    "a solid reserved red GROUND under white mono, because red as ink measured about 3.0 on this deck's ground in the run's own smoke test"
+   ],
+   "palette": {
+    "source": "Mission Control Center at Houston, Building 30, as a working object",
+    "room": "#101A1B the dark blue green of the room behind the consoles",
+    "console": "#24322F console metal in shadow",
+    "console_lit": "#8FA396 the eau de nil console face under task light",
+    "face_sun": "#C7D2C4 the same metal at full task light, the ground of the one light frame",
+    "legend": "#E8EFE4 the lit white of a backlit legend",
+    "trace": "#9FD3B4 the plot trace, chroma well below phosphor",
+    "event_amber": "#D99A32 the amber event indicator, slides 7 and 8 only",
+    "key_dark": "#060C0D the inside of a milled recess and a dead segment",
+    "flag_red": "#BF0A30 reserved, spent once"
+   },
+   "red_spent": true,
+   "red_on_slide": [
+    9
+   ],
+   "red_note": "Spent once, on the closing frame, as a FILLED GROUND carrying white mono. This run's own smoke test measured flag_red as INK on the deck's ground at about 3.0 against a 4.5 floor, so the colour was kept and its role inverted rather than the colour changed. White on the red measures about 5.4.",
+   "camera": "nine positions, none repeated. plan oblique on a board, square on one object, level across an empty field, straight down on a sheet, square on a lit plate, down a left aligned column, stepping through a bracket, nearest for one readout, square on a solid block.",
+   "light_decks_used": 1,
+   "slides": 9,
+   "bespoke_median_similarity": 0.52,
+   "bespoke_closest_pair": "slide-03.html and slide-09.html at 0.7491",
+   "cut": "Nothing was cut. Slides 4 and 5 were REBUILT after the pixel critics, slide 4 because the dossier declared five columns and the frame drew two so the item type read as part of the party name, and slide 5 because its two voids carried drop shadows and so read as tiles sitting ON the record rather than as holes cut in it, which inverts the frame's entire argument.",
+   "structural_laws": [
+    "legible means quoted. a block carrying a readable string is a row claims.json quotes, and absence of light never means absence of a filing",
+    "every figure is set in JetBrains Mono and never in Fraunces, because FIELD_NOTES records Fraunces rendering 3 as 5 at feed size and this deck's figures are 34, 75, 25.521 and 58482",
+    "no cartography and no coordinate. the story names no place",
+    "COM, PC, PFP and OPDM appear only as literal strings",
+    "no frame applies any noun to a party except the words in the party field"
+   ],
+   "panel_repairs": []
   }
  ]
 }

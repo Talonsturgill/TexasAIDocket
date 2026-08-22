@@ -11,7 +11,7 @@ San Angelo adopted Ordinance 2026-076, which adds a data center subsection to th
 - Public access: Public meeting
 - Take part: https://www.sanangelo.gov/803/Data-Center-Information
 
-- Last checked: 2026-08-19
+- Last checked: 2026-08-22
 
 ## Dates
 
@@ -24,6 +24,7 @@ San Angelo adopted Ordinance 2026-076, which adds a data center subsection to th
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-08-19 · Checked and unchanged. The sewer and discharge ordinance approved June 2nd is still the governing action listed, and the city's page carries nothing from July or August.
+- 2026-08-22 · Checked and unchanged. Ordinance 2026-076 of June 2nd still amends Chapter 11 on utilities to set reporting rules for data center coolant discharged into the city sewer.
 
 ## Evidence
 

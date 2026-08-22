@@ -19,10 +19,9 @@
   "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
-  "the object",
-  "the correction",
-  "the two things",
-  "the plain question"
+  "the plain question",
+  "the before and after",
+  "the deadline"
  ],
  "entries": [
   {
@@ -87,16 +86,30 @@
    "commas": 2,
    "carousel_no": 5,
    "name_note": "NORMALISED TO THE MENU at the eighth panel, which found all three names were coined freehand and appear nowhere in CAPTION_CRAFT.md. They read 'the flat statement of the finding', 'chronology, then the charge, then what the charge leaves out' and 'name the page the record was fetched from'. The caption did not change and did not need to: 'Texas authorized what was already driving' puts the old state of the world and the new one in one line, the body is ordered by date, and the close points at the record without asking for anything. All three of those are on the menu and none was excluded. A run that coins a name each day hands the next six runs an exclusion list that excludes nothing, which is how a variety engine quietly stops being one."
+  },
+  {
+   "date": "2026-08-22",
+   "opening_move": "the deadline",
+   "structure": "zoom in",
+   "closing_move": "name what is still not public, and how big that is",
+   "first_line": "September 4th shuts the comment window.",
+   "hashtags": [
+    "#Project58482",
+    "#LargeLoadDemandManagement",
+    "#PUCT"
+   ],
+   "carousel_no": 6,
+   "critic_note": "Two directors wrote against the same closing move because the exclusion list left only two, and the critic said so rather than waving it through. B won because it DEMONSTRATES the limit on one row the reader has just met while A ASSERTS it as a general statement. A also declared 'the number that is wrong' and never corrected a number: its real turn was 'the correction', which shipped on 2026-08-18 and was excluded."
   }
  ],
  "structures_recent": [
-  "ledger",
-  "two columns",
-  "question and answer"
+  "question and answer",
+  "clock",
+  "zoom in"
  ],
  "closing_moves_recent": [
-  "stop on the strongest fact",
-  "ask the one question the decision leaves open",
-  "name what happens next and when"
+  "name what happens next and when",
+  "point at the record, plainly, without a call to action",
+  "name what is still not public, and how big that is"
  ]
 }

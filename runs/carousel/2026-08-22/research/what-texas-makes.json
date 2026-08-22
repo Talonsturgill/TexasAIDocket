@@ -1,0 +1,243 @@
+{
+ "beat": "what-texas-makes",
+ "run_date": "2026-08-22",
+ "findings": [
+  {
+   "headline": "Amazon picked Austin for a factory that builds the robots for its warehouses",
+   "what_happened": "On August 19th Amazon announced a new manufacturing facility in Austin that will build the robotics systems used in its fulfillment operations. Governor Abbott announced the same siting the same day, putting the job count at 300 to 500 in manufacturing and engineering and the development at multi-billion-dollar. Austin Mayor Kirk Watson said in Amazon's own release that the company asked for no incentives.",
+   "why_it_matters": "The robots that move goods through American warehouses would be assembled in Travis County rather than imported, and the city says it is paying nothing for it.",
+   "entities": [
+    "Amazon.com, Inc.",
+    "Office of the Governor of Texas",
+    "City of Austin"
+   ],
+   "counties": [
+    "Travis"
+   ],
+   "statewide": false,
+   "decider": "Amazon.com, Inc. (siting decision); Office of the Governor announced it",
+   "event_date": "2026-08-19",
+   "key_date": null,
+   "confidence": "high",
+   "is_docket_candidate": true,
+   "sources": [
+    {
+     "url": "https://press.aboutamazon.com/2026/8/amazon-announces-new-manufacturing-facility-in-austin-texas",
+     "publisher": "press.aboutamazon.com",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "produce the robotics systems that work alongside Amazon's employees to handle repetitive tasks and heavy lifting",
+     "supports": "What the Austin plant will actually manufacture, in Amazon's own words."
+    },
+    {
+     "url": "https://press.aboutamazon.com/2026/8/amazon-announces-new-manufacturing-facility-in-austin-texas",
+     "publisher": "press.aboutamazon.com",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "Amazon asked for no economic incentives, no public money,",
+     "supports": "Mayor Kirk Watson. The city says no public subsidy is attached to the project."
+    },
+    {
+     "url": "https://gov.texas.gov/news/post/governor-abbott-announces-amazon-expansion-in-austin",
+     "publisher": "gov.texas.gov",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "Governor Greg Abbott today announced Amazon has selected Austin as the site of a new robotics manufacturing facility.",
+     "supports": "State confirmation of the siting."
+    }
+   ]
+  },
+  {
+   "headline": "A Fort Worth plant is now mass producing NVIDIA's GB300 superchip boards",
+   "what_happened": "Wistron opened its D1 facility in Fort Worth on July 21st, a 324,000 square foot plant that NVIDIA says is where the GB300 Grace Blackwell Ultra Superchip was first built and mass produced in the United States. Wistron put the investment at USD 700 million and NVIDIA says the site is scaling to tens of thousands of boards per month. The plant itself was laid out in a digital twin using NVIDIA Omniverse before it was built.",
+   "why_it_matters": "The physical hardware that Texas data centers burn electricity to run is now being assembled in Tarrant County, which puts the state on both ends of the same supply chain.",
+   "entities": [
+    "Wistron Corporation",
+    "NVIDIA Corporation",
+    "AllianceTexas"
+   ],
+   "counties": [
+    "Tarrant"
+   ],
+   "statewide": false,
+   "decider": "Wistron Corporation",
+   "event_date": "2026-07-21",
+   "key_date": null,
+   "confidence": "high",
+   "is_docket_candidate": false,
+   "sources": [
+    {
+     "url": "https://blogs.nvidia.com/blog/wistron-manufacturing-texas/",
+     "publisher": "blogs.nvidia.com",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "The 324,000-square-foot Texas facility produces NVIDIA Grace Blackwell Ultra and will produce Vera Rubin Superchips",
+     "supports": "What is made at the Fort Worth plant and the size of the building."
+    },
+    {
+     "url": "https://blogs.nvidia.com/blog/wistron-manufacturing-texas/",
+     "publisher": "blogs.nvidia.com",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "D1 is scaling up this year to produce tens of thousands of boards per month of the most advanced technology",
+     "supports": "The stated production ramp at the Fort Worth site."
+    },
+    {
+     "url": "https://www.wistron.com/en/Newsroom/2026-07-22",
+     "publisher": "wistron.com",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "The operation here is not typical manufacturing. It is new, very comprehensive, and high-tech.",
+     "supports": "Wistron's own characterisation of the Fort Worth line at the grand opening."
+    }
+   ]
+  },
+  {
+   "headline": "Applied Optoelectronics started building nearly 400,000 square feet in Pearland for AI data center optics",
+   "what_happened": "On July 14th Applied Optoelectronics said it had begun construction on two adjacent Pearland properties at 14621 Kirby Drive and 11555 N. Spectrum Boulevard, adding nearly 400,000 square feet of manufacturing capacity. The buildout is to increase production of 800G and 1.6T optical transceivers. The company gave no job count and no completion date in the release.",
+   "why_it_matters": "The fiber optics that let AI racks talk to each other are being made in Brazoria County, so a slice of the AI buildout is a Gulf Coast factory job rather than an import line.",
+   "entities": [
+    "Applied Optoelectronics, Inc.",
+    "Pearland Economic Development Corporation"
+   ],
+   "counties": [
+    "Brazoria"
+   ],
+   "statewide": false,
+   "decider": "Applied Optoelectronics, Inc.",
+   "event_date": "2026-07-14",
+   "key_date": null,
+   "confidence": "high",
+   "is_docket_candidate": false,
+   "sources": [
+    {
+     "url": "https://newsroom.ao-inc.com/news-releases/aoi-begins-expansion-of-pearland-manufacturing-campus-to-scale-800g-and-1-6t-optical-transceiver-production/",
+     "publisher": "newsroom.ao-inc.com",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "a critical component of modern AI infrastructures that let network devices communicate over fiber optics",
+     "supports": "That the product being scaled is an AI data center component, in the company's own words."
+    },
+    {
+     "url": "https://newsroom.ao-inc.com/news-releases/aoi-begins-expansion-of-pearland-manufacturing-campus-to-scale-800g-and-1-6t-optical-transceiver-production/",
+     "publisher": "newsroom.ao-inc.com",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "These facilities will be instrumental in supporting our long-term growth strategy",
+     "supports": "Attributed to Dr. Stefan Murry, CFO and Chief Strategy Officer, on the Pearland buildout."
+    }
+   ]
+  },
+  {
+   "headline": "Siemens is putting $19 million into a Grand Prairie site to feed its switchgear factory",
+   "what_happened": "Siemens announced on August 7th more than $200 million in new United States electrical manufacturing and over 1,500 jobs. The Texas piece is a $19 million, 96,000 square foot Grand Prairie site dedicated to factory acceptance testing and warehousing, meant to raise the capacity of the nearby flagship switchgear factory. Most of the money in the announcement, more than $185 million, goes to a new plant in Pendergrass, Georgia.",
+   "why_it_matters": "Switchgear lead times are one of the things holding up data center energisation, and the Texas share of this particular fix is a testing and warehouse building rather than a new factory.",
+   "entities": [
+    "Siemens Corporation",
+    "Siemens Electrical Products"
+   ],
+   "counties": [
+    "Dallas"
+   ],
+   "statewide": false,
+   "decider": "Siemens Corporation",
+   "event_date": "2026-08-07",
+   "key_date": null,
+   "confidence": "high",
+   "is_docket_candidate": false,
+   "sources": [
+    {
+     "url": "https://news.siemens.com/en-us/siemens-us-manufacturing-investment-electrical-infrastructure/",
+     "publisher": "news.siemens.com",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "Siemens is developing a $19 million Grand Prairie, Texas facility that will increase the capacity of its nearby flagship switchgear factory",
+     "supports": "The Texas investment amount and its purpose."
+    },
+    {
+     "url": "https://news.siemens.com/en-us/siemens-us-manufacturing-investment-electrical-infrastructure/",
+     "publisher": "news.siemens.com",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "The 96,000-square-foot site will be a dedicated location for factory acceptance testing and warehousing for Siemens' Electrical Products business.",
+     "supports": "That the Grand Prairie building is testing and warehousing, not new production."
+    }
+   ]
+  },
+  {
+   "headline": "Foxlink calls its new Fort Worth plant its first United States AI factory",
+   "what_happened": "Foxlink Group announced on July 15th the launch of a Fort Worth facility it describes as its first AI Factory in the United States, covering surface mount technology and final assembly, testing and packaging. Group affiliate UBILINK supplies GPU compute and affiliate SYNCROBOTIC is developing the robotics that would run on the floor. The release gives no square footage, no capital figure and no job count, and says the site is being introduced in phases.",
+   "why_it_matters": "This is the plant floor end of the story rather than the chip end, and the company has not yet published a number anyone can check against it.",
+   "entities": [
+    "Foxlink Group",
+    "UBILINK",
+    "SYNCROBOTIC"
+   ],
+   "counties": [
+    "Tarrant"
+   ],
+   "statewide": false,
+   "decider": "Foxlink Group",
+   "event_date": "2026-07-15",
+   "key_date": null,
+   "confidence": "medium",
+   "is_docket_candidate": false,
+   "sources": [
+    {
+     "url": "https://www.prnewswire.com/news-releases/foxlink-group-launches-its-first-us-ai-factory-in-fort-worth-texas-marking-strategic-shift-from-ems-to-ai-powered-manufacturing-302824663.html",
+     "publisher": "prnewswire.com",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "Foxlink is not a traditional electronics manufacturer anymore. We intend to help global manufacturers build their own AI capability.",
+     "supports": "The company's stated repositioning behind the Fort Worth site."
+    }
+   ]
+  },
+  {
+   "headline": "The counter-image, a skilled worker shortage that names Texas among the worst",
+   "what_happened": "A July 9th report on work by McKinsey and Company, the industry group SEMI and the National Science Foundation put the United States skilled semiconductor labor deficit at as much as 157,000 full-time workers by 2030. Texas is named among the states where the shortage is expected to be most acute, tied to Samsung's logic chip facility in the state. About 74 percent of unfilled roles by 2030 would be in manufacturing.",
+   "why_it_matters": "Every fab and board plant announced in Texas assumes people to run it, and the people are the input nobody has announced a groundbreaking for.",
+   "entities": [
+    "McKinsey and Company",
+    "SEMI",
+    "National Science Foundation",
+    "Samsung Electronics Co."
+   ],
+   "counties": [],
+   "statewide": true,
+   "decider": null,
+   "event_date": "2026-07-09",
+   "key_date": null,
+   "confidence": "medium",
+   "is_docket_candidate": false,
+   "sources": [
+    {
+     "url": "https://www.taipeitimes.com/News/biz/archives/2026/07/09/2003860430",
+     "publisher": "taipeitimes.com",
+     "source_type": "journalism",
+     "fetched": true,
+     "quote": "There's just not enough talent to go around,",
+     "supports": "Taylor Roundtree, a partner at McKinsey. The named source for the labor gap claim."
+    }
+   ]
+  }
+ ],
+ "source_notes": [
+  "IMPORTANT TOOLCHAIN LIMIT: the scout's WebFetch enforces a roughly 125 character ceiling on quoted excerpts, so every quote captured this run is a short fragment of a longer sentence rather than a full paragraph. It also refused a full verbatim reproduction request on press.aboutamazon.com and said so explicitly. A fact checker must re-fetch to lengthen any quote.",
+  "Apostrophes and quotation marks in captured quotes may have been normalised to straight characters by the markdown conversion. Re-check on the rendered page.",
+  "investors.fireflyspace.com/news-releases returned HTTP 503. investors.ao-inc.com returned HTTP 503 on the Q2 2026 results release.",
+  "newsroom.ao-inc.com 302-redirects its Q2 2026 results page to investors.ao-inc.com with LinkedIn tracking parameters attached.",
+  "chron.com returned HTTP 403. sammyfans.com returned HTTP 403.",
+  "www.twc.texas.gov pages (both /news and /programs/warn-act-listings) returned an empty body to the fetch tool, twice.",
+  "The Socrata WARN dataset at data.texas.gov/resource/8w53-c4f6.json fetched cleanly with $order=notice_date DESC, but its most recent notice date was 6/23/26, roughly two months stale.",
+  "therealdeal.com returned an empty body, so the Foxconn Houston $71.9 million TDLR filing reported there could not be confirmed and is NOT included.",
+  "TDLR TABS project search at tdlr.texas.gov/tabs/search appears to be form-driven with no GET query interface found."
+ ],
+ "unverified": [
+  "Samsung Taylor Fab 1 status is reported only by trade press citing unnamed supply chain sources. No Samsung primary document was fetched, so no Samsung finding is included.",
+  "The Amazon Austin site being in the Dog's Head area off Hergotz and Dalton lanes comes from journalism only and is not in either primary release.",
+  "Grand Prairie spans Dallas, Tarrant and Ellis counties. Siemens named no county, so the Dallas County assignment is INFERRED from the city's principal county.",
+  "Pearland spans Brazoria and Harris counties. AOI named no county, so the Brazoria assignment is INFERRED from the addresses given.",
+  "Wistron's job figures (more than 500 now, 1,000 by year end) were not captured as a verbatim fragment from a fetched primary page and are not carried in any quote."
+ ]
+}

@@ -1,0 +1,207 @@
+{
+ "beat": "research-and-machines",
+ "run_date": "2026-08-22",
+ "findings": [
+  {
+   "headline": "Rice University started a four year NSF cooperative agreement on August 1st to run a cloud accessible robotic lab that synthesizes semiconductor and quantum materials under AI direction.",
+   "what_happened": "The National Science Foundation obligated a cooperative agreement to William Marsh Rice University titled \"PCL-Test Bed: Revolutionizing AI-Driven Autonomous Experimentation for Next-Generation Semiconductor Synthesis (READINESS)\", award 2607553, with an estimated total of 19,928,016 dollars and a start date of 08/01/2026. The partners named in the NSF abstract are Rice University, SUNY Poly and the University of Texas at Austin. The platform pairs robotic synthesis and characterization equipment with a digital twin and an AI agent that proposes the next experiment, with researchers submitting jobs remotely rather than standing at the bench.",
+   "why_it_matters": "A Houston lab bench becomes something a researcher without a cleanroom can book from a browser, and the materials it is aimed at are the ones that go into chips being fabricated in Texas.",
+   "entities": [
+    "William Marsh Rice University",
+    "National Science Foundation",
+    "SUNY Polytechnic Institute",
+    "University of Texas at Austin",
+    "Jun Lou",
+    "Astera Institute"
+   ],
+   "counties": [
+    "Harris",
+    "Travis"
+   ],
+   "statewide": false,
+   "decider": "National Science Foundation, Directorate for Technology, Innovation, and Partnerships",
+   "event_date": "2026-08-01",
+   "key_date": "2026-08-01",
+   "sources": [
+    {
+     "url": "https://api.nsf.gov/services/v1/awards.json?id=2607553&printFields=id,title,awardeeName,startDate,expDate,estimatedTotalAmt,piLastName,abstractText,date",
+     "publisher": "api.nsf.gov",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "The platform will function as a \"self-driving laboratory\" capable of autonomously designing, testing, and improving material-synthesis processes with minimal human intervention.",
+     "supports": "NSF's own abstract describes the platform as a self-driving laboratory operating with minimal human intervention. Same record: id 2607553, estimatedTotalAmt 19928016, startDate 08/01/2026, expDate 07/31/2030, awardee William Marsh Rice University, pdPIName Jun Lou, transType Cooperative Agreement, fundsObligated FY 2026 = $4,977,740.00."
+    },
+    {
+     "url": "https://news.rice.edu/news/2026/accelerating-discovery-rice-receives-nearly-20m-nsf-award-ai-powered-materials-laboratory",
+     "publisher": "news.rice.edu",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "\"Responsible AI should complement researchers' capabilities rather than replace their judgment,\" said Luay Nakhleh, the William and Stephanie Sick Dean of Rice's George R. Brown School of Engineering and Computing.",
+     "supports": "The university's own framing of the limit on the autonomy. The honest counter-image to a lab that runs itself."
+    },
+    {
+     "url": "https://news.rice.edu/news/2026/accelerating-discovery-rice-receives-nearly-20m-nsf-award-ai-powered-materials-laboratory",
+     "publisher": "news.rice.edu",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "\"This project will give researchers access to capabilities that have traditionally been available only in a handful of laboratories,\" said David Sholl, executive vice president for research.",
+     "supports": "Rice's stated purpose is access rather than a private capability."
+    }
+   ],
+   "confidence": "high",
+   "is_docket_candidate": true
+  },
+  {
+   "headline": "The National Science Foundation awarded Texas A&M a six year cooperative agreement to build a national user facility where robots and AI design and pour new metal alloys, opening September 1st.",
+   "what_happened": "NSF award 2534344, \"Research Infrastructure: MIP: Autonomous Robotic Metallurgist: An NSF Materials Innovation Platform (ARM-MIP)\", went to the Texas A&M Engineering Experiment Station with an estimated total of 24,900,000 dollars, a start date of 09/01/2026 and an end date of 08/31/2032. The university says the platform will be sited at the Texas A&M University System RELLIS Campus in Bryan and will be open to outside researchers as a user facility. Automated arc melting, directed energy deposition, automated electron microscopy and Bayesian decision making sit in one closed loop, with remote access modes aimed at non-R1 and EPSCoR institutions.",
+   "why_it_matters": "Alloy development that a Texas metallurgist would have measured in a career gets measured in campaigns, and any researcher in the country can apply to run one in Brazos County.",
+   "entities": [
+    "Texas A&M Engineering Experiment Station",
+    "Texas A&M University",
+    "National Science Foundation",
+    "Raymundo Arroyave",
+    "Ibrahim Karaman",
+    "RELLIS Campus"
+   ],
+   "counties": [
+    "Brazos"
+   ],
+   "statewide": false,
+   "decider": "National Science Foundation, Division of Materials Research",
+   "event_date": "2026-07-31",
+   "key_date": "2026-09-01",
+   "sources": [
+    {
+     "url": "https://api.nsf.gov/services/v1/awards.json?id=2534344&printFields=id,title,awardeeName,startDate,expDate,estimatedTotalAmt,piLastName,abstractText,date,perfCity,perfStateCode",
+     "publisher": "api.nsf.gov",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "Advanced alloys underpin many nationally critical technologies, from transportation and energy systems to medical devices, yet bringing a new alloy from concept to deployment can take more than a decade.",
+     "supports": "NSF's own statement of the bottleneck. Same record: id 2534344, estimatedTotalAmt 24900000, startDate 09/01/2026, expDate 08/31/2032, awardeeName Texas A&M Engineering Experiment Station, pdPIName Raymundo Arroyave, date 07/31/2026, fundsObligated FY 2026 = $4,100,000.00."
+    },
+    {
+     "url": "https://api.nsf.gov/services/v1/awards.json?id=2534344&printFields=id,title,awardeeName,startDate,expDate,estimatedTotalAmt,piLastName,abstractText,date,perfCity,perfStateCode",
+     "publisher": "api.nsf.gov",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "Automation handles sample fabrication, characterization, and routine computation, while researchers focus on hypothesis generation, interpretation, and the metallurgical decisions that drive discovery.",
+     "supports": "The division of labor NSF is actually funding. The machine does the repetitive half and a person keeps the judgment."
+    },
+    {
+     "url": "https://news.engineering.tamu.edu/news/2026/08/03/texas-am-to-build-first-national-self-driving-laboratory-for-metals-open-to-researchers-nationwide/",
+     "publisher": "news.engineering.tamu.edu",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "We are building a time machine for metallurgy. Experiments that once required years of labor will now be completed in weeks.",
+     "supports": "Co-director Dr. Ibrahim Karaman's own characterization of the speed change, in the university's release."
+    }
+   ],
+   "confidence": "high",
+   "is_docket_candidate": true
+  },
+  {
+   "headline": "Five University of Texas at Austin teams took Department of Energy Genesis Mission awards, one of them to build robots that do the hazardous parts of a laboratory experiment.",
+   "what_happened": "The Department of Energy named the first Genesis Mission projects in Washington on July 22nd, and UT Austin reported five of its teams were funded, leading two and partnering on three. UT Computer Science posted on August 12th that its award will build humanoid and dual armed laboratory robots with dexterous hands to take over the repetitive or hazardous parts of experiments. DOE's Prometheus project, on which UT's nuclear reactor digital twin team is a partner, is led by Idaho National Laboratory.",
+   "why_it_matters": "The lab tasks Texas graduate students currently do by hand, including the ones that can hurt them, are the specific target of a federal AI program, and the robots are being designed in Austin.",
+   "entities": [
+    "The University of Texas at Austin",
+    "U.S. Department of Energy",
+    "Oden Institute",
+    "Volkan Isler",
+    "Fernanda Leite",
+    "Idaho National Laboratory"
+   ],
+   "counties": [
+    "Travis"
+   ],
+   "statewide": false,
+   "decider": "U.S. Department of Energy",
+   "event_date": "2026-07-22",
+   "key_date": null,
+   "sources": [
+    {
+     "url": "https://news.utexas.edu/2026/07/22/department-of-energys-new-ai-for-science-genesis-mission-awards-funding-to-5-ut-research-projects/",
+     "publisher": "news.utexas.edu",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "The Department of Energy received more than 5,000 applications and awarded funding to 278 projects led by national laboratories, institutions of higher education, companies and nonprofit organizations.",
+     "supports": "The selection ratio, in the university's own words. Same page: 'UT will lead two of the projects and serve as a partner institution on three others.' and 'The Department of Energy has allocated $293 million for the total funding opportunity.'"
+    },
+    {
+     "url": "https://www.cs.utexas.edu/news/2026/ut-computer-science-wins-doe-genesis-mission-award-bring-autonomous-robotics-scientific",
+     "publisher": "cs.utexas.edu",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "Humans can be gentle and precise enough to spread a liquid solution on a glass plate, and, at the same time, strong enough to turn a jammed microscope knob or secure the fasteners of a reactor housing using a lot of force.",
+     "supports": "Professor Volkan Isler naming what the robot has to match. Page dated Wednesday, August 12, 2026."
+    }
+   ],
+   "confidence": "medium",
+   "is_docket_candidate": true
+  },
+  {
+   "headline": "Texas A&M's VISION supercomputer sits at rank 66 on the June 2026 TOP500 and screened more than 10 million drug compounds in about a week.",
+   "what_happened": "The TOP500 list for June 2026 shows VISION at rank 66, an NVIDIA DGX H200 system operated by Texas A&M University with 110,960 cores. Texas A&M said on June 25th it is the highest ranked university operated system in the United States and reported a drug discovery project that screened more than 10 million compounds in about a week. TACC's Frontera appears at rank 90 on the same list.",
+   "why_it_matters": "The most powerful university run machine in the country is in Brazos County, and the compound screen is a concrete before and after a Texan can picture rather than a peak performance figure.",
+   "entities": [
+    "Texas A&M University",
+    "TOP500",
+    "NVIDIA",
+    "World Wide Technology",
+    "Robert L. Albritton",
+    "Susan Ballabina",
+    "Texas Advanced Computing Center"
+   ],
+   "counties": [
+    "Brazos"
+   ],
+   "statewide": false,
+   "decider": null,
+   "event_date": "2026-06-25",
+   "key_date": null,
+   "sources": [
+    {
+     "url": "https://www.top500.org/lists/top500/list/2026/06/?page=1",
+     "publisher": "top500.org",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "VISION - NVIDIA DGX H200, Xeon Platinum 8480C 56C 3.8GHz, NVIDIA HGX H200 141GB, Infiniband NDR, Ubuntu 24.04, Nvidia Texas A&M University United States 110,960 34.82 51.16",
+     "supports": "The rank 66 row on the page headed 'TOP500 List - June 2026'."
+    },
+    {
+     "url": "https://stories.tamu.edu/news/2026/06/25/texas-am-supercomputer-named-most-powerful-among-us-universities/",
+     "publisher": "stories.tamu.edu",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "In one drug-discovery project, researchers screened more than 10 million compounds in about a week, using computing power that would have taken years in a previous environment.",
+     "supports": "The machine in use, and the change in the work, stated by the university that owns it."
+    },
+    {
+     "url": "https://stories.tamu.edu/news/2026/06/25/texas-am-supercomputer-named-most-powerful-among-us-universities/",
+     "publisher": "stories.tamu.edu",
+     "source_type": "primary",
+     "fetched": true,
+     "quote": "We did not fund VISION for bragging rights. We funded it because Texas needs answers faster.",
+     "supports": "Robert L. Albritton's own words on why the system was funded."
+    }
+   ],
+   "confidence": "medium",
+   "is_docket_candidate": false
+  }
+ ],
+ "source_notes": [
+  "Honored the tacc.utexas.edu robots.txt disallow completely. No tacc.utexas.edu or lccf.tacc.utexas.edu URL fetched, and the EurekAlert syndication of a TACC release was treated as a mirror of disallowed content and NOT fetched. Consequence: no fetched source on Horizon's operating status, so no Horizon finding this run.",
+  "hpcwire.com returned HTTP 403 on two attempts including a retry. thedailytexan.com also returned HTTP 403. Neither is cited.",
+  "api.nsf.gov/services/v1/awards.json is the most useful primary surface on this beat. Full abstracts, obligated amounts, start dates and co-PI lists as raw JSON with no robots obstacle. Keyword search is fuzzy, so the exact-phrase or ?id= form is the reliable call.",
+  "DISCREPANCY, unresolved and not computed by the scout: stories.tamu.edu writes 'VISION delivers 34.85 petaflops' while the TOP500 June 2026 rank 66 Rmax column reads 34.82. Both reproduced exactly as each source states. Downstream must decide which to publish and must not average or reconcile them.",
+  "Texas A&M's own release says ARM-MIP will sit at the RELLIS Campus in Bryan. The NSF award record's perfCity is COLLEGE STATION. Both are Brazos County so the county tag is safe either way, but the city is not settled.",
+  "Rice's own posting on READINESS is dated July 23, 2026 and did not name a start date. The NSF record supplies startDate 08/01/2026.",
+  "The Rice award is a TIP Directorate 'PCL-Programmable Cloud Labs' node and the A&M award is an MPS 'Materials Innovation Platform'. Two different NSF programs landed self-driving laboratories in Texas eleven days apart. Pattern noted, NOT verified as deliberate."
+ ],
+ "unverified": [
+  "Whether TACC's Horizon has entered full production. Not checkable within the crawl boundary this run.",
+  "Whether Horizon or Vista appear anywhere on the June 2026 TOP500. Only page 1 (ranks 1 to 100) was read, so 'not on the list' is NOT established.",
+  "Whether the ARM-MIP figures in the A&M release (more than 200 users a year, 50 alloys per month in year one, more than 200 alloys per month by year six, more than 300 researchers trained) appear in the NSF abstract. They do not appear in the fetched award record, so they are university projections and must not be presented as NSF terms.",
+  "The Genesis Mission finding rests on two UT pages. energy.gov was not fetched, so DOE's count of 278 projects and the $293 million figure are UT's characterization of DOE's action, not DOE's."
+ ]
+}

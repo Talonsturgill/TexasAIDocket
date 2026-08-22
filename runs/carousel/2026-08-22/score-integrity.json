@@ -1,0 +1,45 @@
+{
+ "lens": "integrity",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 7.0,
+   "why": "Slide 1's carved console is genuinely made: 34 countable recesses in a 7x5-less-one grid where occupancy reads as a filled surface before any name does, and the technique argues the claim rather than decorating it. Slide 5's inversion with leaders landing inside their targets (css x=439 within the PARTY cell 378-572, x=628 within TYPE 610-642) is precise work. Slide 8 draws its dead segments rather than omitting them. Against that: on contact_sheet.png six of nine frames are one lighting recipe (dark ground, one lit object, lighter shelf across the bottom third carrying the footnote), slide 3 is a wall of type over a near-black decorative band carrying no information and is the deck's most cuttable frame, slide 6 is the same legend tile drawn twice with dead bands above and below, and slide 4 leaves about 200px of empty ground between hook and table. Competent and consistent; the recipe, not the detail, is what repeats."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0,
+   "why": "The reader surface is clean and I checked it exhaustively. Six lit recesses at ordinals 10, 25, 29, 30, 31, 33 match exactly the six index-row claims that reach a frame per render_report.json (c15, c17 on slide 4; c13 on slide 5; c10, c8, c9 on slide 7); 34 minus 6 is 28 as the cover states; c11, c12, c14 and c18 appear in no text node and are absent from first_comment.txt. Slide 6's three quotes are character-exact against c21, c22 and c23; the 54 million carries A MAXIMUM BUDGET OF and in a calendar year and is never a payout; c20 states its search method and names the document it looked in. Every numeral traces. What pulls this to 7.0: the superseded pair survived in six places in the planning record after the frames were corrected, so two shipped numerals carried a stated derivation resting on a false premise. Separately: slide 8's 13 is a drawn graphic with no DOM node, parked in aggregates._undeclarable outside the declared set because aggregate_check refuses it; and slides 4 and 5 render TYPE and DESCRIPTION where c19 quotes Item Type and Filing Description, on frames whose whole argument is fidelity to the record."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 7.5,
+   "why": "Names the body (Public Utility Commission of Texas), the instrument (16 TAC Section 25.521, Project 58482), the deadline (September 4th, 2026, corroborated independently by c16's calendar entry), the channel (interchange.puc.texas.gov on slide 9) and what to write on the filing. A reader knows exactly what to do next, and slide 9 is built so they can act from it alone. The stake is concrete: a 75 MW single-site threshold with no upper bound, a 54 million dollar annual cap, curtailment during firm load shed. No county, and the deck is honest that the story has no place rather than inventing one. What holds it off 9: nine frames stay entirely inside the record and never once say what any of this means for the person reading, so the stakes are institutional rather than felt."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "The cover's opening move is unusual and earns the swipe: it states the size of the room (34) and the size of its own gap (6 quoted, 28 not) in the same breath. The turn is real and lands at 4 to 5, where the deck stops reporting what the record says and starts reporting what it does not, marked by slide 5's only-in-the-deck ground inversion. 6 delivers consequence and money, 7 and 8 the clock, 9 the action. Slide 3 is the cuttable frame: it repeats slide 2's job of quoting the rule at full page and adds no new argument, and it separates the definition from the consequence on slide 6 with two index frames in between."
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "'A number does the work a name would do.' and 'The party field in the filing index gives a name. It gives nothing else.' are plain and earned, and the refusal to expand PC on slide 5 or to call Helen Bryant a resident is the voice's best moment because the restraint is the argument. Clean on register throughout, no dashes, no colons, no first person, ordinal dates. But nothing here is regionally Texan beyond the institution names: no summer, no place, no vernacular. Rubric 7 reads clean, on register, a little flat, which is precisely this."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "The Mission Control console register is distinct from the last five entries in artwork.json. But the deck reaches for three moves already inside the ledger's own 14-day recent_window. Slide 4's declared technique is an oil chart table, flat and emissive, against 2026-08-19's a mid century oil chart table under a low lamp, tabular mono, and 2026-08-18's an oil-chart field table. Slide 3's the empty field with one machined seam of light against 2026-08-20's the empty field, bounded by a neatline and dimension ticks. And one paper inversion at slide 5 is now the third occurrence (08-16, 08-19, 08-22). Topically this is the third deck in seven days on ERCOT large-load policy; the docket item, deciding body and instrument differ each time so it is NOT a 30-day topic repeat, but it is not fresh ground either. Rubric 7 is distinct, with one familiar move. This has three."
+  }
+ ],
+ "weighted_score": 7.05,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Make the six-row recompute emit every sentence that describes it rather than only the four it currently feeds, and add a dossier_check assertion that each slide's storyboard type.labels equals the matching render_report.json text node, because that single missing comparison is what let the cover ship wrong the first time and what let its explanation ship wrong the second."
+}

@@ -1,0 +1,89 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+:root{--room:#101A1B;--console:#24322F;--console_lit:#8FA396;--face_sun:#C7D2C4;
+      --legend:#E8EFE4;--trace:#9FD3B4;--amber:#D99A32;--key_dark:#060C0D;--red:#BF0A30}
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:var(--room);
+  -webkit-font-smoothing:antialiased}
+canvas{position:absolute;left:0;top:0}
+.kick{position:absolute;left:80px;top:88px;font:500 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.14em;color:#8FA396}
+.cnt{position:absolute;right:80px;top:88px;font:500 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.10em;color:#8FA396;font-variant-numeric:tabular-nums}
+.tx-site{position:absolute;left:80px;bottom:74px;font:400 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.06em;color:#8FA396}
+.star{position:absolute;right:80px;bottom:68px;width:22px;height:22px}
+.figd{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums;
+  font-weight:700;font-size:0.88em;letter-spacing:-.02em}
+.mono{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums}
+
+.hook{position:absolute;left:80px;top:168px;width:900px;font:700 76px/1.03 "Fraunces",serif;
+  color:var(--legend);letter-spacing:-.015em}
+.blk{position:absolute;left:130px;top:436px;width:840px;font:700 44px/1.42 "JetBrains Mono",monospace;
+  color:#FFFFFF;letter-spacing:.01em;white-space:nowrap}
+.dl{position:absolute;left:80px;top:706px;width:900px;font:500 30px/1.4 "JetBrains Mono",monospace;
+  color:#E8EFE4}
+.how{position:absolute;left:80px;top:812px;width:900px;font:400 28px/1.42 "Manrope",sans-serif;
+  color:var(--face_sun)}
+/* THE DOOR. Both scoring lenses read the deck and could not find where to file. The quote above
+   names the interchange and stops, so the frame names the host every index row on this deck was
+   fetched from. It is read out of claims.json, not typed from memory. */
+.door{position:absolute;left:80px;top:1036px;width:900px;font:700 34px/1.2 "JetBrains Mono",monospace;
+  letter-spacing:.01em;color:var(--legend)}
+.tb{position:absolute;left:80px;top:1122px;width:880px;font:500 24px/1.46 "JetBrains Mono",monospace;
+  letter-spacing:.06em;color:var(--console_lit)}
+
+</style></head><body>
+<canvas id="c" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+
+<div class="hook">Refer to Project <br> Number <span class="figd">58482</span>.</div>
+<div class="blk">FILE BY SEPTEMBER 4TH, 2026 <br>REFER TO PROJECT 58482</div>
+<div class="dl">Comment deadline September 4th, 2026. <br>Refer to Project 58482 on every filing.</div>
+<div class="how">"Interested persons may file comments electronically through the interchange on the commission's website"</div>
+<div class="door">interchange.puc.texas.gov</div>
+<div class="tb">PUBLIC UTILITY COMMISSION OF TEXAS <br>PROJECT 58482 &nbsp;/ &nbsp;ERCOT REGION</div>
+
+<div class="kick">PROJECT 58482</div>
+<div class="cnt">09 / 09</div>
+<div class="tx-site">texasaidocket.com</div>
+<svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6 L14.9 9.2 L23 9.6 L16.7 14.6 L18.9 22.4 L12 17.9 L5.1 22.4 L7.3 14.6 L1 9.6 L9.1 9.2 Z" fill="#8FA396"/></svg>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = new Promise(function(resolve){
+  var c=document.getElementById('c'), x=c.getContext('2d'); x.scale(2,2);
+  TX.reseed(20260822); var R=TX.rng(20260822 + 9);
+  function tooth(x0,y0,w,h,n,amp){ for(var i=0;i<n;i++){
+      var px=x0+R()*w, py=y0+R()*h, a=0.018+R()*(amp||0.045);
+      x.fillStyle=(R()<0.5?'rgba(232,239,228,':'rgba(6,12,13,')+a+')';
+      x.fillRect(px,py,1.6,1.6); } }
+  function plane(y0,y1,c0,c1){ var g=x.createLinearGradient(0,y0,0,y1);
+      g.addColorStop(0,c0); g.addColorStop(1,c1); x.fillStyle=g; x.fillRect(0,y0,1080,y1-y0); }
+  function contact(bx,by,bw,bh){                 // two part contact shadow, always both parts
+      x.save(); x.shadowColor='rgba(6,12,13,0.55)'; x.shadowBlur=34;
+      x.shadowOffsetX=10; x.shadowOffsetY=14; x.fillStyle='rgba(6,12,13,0.42)';
+      x.fillRect(bx+2,by+2,bw,bh); x.restore();
+      x.fillStyle='rgba(6,12,13,0.60)'; x.fillRect(bx+3,by+3,bw,bh); }
+
+  plane(0,1010,'#16221F','#0C1617'); tooth(0,0,1080,1010,12000,0.030);
+  // the lit console shelf the block stands on, so its shadow has something to subtract from
+  plane(1010,1350,'#394A43','#0A1112'); tooth(0,1010,1080,340,7500,0.05);
+  x.fillStyle='rgba(198,207,211,0.34)'; x.fillRect(0,1008,1080,4);
+  // ---- the reserved red, spent once, as a GROUND under white mono. ----
+  var BX=90, BY=404, BW=900, BH=196;
+  contact(BX,BY,BW,BH);
+  x.fillStyle='#BF0A30'; x.fillRect(BX,BY,BW,BH);
+  x.fillStyle='rgba(255,255,255,0.16)'; x.fillRect(BX,BY,BW,3);
+  x.fillStyle='rgba(6,12,13,0.30)'; x.fillRect(BX,BY+BH-4,BW,4);
+  // the block's own hard cast shadow falling into the bottom third, onto the lit shelf
+  // a two part contact shadow onto the lit shelf, so the block stands on it
+  // the ambient half only, wide and soft, so it reads as light falling away under the block
+  // the block's own two part contact shadow, immediately under its lower lip
+  x.fillStyle='rgba(6,12,13,0.66)'; x.fillRect(BX+8, BY+BH, BW-16, 8);
+  x.save(); x.shadowColor='rgba(6,12,13,0.40)'; x.shadowBlur=46; x.shadowOffsetY=14;
+  x.fillStyle='rgba(6,12,13,0.22)'; x.fillRect(BX+34, BY+BH+4, BW-68, 22); x.restore();
+  // the shelf's own front edge, lit, running the full width under the title block
+  x.fillStyle='#8FA396'; x.fillRect(80,1196,920,3);   // a rule is a line, not a filled slot
+
+  resolve();
+});
+</script></body></html>

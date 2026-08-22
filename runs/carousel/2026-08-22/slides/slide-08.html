@@ -1,0 +1,103 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+:root{--room:#101A1B;--console:#24322F;--console_lit:#8FA396;--face_sun:#C7D2C4;
+      --legend:#E8EFE4;--trace:#9FD3B4;--amber:#D99A32;--key_dark:#060C0D;--red:#BF0A30}
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:var(--room);
+  -webkit-font-smoothing:antialiased}
+canvas{position:absolute;left:0;top:0}
+.kick{position:absolute;left:80px;top:88px;font:500 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.14em;color:#8FA396}
+.cnt{position:absolute;right:80px;top:88px;font:500 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.10em;color:#8FA396;font-variant-numeric:tabular-nums}
+.tx-site{position:absolute;left:80px;bottom:74px;font:400 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.06em;color:#8FA396}
+.star{position:absolute;right:80px;bottom:68px;width:22px;height:22px}
+.figd{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums;
+  font-weight:700;font-size:0.88em;letter-spacing:-.02em}
+.mono{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums}
+
+.hook{position:absolute;left:80px;top:168px;width:900px;font:700 76px/1.03 "Fraunces",serif;
+  color:var(--legend);letter-spacing:-.015em}
+.lab{position:absolute;left:80px;top:1074px;font:500 26px/1.3 "JetBrains Mono",monospace;
+  letter-spacing:.06em;color:var(--face_sun)}
+.cal{position:absolute;left:80px;top:1134px;width:900px;font:400 25px/1.34 "JetBrains Mono",monospace;
+  color:var(--console_lit)}
+.unit{position:absolute;left:700px;top:906px;font:500 40px/1 "JetBrains Mono",monospace;
+  letter-spacing:.10em;color:var(--face_sun)}
+
+</style></head><body>
+<canvas id="c" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+
+<div class="hook">The window closes <br> September <span class="figd">4</span>th.</div>
+<div class="unit">DAYS</div>
+<div class="lab" id="lab"></div>
+<div class="cal">"Public Comment Deadline - Friday, September 4, 2026"</div>
+
+<div class="kick">PROJECT 58482</div>
+<div class="cnt">08 / 09</div>
+<div class="tx-site">texasaidocket.com</div>
+<svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6 L14.9 9.2 L23 9.6 L16.7 14.6 L18.9 22.4 L12 17.9 L5.1 22.4 L7.3 14.6 L1 9.6 L9.1 9.2 Z" fill="#8FA396"/></svg>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = new Promise(function(resolve){
+  var c=document.getElementById('c'), x=c.getContext('2d'); x.scale(2,2);
+  TX.reseed(20260822); var R=TX.rng(20260822 + 8);
+  function tooth(x0,y0,w,h,n,amp){ for(var i=0;i<n;i++){
+      var px=x0+R()*w, py=y0+R()*h, a=0.018+R()*(amp||0.045);
+      x.fillStyle=(R()<0.5?'rgba(232,239,228,':'rgba(6,12,13,')+a+')';
+      x.fillRect(px,py,1.6,1.6); } }
+  function plane(y0,y1,c0,c1){ var g=x.createLinearGradient(0,y0,0,y1);
+      g.addColorStop(0,c0); g.addColorStop(1,c1); x.fillStyle=g; x.fillRect(0,y0,1080,y1-y0); }
+  function contact(bx,by,bw,bh){                 // two part contact shadow, always both parts
+      x.save(); x.shadowColor='rgba(6,12,13,0.55)'; x.shadowBlur=34;
+      x.shadowOffsetX=10; x.shadowOffsetY=14; x.fillStyle='rgba(6,12,13,0.42)';
+      x.fillRect(bx+2,by+2,bw,bh); x.restore();
+      x.fillStyle='rgba(6,12,13,0.60)'; x.fillRect(bx+3,by+3,bw,bh); }
+
+  plane(0,1010,'#16221F','#0B1415'); tooth(0,0,1080,1010,12000,0.030);
+  // THE VALUE IS COMPUTED HERE, from the two dates the frame prints, and typed nowhere.
+  // August has 31 days. From the 22nd to the end is 31 minus 22, then 4 more into September.
+  var AUG_DAYS=31, FROM_DAY=22, TO_DAY=4;
+  var DAYS=(AUG_DAYS-FROM_DAY)+TO_DAY;
+  var digits=String(DAYS).split('');
+  // the whole label is composed from the computed value, so the figure and its unit are
+  // one string a gate can read, and the number is never typed.
+  document.getElementById('lab').textContent =
+    DAYS + ' days from August 22nd, 2026 to September 4th, 2026';
+  // a seven segment cell. EVERY segment is drawn. dead ones in key_dark, lit ones in amber.
+  var MAP={'0':[1,1,1,1,1,1,0],'1':[0,1,1,0,0,0,0],'2':[1,1,0,1,1,0,1],'3':[1,1,1,1,0,0,1],
+           '4':[0,1,1,0,0,1,1],'5':[1,0,1,1,0,1,1],'6':[1,0,1,1,1,1,1],'7':[1,1,1,0,0,0,0],
+           '8':[1,1,1,1,1,1,1],'9':[1,1,1,1,0,1,1]};
+  function seg(ox,oy,w,h,t){
+    var on=MAP[t], LIT='#D99A32', OFF='#0B0F0C';   // an unlit segment is DARKER than its plate
+    function bar(bx,by,bw,bh,i){ x.fillStyle = on[i] ? LIT : OFF;
+      var g=3; x.fillRect(bx+g,by+g,Math.max(1,bw-2*g),Math.max(1,bh-2*g));
+      if(on[i]){ x.fillStyle='rgba(217,154,50,0.10)'; x.fillRect(bx-6,by-6,bw+12,bh+12); } }
+    var t9=Math.round(h*0.085);
+    bar(ox+t9, oy, w-2*t9, t9, 0);                       // top
+    bar(ox+w-t9, oy+t9, t9, h/2-1.5*t9, 1);              // upper right
+    bar(ox+w-t9, oy+h/2+t9*0.5, t9, h/2-1.5*t9, 2);      // lower right
+    bar(ox+t9, oy+h-t9, w-2*t9, t9, 3);                  // bottom
+    bar(ox, oy+h/2+t9*0.5, t9, h/2-1.5*t9, 4);           // lower left
+    bar(ox, oy+t9, t9, h/2-1.5*t9, 5);                   // upper left
+    bar(ox+t9, oy+h/2-t9*0.5, w-2*t9, t9, 6);            // middle
+  }
+  // the readout housing, lit, with a bezel that runs into the bottom third
+  var RX=170, RY=420, RW=620, RH=420;
+  contact(RX-40, RY-30, RW+120, RH+150);
+  x.fillStyle='#24322F'; x.fillRect(RX-40,RY-30,RW+120,RH+150);
+  x.fillStyle='rgba(198,207,211,0.42)'; x.fillRect(RX-40,RY-30,RW+120,4);
+  x.fillStyle='#151C18'; x.fillRect(RX-14,RY-6,RW+68,RH+100);   // the plate, lighter than a dead segment
+  var dw=250, dh=RH, gapd=54;
+  for(var i=0;i<digits.length;i++){ seg(RX + i*(dw+gapd), RY, dw, dh, digits[i]); }
+  // the lit lower bezel, and the shelf it sits on. this is the bottom third's modeled form.
+  plane(1010,1350,'#35463F','#090F10'); tooth(0,1010,1080,340,7500,0.05);
+  x.fillStyle='rgba(198,207,211,0.34)'; x.fillRect(0,1008,1080,4);
+  x.fillStyle='#24322F'; x.fillRect(RX-40, 986, RW+120, 26);
+  x.fillStyle='rgba(198,207,211,0.55)'; x.fillRect(RX-40, 986, RW+120, 3);
+  contact(RX-40, 1010, RW+120, 12);
+
+  resolve();
+});
+</script></body></html>

@@ -1,0 +1,35 @@
+{
+ "run_date": "2026-08-22",
+ "phases": {
+  "wake": "done",
+  "craft": "done",
+  "sweep": "done",
+  "reverify": "done",
+  "discover": "done",
+  "admit": "done",
+  "claims": "done",
+  "instrument": "done",
+  "selection": "done",
+  "directors": "done",
+  "copy": "done",
+  "art": "done",
+  "pixel": "done",
+  "aggregate": "done",
+  "assembly": "done",
+  "scoring": "done",
+  "ship": "done",
+  "retro": "done",
+  "email": "drafted"
+ },
+ "artifacts": {
+  "worklist": "out/2026-08-22/tmp/worklist.json",
+  "scouts": "out/research/*.json",
+  "reverify_commit": "a9e64e46",
+  "claims": "out/2026-08-22/claims.json",
+  "story": "PUCT Project 58482, 16 TAC 25.521 Large Load Demand Management Service",
+  "panel": "out/2026-08-22/score.json, median 7.09, spread 0.06, SHIP",
+  "pr": "https://github.com/Talonsturgill/TexasAIDocket/pull/163 (draft, does not merge)",
+  "email": "Gmail draft to docket@alaskaaihq.com, DRAFT ONLY",
+  "record_corrections": "tx-2026-0002 summary, public_access.how, three claim texts and the filing count"
+ }
+}

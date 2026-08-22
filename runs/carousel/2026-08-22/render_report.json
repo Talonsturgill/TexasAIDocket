@@ -1,0 +1,2879 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "PROJECT 58482",
+          "x": 80,
+          "y": 88,
+          "w": 231,
+          "h": 24,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              231,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 882,
+          "y": 88,
+          "w": 118,
+          "h": 24,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              882,
+              84,
+              118,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The rule never says data center.",
+          "x": 80,
+          "y": 150,
+          "w": 830,
+          "h": 155,
+          "font_px": 76,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(232, 239, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              142,
+              790,
+              93
+            ],
+            [
+              80,
+              220,
+              229,
+              93
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Not once in the Texas Register text.",
+          "x": 80,
+          "y": 322,
+          "w": 800,
+          "h": 40,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(199, 210, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              321,
+              488,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "34 FILINGS",
+          "x": 80,
+          "y": 1000,
+          "w": 217,
+          "h": 198,
+          "font_px": 190,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 239, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              956,
+              217,
+              251
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "FILINGS",
+          "x": 80,
+          "y": 1169,
+          "w": 217,
+          "h": 29,
+          "font_px": 26,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1165,
+              138,
+              35
+            ]
+          ],
+          "anc": [
+            4
+          ]
+        },
+        {
+          "text": "6 rows are quoted on the frames that follow. The other 28 rows stand in the filing index and are not read here.",
+          "x": 430,
+          "y": 1028,
+          "w": 560,
+          "h": 111,
+          "font_px": 26,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              430,
+              1028,
+              522,
+              36
+            ],
+            [
+              430,
+              1065,
+              547,
+              36
+            ],
+            [
+              430,
+              1102,
+              210,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 80,
+          "y": 1252,
+          "w": 269,
+          "h": 24,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1248,
+              269,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1155,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 44.6,
+          "variance": 658.3
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "The threshold is the definition",
+          "x": 80,
+          "y": 160,
+          "w": 880,
+          "h": 39,
+          "font_px": 30,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              159,
+              614,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A number does the work a name would do.",
+          "x": 80,
+          "y": 222,
+          "w": 900,
+          "h": 167,
+          "font_px": 82,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(232, 239, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              213,
+              831,
+              101
+            ],
+            [
+              80,
+              297,
+              588,
+              101
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"An entity with a total non-coincident peak demand at a single site that is equal to or greater than 75 megawatts (MW).\"",
+          "x": 230,
+          "y": 512,
+          "w": 640,
+          "h": 167,
+          "font_px": 29,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 239, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              230,
+              513,
+              487,
+              39
+            ],
+            [
+              230,
+              555,
+              592,
+              39
+            ],
+            [
+              230,
+              597,
+              557,
+              39
+            ],
+            [
+              230,
+              638,
+              418,
+              39
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "75 MW",
+          "x": 230,
+          "y": 748,
+          "w": 389,
+          "h": 141,
+          "font_px": 168,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(255, 255, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              230,
+              708,
+              389,
+              221
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "no upper bound",
+          "x": 734,
+          "y": 864,
+          "w": 147,
+          "h": 85,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(199, 210, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              750,
+              875,
+              115,
+              31
+            ],
+            [
+              793,
+              906,
+              72,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "16 TAC Section 25.521, proposed",
+          "x": 80,
+          "y": 1106,
+          "w": 484,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(199, 210, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1105,
+              484,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The rule as published in the Texas Register does not contain the words data center.",
+          "x": 80,
+          "y": 1140,
+          "w": 920,
+          "h": 80,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(232, 239, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1139,
+              879,
+              41
+            ],
+            [
+              80,
+              1179,
+              255,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PROJECT 58482",
+          "x": 80,
+          "y": 88,
+          "w": 231,
+          "h": 24,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              231,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 882,
+          "y": 88,
+          "w": 118,
+          "h": 24,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              882,
+              84,
+              118,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 80,
+          "y": 1252,
+          "w": 269,
+          "h": 24,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1248,
+              269,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "svg",
+          "x": 230,
+          "y": 944,
+          "w": 850,
+          "h": 3,
+          "by": "line",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 230,
+          "y": 920,
+          "w": 3,
+          "h": 48,
+          "by": "line",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1698,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 34.5,
+          "variance": 1005.5
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "What the rule would require",
+          "x": 80,
+          "y": 170,
+          "w": 900,
+          "h": 39,
+          "font_px": 30,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              169,
+              535,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"ERCOT must develop a Large Load Demand Management Service (LLDMS) to competitively procure demand reductions from large load customers consistent with this section.\"",
+          "x": 80,
+          "y": 330,
+          "w": 920,
+          "h": 479,
+          "font_px": 60,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(232, 239, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              327,
+              826,
+              74
+            ],
+            [
+              80,
+              395,
+              760,
+              74
+            ],
+            [
+              80,
+              464,
+              534,
+              74
+            ],
+            [
+              80,
+              532,
+              845,
+              74
+            ],
+            [
+              80,
+              601,
+              731,
+              74
+            ],
+            [
+              80,
+              669,
+              838,
+              74
+            ],
+            [
+              80,
+              737,
+              234,
+              74
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "16 TAC Section 25.521, proposed",
+          "x": 80,
+          "y": 906,
+          "w": 534,
+          "h": 36,
+          "font_px": 28,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(199, 210, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              905,
+              269,
+              37
+            ],
+            [
+              435,
+              905,
+              179,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "25.521",
+          "x": 349,
+          "y": 909,
+          "w": 86,
+          "h": 32,
+          "font_px": 24.6,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(199, 210, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              349,
+              909,
+              86,
+              32
+            ]
+          ],
+          "anc": [
+            2
+          ]
+        },
+        {
+          "text": "PROJECT 58482",
+          "x": 80,
+          "y": 88,
+          "w": 231,
+          "h": 24,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              231,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 882,
+          "y": 88,
+          "w": 118,
+          "h": 24,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              882,
+              84,
+              118,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 80,
+          "y": 1252,
+          "w": 269,
+          "h": 24,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1248,
+              269,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1274,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 24.2,
+          "variance": 227.1
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "2 filings here share a date.",
+          "x": 80,
+          "y": 172,
+          "w": 900,
+          "h": 80,
+          "font_px": 78,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(232, 239, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              120,
+              164,
+              814,
+              96
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "2",
+          "x": 80,
+          "y": 170,
+          "w": 40,
+          "h": 91,
+          "font_px": 68.6,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 239, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              170,
+              40,
+              91
+            ]
+          ],
+          "anc": [
+            0
+          ]
+        },
+        {
+          "text": "FILE STAMP",
+          "x": 86,
+          "y": 440,
+          "w": 168,
+          "h": 24,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              86,
+              436,
+              168,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PARTY",
+          "x": 296,
+          "y": 440,
+          "w": 84,
+          "h": 24,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              296,
+              436,
+              84,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TYPE",
+          "x": 648,
+          "y": 440,
+          "w": 67,
+          "h": 24,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              648,
+              436,
+              67,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "DESCRIPTION",
+          "x": 752,
+          "y": 440,
+          "w": 185,
+          "h": 24,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              752,
+              436,
+              185,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "4/8/2026",
+          "x": 86,
+          "y": 492,
+          "w": 180,
+          "h": 34,
+          "font_px": 25,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(14, 26, 23)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              86,
+              492,
+              120,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Data Center Coalition",
+          "x": 296,
+          "y": 492,
+          "w": 330,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 239, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              296,
+              492,
+              315,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "COM",
+          "x": 648,
+          "y": 492,
+          "w": 80,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 239, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              648,
+              492,
+              45,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "DCC Comments Regarding the Large Load Demand Management Service",
+          "x": 748,
+          "y": 492,
+          "w": 248,
+          "h": 161,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 239, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              748,
+              492,
+              173,
+              31
+            ],
+            [
+              748,
+              524,
+              187,
+              31
+            ],
+            [
+              748,
+              556,
+              245,
+              31
+            ],
+            [
+              748,
+              588,
+              144,
+              31
+            ],
+            [
+              748,
+              621,
+              101,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "4/8/2026",
+          "x": 86,
+          "y": 708,
+          "w": 180,
+          "h": 34,
+          "font_px": 25,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(14, 26, 23)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              86,
+              708,
+              120,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "CyrusOne, LP",
+          "x": 296,
+          "y": 708,
+          "w": 330,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 239, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              296,
+              708,
+              180,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "COM",
+          "x": 648,
+          "y": 708,
+          "w": 80,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 239, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              648,
+              708,
+              45,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "CyrusOne, LP Comments in Response to Commission Staff's Questions",
+          "x": 748,
+          "y": 708,
+          "w": 248,
+          "h": 161,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 239, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              748,
+              708,
+              173,
+              31
+            ],
+            [
+              748,
+              740,
+              158,
+              31
+            ],
+            [
+              748,
+              772,
+              158,
+              31
+            ],
+            [
+              748,
+              804,
+              144,
+              31
+            ],
+            [
+              748,
+              837,
+              245,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The party field in the filing index gives a name. It gives nothing else.",
+          "x": 80,
+          "y": 1136,
+          "w": 900,
+          "h": 39,
+          "font_px": 29,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(199, 210, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1135,
+              887,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PROJECT 58482",
+          "x": 80,
+          "y": 88,
+          "w": 231,
+          "h": 24,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              231,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 882,
+          "y": 88,
+          "w": 118,
+          "h": 24,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              882,
+              84,
+              118,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 80,
+          "y": 1252,
+          "w": 269,
+          "h": 24,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1248,
+              269,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 729,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 43.1,
+          "variance": 1634.8
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "What a row actually publishes.",
+          "x": 80,
+          "y": 168,
+          "w": 900,
+          "h": 157,
+          "font_px": 76,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(11, 18, 17)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              160,
+              655,
+              93
+            ],
+            [
+              80,
+              238,
+              336,
+              93
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ITEM",
+          "x": 80,
+          "y": 348,
+          "w": 67,
+          "h": 24,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 56, 51)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              344,
+              67,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "33",
+          "x": 80,
+          "y": 388,
+          "w": 32,
+          "h": 35,
+          "font_px": 27,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(11, 18, 17)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              387,
+              32,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "FILE STAMP",
+          "x": 170,
+          "y": 348,
+          "w": 168,
+          "h": 24,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 56, 51)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              170,
+              344,
+              168,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "8/3/2026",
+          "x": 170,
+          "y": 388,
+          "w": 130,
+          "h": 35,
+          "font_px": 27,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(11, 18, 17)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              170,
+              387,
+              130,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PARTY",
+          "x": 378,
+          "y": 348,
+          "w": 84,
+          "h": 24,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 56, 51)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              378,
+              344,
+              84,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Helen Bryant",
+          "x": 378,
+          "y": 388,
+          "w": 194,
+          "h": 35,
+          "font_px": 27,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(11, 18, 17)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              378,
+              387,
+              194,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TYPE",
+          "x": 610,
+          "y": 348,
+          "w": 67,
+          "h": 24,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 56, 51)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              610,
+              344,
+              67,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PC",
+          "x": 610,
+          "y": 388,
+          "w": 32,
+          "h": 35,
+          "font_px": 27,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(11, 18, 17)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              610,
+              387,
+              32,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "DESCRIPTION",
+          "x": 700,
+          "y": 348,
+          "w": 185,
+          "h": 24,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 56, 51)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              700,
+              344,
+              185,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Objection to rule change",
+          "x": 700,
+          "y": 388,
+          "w": 194,
+          "h": 70,
+          "font_px": 27,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(11, 18, 17)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              700,
+              387,
+              194,
+              36
+            ],
+            [
+              700,
+              422,
+              178,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Nothing here states who a filer is.",
+          "x": 128,
+          "y": 996,
+          "w": 360,
+          "h": 70,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 239, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              128,
+              995,
+              359,
+              35
+            ],
+            [
+              128,
+              1030,
+              172,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "This record does not expand PC.",
+          "x": 596,
+          "y": 996,
+          "w": 350,
+          "h": 70,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 239, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              596,
+              995,
+              312,
+              35
+            ],
+            [
+              596,
+              1030,
+              156,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PROJECT 58482",
+          "x": 80,
+          "y": 88,
+          "w": 231,
+          "h": 24,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(36, 50, 47)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              231,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 882,
+          "y": 88,
+          "w": 118,
+          "h": 24,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(36, 50, 47)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              882,
+              84,
+              118,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 80,
+          "y": 1252,
+          "w": 269,
+          "h": 24,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(36, 50, 47)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1248,
+              269,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 2027,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 181.2,
+          "variance": 2934.2
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "What it would do.",
+          "x": 80,
+          "y": 168,
+          "w": 900,
+          "h": 78,
+          "font_px": 76,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(232, 239, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              160,
+              576,
+              93
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"allow the transmission-voltage customers to be curtailed during firm load shed\"",
+          "x": 118,
+          "y": 432,
+          "w": 844,
+          "h": 72,
+          "font_px": 27,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(11, 20, 18)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              118,
+              432,
+              768,
+              36
+            ],
+            [
+              118,
+              468,
+              523,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"to be deployed in the event of an anticipated emergency condition\"",
+          "x": 118,
+          "y": 660,
+          "w": 844,
+          "h": 72,
+          "font_px": 27,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(11, 20, 18)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              118,
+              660,
+              751,
+              36
+            ],
+            [
+              118,
+              696,
+              327,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A MAXIMUM BUDGET OF",
+          "x": 80,
+          "y": 940,
+          "w": 520,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              940,
+              306,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "$54 MILLION",
+          "x": 80,
+          "y": 1002,
+          "w": 920,
+          "h": 128,
+          "font_px": 128,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 239, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              981,
+              219,
+              169
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "MILLION",
+          "x": 299,
+          "y": 1057,
+          "w": 227,
+          "h": 71,
+          "font_px": 53.8,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 239, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              299,
+              1057,
+              227,
+              71
+            ]
+          ],
+          "anc": [
+            4
+          ]
+        },
+        {
+          "text": "in a calendar year",
+          "x": 668,
+          "y": 1064,
+          "w": 340,
+          "h": 35,
+          "font_px": 27,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              668,
+              1063,
+              301,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PROJECT 58482",
+          "x": 80,
+          "y": 88,
+          "w": 231,
+          "h": 24,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              231,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 882,
+          "y": 88,
+          "w": 118,
+          "h": 24,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              882,
+              84,
+              118,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 80,
+          "y": 1252,
+          "w": 269,
+          "h": 24,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1248,
+              269,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1040,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 59.1,
+          "variance": 3291.7
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "2 rows here carry the deadline.",
+          "x": 80,
+          "y": 168,
+          "w": 900,
+          "h": 152,
+          "font_px": 74,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(232, 239, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              118,
+              160,
+              524,
+              91
+            ],
+            [
+              80,
+              236,
+              415,
+              91
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "2",
+          "x": 80,
+          "y": 166,
+          "w": 38,
+          "h": 86,
+          "font_px": 65.1,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 239, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              166,
+              38,
+              86
+            ]
+          ],
+          "anc": [
+            0
+          ]
+        },
+        {
+          "text": "\"7/24/2026 PUC RULES & PROJECTS PRJ OM Item No. 29 - Staff Memo & PFP w/Sept. 4 Comment Deadline\"",
+          "x": 196,
+          "y": 420,
+          "w": 504,
+          "h": 104,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 239, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              196,
+              421,
+              14,
+              31
+            ],
+            [
+              340,
+              421,
+              360,
+              31
+            ],
+            [
+              196,
+              456,
+              475,
+              31
+            ],
+            [
+              196,
+              490,
+              29,
+              31
+            ],
+            [
+              326,
+              490,
+              259,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "7/24/2026",
+          "x": 210,
+          "y": 421,
+          "w": 130,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              210,
+              421,
+              130,
+              31
+            ]
+          ],
+          "anc": [
+            2
+          ]
+        },
+        {
+          "text": "Sept. 4",
+          "x": 225,
+          "y": 490,
+          "w": 101,
+          "h": 31,
+          "font_px": 24,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 154, 50)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              225,
+              490,
+              101,
+              31
+            ]
+          ],
+          "anc": [
+            2
+          ]
+        },
+        {
+          "text": "\"7/30/2026 PUC OPDM PRJ PROPOSAL FOR PUBLICATION NEW \u00a725.521\"",
+          "x": 280,
+          "y": 648,
+          "w": 533,
+          "h": 69,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 239, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              280,
+              649,
+              14,
+              31
+            ],
+            [
+              424,
+              649,
+              187,
+              31
+            ],
+            [
+              280,
+              684,
+              533,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "7/30/2026",
+          "x": 294,
+          "y": 649,
+          "w": 130,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              294,
+              649,
+              130,
+              31
+            ]
+          ],
+          "anc": [
+            5
+          ]
+        },
+        {
+          "text": "\"7/30/2026 RULES & PROJECTS PRJ Texas Register Acknowledgement of Receipt - Comment Deadline 09/04/2026\"",
+          "x": 364,
+          "y": 876,
+          "w": 619,
+          "h": 104,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 239, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              364,
+              877,
+              14,
+              31
+            ],
+            [
+              508,
+              877,
+              302,
+              31
+            ],
+            [
+              364,
+              912,
+              619,
+              31
+            ],
+            [
+              364,
+              946,
+              245,
+              31
+            ],
+            [
+              753,
+              946,
+              14,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "7/30/2026",
+          "x": 378,
+          "y": 877,
+          "w": 130,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              378,
+              877,
+              130,
+              31
+            ]
+          ],
+          "anc": [
+            7
+          ]
+        },
+        {
+          "text": "09/04/2026",
+          "x": 609,
+          "y": 946,
+          "w": 144,
+          "h": 31,
+          "font_px": 24,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 154, 50)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              609,
+              946,
+              144,
+              31
+            ]
+          ],
+          "anc": [
+            7
+          ]
+        },
+        {
+          "text": "PROJECT 58482",
+          "x": 80,
+          "y": 88,
+          "w": 231,
+          "h": 24,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              231,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 882,
+          "y": 88,
+          "w": 118,
+          "h": 24,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              882,
+              84,
+              118,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 80,
+          "y": 1252,
+          "w": 269,
+          "h": 24,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1248,
+              269,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 923,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 36,
+          "variance": 177.4
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "The window closes September 4th.",
+          "x": 80,
+          "y": 168,
+          "w": 900,
+          "h": 157,
+          "font_px": 76,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(232, 239, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              160,
+              618,
+              93
+            ],
+            [
+              80,
+              238,
+              377,
+              93
+            ],
+            [
+              496,
+              238,
+              89,
+              93
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "4",
+          "x": 457,
+          "y": 244,
+          "w": 39,
+          "h": 88,
+          "font_px": 66.9,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 239, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              457,
+              244,
+              39,
+              88
+            ]
+          ],
+          "anc": [
+            0
+          ]
+        },
+        {
+          "text": "DAYS",
+          "x": 700,
+          "y": 906,
+          "w": 112,
+          "h": 40,
+          "font_px": 40,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(199, 210, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              700,
+              899,
+              112,
+              53
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "13 days from August 22nd, 2026 to September 4th, 2026",
+          "x": 80,
+          "y": 1074,
+          "w": 909,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(199, 210, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1073,
+              909,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"Public Comment Deadline - Friday, September 4, 2026\"",
+          "x": 80,
+          "y": 1134,
+          "w": 900,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1133,
+              795,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PROJECT 58482",
+          "x": 80,
+          "y": 88,
+          "w": 231,
+          "h": 24,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              231,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 882,
+          "y": 88,
+          "w": 118,
+          "h": 24,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              882,
+              84,
+              118,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 80,
+          "y": 1252,
+          "w": 269,
+          "h": 24,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1248,
+              269,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 674,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 31.9,
+          "variance": 459.9
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "Refer to Project Number 58482.",
+          "x": 80,
+          "y": 168,
+          "w": 900,
+          "h": 157,
+          "font_px": 76,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(232, 239, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              160,
+              523,
+              93
+            ],
+            [
+              80,
+              238,
+              288,
+              93
+            ],
+            [
+              562,
+              238,
+              18,
+              93
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "58482",
+          "x": 368,
+          "y": 244,
+          "w": 194,
+          "h": 88,
+          "font_px": 66.9,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 239, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              368,
+              244,
+              194,
+              88
+            ]
+          ],
+          "anc": [
+            0
+          ]
+        },
+        {
+          "text": "FILE BY SEPTEMBER 4TH, 2026 REFER TO PROJECT 58482",
+          "x": 130,
+          "y": 436,
+          "w": 840,
+          "h": 125,
+          "font_px": 44,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(255, 255, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              130,
+              438,
+              725,
+              58
+            ],
+            [
+              130,
+              500,
+              590,
+              58
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Comment deadline September 4th, 2026. Refer to Project 58482 on every filing.",
+          "x": 80,
+          "y": 706,
+          "w": 900,
+          "h": 84,
+          "font_px": 30,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 239, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              707,
+              666,
+              40
+            ],
+            [
+              80,
+              749,
+              702,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"Interested persons may file comments electronically through the interchange on the commission's website\"",
+          "x": 80,
+          "y": 812,
+          "w": 900,
+          "h": 80,
+          "font_px": 28,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(199, 210, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              812,
+              843,
+              38
+            ],
+            [
+              80,
+              852,
+              542,
+              38
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "interchange.puc.texas.gov",
+          "x": 80,
+          "y": 1036,
+          "w": 900,
+          "h": 41,
+          "font_px": 34,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 239, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1033,
+              519,
+              45
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PUBLIC UTILITY COMMISSION OF TEXAS PROJECT 58482 / ERCOT REGION",
+          "x": 80,
+          "y": 1122,
+          "w": 880,
+          "h": 70,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1124,
+              539,
+              31
+            ],
+            [
+              80,
+              1159,
+              475,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PROJECT 58482",
+          "x": 80,
+          "y": 88,
+          "w": 231,
+          "h": 24,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              231,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 882,
+          "y": 88,
+          "w": 118,
+          "h": 24,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              882,
+              84,
+              118,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 80,
+          "y": 1252,
+          "w": 269,
+          "h": 24,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1248,
+              269,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 716,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 35.2,
+          "variance": 408.4
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    }
+  ]
+}

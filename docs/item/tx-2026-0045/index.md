@@ -11,7 +11,7 @@ Lubbock County Commissioners Court passed a non binding resolution on August 10t
 - Public access: Public meeting
 - Take part: https://www.kcbd.com/2026/08/10/lubbock-county-commissioners-pass-resolution-regarding-large-scale-industrial-development-texas/
 
-- Last checked: 2026-08-19
+- Last checked: 2026-08-22
 
 ## Dates
 
@@ -22,6 +22,7 @@ Lubbock County Commissioners Court passed a non binding resolution on August 10t
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-08-19 · Checked and unchanged. The resolution passed 4 to 1 on August 10th and still states that nothing in it creates or expands county authority.
+- 2026-08-22 · Checked and unchanged. The resolution still passed 4 to 1 on August 10th and still states that nothing in it creates or expands county authority.
 
 ## Evidence
 

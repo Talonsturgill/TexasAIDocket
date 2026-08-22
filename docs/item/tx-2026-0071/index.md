@@ -9,7 +9,7 @@ Governor Greg Abbott announced on August 6th, 2026 that SpaceX will construct a 
 - Public access: Write to the decider
 - Take part: https://gov.texas.gov/news/post/governor-abbott-announces-spacex-expansion-in-grimes-county
 
-- Last checked: 2026-08-19
+- Last checked: 2026-08-22
 
 ## Dates
 
@@ -20,6 +20,7 @@ Governor Greg Abbott announced on August 6th, 2026 that SpaceX will construct a 
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-08-19 · Checked and unchanged. The state's announcement of August 6th still gives a capital investment of more than 16.8 billion dollars and 3,000 new jobs. The Texas Enterprise Fund grant is still 30 million dollars.
+- 2026-08-22 · Checked and unchanged. The state's announcement of August 6th still gives a capital investment of more than 16.8 billion dollars and 3,000 new jobs. The Texas Enterprise Fund grant is still 30 million dollars.
 
 ## Evidence
 

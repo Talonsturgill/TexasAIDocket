@@ -11,7 +11,7 @@ The National Science Foundation announced the first awards under its CyberAICorp
 - Public access: Write to the decider
 - Take part: https://www.utep.edu/cs/opportunities/sfs_program.html
 
-- Last checked: 2026-08-19
+- Last checked: 2026-08-22
 
 ## Dates
 
@@ -22,6 +22,7 @@ The National Science Foundation announced the first awards under its CyberAICorp
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-08-19 · The federal designation is unconfirmed against the university's own program page. That page names the university a National Center of Academic Excellence in Cyber Defense and does not attribute the scholarship program to the National Science Foundation.
+- 2026-08-22 · Checked and unchanged. The federal award announcement still names the university in the first round of CyberAICorps Scholarship for Service awards. The attribution against the university's own program page is still unconfirmed.
 
 ## Evidence
 

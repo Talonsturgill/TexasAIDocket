@@ -1,0 +1,45 @@
+{
+ "lens": "craft",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 6.5,
+   "why": "Two frames a designer would study: slide 6's annunciator (correct recess lips, real lamp spill via globalCompositeOperation lighter, adjacent value extremes, canvas variance 3292) and slide 2's housing with the open dimension carrying one terminator and running off the right edge, which argues no upper bound instead of captioning it. Against that: slide 1 draws 34 raised bosses (lit lip top and left, drop shadow down-right) while calling them milled recesses, breaking the law slide 5 states in its own source; slide 7 is fog at variance 177, lowest in the deck, and its new contact() shadows fall on a near-black plane the doctrine says gives one or two L star; slide 3's declared machined groove is a 4px rule over a hard 16px black bar over an unrelated strata field, unaddressed from last pass; slide 4's mill grooves quit at 1088 leaving 262px of bare ramp, unaddressed; slide 9 is one red rect on a flat gradient at variance 408."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral on every frame appears in copy.json against a claim or a declared computation, and I recounted 6 rendered index rows myself across slides 4, 5 and 7 (items 10, 25, 33, 29, 30, 31), so the cover's 6 and 28 are recomputable from the deck. Lead for the integrity judge, not a fail I can prove: the storyboard still asserted TEN quoted rows and 24 remaining, and slide-01.html's comment above LIT still listed ten items. The planning record contradicted the shipped frame in the same file that declares the frame's acceptance."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 8.0,
+   "why": "Names the body (PUC of Texas), the docket (58482), the threshold (75 MW at a single site, with 'at a single site' preserved), what the rule would do in two verbatim conditions, the cap (54 million dollars in a calendar year), the deadline (September 4th, 2026), the days remaining (13, both ends printed), and the channel (interchange.puc.texas.gov). Slide 5 argues against the deck's own lens. The gap: the consequence is stated in the rule's language rather than in a reader's, so a Texan who is not a large load never learns why it touches them."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "Real turn at slide 5, where ground and ink invert and the frame names what the record does not say. But the middle sags: slides 4, 5 and 7 are all quoted index rows in JetBrains Mono, and slide 7 says the deadline is in two rows, which slides 8 and 9 then both say harder. Slide 7 is the most cuttable frame in the deck."
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "'The party field in the filing index gives a name. It gives nothing else.' 'Nothing here states who a filer is.' 'A number does the work a name would do.' Dry, exact, absence-naming, no boosterism and no doom. No em dashes, no colons or semicolons in prose, no first person, ordinal dates throughout. Marked down only for coldness: no Texan appears in it and the register never leaves the docket."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.5,
+   "why": "Three familiar moves where the rubric's 7 allows one. The oil chart table is the third appearance in five decks (artwork.json 2026-08-18 slide 9, 2026-08-19 slide 4, here slide 4) and the second at position 4. The light-ground inversion lands at slide 5 for the third time in six decks (08-16, 08-19, 08-22 all name slide 5), and the one-inversion-frame move itself is now in five of six. Fourth dark-dominant register in six. Credit where due: the Mission Control Houston register, the annunciator, the segmented readout and the open dimension are all genuinely first appearances here."
+  }
+ ],
+ "weighted_score": 7.11,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Invert slide 1's 34 tile lips to actual recess physics (dark upper-left inner wall, lit lower-right, no external cast shadow) so the cover stops contradicting both the law slide 5 states in its own source and the cut figure this very run added 200px below it, and then write the check that reads each slide's declared light direction against its canvas calls, because the harness's contacts and leaders arrays are empty on every frame that uses them."
+}

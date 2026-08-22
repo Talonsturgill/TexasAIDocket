@@ -1,6 +1,6 @@
 # PUCT Project 58482, proposed new rule on Large Load Demand Management Service, open for comment
 
-The Public Utility Commission of Texas has proposed a new rule governing demand management service for large electric loads, the category that covers data centers. The proposal for publication creates a new Section 25.521. Comments are open until September 4th, 2026. Individual Texans as well as utilities and data center operators have already filed.
+The Public Utility Commission of Texas has proposed a new rule governing demand management service for large electric loads. The proposal for publication creates a new Section 25.521. Comments are open until September 4th, 2026. The rule as published in the Texas Register does not contain the words data center. It draws its line at a total non-coincident peak demand at a single site of 75 megawatts or more.
 
 - Topic: power-and-the-grid
 - Decided by: Public Utility Commission of Texas (state-agency)
@@ -10,7 +10,7 @@ The Public Utility Commission of Texas has proposed a new rule governing demand 
 - Comment closes: 2026-09-04
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-08-19
+- Last checked: 2026-08-22
 
 ## Dates
 
@@ -23,6 +23,9 @@ The Public Utility Commission of Texas has proposed a new rule governing demand 
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-08-19 · The docket moved. The filing index reached 34 with a comment from Modern Tex Consulting on August 18th, on performance reporting and evaluation under the proposed rule. The September 4th public comment deadline is still published on the commission's calendar.
+- 2026-08-22 · Checked and unchanged. The filing index for control number 58482 still stands at 34 filings. The Texas Register acknowledgement in that index still gives a comment deadline of September 4th, 2026, so the window a Texan can file in is still open.
+- 2026-08-22 · Four assertions were corrected against this run's own fetch. The summary no longer calls the rule the category that covers data centers, because the published text does not contain the words. It no longer says individual Texans have filed, because the index publishes a party name and nothing about who a filer is. The filing count moves from 33 to 34.
+- 2026-08-22 · The earlier correction today reached the summary and not the public access field. That field still said individuals had filed without counsel. It is corrected now.
 
 ## Evidence
 
@@ -52,19 +55,19 @@ Source (primary_official): https://interchange.puc.texas.gov/search/documents/?c
 
 Source (primary_official): https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
 
-### Members of the public have filed objections in the project without counsel.
+### A filing in the project carries an objection to incentives in its description.
 
 > Large Load Demand Services "Say No to incentives"
 
 Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-### A second member of the public filed an objection to the rule change.
+### A second filing in the project carries an objection to the rule change.
 
 > Objection to rule change
 
 Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-### A data center operator is a party to the rulemaking.
+### CyrusOne, LP is a party to the rulemaking.
 
 > CyrusOne, LP Comments in Response to Commission Staff's Qu
 
@@ -72,7 +75,7 @@ Source (primary_official): https://interchange.puc.texas.gov/search/filings/?Uti
 
 ### The filing index records the number of filings in the project.
 
-> 33 filing(s).
+> 34 filing(s).
 
 Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
