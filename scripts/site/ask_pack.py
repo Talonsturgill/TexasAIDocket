@@ -49,12 +49,35 @@ import docket_build as dk                                          # noqa: E402
 LEDGER = Path(REPO) / "ledger" / "docket.json"
 DOCS = Path(REPO) / "docs"
 
-# The ceiling, in characters of rendered prose. Chosen from what the record actually needs
-# today with headroom for growth, not from what it happens to measure. At roughly 4 chars a
-# token this is about 55,000 tokens, which at Sonnet 5 intro rates is about 11 cents a cold
-# question. Crossing it is a budget decision for the owner and a conversation, never a number
-# to nudge upward to make CI green.
-MAX_CHARS = 220_000
+# TWO CEILINGS, BECAUSE THE ONE THAT USED TO MEASURE THE BILL STOPPED MEASURING ANYTHING.
+#
+# There was one number here and its comment priced it at about 11 cents a cold question,
+# because the whole pack went into every question. Wave 3 made that false and left the comment
+# standing. The pack is now sent to NOBODY. What every question pays for is the index plus a
+# slice capped in the worker, so the index is the number that bills and the pack is the number
+# that does not.
+#
+# Keeping the ceiling on the pack alone measures the wrong thing in both directions. It blocks
+# work for a cost nobody pays, which is what it did when the dossiers and the register were
+# added and it went red at 331,000 characters over a bill that had not moved. And it lets the
+# index grow without limit for a cost everybody pays.
+#
+# THE PACK CEILING now guards one thing, which is the ASK_RETRIEVAL=off escape hatch. That
+# sends the whole pack, so this is the size of the worst question the box can be asked to
+# answer with retrieval switched off, about 100,000 tokens, roughly 20 cents. It is a
+# break-glass and it is allowed to be expensive. It is not allowed to be unbounded.
+MAX_CHARS = 420_000
+
+# THE INDEX CEILING is where the money is. Every question carries the whole index whatever it
+# asked, which is the safety property this design is built on and the reason it can never be a
+# slice. At roughly 4 characters a token 40,000 is about 10,000 tokens a question. It is
+# CACHED, so a repeat question reads it at a tenth of the price, and a cold one pays in full.
+#
+# Raising this is a real decision about a real bill, unlike the number above it. The way to
+# make room is to roll a family up rather than to index it line by line, which is what the
+# construction register and the reservoirs already do, and what a family arriving later should
+# do before this number is touched.
+MAX_INDEX_CHARS = 40_000
 
 MONTHS = ("January", "February", "March", "April", "May", "June",
           "July", "August", "September", "October", "November", "December")
@@ -216,18 +239,27 @@ def tally(items: list, today: str) -> str:
 # framed. It is also paid for on every question forever.
 #
 # So the prompt states what is true and this comment holds why.
-INDEX_HEAD = """THE INDEX. Every decision the record holds, one line each, in the order they
-are filed. Each line carries the decision's title, then its topic, its decider, its status, the
-counties it names or that it is statewide, whether it sits on the ERCOT grid, and whether a
-public window is open, and it ends with the id to cite it by.
+INDEX_HEAD = """THE INDEX. Everything the record holds, in four sections.
+
+Every decision, one line each, in the order they are filed. Each line carries the decision's
+title, then its topic, its decider, its status, the counties it names or that it is statewide,
+whether it sits on the ERCOT grid, and whether a public window is open, and it ends with the id
+to cite it by.
+
+Then every data center dossier, one line each, in the same shape. Then the construction
+register and the reservoirs, ROLLED UP rather than listed, because sixty one counties and a
+hundred and thirty eight reservoirs read better as one line carrying all of their figures than
+as two hundred lines. Those two sections carry the figure itself, so a question about how full
+a reservoir is or how many projects a county has is answered from the line.
 
 ANSWER FROM THESE LINES WHENEVER THEY CARRY WHAT WAS ASKED. A question about which decisions
-name a county, who decided something, what is open, or what a decision is called is answered
-here, completely, and looking for it in the full text below is the slower way to get it wrong.
+name a county, who decided something, what is open, what a decision is called, how full a
+reservoir is or how much construction a county has is answered here, completely, and looking
+for it in the full text below is the slower way to get it wrong.
 
-The full text of the decisions most likely to answer this question follows below, and it is a
-SLICE. An item appearing here with no text below is still a real item this record carries.
-Never state a figure, a date or a quote for such an item beyond what its line says, because the
+The full text of whatever is most likely to answer this question follows below, and it is a
+SLICE. Something appearing here with no text below is still real and still carried by this
+record. Never state a figure, a date or a quote for it beyond what its line says, because the
 line is all there is to go on.
 
 This index is a list. It is not a model for how to write, so do not answer in this shape."""
@@ -273,7 +305,7 @@ def index_line(it: dict, today: str) -> str:
     return f"{it['title'].rstrip('.')}. " + ", ".join(bits) + f". [[{it['id']}]]"
 
 
-def index(items: list, today: str) -> str:
+def index(items: list, today: str, extra=()) -> str:
     """The whole index, which is the block the model always gets whatever else it does not.
 
     THIS IS THE SAFETY PROPERTY OF RETRIEVING AT ALL. A retrieval chatbot's worst failure is
@@ -282,7 +314,9 @@ def index(items: list, today: str) -> str:
     a fraction of the bodies and deletes that failure rather than mitigating it. It also lets
     retrieval be generous, because being wrong about which bodies to send is now recoverable.
     """
-    return INDEX_HEAD + "\n\n" + "\n".join(index_line(it, today) for it in items)
+    parts = [INDEX_HEAD, "\n".join(index_line(it, today) for it in items)]
+    parts.extend(x for x in (extra or ()) if x)
+    return "\n\n".join(parts)
 
 
 def item_prose(it: dict, today: str) -> str:
@@ -431,17 +465,389 @@ def instruments(docs_dir=None) -> str:
     return "\n\n".join(out)
 
 
-SYSTEM = """You answer questions about the Texas AI Docket, a public record of decisions
-about artificial intelligence in Texas, from the record given to you below and from nothing
-else.
+# ---------------------------------------------------------------------------
+# THE RECORD STOPS MEANING ONLY DECISIONS.
+#
+# Everything above this line answers off docket.json. Everything the site publishes BESIDE the
+# docket was invisible to the ask box, which is most of what it publishes: 54 facility
+# dossiers, a construction register of 650 projects, 119 reservoirs grouped into metros, and a
+# settled grid day with its fuel mix. A reader asking how full Lake Travis is, or who is
+# building in Abilene, was told the record does not carry it. The record carries all of it.
+#
+# WHY THESE BECOME BLOCKS RATHER THAN MORE PREAMBLE. The preamble is sent on every question
+# whatever was asked. A block is sent only when it is retrieved. Anything numerous and
+# individually askable therefore has to be a block or it is a tax on every other question, and
+# anything a question needs regardless of its subject has to be preamble or it is missing when
+# it matters. That is the whole rule and it decides every placement below.
+#
+# WHY THE NUMBERS ARRIVE AS SENTENCES AND NOT AS ROWS. Retrieval over text answers numeric
+# questions badly, measured at 41 percent against an oracle ceiling near 75. The failure is
+# structural rather than a tuning problem, because the answer to "how much construction is in
+# Dallas County" is a SUM and no retrieved row contains a sum. So the arithmetic is done here,
+# in Python, from the same files the pages are built from, exactly as `tally` has always done
+# it for the decisions. The model is handed a result rather than a table to add up.
+#
+# It is also what keeps the numeral law intact. Every figure below was computed from data, so
+# the answer time check authorises it for free, and no figure a reader ever sees was typed.
+
+# THE METRO DISPLAY NAMES ARE THE WATER PAGE'S, IMPORTED AND NOT COPIED. Two spellings of
+# "Beaumont and Port Arthur" on one site is the kind of drift nobody notices until a
+# reader asks about the one this file invented.
+from waterwatch_page import METRO_NAMES
+
+FACILITIES = Path(REPO) / "ledger" / "facilities" / "dossiers.json"
+PROJECTS = Path(REPO) / "ledger" / "facilities" / "projects.json"
+
+# The units the dossiers actually use, read off the data rather than guessed at. An unmapped
+# unit falls through as itself, which is the safe direction, and the self-test fails if the
+# ledger starts using one nothing here has a word for.
+UNIT_WORDS = {
+    "MW": "megawatts", "GW": "gigawatts", "sqft": "square feet", "acres": "acres",
+    "buildings": "buildings", "workers": "workers", "units": "units",
+    "facilities": "facilities", "percent": "percent", "jobs": "jobs",
+}
+
+
+def _ledger(path: Path):
+    """A ledger this pack can live without.
+
+    The dossiers and the register are written by a different lane on a different cadence. A run
+    that finds one missing should build a smaller pack, not fail. Every caller below treats an
+    empty return as "that family has nothing today" and emits no block and no index line, so
+    the model is never told something exists that it was not shown.
+    """
+    if not path.exists():
+        return None
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except (ValueError, OSError):
+        return None
+
+
+def money(n) -> str:
+    """A sum of money, in the shape an answer should say it.
+
+    ONE FORM ONLY, AND THIS IS NOT A STYLE CHOICE. The answer time check authorises the exact
+    numerals the model was shown. Writing $43,415,000,000 here and letting the model round it
+    to 43.42 billion would get that sentence refused, and the reader would see a stop where the
+    record had the figure. Writing it the way it should be read authorises the reading.
+    """
+    try:
+        n = float(n)
+    except (TypeError, ValueError):
+        return ""
+    if n >= 1e9:
+        return f"${n / 1e9:,.2f} billion".replace(".00 billion", " billion")
+    if n >= 1e6:
+        return f"${n / 1e6:,.1f} million".replace(".0 million", " million")
+    return f"${n:,.0f}"
+
+
+def _fact(f: dict) -> str:
+    """One dossier fact, as a sentence."""
+    label = (f.get("label") or "").strip().rstrip(".")
+    if not label:
+        return ""
+    if f.get("text"):
+        return f"{label} is {str(f['text']).strip().rstrip('.')}"
+    if f.get("value") is None:
+        return ""
+    unit = f.get("unit") or ""
+    if unit == "usd":
+        return f"{label} is {money(f['value'])}"
+    v = f["value"]
+    shown = f"{v:,.0f}" if isinstance(v, (int, float)) and float(v).is_integer() else f"{v:,}"
+    word = UNIT_WORDS.get(unit, unit)
+    return f"{label} is {shown} {word}".strip()
+
+
+def facility_prose(d: dict) -> str:
+    """One data centre, as the model should read it.
+
+    THE SUMMARY GOES ON THE SECOND LINE ON PURPOSE. The worker's splitter reads a block's first
+    two lines as its head and searches that separately from the body, so what a facility IS
+    ranks against a reader who half remembers a company or a town, while the facts underneath
+    still answer the reader who remembers a megawatt figure. That is two views of one block for
+    the price of putting the sentences in the right order.
+    """
+    name = (d.get("name") or "").strip()
+    lines = [f"[[facility-{d['slug']}]] {name}, a data center on the Texas register",
+             deurl((d.get("summary") or "").strip())]
+    facts = [s for s in (_fact(f) for f in (d.get("facts") or [])) if s]
+    if facts:
+        lines.append(_sentences(facts))
+    notes = [deurl(str(n.get("text") or "").strip()) for n in (d.get("notes") or [])]
+    notes = [n for n in notes if n]
+    if notes:
+        lines.append(" ".join(notes))
+    gaps = [str(g).strip().rstrip(".") for g in (d.get("gaps") or []) if str(g).strip()]
+    if gaps:
+        lines.append("What the record does not carry for this one. " + _sentences(gaps))
+    return "\n".join(x for x in lines if x)
+
+
+def facility_index_line(d: dict) -> str:
+    """One dossier, compressed to what tells a reader whether it is the one they mean.
+
+    Its name, where it is, who occupies it, and the id to cite it by. A dossier earns a line of
+    its own because it is a place a reader can be hunting by name, which is the same test the
+    decisions pass and the same test the rolled up families below fail.
+    """
+    facts = {(f.get("label") or "").strip(): f for f in (d.get("facts") or [])}
+    bits = []
+    for label in ("Location", "Occupant of record", "Operator of record",
+                  "Owner and operator of record", "Owner of record"):
+        f = facts.get(label)
+        if f and f.get("text") and f["text"] != "None is listed":
+            bits.append(str(f["text"]).strip().rstrip("."))
+            if len(bits) == 2:
+                break
+    return (f"{(d.get('name') or '').strip().rstrip('.')}, a data center"
+            + (". " + ", ".join(bits) if bits else "")
+            + f". [[facility-{d['slug']}]]")
+
+
+def familyOf(block_id: str) -> str:
+    """Which family a block belongs to, read off its id and nothing else.
+
+    THE SAME RULE THE WORKER USES, and the worker's copy is the one that decides retrieval, in
+    `workers/ask/retrieve.js`. This one exists so the self-test can check that the families the
+    builder emitted are the families the cut produces. Two implementations that agree today is
+    the failure this repo keeps relearning under new names, so they are asserted against each
+    other in `workers/ask/test.js` rather than trusted.
+    """
+    import re as _re
+    if _re.fullmatch(r"tx-\d{4}-\d{4}", block_id):
+        return "tx"
+    return block_id.split("-", 1)[0] if "-" in block_id else block_id
+
+
+def _slug(name: str) -> str:
+    return __import__("re").sub(r"[^a-z0-9]+", "-", str(name).lower()).strip("-")
+
+
+def construction(rows: list):
+    """The construction register, rolled up by county.
+
+    SIX HUNDRED AND FIFTY ROWS DO NOT BECOME SIX HUNDRED AND FIFTY BLOCKS. That is 162,000
+    characters, more than this entire pack, and it would still answer "how much is being built
+    in Dallas County" wrongly, because that answer is a sum and no row carries a sum. Rolled up
+    by county it is sixty one blocks, the sums are already taken, and the rows that made them
+    are still on the published page for anybody who wants to check the arithmetic.
+
+    NO PROJECT IS NAMED AS A PLAN. A registration is a filing, not a promise, and the register
+    records what was filed. Every line below is a count, a sum or a date the state published.
+    """
+    from collections import Counter, defaultdict
+    by_county = defaultdict(list)
+    for r in rows:
+        c = (r.get("county") or "").strip()
+        if c:
+            by_county[c].append(r)
+
+    blocks, lines = [], []
+    for county in sorted(by_county):
+        rs = by_county[county]
+        costs = [r["cost"] for r in rs if isinstance(r.get("cost"), (int, float)) and r["cost"]]
+        total = sum(costs)
+        cities = [c for c, _ in Counter(
+            (r.get("city") or "").strip() for r in rs if (r.get("city") or "").strip()
+        ).most_common(4)]
+        biggest = sorted((r for r in rs if isinstance(r.get("cost"), (int, float))),
+                         key=lambda r: -r["cost"])[:3]
+        statuses = Counter((r.get("status") or "unknown").strip() for r in rs)
+        years = sorted({(r.get("start") or "")[:4] for r in rs
+                        if (r.get("start") or "")[:4].isdigit()
+                        and (r.get("start") or "")[:4] != "1900"})
+
+        body = [f"{len(rs)} registered construction projects sit in {county} County",
+                f"Their declared cost adds to {money(total)}" if total else
+                "None of them declares a cost"]
+        if cities:
+            body.append("The cities named are " + ", ".join(cities))
+        if years:
+            body.append(f"The filings run from {years[0]} to {years[-1]}"
+                        if len(years) > 1 else f"Every filing starts in {years[0]}")
+        body.append("By status, " + ", ".join(
+            f"{k} {v}" for k, v in sorted(statuses.items(), key=lambda x: (-x[1], x[0]))))
+        named = [f"{(r.get('facility') or r.get('project') or '').strip()} at "
+                 f"{money(r['cost'])}" for r in biggest if r.get("cost")]
+        if named:
+            body.append("The largest by declared cost are " + ", ".join(named))
+        blocks.append(f"[[county-{_slug(county)}]] Construction registered in {county} County\n"
+                      + _sentences(body))
+        lines.append(f"{county} {len(rs)}")
+
+    total = sum(r["cost"] for r in rows
+                if isinstance(r.get("cost"), (int, float)) and r["cost"])
+    head = (f"THE CONSTRUCTION REGISTER. {len(rows)} projects the state has registered, "
+            f"declaring {money(total)} across {len(by_county)} counties. "
+            f"A registration is a filing and not a promise, so a project here is something "
+            f"somebody told the state they would build. "
+            f"Each county has a block of its own below, cited as its own id. "
+            f"By county, " + ", ".join(lines) + ".")
+    return blocks, head
+
+
+def reservoirs(feed: dict):
+    """Reservoir storage, by metro and by named reservoir.
+
+    A READER'S WATER QUESTION IS ABOUT THEIR OWN TAP. Statewide percent full is the right
+    headline and the wrong answer to "how is Austin doing" or "how full is Lake Travis", and the
+    feed already carries both levels because the water page publishes them. Nothing here is a
+    new measurement. It is the same reading, read at the level somebody actually asks about.
+
+    WHICH RESERVOIRS FEED WHICH METRO IS NOT IN THE PUBLISHED FEED. The collector rolls the
+    municipal tags into counts and the names do not survive that. Reconstructing the mapping
+    here would be a THIRD derivation of something the collector already decided, which is the
+    failure this repo keeps relearning under new names, so it is not reconstructed. A metro
+    block says how many reservoirs it draws on and a reservoir block stands on its own.
+
+    PERCENT FULL IS STORAGE OVER CAPACITY, COMPUTED HERE, never the publisher's own field. That
+    has been the water page's rule since it was written and an answer may not be built on a
+    different one, or two surfaces of this site would publish different numbers for one lake.
+
+    NO VERDICT, in either direction. Storage is a measurement. Whether it is enough is a call
+    this record does not make, and the answer time checker refuses the sentence if it tries.
+    """
+    readings = (feed or {}).get("readings") or []
+    if not readings:
+        return [], ""
+    r = readings[-1]
+    metros = r.get("metros") or {}
+    pools = r.get("reservoirs") or {}
+    if not metros and not pools:
+        return [], ""
+    day = longdate(r.get("date"))
+
+    blocks, metro_lines = [], []
+    for key in sorted(metros):
+        m = metros[key] or {}
+        name = METRO_NAMES.get(key, key.replace("_", " ").title())
+        pct = m.get("percent_full")
+        body = [f"{name} draws on {m.get('reservoirs')} reservoirs",
+                f"Their combined storage is {m.get('storage_af'):,.0f} acre feet against a "
+                f"conservation capacity of {m.get('capacity_af'):,.0f} acre feet, which is "
+                f"{pct} percent full" if m.get("storage_af") is not None else "",
+                "Which reservoirs those are is not in the published feed, so this block does "
+                "not name them",
+                f"Measured for {day}"]
+        blocks.append(f"[[water-{_slug(key)}]] Reservoir storage for the {name} metro\n"
+                      + _sentences([x for x in body if x]))
+        if pct is not None:
+            metro_lines.append(f"{name} {pct} percent")
+
+    pool_lines = []
+    for name in sorted(pools):
+        p = pools[name] or {}
+        cap, sto = p.get("capacity_af"), p.get("storage_af")
+        if not cap or sto is None:
+            continue
+        pct = round(100.0 * sto / cap, 1)
+        blocks.append(
+            f"[[water-lake-{_slug(name)}]] {name} reservoir\n"
+            + _sentences([
+                f"{name} holds {sto:,.0f} acre feet against a conservation capacity of "
+                f"{cap:,.0f} acre feet, which is {pct} percent full",
+                f"Measured for {day}"]))
+        pool_lines.append(f"{name} {pct} percent")
+
+    head = [f"RESERVOIR STORAGE, measured for {day} and read off the same statewide reading "
+            f"above. Percent full is storage over conservation capacity. Every metro and every "
+            f"reservoir has a block of its own below, cited as its own id."]
+    if metro_lines:
+        head.append("By metro, " + ", ".join(metro_lines) + ".")
+    if pool_lines:
+        head.append("Reservoir by reservoir, " + ", ".join(pool_lines) + ".")
+    return blocks, " ".join(head)
+
+
+# HOW MANY SETTLED DAYS MAY BE NAMED, and this number is the whole of the argument.
+#
+# "Never the series" is the older rule and it is right about what it was written against, which
+# was a reading a day for a year and twenty four figures inside each one. That is thousands of
+# numerals no question needs, and every one of them is authorised for a model to write the
+# moment it is shown.
+#
+# What it was NOT written against is "what has the peak done this week", which is a fair
+# question, which the site's own grid page answers, and which cannot be answered from one day.
+# So the rule keeps its teeth and gets a number. A fortnight of daily peaks is 14 numerals with
+# a date attached to each, the hourly arrays stay out entirely, and the ceiling is asserted in
+# the self-test so a feed that starts keeping a year cannot quietly widen this.
+GRID_DAYS = 14
+
+
+def grid_series(feed: dict) -> str:
+    """The recent settled days, at their peaks only.
+
+    NOT THE HOURLY SERIES, and not the whole feed either. See GRID_DAYS above for why there is
+    a number here rather than a prohibition. The peak is what a week question is asking about,
+    and the day it fell on is what makes the answer checkable against the page.
+    """
+    rs = ((feed or {}).get("readings") or [])[-GRID_DAYS:]
+    if len(rs) < 2:
+        return ""
+    days = ", ".join(f"{longdate(x.get('date'))} at {x.get('peak_load_mw')} MW"
+                     for x in rs if x.get("peak_load_mw") is not None)
+    if not days:
+        return ""
+    peaks = [x for x in rs if x.get("peak_load_mw") is not None]
+    top = max(peaks, key=lambda x: x["peak_load_mw"])
+    return _sentences([
+        f"The grid watch holds {len(rs)} settled days, which are {days}",
+        f"The highest peak among them was {top['peak_load_mw']} MW on "
+        f"{longdate(top.get('date'))}",
+        "These are measured days and none of them is a forecast of another one",
+    ])
+
+
+def weather(feed: dict) -> str:
+    """Heat and rain against the long run normal, at the one anchor station.
+
+    ONE STATION AND IT SAYS SO. This is not a statewide climate figure and a reader should
+    never be able to read it as one.
+    """
+    n = (feed or {}).get("normals") or {}
+    rs = (feed or {}).get("readings") or []
+    if not n or not rs:
+        return ""
+    last = rs[-1]
+    bits = [f"Weather at the anchor station, {n.get('station_name')}, station "
+            f"{n.get('station')}, which is one station and not a statewide figure"]
+    if last.get("date"):
+        got = [f"a high of {last['tmax_f']} F" if last.get("tmax_f") is not None else "",
+               f"a low of {last['tmin_f']} F" if last.get("tmin_f") is not None else "",
+               f"{last['prcp_in']} inches of rain" if last.get("prcp_in") is not None else ""]
+        got = [g for g in got if g]
+        if got:
+            bits.append(f"The most recent day it holds is {longdate(last['date'])} with "
+                        + ", ".join(got[:-1]) + " and " + got[-1] if len(got) > 1
+                        else f"The most recent day it holds is {longdate(last['date'])} with "
+                             + got[0])
+    bits.append(f"It holds {len(rs)} days in all")
+    base = n.get("base_period") or []
+    if len(base) == 2:
+        bits.append(f"Normals are the {base[0]} to {base[1]} base period")
+    return _sentences(bits)
+
+
+SYSTEM = """You answer questions about the Texas AI Docket, a public record of artificial
+intelligence in Texas, from the record given to you below and from nothing else.
+
+WHAT THE RECORD HOLDS. Four things, and a question may want any of them or several at once.
+The DECISIONS, which are what a public body decided and when. The DATA CENTERS on the state
+register, one dossier each. The CONSTRUCTION the state has registered, totalled by county. And
+RESERVOIR STORAGE, by metro and by reservoir. The daily grid and water readings sit above the
+index. Somebody asking what is happening in their county is asking about all of it.
 
 WHAT YOU MAY SAY. Only what the record states. Every figure you write must appear in the
-record exactly as you write it. Every decision you name must be one the record carries. If
+record exactly as you write it. Everything you name must be something the record carries. If
 the record does not answer the question, say so plainly and say what it does carry instead.
 A short true answer beats a long one that reaches.
 
-CITING. Write a decision's id in double square brackets, like [[tx-2026-0001]]. Never write a
-bare url.
+CITING. Write the id in double square brackets, like [[tx-2026-0001]] for a decision,
+[[facility-bexar-1]] for a data center, [[county-dallas]] for a county's construction, and
+[[water-lake-travis]] for a reservoir. Never write a bare url.
 
 THE PAGE TURNS THAT INTO THE DECISION'S FULL NAME, which on this record is often a whole
 sentence long. Two things follow and both are about where you put it.
@@ -508,19 +914,54 @@ def build(today: str = None, docs_dir=None) -> dict:
     today = today or _dt.date.today().isoformat()
     items = dk.load(LEDGER)
 
+    dossiers = (_ledger(FACILITIES) or {}).get("dossiers") or []
+    projects = (_ledger(PROJECTS) or {}).get("projects") or []
+    water = _feed("waterwatch", docs_dir) or {}
+
+    # THE BLOCKS AND THE INDEX LINES ARE BUILT TOGETHER, ONE CALL EACH, because they have to
+    # agree. A family with an index line and no blocks tells the model something exists that it
+    # can never be shown, and a family with blocks and no line is invisible until retrieval
+    # happens to guess right. Each builder returns both or neither.
+    county_blocks, county_head = construction(projects)
+    water_blocks, water_head = reservoirs(water)
+
     parts = [
         f"THE TEXAS AI DOCKET, as it stood on {longdate(today)}. "
-        f"It tracks {len(items)} decisions.",
+        f"It tracks {len(items)} decisions. It also carries the daily instruments, "
+        f"{len(dossiers)} data center dossiers, the state construction register and "
+        f"reservoir storage, all of which are below and all of which can be asked about.",
     ]
     parts.append(tally(items, today))
     inst = instruments(docs_dir)
     if inst:
         parts.append("THE DAILY INSTRUMENTS.\n\n" + inst)
+
+    # THE SERIES AND THE WEATHER ARE PREAMBLE, NOT BLOCKS, and the rule that decides it is the
+    # one at the top of the section above. Twelve peaks and one station's last reading are
+    # small, and the question they answer, what has this week looked like, arrives without
+    # naming anything a retriever could match on. A block nobody retrieves is a block nobody
+    # reads.
+    series = grid_series(_feed("gridwatch", docs_dir) or {})
+    if series:
+        parts.append("THE SETTLED GRID DAYS.\n\n" + series)
+    wx = weather(_feed("weather", docs_dir) or {})
+    if wx:
+        parts.append("THE WEATHER RECORD.\n\n" + wx)
+
     parts.append("THE DECISIONS.")
     parts.extend(item_prose(it, today) for it in items)
+    parts.extend(facility_prose(d) for d in dossiers)
+    parts.extend(county_blocks)
+    parts.extend(water_blocks)
 
     pack = "\n\n".join(parts)
-    idx = index(items, today)
+    idx = index(items, today, extra=[
+        ("THE DATA CENTER DOSSIERS. One line each, in the same shape as the decisions above, "
+         "and the full dossier for the ones this question needs is below.\n"
+         + "\n".join(facility_index_line(d) for d in dossiers)) if dossiers else "",
+        county_head,
+        water_head,
+    ])
     return {
         "generated": today,
         "system": SYSTEM,
@@ -539,6 +980,21 @@ def build(today: str = None, docs_dir=None) -> dict:
         "index_chars": len(idx),
         "chars": len(pack),
         "items": len(items),
+        # WHAT THE PACK ACTUALLY HOLDS, BY FAMILY. `items` counts decisions and used to count
+        # everything, because for two years the two were the same number. They are not any
+        # more, and a test asserting the split returned `items` blocks was the first thing to
+        # notice. Both are published rather than one replacing the other, since the worker
+        # deployed today still reads `items` and a field vanishing under a live worker is the
+        # failure this file is most careful about.
+        "blocks": len(items) + len(dossiers) + len(county_blocks) + len(water_blocks),
+        # The page reads this to render a citation as a name and a working link. It is not read
+        # by the worker, which only ever needs the ids, and it is published here because this is
+        # the one place that holds every family's names at once.
+        "cites": cites(items, dossiers, county_blocks, water_blocks, places=_places()),
+        "families": {
+            "tx": len(items), "facility": len(dossiers),
+            "county": len(county_blocks), "water": len(water_blocks),
+        },
         # WHAT THE ANSWER CACHE ROTATES ON, and the date was not enough.
         #
         # The worker keys a cached answer on the pack's `generated` date, so an answer written
@@ -565,6 +1021,72 @@ def build(today: str = None, docs_dir=None) -> dict:
 #   2  every decision block starts at the beginning of a line with "[[<id>]] "
 #   3  blocks are separated by a blank line
 #   4  ids are unique and there are exactly as many blocks as decisions
+# WHERE A CITATION GOES, AND WHAT IT READS AS.
+#
+# The page renders [[id]] as a link under the thing's own name. It used to build that from the
+# docket index and hardcode /item/<id>/, which was right while every citable thing was a
+# decision. A dossier cited that way reached a reader as the literal string
+# "facility-nexus-data-centers", linking to a page that does not exist.
+#
+# So the pack publishes the map, because the pack is where the names are. The alternative is
+# the page deriving a name by unpicking a slug, which gets "b-a-steinhagen" wrong on the first
+# try and gets it wrong silently.
+#
+# NOT EVERY FAMILY HAS A PAGE PER ITEM AND THE MAP SAYS SO RATHER THAN GUESSING. Fifty four
+# dossiers have one each. Sixty one counties of construction have twenty four between them, so
+# they point at the register, which is where their rows are published. Reservoirs have no page
+# of their own at all and point at the water record.
+def cites(items: list, dossiers: list, county_blocks: list, water_blocks: list,
+          places: set = frozenset()) -> dict:
+    out = {}
+    for it in items:
+        out[it["id"]] = [it["title"], f"item/{it['id']}/"]
+    for d in dossiers:
+        out[f"facility-{d['slug']}"] = [(d.get("name") or "").strip(),
+                                        f"facility/{d['slug']}/"]
+    for b in county_blocks:
+        bid = b[2:b.index("]]")]
+        name = b[b.index("]]") + 2:b.index("\n")].strip()
+        out[bid] = [name, f"place/{bid}/" if bid in places else "construction/"]
+    for b in water_blocks:
+        bid = b[2:b.index("]]")]
+        out[bid] = [b[b.index("]]") + 2:b.index("\n")].strip(), "water/"]
+    return out
+
+
+def _places() -> set:
+    """The county pages the site actually publishes, read off the built directory.
+
+    ASSERTED RATHER THAN ASSUMED, because it is 24 of the 61 counties the construction register
+    names and the gap is not visible from either ledger. Guessing the other way round would
+    publish thirty seven citations pointing at pages that do not exist.
+    """
+    d = DOCS / "place"
+    if not d.is_dir():
+        return set()
+    return {x.name for x in d.iterdir() if x.is_dir()}
+
+
+def block_ids(pack: dict) -> list:
+    """Every id the pack can be cited by, cut the way the worker cuts it.
+
+    ONE CUT, NOT TWO. The worker splits the pack on the same fence to decide what to send, and
+    ask_corpus needs the same list to decide what may be cited. Deriving it a second way, from
+    the ledgers, is how a family ends up in the pack, in the index, and refused at the check,
+    which the reader sees as a true sentence being cut for naming their own reservoir.
+    """
+    fence = "\n\n" + DECISIONS_MARK + "\n\n"
+    text = pack.get("pack") or ""
+    if fence not in text:
+        return []
+    out = []
+    for block in text.split(fence, 1)[1].split("\n\n"):
+        b = block.strip()
+        if b.startswith("[[") and "]]" in b:
+            out.append(b[2:b.index("]]")])
+    return out
+
+
 DECISIONS_MARK = "THE DECISIONS."
 
 
@@ -633,11 +1155,17 @@ def self_test() -> int:
 
     print("the instruments are current, never the series")
     grid = _feed("gridwatch")   # the repo's committed docs/, which is what a self-test reads
-    if grid and len(grid.get("readings") or []) > 2:
-        # Only the last two readings may appear. A third proves the series leaked in.
-        third = grid["readings"][-3].get("peak_load_mw")
-        check("only the current and previous grid readings are shown",
-              str(third) not in text, f"found {third}")
+    if grid and len(grid.get("readings") or []) > GRID_DAYS:
+        # A day older than the window proves the whole series leaked in. This used to read
+        # "only the current and previous", which was the rule before a week question was
+        # answerable at all, and GRID_DAYS carries the reasoning that replaced it.
+        older = grid["readings"][-(GRID_DAYS + 1)].get("peak_load_mw")
+        check(f"no settled day older than the last {GRID_DAYS} is shown",
+              str(older) not in text, f"found {older}")
+    peaks = [r.get("peak_load_mw") for r in (grid or {}).get("readings") or []]
+    check(f"at most {GRID_DAYS} daily peaks reach the pack",
+          sum(1 for x in peaks if x is not None and str(x) in text) <= GRID_DAYS,
+          f"{sum(1 for x in peaks if x is not None and str(x) in text)}")
     check("no hourly array reached the pack",
           "hour_ending" not in text and "load_mw" not in text)
 
@@ -646,9 +1174,15 @@ def self_test() -> int:
     check("every decision has a line in the index",
           all(f"[[{it['id']}]]" in idx for it in items),
           str([it["id"] for it in items if f"[[{it['id']}]]" not in idx][:3]))
-    check("the index has exactly one line per decision, plus its header",
-          len([l for l in idx.splitlines() if l.rstrip().endswith("]]")]) == len(items),
-          str(len([l for l in idx.splitlines() if l.rstrip().endswith("]]")])))
+    # THE INDEX CARRIES TWO FAMILIES LINE BY LINE AND ROLLS THE OTHER TWO UP, so this counts
+    # what earns a line rather than what exists. A decision and a dossier are each something a
+    # reader hunts by name. Sixty one county rollups and a hundred and thirty eight reservoirs
+    # are a table, and a table reads better as one line naming all of them with their figures,
+    # which is also what keeps the ceiling above reachable.
+    lined = p["families"]["tx"] + p["families"]["facility"]
+    check("the index has exactly one line per decision and per dossier, plus its headers",
+          len([l for l in idx.splitlines() if l.rstrip().endswith("]]")]) == lined,
+          str(len([l for l in idx.splitlines() if l.rstrip().endswith("]]")])) + f" of {lined}")
     # WHAT AN INDEX LINE IS ALLOWED TO PUT IN A READER'S HANDS.
     #
     # The worker authorises the numerals in what it actually sent, so every figure on a line
@@ -690,16 +1224,34 @@ def self_test() -> int:
     check("every block below the mark starts with an id at the start of a line",
           all(b.startswith("[[") for b in blocks),
           str([b[:40] for b in blocks if not b.startswith("[[")][:2]))
-    check("there are exactly as many blocks as decisions",
-          len(blocks) == len(items), f"{len(blocks)} blocks, {len(items)} decisions")
+    # THE PACK IS FOUR FAMILIES NOW AND THIS USED TO ASSERT IT WAS ONE. It read "as many
+    # blocks as decisions", which was true for as long as the decisions were all there was, and
+    # went red the day the dossiers arrived. The contract it was really guarding is that every
+    # block the builder emits comes back out of the cut whole, with its own id, and that is
+    # what it asserts now, family by family, so a family losing its blocks is still caught.
+    check("there are exactly as many blocks as the pack says it holds",
+          len(blocks) == p["blocks"], f"{len(blocks)} blocks, {p['blocks']} declared")
     ids = [b[2:b.index("]]")] for b in blocks]
-    check("and the ids are unique and in the record's order",
-          ids == [it["id"] for it in items])
-    check("no decision body contains a blank line, which would split it in two",
-          all("\n\n" not in item_prose(it, p["generated"]) for it in items))
+    check("the decisions come out first, in the record's own order",
+          ids[:len(items)] == [it["id"] for it in items])
+    check("every id is unique", len(set(ids)) == len(ids),
+          f"{len(ids) - len(set(ids))} repeated")
+    check("every id is one the page's citation pattern can render",
+          all(__import__("re").fullmatch(r"[a-z0-9-]+", i) for i in ids),
+          str([i for i in ids if not __import__("re").fullmatch(r"[a-z0-9-]+", i)][:3]))
+    fams = {}
+    for i in ids:
+        fams[familyOf(i)] = fams.get(familyOf(i), 0) + 1
+    check("and every family is present in the count the pack publishes",
+          fams == {k: v for k, v in p["families"].items() if v}, f"{fams} against {p['families']}")
+    check("no body contains a blank line, which would split it in two",
+          not any("\n\n" in b for b in blocks))
 
     print("size, which is a bill and not a warning")
     approx = round(len(text) / 4)
+    check(f"the index is under its ceiling of {MAX_INDEX_CHARS} chars, which is the one "
+          f"every question pays for", len(p["index"]) <= MAX_INDEX_CHARS,
+          f"{p['index_chars']:,}")
     check(f"the pack is under its ceiling of {MAX_CHARS} chars", len(text) <= MAX_CHARS,
           f"{len(text)} chars, roughly {approx} tokens")
 
@@ -724,6 +1276,9 @@ def main() -> int:
         return 0
     print(f"ask pack: {p['items']} decisions, {p['chars']} chars, "
           f"roughly {round(p['chars'] / 4)} tokens, ceiling {MAX_CHARS}")
+    print(f"  index {p['index_chars']:,} chars, roughly {round(p['index_chars'] / 4)} tokens "
+          f"on EVERY question, ceiling {MAX_INDEX_CHARS:,}")
+    print("  blocks " + ", ".join(f"{k} {v}" for k, v in sorted(p["families"].items())))
     return 0
 
 

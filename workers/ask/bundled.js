@@ -519,21 +519,61 @@ export function strangeness(query, idx) {
   return { known, unknown, ratio: (known + unknown) ? unknown / (known + unknown) : 0 };
 }
 
+// WHICH FAMILY A BLOCK BELONGS TO, read off its id and nothing else.
+//
+// The record used to be one kind of thing. It is now four: the decisions, the data center
+// dossiers, the construction register rolled up by county, and reservoir storage. They are
+// asked about in the same sentence often enough that splitting them into separate boxes would
+// be worse than useless, and they cannot share one BM25 index, which is the finding that made
+// this function necessary rather than tidy.
+export function familyOf(id) {
+  const s = String(id || "");
+  if (/^tx-\d{4}-\d{4}$/.test(s)) return "tx";
+  const cut = s.indexOf("-");
+  return cut > 0 ? s.slice(0, cut) : s;
+}
+
+// HOW THE SLICE IS SHARED OUT, and the numbers are sizes rather than preferences.
+//
+// A decision block averages 2,708 characters, a dossier 1,609, a county rollup 390 and a
+// reservoir 212. Six decisions used to cost 16,248 characters. The shares below cost about
+// 14,600 for eight blocks across four families, so a wider question is now answered from more
+// of the record for slightly less money. The decisions keep the largest share because they are
+// the record's spine and because they are the only family a reader can ask about by id.
+const SHARE = { tx: 4, facility: 2, county: 1, water: 1 };
+const BREADTH_SHARE = { tx: 8, facility: 4, county: 3, water: 3 };
+// A family this file has never heard of, which is what a new ledger looks like on the day it
+// ships. It gets a seat rather than silence, because the alternative is data that is in the
+// pack, in the index, and unreachable by every question.
+const SHARE_DEFAULT = 1;
+const BREADTH_DEFAULT = 2;
+
 /**
- * Choose the bodies.
+ * Choose the bodies, one family at a time, then fuse.
  *
- * TWO VIEWS FUSED, NOT ONE SEARCH. The body view finds a decision by something a reader
- * remembers reading in it. The head view finds one by what it IS, which is what somebody
- * typing a half remembered title or a decider's name is doing. They rank differently and both
- * are right about different questions, so reciprocal rank fusion keeps the order both agree on
- * and throws away two magnitudes that were never on the same scale.
+ * WHY NOT ONE INDEX OVER EVERYTHING, which is what this was and what it stopped being able to
+ * be. Adding the other families took the corpus from 69 documents to 322, and BM25's two
+ * corpus-wide statistics both broke on the way.
  *
- * CORROBORATION SETS THE BAR, NOT THE SCORE. One word shared with a decision is a coincidence
- * and two is a signal, which is the rule wave 2 measured into the browser lane after "best way
- * to train for a marathon" reached a grant about robot safety. Here it decides how many bodies
- * are worth paying for rather than whether to answer at all, so an uncorroborated best guess
- * still gets a floor of a few, unless something in the question points off the record entirely.
- * The index covers whatever the guess misses.
+ * IDF stopped meaning what it means. "County" appears in 136 of 322 blocks now, so its
+ * informativeness fell below the floor and the word was discarded as boilerplate. It IS
+ * boilerplate among sixty one blocks each titled "Construction registered in X County". It is
+ * not boilerplate among the decisions, and discarding it there cost the county questions half
+ * their recall in a single build, measured: 100 percent found and 60 first, down to 86.7 and
+ * 30.
+ *
+ * Average document length stopped meaning what it means. Length normalisation at b=0.75 scores
+ * a document against the corpus mean, and the mean is now dragged down by 138 reservoir blocks
+ * of 212 characters, so every decision looks bloated and is penalised for it.
+ *
+ * Both are the same mistake, which is treating four kinds of document as one population. So
+ * each family is indexed, scored and corroborated against its OWN population, where its own
+ * boilerplate is common and its own lengths are comparable, and only the survivors are fused.
+ *
+ * THE SHARES ARE ALSO WHAT MAKES A WIDE QUESTION WORK, which is the reason this was built. Ask
+ * what is happening in Dallas County and the honest answer draws on a decision, a construction
+ * total and a data center, and a single ranked list hands back six blocks from whichever family
+ * happened to word things closest. It returned exactly one.
  */
 export function pickItems(query, items, opts = {}) {
   const breadth = opts.breadth ?? wantsBreadth(query);
@@ -543,40 +583,92 @@ export function pickItems(query, items, opts = {}) {
   const known = new Set(items.map((it) => it.id));
   const pinned = pinnedIds(query, known);
 
-  const bodyIdx = askIndex(items.map((it) => ({ id: it.id, summary: it.text })));
-  const headIdx = askIndex(items.map((it) => ({ id: it.id, summary: it.head })));
+  // Strangeness stays GLOBAL, and that is not an oversight. It asks whether the record has ever
+  // used a word, and the record is all four families. A reservoir teaching the corpus the word
+  // "storage" is the corpus learning it.
+  const strange = strangeness(query, askIndex(items.map(
+    (it) => ({ id: it.id, summary: it.text }))));
 
-  // A HIT ON NOTHING BUT COMMON WORDS IS NOT A HIT, AND FUSING IT IS WORSE THAN IGNORING IT.
-  //
-  // BM25 returns any document with a score above zero, and a word most of the record uses
-  // scores just above zero everywhere. Left in, those hits do not merely pad the list, they
-  // WIN it. "Erath county" put the one decision naming Erath first in the body list and
-  // nowhere in the title list, while twenty eight decisions matched "county" in both, and
-  // reciprocal rank fusion correctly preferred what both lists agreed on. It was agreement
-  // about a word that means nothing.
-  //
-  // So each list is cut to the hits carrying at least one word the record does not use
-  // everywhere, BEFORE they are fused. The threshold is the corpus's own, computed by the
-  // retriever, so no stopword list has to be maintained as the record grows.
-  const evidence = (list) => list.filter((h) => h.terms >= 1);
-  const body = evidence(askBm25(bodyIdx, query));
-  const head = evidence(askBm25(headIdx, query));
-
-  // Corroboration is a fact about the match, so it is read off the lists rather than off the
-  // fused order, which has thrown the term counts away along with the magnitudes.
-  const terms = {};
-  for (const h of [...body, ...head]) {
-    terms[h.id] = Math.max(terms[h.id] || 0, h.terms);
+  const families = new Map();
+  for (const it of items) {
+    const f = familyOf(it.id);
+    if (!families.has(f)) families.set(f, []);
+    families.get(f).push(it);
   }
 
-  const fused = askFuse([body, head]);
-  const strong = fused.filter((r) => (terms[r.id] || 0) >= need).map((r) => r.id);
-  const weak = fused.filter((r) => !strong.includes(r.id)).map((r) => r.id);
+  const lists = [];
+  const terms = {};
+  const spare = [];
+  for (const [family, group] of families) {
+    const bodyIdx = askIndex(group.map((it) => ({ id: it.id, summary: it.text })));
+    const headIdx = askIndex(group.map((it) => ({ id: it.id, summary: it.head })));
+
+    // A HIT ON NOTHING BUT COMMON WORDS IS NOT A HIT, AND FUSING IT IS WORSE THAN IGNORING IT.
+    //
+    // BM25 returns any document with a score above zero, and a word most of the family uses
+    // scores just above zero everywhere. Left in, those hits do not merely pad the list, they
+    // WIN it. "Erath county" put the one decision naming Erath first in the body list and
+    // nowhere in the title list, while twenty eight decisions matched "county" in both, and
+    // reciprocal rank fusion correctly preferred what both lists agreed on. It was agreement
+    // about a word that means nothing.
+    //
+    // So each list is cut to the hits carrying at least one word that family does not use
+    // everywhere, BEFORE they are fused. The threshold is that family's own, computed by the
+    // retriever, so no stopword list has to be maintained as the record grows.
+    const evidence = (list) => list.filter((h) => h.terms >= 1);
+    const rawBody = askBm25(bodyIdx, query);
+    const rawHead = askBm25(headIdx, query);
+    const body = evidence(rawBody);
+    const head = evidence(rawHead);
+    // A FILTER THAT SILENCES A WHOLE FAMILY HAS STOPPED FILTERING AND STARTED DELETING.
+    //
+    // Its job is to keep a coincidental hit on a common word from WINNING the fusion, and
+    // within one family that judgement is sound. It has one blind spot, which is a question
+    // whose every word is that family's own boilerplate. "Data centers" is two words and the
+    // decisions family uses both of them in nineteen decisions, so both fall under the
+    // informativeness floor, so no decision carries a single informative term, so the family
+    // returns nothing at all for the question it is best placed to answer.
+    //
+    // The unfiltered order is kept for that case only. It is never fused and never competes,
+    // and it is drawn on by the floor below, which only runs when nothing anywhere corroborated
+    // and the question used no word the record has never heard.
+    const mute = !body.length && !head.length && (rawBody.length || rawHead.length);
+
+    // Corroboration is a fact about the match, so it is read off the lists rather than off the
+    // fused order, which has thrown the term counts away along with the magnitudes.
+    for (const h of [...body, ...head]) {
+      terms[h.id] = Math.max(terms[h.id] || 0, h.terms);
+    }
+
+    const fused = askFuse([body, head]).map((r) => r.id);
+    const strong = fused.filter((id) => (terms[id] || 0) >= need);
+    const share = breadth
+      ? (BREADTH_SHARE[family] ?? BREADTH_DEFAULT)
+      : (SHARE[family] ?? SHARE_DEFAULT);
+    lists.push({ family, take: strong.slice(0, share), strong, fused,
+                 muted: mute ? askFuse([rawBody, rawHead]).map((r) => r.id) : [] });
+    // WHAT A FAMILY DID NOT USE GOES BACK IN THE POT. A question about one decision should
+    // still get six decisions, and it would get four if a share nothing matched were simply
+    // lost. The leftovers are queued in each family's own rank order and drawn on below only
+    // after every family has had its share.
+    spare.push(...strong.slice(share));
+  }
 
   const chosen = [];
   const push = (id) => { if (id && !chosen.includes(id)) chosen.push(id); };
   pinned.forEach(push);
-  strong.slice(0, want).forEach(push);
+
+  // ROUND ROBIN, BEST FIRST, so a slice cut short by the character cap still carries every
+  // family that matched rather than the first family alphabetically.
+  const depth = Math.max(0, ...lists.map((l) => l.take.length));
+  for (let i = 0; i < depth; i++) {
+    for (const l of lists) if (l.take[i]) push(l.take[i]);
+  }
+  spare.slice(0, Math.max(0, want - chosen.length)).forEach(push);
+
+  const corroborated = lists.reduce((n, l) => n + l.strong.length, 0);
+  const ranked = lists.reduce((n, l) => n + l.fused.length, 0);
+
   // ONE RARE WORD IS ENOUGH TO SHOW THE MODEL A BODY, though it was not enough to name a
   // decision as the answer in the page's own lane. The size of the claim sets the evidence.
   // Naming one decision out of sixty nine is a claim about the world. Putting its text in a
@@ -599,6 +691,7 @@ export function pickItems(query, items, opts = {}) {
   // The other way round puts three unrelated real decisions in front of a model that has been
   // asked about running, and a plausible answer assembled out of real text is the one thing
   // downstream cannot catch.
+  //
   // ONE UNKNOWN WORD IS ENOUGH TO STOP THE GUESS, and a ratio was tried first and was wrong.
   // "Best way to train for a marathon" is three quarters familiar to this record, because
   // "best" is in one decision, "way" is in five and "trains" is in one, all by accident. Only
@@ -609,23 +702,53 @@ export function pickItems(query, items, opts = {}) {
   // This bites ONLY where the strong list is already empty, so it never touches a question with
   // two corroborating words in one decision, which is nearly every real one. What it refuses is
   // the intersection of thin evidence and a word pointing elsewhere.
-  const strange = strangeness(query, bodyIdx);
+  //
+  // THE FLOOR IS DEPTH FIRST AND THEN ONE SEAT EACH, and it was tried the other way round.
+  //
+  // Depth is what a county question needs. "Erath county" corroborates nowhere, lands here, and
+  // wants the three decisions that ranked best, which are three items from ONE family. Handing
+  // it one from each family instead cost the county set 40 points of recall in a single run,
+  // measured, 100 percent found down to 60.
+  //
+  // A seat each is what a topic question needs. "Data centers" is two words and both of them
+  // are boilerplate inside the two families that should answer it, so nothing anywhere clears
+  // the bar and this path decides the whole answer. Filling it depth first handed back three
+  // dossiers and no decision, for a record holding nineteen decisions about data centers.
+  //
+  // Both are right about their own question and neither generalises, so the floor does depth
+  // first and then tops up with one representative from every family that matched and was
+  // left out. It costs a few hundred characters, because a block outside the decisions is
+  // small, and it is the difference between a wide question being answered widely and being
+  // answered by whichever family worded things closest.
   if (chosen.length < FLOOR_N && strange.unknown === 0) {
-    weak.slice(0, FLOOR_N - chosen.length).forEach(push);
+    const weak = lists.map((l) => (l.fused.length ? l.fused : l.muted)
+      .filter((id) => !l.strong.includes(id)));
+    const flat = [];
+    for (const w of weak) flat.push(...w);
+    flat.slice(0, FLOOR_N - chosen.length).forEach(push);
+    const seated = new Set(chosen.map(familyOf));
+    for (const w of weak) {
+      if (w.length && !seated.has(familyOf(w[0]))) {
+        seated.add(familyOf(w[0]));
+        push(w[0]);
+      }
+    }
   }
 
   return { chosen: chosen.slice(0, Math.max(want, pinned.length)),
-           corroborated: strong.length, ranked: fused.length, pinned, strange };
+           corroborated, ranked, pinned, strange };
 }
 
 const SLICE_HEAD =
-  "THE DECISIONS MOST LIKELY TO ANSWER THIS QUESTION, in full. The index above lists every " +
-  "decision the record holds and this is a slice of it. An item indexed above and absent " +
+  "WHAT IS MOST LIKELY TO ANSWER THIS QUESTION, in full. It may be decisions or data center " +
+  "dossiers or a county's construction or reservoirs. It is often several of those at once. " +
+  "A question about a place is usually about more than one of them. The index above lists " +
+  "everything the record holds and this is a slice of it. Something indexed above and absent " +
   "here is still real and still citable. Nothing about it beyond its index line is known to " +
   "you. Cite it and say what its line says and stop there.";
 
 const NO_SLICE =
-  "NO DECISION MATCHES THIS QUESTION closely enough to send its full text. The index above is " +
+  "NOTHING MATCHES THIS QUESTION closely enough to send its full text. The index above is " +
   "the whole record. Answer from the counts and the index. If the record does not carry this " +
   "say so plainly and name what it does carry instead.";
 

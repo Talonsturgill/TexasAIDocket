@@ -44,6 +44,7 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import ask_answers                                                # noqa: E402
+import ask_pack                                                    # noqa: E402
 import ask_corpus                                                 # noqa: E402
 import ask_written                                                # noqa: E402
 import docket_build as dk                                          # noqa: E402
@@ -3853,6 +3854,19 @@ def ask_box(items: list, today: str, base: str = "") -> str:
     """
     idx = ask_answers.index(items, today)
     cat = ask_answers.catalogue(idx)
+    # HOW A CITATION TO SOMETHING THAT IS NOT A DECISION RENDERS.
+    #
+    # The written lane can now cite a data center, a county's construction or a reservoir, and
+    # the page turned every citation into a link under the decision's own title at
+    # /item/<id>/. For the other three families that produced the literal slug as link text,
+    # pointing at a page that does not exist.
+    #
+    # THE DECISIONS ARE LEFT OUT OF THIS MAP ON PURPOSE. Their titles already ship in the index
+    # above, at 106 characters each, and shipping them twice would put 20,000 bytes on every
+    # page to say what is already there. The renderer falls back to the index for anything this
+    # map does not carry, which is exactly the decisions.
+    cites = {k: v for k, v in ask_pack.build(today)["cites"].items()
+             if not k.startswith("tx-")}
     starters = [c["q"] for c in cat if c["route"]["view"] in ("open_now", "counts")][:1] + \
                [c["q"] for c in cat if c["route"]["view"] == "by_metro"][:1] + \
                [c["q"] for c in cat if c["route"]["view"] == "by_topic"][:1]
@@ -3889,7 +3903,8 @@ def ask_box(items: list, today: str, base: str = "") -> str:
 </section>
 
 <script>window.__ASK_INDEX__={json.dumps(idx, separators=(",", ":"))};
-window.__ASK_CATALOGUE__={json.dumps(cat, separators=(",", ":"))};</script>
+window.__ASK_CATALOGUE__={json.dumps(cat, separators=(",", ":"))};
+window.__ASK_CITES__={json.dumps(cites, separators=(",", ":"))};</script>
 <script>{ask_answers.engine_js()}</script>
 <script>{ask_written.client_js()}</script>
 """
@@ -5972,6 +5987,49 @@ def build(out: Path, today: str) -> dict:
         return set().union(*(by_item[i["id"]] for i in subset)) if subset else set()
 
     w("site.css", theme.css())
+    # THE THREE SERIES GO OUT FIRST, BEFORE ANY PAGE IS RENDERED, and the order is load
+    # bearing rather than tidy.
+    #
+    # They used to be written down among the pages that publish them, which reads well and
+    # was wrong. The build wipes the out directory and starts empty, so for most of a run
+    # these files do not exist. Anything rendered before them that wanted a reading got
+    # nothing, silently, and the two places that do are both in the ask box.
+    #
+    # The pack escaped it by being written near the end, after the grid and the water but
+    # BEFORE the weather, so it has been shipping with no weather in it since the day the
+    # weather was added and no gate could see that. The ask box's citation map did not
+    # escape it, and shipped covering two of its four families.
+    #
+    # Nothing here needs a page. Each one is a ledger read and a json dump, so there is no
+    # reason beyond habit for them to run late, and running first means every reader of them
+    # downstream reads THIS build's own output rather than whatever the last build left.
+    # The grid watch as open data, in the same shape the page was built from. A reader who
+    # doubts a figure here can recompute it without refetching anything from ERCOT.
+    w("gridwatch.json", json.dumps(
+        {"_spec": {"version": dk.SPEC_VERSION, "generated": today,
+                   "note": "One settled ERCOT day per record. Hourly series included so every "
+                           "published figure is recomputable. Unverified days carry no "
+                           "numbers rather than yesterday's."},
+         "readings": gridwatch_page.load()}, indent=2, ensure_ascii=False) + "\n")
+    w("waterwatch.json", json.dumps(
+        {"_spec": {"version": dk.SPEC_VERSION, "generated": today,
+                   "note": "One day per record, per reservoir, so every roll up is "
+                           "recomputable. Out of state reservoirs and flood control dams with "
+                           "no conservation pool are excluded, and both exclusions are named "
+                           "in each record."},
+         "readings": waterwatch_page.load()}, indent=2, ensure_ascii=False) + "\n")
+    # The heat clock as open data, on the same terms as the other two series. It has no page
+    # of its own, because it is one line at the top of the front page rather than a subject,
+    # so the data page is where a reader finds it.
+    w("weather.json", json.dumps(
+        {"_spec": {"version": dk.SPEC_VERSION, "generated": today,
+                   "note": "Observed daily maximum and minimum at one anchor station, from "
+                           "NCEI daily summaries. A day with no observation is absent rather "
+                           "than zero. Normals are the 1991 to 2020 period computed from the "
+                           "same record and shipped beside it."},
+         "normals": frontchip.normals(),
+         "readings": frontchip.load()}, indent=2, ensure_ascii=False) + "\n")
+
     # SERVED TO THE ONE PAGE THAT HAS A CALENDAR. See theme.record_css for why it is not in
     # the sheet every other page waits on.
     w("record.css", theme.record_css())
@@ -6248,14 +6306,6 @@ def build(out: Path, today: str) -> dict:
         w(f'place/{pl["id"]}/index.html', place_page(pl, items, today),
           listed([i for i in items if i["id"] in set(pl["items"])]))
     w("grid/index.html", grid_page(today), _watch_numerals(gridwatch_page))
-    # The grid watch as open data, in the same shape the page was built from. A reader who
-    # doubts a figure here can recompute it without refetching anything from ERCOT.
-    w("gridwatch.json", json.dumps(
-        {"_spec": {"version": dk.SPEC_VERSION, "generated": today,
-                   "note": "One settled ERCOT day per record. Hourly series included so every "
-                           "published figure is recomputable. Unverified days carry no "
-                           "numbers rather than yesterday's."},
-         "readings": gridwatch_page.load()}, indent=2, ensure_ascii=False) + "\n")
     # The catalogue size is the one figure this page states, and it is the length of the
     # list the page is shipping. It passed the gate before the metro questions existed
     # only because the count was 121 and the state has 121 counties in no metro, which is
@@ -6265,13 +6315,6 @@ def build(out: Path, today: str) -> dict:
     w("scan/watch/index.html", watch_page(today))
     w("services/index.html", services_page(items, today))
     w("water/index.html", water_page(today), _watch_numerals(waterwatch_page))
-    w("waterwatch.json", json.dumps(
-        {"_spec": {"version": dk.SPEC_VERSION, "generated": today,
-                   "note": "One day per record, per reservoir, so every roll up is "
-                           "recomputable. Out of state reservoirs and flood control dams with "
-                           "no conservation pool are excluded, and both exclusions are named "
-                           "in each record."},
-         "readings": waterwatch_page.load()}, indent=2, ensure_ascii=False) + "\n")
 
     # THE ANSWERING RECORD, published as two files beside the site.
     #
@@ -6292,17 +6335,6 @@ def build(out: Path, today: str) -> dict:
     corpus, pack = ask_corpus.write(out / "ask-corpus.json", out / "ask-pack.json",
                                     today, docs_dir=out)
     written.extend(["ask-corpus.json", "ask-pack.json"])
-    # The heat clock as open data, on the same terms as the other two series. It has no page
-    # of its own, because it is one line at the top of the front page rather than a subject,
-    # so the data page is where a reader finds it.
-    w("weather.json", json.dumps(
-        {"_spec": {"version": dk.SPEC_VERSION, "generated": today,
-                   "note": "Observed daily maximum and minimum at one anchor station, from "
-                           "NCEI daily summaries. A day with no observation is absent rather "
-                           "than zero. Normals are the 1991 to 2020 period computed from the "
-                           "same record and shipped beside it."},
-         "normals": frontchip.normals(),
-         "readings": frontchip.load()}, indent=2, ensure_ascii=False) + "\n")
     w("data/index.html", data_page(items, today))
     w("about/index.html", about_page(today))
 
