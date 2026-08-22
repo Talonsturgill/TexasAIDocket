@@ -518,6 +518,10 @@ def facility_css() -> str:
    give a county, and its third column is an intentional spacer holding nothing. Same fault as
    above, same fix: the name takes the flexible track and the empty one takes none. */
 .cbjoin .cbrow { grid-template-columns:1fr 7rem 0 5.4rem 6rem; }
+/* THE CAMPUS TABLE carries a project name in the first column, a name the filer wrote
+   rather than one this project chose, so it is the longest string on the page and the
+   flexible track belongs to it. */
+.cbcamp .cbrow { grid-template-columns:1fr 7rem 7.4rem 6rem 7rem; }
 /* A COLUMN OF MAGNITUDES ALIGNS ON ITS LAST DIGIT. Left aligned, $5,000,000 and
    $15,000,000 are the same shape and $100,000,000 is the only row that looks bigger than
    it is, so the reader has to parse every string to rank them. Right aligned in mono, the
@@ -549,6 +553,8 @@ def facility_css() -> str:
      register's narrow first column. */
   .cbjoin .cbrow { grid-template-columns:1fr; }
   .cbjoin .cbd { grid-row:auto; }
+  .cbcamp .cbrow { grid-template-columns:1fr; }
+  .cbcamp .cbd { grid-row:auto; }
   /* THE STACK UNDOES THE ALIGNMENT. Narrow, the four cells after the year stack in one
      column, and a right aligned dollar figure above a left aligned project name is not a
      column of numbers, it is two ragged edges. */
