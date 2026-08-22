@@ -76,17 +76,22 @@ window.renderReady = new Promise(function(resolve){
   // The spine ENDS on its own foot at 1200 and the foot closes above the footer shelf at 1224,
   // so nothing drawn here reaches the site line at 1252.
   var SX=150, SPINE_TOP=392, SPINE_END=1200;
-  x.fillStyle='rgba(6,12,13,0.55)'; x.fillRect(SX+9,SPINE_TOP+8,9,SPINE_END-SPINE_TOP);
+  // EVERY SHADOW ON THIS FRAME IS TWO PART, and each one goes through contact(), which this
+  // file defined and then never called. Four hand-rolled single offset rects shipped instead,
+  // on a deck whose slide 1 risk note says a one part shadow reads as a drop shadow and cheapens
+  // the plane. The helper existed the whole time.
+  contact(SX,SPINE_TOP,7,SPINE_END-SPINE_TOP);
   x.fillStyle='#8FA396'; x.fillRect(SX,SPINE_TOP,7,SPINE_END-SPINE_TOP);
   x.fillStyle='rgba(232,239,228,0.55)'; x.fillRect(SX,SPINE_TOP,2,SPINE_END-SPINE_TOP);
+  contact(SX-16,SPINE_END,40,24);
   x.fillStyle='#24322F'; x.fillRect(SX-16,SPINE_END,40,24);          // the spine's foot
   x.fillStyle='rgba(232,239,228,0.40)'; x.fillRect(SX-16,SPINE_END,40,3);
-  x.fillStyle='rgba(6,12,13,0.50)'; x.fillRect(SX-10,SPINE_END+24,52,6);   // the foot's contact
   var rungs=[[420,196],[664,280],[892,364]];
   for(var i=0;i<rungs.length;i++){
     var ry=rungs[i][0]+16, rx=rungs[i][1];
-    x.fillStyle='rgba(6,12,13,0.50)'; x.fillRect(SX+9,ry+7,rx-SX-12,7);
+    contact(SX+4,ry,rx-SX-10,5);
     x.fillStyle='#8FA396'; x.fillRect(SX+4,ry,rx-SX-10,5);
+    contact(rx-16,ry-5,8,15);
     x.fillStyle='#C6CFD3'; x.fillRect(rx-16,ry-5,8,15);   // NOT amber. amber is the two dates only.
   }
   // THE FOOTER SHELF, as on slides 3 and 6, so the deck's furniture never sits on working art.

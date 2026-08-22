@@ -65,7 +65,14 @@ window.renderReady = new Promise(function(resolve){
   TX.hachureField(x, {x:0, y:0, w:1080, h:1350, seed:20260822,
     spacing:15, color:'#9FAEA3', width:1.1, lengthScale:0.62,
     height:function(u,v){ return 1.0 - 0.86*Math.pow(v,2.6) - 0.06*u; }});
-  x.fillStyle='rgba(199,210,196,0.55)'; x.fillRect(0,0,1080,1180);
+  // THE VEIL USED TO ERASE THE FIELD. It ran 0.55 alpha over y0 to 1180, which is the whole
+  // working area, so the hachure this frame's technique names survived only below the voids
+  // where nothing needed it. It is a GRADIENT now, heaviest behind the type at the top and
+  // clearing by the middle band, so the field is present exactly where the frame was empty.
+  var veil=x.createLinearGradient(0,0,0,1180);
+  veil.addColorStop(0,'rgba(199,210,196,0.80)'); veil.addColorStop(0.30,'rgba(199,210,196,0.62)');
+  veil.addColorStop(0.52,'rgba(199,210,196,0.22)'); veil.addColorStop(1,'rgba(199,210,196,0.10)');
+  x.fillStyle=veil; x.fillRect(0,0,1080,1180);
   x.fillStyle='#24322F'; x.fillRect(70,340,940,2); x.fillRect(70,486,940,2);
   // THE VOIDS ARE RECESSES, NOT TILES. A hole cannot cast a shadow, and a drop shadow here
   // would say these two absences are objects sitting on the record, which inverts the frame.

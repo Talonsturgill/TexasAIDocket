@@ -58,16 +58,17 @@ art:
     subtract from.
   motion: "the eye lands on the lit cluster, reads the board's extent, then drops to the figure"
 type:
-  hook: "34 filings are already in."
-  dek: "The rule as published in the Texas Register does not contain the words data center."
+  hook: "The rule never says data center."
+  dek: "Not once in the Texas Register text."
   labels: ["10 rows are quoted on the frames that follow. The other 24 rows stand in the filing index and are not read here."]
 acceptance:
   - "exactly 34 recesses are present and countable at 432px"
-  - "exactly 10 recesses carry a lit block in trace #9FD3B4 and 24 do not"
-  - "the lit cells are the index positions of the ten rows this deck quotes, items 10 and 25
-    through 34, computed from aggregates.json rather than arranged into a shape"
+  - "exactly 6 recesses carry a lit block in trace #9FD3B4 and 28 do not"
+  - "the lit cells are the index positions of the SIX rows this deck actually renders, items 10,
+    25, 29, 30, 31 and 33, intersected against render_report.json rather than counted out of
+    claims.json, because a claim that never reaches a frame is not a row a reader can see"
   - "no recess is empty of its block, because absence of light never means absence of a filing"
-  - 'the gap line reads exactly "10 rows are quoted on the frames that follow. The other 24 rows stand in the filing index and are not read here."'
+  - 'the gap line reads exactly "FILINGS"'
   - "every contact shadow is two part, a 6px core and a 40px ambient, never a single drop"
   - "the figure 34 is set in JetBrains Mono, not Fraunces"
 risks:
@@ -273,55 +274,50 @@ risks:
 ```yaml
 slide: 6
 job: >
-  Run the remaining named rows and let the party field's own separators do the drawing, so a
-  reader sees that two pipes sit inside one field rather than between three parties.
-claims: [c18, c14, c12, c11]
+  Say what the rule would actually DO, in the source's own words, and put the money on it. Five
+  scoring passes asked for this frame and its absence was the deck's largest single loss. No other
+  frame carries a consequence.
+claims: [c23, c22, c21]
 numerals:
-  - value_from: c18         # item 26, 4/12/2026
-  - value_from: c14         # item 28, 7/16/2026
-  - value_from: c12         # item 32, 8/3/2026
-  - value_from: c11         # item 34, 8/18/2026
+  - value_from: c21         # a maximum budget of $54 million in a calendar year
 composition:
   structure: >
-    A left aligned column of four plates whose widths are the measured strings themselves, so the
-    ragged right edge is data rather than a layout decision.
+    An annunciator panel. Two legend tiles sit in milled recesses and are LIT, because both
+    conditions are written into the proposed rule, and the money is cut into the land below them.
   bands: >
-    Top carries the hook. Middle carries the four plates read top to bottom. Bottom carries the
-    longest plate and the item type codes as literal strings, so the lower third holds the widest
-    lit area in the frame.
+    Top carries the hook on the panel face. Middle carries the two lit tiles at 888 wide, the
+    upper 152 tall and the lower 124, each sized to its own legend. Bottom carries the panel's
+    lower land, milled, with the cap legend, the amber rule and the cut figure on it.
   focal: >
-    The longest plate, carrying "Zack Butler | EnerShield AI | Blind Mice Labs", which is both the
-    widest lit area and the row the reader came for.
+    The upper tile, the largest lit area anywhere in the deck's dark half, with its lamp spill
+    running 34px past the recess onto the panel.
 art:
-  technique: "TX.svgPlate plates measured from the laid out text, with the index's pipes drawn as full height dividers at true glyph positions"
+  technique: "a mission control annunciator panel, lit legend tiles in milled recesses, plus a cut figure"
   why_this_technique: >
-    Two of these four party fields are single strings containing two and three names. Drawing the
-    separator as a real divider is the only way a reader sees the pipes are inside one field,
-    which is the exact thing a careless deck would get wrong.
+    An annunciator legend stays dark until its condition is true, so a LIT tile is the drawing
+    saying this is when the service runs rather than a caption saying it. The frame argues the
+    claim instead of containing it, and nothing else in the deck is built this way.
   palette: >
-    console #24322F the plates, legend #E8EFE4 the strings, console_lit #8FA396 the drawn pipe
-    dividers, room #101A1B the ground.
+    trace #9FD3B4 the lit legend faces, key_dark #060C0D the recesses, console #24322F the panel,
+    legend #E8EFE4 the cut figure, event_amber #D99A32 one 132px rule under the cap legend.
   value_structure: >
-    Lightest is the string on the Fedor Mikheev plate, which is the widest as laid out. Darkest is
-    the ground beyond the ragged edge, so
-    the raggedness is legible as a shape rather than as an alignment error.
-  motion: "top to bottom down the left edge, with the right edge stepping in and out as data"
+    Lightest is a lit tile face. Darkest is the recess wall immediately around it, so the extreme
+    light and the extreme dark are adjacent on both tiles.
+  motion: "down the two tiles, then to the figure the amber rule points at"
 type:
-  hook: "The rest of the roll."
-  dek: '"4/12/2026 Zack Butler | EnerShield AI | Blind Mice Labs PC"'
-  labels:
-    - '"8/3/2026 Jennifer Carrig COM Large Load Demand Services "Say No to incentives""'
-    - '"8/18/2026 Modern Tex Consulting LLC COM Comments of Modern Tex Consulting LLC ..."'
+  hook: "What it would do."
+  dek: '"allow the transmission-voltage customers to be curtailed during firm load shed"'
+  labels: ['"to be deployed in the event of an anticipated emergency condition"',
+           "A MAXIMUM BUDGET OF", "in a calendar year"]
 acceptance:
-  - "four plates are present and no two plates share a width"
-  - "every pipe is U+007C, the separator c14 and c18 quote, set in its own span and scaled
-    vertically, because a different glyph inside a quoted row is a quoted string the deck rewrote"
-  - "each of the four rows opens and closes with a straight quotation mark, as slide 7 does, because
-    the site publishes an unmarked string as this project own prose"
-  - 'the nested quotes in "Say No to incentives" render as straight quotes'
-  - "no plate width is a typed number, every one comes from TX.svgPlate measuring the laid out text"
+  - "both legend tiles are LIT, because both conditions are in the proposed rule"
+  - "each tile is a milled recess with a dark upper lip and a lit lower lip, never a flat rectangle"
+  - 'the figure reads exactly "$54 MILLION" and is set in JetBrains Mono, never in Fraunces'
+  - "both quoted conditions carry their straight quotation marks, because both are verbatim"
+  - "no drawn mark crosses any glyph band, and nothing drawn reaches the footer shelf at 1216"
 risks:
-  - "a plate opaque enough to become a box is furniture, so plates sit at the least opacity that keeps mono legible"
+  - "a lit tile that is merely a light rectangle reads as a button, so each carries a real recess and a lamp spill"
+  - "the money is the frame's only invented emphasis, so it is quoted from c21 and never rounded"
 ```
 
 ```yaml

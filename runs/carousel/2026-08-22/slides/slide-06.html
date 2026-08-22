@@ -19,22 +19,31 @@ canvas{position:absolute;left:0;top:0}
 
 .hook{position:absolute;left:80px;top:168px;width:900px;font:700 76px/1.03 "Fraunces",serif;
   color:var(--legend);letter-spacing:-.015em}
-.pl{position:absolute;left:80px;display:inline-block;width:max-content;max-width:900px;
-  font:400 24px/1.46 "JetBrains Mono",monospace;color:var(--legend);
-  padding:14px 20px;background:#24322F;white-space:nowrap}
-.stamp{color:#8FA396}
-.pipe{color:#8FA396;font-weight:700;display:inline-block;transform:scaleY(2.05);
-  transform-origin:center;letter-spacing:.06em}
-.p1{top:322px} .p2{top:504px} .p3{top:686px} .p4{top:868px}
-
+/* the two annunciator legends, set INSIDE their own tiles and measured from them */
+.lg{position:absolute;font:500 27px/1.34 "JetBrains Mono",monospace;color:#0B1412;
+  letter-spacing:.005em}
+.l1{left:118px;top:432px;width:844px}
+.l2{left:118px;top:660px;width:844px}
+.cap{position:absolute;left:80px;top:940px;width:520px;font:500 26px/1.36 "JetBrains Mono",monospace;
+  color:var(--console_lit);letter-spacing:.02em}
+.fig{
+  /* CUT, not set on. The key is upper left, so the figure takes a dark inner wall on that
+     side and a lit one opposite. Both files carried a comment calling this figure cut into
+     the metal and both rendered flat DOM type on a gradient. */
+  text-shadow:-2px -2px 0 rgba(6,12,13,0.88), -4px -4px 6px rgba(6,12,13,0.55),2px 2px 0 rgba(214,226,214,0.34), 3px 3px 5px rgba(214,226,214,0.14);
+  position:absolute;left:80px;top:1002px;width:920px;font:700 128px/1 "JetBrains Mono",monospace;
+  color:var(--legend);font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.per{position:absolute;left:668px;top:1064px;width:340px;font:500 27px/1.3 "JetBrains Mono",monospace;
+  color:var(--console_lit);letter-spacing:.02em}
 </style></head><body>
 <canvas id="c" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
 
-<div class="hook">The rest of the roll.</div>
-<div class="pl p1">"<span class="stamp">4/12/2026</span> <br>Zack Butler <span class="pipe">|</span> EnerShield AI <span class="pipe">|</span> Blind Mice Labs PC"</div>
-<div class="pl p2">"<span class="stamp">7/16/2026</span> <br>Fedor Mikheev <span class="pipe">|</span> Texas A&amp;M University Energy Institute PC"</div>
-<div class="pl p3">"<span class="stamp">8/3/2026</span> <br>Jennifer Carrig COM <br>Large Load Demand Services "Say No to incentives""</div>
-<div class="pl p4">"<span class="stamp">8/18/2026</span> <br>Modern Tex Consulting LLC COM <br>Comments of Modern Tex Consulting LLC ..."</div>
+<div class="hook">What it would do.</div>
+<div class="lg l1">"allow the transmission-voltage customers to be curtailed during firm load shed"</div>
+<div class="lg l2">"to be deployed in the event of an anticipated emergency condition"</div>
+<div class="cap">A MAXIMUM BUDGET OF</div>
+<div class="fig">$54<span style="font-size:0.42em"> MILLION</span></div>
+<div class="per">in a calendar year</div>
 
 <div class="kick">PROJECT 58482</div>
 <div class="cnt">06 / 09</div>
@@ -45,59 +54,72 @@ canvas{position:absolute;left:0;top:0}
 window.renderReady = new Promise(function(resolve){
   var c=document.getElementById('c'), x=c.getContext('2d'); x.scale(2,2);
   TX.reseed(20260822); var R=TX.rng(20260822 + 6);
+
+  // ---- THE ANNUNCIATOR PANEL. ----
+  // Mission control's event panel is a wall of legend tiles that stay dark until their condition
+  // is true. This frame carries the two conditions the rule names, so a LIT tile is the drawing
+  // saying "this is when it runs" instead of a caption saying it. The two tiles are lit because
+  // both conditions are written into the proposed rule, and the money below is the cap on it.
   function tooth(x0,y0,w,h,n,amp){ for(var i=0;i<n;i++){
-      var px=x0+R()*w, py=y0+R()*h, a=0.018+R()*(amp||0.045);
+      var px=x0+R()*w, py=y0+R()*h, a=0.016+R()*(amp||0.045);
       x.fillStyle=(R()<0.5?'rgba(232,239,228,':'rgba(6,12,13,')+a+')';
       x.fillRect(px,py,1.6,1.6); } }
-  function plane(y0,y1,c0,c1){ var g=x.createLinearGradient(0,y0,0,y1);
-      g.addColorStop(0,c0); g.addColorStop(1,c1); x.fillStyle=g; x.fillRect(0,y0,1080,y1-y0); }
-  function contact(bx,by,bw,bh){                 // two part contact shadow, always both parts
-      x.save(); x.shadowColor='rgba(6,12,13,0.55)'; x.shadowBlur=34;
-      x.shadowOffsetX=10; x.shadowOffsetY=14; x.fillStyle='rgba(6,12,13,0.42)';
+  function contact(bx,by,bw,bh){                 // two part, always both parts
+      x.save(); x.shadowColor='rgba(6,12,13,0.58)'; x.shadowBlur=36;
+      x.shadowOffsetX=8; x.shadowOffsetY=16; x.fillStyle='rgba(6,12,13,0.44)';
       x.fillRect(bx+2,by+2,bw,bh); x.restore();
-      x.fillStyle='rgba(6,12,13,0.60)'; x.fillRect(bx+3,by+3,bw,bh); }
+      x.fillStyle='rgba(6,12,13,0.62)'; x.fillRect(bx+3,by+3,bw,bh); }
 
-  plane(0,1010,'#131F1E','#0C1716'); tooth(0,0,1080,1010,13000,0.030);
-  var g=x.createLinearGradient(0,280,700,940);
-  g.addColorStop(0,'rgba(198,207,211,0.10)'); g.addColorStop(1,'rgba(198,207,211,0)');
-  x.fillStyle=g; x.fillRect(0,280,1080,660);
-  // the leg face the plates are bolted to. it runs the WHOLE height, so the bottom third
-  // carries modeled metal rather than a dark band with a caption on it.
-  var LGX=42, LGW=1000;
-  var lg=x.createLinearGradient(LGX,0,LGX+LGW,0);
-  lg.addColorStop(0,'#3C4E47'); lg.addColorStop(0.14,'#2A3833'); lg.addColorStop(1,'#111C1B');
-  x.fillStyle=lg; x.fillRect(LGX,300,LGW,1050);
-  x.fillStyle='rgba(214,226,214,0.42)'; x.fillRect(LGX,300,4,1050);      // the lit chamfer
-  x.fillStyle='rgba(6,12,13,0.66)'; x.fillRect(LGX+LGW-5,300,5,1050);
-  // THE THREE DIAGONAL RODS ARE GONE. They were added this run to fill a lower third that
-  // read as dead, they were in no dossier line, and all three scoring lenses called them
-  // decoration that would fit any story at all. Removing them reopened the dead zone, so what
-  // replaces them is SURFACE rather than a shape: the leg is a vertical member, so it takes
-  // vertical mill flutes, tooth and the same raking key the plates stand in. Structure asserts
-  // nothing about rows this deck did not read, which is the fault slide 1's staircase had.
-  for(var i=0;i<11000;i++){
-    var px=LGX+R()*LGW, py=980+R()*244, a=0.016+R()*0.055;
-    x.fillStyle=(R()<0.5?'rgba(232,239,228,':'rgba(6,12,13,')+a+')';
-    x.fillRect(px,py,1.6,1.6);
+  // the panel face, and the raking key it takes from the upper left
+  var g=x.createLinearGradient(0,0,0,1350);
+  g.addColorStop(0,'#15211F'); g.addColorStop(0.62,'#0E1A19'); g.addColorStop(1,'#0A1211');
+  x.fillStyle=g; x.fillRect(0,0,1080,1350); tooth(0,0,1080,1350,15000,0.032);
+  var kg=x.createLinearGradient(60,240,900,1080);
+  kg.addColorStop(0,'rgba(198,207,211,0.12)'); kg.addColorStop(1,'rgba(198,207,211,0)');
+  x.fillStyle=kg; x.fillRect(0,240,1080,860);
+
+  // ---- two lit legend tiles, each a milled recess with the legend glowing through ----
+  function tile(ty,th){
+    var TX0=96, TW=888;
+    contact(TX0,ty,TW,th);
+    // the recess the tile sits in, cut into the panel
+    x.fillStyle='#080E0D'; x.fillRect(TX0-10,ty-10,TW+20,th+20);
+    x.fillStyle='rgba(6,12,13,0.85)'; x.fillRect(TX0-10,ty-10,TW+20,5);      // the recess's dark upper lip
+    x.fillStyle='rgba(214,226,214,0.30)'; x.fillRect(TX0-10,ty+th+5,TW+20,5); // and its lit lower lip
+    // the lit legend face, brightest at the centre where the lamp sits behind it
+    var lg=x.createRadialGradient(TX0+TW/2, ty+th/2, 20, TX0+TW/2, ty+th/2, TW*0.62);
+    lg.addColorStop(0,'#9FD3B4'); lg.addColorStop(0.55,'#7FBF9C'); lg.addColorStop(1,'#5E9C7C');
+    x.fillStyle=lg; x.fillRect(TX0,ty,TW,th);
+    x.fillStyle='rgba(255,255,255,0.22)'; x.fillRect(TX0,ty,TW,3);           // the face's own lit top edge
+    x.fillStyle='rgba(6,12,13,0.22)'; x.fillRect(TX0,ty+th-3,TW,3);
+    // the lamp's spill onto the panel just beyond the recess
+    x.save(); x.globalCompositeOperation='lighter';
+    var sp=x.createLinearGradient(0,ty-34,0,ty+th+34);
+    sp.addColorStop(0,'rgba(159,211,180,0)'); sp.addColorStop(0.5,'rgba(159,211,180,0.13)');
+    sp.addColorStop(1,'rgba(159,211,180,0)');
+    x.fillStyle=sp; x.fillRect(TX0-56,ty-34,TW+112,th+68); x.restore();
   }
-  // the flutes run WITH the member, lit on the key side of each ridge and dark in each trough,
-  // and they stop at 1216 so nothing drawn reaches the footer shelf at 1224
-  for(var fx=LGX+34; fx<LGX+LGW-24; fx+=46){
-    x.fillStyle='rgba(6,12,13,0.42)'; x.fillRect(fx,982,7,234);
-    x.fillStyle='rgba(214,226,214,0.13)'; x.fillRect(fx-3,982,3,234);
+  tile(408,152);
+  tile(636,124);
+
+  // ---- the money, cut into the panel's lower land ----
+  // a cut figure is a subtraction from the surface, so it gets a dark inner wall on the key side
+  // and a lit one opposite, which is what makes it read as depth rather than as type on metal.
+  x.fillStyle='rgba(198,207,211,0.26)'; x.fillRect(0,912,1080,3);
+  var lower=x.createLinearGradient(0,915,0,1350);
+  lower.addColorStop(0,'#2C3B36'); lower.addColorStop(1,'#0B1211');
+  x.fillStyle=lower; x.fillRect(0,915,1080,435); tooth(0,915,1080,435,9000,0.05);
+  // the mill's own travel across the land, stopping clear of every glyph band
+  for(var fx=60; fx<1020; fx+=58){
+    x.fillStyle='rgba(6,12,13,0.26)'; x.fillRect(fx,918,5,18);
+    x.fillStyle='rgba(214,226,214,0.10)'; x.fillRect(fx-2,918,2,18);
   }
-  // the member's own lower land, catching the key across its width
-  var lgk=x.createLinearGradient(LGX,982,LGX+LGW,1216);
-  lgk.addColorStop(0,'rgba(214,226,214,0.15)'); lgk.addColorStop(1,'rgba(214,226,214,0)');
-  x.fillStyle=lgk; x.fillRect(LGX,982,LGW,234);
-  x.fillStyle='rgba(232,239,228,0.30)'; x.fillRect(LGX,978,LGW,3);   // the land's lit top edge
-  x.fillStyle='rgba(6,12,13,0.30)';
-  for(var sy2=1008; sy2<1350; sy2+=3){ x.fillRect(0,sy2,1080,1); }
-
-
-  // THE FOOTER SHELF. A solid band so the deck's furniture never sits on working art.
-  x.fillStyle='#0C1516'; x.fillRect(0,1224,1080,126);
-  x.fillStyle='rgba(198,207,211,0.26)'; x.fillRect(0,1224,1080,3);
+  // the amber rule under the cap legend, the deck's second accent, used here and on slide 7 only
+  x.fillStyle='#D99A32'; x.fillRect(80,982,132,4);
+  x.fillStyle='rgba(6,12,13,0.55)'; x.fillRect(80,986,132,3);
+  // the footer shelf, so the deck's furniture never sits on working art
+  x.fillStyle='#0A1211'; x.fillRect(0,1216,1080,134);
+  x.fillStyle='rgba(198,207,211,0.24)'; x.fillRect(0,1216,1080,3);
   resolve();
 });
 </script></body></html>

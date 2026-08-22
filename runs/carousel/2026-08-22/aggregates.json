@@ -17,28 +17,24 @@
    "computed_by": "quoted verbatim from the rule text, not computed"
   },
   {
-   "phrase": "10 rows",
+   "phrase": "6 rows",
    "kind": "count",
-   "value": 10,
-   "computed_by": "the count of claims in out/2026-08-22/claims.json whose url is the interchange filing index, excluding c7 which quotes the index header rather than a row. Items 10, 25, 26, 28, 29, 30, 31, 32, 33 and 34",
+   "value": 6,
+   "computed_by": "the count of index-row claims whose file stamp AND its following words BOTH appear on the same frame after the cover, intersected against render_report.json rather than against claims.json. Slides 4 and 5 lay a row out across its own columns, so a contiguous match undercounts and the test is per token. Items 10, 25, 29, 30, 31, 33",
    "from_claims": [
-    "c8",
-    "c9",
     "c10",
-    "c11",
-    "c12",
     "c13",
-    "c14",
     "c15",
     "c17",
-    "c18"
+    "c8",
+    "c9"
    ]
   },
   {
-   "phrase": "24 rows",
+   "phrase": "28 rows",
    "kind": "count",
-   "value": 24,
-   "computed_by": "34 filings quoted in c7 minus the 10 index rows this deck quotes, both counted in code rather than typed",
+   "value": 28,
+   "computed_by": "34 filings quoted in c7 minus the 6 index rows this deck actually renders, both counted in code against the render rather than against the claims file. The earlier pair counted claims and the sentence described frames, which are different populations and were 10 and 24",
    "from_claims": [
     "c7"
    ]
