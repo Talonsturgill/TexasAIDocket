@@ -61,7 +61,19 @@ COPY = {
     "followup":     "Ask a follow-up",
     "stage_human":  "Passing the human check",
     "stage_read":   "Reading the record",
-    "no_answer":    "The record does not answer that.",
+    # WHAT THIS SAYS AND WHY IT NO LONGER BLAMES THE RECORD.
+    #
+    # It read "The record does not answer that." and the PAGE prints it, not the model. It
+    # fires when a stream ended with nothing rendered, which happens when the reply came back
+    # empty, or every sentence was withheld, or the connection ended early. None of those are
+    # facts about the record, and a reader told the record does not answer something concludes
+    # the docket lacks it. It was seen on a question the record answers completely.
+    #
+    # This box refuses a great deal in order to be trustworthy. Saying "no" on the record's
+    # behalf when the truth is "nothing we produced survived" is the one refusal it has not
+    # earned.
+    "no_answer":    "Nothing came back for that one. Asking again usually works, and typing "
+                    "searches the whole record instantly either way.",
     "failed":       "That did not get through. Try again in a moment.",
     "capped":       "That is this month's last written answer. Typing still searches the "
                     "whole record instantly and for nothing, which is most of what this box does.",
@@ -592,11 +604,19 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
        claims to mean. */
     var CEILING_MS = 8000;
     var overran = false;
+    /* WHICH ENDING GOT HERE FIRST, tracked explicitly rather than inferred from whether the
+       body happens to have text in it. Two different endings both wrote "if nothing started
+       and the body is empty", which is a read of the DOM standing in for a fact about control
+       flow, and when an owner reported seeing one message replaced by the other there was no
+       way to tell from the page which path had run. A flag says so. */
+    var ended = "";
     function ceilingFired() {
       if (!busy) return;
       overran = true;
       if (stopStream) { try { stopStream(); } catch (e) {} }
       dropStage();
+      if (ended) return;
+      ended = "ceiling";
       if (!started && !body.textContent) body.textContent = "%%too_slow%%";
       else {
         var cut = document.createElement("p");
@@ -867,11 +887,17 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
       })();
     }).then(function () {
       dropStage();
-      if (!started && !body.textContent) body.textContent = "%%no_answer%%";
+      if (!ended) {
+        ended = "stream";
+        if (!started && !body.textContent) body.textContent = "%%no_answer%%";
+      }
       finish();
     }).catch(function () {
       dropStage();
-      if (!started) body.textContent = "%%failed%%";
+      if (!ended) {
+        ended = "failed";
+        if (!started) body.textContent = "%%failed%%";
+      }
       finish();
     });
   }
