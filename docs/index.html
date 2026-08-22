@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-sJQDwDYIa74u9cnHoLwZZC6t88midK//OnGZLnswEiA=' 'sha256-/U3+nV6D+p2SWV3yEyer7UBe1XvQy9Azf+46WrHVsTU=' 'sha256-GMItZ/b6IxCFJh1aHLvrIuUw6YwM6EJodF4O+bCaXGw=' 'sha256-7EUAgJIVMZcx4nam60N6GBjjm+9UgbuU+yogrtBRY6Q=' 'sha256-3CAuRT0pF1/aSdSplwZNbmz08NsljAcSgTrubOOlfGo=' 'sha256-eAen8T4O8pfBp3CJGFTcr2AfHKEky06NoHfEJVd9yeE=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-sJQDwDYIa74u9cnHoLwZZC6t88midK//OnGZLnswEiA=' 'sha256-/U3+nV6D+p2SWV3yEyer7UBe1XvQy9Azf+46WrHVsTU=' 'sha256-GMItZ/b6IxCFJh1aHLvrIuUw6YwM6EJodF4O+bCaXGw=' 'sha256-1T6SVKsbi0k3jFYuOFrv/EvxnlFk9qH36vbW3Zp4ajM=' 'sha256-3CAuRT0pF1/aSdSplwZNbmz08NsljAcSgTrubOOlfGo=' 'sha256-eAen8T4O8pfBp3CJGFTcr2AfHKEky06NoHfEJVd9yeE=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Texas AI Docket · Every AI decision in Texas and the source behind it</title>
@@ -1197,7 +1197,6 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
       busy = false;
       send.disabled = false;
       send.removeAttribute("aria-busy");
-      spendToken();
 
       clearTrailing();
 
@@ -1307,7 +1306,19 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
     waitForToken(stage).then(function (tok) {
       stage("Reading the record");
       startClock();
-      return post(tok);
+      var sent = post(tok);
+      /* THE NEXT CHALLENGE IS EARNED NOW, NOT AFTER THE ANSWER.
+         A Turnstile token is single use, so every question needs a fresh one, and solving takes
+         one to three seconds. This used to re-arm in `finish`, once the answer was already on
+         screen. An owner running ten questions in a row saw "Passing the human check" in front
+         of nearly every one of them, because a reader moving question to question arrives
+         before the new token does.
+         The token is spent the moment it is handed to the worker, so the challenge can start
+         again immediately and solve WHILE the answer streams and while the reader reads it.
+         The first question of a session still waits, because nothing has been earned yet, and
+         that one is honest. */
+      spendToken();
+      return sent;
     }).then(function (r) {
       /* A 403 here is a token that was spent, expired or never arrived, and it is not the
          reader's doing. Showing them "finish the human check first" next to a widget that is
