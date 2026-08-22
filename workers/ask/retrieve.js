@@ -543,9 +543,20 @@ export async function rerank(query, cands, env) {
   try {
     const out = await env.AI.run(RERANK_MODEL, {
       query: String(query),
-      // The head is what a block IS and the body is what it says. The head first means a
-      // truncated context still carries the identity, which is the half that decides.
-      contexts: cands.map((c) => ({ text: (c.head + "\n" + c.text).slice(0, 4000) })),
+      // THE HEAD AND THE TOP OF THE BODY, AND NOT FOUR THOUSAND CHARACTERS OF IT.
+      //
+      // This sent up to 4,000 characters per block, so twenty candidates was up to 80,000
+      // characters going over the wire and through a model BEFORE the answering call could
+      // start. That is latency added to every question, in series, ahead of the part a reader
+      // is waiting on, and the ceiling started firing on ordinary questions the day the
+      // binding went live.
+      //
+      // A cross encoder is deciding which of twenty blocks answers a sentence. It does not
+      // need the whole block to do that. The head is what the block IS and the first few lines
+      // are what it says, which is where a reservoir's percentage and a county's total both
+      // sit. Seven hundred characters is about a tenth of the payload and keeps the part that
+      // decides.
+      contexts: cands.map((c) => ({ text: (c.head + "\n" + c.text).slice(0, 700) })),
       top_k: cands.length,
     });
     const rows = Array.isArray(out) ? out : (out?.response ?? out?.result?.response);

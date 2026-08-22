@@ -78,13 +78,21 @@ COPY = {
     "capped":       "That is this month's last written answer. Typing still searches the "
                     "whole record instantly and for nothing, which is most of what this box does.",
     "provenance":   "Written from the published record. Every figure checked against it.",
-    # Said when the ceiling cut a stream that had already begun. It names the limit rather
-    # than blaming the network, because the limit is ours and a narrower question is the
-    # thing a reader can actually do about it.
-    "cut_time":     "The rest was cut at eight seconds. A narrower question gets a whole "
-                    "answer inside it.",
-    "too_slow":     "That one did not come back inside eight seconds. Typing a narrower "
-                    "question searches the whole record instantly and for nothing.",
+    # NEITHER OF THESE MENTIONS A CLOCK AND NEITHER ASKS THE READER TO ASK FOR LESS.
+    #
+    # They used to do both. "The rest was cut at eight seconds. A narrower question gets a
+    # whole answer inside it." Owner, on seeing it twice in one sitting: "that is a horrible
+    # thing to say to someone. Like no how about the model get better."
+    #
+    # He is right and it is worth writing down why, because the first version read as careful.
+    # A number in this sentence is the machine explaining its own budget to somebody who did
+    # not set it and cannot change it. And telling a reader their question was too broad makes
+    # the good question the reader's fault, when a wide question is exactly what a record
+    # product should be best at. The failure is ours in both directions.
+    #
+    # So they say what happened, they offer the one thing that actually helps, and they stop.
+    "cut_time":     "That answer ran long and stops here.",
+    "too_slow":     "That one did not come back. Asking again usually works.",
     # Said under an answer the page produced itself, which is most of them. It is not the
     # same claim as the written lane's: nothing was written, the record was read.
     # The refusal wears the same provenance line an answer does. A separate one announced that
@@ -353,39 +361,31 @@ _CLIENT = r"""
      index above does not already carry. Anything missing from it is a decision, which is why
      the fallback is the old behaviour rather than an error. */
   var CITES = window.__ASK_CITES__ || {};
-  function citeTitle(id) { return (CITES[id] && CITES[id][0]) || TITLES[id] || ""; }
+  /* [what the link says, where it goes, what it is]. The first is a LABEL and not a title:
+     "Docket 59315" where the record gives an identifier, "the water record" where it does
+     not. ask_pack.cite_label holds why. The third is the full title, kept for the tooltip, so
+     a reader who wants the whole name still has it without it landing in the sentence. */
+  function citeLabel(id) { return (CITES[id] && CITES[id][0]) || TITLES[id] || ""; }
+  function citeTitle(id) { return (CITES[id] && CITES[id][2]) || TITLES[id] || ""; }
   function citeHref(id) {
     return BASE + ((CITES[id] && CITES[id][1]) || ("item/" + id + "/"));
   }
 
-  /* A LINK INSIDE A SENTENCE HAS TO BE A HANDLE, NOT A HEADLINE. Titles on this record are
-     descriptive sentences, 106 characters on average, and dropping one whole into a paragraph
-     buried the paragraph: four lines of gold link around six words of prose.
-     The first clause is the handle where there is one, which is why "PUCT Project 58000,
-     rulemaking to update ERCOT transmission cost recovery, comment deadline reached" reads as
-     "PUCT Project 58000". Most titles here carry no comma at all, so anything still long is cut
-     The full title rides along as the link's tooltip either way. */
-  /* THE WHOLE FIRST CLAUSE, AND THE CAP THAT WAS THERE BEFORE WAS DOING REAL DAMAGE.
-     It kept 44 characters and truncated the rest with an ellipsis. That is right for the
-     titles shaped like a name, "PUCT Docket 59315", and this record has four of those. The
-     other sixty five are shaped like a sentence, "Archer County Commissioners Court
-     unanimously denies a tax abatement for a Dynamo Ventures data center", with a median first
-     clause of 109 characters. So nearly every citation a reader saw was a fragment ending in
-     an ellipsis, dropped into the middle of somebody else's sentence.
-     A long link reads as a long name. A cut one reads as broken prose, and the reader cannot
-     tell whether the machine ran out of words or out of record. The first clause is a complete
-     thought by construction, because it is what the title itself put before its first comma.
-     The remaining cap is a guard against a pathological title rather than a style, set above
-     the longest this record holds, and it still cuts at a word boundary if it ever fires. */
+  /* THE LABEL IS ALREADY THE RIGHT LENGTH, so nothing is cut here any more.
+     This function used to trim the title to fit a sentence, and the cap was wrong in both
+     directions: 44 characters made nearly every citation a fragment ending in an ellipsis, and
+     170 made it repeat the sentence it followed. A title that IS a sentence cannot be inlined
+     after a paraphrase of itself at any length, which is why the choice moved upstream to
+     ask_pack.cite_label and this reads what that decided. The longest label the record
+     produces is 30 characters. The guard stays because a builder is not a promise. */
   function handle(id) {
-    var t = citeTitle(id);
+    var t = citeLabel(id);
     if (!t) return id;
-    var first = t.split(",")[0];
-    if (first.length <= 170) return first;
-    var cut = first.slice(0, 166);
-    var sp = cut.lastIndexOf(" ");
+    if (t.length <= 40) return t;
+    var cut = t.slice(0, 36), sp = cut.lastIndexOf(" ");
     return (sp > 20 ? cut.slice(0, sp) : cut) + "...";
   }
+
   function renderCites(target, text) {
     var at = 0, m;
     CITE.lastIndex = 0;
@@ -629,7 +629,25 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
        being slow, it is a challenge the reader cannot skip, and it says so on screen while it
        runs. Restarting the clock at the fetch is what makes eight seconds mean the thing it
        claims to mean. */
-    var CEILING_MS = 8000;
+    // A HANG GUARD, NOT A BUDGET, and it used to be a budget.
+    //
+    // Eight seconds came from an owner's brief, "an eight second execution ceiling, so it's
+    // fast when users are asking", and it did make the box feel fast. It also put a stopwatch
+    // in front of readers, because eight seconds is inside the range a real answer to a real
+    // question takes, so the ceiling stopped being an exception and started being an
+    // experience. Same owner, later, watching it fire twice in a sitting: "we don't ever want
+    // that shit on screen. If it takes a couple seconds longer to get the right answer it is
+    // what it is."
+    //
+    // Forty five seconds is past anything the answerer does when it is working, including the
+    // first question of a session, which pays for a Turnstile solve, a rerank and a model call
+    // in series. What is left for this to catch is a request that is never coming back, which
+    // is what a ceiling is actually for.
+    // OVERRIDABLE FOR THE SUITE, and only there. A ceiling that is forty five seconds takes
+    // forty six seconds to test, three times over, and a suite nobody will sit through is a
+    // suite that gets skipped. Nothing on the published page sets this, so every reader gets
+    // the real number.
+    var CEILING_MS = Number(window.__ASK_CEILING_MS__) || 45000;
     var overran = false;
     /* WHICH ENDING GOT HERE FIRST, tracked explicitly rather than inferred from whether the
        body happens to have text in it. Two different endings both wrote "if nothing started

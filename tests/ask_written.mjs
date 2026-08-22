@@ -34,6 +34,12 @@ page.on("console", (m) => {
   }
 });
 await page.route("**://challenges.cloudflare.com/**", (r) => r.abort());
+// THE CEILING IS FORTY FIVE SECONDS ON THE PUBLISHED PAGE, which is right for a hang guard and
+// impossible for a suite: three ceiling cases would cost well over two minutes of waiting.
+// Eight is what it used to be, so these sections keep testing the same behaviour at the same
+// timings and only the number moves. Nothing on the real page sets this.
+const pinCeiling = (pg) => pg.addInitScript(() => { window.__ASK_CEILING_MS__ = 8000; });
+await pinCeiling(page);
 
 // The worker, stubbed. Three turns: a clean answer with an offer, an answer the guard cut,
 // and the month running out.
@@ -154,6 +160,14 @@ ok("every sentence landed",
   reply.includes("Public Utility Commission") && reply.includes("Want the dates"), reply);
 ok("the citation became a link to the decision",
   (await page.locator(".askreply a.cite").first().getAttribute("href")) === "item/tx-2026-0001/");
+// tx-2026-0001 is "PUCT Project 58000, rulemaking to update ERCOT transmission cost recovery,
+// comment deadline reached". The identifier is what a reader can look up, and the rest of that
+// sentence is what the answer already said.
+ok("...and it reads as the decision's identifier, not as its whole title",
+  (await page.locator(".askreply a.cite").first().textContent()) === "Project 58000",
+  await page.locator(".askreply a.cite").first().textContent());
+ok("...while the full title is still there to hover",
+  /PUCT Project 58000/.test(await page.locator(".askreply a.cite").first().getAttribute("title")));
 ok("provenance appears", (await page.locator(".askfrom").textContent())
   .includes("Every figure checked"));
 ok("the field is empty and ready", (await page.inputValue("#askq")) === "");
@@ -371,13 +385,18 @@ const cites = page.locator(".askturn").first().locator("xpath=..").locator("a.ci
 const hrefs = await page.locator("a.cite").evaluateAll(
   (as) => as.map((a) => [a.getAttribute("href"), a.textContent]));
 const byHref = Object.fromEntries(hrefs);
-ok("a county's construction links to the register, under its own name",
-  byHref["construction/"] === "Construction registered in Dallas County",
-  JSON.stringify(hrefs));
-ok("a data center links to its own dossier page",
+// A CITATION READS AS ATTRIBUTION, NOT AS THE THING'S DESCRIPTION. Rendering the title made
+// every citation repeat the sentence it followed, three times out of three in one answer an
+// owner ran. What ships now is the identifier where the record gives one and the source where
+// it does not, so the link text can never be the sentence again.
+ok("a county's construction cites the register it came from",
+  byHref["construction/"] === "the construction register", JSON.stringify(hrefs));
+ok("a data center cites its own name, which is what the register calls it",
   byHref["facility/bexar-1/"] === "Bexar 1", JSON.stringify(hrefs));
-ok("a reservoir links to the water record",
-  byHref["water/"] === "Travis reservoir", JSON.stringify(hrefs));
+ok("a reservoir cites the water record rather than repeating the lake",
+  byHref["water/"] === "the water record", JSON.stringify(hrefs));
+ok("and no citation is long enough to be mistaken for a sentence",
+  hrefs.every(([, t]) => (t || "").length <= 40), JSON.stringify(hrefs));
 ok("and no citation was left rendering as its raw id",
   !hrefs.some(([, t]) => /^(facility|county|water)-/.test(t)), JSON.stringify(hrefs));
 
@@ -392,6 +411,7 @@ console.log("");
 head("I2. on a phone the box takes the screen, and gives it back");
 {
   const ph = await b.newPage({ viewport: { width: 390, height: 780 } });
+  await pinCeiling(ph);
   await ph.route("**://challenges.cloudflare.com/**", (r) => r.abort());
   await ph.goto(URL_);
   await ph.waitForTimeout(400);
@@ -511,6 +531,7 @@ head("I2. on a phone the box takes the screen, and gives it back");
 // A LAPTOP HAS ROOM FOR CONTEXT, so none of that applies there.
 {
   const wide = await b.newPage({ viewport: { width: 1280, height: 800 } });
+  await pinCeiling(wide);
   await wide.route("**://challenges.cloudflare.com/**", (r) => r.abort());
   await wide.goto(URL_);
   await wide.waitForTimeout(400);
@@ -527,7 +548,7 @@ head("I2. on a phone the box takes the screen, and gives it back");
 }
 
 // ------------------------------------------------------------------ the ceiling
-head("J. the eight second ceiling");
+head("J. the ceiling, which is a hang guard and not a budget");
 /* A STREAM THAT NEVER CLOSES, patched into the page itself.
    `route.fulfill` always ENDS the response, so a stubbed body arrives complete and the stream
    finishes in under a second, which tests the happy path wearing a hang's clothes. A real
@@ -567,8 +588,12 @@ const cutText = (await page.textContent(".askreply")) || "";
 // answer, which is not what a ceiling is for.
 ok("what did arrive is still on screen", /The first part arrived/.test(cutText),
    cutText.slice(0, 90));
-ok("and it says the rest was cut for time", /cut at eight seconds/i.test(cutText),
-   cutText.slice(-90));
+// NO CLOCK IN THE COPY AND NOTHING ASKING THE READER TO ASK FOR LESS. Owner, on seeing the
+// old line twice in one sitting: "that is a horrible thing to say to someone."
+ok("and it says the answer ran long, without naming a budget the reader did not set",
+   /ran long and stops here/i.test(cutText), cutText.slice(-90));
+ok("...and never tells them to ask a narrower question",
+   !/narrower/i.test(cutText), cutText.slice(-90));
 ok("the box is usable again", !(await page.getAttribute("#askq", "disabled")));
 
 head("J2. a token that lands after the ceiling may not blank the page");
@@ -587,6 +612,7 @@ head("J2. a token that lands after the ceiling may not blank the page");
    earned while the reader was reading, so only the first one can be slow enough. */
 {
   const slow = await b.newPage();
+  await pinCeiling(slow);
   await slow.route("**://challenges.cloudflare.com/**", (r) => r.abort());
   await slow.addInitScript(() => {
     // Nine and a half seconds, which is past the eight second ceiling and inside the suite's

@@ -857,19 +857,13 @@ CITING. Write the id in double square brackets, like [[tx-2026-0001]] for a deci
 [[facility-bexar-1]] for a data center, [[county-dallas]] for a county's construction, and
 [[water-lake-travis]] for a reservoir. Never write a bare url.
 
-THE PAGE TURNS THAT INTO THE DECISION'S FULL NAME, which on this record is often a whole
-sentence long. Two things follow and both are about where you put it.
+THE PAGE TURNS THAT INTO A SHORT LINK, either the thing's identifier, like "Docket 59315", or
+the source it came from, like "the water record". It is never long.
 
-NEVER WRITE THE NAME NEXT TO THE CITATION. It says everything twice. "[[tx-2026-0003]] is the
-PUCT Docket 59315 application" reaches a reader as "PUCT Docket 59315 is the PUCT Docket 59315
-application", and that sentence was published.
-
-PUT THE CITATION AFTER WHAT YOU SAY, NOT WHERE THE SUBJECT GOES. A name a sentence long makes a
-poor subject and a fine tag. "The record for [[tx-2026-0060]] doesn't mention evaporative
-cooling" opens with a whole sentence standing in for two words, and that was published too.
-Write "No groundwater district decided that, [[tx-2026-0060]]" instead. Write "Comments close
-September 4th, 2026, [[tx-2026-0002]]." Write "Two decisions cover it, [[tx-2026-0003]] and
-[[tx-2026-0076]]." Say the thing, then cite it.
+PUT THE CITATION AFTER WHAT YOU SAY, NOT WHERE THE SUBJECT GOES. Write "No groundwater district
+decided that, [[tx-2026-0060]]" and not "The record for [[tx-2026-0060]] doesn't mention it".
+Write "Comments close September 4th, 2026, [[tx-2026-0002]]." Write "Two decisions cover it,
+[[tx-2026-0003]] and [[tx-2026-0076]]." Say the thing, then cite it.
 
 WHAT YOU MAY NEVER SAY. No verdict on grid reliability. Not a shortfall prediction, not an
 all clear, not a blackout call, not a judgement about whether the grid can carry a load. A
@@ -1052,6 +1046,66 @@ def build(today: str = None, docs_dir=None) -> dict:
 #   2  every decision block starts at the beginning of a line with "[[<id>]] "
 #   3  blocks are separated by a blank line
 #   4  ids are unique and there are exactly as many blocks as decisions
+# WHAT A CITATION READS AS, which is not the same thing as what it points at.
+#
+# The link's TEXT was the thing's own title. That is right when a title is a name and wrong
+# when it is a sentence, and 65 of 69 decision titles here are sentences. So the model wrote a
+# paraphrase, the renderer appended the title, and a reader got the same fact twice in a breath:
+#
+#   "Houston ISD has carried an artificial intelligence board policy to a second reading,
+#    still pending, Houston ISD carried an artificial intelligence board policy to a second
+#    reading."
+#
+# All three citations in that answer did it. The cap on this text has now been wrong in both
+# directions: at 44 characters nearly every citation was a fragment ending in an ellipsis, and
+# at 170 it repeats the sentence it follows. Neither is a tuning problem. A title that is a
+# sentence cannot be inlined after a paraphrase of itself at any length.
+#
+# A CITATION SHOULD READ AS ATTRIBUTION. Its identifier where the record gives one, because
+# "PUCT Docket 59315" is what the thing is CALLED and a reader can look it up. Where there is
+# none, the source it came from, which is what a citation is for. The link still goes exactly
+# where it went, and the full title still rides along as the tooltip, so nothing a reader can
+# reach is lost. What is lost is the sentence being said twice.
+_IDENT = __import__("re").compile(
+    r"\b((?:Docket|Project|Ordinance|Chapter|Contract|Case|Rule|Bill|Order|Resolution)"
+    r"\s+[A-Z0-9][A-Za-z0-9.\-]*)")
+
+# The source, per family, for the ones with no identifier of their own. Written the way a
+# reader would name it out loud, because it lands mid sentence.
+_SOURCE = {
+    "tx": "the docket",
+    "county": "the construction register",
+    "water": "the water record",
+    "facility": "the data center register",
+}
+
+# A NAME SHORT ENOUGH TO BE A NAME. Four decision titles are shaped like one and every dossier
+# is, "Bexar 1" and "Nexus Data Centers". Above this they are descriptions, and a description
+# is the thing that stutters.
+_NAME_MAX = 30
+
+
+# WHOSE NAME MAY STAND AS ITS OWN CITATION, and for two families it never can.
+#
+# A reservoir block is titled "Sam Rayburn reservoir" and any sentence citing it has just said
+# "Sam Rayburn", so the name is the subject repeated rather than a source. The same is true of
+# a county's construction. A dossier is different: its name is what the state register calls
+# it, it is the only handle the thing has, and it links to a page of its own.
+_NAMES_ITSELF = {"tx", "facility"}
+
+
+def cite_label(family: str, title: str, name: str = "") -> str:
+    """The words a citation shows. See the note above for why it is not the title."""
+    m = _IDENT.search(title or "")
+    if m:
+        return m.group(1)
+    if family in _NAMES_ITSELF:
+        short = (name or (title or "").split(",")[0]).strip()
+        if short and len(short) <= _NAME_MAX:
+            return short
+    return _SOURCE.get(family, "the record")
+
+
 # WHERE A CITATION GOES, AND WHAT IT READS AS.
 #
 # The page renders [[id]] as a link under the thing's own name. It used to build that from the
@@ -1079,37 +1133,26 @@ def build(today: str = None, docs_dir=None) -> dict:
 # those pages. Asking the thing that makes them beats counting what it made last time.
 def cites(items: list, dossiers: list, county_blocks: list, water_blocks: list,
           places: set = frozenset()) -> dict:
+    """Every citable id, as [what the link says, where it goes, what it is].
+
+    The first element is the LABEL and it is not the title. See `cite_label` for why.
+    """
     out = {}
     for it in items:
-        out[it["id"]] = [it["title"], f"item/{it['id']}/"]
+        out[it["id"]] = [cite_label("tx", it["title"]), f"item/{it['id']}/", it["title"]]
     for d in dossiers:
-        out[f"facility-{d['slug']}"] = [(d.get("name") or "").strip(),
-                                        f"facility/{d['slug']}/"]
+        name = (d.get("name") or "").strip()
+        out[f"facility-{d['slug']}"] = [cite_label("facility", name, name),
+                                        f"facility/{d['slug']}/", name]
     for b in county_blocks:
         bid = b[2:b.index("]]")]
         name = b[b.index("]]") + 2:b.index("\n")].strip()
-        out[bid] = [name, f"place/{bid}/" if bid in places else "construction/"]
+        out[bid] = [cite_label("county", name),
+                    f"place/{bid}/" if bid in places else "construction/", name]
     for b in water_blocks:
-        bid = b[2:b.index("]]")]
-        out[bid] = [b[b.index("]]") + 2:b.index("\n")].strip(), "water/"]
-    return out
-
-
-def cites(items: list, dossiers: list, county_blocks: list, water_blocks: list,
-          places: set = frozenset()) -> dict:
-    out = {}
-    for it in items:
-        out[it["id"]] = [it["title"], f"item/{it['id']}/"]
-    for d in dossiers:
-        out[f"facility-{d['slug']}"] = [(d.get("name") or "").strip(),
-                                        f"facility/{d['slug']}/"]
-    for b in county_blocks:
         bid = b[2:b.index("]]")]
         name = b[b.index("]]") + 2:b.index("\n")].strip()
-        out[bid] = [name, f"place/{bid}/" if bid in places else "construction/"]
-    for b in water_blocks:
-        bid = b[2:b.index("]]")]
-        out[bid] = [b[b.index("]]") + 2:b.index("\n")].strip(), "water/"]
+        out[bid] = [cite_label("water", name), "water/", name]
     return out
 
 
