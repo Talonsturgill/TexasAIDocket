@@ -571,6 +571,58 @@ ok("and it says the rest was cut for time", /cut at eight seconds/i.test(cutText
    cutText.slice(-90));
 ok("the box is usable again", !(await page.getAttribute("#askq", "disabled")));
 
+head("J2. a token that lands after the ceiling may not blank the page");
+/* THE SEQUENCE AN OWNER HIT ON THE FIRST QUESTION OF A SESSION, reproduced through the path
+   that actually produces it, which is the Turnstile wait and not the stream.
+   The ceiling is armed at the PRESS, so it is running while the token is still being earned.
+   The first question of a session is the one that genuinely waits, because nothing has been
+   earned yet, and a slow solve pushes that wait past eight seconds. Then:
+     the ceiling fires, drops the stage element and writes "that one did not come back"
+     the token finally lands, and the very next line is stage("Reading the record")
+     stage sees no answer started and no sentences said, so it believes it may speak
+     it finds no stage element, and CLEARS THE BODY to make one
+   The ending is gone, and the next drop takes the stage line with it. The reader is looking at
+   nothing. Reported as "the eight seconds didn't return anything, then went blank the first
+   time around", and "the first time around" is the whole clue: later questions reuse a token
+   earned while the reader was reading, so only the first one can be slow enough. */
+{
+  const slow = await b.newPage();
+  await slow.route("**://challenges.cloudflare.com/**", (r) => r.abort());
+  await slow.addInitScript(() => {
+    // Nine and a half seconds, which is past the eight second ceiling and inside the suite's
+    // patience. A real solve on a bad connection is the same shape.
+    window.turnstile = { render: (el, o) => { setTimeout(() => o.callback("t"), 9500); return 1; },
+                         reset: () => {} };
+    /* THE PAGE ONLY CALLS render FROM THE TURNSTILE SCRIPT'S ONLOAD, and that script is
+       aborted here, so nothing invokes it and the stub sits unused. A first version of this
+       test missed that, the token never arrived at all, the ceiling's message was never
+       overwritten, and the test passed against the broken code it was written to catch. */
+    setTimeout(function poke() {
+      if (window.askTurnstileReady) window.askTurnstileReady(); else setTimeout(poke, 10);
+    }, 10);
+    const real = window.fetch;
+    window.fetch = function (u, o) {
+      // Never resolves, so only the ceiling and the token can write anything at all.
+      if (String(u).includes("/answer")) return new Promise(() => {});
+      return real(u, o);
+    };
+  });
+  await slow.goto(URL_);
+  await slow.waitForTimeout(300);
+  await slow.fill("#askq", "why does the deadline keep moving");
+  await slow.press("#askq", "Enter");
+  // Past the ceiling, past the token, and past whatever the token's arrival sets going.
+  // Past the ceiling at eight seconds and past the token at nine and a half, which is the
+  // window where the ending gets overwritten.
+  await slow.waitForTimeout(13000);
+  const text = ((await slow.textContent(".askreply")) || "").trim();
+  ok("the reader is not left looking at nothing", text.length > 0, JSON.stringify(text));
+  ok("and what stands is an ending rather than a status line",
+     !/^Reading the record$|^Passing the human check$/i.test(text), JSON.stringify(text));
+  ok("the box is usable again", !(await slow.getAttribute("#askq", "disabled")));
+  await slow.close();
+}
+
 console.log(fail === 0 ? `ask_written: all passed, ${pass} checks`
                        : `ask_written: FAILED, ${fail} of ${pass + fail}`);
 await b.close();

@@ -727,7 +727,20 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
        and it refuses to speak at all after that: a stage line under a finished sentence is
        noise even when it is harmless. */
     function stage(text) {
-      if (started || said.length) return;
+      /* NOTHING MAY WRITE TO THE BODY ONCE AN ENDING HAS WRITTEN TO IT, and this guard was
+         half built. It already refused to speak over an answer in progress, which was the fix
+         for an owner watching a sentence appear and vanish. It did not refuse to speak over an
+         ENDING, and an ending is the case where the body holds one short line and nothing else.
+         So: the eight second ceiling fires, writes "that one did not come back", and calls
+         dropStage, which sets stageEl to null. A chunk already in flight then reaches this
+         function, which sees no answer started and no sentences said, decides it is allowed to
+         speak, finds no stage element, and clears the body to make one. The ceiling's message
+         is gone. The next dropStage removes the stage line too and the reader is looking at
+         nothing at all. Reported as "the eight seconds didn't return anything, then went
+         blank".
+         stopStream is called before this, and it cannot help: a chunk already dispatched still
+         arrives. The ending is the fact to guard on rather than the stream. */
+      if (started || said.length || ended) return;
       if (!stageEl) {
         body.textContent = "";
         stageEl = document.createElement("div");
