@@ -105,3 +105,23 @@ instrument has stopped and no page is reading wrong.
 
 **The scanner's daily ceiling.** NOT CHECKED. The Supabase connector is not available in this
 session, so the `scanner.scans` query could not be run. Recorded rather than skipped silently.
+
+## Gate status
+
+<!-- gate-status:begin -->
+| gate | status | detail |
+|---|---|---|
+| claims         | PASS   | 19 verified claim(s) |
+| render         | PASS   | 9 slide(s) |
+| qa             | PASS   | 9 slide(s), zero fails, zero warns |
+| aggregates     | PASS   | 3 declared and re-derived |
+| assembly       | PASS   | 9 slide(s), 4.36 MB, vector |
+| score          | ABSENT | score.json not written yet |
+| dossiers       | PASS   | 26,081 chars planned |
+| caption        | PASS   | 162 words |
+| craft floor    | PASS   | 9 frame(s), median 548, floor 99 |
+| plan vs render | WARN   | 6 of 44 acceptance item(s) checkable |
+| texan          | WARN   | places NONE / body yes / deadline yes / next step yes |
+| absences       | WARN   | 5 of 7 scoped to a named document, 2 unscoped |
+| completion     | ABSENT | not scored yet |
+<!-- gate-status:end -->
