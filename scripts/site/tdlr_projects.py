@@ -270,6 +270,57 @@ def filings_for(parties: set, specific: set, by_party: dict) -> list[dict]:
     return sorted(out, key=lambda r: (r.get("start") or "", r["number"]))
 
 
+# A CAMPUS IS WHAT THE FILER CALLED ONE PROJECT. Ten Vantage buildings in Shackelford County
+# were filed under one project name by ten different single purpose companies, sixteen months
+# apart, and nothing but that shared string groups them. It is the developer's own grouping
+# rather than one this project invented, which is the only kind worth publishing.
+CAMPUS_MIN = 2
+
+
+def dc_scope(rec: dict) -> bool:
+    """Whether THIS FILING'S OWN SCOPE says the thing being built is a data centre.
+
+    Not the same question as `is_datacenter`, which decides whether a filing belongs in this
+    register at all and reads the project name and the facility code as well. That is right for
+    membership and wrong for adding up a campus. The Frontier group holds ten filings scoped
+    "New Data Center Building" and one scoped "New Office Building", and the office carries a
+    floor area larger than all ten buildings together. Summed without reading scope, the campus
+    comes out half again bigger than the one being built, and every figure downstream is wrong
+    while every gate stays green.
+    """
+    return bool(DC_WORDS.search(str(rec.get("scope") or "")))
+
+
+def campuses(recs: list[dict]) -> list[dict]:
+    """Filings grouped by the project name they share, buildings counted apart from the rest."""
+    by: dict[str, list] = defaultdict(list)
+    for r in recs:
+        name = str(r.get("project") or "").strip()
+        if name:
+            by[name].append(r)
+    out = []
+    for name, rs in by.items():
+        if len(rs) < CAMPUS_MIN:
+            continue
+        halls = [r for r in rs if dc_scope(r)]
+        rest = [r for r in rs if not dc_scope(r)]
+        starts = sorted(str(r.get("start") or "")[:10] for r in rs if r.get("start"))
+        t = totals(halls)
+        out.append({
+            "project": name,
+            "filings": len(rs),
+            "buildings": len(halls),
+            "cost": t["cost"],
+            "sqft": t["sqft"],
+            "other": len(rest),
+            "counties": sorted({r.get("county") for r in rs if r.get("county")}),
+            "cities": sorted({r.get("city") for r in rs if r.get("city")}),
+            "first": starts[0] if starts else "",
+            "last": starts[-1] if starts else "",
+        })
+    return sorted(out, key=lambda c: (-c["cost"], c["project"]))
+
+
 def shared_buildings(recs: list[dict]) -> list[dict]:
     """Filings that look like the same building filed by two different owners.
 
@@ -614,6 +665,42 @@ def self_test() -> int:
        shared_buildings([same[0], {**same[1], "address": "2 Way"}]) == [])
     ok("a filing with no cost is never paired",
        shared_buildings([{**same[0], "cost": None}, {**same[1], "cost": None}]) == [])
+
+    # A CAMPUS, AND THE OFFICE THAT WOULD HAVE INFLATED IT. Replays the Frontier shape exactly:
+    # buildings scoped as data centres, plus one filing under the same project name whose floor
+    # area is larger than all of them together.
+    camp = [{"number": "c1", "project": "Project Frontier", "scope": "New Data Center Building",
+             "cost": 900, "sqft": 300, "start": "2025-01-01", "county": "Shackelford",
+             "city": "Abilene", "owner": "Vantage A"},
+            {"number": "c2", "project": "Project Frontier", "scope": "New Data Center Building",
+             "cost": 800, "sqft": 200, "start": "2026-01-01", "county": "Shackelford",
+             "city": "Abilene", "owner": "Vantage B"},
+            {"number": "c3", "project": "Project Frontier", "scope": "New Office Building",
+             "cost": 10, "sqft": 9000, "start": "2025-06-01", "county": "Shackelford",
+             "city": "Abilene", "owner": "Vantage A"}]
+    got = campuses(camp)
+    ok("filings sharing a project name are one campus", len(got) == 1, got)
+    ok("...counting only the ones scoped as data centre buildings", got[0]["buildings"] == 2, got)
+    ok("...so an office on the same campus cannot inflate its floor area",
+       got[0]["sqft"] == 500, got[0]["sqft"])
+    ok("...nor its capital", got[0]["cost"] == 1700, got[0]["cost"])
+    ok("...and it is still reported as present rather than dropped silently",
+       got[0]["other"] == 1 and got[0]["filings"] == 3, got[0])
+    ok("the campus spans the dates of every filing in it",
+       (got[0]["first"], got[0]["last"]) == ("2025-01-01", "2026-01-01"), got[0])
+    ok("a lone filing is a building and not a campus", campuses(camp[:1]) == [])
+    ok("a filing with no project name joins no campus",
+       campuses([{**camp[0], "project": ""}, {**camp[1], "project": ""}]) == [])
+    # THE SCOPE TEST READS SCOPE AND NOTHING ELSE, which is the whole difference from
+    # is_datacenter. A facility code in another field must not make an office a data hall.
+    ok("scope alone decides, not the facility code beside it",
+       dc_scope({"scope": "New Office Building", "facility": "TX311"}) is False)
+    ok("...and a data centre scope is read", dc_scope({"scope": "New Data Center Building"}))
+    ok("...and an empty scope is not a building", dc_scope({"scope": ""}) is False)
+    # THE REAL SHAPE, since a synthetic fixture proves the checker and not the product.
+    ok("is_datacenter would have counted that office in, which is why dc_scope exists",
+       is_datacenter({"scope": "New Office Building", "facility": "TX311",
+                      "project": "Vantage DC Abilene - TX3 - Project Frontier"}))
 
     # THE JOINER, whose whole reason is the two item case a naive join reads wrong.
     ok("two names take the conjunction and no comma", andlist(["A", "B"]) == "A and B")

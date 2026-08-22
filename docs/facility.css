@@ -134,6 +134,7 @@
 .cbfile { width:min(46rem,calc(100vw - 4rem)); min-width:100%; }
 .cbfile .cbrow { grid-template-columns:2.2rem 6.6rem 7.4rem 1fr 5.2rem; }
 .cbjoin .cbrow { grid-template-columns:1fr 7rem 0 5.4rem 6rem; }
+.cbcamp .cbrow { grid-template-columns:1fr 7rem 7.4rem 6rem 7rem; }
 .cbfile .cbm, .cbfile .cbs { text-align:right; }
 .cbrow { display:grid; grid-template-columns:minmax(6.5rem,1fr) 9rem 8rem 6.5rem 6rem;
   gap:.2rem .9rem;
@@ -150,6 +151,8 @@
   .cbfile .cbrow { grid-template-columns:2.8rem 1fr; }
   .cbjoin .cbrow { grid-template-columns:1fr; }
   .cbjoin .cbd { grid-row:auto; }
+  .cbcamp .cbrow { grid-template-columns:1fr; }
+  .cbcamp .cbd { grid-row:auto; }
   .cbfile .cbm, .cbfile .cbs { text-align:left; }
   .cbd { grid-row:span 4; }
   .ctwo { grid-template-columns:1fr; }

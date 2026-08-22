@@ -5481,6 +5481,49 @@ def facility_filings(reg: dict, projects: dict) -> dict:
     return out
 
 
+# WHAT A GAP CLAIMS IS A CLAIM ABOUT THE WORLD, and no gate here could check one.
+#
+# Nine dossiers shipped a gap reading "The street address is not public". The address was
+# public. It sits in the construction filing this same build reads, in a field the parser
+# already keeps, on the row the join already attaches to that facility. The dossier gate
+# checks that gaps EXIST and carry no digits. It has no way to know whether one is TRUE, and a
+# false gap is worse than no gap because it tells a reader to stop looking for something that
+# is right there.
+#
+# So this checks the one class that is mechanically checkable. A gap saying a field is not
+# public, where this build is holding that field, is a contradiction the build can find.
+NOT_PUBLIC = re.compile(r"\b(?:not public|no address|not stated|not in the record|"
+                        r"is not in the certification)\b", re.I)
+GAP_FIELDS = (("address", re.compile(r"\b(?:street\s+)?address\b", re.I)),
+              ("county", re.compile(r"\bcounty\b", re.I)))
+
+
+def contradicted_gaps(dossiers: list, filings: dict) -> list[str]:
+    """Gaps that say a field is not public while the filings this build read carry it."""
+    out = []
+    for d in dossiers:
+        got = filings.get(d["name"]) or []
+        if not got:
+            continue
+        # WHAT THE PAGE ITSELF SUPPLIES IS NOT A HOLE. A gap that says the CERTIFICATION has no
+        # address, on a page that then prints the address out of the construction filing, is
+        # provenance rather than a hole, and reads that way. The fault is a gap that sends a
+        # reader away from something no other line on the page gives them.
+        supplied = " ".join(str(f.get("text") or "") + " " + str(f.get("label") or "")
+                            for f in d.get("facts") or []).lower()
+        for gap in d.get("gaps") or []:
+            if not NOT_PUBLIC.search(gap):
+                continue
+            for field, pat in GAP_FIELDS:
+                if not pat.search(gap):
+                    continue
+                have = next((r[field] for r in got if r.get(field)), None)
+                if have and str(have).lower() not in supplied:
+                    out.append(f"{d['name']}: gap says {gap!r}, and its construction filing "
+                               f"carries {field} {have!r}, which no fact on this page supplies")
+    return out
+
+
 def facility_page(d: dict, today: str, filings: list | None = None) -> str:
     """One certified data center, and everything the research could source about it."""
     name = d["name"]
@@ -5654,6 +5697,18 @@ def construction_page(data: dict, reg: dict, today: str) -> str:
         f'{"county" if len(b["counties"]) == 1 else "counties"}</span></div>'
         for b in brands)
 
+    # A CAMPUS IS THE FILER'S OWN GROUPING, and the only figure worth adding up across a
+    # project name is the one for the buildings. `dc_scope` keeps the office out.
+    krow = "".join(
+        f'<div class="cbrow"><span class="cbd">{e(c["project"])}</span>'
+        f'<span class="cbm"><strong class="num">{e(bn(c["cost"]))}</strong></span>'
+        f'<span class="cbs">' + (f'<strong class="num">{n0(c["sqft"])}</strong> sq ft'
+                                  if c["sqft"] else "") + f'</span>'
+        f'<span class="cbf">{n0(c["buildings"])} '
+        f'{"building" if c["buildings"] == 1 else "buildings"}</span>'
+        f'<span class="cbc">{e(", ".join(c["counties"]))}</span></div>'
+        for c in tdlr_projects.campuses(dc))
+
     # THE JOIN, computed by the one function the facility pages also call. It was written twice
     # for a week, and two copies of a rule about which parties are specific enough to join on is
     # how this table and a facility page come to disagree about the same building.
@@ -5721,6 +5776,12 @@ def construction_page(data: dict, reg: dict, today: str) -> str:
            + ("s" if len(uncertified) == 1 else "")
            + f' no certification at all. A reader working from the tax record alone would not '
            f'know they build in Texas.</p>' if uncertified else "") +
+        f'<h2>Filed as one campus</h2>'
+        f'<p>Several filings under one project name are the developer\'s own grouping rather '
+        f'than one made here. Buildings scoped as data centers are counted apart from the '
+        f'offices and yards filed beside them.</p>'
+        f'<div class="cbtable cbcamp" data-prose="data">{krow}</div>'
+
         f'<h2>Where the two registers meet</h2>'
         f'<p>The state published this link on both sides. A certification names an owner and a '
         f'construction filing names the same entity. These are the certified facilities whose '
@@ -6048,6 +6109,16 @@ def build(out: Path, today: str) -> dict:
     # registry, because deciding whether a party is a single purpose entity or a parent company
     # is a question about all 151 rows and not about one of them.
     _fil = facility_filings(entities.load(), tdlr_projects.load())
+    # A FALSE GAP IS WORSE THAN NO GAP. It tells a reader to stop looking for something this
+    # build is holding. Hard, like the numeral gate, because a gap nobody checks is a claim.
+    _cg = contradicted_gaps(_doss.get("dossiers") or [], _fil)
+    if _cg:
+        for _line in _cg:
+            print(f"  gap: {_line}", file=sys.stderr)
+        raise SystemExit(
+            f"site_build: {len(_cg)} dossier gap(s) say a field is not public while the "
+            f"construction filing this build read carries it. Publish the field as a fact, or "
+            f"reword the gap to say which register lacks it.")
     for _d in _doss.get("dossiers") or []:
         _m = _fil.get(_d["name"]) or []
         _n = facility_dossier.authorised({"dossiers": [_d]})
@@ -6111,6 +6182,8 @@ def build(out: Path, today: str) -> dict:
                 _cty[_r["county"]] = _cty.get(_r["county"], 0) + (_r.get("cost") or 0)
         for _c, _v in _cty.items():
             _tnums |= {_bn(_v), entities.n0(sum(1 for _r in _dc if _r.get("county") == _c))}
+        for _c in tdlr_projects.campuses(_dc):
+            _tnums |= {_bn(_c["cost"]), entities.n0(_c["sqft"]), entities.n0(_c["buildings"])}
         # The join, priced per facility, by the same call the page makes.
         _byp = {}
         for _r in _dc:
@@ -6396,6 +6469,30 @@ def self_test() -> int:
           len(facility_filings(_party(2), _one)) == 2, repr(facility_filings(_party(2), _one)))
     check("...and the same party naming three joins to none of them",
           facility_filings(_party(3), _one) == {}, repr(facility_filings(_party(3), _one)))
+    # A GAP IS A CLAIM ABOUT THE WORLD AND NO GATE COULD CHECK ONE. Nine dossiers carried
+    # "The street address is not public" while the address sat in the construction filing this
+    # same build reads. The dossier gate checks that gaps exist and carry no digits, and has no
+    # way to know whether one is true. This checks the class that is checkable.
+    _g = [{"name": "F", "gaps": ["The street address is not public"], "facts": []}]
+    _f = {"F": [{"address": "1 Way", "county": "Travis"}]}
+    check("a gap saying the address is not public fails when the filing has one",
+          len(contradicted_gaps(_g, _f)) == 1, contradicted_gaps(_g, _f))
+    check("...and the county half of the rule bites too",
+          len(contradicted_gaps([{"name": "F", "gaps": ["The county is not public"],
+                                  "facts": []}], _f)) == 1)
+    # THE THREE WAYS IT MUST STAY QUIET, each of which is a correct page.
+    check("...but not when a fact on the same page supplies the address",
+          contradicted_gaps([{**_g[0], "facts": [{"label": "Address on the construction filing",
+                                                  "text": "1 Way"}]}], _f) == [])
+    check("...nor when the facility has no construction filing at all",
+          contradicted_gaps(_g, {}) == [])
+    check("...nor when the gap is about something the filing does not carry",
+          contradicted_gaps([{"name": "F", "gaps": ["Capacity is not public"], "facts": []}],
+                            _f) == [])
+    check("the live ledger has no contradicted gap",
+          contradicted_gaps(facility_dossier.load().get("dossiers") or [],
+                            facility_filings(entities.load(), tdlr_projects.load())) == [])
+
     missing = sorted(dk.TOPICS - set(TOPIC_BLURBS))
     check(f"every admitted beat has a blurb (missing {missing or 'none'})", not missing,
           "add one line per slug to TOPIC_BLURBS in scripts/site/site_build.py")

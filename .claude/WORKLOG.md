@@ -743,18 +743,60 @@ nothing. It is two tests now, the same party joining on two facilities and refus
 a line before them asserting the fixture arrives at all. GATE_LESSONS entry 63 ("Three self-tests
 passed on a fixture the code never saw").
 
-## Batch 9 candidates
+## Batch 9: the Oracle spine, and two Abilenes
 
-**The Oracle spine.** Seventeen undossiered rows across Vantage TX 302 to 310 and Lancium
-Abilene III to VIII. The construction panel now prices them automatically, so a dossier there
-adds narrative and sources on top of figures that are already published rather than starting
-from nothing. Biggest single block of unwritten rows left.
+**Fifteen dossiers, not seventeen and not fourteen.** The count in this file was wrong and so was
+the first filter written to check it, which read `TX ?30\d` and silently dropped TX 310. The
+spine is nine Vantage rows and six Lancium rows.
 
-**Banked research waiting to be encoded**, unchanged from batch 4 and still the best targets
-after the spine: the five Amazon codenames want a county appraisal district pass, and CoreWeave
-Denton, CoreWeave Plano, the Microsoft San Antonio cluster, Project Eagle at Wharton and Horizon
-Junction each have notes already gathered.
+**The finding the batch is named for.** Two campuses in the record answer to the name Abilene and
+they are not in the same county. Vantage Frontier is in Shackelford County under an Abilene
+mailing address, which is ordinary for a rural site. The Lancium Clean Campus is inside Abilene
+in Taylor County. Both are occupied by the same Oracle entity, so anything reading the city line
+alone merges two separate campuses. Every dossier on both sides now says so.
 
-Closed in batch 8, recorded so it is not reopened: the four loose owner queries (Prologis 682
-rows, Core Scientific 398, Applied Digital 233, Meta 85) were pulled and yielded nothing passing
-the owner test, and the per facility panel shipped.
+**The corroboration.** Ten companies filed ten Frontier buildings over sixteen months and their
+floor areas sum to within half a percent of the total Vantage announced before the first was
+filed. Two state registers, neither built to check the other, neither a press release. The figure
+is computed on the construction page by `tdlr_projects.campuses()` rather than typed anywhere.
+
+**A campus is what the filer called one project**, so `campuses()` groups on the shared project
+name and counts buildings by their own scope. It has to. The Frontier group holds one filing
+scoped as an office whose floor area is larger than all ten buildings together, and summing
+without reading scope describes a campus half again bigger than the one being built.
+
+**The dates tell the story on the Lancium side.** Campus III was certified alone in January.
+Five more took effect on one day in March, two days BEFORE Crusoe announced the two to eight
+expansion. The row numbered second was certified last, more than a year later. Frontier runs the
+other way, announced in August and certified in October. Certification order and building number
+correspond on neither campus.
+
+**Three faults found and fixed on the way.**
+
+A bulk edit wrote facts citing `s1` across ten dossiers. On the nine new rows that was the
+construction register and on the one that already existed it was a press release. The dossier
+gate caught it. Source ids are local to a record, so they are resolved by url now.
+
+Nine dossiers were written with a gap reading "The street address is not public" while the
+address sat in the construction filing this same build reads. **A gap is a claim about the world
+and no gate could check one.** `site_build.contradicted_gaps()` now checks the class that is
+checkable and the build fails on it. It found two more, on dossiers written long before this
+batch, one of which told readers the county was not in the record while the filing named Travis.
+
+The campus table printed a zero square footage for a group whose filings carry no area. It shows
+nothing there now.
+
+`knowledge/shared/ORACLE_SPINE.md` carries the research so the next session starts here.
+
+## Batch 10 candidates
+
+**Banked research waiting to be encoded**, unchanged and still the best targets: the five Amazon
+codenames want a county appraisal district pass, and CoreWeave Denton, CoreWeave Plano, the
+Microsoft San Antonio cluster, Project Eagle at Wharton and Horizon Junction each have notes
+already gathered. Project Eagle and Horizon Junction now have computed campus totals to build on.
+
+**The campus view opens a question worth chasing.** Ten campus groups exist in the register and
+only two of them are dossiered. AWS Rockfish spans two counties under one project name, which is
+either a shared name or a shared campus and the record does not say which.
+
+**Ninety seven rows remain undossiered** of the hundred and fifty one.
