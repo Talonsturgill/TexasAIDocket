@@ -1072,7 +1072,7 @@ _IDENT = __import__("re").compile(
 
 # The source, per family, for the ones with no identifier of their own. Written the way a
 # reader would name it out loud, because it lands mid sentence.
-_SOURCE = {
+SOURCE = {
     "tx": "the docket",
     "county": "the construction register",
     "water": "the water record",
@@ -1103,7 +1103,7 @@ def cite_label(family: str, title: str, name: str = "") -> str:
         short = (name or (title or "").split(",")[0]).strip()
         if short and len(short) <= _NAME_MAX:
             return short
-    return _SOURCE.get(family, "the record")
+    return SOURCE.get(family, "the record")
 
 
 # WHERE A CITATION GOES, AND WHAT IT READS AS.

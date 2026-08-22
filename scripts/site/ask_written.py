@@ -59,7 +59,20 @@ FEEDBACK_SUBJECT = "Texas AI Docket, feedback on the search"
 COPY = {
     "placeholder":  "Ask about any AI decision in Texas",
     "followup":     "Ask a follow-up",
-    "stage_human":  "Passing the human check",
+    # THERE IS NO "PASSING THE HUMAN CHECK" LINE ANY MORE, and it took three complaints from
+    # the same owner to stop tuning it and delete it.
+    #
+    # It was honest and it was the wrong thing to be honest about. Turnstile is our anti-abuse
+    # measure, on a metered endpoint, protecting a budget the reader did not set. A solve takes
+    # one to three seconds, so a reader moving question to question outruns the next token and
+    # sees the line nearly every time. It was moved earlier, then given a quarter second of
+    # grace, and it still showed, because the wait is real and no amount of timing hides a real
+    # wait. Owner, third time: "its still doing the 'Passing the human check' on nearly every
+    # question", and "I've never touched it once to actually use this".
+    #
+    # Naming our own plumbing also invites a reader to think they have something to do, which
+    # is the one thing they cannot help with. From where they sit the whole operation is this
+    # box reading the record, and every step of it now says so.
     "stage_read":   "Reading the record",
     # WHAT THIS SAYS AND WHY IT NO LONGER BLAMES THE RECORD.
     #
@@ -72,11 +85,10 @@ COPY = {
     # This box refuses a great deal in order to be trustworthy. Saying "no" on the record's
     # behalf when the truth is "nothing we produced survived" is the one refusal it has not
     # earned.
-    "no_answer":    "Nothing came back for that one. Asking again usually works, and typing "
-                    "searches the whole record instantly either way.",
+    "no_answer":    "Nothing came back for that one. Asking again usually works.",
     "failed":       "That did not get through. Try again in a moment.",
-    "capped":       "That is this month's last written answer. Typing still searches the "
-                    "whole record instantly and for nothing, which is most of what this box does.",
+    "capped":       "That is this month's last written answer. The record itself is open at "
+                    "the link below and the answers already given are still here.",
     "provenance":   "Written from the published record. Every figure checked against it.",
     # NEITHER OF THESE MENTIONS A CLOCK AND NEITHER ASKS THE READER TO ASK FOR LESS.
     #
@@ -105,8 +117,7 @@ COPY = {
     "send":         "Ask",
     "accept":       "Use the suggested question",
     "feedback":     "Send feedback",
-    "too_long":     "That answer ran longer than the space for it, so the last part is not "
-                    "shown. A narrower question gets the whole of it.",
+    "too_long":     "That answer ran longer than the space for it and stops here.",
     "fb_sending":   "Sending",
     "fb_thanks":    "Thanks. That goes straight to a person.",
     "fb_failed":    "That did not send. Try the book a call link instead.",
@@ -323,14 +334,19 @@ _CLIENT = r"""
   function waitForToken(stage) {
     if (!SITEKEY) return Promise.resolve("");
     if (tsToken) return Promise.resolve(tsToken);
-    var announce = setTimeout(function () { stage("%%stage_human%%"); }, STAGE_GRACE_MS);
+    var announce = setTimeout(function () { stage("%%stage_read%%"); }, STAGE_GRACE_MS);
     /* Keep waiting rather than giving up if the script is slow: a bad connection is not a
        failed check, and this box exists for people on bad connections. */
     return new Promise(function (resolve) {
       var n = 0;
       var t = setInterval(function () {
         if (tsToken) { clearTimeout(announce); clearInterval(t); resolve(tsToken); return; }
-        if (++n > 150) { clearTimeout(announce); clearInterval(t); resolve(""); }
+        /* SIX SECONDS, NOT FIFTEEN. This polled for fifteen, then posted without a token,
+           which the worker refuses, and the 403 path then waited another fifteen. Half a
+           minute of a box sitting there, reported as exactly that. Turnstile solves in one to
+           three seconds when it is going to solve at all, so six is generous, and past it the
+           honest outcome is a failure the reader can act on rather than more waiting. */
+        if (++n > 60) { clearTimeout(announce); clearInterval(t); resolve(""); }
       }, 100);
     });
   }
@@ -386,6 +402,19 @@ _CLIENT = r"""
     return (sp > 20 ? cut.slice(0, sp) : cut) + "...";
   }
 
+  var SOURCE = window.__ASK_SOURCE__ || {};
+  function familyOf(id) {
+    if (/^tx-\d{4}-\d{4}$/.test(id)) return "tx";
+    var cut = id.indexOf("-");
+    return cut > 0 ? id.slice(0, cut) : id;
+  }
+  function shown(id, before) {
+    var label = handle(id);
+    if (!label) return id;
+    var tag = SOURCE[familyOf(id)];
+    if (!tag || label === tag) return label;
+    return before.toLowerCase().indexOf(label.toLowerCase()) >= 0 ? tag : label;
+  }
   function renderCites(target, text) {
     var at = 0, m;
     CITE.lastIndex = 0;
@@ -396,7 +425,17 @@ _CLIENT = r"""
       var a = document.createElement("a");
       a.className = "cite";
       a.href = citeHref(m[1]);
-      a.textContent = handle(m[1]);
+      /* A CITATION MAY NOT REPEAT A NAME THE SENTENCE HAS ALREADY USED.
+         Moving from the full title to a short identifier fixed the long stutter and left a
+         short one. "Austin City Council adopted Ordinance 20260423-029 creating City Code
+         Chapter 2-19 on surveillance technology, Ordinance 20260423-029." The label is right,
+         the link is right, and the reader is still told the same thing twice.
+         The page is the only place that can see both halves, because whether a name repeats
+         depends on the sentence the model wrote and nothing upstream knows that. So when the
+         label is already in what has been rendered, the citation falls back to naming its
+         source, which is what a citation is for and what it would have said anyway if the
+         record had given it no identifier. */
+      a.textContent = shown(m[1], text.slice(0, m.index));
       a.title = citeTitle(m[1]) || m[1];
       target.appendChild(a);
       at = m.index + m[0].length;
@@ -605,30 +644,19 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
        and for nothing. An off-record question is refused without calling anybody. Only a
        question that genuinely needs prose reaches the worker, which is what makes an eight
        second ceiling a promise rather than a hope: most questions never start the clock. */
-    /* ---- THE EIGHT SECOND CEILING -------------------------------------------
-       Owner's brief: "an eight second execution ceiling, so it's fast when users are asking
-       it questions".
-       IT CUTS, IT DOES NOT DISCARD. Aborting at the ceiling and showing nothing would trade a
-       slow answer for no answer, which is not what a ceiling is for. What arrived stays on
-       screen, the stream is stopped, and the reader is told the rest was cut for time and
-       offered the thing that actually helps, which is a narrower question.
-       WHY EIGHT IS ACHIEVABLE AT ALL. Most questions never start this clock, because the
-       classifier answers them from the page. The ceiling only has to hold for questions that
-       genuinely need a model, and the token is already in hand by the time one is pressed.
-       THE CLOCK STARTS AT THE PRESS AND IS RESTARTED WHEN THE REQUEST GOES OUT, and the second
-       half of that was missing. The line above says the token is already in hand by the time a
-       question is pressed. That is true of every question except the FIRST one of a session,
-       where Turnstile arms on focus and is still solving, and solving takes one to three
-       seconds. So the first question of every session spent part of its eight on a human check
-       and then got cut.
-       IT LOOKED WORSE THAN A CUT. When the ceiling fires during the token wait, `stopStream`
-       is still null, because no fetch has started for it to stop. So the reader was shown "it
-       did not come back in eight seconds", and then the answer arrived a moment later and
-       overwrote the message. An owner watching an eval saw exactly that and called it odd.
-       The promise is unchanged and it is about the ANSWER. A human check is not the answerer
-       being slow, it is a challenge the reader cannot skip, and it says so on screen while it
-       runs. Restarting the clock at the fetch is what makes eight seconds mean the thing it
-       claims to mean. */
+    /* ---- THE CEILING ---------------------------------------------------------
+       IT CUTS, IT DOES NOT DISCARD. Aborting and showing nothing would trade a slow answer for
+       no answer, which is not what a ceiling is for. What arrived stays on screen and the
+       stream is stopped.
+       THE CLOCK STARTS AT THE PRESS AND IS RESTARTED WHEN THE REQUEST GOES OUT. Without the
+       restart, the Turnstile solve was inside the budget, so a first question could be told it
+       had not come back when the answerer had not been asked yet.
+       THIS BLOCK USED TO SAY THREE THINGS THAT STOPPED BEING TRUE and stayed here anyway. That
+       eight seconds was the number, that most questions never start the clock because a
+       classifier answers them from the page, and that the reader is offered a narrower
+       question. There is no local answer lane, the ceiling is forty five seconds and is a hang
+       guard, and nobody is told to ask for less. A comment that contradicts the code is worse
+       than no comment, because it is read as the reason. */
     // A HANG GUARD, NOT A BUDGET, and it used to be a budget.
     //
     // Eight seconds came from an owner's brief, "an eight second execution ceiling, so it's
@@ -886,7 +914,17 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
       }
       if (ev.error) {
         dropStage();
-        if (!started) body.textContent = ev.error;
+        /* THE WORKER'S OWN WORDS WENT STRAIGHT ON SCREEN, and one of them is an instruction a
+           reader cannot follow. A spent or expired token answers "finish the human check
+           first", which reached an owner who had never been shown a check to finish and could
+           not have finished it if he had. The page retries that case once with a fresh token
+           before it ever gets here, so arriving here means the retry failed too, and the only
+           honest thing left to say is that it did not get through.
+           Anything else the worker says is its own, written for a reader, and passes through. */
+        if (!started) {
+          body.textContent = /human check|turnstile/i.test(String(ev.error || ""))
+            ? "%%failed%%" : ev.error;
+        }
       }
     }
 
@@ -928,7 +966,7 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
          deliberately invisible is a dead end nobody can act on, which is exactly what an eval
          found. Ask for a fresh one and go again, once. */
       if (r.status !== 403) return r;
-      stage("%%stage_human%%");
+      stage("%%stage_read%%");
       spendToken();
       clearTimeout(ceiling);
       return waitForToken(stage).then(function (fresh) {

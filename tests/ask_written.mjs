@@ -67,6 +67,14 @@ await page.route("**/answer", async (route) => {
          { sentence: "The body that decides sets the deadline and the rules." },
          { sentence: "Want the dates it moved on?" },
          { done: true }]
+    : /surveillance ordinance/.test(q)
+      ? [{ stage: "Reading the record" },
+         // THE SENTENCE AN OWNER GOT BACK, verbatim in shape. The model names the identifier
+         // and then cites it, so the label and the prose are the same eight characters.
+         { sentence: "Austin City Council adopted Ordinance 20260423-029 creating City Code "
+                     + "Chapter 2-19 on surveillance technology, [[tx-2026-0043]]." },
+         { sentence: "A second one names no number at all, [[tx-2026-0044]]." },
+         { done: true }]
     : /what is happening in Dallas/.test(q)
       ? [{ stage: "Reading the record" },
          { sentence: "Construction there is registered at $3.61 billion, [[county-dallas]]." },
@@ -289,7 +297,12 @@ await page.press("#askq", "Enter");
 await page.waitForTimeout(600);
 const capped = await page.locator(".askreply").last().textContent();
 ok("it says the written answers are spent", capped.includes("last written answer"), capped);
-ok("and points at the half that still works", capped.includes("Typing still searches"), capped);
+// THE HALF IT USED TO POINT AT DOES NOT EXIST. "Typing still searches the whole record
+// instantly and for nothing" described a local answer lane that was deleted on the owner's
+// instruction, so the page was making a promise nothing behind it kept. What is left that a
+// reader can actually use is the record itself and the answers already on screen.
+ok("and points at something that still exists",
+   /record itself is open/.test(capped) && !/Typing/i.test(capped), capped);
 
 // ------------------------------------------------------------------ reset
 head("I. start over puts it back");
@@ -366,6 +379,27 @@ ok("the sentence that did land is still shown",
 ok("and no fragment was published",
   !(await page.locator(".askreply").last().textContent()).match(/[a-z]{3}$/m) ||
   (await page.locator(".askreply").last().textContent()).includes("right now."));
+
+head("K3. a citation may not repeat a name the sentence already used");
+/* Moving from the full title to a short identifier fixed the long stutter and left a short
+   one, and the page is the only place that can see both halves. Whether a name repeats depends
+   on the sentence the model wrote, which nothing upstream knows. */
+await page.fill("#askq", "what is the surveillance ordinance");
+await page.press("#askq", "Enter");
+await page.waitForSelector(".askfrom", { timeout: 12000 });
+{
+  const cited = await page.locator("a.cite").evaluateAll(
+    (as) => as.map((a) => [a.getAttribute("href"), a.textContent]));
+  const byHref = Object.fromEntries(cited);
+  ok("a citation whose identifier is already in the sentence names its source instead",
+     byHref["item/tx-2026-0043/"] === "the docket", JSON.stringify(cited));
+  ok("...while one the sentence did not name keeps its own label",
+     (byHref["item/tx-2026-0044/"] || "").length > 0
+     && byHref["item/tx-2026-0044/"] !== undefined, JSON.stringify(cited));
+  const reply = (await page.locator(".askreply").last().textContent()) || "";
+  ok("and the identifier appears once in the sentence, not twice",
+     (reply.match(/20260423-029/g) || []).length === 1, reply.slice(0, 160));
+}
 
 head("K2. a citation to something that is not a decision");
 // LAST IN THE SEQUENTIAL FLOW ON PURPOSE. Every section above reads the
