@@ -169,8 +169,16 @@ def self_test() -> int:
     pack = ask_pack.build()
     check("every decision has a slug",
           all(it["id"] in c["slugs"] for it in items), f"{c['count']} decisions")
+    # THREE MORE THAN THERE ARE BLOCKS, and the three are the instruments. The grid, the
+    # reservoirs and the weather are citable and have no block, because they live in the
+    # preamble that every question gets whether it asked or not. `blocks` counts what the cut
+    # produces; this counts what may be cited, and the gap is exactly those three.
+    inst = sorted(k for k in ask_pack.INSTRUMENT_CITES if k in c["slugs"])
     check("and so does every other block the pack carries",
-          len(c["slugs"]) == pack["blocks"], f"{len(c['slugs'])} of {pack['blocks']}")
+          len(c["slugs"]) == pack["blocks"] + len(inst),
+          f"{len(c['slugs'])} against {pack['blocks']} blocks plus {inst}")
+    check("the instruments are citable even though they are not blocks",
+          inst == sorted(ask_pack.INSTRUMENT_CITES), str(inst))
     check("every family is represented",
           all(any(ask_pack.familyOf(s) == fam for s in c["slugs"])
               for fam, n in pack["families"].items() if n),
