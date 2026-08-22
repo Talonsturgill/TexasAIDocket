@@ -11,6 +11,7 @@ import {
   checkCitations, checkNumerals, checkSentence, checkVerdict, checkVoice,
   normalise, numerals, plainly, splitSentences,
 } from "./checks.js";
+import { rerank } from "./retrieve.js";
 
 let fail = 0, pass = 0;
 const ok = (label, cond, detail = "") => {
@@ -483,6 +484,39 @@ ok("...and its tokens are readable, not stranded under another key",
 ok("...and no key anywhere is built on an undefined",
   ![...liveStore.keys()].some((k) => k.includes("undefin")),
   [...liveStore.keys()].join(", "));
+
+head("T. the reranker, which may reorder and may never invent");
+{
+  const cands = [
+    { id: "tx-2026-0001", head: "a", text: "alpha" },
+    { id: "tx-2026-0002", head: "b", text: "beta" },
+    { id: "county-dallas", head: "c", text: "gamma" },
+  ];
+  // NO BINDING IS THE NORMAL CASE ON A FRESH PASTE. This worker is deployed by pasting one
+  // file into a dashboard and the AI binding is added there separately, so the first deploy of
+  // this change will not have one. It has to answer anyway.
+  ok("no AI binding reorders nothing and throws nothing",
+    (await rerank("q", cands, {})) === null);
+  ok("neither does a single candidate, which has no order to change",
+    (await rerank("q", cands.slice(0, 1), { AI: { run: async () => [{ id: 0 }] } })) === null);
+  ok("a model that throws leaves retrieval standing",
+    (await rerank("q", cands, { AI: { run: async () => { throw new Error("503"); } } })) === null);
+  ok("so does a response shape this does not recognise",
+    (await rerank("q", cands, { AI: { run: async () => ({ nope: true }) } })) === null);
+
+  const fake = (rows) => ({ AI: { run: async () => ({ response: rows }) } });
+  ok("a full ranking is applied in the order the reranker gave",
+    JSON.stringify(await rerank("q", cands, fake([{ id: 2 }, { id: 0 }, { id: 1 }])))
+    === JSON.stringify(["county-dallas", "tx-2026-0001", "tx-2026-0002"]));
+  // A PARTIAL ANSWER DEGRADES INTO THE RETRIEVAL ORDER, never into a shorter list. Dropping
+  // what the reranker did not mention would let a truncated response silently shrink the slice.
+  ok("what it did not rank keeps its old place at the back",
+    JSON.stringify(await rerank("q", cands, fake([{ id: 2 }])))
+    === JSON.stringify(["county-dallas", "tx-2026-0001", "tx-2026-0002"]));
+  ok("an out of range index is discarded rather than crashing",
+    JSON.stringify(await rerank("q", cands, fake([{ id: 99 }, { id: 1 }])))
+    === JSON.stringify(["tx-2026-0002", "tx-2026-0001", "county-dallas"]));
+}
 
 head("S. the file that actually gets deployed is the one the tests ran against");
 // bundled.js is pasted into a dashboard by hand. Nothing else compares it to the modules, so a

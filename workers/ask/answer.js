@@ -19,7 +19,7 @@
 // minutes, so answering does not pay a round trip to Pages for a file that changes once a day.
 
 import { checkSentence, numerals, splitSentences } from "./checks.js";
-import { assemble } from "./retrieve.js";
+import { assemble, candidates, queryOf, rerank } from "./retrieve.js";
 
 const SITE = "https://texasaidocket.com";
 const PACK_URL = `${SITE}/ask-pack.json`;
@@ -418,7 +418,11 @@ async function preflight(turns, env, now) {
   // the prompt in one place and the allow-list in another is how the two come to describe
   // different bytes, and the whole promise of the numeral gate is that they describe the same
   // ones. Retrieval also costs a few milliseconds of BM25 and there is no reason to pay twice.
-  const prompt = assemble(pack, turns, env);
+  // THE ONE PLACE THE RERANK HAPPENS, and it is awaited here rather than inside assemble so
+  // that assemble stays synchronous for its dozen other callers and its tests. A null order,
+  // which is what no AI binding and every failure return, leaves the retrieval order standing.
+  const order = await rerank(queryOf(turns), candidates(pack, turns, env), env);
+  const prompt = assemble(pack, turns, env, order);
   return {
     pack, key, mk, spent, prompt,
     ctx: {

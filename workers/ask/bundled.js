@@ -848,6 +848,97 @@ const NO_SLICE =
   "the whole record. Answer from the counts and the index. If the record does not carry this " +
   "say so plainly and name what it does carry instead.";
 
+// HOW MANY CANDIDATES GO TO THE RERANKER, and why more than are ever sent.
+//
+// Retrieval already puts the right block in the candidate set 98.2 percent of the time and
+// puts it FIRST 88.8 percent of the time, measured over the whole gold set. The gap is not a
+// recall problem and no amount of BM25 tuning closes it, because BM25 is a bag of words and
+// the question of which of twenty plausible blocks actually answers a sentence is not a bag of
+// words question. Twenty is where the ceiling is: widening past it moves the 98.2 by nothing
+// worth paying for.
+const RERANK_N = 20;
+
+// THE MODEL THAT DOES IT, and it is on the platform this worker already runs on.
+//
+// A cross encoder reads the question and one block TOGETHER and scores the pair, which is the
+// thing BM25 structurally cannot do. bge-reranker-base is small enough to run at the edge.
+//
+// IT IS FREE AT THIS VOLUME AND THAT IS CHECKED, not assumed. Cloudflare bills Workers AI in
+// neurons, this model costs 283 neurons per million input tokens, and every account gets
+// 10,000 neurons a day. A rerank here sends the question plus twenty blocks, on the order of
+// 6,000 tokens, so the whole 200 call monthly cap costs under two neurons of the roughly
+// 300,000 free ones a month. Cohere's hosted reranker was the other candidate at $2 per
+// thousand searches, which is also small, and it loses on being a second vendor, a second key
+// and a second thing that can be down.
+const RERANK_MODEL = "@cf/baai/bge-reranker-base";
+
+/**
+ * Reorder the candidates by reading each one against the question.
+ *
+ * IT MAY ONLY REORDER AND MAY NEVER DROP. Everything it is given comes back, because the
+ * caller has already decided what is affordable and the slice cap decides what fits. A
+ * reranker that also filtered would be a second opinion on a question it was not asked, and
+ * the one thing this box must never do is answer as though a block it did not send is not
+ * there.
+ *
+ * EVERY FAILURE RETURNS null AND THE ORIGINAL ORDER STANDS. No AI binding, a model error, a
+ * timeout, a response shape this does not recognise. The binding in particular is added by
+ * hand in the dashboard, the same way this worker is deployed, so the case where it is absent
+ * is not exotic, it is what the first paste looks like. The box has to work then, slightly
+ * worse, rather than not work.
+ */
+export async function rerank(query, cands, env) {
+  if (!env?.AI?.run || !query || cands.length < 2) return null;
+  try {
+    const out = await env.AI.run(RERANK_MODEL, {
+      query: String(query),
+      // The head is what a block IS and the body is what it says. The head first means a
+      // truncated context still carries the identity, which is the half that decides.
+      contexts: cands.map((c) => ({ text: (c.head + "\n" + c.text).slice(0, 4000) })),
+      top_k: cands.length,
+    });
+    const rows = Array.isArray(out) ? out : (out?.response ?? out?.result?.response);
+    if (!Array.isArray(rows) || !rows.length) return null;
+    const order = [];
+    for (const r of rows) {
+      const i = typeof r === "number" ? r : r?.id ?? r?.index;
+      if (Number.isInteger(i) && i >= 0 && i < cands.length && !order.includes(i)) order.push(i);
+    }
+    if (!order.length) return null;
+    // ANYTHING THE RERANKER DID NOT MENTION KEEPS ITS OLD PLACE AT THE BACK, so a partial
+    // response degrades into the retrieval order rather than into a shorter list.
+    for (let i = 0; i < cands.length; i++) if (!order.includes(i)) order.push(i);
+    return order.map((i) => cands[i].id);
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * The candidates a rerank should read, in retrieval order.
+ *
+ * Separate from `assemble` because the rerank is a network call and `assemble` is not, and
+ * making the whole assembly async to accommodate one optional step would have rippled through
+ * every call site and every test for no gain. The caller does this, awaits the rerank, and
+ * hands the result back to `assemble` as an order.
+ */
+export function candidates(pack, turns, env) {
+  const { items } = splitPack(pack.pack);
+  if (!items.length || !pack.index) return [];
+  const byId = new Map(items.map((it) => [it.id, it]));
+  const query = queryOf(turns);
+  // BREADTH MODE IS THE WIDE NET, and asking for twenty without it returned six.
+  //
+  // `top` caps the result and the per-family shares decide what fills it, so a normal question
+  // yields four decisions, two dossiers, one county and one reservoir whatever `top` says.
+  // Handing a reranker six candidates and asking it to find the best six is not reranking.
+  // Breadth mode already means the thing wanted here, which is a lower corroboration bar and a
+  // bigger share for every family, and it exists because survey questions needed exactly this
+  // shape. Reusing it beats a second set of numbers that would drift from these.
+  const picked = pickItems(query, items, { top: RERANK_N, breadth: true });
+  return picked.chosen.map((id) => byId.get(id)).filter(Boolean);
+}
+
 /**
  * The three blocks, in the order the cache wants them.
  *
@@ -859,7 +950,7 @@ const NO_SLICE =
  * anything that varies per question has to live after it. Blocks 1 and 2 together are well
  * over the 1,024 token minimum a cache entry needs, which block 1 alone would not be.
  */
-export function assemble(pack, turns, env) {
+export function assemble(pack, turns, env, order) {
   const off = String(env?.ASK_RETRIEVAL ?? "").trim().toLowerCase() === "off";
   const { preamble, items } = splitPack(pack.pack);
   const bodies = items.reduce((n, it) => n + it.chars, 0);
@@ -893,15 +984,39 @@ export function assemble(pack, turns, env) {
   // latest turn alone would have found something, is context getting in the way rather than
   // helping, and the second pass costs one more BM25 sweep over 69 documents.
   const query = queryOf(turns);
-  let picked = pickItems(query, items, {});
+  // WIDE WHEN A RERANKER IS COMING, NARROW WHEN ONE IS NOT. Reranking twenty and keeping six
+  // is the whole point, and retrieving twenty with nothing to reorder them would just pay for
+  // fourteen bodies nobody asked for.
+  const wide = Array.isArray(order) && order.length ? { top: RERANK_N } : {};
+  let picked = pickItems(query, items, wide);
   const latest = queryOf(turns, 1);
   if (!picked.chosen.length && latest && latest !== query) {
-    const retry = pickItems(latest, items, {});
+    const retry = pickItems(latest, items, wide);
     if (retry.chosen.length) picked = retry;
   }
-  const { chosen, corroborated, pinned } = picked;
   const byId = new Map(items.map((it) => [it.id, it]));
+  // AN ORDER FROM THE RERANKER REPLACES THE RETRIEVAL ORDER AND NOTHING ELSE. It is filtered
+  // against what retrieval actually chose, so a reranker returning an id from some other
+  // conversation, or a stale one, cannot smuggle a block into the prompt that this question's
+  // retrieval never selected.
+  const known = new Set(picked.chosen);
+  const reranked = Array.isArray(order) && order.length
+    ? order.filter((id) => known.has(id) && byId.has(id))
+    : null;
+  // RERANK TWENTY, SEND THE USUAL NUMBER. The wide candidate set exists so the reranker has
+  // something to choose FROM, and sending all of it would be paying for fourteen extra bodies
+  // to get a better order on six. The character cap below would not have caught this on its
+  // own: twenty blocks is about 54,000 characters against a 60,000 cap, so the slice would
+  // have quadrupled and still passed every gate.
+  const keep = wantsBreadth(queryOf(turns)) ? BREADTH_N : TOP_N;
+  const chosen = reranked && reranked.length
+    ? reranked.slice(0, Math.max(keep, picked.pinned.length))
+    : picked.chosen;
+  const { corroborated, pinned } = picked;
 
+  // THE CAP IS WHAT CUTS TWENTY BACK TO WHAT FITS, and it is already here. A reranked list
+  // arrives best first, so taking bodies until the character cap bites keeps the best ones and
+  // drops the tail, which is exactly what reranking twenty and sending six means.
   const sent = [];
   let used = 0;
   for (const id of chosen) {
@@ -1365,7 +1480,11 @@ async function preflight(turns, env, now) {
   // the prompt in one place and the allow-list in another is how the two come to describe
   // different bytes, and the whole promise of the numeral gate is that they describe the same
   // ones. Retrieval also costs a few milliseconds of BM25 and there is no reason to pay twice.
-  const prompt = assemble(pack, turns, env);
+  // THE ONE PLACE THE RERANK HAPPENS, and it is awaited here rather than inside assemble so
+  // that assemble stays synchronous for its dozen other callers and its tests. A null order,
+  // which is what no AI binding and every failure return, leaves the retrieval order standing.
+  const order = await rerank(queryOf(turns), candidates(pack, turns, env), env);
+  const prompt = assemble(pack, turns, env, order);
   return {
     pack, key, mk, spent, prompt,
     ctx: {

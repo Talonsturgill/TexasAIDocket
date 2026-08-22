@@ -238,6 +238,24 @@ ok("the grammar of a question is neither evidence for nor against it",
   JSON.stringify(str("what is the and with for")));
 
 // ---------------------------------------------------------------- recall, measured
+head("T2. an order may reorder the slice and may not add to it");
+{
+  const q = [{ role: "user", content: "what is open for comment" }];
+  const plain = assemble(PACK, q, {});
+  // THE ORDER IS FILTERED AGAINST WHAT RETRIEVAL CHOSE. A reranker returning an id from
+  // somewhere else, or a stale one from another question, must not be able to put a block in
+  // front of the model that this question's retrieval never selected.
+  const smuggled = assemble(PACK, q, {}, ["tx-2026-0044", ...plain.chosen]);
+  ok("an id retrieval did not choose cannot enter the prompt through the order",
+    !smuggled.chosen.includes("tx-2026-0044") || plain.chosen.includes("tx-2026-0044"),
+    JSON.stringify(smuggled.chosen.slice(0, 3)));
+  ok("an empty order leaves the retrieval order exactly as it was",
+    JSON.stringify(assemble(PACK, q, {}, []).chosen) === JSON.stringify(plain.chosen));
+  ok("and a nonsense order does too, rather than emptying the slice",
+    JSON.stringify(assemble(PACK, q, {}, ["not-an-id"]).chosen)
+    === JSON.stringify(plain.chosen));
+}
+
 head("F. recall against the gold set, which is the number this file exists for");
 const kinds = {};
 const record = (kind, hit, first) => {
