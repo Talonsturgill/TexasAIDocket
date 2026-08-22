@@ -3912,7 +3912,8 @@ def ask_box(items: list, today: str, base: str = "") -> str:
 
 <script>window.__ASK_INDEX__={json.dumps(idx, separators=(",", ":"))};
 window.__ASK_CATALOGUE__={json.dumps(cat, separators=(",", ":"))};
-window.__ASK_CITES__={json.dumps(cites, separators=(",", ":"))};</script>
+window.__ASK_CITES__={json.dumps(cites, separators=(",", ":"))};
+window.__ASK_SOURCE__={json.dumps(ask_pack.SOURCE, separators=(",", ":"))};</script>
 <script>{ask_answers.engine_js()}</script>
 <script>{ask_written.client_js()}</script>
 """
