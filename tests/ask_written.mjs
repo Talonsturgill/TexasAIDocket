@@ -674,6 +674,93 @@ ok("...and never tells them to ask a narrower question",
    !/narrower/i.test(cutText), cutText.slice(-90));
 ok("the box is usable again", !(await page.getAttribute("#askq", "disabled")));
 
+head("J1. a slow first solve is rescued by the retry, not met with a dead end");
+/* THE COLD START, WHERE THE SOLVE OUTLASTS THE FIRST WAIT. Focus arms the check, so from the
+   second question on a token is earned while the reader reads. On the first it starts at a
+   caret landing in an empty field, and a solve can outrun the six seconds the page waits.
+   What saves it is the retry: the wait expires, the page posts without a token, the worker
+   refuses it, and the second wait catches the token that was always coming. This locks that
+   path down, because an owner met "That did not get through" on every new chat and the
+   obvious story was that this budget was too short. It was not. The widget was in Managed
+   mode and Cloudflare was demanding a click, so no token existed to wait for. */
+{
+  const cold = await b.newPage();
+  await cold.route("**://challenges.cloudflare.com/**", (r) => r.abort());
+  const asked = [];
+  /* THE STUB REFUSES A MISSING TOKEN, BECAUSE THE WORKER DOES. worker.js answers
+     403 {"error":"finish the human check first"} when there is no token, and a stub that
+     answers 200 regardless tests the happy path wearing the failure's clothes. A first version
+     of this did exactly that and passed against the six second budget it was written to catch,
+     which is the fourth time in a day a test here has been green against broken code. */
+  await cold.route("**/answer", async (route) => {
+    const tok = JSON.parse(route.request().postData()).turnstile_token;
+    asked.push(tok);
+    if (!tok) {
+      await route.fulfill({ status: 403, contentType: "application/json",
+        body: JSON.stringify({ error: "finish the human check first" }) });
+      return;
+    }
+    await route.fulfill({ status: 200, contentType: "application/x-ndjson",
+      body: JSON.stringify({ sentence: "The Public Utility Commission decides it." }) + "\n"
+          + JSON.stringify({ done: true }) + "\n" });
+  });
+  await cold.addInitScript(() => {
+    // Eight seconds, which is past the six a repeat question gets and well inside what a real
+    // solve can take on a cold tab. The old budget failed here every time.
+    /* RESET DISCARDS THE SOLVE, BECAUSE THE REAL ONE DOES. turnstile.reset throws away a
+       challenge in progress and starts a fresh one. A stub whose reset is a no-op leaves the
+       original callback pending, so it fires anyway and the retry succeeds, which is how a
+       first version of this test passed against the exact bug it was written for. */
+    let pending = null, solves = 0;
+    window.turnstile = {
+      render: (el, o) => {
+        window.__askSolve = () => {
+          solves += 1;
+          if (pending) clearTimeout(pending);
+          pending = setTimeout(() => o.callback("t"), 8000);
+        };
+        window.__askSolve();
+        return 1;
+      },
+      reset: () => { window.__askResets = (window.__askResets || 0) + 1; window.__askSolve(); },
+    };
+    setTimeout(function poke() {
+      if (window.askTurnstileReady) window.askTurnstileReady(); else setTimeout(poke, 10);
+    }, 10);
+  });
+  await cold.goto(URL_);
+  await cold.waitForTimeout(300);
+  await cold.fill("#askq", "who decides the ERCOT transmission rule");
+  await cold.press("#askq", "Enter");
+  await cold.waitForSelector(".askfrom", { timeout: 25000 }).catch(() => {});
+  const reply = ((await cold.textContent(".askreply")) || "").trim();
+  ok("the retry answered it", /Public Utility Commission/.test(reply),
+     JSON.stringify(reply));
+  /* HOW MANY POSTS IT TAKES IS THE MACHINE'S BUSINESS, NOT THIS TEST'S.
+     On a slow runner the first wait expires and the page posts without a token, is refused,
+     and the retry carries the token that was always coming. On a fast one the token lands
+     inside the first wait and there is a single post. Both are correct and this test exists
+     for the first, so asserting the FIRST post carried a token contradicted its own name and
+     went red on CI while passing here. What has to hold either way is that the request which
+     succeeded carried one. */
+  ok("...and the request that succeeded carried a token",
+     asked.length > 0 && asked[asked.length - 1] === "t", JSON.stringify(asked));
+  ok("...so the reader never met a dead end", !/did not get through/i.test(reply), reply);
+  /* A RESET IS CORRECT AFTER A TOKEN IS SPENT AND WRONG BEFORE ONE EXISTS.
+     spendToken calls turnstile.reset, which DISCARDS a challenge in progress. Once the token
+     has gone to the worker it is used up and re-arming immediately is the whole reason the
+     next question does not wait. Calling it when no token was ever sent throws away a solve
+     that is still running, which is the failure this asserts against.
+     An earlier version of this assertion demanded ZERO resets, which is wrong: the successful
+     path resets exactly once, after the send. It went red against correct code. */
+  const resets = await cold.evaluate(() => window.__askResets || 0);
+  ok("...and it re-armed once, after the token was spent rather than before it existed",
+     resets === 1, String(resets));
+  ok("...and it took at most one refused attempt to get there",
+     asked.filter((t) => !t).length <= 1, JSON.stringify(asked));
+  await cold.close();
+}
+
 head("J2. a token that lands after the ceiling may not blank the page");
 /* THE SEQUENCE AN OWNER HIT ON THE FIRST QUESTION OF A SESSION, reproduced through the path
    that actually produces it, which is the Turnstile wait and not the stream.

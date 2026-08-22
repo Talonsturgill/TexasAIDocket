@@ -86,7 +86,12 @@ COPY = {
     # behalf when the truth is "nothing we produced survived" is the one refusal it has not
     # earned.
     "no_answer":    "Nothing came back for that one. Asking again usually works.",
-    "failed":       "That did not get through. Try again in a moment.",
+    # SAID WHEN NOTHING GOT THROUGH, including a human check that never finished. It used to
+    # end at "try again in a moment", which is true and is not enough on the one failure a
+    # reader can actually clear: the check sometimes wants a click, and an owner who had never
+    # been shown one met this on the first question of every new chat.
+    "failed":       "That did not get through. If a check appeared above the field, finish it "
+                    "and ask again.",
     "capped":       "That is this month's last written answer. The record itself is open at "
                     "the link below and the answers already given are still here.",
     "provenance":   "Written from the published record. Every figure checked against it.",
@@ -331,21 +336,25 @@ _CLIENT = r"""
      line is the honest explanation for why nothing is happening yet, it still appears. */
   var STAGE_GRACE_MS = 250;
 
+  /* SIX SECONDS FOR EVERY TOKEN, AND A LONGER FIRST ONE WAS PROPOSED AND DISPROVED.
+     The first question of a session was failing with "That did not get through" on every new
+     tab, and the obvious story was that the cold start had no time: focus arms the check, so
+     the first token has only the seconds between a caret landing in an empty field and the
+     press, while every later one is earned while the reader reads the answer before.
+     That story was wrong and measuring it said so. A cold start with an eight second solve
+     still succeeded on a six second budget, because the 403 path waits again and the token
+     lands during the retry. The cause was the widget being in Managed mode, where Cloudflare
+     may demand a click, so no token was ever issued and no budget could have helped.
+     A longer first wait would only make a genuinely broken check hang for twenty seconds
+     instead of failing at six, which is worse for the reader and better for nobody. */
   function waitForToken(stage) {
     if (!SITEKEY) return Promise.resolve("");
     if (tsToken) return Promise.resolve(tsToken);
     var announce = setTimeout(function () { stage("%%stage_read%%"); }, STAGE_GRACE_MS);
-    /* Keep waiting rather than giving up if the script is slow: a bad connection is not a
-       failed check, and this box exists for people on bad connections. */
     return new Promise(function (resolve) {
       var n = 0;
       var t = setInterval(function () {
         if (tsToken) { clearTimeout(announce); clearInterval(t); resolve(tsToken); return; }
-        /* SIX SECONDS, NOT FIFTEEN. This polled for fifteen, then posted without a token,
-           which the worker refuses, and the 403 path then waited another fifteen. Half a
-           minute of a box sitting there, reported as exactly that. Turnstile solves in one to
-           three seconds when it is going to solve at all, so six is generous, and past it the
-           honest outcome is a failure the reader can act on rather than more waiting. */
         if (++n > 60) { clearTimeout(announce); clearInterval(t); resolve(""); }
       }, 100);
     });
@@ -964,7 +973,9 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
       ceiling = setTimeout(ceilingFired, CEILING_MS);
     }
 
+    var sentToken = "";
     waitForToken(stage).then(function (tok) {
+      sentToken = tok;
       stage("%%stage_read%%");
       startClock();
       var sent = post(tok);
@@ -978,7 +989,14 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
          again immediately and solve WHILE the answer streams and while the reader reads it.
          The first question of a session still waits, because nothing has been earned yet, and
          that one is honest. */
-      spendToken();
+      /* ONLY SPEND A TOKEN THAT EXISTED. `spendToken` calls turnstile.reset, which DISCARDS A
+         SOLVE IN PROGRESS and starts over. Calling it unconditionally is harmless when a token
+         was sent, because that one is used up, and it is the whole cold start bug when none
+         was: the wait had expired precisely BECAUSE the solve was still running, and resetting
+         threw away work that was nearly done. The 403 path below then reset it a second time,
+         so the retry began from zero as well, expired as well, and the reader met "That did
+         not get through" on the first question of every new tab. Deterministic, not flaky. */
+      if (tok) spendToken();
       return sent;
     }).then(function (r) {
       /* A 403 here is a token that was spent, expired or never arrived, and it is not the
@@ -987,11 +1005,22 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
          found. Ask for a fresh one and go again, once. */
       if (r.status !== 403) return r;
       stage("%%stage_read%%");
-      spendToken();
+      /* A 403 ON A REQUEST THAT CARRIED NO TOKEN IS NOT A REJECTED TOKEN. It means the check
+         had not finished, so there is nothing to spend and resetting only restarts the solve
+         that is about to succeed. Wait for the one already coming instead. */
+      if (sentToken) spendToken();
       clearTimeout(ceiling);
       return waitForToken(stage).then(function (fresh) {
         startClock();
-        return fresh ? post(fresh) : r;
+        if (!fresh) return r;
+        var again = post(fresh);
+        /* THE RETRY'S TOKEN IS SPENT TOO, and it was not. A Turnstile token is single use, so
+           one that has gone to the worker is dead whether it went on the first attempt or the
+           second. Leaving it in hand meant the NEXT question sent a stale token, got a 403,
+           and had to be rescued by its own retry. Self healing and a wasted round trip every
+           time, which is the kind of cost that never shows up as a failure. */
+        spendToken();
+        return again;
       });
     }).then(function (r) {
       if (!r.body || !r.body.getReader) {
