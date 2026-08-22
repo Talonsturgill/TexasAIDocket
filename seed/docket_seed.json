@@ -2248,12 +2248,6 @@
   "last_verified": "2026-08-20",
   "confidence": "high",
   "notes_for_editor": "The city's own posting spells nonbinding as one word and that spelling is carried verbatim. Reporting on this vote gives a council count that the city's posting does not state, so no count is published here.",
-  "history": [
-   {
-    "date": "2026-08-20",
-    "note": "Admitted. The city's own posting carries the ballot language and the date of the council's action. The proposition tells a voter in its first clause that the result is a statement of preference rather than an instruction."
-   }
-  ],
   "held_reason": "Duplicate of tx-2026-0048, which carries the same council action with the ordinance number and the vote history. Not admitted. The ballot wording it found was folded into tx-2026-0048 instead."
  },
  {
@@ -2555,5 +2549,457 @@
   ],
   "notes_for_editor": "Verified against the company's own post and ready in every other respect. There is no beat in the record's topic vocabulary for a driverless deployment, and adding one is a two file change in `docket_build.TOPICS` and `site_build.TOPIC_BLURBS`, both of which are maintainer owned. Admitting it under an existing beat would file a robotaxi launch as state policy or as research, and neither is true.",
   "held_reason": "Two vocabulary gaps, both in maintainer owned files. `docket_build.TOPICS` carries no beat for AI in the field, and `docket_build.DECIDER_TYPES` carries no type for a company. The second is the larger one, because it means the record can hold a decision ABOUT a deployment and not a decision BY the deployer. Filing this under an existing beat as a state agency would be false on both fields. Promote it the run after a lane exists."
+ },
+ {
+  "id": "tx-2026-0084",
+  "title": "Amazon selects Austin for a factory building the robotics systems used in its warehouses, and the mayor says no incentives were requested",
+  "summary": "Amazon announced a new manufacturing facility in Austin that will produce the robotics systems used in its fulfillment operations. The Office of the Governor announced the same siting and put it at 300 to 500 new jobs in manufacturing and engineering. Austin Mayor Kirk Watson is quoted in Amazon's own release saying the company asked for no economic incentives and no public money, which sets this apart from most large technology sitings the record carries.",
+  "topic": "state-policy",
+  "decider": {
+   "name": "Office of the Texas Governor",
+   "type": "governor"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Travis"
+   ],
+   "metro": "Austin-Round Rock-San Marcos, TX",
+   "on_ercot": true
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-08-19",
+    "kind": "ordered",
+    "note": "Amazon and the Office of the Governor each announced the Austin siting"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "No public comment period attaches to a private siting decision. Austin City Council meetings are the room where any city action on the site would be taken, and the company's announcement states no city incentive was sought.",
+   "url": "https://press.aboutamazon.com/2026/8/amazon-announces-new-manufacturing-facility-in-austin-texas",
+   "closes": null
+  },
+  "claims": [
+   {
+    "id": "tx-2026-0084-c1",
+    "text": "The plant will build the robotics systems used in Amazon's fulfillment operations.",
+    "verbatim_quote": "robotics systems that work alongside Amazon's employees to handle repetitive tasks and heavy lifting.",
+    "source_url": "https://press.aboutamazon.com/2026/8/amazon-announces-new-manufacturing-facility-in-austin-texas",
+    "source_title": "Amazon, Amazon announces new manufacturing facility in Austin, Texas",
+    "source_type": "primary_corporate",
+    "fetched": "2026-08-22"
+   },
+   {
+    "id": "tx-2026-0084-c2",
+    "text": "The mayor states the company asked for no public money.",
+    "verbatim_quote": "no economic incentives, no public money,” said Mayor Kirk Watson.",
+    "source_url": "https://press.aboutamazon.com/2026/8/amazon-announces-new-manufacturing-facility-in-austin-texas",
+    "source_title": "Amazon, Amazon announces new manufacturing facility in Austin, Texas",
+    "source_type": "primary_corporate",
+    "fetched": "2026-08-22"
+   },
+   {
+    "id": "tx-2026-0084-c3",
+    "text": "The state announced the siting.",
+    "verbatim_quote": "Governor Greg Abbott today announced Amazon has selected Austin as the site of a new robotics manufacturing facility.",
+    "source_url": "https://gov.texas.gov/news/post/governor-abbott-announces-amazon-expansion-in-austin",
+    "source_title": "Office of the Texas Governor, Governor Abbott Announces Amazon Expansion In Austin",
+    "source_type": "primary_official",
+    "fetched": "2026-08-22"
+   },
+   {
+    "id": "tx-2026-0084-c4",
+    "text": "The state gives the job range for the facility.",
+    "verbatim_quote": "300–500 new jobs in manufacturing and engineering.",
+    "source_url": "https://gov.texas.gov/news/post/governor-abbott-announces-amazon-expansion-in-austin",
+    "source_title": "Office of the Texas Governor, Governor Abbott Announces Amazon Expansion In Austin",
+    "source_type": "primary_official",
+    "fetched": "2026-08-22"
+   }
+  ],
+  "last_verified": "2026-08-22",
+  "confidence": "high",
+  "notes_for_editor": "The siting decision is Amazon's. The decider of record is the announcing office, which follows the record's own precedent for a company siting announced by the state. The exact site within Austin is reported in journalism and appears in neither primary release, so it is not carried. The Governor's release calls the development multi-billion-dollar and gives no capital figure."
+ },
+ {
+  "id": "tx-2026-0085",
+  "title": "National Science Foundation awards Rice University a cooperative agreement for a self driving laboratory that designs its own semiconductor experiments",
+  "summary": "The National Science Foundation obligated a cooperative agreement to William Marsh Rice University for a test bed called READINESS. The award runs from August 1st, 2026 to July 31st, 2030 and its estimated total is carried in the award record quoted below. The agency's own abstract describes the platform as a self driving laboratory that designs, tests and improves material synthesis processes with minimal human intervention. The performance site is Houston and the principal investigator of record is Jun Lou.",
+  "topic": "research-and-science",
+  "decider": {
+   "name": "National Science Foundation",
+   "type": "federal"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Harris"
+   ],
+   "metro": "Houston-Pasadena-The Woodlands, TX",
+   "on_ercot": true
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-07-21",
+    "kind": "ordered",
+    "note": "Award date on the National Science Foundation record"
+   },
+   {
+    "date": "2026-08-01",
+    "kind": "effective",
+    "note": "Award start date"
+   },
+   {
+    "date": "2030-07-31",
+    "kind": "expires",
+    "note": "Award end date"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "The award record is public in the National Science Foundation award database and carries the abstract, the amounts and the dates. No comment window attaches to a made award.",
+   "url": "https://www.nsf.gov/awardsearch/showAward?AWD_ID=2607553",
+   "closes": null
+  },
+  "claims": [
+   {
+    "id": "tx-2026-0085-c1",
+    "text": "The agency describes the funded platform as a self driving laboratory operating with minimal human intervention.",
+    "verbatim_quote": "The platform will function as a “self-driving laboratory” capable of autonomously designing, testing, and improving material-synthesis processes with minimal human intervention.",
+    "source_url": "https://api.nsf.gov/services/v1/awards.json?id=2607553&printFields=id,title,awardeeName,startDate,expDate,estimatedTotalAmt,pdPIName,abstractText,date,transType,perfCity,perfStateCode",
+    "source_title": "National Science Foundation award 2607553, abstract",
+    "source_type": "primary_official",
+    "fetched": "2026-08-22"
+   },
+   {
+    "id": "tx-2026-0085-c2",
+    "text": "The award's title names autonomous experimentation for semiconductor synthesis.",
+    "verbatim_quote": "PCL-Test Bed: Revolutionizing AI-Driven Autonomous Experimentation for Next-Generation Semiconductor Synthesis (READINESS)",
+    "source_url": "https://api.nsf.gov/services/v1/awards.json?id=2607553&printFields=id,title,awardeeName,startDate,expDate,estimatedTotalAmt,pdPIName,abstractText,date,transType,perfCity,perfStateCode",
+    "source_title": "National Science Foundation award 2607553, title",
+    "source_type": "primary_official",
+    "fetched": "2026-08-22"
+   },
+   {
+    "id": "tx-2026-0085-c3",
+    "text": "The award record gives the recipient and the estimated total amount.",
+    "verbatim_quote": "William Marsh Rice University",
+    "source_url": "https://api.nsf.gov/services/v1/awards.json?id=2607553&printFields=id,title,awardeeName,startDate,expDate,estimatedTotalAmt,pdPIName,abstractText,date,transType,perfCity,perfStateCode",
+    "source_title": "National Science Foundation award 2607553, awardee name",
+    "source_type": "primary_official",
+    "fetched": "2026-08-22"
+   },
+   {
+    "id": "tx-2026-0085-c4",
+    "text": "The award record gives the estimated total amount.",
+    "verbatim_quote": "\"estimatedTotalAmt\":\"19928016\"",
+    "source_url": "https://api.nsf.gov/services/v1/awards.json?id=2607553&printFields=id,title,awardeeName,startDate,expDate,estimatedTotalAmt,pdPIName,abstractText,date,transType,perfCity,perfStateCode",
+    "source_title": "National Science Foundation award 2607553, estimated total amount",
+    "source_type": "primary_official",
+    "fetched": "2026-08-22"
+   }
+  ],
+  "last_verified": "2026-08-22",
+  "confidence": "high",
+  "notes_for_editor": "The award abstract names SUNY Poly and the University of Texas at Austin as partners. The performance site on the award record is Houston, so the record carries Harris County only. The estimated total appears in the claim quote in the unformatted form the award record uses, because news.rice.edu returned a 406 on two attempts and no fetched source this run states the figure in a readable form."
+ },
+ {
+  "id": "tx-2026-0086",
+  "title": "National Science Foundation awards Texas A and M a national user facility where robots and artificial intelligence design and test new metal alloys",
+  "summary": "The National Science Foundation obligated a cooperative agreement to the Texas A and M Engineering Experiment Station for the Autonomous Robotic Metallurgist Materials Innovation Platform. The university calls it a six year, 24.9 million dollar grant. It runs from September 1st, 2026 to August 31st, 2032. The agency describes it as an open access national user facility that designs and makes and tests new alloys and learns from them. It does that by integrating robotics and artificial intelligence and physics based simulation and automated experimentation. The performance site of record is College Station and the principal investigator of record is Raymundo Arroyave.",
+  "topic": "research-and-science",
+  "decider": {
+   "name": "National Science Foundation",
+   "type": "federal"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Brazos"
+   ],
+   "metro": "College Station-Bryan, TX",
+   "on_ercot": true
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-07-31",
+    "kind": "ordered",
+    "note": "Award date on the National Science Foundation record"
+   },
+   {
+    "date": "2026-09-01",
+    "kind": "effective",
+    "note": "Award start date"
+   },
+   {
+    "date": "2032-08-31",
+    "kind": "expires",
+    "note": "Award end date"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "The award record is public in the National Science Foundation award database. The agency describes the platform as an open access national user facility, so access is by application to the facility rather than through a comment window.",
+   "url": "https://www.nsf.gov/awardsearch/showAward?AWD_ID=2534344",
+   "closes": null
+  },
+  "claims": [
+   {
+    "id": "tx-2026-0086-c1",
+    "text": "The agency describes the platform as an open access national user facility that closes the discovery loop with robotics and artificial intelligence.",
+    "verbatim_quote": "The Autonomous Robotic Metallurgist Materials Innovation Platform (ARM-MIP) at Texas A&M University is an open-access national user facility that designs, makes, tests, and learns from new alloys, closing the discovery loop by integrating robotics, artificial intelligence, physics-based simulation, and automated e",
+    "source_url": "https://api.nsf.gov/services/v1/awards.json?id=2534344&printFields=id,title,awardeeName,startDate,expDate,estimatedTotalAmt,pdPIName,abstractText,date,transType,perfCity,perfStateCode",
+    "source_title": "National Science Foundation award 2534344, abstract",
+    "source_type": "primary_official",
+    "fetched": "2026-08-22"
+   },
+   {
+    "id": "tx-2026-0086-c2",
+    "text": "The award's title names the autonomous robotic metallurgist platform.",
+    "verbatim_quote": "Research Infrastructure: MIP: Autonomous Robotic Metallurgist: An NSF Materials Innovation Platform (ARM-MIP)",
+    "source_url": "https://api.nsf.gov/services/v1/awards.json?id=2534344&printFields=id,title,awardeeName,startDate,expDate,estimatedTotalAmt,pdPIName,abstractText,date,transType,perfCity,perfStateCode",
+    "source_title": "National Science Foundation award 2534344, title",
+    "source_type": "primary_official",
+    "fetched": "2026-08-22"
+   },
+   {
+    "id": "tx-2026-0086-c3",
+    "text": "The award record gives the recipient.",
+    "verbatim_quote": "Texas A&M Engineering Experiment Station",
+    "source_url": "https://api.nsf.gov/services/v1/awards.json?id=2534344&printFields=id,title,awardeeName,startDate,expDate,estimatedTotalAmt,pdPIName,abstractText,date,transType,perfCity,perfStateCode",
+    "source_title": "National Science Foundation award 2534344, awardee name",
+    "source_type": "primary_official",
+    "fetched": "2026-08-22"
+   },
+   {
+    "id": "tx-2026-0086-c4",
+    "text": "The award record gives the estimated total amount.",
+    "verbatim_quote": "\"estimatedTotalAmt\":\"24900000\"",
+    "source_url": "https://api.nsf.gov/services/v1/awards.json?id=2534344&printFields=id,title,awardeeName,startDate,expDate,estimatedTotalAmt,pdPIName,abstractText,date,transType,perfCity,perfStateCode",
+    "source_title": "National Science Foundation award 2534344, estimated total amount",
+    "source_type": "primary_official",
+    "fetched": "2026-08-22"
+   },
+   {
+    "id": "tx-2026-0086-c5",
+    "text": "The university states the size and length of the grant and what it will establish.",
+    "verbatim_quote": "A six-year, $24.9 million grant from the U.S. National Science Foundation (NSF) will establish the Autonomous Robotic Metallurgist Materials Innovation Platform (ARM-MIP) at Texas A&M University",
+    "source_url": "https://news.engineering.tamu.edu/news/2026/08/03/texas-am-to-build-first-national-self-driving-laboratory-for-metals-open-to-researchers-nationwide/",
+    "source_title": "Texas A and M Engineering, Texas A and M to build first national self-driving laboratory for metals",
+    "source_type": "primary_official",
+    "fetched": "2026-08-22"
+   }
+  ],
+  "last_verified": "2026-08-22",
+  "confidence": "high",
+  "notes_for_editor": "The university's own release places the platform at the RELLIS Campus in Bryan while the award record's performance city is College Station. Both are Brazos County, so the county is safe and the city is not settled and is not published here. Figures in the university release on users per year and alloys per month do not appear in the award record and are not carried."
+ },
+ {
+  "id": "tx-2026-0087",
+  "title": "Denton City Council takes up a data center moratorium resolution and a schedule of the public hearings it would require",
+  "summary": "An agenda item asked the Denton City Council to approve a resolution on a moratorium covering the acceptance, processing and approval of applications for data center development inside the city limits. The same item asked the council to approve a schedule for the notice and public hearings the moratorium would require. The city's legislative record shows no final action and the meeting minutes for August 18th, 2026 are not finalized. Denton runs its own municipal electric utility, so a moratorium here is a city deciding whether to keep taking applications for loads it would have to serve itself.",
+  "topic": "data-centers",
+  "decider": {
+   "name": "Denton City Council",
+   "type": "city"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Denton"
+   ],
+   "metro": "Dallas-Fort Worth-Arlington, TX",
+   "on_ercot": true
+  },
+  "status": "pending",
+  "key_dates": [
+   {
+    "date": "2026-08-18",
+    "kind": "hearing",
+    "note": "Data center moratorium resolution placed on the City Council agenda"
+   }
+  ],
+  "public_access": {
+   "room": "open_meeting",
+   "how": "Denton City Council meetings are open to the public and the city publishes its agendas and legislative records through its own legislative portal. The resolution itself would set the schedule for the notice and public hearings a moratorium requires.",
+   "url": "https://denton-tx.legistar.com/LegislationDetail.aspx?ID=8169473&GUID=01691CB0-D683-4CB1-BBE2-9D9452063A32",
+   "closes": null
+  },
+  "claims": [
+   {
+    "id": "tx-2026-0087-c1",
+    "text": "The agenda item asks the council to approve a data center moratorium resolution and a hearing schedule.",
+    "verbatim_quote": "Consider approval of a resolution of the City of Denton regarding a moratorium on the acceptance, processing, and approval of applications for the development of data centers within the corporate limits of the City of Denton and approving a schedule for required notice and public hearings for such moratorium; providing for severability; and providing an effective date.",
+    "source_url": "https://denton-tx.legistar.com/LegislationDetail.aspx?ID=8169473&GUID=01691CB0-D683-4CB1-BBE2-9D9452063A32",
+    "source_title": "City of Denton, legislation detail for File ID 26-1287",
+    "source_type": "primary_official",
+    "fetched": "2026-08-22"
+   },
+   {
+    "id": "tx-2026-0087-c2",
+    "text": "The city has not published an outcome for the meeting.",
+    "verbatim_quote": "Please note: this meeting's minutes have not been finalized yet. Actions taken on legislation and their results are not available.",
+    "source_url": "https://denton-tx.legistar.com/MeetingDetail.aspx?ID=1356104&GUID=2C80918D-F58E-4522-A845-6B78CAC3DB44",
+    "source_title": "City of Denton, meeting detail for August 18th, 2026",
+    "source_type": "primary_official",
+    "fetched": "2026-08-22"
+   }
+  ],
+  "last_verified": "2026-08-22",
+  "confidence": "high",
+  "notes_for_editor": "The city's file number for the item is recorded in the source link rather than in reader copy. Whether the council adopted the resolution is not in the record. Prospective hearing dates of September 22nd and October 27th were reported before the meeting and are not confirmed by a city document, so they are not carried as key dates."
+ },
+ {
+  "id": "tx-2026-0088",
+  "title": "Brazos County Commissioners Court assigns the RELLIS data center tax abatement to ThisWay Global after the original developer's bankruptcy",
+  "summary": "Brazos County posted a Tax Code Section 312.207 notice that its Commissioners Court would consider assigning the tax abatement agreement for the RELLIS Campus data and research center. The agreement was originally approved on April 29th, 2025 with RELLIS Campus Data and Research Center, LLC. The pending assignee named in the notice is ThisWay, Global, Inc. The county's own notice puts the estimated cost of improvements and tangible personal property at a minimum of approximately 700 million dollars. The land sits in a reinvestment zone on the RELLIS campus. That campus belongs to The Texas A and M University System, so the abatement agreement is what decides whether the county collects anything from the build.",
+  "topic": "data-centers",
+  "decider": {
+   "name": "Commissioners Court of Brazos County",
+   "type": "county"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Brazos"
+   ],
+   "metro": "College Station-Bryan, TX",
+   "on_ercot": true
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2025-04-29",
+    "kind": "filed",
+    "note": "Original tax abatement agreement approved with RELLIS Campus Data and Research Center, LLC"
+   },
+   {
+    "date": "2026-08-18",
+    "kind": "hearing",
+    "note": "Regular meeting of the Commissioners Court at 10:00 a.m. at which the assignment was considered"
+   }
+  ],
+  "public_access": {
+   "room": "open_meeting",
+   "how": "The Commissioners Court meets in the Commissioners Courtroom of the Brazos County Administration Building at 200 S. Texas Avenue, Suite 106, in Bryan. The county posts its Tax Code notices to its own news feed.",
+   "url": "https://www.brazoscountytx.gov/m/newsflash/Home/Detail/388",
+   "closes": null
+  },
+  "claims": [
+   {
+    "id": "tx-2026-0088-c1",
+    "text": "The county noticed that its Commissioners Court would consider assigning the RELLIS data center tax abatement agreement at a meeting on August 18th, 2026.",
+    "verbatim_quote": "The Commissioners Court of Brazos County will consider the approval of an amendment concerning an assignment of a tax abatement agreement entered into with RELLIS Campus Data and Research Center, LLC, originally approved on April 29, 2025, (the “Tax Abatement Agreement”), at a Regular Meeting of the Commissioners Court scheduled at 10:00 a.m. on August 18th, 2026, in the Commissioners Courtroom of the Brazos County Administration Building, 200 S. Texas Avenue, Suite 106, Bryan, Texas 77803.",
+    "source_url": "https://www.brazoscountytx.gov/m/newsflash/Home/Detail/388",
+    "source_title": "Brazos County, Notice under Texas Tax Code Section 312.207",
+    "source_type": "primary_official",
+    "fetched": "2026-08-22"
+   },
+   {
+    "id": "tx-2026-0088-c2",
+    "text": "The county states the estimated cost of the project.",
+    "verbatim_quote": "Estimated cost of improvements and tangible personal property is at minimum approximately $700,000,000 which will include real property improvements, new tangible personal property, machinery, and equipment.",
+    "source_url": "https://www.brazoscountytx.gov/m/newsflash/Home/Detail/388",
+    "source_title": "Brazos County, Notice under Texas Tax Code Section 312.207",
+    "source_type": "primary_official",
+    "fetched": "2026-08-22"
+   },
+   {
+    "id": "tx-2026-0088-c3",
+    "text": "The county names the pending assignee of the agreement.",
+    "verbatim_quote": "The name of the pending assignee of RELLIS Campus Data and Research Center, LLC’s rights, responsibilities, obligations, liabilities, and interest in the Tax Abatement Agreement is ThisWay, Global, Inc.",
+    "source_url": "https://www.brazoscountytx.gov/m/newsflash/Home/Detail/388",
+    "source_title": "Brazos County, Notice under Texas Tax Code Section 312.207",
+    "source_type": "primary_official",
+    "fetched": "2026-08-22"
+   },
+   {
+    "id": "tx-2026-0088-c4",
+    "text": "The court approved the assignment.",
+    "verbatim_quote": "On Tuesday, Brazos County commissioners approved transferring the tax abatement agreement tied to the $700 million data center project to a new company, ThisWay Global, Inc. The vote passed 4-0, with one commissioner absent.",
+    "source_url": "https://www.kbtx.com/2026/08/18/brazos-county-commissioners-approve-new-owner-rellis-data-center-heres-what-it-means-your-wallet/",
+    "source_title": "KBTX, Brazos County commissioners approve new owner for RELLIS data center",
+    "source_type": "journalism",
+    "fetched": "2026-08-22"
+   }
+  ],
+  "last_verified": "2026-08-22",
+  "confidence": "high",
+  "notes_for_editor": "The vote count comes from KBTX because the county's own minutes for August 18th are not yet posted. The statutory notice is primary and carries the parties, the date and the dollar figure."
+ },
+ {
+  "id": "tx-2026-0089",
+  "title": "House Delivery of Government Efficiency takes up using artificial intelligence to detect fraud in state spending, and whether the state data privacy law works",
+  "summary": "The Texas House Committee on Delivery of Government Efficiency met on August 19th, 2026 to hear invited and public testimony on its interim charges. One charge asks the committee to study how the state can use technology including artificial intelligence to detect fraud, waste and abuse of taxpayer resources. Another asks whether the Texas Data Privacy and Security Act gives Texas residents and businesses adequate protection. The same notice puts the committee's oversight over the Department of Information Resources and over HB 150, which moves certain of that department's powers to the Texas Cyber Command. That department is the agency that sets state artificial intelligence standards, so the two charges reach the same records from opposite ends.",
+  "topic": "state-policy",
+  "decider": {
+   "name": "Texas House Committee on Delivery of Government Efficiency",
+   "type": "legislature"
+  },
+  "geography": {
+   "statewide": true,
+   "counties": [],
+   "metro": null,
+   "on_ercot": false
+  },
+  "status": "pending",
+  "key_dates": [
+   {
+    "date": "2026-08-19",
+    "kind": "hearing",
+    "note": "Committee heard invited and public testimony at 9:00 AM in room E2.012"
+   }
+  ],
+  "public_access": {
+   "room": "open_meeting",
+   "how": "House committee hearings are open to the public and take public testimony. Notices are posted to the Texas Legislature Online committee schedule.",
+   "url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C2332026081909001.HTM",
+   "closes": null
+  },
+  "claims": [
+   {
+    "id": "tx-2026-0089-c1",
+    "text": "The committee is charged with studying artificial intelligence as a way to detect fraud in state spending.",
+    "verbatim_quote": "Preventing Fraud, Waste, and Abuse : Study methods by which the state can leverage technology, including artificial intelligence, to detect fraud, waste, and abuse of taxpayer resources.",
+    "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C2332026081909001.HTM",
+    "source_title": "Texas House of Representatives, Notice of Public Hearing, Committee on Delivery of Government Efficiency",
+    "source_type": "primary_official",
+    "fetched": "2026-08-22"
+   },
+   {
+    "id": "tx-2026-0089-c2",
+    "text": "The same notice charges the committee with judging whether the state data privacy law protects Texans.",
+    "verbatim_quote": "Data Privacy and Security : Study the implementation and effectiveness of the Texas Data Privacy and Security Act to determine whether the law provides adequate protection for Texas residents and businesses.",
+    "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C2332026081909001.HTM",
+    "source_title": "Texas House of Representatives, Notice of Public Hearing, Committee on Delivery of Government Efficiency",
+    "source_type": "primary_official",
+    "fetched": "2026-08-22"
+   },
+   {
+    "id": "tx-2026-0089-c3",
+    "text": "The committee, time, place and chair are stated on the notice.",
+    "verbatim_quote": "COMMITTEE: Delivery of Government Efficiency TIME & DATE: 9:00 AM, Wednesday, August 19, 2026 PLACE: E2.012 CHAIR: Rep. Giovanni Capriglione",
+    "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C2332026081909001.HTM",
+    "source_title": "Texas House of Representatives, Notice of Public Hearing, Committee on Delivery of Government Efficiency",
+    "source_type": "primary_official",
+    "fetched": "2026-08-22"
+   },
+   {
+    "id": "tx-2026-0089-c4",
+    "text": "The committee is monitoring the transfer of certain Department of Information Resources duties to the Texas Cyber Command.",
+    "verbatim_quote": "HB 150, relating to the establishment of the Texas Cyber Command and the transfer to it of certain powers and duties of the Department of Information Resources;",
+    "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C2332026081909001.HTM",
+    "source_title": "Texas House of Representatives, Notice of Public Hearing, Committee on Delivery of Government Efficiency",
+    "source_type": "primary_official",
+    "fetched": "2026-08-22"
+   }
+  ],
+  "last_verified": "2026-08-22",
+  "confidence": "high",
+  "notes_for_editor": "This is a third House committee taking up artificial intelligence in the same week, alongside State Affairs on August 19th and Public Health on August 20th, which the record already carries as tx-2026-0078 and tx-2026-0079. What was said in the room is not in the record, only the posted charges."
  }
 ]
