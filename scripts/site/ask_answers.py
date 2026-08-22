@@ -633,6 +633,21 @@ __RETRIEVER__
     (CAT || []).forEach(function (c) {
       words(String(c.q || "")).forEach(function (w) { bag[w] = 1; });
     });
+    /* THE OTHER THREE FAMILIES, OR THE RECORD REFUSES QUESTIONS IT CAN ANSWER.
+       This bag decides ONE thing, which is whether a question is off the record and can be
+       turned down for nothing instead of paying a model to turn it down. It was built from the
+       decisions, which was the whole record until it wasn't.
+       So "toledo bend reservoir" and "sam rayburn storage" shared no word with it and were
+       told they were outside what this record covers, while the record held both reservoirs
+       and their storage. That is the worst thing this classifier can do and it was doing it to
+       a hundred and thirty eight reservoirs, fifty four data centers and sixty one counties of
+       construction.
+       The names are already on the page, in the citation map the renderer needs, so this costs
+       no bytes at all. It is the same list, read for a second purpose. */
+    var cites = window.__ASK_CITES__ || {};
+    Object.keys(cites).forEach(function (id) {
+      words(String((cites[id] || [])[0] || "")).forEach(function (w) { bag[w] = 1; });
+    });
     vocabulary.cache = bag;
     return bag;
   }
