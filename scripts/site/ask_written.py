@@ -730,7 +730,6 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
       busy = false;
       send.disabled = false;
       send.removeAttribute("aria-busy");
-      spendToken();
 
       clearTrailing();
 
@@ -840,7 +839,19 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
     waitForToken(stage).then(function (tok) {
       stage("%%stage_read%%");
       startClock();
-      return post(tok);
+      var sent = post(tok);
+      /* THE NEXT CHALLENGE IS EARNED NOW, NOT AFTER THE ANSWER.
+         A Turnstile token is single use, so every question needs a fresh one, and solving takes
+         one to three seconds. This used to re-arm in `finish`, once the answer was already on
+         screen. An owner running ten questions in a row saw "Passing the human check" in front
+         of nearly every one of them, because a reader moving question to question arrives
+         before the new token does.
+         The token is spent the moment it is handed to the worker, so the challenge can start
+         again immediately and solve WHILE the answer streams and while the reader reads it.
+         The first question of a session still waits, because nothing has been earned yet, and
+         that one is honest. */
+      spendToken();
+      return sent;
     }).then(function (r) {
       /* A 403 here is a token that was spent, expired or never arrived, and it is not the
          reader's doing. Showing them "finish the human check first" next to a widget that is
