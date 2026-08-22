@@ -35,7 +35,7 @@ job: >
 claims: [c7, c20]
 numerals:
   - value_from: c7          # 34 filings, and the case style
-  - computed_by: "aggregates.json, ten index rows carrying a verbatim quote, and 34 minus 10"
+  - computed_by: "aggregates.json, the SIX index rows that reach a frame after the cover, intersected against render_report.json per token, and 34 minus 6"
 composition:
   structure: >
     A milled console plane in plan oblique at 25 degrees holds thirty four recesses in a seven by
@@ -46,8 +46,8 @@ composition:
     contact shadow falling across it, and the figure 34 cut into the lit metal at 190px with the gap
     line beside it, so the lower third is modeled surface rather than type on a flat ground.
   focal: >
-    The lit cells, one early and nine in the tail, read as the shape of what this deck actually
-    read against twenty four rows it did not.
+    The lit cells, two early and four in the tail, read as the shape of what this deck actually
+    read against twenty eight rows it did not.
 art:
   technique: "wind-worked carve, TXCARVE, with two part contact shadows under one raking key"
   why_this_technique: >

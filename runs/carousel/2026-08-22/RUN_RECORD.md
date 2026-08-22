@@ -224,17 +224,17 @@ and it is now correct on every published surface.
 <!-- gate-status:begin -->
 | gate | status | detail |
 |---|---|---|
-| claims         | PASS   | 20 verified claim(s) |
+| claims         | PASS   | 23 verified claim(s) |
 | render         | PASS   | 9 slide(s) |
 | qa             | PASS   | 9 slide(s), zero fails, zero warns |
 | aggregates     | PASS   | 6 declared and re-derived |
-| assembly       | PASS   | 9 slide(s), 4.62 MB, vector |
-| score          | FAIL   | 6.56, hard fail: An unverified fact presented as verified, on the record this deck's first comment sends readers to. ledger/docket.json item tx-2026-0002 carried last_verified 2026-08-22 and confidence high, and its public_access.how still read 'Individuals have already done so without counsel. The record contains filings from named members of the public alongside utility and data center filings.' Both assertions are in this run's own claims.json rejected list. The summary was corrected and this field was not, and it published three times on docs/item/tx-2026-0002/index.html including in the JSON-LD FAQPage acceptedAnswer. Three sections above it the same page published a dated history line asserting the opposite, which was false about the page it was on. A reader following the deck's own citation from slide 5, which prints 'Nothing here states who a filer is.', landed on the exact claim the deck exists to refute., judge returned ship: false with no hard fail named, which is a refusal either way, An unverified fact presented as verified, on the record this deck's first comment sends readers to. ledger/docket.json item tx-2026-0002 carried last_verified 2026-08-22 and confidence high, and its public_access.how still read 'Individuals have already done so without counsel. The record contains filings from named members of the public alongside utility and data center filings.' Both assertions are in this run's own claims.json rejected list. The summary was corrected and this field was not, and it published three times on docs/item/tx-2026-0002/index.html including in the JSON-LD FAQPage acceptedAnswer. Three sections above it the same page published a dated history line asserting the opposite, which was false about the page it was on. A reader following the deck's own citation from slide 5, which prints 'Nothing here states who a filer is.', landed on the exact claim the deck exists to refute. |
-| dossiers       | PASS   | 27,873 chars planned |
-| caption        | PASS   | 165 words |
-| craft floor    | PASS   | 9 frame(s), median 460, floor 83 |
-| plan vs render | WARN   | 5 of 45 acceptance item(s) checkable |
+| assembly       | PASS   | 9 slide(s), 3.37 MB, vector |
+| score          | PASS   | 7.09 |
+| dossiers       | PASS   | 28,198 chars planned |
+| caption        | PASS   | 212 words |
+| craft floor    | PASS   | 9 frame(s), median 658, floor 118 |
+| plan vs render | WARN   | 6 of 48 acceptance item(s) checkable |
 | texan          | WARN   | places NONE / body yes / deadline yes / next step yes |
-| absences       | WARN   | 7 of 8 scoped to a named document, 1 unscoped |
-| completion     | FAIL   | THE DECK DID NOT SHIP, so this run is not done |
+| absences       | PASS   | 8 of 8 scoped to a named document |
+| completion     | PASS   | the deck shipped |
 <!-- gate-status:end -->
