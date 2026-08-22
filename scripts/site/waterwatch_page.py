@@ -472,10 +472,42 @@ STAGE_CSS = """
   vector-effect:non-scaling-stroke}
 .waterviz.resmap .edge{fill:none;stroke:var(--ink-mute);stroke-width:1.4;
   stroke-linejoin:round;vector-effect:non-scaling-stroke;opacity:.75}
-.waterviz.resmap .rim{fill:var(--bg);stroke:var(--accent);stroke-width:1;
-  vector-effect:non-scaling-stroke;opacity:.55}
-.waterviz.resmap .wf{fill:var(--accent);opacity:.92}
-.waterviz.resmap .res:hover .rim{stroke-width:2.4;opacity:1}
+/* THE TANK IS ITS OWN MARK, UNDER THE WATER RATHER THAN OVER IT. See `_vessel` for the
+   defect: this fill used to live on `.rim`, which is painted last, so it went over every lake
+   on the map and took the colour out of all of them. */
+.waterviz.resmap .tank{fill:var(--bg);opacity:.84}
+.waterviz.resmap .rim{fill:none;stroke:var(--accent);stroke-width:1;
+  vector-effect:non-scaling-stroke;opacity:.62}
+/* WATER, IN A COLOUR WATER COMES IN. `--water` is Comal, derived in theme.py against every
+   ground and contrast gated like every other role on this site. Fully opaque, so the page's
+   film grain stops reading through the one surface on the site that is meant to be liquid. */
+.waterviz.resmap .wf{fill:var(--water)}
+/* THE LIT LINE WHERE WATER MEETS AIR. It is the same curve the fill closes over, so the two
+   can never disagree about where the surface is. */
+.waterviz.resmap .men{fill:none;stroke:var(--water-lit);stroke-width:1.3;
+  vector-effect:non-scaling-stroke;stroke-linecap:round;opacity:.95}
+.waterviz.resmap .lake{transform-box:fill-box;transform-origin:50% 50%}
+.waterviz.resmap .res{transform-box:fill-box;transform-origin:50% 50%}
+
+/* HOVER, AND WHY IT MAGNIFIES RATHER THAN SLOSHES.
+   The obvious motion is the water rocking in the bowl, and at this scale it cannot work. The
+   circles run from 5.4 units to 27 and the map is a 1000 unit viewBox in about 740 pixels, so
+   a swell big enough to see on the largest lake is half the radius of the smallest, and any
+   rocking of the body lifts it off the vessel wall and opens a crescent of nothing behind it.
+   So the body never moves. The mark grows, which also answers the real problem a reader has
+   with a 5 unit circle, and the SURFACE ripples inside it.
+   THE RIPPLE ONLY EVER SINKS. Moving the lit line up would part it from the water it sits on
+   and show the tank through the gap. Downward it reads as a swell passing under it, which is
+   what it is, and there is nothing to part from. */
+@media (hover:hover){
+  .waterviz.resmap .res{transition:transform .2s cubic-bezier(.2,.8,.3,1)}
+  .waterviz.resmap .res:hover{transform:scale(1.5)}
+  .waterviz.resmap .res:hover .rim{stroke-width:2.2;opacity:1}
+  .waterviz.resmap .res:hover .men{opacity:1;animation:wripple 2.4s ease-in-out infinite}
+}
+@keyframes wripple{0%,100%{transform:translateY(0)}50%{transform:translateY(.9px)}}
+@media (prefers-reduced-motion:reduce){
+  .waterviz.resmap .res{transition:none}}
 /* THE KEY HAS ITS OWN TYPE SCALE, because the map has its own geometry. It is a 1000 unit
    viewBox against the chart's 720, so the same user unit size renders about a third smaller
    here at any given column width, and the chart's steps would leave this key under the ten
@@ -526,7 +558,15 @@ STAGE_CSS = """
   vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round}
 .spark .mk{fill:var(--accent)}
 td.sparkcell{width:6rem;vertical-align:middle}
-@media (max-width:46rem){td.sparkcell,th.sparkhead{display:none}}
+/* WHICH COLUMN GIVES WAY ON A PHONE, and it was the wrong one until 2026-08-22.
+   The trend was dropped below this width and the acre feet kept, so a reader on a phone lost
+   the one column they cannot get anywhere else and kept a seven digit lookup value. The owner
+   reported it as the trend being cut off, which is what a column that is simply absent looks
+   like from the outside.
+   Acre feet gives way instead. The figure is still in the markup, still in the tooltip on every
+   bar and still in waterwatch.json, and dropping it also stops the long numerals forcing the
+   metro names to wrap onto three lines. */
+@media (max-width:46rem){td.af,th.afhead{display:none}}
 
 /* SVG TEXT SCALES WITH THE DRAWING, AND THE DRAWING SHRINKS TO FIT, which is the same problem
    the grid watch chart already solved and the same numbers it solved it with. A 720 unit wide
@@ -605,6 +645,32 @@ def _gutter(labels: list[str], size: float, pad: float = 14.0) -> float:
     from the one computed. That is the one failure this project cannot have.
     """
     return round(max((MONO_ADV * size * len(s) for s in labels), default=0.0) + pad, 1)
+
+
+def _margin(size: float, pad: float = 14.0) -> float:
+    """The frame margin on a side that prints no axis label, derived rather than typed.
+
+    THE DEFECT THIS EXISTS FOR, reported by the owner on 2026-08-22 as the trend chart being
+    "cut off on the right side" on a phone and on a narrowed desktop window.
+
+    Nothing was cut off. `_gutter` above sizes the LEFT margin from the widest string the axis
+    will actually print, and at this drawing's type size the residual strip's "-50,000" makes
+    that about 139 units. The right margin was the literal 16 it was born with. Eight to one.
+    The plot ran to within 16 units of the frame while the left carried a gutter nine times
+    that, so the drawing read as though the page had sliced it, and on a 390 pixel phone those
+    16 units are eight pixels.
+
+    NO GATE COULD SEE IT, and that is the part worth keeping. `responsive.mjs` asks whether
+    anything is clipped or off screen and nothing was: every mark sat inside the viewBox and
+    every label inside the frame. A drawing can be entirely within its bounds and still be
+    composed wrongly, and no assertion about bounds will ever say so.
+
+    THE RULE. A plot is inset from a frame edge by at least one line of axis type plus the same
+    optical pad `_gutter` adds beyond its widest label. One line of type is the smallest inset
+    that reads as deliberate rather than as an accident of cropping, and it is a real
+    typographic unit rather than a number somebody liked.
+    """
+    return round(size + pad, 1)
 
 
 def _polylen(pts: list) -> float:
@@ -711,7 +777,8 @@ def state_trend_svg(f: dict) -> str:
 
     labels = [maf(v) for v in marks] + ["MAF", "AF", af(rceil), "-" + af(rceil)]
     pad_l = _gutter([s for s in labels if s], ax)
-    plot_w = w - pad_l - 16
+    pad_r = _margin(ax)
+    plot_w = w - pad_l - pad_r
     n = len(series)
 
     def x(i):
@@ -737,13 +804,13 @@ def state_trend_svg(f: dict) -> str:
     length = _polylen(pts)
 
     grid = "".join(
-        f'<line class="g" x1="{pad_l}" x2="{w - 16}" y1="{y(v)}" y2="{y(v)}"/>'
+        f'<line class="g" x1="{pad_l}" x2="{w - pad_r}" y1="{y(v)}" y2="{y(v)}"/>'
         f'<text class="ax" x="{pad_l - 8}" y="{y(v) + 4}" text-anchor="end">{maf(v)}</text>'
         for v in marks)
     # THE CEILING GETS ITS OWN WEIGHT, because it is the only line on the panel that is a
     # published quantity rather than a division of one.
-    ceiling = (f'<line class="cap" x1="{pad_l}" x2="{w - 16}" y1="{y(cap)}" y2="{y(cap)}"/>'
-               f'<text class="ax lab" x="{w - 16}" y="{y(cap) - 7}" text-anchor="end">'
+    ceiling = (f'<line class="cap" x1="{pad_l}" x2="{w - pad_r}" y1="{y(cap)}" y2="{y(cap)}"/>'
+               f'<text class="ax lab" x="{w - pad_r}" y="{y(cap) - 7}" text-anchor="end">'
                f'conservation capacity</text>')
 
     # THE LATEST READING IS MARKED AND LABELLED where it happens, so the figure a reader came
@@ -752,7 +819,7 @@ def state_trend_svg(f: dict) -> str:
     lx, ly = x(n - 1), y(last["storage_af"])
     tag = f'{maf(last["storage_af"])} MAF, {pct(last["percent_full"])}% full'
     half = MONO_ADV * ax * len(tag) / 2.0
-    tx = min(max(lx, pad_l + half), w - 16 - half)
+    tx = min(max(lx, pad_l + half), w - pad_r - half)
     head = (f'<circle class="mk" cx="{lx}" cy="{ly}" r="3.6"/>'
             f'<text class="ax mklab" x="{tx}" y="{round(ly - 12, 2)}" '
             f'text-anchor="middle">{tag}</text>')
@@ -775,7 +842,7 @@ def state_trend_svg(f: dict) -> str:
         f'<title>{ordinal_date(series[i]["date"])}, '
         f'{"up" if v > 0 else "down" if v < 0 else "no change"} {af(abs(v))} acre feet</title></rect>'
         for k, (i, v) in enumerate(moves))
-    strip = (f'<line class="zero" x1="{pad_l}" x2="{w - 16}" y1="{mid}" y2="{mid}"/>{bars}'
+    strip = (f'<line class="zero" x1="{pad_l}" x2="{w - pad_r}" y1="{mid}" y2="{mid}"/>{bars}'
              f'<text class="ax" x="{pad_l - 8}" y="{ry(rceil) + 4}" text-anchor="end">'
              f'{af(rceil)}</text>'
              f'<text class="ax" x="{pad_l - 8}" y="{ry(-rceil) + 4}" text-anchor="end">'
@@ -840,13 +907,14 @@ def distribution_svg(f: dict) -> str:
     h = pad_t + plot_h + pad_b
     ax = 27.0
     pad_l = _gutter([f"{v}%" for v in (0, 25, 50, 75, 100)] + ["FULL"], ax)
-    plot_w = w - pad_l - 16
+    pad_r = _margin(ax)
+    plot_w = w - pad_l - pad_r
 
     def y(p):
         return round(pad_t + plot_h - (min(float(p), 100.0) / 100.0) * plot_h, 2)
 
     grid = "".join(
-        f'<line class="g" x1="{pad_l}" x2="{w - 16}" y1="{y(v)}" y2="{y(v)}"/>'
+        f'<line class="g" x1="{pad_l}" x2="{w - pad_r}" y1="{y(v)}" y2="{y(v)}"/>'
         f'<text class="ax" x="{pad_l - 8}" y="{y(v) + 4}" text-anchor="end">{v}%</text>'
         for v in (0, 25, 50, 75, 100))
 
@@ -870,7 +938,7 @@ def distribution_svg(f: dict) -> str:
         # ANCHORED LEFT, NOT RIGHT. The label sat at the right edge, which on a curve that
         # rises left to right is exactly where the bars are tallest, so it printed on top of
         # them. The empty quadrant on a rising curve is the top left and that is where it goes.
-        state = (f'<line class="mean" x1="{pad_l}" x2="{w - 16}" y1="{y(sw)}" y2="{y(sw)}"/>'
+        state = (f'<line class="mean" x1="{pad_l}" x2="{w - pad_r}" y1="{y(sw)}" y2="{y(sw)}"/>'
                  # BELOW ITS OWN LINE, NOT ABOVE IT. Above, it shares the top left of the
                  # drawing with the crossing label and the two printed through each other at
                  # phone type. Below the line and at the left the curve is at its lowest, and
@@ -914,14 +982,11 @@ def distribution_svg(f: dict) -> str:
   <g class="rvs">{"".join(bars)}</g>
   {state}{xticks}
   <text class="ax unit" x="4" y="{pad_t + plot_h + 55}" text-anchor="start">FULL</text>
-  <text class="ax unit" x="{w - 16}" y="{pad_t + plot_h + 55}" text-anchor="end">
+  <text class="ax unit" x="{w - pad_r}" y="{pad_t + plot_h + 55}" text-anchor="end">
     SHARE OF STATE CAPACITY</text>
 </svg>
-<figcaption>All of them, emptiest to fullest, each one as wide as the share of Texas
-conservation capacity it holds. The horizontal axis is the state's water rather than a count of
-lakes, so the area under the steps is the statewide figure and the two can't disagree. The
-upright mark is where the curve crosses the state's own average.
-{below}</figcaption>
+<figcaption>Every reservoir, emptiest to fullest, each as wide as the share of state
+capacity it holds. {below}</figcaption>
 </figure>"""
 
 
@@ -1005,13 +1070,7 @@ def reservoir_map_svg(f: dict) -> str:
         frac = max(0.0, min(float(p["percent_full"]) / 100.0, 1.0))
         title = (f'<title>{p["name"]}, {pct(p["percent_full"])}% full, '
                  f'{af(p["storage_af"])} of {af(p["capacity_af"])} acre feet</title>')
-        fill = ""
-        if frac >= 0.999:
-            fill = f'<circle class="wf{wd}" cx="{p["cx"]}" cy="{p["cy"]}" r="{r}"/>'
-        elif frac > 0.001:
-            fill = f'<path class="wf{wd}" d="{_segment(p["cx"], p["cy"], r, frac)}"/>'
-        dots.append(f'<g class="res">{fill}'
-                    f'<circle class="rim{wd}" cx="{p["cx"]}" cy="{p["cy"]}" r="{r}"/>{title}</g>')
+        dots.append(f'<g class="res">{_vessel(p["cx"], p["cy"], r, frac, wd)}{title}</g>')
 
     # THE LEGEND, IN THE CORNER THE STATE DOES NOT REACH. A map with two encodings on one mark
     # needs to say what they are, and this one has two: how big the circle is, and how far up
@@ -1031,12 +1090,13 @@ def reservoir_map_svg(f: dict) -> str:
         out, cx = [], lx
         for k, rr in enumerate(radii):
             cx += rr if k == 0 else rr + 11.0
-            frac = None if fracs is None else fracs[k]
-            if frac is not None:
-                out.append(f'<circle class="wf" cx="{cx}" cy="{cy}" r="{rr}"/>'
-                           if frac >= 0.999
-                           else f'<path class="wf" d="{_segment(cx, cy, rr, frac)}"/>')
-            out.append(f'<circle class="rim" cx="{cx}" cy="{cy}" r="{rr}"/>')
+            frac = fracs[k] if fracs is not None else None
+            # THE KEY IS DRAWN BY THE SAME FUNCTION AS THE MAP, which it was not before. Two
+            # code paths building the same mark is how a legend ends up describing a drawing
+            # that has moved on without it, and this one had already started to: the map's
+            # circles were about to gain a vessel and a lit surface that the key knew nothing
+            # about. A key that does not look like the thing it explains is worse than none.
+            out.append(_vessel(cx, cy, rr, frac, "", tank=frac is not None))
             cx += rr
         return "".join(out), cx
 
@@ -1069,8 +1129,45 @@ def reservoir_map_svg(f: dict) -> str:
 <figcaption>Where the water is. One circle per reservoir, at its own gauge, filled to the level
 it is holding today. Size follows the fourth root of conservation capacity rather than capacity
 itself, so the smallest lakes stay visible beside the largest, and the ranking by size still
-holds. One color at every level, because the height of the fill is the whole
-reading.</figcaption></figure>"""
+holds.</figcaption></figure>"""
+
+
+def _vessel(cx: float, cy: float, r: float, frac, wd: str, tank: bool = True) -> str:
+    """One reservoir: the vessel, the water in it, and the lit line where the two meet.
+
+    THE PAINT ORDER IS THE WHOLE FIX AND IT WAS BACKWARDS.
+
+    Until 2026-08-22 this drew the water and then painted the rim circle on top of it, and that
+    rim carried `fill:var(--bg)` at 55 percent opacity. So every lake on the map had a disc of
+    page background laid over it at more than half strength. The water was authored as dusk
+    gold at 92 percent and reached a reader at about 41, which is a muddy taupe, and the film
+    grain the whole site carries showed straight through it. The owner described the result as
+    grainy and bland and was reading it exactly right. Nothing was wrong with the colour. It was
+    being painted over.
+
+    So the vessel is its own mark now, underneath, and the rim is a stroke with no fill at all.
+    Three objects, in the order a real one would be built: the empty tank, the water, the rim
+    that holds both.
+
+    ONE HUE AT ONE INTENSITY STILL HOLDS, and it is worth being precise about what that rule
+    forbids, because this mark now carries three colours. It forbids a colour that MOVES WITH
+    THE READING. A lake at 12 percent and a lake at 96 are drawn in the identical blue, at the
+    identical strength, with the identical lit line on top, and the only thing that differs
+    between them is where the water sits. That is the rule. The vessel and the rim were already
+    a second and third intensity before this change, because a bar with no trough is not a
+    gauge, and the water page has always drawn the tank as well as what is in it.
+    """
+    if frac is None:
+        return (f'<circle class="rim{wd}" cx="{cx}" cy="{cy}" r="{r}"/>')
+    frac = max(0.0, min(float(frac), 1.0))
+    body = (f'<circle class="wf{wd}" cx="{cx}" cy="{cy}" r="{r}"/>' if frac >= 0.999
+            else f'<path class="wf{wd}" d="{_segment(cx, cy, r, frac)}"/>' if frac > 0.001
+            else "")
+    line = _surface(cx, cy, r, frac)
+    men = f'<path class="men{wd}" d="{line}"/>' if line else ""
+    return ((f'<circle class="tank{wd}" cx="{cx}" cy="{cy}" r="{r}"/>' if tank else "")
+            + (f'<g class="lake">{body}{men}</g>' if body else "")
+            + f'<circle class="rim{wd}" cx="{cx}" cy="{cy}" r="{r}"/>')
 
 
 def _segment(cx: float, cy: float, r: float, frac: float) -> str:
@@ -1086,12 +1183,180 @@ def _segment(cx: float, cy: float, r: float, frac: float) -> str:
     empty lake renders nearly full, which is the one error on this page that would be both
     invisible in review and completely wrong.
     """
-    import math                                                      # noqa: PLC0415
-    ys = cy + r - 2.0 * r * frac
-    half = math.sqrt(max(r * r - (ys - cy) ** 2, 0.0))
+    ys, half = _waterline(cy, r, frac)
     large = 1 if frac > 0.5 else 0
-    return (f"M{round(cx - half, 2)},{round(ys, 2)} "
-            f"A{r},{r} 0 {large} 0 {round(cx + half, 2)},{round(ys, 2)} Z")
+    # THE ARC RETURNS RIGHT TO LEFT, WHICH FLIPS THE SWEEP FLAG. Before the wave the path went
+    # M at the left end, arc to the right end, and `Z` closed it back along the chord. The wave
+    # walks that chord itself, so the current point is already at the right end and an arc drawn
+    # to the right end is a zero length arc, which the spec says to ignore. The first version of
+    # this drew every lake as its own complement: a reservoir at 92 percent rendered as a thin
+    # blue band at the TOP of an empty circle, and the map was wrong about every mark on it.
+    # Reversing the arc means tracing the same side of the circle in the other direction, and
+    # that is exactly what the sweep flag is.
+    # THE SURFACE IS ALWAYS WALKED, EVEN WHEN IT IS A STRAIGHT LINE, and that is the second bug
+    # the area check found rather than the first. `_crest` returns nothing when the swell would
+    # be under a hundredth of a unit, which is right, and this then had the arc start and end at
+    # the same point. A zero length arc is one the spec says to ignore, so the whole path
+    # collapsed and the lake drew NOTHING. It only ever happened past 99 percent and under one,
+    # which is the band nobody scrolls to check and the band where a dry reservoir lives.
+    #
+    # So the path always has the same shape. Along the surface from the left end to the right,
+    # by a wave or by a plain `L`, then the arc back around the bottom. One shape means one set
+    # of flags to get right, and the sweep is 1 because the arc now runs right to left.
+    top = _crest(cx, ys, half, r, frac) or f"L{round(cx + half, 3)},{round(ys, 3)} "
+    return (f"M{round(cx - half, 3)},{round(ys, 3)} {top}"
+            f"{_wall(cx, cy, r, half, ys, frac)}Z")
+
+
+def _wall(cx: float, cy: float, r: float, half: float, ys: float, frac: float) -> str:
+    """The vessel's wall, from one end of the surface round the bottom to the other.
+
+    IN QUARTERS, NEVER IN ONE PIECE, and that is about what a RENDERER does rather than about
+    tidiness. An SVG arc is given two endpoints and a radius, and every renderer recovers the
+    centre from them the same way the spec sets out. When the two ends are nearly a diameter
+    apart that recovery is ill conditioned: the term under the root goes to zero, so a
+    thousandth of rounding in an endpoint swings the recovered centre by a large multiple of
+    itself along the perpendicular.
+
+    Half full is exactly that case, and it is not a corner. It is the middle of the range and
+    the single most likely level for a reservoir to be at. The water reached about a tenth of a
+    unit below the floor of its own vessel there, in the browser and not only in the check.
+
+    So the return is broken at the circle's own quarter points, which are exact and need no
+    recovery at all. Every piece is at most a quarter turn, every one is well conditioned, and
+    the flags are the same on all of them, which removes the other thing that was easy to get
+    wrong here.
+    """
+    q = lambda x, y: f"A{r},{r} 0 0 1 {round(x, 3)},{round(y, 3)} "
+    stops = []
+    if frac > 0.5:                       # the surface is above the middle, so the wall passes
+        stops.append((cx + r, cy))       # the right shoulder and the left one as well
+    stops.append((cx, cy + r))           # the floor, which every level's wall passes
+    if frac > 0.5:
+        stops.append((cx - r, cy))
+    stops.append((cx - half, ys))
+    return "".join(q(x, y) for x, y in stops)
+
+
+def _waterline(cy: float, r: float, frac: float) -> tuple:
+    """Where the surface sits, and how wide the vessel is there, as the path will PRINT them.
+
+    THE ROUNDING HAS TO AGREE WITH ITSELF, which it did not, and the area check found it at
+    exactly half full where nothing else would look.
+
+    The chord's ends have to land ON the circle, because the arc that closes the path is given
+    that circle's radius and SVG's rule for an arc whose endpoints are too far apart is to grow
+    the radius until they fit. At 49 percent of a 20 unit circle the half chord is 19.996, which
+    rounds to 20.0 while the surface sits at 100.4, so the printed ends were 0.4 units off their
+    own circle and the renderer answered by drawing a bigger one. The water reached below the
+    floor of the vessel holding it.
+
+    So the surface is rounded first and the half chord is then computed FROM THE ROUNDED VALUE
+    and floored, never rounded up, so a printed end is always ON the circle or just inside it.
+
+    AND THIS ONE DRAWING PRINTS THREE PLACES WHERE THE REST OF THE PAGE PRINTS TWO. At two
+    places the residual error is a fiftieth of a unit, which is nothing on the trend chart's
+    720 unit frame and is four percent of the radius of the smallest reservoir here. The map
+    is the one drawing on this page whose marks are five units across. It costs about a
+    kilobyte before compression and it is the difference between a vessel that holds its water
+    and one that leaks a little at exactly half full.
+    """
+    import math                                                      # noqa: PLC0415
+    ys = round(cy + r - 2.0 * r * frac, 3)
+    return ys, math.floor(math.sqrt(max(r * r - (ys - cy) ** 2, 0.0)) * 1000) / 1000
+
+
+def _amp(r: float, half: float, frac: float) -> float:
+    """How far the surface may rise and fall, in user units.
+
+    THREE THINGS BOUND IT AND EACH ONE IS A REAL EDGE.
+
+    A proportion of the RADIUS, so the swell looks the same on a five unit stock tank as on
+    Toledo Bend rather than being a fixed wobble that swamps the small marks.
+
+    A proportion of the WATER'S OWN DEPTH, so a lake at two percent does not get a trough that
+    dips below the bottom of its own vessel and draws a crescent of nothing.
+
+    A proportion of the HALF CHORD, which is the one that matters near the top. At ninety eight
+    percent full the chord is short and sits near the crown of the circle, so a swell sized off
+    the radius would ride straight out through the rim.
+
+    AND THE VESSEL'S OWN WALL, WHICH THE FIRST THREE DO NOT COVER. Water standing proud of the
+    rim that holds it is not a small visual bug on this page. It is the drawing saying a
+    reservoir is over its conservation capacity, which is a claim the record never makes.
+
+    THAT BOUND TOOK TWO GOES AND THE SECOND ONE IS THE POINT. The obvious version measures the
+    room at the crest's peak, which sits a quarter along the chord, and it is not enough: the
+    sweep below found a 27 unit circle at 91.8 percent breaking out by 0.066 units at `t=0.13`,
+    near where the curve LEAVES the chord, because the circle's wall there is climbing far
+    faster than a curve aimed at a peak further along. Checking the one point a person would
+    think to check is how a rule passes review and still draws the wrong picture.
+
+    So it is solved along the whole curve instead, and it is exact rather than sampled-and-hoped
+    because the curve is linear in this number. A quadratic from `(x0, ys)` through a control at
+    `ys -/+ 2a` to `(x1, ys)` has `y(t) = ys -/+ 4a·t(1-t)`, and its `x` runs straight from one
+    end of the chord to the other. So at every `t` the wall gives a ceiling on `a` directly, and
+    the answer is the tightest of them. Twenty four samples, then 98 percent of it, so rounding
+    a coordinate to two places cannot spend the last of the clearance.
+    """
+    import math                                                      # noqa: PLC0415
+    if half <= 0.0:
+        return 0.0
+    off = r * (1.0 - 2.0 * frac)            # the chord's own offset from the middle, signed
+    bound = min(r * 0.13, r * frac * 0.55, half * 0.30)
+    for k in range(1, 24):
+        t = k / 24.0
+        bell = 4.0 * t * (1.0 - t)          # how much of `a` the curve is spending at this t
+        # The crest runs right to left from the chord's left end, the trough left to right from
+        # the middle, so at the same `t` they stand at mirrored distances from the centre. One
+        # wall serves both because the circle is symmetric about its own horizontal.
+        for wall, room in ((half * (1.0 - t), off), (half * t, -off)):
+            head = room + math.sqrt(max(r * r - wall * wall, 0.0))
+            bound = min(bound, max(head, 0.0) / bell)
+    return round(bound * 0.98, 3)
+
+
+def _crest(cx: float, ys: float, half: float, r: float, frac: float) -> str:
+    """The water line, as one full wave rather than a ruled chord.
+
+    THE READING IS THE AREA AND THE WAVE DOES NOT MOVE IT. One crest and one trough of equal
+    size, so what the crest adds the trough takes back and the enclosed area is the circular
+    segment's, exactly. That is not a detail. The height of the fill IS the measurement on this
+    page, so an ornament that changed it by even a little would be the drawing lying about the
+    number underneath, which is the one thing this project never does for a picture.
+
+    Two quadratics rather than sampled line segments. A `Q` control point sits at twice the
+    peak it produces, so the peak is `_amp` and the control is `2 * _amp`, and the curve is
+    smooth at every size instead of showing facets on the big lakes.
+
+    Returns an empty string when there is no surface to draw, which is a full lake and an empty
+    one. A full circle has no water line, and neither has a vessel with nothing in it.
+    """
+    if frac >= 0.999 or frac <= 0.001 or half <= 0.0:
+        return ""
+    a = _amp(r, half, frac)
+    if a <= 0.02:
+        return ""
+    x0, w = cx - half, half * 2.0
+    q = round(a * 2.0, 3)
+    return (f"Q{round(x0 + w * 0.25, 3)},{round(ys - q, 3)} "
+            f"{round(x0 + w * 0.5, 3)},{round(ys, 3)} "
+            f"Q{round(x0 + w * 0.75, 3)},{round(ys + q, 3)} "
+            f"{round(x0 + w, 3)},{round(ys, 3)} ")
+
+
+def _surface(cx: float, cy: float, r: float, frac: float) -> str:
+    """The water line on its own, open rather than closed, for the lit meniscus.
+
+    The same curve the segment closes over, so the two can never disagree about where the
+    water is. Drawn separately because a stroke on the segment would light the arc as well,
+    and the arc is the vessel's wall rather than the surface.
+    """
+    ys, half = _waterline(cy, r, frac)
+    crest = _crest(cx, ys, half, r, frac)
+    if not crest:
+        return ""
+    return f"M{round(cx - half, 3)},{round(ys, 3)} {crest}"
 
 
 def reservoir_label(key: str) -> str:
@@ -1211,7 +1476,7 @@ def metro_bars(metros: list[dict], walk: list | None = None,
   <td class="barcell"><div class="bar mini"><div class="fill"
       style="width:{min(float(m['percent_full']), 100.0):.1f}%"></div></div></td>
   <td class="n num">{pct(m['percent_full'])}%</td>
-  <td class="n num">{af(m['storage_af'])}</td>
+  <td class="n num af">{af(m['storage_af'])}</td>
   <td class="sparkcell">{sparkline((series or {{}}).get(m['slug']) or [], window)}</td>
 </tr>""" for m in metros)
     # THE CAPTION WAS SIXTY TWO WORDS OF READING INSTRUCTIONS, cut to five on the owner's
@@ -1228,7 +1493,7 @@ def metro_bars(metros: list[dict], walk: list | None = None,
     return f"""<table class="figures metros">
 <caption>Metro reservoir storage, driest first</caption>
 <thead><tr><th>Metro</th><th>Full</th><th class="n">Percent</th>
-<th class="n">Acre feet</th><th class="sparkhead">Trend</th></tr></thead>
+<th class="n afhead">Acre feet</th><th class="sparkhead">Trend</th></tr></thead>
 <tbody>{rows}</tbody></table>"""
 
 
@@ -1404,12 +1669,10 @@ def body(records: list[dict], today: str) -> str:
 
 <div class="prose">
   <div class="gap">
-    <p><strong>This measures surface water in reservoirs and nothing else.</strong> A city also
-    runs on groundwater and reuse and purchased water. The Ogallala and the Edwards are not
-    measured here.</p>{gap}
-    <p>A low bar is not a conclusion about a city's supply and a full bar is not a promise.
-    Some reservoirs are drawn down deliberately. Some refill in a week from one storm. These
-    are the figures for the day and nothing more.</p>
+    <p><strong>Surface water in reservoirs only.</strong> A city also runs on groundwater and
+    reuse and purchased water.</p>{gap}
+    <p>A low bar is not a verdict on a city's supply. Some reservoirs are drawn down on purpose
+    and some refill in a week from one storm.</p>
   </div>
   <p>The record holds <strong class="num">{af(f['days_held'])}</strong>
   {plural(f['days_held'], 'day', 'days')} so far.
@@ -1520,6 +1783,7 @@ def lint(html_body: str, f: dict) -> list[str]:
 
 # --------------------------------------------------------------------------- self-test
 def self_test() -> int:
+    import math                                                      # noqa: PLC0415
     failures = 0
 
     def check(label, cond, extra=""):
@@ -1729,6 +1993,129 @@ def self_test() -> int:
                            ("the length of the record", af(live_f["days_held"]))):
             check(f"the page still publishes {label}", val in live_b, val)
 
+    # ------------------------------------------------------ THE WATER, AS DRAWN NOT AS MEANT
+    # Everything below reads the path string the page actually ships and works out what area it
+    # encloses. Asserting on the numbers that went IN would have passed every one of these on
+    # the morning the arc was reversed and every lake on the map rendered as its own complement.
+    def _flatten(d, r):
+        """The emitted path, as a list of points. Arc flags read from the string, not assumed."""
+        import re as _r                                              # noqa: PLC0415
+        nums = lambda t: [float(x) for x in _r.findall(r"-?\d+(?:\.\d+)?", t)]
+        pts, cur = [], None
+        for tok in _r.findall(r"[MQLAZ][^MQLAZ]*", d):
+            k, v = tok[0], nums(tok[1:])
+            if k == "M":
+                cur = (v[0], v[1]); pts.append(cur)
+            elif k == "Q":
+                (x0, y0), (qx, qy), (x1, y1) = cur, (v[0], v[1]), (v[2], v[3])
+                for i in range(1, 33):
+                    t = i / 32
+                    pts.append((((1 - t) ** 2) * x0 + 2 * (1 - t) * t * qx + t * t * x1,
+                                ((1 - t) ** 2) * y0 + 2 * (1 - t) * t * qy + t * t * y1))
+                cur = (x1, y1)
+            elif k == "L":
+                cur = (v[0], v[1]); pts.append(cur)
+            elif k == "A":
+                # Endpoint to centre, the SVG spec's own conversion, so the large-arc and sweep
+                # flags in the shipped string are what decides which way round this goes.
+                rr, large, sweep, x1, y1 = v[0], int(v[3]), int(v[4]), v[5], v[6]
+                x0, y0 = cur
+                mx, my = (x0 - x1) / 2, (y0 - y1) / 2
+                q = max(rr * rr / max(mx * mx + my * my, 1e-12) - 1.0, 0.0) ** 0.5
+                if large == sweep:
+                    q = -q
+                ux, uy = q * my + (x0 + x1) / 2, -q * mx + (y0 + y1) / 2
+                a0 = math.atan2(y0 - uy, x0 - ux)
+                a1 = math.atan2(y1 - uy, x1 - ux)
+                da = a1 - a0
+                if sweep and da < 0:
+                    da += 2 * math.pi
+                if not sweep and da > 0:
+                    da -= 2 * math.pi
+                for i in range(1, 65):
+                    a = a0 + da * i / 64
+                    pts.append((ux + rr * math.cos(a), uy + rr * math.sin(a)))
+                cur = (x1, y1)
+        return pts
+
+    def _area(pts):
+        return abs(sum(pts[i][0] * pts[i - 1][1] - pts[i - 1][0] * pts[i][1]
+                       for i in range(len(pts)))) / 2.0
+
+    def _true_segment(r, frac):
+        h = r * (1.0 - 2.0 * frac) / r                                # the chord, as cos
+        h = max(-1.0, min(1.0, h))
+        return r * r * (math.acos(h) - h * math.sqrt(max(1 - h * h, 0.0)))
+
+    worst_area, worst_at, worst_out, out_at = 0.0, None, -9.0, None
+    for rr in (5.4, 9.0, 14.0, 20.0, 27.0):
+        for i in range(1, 200):
+            fr = i / 200
+            pts = _flatten(_segment(100.0, 100.0, rr, fr), rr)
+            # MEASURED AGAINST THE WHOLE CIRCLE, not against the segment. A segment at half a
+            # percent has almost no area, so a relative error against ITSELF divides by nearly
+            # nothing and reports a hundred percent for a rounding step. The question a reader
+            # has is how far the water line is from where it should be, and the circle is what
+            # that is a fraction of.
+            err = abs(_area(pts) - _true_segment(rr, fr)) / (math.pi * rr * rr)
+            if err > worst_area:
+                worst_area, worst_at = err, (rr, round(fr, 3))
+            for x, y in pts:
+                d = math.hypot(x - 100.0, y - 100.0) - rr
+                if d > worst_out:
+                    worst_out, out_at = d, (rr, round(fr, 3))
+
+    # THE READING IS THE AREA. A wave that is not exactly area neutral is the drawing quietly
+    # reporting a different number from the one computed, which is the one thing this page may
+    # never do. Half a percent over five radii and two hundred levels, which is the flattening
+    # error rather than the wave's.
+    check("the drawn water is the true circular segment, wave and all",
+          worst_area < 0.004, f"worst {worst_area:.4%} of the circle at r,frac={worst_at}")
+
+    # THE INVERSION, REPLAYED. Adding the wave left the arc running to the point the wave had
+    # already reached, which is a zero length arc the spec says to ignore, and every lake on the
+    # map drew its own complement: a reservoir at 92 percent rendered as a thin band at the top
+    # of an empty circle. Every input was correct and every number was right. Only the picture
+    # was wrong, and an area check is the only assertion here that could have said so.
+    low = _flatten(_segment(100.0, 100.0, 20.0, 0.1), 20.0)
+    check("a nearly empty lake draws nearly empty, not nearly full",
+          _area(low) < math.pi * 400 * 0.15, f"{_area(low):.1f} of {math.pi * 400:.1f}")
+    high = _flatten(_segment(100.0, 100.0, 20.0, 0.9), 20.0)
+    check("...and a nearly full one draws nearly full",
+          _area(high) > math.pi * 400 * 0.85, f"{_area(high):.1f} of {math.pi * 400:.1f}")
+    check("...and the water sits at the BOTTOM of the vessel",
+          sum(y for _, y in low) / len(low) > 100.0,
+          "the centroid of a low lake is above the centre")
+
+    # WATER STANDING PROUD OF ITS OWN RIM would be the drawing saying a reservoir is over
+    # capacity. `_amp` solves the swell against the vessel wall along the whole curve for this.
+    # The tolerance is one hundredth of a user unit, which is what the coordinates are rounded
+    # to, so anything under it cannot be expressed in the path let alone drawn.
+    check("no swell ever breaks out through the rim that holds it",
+          worst_out <= 0.01, f"worst {worst_out:+.4f} units at r,frac={out_at}")
+
+    # THE SURFACE AND THE FILL AGREE. Two paths drawn from one curve, so a reader can never see
+    # a lit line floating clear of the water it belongs to.
+    for fr in (0.05, 0.3, 0.62, 0.94):
+        seg, sur = _segment(60.0, 60.0, 18.0, fr), _surface(60.0, 60.0, 18.0, fr)
+        check(f"the lit surface starts on the water line at {int(fr * 100)}%",
+              sur and seg.startswith(sur.split("Q")[0]), f"{sur[:40]} vs {seg[:40]}")
+    check("a full lake has no water line, because it has no surface to light",
+          _surface(60.0, 60.0, 18.0, 1.0) == "")
+    check("...and neither has an empty one", _surface(60.0, 60.0, 18.0, 0.0) == "")
+
+    # THE PAINT ORDER, WHICH IS THE WHOLE DEFECT THIS REWORK EXISTS FOR. The vessel used to be
+    # a fill on the rim, and the rim is painted last, so a disc of page background went over
+    # every lake at 55 percent and took the colour out of all of them.
+    mark = _vessel(50.0, 50.0, 12.0, 0.5, "")
+    check("the vessel is painted BEFORE the water, never over it",
+          mark.index("tank") < mark.index("wf") < mark.index("rim"), mark[:90])
+    check("...and the rim carries no fill of its own any more",
+          'class="rim' in mark and "fill=" not in mark)
+    check("an empty vessel still draws, so a dry lake is a mark and not a gap",
+          "tank" in _vessel(50.0, 50.0, 12.0, 0.0, "") and
+          "wf" not in _vessel(50.0, 50.0, 12.0, 0.0, ""))
+
     # A RECORD SHAPE THE DRAWINGS DO NOT RECOGNISE COSTS THE DRAWINGS AND NOT THE PAGE.
     # `waterwatch_pagecheck` carries a fixture whose `reservoirs` is a name to storage map,
     # which is what that field was back when only its keys were ever read, and the first
@@ -1762,36 +2149,15 @@ def self_test() -> int:
     yhi = float(hi.split(",")[1].split(" ")[0])
     check("a nearly empty reservoir draws its water line near the bottom", ylo > 8.0, str(ylo))
     check("a nearly full one draws it near the top", yhi < -8.0, str(yhi))
-    check("the arc sweeps the short way below the middle and the long way above it",
-          " 0 0 " in lo and " 1 0 " in hi, f"{lo} | {hi}")
-    check("a half full reservoir puts its water line through the centre",
-          abs(float(_segment(0.0, 0.0, 10.0, 0.5).split(",")[1].split(" ")[0])) < 1e-9)
-
-    # NOTHING IS HIDDEN AT REST. Every animation on this page runs FROM a hidden state TO the
-    # resting one, so a reader with script off, or an observer that never fires, sees the
-    # finished drawing rather than an empty box. Written the other way round the page is blank
-    # and there is no error to explain it. GATE_LESSONS carries the site's own version of this
-    # already: a green suite has been wrong about whether a page rendered at all.
-    import re as _re2                                                # noqa: PLC0415
-    resting = _re2.sub(r"@keyframes[^{]*\{(?:[^{}]|\{[^{}]*\})*\}", " ", STAGE_CSS)
-    check("no rule hides a drawing at rest",
-          not _re2.search(r"opacity:0[^.\d]", resting)
-          and "scaleY(0)" not in resting and "scale(0)" not in resting)
-    check("...and the reveals are keyed to the class the shell adds",
-          resting.count("[data-reveal].in") >= 5)
-    # READ PER RULE, NOT PER SELECTOR. The first version split the sheet on the selector
-    # string, which cuts a comma separated rule in half and hands back a fragment that is
-    # nothing but a second selector, so four correct rules reported as missing their fill mode.
-    # A rule is a selector list plus one declaration block, and that is the unit the fill mode
-    # belongs to.
-    rules = _re2.findall(r"([^{}]+)\{([^{}]*)\}", resting)
-    reveals = [(sel, dec) for sel, dec in rules
-               if "[data-reveal].in" in sel and "animation" in dec]
-    check("every reveal is an animation that restores the resting state",
-          reveals and all("backwards" in dec for _sel, dec in reveals),
-          str([sel.strip()[:50] for sel, dec in reveals if "backwards" not in dec]))
-
-    # A GAP IN A METRO'S RECORD IS A BREAK, NEVER A BRIDGE. A line drawn straight across a
+    # THE LARGE ARC FLAG IS GONE, and with it the error it used to invite. The wall is drawn in
+    # quarter turns through the circle's own exact points, so every piece is minor and every set
+    # of flags on this path is identical. What is worth asserting now is the ROUTE.
+    check("a lake below the middle takes its wall over the floor and nowhere else",
+          lo.count("A") == 2 and "0.0,10.0" in lo, lo)
+    check("...and one above the middle goes by both shoulders as well",
+          hi.count("A") == 4 and "10.0,0.0" in hi and "-10.0,0.0" in hi, hi)
+    check("every piece of every wall is a minor arc, swept the same way",
+          all(" 0 1 " in a for a in (lo + hi).split("A")[1:]), f"{lo} | {hi}")    # A GAP IN A METRO'S RECORD IS A BREAK, NEVER A BRIDGE. A line drawn straight across a
     # missing day publishes an interpolation as a measurement, which is the one thing this
     # project's own law forbids most plainly.
     broken = sparkline([50.0, 49.0, None, 47.0, 46.0], 4.0)

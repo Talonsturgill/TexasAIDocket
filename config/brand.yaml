@@ -371,6 +371,22 @@ visual:
     bluebonnet: "#4E5FA8"
     mesquite: "#6E7A5A"
 
+    # COMAL. The water page needed a water, and until 2026-08-22 it drew one in dusk gold.
+    #
+    # Every other colour in this palette is a Texas material and this is no exception. Comal
+    # Springs at New Braunfels is the largest spring in Texas and one of the largest in the
+    # southwest, Edwards Aquifer water coming up at a near constant temperature all year, and
+    # it is a clear blue green rather than the navy a designer reaches for when they think
+    # "water". A navy would also vanish against a #08060F ground, which is the practical half
+    # of the same argument.
+    #
+    # THIS IS NOT A FIFTH SIGNAL COLOUR AND IT IS NOT A SECOND ACCENT. It means one thing on
+    # one page: the stuff in the reservoir. `bluebonnet` above is the palette's note that a
+    # soft blue is allowed when the story's own colour is blue, and on a page about water it
+    # is. Nothing else on the site may wear it.
+    comal: "#2A7A9E"           # the water itself
+    comal_lit: "#8FE0F0"       # the lit surface where it meets air
+
     # THE PAPER REGISTER. The light palette is not a lightened dark palette, it is a second
     # real Texas material. Caliche is the pale calcium carbonate hardpan a ranch road is cut
     # down into, and it is the same stuff as `caliche` above: on a dark page it is the type,
