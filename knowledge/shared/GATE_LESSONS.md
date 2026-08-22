@@ -1909,3 +1909,39 @@ condition that a dozen unrelated breakages also satisfy. Ask what else would mak
 **And it is the same shape as entry 62 one level up.** That one was a gate measuring a font
 nobody is served. This is a test measuring an input the code never received. In both, the check
 ran, printed green, and was about something other than the product.
+
+
+## 64. A lesson fixed at one call site and not carried to its sibling ten lines away
+
+`tests/ask_engine.mjs` asserts that a lookup is answered in the page without calling the paid
+worker. It read the request log ABSOLUTELY, as a total over everything the page had ever done,
+and it sat several steps after the press it was about.
+
+Every press in that suite parks a fifteen second timer that ends in a call to the worker. The
+suite aborts the challenge host, so a token never arrives, `waitForToken` gives up and sends
+anyway, and the call lands long after the assertion about that press has been made. Between the
+press and this check sat two `page.evaluate` calls that run the engine over the shipped index.
+**The index grows with the record.** The gap widened until it crossed fifteen seconds, and the
+timer's call was charged to the lookup.
+
+**The file had already learned this.** Its own comment, forty lines further down, describes the
+same fault charged to the refusal check, and calls it "the signature of a boundary that depends
+on how fast the runner is rather than on what the page did". The cure written then was a
+baseline and a delta. **It was applied to the refusal and not to the lookup**, which kept the
+absolute form that had just been proven wrong in the same file.
+
+**What made it look like somebody's fault.** Main was green alone. The branch was green alone.
+Only the merge was red, because only the merge had both records in the index. A session reading
+that will start looking for an interaction between two changes, and there is none. The proof
+took three full builds and two browser suites to establish, and every minute of it was spent on
+a boundary rather than on the product.
+
+**The fix.** The assertion takes its baseline immediately before its own press and compares the
+delta across it. It still catches a real worker call for a lookup, which is the whole speed
+argument it protects, and it no longer measures how long the following steps took.
+
+**Generalises to.** Any assertion over an accumulating log. Ask what else could have appended
+between the action and the read, and whether the answer grows with the data. And when a fault
+is fixed at one call site, grep the file for its siblings before closing it. A lesson applied
+once is a lesson half learned, and the half left behind fails later, on somebody else's change,
+looking like their fault.
