@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-sJQDwDYIa74u9cnHoLwZZC6t88midK//OnGZLnswEiA=' 'sha256-WJItxs7UyW2RfGRKQQJdrrYIjza+v1QnKU04KPYdgg4=' 'sha256-1IWdjsKX8lnfgPDtl3NTmiRTzTjPOfvBo/P1QZ9GDfI=' 'sha256-N7iY2ZLUza06V6h4dNdlgcnpICPDnvSl6BxBQ6hZQDE=' 'sha256-3CAuRT0pF1/aSdSplwZNbmz08NsljAcSgTrubOOlfGo=' 'sha256-eAen8T4O8pfBp3CJGFTcr2AfHKEky06NoHfEJVd9yeE=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-sJQDwDYIa74u9cnHoLwZZC6t88midK//OnGZLnswEiA=' 'sha256-WJItxs7UyW2RfGRKQQJdrrYIjza+v1QnKU04KPYdgg4=' 'sha256-1IWdjsKX8lnfgPDtl3NTmiRTzTjPOfvBo/P1QZ9GDfI=' 'sha256-TkBnZmDWsf/ysgJ1I3gRPY5oH2MF9odLvjhkBQThErE=' 'sha256-3CAuRT0pF1/aSdSplwZNbmz08NsljAcSgTrubOOlfGo=' 'sha256-eAen8T4O8pfBp3CJGFTcr2AfHKEky06NoHfEJVd9yeE=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Texas AI Docket · Every AI decision in Texas and the source behind it</title>
@@ -1104,7 +1104,25 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
        being slow, it is a challenge the reader cannot skip, and it says so on screen while it
        runs. Restarting the clock at the fetch is what makes eight seconds mean the thing it
        claims to mean. */
-    var CEILING_MS = 8000;
+    // A HANG GUARD, NOT A BUDGET, and it used to be a budget.
+    //
+    // Eight seconds came from an owner's brief, "an eight second execution ceiling, so it's
+    // fast when users are asking", and it did make the box feel fast. It also put a stopwatch
+    // in front of readers, because eight seconds is inside the range a real answer to a real
+    // question takes, so the ceiling stopped being an exception and started being an
+    // experience. Same owner, later, watching it fire twice in a sitting: "we don't ever want
+    // that shit on screen. If it takes a couple seconds longer to get the right answer it is
+    // what it is."
+    //
+    // Forty five seconds is past anything the answerer does when it is working, including the
+    // first question of a session, which pays for a Turnstile solve, a rerank and a model call
+    // in series. What is left for this to catch is a request that is never coming back, which
+    // is what a ceiling is actually for.
+    // OVERRIDABLE FOR THE SUITE, and only there. A ceiling that is forty five seconds takes
+    // forty six seconds to test, three times over, and a suite nobody will sit through is a
+    // suite that gets skipped. Nothing on the published page sets this, so every reader gets
+    // the real number.
+    var CEILING_MS = Number(window.__ASK_CEILING_MS__) || 45000;
     var overran = false;
     /* WHICH ENDING GOT HERE FIRST, tracked explicitly rather than inferred from whether the
        body happens to have text in it. Two different endings both wrote "if nothing started
@@ -1119,11 +1137,11 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
       dropStage();
       if (ended) return;
       ended = "ceiling";
-      if (!started && !body.textContent) body.textContent = "That one did not come back inside eight seconds. Typing a narrower question searches the whole record instantly and for nothing.";
+      if (!started && !body.textContent) body.textContent = "That one did not come back. Asking again usually works.";
       else {
         var cut = document.createElement("p");
         cut.className = "askstop";
-        cut.textContent = "The rest was cut at eight seconds. A narrower question gets a whole answer inside it.";
+        cut.textContent = "That answer ran long and stops here.";
         body.appendChild(cut);
       }
       finish();

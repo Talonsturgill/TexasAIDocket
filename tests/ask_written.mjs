@@ -34,6 +34,12 @@ page.on("console", (m) => {
   }
 });
 await page.route("**://challenges.cloudflare.com/**", (r) => r.abort());
+// THE CEILING IS FORTY FIVE SECONDS ON THE PUBLISHED PAGE, which is right for a hang guard and
+// impossible for a suite: three ceiling cases would cost well over two minutes of waiting.
+// Eight is what it used to be, so these sections keep testing the same behaviour at the same
+// timings and only the number moves. Nothing on the real page sets this.
+const pinCeiling = (pg) => pg.addInitScript(() => { window.__ASK_CEILING_MS__ = 8000; });
+await pinCeiling(page);
 
 // The worker, stubbed. Three turns: a clean answer with an offer, an answer the guard cut,
 // and the month running out.
@@ -405,6 +411,7 @@ console.log("");
 head("I2. on a phone the box takes the screen, and gives it back");
 {
   const ph = await b.newPage({ viewport: { width: 390, height: 780 } });
+  await pinCeiling(ph);
   await ph.route("**://challenges.cloudflare.com/**", (r) => r.abort());
   await ph.goto(URL_);
   await ph.waitForTimeout(400);
@@ -524,6 +531,7 @@ head("I2. on a phone the box takes the screen, and gives it back");
 // A LAPTOP HAS ROOM FOR CONTEXT, so none of that applies there.
 {
   const wide = await b.newPage({ viewport: { width: 1280, height: 800 } });
+  await pinCeiling(wide);
   await wide.route("**://challenges.cloudflare.com/**", (r) => r.abort());
   await wide.goto(URL_);
   await wide.waitForTimeout(400);
@@ -540,7 +548,7 @@ head("I2. on a phone the box takes the screen, and gives it back");
 }
 
 // ------------------------------------------------------------------ the ceiling
-head("J. the eight second ceiling");
+head("J. the ceiling, which is a hang guard and not a budget");
 /* A STREAM THAT NEVER CLOSES, patched into the page itself.
    `route.fulfill` always ENDS the response, so a stubbed body arrives complete and the stream
    finishes in under a second, which tests the happy path wearing a hang's clothes. A real
@@ -580,8 +588,12 @@ const cutText = (await page.textContent(".askreply")) || "";
 // answer, which is not what a ceiling is for.
 ok("what did arrive is still on screen", /The first part arrived/.test(cutText),
    cutText.slice(0, 90));
-ok("and it says the rest was cut for time", /cut at eight seconds/i.test(cutText),
-   cutText.slice(-90));
+// NO CLOCK IN THE COPY AND NOTHING ASKING THE READER TO ASK FOR LESS. Owner, on seeing the
+// old line twice in one sitting: "that is a horrible thing to say to someone."
+ok("and it says the answer ran long, without naming a budget the reader did not set",
+   /ran long and stops here/i.test(cutText), cutText.slice(-90));
+ok("...and never tells them to ask a narrower question",
+   !/narrower/i.test(cutText), cutText.slice(-90));
 ok("the box is usable again", !(await page.getAttribute("#askq", "disabled")));
 
 head("J2. a token that lands after the ceiling may not blank the page");
@@ -600,6 +612,7 @@ head("J2. a token that lands after the ceiling may not blank the page");
    earned while the reader was reading, so only the first one can be slow enough. */
 {
   const slow = await b.newPage();
+  await pinCeiling(slow);
   await slow.route("**://challenges.cloudflare.com/**", (r) => r.abort());
   await slow.addInitScript(() => {
     // Nine and a half seconds, which is past the eight second ceiling and inside the suite's
