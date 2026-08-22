@@ -576,12 +576,23 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
        WHY EIGHT IS ACHIEVABLE AT ALL. Most questions never start this clock, because the
        classifier answers them from the page. The ceiling only has to hold for questions that
        genuinely need a model, and the token is already in hand by the time one is pressed.
-       THE CLOCK STARTS AT THE PRESS, not at the fetch, because it is a promise to the reader
-       about how long they wait and they are waiting from the moment they press. */
+       THE CLOCK STARTS AT THE PRESS AND IS RESTARTED WHEN THE REQUEST GOES OUT, and the second
+       half of that was missing. The line above says the token is already in hand by the time a
+       question is pressed. That is true of every question except the FIRST one of a session,
+       where Turnstile arms on focus and is still solving, and solving takes one to three
+       seconds. So the first question of every session spent part of its eight on a human check
+       and then got cut.
+       IT LOOKED WORSE THAN A CUT. When the ceiling fires during the token wait, `stopStream`
+       is still null, because no fetch has started for it to stop. So the reader was shown "it
+       did not come back in eight seconds", and then the answer arrived a moment later and
+       overwrote the message. An owner watching an eval saw exactly that and called it odd.
+       The promise is unchanged and it is about the ANSWER. A human check is not the answerer
+       being slow, it is a challenge the reader cannot skip, and it says so on screen while it
+       runs. Restarting the clock at the fetch is what makes eight seconds mean the thing it
+       claims to mean. */
     var CEILING_MS = 8000;
     var overran = false;
-    clearTimeout(ceiling);
-    ceiling = setTimeout(function () {
+    function ceilingFired() {
       if (!busy) return;
       overran = true;
       if (stopStream) { try { stopStream(); } catch (e) {} }
@@ -594,7 +605,12 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
         body.appendChild(cut);
       }
       finish();
-    }, CEILING_MS);
+    }
+    /* ARMED AT THE PRESS AS WELL AS AT THE FETCH, so a question that never reaches the network
+       at all still ends rather than hanging. startClock replaces this one the moment the
+       request actually goes out. */
+    clearTimeout(ceiling);
+    ceiling = setTimeout(ceilingFired, CEILING_MS);
 
     localExchange = "";
     /* THE THREAD'S DEPTH GOES WITH THE QUESTION. A follow-up carries no record vocabulary by
@@ -793,8 +809,17 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
       });
     }
 
+    /* THE CLOCK RESTARTS HERE, once the challenge is done and the question is actually on its
+       way. Everything before this point is the human check, which the reader can see happening
+       and which is not the answerer taking too long. */
+    function startClock() {
+      clearTimeout(ceiling);
+      ceiling = setTimeout(ceilingFired, CEILING_MS);
+    }
+
     waitForToken(stage).then(function (tok) {
       stage("%%stage_read%%");
+      startClock();
       return post(tok);
     }).then(function (r) {
       /* A 403 here is a token that was spent, expired or never arrived, and it is not the
@@ -804,7 +829,9 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
       if (r.status !== 403) return r;
       stage("%%stage_human%%");
       spendToken();
+      clearTimeout(ceiling);
       return waitForToken(stage).then(function (fresh) {
+        startClock();
         return fresh ? post(fresh) : r;
       });
     }).then(function (r) {

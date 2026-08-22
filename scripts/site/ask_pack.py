@@ -202,13 +202,21 @@ def tally(items: list, today: str) -> str:
 
 
 INDEX_HEAD = """THE INDEX. Every decision the record holds, one line each, in the order they
-are filed. A line names what exists and never the detail. The full text of the decisions most
-likely to answer this question follows below, and it is a SLICE, so an item appearing here with
-no text below is still a real item this record carries.
+are filed. Each line carries the decision's title, then its topic, its decider, its status, the
+counties it names or that it is statewide, whether it sits on the ERCOT grid, and whether a
+public window is open, and it ends with the id to cite it by.
 
-If the answer lies in an item whose full text is not below, say the record carries it, cite it
-by id and say what the line above states. Never state a figure, a date or a quote for an item
-whose full text is not below, because the line is all there is to go on.
+ANSWER FROM THESE LINES WHENEVER THEY CARRY WHAT WAS ASKED. A question about which decisions
+name a county, who decided something, what is open, or what a decision is called is answered
+here, completely, and looking for it in the full text below is the slower way to get it wrong.
+An earlier version of this paragraph said a line named what exists and never the detail, and a
+reader asking which decisions were in Erath County was told the record did not answer that,
+while Erath sat in the county list on the line for [[tx-2026-0003]].
+
+The full text of the decisions most likely to answer this question follows below, and it is a
+SLICE. An item appearing here with no text below is still a real item this record carries.
+Never state a figure, a date or a quote for such an item beyond what its line says, because the
+line is all there is to go on.
 
 This index is a list. It is not a model for how to write, so do not answer in this shape."""
 
@@ -243,7 +251,14 @@ def index_line(it: dict, today: str) -> str:
     elif state == "closed":
         bits.append("window closed")
 
-    return f"[[{it['id']}]] {it['title'].rstrip('.')}. " + ", ".join(bits) + "."
+    # THE ID GOES LAST, AND IT IS NOT COSMETIC. The page renders a citation as the decision's
+    # NAME, so "[[id]] is the PUCT Docket 59315 application" reaches a reader as "PUCT Docket
+    # 59315 is the PUCT Docket 59315 application". Telling the model not to do that in the
+    # instructions did not stop it, because this file was showing it "[[id]] Title" on sixty
+    # nine lines and the pack's own rule is that the model writes what it reads. So the shape
+    # it is shown is now the shape that reads correctly, which is the name and then its
+    # citation. Instructions lose to examples and the examples are here.
+    return f"{it['title'].rstrip('.')}. " + ", ".join(bits) + f". [[{it['id']}]]"
 
 
 def index(items: list, today: str) -> str:
@@ -416,11 +431,19 @@ A short true answer beats a long one that reaches.
 CITING. Write a decision's id in double square brackets, like [[tx-2026-0001]]. Never write a
 bare url.
 
-THE PAGE TURNS THAT INTO THE DECISION'S NAME, so the citation IS the name and writing the name
-next to it says everything twice. "[[tx-2026-0001]] is the PUCT Project 58000 rulemaking"
-reaches a reader as "PUCT Project 58000 is the PUCT Project 58000 rulemaking". Write the
-citation where the name would go and carry on. "[[tx-2026-0001]] is open until August 30th"
-reads correctly. So does "Two decisions cover it, [[tx-2026-0001]] and [[tx-2026-0002]]."
+THE PAGE TURNS THAT INTO THE DECISION'S FULL NAME, which on this record is often a whole
+sentence long. Two things follow and both are about where you put it.
+
+NEVER WRITE THE NAME NEXT TO THE CITATION. It says everything twice. "[[tx-2026-0003]] is the
+PUCT Docket 59315 application" reaches a reader as "PUCT Docket 59315 is the PUCT Docket 59315
+application", and that sentence was published.
+
+PUT THE CITATION AFTER WHAT YOU SAY, NOT WHERE THE SUBJECT GOES. A name a sentence long makes a
+poor subject and a fine tag. "The record for [[tx-2026-0060]] doesn't mention evaporative
+cooling" opens with a whole sentence standing in for two words, and that was published too.
+Write "No groundwater district decided that, [[tx-2026-0060]]" instead. Write "Comments close
+September 4th, 2026, [[tx-2026-0002]]." Write "Two decisions cover it, [[tx-2026-0003]] and
+[[tx-2026-0076]]." Say the thing, then cite it.
 
 WHAT YOU MAY NEVER SAY. No verdict on grid reliability. Not a shortfall prediction, not an
 all clear, not a blackout call, not a judgement about whether the grid can carry a load. A
@@ -594,8 +617,8 @@ def self_test() -> int:
           all(f"[[{it['id']}]]" in idx for it in items),
           str([it["id"] for it in items if f"[[{it['id']}]]" not in idx][:3]))
     check("the index has exactly one line per decision, plus its header",
-          len([l for l in idx.splitlines() if l.startswith("[[")]) == len(items),
-          str(len([l for l in idx.splitlines() if l.startswith("[[")])))
+          len([l for l in idx.splitlines() if l.rstrip().endswith("]]")]) == len(items),
+          str(len([l for l in idx.splitlines() if l.rstrip().endswith("]]")])))
     # WHAT AN INDEX LINE IS ALLOWED TO PUT IN A READER'S HANDS.
     #
     # The worker authorises the numerals in what it actually sent, so every figure on a line
@@ -609,14 +632,14 @@ def self_test() -> int:
     import re as _re  # noqa: E402
     line_nums = set()
     for line in idx.splitlines():
-        if line.startswith("[["):
+        if line.rstrip().endswith("]]"):
             line_nums |= set(_re.findall(r"\d[\d,]*(?:\.\d+)?",
-                                        _re.sub(r"^\[\[[^\]]+\]\]", "", line)))
+                                        _re.sub(r"\[\[[^\]]+\]\]\s*$", "", line)))
     pack_nums = set(_re.findall(r"\d[\d,]*(?:\.\d+)?", text))
     check("the index never introduces a number the record does not carry",
           line_nums <= pack_nums, str(sorted(line_nums - pack_nums)[:3]))
     units = [u for u in (" MW", " MWh", "acre feet", "percent", "kWh", " GW")
-             if any(u in l for l in idx.splitlines() if l.startswith("[["))]
+             if any(u in l for l in idx.splitlines() if l.rstrip().endswith("]]"))]
     check("no measurement rides on an index line, only identifiers and a closing date",
           not units, str(units))
     check("the index is a fraction of the bodies it stands in for",
