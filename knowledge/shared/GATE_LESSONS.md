@@ -1790,3 +1790,122 @@ centre of that box is empty space.
 motion, hit targets, focus order. Write the gates for what is checkable, and then RENDER IT AND
 LOOK AT IT, and DRIVE IT AND CHECK WHAT LIT UP. Those are two separate steps and neither implies
 the other.
+
+---
+
+## 61. The build that would have deleted thirty billion dollars because its scratch was gone
+
+`tdlr_fetch.py --build` parsed every raw filing in `out/tabs/` and wrote the result to
+`ledger/facilities/projects.json`. That is correct exactly once, on the machine that did the
+fetching, and wrong every time after.
+
+`out/` is gitignored scratch. The ledger is the committed artifact. When the container was
+re-provisioned mid-session the 626 raw pages were gone and the ledger was still complete, so the
+next `--build` would have written the 25 pages that happened to be on disk over the top of it.
+201 data center filings and $36.97 billion would have become whatever those 25 held.
+
+**Nothing would have gone red.** The ledger would still parse. `tdlr_projects` would still pass
+its gate, because every remaining record is well formed. `site_fresh_check` would prove `docs/`
+matches the ledgers byte for byte, which it would, because a smaller ledger produces a smaller
+site perfectly faithfully. The published page would have shown a smaller number with total
+confidence.
+
+**What caught it** was noticing that `ls out/tabs/*.html` returned 25 where it had returned 626,
+before running the build rather than after.
+
+**The fix is a merge, not a replace.** `merge()` is keyed on the project number, the newest parse
+wins, and the ledger survives having no scratch beside it. Five self-tests, including that a
+re-parse replaces rather than doubles and that a record with no number never enters.
+
+**Generalises to.** Any step that rebuilds a committed artifact from an ephemeral input. A cache
+warm that writes through. A "regenerate the index from the files on disk". A migration that reads
+a directory. Ask what the step does when its input is EMPTY, and if the answer is "writes an empty
+artifact", it is a delete with extra steps.
+
+**And to this project specifically.** `site_fresh_check` proves the site is a function of the
+ledgers. It has never had anything to say about whether the ledgers are complete, and this is the
+second time that gap has mattered.
+
+## 62. A table wrapped to three lines beside an empty gutter and 110 checks said yes
+
+The facility filings panel shipped its first build with `grid-template-columns:6.5rem 9rem 8rem
+1fr 6rem`, inherited from the construction register's tables because it reuses their class. Those
+tables put a county or a company name in the first column. This one puts a four digit year there.
+
+So 6.5rem went to `2019` and the project name got what was left, which was 150px, and
+`DFW III-II Building 3 Tenant Fit Out` wrapped to three lines with a hand's width of empty gutter
+sitting beside it on every row.
+
+**Nothing went red, and nothing could have.** The markup is valid. Every numeral traces to a
+computation. The house style gate reads text and has no opinion about where text lands.
+`site_fresh_check` proves the page is exactly what the ledgers produce, which it was. `css_tokens`
+proves every `var()` resolves, and every one did. The suite has 110 checks and not one of them
+knows what a column is.
+
+**What caught it** was opening the page in a browser and looking at it, then measuring rather than
+squinting: the widest string in each of the five columns is 1.75, 5.25, 6.56, 15.75 and 3.06rem,
+totalling 32.4rem inside a 42.5rem row. Every one of them fit on a single line the whole time. The
+space was not short. It was allocated to the column that needed none of it.
+
+**The fix is a modifier class, not a wider table.** `.cbfile .cbrow` carries its own template,
+measured from the content, with headroom for a figure an order of magnitude larger and a longer
+city. The register's tables keep theirs.
+
+**Generalises to.** Any class reused across surfaces whose content differs. A shared table, a
+shared card, a shared badge. The class says the two things look alike and says nothing about
+whether they hold alike, and the second surface inherits a layout tuned for the first.
+
+**Then writing the gate for it taught the harder half.** The first cut asserted the obvious
+thing, that a cell wraps only when the row has no room. It passed. Run under the other chromium
+on the same machine, on the same build, it failed and named the defect. The two binaries measure
+the same string about four percent apart, and the fault sat at the boundary: a hundred pixels of
+text in a hundred and four pixel track. **A gate asserting a hairline fit reports which binary it
+launched.** It asserts headroom now, five percent over the widest content in each column, which
+is a property of the design rather than of the measuring instrument, and both browsers agree in
+both directions.
+
+Two smaller things fell out of chasing that. It measures over HTTP rather than `file://`, because
+the web font resolved differently off disk and every column came out narrow. And it asserts the
+font it is measuring in is the font that loaded, because a fallback mono is narrower and a gate
+measuring a font nobody is served will happily pass a table that wraps for a reader.
+
+**And the standing lesson underneath it, now three entries deep.** Number 59 was a colour, 60 was
+thirty five nodes stacked on a wall, and this is a column. A gate reads the document. It has never
+once seen the page. Render it, open it, and measure the thing you are about to call finished.
+
+## 63. Three self-tests passed on a fixture the code never saw
+
+The join in `facility_filings` was rewritten to union registry rows by name, and it came with three
+self-tests built on a small fake registry and two fake filings. Two of them failed on the first
+run, which is how the third was noticed, and the third is the one worth writing down.
+
+**It asserted an EMPTY result.** A party named on three different facilities is a parent company
+and joins to nothing, so the test asserted `facility_filings(...) == {}` and got `{}` and passed.
+
+It would have passed if the function returned nothing for any reason at all. And that is exactly
+what was happening: `facility_filings` drops every filing whose owner `brand()` does not recognise
+before it joins anything, and the fixture owners were invented for the occasion. `ALPHA SPE LLC`
+is not a tracked brand. Nothing in that fixture ever reached the code under test.
+
+The two neighbours failed loudly because they asserted a specific non-empty answer. The one
+asserting absence had nothing to distinguish "the rule worked" from "the input was thrown away
+three steps earlier".
+
+**Two things fix it, and both are cheap.**
+
+- **Assert the fixture arrives.** One line before the others, checking the function returns the
+  rows the fixture is about. It fails first and names the real problem, instead of leaving three
+  confusing failures for someone to work backwards from.
+- **Pair every assertion of absence with one of presence, on the same input.** The parent company
+  rule is now checked as two: the same party joins fine when it names two facilities and joins to
+  nothing when it names three. An empty result can no longer pass by accident, because the test
+  beside it proves the pipeline was live.
+
+**Generalises to.** Every negative test in this repo. A gate self-test that plants a defect and
+asserts the checker goes red is safe, because red is specific. A test asserting nothing was
+returned, nothing was written, nothing was flagged, or no error was raised is passing on a
+condition that a dozen unrelated breakages also satisfy. Ask what else would make it green.
+
+**And it is the same shape as entry 62 one level up.** That one was a gate measuring a font
+nobody is served. This is a test measuring an input the code never received. In both, the check
+ran, printed green, and was about something other than the product.

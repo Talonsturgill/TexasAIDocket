@@ -106,7 +106,7 @@ The filings also confirm a registry oddity from the outside. The oldest row in t
 is a Microsoft building whose occupant is Chevron, which reads like an error until a 2019
 construction filing turns up named "Microsoft Chevron/SN7 Colo 1".
 
-**At statewide scale it is $36.97 billion.** 201 data center filings by the operators this
+**At statewide scale it is $37.55 billion.** 201 data center filings by the operators this
 project tracks, 38.9 million square feet, 20 counties, from 2008 to 2029. Almost none of it is
 old. The filings sit near zero for fifteen years and then go vertical in 2024, and the single
 largest county is **Shackelford**, population under four thousand, at $10.6 billion of Vantage
@@ -136,6 +136,18 @@ why the construction register alone would badly understate who is in Texas.
   overstates the buildout, so money is grouped by the designation AS FILED.
 - **A filing that names a range names several buildings and has ONE cost.** Spreading SAT11-14's
   sixty two million across four rows reports it four times.
+- **A substring needs a boundary on BOTH ends.** `\bvantage` keeps EVANTAGE HOLDINGS out, which
+  is 27 filings that are not Vantage. `stream\b` keeps Streamline out. A brand token without both
+  guards quietly annexes another company's buildings.
+- **The filings name operators the certified list does not.** Digital Realty and Crusoe build in
+  Texas and hold no certification at all, so a reader working from the tax record alone would not
+  know they are here. The published page states that, computed from the two records rather than
+  asserted.
+- **The ledger is the artifact and `out/` is scratch.** `tdlr_fetch --build` MERGES on the project
+  number rather than rebuilding from disk. A rebuild-from-disk on a fresh container would have cut
+  626 filings to the 25 sitting there, and every gate would have stayed green over it. See
+  GATE_LESSONS entry 61 ("The build that would have deleted thirty billion dollars because its
+  scratch was gone").
 - **The owner search is a SUBSTRING match and cannot be trusted.** A query for Meta returns Metal
   Building Supplies. Core Scientific returns Core & Main, CORE Construction and a nail bar.
   Prologis returns that landlord's whole Texas portfolio. Membership is decided on the owner field

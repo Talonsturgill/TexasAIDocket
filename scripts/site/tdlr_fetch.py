@@ -182,18 +182,35 @@ def pull(owner: str, city: str = "") -> int:
     return 0
 
 
+def merge(existing: list[dict], parsed: list[dict]) -> list[dict]:
+    """The ledger, plus whatever is on disk. Keyed by project number, newest parse wins.
+
+    IT MERGES, IT DOES NOT REPLACE, and the reason is that `out/` is scratch and the ledger is
+    the artifact. The raw html is gitignored, so a fresh container has none of it while the
+    ledger still has every filing. A build that rebuilt from disk alone would have quietly cut
+    626 filings to the 25 that happened to be sitting there, and the site would have rebuilt
+    perfectly green over a ledger missing $30 billion.
+    """
+    by = {r["number"]: r for r in existing if r.get("number")}
+    by.update({r["number"]: r for r in parsed if r.get("number")})
+    return sorted(by.values(), key=lambda r: (r.get("start", ""), r["number"]))
+
+
 def build(raw: pathlib.Path = RAW, out: pathlib.Path = LEDGER) -> int:
     files = sorted(raw.glob("*.html"))
-    if not files:
-        print("tdlr_fetch: nothing on disk to parse", file=sys.stderr)
+    parsed = [parse(f.read_text(encoding="utf-8", errors="replace")) for f in files]
+    parsed = [r for r in parsed if r.get("number")]
+    doc = json.loads(out.read_text(encoding="utf-8")) if out.exists() else {}
+    before = doc.get("projects") or []
+    recs = merge(before, parsed)
+    if not recs:
+        print("tdlr_fetch: nothing on disk and nothing in the ledger", file=sys.stderr)
         return 1
-    recs = [parse(f.read_text(encoding="utf-8", errors="replace")) for f in files]
-    recs = [r for r in recs if r.get("number")]
-    recs.sort(key=lambda r: (r.get("start", ""), r["number"]))
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps({"_spec": 1, "source": f"{BASE}/Search/", "projects": recs},
                               indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
-    print(f"tdlr_fetch: {len(recs)} filing(s) written to {out.relative_to(ROOT)}")
+    print(f"tdlr_fetch: {len(parsed)} parsed from disk, {len(before)} already in the ledger, "
+          f"{len(recs)} after the merge")
     return 0
 
 
@@ -219,6 +236,18 @@ def self_test() -> int:
         blob = json.dumps(r)
         ok("...and no phone number anywhere in it", not PHONE.search(blob), blob[:120])
         ok("...and no field outside the keep list", set(r) <= set(KEEP), sorted(set(r) - set(KEEP)))
+
+    # THE MERGE, and the loss it exists to prevent.
+    have = [{"number": "a", "start": "2020-01-01"}, {"number": "b", "start": "2021-01-01"}]
+    ok("a ledger with nothing new on disk keeps every record", len(merge(have, [])) == 2)
+    ok("a new filing is added", len(merge(have, [{"number": "c"}])) == 3)
+    ok("a re-parsed filing replaces its old copy rather than doubling it",
+       [r.get("start") for r in merge(have, [{"number": "a", "start": "2019-01-01"}])
+        if r["number"] == "a"] == ["2019-01-01"])
+    ok("...and the count does not grow when it does",
+       len(merge(have, [{"number": "a", "start": "2019-01-01"}])) == 2)
+    ok("a record with no number never enters the ledger",
+       len(merge(have, [{"start": "2020-01-01"}])) == 2)
 
     # Conversions, each of which would publish a wrong number if it were wrong.
     ok("a dollar figure loses its punctuation and becomes an integer",

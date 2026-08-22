@@ -131,7 +131,12 @@
 .cylab { font-family:var(--mono); font-size:15px; fill:var(--ink-mute); text-anchor:middle; }
 @media (max-width:44rem) { .cylab { font-size:24px; } }
 .cbtable { margin:1rem 0 0; border-top:var(--hair) solid var(--rule); }
-.cbrow { display:grid; grid-template-columns:6.5rem 9rem 8rem 1fr 6rem; gap:.2rem .9rem;
+.cbfile { width:min(46rem,calc(100vw - 4rem)); min-width:100%; }
+.cbfile .cbrow { grid-template-columns:2.2rem 6.6rem 7.4rem 1fr 5.2rem; }
+.cbjoin .cbrow { grid-template-columns:1fr 7rem 0 5.4rem 6rem; }
+.cbfile .cbm, .cbfile .cbs { text-align:right; }
+.cbrow { display:grid; grid-template-columns:minmax(6.5rem,1fr) 9rem 8rem 6.5rem 6rem;
+  gap:.2rem .9rem;
   align-items:baseline; padding:.5rem 0; border-bottom:var(--hair) solid var(--rule);
   font-family:var(--mono); font-size:var(--s-2); color:var(--ink-mute); }
 .cbd { color:var(--ink-bright); letter-spacing:.04em; }
@@ -142,6 +147,10 @@
 .construction .rcl li { font-family:var(--mono); font-size:var(--s-2); }
 @media (max-width:44rem) {
   .cbrow { grid-template-columns:6.5rem 1fr; gap:.1rem .8rem; }
+  .cbfile .cbrow { grid-template-columns:2.8rem 1fr; }
+  .cbjoin .cbrow { grid-template-columns:1fr; }
+  .cbjoin .cbd { grid-row:auto; }
+  .cbfile .cbm, .cbfile .cbs { text-align:left; }
   .cbd { grid-row:span 4; }
   .ctwo { grid-template-columns:1fr; }
 }

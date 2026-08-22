@@ -1138,6 +1138,16 @@ jobs:
           node -e "require('playwright').chromium.launch().then(b=>b.close()).then(
             ()=>console.log('chromium launches'), e=>{console.error(e); process.exit(1)})"
 
+      - name: Every column of a data table fits what is in it
+        run: |
+          # A COLUMN, WHICH NO GATE HERE HAD EVER LOOKED AT. The facility filings panel shipped
+          # its first build with the construction register's column template, so 6.5rem went to
+          # a four digit year and the project name wrapped to three lines with a hand's width of
+          # empty gutter beside it, under a hundred and ten green checks. It asserts headroom
+          # rather than a hairline fit, because the two chromium builds on a dev box measure the
+          # same string four percent apart and a two pixel fit is a verdict about the binary.
+          SITE=docs node tests/table_fit.mjs
+
       - name: The site fits the screen it is on
         run: |
           # THIS SUITE EXISTED AND DID NOT RUN HERE, which is its own lesson: it caught a real

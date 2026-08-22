@@ -500,7 +500,36 @@ def facility_css() -> str:
    every figure on this site is set in mono and a number that changes typeface between surfaces
    reads as a different kind of number. */
 .cbtable { margin:1rem 0 0; border-top:var(--hair) solid var(--rule); }
-.cbrow { display:grid; grid-template-columns:6.5rem 9rem 8rem 1fr 6rem; gap:.2rem .9rem;
+/* THE FILINGS TABLE ON A FACILITY PAGE HOLDS DIFFERENT CONTENT IN THE SAME COLUMNS, so it gets
+   its own widths rather than the register's. Its first column is a four digit year and the
+   register's is a county or a company, so the shared template spent 6.5rem on "2019" and left
+   the project name 150px, where "DFW III-II Building 3 Tenant Fit Out" wrapped to three lines
+   with a hand's width of empty gutter beside it. Measured in the browser rather than guessed:
+   the widest string in each column is 1.75, 5.25, 6.56, 15.75 and 3.06rem, and the row is
+   42.5rem, so every one of them fits on a single line once the space follows the content. The
+   fixed columns carry headroom for a figure an order of magnitude larger and a longer city. */
+/* AND IT IS NOT PROSE, so it does not keep prose's measure. 68ch is a reading measure and this
+   is a five column table of figures, which was being asked to fit a width chosen for sentences
+   while 472px of the page sat empty beside it. Bounded rather than full bleed, so it still reads
+   as part of the article. */
+.cbfile { width:min(46rem,calc(100vw - 4rem)); min-width:100%; }
+.cbfile .cbrow { grid-template-columns:2.2rem 6.6rem 7.4rem 1fr 5.2rem; }
+/* WHERE THE TWO REGISTERS MEET puts a facility name in the column the register's other tables
+   give a county, and its third column is an intentional spacer holding nothing. Same fault as
+   above, same fix: the name takes the flexible track and the empty one takes none. */
+.cbjoin .cbrow { grid-template-columns:1fr 7rem 0 5.4rem 6rem; }
+/* A COLUMN OF MAGNITUDES ALIGNS ON ITS LAST DIGIT. Left aligned, $5,000,000 and
+   $15,000,000 are the same shape and $100,000,000 is the only row that looks bigger than
+   it is, so the reader has to parse every string to rank them. Right aligned in mono, the
+   ragged left edge IS the ranking. The unit rides along because it is the same width on
+   every row. The register's own tables are left alone because they are sorted by size, so
+   their order already carries what this alignment recovers. This one is sorted by date. */
+.cbfile .cbm, .cbfile .cbs { text-align:right; }
+/* THE FLEXIBLE TRACK BELONGS TO THE COLUMN THAT NAMES THE ROW. It was on the fourth, which
+   holds a filing count, while the first held a county or a company and got a fixed 6.5rem,
+   so "Digital Realty" wrapped in a table with 168px of unused width. */
+.cbrow { display:grid; grid-template-columns:minmax(6.5rem,1fr) 9rem 8rem 6.5rem 6rem;
+  gap:.2rem .9rem;
   align-items:baseline; padding:.5rem 0; border-bottom:var(--hair) solid var(--rule);
   font-family:var(--mono); font-size:var(--s-2); color:var(--ink-mute); }
 .cbd { color:var(--ink-bright); letter-spacing:.04em; }
@@ -512,6 +541,18 @@ def facility_css() -> str:
 
 @media (max-width:44rem) {
   .cbrow { grid-template-columns:6.5rem 1fr; gap:.1rem .8rem; }
+  .cbfile .cbrow { grid-template-columns:2.8rem 1fr; }
+  /* AND THE OTHER MODIFIER HAS TO BE NAMED HERE TOO. A class selector outranks this
+     breakpoint no matter that the breakpoint is written later, so .cbjoin kept its five
+     column desktop template on a phone and pushed the construction page 16px sideways.
+     Its first column is a facility name, so it stacks outright rather than borrowing the
+     register's narrow first column. */
+  .cbjoin .cbrow { grid-template-columns:1fr; }
+  .cbjoin .cbd { grid-row:auto; }
+  /* THE STACK UNDOES THE ALIGNMENT. Narrow, the four cells after the year stack in one
+     column, and a right aligned dollar figure above a left aligned project name is not a
+     column of numbers, it is two ragged edges. */
+  .cbfile .cbm, .cbfile .cbs { text-align:left; }
   .cbd { grid-row:span 4; }
   .ctwo { grid-template-columns:1fr; }
 }

@@ -61,6 +61,11 @@ BRANDS = {
     "switch": "Switch", "google": "Google", "databank": "DataBank", "galaxy": "Galaxy",
     "microsoft": "Microsoft", "lancium": "Lancium", "cipher": "Cipher", "crusoe": "Crusoe",
     "fermi": "Fermi", "lambda": "Lambda",
+    # Added after a wider pull surfaced them. Stream holds one certification and files; Digital
+    # Realty files and holds NONE, which is a fact about it rather than a gap in this list.
+    # `stream` carries a trailing boundary as well as a leading one, so Streamline and its kind
+    # do not match, the same guard that keeps EVANTAGE HOLDINGS out of Vantage's column.
+    r"stream\b": "Stream", "digital realty": "Digital Realty",
 }
 
 
@@ -78,7 +83,11 @@ def brand(rec: dict) -> str:
     actually verifies.
     """
     o = (rec.get("owner") or "").lower()
-    hits = [v for k, v in BRANDS.items() if re.search(rf"\b{re.escape(k)}", o)]
+    # A key may carry its own trailing boundary. Escaping it wholesale would turn that into a
+    # literal backslash-b and match nothing, silently, which is the shape of a filter that
+    # quietly stops filtering.
+    hits = [v for k, v in BRANDS.items()
+            if re.search(r"\b" + (k if k.endswith(r"\b") else re.escape(k)), o)]
     return sorted(hits, key=len, reverse=True)[0] if hits else ""
 
 
@@ -318,6 +327,72 @@ def by_brand(recs: list[dict]) -> list[dict]:
     return sorted(out, key=lambda d: (-d["cost"], d["brand"]))
 
 
+def money(v) -> str:
+    """A cost at the scale a reader reads it. The rounding rule is stated here rather than
+    chosen per figure, because rounding is a computation and not a style decision."""
+    v = int(v or 0)
+    return f"${v / 1_000_000_000:.2f} billion" if v >= 1_000_000_000 else f"${v:,}"
+
+
+def andlist(names: list[str]) -> str:
+    """A, B and C. Two names take no comma, and ", ".join gets that wrong.
+
+    Same rule the topic labels follow. A serial list takes a comma between every item but the
+    last pair, so a list of six keeps its commas and a list of two reads "Crusoe and Digital
+    Realty" rather than a sentence that lost its conjunction. The sentences these lists sit
+    inside are generated and their length is data, so the rule is written once rather than
+    guessed at each call site.
+    """
+    names = list(names)
+    if len(names) < 3:
+        return " and ".join(names)
+    return ", ".join(names[:-1]) + " and " + names[-1]
+
+
+def facility_panel(recs: list[dict], e) -> str:
+    """What the state was told about building THIS facility, on the facility's own page.
+
+    Only the filings reached through a single purpose entity named on this row. The join is the
+    state's own, published on both sides, and it is refused for a parent company, so a page
+    either shows its own buildings or shows nothing at all. Nothing here is an estimate this
+    project made and nothing is attributed by resemblance.
+    """
+    if not recs:
+        return ""
+    t = totals(recs)
+
+    def row(r):
+        sq = f'<strong class="num">{r["sqft"]:,}</strong> sq ft' if r.get("sqft") else ""
+        return (f'<div class="cbrow"><span class="cbd">{e((r.get("start") or "")[:4])}</span>'
+                f'<span class="cbm"><strong class="num">{e(money(r.get("cost")))}</strong></span>'
+                f'<span class="cbs">{sq}</span>'
+                # THE STATE'S OWN PROJECT NAME, DECLARED AS ONE. Compass files buildings as
+                # "DFW III-I" and "Compass Datacenters DFW I-II, LLC", and a roman numeral
+                # segment leaves a standalone "I" that the house lint reads as first person. It
+                # was right on the letter and wrong on the page. This string is transcribed by
+                # the parser straight out of the filing and is never authored here, so it is
+                # marked at the source exactly like a facility name, and only the exact string
+                # is exempt.
+                f'<span class="cbf" data-proper-name="{e(r.get("project", ""))}">'
+                f'{e(r.get("project", ""))}</span>'
+                f'<span class="cbc">{e(r.get("city", ""))}</span></div>')
+
+    head = (f'<strong class="num">{e(money(t["cost"]))}</strong> across '
+            f'<strong class="num">{t["filings"]:,}</strong> filing'
+            + ("" if t["filings"] == 1 else "s"))
+    if t["sqft"]:
+        head += f', <strong class="num">{t["sqft"]:,}</strong> sq ft'
+    return (
+        f'<h2>What was filed to build it</h2>'
+        f'<p>Texas registers every large construction project with a second agency. These '
+        f'filings were made by a company this record already names.</p>'
+        f'<p class="qnote" data-prose="data">{head}.</p>'
+        f'<div class="cbtable cbfile" data-prose="data">'
+        f'{"".join(row(r) for r in recs)}</div>'
+        f'<p class="qnote">An estimated cost at filing is not a final cost, and a filing is not '
+        f'proof a building went up. <a href="../../construction/">How this register works</a>.</p>')
+
+
 # ---------------------------------------------------------------- the drawing
 CW, CH = 1000.0, 300.0     # the field, in user units. The svg scales to its container.
 CPAD_L, CPAD_B, CPAD_T = 8.0, 34.0, 14.0
@@ -470,6 +545,14 @@ def self_test() -> int:
     ok("...nor is a company that merely starts the same way",
        brand({"owner": "Core & Main LP"}) == "", brand({"owner": "Core & Main LP"}))
     ok("...nor a nail bar", brand({"owner": "AUREA NAIL BAR"}) == "")
+    # The two guards that stop a substring from becoming a company.
+    ok("a leading boundary keeps EVANTAGE out of Vantage's column",
+       brand({"owner": "EVANTAGE HOLDINGS LLC"}) == "",
+       brand({"owner": "EVANTAGE HOLDINGS LLC"}))
+    ok("a trailing boundary keeps Streamline out of Stream's",
+       brand({"owner": "Streamline Services LLC"}) == "",
+       brand({"owner": "Streamline Services LLC"}))
+    ok("...while Stream itself still matches", brand({"owner": "Stream Data Centers"}) == "Stream")
     ok("the brand comes off the OWNER, never the project name",
        brand({"owner": "Some Developer LLC", "project": "Microsoft SAT99"}) == "",
        brand({"owner": "Some Developer LLC", "project": "Microsoft SAT99"}))
@@ -531,6 +614,13 @@ def self_test() -> int:
        shared_buildings([same[0], {**same[1], "address": "2 Way"}]) == [])
     ok("a filing with no cost is never paired",
        shared_buildings([{**same[0], "cost": None}, {**same[1], "cost": None}]) == [])
+
+    # THE JOINER, whose whole reason is the two item case a naive join reads wrong.
+    ok("two names take the conjunction and no comma", andlist(["A", "B"]) == "A and B")
+    ok("three names take commas and the conjunction", andlist(["A", "B", "C"]) == "A, B and C")
+    ok("one name is itself", andlist(["A"]) == "A")
+    ok("no names is nothing", andlist([]) == "")
+    ok("the list is not consumed", (lambda g: (andlist(g), len(g)))(["A", "B"])[1] == 2)
 
     passed = sum(checks)
     print(f"\ntdlr_projects self-test: {passed}/{len(checks)} passed")
