@@ -187,7 +187,7 @@
    ],
    "public_access": {
     "room": "open_comment",
-    "how": "Anyone may file comments under control number 58482 through the PUCT Interchange filer at https://www.puc.texas.gov/industry/filings/Default.aspx. Individuals have already done so without counsel. The record contains filings from named members of the public alongside utility and data center filings. Comments must be in by the September 4th, 2026 deadline.",
+    "how": "Anyone may file comments under control number 58482 through the PUCT Interchange filer at https://www.puc.texas.gov/industry/filings/Default.aspx. The filing index publishes a party name and a file stamp and an item type and a description. It publishes nothing about who a filer is. Comments must be in by the September 4th, 2026 deadline.",
     "url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
     "closes": "2026-09-04"
    },
@@ -298,6 +298,10 @@
     {
      "date": "2026-08-22",
      "note": "Four assertions were corrected against this run's own fetch. The summary no longer calls the rule the category that covers data centers, because the published text does not contain the words. It no longer says individual Texans have filed, because the index publishes a party name and nothing about who a filer is. The filing count moves from 33 to 34."
+    },
+    {
+     "date": "2026-08-22",
+     "note": "The earlier correction today reached the summary and not the public access field. That field still said individuals had filed without counsel. It is corrected now."
     }
    ]
   },

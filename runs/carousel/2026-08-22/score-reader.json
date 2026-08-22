@@ -1,0 +1,47 @@
+{
+ "lens": "reader",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 7.5,
+   "why": "Genuinely nine drawings, not one. Slide 2 is the deck's best frame: the 75MW cut spilling light onto the housing's inner wall, and an engineering dimension with ONE terminator running off the right frame edge with no cap, which draws 'equal to or greater than' as a shape. Slide 5 inverts ground and ink and is the only frame that does, so the turn is a value event not a caption. Slide 1's carve has real two-part contact shadows and a countable 34. Against that, the detail budget sags: the bottom 40 percent of slide 6 is empty barcode texture, slide 7's lower third is near-dead, and slide 3 at feed size is a wall of serif on black with a texture strip. Slide 8 pays for its honesty at the reader's expense, drawing dead segments so visibly that the left digit of 13 reads as a half-lit 8 at a glance, on the one number in the deck a reader most needs."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.5,
+   "why": "On-frame discipline is 9-grade. All 20 claims are primary_official, fetched 2026-08-22, each with a verbatim quote. c20 is an absence claim done properly. The rejected list refuses to call Carrig and Bryant individuals, refuses to expand PC and COM, refuses 'most recent'. Every numeral traces. Machine QA PASS, 0 fails 0 warns. What pulls this down is the destination the deck vouches for: first_comment.txt sends the reader to the record item, and that published page still asserted under How to take part, in the FAQ block and in the JSON-LD that individuals had filed without counsel, the exact finding claims.json lists under rejected."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 6.0,
+   "why": "Mechanics are excellent and stakes are absent. A Texan finishes this knowing the body, the instrument, the threshold, the deadline, the address and the reference. They do not know what the rule would DO. Slide 3 is the mechanism frame and it hands over the operative clause untranslated at deck-maximum size, and the caption repeats the same phrase verbatim. The plain reading was already fetched and sitting in the record the deck cites, so nothing but the writing was missing. No county, no metro, no town. A reader knows where the door is and never learns what is in the room."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 6.5,
+   "why": "There is a real turn and it is slide 5, where the ground inverts and the frame argues against its own lens. Slides 8 and 9 land hard, and slide 9 is a clean act-now frame. The sag is slides 4 through 7, four consecutive frames of quoted index rows, and slide 6 is the weakest thing in the deck: a heading and four raw strings with no interpretive line at all, the only frame in nine with no takeaway. Its content is not cuttable but the frame does the least work per pixel of any in the deck."
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "Clean, on register, flat. 'A number does the work a name would do' is the one line that earns its place, and 'The party field in the filing index gives a name. It gives nothing else' is a distinctive editorial stance rather than filler. House rules hold across all nine frames and the caption. But the register never moves across nine frames and there is no Texas in it beyond the wordmark and ERCOT REGION on the title block. This is the voice of a very good archivist, not of a person from Texas."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "New palette, nine distinct techniques, and the caption's opening move is not on captions.json opening_moves_recent. No ledger collision. But for a reader in the feed this is the third power-and-the-grid deck in seven days with PUCT, ERCOT and the Data Center Coalition in it. Internal variety is also thinner than the technique list implies: slides 4, 6 and 7 are three arrangements of the same object, quoted index rows in mono."
+  }
+ ],
+ "weighted_score": 6.75,
+ "hard_fails": [
+  "An unverified fact presented as verified, on the record this deck's first comment sends readers to. ledger/docket.json item tx-2026-0002 carried last_verified 2026-08-22 and confidence high, and its public_access.how still read 'Individuals have already done so without counsel. The record contains filings from named members of the public alongside utility and data center filings.' Both assertions are in this run's own claims.json rejected list. The summary was corrected and this field was not, and it published three times on docs/item/tx-2026-0002/index.html including in the JSON-LD FAQPage acceptedAnswer. Three sections above it the same page published a dated history line asserting the opposite, which was false about the page it was on. A reader following the deck's own citation from slide 5, which prints 'Nothing here states who a filer is.', landed on the exact claim the deck exists to refute."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Give slide 3 one plain sentence under the quote saying what the rule would actually do, sourced off the statute quote already fetched and sitting in tx-2026-0002-c10, because a deck that tells a Texan where to file and never what they would be arguing about has handed them a door and no room."
+}

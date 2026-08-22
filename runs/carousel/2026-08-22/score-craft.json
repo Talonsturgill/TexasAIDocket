@@ -1,0 +1,45 @@
+{
+ "lens": "craft",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 6.5,
+   "why": "Two frames are genuinely made. Slide 1's 34 recesses each carry a lit lip on the upper and left edge, a dark lip on the lower and right, a key_dark floor and a real two-part contact shadow, with the oblique skew computed as tan(25 deg); it survives at 432px. Slide 2 puts the deck's extreme light directly against its extreme dark and authors an open dimension with exactly one terminator. Against that: slide 3's declared machined groove with a lit upper lip and a dark floor did not ship. What shipped is a band of wavy strata boxed by a hard rule top and bottom with no lip and no floor, plus a soft dark radial blob over its left end that reads as a smudge. Slide 5's middle third measures 0.0903 ink density, the emptiest region of any light frame, and carries only two constant-weight hairlines over an opaque face_sun face that suppresses the hachure the technique names. The slide 6 rebuild is real material and beats the deleted rods, but it is a band and not surface: the leg runs y300 to y1350 while the tooth runs 980 to 1224 and the flutes 982 to 1216, and because the leg gradient paints over the global tooth pass, the upper 78 percent of the member is a flat horizontal gradient with no grain at all. Two findings the prior pass did not name: slide 6's four plates are CSS divs with a flat background, no lip, no bevel and no shadow, and slide 7 gives its spine, its foot and all three rungs a single offset dark rect each, so four one-part drop shadows ship on one frame in a deck whose slide 1 acceptance says every contact shadow is two part. Both files define contact() and never call it while slides 8 and 9 call it correctly."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral on a frame carries a claim or a named computation. Slide 8's 13 is genuinely computed in the slide and injected via textContent with both ends of the interval printed, typed nowhere. Slide 1's 34, 10 and 24 trace to c7 and to aggregates. I tried to refute one thing and failed usefully: slide 9's render appears to show a curly apostrophe, but the source and copy.json both hold U+0027, so the curl is the Manrope glyph and not a rewritten character. Two real gaps, neither a hard fail. Slide 1's lit positions are a typed literal while that frame's own acceptance line says they are computed from aggregates.json; the values are correct and are index positions rather than published numerals, but the cover of a deck whose ethic is compute-never-type has its focal typed in. And the storyboard drifts from the render in two places: the acceptance text says items 10 and 25 through 34, which is eleven positions where the render correctly lights ten with item 27 dark, and slide 9's composition says a 900 by 380 red block where the source draws 900 by 196."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 7.5,
+   "why": "A reader gets the body, the document, the deadline, the days remaining, the docket number and the address to file at. That is a complete path to action. Slide 5 is the deck's best idea: it turns the record's own limit into the argument, and the two black voids are the frame's value extreme so the absence is drawn rather than asserted. What is missing is material stake. Nothing on any frame says what changes for a Texan if the rule passes; the nearest is slide 3's quoted sentence, which helps a reader who already knows what that means and nobody else."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "The cover states the size and the gap in one breath and earns the swipe, slide 2 is the turn and lands early where it should, and slide 9 closes with the one thing to do. The real turn is slide 5, where the deck argues against its own lens. The drag is the middle: slides 4, 6 and 7 are three consecutive here-are-more-index-rows frames, and slide 6's own hook concedes it. If anything is cuttable it is 6. Putting the deck's strongest image at position 2 also leaves 3 and 4 as a visible dip."
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "The register is dry and exact and refuses to embellish, which is right for a docket. 'The party field in the filing index gives a name. It gives nothing else' and 'Nothing on that page says who Helen Bryant is' are both writing, not filler. House rules hold across slides and caption: no colons or semicolons, no dashes, no first person, no And or But openers, ordinals correct, straight quotes, three hashtags present, and caption comma density is roughly 1 per 100 words. Held off 8 because the voice is Texas-institutional rather than Texas-regional, nothing in the language comes from a place, and 'The rest of the roll.' is a flat hook doing no work."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.5,
+   "why": "The register and the palette are new against the last five entries in artwork.json. But four moves are re-runs from inside the 14-entry window. The oil chart table is declared on slide 4 and appears in the 2026-08-18 and 2026-08-19 entries, three decks in five days. Plates measured from the laid-out text is slide 6 here, and appears on 08-18 and 08-21. The single light-ground inversion lands on slide 5 for the third time in the window. And the close is red block plus white mono carrying a date on the final frame for the third run running, structurally near-identical to yesterday's. That is more than the rubric's one familiar move."
+  }
+ ],
+ "weighted_score": 6.96,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Budget the detail where the region is largest instead of banding it at the bottom: slide 5's middle third and slide 6's member above y=980 are the two biggest areas in the deck and both carry almost nothing while every lower third gets the same hard rule and lighter shelf, so un-suppress slide 5's hachure and run slide 6's flutes and tooth over the full 1050px member rather than a 234px strip."
+}

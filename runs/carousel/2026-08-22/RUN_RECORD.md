@@ -130,22 +130,111 @@ instrument has stopped and no page is reading wrong.
 **The scanner's daily ceiling.** NOT CHECKED. The Supabase connector is not available in this
 session, so the `scanner.scans` query could not be run. Recorded rather than skipped silently.
 
+## The deck, and why it did not ship
+
+**The panel held it at 6.56 against a floor of 7.0, on the sixth reading. The record shipped and
+the deck did not.** That is the degradation ladder working rather than failing: the run's first
+deliverable is on `main`, and the second is on this branch with its evidence.
+
+Six panels, and the honest reading of them is that the deck sits at about 7.0 and the judges'
+variance is wider than the gap:
+
+| panel | integrity | craft | reader | median |
+|---|---|---|---|---|
+| 1 | 6.14 | 6.73 | 6.94 | 6.77, hard fail |
+| 3 | 7.03 | 7.42 | 7.41 | 7.40 |
+| 4 | 6.49 | 7.05 | 7.04 | 6.98 |
+| 5 | 6.75 | 6.98 | 7.08 | 6.87 |
+| 6 | 6.49 | 6.96 | 6.75 | 6.56, hard fail |
+
+**Panel 1's hard fail, and the defect class it opened.** Slide 7's hook read "The deadline sits in
+the index twice." That is a count over a 34 row index the deck quotes 10 rows of, and no claim or
+computation carried it. It escaped `aggregate_check` because "twice" is not in that gate's number
+words. The repair was applied as a rule and not a patch, and the rule found two more instances: slide
+4's "Two filed on the same day" had the same unscoped shape, and slide 1's cover lit ten of its
+thirty four recesses in a 4-3-2-1 staircase, a shape chosen because it looked like something. The
+cover now lights the index positions the deck actually quotes, items 10 and 25 through 34 with 27
+correctly dark, derived from `aggregates.json`.
+
+**A quoted row that was not the quote.** Slides 6 and 7 print index rows inside straight quotation
+marks, which promises the characters between them are the source's. Six rows carried `&nbsp;` after
+a plain space to open a column gap, rendering two character cells where the claim has one. No gate
+could see it: `render.py` collapses whitespace runs when it captures `textContent`, and
+`copy_sync_check` compares skeletons with every non-alphanumeric stripped. It took measuring line
+box widths against the 14.4px mono advance. The fragments that measured 27, 20 and 30 cells now
+measure 25, 19 and 29, and a judge re-measured and confirmed all seven rows character-for-character.
+
+**Panel 6's hard fail was in the record, not the deck, and it was this run's own.** See the section
+below.
+
+**What the panel wanted and this run did not do.** Every lens, repeatedly, asked for one plain
+sentence saying what the rule would actually do to a Texan, and for slide 6 to stop being a list
+after a list. The first was refused as an inference, and a judge pushed back with a better answer
+this run should have taken: the statute quote already sitting in `tx-2026-0002-c10` carries "to be
+deployed in the event of an anticipated emergency condition", so a traceable plain reading was
+available and quoting it is not inferring. That is the next run's first move and it is written into
+the proposals below. The second needs a frame redesigned, not patched.
+
+## THE SECOND FINDING A HUMAN HAS TO SEE
+
+**The published record asserted four things this run's own fact-checker had rejected by name, and
+the first correction missed the field that mattered most.**
+
+A scoring judge read `tx-2026-0002`, the docket item this deck's first comment sends readers to, and
+found the summary calling the rule "the category that covers data centers" and saying "Individual
+Texans as well as utilities and data center operators have already filed". Both are on this run's
+rejected list. The first is refuted by `c20`, which searched the published rule text and found the
+words at zero occurrences. Three claim texts also said more than their quotes carried, and
+`tx-2026-0002-c8` quoted "33 filing(s)." while stamped `last_verified` today, on a page this run
+fetched at 34.
+
+**Then the correction itself was wrong, and two judges caught it.** The summary was fixed and
+`public_access.how` was not, which is the field the site publishes as "How to take part" and the one
+paragraph telling a Texan how to act. It still read "Individuals have already done so without
+counsel", published three times on the item page including inside the JSON-LD. And the dated history
+line written with that first correction claimed the assertion had been removed. **A correction line
+describing a change that did not happen is worse than no line**, because the next run reads it and
+believes the field is clean. Both are fixed, and the second history line says plainly what the first
+one missed.
+
+The deck was more rigorous than the record it cites. The record is the deliverable that comes first,
+and it is now correct on every published surface.
+
+## Proposals for the machine, none of them in this actor's lane
+
+- **A rejected-findings gate.** Read every published string field of any docket item a run touches
+  against that run's `claims.json` rejected list and fail the build on a match. This run corrected
+  one field, wrote a history line saying it was done, and left the same assertion standing in
+  another. Nothing checked.
+- **A verbatim gate.** Diff every quoted string on a frame, byte for byte, against the `quote` field
+  of the claim that frame cites. `copy_sync_check` compares skeletons and is blind to whitespace by
+  construction, which is how six doubled spaces shipped inside quotation marks.
+- **`aggregate_check` cannot see a count in a sentence.** It refuses "13 days" and refused a
+  spelled "twice", so the deck's largest drawn numeral sits in `_undeclarable`, a field no gate
+  reads. Apply EXEMPT to the matched span rather than discarding the whole node, and add the
+  multiplicative number words.
+- **`render_report` should emit a measured cell count per monospace node**, so a text-reading gate
+  cannot be fooled by a rendered space in either direction.
+- **The captions ledger's three exclusion lists are hand kept and drifted a second time**, stopping
+  at 2026-08-20 and never picking up 08-21. Derive them from the entries.
+- **`site_build.py`'s construction page numeral**, unchanged from the top of this record.
+
 ## Gate status
 
 <!-- gate-status:begin -->
 | gate | status | detail |
 |---|---|---|
-| claims         | PASS   | 19 verified claim(s) |
+| claims         | PASS   | 20 verified claim(s) |
 | render         | PASS   | 9 slide(s) |
-| qa             | STALE  | render/machine_qa.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
-| aggregates     | PASS   | 4 declared and re-derived |
-| assembly       | PASS   | 9 slide(s), 3.92 MB, vector |
-| score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
-| dossiers       | PASS   | 26,363 chars planned |
-| caption        | PASS   | 162 words |
+| qa             | PASS   | 9 slide(s), zero fails, zero warns |
+| aggregates     | PASS   | 6 declared and re-derived |
+| assembly       | PASS   | 9 slide(s), 4.62 MB, vector |
+| score          | FAIL   | 6.56, hard fail: An unverified fact presented as verified, on the record this deck's first comment sends readers to. ledger/docket.json item tx-2026-0002 carried last_verified 2026-08-22 and confidence high, and its public_access.how still read 'Individuals have already done so without counsel. The record contains filings from named members of the public alongside utility and data center filings.' Both assertions are in this run's own claims.json rejected list. The summary was corrected and this field was not, and it published three times on docs/item/tx-2026-0002/index.html including in the JSON-LD FAQPage acceptedAnswer. Three sections above it the same page published a dated history line asserting the opposite, which was false about the page it was on. A reader following the deck's own citation from slide 5, which prints 'Nothing here states who a filer is.', landed on the exact claim the deck exists to refute., judge returned ship: false with no hard fail named, which is a refusal either way, An unverified fact presented as verified, on the record this deck's first comment sends readers to. ledger/docket.json item tx-2026-0002 carried last_verified 2026-08-22 and confidence high, and its public_access.how still read 'Individuals have already done so without counsel. The record contains filings from named members of the public alongside utility and data center filings.' Both assertions are in this run's own claims.json rejected list. The summary was corrected and this field was not, and it published three times on docs/item/tx-2026-0002/index.html including in the JSON-LD FAQPage acceptedAnswer. Three sections above it the same page published a dated history line asserting the opposite, which was false about the page it was on. A reader following the deck's own citation from slide 5, which prints 'Nothing here states who a filer is.', landed on the exact claim the deck exists to refute. |
+| dossiers       | PASS   | 27,873 chars planned |
+| caption        | PASS   | 165 words |
 | craft floor    | PASS   | 9 frame(s), median 460, floor 83 |
 | plan vs render | WARN   | 5 of 45 acceptance item(s) checkable |
 | texan          | WARN   | places NONE / body yes / deadline yes / next step yes |
-| absences       | WARN   | 6 of 7 scoped to a named document, 1 unscoped |
+| absences       | WARN   | 7 of 8 scoped to a named document, 1 unscoped |
 | completion     | FAIL   | THE DECK DID NOT SHIP, so this run is not done |
 <!-- gate-status:end -->
