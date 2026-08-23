@@ -6485,6 +6485,381 @@
      "note": "Admitted. The institution's own account states that Epic moved to Azure and names what the move is designed to support."
     }
    ]
+  },
+  {
+   "id": "tx-2026-0090",
+   "title": "National Science Foundation funds an open access robot run alloy laboratory at Texas A&M that outside researchers may book",
+   "summary": "The National Science Foundation made a cooperative agreement to the Texas A&M Engineering Experiment Station in College Station. It funds the Autonomous Robotic Metallurgist Materials Innovation Platform. The award record describes a national user facility that designs and makes and tests new alloys in one autonomous laboratory. It joins robotics and artificial intelligence with simulation and automated experimentation. The record states that scientists and engineers from universities and national laboratories and industry come to it as hands on users and run their own campaigns. Remote access modes are named as a way to reach researchers at institutions outside the top research tier. The agreement runs from September 1st, 2026 to August 31st, 2032.",
+   "topic": "research-and-science",
+   "decider": {
+    "name": "United States National Science Foundation",
+    "type": "federal"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Brazos"
+    ],
+    "metro": null,
+    "on_ercot": false
+   },
+   "status": "decided",
+   "key_dates": [
+    {
+     "date": "2026-07-31",
+     "kind": "decided",
+     "note": "Award date on the National Science Foundation award record"
+    },
+    {
+     "date": "2026-09-01",
+     "kind": "effective",
+     "note": "Start date of the cooperative agreement"
+    },
+    {
+     "date": "2032-08-31",
+     "kind": "expires",
+     "note": "Expiration date of the cooperative agreement"
+    }
+   ],
+   "public_access": {
+    "room": "closed",
+    "how": "The award record states the facility is an open access national user facility. Researchers from universities and national laboratories and industry visit it as hands on users. Industry engages through fee for service and collaborative and consortium modes. The award record itself is public at the National Science Foundation award page under award number 2534344. No application window or user call is stated in the record.",
+    "url": "https://api.nsf.gov/services/v1/awards/2534344.json",
+    "closes": null
+   },
+   "claims": [
+    {
+     "id": "tx-2026-0090-c1",
+     "text": "The award record describes the facility as an open access national user facility built around an autonomous laboratory.",
+     "verbatim_quote": "The Autonomous Robotic Metallurgist Materials Innovation Platform (ARM-MIP) at Texas A&M University is an open-access national user facility that designs, makes, tests, and learns from new alloys, closing the discovery loop by integrating robotics, artificial intelligence, physics-based simulation, and automated experimentation into a single autonomous laboratory.",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2534344.json",
+     "source_title": "National Science Foundation, Award Abstract 2534344",
+     "source_type": "primary_official",
+     "fetched": "2026-08-23"
+    },
+    {
+     "id": "tx-2026-0090-c2",
+     "text": "The record states who may use the facility and what they do there.",
+     "verbatim_quote": "scientists and engineers from universities, national laboratories, and industry come to ARM-MIP as hands-on users, running their own discovery campaigns and carrying autonomous-laboratory techniques back to their home institutions",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2534344.json",
+     "source_title": "National Science Foundation, Award Abstract 2534344",
+     "source_type": "primary_official",
+     "fetched": "2026-08-23"
+    },
+    {
+     "id": "tx-2026-0090-c3",
+     "text": "The record divides the work between the machine and the people.",
+     "verbatim_quote": "Automation handles sample fabrication, characterization, and routine computation, while researchers focus on hypothesis generation, interpretation, and the metallurgical decisions that drive discovery.",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2534344.json",
+     "source_title": "National Science Foundation, Award Abstract 2534344",
+     "source_type": "primary_official",
+     "fetched": "2026-08-23"
+    },
+    {
+     "id": "tx-2026-0090-c4",
+     "text": "The record names remote access as a way to reach researchers outside the top research tier.",
+     "verbatim_quote": "Remote access modes, including artificial-intelligence-guided campaign design and digital-twin-supported experiment planning, extend advanced discovery capabilities to additional researchers, including those at non-R1 and EPSCoR institutions.",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2534344.json",
+     "source_title": "National Science Foundation, Award Abstract 2534344",
+     "source_type": "primary_official",
+     "fetched": "2026-08-23"
+    },
+    {
+     "id": "tx-2026-0090-c5",
+     "text": "The award record carries the money obligated so far and the estimated total.",
+     "verbatim_quote": "\"fundsObligatedAmt\":\"4100000\"",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2534344.json",
+     "source_title": "National Science Foundation, Award Record 2534344, funding fields",
+     "source_type": "primary_official",
+     "fetched": "2026-08-23"
+    },
+    {
+     "id": "tx-2026-0090-c6",
+     "text": "The award record names the recipient, the instrument and the term.",
+     "verbatim_quote": "\"id\":\"2534344\",\"initAmendmentDate\":\"07/31/2026\"",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2534344.json",
+     "source_title": "National Science Foundation, Award Record 2534344, award fields",
+     "source_type": "primary_official",
+     "fetched": "2026-08-23"
+    },
+    {
+     "id": "tx-2026-0090-c7",
+     "text": "The agency framed the two platforms it funded as equipment researchers anywhere in the country should be able to use.",
+     "verbatim_quote": "NSF wants researchers with great ideas, wherever they are in the U.S., to get their hands on this equipment.",
+     "source_url": "https://www.nsf.gov/news/nsf-stands-2-materials-innovation-platforms-50m-investment",
+     "source_title": "National Science Foundation, NSF stands up 2 Materials Innovation Platforms with $50M investment",
+     "source_type": "primary_official",
+     "fetched": "2026-08-23"
+    },
+    {
+     "id": "tx-2026-0090-c8",
+     "text": "The award record carries the recipient, the instrument and the estimated total.",
+     "verbatim_quote": "\"awardeeName\":\"Texas A&M Engineering Experiment Station\"",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2534344.json",
+     "source_title": "National Science Foundation, Award Record 2534344, awardee field",
+     "source_type": "primary_official",
+     "fetched": "2026-08-23"
+    },
+    {
+     "id": "tx-2026-0090-c9",
+     "text": "The award record carries the estimated total and the instrument.",
+     "verbatim_quote": "\"estimatedTotalAmt\":\"24900000\"",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2534344.json",
+     "source_title": "National Science Foundation, Award Record 2534344, funding field",
+     "source_type": "primary_official",
+     "fetched": "2026-08-23"
+    },
+    {
+     "id": "tx-2026-0090-c10",
+     "text": "The award record states the instrument and the term.",
+     "verbatim_quote": "\"transType\":\"Cooperative Agreement\"",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2534344.json",
+     "source_title": "National Science Foundation, Award Record 2534344, instrument field",
+     "source_type": "primary_official",
+     "fetched": "2026-08-23"
+    }
+   ],
+   "last_verified": "2026-08-23",
+   "confidence": "high",
+   "notes_for_editor": "Award date 07/31/2026, announced by the agency on 08/03/2026. Award number 2534344, principal investigator Raymundo Arroyave.",
+   "history": [
+    {
+     "date": "2026-08-23",
+     "note": "Admitted. The award record and the agency's own announcement are both on the record, and the facility's start date has not yet arrived."
+    }
+   ]
+  },
+  {
+   "id": "tx-2026-0092",
+   "title": "National Science Foundation funds UT San Antonio and Texas A&M to adapt large language models on machines that can't afford to run them",
+   "summary": "The National Science Foundation made two matched standard grants on August 14th, 2026. They fund a subspace optimization framework for resource efficient and private fine tuning of large language models. One went to the University of Texas at San Antonio and one to Texas A&M University, each obligating the same amount. The award record states the problem as reaching the performance of full parameter fine tuning where computing resources are limited and training data are sensitive or off limits to share. It names small organizations, universities and healthcare institutions among those the current requirements shut out. Both awards run from January 1st, 2027 to December 31st, 2029.",
+   "topic": "research-and-science",
+   "decider": {
+    "name": "United States National Science Foundation",
+    "type": "federal"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Bexar"
+    ],
+    "metro": null,
+    "on_ercot": true
+   },
+   "status": "decided",
+   "key_dates": [
+    {
+     "date": "2026-08-14",
+     "kind": "decided",
+     "note": "Award date on both National Science Foundation award records"
+    },
+    {
+     "date": "2027-01-01",
+     "kind": "effective",
+     "note": "Start date of both awards"
+    },
+    {
+     "date": "2029-12-31",
+     "kind": "expires",
+     "note": "Expiration date of both awards"
+    }
+   ],
+   "public_access": {
+    "room": "closed",
+    "how": "The award records are public at the National Science Foundation award pages under award numbers 2619079 and 2619080. No comment window, hearing or application step is stated in either record.",
+    "url": "https://api.nsf.gov/services/v1/awards/2619079.json",
+    "closes": null
+   },
+   "claims": [
+    {
+     "id": "tx-2026-0092-c1",
+     "text": "The award record names who is shut out by what a large model currently costs to adapt.",
+     "verbatim_quote": "These requirements can limit the ability of small organizations, universities, healthcare institutions, and other resource-constrained users to benefit from recent advances in AI.",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2619079.json",
+     "source_title": "National Science Foundation, Award Abstract 2619079",
+     "source_type": "primary_official",
+     "fetched": "2026-08-23"
+    },
+    {
+     "id": "tx-2026-0092-c2",
+     "text": "The award record states the scientific problem in terms of limited compute and unshareable data.",
+     "verbatim_quote": "The scientific problem addressed by this project is how to achieve performance comparable to full-parameter fine-tuning when computing resources are limited and training data are sensitive or cannot be shared.",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2619079.json",
+     "source_title": "National Science Foundation, Award Abstract 2619079",
+     "source_type": "primary_official",
+     "fetched": "2026-08-23"
+    },
+    {
+     "id": "tx-2026-0092-c3",
+     "text": "The award record names reduced energy cost among the stated benefits.",
+     "verbatim_quote": "The research contributes to societal benefits by broadening access to advanced AI tools, strengthening the protection of sensitive information, and reducing the financial and energy costs of model adaptation.",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2619079.json",
+     "source_title": "National Science Foundation, Award Abstract 2619079",
+     "source_type": "primary_official",
+     "fetched": "2026-08-23"
+    },
+    {
+     "id": "tx-2026-0092-c4",
+     "text": "The San Antonio award record carries the recipient, the amount and the term.",
+     "verbatim_quote": "\"id\":\"2619079\",\"initAmendmentDate\":\"08/14/2026\"",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2619079.json",
+     "source_title": "National Science Foundation, Award Record 2619079, award fields",
+     "source_type": "primary_official",
+     "fetched": "2026-08-23"
+    },
+    {
+     "id": "tx-2026-0092-c5",
+     "text": "The matched award to the second Texas institution carries the same title and the same amount.",
+     "verbatim_quote": "\"id\":\"2619080\",\"initAmendmentDate\":\"08/14/2026\"",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2619080.json",
+     "source_title": "National Science Foundation, Award Record 2619080, award fields",
+     "source_type": "primary_official",
+     "fetched": "2026-08-23"
+    },
+    {
+     "id": "tx-2026-0092-c6",
+     "text": "The San Antonio award record names the recipient.",
+     "verbatim_quote": "\"awardeeName\":\"University of Texas at San Antonio\"",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2619079.json",
+     "source_title": "National Science Foundation, Award Record, award fields",
+     "source_type": "primary_official",
+     "fetched": "2026-08-23"
+    },
+    {
+     "id": "tx-2026-0092-c7",
+     "text": "Each award record carries the same obligated amount.",
+     "verbatim_quote": "\"fundsObligatedAmt\":\"120000\"",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2619079.json",
+     "source_title": "National Science Foundation, Award Record, award fields",
+     "source_type": "primary_official",
+     "fetched": "2026-08-23"
+    },
+    {
+     "id": "tx-2026-0092-c8",
+     "text": "The matched award record names the second recipient.",
+     "verbatim_quote": "\"awardeeName\":\"Texas A&M University\"",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2619080.json",
+     "source_title": "National Science Foundation, Award Record, award fields",
+     "source_type": "primary_official",
+     "fetched": "2026-08-23"
+    }
+   ],
+   "last_verified": "2026-08-23",
+   "confidence": "high",
+   "notes_for_editor": "Award 2619079 lists San Antonio as both awardee city and place of performance. Award 2619080 lists College Station as awardee city and Houston as place of performance, so only Bexar County is claimed here.",
+   "history": [
+    {
+     "date": "2026-08-23",
+     "note": "Admitted. Both award records were read directly and carry the same title, the same obligated amount and the same term."
+    }
+   ]
+  },
+  {
+   "id": "tx-2026-0093",
+   "title": "National Science Foundation funds Rice to let AI propose numerical algorithms only where a proof checker certifies them",
+   "summary": "The National Science Foundation made a standard grant to William Marsh Rice University in Houston on August 17th, 2026. The award record describes reinforcement learning and large language models proposing randomized numerical linear algebra algorithms, with the Lean proof assistant required to certify correctness and cost before a candidate counts. The record states that the machine methods can explore designs efficiently but may produce opaque or inconsistent results without dependable guarantees. It also describes separating real algorithmic improvement from variation caused by the model itself. The award runs from September 15th, 2026 to August 31st, 2029.",
+   "topic": "research-and-science",
+   "decider": {
+    "name": "United States National Science Foundation",
+    "type": "federal"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Harris"
+    ],
+    "metro": null,
+    "on_ercot": true
+   },
+   "status": "decided",
+   "key_dates": [
+    {
+     "date": "2026-08-17",
+     "kind": "decided",
+     "note": "Award date on the National Science Foundation award record"
+    },
+    {
+     "date": "2026-09-15",
+     "kind": "effective",
+     "note": "Start date of the award"
+    },
+    {
+     "date": "2029-08-31",
+     "kind": "expires",
+     "note": "Expiration date of the award"
+    }
+   ],
+   "public_access": {
+    "room": "closed",
+    "how": "The award record is public at the National Science Foundation award page under award number 2616828. No comment window, hearing or application step is stated in the record.",
+    "url": "https://api.nsf.gov/services/v1/awards/2616828.json",
+    "closes": null
+   },
+   "claims": [
+    {
+     "id": "tx-2026-0093-c1",
+     "text": "The award record states the weakness of machine proposed algorithms it is written against.",
+     "verbatim_quote": "AI methods, including reinforcement learning (RL) and large language models (LLMs), can explore algorithm designs efficiently, but they may produce opaque or inconsistent results without dependable guarantees.",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2616828.json",
+     "source_title": "National Science Foundation, Award Abstract 2616828",
+     "source_type": "primary_official",
+     "fetched": "2026-08-23"
+    },
+    {
+     "id": "tx-2026-0093-c2",
+     "text": "The award record makes a proof checker the condition on which a machine written algorithm counts.",
+     "verbatim_quote": "Lean will certify deterministic correctness and cost claims, thereby converting AI-generated candidates into reusable mathematical objects rather than opaque algorithmic programs.",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2616828.json",
+     "source_title": "National Science Foundation, Award Abstract 2616828",
+     "source_type": "primary_official",
+     "fetched": "2026-08-23"
+    },
+    {
+     "id": "tx-2026-0093-c3",
+     "text": "The award record treats the model's own variability as a thing to be measured.",
+     "verbatim_quote": "Because LLM-generated algorithms and proofs vary across prompts, the LAAM will also develop sequentially valid inference to separate genuine algorithmic improvements from model-induced randomness.",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2616828.json",
+     "source_title": "National Science Foundation, Award Abstract 2616828",
+     "source_type": "primary_official",
+     "fetched": "2026-08-23"
+    },
+    {
+     "id": "tx-2026-0093-c4",
+     "text": "The award record carries the recipient, the amount and the term.",
+     "verbatim_quote": "\"id\":\"2616828\",\"initAmendmentDate\":\"08/17/2026\"",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2616828.json",
+     "source_title": "National Science Foundation, Award Record 2616828, award fields",
+     "source_type": "primary_official",
+     "fetched": "2026-08-23"
+    },
+    {
+     "id": "tx-2026-0093-c5",
+     "text": "The award record names the recipient.",
+     "verbatim_quote": "\"awardeeName\":\"William Marsh Rice University\"",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2616828.json",
+     "source_title": "National Science Foundation, Award Record 2616828, award fields",
+     "source_type": "primary_official",
+     "fetched": "2026-08-23"
+    },
+    {
+     "id": "tx-2026-0093-c6",
+     "text": "The award record carries the obligated amount.",
+     "verbatim_quote": "\"fundsObligatedAmt\":\"150000\"",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2616828.json",
+     "source_title": "National Science Foundation, Award Record 2616828, award fields",
+     "source_type": "primary_official",
+     "fetched": "2026-08-23"
+    }
+   ],
+   "last_verified": "2026-08-23",
+   "confidence": "high",
+   "notes_for_editor": "Award number 2616828, principal investigator Hengrui Luo. The abstract states training activities anchored outside Texas, and the collaborating institution is not named here.",
+   "history": [
+    {
+     "date": "2026-08-23",
+     "note": "Admitted. The award record was read directly from the agency's own award endpoint."
+    }
+   ]
   }
  ]
 }
