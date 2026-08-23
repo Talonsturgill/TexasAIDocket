@@ -262,3 +262,44 @@ worth editing the machine for on a run that is not merging.
 This run is rung (d) of the degradation ladder, the record updated in full and no deck, and it
 got there through an external blocker rather than through a choice. The record is the durable
 half and it is saved.
+
+## PROPOSAL 2. Rung (d) of the degradation ladder is unreachable as written
+
+The ladder's rung (d) is "Record updated in full, no deck, **post-mortem in the email**." This run
+landed exactly there and could not produce that email.
+
+`gmail_draft.py` refuses to build a payload without post copy:
+
+```
+gmail_draft: runs/carousel/2026-08-23/caption.txt is empty or missing.
+An email with no post copy is the defect this builder exists to prevent
+```
+
+**That refusal is correct and should not be loosened.** It exists because run No. 2 hand wrote a
+long plaintext essay about how the day had gone with no post copy, no first comment, no PDF and no
+images, and the whole point of the builder is that this cannot ship. Phase 18 also states plainly
+that the email is not hand written.
+
+So the two rules meet and leave no move. A deckless run is told to put a post-mortem in the email,
+the builder refuses an email with no deck in it, and hand writing one is forbidden. This run
+obeyed both rules and produced no email, which means **on rung (d) the owner gets no email at
+all**, which is the opposite of what the ladder intends.
+
+Three ways out, for a maintainer to choose between rather than for a run to pick:
+
+1. Give `gmail_draft.py` an explicit post-mortem mode, entered by a flag rather than by the
+   absence of a file, which builds the account of the day with the gates, the degraded list and
+   the notes and prints no post copy, no first comment and no PDF because there are none. The
+   builder stays the only thing that writes the email, and `email_check.py` learns the second
+   shape.
+2. Change rung (d) to say the post-mortem goes in the run record and the pull request, which is
+   where this run actually put it.
+3. Leave both as they are and accept that a deckless run reaches its owner through the pull
+   request alone.
+
+The first is the one that keeps the ladder's promise. This run's account of the day went out
+through the run record, the pull request and a push notification instead, and the payload inputs
+it would have used are committed beside this file as `gates.json`, `degraded.json`,
+`upgrades.json` and `notes.txt` so the email can be built the moment a mode exists for it.
+
+**No Gmail draft was created this run.** Nothing was hand written and nothing was sent.

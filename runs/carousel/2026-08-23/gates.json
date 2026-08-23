@@ -1,0 +1,12 @@
+{
+  "docket_build --validate": "PASS (exit 0), 73 items, 363 claims",
+  "docket_staleness": "PASS (exit 0), 6 due, all cleared, nothing rotten, DEFERRED empty",
+  "ownership_check --actor daily": "PASS (exit 0), every path in lane across the whole branch",
+  "house_style_check": "PASS (exit 0)",
+  "claims_check": "PASS (exit 0), 10 verified, 3 rejected",
+  "dedupe_check": "PASS (exit 0), nothing close in the 30 day window",
+  "gridwatch_pagecheck": "PASS (exit 0), page current and holding its promises",
+  "waterwatch_pagecheck": "PASS (exit 0), page current and holding its promises",
+  "media_check / schema_check / seo_check / og / favicon / truetype / indexnow": "PASS (exit 0) all seven",
+  "site_build.py": "FAIL (exit 1). THE BLOCKER. /construction/ prints the campus name Project Gold Phase 2 - DFW44 and the campus loop never authorises the campus name, while the facility loop eight lines below it does. Fix is one token, _c[\"project\"], in a human owned file."
+}
