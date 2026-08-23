@@ -619,6 +619,158 @@ def facility_css() -> str:
   .dossdlg { width:100vw; max-width:100vw; max-height:100vh;
     border-radius:0; border:0; }
 }
+
+/* ---- THE GRID WATCH'S OWN INSTRUMENTS -----------------------------------------
+   THESE LEFT site.css BECAUSE EVERY PAGE WAS PAYING FOR THEM. The load shape and the queue
+   card are drawn on /grid/ and nowhere else, and the queue card's parts are shared with
+   /datacenters/ and the registry pages, which is exactly the set of pages that already load
+   this sheet. Nothing here is used by a page that does not load it.
+
+   In the render blocking sheet they cost every reader of every page a share of a budget that
+   is the TCP initial congestion window, and that window is a property of TCP rather than a
+   taste value to raise when it starts to pinch. The check that reads the compressed bytes of
+   site.css went red on a restyle of the ask field, which is on the front page and is the one
+   control the whole site is built around. The right answer to that was not a smaller ask
+   field. */
+/* THE LOAD SHAPE. Measured demand filled, ERCOT's day ahead forecast dashed over it. The fill
+   is one flat colour: this is a measurement drawn at its true scale, not a chart arguing a
+   case. */
+.shape { margin:1.5rem 0; }
+.loadshape { width:100%; height:auto; display:block; }
+/* A VERTICAL FADE, NOT A SEVERITY RAMP. The grid watch's no-ramp rule governs the capacity
+   gauge, where a colour change would imply a red zone this page does not get to publish.
+   Nothing here encodes value in colour: the fade separates the filled day from the ground
+   under it, and the stroke on top carries the reading. Sixty percent of that fill sits below
+   the trough on a normal day, and as a flat slab it read as a placeholder. */
+/* NO `fill` HERE. The gradient is defined inside the chart's own SVG, so a `url(#lsfill)`
+   in the stylesheet is a reference every page loads and only one page can resolve. The port
+   audit calls that an unwired asset and it is right to: a paint server and the thing that
+   paints with it belong in the same file. The element carries the fill. */
+/* The peak and the trough, marked where they happen. */
+.loadshape .mk { fill:var(--accent); stroke:var(--bg); stroke-width:1.5; }
+.loadshape .mklab { fill:var(--ink-bright); font-size:11px; }
+/* The residual strip. One hue, one width, and the length is the whole message, which is the
+   same rule the capacity bar follows. A miss above the line and a miss below it are the same
+   colour, because "forecast high" is not better or worse than "forecast low". */
+.loadshape .res { stroke:var(--accent); stroke-width:6; stroke-linecap:butt;
+  opacity:.75; vector-effect:non-scaling-stroke; }
+/* The residual's zero, drawn stronger than a gridline. Whether a bar hangs above or below it
+   is the whole reading, and against the faint divider token it was a guess. */
+.loadshape .zero { stroke:var(--rule-strong); stroke-width:1.5;
+  vector-effect:non-scaling-stroke; }
+.loadshape .line { fill:none; stroke:var(--accent); stroke-width:2;
+  stroke-linejoin:round; vector-effect:non-scaling-stroke; }
+.loadshape .fc { fill:none; stroke:var(--ink-mute); stroke-width:1.4;
+  stroke-dasharray:5 4; vector-effect:non-scaling-stroke; }
+.loadshape .g { stroke:var(--rule); stroke-width:1; vector-effect:non-scaling-stroke; }
+.loadshape .ax { fill:var(--ink-mute); font-family:var(--mono); font-size:11px; }
+.loadshape .ax.unit { font-size:9px; letter-spacing:.08em; }
+/* SVG TEXT SCALES WITH THE DRAWING, AND THE DRAWING SHRINKS TO FIT.
+   The chart is a 720 unit wide viewBox rendered to whatever the column gives it, so an 11
+   unit label is 11 screen pixels at exactly one width and nothing like it anywhere else.
+   Measured: at a 390px viewport the sheet renders 358px wide, a scale of 0.497, which puts
+   every axis number and both peak labels at 5.5 PIXELS. Legible on a laptop, unreadable on
+   the phone this site is mostly read on, and no build-time check can see it because the
+   markup is identical at every width.
+   So the user-unit size steps up as the sheet steps down, chosen to land every label between
+   about 10 and 13 screen pixels across the whole range. `tests/responsive.mjs` measures the
+   effective size and fails under 10, so these numbers cannot drift away from the drawing. */
+@media (max-width:22rem) {
+  .loadshape .ax, .loadshape .mklab { font-size:27px; }
+  .loadshape .ax.unit { font-size:22px; }
+}
+@media (min-width:22.01rem) and (max-width:26rem) {
+  .loadshape .ax, .loadshape .mklab { font-size:22px; }
+  .loadshape .ax.unit { font-size:18px; }
+}
+@media (min-width:26.01rem) and (max-width:34rem) {
+  .loadshape .ax, .loadshape .mklab { font-size:19px; }
+  .loadshape .ax.unit { font-size:16px; }
+}
+@media (min-width:34.01rem) and (max-width:46rem) {
+  .loadshape .ax, .loadshape .mklab { font-size:15px; }
+  .loadshape .ax.unit { font-size:12px; }
+}
+
+/* THE QUEUE GAP. Two bars on one scale, which is the whole instrument: the distance is seen
+   rather than computed. Same law as .bar above, one hue at one intensity at every value, so
+   the LENGTH is the entire message and nothing implies a verdict about whether the queue is
+   real. A reader draws that conclusion or does not; the page does not draw it for them. */
+/* THE INSTRUMENT SITS ON THE PAGE RATHER THAN IN IT. A light card on the night ground, which
+   is the one idea worth taking from Meng To's Sylva: the reading is a different KIND of thing
+   from the prose around it, and giving it its own surface says so before a word is read.
+   Executed in this site's own tokens and not his, so it belongs to this palette.
+
+   EVERY PAIRING WAS CHECKED WITH theme.contrast() AGAINST THE CARD, not against the page. A
+   card inverts the ground, so a colour that passed on night can fail on paper and the check
+   has to be redone rather than assumed:
+     night on paper           17.85   the figures
+     capitol_granite on paper  6.14   the labels AND the bar fill
+     paper_rule on paper       1.56   the bar track, which carries no meaning and no text
+
+   ONE ACCENT, NOT TWO. Label and bar share a hue and are told apart by size and weight, which
+   is the discipline the rest of this sheet keeps. brand.yaml scopes `paper` and
+   `capitol_granite` together, so the card is built from a pair the palette already pairs. */
+.queuegap { margin:0 0 var(--band); scroll-margin-top:5rem;
+  background:var(--paper); color:var(--night);
+  border-radius:var(--radius-lg); padding:clamp(1.25rem,4vw,2.5rem);
+  box-shadow:0 1px 0 rgba(255,255,255,.06), 0 24px 60px -28px rgba(0,0,0,.85); }
+.queuegap h2, .queuegap h3 { color:var(--night); }
+.queuegap .qlede { color:var(--night); }
+.queuegap .qk { color:var(--granite); }
+.queuegap .qv { color:var(--night); }
+.queuegap .qnote { color:var(--granite); }
+.queuegap .qnote a { color:var(--granite); text-decoration-color:var(--paper-rule); }
+.queuegap .qbar { background:var(--paper-rule); border-color:var(--paper-rule); }
+.queuegap .qfill { background:var(--granite); }
+.queuegap .qstages li { border-bottom-color:var(--paper-rule); }
+.queuegap .qstages .qs { color:var(--granite); }
+/* The page's first section sits under a sticky masthead, so its heading needs the same
+   clearance an anchored jump would get. */
+.queuegap > h2:first-child { padding-top:.35rem; }
+.queuegap .qlede { font-family:var(--display); font-size:var(--s2); line-height:1.25;
+  max-width:22ch; margin:0 0 var(--gap); }
+.qgap { display:flex; flex-direction:column; gap:.55rem; margin:0 0 .7rem; }
+.qrow { display:grid; grid-template-columns:minmax(9rem,auto) 1fr; gap:.5rem 1rem;
+  align-items:center; }
+.qlab { display:flex; flex-direction:column; line-height:1.15; }
+.qk { font-family:var(--mono); font-size:var(--s-2); letter-spacing:.08em;
+  text-transform:uppercase; color:var(--ink-mute); }
+.qv { font-family:var(--display); font-size:var(--s1); color:var(--ink-bright);
+  font-variant-numeric:tabular-nums; }
+.qbar { height:1.1rem; background:var(--surface); border:var(--hair) solid var(--rule-strong);
+  border-radius:2px; overflow:hidden; }
+.qfill { height:100%; background:var(--accent-deep); min-width:2px; }
+.qnote { font-size:var(--s-1); color:var(--ink-mute); max-width:var(--measure);
+  margin:0 0 var(--gap); }
+
+/* The funnel. AN ORDERED LIST because the stages are genuinely sequential: a project cannot
+   draw power before it is cleared to. The number is not decoration, so it is not drawn. */
+/* max-width:none because the base rule caps every `ol` at the reading measure, and this is a
+   figure rather than prose: capped, its rows stopped two thirds across while the bars above
+   ran the full card and the two read as misaligned. */
+.qstages { list-style:none; padding:0; margin:0 0 .7rem; max-width:none;
+  display:flex; flex-direction:column; gap:.4rem; }
+.qstages li { display:grid; grid-template-columns:minmax(0,1fr) auto auto; gap:.75rem;
+  align-items:baseline; padding:.5rem 0; border-bottom:var(--hair) solid var(--line); }
+/* THE STAGE LABEL WRAPS, THE FIGURE NEVER DOES. At 380px the three columns were overflowing
+   and taking the share off the right edge. The label is the only part that can afford to
+   take two lines. */
+.qstages .qk { overflow-wrap:anywhere; }
+.qstages .qs { font-family:var(--mono); font-size:var(--s-2); color:var(--ink-mute);
+  font-variant-numeric:tabular-nums; min-width:3.4rem; text-align:right; }
+
+/* THE ROW STACKS ON A PHONE, and this travelled with the rules it narrows. Left behind in
+   site.css it lost: same specificity as the base rule, and a second sheet loads after the
+   first, so the two column layout won at every width and the label sat beside its figure in
+   144 pixels. A responsive rule belongs in the sheet its subject lives in. */
+@media (max-width:26rem) {
+  .qrow { grid-template-columns:1fr; gap:.15rem; }
+  .qlab { flex-direction:row; align-items:baseline; gap:.5rem; }
+}
+
+.queuegap .qfill { transition:width 1.1s cubic-bezier(.16,1,.3,1); }
+@media (prefers-reduced-motion:reduce) { .queuegap .qfill { transition:none; } }
 """)
 
 
@@ -2242,68 +2394,13 @@ table.tally.pair {{ max-width:32rem; }}
 
 .lede {{ font-size:var(--s1); line-height:1.5; color:var(--ink-bright); }}
 
-/* ---- the grid watch ----------------------------------------------------- */
-/* THE LOAD SHAPE. Measured demand filled, ERCOT's day ahead forecast dashed over it. The fill
-   is one flat colour: this is a measurement drawn at its true scale, not a chart arguing a
-   case. */
-.shape {{ margin:1.5rem 0; }}
-.loadshape {{ width:100%; height:auto; display:block; }}
-/* A VERTICAL FADE, NOT A SEVERITY RAMP. The grid watch's no-ramp rule governs the capacity
-   gauge, where a colour change would imply a red zone this page does not get to publish.
-   Nothing here encodes value in colour: the fade separates the filled day from the ground
-   under it, and the stroke on top carries the reading. Sixty percent of that fill sits below
-   the trough on a normal day, and as a flat slab it read as a placeholder. */
-/* NO `fill` HERE. The gradient is defined inside the chart's own SVG, so a `url(#lsfill)`
-   in the stylesheet is a reference every page loads and only one page can resolve. The port
-   audit calls that an unwired asset and it is right to: a paint server and the thing that
-   paints with it belong in the same file. The element carries the fill. */
-/* The peak and the trough, marked where they happen. */
-.loadshape .mk {{ fill:var(--accent); stroke:var(--bg); stroke-width:1.5; }}
-.loadshape .mklab {{ fill:var(--ink-bright); font-size:11px; }}
-/* The residual strip. One hue, one width, and the length is the whole message, which is the
-   same rule the capacity bar follows. A miss above the line and a miss below it are the same
-   colour, because "forecast high" is not better or worse than "forecast low". */
-.loadshape .res {{ stroke:var(--accent); stroke-width:6; stroke-linecap:butt;
-  opacity:.75; vector-effect:non-scaling-stroke; }}
-/* The residual's zero, drawn stronger than a gridline. Whether a bar hangs above or below it
-   is the whole reading, and against the faint divider token it was a guess. */
-.loadshape .zero {{ stroke:var(--rule-strong); stroke-width:1.5;
-  vector-effect:non-scaling-stroke; }}
-.loadshape .line {{ fill:none; stroke:var(--accent); stroke-width:2;
-  stroke-linejoin:round; vector-effect:non-scaling-stroke; }}
-.loadshape .fc {{ fill:none; stroke:var(--ink-mute); stroke-width:1.4;
-  stroke-dasharray:5 4; vector-effect:non-scaling-stroke; }}
-.loadshape .g {{ stroke:var(--rule); stroke-width:1; vector-effect:non-scaling-stroke; }}
-.loadshape .ax {{ fill:var(--ink-mute); font-family:var(--mono); font-size:11px; }}
-.loadshape .ax.unit {{ font-size:9px; letter-spacing:.08em; }}
-/* SVG TEXT SCALES WITH THE DRAWING, AND THE DRAWING SHRINKS TO FIT.
-   The chart is a 720 unit wide viewBox rendered to whatever the column gives it, so an 11
-   unit label is 11 screen pixels at exactly one width and nothing like it anywhere else.
-   Measured: at a 390px viewport the sheet renders 358px wide, a scale of 0.497, which puts
-   every axis number and both peak labels at 5.5 PIXELS. Legible on a laptop, unreadable on
-   the phone this site is mostly read on, and no build-time check can see it because the
-   markup is identical at every width.
-   So the user-unit size steps up as the sheet steps down, chosen to land every label between
-   about 10 and 13 screen pixels across the whole range. `tests/responsive.mjs` measures the
-   effective size and fails under 10, so these numbers cannot drift away from the drawing. */
-@media (max-width:22rem) {{
-  .loadshape .ax, .loadshape .mklab {{ font-size:27px; }}
-  .loadshape .ax.unit {{ font-size:22px; }}
-}}
-@media (min-width:22.01rem) and (max-width:26rem) {{
-  .loadshape .ax, .loadshape .mklab {{ font-size:22px; }}
-  .loadshape .ax.unit {{ font-size:18px; }}
-}}
-@media (min-width:26.01rem) and (max-width:34rem) {{
-  .loadshape .ax, .loadshape .mklab {{ font-size:19px; }}
-  .loadshape .ax.unit {{ font-size:16px; }}
-}}
-@media (min-width:34.01rem) and (max-width:46rem) {{
-  .loadshape .ax, .loadshape .mklab {{ font-size:15px; }}
-  .loadshape .ax.unit {{ font-size:12px; }}
-}}
 figcaption {{ font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
   max-width:var(--measure); }}
+
+/* ---- the grid watch ----------------------------------------------------- */
+/* THE LOAD SHAPE AND THE QUEUE CARD ARE NOT HERE. They are in facility_css, with the reason
+   written beside them. What stays is the capacity bar, because `.bar` is worn by the water
+   watch's metro rows too and is not the grid page's alone. */
 
 /* A BAR AND NEVER A DIAL. One hue at one intensity at every value, so there is no red zone and
    therefore no verdict. The length is the whole message. If a future edit adds a threshold
@@ -2314,74 +2411,6 @@ figcaption {{ font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
 .bar .fill {{ height:100%; background:var(--accent-deep); }}
 .barnote {{ font-size:var(--s-1); color:var(--ink-mute); }}
 .barnote strong {{ color:var(--ink-bright); }}
-
-/* THE QUEUE GAP. Two bars on one scale, which is the whole instrument: the distance is seen
-   rather than computed. Same law as .bar above, one hue at one intensity at every value, so
-   the LENGTH is the entire message and nothing implies a verdict about whether the queue is
-   real. A reader draws that conclusion or does not; the page does not draw it for them. */
-/* THE INSTRUMENT SITS ON THE PAGE RATHER THAN IN IT. A light card on the night ground, which
-   is the one idea worth taking from Meng To's Sylva: the reading is a different KIND of thing
-   from the prose around it, and giving it its own surface says so before a word is read.
-   Executed in this site's own tokens and not his, so it belongs to this palette.
-
-   EVERY PAIRING WAS CHECKED WITH theme.contrast() AGAINST THE CARD, not against the page. A
-   card inverts the ground, so a colour that passed on night can fail on paper and the check
-   has to be redone rather than assumed:
-     night on paper           17.85   the figures
-     capitol_granite on paper  6.14   the labels AND the bar fill
-     paper_rule on paper       1.56   the bar track, which carries no meaning and no text
-
-   ONE ACCENT, NOT TWO. Label and bar share a hue and are told apart by size and weight, which
-   is the discipline the rest of this sheet keeps. brand.yaml scopes `paper` and
-   `capitol_granite` together, so the card is built from a pair the palette already pairs. */
-.queuegap {{ margin:0 0 var(--band); scroll-margin-top:5rem;
-  background:var(--paper); color:var(--night);
-  border-radius:var(--radius-lg); padding:clamp(1.25rem,4vw,2.5rem);
-  box-shadow:0 1px 0 rgba(255,255,255,.06), 0 24px 60px -28px rgba(0,0,0,.85); }}
-.queuegap h2, .queuegap h3 {{ color:var(--night); }}
-.queuegap .qlede {{ color:var(--night); }}
-.queuegap .qk {{ color:var(--granite); }}
-.queuegap .qv {{ color:var(--night); }}
-.queuegap .qnote {{ color:var(--granite); }}
-.queuegap .qnote a {{ color:var(--granite); text-decoration-color:var(--paper-rule); }}
-.queuegap .qbar {{ background:var(--paper-rule); border-color:var(--paper-rule); }}
-.queuegap .qfill {{ background:var(--granite); }}
-.queuegap .qstages li {{ border-bottom-color:var(--paper-rule); }}
-.queuegap .qstages .qs {{ color:var(--granite); }}
-/* The page's first section sits under a sticky masthead, so its heading needs the same
-   clearance an anchored jump would get. */
-.queuegap > h2:first-child {{ padding-top:.35rem; }}
-.queuegap .qlede {{ font-family:var(--display); font-size:var(--s2); line-height:1.25;
-  max-width:22ch; margin:0 0 var(--gap); }}
-.qgap {{ display:flex; flex-direction:column; gap:.55rem; margin:0 0 .7rem; }}
-.qrow {{ display:grid; grid-template-columns:minmax(9rem,auto) 1fr; gap:.5rem 1rem;
-  align-items:center; }}
-.qlab {{ display:flex; flex-direction:column; line-height:1.15; }}
-.qk {{ font-family:var(--mono); font-size:var(--s-2); letter-spacing:.08em;
-  text-transform:uppercase; color:var(--ink-mute); }}
-.qv {{ font-family:var(--display); font-size:var(--s1); color:var(--ink-bright);
-  font-variant-numeric:tabular-nums; }}
-.qbar {{ height:1.1rem; background:var(--surface); border:var(--hair) solid var(--rule-strong);
-  border-radius:2px; overflow:hidden; }}
-.qfill {{ height:100%; background:var(--accent-deep); min-width:2px; }}
-.qnote {{ font-size:var(--s-1); color:var(--ink-mute); max-width:var(--measure);
-  margin:0 0 var(--gap); }}
-
-/* The funnel. AN ORDERED LIST because the stages are genuinely sequential: a project cannot
-   draw power before it is cleared to. The number is not decoration, so it is not drawn. */
-/* max-width:none because the base rule caps every `ol` at the reading measure, and this is a
-   figure rather than prose: capped, its rows stopped two thirds across while the bars above
-   ran the full card and the two read as misaligned. */
-.qstages {{ list-style:none; padding:0; margin:0 0 .7rem; max-width:none;
-  display:flex; flex-direction:column; gap:.4rem; }}
-.qstages li {{ display:grid; grid-template-columns:minmax(0,1fr) auto auto; gap:.75rem;
-  align-items:baseline; padding:.5rem 0; border-bottom:var(--hair) solid var(--line); }}
-/* THE STAGE LABEL WRAPS, THE FIGURE NEVER DOES. At 380px the three columns were overflowing
-   and taking the share off the right edge. The label is the only part that can afford to
-   take two lines. */
-.qstages .qk {{ overflow-wrap:anywhere; }}
-.qstages .qs {{ font-family:var(--mono); font-size:var(--s-2); color:var(--ink-mute);
-  font-variant-numeric:tabular-nums; min-width:3.4rem; text-align:right; }}
 
 /* The monthly series. Paired bars per month, cleared then drawing, so a reader sees that
    neither has moved. Shape carries it, not colour: the pair is always left-then-right and the
@@ -2752,13 +2781,6 @@ figcaption {{ font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
 
 /* Meng To's Sylva easing. A long tail that settles rather than stops, which suits a bar whose
    length IS the measurement: it arrives at its value and stays there instead of bouncing. */
-.queuegap .qfill {{ transition:width 1.1s cubic-bezier(.16,1,.3,1); }}
-@media (prefers-reduced-motion:reduce) {{ .queuegap .qfill {{ transition:none; }} }}
-
-@media (max-width:26rem) {{
-  .qrow {{ grid-template-columns:1fr; gap:.15rem; }}
-  .qlab {{ flex-direction:row; align-items:baseline; gap:.5rem; }}
-}}
 /* The metro bars on the water watch. Same rule, smaller: sorted driest first, and identical in
    colour at every value, so the ordering carries the comparison and nothing implies that a
    short bar is a verdict about a city's water supply. */
@@ -3027,6 +3049,7 @@ caption {{ caption-side:bottom; text-align:left; padding-top:.75rem; font-size:v
    fall and cool where it would not, so a control the reader is invited to act on reads as lit
    rather than outlined. */
 .askbox .composer {{ position:relative; isolation:isolate;
+  --ring:color-mix(in srgb,var(--rule-strong) 92%,transparent);
   border-color:transparent;
   background:color-mix(in srgb,var(--surface) 62%,transparent);
   -webkit-backdrop-filter:blur(16px) saturate(150%);
@@ -3036,25 +3059,20 @@ caption {{ caption-side:bottom; text-align:left; padding-top:.75rem; font-size:v
 .askbox .composer::before {{ content:""; position:absolute; inset:0; z-index:-1;
   border-radius:inherit; padding:var(--hair); pointer-events:none;
   background:linear-gradient(135deg,
-    color-mix(in srgb,var(--accent) 52%,transparent) 0%,
-    color-mix(in srgb,var(--rule-strong) 92%,transparent) 42%,
-    color-mix(in srgb,var(--accent) 26%,transparent) 100%);
+    color-mix(in srgb,var(--accent) 52%,transparent), var(--ring) 42%,
+    color-mix(in srgb,var(--accent) 26%,transparent));
   -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite:xor; mask-composite:exclude;
-  transition:opacity .2s ease; }}
-/* FOCUS BLOOMS RATHER THAN SWAPS. The ring goes to full accent and the glow widens, which is
-   the same information the old one carried and more of it. */
-.askbox .composer:focus-within {{ border-color:transparent;
+  -webkit-mask-composite:xor; mask-composite:exclude; }}
+/* FOCUS BLOOMS RATHER THAN SWAPS. The ring's middle stop is a variable and focus moves it from
+   the grey rule to full accent, so one declaration lights the whole hairline and the glow
+   widens under it. It was written as a second gradient on a second pseudo element rule, which
+   said the same thing in four times the bytes, and this sheet is inside a congestion window. */
+.askbox .composer:focus-within {{ --ring:var(--accent); border-color:transparent;
   background:color-mix(in srgb,var(--surface) 78%,transparent);
   box-shadow:inset 0 1px 0 color-mix(in srgb,var(--ink-bright) 10%,transparent),
              0 0 0 4px color-mix(in srgb,var(--accent) 16%,transparent),
              0 14px 36px -18px var(--night); }}
-.askbox .composer:focus-within::before {{
-  background:linear-gradient(135deg,
-    color-mix(in srgb,var(--accent) 90%,transparent) 0%,
-    color-mix(in srgb,var(--accent) 45%,transparent) 50%,
-    color-mix(in srgb,var(--accent) 75%,transparent) 100%); }}
 /* The caret and any selection belong to the accent, which nothing else on the page was doing
    and which is most of what makes a field feel like it is listening. */
 .askbox .composer input {{ caret-color:var(--accent); }}
