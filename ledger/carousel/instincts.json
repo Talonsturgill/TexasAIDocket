@@ -196,6 +196,14 @@
       "evidence": "Admitting four items moved by_room open_meeting from 44 to 45, which un-authorised the digits in the campus name Project Gold Phase 2 - DFW44 on /construction/ and turned the build red at the point the deck was being planned. Reading the report's tail rather than its exit code had hidden it for two builds.",
       "confirmed": [],
       "contradicted": []
+    },
+    {
+      "id": "run-guards-local-before-you-push",
+      "learned": "2026-08-23",
+      "instinct": "Run scripts/shared/guards_local.py in full before the first push, never a hand picked list of gates, because the suite reads guards.yml and a hand picked list is the half that misses what your own change broke somewhere else.",
+      "evidence": "This run pushed after running about a dozen named gates by exit code and CI came back red on docket_calendar's self-test, three assertions, caused by four expires key_dates this run had itself introduced. The full local suite reproduces it in one command and was run only after CI had already found it.",
+      "confirmed": [],
+      "contradicted": []
     }
   ]
 }
