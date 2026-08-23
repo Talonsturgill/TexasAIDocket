@@ -1152,7 +1152,9 @@ def cite_label(family: str, title: str, name: str = "") -> str:
 INSTRUMENT_CITES = {
     "grid": ["the ERCOT grid watch", "grid/", "ERCOT grid watch"],
     "water": ["the water record", "water/", "Texas reservoir storage"],
-    "weather": ["the weather record", "data/", "Weather at the anchor station"],
+    # The weather has no page of its own, so this cited `data/`. That page is gone with the
+    # record download, and the front page is where the reading actually appears.
+    "weather": ["the weather record", "", "Weather at the anchor station"],
 }
 
 

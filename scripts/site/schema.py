@@ -303,11 +303,6 @@ def dataset_node(ctx: Ctx, items: list, today: str) -> dict:
         "keywords": ["Texas", "artificial intelligence", "data centers", "ERCOT",
                      "public records", "state policy"],
         "spatialCoverage": {"@type": "State", "name": "Texas"},
-        "distribution": [{
-            "@type": "DataDownload",
-            "encodingFormat": "application/json",
-            "contentUrl": ctx.url("docket.json"),
-        }],
         "variableMeasured": [
             {"@type": "PropertyValue", "name": "status",
              "description": "Whether the decision is pending, decided or withdrawn."},
@@ -793,8 +788,12 @@ def self_test() -> int:
     ok("the organization has a stable id", org["@id"].endswith("/#org"))
     ok("the dataset points at the organization",
        ds["creator"]["@id"] == org["@id"] and ds["publisher"]["@id"] == org["@id"])
-    ok("the dataset carries a licence and a distribution",
-       ds["license"] == LICENSE and ds["distribution"][0]["contentUrl"].endswith("docket.json"))
+    # THE DATASET ADVERTISES NO DOWNLOAD, because there is not one. It carried a DataDownload
+    # pointing at `docket.json` until the record stopped being published as a file, and a
+    # structured-data node promising a download that 404s is worse than one that promises
+    # nothing: a crawler acts on it, fails, and learns the site is unreliable.
+    ok("the dataset carries a licence and advertises no download",
+       ds["license"] == LICENSE and "distribution" not in ds)
     ok("...and a temporal span computed from the record", "/" in ds.get("temporalCoverage", ""))
 
     r = report_node(ctx, items[2], today)

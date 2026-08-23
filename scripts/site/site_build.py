@@ -142,11 +142,10 @@ NAV = [("", "Home"), ("record/", "Docket"), ("datacenters/", "Data centers"),
 # somebody who did not find what they came for goes looking, and the machine-readable surfaces
 # belong there rather than in the top bar.
 #
-# THE FOOTER SAID "DATA" TWICE. It listed the `/data/` page and then listed `docket.json` as
-# "Open data" beside it, which is the same idea under two names one word apart. Worse, all
-# three raw links it carried are the exact three the `/data/` page exists to list, with the
-# context that page adds and the footer cannot. So the page is the entry and the raw links
-# come out. One name, one route, and the shortest footer this site has had.
+# THE DATA ENTRY IS GONE, and the record is no longer published as a file. The docket is the
+# expensive thing this project makes, and handing it over as one parseable download was giving
+# away the whole of it to anyone who wanted to reproduce the site. The record is still read on
+# `/record/`, item by item, which is where a reader was always going to read it.
 # The scan is the free front door under the services ladder, so it belongs in the way out
 # rather than in the top bar. Eight items is already a full masthead and a ninth would
 # cost the seven that were there first.
@@ -165,7 +164,7 @@ NAV = [("", "Home"), ("record/", "Docket"), ("datacenters/", "Data centers"),
 # with nothing on the site linking to it. It was in the sitemap and reachable by URL, which is
 # exactly enough to look fine and to be unread. `link_check.py` is what found it.
 FOOTNAV = NAV[1:] + [("topic/", "Beats"), ("place/", "Places"), ("sources/", "Sources"),
-                     ("questions/", "Questions"), ("scan/", "Scan"), ("data/", "Data")]
+                     ("questions/", "Questions"), ("scan/", "Scan")]
 
 # WHERE THIS RECORD IS, ELSEWHERE ON THE WEB.
 #
@@ -669,10 +668,10 @@ def page(*, title: str, desc: str, body: str, depth: int, active: str,
     # every page was the wrong place for it. Stated that way it is an assertion a reader has no
     # way to check, repeated 167 times.
     #
-    # It is not lost. `/data/` makes the same commitment where it can also say how it is kept,
-    # naming the build gate that fails on a figure tracing to nothing, which is the half that
-    # makes it worth reading. A claim with its mechanism on one page beats a claim without one
-    # on every page.
+    # It is not lost. `/record/` carries the same commitment where it can also say how it is
+    # kept, naming the build gate that fails on a figure tracing to nothing, which is the half
+    # that makes it worth reading. A claim with its mechanism on one page beats a claim without
+    # one on every page. It lived on `/data/` until that page came down with the download.
     colophon = "".join(f"<span>{e(s)}</span>" for s in (
         MADE_AT_LEDE,
         # THE PAGE'S OWN DATE, NOT THE BUILD'S. This printed the build date under every page
@@ -1176,8 +1175,8 @@ def telemetry(today: str) -> str:
     the grid page, back when it reported the grid. A reader who clicks a line about the heat
     lands on a page that says nothing about the heat, and an unpaid promise costs more than
     the click was worth. The sibling's daily chip is a plain div for the same reason. The
-    record behind it is published as open data and listed on the data page, which is where
-    somebody who wants the numbers goes.
+    series behind it is published as open data at `weather.json`, which is where somebody who
+    wants the numbers goes.
 
     Returns "" when the record holds nothing or has gone stale, because a front page that
     invents a number to fill a slot is the exact failure this project exists to not have.
@@ -3769,37 +3768,6 @@ def county_links(items: list, today: str, depth: int) -> dict:
             for it in items for c in (it.get("geography") or {}).get("counties") or []}
 
 
-def data_page(items: list, today: str) -> str:
-    proj = dk.project(items, today)
-    rows = "".join(f'<tr><td>{e(k)}</td><td class="n num">{v}</td></tr>'
-                   for k, v in proj["counts"]["by_topic"].items())
-    body = f"""
-<h1>The data</h1>
-<div class="prose">
-  <p>Four files, each the one this site was built from, so anything published here can be
-  recomputed rather than taken on trust.</p>
-  <ul class="filelist" data-prose="data">
-    <li><a href="../docket.json">docket.json</a> every decision in the record</li>
-    <li><a href="../gridwatch.json">gridwatch.json</a> one settled ERCOT day per record, hourly</li>
-    <li><a href="../waterwatch.json">waterwatch.json</a> reservoir storage, per reservoir per day</li>
-    <li><a href="../weather.json">weather.json</a> observed daily weather, with its normals</li>
-  </ul>
-</div>
-<table><thead><tr><th>Topic</th><th class="n">Items</th></tr></thead><tbody>{rows}</tbody></table>
-<div class="prose">
-  <h2>How a fact gets in</h2>
-  <p>An entry is admitted when every gate passes. The shape is valid and every claim carries a
-  verbatim quote and a URL that was fetched. No numeral appears in the prose that is not either
-  quoted from a source or computed from the record itself. At least one source is primary.</p>
-  <p>Entries that fail stay out until they pass. Nothing is published on the strength of a
-  headline alone.</p>
-</div>
-"""
-    return page(title=f"The data · {SITE_NAME}", depth=1, active="data/",
-                desc="The Texas AI Docket as open data, and the gates every entry passes.",
-                body=body, today=today, canonical="data/")
-
-
 def grid_page(today: str) -> str:
     """The Texas Grid Watch. A sibling of the docket, not a child of it.
 
@@ -5059,7 +5027,6 @@ def llms_txt(items: list, today: str) -> str:
         f"- [The record, every tracked decision]({SITE_URL}/record/)",
         f"- [Questions answered from the record]({SITE_URL}/questions/)",
         f"- [Every source a claim was checked against]({SITE_URL}/sources/)",
-        f"- [The data, its schema and its licence]({SITE_URL}/data/)",
         f"- [Texas Grid Watch, the daily ERCOT record]({SITE_URL}/grid/)",
         f"- [Texas Water Watch]({SITE_URL}/water/)",
     ]
@@ -5113,7 +5080,6 @@ def llms_txt(items: list, today: str) -> str:
         f"- [Atom]({SITE_URL}/atom.xml)",
         f"- [JSON Feed]({SITE_URL}/feed.json)", "",
         "## Data", "",
-        f"- [The whole record as JSON]({SITE_URL}/docket.json), CC BY 4.0",
         f"- [Every decision as Markdown, one fetch]({SITE_URL}/llms-full.txt)",
         f"- [Grid Watch as JSON]({SITE_URL}/gridwatch.json)",
         f"- [Water Watch as JSON]({SITE_URL}/waterwatch.json)", "",
@@ -5689,6 +5655,11 @@ def datacenters_page(today: str) -> str:
     camps = tdlr_projects.campuses(dc)
     multi = sum(1 for x in data["entities"] if x["reach"] > 1)
     doss = facility_dossier.load().get("dossiers") or []
+    # BOTH BEYOND PANELS READ THE SAME FILE, so it is loaded once. Generation moved here from
+    # the grid page on the owner's call: what is being BUILT FOR these buildings is a data
+    # center fact, and the grid tab is for what the system is doing rather than for who is
+    # arriving on it.
+    _beyond = beyond_panel.load()
 
     def bn(v):
         return f"${v / 1_000_000_000:.2f} billion" if v >= 1_000_000_000 else f"${n0(v)}"
@@ -5724,7 +5695,8 @@ def datacenters_page(today: str) -> str:
         f'<div class="dctiles" data-prose="data">{tiles}</div>'
         f'</article>'
         + f'<div class="prose dcpage">'
-        + beyond_panel.registry(beyond_panel.load(), today)
+        + beyond_panel.registry(_beyond, today)
+        + beyond_panel.generation(_beyond, today)
         + f'</div>'
         + f'<article class="prose dcpage">'
         f'<h2>Campuses, as the builder filed them</h2>'
@@ -5733,7 +5705,7 @@ def datacenters_page(today: str) -> str:
         f'beside them.</p>'
         f'<div class="cbtable cbcamp" data-prose="data">{crow}</div>'
         f'<p class="qnote"><a href="../construction/">The whole construction register</a>, by '
-        f'year, by county and by company, with the rule that decides what counts.</p>'
+        f'year, by county and by company. It states the rule that decides what counts.</p>'
         f'<h2>Where to go from here</h2>'
         f'<ul class="dcways">'
         f'<li><a href="../company/">Who is behind the registry</a>. Every company the state '
@@ -6179,20 +6151,14 @@ def build(out: Path, today: str) -> dict:
     w("index.html", home(items, today),
       _home_numerals(items, today) | listed(items) | covers_section(items, today)[0]
       | (_run_numerals(runs[0]) if runs else set()))
-    # THE VERSION THE LEDGER ALREADY CARRIES, PUBLISHED RATHER THAN DISCARDED.
+    # THE RECORD IS NOT PUBLISHED AS A FILE, on the owner's call. `docket.json` was the whole
+    # docket as one parseable download under CC BY, which is the single most expensive thing
+    # this project makes handed over in one fetch. The record is still READ here, item by item,
+    # with every claim and every source. What is gone is the bulk import.
     #
-    # This rebuilt `_spec` from scratch with only the build date, so `version` and `gates`
-    # existed in `ledger/docket.json` and reached no reader. The file is open data under
-    # CC BY, so the one thing a consumer needs, which is whether their parser still works,
-    # was the one thing the publish step dropped. Same shape as the site URL, the hashtags
-    # and the progress counter: a value stated in one place and a surface keeping its own
-    # copy of it. `dk.SPEC_VERSION` carries the rule that governs when it moves.
-    w("docket.json", json.dumps(
-        {"_spec": {"version": dk.SPEC_VERSION, "generated": today,
-                   "license": schema.LICENSE,
-                   "rule": "version rises only when a parser would break. A new field or a "
-                           "new topic never moves it."},
-         "items": items}, indent=2, ensure_ascii=False) + "\n")
+    # The instrument series stay open. They are derived from ERCOT, USGS and NOAA, anyone can
+    # rebuild them from the same public sources, and they are what backs the promise that a
+    # figure on this site can be recomputed rather than taken on trust.
     for it in items:
         w(f'item/{it["id"]}/index.html', item_page(it, today), by_item[it["id"]])
         # The Markdown twin. A crawler that fetches this gets the record without parsing HTML,
@@ -6423,7 +6389,6 @@ def build(out: Path, today: str) -> dict:
     corpus, pack = ask_corpus.write(out / "ask-corpus.json", out / "ask-pack.json",
                                     today, docs_dir=out)
     written.extend(["ask-corpus.json", "ask-pack.json"])
-    w("data/index.html", data_page(items, today))
     # THE DATA CENTERS TAB. Its numerals come from three registers and each is authorised by
     # the call that renders it: the roster panel authorises its own, the campus totals come
     # from `campuses()`, and the tiles are counted here.

@@ -1,21 +1,27 @@
 #!/usr/bin/env python3
-"""schema_contract.py — the published shape cannot change without saying so.
+"""schema_contract.py — the record shape cannot change without saying so.
 
 WHY THIS EXISTS
 
-`docket.json` is published as open data under CC BY and is meant to be parsed by other people
-and by machines. It carried a `_spec.version` in the ledger and the publish step rebuilt the
-block from scratch with only the build date, so the one thing a consumer needs was the one
-thing that never reached them.
+`ledger/docket.json` is the record every other module here reads. Ten of them parse it: the
+site build, the docket build, the calendar, the map, the staleness gate and the four ask
+builders among them. A field quietly renamed or retyped in the ledger breaks all of them, and
+it breaks them at different depths and at different times.
 
-Publishing the number is the easy half and on its own it makes things WORSE. **A version
-nothing is obliged to move is not a weak promise, it is a false one.** A consumer who pins to
-`version: 1` and receives a silently reshaped file is worse off than one who knew there was no
-guarantee at all, because the number talked them out of checking.
+**A version nothing is obliged to move is not a weak promise, it is a false one.** A reader of
+the shape who pins to `version: 1` and meets a silently reshaped file is worse off than one who
+knew there was no guarantee, because the number talked them out of checking.
 
-So this is the half that makes it true. It computes the shape of what is actually published
-and compares it against a committed contract, and it fails when the shape moved in a way that
-breaks a parser and the version did not rise to say so.
+So this computes the shape the ledger actually carries and compares it against a committed
+contract, and it fails when the shape moved in a way that breaks a parser and the version did
+not rise to say so.
+
+IT CHECKED THE PUBLISHED FILE UNTIL 2026-08-23. `docs/docket.json` was the whole record as one
+CC BY download, and this contract existed for the strangers parsing it. That file is no longer
+published, on the owner's call: the docket is the most expensive thing this project makes and
+one parseable fetch handed over all of it. The contract survives the download because its real
+subject was never the strangers. It was the ten modules here that would break in ten different
+ways, and they still read the same file.
 
 THE RULE, WHICH LIVES WITH THE CONSTANT IT GOVERNS in `docket_build.SPEC_VERSION`:
 
@@ -41,8 +47,8 @@ this will not block a run. When the shape really does change it is a change to a
 contract, and a person deciding whether it breaks anybody is exactly the friction that should
 be there.
 
-    schema_contract.py                 # check docs/ against config/schema_contract.json
-    schema_contract.py --update        # rewrite the contract from the current build
+    schema_contract.py                 # check the ledger against config/schema_contract.json
+    schema_contract.py --update        # rewrite the contract from the current record
     schema_contract.py --self-test
 """
 from __future__ import annotations
@@ -58,6 +64,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import docket_build as dk                                            # noqa: E402
 
 CONTRACT = REPO_ROOT / "config" / "schema_contract.json"
+# The record itself, which is what the shape is a contract over. This read the BUILT file until
+# the record stopped being published as one, and reading the ledger is what it should always
+# have done: a contract over the source cannot be dodged by a build that never ran.
+LEDGER_PATH = REPO_ROOT / "ledger" / "docket.json"
 DOCS = REPO_ROOT / "docs"
 
 # The published vocabularies, by the name they are checked under. Removing a value from any of
@@ -111,8 +121,8 @@ def shape_of(items: list) -> dict:
 
 
 def contract_now() -> dict:
-    """The contract the current build would publish."""
-    published = json.loads((DOCS / "docket.json").read_text(encoding="utf-8"))
+    """The contract the record currently carries."""
+    published = json.loads(LEDGER_PATH.read_text(encoding="utf-8"))
     return {
         "version": published["_spec"]["version"],
         "required": list(dk.REQUIRED_FIELDS),
@@ -164,7 +174,7 @@ def report() -> int:
     if breaking and new["version"] <= old["version"]:
         for line in breaking:
             print(f"  BREAKING: {line}", file=sys.stderr)
-        print(f"schema_contract: the published shape broke and _spec.version is still "
+        print(f"schema_contract: the record shape broke and _spec.version is still "
               f"{new['version']}. Raise docket_build.SPEC_VERSION, then --update.",
               file=sys.stderr)
         return 1
@@ -175,7 +185,7 @@ def report() -> int:
     if additive or old != new:
         print("schema_contract: the shape grew and nothing broke. Run --update to record it.")
         return 1
-    print(f"schema_contract: the published shape matches the contract at version "
+    print(f"schema_contract: the record shape matches the contract at version "
           f"{new['version']}, {len(new['fields'])} field(s)")
     return 0
 

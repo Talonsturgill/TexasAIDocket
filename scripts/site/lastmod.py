@@ -35,7 +35,7 @@ So every date below is a field this record already holds:
 
 WHAT CARRIES NO DATE AT ALL, WHICH IS THE HONEST HALF
 
-`/services/`, `/scan/`, `/data/`, `/datacenters/` and `404` are prose about the project. No
+`/services/`, `/scan/`, `/datacenters/` and `404` are prose about the project. No
 ledger field says when their words last changed, and the build date is not that. They get no
 `<lastmod>` and no footer stamp. `<lastmod>` is optional and a crawler treats an absent one as
 "no claim", which is exactly right, where a wrong one is a claim that costs the whole field its
@@ -64,7 +64,7 @@ HUB_PREFIXES = ("index.html", "record/", "topic/", "place/", "sources/", "questi
                 "articles/index.html")
 
 # Prose about the project. No ledger field dates these, so they make no claim.
-UNDATED_PREFIXES = ("services/", "scan/", "data/", "videos/", "404.html",
+UNDATED_PREFIXES = ("services/", "scan/", "videos/", "404.html",
                     "grid/", "water/", "facility/", "company/", "registry-changes/",
                     "datacenters/")
 

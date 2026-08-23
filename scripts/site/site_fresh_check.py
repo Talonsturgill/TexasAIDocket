@@ -29,7 +29,8 @@ happened: the pages workflow passed `--today $(date -u +%F)`, the committed site
 11th, the rebuild said August 12th, and a gate meant to catch a hand-edited page instead
 refused to publish a perfectly correct one, every day, forever.
 
-So the rebuild uses the date the committed site was BUILT with, read from `docs/docket.json`.
+So the rebuild uses the date the committed site was BUILT with, read from the instrument
+series the build publishes.
 Content equality is then the only thing being tested, which is the only thing this gate was
 ever about. Pass `--today` explicitly to compare against a specific date instead.
 
@@ -56,22 +57,39 @@ import site_build                                                  # noqa: E402
 DOCS = REPO_ROOT / "docs"
 
 
-def built_with(docs: Path) -> str | None:
-    """The date the committed site was built with, taken from its own open data.
+# THE FILES THAT CARRY THE BUILD'S OWN STAMP. Each is written by the same build that stamped
+# every page, with the same `today`, so any of them answers the question and they cannot
+# disagree without the build having half finished.
+#
+# IT READ `docket.json` UNTIL 2026-08-23 AND THAT FILE IS NO LONGER PUBLISHED. Removing the
+# record download took the freshness proof's clock with it, and this gate went red on a change
+# that had nothing to do with freshness. That is the gate working: it said it could not find a
+# date rather than rebuilding against today and reporting all 368 pages as drifted. A list is
+# what it should have read from in the first place, because a proof that depends on one file
+# continuing to exist is a proof with a single point of silence.
+STAMPED = ("gridwatch.json", "waterwatch.json", "weather.json")
 
-    `docs/docket.json` carries `_spec.generated`, written by the same build that stamped every
-    page. Reading it back is how the rebuild reproduces the committed site rather than a
-    differently dated one.
+
+def built_with(docs: Path) -> str | None:
+    """The date the committed site was built with, taken from the series it publishes.
+
+    Each file in `STAMPED` carries `_spec.generated`, written by the same build that stamped
+    every page. Reading it back is how the rebuild reproduces the committed site rather than a
+    differently dated one. The first one present answers; only a site missing all of them has
+    nothing to reproduce against.
     """
-    f = docs / "docket.json"
-    if not f.exists():
-        return None
-    try:
-        spec = json.loads(f.read_text(encoding="utf-8")).get("_spec") or {}
-    except (json.JSONDecodeError, OSError):
-        return None
-    d = spec.get("generated")
-    return d if isinstance(d, str) and len(d) == 10 else None
+    for name in STAMPED:
+        f = docs / name
+        if not f.exists():
+            continue
+        try:
+            spec = json.loads(f.read_text(encoding="utf-8")).get("_spec") or {}
+        except (json.JSONDecodeError, OSError):
+            continue
+        d = spec.get("generated")
+        if isinstance(d, str) and len(d) == 10:
+            return d
+    return None
 
 
 def compare(committed: Path, fresh: Path) -> tuple[list, list, list]:
@@ -161,7 +179,8 @@ def main() -> int:
 
     today = a.today or built_with(committed)
     if not today:
-        print("site_fresh_check: the committed site carries no build date in docket.json, "
+        print("site_fresh_check: the committed site carries no build date in any of "
+              f"{', '.join(STAMPED)}, "
               "so there is nothing to reproduce it against", file=sys.stderr)
         return 1
 

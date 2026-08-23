@@ -566,7 +566,7 @@ jobs:
       - name: Every canonical resolves and every page is reachable
         run: python3 scripts/site/link_check.py
 
-      - name: The published shape cannot move without saying so
+      - name: The record shape cannot move without saying so
         run: |
           # docket.json is open data under CC BY. It carried a version in the ledger and the
           # publish step dropped it, so the one thing a consumer needs, which is whether their
