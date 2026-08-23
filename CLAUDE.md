@@ -103,6 +103,33 @@ actor may trigger a rebuild; none may edit the output. This is what makes it str
 impossible for a run to corrupt the live site: the worst case is a stale build that a gate
 catches, never a broken page.
 
+## The record is not published as a file (AUTHORITATIVE, 2026-08-23)
+
+**`docket.json` is never written into `docs/`, and nothing links to it.** The docket is the
+most expensive thing this project makes. Publishing it as one CC BY download handed the whole
+of it to anyone who wanted to reproduce the site from a single fetch.
+
+What that does and does not mean:
+
+- The record is still READ, item by item, at `/record/` and `/item/<id>/`, with every claim
+  and every source. Nothing about what a reader can see changed.
+- The `/data/` page is gone and so is its footer entry. The `Dataset` JSON-LD node advertises
+  no `DataDownload`, because a structured-data promise that 404s is worse than no promise.
+- **The instrument series stay open.** `gridwatch.json`, `waterwatch.json` and `weather.json`
+  are still published. They derive from ERCOT, USGS and NOAA, anyone can rebuild them from the
+  same public sources, and they are what backs the promise below that a figure here can be
+  recomputed rather than taken on trust. The Grid Watch rule that calls it open data is intact.
+- `schema_contract.py` still runs, against `ledger/docket.json` rather than the built file. Its
+  subject was never the strangers parsing a download. It is the ten modules here that read the
+  record and would each break differently on a silent reshape.
+
+**Three surfaces still carry the whole record and are deliberate.** `llms-full.txt` and the
+per-item `index.md` twins exist so a model can read the record without parsing HTML, which is
+the AI-discoverability work this site was built for. `ask-pack.json` is the record as prose and
+the ask worker fetches it from a public URL, so the box cannot answer without it. Removing the
+download closed the bulk-import front door. It did not make the record unreadable, and saying
+otherwise would be the kind of claim this project does not get to make.
+
 ## Numbers are computed, never generated (THE LAW, and we publish it)
 
 **Every numeral this project publishes is produced by code, from data, and can be recomputed

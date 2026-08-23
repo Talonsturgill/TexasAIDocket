@@ -58,17 +58,22 @@ sys.path.insert(0, str(REPO_ROOT / "scripts" / "carousel"))
 import caption_check                                               # noqa: E402
 
 # EVERY FIELD AN ITEM MUST CARRY. Named rather than written inline in the validator, because
-# `schema_contract.py` checks the published shape against this exact list. Two copies of a
+# `schema_contract.py` checks the record's shape against this exact list. Two copies of a
 # required-field list is one of them going stale, and the stale one is always the check.
 REQUIRED_FIELDS = ("id", "title", "summary", "topic", "decider", "geography",
                    "status", "key_dates", "public_access", "claims", "last_verified")
 
-# THE VERSION OF THE PUBLISHED SHAPE, AND THE RULE THAT GOVERNS IT.
+# THE VERSION OF THE RECORD'S SHAPE, AND THE RULE THAT GOVERNS IT.
 #
-# `docket.json` is published as open data under CC BY and is meant to be parsed by other
-# people and by machines. A version number is the only way a consumer can tell whether their
-# parser still works, and it is worse than useless if nothing obliges it to move: a number
-# that asserts stability nothing is tracking leaves a consumer more confident and no safer.
+# `ledger/docket.json` is the record, and ten modules here parse it. The site build, this
+# build, the calendar, the map, the staleness gate and the four ask builders among them. A
+# version number is the only way a reader of the shape can tell whether its parser still
+# works, and it is worse than useless if nothing obliges it to move: a number that asserts
+# stability nothing is tracking leaves a caller more confident and no safer.
+#
+# It said "published as open data under CC BY and meant to be parsed by other people" until
+# 2026-08-23, when the record stopped being published as a file. The rule below did not change
+# with that, because the callers that would break are the ones that were always here.
 #
 # **BREAKING, so this must rise:**
 #   - a field in REQUIRED_FIELDS is removed, or stops being required
