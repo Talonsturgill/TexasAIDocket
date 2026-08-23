@@ -231,7 +231,7 @@ The AI-native framing is the coverage's and not the document's, so it was not av
 
 ## Retro
 
-**Instincts, two added, both at 0.50, which is the honest score for a lesson nothing has tested.**
+**Instincts, three added, all at 0.50, which is the honest score for a lesson nothing has tested.**
 
 - `verify-the-adjective-not-just-the-figure`. The compute-not-generate law guards numerals and
   this run nearly lost a whole treatment to an ADJECTIVE. Check the word against the document.
@@ -239,6 +239,9 @@ The AI-native framing is the coverage's and not the document's, so it was not av
   so admitting an item can turn a page red that this run never touched. Two builds had already
   been read by their tail rather than their exit code before the red was noticed, which is the
   fault `CLAUDE.md` names and which caught this run anyway.
+- `run-guards-local-before-you-push`. Added after CI found the calendar failures this run's own
+  hand picked gate list had missed. The suite reads `guards.yml`, so it can't fall behind CI, and
+  a hand picked list is the half that misses what your change broke somewhere else.
 
 No instincts were confirmed or contradicted, because the ledger held none. It has shipped no
 lesson that has survived three runs, so the directors room was handed nothing, which is correct
@@ -260,8 +263,8 @@ worth editing the machine for on a run that is not merging.
 | Backlog no longer than at wake | **Met.** Held at 3, unchanged. |
 | A deck shipped, merged, with a Gmail draft waiting | **NOT MET.** No deck, no merge, no draft. |
 | Every fact traces to a verified claim | **Met.** All 10 deck claims verified character for character; every new record claim quoted from a fetched document. |
-| Every machine gate green by exit code | **NOT MET.** `site_build.py` exits 1. Everything else green. |
-| Ledgers updated so tomorrow cannot repeat today | **Partly.** Instincts written. Topics, artwork and captions untouched, because no deck shipped and writing them would claim a deck that does not exist. |
+| Every machine gate green by exit code | **NOT MET.** `guards_local` reports 4 of 114 failing and all four are `site_build.py`. Every record gate green. See the correction at the top: a second failure, `docket_calendar`, was this run's own and is fixed. |
+| Ledgers updated so tomorrow cannot repeat today | **Partly.** Three instincts written, the third being the one CI taught. Topics, artwork and captions untouched, because no deck shipped and writing them would claim a deck that does not exist. |
 | `docs/` rebuilt and byte fresh | **NOT MET.** Blocked by the same gate. |
 | Branch merged, or run marked failed with evidence committed | **Met, the second way.** |
 
