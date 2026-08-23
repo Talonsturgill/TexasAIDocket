@@ -222,3 +222,43 @@ outlets describe the UT Dell Medical Center approved at the same meeting as an *
 hospital. The Regents' own agenda book never uses the words artificial intelligence in that item.
 It says "digital technology, robotics, and automation" and a "digitally enabled infrastructure".
 The AI-native framing is the coverage's and not the document's, so it was not available.
+
+## Retro
+
+**Instincts, two added, both at 0.50, which is the honest score for a lesson nothing has tested.**
+
+- `verify-the-adjective-not-just-the-figure`. The compute-not-generate law guards numerals and
+  this run nearly lost a whole treatment to an ADJECTIVE. Check the word against the document.
+- `read-the-exit-code-after-the-record-changes`. The numeral gate's authorised set is site wide,
+  so admitting an item can turn a page red that this run never touched. Two builds had already
+  been read by their tail rather than their exit code before the red was noticed, which is the
+  fault `CLAUDE.md` names and which caught this run anyway.
+
+No instincts were confirmed or contradicted, because the ledger held none. It has shipped no
+lesson that has survived three runs, so the directors room was handed nothing, which is correct
+rather than a gap.
+
+**Upgrades, zero, and the reason is the run's own blocker.** The one upgrade this run identified
+is the `_c["project"]` token in `site_build.py`, and that file is `human` owned. The routine's
+rule for an upgrade that needs another actor's file is to write it down as a proposal and stop,
+which is what happened. No upgrade engineer was spawned, because there is no second candidate
+worth editing the machine for on a run that is not merging.
+
+## Against the success criteria, honestly
+
+| criterion | result |
+|---|---|
+| Worklist cleared in full | **Met.** All 6, each against a primary source fetched this run. |
+| Nothing rotten remains | **Met.** The selector reported none and exited 0. |
+| Every admitted item cites a primary source and names where it is | **Met.** 4 items, each on a federal award record or a board's own agenda book, each with a county. |
+| Backlog no longer than at wake | **Met.** Held at 3, unchanged. |
+| A deck shipped, merged, with a Gmail draft waiting | **NOT MET.** No deck, no merge, no draft. |
+| Every fact traces to a verified claim | **Met.** All 10 deck claims verified character for character; every new record claim quoted from a fetched document. |
+| Every machine gate green by exit code | **NOT MET.** `site_build.py` exits 1. Everything else green. |
+| Ledgers updated so tomorrow cannot repeat today | **Partly.** Instincts written. Topics, artwork and captions untouched, because no deck shipped and writing them would claim a deck that does not exist. |
+| `docs/` rebuilt and byte fresh | **NOT MET.** Blocked by the same gate. |
+| Branch merged, or run marked failed with evidence committed | **Met, the second way.** |
+
+This run is rung (d) of the degradation ladder, the record updated in full and no deck, and it
+got there through an external blocker rather than through a choice. The record is the durable
+half and it is saved.
