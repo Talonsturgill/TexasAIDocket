@@ -3341,7 +3341,7 @@
     }
    ],
    "id": "tx-2026-0048",
-   "last_verified": "2026-08-20",
+   "last_verified": "2026-08-23",
    "history": [
     {
      "date": "2026-08-19",
@@ -3358,6 +3358,10 @@
     {
      "date": "2026-08-20",
      "note": "The council's next regular meeting is August 25th, 2026 at 6:00 PM in Council Chambers at 200 West Walker Street. That agenda is posted final. None of its items names an automated license plate reader, Flock or a camera, and public comment there may be general in nature. The proposition itself is on the November 3rd ballot and the published wording says the result does not bind the council."
+    },
+    {
+     "date": "2026-08-23",
+     "note": "Checked and unchanged. The council's legislative record still shows Ordinance No. 2026-27 approved on first and final reading on August 11th and carries no action after it. The special election is still set for November 3rd and the proposition still carries the word the council voted to add."
     }
    ],
    "notes_for_editor": "2026-08-20, three corrections to this item's own prose and none to a fetched fact. The summary gave the mover a first name, Courtney, that no fetched record carries, and dropped the seconder the quote names. It also said the council passed the ordinance twice that evening, once on first reading and once on first and final reading, where the quote establishes one motion on first and final reading and nothing establishes a second. It called the cameras Flock Safety devices where the reporting says Flock cameras and Pflugerville's own item title says Flock Group, Inc. The heavier one was in public_access.how, which read 'The decision itself now goes to registered voters at the November 3rd, 2026 election'. That sat four lines below this item's own sentence saying the council keeps the decision either way, and against the ballot's published first clause, in the field the site prints under how to take part. Root cause: the field was written on 2026-08-14 from the ordinance, which orders an election, and was never revisited when the ballot wording arrived on 2026-08-20 and turned the election into a preference poll. A field that describes access was carrying a claim about effect.\n\n2026-08-20, second pass. The address, the date and the hour had been carried in public_access prose since the 14th with no quote behind them, and the day's deck was printing all three as its largest type. The meeting's own agenda was fetched instead, Legistar event 2222, and it carries the room and the street verbatim in item 1. Going to get it turned up the stronger finding: the agenda is FINAL with 61 titled items and not one names a licence plate reader, Flock or a camera. Until today this item could only say the record did not establish the question WAS on that agenda. It can now say the posted final agenda does not carry it. What that does NOT say, and this item must not: that the council will not reach the question on another date, or that the agenda's own ITEMS ADDED AFTER ELECTRONIC AGENDA COMPLETED placeholder will stay empty.\n\n2026-08-20, third pass. public_access.how still carried 'with a Council Budget and CIP Workshop at 5:00 PM', an hour no claim in this run establishes, in the same field whose note two paragraphs up was written to get unquoted particulars OUT of it. The event fetch returned exactly one League City event between August 20th and August 31st and it is the 6:00 PM council meeting. The workshop and its hour are removed. A correction that names a fault and then leaves an instance of it in the same paragraph is the fault surviving its own repair."
@@ -4080,7 +4084,7 @@
     }
    ],
    "id": "tx-2026-0057",
-   "last_verified": "2026-08-22",
+   "last_verified": "2026-08-23",
    "history": [
     {
      "date": "2026-08-19",
@@ -4097,6 +4101,10 @@
     {
      "date": "2026-08-22",
      "note": "Checked and unchanged. The cancelation notice still stands and still says the meeting will be rescheduled for a later date. No replacement date appears, so the date a Texan in Panhandle could speak is still unset, and the originally scheduled August 24th date is now two days away."
+    },
+    {
+     "date": "2026-08-23",
+     "note": "Checked and unchanged. The cancelation notice for the Carson County meeting on Fermi Equipment Holdco's air permits still stands and still says the meeting will be rescheduled for a later date. No new date is posted, and the originally scheduled evening is tomorrow."
     }
    ]
   },
@@ -5388,6 +5396,26 @@
      "date": "2026-08-20",
      "kind": "hearing",
      "note": "Utility commission open meeting carrying ERCOT's request for a good cause exception, agenda item 22"
+    },
+    {
+     "date": "2026-08-20",
+     "kind": "ordered",
+     "note": "Commission order granting the good cause exceptions, filed in Project No. 59142"
+    },
+    {
+     "date": "2026-08-31",
+     "kind": "statutory_deadline",
+     "note": "Date the grid operator asked to conditionally classify large loads by, in place of the August 7th deadline"
+    },
+    {
+     "date": "2026-12-10",
+     "kind": "statutory_deadline",
+     "note": "Both the eligibility verification report and the community impact review report are to be filed"
+    },
+    {
+     "date": "2026-12-17",
+     "kind": "hearing",
+     "note": "Commission open meeting that takes up the two reports"
     }
    ],
    "public_access": {
@@ -5495,9 +5523,117 @@
      "source_title": "PUCT open meeting agenda, August 20th, 2026, item 1, Public Comment",
      "source_type": "primary_official",
      "fetched": "2026-08-20"
+    },
+    {
+     "id": "tx-2026-0072-c12",
+     "text": "The commission granted the exceptions ERCOT asked for, and gave its reason.",
+     "verbatim_quote": "Good cause exists to allow ERCOT to complete the verification and audit and report the results to the Commission before continuing the Batch Zero interconnection process.",
+     "source_url": "https://interchange.puc.texas.gov/Documents/59142_53_1675960.PDF",
+     "source_title": "Public Utility Commission of Texas, Project No. 59142, Order Granting Good Cause Exceptions",
+     "source_type": "primary_official",
+     "fetched": "2026-08-23"
+    },
+    {
+     "id": "tx-2026-0072-c13",
+     "text": "The order records that the grid operator is pausing the study of loads at or above the large load threshold.",
+     "verbatim_quote": "In response, ERCOT intends to temporarily pause its transitional Batch Zero interconnection study of loads that are 75 MW or more (Large Loads), including data centers and virtual currency mining facilities, until the verification and audit are complete.",
+     "source_url": "https://interchange.puc.texas.gov/Documents/59142_53_1675960.PDF",
+     "source_title": "Public Utility Commission of Texas, Project No. 59142, Order Granting Good Cause Exceptions",
+     "source_type": "primary_official",
+     "fetched": "2026-08-23"
+    },
+    {
+     "id": "tx-2026-0072-c14",
+     "text": "The community impact half of the audit reaches a lower threshold than the pause does.",
+     "verbatim_quote": "As part of the same effort, ERCOT will request the community impact information identified in the Governor's letter from all data centers and virtual currency mining facilities of 25 MW or more that have not yet energized.",
+     "source_url": "https://interchange.puc.texas.gov/Documents/59142_53_1675960.PDF",
+     "source_title": "Public Utility Commission of Texas, Project No. 59142, Order Granting Good Cause Exceptions",
+     "source_type": "primary_official",
+     "fetched": "2026-08-23"
+    },
+    {
+     "id": "tx-2026-0072-c15",
+     "text": "The order states how long the work is expected to take.",
+     "verbatim_quote": "The verification and audit will take several months, so ERCOT was unable to meet an initial classification deadline in its rules for the Batch Zero study process.",
+     "source_url": "https://interchange.puc.texas.gov/Documents/59142_53_1675960.PDF",
+     "source_title": "Public Utility Commission of Texas, Project No. 59142, Order Granting Good Cause Exceptions",
+     "source_type": "primary_official",
+     "fetched": "2026-08-23"
+    },
+    {
+     "id": "tx-2026-0072-c16",
+     "text": "The grid operator reported how many technical models it had reviewed and how many passed on the first look.",
+     "verbatim_quote": "ERCOT has reviewed 290 dynamic models and approximately 18% were acceptable on first review",
+     "source_url": "https://interchange.puc.texas.gov/Documents/59142_52_1675837.ZIP",
+     "source_title": "Electric Reliability Council of Texas, Batch Zero Verification and Audit, presentation filed in Project No. 59142",
+     "source_type": "primary_official",
+     "fetched": "2026-08-23"
+    },
+    {
+     "id": "tx-2026-0072-c17",
+     "text": "The filing defines the two size bands the audit uses.",
+     "verbatim_quote": "Large loads: 75 MW or greater | Medium loads: At least 25 MW and less than 75 MW",
+     "source_url": "https://interchange.puc.texas.gov/Documents/59142_52_1675837.ZIP",
+     "source_title": "Electric Reliability Council of Texas, Batch Zero Verification and Audit, presentation filed in Project No. 59142",
+     "source_type": "primary_official",
+     "fetched": "2026-08-23"
+    },
+    {
+     "id": "tx-2026-0072-c18",
+     "text": "The community impact request goes to projects at or above the medium load floor that have not switched on.",
+     "verbatim_quote": "ERCOT will request information from data center and crypto facilities that have requested 25 MW or more and have yet to energize",
+     "source_url": "https://interchange.puc.texas.gov/Documents/59142_52_1675837.ZIP",
+     "source_title": "Electric Reliability Council of Texas, Batch Zero Verification and Audit, presentation filed in Project No. 59142",
+     "source_type": "primary_official",
+     "fetched": "2026-08-23"
+    },
+    {
+     "id": "tx-2026-0072-c19",
+     "text": "The filing gives the size of the medium load population the community impact review will refresh.",
+     "verbatim_quote": "April snapshot had 157 medium data center and crypto loads totaling approximately 8,766 MW",
+     "source_url": "https://interchange.puc.texas.gov/Documents/59142_52_1675837.ZIP",
+     "source_title": "Electric Reliability Council of Texas, Batch Zero Verification and Audit, presentation filed in Project No. 59142",
+     "source_type": "primary_official",
+     "fetched": "2026-08-23"
+    },
+    {
+     "id": "tx-2026-0072-c20",
+     "text": "Projects that had cleared every other step are the ones the energization pause holds.",
+     "verbatim_quote": "17 large loads (6,608 MW total peak demand over 5 years) | These large loads have finished all ERCOT processes except have not received ERCOT's approval to energize.",
+     "source_url": "https://interchange.puc.texas.gov/Documents/59142_52_1675837.ZIP",
+     "source_title": "Electric Reliability Council of Texas, Batch Zero Verification and Audit, presentation filed in Project No. 59142",
+     "source_type": "primary_official",
+     "fetched": "2026-08-23"
+    },
+    {
+     "id": "tx-2026-0072-c21",
+     "text": "Both reports are due on the same December date and go to an open meeting a week later.",
+     "verbatim_quote": "December 10 | File Batch Zero Eligibility Verification Report | December 17 | Commission Open Meeting",
+     "source_url": "https://interchange.puc.texas.gov/Documents/59142_52_1675837.ZIP",
+     "source_title": "Electric Reliability Council of Texas, Batch Zero Verification and Audit, presentation filed in Project No. 59142",
+     "source_type": "primary_official",
+     "fetched": "2026-08-23"
+    },
+    {
+     "id": "tx-2026-0072-c22",
+     "text": "A load that does not clear verification, or stays silent, is put out of the study.",
+     "verbatim_quote": "Large loads that do not pass verification, or do not respond, will be disqualified from Batch Zero",
+     "source_url": "https://interchange.puc.texas.gov/Documents/59142_52_1675837.ZIP",
+     "source_title": "Electric Reliability Council of Texas, Batch Zero Verification and Audit, presentation filed in Project No. 59142",
+     "source_type": "primary_official",
+     "fetched": "2026-08-23"
+    },
+    {
+     "id": "tx-2026-0072-c23",
+     "text": "The grid operator asked to classify loads conditionally by a new date rather than the one it missed.",
+     "verbatim_quote": "To excuse ERCOT from the August 7, 2026 classification deadline in Planning Guide § 9.3.1(2)(a) and instead allow ERCOT to conditionally classify large loads by August 31, 2026.",
+     "source_url": "https://interchange.puc.texas.gov/Documents/59142_52_1675837.ZIP",
+     "source_title": "Electric Reliability Council of Texas, Batch Zero Verification and Audit, presentation filed in Project No. 59142",
+     "source_type": "primary_official",
+     "fetched": "2026-08-23"
     }
    ],
-   "last_verified": "2026-08-20",
+   "last_verified": "2026-08-23",
    "confidence": "high",
    "notes_for_editor": "Raw HTML fetched with a browser User-Agent, quotes checked character for character.",
    "history": [
@@ -5512,6 +5648,10 @@
     {
      "date": "2026-08-20",
      "note": "The exception ERCOT said it would seek is on the commission's agenda today. The published agenda for the August 20th open meeting lists Project 59142, the review of ERCOT's interconnection processes for large loads. The item includes discussion and possible action on an ERCOT request for a good cause exception. The same agenda lists Project 58481, the rulemaking to implement large load interconnection standards. Neither item is on the agenda's list of matters to be taken up without discussion."
+    },
+    {
+     "date": "2026-08-23",
+     "note": "The exception was granted. The commission signed an order in Project No. 59142 on August 20th letting the grid operator miss the August 7th classification deadline and pause the Batch Zero study of loads at 75 megawatts or more until the audit is done. The grid operator filed the audit's design the same day. It asks community impact information from data centers and crypto facilities of 25 megawatts or more that have not yet energized, which is a lower floor than the pause uses, and it reports that 290 dynamic models have been reviewed with approximately 18 percent acceptable on first review."
     }
    ]
   },
@@ -5641,7 +5781,7 @@
      "fetched": "2026-08-20"
     }
    ],
-   "last_verified": "2026-08-20",
+   "last_verified": "2026-08-23",
    "confidence": "high",
    "notes_for_editor": "lrl.texas.gov robots.txt carries content signals and no path disallow.",
    "history": [
@@ -5652,6 +5792,10 @@
     {
      "date": "2026-08-20",
      "note": "Both hearings are confirmed against the Legislature's own notices. The State Affairs notice of August 19th carries a second charge. It covers the regulatory and planning processes for the proposed 765 kV transmission lines, which the earlier record did not name. It took invited and public testimony, limited to two minutes a witness, with registration closing at 10:00 am that day. The Public Health notice for August 20th takes invited testimony only. The written comment is the one route a Texan has on the artificial intelligence in health care charge, and it stays open until the hearing is adjourned."
+    },
+    {
+     "date": "2026-08-23",
+     "note": "Checked and unchanged. The Legislative Reference Library's posting for that week still lists the State Affairs hearing on August 19th and the Public Health hearing on August 20th, and both dates have now passed."
     }
    ]
   },
@@ -5728,9 +5872,18 @@
      "source_title": "Ordinance of the City of Pflugerville ordering a special election on proposed amendments to the Home Rule Charter",
      "source_type": "primary_official",
      "fetched": "2026-08-20"
+    },
+    {
+     "text": "The ordinance ordering the charter election passed its second reading unanimously.",
+     "verbatim_quote": "Mayor Weiss read the caption of the ordinance. Mr. Metayer moved to approve the ordinance on second reading. Mr. Coffman seconded the motion. All voted in favor. The motion carried.",
+     "source_url": "https://webapi.legistar.com/v1/pflugerville/matters/18074/histories",
+     "source_title": "City of Pflugerville legislative record, ORD-0890 history",
+     "source_type": "primary_official",
+     "id": "tx-2026-0075-c5",
+     "fetched": "2026-08-23"
     }
    ],
-   "last_verified": "2026-08-20",
+   "last_verified": "2026-08-23",
    "confidence": "high",
    "notes_for_editor": "The quoted charter text carries semicolons and the abbreviation AI as the commission wrote them. It is quoted material and exempt from the house punctuation rules by design. The commission's report is a recommendation to the council. The ordinance submits the measures as listed in an exhibit that was not readable, so the record says the commission recommends this section and never that a ballot proposition carries this wording. The proposition letters are not published here for the same reason.",
    "history": [
@@ -5741,6 +5894,10 @@
     {
      "date": "2026-08-20",
      "note": "The election ordinance itself is now on the record beside the commission's report. It sets November 3rd, 2026 with polls open from 7:00 a.m. to 7:00 p.m. The commission put 21 amendments forward. The wording each proposition will carry on the ballot is in an exhibit to the ordinance and is unconfirmed, so what is published here is the section the commission recommends."
+    },
+    {
+     "date": "2026-08-23",
+     "note": "Checked and unchanged. The city's own legislative record shows the ordinance ordering the charter election approved on second reading on August 11th with all members voting in favor, and no later action on it. The election is still set for November 3rd."
     }
    ]
   },
@@ -5928,9 +6085,18 @@
      "source_title": "Legislative Reference Library of Texas, Interim Hearings, Week of August 24th, 2026",
      "source_type": "primary_official",
      "fetched": "2026-08-21"
+    },
+    {
+     "text": "The Senate's upcoming meetings listing carries the hearing with its date, time and room.",
+     "verbatim_quote": "Tuesday, August 25, 2026|9:00 AM |Transportation|Type: Public Hearing Location: E1.016 (Hearing Room)",
+     "source_url": "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S",
+     "source_title": "Texas Legislature Online, Upcoming Senate Committee Meetings",
+     "source_type": "primary_official",
+     "id": "tx-2026-0077-c8",
+     "fetched": "2026-08-23"
     }
    ],
-   "last_verified": "2026-08-22",
+   "last_verified": "2026-08-23",
    "confidence": "high",
    "notes_for_editor": "Statewide because the charge covers deployment on Texas roads generally. The room is in Travis County and the subject is not.",
    "history": [
@@ -5945,6 +6111,10 @@
     {
      "date": "2026-08-22",
      "note": "Checked and unchanged. The Senate notice still sets the hearing for 9:00 AM on August 25th, 2026 in hearing room E1.016. The autonomous vehicle charge still asks the committee to quantify the impact on traffic related collisions."
+    },
+    {
+     "date": "2026-08-23",
+     "note": "Checked and unchanged. The Senate's own upcoming meetings listing still sets the Transportation hearing for 9:00 AM on August 25th in hearing room E1.016, and does not mark it canceled where it marks another committee's meeting that day canceled."
     }
    ]
   },
