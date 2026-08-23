@@ -1026,6 +1026,52 @@ caption { caption-side:bottom; text-align:left; padding-top:.75rem; font-size:va
 .composer button[type="submit"] svg { width:1.05rem; height:1.05rem; display:block; }
 .composer button[type="submit"]:hover { transform:translateY(-1px); }
 .composer button[type="submit"]:active { transform:translateY(0); }
+.askbox .composer { position:relative; isolation:isolate;
+  border-color:transparent;
+  background:color-mix(in srgb,var(--surface) 62%,transparent);
+  -webkit-backdrop-filter:blur(16px) saturate(150%);
+  backdrop-filter:blur(16px) saturate(150%);
+  box-shadow:inset 0 1px 0 color-mix(in srgb,var(--ink-bright) 7%,transparent),
+             0 10px 30px -18px var(--night); }
+.askbox .composer::before { content:""; position:absolute; inset:0; z-index:-1;
+  border-radius:inherit; padding:var(--hair); pointer-events:none;
+  background:linear-gradient(135deg,
+    color-mix(in srgb,var(--accent) 52%,transparent) 0%,
+    color-mix(in srgb,var(--rule-strong) 92%,transparent) 42%,
+    color-mix(in srgb,var(--accent) 26%,transparent) 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor; mask-composite:exclude;
+  transition:opacity .2s ease; }
+.askbox .composer:focus-within { border-color:transparent;
+  background:color-mix(in srgb,var(--surface) 78%,transparent);
+  box-shadow:inset 0 1px 0 color-mix(in srgb,var(--ink-bright) 10%,transparent),
+             0 0 0 4px color-mix(in srgb,var(--accent) 16%,transparent),
+             0 14px 36px -18px var(--night); }
+.askbox .composer:focus-within::before {
+  background:linear-gradient(135deg,
+    color-mix(in srgb,var(--accent) 90%,transparent) 0%,
+    color-mix(in srgb,var(--accent) 45%,transparent) 50%,
+    color-mix(in srgb,var(--accent) 75%,transparent) 100%); }
+.askbox .composer input { caret-color:var(--accent); }
+.askbox .composer input::selection { background:color-mix(in srgb,var(--accent) 30%,transparent);
+  color:var(--ink-bright); }
+.askbox .composer button[type="submit"] {
+  background:linear-gradient(160deg,
+    color-mix(in srgb,var(--accent) 96%,var(--ink-bright)),
+    var(--accent-deep));
+  box-shadow:inset 0 1px 0 color-mix(in srgb,var(--ink-bright) 24%,transparent),
+             0 6px 16px -8px color-mix(in srgb,var(--accent) 60%,transparent); }
+.askbox .composer button[type="submit"]:hover {
+  box-shadow:inset 0 1px 0 color-mix(in srgb,var(--ink-bright) 30%,transparent),
+             0 10px 22px -8px color-mix(in srgb,var(--accent) 70%,transparent); }
+@media (max-width:380px) {
+  .askbox .composer { padding-left:.7rem; gap:.35rem; }
+  .askbox .composer input { font-size:var(--s0); }
+}
+@supports not (backdrop-filter: blur(1px)) {
+  .askbox .composer { background:color-mix(in srgb,var(--surface) 94%,transparent); }
+}
 .composer button[type="submit"]:not(.cta) { width:2.4rem; border-radius:50%; }
 .composer button.cta { width:auto; border-radius:999px; padding:0 1.2rem;
   font-size:var(--s-2); box-shadow:none; }

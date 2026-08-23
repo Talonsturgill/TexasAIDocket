@@ -3013,6 +3013,83 @@ caption {{ caption-side:bottom; text-align:left; padding-top:.75rem; font-size:v
 .composer button[type="submit"] svg {{ width:1.05rem; height:1.05rem; display:block; }}
 .composer button[type="submit"]:hover {{ transform:translateY(-1px); }}
 .composer button[type="submit"]:active {{ transform:translateY(0); }}
+/* ---- THE ASK FIELD, WHICH IS THE ONE CONTROL THIS PAGE EXISTS FOR --------------
+   SCOPED TO `.askbox`, deliberately. `.composer` is shared with the scanner's bar, and a
+   restyle that reached it would change a page nobody asked about while chasing this one.
+
+   A FLAT SHELL ON A TEXTURED GROUND LOOKS PRINTED ON. The front page has grain and a lit
+   county map behind it, and the field sat on top as an opaque rectangle, so the depth the rest
+   of the page has stopped at its edge. Letting the ground through, blurred, puts it IN the
+   page rather than on it, and the blur is what keeps the map from competing with the caret.
+
+   THE RING IS A GRADIENT AND A BORDER CANNOT BE ONE. It is a masked pseudo element, which is
+   the only way to draw a gradient hairline that follows a radius. Warm where the light would
+   fall and cool where it would not, so a control the reader is invited to act on reads as lit
+   rather than outlined. */
+.askbox .composer {{ position:relative; isolation:isolate;
+  border-color:transparent;
+  background:color-mix(in srgb,var(--surface) 62%,transparent);
+  -webkit-backdrop-filter:blur(16px) saturate(150%);
+  backdrop-filter:blur(16px) saturate(150%);
+  box-shadow:inset 0 1px 0 color-mix(in srgb,var(--ink-bright) 7%,transparent),
+             0 10px 30px -18px var(--night); }}
+.askbox .composer::before {{ content:""; position:absolute; inset:0; z-index:-1;
+  border-radius:inherit; padding:var(--hair); pointer-events:none;
+  background:linear-gradient(135deg,
+    color-mix(in srgb,var(--accent) 52%,transparent) 0%,
+    color-mix(in srgb,var(--rule-strong) 92%,transparent) 42%,
+    color-mix(in srgb,var(--accent) 26%,transparent) 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor; mask-composite:exclude;
+  transition:opacity .2s ease; }}
+/* FOCUS BLOOMS RATHER THAN SWAPS. The ring goes to full accent and the glow widens, which is
+   the same information the old one carried and more of it. */
+.askbox .composer:focus-within {{ border-color:transparent;
+  background:color-mix(in srgb,var(--surface) 78%,transparent);
+  box-shadow:inset 0 1px 0 color-mix(in srgb,var(--ink-bright) 10%,transparent),
+             0 0 0 4px color-mix(in srgb,var(--accent) 16%,transparent),
+             0 14px 36px -18px var(--night); }}
+.askbox .composer:focus-within::before {{
+  background:linear-gradient(135deg,
+    color-mix(in srgb,var(--accent) 90%,transparent) 0%,
+    color-mix(in srgb,var(--accent) 45%,transparent) 50%,
+    color-mix(in srgb,var(--accent) 75%,transparent) 100%); }}
+/* The caret and any selection belong to the accent, which nothing else on the page was doing
+   and which is most of what makes a field feel like it is listening. */
+.askbox .composer input {{ caret-color:var(--accent); }}
+.askbox .composer input::selection {{ background:color-mix(in srgb,var(--accent) 30%,transparent);
+  color:var(--ink-bright); }}
+/* THE SEND CONTROL GETS THE SAME LIGHT. A flat disc beside a lit shell reads as a different
+   component. The lift on hover was already here and it keeps it. */
+.askbox .composer button[type="submit"] {{
+  background:linear-gradient(160deg,
+    color-mix(in srgb,var(--accent) 96%,var(--ink-bright)),
+    var(--accent-deep));
+  box-shadow:inset 0 1px 0 color-mix(in srgb,var(--ink-bright) 24%,transparent),
+             0 6px 16px -8px color-mix(in srgb,var(--accent) 60%,transparent); }}
+.askbox .composer button[type="submit"]:hover {{
+  box-shadow:inset 0 1px 0 color-mix(in srgb,var(--ink-bright) 30%,transparent),
+             0 10px 22px -8px color-mix(in srgb,var(--accent) 70%,transparent); }}
+/* THE SMALLEST PHONE BUYS ITS ROOM BACK FROM THE PADDING, not from the sentence.
+   "Ask the record anything" fits from 360 pixels up and is eight pixels over at 320, which is
+   a real viewport the browser suite already tests at: 223 pixels of text against 215 of room.
+   Shortening the placeholder again to clear one device would cost every other reader the only
+   line that says what the box does, so the generous left inset gives way instead.
+   THE STEP DOWN IN SIZE IS PART OF IT because padding alone was not enough. It brought the
+   room to 222 against 223 of text, which is still short, and a fit that cleared by a pixel
+   would be a fit that depends on the font rendering identically on every machine. At --s0 the
+   line measures 175 in 222, which is room to spare rather than an escape. */
+@media (max-width:380px) {{
+  .askbox .composer {{ padding-left:.7rem; gap:.35rem; }}
+  .askbox .composer input {{ font-size:var(--s0); }}
+}}
+/* A BROWSER WITHOUT BACKDROP FILTER GETS THE OPAQUE SHELL BACK, because a 62 percent surface
+   over a lit map with no blur is unreadable rather than merely plainer. */
+@supports not (backdrop-filter: blur(1px)) {{
+  .askbox .composer {{ background:color-mix(in srgb,var(--surface) 94%,transparent); }}
+}}
+
 /* TWO CONTROL SHAPES IN ONE SHELL, chosen by whether the control carries a word.
    THE CIRCLE is the ask composer's. Its placeholder already says what the box does, so an
    arrow is the whole instruction, and 2.4rem square clears the 24 pixel target floor on a

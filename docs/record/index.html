@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-l9oCZ6gPuEqYPpsZej7/aRRe9cA19tKK6q7AmGD4scc=' 'sha256-QfxjXGxEue0bMIum9Jzjfv9LelIm4m5JAtUyLWLHlLU=' 'sha256-1IWdjsKX8lnfgPDtl3NTmiRTzTjPOfvBo/P1QZ9GDfI=' 'sha256-60Kvd4kjMcRey+35XjrCaWWbafpXTisQcM99Xf+5L6s=' 'sha256-lUdIgctNtjcGmdnpl1l2te9lG9RBPZIap0Jc+JGXCmc=' 'sha256-eAen8T4O8pfBp3CJGFTcr2AfHKEky06NoHfEJVd9yeE=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-l9oCZ6gPuEqYPpsZej7/aRRe9cA19tKK6q7AmGD4scc=' 'sha256-QfxjXGxEue0bMIum9Jzjfv9LelIm4m5JAtUyLWLHlLU=' 'sha256-1IWdjsKX8lnfgPDtl3NTmiRTzTjPOfvBo/P1QZ9GDfI=' 'sha256-RD2uLId4863SNtiTWYKnPhbRzhZOH1AHpVaZFHDiCXY=' 'sha256-lUdIgctNtjcGmdnpl1l2te9lG9RBPZIap0Jc+JGXCmc=' 'sha256-eAen8T4O8pfBp3CJGFTcr2AfHKEky06NoHfEJVd9yeE=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>The record · Texas AI Docket</title>
@@ -23,7 +23,7 @@
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <meta name="theme-color" content="#00205B">
-<link rel="stylesheet" href="../site.css?v=22f6e42a55">
+<link rel="stylesheet" href="../site.css?v=4ec3ebc661">
 <link rel="stylesheet" href="../record.css?v=9cf31336f9">
 <link rel="preload" href="../fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="alternate" type="application/atom+xml" title="Texas AI Docket" href="../atom.xml">
@@ -68,7 +68,7 @@
     <form class="composer" role="search">
       <label class="vh" for="askq">Ask the record a question</label>
       <input id="askq" type="search" autocomplete="off"
-             placeholder="Ask about any AI decision in Texas">
+             placeholder="Ask the record anything">
       <button type="submit"><span class="vh">Ask</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
     </form>
     <p class="asknote">Model in training. <button type="button" class="asklink" id="askfbopen">Send feedback</button></p>
@@ -977,7 +977,7 @@ function askFuse(lists) {
     thread.hidden = true;
     box.classList.remove("answering");
     input.value = "";
-    input.placeholder = "Ask about any AI decision in Texas";
+    input.placeholder = "Ask the record anything";
     input.focus();
     /* Give the engine back its live list for whatever is in the field now. */
     input.dispatchEvent(new Event("input", { bubbles: true }));

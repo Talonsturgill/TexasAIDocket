@@ -120,6 +120,12 @@ await page.waitForTimeout(400);
 head("A. at rest, before anyone has asked anything");
 ok("the thread is not on screen", await page.locator("#askthread").isHidden());
 ok("the note is", await page.locator(".asknote").isVisible());
+/* THE RESTING PLACEHOLDER IS READ, NOT SPELLED. It was written out here as a literal once, so
+   the page had three copies of one sentence and rewording it turned this suite red for a
+   change that was correct. What the reset case means is that the field goes back to how it
+   shipped, so that is what gets captured. */
+const resting = await page.getAttribute("#askq", "placeholder");
+ok("the field invites a question", resting.length > 4 && !/follow-up/i.test(resting), resting);
 const note = await page.locator(".asknote").textContent();
 ok("the note names the model", note.includes("Model in training"), note);
 ok("and stays to one short line", note.trim().length < 40, note);
@@ -329,7 +335,8 @@ ok("the thread is gone", await page.locator("#askthread").isHidden());
 ok("the note is back", await page.locator(".asknote").isVisible());
 ok("the starters are back", await page.locator(".chips").isVisible());
 ok("the placeholder is back",
-  (await page.getAttribute("#askq", "placeholder")) === "Ask about any AI decision in Texas");
+  (await page.getAttribute("#askq", "placeholder")) === resting,
+  await page.getAttribute("#askq", "placeholder"));
 ok("and the next question starts a fresh conversation",
   (await page.evaluate(() => document.querySelectorAll(".askturn").length)) === 0);
 
