@@ -375,3 +375,32 @@ it cannot fall behind CI, and running it would have caught the calendar failures
 push rather than after the third.
 
 It has now been run in full. The instinct is recorded.
+
+## FINAL CI STATE, and one thing this file said carelessly
+
+Three checks are red on the branch head and **all three share one root cause.**
+
+| check | why |
+|---|---|
+| `build` | runs `site_build`, which exits 1 on the numeral |
+| `freshness` | runs `site_build` inside `site_fresh_check`, same exit |
+| `gates` | runs `site_build` as step 83 of 99 |
+
+`gates` is the one worth being precise about, because this file and a comment on the pull request
+both described the calendar failure inside it as "fixed `gates`", which reads as though the job
+went green. **It did not and it cannot**, because that job contains a `site_build` step. From the
+job record on the branch head:
+
+```
+steps 1 to 82   success   (including step 31, Calendar arithmetic self-test)
+step 83         failure   The build reads the ledgers and nothing about the clone
+steps 84 to 99  skipped
+```
+
+The accurate statement is that the calendar failure inside `gates` is fixed and stays fixed, and
+the job remains red on `site_build` along with the other two. That is the same fact
+`guards_local` reports as 4 of 114 failing with all four being `site_build`, counted a different
+way.
+
+**One token stands between this branch and green**, and it is `_c["project"]` in a `human` owned
+file.
