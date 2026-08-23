@@ -57,7 +57,16 @@ FEEDBACK_SUBJECT = "Texas AI Docket, feedback on the search"
 # reviewable at a glance and checkable exactly, and self_test runs the house rules over this
 # block rather than over the source around it.
 COPY = {
-    "placeholder":  "Ask about any AI decision in Texas",
+    # TWO REASONS IT IS SHORTER, and only one of them is the layout.
+    #
+    # It read "Ask about any AI decision in Texas" and was cut to "...in Texa" on a phone, which
+    # an owner saw and which no amount of padding fixes at that length.
+    #
+    # It was also out of date. The record stopped meaning only the decisions weeks ago and now
+    # carries data center dossiers, the construction register and reservoir storage, so a
+    # placeholder promising decisions understates it and quietly tells a reader not to ask about
+    # their lake. The shortest true thing is the whole record, which is what this says.
+    "placeholder":  "Ask the record anything",
     "followup":     "Ask a follow-up",
     # THERE IS NO "PASSING THE HUMAN CHECK" LINE ANY MORE, and it took three complaints from
     # the same owner to stop tuning it and delete it.

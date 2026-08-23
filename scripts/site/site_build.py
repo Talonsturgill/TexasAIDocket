@@ -3870,7 +3870,7 @@ def ask_box(items: list, today: str, base: str = "") -> str:
     <form class="composer" role="search">
       <label class="vh" for="askq">Ask the record a question</label>
       <input id="askq" type="search" autocomplete="off"
-             placeholder="Ask about any AI decision in Texas">
+             placeholder="Ask the record anything">
       <button type="submit"><span class="vh">Ask</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
     </form>
     {ask_written.note_html()}

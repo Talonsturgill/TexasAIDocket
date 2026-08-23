@@ -470,8 +470,28 @@ for (const vp of [{ width: 320, height: 568 }, { width: 360, height: 640 },
     window.turnstile = { render: (el, o) => { setTimeout(() => o.callback("t"), 5); return 1; },
                          reset: () => {}, remove: () => {} };
   });
+  /* THE PLACEHOLDER IS THE ONLY LINE THAT SAYS WHAT THE BOX DOES, so it may not be cut off.
+     An owner photographed "Ask about any AI decision in Texa" on a phone. It is measured
+     against the room the field actually has rather than eyeballed, because the failure is a
+     few pixels and a font this suite does not control the rendering of.
+     MEASURED BEFORE THE PRESS. Once a question is asked the placeholder becomes the follow-up
+     line, which is a different and shorter string. */
   await p2.goto(URL_HOME);
   await p2.waitForTimeout(300);
+  {
+    const fit = await p2.evaluate(() => {
+      const el = document.getElementById("askq");
+      const cs = getComputedStyle(el);
+      const c = document.createElement("canvas").getContext("2d");
+      c.font = `${cs.fontWeight} ${cs.fontSize}/${cs.lineHeight} ${cs.fontFamily}`;
+      return { text: c.measureText(el.placeholder).width,
+               room: el.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight),
+               ph: el.placeholder };
+    });
+    check(`${vp.width}x${vp.height}: the placeholder is not cut off`,
+          fit.text <= fit.room,
+          `"${fit.ph}" needs ${Math.round(fit.text)}px and has ${Math.round(fit.room)}px`);
+  }
   await p2.locator("#ask form").scrollIntoViewIfNeeded();
   await p2.waitForTimeout(200);
   await p2.fill("#askq", "what is open for comment right now");
