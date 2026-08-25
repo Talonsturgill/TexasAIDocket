@@ -471,3 +471,88 @@ Its emergency page gives total Texas counties and premises with cases and the mo
 in an Infested Zone, and mentions no drone, aerial or artificial intelligence surveillance at all.
 The drone and AI half of that story lives only on `aphis.usda.gov`, which timed out twice on
 `curl` from this run's main context after answering a scout, so this run could not admit the item.
+
+---
+
+## 2026-08-23
+
+**`capitol.texas.gov/robots.txt` now carries `Disallow: /TLODOCS/`, and this is the most
+consequential source finding of the run.** The registry's table lists only `/BillLookup/`,
+`/Reports/` and `/Search/` for that host. The live file adds `/TLODOCS/`, and every House and
+Senate hearing notice, schedule, bill text and bill analysis lives under that path. This run
+checked the file first and did not fetch it, and three separate scouts checked independently and
+reported the same directive without being told.
+
+The directive is written upper case and the live urls are lower case. A literal case sensitive
+reading would not match, and taking that reading would be routing around a disallow on a
+technicality, so it was treated as off limits. **A maintainer needs to decide this on purpose.**
+The record already CITES four `/tlodocs/` urls admitted before today on items tx-2026-0073 and
+tx-2026-0077. Citing a url is not fetching it, so nothing was withdrawn, but neither item can be
+re-verified through that path again.
+
+The working substitutes, both confirmed this run:
+`capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S` is NOT disallowed and carries the
+date, time, room and cancellation state of every upcoming Senate committee meeting. It re-verified
+tx-2026-0077 cleanly and gave a better quote than the disallowed notice pdf did.
+`lrl.texas.gov` remains allowed and carries the interim charge text in full.
+
+**`www.legis.texas.gov` 301 redirects to `capitol.texas.gov`, robots.txt included**, so it is the
+same host policy and is not an alternate route to `/tlodocs/`.
+
+**PUCT Interchange ZIP attachments contain the ORIGINAL office file, and that is a quote fidelity
+finding worth more than it looks.** Item 52 of Project 59142 offered a `.PDF` and a `.ZIP`. The
+pdf is a scan with an OCR text layer that renders `August 7,2026`, `ofthe` and `MWtotal`, and
+signature blocks as `PUBLIC UTILITY COMMISSIO EXAS N OFy`. The zip carried the source `.pptx`,
+whose xml holds the real text. **Every figure in this run's tx-2026-0072 update was taken from the
+pptx rather than the OCR**, because a verbatim quote drawn from an OCR layer is a quote of the
+scanner. Take the ZIP whenever one is offered beside a PDF.
+
+**`www.utsystem.edu` is a productive source this registry does not list at all.** Its Board of
+Regents agenda books are public static pdfs at
+`/sites/default/files/offices/board-of-regents/board-meetings/agenda-book-full/<M>-<YYYY>AB.pdf`.
+The August 2026 book is 13.5 MB and 307 pages, fetched cleanly with a browser User-Agent, and its
+text layer is real rather than scanned. It carried this run's lead story. robots.txt is a stock
+Drupal file with no relevant disallow. Two scouts independently failed on this file because their
+fetcher has a size limit, so **it needs `curl` plus a page ranged read rather than a page fetch.**
+Minutes are NOT posted alongside the agenda book, which is why this run's item is `pending`.
+
+**`puc.texas.gov/agency/calendar/GetCalendarRss.aspx` returns 301 to the same path lower cased.**
+Without `-L` it answers 184 bytes and zero items, which parses as an empty feed rather than as an
+error. The registry lists this as the highest value poll of the run and does not mention the
+redirect. A scout separately saw 503 from it across a whole session while it answered this context
+normally minutes later.
+
+**`courtlistener.com/robots.txt` returned the CloudFront 403 again**, exactly as the registry's
+2026-08-16 note describes, while the v4 API answered 200 to the ClaudeBot User-Agent. Two sightings
+seven days apart now, so the note is holding.
+
+**The Texas Register has MOVED and the registry's host is a redirect notice.**
+`texreg.sos.state.tx.us` now serves only a notice pointing at an Appian portal. The readable Texas
+Register is `www.sos.state.tx.us/texreg/`. Its archive index links use `.html`, and the `.shtml`
+form of the same path returns 403, which is how a run guesses wrong and concludes the issue is
+missing. The August 21st and August 14th issues were both read this way and neither carries an
+artificial intelligence item beyond PUCT 16 TAC 25.521, already on the record.
+
+**`dir.texas.gov` sits behind a Cloudflare managed challenge for `curl`.** Its robots.txt is itself
+unreadable, returning the challenge page rather than a file, so the crawl boundary for that host
+can't be established from this context at all. WebFetch passed the challenge and read the news
+pages. `dir.texas.gov/ai-and-innovation/statewide-artificial-intelligence-ai-awareness-training`
+returned 429 to both clients on every attempt. **This is why the HB 3512 training certification
+item was held rather than admitted**, since its August 31st deadline is stated only on a page dated
+January 30th and the page that would confirm it is currently unreadable.
+
+**`federalregister.gov` document HTML redirected a scout to `unblock.federalregister.gov`** while
+the `/api/v1/` endpoints and the `/documents/full_text/text/...` path both answered this context
+normally. Use the API and the full text path, not the article page.
+
+**Hosts the registry lists as open that refused a fetcher today, recorded as observation only.**
+`texasstandard.org/feed/` 403, which the registry calls the best Texas text source found.
+`texastribune.org` WP REST API 403 to two scouts. `therobotreport.com/feed/` 403, listed as open
+full text. `hpcwire.com` served its feed and 403ed the article page. `news.rice.edu/rss.xml` 404.
+`cprit.texas.gov` publishes no robots.txt at all, its robots path returning 404, and refused every
+page with a 403, so a lead about a CPRIT artificial intelligence committee could not be verified
+and was dropped.
+
+**`tceq.texas.gov/permitting/air/newsourcereview/airpermits-pendingpermits` returns 404.** The
+agency's decisions and hearings pages under `/agency/decisions/hearings/` answered normally and
+re-verified tx-2026-0057.

@@ -12,7 +12,7 @@ On August 11th, 2026 the League City City Council approved Ordinance No. 2026-27
 - Comment closes: 2026-11-03
 - Take part: https://leaguecity.legistar.com/MeetingDetail.aspx?LEGID=2222&GID=84&G=2D7DD9CC-BD32-4A4F-B8D5-83638663C82D
 
-- Last checked: 2026-08-20
+- Last checked: 2026-08-23
 
 ## Dates
 
@@ -28,6 +28,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-20 · The ballot wording is now on the record verbatim from the city's own posting. It opens by calling itself a nonbinding statement of voter preference, which means the council retains the decision whichever way the vote falls. The ordinance ordering the November 3rd election is otherwise unchanged.
 - 2026-08-20 · The motion record names Chadwell as the mover and Cones as the seconder, and gives neither a first name. It establishes one motion, on first and final reading. Reporting in the Houston region calls the cameras Flock cameras. The proposition reaches registered voters on November 3rd, 2026. The wording the city published says the result is a nonbinding statement of voter preference, so the council keeps the decision either way.
 - 2026-08-20 · The council's next regular meeting is August 25th, 2026 at 6:00 PM in Council Chambers at 200 West Walker Street. That agenda is posted final. None of its items names an automated license plate reader, Flock or a camera, and public comment there may be general in nature. The proposition itself is on the November 3rd ballot and the published wording says the result does not bind the council.
+- 2026-08-23 · Checked and unchanged. The council's legislative record still shows Ordinance No. 2026-27 approved on first and final reading on August 11th and carries no action after it. The special election is still set for November 3rd and the proposition still carries the word the council voted to add.
 
 ## Evidence
 

@@ -3043,5 +3043,605 @@
     "note": "The committee's posted hearing notice carries both interim charges verbatim. The same notice names the committee's oversight of the Department of Information Resources and of HB 150."
    }
   ]
+ },
+ {
+  "id": "tx-2026-0090",
+  "title": "National Science Foundation funds an open access robot run alloy laboratory at Texas A&M that outside researchers may book",
+  "summary": "The National Science Foundation made a cooperative agreement to the Texas A&M Engineering Experiment Station in College Station. It funds the Autonomous Robotic Metallurgist Materials Innovation Platform. The award record describes a national user facility that designs and makes and tests new alloys in one autonomous laboratory. It joins robotics and artificial intelligence with simulation and automated experimentation. The record states that scientists and engineers from universities and national laboratories and industry come to it as hands on users and run their own campaigns. Remote access modes are named as a way to reach researchers at institutions outside the top research tier. The agreement runs from September 1st, 2026 to August 31st, 2032.",
+  "topic": "research-and-science",
+  "decider": {
+   "name": "United States National Science Foundation",
+   "type": "federal"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Brazos"
+   ],
+   "metro": null,
+   "on_ercot": false
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-07-31",
+    "kind": "decided",
+    "note": "Award date on the National Science Foundation award record"
+   },
+   {
+    "date": "2026-09-01",
+    "kind": "effective",
+    "note": "Start date of the cooperative agreement"
+   }
+  ],
+  "public_access": {
+   "room": "closed",
+   "how": "The award record states the facility is an open access national user facility. Researchers from universities and national laboratories and industry visit it as hands on users. Industry engages through fee for service and collaborative and consortium modes. The award record itself is public at the National Science Foundation award page under award number 2534344. No application window or user call is stated in the record.",
+   "url": "https://api.nsf.gov/services/v1/awards/2534344.json",
+   "closes": null
+  },
+  "claims": [
+   {
+    "id": "tx-2026-0090-c1",
+    "text": "The award record describes the facility as an open access national user facility built around an autonomous laboratory.",
+    "verbatim_quote": "The Autonomous Robotic Metallurgist Materials Innovation Platform (ARM-MIP) at Texas A&M University is an open-access national user facility that designs, makes, tests, and learns from new alloys, closing the discovery loop by integrating robotics, artificial intelligence, physics-based simulation, and automated experimentation into a single autonomous laboratory.",
+    "source_url": "https://api.nsf.gov/services/v1/awards/2534344.json",
+    "source_title": "National Science Foundation, Award Abstract 2534344",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   },
+   {
+    "id": "tx-2026-0090-c2",
+    "text": "The record states who may use the facility and what they do there.",
+    "verbatim_quote": "scientists and engineers from universities, national laboratories, and industry come to ARM-MIP as hands-on users, running their own discovery campaigns and carrying autonomous-laboratory techniques back to their home institutions",
+    "source_url": "https://api.nsf.gov/services/v1/awards/2534344.json",
+    "source_title": "National Science Foundation, Award Abstract 2534344",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   },
+   {
+    "id": "tx-2026-0090-c3",
+    "text": "The record divides the work between the machine and the people.",
+    "verbatim_quote": "Automation handles sample fabrication, characterization, and routine computation, while researchers focus on hypothesis generation, interpretation, and the metallurgical decisions that drive discovery.",
+    "source_url": "https://api.nsf.gov/services/v1/awards/2534344.json",
+    "source_title": "National Science Foundation, Award Abstract 2534344",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   },
+   {
+    "id": "tx-2026-0090-c4",
+    "text": "The record names remote access as a way to reach researchers outside the top research tier.",
+    "verbatim_quote": "Remote access modes, including artificial-intelligence-guided campaign design and digital-twin-supported experiment planning, extend advanced discovery capabilities to additional researchers, including those at non-R1 and EPSCoR institutions.",
+    "source_url": "https://api.nsf.gov/services/v1/awards/2534344.json",
+    "source_title": "National Science Foundation, Award Abstract 2534344",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   },
+   {
+    "id": "tx-2026-0090-c5",
+    "text": "The award record carries the money obligated so far and the estimated total.",
+    "verbatim_quote": "\"fundsObligatedAmt\":\"4100000\"",
+    "source_url": "https://api.nsf.gov/services/v1/awards/2534344.json",
+    "source_title": "National Science Foundation, Award Record 2534344, funding fields",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   },
+   {
+    "id": "tx-2026-0090-c6",
+    "text": "The award record names the recipient, the instrument and the term.",
+    "verbatim_quote": "\"id\":\"2534344\",\"initAmendmentDate\":\"07/31/2026\"",
+    "source_url": "https://api.nsf.gov/services/v1/awards/2534344.json",
+    "source_title": "National Science Foundation, Award Record 2534344, award fields",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   },
+   {
+    "id": "tx-2026-0090-c7",
+    "text": "The agency framed the two platforms it funded as equipment researchers anywhere in the country should be able to use.",
+    "verbatim_quote": "NSF wants researchers with great ideas, wherever they are in the U.S., to get their hands on this equipment.",
+    "source_url": "https://www.nsf.gov/news/nsf-stands-2-materials-innovation-platforms-50m-investment",
+    "source_title": "National Science Foundation, NSF stands up 2 Materials Innovation Platforms with $50M investment",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   },
+   {
+    "id": "tx-2026-0090-c8",
+    "text": "The award record carries the recipient, the instrument and the estimated total.",
+    "verbatim_quote": "\"awardeeName\":\"Texas A&M Engineering Experiment Station\"",
+    "source_url": "https://api.nsf.gov/services/v1/awards/2534344.json",
+    "source_title": "National Science Foundation, Award Record 2534344, awardee field",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   },
+   {
+    "id": "tx-2026-0090-c9",
+    "text": "The award record carries the estimated total and the instrument.",
+    "verbatim_quote": "\"estimatedTotalAmt\":\"24900000\"",
+    "source_url": "https://api.nsf.gov/services/v1/awards/2534344.json",
+    "source_title": "National Science Foundation, Award Record 2534344, funding field",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   },
+   {
+    "id": "tx-2026-0090-c10",
+    "text": "The award record states the instrument and the term.",
+    "verbatim_quote": "\"transType\":\"Cooperative Agreement\"",
+    "source_url": "https://api.nsf.gov/services/v1/awards/2534344.json",
+    "source_title": "National Science Foundation, Award Record 2534344, instrument field",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   }
+  ],
+  "last_verified": "2026-08-23",
+  "confidence": "high",
+  "notes_for_editor": "Award date 07/31/2026, announced by the agency on 08/03/2026. Award number 2534344, principal investigator Raymundo Arroyave.",
+  "history": [
+   {
+    "date": "2026-08-23",
+    "note": "Admitted. The award record and the agency's own announcement are both on the record, and the facility's start date has not yet arrived."
+   }
+  ]
+ },
+ {
+  "id": "tx-2026-0091",
+  "title": "Amazon selected Austin for a robotics manufacturing plant, and the mayor states the company asked for no incentives",
+  "summary": "The Office of the Texas Governor announced on August 19th, 2026 that Amazon has selected Austin as the site of a new robotics manufacturing facility. The company's own announcement states the plant will produce the robotics systems that work alongside its employees to handle repetitive tasks and heavy lifting. Both announcements put the jobs at 300 to 500 in manufacturing and engineering. The mayor of Austin is quoted in the company's announcement saying Amazon asked for no economic incentives and no public money. Neither announcement gives a square footage, a capital figure beyond calling the development multi billion dollar, or an opening date.",
+  "topic": "state-policy",
+  "decider": {
+   "name": "Amazon.com, Inc.",
+   "type": "company"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Travis"
+   ],
+   "metro": null,
+   "on_ercot": true
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-08-19",
+    "kind": "decided",
+    "note": "Site selection announced by the Office of the Texas Governor and by the company on the same day"
+   }
+  ],
+  "public_access": {
+   "room": "none",
+   "how": "Neither announcement names a hearing, a comment window or an incentive item for a public body to take up, and the mayor of Austin is quoted saying the company asked for no economic incentives and no public money. A reader watching for a public step would watch the Austin City Council and Travis County Commissioners Court agendas, neither of which carries an item for this project in either announcement.",
+   "url": "https://gov.texas.gov/news/post/governor-abbott-announces-amazon-expansion-in-austin",
+   "closes": null
+  },
+  "claims": [
+   {
+    "id": "tx-2026-0091-c1",
+    "text": "The Governor's office announced the site selection and named the kind of plant.",
+    "verbatim_quote": "Governor Greg Abbott today announced Amazon has selected Austin as the site of a new robotics manufacturing facility.",
+    "source_url": "https://gov.texas.gov/news/post/governor-abbott-announces-amazon-expansion-in-austin",
+    "source_title": "Office of the Texas Governor, Governor Abbott Announces Amazon Expansion in Austin",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   },
+   {
+    "id": "tx-2026-0091-c2",
+    "text": "The Governor's announcement states the scale of the development and the job range.",
+    "verbatim_quote": "The multi-billion-dollar development will create 300–500 new jobs in manufacturing and engineering.",
+    "source_url": "https://gov.texas.gov/news/post/governor-abbott-announces-amazon-expansion-in-austin",
+    "source_title": "Office of the Texas Governor, Governor Abbott Announces Amazon Expansion in Austin",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   },
+   {
+    "id": "tx-2026-0091-c3",
+    "text": "The Governor's announcement states the company's existing Texas employment.",
+    "verbatim_quote": "Since 2010, Amazon has invested over $100 billion in Texas, including infrastructure and compensation to its 86,000 full- and part-time employees in Texas.",
+    "source_url": "https://gov.texas.gov/news/post/governor-abbott-announces-amazon-expansion-in-austin",
+    "source_title": "Office of the Texas Governor, Governor Abbott Announces Amazon Expansion in Austin",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   },
+   {
+    "id": "tx-2026-0091-c4",
+    "text": "The company's announcement states what the plant will build and how many people it expects to employ.",
+    "verbatim_quote": "Adding to the company's current employee base of 17,000 in Austin and 86,000 across Texas, the new facility will create 300 - 500 high-paying jobs in manufacturing and engineering and produce the robotics systems that work alongside Amazon's employees to handle repetitive tasks and heavy lifting.",
+    "source_url": "https://press.aboutamazon.com/2026/8/amazon-announces-new-manufacturing-facility-in-austin-texas",
+    "source_title": "Amazon, Amazon Announces New Manufacturing Facility in Austin, Texas",
+    "source_type": "primary_corporate",
+    "fetched": "2026-08-23"
+   },
+   {
+    "id": "tx-2026-0091-c5",
+    "text": "The mayor of Austin is quoted in the company's announcement on the question of public money.",
+    "verbatim_quote": "Amazon asked for no economic incentives, no public money,” said Mayor Kirk Watson.",
+    "source_url": "https://press.aboutamazon.com/2026/8/amazon-announces-new-manufacturing-facility-in-austin-texas",
+    "source_title": "Amazon, Amazon Announces New Manufacturing Facility in Austin, Texas",
+    "source_type": "primary_corporate",
+    "fetched": "2026-08-23"
+   }
+  ],
+  "last_verified": "2026-08-23",
+  "confidence": "high",
+  "notes_for_editor": "HELD 2026-08-23. The decider is a company and `decider.type` has no such value, and both announcements state no public body acted, the mayor being quoted saying the company asked for no economic incentives and no public money. Admitting it would need either a public decision to point at or a schema change, and a schema change to what the record counts as a decision is the owner's call. Sources fetched and quotes verified 2026-08-23.",
+  "history": [
+   {
+    "date": "2026-08-23",
+    "note": "Admitted. The Governor's office and the company announced the site selection on the same day, and both put the jobs at 300 to 500."
+   }
+  ]
+ },
+ {
+  "id": "tx-2026-0092",
+  "title": "National Science Foundation funds UT San Antonio and Texas A&M to adapt large language models on machines that can't afford to run them",
+  "summary": "The National Science Foundation made two matched standard grants on August 14th, 2026. They fund a subspace optimization framework for resource efficient and private fine tuning of large language models. One went to the University of Texas at San Antonio and one to Texas A&M University, each obligating the same amount. The award record states the problem as reaching the performance of full parameter fine tuning where computing resources are limited and training data are sensitive or off limits to share. It names small organizations, universities and healthcare institutions among those the current requirements shut out. Both awards run from January 1st, 2027 to December 31st, 2029.",
+  "topic": "research-and-science",
+  "decider": {
+   "name": "United States National Science Foundation",
+   "type": "federal"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Bexar"
+   ],
+   "metro": null,
+   "on_ercot": true
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-08-14",
+    "kind": "decided",
+    "note": "Award date on both National Science Foundation award records"
+   },
+   {
+    "date": "2027-01-01",
+    "kind": "effective",
+    "note": "Start date of both awards"
+   }
+  ],
+  "public_access": {
+   "room": "closed",
+   "how": "The award records are public at the National Science Foundation award pages under award numbers 2619079 and 2619080. No comment window, hearing or application step is stated in either record.",
+   "url": "https://api.nsf.gov/services/v1/awards/2619079.json",
+   "closes": null
+  },
+  "claims": [
+   {
+    "id": "tx-2026-0092-c1",
+    "text": "The award record names who is shut out by what a large model currently costs to adapt.",
+    "verbatim_quote": "These requirements can limit the ability of small organizations, universities, healthcare institutions, and other resource-constrained users to benefit from recent advances in AI.",
+    "source_url": "https://api.nsf.gov/services/v1/awards/2619079.json",
+    "source_title": "National Science Foundation, Award Abstract 2619079",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   },
+   {
+    "id": "tx-2026-0092-c2",
+    "text": "The award record states the scientific problem in terms of limited compute and unshareable data.",
+    "verbatim_quote": "The scientific problem addressed by this project is how to achieve performance comparable to full-parameter fine-tuning when computing resources are limited and training data are sensitive or cannot be shared.",
+    "source_url": "https://api.nsf.gov/services/v1/awards/2619079.json",
+    "source_title": "National Science Foundation, Award Abstract 2619079",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   },
+   {
+    "id": "tx-2026-0092-c3",
+    "text": "The award record names reduced energy cost among the stated benefits.",
+    "verbatim_quote": "The research contributes to societal benefits by broadening access to advanced AI tools, strengthening the protection of sensitive information, and reducing the financial and energy costs of model adaptation.",
+    "source_url": "https://api.nsf.gov/services/v1/awards/2619079.json",
+    "source_title": "National Science Foundation, Award Abstract 2619079",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   },
+   {
+    "id": "tx-2026-0092-c4",
+    "text": "The San Antonio award record carries the recipient, the amount and the term.",
+    "verbatim_quote": "\"id\":\"2619079\",\"initAmendmentDate\":\"08/14/2026\"",
+    "source_url": "https://api.nsf.gov/services/v1/awards/2619079.json",
+    "source_title": "National Science Foundation, Award Record 2619079, award fields",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   },
+   {
+    "id": "tx-2026-0092-c5",
+    "text": "The matched award to the second Texas institution carries the same title and the same amount.",
+    "verbatim_quote": "\"id\":\"2619080\",\"initAmendmentDate\":\"08/14/2026\"",
+    "source_url": "https://api.nsf.gov/services/v1/awards/2619080.json",
+    "source_title": "National Science Foundation, Award Record 2619080, award fields",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   },
+   {
+    "id": "tx-2026-0092-c6",
+    "text": "The San Antonio award record names the recipient.",
+    "verbatim_quote": "\"awardeeName\":\"University of Texas at San Antonio\"",
+    "source_url": "https://api.nsf.gov/services/v1/awards/2619079.json",
+    "source_title": "National Science Foundation, Award Record, award fields",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   },
+   {
+    "id": "tx-2026-0092-c7",
+    "text": "Each award record carries the same obligated amount.",
+    "verbatim_quote": "\"fundsObligatedAmt\":\"120000\"",
+    "source_url": "https://api.nsf.gov/services/v1/awards/2619079.json",
+    "source_title": "National Science Foundation, Award Record, award fields",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   },
+   {
+    "id": "tx-2026-0092-c8",
+    "text": "The matched award record names the second recipient.",
+    "verbatim_quote": "\"awardeeName\":\"Texas A&M University\"",
+    "source_url": "https://api.nsf.gov/services/v1/awards/2619080.json",
+    "source_title": "National Science Foundation, Award Record, award fields",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   }
+  ],
+  "last_verified": "2026-08-23",
+  "confidence": "high",
+  "notes_for_editor": "Award 2619079 lists San Antonio as both awardee city and place of performance. Award 2619080 lists College Station as awardee city and Houston as place of performance, so only Bexar County is claimed here.",
+  "history": [
+   {
+    "date": "2026-08-23",
+    "note": "Admitted. Both award records were read directly and carry the same title, the same obligated amount and the same term."
+   }
+  ]
+ },
+ {
+  "id": "tx-2026-0093",
+  "title": "National Science Foundation funds Rice to let AI propose numerical algorithms only where a proof checker certifies them",
+  "summary": "The National Science Foundation made a standard grant to William Marsh Rice University in Houston on August 17th, 2026. The award record describes reinforcement learning and large language models proposing randomized numerical linear algebra algorithms, with the Lean proof assistant required to certify correctness and cost before a candidate counts. The record states that the machine methods can explore designs efficiently but may produce opaque or inconsistent results without dependable guarantees. It also describes separating real algorithmic improvement from variation caused by the model itself. The award runs from September 15th, 2026 to August 31st, 2029.",
+  "topic": "research-and-science",
+  "decider": {
+   "name": "United States National Science Foundation",
+   "type": "federal"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Harris"
+   ],
+   "metro": null,
+   "on_ercot": true
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-08-17",
+    "kind": "decided",
+    "note": "Award date on the National Science Foundation award record"
+   },
+   {
+    "date": "2026-09-15",
+    "kind": "effective",
+    "note": "Start date of the award"
+   }
+  ],
+  "public_access": {
+   "room": "closed",
+   "how": "The award record is public at the National Science Foundation award page under award number 2616828. No comment window, hearing or application step is stated in the record.",
+   "url": "https://api.nsf.gov/services/v1/awards/2616828.json",
+   "closes": null
+  },
+  "claims": [
+   {
+    "id": "tx-2026-0093-c1",
+    "text": "The award record states the weakness of machine proposed algorithms it is written against.",
+    "verbatim_quote": "AI methods, including reinforcement learning (RL) and large language models (LLMs), can explore algorithm designs efficiently, but they may produce opaque or inconsistent results without dependable guarantees.",
+    "source_url": "https://api.nsf.gov/services/v1/awards/2616828.json",
+    "source_title": "National Science Foundation, Award Abstract 2616828",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   },
+   {
+    "id": "tx-2026-0093-c2",
+    "text": "The award record makes a proof checker the condition on which a machine written algorithm counts.",
+    "verbatim_quote": "Lean will certify deterministic correctness and cost claims, thereby converting AI-generated candidates into reusable mathematical objects rather than opaque algorithmic programs.",
+    "source_url": "https://api.nsf.gov/services/v1/awards/2616828.json",
+    "source_title": "National Science Foundation, Award Abstract 2616828",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   },
+   {
+    "id": "tx-2026-0093-c3",
+    "text": "The award record treats the model's own variability as a thing to be measured.",
+    "verbatim_quote": "Because LLM-generated algorithms and proofs vary across prompts, the LAAM will also develop sequentially valid inference to separate genuine algorithmic improvements from model-induced randomness.",
+    "source_url": "https://api.nsf.gov/services/v1/awards/2616828.json",
+    "source_title": "National Science Foundation, Award Abstract 2616828",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   },
+   {
+    "id": "tx-2026-0093-c4",
+    "text": "The award record carries the recipient, the amount and the term.",
+    "verbatim_quote": "\"id\":\"2616828\",\"initAmendmentDate\":\"08/17/2026\"",
+    "source_url": "https://api.nsf.gov/services/v1/awards/2616828.json",
+    "source_title": "National Science Foundation, Award Record 2616828, award fields",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   },
+   {
+    "id": "tx-2026-0093-c5",
+    "text": "The award record names the recipient.",
+    "verbatim_quote": "\"awardeeName\":\"William Marsh Rice University\"",
+    "source_url": "https://api.nsf.gov/services/v1/awards/2616828.json",
+    "source_title": "National Science Foundation, Award Record 2616828, award fields",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   },
+   {
+    "id": "tx-2026-0093-c6",
+    "text": "The award record carries the obligated amount.",
+    "verbatim_quote": "\"fundsObligatedAmt\":\"150000\"",
+    "source_url": "https://api.nsf.gov/services/v1/awards/2616828.json",
+    "source_title": "National Science Foundation, Award Record 2616828, award fields",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   }
+  ],
+  "last_verified": "2026-08-23",
+  "confidence": "high",
+  "notes_for_editor": "Award number 2616828, principal investigator Hengrui Luo. The abstract states training activities anchored outside Texas, and the collaborating institution is not named here.",
+  "history": [
+   {
+    "date": "2026-08-23",
+    "note": "Admitted. The award record was read directly from the agency's own award endpoint."
+   }
+  ]
+ },
+ {
+  "id": "tx-2026-0094",
+  "title": "A generative AI platform at UTMB reached the UT System Regents only on its third amendment, at $9,850,000, and now covers all seven health institutions",
+  "summary": "The University of Texas Medical Branch at Galveston contracted in December 2024 for a platform giving it a secure way to work with generative artificial intelligence models. The agenda book for the August 12th and 13th, 2026 meeting of the University of Texas System Board of Regents carries the third amendment as item 65 on the consent agenda. It states the first agreement was set at $825,000 and did not require Board approval, and that a first amendment raised the value to $4,250,000 and still sat inside the same delegated authority. The third amendment adds $5,600,000 and brings the total to $9,850,000. It extends the platform to all seven University of Texas System health related institutions and is funded under an initiative appropriated by the 89th Texas Legislature. The agenda book also states the agreement was competitively procured. No minutes for the meeting are published, so what the Board did with the item is not yet on the public record.",
+  "topic": "health-and-education",
+  "decider": {
+   "name": "The University of Texas System Board of Regents",
+   "type": "state-agency"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Galveston"
+   ],
+   "metro": null,
+   "on_ercot": true
+  },
+  "status": "pending",
+  "key_dates": [
+   {
+    "date": "2024-12-01",
+    "kind": "filed",
+    "note": "Month the original master subscription agreement was entered, as stated in the agenda book"
+   },
+   {
+    "date": "2025-10-31",
+    "kind": "effective",
+    "note": "Start of the third amendment term stated in the agenda book"
+   },
+   {
+    "date": "2026-08-12",
+    "kind": "hearing",
+    "note": "Meeting of the Board of Regents whose consent agenda carries the item as number 65"
+   }
+  ],
+  "public_access": {
+   "room": "open_meeting",
+   "how": "The Board of Regents publishes its agenda book before each meeting, and the contract sits in it as consent agenda item 65. The schedule for the August 12th and 13th, 2026 meeting opens with a public hearing opportunity at 1:00 p.m. on the first day. A consent agenda is the part of a meeting taken up together without separate discussion, so a member of the public who wants an item discussed has to ask before the meeting rather than during it. Minutes for this meeting are not yet posted.",
+   "url": "https://www.utsystem.edu/board-of-regents/meetings/board-meeting-2026-08-12",
+   "closes": null
+  },
+  "claims": [
+   {
+    "id": "tx-2026-0094-c1",
+    "text": "The agenda book describes what the platform is for.",
+    "verbatim_quote": "In December 2024, U.T. Medical Branch - Galveston (UTMB) entered into a Master Subscription Agreement (MSA) with Qualified Health for the Qualified Operating System (qOS) platform and Qualified GPT, which is a secure interface to interact with Generative Artificial Intelligence (Gen AI) models and applications.",
+    "source_url": "https://www.utsystem.edu/sites/default/files/offices/board-of-regents/board-meetings/agenda-book-full/8-2026AB.pdf",
+    "source_title": "University of Texas System Board of Regents, Agenda Book, August 12-13, 2026, Consent Agenda item 65",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   },
+   {
+    "id": "tx-2026-0094-c2",
+    "text": "The agenda book states the first value and that it needed no Board vote.",
+    "verbatim_quote": "The initial Agreement had a contract value set at $825,000, which was within the institution's delegated authority threshold and did not require Board approval, and the term was one year with two 12-month renewal options thereafter.",
+    "source_url": "https://www.utsystem.edu/sites/default/files/offices/board-of-regents/board-meetings/agenda-book-full/8-2026AB.pdf",
+    "source_title": "University of Texas System Board of Regents, Agenda Book, August 12-13, 2026, Consent Agenda item 65",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   },
+   {
+    "id": "tx-2026-0094-c3",
+    "text": "The agenda book states the second value and that it also stayed inside the same threshold.",
+    "verbatim_quote": "In October 2025, UTMB entered into the First Amendment of the MSA, which transitioned to Qualified Health Enterprise AI Platform and increased the value to $4,250,000, remaining within the institution's delegated authority threshold.",
+    "source_url": "https://www.utsystem.edu/sites/default/files/offices/board-of-regents/board-meetings/agenda-book-full/8-2026AB.pdf",
+    "source_title": "University of Texas System Board of Regents, Agenda Book, August 12-13, 2026, Consent Agenda item 65",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   },
+   {
+    "id": "tx-2026-0094-c4",
+    "text": "The agenda book states what the third amendment adds, what it totals and how far it reaches.",
+    "verbatim_quote": "This Third Amendment extends the Qualified Health Technology Platform to all seven U.T. System Health-Related Institutions (HRIs) and will be funded by U.T. System under the UT-REAL-Health AI initiative appropriated by the 89th Texas Legislature.",
+    "source_url": "https://www.utsystem.edu/sites/default/files/offices/board-of-regents/board-meetings/agenda-book-full/8-2026AB.pdf",
+    "source_title": "University of Texas System Board of Regents, Agenda Book, August 12-13, 2026, Consent Agenda item 65",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   },
+   {
+    "id": "tx-2026-0094-c5",
+    "text": "The agenda book gives the term, the added value and the running total.",
+    "verbatim_quote": "The term of the Third Amendment is October 31, 2025 through October 30, 2027, and the additional value is $5,600,000 bringing the total value of the Agreement with Qualified Health to $9,850,000.",
+    "source_url": "https://www.utsystem.edu/sites/default/files/offices/board-of-regents/board-meetings/agenda-book-full/8-2026AB.pdf",
+    "source_title": "University of Texas System Board of Regents, Agenda Book, August 12-13, 2026, Consent Agenda item 65",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   },
+   {
+    "id": "tx-2026-0094-c6",
+    "text": "The agenda book states the agreement was competitively procured.",
+    "verbatim_quote": "This Agreement was competitively procured.",
+    "source_url": "https://www.utsystem.edu/sites/default/files/offices/board-of-regents/board-meetings/agenda-book-full/8-2026AB.pdf",
+    "source_title": "University of Texas System Board of Regents, Agenda Book, August 12-13, 2026, Consent Agenda item 65",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   },
+   {
+    "id": "tx-2026-0094-c7",
+    "text": "The item is numbered on the consent agenda and names the contracting institution.",
+    "verbatim_quote": "65. Contract (funds going out) - U.T. Medical Branch - Galveston: Amendment to Agreement with Qualified Health, PBC, to provide AI technology platform",
+    "source_url": "https://www.utsystem.edu/sites/default/files/offices/board-of-regents/board-meetings/agenda-book-full/8-2026AB.pdf",
+    "source_title": "University of Texas System Board of Regents, Agenda Book, August 12-13, 2026, Consent Agenda item 65",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   },
+   {
+    "id": "tx-2026-0094-c8",
+    "text": "The initiative paying for the extension is carried in the system budget as a state funded program.",
+    "verbatim_quote": "State General Revenue Funded programs include Lone Star Stroke, Texas Child Mental Health Care Consortium (TCMHCC), and REAL-Health-AI",
+    "source_url": "https://www.utsystem.edu/sites/default/files/offices/board-of-regents/board-meetings/agenda-book-full/8-2026AB.pdf",
+    "source_title": "University of Texas System Board of Regents, Agenda Book, August 12-13, 2026, Finance and Planning Committee",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   },
+   {
+    "id": "tx-2026-0094-c9",
+    "text": "The meeting schedule opens with a public hearing opportunity.",
+    "verbatim_quote": "Wednesday, August 12, 2026 1:00 p.m. Public Hearing Opportunity",
+    "source_url": "https://www.utsystem.edu/board-of-regents/meetings/board-meeting-2026-08-12",
+    "source_title": "University of Texas System, August 12-13, 2026 Meeting of the UT System Board of Regents, Schedule of Events",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   },
+   {
+    "id": "tx-2026-0094-c10",
+    "text": "The figure the first agreement was set at.",
+    "verbatim_quote": "contract value set at $825,000",
+    "source_url": "https://www.utsystem.edu/sites/default/files/offices/board-of-regents/board-meetings/agenda-book-full/8-2026AB.pdf",
+    "source_title": "University of Texas System Board of Regents, Agenda Book, August 12-13, 2026, Consent Agenda item 65",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   },
+   {
+    "id": "tx-2026-0094-c11",
+    "text": "The figure the first amendment raised it to.",
+    "verbatim_quote": "increased the value to $4,250,000",
+    "source_url": "https://www.utsystem.edu/sites/default/files/offices/board-of-regents/board-meetings/agenda-book-full/8-2026AB.pdf",
+    "source_title": "University of Texas System Board of Regents, Agenda Book, August 12-13, 2026, Consent Agenda item 65",
+    "source_type": "primary_official",
+    "fetched": "2026-08-23"
+   }
+  ],
+  "last_verified": "2026-08-23",
+  "confidence": "high",
+  "notes_for_editor": "Status is pending because no minutes are posted for the August 12th and 13th meeting, so the Board's action on consent agenda item 65 is not on the public record. The agenda book is the source for every figure. The seven health related institutions are not enumerated in the item, so only Galveston, the institution the item names, is claimed as geography.",
+  "history": [
+   {
+    "date": "2026-08-23",
+    "note": "Admitted. The Regents' own agenda book carries the contract's three values and states that the first two sat inside the institution's delegated authority and needed no Board approval."
+   }
+  ]
  }
 ]

@@ -1,0 +1,4 @@
+[
+  {"what": "Zero upgrades made.",
+   "why": "The one upgrade this run identified is the _c[\"project\"] token in scripts/site/site_build.py, which is a human owned file. Both actors this branch may stamp were tested against a staged edit and both were refused, so it is written down as a proposal and stopped, which is what the map requires."}
+]
