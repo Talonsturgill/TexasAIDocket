@@ -214,16 +214,28 @@ def check(items: list, cache: dict, opener=None) -> tuple[list, dict, dict]:
         # the page did not move, which proves the quote is still on it, so the containment test
         # is skipped. A DIFFERENT hash proves nothing either way, because a page that changed
         # its footer still carries the quote, so that case is read rather than assumed.
-        same = prior.get("hash") and prior["hash"] == meta["hash"]
-        text = None if same else flatten(body)
+        # THE HASH SHORT CIRCUIT ONLY SERVES A CLAIM THAT WAS ALREADY PROVEN HERE, and getting
+        # that wrong handed out proof this check had never established. The rule read "an
+        # unchanged hash proves the page did not move, which proves the quote is still on it",
+        # and the second half only follows if the quote was on it to begin with. For a claim
+        # never located, an unchanged page proves the quote is still ABSENT. So a page that had
+        # not moved marked every claim behind it found, added them to `proven`, and the run
+        # after that reported them as real changes. tx-2026-0015-c2 is the one that showed it:
+        # its stored quote is a pipe delimited digest the routine composed rather than anything
+        # that appears on the page, so it can never be located, and it was proven anyway.
+        prior_proven = set(prior.get("proven") or [])
+        same = bool(prior.get("hash")) and prior["hash"] == meta["hash"]
+        text = flatten(body)
         for it, c in pairs:
             q = norm_quote(c.get("verbatim_quote") or "")
-            found = bool(q) and (same or q in text)
+            was = c["id"] in prior_proven
+            found = bool(q) and ((same and was) or q in text)
             if found:
                 proven.add(c["id"])
                 findings.append({"item": it["id"], "claim": c["id"], "url": url,
-                                 "state": UNCHANGED, "why": "hash" if same else "quote"})
-            elif c["id"] in (prior.get("proven") or []):
+                                 "state": UNCHANGED,
+                                 "why": "hash" if (same and was) else "quote"})
+            elif was:
                 # THIS CHECK HAS FOUND THIS QUOTE ON THIS PAGE BEFORE, so it is readable, and
                 # the quote going missing now is a real change rather than a format it cannot
                 # parse. Authority earned on a previous run rather than assumed on this one.
@@ -451,6 +463,24 @@ def self_test() -> int:  # noqa: C901
     f, fresh3, _ = check([item("tx-2b", "https://b/", quote)], {}, server({"https://b/": page}))
     ok("a quote found here is recorded as proven",
        "tx-2b-c1" in fresh3["https://b/"]["proven"], str(fresh3))
+
+    print("\nan unchanged page does not prove a quote it never carried")
+    # THE HASH SHORT CIRCUIT GRANTED PROOF IT HAD NEVER ESTABLISHED. A page that had not moved
+    # marked every claim behind it found, including ones whose quote is not on it at all, and
+    # the run after that reported those as real changes.
+    absent = item("tx-2z", "https://k/", "a line that is not on this page")
+    prior = {"https://k/": {"hash": __import__("hashlib").sha256(page).hexdigest()}}
+    f, fresh4, _ = check([absent], prior, server({"https://k/": page}))
+    ok("an unproven claim is not waved through by a matching hash",
+       f[0]["state"] == UNREADABLE, str(f))
+    ok("...and it is not written into proven",
+       "tx-2z-c1" not in (fresh4["https://k/"].get("proven") or []), str(fresh4))
+    present = item("tx-2y", "https://k/", quote)
+    pri2 = {"https://k/": {"hash": __import__("hashlib").sha256(page).hexdigest(),
+                           "proven": ["tx-2y-c1"]}}
+    f, _, _ = check([present], pri2, server({"https://k/": page}))
+    ok("...while a proven claim still short circuits on the hash",
+       f[0]["state"] == UNCHANGED and f[0]["why"] == "hash", str(f))
 
     print("\na PDF is never read, and is never reported as a change")
     f, _, st = check([item("tx-2c", "https://x/f.pdf", quote)], {},
