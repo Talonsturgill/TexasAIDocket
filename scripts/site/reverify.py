@@ -310,9 +310,13 @@ def report(findings: list, stats: dict, stamped: list | None) -> int:
     """
     groups = {k: [f for f in findings if f["state"] == k]
               for k in (MISSING, UNREACHABLE, UNREADABLE)}
-    print(f"reverify: {stats['claims']} claim(s) behind {stats['urls']} url(s). "
-          f"{stats['not_modified']} answered 304, {stats['fetched']} were read, "
-          f"{stats['unreachable']} did not answer, {stats['unreadable']} were not readable.")
+    # THE HEADLINE COUNTS REQUESTS AND THE SECTIONS COUNT CLAIMS, stated apart because mixing
+    # them printed "13 were not readable" above a section headed "(92)". Two numbers for one
+    # word, and the smaller one was the count of PDF urls while the larger was the count of
+    # claims nobody could check. A reader reconciling those two is a reader not reading either.
+    print(f"reverify: {stats['urls']} url(s) behind {stats['claims']} claim(s). "
+          f"{stats['not_modified']} answered 304, {stats['fetched']} sent a body, "
+          f"{stats['unreachable']} did not answer.")
     if stamped is not None:
         print(f"          {len(stamped)} item(s) stamped as checked and unchanged.")
     if not any(groups.values()):
@@ -332,6 +336,35 @@ def report(findings: list, stats: dict, stamped: list | None) -> int:
             print(f"                   {f['why']}")
             print(f"                   {f['url']}")
     return 1
+
+
+# --------------------------------------------------------------------------- the cache
+CACHE_SPEC = 1
+
+
+def load_cache() -> dict:
+    """The url map, out of its envelope. A missing or unreadable cache is an empty one.
+
+    An unreadable cache is not an error worth stopping for. The worst it costs is one run of
+    unconditional requests, and the alternative is a re-verification phase that refuses to run
+    because a cache file got truncated.
+    """
+    if not CACHE.is_file():
+        return {}
+    try:
+        return json.loads(CACHE.read_text(encoding="utf-8")).get("sources") or {}
+    except (json.JSONDecodeError, OSError, AttributeError):
+        return {}
+
+
+def save_cache(sources: dict, today: _dt.date) -> None:
+    CACHE.write_text(json.dumps(
+        {"_spec": {"version": CACHE_SPEC, "generated": today.isoformat(),
+                   "note": "One row per source url. ETag and Last-Modified drive the next "
+                           "conditional request, hash short circuits the text comparison, and "
+                           "proven records which claim quotes have been located here, which is "
+                           "what tells a real change apart from a page this check cannot read."},
+         "sources": dict(sorted(sources.items()))}, indent=2) + "\n", encoding="utf-8")
 
 
 # --------------------------------------------------------------------------- self-test
@@ -503,7 +536,10 @@ def main() -> int:
         print(f"reverify: the record could not be read ({e})", file=sys.stderr)
         return 2
     items = record["items"]
-    cache = json.loads(CACHE.read_text(encoding="utf-8")) if CACHE.is_file() else {}
+    # THE ENVELOPE IS NOT DECORATION. port_audit requires every ledger to carry `_spec`, and it
+    # is right to: a bare map has no way to say which shape it is, so the day this file gains a
+    # field there is nothing for a reader to switch on.
+    cache = load_cache()
 
     due, _, _ = ds.select(items, today, None)
     ids = {r["id"] for r in due}
@@ -519,7 +555,7 @@ def main() -> int:
         record["items"] = items
         LEDGER.write_text(json.dumps(record, indent=2, ensure_ascii=False) + "\n",
                           encoding="utf-8")
-    CACHE.write_text(json.dumps(fresh, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    save_cache(fresh, today)
     return report(findings, stats, stamped)
 
 
