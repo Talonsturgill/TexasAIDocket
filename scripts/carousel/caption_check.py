@@ -474,6 +474,60 @@ def check(text: str) -> list[str]:
     return problems
 
 
+# Periods that do not end a sentence. Each entry names WHAT MUST FOLLOW, because in this corpus
+# the same token does both jobs and only the continuation tells them apart. Measured on the built
+# site rather than taken from a general list, which is why `U.S` and `St` are absent: they do not
+# occur here, and a guess would be an untested branch pretending to be coverage.
+#
+#   NUMBERING  "Reinvestment Zone No. 11" abbreviates, but the ask engine also writes "It is
+#              primary. No. It sits outside the window" as an answer, 39 times against 28. Only a
+#              DIGIT next proves the abbreviation.
+#   MID_NAME   a corporate suffix genuinely ends some sentences ("the certified occupant is
+#              Google LLC.") and genuinely sits inside others ("Compal Technology, Inc. and PDC
+#              TP 01 LOT A LLC"). A LOWERCASE word next proves the sentence ran on, because no
+#              sentence here opens lowercase.
+#   TITLE      a personal title is never a sentence's last word, so it needs no continuation test.
+_NUMBERING = ("No", "Nos")
+_MID_NAME = ("Inc", "LLC", "Co", "Corp", "Ltd", "a.m", "p.m")
+_TITLE = ("Dr", "Mr", "Mrs", "Ms", "Sen", "Rep", "Gov")
+
+
+def _ends_sentence(text: str, i: int) -> bool:
+    """Is the terminal mark at `text[i]` a full stop, or an abbreviation's period?
+
+    A blanket rule was tried and rejected on measurement. "A period followed by a lowercase
+    letter never ends a sentence" is true of clean prose and false here, because the ask engine
+    prints a question string straight after a sentence ("Read the first seven words. should the
+    League City Police Department...") and the sources view prints a hostname the same way. A
+    blanket rule welds those into one long pseudo-sentence, which is the exact trap the caller's
+    own docstring exists to prevent. So the test is scoped to named tokens, and every token in
+    the lists was seen doing this in the built site.
+    """
+    if text[i] != ".":
+        return True                                   # ! and ? are never abbreviations
+    m = re.search(r"([A-Za-z][A-Za-z.]*)$", text[:i])
+    tok = m.group(1) if m else ""
+    nxt = text[i + 1:].lstrip()[:1]
+    if tok in _TITLE:
+        return False
+    if tok in _NUMBERING:
+        return not nxt.isdigit()
+    if tok in _MID_NAME:
+        return not nxt.islower()
+    return True
+
+
+def _sentences(text: str) -> list[str]:
+    """`text` cut at its real full stops, abbreviations left whole."""
+    out, start = [], 0
+    for m in re.finditer(r"(?<=[.!?])\s+", text):
+        if _ends_sentence(text, m.start() - 1):
+            out.append(text[start:m.start()])
+            start = m.end()
+    out.append(text[start:])
+    return out
+
+
 def long_sentences(text: str, ceiling: int = SENTENCE_CEILING) -> list[str]:
     """Every sentence over the backstop, named with its length and where it starts.
 
@@ -483,9 +537,15 @@ def long_sentences(text: str, ceiling: int = SENTENCE_CEILING) -> list[str]:
     which named the wrong problem and would have been fixed by rewriting prose that was already
     fine. Structured regions are excluded upstream by `data-prose="data"`; this is the second
     guard, for anything not marked.
+
+    THE SPLIT IS ABBREVIATION AWARE, AND IT HAS TO BE. Splitting on every period let a long
+    sentence hide inside its own abbreviation: 44 words on tx-2026-0027 read as two passing
+    halves because "Compal Technology, Inc." and "6:00 p.m." each looked like a full stop. The
+    gate reported the shorter halves and shipped the sentence. A backstop defeated by writing
+    "Inc." is not a backstop, it is a gate with a published bypass.
     """
     out = []
-    for raw in re.split(r"(?<=[.!?])\s+", text):
+    for raw in _sentences(text):
         s = " ".join(raw.split())
         if not s.endswith((".", "!", "?")):
             continue
@@ -706,6 +766,40 @@ def self_test() -> int:
        rate_problem("One, two, three.", SITE_COMMA_CEILING) is None)
     ok("...but a short block still fails on construction",
        catches("It ran and, briefly, stopped.", "comma after"))
+
+    # THE BACKSTOP'S OWN BYPASS. Splitting on every period let a long sentence hide inside its
+    # own abbreviation, and both fixtures below are real shipped copy, not invented ones. The
+    # first ran 44 words on tx-2026-0027 and reported as two passing halves for as long as the
+    # gate existed, because "Compal Technology, Inc." and "6:00 p.m." each read as a full stop.
+    hidden = ("The City of Taylor published a public notice that its City Council would consider "
+              "an Amended and Restated Tax Abatement Agreement with Compal Technology, Inc. and "
+              "PDC TP 01 LOT A LLC at the regularly scheduled meeting on August 13th, 2026 at "
+              "6:00 p.m.")
+    ok("a long sentence cannot hide behind Inc. and p.m.",
+       any("44 words" in x for x in long_sentences(hidden)), str(long_sentences(hidden)))
+    numbered = ("Brazoria County Commissioners Court opened and closed a public hearing on the "
+                "creation of Brazoria County Reinvestment Zone No. 26-01 on March 10th, 2026 and "
+                "then refused to create the zone.")
+    ok("...nor behind a zone number",
+       any("31 words" in x for x in long_sentences(numbered)), str(long_sentences(numbered)))
+    # THE OTHER HALF, AND THE REASON THE RULE IS TOKEN SCOPED RATHER THAN BLANKET. Each of these
+    # tokens genuinely ends sentences too. Welding them shut would manufacture the pseudo-sentence
+    # this gate's own docstring exists to prevent, so both directions are asserted.
+    answer = ("One source backs it. It is primary. No. It sits outside the window the record "
+              "measures and nothing in the file moves it back inside that window today.")
+    ok('...but "No." answering a question still ends its sentence',
+       not long_sentences(answer), str(long_sentences(answer)))
+    suffix = ("The certified occupant is Google LLC. Alphabet has moved to acquire the parent "
+              "and the record does not yet carry a filing that names the new owner of the site.")
+    ok("...and a corporate suffix ending a sentence still ends it",
+       not long_sentences(suffix), str(long_sentences(suffix)))
+    # A QUESTION STRING PRINTED AFTER PROSE IS NOT A CONTINUATION. The ask engine writes exactly
+    # this, which is why "a period before a lowercase letter never ends a sentence" was measured
+    # and rejected: as a blanket rule it welds these two into one 34 word sentence.
+    lowered = ("Read the first seven words. should the League City Police Department renew the "
+               "camera contract it signed with the vendor in the spring of the following year")
+    ok("...and a lowercase question string after prose is not welded on",
+       not long_sentences(lowered), str(long_sentences(lowered)))
 
     # THE COMMA MEASUREMENT, which is reported and deliberately not gated.
     rate, commas, words = comma_rate("One, two, three, four five six seven eight nine ten.")

@@ -224,11 +224,52 @@ def git(*args: str, cwd: Path = REPO_ROOT) -> str:
     return proc.stdout
 
 
+def merge_head(cwd: Path = REPO_ROOT) -> str | None:
+    """The commit being merged in, or None when no merge is in progress.
+
+    Resolved through `git rev-parse --git-dir` and never by joining "$root/.git", for the same
+    reason the hooks stopped doing that: in a linked worktree `.git` is a FILE holding a gitdir
+    pointer, so the path under it does not exist and the test for it is simply false.
+    """
+    d = Path(git("rev-parse", "--git-dir", cwd=cwd).strip())
+    if not d.is_absolute():
+        d = cwd / d
+    f = d / "MERGE_HEAD"
+    if not f.exists():
+        return None
+    first = f.read_text(encoding="utf-8").split()
+    return first[0] if first else None
+
+
 def changed_files(diff: str | None, staged: bool, cwd: Path = REPO_ROOT) -> list[str]:
+    """The paths a change touches.
+
+    DURING A MERGE, HEAD IS ONLY ONE OF TWO PARENTS, and `git diff --cached` compares the index
+    against the first one. So merging `main` into a run branch presented the whole of main's
+    side as writes by the merging actor, and the hook refused a routine merge that had written
+    nothing out of lane. The only way past it was to clear the actor stamp, which is to say the
+    guard taught the operator that the stamp is negotiable. That is a worse outcome than the
+    false positive.
+
+    The fix is to keep only what differs from BOTH parents. A file that only `main` touched
+    matches MERGE_HEAD and drops out. A genuine conflict resolution differs from both and stays,
+    so the lane is still enforced across exactly the operation that used to switch it off.
+
+    `commits_in` skips merge commits outright, for a reason it states, and this is deliberately
+    stricter than that rather than a copy of it. CI reads whole commits after the fact, where a
+    merge's content is already covered by the commits being merged. The hook reads a working
+    index that nothing has judged yet, so it checks the resolution instead of waiving it.
+    """
     if staged:
         out = git("diff", "--cached", "--name-only", "--diff-filter=ACMRD", cwd=cwd)
-    else:
-        out = git("diff", "--name-only", "--diff-filter=ACMRD", diff, cwd=cwd)
+        names = [line.strip() for line in out.splitlines() if line.strip()]
+        other = merge_head(cwd=cwd)
+        if other:
+            out2 = git("diff", "--cached", "--name-only", "--diff-filter=ACMRD", other, cwd=cwd)
+            against_other = {line.strip() for line in out2.splitlines() if line.strip()}
+            names = [n for n in names if n in against_other]
+        return names
+    out = git("diff", "--name-only", "--diff-filter=ACMRD", diff, cwd=cwd)
     return [line.strip() for line in out.splitlines() if line.strip()]
 
 
@@ -575,6 +616,32 @@ def _self_test_per_commit() -> int:
             rc3 = check_per_commit(omap, branch, f"{new_base}...HEAD", cwd=repo)
         ok("...and three dots means the same set as two", rc3 == rc,
            buf.getvalue() + err.getvalue())
+
+        # THE HOOK'S PATH, WHICH EVERYTHING ABOVE LEAVES UNTESTED. CI reads finished commits and
+        # skips merges. The pre-commit hook reads a STAGED INDEX mid-merge, where `git diff
+        # --cached` compares against the first parent only, so the whole of the other side read
+        # as writes by the merging actor. Every check above was green while that was true, which
+        # is the point: the merge was tested in the spelling CI uses and not in the spelling the
+        # hook uses. The operator's only way through was to clear the actor stamp.
+        git("checkout", "-q", "trunk", cwd=repo)
+        commit("CLAUDE.md", "a second maintainer edit on trunk\n", "second trunk edit", "human")
+        git("checkout", "-q", "main", cwd=repo)
+        git("merge", "--no-ff", "--no-commit", "-q", "trunk", cwd=repo)
+        ok("a merge in progress leaves MERGE_HEAD where the check can find it",
+           merge_head(cwd=repo) is not None)
+        staged = changed_files(None, True, cwd=repo)
+        ok("...and the other side's files are not read as this actor's writes",
+           staged == [], str(staged))
+        # THE OTHER HALF. Waiving the whole merge would be the easy fix and the wrong one, since
+        # a conflict resolution is real content nothing else has judged. It differs from BOTH
+        # parents, so it survives the filter and stays in lane.
+        (repo / "scripts" / "carousel").mkdir(parents=True, exist_ok=True)
+        (repo / "scripts" / "carousel" / "resolved.py").write_text("r\n", encoding="utf-8")
+        git("add", "-A", cwd=repo)
+        staged = changed_files(None, True, cwd=repo)
+        ok("...but what the merging session itself writes is still checked",
+           "scripts/carousel/resolved.py" in staged, str(staged))
+        git("merge", "--abort", cwd=repo)
 
     return failures
 
