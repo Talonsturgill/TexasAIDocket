@@ -113,14 +113,23 @@ def findings(fetch, expect_title: str, ledger_items: int) -> tuple[list[str], li
             if not n:
                 dark.append("the sitemap carries no urls")
 
-    status, body = fetch("/docket.json")
+    # THE PROBE IS `status.json`, WHICH EXISTS FOR NOTHING ELSE.
+    #
+    # This asked both of its questions of `/docket.json`, the whole record published as a CC BY
+    # download. That file came down on 2026-08-23 in a decision that had nothing to do with
+    # monitoring, and this check then cried THE SITE IS DARK every four hours at a site that was
+    # answering perfectly. The expensive half of the damage is the other branch: "has the deploy
+    # landed" is precisely the alarm for the outage that began the next day, and it was already
+    # dead when that outage started. A probe pointed at a file kept for somebody else's reason
+    # is a probe that will be switched off by somebody who is not thinking about you.
+    status, body = fetch("/status.json")
     if status != 200:
-        dark.append(f"the record answered {status}")
+        dark.append(f"the build stamp answered {status}")
     else:
         try:
-            served = len(json.loads(body).get("items") or [])
-        except (json.JSONDecodeError, AttributeError) as exc:
-            dark.append(f"the published record does not parse ({exc})")
+            served = int(json.loads(body)["items"])
+        except (json.JSONDecodeError, KeyError, TypeError, ValueError) as exc:
+            dark.append(f"the build stamp does not parse ({exc})")
         else:
             if served < ledger_items:
                 behind.append(f"the site serves {served} decisions and this repository holds "
@@ -163,11 +172,11 @@ def self_test() -> int:
     good_html = b"<html><head><title>Texas AI Docket \xc2\xb7 Every AI decision</title></head></html>"
     good_map = (b'<?xml version="1.0"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
                 b"<url><loc>https://x/</loc></url></urlset>")
-    good_rec = b'{"items":[{"id":"a"},{"id":"b"}]}'
+    good_rec = b'{"built":"2026-08-25","items":2,"spec":1}'
 
     def site(**broken):
         pages = {"/": (200, good_html), "/sitemap.xml": (200, good_map),
-                 "/docket.json": (200, good_rec)}
+                 "/status.json": (200, good_rec)}
         pages.update(broken)
         return lambda p: pages.get(p, (404, b""))
 
@@ -189,10 +198,11 @@ def self_test() -> int:
                                                   b'schemas/sitemap/0.9"></urlset>')}),
                     "Texas AI Docket", 2)
     check("the sitemap is empty", any("no urls" in x for x in d), str(d))
-    d, _ = findings(site(**{"/docket.json": (500, b"")}), "Texas AI Docket", 2)
-    check("the record 500s", any("record answered 500" in x for x in d), str(d))
-    d, _ = findings(site(**{"/docket.json": (200, b"not json")}), "Texas AI Docket", 2)
-    check("the record does not parse", any("record does not parse" in x for x in d), str(d))
+    d, _ = findings(site(**{"/status.json": (500, b"")}), "Texas AI Docket", 2)
+    check("the build stamp 500s", any("build stamp answered 500" in x for x in d), str(d))
+    d, _ = findings(site(**{"/status.json": (200, b"not json")}), "Texas AI Docket", 2)
+    check("the build stamp does not parse",
+          any("build stamp does not parse" in x for x in d), str(d))
 
     print("\na front page that fails stops the run, since nothing after it is meaningful")
     d, _ = findings(site(**{"/": (503, b""), "/sitemap.xml": (500, b"")}), "Texas AI Docket", 2)
