@@ -117,8 +117,18 @@ BRITISH = {
 BRITISH_RX = re.compile(r"\b(" + "|".join(sorted(BRITISH, key=len, reverse=True)) + r")\b",
                         re.IGNORECASE)
 OPENER = re.compile(r"(?:^|(?<=[.!?])\s+|\n)\s*(And|But)\b")
-FIRST_PERSON = re.compile(r"\b(?:I|I'm|I've|I'll|we|we're|we've|we'll|our|ours|us|my|mine)\b",
-                          re.IGNORECASE)
+# AN AGENDA ITEM NUMBER IS NOT FIRST PERSON. A period is a word boundary, so `\bI\b` matched
+# the I in "No action taken due to I.3 failed", which is Brazoria County's own minute line and
+# the best single fact the August 25th run had. The gate reported first person on a caption that
+# contained none, and the only ways past it were to misquote the record or to drop the quote.
+#
+# A gate that can only be satisfied by damaging a verbatim quote is a gate that will be switched
+# off, so the fix is here rather than in the copy. `I` is still first person everywhere else,
+# including at the end of a sentence and before a comma. It is exempt only where a digit or a
+# further Roman numeral follows the period, which is what an item identifier looks like and what
+# a pronoun never does.
+FIRST_PERSON = re.compile(r"\b(?:I(?!\.\s*[0-9IVX])|I'm|I've|I'll|we|we're|we've|we'll"
+                          r"|our|ours|us|my|mine)\b", re.IGNORECASE)
 # A ROMAN NUMERAL IS NOT A PRONOUN. "the 2027 State Water Plan (Phase I)" is the document's own
 # name, and reporting it as a writer talking about themselves sends an editor looking for a
 # first person that is not there. The anchor is the word in front, the same way an identifier
@@ -766,6 +776,21 @@ def self_test() -> int:
        rate_problem("One, two, three.", SITE_COMMA_CEILING) is None)
     ok("...but a short block still fails on construction",
        catches("It ran and, briefly, stopped.", "comma after"))
+
+    # AN AGENDA ITEM NUMBER IS NOT A PRONOUN. Brazoria County's minute reads "No action taken
+    # due to I.3 failed", and this gate reported first person on a caption quoting it. The only
+    # ways past were to misquote the record or drop its best fact, which is how a gate stops
+    # being run at all. Both directions are asserted, because the exemption must not become a
+    # hole a real pronoun fits through.
+    ok("an agenda item number is not first person",
+       not catches('The minute reads "No action taken due to I.3 failed".', "first person"))
+    ok("...and a Roman numbered item is not either",
+       not catches('Item I.IV was postponed by the court.', "first person"))
+    ok("...while a real first person still FAILS",
+       catches("I read the minute myself.", "first person"))
+    ok("...and so does one at the end of a sentence",
+       catches("The clerk read it and so did I.", "first person"))
+    ok("...and so does a plural one", catches("We read the minute.", "first person"))
 
     # THE BACKSTOP'S OWN BYPASS. Splitting on every period let a long sentence hide inside its
     # own abbreviation, and both fixtures below are real shipped copy, not invented ones. The
