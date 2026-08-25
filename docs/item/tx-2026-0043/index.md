@@ -11,7 +11,7 @@ Archer County Commissioners Court voted unanimously on June 22nd, 2026 against a
 - Public access: Public meeting
 - Take part: https://www.newschannel6now.com/2026/06/22/archer-county-commissioners-deny-tax-abatement-proposed-data-center/
 
-- Last checked: 2026-08-22
+- Last checked: 2026-08-25
 
 ## Dates
 
@@ -23,6 +23,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-08-19 · Checked and unchanged. The court's unanimous denial of the abatement on June 22nd still stands. The county judge's stated reason remains a wish to see what restrictions the Legislature sets first.
 - 2026-08-22 · Checked and unchanged. The court's unanimous denial of the abatement on June 22nd still stands, and the county judge's stated reason is still a wish to see what restrictions the Legislature sets first.
+- 2026-08-25 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

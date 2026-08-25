@@ -287,7 +287,7 @@
           "fetched": "2026-08-16"
         }
       ],
-      "last_verified": "2026-08-25",
+      "last_verified": "2026-08-22",
       "confidence": "high",
       "notes_for_editor": "This is the single most actionable item in the seed set: a live comment window a reader can still use. The proposed rule text is at https://interchange.puc.texas.gov/Documents/58482_30_1669532.PDF and was NOT parsed, for the same missing PDF extractor reason. A follow up should confirm what Section 25.521 actually requires of large loads before the docket summarises its substance beyond the case style.",
       "history": [
@@ -306,10 +306,6 @@
         {
           "date": "2026-08-22",
           "note": "The earlier correction today reached the summary and not the public access field. That field still said individuals had filed without counsel. It is corrected now."
-        },
-        {
-          "date": "2026-08-25",
-          "note": "The comment window is still open, closing September 4th."
         }
       ]
     },
@@ -462,7 +458,7 @@
           "fetched": "2026-08-21"
         }
       ],
-      "last_verified": "2026-08-25",
+      "last_verified": "2026-08-21",
       "confidence": "high",
       "notes_for_editor": "The 765 kV designation and the 22 county list are taken verbatim from the commission's own case style, not computed. Note for numeral_lint, 765 kV and the docket number are identifiers inside a quoted official title, not measurements this project derived. The Interchange web view renders only the first page of filing rows while reporting the full count on its index line, so the item count is quoted from that line and never counted from the table. The calendar feed's description field never carries a docket number for any entry, so its absence there is not evidence a matter has been dropped. Read the agenda PDF the entry links. This docket is included on the AI beat because 765 kV backbone capacity is the physical answer to large load growth, but the record fetched does NOT state that any particular data center drives this line, and the docket must not be described as a data center project without that link being established.",
       "history": [
@@ -481,10 +477,6 @@
         {
           "date": "2026-08-21",
           "note": "Checked. The commission's published agenda for the August 21st, 2026 open meeting still names Docket 59315 as item 3 for discussion and possible action. The filing index has moved from 5793 to 5797 since the last check."
-        },
-        {
-          "date": "2026-08-25",
-          "note": "Checked and unchanged. Still pending, with no dated movement."
         }
       ]
     },
@@ -975,7 +967,7 @@
           "fetched": "2026-08-18"
         }
       ],
-      "last_verified": "2026-08-25",
+      "last_verified": "2026-08-21",
       "confidence": "high",
       "notes_for_editor": "Verified: prior research was right. The project type strings are reproduced verbatim and in the order the page prints them, including the page's own mid word truncations, so a checker can diff them against the live table. The row count is deliberately not stated in prose: it should be computed by the build from the captured rows rather than typed. CAVEAT ON SCOPE, which the item must carry: JETI is the school district value limitation program only. A data center can still receive city or county tax abatements under Local Government Code Chapter 312, Chapter 380 or 381 agreements, and freeport exemptions, none of which appear on this page. The honest claim is that data centers are absent from THIS list, not that they get no Texas tax breaks.",
       "history": [
@@ -986,10 +978,6 @@
         {
           "date": "2026-08-21",
           "note": "Checked and unchanged. The Comptroller's current JETI agreements list still names no data center project, and no entry on it is a data center, a semiconductor plant or a battery plant."
-        },
-        {
-          "date": "2026-08-25",
-          "note": "Checked and unchanged. The decision still stands as decided."
         }
       ]
     },
@@ -1220,7 +1208,7 @@
           "fetched": "2026-08-20"
         }
       ],
-      "last_verified": "2026-08-25",
+      "last_verified": "2026-08-21",
       "confidence": "high",
       "notes_for_editor": "This is an infrastructure item rather than a decision, and the docket may prefer to use the feed as a collector and not publish it as an item. Keeping it has one strong argument: it tells a reader where the calendar actually lives, which is the single most useful thing this docket can hand someone who wants to participate. Its dates are the spine of the recurring collector.",
       "history": [
@@ -1239,10 +1227,6 @@
         {
           "date": "2026-08-21",
           "note": "Checked and unchanged. The feed still runs through July 29th, 2027 and the September 4th public comment deadline for Project 58482 is still listed. The August 21st open meeting still stands at the off site hotel and conference center."
-        },
-        {
-          "date": "2026-08-25",
-          "note": "Checked and unchanged. Still open, with no dated movement."
         }
       ]
     },
@@ -2026,7 +2010,7 @@
         }
       ],
       "id": "tx-2026-0033",
-      "last_verified": "2026-08-25",
+      "last_verified": "2026-08-22",
       "history": [
         {
           "date": "2026-08-19",
@@ -2035,10 +2019,6 @@
         {
           "date": "2026-08-22",
           "note": "Checked and unchanged. The city's own action record still carries the July 20th approval of the resolution adopting the Data Center Policy Framework. It was moved by Representative Boyar Trejo and seconded by Representative Limon, and it is still marked passed."
-        },
-        {
-          "date": "2026-08-25",
-          "note": "Checked and unchanged. The decision still stands as decided."
         }
       ]
     },
@@ -2287,7 +2267,7 @@
         }
       ],
       "id": "tx-2026-0036",
-      "last_verified": "2026-08-25",
+      "last_verified": "2026-08-22",
       "history": [
         {
           "date": "2026-08-19",
@@ -2296,10 +2276,6 @@
         {
           "date": "2026-08-22",
           "note": "Whether the court has revisited the agreement is still unconfirmed. The sheriff's decision to end the county's Flock Safety contract still stands as reported and no later county action appears."
-        },
-        {
-          "date": "2026-08-25",
-          "note": "Checked and unchanged. The decision still stands as decided."
         }
       ]
     },
@@ -2580,7 +2556,7 @@
         }
       ],
       "id": "tx-2026-0039",
-      "last_verified": "2026-08-25",
+      "last_verified": "2026-08-22",
       "history": [
         {
           "date": "2026-08-19",
@@ -2589,10 +2565,6 @@
         {
           "date": "2026-08-22",
           "note": "Checked and unchanged. The federal award announcement still names the university in the first round of CyberAICorps Scholarship for Service awards. The attribution against the university's own program page is still unconfirmed."
-        },
-        {
-          "date": "2026-08-25",
-          "note": "Checked and unchanged. The decision still stands as decided."
         }
       ]
     },
@@ -2768,7 +2740,7 @@
         }
       ],
       "id": "tx-2026-0041",
-      "last_verified": "2026-08-25",
+      "last_verified": "2026-08-22",
       "history": [
         {
           "date": "2026-08-19",
@@ -2777,10 +2749,6 @@
         {
           "date": "2026-08-22",
           "note": "Whether the permit has been revisited is still unconfirmed. The conditional use permit for the DataNovaX data center on Airport Drive still stands as approved and the city's agenda archive carries nothing later."
-        },
-        {
-          "date": "2026-08-25",
-          "note": "Checked and unchanged. The decision still stands as decided."
         }
       ]
     },
@@ -3046,7 +3014,7 @@
         }
       ],
       "id": "tx-2026-0044",
-      "last_verified": "2026-08-25",
+      "last_verified": "2026-08-22",
       "history": [
         {
           "date": "2026-08-19",
@@ -3055,10 +3023,6 @@
         {
           "date": "2026-08-22",
           "note": "Whether the resolution has been revisited is still unconfirmed. Resolution 010-26 asking the Legislature for county authority over data centers still stands as adopted and the court's own page publishes no later item text."
-        },
-        {
-          "date": "2026-08-25",
-          "note": "Checked and unchanged. The decision still stands as decided."
         }
       ]
     },
@@ -3243,7 +3207,7 @@
         }
       ],
       "id": "tx-2026-0046",
-      "last_verified": "2026-08-25",
+      "last_verified": "2026-08-22",
       "history": [
         {
           "date": "2026-08-19",
@@ -3252,10 +3216,6 @@
         {
           "date": "2026-08-22",
           "note": "The abatement agreement itself is unconfirmed this run. What is confirmed is the electrical geography the item rests on. The Panhandle sits in the Southwest Power Pool rather than in ERCOT, which is why a plant here does not join the ERCOT queue."
-        },
-        {
-          "date": "2026-08-25",
-          "note": "Checked and unchanged. The decision still stands as decided."
         }
       ]
     },
@@ -3453,7 +3413,7 @@
         }
       ],
       "id": "tx-2026-0048",
-      "last_verified": "2026-08-25",
+      "last_verified": "2026-08-20",
       "history": [
         {
           "date": "2026-08-19",
@@ -3470,10 +3430,6 @@
         {
           "date": "2026-08-20",
           "note": "The council's next regular meeting is August 25th, 2026 at 6:00 PM in Council Chambers at 200 West Walker Street. That agenda is posted final. None of its items names an automated license plate reader, Flock or a camera, and public comment there may be general in nature. The proposition itself is on the November 3rd ballot and the published wording says the result does not bind the council."
-        },
-        {
-          "date": "2026-08-25",
-          "note": "The comment window is still open, closing November 3rd."
         }
       ],
       "notes_for_editor": "2026-08-20, three corrections to this item's own prose and none to a fetched fact. The summary gave the mover a first name, Courtney, that no fetched record carries, and dropped the seconder the quote names. It also said the council passed the ordinance twice that evening, once on first reading and once on first and final reading, where the quote establishes one motion on first and final reading and nothing establishes a second. It called the cameras Flock Safety devices where the reporting says Flock cameras and Pflugerville's own item title says Flock Group, Inc. The heavier one was in public_access.how, which read 'The decision itself now goes to registered voters at the November 3rd, 2026 election'. That sat four lines below this item's own sentence saying the council keeps the decision either way, and against the ballot's published first clause, in the field the site prints under how to take part. Root cause: the field was written on 2026-08-14 from the ordinance, which orders an election, and was never revisited when the ballot wording arrived on 2026-08-20 and turned the election into a preference poll. A field that describes access was carrying a claim about effect.\n\n2026-08-20, second pass. The address, the date and the hour had been carried in public_access prose since the 14th with no quote behind them, and the day's deck was printing all three as its largest type. The meeting's own agenda was fetched instead, Legistar event 2222, and it carries the room and the street verbatim in item 1. Going to get it turned up the stronger finding: the agenda is FINAL with 61 titled items and not one names a licence plate reader, Flock or a camera. Until today this item could only say the record did not establish the question WAS on that agenda. It can now say the posted final agenda does not carry it. What that does NOT say, and this item must not: that the council will not reach the question on another date, or that the agenda's own ITEMS ADDED AFTER ELECTRONIC AGENDA COMPLETED placeholder will stay empty.\n\n2026-08-20, third pass. public_access.how still carried 'with a Council Budget and CIP Workshop at 5:00 PM', an hour no claim in this run establishes, in the same field whose note two paragraphs up was written to get unquoted particulars OUT of it. The event fetch returned exactly one League City event between August 20th and August 31st and it is the 6:00 PM council meeting. The workshop and its hour are removed. A correction that names a fault and then leaves an instance of it in the same paragraph is the fault surviving its own repair."
@@ -3643,7 +3599,7 @@
         }
       ],
       "id": "tx-2026-0050",
-      "last_verified": "2026-08-25",
+      "last_verified": "2026-08-22",
       "history": [
         {
           "date": "2026-08-19",
@@ -3652,10 +3608,6 @@
         {
           "date": "2026-08-22",
           "note": "Checked and unchanged. The city's own record still marks the motion passed on July 21st as M2026-070. It still directs staff to initiate a code amendment defining data centers as a distinct principal land use. It also still directs staff to prepare the statutory process for a temporary development moratorium."
-        },
-        {
-          "date": "2026-08-25",
-          "note": "Checked and unchanged. The decision still stands as decided."
         }
       ]
     },
@@ -4216,7 +4168,7 @@
         }
       ],
       "id": "tx-2026-0057",
-      "last_verified": "2026-08-25",
+      "last_verified": "2026-08-22",
       "history": [
         {
           "date": "2026-08-19",
@@ -4233,10 +4185,6 @@
         {
           "date": "2026-08-22",
           "note": "Checked and unchanged. The cancelation notice still stands and still says the meeting will be rescheduled for a later date. No replacement date appears, so the date a Texan in Panhandle could speak is still unset, and the originally scheduled August 24th date is now two days away."
-        },
-        {
-          "date": "2026-08-25",
-          "note": "Checked and unchanged. Still pending, with no dated movement."
         }
       ]
     },
@@ -4773,7 +4721,7 @@
         }
       ],
       "id": "tx-2026-0064",
-      "last_verified": "2026-08-25",
+      "last_verified": "2026-08-21",
       "history": [
         {
           "date": "2026-08-18",
@@ -4782,10 +4730,6 @@
         {
           "date": "2026-08-21",
           "note": "Checked and unchanged. The notice still carries a preliminary decision and draft permit for Crusoe Technologies LLC under permits 182126, PSDTX1688 and GHGPSDTX263, with a notice issuance date of August 5th, 2026. The comment window still runs thirty days from newspaper publication, and the notice still names no publication date."
-        },
-        {
-          "date": "2026-08-25",
-          "note": "Checked and unchanged. Still open, with no dated movement."
         }
       ]
     },
@@ -5218,7 +5162,7 @@
         }
       ],
       "id": "tx-2026-0068",
-      "last_verified": "2026-08-25",
+      "last_verified": "2026-08-22",
       "history": [
         {
           "date": "2026-08-19",
@@ -5227,10 +5171,6 @@
         {
           "date": "2026-08-22",
           "note": "Checked and unchanged. The district's notice still sets the hearing for March 25th, 2026 on the Energy Forge One reinvestment zone and the Chapter 312 abatement application. It still puts the estimated project cost at 6 billion dollars."
-        },
-        {
-          "date": "2026-08-25",
-          "note": "Checked and unchanged. Still pending, with no dated movement."
         }
       ]
     },
@@ -5564,7 +5504,7 @@
       ],
       "public_access": {
         "room": "open_meeting",
-        "how": "The commission carries this out in its own open meetings, which its calendar feed lists as open to the public in Commissioners Hearing Room 7-100 in Austin. The August 20th, 2026 meeting takes up ERCOT's request for a good cause exception as item 22. That agenda opens with a public comment period on any matter within the commission's jurisdiction, with speakers limited to three minutes each. Subscribing to the calendar feed is the way to see an item before it is taken up rather than after.",
+        "how": "The commission carries this out in its own open meetings, which its calendar feed lists as open to the public in Commissioners Hearing Room 7-100 in Austin. The August 20th, 2026 meeting took up ERCOT's request for a good cause exception as item 22. That agenda opens with a public comment period on any matter within the commission's jurisdiction, with speakers limited to three minutes each. Subscribing to the calendar feed is the way to see an item before it is taken up rather than after.",
         "url": "https://gov.texas.gov/uploads/files/press/Thomas_Gleeson_Pablo_Vegas_Data_Centers_Directive_Letter_to_PUCT_ERCOT_August_2026_.pdf",
         "closes": null
       },
@@ -5687,7 +5627,7 @@
         },
         {
           "date": "2026-08-25",
-          "note": "Checked and unchanged. Still pending, with no dated movement."
+          "note": "Checked and unchanged. The directive still requires the audit to finish before any data center project moves forward, and still puts data centers at about 90 percent of new power requests. The August 20th open meeting has now passed. Its outcome on the good cause exception is unconfirmed."
         }
       ]
     },
@@ -5817,7 +5757,7 @@
           "fetched": "2026-08-20"
         }
       ],
-      "last_verified": "2026-08-25",
+      "last_verified": "2026-08-20",
       "confidence": "high",
       "notes_for_editor": "lrl.texas.gov robots.txt carries content signals and no path disallow.",
       "history": [
@@ -5828,10 +5768,6 @@
         {
           "date": "2026-08-20",
           "note": "Both hearings are confirmed against the Legislature's own notices. The State Affairs notice of August 19th carries a second charge. It covers the regulatory and planning processes for the proposed 765 kV transmission lines, which the earlier record did not name. It took invited and public testimony, limited to two minutes a witness, with registration closing at 10:00 am that day. The Public Health notice for August 20th takes invited testimony only. The written comment is the one route a Texan has on the artificial intelligence in health care charge, and it stays open until the hearing is adjourned."
-        },
-        {
-          "date": "2026-08-25",
-          "note": "The comment window closed on August 20th."
         }
       ]
     },
@@ -5924,7 +5860,7 @@
         },
         {
           "date": "2026-08-25",
-          "note": "The comment window is still open, closing November 3rd."
+          "note": "Checked and unchanged. The charter amendments still go to Pflugerville voters on November 3rd, 2026, and the proposed Section 2.03 still stands as ordered."
         }
       ]
     },
@@ -6006,7 +5942,7 @@
           "fetched": "2026-08-20"
         }
       ],
-      "last_verified": "2026-08-25",
+      "last_verified": "2026-08-21",
       "confidence": "high",
       "notes_for_editor": "The 765 kV designation and the county list come from the commission's own agenda entry, not computed. This is the companion application to Docket 59315, and the record does not state that any particular data center drives either line.",
       "history": [
@@ -6017,10 +5953,6 @@
         {
           "date": "2026-08-21",
           "note": "Checked and unchanged. The commission's published agenda for August 21st, 2026 still names this application as item 2 for discussion and possible action, and the filing index still stands at 489."
-        },
-        {
-          "date": "2026-08-25",
-          "note": "Checked and unchanged. Still pending, with no dated movement."
         }
       ]
     },
@@ -6118,7 +6050,7 @@
           "fetched": "2026-08-21"
         }
       ],
-      "last_verified": "2026-08-25",
+      "last_verified": "2026-08-22",
       "confidence": "high",
       "notes_for_editor": "Statewide because the charge covers deployment on Texas roads generally. The room is in Travis County and the subject is not.",
       "history": [
@@ -6133,10 +6065,6 @@
         {
           "date": "2026-08-22",
           "note": "Checked and unchanged. The Senate notice still sets the hearing for 9:00 AM on August 25th, 2026 in hearing room E1.016. The autonomous vehicle charge still asks the committee to quantify the impact on traffic related collisions."
-        },
-        {
-          "date": "2026-08-25",
-          "note": "The comment window is still open, closing August 25th."
         }
       ]
     },

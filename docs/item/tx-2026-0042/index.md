@@ -9,7 +9,7 @@ Young County Commissioners Court formally received a tax abatement application f
 - Public access: Public meeting
 - Take part: https://www.olneyenterprise.com/news/county-votes-data-center-abatement
 
-- Last checked: 2026-08-22
+- Last checked: 2026-08-25
 
 ## Dates
 
@@ -22,6 +22,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-08-19 · Checked and unchanged. The county still received the application on August 10th with no vote taken on it, and the 5 to 0 escrow ratification still stands. Whether the court began considering the abatement when it reconvened on August 17th is unconfirmed.
 - 2026-08-22 · Checked and unchanged. The county still received the abatement application on August 10th with no vote taken on it, and the 5 to 0 escrow ratification still stands. Whether the court took the abatement up when it reconvened on August 17th is still unconfirmed.
+- 2026-08-25 · Checked and unchanged. Still pending, with no dated movement.
 
 ## Evidence
 

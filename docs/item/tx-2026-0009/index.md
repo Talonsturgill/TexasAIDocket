@@ -8,7 +8,7 @@ The Department of Information Resources is required to establish a program letti
 - Status: pending
 - Public access: Write to the decider
 
-- Last checked: 2026-08-21
+- Last checked: 2026-08-25
 
 ## Dates
 
@@ -21,6 +21,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-08-18 · Checked and unchanged. The sandbox program stands required of the Department of Information Resources and the report to the Legislature is still due November 30th, 2026.
 - 2026-08-21 · Checked and unchanged. The sandbox program stands required of the Department of Information Resources and the report to the Legislature is still due November 30th, 2026.
+- 2026-08-25 · Checked and unchanged. Still pending, with no dated movement.
 
 ## Evidence
 
