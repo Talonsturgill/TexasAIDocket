@@ -262,21 +262,31 @@ def movement_line(item: dict, today: _dt.date) -> str:
     machine's own work, so this names the DECISION and never the check. It also has to clear
     `house_style_check`, so it stays well under the thirty word backstop and takes the ordinal.
     """
-    when = ordinal(today)
     pa = item.get("public_access") or {}
     close = pa.get("closes")
     if close:
         try:
-            return (f"{when}. The comment window is still open, "
-                    f"closing {ordinal(ds.parse_date(close))}.")
+            shut = ds.parse_date(close)
         except Exception:  # noqa: BLE001  a malformed date is not this script's to correct
-            pass
+            shut = None
+        if shut:
+            # OPEN OR SHUT IS DERIVED FROM THE DATE, NEVER ASSERTED. The first version read the
+            # close date and said "the comment window is still open, closing August 11th" on
+            # August 25th, which is a sentence that contradicts its own second half. Four of the
+            # ten items carrying a close date had already closed, so this would have written
+            # four false statements into the public record on its first real run.
+            #
+            # docket_build says it in one line, "open or shut is derived, never stored", and
+            # this code had the date in its hand and asserted the wrong half anyway.
+            if shut >= today:
+                return f"The comment window is still open, closing {ordinal(shut)}."
+            return f"The comment window closed on {ordinal(shut)}."
     status = (item.get("status") or "").strip().lower()
     if status == "decided":
-        return f"{when}. The decision still stands as decided."
+        return "Checked and unchanged. The decision still stands as decided."
     if status == "withdrawn":
-        return f"{when}. The withdrawal still stands."
-    return f"{when}. Still {status or 'open'}, with no dated movement since the last check."
+        return "Checked and unchanged. The withdrawal still stands."
+    return f"Checked and unchanged. Still {status or 'open'}, with no dated movement."
 
 
 def apply(items: list, findings: list, today: _dt.date) -> list:
@@ -295,7 +305,11 @@ def apply(items: list, findings: list, today: _dt.date) -> list:
         if it["id"] not in clean:
             continue
         it["last_verified"] = today.isoformat()
-        it.setdefault("history", []).append(movement_line(it, today))
+        # THE SHAPE IS THE RECORD'S, NOT A STRING. History entries are {date, note}, and the
+        # movement gate looks for an entry whose date equals last_verified. Appending a plain
+        # string stamped 55 items whose log the gate could not see, and it said so.
+        it.setdefault("history", []).append(
+            {"date": today.isoformat(), "note": movement_line(it, today)})
         stamped.append(it["id"])
     return stamped
 
@@ -485,13 +499,33 @@ def self_test() -> int:  # noqa: C901
     print("\nthe movement line clears the gates that govern reader copy")
     import docket_build as db
     lines = [movement_line(item("x", "u", "q", status="open", closes="2026-09-01"), today),
+             movement_line(item("x", "u", "q", status="open", closes="2026-08-11"), today),
              movement_line(item("x", "u", "q", status="decided"), today),
              movement_line(item("x", "u", "q", status="withdrawn"), today),
              movement_line(item("x", "u", "q", status=""), today)]
+    # A CLOSE DATE IN THE PAST IS A CLOSED WINDOW. The cases below all used a future date, so
+    # every one of them passed while the function said "still open, closing August 11th" on
+    # August 25th. Four of the ten items carrying a close date were already shut.
+    shut_line = movement_line(item("x", "u", "q", closes="2026-08-11"), today)
+    open_line = movement_line(item("x", "u", "q", closes="2026-09-30"), today)
+    ok("a window whose date has passed is reported closed",
+       "closed on" in shut_line and "still open" not in shut_line, shut_line)
+    ok("...and one still ahead is reported open",
+       "still open" in open_line, open_line)
+    ok("...and neither contradicts its own date",
+       ordinal(_dt.date(2026, 8, 11)) in shut_line
+       and ordinal(_dt.date(2026, 9, 30)) in open_line, shut_line + " | " + open_line)
+
     ok("every form is narration clean", not any(db.NARRATION.search(x) for x in lines),
        str([x for x in lines if db.NARRATION.search(x)]))
-    ok("every form takes the ordinal", all(re.search(r"[A-Z][a-z]+ \d+(st|nd|rd|th)", x)
-                                           for x in lines), str(lines))
+    # THE ENTRY IS {date, note} AND THE GATE READS THE DATE FIELD, so the note carries no date
+    # of its own. This used to assert an ordinal in every line, which passed while the note was
+    # a plain string carrying a prefix the record's own shape has no room for.
+    ok("the entry carries the date as a field, not in the prose",
+       clean["history"][-1] == {"date": "2026-08-25", "note": movement_line(clean, today)},
+       str(clean["history"][-1]))
+    ok("an ordinal appears only where a real date is named",
+       ordinal(_dt.date(2026, 8, 11)) in shut_line, shut_line)
     ok("every form stays under the thirty word backstop",
        all(len(x.split()) <= 30 for x in lines), str([len(x.split()) for x in lines]))
     ok("no form carries a colon, a semicolon or a dash",
