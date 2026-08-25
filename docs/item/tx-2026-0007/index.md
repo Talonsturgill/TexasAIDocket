@@ -9,7 +9,7 @@ Texas law restricts the channels through which the Public Utility Commission may
 - Public access: Public meeting
 - Take part: https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
 
-- Last checked: 2026-08-21
+- Last checked: 2026-08-25
 
 ## Dates
 
@@ -21,6 +21,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-08-18 · Checked and unchanged. The statute still bars a verbal directive and still limits an official action to a contested case, a rulemaking or a written order.
 - 2026-08-21 · Checked and unchanged. The statute still bars a verbal directive and still limits an official action to a contested case, a rulemaking or a written order. It is state law binding a statewide agency, so its reach is the whole state rather than a list of counties, and the record now says so.
+- 2026-08-25 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

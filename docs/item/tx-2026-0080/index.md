@@ -11,7 +11,7 @@ The National Science Foundation made an award to Prairie View A and M University
 - Public access: Write to the decider
 - Take part: https://api.nsf.gov/services/v1/awards/2602962.json?printFields=abstractText
 
-- Last checked: 2026-08-21
+- Last checked: 2026-08-25
 
 ## Dates
 
@@ -22,6 +22,7 @@ The National Science Foundation made an award to Prairie View A and M University
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-08-21 · Admitted. The award record names Prairie View A and M, states the obligation and dates the award to August 11th, 2026.
+- 2026-08-25 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

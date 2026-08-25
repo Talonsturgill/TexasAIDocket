@@ -208,6 +208,12 @@ jobs:
       - name: Docket gates self-test (prove every gate can go red)
         run: python3 scripts/site/docket_build.py --self-test
 
+      # The diff that answers most of Phase 3 without a model. Its self-test is hermetic: every
+      # fetch goes through an injected opener, so this makes no network request and cannot go
+      # red because a source was slow.
+      - name: Re-verification self-test (the diff, and the stamp it withholds)
+        run: python3 scripts/site/reverify.py --self-test
+
       - name: Docket staleness selector self-test
         run: python3 scripts/site/docket_staleness.py --self-test
 

@@ -12,7 +12,7 @@ The Pflugerville City Council approved on second reading on August 11th, 2026 an
 - Comment closes: 2026-11-03
 - Take part: https://legistar1.granicus.com/Pflugerville/attachments/1d648f39-3bbb-4159-a4a7-a3c19b80bfcd.pdf
 
-- Last checked: 2026-08-20
+- Last checked: 2026-08-25
 
 ## Dates
 
@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-08-20 · Admitted. The Charter Review Commission's filed report carries the full text of the proposed Section 2.03 and the ordinance setting the election date.
 - 2026-08-20 · The election ordinance itself is now on the record beside the commission's report. It sets November 3rd, 2026 with polls open from 7:00 a.m. to 7:00 p.m. The commission put 21 amendments forward. The wording each proposition will carry on the ballot is in an exhibit to the ordinance and is unconfirmed, so what is published here is the section the commission recommends.
+- 2026-08-25 · Checked and unchanged. The charter amendments still go to Pflugerville voters on November 3rd, 2026, and the proposed Section 2.03 still stands as ordered.
 
 ## Evidence
 

@@ -11,7 +11,7 @@ On June 23rd, 2026 the El Paso City Council directed the City Manager to amend t
 - Public access: Public meeting
 - Take part: https://webapi.legistar.com/v1/elpasotexas/Matters/15727
 
-- Last checked: 2026-08-22
+- Last checked: 2026-08-25
 
 ## Dates
 
@@ -24,6 +24,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-08-19 · Checked and unchanged. The city's own action record still carries the June 23rd motion by Representative Fierro, seconded by Representative Chavez, and still marks it passed.
 - 2026-08-22 · Checked and unchanged. The city's action record still carries the June 23rd approval directing the City Manager to amend the state legislative agenda. It was moved by Representative Fierro and seconded by Representative Chavez, and it is still marked passed.
+- 2026-08-25 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

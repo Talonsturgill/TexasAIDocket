@@ -6189,6 +6189,22 @@ def build(out: Path, today: str) -> dict:
     for _sslug, _ssfig, _sshtml in source_pages(items, today):
         w(f"sources/{_sslug}/index.html", _sshtml, extra=_quoted | _ssfig)
     w("llms.txt", llms_txt(items, today))
+
+    # THE BUILD STAMP, WHOSE ONLY JOB IS TO BE PROBED.
+    #
+    # livecheck asks two questions of the live site. Does it answer at all, and is what it
+    # serves as new as what this repository holds. It asked both of `docket.json`, a file
+    # published for an entirely unrelated reason, and on 2026-08-23 that reason ended and the
+    # file came down. livecheck then reported THE SITE IS DARK every four hours against a site
+    # that was perfectly healthy, and worse, the half of it that answers "has the deploy
+    # landed" is exactly the alarm that would have caught the outage that started the next day.
+    # The watchman was watching a door that had been bricked up.
+    #
+    # So the probe gets a target that exists for no other purpose and can never be removed as a
+    # side effect of a decision about something else. Three integers and a date. It carries no
+    # part of the record, only its size, which every listing page states anyway.
+    w("status.json", json.dumps(
+        {"built": today, "items": len(items), "spec": dk.SPEC_VERSION}, indent=2) + "\n")
     # THE WHOLE RECORD IN ONE FETCH, built from the same twins the item pages ship so the one
     # fetch and the 58 fetches can never disagree.
     w("llms-full.txt", llms_full_txt(items, today))
