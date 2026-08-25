@@ -12,7 +12,7 @@ The Pflugerville City Council approved on second reading on August 11th, 2026 an
 - Comment closes: 2026-11-03
 - Take part: https://legistar1.granicus.com/Pflugerville/attachments/1d648f39-3bbb-4159-a4a7-a3c19b80bfcd.pdf
 
-- Last checked: 2026-08-20
+- Last checked: 2026-08-23
 
 ## Dates
 
@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-08-20 · Admitted. The Charter Review Commission's filed report carries the full text of the proposed Section 2.03 and the ordinance setting the election date.
 - 2026-08-20 · The election ordinance itself is now on the record beside the commission's report. It sets November 3rd, 2026 with polls open from 7:00 a.m. to 7:00 p.m. The commission put 21 amendments forward. The wording each proposition will carry on the ballot is in an exhibit to the ordinance and is unconfirmed, so what is published here is the section the commission recommends.
+- 2026-08-23 · Checked and unchanged. The city's own legislative record shows the ordinance ordering the charter election approved on second reading on August 11th with all members voting in favor, and no later action on it. The election is still set for November 3rd.
 
 ## Evidence
 
@@ -53,4 +54,10 @@ Source (primary_official): https://legistar1.granicus.com/Pflugerville/attachmen
 > on the 3rd day of November 2026, between the hours of 7:00 a.m. and 7:00 p.m. to consider amendments to the City of Pflugerville's Home Rule Charter.
 
 Source (primary_official): https://legistar1.granicus.com/Pflugerville/attachments/b3422f0d-5bf2-4eb9-8a6f-f6b6c2537696.pdf
+
+### The ordinance ordering the charter election passed its second reading unanimously.
+
+> Mayor Weiss read the caption of the ordinance. Mr. Metayer moved to approve the ordinance on second reading. Mr. Coffman seconded the motion. All voted in favor. The motion carried.
+
+Source (primary_official): https://webapi.legistar.com/v1/pflugerville/matters/18074/histories
 

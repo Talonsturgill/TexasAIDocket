@@ -11,7 +11,7 @@ The University of Texas System Board of Regents approved the creation of a Schoo
 - Public access: Public meeting
 - Take part: https://www.utsystem.edu/board-of-regents/meetings
 
-- Last checked: 2026-08-22
+- Last checked: 2026-08-25
 
 ## Dates
 
@@ -24,6 +24,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-08-19 · Whether the regents have revisited the approval is unconfirmed. The board met on August 12th and 13th and the item texts for that meeting are not published on the board's own meetings page.
 - 2026-08-22 · Checked and unchanged. The regents' approval still unites computer science and information and statistics and data sciences into one school within the College of Natural Sciences. The school is still slated to open in Fall 2026 and that term has now begun.
+- 2026-08-25 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

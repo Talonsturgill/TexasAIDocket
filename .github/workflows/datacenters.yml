@@ -46,12 +46,29 @@ jobs:
           python3 scripts/gridwatch/datacenters_collect.py --collect || rc=$?
           if [ "${rc:-0}" -gt 2 ]; then exit "$rc"; fi
 
+      # THE READING AND THE SITE GO IN ONE COMMIT, which is what gridwatch already does and
+      # this workflow did not. It committed the ledger alone, so docs/ was left describing the
+      # PREVIOUS registry, and the very next pages run failed site_fresh_check with
+      # datacenters/index.html and registry-changes/index.html reported as hand edited. They
+      # were not. They were simply older than the ledger they are a function of.
+      #
+      # It looked intermittent because it self-heals: any later build that did rebuild put
+      # docs/ back in step. So it went red on 2026-08-19, 08-21, 08-23 and 08-24, went green
+      # in between, and read as flakiness rather than as one workflow missing a step.
+      - name: Rebuild the published site
+        id: rebuild
+        continue-on-error: true
+        run: python3 scripts/site/site_build.py --out docs --today "$(date -u +%F)"
+
       - name: Commit the reading
         run: |
           git config user.name  "texas-ai-docket-bot"
           git config user.email "bot@texasaidocket.com"
           git add ledger/gridwatch/datacenters.json ledger/gridwatch/datacenters.jsonl \
-                  ledger/gridwatch/raw || true
+                  ledger/gridwatch/raw docs || true
           git diff --cached --quiet && echo "nothing new" && exit 0
+          # The ownership gate a pull request would run, run here because there is no pull
+          # request. This actor owns its ledger and may rebuild docs, and nothing else.
+          python3 scripts/shared/ownership_check.py --actor gridwatch --staged
           git commit -m "datacenters: registry reading"
           git push

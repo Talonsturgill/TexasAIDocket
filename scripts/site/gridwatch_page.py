@@ -642,14 +642,20 @@ def body(records: list[dict], today: str, queue_data: dict | None = None) -> str
 
     trend_block = ""
     t = f["trend"]
+    # TWO SENTENCES, AND THE SPLIT IS LOAD BEARING. This was one sentence ending in a comma
+    # and "comparing the most recent N days against the first N", which ran to 32 words and
+    # tripped the 30 word backstop the moment it first rendered. It had never rendered before:
+    # the branch needs 14 settled days and the record only reached them on 2026-08-24, so the
+    # copy sat unexercised from the day it was written and took the site's deploy down with it
+    # when the data finally arrived. A gate a page cannot reach yet is a gate that has not run.
     if t and t.get("trough_change_mw") is not None:
         trend_block = f"""
 <h3>The fingerprint</h3>
 <div class="prose">
   <p>Over the <strong class="num">{n0(t['window_days'])}</strong> days held, the overnight
   trough moved by <strong class="num">{n0(t['trough_change_mw'])} MW</strong> and the daily
-  peak moved by <strong class="num">{n0(t['peak_change_mw'])} MW</strong>, comparing the most
-  recent <strong class="num">{n0(t['half_days'])}</strong> days against the first
+  peak moved by <strong class="num">{n0(t['peak_change_mw'])} MW</strong>. That compares the
+  most recent <strong class="num">{n0(t['half_days'])}</strong> days against the first
   <strong class="num">{n0(t['half_days'])}</strong>.</p>
   <p>A trough rising faster than a peak is what constant load looks like from outside.</p>
 </div>"""

@@ -10,7 +10,7 @@ The Senate Committee on Transportation posted notice of a public hearing for Aug
 - Comment closes: 2026-08-25
 - Take part: https://capitol.texas.gov/tlodocs/89R/schedules/pdf/C6402026082509001.PDF
 
-- Last checked: 2026-08-22
+- Last checked: 2026-08-23
 
 ## Dates
 
@@ -23,6 +23,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-20 · Admitted. The Legislature's own notice carries the charge, the date, the room and the terms on which a member of the public may be heard.
 - 2026-08-21 · Checked and unchanged. The Legislature's own upcoming meetings listing still carries the Transportation Committee for 9:00 AM on Tuesday, August 25th, 2026 in hearing room E1.016. The autonomous vehicle charge under SB 2807 still stands, and it still directs the committee to quantify the impact on traffic related collisions.
 - 2026-08-22 · Checked and unchanged. The Senate notice still sets the hearing for 9:00 AM on August 25th, 2026 in hearing room E1.016. The autonomous vehicle charge still asks the committee to quantify the impact on traffic related collisions.
+- 2026-08-23 · Checked and unchanged. The Senate's own upcoming meetings listing still sets the Transportation hearing for 9:00 AM on August 25th in hearing room E1.016, and does not mark it canceled where it marks another committee's meeting that day canceled.
 
 ## Evidence
 
@@ -69,4 +70,10 @@ Source (primary_official): https://lrl.texas.gov/whatsNew/client/index.cfm/2026/
 > including rule-making adopted by the Texas Department of Public Safety, the Texas Department of Motor Vehicles and the Texas Department of Licensing and Regulation. Quantify the impact on traffic-related collisions.
 
 Source (primary_official): https://lrl.texas.gov/whatsNew/client/index.cfm/2026/8/19/Interim-Hearings--Week-of-August-24-2026
+
+### The Senate's upcoming meetings listing carries the hearing with its date, time and room.
+
+> Tuesday, August 25, 2026|9:00 AM |Transportation|Type: Public Hearing Location: E1.016 (Hearing Room)
+
+Source (primary_official): https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S
 

@@ -258,7 +258,72 @@ needs, and Phase 0's rule applies: fix it before anything else.
 
 ## PHASE 3 — RE-VERIFY
 
-For each item on the worklist, fetch **one primary source** and update it.
+**RUN THE DIFF FIRST. IT DOES MOST OF THIS PHASE AND IT COSTS NOTHING.**
+
+```
+python3 scripts/site/reverify.py --today <date> --apply
+```
+
+**Read the exit code.** 0 means every due claim is confirmed unchanged and there is nothing here
+for you to read. 1 means the report lists the claims that need you, and only those. 2 means the
+check could not run, so nothing is known and nothing was stamped.
+
+Until 2026-08-25 this phase opened by telling you to fetch every due item's source yourself, and
+that ran in your context. Around 34 pages a day were pulled in whole to establish that nothing
+had happened, and the cost grew with the record forever, because the leash is fixed and the
+record only gets longer. **The work was never a judgment.** A claim carries a `verbatim_quote`
+and the `source_url` it came from, so on almost every day the question is whether that string is
+still on that page, and that is a string test rather than a reading.
+
+What the script does, so you know what is already done when you read its report:
+
+- One request per distinct URL rather than one per claim. 314 claims cite 124 urls here, so
+  three fifths of a naive pass is the same page fetched again.
+- A conditional request carrying the ETag and Last-Modified from the previous run, so a source
+  that has not moved answers 304 and sends no body at all.
+- `--apply` stamps `last_verified` and writes the dated movement line, **for an item whose every
+  claim came back unchanged and for no other**. One unreachable source withholds the stamp for
+  the whole item, because `last_verified` is a statement about the item rather than the claim.
+
+**It never edits a claim, a quote, a status or a date, and it never decides what a change means.**
+That is this phase's remaining job and it is the part worth your attention.
+
+**THEN RE-WORD THE NOTES IT WROTE, WHICH IS THE ONE PIECE OF THIS A MACHINE SHOULD NOT KEEP.**
+
+The script writes each stamped item a movement line from the item's own fields, so a reader who
+opens ten items in a row meets the same three sentences ten times. That line is the FLOOR rather
+than the finish. It is deterministic on purpose, so a run that dies half way through still leaves
+a true record instead of a blank one.
+
+Go back over the entries it marked `"checked": true` for today and write them properly. Same
+facts, your own sentence, and one that reads like somebody looked rather than like a template
+fired. Say what is still true about THAT decision, in the words that decision deserves.
+
+**You may re-word freely. You may not add a figure.**
+
+```
+python3 scripts/site/reverify.py --check-notes
+```
+
+Every numeral in a re-worded note has to be one the deterministic line already used or one the
+item's own claims quote. That gate exists because `gate_numerals` reads reader copy with
+`include_history=False`, deliberately, so a movement note is the one published surface no numeral
+check reads. Writing into it by hand is the single place in this project where a model could put
+an unchecked number in front of a reader, and this project's whole promise is that no number is
+ever produced by a language model. Re-wording is yours. Arithmetic is not.
+
+A note the research path writes when something genuinely MOVED carries no `checked` marker and
+keeps the old exemption, because stating what the record used to hold is exactly what history is
+for.
+
+**THEN READ WHAT IT HANDED BACK.** For each finding, fetch that source and update the item.
+
+- `missing` means the page answered and the quote is no longer on it. Something moved. Find what
+  it says now, correct the claim, and write what changed.
+- `unreachable` means the source did not answer. Name what is therefore unconfirmed, never what
+  the fetcher did.
+
+For any item still on the worklist after that, fetch **one primary source** and update it.
 
 - Set `last_verified` **even when nothing changed.** "Checked and unchanged" is a fact about the
   item, and an unset stamp is indistinguishable from never having looked.
