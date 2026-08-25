@@ -6445,11 +6445,31 @@ def build(out: Path, today: str) -> dict:
 
     # A permissive robots.txt is the product strategy, not a concession. For a record built to
     # be cited, blocking the crawlers that cite it would be self-defeating.
+    #
+    # THE ONE EXCEPTION, AND IT COSTS NOTHING. Every item, topic and place page ships a Markdown
+    # twin beside it for machine readers. The twin is the same content at a second URL, and a
+    # .md file can carry no `rel="canonical"` while GitHub Pages can set no `X-Robots-Tag`
+    # header, so there is no way to tell a search engine which of the pair is the real page.
+    # Google reported the twins as "Duplicate without user-selected canonical" on August 25th,
+    # which is Google saying it had to guess. It normally guesses the HTML. Nothing makes it,
+    # and the failure mode is a raw Markdown file in the results in place of the designed page.
+    #
+    # So Googlebot alone is told to skip them, and every other crawler is left exactly as it
+    # was. Google loses nothing, because the identical content is on the HTML page it already
+    # indexes. The AI crawlers the twins were built for never see this group at all, since a
+    # robots.txt group applies only to the agent it names.
+    #
+    # THE GROUP MUST REPEAT `Allow: /`. A crawler that matches a specific user-agent group obeys
+    # THAT GROUP ONLY and ignores `User-agent: *` entirely, so a group holding just the Disallow
+    # would read to Googlebot as a site with no Allow at all.
     w("robots.txt",
       "# The Texas AI Docket wants to be read, indexed, cited and learned from.\n"
       "# Content-Signal is the only machine readable way to say yes rather than no.\n"
       "Content-Signal: search=yes, ai-input=yes, ai-train=yes\n\n"
       "User-agent: *\nAllow: /\n\n"
+      "# The Markdown twins are for machine readers, not for the index. They duplicate the\n"
+      "# HTML page they sit beside and cannot declare a canonical, so search skips them.\n"
+      "User-agent: Googlebot\nAllow: /\nDisallow: /*.md$\n\n"
       f"Sitemap: {SITE_URL}/sitemap.xml\n")
 
     # EVERY PAGE'S OWN REVISION DATE, computed once and spent twice.
@@ -6662,8 +6682,19 @@ def self_test() -> int:
         # now, and a check with no subject left is worse than no check at all.
         check("the map is inline, so it needs no second request", "<svg class=\"txmap\"" in idx)
         check("Dataset structured data is emitted", '"@type":"Dataset"' in idx)
-        check("robots says yes rather than no",
-              "ai-train=yes" in (Path(td) / "a" / "robots.txt").read_text())
+        _rb = (Path(td) / "a" / "robots.txt").read_text()
+        check("robots says yes rather than no", "ai-train=yes" in _rb)
+        # THE MARKDOWN TWINS ARE OUT OF THE INDEX AND STILL OPEN TO EVERYONE ELSE. Both halves
+        # are asserted, because the easy wrong version of this fix is a Disallow under
+        # `User-agent: *`, which would shut the twins to the AI crawlers they exist for.
+        check("...and the Markdown twins are kept out of the search index",
+              "User-agent: Googlebot" in _rb and "Disallow: /*.md$" in _rb, _rb)
+        check("...while every other crawler is still allowed everything",
+              _rb.split("User-agent: Googlebot")[0].count("Disallow:") == 0, _rb)
+        # A crawler matching a named group obeys that group ONLY, so the group needs its own
+        # Allow or Googlebot reads a site with a Disallow and no Allow at all.
+        check("...and Googlebot's own group still allows the rest of the site",
+              "User-agent: Googlebot\nAllow: /\n" in _rb, _rb)
         check("the advertised feed exists", (Path(td) / "a" / "atom.xml").exists())
         check("a Markdown twin exists for every item",
               len(list((Path(td) / "a" / "item").rglob("index.md"))) == stats["items"])
