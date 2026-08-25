@@ -1998,3 +1998,89 @@ And the second half, which is about lanes rather than numerals. **When a routine
 is blocked on a one line change in another actor's file, that is the ownership map working, and
 the fix is a maintainer session, not a wider lane.** The cost of leaving it is measured in days
 of shipped work, so it is worth checking for blocked runs before starting anything else.
+
+## 66. A backstop with a published bypass, and the bypass was writing "Inc."
+
+The sentence backstop reads running prose and fails anything over thirty words. It split on
+terminal punctuation, which is the obvious way to find a sentence and is wrong in this corpus:
+
+```python
+for raw in re.split(r"(?<=[.!?])\s+", text):
+```
+
+Every abbreviation ends in a period, so a long sentence carrying one was measured as two short
+ones. The live site had been shipping this since the page existed, on `tx-2026-0027`:
+
+```
+The City of Taylor published a public notice that its City Council would consider an Amended
+and Restated Tax Abatement Agreement with Compal Technology, Inc. and PDC TP 01 LOT A LLC at
+the regularly scheduled meeting on August 13th, 2026 at 6:00 p.m.
+```
+
+Forty four words, fourteen over the backstop. The gate saw a 24 word sentence ending at "Inc."
+and a 20 word sentence ending at "p.m." and passed both. A second one on `tx-2026-0051` hid the
+same way behind "Reinvestment Zone No. 26-01".
+
+**How it surfaced, which is the uncomfortable part.** Not from the gate. It came out of reading
+the gate's own advice on an unrelated failure, where it reported a sentence "beginning" at
+`59142` because it had split "Project No. 59142" and started counting from the number. The
+report was legible enough to act on and its start was nonsense, and the nonsense is what named
+the bug. **A gate that is wrong in a visible way is worth more than one that is wrong quietly.**
+
+**The fix is token scoped, and the blanket version was measured and rejected.** "A period before
+a lowercase letter never ends a sentence" is true of clean prose. On the built site it fires 39
+times, and only 24 are abbreviations. The rest are the ask engine printing a question straight
+after a sentence and the sources view printing a hostname the same way:
+
+```
+Read the first seven words. should the League City Police Department renew ...
+... across 134 documents from 59 publishers. interchange.puc.texas.gov ...
+```
+
+A blanket rule welds those into one long pseudo-sentence, which is lesson 41 all over again. So
+each protected token names what must follow it. `No.` needs a DIGIT, because the ask engine also
+writes "It is primary. No. It sits outside the window" as an answer, 39 times against 28. `Inc.`
+and `LLC.` need a LOWERCASE word, because both genuinely end sentences here too.
+
+**Generalises to.** A gate whose rule is a regex over surface punctuation inherits every
+ambiguity of the punctuation. Ask what a passing input could look like and whether a writer
+could produce it by accident, and here the answer was that naming a company defeats the check.
+The direction that should worry somebody is never the false alarm, which gets reported and
+fixed. It is the silent pass, and a silent pass is what a bypass looks like from the inside.
+
+Every token in the two lists was seen doing this in the built site. `U.S.` and `St.` are absent
+because they do not occur, and adding them on the strength of a general list would be an
+untested branch pretending to be coverage, which is lesson 63.
+
+## 67. The ownership hook was tested in CI's spelling and not in its own
+
+The ownership map is enforced three ways, and two of them read finished commits. `commits_in`
+skips merge commits and says why in a docstring: a merge's diff against its first parent is the
+whole of the other side, and the content a merge genuinely authors is conflict resolution that
+already appears in the commits being merged.
+
+The third way is the pre-commit hook, and it reads a STAGED INDEX. Mid-merge, `git diff --cached`
+also compares against the first parent, and nothing was subtracting the second one. So merging
+`main` into a run branch presented every file main had touched as a write by the merging actor,
+and the hook refused a merge that had written nothing out of lane.
+
+**What the operator does next is the whole lesson.** The refusal names its own escape in the
+message, `rm .git/ACTOR`, because clearing the stamp is the correct maintainer path. So the way
+through a false positive was to switch the guard off, and it worked, and the commit landed
+clean. **A guard that is wrong often enough teaches the person it guards that it is negotiable,
+and after that it is not a guard.** That is worse than the false positive it started as.
+
+The self-test had a merge scenario and it was green throughout. It called `check_per_commit`,
+which is what CI calls. Nothing called `changed_files(staged=True)` with a merge in progress,
+which is what the hook calls. **One operation, two spellings, and only the one CI uses was ever
+tested.**
+
+The fix keeps only what differs from BOTH parents. A file only main touched matches `MERGE_HEAD`
+and drops out; a genuine conflict resolution differs from both and stays. Waiving the merge
+outright would have been the smaller change and the wrong one, since the resolution is real
+content nothing else judges: CI skips it as a merge, and the hook would now skip it too.
+
+**Generalises to.** When one rule is enforced through several entry points, the self-test has to
+enter through each of them. A scenario proves a code path, not a policy, and a policy tested
+through its most convenient path is untested everywhere else. Ask which caller each assertion
+actually exercises, and name the ones no assertion reaches.
