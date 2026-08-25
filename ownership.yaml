@@ -192,6 +192,15 @@ rules:
       Researched facility dossiers. No routine may write these. Numbers live in fact fields
       with a source id, never in prose, which scripts/site/facility_dossier.py enforces.
 
+  - path: "ledger/reverify.json"
+    owner: daily
+    note: >
+      The re-verification cache. One row per source url holding its ETag, Last-Modified and
+      body hash, so the next run asks whether a page changed rather than downloading it again.
+      It carries no claim, no quote and no reader copy, only what a conditional request needs.
+      Owned by daily because the routine writes it, and COMMITTED because a cache a container
+      throws away is a slower first request wearing a cache's name.
+
   - path: "ledger/docket.json"
     owner: daily
     note: >
