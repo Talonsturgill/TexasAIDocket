@@ -90,6 +90,7 @@ CACHE = REPO_ROOT / "ledger" / "reverify.json"
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import docket_staleness as ds  # noqa: E402
+import docket_build as dk  # noqa: E402  the numeral machinery, one definition
 
 UA = ("TexasAIDocket/1.0 re-verification (+https://texasaidocket.com) "
       "one conditional request per source per two days")
@@ -320,8 +321,13 @@ def apply(items: list, findings: list, today: _dt.date) -> list:
         # THE SHAPE IS THE RECORD'S, NOT A STRING. History entries are {date, note}, and the
         # movement gate looks for an entry whose date equals last_verified. Appending a plain
         # string stamped 55 items whose log the gate could not see, and it said so.
+        # `checked` MARKS A NOTE THIS CHECK WROTE, and it is what makes the numeral gate below
+        # possible. A movement note written by the research path legitimately states a figure
+        # the record USED to hold, which is why history sits outside `gate_numerals` at all. A
+        # note written here states only what was still true, so it may be held to a much harder
+        # rule, and the marker is how the two are told apart without guessing from the prose.
         it.setdefault("history", []).append(
-            {"date": today.isoformat(), "note": movement_line(it, today)})
+            {"date": today.isoformat(), "note": movement_line(it, today), "checked": True})
         stamped.append(it["id"])
     return stamped
 
@@ -362,6 +368,52 @@ def report(findings: list, stats: dict, stamped: list | None) -> int:
             print(f"                   {f['why']}")
             print(f"                   {f['url']}")
     return 1
+
+
+# --------------------------------------------------------------------------- the note gate
+def check_notes(items: list) -> list:
+    """Every `checked` note may be re-worded freely and may not gain a figure.
+
+    WHY THIS EXISTS. `gate_numerals` reads reader copy with `include_history=False`, on purpose
+    and for a good reason: a movement line's job is often to say what the record USED to hold,
+    and that figure is by definition in no current claim quote. So history notes are the one
+    piece of published reader copy no numeral check reads.
+
+    That was safe while this script wrote them, because it can only emit what it read out of the
+    item. It stops being safe the moment a run re-words them, which is exactly what the routine
+    is now told to do, because then a model is writing into the one place a model's numbers are
+    not checked. This project's central law is that no number is ever produced by a language
+    model, so the re-wording needs its own gate rather than the general exemption.
+
+    THE BASELINE IS RECOMPUTED RATHER THAN STORED. `movement_line` is a pure function of the
+    item, so the deterministic sentence this run would have written can be derived at check
+    time from the same fields. That means no run artifact, and it means this runs in CI against
+    what was committed rather than only inside the routine that wrote it. A gate that can only
+    run in the process it is guarding is a convention.
+
+    The rule is deliberately narrow. A re-worded note may use any figure the deterministic line
+    used, and any figure the item's own claims quote. It may not introduce one from anywhere
+    else, which leaves the run free to write a better sentence and not free to invent a number.
+    """
+    bad = []
+    for it in items:
+        allowed = set(dk._quoted_numerals(it))
+        for h in (it.get("history") or []):
+            if not isinstance(h, dict) or not h.get("checked"):
+                continue
+            try:
+                when = ds.parse_date(h.get("date"))
+            except Exception:  # noqa: BLE001
+                bad.append(f'{it["id"]}: a checked note carries no readable date')
+                continue
+            base = set(dk._prose_numerals(movement_line(it, when)))
+            for got in dk._prose_numerals(str(h.get("note") or "")):
+                if got not in base and got not in allowed:
+                    bad.append(
+                        f'{it["id"]} {h["date"]}: the note states "{got}", which is in no claim '
+                        f"quote and in nothing this check established. Re-wording may not add a "
+                        f"figure")
+    return bad
 
 
 # --------------------------------------------------------------------------- the cache
@@ -552,14 +604,45 @@ def self_test() -> int:  # noqa: C901
     # of its own. This used to assert an ordinal in every line, which passed while the note was
     # a plain string carrying a prefix the record's own shape has no room for.
     ok("the entry carries the date as a field, not in the prose",
-       clean["history"][-1] == {"date": "2026-08-25", "note": movement_line(clean, today)},
+       clean["history"][-1] == {"date": "2026-08-25", "note": movement_line(clean, today),
+                                "checked": True},
        str(clean["history"][-1]))
+    ok("...and is marked as one this check wrote, which is what scopes the note gate",
+       clean["history"][-1]["checked"] is True)
     ok("an ordinal appears only where a real date is named",
        ordinal(_dt.date(2026, 8, 11)) in shut_line, shut_line)
     ok("every form stays under the thirty word backstop",
        all(len(x.split()) <= 30 for x in lines), str([len(x.split()) for x in lines]))
     ok("no form carries a colon, a semicolon or a dash",
        not any(re.search(r"[:;–—]", x) for x in lines), str(lines))
+
+    print("\na re-worded note may improve the sentence and may not add a figure")
+    # THE FIXTURE CARRIES A CHECKED NOTE, asserted first, because the live record has none yet
+    # and `--check-notes` reported "0 checked note(s), every figure traceable" against it. A
+    # gate with nothing in scope prints the same clean line as a gate that passed.
+    def noted(note, quote="the filing index stands at 67 filings"):
+        return {"id": "tx-9", "status": "decided", "last_verified": "2026-08-25",
+                "claims": [{"id": "tx-9-c1", "verbatim_quote": quote,
+                            "source_url": "https://q/"}],
+                "history": [{"date": "2026-08-25", "note": note, "checked": True}]}
+
+    scope = noted(movement_line({"id": "tx-9", "status": "decided"}, today))
+    ok("the fixture is in scope at all",
+       any(h.get("checked") for h in scope["history"]), str(scope["history"]))
+    ok("the deterministic sentence passes its own gate", not check_notes([scope]))
+    ok("a re-worded sentence with no new figure passes",
+       not check_notes([noted("Nothing moved. The decision entered on the record still "
+                              "stands as it was written.")]))
+    ok("a figure the claims quote is allowed",
+       not check_notes([noted("Checked. The filing index still stands at 67 filings.")]))
+    bad = check_notes([noted("Checked. The index is now at 71 filings.")])
+    ok("a figure from nowhere is refused", bool(bad), str(bad))
+    ok("...and the message names the figure", bad and '"71"' in bad[0], str(bad))
+    # THE EXEMPTION SURVIVES FOR THE PATH IT WAS EARNED IN. A research note recording what the
+    # record used to hold carries no marker and this gate has no opinion about it.
+    research = noted("The filing index moved from 5782 to 5790.")
+    research["history"][0].pop("checked")
+    ok("an unmarked research note keeps the old exemption", not check_notes([research]))
 
     print("\nand the check never edits what it is checking")
     # PROVED BY BEHAVIOUR AND NOT BY GREPPING THIS FILE'S OWN SOURCE. The first version of this
@@ -588,10 +671,30 @@ def main() -> int:
     ap.add_argument("--today")
     ap.add_argument("--apply", action="store_true",
                     help="stamp the items whose every claim came back unchanged")
+    ap.add_argument("--check-notes", action="store_true",
+                    help="hold every re-worded `checked` note to the figures it may use")
     ap.add_argument("--self-test", action="store_true")
     a = ap.parse_args()
     if a.self_test:
         return self_test()
+
+    if a.check_notes:
+        try:
+            items = json.loads(LEDGER.read_text(encoding="utf-8"))["items"]
+        except Exception as e:  # noqa: BLE001
+            print(f"reverify: the record could not be read ({e})", file=sys.stderr)
+            return 2
+        bad = check_notes(items)
+        n = sum(1 for i in items for h in (i.get("history") or [])
+                if isinstance(h, dict) and h.get("checked"))
+        if bad:
+            print(f"reverify: {len(bad)} re-worded note(s) state a figure nothing established\n",
+                  file=sys.stderr)
+            for b in bad:
+                print(f"  {b}", file=sys.stderr)
+            return 1
+        print(f"reverify: {n} checked note(s), every figure traceable")
+        return 0
 
     today = _dt.date.fromisoformat(a.today) if a.today else _dt.date.today()
     try:

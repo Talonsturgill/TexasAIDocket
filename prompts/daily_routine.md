@@ -288,6 +288,34 @@ What the script does, so you know what is already done when you read its report:
 **It never edits a claim, a quote, a status or a date, and it never decides what a change means.**
 That is this phase's remaining job and it is the part worth your attention.
 
+**THEN RE-WORD THE NOTES IT WROTE, WHICH IS THE ONE PIECE OF THIS A MACHINE SHOULD NOT KEEP.**
+
+The script writes each stamped item a movement line from the item's own fields, so a reader who
+opens ten items in a row meets the same three sentences ten times. That line is the FLOOR rather
+than the finish. It is deterministic on purpose, so a run that dies half way through still leaves
+a true record instead of a blank one.
+
+Go back over the entries it marked `"checked": true` for today and write them properly. Same
+facts, your own sentence, and one that reads like somebody looked rather than like a template
+fired. Say what is still true about THAT decision, in the words that decision deserves.
+
+**You may re-word freely. You may not add a figure.**
+
+```
+python3 scripts/site/reverify.py --check-notes
+```
+
+Every numeral in a re-worded note has to be one the deterministic line already used or one the
+item's own claims quote. That gate exists because `gate_numerals` reads reader copy with
+`include_history=False`, deliberately, so a movement note is the one published surface no numeral
+check reads. Writing into it by hand is the single place in this project where a model could put
+an unchecked number in front of a reader, and this project's whole promise is that no number is
+ever produced by a language model. Re-wording is yours. Arithmetic is not.
+
+A note the research path writes when something genuinely MOVED carries no `checked` marker and
+keeps the old exemption, because stating what the record used to hold is exactly what history is
+for.
+
 **THEN READ WHAT IT HANDED BACK.** For each finding, fetch that source and update the item.
 
 - `missing` means the page answered and the quote is no longer on it. Something moved. Find what
