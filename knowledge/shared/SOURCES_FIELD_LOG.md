@@ -556,3 +556,56 @@ and was dropped.
 **`tceq.texas.gov/permitting/air/newsourcereview/airpermits-pendingpermits` returns 404.** The
 agency's decisions and hearings pages under `/agency/decisions/hearings/` answered normally and
 re-verified tx-2026-0057.
+
+## 2026-08-25, a maintainer folding the August 23rd entry into the registry
+
+Not a run. Every claim below was re-fetched from this context before anything moved into
+`SOURCES_REGISTRY.md`, which is the step that caught the error in the middle of this list.
+
+**FOLDED UP, re-fetched and confirmed.**
+`capitol.texas.gov/robots.txt` carries `Disallow: /TLODOCS/`, exactly as the August 23rd run
+reported. The live file also disallows `/TLOWebServices/`, `/Prototype/`, `/Controls/`, `/Help/`,
+`/Images/`, `/bin/`, `/ig_common/`, `/Scripts/`, `/Web References/` and four `/MyTLO/` paths. The
+registry named three disallowed paths for this host and the file carries more than twenty.
+`capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S` answers 200 and sits under no
+disallowed path. `www.legis.texas.gov/robots.txt` 301s to `capitol.texas.gov/robots.txt`, so it is
+one policy and not a second route.
+
+**FOLDED UP AS A CORRECTION TO THE AUGUST 23RD ENTRY ITSELF.** That entry recorded
+"`lrl.texas.gov` remains allowed and carries the interim charge text in full". **It is not
+allowed to this project's research phase.** The file carries `User-agent: ClaudeBot` with
+`Disallow: /` for the whole host, plus the same for GPTBot, CCBot, Google-Extended, Bytespider,
+Amazonbot, Applebot-Extended, meta-externalagent and CloudflareBrowserRenderingCrawler.
+`User-agent: *` is `Allow: /` with `Content-Signal: search=yes, ai-train=no, use=reference`.
+
+The registry's own row said "content signals and **no path disallow**", which is TRUE and is
+exactly how this hid. There is no path disallow. There is a whole-site disallow on the agent, and
+a row that answers the path question answers it correctly while the reader takes it for a green
+light. **Two documents agreed with each other and both were reading the wrong line of the file.**
+
+WebFetch identifies as ClaudeBot, so the research phase is settled and must not touch that host.
+Whether the collectors' descriptive User-Agent may fetch it under the wildcard is narrower and is
+now decision 3 in section 5.
+
+**FOLDED UP.** `puc.texas.gov/agency/calendar/GetCalendarRss.aspx` 301s to the same path lower
+cased. The registry calls this the highest value poll of the run and did not mention it. Confirmed
+301 from here. `www.utsystem.edu` serves a stock Drupal robots.txt naming no AI agent, and its
+Regents agenda books need `curl` plus a ranged read rather than a page fetch. The ZIP beside a
+PUCT PDF holds the original office file, which is a quote fidelity rule rather than a host note.
+
+**HELD IN THIS LOG, NOT FOLDED, because re-fetching did not reproduce it.** The August 23rd entry
+says the Texas Register has moved and that `texreg.sos.state.tx.us` now serves only a notice
+pointing at an Appian portal. From here `texreg.sos.state.tx.us` answered **200** on a
+`readtac$ext.ViewTAC` path while `www.sos.state.tx.us/texreg/`, named as the replacement, answered
+**403**. Both readings can be true of different paths and different clients, and neither is settled
+enough to become a routing rule. Writing it into the registry on one run's word is the same move
+that put the `lrl.texas.gov` green light there. It stays here until somebody establishes which
+paths serve what.
+
+**NOT FOLDED, correctly, and named so nobody folds them later.** The August 23rd entry lists
+`texasstandard.org/feed/` 403, `texastribune.org` WP REST 403, `therobotreport.com/feed/` 403,
+`news.rice.edu/rss.xml` 404, `cprit.texas.gov` 403 with no robots.txt, and
+`tceq.texas.gov/permitting/air/newsourcereview/airpermits-pendingpermits` 404. **A 403 is a
+fetcher outcome and not a crawl boundary**, which this file's own preamble says. They belong here
+as observation and become registry law only if a second sighting confirms them, the way the
+`courtlistener.com` CloudFront note earned its place over two sightings seven days apart.

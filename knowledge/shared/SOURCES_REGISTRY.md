@@ -79,11 +79,19 @@ Two implementation consequences, both already in the plan and now load-bearing:
 ## 1. Robots and terms, which we obey
 
 This project publishes a provenance commitment. **A collector that ignores a stated crawl
-restriction would make that commitment worthless.** Three findings need decisions rather than
+restriction would make that commitment worthless.** Five findings need decisions rather than
 defaults.
+
+**Two of these were folded up from `SOURCES_FIELD_LOG.md` on August 25th, and one of them
+corrects a line in this very file.** Both were re-fetched here before being written down, which
+is the only reason the second was caught: the log recorded `lrl.texas.gov` as a working
+substitute and it is not one for half of this project's clients. **A run's observation is not
+law until somebody re-fetches it.**
 
 | Host | What it says | Our position |
 |---|---|---|
+| `capitol.texas.gov` | **`Disallow: /TLODOCS/`**, which the table in section 2 never listed. Every House and Senate hearing notice, schedule, bill text and bill analysis lives under that path. The live file also disallows `/TLOWebServices/`, `/Prototype/`, `/Controls/`, `/Help/`, `/Images/`, `/bin/`, `/ig_common/`, `/Scripts/`, `/Web References/` and four `/MyTLO/` paths, against the three this file used to name | **OFF LIMITS. Do not fetch `/tlodocs/`.** The directive is upper case and the live urls are lower case, so a case sensitive reading would not match it. Taking that reading is routing around a disallow on a technicality and this project does not do that. **Substitute, verified: `capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S`** answers 200, sits under no disallowed path, and carries the date, time, room and cancellation state of every upcoming committee meeting. `www.legis.texas.gov` 301s to this host, robots.txt included, so it is the same policy and not an alternate route |
+| `lrl.texas.gov` | **`User-agent: ClaudeBot → Disallow: /`**, alongside the same for GPTBot, CCBot, Google-Extended, Bytespider, Amazonbot, Applebot-Extended, meta-externalagent and CloudflareBrowserRenderingCrawler. `User-agent: *` is `Allow: /` with `Content-Signal: search=yes, ai-train=no, use=reference` | **NO WEBFETCH, NO SCOUT.** That client identifies as ClaudeBot and this host named it, so the research phase must not touch this host at all. Whether the collectors' own descriptive User-Agent may fetch it under `User-agent: *` is a narrower question and **NEEDS AN OWNER DECISION**, see section 5. Section 2 currently reads "content signals and **no path disallow**", which is true and is why this was missed: there is no PATH disallow, there is a whole-site disallow on the agent |
 | `data.capitol.texas.gov` | **`User-agent: ClaudeBot → Disallow: /`**, plus `Disallow: /api/` for everyone, `Crawl-Delay: 10`, and `Content-Signal: ai-train=no, use=reference` | **OFF LIMITS. Do not collect.** The API responds, which makes this a choice rather than an obstacle, and the choice is to respect it. Mitigating: its 907 packages are elections and redistricting plans, **not bill text or status**, so the loss is small. Bill data comes from OpenStates or LegiScan with a free key |
 | `waterdatafortexas.org` | `Disallow: *.csv` and `/reservoirs/api/*`. **The reservoir CSVs fall inside that rule.** The groundwater `.json` and `.geojson` endpoints do **not** | **NEEDS AN OWNER DECISION** before any reservoir collector ships. Groundwater JSON is clear to use today. See section 5 |
 | `www.ercot.com` | Does **not** disallow `/api/` | Clear to use, at no more than one poll per minute, with a descriptive User-Agent |
@@ -213,7 +221,7 @@ needs. NCEI CDO v2 requires a token and is unnecessary given the above.
 |---|---|---|---|---|
 | **PUCT filings by docket** | `interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=<N>&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending` | none | **[V]** docket 56822 returned case style, "199 filing(s)", and columns Item, File Stamp, Party, Item Type, Description | docket-keyed |
 | PUCT documents per item | `/search/documents/?controlNumber=<N>&itemNumber=<M>` | none | **[V]** 199 links enumerated | |
-| **PUCT calendar** | `puc.texas.gov/agency/calendar/GetCalendarRss.aspx` | none | **[V]** RSS with project numbers and hearing rooms | |
+| **PUCT calendar** | `puc.texas.gov/agency/calendar/GetCalendarRss.aspx` | none | **[V]** RSS with project numbers and hearing rooms. **FETCH IT WITH `-L`.** The mixed case path 301s to the same path lower cased, and without `-L` it answers 184 bytes and zero items, which parses as an EMPTY FEED rather than as an error. This is the highest value poll of the run and its failure mode is silence | |
 | ~~TCEQ regulated facilities~~ | ~~`gisweb.tceq.texas.gov/arcgis/rest/...`~~ | | **OFF LIMITS. `gisweb.tceq.texas.gov/robots.txt` is `Disallow: /` for ALL agents.** An earlier pass listed this as working. **It is not usable and must not be polled.** Facility data has to come from EPA Envirofacts, which carries county FIPS natively | |
 | RRC public viewer | `gis.rrc.texas.gov/server/rest/services/rrc_public/RRC_Public_Viewer_Srvs/MapServer` | none | **[V]** 41 layers, wells, pipelines, counties, districts | county layer 29 |
 
@@ -228,11 +236,39 @@ productive source of that run and was not in this registry at all.
 |---|---|---|---|---|
 | **Governor's press releases** | `gov.texas.gov/news/post/<slug>` | none | **[V]** **serves NO robots.txt**, answers a browser User-Agent | statewide, names the county in the body |
 | **Governor's directive letters and press PDFs** | `gov.texas.gov/uploads/files/press/<file>.pdf` | none | **[V]** same host, same terms. This is where a directive's actual text lives, rather than the summary in the post | |
-| **LRL interim hearings, weekly** | `lrl.texas.gov/whatsNew/client/index.cfm/<yyyy>/<m>/<d>/Interim-Hearings--Week-of-<Month>-<D>-<YYYY>` | none | **[V]** robots.txt carries content signals and **no path disallow** | statewide |
+| **LRL interim hearings, weekly** | `lrl.texas.gov/whatsNew/client/index.cfm/<yyyy>/<m>/<d>/Interim-Hearings--Week-of-<Month>-<D>-<YYYY>` | none | **RESTRICTED, see section 1.** There is no PATH disallow, which is what this row used to say and why the real rule was missed. **`User-agent: ClaudeBot` is `Disallow: /` for the whole host**, so no WebFetch and no scout. `User-agent: *` is `Allow: /` with `Content-Signal: ai-train=no, use=reference` | statewide |
 
 **The LRL weekly post is the cheapest route to a dated public microphone**, which is exactly what
 this record promises a reader. A committee hearing is a decision point with a date and a room, and
 it is a `public_access` entry the record can carry before anything is decided.
+
+That sentence stood while the host was reachable. It is not, for the client the research phase
+uses. **The substitute verified on August 25th is `capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S`**,
+which answers 200, sits under no disallowed path and carries the date, time, room and cancellation
+state of every upcoming committee meeting. It re-verified tx-2026-0077 and gave a better quote than
+the disallowed notice pdf did.
+
+### University systems
+
+| Source | Endpoint | Key | ✓ | Geo |
+|---|---|---|---|---|
+| **UT System Regents agenda books** | `www.utsystem.edu/sites/default/files/offices/board-of-regents/board-meetings/agenda-book-full/<M>-<YYYY>AB.pdf` | none | **[V]** stock Drupal robots.txt naming no AI agent and carrying no relevant disallow. The August 2026 book is 13.5 MB over 307 pages with a real text layer rather than a scan | names the campus |
+
+**It needs `curl` plus a page ranged read, not a page fetch.** Two scouts failed on this file
+independently because their fetcher has a size limit, and a size limit reads exactly like a dead
+source. A source that only fails for large files will be recorded as broken by whoever meets it
+first.
+
+### Quote fidelity: take the ZIP whenever one sits beside a PDF
+
+PUCT Interchange offers both for some items, and **the PDF can be a scan whose OCR layer is not
+the document.** Item 52 of Project 59142 renders `August 7,2026`, `ofthe`, `MWtotal`, and a
+signature block as `PUBLIC UTILITY COMMISSIO EXAS N OFy`. The ZIP carried the source `.pptx`,
+whose xml holds the real text.
+
+**A verbatim quote drawn from an OCR layer is a quote of the scanner**, and this record's whole
+promise is that a quote is what the document says. Every figure in the August 23rd tx-2026-0072
+update came from the pptx.
 
 ### Money
 
@@ -475,3 +511,19 @@ meet it and that nobody currently publishes.
 2. **Free API keys worth getting**, each of which unblocks a lane: OpenStates v3 or LegiScan for
    bill status, Census for the county and CBSA crosswalk the metro scoping needs, and a Socrata app
    token to leave the shared anonymous throttle pool.
+3. **May the collectors' own User-Agent fetch `lrl.texas.gov`?** Added August 25th. The host
+   disallows ClaudeBot and eight other named agents for the whole site, so the research phase is
+   settled and must not touch it. `User-agent: *` is `Allow: /` with
+   `Content-Signal: search=yes, ai-train=no, use=reference`, and the collectors send a descriptive
+   `TexasAIDocket/1.0` that matches the wildcard rather than any named agent. Reading verbatim
+   quotes and citing them is `use=reference`, which that signal grants, and this project trains on
+   nothing, so `ai-train=no` costs it nothing.
+   **The argument the other way is the one this file already accepted once.** For
+   `data.capitol.texas.gov` the position taken was "the API responds, which makes this a choice
+   rather than an obstacle, and the choice is to respect it". A host that names ClaudeBot has said
+   something about automated AI collection generally, and answering it with a different string in
+   the User-Agent header is the same technicality as reading `/TLODOCS/` case sensitively.
+   **The consistent default until the owner says otherwise is to treat the whole host as off
+   limits**, which is what the substitute above exists for. The cost is real and should be stated
+   rather than hidden: the LRL weekly interim hearings post was the cheapest route to a dated
+   public microphone this record has.
