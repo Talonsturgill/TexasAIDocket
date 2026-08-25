@@ -2084,3 +2084,57 @@ content nothing else judges: CI skips it as a merge, and the hook would now skip
 enter through each of them. A scenario proves a code path, not a policy, and a policy tested
 through its most convenient path is untested everywhere else. Ask which caller each assertion
 actually exercises, and name the ones no assertion reaches.
+
+## 68. Two documents agreed with each other and both read the wrong line
+
+Not a gate this time. A pair of records, which is the same failure wearing different clothes.
+
+`SOURCES_REGISTRY.md` is the crawl boundary. It described `lrl.texas.gov` like this, from August
+16th:
+
+```
+**[V]** robots.txt carries content signals and no path disallow
+```
+
+**Every word of that is true.** There is no path disallow on that host. What there is:
+
+```
+User-agent: ClaudeBot
+Disallow: /
+```
+
+plus the same for GPTBot, CCBot, Google-Extended, Bytespider, Amazonbot, Applebot-Extended,
+meta-externalagent and CloudflareBrowserRenderingCrawler. The row answered the PATH question
+correctly and the reader took it for a green light, because a row that says `[V]` and names no
+problem is read as permission. WebFetch identifies as ClaudeBot, so the research phase had been
+reading a host that had named it and said no.
+
+**Then the second document confirmed the first.** The August 23rd run met that host, checked it,
+and wrote into `SOURCES_FIELD_LOG.md` that `lrl.texas.gov` "remains allowed and carries the interim
+charge text in full". Two independent records now agreed. The log's whole purpose is to be the
+observation that corrects the registry, and here it corroborated it instead.
+
+The design is sound and it is what saved this. Runs append to the log, a maintainer folds durable
+findings up into the registry, and a run may never write its own boundary. On August 25th the
+fold-up happened and **the finding was re-fetched before it moved**, which is the only reason the
+agreement broke. Folding on the log's word would have promoted a nine-day-old wrong reading into
+law, with a fresh confirmation attached to make it look checked.
+
+**What made it invisible is that neither record was wrong about what it examined.** The registry
+examined paths and reported paths. The run examined whether the fetch worked and it did, because a
+disallow is a request rather than a wall. **Agreement between two records is evidence only when
+they examined different things.** Here the second inherited the first's question, and confirming
+an answer to the wrong question is not confirmation, it is an echo with a date on it.
+
+**Generalises to.** When a record confirms a record, ask what each one actually looked at. Two
+sources agreeing is worth nothing if the second read the first, or asked the first's question, or
+tested the thing that was never in doubt. The tell here was available the whole time and reads as
+reassurance rather than a warning: **the note answered a narrower question than the one the reader
+was asking, and answered it correctly.** A green cell that names one dimension is silent about
+every other, and silence is not the same as clearance.
+
+Related, and the reason this is not just a documentation slip. The same fold-up carried a claim
+that the Texas Register had moved hosts. Re-fetching returned 200 from the host said to be dead
+and 403 from its named replacement, exactly backwards, so that claim stayed in the log instead.
+**One run's sighting is an observation. The bar for law is a second, independent one**, which is
+how the `courtlistener.com` note earned its place over two sightings seven days apart.
