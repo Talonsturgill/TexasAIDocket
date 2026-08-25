@@ -23,7 +23,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-20 · Admitted. The Legislature's own notice carries the charge, the date, the room and the terms on which a member of the public may be heard.
 - 2026-08-21 · Checked and unchanged. The Legislature's own upcoming meetings listing still carries the Transportation Committee for 9:00 AM on Tuesday, August 25th, 2026 in hearing room E1.016. The autonomous vehicle charge under SB 2807 still stands, and it still directs the committee to quantify the impact on traffic related collisions.
 - 2026-08-22 · Checked and unchanged. The Senate notice still sets the hearing for 9:00 AM on August 25th, 2026 in hearing room E1.016. The autonomous vehicle charge still asks the committee to quantify the impact on traffic related collisions.
-- 2026-08-23 · Checked and unchanged. The Senate's own upcoming meetings listing still sets the Transportation hearing for 9:00 AM on August 25th in hearing room E1.016, and does not mark it canceled where it marks another committee's meeting that day canceled.
+- 2026-08-23 · Checked and unchanged. The Senate's own upcoming meetings listing still sets the Transportation hearing for 9:00 AM on August 25th in hearing room E1.016. It does not mark that hearing canceled where it marks another committee's meeting the same day canceled.
 
 ## Evidence
 

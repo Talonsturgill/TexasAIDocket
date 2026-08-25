@@ -1,6 +1,6 @@
 # National Science Foundation funds Rice to let AI propose numerical algorithms only where a proof checker certifies them
 
-The National Science Foundation made a standard grant to William Marsh Rice University in Houston on August 17th, 2026. The award record describes reinforcement learning and large language models proposing randomized numerical linear algebra algorithms, with the Lean proof assistant required to certify correctness and cost before a candidate counts. The record states that the machine methods can explore designs efficiently but may produce opaque or inconsistent results without dependable guarantees. It also describes separating real algorithmic improvement from variation caused by the model itself. The award runs from September 15th, 2026 to August 31st, 2029.
+The National Science Foundation made a standard grant to William Marsh Rice University in Houston on August 17th, 2026. The award record describes reinforcement learning and large language models proposing randomized numerical linear algebra algorithms. The Lean proof assistant is required to certify correctness and cost before a candidate counts. The record states that the machine methods can explore designs efficiently but may produce opaque or inconsistent results without dependable guarantees. It also describes separating real algorithmic improvement from variation caused by the model itself. The award runs from September 15th, 2026 to August 31st, 2029.
 
 - Topic: research-and-science
 - Decided by: United States National Science Foundation (federal)

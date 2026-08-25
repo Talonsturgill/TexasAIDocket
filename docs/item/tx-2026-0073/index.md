@@ -23,7 +23,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-08-19 · Both hearings still stand. The Legislative Reference Library's posting for the week of August 17th lists the State Affairs data centers charge on August 19th. It lists the Public Health artificial intelligence charge on August 20th.
 - 2026-08-20 · Both hearings are confirmed against the Legislature's own notices. The State Affairs notice of August 19th carries a second charge. It covers the regulatory and planning processes for the proposed 765 kV transmission lines, which the earlier record did not name. It took invited and public testimony, limited to two minutes a witness, with registration closing at 10:00 am that day. The Public Health notice for August 20th takes invited testimony only. The written comment is the one route a Texan has on the artificial intelligence in health care charge, and it stays open until the hearing is adjourned.
-- 2026-08-23 · Checked and unchanged. The Legislative Reference Library's posting for that week still lists the State Affairs hearing on August 19th and the Public Health hearing on August 20th, and both dates have now passed.
+- 2026-08-23 · Checked and unchanged. The Legislative Reference Library's posting for that week still lists the State Affairs hearing on August 19th and the Public Health hearing on August 20th. Both dates have now passed.
 
 ## Evidence
 

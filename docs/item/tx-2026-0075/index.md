@@ -25,7 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-08-20 · Admitted. The Charter Review Commission's filed report carries the full text of the proposed Section 2.03 and the ordinance setting the election date.
 - 2026-08-20 · The election ordinance itself is now on the record beside the commission's report. It sets November 3rd, 2026 with polls open from 7:00 a.m. to 7:00 p.m. The commission put 21 amendments forward. The wording each proposition will carry on the ballot is in an exhibit to the ordinance and is unconfirmed, so what is published here is the section the commission recommends.
-- 2026-08-23 · Checked and unchanged. The city's own legislative record shows the ordinance ordering the charter election approved on second reading on August 11th with all members voting in favor, and no later action on it. The election is still set for November 3rd.
+- 2026-08-23 · Checked and unchanged. The city's own legislative record shows the ordinance ordering the charter election approved on second reading on August 11th, with all members voting in favor. No later action is recorded on it. The election is still set for November 3rd.
 
 ## Evidence
 
