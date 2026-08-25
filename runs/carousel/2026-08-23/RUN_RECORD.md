@@ -404,3 +404,31 @@ way.
 
 **One token stands between this branch and green**, and it is `_c["project"]` in a `human` owned
 file.
+
+---
+
+## RESOLVED, August 25th. The branch is green.
+
+Written two days after the run, because a record that stops at the blocker leaves the reader
+believing it is still there.
+
+**The numeral blocker was fixed on `main`**, in `fcca4b51`, "A campus name's digits were
+authorised by a count of open meeting rooms". That is the proposal at the top of this file,
+landed by a maintainer in the file this run was not permitted to write. `main` was then merged
+into this branch, resolving a conflict in `ledger/docket.json`, and all four items this run
+admitted survived intact.
+
+**One new failure appeared while the branch was held, and it was this run's copy.** `main` added
+a thirty word sentence backstop to `house_style_check`, and nine sentences written on August 23rd
+were over it. Four history notes on re-verified items, two summaries, and one access note. They
+were split at their clauses rather than trimmed, so no fact was lost and every numeral still
+traces to the quote it came from.
+
+**Final state, all seven checks green** on the branch head: `guards`, `gates`, `build`,
+`freshness`, `browser-render`, `browser-read`, `browser-layout`.
+
+**This run still does not merge, and that is deliberate rather than leftover.** The delivery
+policy merges a run whose quality gates pass. This one produced no deck, so it is a failed run by
+its own scorecard above and it commits its evidence to its branch. Green CI does not turn a
+deckless run into a shipped one. What merges it is a decision by the owner, and the record work
+on this branch, the cleared worklist and the four admitted items, is ready the moment that happens.
