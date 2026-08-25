@@ -79,14 +79,56 @@ Two implementation consequences, both already in the plan and now load-bearing:
 ## 1. Robots and terms, which we obey
 
 This project publishes a provenance commitment. **A collector that ignores a stated crawl
-restriction would make that commitment worthless.** Three findings need decisions rather than
+restriction would make that commitment worthless.** Five findings need decisions rather than
 defaults.
+
+**Two of these were folded up from `SOURCES_FIELD_LOG.md` on August 25th, and one of them
+corrects a line in this very file.** Both were re-fetched here before being written down, which
+is the only reason the second was caught: the log recorded `lrl.texas.gov` as a working
+substitute and it is not one for half of this project's clients. **A run's observation is not
+law until somebody re-fetches it.**
 
 | Host | What it says | Our position |
 |---|---|---|
+| `capitol.texas.gov` | **`Disallow: /TLODOCS/`**, which the table in section 2 never listed. Every House and Senate hearing notice, schedule, bill text and bill analysis lives under that path. The live file also disallows `/TLOWebServices/`, `/Prototype/`, `/Controls/`, `/Help/`, `/Images/`, `/bin/`, `/ig_common/`, `/Scripts/`, `/Web References/` and four `/MyTLO/` paths, against the three this file used to name | **OFF LIMITS. Do not fetch `/tlodocs/`.** The directive is upper case and the live urls are lower case, so a case sensitive reading would not match it. Taking that reading is routing around a disallow on a technicality and this project does not do that. **Substitute, verified: `capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S`** answers 200, sits under no disallowed path, and carries the date, time, room and cancellation state of every upcoming committee meeting. `www.legis.texas.gov` 301s to this host, robots.txt included, so it is the same policy and not an alternate route |
+| `lrl.texas.gov` | **`User-agent: ClaudeBot → Disallow: /`**, alongside the same for GPTBot, CCBot, Google-Extended, Bytespider, Amazonbot, Applebot-Extended, meta-externalagent and CloudflareBrowserRenderingCrawler. `User-agent: *` is `Allow: /` with `Content-Signal: search=yes, ai-train=no, use=reference` | **OFF LIMITS, WHOLE HOST, ALL CLIENTS. Decided August 25th.** WebFetch identifies as ClaudeBot and this host named it, which settles the research phase on its own. The collectors send a descriptive `TexasAIDocket/1.0` that matches `User-agent: *` and its `Allow: /`, so on the letter of the file they are permitted, and they are held out anyway. Reasoning below. Section 2 used to read "content signals and **no path disallow**", which is true and is why this was missed: there is no PATH disallow, there is a whole-site disallow on the agent |
 | `data.capitol.texas.gov` | **`User-agent: ClaudeBot → Disallow: /`**, plus `Disallow: /api/` for everyone, `Crawl-Delay: 10`, and `Content-Signal: ai-train=no, use=reference` | **OFF LIMITS. Do not collect.** The API responds, which makes this a choice rather than an obstacle, and the choice is to respect it. Mitigating: its 907 packages are elections and redistricting plans, **not bill text or status**, so the loss is small. Bill data comes from OpenStates or LegiScan with a free key |
 | `waterdatafortexas.org` | `Disallow: *.csv` and `/reservoirs/api/*`. **The reservoir CSVs fall inside that rule.** The groundwater `.json` and `.geojson` endpoints do **not** | **NEEDS AN OWNER DECISION** before any reservoir collector ships. Groundwater JSON is clear to use today. See section 5 |
 | `www.ercot.com` | Does **not** disallow `/api/` | Clear to use, at no more than one poll per minute, with a descriptive User-Agent |
+
+### Why `lrl.texas.gov` is off limits to the collectors too, when the file permits them
+
+Decided August 25th, and written out because a rule an unattended machine follows has to be one
+it cannot get wrong.
+
+**A split rule is the one a run breaks.** "WebFetch no, collectors yes" asks every future run to
+know which client it is holding before it reaches for a url. That is a distinction a run makes
+correctly on a good day and silently wrong on a bad one, and the bad one produces a fetch this
+project promised not to make. **A whole-host rule cannot be got wrong**, and the crawl boundary
+is exactly the place to prefer a rule that survives a careless reader.
+
+**Nine named agents is a position, not a string match.** The file blocks Amazonbot,
+Applebot-Extended, Bytespider, CCBot, ClaudeBot, CloudflareBrowserRenderingCrawler, GPTBot,
+Google-Extended and meta-externalagent. That list spans training crawlers and plain fetchers and
+covers essentially every automated AI client with a name. Reading `User-agent: *` as permission
+after that is reading the one line the operator did not write for us and ignoring the nine they
+did.
+
+**It is the same technicality this file rejects one row above.** `/TLODOCS/` is upper case and the
+live urls are lower case, and this project refused to read that as a mismatch. Sending a different
+string in the User-Agent header to a host that named the client we run is the identical move.
+Rejecting one and taking the other is not a boundary, it is a preference.
+
+**And this file already answered this exact question once.** On `data.capitol.texas.gov` the
+position was "the API responds, which makes this a choice rather than an obstacle, and the choice
+is to respect it". Same shape, same answer.
+
+**What it actually costs, measured rather than asserted.** Less than first written down.
+`Committees/MeetingsUpcoming.aspx` answers 200 for `Chamber=S` AND `Chamber=H`, so the dated
+hearing calendar, which is the `public_access` entry this record promises a reader, is covered for
+both chambers by a source under no disallowed path. **What is genuinely lost is the interim CHARGE
+text**, which LRL carried in full and the calendar does not. That is a real loss and it is the
+whole of the loss.
 
 Also clear: `interchange.puc.texas.gov` has no robots.txt, `www.puc.texas.gov` is `Allow: /`,
 `www.rrc.texas.gov` is empty, TCEQ disallows only its search endpoint, and `sos.state.tx.us` is
@@ -213,7 +255,7 @@ needs. NCEI CDO v2 requires a token and is unnecessary given the above.
 |---|---|---|---|---|
 | **PUCT filings by docket** | `interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=<N>&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending` | none | **[V]** docket 56822 returned case style, "199 filing(s)", and columns Item, File Stamp, Party, Item Type, Description | docket-keyed |
 | PUCT documents per item | `/search/documents/?controlNumber=<N>&itemNumber=<M>` | none | **[V]** 199 links enumerated | |
-| **PUCT calendar** | `puc.texas.gov/agency/calendar/GetCalendarRss.aspx` | none | **[V]** RSS with project numbers and hearing rooms | |
+| **PUCT calendar** | `puc.texas.gov/agency/calendar/GetCalendarRss.aspx` | none | **[V]** RSS with project numbers and hearing rooms. **FETCH IT WITH `-L`.** The mixed case path 301s to the same path lower cased, and without `-L` it answers 184 bytes and zero items, which parses as an EMPTY FEED rather than as an error. This is the highest value poll of the run and its failure mode is silence | |
 | ~~TCEQ regulated facilities~~ | ~~`gisweb.tceq.texas.gov/arcgis/rest/...`~~ | | **OFF LIMITS. `gisweb.tceq.texas.gov/robots.txt` is `Disallow: /` for ALL agents.** An earlier pass listed this as working. **It is not usable and must not be polled.** Facility data has to come from EPA Envirofacts, which carries county FIPS natively | |
 | RRC public viewer | `gis.rrc.texas.gov/server/rest/services/rrc_public/RRC_Public_Viewer_Srvs/MapServer` | none | **[V]** 41 layers, wells, pipelines, counties, districts | county layer 29 |
 
@@ -228,11 +270,39 @@ productive source of that run and was not in this registry at all.
 |---|---|---|---|---|
 | **Governor's press releases** | `gov.texas.gov/news/post/<slug>` | none | **[V]** **serves NO robots.txt**, answers a browser User-Agent | statewide, names the county in the body |
 | **Governor's directive letters and press PDFs** | `gov.texas.gov/uploads/files/press/<file>.pdf` | none | **[V]** same host, same terms. This is where a directive's actual text lives, rather than the summary in the post | |
-| **LRL interim hearings, weekly** | `lrl.texas.gov/whatsNew/client/index.cfm/<yyyy>/<m>/<d>/Interim-Hearings--Week-of-<Month>-<D>-<YYYY>` | none | **[V]** robots.txt carries content signals and **no path disallow** | statewide |
+| **LRL interim hearings, weekly** | `lrl.texas.gov/whatsNew/client/index.cfm/<yyyy>/<m>/<d>/Interim-Hearings--Week-of-<Month>-<D>-<YYYY>` | none | **RESTRICTED, see section 1.** There is no PATH disallow, which is what this row used to say and why the real rule was missed. **`User-agent: ClaudeBot` is `Disallow: /` for the whole host**, so no WebFetch and no scout. `User-agent: *` is `Allow: /` with `Content-Signal: ai-train=no, use=reference` | statewide |
 
 **The LRL weekly post is the cheapest route to a dated public microphone**, which is exactly what
 this record promises a reader. A committee hearing is a decision point with a date and a room, and
 it is a `public_access` entry the record can carry before anything is decided.
+
+That sentence stood while the host was reachable. It is not, for the client the research phase
+uses. **The substitute verified on August 25th is `capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S`**,
+which answers 200, sits under no disallowed path and carries the date, time, room and cancellation
+state of every upcoming committee meeting. It re-verified tx-2026-0077 and gave a better quote than
+the disallowed notice pdf did.
+
+### University systems
+
+| Source | Endpoint | Key | ✓ | Geo |
+|---|---|---|---|---|
+| **UT System Regents agenda books** | `www.utsystem.edu/sites/default/files/offices/board-of-regents/board-meetings/agenda-book-full/<M>-<YYYY>AB.pdf` | none | **[V]** stock Drupal robots.txt naming no AI agent and carrying no relevant disallow. The August 2026 book is 13.5 MB over 307 pages with a real text layer rather than a scan | names the campus |
+
+**It needs `curl` plus a page ranged read, not a page fetch.** Two scouts failed on this file
+independently because their fetcher has a size limit, and a size limit reads exactly like a dead
+source. A source that only fails for large files will be recorded as broken by whoever meets it
+first.
+
+### Quote fidelity: take the ZIP whenever one sits beside a PDF
+
+PUCT Interchange offers both for some items, and **the PDF can be a scan whose OCR layer is not
+the document.** Item 52 of Project 59142 renders `August 7,2026`, `ofthe`, `MWtotal`, and a
+signature block as `PUBLIC UTILITY COMMISSIO EXAS N OFy`. The ZIP carried the source `.pptx`,
+whose xml holds the real text.
+
+**A verbatim quote drawn from an OCR layer is a quote of the scanner**, and this record's whole
+promise is that a quote is what the document says. Every figure in the August 23rd tx-2026-0072
+update came from the pptx.
 
 ### Money
 
@@ -475,3 +545,6 @@ meet it and that nobody currently publishes.
 2. **Free API keys worth getting**, each of which unblocks a lane: OpenStates v3 or LegiScan for
    bill status, Census for the county and CBSA crosswalk the metro scoping needs, and a Socrata app
    token to leave the shared anonymous throttle pool.
+3. ~~**May the collectors' own User-Agent fetch `lrl.texas.gov`?**~~ **DECIDED August 25th, off
+   limits, whole host, all clients.** Kept here rather than deleted so the next reader does not
+   re-open it from the file alone. The reasoning is in section 1 under the table.
