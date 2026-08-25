@@ -1960,3 +1960,41 @@ looking like their fault.
 
 **A boundary drawn on a moment that happens to precede the failure is not a boundary. It is a
 coincidence with good timing.**
+
+## 65. A numeral was authorised by a count in a subsystem it had nothing to do with
+
+`/construction/` prints the campus name `Project Gold Phase 2 - DFW44`, an identifier taken off
+a filing. The campus loop in `site_build.py` authorised the three figures it computes, cost,
+square feet and buildings, and never the name. Eight lines below it the facility loop already
+did the right thing with `_tnums.add(_f["name"])`.
+
+So `44` was a numeral on a published page tracing to no computation, which is the one thing
+`numeral_lint` exists to refuse, and it passed for weeks.
+
+**It passed because the authorised set is site wide.** `by_room["open_meeting"]` was 44, so
+`44` was authorised as a count of docket items with an open meeting room, and the campus name's
+digits sheltered under a number from an unrelated subsystem that happened to match.
+
+```
+44 authorised on main?  True    by_room open_meeting = 44
+44 authorised now?      False   by_room open_meeting = 45
+```
+
+The August 23rd run admitted four items, one of them carrying an `open_meeting` room, the count
+moved to 45, and a correct page failed the build.
+
+**What it cost, which is the part worth remembering.** That run could not fix it.
+`scripts/site/site_build.py` resolves to `human` and the run stamps `daily`, so the one token
+was out of its lane. It refused to game the gate, correctly, since reverting an admission to
+push a count back to 44 would be editing the public record to satisfy a checker. A full day of
+finished record work sat unmerged from the 23rd to the 25th waiting on one token.
+
+**Generalises to.** A site wide authorised set makes every figure a potential alibi for every
+other. When a gate's allow-list is global and its subjects are local, a pass proves only that
+SOME part of the system computed that string, never that THIS part did. Scope the authorisation
+to the thing that renders it, which is what the facility loop was already doing.
+
+And the second half, which is about lanes rather than numerals. **When a routine reports that it
+is blocked on a one line change in another actor's file, that is the ownership map working, and
+the fix is a maintainer session, not a wider lane.** The cost of leaving it is measured in days
+of shipped work, so it is worth checking for blocked runs before starting anything else.

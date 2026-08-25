@@ -6311,7 +6311,20 @@ def build(out: Path, today: str) -> dict:
         for _c, _v in _cty.items():
             _tnums |= {_bn(_v), entities.n0(sum(1 for _r in _dc if _r.get("county") == _c))}
         for _c in tdlr_projects.campuses(_dc):
-            _tnums |= {_bn(_c["cost"]), entities.n0(_c["sqft"]), entities.n0(_c["buildings"])}
+            # THE CAMPUS NAME IS AN IDENTIFIER AND HAS TO BE AUTHORISED LIKE ONE, which the
+            # facility loop eight lines down already does with `_tnums.add(_f["name"])`.
+            # `Project Gold Phase 2 - DFW44` carries digits from a filing rather than a
+            # measurement, and this loop authorised the three figures and never the name.
+            #
+            # IT PASSED FOR WEEKS ON A COINCIDENCE IN A DIFFERENT SUBSYSTEM. The authorised set
+            # is site wide, `by_room["open_meeting"]` happened to be 44, and so "44" was allowed
+            # as a count of open meeting rooms. The August 23rd run admitted one item carrying
+            # an open_meeting room, the count moved to 45, the cover came off, and a correct
+            # page failed the build. That run could not fix it, because this file is `human`
+            # owned and it stamps `daily`, so a whole day of record work sat blocked on one
+            # token rather than the run gaming a gate with the record.
+            _tnums |= {_bn(_c["cost"]), entities.n0(_c["sqft"]),
+                       entities.n0(_c["buildings"]), _c["project"]}
         # The join, priced per facility, by the same call the page makes.
         _byp = {}
         for _r in _dc:

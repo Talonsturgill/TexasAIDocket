@@ -214,6 +214,13 @@ jobs:
       - name: Re-verification self-test (the diff, and the stamp it withholds)
         run: python3 scripts/site/reverify.py --self-test
 
+      # The half that says anything about the RECORD. gate_numerals reads reader copy with
+      # include_history=False, so a movement note is the one published surface no numeral check
+      # reads. This holds every note the re-check wrote, and only those, to the figures it
+      # actually established, which is what makes it safe for a run to re-word them.
+      - name: Every re-worded movement note states only figures something established
+        run: python3 scripts/site/reverify.py --check-notes
+
       - name: Docket staleness selector self-test
         run: python3 scripts/site/docket_staleness.py --self-test
 
