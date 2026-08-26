@@ -1,0 +1,3153 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [
+        {
+          "kind": "tiny-text",
+          "text": "texasaidocket.com",
+          "detail": "font-size 20px < 24px mobile floor (mark data-decorative if intentional)"
+        }
+      ],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "TEXAS AI DOCKET",
+          "x": 80,
+          "y": 88,
+          "w": 296,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(51, 64, 47)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              88,
+              296,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 869,
+          "y": 88,
+          "w": 131,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(51, 64, 47)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              869,
+              88,
+              131,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A billion dollars of bare ground",
+          "x": 80,
+          "y": 146,
+          "w": 920,
+          "h": 198,
+          "font_px": 104,
+          "weight": "820",
+          "family": "Fraunces",
+          "color": "rgb(33, 30, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              130,
+              751,
+              129
+            ],
+            [
+              80,
+              229,
+              520,
+              129
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "FIRST LINE OF THE COST TABLE",
+          "x": 496,
+          "y": 864,
+          "w": 480,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(77, 88, 66)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              499,
+              864,
+              477,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Building Cost $0",
+          "x": 496,
+          "y": 904,
+          "w": 480,
+          "h": 66,
+          "font_px": 50,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(33, 30, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              496,
+              904,
+              480,
+              66
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TOTAL PROJECT COST, PHASE 1",
+          "x": 80,
+          "y": 1016,
+          "w": 920,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(60, 69, 52)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1016,
+              473,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "$1,000,000,000",
+          "x": 80,
+          "y": 1055,
+          "w": 920,
+          "h": 78,
+          "font_px": 78,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(33, 30, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1042,
+              640,
+              103
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The regents approved adding Phase 1 of the UT Dell Medical Center in Austin to the capital improvement program on August 12th, 2026. The phase is early work and site preparation.",
+          "x": 80,
+          "y": 1143,
+          "w": 900,
+          "h": 95,
+          "font_px": 24,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(58, 54, 46)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1142,
+              879,
+              33
+            ],
+            [
+              80,
+              1174,
+              886,
+              33
+            ],
+            [
+              80,
+              1205,
+              232,
+              33
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "MODELED. THE RECORD GIVES COST LINES AND NOT A SITE PLAN",
+          "x": 80,
+          "y": 1246,
+          "w": 920,
+          "h": 23,
+          "font_px": 18,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(95, 89, 73)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1246,
+              655,
+              23
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "AGENDA BOOK FOR THE ITEM. COMMUNITY IMPACT FOR THE VOTE.",
+          "x": 80,
+          "y": 1275,
+          "w": 920,
+          "h": 23,
+          "font_px": 18,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(95, 89, 73)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1275,
+              645,
+              23
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 772,
+          "y": 1298,
+          "w": 228,
+          "h": 26,
+          "font_px": 20,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(84, 78, 62)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              772,
+              1298,
+              228,
+              26
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 380,
+          "w": 1080,
+          "h": 54,
+          "by": "seam",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 966,
+          "w": 1080,
+          "h": 76,
+          "by": "seam2",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [
+        {
+          "claim": "the excavation floor is darker than the lit plateau top around it",
+          "reads": "differ",
+          "a": [
+            [
+              560,
+              560,
+              300,
+              140
+            ]
+          ],
+          "b": [
+            [
+              700,
+              840,
+              300,
+              140
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 0.06
+        }
+      ],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 14372,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 380,
+          "w": 1080,
+          "h": 660,
+          "bw": 2160,
+          "bh": 1320,
+          "area_frac": 0.489,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 150,
+          "variance": 4165.1
+        },
+        {
+          "x": 0,
+          "y": 1030,
+          "w": 1080,
+          "h": 320,
+          "bw": 2160,
+          "bh": 640,
+          "area_frac": 0.237,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 205.4,
+          "variance": 255.6
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [
+        {
+          "kind": "tiny-text",
+          "text": "texasaidocket.com",
+          "detail": "font-size 20px < 24px mobile floor (mark data-decorative if intentional)"
+        }
+      ],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "THE GROUND",
+          "x": 80,
+          "y": 88,
+          "w": 198,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(51, 64, 47)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              88,
+              198,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 869,
+          "y": 88,
+          "w": 131,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(51, 64, 47)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              869,
+              88,
+              131,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "About 27 acres, and what stands on them",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 188,
+          "font_px": 98,
+          "weight": "820",
+          "family": "Fraunces",
+          "color": "rgb(33, 30, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              136,
+              260,
+              121
+            ],
+            [
+              438,
+              136,
+              412,
+              121
+            ],
+            [
+              80,
+              230,
+              808,
+              121
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "27",
+          "x": 340,
+          "y": 146,
+          "w": 98,
+          "h": 111,
+          "font_px": 84.3,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(33, 30, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              340,
+              146,
+              98,
+              111
+            ]
+          ],
+          "anc": [
+            2
+          ]
+        },
+        {
+          "text": "\"a transformative new academic medical destination on an approximately 27-acre site in the center of the west (former) Pickle Research Campus\"",
+          "x": 110,
+          "y": 866,
+          "w": 740,
+          "h": 166,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(33, 30, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              110,
+              865,
+              597,
+              42
+            ],
+            [
+              110,
+              907,
+              690,
+              42
+            ],
+            [
+              110,
+              948,
+              698,
+              42
+            ],
+            [
+              110,
+              990,
+              135,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "BOARD ITEM, PROJECT DESCRIPTION",
+          "x": 110,
+          "y": 1048,
+          "w": 740,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(62, 58, 48)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              110,
+              1048,
+              491,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Everything standing on this ground today throws a shadow.",
+          "x": 80,
+          "y": 1161,
+          "w": 840,
+          "h": 38,
+          "font_px": 29,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(51, 64, 47)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1160,
+              812,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "MODELED. THE RECORD GIVES THE ACREAGE AND NOT WHAT STANDS ON IT",
+          "x": 80,
+          "y": 1213,
+          "w": 820,
+          "h": 62,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(106, 98, 80)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1213,
+              748,
+              29
+            ],
+            [
+              80,
+              1244,
+              180,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "AUSTIN, TEXAS",
+          "x": 80,
+          "y": 1289,
+          "w": 920,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(77, 88, 66)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1289,
+              231,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 772,
+          "y": 1298,
+          "w": 228,
+          "h": 26,
+          "font_px": 20,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(108, 104, 88)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              772,
+              1298,
+              228,
+              26
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [
+        {
+          "claim": "the shadow masses are darker than the open limestone ground between them",
+          "reads": "differ",
+          "a": [
+            [
+              260,
+              660,
+              170,
+              80
+            ]
+          ],
+          "b": [
+            [
+              300,
+              430,
+              170,
+              80
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 1
+        }
+      ],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 2103,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 209.8,
+          "variance": 865.5
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [
+        {
+          "kind": "tiny-text",
+          "text": "texasaidocket.com",
+          "detail": "font-size 20px < 24px mobile floor (mark data-decorative if intentional)"
+        }
+      ],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "THE MASS",
+          "x": 80,
+          "y": 88,
+          "w": 158,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(51, 64, 47)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              88,
+              158,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 869,
+          "y": 88,
+          "w": 131,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(51, 64, 47)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              869,
+              88,
+              131,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "2.5 million square feet, unbuilt",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 188,
+          "font_px": 98,
+          "weight": "820",
+          "family": "Fraunces",
+          "color": "rgb(33, 30, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              198,
+              136,
+              768,
+              121
+            ],
+            [
+              80,
+              230,
+              290,
+              121
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "2.5",
+          "x": 80,
+          "y": 146,
+          "w": 118,
+          "h": 111,
+          "font_px": 84.3,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(33, 30, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              146,
+              49,
+              111
+            ],
+            [
+              149,
+              146,
+              49,
+              111
+            ]
+          ],
+          "anc": [
+            2
+          ]
+        },
+        {
+          "text": ".",
+          "x": 115,
+          "y": 146,
+          "w": 49,
+          "h": 111,
+          "font_px": 84.3,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(33, 30, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              115,
+              146,
+              49,
+              111
+            ]
+          ],
+          "anc": [
+            3,
+            2
+          ]
+        },
+        {
+          "text": "\"projected to be an approximately 2.5 million gross square feet (GSF) tertiary care medical center with inpatient, outpatient, and clinical support space\"",
+          "x": 80,
+          "y": 952,
+          "w": 790,
+          "h": 115,
+          "font_px": 29,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(33, 30, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              951,
+              695,
+              40
+            ],
+            [
+              80,
+              989,
+              696,
+              40
+            ],
+            [
+              80,
+              1028,
+              676,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PROJECT INFORMATION SHEET, \"Facility Type Healthcare Facility, Hospital\"",
+          "x": 80,
+          "y": 1081,
+          "w": 790,
+          "h": 62,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(62, 58, 48)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1081,
+              669,
+              31
+            ],
+            [
+              80,
+              1112,
+              490,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Nothing on this frame throws a shadow. The board item calls this phase early work and site preparation.",
+          "x": 80,
+          "y": 1161,
+          "w": 860,
+          "h": 75,
+          "font_px": 29,
+          "weight": "700",
+          "family": "Manrope",
+          "color": "rgb(51, 64, 47)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1159,
+              837,
+              40
+            ],
+            [
+              80,
+              1196,
+              593,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "THE FACILITY WILL INCORPORATE ONCOLOGY CARE",
+          "x": 80,
+          "y": 1252,
+          "w": 920,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(60, 69, 52)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1252,
+              681,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "BOARD ITEM, PROJECT DESCRIPTION",
+          "x": 80,
+          "y": 1295,
+          "w": 920,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(106, 98, 80)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1295,
+              484,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 772,
+          "y": 1298,
+          "w": 228,
+          "h": 26,
+          "font_px": 20,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(108, 104, 88)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              772,
+              1298,
+              228,
+              26
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [
+        {
+          "claim": "the plate mesh is distinguishable from the open ground it floats over",
+          "reads": "differ",
+          "a": [
+            [
+              480,
+              600,
+              170,
+              80
+            ]
+          ],
+          "b": [
+            [
+              120,
+              700,
+              170,
+              80
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 1
+        }
+      ],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1339,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 215.3,
+          "variance": 711.5
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [
+        {
+          "kind": "tiny-text",
+          "text": "PROPOSED TOTAL PROJECT COST, APPROVED BY THE CHANCELLOR",
+          "detail": "font-size 23px < 24px mobile floor (mark data-decorative if intentional)"
+        }
+      ],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "THE ASK",
+          "x": 80,
+          "y": 88,
+          "w": 138,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(51, 64, 47)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              88,
+              138,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 869,
+          "y": 88,
+          "w": 131,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(51, 64, 47)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              869,
+              88,
+              131,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The board approved a phase",
+          "x": 80,
+          "y": 142,
+          "w": 920,
+          "h": 73,
+          "font_px": 76,
+          "weight": "820",
+          "family": "Fraunces",
+          "color": "rgb(33, 30, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              131,
+              858,
+              93
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PROPOSED TOTAL PROJECT COST, APPROVED BY THE CHANCELLOR",
+          "x": 80,
+          "y": 252,
+          "w": 905,
+          "h": 56,
+          "font_px": 23,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(77, 88, 66)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              264,
+              873,
+              30
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "JANUARY 8TH, 2024",
+          "x": 130,
+          "y": 354,
+          "w": 336,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(77, 88, 66)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              130,
+              354,
+              290,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "$2,900,000,000",
+          "x": 130,
+          "y": 391,
+          "w": 336,
+          "h": 53,
+          "font_px": 40,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(33, 30, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              130,
+              391,
+              336,
+              53
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "JUNE 19TH, 2025",
+          "x": 580,
+          "y": 354,
+          "w": 336,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(77, 88, 66)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              580,
+              354,
+              256,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "$5,000,000,000",
+          "x": 580,
+          "y": 391,
+          "w": 336,
+          "h": 53,
+          "font_px": 40,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(33, 30, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              580,
+              391,
+              336,
+              53
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The axis starts at zero and is not cut.",
+          "x": 80,
+          "y": 806,
+          "w": 674,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(108, 104, 88)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              806,
+              674,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A phase authorization and a project total are different quantities. The board item states each of them separately.",
+          "x": 80,
+          "y": 850,
+          "w": 900,
+          "h": 68,
+          "font_px": 26,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(74, 71, 56)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              848,
+              838,
+              36
+            ],
+            [
+              80,
+              882,
+              517,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PHASE 1, ADDED TO THE CAPITAL PROGRAM AUGUST 12TH, 2026",
+          "x": 114,
+          "y": 988,
+          "w": 852,
+          "h": 62,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(195, 178, 145)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              114,
+              988,
+              639,
+              31
+            ],
+            [
+              114,
+              1019,
+              294,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "$1,000,000,000",
+          "x": 114,
+          "y": 1060,
+          "w": 852,
+          "h": 80,
+          "font_px": 80,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 240, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              114,
+              1047,
+              672,
+              106
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "RECOMMENDED FROM REVENUE FINANCING SYSTEM BOND PROCEEDS",
+          "x": 114,
+          "y": 1152,
+          "w": 852,
+          "h": 62,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(195, 178, 145)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              114,
+              1152,
+              530,
+              31
+            ],
+            [
+              114,
+              1183,
+              312,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"The $1,000,000,000 in RFS debt is expected to be repaid from clinical revenues.\"",
+          "x": 114,
+          "y": 1232,
+          "w": 852,
+          "h": 70,
+          "font_px": 27,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(237, 231, 216)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              114,
+              1231,
+              799,
+              37
+            ],
+            [
+              114,
+              1266,
+              235,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1293,
+          "w": 273,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(195, 178, 145)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1293,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [
+        {
+          "claim": "the seated slab is darker than the limestone ground the chart stands on",
+          "reads": "differ",
+          "a": [
+            [
+              300,
+              966,
+              320,
+              18
+            ]
+          ],
+          "b": [
+            [
+              790,
+              660,
+              240,
+              110
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 1
+        }
+      ],
+      "contacts": [
+        {
+          "what": "the ground darkening where it meets the slab, ABOVE the slab because the slab is the near ",
+          "shadow": [
+            [
+              140,
+              940,
+              760,
+              18
+            ]
+          ],
+          "ground": [
+            [
+              140,
+              880,
+              760,
+              18
+            ]
+          ]
+        }
+      ],
+      "nondeterminism": [],
+      "render_ms": 1320,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 169.5,
+          "variance": 6899.2
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "THE ITEM'S OWN WORDS",
+          "x": 80,
+          "y": 88,
+          "w": 395,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(51, 46, 34)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              88,
+              395,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 869,
+          "y": 88,
+          "w": 131,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(51, 46, 34)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              869,
+              88,
+              131,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What the item calls the technology",
+          "x": 106,
+          "y": 170,
+          "w": 676,
+          "h": 171,
+          "font_px": 88,
+          "weight": "820",
+          "family": "Fraunces",
+          "color": "rgb(33, 30, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              106,
+              158,
+              676,
+              108
+            ],
+            [
+              106,
+              243,
+              526,
+              108
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "THE CARE MODEL",
+          "x": 108,
+          "y": 536,
+          "w": 864,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(108, 104, 88)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              108,
+              536,
+              242,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"digital technology, robotics, and automation\"",
+          "x": 108,
+          "y": 579,
+          "w": 864,
+          "h": 102,
+          "font_px": 42,
+          "weight": "700",
+          "family": "Manrope",
+          "color": "rgb(33, 30, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              108,
+              575,
+              674,
+              58
+            ],
+            [
+              108,
+              626,
+              256,
+              58
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "THE BACKBONE",
+          "x": 108,
+          "y": 794,
+          "w": 864,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(108, 104, 88)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              108,
+              794,
+              207,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"a digitally enabled infrastructure\"",
+          "x": 108,
+          "y": 837,
+          "w": 864,
+          "h": 51,
+          "font_px": 42,
+          "weight": "700",
+          "family": "Manrope",
+          "color": "rgb(33, 30, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              108,
+              833,
+              706,
+              58
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The board item describes the technology in full. The labels above are this record's, not the item's.",
+          "x": 80,
+          "y": 1202,
+          "w": 880,
+          "h": 75,
+          "font_px": 29,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(51, 64, 47)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1200,
+              801,
+              40
+            ],
+            [
+              80,
+              1237,
+              520,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "BOARD ITEM, PROJECT DESCRIPTION",
+          "x": 80,
+          "y": 1291,
+          "w": 920,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(108, 104, 88)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1291,
+              484,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1293,
+          "w": 273,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(74, 68, 54)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1293,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [
+        {
+          "claim": "the lit aggregate cluster is lighter than the shaded course across the frame from it",
+          "reads": "differ",
+          "a": [
+            [
+              630,
+              960,
+              230,
+              150
+            ]
+          ],
+          "b": [
+            [
+              110,
+              980,
+              230,
+              150
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 1
+        }
+      ],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 2662,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 170,
+          "variance": 606.4
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [
+        {
+          "kind": "tiny-text",
+          "text": "texasaidocket.com",
+          "detail": "font-size 20px < 24px mobile floor (mark data-decorative if intentional)"
+        }
+      ],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "THE SEARCH",
+          "x": 80,
+          "y": 88,
+          "w": 198,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(46, 58, 42)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              88,
+              198,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 869,
+          "y": 88,
+          "w": 131,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(46, 58, 42)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              869,
+              88,
+              131,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Twenty pages, no mention of AI",
+          "x": 80,
+          "y": 146,
+          "w": 920,
+          "h": 182,
+          "font_px": 96,
+          "weight": "820",
+          "family": "Fraunces",
+          "color": "rgb(33, 30, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              132,
+              665,
+              118
+            ],
+            [
+              80,
+              223,
+              526,
+              118
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "THE COMMITTEE'S DOCUMENT, END TO END",
+          "x": 0,
+          "y": 462,
+          "w": 1080,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(74, 68, 54)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              194,
+              462,
+              691,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "0",
+          "x": 0,
+          "y": 576,
+          "w": 1080,
+          "h": 168,
+          "font_px": 168,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(33, 30, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              490,
+              549,
+              101,
+              221
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "MATCHES, ANYWHERE IN IT",
+          "x": 0,
+          "y": 752,
+          "w": 1080,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(74, 68, 54)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              344,
+              752,
+              392,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PAGE 124",
+          "x": 124,
+          "y": 874,
+          "w": 146,
+          "h": 35,
+          "font_px": 26,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(33, 30, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              124,
+              874,
+              146,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PAGE 143",
+          "x": 810,
+          "y": 874,
+          "w": 146,
+          "h": 35,
+          "font_px": 26,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(33, 30, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              810,
+              874,
+              146,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SEARCHED, CASE INSENSITIVE",
+          "x": 80,
+          "y": 1113,
+          "w": 920,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(78, 70, 54)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1113,
+              418,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "artificial intelligence \u00b7 AI \u00b7 machine learning \u00b7 algorithm",
+          "x": 80,
+          "y": 1150,
+          "w": 920,
+          "h": 36,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(46, 58, 42)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1152,
+              878,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The item itself is five pages of that, 130 to 134. The same book uses the word elsewhere.",
+          "x": 80,
+          "y": 1202,
+          "w": 820,
+          "h": 75,
+          "font_px": 29,
+          "weight": "700",
+          "family": "Manrope",
+          "color": "rgb(36, 31, 25)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1200,
+              781,
+              40
+            ],
+            [
+              80,
+              1237,
+              431,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "UT SYSTEM AGENDA BOOK, AUGUST 2026",
+          "x": 80,
+          "y": 1291,
+          "w": 620,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(88, 79, 62)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1291,
+              514,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 772,
+          "y": 1298,
+          "w": 228,
+          "h": 26,
+          "font_px": 20,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(88, 79, 62)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              772,
+              1298,
+              228,
+              26
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [
+        {
+          "claim": "the searched document, drawn end to end, is lighter than the ground it lies on",
+          "reads": "differ",
+          "a": [
+            [
+              380,
+              940,
+              260,
+              150
+            ]
+          ],
+          "b": [
+            [
+              380,
+              600,
+              260,
+              150
+            ]
+          ],
+          "a_visible_frac": 0.95,
+          "b_visible_frac": 0.05
+        }
+      ],
+      "contacts": [
+        {
+          "what": "the left terminator standing at grade",
+          "shadow": [
+            [
+              70,
+              856,
+              34,
+              18
+            ]
+          ],
+          "ground": [
+            [
+              190,
+              856,
+              48,
+              26
+            ]
+          ]
+        },
+        {
+          "what": "the right terminator standing at grade",
+          "shadow": [
+            [
+              910,
+              856,
+              34,
+              18
+            ]
+          ],
+          "ground": [
+            [
+              760,
+              856,
+              48,
+              26
+            ]
+          ]
+        }
+      ],
+      "nondeterminism": [],
+      "render_ms": 3716,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 179.2,
+          "variance": 759.5
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [
+        {
+          "kind": "tiny-text",
+          "text": "texasaidocket.com",
+          "detail": "font-size 20px < 24px mobile floor (mark data-decorative if intentional)"
+        }
+      ],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "TWO DOCUMENTS",
+          "x": 80,
+          "y": 88,
+          "w": 257,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(51, 64, 47)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              88,
+              257,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 869,
+          "y": 88,
+          "w": 131,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(51, 64, 47)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              869,
+              88,
+              131,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Two lists. One says AI.",
+          "x": 80,
+          "y": 146,
+          "w": 900,
+          "h": 87,
+          "font_px": 92,
+          "weight": "820",
+          "family": "Fraunces",
+          "color": "rgb(33, 30, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              133,
+              809,
+              113
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "UT AUSTIN, APRIL 21ST, 2026",
+          "x": 160,
+          "y": 452,
+          "w": 680,
+          "h": 65,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(74, 68, 54)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              160,
+              486,
+              441,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"AI and advanced computing\"",
+          "x": 160,
+          "y": 554,
+          "w": 672,
+          "h": 50,
+          "font_px": 40,
+          "weight": "700",
+          "family": "Manrope",
+          "color": "rgb(33, 30, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              160,
+              551,
+              570,
+              55
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "BOARD ITEM, AUGUST 12TH AND 13TH, 2026",
+          "x": 160,
+          "y": 724,
+          "w": 680,
+          "h": 65,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(74, 68, 54)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              160,
+              758,
+              620,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"digital technology, robotics, and automation\"",
+          "x": 160,
+          "y": 826,
+          "w": 672,
+          "h": 100,
+          "font_px": 40,
+          "weight": "700",
+          "family": "Manrope",
+          "color": "rgb(33, 30, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              160,
+              823,
+              642,
+              55
+            ],
+            [
+              160,
+              873,
+              244,
+              55
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Neither list is marked as correct. One is a governing board voting on debt. One is a university describing a vision.",
+          "x": 80,
+          "y": 1254,
+          "w": 880,
+          "h": 70,
+          "font_px": 27,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(51, 64, 47)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1253,
+              861,
+              37
+            ],
+            [
+              80,
+              1288,
+              559,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 772,
+          "y": 1298,
+          "w": 228,
+          "h": 26,
+          "font_px": 20,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(108, 104, 88)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              772,
+              1298,
+              228,
+              26
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 160,
+          "y": 531,
+          "w": 92,
+          "h": 5,
+          "by": "tick",
+          "color": "rgb(154, 59, 42)",
+          "decorative": true,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 160,
+          "y": 803,
+          "w": 92,
+          "h": 5,
+          "by": "tick",
+          "color": "rgb(154, 59, 42)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [
+        {
+          "claim": "the two seated blocks are lighter than the worked ground they stand on",
+          "reads": "differ",
+          "a": [
+            [
+              320,
+              1120,
+              280,
+              110
+            ]
+          ],
+          "b": [
+            [
+              320,
+              500,
+              280,
+              110
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 0.07
+        }
+      ],
+      "contacts": [
+        {
+          "what": "the upper block, seated on the limestone",
+          "shadow": [
+            [
+              380,
+              654,
+              220,
+              20
+            ]
+          ],
+          "ground": [
+            [
+              380,
+              700,
+              220,
+              20
+            ]
+          ]
+        },
+        {
+          "what": "the lower block, seated on the same limestone",
+          "shadow": [
+            [
+              380,
+              980,
+              220,
+              20
+            ]
+          ],
+          "ground": [
+            [
+              380,
+              1026,
+              220,
+              20
+            ]
+          ]
+        }
+      ],
+      "nondeterminism": [],
+      "render_ms": 2976,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 215.9,
+          "variance": 397.8
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [
+        {
+          "kind": "tiny-text",
+          "text": "texasaidocket.com",
+          "detail": "font-size 20px < 24px mobile floor (mark data-decorative if intentional)"
+        }
+      ],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "THE SAME BOOK",
+          "x": 80,
+          "y": 88,
+          "w": 257,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(169, 156, 126)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              88,
+              257,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 869,
+          "y": 88,
+          "w": 131,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(169, 156, 126)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              869,
+              88,
+              131,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The same book says AI",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 190,
+          "font_px": 100,
+          "weight": "820",
+          "family": "Fraunces",
+          "color": "rgb(244, 240, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              135,
+              794,
+              124
+            ],
+            [
+              80,
+              230,
+              101,
+              124
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"to provide AI technology platform\"",
+          "x": 80,
+          "y": 430,
+          "w": 880,
+          "h": 55,
+          "font_px": 44,
+          "weight": "700",
+          "family": "Manrope",
+          "color": "rgb(237, 231, 216)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              427,
+              750,
+              60
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "U.T. MEDICAL BRANCH, GALVESTON, WITH QUALIFIED HEALTH, PBC",
+          "x": 80,
+          "y": 503,
+          "w": 880,
+          "h": 62,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(166, 154, 124)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              503,
+              498,
+              31
+            ],
+            [
+              80,
+              534,
+              418,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "FUNDS",
+          "x": 317,
+          "y": 904,
+          "w": 85,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(74, 68, 54)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              317,
+              904,
+              85,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "$9,850,000",
+          "x": 144,
+          "y": 947,
+          "w": 432,
+          "h": 72,
+          "font_px": 72,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(26, 23, 20)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              144,
+              935,
+              432,
+              95
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The book names what each item buys. This one says AI in its own title. The amendment adds $5,600,000 to an agreement already running.",
+          "x": 80,
+          "y": 1172,
+          "w": 900,
+          "h": 109,
+          "font_px": 28,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(242, 236, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1171,
+              852,
+              38
+            ],
+            [
+              80,
+              1207,
+              847,
+              38
+            ],
+            [
+              80,
+              1244,
+              112,
+              38
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "UT SYSTEM AGENDA BOOK, AUGUST 2026",
+          "x": 80,
+          "y": 1293,
+          "w": 620,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(152, 140, 114)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1293,
+              522,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 772,
+          "y": 1298,
+          "w": 228,
+          "h": 26,
+          "font_px": 20,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(169, 156, 126)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              772,
+              1298,
+              228,
+              26
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [
+        {
+          "claim": "the lit plate is the only light area on an otherwise dark frame",
+          "reads": "differ",
+          "a": [
+            [
+              84,
+              880,
+              18,
+              150
+            ]
+          ],
+          "b": [
+            [
+              700,
+              700,
+              240,
+              140
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 1
+        }
+      ],
+      "contacts": [
+        {
+          "what": "the plate seated on the dark ground",
+          "shadow": [
+            [
+              240,
+              1068,
+              110,
+              22
+            ]
+          ],
+          "ground": [
+            [
+              346,
+              1088,
+              110,
+              26
+            ]
+          ]
+        }
+      ],
+      "nondeterminism": [],
+      "render_ms": 3203,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 38.1,
+          "variance": 2814.1
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "WHAT HAPPENS NEXT",
+          "x": 80,
+          "y": 88,
+          "w": 336,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(51, 64, 47)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              88,
+              336,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 869,
+          "y": 88,
+          "w": 131,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(51, 64, 47)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              869,
+              88,
+              131,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"technology, data and AI are embedded to support clinicians\"",
+          "x": 80,
+          "y": 158,
+          "w": 900,
+          "h": 109,
+          "font_px": 44,
+          "weight": "700",
+          "family": "Manrope",
+          "color": "rgb(28, 42, 46)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              155,
+              885,
+              60
+            ],
+            [
+              80,
+              210,
+              401,
+              60
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "UT AUSTIN, APRIL 21ST, 2026",
+          "x": 80,
+          "y": 283,
+          "w": 900,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(62, 82, 89)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              283,
+              447,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The promise is above. The money is below.",
+          "x": 80,
+          "y": 436,
+          "w": 900,
+          "h": 177,
+          "font_px": 92,
+          "weight": "820",
+          "family": "Fraunces",
+          "color": "rgb(22, 33, 31)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              423,
+              798,
+              113
+            ],
+            [
+              80,
+              511,
+              750,
+              113
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "BOARD ITEM, AUGUST 12TH AND 13TH, 2026 PAGES 130 TO 134",
+          "x": 146,
+          "y": 854,
+          "w": 788,
+          "h": 62,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(205, 193, 162)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              146,
+              854,
+              593,
+              31
+            ],
+            [
+              146,
+              885,
+              250,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "THE NEXT DATED STEP",
+          "x": 146,
+          "y": 938,
+          "w": 788,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(201, 188, 155)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              146,
+              938,
+              333,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Construction Notice to Proceed September 2026",
+          "x": 146,
+          "y": 979,
+          "w": 788,
+          "h": 99,
+          "font_px": 42,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 240, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              146,
+              975,
+              756,
+              56
+            ],
+            [
+              146,
+              1025,
+              353,
+              56
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1261,
+          "w": 296,
+          "h": 37,
+          "font_px": 30,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(244, 240, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1261,
+              296,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 731,
+          "y": 1266,
+          "w": 269,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(191, 179, 147)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              731,
+              1266,
+              269,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [
+        {
+          "claim": "the ground below the grade edge is darker than the air above it",
+          "reads": "differ",
+          "a": [
+            [
+              200,
+              1050,
+              300,
+              140
+            ]
+          ],
+          "b": [
+            [
+              200,
+              300,
+              300,
+              140
+            ]
+          ],
+          "a_visible_frac": 0.61,
+          "b_visible_frac": 0.83
+        }
+      ],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 2058,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 130.8,
+          "variance": 7702.8
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    }
+  ]
+}

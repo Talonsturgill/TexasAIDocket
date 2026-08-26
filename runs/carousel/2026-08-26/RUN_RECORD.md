@@ -360,6 +360,68 @@ Austin's own release calls it a campus designed for the AI era", and `c25` is a 
 donors inside that release. It read "That contract is $9,850,000", and `c21` quotes a `Funds:` line
 on an amendment, which is what slide 8 had been careful to label and the caption had not.
 
+## THE PANEL HELD THE DECK AND THIS RUN DOES NOT MERGE
+
+**Final panel, three judges on the integrity, craft and reader lenses, run on the repaired deck
+with every mechanical gate green.**
+
+| criterion | weight | judges | merged |
+|---|---|---|---|
+| artwork craft | 0.28 | 6.5 / 6.5 / 7.0 | 6.5 |
+| claim integrity | 0.20 | 7.5 / 8.0 / 8.0 | 8.0 |
+| story and stakes | 0.18 | 6.5 / 7.0 / 6.5 | 6.5 |
+| sequence and momentum | 0.12 | 7.5 / 7.5 / 7.0 | 7.5 |
+| voice | 0.12 | 7.5 / 7.0 / 7.0 | 7.0 |
+| variety | 0.10 | 6.0 / 6.0 / 7.0 | 6.0 |
+
+Judge totals 6.89, 7.02 and 7.11. Per criterion median, then weighted by the rubric, is **6.93
+against a 7.0 threshold**, spread 0.22. The integrity judge returned `ship: false` and named no
+hard fail, which `panel.py` counts as a refusal either way, so **one hard fail stands and the
+deck is held whatever the number does**. `run_complete.py --date 2026-08-26` exits 1 and names
+both reasons.
+
+That rule was not overridden and will not be. It exists so a run under pressure can't talk itself
+past a refusal, and this run was under exactly that pressure.
+
+**What the merged card says about where the deck actually is.** Claim integrity ended at 8.0, and
+it is the criterion this run spent itself on. The two hard fails that appeared mid panel were both
+integrity faults, both were real, and both are fixed. What held the deck is the other half of the
+rubric. Artwork craft at 6.5 and variety at 6.0 carry 0.38 of the weight between them, and neither
+moved far across five rounds because the standing findings below are craft findings that need
+render work rather than fact work.
+
+**Standing findings the panel named and this run did not clear.**
+
+- The `MODELED` disclosures are set small enough that they are illegible at feed size. The frames
+  that invent geometry say so, and a reader on a phone can't read that they say so.
+- Slide 3 invents massing and carries no `MODELED` label at all, which is the same defect slide 2
+  was rebuilt for.
+- Slide 4's short column casts at a lightness difference of about 2.8, which is under the
+  threshold at which the shadow is perceptible, so the shortest bars read as standing on nothing.
+- Four grounds the dossier declared as worked render flat. `plan_render_check` reports 14 of 64
+  acceptance items as checkable and a declared modeled ground is not among the shapes it samples.
+- The first comment tags `#MDAnderson`, and no frame in the deck names that body.
+- Slide 1's raymarched rim is aliased. `TXSDF.render` takes no anti-aliasing option, so this needs
+  supersampling in the caller rather than a parameter.
+- Slide 8 is roughly 30 to 35 percent flat dark field.
+
+**What ships and what does not.** The record half of this run is complete and clean, including the
+two corrections above, and it is in the commits on this branch. The deck does not ship. Per the
+delivery policy a failed run commits its evidence and does not merge, so this branch carries the
+evidence and `main` is untouched by it.
+
+**The evidence is in `held/` and deliberately not at the top of this directory.**
+`site_build.load_runs` treats `runs/carousel/<date>/copy.json` as the switch that says a deck
+shipped, and `media_check` and `shipped_check` key off the same file. Staging a held deck the way
+a shipped one is staged would have published it on the live site under a green build. All three
+iterate `runs/carousel/` and never descend, so nothing under `held/` is visible to any of them.
+`score.json` is at the top level on purpose, because that is where `run_complete.py` reads it and
+without it the gate reported this deck as never scored, which is a false statement about this run.
+
+The slide sources are committed rather than the nine full size PNGs. The sources are the deck, the
+seed is fixed, and the PNGs are 17 MB of build output for a deck that will never be published. The
+contact sheet is committed, because that is the artifact the panel actually judged.
+
 ## Gate table
 
 Written by `gate_status.py --sync`, never by hand.
@@ -374,7 +436,7 @@ Written by `gate_status.py --sync`, never by hand.
 | qa             | WARN   | 0 fail(s), 24 warn(s) |
 | aggregates     | PASS   | 8 declared and re-derived |
 | assembly       | PASS   | 9 slide(s), 3.02 MB, vector |
-| score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| score          | FAIL   | 6.93, hard fail: judge returned ship: false with no hard fail named, which is a refusal either way |
 | dossiers       | PASS   | 49,113 chars planned |
 | caption        | PASS   | 119 words |
 | craft floor    | PASS   | 9 frame(s), median 866, floor 156 |

@@ -1,0 +1,180 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'texasaidocket.com' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'texasaidocket.com' at 772,1298 228x26 (margin 80px)"
+      ],
+      "bands": [
+        0.3004,
+        0.4538,
+        0.3493
+      ],
+      "band_ratio": 0.9517,
+      "encodings": [
+        "'the excavation floor is darker than the lit plateau top around it': dE 81.8, AUC 0.97, visible 100%/6%, seen 6720/403px at 432w"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'texasaidocket.com' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'AUSTIN, TEXAS' at 80,1289 920x31 (margin 80px)",
+        "outside safe zone: 'texasaidocket.com' at 772,1298 228x26 (margin 80px)"
+      ],
+      "bands": [
+        0.1513,
+        0.3655,
+        0.2096
+      ],
+      "band_ratio": 0.8708,
+      "encodings": [
+        "'the shadow masses are darker than the open limestone ground between them': dE 28.6, AUC 0.79, visible 100%/100%, seen 2176/2176px at 432w"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'texasaidocket.com' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'THE FACILITY WILL INCORPORATE ONCOLOGY C' at 80,1252 920x31 (margin 80px)",
+        "outside safe zone: 'texasaidocket.com' at 772,1298 228x26 (margin 80px)"
+      ],
+      "bands": [
+        0.145,
+        0.25,
+        0.2188
+      ],
+      "band_ratio": 1.066,
+      "encodings": [
+        "'the plate mesh is distinguishable from the open ground it floats over': dE 21.4, AUC 0.78, visible 100%/100%, seen 2176/2176px at 432w"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'PROPOSED TOTAL PROJECT COST, APPROVED BY THE CHANC' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: '\"The $1,000,000,000 in RFS debt is expec' at 114,1232 852x70 (margin 80px)",
+        "outside safe zone: 'texasaidocket.com' at 727,1293 273x31 (margin 80px)"
+      ],
+      "bands": [
+        0.2185,
+        0.0357,
+        0.3511
+      ],
+      "band_ratio": 1.6835,
+      "encodings": [
+        "'the seated slab is darker than the limestone ground the chart stands on': dE 54.4, AUC 1.00, visible 100%/100%, seen 896/4224px at 432w"
+      ],
+      "contacts": [
+        "'the ground darkening where it meets the slab, ABOVE the slab because the slab is the near ': shadow L* 68.3 vs ground L* 86.5, dL 18.1 at 432w"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'texasaidocket.com' at 727,1293 273x31 (margin 80px)"
+      ],
+      "bands": [
+        0.3067,
+        0.292,
+        0.5551
+      ],
+      "band_ratio": 1.4148,
+      "encodings": [
+        "'the lit aggregate cluster is lighter than the shaded course across the frame from it': dE 6.1, AUC 0.79, visible 100%/100%, seen 5520/5520px at 432w"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'texasaidocket.com' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: '0' at 0,576 1080x168 (margin 80px)",
+        "outside safe zone: 'texasaidocket.com' at 772,1298 228x26 (margin 80px)",
+        "low contrast ~3.0 on 'texasaidocket.com' (est.)"
+      ],
+      "bands": [
+        0.1008,
+        0.2101,
+        0.1838
+      ],
+      "band_ratio": 1.1089,
+      "encodings": [
+        "'the searched document, drawn end to end, is lighter than the ground it lies on': dE 26.3, AUC 0.85, visible 95%/5%, seen 5928/312px at 432w"
+      ],
+      "contacts": [
+        "'the left terminator standing at grade': shadow L* 53.0 vs ground L* 75.0, dL 22.0 at 432w",
+        "'the right terminator standing at grade': shadow L* 44.5 vs ground L* 69.9, dL 25.4 at 432w"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'texasaidocket.com' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'Neither list is marked as correct. One i' at 80,1254 880x70 (margin 80px)",
+        "outside safe zone: 'texasaidocket.com' at 772,1298 228x26 (margin 80px)",
+        "low contrast ~2.8 on 'texasaidocket.com' (est.)"
+      ],
+      "bands": [
+        0.1555,
+        0.3445,
+        0.3051
+      ],
+      "band_ratio": 1.13,
+      "encodings": [
+        "'the two seated blocks are lighter than the worked ground they stand on': dE 10.1, AUC 0.83, visible 100%/7%, seen 4928/344px at 432w"
+      ],
+      "contacts": [
+        "'the upper block, seated on the limestone': shadow L* 76.8 vs ground L* 91.0, dL 14.2 at 432w",
+        "'the lower block, seated on the same limestone': shadow L* 77.5 vs ground L* 89.3, dL 11.8 at 432w"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'texasaidocket.com' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'The book names what each item buys. This' at 80,1172 900x109 (margin 80px)",
+        "outside safe zone: 'texasaidocket.com' at 772,1298 228x26 (margin 80px)"
+      ],
+      "bands": [
+        0.1008,
+        0.0546,
+        0.2261
+      ],
+      "band_ratio": 1.717,
+      "encodings": [
+        "'the lit plate is the only light area on an otherwise dark frame': dE 85.9, AUC 1.00, visible 100%/100%, seen 420/5376px at 432w"
+      ],
+      "contacts": [
+        "'the plate seated on the dark ground': shadow L* 16.8 vs ground L* 47.4, dL 30.6 at 432w"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'TEXAS AI DOCKET' at 80,1261 296x37 (margin 80px)"
+      ],
+      "bands": [
+        0.084,
+        0.292,
+        0.2169
+      ],
+      "band_ratio": 1.0926,
+      "encodings": [
+        "'the ground below the grade edge is darker than the air above it': dE 69.5, AUC 0.97, visible 61%/83%, seen 4099/5577px at 432w"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 24,
+  "verdict": "WARN"
+}
