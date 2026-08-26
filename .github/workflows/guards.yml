@@ -1228,4 +1228,5 @@ jobs:
       - name: Start Pages for the guarded main
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh workflow run pages.yml --ref main
+        # This job needs no checkout, so gh cannot infer a repository from a .git directory.
+        run: gh workflow run pages.yml --repo "${GITHUB_REPOSITORY}" --ref main
