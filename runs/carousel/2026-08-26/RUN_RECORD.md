@@ -321,17 +321,17 @@ Written by `gate_status.py --sync`, never by hand.
 <!-- gate-status:begin -->
 | gate | status | detail |
 |---|---|---|
-| claims         | PASS   | 32 verified claim(s) |
+| claims         | PASS   | 33 verified claim(s) |
 | render         | WARN   | 9 slide(s), 7 overflow warning(s) |
-| qa             | WARN   | 0 fail(s), 29 warn(s) |
-| aggregates     | PASS   | 8 declared and re-derived |
-| assembly       | PASS   | 9 slide(s), 2.94 MB, vector |
+| qa             | WARN   | 0 fail(s), 25 warn(s) |
+| aggregates     | PASS   | 7 declared and re-derived |
+| assembly       | PASS   | 9 slide(s), 2.93 MB, vector |
 | score          | ABSENT | score.json not written yet |
-| dossiers       | PASS   | 48,317 chars planned |
-| caption        | PASS   | 283 words |
+| dossiers       | PASS   | 49,088 chars planned |
+| caption        | PASS   | 281 words |
 | craft floor    | PASS   | 9 frame(s), median 866, floor 156 |
 | plan vs render | PASS   | 14 of 64 acceptance item(s) checkable |
 | texan          | WARN   | places NONE / body yes / deadline yes / next step yes |
-| absences       | WARN   | 3 of 6 scoped to a named document, 3 unscoped |
+| absences       | WARN   | 4 of 8 scoped to a named document, 4 unscoped |
 | completion     | ABSENT | not scored yet |
 <!-- gate-status:end -->
