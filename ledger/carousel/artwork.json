@@ -359,6 +359,70 @@
    "palette_note": "edge_cyan is GONE from this deck. It shipped as a 6px bar at x16 on frame 6, attached to no drawn object, unterminated at both ends, 2.4px wide at the size a reader gets, through three craft reads. A reserved colour that buys nothing is deleted rather than elaborated.",
    "camera_classes": 8,
    "frames": 9
+  },
+  {
+   "date": "2026-08-26",
+   "carousel_no": 8,
+   "written_from": "the Balcones escarpment, limestone cut and roadbase, at eight in the morning",
+   "register": "daylight limestone site, one low sun",
+   "techniques": [
+    "an SDF raymarched benched excavation, terraces self occluding, cut by four opSub boxes",
+    "plan view objects each drawn WITH the cast it throws, solved from its own height",
+    "an unfilled axonometric plate stack that casts nothing, which is the deck's law made literal",
+    "an untruncated two state bar pair with the phase figure physically detached onto a seated slab",
+    "quote plates INCISED into a crushed base course, shadowed on the sunward inner walls",
+    "an unbroken lit span bracketed by two terminators, so an absence is a positive area",
+    "two identically treated seated blocks, differing only in the height their own text needs",
+    "one lit plate on unbounded dark, the deck's only night frame",
+    "a two faced grade edge with an incised recess and a single live oak"
+   ],
+   "palette": {
+    "source": "Balcones limestone, cut face, roadbase, blackland, live oak",
+    "limestone": "#E5DECC",
+    "cut_face": "#F4F0E4",
+    "roadbase": "#C3B291",
+    "blackland": "#211E1A",
+    "liveoak": "#4D5842",
+    "granite": "#9A3B2A",
+    "note": "granite returns at the identical hex last spent on 08-16, which a judge found and which no ledger field currently compares"
+   },
+   "red_spent": true,
+   "red_on_slide": 7,
+   "red_note": "two granite ticks, one per document, drawn identically so the frame cannot rank them",
+   "camera": "nine constructions, one repeated class. The pixel closest pair is slide-04 and slide-09 at 0.68 normalised correlation over 16x16 thumbs, both being a light block over a dark block with white mono reversed out.",
+   "light_decks_used": "predominantly light, eight of nine frames. A judge reported this as the third pale deck in eight runs and could not settle it, because the field that would count it records light FRAMES inside a deck rather than light decks. Recorded as an open measurement gap.",
+   "value": {
+    "per_frame_median_L": [
+     80.0,
+     87.1,
+     87.8,
+     89.0,
+     91.4,
+     70.6,
+     86.7,
+     9.4,
+     76.9
+    ],
+    "deck_median_L": 86.7,
+    "mean_L": 75.4,
+    "sd_L": 24.2,
+    "range_L": [
+     9.4,
+     91.4
+    ],
+    "measured_on": "the rendered PNGs, median of the luminance channel per frame",
+    "arc_note": "THE PLANNED TURN DID NOT SHIP AS THE BRIGHTEST FRAME. The storyboard puts the turn on the deck's lightest frame and slide 6 measures 70.6 against slide 5 at 91.4. The per frame acceptance passed because it asks only that the span be the lightest region ON ITS OWN FRAME, so nothing caught the arc level miss."
+   },
+   "slides": 9,
+   "bespoke_median_similarity": 0.2465,
+   "bespoke_closest_pair": [
+    "slide-05.html",
+    "slide-06.html",
+    0.6245
+   ],
+   "cut": "nothing cut. Slide 5 was rebuilt twice, first off the technology vocabulary that duplicated slide 7 and onto the repayment stake, then from seated plates to incised ones when three judges still read 5 and 7 as one picture. Pixel correlation between that pair went from the closest in the deck to -0.03.",
+   "structural_laws": "ONE SUN at azimuth 246 degrees on every frame, one cast length of 2.75x apparent height, contact at the foot rather than a drop shadow. A built thing casts and an unbuilt thing does not, posed on slide 2 and answered on slide 3. No sixteen marks on slide 6: the record holds the COUNT of pages carrying the words and not their folios.",
+   "avoid_next": "the raking daylight limestone register for at least one cycle, and any ground tooth written as a single noise layer. This run found every tooth loop in the deck thresholding a -1..1 fbm2 signal as if it returned 0..1, firing the dark fleck on 0.6 percent of cells and the light one on 87.8, and running at a feature size near 400px. Both are fixed and both would have shipped again."
   }
  ]
 }

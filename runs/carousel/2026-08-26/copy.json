@@ -6,11 +6,12 @@
     "c1",
     "c3",
     "c6",
-    "c32"
+    "c32",
+    "c31"
    ],
    "kicker": "TEXAS AI DOCKET",
    "hook": "A billion dollars of bare ground",
-   "dek": "The regents approved adding Phase 1 of the UT Dell Medical Center in Austin to the capital improvement program on August 12th, 2026. The phase is early work and site preparation.",
+   "dek": "The regents approved adding Phase 1 of the UT Dell Medical Center in Austin to the capital improvement program on August 12th, 2026.",
    "figure": "$1,000,000,000",
    "figure_label": "TOTAL PROJECT COST, PHASE 1",
    "zero_line": "Building Cost $0",
@@ -21,7 +22,9 @@
   },
   "S2": {
    "claims": [
-    "c14"
+    "c14",
+    "c31",
+    "c1"
    ],
    "kicker": "THE GROUND",
    "hook": "About 27 acres, and what stands on them",
@@ -36,24 +39,26 @@
    "claims": [
     "c15",
     "c16",
-    "c26"
+    "c26",
+    "c1"
    ],
    "kicker": "THE MASS",
    "hook": "2.5 million square feet, unbuilt",
    "quote": "projected to be an approximately 2.5 million gross square feet (GSF) tertiary care medical center with inpatient, outpatient, and clinical support space",
    "note": "Nothing on this frame throws a shadow. The board item calls this phase early work and site preparation.",
-   "partner": "The facility will incorporate oncology care.",
+   "partner": "Oncology care, in partnership with MD Anderson.",
    "facility": "PROJECT INFORMATION SHEET, \"Facility Type Healthcare Facility, Hospital\"",
    "source": "BOARD ITEM, PROJECT DESCRIPTION",
-   "counter": "03 / 09"
+   "counter": "03 / 09",
+   "modeled": "MODELED. THE RECORD GIVES THE FLOOR AREA AND NOT THE NUMBER OF FLOORS"
   },
   "S4": {
    "claims": [
     "c17",
     "c3",
     "c4",
-    "c5",
-    "c32"
+    "c32",
+    "c31"
    ],
    "kicker": "THE ASK",
    "hook": "The board approved a phase",
@@ -66,22 +71,23 @@
    "band_label": "PHASE 1, ADDED TO THE CAPITAL PROGRAM AUGUST 12TH, 2026",
    "band_figure": "$1,000,000,000",
    "band_source": "RECOMMENDED FROM REVENUE FINANCING SYSTEM BOND PROCEEDS",
-   "band_quote": "The $1,000,000,000 in RFS debt is expected to be repaid from clinical revenues.",
-   "note": "A phase authorization and a project total are different quantities. The board item states each of them separately.",
-   "source": "The axis starts at zero and is not cut.",
+   "band_line": "A phase authorization and a project total are different quantities. The board item states each of them separately.",
+   "note": "The two figures above were approved by the Chancellor. The phase below is what came to the board.",
+   "source": "BOARD ITEM, PREVIOUS ACTIONS AND BACKGROUND",
    "counter": "04 / 09"
   },
   "S5": {
    "claims": [
-    "c12",
-    "c13"
+    "c5",
+    "c4",
+    "c3"
    ],
-   "kicker": "THE ITEM'S OWN WORDS",
-   "hook": "What the item calls the technology",
-   "quote_1": "digital technology, robotics, and automation",
-   "quote_2": "a digitally enabled infrastructure",
-   "note": "The board item describes the technology in full. The labels above are this record's, not the item's.",
-   "source": "Board item, project description",
+   "kicker": "THE REPAYMENT",
+   "hook": "Who pays the billion back",
+   "quote_1": "The $1,000,000,000 in RFS debt is expected to be repaid from clinical revenues.",
+   "quote_2": "appropriate funds and authorize expenditure of $1,000,000,000 from Revenue Financing System (RFS) Bond Proceeds",
+   "note": "Clinical revenue is what a hospital earns from treating patients. The building is not open and the debt is.",
+   "source": "BOARD ITEM, BACKGROUND AND RECOMMENDATION",
    "counter": "05 / 09"
   },
   "S6": {

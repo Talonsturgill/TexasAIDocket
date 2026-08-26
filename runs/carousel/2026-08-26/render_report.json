@@ -15,13 +15,7 @@
       "png": "slide-01.png",
       "console_errors": [],
       "page_errors": [],
-      "overflow_warnings": [
-        {
-          "kind": "tiny-text",
-          "text": "texasaidocket.com",
-          "detail": "font-size 20px < 24px mobile floor (mark data-decorative if intentional)"
-        }
-      ],
+      "overflow_warnings": [],
       "fonts_missing": [],
       "text_nodes": [
         {
@@ -92,6 +86,40 @@
               229,
               520,
               129
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "MODELED. THE RECORD GIVES COST LINES AND NOT A SITE PLAN",
+          "x": 80,
+          "y": 846,
+          "w": 380,
+          "h": 94,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(70, 63, 51)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              846,
+              292,
+              31
+            ],
+            [
+              80,
+              877,
+              369,
+              31
+            ],
+            [
+              80,
+              908,
+              169,
+              31
             ]
           ],
           "anc": []
@@ -185,11 +213,11 @@
           "anc": []
         },
         {
-          "text": "The regents approved adding Phase 1 of the UT Dell Medical Center in Austin to the capital improvement program on August 12th, 2026. The phase is early work and site preparation.",
+          "text": "The regents approved adding Phase 1 of the UT Dell Medical Center in Austin to the capital improvement program on August 12th, 2026.",
           "x": 80,
           "y": 1143,
           "w": 900,
-          "h": 95,
+          "h": 63,
           "font_px": 24,
           "weight": "500",
           "family": "Manrope",
@@ -206,36 +234,8 @@
             [
               80,
               1174,
-              886,
+              621,
               33
-            ],
-            [
-              80,
-              1205,
-              232,
-              33
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "MODELED. THE RECORD GIVES COST LINES AND NOT A SITE PLAN",
-          "x": 80,
-          "y": 1246,
-          "w": 920,
-          "h": 23,
-          "font_px": 18,
-          "weight": "400",
-          "family": "JetBrains Mono",
-          "color": "rgb(95, 89, 73)",
-          "decorative": true,
-          "overlap_ok": false,
-          "lines": [
-            [
-              80,
-              1246,
-              655,
-              23
             ]
           ],
           "anc": []
@@ -243,43 +243,49 @@
         {
           "text": "AGENDA BOOK FOR THE ITEM. COMMUNITY IMPACT FOR THE VOTE.",
           "x": 80,
-          "y": 1275,
-          "w": 920,
-          "h": 23,
-          "font_px": 18,
-          "weight": "400",
+          "y": 1216,
+          "w": 620,
+          "h": 60,
+          "font_px": 24,
+          "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(95, 89, 73)",
-          "decorative": true,
+          "color": "rgb(70, 63, 51)",
+          "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               80,
-              1275,
-              645,
-              23
+              1215,
+              521,
+              31
+            ],
+            [
+              80,
+              1245,
+              298,
+              31
             ]
           ],
           "anc": []
         },
         {
           "text": "texasaidocket.com",
-          "x": 772,
-          "y": 1298,
-          "w": 228,
-          "h": 26,
-          "font_px": 20,
-          "weight": "400",
+          "x": 727,
+          "y": 1267,
+          "w": 273,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(84, 78, 62)",
+          "color": "rgb(58, 54, 46)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              772,
-              1298,
-              228,
-              26
+              727,
+              1267,
+              273,
+              31
             ]
           ],
           "anc": []
@@ -338,7 +344,7 @@
       ],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 14372,
+      "render_ms": 19686,
       "ok": true,
       "canvases": [
         {
@@ -352,7 +358,7 @@
           "backing_ratio": 2,
           "sample_ok": true,
           "mean": 150,
-          "variance": 4165.1
+          "variance": 4157.2
         },
         {
           "x": 0,
@@ -376,13 +382,7 @@
       "png": "slide-02.png",
       "console_errors": [],
       "page_errors": [],
-      "overflow_warnings": [
-        {
-          "kind": "tiny-text",
-          "text": "texasaidocket.com",
-          "detail": "font-size 20px < 24px mobile floor (mark data-decorative if intentional)"
-        }
-      ],
+      "overflow_warnings": [],
       "fonts_missing": [],
       "text_nodes": [
         {
@@ -537,7 +537,7 @@
           "weight": "400",
           "family": "JetBrains Mono",
           "color": "rgb(62, 58, 48)",
-          "decorative": true,
+          "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
@@ -552,7 +552,7 @@
         {
           "text": "Everything standing on this ground today throws a shadow.",
           "x": 80,
-          "y": 1161,
+          "y": 1153,
           "w": 840,
           "h": 38,
           "font_px": 29,
@@ -564,7 +564,7 @@
           "lines": [
             [
               80,
-              1160,
+              1152,
               812,
               40
             ]
@@ -574,27 +574,27 @@
         {
           "text": "MODELED. THE RECORD GIVES THE ACREAGE AND NOT WHAT STANDS ON IT",
           "x": 80,
-          "y": 1213,
-          "w": 820,
-          "h": 62,
-          "font_px": 22,
+          "y": 1205,
+          "w": 880,
+          "h": 70,
+          "font_px": 26,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(106, 98, 80)",
-          "decorative": true,
+          "color": "rgb(90, 84, 68)",
+          "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               80,
-              1213,
-              748,
-              29
+              1205,
+              858,
+              35
             ],
             [
               80,
-              1244,
-              180,
-              29
+              1240,
+              206,
+              35
             ]
           ],
           "anc": []
@@ -623,22 +623,22 @@
         },
         {
           "text": "texasaidocket.com",
-          "x": 772,
-          "y": 1298,
-          "w": 228,
-          "h": 26,
-          "font_px": 20,
-          "weight": "400",
+          "x": 727,
+          "y": 1289,
+          "w": 273,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(108, 104, 88)",
+          "color": "rgb(62, 58, 48)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              772,
-              1298,
-              228,
-              26
+              727,
+              1289,
+              273,
+              31
             ]
           ],
           "anc": []
@@ -674,7 +674,7 @@
       ],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2103,
+      "render_ms": 5514,
       "ok": true,
       "canvases": [
         {
@@ -687,8 +687,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 209.8,
-          "variance": 865.5
+          "mean": 209,
+          "variance": 873
         }
       ],
       "breather": false,
@@ -699,13 +699,7 @@
       "png": "slide-03.png",
       "console_errors": [],
       "page_errors": [],
-      "overflow_warnings": [
-        {
-          "kind": "tiny-text",
-          "text": "texasaidocket.com",
-          "detail": "font-size 20px < 24px mobile floor (mark data-decorative if intentional)"
-        }
-      ],
+      "overflow_warnings": [],
       "fonts_missing": [],
       "text_nodes": [
         {
@@ -836,6 +830,34 @@
           ]
         },
         {
+          "text": "MODELED. THE RECORD GIVES THE FLOOR AREA AND NOT THE NUMBER OF FLOORS",
+          "x": 80,
+          "y": 872,
+          "w": 880,
+          "h": 70,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(90, 84, 68)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              872,
+              824,
+              35
+            ],
+            [
+              80,
+              907,
+              343,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
           "text": "\"projected to be an approximately 2.5 million gross square feet (GSF) tertiary care medical center with inpatient, outpatient, and clinical support space\"",
           "x": 80,
           "y": 952,
@@ -878,7 +900,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(62, 58, 48)",
+          "color": "rgb(42, 38, 32)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -926,7 +948,7 @@
           "anc": []
         },
         {
-          "text": "THE FACILITY WILL INCORPORATE ONCOLOGY CARE",
+          "text": "ONCOLOGY CARE, IN PARTNERSHIP WITH MD ANDERSON",
           "x": 80,
           "y": 1252,
           "w": 920,
@@ -941,7 +963,7 @@
             [
               80,
               1252,
-              681,
+              729,
               31
             ]
           ],
@@ -956,8 +978,8 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(106, 98, 80)",
-          "decorative": true,
+          "color": "rgb(51, 45, 34)",
+          "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
@@ -971,22 +993,22 @@
         },
         {
           "text": "texasaidocket.com",
-          "x": 772,
-          "y": 1298,
-          "w": 228,
-          "h": 26,
-          "font_px": 20,
-          "weight": "400",
+          "x": 727,
+          "y": 1289,
+          "w": 273,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(108, 104, 88)",
+          "color": "rgb(62, 58, 48)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              772,
-              1298,
-              228,
-              26
+              727,
+              1289,
+              273,
+              31
             ]
           ],
           "anc": []
@@ -1022,7 +1044,7 @@
       ],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1339,
+      "render_ms": 1490,
       "ok": true,
       "canvases": [
         {
@@ -1035,8 +1057,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 215.3,
-          "variance": 711.5
+          "mean": 212.7,
+          "variance": 728
         }
       ],
       "breather": false,
@@ -1047,13 +1069,7 @@
       "png": "slide-04.png",
       "console_errors": [],
       "page_errors": [],
-      "overflow_warnings": [
-        {
-          "kind": "tiny-text",
-          "text": "PROPOSED TOTAL PROJECT COST, APPROVED BY THE CHANCELLOR",
-          "detail": "font-size 23px < 24px mobile floor (mark data-decorative if intentional)"
-        }
-      ],
+      "overflow_warnings": [],
       "fonts_missing": [],
       "text_nodes": [
         {
@@ -1120,15 +1136,22 @@
               93
             ]
           ],
-          "anc": []
+          "anc": [],
+          "occluded": {
+            "w": 858,
+            "h": 2,
+            "frac": 0.022,
+            "by": "axlabel",
+            "by_text": "PROPOSED TOTAL PROJECT COST, APPROVED BY"
+          }
         },
         {
           "text": "PROPOSED TOTAL PROJECT COST, APPROVED BY THE CHANCELLOR",
           "x": 80,
-          "y": 252,
-          "w": 905,
-          "h": 56,
-          "font_px": 23,
+          "y": 222,
+          "w": 1000,
+          "h": 95,
+          "font_px": 26,
           "weight": "500",
           "family": "JetBrains Mono",
           "color": "rgb(77, 88, 66)",
@@ -1137,9 +1160,37 @@
           "lines": [
             [
               96,
-              264,
-              873,
-              30
+              233,
+              789,
+              35
+            ],
+            [
+              96,
+              267,
+              179,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "BOARD ITEM, PREVIOUS ACTIONS AND BACKGROUND",
+          "x": 80,
+          "y": 326,
+          "w": 713,
+          "h": 53,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(94, 90, 74)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              336,
+              681,
+              31
             ]
           ],
           "anc": []
@@ -1147,7 +1198,7 @@
         {
           "text": "JANUARY 8TH, 2024",
           "x": 130,
-          "y": 354,
+          "y": 527,
           "w": 336,
           "h": 31,
           "font_px": 24,
@@ -1159,7 +1210,7 @@
           "lines": [
             [
               130,
-              354,
+              527,
               290,
               31
             ]
@@ -1169,7 +1220,7 @@
         {
           "text": "$2,900,000,000",
           "x": 130,
-          "y": 391,
+          "y": 564,
           "w": 336,
           "h": 53,
           "font_px": 40,
@@ -1181,7 +1232,7 @@
           "lines": [
             [
               130,
-              391,
+              564,
               336,
               53
             ]
@@ -1191,7 +1242,7 @@
         {
           "text": "JUNE 19TH, 2025",
           "x": 580,
-          "y": 354,
+          "y": 406,
           "w": 336,
           "h": 31,
           "font_px": 24,
@@ -1203,7 +1254,7 @@
           "lines": [
             [
               580,
-              354,
+              406,
               256,
               31
             ]
@@ -1213,7 +1264,7 @@
         {
           "text": "$5,000,000,000",
           "x": 580,
-          "y": 391,
+          "y": 443,
           "w": 336,
           "h": 53,
           "font_px": 40,
@@ -1225,7 +1276,7 @@
           "lines": [
             [
               580,
-              391,
+              443,
               336,
               53
             ]
@@ -1234,20 +1285,20 @@
         },
         {
           "text": "The axis starts at zero and is not cut.",
-          "x": 80,
-          "y": 806,
-          "w": 674,
-          "h": 31,
+          "x": 298,
+          "y": 812,
+          "w": 702,
+          "h": 49,
           "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(108, 104, 88)",
-          "decorative": true,
+          "color": "rgb(58, 54, 40)",
+          "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              80,
-              806,
+              312,
+              820,
               674,
               31
             ]
@@ -1255,7 +1306,7 @@
           "anc": []
         },
         {
-          "text": "A phase authorization and a project total are different quantities. The board item states each of them separately.",
+          "text": "The two figures above were approved by the Chancellor. The phase below is what came to the board.",
           "x": 80,
           "y": 850,
           "w": 900,
@@ -1270,13 +1321,13 @@
             [
               80,
               848,
-              838,
+              887,
               36
             ],
             [
               80,
               882,
-              517,
+              320,
               36
             ]
           ],
@@ -1342,7 +1393,7 @@
           "weight": "400",
           "family": "JetBrains Mono",
           "color": "rgb(195, 178, 145)",
-          "decorative": true,
+          "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
@@ -1361,7 +1412,7 @@
           "anc": []
         },
         {
-          "text": "\"The $1,000,000,000 in RFS debt is expected to be repaid from clinical revenues.\"",
+          "text": "A phase authorization and a project total are different quantities. The board item states each of them separately.",
           "x": 114,
           "y": 1232,
           "w": 852,
@@ -1376,13 +1427,13 @@
             [
               114,
               1231,
-              799,
+              832,
               37
             ],
             [
               114,
               1266,
-              235,
+              601,
               37
             ]
           ],
@@ -1391,11 +1442,11 @@
         {
           "text": "texasaidocket.com",
           "x": 727,
-          "y": 1293,
+          "y": 1289,
           "w": 273,
           "h": 31,
           "font_px": 24,
-          "weight": "400",
+          "weight": "500",
           "family": "JetBrains Mono",
           "color": "rgb(195, 178, 145)",
           "decorative": false,
@@ -1403,7 +1454,7 @@
           "lines": [
             [
               727,
-              1293,
+              1289,
               273,
               31
             ]
@@ -1461,7 +1512,7 @@
         }
       ],
       "nondeterminism": [],
-      "render_ms": 1320,
+      "render_ms": 2182,
       "ok": true,
       "canvases": [
         {
@@ -1474,8 +1525,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 169.5,
-          "variance": 6899.2
+          "mean": 169.3,
+          "variance": 6894.3
         }
       ],
       "breather": false,
@@ -1490,10 +1541,10 @@
       "fonts_missing": [],
       "text_nodes": [
         {
-          "text": "THE ITEM'S OWN WORDS",
+          "text": "THE REPAYMENT",
           "x": 80,
           "y": 88,
-          "w": 395,
+          "w": 257,
           "h": 35,
           "font_px": 26,
           "weight": "500",
@@ -1505,7 +1556,7 @@
             [
               80,
               88,
-              395,
+              257,
               35
             ]
           ],
@@ -1534,10 +1585,10 @@
           "anc": []
         },
         {
-          "text": "What the item calls the technology",
+          "text": "Who pays the billion back",
           "x": 106,
           "y": 170,
-          "w": 676,
+          "w": 719,
           "h": 171,
           "font_px": 88,
           "weight": "820",
@@ -1549,46 +1600,46 @@
             [
               106,
               158,
-              676,
+              719,
               108
             ],
             [
               106,
               243,
-              526,
+              174,
               108
             ]
           ],
           "anc": []
         },
         {
-          "text": "THE CARE MODEL",
-          "x": 108,
-          "y": 536,
-          "w": 864,
+          "text": "THE BOARD'S OWN BACKGROUND",
+          "x": 110,
+          "y": 538,
+          "w": 860,
           "h": 31,
           "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
           "color": "rgb(108, 104, 88)",
-          "decorative": true,
+          "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              108,
-              536,
-              242,
+              110,
+              538,
+              449,
               31
             ]
           ],
           "anc": []
         },
         {
-          "text": "\"digital technology, robotics, and automation\"",
-          "x": 108,
-          "y": 579,
-          "w": 864,
-          "h": 102,
+          "text": "\"The $1,000,000,000 in RFS debt is expected to be repaid from clinical revenues.\"",
+          "x": 110,
+          "y": 581,
+          "w": 860,
+          "h": 154,
           "font_px": 42,
           "weight": "700",
           "family": "Manrope",
@@ -1597,48 +1648,54 @@
           "overlap_ok": false,
           "lines": [
             [
-              108,
-              575,
-              674,
+              110,
+              577,
+              714,
               58
             ],
             [
-              108,
-              626,
-              256,
+              110,
+              628,
+              697,
+              58
+            ],
+            [
+              110,
+              679,
+              221,
               58
             ]
           ],
           "anc": []
         },
         {
-          "text": "THE BACKBONE",
-          "x": 108,
-          "y": 794,
-          "w": 864,
+          "text": "WHAT THE ITEM ASKED FOR",
+          "x": 110,
+          "y": 796,
+          "w": 860,
           "h": 31,
           "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
           "color": "rgb(108, 104, 88)",
-          "decorative": true,
+          "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              108,
-              794,
-              207,
+              110,
+              796,
+              397,
               31
             ]
           ],
           "anc": []
         },
         {
-          "text": "\"a digitally enabled infrastructure\"",
-          "x": 108,
-          "y": 837,
-          "w": 864,
-          "h": 51,
+          "text": "\"appropriate funds and authorize expenditure of $1,000,000,000 from Revenue Financing System (RFS) Bond Proceeds\"",
+          "x": 110,
+          "y": 839,
+          "w": 860,
+          "h": 205,
           "font_px": 42,
           "weight": "700",
           "family": "Manrope",
@@ -1647,16 +1704,34 @@
           "overlap_ok": false,
           "lines": [
             [
-              108,
-              833,
-              706,
+              110,
+              835,
+              672,
+              58
+            ],
+            [
+              110,
+              886,
+              741,
+              58
+            ],
+            [
+              110,
+              937,
+              778,
+              58
+            ],
+            [
+              110,
+              989,
+              211,
               58
             ]
           ],
           "anc": []
         },
         {
-          "text": "The board item describes the technology in full. The labels above are this record's, not the item's.",
+          "text": "Clinical revenue is what a hospital earns from treating patients. The building is not open and the debt is.",
           "x": 80,
           "y": 1202,
           "w": 880,
@@ -1671,20 +1746,20 @@
             [
               80,
               1200,
-              801,
+              869,
               40
             ],
             [
               80,
               1237,
-              520,
+              547,
               40
             ]
           ],
           "anc": []
         },
         {
-          "text": "BOARD ITEM, PROJECT DESCRIPTION",
+          "text": "BOARD ITEM, BACKGROUND AND RECOMMENDATION",
           "x": 80,
           "y": 1291,
           "w": 920,
@@ -1693,13 +1768,13 @@
           "weight": "400",
           "family": "JetBrains Mono",
           "color": "rgb(108, 104, 88)",
-          "decorative": true,
+          "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               80,
               1291,
-              484,
+              640,
               31
             ]
           ],
@@ -1708,19 +1783,19 @@
         {
           "text": "texasaidocket.com",
           "x": 727,
-          "y": 1293,
+          "y": 1289,
           "w": 273,
           "h": 31,
           "font_px": 24,
-          "weight": "400",
+          "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(74, 68, 54)",
+          "color": "rgb(58, 53, 42)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               727,
-              1293,
+              1289,
               273,
               31
             ]
@@ -1752,13 +1827,13 @@
               150
             ]
           ],
-          "a_visible_frac": 1,
-          "b_visible_frac": 1
+          "a_visible_frac": 0.26,
+          "b_visible_frac": 0.37
         }
       ],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2662,
+      "render_ms": 8330,
       "ok": true,
       "canvases": [
         {
@@ -1771,8 +1846,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 170,
-          "variance": 606.4
+          "mean": 169.7,
+          "variance": 612.4
         }
       ],
       "breather": false,
@@ -1783,13 +1858,7 @@
       "png": "slide-06.png",
       "console_errors": [],
       "page_errors": [],
-      "overflow_warnings": [
-        {
-          "kind": "tiny-text",
-          "text": "texasaidocket.com",
-          "detail": "font-size 20px < 24px mobile floor (mark data-decorative if intentional)"
-        }
-      ],
+      "overflow_warnings": [],
       "fonts_missing": [],
       "text_nodes": [
         {
@@ -1874,7 +1943,7 @@
           "weight": "500",
           "family": "JetBrains Mono",
           "color": "rgb(74, 68, 54)",
-          "decorative": true,
+          "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
@@ -1918,7 +1987,7 @@
           "weight": "500",
           "family": "JetBrains Mono",
           "color": "rgb(74, 68, 54)",
-          "decorative": true,
+          "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
@@ -1977,21 +2046,21 @@
         {
           "text": "SEARCHED, CASE INSENSITIVE",
           "x": 80,
-          "y": 1113,
+          "y": 1111,
           "w": 920,
-          "h": 29,
-          "font_px": 22,
+          "h": 31,
+          "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(78, 70, 54)",
-          "decorative": true,
+          "color": "rgb(46, 40, 24)",
+          "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               80,
-              1113,
-              418,
-              29
+              1111,
+              456,
+              31
             ]
           ],
           "anc": []
@@ -2005,7 +2074,7 @@
           "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(46, 58, 42)",
+          "color": "rgb(28, 39, 25)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -2055,8 +2124,8 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(88, 79, 62)",
-          "decorative": true,
+          "color": "rgb(49, 42, 30)",
+          "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
@@ -2070,22 +2139,22 @@
         },
         {
           "text": "texasaidocket.com",
-          "x": 772,
-          "y": 1298,
-          "w": 228,
-          "h": 26,
-          "font_px": 20,
-          "weight": "400",
+          "x": 727,
+          "y": 1289,
+          "w": 273,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(88, 79, 62)",
+          "color": "rgb(42, 37, 28)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              772,
-              1298,
-              228,
-              26
+              727,
+              1289,
+              273,
+              31
             ]
           ],
           "anc": []
@@ -2160,7 +2229,7 @@
         }
       ],
       "nondeterminism": [],
-      "render_ms": 3716,
+      "render_ms": 2734,
       "ok": true,
       "canvases": [
         {
@@ -2173,8 +2242,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 179.2,
-          "variance": 759.5
+          "mean": 176.6,
+          "variance": 848
         }
       ],
       "breather": false,
@@ -2185,13 +2254,7 @@
       "png": "slide-07.png",
       "console_errors": [],
       "page_errors": [],
-      "overflow_warnings": [
-        {
-          "kind": "tiny-text",
-          "text": "texasaidocket.com",
-          "detail": "font-size 20px < 24px mobile floor (mark data-decorative if intentional)"
-        }
-      ],
+      "overflow_warnings": [],
       "fonts_missing": [],
       "text_nodes": [
         {
@@ -2384,22 +2447,22 @@
         },
         {
           "text": "texasaidocket.com",
-          "x": 772,
-          "y": 1298,
-          "w": 228,
-          "h": 26,
-          "font_px": 20,
-          "weight": "400",
+          "x": 727,
+          "y": 1289,
+          "w": 273,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(108, 104, 88)",
+          "color": "rgb(62, 58, 48)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              772,
-              1298,
-              228,
-              26
+              727,
+              1289,
+              273,
+              31
             ]
           ],
           "anc": []
@@ -2497,7 +2560,7 @@
         }
       ],
       "nondeterminism": [],
-      "render_ms": 2976,
+      "render_ms": 2841,
       "ok": true,
       "canvases": [
         {
@@ -2510,8 +2573,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 215.9,
-          "variance": 397.8
+          "mean": 215,
+          "variance": 411.4
         }
       ],
       "breather": false,
@@ -2522,13 +2585,7 @@
       "png": "slide-08.png",
       "console_errors": [],
       "page_errors": [],
-      "overflow_warnings": [
-        {
-          "kind": "tiny-text",
-          "text": "texasaidocket.com",
-          "detail": "font-size 20px < 24px mobile floor (mark data-decorative if intentional)"
-        }
-      ],
+      "overflow_warnings": [],
       "fonts_missing": [],
       "text_nodes": [
         {
@@ -2635,7 +2692,7 @@
           "weight": "400",
           "family": "JetBrains Mono",
           "color": "rgb(166, 154, 124)",
-          "decorative": true,
+          "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
@@ -2741,7 +2798,7 @@
           "weight": "400",
           "family": "JetBrains Mono",
           "color": "rgb(152, 140, 114)",
-          "decorative": true,
+          "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
@@ -2755,22 +2812,22 @@
         },
         {
           "text": "texasaidocket.com",
-          "x": 772,
-          "y": 1298,
-          "w": 228,
-          "h": 26,
-          "font_px": 20,
-          "weight": "400",
+          "x": 727,
+          "y": 1289,
+          "w": 273,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(169, 156, 126)",
+          "color": "rgb(195, 178, 145)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              772,
-              1298,
-              228,
-              26
+              727,
+              1289,
+              273,
+              31
             ]
           ],
           "anc": []
@@ -2826,7 +2883,7 @@
         }
       ],
       "nondeterminism": [],
-      "render_ms": 3203,
+      "render_ms": 2844,
       "ok": true,
       "canvases": [
         {
@@ -2839,8 +2896,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 38.1,
-          "variance": 2814.1
+          "mean": 41.5,
+          "variance": 2940.4
         }
       ],
       "breather": false,
@@ -3086,7 +3143,7 @@
           "weight": "400",
           "family": "JetBrains Mono",
           "color": "rgb(191, 179, 147)",
-          "decorative": true,
+          "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
@@ -3129,7 +3186,7 @@
       ],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2058,
+      "render_ms": 1865,
       "ok": true,
       "canvases": [
         {
@@ -3142,8 +3199,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 130.8,
-          "variance": 7702.8
+          "mean": 131,
+          "variance": 7675.1
         }
       ],
       "breather": false,

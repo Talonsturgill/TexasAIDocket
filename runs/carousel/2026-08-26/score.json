@@ -1,24 +1,77 @@
 {
- "weighted_score": 6.4,
+ "weighted_score": 7.282,
  "judges": [
-  6.525,
-  6.4,
-  6.34
+  6.95,
+  7.31,
+  6.65
  ],
- "spread": 0.185,
- "criteria": {},
- "hard_fails": [
-  "six text nodes still carried data-decorative and were exempt from the occlusion and contrast checks"
- ],
- "hard_fails_by_judge": [
-  {
-   "judge": 1,
-   "fail": "six text nodes still carried data-decorative and were exempt from the occlusion and contrast checks"
+ "spread": 0.66,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.9,
+   "weight": 0.28,
+   "judges": [
+    7.0,
+    6.9,
+    6.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.4,
+   "weight": 0.2,
+   "judges": [
+    6.5,
+    8.4,
+    8.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.0,
+   "weight": 0.18,
+   "judges": [
+    7.0,
+    7.0,
+    6.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.12,
+   "judges": [
+    7.0,
+    7.0,
+    5.5
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.12,
+   "judges": [
+    7.0,
+    7.2,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 7.3,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.3,
+    5.5
+   ]
   }
- ],
- "ship": false,
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
  "threshold": 6.8,
- "over_threshold": false,
- "method": "median of judge totals (fallback)",
- "rounds": 2
+ "over_threshold": true,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "contested": [
+  "claim_integrity",
+  "sequence_and_momentum",
+  "variety"
+ ],
+ "rounds": 3
 }

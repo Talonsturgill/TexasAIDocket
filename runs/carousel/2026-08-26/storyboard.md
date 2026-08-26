@@ -109,7 +109,7 @@ job: >
   Put the whole vote in one frame and make the physical product of a billion dollars visible,
   which today is rock that is no longer there. No other frame carries the size of the money
   against the emptiness of what it bought.
-claims: [c1, c3, c6]
+claims: [c1, c3, c6, c32, c31]
 numerals:
   - value_from: c3        # a total project cost for Phase I of $1,000,000,000
   - value_from: c6        # Building Cost $0, in the item's own cost table
@@ -152,7 +152,7 @@ art:
     floor, then out along the floor to the figure.
 type:
   hook: "A billion dollars of bare ground"
-  dek: "The regents approved adding Phase 1 of the UT Dell Medical Center in Austin to the capital improvement program on August 12th, 2026. The phase is early work and site preparation."
+  dek: "The regents approved adding Phase 1 of the UT Dell Medical Center in Austin to the capital improvement program on August 12th, 2026."
   labels: ["TOTAL PROJECT COST, PHASE 1", "$1,000,000,000", "Building Cost $0"]
 acceptance:
   - 'the figure reads exactly "$1,000,000,000" in JetBrains Mono tabular, never in Fraunces'
@@ -191,7 +191,7 @@ replanned: >
   radius, so its cast came out shorter than the crown was wide and the two fused into one lozenge.
   Height is now derived from the crown radius in code, because two hand typed numbers that have to
   agree stop agreeing the moment either is edited.
-claims: [c14]
+claims: [c14, c31, c1]
 numerals:
   - value_from: c14       # an approximately 27-acre site, and the Pickle Research Campus
 composition:
@@ -252,7 +252,7 @@ slide: 3
 job: >
   Show what is projected to go on the ground, and let the deck's own shadow law do the argument
   for free. This is the only frame carrying the finished building's size.
-claims: [c15, c16, c26]
+claims: [c15, c16, c26, c1]
 numerals:
   - value_from: c15       # approximately 2.5 million gross square feet
 composition:
@@ -289,7 +289,8 @@ art:
 type:
   hook: "2.5 million square feet, unbuilt"
   dek: "Nothing on this frame throws a shadow. The board item calls this phase early work and site preparation."
-  labels: ["THE FACILITY WILL INCORPORATE ONCOLOGY CARE"]
+  labels: ["ONCOLOGY CARE, IN PARTNERSHIP WITH MD ANDERSON",
+            "MODELED. THE RECORD GIVES THE FLOOR AREA AND NOT THE NUMBER OF FLOORS"]
 acceptance:
   - "no element on this frame casts a shadow of any kind, and no contact shadow appears anywhere"
   - "the plates are outlined and never filled, so the site plane is visible through every one of them"
@@ -307,7 +308,7 @@ job: >
   Establish that a board votes on narrower things than an institution describes. This is the
   frame that keeps the whole deck out of gotcha territory, and no other frame carries the cost
   history.
-claims: [c17, c3, c4, c5]
+claims: [c17, c3, c4, c5, c32, c31]
 numerals:
   - value_from: c17       # $2,900,000,000 and $5,000,000,000, both quoted as proposed total project cost
   - value_from: c3        # a total project cost for Phase I of $1,000,000,000
@@ -344,12 +345,12 @@ art:
     repayment clause.
 type:
   hook: "The board approved a phase"
-  dek: "A phase authorization and a project total are different quantities. The board item states each of them separately."
+  dek: "The two figures above were approved by the Chancellor. The phase below is what came to the board."
   labels: ["PROPOSED TOTAL PROJECT COST", "$2,900,000,000", "$5,000,000,000", "$1,000,000,000"]
 acceptance:
   - "the axis baseline is zero and is labelled as zero, and no axis on this frame is truncated"
   - "the two dated states and the phase figure are never on the same axis, and there is at least 60 design px of clear ground between the chart's baseline and the band's top edge"
-  - 'the frame carries the string "is expected to be repaid from clinical revenues"'
+  - 'the frame carries the phrase "approved by the Chancellor" beside the two dated states, because the headline says the board approved a phase and these two are not the board''s'
   - "every figure on this frame is JetBrains Mono tabular, and no figure is set in Fraunces"
   - 'the frame carries the phrase "proposed total project cost" beside the two dated states, so a reader can''t read them as authorized amounts'
   - "no word on this frame is hide, hidden, omit, avoid, quietly, buried, conceal, silent, refuse or scrub"
@@ -361,10 +362,15 @@ risks:
 ```yaml
 slide: 5
 job: >
-  Give the reader the board item's own vocabulary for the technology, quoted whole, with nothing
-  else in the frame. This is the only slide that shows what the item DOES say.
-claims: [c12, c13]
-numerals: []
+  Say who repays the billion. The board asked to appropriate it from Revenue Financing System
+  bond proceeds and its own background expects the debt repaid from clinical revenues, which is
+  what a hospital earns from treating patients. This frame carried the item's technology
+  vocabulary until slide 7 was rebuilt to set the same string at display size two frames later,
+  and every judge on that panel called this the cuttable frame. It carries the stake instead.
+claims: [c5, c4, c3]
+numerals:
+  - value_from: c5        # The $1,000,000,000 in RFS debt, repaid from clinical revenues
+  - value_from: c4        # $1,000,000,000 from Revenue Financing System (RFS) Bond Proceeds
 composition:
   structure: >
     Straight down on a crushed base course, each chip an individually seated angular body with
@@ -401,12 +407,13 @@ art:
     The eye lands on the lit cluster upper left, then reads down and right along the two ruled
     quote lines.
 type:
-  hook: "What the item calls the technology"
-  dek: "The board item describes the technology in full. The labels above are this record's, not the item's."
-  labels: ["THE CARE MODEL", "THE BACKBONE"]
+  hook: "Who pays the billion back"
+  dek: "Clinical revenue is what a hospital earns from treating patients. The building is not open and the debt is."
+  labels: ["THE BOARD'S OWN BACKGROUND", "WHAT THE ITEM ASKED FOR"]
 acceptance:
-  - 'the frame carries the string "digital technology, robotics, and automation"'
-  - 'the frame carries the string "digitally enabled infrastructure"'
+  - 'the frame carries the string "is expected to be repaid from clinical revenues"'
+  - 'the frame carries the string "Revenue Financing System (RFS) Bond Proceeds"'
+  - 'NO string set at display size on this frame appears at display size on any other frame. Slide 7 owns "digital technology, robotics, and automation" and this frame used to set the same words at 42px two frames earlier, which every judge on the 2026-08-26 panel named'
   - "every aggregate chip carries its own contact shadow, and the shadow direction is consistent across every chip on the frame"
   - "the quoted lines sit on a knockout plate or a scrim, so no aggregate edge crosses a letterform"
   - "no word on this frame is hide, hidden, omit, avoid, quietly, buried, conceal, silent, refuse or scrub"
@@ -518,7 +525,7 @@ replanned: >
   technology, robotics, and automation. The release says AI and advanced computing. Neither list
   contains the other, so there is no width to measure and this frame no longer claims one. The
   register device and the granite plate are gone with the claim they were measuring.
-claims: [c12, c24]
+claims: [c12, c24, c2]
 numerals:
   - computed_by: "aggregates.json, a case sensitive test of the string AI against each of the two lists quoted on the frame, from c12 and c24"
 composition:
@@ -641,7 +648,7 @@ slide: 9
 job: >
   Hand the reader both documents with their dates and name the next dated step, which is the
   criterion this product keeps failing and the cheapest frame in the deck to get right.
-claims: [c10, c18, c23]
+claims: [c10, c18, c23, c27, c28, c2]
 numerals:
   - value_from: c10       # Construction Notice to Proceed September 2026, Substantial Completion July 2030
 composition:

@@ -1,0 +1,176 @@
+{
+ "aggregates": [
+  {
+   "phrase": "27 acres",
+   "kind": "count",
+   "value": 27,
+   "quoted_from": "c14",
+   "quote": "a transformative new academic medical destination on an approximately 27-acre site in the center of the west (former) Pickle Research Campus",
+   "computed_by": "not computed. The source writes 27-acre and the hook writes 27 acres, which is the same figure in the reader's grammar rather than the document's. No arithmetic, no rounding, and the frame carries the source's own wording verbatim beneath it"
+  },
+  {
+   "phrase": "five pages",
+   "kind": "count",
+   "value": 5,
+   "computed_by": "the item runs from the page whose running footer reads Agenda Book - 130 to the page whose footer reads Agenda Book - 134, inclusive, so the span is five pages. Both endpoints are quoted claims and both are printed on the frame as its two terminators. The combined book's own table of contents gives 130 for the same item, which is the second source that settles the start",
+   "from_claims": [
+    "c27",
+    "c28"
+   ]
+  },
+  {
+   "phrase": "TWO DOCUMENTS",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "the number of documents this frame sets against each other, which is the board's item and the university's April release. Both are quoted on the frame with their dates, so the count is the count of things a reader can see",
+   "from_claims": [
+    "c12",
+    "c24"
+   ]
+  },
+  {
+   "phrase": "Twenty pages",
+   "kind": "count",
+   "value": 20,
+   "computed_by": "the committee's own extract runs from the page whose running footer reads Agenda Book - 124 to the page whose footer reads Agenda Book - 143, both quoted claims, so the span is twenty pages inclusive. The same twenty pages are what the term search was run over, and the zero on this frame is the count it returned",
+   "from_claims": [
+    "c29",
+    "c30"
+   ]
+  },
+  {
+   "phrase": "Two lists",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "the number of technology lists this frame quotes, one from each document. The board item's is three items long and the release's is two, and both are printed whole and verbatim beneath their own attribution, so the count is the count of things on the frame. Nothing here measures the difference between them, because neither list contains the other and there is no shared sentence to difference",
+   "from_claims": [
+    "c12",
+    "c24"
+   ]
+  },
+  {
+   "phrase": "One says",
+   "kind": "count",
+   "value": 1,
+   "computed_by": "a case sensitive test of the string AI against each of the two lists quoted on this frame. c24's list, AI and advanced computing, contains it. c12's list, digital technology robotics and automation, does not. So the count over the two lists the frame prints is one, and a reader can rerun it by reading the frame",
+   "from_claims": [
+    "c12",
+    "c24"
+   ]
+  },
+  {
+   "phrase": "Nine frames",
+   "kind": "count",
+   "value": 9,
+   "computed_by": "the number of slides this deck renders, which is len() over the slides in copy.json and is the same number the counter on every frame prints as 09",
+   "from_claims": []
+  },
+  {
+   "phrase": "307 pages",
+   "kind": "count",
+   "value": 307,
+   "computed_by": "len() over the page objects pypdf reads from the combined August 12th and 13th agenda book at utsystem.edu, measured on the fetched file on 2026-08-26",
+   "from_claims": []
+  },
+  {
+   "phrase": "20 pages",
+   "kind": "count",
+   "value": 20,
+   "computed_by": "the committee extract runs from the page whose running footer reads Agenda Book - 124 to the page whose footer reads Agenda Book - 143, inclusive, so 143 minus 124 plus 1. Same computation as the Twenty pages declaration and the same two claims",
+   "from_claims": [
+    "c29",
+    "c30"
+   ]
+  },
+  {
+   "phrase": "four terms",
+   "kind": "count",
+   "value": 4,
+   "computed_by": "len() over the search term list the run actually ran, which is artificial intelligence, AI, machine learning and algorithm. The frame prints all four",
+   "from_claims": []
+  },
+  {
+   "phrase": "24 matches",
+   "kind": "count",
+   "value": 24,
+   "computed_by": "the count of case insensitive matches for those same four terms across the extracted text of the combined 307 page agenda book, measured on the fetched file on 2026-08-26",
+   "from_claims": []
+  },
+  {
+   "phrase": "16 pages",
+   "kind": "count",
+   "value": 16,
+   "computed_by": "the number of DISTINCT pages of the combined agenda book carrying at least one of those four matches, counted over the same extraction as the 24 matches figure. It is a count of pages and not of matches, which is why the two numbers differ",
+   "from_claims": []
+  },
+  {
+   "phrase": "2.5 million gross",
+   "kind": "count",
+   "value": 2.5,
+   "quoted_from": "c15",
+   "quote": "projected to be an approximately 2.5 million gross square feet (GSF) tertiary care medical center with inpatient, outpatient, and clinical support space",
+   "computed_by": "not computed. The frame's display line sets the source's own figure, and the quote beneath it carries the sentence whole with its own approximately. No arithmetic and no rounding",
+   "from_claims": [
+    "c15"
+   ]
+  },
+  {
+   "phrase": "two figures",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "the number of dated project cost states this frame draws, which is the January 8th 2024 and June 19th 2025 pair, both quoted inside c17's single sentence. The count is the count of columns a reader can see",
+   "from_claims": [
+    "c17"
+   ]
+  },
+  {
+   "phrase": "four official records",
+   "kind": "count",
+   "value": 4,
+   "computed_by": "the number of DISTINCT source urls in claims.json whose source_type is primary_official, counted by sources_block.provenance_line over the deck's own claim set. Not a count of claims: 32 claims rest on these 4 document(s)",
+   "from_claims": [
+    "c1",
+    "c10",
+    "c11",
+    "c12",
+    "c13",
+    "c14",
+    "c15",
+    "c16",
+    "c17",
+    "c18",
+    "c19",
+    "c2",
+    "c20",
+    "c21",
+    "c22",
+    "c23",
+    "c24",
+    "c25",
+    "c26",
+    "c27",
+    "c28",
+    "c29",
+    "c3",
+    "c30",
+    "c31",
+    "c33",
+    "c4",
+    "c5",
+    "c6",
+    "c7",
+    "c8",
+    "c9"
+   ]
+  },
+  {
+   "phrase": "one news",
+   "kind": "count",
+   "value": 1,
+   "computed_by": "the number of DISTINCT source urls in claims.json whose source_type is secondary_reported, counted by sources_block.provenance_line over the deck's own claim set. Not a count of claims: 1 claims rest on these 1 document(s). Declared under the phrase the scanner matches rather than the phrase the reader sees: aggregate_check's count shape requires the final word of a match to end in s, so it reads 'one news' out of 'one news report'. The declaration is the gate's handle on the figure, and the published sentence is unchanged",
+   "from_claims": [
+    "c32"
+   ]
+  }
+ ]
+}
