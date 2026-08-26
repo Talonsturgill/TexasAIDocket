@@ -168,16 +168,16 @@ Written by `gate_status.py --sync`, never by hand.
 <!-- gate-status:begin -->
 | gate | status | detail |
 |---|---|---|
-| claims         | PASS   | 30 verified claim(s) |
-| render         | WARN   | 9 slide(s), 10 overflow warning(s) |
-| qa             | WARN   | 0 fail(s), 33 warn(s) |
-| aggregates     | PASS   | 6 declared and re-derived |
-| assembly       | PASS   | 9 slide(s), 2.65 MB, vector |
+| claims         | PASS   | 31 verified claim(s) |
+| render         | WARN   | 9 slide(s), 7 overflow warning(s) |
+| qa             | WARN   | 0 fail(s), 28 warn(s) |
+| aggregates     | PASS   | 7 declared and re-derived |
+| assembly       | PASS   | 9 slide(s), 2.7 MB, vector |
 | score          | ABSENT | score.json not written yet |
-| dossiers       | PASS   | 39,481 chars planned |
+| dossiers       | PASS   | 41,206 chars planned |
 | caption        | PASS   | 263 words |
-| craft floor    | WARN   | 9 frame(s), median 1520, floor 274, 3 quiet |
-| plan vs render | PASS   | 14 of 59 acceptance item(s) checkable |
+| craft floor    | WARN   | 9 frame(s), median 1771, floor 319, 2 quiet |
+| plan vs render | PASS   | 14 of 61 acceptance item(s) checkable |
 | texan          | WARN   | places NONE / body yes / deadline yes / next step yes |
 | absences       | WARN   | 2 of 5 scoped to a named document, 3 unscoped |
 | completion     | ABSENT | not scored yet |
