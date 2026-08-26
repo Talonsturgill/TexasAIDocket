@@ -667,5 +667,19 @@
    "the panel's calibration is still unmeasured": "Nobody here knows what the median of three dissatisfied judges does to a rubric whose 7 means competent and unmemorable. The cap makes that survivable and does not answer it. The measurement wanted is the distribution of individual judge scores against the median across a run, which this run has fifteen rounds of and no script reads.",
    "a round counter nothing writes": "run_complete reads rounds out of score.json and the panel does not write it. This run set it by hand, which is exactly the shape this project distrusts. panel.py should count its own invocations for a date and write the number itself."
   }
+ },
+ "2026-08-26 r2": {
+  "what": "scripts/carousel/panel_ready.py, a gate the run must pass BEFORE it spawns a scorer",
+  "why": "The owner's diagnosis, twice in two days: 'judges are becoming a token burning crutch masking your inefficiencies'. Carousel no. 7 was scored fifteen times. No. 8 was scored three times and every panel found things a measurement would have found for nothing: a MODELED disclosure published as a broken sentence behind an opaque plate, a first comment pointing at a frame that had been rebuilt out from under it, six text nodes still exempt from the occlusion and contrast checks, a site line at 1.5 against a 4.5 floor, and six dossiers describing frames the run no longer made.",
+  "checks": [
+   "nothing a reader needs is exempt from the gates",
+   "no published text has a plate through it",
+   "every slide number in published copy resolves to a frame that carries what it names",
+   "every line clears the rubric's own contrast floor, enforced rather than advised",
+   "every dossier describes the frame the run made",
+   "every ground a dossier calls worked is measurably worked"
+  ],
+  "measured": "Run against the 2026-08-26 deck on its first invocation it found six stale dossiers, which is the drift two separate judges had reported by hand.",
+  "not_in_scope": "It does not measure taste. Composition, story and voice are what the panel is for, and this gate exists so the panel spends itself on those."
  }
 }
