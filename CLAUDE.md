@@ -62,6 +62,34 @@ draft PR, and it wins for development sessions too. An unmerged upgrade is worse
 upgrade: the next run checks out `main`, so it silently does not get the fix, while the
 ledger says the machine improved when it did not.
 
+**NEVER MERGE UNTIL CI REPORTS GREEN ON THE PR's HEAD COMMIT.** Owner's instruction,
+2026-08-26. This sets WHEN a run merges. It does not soften the paragraph above, which sets
+WHETHER, and the answer there is still yes, in the same run, with no human. Waiting for CI
+costs a routine a few minutes and satisfies both.
+
+The day it was written: carousel no. 7 opened its PR, `guards_local.py` had passed here, and
+the run merged while CI was still in progress because nothing stopped it. CI came back red
+four minutes later on `email_check --all`, which reads the committed email payload beside
+EVERY shipped run. The run had built its own payload after merging, so the file sat on a
+branch nobody was going to merge, and `main` was red until a second PR fixed it.
+
+**A local gate run and CI are not the same check.** That is the whole lesson and it is worth
+more than the incident. `guards_local.py` reads `guards.yml` so it cannot fall behind on WHICH
+steps run, and it still ran `email_check` against one run while CI ran it against seven. Same
+script, different subject, different answer. This is GATE_LESSONS' own recurring shape: a green
+banner that was measuring something narrower than the thing it appeared to certify.
+
+So the local suite is what a run uses to decide the work is DONE, and CI reporting green is
+what it uses to decide the work may LAND. A run that treats the first as the second has skipped
+a check rather than passed one.
+
+- Green on the PR head, then merge.
+- Red is work now. Read the failing job's log, reproduce it here, fix it, push, wait again.
+- No CI configured, or checks that cannot run, is a thing to SAY rather than a thing to wait
+  out. Never deadlock on a check that will never arrive.
+- **The absence of a required status check is not permission.** This repo has none. That means
+  nothing will stop the mistake, which is the reason the rule has to live in prose.
+
 Three things still stop and ask, in any session:
 - work that would rewrite already-published history on `main`
 - anything that SENDS rather than drafts (these routines never send)

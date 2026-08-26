@@ -1054,8 +1054,22 @@ is half a run old.
    the story readable as text with the images off. `media_check` is the machine half of this and
    it was written after a run shipped a page with two broken images past a fully green suite. A
    gate that reads the builder's intent cannot see what the product actually says.
-7. Commit, push, open a **ready (not draft)** pull request, and **merge it to `main` in the same
-   run.** The email's image URLs point at `main`, so the merge lands before the email.
+7. Commit, push, open a **ready (not draft)** pull request, **wait for CI to report green on
+   that PR's head commit**, and then **merge it to `main` in the same run.** The email's image
+   URLs point at `main`, so the merge lands before the email.
+
+   **THE WAIT IS NOT OPTIONAL AND IT IS NOT A HUMAN REVIEW GATE.** Nobody is asked and nothing
+   is approved. The run polls its own PR's checks, and merges the moment they are green. On
+   2026-08-25 a run merged with CI still in progress, because `guards_local.py` had passed here
+   and no required status check stood in the way. CI went red four minutes later on
+   `email_check --all`, which reads the committed email payload beside EVERY shipped run, while
+   the local run had checked only this one. Same script, different subject, different answer.
+   `main` was red until a second pull request fixed it.
+
+   If CI is red, that is this phase's work: read the failing job's log, reproduce the failure
+   in this checkout, fix it, push, and wait again. If the repository runs no checks at all, or
+   they cannot start, SAY SO in the run record and proceed. Never wait out a check that will
+   never arrive, and never read a missing gate as a passing one.
 
 **A failed run commits its evidence to its branch and does NOT merge.**
 
