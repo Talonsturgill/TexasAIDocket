@@ -43,6 +43,7 @@ EXIT CODES
 from __future__ import annotations
 
 import argparse
+import difflib
 import filecmp
 import json
 import sys
@@ -104,6 +105,33 @@ def compare(committed: Path, fresh: Path) -> tuple[list, list, list]:
     return missing, extra, changed
 
 
+def first_difference(committed: Path, fresh: Path, changed: list[str],
+                     lines: int = 24) -> tuple[str, list[str]] | None:
+    """The first changed TEXT file, as a unified diff, capped at `lines` lines.
+
+    A gate that names a file and stops is a gate that turns every recurrence into a research
+    project, and on a runner the fresh build is gone the moment the job ends. The first file is
+    enough: these differences come in one shape at a time, and twenty four lines of context is
+    the difference between reading the answer and pushing again to look for it.
+
+    Binary output is skipped rather than dumped, because a webp rendered a byte differently
+    tells a reader nothing they can act on and would bury the text file behind it.
+    """
+    for p in changed:
+        try:
+            a = (committed / p).read_text(encoding="utf-8").splitlines()
+            b = (fresh / p).read_text(encoding="utf-8").splitlines()
+        except (UnicodeDecodeError, OSError):
+            continue
+        d = list(difflib.unified_diff(a, b, fromfile="committed", tofile="fresh", n=1))
+        if not d:
+            continue
+        if len(d) > lines:
+            d = d[:lines] + [f"...and {len(d) - lines} more diff line(s)"]
+        return p, d
+    return None
+
+
 def self_test() -> int:
     """Two properties, and the second one is why this file has a self-test at all."""
     failures = 0
@@ -152,6 +180,21 @@ def self_test() -> int:
         ok("a file the build produces and the site lacks is still caught",
            "orphan.html" in missing2)
 
+        # AND IT SAYS WHAT DIFFERS, not only where. The hand edit above is still in place, so
+        # the diff of it is the one this asks for. A binary file is offered FIRST so the skip
+        # is exercised rather than assumed: a webp whose bytes moved tells a reader nothing and
+        # would bury the text file behind it.
+        (built / "planted.bin").write_bytes(b"\xff\xfe\x00")
+        (fresh / "planted.bin").write_bytes(b"\xff\xfe\x01")
+        found = first_difference(built, fresh, ["planted.bin", "services/index.html"])
+        ok("...and the report says WHAT differs, not only where",
+           found is not None and found[0] == "services/index.html"
+           # `-`, because the hand edit is on the COMMITTED side and the fresh build is what
+           # the page should say. Asserting `+` here passed nothing and was the first thing
+           # this check caught, which is the argument for writing it at all.
+           and any(ln.startswith("-") and "hand edited" in ln for ln in found[1]),
+           str(found)[:200])
+
     ok("an unbuilt site reports no date rather than guessing one",
        built_with(Path("/nonexistent")) is None)
 
@@ -184,10 +227,19 @@ def main() -> int:
               "so there is nothing to reproduce it against", file=sys.stderr)
         return 1
 
+    # THE DIFF IS TAKEN BEFORE THE TEMP DIRECTORY GOES AWAY, WHICH IS WHY IT IS IN HERE.
+    #
+    # This gate named a file and stopped, and a filename is not a finding. On 2026-08-26 it
+    # reported `datacenters/index.html` on a runner while passing on the machine that built the
+    # page, and working out WHICH BYTES differ meant pushing to CI to look, which is the one
+    # thing this repository's own rules ask a session not to do repeatedly. The fresh build lives
+    # in a TemporaryDirectory that is deleted on the way out of this block, so a diff taken after
+    # the report has nothing left to read. It is captured here and printed below.
     with tempfile.TemporaryDirectory() as td:
         fresh = Path(td) / "fresh"
         site_build.build(fresh, today)
         missing, extra, changed = compare(committed, fresh)
+        detail = first_difference(committed, fresh, changed)
 
     if not (missing or extra or changed):
         n = sum(1 for _ in committed.rglob("*") if _.is_file())
@@ -208,6 +260,10 @@ def main() -> int:
                 print(f"    {p}", file=sys.stderr)
             if len(rows) > 20:
                 print(f"    ...and {len(rows) - 20} more", file=sys.stderr)
+    if detail:
+        print(f"\n  WHAT DIFFERS in {detail[0]}, committed against fresh", file=sys.stderr)
+        for line in detail[1]:
+            print(f"    {line.rstrip()}", file=sys.stderr)
     print("\n  Fix: rebuild with scripts/site/site_build.py and commit the result. Never edit "
           "docs/ by hand.", file=sys.stderr)
     return 1

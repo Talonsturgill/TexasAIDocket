@@ -1124,7 +1124,7 @@ footer.site .colophon { width:4rem; height:4rem; fill:var(--ink); opacity:.28; f
   text-transform:uppercase; }
 .footnav a { display:inline-block; min-width:24px; padding-block:.45rem; }
 .meta a, cite a, a.go, .filelist a, .prose > p > a.plain { display:inline-block;
-  min-width:24px; padding-block:.28rem; }
+  min-width:24px; padding-block:.28rem; overflow-wrap:anywhere; }
 .footnav li { max-width:none; }
 .socials { display:flex; flex-wrap:wrap; gap:.5rem; margin:1.25rem 0 0; padding:0;
   list-style:none; }

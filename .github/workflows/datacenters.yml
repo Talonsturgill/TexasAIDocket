@@ -34,6 +34,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # THE SITE BUILD NEEDS THESE AND THE COLLECTOR DOES NOT. The rebuild step below was
+      # added to close the stale-page hole and could never have run without them, and
+      # `continue-on-error` kept that quiet. `gridwatch.yml` installs the same one.
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - run: pip install --quiet pyyaml
+
       # Hermetic, no network. A collector whose own checks are broken has no business
       # appending to a series, so this gates the fetch rather than reporting after it.
       - name: Prove the collector's checks can go red
@@ -72,3 +81,16 @@ jobs:
           python3 scripts/shared/ownership_check.py --actor gridwatch --staged
           git commit -m "datacenters: registry reading"
           git push
+
+      # A SWALLOWED FAILURE IS THE ONE THAT COSTS THE MOST, because nothing reports it and the
+      # damage shows up somewhere else. `continue-on-error` above is right, since a broken site
+      # build must never cost a reading, and it is only right if the failure is still said out
+      # loud. Without this the job goes green, the reading lands, docs/ is left older than the
+      # ledger it is a function of, and the red arrives on the next pull request to touch
+      # anything at all.
+      - name: Say so when the rebuild failed
+        if: steps.rebuild.outcome == 'failure'
+        run: |
+          echo "::error::the reading landed and the site rebuild did not, so docs/ is now \
+          older than the ledger and site_fresh_check will go red on the next pull request."
+          exit 1
