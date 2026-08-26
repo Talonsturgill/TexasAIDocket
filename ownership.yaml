@@ -290,6 +290,32 @@ rules:
   - path: "ledger/gridwatch/weather.jsonl"
     owner: gridwatch
     append_only: false
+
+  # THE ONE FILE ITS OWN COLLECTOR COULD NOT WRITE, and it took the cron down every day.
+  #
+  # The glob above says `*.jsonl`, and every other collector here writes only a jsonl, so the
+  # glob covered every one of them and read as if it covered the directory. The data center
+  # collector is the exception. It writes the whole roster as `datacenters.json` beside the
+  # counts-only `datacenters.jsonl`, because the roster is 149 rows that are REVISED rather
+  # than appended and a series of full rosters would be most of a megabyte a week.
+  #
+  # So this single path fell through the glob to the `**` default, which is `human`, and
+  # `ownership_check --actor gridwatch --staged` rejected the collector's own output. The
+  # workflow's `git add` line names the file first. Nothing else in this repository writes it.
+  #
+  # WHAT IT COST, WHICH IS MORE THAN ONE RED JOB. The job dies BEFORE its commit, so the
+  # rebuilt site dies with it, and `/datacenters/` prints how old its reading is. A page that
+  # ages daily and is rebuilt by nothing goes stale by one day per day, and the next pull
+  # request to run `site_fresh_check` is told the page was hand edited. It was not. It was
+  # simply older than the ledger it is a function of, which is the same shape this workflow's
+  # own comment records for 08-19, 08-21, 08-23 and 08-24 and calls flakiness.
+  #
+  # NOT append_only. A roster is rewritten in full on every reading, which is what makes it a
+  # roster and not a series. The irreplaceable series above keep their protection.
+  - path: "ledger/gridwatch/datacenters.json"
+    owner: gridwatch
+    append_only: false
+
   - path: "ledger/gridwatch/raw/**"
     owner: gridwatch
     append_only: true
