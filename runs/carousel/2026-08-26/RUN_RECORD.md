@@ -215,6 +215,64 @@ count over the two strings the frame prints and which a reader can rerun by read
 composition gives neither block an advantage, because the note says neither is marked as correct
 and a drawing that ranked them would contradict its own caption.
 
+## THE RECORD SAID THE BOARD ACTED AND CITED THE DOCUMENT THAT ONLY ASKED IT TO
+
+**`tx-2026-0095` said the Board of Regents amended the capital improvement program, approved the
+cost and authorized the money. Every source behind those three verbs was the agenda book**, which
+is the document published BEFORE the meeting and which recommends rather than records. Two of three
+judges found it independently in the second panel and both were right.
+
+The tell was in this run's own claim text. `c3` reads "The board **was asked** to put the phase in
+the capital improvement program", and its quote is the lettered recommendation `a. amend the CIP to
+include project with a total project cost for Phase I of $1,000,000,000`. **`c4` is where the error
+entered**: its quote is the infinitive `appropriate funds and authorize expenditure of
+$1,000,000,000 from Revenue Financing System (RFS) Bond Proceeds`, and its claim text had turned
+that into "the board appropriated and authorized". A recommendation read as a result, once, and
+then carried onto the cover, the money frame and the first line of the caption.
+
+Worse, the date. `c31` quotes the committee document's own table of contents as `Committee Meeting:
+8/12/2026 Board Meeting: 8/13/2026`. **August 12th is the committee's day.** The record stamped a
+board action on it.
+
+**What the run did about it, in order.**
+
+1. **Looked for a post-meeting primary source.** UT System's meetings index publishes an agenda
+   book and a webcast for August 12th and 13th and **no minutes and no record of action**. The
+   meeting page itself carries fourteen document links and every one is an agenda book or an item
+   extract. The August 28th special-called meeting's agenda book is four pages and contains no
+   minutes of the previous meeting. So the primary record of what the board did is not published.
+2. **Went to a dated report of the meeting instead**, and checked the crawl boundary first.
+   `statesman.com` publishes `User-agent: ClaudeBot` `Disallow: /` for the whole host and was not
+   fetched. `communityimpact.com` allows this path and was. It is admitted as `c32` on the deck and
+   `tx-2026-0095-c5` on the record, `secondary_reported`, fetched August 26th, and it says: "The
+   University of Texas System Board of Regents approved adding the first phase of the UT Dell
+   Medical Center to UT's capital improvement program at an Aug. 12 meeting."
+3. **Corrected the record.** The item's summary now separates what the board approved from what the
+   item asked it to do, its `public_access.how` states that no minutes and no record of action are
+   published so the outcome rests on a report, and the correction is written into the item's own
+   history where a reader can see it.
+4. **Corrected every surface.** The cover reads "approved adding ... to the capital improvement
+   program". Slide 4's band reads `PHASE 1, ADDED TO THE CAPITAL PROGRAM AUGUST 12TH, 2026` rather
+   than `AUTHORIZED`, and its funding line reads `RECOMMENDED FROM RFS BOND PROCEEDS`, because the
+   board approving the addition is established and the board authorizing the RFS draw is not. The
+   caption's first body sentence was rewritten to the same standard. `c4`'s claim text was fixed at
+   the root.
+5. **Audited the other seven items admitted today** for the same fault. All seven are clean. Their
+   sources are a statute's own history page, three funder announcements, a published curriculum and
+   a hospital's own account, and every one of those documents records something that has happened.
+
+**The deck's own frame 4 knew the distinction and applied it in one direction only.** Its axis label
+says `PROPOSED TOTAL PROJECT COST, APPROVED BY THE CHANCELLOR` and its dossier demands the word
+proposed "so a reader can't read them as authorized amounts". The deck was scrupulous about the
+Chancellor's two approvals and careless about the board's, in the same frame, on the same render.
+
+**A third `GATE_LESSONS.md` entry, and it is the one with teeth.** Every numeral on that frame
+traced. `numeral_lint` was satisfied, `claims_check` was satisfied, `noun_trace` was satisfied. The
+sentence around the numerals was not true, and nothing in the suite reads a verb. A claim whose
+quote is an infinitive in a list of recommendations cannot support a past-tense claim text, and
+that IS mechanically checkable: **a claim whose quote contains recommendation grammar and whose
+text asserts a completed action is a fault a script can find.**
+
 ## What else the panel changed
 
 **Slide 2 was an unlabelled site plan.** It drew a fence line, two structures and ten oak mottes on
@@ -263,14 +321,14 @@ Written by `gate_status.py --sync`, never by hand.
 <!-- gate-status:begin -->
 | gate | status | detail |
 |---|---|---|
-| claims         | PASS   | 31 verified claim(s) |
+| claims         | PASS   | 32 verified claim(s) |
 | render         | WARN   | 9 slide(s), 7 overflow warning(s) |
 | qa             | WARN   | 0 fail(s), 29 warn(s) |
 | aggregates     | PASS   | 8 declared and re-derived |
-| assembly       | PASS   | 9 slide(s), 2.89 MB, vector |
+| assembly       | PASS   | 9 slide(s), 2.94 MB, vector |
 | score          | ABSENT | score.json not written yet |
-| dossiers       | PASS   | 47,376 chars planned |
-| caption        | PASS   | 272 words |
+| dossiers       | PASS   | 48,317 chars planned |
+| caption        | PASS   | 283 words |
 | craft floor    | PASS   | 9 frame(s), median 866, floor 156 |
 | plan vs render | PASS   | 14 of 64 acceptance item(s) checkable |
 | texan          | WARN   | places NONE / body yes / deadline yes / next step yes |
