@@ -11,7 +11,7 @@ Laredo City Council declined to impose a temporary moratorium on data center per
 - Public access: Public meeting
 - Take part: https://cityoflaredo.legistar.com/Calendar.aspx
 
-- Last checked: 2026-08-21
+- Last checked: 2026-08-26
 
 ## Dates
 
@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-08-18 · Checked and unchanged.
 - 2026-08-21 · Corrected. The council meeting was July 27th, 2026 rather than August 5th, which is the date the reporting published. The city files the direction to write rules as a council item on high intensity data processing facilities. It records no action taken on it at the June 15th and July 27th meetings. It returned to the August 3rd, 2026 agenda and the city records no action there either.
+- 2026-08-26 · Checked and unchanged. The city's matter 26-C-105 is still filed and its action history still carries two rows. Every one reads "no action taken" and the later is dated July 27th, 2026.
 
 ## Evidence
 

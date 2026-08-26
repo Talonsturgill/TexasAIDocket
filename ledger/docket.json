@@ -458,7 +458,7 @@
      "fetched": "2026-08-21"
     }
    ],
-   "last_verified": "2026-08-21",
+   "last_verified": "2026-08-26",
    "confidence": "high",
    "notes_for_editor": "The 765 kV designation and the 22 county list are taken verbatim from the commission's own case style, not computed. Note for numeral_lint, 765 kV and the docket number are identifiers inside a quoted official title, not measurements this project derived. The Interchange web view renders only the first page of filing rows while reporting the full count on its index line, so the item count is quoted from that line and never counted from the table. The calendar feed's description field never carries a docket number for any entry, so its absence there is not evidence a matter has been dropped. Read the agenda PDF the entry links. This docket is included on the AI beat because 765 kV backbone capacity is the physical answer to large load growth, but the record fetched does NOT state that any particular data center drives this line, and the docket must not be described as a data center project without that link being established.",
    "history": [
@@ -477,6 +477,10 @@
     {
      "date": "2026-08-21",
      "note": "Checked. The commission's published agenda for the August 21st, 2026 open meeting still names Docket 59315 as item 3 for discussion and possible action. The filing index has moved from 5793 to 5797 since the last check."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Checked and unchanged. The interchange filing list for Docket 59315 answers and its newest filing is still dated March 17th, 2026. No final order has been entered."
     }
    ]
   },
@@ -1208,7 +1212,7 @@
      "fetched": "2026-08-20"
     }
    ],
-   "last_verified": "2026-08-21",
+   "last_verified": "2026-08-26",
    "confidence": "high",
    "notes_for_editor": "This is an infrastructure item rather than a decision, and the docket may prefer to use the feed as a collector and not publish it as an item. Keeping it has one strong argument: it tells a reader where the calendar actually lives, which is the single most useful thing this docket can hand someone who wants to participate. Its dates are the spine of the recurring collector.",
    "history": [
@@ -1227,6 +1231,10 @@
     {
      "date": "2026-08-21",
      "note": "Checked and unchanged. The feed still runs through July 29th, 2027 and the September 4th public comment deadline for Project 58482 is still listed. The August 21st open meeting still stands at the off site hotel and conference center."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Checked and unchanged. The agency calendar feed answers and carries 31 dated entries. They run from August 20th, 2026 to July 29th, 2027, so the live feed through mid 2027 still holds."
     }
    ]
   },
@@ -1933,7 +1941,7 @@
     }
    ],
    "id": "tx-2026-0032",
-   "last_verified": "2026-08-21",
+   "last_verified": "2026-08-26",
    "history": [
     {
      "date": "2026-08-18",
@@ -1942,6 +1950,10 @@
     {
      "date": "2026-08-21",
      "note": "Corrected. The commission's own agenda dates the hearing to April 27th, 2026. It files the request as Case Z26-07, a conditional use permit for a data center at 6509 South Fort Hood Street on land zoned University District. The applicant of record is Belton Engineering, Inc. on behalf of 4 Lazy J Properties, LLC. No Killeen agenda posted through August 27th, 2026 carries the case, so the council decision the commission's vote feeds into has not been scheduled."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Checked and unchanged. The Texas Scorecard account still reports the commission voting against the permit with an abstention. It still says the City Council makes the final decision, using that vote as a recommendation."
     }
    ]
   },
@@ -2403,7 +2415,7 @@
     }
    ],
    "id": "tx-2026-0037",
-   "last_verified": "2026-08-21",
+   "last_verified": "2026-08-26",
    "history": [
     {
      "date": "2026-08-18",
@@ -2412,6 +2424,10 @@
     {
      "date": "2026-08-21",
      "note": "Corrected. The council meeting was July 27th, 2026 rather than August 5th, which is the date the reporting published. The city files the direction to write rules as a council item on high intensity data processing facilities. It records no action taken on it at the June 15th and July 27th meetings. It returned to the August 3rd, 2026 agenda and the city records no action there either."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Checked and unchanged. The city's matter 26-C-105 is still filed and its action history still carries two rows. Every one reads \"no action taken\" and the later is dated July 27th, 2026."
     }
    ]
   },
@@ -4103,7 +4119,7 @@
     }
    ],
    "id": "tx-2026-0056",
-   "last_verified": "2026-08-25",
+   "last_verified": "2026-08-26",
    "history": [
     {
      "date": "2026-08-19",
@@ -6111,7 +6127,7 @@
      "fetched": "2026-08-20"
     }
    ],
-   "last_verified": "2026-08-21",
+   "last_verified": "2026-08-26",
    "confidence": "high",
    "notes_for_editor": "The 765 kV designation and the county list come from the commission's own agenda entry, not computed. This is the companion application to Docket 59315, and the record does not state that any particular data center drives either line.",
    "history": [
@@ -6122,6 +6138,10 @@
     {
      "date": "2026-08-21",
      "note": "Checked and unchanged. The commission's published agenda for August 21st, 2026 still names this application as item 2 for discussion and possible action, and the filing index still stands at 489."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Checked and moving. The interchange filing list for Docket 59029 answers and its newest filing is dated August 25th, 2026. No final order has been entered."
     }
    ]
   },
