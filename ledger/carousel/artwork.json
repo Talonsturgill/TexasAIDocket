@@ -390,7 +390,7 @@
    "red_on_slide": 7,
    "red_note": "two granite ticks, one per document, drawn identically so the frame cannot rank them",
    "camera": "nine constructions, one repeated class. The pixel closest pair is slide-04 and slide-09 at 0.68 normalised correlation over 16x16 thumbs, both being a light block over a dark block with white mono reversed out.",
-   "light_decks_used": "predominantly light, eight of nine frames. A judge reported this as the third pale deck in eight runs and could not settle it, because the field that would count it records light FRAMES inside a deck rather than light decks. Recorded as an open measurement gap.",
+   "light_decks_used": "MEASURED, AND THIS DECK BREACHES THE CAP ON THE OWNER'S WAIVER. brand.yaml allows a light deck at most once per eight runs and says the ledger enforces the count. It did not: every light_decks_used value in this file read the literal 1 while meaning light FRAMES inside a deck, a different quantity from the one brand.yaml says is counted. Measured off the shipped PNGs on 2026-08-26: 08-18 at deck median L* 82.7, 08-20 at 85.5 and this deck at 86.7, three light decks in an eight run window against a cap of one, and two of the three had already shipped before anyone counted. A reader judge asserted it as a hard fail and was right. Waived by the owner for this deck. ledger_check.check_register now counts it off value.deck_median_L rather than off anything a run writes about itself, so the cap binds from here.",
    "value": {
     "per_frame_median_L": [
      80.0,
