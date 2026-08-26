@@ -51,7 +51,9 @@ DOCTRINE = "knowledge/carousel/CAPTION_CRAFT.md"
 # merely some figure the run computed: `brazoria_applications` is 4, and without this scoping
 # "on the other four the record says nothing either way" would pass while being false.
 COUNTING_FIGURES = ("restricted_count", "declined_count", "total_count", "stated_nonbinding",
-                    "stated_binding", "force_unstated", "distinct_shapes", "late_cluster")
+                    "stated_binding", "force_unstated", "distinct_shapes", "late_cluster",
+                    "acting_bodies", "repeat_bodies", "busiest_body_count",
+                    "busiest_body_binding", "busiest_month_count")
 WORDS = "zero one two three four five six seven eight nine ten eleven twelve".split()
 
 
