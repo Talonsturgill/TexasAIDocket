@@ -37,7 +37,7 @@ off every frame, the caption, the figures and the manifests.
 
 ## Measured
 
-Per frame median L\*: 51.4, 64.4, 14.4, 30.8, 93.2, 74.4, 52.1, 58.5, 49.5. Deck median 52.1, sd
+Per frame median L\*: 51.4, 63.3, 14.4, 30.8, 93.2, 74.4, 52.1, 58.5, 49.5. Deck median 52.1, sd
 21.6. The biggest junction is 62.4 between frames
 4 and 5. Frame 7's falloff
 measures 16.5 L\* in the gutters between its four repeat lines. Frame 6's
@@ -169,7 +169,7 @@ and one line above the table says it once.
 ## What is measurably not what the storyboard said
 
 **This is not the mid value deck it declares.** The storyboard says "ground at L\* 62 to 68".
-Measured medians, frame by frame, are 51.4, 64.4, 14.4, 30.8, 93.2, 74.4, 52.1, 58.5 and 49.5,
+Measured medians, frame by frame, are 51.4, 63.3, 14.4, 30.8, 93.2, 74.4, 52.1, 58.5 and 49.5,
 with a median of medians of 52.1 and a range of 78.8 L\*. One frame sits inside the declared band
 and eight do not.
 
@@ -468,14 +468,14 @@ rather than failing, and this is it.
 |---|---|---|
 | claims         | PASS   | 46 verified claim(s) |
 | render         | PASS   | 9 slide(s) |
-| qa             | WARN   | 0 fail(s), 2 warn(s) |
-| aggregates     | PASS   | 25 declared and re-derived |
+| qa             | WARN   | 0 fail(s), 4 warn(s) |
+| aggregates     | PASS   | 27 declared and re-derived |
 | assembly       | PASS   | 9 slide(s), 3.2 MB, vector |
 | score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
 | labels         | PASS   | 52 claim id(s) checked, every label beside one traces to the shape its claim proves |
 | dossiers       | PASS   | 51,897 chars planned |
 | caption        | PASS   | 147 words |
-| craft floor    | WARN   | 9 frame(s), median 5142, floor 926, 2 quiet |
+| craft floor    | WARN   | 9 frame(s), median 5116, floor 921, 2 quiet |
 | plan vs render | WARN   | 12 of 68 acceptance item(s) checkable |
 | texan          | PASS   | places Brazoria County, El Paso, Hays County, Hill County, Lubbock, Lubbock County, San Angelo, Tom Green County, Wichita Falls, Williamson County / body yes / deadline yes / next step yes |
 | absences       | WARN   | 8 of 16 scoped to a named document, 8 unscoped |
