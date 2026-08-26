@@ -62,6 +62,10 @@ WORKFLOW = REPO_ROOT / ".github" / "workflows" / "guards.yml"
 # workflow change, so it is written here rather than inferred from whatever happens to be last.
 AGGREGATE = "guards"
 
+# Release is deliberately downstream of the aggregate rather than a check feeding it. Its own
+# wiring is enforced by release_shape.py, which also proves Pages cannot bypass this workflow.
+DOWNSTREAM = {"release"}
+
 
 # The checker invocation inside a step's shell, which is what gets stubbed out. Matched on the
 # filename rather than the whole path so moving the scripts does not quietly disarm this.
@@ -143,7 +147,7 @@ def problems(doc: dict) -> list[str]:
     needs = agg.get("needs") or []
     if isinstance(needs, str):
         needs = [needs]
-    real = [n for n in jobs if n != AGGREGATE]
+    real = [n for n in jobs if n != AGGREGATE and n not in DOWNSTREAM]
 
     missing = [n for n in real if n not in needs]
     if missing:
@@ -188,7 +192,8 @@ def self_test() -> int:
     good = {"jobs": {
         "gates": {"steps": [{"run": "true"}, PAGE_STEP]},
         "build": {"steps": [{"run": "true"}]},
-        AGGREGATE: {"needs": ["gates", "build"], "steps": [{"run": "echo ok"}]}}}
+        AGGREGATE: {"needs": ["gates", "build"], "steps": [{"run": "echo ok"}]},
+        "release": {"needs": AGGREGATE, "steps": [{"run": "echo release"}]}}}
     check("a correctly wired workflow reports nothing", not problems(good), str(problems(good)))
 
     # THE DEFECT THIS EXISTS FOR. A job added and not wired in.
@@ -296,7 +301,8 @@ def main() -> int:
             print(f"  - {f}", file=sys.stderr)
         return 1
     jobs = yaml.safe_load(WORKFLOW.read_text(encoding="utf-8"))["jobs"]
-    print(f"guards shape ok: {len(jobs) - 1} job(s) behind the {AGGREGATE!r} check")
+    upstream = [name for name in jobs if name != AGGREGATE and name not in DOWNSTREAM]
+    print(f"guards shape ok: {len(upstream)} job(s) behind the {AGGREGATE!r} check")
     return 0
 
 
