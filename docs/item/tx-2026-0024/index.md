@@ -9,7 +9,7 @@ The Public Utility Commission publishes its open meetings and public comment dea
 - Public access: Public meeting
 - Take part: https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
 
-- Last checked: 2026-08-21
+- Last checked: 2026-08-26
 
 ## Dates
 
@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-19 · Checked and unchanged. The feed still publishes 32 entries. The August 20th and August 21st open meetings both still stand, and the September 4th public comment deadline for Project 58482 is still listed.
 - 2026-08-20 · Checked. The feed now publishes 31 entries and runs to July 29th, 2027, one fewer than at the last check. The August 20th and August 21st open meetings both still stand and the September 4th public comment deadline for Project 58482 is still listed. Project 58482 is the Large Load Demand Management Service, and the agenda for each meeting names the dockets that a feed entry does not.
 - 2026-08-21 · Checked and unchanged. The feed still runs through July 29th, 2027 and the September 4th public comment deadline for Project 58482 is still listed. The August 21st open meeting still stands at the off site hotel and conference center.
+- 2026-08-26 · The August 20th open meeting has come off the feed, which is what the feed does once a meeting is held. The August 28th open meeting is now the next one listed and it names the Stephen F. Austin Building rather than the commission hearing room. The one public comment deadline the feed carries is still Project 58482 on September 4th.
 
 ## Evidence
 

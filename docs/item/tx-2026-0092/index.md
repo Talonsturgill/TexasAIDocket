@@ -11,7 +11,7 @@ The National Science Foundation made two matched standard grants on August 14th,
 - Public access: Closed
 - Take part: https://api.nsf.gov/services/v1/awards/2619079.json
 
-- Last checked: 2026-08-23
+- Last checked: 2026-08-26
 
 ## Dates
 
@@ -23,6 +23,7 @@ The National Science Foundation made two matched standard grants on August 14th,
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-08-23 · Admitted. Both award records were read directly and carry the same title, the same obligated amount and the same term.
+- 2026-08-26 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

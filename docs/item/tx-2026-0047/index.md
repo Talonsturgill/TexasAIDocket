@@ -11,7 +11,7 @@ Amarillo City Council voted five to nothing on first reading to authorize a wate
 - Public access: Public meeting
 - Take part: https://www.amarillo.gov/fermi-project/
 
-- Last checked: 2026-08-22
+- Last checked: 2026-08-26
 
 ## Dates
 
@@ -24,6 +24,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-08-19 · Checked and unchanged. The city's project page still gives the final water supply agreement dated October 30th, 2025 as its most recent document.
 - 2026-08-22 · Checked and unchanged. The city's project page still gives the final water supply agreement dated October 30th, 2025 as its most recent document, and no later water agreement appears.
+- 2026-08-26 · Checked and unchanged. The twenty year water supply agreement still stands, and the letter of intent described in the company's securities filing is still the larger of the two volumes on the record. Council members are still on the record that the letter of intent does not bind anyone.
 
 ## Evidence
 
@@ -61,7 +62,7 @@ Source (journalism): https://abc7amarillo.com/news/local/worlds-largest-ai-data-
 
 ### Fermi's SEC filing described a letter of intent for a larger daily volume than the executed agreement.
 
-> In its filing with the SEC for an initial public offering (IPO), Fermi said it entered into a letter of intent with the Amarillo Utilities Department to use between 2.5 and 5.5 million gallons per day of both potable and municipal graywater supplies to serve the Project Matador Site.
+> In its filing with the SEC for an initial public offering (IPO) , Fermi said it entered into a letter of intent with the Amarillo Utilities Department to use between 2.5 and 5.5million gallons per day of both potable and municipal graywater supplies to serve the Project Matador Site.
 
 Source (journalism): https://abc7amarillo.com/news/local/worlds-largest-ai-data-center-big-topic-amarillo-city-council-meeting-fermi-america-impact-water-envornment-public-comment-water-supply-ogallala-aquifer
 

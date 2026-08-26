@@ -10,7 +10,7 @@ The Bureau of Labor Statistics has proposed adding questions about artificial in
 - Comment closes: 2026-09-08
 - Take part: https://www.federalregister.gov/documents/2026/07/10/2026-13928/proposed-information-collection-atus-artificial-intelligence-ai-questions
 
-- Last checked: 2026-08-22
+- Last checked: 2026-08-26
 
 ## Dates
 
@@ -23,6 +23,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-08-19 · Checked and unchanged. The comment window still closes September 8th.
 - 2026-08-22 · Checked and unchanged. Written comments are still due on or before September 8th, 2026, and the notice still says comments are being accepted.
+- 2026-08-26 · Checked and unchanged. The Bureau of Labor Statistics notice on adding artificial intelligence questions to the American Time Use Survey still stands and its comment window still closes September 8th.
 
 ## Evidence
 
@@ -34,9 +35,9 @@ Every fact above rests on one of these. The words are the source's own.
 
 Source (primary_official): https://www.federalregister.gov/documents/2026/07/10/2026-13928/proposed-information-collection-atus-artificial-intelligence-ai-questions
 
-### The Federal Register API reports the document type and comment close date.
+### The Federal Register API records the date the comment window closes.
 
-> Notice | pub 2026-07-10 closes 2026-09-08
+> "comments_close_on":"2026-09-08"
 
 Source (primary_official): https://www.federalregister.gov/api/v1/documents/2026-13928.json
 

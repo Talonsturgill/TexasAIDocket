@@ -9,7 +9,7 @@ The Texas Jobs, Energy, Technology and Innovation Act is the state's school dist
 - Public access: Write to the decider
 - Take part: https://comptroller.texas.gov/economy/development/prop-tax/jeti/current-agreements.php
 
-- Last checked: 2026-08-21
+- Last checked: 2026-08-26
 
 ## Dates
 
@@ -20,6 +20,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-08-18 · Checked and unchanged. The Comptroller's current JETI agreements list still names no data center project.
 - 2026-08-21 · Checked and unchanged. The Comptroller's current JETI agreements list still names no data center project, and no entry on it is a data center, a semiconductor plant or a battery plant.
+- 2026-08-26 · Checked and unchanged in substance. The comptroller's current agreements table still lists no data center among its project types. Those run to jet fuel and aircraft parts at one end and to semiconductors at the other. The table has been reformatted since it was first quoted here and the quote is corrected to the wording it carries now.
 
 ## Evidence
 
@@ -27,7 +28,7 @@ Every fact above rests on one of these. The words are the source's own.
 
 ### The published table's project type column lists only non data center categories.
 
-> J0001 Summit Next Gen, LLC Galena Park ISD Jet Fuel Manufacturing $1.7 billion 50% 75 jobs J0002 Bell Textron, Inc. Northwest ISD Aircraft Parts Manufacturing $429 million 50% 75 jobs J0004 Vinton Steel LLC Canutillo ISD All Other Miscellaneous Fabricated Metal Product Manufacturing $230 million 50% 75 jobs
+> J0001 Summit Next Gen, LLC Galena Park ISD Jet Fuel Manufacturing $1.7 billion 50% 75 J0002 Bell Textron, Inc. Northwest ISD Aircraft Parts Manufacturing $429 million 50% 75 J0004 Vinton Steel LLC Canutillo ISD All Other Miscellaneous Fabricated Metal Product Manufacturing $230 million 50% 75
 
 Source (primary_official): https://comptroller.texas.gov/economy/development/prop-tax/jeti/current-agreements.php
 

@@ -10,7 +10,7 @@ The Public Utility Commission of Texas has proposed a new rule governing demand 
 - Comment closes: 2026-09-04
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-08-22
+- Last checked: 2026-08-26
 
 ## Dates
 
@@ -26,6 +26,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-22 · Checked and unchanged. The filing index for control number 58482 still stands at 34 filings. The Texas Register acknowledgement in that index still gives a comment deadline of September 4th, 2026, so the window a Texan can file in is still open.
 - 2026-08-22 · Four assertions were corrected against this run's own fetch. The summary no longer calls the rule the category that covers data centers, because the published text does not contain the words. It no longer says individual Texans have filed, because the index publishes a party name and nothing about who a filer is. The filing count moves from 33 to 34.
 - 2026-08-22 · The earlier correction today reached the summary and not the public access field. That field still said individuals had filed without counsel. It is corrected now.
+- 2026-08-26 · Checked and unchanged. The commission's calendar still carries the September 4th public comment deadline for Project 58482, and the proposed rule text still never uses the words data center. The window is still open.
 
 ## Evidence
 

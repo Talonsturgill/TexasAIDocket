@@ -15,7 +15,7 @@ Oncor Electric Delivery has applied to amend its certificate of convenience and 
 - Public access: Public meeting
 - Take part: https://ftp.puc.texas.gov/public/puct-info/agency/om/082126Final.pdf
 
-- Last checked: 2026-08-21
+- Last checked: 2026-08-26
 
 ## Dates
 
@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-08-20 · Admitted. The commission's published agenda for August 21st, 2026 names this application as item 2, alongside the Dinosaur Switch to Longshore Switch application as item 3.
 - 2026-08-21 · Checked and unchanged. The commission's published agenda for August 21st, 2026 still names this application as item 2 for discussion and possible action, and the filing index still stands at 489.
+- 2026-08-26 · The filing index moved from 489 to 498. The case style is unchanged and the application is still pending. Nothing else on the docket has moved.
 
 ## Evidence
 
@@ -53,6 +54,12 @@ Source (primary_official): https://ftp.puc.texas.gov/public/puct-info/agency/om/
 ### The filing index records the number of filings in this docket.
 
 > 489 filing(s).
+
+Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59029&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending
+
+### The filing index records the number of filings in this docket.
+
+> 498 filing(s).
 
 Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59029&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending
 
