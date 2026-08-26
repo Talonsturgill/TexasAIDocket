@@ -922,7 +922,56 @@ python3 .claude/skills/carousel-engine/assemble.py --slides-dir out/<date>/slide
 
 Confirm `assemble_report.json` says `pdf_mode: "vector"`.
 
+## PHASE 14b — READY FOR THE PANEL (run this before you spawn a single scorer)
+
+```
+python3 scripts/carousel/panel_ready.py --date <date>
+```
+
+**Non-zero means the deck is not ready to be SCORED.** It does not mean the deck is unshippable.
+Fix the frame and run it again. Do not spawn a scorer while this is red.
+
+**WHY THIS PHASE EXISTS, and it is the owner's own diagnosis, given twice in two days.**
+
+> judges are becoming a token burning crutch masking your inefficiencies
+
+That is correct and `scoring_rubric.yaml` already carries it. Carousel no. 7 was scored FIFTEEN
+times in one run, going sideways rather than up across a night of work. Carousel no. 8 the next
+day was scored THREE times, and every one of those panels spent itself finding things a
+measurement finds for nothing:
+
+| round | what three judges were paid to discover |
+|---|---|
+| 1 | a fabricated board quotation, and a record saying a board acted while citing the document that only asked it to |
+| 2 | a first comment pointing readers at a frame rebuilt out from under it, and a MODELED disclosure rendering as a broken sentence behind an opaque plate |
+| 3 | six text nodes still exempt from the occlusion and contrast checks, after the run had reported the exemption removed |
+
+**A PANEL IS A CHECK ON A DECK THE RUN ALREADY BELIEVES IS FINISHED.** It is not a design loop and
+it is not a proofreader. A run that ships a half-considered frame into three scorers is paying
+three model calls to be told what one measurement would have said, and then paying again next
+round because the fix introduced the next defect. Both of round 2's hard fails were manufactured
+by round 1's own repairs.
+
+The six things this gate measures are the six that kept REACHING the judges because nothing else
+was looking. **It does not measure taste and it never will.** Composition, story, stakes, voice and
+variety are exactly what the panel is for, and this gate exists so the panel spends itself on
+those rather than on a plate sitting on top of a sentence.
+
+The sharpest of the six is worth stating here because it will happen again under another name.
+`qa.py` returns early on any node marked `data-decorative`, BEFORE the occlusion and contrast
+checks. On 2026-08-26 the deck carried that attribute on every `MODELED` disclosure and every
+source attribution, so **the deck had exempted its own honesty labels from its own gates**. A line
+whose whole job is saying what the record does not give is the opposite of decoration. Any
+mechanism that lets a frame opt out of being measured will eventually be pointed at the thing that
+most needs measuring.
+
+**Before you run it, do the pass yourself.** Open the nine thumbs at feed size and read them as a
+stranger would. The gate is a floor under that pass, not a substitute for it.
+
 ## PHASE 15 — SCORING, BY A PANEL OF THREE
+
+**`panel_ready.py` must exit 0 before you spawn anything here.** See Phase 14b. A panel is a
+check on a deck the run already believes is finished.
 
 Spawn **3** `carousel-scorer` agents IN PARALLEL, one per lens, and combine them with a script.
 Never one. Never sequentially, because a judge that can see another judge's answer is not a
