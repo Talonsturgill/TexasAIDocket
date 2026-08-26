@@ -15,7 +15,7 @@
    "notes": {
     "aggregates": [
      "restricted_count",
-     "distinct_shapes"
+     "stated_binding"
     ]
    },
    "strings": [
@@ -122,7 +122,10 @@
     "c18"
    ],
    "notes": {
-    "aggregates": []
+    "aggregates": [
+     "stated_nonbinding",
+     "restricted_count"
+    ]
    },
    "strings": [
     "FIVE OF THE SEVEN",
@@ -141,19 +144,22 @@
    "n": 6,
    "claims": [
     "c9",
-    "c12"
+    "c32"
    ],
    "notes": {
-    "aggregates": []
+    "aggregates": [
+     "stated_binding",
+     "restricted_count"
+    ]
    },
    "strings": [
     "THE EXCEPTIONS",
     "06 / 09",
     "Two of the seven have teeth",
     "\"Motion to deny passed 5-0.\"",
-    "\"Approved 7-0 at the June 16, 2026 City Council meeting.\"",
+    "\"Initial cooling system fill shall not exceed 8.0 gallons per square foot\"",
     "BRAZORIA COUNTY, C9 THE ZONE THEY STOOD ON",
-    "SAN ANGELO, C12 CAPPED BY ORDINANCE",
+    "SAN ANGELO, C32 ORDINANCE 2026-078",
     "One refused the zone. One wrote the limit into the water ordinance.",
     "texasaidocket.com"
    ]
@@ -205,7 +211,7 @@
     "A commissioner referenced a $100 million lawsuit filed against Hill County after it approved a similar one year moratorium.",
     "TOM GREEN COUNTY, C15 AND C16 REPORTED SPEECH ABOUT A LAWSUIT",
     "\"no action taken\"",
-    "LAREDO MATTER HISTORY, C14 3 AGENDAS",
+    "LAREDO MATTER HISTORY, C14",
     "The water board denied a petition asking it to project data center water demand.",
     "TEXAS WATER DEVELOPMENT BOARD, C29",
     "Ten bodies in this record took one up. Seven acted and three did not.",

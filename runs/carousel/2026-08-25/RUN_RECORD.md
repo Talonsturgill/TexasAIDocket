@@ -115,9 +115,9 @@ and one line above the table says it once.
 ## What is measurably not what the storyboard said
 
 **This is not the mid value deck it declares.** The storyboard says "ground at L\* 62 to 68".
-Measured medians, frame by frame, are 54.4, 55.0, 14.4, 30.8, 81.4, 64.1, 69.4, 81.6 and 49.5,
-with a median of medians of 55.0 and a range of 67 L\*. Three frames sit inside the declared band
-and six do not.
+Measured medians, frame by frame, are 51.4, 63.0, 14.4, 30.8, 81.4, 70.8, 52.4, 55.6 and 48.8,
+with a median of medians of 52.4 and a range of 67.0 L\*. One frame sits inside the declared band
+and eight do not.
 
 The band was typed by the directors room rather than measured, which is the compute-not-generate
 law being broken in a planning document. The frames were not re-graded to reach it, because the
@@ -203,9 +203,9 @@ before acting, not after.
 - **Frame 1's numeric lockup misread at 432px** as "8 BODIES INSTRUMENTS", and the dek's fourth
   line overlapped the numeral by 15px. It counts both nouns now.
 - **The 6 to 7 value snap ran backwards.** Both dossiers claim frame 6 is the brightest field and
-  frame 7 the darkest immediately after. Measured, 6 was 64.1 and 7 was 69.4. Frame 7's field
-  was dropped to 61.4 and its falloff widened rather than flattened, so the four repeats now
-  span 17.2 L\* instead of 3.4.
+  frame 7 the darkest immediately after. Measured, 6 is now 70.8 and 7 is 52.4. Frame 7's field
+  was dropped and its falloff widened rather than flattened, so the four repeats now
+  span 16.5 L\* instead of 3.4.
 
 ## Three more gates were wrong about a correct deck
 

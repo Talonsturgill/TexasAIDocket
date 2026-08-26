@@ -230,21 +230,21 @@ risks:
 ```yaml
 slide: 2
 job: >
-  Show that the eight refusals are a typology rather than one action repeated, by listing the
-  eight instruments on one sheet under one hard shadow.
-claims: [c17, c3, c6, c30, c9, c29, c22, c12]
+  Show that the seven actions are a typology rather than one action repeated, by listing the
+  seven instruments on one sheet under one hard shadow.
+claims: [c17, c5, c9, c12, c31, c30, c22]
 numerals:
-  - computed_by: "out/2026-08-25/compute.py, distinct_shapes, eight instruments across eight bodies"
+  - computed_by: "out/2026-08-25/compute.py, distinct_shapes, seven instruments across seven bodies"
 composition:
   structure: >
     Square on to a single flat sheet with the case's mullion throwing one hard diagonal occlusion
     shadow across it, because a list wants to be read in one pass and the diagonal is what stops
-    eight stacked lines reading as a table. The shadow's penumbra widens with the air gap, which
+    seven stacked lines reading as a table. The shadow's penumbra widens with the air gap, which
     is this deck's only depth cue and has to be established here where it is legible.
   bands: >
     The top third carries the sheet's head, the kicker and the counter over the lit half. The
-    middle third carries the eight instrument names set hanging indent in toner, four in light and
-    four crossed by the shadow. The bottom third carries the sheet's foot in graded falloff to the
+    middle third carries the seven instrument names set hanging indent in toner, the first rows in
+    light and the later rows crossed by the shadow. The bottom third carries the sheet's foot in graded falloff to the
     clip shadow, the spring clip drawn as a lit modeled solid with its own cast shadow on the
     sheet, and the site line and star on the case rail below it.
   focal: >
@@ -253,7 +253,7 @@ composition:
 art:
   technique: "cast occlusion shadow with a penumbra computed from the air gap"
   why_this_technique: >
-    The claim is that eight things differ, and a hard shadow crossing a uniform list is what makes
+    The claim is that seven things differ, and a hard shadow crossing a uniform list is what makes
     the eye read the list as a field rather than as furniture. A drop shadow would state the same
     geometry and carry no air gap, which is the physical fact the whole deck rests on.
   palette: "bond under sky_glare, toner type, case_dark shadow core over glaze"
@@ -267,18 +267,18 @@ type:
   dek: "One each. The shape of the instrument decides whether anything stops."
 acceptance:
   - "the shadow has a visibly wider penumbra at the bottom of the sheet than at the top, which is the air gap doing work"
-  - "every one of the eight instrument names is legible at 1080px and none is clipped by the shadow edge"
+  - "every one of the seven instrument names is legible at 1080px and none is clipped by the shadow edge"
   - "the toner value of a name inside the shadow equals the toner value of a name outside it"
   - "the spring clip casts its own small contact shadow onto the sheet, dark core plus penumbra"
   - "no instrument name is printed that compute.py does not carry a claim id for"
 risks:
-  - "eight lines under a diagonal is one step from a table with a gradient on it, and a table is furniture"
+  - "seven lines under a diagonal is one step from a table with a gradient on it, and a table is furniture"
 ```
 
 ```yaml
 slide: 3
 job: >  # REVISED after the flow critic, see the revision note below
-  Name the eight bodies in the record's own register and put the span on them, so a reader sees
+  Name the seven bodies in the record's own register and put the span on them, so a reader sees
   commissioners courts and city councils rather than an abstraction.
 claims: []
 numerals:
@@ -293,7 +293,7 @@ composition:
     consecutive frames converging on one silhouette.
   bands: >
     The top third carries the board's lit aluminium head rail and the kicker and counter. The
-    middle third carries eight rows of seated white letters, each glyph a filled body with its own
+    middle third carries seven rows of seated white letters, each glyph a filled body with its own
     cast shadow into the felt nap. The bottom third carries the board's lower rail as a lit modeled
     solid, the felt below the last row raked by the same overhead lobby light so the nap texture is
     visible rather than flat, and the span line set in the felt with the site line on the rail.
@@ -318,7 +318,7 @@ acceptance:
   - "each row's letter shadows are offset differently from the row above, computed from one overhead source"
   - "at least two letters sit visibly proud of the groove, as a hand set board does"
   - "the felt reads as nap with visible texture and not as a flat black fill"
-  - "every body named is one of the eight in compute.py's RESTRICTED map"
+  - "every body named is one of the seven in compute.py's RESTRICTED map"
   - "the board's lower rail carries a lit edge and a contact shadow so the board has thickness"
 risks:
   - "a letterboard reads as a hotel directory unless the rows carry statutory names like Commissioners Court"
@@ -424,10 +424,11 @@ slide: 6
 job: >
   Invert the deck. Take the glazing away for the only time, and show the two refusals that bind
   as two unglazed sheets a reader could pick up.
-claims: [c9, c12]
+claims: [c9, c32]
 numerals:
   - value_from: c9
-  - value_from: c12
+  - value_from: c32    # "8.0 gallons per square foot", the ordinance's own cap, quoted not computed
+  - computed_by: "out/2026-08-25/compute.py, stated_binding over restricted_count, the hook's ratio"
 composition:
   structure: >
     The case is open and the glazing is out of the way, flat and square and near white, because
@@ -437,37 +438,46 @@ composition:
   bands: >
     The top third carries the swung glazing edge at the far left as a 6px edge_cyan band, the open
     case head, the kicker and the counter. The middle third carries two unglazed sheets on lit
-    cork, each with its own quoted line. The bottom third carries the cork below the sheets with a
+    cork, PINNED and of DIFFERENT HEIGHT, each with its own quoted line. A motion is one line in a
+    minute book and an ordinance is a section of the city code, and a board carrying both would
+    never carry them on matched stock. The bottom third carries the cork below the sheets with a
     computed staple hole field giving it tooth, the two sheets' contact shadows falling onto that
-    lit cork, and a graded falloff toward the case's lower lip with the site line on it.
+    lit cork, and the case's lower rail with its bracket screws and the site line on it.
   focal: >
-    The left sheet's quoted block carrying the Brazoria motion, a near white area sitting on warm
-    cork, roughly 420 by 200.
+    The right sheet's quoted block carrying the ordinance's own cap, the taller of the two and the
+    only place in the deck where a reader is shown the number a Texas government actually wrote
+    down, a near white area on warm cork, roughly 404 by 470.
 art:
-  technique: "the empty field under flat light, two sheets on lit cork with a computed staple hole field"
+  technique: "the empty field under flat light, two pinned sheets of unequal height on lit cork with a computed staple hole field"
   why_this_technique: >
     The turn was optical and loud, so its answer is quiet and physical. Restraint is the
     composition here and the cork's staple holes are what stop it reading as an unfinished render,
-    which is the recorded failure of a flat frame on this product.
+    which is the recorded failure of a flat frame on this product. Two craft reads then found the
+    frame still thin for a second reason nobody had named: neither card was FASTENED to anything,
+    and 448px of bare cork sat under them. Both cards now carry a brass pin whose shaft punctures
+    the paper, and the taller card closes the dead band.
   palette: "bond sheets, cork ground, toner type, edge_cyan once at 6px"
   value_structure: >
     Lightest is the two sheets at bond. Darkest is the case's lower lip seen from slightly above,
     inside face case_dark. This frame's FIELD is the brighter side of the deck's biggest local
-    step: measured, it is 69.2 and frame 7 immediately after it is 52.4, a 16.8 L* drop, which is
+    step: measured, it is 70.8 and frame 7 immediately after it is 52.4, a 18.4 L* drop, which is
     what makes frame 7 land. It is not the brightest frame in the deck, frames 5 and 8 are, and
     an earlier draft of this line claimed it was.
   motion: "left sheet to right sheet, then down to the empty cork"
 type:
   hook: "Two of the seven have teeth"
-  dek: "\"Motion to deny passed 5-0.\""
+  dek: "\"Initial cooling system fill shall not exceed 8.0 gallons per square foot\""
 acceptance:
   - "no glazing plane is drawn between the camera and either sheet"
   - "the cork carries a visible staple hole field rather than a flat tan fill"
   - "each sheet casts a two part contact shadow onto the lit cork, dark core and penumbra"
   - "edge_cyan appears exactly once, as a band no wider than 6px"
-  - "both quoted lines are verbatim from c9 and c12 and are legible at 432px"
+  - "both quoted lines are verbatim from c9 and c32 and are legible at 432px"
+  - "each card carries a pin whose cast shadow falls on the CARD and not on the cork, because the shaft goes through the paper"
+  - "the two cards are of visibly different height and no bare cork band deeper than 300px is left under them"
 risks:
   - "a flat frame with two sheets and nothing else reads as an unfinished render, which has shipped here before"
+  - "a pin drawn as a flat disc reads as a sticker. It needs a lit dome, a rim and a puncture under it or it is worse than no pin"
 ```
 
 ```yaml
@@ -504,9 +514,13 @@ art:
   palette: "bond graded from a dim head to a lit foot, toner constant, case_dark rail and air gap"
   value_structure: >
     Lightest is the sheet's bottom edge. Darkest is the top rail's underside and its shadow across
-    the frame's top, carrying the reversed hook. The falloff across the four repeats measures 22.1
-    L*, and the frame's field at 52.4 is 16.8 L* under frame 6 before it. It is not the deck's
+    the frame's top, carrying the reversed hook. The falloff across the four repeats measures 16.5
+    L*, and the frame's field at 52.4 is 18.4 L* under frame 6 before it. It is not the deck's
     darkest field, frame 3 at 14.4 is, and an earlier draft of this line claimed it was.
+    Two committed files carried two different values for that falloff, 22.1 here and 17.2 in
+    artwork.json, and neither was right. It is measured once now, in out/2026-08-25/tmp/measure.py,
+    in the page gutters between the four lines rather than on the type, and every file that
+    prints it is written from that one number.
   motion: "top to bottom, dim to lit, one line repeating"
 type:
   hook: "Four applications. None was voted on."

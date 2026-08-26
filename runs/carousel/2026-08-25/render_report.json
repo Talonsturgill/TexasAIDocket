@@ -270,7 +270,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1857,
+      "render_ms": 1958,
       "ok": true,
       "canvases": [
         {
@@ -435,7 +435,7 @@
           "anc": []
         },
         {
-          "text": "Permit deniedKILLEEN",
+          "text": "Permit denied KILLEEN",
           "x": 186,
           "y": 500,
           "w": 238,
@@ -481,7 +481,7 @@
           ]
         },
         {
-          "text": "Abatement deniedARCHER COUNTY",
+          "text": "Abatement denied ARCHER COUNTY",
           "x": 186,
           "y": 588,
           "w": 293,
@@ -527,7 +527,7 @@
           ]
         },
         {
-          "text": "Zone deniedBRAZORIA COUNTY",
+          "text": "Zone denied BRAZORIA COUNTY",
           "x": 186,
           "y": 676,
           "w": 228,
@@ -573,7 +573,7 @@
           ]
         },
         {
-          "text": "Water ordinance passedSAN ANGELO",
+          "text": "Water ordinance passed SAN ANGELO",
           "x": 186,
           "y": 764,
           "w": 403,
@@ -619,7 +619,7 @@
           ]
         },
         {
-          "text": "Disclosure askedLUBBOCK COUNTY",
+          "text": "Disclosure asked LUBBOCK COUNTY",
           "x": 186,
           "y": 852,
           "w": 293,
@@ -665,7 +665,7 @@
           ]
         },
         {
-          "text": "Staff directedCORPUS CHRISTI",
+          "text": "Staff directed CORPUS CHRISTI",
           "x": 186,
           "y": 940,
           "w": 256,
@@ -711,7 +711,7 @@
           ]
         },
         {
-          "text": "Process initiatedFORT WORTH",
+          "text": "Process initiated FORT WORTH",
           "x": 186,
           "y": 1028,
           "w": 311,
@@ -786,7 +786,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1094,
+      "render_ms": 1165,
       "ok": true,
       "canvases": [
         {
@@ -1283,7 +1283,7 @@
           "anc": []
         },
         {
-          "text": "154 DAYSMARCH 10TH TO AUGUST 11TH",
+          "text": "154 DAYS MARCH 10TH TO AUGUST 11TH",
           "x": 118,
           "y": 1074,
           "w": 429,
@@ -1340,7 +1340,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1534,
+      "render_ms": 1608,
       "ok": true,
       "canvases": [
         {
@@ -1589,7 +1589,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1512,
+      "render_ms": 1548,
       "ok": true,
       "canvases": [
         {
@@ -1706,7 +1706,7 @@
           "anc": []
         },
         {
-          "text": "\"does not stop the projectfrom moving forward\"",
+          "text": "\"does not stop the project from moving forward\"",
           "x": 150,
           "y": 404,
           "w": 470,
@@ -1756,7 +1756,7 @@
           "anc": []
         },
         {
-          "text": "\"Resolutions do nothing,they are not binding.\"",
+          "text": "\"Resolutions do nothing, they are not binding.\"",
           "x": 470,
           "y": 912,
           "w": 435,
@@ -1879,7 +1879,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 892,
+      "render_ms": 942,
       "ok": true,
       "canvases": [
         {
@@ -1907,13 +1907,13 @@
       "overflow_warnings": [
         {
           "kind": "tiny-text",
-          "text": "BRAZORIA COUNTY, C9THE ZONE THEY STOOD ON",
-          "detail": "font-size 18px < 24px mobile floor (mark data-decorative if intentional)"
+          "text": "BRAZORIA COUNTY, C9 THE ZONE THEY STOOD ON",
+          "detail": "font-size 19px < 24px mobile floor (mark data-decorative if intentional)"
         },
         {
           "kind": "tiny-text",
-          "text": "SAN ANGELO, C12CAPPED BY ORDINANCE",
-          "detail": "font-size 18px < 24px mobile floor (mark data-decorative if intentional)"
+          "text": "SAN ANGELO, C32 ORDINANCE 2026-078",
+          "detail": "font-size 19px < 24px mobile floor (mark data-decorative if intentional)"
         }
       ],
       "fonts_missing": [],
@@ -1965,8 +1965,8 @@
         {
           "text": "Two of the seven have teeth",
           "x": 96,
-          "y": 172,
-          "w": 600,
+          "y": 168,
+          "w": 640,
           "h": 129,
           "font_px": 62,
           "weight": "700",
@@ -1977,24 +1977,24 @@
           "lines": [
             [
               96,
-              165,
-              465,
+              161,
+              608,
               77
             ],
             [
               96,
-              229,
-              288,
+              225,
+              145,
               77
             ]
           ],
           "anc": []
         },
         {
-          "text": "\"Motion to denypassed 5-0.\"",
-          "x": 132,
-          "y": 392,
-          "w": 390,
+          "text": "\"Motion to deny passed 5-0.\"",
+          "x": 140,
+          "y": 404,
+          "w": 348,
           "h": 73,
           "font_px": 27,
           "weight": "500",
@@ -2004,14 +2004,14 @@
           "overlap_ok": false,
           "lines": [
             [
-              132,
-              392,
+              140,
+              404,
               243,
               36
             ],
             [
-              132,
-              429,
+              140,
+              441,
               194,
               36
             ]
@@ -2019,39 +2019,39 @@
           "anc": []
         },
         {
-          "text": "BRAZORIA COUNTY, C9THE ZONE THEY STOOD ON",
-          "x": 132,
-          "y": 566,
-          "w": 360,
-          "h": 54,
-          "font_px": 18,
+          "text": "BRAZORIA COUNTY, C9 THE ZONE THEY STOOD ON",
+          "x": 140,
+          "y": 548,
+          "w": 348,
+          "h": 57,
+          "font_px": 19,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(110, 105, 95)",
+          "color": "rgb(107, 100, 89)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              132,
-              568,
-              229,
-              23
+              140,
+              549,
+              242,
+              25
             ],
             [
-              132,
-              595,
-              265,
-              23
+              140,
+              578,
+              280,
+              25
             ]
           ],
           "anc": []
         },
         {
-          "text": "\"Approved 7-0 at theJune 16, 2026 CityCouncil meeting.\"",
-          "x": 566,
-          "y": 392,
-          "w": 390,
-          "h": 110,
+          "text": "\"Initial cooling system fill shall not exceed 8.0 gallons per square foot\"",
+          "x": 574,
+          "y": 404,
+          "w": 348,
+          "h": 184,
           "font_px": 27,
           "weight": "500",
           "family": "JetBrains Mono",
@@ -2060,50 +2060,62 @@
           "overlap_ok": false,
           "lines": [
             [
-              566,
-              392,
-              324,
+              574,
+              404,
+              259,
               36
             ],
             [
-              566,
-              429,
-              292,
-              36
-            ],
-            [
-              566,
-              465,
+              574,
+              441,
               275,
+              36
+            ],
+            [
+              574,
+              477,
+              227,
+              36
+            ],
+            [
+              574,
+              514,
+              178,
+              36
+            ],
+            [
+              574,
+              551,
+              194,
               36
             ]
           ],
           "anc": []
         },
         {
-          "text": "SAN ANGELO, C12CAPPED BY ORDINANCE",
-          "x": 566,
-          "y": 566,
-          "w": 360,
-          "h": 54,
-          "font_px": 18,
+          "text": "SAN ANGELO, C32 ORDINANCE 2026-078",
+          "x": 574,
+          "y": 700,
+          "w": 348,
+          "h": 57,
+          "font_px": 19,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(110, 105, 95)",
+          "color": "rgb(107, 100, 89)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              566,
-              568,
-              181,
-              23
+              574,
+              701,
+              191,
+              25
             ],
             [
-              566,
-              595,
+              574,
+              730,
               229,
-              23
+              25
             ]
           ],
           "anc": []
@@ -2111,10 +2123,10 @@
         {
           "text": "One refused the zone. One wrote the limit into the water ordinance.",
           "x": 96,
-          "y": 996,
-          "w": 700,
-          "h": 76,
-          "font_px": 27,
+          "y": 892,
+          "w": 760,
+          "h": 78,
+          "font_px": 28,
           "weight": "500",
           "family": "Manrope",
           "color": "rgb(36, 27, 13)",
@@ -2123,15 +2135,15 @@
           "lines": [
             [
               96,
-              996,
-              627,
-              37
+              892,
+              731,
+              38
             ],
             [
               96,
-              1034,
-              211,
-              37
+              931,
+              139,
+              38
             ]
           ],
           "anc": []
@@ -2166,7 +2178,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1897,
+      "render_ms": 1940,
       "ok": true,
       "canvases": [
         {
@@ -2179,8 +2191,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 156.4,
-          "variance": 3951.1
+          "mean": 158,
+          "variance": 4183.8
         }
       ],
       "breather": false,
@@ -2260,7 +2272,7 @@
           "anc": []
         },
         {
-          "text": "Four applications.None was voted on.",
+          "text": "Four applications. None was voted on.",
           "x": 80,
           "y": 120,
           "w": 760,
@@ -2310,7 +2322,7 @@
           "anc": []
         },
         {
-          "text": "Commissioner Linder made a motionto deny order 1.3.",
+          "text": "Commissioner Linder made a motion to deny order 1.3.",
           "x": 118,
           "y": 404,
           "w": 730,
@@ -2521,7 +2533,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 581,
+      "render_ms": 672,
       "ok": true,
       "canvases": [
         {
@@ -2554,7 +2566,7 @@
         },
         {
           "kind": "tiny-text",
-          "text": "TOM GREEN COUNTY, C15 AND C16REPORTED SPEECH ABOUT A LAWSUIT",
+          "text": "TOM GREEN COUNTY, C15 AND C16 REPORTED SPEECH ABOUT A LAWSUIT",
           "detail": "font-size 19px < 24px mobile floor (mark data-decorative if intentional)"
         },
         {
@@ -2569,7 +2581,7 @@
         },
         {
           "kind": "tiny-text",
-          "text": "LAREDO MATTER HISTORY, C143 AGENDAS",
+          "text": "LAREDO MATTER HISTORY, C14",
           "detail": "font-size 18px < 24px mobile floor (mark data-decorative if intentional)"
         },
         {
@@ -2733,7 +2745,7 @@
           "anc": []
         },
         {
-          "text": "TOM GREEN COUNTY, C15 AND C16REPORTED SPEECH ABOUT A LAWSUIT",
+          "text": "TOM GREEN COUNTY, C15 AND C16 REPORTED SPEECH ABOUT A LAWSUIT",
           "x": 120,
           "y": 706,
           "w": 406,
@@ -2811,11 +2823,11 @@
           "anc": []
         },
         {
-          "text": "LAREDO MATTER HISTORY, C143 AGENDAS",
+          "text": "LAREDO MATTER HISTORY, C14",
           "x": 120,
           "y": 858,
           "w": 318,
-          "h": 50,
+          "h": 25,
           "font_px": 18,
           "weight": "400",
           "family": "JetBrains Mono",
@@ -2827,12 +2839,6 @@
               120,
               859,
               318,
-              23
-            ],
-            [
-              120,
-              884,
-              110,
               23
             ]
           ],
@@ -2918,7 +2924,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2220,
+      "render_ms": 2450,
       "ok": true,
       "canvases": [
         {
@@ -2946,7 +2952,7 @@
       "overflow_warnings": [
         {
           "kind": "tiny-text",
-          "text": "THE CITY'S OWN WORDING IS A DEADLINERATHER THAN A FIXED DATE",
+          "text": "THE CITY'S OWN WORDING IS A DEADLINE RATHER THAN A FIXED DATE",
           "detail": "font-size 20px < 24px mobile floor (mark data-decorative if intentional)"
         },
         {
@@ -3102,7 +3108,7 @@
           "anc": []
         },
         {
-          "text": "THE CITY'S OWN WORDING IS A DEADLINERATHER THAN A FIXED DATE",
+          "text": "THE CITY'S OWN WORDING IS A DEADLINE RATHER THAN A FIXED DATE",
           "x": 150,
           "y": 726,
           "w": 500,
@@ -3209,7 +3215,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1401,
+      "render_ms": 1478,
       "ok": true,
       "canvases": [
         {

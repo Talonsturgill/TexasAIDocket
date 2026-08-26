@@ -9,14 +9,22 @@ THE COUNTING RULE IS STATED RATHER THAN ASSUMED, because "how many Texas governm
 a question whose answer depends entirely on what counts as a government and what counts as a no.
 A reader is owed the rule, not just the number.
 
-  IN:  a Texas governmental body that took a RECORDED ACTION in 2026 restricting, pausing,
-       capping, denying or refusing to advance a data center or the incentive a data center
-       depended on.
-  IN:  a body that DECLINED to restrict, counted separately, because a deck that only counts one
-       direction is arguing rather than recording.
+  IN:  a Texas governmental body that took a RECORDED 2026 ACTION AIMED AT A DATA CENTER, or at
+       the incentive one depended on. Denying a permit, an abatement or a zone. Capping its
+       water. Asking a disclosure of it. Directing staff to draft rules for it. Starting the
+       statutory process toward a moratorium on it.
+       FORCE IS NOT PART OF THIS RULE, and the omission is the point. Whether these actions
+       bind anything is the deck's whole subject, so a set defined by force would settle the
+       question in the selection and then report the answer back as a finding. An earlier
+       wording of this rule said "restricting, pausing, capping, denying or refusing to
+       advance", which three of the seven members do not meet, and a scorer was right to say
+       so: Lubbock asks a disclosure, Corpus Christi directs staff, Fort Worth starts a
+       process. The set did not change. The sentence describing it was wrong.
+  IN:  a body that had such an action in front of it and DID NOT take it, counted separately,
+       because a deck that only counts one direction is arguing rather than recording.
   OUT: an item where a data center is merely discussed, received, or scheduled.
 """
-import json, pathlib, collections
+import json, pathlib, collections, re
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 doc = json.loads((ROOT / "ledger/docket.json").read_text(encoding="utf-8"))
@@ -117,11 +125,23 @@ first_date, last_date = dates[0], dates[-1]
 span_days = (__import__("datetime").date.fromisoformat(last_date)
              - __import__("datetime").date.fromisoformat(first_date)).days
 
-# Brazoria: applications that died with the zone. This is NOT computed and must never say it is.
-# c11 states the composition, two entities named as data center companies and two named as power
-# companies, and the count follows from that sentence rather than from any structure in the
-# ledger. Its declaration carries `value_from: c11` for the same reason.
-brazoria_apps = 2 + 2      # c11, two data center companies and two power companies
+# BRAZORIA: the applications that died with the zone. This was typed as `2 + 2` for three
+# rounds, sourced to a prose sentence in c11, and a scorer was right to call it out: on a
+# product whose first law is that the model is never the calculator, the deck's second most
+# prominent number was the one number a person had counted. It is counted here instead.
+#
+# Brazoria County publishes its agenda system through Legistar's open API. An abatement
+# application rides on a NAMED reinvestment zone, and the court refused Zone No. 26-01 on
+# March 10th, so the applications that died with it are exactly the applicants whose hearing
+# orders name that zone. The API response is snapshotted beside this file so the count can be
+# re-derived from the same bytes.
+_BZ = json.loads((ROOT / "out/2026-08-25/brazoria_matters.json").read_text(encoding="utf-8"))
+_BZ_RE = re.compile(r"Tax Abatement Application of (.+?) - Brazoria County Reinvestment Zone No\. 26-01")
+brazoria_applicants = sorted({m.group(1).strip()
+                              for t in (x.get("MatterTitle") or "" for x in _BZ)
+                              for m in [_BZ_RE.search(t)] if m})
+brazoria_apps = len(brazoria_applicants)
+assert brazoria_apps, "no Brazoria matter names Reinvestment Zone No. 26-01, so the count cannot be published"
 brazoria_vote = "5 to 0"
 
 # BINDING FORCE. The flow critic caught frame 5 saying "most", which is a quantifier standing in
@@ -178,36 +198,40 @@ chronology = [{"date": ordered_on(i), "place": RESTRICTED[i][0], "shape": RESTRI
                "claim": RESTRICTED[i][2], "item": i} for i in sorted(RESTRICTED, key=ordered_on)]
 
 out = {
-  "restricted_count":  {"value": restricted_n, "rule": "Texas governmental bodies in the record that took a recorded 2026 action restricting, pausing, capping or denying a data center or its incentive",
+  "restricted_count":  {"value": restricted_n, "rule": "Texas governmental bodies in the record that took a recorded 2026 action aimed at a data center or at the incentive one depended on, of any binding force",
                         "from_items": sorted(RESTRICTED)},
-  "declined_count":    {"value": declined_n, "rule": "bodies in the record that considered a restriction and declined it",
+  "declined_count":    {"value": declined_n, "rule": "bodies that had such an action in front of them and did not take it",
                         "from_items": sorted(DECLINED)},
   "total_count":       {"value": total_n, "rule": "restricted plus declined"},
   "stated_nonbinding": {"value": len(STATED_NONBINDING),
-                        "rule": "restricting bodies whose own source states the action does not bind",
+                        "rule": "acting bodies whose own source states the action does not bind",
                         "from_items": sorted(STATED_NONBINDING)},
   "stated_binding":    {"value": len(STATED_BINDING),
-                        "rule": "restricting bodies whose record shows the action changed a legal state on the day",
+                        "rule": "acting bodies whose record shows the action changed a legal state on the day",
                         "from_items": sorted(STATED_BINDING)},
   "force_unstated":    {"value": restricted_n - len(STATED_NONBINDING) - len(STATED_BINDING),
-                        "rule": "restricting bodies the record says nothing about either way",
+                        "rule": "acting bodies the record says nothing about either way",
                         "from_items": sorted(set(RESTRICTED) - set(STATED_NONBINDING) - set(STATED_BINDING))},
-  "late_cluster":      {"value": late_n, "rule": "the later half of the restricting bodies by ordered date, floor divided, so %d of %d" % (late_n, restricted_n)},
+  "late_cluster":      {"value": late_n, "rule": "the later half of the acting bodies by ordered date, floor divided, so %d of %d" % (late_n, restricted_n)},
   "late_span":         {"value": late_span,
                         "rule": "days from the %dth from last ordered action to the last, MEASURED after the half was chosen" % late_n,
                         "from_items": sorted(RESTRICTED, key=ordered_on)[-late_n:]},
   "still_dated":       {"value": len(still_dated),
                         "rule": "of the ten bodies this deck carries, those whose key_dates hold a step on or after 2026-08-25",
                         "from_items": still_dated},
-  "chronology":        {"value": len(chronology), "rule": "the restricting actions in the order they happened",
+  "chronology":        {"value": len(chronology), "rule": "the actions in the order they happened",
                         "marks": chronology},
-  "distinct_shapes":   {"value": shapes_n, "rule": "distinct kinds of restriction among the restricting bodies",
+  "distinct_shapes":   {"value": shapes_n, "rule": "distinct kinds of action among the acting bodies",
                         "shapes": sorted({s for _, s, _c in RESTRICTED.values()}),
                         "backed_by": {p: [s, c] for p, s, c in RESTRICTED.values()}},
-  "first_action_date": {"value": first_date, "rule": "earliest ORDERED date among the restricting items, the date a body acted"},
-  "last_action_date":  {"value": last_date,  "rule": "latest ORDERED date among the restricting items"},
+  "first_action_date": {"value": first_date, "rule": "earliest ORDERED date among the acting items, the date a body acted"},
+  "last_action_date":  {"value": last_date,  "rule": "latest ORDERED date among the acting items"},
   "span_days":         {"value": span_days,  "rule": "days from first_action_date to last_action_date"},
-  "brazoria_applications": {"value": brazoria_apps, "value_from": "c11", "rule": "abatement applications the Brazoria zone carried, per the item summary", "from_items": ["tx-2026-0051"]},
+  "brazoria_applications": {"value": brazoria_apps,
+                        "rule": "distinct applicants whose Brazoria County hearing orders name Reinvestment Zone No. 26-01, the zone the court refused on March 10th, counted from the county's own Legistar matter titles",
+                        "applicants": brazoria_applicants,
+                        "source": "https://webapi.legistar.com/v1/brazoriacountytx/matters",
+                        "from_items": ["tx-2026-0051"]},
   "brazoria_vote":     {"value": brazoria_vote, "rule": "quoted from tx-2026-0051-c1"},
   "docket_items":      {"value": len(items), "rule": "items in ledger/docket.json"},
   # A director checked this against claims.json and found "three agendas" stated nowhere in it.

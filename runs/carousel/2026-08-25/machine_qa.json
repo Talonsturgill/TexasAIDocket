@@ -77,15 +77,15 @@
       "file": "slide-06.html",
       "fails": [],
       "warns": [
-        "tiny-text: 'BRAZORIA COUNTY, C9THE ZONE THEY STOOD ON' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: 'SAN ANGELO, C12CAPPED BY ORDINANCE' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))"
+        "tiny-text: 'BRAZORIA COUNTY, C9 THE ZONE THEY STOOD ON' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'SAN ANGELO, C32 ORDINANCE 2026-078' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))"
       ],
       "bands": [
-        0.4664,
-        0.437,
-        0.4871
+        0.4643,
+        0.3887,
+        0.454
       ],
-      "band_ratio": 1.0486
+      "band_ratio": 1.0402
     },
     {
       "file": "slide-07.html",
@@ -107,27 +107,27 @@
       "file": "slide-08.html",
       "fails": [],
       "warns": [
-        "top-loaded composition: the bottom third carries 69% of this slide's own average craft density (top 51% / mid 57% / bottom 32% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "top-loaded composition: the bottom third carries 71% of this slide's own average craft density (top 51% / mid 57% / bottom 33% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
         "tiny-text: 'A commissioner referenced a $100 million lawsuit f' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: 'TOM GREEN COUNTY, C15 AND C16REPORTED SPEECH ABOUT' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'TOM GREEN COUNTY, C15 AND C16 REPORTED SPEECH ABOU' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
         "tiny-text: '\"no action taken\"' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))",
         "tiny-text: 'The water board denied a petition asking it to pro' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: 'LAREDO MATTER HISTORY, C143 AGENDAS' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'LAREDO MATTER HISTORY, C14' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
         "tiny-text: 'TEXAS WATER DEVELOPMENT BOARD, C29' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
         "worst-point contrast 4.2 on 'Ten bodies in this record took one up. S' (box mean 5.0) -- below the rubric's 4.5 line somewhere along the run of the text"
       ],
       "bands": [
         0.5147,
         0.5672,
-        0.318
+        0.3272
       ],
-      "band_ratio": 0.6915
+      "band_ratio": 0.7063
     },
     {
       "file": "slide-09.html",
       "fails": [],
       "warns": [
-        "tiny-text: 'THE CITY'S OWN WORDING IS A DEADLINERATHER THAN A ' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'THE CITY'S OWN WORDING IS A DEADLINE RATHER THAN A' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
         "tiny-text: 'CITY OF FORT WORTH, C24' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))"
       ],
       "bands": [

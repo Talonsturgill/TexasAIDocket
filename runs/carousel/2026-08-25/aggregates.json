@@ -201,6 +201,51 @@
     "c29"
    ],
    "computed_by": "out/2026-08-25/compute.py, still_dated over total_count, the bodies among the ten whose key_dates in ledger/docket.json hold a step on or after 2026-08-25"
+  },
+  {
+   "phrase": "MARCH 10TH TO AUGUST 11TH",
+   "kind": "span",
+   "value": 154,
+   "from_date": "2026-03-10",
+   "to_date": "2026-08-11",
+   "from_claims": [
+    "c17",
+    "c5",
+    "c9",
+    "c12",
+    "c31",
+    "c30",
+    "c22"
+   ],
+   "computed_by": "out/2026-08-25/compute.py, first_action_date and last_action_date, the earliest and latest ORDERED key_date among the seven acting items"
+  },
+  {
+   "phrase": "154 DAYS",
+   "kind": "duration",
+   "value": 154,
+   "from_date": "2026-03-10",
+   "to_date": "2026-08-11",
+   "from_claims": [
+    "c17",
+    "c5",
+    "c9",
+    "c12",
+    "c31",
+    "c30",
+    "c22"
+   ],
+   "computed_by": "out/2026-08-25/compute.py, span_days, days from first_action_date to last_action_date"
+  },
+  {
+   "phrase": "8.0 gallons",
+   "kind": "count",
+   "value": 8,
+   "from_claims": [
+    "c32"
+   ],
+   "quoted_from": "c32",
+   "quote": "shall not exceed 8.0 gallons per square foot",
+   "computed_by": "not computed. Quoted from Ordinance 2026-078 itself, c32"
   }
  ]
 }
