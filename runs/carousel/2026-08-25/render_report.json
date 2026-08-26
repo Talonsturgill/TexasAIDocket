@@ -85,7 +85,7 @@
           "anc": []
         },
         {
-          "text": "Fifteen actions. Six took effect.",
+          "text": "Fifteen actions. Five, five and five.",
           "x": 256,
           "y": 424,
           "w": 566,
@@ -106,7 +106,7 @@
             [
               256,
               492,
-              465,
+              554,
               88
             ]
           ],
@@ -147,12 +147,12 @@
           "anc": []
         },
         {
-          "text": "15",
+          "text": "5",
           "x": 256,
-          "y": 848,
+          "y": 796,
           "w": 120,
-          "h": 92,
-          "font_px": 92,
+          "h": 66,
+          "font_px": 66,
           "weight": "700",
           "family": "JetBrains Mono",
           "color": "rgb(42, 38, 34)",
@@ -160,21 +160,21 @@
           "overlap_ok": false,
           "lines": [
             [
-              273,
-              833,
-              103,
-              122
+              339,
+              785,
+              37,
+              87
             ]
           ],
           "anc": []
         },
         {
-          "text": "ACTED",
-          "x": 402,
-          "y": 894,
-          "w": 107,
-          "h": 30,
-          "font_px": 30,
+          "text": "TOOK EFFECT",
+          "x": 398,
+          "y": 832,
+          "w": 203,
+          "h": 26,
+          "font_px": 26,
           "weight": "500",
           "family": "JetBrains Mono",
           "color": "rgb(106, 100, 89)",
@@ -182,21 +182,21 @@
           "overlap_ok": false,
           "lines": [
             [
-              402,
-              889,
-              107,
-              40
+              398,
+              827,
+              203,
+              35
             ]
           ],
           "anc": []
         },
         {
-          "text": "6",
+          "text": "5",
           "x": 256,
-          "y": 944,
+          "y": 866,
           "w": 120,
-          "h": 92,
-          "font_px": 92,
+          "h": 66,
+          "font_px": 66,
           "weight": "700",
           "family": "JetBrains Mono",
           "color": "rgb(42, 38, 34)",
@@ -204,21 +204,21 @@
           "overlap_ok": false,
           "lines": [
             [
-              324,
-              929,
-              52,
-              122
+              339,
+              855,
+              37,
+              87
             ]
           ],
           "anc": []
         },
         {
-          "text": "IN EFFECT",
-          "x": 402,
-          "y": 990,
-          "w": 192,
-          "h": 30,
-          "font_px": 30,
+          "text": "STOPS NOTHING",
+          "x": 398,
+          "y": 902,
+          "w": 240,
+          "h": 26,
+          "font_px": 26,
           "weight": "500",
           "family": "JetBrains Mono",
           "color": "rgb(106, 100, 89)",
@@ -226,10 +226,76 @@
           "overlap_ok": false,
           "lines": [
             [
-              402,
-              985,
-              192,
-              40
+              398,
+              897,
+              240,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "5",
+          "x": 256,
+          "y": 936,
+          "w": 120,
+          "h": 66,
+          "font_px": 66,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(42, 38, 34)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              339,
+              925,
+              37,
+              87
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SOURCES SILENT",
+          "x": 398,
+          "y": 972,
+          "w": 258,
+          "h": 26,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(106, 100, 89)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              398,
+              967,
+              258,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "C36, C37, C38, C40 AND C45 SAY NEITHER",
+          "x": 256,
+          "y": 1012,
+          "w": 565,
+          "h": 24,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(110, 105, 95)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              256,
+              1008,
+              565,
+              31
             ]
           ],
           "anc": []
@@ -264,7 +330,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2193,
+      "render_ms": 1943,
       "ok": true,
       "canvases": [
         {
@@ -865,7 +931,7 @@
           ]
         },
         {
-          "text": "Framework adopted EL PASO, C39",
+          "text": "Framework approved EL PASO, C38",
           "x": 566,
           "y": 684,
           "w": 368,
@@ -880,14 +946,14 @@
             [
               590,
               681,
-              249,
+              264,
               31
             ]
           ],
           "anc": []
         },
         {
-          "text": "EL PASO, C39",
+          "text": "EL PASO, C38",
           "x": 566,
           "y": 717,
           "w": 368,
@@ -1095,23 +1161,67 @@
           ]
         },
         {
-          "text": "A filled square marks the six that took effect that day.",
+          "text": "TOOK EFFECT",
           "x": 186,
           "y": 1086,
-          "w": 740,
-          "h": 32,
+          "w": 188,
+          "h": 31,
           "font_px": 24,
           "weight": "400",
-          "family": "Manrope",
-          "color": "rgb(81, 76, 68)",
+          "family": "JetBrains Mono",
+          "color": "rgb(74, 70, 60)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              186,
-              1085,
-              582,
-              33
+              210,
+              1086,
+              164,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "STOPS NOTHING",
+          "x": 418,
+          "y": 1086,
+          "w": 217,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(74, 70, 60)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              442,
+              1086,
+              193,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "NOT STATED",
+          "x": 679,
+          "y": 1086,
+          "w": 173,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(74, 70, 60)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              703,
+              1086,
+              149,
+              31
             ]
           ],
           "anc": []
@@ -1159,50 +1269,11 @@
         {
           "kind": "border",
           "x": 186,
-          "y": 623,
-          "w": 13,
-          "h": 1,
-          "by": "nb",
-          "color": "rgb(140, 133, 120)",
-          "decorative": false,
-          "skip": [
-            6
-          ]
-        },
-        {
-          "kind": "border",
-          "x": 186,
           "y": 635,
           "w": 13,
           "h": 1,
-          "by": "nb",
-          "color": "rgb(140, 133, 120)",
-          "decorative": false,
-          "skip": [
-            6
-          ]
-        },
-        {
-          "kind": "border",
-          "x": 186,
-          "y": 623,
-          "w": 1,
-          "h": 13,
-          "by": "nb",
-          "color": "rgb(140, 133, 120)",
-          "decorative": false,
-          "skip": [
-            6
-          ]
-        },
-        {
-          "kind": "border",
-          "x": 198,
-          "y": 623,
-          "w": 1,
-          "h": 13,
-          "by": "nb",
-          "color": "rgb(140, 133, 120)",
+          "by": "us",
+          "color": "rgb(168, 162, 150)",
           "decorative": false,
           "skip": [
             6
@@ -1289,50 +1360,11 @@
         {
           "kind": "border",
           "x": 186,
-          "y": 895,
-          "w": 13,
-          "h": 1,
-          "by": "nb",
-          "color": "rgb(140, 133, 120)",
-          "decorative": false,
-          "skip": [
-            14
-          ]
-        },
-        {
-          "kind": "border",
-          "x": 186,
           "y": 907,
           "w": 13,
           "h": 1,
-          "by": "nb",
-          "color": "rgb(140, 133, 120)",
-          "decorative": false,
-          "skip": [
-            14
-          ]
-        },
-        {
-          "kind": "border",
-          "x": 186,
-          "y": 895,
-          "w": 1,
-          "h": 13,
-          "by": "nb",
-          "color": "rgb(140, 133, 120)",
-          "decorative": false,
-          "skip": [
-            14
-          ]
-        },
-        {
-          "kind": "border",
-          "x": 198,
-          "y": 895,
-          "w": 1,
-          "h": 13,
-          "by": "nb",
-          "color": "rgb(140, 133, 120)",
+          "by": "us",
+          "color": "rgb(168, 162, 150)",
           "decorative": false,
           "skip": [
             14
@@ -1417,13 +1449,13 @@
           ]
         },
         {
-          "kind": "fill",
+          "kind": "border",
           "x": 566,
-          "y": 623,
+          "y": 635,
           "w": 13,
-          "h": 13,
-          "by": "bd",
-          "color": "rgb(42, 38, 34)",
+          "h": 1,
+          "by": "us",
+          "color": "rgb(168, 162, 150)",
           "decorative": false,
           "skip": [
             22
@@ -1432,50 +1464,11 @@
         {
           "kind": "border",
           "x": 566,
-          "y": 691,
-          "w": 13,
-          "h": 1,
-          "by": "nb",
-          "color": "rgb(140, 133, 120)",
-          "decorative": false,
-          "skip": [
-            24
-          ]
-        },
-        {
-          "kind": "border",
-          "x": 566,
           "y": 703,
           "w": 13,
           "h": 1,
-          "by": "nb",
-          "color": "rgb(140, 133, 120)",
-          "decorative": false,
-          "skip": [
-            24
-          ]
-        },
-        {
-          "kind": "border",
-          "x": 566,
-          "y": 691,
-          "w": 1,
-          "h": 13,
-          "by": "nb",
-          "color": "rgb(140, 133, 120)",
-          "decorative": false,
-          "skip": [
-            24
-          ]
-        },
-        {
-          "kind": "border",
-          "x": 578,
-          "y": 691,
-          "w": 1,
-          "h": 13,
-          "by": "nb",
-          "color": "rgb(140, 133, 120)",
+          "by": "us",
+          "color": "rgb(168, 162, 150)",
           "decorative": false,
           "skip": [
             24
@@ -1640,60 +1633,99 @@
         {
           "kind": "border",
           "x": 566,
-          "y": 963,
-          "w": 13,
-          "h": 1,
-          "by": "nb",
-          "color": "rgb(140, 133, 120)",
-          "decorative": false,
-          "skip": [
-            32
-          ]
-        },
-        {
-          "kind": "border",
-          "x": 566,
           "y": 975,
           "w": 13,
           "h": 1,
-          "by": "nb",
-          "color": "rgb(140, 133, 120)",
+          "by": "us",
+          "color": "rgb(168, 162, 150)",
           "decorative": false,
           "skip": [
             32
           ]
         },
         {
-          "kind": "border",
-          "x": 566,
-          "y": 963,
-          "w": 1,
+          "kind": "fill",
+          "x": 186,
+          "y": 1096,
+          "w": 13,
           "h": 13,
-          "by": "nb",
-          "color": "rgb(140, 133, 120)",
+          "by": "bd",
+          "color": "rgb(42, 38, 34)",
           "decorative": false,
           "skip": [
-            32
+            34
           ]
         },
         {
           "kind": "border",
-          "x": 578,
-          "y": 963,
+          "x": 417.7,
+          "y": 1096,
+          "w": 13,
+          "h": 1,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            35
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 417.7,
+          "y": 1108,
+          "w": 13,
+          "h": 1,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            35
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 417.7,
+          "y": 1096,
           "w": 1,
           "h": 13,
           "by": "nb",
           "color": "rgb(140, 133, 120)",
           "decorative": false,
           "skip": [
-            32
+            35
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 429.7,
+          "y": 1096,
+          "w": 1,
+          "h": 13,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            35
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 679.1,
+          "y": 1108,
+          "w": 13,
+          "h": 1,
+          "by": "us",
+          "color": "rgb(168, 162, 150)",
+          "decorative": false,
+          "skip": [
+            36
           ]
         }
       ],
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1515,
+      "render_ms": 1256,
       "ok": true,
       "canvases": [
         {
@@ -2237,7 +2269,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1587,
+      "render_ms": 1505,
       "ok": true,
       "canvases": [
         {
@@ -2266,11 +2298,11 @@
       "fonts_missing": [],
       "text_nodes": [
         {
-          "text": "The council adopted a resolution that starts a process. February 16th is a tentative adoption vote, not the day a pause begins.",
+          "text": "The council adopted a resolution that starts a process. The city calls February 16th a tentative adoption vote. Sources differ on whether a pause would begin there.",
           "x": 254,
           "y": 464,
           "w": 383,
-          "h": 161,
+          "h": 233,
           "font_px": 27,
           "weight": "400",
           "family": "Manrope",
@@ -2287,20 +2319,32 @@
             [
               254,
               505,
-              344,
+              333,
               49
             ],
             [
               254,
-              542,
-              367,
-              47
+              543,
+              334,
+              46
             ],
             [
               254,
-              582,
-              304,
-              42
+              581,
+              358,
+              43
+            ],
+            [
+              254,
+              620,
+              327,
+              40
+            ],
+            [
+              254,
+              660,
+              63,
+              35
             ]
           ],
           "anc": []
@@ -2481,7 +2525,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1756,
+      "render_ms": 1397,
       "ok": true,
       "canvases": [
         {
@@ -2494,8 +2538,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 129.8,
-          "variance": 6818.6
+          "mean": 130,
+          "variance": 6840.8
         }
       ],
       "breather": false,
@@ -2755,7 +2799,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 942,
+      "render_ms": 971,
       "ok": true,
       "canvases": [
         {
@@ -2828,7 +2872,7 @@
           "anc": []
         },
         {
-          "text": "Six of the fifteen took effect",
+          "text": "Five of the fifteen took effect",
           "x": 96,
           "y": 168,
           "w": 640,
@@ -2843,7 +2887,7 @@
             [
               96,
               161,
-              594,
+              624,
               77
             ],
             [
@@ -2982,8 +3026,8 @@
         {
           "text": "SAN ANGELO",
           "x": 112,
-          "y": 778,
-          "w": 175,
+          "y": 784,
+          "w": 246,
           "h": 34,
           "font_px": 24,
           "weight": "500",
@@ -2994,7 +3038,7 @@
           "lines": [
             [
               112,
-              779,
+              785,
               146,
               31
             ]
@@ -3004,8 +3048,8 @@
         {
           "text": "ZONING",
           "x": 112,
-          "y": 812,
-          "w": 175,
+          "y": 818,
+          "w": 246,
           "h": 34,
           "font_px": 24,
           "weight": "500",
@@ -3016,7 +3060,7 @@
           "lines": [
             [
               112,
-              813,
+              819,
               95,
               31
             ]
@@ -3026,8 +3070,8 @@
         {
           "text": "C41",
           "x": 112,
-          "y": 846,
-          "w": 175,
+          "y": 852,
+          "w": 246,
           "h": 34,
           "font_px": 24,
           "weight": "500",
@@ -3038,7 +3082,7 @@
           "lines": [
             [
               112,
-              847,
+              853,
               48,
               31
             ]
@@ -3047,9 +3091,9 @@
         },
         {
           "text": "SAN ANGELO",
-          "x": 339,
-          "y": 778,
-          "w": 175,
+          "x": 414,
+          "y": 774,
+          "w": 246,
           "h": 34,
           "font_px": 24,
           "weight": "500",
@@ -3059,8 +3103,8 @@
           "overlap_ok": false,
           "lines": [
             [
-              339,
-              779,
+              414,
+              775,
               146,
               31
             ]
@@ -3069,9 +3113,9 @@
         },
         {
           "text": "SEWER",
-          "x": 339,
-          "y": 812,
-          "w": 175,
+          "x": 414,
+          "y": 808,
+          "w": 246,
           "h": 34,
           "font_px": 24,
           "weight": "500",
@@ -3081,8 +3125,8 @@
           "overlap_ok": false,
           "lines": [
             [
-              339,
-              813,
+              414,
+              809,
               79,
               31
             ]
@@ -3091,9 +3135,9 @@
         },
         {
           "text": "C43",
-          "x": 339,
-          "y": 846,
-          "w": 175,
+          "x": 414,
+          "y": 842,
+          "w": 246,
           "h": 34,
           "font_px": 24,
           "weight": "500",
@@ -3103,8 +3147,8 @@
           "overlap_ok": false,
           "lines": [
             [
-              339,
-              847,
+              414,
+              843,
               48,
               31
             ]
@@ -3113,9 +3157,9 @@
         },
         {
           "text": "SAN MARCOS",
-          "x": 566,
-          "y": 778,
-          "w": 175,
+          "x": 728,
+          "y": 788,
+          "w": 246,
           "h": 34,
           "font_px": 24,
           "weight": "500",
@@ -3125,8 +3169,8 @@
           "overlap_ok": false,
           "lines": [
             [
-              566,
-              779,
+              728,
+              789,
               146,
               31
             ]
@@ -3135,9 +3179,9 @@
         },
         {
           "text": "INELIGIBLE",
-          "x": 566,
-          "y": 812,
-          "w": 175,
+          "x": 728,
+          "y": 822,
+          "w": 246,
           "h": 34,
           "font_px": 24,
           "weight": "500",
@@ -3147,8 +3191,8 @@
           "overlap_ok": false,
           "lines": [
             [
-              566,
-              813,
+              728,
+              823,
               158,
               31
             ]
@@ -3157,9 +3201,9 @@
         },
         {
           "text": "C35",
-          "x": 566,
-          "y": 846,
-          "w": 175,
+          "x": 728,
+          "y": 856,
+          "w": 246,
           "h": 34,
           "font_px": 24,
           "weight": "500",
@@ -3169,8 +3213,8 @@
           "overlap_ok": false,
           "lines": [
             [
-              566,
-              847,
+              728,
+              857,
               48,
               31
             ]
@@ -3178,73 +3222,7 @@
           "anc": []
         },
         {
-          "text": "HAYS COUNTY",
-          "x": 793,
-          "y": 778,
-          "w": 175,
-          "h": 34,
-          "font_px": 24,
-          "weight": "500",
-          "family": "JetBrains Mono",
-          "color": "rgb(42, 38, 34)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              793,
-              779,
-              161,
-              31
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "180 DAYS",
-          "x": 793,
-          "y": 812,
-          "w": 175,
-          "h": 34,
-          "font_px": 24,
-          "weight": "500",
-          "family": "JetBrains Mono",
-          "color": "rgb(107, 100, 89)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              793,
-              813,
-              127,
-              31
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "C36",
-          "x": 793,
-          "y": 846,
-          "w": 175,
-          "h": 34,
-          "font_px": 24,
-          "weight": "500",
-          "family": "JetBrains Mono",
-          "color": "rgb(107, 100, 89)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              793,
-              847,
-              48,
-              31
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "San Angelo wrote three of the six. On four of the fifteen the record says nothing about force either way.",
+          "text": "San Angelo wrote three of the five. On five of the fifteen the record says nothing about force either way.",
           "x": 96,
           "y": 936,
           "w": 800,
@@ -3259,7 +3237,7 @@
             [
               96,
               936,
-              770,
+              775,
               38
             ],
             [
@@ -3301,7 +3279,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2465,
+      "render_ms": 2198,
       "ok": true,
       "canvases": [
         {
@@ -3314,8 +3292,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 161.8,
-          "variance": 4293.7
+          "mean": 159.4,
+          "variance": 4035.7
         }
       ],
       "breather": false,
@@ -3701,7 +3679,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 801,
+      "render_ms": 713,
       "ok": true,
       "canvases": [
         {
@@ -4073,7 +4051,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 3515,
+      "render_ms": 3642,
       "ok": true,
       "canvases": [
         {
@@ -4204,7 +4182,7 @@
         {
           "text": "NOT LATER THAN",
           "x": 150,
-          "y": 582,
+          "y": 572,
           "w": 266,
           "h": 26,
           "font_px": 26,
@@ -4216,7 +4194,7 @@
           "lines": [
             [
               150,
-              577,
+              567,
               266,
               35
             ]
@@ -4226,7 +4204,7 @@
         {
           "text": "NOVEMBER 10TH",
           "x": 150,
-          "y": 626,
+          "y": 614,
           "w": 470,
           "h": 61,
           "font_px": 58,
@@ -4238,7 +4216,7 @@
           "lines": [
             [
               150,
-              618,
+              606,
               437,
               76
             ]
@@ -4248,9 +4226,9 @@
         {
           "text": "THE CITY'S OWN WORDING IS A DEADLINE RATHER THAN A FIXED DATE",
           "x": 150,
-          "y": 726,
+          "y": 700,
           "w": 500,
-          "h": 108,
+          "h": 96,
           "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
@@ -4260,19 +4238,19 @@
           "lines": [
             [
               150,
-              728,
+              700,
               434,
               31
             ],
             [
               150,
-              764,
+              732,
               129,
               31
             ],
             [
               150,
-              800,
+              764,
               386,
               31
             ]
@@ -4280,11 +4258,11 @@
           "anc": []
         },
         {
-          "text": "CITY OF FORT WORTH, C24",
+          "text": "CITY OF FORT WORTH, C24 READ FROM A REPRINT",
           "x": 150,
-          "y": 852,
-          "w": 386,
-          "h": 24,
+          "y": 790,
+          "w": 480,
+          "h": 67,
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
@@ -4294,8 +4272,14 @@
           "lines": [
             [
               150,
-              848,
+              791,
               386,
+              31
+            ],
+            [
+              150,
+              825,
+              319,
               31
             ]
           ],
@@ -4365,7 +4349,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2232,
+      "render_ms": 2027,
       "ok": true,
       "canvases": [
         {

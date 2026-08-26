@@ -16,7 +16,7 @@
     "c35",
     "c36",
     "c37",
-    "c39",
+    "c38",
     "c40",
     "c41",
     "c43",
@@ -24,17 +24,6 @@
    ],
    "computed_by": "out/2026-08-25/compute.py, first_action_date and last_action_date over the acting items",
    "value": 156
-  },
-  {
-   "phrase": "180 DAYS",
-   "kind": "duration",
-   "value": 180,
-   "from_claims": [
-    "c36"
-   ],
-   "quoted_from": "c36",
-   "quote": "a 180 day emergency water protection review period",
-   "computed_by": "not computed. Quoted from c36, the review period Hays County's court set. Frame 6 prints it on the slip for the sixth binding action"
   },
   {
    "phrase": "8.0 gallons",
@@ -62,7 +51,7 @@
     "c35",
     "c36",
     "c37",
-    "c39",
+    "c38",
     "c40",
     "c41",
     "c43",
@@ -99,7 +88,7 @@
     "c35",
     "c36",
     "c37",
-    "c39",
+    "c38",
     "c40",
     "c41",
     "c43",
@@ -122,7 +111,7 @@
     "c35",
     "c36",
     "c37",
-    "c39",
+    "c38",
     "c40",
     "c41",
     "c43",
@@ -143,6 +132,17 @@
     "c18"
    ],
    "computed_by": "out/2026-08-25/compute.py, stated_nonbinding over restricted_count. acting bodies whose own source says the action does not bind"
+  },
+  {
+   "phrase": "Four abatement applications",
+   "kind": "count",
+   "value": 4,
+   "from_claims": [
+    "c9",
+    "c10",
+    "c11"
+   ],
+   "computed_by": "out/2026-08-25/compute.py, brazoria_applications. Distinct applicants whose Brazoria County hearing orders name Reinvestment Zone No. 26-01, counted off the county's own Legistar matter titles in out/2026-08-25/brazoria_matters.json"
   },
   {
    "phrase": "Four applications",
@@ -171,7 +171,7 @@
     "c35",
     "c36",
     "c37",
-    "c39",
+    "c38",
     "c40",
     "c41",
     "c43",
@@ -195,7 +195,7 @@
     "c35",
     "c36",
     "c37",
-    "c39",
+    "c38",
     "c40",
     "c41",
     "c43",
@@ -220,21 +220,6 @@
    "computed_by": "out/2026-08-25/compute.py, busiest_month_count. acting dates falling in June"
   },
   {
-   "phrase": "Six of the fifteen",
-   "kind": "ratio",
-   "value": 6,
-   "of": 15,
-   "from_claims": [
-    "c9",
-    "c32",
-    "c41",
-    "c43",
-    "c35",
-    "c36"
-   ],
-   "computed_by": "out/2026-08-25/compute.py, stated_binding over restricted_count. actions that changed a legal state on the day"
-  },
-  {
    "phrase": "Twelve Texas local governments",
    "kind": "count",
    "value": 12,
@@ -249,7 +234,7 @@
     "c35",
     "c36",
     "c37",
-    "c39",
+    "c38",
     "c40",
     "c41",
     "c43",
@@ -258,28 +243,39 @@
    "computed_by": "out/2026-08-25/compute.py, acting_bodies. distinct places among the acting items"
   },
   {
-   "phrase": "Two of the fifteen",
+   "phrase": "Two of the five",
    "kind": "ratio",
    "value": 2,
-   "of": 15,
+   "of": 5,
    "from_claims": [
     "c37",
     "c45"
    ],
-   "computed_by": "out/2026-08-25/compute.py, approvals over restricted_count. acting items whose own claim records an approval rather than a restriction"
+   "computed_by": "out/2026-08-25/compute.py, approvals over stated_binding. acting items whose cited claim records an approval, both of which sit inside the five the record does not speak to"
   },
   {
-   "phrase": "four of the fifteen",
+   "phrase": "five of the fifteen",
    "kind": "ratio",
-   "value": 4,
+   "value": 5,
    "of": 15,
    "from_claims": [
-    "c40",
-    "c39",
+    "c5",
+    "c9",
+    "c17",
+    "c22",
+    "c30",
+    "c31",
+    "c32",
+    "c35",
+    "c36",
     "c37",
+    "c38",
+    "c40",
+    "c41",
+    "c43",
     "c45"
    ],
-   "computed_by": "out/2026-08-25/compute.py, force_unstated over restricted_count. acting bodies the record says nothing about either way"
+   "computed_by": "out/2026-08-25/compute.py, stated_binding over restricted_count. the record splits the fifteen evenly and each third is five, so the ratio is the same figure whichever third the sentence names"
   },
   {
    "phrase": "one year",
@@ -324,7 +320,7 @@
     "c35",
     "c36",
     "c37",
-    "c39",
+    "c38",
     "c40",
     "c41",
     "c42",
@@ -367,7 +363,7 @@
     "c35",
     "c36",
     "c37",
-    "c39",
+    "c38",
     "c40",
     "c41",
     "c42",
@@ -379,16 +375,16 @@
    "computed_by": "scripts/carousel/sources_block.py, provenance_line over one claim per distinct document. Counted again here off the published block's own URLs"
   },
   {
-   "phrase": "three of the six",
+   "phrase": "three of the five",
    "kind": "ratio",
    "value": 3,
-   "of": 6,
+   "of": 5,
    "from_claims": [
     "c32",
     "c41",
     "c43"
    ],
-   "computed_by": "out/2026-08-25/compute.py, busiest_body_binding over stated_binding. how many of the binding actions San Angelo wrote"
+   "computed_by": "out/2026-08-25/compute.py, busiest_body_binding over stated_binding. how many of the actions that took effect San Angelo wrote"
   },
   {
    "phrase": "two public hearings",

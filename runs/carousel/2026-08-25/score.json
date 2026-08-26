@@ -1,37 +1,37 @@
 {
- "weighted_score": 6.72,
+ "weighted_score": 6.904,
  "judges": [
-  6.52,
-  7.14,
-  6.36
+  6.99,
+  7.004,
+  6.47
  ],
- "spread": 0.78,
+ "spread": 0.534,
  "criteria": {
   "artwork_craft": {
-   "score": 6.0,
+   "score": 6.4,
    "weight": 0.28,
    "judges": [
-    6.0,
-    6.2,
+    7.0,
+    6.4,
     6.0
    ]
   },
   "claim_integrity": {
-   "score": 7.5,
+   "score": 7.0,
    "weight": 0.2,
    "judges": [
     6.5,
-    7.6,
-    7.5
+    7.5,
+    7.0
    ]
   },
   "story_and_stakes": {
-   "score": 6.5,
+   "score": 7.4,
    "weight": 0.18,
    "judges": [
-    6.5,
+    7.5,
     7.4,
-    6.0
+    7.0
    ]
   },
   "sequence_and_momentum": {
@@ -39,26 +39,26 @@
    "weight": 0.12,
    "judges": [
     7.0,
-    7.6,
+    7.0,
     6.0
    ]
   },
   "voice": {
-   "score": 6.5,
+   "score": 7.0,
    "weight": 0.12,
    "judges": [
-    6.5,
-    7.2,
-    6.5
+    7.0,
+    7.0,
+    5.5
    ]
   },
   "variety": {
-   "score": 7.5,
+   "score": 7.0,
    "weight": 0.1,
    "judges": [
-    7.5,
-    7.8,
-    6.0
+    7.0,
+    7.0,
+    7.5
    ]
   }
  },
@@ -68,10 +68,8 @@
  "threshold": 7.0,
  "over_threshold": false,
  "method": "per-criterion median across three judges, then weighted by the rubric",
- "hold_reason": "no judge found a hard fail, and the median 6.72 is under the rubric's 7.0 bar. This is a HOLD. Keep working the deck",
- "note": "the judges disagree by 0.78, which is wider than 0.75. The deck is not understood yet and the disagreement is worth more than the median. Read the outlier's reasoning before acting on the number",
+ "hold_reason": "no judge found a hard fail, and the median 6.904 is under the rubric's 7.0 bar. This is a HOLD. Keep working the deck",
  "contested": [
-  "sequence_and_momentum",
-  "variety"
+  "voice"
  ]
 }

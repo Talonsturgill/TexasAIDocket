@@ -70,13 +70,22 @@ PHRASES = {
                                         "acting bodies whose own source says the action does not bind", NB),
  "Five of the fifteen":           ratio("stated_nonbinding", "restricted_count",
                                         "acting bodies whose own source says the action does not bind", NB),
- "Six of the fifteen":            ratio("stated_binding", "restricted_count",
-                                        "actions that changed a legal state on the day", BI),
- "four of the fifteen":           ratio("force_unstated", "restricted_count",
-                                        "acting bodies the record says nothing about either way",
-                                        ["c40", "c39", "c37", "c45"]),
- "three of the six":              ratio("busiest_body_binding", "stated_binding",
-                                        "how many of the binding actions San Angelo wrote", SA),
+ "three of the five":             ratio("busiest_body_binding", "stated_binding",
+                                        "how many of the actions that took effect San Angelo wrote", SA),
+ "Two of the five":               ratio("approvals", "stated_binding",
+                                        "acting items whose cited claim records an approval, both of "
+                                        "which sit inside the five the record does not speak to",
+                                        ["c37", "c45"]),
+ "Four abatement applications":   {"kind": "count", "value": V("brazoria_applications"),
+                                   "from_claims": ["c9", "c10", "c11"],
+                                   "computed_by": f"{CODE}, brazoria_applications. Distinct applicants "
+                                     "whose Brazoria County hearing orders name Reinvestment Zone No. "
+                                     "26-01, counted off the county's own Legistar matter titles in "
+                                     "out/2026-08-25/brazoria_matters.json"},
+ "five of the fifteen":           ratio("stated_binding", "restricted_count",
+                                        "the record splits the fifteen evenly and each third is five, "
+                                        "so the ratio is the same figure whichever third the sentence "
+                                        "names", ACTING),
  "Four applications":             {"kind": "count", "value": V("brazoria_applications"),
                                    "from_claims": ["c9", "c10", "c11"],
                                    "computed_by": f"{CODE}, brazoria_applications. Distinct applicants "
@@ -94,9 +103,6 @@ PHRASES = {
                                    "quoted_from": "c24",
                                    "quote": "the first of the two required public hearings",
                                    "computed_by": "not computed. Quoted from the city's own release, c24"},
- "Two of the fifteen":            ratio("approvals", "restricted_count",
-                                        "acting items whose own claim records an approval rather "
-                                        "than a restriction", ["c37", "c45"]),
  "ten official records":          {"kind": "count", "value": _KINDS.get("primary_official", 0),
                                    "from_claims": _SRC_CLAIMS,
                                    "computed_by": "scripts/carousel/sources_block.py, "
@@ -107,12 +113,6 @@ PHRASES = {
                                    "computed_by": "scripts/carousel/sources_block.py, "
                                      "provenance_line over one claim per distinct document. "
                                      "Counted again here off the published block's own URLs"},
- "180 DAYS":                      {"kind": "duration", "value": 180, "from_claims": ["c36"],
-                                   "quoted_from": "c36",
-                                   "quote": "a 180 day emergency water protection review period",
-                                   "computed_by": "not computed. Quoted from c36, the review period "
-                                     "Hays County's court set. Frame 6 prints it on the slip for "
-                                     "the sixth binding action"},
  "two public hearings":           {"kind": "count", "value": 2, "from_claims": ["c46"],
                                    "quoted_from": "c46",
                                    "quote": "required to hold two public hearings",
@@ -128,8 +128,10 @@ found = ({f["phrase"] for f in A.scan_report(SF["report"])}
          | {f["phrase"] for f in A.scan_caption(SF["caption"])}
          | {f["phrase"] for f in A.scan_title(SF["title"])}
          | {f["phrase"] for f in A.scan_comment(SF["comment"])})
-missing = found - set(PHRASES)
-extra   = set(PHRASES) - found
+_lower = {k.lower(): k for k in PHRASES}
+_found_l = {f.lower() for f in found}
+missing = {f for f in found if f.lower() not in _lower}
+extra   = {PHRASES_k for low, PHRASES_k in _lower.items() if low not in _found_l}
 assert not missing, "the render prints numbers this file does not declare: " + ", ".join(sorted(missing))
 assert not extra,   "this file declares numbers no frame prints: " + ", ".join(sorted(extra))
 

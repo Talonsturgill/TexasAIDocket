@@ -96,7 +96,7 @@ ACTED = {
     "tx-2026-0065": ("San Angelo",       "cooling fill capped",   "c32"),
     "tx-2026-0043": ("Archer County",    "abatement denied",      "c5"),
     "tx-2026-0028": ("Hays County",      "review established",    "c36"),
-    "tx-2026-0033": ("El Paso",          "framework adopted",     "c39"),
+    "tx-2026-0033": ("El Paso",          "framework approved",    "c38"),
     "tx-2026-0050": ("Corpus Christi",   "staff directed",        "c30"),
     "tx-2026-0045": ("Lubbock County",   "disclosure asked",      "c31"),
     "tx-2026-0062": ("Fort Worth",       "process initiated",     "c22"),
@@ -256,14 +256,39 @@ STATED_NONBINDING = {
     "tx-2026-0062": ("Fort Worth",      "c22"),  # a resolution that STARTS a process, no pause today
     "tx-2026-0032": ("Killeen",         "c18"),  # the council, not the commission, decides
 }
+# FORCE IS READ OUT OF THE RECORD. 2026-08-26.
+#
+# This was a typed map of six and it never opened ledger/docket.json, which carries the exact
+# distinction as data: a `key_dates` entry of kind `effective`. Four of the six have one. Hays
+# County has `ordered 2026-06-23` and nothing else, no claim in claims.json speaks to its force,
+# and the instrument is a COUNTY RESOLUTION, which is the same thing frame 5 quotes a Lubbock
+# commissioner calling non-binding two frames earlier. The justification written on its line was
+# the participle in c36, "establishing" rather than "asking", which is a linguistic distinction
+# doing legal work.
+#
+# This deck's stated method is that silence about force is PUBLISHED rather than resolved, and
+# here the silence was resolved toward the headline. Hays falls into force_unstated, where the
+# record leaves it, and the count is five.
+_EFFECTIVE = {i["id"] for i in items
+              if any(k.get("kind") == "effective" for k in (i.get("key_dates") or []))}
 STATED_BINDING = {
-    "tx-2026-0051": ("Brazoria County", "c9"),   # the zone was refused and c10 shows four abatements died with it
-    "tx-2026-0065": ("San Angelo",      "c32"),  # a cap written into the water ordinance, in the ordinance's own words
-    "tx-2026-0066": ("San Angelo",      "c41"),  # the zoning ordinance passed and took effect the same day
-    "tx-2026-0067": ("San Angelo",      "c43"),  # Ordinance 2026-076, effective the day it was adopted
-    "tx-2026-0061": ("San Marcos",      "c35"),  # ineligible anywhere in the city, adopted and effective June 16th
-    "tx-2026-0028": ("Hays County",     "c36"),  # a 180 day review period established, not asked for
+    "tx-2026-0065": ("San Angelo",      "c32"),  # effective 2026-06-16 in the record
+    "tx-2026-0066": ("San Angelo",      "c41"),  # effective 2026-05-19 in the record
+    "tx-2026-0067": ("San Angelo",      "c43"),  # effective 2026-06-02 in the record
+    "tx-2026-0061": ("San Marcos",      "c35"),  # effective 2026-06-16 in the record
+    # A DENIAL CARRIES NO EFFECTIVE DATE because there is nothing to bring into effect, so this
+    # one is admitted on evidence instead of on a date: c10 records that four abatement items
+    # took no action BECAUSE the zone item failed. That is a legal state changed and observed in
+    # the county's own minutes, not inferred from a verb.
+    "tx-2026-0051": ("Brazoria County", "c9"),
 }
+_DENIAL = {"tx-2026-0051"}
+assert (set(STATED_BINDING) - _DENIAL) <= _EFFECTIVE, (
+    "every member but the denial must carry an `effective` key date in ledger/docket.json: "
+    + str(sorted((set(STATED_BINDING) - _DENIAL) - _EFFECTIVE)))
+assert "tx-2026-0028" not in STATED_BINDING, (
+    "Hays County carries no effective date and no claim speaks to its force. It belongs in "
+    "force_unstated and the deck publishes that silence")
 # The three the record does not speak to either way are Brazoria's conditions resolution, El
 # Paso's policy framework and the Wichita Falls approval, and the deck publishes that silence
 # rather than rounding it into one side. Round 4 had this set at zero and said so on a frame,

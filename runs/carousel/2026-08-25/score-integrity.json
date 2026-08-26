@@ -1,38 +1,38 @@
 {
  "lens": "integrity",
- "weighted_score": 6.52,
+ "weighted_score": 6.99,
  "criteria": {
   "artwork_craft": {
-   "score": 6.0,
+   "score": 7.0,
    "weight": 0.28,
-   "why": "three of nine frames ship a type defect visible at 432px; the storyboard declares L* 62 to 68 and one frame of nine is inside it"
+   "why": "nine genuinely distinct construction methods with measured light per frame; the declared mid value band shipped on one frame of nine"
   },
   "claim_integrity": {
    "score": 6.5,
    "weight": 0.2,
-   "why": "every numeral traces and all seven quotes are verbatim, but 'bind' is a stronger gloss than the rule that computed the six, and the first comment carries two undeclared counts on a surface no gate reads"
+   "why": "every round 9 fix landed and verifies against the artifacts; STATED_BINDING is a typed map that never reads the record's own effective key dates, and El Paso cites the claim that proves what was proposed"
   },
   "story_and_stakes": {
-   "score": 6.5,
+   "score": 7.5,
    "weight": 0.18,
-   "why": "names the body, county and instrument fifteen times, but a reader gets a date and no room, no way to speak and no route"
+   "why": "body, county, instrument and one dated route, with c46 printed so the hearing has a purpose; the door has a date and no handle"
   },
   "sequence_and_momentum": {
    "score": 7.0,
    "weight": 0.12,
-   "why": "real turn at 5 and inversion at 6, biggest measured junction at 2 to 3; frames 2 and 3 still do adjacent jobs"
+   "why": "a real turn at 5 and counter turn at 6 with a measured 21.5 L* drop into 7; the cover spends both numbers so 5 and 6 restate"
   },
   "voice": {
-   "score": 6.5,
+   "score": 7.0,
    "weight": 0.12,
-   "why": "dry and structural with no banned phrase; 'have teeth' is borrowed punch on a deck whose argument is precision"
+   "why": "dry and procedural, every house rule holds across nine frames and the caption; reads like a careful clerk rather than a Texan"
   },
   "variety": {
-   "score": 7.5,
+   "score": 7.0,
    "weight": 0.1,
-   "why": "register shares nothing with the last six decks, bespoke median 0.155 second lowest; six camera classes shipped where nine were declared"
+   "why": "Zdog new to the product, a new central object and a warmer register; the differentiator the plan leaned on is the one that did not ship"
   }
  },
  "hard_fails": [],
- "one_sentence_fix": "Rebuild frame 1 so its dek sits inside the bond sheet, and label the 6 with the computation's own words rather than BOUND."
+ "one_sentence_fix": "Derive STATED_BINDING from the effective key dates already in ledger/docket.json instead of a typed map."
 }

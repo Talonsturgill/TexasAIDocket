@@ -44,10 +44,9 @@
     ]
   },
   "stated_binding": {
-    "value": 6,
+    "value": 5,
     "rule": "acting bodies whose record shows the action changed a legal state on the day",
     "from_items": [
-      "tx-2026-0028",
       "tx-2026-0051",
       "tx-2026-0061",
       "tx-2026-0065",
@@ -56,9 +55,10 @@
     ]
   },
   "force_unstated": {
-    "value": 4,
+    "value": 5,
     "rule": "acting bodies the record says nothing about either way",
     "from_items": [
+      "tx-2026-0028",
       "tx-2026-0029",
       "tx-2026-0033",
       "tx-2026-0041",
@@ -167,8 +167,8 @@
       {
         "date": "2026-07-20",
         "place": "El Paso",
-        "shape": "framework adopted",
-        "claim": "c39",
+        "shape": "framework approved",
+        "claim": "c38",
         "item": "tx-2026-0033"
       },
       {

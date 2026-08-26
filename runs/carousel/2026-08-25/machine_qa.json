@@ -6,23 +6,21 @@
       "warns": [],
       "bands": [
         0.1702,
-        0.1975,
-        0.2371
+        0.2059,
+        0.25
       ],
-      "band_ratio": 1.1669
+      "band_ratio": 1.1873
     },
     {
       "file": "slide-02.html",
       "fails": [],
-      "warns": [
-        "worst-point contrast 4.3 on 'A filled square marks the six that took ' (box mean 4.7) -- below the rubric's 4.5 line somewhere along the run of the text"
-      ],
+      "warns": [],
       "bands": [
         0.2647,
         0.2962,
-        0.2335
+        0.2353
       ],
-      "band_ratio": 0.8864
+      "band_ratio": 0.8911
     },
     {
       "file": "slide-03.html",
@@ -39,14 +37,14 @@
       "file": "slide-04.html",
       "fails": [],
       "warns": [
-        "busy art under text (bg edge density 0.06) beneath 'The council adopted a resolution that st' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+        "busy art under text (bg edge density 0.08) beneath 'The council adopted a resolution that st' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
       ],
       "bands": [
         0.1324,
-        0.1996,
+        0.2164,
         0.1893
       ],
-      "band_ratio": 1.0852
+      "band_ratio": 1.053
     },
     {
       "file": "slide-05.html",
@@ -64,11 +62,11 @@
       "fails": [],
       "warns": [],
       "bands": [
-        0.5189,
-        0.313,
+        0.5252,
+        0.3109,
         0.4191
       ],
-      "band_ratio": 1.0048
+      "band_ratio": 1.0016
     },
     {
       "file": "slide-07.html",
@@ -98,13 +96,13 @@
       "warns": [],
       "bands": [
         0.1702,
-        0.145,
-        0.6765
+        0.1933,
+        0.6581
       ],
-      "band_ratio": 1.9537
+      "band_ratio": 1.854
     }
   ],
   "fails": 0,
-  "warns": 2,
+  "warns": 1,
   "verdict": "WARN"
 }

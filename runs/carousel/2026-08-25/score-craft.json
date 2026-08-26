@@ -1,38 +1,38 @@
 {
  "lens": "craft",
- "weighted_score": 7.14,
+ "weighted_score": 7.004,
  "criteria": {
   "artwork_craft": {
-   "score": 6.2,
+   "score": 6.4,
    "weight": 0.28,
-   "why": "frames 5 and 7 are genuinely made, but three frames print type off the edge of the paper it is printed on, and detail is spread evenly on 6 and 8 rather than budgeted"
+   "why": "frames 5, 7 and 9 are designed objects and frame 8's canopy and mirror fixes are real; the cover's declared Zdog never shipped, frame 6's three stocks are two with six one part pin shadows, and slide 2's dossier names its bracket in a corner the code does not draw"
   },
   "claim_integrity": {
-   "score": 7.6,
+   "score": 7.5,
    "weight": 0.2,
-   "why": "the four Brazoria applicant names survived a deliberate attempt to refute them and trace to snapshotted Legistar MatterTitles; frame 8 asserts two yeses and names one"
+   "why": "every frame numeral resolves in computed.json and quoted strings carry ids; frame 7 prints three renderings of one item number and c9 has two different glosses across two surfaces"
   },
   "story_and_stakes": {
    "score": 7.4,
    "weight": 0.18,
-   "why": "frame 9's foot finally carries the route via c46; it says a hearing exists and never says how a reader reaches it"
+   "why": "more concrete than anything in this ledger, fourteen places named; the one actionable item gives no room and no instruction, and nothing says what a data center does to a reader's water or power"
   },
   "sequence_and_momentum": {
-   "score": 7.6,
+   "score": 7.0,
    "weight": 0.12,
-   "why": "the -49.7 junction into frame 3 is the deck's best move and 5 is a true turn; 2 and 3 survey the same fifteen back to back"
+   "why": "measured junctions of -50.0 and +50.6 with the turn where doctrine says to put it; frames 2, 3 and 6 are three slicings of one set and the last third is flat"
   },
   "voice": {
-   "score": 7.2,
+   "score": 7.0,
    "weight": 0.12,
-   "why": "the thesis lands in one clean line and the house rules hold; nothing sounds like it came from Texas rather than about Texas"
+   "why": "clean, plain, on register, every house rule holding; register flat rather than Texan and the one line with a voice contradicts its own caption"
   },
   "variety": {
-   "score": 7.8,
+   "score": 7.0,
    "weight": 0.1,
-   "why": "bespoke median 0.155 and three techniques that have never shipped here; four frames on square-on-to-a-bordered-sheet"
+   "why": "bespoke median 0.1644, the lowest in the ledger; the deck's own avoid_next concedes four frames on one camera and a technique that did not ship"
   }
  },
  "hard_fails": [],
- "one_sentence_fix": "Make every text box a child of the paper geometry it prints on, inset by one shared margin token and clipped above the footer band."
+ "one_sentence_fix": "Make the dossier's technique, camera, focal box and value_structure measured against the render rather than written from the plan, and gate on it."
 }
