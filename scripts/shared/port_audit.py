@@ -302,6 +302,7 @@ def check_wiring(root: Path) -> Result:
             continue
         name = Path(script).name
         stem = Path(script).stem
+        modules = import_candidates(script)
         referenced = False
         for holder, text in haystack:
             if holder == script:
@@ -310,7 +311,9 @@ def check_wiring(root: Path) -> Result:
                 continue    # being named in a plan is not being wired into the machine; that
                             # confusion is exactly the failure this check exists to catch
             if invokes(text, name) or re.search(rf"\bimport\s+{re.escape(stem)}\b", text) \
-                    or re.search(rf"\bfrom\s+{re.escape(stem)}\s+import\b", text):
+                    or re.search(rf"\bfrom\s+{re.escape(stem)}\s+import\b", text) \
+                    or any(re.search(rf"\b(?:from|import)\s+{re.escape(module)}(?:\.|\b)",
+                                     text) for module in modules):
                 referenced = True
                 break
         if not referenced:
@@ -321,6 +324,23 @@ def check_wiring(root: Path) -> Result:
     if not orphans:
         r.note(f"all {len(scripts)} script(s) reachable")
     return r
+
+
+def import_candidates(script: str) -> tuple[str, ...]:
+    """Dotted names by which Python can reach a script inside a package.
+
+    A script launched from `scripts/site` imports `site_pages.watch`, not the repository path
+    `scripts.site.site_pages.watch`. Keep every suffix so the audit recognizes that real import
+    without teaching it one execution directory. Importing a child also reaches its package's
+    `__init__.py`, so the package candidate deliberately matches a following dot.
+    """
+    path = Path(script)
+    parts = list(path.with_suffix("").parts)
+    if parts and parts[-1] == "__init__":
+        parts.pop()
+    if parts and parts[0] in {"scripts", ".claude"}:
+        parts.pop(0)
+    return tuple(".".join(parts[index:]) for index in range(len(parts)) if parts[index:])
 
 
 def invokes(text: str, name: str) -> bool:
@@ -804,6 +824,20 @@ def self_test() -> int:
             "      - run: python3 scripts/a.py --self-test\n"
             "      - run: python3 scripts/a.py --collect\n", encoding="utf-8")
         expect("wiring accepts a real invocation in a workflow", check_wiring(root), "PASS")
+
+        # A PACKAGE IMPORT IS WIRING TOO. Page families are imported as dotted modules rather
+        # than executed by filename, and importing a child necessarily executes __init__.py.
+        # Treating both as orphans would push real modules onto STANDALONE_ALLOW, turning the
+        # allowlist into a way around the check rather than a list of manual entry points.
+        (root / "scripts" / "pkg").mkdir()
+        (root / "scripts" / "pkg" / "__init__.py").write_text("", encoding="utf-8")
+        (root / "scripts" / "pkg" / "page.py").write_text(
+            "def render(): return 'ok'\n", encoding="utf-8")
+        (root / "scripts" / "runner.py").write_text(
+            "from pkg.page import render\n", encoding="utf-8")
+        (root / "prompts" / "r.md").write_text(
+            "then run scripts/a.py and scripts/runner.py\n", encoding="utf-8")
+        expect("wiring accepts a dotted package import", check_wiring(root), "PASS")
         import shutil as _shutil
         _shutil.rmtree(root / ".github")
         (root / "prompts" / "r.md").write_text("then run scripts/a.py\n", encoding="utf-8")
