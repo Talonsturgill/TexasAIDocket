@@ -652,3 +652,26 @@ published 129 to 133 before catching it.
 **`tacc.utexas.edu` answered 403 to the research phase** and `interchange.puc.texas.gov` answered
 503 to one client and 200 to another within the same run. Both are fetcher outcomes and not crawl
 boundaries, so they stay here as observation until a second sighting.
+
+**`www.statesman.com` publishes a whole-host `Disallow: /` under `User-agent: ClaudeBot`.** Read
+before fetching, while looking for coverage published after the August 12th UT System meeting, and
+not fetched. That is the third host in four days carrying an agent block behind a permissive
+`User-agent: *`, after `lrl.texas.gov` and `dir.texas.gov`, and it is the reading order stated in
+the entry above earning its keep on the same day it was written.
+
+`communityimpact.com` carries no relevant disallow and served the report that settled it, at
+`communityimpact.com/austin/central-austin/development/2026/08/13/ut-system-regents-approve-first-phase-of-dell-medical-center/`.
+
+**UT System publishes a pre-meeting agenda book and, for this meeting, no minutes.** The August
+12th book is what a committee was ASKED to approve, and there is no document on `utsystem.edu`
+published after the meeting that says what the board did. So the fact that the regents approved
+Phase 1 is not establishable from the publisher at all this week, and the only source for it is
+journalism.
+
+**This is the source behaviour behind this run's second hard fail.** The record and four deck
+surfaces said the board voted, authorized and amended, every one of them citing the agenda book,
+which is a request. The bar the routine sets is primary sources over journalism, and on this fact
+the primary source cannot answer the question and the journalism can. **Prefer the primary document
+for what a body was asked to do and require a post-meeting source for what it did**, rather than
+reading a stronger verb out of the stronger source type. `public_access.how` on `tx-2026-0095` now
+states that no minutes exist.
