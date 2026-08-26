@@ -113,6 +113,19 @@ SHAPES = {
 # Strings that LOOK like an aggregate and are not, because they are quoted from a source or are
 # part of the site's own furniture. Each is a specific thing, never a pattern, so the exemption
 # cannot widen quietly.
+#
+# AND EACH EXEMPTS ITS OWN SPAN, NOT THE WHOLE LINE. 2026-08-26.
+#
+# `detect()` opened with `if EXEMPT.search(text): return []`, so ONE bare year anywhere in a
+# string exempted every figure in it. The first comment's head reads "Sources, ten official
+# records and ten news reports, fetched August 25th and 26th, 2026", and the 2026 at the end
+# silently exempted both counts at the front. Round 9's integrity judge found them by reading
+# the file rather than by running the gate, and was right that they match the count shape: they
+# do, and the gate threw them away before testing.
+#
+# The same veto was live on every frame. Any line carrying a year, a bill number or a claim
+# citation had all its figures exempted, which is most citation lines in this deck. Exemption is
+# by OVERLAP now, so "claim c9" still stops c9 being read as a count and stops nothing else.
 EXEMPT = re.compile(
     r"\b(?:"
     r"claim c\d+"                      # a citation
@@ -180,12 +193,17 @@ def detect(text: str, n_slides: int | None = None) -> list[dict]:
     detectors stay testable on a bare string, and absent it nothing is exempted, which is the
     safe direction.
     """
-    if EXEMPT.search(text):
-        return []
+    exempt = [(m.start(), m.end()) for m in EXEMPT.finditer(text)]
+
+    def is_exempt(a, b):
+        return any(a < e and b > st for st, e in exempt)
+
     raw = []
     for kind, rx in SHAPES.items():
         for m in rx.finditer(text):
             if is_slide_counter(text, m, kind, n_slides):
+                continue
+            if is_exempt(m.start(), m.end()):
                 continue
             raw.append({"kind": kind, "phrase": m.group(0).strip(),
                         "start": m.start(), "end": m.end()})
@@ -300,6 +318,37 @@ def _rederive_quoted(decl: dict, claims: dict, cid: str) -> tuple[bool, str]:
     return True, ""
 
 
+def _structural(decl: dict) -> tuple[bool, str]:
+    """The arithmetic a declaration carries in itself, independent of any claim id.
+
+    A ratio states a numerator and an `of`. A duration or a span states two ISO dates. Both can
+    be re-derived from the declaration alone, so both are checked whatever route the declaration
+    took. Only the COUNT's claim tally needs the `computed_by` exemption, because a count over
+    data legitimately has no claim per unit.
+    """
+    kind, stated = decl.get("kind"), decl.get("value")
+    if kind == "ratio":
+        whole = decl.get("of")
+        if not isinstance(whole, int) or whole <= 0:
+            return False, "a ratio must declare 'of', the size of the whole, as a positive int"
+        if not isinstance(stated, (int, float)) or stated > whole:
+            return False, f"{stated} of {whole} is not a ratio"
+    if kind in ("duration", "span"):
+        a, b = decl.get("from_date"), decl.get("to_date")
+        if not (a and b):
+            return False, f"a {kind} must declare from_date and to_date, both ISO"
+        try:
+            days = (_dt.date.fromisoformat(b) - _dt.date.fromisoformat(a)).days
+        except ValueError:
+            return False, f"from_date {a!r} or to_date {b!r} is not an ISO date"
+        if days < 0:
+            return False, f"to_date {b} is before from_date {a}"
+        if kind == "duration" and stated != days:
+            return False, (f"the slide says {stated} and {a} to {b} is {days} day(s). "
+                           f"A duration is the arithmetic, not a label on it")
+    return True, ""
+
+
 def rederive(decl: dict, claims: dict) -> tuple[bool, str]:
     """Recompute the declared aggregate from what it says it came from.
 
@@ -350,7 +399,19 @@ def rederive(decl: dict, claims: dict) -> tuple[bool, str]:
         if len(computed_by.split()) < 3:
             return False, (f"`computed_by` reads {computed_by!r}, which names no input. Say what "
                            f"was computed and from which file or field, so somebody can re-run it")
-        return True, ""
+        # `computed_by` IS NOT AN ESCAPE HATCH, and until 2026-08-26 it was. This branch returned
+        # True here, before any of the arithmetic below ran, so a declaration carrying a
+        # `computed_by` string got two weak checks and no re-derivation at all. A judge read the
+        # gate rather than its output and said so plainly: with every one of twenty entries
+        # carrying `computed_by`, "all re-derived" meant twenty prose notes of three words or
+        # more were present.
+        #
+        # The exemption it was built for is real and it is narrow. A COUNT computed over data
+        # has no reason to name one claim per unit counted: 254 counties is a len() over a
+        # topojson and there are not 254 claims, nor should there be. That exemption is kept.
+        # Everything that can be checked WITHOUT claim ids is now checked anyway.
+        ok, why = _structural(decl)
+        return (True, "") if ok else (False, why)
     if not ids:
         return False, ("declares neither `from_claims` nor `computed_by`. Every number the deck "
                        "computes traces to the claims it counted or to the code that produced it")
@@ -456,9 +517,64 @@ def scan_caption(text: str) -> list[dict]:
     return out
 
 
-def check(report: dict, declared: dict, claims: dict, caption: str = "") -> list[str]:
+def scan_comment(text: str) -> list[dict]:
+    """Every aggregate shape in the FIRST COMMENT, which is the fourth published surface.
+
+    WHY THIS EXISTS. 2026-08-26.
+
+    Round 9's integrity judge found "Sources, ten official records and ten news reports" at the
+    head of `first_comment.txt`: two computed counts, on the surface LinkedIn shows directly under
+    the post, matching this gate's own `count` shape, and unreachable by it. Both were correct,
+    which is the point. A correct number nothing checks is one edit away from a wrong number
+    nothing checks.
+
+    That is the third time in two days that this gate learned a surface late. The caption, then
+    the document title, now this. The docstring on `surfaces()` argues the fix belongs to the
+    class rather than the instance, and this is the class: EVERY surface a reader can see.
+
+    The source lines themselves are stripped first. Each is a citation with a date and a claim
+    id, and a date is not a computed figure. Only the prose head is read.
+    """
+    head = []
+    for line in (text or "").splitlines():
+        line = line.strip()
+        if not line or line.startswith("http") or re.search(r"\bc\d+\s*$", line):
+            continue
+        head.append(line)
+    return [{"slide": "first_comment.txt", "text": ln, **d}
+            for ln in head for d in detect(ln, None)]
+
+
+def scan_title(title: str) -> list[dict]:
+    """Every aggregate shape in the DOCUMENT TITLE, which is the third published surface.
+
+    WHY THIS EXISTS. 2026-08-26.
+
+    Round 8 recut the cover and the title stopped being a slide string. `copy.json` still carried
+    it, the PDF still printed it, the email still used it as its subject, and nothing scanned it
+    any more, because this gate reads the render report and the render report holds frames. The
+    title in front of it was "Fifteen ways to take up a data center", which is a count of the
+    acting bodies, and after the recut it was a computed figure on a published surface with no
+    declaration behind it and no check able to notice.
+
+    That is the caption defect one surface over, one round later. The lesson the caption fix
+    should have carried and did not is that the fix belongs to the CLASS: every surface a reader
+    can see is scanned, and a new surface is scanned the day it appears rather than the round
+    after a judge finds a number on it.
+
+    A title has no slide counter, so `n_slides` is None and nothing is exempted as furniture.
+    """
+    title = (title or "").strip()
+    return [{"slide": "document_title", "text": title, **d}
+            for d in detect(title, None)] if title else []
+
+
+def check(report: dict, declared: dict, claims: dict, caption: str = "",
+          title: str = "", comment: str = "") -> list[str]:
     problems = []
-    found = scan_report(report) + (scan_caption(caption) if caption else [])
+    found = (scan_report(report) + (scan_caption(caption) if caption else [])
+             + (scan_title(title) if title else [])
+             + (scan_comment(comment) if comment else []))
     decls = {d.get("phrase", "").strip().lower(): d for d in (declared.get("aggregates") or [])}
 
     for f in found:
@@ -484,6 +600,45 @@ def check(report: dict, declared: dict, claims: dict, caption: str = "") -> list
     return problems
 
 
+def surfaces(base: Path) -> dict:
+    """The published surfaces this gate reads, from one directory, named ONCE.
+
+    WHY THIS FUNCTION EXISTS. 2026-08-26.
+
+    This gate has three callers: `run()` here, `shipped_check.g_aggregates`, and the run's own
+    declaration generator. Each one used to open the surface files itself, so every time the gate
+    learned a new surface, three call sites had to learn it too, and they did not. The caption was
+    added and `g_aggregates` kept reading the render alone, which turned a caption-only figure
+    into a phantom leftover declaration. The comment recording that fix is still in that adapter,
+    and one day later the document title did exactly the same thing to the same adapter.
+
+    Twice is a habit. The list of surfaces lives here now, and a caller that wants them asks. A
+    new surface is one edit, in one place, and every caller gets it without being told.
+
+    `base` is a run directory in either shape: `out/<date>/` with `render/render_report.json`
+    under it, or `runs/carousel/<date>/` with the report at the top level.
+    """
+    rp = base / "render" / "render_report.json"
+    if not rp.exists():
+        rp = base / "render_report.json"
+    cap = base / "caption.txt"
+    com = base / "first_comment.txt"
+    cop = base / "copy.json"
+    title = ""
+    if cop.exists():
+        try:
+            title = json.loads(cop.read_text(encoding="utf-8")).get("document_title") or ""
+        except (ValueError, OSError):
+            title = ""
+    return {
+        "report_path": rp,
+        "report": json.loads(rp.read_text(encoding="utf-8")) if rp.exists() else None,
+        "caption": cap.read_text(encoding="utf-8") if cap.exists() else "",
+        "title": title,
+        "comment": com.read_text(encoding="utf-8") if com.exists() else "",
+    }
+
+
 def run(date: str, out_root: Path = None) -> int:
     base = Path(out_root or (REPO_ROOT / "out")) / date
     rp, ap, cp = (base / "render" / "render_report.json",
@@ -495,10 +650,12 @@ def run(date: str, out_root: Path = None) -> int:
     claims = json.loads(cp.read_text(encoding="utf-8")) if cp.exists() else {"claims": []}
     declared = json.loads(ap.read_text(encoding="utf-8")) if ap.exists() else {"aggregates": []}
 
-    cap_path = base / "caption.txt"
-    caption = cap_path.read_text(encoding="utf-8") if cap_path.exists() else ""
-    problems = check(report, declared, claims, caption)
-    found = scan_report(report) + (scan_caption(caption) if caption else [])
+    sf = surfaces(base)
+    caption, title, comment = sf["caption"], sf["title"], sf["comment"]
+    problems = check(report, declared, claims, caption, title, comment)
+    found = (scan_report(report) + (scan_caption(caption) if caption else [])
+             + (scan_title(title) if title else [])
+             + (scan_comment(comment) if comment else []))
 
     # A RECEIPT, written whether it passed or failed, so a later reader can tell that this ran
     # against THIS render. `aggregates.json` is an INPUT the run authors before the check, and a
@@ -609,7 +766,23 @@ def self_test() -> int:
     ok("a bare year is not an aggregate", not detect("filed in 2026"))
     ok("a bill number is not an aggregate", not detect("Senate Bill 6 was referred"))
     ok("a docket number is not an aggregate", not detect("PUCT Project 58482 opened"))
-    ok("a citation is not an aggregate", not detect("three filings, claim c4"))
+    # A CITATION IS NOT AN AGGREGATE, AND IT IS NOT A PARDON FOR ONE EITHER (2026-08-26).
+    # This case used to assert that "three filings, claim c4" was clean, which was true only
+    # because "claim c4" vetoed the whole string. "three filings" is a count and always was.
+    ok("a citation is not read as an aggregate", not detect("claim c4"))
+    ok("...and a real count beside one is still caught",
+       [d["phrase"] for d in detect("three filings, claim c4")] == ["three filings"],
+       str(detect("three filings, claim c4")))
+    ok("a bare year does not pardon the figures beside it",
+       [d["phrase"] for d in detect("ten official records and ten news reports, 2026")]
+       == ["ten official records", "ten news reports"],
+       str(detect("ten official records and ten news reports, 2026")))
+    ok("...and the year itself is still not a figure",
+       not detect("fetched August 25th and 26th, 2026"),
+       str(detect("fetched August 25th and 26th, 2026")))
+    ok("a bill number pardons nothing either",
+       [d["phrase"] for d in detect("four counties, Senate Bill 6")] == ["four counties"],
+       str(detect("four counties, Senate Bill 6")))
     ok("prose with no figure is quiet", not detect("The commission considered the proposal"))
 
     claims = {"claims": [{"id": f"c{i}"} for i in range(1, 6)]}
@@ -782,6 +955,76 @@ def self_test() -> int:
                                              {"claims": []}, _cap)))
     ok("...and is unchanged when it is not",
        not check({"slides": []}, {"aggregates": []}, {"claims": []}))
+
+    # THE DOCUMENT TITLE IS A PUBLISHED SURFACE (2026-08-26). It prints on the PDF and carries
+    # the email's subject, and after round 8's recut it stopped being a slide string, which took
+    # it out of the render report and out of this gate's reach in the same move.
+    _t = "Fifteen ways to take up a data center"
+    ok("a count in the document title is seen",
+       any(h["phrase"] == "Fifteen ways" for h in scan_title(_t)), str(scan_title(_t)))
+    ok("...and it is attributed to the title, not to a slide",
+       all(h["slide"] == "document_title" for h in scan_title(_t)))
+    ok("a title with no computed number is clean",
+       not scan_title("What the record holds"))
+    ok("an empty title is not a finding", not scan_title("") and not scan_title(None))
+    # ONE LIST OF SURFACES (2026-08-26). Three callers, one place they come from.
+    import tempfile
+    with tempfile.TemporaryDirectory() as _td:
+        _b = Path(_td)
+        (_b / "render").mkdir()
+        (_b / "render" / "render_report.json").write_text(json.dumps({"slides": []}))
+        (_b / "caption.txt").write_text("Two of the fifteen were approvals.\n")
+        (_b / "copy.json").write_text(json.dumps({"document_title": _t}))
+        _s = surfaces(_b)
+        ok("surfaces() finds an out/<date> layout", _s["report"] == {"slides": []})
+        ok("...its caption", "approvals" in _s["caption"])
+        ok("...and its title", _s["title"] == _t)
+        (_b / "render" / "render_report.json").unlink()
+        (_b / "render_report.json").write_text(json.dumps({"slides": [1]}))
+        ok("surfaces() also finds a runs/<date> layout, where the report is at the top level",
+           surfaces(_b)["report"] == {"slides": [1]})
+        (_b / "copy.json").write_text("{ not json")
+        ok("an unreadable copy.json yields no title rather than raising",
+           surfaces(_b)["title"] == "")
+        (_b / "caption.txt").unlink()
+        (_b / "copy.json").unlink()
+        _s = surfaces(_b)
+        ok("missing surfaces are empty strings, never None",
+           _s["caption"] == "" and _s["title"] == "")
+
+    ok("check() reads the title when it is given one",
+       any("document_title" in p for p in check({"slides": []}, {"aggregates": []},
+                                                {"claims": []}, "", _t)))
+    ok("...and an undeclared title figure is named as undeclared, not silently passed",
+       any("nothing declares" in p for p in check({"slides": []}, {"aggregates": []},
+                                                  {"claims": []}, "", _t)))
+    ok("a declared title figure that re-derives is clean",
+       not check({"slides": []},
+                 {"aggregates": [{"phrase": "Fifteen ways", "kind": "count", "value": 15,
+                                  "computed_by": "out/2026-08-25/compute.py, restricted_count. "
+                                                 "actions by a Texas local government"}]},
+                 {"claims": []}, "", _t))
+
+    # `computed_by` IS NOT AN ESCAPE HATCH (2026-08-26). It returned True before any arithmetic
+    # ran, so a judge reading the gate rather than its output found that "all re-derived" meant a
+    # prose note was present.
+    _cb = "out/x/compute.py, some_figure over some_other"
+    ok("a ratio with computed_by and a bad `of` now FAILS",
+       not rederive({"kind": "ratio", "value": 9, "of": 4, "computed_by": _cb}, {"claims": []})[0])
+    ok("...and one with no `of` at all FAILS",
+       not rederive({"kind": "ratio", "value": 3, "computed_by": _cb}, {"claims": []})[0])
+    ok("a duration with computed_by whose dates do not make its value FAILS",
+       not rederive({"kind": "duration", "value": 99, "from_date": "2026-03-10",
+                     "to_date": "2026-08-13", "computed_by": _cb}, {"claims": []})[0])
+    ok("...and the same duration with the right value passes",
+       rederive({"kind": "duration", "value": 156, "from_date": "2026-03-10",
+                 "to_date": "2026-08-13", "computed_by": _cb}, {"claims": []})[0])
+    ok("a COUNT computed over data still needs no claim per unit, which is the real exemption",
+       rederive({"kind": "count", "value": 254,
+                 "computed_by": "len() over assets/geo/counties.json"}, {"claims": []})[0])
+    ok("a span with computed_by and a reversed pair FAILS",
+       not rederive({"kind": "span", "value": 5, "from_date": "2026-08-13",
+                     "to_date": "2026-03-10", "computed_by": _cb}, {"claims": []})[0])
 
     if failures:
         print(f"\naggregate_check self-test: {failures} FAILED", file=sys.stderr)

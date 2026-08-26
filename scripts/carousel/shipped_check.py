@@ -78,11 +78,14 @@ def g_aggregates(d: Path):
     claims = _load(d / "claims.json")
     if not (rep and agg is not None and claims):
         return None
-    # THE CAPTION GOES THROUGH TOO. `aggregate_check` learned to read it on 2026-08-26 and this
-    # adapter did not, so a figure the caption declares and no slide prints came back as a
-    # leftover declaration. A gate wired to half its own checker reports the half it can see.
-    cap = d / "caption.txt"
-    probs = m.check(rep, agg, claims, cap.read_text(encoding="utf-8") if cap.exists() else "")
+    # EVERY SURFACE THE CHECKER READS, ASKED FOR RATHER THAN LISTED. `aggregate_check` learned to
+    # read the caption on 2026-08-26 and this adapter did not, so a caption-only figure came back
+    # as a leftover declaration. The fix listed the caption here by hand, and the next day the
+    # document title did the identical thing to the identical line. A gate wired to half its own
+    # checker reports the half it can see, and a hand-kept list of surfaces is how it gets there.
+    # `m.surfaces()` owns the list now, so this adapter cannot fall behind a third time.
+    sf = m.surfaces(d)
+    probs = m.check(rep, agg, claims, sf["caption"], sf["title"], sf["comment"])
     return list(probs) if probs else []
 
 
@@ -262,6 +265,68 @@ def g_shipped_fresh(d: Path):
     return problems
 
 
+def g_measured(d: Path):
+    """Every L* figure printed in the run's prose exists in its own measurements.json.
+
+    THE HIGHEST RECURRENCE DEFECT IN THIS REPO, and it has now happened four times.
+
+    Round 4 found frame 7's falloff committed twice with two values, 22.1 in the storyboard and
+    17.2 in artwork.json. Round 7 found slide 6 printing 70.8 and 18.4 where measurements.json
+    said 70.6 and 18.2. Round 8 recut three frames, moved six medians, and left the storyboard,
+    the run record and the artwork ledger each carrying the previous deck's numbers. The writer
+    that composes them from measurements.json existed the whole time and had gone silently dead,
+    because it matched the OLD NUMBERS as literal strings.
+
+    That is the shape CLAUDE.md names three separate times: a value with one home, surfaces that
+    keep their own copy, and nothing in between checking they agree. A writer is not the check. A
+    writer can stop firing. This ASKS, of the shipped bytes, and it cannot go quiet, because a
+    figure that is absent from measurements.json is absent whatever wrote it.
+
+    Scope is deliberately narrow and therefore certain: a number written next to the token `L*`.
+    Every one of those is a luminance this run measured, so every one has to be in the file. A
+    bare decimal elsewhere in the prose may be anything and is not this gate's business.
+    """
+    mp = d / "measurements.json"
+    if not mp.exists():
+        return None
+    M = json.loads(mp.read_text(encoding="utf-8"))
+
+    def walk(v):
+        if isinstance(v, dict):
+            for x in v.values():
+                yield from walk(x)
+        elif isinstance(v, list):
+            for x in v:
+                yield from walk(x)
+        elif isinstance(v, (int, float)) and not isinstance(v, bool):
+            yield round(float(v), 1)
+
+    known = set(walk(M))
+    # A DELTA IS MEASURED TOO. The prose names junctions as positive drops, so both signs count,
+    # and it names ranges, which are max minus min over the medians.
+    known |= {abs(x) for x in known}
+    med = M.get("per_frame_median_lstar") or []
+    if med:
+        known.add(round(max(med) - min(med), 1))
+        known |= {round(abs(a - b), 1) for a in med for b in med}
+
+    # `1.6 L*` style figures with one decimal, and integers written the same way.
+    NUM = re.compile(r"(?<![\d.])(\d{1,3}(?:\.\d)?)\s*L\\?\*")
+    out = []
+    for name in ("storyboard.md", "RUN_RECORD.md"):
+        f = d / name
+        if not f.exists():
+            continue
+        for m in NUM.finditer(f.read_text(encoding="utf-8")):
+            v = round(float(m.group(1)), 1)
+            if v not in known:
+                out.append(f"{name}: prints {m.group(1)} L* and measurements.json holds no such "
+                           f"figure. Every luminance in this run's prose is written from that "
+                           f"file by out/<date>/tmp/write_measured.py. A number here that is not "
+                           f"there is a number somebody typed, or one a rewrite stopped reaching")
+    return out
+
+
 def g_ledgers(d: Path):
     """The variety ledgers, against the run whose figures their prose narrates.
 
@@ -318,6 +383,9 @@ GATES = [
     # shipping artifacts that describe a deck it already replaced, which is a property of the
     # deck being made now.
     ("shipped fresh", g_shipped_fresh, CURRENT),
+    # CURRENT: measurements.json is written per run, and a deck shipped before this
+    # writer existed has no file for the gate to ask.
+    ("measured figures", g_measured, CURRENT),
     ("ledgers", g_ledgers, CURRENT),
     ("completion", g_completion, HISTORY),
 ]
@@ -430,6 +498,33 @@ def self_test() -> int:
 
     ok("the newest run is identified as the newest",
        (not runs) or shipped_runs()[-1].name == max(p.name for p in shipped_runs()))
+
+    # THE MEASURED FIGURE GATE (2026-08-26). Four rounds of the same defect, and the writer that
+    # was supposed to prevent it had gone silently dead.
+    import tempfile
+    with tempfile.TemporaryDirectory() as td:
+        t = Path(td)
+        (t / "measurements.json").write_text(json.dumps({
+            "per_frame_median_lstar": [51.3, 64.1, 14.4, 30.8, 81.4, 73.6, 52.1, 55.2, 48.7],
+            "deck_median": 52.1, "deck_sd": 19.3, "frame7_falloff_lstar": 16.5,
+            "junctions": [12.8, -49.7, 16.4, 50.6, -7.8, -21.5, 3.1, -6.5]}))
+        ok("a run with no prose to read is not a finding", g_measured(t) == [])
+        (t / "RUN_RECORD.md").write_text("The falloff measures 16.5 L\\* across the repeats.\n")
+        ok("a figure that IS in measurements.json passes", g_measured(t) == [], str(g_measured(t)))
+        (t / "RUN_RECORD.md").write_text("The falloff measures 22.1 L\\* across the repeats.\n")
+        ok("a stale figure is CAUGHT", len(g_measured(t)) == 1, str(g_measured(t)))
+        (t / "RUN_RECORD.md").write_text("frame 6 is 73.6 and frame 7 is 52.1, a 21.5 L* drop.\n")
+        ok("a junction written as a positive drop passes", g_measured(t) == [], str(g_measured(t)))
+        (t / "RUN_RECORD.md").write_text("a range of 67.0 L\\* across the nine.\n")
+        ok("a range over the medians passes", g_measured(t) == [], str(g_measured(t)))
+        (t / "RUN_RECORD.md").write_text("a range of 61.0 L\\* across the nine.\n")
+        ok("...and a wrong range is CAUGHT", len(g_measured(t)) == 1, str(g_measured(t)))
+        (t / "RUN_RECORD.md").write_text("the deck ships 9 frames and 46 claims.\n")
+        ok("a bare number that is not a luminance is not this gate's business",
+           g_measured(t) == [], str(g_measured(t)))
+        (t / "measurements.json").unlink()
+        ok("no measurements.json means not applicable, never a silent pass",
+           g_measured(t) is None)
 
     print("\nshipped_check self-test: " + ("all passed" if not bad else f"{bad} FAILED"))
     return 1 if bad else 0

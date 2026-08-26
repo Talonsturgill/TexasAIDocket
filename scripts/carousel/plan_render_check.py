@@ -104,19 +104,33 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 # A `name #RRGGBB` pair in the storyboard's palette section. One definition, read never typed.
 PALETTE_DEF = re.compile(r"`([a-z][a-z ]*?) (#[0-9A-Fa-f]{6})`")
 
-# An acceptance item asserting a string is present. The quoted group is what must be rendered.
+# A QUOTED STRING, AND AN APOSTROPHE IS NOT ONE. 2026-08-26.
+#
+# The first draft wrote the delimiters as `["\']...["\']`, which accepts a `"` opened and a `'`
+# closed, and lets a POSSESSIVE open a quote. Slide 7's acceptance line reading "all four title
+# cells carry their applicant\'s name, because the county\'s own matter titles hold four" was
+# therefore read as requiring the frame to print the string `s name, because the county`, and the
+# gate failed a correct frame over a plan sentence that quotes nothing at all.
+#
+# Two rules fix the class. The marks must MATCH, via a backreference. And a mark glued to a word
+# character on the inside is punctuation in a word, never a delimiter: `\w'` cannot open and `'\w`
+# cannot close. Double quotes are unaffected, which is what every real quoted acceptance item
+# here uses.
+_Q = r"(?<!\w)([\"'])([^\"']{3,60})\1(?!\w)"
+
+# An acceptance item asserting a string is present. Group 2 is what must be rendered.
 REQUIRED_STR = re.compile(
     r"\b(?:read(?:s|ing)?|carr(?:y|ies|ying)|say(?:s|ing)?|print(?:s|ing)?|set)\b[^\"']{0,40}"
-    r"[\"']([^\"']{3,60})[\"']", re.I)
+    + _Q, re.I)
 
 # An acceptance item asserting a string is absent. TWO orders, because acceptance lines are
 # written both ways and the first draft of this file only matched one of them:
 #   "no legend label names 'base load'"        negation BEFORE the quote
 #   "the phrase 'flag red' appears nowhere"    negation AFTER it
 FORBIDDEN_BEFORE = re.compile(
-    r"\b(?:no|never|nowhere|not)\b[^\"']{0,60}[\"']([^\"']{3,60})[\"']", re.I)
+    r"\b(?:no|never|nowhere|not)\b[^\"']{0,60}" + _Q, re.I)
 FORBIDDEN_AFTER = re.compile(
-    r"[\"']([^\"']{3,60})[\"'][^\"']{0,40}"
+    _Q + r"[^\"']{0,40}"
     r"\b(?:appears? nowhere|appears? on no|is absent|does not appear|never appears|"
     r"appears nowhere)\b", re.I)
 
@@ -125,7 +139,7 @@ def forbidden_needles(item: str) -> list:
     seen = []
     for rx in (FORBIDDEN_BEFORE, FORBIDDEN_AFTER):
         for m in rx.finditer(item):
-            v = m.group(1).strip()
+            v = m.group(2).strip()
             if len(v.split()) >= 2 and v not in seen:
                 seen.append(v)
     return seen
@@ -313,7 +327,7 @@ def check(storyboard: str, slides_dir: Path, report: dict) -> tuple:
                         f"frame, and the render prints it")
             if not hit:
                 for m in REQUIRED_STR.finditer(item):
-                    needle = m.group(1).strip()
+                    needle = m.group(2).strip()
                     if len(needle.split()) < 2:
                         continue
                     hit = True
@@ -546,6 +560,25 @@ acceptance:
     ok("the palette is read from the storyboard rather than typed into this file",
        palette_map(SB) == {"tower": "#16151C", "pecos": "#8E4B3A", "paper": "#F6F1E4"},
        str(palette_map(SB)))
+    # A POSSESSIVE IS NOT A QUOTE (2026-08-26). The loose delimiters failed a correct frame.
+    _poss = ("all four title cells carry their applicant's name, because the county's own "
+             "matter titles hold four")
+    ok("a possessive apostrophe does not open a required string",
+       not [m.group(2) for m in REQUIRED_STR.finditer(_poss)],
+       str([m.group(2) for m in REQUIRED_STR.finditer(_poss)]))
+    ok("...and a real single quoted needle is still read",
+       [m.group(2) for m in REQUIRED_STR.finditer("the frame carries 'base load' at the foot")]
+       == ["base load"])
+    ok("...and a double quoted needle is still read",
+       [m.group(2) for m in REQUIRED_STR.finditer('the frame reads "two public hearings" plainly')]
+       == ["two public hearings"])
+    ok("mismatched marks are not a quote",
+       not [m.group(2) for m in REQUIRED_STR.finditer("""the frame carries "base load' here""")])
+    ok("a possessive does not create a forbidden needle either",
+       not forbidden_needles("no cell carries the county's own internal matter number"))
+    ok("...while a real forbidden needle still fires",
+       forbidden_needles("no legend label names 'base load'") == ["base load"])
+
     ok("no hex literal for a brand colour is hardcoded in this module",
        not re.search(r"#(16151C|8E4B3A|D9CDB4|B98D46|4E6B62|EFE9DA)",
                      Path(__file__).read_text(encoding="utf-8").split("def self_test")[0], re.I))

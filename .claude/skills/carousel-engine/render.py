@@ -895,8 +895,44 @@ def scan_nondeterminism(html: str, name: str) -> list:
     return hits
 
 
+# A LENGTH WITH NO UNIT. 2026-08-26.
+#
+# CSS drops an invalid declaration WHOLE and says nothing. `width:430` in slide 1's `.dek` rule
+# meant that line had no width at all, so it ran the full 1080 body: off the bond sheet, across
+# the case bezel, over the lock cylinder and out of the safe zone. Machine QA reported it as
+# "art touching glyphs across 79 percent of the ring", which reads like an atmosphere note, and
+# two review rounds took it for one.
+#
+# There is no case where a slide wants this. A bare number is a typo every time, and it is the
+# quietest kind, because the frame still renders and still looks deliberate. So it is a BUILD
+# ERROR rather than a warning, caught in the source before a browser is ever opened. `0` is
+# exempt because unitless zero is valid CSS and means what it says.
+UNITLESS = re.compile(
+    r"(?<![\w-])(width|height|top|left|right|bottom|max-width|min-width|max-height|min-height|"
+    r"margin|margin-top|margin-left|margin-right|margin-bottom|padding|font-size|"
+    r"letter-spacing|word-spacing|gap|row-gap|column-gap|border-radius|text-indent)"
+    r"\s*:\s*(-?\d*\.?\d+)\s*(?=[;}])")
+
+
+def unitless_lengths(html: str) -> list:
+    """Every `property: <bare number>` in the slide's own <style>, which CSS silently discards."""
+    out = []
+    for m in re.finditer(r"<style[^>]*>(.*?)</style>", html, re.S | re.I):
+        for hit in UNITLESS.finditer(m.group(1)):
+            if hit.group(2) in ("0", "0.0"):
+                continue
+            out.append(f"{hit.group(1)}:{hit.group(2)}")
+    return out
+
+
 def resolve_html(src: Path, resolved_dir: Path) -> Path:
     html = src.read_text()
+    bare = unitless_lengths(html)
+    if bare:
+        raise ValueError(
+            f"{src.name}: CSS length with no unit: {', '.join(bare)}. A browser drops the whole "
+            f"declaration and renders the frame anyway, so the property is simply absent and "
+            f"nothing looks broken. Write px.")
     if re.search(r'src\s*=\s*["\']https?://|href\s*=\s*["\']https?://|url\(\s*["\']?https?://', html):
         raise ValueError(f"{src.name}: external http(s) reference found. Slides must be fully offline.")
     html = html.replace("@@ASSETS@@", ASSETS_DIR.as_uri())
