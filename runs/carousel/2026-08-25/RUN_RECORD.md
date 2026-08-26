@@ -164,7 +164,7 @@ and one line above the table says it once.
 ## What is measurably not what the storyboard said
 
 **This is not the mid value deck it declares.** The storyboard says "ground at L\* 62 to 68".
-Measured medians, frame by frame, are 51.3, 66.0, 14.4, 30.8, 81.4, 70.6, 52.4, 55.8 and 48.8,
+Measured medians, frame by frame, are 51.3, 66.0, 14.4, 30.8, 81.4, 70.6, 52.4, 56.2 and 48.8,
 with a median of medians of 52.4 and a range of 67.0 L\*. One frame sits inside the declared band
 and eight do not.
 
@@ -393,17 +393,17 @@ rather than failing, and this is it.
 <!-- gate-status:begin -->
 | gate | status | detail |
 |---|---|---|
-| claims         | PASS   | 31 verified claim(s) |
-| render         | WARN   | 9 slide(s), 26 overflow warning(s) |
-| qa             | WARN   | 0 fail(s), 31 warn(s) |
-| aggregates     | PASS   | 14 declared and re-derived |
-| assembly       | PASS   | 9 slide(s), 2.95 MB, vector |
+| claims         | PASS   | 46 verified claim(s) |
+| render         | WARN   | 9 slide(s), 19 overflow warning(s) |
+| qa             | WARN   | 0 fail(s), 24 warn(s) |
+| aggregates     | PASS   | 20 declared and re-derived |
+| assembly       | PASS   | 9 slide(s), 2.93 MB, vector |
 | score          | ABSENT | score.json not written yet |
-| dossiers       | PASS   | 38,225 chars planned |
-| caption        | PASS   | 144 words |
+| dossiers       | PASS   | 40,320 chars planned |
+| caption        | PASS   | 149 words |
 | craft floor    | WARN   | 9 frame(s), median 5684, floor 1023, 1 quiet |
 | plan vs render | WARN   | 0 of 46 acceptance item(s) checkable |
-| texan          | PASS   | places Hill County, Tom Green County / body yes / deadline yes / next step yes |
-| absences       | WARN   | 8 of 10 scoped to a named document, 2 unscoped |
+| texan          | PASS   | places Hill County, San Angelo, Tom Green County, Wichita Falls / body yes / deadline yes / next step yes |
+| absences       | WARN   | 6 of 11 scoped to a named document, 5 unscoped |
 | completion     | ABSENT | not scored yet |
 <!-- gate-status:end -->

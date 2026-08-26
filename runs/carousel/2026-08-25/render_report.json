@@ -276,7 +276,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1926,
+      "render_ms": 1900,
       "ok": true,
       "canvases": [
         {
@@ -1130,7 +1130,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1122,
+      "render_ms": 1092,
       "ok": true,
       "canvases": [
         {
@@ -1674,7 +1674,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1480,
+      "render_ms": 1465,
       "ok": true,
       "canvases": [
         {
@@ -1923,7 +1923,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1373,
+      "render_ms": 1483,
       "ok": true,
       "canvases": [
         {
@@ -2213,7 +2213,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 907,
+      "render_ms": 892,
       "ok": true,
       "canvases": [
         {
@@ -2455,11 +2455,11 @@
           "anc": []
         },
         {
-          "text": "San Angelo wrote three of the six. Zoning in May, the sewer in June, the water on June 16th.",
+          "text": "San Angelo wrote three of the six. Zoning in May, the sewer in June, the water on June 16th. On four of the fifteen the record says nothing either way.",
           "x": 96,
           "y": 892,
           "w": 760,
-          "h": 78,
+          "h": 118,
           "font_px": 28,
           "weight": "500",
           "family": "Manrope",
@@ -2476,7 +2476,13 @@
             [
               96,
               931,
-              495,
+              680,
+              38
+            ],
+            [
+              96,
+              970,
+              550,
               38
             ]
           ],
@@ -2512,7 +2518,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2237,
+      "render_ms": 2153,
       "ok": true,
       "canvases": [
         {
@@ -2867,7 +2873,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 652,
+      "render_ms": 594,
       "ok": true,
       "canvases": [
         {
@@ -3201,11 +3207,11 @@
           "anc": []
         },
         {
-          "text": "Seventeen times a Texas local government took one up. Fifteen acted and two did not. The record says nothing about force on four.",
+          "text": "Seventeen times a Texas local government took one up. Fifteen acted and two did not.",
           "x": 120,
-          "y": 1064,
-          "w": 430,
-          "h": 132,
+          "y": 1078,
+          "w": 470,
+          "h": 66,
           "font_px": 24,
           "weight": "400",
           "family": "Manrope",
@@ -3215,26 +3221,14 @@
           "lines": [
             [
               120,
-              1064,
-              330,
+              1078,
+              469,
               33
             ],
             [
               120,
-              1097,
-              426,
-              33
-            ],
-            [
-              120,
-              1130,
-              356,
-              33
-            ],
-            [
-              120,
-              1163,
-              306,
+              1111,
+              467,
               33
             ]
           ],
@@ -3270,7 +3264,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2229,
+      "render_ms": 2301,
       "ok": true,
       "canvases": [
         {
@@ -3567,7 +3561,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1465,
+      "render_ms": 1491,
       "ok": true,
       "canvases": [
         {

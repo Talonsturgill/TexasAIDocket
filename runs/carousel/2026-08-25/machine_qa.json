@@ -74,9 +74,9 @@
       "bands": [
         0.5,
         0.4034,
-        0.4743
+        0.454
       ],
-      "band_ratio": 1.0312
+      "band_ratio": 1.0033
     },
     {
       "file": "slide-07.html",
@@ -98,20 +98,21 @@
       "file": "slide-08.html",
       "fails": [],
       "warns": [
+        "top-loaded composition: the bottom third carries 74% of this slide's own average craft density (top 51% / mid 57% / bottom 35% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
         "tiny-text: 'A commissioner referenced a $100 million lawsuit f' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))",
         "tiny-text: 'TOM GREEN COUNTY, C15 AND C16 REPORTED SPEECH ABOU' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
         "tiny-text: '\"no action taken\"' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))",
         "tiny-text: 'Wichita Falls approved a data center in an existin' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
         "tiny-text: 'LAREDO MATTER HISTORY, C14' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
         "tiny-text: 'WICHITA FALLS, C37' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
-        "worst-point contrast 3.3 on 'Seventeen times a Texas local government' (box mean 4.7) -- below the rubric's 4.5 line somewhere along the run of the text"
+        "worst-point contrast 3.7 on 'Seventeen times a Texas local government' (box mean 4.7) -- below the rubric's 4.5 line somewhere along the run of the text"
       ],
       "bands": [
         0.5126,
         0.5672,
-        0.3897
+        0.3493
       ],
-      "band_ratio": 0.803
+      "band_ratio": 0.7422
     },
     {
       "file": "slide-09.html",
@@ -130,6 +131,6 @@
     }
   ],
   "fails": 0,
-  "warns": 23,
+  "warns": 24,
   "verdict": "WARN"
 }

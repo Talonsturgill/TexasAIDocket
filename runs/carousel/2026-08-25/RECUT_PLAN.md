@@ -48,14 +48,17 @@ anything stops.
 
 ## Waves
 
+All waves DONE. Rounds 5 and 6 both stopped the deck and both were right; what each found
+and what was done about it is in the run record and in the commit messages on this branch.
+
 | # | wave | state |
 |---|---|---|
-| A | `select.py`, exhaustive selection + unclassified assertion | DOING |
-| B | Claims for every newly included body, live fetch, verbatim | TODO |
-| C | Recut frames 1, 2, 3, 5, 6, 8 content. The art survives | TODO |
-| D | Re-render, every gate green by exit code, re-measure | TODO |
-| E | Panel round 6 | TODO |
-| F | Ship, or fail honestly and say so in the email | TODO |
+| A | `select.py`, exhaustive selection + unclassified assertion | DONE |
+| B | Claims for every newly included body, live fetch, verbatim | DONE |
+| C | Recut frames 1, 2, 3, 5, 6, 8 content. The art survives | DONE |
+| D | Re-render, every gate green by exit code, re-measure | DONE |
+| E | Panel round 6 | DONE |
+| F | Ship, or fail honestly and say so in the email | DONE |
 
 ## Craft findings from round 5, all verified real, all in wave C
 
