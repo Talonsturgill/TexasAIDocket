@@ -208,6 +208,26 @@ def combine(judges: list, bar: float | None = None) -> tuple:
     return verdict, probs
 
 
+def count_round(date: str) -> int:
+    """How many times this deck has been scored, counted by this module rather than typed.
+
+    THE CAP NEEDS A NUMBER AND A TYPED ONE WOULD BE WORTHLESS. `run_complete` ships a deck that
+    is under the bar once `rounds` reaches the rubric's `max_rounds`, which makes that field the
+    most valuable lie in the run: a run under pressure could write 10 in it at round two and be
+    finished. So the run does not get to write it. Every invocation appends one line here and the
+    round number is the length of the file.
+
+    It lives in `out/<date>/`, which is gitignored scratch, and that is the right home: the count
+    is a fact about ONE run's session and means nothing to the next one. A round counter that
+    survived into `runs/` would be a number a later session could edit.
+    """
+    log = REPO_ROOT / "out" / date / "panel_rounds.jsonl"
+    log.parent.mkdir(parents=True, exist_ok=True)
+    with log.open("a", encoding="utf-8") as fh:
+        fh.write(json.dumps({"date": date}) + "\n")
+    return sum(1 for ln in log.read_text(encoding="utf-8").splitlines() if ln.strip())
+
+
 def run(date: str, paths: list, out: str | None) -> int:
     judges = []
     for p in paths:
@@ -217,6 +237,8 @@ def run(date: str, paths: list, out: str | None) -> int:
             return 1
         judges.append(json.loads(f.read_text(encoding="utf-8")))
     verdict, probs = combine(judges)
+    if verdict:
+        verdict["rounds"] = count_round(date)
     for p in probs:
         print(f"  note  {p}", file=sys.stderr)
     if not verdict:
@@ -231,7 +253,7 @@ def run(date: str, paths: list, out: str | None) -> int:
     else:
         why = f"HOLD, under the {verdict['threshold']} bar"
     print(f"panel: {verdict['judges']} -> median {verdict['weighted_score']}, "
-          f"spread {verdict['spread']}, {why}")
+          f"spread {verdict['spread']}, round {verdict['rounds']}, {why}")
     print(f"panel: written to {dest}")
     return 0
 

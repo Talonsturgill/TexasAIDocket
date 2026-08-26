@@ -10,7 +10,34 @@
 # has made in public.
 
 version: 1
-threshold: 7.0          # below this the deck does not ship
+threshold: 6.8          # below this the deck does not ship
+max_rounds: 10          # and after this many scoring rounds it ships anyway, see below
+
+# THE THRESHOLD MOVED AND A ROUND CAP WENT IN, on the owner's instruction, 2026-08-26.
+#
+# WHY. Carousel no. 7 was scored FIFTEEN times in one run and never cleared 7.0. The judge scores
+# went 6.66, 6.72, 6.90, 6.66, and back to the mid sixes, sideways rather than up, across a night
+# of work. Every round closed what the previous round named and every round named new things, and
+# the run kept scoring instead of shipping. That is not a deck failing a bar. That is a loop with
+# no exit, and it cost the owner a night and a great deal of money.
+#
+# TWO THINGS WERE TRUE AT ONCE and the run only reported the first, which was itself a failure.
+# The panel is three judges told to default to dissatisfaction, graded on a rubric where 7 means
+# "competent and consistent, nothing memorable in it", combined by a per-criterion MEDIAN. On
+# rounds 5 through 11 individual judges returned 7.24, 7.19, 7.14, 7.23 and 7.10 and the median
+# never cleared 7.0, because there was always one judge below it and never the same one.
+# AND the judges were finding real defects every round: a gesture whose guards silently deleted
+# it while the ledger recorded it shipped, repairs that met a numeric floor and were invisible in
+# the pixels, typed constants under comments claiming they were computed, a rule struck through a
+# line of type. The deck was genuinely not finished. Both halves are true and neither excuses the
+# other.
+#
+# WHAT THE CAP IS FOR. It is not permission to ship a bad deck. A hard fail still stops the deck
+# at any round, because a hard fail is a claim about a promise this product made in public.
+# `max_rounds` bounds the SEARCH, not the standard: after ten rounds the run ships whatever the
+# weighted score is, states that score honestly in the email, and records in the run record that
+# it shipped under the bar and by how much. A run that would rather keep scoring than say a
+# number out loud is the failure this cap exists to make impossible.
 scale: "0 to 10, where 7 is acceptable and 9 is the best thing shipped this month"
 
 criteria:

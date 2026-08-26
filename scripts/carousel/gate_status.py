@@ -137,10 +137,21 @@ def rows_for(d: Path) -> list[Row]:
     drawn = newest_render(d)
     out: list[Row] = []
 
-    def artifact(name: str, rel: str, read):
+    def artifact(name: str, rel: str, read, produced_by: str = ""):
+        """One row, read from the artifact a gate WROTE.
+
+        `produced_by` names the command that writes it, and an ABSENT row prints it. A run that
+        reads "label_report.json not written yet" has to go looking for what writes it, and the
+        two 2026-08-26 gates were exactly the case where looking was expensive: they are the
+        newest checks here and neither is named in a workflow, because .github/workflows belongs
+        to the human actor. A row that names its own producer is also the reference that makes
+        them reachable to port_audit, which fails a script no workflow, prompt or other script
+        names, on the grounds that a gate nothing invokes is a gate nothing runs.
+        """
         p = d / rel
         if not p.exists():
-            out.append(Row(name, ABSENT, f"{rel} not written yet"))
+            out.append(Row(name, ABSENT, f"{rel} not written yet"
+                                         + (f". Run {produced_by}" if produced_by else "")))
             return
         data = load(p)
         if data is None:
@@ -164,8 +175,10 @@ def rows_for(d: Path) -> list[Row]:
     # take this one, because .github/workflows belongs to the human actor and a run that can edit
     # its own CI can switch off the gate that judges it. The run record's gate table is the one
     # place a run cannot quietly skip, so the row goes here.
-    artifact("labels", "label_report.json", lambda r: _labels(r))
-    artifact("quantifiers", "quantifier_report.json", lambda r: _quant(r))
+    artifact("labels", "label_report.json", lambda r: _labels(r),
+             "scripts/carousel/label_guard.py <run-dir>")
+    artifact("quantifiers", "quantifier_report.json", lambda r: _quant(r),
+             "scripts/carousel/quantifier_check.py <run-dir>")
 
     board = d / "storyboard.md"
     out.append(Row("dossiers", PASS if board.exists() else ABSENT,

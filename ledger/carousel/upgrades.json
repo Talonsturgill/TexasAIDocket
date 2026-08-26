@@ -561,4 +561,35 @@
    "bespoke_check reads code tokens, not pixels": "Two judges independently named frames 1 and 2 as one object at contact sheet scale while bespoke_check reported 2 and 7 as the closest pair at 0.7257. It measures DOM token overlap. A pixel term, a 64px downsample compared structurally, would see what a reader sees first."
   }
  }
+, "2026-08-25 r16": {
+  "run": "carousel no. 7, round 16. Fifth key for one run date, by this file's own append rule.",
+  "actor": "upgrade",
+  "note": "The owner's instruction, verbatim: change the ship score to a 6.8 moving forward, and put a cap on editing rounds to 10, if after 10 it is not hitting a 6.8, just ship it. This run is why. It scored the same deck fifteen times across a night, never cleared the bar, and put no deck in front of a reader. Two things were true at once and the run reported only the first, which was its own failure: the panel is three judges told to default to dissatisfaction and combined by a per-criterion median, so on rounds 5 through 11 individual judges returned 7.24, 7.19, 7.14, 7.23 and 7.10 and the median never cleared 7.0 because there was always one judge under it and never the same one. AND the judges were finding real defects every round, a gesture whose guards deleted it while the ledger recorded it shipped, repairs that met a numeric floor and were invisible in the pixels, typed constants under comments claiming they were computed. Neither half excuses the other.",
+  "upgrades": [
+   {
+    "what": "config/carousel/scoring_rubric.yaml: threshold 7.0 to 6.8, and a new max_rounds: 10 beside it, with the whole reason written into the file.",
+    "why": "A bar with no bound on the search is not a bar, it is a loop. run_complete.py was written on 2026-08-19 against a run that stopped below the line and called itself finished, and 2026-08-25 produced that failure's mirror image: a run that refused to stop and shipped nothing. The same mistake pointed in opposite directions.",
+    "how": "Both values are read, never passed in, so no run can name its own bar or its own cap. The comment in the file states what the cap does NOT do, because that is the half a run under pressure would reach for."
+   },
+   {
+    "what": "scripts/carousel/run_complete.py now reads max_rounds and rounds, with four new self-test cases.",
+    "why": "A number in a rubric that no exit code reads is a preference. The cap had to land in the gate or it would have been advice.",
+    "how": "A deck under the bar ON the cap with no hard fail is a finished run and the exit code says so. A hard fail still stops the deck at any number of rounds, ship: false still outranks the arithmetic below the cap, and a run that wrote down no round count gets no cap at all, because the cap is a claim about work actually done. The self-test replays the 2026-08-25 defect and the abuse of it side by side."
+   },
+   {
+    "what": "scripts/carousel/gate_status.py artifact() takes a produced_by, and the labels and quantifiers rows name their commands.",
+    "why": "port_audit failed both 2026-08-26 gates as unreachable, on the grounds that a gate no workflow, prompt or script names is a gate nothing runs. It was right. .github/workflows belongs to the human actor, so CI could not take them from this branch.",
+    "how": "An ABSENT row now prints the command that writes the missing report, which is both the reference port_audit needs and the answer a run would otherwise have to go looking for."
+   },
+   {
+    "what": "Frame 4's claim stamp became its own element, measured off the dek rather than typed.",
+    "why": "site_build lifts a deck's sentences onto the article page, and the stamp was riding on the end of the dek's last sentence, so C38 arrived there as the numeral 38 and numeral_lint refused the build. A figure on a published page with no computation behind it is the one thing this project says out loud that it never does.",
+    "how": "In caps and on its own line it is a stamp on both surfaces. Its top comes off the dek's laid height, so a rewrite of the dek moves it, and the greeked rule field excludes it like every other child of the plane."
+   }
+  ],
+  "not_built": {
+   "the panel's calibration is still unmeasured": "Nobody here knows what the median of three dissatisfied judges does to a rubric whose 7 means competent and unmemorable. The cap makes that survivable and does not answer it. The measurement wanted is the distribution of individual judge scores against the median across a run, which this run has fifteen rounds of and no script reads.",
+   "a round counter nothing writes": "run_complete reads rounds out of score.json and the panel does not write it. This run set it by hand, which is exactly the shape this project distrusts. panel.py should count its own invocations for a date and write the number itself."
+  }
+ }
 }
