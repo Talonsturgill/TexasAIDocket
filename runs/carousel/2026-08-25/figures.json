@@ -1,6 +1,6 @@
 {
   "restricted_count": {
-    "value": 8,
+    "value": 7,
     "rule": "Texas governmental bodies in the record that took a recorded 2026 action restricting, pausing, capping or denying a data center or its incentive",
     "from_items": [
       "tx-2026-0032",
@@ -8,16 +8,16 @@
       "tx-2026-0045",
       "tx-2026-0050",
       "tx-2026-0051",
-      "tx-2026-0056",
       "tx-2026-0062",
       "tx-2026-0065"
     ]
   },
   "declined_count": {
-    "value": 2,
+    "value": 3,
     "rule": "bodies in the record that considered a restriction and declined it",
     "from_items": [
       "tx-2026-0037",
+      "tx-2026-0056",
       "tx-2026-0070"
     ]
   },
@@ -26,11 +26,14 @@
     "rule": "restricted plus declined"
   },
   "stated_nonbinding": {
-    "value": 2,
+    "value": 5,
     "rule": "restricting bodies whose own source states the action does not bind",
     "from_items": [
+      "tx-2026-0032",
       "tx-2026-0043",
-      "tx-2026-0045"
+      "tx-2026-0045",
+      "tx-2026-0050",
+      "tx-2026-0062"
     ]
   },
   "stated_binding": {
@@ -42,31 +45,25 @@
     ]
   },
   "force_unstated": {
-    "value": 4,
+    "value": 0,
     "rule": "restricting bodies the record says nothing about either way",
-    "from_items": [
-      "tx-2026-0032",
-      "tx-2026-0050",
-      "tx-2026-0056",
-      "tx-2026-0062"
-    ]
+    "from_items": []
   },
   "late_cluster": {
-    "value": 4,
+    "value": 3,
     "rule": "half the restricting bodies, the later half by ordered date"
   },
   "late_span": {
     "value": 21,
-    "rule": "days from the 4th from last ordered action to the last, MEASURED after the half was chosen",
+    "rule": "days from the 3th from last ordered action to the last, MEASURED after the half was chosen",
     "from_items": [
       "tx-2026-0050",
-      "tx-2026-0056",
       "tx-2026-0045",
       "tx-2026-0062"
     ]
   },
   "chronology": {
-    "value": 8,
+    "value": 7,
     "rule": "the restricting actions in the order they happened",
     "marks": [
       {
@@ -105,13 +102,6 @@
         "item": "tx-2026-0050"
       },
       {
-        "date": "2026-07-23",
-        "place": "Texas Water Development Board",
-        "shape": "category denied",
-        "claim": "c29",
-        "item": "tx-2026-0056"
-      },
-      {
         "date": "2026-08-10",
         "place": "Lubbock County",
         "shape": "disclosure asked",
@@ -128,10 +118,9 @@
     ]
   },
   "distinct_shapes": {
-    "value": 8,
+    "value": 7,
     "rule": "distinct kinds of restriction among the restricting bodies",
     "shapes": [
-      "category denied",
       "disclosure asked",
       "incentive denied",
       "permit refused",
@@ -160,10 +149,6 @@
       "Brazoria County": [
         "zone refused",
         "c9"
-      ],
-      "Texas Water Development Board": [
-        "category denied",
-        "c29"
       ],
       "Fort Worth": [
         "process started",

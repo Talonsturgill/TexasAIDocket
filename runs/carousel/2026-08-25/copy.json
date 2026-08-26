@@ -1,4 +1,5 @@
 {
+ "document_title": "Eight ways to slow a data center",
  "slides": {
   "S1": {
    "n": 1,
@@ -22,11 +23,12 @@
     "TEXAS AI DOCKET",
     "01 / 09",
     "NOTICE OF MEETING",
-    "Eight ways to slow a data center",
-    "Eight Texas governmental bodies acted this year. No two reached for the same instrument.",
-    "8",
-    "BODIES",
-    "INSTRUMENTS",
+    "Seven ways to slow a data center",
+    "Seven Texas governmental bodies acted this year. No two reached for the same instrument.",
+    "7",
+    "ACTED",
+    "2",
+    "BOUND",
     "texasaidocket.com"
    ]
   },
@@ -48,9 +50,9 @@
     ]
    },
    "strings": [
-    "EIGHT INSTRUMENTS",
+    "SEVEN INSTRUMENTS",
     "02 / 09",
-    "Eight bodies, eight instruments",
+    "Seven bodies, seven instruments",
     "One each. The shape of a refusal decides whether anything stops.",
     "Permit refused KILLEEN",
     "Incentive denied ARCHER COUNTY",
@@ -58,7 +60,6 @@
     "Water capped SAN ANGELO",
     "Disclosure asked LUBBOCK COUNTY",
     "Staff directed to draft CORPUS CHRISTI",
-    "Category denied TEXAS WATER DEVELOPMENT BOARD",
     "Process started FORT WORTH",
     "texasaidocket.com"
    ]
@@ -77,7 +78,7 @@
     "THE SEQUENCE",
     "03 / 09",
     "From March to August",
-    "The last four came inside 21 days of each other.",
+    "The last three came inside 21 days of each other.",
     "MARCH 10TH",
     "BRAZORIA COUNTY",
     "APRIL 27TH",
@@ -88,8 +89,6 @@
     "ARCHER COUNTY",
     "JULY 21ST",
     "CORPUS CHRISTI",
-    "JULY 23RD",
-    "TEXAS WATER DEVELOPMENT BOARD",
     "AUGUST 10TH",
     "LUBBOCK COUNTY",
     "AUGUST 11TH",
@@ -121,20 +120,22 @@
    "n": 5,
    "claims": [
     "c5",
-    "c7"
+    "c7",
+    "c18"
    ],
    "notes": {
     "aggregates": []
    },
    "strings": [
-    "ARCHER AND LUBBOCK",
+    "FIVE OF THE SEVEN",
     "05 / 09",
-    "Two of the eight stop nothing",
+    "Five of the seven stop nothing",
     "\"does not stop the project from moving forward\"",
     "ARCHER COUNTY, C5",
     "\"Resolutions do nothing, they are not binding.\"",
     "LUBBOCK COUNTY, C7",
-    "The record says nothing either way about four bodies.",
+    "Killeen's record calls the vote a recommendation. The council decides.",
+    "KILLEEN, C18",
     "texasaidocket.com"
    ]
   },
@@ -150,7 +151,7 @@
    "strings": [
     "THE EXCEPTIONS",
     "06 / 09",
-    "Two of them have teeth",
+    "Two of the seven have teeth",
     "\"Motion to deny passed 5-0.\"",
     "\"Approved 7-0 at the June 16, 2026 City Council meeting.\"",
     "BRAZORIA COUNTY, C9 THE ZONE THEY STOOD ON",
@@ -177,7 +178,7 @@
     "Four applications. None was voted on.",
     "ITEM I.3, THE REINVESTMENT ZONE",
     "Commissioner Linder made a motion to deny order 1.3.",
-    "NO OTHER APPLICANT IS NAMED IN THIS RECORD",
+    "THE RECORD CARRIES THE SAME MINUTE ON EACH OF THE FOUR",
     "GRANTING TAX ABATEMENT OF OLD OCEAN DATACENTER LLC",
     "No action taken due to I.3 failed",
     "C9, C10, C11",
@@ -189,8 +190,8 @@
    "claims": [
     "c15",
     "c16",
-    "c27",
-    "c14"
+    "c14",
+    "c29"
    ],
    "notes": {
     "aggregates": [
@@ -201,13 +202,15 @@
    "strings": [
     "THE OTHER DIRECTION",
     "08 / 09",
-    "Two bodies declined to restrict",
+    "Three went the other way",
     "Tom Green County's court voted not to pursue a moratorium in Precinct 4.",
     "A commissioner referenced a $100 million lawsuit filed against Hill County after it approved a similar one year moratorium.",
     "TOM GREEN COUNTY, C15 AND C16 REPORTED SPEECH ABOUT A LAWSUIT",
     "\"no action taken\"",
     "LAREDO MATTER HISTORY, C14 3 AGENDAS",
-    "Ten bodies in this record took a restriction up. Eight acted and two declined.",
+    "The water board denied a petition asking it to project data center water demand.",
+    "TEXAS WATER DEVELOPMENT BOARD, C29",
+    "Ten bodies in this record took one up. Seven acted and three did not.",
     "texasaidocket.com"
    ]
   },

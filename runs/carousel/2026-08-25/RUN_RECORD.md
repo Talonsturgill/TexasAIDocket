@@ -258,6 +258,51 @@ The rubric's own history says a single scorer graded one deck seven times and fo
 fails where a panel of three found four. This run is that lesson again with a different number:
 one judge of three said ship.
 
+## The panel, round two, and the number that was wrong
+
+integrity 6.46 with FOUR hard fails, reader 6.44 with none, craft 7.23 with none. Round one's six
+were all repaired and all four judges' checks confirmed the repairs landed in the RENDER and not
+only in the source. These four were different, and one of them was the deck's headline number.
+
+**THE COUNT WAS EIGHT AND THE RECORD SUPPORTS SEVEN.** The Texas Water Development Board sat in
+`compute.py`'s `RESTRICTED` map. What it actually did, per c29, is DENY A PETITION filed by a
+Wimberley resident asking the agency to project data center water demand as its own category.
+That is a refusal to add scrutiny, which is the opposite direction, and `compute.py`'s own stated
+IN rule excludes it in words on the line above the map.
+
+It was in there because that map was typed by hand from memory of the record rather than read off
+it, and once it was in, eight became the cover, the cover's numeral lockup, frame 2's hook and its
+eight rows, frame 3's eight dated marks, frame 5, frame 8 and five sentences of the caption. Every
+gate was green over it. `aggregate_check` re-derived eight correctly from a map that was wrong.
+`claims_check` passed a claims file that says the opposite. A judge reading c29 against the rule
+found it in one pass.
+
+**The silent set was empty and the deck published four.** Frame 5 and the caption said the record
+says nothing either way about four bodies. It speaks to every one of the seven: c30 says the
+Corpus Christi motion bans nothing, c22 and c23 are the entire subject of frame 4, and c18 says
+Killeen's commission vote is a recommendation the council still has to act on. So five of the
+seven stop nothing in their own records, two bind, and nothing is unaccounted for. The deck is
+better for the correction than it was for the error.
+
+**Frame 7 asserted an absence its own record contradicts.** "NO OTHER APPLICANT IS NAMED IN THIS
+RECORD" against `tx-2026-0051`, which reads "two from Bulldog Power and two from Old Ocean
+Datacenter".
+
+**Laredo's shape cited a claim that does not state it.** `moratorium declined` came from the
+docket item's title. c14 says "no action taken" and that is what the map says now.
+
+reader's round two was six point four four with no hard fail, and its findings were config
+compliance rather than truth: the caption ran 980 characters against `brand.yaml`'s stated hard
+band of 300 to 900, ended on a link against `links_in_body: false`, and closed on a record
+pointer against `ends_with: engagement_question`. Three rules stated in config that no gate reads.
+Its one sentence fix, replacing the cover's "8 BODIES / 8 INSTRUMENTS" with the two part number
+the deck actually proves, was taken: the cover reads **7 ACTED / 2 BOUND**.
+
+craft's round two caught a false count I had typed into `ledger/carousel/artwork.json` in the same
+entry whose whole purpose was recording a measurement rather than an assertion:
+`frames_inside_declared_band: 1` beside a `per_frame_median_L` array showing zero. It is computed
+from the array now.
+
 ## Proposals for the machine, none of them in this actor's lane
 
 1. **A gate that proves a declared texture reached a pixel.** `knowledge/` and the engine skill
@@ -292,16 +337,16 @@ rather than failing, and this is it.
 | gate | status | detail |
 |---|---|---|
 | claims         | PASS   | 30 verified claim(s) |
-| render         | WARN   | 9 slide(s), 24 overflow warning(s) |
-| qa             | WARN   | 0 fail(s), 30 warn(s) |
+| render         | WARN   | 9 slide(s), 26 overflow warning(s) |
+| qa             | WARN   | 0 fail(s), 33 warn(s) |
 | aggregates     | PASS   | 13 declared and re-derived |
-| assembly       | PASS   | 9 slide(s), 3.22 MB, vector |
+| assembly       | PASS   | 9 slide(s), 3.23 MB, vector |
 | score          | ABSENT | score.json not written yet |
-| dossiers       | PASS   | 32,783 chars planned |
-| caption        | PASS   | 166 words |
+| dossiers       | PASS   | 35,183 chars planned |
+| caption        | PASS   | 155 words |
 | craft floor    | WARN   | 9 frame(s), median 6061, floor 1091, 1 quiet |
 | plan vs render | WARN   | 0 of 46 acceptance item(s) checkable |
 | texan          | PASS   | places Hill County, Tom Green County / body yes / deadline yes / next step yes |
-| absences       | PASS   | 9 of 9 scoped to a named document |
+| absences       | PASS   | 10 of 10 scoped to a named document |
 | completion     | ABSENT | not scored yet |
 <!-- gate-status:end -->

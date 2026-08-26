@@ -44,7 +44,7 @@ scratch `out/2026-08-25/` which is gitignored and inside the tree.
 | 12b | ALL SIX EXIT 0. plan_render caught zero dossiers declaring display strings, absence caught slide 1 citing nothing | DONE |
 | 13 | EXIT 0. 9 declarations. The gate caught WORD FORM numbers, eight and Four and Two, as computed counts | DONE |
 | 14 | EXIT 0, pdf_mode vector | DONE |
-| 15 | Panel of 3 scorers, panel.py | |
+| 15 | Panel of 3 scorers | THREE ROUNDS. R1 six hard fails, R2 four, R3 running. R2 found the deck's headline count was eight where the record supports seven |
 | 16 | Ship: images, ledgers, site rebuild, 9 exit-code gates, LOOK at pages, PR, merge | |
 | 17 | Retro + upgrade | |
 | 18 | gmail_draft.py, email_check.py, create_draft | |

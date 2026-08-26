@@ -85,7 +85,7 @@
           "anc": []
         },
         {
-          "text": "Eight ways to slow a data center",
+          "text": "Seven ways to slow a data center",
           "x": 256,
           "y": 424,
           "w": 566,
@@ -100,7 +100,7 @@
             [
               256,
               417,
-              420,
+              438,
               88
             ],
             [
@@ -113,7 +113,7 @@
           "anc": []
         },
         {
-          "text": "Eight Texas governmental bodies acted this year. No two reached for the same instrument.",
+          "text": "Seven Texas governmental bodies acted this year. No two reached for the same instrument.",
           "x": 256,
           "y": 664,
           "w": 386,
@@ -128,7 +128,7 @@
             [
               256,
               664,
-              332,
+              344,
               38
             ],
             [
@@ -153,7 +153,7 @@
           "anc": []
         },
         {
-          "text": "8",
+          "text": "7",
           "x": 256,
           "y": 848,
           "w": 52,
@@ -175,10 +175,10 @@
           "anc": []
         },
         {
-          "text": "BODIES",
+          "text": "ACTED",
           "x": 342,
           "y": 894,
-          "w": 128,
+          "w": 107,
           "h": 30,
           "font_px": 30,
           "weight": "500",
@@ -190,14 +190,14 @@
             [
               342,
               889,
-              128,
+              107,
               40
             ]
           ],
           "anc": []
         },
         {
-          "text": "8",
+          "text": "2",
           "x": 256,
           "y": 944,
           "w": 52,
@@ -219,10 +219,10 @@
           "anc": []
         },
         {
-          "text": "INSTRUMENTS",
+          "text": "BOUND",
           "x": 342,
           "y": 990,
-          "w": 234,
+          "w": 107,
           "h": 30,
           "font_px": 30,
           "weight": "500",
@@ -234,7 +234,7 @@
             [
               342,
               985,
-              234,
+              107,
               40
             ]
           ],
@@ -270,7 +270,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1972,
+      "render_ms": 1940,
       "ok": true,
       "canvases": [
         {
@@ -328,11 +328,6 @@
         },
         {
           "kind": "tiny-text",
-          "text": "TEXAS WATER DEVELOPMENT BOARD",
-          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
-        },
-        {
-          "kind": "tiny-text",
           "text": "FORT WORTH",
           "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
         }
@@ -340,7 +335,7 @@
       "fonts_missing": [],
       "text_nodes": [
         {
-          "text": "EIGHT INSTRUMENTS",
+          "text": "SEVEN INSTRUMENTS",
           "x": 80,
           "y": 88,
           "w": 302,
@@ -384,7 +379,7 @@
           "anc": []
         },
         {
-          "text": "Eight bodies, eight instruments",
+          "text": "Seven bodies, seven instruments",
           "x": 186,
           "y": 270,
           "w": 520,
@@ -399,13 +394,13 @@
             [
               186,
               263,
-              519,
+              380,
               77
             ],
             [
               186,
               327,
-              349,
+              519,
               77
             ]
           ],
@@ -488,7 +483,7 @@
         {
           "text": "Incentive deniedARCHER COUNTY",
           "x": 186,
-          "y": 582,
+          "y": 588,
           "w": 293,
           "h": 59,
           "font_px": 30,
@@ -500,7 +495,7 @@
           "lines": [
             [
               186,
-              577,
+              583,
               293,
               40
             ]
@@ -510,7 +505,7 @@
         {
           "text": "ARCHER COUNTY",
           "x": 186,
-          "y": 619,
+          "y": 625,
           "w": 293,
           "h": 22,
           "font_px": 22,
@@ -522,7 +517,7 @@
           "lines": [
             [
               186,
-              615,
+              621,
               197,
               29
             ]
@@ -534,7 +529,7 @@
         {
           "text": "Zone refusedBRAZORIA COUNTY",
           "x": 186,
-          "y": 664,
+          "y": 676,
           "w": 228,
           "h": 59,
           "font_px": 30,
@@ -546,7 +541,7 @@
           "lines": [
             [
               186,
-              659,
+              671,
               220,
               40
             ]
@@ -556,7 +551,7 @@
         {
           "text": "BRAZORIA COUNTY",
           "x": 186,
-          "y": 701,
+          "y": 713,
           "w": 228,
           "h": 22,
           "font_px": 22,
@@ -568,7 +563,7 @@
           "lines": [
             [
               186,
-              697,
+              709,
               228,
               29
             ]
@@ -580,7 +575,7 @@
         {
           "text": "Water cappedSAN ANGELO",
           "x": 186,
-          "y": 746,
+          "y": 764,
           "w": 220,
           "h": 59,
           "font_px": 30,
@@ -592,7 +587,7 @@
           "lines": [
             [
               186,
-              741,
+              759,
               220,
               40
             ]
@@ -602,7 +597,7 @@
         {
           "text": "SAN ANGELO",
           "x": 186,
-          "y": 783,
+          "y": 801,
           "w": 220,
           "h": 22,
           "font_px": 22,
@@ -614,7 +609,7 @@
           "lines": [
             [
               186,
-              779,
+              797,
               152,
               29
             ]
@@ -626,7 +621,7 @@
         {
           "text": "Disclosure askedLUBBOCK COUNTY",
           "x": 186,
-          "y": 828,
+          "y": 852,
           "w": 293,
           "h": 59,
           "font_px": 30,
@@ -638,7 +633,7 @@
           "lines": [
             [
               186,
-              823,
+              847,
               293,
               40
             ]
@@ -648,7 +643,7 @@
         {
           "text": "LUBBOCK COUNTY",
           "x": 186,
-          "y": 865,
+          "y": 889,
           "w": 293,
           "h": 22,
           "font_px": 22,
@@ -660,7 +655,7 @@
           "lines": [
             [
               186,
-              861,
+              885,
               213,
               29
             ]
@@ -672,7 +667,7 @@
         {
           "text": "Staff directed to draftCORPUS CHRISTI",
           "x": 186,
-          "y": 910,
+          "y": 940,
           "w": 421,
           "h": 59,
           "font_px": 30,
@@ -684,7 +679,7 @@
           "lines": [
             [
               186,
-              905,
+              935,
               421,
               40
             ]
@@ -694,7 +689,7 @@
         {
           "text": "CORPUS CHRISTI",
           "x": 186,
-          "y": 947,
+          "y": 977,
           "w": 421,
           "h": 22,
           "font_px": 22,
@@ -706,7 +701,7 @@
           "lines": [
             [
               186,
-              943,
+              973,
               213,
               29
             ]
@@ -716,55 +711,9 @@
           ]
         },
         {
-          "text": "Category deniedTEXAS WATER DEVELOPMENT BOARD",
-          "x": 186,
-          "y": 992,
-          "w": 440,
-          "h": 59,
-          "font_px": 30,
-          "weight": "500",
-          "family": "JetBrains Mono",
-          "color": "rgb(42, 38, 34)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              186,
-              987,
-              275,
-              40
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "TEXAS WATER DEVELOPMENT BOARD",
-          "x": 186,
-          "y": 1029,
-          "w": 440,
-          "h": 22,
-          "font_px": 22,
-          "weight": "500",
-          "family": "JetBrains Mono",
-          "color": "rgb(84, 78, 68)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              186,
-              1025,
-              440,
-              29
-            ]
-          ],
-          "anc": [
-            16
-          ]
-        },
-        {
           "text": "Process startedFORT WORTH",
           "x": 186,
-          "y": 1074,
+          "y": 1028,
           "w": 275,
           "h": 59,
           "font_px": 30,
@@ -776,7 +725,7 @@
           "lines": [
             [
               186,
-              1069,
+              1023,
               275,
               40
             ]
@@ -786,7 +735,7 @@
         {
           "text": "FORT WORTH",
           "x": 186,
-          "y": 1111,
+          "y": 1065,
           "w": 275,
           "h": 22,
           "font_px": 22,
@@ -798,13 +747,13 @@
           "lines": [
             [
               186,
-              1107,
+              1061,
               152,
               29
             ]
           ],
           "anc": [
-            18
+            16
           ]
         },
         {
@@ -837,7 +786,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1185,
+      "render_ms": 1147,
       "ok": true,
       "canvases": [
         {
@@ -938,11 +887,11 @@
           "anc": []
         },
         {
-          "text": "The last four came inside 21 days of each other.",
+          "text": "The last three came inside 21 days of each other.",
           "x": 112,
           "y": 330,
           "w": 540,
-          "h": 34,
+          "h": 67,
           "font_px": 25,
           "weight": "400",
           "family": "Manrope",
@@ -953,7 +902,13 @@
             [
               112,
               329,
-              538,
+              481,
+              35
+            ],
+            [
+              112,
+              363,
+              68,
               35
             ]
           ],
@@ -962,7 +917,7 @@
         {
           "text": "MARCH 10TH",
           "x": 118,
-          "y": 434,
+          "y": 440,
           "w": 192,
           "h": 30,
           "font_px": 30,
@@ -974,7 +929,7 @@
           "lines": [
             [
               118,
-              429,
+              435,
               192,
               40
             ]
@@ -984,7 +939,7 @@
         {
           "text": "BRAZORIA COUNTY",
           "x": 392,
-          "y": 434,
+          "y": 440,
           "w": 307,
           "h": 32,
           "font_px": 32,
@@ -996,7 +951,7 @@
           "lines": [
             [
               392,
-              428,
+              434,
               307,
               43
             ]
@@ -1006,7 +961,7 @@
         {
           "text": "APRIL 27TH",
           "x": 118,
-          "y": 510,
+          "y": 526,
           "w": 192,
           "h": 30,
           "font_px": 30,
@@ -1018,7 +973,7 @@
           "lines": [
             [
               118,
-              505,
+              521,
               192,
               40
             ]
@@ -1028,7 +983,7 @@
         {
           "text": "KILLEEN",
           "x": 392,
-          "y": 510,
+          "y": 526,
           "w": 143,
           "h": 32,
           "font_px": 32,
@@ -1040,7 +995,7 @@
           "lines": [
             [
               392,
-              504,
+              520,
               143,
               43
             ]
@@ -1050,7 +1005,7 @@
         {
           "text": "JUNE 16TH",
           "x": 118,
-          "y": 586,
+          "y": 612,
           "w": 173,
           "h": 30,
           "font_px": 30,
@@ -1062,7 +1017,7 @@
           "lines": [
             [
               118,
-              581,
+              607,
               173,
               40
             ]
@@ -1072,7 +1027,7 @@
         {
           "text": "SAN ANGELO",
           "x": 392,
-          "y": 586,
+          "y": 612,
           "w": 205,
           "h": 32,
           "font_px": 32,
@@ -1084,13 +1039,13 @@
           "lines": [
             [
               392,
-              580,
+              606,
               123,
               43
             ],
             [
               535,
-              580,
+              606,
               61,
               43
             ]
@@ -1100,7 +1055,7 @@
         {
           "text": "G",
           "x": 515,
-          "y": 583,
+          "y": 609,
           "w": 21,
           "h": 32,
           "font_px": 32,
@@ -1112,7 +1067,7 @@
           "lines": [
             [
               514,
-              577,
+              603,
               21,
               43
             ]
@@ -1124,7 +1079,7 @@
         {
           "text": "JUNE 22ND",
           "x": 118,
-          "y": 662,
+          "y": 698,
           "w": 173,
           "h": 30,
           "font_px": 30,
@@ -1136,7 +1091,7 @@
           "lines": [
             [
               118,
-              657,
+              693,
               173,
               40
             ]
@@ -1146,7 +1101,7 @@
         {
           "text": "ARCHER COUNTY",
           "x": 392,
-          "y": 662,
+          "y": 698,
           "w": 266,
           "h": 32,
           "font_px": 32,
@@ -1158,7 +1113,7 @@
           "lines": [
             [
               392,
-              656,
+              692,
               266,
               43
             ]
@@ -1168,7 +1123,7 @@
         {
           "text": "JULY 21ST",
           "x": 118,
-          "y": 738,
+          "y": 784,
           "w": 173,
           "h": 30,
           "font_px": 30,
@@ -1180,7 +1135,7 @@
           "lines": [
             [
               118,
-              733,
+              779,
               173,
               40
             ]
@@ -1190,7 +1145,7 @@
         {
           "text": "CORPUS CHRISTI",
           "x": 392,
-          "y": 738,
+          "y": 784,
           "w": 287,
           "h": 32,
           "font_px": 32,
@@ -1202,7 +1157,7 @@
           "lines": [
             [
               392,
-              732,
+              778,
               287,
               43
             ]
@@ -1210,10 +1165,10 @@
           "anc": []
         },
         {
-          "text": "JULY 23RD",
+          "text": "AUGUST 10TH",
           "x": 118,
-          "y": 814,
-          "w": 173,
+          "y": 870,
+          "w": 211,
           "h": 30,
           "font_px": 30,
           "weight": "500",
@@ -1224,18 +1179,18 @@
           "lines": [
             [
               118,
-              809,
-              173,
+              865,
+              211,
               40
             ]
           ],
           "anc": []
         },
         {
-          "text": "TEXAS WATER DEVELOPMENT BOARD",
+          "text": "LUBBOCK COUNTY",
           "x": 392,
-          "y": 814,
-          "w": 594,
+          "y": 870,
+          "w": 287,
           "h": 32,
           "font_px": 32,
           "weight": "500",
@@ -1246,14 +1201,14 @@
           "lines": [
             [
               392,
-              808,
-              492,
+              864,
+              41,
               43
             ],
             [
-              904,
-              808,
-              82,
+              453,
+              864,
+              225,
               43
             ]
           ],
@@ -1261,8 +1216,8 @@
         },
         {
           "text": "B",
-          "x": 883,
-          "y": 816,
+          "x": 433,
+          "y": 872,
           "w": 21,
           "h": 32,
           "font_px": 32,
@@ -1273,8 +1228,8 @@
           "overlap_ok": false,
           "lines": [
             [
-              883,
-              810,
+              433,
+              866,
               21,
               43
             ]
@@ -1284,53 +1239,9 @@
           ]
         },
         {
-          "text": "AUGUST 10TH",
-          "x": 118,
-          "y": 890,
-          "w": 211,
-          "h": 30,
-          "font_px": 30,
-          "weight": "500",
-          "family": "JetBrains Mono",
-          "color": "rgb(158, 166, 176)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              118,
-              885,
-              211,
-              40
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "LUBBOCK COUNTY",
-          "x": 392,
-          "y": 890,
-          "w": 287,
-          "h": 32,
-          "font_px": 32,
-          "weight": "500",
-          "family": "JetBrains Mono",
-          "color": "rgb(232, 228, 216)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              392,
-              884,
-              287,
-              43
-            ]
-          ],
-          "anc": []
-        },
-        {
           "text": "AUGUST 11TH",
           "x": 118,
-          "y": 966,
+          "y": 956,
           "w": 211,
           "h": 30,
           "font_px": 30,
@@ -1342,7 +1253,7 @@
           "lines": [
             [
               118,
-              961,
+              951,
               211,
               40
             ]
@@ -1352,7 +1263,7 @@
         {
           "text": "FORT WORTH",
           "x": 392,
-          "y": 966,
+          "y": 956,
           "w": 205,
           "h": 32,
           "font_px": 32,
@@ -1364,7 +1275,7 @@
           "lines": [
             [
               392,
-              960,
+              950,
               205,
               43
             ]
@@ -1429,7 +1340,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1534,
+      "render_ms": 1551,
       "ok": true,
       "canvases": [
         {
@@ -1442,8 +1353,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 39.2,
-          "variance": 535.7
+          "mean": 39.4,
+          "variance": 530.6
         }
       ],
       "breather": false,
@@ -1678,7 +1589,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1451,
+      "render_ms": 1347,
       "ok": true,
       "canvases": [
         {
@@ -1713,15 +1624,20 @@
           "kind": "tiny-text",
           "text": "LUBBOCK COUNTY, C7",
           "detail": "font-size 20px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "KILLEEN, C18",
+          "detail": "font-size 20px < 24px mobile floor (mark data-decorative if intentional)"
         }
       ],
       "fonts_missing": [],
       "text_nodes": [
         {
-          "text": "ARCHER AND LUBBOCK",
+          "text": "FIVE OF THE SEVEN",
           "x": 80,
           "y": 88,
-          "w": 320,
+          "w": 302,
           "h": 24,
           "font_px": 24,
           "weight": "500",
@@ -1733,7 +1649,7 @@
             [
               80,
               84,
-              320,
+              302,
               31
             ]
           ],
@@ -1762,7 +1678,7 @@
           "anc": []
         },
         {
-          "text": "Two of the eight stop nothing",
+          "text": "Five of the seven stop nothing",
           "x": 150,
           "y": 236,
           "w": 660,
@@ -1777,7 +1693,7 @@
             [
               150,
               229,
-              614,
+              623,
               82
             ],
             [
@@ -1890,12 +1806,12 @@
           "anc": []
         },
         {
-          "text": "The record says nothing either way about four bodies.",
+          "text": "Killeen's record calls the vote a recommendation. The council decides.",
           "x": 150,
-          "y": 1088,
-          "w": 700,
-          "h": 36,
-          "font_px": 26,
+          "y": 1086,
+          "w": 812,
+          "h": 34,
+          "font_px": 24,
           "weight": "400",
           "family": "Manrope",
           "color": "rgb(62, 58, 52)",
@@ -1904,9 +1820,31 @@
           "lines": [
             [
               150,
-              1088,
-              640,
-              36
+              1086,
+              765,
+              33
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "KILLEEN, C18",
+          "x": 150,
+          "y": 1136,
+          "w": 168,
+          "h": 20,
+          "font_px": 20,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(110, 105, 95)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              150,
+              1133,
+              168,
+              26
             ]
           ],
           "anc": []
@@ -1941,7 +1879,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 873,
+      "render_ms": 884,
       "ok": true,
       "canvases": [
         {
@@ -2025,7 +1963,7 @@
           "anc": []
         },
         {
-          "text": "Two of them have teeth",
+          "text": "Two of the seven have teeth",
           "x": 96,
           "y": 172,
           "w": 600,
@@ -2040,13 +1978,13 @@
             [
               96,
               165,
-              494,
+              465,
               77
             ],
             [
               96,
               229,
-              145,
+              288,
               77
             ]
           ],
@@ -2228,7 +2166,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1618,
+      "render_ms": 1594,
       "ok": true,
       "canvases": [
         {
@@ -2261,7 +2199,7 @@
         },
         {
           "kind": "tiny-text",
-          "text": "NO OTHER APPLICANT IS NAMED IN THIS RECORD",
+          "text": "THE RECORD CARRIES THE SAME MINUTE ON EACH OF THE FOUR",
           "detail": "font-size 19px < 24px mobile floor (mark data-decorative if intentional)"
         },
         {
@@ -2400,10 +2338,10 @@
           "anc": []
         },
         {
-          "text": "NO OTHER APPLICANT IS NAMED IN THIS RECORD",
+          "text": "THE RECORD CARRIES THE SAME MINUTE ON EACH OF THE FOUR",
           "x": 118,
           "y": 516,
-          "w": 543,
+          "w": 698,
           "h": 19,
           "font_px": 19,
           "weight": "400",
@@ -2415,7 +2353,7 @@
             [
               118,
               513,
-              543,
+              698,
               25
             ]
           ],
@@ -2583,7 +2521,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 609,
+      "render_ms": 615,
       "ok": true,
       "canvases": [
         {
@@ -2626,7 +2564,17 @@
         },
         {
           "kind": "tiny-text",
+          "text": "The water board denied a petition asking it to project data center water demand.",
+          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
           "text": "LAREDO MATTER HISTORY, C143 AGENDAS",
+          "detail": "font-size 18px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "TEXAS WATER DEVELOPMENT BOARD, C29",
           "detail": "font-size 18px < 24px mobile floor (mark data-decorative if intentional)"
         }
       ],
@@ -2677,7 +2625,7 @@
           "anc": []
         },
         {
-          "text": "Two bodies declined to restrict",
+          "text": "Three went the other way",
           "x": 120,
           "y": 206,
           "w": 600,
@@ -2692,13 +2640,13 @@
             [
               120,
               200,
-              553,
+              572,
               74
             ],
             [
               120,
               262,
-              271,
+              111,
               74
             ]
           ],
@@ -2707,7 +2655,7 @@
         {
           "text": "Tom Green County's court voted not to pursue a moratorium in Precinct 4.",
           "x": 120,
-          "y": 392,
+          "y": 372,
           "w": 410,
           "h": 115,
           "font_px": 27,
@@ -2719,19 +2667,19 @@
           "lines": [
             [
               120,
-              392,
+              372,
               398,
               37
             ],
             [
               120,
-              430,
+              410,
               365,
               37
             ],
             [
               120,
-              469,
+              449,
               132,
               37
             ]
@@ -2741,7 +2689,7 @@
         {
           "text": "A commissioner referenced a $100 million lawsuit filed against Hill County after it approved a similar one year moratorium.",
           "x": 120,
-          "y": 560,
+          "y": 522,
           "w": 410,
           "h": 166,
           "font_px": 23,
@@ -2753,31 +2701,31 @@
           "lines": [
             [
               120,
-              561,
+              523,
               373,
               30
             ],
             [
               120,
-              594,
+              556,
               359,
               30
             ],
             [
               120,
-              627,
+              589,
               386,
               30
             ],
             [
               120,
-              660,
+              622,
               373,
               30
             ],
             [
               120,
-              693,
+              655,
               152,
               30
             ]
@@ -2787,7 +2735,7 @@
         {
           "text": "TOM GREEN COUNTY, C15 AND C16REPORTED SPEECH ABOUT A LAWSUIT",
           "x": 120,
-          "y": 778,
+          "y": 706,
           "w": 406,
           "h": 53,
           "font_px": 19,
@@ -2799,13 +2747,13 @@
           "lines": [
             [
               120,
-              778,
+              706,
               380,
               25
             ],
             [
               120,
-              805,
+              733,
               406,
               25
             ]
@@ -2815,7 +2763,7 @@
         {
           "text": "\"no action taken\"",
           "x": 120,
-          "y": 898,
+          "y": 810,
           "w": 420,
           "h": 31,
           "font_px": 23,
@@ -2827,7 +2775,7 @@
           "lines": [
             [
               120,
-              898,
+              810,
               235,
               30
             ]
@@ -2835,9 +2783,37 @@
           "anc": []
         },
         {
+          "text": "The water board denied a petition asking it to project data center water demand.",
+          "x": 120,
+          "y": 936,
+          "w": 430,
+          "h": 57,
+          "font_px": 21,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(68, 63, 54)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              120,
+              936,
+              409,
+              28
+            ],
+            [
+              120,
+              965,
+              358,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
           "text": "LAREDO MATTER HISTORY, C143 AGENDAS",
           "x": 120,
-          "y": 948,
+          "y": 858,
           "w": 318,
           "h": 50,
           "font_px": 18,
@@ -2849,13 +2825,13 @@
           "lines": [
             [
               120,
-              949,
+              859,
               318,
               23
             ],
             [
               120,
-              974,
+              884,
               110,
               23
             ]
@@ -2863,11 +2839,33 @@
           "anc": []
         },
         {
-          "text": "Ten bodies in this record took a restriction up. Eight acted and two declined.",
+          "text": "TEXAS WATER DEVELOPMENT BOARD, C29",
           "x": 120,
-          "y": 1044,
+          "y": 1012,
+          "w": 416,
+          "h": 25,
+          "font_px": 18,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(110, 105, 95)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              120,
+              1013,
+              416,
+              23
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Ten bodies in this record took one up. Seven acted and three did not.",
+          "x": 120,
+          "y": 1064,
           "w": 430,
-          "h": 99,
+          "h": 66,
           "font_px": 24,
           "weight": "400",
           "family": "Manrope",
@@ -2877,20 +2875,14 @@
           "lines": [
             [
               120,
-              1044,
-              341,
+              1064,
+              409,
               33
             ],
             [
               120,
-              1077,
-              379,
-              33
-            ],
-            [
-              120,
-              1110,
-              101,
+              1097,
+              336,
               33
             ]
           ],
@@ -2926,7 +2918,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1627,
+      "render_ms": 1676,
       "ok": true,
       "canvases": [
         {
@@ -3211,7 +3203,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1457,
+      "render_ms": 1414,
       "ok": true,
       "canvases": [
         {

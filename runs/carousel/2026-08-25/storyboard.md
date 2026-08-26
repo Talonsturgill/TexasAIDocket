@@ -98,6 +98,41 @@ was reading the nouns and quantifiers wrapped around them.
 - **The first comment said the sources were all primary** on a run whose claims file types seven
   of its twelve documents as reported. It is counted from the file now rather than asserted.
 
+## Third revision, after the panel's second round (2026-08-25)
+
+Round two: integrity 6.46 with FOUR hard fails, reader 6.44 with none, craft 7.23 with none. The
+first round's six hard fails were all repaired and verified in the render. These four are
+different and one of them is the deck's central number.
+
+**The Texas Water Development Board was never one of the bodies that restricted a data center.**
+It DENIED A PETITION, filed by a Wimberley resident, that asked the agency to project data center
+water demand as its own category. That is a refusal to add scrutiny, which is the opposite
+direction. It sat in `RESTRICTED` because that map was typed by hand from memory of the record
+rather than read off it, and `compute.py`'s own stated IN rule excludes it in words. The deck's
+headline number was eight and the record supports seven. It cost the cover, frames 2, 3, 5 and 8
+and the caption.
+
+**The silent set was empty and the deck published four.** Frame 5 and the caption said the record
+says nothing either way about four bodies. Reading the claims file back, it speaks to every one:
+c30 says the Corpus Christi motion bans nothing, c22 and c23 are the entire subject of frame 4,
+and c18 says Killeen's commission vote is a recommendation the council still has to act on. So
+`stated_nonbinding` is FIVE of the seven, `stated_binding` is two, and `force_unstated` is zero.
+The deck is better for it: five of seven stop nothing in their own words, two bind, nothing
+unaccounted for.
+
+**Frame 7 asserted an absence the record contradicts.** "NO OTHER APPLICANT IS NAMED IN THIS
+RECORD", while `tx-2026-0051` reads "two from Bulldog Power and two from Old Ocean Datacenter".
+The frame says what is true of all four instead, which is that each carries the same minute.
+
+**Laredo's shape cited a claim that does not state it.** `moratorium declined` came from the
+docket item's TITLE and c14 says only "no action taken". The map says what the claim says.
+
+A fact-check finding for the next run: c11's text reads "two entities named as data center
+companies and two named as power companies", which counts four entities, and `tx-2026-0051`'s
+summary reads "two from Bulldog Power and two from Old Ocean Datacenter", which counts two
+entities and four applications. Those disagree. No frame prints either, which is the right
+outcome, and the claim needs re-verifying before any deck leans on it.
+
 ## Structural laws for the ledger
 
 Legible means quoted or computed. Everything below reading size is decorative and aria-hidden.
@@ -146,8 +181,8 @@ art:
     eye by area rather than by extremity.
   motion: "down the lit rail, into the opening, onto the sheet"
 type:
-  hook: "Eight ways to slow a data center"
-  dek: "Eight Texas governmental bodies acted this year. No two reached for the same instrument."
+  hook: "Seven ways to slow a data center"
+  dek: "Seven Texas governmental bodies acted this year. No two reached for the same instrument."
 acceptance:
   - "the lock cylinder and its keyway are drawn at the right stile, so the case reads as locked rather than as a picture frame"
   - "the bond sheet is a bounded quadrilateral with the glazing's reflection over it, not a white rectangle"
@@ -194,7 +229,7 @@ art:
     shadow does the separating.
   motion: "left to right across the shadow boundary, then down the list"
 type:
-  hook: "Eight bodies, eight instruments"
+  hook: "Seven bodies, seven instruments"
   dek: "One each. The shape of a refusal decides whether anything stops."
 acceptance:
   - "the shadow has a visibly wider penumbra at the bottom of the sheet than at the top, which is the air gap doing work"
@@ -244,7 +279,7 @@ art:
   motion: "down the rows, each shorter than the last"
 type:
   hook: "From March to August"
-  dek: "The last four came inside 21 days of each other."
+  dek: "The last three came inside 21 days of each other."
 acceptance:
   - "each row's letter shadows are offset differently from the row above, computed from one overhead source"
   - "at least two letters sit visibly proud of the groove, as a hand set board does"
@@ -338,7 +373,7 @@ art:
     foot. This is the deck's widest range and it is spent on the turn.
   motion: "across the band diagonally, then down to the surviving line"
 type:
-  hook: "Two of the eight stop nothing"
+  hook: "Five of the seven stop nothing"
   dek: "\"does not stop the project from moving forward\""
 acceptance:
   - "the blowout has two hard parallel edges and a measurable rolloff, not a soft radial glow"
@@ -387,7 +422,7 @@ art:
     the darkest, which is what makes frame 7 land.
   motion: "left sheet to right sheet, then down to the empty cork"
 type:
-  hook: "Two of them have teeth"
+  hook: "Two of the seven have teeth"
   dek: "\"Motion to deny passed 5-0.\""
 acceptance:
   - "no glazing plane is drawn between the camera and either sheet"
@@ -487,7 +522,7 @@ art:
     right. The frame is the deck's quietest and it sits between its two loudest.
   motion: "onto the reflection, then back to the near sheet it floats over"
 type:
-  hook: "Two bodies declined to restrict"
+  hook: "Three went the other way"
   dek: "Tom Green County's court voted not to pursue a moratorium in Precinct 4."
 acceptance:
   - "the reflected geometry resolves as a second notice case and not as a smudge or a double exposure"

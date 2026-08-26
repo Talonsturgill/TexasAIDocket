@@ -5,11 +5,11 @@
       "fails": [],
       "warns": [],
       "bands": [
-        0.1639,
-        0.1513,
-        0.239
+        0.1597,
+        0.1534,
+        0.2279
       ],
-      "band_ratio": 1.2768
+      "band_ratio": 1.2491
     },
     {
       "file": "slide-02.html",
@@ -21,28 +21,25 @@
         "tiny-text: 'SAN ANGELO' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
         "tiny-text: 'LUBBOCK COUNTY' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
         "tiny-text: 'CORPUS CHRISTI' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: 'TEXAS WATER DEVELOPMENT BOARD' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: 'FORT WORTH' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
-        "worst-point contrast 2.8 on 'TEXAS WATER DEVELOPMENT BOARD' (box mean 6.7) -- below the rubric's 4.5 line somewhere along the run of the text",
-        "art touching glyphs (5% of the ring around 'TEXAS WATER DEVELOPMENT BOARD', spanning 66%) -- pixel critic verify the label is not crossed"
+        "tiny-text: 'FORT WORTH' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))"
       ],
       "bands": [
         0.2752,
-        0.1723,
-        0.2518
+        0.1681,
+        0.2077
       ],
-      "band_ratio": 1.0764
+      "band_ratio": 0.9591
     },
     {
       "file": "slide-03.html",
       "fails": [],
       "warns": [],
       "bands": [
-        0.5252,
-        0.7752,
-        0.5754
+        0.5189,
+        0.7668,
+        0.6029
       ],
-      "band_ratio": 0.9236
+      "band_ratio": 0.9596
     },
     {
       "file": "slide-04.html",
@@ -65,22 +62,23 @@
       "fails": [],
       "warns": [
         "tiny-text: 'ARCHER COUNTY, C5' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: 'LUBBOCK COUNTY, C7' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))"
+        "tiny-text: 'LUBBOCK COUNTY, C7' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'KILLEEN, C18' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "low contrast ~3.1 on 'KILLEEN, C18' (est.)"
       ],
       "bands": [
-        0.1618,
+        0.1576,
         0.0924,
-        0.1434
+        0.1544
       ],
-      "band_ratio": 1.0779
+      "band_ratio": 1.1379
     },
     {
       "file": "slide-06.html",
       "fails": [],
       "warns": [
         "tiny-text: 'BRAZORIA COUNTY, C9THE ZONE THEY STOOD ON' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: 'SAN ANGELO, C12CAPPED BY ORDINANCE' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
-        "art touching glyphs (4% of the ring around 'Two of them have teeth', spanning 30%) -- pixel critic verify the label is not crossed"
+        "tiny-text: 'SAN ANGELO, C12CAPPED BY ORDINANCE' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))"
       ],
       "bands": [
         0.6534,
@@ -94,16 +92,16 @@
       "fails": [],
       "warns": [
         "tiny-text: 'ITEM I.3, THE REINVESTMENT ZONE' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: 'NO OTHER APPLICANT IS NAMED IN THIS RECORD' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'THE RECORD CARRIES THE SAME MINUTE ON EACH OF THE ' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
         "tiny-text: 'GRANTING TAX ABATEMENT OF OLD OCEAN DATACENTER LLC' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
         "tiny-text: 'C9, C10, C11' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))"
       ],
       "bands": [
         0.2185,
-        0.1429,
+        0.1492,
         0.2868
       ],
-      "band_ratio": 1.3079
+      "band_ratio": 1.2961
     },
     {
       "file": "slide-08.html",
@@ -112,14 +110,19 @@
         "tiny-text: 'A commissioner referenced a $100 million lawsuit f' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))",
         "tiny-text: 'TOM GREEN COUNTY, C15 AND C16REPORTED SPEECH ABOUT' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
         "tiny-text: '\"no action taken\"' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: 'LAREDO MATTER HISTORY, C143 AGENDAS' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))"
+        "tiny-text: 'The water board denied a petition asking it to pro' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'LAREDO MATTER HISTORY, C143 AGENDAS' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'TEXAS WATER DEVELOPMENT BOARD, C29' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
+        "worst-point contrast 4.5 on 'TOM GREEN COUNTY, C15 AND C16REPORTED SP' (box mean 4.7) -- below the rubric's 4.5 line somewhere along the run of the text",
+        "worst-point contrast 4.4 on 'LAREDO MATTER HISTORY, C143 AGENDAS' (box mean 4.7) -- below the rubric's 4.5 line somewhere along the run of the text",
+        "worst-point contrast 4.1 on 'TEXAS WATER DEVELOPMENT BOARD, C29' (box mean 4.3) -- below the rubric's 4.5 line somewhere along the run of the text"
       ],
       "bands": [
-        0.5693,
-        0.6534,
-        0.4669
+        0.5588,
+        0.6387,
+        0.4301
       ],
-      "band_ratio": 0.8355
+      "band_ratio": 0.8004
     },
     {
       "file": "slide-09.html",
@@ -138,6 +141,6 @@
     }
   ],
   "fails": 0,
-  "warns": 30,
+  "warns": 33,
   "verdict": "WARN"
 }
