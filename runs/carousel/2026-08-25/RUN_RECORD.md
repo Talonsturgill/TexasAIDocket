@@ -1,4 +1,53 @@
-# Run record, August 25th, 2026
+# Run record, carousel No. 7, 2026-08-25
+
+> **READ THIS FIRST. The deck below was RECUT after round 5.** Everything in the older sections
+> that says seven bodies describes a deck that no longer exists. The recut is in
+> `RECUT_PLAN.md` and the reason is at the top of it.
+
+## What the deck says now, and every number here is computed
+
+`compute.py` classifies **every** item in `ledger/docket.json` that carries a 2026 date and names
+a data center. 16 times a Texas local government took one up.
+**14 were actions by 11 local governments and no two reached
+for the same instrument**, 14 distinct shapes across 14
+actions. 2 took it up and did not act. Eighteen further candidates are OUT with
+a stated reason each, and an assertion refuses to run if any candidate is in none of the three sets.
+
+Of the 14, **6 changed a legal state on the day** and
+**5 say in their own sources that they stop nothing**. On 3
+the record does not speak either way, which the deck publishes rather than rounding.
+**San Angelo went back 3 times**, writing
+3 of the 6 binding actions: zoning in May, the sewer
+in June, the water a fortnight after that. 6 of the
+14 fell in June, more than any other month. The span is
+156 days, 2026-03-10 to 2026-08-13.
+
+## What round 5 stopped, and it was right to
+
+Round 5's integrity judge returned 6.02 with two hard fails.
+
+1. **The headline count was not a count.** `RESTRICTED` and `DECLINED` were maps typed by hand.
+   Reading the record back found El Paso's Data Center Policy Framework, San Marcos voting 4 to 3
+   to make data centers ineligible citywide, and Hays County's 180 day emergency water review, all
+   meeting the rule the deck published, all inside its own window, all on no frame.
+2. **"Seven bodies, seven instruments. One each" was false.** San Angelo reached for three.
+
+Rounds 2, 4 and 5 each shipped a wrong headline out of that one spot. The fix is the judge's own
+one sentence fix and it is now in force: the set is a SELECTION computed over the record, and a
+silent omission is structurally impossible rather than merely discouraged.
+
+## Measured, after the recut
+
+Per frame median L\*: 51.2, 65.6, 14.4, 30.8, 81.4, 70.4, 52.4, 55.8, 48.8. Deck median
+52.4, sd 19.1. The biggest junction is
+-51.2 between frames 2 and
+3. Frame 7's falloff measures 16.5 L\* in
+the gutters between its four repeat lines. Frame 6's cards read 94.2 against
+cork at 64.8. `bespoke_check` reports a median pairwise similarity of
+0.1594, the lowest in the ledger. Machine QA is 0 fails.
+
+---
+
 
 Carousel No. 7. Nine frames. The deck half of the daily routine, run on the owner's instruction
 to take it all the way through to a Gmail draft.
