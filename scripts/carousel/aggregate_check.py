@@ -428,9 +428,37 @@ def rederive(decl: dict, claims: dict) -> tuple[bool, str]:
     return False, f"unknown kind {kind!r}"
 
 
-def check(report: dict, declared: dict, claims: dict) -> list[str]:
+def scan_caption(text: str) -> list[dict]:
+    """Every aggregate shape in the CAPTION, which is the surface most people actually read.
+
+    WHY THIS EXISTS. 2026-08-26.
+
+    This gate read `render_report.json` and nothing else, so it judged nine frames and left the
+    caption unread. The caption is the copy a reader meets first, it is longer than any frame,
+    and it is written in prose, which is where a stray computation is easiest to slip in.
+
+    A judge found one: "Zoning in May, the sewer in June, the water two weeks after that." Two
+    weeks is a date delta over c43's June 2nd sewer ordinance and c32's June 16th water
+    ordinance. No claim states an interval, `figures.json` holds both dates and computes no gap,
+    and nothing declared it. The figure was TRUE, which is exactly why it is worth catching: a
+    model doing correct arithmetic in published copy is still the model acting as the
+    calculator, and CLAUDE.md names this case in words. The compliant version of that sentence
+    was already on the frame beside it, reading "the water on June 16th".
+
+    The caption has no slide counter, so `n_slides` is None and nothing is exempted as furniture.
+    Hashtags are stripped first, because #FortWorth is a tag and not a sentence.
+    """
+    body = re.sub(r"(?m)^\s*#\S+(\s+#\S+)*\s*$", " ", text)
+    out = []
+    for line in body.splitlines():
+        for d in detect(line.strip(), None):
+            out.append({"slide": "caption.txt", "text": line.strip(), **d})
+    return out
+
+
+def check(report: dict, declared: dict, claims: dict, caption: str = "") -> list[str]:
     problems = []
-    found = scan_report(report)
+    found = scan_report(report) + (scan_caption(caption) if caption else [])
     decls = {d.get("phrase", "").strip().lower(): d for d in (declared.get("aggregates") or [])}
 
     for f in found:
@@ -467,8 +495,10 @@ def run(date: str, out_root: Path = None) -> int:
     claims = json.loads(cp.read_text(encoding="utf-8")) if cp.exists() else {"claims": []}
     declared = json.loads(ap.read_text(encoding="utf-8")) if ap.exists() else {"aggregates": []}
 
-    problems = check(report, declared, claims)
-    found = scan_report(report)
+    cap_path = base / "caption.txt"
+    caption = cap_path.read_text(encoding="utf-8") if cap_path.exists() else ""
+    problems = check(report, declared, claims, caption)
+    found = scan_report(report) + (scan_caption(caption) if caption else [])
 
     # A RECEIPT, written whether it passed or failed, so a later reader can tell that this ran
     # against THIS render. `aggregates.json` is an INPUT the run authors before the check, and a
@@ -730,6 +760,28 @@ def self_test() -> int:
        not check(qr, {"aggregates": [
            {"phrase": "Two schools", "kind": "count", "value": 2,
             "computed_by": "len() over the campus list in assets/houston_future2.json"}]}, qc))
+
+    # THE CAPTION IS A PUBLISHED SURFACE (2026-08-26). This gate read the render and nothing
+    # else, and a judge found by hand a date delta in the caption that no gate could reach.
+    _cap = ("Zoning in May, the sewer in June, the water two weeks after that.\n\n"
+            "#BrazoriaCounty #SanAngelo #FortWorth\n")
+    _hits = scan_caption(_cap)
+    ok("a duration in the caption is seen", any(h["phrase"] == "two weeks" for h in _hits), str(_hits))
+    ok("...and it is attributed to caption.txt, not to a slide",
+       all(h["slide"] == "caption.txt" for h in _hits))
+    ok("a hashtag line is not read as copy",
+       not any("FortWorth" in h.get("text", "") for h in _hits), str(_hits))
+    ok("a caption with no computed number is clean",
+       not scan_caption("The council decides. The commission only recommends.\n"))
+    ok("the compliant version of the same sentence passes",
+       not any(h["kind"] == "duration"
+               for h in scan_caption("the sewer in June, the water on June 16th.")),
+       str(scan_caption("the sewer in June, the water on June 16th.")))
+    ok("check() reads the caption when it is given one",
+       any("caption.txt" in p for p in check({"slides": []}, {"aggregates": []},
+                                             {"claims": []}, _cap)))
+    ok("...and is unchanged when it is not",
+       not check({"slides": []}, {"aggregates": []}, {"claims": []}))
 
     if failures:
         print(f"\naggregate_check self-test: {failures} FAILED", file=sys.stderr)
