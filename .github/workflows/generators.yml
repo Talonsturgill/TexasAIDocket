@@ -22,6 +22,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: generators
@@ -114,6 +115,13 @@ jobs:
           done
           echo "::error::could not push the generator reading; rerun once main is settled"
           exit 1
+
+      # GITHUB_TOKEN pushes do not start guards.yml through its push trigger. Dispatch it
+      # explicitly; Pages listens to that completed guard run rather than racing this writer.
+      - name: Run full guards for the new main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run guards.yml --ref main
 
       - name: Say so when the rebuild failed
         if: steps.rebuild.outcome == 'failure'
