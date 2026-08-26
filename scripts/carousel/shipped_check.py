@@ -78,7 +78,11 @@ def g_aggregates(d: Path):
     claims = _load(d / "claims.json")
     if not (rep and agg is not None and claims):
         return None
-    probs = m.check(rep, agg, claims)
+    # THE CAPTION GOES THROUGH TOO. `aggregate_check` learned to read it on 2026-08-26 and this
+    # adapter did not, so a figure the caption declares and no slide prints came back as a
+    # leftover declaration. A gate wired to half its own checker reports the half it can see.
+    cap = d / "caption.txt"
+    probs = m.check(rep, agg, claims, cap.read_text(encoding="utf-8") if cap.exists() else "")
     return list(probs) if probs else []
 
 
@@ -204,6 +208,45 @@ def g_shipped_fresh(d: Path):
                         f"{src.name} does not carry the string copy.json says it prints: "
                         f"{probe[:70]!r}. The shipped source is not the deck beside it")
                     break
+    # THE PLAN IS AN ARTIFACT TOO, and it is the one the first version of this gate missed.
+    # Round 6's hard fail was that the shipped SOURCE did not draw the deck beside it. That was
+    # repaired in slides/, the PDF and the assembly record, and round 7 found the superseded
+    # deck had simply moved one file over: slide 2's dossier said "fourteen" four times over a
+    # frame rendering fifteen, slide 3 declared span_days 154 against a printed 156, and slide 8
+    # still called itself the deck's quietest in a frame whose own code comment quotes that
+    # sentence and calls it wrong.
+    #
+    # Only the YAML dossier blocks are read. The revision log around them narrates what was
+    # wrong on purpose, and a gate that could not tell a plan from a history of plans would
+    # force a run to delete its own reasoning.
+    sb = d / "storyboard.md"
+    figs = _load(d / "computed.json") or {}
+    if sb.exists() and figs:
+        allowed = {v for v in figs.values() if isinstance(v, int) and not isinstance(v, bool)}
+        words = ("two three four five six seven eight nine ten eleven twelve thirteen fourteen "
+                 "fifteen sixteen seventeen eighteen nineteen twenty").split()
+        value_of = {w: i + 2 for i, w in enumerate(words)}
+        text = sb.read_text(encoding="utf-8", errors="replace")
+        # NARROWED to the fields where a dossier states the deck's CLAIMS. `job:` says what the
+        # frame is for and `numerals:` says what it computes, and both were wrong. `bands:` and
+        # `composition:` describe LAYOUT, where "two columns, eight then seven" and "the deck has
+        # spent eight frames" are correct and have no business in a figures file. The first
+        # version of this read the whole block and fired on both of those, which is a gate that
+        # would teach a run to stop writing down how a frame is built.
+        claimy = []
+        for blk in re.findall(r"```yaml\n(.*?)```", text, re.S):
+            for fm in re.finditer(r"^(job|numerals):(.*?)(?=^\S|\Z)", blk, re.S | re.M):
+                claimy.append(fm.group(0))
+        for blk in claimy:
+            for m in re.finditer(r"\b(" + "|".join(words) + r")\b", blk, re.I):
+                val = value_of[m.group(1).lower()]
+                if val not in allowed:
+                    problems.append(
+                        f"storyboard.md, a dossier job or numerals field, says {m.group(1)!r} "
+                        f"and the run computed {sorted(allowed)}. A plan nobody regenerates is a "
+                        f"plan that describes the last deck")
+                    break
+
     ar = _load(d / "assemble_report.json")
     if ar and cp.get("document_title") and ar.get("title") != cp["document_title"]:
         problems.append(f"assemble_report.json titles the built PDF {ar.get('title')!r} and "
