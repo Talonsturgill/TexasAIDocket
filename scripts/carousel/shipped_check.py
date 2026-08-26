@@ -46,6 +46,7 @@ import argparse
 import io
 import json
 import contextlib
+import re
 import sys
 from pathlib import Path
 
@@ -159,6 +160,89 @@ def g_nouns(d: Path):
     return fails
 
 
+def g_shipped_fresh(d: Path):
+    """Every artifact in a shipped run must describe the deck beside it.
+
+    WHY THIS EXISTS. 2026-08-26, and it is the worst thing this suite has missed.
+
+    The 2026-08-25 run recut its deck around a computed selection after a judge proved the old
+    headline false. The renders, the copy and the caption were all rebuilt. `slides/` was not
+    copied, and `assemble_report.json` was not rebuilt, so the shipped directory carried the
+    REFUTED seven-body HTML and recorded its PDF as "Seven ways to slow a data center" while the
+    PNGs beside them showed a different deck. A scoring judge found it and called it what it is:
+    a refuted count and its numerals presented as verified in the deliverable a reader downloads.
+
+    Every gate in this suite passed, because each reads ONE artifact and asks whether it is
+    internally right. Not one asked whether the artifacts agree with each other.
+
+    CONTENT, NOT TIMESTAMPS. The obvious version compares mtimes, and mtimes do not survive a
+    clone, so it would pass on CI forever and only ever fire on the machine that already knew.
+    These three comparisons hold in a fresh checkout:
+
+      1. every display string `copy.json` records is in the slide source of the frame it names
+      2. `assemble_report.json`'s title is `copy.json`'s `document_title`, CURRENT scope only
+      3. `machine_qa.json` describes as many frames as the run shipped
+    """
+    cp = _load(d / "copy.json")
+    if not cp:
+        return None
+    problems = []
+    slides_dir = d / "slides"
+    if slides_dir.is_dir():
+        for key, blk in sorted((cp.get("slides") or {}).items()):
+            n = blk.get("n") or int(str(key).lstrip("Ss") or 0)
+            src = slides_dir / f"slide-{n:02d}.html"
+            if not src.exists():
+                problems.append(f"copy.json describes {key} and {src.name} is not in slides/")
+                continue
+            body = src.read_text(encoding="utf-8", errors="replace")
+            flat = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", body))
+            for want in (blk.get("strings") or []):
+                probe = re.sub(r"\s+", " ", str(want)).strip()
+                if len(probe) >= 12 and probe not in flat:
+                    problems.append(
+                        f"{src.name} does not carry the string copy.json says it prints: "
+                        f"{probe[:70]!r}. The shipped source is not the deck beside it")
+                    break
+    ar = _load(d / "assemble_report.json")
+    if ar and cp.get("document_title") and ar.get("title") != cp["document_title"]:
+        problems.append(f"assemble_report.json titles the built PDF {ar.get('title')!r} and "
+                        f"copy.json titles the deck {cp['document_title']!r}. The assembly on "
+                        f"disk is not this deck's")
+    qa = _load(d / "machine_qa.json")
+    if qa:
+        shipped = len([k for k in (cp.get("slides") or {})])
+        seen = len(qa.get("slides") or qa.get("frames") or [])
+        if seen and shipped and seen != shipped:
+            problems.append(f"machine_qa.json describes {seen} frame(s) and the run shipped "
+                            f"{shipped}. The QA report is not this render's")
+    return problems
+
+
+def g_ledgers(d: Path):
+    """The variety ledgers, against the run whose figures their prose narrates.
+
+    CURRENT scope, and the reason is in the gate itself: the three `*_recent` exclusion lists
+    derive from the NEWEST entry and the topic prose is checked against that run's computed
+    counts, so asking an older deck about today's ledger is asking the wrong question.
+
+    This adapter is also the whole reason `ledger_check` is a gate rather than a script somebody
+    remembers to run. `.github/workflows/**` and `prompts/**` are the human actor's, so a routine
+    that writes a gate cannot connect it. One step in the workflow calls this file, so a new gate
+    is one function away in a file the upgrade lane already owns. `port_audit`'s wiring check
+    caught this one unconnected, which is exactly what that check exists for.
+    """
+    import ledger_check as m
+    fp = d / "figures.json"
+    led = REPO_ROOT / "ledger/carousel"
+    if not (fp.exists() and (led / "captions.json").exists() and (led / "topics.json").exists()):
+        return None
+    return list(m.run(json.loads((led / "captions.json").read_text(encoding="utf-8")),
+                      json.loads((led / "topics.json").read_text(encoding="utf-8")),
+                      json.loads(fp.read_text(encoding="utf-8")),
+                      (REPO_ROOT / m.DOCTRINE).read_text(encoding="utf-8")) or [])
+
+
 def g_completion(d: Path):
     import run_complete as m
     if not (d / "score.json").exists():
@@ -183,6 +267,15 @@ GATES = [
     ("absences", g_absences, HISTORY),
     ("nouns", g_nouns, HISTORY),
     ("sources block", g_sources, HISTORY),
+    # CURRENT, for the reason already written above about `aggregates`. Run into history this
+    # finds 2026-08-19, whose assemble_report titles the PDF "Texas AI Docket, August 19th 2026"
+    # where copy.json titles the deck "Batch Zero, and the calendar with a hole in it". That is a
+    # CONVENTION that changed, not a stale artifact, and judging published work by a rule written
+    # after it is how a suite teaches a run to ignore it. The defect this exists for is a run
+    # shipping artifacts that describe a deck it already replaced, which is a property of the
+    # deck being made now.
+    ("shipped fresh", g_shipped_fresh, CURRENT),
+    ("ledgers", g_ledgers, CURRENT),
     ("completion", g_completion, HISTORY),
 ]
 
