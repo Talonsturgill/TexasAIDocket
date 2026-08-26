@@ -32,6 +32,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
 
       # THE SITE BUILD NEEDS THESE AND THE COLLECTOR DOES NOT, which is why they were missing.
       # `gridwatch.yml` installs the same one before its own rebuild.
@@ -94,11 +97,26 @@ jobs:
           Refusing to push, because a collector must only ever push its own reading."
             exit 1
           fi
-          git push
+
+          for delay in 2 4 8 16 0; do
+            git fetch --quiet origin main || true
+            if git rebase --quiet origin/main; then
+              if git push origin HEAD:main; then
+                echo "pushed"; exit 0
+              fi
+              echo "push rejected"
+            else
+              git rebase --abort || true
+              echo "::warning::rebase onto main conflicted; refusing to overwrite trunk"
+            fi
+            [ "$delay" = 0 ] && break
+            echo "retrying in ${delay}s"; sleep "$delay"
+          done
+          echo "::error::could not push the generator reading; rerun once main is settled"
+          exit 1
 
       - name: Say so when the rebuild failed
         if: steps.rebuild.outcome == 'failure'
         run: |
           echo "::error::the reading landed and the site rebuild did not, so docs/ is now \
           older than the ledger and site_fresh_check will go red on the next pull request."
-          exit 1

@@ -33,6 +33,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
 
       # THE SITE BUILD NEEDS THESE AND THE COLLECTOR DOES NOT. The rebuild step below was
       # added to close the stale-page hole and could never have run without them, and
@@ -80,7 +83,28 @@ jobs:
           # request. This actor owns its ledger and may rebuild docs, and nothing else.
           python3 scripts/shared/ownership_check.py --actor gridwatch --staged
           git commit -m "datacenters: registry reading"
-          git push
+          AHEAD=$(git rev-list --count origin/main..HEAD)
+          if [ "$AHEAD" != "1" ]; then
+            echo "::error::this job is ${AHEAD} commits ahead of main; refusing to push"
+            exit 1
+          fi
+
+          for delay in 2 4 8 16 0; do
+            git fetch --quiet origin main || true
+            if git rebase --quiet origin/main; then
+              if git push origin HEAD:main; then
+                echo "pushed"; exit 0
+              fi
+              echo "push rejected"
+            else
+              git rebase --abort || true
+              echo "::warning::rebase onto main conflicted; refusing to overwrite trunk"
+            fi
+            [ "$delay" = 0 ] && break
+            echo "retrying in ${delay}s"; sleep "$delay"
+          done
+          echo "::error::could not push the registry reading; rerun once main is settled"
+          exit 1
 
       # A SWALLOWED FAILURE IS THE ONE THAT COSTS THE MOST, because nothing reports it and the
       # damage shows up somewhere else. `continue-on-error` above is right, since a broken site
@@ -93,4 +117,3 @@ jobs:
         run: |
           echo "::error::the reading landed and the site rebuild did not, so docs/ is now \
           older than the ledger and site_fresh_check will go red on the next pull request."
-          exit 1
