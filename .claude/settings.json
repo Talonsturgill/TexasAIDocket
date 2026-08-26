@@ -26,7 +26,21 @@
     "",
     "The allow list below is belt and braces. bypassPermissions already covers it, and it is",
     "written out so that a session running under a HOST that overrides the mode, which the cloud",
-    "runner may do, still has the tools this routine cannot finish without."
+    "runner may do, still has the tools this routine cannot finish without.",
+    "",
+    "THE ACTOR STAMP IS NAMED HERE, on the owner's instruction, 2026-08-26. Phase 17 writes",
+    ".git/ACTOR twice in every run, once to hand the retro its narrow lane and once to hand it",
+    "back, and both writes were prompting. .git/ is inside the working tree and outside what the",
+    "Bash sandbox will write to, so the scratch rule in CLAUDE.md does not reach it: there is no",
+    "other place to put the stamp, because the commit-msg hook reads it from exactly that path.",
+    "The approval that was granted on the day landed in .claude/settings.local.json as two exact",
+    "command strings, which is gitignored, dies with the container, and misses any variation of",
+    "the command. So it is written here, where it survives a fresh clone.",
+    "",
+    "This GRANTS NOTHING the ownership map does not already govern. The stamp is a label a commit",
+    "wears, not a permission: writing 'upgrade' into it does not widen what may be written, it",
+    "NARROWS it, and ownership_check and the pre-commit hook both read the map rather than the",
+    "stamp. A run that stamped itself 'human' would still be refused on every human-owned path."
   ],
   "permissions": {
     "defaultMode": "bypassPermissions",
@@ -40,7 +54,17 @@
       "WebFetch",
       "WebSearch",
       "Agent",
-      "Task"
+      "Task",
+      "Bash(echo daily > .git/ACTOR)",
+      "Bash(echo upgrade > .git/ACTOR)",
+      "Bash(echo gridwatch > .git/ACTOR)",
+      "Bash(echo ask > .git/ACTOR)",
+      "Bash(echo daily > .git/ACTOR:*)",
+      "Bash(echo upgrade > .git/ACTOR:*)",
+      "Bash(echo gridwatch > .git/ACTOR:*)",
+      "Bash(echo ask > .git/ACTOR:*)",
+      "Bash(cat .git/ACTOR)",
+      "Bash(cat .git/ACTOR:*)"
     ]
   },
   "hooks": {
