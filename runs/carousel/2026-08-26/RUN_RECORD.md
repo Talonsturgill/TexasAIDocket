@@ -122,6 +122,54 @@ the build's intent, its structure or its bytes. Not one of them compares a sente
 against the data the same build used to write it. That is `GATE_LESSONS.md` in one line, and this
 entry belongs in that file.
 
+## THE CAPTION WAS TWICE THE LENGTH ITS OWN CONFIG ALLOWS, THROUGH FIVE PANELS
+
+**`config/brand.yaml` sets `linkedin_post.caption_chars: [300, 900]` and calls it a hard band. The
+caption stood at 1,970 characters.** It also sets `ends_with: engagement_question` and
+`deck_summary_line: true`, and the caption had neither.
+
+**`caption_check.py` implements none of those three keys.** It reads the file, counts words,
+counts commas, counts hashtags and lints the house rules, and reports PASS. It reported PASS on
+this caption in every one of five rounds, and three judges read the caption by hand in each round
+and none of them opened `brand.yaml` to check it against. A gate that is trusted and a rule that is
+written are two different things, and nothing connected them.
+
+The caption is rewritten to 694 characters, inside the band and inside its stated 400 to 700 sweet
+spot, with a deck summary line for readers who do not see the images and a closing question. The
+hook is 29 characters against a 140 ceiling.
+
+**Proposal for the retro phase, which owns `scripts/carousel/**`.** `caption_check.py` should read
+`brand.yaml` rather than carry its own list, the same way `guards_local.py` reads `guards.yml`
+rather than keeping a private copy of CI. Three keys are declared there and unenforced today. The
+one that bit is a bounded integer range and it is four lines.
+
+## NO COUNTY ON THE DECK, and the two standards that collide in it
+
+**`brand.yaml`'s constellation block makes a coordinates footer FIXED on every deck, county first.
+This deck carries none.**
+
+Four documents were fetched and searched for one. The committee's own book says "Austin, Texas" and
+"west (former) Pickle Research Campus" and contains no county, no street and no ZIP. The combined
+agenda book, the UT Austin release and the report of the meeting name none either. A search of UT's
+own building pages returned an address for the campus behind a single sign on wall.
+
+So the deck could not print a county from anything it fetched. It could have printed one from
+`assets/geo/tx-places.json`, which is how `ledger/docket.json` gets `counties: ["Travis"]` on this
+very item, and that is a derivation from committed data with stated provenance, which is the
+standard the compute-not-generate law sets for a NUMBER.
+
+**Those two standards disagree and the disagreement is the finding.** The record resolves a place
+against a gazetteer and publishes the result. The deck requires every published fact to carry a
+claim id, and no claim carries Travis. `noun_trace` enforces the deck's standard and flags the
+county; nothing enforces the record's.
+
+This run took the conservative side and printed nothing, and it is not obviously right. `texan_check`
+warned `places NONE` in all five rounds, the rubric's top band for stakes requires the county, and
+`brand.yaml` says out loud why it matters, that a reader will catch us if we get their county
+wrong. **The owner's call, and it is one decision, not two.** Either the gazetteer resolution is
+good enough to publish on a slide, in which case `noun_trace` should learn about it, or it is not,
+in which case the record's own `geography` block is publishing what the deck refused to.
+
 ## Instrument once over
 
 Every check green by exit code. `gridwatch_pagecheck` and `waterwatch_pagecheck` both report the
@@ -323,15 +371,15 @@ Written by `gate_status.py --sync`, never by hand.
 |---|---|---|
 | claims         | PASS   | 33 verified claim(s) |
 | render         | WARN   | 9 slide(s), 7 overflow warning(s) |
-| qa             | WARN   | 0 fail(s), 25 warn(s) |
-| aggregates     | PASS   | 7 declared and re-derived |
-| assembly       | PASS   | 9 slide(s), 2.93 MB, vector |
+| qa             | WARN   | 0 fail(s), 24 warn(s) |
+| aggregates     | PASS   | 8 declared and re-derived |
+| assembly       | PASS   | 9 slide(s), 3.02 MB, vector |
 | score          | ABSENT | score.json not written yet |
-| dossiers       | PASS   | 49,088 chars planned |
-| caption        | PASS   | 281 words |
+| dossiers       | PASS   | 49,110 chars planned |
+| caption        | PASS   | 119 words |
 | craft floor    | PASS   | 9 frame(s), median 866, floor 156 |
 | plan vs render | PASS   | 14 of 64 acceptance item(s) checkable |
 | texan          | WARN   | places NONE / body yes / deadline yes / next step yes |
-| absences       | WARN   | 4 of 8 scoped to a named document, 4 unscoped |
+| absences       | WARN   | 6 of 9 scoped to a named document, 3 unscoped |
 | completion     | ABSENT | not scored yet |
 <!-- gate-status:end -->
