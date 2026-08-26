@@ -26,20 +26,18 @@ name: pages
 #    That is the worst shape a fault can take in an unattended system. The record said the change
 #    shipped, every gate was green, and the site a reader loads was stale.
 #
-#    So deployment now begins only after `guards` completes successfully for main. User-token
-#    pushes start guards through its push trigger. Collector workflows dispatch guards after
-#    their GITHUB_TOKEN push, because GitHub deliberately suppresses workflow-to-workflow push
-#    events. The schedule remains the backstop, but it checks the current main SHA for a
+#    So deployment now begins only after the success-only `release` job downstream of `guards`
+#    dispatches this workflow for main. User-token pushes start guards through its push trigger.
+#    Collector workflows dispatch guards after their GITHUB_TOKEN push, because GitHub
+#    deliberately suppresses workflow-to-workflow push events. The release job uses an explicit
+#    workflow_dispatch too: unlike workflow_run chaining, GitHub permits that event from a
+#    workflow token. The schedule remains the backstop, but it checks the current main SHA for a
 #    successful aggregate guard result before it may deploy anything.
 #    The schedule is what makes a missed publish self-healing rather than permanent. Deploying an
 #    unchanged site is a no-op for a reader, and the verify job below still refuses to publish a
 #    docs/ that does not match a rebuild, so a redundant run cannot do harm.
 
 on:
-  workflow_run:
-    workflows: [guards]
-    types: [completed]
-    branches: [main]
   schedule:
     # Every two hours. The pages this publishes carry comment deadlines and a daily grid
     # reading, so the cost of being stale is measured in hours rather than days.
@@ -59,14 +57,12 @@ concurrency:
 
 jobs:
   verify:
-    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
-      # PINNED TO main, and that is required rather than tidy. Under `workflow_run` the default
-      # ref is the SHA of the run that triggered this one, which for a collector that pushes is
-      # the commit BEFORE its own write, so an unpinned checkout would faithfully publish the
-      # state that existed just before the thing being published. This workflow only ever
-      # publishes main, so naming it is correct for every trigger.
+      # PINNED TO main, and that is required rather than tidy. A scheduled recovery or a dispatch
+      # can begin while another collector is moving the branch. This workflow only ever publishes
+      # main, so naming it is correct for every trigger and the exact-SHA proof below decides
+      # whether that current commit is releasable.
       - uses: actions/checkout@v4
         with:
           ref: main
@@ -124,11 +120,8 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      # PINNED TO main, and that is required rather than tidy. Under `workflow_run` the default
-      # ref is the SHA of the run that triggered this one, which for a collector that pushes is
-      # the commit BEFORE its own write, so an unpinned checkout would faithfully publish the
-      # state that existed just before the thing being published. This workflow only ever
-      # publishes main, so naming it is correct for every trigger.
+      # PINNED TO main for the same reason as verify: package exactly the commit whose guard proof
+      # was checked rather than an event's incidental ref.
       - uses: actions/checkout@v4
         with:
           ref: main

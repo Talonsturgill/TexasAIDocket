@@ -5,10 +5,10 @@ The release chain has two kinds of main writer. A user-token push starts guards.
 push trigger. A collector push uses GITHUB_TOKEN, which deliberately does not start another
 workflow, so each collector dispatches guards.yml explicitly after its push succeeds.
 
-Pages listens to the completed aggregate guard workflow, never directly to a push or collector,
-and checks that the exact main SHA it is about to publish has a successful check named `guards`.
-The scheduled backstop uses the same proof, so it can recover a missed deploy without becoming a
-validation bypass.
+The success-only release job downstream of the aggregate `guards` check dispatches Pages. Pages
+never listens directly to a push or collector, and checks that the exact main SHA it is about to
+publish has a successful check named `guards`. The scheduled backstop uses the same proof, so it
+can recover a missed deploy without becoming a validation bypass.
 
 This checker refuses any break in that chain and self-tests the ways it can fail.
 """
@@ -32,6 +32,7 @@ GUARDS = WORKFLOWS / "guards.yml"
 PUSH = re.compile(r"\bgit\s+push\b")
 GUARDED_PUSH = "git push origin HEAD:main"
 DISPATCH = "gh workflow run guards.yml --ref main"
+PAGES_DISPATCH = "gh workflow run pages.yml --ref main"
 
 
 def triggers(doc: dict) -> dict:
@@ -50,16 +51,13 @@ def run_steps(doc: dict) -> list[tuple[str, str]]:
 def pages_problems(doc: dict) -> list[str]:
     out: list[str] = []
     on = triggers(doc)
-    workflow_run = on.get("workflow_run") or {}
 
     if "push" in on:
         out.append("pages still has a push trigger, so deployment can race the full guard suite")
-    if workflow_run.get("workflows") != ["guards"]:
-        out.append("pages must listen only to the completed guards workflow")
-    if "completed" not in (workflow_run.get("types") or []):
-        out.append("pages does not wait for guards to complete")
-    if "main" not in (workflow_run.get("branches") or []):
-        out.append("pages accepts guard runs from a branch other than main")
+    if "workflow_run" in on:
+        out.append("pages still uses workflow_run, which is suppressed after token-dispatched guards")
+    if "workflow_dispatch" not in on:
+        out.append("pages has no explicit dispatch trigger for the post-guard release job")
     if "schedule" not in on:
         out.append("pages has no scheduled recovery path for a missed deployment")
 
@@ -69,9 +67,6 @@ def pages_problems(doc: dict) -> list[str]:
 
     jobs = doc.get("jobs") or {}
     verify = jobs.get("verify") or {}
-    condition = str(verify.get("if") or "")
-    if "workflow_run.conclusion == 'success'" not in condition:
-        out.append("pages does not refuse a failed workflow_run before verification starts")
 
     checkout_main = any(step.get("uses", "").startswith("actions/checkout@")
                         and (step.get("with") or {}).get("ref") == "main"
@@ -101,13 +96,41 @@ def pages_problems(doc: dict) -> list[str]:
 def guards_problems(doc: dict) -> list[str]:
     out: list[str] = []
     if doc.get("name") != "guards":
-        out.append("guards.yml changed its workflow name, so Pages no longer hears it complete")
+        out.append("guards.yml changed the aggregate check name Pages proves before release")
     on = triggers(doc)
     if "workflow_dispatch" not in on:
         out.append("guards.yml has no workflow_dispatch trigger for GITHUB_TOKEN writers")
     push = on.get("push") or {}
     if "main" not in (push.get("branches") or []):
         out.append("guards.yml does not run when a user-token push moves main")
+
+    jobs = doc.get("jobs") or {}
+    release = jobs.get("release") or {}
+    if not release:
+        out.append("guards.yml has no success-only release job to dispatch Pages")
+        return out
+
+    needs = release.get("needs") or []
+    if isinstance(needs, str):
+        needs = [needs]
+    if "guards" not in needs:
+        out.append("the release job can dispatch Pages before the aggregate guards check passes")
+
+    condition = str(release.get("if") or "")
+    if "github.ref == 'refs/heads/main'" not in condition:
+        out.append("the release job is not restricted to main")
+
+    permissions = release.get("permissions") or {}
+    if permissions.get("actions") != "write":
+        out.append("the release job cannot dispatch Pages because actions: write is missing")
+
+    dispatch_steps = [step for step in (release.get("steps") or [])
+                      if PAGES_DISPATCH in str(step.get("run") or "")]
+    if not dispatch_steps:
+        out.append("the release job does not dispatch Pages after full guards")
+    elif not any((step.get("env") or {}).get("GH_TOKEN") == "${{ github.token }}"
+                 for step in dispatch_steps):
+        out.append("the Pages dispatch has no GH_TOKEN and cannot authenticate")
     return out
 
 
@@ -163,14 +186,10 @@ def self_test() -> int:
         failures += int(not condition)
 
     good_pages = {
-        "on": {"workflow_run": {"workflows": ["guards"], "types": ["completed"],
-                                  "branches": ["main"]},
-               "schedule": [{"cron": "0 */2 * * *"}]},
+        "on": {"workflow_dispatch": {}, "schedule": [{"cron": "0 */2 * * *"}]},
         "permissions": {"checks": "read"},
         "jobs": {
             "verify": {
-                "if": "github.event_name != 'workflow_run' || "
-                      "github.event.workflow_run.conclusion == 'success'",
                 "steps": [
                     {"uses": "actions/checkout@v4", "with": {"ref": "main"}},
                     {"run": "SHA=$(git rev-parse HEAD)\n"
@@ -182,8 +201,17 @@ def self_test() -> int:
         "jobs": {"write": {"steps": [
             {"name": "push", "run": GUARDED_PUSH},
             {"name": "guard", "run": DISPATCH}]}}}
-    good_guards = {"name": "guards", "on": {
-        "push": {"branches": ["main"]}, "workflow_dispatch": {}}}
+    good_release = {
+        "needs": "guards",
+        "if": "github.ref == 'refs/heads/main'",
+        "permissions": {"actions": "write"},
+        "steps": [{"name": "release", "env": {"GH_TOKEN": "${{ github.token }}"},
+                   "run": PAGES_DISPATCH}]}
+    good_guards = {
+        "name": "guards",
+        "on": {"push": {"branches": ["main"]}, "workflow_dispatch": {}},
+        "jobs": {"guards": {"steps": [{"run": "echo green"}]},
+                 "release": good_release}}
 
     check("a complete release chain reports nothing",
           not all_problems(good_pages, good_guards, {"writer.yml": good_writer}),
@@ -192,6 +220,12 @@ def self_test() -> int:
     raced = {**good_pages, "on": {**good_pages["on"], "push": {"branches": ["main"]}}}
     check("a direct Pages push trigger is caught",
           any("race" in p for p in pages_problems(raced)), str(pages_problems(raced)))
+
+    chained = {**good_pages, "on": {**good_pages["on"], "workflow_run": {
+        "workflows": ["guards"], "types": ["completed"], "branches": ["main"]}}}
+    check("a token-suppressed workflow_run handoff is caught",
+          any("suppressed" in p for p in pages_problems(chained)),
+          str(pages_problems(chained)))
 
     wrong_check = {**good_pages, "jobs": {**good_pages["jobs"], "verify": {
         **good_pages["jobs"]["verify"],
@@ -210,6 +244,24 @@ def self_test() -> int:
     check("removing the guard dispatch trigger is caught",
           any("workflow_dispatch" in p for p in guards_problems(no_dispatch)),
           str(guards_problems(no_dispatch)))
+
+    no_release_permission = {**good_guards, "jobs": {**good_guards["jobs"],
+        "release": {**good_release, "permissions": {}}}}
+    check("a release job unable to dispatch Pages is caught",
+          any("actions: write" in p for p in guards_problems(no_release_permission)),
+          str(guards_problems(no_release_permission)))
+
+    bypass = {**good_guards, "jobs": {**good_guards["jobs"],
+        "release": {**good_release, "needs": "gates"}}}
+    check("a release job bypassing aggregate guards is caught",
+          any("before the aggregate" in p for p in guards_problems(bypass)),
+          str(guards_problems(bypass)))
+
+    no_pages_dispatch = {**good_guards, "jobs": {**good_guards["jobs"],
+        "release": {**good_release, "steps": [{"run": "echo done"}]}}}
+    check("removing the post-guard Pages dispatch is caught",
+          any("does not dispatch Pages" in p for p in guards_problems(no_pages_dispatch)),
+          str(guards_problems(no_pages_dispatch)))
 
     backwards = {**good_writer, "jobs": {"write": {"steps": [
         {"name": "guard", "run": DISPATCH},
@@ -246,7 +298,8 @@ def main() -> int:
         for problem in problems:
             print(f"  - {problem}", file=sys.stderr)
         return 1
-    print(f"release shape: OK — Pages is gated by guards; {len(writers)} main writers dispatch it")
+    print(f"release shape: OK — Pages is dispatched after guards; "
+          f"{len(writers)} main writers reach it")
     return 0
 
 

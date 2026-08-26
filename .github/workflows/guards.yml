@@ -1212,3 +1212,20 @@ jobs:
     steps:
       - name: Every guard job passed
         run: echo "gates, build, freshness and the three browser jobs are green"
+
+  # GITHUB_TOKEN suppresses ordinary workflow-to-workflow events. Collector pushes therefore
+  # dispatch this workflow explicitly, and a workflow_run listener does not reliably continue
+  # that token-created chain. This job starts Pages with the one event GitHub explicitly allows
+  # a workflow token to create. It is downstream of the aggregate check, so the required
+  # `guards` result is already green before Pages begins its exact-SHA verification.
+  release:
+    needs: guards
+    if: github.ref == 'refs/heads/main'
+    permissions:
+      actions: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Start Pages for the guarded main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run pages.yml --ref main
