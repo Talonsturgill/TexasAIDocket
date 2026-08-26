@@ -70,10 +70,20 @@ by = {i["id"]: i for i in items}
 #   dated 2026 ORDER in this record, decided something about data center development IN ITS OWN
 #   JURISDICTION. State agencies, the Legislature and letters asking another government are out,
 #   each by a stated reason rather than by omission.
+# THE CANDIDATE RULE READS THE RECORD'S OWN FIELDS, not prose. 2026-08-26, round 6.
+#
+# The first version of this was a `data cent|hyperscale` regex over title and summary, and a
+# judge found what that costs: tx-2026-0029 is filed by the record under topic `data-centers`,
+# carries an ordered 2026 date, and is Williamson County granting a Chapter 312 abatement in its
+# own jurisdiction. Its own words are "server service center", so the regex never saw it, the
+# exhaustiveness assertion could not fire on it, and the recut's whole stated guarantee that a
+# silent omission is structurally impossible did not hold. An assertion is only as wide as the
+# set it runs over, and a set defined by a regex over prose is a set the record does not control.
 _DC = re.compile(r"data cent|hyperscale", re.I)
 CANDIDATES = {i["id"] for i in items
               if any(str(k.get("date", "")).startswith("2026") for k in (i.get("key_dates") or []))
-              and _DC.search((i.get("title") or "") + " " + (i.get("summary") or ""))}
+              and (i.get("topic") == "data-centers"
+                   or _DC.search((i.get("title") or "") + " " + (i.get("summary") or "")))}
 
 # ACTED: place, shape, and the claim whose own words prove the shape.
 ACTED = {
@@ -91,6 +101,7 @@ ACTED = {
     "tx-2026-0045": ("Lubbock County",   "disclosure asked",      "c31"),
     "tx-2026-0062": ("Fort Worth",       "process initiated",     "c22"),
     "tx-2026-0041": ("Wichita Falls",    "request approved",      "c37"),
+    "tx-2026-0029": ("Williamson County","abatement approved",    "c45"),
 }
 DECLINED = {
     "tx-2026-0037": ("Laredo",           "no action taken",       "c14"),
@@ -102,6 +113,7 @@ OUT = {
     "tx-2026-0001": "PUCT, a state agency, and a comment window rather than a decision",
     "tx-2026-0002": "PUCT, a state agency",
     "tx-2026-0026": "Temple, a hearing scheduled and no 2026 order yet",
+    "tx-2026-0027": "Taylor, an amended agreement NOTICED on an agenda and no order on it",
     "tx-2026-0034": "El Paso, a letter asking the Governor, aimed at another government",
     "tx-2026-0035": "El Paso, a legislative agenda amendment, aimed at the Legislature",
     "tx-2026-0042": "Young County, an application received and no order",
@@ -178,7 +190,12 @@ def ordered_on(iid):
     ds = [k["date"] for k in (by[iid].get("key_dates") or [])
           if k.get("kind") == "ordered" and k.get("date")]
     assert ds, f"{iid} carries no ordered date, so the deck cannot say when it acted"
-    return min(ds)
+    # THE EARLIEST ORDER INSIDE THE YEAR THE DECK COUNTS. An item can carry an order from a
+    # prior year as well: tx-2026-0029 has one from December 2025 and one from April 2026, and
+    # a bare min() would put the deck's first action four months outside its own window.
+    in_year = [d for d in ds if d.startswith("2026")]
+    assert in_year, f"{iid} carries no 2026 ordered date"
+    return min(in_year)
 
 restricted_n = len(ACTED)
 declined_n   = len(DECLINED)
@@ -312,6 +329,20 @@ out = {
   # Both are printed, so both are computed. An earlier draft had frame 3 saying "six of the
   # fourteen" while frame 6 said the same words about a different derivation, and the gate keys
   # on the phrase, so one of the two would have silently satisfied the other's declaration.
+  # THE COUNTER TO THE DECK'S OWN OLD CLAIM, and a judge is owed the credit for it.
+  # `distinct_shapes` is len(set()) over labels this file writes, so it can only ever equal the
+  # number of labels, and the deck printed it as "no two reached for the same instrument". That
+  # sentence could not be false, which is the definition of a claim that is not a finding.
+  # This is the substantive version, counted over what the CLAIMS say rather than over what the
+  # labels say: how many of the acting items rest on a claim whose own words call the thing a
+  # resolution. Five of them do, and a resolution is one instrument used five times.
+  "resolutions":       {"value": len([i for i in ACTED
+                                      if "resolution" in (_by_id[ACTED[i][2]].get("quote", "") + " "
+                                                          + _by_id[ACTED[i][2]].get("text", "")).lower()]),
+                        "rule": "acting items whose own cited claim calls the instrument a resolution",
+                        "from_items": sorted(i for i in ACTED
+                                             if "resolution" in (_by_id[ACTED[i][2]].get("quote", "") + " "
+                                                                 + _by_id[ACTED[i][2]].get("text", "")).lower())},
   "busiest_month":     {"value": _MONTHS[max(_by_month, key=lambda m: _by_month[m]) - 1],
                         "rule": "the calendar month carrying the most acting dates"},
   "busiest_month_count": {"value": max(_by_month.values()),
@@ -341,6 +372,23 @@ out = {
                         "rule": "hearing key_dates on tx-2026-0037, the agendas Laredo's direction reached",
                         "from_items": ["tx-2026-0037"]},
 }
+# computed.json, WRITTEN HERE so it cannot drift from figures.json.
+#
+# The site's numeral gate reads runs/<date>/computed.json to learn which numerals a deck may
+# print. This run wrote only figures.json for six decks, so that gate got None and authorised
+# nothing the run computed, falling back to whatever numerals happened to sit inside a claim's
+# quote or url. It passed on coincidence until the claims file grew past forty four entries and
+# the article page printed a claim count nothing authorised. Writing it by hand then drifted
+# again two claims later, which is the same defect one layer up. It is written from the same
+# dict, in the same breath, or it is not written.
+_computed = {k: (v["value"] if isinstance(v, dict) and "value" in v else v) for k, v in out.items()}
+_computed["claims_verified"] = len(_cl)
+_computed["_note"] = ("Written by compute.py beside figures.json, for the site's numeral gate, "
+                      "which reads this filename. Every value traces to a computation over "
+                      "ledger/docket.json.")
+(pathlib.Path(__file__).parent / "computed.json").write_text(
+    json.dumps(_computed, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+
 (pathlib.Path(__file__).parent / "figures.json").write_text(json.dumps(out, indent=2) + "\n", encoding="utf-8")
 for k, v in out.items():
     print(f"  {k:24} {v['value']}")

@@ -15,7 +15,9 @@ canvas{position:absolute;left:0;top:0}
   color:#E8E4D8;letter-spacing:-.015em}
 .dek{position:absolute;left:112px;top:330px;width:540px;font:400 25px/1.34 "Manrope",sans-serif;color:#9A968A}
 .dt{position:absolute;left:118px;font:500 30px/1 "JetBrains Mono",monospace;color:#9EA6B0;letter-spacing:.04em}
-.rw{position:absolute;left:392px;font:500 32px/1 "JetBrains Mono",monospace;color:#E8E4D8;letter-spacing:.04em}
+.rw{position:absolute;left:392px;height:44px}
+.tile{display:inline-block;width:30px;height:40px;margin-right:9px;background:#E8E4D8;
+  border-radius:2px;box-shadow:3px 4px 0 rgba(10,12,16,0.55), inset 0 -3px 0 rgba(120,116,104,0.30)}
 .span{position:absolute;left:118px;top:1074px;font:500 26px/1.35 "JetBrains Mono",monospace;
   color:#B6B1A4;letter-spacing:.06em}
 </style></head><body>
@@ -23,22 +25,14 @@ canvas{position:absolute;left:0;top:0}
 <div class="kick">THE SEQUENCE</div>
 <div class="cnt">03 / 09</div>
 <div class="hook">From March to August</div>
-<div class="dek">The last three came inside 21 days of each other.</div>
-<div class="dt" style="top:440px">MARCH 10TH</div>
-<div class="rw" style="top:440px">BRAZORIA COUNTY</div>
-<div class="dt" style="top:526px">APRIL 27TH</div>
-<div class="rw" style="top:526px">KILLEEN</div>
-<div class="dt" style="top:612px">JUNE 16TH</div>
-<div class="rw" style="top:612px">SAN ANGELO</div>
-<div class="dt" style="top:698px">JUNE 22ND</div>
-<div class="rw" style="top:698px">ARCHER COUNTY</div>
-<div class="dt" style="top:784px">JULY 21ST</div>
-<div class="rw" style="top:784px">CORPUS CHRISTI</div>
-<div class="dt" style="top:870px">AUGUST 10TH</div>
-<div class="rw" style="top:870px">LUBBOCK COUNTY</div>
-<div class="dt" style="top:956px">AUGUST 11TH</div>
-<div class="rw" style="top:956px">FORT WORTH</div>
-<div class="span">154 DAYS<br>MARCH 10TH TO AUGUST 11TH</div>
+<div class="dek">Six actions fell in June, more than any other month. One tile for each.</div>
+<div class="dt" style="top:440px">MARCH</div><div class="rw" style="top:440px"><span class="tile"></span></div>
+<div class="dt" style="top:526px">APRIL</div><div class="rw" style="top:526px"><span class="tile"></span><span class="tile"></span></div>
+<div class="dt" style="top:612px">MAY</div><div class="rw" style="top:612px"><span class="tile"></span></div>
+<div class="dt" style="top:698px">JUNE</div><div class="rw" style="top:698px"><span class="tile"></span><span class="tile"></span><span class="tile"></span><span class="tile"></span><span class="tile"></span><span class="tile"></span></div>
+<div class="dt" style="top:784px">JULY</div><div class="rw" style="top:784px"><span class="tile"></span><span class="tile"></span></div>
+<div class="dt" style="top:870px">AUGUST</div><div class="rw" style="top:870px"><span class="tile"></span><span class="tile"></span><span class="tile"></span></div>
+<div class="span">156 DAYS<br>MARCH 10TH TO AUGUST 13TH</div>
 <div class="tx-site">texasaidocket.com</div>
 <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6 L14.9 9.2 L23 9.6 L16.7 14.6 L18.9 22.4 L12 17.9 L5.1 22.4 L7.3 14.6 L1 9.6 L9.1 9.2 Z" fill="#B6B1A4"/></svg>
 <script src="@@ASSETS@@/js/noise.js"></script>
@@ -86,10 +80,25 @@ document.addEventListener('DOMContentLoaded',function(){
     el.style.textShadow=dx.toFixed(2)+'px '+dy.toFixed(2)+'px 0 rgba(4,7,10,0.88), '
                        +(dx*1.7).toFixed(2)+'px '+(dy*1.7).toFixed(2)+'px 9px rgba(4,7,10,0.34)';
   });
-  // two letters sit proud, as a hand set board does
-  var a=document.querySelectorAll('.rw')[2], b=document.querySelectorAll('.rw')[5];
-  a.innerHTML=a.textContent.replace('G','<span style="display:inline-block;transform:translateY(-3px) rotate(-1.2deg)">G</span>');
-  b.innerHTML=b.textContent.replace('B','<span style="display:inline-block;transform:translateY(2px) rotate(0.9deg)">B</span>');
+  // TWO LETTERS SIT PROUD, as a hand set board does.
+  //
+  // This read `.rw[2]` and `.rw[5]` and did `el.innerHTML = el.textContent.replace(...)`, from
+  // the draft where those rows held place names. When the rows became tiles their textContent
+  // was the empty string, so the line ERASED May's one tile and August's three, and the frame
+  // shipped a chronology missing four of its fourteen actions with no error anywhere. The
+  // months were still there, so nothing looked broken.
+  //
+  // It now works on the MONTH names, which are the letters actually seated in the felt, it
+  // picks its targets by the letter rather than by an index into a list whose contents change,
+  // and it refuses any element carrying a child element so it can never blank one again.
+  function proud(el, ch, dy, rot) {
+    if (!el || el.children.length || el.textContent.indexOf(ch) < 0) return;
+    el.innerHTML = el.textContent.replace(
+      ch, '<span style="display:inline-block;transform:translateY(' + dy + 'px) rotate(' + rot + 'deg)">' + ch + '</span>');
+  }
+  var months = document.querySelectorAll('.dt');
+  proud(months[3], 'U', -3, -1.2);        // JUNE, the month the deck is about
+  proud(months[5], 'G', 2, 0.9);          // AUGUST
 });
 </script>
 </body></html>

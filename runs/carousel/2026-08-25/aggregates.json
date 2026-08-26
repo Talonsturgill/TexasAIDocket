@@ -19,7 +19,8 @@
     "c39",
     "c40",
     "c41",
-    "c43"
+    "c43",
+    "c45"
    ],
    "computed_by": "out/2026-08-25/compute.py, first_action_date and last_action_date over the acting items",
    "value": 156
@@ -36,9 +37,9 @@
    "computed_by": "not computed. Quoted from Ordinance 2026-078 itself"
   },
   {
-   "phrase": "Eleven Texas local governments",
+   "phrase": "FIFTEEN ACTIONS",
    "kind": "count",
-   "value": 11,
+   "value": 15,
    "from_claims": [
     "c5",
     "c9",
@@ -53,37 +54,16 @@
     "c39",
     "c40",
     "c41",
-    "c43"
+    "c43",
+    "c45"
    ],
-   "computed_by": "out/2026-08-25/compute.py, acting_bodies. distinct places among the acting items"
+   "computed_by": "out/2026-08-25/compute.py, restricted_count. actions by a Texas local government"
   },
   {
-   "phrase": "Eleven local governments",
-   "kind": "count",
-   "value": 11,
-   "from_claims": [
-    "c5",
-    "c9",
-    "c17",
-    "c22",
-    "c30",
-    "c31",
-    "c32",
-    "c35",
-    "c36",
-    "c37",
-    "c39",
-    "c40",
-    "c41",
-    "c43"
-   ],
-   "computed_by": "out/2026-08-25/compute.py, acting_bodies. distinct places among the acting items"
-  },
-  {
-   "phrase": "FIVE OF THE FOURTEEN",
+   "phrase": "FIVE OF THE FIFTEEN",
    "kind": "ratio",
    "value": 5,
-   "of": 14,
+   "of": 15,
    "from_claims": [
     "c5",
     "c7",
@@ -94,9 +74,9 @@
    "computed_by": "out/2026-08-25/compute.py, stated_nonbinding over restricted_count. acting bodies whose own source says the action does not bind"
   },
   {
-   "phrase": "FOURTEEN INSTRUMENTS",
+   "phrase": "Fifteen actions",
    "kind": "count",
-   "value": 14,
+   "value": 15,
    "from_claims": [
     "c5",
     "c9",
@@ -111,15 +91,39 @@
     "c39",
     "c40",
     "c41",
-    "c43"
+    "c43",
+    "c45"
    ],
-   "computed_by": "out/2026-08-25/compute.py, distinct_shapes. distinct kinds of action among them"
+   "computed_by": "out/2026-08-25/compute.py, restricted_count. actions by a Texas local government"
   },
   {
-   "phrase": "Five of the fourteen",
+   "phrase": "Fifteen ways",
+   "kind": "count",
+   "value": 15,
+   "from_claims": [
+    "c5",
+    "c9",
+    "c17",
+    "c22",
+    "c30",
+    "c31",
+    "c32",
+    "c35",
+    "c36",
+    "c37",
+    "c39",
+    "c40",
+    "c41",
+    "c43",
+    "c45"
+   ],
+   "computed_by": "out/2026-08-25/compute.py, restricted_count. actions by a Texas local government"
+  },
+  {
+   "phrase": "Five of the fifteen",
    "kind": "ratio",
    "value": 5,
-   "of": 14,
+   "of": 15,
    "from_claims": [
     "c5",
     "c7",
@@ -138,51 +142,7 @@
     "c10",
     "c11"
    ],
-   "computed_by": "out/2026-08-25/compute.py, brazoria_applications. Distinct applicants whose Brazoria County hearing orders name Reinvestment Zone No. 26-01, counted off the county's own Legistar matter titles in out/2026-08-25/brazoria_matters.json. It was a typed literal until round 5 and is a computation now."
-  },
-  {
-   "phrase": "Fourteen actions",
-   "kind": "count",
-   "value": 14,
-   "from_claims": [
-    "c5",
-    "c9",
-    "c17",
-    "c22",
-    "c30",
-    "c31",
-    "c32",
-    "c35",
-    "c36",
-    "c37",
-    "c39",
-    "c40",
-    "c41",
-    "c43"
-   ],
-   "computed_by": "out/2026-08-25/compute.py, restricted_count. actions by a Texas local government"
-  },
-  {
-   "phrase": "Fourteen ways",
-   "kind": "count",
-   "value": 14,
-   "from_claims": [
-    "c5",
-    "c9",
-    "c17",
-    "c22",
-    "c30",
-    "c31",
-    "c32",
-    "c35",
-    "c36",
-    "c37",
-    "c39",
-    "c40",
-    "c41",
-    "c43"
-   ],
-   "computed_by": "out/2026-08-25/compute.py, restricted_count. actions by a Texas local government"
+   "computed_by": "out/2026-08-25/compute.py, brazoria_applications. Distinct applicants whose Brazoria County hearing orders name Reinvestment Zone No. 26-01, counted off the county's own Legistar matter titles in out/2026-08-25/brazoria_matters.json"
   },
   {
    "phrase": "MARCH 10TH TO AUGUST 13TH",
@@ -203,10 +163,36 @@
     "c39",
     "c40",
     "c41",
-    "c43"
+    "c43",
+    "c45"
    ],
    "computed_by": "out/2026-08-25/compute.py, first_action_date and last_action_date over the acting items",
    "value": 156
+  },
+  {
+   "phrase": "Seventeen times",
+   "kind": "count",
+   "value": 17,
+   "from_claims": [
+    "c5",
+    "c9",
+    "c17",
+    "c22",
+    "c30",
+    "c31",
+    "c32",
+    "c35",
+    "c36",
+    "c37",
+    "c39",
+    "c40",
+    "c41",
+    "c43",
+    "c45",
+    "c14",
+    "c15"
+   ],
+   "computed_by": "out/2026-08-25/compute.py, total_count. acting plus declined"
   },
   {
    "phrase": "Six actions",
@@ -223,10 +209,10 @@
    "computed_by": "out/2026-08-25/compute.py, busiest_month_count. acting dates falling in June"
   },
   {
-   "phrase": "Six of the fourteen",
+   "phrase": "Six of the fifteen",
    "kind": "ratio",
    "value": 6,
-   "of": 14,
+   "of": 15,
    "from_claims": [
     "c9",
     "c32",
@@ -238,9 +224,9 @@
    "computed_by": "out/2026-08-25/compute.py, stated_binding over restricted_count. actions that changed a legal state on the day"
   },
   {
-   "phrase": "Sixteen times",
+   "phrase": "Twelve Texas local governments",
    "kind": "count",
-   "value": 16,
+   "value": 12,
    "from_claims": [
     "c5",
     "c9",
@@ -256,15 +242,14 @@
     "c40",
     "c41",
     "c43",
-    "c14",
-    "c15"
+    "c45"
    ],
-   "computed_by": "out/2026-08-25/compute.py, total_count. acting plus declined"
+   "computed_by": "out/2026-08-25/compute.py, acting_bodies. distinct places among the acting items"
   },
   {
-   "phrase": "fourteen instruments",
+   "phrase": "Twelve local governments",
    "kind": "count",
-   "value": 14,
+   "value": 12,
    "from_claims": [
     "c5",
     "c9",
@@ -279,19 +264,10 @@
     "c39",
     "c40",
     "c41",
-    "c43"
+    "c43",
+    "c45"
    ],
-   "computed_by": "out/2026-08-25/compute.py, distinct_shapes. distinct kinds of action among them"
-  },
-  {
-   "phrase": "one of the sixteen",
-   "kind": "ratio",
-   "value": 1,
-   "of": 16,
-   "from_claims": [
-    "c24"
-   ],
-   "computed_by": "out/2026-08-25/compute.py, still_dated over total_count. items carrying a key date on or after the run date"
+   "computed_by": "out/2026-08-25/compute.py, acting_bodies. distinct places among the acting items"
   },
   {
    "phrase": "one year",
@@ -315,6 +291,17 @@
     "c43"
    ],
    "computed_by": "out/2026-08-25/compute.py, busiest_body_binding over stated_binding. how many of the binding actions San Angelo wrote"
+  },
+  {
+   "phrase": "two public hearings",
+   "kind": "count",
+   "value": 2,
+   "from_claims": [
+    "c46"
+   ],
+   "quoted_from": "c46",
+   "quote": "required to hold two public hearings",
+   "computed_by": "not computed. Quoted from c46, the route into the Fort Worth hearing"
   },
   {
    "phrase": "two required public hearings",

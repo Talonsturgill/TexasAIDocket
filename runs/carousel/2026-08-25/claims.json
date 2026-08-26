@@ -591,6 +591,36 @@
    "retrieved": "2026-08-26",
    "confidence": "high",
    "reverified_this_run": true
+  },
+  {
+   "id": "c45",
+   "url": "https://www.wilcotx.gov/m/newsflash/Home/Detail/789",
+   "source_title": "Williamson County Commissioners Court approves Chapter 312 agreement with Compal USA Technology, Williamson County news",
+   "source_type": "primary_official",
+   "published": "2026-04-15",
+   "retrieved": "2026-08-26",
+   "text": "Williamson County Commissioners Court approved a Chapter 312 tax abatement agreement for a Compal USA Technology facility in Georgetown on April 15th, 2026.",
+   "quote": "The Williamson County Commissioners Court approved a Chapter 312 tax abatement incentive agreement for Compal USA Technology Inc. in Georgetown.",
+   "record_claim": "tx-2026-0029-c1",
+   "docket_item": "tx-2026-0029",
+   "confidence": "high",
+   "reverified_this_run": true,
+   "caveat": "The record files this item under topic data-centers and its own words are 'server service center', which is why the first candidate rule missed it entirely."
+  },
+  {
+   "id": "c46",
+   "url": "https://www.keranews.org/news/2026-08-12/data-center-moratorium-takes-first-steps-after-fort-worth-city-councils-unanimous-vote",
+   "source_title": "Data center moratorium takes first steps after Fort Worth City Council's unanimous vote, KERA News",
+   "source_type": "secondary_reported",
+   "published": "2026-08-12",
+   "retrieved": "2026-08-26",
+   "text": "Fort Worth must hold two public hearings before a data center moratorium can take effect, and those hearings are where the public weighs in.",
+   "quote": "Before a moratorium can take effect, city council is required to hold two public hearings to allow the public to weigh in.",
+   "record_claim": "tx-2026-0062-c4",
+   "docket_item": "tx-2026-0062",
+   "confidence": "high",
+   "reverified_this_run": true,
+   "caveat": "The record already carried this as the item's public_access route and three rounds of deck never printed it, which is why the closing frame kept naming a date with no door."
   }
  ],
  "rejected": [

@@ -1,9 +1,10 @@
 {
   "restricted_count": {
-    "value": 14,
+    "value": 15,
     "rule": "Texas governmental bodies in the record that took a recorded 2026 action aimed at a data center or at the incentive one depended on, of any binding force",
     "from_items": [
       "tx-2026-0028",
+      "tx-2026-0029",
       "tx-2026-0032",
       "tx-2026-0033",
       "tx-2026-0041",
@@ -28,7 +29,7 @@
     ]
   },
   "total_count": {
-    "value": 16,
+    "value": 17,
     "rule": "restricted plus declined"
   },
   "stated_nonbinding": {
@@ -55,9 +56,10 @@
     ]
   },
   "force_unstated": {
-    "value": 3,
+    "value": 4,
     "rule": "acting bodies the record says nothing about either way",
     "from_items": [
+      "tx-2026-0029",
       "tx-2026-0033",
       "tx-2026-0041",
       "tx-2026-0052"
@@ -65,7 +67,7 @@
   },
   "late_cluster": {
     "value": 7,
-    "rule": "the later half of the acting bodies by ordered date, floor divided, so 7 of 14"
+    "rule": "the later half of the acting bodies by ordered date, floor divided, so 7 of 15"
   },
   "late_span": {
     "value": 52,
@@ -81,14 +83,15 @@
     ]
   },
   "still_dated": {
-    "value": 1,
+    "value": 2,
     "rule": "of the sixteen items this deck carries, those whose key_dates hold a step on or after 2026-08-25",
     "from_items": [
+      "tx-2026-0029",
       "tx-2026-0062"
     ]
   },
   "chronology": {
-    "value": 14,
+    "value": 15,
     "rule": "the actions in the order they happened",
     "marks": [
       {
@@ -97,6 +100,13 @@
         "shape": "zone denied",
         "claim": "c9",
         "item": "tx-2026-0051"
+      },
+      {
+        "date": "2026-04-15",
+        "place": "Williamson County",
+        "shape": "abatement approved",
+        "claim": "c45",
+        "item": "tx-2026-0029"
       },
       {
         "date": "2026-04-27",
@@ -192,9 +202,10 @@
     ]
   },
   "distinct_shapes": {
-    "value": 14,
+    "value": 15,
     "rule": "distinct kinds of action among the acting bodies",
     "shapes": [
+      "abatement approved",
       "abatement denied",
       "conditional use only",
       "cooling fill capped",
@@ -254,6 +265,10 @@
       "Wichita Falls": [
         "request approved",
         "c37"
+      ],
+      "Williamson County": [
+        "abatement approved",
+        "c45"
       ]
     }
   },
@@ -287,6 +302,17 @@
     "value": "5 to 0",
     "rule": "quoted from tx-2026-0051-c1"
   },
+  "resolutions": {
+    "value": 5,
+    "rule": "acting items whose own cited claim calls the instrument a resolution",
+    "from_items": [
+      "tx-2026-0028",
+      "tx-2026-0033",
+      "tx-2026-0045",
+      "tx-2026-0052",
+      "tx-2026-0062"
+    ]
+  },
   "busiest_month": {
     "value": "June",
     "rule": "the calendar month carrying the most acting dates"
@@ -300,10 +326,11 @@
     "rule": "how many of the binding actions the busiest body wrote"
   },
   "acting_bodies": {
-    "value": 11,
+    "value": 12,
     "rule": "distinct places among the acting items",
     "from_items": [
       "tx-2026-0028",
+      "tx-2026-0029",
       "tx-2026-0032",
       "tx-2026-0033",
       "tx-2026-0041",

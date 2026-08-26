@@ -34,36 +34,35 @@ NB = ["c5", "c7", "c30", "c22", "c18"]                     # the five whose sour
 BI = ["c9", "c32", "c41", "c43", "c35", "c36"]             # the six that changed a legal state
 SA = ["c32", "c41", "c43"]                                 # San Angelo's three
 
+NB = ["c5", "c7", "c30", "c22", "c18"]                     # sources that say they bind nothing
+BI = ["c9", "c32", "c41", "c43", "c35", "c36"]             # changed a legal state on the day
+SA = ["c32", "c41", "c43"]                                 # San Angelo's three
+JUNE = ["c43", "c40", "c35", "c32", "c5", "c36"]
+
 PHRASES = {
- "Fourteen ways":                 count("restricted_count", "actions by a Texas local government"),
- "Fourteen actions":              count("restricted_count", "actions by a Texas local government"),
- "Eleven Texas local governments":count("acting_bodies", "distinct places among the acting items"),
- "Eleven local governments":      count("acting_bodies", "distinct places among the acting items"),
- "fourteen instruments":          count("distinct_shapes", "distinct kinds of action among them"),
- "FOURTEEN INSTRUMENTS":          count("distinct_shapes", "distinct kinds of action among them"),
- "Six actions":                   count("busiest_month_count", "acting dates falling in June",
-                                        ["c43", "c40", "c35", "c32", "c5", "c36"]),
- "Sixteen times":                 count("total_count", "acting plus declined",
-                                        ACTING + ["c14", "c15"]),
+ "Fifteen ways":                  count("restricted_count", "actions by a Texas local government"),
+ "Fifteen actions":               count("restricted_count", "actions by a Texas local government"),
+ "FIFTEEN ACTIONS":               count("restricted_count", "actions by a Texas local government"),
+ "Twelve Texas local governments":count("acting_bodies", "distinct places among the acting items"),
+ "Twelve local governments":      count("acting_bodies", "distinct places among the acting items"),
+ "Six actions":                   count("busiest_month_count", "acting dates falling in June", JUNE),
+ "Seventeen times":               count("total_count", "acting plus declined", ACTING + ["c14", "c15"]),
  "156 DAYS":                      span("duration", "span_days"),
  "MARCH 10TH TO AUGUST 13TH":     span("span", "span_days"),
- "FIVE OF THE FOURTEEN":          ratio("stated_nonbinding", "restricted_count",
+ "FIVE OF THE FIFTEEN":           ratio("stated_nonbinding", "restricted_count",
                                         "acting bodies whose own source says the action does not bind", NB),
- "Five of the fourteen":          ratio("stated_nonbinding", "restricted_count",
+ "Five of the fifteen":           ratio("stated_nonbinding", "restricted_count",
                                         "acting bodies whose own source says the action does not bind", NB),
- "Six of the fourteen":           ratio("stated_binding", "restricted_count",
+ "Six of the fifteen":            ratio("stated_binding", "restricted_count",
                                         "actions that changed a legal state on the day", BI),
  "three of the six":              ratio("busiest_body_binding", "stated_binding",
                                         "how many of the binding actions San Angelo wrote", SA),
- "one of the sixteen":            ratio("still_dated", "total_count",
-                                        "items carrying a key date on or after the run date", ["c24"]),
  "Four applications":             {"kind": "count", "value": V("brazoria_applications"),
                                    "from_claims": ["c9", "c10", "c11"],
                                    "computed_by": f"{CODE}, brazoria_applications. Distinct applicants "
                                      "whose Brazoria County hearing orders name Reinvestment Zone No. "
                                      "26-01, counted off the county's own Legistar matter titles in "
-                                     "out/2026-08-25/brazoria_matters.json. It was a typed literal until "
-                                     "round 5 and is a computation now."},
+                                     "out/2026-08-25/brazoria_matters.json"},
  "8.0 gallons":                   {"kind": "count", "value": 8, "from_claims": ["c32"],
                                    "quoted_from": "c32",
                                    "quote": "shall not exceed 8.0 gallons per square foot",
@@ -75,6 +74,10 @@ PHRASES = {
                                    "quoted_from": "c24",
                                    "quote": "the first of the two required public hearings",
                                    "computed_by": "not computed. Quoted from the city's own release, c24"},
+ "two public hearings":           {"kind": "count", "value": 2, "from_claims": ["c46"],
+                                   "quoted_from": "c46",
+                                   "quote": "required to hold two public hearings",
+                                   "computed_by": "not computed. Quoted from c46, the route into the Fort Worth hearing"},
 }
 
 rep = json.loads((ROOT / "out/2026-08-25/render/render_report.json").read_text())

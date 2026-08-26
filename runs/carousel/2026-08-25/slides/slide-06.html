@@ -11,23 +11,23 @@ canvas{position:absolute;left:0;top:0}
 .tx-site{position:absolute;left:80px;bottom:74px;font:400 24px/1 "JetBrains Mono",monospace;font-size:24px;
   letter-spacing:.06em;color:#BDB8AA}
 .star{position:absolute;right:80px;bottom:68px;width:22px;height:22px}
-.hook{position:absolute;left:96px;top:172px;width:600px;font:700 62px/1.04 "Fraunces",serif;
+.hook{position:absolute;left:96px;top:168px;width:640px;font:700 62px/1.04 "Fraunces",serif;
   color:#3A2E1E;letter-spacing:-.015em}
-.qa{position:absolute;left:132px;top:392px;width:390px;font:500 27px/1.36 "JetBrains Mono",monospace;color:#2A2622}
-.sa{position:absolute;left:132px;top:566px;width:360px;font:400 18px/1.5 "JetBrains Mono",monospace;color:#6E695F;letter-spacing:.07em}
-.qb{position:absolute;left:566px;top:392px;width:390px;font:500 27px/1.36 "JetBrains Mono",monospace;color:#2A2622}
-.sb{position:absolute;left:566px;top:566px;width:360px;font:400 18px/1.5 "JetBrains Mono",monospace;color:#6E695F;letter-spacing:.07em}
-.foot{position:absolute;left:96px;top:996px;width:700px;font:500 27px/1.4 "Manrope",sans-serif;color:#241B0D}
+.qa{position:absolute;left:140px;top:404px;width:348px;font:500 27px/1.36 "JetBrains Mono",monospace;color:#2A2622}
+.sa{position:absolute;left:140px;top:548px;width:348px;font:400 19px/1.5 "JetBrains Mono",monospace;color:#6B6459;letter-spacing:.07em}
+.qb{position:absolute;left:574px;top:404px;width:348px;font:500 27px/1.36 "JetBrains Mono",monospace;color:#2A2622}
+.sb{position:absolute;left:574px;top:700px;width:348px;font:400 19px/1.5 "JetBrains Mono",monospace;color:#6B6459;letter-spacing:.07em}
+.foot{position:absolute;left:96px;top:892px;width:760px;font:500 28px/1.4 "Manrope",sans-serif;color:#241B0D}
 </style></head><body>
 <canvas id="c" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
 <div class="kick">THE EXCEPTIONS</div>
 <div class="cnt">06 / 09</div>
-<div class="hook">Two of the seven have teeth</div>
+<div class="hook">Six of the fifteen have teeth</div>
 <div class="qa">"Motion to deny<br>passed 5-0."</div>
 <div class="sa">BRAZORIA COUNTY, C9<br>THE ZONE THEY STOOD ON</div>
-<div class="qb">"Approved 7-0 at the<br>June 16, 2026 City<br>Council meeting."</div>
-<div class="sb">SAN ANGELO, C12<br>CAPPED BY ORDINANCE</div>
-<div class="foot">One refused the zone. One wrote the limit into the water ordinance.</div>
+<div class="qb">"shall not exceed<br>8.0 gallons per<br>square foot of<br>Gross Building<br>Area"</div>
+<div class="sb">SAN ANGELO, C32<br>ORDINANCE 2026-078</div>
+<div class="foot">San Angelo wrote three of the six. Zoning in May, the sewer in June, the water on June 16th.</div>
 <div class="tx-site">texasaidocket.com</div>
 <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6 L14.9 9.2 L23 9.6 L16.7 14.6 L18.9 22.4 L12 17.9 L5.1 22.4 L7.3 14.6 L1 9.6 L9.1 9.2 Z" fill="#BDB8AA"/></svg>
 <script src="@@ASSETS@@/js/noise.js"></script>
@@ -54,6 +54,26 @@ window.renderReady = new Promise(function(resolve){
     x.fillStyle='rgba('+(n>0?240:62)+','+(n>0?224:44)+','+(n>0?196:26)+','+(0.17*Math.abs(n))+')';
     x.fillRect(px,py,2,2);
   }
+  // THE MOTTLE, and it is the third answer to the same complaint. 2026-08-26.
+  //
+  // Pass one drew chips at 4 to 20px to make the material readable small, and two craft reads
+  // measured it as a blocky mosaic. Pass two took frame 9's fine 2px speckle wholesale, which
+  // is correct at 2160 and GONE by 432, so a third read said the field is "a flat tan
+  // rectangle" at the only size a reader gets. Both passes were right about the size they were
+  // looking at and wrong about the other one.
+  //
+  // Cork has both. Fine fibre grain AND broad tonal patches where the sheet was pressed
+  // unevenly. The speckle above is the grain. This is the patchwork, at a frequency whose
+  // features run about 180px, so they are still 70px wide after the downscale to 432 and the
+  // field reads as a material rather than a fill. Low alpha, because the cards and their
+  // shadows are the subject and a loud ground would take the frame off them.
+  for(var my=0;my<H;my+=6){
+    for(var mx=0;mx<W;mx+=6){
+      var mn=TX.fbm2(mx*0.0055,my*0.0055,3);
+      x.fillStyle='rgba('+(mn>0?238:78)+','+(mn>0?216:56)+','+(mn>0?180:32)+','+(0.115*Math.abs(mn))+')';
+      x.fillRect(mx,my,6,6);
+    }
+  }
   // STAPLE HOLES, which this frame's acceptance line names and which no reader could resolve in
   // either earlier pass. A dark puncture with a lit lower lip where the fibre lifted.
   TX.reseed(4242); R = TX.rng(4242);
@@ -65,10 +85,16 @@ window.renderReady = new Promise(function(resolve){
   // the swung glazing edge, TOP THIRD ONLY, 6px, the one appearance of edge_cyan
   x.fillStyle='#6FA79C'; x.fillRect(16,150,6,300);
   x.fillStyle='rgba(180,214,206,0.55)'; x.fillRect(16,150,2,300);
-  // two unglazed sheets. A CONTACT shadow, not a drop shadow: a wide soft penumbra that the
-  // sheet floats on, and a tight dark core hugging the two edges where it meets the cork.
-  [[112,330,404,340],[546,330,404,340]].forEach(function(sh){
+  // TWO CARDS OF DIFFERENT HEIGHT, because they are not the same instrument. A motion is one
+  // line in a minute book and an ordinance is a section of the city code, and a board where
+  // both are pinned would never carry them on matched stock. The taller card is also what
+  // closes the dead lower third three reads called out: at 404 by 340 the sheets ended at 670
+  // and left 448px of bare cork above the case lip with only a caption in it.
+  var CARDS=[[112,336,404,300],[546,336,404,470]];
+  CARDS.forEach(function(sh){
     var sx=sh[0], sy=sh[1], sw=sh[2], sd=sh[3];
+    // A CONTACT shadow, not a drop shadow: a wide soft penumbra the sheet floats on, and a
+    // tight dark core hugging the two edges where it meets the cork.
     for(var b=22;b>=1;b--){
       x.fillStyle='rgba(66,46,22,'+(0.030+0.004*(22-b))+')';
       x.fillRect(sx+b*0.55, sy+b*0.72, sw+b*0.5, sd+b*0.4);
@@ -78,10 +104,38 @@ window.renderReady = new Promise(function(resolve){
     x.fillStyle='#F2EEE4'; x.fillRect(sx,sy,sw,sd);
     x.fillStyle='rgba(255,253,246,0.7)'; x.fillRect(sx,sy,sw,3);
     x.fillStyle='rgba(150,132,104,0.22)'; x.fillRect(sx,sy+sd-2,sw,2);
+    // the hairline the attribution sits under, set in from both edges like a rule on a card
+    x.fillStyle='rgba(140,124,98,0.42)'; x.fillRect(sx+28,sy+sd-118,sw-56,1);
   });
-  // the case's lower lip seen from slightly above: the frame's darkest area
+  // THE PIN. Two craft reads said neither card was fastened to the cork by anything, which on
+  // a board is the one thing that has to be true. A brass pin sits at the head of each card:
+  // its shaft goes THROUGH the paper, so the puncture is drawn on the card and the cast shadow
+  // falls on the card below the head and not on the cork.
+  CARDS.forEach(function(sh){
+    var px=sh[0]+sh[2]/2, py=sh[1]+34;
+    x.fillStyle='rgba(74,52,26,0.30)'; x.fillRect(px-13,py-4,34,15);   // soft cast
+    x.fillStyle='rgba(52,36,16,0.55)'; x.fillRect(px-3,py+2,7,7);      // the puncture
+    var pg=x.createLinearGradient(px-15,py-15,px+13,py+13);
+    pg.addColorStop(0,'#F0D28C'); pg.addColorStop(0.46,'#C79B45'); pg.addColorStop(1,'#7A5A20');
+    x.beginPath(); x.arc(px,py,15,0,Math.PI*2); x.fillStyle=pg; x.fill();
+    x.beginPath(); x.arc(px-4.5,py-5,5.2,0,Math.PI*2); x.fillStyle='rgba(255,246,214,0.86)'; x.fill();
+    x.beginPath(); x.arc(px,py,15,0,Math.PI*2); x.strokeStyle='rgba(58,40,14,0.55)'; x.lineWidth=1.6; x.stroke();
+  });
+  // THE CASE'S LOWER RAIL, the frame's darkest area. Read as an unexplained navy plinth once,
+  // because nothing said which object it was the bottom of. It gets frame 1's own bracket
+  // screws and lit rail edge, so it reads as the same case with its glazing swung away.
   x.fillStyle='#2A2E36'; x.fillRect(0,H-232,W,232);
   x.fillStyle='#4A4F58'; x.fillRect(0,H-232,W,5);
+  x.fillStyle='rgba(150,158,170,0.34)'; x.fillRect(0,H-232,W,1);
+  for(var s=0;s<5;s++){
+    var scx=132+s*204, scy=H-190;
+    x.fillStyle='rgba(10,12,16,0.55)'; x.beginPath(); x.arc(scx+1.5,scy+2,10,0,Math.PI*2); x.fill();
+    var sg=x.createLinearGradient(scx-10,scy-10,scx+9,scy+9);
+    sg.addColorStop(0,'#8A9099'); sg.addColorStop(0.55,'#5A606B'); sg.addColorStop(1,'#33383F');
+    x.beginPath(); x.arc(scx,scy,10,0,Math.PI*2); x.fillStyle=sg; x.fill();
+    x.fillStyle='rgba(18,20,26,0.78)'; x.fillRect(scx-6.5,scy-1.3,13,2.6);   // the slot
+    x.fillStyle='rgba(196,204,214,0.40)'; x.fillRect(scx-6.5,scy-2.6,13,1.1);
+  }
   x.fillStyle='#14171C'; x.fillRect(0,H-117,W,5);
   var lg=x.createLinearGradient(0,H-112,0,H);
   lg.addColorStop(0,'rgba(8,10,14,0.30)'); lg.addColorStop(1,'rgba(8,10,14,0.62)');

@@ -215,8 +215,8 @@ art:
     eye by area rather than by extremity.
   motion: "down the lit rail, into the opening, onto the sheet"
 type:
-  hook: "Fourteen ways to take up a data center"
-  dek: "Eleven Texas local governments acted this year. Fourteen actions, fourteen instruments."
+  hook: "Fifteen ways to take up a data center"
+  dek: "Twelve Texas local governments acted this year. Six of the fifteen changed a legal state on the day."
 acceptance:
   - "the lock cylinder and its keyway are drawn at the right stile, so the case reads as locked rather than as a picture frame"
   - "the bond sheet is a bounded quadrilateral with the glazing's reflection over it, not a white rectangle"
@@ -263,8 +263,8 @@ art:
     shadow does the separating.
   motion: "left to right across the shadow boundary, then down the list"
 type:
-  hook: "Fourteen actions, no two alike"
-  dek: "Eleven local governments. The shape of the instrument decides whether anything stops."
+  hook: "Fifteen actions. Six of them bind."
+  dek: "Twelve local governments. The shape decides whether anything stops."
 acceptance:
   - "the shadow has a visibly wider penumbra at the bottom of the sheet than at the top, which is the air gap doing work"
   - "every one of the fourteen instrument names is legible at 1080px and none is clipped by the shadow edge"
@@ -411,7 +411,7 @@ art:
     foot. This is the deck's widest range and it is spent on the turn.
   motion: "across the band diagonally, then down to the surviving line"
 type:
-  hook: "Five of the fourteen stop nothing"
+  hook: "Five of the fifteen stop nothing"
   dek: "\"does not stop the project from moving forward\""
 acceptance:
   - "the blowout has two hard parallel edges and a measurable rolloff, not a soft radial glow"
@@ -469,7 +469,7 @@ art:
     an earlier draft of this line claimed it was.
   motion: "left sheet to right sheet, then down to the empty cork"
 type:
-  hook: "Six of the fourteen have teeth"
+  hook: "Six of the fifteen have teeth"
   dek: "\"shall not exceed 8.0 gallons per square foot of Gross Building Area\""
 acceptance:
   - "no glazing plane is drawn between the camera and either sheet"

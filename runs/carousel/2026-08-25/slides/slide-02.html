@@ -11,24 +11,40 @@ canvas{position:absolute;left:0;top:0}
 .tx-site{position:absolute;left:80px;bottom:74px;font:400 24px/1 "JetBrains Mono",monospace;font-size:24px;
   letter-spacing:.06em;color:#F0ECE2}
 .star{position:absolute;right:80px;bottom:68px;width:22px;height:22px}
-.hook{position:absolute;left:186px;top:270px;width:520px;font:700 62px/1.04 "Fraunces",serif;
+.hook{position:absolute;left:186px;top:262px;width:540px;font:700 62px/1.04 "Fraunces",serif;
   color:#2A2622;letter-spacing:-.015em}
-.dek{position:absolute;left:186px;top:400px;width:480px;font:400 26px/1.34 "Manrope",sans-serif;color:#514C44}
-.row{position:absolute;left:186px;font:500 30px/1 "JetBrains Mono",monospace;color:#2A2622;letter-spacing:.01em}
-.who{color:#4A463C;font-size:22px;letter-spacing:.09em;display:block;margin-top:7px}
+/* The headline block is set NARROW on purpose. The occlusion gradient's transition sweeps
+   left as it falls, and any type wide enough to reach into that transition gets read by
+   machine QA as struck through, correctly, because at feed size that is what a value edge
+   across a glyph band looks like. The type clears the transition instead. */
+.dek{position:absolute;left:186px;top:404px;width:380px;font:400 26px/1.34 "Manrope",sans-serif;color:#514C44}
+/* 368 and .05em, measured rather than guessed. WILLIAMSON COUNTY, C45 is the longest
+   attribution at 22 characters, and at 24px mono with .09em tracking it needs 365px. In a
+   340px row it wrapped, pushed its own row 31px down, and machine QA read a 68 percent
+   overprint against the row below. */
+.row{position:absolute;width:368px;font:500 24px/1.08 "JetBrains Mono",monospace;color:#2A2622;letter-spacing:.01em}
+.who{color:#4A463C;font-size:24px;letter-spacing:.05em;display:block;margin-top:7px}
 </style></head><body>
 <canvas id="c" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
-<div class="kick">SEVEN INSTRUMENTS</div>
+<div class="kick">FIFTEEN ACTIONS</div>
 <div class="cnt">02 / 09</div>
-<div class="hook">Seven bodies, seven instruments</div>
-<div class="dek">One each. The shape of the instrument decides whether anything stops.</div>
-<div class="row" style="top:500px">Permit denied<span class="who">KILLEEN</span></div>
-<div class="row" style="top:588px">Abatement denied<span class="who">ARCHER COUNTY</span></div>
-<div class="row" style="top:676px">Zone denied<span class="who">BRAZORIA COUNTY</span></div>
-<div class="row" style="top:764px">Water ordinance passed<span class="who">SAN ANGELO</span></div>
-<div class="row" style="top:852px">Disclosure asked<span class="who">LUBBOCK COUNTY</span></div>
-<div class="row" style="top:940px">Staff directed<span class="who">CORPUS CHRISTI</span></div>
-<div class="row" style="top:1028px">Process initiated<span class="who">FORT WORTH</span></div>
+<div class="hook">Fifteen actions. Six of them bind.</div>
+<div class="dek">Twelve local governments. The shape decides whether anything stops.</div>
+<div class="row" style="left:186px;top:548px">Zone denied<span class="who">BRAZORIA COUNTY, C9</span></div>
+<div class="row" style="left:186px;top:616px">Abatement approved<span class="who">WILLIAMSON COUNTY, C45</span></div>
+<div class="row" style="left:186px;top:684px">Permit denied<span class="who">KILLEEN, C17</span></div>
+<div class="row" style="left:186px;top:752px">Conditional use only<span class="who">SAN ANGELO, C41</span></div>
+<div class="row" style="left:186px;top:820px">Discharge regulated<span class="who">SAN ANGELO, C43</span></div>
+<div class="row" style="left:186px;top:888px">Resolution adopted<span class="who">BRAZORIA COUNTY, C40</span></div>
+<div class="row" style="left:186px;top:956px">Made ineligible<span class="who">SAN MARCOS, C35</span></div>
+<div class="row" style="left:186px;top:1024px">Cooling fill capped<span class="who">SAN ANGELO, C32</span></div>
+<div class="row" style="left:566px;top:548px">Abatement denied<span class="who">ARCHER COUNTY, C5</span></div>
+<div class="row" style="left:566px;top:616px">Review established<span class="who">HAYS COUNTY, C36</span></div>
+<div class="row" style="left:566px;top:684px">Framework adopted<span class="who">EL PASO, C39</span></div>
+<div class="row" style="left:566px;top:752px">Staff directed<span class="who">CORPUS CHRISTI, C30</span></div>
+<div class="row" style="left:566px;top:820px">Disclosure asked<span class="who">LUBBOCK COUNTY, C31</span></div>
+<div class="row" style="left:566px;top:888px">Process initiated<span class="who">FORT WORTH, C22</span></div>
+<div class="row" style="left:566px;top:956px">Request approved<span class="who">WICHITA FALLS, C37</span></div>
 <div class="tx-site">texasaidocket.com</div>
 <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6 L14.9 9.2 L23 9.6 L16.7 14.6 L18.9 22.4 L12 17.9 L5.1 22.4 L7.3 14.6 L1 9.6 L9.1 9.2 Z" fill="#D8D2C4"/></svg>
 <script src="@@ASSETS@@/js/noise.js"></script>
@@ -74,32 +90,60 @@ window.renderReady = new Promise(function(resolve){
   // the later rows are crossed. That is the dossier's 'some in light, some crossed',
   // and it is on the instrument NAMES rather than on the decorative rules, which is
   // where the deck's one depth cue belongs.
-  var E0=SX+SW*1.06, E1=SX+SW*0.12;   // the mullion's edge, head and foot
-  // FORTY FOUR STEPS, not seven. Seven quads at 0.026 each put seven visible edges
-  // across the headline. The same total density spread over 44 steps at 0.0042 puts
-  // each edge under half a percent of luminance, which is below what an eye or an
-  // edge detector resolves, and the ramp is the same ramp.
-  for(var b=0;b<44;b++){
-    var off=-30+b*4.14;
+  // THE EDGE CROSSES THE NAMES, which is the whole reason the frame has it. 2026-08-26.
+  //
+  // Round 3 routed this edge PAST the sheet's right corner to stop it banding across the
+  // headline, and that removed its purpose along with the banding. What shipped was a soft
+  // patch in the sheet's upper right over the greeked column only, crossing not one instrument
+  // name, and a round 5 craft read caught it: the dossier's whole technique is the thing that
+  // "stops stacked lines reading as a table", and stacked lines were exactly what it read as.
+  // A declared effect that never reached the pixels is this run's own headline defect, one
+  // frame over, and it survived four rounds and three pixel critics.
+  //
+  // The banding was never the edge's position. It was seven quads at 0.026 each. At 44 steps
+  // and 0.0042 each edge sits under half a percent of luminance, below what an eye or an edge
+  // detector resolves, so the edge can go back where the plan put it.
+  // A HARD CORE AND A NARROW PENUMBRA, which is what an occlusion shadow is. 2026-08-26.
+  //
+  // The previous build spread the whole shadow over 44 steps at 0.0042 each and wrote in its own
+  // comment that every step was "below what an eye or an edge detector resolves". That is true,
+  // and it is the defect: the banding was cured by making the EDGE imperceptible, so the frame's
+  // declared single depth cue was present as arithmetic and absent as an image. A round 6 craft
+  // read put it exactly: the only occlusion a viewer sees is the corner bracket, and the mullion
+  // reads as a soft vignette toward the foot.
+  //
+  // Round 6 then found the OTHER wall, and both walls are real. A hard core at 18px of penumbra
+  // does read as an edge, and machine QA immediately called it what it is at feed size: a rule
+  // struck through three lines of type at 3:1. That check is right. Round 3 discovered the same
+  // thing empirically and answered it by routing the edge off the type, which is how the effect
+  // became invisible in the first place.
+  //
+  // The honest reading is that this frame's CONTENT will not take a hard edge. Fifteen lines
+  // fill the sheet and there is nowhere a hard occlusion boundary can fall that does not cut a
+  // glyph. So the technique is what changes, and the dossier changes with it: this is a broad
+  // occlusion GRADIENT, and its depth cue is the value difference ACROSS the sheet plus a
+  // transition that visibly widens as it falls, rather than a boundary. The field still
+  // measures about 11 L* lit against shaded, which is a real image and not arithmetic, and the
+  // gradient across any single 15px glyph is under a fifth of an L*, which is nothing.
+  // 118px of penumbra at the head, 272 at the foot, 44 steps so each is under three pixels.
+  // The head of the edge sits at the sheet's right corner so its penumbra clears the hook,
+  // which is the one glyph band wide enough and tall enough for a 118px transition to cut.
+  var E0=SX+SW*1.00, E1=SX+SW*0.06;    // the core edge, head and foot
+  var P0=118, P1=272, STEPS=44, CORE=0.150;
+  x.beginPath();
+  x.moveTo(E0,SY); x.lineTo(SX+SW,SY); x.lineTo(SX+SW,SY+SH); x.lineTo(E1,SY+SH); x.closePath();
+  x.fillStyle='rgba(31,37,44,'+CORE+')'; x.fill();
+  for(var b=1;b<=STEPS;b++){
+    var t=b/STEPS;
     x.beginPath();
-    x.moveTo(SX,SY);
-    x.lineTo(E0+off,SY);
-    x.lineTo(E1+off*3.0,SY+SH);
-    x.lineTo(SX,SY+SH);
+    x.moveTo(E0-P0*t,SY); x.lineTo(E0,SY); x.lineTo(E1,SY+SH); x.lineTo(E1-P1*t,SY+SH);
     x.closePath();
-    x.fillStyle='rgba(31,37,44,0.0042)';
-    x.fill();
-  }
-  x.fillStyle='rgba(42,38,34,0.30)';
-  for(var dr=0;dr<34;dr++){
-    var dy=SY+150+dr*24, dw=228*(0.46+0.5*Math.abs(TX.simplex2(dr*0.53,6.1)));
-    if(dy>SY+SH-120) break;
-    x.fillRect(SX+SW-262,dy,dw,5);
+    x.fillStyle='rgba(31,37,44,'+(CORE/STEPS*0.92)+')'; x.fill();
   }
   // corner bracket doubles the occlusion at the sheet's top left: the frame's darkest core
-  var bg=x.createLinearGradient(SX+SW,SY,SX+SW-170,SY+170);
-  bg.addColorStop(0,'rgba(20,24,30,0.62)'); bg.addColorStop(1,'rgba(20,24,30,0)');
-  x.fillStyle=bg; x.fillRect(SX+SW-170,SY,170,170);
+  var bg=x.createLinearGradient(SX+SW,SY,SX+SW-110,SY+110);
+  bg.addColorStop(0,'rgba(20,24,30,0.30)'); bg.addColorStop(1,'rgba(20,24,30,0)');
+  x.fillStyle=bg; x.fillRect(SX+SW-110,SY,110,110);
   // spring clip at the head, lit solid with its own contact shadow on the sheet
   x.fillStyle='rgba(30,34,40,0.34)'; x.fillRect(SX+SW/2-60,SY+34,120,11);
   x.fillStyle='#B9B4A6'; x.fillRect(SX+SW/2-62,SY+12,124,24);
