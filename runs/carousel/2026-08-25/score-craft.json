@@ -1,0 +1,38 @@
+{
+ "lens": "craft",
+ "weighted_score": 7.14,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.2,
+   "weight": 0.28,
+   "why": "frames 5 and 7 are genuinely made, but three frames print type off the edge of the paper it is printed on, and detail is spread evenly on 6 and 8 rather than budgeted"
+  },
+  "claim_integrity": {
+   "score": 7.6,
+   "weight": 0.2,
+   "why": "the four Brazoria applicant names survived a deliberate attempt to refute them and trace to snapshotted Legistar MatterTitles; frame 8 asserts two yeses and names one"
+  },
+  "story_and_stakes": {
+   "score": 7.4,
+   "weight": 0.18,
+   "why": "frame 9's foot finally carries the route via c46; it says a hearing exists and never says how a reader reaches it"
+  },
+  "sequence_and_momentum": {
+   "score": 7.6,
+   "weight": 0.12,
+   "why": "the -49.7 junction into frame 3 is the deck's best move and 5 is a true turn; 2 and 3 survey the same fifteen back to back"
+  },
+  "voice": {
+   "score": 7.2,
+   "weight": 0.12,
+   "why": "the thesis lands in one clean line and the house rules hold; nothing sounds like it came from Texas rather than about Texas"
+  },
+  "variety": {
+   "score": 7.8,
+   "weight": 0.1,
+   "why": "bespoke median 0.155 and three techniques that have never shipped here; four frames on square-on-to-a-bordered-sheet"
+  }
+ },
+ "hard_fails": [],
+ "one_sentence_fix": "Make every text box a child of the paper geometry it prints on, inset by one shared margin token and clipped above the footer band."
+}

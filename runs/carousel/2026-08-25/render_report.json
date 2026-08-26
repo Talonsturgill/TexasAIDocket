@@ -66,9 +66,9 @@
           "text": "NOTICE OF MEETING",
           "x": 256,
           "y": 372,
-          "w": 279,
-          "h": 20,
-          "font_px": 20,
+          "w": 335,
+          "h": 24,
+          "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
           "color": "rgb(138, 129, 117)",
@@ -77,19 +77,19 @@
           "lines": [
             [
               256,
-              369,
-              279,
-              26
+              368,
+              335,
+              31
             ]
           ],
           "anc": []
         },
         {
-          "text": "Fifteen ways to take up a data center",
+          "text": "Fifteen actions. Six took effect.",
           "x": 256,
           "y": 424,
           "w": 566,
-          "h": 225,
+          "h": 150,
           "font_px": 72,
           "weight": "700",
           "family": "Fraunces",
@@ -100,30 +100,24 @@
             [
               256,
               417,
-              472,
+              483,
               88
             ],
             [
               256,
               492,
-              435,
-              88
-            ],
-            [
-              256,
-              567,
-              203,
+              465,
               88
             ]
           ],
           "anc": []
         },
         {
-          "text": "Twelve Texas local governments acted this year. Six of the fifteen changed a legal state on the day.",
+          "text": "Twelve Texas local governments acted this year. The shape of the instrument decides whether anything stops.",
           "x": 256,
-          "y": 664,
-          "w": 386,
-          "h": 155,
+          "y": 620,
+          "w": 566,
+          "h": 116,
           "font_px": 28,
           "weight": "400",
           "family": "Manrope",
@@ -133,26 +127,20 @@
           "lines": [
             [
               256,
-              664,
-              235,
+              620,
+              547,
               38
             ],
             [
               256,
-              703,
-              373,
+              659,
+              540,
               38
             ],
             [
               256,
-              741,
-              353,
-              38
-            ],
-            [
-              256,
-              780,
-              281,
+              697,
+              315,
               38
             ]
           ],
@@ -225,10 +213,10 @@
           "anc": []
         },
         {
-          "text": "BOUND",
+          "text": "IN EFFECT",
           "x": 402,
           "y": 990,
-          "w": 107,
+          "w": 192,
           "h": 30,
           "font_px": 30,
           "weight": "500",
@@ -240,7 +228,7 @@
             [
               402,
               985,
-              107,
+              192,
               40
             ]
           ],
@@ -276,7 +264,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1933,
+      "render_ms": 2193,
       "ok": true,
       "canvases": [
         {
@@ -349,11 +337,11 @@
           "anc": []
         },
         {
-          "text": "Fifteen actions. Six of them bind.",
+          "text": "All fifteen, in the order they happened",
           "x": 186,
-          "y": 262,
+          "y": 238,
           "w": 540,
-          "h": 129,
+          "h": 193,
           "font_px": 62,
           "weight": "700",
           "family": "Fraunces",
@@ -363,24 +351,30 @@
           "lines": [
             [
               186,
-              255,
-              530,
+              231,
+              463,
               77
             ],
             [
               186,
-              319,
-              371,
+              295,
+              295,
+              77
+            ],
+            [
+              186,
+              360,
+              280,
               77
             ]
           ],
           "anc": []
         },
         {
-          "text": "Twelve local governments. The shape decides whether anything stops.",
+          "text": "Each one with the claim whose own words prove its shape.",
           "x": 186,
-          "y": 404,
-          "w": 380,
+          "y": 436,
+          "w": 360,
           "h": 104,
           "font_px": 26,
           "weight": "400",
@@ -391,20 +385,20 @@
           "lines": [
             [
               186,
-              403,
-              366,
+              435,
+              281,
               36
             ],
             [
               186,
-              438,
-              280,
+              470,
+              321,
               36
             ],
             [
               186,
-              473,
-              187,
+              505,
+              80,
               36
             ]
           ],
@@ -424,7 +418,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              186,
+              210,
               545,
               161,
               31
@@ -470,7 +464,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              186,
+              210,
               613,
               264,
               31
@@ -516,7 +510,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              186,
+              210,
               681,
               190,
               31
@@ -562,7 +556,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              186,
+              210,
               749,
               293,
               31
@@ -608,7 +602,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              186,
+              210,
               817,
               278,
               31
@@ -654,7 +648,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              186,
+              210,
               885,
               264,
               31
@@ -700,7 +694,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              186,
+              210,
               953,
               220,
               31
@@ -746,7 +740,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              186,
+              210,
               1021,
               278,
               31
@@ -792,7 +786,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              566,
+              590,
               545,
               234,
               31
@@ -838,7 +832,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              566,
+              590,
               613,
               264,
               31
@@ -884,7 +878,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              566,
+              590,
               681,
               249,
               31
@@ -930,7 +924,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              566,
+              590,
               749,
               205,
               31
@@ -976,7 +970,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              566,
+              590,
               817,
               234,
               31
@@ -1022,7 +1016,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              566,
+              590,
               885,
               249,
               31
@@ -1068,7 +1062,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              566,
+              590,
               953,
               234,
               31
@@ -1101,6 +1095,28 @@
           ]
         },
         {
+          "text": "A filled square marks the six that took effect that day.",
+          "x": 186,
+          "y": 1086,
+          "w": 740,
+          "h": 32,
+          "font_px": 24,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(81, 76, 68)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              186,
+              1085,
+              582,
+              33
+            ]
+          ],
+          "anc": []
+        },
+        {
           "text": "texasaidocket.com",
           "x": 80,
           "y": 1252,
@@ -1126,11 +1142,558 @@
       "body_overflow": false,
       "canvas_text": [],
       "svg_plates": [],
-      "rules": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 186,
+          "y": 555,
+          "w": 13,
+          "h": 13,
+          "by": "bd",
+          "color": "rgb(42, 38, 34)",
+          "decorative": false,
+          "skip": [
+            4
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 186,
+          "y": 623,
+          "w": 13,
+          "h": 1,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            6
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 186,
+          "y": 635,
+          "w": 13,
+          "h": 1,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            6
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 186,
+          "y": 623,
+          "w": 1,
+          "h": 13,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            6
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 198,
+          "y": 623,
+          "w": 1,
+          "h": 13,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            6
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 186,
+          "y": 691,
+          "w": 13,
+          "h": 1,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            8
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 186,
+          "y": 703,
+          "w": 13,
+          "h": 1,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            8
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 186,
+          "y": 691,
+          "w": 1,
+          "h": 13,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            8
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 198,
+          "y": 691,
+          "w": 1,
+          "h": 13,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            8
+          ]
+        },
+        {
+          "kind": "fill",
+          "x": 186,
+          "y": 759,
+          "w": 13,
+          "h": 13,
+          "by": "bd",
+          "color": "rgb(42, 38, 34)",
+          "decorative": false,
+          "skip": [
+            10
+          ]
+        },
+        {
+          "kind": "fill",
+          "x": 186,
+          "y": 827,
+          "w": 13,
+          "h": 13,
+          "by": "bd",
+          "color": "rgb(42, 38, 34)",
+          "decorative": false,
+          "skip": [
+            12
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 186,
+          "y": 895,
+          "w": 13,
+          "h": 1,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            14
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 186,
+          "y": 907,
+          "w": 13,
+          "h": 1,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            14
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 186,
+          "y": 895,
+          "w": 1,
+          "h": 13,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            14
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 198,
+          "y": 895,
+          "w": 1,
+          "h": 13,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            14
+          ]
+        },
+        {
+          "kind": "fill",
+          "x": 186,
+          "y": 963,
+          "w": 13,
+          "h": 13,
+          "by": "bd",
+          "color": "rgb(42, 38, 34)",
+          "decorative": false,
+          "skip": [
+            16
+          ]
+        },
+        {
+          "kind": "fill",
+          "x": 186,
+          "y": 1031,
+          "w": 13,
+          "h": 13,
+          "by": "bd",
+          "color": "rgb(42, 38, 34)",
+          "decorative": false,
+          "skip": [
+            18
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 566,
+          "y": 555,
+          "w": 13,
+          "h": 1,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            20
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 566,
+          "y": 567,
+          "w": 13,
+          "h": 1,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            20
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 566,
+          "y": 555,
+          "w": 1,
+          "h": 13,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            20
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 578,
+          "y": 555,
+          "w": 1,
+          "h": 13,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            20
+          ]
+        },
+        {
+          "kind": "fill",
+          "x": 566,
+          "y": 623,
+          "w": 13,
+          "h": 13,
+          "by": "bd",
+          "color": "rgb(42, 38, 34)",
+          "decorative": false,
+          "skip": [
+            22
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 566,
+          "y": 691,
+          "w": 13,
+          "h": 1,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            24
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 566,
+          "y": 703,
+          "w": 13,
+          "h": 1,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            24
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 566,
+          "y": 691,
+          "w": 1,
+          "h": 13,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            24
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 578,
+          "y": 691,
+          "w": 1,
+          "h": 13,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            24
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 566,
+          "y": 759,
+          "w": 13,
+          "h": 1,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            26
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 566,
+          "y": 771,
+          "w": 13,
+          "h": 1,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            26
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 566,
+          "y": 759,
+          "w": 1,
+          "h": 13,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            26
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 578,
+          "y": 759,
+          "w": 1,
+          "h": 13,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            26
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 566,
+          "y": 827,
+          "w": 13,
+          "h": 1,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            28
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 566,
+          "y": 839,
+          "w": 13,
+          "h": 1,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            28
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 566,
+          "y": 827,
+          "w": 1,
+          "h": 13,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            28
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 578,
+          "y": 827,
+          "w": 1,
+          "h": 13,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            28
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 566,
+          "y": 895,
+          "w": 13,
+          "h": 1,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            30
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 566,
+          "y": 907,
+          "w": 13,
+          "h": 1,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            30
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 566,
+          "y": 895,
+          "w": 1,
+          "h": 13,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            30
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 578,
+          "y": 895,
+          "w": 1,
+          "h": 13,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            30
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 566,
+          "y": 963,
+          "w": 13,
+          "h": 1,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            32
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 566,
+          "y": 975,
+          "w": 13,
+          "h": 1,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            32
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 566,
+          "y": 963,
+          "w": 1,
+          "h": 13,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            32
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 578,
+          "y": 963,
+          "w": 1,
+          "h": 13,
+          "by": "nb",
+          "color": "rgb(140, 133, 120)",
+          "decorative": false,
+          "skip": [
+            32
+          ]
+        }
+      ],
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1168,
+      "render_ms": 1515,
       "ok": true,
       "canvases": [
         {
@@ -1143,8 +1706,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 150.2,
-          "variance": 5140.7
+          "mean": 150.1,
+          "variance": 5142.5
         }
       ],
       "breather": false,
@@ -1674,7 +2237,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1488,
+      "render_ms": 1587,
       "ok": true,
       "canvases": [
         {
@@ -1699,22 +2262,11 @@
       "png": "slide-04.png",
       "console_errors": [],
       "page_errors": [],
-      "overflow_warnings": [
-        {
-          "kind": "tiny-text",
-          "text": "\"tentatively set for Feb. 16, 2027\"",
-          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
-        },
-        {
-          "kind": "tiny-text",
-          "text": "CITY OF FORT WORTH, C22 AND C23",
-          "detail": "font-size 19px < 24px mobile floor (mark data-decorative if intentional)"
-        }
-      ],
+      "overflow_warnings": [],
       "fonts_missing": [],
       "text_nodes": [
         {
-          "text": "The council adopted a resolution that starts a process. The city's own release names no pause in force today.",
+          "text": "The council adopted a resolution that starts a process. February 16th is a tentative adoption vote, not the day a pause begins.",
           "x": 254,
           "y": 464,
           "w": 383,
@@ -1734,31 +2286,31 @@
             ],
             [
               254,
-              504,
-              351,
+              505,
+              344,
               49
             ],
             [
               254,
-              543,
-              349,
-              46
+              542,
+              367,
+              47
             ],
             [
               254,
-              587,
-              125,
-              38
+              582,
+              304,
+              42
             ]
           ],
           "anc": []
         },
         {
           "text": "The newest pause is not in force",
-          "x": 437,
-          "y": 798,
-          "w": 398,
-          "h": 204,
+          "x": 447,
+          "y": 765,
+          "w": 395,
+          "h": 201,
           "font_px": 58,
           "weight": "700",
           "family": "Fraunces",
@@ -1767,21 +2319,21 @@
           "overlap_ok": false,
           "lines": [
             [
-              437,
-              792,
-              295,
-              83
+              447,
+              759,
+              296,
+              80
             ],
             [
-              437,
-              851,
-              370,
-              91
+              447,
+              818,
+              372,
+              88
             ],
             [
-              437,
-              910,
-              130,
+              447,
+              877,
+              131,
               79
             ]
           ],
@@ -1789,11 +2341,11 @@
         },
         {
           "text": "\"tentatively set for Feb. 16, 2027\"",
-          "x": 437,
-          "y": 994,
-          "w": 398,
+          "x": 417,
+          "y": 950,
+          "w": 368,
           "h": 94,
-          "font_px": 22,
+          "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
           "color": "rgb(42, 38, 34)",
@@ -1801,38 +2353,44 @@
           "overlap_ok": false,
           "lines": [
             [
-              437,
-              994,
-              386,
-              58
+              417,
+              951,
+              358,
+              55
             ],
             [
-              437,
-              1024,
-              62,
-              34
+              417,
+              983,
+              122,
+              40
             ]
           ],
           "anc": []
         },
         {
-          "text": "CITY OF FORT WORTH, C22 AND C23",
-          "x": 437,
-          "y": 1071,
-          "w": 411,
-          "h": 57,
-          "font_px": 19,
+          "text": "FORT WORTH, C22 AND C23 READ FROM A REPRINT",
+          "x": 417,
+          "y": 1030,
+          "w": 368,
+          "h": 101,
+          "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(110, 105, 95)",
+          "color": "rgb(74, 69, 61)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              437,
-              1068,
-              411,
-              63
+              417,
+              1031,
+              362,
+              62
+            ],
+            [
+              417,
+              1064,
+              294,
+              58
             ]
           ],
           "anc": []
@@ -1923,7 +2481,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1385,
+      "render_ms": 1756,
       "ok": true,
       "canvases": [
         {
@@ -1948,23 +2506,7 @@
       "png": "slide-05.png",
       "console_errors": [],
       "page_errors": [],
-      "overflow_warnings": [
-        {
-          "kind": "tiny-text",
-          "text": "ARCHER COUNTY, C5",
-          "detail": "font-size 20px < 24px mobile floor (mark data-decorative if intentional)"
-        },
-        {
-          "kind": "tiny-text",
-          "text": "LUBBOCK COUNTY, C7",
-          "detail": "font-size 20px < 24px mobile floor (mark data-decorative if intentional)"
-        },
-        {
-          "kind": "tiny-text",
-          "text": "KILLEEN, C18",
-          "detail": "font-size 20px < 24px mobile floor (mark data-decorative if intentional)"
-        }
-      ],
+      "overflow_warnings": [],
       "fonts_missing": [],
       "text_nodes": [
         {
@@ -2071,9 +2613,9 @@
           "text": "ARCHER COUNTY, C5",
           "x": 150,
           "y": 504,
-          "w": 238,
-          "h": 20,
-          "font_px": 20,
+          "w": 286,
+          "h": 24,
+          "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
           "color": "rgb(110, 105, 95)",
@@ -2082,9 +2624,9 @@
           "lines": [
             [
               150,
-              501,
-              238,
-              26
+              500,
+              286,
+              31
             ]
           ],
           "anc": []
@@ -2121,9 +2663,9 @@
           "text": "LUBBOCK COUNTY, C7",
           "x": 470,
           "y": 1012,
-          "w": 252,
-          "h": 20,
-          "font_px": 20,
+          "w": 302,
+          "h": 24,
+          "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
           "color": "rgb(110, 105, 95)",
@@ -2132,9 +2674,9 @@
           "lines": [
             [
               470,
-              1009,
-              252,
-              26
+              1008,
+              302,
+              31
             ]
           ],
           "anc": []
@@ -2165,9 +2707,9 @@
           "text": "KILLEEN, C18",
           "x": 150,
           "y": 1136,
-          "w": 168,
-          "h": 20,
-          "font_px": 20,
+          "w": 202,
+          "h": 24,
+          "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
           "color": "rgb(72, 68, 60)",
@@ -2176,9 +2718,9 @@
           "lines": [
             [
               150,
-              1133,
-              168,
-              26
+              1132,
+              202,
+              31
             ]
           ],
           "anc": []
@@ -2213,7 +2755,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1021,
+      "render_ms": 942,
       "ok": true,
       "canvases": [
         {
@@ -2238,18 +2780,7 @@
       "png": "slide-06.png",
       "console_errors": [],
       "page_errors": [],
-      "overflow_warnings": [
-        {
-          "kind": "tiny-text",
-          "text": "BRAZORIA COUNTY, C9 THE ZONE THEY STOOD ON",
-          "detail": "font-size 19px < 24px mobile floor (mark data-decorative if intentional)"
-        },
-        {
-          "kind": "tiny-text",
-          "text": "SAN ANGELO, C32 ORDINANCE 2026-078",
-          "detail": "font-size 19px < 24px mobile floor (mark data-decorative if intentional)"
-        }
-      ],
+      "overflow_warnings": [],
       "fonts_missing": [],
       "text_nodes": [
         {
@@ -2297,7 +2828,7 @@
           "anc": []
         },
         {
-          "text": "Six of the fifteen have teeth",
+          "text": "Six of the fifteen took effect",
           "x": 96,
           "y": 168,
           "w": 640,
@@ -2312,13 +2843,13 @@
             [
               96,
               161,
-              598,
+              594,
               77
             ],
             [
               96,
               225,
-              145,
+              161,
               77
             ]
           ],
@@ -2326,8 +2857,8 @@
         },
         {
           "text": "\"Motion to deny passed 5-0.\"",
-          "x": 140,
-          "y": 404,
+          "x": 124,
+          "y": 396,
           "w": 348,
           "h": 73,
           "font_px": 27,
@@ -2338,14 +2869,14 @@
           "overlap_ok": false,
           "lines": [
             [
-              140,
-              404,
+              124,
+              396,
               243,
               36
             ],
             [
-              140,
-              441,
+              124,
+              433,
               194,
               36
             ]
@@ -2354,11 +2885,11 @@
         },
         {
           "text": "BRAZORIA COUNTY, C9 THE ZONE THEY STOOD ON",
-          "x": 140,
-          "y": 548,
-          "w": 348,
-          "h": 57,
-          "font_px": 19,
+          "x": 124,
+          "y": 498,
+          "w": 352,
+          "h": 72,
+          "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
           "color": "rgb(107, 100, 89)",
@@ -2366,26 +2897,26 @@
           "overlap_ok": false,
           "lines": [
             [
-              140,
-              549,
-              242,
-              25
+              124,
+              500,
+              290,
+              31
             ],
             [
-              140,
-              578,
-              280,
-              25
+              124,
+              536,
+              335,
+              31
             ]
           ],
           "anc": []
         },
         {
           "text": "\"shall not exceed 8.0 gallons per square foot of Gross Building Area\"",
-          "x": 574,
-          "y": 404,
-          "w": 348,
-          "h": 184,
+          "x": 588,
+          "y": 386,
+          "w": 368,
+          "h": 147,
           "font_px": 27,
           "weight": "500",
           "family": "JetBrains Mono",
@@ -2394,33 +2925,27 @@
           "overlap_ok": false,
           "lines": [
             [
-              574,
-              404,
-              275,
+              588,
+              386,
+              340,
               36
             ],
             [
-              574,
-              441,
-              243,
+              588,
+              423,
+              292,
               36
             ],
             [
-              574,
-              477,
+              588,
+              459,
+              211,
+              36
+            ],
+            [
+              588,
+              496,
               227,
-              36
-            ],
-            [
-              574,
-              514,
-              227,
-              36
-            ],
-            [
-              574,
-              551,
-              81,
               36
             ]
           ],
@@ -2428,11 +2953,11 @@
         },
         {
           "text": "SAN ANGELO, C32 ORDINANCE 2026-078",
-          "x": 574,
-          "y": 700,
-          "w": 348,
-          "h": 57,
-          "font_px": 19,
+          "x": 588,
+          "y": 574,
+          "w": 368,
+          "h": 72,
+          "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
           "color": "rgb(107, 100, 89)",
@@ -2440,26 +2965,290 @@
           "overlap_ok": false,
           "lines": [
             [
-              574,
-              701,
-              191,
-              25
+              588,
+              576,
+              229,
+              31
             ],
             [
-              574,
-              730,
-              229,
-              25
+              588,
+              612,
+              274,
+              31
             ]
           ],
           "anc": []
         },
         {
-          "text": "San Angelo wrote three of the six. Zoning in May, the sewer in June, the water on June 16th. On four of the fifteen the record says nothing either way.",
+          "text": "SAN ANGELO",
+          "x": 112,
+          "y": 778,
+          "w": 175,
+          "h": 34,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(42, 38, 34)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              112,
+              779,
+              146,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ZONING",
+          "x": 112,
+          "y": 812,
+          "w": 175,
+          "h": 34,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 100, 89)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              112,
+              813,
+              95,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "C41",
+          "x": 112,
+          "y": 846,
+          "w": 175,
+          "h": 34,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 100, 89)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              112,
+              847,
+              48,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SAN ANGELO",
+          "x": 339,
+          "y": 778,
+          "w": 175,
+          "h": 34,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(42, 38, 34)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              339,
+              779,
+              146,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SEWER",
+          "x": 339,
+          "y": 812,
+          "w": 175,
+          "h": 34,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 100, 89)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              339,
+              813,
+              79,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "C43",
+          "x": 339,
+          "y": 846,
+          "w": 175,
+          "h": 34,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 100, 89)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              339,
+              847,
+              48,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SAN MARCOS",
+          "x": 566,
+          "y": 778,
+          "w": 175,
+          "h": 34,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(42, 38, 34)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              566,
+              779,
+              146,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "INELIGIBLE",
+          "x": 566,
+          "y": 812,
+          "w": 175,
+          "h": 34,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 100, 89)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              566,
+              813,
+              158,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "C35",
+          "x": 566,
+          "y": 846,
+          "w": 175,
+          "h": 34,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 100, 89)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              566,
+              847,
+              48,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "HAYS COUNTY",
+          "x": 793,
+          "y": 778,
+          "w": 175,
+          "h": 34,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(42, 38, 34)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              793,
+              779,
+              161,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "180 DAYS",
+          "x": 793,
+          "y": 812,
+          "w": 175,
+          "h": 34,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 100, 89)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              793,
+              813,
+              127,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "C36",
+          "x": 793,
+          "y": 846,
+          "w": 175,
+          "h": 34,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 100, 89)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              793,
+              847,
+              48,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "San Angelo wrote three of the six. On four of the fifteen the record says nothing about force either way.",
           "x": 96,
-          "y": 892,
-          "w": 760,
-          "h": 118,
+          "y": 936,
+          "w": 800,
+          "h": 78,
           "font_px": 28,
           "weight": "500",
           "family": "Manrope",
@@ -2469,20 +3258,14 @@
           "lines": [
             [
               96,
-              892,
-              683,
+              936,
+              770,
               38
             ],
             [
               96,
-              931,
-              680,
-              38
-            ],
-            [
-              96,
-              970,
-              550,
+              975,
+              563,
               38
             ]
           ],
@@ -2518,7 +3301,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2208,
+      "render_ms": 2465,
       "ok": true,
       "canvases": [
         {
@@ -2531,8 +3314,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 157.3,
-          "variance": 4164.5
+          "mean": 161.8,
+          "variance": 4293.7
         }
       ],
       "breather": false,
@@ -2543,28 +3326,7 @@
       "png": "slide-07.png",
       "console_errors": [],
       "page_errors": [],
-      "overflow_warnings": [
-        {
-          "kind": "tiny-text",
-          "text": "ITEM I.3, THE REINVESTMENT ZONE",
-          "detail": "font-size 19px < 24px mobile floor (mark data-decorative if intentional)"
-        },
-        {
-          "kind": "tiny-text",
-          "text": "THE RECORD CARRIES THE SAME MINUTE ON EACH OF THE FOUR",
-          "detail": "font-size 19px < 24px mobile floor (mark data-decorative if intentional)"
-        },
-        {
-          "kind": "tiny-text",
-          "text": "GRANTING TAX ABATEMENT OF OLD OCEAN DATACENTER LLC",
-          "detail": "font-size 18px < 24px mobile floor (mark data-decorative if intentional)"
-        },
-        {
-          "kind": "tiny-text",
-          "text": "C9, C10, C11",
-          "detail": "font-size 20px < 24px mobile floor (mark data-decorative if intentional)"
-        }
-      ],
+      "overflow_warnings": [],
       "fonts_missing": [],
       "text_nodes": [
         {
@@ -2643,9 +3405,9 @@
           "text": "ITEM I.3, THE REINVESTMENT ZONE",
           "x": 118,
           "y": 366,
-          "w": 424,
-          "h": 19,
-          "font_px": 19,
+          "w": 536,
+          "h": 24,
+          "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
           "color": "rgb(51, 48, 42)",
@@ -2654,9 +3416,9 @@
           "lines": [
             [
               118,
-              363,
-              424,
-              25
+              362,
+              536,
+              31
             ]
           ],
           "anc": []
@@ -2693,9 +3455,9 @@
           "text": "THE RECORD CARRIES THE SAME MINUTE ON EACH OF THE FOUR",
           "x": 118,
           "y": 516,
-          "w": 698,
-          "h": 19,
-          "font_px": 19,
+          "w": 844,
+          "h": 31,
+          "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
           "color": "rgb(58, 54, 46)",
@@ -2704,20 +3466,20 @@
           "lines": [
             [
               118,
-              513,
-              698,
-              25
+              516,
+              842,
+              31
             ]
           ],
           "anc": []
         },
         {
-          "text": "GRANTING TAX ABATEMENT OF OLD OCEAN DATACENTER LLC",
+          "text": "GRANTING TAX ABATEMENT OF BULLDOG POWER LLC",
           "x": 118,
           "y": 584,
-          "w": 612,
-          "h": 18,
-          "font_px": 18,
+          "w": 844,
+          "h": 31,
+          "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
           "color": "rgb(64, 60, 52)",
@@ -2726,9 +3488,75 @@
           "lines": [
             [
               118,
-              581,
-              612,
-              23
+              584,
+              671,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "GRANTING TAX ABATEMENT OF BULLDOG POWER 2 LLC",
+          "x": 118,
+          "y": 722,
+          "w": 844,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(64, 60, 52)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              118,
+              722,
+              702,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "GRANTING TAX ABATEMENT OF OLD OCEAN DATACENTER LLC",
+          "x": 118,
+          "y": 860,
+          "w": 844,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(64, 60, 52)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              118,
+              860,
+              780,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "GRANTING TAX ABATEMENT OF OLD OCEAN DATACENTER 2 LLC",
+          "x": 118,
+          "y": 998,
+          "w": 844,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(64, 60, 52)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              118,
+              998,
+              811,
+              31
             ]
           ],
           "anc": []
@@ -2737,7 +3565,7 @@
           "text": "No action taken due to I.3 failed",
           "x": 118,
           "y": 624,
-          "w": 614,
+          "w": 844,
           "h": 31,
           "font_px": 31,
           "weight": "500",
@@ -2759,7 +3587,7 @@
           "text": "No action taken due to I.3 failed",
           "x": 118,
           "y": 762,
-          "w": 614,
+          "w": 844,
           "h": 31,
           "font_px": 31,
           "weight": "500",
@@ -2781,7 +3609,7 @@
           "text": "No action taken due to I.3 failed",
           "x": 118,
           "y": 900,
-          "w": 614,
+          "w": 844,
           "h": 31,
           "font_px": 31,
           "weight": "500",
@@ -2803,7 +3631,7 @@
           "text": "No action taken due to I.3 failed",
           "x": 118,
           "y": 1038,
-          "w": 614,
+          "w": 844,
           "h": 31,
           "font_px": 31,
           "weight": "500",
@@ -2825,9 +3653,9 @@
           "text": "C9, C10, C11",
           "x": 118,
           "y": 1196,
-          "w": 168,
-          "h": 20,
-          "font_px": 20,
+          "w": 844,
+          "h": 24,
+          "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
           "color": "rgb(180, 175, 159)",
@@ -2836,9 +3664,9 @@
           "lines": [
             [
               118,
-              1193,
-              168,
-              26
+              1192,
+              202,
+              31
             ]
           ],
           "anc": []
@@ -2873,7 +3701,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 641,
+      "render_ms": 801,
       "ok": true,
       "canvases": [
         {
@@ -2898,38 +3726,7 @@
       "png": "slide-08.png",
       "console_errors": [],
       "page_errors": [],
-      "overflow_warnings": [
-        {
-          "kind": "tiny-text",
-          "text": "A commissioner referenced a $100 million lawsuit filed against Hill County after it approved a similar one year moratorium.",
-          "detail": "font-size 23px < 24px mobile floor (mark data-decorative if intentional)"
-        },
-        {
-          "kind": "tiny-text",
-          "text": "TOM GREEN COUNTY, C15 AND C16 REPORTED SPEECH ABOUT A LAWSUIT",
-          "detail": "font-size 19px < 24px mobile floor (mark data-decorative if intentional)"
-        },
-        {
-          "kind": "tiny-text",
-          "text": "\"no action taken\"",
-          "detail": "font-size 23px < 24px mobile floor (mark data-decorative if intentional)"
-        },
-        {
-          "kind": "tiny-text",
-          "text": "Wichita Falls approved a data center in an existing building.",
-          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
-        },
-        {
-          "kind": "tiny-text",
-          "text": "LAREDO MATTER HISTORY, C14",
-          "detail": "font-size 18px < 24px mobile floor (mark data-decorative if intentional)"
-        },
-        {
-          "kind": "tiny-text",
-          "text": "WICHITA FALLS, C37",
-          "detail": "font-size 18px < 24px mobile floor (mark data-decorative if intentional)"
-        }
-      ],
+      "overflow_warnings": [],
       "fonts_missing": [],
       "text_nodes": [
         {
@@ -3043,8 +3840,8 @@
           "x": 120,
           "y": 522,
           "w": 410,
-          "h": 166,
-          "font_px": 23,
+          "h": 173,
+          "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
           "color": "rgb(20, 27, 17)",
@@ -3054,32 +3851,32 @@
             [
               120,
               523,
-              373,
-              30
+              389,
+              31
             ],
             [
               120,
-              556,
-              359,
-              30
+              558,
+              374,
+              31
             ],
             [
               120,
-              589,
-              386,
-              30
+              592,
+              403,
+              31
             ],
             [
               120,
-              622,
-              373,
-              30
+              627,
+              389,
+              31
             ],
             [
               120,
-              655,
-              152,
-              30
+              661,
+              158,
+              31
             ]
           ],
           "anc": []
@@ -3088,9 +3885,9 @@
           "text": "TOM GREEN COUNTY, C15 AND C16 REPORTED SPEECH ABOUT A LAWSUIT",
           "x": 120,
           "y": 706,
-          "w": 406,
-          "h": 53,
-          "font_px": 19,
+          "w": 470,
+          "h": 67,
+          "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
           "color": "rgb(36, 46, 29)",
@@ -3099,15 +3896,15 @@
           "lines": [
             [
               120,
-              706,
-              380,
-              25
+              707,
+              438,
+              31
             ],
             [
               120,
-              733,
-              406,
-              25
+              741,
+              469,
+              31
             ]
           ],
           "anc": []
@@ -3115,10 +3912,10 @@
         {
           "text": "\"no action taken\"",
           "x": 120,
-          "y": 810,
+          "y": 800,
           "w": 420,
-          "h": 31,
-          "font_px": 23,
+          "h": 32,
+          "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
           "color": "rgb(20, 27, 17)",
@@ -3127,20 +3924,20 @@
           "lines": [
             [
               120,
-              810,
-              235,
-              30
+              800,
+              245,
+              31
             ]
           ],
           "anc": []
         },
         {
-          "text": "Wichita Falls approved a data center in an existing building.",
+          "text": "Wichita Falls approved a data center. Williamson County approved an abatement.",
           "x": 120,
-          "y": 936,
+          "y": 906,
           "w": 430,
-          "h": 57,
-          "font_px": 21,
+          "h": 98,
+          "font_px": 24,
           "weight": "400",
           "family": "Manrope",
           "color": "rgb(27, 35, 23)",
@@ -3149,15 +3946,21 @@
           "lines": [
             [
               120,
-              936,
-              397,
-              28
+              905,
+              401,
+              33
             ],
             [
               120,
-              965,
-              164,
-              28
+              938,
+              347,
+              33
+            ],
+            [
+              120,
+              970,
+              128,
+              33
             ]
           ],
           "anc": []
@@ -3165,10 +3968,10 @@
         {
           "text": "LAREDO MATTER HISTORY, C14",
           "x": 120,
-          "y": 858,
-          "w": 318,
-          "h": 25,
-          "font_px": 18,
+          "y": 846,
+          "w": 470,
+          "h": 34,
+          "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
           "color": "rgb(36, 46, 29)",
@@ -3177,20 +3980,20 @@
           "lines": [
             [
               120,
-              859,
-              318,
-              23
+              847,
+              393,
+              31
             ]
           ],
           "anc": []
         },
         {
-          "text": "WICHITA FALLS, C37",
+          "text": "WICHITA FALLS, C37 WILLIAMSON COUNTY, C45",
           "x": 120,
-          "y": 1012,
-          "w": 220,
-          "h": 25,
-          "font_px": 18,
+          "y": 1016,
+          "w": 470,
+          "h": 67,
+          "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
           "color": "rgb(36, 46, 29)",
@@ -3199,9 +4002,15 @@
           "lines": [
             [
               120,
-              1013,
-              220,
-              23
+              1017,
+              272,
+              31
+            ],
+            [
+              120,
+              1051,
+              333,
+              31
             ]
           ],
           "anc": []
@@ -3209,8 +4018,8 @@
         {
           "text": "Seventeen times a Texas local government took one up. Fifteen acted and two did not.",
           "x": 120,
-          "y": 1078,
-          "w": 470,
+          "y": 1098,
+          "w": 490,
           "h": 66,
           "font_px": 24,
           "weight": "400",
@@ -3221,13 +4030,13 @@
           "lines": [
             [
               120,
-              1078,
+              1098,
               469,
               33
             ],
             [
               120,
-              1111,
+              1131,
               467,
               33
             ]
@@ -3264,7 +4073,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2350,
+      "render_ms": 3515,
       "ok": true,
       "canvases": [
         {
@@ -3277,8 +4086,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 119,
-          "variance": 3171.7
+          "mean": 118.4,
+          "variance": 2786.6
         }
       ],
       "breather": false,
@@ -3289,18 +4098,7 @@
       "png": "slide-09.png",
       "console_errors": [],
       "page_errors": [],
-      "overflow_warnings": [
-        {
-          "kind": "tiny-text",
-          "text": "THE CITY'S OWN WORDING IS A DEADLINE RATHER THAN A FIXED DATE",
-          "detail": "font-size 20px < 24px mobile floor (mark data-decorative if intentional)"
-        },
-        {
-          "kind": "tiny-text",
-          "text": "CITY OF FORT WORTH, C24",
-          "detail": "font-size 19px < 24px mobile floor (mark data-decorative if intentional)"
-        }
-      ],
+      "overflow_warnings": [],
       "fonts_missing": [],
       "text_nodes": [
         {
@@ -3452,8 +4250,8 @@
           "x": 150,
           "y": 726,
           "w": 500,
-          "h": 60,
-          "font_px": 20,
+          "h": 108,
+          "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
           "color": "rgb(110, 105, 95)",
@@ -3463,14 +4261,20 @@
             [
               150,
               728,
-              482,
-              26
+              434,
+              31
             ],
             [
               150,
-              758,
-              322,
-              26
+              764,
+              129,
+              31
+            ],
+            [
+              150,
+              800,
+              386,
+              31
             ]
           ],
           "anc": []
@@ -3478,10 +4282,10 @@
         {
           "text": "CITY OF FORT WORTH, C24",
           "x": 150,
-          "y": 812,
-          "w": 306,
-          "h": 19,
-          "font_px": 19,
+          "y": 852,
+          "w": 386,
+          "h": 24,
+          "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
           "color": "rgb(122, 117, 107)",
@@ -3490,9 +4294,9 @@
           "lines": [
             [
               150,
-              809,
-              306,
-              25
+              848,
+              386,
+              31
             ]
           ],
           "anc": []
@@ -3500,7 +4304,7 @@
         {
           "text": "The council must hold two public hearings before a pause can take effect, to let the public weigh in. C46",
           "x": 150,
-          "y": 1128,
+          "y": 1020,
           "w": 520,
           "h": 101,
           "font_px": 24,
@@ -3512,19 +4316,19 @@
           "lines": [
             [
               150,
-              1128,
+              1020,
               470,
               33
             ],
             [
               150,
-              1162,
+              1054,
               453,
               33
             ],
             [
               150,
-              1195,
+              1087,
               223,
               33
             ]
@@ -3561,7 +4365,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1473,
+      "render_ms": 2232,
       "ok": true,
       "canvases": [
         {
@@ -3574,8 +4378,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 123.1,
-          "variance": 6061.2
+          "mean": 130,
+          "variance": 5200.6
         }
       ],
       "breather": false,

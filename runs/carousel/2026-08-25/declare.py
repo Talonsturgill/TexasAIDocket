@@ -39,12 +39,29 @@ BI = ["c9", "c32", "c41", "c43", "c35", "c36"]             # changed a legal sta
 SA = ["c32", "c41", "c43"]                                 # San Angelo's three
 JUNE = ["c43", "c40", "c35", "c32", "c5", "c36"]
 
+# THE FIRST COMMENT'S OWN TWO COUNTS. Round 9's integrity judge found them on a surface no
+# scanner reached. They ARE computed, by sources_block.provenance_line over the documents the
+# block lists, so the defect was never the number. It was that nothing checked it. Counted here
+# off the published block itself, by matching each URL it prints back to its claim's
+# source_type, so the declaration is a property of the bytes a reader gets.
+_COMMENT = (ROOT / "out/2026-08-25/first_comment.txt").read_text()
+_CLAIMS = json.loads((ROOT / "out/2026-08-25/claims.json").read_text())
+_CL = _CLAIMS["claims"] if isinstance(_CLAIMS, dict) else _CLAIMS
+_TYPE_OF = {(c.get("source") or c.get("url") or "").strip(): c.get("source_type") for c in _CL}
+_LISTED = [ln.strip() for ln in _COMMENT.splitlines() if ln.strip().startswith("http")]
+_KINDS = {}
+for _u in _LISTED:
+    _k = _TYPE_OF.get(_u, "unstated")
+    _KINDS[_k] = _KINDS.get(_k, 0) + 1
+_SRC_CLAIMS = sorted({c["id"] for c in _CL
+                      if (c.get("source") or c.get("url") or "").strip() in set(_LISTED)},
+                     key=lambda c: int(c[1:]))
+
 PHRASES = {
- "Fifteen ways":                  count("restricted_count", "actions by a Texas local government"),
+ "Fifteen ways":                  count("restricted_count", "actions by a Texas local government"),  # the document title
  "Fifteen actions":               count("restricted_count", "actions by a Texas local government"),
  "FIFTEEN ACTIONS":               count("restricted_count", "actions by a Texas local government"),
  "Twelve Texas local governments":count("acting_bodies", "distinct places among the acting items"),
- "Twelve local governments":      count("acting_bodies", "distinct places among the acting items"),
  "Six actions":                   count("busiest_month_count", "acting dates falling in June", JUNE),
  "Seventeen times":               count("total_count", "acting plus declined", ACTING + ["c14", "c15"]),
  "156 DAYS":                      span("duration", "span_days"),
@@ -55,8 +72,6 @@ PHRASES = {
                                         "acting bodies whose own source says the action does not bind", NB),
  "Six of the fifteen":            ratio("stated_binding", "restricted_count",
                                         "actions that changed a legal state on the day", BI),
- "five times":                    count("resolutions", "acting items whose own cited claim calls the instrument a resolution",
-                                        ["c36", "c39", "c31", "c40", "c22"]),
  "four of the fifteen":           ratio("force_unstated", "restricted_count",
                                         "acting bodies the record says nothing about either way",
                                         ["c40", "c39", "c37", "c45"]),
@@ -79,18 +94,40 @@ PHRASES = {
                                    "quoted_from": "c24",
                                    "quote": "the first of the two required public hearings",
                                    "computed_by": "not computed. Quoted from the city's own release, c24"},
+ "Two of the fifteen":            ratio("approvals", "restricted_count",
+                                        "acting items whose own claim records an approval rather "
+                                        "than a restriction", ["c37", "c45"]),
+ "ten official records":          {"kind": "count", "value": _KINDS.get("primary_official", 0),
+                                   "from_claims": _SRC_CLAIMS,
+                                   "computed_by": "scripts/carousel/sources_block.py, "
+                                     "provenance_line over one claim per distinct document. "
+                                     "Counted again here off the published block's own URLs"},
+ "ten news reports":              {"kind": "count", "value": _KINDS.get("secondary_reported", 0),
+                                   "from_claims": _SRC_CLAIMS,
+                                   "computed_by": "scripts/carousel/sources_block.py, "
+                                     "provenance_line over one claim per distinct document. "
+                                     "Counted again here off the published block's own URLs"},
+ "180 DAYS":                      {"kind": "duration", "value": 180, "from_claims": ["c36"],
+                                   "quoted_from": "c36",
+                                   "quote": "a 180 day emergency water protection review period",
+                                   "computed_by": "not computed. Quoted from c36, the review period "
+                                     "Hays County's court set. Frame 6 prints it on the slip for "
+                                     "the sixth binding action"},
  "two public hearings":           {"kind": "count", "value": 2, "from_claims": ["c46"],
                                    "quoted_from": "c46",
                                    "quote": "required to hold two public hearings",
                                    "computed_by": "not computed. Quoted from c46, the route into the Fort Worth hearing"},
 }
 
-# BOTH PUBLISHED SURFACES. The render AND the caption, because the gate now reads both and a
-# generator that checked only one would declare a caption figure the render never prints and
-# then refuse to write.
-rep = json.loads((ROOT / "out/2026-08-25/render/render_report.json").read_text())
-cap = (ROOT / "out/2026-08-25/caption.txt").read_text()
-found = {f["phrase"] for f in A.scan_report(rep)} | {f["phrase"] for f in A.scan_caption(cap)}
+# ALL THREE PUBLISHED SURFACES. The render, the caption AND the document title, because the gate
+# reads all three and a generator that checked fewer would declare a figure the render never
+# prints and then refuse to write. The title joined the list on 2026-08-26, when the recut moved
+# it off the cover and it became a numeral on a published surface no scanner reached.
+SF = A.surfaces(ROOT / "out/2026-08-25")
+found = ({f["phrase"] for f in A.scan_report(SF["report"])}
+         | {f["phrase"] for f in A.scan_caption(SF["caption"])}
+         | {f["phrase"] for f in A.scan_title(SF["title"])}
+         | {f["phrase"] for f in A.scan_comment(SF["comment"])})
 missing = found - set(PHRASES)
 extra   = set(PHRASES) - found
 assert not missing, "the render prints numbers this file does not declare: " + ", ".join(sorted(missing))

@@ -268,7 +268,7 @@
    "date": "2026-08-25",
    "carousel_no": 7,
    "written_from": "render/render_report.json, render/machine_qa.json, the gates' own exit codes, and a per frame measurement of the rendered PNGs. The value block below is MEASURED, not read off the storyboard, because the storyboard typed a register this deck does not have.",
-   "register": "a Texas notice case seen nine ways, wide range about a median of 52.4. Anodized rail, dark case interior and cream bond carry through six of the nine frames as one object under changing light and camera. Measured against the mid value deck its own storyboard declared, one of the nine sits inside the L* 62 to 68 band that plan set, and the frames run 14.4 to 81.4.",
+   "register": "a Texas notice case seen nine ways, wide range about a median of 52.1. Anodized rail, dark case interior and cream bond carry through six of the nine frames as one object under changing light and camera. Measured against the mid value deck its own storyboard declared, one of the nine sits inside the L* 62 to 68 band that plan set, and the frames run 14.4 to 81.4.",
    "techniques": [
     "a wall mounted notice case authored as geometry so every overlay knows where it is, with a keyway and hinge knuckles so it reads as locked",
     "a cast occlusion shadow whose penumbra widens with the air gap, the deck's one depth cue",
@@ -308,19 +308,19 @@
    "light_decks_used": "wide range, bimodal, median below mid",
    "value": {
     "per_frame_median_L": [
-     51.3,
-     66.0,
+     51.4,
+     64.4,
      14.4,
      30.8,
      81.4,
-     70.6,
-     52.4,
-     56.2,
-     48.8
+     73.6,
+     52.1,
+     59.4,
+     48.7
     ],
-    "deck_median_L": 52.4,
-    "mean_L": 52.4,
-    "sd_L": 19.1,
+    "deck_median_L": 52.1,
+    "mean_L": 52.9,
+    "sd_L": 19.5,
     "range_L": [
      14.4,
      81.4
@@ -341,15 +341,15 @@
     ],
     "biggest_junction": {
      "between": 2,
-     "delta": -51.6
+     "delta": -50.0
     }
    },
    "slides": 9,
-   "bespoke_median_similarity": 0.1684,
+   "bespoke_median_similarity": 0.1644,
    "bespoke_closest_pair": [
     "slide-02.html",
-    "slide-07.html",
-    0.7571
+    "slide-06.html",
+    0.7451
    ],
    "cut": "nothing was cut. Frame 2 went from seven instruments in one column to FIFTEEN in two when the set became a computed selection over the record, and its greeked filler field went with them, because a sheet with fourteen real lines on it does not need filler pretending to be lines. Frame 3 stopped being a roster of the same bodies and became the months, one seated tile per action, so the June cluster is a thing a reader sees rather than a sentence they are asked to believe.",
    "structural_laws": "nothing carved, embossed, milled or engraved anywhere. All depth from the air gap between glazing and sheet. No raking key. No cartography and no coordinate. No invented item number, party name or building.",

@@ -1,0 +1,39 @@
+{
+ "lens": "reader",
+ "weighted_score": 6.36,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.0,
+   "weight": 0.28,
+   "why": "real drawings on 6 and 3, but text runs out of its container on three frames and slides 4 and 5 are close to half greeked filler"
+  },
+  "claim_integrity": {
+   "score": 7.5,
+   "weight": 0.2,
+   "why": "every numeral traces and the rejected list is the best thing in the run; the central classification is asserted with its rule unpublished"
+  },
+  "story_and_stakes": {
+   "score": 6.0,
+   "weight": 0.18,
+   "why": "the stake is a legal category, never a consequence to a person, and the one actionable date sits on frame 9 of 9 and is absent from the caption"
+  },
+  "sequence_and_momentum": {
+   "score": 6.0,
+   "weight": 0.12,
+   "why": "5 to 6 is a real turn, but slide 4 is a single-city case dropped between the timeline and the taxonomy and repeats slide 9 with a different date"
+  },
+  "voice": {
+   "score": 6.5,
+   "weight": 0.12,
+   "why": "the Lubbock quote carrying the thesis is exactly right; 'changed a legal state on the day' is unglossed bureaucratese used three times and the brand's first question is never asked"
+  },
+  "variety": {
+   "score": 6.0,
+   "weight": 0.1,
+   "why": "the material is new against the fortnight, but the argument repeats carousel No. 4 from five days earlier"
+  }
+ },
+ "hard_fails": [],
+ "one_sentence_learned": "Most of what Texas cities and counties did about data centers this year does not legally stop anything, and San Angelo wrote half the rules that do.",
+ "one_sentence_fix": "Cut slide 4 and spend the frame on what San Angelo's binding rules require of a builder, which answers the upside question brand.yaml requires first."
+}

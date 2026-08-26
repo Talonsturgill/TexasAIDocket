@@ -49,7 +49,10 @@ falloff = round(gut[-1] - gut[0], 1)
 s6 = R / "slide-06.png"
 f6 = {"card_a": round(band_median(s6, 130, 420, 490, 520), 1),
       "card_b": round(band_median(s6, 590, 420, 940, 660), 1),
-      "cork_under": round(band_median(s6, 120, 830, 950, 880), 1)}
+      # BARE cork, and the sample had to move. Frame 6 grew four route slips over y 720-904, so
+      # the old window at 830-880 was measuring slip paper and reporting it as cork: 90.4 where
+      # the cork is 60s. Sampled below the foot and above the rail, which is cork and nothing else.
+      "cork_under": round(band_median(s6, 120, 1032, 950, 1104), 1)}
 
 out = {"per_frame_median_lstar": med, "deck_median": deck_med, "deck_sd": deck_sd,
        "junctions": junctions,

@@ -5,22 +5,24 @@
       "fails": [],
       "warns": [],
       "bands": [
-        0.1639,
-        0.1597,
-        0.239
+        0.1702,
+        0.1975,
+        0.2371
       ],
-      "band_ratio": 1.2588
+      "band_ratio": 1.1669
     },
     {
       "file": "slide-02.html",
       "fails": [],
-      "warns": [],
-      "bands": [
-        0.271,
-        0.2815,
-        0.2371
+      "warns": [
+        "worst-point contrast 4.3 on 'A filled square marks the six that took ' (box mean 4.7) -- below the rubric's 4.5 line somewhere along the run of the text"
       ],
-      "band_ratio": 0.905
+      "bands": [
+        0.2647,
+        0.2962,
+        0.2335
+      ],
+      "band_ratio": 0.8864
     },
     {
       "file": "slide-03.html",
@@ -37,100 +39,72 @@
       "file": "slide-04.html",
       "fails": [],
       "warns": [
-        "tiny-text: '\"tentatively set for Feb. 16, 2027\"' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: 'CITY OF FORT WORTH, C22 AND C23' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
-        "busy art under text (bg edge density 0.07) beneath 'The council adopted a resolution that st' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
-        "low contrast ~3.4 on 'CITY OF FORT WORTH, C22 AND C23' (est.)"
+        "busy art under text (bg edge density 0.06) beneath 'The council adopted a resolution that st' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
       ],
       "bands": [
-        0.1387,
-        0.1702,
-        0.1985
+        0.1324,
+        0.1996,
+        0.1893
       ],
-      "band_ratio": 1.1647
+      "band_ratio": 1.0852
     },
     {
       "file": "slide-05.html",
       "fails": [],
-      "warns": [
-        "tiny-text: 'ARCHER COUNTY, C5' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: 'LUBBOCK COUNTY, C7' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: 'KILLEEN, C18' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))"
-      ],
+      "warns": [],
       "bands": [
         0.1555,
-        0.0924,
-        0.1507
+        0.0987,
+        0.1562
       ],
-      "band_ratio": 1.1275
+      "band_ratio": 1.1347
     },
     {
       "file": "slide-06.html",
       "fails": [],
-      "warns": [
-        "tiny-text: 'BRAZORIA COUNTY, C9 THE ZONE THEY STOOD ON' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: 'SAN ANGELO, C32 ORDINANCE 2026-078' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))"
-      ],
+      "warns": [],
       "bands": [
-        0.5021,
-        0.4034,
-        0.454
+        0.5189,
+        0.313,
+        0.4191
       ],
-      "band_ratio": 1.0018
+      "band_ratio": 1.0048
     },
     {
       "file": "slide-07.html",
       "fails": [],
-      "warns": [
-        "tiny-text: 'ITEM I.3, THE REINVESTMENT ZONE' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: 'THE RECORD CARRIES THE SAME MINUTE ON EACH OF THE ' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: 'GRANTING TAX ABATEMENT OF OLD OCEAN DATACENTER LLC' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: 'C9, C10, C11' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))"
-      ],
+      "warns": [],
       "bands": [
-        0.229,
-        0.2248,
-        0.2757
+        0.2269,
+        0.3445,
+        0.3529
       ],
-      "band_ratio": 1.127
+      "band_ratio": 1.1379
     },
     {
       "file": "slide-08.html",
       "fails": [],
-      "warns": [
-        "top-loaded composition: the bottom third carries 75% of this slide's own average craft density (top 51% / mid 57% / bottom 35% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
-        "tiny-text: 'A commissioner referenced a $100 million lawsuit f' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: 'TOM GREEN COUNTY, C15 AND C16 REPORTED SPEECH ABOU' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: '\"no action taken\"' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: 'Wichita Falls approved a data center in an existin' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: 'LAREDO MATTER HISTORY, C14' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: 'WICHITA FALLS, C37' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
-        "worst-point contrast 3.7 on 'Seventeen times a Texas local government' (box mean 4.7) -- below the rubric's 4.5 line somewhere along the run of the text"
-      ],
+      "warns": [],
       "bands": [
-        0.5063,
-        0.5672,
-        0.3493
+        0.6218,
+        0.5126,
+        0.5478
       ],
-      "band_ratio": 0.7454
+      "band_ratio": 0.9779
     },
     {
       "file": "slide-09.html",
       "fails": [],
-      "warns": [
-        "tiny-text: 'THE CITY'S OWN WORDING IS A DEADLINE RATHER THAN A' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: 'CITY OF FORT WORTH, C24' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
-        "worst-point contrast 4.4 on 'The council must hold two public hearing' (box mean 5.4) -- below the rubric's 4.5 line somewhere along the run of the text"
-      ],
+      "warns": [],
       "bands": [
-        0.1113,
-        0.0966,
-        0.6434
+        0.1702,
+        0.145,
+        0.6765
       ],
-      "band_ratio": 2.1437
+      "band_ratio": 1.9537
     }
   ],
   "fails": 0,
-  "warns": 24,
+  "warns": 2,
   "verdict": "WARN"
 }

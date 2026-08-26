@@ -215,9 +215,10 @@ art:
     eye by area rather than by extremity.
   motion: "down the lit rail, into the opening, onto the sheet"
 type:
-  hook: "Fifteen ways to take up a data center"
-  dek: "Twelve Texas local governments acted this year. Six of the fifteen changed a legal state on the day."
+  hook: "Fifteen actions. Six took effect."
+  dek: "Twelve Texas local governments acted this year. The shape of the instrument decides whether anything stops."
 acceptance:
+  - 'the cover prints "Fifteen actions. Six took effect." and its lockup reads "IN EFFECT", the words the computation supports, where bound overstated the rule that produced the six'
   - "the lock cylinder and its keyway are drawn at the right stile, so the case reads as locked rather than as a picture frame"
   - "the bond sheet is a bounded quadrilateral with the glazing's reflection over it, not a white rectangle"
   - "the case's lower rail carries a two part contact shadow onto the wall, dark core and penumbra"
@@ -251,8 +252,10 @@ composition:
     clip shadow, the spring clip drawn as a lit modeled solid with its own cast shadow on the
     sheet, and the site line and star on the case rail below it.
   focal: >
-    The lit half of the sheet to the right of the mullion shadow, roughly 500 by 620, the frame's
-    one large bright area.
+    The lit upper LEFT of the sheet, roughly 520 by 600, running from the head down through the
+    first column's opening rows. It is the frame's one large bright area because the occlusion
+    edge starts at the sheet's right edge at the top and finishes six percent in from the left at
+    the foot, so light is what is left above and to the left of it.
 art:
   technique: "cast occlusion shadow with a penumbra computed from the air gap"
   why_this_technique: >
@@ -262,15 +265,18 @@ art:
   palette: "bond under sky_glare, toner type, case_dark shadow core over glaze"
   value_structure: >
     Lightest is the lit wedge at the sheet's upper left. Darkest is the shade core at the LOWER
-    RIGHT, which is where the code puts it. An earlier draft of this line had the core top left
-    and the lit half to the right, describing the opposite of what draws
-    where a corner bracket doubles the occlusion. The type holds one value throughout so the
-    shadow does the separating.
+    RIGHT, which is where the code puts it, the edge running from the sheet's right edge at the
+    top to six percent in from the left at the foot. An earlier draft of this line had the core
+    top left and the lit half to the right, which is the opposite of what the frame draws, and it
+    sat beside a focal line that repeated the same inversion for three rounds. The darkest single
+    point is the sheet's lower right corner, where the bracket doubles the occlusion. The type
+    holds one value throughout so the shadow does the separating.
   motion: "left to right across the shadow boundary, then down the list"
 type:
-  hook: "Fifteen actions. Six of them bind."
-  dek: "Twelve local governments. The shape decides whether anything stops."
+  hook: "All fifteen, in the order they happened"
+  dek: "Each one with the claim whose own words prove its shape."
 acceptance:
+  - 'the sheet prints "All fifteen, in the order they happened" and its key reads "took effect that day", which is the rule in plain words'
   - "the shadow has a visibly wider penumbra at the bottom of the sheet than at the top, which is the air gap doing work"
   - "every one of the fifteen instrument names is legible at 1080px and each carries the claim id
      whose own words prove its shape"
@@ -327,6 +333,7 @@ type:
   hook: "From March to August"
   dek: "Six actions fell in June, more than any other month. One tile for each."
 acceptance:
+  - 'the board prints "156 DAYS" and reads "MARCH 10TH TO AUGUST 13TH", the span computed from the first and last acting dates'
   - "each row's letter shadows are offset differently from the row above, computed from one overhead source"
   - "at least two letters sit visibly proud of the groove, as a hand set board does"
   - "the felt reads as nap with visible texture and not as a flat black fill"
@@ -374,8 +381,9 @@ art:
   motion: "down the veil into the clear foot"
 type:
   hook: "The newest pause is not in force"
-  dek: "The council adopted a resolution that starts a process. The city's own release names no pause in force today."
+  dek: "The council adopted a resolution that starts a process. February 16th is a tentative adoption vote, not the day a pause begins."
 acceptance:
+  - 'the sheet prints "The newest pause is not in force" and its citation reads "READ FROM A REPRINT", because the city host served nobody this run'
   - "the veiled region is measurably lighter than the unveiled region of the same sheet"
   - "the veil has a hard straight edge where the mullion cuts it, not a soft global gradient"
   - "the word tentative or the city's own conditional wording appears in the readable block"
@@ -422,6 +430,7 @@ type:
   hook: "Five of the fifteen stop nothing"
   dek: "\"does not stop the project from moving forward\""
 acceptance:
+  - 'the sheet prints "Five of the fifteen stop nothing" and carries "Resolutions do nothing, they are not binding" verbatim'
   - "the blowout has two hard parallel edges and a measurable rolloff, not a soft radial glow"
   - "the band crosses only decorative body type and never crosses a quoted line or a display glyph"
   - "both surviving quotes are at full toner value and are legible at 432px"
@@ -434,13 +443,15 @@ risks:
 ```yaml
 slide: 6
 job: >
-  Invert the deck. Take the glazing away for the only time, and show the two refusals that bind
-  as two unglazed sheets a reader could pick up.
-claims: [c9, c32]
+  Invert the deck. Take the glazing away for the only time, and put all six of the actions that
+  bind on one open board as paper a reader could pick up.
+claims: [c9, c32, c35, c36, c41, c43]
 numerals:
   - value_from: c9
   - value_from: c32    # "8.0 gallons per square foot", the ordinance's own cap, quoted not computed
+  - value_from: c36    # "180 day", the review period Hays County set, quoted not computed
   - computed_by: "out/2026-08-25/compute.py, stated_binding over restricted_count, the hook's ratio"
+  - computed_by: "out/2026-08-25/compute.py, busiest_body_binding, San Angelo's three of the six"
 composition:
   structure: >
     The case is open and the glazing is out of the way, flat and square and near white, because
@@ -452,44 +463,55 @@ composition:
     case head, the kicker and the counter. The middle third carries two unglazed sheets on lit
     cork, PINNED and of DIFFERENT HEIGHT, each with its own quoted line. A motion is one line in a
     minute book and an ordinance is a section of the city code, and a board carrying both would
-    never carry them on matched stock. The bottom third carries the cork below the sheets with a
-    computed staple hole field giving it tooth, the two sheets' contact shadows falling onto that
-    lit cork, and the case's lower rail with its bracket screws and the site line on it.
+    never carry them on matched stock. The bottom third carries FOUR ROUTE SLIPS on thinner
+    warmer stock, one for each remaining binding action, each tacked rather than pinned, then the
+    cork below them with a computed staple hole field giving it tooth, all six contact shadows
+    falling onto that lit cork, and the case's lower rail with its bracket screws and the site
+    line on it.
   focal: >
-    The right sheet's quoted block carrying the ordinance's own cap, the taller of the two and the
-    only place in the deck where a reader is shown the number a Texas government actually wrote
-    down, a near white area on warm cork, roughly 404 by 470.
+    The right sheet's quoted block carrying the ordinance's own cap, the taller of the two cards
+    and the only place in the deck where a reader is shown the number a Texas government actually
+    wrote down, a near white area on warm cork, roughly 424 by 340.
 art:
-  technique: "the empty field under flat light, two pinned sheets of unequal height on lit cork with a computed staple hole field"
+  technique: "the empty field under flat light, six pinned papers in three stocks on lit cork with a computed staple hole field"
   why_this_technique: >
     The turn was optical and loud, so its answer is quiet and physical. Restraint is the
     composition here and the cork's staple holes are what stop it reading as an unfinished render,
     which is the recorded failure of a flat frame on this product. Two craft reads then found the
     frame still thin for a second reason nobody had named: neither card was FASTENED to anything,
     and 448px of bare cork sat under them. Both cards now carry a brass pin whose shaft punctures
-    the paper, and the taller card closes the dead band.
+    the paper. Round 8 then found the frame's real fault, which was arithmetic and not craft: the
+    hook says six and the board carried two, and a reader who counts is right and the frame is
+    wrong. The other four are on the board now as route slips, which is what they are in the
+    record. Neither carries a quotable sentence, only an instrument and a claim, so drawing them
+    as full cards would have invented a weight the sources do not have. Three stocks on one board
+    is also simply true.
   palette: "bond sheets, cork ground, toner type, edge_cyan once at 6px"
   value_structure: >
     Lightest is the two sheets at bond. Darkest is the case's lower lip seen from slightly above,
     inside face case_dark. This frame's FIELD is the brighter side of the deck's biggest local
-    step: measured, it is 70.6 and frame 7 immediately after it is 52.4, a 18.2 L* drop, which is
-    what makes frame 7 land. It is not the brightest frame in the deck, frames 5 and 8 are, and
+    step: measured, it is 73.6 and frame 7 immediately after it is 52.1, a 21.5 L* drop, which is
+    what makes frame 7 land. It is not the brightest frame in the deck, frame 5 is, and
     an earlier draft of this line claimed it was.
-  motion: "left sheet to right sheet, then down to the empty cork"
+  motion: "left card to right card, then down across the four slips left to right"
 type:
-  hook: "Six of the fifteen have teeth"
+  hook: "Six of the fifteen took effect"
   dek: "\"shall not exceed 8.0 gallons per square foot of Gross Building Area\""
 acceptance:
+  - 'the board prints "Six of the fifteen took effect" and its fourth slip reads "HAYS COUNTY 180 DAYS C36", so a reader can count six papers under a hook that says six'
   - "no glazing plane is drawn between the camera and either sheet"
   - "the cork carries a visible staple hole field rather than a flat tan fill"
-  - "each sheet casts a two part contact shadow onto the lit cork, dark core and penumbra"
+  - "each of the six papers casts a two part contact shadow onto the lit cork, dark core and penumbra"
   - "edge_cyan appears exactly once, as a band no wider than 6px"
   - "both quoted lines are verbatim from c9 and c32 and are legible at 432px"
   - "each card carries a pin whose cast shadow falls on the CARD and not on the cork, because the shaft goes through the paper"
-  - "the two cards are of visibly different height and no bare cork band deeper than 300px is left under them"
+  - "the board carries SIX pinned papers, which is the number the hook states, and a reader who counts them arrives at six"
+  - "San Angelo is nameable three times on the board, which is what the foot says, so the count is verifiable rather than asserted"
+  - "the two cards and the four slips are of visibly different height and no bare cork band deeper than 300px is left under them"
 risks:
   - "a flat frame with two sheets and nothing else reads as an unfinished render, which has shipped here before"
   - "a pin drawn as a flat disc reads as a sticker. It needs a lit dome, a rim and a puncture under it or it is worse than no pin"
+  - "a hairline inside a slip lands in a glyph band at that scale and machine QA reads it as a strikethrough, correctly. Slips carry no internal rule"
 ```
 
 ```yaml
@@ -527,7 +549,7 @@ art:
   value_structure: >
     Lightest is the sheet's bottom edge. Darkest is the top rail's underside and its shadow across
     the frame's top, carrying the reversed hook. The falloff across the four repeats measures 16.5
-    L*, and the frame's field at 52.4 is 18.2 L* under frame 6 before it. It is not the deck's
+    L*, and the frame's field at 52.1 is 21.5 L* under frame 6 before it. It is not the deck's
     darkest field, frame 3 at 14.4 is, and an earlier draft of this line claimed it was.
     Two committed files carried two different values for that falloff, 22.1 here and 17.2 in
     artwork.json, and neither was right. It is measured once now, in out/2026-08-25/tmp/measure.py,
@@ -538,11 +560,12 @@ type:
   hook: "Four applications. None was voted on."
   dek: "Commissioner Linder made a motion to deny order 1.3."
 acceptance:
+  - 'the sheet prints "Four applications." and names every applicant, reading "OLD OCEAN DATACENTER 2 LLC" on the last of the four'
   - "the four repeats are in exact vertical register on a common left edge"
   - "the toner value of the topmost repeat equals the toner value of the lowest repeat"
   - "the four grounds brighten monotonically from the first repeat to the fourth"
   - "the 14px air gap band is visible as a distinct dark stripe between the sheet's foot and the rail"
-  - "only one title cell carries a party name and the other three are ruled and empty, because the record holds one"
+  - "all four title cells carry their applicant's name, because the county's own matter titles hold four and an empty cell would assert an absence this run's own file refutes"
   - "the failed motion sits above the repeats in plain language so the machine string is not the first thing read"
 risks:
   - "the minute line reads as a computer error message rather than a governmental act, which inverts the frame's meaning"
@@ -582,7 +605,7 @@ art:
   palette: "mesquite_shade over anodize, glaze_deep glazing, bond reflected sheet, toner"
   value_structure: >
     Lightest is the reflected sheet. Darkest is the live oak's shadow across the near case, lower
-    right. Measured it is 56.2, with frames 7 and 9 at 52.4 and 48.8 either side, so it
+    right. Measured it is 59.4, with frames 7 and 9 at 52.1 and 48.7 either side, so it
     is the BRIGHTEST of the deck's last three. An earlier draft called it the quietest between
     its two loudest, which was wrong on both halves and was reported repaired twice without being
     touched. It is written from measurements.json now.
@@ -591,13 +614,16 @@ type:
   hook: "Two declined. Two said yes."
   dek: "Tom Green County's court voted not to pursue a moratorium in Precinct 4."
 acceptance:
+  - 'the sheet prints "Two declined. Two said yes." and substantiates both, reading "Williamson County approved an abatement" beside Wichita Falls'
   - "the reflected geometry resolves as a second notice case and not as a smudge or a double exposure"
   - "the reflection strengthens toward the frame edge where the incidence angle is lowest"
   - "no reflected element carries a legible string, because a reflected document is not evidence"
   - "the lawsuit is attributed as something a commissioner referenced, never stated as a finding"
   - "the near case's lower rail carries a lit lip and a contact shadow so it reads as metal in shade"
+  - "the oak's canopy is continuous across the sheet's edge onto the case, the rail and the ground, read as leaves on paper and as sunflecks on ground already in shade"
 risks:
   - "a reflection that resolves into a nameable building asserts something this record cannot support"
+  - "a canopy clipped to the sheet puts the tree inside the case, which is what round 8 caught here"
 ```
 
 ```yaml
@@ -632,16 +658,21 @@ art:
   value_structure: >
     Lightest is the sheet's top edge where full sky reaches it. Darkest is the shadow under the
     two empty clips, tight cores against lit cork. The cork must be lit first or the shadow is a
-    two L star change and reads as nothing.
+    two L star change and reads as nothing, and the case interior behind the sheet takes the open
+    lid's spill for the same reason. The sheet's own shadow is two part like everything else on
+    this deck. It shipped for eight rounds as a single offset block at flat opacity, which is the
+    drop shadow the technique library names as the move that cheapens a frame.
   motion: "onto the sheet, down to the clips that hold nothing"
 type:
   hook: "One door is still open"
   dek: "Fort Worth holds the first of two required public hearings."
 acceptance:
+  - 'the sheet prints "NOVEMBER 10TH" in flag red and reads "NOT LATER THAN" above it, because the city stated a deadline rather than a fixed date'
   - "flag_red appears on this frame and on no other, and only on the date"
   - "the two empty clips cast tight dark cored contact shadows onto cork that is visibly lit"
   - "the November date is set as an ordinal month first and is legible at 432px"
-  - "the sheet reads as clipped, with the clip overlapping its top edge and casting onto it"
+  - "the sheet reads as clipped, with the clip overlapping its top edge and casting a graded shadow onto it"
+  - "the sheet's own shadow has a stepped penumbra and a tight contact core, and no single hard offset edge anywhere on the frame"
   - "the wording carries the city's own not later than framing rather than presenting a fixed date"
 risks:
   - "a shadow cast onto unlit cork is a two L star change and the clips will read as pasted on"

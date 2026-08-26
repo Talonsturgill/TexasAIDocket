@@ -11,40 +11,50 @@ canvas{position:absolute;left:0;top:0}
 .tx-site{position:absolute;left:80px;bottom:74px;font:400 24px/1 "JetBrains Mono",monospace;font-size:24px;
   letter-spacing:.06em;color:#F0ECE2}
 .star{position:absolute;right:80px;bottom:68px;width:22px;height:22px}
-.hook{position:absolute;left:186px;top:262px;width:540px;font:700 62px/1.04 "Fraunces",serif;
+.hook{position:absolute;left:186px;top:238px;width:540px;font:700 62px/1.04 "Fraunces",serif;
   color:#2A2622;letter-spacing:-.015em}
 /* The headline block is set NARROW on purpose. The occlusion gradient's transition sweeps
    left as it falls, and any type wide enough to reach into that transition gets read by
    machine QA as struck through, correctly, because at feed size that is what a value edge
    across a glyph band looks like. The type clears the transition instead. */
-.dek{position:absolute;left:186px;top:404px;width:380px;font:400 26px/1.34 "Manrope",sans-serif;color:#514C44}
+.dek{position:absolute;left:186px;top:436px;width:360px;font:400 26px/1.34 "Manrope",sans-serif;color:#514C44}
 /* 368 and .05em, measured rather than guessed. WILLIAMSON COUNTY, C45 is the longest
    attribution at 22 characters, and at 24px mono with .09em tracking it needs 365px. In a
    340px row it wrapped, pushed its own row 31px down, and machine QA read a 68 percent
    overprint against the row below. */
+/* THE PARTITION IS SHOWN, not only counted. A round 8 craft read put it exactly: the
+   deck states six of the fifteen bind on three separate frames and never shows WHICH,
+   so a reader is told the partition three times and shown it never. A filled square
+   against a hollow one is the smallest mark that carries it, and it turns this frame
+   from a list into the argument the deck is making. */
+.bd{display:inline-block;width:13px;height:13px;margin-right:11px;background:#2A2622;vertical-align:1px}
+.nb{display:inline-block;width:13px;height:13px;margin-right:11px;border:1.5px solid #8C8578;
+  box-sizing:border-box;vertical-align:1px}
+.key{position:absolute;left:186px;top:1086px;width:740px;font:400 24px/1.35 "Manrope",sans-serif;color:#514C44}
 .row{position:absolute;width:368px;font:500 24px/1.08 "JetBrains Mono",monospace;color:#2A2622;letter-spacing:.01em}
 .who{color:#4A463C;font-size:24px;letter-spacing:.05em;display:block;margin-top:7px}
 </style></head><body>
 <canvas id="c" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
 <div class="kick">FIFTEEN ACTIONS</div>
 <div class="cnt">02 / 09</div>
-<div class="hook">Fifteen actions. Six of them bind.</div>
-<div class="dek">Twelve local governments. The shape decides whether anything stops.</div>
-<div class="row" style="left:186px;top:548px">Zone denied<span class="who">BRAZORIA COUNTY, C9</span></div>
-<div class="row" style="left:186px;top:616px">Abatement approved<span class="who">WILLIAMSON COUNTY, C45</span></div>
-<div class="row" style="left:186px;top:684px">Permit denied<span class="who">KILLEEN, C17</span></div>
-<div class="row" style="left:186px;top:752px">Conditional use only<span class="who">SAN ANGELO, C41</span></div>
-<div class="row" style="left:186px;top:820px">Discharge regulated<span class="who">SAN ANGELO, C43</span></div>
-<div class="row" style="left:186px;top:888px">Resolution adopted<span class="who">BRAZORIA COUNTY, C40</span></div>
-<div class="row" style="left:186px;top:956px">Made ineligible<span class="who">SAN MARCOS, C35</span></div>
-<div class="row" style="left:186px;top:1024px">Cooling fill capped<span class="who">SAN ANGELO, C32</span></div>
-<div class="row" style="left:566px;top:548px">Abatement denied<span class="who">ARCHER COUNTY, C5</span></div>
-<div class="row" style="left:566px;top:616px">Review established<span class="who">HAYS COUNTY, C36</span></div>
-<div class="row" style="left:566px;top:684px">Framework adopted<span class="who">EL PASO, C39</span></div>
-<div class="row" style="left:566px;top:752px">Staff directed<span class="who">CORPUS CHRISTI, C30</span></div>
-<div class="row" style="left:566px;top:820px">Disclosure asked<span class="who">LUBBOCK COUNTY, C31</span></div>
-<div class="row" style="left:566px;top:888px">Process initiated<span class="who">FORT WORTH, C22</span></div>
-<div class="row" style="left:566px;top:956px">Request approved<span class="who">WICHITA FALLS, C37</span></div>
+<div class="hook">All fifteen, in the order they happened</div>
+<div class="dek">Each one with the claim whose own words prove its shape.</div>
+<div class="row" style="left:186px;top:548px"><span class="bd"></span>Zone denied<span class="who">BRAZORIA COUNTY, C9</span></div>
+<div class="row" style="left:186px;top:616px"><span class="nb"></span>Abatement approved<span class="who">WILLIAMSON COUNTY, C45</span></div>
+<div class="row" style="left:186px;top:684px"><span class="nb"></span>Permit denied<span class="who">KILLEEN, C17</span></div>
+<div class="row" style="left:186px;top:752px"><span class="bd"></span>Conditional use only<span class="who">SAN ANGELO, C41</span></div>
+<div class="row" style="left:186px;top:820px"><span class="bd"></span>Discharge regulated<span class="who">SAN ANGELO, C43</span></div>
+<div class="row" style="left:186px;top:888px"><span class="nb"></span>Resolution adopted<span class="who">BRAZORIA COUNTY, C40</span></div>
+<div class="row" style="left:186px;top:956px"><span class="bd"></span>Made ineligible<span class="who">SAN MARCOS, C35</span></div>
+<div class="row" style="left:186px;top:1024px"><span class="bd"></span>Cooling fill capped<span class="who">SAN ANGELO, C32</span></div>
+<div class="row" style="left:566px;top:548px"><span class="nb"></span>Abatement denied<span class="who">ARCHER COUNTY, C5</span></div>
+<div class="row" style="left:566px;top:616px"><span class="bd"></span>Review established<span class="who">HAYS COUNTY, C36</span></div>
+<div class="row" style="left:566px;top:684px"><span class="nb"></span>Framework adopted<span class="who">EL PASO, C39</span></div>
+<div class="row" style="left:566px;top:752px"><span class="nb"></span>Staff directed<span class="who">CORPUS CHRISTI, C30</span></div>
+<div class="row" style="left:566px;top:820px"><span class="nb"></span>Disclosure asked<span class="who">LUBBOCK COUNTY, C31</span></div>
+<div class="row" style="left:566px;top:888px"><span class="nb"></span>Process initiated<span class="who">FORT WORTH, C22</span></div>
+<div class="row" style="left:566px;top:956px"><span class="nb"></span>Request approved<span class="who">WICHITA FALLS, C37</span></div>
+<div class="key">A filled square marks the six that took effect that day.</div>
 <div class="tx-site">texasaidocket.com</div>
 <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6 L14.9 9.2 L23 9.6 L16.7 14.6 L18.9 22.4 L12 17.9 L5.1 22.4 L7.3 14.6 L1 9.6 L9.1 9.2 Z" fill="#D8D2C4"/></svg>
 <script src="@@ASSETS@@/js/noise.js"></script>
@@ -149,11 +159,14 @@ window.renderReady = new Promise(function(resolve){
   x.fillStyle='#B9B4A6'; x.fillRect(SX+SW/2-62,SY+12,124,24);
   x.fillStyle='#E2DDCE'; x.fillRect(SX+SW/2-62,SY+12,124,4);
   x.fillStyle='#75736B'; x.fillRect(SX+SW/2-62,SY+32,124,4);
-  x.fillStyle='rgba(30,34,40,0.20)'; x.fillRect(SX+SW/2-64,SY+SH-96,128,26);
-  x.fillStyle='rgba(30,34,40,0.40)'; x.fillRect(SX+SW/2-60,SY+SH-104,120,10);
-  x.fillStyle='#B9B4A6'; x.fillRect(SX+SW/2-62,SY+SH-128,124,24);
-  x.fillStyle='#E2DDCE'; x.fillRect(SX+SW/2-62,SY+SH-128,124,4);
-  x.fillStyle='#75736B'; x.fillRect(SX+SW/2-62,SY+SH-108,124,4);
+  // THE FOOT CLIP MIRRORS THE HEAD CLIP, at the sheet's edge rather than 128px up it. It sat
+  // over the key line and the last row's attribution, which machine QA read as art crossing type
+  // at 2.3 contrast and two rounds took for an atmosphere note. A clip grips an EDGE.
+  x.fillStyle='rgba(30,34,40,0.20)'; x.fillRect(SX+SW/2-64,SY+SH-58,128,22);
+  x.fillStyle='rgba(30,34,40,0.40)'; x.fillRect(SX+SW/2-60,SY+SH-64,120,10);
+  x.fillStyle='#B9B4A6'; x.fillRect(SX+SW/2-62,SY+SH-36,124,24);
+  x.fillStyle='#E2DDCE'; x.fillRect(SX+SW/2-62,SY+SH-36,124,4);
+  x.fillStyle='#75736B'; x.fillRect(SX+SW/2-62,SY+SH-16,124,4);
   // sheet foot: graded falloff into the clip shadow, so the bottom band carries modeled tone
   var fg=x.createLinearGradient(0,SY+SH-190,0,SY+SH);
   fg.addColorStop(0,'rgba(120,112,96,0)'); fg.addColorStop(1,'rgba(90,84,72,0.30)');

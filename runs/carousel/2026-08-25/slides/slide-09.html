@@ -18,11 +18,17 @@ canvas{position:absolute;left:0;top:0}
   color:#5E594F;letter-spacing:.13em}
 .date{position:absolute;left:150px;top:626px;width:470px;font:700 58px/1.06 "JetBrains Mono",monospace;
   color:#BF0A30;letter-spacing:-.02em}
-.dlab{position:absolute;left:150px;top:726px;width:500px;font:500 20px/1.5 "JetBrains Mono",monospace;
+.dlab{position:absolute;left:150px;top:726px;width:500px;font:500 24px/1.5 "JetBrains Mono",monospace;
   color:#6E695F;letter-spacing:.07em}
-.src{position:absolute;left:150px;top:812px;font:400 19px/1 "JetBrains Mono",monospace;
+.src{position:absolute;left:150px;top:852px;font:400 24px/1 "JetBrains Mono",monospace;
   color:#7A756B;letter-spacing:.10em}
-.next{position:absolute;left:150px;top:1128px;width:520px;font:500 24px/1.4 "Manrope",sans-serif;color:#33260F}
+/* CUT BY THE FOOTER BAND. Three lines from 1128 ended at 1229 and the case's lower rail starts
+   at 1228, so the last line's descenders were sheared. The recorded instinct
+   `draw-every-plane-before-what-stands-on-it` says in its own second half to stop every drawn
+   element above the footer band, and this frame is where it was contradicted. It sits at 1020
+   now, which also closes part of the bare cork the same read called out, and it stays left of
+   the clips at x 712. */
+.next{position:absolute;left:150px;top:1020px;width:520px;font:500 24px/1.4 "Manrope",sans-serif;color:#33260F}
 </style></head><body>
 <canvas id="c" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
 <div class="kick">WHAT IS OPEN</div>
@@ -44,6 +50,17 @@ window.renderReady = new Promise(function(resolve){
   var g=x.createLinearGradient(0,0,W*0.5,H);
   g.addColorStop(0,'#3A4149'); g.addColorStop(0.5,'#2B3138'); g.addColorStop(1,'#1A1E23');
   x.fillStyle=g; x.fillRect(0,0,W,H);
+  // LIGHT THE GROUND BEFORE CASTING INTO IT. The case interior is the darkest surface in the
+  // deck, and a shadow laid into an unlit ground is opacity pretending to be light. This is the
+  // open lid's spill, a soft pool from the upper left that the sheet interrupts.
+  // ...AND IT IS CENTRED WHERE THE SHADOW FALLS. The first pass put the pool at the upper left,
+  // which is where the sheet is, so the shadow was still being cast into the wall's darkest
+  // region and read as a two L star change over most of its length. The spill is behind and to
+  // the RIGHT of the sheet now, so the ground the shadow subtracts from is genuinely lit.
+  var pg=x.createRadialGradient(760,300,40,760,300,880);
+  pg.addColorStop(0,'rgba(216,228,240,0.30)'); pg.addColorStop(0.42,'rgba(154,170,186,0.135)');
+  pg.addColorStop(1,'rgba(120,136,152,0)');
+  x.fillStyle=pg; x.fillRect(0,0,W,848);
   // Level and close on the case's lower left interior. The cork must be LIT FIRST, or a shadow
   // cast into it is a two L* change and the clips read as pasted on.
   var CKX=0, CKY=848, CKW=W, CKH=H-848;
@@ -65,24 +82,47 @@ window.renderReady = new Promise(function(resolve){
   }
   // the clipped sheet, the frame's one large light area
   var SX=110, SY=190, SW=560, SH=690;
-  x.fillStyle='rgba(20,24,28,0.44)'; x.fillRect(SX+12,SY+14,SW,SH);
+  // TWO PARTS, NEVER ONE. A single offset block is a drop shadow, which the technique library
+  // names as the failure that cheapens the whole frame. Part one is the penumbra, stepped so the
+  // falloff is graded and has no edge of its own. Part two is the contact core, tight enough to
+  // put the sheet ON the case rather than above it.
+  for(var s9=34;s9>=1;s9--){
+    var t9=s9/34;
+    x.fillStyle='rgba(13,16,20,'+(0.021*(1-t9)*(1-t9)+0.0032).toFixed(5)+')';
+    x.fillRect(SX+12-s9*0.18, SY+14-s9*0.18, SW+s9*0.92, SH+s9*0.92);
+  }
+  x.fillStyle='rgba(11,14,18,0.46)'; x.fillRect(SX+5,SY+6,SW+8,SH+8);
   x.fillStyle='#F2EEE4'; x.fillRect(SX,SY,SW,SH);
   x.fillStyle='rgba(255,253,246,0.86)'; x.fillRect(SX,SY,SW,4);
   // the clip that holds it, overlapping the sheet's top edge and casting onto it
-  x.fillStyle='rgba(30,34,40,0.34)'; x.fillRect(SX+188,SY+30,180,12);
+  // the same two parts at clip scale: the pinched core under the lower lip, then the spill.
+  x.fillStyle='rgba(30,34,40,0.34)'; x.fillRect(SX+188,SY+30,180,7);
+  for(var cs=0;cs<18;cs++){
+    var ct=cs/18;
+    x.fillStyle='rgba(30,34,40,'+(0.30*(1-ct)*(1-ct)).toFixed(5)+')';
+    x.fillRect(SX+188-cs*0.6, SY+37+cs, 180+cs*1.2, 1);
+  }
   x.fillStyle='#A9A497'; x.fillRect(SX+186,SY-14,184,44);
   x.fillStyle='#DAD5C6'; x.fillRect(SX+186,SY-14,184,5);
   x.fillStyle='#6B6A63'; x.fillRect(SX+186,SY+25,184,5);
   // TWO SPRUNG CLIPS HOLDING NOTHING. The near-zero-gap end of the deck's shadow physics,
   // deliberately readable against frame 2's wide penumbra. This is where the next notice goes.
-  [[712,952],[712,1094]].forEach(function(p){
-    x.fillStyle='rgba(48,34,18,0.62)'; x.fillRect(p[0]+5,p[1]+38,196,9);
-    x.fillStyle='rgba(48,34,18,0.26)'; x.fillRect(p[0]+9,p[1]+45,196,13);
-    x.fillStyle='#9E998C'; x.fillRect(p[0],p[1],196,40);
-    x.fillStyle='#D6D1C2'; x.fillRect(p[0],p[1],196,5);
-    x.fillStyle='#5E5D57'; x.fillRect(p[0],p[1]+35,196,5);
-    x.fillStyle='#7C7B74'; x.fillRect(p[0]+16,p[1]+8,10,24);
-    x.fillStyle='#7C7B74'; x.fillRect(p[0]+170,p[1]+8,10,24);
+  // TWO CLIPS, NOT TWO DASHES. They shipped identical in length, in shadow and in jaw, which is
+  // a repeated mark rather than hardware. A board carries whatever clips were to hand, so these
+  // are 196 and 164, sprung at different angles, and the jaw of each is drawn as a gap the
+  // spring holds open rather than as two studs.
+  [[712,952,196,7],[736,1094,164,4]].forEach(function(p){
+    var cx0=p[0], cy0=p[1], cw=p[2], jaw=p[3];
+    x.fillStyle='rgba(48,34,18,0.62)'; x.fillRect(cx0+5,cy0+38,cw,9);
+    x.fillStyle='rgba(48,34,18,0.26)'; x.fillRect(cx0+9,cy0+45,cw,13);
+    x.fillStyle='#9E998C'; x.fillRect(cx0,cy0,cw,40);
+    x.fillStyle='#D6D1C2'; x.fillRect(cx0,cy0,cw,5);
+    x.fillStyle='#5E5D57'; x.fillRect(cx0,cy0+35,cw,5);
+    // the sprung jaw: a dark gap at the mouth, wider on the clip that is opened further
+    x.fillStyle='rgba(26,22,16,0.70)'; x.fillRect(cx0-2,cy0+13,10,jaw*2);
+    x.fillStyle='rgba(228,222,206,0.55)'; x.fillRect(cx0-2,cy0+13+jaw*2,10,2);
+    x.fillStyle='#7C7B74'; x.fillRect(cx0+16,cy0+8,10,24);
+    x.fillStyle='#7C7B74'; x.fillRect(cx0+cw-26,cy0+8,10,24);
   });
   // the case's lower lip closing the frame
   x.fillStyle='#1F252C'; x.fillRect(0,H-122,W,122);

@@ -27,19 +27,23 @@ canvas{position:absolute;left:0;top:0}
 .star{position:absolute;right:80px;bottom:68px;width:22px;height:22px}
 .veiled{position:absolute;left:120px;top:320px;width:420px;font:400 27px/1.4 "Manrope",sans-serif;
   color:#2A2622}
-.hook{position:absolute;left:330px;top:650px;width:400px;font:700 58px/1.04 "Fraunces",serif;
+.hook{position:absolute;left:342px;top:616px;width:396px;font:700 58px/1.04 "Fraunces",serif;
   color:#2A2622;letter-spacing:-.015em}
-.q{position:absolute;left:330px;top:850px;width:400px;font:500 22px/1.4 "JetBrains Mono",monospace;
+.q{position:absolute;left:308px;top:806px;width:376px;font:500 24px/1.4 "JetBrains Mono",monospace;
   color:#2A2622;letter-spacing:.01em}
-.src{position:absolute;left:330px;top:928px;font:400 19px/1 "JetBrains Mono",monospace;
-  color:#6E695F;letter-spacing:.10em}
+/* THE ATTRIBUTION HAD NO WIDTH AND NO LEADING. It ran to 521px inside a 450px measure, so it
+   overran the sheet onto the dark bezel, wrapped, and landed 'C23' on top of the line above it
+   because line-height was 1. All three round 9 judges named this frame. A citation is two lines
+   here like every other frame's, inside a measure, with leading. */
+.src{position:absolute;left:308px;top:888px;width:376px;font:400 24px/1.4 "JetBrains Mono",monospace;
+  color:#4A453D;letter-spacing:.07em}
 </style></head><body>
 <canvas id="c" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
 <div class="plane">
-  <div class="veiled">The council adopted a resolution that starts a process. The city's own release names no pause in force today.</div>
+  <div class="veiled" data-role="dek">The council adopted a resolution that starts a process. February 16th is a tentative adoption vote, not the day a pause begins.</div>
   <div class="hook">The newest pause is not in force</div>
   <div class="q">"tentatively set for Feb. 16, 2027"</div>
-  <div class="src">CITY OF FORT WORTH, C22 AND C23</div>
+  <div class="src">FORT WORTH, C22 AND C23<br>READ FROM A REPRINT</div>
 </div>
 <div class="veil"></div>
 <div class="kick">FORT WORTH</div>
@@ -85,10 +89,42 @@ window.renderReady = new Promise(function(resolve){
   // decorative body type, laid on the plane so it foreshortens with the sheet. Every rule is
   // rejected if it comes near a line that carries a claim, because a rule through the veiled
   // paragraph is a strikethrough on the one block the frame asks a reader to strain at.
-  var BLOCK=[[220,470,640,614],[430,800,830,985],[430,1000,830,1064],[430,1078,845,1099]];
+  // THE EXCLUSION LIST IS READ FROM THE TYPE, NEVER TYPED BESIDE IT. 2026-08-26.
+  //
+  // These four rectangles used to be literals: [430,800,830,985] for the hook, and so on, a
+  // hand-kept second copy of boxes the CSS above already declares. Round 9's craft judge named
+  // the class ("make every text box a child of the paper geometry it prints on") and this frame
+  // is where it bit. Moving `.src` 30px left and giving it a second line left the literal
+  // reserving 21px of height at the old x, so the greeked rule field drew straight through the
+  // citation, and machine QA reported the label crossed by art across 100 percent of its span.
+  //
+  // The boxes come out of the DOM now. `.plane` is transformed, which makes it the containing
+  // block, so each child's offsetLeft/offsetTop is already plane-relative and offsetHeight is
+  // the height the browser ACTUALLY laid, including a wrap the author did not predict. Move a
+  // string, add a line, change the measure: the exclusion follows on its own.
+  // ...and BOTH ARE MEASURED IN THE SAME SPACE, which is the half that actually bit. The DOM
+  // lays type through `perspective(1500px) rotateY(-19deg)` and this canvas draws the sheet
+  // through P(), two independent projections of one object, so the old literals were a hand
+  // tuned correspondence between them and a plane-space rectangle never matched a screen-space
+  // one. getBoundingClientRect returns the box AFTER the CSS transform, in the canvas's own CSS
+  // pixels, and every rule is projected through P() before it is tested. One space, both layers.
+  var BLOCK = (function(){
+    var out = [];
+    document.querySelectorAll('.plane div').forEach(function(el){
+      var r = el.getBoundingClientRect();
+      out.push([r.left, r.top, r.right, r.bottom]);
+    });
+    return out;
+  })();
   function clearOf(a,b,cc,d){
+    // a,b,cc,d arrive in PLANE coordinates. Project all four corners and test the screen box
+    // they actually cover, because P() shears x with depth and a plane rectangle is not a
+    // screen rectangle.
+    var c1=P(a,b), c2=P(cc,b), c3=P(cc,d), c4=P(a,d);
+    var L=Math.min(c1[0],c2[0],c3[0],c4[0]), R=Math.max(c1[0],c2[0],c3[0],c4[0]);
+    var T=Math.min(c1[1],c2[1],c3[1],c4[1]), Bo=Math.max(c1[1],c2[1],c3[1],c4[1]);
     for(var i=0;i<BLOCK.length;i++){ var B=BLOCK[i];
-      if(a<B[2]+16 && cc>B[0]-16 && b<B[3]+16 && d>B[1]-16) return false; }
+      if(L<B[2]+16 && R>B[0]-16 && T<B[3]+16 && Bo>B[1]-16) return false; }
     return true;
   }
   function mully(px){ return MLY - ((px-LX)/(RX-LX))*(MLY-MRY); }

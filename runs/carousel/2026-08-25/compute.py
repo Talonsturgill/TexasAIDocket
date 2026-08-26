@@ -230,6 +230,20 @@ brazoria_apps = len(brazoria_applicants)
 assert brazoria_apps, "no Brazoria matter names Reinvestment Zone No. 26-01, so the count cannot be published"
 brazoria_vote = "5 to 0"
 
+# WHAT COUNTS AS SAYING YES. Not a substring, a decision. An approval is a body granting a data
+# center project or the incentive that project depends on. Regulating one, refusing one, opening
+# a review of one, adopting a framework about one and directing staff to study one are all
+# something else, whatever verb the label happens to use.
+APPROVALS = {
+    "tx-2026-0041": "c37",   # Wichita Falls granted the conditional use for the DataNovaX centre
+    "tx-2026-0029": "c45",   # Williamson County granted the Chapter 312 abatement in Georgetown
+}
+assert set(APPROVALS) <= set(ACTED), "an approval has to be an action this deck counted"
+# The two that read like approvals and are not, named so a later reader does not re-add them:
+# tx-2026-0028 (Hays County) approved a REVIEW PERIOD over such projects, and tx-2026-0033
+# (El Paso) adopted a FRAMEWORK about them. Neither says yes to a project.
+assert "tx-2026-0028" not in APPROVALS and "tx-2026-0033" not in APPROVALS
+
 # BINDING FORCE. The flow critic caught frame 5 saying "most", which is a quantifier standing in
 # for a count on a product whose law is that every number is computed. A count is only honest here
 # if the RECORD speaks to force, so these two sets hold only the bodies whose own sources do.
@@ -341,9 +355,22 @@ out = {
   # list printed two approvals, because Williamson County joined the set in round 7 and the
   # hook did not move. It was a hand-typed count on a product whose law is that no number is,
   # and it was wrong, which is what a typed count buys you.
-  "approvals":         {"value": len([i for i in ACTED if "approv" in ACTED[i][1]]),
-                        "rule": "acting items whose shape is an approval rather than a refusal",
-                        "from_items": sorted(i for i in ACTED if "approv" in ACTED[i][1])},
+  # AND IT IS DEFINED OVER THE RECORD, NOT OVER THE VOCABULARY THIS FILE TYPES. Round 9's
+  # integrity judge found `len([i for i in ACTED if "approv" in ACTED[i][1]])`, a substring test
+  # over labels written twenty lines above it, which makes the count a property of the wording
+  # and not of what happened. Two items whose own claims say "approved" were excluded only
+  # because their labels read "review established" and "framework adopted": Hays County's
+  # review period and El Paso's policy framework. The published two was right and the
+  # derivation was the same shape as the `distinct_shapes` tautology this file already retired.
+  #
+  # An approval here means a body said yes to A PROJECT OR TO THE INCENTIVE ONE DEPENDS ON.
+  # That is a decision about the record, so it is written down as a decision, item by item,
+  # with the claim that carries it, and it cannot drift when a label is reworded.
+  "approvals":         {"value": len(APPROVALS),
+                        "rule": "acting items whose cited claim records a body approving a data "
+                                "center project or the incentive one depends on, as opposed to "
+                                "regulating, refusing, studying or directing staff",
+                        "from_items": sorted(APPROVALS)},
   "resolutions":       {"value": len([i for i in ACTED
                                       if "resolution" in (_by_id[ACTED[i][2]].get("quote", "") + " "
                                                           + _by_id[ACTED[i][2]].get("text", "")).lower()]),

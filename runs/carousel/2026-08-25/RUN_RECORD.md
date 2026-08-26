@@ -1,50 +1,47 @@
 # Run record, carousel No. 7, 2026-08-25
 
-> **READ THIS FIRST. The deck below was RECUT after round 5.** Everything in the older sections
-> that says seven bodies describes a deck that no longer exists. The recut is in
-> `RECUT_PLAN.md` and the reason is at the top of it.
+> **READ THIS FIRST. This deck was RECUT twice, after rounds 5 and 7.** Anything below that says
+> seven or fourteen bodies describes a deck that no longer exists. The reasons are in
+> `RECUT_PLAN.md` and in the commit messages on this branch.
+>
+> **Everything in this section is written by `head.py` from `figures.json` and
+> `measurements.json`.** An earlier version was typed once, before Williamson County joined the
+> set, and shipped four counts off by one under a sentence claiming every number in it was
+> computed. A section that asserts its own provenance and is written by hand is worse than one
+> that says nothing.
 
-## What the deck says now, and every number here is computed
+## What the deck says
 
-`compute.py` classifies **every** item in `ledger/docket.json` that carries a 2026 date and names
-a data center. 16 times a Texas local government took one up.
-**14 were actions by 11 local governments and no two reached
-for the same instrument**, 14 distinct shapes across 14
-actions. 2 took it up and did not act. Eighteen further candidates are OUT with
-a stated reason each, and an assertion refuses to run if any candidate is in none of the three sets.
+`compute.py` classifies EVERY item in `ledger/docket.json` that carries a 2026 date and either is
+filed under topic `data-centers` or names one in its title or summary. 17 times a
+Texas local government took one up. **15 were actions by
+12 local governments** and 2 took it up without acting.
+Nineteen further candidates are OUT with a stated reason each, and an assertion refuses to run if
+any candidate is in none of the three sets.
 
-Of the 14, **6 changed a legal state on the day** and
-**5 say in their own sources that they stop nothing**. On 3
-the record does not speak either way, which the deck publishes rather than rounding.
-**San Angelo went back 3 times**, writing
-3 of the 6 binding actions: zoning in May, the sewer
-in June, the water a fortnight after that. 6 of the
-14 fell in June, more than any other month. The span is
-156 days, 2026-03-10 to 2026-08-13.
+Of the 15, **6 changed a legal state on the day** and
+**5 say in their own sources that they stop nothing**. On
+4 the record does not speak either way, which frame 6 publishes rather than
+leaving a reader to subtract. 5 of the 15 rest on a claim
+whose own words call the instrument a resolution, and 2 were approvals rather than
+refusals. **San Angelo went back 3 times**, writing
+3 of the 6 binding actions: zoning in May, the
+sewer on June 2nd, the water on June 16th. 6 of the
+15 fell in June. The span is 156 days,
+2026-03-10 to 2026-08-13.
 
-## What round 5 stopped, and it was right to
+**No distinctness is claimed anywhere.** `distinct_shapes` was `len(set())` over labels
+`compute.py` writes, so it could only ever equal the number of labels, and the deck printed it as
+"no two reached for the same instrument". A sentence that cannot be false is not a finding. It is
+off every frame, the caption, the figures and the manifests.
 
-Round 5's integrity judge returned 6.02 with two hard fails.
+## Measured
 
-1. **The headline count was not a count.** `RESTRICTED` and `DECLINED` were maps typed by hand.
-   Reading the record back found El Paso's Data Center Policy Framework, San Marcos voting 4 to 3
-   to make data centers ineligible citywide, and Hays County's 180 day emergency water review, all
-   meeting the rule the deck published, all inside its own window, all on no frame.
-2. **"Seven bodies, seven instruments. One each" was false.** San Angelo reached for three.
-
-Rounds 2, 4 and 5 each shipped a wrong headline out of that one spot. The fix is the judge's own
-one sentence fix and it is now in force: the set is a SELECTION computed over the record, and a
-silent omission is structurally impossible rather than merely discouraged.
-
-## Measured, after the recut
-
-Per frame median L\*: 51.2, 65.6, 14.4, 30.8, 81.4, 70.4, 52.4, 55.8, 48.8. Deck median
-52.4, sd 19.1. The biggest junction is
--51.2 between frames 2 and
-3. Frame 7's falloff measures 16.5 L\* in
-the gutters between its four repeat lines. Frame 6's cards read 94.2 against
-cork at 64.8. `bespoke_check` reports a median pairwise similarity of
-0.1594, the lowest in the ledger. Machine QA is 0 fails.
+Per frame median L\*: 51.4, 64.4, 14.4, 30.8, 81.4, 73.6, 52.1, 59.4, 48.7. Deck median 52.1, sd
+19.5. The biggest junction is -50.0 between frames
+2 and 3. Frame 7's falloff
+measures 16.5 L\* in the gutters between its four repeat lines. Frame 6's
+cards read 94.2 against cork at 59.9.
 
 ---
 
@@ -54,13 +51,18 @@ to take it all the way through to a Gmail draft.
 
 ## The story
 
-**Seven** Texas governmental bodies acted against a data center between March 10th and August
-11th, and no two reached for the same instrument. A permit denied in Killeen, an abatement denied
-in Archer County, disclosure asked for in Lubbock County, staff directed in Corpus Christi, a
-reinvestment zone denied in Brazoria County, a process initiated in Fort Worth, and a water
-ordinance passed in San Angelo. Seven bodies, seven instruments. Three more bodies went the other
-way, including the Texas Water Development Board, which denied a petition asking it to project
-data center water demand as its own category.
+**15** actions by **12** Texas local governments between
+2026-03-10 and 2026-08-13. A permit denied in Killeen, an abatement
+denied in Archer County, a reinvestment zone denied in Brazoria County and a conditions
+resolution from the same court, data centers made ineligible citywide in San Marcos, three
+separate ordinances in San Angelo covering zoning, the sewer and the water, a 180 day water
+review in Hays County, a policy framework in El Paso, disclosure asked for in Lubbock County,
+staff directed in Corpus Christi, a moratorium process begun in Fort Worth, and two APPROVALS,
+Wichita Falls and Williamson County. 2 more took it up and did not act.
+
+**No distinctness is claimed.** 5 of the 15 rest on a claim
+whose own words call the instrument a resolution, so a resolution is one instrument used
+5 times, and the deck says that instead.
 
 **It said EIGHT for most of this run and the record supports seven.** The count and every
 correction to it are in the panel sections below, because the point of this document is what the
@@ -124,9 +126,12 @@ at 200 from Laredo's Legistar this run, which is the span a reader can actually 
 
 Three critics ran in parallel over the nine frames. Four frames were rebuilt.
 
-**Frame 7's bounce falloff was 3.4 L\* across the four repeats.** The frame's entire technique is
-repetition down a falloff, and a 3.4 L\* spread is a falloff no reader sees. Measured after the
-rebuild it is 12.2 L\*, monotonic, 86.4 to 98.6.
+**Frame 7's bounce falloff was too shallow to read across the four repeats.** The frame's entire
+technique is repetition down a falloff, and a spread the eye cannot resolve is a falloff no reader
+sees. Measured after the rebuild it is 16.5 L\*, monotonic, 82.8 to 99.3.
+The figure the first draft of this paragraph put on the shallow version is gone on purpose. It
+described a render that no longer exists, so nothing can recompute it, and this project does not
+publish a number it cannot recompute.
 
 **Frame 4's camera was never rendered and its argument was inverted.** The dossier declared a
 steep oblique with the glazing near edge on, and the frame was square on with a wider left stile.
@@ -164,8 +169,8 @@ and one line above the table says it once.
 ## What is measurably not what the storyboard said
 
 **This is not the mid value deck it declares.** The storyboard says "ground at L\* 62 to 68".
-Measured medians, frame by frame, are 51.3, 66.0, 14.4, 30.8, 81.4, 70.6, 52.4, 56.2 and 48.8,
-with a median of medians of 52.4 and a range of 67.0 L\*. One frame sits inside the declared band
+Measured medians, frame by frame, are 51.4, 64.4, 14.4, 30.8, 81.4, 73.6, 52.1, 59.4 and 48.7,
+with a median of medians of 52.1 and a range of 67.0 L\*. One frame sits inside the declared band
 and eight do not.
 
 The band was typed by the directors room rather than measured, which is the compute-not-generate
@@ -252,9 +257,9 @@ before acting, not after.
 - **Frame 1's numeric lockup misread at 432px** as "8 BODIES INSTRUMENTS", and the dek's fourth
   line overlapped the numeral by 15px. It counts both nouns now.
 - **The 6 to 7 value snap ran backwards.** Both dossiers claim frame 6 is the brightest field and
-  frame 7 the darkest immediately after. Measured, 6 is now 70.8 and 7 is 52.4. Frame 7's field
+  frame 7 the darkest immediately after. Measured, 6 is now 73.6 and 7 is 52.1. Frame 7's field
   was dropped and its falloff widened rather than flattened, so the four repeats now
-  span 16.5 L\* instead of 3.4.
+  span 16.5 L\* rather than a field the eye read as flat.
 
 ## Three more gates were wrong about a correct deck
 
