@@ -46,6 +46,46 @@ design marked `decorative`, standing furniture like the masthead and the slide c
 prose-shape test so labels are never demanded. The provenance stamp is stripped from a node
 rather than exempting the node, because it arrives concatenated with real text.
 
+A FOURTH FAILURE, 2026-08-26. A QUOTATION THAT TRACES TO NOTHING.
+
+Slide 7 of that run set `clinical care, research, advanced computing` under the attribution
+`BOARD ITEM, AUGUST 12TH, 2026`, and no claim in the run's claims file carries that string. The
+frame declared `c12` and `c23` and printed neither of them, so the minimal pair its whole
+composition measured did not exist, and a granite plate set beneath a gap in a sentence the
+board never wrote read as an assertion that the board had struck two words out.
+
+**Every mechanical gate was green.** `claims_check` proves claims exist and carry sources and has
+no opinion about what a frame prints. `aggregate_check` re-derived a declaration whose stated
+derivation was false against both quotes. `noun_trace` checks NAMED THINGS and not quoted ones.
+And this file's own two directions agreed with each other, because both were reading the same
+authored string: `copy.json` said it, the render laid it out, the pair was in sync, and the
+sentence was still not the document's. Three green gates, one source. Two of three judges caught
+it by hand and one did not, and a single scorer would have shipped it.
+
+**So this asks the question none of them ask: does the source actually say it.** A phrase the
+deck presents as a document's own words must occur verbatim in a quote on one of the claims THAT
+SLIDE declares. Both halves of that sentence are load bearing. Verbatim catches the invented
+line. Per slide catches the provenance error, which happened three more times on the same deck:
+slide 6 printed folios quoted by `c29` and `c30` while declaring `c27` and `c28`.
+
+WHAT COUNTS AS PRESENTED AS THE SOURCE'S OWN WORDS, and what this gate therefore cannot see.
+
+    a quoted phrase   text between quotation marks, straight or curly, carrying a space. This is
+                      structural and needs no list of key names, which is the mistake the
+                      allowlist above already cost this file once.
+    a quote-named key any key whose name carries "quote" or "verbatim". A widening, not the
+                      selector: a copywriter who names a key `quote` has said what it is.
+
+    NOT COVERED, and stated rather than implied. An unquoted string sitting under a dated
+    attribution is invisible here, because nothing in the artifact distinguishes it from a label.
+    The 2026-08-26 frame is only visible because its lines were set as quotations. A design that
+    prints a document's words with no marks around them is a design this gate is blind to, and
+    closing that needs the DOSSIER to declare which regions are quotation, not a cleverer regex.
+
+MEASURED, on every deck this repo has rendered: 33 quoted phrases across seven decks, all of them
+tracing to a claim the slide declares. Zero false positives on real work, which is the number
+that decides whether a gate survives its first month.
+
     copy_sync_check.py --date 2026-08-12
     copy_sync_check.py --self-test
 
@@ -282,6 +322,104 @@ def unauthored(report: dict, authored: dict[int, str]) -> list[str]:
     return out
 
 
+# ---------------------------------------------------------------- quotations
+#
+# A quoted span, in the two mark shapes this project's copy actually contains. The house rule is
+# straight quotes only, so a curly pair reaching here is already a `caption_check` violation, and
+# a gate that cannot see it would be a gate defeated by a typographic slip.
+#
+# THE SPAN MUST CARRY A SPACE, and that is the carve-out rather than a character count. A single
+# quoted word is a scare quote or a term of art, which every deck here uses and none of which is
+# a document speaking. A quoted PHRASE is the source's own words or it is nothing. Written as a
+# structural test on purpose: a minimum length would be a number typed by a person, and this
+# project's law says numbers are computed or they are not published.
+QUOTED_SPAN = re.compile(r"[\"“]([^\"“”]+)[\"”]")
+
+# A key name that says what the value is. This is a WIDENING of the structural selector above and
+# never the selector itself: `line_board` is what carried the 2026-08-26 defect, and no list of
+# key names would have held it. See the allowlist note on META_KEYS for what that mistake costs.
+QUOTE_KEY = re.compile(r"quote|verbatim", re.IGNORECASE)
+
+
+def quoted_phrases(key: str, value: str) -> list[str]:
+    """Every phrase in one authored string that is presented as a source's own words."""
+    spans = [m.group(1).strip() for m in QUOTED_SPAN.finditer(value)]
+    spans = [s for s in spans if " " in s]
+    if spans:
+        return spans
+    v = value.strip()
+    return [v] if QUOTE_KEY.search(str(key)) and " " in v else []
+
+
+def claim_quotes(claims: dict | None) -> dict[str, str]:
+    """Each claim's id mapped to the skeleton of its quote.
+
+    Only the QUOTE, never the claim's `text`. The claim text is this project's own sentence about
+    the source and is exactly what went wrong upstream on 2026-08-26, where a recommendation was
+    written up as a completed action. A frame quoting the record's paraphrase of a document and
+    attributing it to the document would be the same fault one surface along.
+    """
+    cs = claims.get("claims") or claims.get("verified_claims") or [] if claims else []
+    out = {}
+    for c in cs:
+        if not isinstance(c, dict):
+            continue
+        cid = next((str(c[k]) for k in ("id", "claim_id", "cid") if c.get(k)), None)
+        if cid:
+            out[cid] = skeleton(c.get("quote") or c.get("verbatim_quote") or "")
+    return out
+
+
+def untraced_quotations(copy: dict, claims: dict | None) -> tuple[list[str], int]:
+    """Quoted phrases on a frame that no claim the slide declares actually contains.
+
+    Returns (findings, how many phrases were examined). The count is returned and printed on
+    success as well as on failure, because a run that checked nothing must not read like a run
+    that found nothing.
+    """
+    if claims is None:
+        return [], 0
+    quotes = claim_quotes(claims)
+    everything = " | ".join(quotes.values())
+    slides = normalize_slides(copy.get("slides"))
+    findings, checked = [], 0
+    for key in sorted(slides, key=lambda k: (slide_no(k) or 0)):
+        s = slides[key]
+        if not isinstance(s, dict):
+            continue
+        declared = sorted(claim_ids_in(s))
+        mine = " | ".join(quotes.get(c, "") for c in declared)
+        for k, v in s.items():
+            if k in META_KEYS:
+                continue
+            for val in ([v] if isinstance(v, str) else (v if isinstance(v, list) else [])):
+                if not isinstance(val, str):
+                    continue
+                for phrase in quoted_phrases(k, val):
+                    needle = skeleton(phrase)
+                    if not needle:
+                        continue
+                    checked += 1
+                    if needle in mine:
+                        continue
+                    shown = phrase if len(phrase) <= 64 else phrase[:61] + "..."
+                    if needle in everything:
+                        owner = [c for c, q in quotes.items() if q and needle in q]
+                        findings.append(
+                            f"{key}.{k}: \"{shown}\" is quoted from {', '.join(sorted(owner))}, "
+                            f"which this slide does not declare. It declares "
+                            f"{', '.join(declared) or 'nothing'}. Cite the claim the words came "
+                            f"from")
+                    else:
+                        findings.append(
+                            f"{key}.{k}: \"{shown}\" is set as a quotation and occurs in NO "
+                            f"claim's quote. The slide declares {', '.join(declared) or 'nothing'}. "
+                            f"Either the words are the source's, in which case they are a claim, "
+                            f"or they are the deck's, in which case the marks around them say "
+                            f"something untrue about who wrote them")
+    return findings, checked
+
+
 def compare(copy: dict, report: dict, claims: dict | None) -> tuple[list[str], list[str]]:
     """Returns (drifted, uncited). Both empty means in sync."""
     drifted, uncited = [], []
@@ -357,11 +495,15 @@ def run(date: str, out_root: Path) -> int:
                   file=sys.stderr)
 
     drifted, uncited = compare(copy, report, claims)
+    untraced, quoted_n = untraced_quotations(copy, claims)
     n_slides = len(normalize_slides(copy.get("slides")))
 
-    if not drifted and not uncited:
-        extra = "" if claims is not None else ", citations unchecked (no claims.json)"
+    if not drifted and not uncited and not untraced:
+        extra = ("" if claims is not None
+                 else ", citations and quotations unchecked (no claims.json)")
         print(f"copy sync: clean, {n_slides} slide(s) match what the browser laid out{extra}")
+        if claims is not None:
+            print(f"copy sync: {quoted_n} quoted phrase(s) traced to a claim the slide declares")
         return 0
 
     if drifted:
@@ -378,6 +520,17 @@ def run(date: str, out_root: Path) -> int:
             print(f"  {m}")
         print("\n  A slide citing a claim id that is not in the claims file breaks the one promise\n"
               "  this project makes about every fact. Add the claim or drop the citation.")
+    if untraced:
+        print(f"\ncopy sync: {len(untraced)} quotation(s) the record does not support, "
+              f"of {quoted_n} checked\n")
+        for m in untraced:
+            print(f"  {m}")
+        print("\n  A frame that sets words in quotation marks is telling a reader a document said\n"
+              "  them. On 2026-08-26 one did not, and every other gate was green on it, because\n"
+              "  copy.json, the render and the dossier all agreed with each other about a string\n"
+              "  nobody had checked against a source. FIX THE FRAME, never the claim: writing a\n"
+              "  new claim to fit a line the deck already drew is how the fabrication becomes\n"
+              "  permanent.")
     return 1
 
 
@@ -568,6 +721,122 @@ def self_test() -> int:
 
     ok("the first shipped deck passes both directions", sd == [] and su == [],
            str(sd + su)[:300])
+
+    # ---------------------------------------------------------------- quotations
+    # THE 2026-08-26 DEFECT, REPLAYED AGAINST THE RUN'S OWN CLAIMS FILE.
+    #
+    # The claims half is the real committed artifact and is not reconstructed. The frame half is,
+    # from the storyboard's own `replanned` block written before this gate existed, at
+    # runs/carousel/2026-08-26/held/storyboard.md: a line reading "clinical care, research,
+    # advanced computing" under the attribution BOARD ITEM, AUGUST 12TH, 2026, on a frame
+    # declaring c12 and c23. That is the artifact as it reached the panel.
+    #
+    # A MISSING FILE IS A FAILURE HERE AND NOT A SKIP. A skip and a check that cannot run print
+    # the same colour, and this is the one case in the file that proves the gate goes red on
+    # something that really happened.
+    held = REPO_ROOT / "runs" / "carousel" / "2026-08-26" / "held"
+    if not (held / "claims.json").exists():
+        ok("the 2026-08-26 claims file is present to replay the defect against", False,
+           str(held / "claims.json"))
+    else:
+        real_claims = json.loads((held / "claims.json").read_text(encoding="utf-8"))
+        shipped_to_panel = {"slides": {"S7": {
+            "claims": ["c12", "c23"],
+            "kicker": "TWO DOCUMENTS",
+            "hook": "The difference is two words wide",
+            "attribution_board": "BOARD ITEM, AUGUST 12TH, 2026",
+            "line_board": '"clinical care, research, advanced computing"',
+        }}}
+        f, n = untraced_quotations(shipped_to_panel, real_claims)
+        ok("the fabricated board quotation of 2026-08-26 is CAUGHT", len(f) == 1, str(f))
+        ok("...and it is named as occurring in no claim at all",
+           bool(f) and "occurs in NO" in f[0], str(f))
+        ok("...and the message names the claims the frame did declare",
+           bool(f) and "c12, c23" in f[0], str(f))
+        ok("...and the phrase was examined rather than skipped", n == 1, str(n))
+
+        # THE REPAIRED FRAME, the real committed copy.json, must come back clean. A gate that
+        # cannot tell the fix from the defect has not measured anything.
+        repaired = json.loads((held / "copy.json").read_text(encoding="utf-8"))
+        f, n = untraced_quotations(repaired, real_claims)
+        ok("the repaired deck of 2026-08-26 is clean", f == [], str(f)[:300])
+        ok("...and it checked the phrases rather than passing by examining none", n == 10, str(n))
+
+        # THE PROVENANCE HALF, and it is the discrimination test for this gate. A version that
+        # compared against EVERY claim in the file instead of the slide's own would pass this,
+        # and the two implementations are indistinguishable without it. The words below are c23's
+        # quote, verbatim, printed on a frame that declares only c12. That is the shape slide 6
+        # shipped three times over on the same deck.
+        wrong = {"slides": {"S9": {
+            "claims": ["c12"],
+            "above_line": '"technology, data and AI are embedded to support clinicians"'}}}
+        f, _ = untraced_quotations(wrong, real_claims)
+        ok("a real quote cited to the WRONG claim is caught", len(f) == 1, str(f))
+        ok("...and it names the claim the words actually came from",
+           bool(f) and "c23" in f[0], str(f))
+        ok("...and the same words on the slide that DOES declare c23 are clean",
+           untraced_quotations({"slides": {"S9": {
+               "claims": ["c23"],
+               "above_line": '"technology, data and AI are embedded to support clinicians"'}}},
+               real_claims)[0] == [])
+
+    # CALIBRATION ON EVERY DECK THIS REPO HAS RENDERED. A gate is only worth keeping if it is
+    # quiet on real work, and the count is asserted beside the silence so a run that examined
+    # nothing cannot read as a run that found nothing.
+    seen_decks = 0
+    for name, expect_checked in (("2026-08-16", 4), ("2026-08-18", 3), ("2026-08-19", 6),
+                                 ("2026-08-20", 0), ("2026-08-21", 1), ("2026-08-22", 9)):
+        base = REPO_ROOT / "runs" / "carousel" / name
+        if not ((base / "copy.json").exists() and (base / "claims.json").exists()):
+            continue
+        seen_decks += 1
+        f, n = untraced_quotations(json.loads((base / "copy.json").read_text(encoding="utf-8")),
+                                   json.loads((base / "claims.json").read_text(encoding="utf-8")))
+        ok(f"{name}: no untraced quotation on a shipped deck", f == [], str(f)[:200])
+        ok(f"{name}: {expect_checked} quoted phrase(s) examined", n == expect_checked, str(n))
+    ok("the calibration read the shipped decks rather than finding none", seen_decks >= 5,
+       str(seen_decks))
+
+    # THE CARVE-OUTS, each of which has to stay quiet or the gate gets switched off.
+    cl2 = {"claims": [{"id": "c1", "quote": "the queue holds 6,180 megawatts of large load"}]}
+    d1 = {"slides": {"S1": {"claims": ["c1"], "tag": 'the so-called "queue" of large load'}}}
+    ok("a single quoted word is a scare quote and is not demanded",
+       untraced_quotations(d1, cl2)[0] == [], str(untraced_quotations(d1, cl2)))
+    d2 = {"slides": {"S1": {"claims": ["c1"], "line": '"holds 6,180 megawatts"'}}}
+    ok("a quoted phrase the declared claim carries passes",
+       untraced_quotations(d2, cl2)[0] == [], str(untraced_quotations(d2, cl2)))
+    d3 = {"slides": {"S1": {"claims": ["c1"], "line": '"holds 6,180 gigawatts"'}}}
+    ok("...and one word changed inside it is CAUGHT", len(untraced_quotations(d3, cl2)[0]) == 1)
+    # PUNCTUATION AND CASE ARE NOT THE DEFECT. The render sets quotations in the deck's own
+    # typography, so a comparison that failed on a capital would fail on every correct frame.
+    d4 = {"slides": {"S1": {"claims": ["c1"], "line": '"HOLDS 6,180 MEGAWATTS"'}}}
+    ok("case and punctuation differences are tolerated",
+       untraced_quotations(d4, cl2)[0] == [], str(untraced_quotations(d4, cl2)))
+    # THE KEY NAME ARM, which is a widening and not the selector.
+    d5 = {"slides": {"S1": {"claims": ["c1"], "band_quote": "holds 6,180 megawatts"}}}
+    ok("a key named quote is checked without any marks around its value",
+       untraced_quotations(d5, cl2)[1] == 1)
+    d6 = {"slides": {"S1": {"claims": ["c1"], "band_quote": "holds 6,180 gigawatts"}}}
+    ok("...and goes red the same way", len(untraced_quotations(d6, cl2)[0]) == 1)
+    # A CLAIM'S TEXT IS NOT A QUOTE. The record's own sentence about a document is where the
+    # 2026-08-26 recommendation was written up as a completed action, and a frame quoting that
+    # sentence back would be the same fault one surface along.
+    cl3 = {"claims": [{"id": "c1", "text": "The board appropriated the money.", "quote": "x y"}]}
+    d7 = {"slides": {"S1": {"claims": ["c1"], "line": '"The board appropriated the money"'}}}
+    ok("a frame quoting the claim's TEXT rather than its quote is caught",
+       len(untraced_quotations(d7, cl3)[0]) == 1, str(untraced_quotations(d7, cl3)))
+    # NO CLAIMS FILE MEANS NOTHING WAS CHECKED, and the count says so rather than reporting clean.
+    ok("with no claims file the gate reports zero checked rather than clean",
+       untraced_quotations(d3, None) == ([], 0))
+    # A slide that declares nothing cannot support a quotation, and the message has to say so
+    # rather than crashing on an empty list.
+    d8 = {"slides": {"S1": {"line": '"holds 6,180 megawatts"'}}}
+    ok("a quotation on a slide that declares no claim is caught",
+       len(untraced_quotations(d8, cl2)[0]) == 1, str(untraced_quotations(d8, cl2)))
+    ok("...and the message says the slide declares nothing",
+       "declares nothing" in untraced_quotations(d8, cl2)[0][0])
+    ok("the module header states the blind spot rather than implying coverage",
+       "NOT COVERED" in (__doc__ or "") and "unquoted string" in (__doc__ or ""))
 
     if failures:
         print(f"\ncopy_sync_check self-test: {failures} FAILED", file=sys.stderr)

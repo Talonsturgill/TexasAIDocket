@@ -71,6 +71,26 @@ def g_copy_sync(d: Path):
     return drifted + uncited
 
 
+def g_quotations(d: Path):
+    """Every phrase a frame sets as a source's own words, against the claims that slide declares.
+
+    Registered separately from `copy sync` rather than folded into it, because the two answer
+    different questions and a run reading one line needs to know which one broke. `compare` asks
+    whether the deck and its manifest agree. This asks whether the DOCUMENT agrees, which is the
+    question that was open on 2026-08-26 while both of the others were green.
+
+    HISTORY scope, and that is a measurement rather than an assumption. Every deck this repo has
+    shipped comes back clean, 23 quoted phrases across six of them, so this is not a rule written
+    after the fact being applied backwards. See the trap written up on `aggregates` below.
+    """
+    import copy_sync_check as m
+    copy, claims = _load(d / "copy.json"), _load(d / "claims.json")
+    if not (copy and claims):
+        return None
+    findings, _checked = m.untraced_quotations(copy, claims)
+    return findings
+
+
 def g_aggregates(d: Path):
     import aggregate_check as m
     rep, agg = _load(d / "render_report.json"), _load(d / "aggregates.json")
@@ -168,6 +188,7 @@ def g_completion(d: Path):
 
 GATES = [
     ("copy sync", g_copy_sync, HISTORY),
+    ("quotations", g_quotations, HISTORY),
     # CURRENT, not HISTORY, and the reason is the lesson this whole file is built on.
     # aggregate_check gained the `quoted_from` route AFTER 2026-08-18 shipped. That deck
     # declared five quoted figures through `computed_by` because it was the only route that
