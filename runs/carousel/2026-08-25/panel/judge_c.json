@@ -1,0 +1,39 @@
+{
+ "judge": "C, the craft lens",
+ "weighted_score": 7.05,
+ "ship": true,
+ "hard_fails": [],
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 6.5
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.8
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 7.3
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 6.8
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 7.0
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0
+  }
+ ],
+ "one_sentence_fix": "Solve the ground under every type box for its own contrast instead of typing the value. This deck already applies that discipline to WIDTH and never once to VALUE."
+}

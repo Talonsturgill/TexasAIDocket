@@ -41,7 +41,7 @@ Source (journalism): https://www.kcbd.com/2026/08/10/lubbock-county-commissioner
 
 Source (journalism): https://www.kcbd.com/2026/08/10/lubbock-county-commissioners-pass-resolution-regarding-large-scale-industrial-development-texas/
 
-### The resolution creates no new county power and cannot pause a privately financed project.
+### The resolution creates no new county power and can't pause a privately financed project.
 
 > Nothing in this non-binding resolution creates or expands county authority. It does not require the county to take any action or authorize the county to prohibit, suspend, delay, or impose a moratorium on a privately financed project, except as expressly permitted by Texas law.
 

@@ -35,7 +35,8 @@
       "instinct": "Write every acceptance item so that rendering NOTHING fails it, not just so that rendering too much fails it.",
       "evidence": "Carousel No. 1. 'The stipple density stays low enough that the paper reads as tooth' passed on slide 6 where no stipple rendered at all, and 'the bottom third carries the densest engraved mass' passed on slide 4 where a flat warm wash was doing the work. Both items had a ceiling and no floor.",
       "confirmed": [
-        "2026-08-21"
+        "2026-08-21",
+        "2026-08-25"
       ],
       "contradicted": []
     },
@@ -71,7 +72,8 @@
       "instinct": "Any position or length a reader could measure goes through compute.py, not just the ones that carry a printed number.",
       "evidence": "Slide 4's stationing terminus was typed at x=660, drawing a 63:37 split where the hours are 81:19, beside ten minute ticks that were themselves to scale. The frame promised a scale and contradicted it, and no gate caught it because no numeral was printed.",
       "confirmed": [
-        "2026-08-21"
+        "2026-08-21",
+        "2026-08-25"
       ],
       "contradicted": []
     },
@@ -89,9 +91,11 @@
       "id": "one-geometry-two-layers-will-drift",
       "learned": "2026-08-19",
       "instinct": "State a shared geometry ONCE in the builder and substitute it into both the canvas layer and the CSS layer.",
-      "evidence": "Carousel No. 3 slide 6. The four terrazzo bands were drawn full bleed at W/4 and the four label plates were laid out in a safe-area box inset 80px, so the outer two words straddled a band boundary by 37px. The safe-zone breach had been fixed on the type layer and the art layer was never told. The scorer measured it at the third pass; no gate could, because each layer was internally correct.",
+      "evidence": "Carousel No. 3 slide 6. The four terrazzo bands were drawn full bleed at W/4 and the four label plates were laid out in a safe-area box inset 80px, so the outer two words straddled a band boundary by 37px. The safe-zone breach had been fixed on the type layer and the art layer was never told. The scorer measured it at the third pass; no gate could, because each layer was internally correct. CONTRADICTED 2026-08-25, three frames over. Slide 1's dek carried `width:430` with no unit, which CSS drops whole, so its measure was the body's 1080 and the cover's only explanatory sentence printed across the case stile and over the lock cylinder at 1.8 contrast. Slide 4's citation and slide 8's three citations had no width at all and ran off the paper into the bezel and the greeked rule field. Slide 4's exclusion list was a hand-kept copy of the type boxes measured in a DIFFERENT PROJECTION from the one the browser lays type in. All three round 9 judges named it independently and it is what held artwork_craft at 6.0.",
       "confirmed": [],
-      "contradicted": []
+      "contradicted": [
+        "2026-08-25"
+      ]
     },
     {
       "id": "read-the-exit-code-of-the-thing-that-writes",
@@ -129,16 +133,20 @@
       "id": "draw-every-plane-before-what-stands-on-it",
       "learned": "2026-08-22",
       "instinct": "Draw every ground plane BEFORE the objects standing on it, and stop every drawn element above the footer band, because a plane painted last erases the object and leaves its shadow behind.",
-      "evidence": "2026-08-22. Slide 7 drew a lit spine and its foot, then painted plane(1010,1350) over both. The spine died at the console line, the foot vanished, and a redrawn cast shadow ran through the texasaidocket.com glyph band. Slide 6 had the same defect the same run, three rods drawn and two shipped.",
+      "evidence": "2026-08-22. Slide 7 drew a lit spine and its foot, then painted plane(1010,1350) over both. The spine died at the console line, the foot vanished, and a redrawn cast shadow ran through the texasaidocket.com glyph band. Slide 6 had the same defect the same run, three rods drawn and two shipped. CONTRADICTED 2026-08-25. Slide 9's closing line ran 1128 to 1229 and the case's lower rail is drawn at 1228, so the last line's descenders were sheared by the plane beneath them. This instinct's own second half says to stop every drawn element above the footer band, and the frame carrying the deck's one actionable date is where it was broken.",
       "confirmed": [],
-      "contradicted": []
+      "contradicted": [
+        "2026-08-25"
+      ]
     },
     {
       "id": "a-count-must-name-the-set-it-counted",
       "learned": "2026-08-22",
       "instinct": "Make every count on a frame name the set it counted, and make that set one the deck actually read, because a bare count over a partly quoted index asserts a number nothing checked.",
       "evidence": "2026-08-22. 'The deadline sits in the index twice.' was the panel's only hard fail, over an index the deck quotes 10 of 34 rows from. It became '2 rows here carry the deadline.' and declared from c8, c9 and c10. Slide 4 carried the same defect one frame away.",
-      "confirmed": [],
+      "confirmed": [
+        "2026-08-25"
+      ],
       "contradicted": []
     },
     {
@@ -146,7 +154,9 @@
       "learned": "2026-08-22",
       "instinct": "Reconcile copy.json against the render report's own text nodes rather than trusting copy_sync_check, which compares skeletons with every non-alphanumeric stripped and so cannot see a missing space.",
       "evidence": "2026-08-22. Seven copy.json strings disagreed with the laid out text and copy_sync_check was green on all of them. The staged build published '7/16/2026Fedor Mikheev' and 'September 4th, 2026.Refer' as article prose.",
-      "confirmed": [],
+      "confirmed": [
+        "2026-08-25"
+      ],
       "contradicted": []
     },
     {
@@ -162,7 +172,9 @@
       "learned": "2026-08-22",
       "instinct": "Rebuild every artifact DERIVED from a thing you just changed in the same commit that changes it, because a stale derived file is wrong by construction and no gate is watching the gap.",
       "evidence": "2026-08-22. Committed new claims without rebuilding docs and the freshness gate went red. Committed a rewritten caption without rebuilding gmail_payload.json and email_check went red. Both were split off to clear a dirty tree.",
-      "confirmed": [],
+      "confirmed": [
+        "2026-08-25"
+      ],
       "contradicted": []
     },
     {
@@ -178,7 +190,9 @@
       "learned": "2026-08-22",
       "instinct": "State which population a published count measured, because a number computed over the wrong set is worse than a typed one and arrives wearing the authority of a computation.",
       "evidence": "2026-08-22. The cover said 10 rows quoted when six were. The derivation counted index-row CLAIMS while the sentence described FRAMES. A note in the storyboard was congratulating the run for replacing a typed 8 with that computed 10.",
-      "confirmed": [],
+      "confirmed": [
+        "2026-08-25"
+      ],
       "contradicted": []
     },
     {
@@ -202,6 +216,38 @@
       "learned": "2026-08-23",
       "instinct": "Run scripts/shared/guards_local.py in full before the first push, never a hand picked list of gates, because the suite reads guards.yml and a hand picked list is the half that misses what your own change broke somewhere else.",
       "evidence": "This run pushed after running about a dozen named gates by exit code and CI came back red on docket_calendar's self-test, three assertions, caused by four expires key_dates this run had itself introduced. The full local suite reproduces it in one command and was run only after CI had already found it.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-repair-lands-on-every-surface",
+      "learned": "2026-08-25",
+      "instinct": "Apply every copy repair to every published surface in one pass, reading them from one list, because a fix that lands on the frame a judge named leaves the same sentence shipping in the caption.",
+      "evidence": "Rounds 13 and 14 hard failed three times on one sentence. Round 13 failed frame 3 for 'Nothing in their sources says the action binds'. The frame was repaired and round 14 failed the run twice more for the same sentence on frame 6's foot and in the caption. Both round 14 judges' one-sentence fix was this.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-measurement-is-not-a-claim-about-sources",
+      "learned": "2026-08-25",
+      "instinct": "Print what the record was measured for, never what sources are said to have omitted, because one source speaking to one member refutes the whole sentence.",
+      "evidence": "force_unstated is items carrying no effective key date at all. Three frames and the caption printed it as 'no source says either way', and c44 in the same run's claims file is Wichita Falls saying 'We did prohibit evaporative cooling systems', on a fact frame 8 of the same deck prints.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-floor-in-the-wrong-unit-passes-an-invisible-fix",
+      "learned": "2026-08-25",
+      "instinct": "State every craft floor in the unit a reader's eye uses, L star measured on the rendered PNG, because a fix can clear a floor in pixels and carry no visible difference.",
+      "evidence": "Frame 3's shadow ramp cleared 3 device px of offset per row and carried 1.5 L* of density over near black felt, which is nothing. Three consecutive rounds shipped a repair that satisfied its item numerically and was invisible.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-selection-rule-may-not-read-prose",
+      "learned": "2026-08-25",
+      "instinct": "Select the set a published count runs over from the record's own structured fields plus ids admitted with a written reason, never a regex over summary prose.",
+      "evidence": "tx-2026-0002 entered the counted set because its summary says the Texas Register text 'does not contain the words data center'. The regex matched a negation, so a published door count rested on a phrase saying the words are absent.",
       "confirmed": [],
       "contradicted": []
     }

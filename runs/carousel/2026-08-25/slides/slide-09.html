@@ -1,0 +1,265 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#2B3138;
+  -webkit-font-smoothing:antialiased}
+canvas{position:absolute;left:0;top:0}
+.kick{position:absolute;left:80px;top:88px;font:500 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.14em;color:#D8D2C4}
+.cnt{position:absolute;right:80px;top:88px;font:500 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.10em;color:#D8D2C4;font-variant-numeric:tabular-nums}
+.tx-site{position:absolute;left:80px;bottom:74px;font:400 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.06em;color:#D8D2C4}
+.star{position:absolute;right:80px;bottom:68px;width:22px;height:22px}
+.hook{position:absolute;left:150px;top:220px;width:480px;font:700 62px/1.04 "Fraunces",serif;
+  color:#2A2622;letter-spacing:-.015em}
+.body{position:absolute;left:150px;top:402px;width:470px;font:400 28px/1.4 "Manrope",sans-serif;color:#443F36}
+/* THE GAP, PRINTED. The record holds two dated public steps and neither of them is Fort Worth's,
+   whose two required hearings are a claim in this run's file and are in no key_dates entry. A
+   project that says it publishes the size of what is not public does not get to leave that out
+   because it spoils a clean count. */
+.gpre{position:absolute;left:150px;top:596px;font:500 24px/1 "JetBrains Mono",monospace;
+  color:#6E695F;letter-spacing:.13em}
+.gap{position:absolute;left:150px;top:640px;width:470px;font:400 24px/1.4 "Manrope",sans-serif;color:#443F36}
+.gsrc{position:absolute;left:150px;top:800px;width:480px;font:400 24px/1 "JetBrains Mono",monospace;
+  color:#7A756B;letter-spacing:.10em}
+/* The two doors hang on the two clips the case has always carried, which held nothing for eight
+   frames under a comment reading "this is where the next notice goes". */
+/* THE RED IS SPENT ON ONE THING. brand.yaml reserves flag red for genuine urgency, and of the
+   two doors only one is inside a fortnight. The nearest gets it and the December one does not,
+   which is a rule the frame can be held to rather than a colour choice. */
+.d1{position:absolute;left:126px;width:362px}
+.d2{position:absolute;left:600px;width:330px}
+.dwhen{font:700 42px/1 "JetBrains Mono",monospace;letter-spacing:-.02em;color:#BF0A30}
+.d2 .dwhen{font-size:34px}
+.dkind{margin-top:14px;font:500 24px/1 "JetBrains Mono",monospace;letter-spacing:.11em;color:#6E695F}
+.dwho{margin-top:18px;font:400 24px/1.3 "JetBrains Mono",monospace;color:#3E3A32;letter-spacing:.01em}
+.ddo{margin-top:16px;font:500 24px/1.28 "Manrope",sans-serif;color:#5C574C}
+.dsrc{margin-top:14px;font:400 24px/1 "JetBrains Mono",monospace;letter-spacing:.08em;color:#55503F}
+</style></head><body>
+<canvas id="c" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+<div class="kick">WHAT IS OPEN</div>
+<div class="cnt">09 / 09</div>
+<div class="hook">Two doors have dates.</div>
+<div class="body" data-role="dek">Eight items in this record carry a public step still ahead. The two that reach a data center both sit with a state body.</div>
+<div class="gpre">AND ONE WITH NO HEARING DATE</div>
+<div class="gap">Fort Worth must hold two hearings before its pause takes effect. The city set the first as a deadline of November 10th.</div>
+<div class="gsrc">FORT WORTH, C24 AND C46</div>
+<div class="d1" data-days-out="10">
+  <div class="dwhen">SEPTEMBER 4TH</div>
+  <div class="dkind">COMMENTS CLOSE</div>
+  <div class="dwho">PUCT PROJECT 58482</div>
+  <div class="ddo">Large load demand management service. Anyone may file.</div>
+  <div class="dsrc">TX-2026-0002</div>
+</div>
+<div class="d2" data-days-out="114">
+  <div class="dwhen">DECEMBER 17TH</div>
+  <div class="dkind">HEARING</div>
+  <div class="dwho">THE GOVERNOR'S AUDIT</div>
+  <div class="ddo">Every data center in the queue. Public comment opens the meeting.</div>
+  <div class="dsrc">TX-2026-0072</div>
+</div>
+<div class="tx-site">texasaidocket.com</div>
+<svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6 L14.9 9.2 L23 9.6 L16.7 14.6 L18.9 22.4 L12 17.9 L5.1 22.4 L7.3 14.6 L1 9.6 L9.1 9.2 Z" fill="#D8D2C4"/></svg>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = new Promise(function(resolve){
+  var c=document.getElementById('c'), x=c.getContext('2d'); x.scale(2,2);
+  var W=1080,H=1350; TX.reseed(90947); var R = TX.rng(90947);
+  var g=x.createLinearGradient(0,0,W*0.5,H);
+  g.addColorStop(0,'#3A4149'); g.addColorStop(0.5,'#2B3138'); g.addColorStop(1,'#1A1E23');
+  x.fillStyle=g; x.fillRect(0,0,W,H);
+  // LIGHT THE GROUND BEFORE CASTING INTO IT. The case interior is the darkest surface in the
+  // deck, and a shadow laid into an unlit ground is opacity pretending to be light. This is the
+  // open lid's spill, a soft pool from the upper left that the sheet interrupts.
+  // ...AND IT IS CENTRED WHERE THE SHADOW FALLS. The first pass put the pool at the upper left,
+  // which is where the sheet is, so the shadow was still being cast into the wall's darkest
+  // region and read as a two L star change over most of its length. The spill is behind and to
+  // the RIGHT of the sheet now, so the ground the shadow subtracts from is genuinely lit.
+  var pg=x.createRadialGradient(760,300,40,760,300,880);
+  pg.addColorStop(0,'rgba(216,228,240,0.30)'); pg.addColorStop(0.42,'rgba(154,170,186,0.135)');
+  pg.addColorStop(1,'rgba(120,136,152,0)');
+  x.fillStyle=pg; x.fillRect(0,0,W,796);
+  // Level and close on the case's lower left interior. The cork must be LIT FIRST, or a shadow
+  // cast into it is a two L* change and the clips read as pasted on.
+  var CKX=0, CKY=796, CKW=W, CKH=H-796;
+  x.fillStyle='#B99B72'; x.fillRect(CKX,CKY,CKW,CKH);
+  for(var lg=18;lg>=1;lg--){
+    x.fillStyle='rgba(8,11,15,'+(0.055*(1-lg/18)*(1-lg/18)).toFixed(5)+')';
+    x.fillRect(0,CKY-lg,W,1);
+  }
+  var cl=x.createLinearGradient(0,CKY,W*0.6,H);
+  cl.addColorStop(0,'rgba(236,216,182,0.46)'); cl.addColorStop(0.6,'rgba(150,124,90,0.10)');
+  cl.addColorStop(1,'rgba(70,54,34,0.42)');
+  x.fillStyle=cl; x.fillRect(CKX,CKY,CKW,CKH);
+  for(var i=0;i<40000;i++){
+    var px=R()*W, py=CKY+R()*CKH, n=TX.fbm2(px*0.035,py*0.035,4);
+    x.fillStyle='rgba('+(n>0?240:62)+','+(n>0?224:44)+','+(n>0?196:26)+','+(0.17*Math.abs(n))+')';
+    x.fillRect(px,py,2,2);
+  }
+  x.fillStyle='rgba(244,226,196,0.50)'; x.fillRect(0,CKY,W,3);
+  x.fillStyle='rgba(92,70,44,0.30)'; x.fillRect(0,CKY+3,W,2);
+  TX.reseed(4242); R = TX.rng(4242);
+  for(var h=0;h<70;h++){
+    var hx=40+R()*(W-80), hy=CKY+16+R()*(CKH-40);
+    x.fillStyle='rgba(66,48,28,0.36)'; x.fillRect(hx,hy,3,5);
+    x.fillStyle='rgba(228,208,174,0.34)'; x.fillRect(hx,hy+5,3,2);
+  }
+  // the clipped sheet, the frame's one large light area
+  var SX=110, SY=190, SW=560, SH=690;
+  // TWO PARTS, NEVER ONE. A single offset block is a drop shadow, which the technique library
+  // names as the failure that cheapens the whole frame. Part one is the penumbra, stepped so the
+  // falloff is graded and has no edge of its own. Part two is the contact core, tight enough to
+  // put the sheet ON the case rather than above it.
+  for(var s9=34;s9>=1;s9--){
+    var t9=s9/34;
+    x.fillStyle='rgba(13,16,20,'+(0.021*(1-t9)*(1-t9)+0.0032).toFixed(5)+')';
+    x.fillRect(SX+12-s9*0.18, SY+14-s9*0.18, SW+s9*0.92, SH+s9*0.92);
+  }
+  x.fillStyle='rgba(11,14,18,0.46)'; x.fillRect(SX+5,SY+6,SW+8,SH+8);
+  x.fillStyle='#F2EEE4'; x.fillRect(SX,SY,SW,SH);
+  x.fillStyle='rgba(255,253,246,0.86)'; x.fillRect(SX,SY,SW,4);
+  // the clip that holds it, overlapping the sheet's top edge and casting onto it
+  // the same two parts at clip scale: the pinched core under the lower lip, then the spill.
+  x.fillStyle='rgba(30,34,40,0.34)'; x.fillRect(SX+188,SY+30,180,7);
+  for(var cs=0;cs<18;cs++){
+    var ct=cs/18;
+    x.fillStyle='rgba(30,34,40,'+(0.30*(1-ct)*(1-ct)).toFixed(5)+')';
+    x.fillRect(SX+188-cs*0.6, SY+37+cs, 180+cs*1.2, 1);
+  }
+  x.fillStyle='#A9A497'; x.fillRect(SX+186,SY-14,184,44);
+  x.fillStyle='#DAD5C6'; x.fillRect(SX+186,SY-14,184,5);
+  x.fillStyle='#6B6A63'; x.fillRect(SX+186,SY+25,184,5);
+
+  // THE TWO CLIPS NOW HOLD THE TWO DOORS. They hung empty for eight frames under a comment
+  // reading "this is where the next notice goes", and the closing frame is where it goes.
+  // Each slip's width is READ OFF ITS OWN LONGEST LINE at layout time rather than typed, so a
+  // longer body name makes a wider slip instead of an overflow. See the measure pass below.
+  window.__hangSlip = function(box, clip){
+    // clip: [x, y, width, jaw]. box: the measured slip rect.
+    var sx=box[0], sy=box[1], sw=box[2], sh=box[3];
+    // slip shadow, two parts, on cork
+    for(var s=26;s>=1;s--){
+      var t=s/26;
+      x.fillStyle='rgba(46,32,16,'+(0.020*(1-t)*(1-t)+0.0028).toFixed(5)+')';
+      x.fillRect(sx+7-s*0.16, sy+9-s*0.16, sw+s*0.80, sh+s*0.80);
+    }
+    x.fillStyle='rgba(42,30,15,0.42)'; x.fillRect(sx+4,sy+5,sw+6,sh+6);
+    x.fillStyle=box[4]; x.fillRect(sx,sy,sw,sh);
+    x.fillStyle='rgba(255,252,244,0.72)'; x.fillRect(sx,sy,sw,3);
+    x.fillStyle='rgba(58,44,26,0.16)'; x.fillRect(sx,sy+sh-3,sw,3);
+    // the clip, pinching the slip's top edge and casting onto it
+    var cx0=clip[0], cy0=clip[1], cw=clip[2], jaw=clip[3];
+    x.fillStyle='rgba(46,34,18,0.30)'; x.fillRect(cx0+4,cy0+34,cw,8);
+    for(var k=0;k<16;k++){
+      var kt=k/16;
+      x.fillStyle='rgba(46,34,18,'+(0.26*(1-kt)*(1-kt)).toFixed(5)+')';
+      x.fillRect(cx0+4-k*0.5, cy0+41+k, cw+k*1.1, 1);
+    }
+    x.fillStyle='#9E998C'; x.fillRect(cx0,cy0,cw,38);
+    x.fillStyle='#D6D1C2'; x.fillRect(cx0,cy0,cw,5);
+    x.fillStyle='#5E5D57'; x.fillRect(cx0,cy0+33,cw,5);
+    x.fillStyle='rgba(26,22,16,0.70)'; x.fillRect(cx0-2,cy0+12,10,jaw*2);
+    x.fillStyle='rgba(228,222,206,0.55)'; x.fillRect(cx0-2,cy0+12+jaw*2,10,2);
+    x.fillStyle='#7C7B74'; x.fillRect(cx0+15,cy0+8,10,22);
+    x.fillStyle='#7C7B74'; x.fillRect(cx0+cw-25,cy0+8,10,22);
+  };
+  // MEASURE, THEN HANG. Each slip is sized from the text actually laid out inside it and then
+  // hung from its own bottom margin above the case lip, so nothing about its geometry is typed.
+  // A typed width is wrong the first time a body's name runs longer, and a typed top is wrong
+  // the first time a slip grows a line. It sits inside the one promise and behind
+  // document.fonts.ready, because a width measured before the webfont arrives is the fallback
+  // face's width, which is the quiet version of not measuring at all.
+  document.fonts.ready.then(function(){
+    var LIP = H - 122;
+    // THE RESERVED COLOUR IS SPENT BY A RULE, not by a CSS override. brand.yaml reserves flag
+    // red for genuine urgency, and the stated rule is a fortnight. It was `.d2 .dwhen{color:...}`
+    // under a comment calling it "a stated rule the frame can be held to", with nothing computing
+    // days out, so a passed date would have stayed red. Each slip carries its own days_out from
+    // compute.py's DOORS detail and the frame reads it.
+    var REDS = 0;
+    document.querySelectorAll('.d1, .d2').forEach(function(el){
+      var days = parseInt(el.dataset.daysOut, 10);
+      var when = el.querySelector('.dwhen');
+      if (isNaN(days)) throw new Error('a door slip carries no days_out, so the frame cannot '
+        + 'decide whether the reserved colour is earned');
+      if (days < 14) { when.style.color = '#BF0A30'; REDS++; }
+      else { when.style.color = '#33302A'; }
+    });
+    if (REDS > 1) throw new Error('flag red is spent ' + REDS + ' times on this frame and the '
+      + 'deck reserves it for one');
+    // A RULE UNDER THE DEK, separating the two dated doors from the one the record cannot date.
+    // Its y comes off the dek's own laid out bottom, and everything below it is placed from the
+    // rule, so a dek that grows a line moves the whole lower half instead of being struck through.
+    var dekBot = document.querySelector('.body').getBoundingClientRect().bottom;
+    var ruleY = Math.round(dekBot + 22);
+    x.fillStyle='rgba(58,52,42,0.30)'; x.fillRect(150, ruleY, 308, 2);
+    x.fillStyle='rgba(255,253,246,0.55)'; x.fillRect(150, ruleY + 2, 308, 1);
+    document.querySelector('.gpre').style.top = (ruleY + 26) + 'px';
+    var gap = document.querySelector('.gap');
+    gap.style.top = (ruleY + 68) + 'px';
+    document.querySelector('.gsrc').style.top =
+      Math.round(gap.getBoundingClientRect().bottom + 26) + 'px';
+    var srcBot = document.querySelector('.gsrc').getBoundingClientRect().bottom;
+    window.__srcBot = srcBot;
+    // [class, stock, pad, clip inset, clip trim, jaw, margin above the lip]
+    [['d1','#F0EADA',24,50,112,7,24], ['d2','#E2DAC6',22,28,80,4,60]].forEach(function(sp){
+      var el = document.querySelector('.' + sp[0]);
+      // shrink wrap to the longest laid out line rather than to the column it was written in
+      var wid = 0;
+      el.querySelectorAll('.dwhen, .dkind, .dwho, .ddo, .dsrc').forEach(function(ln){
+        var rg = document.createRange(); rg.selectNodeContents(ln);
+        Array.prototype.forEach.call(rg.getClientRects(), function(q){
+          if (q.width > wid) wid = q.width;
+        });
+      });
+      el.style.width = Math.ceil(wid) + 'px';
+      var hgt = el.getBoundingClientRect().height;
+      var sh  = hgt + sp[2] * 2 + 18;
+      var sy  = LIP - sp[6] - sh;
+      el.style.top = (sy + sp[2] + 18) + 'px';
+      var sx  = el.getBoundingClientRect().left - sp[2];
+      var sw  = Math.ceil(wid) + sp[2] * 2;
+      el.dataset.slip = [sx, sy, sw, sh].join(',');
+      window.__hangSlip([sx, sy, sw, sh, sp[1]], [sx + sp[3], sy - 26, sw - sp[4], sp[5]]);
+    });
+    // THE SLIPS MUST NOT BE THE SAME WIDTH, AND THE GATE SAYS SO IN PIXELS. Round 12 found
+    // frame 6 shipping 248 against 236, a five percent difference on a 496 device pixel object,
+    // under a comment claiming each width came from its own longest line. A spread a machine can
+    // measure is the only version of that claim worth making, so this throws and the render
+    // fails rather than warns.
+    var b1 = document.querySelector('.d1').dataset.slip.split(',').map(Number);
+    var b2 = document.querySelector('.d2').dataset.slip.split(',').map(Number);
+    var spread = Math.abs(b1[2] - b2[2]) / Math.max(b1[2], b2[2]);
+    if (spread < 0.06) {
+      throw new Error('the two slips are within ' + (spread * 100).toFixed(1) +
+        ' percent of one width, so they read as one repeated mark rather than as two slips');
+    }
+    if (b1[0] + b1[2] > b2[0]) { throw new Error('the two slips overlap'); }
+    // the near slip's clip crosses the notice sheet, so the sheet's last line has to end above it
+    if (window.__srcBot > b1[1] - 30) {
+      throw new Error('the notice sheet last line ends at ' + window.__srcBot.toFixed(0)
+        + ' and the near slip clip starts at ' + (b1[1] - 26).toFixed(0)
+        + ', so the citation is hidden behind hardware');
+    }
+    if (b1[1] - 26 < 804 || b2[1] - 26 < 804) {
+      throw new Error('a clip is drawn above the cork ledge at 796, so it hangs on the case '
+        + 'back wall with nothing to pin into. slip a ' + b1.join('/') + ' clip ' + (b1[1] - 26)
+        + ', slip b ' + b2.join('/') + ' clip ' + (b2[1] - 26));
+    }
+    // AND THEY MUST NOT HANG LEVEL. Two slips at one height is a rack, not a board somebody
+    // pinned things to. Round 12 found frame 6's three slips varying 14px on a 180px object and
+    // called it misregistration rather than variation, so this asks for a real step.
+    if (Math.abs(b1[1] - b2[1]) < 18) {
+      throw new Error('the two slips hang within ' + Math.abs(b1[1] - b2[1]).toFixed(0) +
+        'px of one height, which reads as a rack rather than as two things somebody pinned up');
+    }
+    // the case's lower lip, drawn LAST, which is the second half of the recorded instinct
+    // draw-every-plane-before-what-stands-on-it
+    x.fillStyle = '#1F252C'; x.fillRect(0, LIP, W, 122);
+    x.fillStyle = '#485058'; x.fillRect(0, LIP, W, 4);
+    resolve();
+  });
+});
+</script>
+</body></html>

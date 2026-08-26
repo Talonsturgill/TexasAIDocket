@@ -35,7 +35,7 @@ Every fact above rests on one of these. The words are the source's own.
 
 Source (primary_official): https://webapi.legistar.com/v1/corpuschristi/matters/26218
 
-### The same July 21, 2026 council meeting included a data center briefing covering the Governor's recent guidelines.
+### The same July 21st, 2026 council meeting included a data center briefing covering the Governor's recent guidelines.
 
 > Briefing on Data Centers, including overview of Governor Abbott's recent guidelines.
 

@@ -808,6 +808,30 @@ def frame_balance(img_arr):
 # cannot ratchet. Below it, a hairline is the decoration GATE_LESSONS 7 says a
 # divider is allowed to be, and this gate says nothing about it.
 RULE_VISIBLE_RATIO = 3.0
+# A RULE THROUGH A WORD DOES NOT NEED TO BE A VISIBLE GRAPHIC TO RUIN THE WORD.
+#
+# 2026-08-26. Frame 9 shipped a separator at rgba(58,52,42,0.30) over #F2EEE4 running through
+# "with a state body.", plainly visible in the render, and this file passed the frame with zero
+# fails. The rule measured about 1.6:1 against the paper, under RULE_VISIBLE_RATIO, and was
+# skipped as "a quiet divider; WCAG 1.4.11 asks nothing of it".
+#
+# That reasoning is right for a divider sitting in the leading and wrong for one crossing a glyph
+# band, because the eye judges an in-band rule against the LETTERFORMS it crosses rather than
+# against the paper beside it. So the two cases get two floors: a divider in the leading still has
+# to clear 3.0 before this file says anything about it, and a rule through the words has to clear
+# only enough to be distinguishable from the paper at all.
+RULE_STRIKE_RATIO = 1.25
+# ...AND IT HAS TO CROSS THE MIDDLE OF THE LETTERS, not the line box.
+#
+# The first cut of the lower floor fired on two things that are not strikethroughs: frame 3's
+# seating channel, which runs at the letters' FEET by design and is the whole reason that board
+# reads as a letterboard, and the top edge of frame 9's own notice sheet, which grazes the hook's
+# ascender line. Both sit inside the middle `em` of a line box, because a line box at 1.4 leading
+# is half again as tall as its em.
+#
+# A strikethrough is a rule through the x-height. This is the fraction of the em, centred on the
+# line's optical centre, that a rule has to cross before this file calls it one.
+RULE_STRIKE_BAND = 0.45
 RULE_SAMPLE_MIN = 24   # device px of clean strip needed before a colour is claimed
 
 OCC_FAIL_W = 20     # px of a line box's WIDTH an opaque plate must cover to FAIL
@@ -1126,6 +1150,8 @@ def rule_strikes(nodes, rules, img_arr, scale):
         for bx, by, bw, bh in lines:
             cy = by + bh / 2.0
             band0, band1 = max(by, cy - em / 2.0), min(by + bh, cy + em / 2.0)
+            half = em * RULE_STRIKE_BAND / 2.0
+            strike0, strike1 = max(by, cy - half), min(by + bh, cy + half)
             for r in rules:
                 if i in (r.get("skip") or []):
                     continue
@@ -1144,6 +1170,7 @@ def rule_strikes(nodes, rules, img_arr, scale):
                     if cxr - bx < em or (bx + bw) - cxr < em:
                         continue      # a divider brushing the end of a line box
                 in_band = min(band1, ry + rh) - max(band0, ry) > 0
+                in_strike = min(strike1, ry + rh) - max(strike0, ry) > 0
                 key = (i, round(rx), round(ry), round(rw), round(rh))
                 if key in seen:
                     continue
@@ -1163,8 +1190,10 @@ def rule_strikes(nodes, rules, img_arr, scale):
                                     % (n["text"][:40], where)))
                     continue
                 ratio, _ink, _paper = vis
-                if ratio < RULE_VISIBLE_RATIO:
+                if ratio < (RULE_STRIKE_RATIO if in_strike else RULE_VISIBLE_RATIO):
                     continue          # a quiet divider; WCAG 1.4.11 asks nothing of it
+                if in_band and not (in_strike or ratio >= RULE_VISIBLE_RATIO):
+                    continue          # inside the line box, clear of the letters, and quiet
                 if in_band:
                     out.append((
                         "warn" if n.get("overlap_ok") else "fail",
@@ -1248,15 +1277,44 @@ def self_test():
     ok("...and the repair fixture still carries the rule that struck",
        any(r["h"] == 2 for r in dr["rules"]), str(dr["rules"]))
 
-    # 3. THE DISCRIMINATION. Identical crossing, quiet 1px hairline instead of
-    #    the 2px near-black rule. Only WCAG 1.4.11's 3.0:1 non-text floor tells
-    #    these two apart, so this is the case that proves the floor does work.
+    # 3. THE DISCRIMINATION, AND IT MOVED ON 2026-08-26. Identical crossing, quiet
+    #    1px hairline instead of the 2px near-black rule.
+    #
+    #    This case used to assert that a 1.6:1 hairline through the x-height is NOT
+    #    a strike, on the reasoning that WCAG 1.4.11's 3.0:1 non-text floor asks
+    #    nothing of it. THE RENDER REFUTED THAT. On 2026-08-26 frame 9 of
+    #    carousel no. 7 shipped a separator at rgba(58,52,42,0.30) over #F2EEE4,
+    #    measured 1.6:1, running through "with a state body." It is plainly visible
+    #    in out/2026-08-25/render/slide-09.png at that revision and this file passed
+    #    the frame with zero fails.
+    #
+    #    WCAG 1.4.11 asks whether a graphic is perceivable enough to CARRY
+    #    INFORMATION. That is not the question a strikethrough poses. The eye judges
+    #    an in-band rule against the LETTERFORMS it crosses, not against the paper
+    #    beside it, so the floor for the strike case is now RULE_STRIKE_RATIO and the
+    #    discrimination that does the real work is GEOMETRIC: a strike has to cross
+    #    the middle RULE_STRIKE_BAND of the em, which is the x-height, rather than
+    #    anywhere in a line box that is half again as tall as its type.
+    #
+    #    Reversing a self test's expectation is the move this repo names as a run
+    #    editing its own checker so its copy passes. It is written out here with the
+    #    render that forced it, so the next reader can judge the reversal rather than
+    #    inherit it.
     dq, aq = load("quiet")
     q = run(dq, aq)
-    ok("a quiet hairline crossing the same line is NOT a strike",
-       not [m for s, m in q if s == "fail"], str(q))
+    ok("a quiet hairline through the x-height IS a strike, since 2026-08-26",
+       any(s == "fail" for s, _ in q), str(q))
     ok("...and the quiet fixture really does cross the glyph band",
        any(abs(r["y"] - 86.5) < 0.6 for r in dq["rules"]), str(dq["rules"]))
+    #    ...and the geometric half of the discrimination, which is what stops the
+    #    lower floor firing on frame 3's seating channel at the letters' feet.
+    below = [dict(n) for n in dq["text_nodes"]]
+    for n in below:
+        if n["text"].startswith("Checked"):
+            n["lines"] = [[lx, ly - 11, lw, lh] for lx, ly, lw, lh in n["lines"]]
+    qb = run(dq, aq, below)
+    ok("...and the same quiet hairline at the letters' FEET is not a strike",
+       not [m for sv, m in qb if sv == "fail"], str(qb))
 
     # 4. THE GLYPH BAND IS THE LINE, NOT THE LINE BOX. Take the defect's real
     #    pixels and slide the footnote's line box down 12px, which puts the same

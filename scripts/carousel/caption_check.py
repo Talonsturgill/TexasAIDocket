@@ -117,8 +117,18 @@ BRITISH = {
 BRITISH_RX = re.compile(r"\b(" + "|".join(sorted(BRITISH, key=len, reverse=True)) + r")\b",
                         re.IGNORECASE)
 OPENER = re.compile(r"(?:^|(?<=[.!?])\s+|\n)\s*(And|But)\b")
-FIRST_PERSON = re.compile(r"\b(?:I|I'm|I've|I'll|we|we're|we've|we'll|our|ours|us|my|mine)\b",
-                          re.IGNORECASE)
+# AN AGENDA ITEM NUMBER IS NOT FIRST PERSON. A period is a word boundary, so `\bI\b` matched
+# the I in "No action taken due to I.3 failed", which is Brazoria County's own minute line and
+# the best single fact the August 25th run had. The gate reported first person on a caption that
+# contained none, and the only ways past it were to misquote the record or to drop the quote.
+#
+# A gate that can only be satisfied by damaging a verbatim quote is a gate that will be switched
+# off, so the fix is here rather than in the copy. `I` is still first person everywhere else,
+# including at the end of a sentence and before a comma. It is exempt only where a digit or a
+# further Roman numeral follows the period, which is what an item identifier looks like and what
+# a pronoun never does.
+FIRST_PERSON = re.compile(r"\b(?:I(?!\.\s*[0-9IVX])|I'm|I've|I'll|we|we're|we've|we'll"
+                          r"|our|ours|us|my|mine)\b", re.IGNORECASE)
 # A ROMAN NUMERAL IS NOT A PRONOUN. "the 2027 State Water Plan (Phase I)" is the document's own
 # name, and reporting it as a writer talking about themselves sends an editor looking for a
 # first person that is not there. The anchor is the word in front, the same way an identifier
@@ -290,6 +300,43 @@ HASHTAG = re.compile(r"#[A-Za-z][A-Za-z0-9]*")
 MALFORMED_TAG = re.compile(r"#(?![A-Za-z])\S*|#[A-Za-z][A-Za-z0-9]*[^\sA-Za-z0-9#]+")
 
 
+def linkedin_rule(key: str, kind):
+    """One `linkedin_post` value from `config/brand.yaml`. Never a literal in this file.
+
+    THE FOURTH INSTANCE OF THE SAME DEFECT (2026-08-25). `brand.yaml` has carried
+    `caption_chars: [300, 900]`, `links_in_body: false` and `ends_with: engagement_question`ate
+    the whole time, and this gate read only `hashtags_exactly`, so August 25th's caption shipped
+    980 characters long, ending on a link, with the link in the body, past a green run. That is
+    a rule stated in config, a surface keeping its own copy, and nothing in between checking they
+    agree, which `CLAUDE.md` names three separate times as this project's recurring fault.
+
+    Searched by key for the same reason `hashtags_required` searches: a gate that goes quiet
+    because a maintainer moved a section fails open on the day it is needed.
+    """
+    import yaml
+    doc = yaml.safe_load((REPO_ROOT / "config" / "brand.yaml").read_text(encoding="utf-8"))
+
+    def find(node):
+        if isinstance(node, dict):
+            if isinstance(node.get("linkedin_post"), dict):
+                got = node["linkedin_post"].get(key)
+                if got is not None:
+                    return got
+            for v in node.values():
+                got = find(v)
+                if got is not None:
+                    return got
+        return None
+
+    v = find(doc)
+    if not isinstance(v, kind):
+        raise SystemExit(
+            f"caption_check: config/brand.yaml has no linkedin_post.{key}. That key is where this "
+            f"is decided and the gate will not guess it. Restore the key rather than removing the "
+            f"check")
+    return v
+
+
 def hashtags_required() -> int:
     """How many hashtags the post takes, per `config/brand.yaml`. Never a literal in this file."""
     import yaml
@@ -318,6 +365,45 @@ def hashtags_required() -> int:
             "where the post's hashtag count is decided, and this gate will not guess it. Restore "
             "the key rather than removing this check")
     return n
+
+
+def post_shape_problems(text: str) -> list[str]:
+    """The three `linkedin_post` rules that live in brand.yaml and had no gate (2026-08-25).
+
+    Length, the link rule and the required ending. All three were stated in config, all three
+    were broken on a run this file reported clean, and that is the fourth time this project has
+    shipped a rule stated in one place and a surface keeping its own copy of it.
+
+    POST LEVEL, and kept out of `check()` on purpose. `check()` is fed prose fragments by the
+    suite and by other callers, and a caption length rule applied to a fragment fails everything.
+    Same reason `hashtag_problems` is its own function, and the caption surface is the only
+    caller of either.
+    """
+    problems: list[str] = []
+    # THE THREE brand.yaml RULES THIS GATE NEVER READ (2026-08-25). Length, the link rule and
+    # the required ending. All three were stated in config and all three were broken on a run
+    # this file reported clean.
+    lo, hi = linkedin_rule("caption_chars", list)
+    n = len(text.strip())
+    if not (lo <= n <= hi):
+        problems.append(
+            f"the caption is {n} characters and brand.yaml's linkedin_post.caption_chars band is "
+            f"{lo} to {hi}. Over the top of it the stake sits below the mobile fold; under the "
+            f"bottom of it there is no room for a source")
+    body = HASHTAG.sub("", text).strip()
+    if not linkedin_rule("links_in_body", bool):
+        for hit in set(URL.findall(body)) | set(re.findall(r"\b[a-z0-9-]+\.(?:com|org|net|gov)\b",
+                                                          body, re.I)):
+            problems.append(
+                f"link {hit!r} in the body: brand.yaml sets linkedin_post.links_in_body false, "
+                f"because a link suppresses reach and the sources go in the first comment")
+    if linkedin_rule("ends_with", str) == "engagement_question" and not body.rstrip().endswith("?"):
+        tail = body.rstrip().split("\n")[-1][-70:]
+        problems.append(
+            f"the caption does not end on a question, and brand.yaml sets linkedin_post.ends_with "
+            f"to engagement_question. It ends {tail!r}")
+
+    return problems
 
 
 def hashtag_problems(text: str, required: int | None = None) -> list[str]:
@@ -580,6 +666,7 @@ def run(text: str, *, quiet: bool = False) -> int:
     problems = check(text)
     # CAPTION SURFACE ONLY, and this is the only path that reaches it. See `hashtag_problems`.
     problems += hashtag_problems(text)
+    problems += post_shape_problems(text)
     rate, commas, words = comma_rate(text)
     rp = rate_problem(text)
     if rp:
@@ -767,6 +854,21 @@ def self_test() -> int:
     ok("...but a short block still fails on construction",
        catches("It ran and, briefly, stopped.", "comma after"))
 
+    # AN AGENDA ITEM NUMBER IS NOT A PRONOUN. Brazoria County's minute reads "No action taken
+    # due to I.3 failed", and this gate reported first person on a caption quoting it. The only
+    # ways past were to misquote the record or drop its best fact, which is how a gate stops
+    # being run at all. Both directions are asserted, because the exemption must not become a
+    # hole a real pronoun fits through.
+    ok("an agenda item number is not first person",
+       not catches('The minute reads "No action taken due to I.3 failed".', "first person"))
+    ok("...and a Roman numbered item is not either",
+       not catches('Item I.IV was postponed by the court.', "first person"))
+    ok("...while a real first person still FAILS",
+       catches("I read the minute myself.", "first person"))
+    ok("...and so does one at the end of a sentence",
+       catches("The clerk read it and so did I.", "first person"))
+    ok("...and so does a plural one", catches("We read the minute.", "first person"))
+
     # THE BACKSTOP'S OWN BYPASS. Splitting on every period let a long sentence hide inside its
     # own abbreviation, and both fixtures below are real shipped copy, not invented ones. The
     # first ran 44 words on tx-2026-0027 and reported as two passing halves for as long as the
@@ -882,6 +984,24 @@ def self_test() -> int:
        all(w in doc for w in ("colons", "semicolons", "comma density")))
     ok("...and the header does not still claim density is unenforced",
        "NOT FAILED" not in doc and "DELIBERATELY NOT SET YET" not in doc)
+
+    # THE THREE brand.yaml RULES (2026-08-25), each direction.
+    _lo, _hi = linkedin_rule("caption_chars", list)
+    _tags = " ".join(f"#Tag{i}" for i in range(1, hashtags_required() + 1))
+    _ok = ("Something happened in Bexar County and the record says so plainly. "
+           * 4)[: _hi - len(_tags) - 40] + " Is that worth it?\n\n" + _tags
+    ok("a caption inside the band, ending on a question, with no link, is clean",
+       not post_shape_problems(_ok), str(post_shape_problems(_ok))[:160])
+    _long = ("Something happened in Bexar County and the record says so plainly. " * 20
+             + "Is that worth it?\n\n" + _tags)
+    ok("...a caption over the band FAILS",
+       any("caption_chars band" in x for x in post_shape_problems(_long)), str(post_shape_problems(_long))[:120])
+    _link = _ok.replace("Is that worth it?", "The record is at texasaidocket.com. Is that worth it?")
+    ok("...a link in the body FAILS",
+       any("links_in_body" in x for x in post_shape_problems(_link)), str(post_shape_problems(_link))[:120])
+    _noq = _ok.replace("Is that worth it?", "That is what the record says.")
+    ok("...and a caption that does not end on a question FAILS",
+       any("ends_with" in x for x in post_shape_problems(_noq)), str(post_shape_problems(_noq))[:120])
 
     ok("empty copy is clean rather than a crash", not check(""))
     ok("a violation reports as an actionable sentence, not a code",

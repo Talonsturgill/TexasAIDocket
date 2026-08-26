@@ -1,0 +1,405 @@
+{
+ "aggregates": [
+  {
+   "phrase": "156 DAYS",
+   "kind": "duration",
+   "from_date": "2026-03-10",
+   "to_date": "2026-08-13",
+   "from_claims": [
+    "c5",
+    "c9",
+    "c17",
+    "c22",
+    "c30",
+    "c31",
+    "c32",
+    "c35",
+    "c36",
+    "c37",
+    "c38",
+    "c40",
+    "c41",
+    "c43",
+    "c45"
+   ],
+   "computed_by": "out/2026-08-25/compute.py, first_action_date and last_action_date over the acting items",
+   "value": 156
+  },
+  {
+   "phrase": "8.0 gallons",
+   "kind": "count",
+   "value": 8,
+   "from_claims": [
+    "c32"
+   ],
+   "quoted_from": "c32",
+   "quote": "shall not exceed 8.0 gallons per square foot",
+   "computed_by": "not computed. Quoted from Ordinance 2026-078 itself"
+  },
+  {
+   "phrase": "Eight items",
+   "kind": "count",
+   "value": 8,
+   "from_claims": [],
+   "computed_by": "out/2026-08-25/compute.py, doors_record_wide. The same door test run over EVERY item in ledger/docket.json, published so the closing frame can name the wider set it is scoped inside"
+  },
+  {
+   "phrase": "FIFTEEN ACTIONS",
+   "kind": "count",
+   "value": 15,
+   "from_claims": [
+    "c5",
+    "c9",
+    "c17",
+    "c22",
+    "c30",
+    "c31",
+    "c32",
+    "c35",
+    "c36",
+    "c37",
+    "c38",
+    "c40",
+    "c41",
+    "c43",
+    "c45"
+   ],
+   "computed_by": "out/2026-08-25/compute.py, restricted_count. actions by a Texas local government"
+  },
+  {
+   "phrase": "FIVE OF THE FIFTEEN",
+   "kind": "ratio",
+   "value": 5,
+   "of": 15,
+   "from_claims": [
+    "c5",
+    "c7",
+    "c30",
+    "c22",
+    "c18"
+   ],
+   "computed_by": "out/2026-08-25/compute.py, stated_nonbinding over restricted_count. acting bodies whose own source says the action does not bind"
+  },
+  {
+   "phrase": "Fifteen actions",
+   "kind": "count",
+   "value": 15,
+   "from_claims": [
+    "c5",
+    "c9",
+    "c17",
+    "c22",
+    "c30",
+    "c31",
+    "c32",
+    "c35",
+    "c36",
+    "c37",
+    "c38",
+    "c40",
+    "c41",
+    "c43",
+    "c45"
+   ],
+   "computed_by": "out/2026-08-25/compute.py, restricted_count. actions by a Texas local government"
+  },
+  {
+   "phrase": "Five of the fifteen",
+   "kind": "ratio",
+   "value": 5,
+   "of": 15,
+   "from_claims": [
+    "c5",
+    "c7",
+    "c30",
+    "c22",
+    "c18"
+   ],
+   "computed_by": "out/2026-08-25/compute.py, stated_nonbinding over restricted_count. acting bodies whose own source says the action does not bind"
+  },
+  {
+   "phrase": "Four abatements",
+   "kind": "count",
+   "value": 4,
+   "from_claims": [
+    "c9",
+    "c10",
+    "c11"
+   ],
+   "computed_by": "out/2026-08-25/compute.py, brazoria_applications. Distinct applicants whose Brazoria County hearing orders name Reinvestment Zone No. 26-01, counted off the county's own Legistar matter titles in out/2026-08-25/brazoria_matters.json"
+  },
+  {
+   "phrase": "Four applications",
+   "kind": "count",
+   "value": 4,
+   "from_claims": [
+    "c9",
+    "c10",
+    "c11"
+   ],
+   "computed_by": "out/2026-08-25/compute.py, brazoria_applications. Distinct applicants whose Brazoria County hearing orders name Reinvestment Zone No. 26-01, counted off the county's own Legistar matter titles in out/2026-08-25/brazoria_matters.json"
+  },
+  {
+   "phrase": "MARCH 10TH TO AUGUST 13TH",
+   "kind": "span",
+   "from_date": "2026-03-10",
+   "to_date": "2026-08-13",
+   "from_claims": [
+    "c5",
+    "c9",
+    "c17",
+    "c22",
+    "c30",
+    "c31",
+    "c32",
+    "c35",
+    "c36",
+    "c37",
+    "c38",
+    "c40",
+    "c41",
+    "c43",
+    "c45"
+   ],
+   "computed_by": "out/2026-08-25/compute.py, first_action_date and last_action_date over the acting items",
+   "value": 156
+  },
+  {
+   "phrase": "Nine frames",
+   "kind": "count",
+   "value": 9,
+   "from_claims": [],
+   "computed_by": "the deck's own slide count, out/2026-08-25/copy.json, which is regenerated from the rendered frames rather than typed"
+  },
+  {
+   "phrase": "Seventeen times",
+   "kind": "count",
+   "value": 17,
+   "from_claims": [
+    "c5",
+    "c9",
+    "c17",
+    "c22",
+    "c30",
+    "c31",
+    "c32",
+    "c35",
+    "c36",
+    "c37",
+    "c38",
+    "c40",
+    "c41",
+    "c43",
+    "c45",
+    "c14",
+    "c15"
+   ],
+   "computed_by": "out/2026-08-25/compute.py, total_count. acting plus declined"
+  },
+  {
+   "phrase": "Twelve Texas governments",
+   "kind": "count",
+   "value": 12,
+   "from_claims": [
+    "c5",
+    "c9",
+    "c17",
+    "c22",
+    "c30",
+    "c31",
+    "c32",
+    "c35",
+    "c36",
+    "c37",
+    "c38",
+    "c40",
+    "c41",
+    "c43",
+    "c45"
+   ],
+   "computed_by": "out/2026-08-25/compute.py, acting_bodies. distinct places among the acting items"
+  },
+  {
+   "phrase": "Two doors have dates",
+   "kind": "count",
+   "value": 2,
+   "from_claims": [],
+   "computed_by": "out/2026-08-25/compute.py, open_doors. Items this deck weighed that carry a hearing or a comment window dated on or after the run date, in a public_access room a member of the public may enter"
+  },
+  {
+   "phrase": "Two were approvals",
+   "kind": "count",
+   "value": 2,
+   "from_claims": [
+    "c37",
+    "c45"
+   ],
+   "computed_by": "out/2026-08-25/compute.py, approvals. Acting items whose cited claim records a body approving a data center project or the incentive one depends on, both of which sit inside the five the record does not speak to on force"
+  },
+  {
+   "phrase": "five more the record carries",
+   "kind": "ratio",
+   "value": 5,
+   "of": 15,
+   "from_claims": [
+    "c36",
+    "c45",
+    "c38",
+    "c37",
+    "c40"
+   ],
+   "computed_by": "out/2026-08-25/compute.py, force_unstated over restricted_count. Acting items carrying no `effective` key date at all, which compute.py asserts rather than observes"
+  },
+  {
+   "phrase": "five of the fifteen",
+   "kind": "ratio",
+   "value": 5,
+   "of": 15,
+   "from_claims": [
+    "c5",
+    "c9",
+    "c17",
+    "c22",
+    "c30",
+    "c31",
+    "c32",
+    "c35",
+    "c36",
+    "c37",
+    "c38",
+    "c40",
+    "c41",
+    "c43",
+    "c45"
+   ],
+   "computed_by": "out/2026-08-25/compute.py, stated_binding over restricted_count. the record splits the fifteen evenly and each third is five, so the ratio is the same figure whichever third the sentence names"
+  },
+  {
+   "phrase": "one year",
+   "kind": "duration",
+   "value": 1,
+   "from_claims": [
+    "c16"
+   ],
+   "quoted_from": "c16",
+   "quote": "a similar one-year moratorium",
+   "computed_by": "not computed. Quoted from c16, reported speech about Hill County"
+  },
+  {
+   "phrase": "ten news reports",
+   "kind": "count",
+   "value": 10,
+   "from_claims": [
+    "c2",
+    "c3",
+    "c4",
+    "c5",
+    "c6",
+    "c7",
+    "c8",
+    "c9",
+    "c10",
+    "c11",
+    "c14",
+    "c15",
+    "c16",
+    "c17",
+    "c18",
+    "c22",
+    "c23",
+    "c24",
+    "c25",
+    "c30",
+    "c31",
+    "c32",
+    "c33",
+    "c34",
+    "c35",
+    "c36",
+    "c37",
+    "c38",
+    "c40",
+    "c41",
+    "c42",
+    "c43",
+    "c44",
+    "c45",
+    "c46"
+   ],
+   "computed_by": "scripts/carousel/sources_block.py, provenance_line over one claim per distinct document. Counted again here off the published block's own URLs"
+  },
+  {
+   "phrase": "ten official records",
+   "kind": "count",
+   "value": 10,
+   "from_claims": [
+    "c2",
+    "c3",
+    "c4",
+    "c5",
+    "c6",
+    "c7",
+    "c8",
+    "c9",
+    "c10",
+    "c11",
+    "c14",
+    "c15",
+    "c16",
+    "c17",
+    "c18",
+    "c22",
+    "c23",
+    "c24",
+    "c25",
+    "c30",
+    "c31",
+    "c32",
+    "c33",
+    "c34",
+    "c35",
+    "c36",
+    "c37",
+    "c38",
+    "c40",
+    "c41",
+    "c42",
+    "c43",
+    "c44",
+    "c45",
+    "c46"
+   ],
+   "computed_by": "scripts/carousel/sources_block.py, provenance_line over one claim per distinct document. Counted again here off the published block's own URLs"
+  },
+  {
+   "phrase": "three of the five",
+   "kind": "ratio",
+   "value": 3,
+   "of": 5,
+   "from_claims": [
+    "c32",
+    "c41",
+    "c43"
+   ],
+   "computed_by": "out/2026-08-25/compute.py, busiest_body_binding over stated_binding. how many of the actions that took effect San Angelo wrote"
+  },
+  {
+   "phrase": "twelve Texas governments",
+   "kind": "count",
+   "value": 12,
+   "from_claims": [],
+   "computed_by": "out/2026-08-25/compute.py, acting_bodies. Distinct places among the acting items"
+  },
+  {
+   "phrase": "two hearings",
+   "kind": "count",
+   "value": 2,
+   "from_claims": [
+    "c46"
+   ],
+   "quoted_from": "c46",
+   "quote": "required to hold two public hearings",
+   "computed_by": "not computed. Quoted from c46, the two the city must hold before its pause can take effect"
+  }
+ ]
+}

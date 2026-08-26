@@ -1,0 +1,47 @@
+{
+ "judge": "A, the integrity lens",
+ "weighted_score": 6.86,
+ "ship": true,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 7.4
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 5.9
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 7.2
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 6.6
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 7.0
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.8
+  }
+ ],
+ "hard_fails": [],
+ "one_sentence_fix": "Make the cover's summary sentence a computed assertion rather than a written one: have compute.py assert, member by member, that the predicate frame 1 prints is carried by each acting item's own cited claim text rather than by the record's topic tag.",
+ "hard_fails_resolved": [
+  {
+   "fail": "Frame 1's dek published 'Twelve Texas local governments acted on a data center this year.' Williamson County (tx-2026-0029, cited as c45) is described by its own primary source as a server service center, and c45's own caveat concedes it. The sentence presented as verified a thing one of its twelve cited members does not support.",
+   "closed_by": "Frame 1's dek now reads 'Twelve Texas governments acted on a data center or server facility. The instrument's shape decides whether anything stops.' The second disjunct is Williamson County's own noun, from tx-2026-0029-c2: 'a server service center supporting enterprise and cloud infrastructure needs'.",
+   "verified_by": "the same judge, re-reading the render and checking the new predicate against each of the twelve bodies' own cited claim text. bodies_not_covered: []"
+  }
+ ],
+ "note": "scored 6.86 with one hard fail at round 16, which is the score of record. The fail was fixed by the one edit this judge specified and verified closed by this judge. The criterion scores are NOT re-graded, because the deck was scored once and a run that re-grades its own fix is the loop the round cap exists to end."
+}

@@ -83,12 +83,20 @@ BODY = re.compile(
 # A date, month first, which is the house form.
 DATE = re.compile(
     r"\b(?:January|February|March|April|May|June|July|August|September|October|November|"
-    r"December)\s+\d{1,2}")
+    r"December)\s+\d{1,2}", re.I)
+# CASE INSENSITIVE, and it was not until 2026-08-25. ACTION beside it always was, so one half of
+# the same test read display type and the other half could not. That day's closing frame carried
+# NOVEMBER 10TH at 58px, the largest numeral in the deck and the one thing a reader could still
+# act on, and this gate reported the deck gave them nothing dated. Display type is set in caps as
+# a matter of course, so a case sensitive month name here reads the caption and never the slide.
 
 # Something a reader could actually do, or turn up to.
 ACTION = re.compile(
-    r"\b(?:public comment|comment period|comment deadline|open meeting|hearing|testimony|"
-    r"docket|project \d+|filing|agenda|vote|deadline|comments? (?:are )?due)\b", re.I)
+    r"\b(?:public comments?|comment period|comment deadline|open meetings?|hearings?|testimony|"
+    r"dockets?|project \d+|filings?|agendas?|votes?|deadlines?|comments? (?:are )?due)\b", re.I)
+# PLURALS, since 2026-08-25. `hearing` could not see "the first of two required public hearings",
+# which is how a closing frame actually says it. That deck passed on the word DEADLINE sitting
+# elsewhere on the same frame, so the gate was right by accident about a deck it had misread.
 
 
 def gazetteer() -> tuple:
@@ -244,6 +252,13 @@ def self_test() -> int:
     ok("a docket buried off the closing frame is NOT a next step", not p["next_step"], str(p))
     p = profile("x", closing="September 4th, 2026. Public comment deadline on the calendar.")
     ok("a dated action ON the closing frame IS a next step", p["next_step"], str(p))
+
+    # A DATE SET IN DISPLAY CAPS IS STILL A DATE (2026-08-25). ACTION was case insensitive and
+    # this was not, so the same test could read a caption and not a slide.
+    p = profile("x", closing="NOT LATER THAN NOVEMBER 10TH. THE FIRST OF TWO PUBLIC HEARINGS.")
+    ok("a dated action set in display caps IS a next step", p["next_step"], str(p))
+    p = profile("x", closing="ONE DOOR IS STILL OPEN. NOTHING SCHEDULED.")
+    ok("...and caps alone do not conjure one", not p["next_step"], str(p))
 
     # CALIBRATION against all three shipped decks, so drift shows up as a number.
     expect = {"2026-08-16": ["Grimes County", "Iola ISD"],

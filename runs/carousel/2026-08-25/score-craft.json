@@ -1,0 +1,38 @@
+{
+ "lens": "craft",
+ "weighted_score": 7.23,
+ "criteria": {
+  "artwork_craft": {
+   "score": 7.1,
+   "weight": 0.28,
+   "why": "frame 4 is a genuinely made object, frame 9's sheet sits on a lit wall, and round 10's pin finding landed with a seven stop penumbra and a contact core on all five fasteners against three real stocks; a 3px rule at 26 percent still crosses the cover's citation glyphs under a comment claiming the field is clear"
+  },
+  "claim_integrity": {
+   "score": 7.3,
+   "weight": 0.2,
+   "why": "frames 1 and 2 verify each other, the blank rule set is exactly the set the cover cites, and 8.0 gallons is quoted rather than restated; frame 7 prints one identifier two ways in a face where I and 1 collide"
+  },
+  "story_and_stakes": {
+   "score": 7.5,
+   "weight": 0.18,
+   "why": "fourteen Texas places named with the body in every case and a dated step at the close; the close states a fact rather than an action"
+  },
+  "sequence_and_momentum": {
+   "score": 7.3,
+   "weight": 0.12,
+   "why": "the measured value curve confirms the turn rather than asserting it, peak on the turn and trough on the chronology; frames 1 and 2 are the smallest junction in the strip and share a camera"
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.12,
+   "why": "flat, unboosterish and honest with ordinals right on every date surface; airless, and no frame sounds like a person from Texas rather than from the record"
+  },
+  "variety": {
+   "score": 7.2,
+   "weight": 0.1,
+   "why": "bespoke median 0.1636, a genuinely new object and no cartography; the mid value register it argued on shipped on one frame of nine"
+  }
+ },
+ "hard_fails": [],
+ "one_sentence_fix": "Derive every decorative field's bounds and every declared focal box from the laid out DOM boxes at render time and assert non intersection."
+}

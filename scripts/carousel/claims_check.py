@@ -95,6 +95,16 @@ MIN_QUOTE_WORDS = 4
 # Below this a "quote" is a fragment that cannot be searched for in the source, which makes it
 # unverifiable by the next person, which is the same as not having one.
 
+MIN_QUOTE_CHARS = 28
+# The word count is the right test for PROSE and the wrong one for a structured span. Half this
+# project's primary sources are JSON APIs, where the verbatim string that proves a fact is a
+# field pair like `"EventDate":"2026-06-16T00:00:00"` -- one whitespace token, 33 characters,
+# and about as findable as a string gets. On 2026-08-25 this rule refused two such quotes on a
+# claims file whose every claim had been re-fetched at 200 that morning, and would have refused
+# them every run after. The test is DISCRIMINATING POWER, and a span has it by words or by
+# length. "no action taken" is 3 words and 15 characters and still fails, which is correct:
+# that phrase appears twice in its own response and everywhere else in Legistar.
+
 
 AGENT_SPEC = REPO_ROOT / ".claude" / "agents" / "carousel-fact-checker.md"
 
@@ -217,10 +227,12 @@ def check(doc: dict) -> list[str]:
             problems.append(f"{where}: source_type {st!r} is not one of {sorted(SOURCE_TYPES)}")
 
         q = c.get("quote")
-        if isinstance(q, str) and q.strip() and len(q.split()) < MIN_QUOTE_WORDS:
+        if (isinstance(q, str) and q.strip()
+                and len(q.split()) < MIN_QUOTE_WORDS and len(q.strip()) < MIN_QUOTE_CHARS):
             problems.append(
-                f"{where}: the quote is {len(q.split())} words. Under {MIN_QUOTE_WORDS} it cannot "
-                f"be searched for in the source, which is the same as not having one")
+                f"{where}: the quote is {len(q.split())} words and {len(q.strip())} characters. "
+                f"Under {MIN_QUOTE_WORDS} words it needs {MIN_QUOTE_CHARS} characters to be "
+                f"searched for in the source, which is the same as not having one")
 
         # THE ONE THAT MATTERS MOST. `text` is what the record will state and `quote` is the
         # string that proves it. If they are identical the fact-checker has copied the source
@@ -349,6 +361,21 @@ def self_test() -> int:
     ok("caught: no rejection record at all", bool(check(norej)))
     blankrej = _copy.deepcopy(good); blankrej["rejected"] = [{"finding": "x", "reason": " "}]
     ok("caught: a rejection with no reason", bool(check(blankrej)))
+    # THE QUOTE LENGTH RULE, BOTH DIRECTIONS (2026-08-25). A JSON field pair is one whitespace
+    # token and is the most findable string a primary API source has. A three word phrase is not.
+    shortq = _copy.deepcopy(good)
+    shortq["claims"][0]["quote"] = "no action taken"
+    ok("caught: a three word prose fragment is still not a quote",
+       any("characters" in x for x in check(shortq)), str(check(shortq))[:140])
+    jsonq = _copy.deepcopy(good)
+    jsonq["claims"][0]["quote"] = '"MatterHistoryActionName":"no action taken"'
+    ok("...but a 42 character field pair is one, whitespace notwithstanding",
+       not any("characters" in x for x in check(jsonq)), str(check(jsonq))[:140])
+    edgeq = _copy.deepcopy(good)
+    edgeq["claims"][0]["quote"] = "x" * (MIN_QUOTE_CHARS - 1)
+    ok("...and the character floor is a floor, not a suggestion",
+       any("characters" in x for x in check(edgeq)))
+
     ok("an empty claim list is reported, not passed silently",
        bool(check({"claims": [], "rejected": []})))
     ok("a file that is not an object fails rather than throwing", bool(check(["c1"])))

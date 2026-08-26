@@ -25,7 +25,7 @@ The Williamson County Commissioners Court approved a Chapter 312 tax abatement i
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-08-19 · Checked and unchanged. The county's announcement of the Chapter 312 abatement agreement for the Georgetown server service center still stands as published on April 15th. Construction is still due to finish by February 18th, 2027.
-- 2026-08-22 · Checked and unchanged. The county's announcement of the Chapter 312 abatement for the Georgetown server service center still stands, and construction is still due to finish by February 18th, 2028.
+- 2026-08-22 · Checked and unchanged. The county's announcement of the Chapter 312 abatement for the Georgetown server service center still stands, and construction is still due to finish by February 18th, 2027.
 - 2026-08-25 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
