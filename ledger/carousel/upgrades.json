@@ -516,4 +516,26 @@
    "the 26 change set of 2026-08-25": "HELD AND CORRECT. Nothing in that set was reverted this round and two of its gates fired on this round's own work: plan_render_check caught frame 4 printing a dek its dossier did not declare, and dossier_check caught three rewritten band blocks that named no top or middle third. A gate written last round catching this round's regression is the only evidence that a gate was worth writing."
   }
  }
+,
+ "2026-08-25 r14": {
+  "run": "carousel no. 7, round 14. Third key for one run date, by this file's own append rule.",
+  "actor": "upgrade",
+  "note": "One change, and it is a gate that was GREEN over a defect a human could see, which is the class GATE_LESSONS.md exists to catalogue.",
+  "upgrades": [
+   {
+    "what": ".claude/skills/carousel-engine/qa.py splits its rule floor in two and adds a geometric test. A rule crossing the x-height is judged at RULE_STRIKE_RATIO 1.25 rather than at WCAG 1.4.11's 3.0, and it has to cross the middle 45 percent of the em rather than anywhere inside a line box that is half again as tall as its type.",
+    "why": "Frame 9 shipped a separator at rgba(58,52,42,0.30) over #F2EEE4 running straight through the words 'with a state body.' It is plainly visible in the render. This file passed the frame with zero fails, because the rule measured 1.6 to 1 against the paper and was skipped as a quiet divider WCAG asks nothing of. WCAG 1.4.11 asks whether a graphic is perceivable enough to CARRY INFORMATION, which is not the question a strikethrough poses. The eye judges an in band rule against the LETTERFORMS it crosses, not against the paper beside it.",
+    "how": "The lower floor alone fired on two things that are not strikethroughs, frame 3's seating channel at the letters' feet and the top edge of frame 9's own sheet grazing the hook's ascenders, so the discrimination that does the real work is geometric. RULE_STRIKE_BAND is the fraction of the em, centred on the line's optical centre, a rule has to cross before this file calls it a strike.",
+    "files": [
+     "\\.claude/skills/carousel-engine/qa\\.py"
+    ],
+    "verification": "python3 .claude/skills/carousel-engine/qa.py --self-test. It replays three real renders of a 2026-08-18 frame and now asserts BOTH halves: a quiet hairline through the x-height IS a strike, and the same hairline at the letters' feet is not.",
+    "a_self_test_expectation_was_REVERSED": "Case 3 used to assert that a 1.6 to 1 hairline through the glyph band is not a strike. A run editing its own checker so its copy passes is the pattern this repo names as its own worst failure, so the reversal is written into the file with the render that forced it and the reasoning that was wrong, rather than made silently. The next reader can judge the reversal instead of inheriting it.",
+    "reverts_as": "set RULE_STRIKE_RATIO back to RULE_VISIBLE_RATIO and restore case 3's original expectation"
+   }
+  ],
+  "follow_through": {
+   "label_guard, added earlier this run": "HELD. It ran on every render of every round since and refused two decks: frame 6's ZONING and SEWER on a synthetic replay, and the caption's aggregate rows twice when copy.json was regenerated. It has never fired on a correct label."
+  }
+ }
 }
