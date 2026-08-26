@@ -33,6 +33,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # THE SITE BUILD NEEDS THESE AND THE COLLECTOR DOES NOT, which is why they were missing.
+      # `gridwatch.yml` installs the same one before its own rebuild.
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - run: pip install --quiet pyyaml
+
       - name: Prove the collector's checks can go red
         run: python3 scripts/gridwatch/generators_collect.py --self-test
 
@@ -41,11 +49,56 @@ jobs:
           python3 scripts/gridwatch/generators_collect.py --collect || rc=$?
           if [ "${rc:-0}" -gt 2 ]; then exit "$rc"; fi
 
+      # THE READING AND THE SITE GO IN ONE COMMIT. This workflow committed the ledger alone,
+      # so `docs/` was left describing the PREVIOUS edition, and the next pull request to run
+      # `site_fresh_check` was told `datacenters/index.html` had been hand edited. It had not.
+      # It was simply older than the ledger it is a function of.
+      #
+      # 2026-08-26 IS WHAT THIS COST. `4b8d04fd` added the July EIA-860M row at 16:37 UTC and
+      # rebuilt nothing, so the page said "Generator inventory, June 2026 edition" against a
+      # ledger holding July, and every pull request open at the time went red on a file none
+      # of them had touched. `datacenters.yml` carries this same step and a comment recording
+      # the same failure on 08-19, 08-21, 08-23 and 08-24. Its sibling never got the fix.
+      #
+      # continue-on-error, because a broken site build must not cost a reading. EIA publishes
+      # once a month on a day that moves, and a missed edition waits a month.
+      - name: Rebuild the published site
+        id: rebuild
+        continue-on-error: true
+        run: python3 scripts/site/site_build.py --out docs --today "$(date -u +%F)"
+
+      - name: Stay in lane
+        run: |
+          # The ownership gate a pull request would run, run here because there is no pull
+          # request. This actor owns its ledger and may rebuild docs, and nothing else.
+          git add -A
+          if git diff --cached --quiet; then
+            echo "nothing changed, nothing to check"; exit 0
+          fi
+          python3 scripts/shared/ownership_check.py --actor gridwatch --staged
+
       - name: Commit the reading
         run: |
+          if git diff --cached --quiet; then echo "nothing new"; exit 0; fi
           git config user.name  "texas-ai-docket-bot"
           git config user.email "bot@texasaidocket.com"
-          git add ledger/gridwatch/generators.jsonl ledger/gridwatch/raw || true
-          git diff --cached --quiet && echo "nothing new" && exit 0
-          git commit -m "generators: EIA-860M reading"
+          git commit -q -m "generators: EIA-860M reading"
+
+          # ONE COMMIT AHEAD OF TRUNK, CHECKED BEFORE ANYTHING IS PUSHED, which is the rule
+          # gridwatch.yml already runs under. If this job's history is ever more than trunk
+          # plus its own reading, something else has put work in this workspace, and pushing
+          # it is how a collector becomes a deploy mechanism.
+          AHEAD=$(git rev-list --count origin/main..HEAD)
+          if [ "$AHEAD" != "1" ]; then
+            echo "::error::this job is ${AHEAD} commits ahead of main and should be 1. \
+          Refusing to push, because a collector must only ever push its own reading."
+            exit 1
+          fi
           git push
+
+      - name: Say so when the rebuild failed
+        if: steps.rebuild.outcome == 'failure'
+        run: |
+          echo "::error::the reading landed and the site rebuild did not, so docs/ is now \
+          older than the ledger and site_fresh_check will go red on the next pull request."
+          exit 1
