@@ -8,29 +8,16 @@ vague "should". Where something can wait, it says so.
 
 ---
 
-## 1. Register the domains. This is the only genuinely urgent one.
+## 1. The domain is registered and live. DONE.
 
-Every domain worth having was **unregistered** when this was checked (RDAP and DNS, both):
+**https://texasaidocket.com/** is the canonical public address. Cloudflare DNS, the Pages custom
+domain, `docs/CNAME`, `SITE_URL` in `scripts/site/site_build.py`, and the site value in
+`config/brand.yaml` all name it now. The services page is live and no longer waits on domain
+registration.
 
-    texasaihq.com          texasaidocket.com      texasaidocket.org
-    texasaidocket.net      txaidocket.com         lonestaraidocket.com
-
-**`texasaihq.com` is the structural match.** The sibling product's pattern is a `<state>aihq`
-domain, a wordmark, and the docket as a section of it, and following that pattern means the
-docket domains redirect rather than compete.
-
-**If this is never done:** the site lives on a `github.io` URL forever, which costs credibility
-with exactly the readers this is for (an agency staffer, a county commissioner, a reporter),
-and somebody else eventually registers the name.
-
-**When the domain exists**, one key changes: `SITE_URL` in `scripts/site/site_build.py`. Every
-absolute URL, the sitemap, the feeds and the structured data are derived from it, so it is a
-one line change and a rebuild.
-
-**The services page is waiting on this too.** It currently says the contact address is not
-published yet, because a Texas record should be reachable at a Texas address and publishing a
-borrowed one would be a small dishonesty on a page whose whole argument is that the small ones
-are what matter. Register the domain, add the address, rebuild.
+This is not a pending handoff item. It remains here because a future domain move has more than one
+surface: update the CNAME and site builder, the brand configuration, and the Ask Worker's origin
+and pack URLs, rebuild `docs/`, then let `livecheck.yml` prove the public result.
 
 ---
 
@@ -70,8 +57,9 @@ branches qualify and `main` is not special. The fix was **Settings → Environme
 github-pages → Deployment branches → No restriction**. Same one-second, no-log failure, a
 different cause, and the two are indistinguishable from the run page.
 
-The site is at **https://texasaidocket.com/** until the domain in item 1
-replaces it. `SITE_URL` in `scripts/site/site_build.py` is the one key to change.
+The canonical site is **https://texasaidocket.com/**. `docs/CNAME` and `SITE_URL` must continue to
+agree; `livecheck.yml` opens that address every six hours and fails if the front page, sitemap, or
+build stamp is unavailable.
 
 ---
 
@@ -102,11 +90,16 @@ prompt with nobody there to answer it.
 
 ---
 
-## 4. The instrument crons are already wired and need nothing
+## 4. The scheduled workflows are already wired and need nothing
 
 `.github/workflows/gridwatch.yml` runs twice daily on GitHub Actions and requires no key, no
 connector and no routine. It collects ERCOT demand and TWDB reservoir storage, rebuilds the
 site, and pushes to `main`.
+
+The other schedules are `datacenters.yml` for the Comptroller registry, `generators.yml` for the
+EIA inventory, `queuewatch.yml` for ERCOT's monthly queue report, `livecheck.yml` for the public
+site, and `pages.yml` as the deployment backstop. There are seven workflows in total and six have
+a schedule; `guards.yml` is the unscheduled validation workflow.
 
 **It starts working the moment the repo is public and Actions are enabled.** Check
 `ledger/gridwatch/readings.jsonl` after a day: one line per settled day, and the newest date
@@ -119,27 +112,32 @@ fail for an unrelated reason.
 
 ---
 
-## 5. Keys, when they are wanted. None of them block anything.
+## 5. The Ask Worker bindings
 
-Every integration no-ops cleanly without its key, so the build stays green either way.
+The static build needs no secret. The written Ask lane is a Cloudflare Worker and its live
+bindings are configured outside this repository.
 
-| key | unlocks | without it |
+| binding | unlocks | without it |
 |---|---|---|
-| Buttondown API key | subscriber email when a docket item opens for comment | the alert step SKIPs |
-| Supabase project | the Bottleneck Scanner backend | the scan page is static |
-| Cloudflare Worker, KV, Turnstile | the scanner's form handling | no form |
+| `ANTHROPIC_API_KEY` | written answers | the worker returns that the answerer is not configured |
+| `ASK_KV` | answer cache, usage receipts, and the monthly cap | answers can run, but caching and cap accounting are unavailable |
+| `TURNSTILE_SECRET` | server-side verification of the public Turnstile token | the worker reports the missing binding at `/_config` and does not enforce the human check |
+| Workers AI binding `AI` | optional reranking of the retrieval shortlist | deterministic BM25 and reciprocal-rank retrieval still run |
 
-**Texas needs its own Supabase project.** Do not reuse the sibling product's, which is shared
-between its scanner and a read counter.
+`ASK_ORIGIN`, `ASK_PACK_URL`, `ASK_CORPUS_URL`, `ASK_MODEL`, `ASK_EFFORT`, `ASK_RETRIEVAL`, and
+`ASK_MONTHLY_CAP` are optional overrides. The Worker exposes non-secret configuration state at
+`/_config` and a live provider probe at `/_probe`.
 
 ---
 
 ## What is deliberately not here
 
-**No analytics, no tracking, no cookies.** The ask box answers in the reader's browser and
-sends nothing anywhere. That is a stated promise on the page and a tested one in
-`tests/ask_engine.mjs`, which cuts the network and asks every question anyway. Adding an
-analytics tag would silently break a promise the site makes in writing.
+**No analytics, no audience tracking and no account cookies.** Typing in the Ask box sends
+nothing. Submitting a question is different: after Turnstile, the question goes to the Ask Worker
+and Anthropic, and a checked answer may be cached in KV under a content hash. The browser catalogue
+path is tested in `tests/ask_engine.mjs`; the network lane and its guard are tested under
+`workers/ask/`. Adding analytics would still be a new collection decision rather than a harmless
+script tag.
 
 **No human review gate.** The gates are the review, by design, and `CLAUDE.md` states it.
 

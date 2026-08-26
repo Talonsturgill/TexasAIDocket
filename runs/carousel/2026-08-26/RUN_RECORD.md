@@ -550,10 +550,10 @@ Written by `gate_status.py --sync`, never by hand.
 |---|---|---|
 | claims         | PASS   | 33 verified claim(s) |
 | render         | PASS   | 9 slide(s) |
-| qa             | STALE  | render/machine_qa.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| qa             | WARN   | 0 fail(s), 23 warn(s) |
 | aggregates     | PASS   | 16 declaration(s), 18 numeric phrase(s) in the render, all re-derived |
 | assembly       | PASS   | 9 slide(s), 5.86 MB, vector |
-| score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| score          | PASS   | 7.282 |
 | labels         | PASS   | 0 claim id(s) checked, every label beside one traces to the shape its claim proves |
 | quantifiers    | PASS   | 2 published string(s) read from one list, every universal names its set |
 | dossiers       | PASS   | 50,066 chars planned |
