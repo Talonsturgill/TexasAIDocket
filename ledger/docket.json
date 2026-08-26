@@ -7365,6 +7365,567 @@
      "checked": true
     }
    ]
+  },
+  {
+   "title": "UT System Regents put the first billion dollars of the UT Dell Medical Center into the capital program",
+   "summary": "The Board of Regents amended the University of Texas System capital improvement program on August 12th, 2026 to include the first phase of the UT Dell Medical Center in Austin, approved a total project cost for that phase and authorized the money from revenue financing system bond proceeds. The board item describes a 27 acre academic medical campus built around a digitally enabled infrastructure with digital technology, robotics and automation folded into operations, and it names MD Anderson as the partner for cancer care. The board's own document never uses the words artificial intelligence. That framing comes from the university's own April release, which describes a center where technology, data and AI are embedded to support clinicians. The debt is repaid from pledged revenues rather than from an appropriation, so the bet is on clinical income.",
+   "topic": "health-and-education",
+   "decider": {
+    "name": "University of Texas System Board of Regents",
+    "type": "state-agency"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Travis"
+    ],
+    "on_ercot": true,
+    "metro": "Austin-Round Rock-San Marcos, TX"
+   },
+   "status": "decided",
+   "confidence": "high",
+   "key_dates": [
+    {
+     "date": "2026-08-12",
+     "kind": "decided",
+     "note": "Board of Regents amended the capital improvement program to include Phase 1"
+    }
+   ],
+   "public_access": {
+    "room": "closed",
+    "how": "The board acted at its August 12th and 13th meeting in Austin and the agenda book carrying the recommendation is published in full. No further public step on this phase is named in the item.",
+    "url": "https://www.utsystem.edu/sites/default/files/offices/board-of-regents/board-meetings/agenda-book-full/8-2026AB.pdf",
+    "closes": null
+   },
+   "claims": [
+    {
+     "text": "The recommendation the board acted on names the project and the phase.",
+     "verbatim_quote": "U.T. Austin: The UT Dell Medical Center at The University of Texas at Austin, Phase 1 - Early Work and Site Preparation - Amendment of the current Capital Improvement Program to include Phase I; approval of total project cost; approval of design development for Phase I; appropriation of funds and authorization of expenditure; and resolution regarding parity debt",
+     "source_url": "https://www.utsystem.edu/sites/default/files/offices/board-of-regents/board-meetings/agenda-book-full/8-2026AB.pdf",
+     "source_title": "UT System Board of Regents agenda book, August 12 and 13, 2026, Facilities Planning and Construction Committee",
+     "source_type": "primary_official",
+     "id": "tx-2026-0095-c1",
+     "fetched": "2026-08-26"
+    },
+    {
+     "text": "The board's own item describes the campus technology as digital rather than as artificial intelligence.",
+     "verbatim_quote": "The campus will support a patient-centered model of care, incorporating digital technology, robotics, and automation to improve operations and the experience for patients and care teams.",
+     "source_url": "https://www.utsystem.edu/sites/default/files/offices/board-of-regents/board-meetings/agenda-book-full/8-2026AB.pdf",
+     "source_title": "UT System Board of Regents agenda book, August 12 and 13, 2026, project description",
+     "source_type": "primary_official",
+     "id": "tx-2026-0095-c2",
+     "fetched": "2026-08-26"
+    },
+    {
+     "text": "The board item names the site and the acreage.",
+     "verbatim_quote": "a transformative new academic medical destination on an approximately 27-acre site in the center of the west (former) Pickle Research Campus",
+     "source_url": "https://www.utsystem.edu/sites/default/files/offices/board-of-regents/board-meetings/agenda-book-full/8-2026AB.pdf",
+     "source_title": "UT System Board of Regents agenda book, August 12 and 13, 2026, project description",
+     "source_type": "primary_official",
+     "id": "tx-2026-0095-c3",
+     "fetched": "2026-08-26"
+    },
+    {
+     "text": "The university's own account of the same campus is where the artificial intelligence framing comes from.",
+     "verbatim_quote": "one where technology, data and AI are embedded to support clinicians, connect the patient journey and continuously improve outcomes",
+     "source_url": "https://news.utexas.edu/2026/04/21/michael-and-susan-dell-surpass-1-billion-in-giving-to-ut-austin/",
+     "source_title": "UT Austin, Michael and Susan Dell Surpass $1 Billion in Giving to UT Austin",
+     "source_type": "primary_official",
+     "id": "tx-2026-0095-c4",
+     "fetched": "2026-08-26"
+    }
+   ],
+   "id": "tx-2026-0095",
+   "last_verified": "2026-08-26",
+   "history": [
+    {
+     "date": "2026-08-26",
+     "note": "Admitted. The board's own agenda book carries the recommendation, the phase, the site and the money, and it describes the campus technology as digital rather than as artificial intelligence. The AI framing on this campus comes from the university's own release and is attributed to it here."
+    }
+   ]
+  },
+  {
+   "title": "Senate Water, Agriculture and Rural Affairs takes up data center cooling water on September 1st",
+   "summary": "The Senate Committee on Water, Agriculture and Rural Affairs carries an interim charge directing it to examine how much water high consumption cooling technologies use. The charge names data centers. The Legislature's own upcoming meetings listing sets the committee for Tuesday, September 1st, 2026 in hearing room E1.012 at the Capitol. It is marked a public hearing, which is the room where a member of the public may testify. The charge list also carries desalination and permitting efficiency. The water question is being taken up as one supply problem rather than as a data center problem alone. How a witness registers is set out in the formal notice and is unconfirmed.",
+   "topic": "state-policy",
+   "decider": {
+    "name": "Texas Senate Committee on Water, Agriculture and Rural Affairs",
+    "type": "legislature"
+   },
+   "geography": {
+    "statewide": true,
+    "counties": [],
+    "on_ercot": true
+   },
+   "status": "open",
+   "confidence": "high",
+   "key_dates": [
+    {
+     "date": "2026-09-01",
+     "kind": "hearing",
+     "note": "Public hearing, 9:00 AM, hearing room E1.012"
+    }
+   ],
+   "public_access": {
+    "room": "open_meeting",
+    "how": "The hearing is set for Tuesday, September 1st, 2026 in hearing room E1.012 at the Capitol in Austin. The Legislature's own listing marks it a public hearing. Witness registration instructions are unconfirmed, so a member of the public should ask the committee clerk how to sign up.",
+    "url": "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S",
+    "closes": "2026-09-01"
+   },
+   "claims": [
+    {
+     "text": "The committee's interim charge names data centers as the cooling technology to be examined.",
+     "verbatim_quote": "Assessing the Water Demands of Energy-Intensive Technologies: Examine the current water consumption rates for high-consumption cooling technologies, including data centers.",
+     "source_url": "https://senate.texas.gov/cmte.php?c=700",
+     "source_title": "Texas Senate Committee on Water, Agriculture, and Rural Affairs, interim charges",
+     "source_type": "primary_official",
+     "id": "tx-2026-0096-c1",
+     "fetched": "2026-08-26"
+    },
+    {
+     "text": "The same charge list pairs the question with desalination and permitting.",
+     "verbatim_quote": "Evaluating Desalination Viability and Regulatory Efficiency: Inventory existing facilities and review the permitting framework across relevant state agencies to improve efficiency.",
+     "source_url": "https://senate.texas.gov/cmte.php?c=700",
+     "source_title": "Texas Senate Committee on Water, Agriculture, and Rural Affairs, interim charges",
+     "source_type": "primary_official",
+     "id": "tx-2026-0096-c2",
+     "fetched": "2026-08-26"
+    },
+    {
+     "text": "The Legislature's upcoming meetings listing carries the date and the room.",
+     "verbatim_quote": "Tuesday, September 1, 2026",
+     "source_url": "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S",
+     "source_title": "Upcoming Senate Committee Meetings, Texas Legislature Online",
+     "source_type": "primary_official",
+     "id": "tx-2026-0096-c3",
+     "fetched": "2026-08-26"
+    },
+    {
+     "text": "The listing names the committee taking the September 1st hearing.",
+     "verbatim_quote": "Water, Agriculture and Rural Affairs",
+     "source_url": "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S",
+     "source_title": "Upcoming Senate Committee Meetings, Texas Legislature Online",
+     "source_type": "primary_official",
+     "id": "tx-2026-0096-c4",
+     "fetched": "2026-08-26"
+    },
+    {
+     "id": "tx-2026-0096-c5",
+     "text": "The listing gives the room the September 1st hearing sits in.",
+     "verbatim_quote": "Water, Agriculture and Rural Affairs Type: Public Hearing Location: E1.012 (Hearing Room)",
+     "source_url": "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S",
+     "source_title": "Upcoming Senate Committee Meetings, Texas Legislature Online",
+     "source_type": "primary_official",
+     "fetched": "2026-08-26"
+    }
+   ],
+   "id": "tx-2026-0096",
+   "last_verified": "2026-08-26",
+   "history": [
+    {
+     "date": "2026-08-26",
+     "note": "Admitted. The committee's own charge names data centers and the Legislature's upcoming listing carries the date and the room."
+    }
+   ]
+  },
+  {
+   "title": "Texas requires AI training for state and local government employees, and this is the first annual cycle",
+   "summary": "House Bill 3512 of the 89th Regular Session created artificial intelligence training programs for certain employees and officials of state agencies and local governments. Its author was Giovanni Capriglione and its sponsor was Cesar Blanco. It took effect on September 1st, 2025. The Legislature indexes it under artificial intelligence and under the Department of Information Resources, which is the agency that certifies which programs satisfy it. Which programs carry that certification is unconfirmed. So is the date by which an entity files its compliance certification.",
+   "topic": "state-policy",
+   "decider": {
+    "name": "Texas Legislature",
+    "type": "legislature"
+   },
+   "geography": {
+    "statewide": true,
+    "counties": [],
+    "on_ercot": false
+   },
+   "status": "decided",
+   "confidence": "high",
+   "key_dates": [
+    {
+     "date": "2025-09-01",
+     "kind": "effective",
+     "note": "Effective date of House Bill 3512"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "The bill's history, caption, authors and effective date are published by the Legislature. A city or county employee who needs to know which training satisfies the requirement should ask the Department of Information Resources. That agency also holds the date by which an entity certifies.",
+    "url": "https://capitol.texas.gov/BillLookup/History.aspx?LegSess=89R&Bill=HB3512",
+    "closes": null
+   },
+   "claims": [
+    {
+     "id": "tx-2026-0097-c0",
+     "text": "The Legislature's own page names the bill and the session it passed in.",
+     "verbatim_quote": "History for 89(R) HB 3512 by Capriglione",
+     "source_url": "https://capitol.texas.gov/BillLookup/History.aspx?LegSess=89R&Bill=HB3512",
+     "source_title": "Texas Legislature Online, bill history for 89(R) HB 3512",
+     "source_type": "primary_official",
+     "fetched": "2026-08-26"
+    },
+    {
+     "text": "The enrolled caption states what the bill does.",
+     "verbatim_quote": "Relating to artificial intelligence training programs for certain employees and officials of state agencies and local governments.",
+     "source_url": "https://capitol.texas.gov/BillLookup/History.aspx?LegSess=89R&Bill=HB3512",
+     "source_title": "Texas Legislature Online, bill history for 89(R) HB 3512",
+     "source_type": "primary_official",
+     "id": "tx-2026-0097-c1",
+     "fetched": "2026-08-26"
+    },
+    {
+     "text": "The Legislature's own record gives the effective date.",
+     "verbatim_quote": "Effective on 9/1/25",
+     "source_url": "https://capitol.texas.gov/BillLookup/History.aspx?LegSess=89R&Bill=HB3512",
+     "source_title": "Texas Legislature Online, last action for 89(R) HB 3512",
+     "source_type": "primary_official",
+     "id": "tx-2026-0097-c2",
+     "fetched": "2026-08-26"
+    },
+    {
+     "text": "The Legislature indexes the bill against the agency that certifies the training.",
+     "verbatim_quote": "INFORMATION RESOURCES, DEPARTMENT OF (V9827)",
+     "source_url": "https://capitol.texas.gov/BillLookup/History.aspx?LegSess=89R&Bill=HB3512",
+     "source_title": "Texas Legislature Online, subjects for 89(R) HB 3512",
+     "source_type": "primary_official",
+     "id": "tx-2026-0097-c3",
+     "fetched": "2026-08-26"
+    }
+   ],
+   "id": "tx-2026-0097",
+   "last_verified": "2026-08-26",
+   "history": [
+    {
+     "date": "2026-08-26",
+     "note": "Admitted. The Legislature's own bill record carries the caption, the authors and the effective date. Which training programs satisfy the requirement is unconfirmed, and so is the date an entity certifies, because both are published by the Department of Information Resources rather than by the Legislature."
+    }
+   ]
+  },
+  {
+   "title": "NSF funds a Rice laboratory where a model designs the experiment and a robot runs it, bookable from anywhere",
+   "summary": "The National Science Foundation award to William Marsh Rice University funds READINESS, a cloud accessible robotic laboratory for synthesizing electronic and quantum materials, where AI plans the experiments and the equipment executes them. The University of Texas at Austin is a collaborating institution. Rice describes the point as access rather than speed, putting capability that existed in a handful of laboratories behind a login a researcher anywhere in the country can use. The university's own framing is unusually careful about the limit, saying responsible AI should complement a researcher's judgement rather than replace it.",
+   "topic": "research-and-science",
+   "decider": {
+    "name": "National Science Foundation",
+    "type": "federal"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Harris",
+     "Travis"
+    ],
+    "on_ercot": true
+   },
+   "status": "decided",
+   "confidence": "high",
+   "key_dates": [
+    {
+     "date": "2026-08-01",
+     "kind": "effective",
+     "note": "Award start date recorded by the National Science Foundation"
+    }
+   ],
+   "public_access": {
+    "room": "closed",
+    "how": "The award record is public and the university publishes its own account. A researcher who wants to use the platform applies to Rice once it is running rather than to the funding agency.",
+    "url": "https://api.nsf.gov/services/v1/awards/2607553.json",
+    "closes": null
+   },
+   "claims": [
+    {
+     "text": "The award record names the project.",
+     "verbatim_quote": "PCL-Test Bed: Revolutionizing AI-Driven Autonomous Experimentation for Next-Generation Semiconductor Synthesis (READINESS)",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2607553.json?printFields=id,title,awardeeName,startDate,expDate,estimatedTotalAmt,fundProgramName,abstractText",
+     "source_title": "National Science Foundation Awards API, award 2607553",
+     "source_type": "primary_official",
+     "id": "tx-2026-0098-c1",
+     "fetched": "2026-08-26"
+    },
+    {
+     "text": "Rice states what the platform is for.",
+     "verbatim_quote": "seeks to create a remote research platform that minimizes trial-and-error experimentation and enhances access to advanced research infrastructure for electronic and quantum materials synthesis.",
+     "source_url": "https://news.rice.edu/news/2026/accelerating-discovery-rice-receives-nearly-20m-nsf-award-ai-powered-materials-laboratory",
+     "source_title": "Rice University, Accelerating discovery, Rice receives nearly $20M NSF award for AI-powered materials laboratory",
+     "source_type": "primary_official",
+     "id": "tx-2026-0098-c2",
+     "fetched": "2026-08-26"
+    },
+    {
+     "text": "The university states a limit on what the model is for.",
+     "verbatim_quote": "Responsible AI should complement researchers' capabilities rather than replace their judgment.",
+     "source_url": "https://news.rice.edu/news/2026/accelerating-discovery-rice-receives-nearly-20m-nsf-award-ai-powered-materials-laboratory",
+     "source_title": "Rice University, Accelerating discovery, Rice receives nearly $20M NSF award for AI-powered materials laboratory",
+     "source_type": "primary_official",
+     "id": "tx-2026-0098-c3",
+     "fetched": "2026-08-26"
+    },
+    {
+     "text": "The stated goal is a laboratory researchers elsewhere can use.",
+     "verbatim_quote": "Our goal is to create a laboratory that researchers from across the country can use to produce advanced electronic and quantum materials on demand.",
+     "source_url": "https://news.rice.edu/news/2026/accelerating-discovery-rice-receives-nearly-20m-nsf-award-ai-powered-materials-laboratory",
+     "source_title": "Rice University, Accelerating discovery, Rice receives nearly $20M NSF award for AI-powered materials laboratory",
+     "source_type": "primary_official",
+     "id": "tx-2026-0098-c4",
+     "fetched": "2026-08-26"
+    }
+   ],
+   "id": "tx-2026-0098",
+   "last_verified": "2026-08-26",
+   "history": [
+    {
+     "date": "2026-08-26",
+     "note": "Admitted. The award record and the university's own account agree on what the platform is and who may use it."
+    }
+   ]
+  },
+  {
+   "title": "The Army funds a Rice research center on antenna arrays that carries AI as one of six disciplines",
+   "summary": "The United States Army Research Office established a five year research center at Rice University for secure sensing, imaging and communications. Edward Knightly of the electrical and computer engineering department leads it. The center studies extremely large antenna arrays. It lists artificial intelligence alongside wireless networking, antennas, radar, circuits and physics. The release describes no specific AI method. What the models will actually do inside the work is not yet on the public record.",
+   "topic": "research-and-science",
+   "decider": {
+    "name": "United States Army Research Office",
+    "type": "federal"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Harris"
+    ],
+    "on_ercot": true,
+    "metro": "Houston-Pasadena-The Woodlands, TX"
+   },
+   "status": "decided",
+   "confidence": "high",
+   "key_dates": [
+    {
+     "date": "2026-08-04",
+     "kind": "decided",
+     "note": "Rice announced the award establishing the center"
+    }
+   ],
+   "public_access": {
+    "room": "closed",
+    "how": "The university publishes its own account of the award. No public participation step is named.",
+    "url": "https://news.rice.edu/news/2026/rice-lead-15m-army-research-center-next-generation-sensing-and-communications",
+    "closes": null
+   },
+   "claims": [
+    {
+     "text": "The release lists artificial intelligence as one of the disciplines the center combines.",
+     "verbatim_quote": "the center combines expertise in wireless networking, antennas, radar, artificial intelligence, circuits and physics to address growing demands on wireless systems.",
+     "source_url": "https://news.rice.edu/news/2026/rice-lead-15m-army-research-center-next-generation-sensing-and-communications",
+     "source_title": "Rice University, Rice to lead $15M Army Research center for next-generation sensing and communications",
+     "source_type": "primary_official",
+     "id": "tx-2026-0099-c1",
+     "fetched": "2026-08-26"
+    },
+    {
+     "text": "The centre's director states what the work is meant to produce.",
+     "verbatim_quote": "This center gives us the opportunity to develop the science and engineering needed for a new generation of wireless networks with radically new capabilities, resilience and security",
+     "source_url": "https://news.rice.edu/news/2026/rice-lead-15m-army-research-center-next-generation-sensing-and-communications",
+     "source_title": "Rice University, Rice to lead $15M Army Research center for next-generation sensing and communications",
+     "source_type": "primary_official",
+     "id": "tx-2026-0099-c2",
+     "fetched": "2026-08-26"
+    }
+   ],
+   "id": "tx-2026-0099",
+   "last_verified": "2026-08-26",
+   "history": [
+    {
+     "date": "2026-08-26",
+     "note": "Admitted. The university names artificial intelligence as one discipline in the center and describes no method, which is what is on the record and no more."
+    }
+   ]
+  },
+  {
+   "title": "UT Austin puts a computer science and AI course in the core every undergraduate takes",
+   "summary": "The University of Texas at Austin published a new Core Curriculum on August 13th, 2026 that names Computer Science and AI among the foundational courses, alongside Great Questions of Human Life, Western Civilization and Great Ideas in Science. The university says the core will be introduced in phases starting with new courses in the autumn of 2027, so no student sits the requirement yet. A history major on that campus will take an AI course to graduate, which is a different kind of AI decision from buying a machine.",
+   "topic": "health-and-education",
+   "decider": {
+    "name": "University of Texas at Austin",
+    "type": "state-agency"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Travis"
+    ],
+    "on_ercot": true,
+    "metro": "Austin-Round Rock-San Marcos, TX"
+   },
+   "status": "decided",
+   "confidence": "high",
+   "key_dates": [
+    {
+     "date": "2026-08-13",
+     "kind": "decided",
+     "note": "The university published the new Core Curriculum"
+    },
+    {
+     "date": "2027-09-01",
+     "kind": "effective",
+     "note": "New courses introduced, per the university's stated phasing"
+    }
+   ],
+   "public_access": {
+    "room": "closed",
+    "how": "The university published the course list and the phasing. No public comment step is named and the announcement does not state that the Board of Regents formally approved the core.",
+    "url": "https://news.utexas.edu/2026/08/13/new-core-curriculum-refocuses-undergraduate-education-at-ut-austin/",
+    "closes": null
+   },
+   "claims": [
+    {
+     "text": "The published list of foundational courses names the AI course.",
+     "verbatim_quote": "Great Questions of Human Life, Masterworks of Literature, Western Civilization, World Politics and Culture, Principles of American Politics, Great Ideas in Science, and Computer Science and AI",
+     "source_url": "https://news.utexas.edu/2026/08/13/new-core-curriculum-refocuses-undergraduate-education-at-ut-austin/",
+     "source_title": "UT Austin, New Core Curriculum Refocuses Undergraduate Education at UT Austin",
+     "source_type": "primary_official",
+     "id": "tx-2026-0100-c1",
+     "fetched": "2026-08-26"
+    },
+    {
+     "text": "The university states when the courses arrive.",
+     "verbatim_quote": "UT will implement the new Core Curriculum in phases, beginning with the introduction of new courses in fall 2027.",
+     "source_url": "https://news.utexas.edu/2026/08/13/new-core-curriculum-refocuses-undergraduate-education-at-ut-austin/",
+     "source_title": "UT Austin, New Core Curriculum Refocuses Undergraduate Education at UT Austin",
+     "source_type": "primary_official",
+     "id": "tx-2026-0100-c2",
+     "fetched": "2026-08-26"
+    }
+   ],
+   "id": "tx-2026-0100",
+   "last_verified": "2026-08-26",
+   "history": [
+    {
+     "date": "2026-08-26",
+     "note": "Admitted. The published course list names the AI course and the university states when the courses arrive."
+    }
+   ]
+  },
+  {
+   "title": "Houston Methodist put an imaging AI in front of its radiologists and says out loud that it is imperfect",
+   "summary": "Houston Methodist rolled out a suite of AI imaging tools across the system, starting with a small group of users before widening it. The tool flags a suspected finding on a scan and draws a heat map to direct the radiologist's attention, and the stated aims are faster emergency response and cleaner patient follow up. The hospital's own account says the system is not perfect and quotes a radiologist making the same point, which is a more careful public position than a deployment of this kind usually carries.",
+   "topic": "health-and-education",
+   "decider": {
+    "name": "Houston Methodist",
+    "type": "special-district"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Harris"
+    ],
+    "on_ercot": true,
+    "metro": "Houston-Pasadena-The Woodlands, TX"
+   },
+   "status": "decided",
+   "confidence": "high",
+   "key_dates": [
+    {
+     "date": "2026-06-29",
+     "kind": "decided",
+     "note": "Houston Methodist published its account of the systemwide rollout"
+    }
+   ],
+   "public_access": {
+    "room": "closed",
+    "how": "A private hospital system's purchasing decision carries no public participation step. The system publishes its own account of what the tool does and where it is running.",
+    "url": "https://www.houstonmethodist.org/leading-medicine-blog/articles/2026/jun/houston-methodist-launches-systemwide-ai-platform-to-transform-imaging-emergency-response-care/",
+    "closes": null
+   },
+   "claims": [
+    {
+     "text": "The hospital names the tool and describes what it puts on the radiologist's screen.",
+     "verbatim_quote": "The specific tool, called Aidoc, automatically flags potential issues and displays a visual heat map to help guide radiologists' attention.",
+     "source_url": "https://www.houstonmethodist.org/leading-medicine-blog/articles/2026/jun/houston-methodist-launches-systemwide-ai-platform-to-transform-imaging-emergency-response-care/",
+     "source_title": "Houston Methodist, Houston Methodist Launches Systemwide AI Platform to Transform Imaging, Emergency Response and Care Coordination",
+     "source_type": "primary_official",
+     "id": "tx-2026-0101-c1",
+     "fetched": "2026-08-26"
+    },
+    {
+     "text": "The hospital states the limit in its own words.",
+     "verbatim_quote": "Like all AI-supported tools, the system is not perfect.",
+     "source_url": "https://www.houstonmethodist.org/leading-medicine-blog/articles/2026/jun/houston-methodist-launches-systemwide-ai-platform-to-transform-imaging-emergency-response-care/",
+     "source_title": "Houston Methodist, Houston Methodist Launches Systemwide AI Platform to Transform Imaging, Emergency Response and Care Coordination",
+     "source_type": "primary_official",
+     "id": "tx-2026-0101-c2",
+     "fetched": "2026-08-26"
+    }
+   ],
+   "id": "tx-2026-0101",
+   "last_verified": "2026-08-26",
+   "history": [
+    {
+     "date": "2026-08-26",
+     "note": "Admitted. The hospital's own account names the tool, describes what it puts on the radiologist's screen and states its limit."
+    }
+   ]
+  },
+  {
+   "title": "Four Texas campuses took roles in the Energy Department's AI for science program",
+   "summary": "The Department of Energy announced the recipients of its Genesis Mission in Washington on July 22nd, 2026. UT Austin leads two projects and partners on three more. UT Arlington leads a project on keeping AI driven experiment workflows trustworthy at large scientific facilities. Texas A&M announced its own participation five days later. The program routes federal science money through an explicitly AI first frame, so Texas campuses are competing inside that frame rather than around it. The size of the round is the universities' own restatement of the announcement rather than a figure the department published where it could be read.",
+   "topic": "research-and-science",
+   "decider": {
+    "name": "United States Department of Energy",
+    "type": "federal"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Travis",
+     "Tarrant",
+     "Brazos"
+    ],
+    "on_ercot": true
+   },
+   "status": "decided",
+   "confidence": "high",
+   "key_dates": [
+    {
+     "date": "2026-07-22",
+     "kind": "decided",
+     "note": "Recipients announced in Washington"
+    }
+   ],
+   "public_access": {
+    "room": "closed",
+    "how": "The awards are made. Each university publishes its own account of what it won and who leads it.",
+    "url": "https://news.utexas.edu/2026/07/22/department-of-energys-new-ai-for-science-genesis-mission-awards-funding-to-5-ut-research-projects/",
+    "closes": null
+   },
+   "claims": [
+    {
+     "text": "UT Austin states the size of the round and the date it was announced.",
+     "verbatim_quote": "The Department of Energy received more than 5,000 applications and awarded funding to 278 projects led by national laboratories, institutions of higher education, companies and nonprofit organizations. Recipients were announced in Washington, D.C., on July 22.",
+     "source_url": "https://news.utexas.edu/2026/07/22/department-of-energys-new-ai-for-science-genesis-mission-awards-funding-to-5-ut-research-projects/",
+     "source_title": "UT Austin, Department of Energy's New AI-for-Science Genesis Mission Awards Funding to 5 UT Research Projects",
+     "source_type": "primary_official",
+     "id": "tx-2026-0103-c1",
+     "fetched": "2026-08-26"
+    },
+    {
+     "text": "UT Arlington names the project it leads and the question it is asking.",
+     "verbatim_quote": "The project—Real-Time Trust and Resilience for AI-Driven EPICS Scientific Workflows—is part of the Genesis Mission and will be led by Habeeb Olufowobi, a faculty member in UTA's Department of Computer Science and Engineering.",
+     "source_url": "https://www.uta.edu/news/news-releases/2026/07/22/uta-selected-for-land-mark-doe-ai-initiative",
+     "source_title": "University of Texas at Arlington, UTA selected for landmark DOE AI initiative",
+     "source_type": "primary_official",
+     "id": "tx-2026-0103-c2",
+     "fetched": "2026-08-26"
+    }
+   ],
+   "id": "tx-2026-0103",
+   "last_verified": "2026-08-26",
+   "history": [
+    {
+     "date": "2026-08-26",
+     "note": "Admitted. Each university publishes its own account of what it won. No Department of Energy page was read, so the size of the round rests on the universities restating the announcement."
+    }
+   ]
   }
  ]
 }
