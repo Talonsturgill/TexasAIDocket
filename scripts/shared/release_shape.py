@@ -32,7 +32,7 @@ GUARDS = WORKFLOWS / "guards.yml"
 PUSH = re.compile(r"\bgit\s+push\b")
 GUARDED_PUSH = "git push origin HEAD:main"
 DISPATCH = "gh workflow run guards.yml --ref main"
-PAGES_DISPATCH = "gh workflow run pages.yml --ref main"
+PAGES_DISPATCH = 'gh workflow run pages.yml --repo "${GITHUB_REPOSITORY}" --ref main'
 
 
 def triggers(doc: dict) -> dict:
@@ -262,6 +262,14 @@ def self_test() -> int:
     check("removing the post-guard Pages dispatch is caught",
           any("does not dispatch Pages" in p for p in guards_problems(no_pages_dispatch)),
           str(guards_problems(no_pages_dispatch)))
+
+    no_repo_context = {**good_guards, "jobs": {**good_guards["jobs"],
+        "release": {**good_release, "steps": [{
+            "env": {"GH_TOKEN": "${{ github.token }}"},
+            "run": "gh workflow run pages.yml --ref main"}]}}}
+    check("a Pages dispatch without repository context is caught",
+          any("does not dispatch Pages" in p for p in guards_problems(no_repo_context)),
+          str(guards_problems(no_repo_context)))
 
     backwards = {**good_writer, "jobs": {"write": {"steps": [
         {"name": "guard", "run": DISPATCH},
