@@ -15,6 +15,7 @@
       "file": "slide-02.html",
       "fails": [],
       "warns": [
+        "top-loaded composition: the bottom third carries 74% of this slide's own average craft density (top 30% / mid 10% / bottom 13% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
         "tiny-text: 'KILLEEN' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
         "tiny-text: 'ARCHER COUNTY' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
         "tiny-text: 'BRAZORIA COUNTY' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
@@ -24,11 +25,11 @@
         "tiny-text: 'FORT WORTH' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))"
       ],
       "bands": [
-        0.2815,
-        0.1723,
-        0.2059
+        0.3004,
+        0.0966,
+        0.1287
       ],
-      "band_ratio": 0.939
+      "band_ratio": 0.7432
     },
     {
       "file": "slide-03.html",
@@ -47,15 +48,15 @@
       "warns": [
         "tiny-text: '\"tentatively set for Feb. 16, 2027\"' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
         "tiny-text: 'CITY OF FORT WORTH, C22 AND C23' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
-        "busy art under text (bg edge density 0.09) beneath 'The council adopted a resolution that st' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.07) beneath 'The council adopted a resolution that st' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
         "low contrast ~3.4 on 'CITY OF FORT WORTH, C22 AND C23' (est.)"
       ],
       "bands": [
-        0.1366,
-        0.166,
+        0.1387,
+        0.1702,
         0.1985
       ],
-      "band_ratio": 1.1786
+      "band_ratio": 1.1647
     },
     {
       "file": "slide-05.html",
@@ -63,30 +64,28 @@
       "warns": [
         "tiny-text: 'ARCHER COUNTY, C5' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
         "tiny-text: 'LUBBOCK COUNTY, C7' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: 'KILLEEN, C18' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
-        "low contrast ~3.1 on 'KILLEEN, C18' (est.)"
+        "tiny-text: 'KILLEEN, C18' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))"
       ],
       "bands": [
         0.1576,
         0.0924,
-        0.1544
+        0.1507
       ],
-      "band_ratio": 1.1379
+      "band_ratio": 1.1219
     },
     {
       "file": "slide-06.html",
       "fails": [],
       "warns": [
         "tiny-text: 'BRAZORIA COUNTY, C9THE ZONE THEY STOOD ON' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: 'SAN ANGELO, C12CAPPED BY ORDINANCE' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
-        "worst-point contrast 4.3 on 'One refused the zone. One wrote the limi' (box mean 5.1) -- below the rubric's 4.5 line somewhere along the run of the text"
+        "tiny-text: 'SAN ANGELO, C12CAPPED BY ORDINANCE' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))"
       ],
       "bands": [
-        0.4643,
-        0.4097,
-        0.4926
+        0.4664,
+        0.437,
+        0.4871
       ],
-      "band_ratio": 1.0775
+      "band_ratio": 1.0486
     },
     {
       "file": "slide-07.html",
@@ -98,32 +97,31 @@
         "tiny-text: 'C9, C10, C11' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))"
       ],
       "bands": [
-        0.2185,
-        0.1492,
-        0.2868
+        0.229,
+        0.2248,
+        0.2757
       ],
-      "band_ratio": 1.2961
+      "band_ratio": 1.127
     },
     {
       "file": "slide-08.html",
       "fails": [],
       "warns": [
+        "top-loaded composition: the bottom third carries 69% of this slide's own average craft density (top 51% / mid 57% / bottom 32% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
         "tiny-text: 'A commissioner referenced a $100 million lawsuit f' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))",
         "tiny-text: 'TOM GREEN COUNTY, C15 AND C16REPORTED SPEECH ABOUT' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
         "tiny-text: '\"no action taken\"' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))",
         "tiny-text: 'The water board denied a petition asking it to pro' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
         "tiny-text: 'LAREDO MATTER HISTORY, C143 AGENDAS' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
         "tiny-text: 'TEXAS WATER DEVELOPMENT BOARD, C29' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
-        "worst-point contrast 4.5 on 'TOM GREEN COUNTY, C15 AND C16REPORTED SP' (box mean 4.7) -- below the rubric's 4.5 line somewhere along the run of the text",
-        "worst-point contrast 4.4 on 'LAREDO MATTER HISTORY, C143 AGENDAS' (box mean 4.7) -- below the rubric's 4.5 line somewhere along the run of the text",
-        "worst-point contrast 4.1 on 'TEXAS WATER DEVELOPMENT BOARD, C29' (box mean 4.3) -- below the rubric's 4.5 line somewhere along the run of the text"
+        "worst-point contrast 4.2 on 'Ten bodies in this record took one up. S' (box mean 5.0) -- below the rubric's 4.5 line somewhere along the run of the text"
       ],
       "bands": [
-        0.5588,
-        0.6387,
-        0.4301
+        0.5147,
+        0.5672,
+        0.318
       ],
-      "band_ratio": 0.8004
+      "band_ratio": 0.6915
     },
     {
       "file": "slide-09.html",
@@ -141,6 +139,6 @@
     }
   ],
   "fails": 0,
-  "warns": 33,
+  "warns": 31,
   "verdict": "WARN"
 }

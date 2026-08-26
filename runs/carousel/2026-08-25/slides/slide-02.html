@@ -15,7 +15,7 @@ canvas{position:absolute;left:0;top:0}
   color:#2A2622;letter-spacing:-.015em}
 .dek{position:absolute;left:186px;top:400px;width:480px;font:400 26px/1.34 "Manrope",sans-serif;color:#514C44}
 .row{position:absolute;left:186px;font:500 30px/1 "JetBrains Mono",monospace;color:#2A2622;letter-spacing:.01em}
-.who{color:#544E44;font-size:22px;letter-spacing:.09em;display:block;margin-top:7px}
+.who{color:#4A463C;font-size:22px;letter-spacing:.09em;display:block;margin-top:7px}
 </style></head><body>
 <canvas id="c" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
 <div class="kick">SEVEN INSTRUMENTS</div>
@@ -61,16 +61,34 @@ window.renderReady = new Promise(function(resolve){
   // steps with a 1.5px overdraw so the ramp does not band, and held at a low core alpha so a
   // name inside the shadow keeps the same toner value as a name outside it. The shadow's job
   // is to separate the field, never to make a line of the record harder to read.
-  var N=1500;
-  for(var i=0;i<=1;i+=1/N){
-    var y0=SY+i*SH;
-    var gap=4+56*i;
-    var xs=SX+SW*0.74 - i*186;
-    var grad=x.createLinearGradient(xs-gap,y0,xs+gap,y0);
-    grad.addColorStop(0,'rgba(31,37,44,0)');
-    grad.addColorStop(0.55,'rgba(31,37,44,0.13)');
-    grad.addColorStop(1,'rgba(31,37,44,0.17)');
-    x.fillStyle=grad; x.fillRect(xs-gap,y0,SX+SW-(xs-gap),SH/N+1.5);
+  // MULLION, DRAWN AS NESTED QUADS AND NOT AS SCANLINES. Two earlier versions built this a
+  // strip at a time down the sheet, and both printed faint horizontal banding wherever the
+  // shadow crossed anything: first from overlapping strips compounding their alpha, then from
+  // per scanline gradient quantisation. While the shadow only fell on decorative rules nobody
+  // saw it, and the moment it crossed the hook QA read the bands as rules through the glyphs,
+  // which is what they were. Seven overlapping quads, each hinged on the mullion's own line,
+  // each offset further right at the FOOT than at the head, so the penumbra widens with the air
+  // gap and no two adjacent pixels come from different fills.
+  // The edge enters PAST the sheet's right corner and tracks left as it falls, so the
+  // headline sits in even shade with no edge crossing it, the first rows are lit, and
+  // the later rows are crossed. That is the dossier's 'some in light, some crossed',
+  // and it is on the instrument NAMES rather than on the decorative rules, which is
+  // where the deck's one depth cue belongs.
+  var E0=SX+SW*1.06, E1=SX+SW*0.12;   // the mullion's edge, head and foot
+  // FORTY FOUR STEPS, not seven. Seven quads at 0.026 each put seven visible edges
+  // across the headline. The same total density spread over 44 steps at 0.0042 puts
+  // each edge under half a percent of luminance, which is below what an eye or an
+  // edge detector resolves, and the ramp is the same ramp.
+  for(var b=0;b<44;b++){
+    var off=-30+b*4.14;
+    x.beginPath();
+    x.moveTo(SX,SY);
+    x.lineTo(E0+off,SY);
+    x.lineTo(E1+off*3.0,SY+SH);
+    x.lineTo(SX,SY+SH);
+    x.closePath();
+    x.fillStyle='rgba(31,37,44,0.0042)';
+    x.fill();
   }
   x.fillStyle='rgba(42,38,34,0.30)';
   for(var dr=0;dr<34;dr++){

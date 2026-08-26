@@ -57,7 +57,7 @@ window.renderReady = new Promise(function(resolve){
   var SX=82, SY=310, SW=916, SH=832;
   for(var i=0;i<SH;i++){
     var t=i/SH, lum=Math.cos((1-t)*Math.PI/2);
-    var r=Math.round(150+105*lum), gg=Math.round(145+108*lum), b=Math.round(132+114*lum);
+    var r=Math.round(120+135*lum), gg=Math.round(116+137*lum), b=Math.round(104+142*lum);
     x.fillStyle='rgb('+r+','+gg+','+b+')'; x.fillRect(SX,SY+i,SW,1);
   }
   // paper tooth
@@ -81,7 +81,7 @@ window.renderReady = new Promise(function(resolve){
   // physical law visible in one stripe.
   x.fillStyle='#1F252C'; x.fillRect(0,SY+SH,W,14);
   // the lower rail, lit on its own edge, carrying the constellation plate
-  x.fillStyle='#5F5E58'; x.fillRect(0,SY+SH+14,W,H-(SY+SH+14));
+  x.fillStyle='#4A4944'; x.fillRect(0,SY+SH+14,W,H-(SY+SH+14));
   x.fillStyle='#918D80'; x.fillRect(0,SY+SH+14,W,4);
   var bg2=x.createLinearGradient(0,SY+SH+18,0,H);
   bg2.addColorStop(0,'rgba(18,22,27,0.30)'); bg2.addColorStop(1,'rgba(18,22,27,0.72)');

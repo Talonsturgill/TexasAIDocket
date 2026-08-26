@@ -268,7 +268,7 @@
    "date": "2026-08-25",
    "carousel_no": 7,
    "written_from": "render/render_report.json, render/machine_qa.json, the gates' own exit codes, and a per frame measurement of the rendered PNGs. The value block below is MEASURED, not read off the storyboard, because the storyboard typed a register this deck does not have.",
-   "register": "a Texas notice case seen nine ways, wide range and bimodal about a median just below mid. Anodized rail, dark case interior and cream bond carry through six of the nine frames as one object under changing light and camera. It is NOT the mid value deck its own storyboard declared: that plan said ground L* 62 to 68 and NOT ONE frame of nine sits inside it, the closest being 61.4 against a floor of 62, with a dark pair at frames 3 and 4 and a light pair at 5 and 8.",
+   "register": "a Texas notice case seen nine ways, wide range about a median of 52.4. Anodized rail, dark case interior and cream bond carry through six of the nine frames as one object under changing light and camera. Measured against the mid value deck its own storyboard declared, exactly one of the nine sits inside the L* 62 to 68 band that plan set, and the frames run 14.4 to 81.4.",
    "techniques": [
     "a wall mounted notice case authored as geometry so every overlay knows where it is, with a keyway and hinge knuckles so it reads as locked",
     "a cast occlusion shadow whose penumbra widens with the air gap, the deck's one depth cue",
@@ -279,7 +279,7 @@
     "repetition down a computed cosine bounce falloff, four identical minute lines brightening 17.2 L* from first to last",
     "a sheared and rippled Fresnel weighted mirror resolving a second notice case, carrying nothing legible",
     "sprung clips holding nothing, the near zero gap end of the same shadow physics the deck opened with",
-    "fiberboard cork drawn at chip scale, correct on frame 9 at a 2 to 3px speckle and WRONG on frame 6, where the same token rendered as a 14px blocky mosaic with no resolvable staple hole. Two renderings of one token in one deck, and frame 9 is the one to copy"
+    "fiberboard cork as a fine 2px speckle over a lit gradient, the same code on frames 6 and 9 after two craft reads measured frame 6's own chip-scale version as a blocky mosaic"
    ],
    "palette": {
     "source": "an anodized notice case under a hot high haze Texas sky",
@@ -301,23 +301,23 @@
    "red_spent": true,
    "red_on_slide": 9,
    "red_note": "on the date NOVEMBER 10TH and on nothing else, including the words NOT LATER THAN above it, which were red until the pixel review measured the frame against its own acceptance list",
-   "camera": "FIVE distinct camera classes shipped, not the nine the storyboard declared, and one of them carries FIVE of the nine frames: square on to a bordered sheet, on frames 2, 3, 5, 7 and 8. The others are near frontal on a locked case (1, and its dossier asked for three quarters from below left), level on a flat field with no case (6), steep oblique in true perspective (4), and a close crop with two ground planes (9). Frames 2 and 5 measure 0.8234 pairwise, the deck's closest pair, and they share camera, border, hook position, hook face, dek alignment, a decorative rule field and a claim stamp.",
+   "camera": "FIVE distinct camera classes shipped, not the nine the storyboard declared, and one of them carries five of the nine frames: square on to a bordered sheet, on 2, 3, 5, 7 and 8. The others are near frontal on a locked case (1, whose dossier asked for three quarters from below left), level on a flat field with no case (6), steep oblique in true perspective (4), and a close crop with two ground planes (9).",
    "light_decks_used": "wide range, bimodal, median below mid",
    "value": {
     "per_frame_median_L": [
-     51.3,
-     54.7,
+     51.4,
+     63.0,
      14.4,
      30.8,
      81.4,
-     61.0,
-     61.4,
-     79.3,
+     69.2,
+     52.4,
+     55.5,
      48.8
     ],
-    "deck_median_L": 54.7,
-    "mean_L": 53.7,
-    "sd_L": 20.1,
+    "deck_median_L": 52.4,
+    "mean_L": 51.9,
+    "sd_L": 18.8,
     "range_L": [
      14.4,
      81.4
@@ -326,10 +326,9 @@
      62,
      68
     ],
-    "frames_inside_declared_band": 0,
+    "frames_inside_declared_band": 1,
     "measured_by": "out/2026-08-25/tmp/ledgers.py over the rendered PNGs at 216x270",
-    "nearest_to_band": 61.4,
-    "counted_by": "out/2026-08-25/tmp/ledgers.py, over per_frame_median_L against declared_band. It was TYPED as 1 and the array beside it said 0, in the entry whose whole point is that a register recorded rather than measured poisons every dedupe after it. A craft judge caught it."
+    "counted_by": "out/2026-08-25/tmp/ledgers.py over per_frame_median_L against declared_band, and the register sentence above is composed from the same array rather than typed beside it. Both the count and the sentence were hand written and wrong at different points in this run, in opposite directions."
    },
    "slides": 9,
    "bespoke_median_similarity": 0.2465,
@@ -338,7 +337,7 @@
     "slide-05.html",
     0.8234
    ],
-   "cut": "nothing was cut. Frame 3 was REPURPOSED from a roster that reprinted frame 2's body names into the chronology, which is the one thing the record holds that no other frame shows. Frame 2 and frame 3 both lost a row later when the count went from eight to seven, and neither container was re-flowed, so both carry dead sheet under the last row. A craft judge measured it at roughly 250px and 200px.",
+   "cut": "nothing was cut. Frame 3 was REPURPOSED from a roster that reprinted frame 2's body names into the chronology. Both frames later lost a row when the count went from eight to seven and neither container was re-flowed, so both carry dead sheet under the last row.",
    "structural_laws": "nothing carved, embossed, milled or engraved anywhere. All depth from the air gap between glazing and sheet. No raking key. No cartography and no coordinate. No invented item number, party name or building.",
    "avoid_next": "the square on bordered sheet, which this deck used four times and which its own storyboard promised not to repeat. Also the notice case itself for at least one cycle, and any deck that declares a value band without measuring it."
   }

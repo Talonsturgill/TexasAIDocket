@@ -346,13 +346,13 @@ rather than failing, and this is it.
 |---|---|---|
 | claims         | PASS   | 31 verified claim(s) |
 | render         | WARN   | 9 slide(s), 26 overflow warning(s) |
-| qa             | WARN   | 0 fail(s), 33 warn(s) |
+| qa             | WARN   | 0 fail(s), 31 warn(s) |
 | aggregates     | PASS   | 14 declared and re-derived |
-| assembly       | PASS   | 9 slide(s), 3.13 MB, vector |
+| assembly       | PASS   | 9 slide(s), 2.95 MB, vector |
 | score          | ABSENT | score.json not written yet |
-| dossiers       | PASS   | 37,864 chars planned |
+| dossiers       | PASS   | 38,225 chars planned |
 | caption        | PASS   | 144 words |
-| craft floor    | WARN   | 9 frame(s), median 6061, floor 1091, 1 quiet |
+| craft floor    | WARN   | 9 frame(s), median 5684, floor 1023, 1 quiet |
 | plan vs render | WARN   | 0 of 46 acceptance item(s) checkable |
 | texan          | PASS   | places Hill County, Tom Green County / body yes / deadline yes / next step yes |
 | absences       | WARN   | 8 of 10 scoped to a named document, 2 unscoped |

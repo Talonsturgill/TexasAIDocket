@@ -452,8 +452,10 @@ art:
   palette: "bond sheets, cork ground, toner type, edge_cyan once at 6px"
   value_structure: >
     Lightest is the two sheets at bond. Darkest is the case's lower lip seen from slightly above,
-    inside face case_dark. This is the brightest field in the deck and it sits immediately before
-    the darkest, which is what makes frame 7 land.
+    inside face case_dark. This frame's FIELD is the brighter side of the deck's biggest local
+    step: measured, it is 69.2 and frame 7 immediately after it is 52.4, a 16.8 L* drop, which is
+    what makes frame 7 land. It is not the brightest frame in the deck, frames 5 and 8 are, and
+    an earlier draft of this line claimed it was.
   motion: "left sheet to right sheet, then down to the empty cork"
 type:
   hook: "Two of the seven have teeth"
@@ -502,8 +504,9 @@ art:
   palette: "bond graded from a dim head to a lit foot, toner constant, case_dark rail and air gap"
   value_structure: >
     Lightest is the sheet's bottom edge. Darkest is the top rail's underside and its shadow across
-    the frame's top, carrying the reversed hook. The deck's darkest field, immediately after its
-    brightest.
+    the frame's top, carrying the reversed hook. The falloff across the four repeats measures 22.1
+    L*, and the frame's field at 52.4 is 16.8 L* under frame 6 before it. It is not the deck's
+    darkest field, frame 3 at 14.4 is, and an earlier draft of this line claimed it was.
   motion: "top to bottom, dim to lit, one line repeating"
 type:
   hook: "Four applications. None was voted on."

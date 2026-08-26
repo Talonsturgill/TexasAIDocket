@@ -46,8 +46,8 @@ window.renderReady = new Promise(function(resolve){
   // the same `cork` token as a fine 2px speckle over a lit gradient and it reads correctly.
   // Same token, two renderings, one deck. This is frame 9's, on frame 6's whole field.
   var cl=x.createLinearGradient(0,0,W*0.6,H);
-  cl.addColorStop(0,'rgba(236,216,182,0.46)'); cl.addColorStop(0.6,'rgba(150,124,90,0.10)');
-  cl.addColorStop(1,'rgba(70,54,34,0.42)');
+  cl.addColorStop(0,'rgba(246,230,202,0.72)'); cl.addColorStop(0.55,'rgba(224,200,164,0.34)');
+  cl.addColorStop(1,'rgba(120,96,62,0.26)');
   x.fillStyle=cl; x.fillRect(0,0,W,H);
   for(var i=0;i<62000;i++){
     var px=R()*W, py=R()*H, n=TX.fbm2(px*0.035,py*0.035,4);
