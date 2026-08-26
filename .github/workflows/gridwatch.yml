@@ -57,6 +57,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 # Never cancel a collection in flight, and never run two at once against an append only ledger.
 concurrency:
@@ -247,6 +248,14 @@ jobs:
           settled; the collector takes the settled previous day, so a same-day re-run \
           recovers it."
           exit 1
+
+      # The push above uses GITHUB_TOKEN, so GitHub deliberately suppresses push-triggered
+      # workflows. Start the full suite through workflow_dispatch; Pages deploys only after
+      # that exact suite succeeds.
+      - name: Run full guards for the new main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run guards.yml --ref main
 
       - name: Say plainly if the site rebuild failed
         if: steps.rebuild.outcome == 'failure'

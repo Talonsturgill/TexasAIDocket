@@ -117,6 +117,12 @@ jobs:
       - name: Every guard job is behind the required check
         run: python3 scripts/shared/guards_shape.py
 
+      - name: Release wiring self-test (prove deployment cannot bypass full guards)
+        run: python3 scripts/shared/release_shape.py --self-test
+
+      - name: Every main writer reaches Pages through full guards
+        run: python3 scripts/shared/release_shape.py
+
       # THE CITATIONS INTO GATE_LESSONS. Scripts and prompts cite that file by entry number to
       # reach the story behind a rule, and the numbering had drifted until one citation resolved
       # to a different lesson entirely. A citation that resolves to the wrong thing reads exactly

@@ -23,6 +23,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: datacenters
@@ -105,6 +106,14 @@ jobs:
           done
           echo "::error::could not push the registry reading; rerun once main is settled"
           exit 1
+
+      # A push made with GITHUB_TOKEN does not start another workflow. Dispatch the full guard
+      # suite explicitly so Pages never has to choose between deploying early and missing this
+      # update entirely.
+      - name: Run full guards for the new main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run guards.yml --ref main
 
       # A SWALLOWED FAILURE IS THE ONE THAT COSTS THE MOST, because nothing reports it and the
       # damage shows up somewhere else. `continue-on-error` above is right, since a broken site

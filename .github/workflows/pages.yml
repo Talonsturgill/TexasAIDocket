@@ -26,27 +26,20 @@ name: pages
 #    That is the worst shape a fault can take in an unattended system. The record said the change
 #    shipped, every gate was green, and the site a reader loads was stale.
 #
-#    So there are now three triggers and only one of them cares about the actor:
-#      push          the fast path, for a merge made with a user token
-#      workflow_run  after the collector's cron, which is the usual way main moves
-#      schedule      the backstop, which fires whatever else did or did not happen
+#    So deployment now begins only after `guards` completes successfully for main. User-token
+#    pushes start guards through its push trigger. Collector workflows dispatch guards after
+#    their GITHUB_TOKEN push, because GitHub deliberately suppresses workflow-to-workflow push
+#    events. The schedule remains the backstop, but it checks the current main SHA for a
+#    successful aggregate guard result before it may deploy anything.
 #    The schedule is what makes a missed publish self-healing rather than permanent. Deploying an
 #    unchanged site is a no-op for a reader, and the verify job below still refuses to publish a
 #    docs/ that does not match a rebuild, so a redundant run cannot do harm.
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - "docs/**"
-      - "ledger/**"
-      - "scripts/site/**"
-      - "config/brand.yaml"
-      - "assets/geo/**"
-      - ".github/workflows/pages.yml"
   workflow_run:
-    workflows: [gridwatch]
+    workflows: [guards]
     types: [completed]
+    branches: [main]
   schedule:
     # Every two hours. The pages this publishes carry comment deadlines and a daily grid
     # reading, so the cost of being stale is measured in hours rather than days.
@@ -55,6 +48,7 @@ on:
 
 permissions:
   contents: read
+  checks: read
   pages: write
   id-token: write
 
@@ -65,6 +59,7 @@ concurrency:
 
 jobs:
   verify:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
       # PINNED TO main, and that is required rather than tidy. Under `workflow_run` the default
@@ -75,6 +70,24 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
+
+      # THE EXACT SHA, NOT A GREEN RUN SOMEWHERE NEAR IT. A newer collector may move main while
+      # an older guard run is finishing. In that race this workflow checks out the newer commit
+      # and must refuse it until its own guards finish. The scheduled backstop uses the same
+      # proof, so it can heal a missed deploy but can never bypass validation to do it.
+      - name: Full guards passed for this exact main commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          SHA=$(git rev-parse HEAD)
+          conclusion=$(gh api \
+            "repos/${GITHUB_REPOSITORY}/commits/${SHA}/check-runs?check_name=guards&filter=latest&per_page=1" \
+            --jq '.check_runs[0].conclusion // ""')
+          if [ "$conclusion" != "success" ]; then
+            echo "::error::main ${SHA} has no successful full guards result; refusing to deploy"
+            exit 1
+          fi
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
@@ -164,4 +177,3 @@ jobs:
         run: |
           git fetch origin main --depth=1 -q || true
           python3 scripts/site/indexnow.py --since "$(date -u +%F)"
-

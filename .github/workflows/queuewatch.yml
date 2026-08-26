@@ -25,6 +25,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: queuewatch
@@ -82,3 +83,10 @@ jobs:
           done
           echo "::error::could not push the queue reading; rerun once main is settled"
           exit 1
+
+      # GITHUB_TOKEN pushes do not trigger guards.yml. Dispatch the suite explicitly so this
+      # reading cannot reach Pages before the complete repository checks have passed.
+      - name: Run full guards for the new main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run guards.yml --ref main
