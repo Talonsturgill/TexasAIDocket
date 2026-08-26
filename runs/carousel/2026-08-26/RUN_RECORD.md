@@ -422,6 +422,123 @@ The slide sources are committed rather than the nine full size PNGs. The sources
 seed is fixed, and the PNGs are 17 MB of build output for a deck that will never be published. The
 contact sheet is committed, because that is the artifact the panel actually judged.
 
+## THE DECK SHIPPED AT 7.282, AND IT TOOK THREE PANELS TO DO IT
+
+**Round 3 of a 5 round cap. Judges 6.95, 7.31 and 6.65. Per criterion median weighted by the
+rubric is 7.282 against the 6.8 threshold, no hard fail from any judge.** `run_complete.py` exits
+0. `claim_integrity` merged at 8.4, the highest criterion on the card and the one all three
+judges independently rated top.
+
+| criterion | judges | merged | weight |
+|---|---|---|---|
+| artwork craft | 7.0 / 6.9 / 6.5 | 6.9 | 0.28 |
+| claim integrity | 6.5 / 8.4 / 8.5 | 8.4 | 0.20 |
+| story and stakes | 7.0 / 7.0 / 6.0 | 7.0 | 0.18 |
+| sequence and momentum | 7.0 / 7.0 / 5.5 | 7.0 | 0.12 |
+| voice | 7.0 / 7.2 / 7.0 | 7.0 | 0.12 |
+| variety | 7.5 / 7.3 / 5.5 | 7.3 | 0.10 |
+
+**IT SHOULD HAVE TAKEN ONE, and that is the run's biggest finding about itself.** Rounds 1 and 2
+spent nine model calls finding things a measurement finds for nothing, and **both of round 2's
+hard fails were manufactured by round 1's own repairs**. The owner's diagnosis, written into
+`scoring_rubric.yaml` the same day, is exact: judges were being used as a crutch for a careless
+pass. `panel_ready.py` and Phase 14b went to `main` this run so the next deck cannot reach a
+scorer in that state.
+
+A fourth panel ran after four corrections post-dated the third, because `gate_status` flagged the
+score as describing an older render. It returned two hard fails, one of which this run had created
+an hour earlier, and both are fixed. That fourth round was itself the same mistake in miniature.
+
+## THE DECK EXEMPTED ITS OWN HONESTY LABELS FROM ITS OWN GATES
+
+`qa.py` line 1707 returns early on any node marked `data-decorative`, BEFORE the occlusion and
+contrast checks. This deck carried that attribute on **every `MODELED` disclosure and every source
+attribution**, seventeen nodes in all.
+
+That is why a disclosure 29 percent covered by an opaque plate published as a broken sentence on
+the cover, and why an 18px source attribution never tripped the 24px floor. Both reached the
+scoring panel. Both were already sitting measured in `render_report.json` and nothing read them.
+
+With the attribute removed, **six more strings proved to be under the 4.5 contrast floor**,
+including a site line at 1.5 on a near black slab, which was this run's own deck wide darkening
+applied to a frame whose bottom third is nearly black.
+
+A line whose whole job is saying what the record does not give is the opposite of decoration.
+
+## THE LIGHT DECK CAP, MEASURED, BREACHED, AND WAIVED
+
+`brand.yaml` allows a light deck at most once per eight runs and says the ledger enforces the
+count. **It never did.** Every `light_decks_used` value in `artwork.json` read the literal 1 while
+meaning light FRAMES inside a deck, a different quantity from the one the rule names.
+
+Measured off the shipped PNGs rather than taken from a judge's prose:
+
+```
+2026-08-18   deck median L* 82.7   LIGHT
+2026-08-20   deck median L* 85.5   LIGHT
+2026-08-26   deck median L* 86.7   LIGHT
+```
+
+Three light decks in eight against a cap of one, and two of the three had already shipped before
+anyone counted. A reader judge asserted it as a hard fail and the measurement says the judge was
+right. **Waived by the owner for this deck**, recorded in `artwork.json` and led with in the email.
+`ledger_check.check_register` now counts it off `value.deck_median_L`, measured from the render
+rather than from anything a run writes about itself, so the cap binds from here.
+
+## FOUND WITHOUT A JUDGE, EACH MEASURED
+
+**Slide 4's labels encoded against its own data.** Both state blocks sat at `top:396px` while their
+bars top out at 633 and 512, so the ink from label top to the y800 baseline ran 382px over the
+$2,900,000,000 bar and 350px over the $5,000,000,000 one. The shorter bar carried the taller mass.
+Two judges eyeballed the ratio at about 1.60 against a true 1.7241 and a third called it
+unverifiable, and all three were reading the combined mass correctly. The bars were never wrong at
+167.04px and 288.00px. Each label now hangs off its own bar top, 121px apart, exactly the bar top
+difference.
+
+**The ground tooth was broken deck wide, in two ways at once.** Every loop thresholded a -1..1
+`TX.fbm2` signal as if it returned 0..1, so the dark fleck fired on 0.6 percent of cells and the
+light one on 87.8, painting a near uniform wash. And every loop ran near a 400px feature size,
+which is not grain at any alpha. Proved rather than argued: at the old frequency with
+`globalAlpha` at 1.0 a ground patch measured 9.1 residual, and at 0.26 with alpha 0.34 it measured
+14.3. No alpha could have fixed it.
+
+**Slide 8 was lit by a lamp.** A radial pool centred on the plate's foot at radius 420, painted
+from y796 down, lit the ground above the plate as brightly as below. One directional gradient now,
+clipped below the plate: 32.7 mean L above, 55.0 below, 30.9 on the far shadow side.
+
+**Slides 5 and 7 were the same picture two frames apart**, bracketing the turn. Slide 5's plates
+are incised where slide 7's are seated. Measured by normalised correlation across the thumbs, that
+pair went from the closest in the deck to **-0.03**.
+
+**`sources_block` shipped `one news reports` into published copy**, and its own self-test asserted
+that string rather than catching it. A self-test written against what the code produces rather than
+what it should produce freezes the defect instead of catching it.
+
+**No `compute.py` existed** while `aggregates.json` carried sixteen `computed_by` declarations,
+every one naming a computation in prose that no code had performed. Seven derived figures now
+recompute and agree, including the folio arithmetic this run published as 129 to 133 before
+catching that a PDF page index is not a page number.
+
+**Two gates had never run at all this run.** `label_guard` refuses without a `compute.py` and the
+measured figures gate without a `measurements.json`. Both existed only after they were asked for,
+which means `shipped_check`'s registry was reporting clean on gates that were not running.
+
+## STANDING, FOR THE NEXT RUN
+
+**The turn does not stand on its own.** Frames 1 to 5 are a capital finance story and never use the
+word AI, then frame 6 opens on searching for it. The quote that makes the search mean something,
+`c23`, is on frame 9, and the bridge exists only in the caption. Two judges named it. Moving a
+frame this late is what manufactured two hard fails earlier in this run, so this belongs at
+storyboard time rather than in a render loop.
+
+**`topics.json` stores an `angle` field the dedupe gate has never read**, which is why the same
+argument shape has now shipped three times in eight runs.
+
+**The caption exclusion lists are handed to the room without the newest SHIPPED deck's moves**,
+because `ledger_check` derives them from entries before the newest and the run's own entry does not
+exist until ship time. The room that most needs to know what shipped yesterday is the one that is
+not told.
+
 ## Gate table
 
 Written by `gate_status.py --sync`, never by hand.
@@ -433,13 +550,13 @@ Written by `gate_status.py --sync`, never by hand.
 |---|---|---|
 | claims         | PASS   | 33 verified claim(s) |
 | render         | PASS   | 9 slide(s) |
-| qa             | WARN   | 0 fail(s), 23 warn(s) |
+| qa             | STALE  | render/machine_qa.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
 | aggregates     | PASS   | 16 declaration(s), 18 numeric phrase(s) in the render, all re-derived |
 | assembly       | PASS   | 9 slide(s), 5.86 MB, vector |
 | score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
 | labels         | PASS   | 0 claim id(s) checked, every label beside one traces to the shape its claim proves |
 | quantifiers    | PASS   | 2 published string(s) read from one list, every universal names its set |
-| dossiers       | PASS   | 50,068 chars planned |
+| dossiers       | PASS   | 50,066 chars planned |
 | caption        | PASS   | 127 words |
 | craft floor    | PASS   | 9 frame(s), median 873, floor 157 |
 | plan vs render | PASS   | 14 of 65 acceptance item(s) checkable |
