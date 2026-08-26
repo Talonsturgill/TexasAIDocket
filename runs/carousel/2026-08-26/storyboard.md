@@ -481,7 +481,7 @@ art:
     at the right terminator where the second page number sits.
 type:
   hook: "Twenty pages, no mention of AI"
-  dek: "The item itself is five pages of that, 130 to 134. The same book uses the word elsewhere."
+  dek: "The item itself is five pages of it, 130 to 134. The same book uses the word elsewhere."
   labels: ["PAGE 124", "PAGE 143", "0", "THE COMMITTEE'S DOCUMENT, END TO END", "MATCHES, ANYWHERE IN IT"]
 acceptance:
   - 'the frame carries the string "PAGE 124"'

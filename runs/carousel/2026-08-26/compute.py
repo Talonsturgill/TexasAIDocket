@@ -159,6 +159,20 @@ def main() -> int:
     slides = len(json.loads((RUN / "copy.json").read_text(encoding="utf-8"))["slides"])
     assert_published("Nine frames", slides, "len() over copy.json's slides")
 
+    # THE RECEIPT. `figures.json` is what ledger_check and the measured-figures gate read, and
+    # this run had neither the file nor the code behind it, so both gates were unreachable and
+    # shipped_check reported them missing rather than passing.
+    figures = {
+        "committee_document_pages": committee_document_pages(),
+        "item_pages": item_pages(),
+        "search_terms": search_terms(),
+        "official_records": distinct_sources("primary_official"),
+        "news_reports": distinct_sources("secondary_reported"),
+        "slides": slides,
+        "_computed_by": "out/2026-08-26/compute.py, asserted against aggregates.json on every run",
+    }
+    (RUN / "figures.json").write_text(json.dumps(figures, indent=1) + "\n", encoding="utf-8")
+
     if bad:
         print("\ncompute: a published figure disagrees with its computation", file=sys.stderr)
         for b in bad:
