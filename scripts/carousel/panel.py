@@ -89,7 +89,24 @@ def criteria_of(j: dict) -> dict:
     return out
 
 
-def combine(judges: list) -> tuple:
+RUBRIC = REPO_ROOT / "config" / "carousel" / "scoring_rubric.yaml"
+
+
+def threshold() -> float:
+    """The bar, read from the rubric the judges are graded against, never carried here.
+
+    `run_complete.py` reads the same key from the same file. Two modules with two copies of one
+    number is the defect this repo has now closed four times in other places.
+    """
+    import yaml
+    doc = yaml.safe_load(RUBRIC.read_text(encoding="utf-8"))
+    t = doc.get("threshold")
+    if not isinstance(t, (int, float)):
+        raise SystemExit(f"panel: {RUBRIC} declares no numeric threshold")
+    return float(t)
+
+
+def combine(judges: list, bar: float | None = None) -> tuple:
     """Returns (verdict dict, problems list).
 
     PER-CRITERION MEDIAN, THEN WEIGHTED, whenever the judges supply criteria. That is what
@@ -103,6 +120,8 @@ def combine(judges: list) -> tuple:
     Falls back to a median of totals when a judge supplies no criteria, because a panel that
     cannot combine is worse than a coarse one.
     """
+    if bar is None:
+        bar = threshold()
     probs = []
     scores, fails = [], []
     per = {}
@@ -155,9 +174,28 @@ def combine(judges: list) -> tuple:
         "hard_fails": [f["fail"] for f in fails],
         "hard_fails_by_judge": fails,
         # SHIP IS NOT "the median cleared the bar". It is that AND no judge found a hard fail.
-        "ship": not fails,
+        #
+        # AND IT WAS NEITHER, FOR NINE ROUNDS. 2026-08-26.
+        #
+        # This field read `not fails` and this module never opened the rubric, so a 6.72 deck
+        # under a 7.0 bar came back `"ship": true` with no caveat anywhere in the file. The floor
+        # lived only in `run_complete.py`, which is a separate command a run has to remember to
+        # run. The comment directly above stated the correct rule the whole time and the code
+        # implemented half of it, which is the worst arrangement of the two, because the file
+        # reads as though it had been thought about.
+        #
+        # A panel that cannot say "under the bar" is not a panel, it is a hard-fail counter. The
+        # bar is read from the same rubric the judges are graded against, so there is one number
+        # and not two.
+        "ship": (not fails) and headline >= bar,
+        "threshold": bar,
+        "over_threshold": headline >= bar,
         "method": method,
     }
+    if not fails and headline < bar:
+        verdict["hold_reason"] = (
+            f"no judge found a hard fail, and the median {headline} is under the rubric's "
+            f"{bar} bar. This is a HOLD. Keep working the deck")
     if spread > SPREAD_NOTE:
         verdict["note"] = (
             f"the judges disagree by {spread:.2f}, which is wider than {SPREAD_NOTE}. The deck is "
@@ -170,6 +208,26 @@ def combine(judges: list) -> tuple:
     return verdict, probs
 
 
+def count_round(date: str) -> int:
+    """How many times this deck has been scored, counted by this module rather than typed.
+
+    THE CAP NEEDS A NUMBER AND A TYPED ONE WOULD BE WORTHLESS. `run_complete` ships a deck that
+    is under the bar once `rounds` reaches the rubric's `max_rounds`, which makes that field the
+    most valuable lie in the run: a run under pressure could write 10 in it at round two and be
+    finished. So the run does not get to write it. Every invocation appends one line here and the
+    round number is the length of the file.
+
+    It lives in `out/<date>/`, which is gitignored scratch, and that is the right home: the count
+    is a fact about ONE run's session and means nothing to the next one. A round counter that
+    survived into `runs/` would be a number a later session could edit.
+    """
+    log = REPO_ROOT / "out" / date / "panel_rounds.jsonl"
+    log.parent.mkdir(parents=True, exist_ok=True)
+    with log.open("a", encoding="utf-8") as fh:
+        fh.write(json.dumps({"date": date}) + "\n")
+    return sum(1 for ln in log.read_text(encoding="utf-8").splitlines() if ln.strip())
+
+
 def run(date: str, paths: list, out: str | None) -> int:
     judges = []
     for p in paths:
@@ -179,6 +237,8 @@ def run(date: str, paths: list, out: str | None) -> int:
             return 1
         judges.append(json.loads(f.read_text(encoding="utf-8")))
     verdict, probs = combine(judges)
+    if verdict:
+        verdict["rounds"] = count_round(date)
     for p in probs:
         print(f"  note  {p}", file=sys.stderr)
     if not verdict:
@@ -186,9 +246,14 @@ def run(date: str, paths: list, out: str | None) -> int:
     dest = Path(out) if out else (REPO_ROOT / "out" / date / "score.json")
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(json.dumps(verdict, indent=1) + "\n", encoding="utf-8")
+    if verdict["ship"]:
+        why = f"SHIP (over the {verdict['threshold']} bar, no hard fail)"
+    elif verdict["hard_fails"]:
+        why = f"{len(verdict['hard_fails'])} hard fail(s), HOLD"
+    else:
+        why = f"HOLD, under the {verdict['threshold']} bar"
     print(f"panel: {verdict['judges']} -> median {verdict['weighted_score']}, "
-          f"spread {verdict['spread']}, "
-          f"{'SHIP' if verdict['ship'] else str(len(verdict['hard_fails'])) + ' hard fail(s), HOLD'}")
+          f"spread {verdict['spread']}, round {verdict['rounds']}, {why}")
     print(f"panel: written to {dest}")
     return 0
 
@@ -205,6 +270,9 @@ def self_test() -> int:
 
     def j(score, fails=None, ship=True):
         return {"weighted_score": score, "hard_fails": fails or [], "ship": ship}
+
+    BAR = 7.0          # the hermetic bar for these cases, so the rubric can move without
+                       # rewriting every assertion below
 
     # THE REAL FINAL ROUND of 2026-08-19, with the real per-criterion scores. The three judges
     # totalled 8.09, 8.17 and 7.70. A median of TOTALS is 8.09. The per-criterion medians weight
@@ -286,6 +354,21 @@ def self_test() -> int:
        any("no score" in p for p in probs), str(probs))
 
     ok("three lenses are defined, and they differ", len(LENSES) == 3 and len(set(LENSES.values())) == 3)
+
+    # THE BAR, WHICH THIS MODULE DID NOT READ FOR NINE ROUNDS (2026-08-26).
+    v, _ = combine([j(6.52), j(7.14), j(6.36)], bar=BAR)
+    ok("a 6.72 median with no hard fail does NOT ship", v["ship"] is False, str(v))
+    ok("...and the file says why in words", "under the" in v.get("hold_reason", ""), str(v))
+    ok("...and carries the bar it was judged against", v["threshold"] == BAR)
+    ok("...and over_threshold is false", v["over_threshold"] is False)
+    v, _ = combine([j(7.0), j(7.0), j(7.0)], bar=BAR)
+    ok("a median exactly ON the bar ships", v["ship"] is True, str(v))
+    ok("...with no hold_reason", "hold_reason" not in v)
+    v, _ = combine([j(8.4), j(8.6), j(8.5, ["a fabricated figure on slide 3"], ship=False)], bar=BAR)
+    ok("a hard fail still stops a deck well over the bar", v["ship"] is False, str(v))
+    ok("...and hold_reason is not used for the hard-fail case, which has its own field",
+       "hold_reason" not in v, str(v))
+    ok("the live rubric still declares a numeric bar", isinstance(threshold(), float))
 
     print("\npanel self-test: " + ("all passed" if not bad else f"{bad} FAILED"))
     return 1 if bad else 0

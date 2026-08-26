@@ -177,6 +177,53 @@ def bottom_clause(bands: str) -> str:
     return " ".join(hits)
 
 
+# WHERE THE LIGHT IS, SAID TWICE. 2026-08-26.
+#
+# `composition.focal` and `art.value_structure` both name where the frame's light sits, in two
+# fields four lines apart, and nothing compared them. Slide 2's focal said "the lit half of the
+# sheet to the RIGHT of the mullion shadow" while its own value_structure said "Lightest is the
+# lit wedge at the sheet's upper LEFT. Darkest is the shade core at the LOWER RIGHT". The code
+# puts the light upper left. The focal line survived three review rounds and two reported
+# repairs, because a pixel critic grades the render against the focal line and a craft critic
+# reads the value_structure, and neither one reads both.
+#
+# This is the tautology lesson in reverse. `distinct_shapes` could not be false; these two fields
+# could always disagree and nothing ever asked. A plan that contradicts itself is worse than a
+# thin plan, because each half licenses a different frame.
+_SIDE = {"left": "L", "right": "R"}
+_LEVEL = {"upper": "U", "top": "U", "head": "U", "lower": "D", "bottom": "D", "foot": "D"}
+
+
+def _light_words(text: str, mapping: dict) -> set:
+    """The direction words in the clause about LIGHT, never the one about shade.
+
+    A value_structure names both poles in one paragraph, so reading the whole of it would find
+    every word and agree with anything. Only the lightest clause is read: from "Lightest"/"lit"
+    up to the first sentence that turns to the dark half.
+    """
+    low = re.sub(r"\s+", " ", text.lower())
+    m = re.search(r"\b(lightest|lit)\b", low)
+    if not m:
+        return set()
+    tail = low[m.start():]
+    stop = re.search(r"\b(darkest|darker|shade core|shadow core|in shade)\b", tail)
+    clause = tail[:stop.start()] if stop else tail
+    return {v for k, v in mapping.items() if re.search(rf"(?<![a-z]){k}(?![a-z])", clause)}
+
+
+def light_disagreement(focal: str, value_structure: str) -> str:
+    """The axis the two fields disagree on, or "" when they agree or one of them is silent."""
+    if not focal.strip() or not value_structure.strip():
+        return ""
+    for axis, mapping in (("horizontally", _SIDE), ("vertically", _LEVEL)):
+        a, b = _light_words(focal, mapping), _light_words(value_structure, mapping)
+        # Only a CLEAN disagreement counts. A field naming both sides is describing a sweep, and
+        # a field naming none is silent. Neither is a contradiction.
+        if len(a) == 1 and len(b) == 1 and a != b:
+            return axis
+    return ""
+
+
 def check_slide(n: int, d: dict, breather_rendered: bool | None) -> list[str]:
     fails = []
     for field in REQUIRED:
@@ -214,6 +261,15 @@ def check_slide(n: int, d: dict, breather_rendered: bool | None) -> list[str]:
                 fails.append(f"slide {n}: the bottom third names nothing with modeled tone in "
                              f"it.{why} Flat furniture across the bottom is an empty bottom with "
                              f"a caption on it")
+
+    focal = text_of(dig(d, "composition.focal"))
+    vstru = text_of(dig(d, "art.value_structure"))
+    axis = light_disagreement(focal, vstru)
+    if axis:
+        fails.append(f"slide {n}: `composition.focal` and `art.value_structure` put the light in "
+                     f"opposite places {axis}. One of them describes a frame this deck does not "
+                     f"render, and a critic grading against the wrong one will pass a fault. "
+                     f"focal: \"{focal.strip()[:80]}\" / value_structure: \"{vstru.strip()[:80]}\"")
 
     acc = dig(d, "acceptance")
     items = acc if isinstance(acc, list) else ([acc] if isinstance(acc, str) else [])
@@ -450,6 +506,38 @@ def self_test() -> int:
     ok("fenced yaml blocks are read", sorted(got) == [1, 2], str(got))
     ok("...and a whole-file yaml document is read too",
        sorted(parse_dossiers("- slide: 1\n  job: a\n- slide: 2\n  job: b\n")) == [1, 2])
+
+    # THE TWO FIELDS THAT NAME THE LIGHT (2026-08-26). Slide 2 shipped them inverted for three
+    # rounds and two reported repairs, because a pixel critic grades against the focal line and a
+    # craft critic reads the value_structure, and neither one reads both.
+    _f_bad = ("The lit half of the sheet to the right of the mullion shadow, the frame's one "
+              "large bright area.")
+    _v = ("Lightest is the lit wedge at the sheet's upper left. Darkest is the shade core at the "
+          "LOWER RIGHT, where the bracket doubles the occlusion.")
+    ok("a focal that inverts its own value_structure is CAUGHT",
+       light_disagreement(_f_bad, _v) == "horizontally", light_disagreement(_f_bad, _v))
+    _f_ok = "The lit upper LEFT of the sheet, running from the head down through the first rows."
+    ok("...and the corrected pair agrees", light_disagreement(_f_ok, _v) == "",
+       light_disagreement(_f_ok, _v))
+    ok("the DARK clause of value_structure is not read as its light clause",
+       light_disagreement("The lit band at the upper left of the sheet.",
+                          "Lightest is the sheet's upper left. Darkest is the lower right.") == "")
+    ok("a focal naming no direction is not a disagreement",
+       light_disagreement("The reflected far case's bond sheet, roughly 200 by 150.", _v) == "")
+    ok("a value_structure naming no direction is not a disagreement",
+       light_disagreement(_f_bad, "Lightest is the two sheets at bond. Darkest is the case lip.") == "")
+    ok("an empty field is not a disagreement",
+       light_disagreement("", _v) == "" and light_disagreement(_f_bad, "") == "")
+    ok("a focal naming BOTH sides is a sweep, not a contradiction",
+       light_disagreement("lit from the left edge across to the right margin", _v) == "")
+    ok("a vertical inversion is caught on its own axis",
+       light_disagreement("The lit strip along the bottom edge of the sheet.",
+                          "Lightest is the sheet's upper rail. Darkest is the floor below it.")
+       == "vertically")
+    _bad_slide = good(composition={"focal": _f_bad}, art={"value_structure": _v})
+    ok("check() surfaces it as a slide level failure",
+       any("opposite places" in f for f in check({1: _bad_slide}, 1, None)),
+       str(check({1: _bad_slide}, 1, None)))
 
     if failures:
         print(f"\ndossier_check self-test: {failures} FAILED", file=sys.stderr)

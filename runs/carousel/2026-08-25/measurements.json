@@ -1,0 +1,49 @@
+{
+ "per_frame_median_lstar": [
+  51.4,
+  67.9,
+  14.4,
+  30.8,
+  93.2,
+  72.2,
+  52.1,
+  58.0,
+  49.6
+ ],
+ "deck_median": 52.1,
+ "deck_sd": 21.6,
+ "junctions": [
+  16.5,
+  -53.5,
+  16.4,
+  62.4,
+  -21.0,
+  -20.1,
+  5.9,
+  -8.4
+ ],
+ "biggest_junction": {
+  "between": 4,
+  "delta": 62.4
+ },
+ "frame7_repeat_gutters": [
+  82.8,
+  91.2,
+  96.6,
+  99.3
+ ],
+ "frame7_falloff_lstar": 16.5,
+ "frame6": {
+  "card_a": 89.9,
+  "card_b": 95.2,
+  "cork_under": 59.9,
+  "slip_stock": 85.4
+ },
+ "band_declared": [
+  62,
+  68
+ ],
+ "frames_inside_declared_band": [
+  2
+ ]
+}

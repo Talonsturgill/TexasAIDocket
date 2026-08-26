@@ -104,19 +104,33 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 # A `name #RRGGBB` pair in the storyboard's palette section. One definition, read never typed.
 PALETTE_DEF = re.compile(r"`([a-z][a-z ]*?) (#[0-9A-Fa-f]{6})`")
 
-# An acceptance item asserting a string is present. The quoted group is what must be rendered.
+# A QUOTED STRING, AND AN APOSTROPHE IS NOT ONE. 2026-08-26.
+#
+# The first draft wrote the delimiters as `["\']...["\']`, which accepts a `"` opened and a `'`
+# closed, and lets a POSSESSIVE open a quote. Slide 7's acceptance line reading "all four title
+# cells carry their applicant\'s name, because the county\'s own matter titles hold four" was
+# therefore read as requiring the frame to print the string `s name, because the county`, and the
+# gate failed a correct frame over a plan sentence that quotes nothing at all.
+#
+# Two rules fix the class. The marks must MATCH, via a backreference. And a mark glued to a word
+# character on the inside is punctuation in a word, never a delimiter: `\w'` cannot open and `'\w`
+# cannot close. Double quotes are unaffected, which is what every real quoted acceptance item
+# here uses.
+_Q = r"(?<!\w)([\"'])([^\"']{3,60})\1(?!\w)"
+
+# An acceptance item asserting a string is present. Group 2 is what must be rendered.
 REQUIRED_STR = re.compile(
     r"\b(?:read(?:s|ing)?|carr(?:y|ies|ying)|say(?:s|ing)?|print(?:s|ing)?|set)\b[^\"']{0,40}"
-    r"[\"']([^\"']{3,60})[\"']", re.I)
+    + _Q, re.I)
 
 # An acceptance item asserting a string is absent. TWO orders, because acceptance lines are
 # written both ways and the first draft of this file only matched one of them:
 #   "no legend label names 'base load'"        negation BEFORE the quote
 #   "the phrase 'flag red' appears nowhere"    negation AFTER it
 FORBIDDEN_BEFORE = re.compile(
-    r"\b(?:no|never|nowhere|not)\b[^\"']{0,60}[\"']([^\"']{3,60})[\"']", re.I)
+    r"\b(?:no|never|nowhere|not)\b[^\"']{0,60}" + _Q, re.I)
 FORBIDDEN_AFTER = re.compile(
-    r"[\"']([^\"']{3,60})[\"'][^\"']{0,40}"
+    _Q + r"[^\"']{0,40}"
     r"\b(?:appears? nowhere|appears? on no|is absent|does not appear|never appears|"
     r"appears nowhere)\b", re.I)
 
@@ -125,7 +139,7 @@ def forbidden_needles(item: str) -> list:
     seen = []
     for rx in (FORBIDDEN_BEFORE, FORBIDDEN_AFTER):
         for m in rx.finditer(item):
-            v = m.group(1).strip()
+            v = m.group(2).strip()
             if len(v.split()) >= 2 and v not in seen:
                 seen.append(v)
     return seen
@@ -133,6 +147,51 @@ def forbidden_needles(item: str) -> list:
 # Words that mean the item is about judgement rather than about a countable thing.
 PROSE_ONLY = ("read as", "reads as", "feel", "judged", "at thumb", "by eye", "looks")
 
+
+# THE LIBRARY A DOSSIER NAMES MUST BE IN THE SLIDE. 2026-08-26.
+#
+# Round 10's craft judge read slide 1's dossier, which declared "Zdog scene, rounded extrusion
+# with a real depth axis" and argued for it at length on the ground that "Zdog has never shipped
+# on this product", then opened slide-01.html and found it loads noise.js and nothing else and
+# builds the whole case out of axis-aligned fillRects. No Zdog, no depth axis, no three quarter
+# camera. It had stood for three rounds and every gate was green, because the one artifact a
+# craft judge grades a frame against is the one artifact nothing checked.
+#
+# This is cheap and certain: a dossier that names a drawing library by name is making a claim
+# about the slide's own <script> tags, and those are readable. Named narrowly, one entry per
+# library this engine can actually load, so the check cannot widen into taste.
+LIBRARIES = {
+    "zdog": "zdog",
+    "d3": "d3",
+    "topojson": "topojson",
+    "three.js": "three",
+    "threejs": "three",
+    "taichi": "taichi",
+    "matter": "matter",
+    "rough": "rough",
+}
+
+
+def declared_libraries(body: str) -> list:
+    """Library names a dossier's art block claims, lowercased.
+
+    ONLY the `technique` field, which is the DECLARATION. The rationale beside it is discussion,
+    and reading it turned this gate's own repair into a new finding: the corrected slide 1 block
+    explains that the frame draws "no Zdog, no depth axis and no three quarter view", and a gate
+    reading that prose recorded a claim to both Zdog and three.js. Prose about what did not ship
+    is not a claim that it did.
+
+    `technique` is written as a one line quoted scalar and `section()` only reads block scalars,
+    so both forms are read here.
+    """
+    m = re.search(r'^\s*technique:\s*"([^"]*)"', body, re.M)
+    low = ((m.group(1) if m else "") + " " + section(body, "technique")).lower()
+    return sorted({k for k in LIBRARIES if re.search(rf"(?<![a-z.]){re.escape(k)}(?![a-z])", low)})
+
+
+def slide_sources(html: str) -> str:
+    """Every src the slide loads, plus its inline script, as one lowercased haystack."""
+    return " ".join(re.findall(r"<script[^>]*>", html, re.I)).lower() + " " + html.lower()
 
 def parse_dossiers(storyboard: str) -> dict:
     """Slide number to its YAML-ish block. Same fenced form dossier_check reads."""
@@ -297,6 +356,18 @@ def check(storyboard: str, slides_dir: Path, report: dict) -> tuple:
                    f"refused build ship stale HTML to three scoring judges on 2026-08-21")
             (fails if where == "FAIL" else warns).append(msg)
 
+        # ---- THE DECLARED LIBRARY HAS TO BE IN THE SLIDE ------------------------------
+        if html:
+            hay = slide_sources(html)
+            for lib in declared_libraries(body):
+                token = LIBRARIES[lib]
+                if not re.search(rf"(?<![a-z]){re.escape(token)}(?![a-z])", hay):
+                    fails.append(
+                        f"slide {n}: the dossier's art block names {lib} and slide-{n:02d}.html "
+                        f"never loads it. A technique nobody executed is a plan a craft critic "
+                        f"grades the frame against, and slide 1 carried a Zdog scene it never "
+                        f"drew for three rounds with every gate green")
+
         # ---- ACCEPTANCE: the items that assert something countable --------------------
         checkable_here = 0
         for item in acceptance_items(body):
@@ -313,7 +384,7 @@ def check(storyboard: str, slides_dir: Path, report: dict) -> tuple:
                         f"frame, and the render prints it")
             if not hit:
                 for m in REQUIRED_STR.finditer(item):
-                    needle = m.group(1).strip()
+                    needle = m.group(2).strip()
                     if len(needle.split()) < 2:
                         continue
                     hit = True
@@ -546,6 +617,43 @@ acceptance:
     ok("the palette is read from the storyboard rather than typed into this file",
        palette_map(SB) == {"tower": "#16151C", "pecos": "#8E4B3A", "paper": "#F6F1E4"},
        str(palette_map(SB)))
+    # THE DECLARED LIBRARY (2026-08-26). Slide 1 carried a Zdog scene it never drew, for three
+    # rounds, with every gate green, because nothing read the dossier against the slide.
+    _zdog = ('art:\n  technique: "Zdog scene, rounded extrusion with a real depth axis"\n'
+             '  why_this_technique: >\n    Zdog builds it natively in vector.\n')
+    ok("a dossier naming Zdog is seen to name it", declared_libraries(_zdog) == ["zdog"],
+       str(declared_libraries(_zdog)))
+    ok("...and a slide loading only noise.js does not satisfy it",
+       "zdog" not in slide_sources('<script src="@@ASSETS@@/js/noise.js"></script>'))
+    ok("...while a slide that loads it does",
+       "zdog" in slide_sources('<script src="@@ASSETS@@/js/zdog.dist.js"></script>'))
+    ok("a dossier naming no library declares none",
+       declared_libraries('art:\n  technique: "flat elevation, axis aligned rects"\n') == [])
+    ok("d3 and topojson are each their own claim",
+       declared_libraries('art:\n  technique: "d3 geoAlbers over topojson counties"\n')
+       == ["d3", "topojson"])
+    ok("a word merely containing a library name is not a claim",
+       declared_libraries('art:\n  technique: "three quarter camera on a threaded rod"\n') == [])
+
+    # A POSSESSIVE IS NOT A QUOTE (2026-08-26). The loose delimiters failed a correct frame.
+    _poss = ("all four title cells carry their applicant's name, because the county's own "
+             "matter titles hold four")
+    ok("a possessive apostrophe does not open a required string",
+       not [m.group(2) for m in REQUIRED_STR.finditer(_poss)],
+       str([m.group(2) for m in REQUIRED_STR.finditer(_poss)]))
+    ok("...and a real single quoted needle is still read",
+       [m.group(2) for m in REQUIRED_STR.finditer("the frame carries 'base load' at the foot")]
+       == ["base load"])
+    ok("...and a double quoted needle is still read",
+       [m.group(2) for m in REQUIRED_STR.finditer('the frame reads "two public hearings" plainly')]
+       == ["two public hearings"])
+    ok("mismatched marks are not a quote",
+       not [m.group(2) for m in REQUIRED_STR.finditer("""the frame carries "base load' here""")])
+    ok("a possessive does not create a forbidden needle either",
+       not forbidden_needles("no cell carries the county's own internal matter number"))
+    ok("...while a real forbidden needle still fires",
+       forbidden_needles("no legend label names 'base load'") == ["base load"])
+
     ok("no hex literal for a brand colour is hardcoded in this module",
        not re.search(r"#(16151C|8E4B3A|D9CDB4|B98D46|4E6B62|EFE9DA)",
                      Path(__file__).read_text(encoding="utf-8").split("def self_test")[0], re.I))

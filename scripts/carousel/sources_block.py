@@ -110,6 +110,69 @@ def deck_claim_ids(copy: dict) -> list[str]:
     return sorted(out, key=lambda c: int(c[1:]))
 
 
+def provenance_line(docs: list[dict], fetched: "str | list[str]") -> str:
+    """The first line of the source block, COUNTED and never asserted.
+
+    Until 2026-08-25 this read "Sources, all primary and fetched <date>". That run's own claims
+    file typed seven of its twelve documents `secondary_reported`, so the one line whose entire
+    job is telling a reader how good the evidence is overstated exactly that, on the surface a
+    sceptic checks first. The compute-not-generate law says a numeral is produced by code from
+    data. A statement ABOUT the evidence grade is the same kind of claim and gets the same
+    treatment.
+
+    `docs` is one claim per distinct document, not per claim id, because a reader counts
+    documents.
+
+    THE WORD "ALL" IS ALSO A CLAIM, and it was the next one to go wrong. `build` passed the
+    LATEST retrieved date into a sentence beginning "all fetched", which is true only while a
+    run fetches everything on one day. The 2026-08-25 run re-opened after midnight to fetch a
+    San Angelo ordinance a scorer proved the deck needed, and the block would have told a
+    reader that all twelve of its documents were fetched on the 26th when eleven were fetched
+    on the 25th. Nothing would have caught it: every id resolved, every claim carried a date,
+    and the gate reads ids rather than adverbs. `fetched` now takes the whole set of distinct
+    dates and the sentence is built from how many there are.
+    """
+    NAME = {"primary_official": "official records", "primary_corporate": "company filings",
+            "secondary_reported": "news reports", "data": "published data",
+            "unstated": "documents of unstated type"}
+    kinds: dict[str, int] = {}
+    for d in docs:
+        k = d.get("source_type") or "unstated"
+        kinds[k] = kinds.get(k, 0) + 1
+    def _n(i: int) -> str:
+        words = "one two three four five six seven eight nine ten eleven twelve".split()
+        return words[i - 1] if 1 <= i <= len(words) else str(i)
+    parts = [f"{_n(v)} {NAME.get(k, k)}" for k, v in
+             sorted(kinds.items(), key=lambda kv: (-kv[1], kv[0]))]
+    grade = parts[0] if len(parts) == 1 else ", ".join(parts[:-1]) + " and " + parts[-1]
+    days = sorted({fetched} if isinstance(fetched, str) else set(fetched))
+    if not days:
+        raise SystemExit("sources_block: provenance_line was given no fetch date")
+    # Built from the parsed parts rather than by cutting up ordinal_date's output. The first
+    # version of this sliced the formatted string on its spaces and commas and shipped
+    # "August 25th and 26th,, 2026", which is what string surgery on a formatted date earns.
+    def ymd(iso):
+        y, m, d = (int(x) for x in iso.split("-"))
+        return y, m, d
+    def day(iso):
+        _, _, d = ymd(iso)
+        return f"{d}{ORDINALS.get(d, 'th')}"
+    if len(days) == 1:
+        when = f"all fetched {ordinal_date(days[0])}"
+    elif len(days) == 2:
+        (y0, m0, _), (y1, m1, _) = ymd(days[0]), ymd(days[1])
+        if (y0, m0) == (y1, m1):
+            when = f"fetched {MONTHS[m0 - 1]} {day(days[0])} and {day(days[1])}, {y0}"
+        elif y0 == y1:
+            when = (f"fetched {MONTHS[m0 - 1]} {day(days[0])} and "
+                    f"{MONTHS[m1 - 1]} {day(days[1])}, {y0}")
+        else:
+            when = f"fetched {ordinal_date(days[0])} and {ordinal_date(days[1])}"
+    else:
+        when = f"fetched between {ordinal_date(days[0])} and {ordinal_date(days[-1])}"
+    return f"Sources, {grade}, {when}."
+
+
 def build(run_dir: Path) -> str:
     copy, claims = load(run_dir)
     by_id = {c["id"]: c for c in claims}
@@ -128,7 +191,7 @@ def build(run_dir: Path) -> str:
     if not retrieved:
         raise SystemExit("sources_block: no claim carries a retrieved date")
 
-    lines = [f"Sources, all primary and fetched {ordinal_date(retrieved[-1])}."]
+    lines = [provenance_line([by_id[ids[0]] for ids in groups.values()], retrieved)]
     for url, ids in groups.items():
         c = by_id[ids[0]]
         title = field(c, TITLE_KEYS)
@@ -211,6 +274,51 @@ def self_test() -> int:
         print(f"  {'ok  ' if cond else 'FAIL'}  {label}{'' if cond else '  ' + extra}")
         if not cond:
             fails += 1
+
+    # THE PROVENANCE LINE IS COUNTED (2026-08-25), both directions.
+    _mix = {"claims": [
+        {"id": "c1", "url": "https://a.example/1", "document": "A", "source_type": "primary_official",
+         "retrieved": "2026-08-25", "quote": "the first quoted span here", "text": "a"},
+        {"id": "c2", "url": "https://b.example/2", "document": "B", "source_type": "secondary_reported",
+         "retrieved": "2026-08-25", "quote": "the second quoted span here", "text": "b"},
+        {"id": "c3", "url": "https://c.example/3", "document": "C", "source_type": "secondary_reported",
+         "retrieved": "2026-08-25", "quote": "the third quoted span here", "text": "c"}]}
+    _line = provenance_line(_mix["claims"], "2026-08-25")
+    ok("the provenance line counts the source types it actually holds",
+       "two news reports" in _line and "one official records" in _line, _line)
+    ok("...and never claims they are all primary",
+       "all primary" not in _line, _line)
+    ok("...and a single grade reads as one clause",
+       provenance_line([_mix["claims"][0]], "2026-08-25").count(" and ") == 0,
+       provenance_line([_mix["claims"][0]], "2026-08-25"))
+
+    # THE WORD "ALL" IS COUNTED TOO (2026-08-26). A run that re-opens across midnight to fetch
+    # one more source has two fetch dates, and the sentence used to take the later one and put
+    # "all" in front of it.
+    _d2 = [_mix["claims"][0], _mix["claims"][1]]
+    ok("one fetch date still reads 'all fetched'",
+       "all fetched August 25th, 2026." in provenance_line(_d2, ["2026-08-25"]),
+       provenance_line(_d2, ["2026-08-25"]))
+    ok("two dates in one month name both days and drop 'all'",
+       provenance_line(_d2, ["2026-08-25", "2026-08-26"]).endswith(
+           "fetched August 25th and 26th, 2026."),
+       provenance_line(_d2, ["2026-08-25", "2026-08-26"]))
+    ok("...and never doubles the comma the formatted date already carries",
+       ",," not in provenance_line(_d2, ["2026-08-25", "2026-08-26"]))
+    ok("two dates across months name both months",
+       provenance_line(_d2, ["2026-08-25", "2026-09-02"]).endswith(
+           "fetched August 25th and September 2nd, 2026."),
+       provenance_line(_d2, ["2026-08-25", "2026-09-02"]))
+    ok("two dates across years carry both years",
+       provenance_line(_d2, ["2026-12-30", "2027-01-02"]).endswith(
+           "fetched December 30th, 2026 and January 2nd, 2027."),
+       provenance_line(_d2, ["2026-12-30", "2027-01-02"]))
+    ok("three or more dates read as a span",
+       "fetched between August 25th, 2026 and August 27th, 2026." in
+       provenance_line(_d2, ["2026-08-25", "2026-08-26", "2026-08-27"]),
+       provenance_line(_d2, ["2026-08-25", "2026-08-26", "2026-08-27"]))
+    ok("a bare string is still accepted, so older callers keep working",
+       provenance_line(_d2, "2026-08-25") == provenance_line(_d2, ["2026-08-25"]))
 
     ok("a date takes the ordinal, month first", ordinal_date("2026-08-19") == "August 19th, 2026",
        ordinal_date("2026-08-19"))

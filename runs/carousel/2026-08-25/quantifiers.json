@@ -1,0 +1,35 @@
+{
+ "_why": "A quantifier is a claim about a SET, so the set is named, the same way every numeral names its computation. Round 13 and round 14 each hard failed on a scope word in prose sitting on top of a correctly computed number, and each repair landed on the frame that was named and on no other surface. scripts/carousel/quantifier_check.py reads every published surface from one list and requires a row here for every universal on any of them.",
+ "quantifiers": [
+  {
+   "phrase": "all fifteen",
+   "figures_key": "restricted_count",
+   "about": "actions",
+   "note": "The fifteen acting items. Frame 2 prints every one of them with its shape and its claim id, so the universal is discharged on the frame that makes it."
+  },
+  {
+   "phrase": "not one of their records",
+   "figures_key": "force_unstated",
+   "about": "key_dates",
+   "note": "A measurement about the record and NOT a claim about what sources say. compute.py asserts that no member of this set carries an `effective` key date at all, which is what makes the universal safe to print."
+  },
+  {
+   "phrase": "none is in the five",
+   "figures_key": "resolutions_binding",
+   "about": "set_membership",
+   "note": "The intersection of the five resolutions with the five whose effective date has arrived, asserted empty in compute.py. It is a statement about membership in a computed bucket, not about whether anything happened."
+  },
+  {
+   "phrase": "not one is among the five",
+   "figures_key": "resolutions_binding",
+   "about": "set_membership",
+   "note": "The caption's wording of the same computed intersection."
+  },
+  {
+   "phrase": "eight items in this record",
+   "figures_key": "doors_record_wide",
+   "about": "key_dates",
+   "note": "The door test run over EVERY item in ledger/docket.json rather than over this deck's subject, published so the closing frame can name the wider set it is scoped inside."
+  }
+ ]
+}

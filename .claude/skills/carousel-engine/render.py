@@ -99,6 +99,22 @@ IN_PAGE_QA_JS = """
       (b && (b.scrollWidth > W + 1 || b.scrollHeight > H + 1))) {
     out.body_overflow = true;
   }
+  // Text with the boundaries the LAYOUT puts in, which `textContent` throws away: a `<br>`
+  // and any child that is not laid out inline both separate words on screen.
+  const BLOCKISH = /^(block|list-item|flex|grid|table|flow-root)/;
+  function flatText(el) {
+    let s = "";
+    el.childNodes.forEach(function (n) {
+      if (n.nodeType === 3) { s += n.textContent; return; }
+      if (n.nodeType !== 1) return;
+      if (n.nodeName === "BR") { s += " "; return; }
+      let d = "";
+      try { d = getComputedStyle(n).display || ""; } catch (e) { d = ""; }
+      if (BLOCKISH.test(d)) s += " " + flatText(n) + " ";
+      else s += flatText(n);
+    });
+    return s;
+  }
   const seenFam = new Set();
   const recorded = new Map();   // element -> index in out.text_nodes (for ancestry)
   const walk = document.createTreeWalker(document.body || de, NodeFilter.SHOW_ELEMENT);
@@ -118,7 +134,23 @@ IN_PAGE_QA_JS = """
     // an invented number. The scorer found it, no gate could have. `copy_sync` truncates
     // authored strings to the same window before comparing, so widening only widens what
     // both can see.
-    const txt = el.textContent.trim().replace(/\\s+/g, " ").slice(0, __TEXT_WINDOW__);
+    // A LINE BREAK IS A WORD BOUNDARY, and `textContent` is not told so. 2026-08-26.
+    //
+    // `<div>154 DAYS<br>MARCH 10TH TO AUGUST 11TH</div>` stored as
+    // "154 DAYSMARCH 10TH TO AUGUST 11TH", and a block-level `<span>` fused the same way:
+    // slide 8's attribution became "LAREDO MATTER HISTORY, C143 AGENDAS". Nothing looked
+    // wrong, because the strings ARE all there. What is gone is the boundary.
+    //
+    // The cost is not cosmetic. `aggregate_check` finds a computed number with `\b(NUM)\s+`,
+    // and "DAYSMARCH" and "C143" are single tokens with no boundary in them, so the pattern
+    // cannot match. Two undeclared numerals sat on two frames of the 2026-08-25 deck while
+    // that gate printed "clean (14 computed figures, all re-derived)". Any number that ends
+    // a line was structurally invisible to the gate whose whole job is catching an invented
+    // number, on every deck this engine has ever rendered.
+    //
+    // The widening from 80 to 320 characters below has the same shape and the same lesson:
+    // a gate can only judge the text it is handed.
+    const txt = flatText(el).trim().replace(/\\s+/g, " ").slice(0, __TEXT_WINDOW__);
     const fs = parseFloat(cs.fontSize);
     const fam = cs.fontFamily.split(",")[0].trim().replace(/["']/g, "");
     // For SVG text the ink is `fill`, not CSS `color`; the fill attribute or
@@ -863,8 +895,44 @@ def scan_nondeterminism(html: str, name: str) -> list:
     return hits
 
 
+# A LENGTH WITH NO UNIT. 2026-08-26.
+#
+# CSS drops an invalid declaration WHOLE and says nothing. `width:430` in slide 1's `.dek` rule
+# meant that line had no width at all, so it ran the full 1080 body: off the bond sheet, across
+# the case bezel, over the lock cylinder and out of the safe zone. Machine QA reported it as
+# "art touching glyphs across 79 percent of the ring", which reads like an atmosphere note, and
+# two review rounds took it for one.
+#
+# There is no case where a slide wants this. A bare number is a typo every time, and it is the
+# quietest kind, because the frame still renders and still looks deliberate. So it is a BUILD
+# ERROR rather than a warning, caught in the source before a browser is ever opened. `0` is
+# exempt because unitless zero is valid CSS and means what it says.
+UNITLESS = re.compile(
+    r"(?<![\w-])(width|height|top|left|right|bottom|max-width|min-width|max-height|min-height|"
+    r"margin|margin-top|margin-left|margin-right|margin-bottom|padding|font-size|"
+    r"letter-spacing|word-spacing|gap|row-gap|column-gap|border-radius|text-indent)"
+    r"\s*:\s*(-?\d*\.?\d+)\s*(?=[;}])")
+
+
+def unitless_lengths(html: str) -> list:
+    """Every `property: <bare number>` in the slide's own <style>, which CSS silently discards."""
+    out = []
+    for m in re.finditer(r"<style[^>]*>(.*?)</style>", html, re.S | re.I):
+        for hit in UNITLESS.finditer(m.group(1)):
+            if hit.group(2) in ("0", "0.0"):
+                continue
+            out.append(f"{hit.group(1)}:{hit.group(2)}")
+    return out
+
+
 def resolve_html(src: Path, resolved_dir: Path) -> Path:
     html = src.read_text()
+    bare = unitless_lengths(html)
+    if bare:
+        raise ValueError(
+            f"{src.name}: CSS length with no unit: {', '.join(bare)}. A browser drops the whole "
+            f"declaration and renders the frame anyway, so the property is simply absent and "
+            f"nothing looks broken. Write px.")
     if re.search(r'src\s*=\s*["\']https?://|href\s*=\s*["\']https?://|url\(\s*["\']?https?://', html):
         raise ValueError(f"{src.name}: external http(s) reference found. Slides must be fully offline.")
     html = html.replace("@@ASSETS@@", ASSETS_DIR.as_uri())

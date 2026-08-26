@@ -277,8 +277,21 @@ SLIDE_COUNTER = re.compile(r"^\s*\d+\s*/\s*\d+\s*$")
 # STRIPPED FROM THE NODE, NOT AN EXEMPTION FOR THE NODE. A stamp usually arrives concatenated
 # into a parent element alongside real text, so exempting any node containing one would blind
 # this gate to whatever sits beside it. Removing just the stamp leaves the rest to be judged.
+# A STAMP TAKES A CLAIM ID, NOT ANY WORD. 2026-08-26.
+#
+# The first draft matched `CLAIMS?` followed by `[A-Za-z0-9_.-]+`, case insensitively, so the
+# ordinary English word "claim" plus whatever came next was cut out of the middle of a sentence.
+# Slide 2's dek reads "Each one with the claim whose own words prove its shape." and reached this
+# gate as "Each one with the  own words prove its shape.", which matches no authored string,
+# because no authored string says that. The gate then failed a correct frame and named a sentence
+# nobody wrote, which is the worst kind of gate output: it sends the next reader looking for a
+# defect in the deck instead of in the checker.
+#
+# A stamp's argument is a claim id. Requiring one keeps every real stamp stripped and puts the
+# word "claim" back in the language.
 CLAIM_STAMP = re.compile(
-    r"\bCLAIMS?\s+[A-Za-z0-9_.-]+\s*\.?(\s*(QUOTED\s+VERBATIM|COMPUTED|MEASURED|MODELED)\s*\.?)?",
+    r"\bCLAIMS?\s+[cC]\d+(?:\s*(?:,|and)\s*[cC]\d+)*\s*\.?"
+    r"(\s*(QUOTED\s+VERBATIM|COMPUTED|MEASURED|MODELED)\s*\.?)?",
     re.IGNORECASE)
 
 
@@ -695,6 +708,19 @@ def self_test() -> int:
     d, _ = compare({"slides": {"S1": {"headline": "Authored"}}},
                    rich([{"text": "Authored"}, {"text": prose + " CLAIM c9."}]), None)
     ok("...but unauthored prose beside a stamp is still CAUGHT", len(d) == 1, str(d))
+    d, _ = compare({"slides": {"S1": {"tag": "THE PLANT IS ANNOUNCED."}}},
+                   rich([{"text": "THE PLANT IS ANNOUNCED. CLAIMS c7, c9 and c11. COMPUTED."}]), None)
+    ok("a multi id stamp is stripped too", d == [], str(d))
+    # The word "claim" is English before it is furniture.
+    _dek = "Each one with the claim whose own words prove its shape."
+    ok("the ENGLISH word claim is not eaten out of a sentence",
+       CLAIM_STAMP.sub(" ", _dek).strip() == _dek,
+       repr(CLAIM_STAMP.sub(" ", _dek).strip()))
+    d, _ = compare({"slides": {"S1": {"dek": _dek}}}, rich([{"text": _dek}]), None)
+    ok("...so a dek that uses it comes back clean", d == [], str(d))
+    ok("a real stamp is still removed",
+       CLAIM_STAMP.sub(" ", "THE PLANT IS ANNOUNCED. CLAIM c7. QUOTED VERBATIM.").strip()
+       == "THE PLANT IS ANNOUNCED.")
 
     # The shipped deck of 2026-08-16, which is the artifact this direction was built from. It
     # must come back clean, or the carve-outs are wrong in the other direction.

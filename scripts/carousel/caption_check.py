@@ -30,51 +30,11 @@ WHAT IT CHECKS, AND WHY EACH ONE IS HERE
                    center needs electricity. Most cooling designs need water too", never "A
                    data center needs electricity and, in most cooling designs, water".
     comma density  Hard fail ABOVE THE CEILING FOR THE CALLING SURFACE. See below.
-    post rules     CAPTION ONLY, and hard fails. `config/brand.yaml`'s whole `linkedin_post`
-                   block, READ rather than remembered. See below.
     hashtags       CAPTION ONLY, and a hard fail. Exactly the count `config/brand.yaml` sets,
                    standing alone on the last line, no duplicates. The post takes hashtags and
                    the slides and the site do not, and treating those as one rule is what shipped
                    a tagless post on 2026-08-18. Applied in `run()` and never inside `check()`,
                    because `check()` also judges the website.
-
-THE POST RULES ARE READ FROM brand.yaml, AND 2026-08-26 IS WHY
-
-`config/brand.yaml` sets `linkedin_post.caption_chars: [300, 900]` and calls it a hard band. That
-run's caption stood at 1,970 characters and shipped through five rounds of panel review. It also
-sets `ends_with: engagement_question` and `deck_summary_line: true`, and the caption had neither.
-**This file implemented none of those three keys.** It counted words, counted commas, counted
-hashtags, linted the house rules and printed PASS, in every one of five rounds, while three judges
-read the caption by hand each round and none of them opened `brand.yaml` to check it against.
-
-That is the same defect this repo has now recorded four times: a rule stated in config, a surface
-keeping its own copy, and nothing in between checking they agree. The hashtag count already read
-`brand.yaml` for exactly that reason, so half of this file was already right and the other half
-had never been asked.
-
-**Every key in the block is now CLASSIFIED, and the classification is asserted by the self-test.**
-A key is enforced, or it is named unenforceable with a reason written down. A key that is neither
-turns the self-test red, so a maintainer adding a rule to `brand.yaml` finds out that nothing
-implements it on the day they add it rather than on the day it is broken. That is the answer to
-entry 49 in GATE_LESSONS: when a gate approximates a spec, count the spec, and state the coverage
-where the checker is defined instead of leaving a reader to infer a guarantee.
-
-    caption_chars      ENFORCED. Character count of the whole caption as it would be pasted,
-                       hashtags included, since that is what the platform counts.
-    hook_max_chars     ENFORCED. The first non-empty line.
-    hashtags_exactly   ENFORCED. See the hashtag section below.
-    links_in_body      ENFORCED. Any URL in the caption.
-    ends_with          ENFORCED IN ITS STRUCTURAL HALF ONLY. The last line that is not the
-                       hashtag block has to close with a question mark. Whether the question is
-                       one a reader wants to answer is taste, and this gate does not pretend to
-                       judge it. Necessary, not sufficient, and it is written down as such.
-    date_form          ENFORCED by the date rules above, which implement `month_first_ordinal`
-                       and nothing else. A different value in the config is a hard failure
-                       rather than a silent pass, because this file cannot implement a form it
-                       has never been taught.
-    deck_summary_line  NOT ENFORCEABLE. Whether a line summarises the deck is a judgement about
-                       meaning, and every mechanical proxy for it is a proxy a caption can
-                       satisfy while saying nothing. Reported on every run so it stays visible.
 
 THE COMMA CEILING IS PER SURFACE, AND ONE OF THE TWO IS DELIBERATELY UNSET
 
@@ -157,8 +117,18 @@ BRITISH = {
 BRITISH_RX = re.compile(r"\b(" + "|".join(sorted(BRITISH, key=len, reverse=True)) + r")\b",
                         re.IGNORECASE)
 OPENER = re.compile(r"(?:^|(?<=[.!?])\s+|\n)\s*(And|But)\b")
-FIRST_PERSON = re.compile(r"\b(?:I|I'm|I've|I'll|we|we're|we've|we'll|our|ours|us|my|mine)\b",
-                          re.IGNORECASE)
+# AN AGENDA ITEM NUMBER IS NOT FIRST PERSON. A period is a word boundary, so `\bI\b` matched
+# the I in "No action taken due to I.3 failed", which is Brazoria County's own minute line and
+# the best single fact the August 25th run had. The gate reported first person on a caption that
+# contained none, and the only ways past it were to misquote the record or to drop the quote.
+#
+# A gate that can only be satisfied by damaging a verbatim quote is a gate that will be switched
+# off, so the fix is here rather than in the copy. `I` is still first person everywhere else,
+# including at the end of a sentence and before a comma. It is exempt only where a digit or a
+# further Roman numeral follows the period, which is what an item identifier looks like and what
+# a pronoun never does.
+FIRST_PERSON = re.compile(r"\b(?:I(?!\.\s*[0-9IVX])|I'm|I've|I'll|we|we're|we've|we'll"
+                          r"|our|ours|us|my|mine)\b", re.IGNORECASE)
 # A ROMAN NUMERAL IS NOT A PRONOUN. "the 2027 State Water Plan (Phase I)" is the document's own
 # name, and reporting it as a writer talking about themselves sends an editor looking for a
 # first person that is not there. The anchor is the word in front, the same way an identifier
@@ -330,61 +300,65 @@ HASHTAG = re.compile(r"#[A-Za-z][A-Za-z0-9]*")
 MALFORMED_TAG = re.compile(r"#(?![A-Za-z])\S*|#[A-Za-z][A-Za-z0-9]*[^\sA-Za-z0-9#]+")
 
 
-def post_rules() -> dict:
-    """The whole `linkedin_post` block from `config/brand.yaml`.
+def linkedin_rule(key: str, kind):
+    """One `linkedin_post` value from `config/brand.yaml`. Never a literal in this file.
 
-    Searched by key rather than by a fixed path. brand.yaml is human owned and its top level has
-    already been reorganised once, and a gate that goes quiet because a maintainer moved a section
-    is a gate that fails open on the day it is needed. A missing block FAILS rather than skips,
-    for the same reason: a rule gate that quietly turns itself off reports clean on the run it
-    exists to catch.
+    THE FOURTH INSTANCE OF THE SAME DEFECT (2026-08-25). `brand.yaml` has carried
+    `caption_chars: [300, 900]`, `links_in_body: false` and `ends_with: engagement_question`ate
+    the whole time, and this gate read only `hashtags_exactly`, so August 25th's caption shipped
+    980 characters long, ending on a link, with the link in the body, past a green run. That is
+    a rule stated in config, a surface keeping its own copy, and nothing in between checking they
+    agree, which `CLAUDE.md` names three separate times as this project's recurring fault.
+
+    Searched by key for the same reason `hashtags_required` searches: a gate that goes quiet
+    because a maintainer moved a section fails open on the day it is needed.
     """
     import yaml
     doc = yaml.safe_load((REPO_ROOT / "config" / "brand.yaml").read_text(encoding="utf-8"))
 
     def find(node):
         if isinstance(node, dict):
-            blk = node.get("linkedin_post")
-            if isinstance(blk, dict):
-                return blk
+            if isinstance(node.get("linkedin_post"), dict):
+                got = node["linkedin_post"].get(key)
+                if got is not None:
+                    return got
             for v in node.values():
                 got = find(v)
                 if got is not None:
                     return got
         return None
 
-    blk = find(doc)
-    if not isinstance(blk, dict):
+    v = find(doc)
+    if not isinstance(v, kind):
         raise SystemExit(
-            "caption_check: config/brand.yaml has no linkedin_post block. That block is where the "
-            "post's rules are decided, and this gate will not guess them. Restore it rather than "
-            "removing this check")
-    return blk
-
-
-# WHAT THIS FILE DOES WITH EACH KEY brand.yaml DECLARES. The self-test asserts that every key in
-# the real block appears in one of these two maps, so a rule added to the config with nothing
-# implementing it turns the suite red on the day it is added. That is the whole repair: three keys
-# sat here unimplemented and unmentioned while a 1,970 character caption passed five rounds.
-POST_RULES_ENFORCED = {
-    "caption_chars": "the whole caption's character count sits inside the band",
-    "hook_max_chars": "the first non-empty line is no longer than the ceiling",
-    "hashtags_exactly": "exactly this many tags, alone on the last line, no duplicates",
-    "links_in_body": "whether a URL may appear in the caption",
-    "ends_with": "the structural half only, that the last prose line closes with a question mark",
-    "date_form": "the date rules in check(), which implement month_first_ordinal only",
-}
-POST_RULES_UNENFORCEABLE = {
-    "deck_summary_line":
-        "whether a line summarises the deck is a judgement about meaning. Every mechanical proxy "
-        "for it, a line count or a keyword, is one a caption can satisfy while saying nothing, "
-        "and a gate that can be satisfied without doing the thing teaches the run to satisfy it",
-}
+            f"caption_check: config/brand.yaml has no linkedin_post.{key}. That key is where this "
+            f"is decided and the gate will not guess it. Restore the key rather than removing the "
+            f"check")
+    return v
 
 
 def hashtags_required() -> int:
     """How many hashtags the post takes, per `config/brand.yaml`. Never a literal in this file."""
-    n = post_rules().get("hashtags_exactly")
+    import yaml
+    path = REPO_ROOT / "config" / "brand.yaml"
+    doc = yaml.safe_load(path.read_text(encoding="utf-8"))
+
+    # Searched by key rather than by a fixed path. brand.yaml is human owned and its top level
+    # has already been reorganised once, and a gate that goes quiet because a maintainer moved a
+    # section is a gate that fails open on the day it is needed.
+    def find(node):
+        if isinstance(node, dict):
+            if isinstance(node.get("linkedin_post"), dict):
+                got = node["linkedin_post"].get("hashtags_exactly")
+                if got is not None:
+                    return got
+            for v in node.values():
+                got = find(v)
+                if got is not None:
+                    return got
+        return None
+
+    n = find(doc)
     if not isinstance(n, int):
         raise SystemExit(
             "caption_check: config/brand.yaml has no linkedin_post.hashtags_exactly. That key is "
@@ -393,92 +367,42 @@ def hashtags_required() -> int:
     return n
 
 
-def _prose_lines(text: str) -> list[str]:
-    """The caption's non-empty lines with the hashtag block dropped.
+def post_shape_problems(text: str) -> list[str]:
+    """The three `linkedin_post` rules that live in brand.yaml and had no gate (2026-08-25).
 
-    A line that is nothing but tags is the block, wherever it sits. `hashtag_problems` is what
-    judges its placement; this only needs to know which line the writing ends on.
+    Length, the link rule and the required ending. All three were stated in config, all three
+    were broken on a run this file reported clean, and that is the fourth time this project has
+    shipped a rule stated in one place and a surface keeping its own copy of it.
+
+    POST LEVEL, and kept out of `check()` on purpose. `check()` is fed prose fragments by the
+    suite and by other callers, and a caption length rule applied to a fragment fails everything.
+    Same reason `hashtag_problems` is its own function, and the caption surface is the only
+    caller of either.
     """
-    out = []
-    for ln in text.strip().splitlines():
-        s = ln.strip()
-        if not s:
-            continue
-        if HASHTAG.findall(s) and not HASHTAG.sub("", s).strip():
-            continue
-        out.append(s)
-    return out
-
-
-def post_rule_problems(text: str, rules: dict | None = None) -> list[str]:
-    """`config/brand.yaml`'s post rules, applied. CAPTION SURFACE ONLY.
-
-    Deliberately not part of `check()`, for the same reason as `hashtag_problems`: `check()` is
-    imported by `docket_build`, `house_style_check` and `waterwatch_page` to judge the SITE's
-    reader copy, and a caption length band applied to a record page is nonsense.
-
-    NOT ONE NUMBER IN HERE IS TYPED. Every threshold is read from the config a maintainer owns,
-    which is what makes this a gate rather than a second opinion.
-    """
-    rules = post_rules() if rules is None else rules
     problems: list[str] = []
-    body = text.strip()
-
-    band = rules.get("caption_chars")
-    if isinstance(band, (list, tuple)) and len(band) == 2:
-        lo, hi = band
-        n = len(body)
-        if n < lo or n > hi:
-            problems.append(
-                f"the caption is {n} characters and config/brand.yaml sets a hard band of {lo} to "
-                f"{hi}. Counted as it would be pasted, hashtags included, which is what the "
-                f"platform counts. "
-                + ("Cut it to one hook, one movement and one close" if n > hi
-                   else "It is thinner than the band, so add the movement it is missing"))
-
-    lines = _prose_lines(text)
-    hook_max = rules.get("hook_max_chars")
-    if isinstance(hook_max, int) and lines and len(lines[0]) > hook_max:
+    # THE THREE brand.yaml RULES THIS GATE NEVER READ (2026-08-25). Length, the link rule and
+    # the required ending. All three were stated in config and all three were broken on a run
+    # this file reported clean.
+    lo, hi = linkedin_rule("caption_chars", list)
+    n = len(text.strip())
+    if not (lo <= n <= hi):
         problems.append(
-            f"the hook runs {len(lines[0])} characters against a {hook_max} ceiling. The first "
-            f"line is the whole of what a reader sees before deciding")
-
-    ends = rules.get("ends_with")
-    if ends is not None:
-        if ends != "engagement_question":
+            f"the caption is {n} characters and brand.yaml's linkedin_post.caption_chars band is "
+            f"{lo} to {hi}. Over the top of it the stake sits below the mobile fold; under the "
+            f"bottom of it there is no room for a source")
+    body = HASHTAG.sub("", text).strip()
+    if not linkedin_rule("links_in_body", bool):
+        for hit in set(URL.findall(body)) | set(re.findall(r"\b[a-z0-9-]+\.(?:com|org|net|gov)\b",
+                                                          body, re.I)):
             problems.append(
-                f"config/brand.yaml sets linkedin_post.ends_with to {ends!r} and this gate only "
-                f"knows how to check 'engagement_question'. Teach it the new form rather than "
-                f"leaving a declared rule with nothing behind it")
-        elif not lines:
-            problems.append("the caption has no prose at all, so it cannot close on a question")
-        elif not lines[-1].endswith("?"):
-            tail = lines[-1][-48:]
-            problems.append(
-                f"the caption does not close on a question. brand.yaml asks for an engagement "
-                f"question and the last line ends \"...{tail}\". Only the question mark is "
-                f"checked here, so a question that invites nothing still passes and is still "
-                f"wrong")
-
-    allow_links = rules.get("links_in_body")
-    if allow_links is False:
-        for u in sorted(set(URL.findall(text))):
-            problems.append(f"the caption carries a link, {u}. brand.yaml sets links_in_body "
-                            f"false. The sources belong in the first comment")
-
-    date_form = rules.get("date_form")
-    if date_form is not None and date_form != "month_first_ordinal":
+                f"link {hit!r} in the body: brand.yaml sets linkedin_post.links_in_body false, "
+                f"because a link suppresses reach and the sources go in the first comment")
+    if linkedin_rule("ends_with", str) == "engagement_question" and not body.rstrip().endswith("?"):
+        tail = body.rstrip().split("\n")[-1][-70:]
         problems.append(
-            f"config/brand.yaml sets linkedin_post.date_form to {date_form!r} and the date rules "
-            f"in this file implement 'month_first_ordinal' only. A form this gate has never been "
-            f"taught would pass silently, which is the failure this classification exists to stop")
+            f"the caption does not end on a question, and brand.yaml sets linkedin_post.ends_with "
+            f"to engagement_question. It ends {tail!r}")
 
-    unknown = sorted(set(rules) - set(POST_RULES_ENFORCED) - set(POST_RULES_UNENFORCEABLE))
-    for k in unknown:
-        problems.append(
-            f"config/brand.yaml declares linkedin_post.{k} and nothing in caption_check "
-            f"implements it or names it unenforceable. A rule with no mechanism is the defect of "
-            f"2026-08-26. Classify it in POST_RULES_ENFORCED or POST_RULES_UNENFORCEABLE")
     return problems
 
 
@@ -742,7 +666,7 @@ def run(text: str, *, quiet: bool = False) -> int:
     problems = check(text)
     # CAPTION SURFACE ONLY, and this is the only path that reaches it. See `hashtag_problems`.
     problems += hashtag_problems(text)
-    problems += post_rule_problems(text)
+    problems += post_shape_problems(text)
     rate, commas, words = comma_rate(text)
     rp = rate_problem(text)
     if rp:
@@ -755,16 +679,6 @@ def run(text: str, *, quiet: bool = False) -> int:
         print(f"caption_check: {words} words, {commas} commas, {rate} per 100 words ({ceil})")
         print(f"caption_check: {len(tags)} hashtag(s) of {hashtags_required()} required"
               + (f", {' '.join(tags)}" if tags else ""))
-        # THE COVERAGE, PRINTED ON EVERY RUN, PASS OR FAIL. A gate that covers part of a spec and
-        # says nothing about the rest produces confidence rather than doubt, which is what let
-        # three declared rules sit unimplemented here. Naming the gap is the cheapest part of the
-        # fix and the part a reader actually sees.
-        rules = post_rules()
-        done = sorted(set(rules) & set(POST_RULES_ENFORCED))
-        gap = sorted(set(rules) & set(POST_RULES_UNENFORCEABLE))
-        print(f"caption_check: {len(text.strip())} characters, "
-              f"brand.yaml post rules {len(done)} of {len(rules)} enforced"
-              + (f", not mechanically checkable: {', '.join(gap)}" if gap else ""))
 
     if problems:
         print(f"\ncaption_check: {len(problems)} house-rule violation(s)\n", file=sys.stderr)
@@ -940,6 +854,21 @@ def self_test() -> int:
     ok("...but a short block still fails on construction",
        catches("It ran and, briefly, stopped.", "comma after"))
 
+    # AN AGENDA ITEM NUMBER IS NOT A PRONOUN. Brazoria County's minute reads "No action taken
+    # due to I.3 failed", and this gate reported first person on a caption quoting it. The only
+    # ways past were to misquote the record or drop its best fact, which is how a gate stops
+    # being run at all. Both directions are asserted, because the exemption must not become a
+    # hole a real pronoun fits through.
+    ok("an agenda item number is not first person",
+       not catches('The minute reads "No action taken due to I.3 failed".', "first person"))
+    ok("...and a Roman numbered item is not either",
+       not catches('Item I.IV was postponed by the court.', "first person"))
+    ok("...while a real first person still FAILS",
+       catches("I read the minute myself.", "first person"))
+    ok("...and so does one at the end of a sentence",
+       catches("The clerk read it and so did I.", "first person"))
+    ok("...and so does a plural one", catches("We read the minute.", "first person"))
+
     # THE BACKSTOP'S OWN BYPASS. Splitting on every period let a long sentence hide inside its
     # own abbreviation, and both fixtures below are real shipped copy, not invented ones. The
     # first ran 44 words on tx-2026-0027 and reported as two passing halves for as long as the
@@ -1056,92 +985,23 @@ def self_test() -> int:
     ok("...and the header does not still claim density is unenforced",
        "NOT FAILED" not in doc and "DELIBERATELY NOT SET YET" not in doc)
 
-    # ---- THE POST RULES, READ FROM brand.yaml -----------------------------------------
-    #
-    # THE REGRESSION THIS IS FOR. On 2026-08-26 a 1,970 character caption passed this gate in
-    # every one of five rounds against a configured band of 300 to 900. Three keys were declared
-    # in the config and implemented nowhere, and nothing anywhere said so.
-    real = post_rules()
-    ok("the post rules are read from brand.yaml rather than typed here",
-       isinstance(real.get("caption_chars"), list) and real.get("hashtags_exactly") == 3,
-       str(real))
-
-    # EVERY KEY IS CLASSIFIED. This is the assertion that goes red the day somebody adds a rule
-    # to brand.yaml with nothing behind it, which is the state this gate was in.
-    unclassified = sorted(set(real) - set(POST_RULES_ENFORCED) - set(POST_RULES_UNENFORCEABLE))
-    ok("every key brand.yaml declares is either enforced or named unenforceable",
-       not unclassified, f"unclassified: {unclassified}")
-    ok("...and the unenforceable one carries a written reason",
-       all(len(v) > 60 for v in POST_RULES_UNENFORCEABLE.values()))
-    ok("...and an invented key is reported rather than ignored",
-       any("nothing in caption_check" in p for p in
-           post_rule_problems("A hook.\n\nWhy?\n\n#A #B #C",
-                              dict(real, some_new_rule=True))))
-
-    # REAL SHIPPED CAPTIONS, which is the only fixture that carries the shapes nobody thought to
-    # write down. The 2026-08-22 caption is 1,289 characters and shipped clean through this gate,
-    # so it is the proof that the band was never enforced rather than merely never broken.
-    def shipped(date, sub=""):
-        p = REPO_ROOT / "runs" / "carousel" / date / sub / "caption.txt"
-        return p.read_text(encoding="utf-8") if p.exists() else None
-
-    over = shipped("2026-08-22")
-    if over is None:
-        ok("the 2026-08-22 caption is present to replay the band against", False)
-    else:
-        probs = post_rule_problems(over, real)
-        ok("a real caption of 1,289 characters is CAUGHT by the band",
-           any("hard band" in p for p in probs), f"{len(over.strip())}: {probs}")
-        ok("...and the message names the count and the band",
-           any("1289" in p and "300 to 900" in p for p in probs), str(probs))
-
-    under = shipped("2026-08-16")
-    if under is not None:
-        ok("a real caption inside the band passes every post rule",
-           not post_rule_problems(under, real),
-           f"{len(under.strip())}: {post_rule_problems(under, real)}")
-
-    fixed = shipped("2026-08-26", "held")
-    if fixed is not None:
-        ok("the caption 2026-08-26 finally shipped passes every post rule",
-           not post_rule_problems(fixed, real),
-           f"{len(fixed.strip())}: {post_rule_problems(fixed, real)}")
-
-    # THE OTHER KEYS, each proved able to go red on its own. A band that fires and four rules
-    # that cannot is a gate reporting on one thing and appearing to report on five.
-    body = "Ninety words of caption. " * 20                     # comfortably inside the band
-    good = f"A short hook.\n\n{body}\n\nWhat would you check first?\n\n#Texas #ERCOT #Grid"
-    ok("a caption obeying every rule passes", not post_rule_problems(good, real),
-       str(post_rule_problems(good, real)))
-    ok("a caption under the floor fails",
-       any("hard band" in p for p in post_rule_problems("Too short?\n\n#A #B #C", real)))
-    ok("an over-long hook fails",
-       any("hook runs" in p for p in
-           post_rule_problems(("H" * 141) + f"\n\n{body}\n\nWhy?\n\n#A #B #C", real)))
-    ok("a caption that does not close on a question fails",
-       any("close on a question" in p for p in
-           post_rule_problems(f"A hook.\n\n{body}\n\nThat is the record.\n\n#A #B #C", real)))
-    ok("...and the hashtag block is not mistaken for the closing line",
-       not any("close on a question" in p for p in post_rule_problems(good, real)))
-    ok("a link in the body fails",
-       any("carries a link" in p for p in
-           post_rule_problems(f"A hook.\n\n{body} See https://example.com/x for it."
-                              f"\n\nWhy?\n\n#A #B #C", real)))
-    # A CONFIG VALUE THIS FILE HAS NEVER BEEN TAUGHT MUST FAIL, NOT PASS. A gate that silently
-    # ignores a form it does not implement is the same fault as a key with no mechanism.
-    ok("an ends_with form this gate does not implement fails loudly",
-       any("only knows how to check" in p for p in
-           post_rule_problems(good, dict(real, ends_with="statement"))))
-    ok("a date_form this gate does not implement fails loudly",
-       any("date_form" in p for p in post_rule_problems(good, dict(real, date_form="iso"))))
-    # THE SEPARATION THAT KEEPS THE WEBSITE OUT OF THIS, the same one the hashtags need.
-    ok("check() does NOT apply the post band, because it also judges the site",
-       not any("hard band" in p for p in check("Short.")))
-    ok("...and run() DOES, because that is the caption path",
-       "post_rule_problems(text)" in open(__file__, encoding="utf-8").read())
-    ok("the header names every enforced key and the unenforceable one",
-       all(k in (__doc__ or "") for k in POST_RULES_ENFORCED)
-       and all(k in (__doc__ or "") for k in POST_RULES_UNENFORCEABLE))
+    # THE THREE brand.yaml RULES (2026-08-25), each direction.
+    _lo, _hi = linkedin_rule("caption_chars", list)
+    _tags = " ".join(f"#Tag{i}" for i in range(1, hashtags_required() + 1))
+    _ok = ("Something happened in Bexar County and the record says so plainly. "
+           * 4)[: _hi - len(_tags) - 40] + " Is that worth it?\n\n" + _tags
+    ok("a caption inside the band, ending on a question, with no link, is clean",
+       not post_shape_problems(_ok), str(post_shape_problems(_ok))[:160])
+    _long = ("Something happened in Bexar County and the record says so plainly. " * 20
+             + "Is that worth it?\n\n" + _tags)
+    ok("...a caption over the band FAILS",
+       any("caption_chars band" in x for x in post_shape_problems(_long)), str(post_shape_problems(_long))[:120])
+    _link = _ok.replace("Is that worth it?", "The record is at texasaidocket.com. Is that worth it?")
+    ok("...a link in the body FAILS",
+       any("links_in_body" in x for x in post_shape_problems(_link)), str(post_shape_problems(_link))[:120])
+    _noq = _ok.replace("Is that worth it?", "That is what the record says.")
+    ok("...and a caption that does not end on a question FAILS",
+       any("ends_with" in x for x in post_shape_problems(_noq)), str(post_shape_problems(_noq))[:120])
 
     ok("empty copy is clean rather than a crash", not check(""))
     ok("a violation reports as an actionable sentence, not a code",

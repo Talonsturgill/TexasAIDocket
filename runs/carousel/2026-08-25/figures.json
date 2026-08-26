@@ -1,0 +1,408 @@
+{
+  "restricted_count": {
+    "value": 15,
+    "rule": "Texas governmental bodies in the record that took a recorded 2026 action aimed at a data center or at the incentive one depended on, of any binding force",
+    "from_items": [
+      "tx-2026-0028",
+      "tx-2026-0029",
+      "tx-2026-0032",
+      "tx-2026-0033",
+      "tx-2026-0041",
+      "tx-2026-0043",
+      "tx-2026-0045",
+      "tx-2026-0050",
+      "tx-2026-0051",
+      "tx-2026-0052",
+      "tx-2026-0061",
+      "tx-2026-0062",
+      "tx-2026-0065",
+      "tx-2026-0066",
+      "tx-2026-0067"
+    ]
+  },
+  "declined_count": {
+    "value": 2,
+    "rule": "bodies that had such an action in front of them and did not take it",
+    "from_items": [
+      "tx-2026-0037",
+      "tx-2026-0070"
+    ]
+  },
+  "total_count": {
+    "value": 17,
+    "rule": "restricted plus declined"
+  },
+  "stated_nonbinding": {
+    "value": 5,
+    "rule": "acting bodies whose own source states the action does not bind",
+    "from_items": [
+      "tx-2026-0032",
+      "tx-2026-0043",
+      "tx-2026-0045",
+      "tx-2026-0050",
+      "tx-2026-0062"
+    ]
+  },
+  "stated_binding": {
+    "value": 5,
+    "rule": "acting bodies whose record shows the action changed a legal state on the day",
+    "from_items": [
+      "tx-2026-0051",
+      "tx-2026-0061",
+      "tx-2026-0065",
+      "tx-2026-0066",
+      "tx-2026-0067"
+    ]
+  },
+  "force_unstated": {
+    "value": 5,
+    "rule": "acting items carrying no `effective` key date at all, which is a measurement about the record and NOT a claim about what sources say. Round 13 and round 14 both hard failed a frame for printing the second over the first",
+    "from_items": [
+      "tx-2026-0028",
+      "tx-2026-0029",
+      "tx-2026-0033",
+      "tx-2026-0041",
+      "tx-2026-0052"
+    ]
+  },
+  "late_cluster": {
+    "value": 7,
+    "rule": "the later half of the acting bodies by ordered date, floor divided, so 7 of 15"
+  },
+  "late_span": {
+    "value": 52,
+    "rule": "days from the 7th from last ordered action to the last, MEASURED after the half was chosen",
+    "from_items": [
+      "tx-2026-0043",
+      "tx-2026-0028",
+      "tx-2026-0033",
+      "tx-2026-0050",
+      "tx-2026-0045",
+      "tx-2026-0062",
+      "tx-2026-0041"
+    ]
+  },
+  "still_dated": {
+    "value": 2,
+    "rule": "of the 17 items this deck carries, those whose key_dates hold a step on or after 2026-08-25",
+    "from_items": [
+      "tx-2026-0029",
+      "tx-2026-0062"
+    ]
+  },
+  "chronology": {
+    "value": 15,
+    "rule": "the actions in the order they happened",
+    "marks": [
+      {
+        "date": "2026-03-10",
+        "place": "Brazoria County",
+        "shape": "zone denied",
+        "claim": "c9",
+        "item": "tx-2026-0051"
+      },
+      {
+        "date": "2026-04-15",
+        "place": "Williamson County",
+        "shape": "abatement approved",
+        "claim": "c45",
+        "item": "tx-2026-0029"
+      },
+      {
+        "date": "2026-04-27",
+        "place": "Killeen",
+        "shape": "permit denied",
+        "claim": "c17",
+        "item": "tx-2026-0032"
+      },
+      {
+        "date": "2026-05-19",
+        "place": "San Angelo",
+        "shape": "conditional use only",
+        "claim": "c41",
+        "item": "tx-2026-0066"
+      },
+      {
+        "date": "2026-06-02",
+        "place": "San Angelo",
+        "shape": "discharge regulated",
+        "claim": "c43",
+        "item": "tx-2026-0067"
+      },
+      {
+        "date": "2026-06-09",
+        "place": "Brazoria County",
+        "shape": "resolution adopted",
+        "claim": "c40",
+        "item": "tx-2026-0052"
+      },
+      {
+        "date": "2026-06-16",
+        "place": "San Marcos",
+        "shape": "made ineligible",
+        "claim": "c35",
+        "item": "tx-2026-0061"
+      },
+      {
+        "date": "2026-06-16",
+        "place": "San Angelo",
+        "shape": "cooling fill capped",
+        "claim": "c32",
+        "item": "tx-2026-0065"
+      },
+      {
+        "date": "2026-06-22",
+        "place": "Archer County",
+        "shape": "abatement denied",
+        "claim": "c5",
+        "item": "tx-2026-0043"
+      },
+      {
+        "date": "2026-06-23",
+        "place": "Hays County",
+        "shape": "review established",
+        "claim": "c36",
+        "item": "tx-2026-0028"
+      },
+      {
+        "date": "2026-07-20",
+        "place": "El Paso",
+        "shape": "framework approved",
+        "claim": "c38",
+        "item": "tx-2026-0033"
+      },
+      {
+        "date": "2026-07-21",
+        "place": "Corpus Christi",
+        "shape": "staff directed",
+        "claim": "c30",
+        "item": "tx-2026-0050"
+      },
+      {
+        "date": "2026-08-10",
+        "place": "Lubbock County",
+        "shape": "disclosure asked",
+        "claim": "c31",
+        "item": "tx-2026-0045"
+      },
+      {
+        "date": "2026-08-11",
+        "place": "Fort Worth",
+        "shape": "process initiated",
+        "claim": "c22",
+        "item": "tx-2026-0062"
+      },
+      {
+        "date": "2026-08-13",
+        "place": "Wichita Falls",
+        "shape": "request approved",
+        "claim": "c37",
+        "item": "tx-2026-0041"
+      }
+    ]
+  },
+  "first_action_date": {
+    "value": "2026-03-10",
+    "rule": "earliest ORDERED date among the acting items, the date a body acted"
+  },
+  "last_action_date": {
+    "value": "2026-08-13",
+    "rule": "latest ORDERED date among the acting items"
+  },
+  "span_days": {
+    "value": 156,
+    "rule": "days from first_action_date to last_action_date"
+  },
+  "brazoria_applications": {
+    "value": 4,
+    "rule": "distinct applicants whose Brazoria County hearing orders name Reinvestment Zone No. 26-01, the zone the court refused on March 10th, counted from the county's own Legistar matter titles",
+    "applicants": [
+      "Bulldog Power 2 LLC",
+      "Bulldog Power LLC",
+      "Old Ocean Datacenter 2 LLC",
+      "Old Ocean Datacenter LLC"
+    ],
+    "source": "https://webapi.legistar.com/v1/brazoriacountytx/matters",
+    "from_items": [
+      "tx-2026-0051"
+    ]
+  },
+  "brazoria_vote": {
+    "value": "5 to 0",
+    "rule": "quoted from tx-2026-0051-c1"
+  },
+  "open_doors": {
+    "value": 2,
+    "rule": "every item this deck weighed that carries a HEARING or a COMMENT WINDOW dated on or after the run date, in a public_access room a member of the public may enter. An effective date is not a door and a deadline on a body is not a door",
+    "from_items": [
+      "tx-2026-0002",
+      "tx-2026-0072"
+    ]
+  },
+  "candidates_count": {
+    "value": 36,
+    "rule": "every 2026 dated item this deck weighed, whether it counted it, declined it or ruled it out. Selected on the record's own topic and title fields plus four ids admitted with a written reason, never on a regex over summary prose",
+    "from_items": [
+      "tx-2026-0001",
+      "tx-2026-0002",
+      "tx-2026-0026",
+      "tx-2026-0027",
+      "tx-2026-0028",
+      "tx-2026-0029",
+      "tx-2026-0032",
+      "tx-2026-0033",
+      "tx-2026-0034",
+      "tx-2026-0035",
+      "tx-2026-0037",
+      "tx-2026-0041",
+      "tx-2026-0042",
+      "tx-2026-0043",
+      "tx-2026-0044",
+      "tx-2026-0045",
+      "tx-2026-0050",
+      "tx-2026-0051",
+      "tx-2026-0052",
+      "tx-2026-0056",
+      "tx-2026-0058",
+      "tx-2026-0059",
+      "tx-2026-0060",
+      "tx-2026-0061",
+      "tx-2026-0062",
+      "tx-2026-0063",
+      "tx-2026-0064",
+      "tx-2026-0065",
+      "tx-2026-0066",
+      "tx-2026-0067",
+      "tx-2026-0068",
+      "tx-2026-0069",
+      "tx-2026-0070",
+      "tx-2026-0072",
+      "tx-2026-0073",
+      "tx-2026-0078"
+    ]
+  },
+  "doors_record_wide": {
+    "value": 8,
+    "rule": "the same door test run over EVERY item in the record rather than over this deck's subject. Published because a frame that prints a door count has to say which set it counted, and round 13 hard failed one that did not",
+    "from_items": [
+      "tx-2026-0002",
+      "tx-2026-0015",
+      "tx-2026-0016",
+      "tx-2026-0024",
+      "tx-2026-0048",
+      "tx-2026-0072",
+      "tx-2026-0075",
+      "tx-2026-0077"
+    ]
+  },
+  "door_days_out": {
+    "value": 10,
+    "rule": "days from the run date to the nearest open door"
+  },
+  "doors_local": {
+    "value": 0,
+    "rule": "how many of the open doors sit with a local government, read off the record's own decider.type rather than off this deck's selection, so the closing frame's word local is the record's"
+  },
+  "approvals": {
+    "value": 2,
+    "rule": "acting items whose cited claim records a body approving a data center project or the incentive one depends on, as opposed to regulating, refusing, studying or directing staff",
+    "from_items": [
+      "tx-2026-0029",
+      "tx-2026-0041"
+    ]
+  },
+  "resolutions": {
+    "value": 5,
+    "rule": "acting items whose own cited claim calls the instrument a resolution",
+    "from_items": [
+      "tx-2026-0028",
+      "tx-2026-0033",
+      "tx-2026-0045",
+      "tx-2026-0052",
+      "tx-2026-0062"
+    ]
+  },
+  "resolutions_binding": {
+    "value": 0,
+    "rule": "acting items whose own cited claim calls the instrument a resolution AND whose effective date has arrived. Every one of the five resolutions is either stated non binding or is one the sources do not speak to, so this is zero, and it is the rule the deck can hand a reader",
+    "from_items": []
+  },
+  "busiest_month": {
+    "value": "June",
+    "rule": "the calendar month carrying the most acting dates"
+  },
+  "busiest_month_count": {
+    "value": 6,
+    "rule": "how many of the acting dates fall in that month"
+  },
+  "busiest_body_binding": {
+    "value": 3,
+    "rule": "how many of the binding actions the busiest body wrote"
+  },
+  "acting_bodies": {
+    "value": 12,
+    "rule": "distinct places among the acting items",
+    "from_items": [
+      "tx-2026-0028",
+      "tx-2026-0029",
+      "tx-2026-0032",
+      "tx-2026-0033",
+      "tx-2026-0041",
+      "tx-2026-0043",
+      "tx-2026-0045",
+      "tx-2026-0050",
+      "tx-2026-0051",
+      "tx-2026-0052",
+      "tx-2026-0061",
+      "tx-2026-0062",
+      "tx-2026-0065",
+      "tx-2026-0066",
+      "tx-2026-0067"
+    ]
+  },
+  "repeat_bodies": {
+    "value": 2,
+    "rule": "acting places that appear on more than one action"
+  },
+  "busiest_body": {
+    "value": "San Angelo",
+    "rule": "the acting place with the most actions"
+  },
+  "busiest_body_count": {
+    "value": 3,
+    "rule": "how many actions the busiest place took"
+  },
+  "docket_items": {
+    "value": 73,
+    "rule": "items in ledger/docket.json"
+  },
+  "laredo_agendas": {
+    "value": 3,
+    "rule": "hearing key_dates on tx-2026-0037, the agendas Laredo's direction reached",
+    "from_items": [
+      "tx-2026-0037"
+    ]
+  },
+  "_doors": {
+    "value": 2,
+    "rule": "each open door with its date, kind and room",
+    "detail": [
+      {
+        "item": "tx-2026-0002",
+        "kind": "comment_closes",
+        "date": "2026-09-04",
+        "long": "September 4th",
+        "room": "open_comment",
+        "days_out": 10
+      },
+      {
+        "item": "tx-2026-0072",
+        "kind": "hearing",
+        "date": "2026-12-17",
+        "long": "December 17th",
+        "room": "open_meeting",
+        "days_out": 114
+      }
+    ]
+  }
+}

@@ -46,6 +46,7 @@ import argparse
 import io
 import json
 import contextlib
+import re
 import sys
 from pathlib import Path
 
@@ -97,7 +98,14 @@ def g_aggregates(d: Path):
     claims = _load(d / "claims.json")
     if not (rep and agg is not None and claims):
         return None
-    probs = m.check(rep, agg, claims)
+    # EVERY SURFACE THE CHECKER READS, ASKED FOR RATHER THAN LISTED. `aggregate_check` learned to
+    # read the caption on 2026-08-26 and this adapter did not, so a caption-only figure came back
+    # as a leftover declaration. The fix listed the caption here by hand, and the next day the
+    # document title did the identical thing to the identical line. A gate wired to half its own
+    # checker reports the half it can see, and a hand-kept list of surfaces is how it gets there.
+    # `m.surfaces()` owns the list now, so this adapter cannot fall behind a third time.
+    sf = m.surfaces(d)
+    probs = m.check(rep, agg, claims, sf["caption"], sf["title"], sf["comment"])
     return list(probs) if probs else []
 
 
@@ -179,6 +187,190 @@ def g_nouns(d: Path):
     return fails
 
 
+def g_shipped_fresh(d: Path):
+    """Every artifact in a shipped run must describe the deck beside it.
+
+    WHY THIS EXISTS. 2026-08-26, and it is the worst thing this suite has missed.
+
+    The 2026-08-25 run recut its deck around a computed selection after a judge proved the old
+    headline false. The renders, the copy and the caption were all rebuilt. `slides/` was not
+    copied, and `assemble_report.json` was not rebuilt, so the shipped directory carried the
+    REFUTED seven-body HTML and recorded its PDF as "Seven ways to slow a data center" while the
+    PNGs beside them showed a different deck. A scoring judge found it and called it what it is:
+    a refuted count and its numerals presented as verified in the deliverable a reader downloads.
+
+    Every gate in this suite passed, because each reads ONE artifact and asks whether it is
+    internally right. Not one asked whether the artifacts agree with each other.
+
+    CONTENT, NOT TIMESTAMPS. The obvious version compares mtimes, and mtimes do not survive a
+    clone, so it would pass on CI forever and only ever fire on the machine that already knew.
+    These three comparisons hold in a fresh checkout:
+
+      1. every display string `copy.json` records is in the slide source of the frame it names
+      2. `assemble_report.json`'s title is `copy.json`'s `document_title`, CURRENT scope only
+      3. `machine_qa.json` describes as many frames as the run shipped
+    """
+    cp = _load(d / "copy.json")
+    if not cp:
+        return None
+    problems = []
+    slides_dir = d / "slides"
+    if slides_dir.is_dir():
+        for key, blk in sorted((cp.get("slides") or {}).items()):
+            n = blk.get("n") or int(str(key).lstrip("Ss") or 0)
+            src = slides_dir / f"slide-{n:02d}.html"
+            if not src.exists():
+                problems.append(f"copy.json describes {key} and {src.name} is not in slides/")
+                continue
+            body = src.read_text(encoding="utf-8", errors="replace")
+            flat = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", body))
+            for want in (blk.get("strings") or []):
+                probe = re.sub(r"\s+", " ", str(want)).strip()
+                if len(probe) >= 12 and probe not in flat:
+                    problems.append(
+                        f"{src.name} does not carry the string copy.json says it prints: "
+                        f"{probe[:70]!r}. The shipped source is not the deck beside it")
+                    break
+    # THE PLAN IS AN ARTIFACT TOO, and it is the one the first version of this gate missed.
+    # Round 6's hard fail was that the shipped SOURCE did not draw the deck beside it. That was
+    # repaired in slides/, the PDF and the assembly record, and round 7 found the superseded
+    # deck had simply moved one file over: slide 2's dossier said "fourteen" four times over a
+    # frame rendering fifteen, slide 3 declared span_days 154 against a printed 156, and slide 8
+    # still called itself the deck's quietest in a frame whose own code comment quotes that
+    # sentence and calls it wrong.
+    #
+    # Only the YAML dossier blocks are read. The revision log around them narrates what was
+    # wrong on purpose, and a gate that could not tell a plan from a history of plans would
+    # force a run to delete its own reasoning.
+    sb = d / "storyboard.md"
+    figs = _load(d / "computed.json") or {}
+    if sb.exists() and figs:
+        allowed = {v for v in figs.values() if isinstance(v, int) and not isinstance(v, bool)}
+        words = ("two three four five six seven eight nine ten eleven twelve thirteen fourteen "
+                 "fifteen sixteen seventeen eighteen nineteen twenty").split()
+        value_of = {w: i + 2 for i, w in enumerate(words)}
+        text = sb.read_text(encoding="utf-8", errors="replace")
+        # NARROWED to the fields where a dossier states the deck's CLAIMS. `job:` says what the
+        # frame is for and `numerals:` says what it computes, and both were wrong. `bands:` and
+        # `composition:` describe LAYOUT, where "two columns, eight then seven" and "the deck has
+        # spent eight frames" are correct and have no business in a figures file. The first
+        # version of this read the whole block and fired on both of those, which is a gate that
+        # would teach a run to stop writing down how a frame is built.
+        claimy = []
+        for blk in re.findall(r"```yaml\n(.*?)```", text, re.S):
+            for fm in re.finditer(r"^(job|numerals):(.*?)(?=^\S|\Z)", blk, re.S | re.M):
+                claimy.append(fm.group(0))
+        for blk in claimy:
+            for m in re.finditer(r"\b(" + "|".join(words) + r")\b", blk, re.I):
+                val = value_of[m.group(1).lower()]
+                if val not in allowed:
+                    problems.append(
+                        f"storyboard.md, a dossier job or numerals field, says {m.group(1)!r} "
+                        f"and the run computed {sorted(allowed)}. A plan nobody regenerates is a "
+                        f"plan that describes the last deck")
+                    break
+
+    ar = _load(d / "assemble_report.json")
+    if ar and cp.get("document_title") and ar.get("title") != cp["document_title"]:
+        problems.append(f"assemble_report.json titles the built PDF {ar.get('title')!r} and "
+                        f"copy.json titles the deck {cp['document_title']!r}. The assembly on "
+                        f"disk is not this deck's")
+    qa = _load(d / "machine_qa.json")
+    if qa:
+        shipped = len([k for k in (cp.get("slides") or {})])
+        seen = len(qa.get("slides") or qa.get("frames") or [])
+        if seen and shipped and seen != shipped:
+            problems.append(f"machine_qa.json describes {seen} frame(s) and the run shipped "
+                            f"{shipped}. The QA report is not this render's")
+    return problems
+
+
+def g_measured(d: Path):
+    """Every L* figure printed in the run's prose exists in its own measurements.json.
+
+    THE HIGHEST RECURRENCE DEFECT IN THIS REPO, and it has now happened four times.
+
+    Round 4 found frame 7's falloff committed twice with two values, 22.1 in the storyboard and
+    17.2 in artwork.json. Round 7 found slide 6 printing 70.8 and 18.4 where measurements.json
+    said 70.6 and 18.2. Round 8 recut three frames, moved six medians, and left the storyboard,
+    the run record and the artwork ledger each carrying the previous deck's numbers. The writer
+    that composes them from measurements.json existed the whole time and had gone silently dead,
+    because it matched the OLD NUMBERS as literal strings.
+
+    That is the shape CLAUDE.md names three separate times: a value with one home, surfaces that
+    keep their own copy, and nothing in between checking they agree. A writer is not the check. A
+    writer can stop firing. This ASKS, of the shipped bytes, and it cannot go quiet, because a
+    figure that is absent from measurements.json is absent whatever wrote it.
+
+    Scope is deliberately narrow and therefore certain: a number written next to the token `L*`.
+    Every one of those is a luminance this run measured, so every one has to be in the file. A
+    bare decimal elsewhere in the prose may be anything and is not this gate's business.
+    """
+    mp = d / "measurements.json"
+    if not mp.exists():
+        return None
+    M = json.loads(mp.read_text(encoding="utf-8"))
+
+    def walk(v):
+        if isinstance(v, dict):
+            for x in v.values():
+                yield from walk(x)
+        elif isinstance(v, list):
+            for x in v:
+                yield from walk(x)
+        elif isinstance(v, (int, float)) and not isinstance(v, bool):
+            yield round(float(v), 1)
+
+    known = set(walk(M))
+    # A DELTA IS MEASURED TOO. The prose names junctions as positive drops, so both signs count,
+    # and it names ranges, which are max minus min over the medians.
+    known |= {abs(x) for x in known}
+    med = M.get("per_frame_median_lstar") or []
+    if med:
+        known.add(round(max(med) - min(med), 1))
+        known |= {round(abs(a - b), 1) for a in med for b in med}
+
+    # `1.6 L*` style figures with one decimal, and integers written the same way.
+    NUM = re.compile(r"(?<![\d.])(\d{1,3}(?:\.\d)?)\s*L\\?\*")
+    out = []
+    for name in ("storyboard.md", "RUN_RECORD.md"):
+        f = d / name
+        if not f.exists():
+            continue
+        for m in NUM.finditer(f.read_text(encoding="utf-8")):
+            v = round(float(m.group(1)), 1)
+            if v not in known:
+                out.append(f"{name}: prints {m.group(1)} L* and measurements.json holds no such "
+                           f"figure. Every luminance in this run's prose is written from that "
+                           f"file by out/<date>/tmp/write_measured.py. A number here that is not "
+                           f"there is a number somebody typed, or one a rewrite stopped reaching")
+    return out
+
+
+def g_ledgers(d: Path):
+    """The variety ledgers, against the run whose figures their prose narrates.
+
+    CURRENT scope, and the reason is in the gate itself: the three `*_recent` exclusion lists
+    derive from the NEWEST entry and the topic prose is checked against that run's computed
+    counts, so asking an older deck about today's ledger is asking the wrong question.
+
+    This adapter is also the whole reason `ledger_check` is a gate rather than a script somebody
+    remembers to run. `.github/workflows/**` and `prompts/**` are the human actor's, so a routine
+    that writes a gate cannot connect it. One step in the workflow calls this file, so a new gate
+    is one function away in a file the upgrade lane already owns. `port_audit`'s wiring check
+    caught this one unconnected, which is exactly what that check exists for.
+    """
+    import ledger_check as m
+    fp = d / "figures.json"
+    led = REPO_ROOT / "ledger/carousel"
+    if not (fp.exists() and (led / "captions.json").exists() and (led / "topics.json").exists()):
+        return None
+    return list(m.run(json.loads((led / "captions.json").read_text(encoding="utf-8")),
+                      json.loads((led / "topics.json").read_text(encoding="utf-8")),
+                      json.loads(fp.read_text(encoding="utf-8")),
+                      (REPO_ROOT / m.DOCTRINE).read_text(encoding="utf-8")) or [])
+
+
 def g_completion(d: Path):
     import run_complete as m
     if not (d / "score.json").exists():
@@ -204,6 +396,18 @@ GATES = [
     ("absences", g_absences, HISTORY),
     ("nouns", g_nouns, HISTORY),
     ("sources block", g_sources, HISTORY),
+    # CURRENT, for the reason already written above about `aggregates`. Run into history this
+    # finds 2026-08-19, whose assemble_report titles the PDF "Texas AI Docket, August 19th 2026"
+    # where copy.json titles the deck "Batch Zero, and the calendar with a hole in it". That is a
+    # CONVENTION that changed, not a stale artifact, and judging published work by a rule written
+    # after it is how a suite teaches a run to ignore it. The defect this exists for is a run
+    # shipping artifacts that describe a deck it already replaced, which is a property of the
+    # deck being made now.
+    ("shipped fresh", g_shipped_fresh, CURRENT),
+    # CURRENT: measurements.json is written per run, and a deck shipped before this
+    # writer existed has no file for the gate to ask.
+    ("measured figures", g_measured, CURRENT),
+    ("ledgers", g_ledgers, CURRENT),
     ("completion", g_completion, HISTORY),
 ]
 
@@ -315,6 +519,33 @@ def self_test() -> int:
 
     ok("the newest run is identified as the newest",
        (not runs) or shipped_runs()[-1].name == max(p.name for p in shipped_runs()))
+
+    # THE MEASURED FIGURE GATE (2026-08-26). Four rounds of the same defect, and the writer that
+    # was supposed to prevent it had gone silently dead.
+    import tempfile
+    with tempfile.TemporaryDirectory() as td:
+        t = Path(td)
+        (t / "measurements.json").write_text(json.dumps({
+            "per_frame_median_lstar": [51.3, 64.1, 14.4, 30.8, 81.4, 73.6, 52.1, 55.2, 48.7],
+            "deck_median": 52.1, "deck_sd": 19.3, "frame7_falloff_lstar": 16.5,
+            "junctions": [12.8, -49.7, 16.4, 50.6, -7.8, -21.5, 3.1, -6.5]}))
+        ok("a run with no prose to read is not a finding", g_measured(t) == [])
+        (t / "RUN_RECORD.md").write_text("The falloff measures 16.5 L\\* across the repeats.\n")
+        ok("a figure that IS in measurements.json passes", g_measured(t) == [], str(g_measured(t)))
+        (t / "RUN_RECORD.md").write_text("The falloff measures 22.1 L\\* across the repeats.\n")
+        ok("a stale figure is CAUGHT", len(g_measured(t)) == 1, str(g_measured(t)))
+        (t / "RUN_RECORD.md").write_text("frame 6 is 73.6 and frame 7 is 52.1, a 21.5 L* drop.\n")
+        ok("a junction written as a positive drop passes", g_measured(t) == [], str(g_measured(t)))
+        (t / "RUN_RECORD.md").write_text("a range of 67.0 L\\* across the nine.\n")
+        ok("a range over the medians passes", g_measured(t) == [], str(g_measured(t)))
+        (t / "RUN_RECORD.md").write_text("a range of 61.0 L\\* across the nine.\n")
+        ok("...and a wrong range is CAUGHT", len(g_measured(t)) == 1, str(g_measured(t)))
+        (t / "RUN_RECORD.md").write_text("the deck ships 9 frames and 46 claims.\n")
+        ok("a bare number that is not a luminance is not this gate's business",
+           g_measured(t) == [], str(g_measured(t)))
+        (t / "measurements.json").unlink()
+        ok("no measurements.json means not applicable, never a silent pass",
+           g_measured(t) is None)
 
     print("\nshipped_check self-test: " + ("all passed" if not bad else f"{bad} FAILED"))
     return 1 if bad else 0

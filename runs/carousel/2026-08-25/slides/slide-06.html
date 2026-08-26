@@ -1,0 +1,299 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#B99B72;
+  -webkit-font-smoothing:antialiased}
+canvas{position:absolute;left:0;top:0}
+.kick{position:absolute;left:80px;top:88px;font:500 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.14em;color:#4A3A26}
+.cnt{position:absolute;right:80px;top:88px;font:500 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.10em;color:#4A3A26;font-variant-numeric:tabular-nums}
+.tx-site{position:absolute;left:80px;bottom:74px;font:400 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.06em;color:#BDB8AA}
+.star{position:absolute;right:80px;bottom:68px;width:22px;height:22px}
+.hook{position:absolute;left:96px;top:168px;width:640px;font:700 62px/1.04 "Fraunces",serif;
+  color:#3A2E1E;letter-spacing:-.015em}
+.qa{position:absolute;left:124px;top:396px;width:348px;font:500 27px/1.36 "JetBrains Mono",monospace;color:#2A2622}
+.sa{position:absolute;left:124px;top:498px;width:352px;font:400 24px/1.5 "JetBrains Mono",monospace;color:#6B6459;letter-spacing:.035em}
+.qb{position:absolute;left:588px;top:366px;width:372px;font:500 26px/1.38 "JetBrains Mono",monospace;color:#2A2622}
+.sb{position:absolute;left:588px;top:600px;width:372px;font:400 24px/1.5 "JetBrains Mono",monospace;color:#6B6459;letter-spacing:.035em}
+/* The remaining actions that took effect, one route slip each, so the frame draws the five it
+   says. EACH SLIP PRINTS THE SHAPE compute.py GUARDS AGAINST THE CLAIM'S OWN WORDS, not a word
+   this frame picked. It read ZONING, SEWER and INELIGIBLE, which is the same defect round 12
+   hard failed frame 3 for: a guarded label reworded into the frame's own vocabulary slips the
+   guard, because the guard runs over the map and the reader reads the frame.
+   NO WIDTH HERE. The script measures each slip's own longest laid out line and shrink wraps to
+   it, so three papers are three sizes rather than three instances of one. */
+.sl{position:absolute;font:500 24px/1.42 "JetBrains Mono",monospace;color:#2A2622;letter-spacing:.01em}
+.sl b{font-weight:500;color:#2A2622;display:block}
+.sl i{font-style:normal;color:#6B6459;display:block;letter-spacing:.06em}
+.s1{left:112px;top:744px}
+.s2{left:452px;top:766px}
+.s3{left:756px;top:740px}
+.foot{position:absolute;left:96px;top:936px;width:800px;font:500 28px/1.4 "Manrope",sans-serif;color:#241B0D}
+</style></head><body>
+<canvas id="c" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+<div class="kick">THE EXCEPTIONS</div>
+<div class="cnt">06 / 09</div>
+<div class="hook">Five of the fifteen took effect</div>
+<div class="qa">"Motion to deny<br>passed 5-0."</div>
+<div class="sa">BRAZORIA COUNTY, C9<br>THE ZONE THEY STOOD ON</div>
+<div class="qb" data-role="dek">"Initial cooling system<br>fill shall not exceed<br>8.0 gallons per square<br>foot of Gross<br>Building Area"</div>
+<div class="sb">SAN ANGELO, C32<br>ORDINANCE 2026-078</div>
+<div class="sl s1"><b>SAN ANGELO</b><i>CONDITIONAL</i><i>USE ONLY</i><i>C41</i></div>
+<div class="sl s2"><b>SAN ANGELO</b><i>DISCHARGE</i><i>REGULATED</i><i>C43</i></div>
+<div class="sl s3"><b>SAN MARCOS</b><i>MADE</i><i>INELIGIBLE</i><i>C35</i></div>
+<div class="foot">San Angelo wrote three of the five. On five more the record carries no date the action takes effect.</div>
+<div class="tx-site">texasaidocket.com</div>
+<svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6 L14.9 9.2 L23 9.6 L16.7 14.6 L18.9 22.4 L12 17.9 L5.1 22.4 L7.3 14.6 L1 9.6 L9.1 9.2 Z" fill="#BDB8AA"/></svg>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = new Promise(function(resolve){
+  var c=document.getElementById('c'), x=c.getContext('2d'); x.scale(2,2);
+  var W=1080,H=1350; TX.reseed(60631); var R = TX.rng(60631);
+  // THE INVERSION. The glazing is out of the way for the only time in the deck. Flat light,
+  // near white, two unglazed sheets a reader could pick up.
+  var g=x.createLinearGradient(0,0,W*0.4,H);
+  g.addColorStop(0,'#CBAE85'); g.addColorStop(0.5,'#B99B72'); g.addColorStop(1,'#9E8460');
+  x.fillStyle=g; x.fillRect(0,0,W,H);
+  // CORK, THIRD PASS, AND THE ANSWER WAS ON FRAME 9 THE WHOLE TIME. The second pass drew chips
+  // at four to twenty pixels to make the material readable at 432px, and two craft reads in a
+  // row measured it as a 14 to 20px blocky mosaic with no resolvable staple hole. Frame 9 draws
+  // the same `cork` token as a fine 2px speckle over a lit gradient and it reads correctly.
+  // Same token, two renderings, one deck. This is frame 9's, on frame 6's whole field.
+  var cl=x.createLinearGradient(0,0,W*0.6,H);
+  cl.addColorStop(0,'rgba(246,230,202,0.72)'); cl.addColorStop(0.55,'rgba(224,200,164,0.34)');
+  cl.addColorStop(1,'rgba(120,96,62,0.26)');
+  x.fillStyle=cl; x.fillRect(0,0,W,H);
+  for(var i=0;i<62000;i++){
+    var px=R()*W, py=R()*H, n=TX.fbm2(px*0.035,py*0.035,4);
+    x.fillStyle='rgba('+(n>0?240:62)+','+(n>0?224:44)+','+(n>0?196:26)+','+(0.17*Math.abs(n))+')';
+    x.fillRect(px,py,2,2);
+  }
+  // THE MOTTLE, and it is the third answer to the same complaint. 2026-08-26.
+  //
+  // Pass one drew chips at 4 to 20px to make the material readable small, and two craft reads
+  // measured it as a blocky mosaic. Pass two took frame 9's fine 2px speckle wholesale, which
+  // is correct at 2160 and GONE by 432, so a third read said the field is "a flat tan
+  // rectangle" at the only size a reader gets. Both passes were right about the size they were
+  // looking at and wrong about the other one.
+  //
+  // Cork has both. Fine fibre grain AND broad tonal patches where the sheet was pressed
+  // unevenly. The speckle above is the grain. This is the patchwork, at a frequency whose
+  // features run about 180px, so they are still 70px wide after the downscale to 432 and the
+  // field reads as a material rather than a fill. Low alpha, because the cards and their
+  // shadows are the subject and a loud ground would take the frame off them.
+  for(var my=0;my<H;my+=6){
+    for(var mx=0;mx<W;mx+=6){
+      var mn=TX.fbm2(mx*0.0055,my*0.0055,3);
+      x.fillStyle='rgba('+(mn>0?238:78)+','+(mn>0?216:56)+','+(mn>0?180:32)+','+(0.115*Math.abs(mn))+')';
+      x.fillRect(mx,my,6,6);
+    }
+  }
+  // STAPLE HOLES, which this frame's acceptance line names and which no reader could resolve in
+  // either earlier pass. A dark puncture with a lit lower lip where the fibre lifted.
+  // MEASURED EXCLUSION, LIFTED FROM THE COVER. Round 11 replaced the cover's hand typed x
+  // offset with a type box built from getBoundingClientRect, and round 12 found the fix had not
+  // been carried to the frame with the identical defect: this scatter spanned both the hook's
+  // line box and the foot's with no exclusion at all, so punctures landed inside glyphs on the
+  // one frame whose art is supposed to sit behind the type rather than through it.
+  //
+  // It RESAMPLES rather than skips, so the count stays at 150 and the field does not thin out
+  // wherever the type is, which is the tell that gave the cover's skipping version away.
+  var TYPEBOX=[];
+  document.querySelectorAll('.kick,.cnt,.hook,.foot,.tx-site').forEach(function(el){
+    var r=el.getBoundingClientRect();
+    TYPEBOX.push([r.left-10,r.top-6,r.right+10,r.bottom+6]);
+  });
+  if(TYPEBOX.length<5) throw new Error('the staple field measured '+TYPEBOX.length+
+    ' type boxes on bare cork and this frame sets five, so the exclusion reads the wrong DOM');
+  function clearOfType(a,b,c,d){
+    for(var i=0;i<TYPEBOX.length;i++){ var T=TYPEBOX[i];
+      if(a<T[2] && c>T[0] && b<T[3] && d>T[1]) return false; }
+    return true;
+  }
+  TX.reseed(4242); R = TX.rng(4242);
+  var placed=0, tries=0;
+  while(placed<150 && tries<4000){
+    tries++;
+    var hx=40+R()*(W-80), hy=150+R()*(H-330);
+    if(!clearOfType(hx,hy,hx+3,hy+8)) continue;
+    x.fillStyle='rgba(58,40,20,0.52)'; x.fillRect(hx,hy,3,6);
+    x.fillStyle='rgba(238,218,186,0.44)'; x.fillRect(hx,hy+6,3,2);
+    placed++;
+  }
+  if(placed<150) throw new Error('only '+placed+' of 150 staple holes found clear cork in '+
+    tries+' tries, so the field is thinner than the frame says it is');
+  // THE SWUNG GLAZING EDGE IS GONE, and so is edge_cyan from this deck's palette.
+  // It was a 6px bar at x=16 floating in the outer margin, attached to no drawn object, with no
+  // top or bottom termination, 2.4px wide at the size a reader gets. Three craft reads asked for
+  // it to be attached to a hinge or deleted. It buys nothing, so it is deleted rather than
+  // elaborated, and the deck stops claiming a reserved colour it does not use.
+  // FIVE ON THE BOARD, BECAUSE THE HEADLINE SAYS FIVE. Two rounds shipped this frame headlining
+  // binding actions over a board carrying two, and a reader who counts is right and the
+  // frame is wrong. The two the record quotes in its own words stay full cards. The other four
+  // are route slips, which is what the remaining four actually are: a line in an ordinance
+  // index, no quotable sentence, the instrument and the claim and nothing else. Three stocks on
+  // one board, which is also true, because a motion, an ordinance and an index line are not the
+  // same object and a board never carries them on matched paper.
+  // THE STOCK IS DATA, not a threshold sitting between two typed widths. `(sw < 420)`
+  // over widths 404 and 428 resolved the three-stocks branch at authoring time, so a
+  // 20px resize flipped the paper silently. A minute book leaf and an ordinance bond
+  // are different objects, so each card carries which it is.
+  var CARDS=[[96,336,404,270,'#E7E2D4'],[560,320,428,396,'#F5F1E8']];
+  // Everything from here that MEASURES type is deferred to document.fonts.ready below. The
+  // cards and pins do not measure, so they stay where the draw order needs them.
+  CARDS.forEach(function(sh){
+    var sx=sh[0], sy=sh[1], sw=sh[2], sd=sh[3];
+    // A CONTACT shadow, not a drop shadow: a wide soft penumbra the sheet floats on, and a
+    // tight dark core hugging the two edges where it meets the cork.
+    for(var b=22;b>=1;b--){
+      x.fillStyle='rgba(66,46,22,'+(0.030+0.004*(22-b))+')';
+      x.fillRect(sx+b*0.55, sy+b*0.72, sw+b*0.5, sd+b*0.4);
+    }
+    x.fillStyle='rgba(48,32,14,0.62)'; x.fillRect(sx+4,sy+sd-2,sw,9);
+    x.fillStyle='rgba(48,32,14,0.50)'; x.fillRect(sx+sw-2,sy+6,9,sd-4);
+    // THREE STOCKS, AND THE MEASUREMENT FILE HAS TO AGREE. Both cards filled from one constant
+    // and measurements.json recorded card_a 94.2 and card_b 94.2, four lines under a comment
+    // claiming a board never carries them on matched paper. A motion is a leaf out of a minute
+    // book, which is thinner, warmer and greyer than the bond an ordinance is printed on.
+    x.fillStyle = sh[4]; x.fillRect(sx,sy,sw,sd);
+    x.fillStyle='rgba(255,253,246,0.7)'; x.fillRect(sx,sy,sw,3);
+    x.fillStyle='rgba(150,132,104,0.22)'; x.fillRect(sx,sy+sd-2,sw,2);
+    // the hairline the attribution sits under, set in from both edges like a rule on a card
+    x.fillStyle='rgba(140,124,98,0.42)'; x.fillRect(sx+28,sy+sd-120,sw-56,1);
+  });
+  // THE PIN. Two craft reads said neither card was fastened to the cork by anything, which on
+  // a board is the one thing that has to be true. A brass pin sits at the head of each card:
+  // its shaft goes THROUGH the paper, so the puncture is drawn on the card and the cast shadow
+  // falls on the card below the head and not on the cork.
+  CARDS.forEach(function(sh){
+    var px=sh[0]+sh[2]/2, py=sh[1]+34;
+    // TWO PARTS AT PIN SCALE. This was one flat offset rectangle at 0.30, on each of six
+    // fasteners, on the frame whose own risk list says a badly drawn pin is worse than no pin.
+    for(var pb=7;pb>=1;pb--){
+      x.fillStyle='rgba(74,52,26,'+(0.030+0.012*(7-pb)).toFixed(4)+')';
+      x.fillRect(px-13-pb*0.5, py-4-pb*0.3, 34+pb*1.6, 15+pb*1.1);
+    }
+    x.fillStyle='rgba(58,40,18,0.42)'; x.fillRect(px-11,py+1,26,9);        // the contact core
+    // The puncture sits BELOW the dome's lower edge, where paper actually shows. Drawn at
+    // py+2 it was entirely inside arc(px,py,15) and contributed nothing, so the frame
+    // shipped a pin with no hole in the card under it for two rounds.
+    x.fillStyle='rgba(52,36,16,0.62)'; x.fillRect(px-3,py+13,6,9);
+    x.fillStyle='rgba(255,250,236,0.42)'; x.fillRect(px-3,py+22,6,2);
+    var pg=x.createLinearGradient(px-15,py-15,px+13,py+13);
+    pg.addColorStop(0,'#F0D28C'); pg.addColorStop(0.46,'#C79B45'); pg.addColorStop(1,'#7A5A20');
+    x.beginPath(); x.arc(px,py,15,0,Math.PI*2); x.fillStyle=pg; x.fill();
+    x.beginPath(); x.arc(px-4.5,py-5,5.2,0,Math.PI*2); x.fillStyle='rgba(255,246,214,0.86)'; x.fill();
+    x.beginPath(); x.arc(px,py,15,0,Math.PI*2); x.strokeStyle='rgba(58,40,14,0.55)'; x.lineWidth=1.6; x.stroke();
+  });
+  // MEASURE, THEN DRAW. The slip geometry comes off laid out type, so it waits for the
+  // real faces. A width measured against a fallback face is the quiet version of a typed one.
+  document.fonts.ready.then(function(){
+    // THE THREE SLIPS. Thinner stock, warmer, and a shallower shadow, because an index slip sits
+    // closer to the board than a card does. Each takes a tack rather than a pin, so the fastener
+    // reads as smaller hardware and the two quoted cards keep the frame's weight.
+    //
+    // THE WIDTHS ARE MEASURED NOW. They were [248, 236, 300] as typed constants under a comment
+    // reading "widths from each slip's own longest line plus a fixed pad", which is the comment
+    // asserting the opposite of the code, and .sl carried one fixed width:246px underneath. Round
+    // 12 measured 248 against 236 as a five percent difference on a 496 device pixel object and
+    // called it what it was, one width three times. Each slip is shrink wrapped to its own longest
+    // laid out line, and the spread between any two is asserted below.
+    var SLIPS=[];
+    ['s1','s2','s3'].forEach(function(cls, si){
+      var el=document.querySelector('.'+cls), wid=0;
+      el.querySelectorAll('b, i').forEach(function(ln){
+        var rg=document.createRange(); rg.selectNodeContents(ln);
+        Array.prototype.forEach.call(rg.getClientRects(), function(q){ if(q.width>wid) wid=q.width; });
+      });
+      el.style.width=Math.ceil(wid)+'px';
+      var r=el.getBoundingClientRect(), pad=[16,14,16][si];
+      SLIPS.push([r.left-pad, r.top-pad-18, Math.ceil(wid)+pad*2, r.height+pad*2+18]);
+    });
+    for(var a1=0;a1<SLIPS.length;a1++) for(var a2=a1+1;a2<SLIPS.length;a2++){
+      var sp=Math.abs(SLIPS[a1][2]-SLIPS[a2][2])/Math.max(SLIPS[a1][2],SLIPS[a2][2]);
+      // THE CONTENT WILL NOT GIVE 12 PERCENT AND THE FRAME DOES NOT FAKE IT. Round 14 found the
+      // old 12 percent floor was met by an authored line break in .s2 while .s1 and .s3 carried
+      // one line each. Removing the break made it fire at 6.4, which is the truth: CONDITIONAL
+      // USE ONLY and DISCHARGE REGULATED are two guarded strings one character apart, so two
+      // slips carrying them ARE nearly the same width. Three papers are three papers because of
+      // stock, angle and hardware. The floor left here is the one that still catches a TYPED
+      // width, which is what the assertion was ever for.
+      if(sp<0.03) throw new Error('slips '+(a1+1)+' and '+(a2+1)+' are within '+(sp*100).toFixed(1)+
+        ' percent of one width, which no pair of these labels produces, so a width has been typed');
+      // PAPER ON A BOARD OVERLAPS. Three guarded labels need about 950px in a row and the
+      // frame's safe area is 920, and the only ways to buy that back were to break a label by
+      // hand, which round 14 caught, or to shrink type under the 24px mobile floor. Tacked slips
+      // lapping each other by a few percent is what a real board looks like, so a small overlap
+      // is allowed and a large one is still refused.
+      // NO LAP. Round 15 measured the tail of a label landing ON the neighbouring sheet, which
+      // breaks the one thing that has to be true on a board, at exactly the point the eye reads.
+      // The labels are two lines each now and three of them fit the safe area with air between.
+      if(SLIPS[a1][0]+SLIPS[a1][2] > SLIPS[a2][0] - 14)
+        throw new Error('slips '+(a1+1)+' and '+(a2+1)+' are within 14px, so a label runs to the '+
+          'seam and its last glyphs land on the neighbouring sheet');
+    }
+    // THREE STOCKS AND THREE ANGLES. Tacked paper is never square to the board, and a route slip
+    // out of a zoning file, a sewer file and an eligibility file is not three sheets off one
+    // ream. Both are properties the LABELS cannot refuse, which is the point: the variation that
+    // carries this frame has to come from something other than how long a guarded string is.
+    var STOCK=['#DCD5C2','#E6E0CD','#D2CAB4'], TILT=[-1.4, 0.8, -0.5];
+    if(new Set(STOCK).size!==3 || new Set(TILT).size!==3)
+      throw new Error('three slips need three stocks and three angles');
+    ['s1','s2','s3'].forEach(function(c,i){
+      var el=document.querySelector('.'+c);
+      el.style.transformOrigin='0 0'; el.style.transform='rotate('+TILT[i]+'deg)';
+    });
+    SLIPS.forEach(function(sh,si){
+      var sx=sh[0], sy=sh[1], sw=sh[2], sd=sh[3];
+      x.save(); x.translate(sx,sy); x.rotate(TILT[si]*Math.PI/180); x.translate(-sx,-sy);
+      for(var b=12;b>=1;b--){
+        x.fillStyle='rgba(66,46,22,'+(0.026+0.0035*(12-b))+')';
+        x.fillRect(sx+b*0.42, sy+b*0.56, sw+b*0.4, sd+b*0.32);
+      }
+      x.fillStyle='rgba(48,32,14,0.52)'; x.fillRect(sx+3,sy+sd-2,sw,6);
+      x.fillStyle=STOCK[si]; x.fillRect(sx,sy,sw,sd);
+      x.fillStyle='rgba(255,252,242,0.62)'; x.fillRect(sx,sy,sw,2);
+      x.fillStyle='rgba(150,132,104,0.20)'; x.fillRect(sx,sy+sd-2,sw,2);
+      // NO RULE INSIDE A SLIP. An index line has no attribution to separate from a quote, and a
+      // hairline at slip scale lands in a glyph band and reads as a strikethrough, which is what
+      // the first pass shipped straight through all four claim ids.
+      var tx0=sx+sw-28, ty0=sy+24;
+      for(var tb=5;tb>=1;tb--){
+        x.fillStyle='rgba(74,52,26,'+(0.026+0.011*(5-tb)).toFixed(4)+')';
+        x.fillRect(tx0-8-tb*0.4, ty0-2-tb*0.25, 20+tb*1.3, 10+tb*0.9);
+      }
+      x.fillStyle='rgba(58,40,18,0.38)'; x.fillRect(tx0-7,ty0+2,17,6);       // the contact core
+      x.fillStyle='rgba(52,36,16,0.58)'; x.fillRect(tx0-2,ty0+9,4,6);
+      var tg=x.createLinearGradient(tx0-10,ty0-10,tx0+9,ty0+9);
+      tg.addColorStop(0,'#EBCD8C'); tg.addColorStop(0.48,'#BD9243'); tg.addColorStop(1,'#71521D');
+      x.beginPath(); x.arc(tx0,ty0,10,0,Math.PI*2); x.fillStyle=tg; x.fill();
+      x.beginPath(); x.arc(tx0-3,ty0-3.4,3.4,0,Math.PI*2); x.fillStyle='rgba(255,246,214,0.82)'; x.fill();
+      x.beginPath(); x.arc(tx0,ty0,10,0,Math.PI*2); x.strokeStyle='rgba(58,40,14,0.50)'; x.lineWidth=1.3; x.stroke();
+      x.restore();
+    });
+    // THE CASE'S LOWER RAIL, the frame's darkest area. Read as an unexplained navy plinth once,
+    // because nothing said which object it was the bottom of. It gets frame 1's own bracket
+    // screws and lit rail edge, so it reads as the same case with its glazing swung away.
+    x.fillStyle='#2A2E36'; x.fillRect(0,H-232,W,232);
+    x.fillStyle='#4A4F58'; x.fillRect(0,H-232,W,5);
+    x.fillStyle='rgba(150,158,170,0.34)'; x.fillRect(0,H-232,W,1);
+    for(var s=0;s<5;s++){
+      var scx=132+s*204, scy=H-190;
+      x.fillStyle='rgba(10,12,16,0.55)'; x.beginPath(); x.arc(scx+1.5,scy+2,10,0,Math.PI*2); x.fill();
+      var sg=x.createLinearGradient(scx-10,scy-10,scx+9,scy+9);
+      sg.addColorStop(0,'#8A9099'); sg.addColorStop(0.55,'#5A606B'); sg.addColorStop(1,'#33383F');
+      x.beginPath(); x.arc(scx,scy,10,0,Math.PI*2); x.fillStyle=sg; x.fill();
+      x.fillStyle='rgba(18,20,26,0.78)'; x.fillRect(scx-6.5,scy-1.3,13,2.6);   // the slot
+      x.fillStyle='rgba(196,204,214,0.40)'; x.fillRect(scx-6.5,scy-2.6,13,1.1);
+    }
+    x.fillStyle='#14171C'; x.fillRect(0,H-117,W,5);
+    var lg=x.createLinearGradient(0,H-112,0,H);
+    lg.addColorStop(0,'rgba(8,10,14,0.30)'); lg.addColorStop(1,'rgba(8,10,14,0.62)');
+    x.fillStyle=lg; x.fillRect(0,H-112,W,112);
+  resolve();
+  });
+});
+</script>
+</body></html>
