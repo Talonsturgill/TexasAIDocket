@@ -370,7 +370,7 @@ job: >
   the fifteen reached for a resolution and not one of them is among the five that took
   effect, and the frame's own veil is the argument: the five names sit behind the glare
   and the finding sits in the clear.
-claims: [c22, c23]
+claims: [c22, c31, c36, c38, c40]
 numerals:
   - value_from: c23
 composition:
@@ -408,8 +408,8 @@ type:
 acceptance:
   - "the veiled region is measurably lighter than the unveiled region of the same sheet"
   - "the veil has a hard straight edge where the mullion cuts it, not a soft global gradient"
-  - "the word tentative or the city's own conditional wording appears in the readable block"
-  - "no year is printed on February 16th unless it comes from c23, which carries 2027"
+  - "the five bodies named in the veiled block are the five in resolutions, and the claim stamp under it names their five ids, which scripts/carousel/label_guard.py asserts over the whole deck"
+  - "the claim stamp is a line of its own rather than a tail on the dek's last sentence, because site_build lifts a deck's sentences onto the article page and a stamp riding on one arrives there as a bare numeral"
   - "the sheet's foot carries toner at the same value as the veiled region's type, over unveiled bond"
 risks:
   - "a veil drawn as a global grade turns this into a slide with a filter on it and the argument disappears"
