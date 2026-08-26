@@ -23,6 +23,10 @@ WHAT THIS DELIBERATELY DOES NOT DO. It does not fact check, it does not write pr
 does not decide what is an item. A claim that arrives without a verbatim quote is dropped and
 REPORTED, never repaired. The gates in docket_build.py are what say yes.
 
+By default the normalized candidates are appended to `seed/docket_seed.json`. The published
+ledger is read only to reserve ids that have already shipped, and this script refuses to use the
+live ledger as its output. Admission happens later, through `docket_build.py --promote`.
+
 Usage:
     python3 scripts/site/docket_ingest.py --batch out/research/*.json --today 2026-08-14
     python3 scripts/site/docket_ingest.py --self-test
@@ -38,6 +42,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DOCKET = REPO_ROOT / "ledger" / "docket.json"
+SEED = REPO_ROOT / "seed" / "docket_seed.json"
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from docket_build import _resolver          # noqa: E402  the same gazetteer the gate reads
@@ -158,12 +163,55 @@ def load_batch(path: Path) -> list[dict]:
     return d
 
 
+def load_items(path: Path) -> list[dict]:
+    """Read either the seed's bare list or a docket-shaped object with an `items` list."""
+    if not path.exists():
+        return []
+    data = json.loads(path.read_text(encoding="utf-8"))
+    items = data.get("items") if isinstance(data, dict) else data
+    if not isinstance(items, list):
+        raise ValueError(f"{path}: expected a JSON list or an object with an items list")
+    return items
+
+
+def ingest_batches(batch_paths: list[Path], today: str, *, ledger_path: Path = DOCKET,
+                   seed_path: Path = SEED) -> tuple[list[dict], list[str]]:
+    """Normalize research into the candidate seed without ever mutating the live ledger."""
+    if seed_path.resolve() == ledger_path.resolve():
+        raise ValueError(
+            "refusing to write candidates to ledger/docket.json; ingest writes the seed and "
+            "docket_build.py promotes what passes")
+
+    published = load_items(ledger_path)
+    candidates = load_items(seed_path)
+    n = next_number(published + candidates)
+    added, report = [], []
+    for path in batch_paths:
+        for raw in load_batch(path):
+            item, notes = normalise(raw, _slug_id(n, int(today[:4])), today)
+            if not item["claims"]:
+                report.append(f"SKIPPED {raw.get('title', '?')[:70]}: no claims survived")
+                continue
+            added.append(item)
+            for note in notes:
+                report.append(f"{item['id']}: {note}")
+            n += 1
+
+    candidates.extend(added)
+    seed_path.parent.mkdir(parents=True, exist_ok=True)
+    seed_path.write_text(json.dumps(candidates, indent=1, ensure_ascii=False) + "\n",
+                         encoding="utf-8")
+    return added, report
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--batch", nargs="*", default=[], help="research batch JSON file(s)")
     ap.add_argument("--today", default=_dt.date.today().isoformat())
-    ap.add_argument("--out", default=None, help="write here instead of the record")
+    ap.add_argument("--out", default=None,
+                    help="candidate seed path (default: seed/docket_seed.json); the live ledger "
+                         "is refused")
     ap.add_argument("--self-test", action="store_true")
     a = ap.parse_args()
 
@@ -175,27 +223,19 @@ def main() -> int:
         print("docket_ingest: no --batch given and nothing to do", file=sys.stderr)
         return 2
 
-    doc = json.loads(DOCKET.read_text())
-    items = doc["items"]
-    n = next_number(items)
-    added, report = [], []
-    for f in a.batch:
-        for raw in load_batch(Path(f)):
-            item, notes = normalise(raw, _slug_id(n, int(a.today[:4])), a.today)
-            if not item["claims"]:
-                report.append(f"SKIPPED {raw.get('title', '?')[:70]}: no claims survived")
-                continue
-            added.append(item)
-            for note in notes:
-                report.append(f"{item['id']}: {note}")
-            n += 1
-
-    items.extend(added)
-    out = Path(a.out) if a.out else DOCKET
-    out.write_text(json.dumps(doc, indent=1, ensure_ascii=False) + "\n")
+    out = Path(a.out) if a.out else SEED
+    try:
+        added, report = ingest_batches([Path(f) for f in a.batch], a.today, seed_path=out)
+    except (OSError, ValueError, json.JSONDecodeError) as exc:
+        print(f"docket_ingest: {exc}", file=sys.stderr)
+        return 2
     for line in report:
         print(f"  .. {line}")
-    print(f"docket_ingest: {len(added)} item(s) added, "
+    try:
+        shown = out.resolve().relative_to(REPO_ROOT)
+    except ValueError:
+        shown = out
+    print(f"docket_ingest: {len(added)} candidate(s) staged in {shown}, "
           f"{sum(len(i['claims']) for i in added)} claim(s), {len(report)} repair(s)")
     return 0
 
@@ -271,6 +311,37 @@ def _self_test() -> int:
     check("the next id is one past the highest, not the count",
           next_number([{"id": "tx-2026-0001"}, {"id": "tx-2026-0025"}]) == 26)
     check("an empty record starts at one", next_number([]) == 1)
+
+    # THE LIVE-LEDGER BOUNDARY. The default command in the daily prompt used to append the
+    # research batch directly to ledger/docket.json. That skipped the candidate seed and made
+    # promotion advisory rather than a boundary. Exercise the write, not just a path constant:
+    # the ledger must remain byte-identical, the old seed row must survive, and the new id must
+    # be reserved against both collections.
+    import tempfile as _tf
+    with _tf.TemporaryDirectory() as td:
+        tmp = Path(td)
+        ledger = tmp / "ledger.json"
+        seed = tmp / "seed.json"
+        batch = tmp / "batch.json"
+        ledger.write_text(json.dumps({"items": [{"id": "tx-2026-0099"}]}),
+                          encoding="utf-8")
+        seed.write_text(json.dumps([{"id": "tx-2026-0105"}]), encoding="utf-8")
+        batch.write_text(json.dumps({"items": [base]}), encoding="utf-8")
+        before = ledger.read_bytes()
+        staged, _ = ingest_batches([batch], "2026-08-14", ledger_path=ledger, seed_path=seed)
+        now = load_items(seed)
+        check("ingest leaves the published ledger byte-identical", ledger.read_bytes() == before)
+        check("ingest preserves candidates already in the seed", now[0]["id"] == "tx-2026-0105")
+        check("a new id is reserved against the ledger and seed together",
+              len(staged) == 1 and staged[0]["id"] == "tx-2026-0106")
+        try:
+            ingest_batches([batch], "2026-08-14", ledger_path=ledger, seed_path=ledger)
+        except ValueError:
+            refused_live = True
+        else:
+            refused_live = False
+        check("the live ledger is refused even when named explicitly", refused_live)
+        check("a refused live-ledger write changes no byte", ledger.read_bytes() == before)
 
     # A DECIDER TYPE THE RESEARCH PROMPT OFFERED AND THE RECORD DOES NOT CARRY.
     uni = json.loads(json.dumps(base))
