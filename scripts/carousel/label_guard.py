@@ -66,6 +66,12 @@ def _guarded(compute_src: str):
     return places, stems, shapes
 
 
+def _flat_for_count(html: str) -> str:
+    """Visible text only, for counting how many claim ids the gate actually looked at."""
+    html = re.sub(r"<(script|style)\b.*?</\1>", " ", html, flags=re.S | re.I)
+    return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", html))
+
+
 def _elements(html: str):
     """Each element's own visible text, in document order.
 
@@ -228,6 +234,16 @@ def main(argv):
         print(f"not a directory: {d}", file=sys.stderr)
         return 2
     problems = check(d)
+    # THE RECEIPT. gate_status reads this rather than re-deriving the answer, so the run record's
+    # gate table carries the row and a run cannot quietly skip the gate. CI cannot take it,
+    # because .github/workflows belongs to the human actor by ownership.yaml.
+    import re as _re
+    checked = 0
+    for f in sorted((d / "slides").glob("slide-*.html")):
+        checked += len(CLAIM_TOKEN.findall(_flat_for_count(f.read_text(encoding="utf-8"))))
+    (d / "label_report.json").write_text(
+        json.dumps({"checked": checked, "problems": problems}, indent=1, ensure_ascii=False) + "\n",
+        encoding="utf-8")
     if problems:
         print(f"label_guard: {len(problems)} label(s) the record does not support\n")
         for p in problems:

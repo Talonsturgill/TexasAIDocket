@@ -159,6 +159,13 @@ def rows_for(d: Path) -> list[Row]:
     artifact("assembly", "final/assemble_report.json", lambda a: _assembly(a, d))
     artifact("score", "score.json", lambda s: _score(s))
 
+    # THE LABEL ROW, ADDED 2026-08-26. A gate nothing reports on is a gate nothing runs, which
+    # GATE_LESSONS.md lists as a fault that has shipped here with every check passing. CI cannot
+    # take this one, because .github/workflows belongs to the human actor and a run that can edit
+    # its own CI can switch off the gate that judges it. The run record's gate table is the one
+    # place a run cannot quietly skip, so the row goes here.
+    artifact("labels", "label_report.json", lambda r: _labels(r))
+
     board = d / "storyboard.md"
     out.append(Row("dossiers", PASS if board.exists() else ABSENT,
                    f"{len(board.read_text(encoding='utf-8')):,} chars planned" if board.exists()
@@ -296,6 +303,21 @@ def _qa(q) -> Row:
     return Row("qa", FAIL if f else WARN, f"{f} fail(s), {w} warn(s)")
 
 
+def _labels(r) -> Row:
+    """Reads label_guard's receipt. Every label beside a claim id is the shape the record proves.
+
+    THE DEFECT: on 2026-08-25 frame 3 printed BRAZORIA / CONDITIONS SET / C40 while compute.py
+    guarded "resolution adopted" for that item against c40's own words, and passed, because the
+    guard runs over the map and the reader reads the frame.
+    """
+    probs = r.get("problems") or []
+    return Row("labels", FAIL if probs else PASS,
+               (f"{len(probs)} label(s) the record does not support: {probs[0][:90]}"
+                if probs else
+                f"{r.get('checked', 0)} claim id(s) checked, every label beside one traces to the "
+                f"shape its claim proves"))
+
+
 def _aggr(a) -> Row:
     """Reads aggregate_check's RECEIPT, not the declaration it checked.
 
@@ -356,7 +378,25 @@ def extract(text: str) -> str | None:
 
 
 def sync(record: Path, fresh: str) -> str:
-    """Write the fresh block in, replacing any previous one. Idempotent by construction."""
+    """Write the fresh block in, replacing any previous one. Idempotent by construction.
+
+    IT REFUSES A TARGET THAT IS NOT PROSE, and that check is the whole reason this docstring is
+    longer than the function. On 2026-08-26 a run reached for `--sync` and could not remember
+    which file it took, so it passed `ledger/docket.json`, the public record. This function
+    appended a markdown table to the end of it and reported success. The file stopped being valid
+    JSON, and it went into a commit, because a gate row that says PASS about the artifact it just
+    corrupted is not a row anybody re-reads.
+
+    Nothing downstream caught it either. `site_fresh_check` would have, on the next build, and by
+    then the damage was two commits deep. So the refusal lives HERE, at the write, which is the
+    only place that knows both what it is about to do and to what.
+    """
+    if record.suffix.lower() not in (".md", ".markdown", ".txt"):
+        raise SystemExit(
+            f"gate_status --sync writes a MARKDOWN block and {record.name} is not markdown. It "
+            f"takes the run record, runs/carousel/<date>/RUN_RECORD.md. On 2026-08-26 this was "
+            f"handed ledger/docket.json and appended a gate table to the public record, which "
+            f"stopped being valid JSON and was committed twice before anything noticed.")
     text = record.read_text(encoding="utf-8") if record.exists() else ""
     if extract(text) is not None:
         new = re.sub(re.escape(BEGIN) + r".*?" + re.escape(END), lambda _: fresh, text, count=1,
