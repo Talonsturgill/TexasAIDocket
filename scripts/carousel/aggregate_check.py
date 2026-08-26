@@ -74,7 +74,15 @@ WORDS = {
 # number the slide does not contain. **A gate that misreports a figure is worse than one that
 # misses it**, because the run then goes looking for a number that was never there. Thousands
 # separators are consumed as part of the token.
-NUM = r"(?:\d{1,3}(?:,\d{3})+|\d{1,4}|" + "|".join(WORDS) + r")"
+#
+# A DECIMAL POINT IS PART OF THE NUMBER, 2026-08-26. Without the lookbehind and the optional
+# fraction, "8.0 gallons per square foot" matched as "0 gallons", and the gate then asked the
+# run to declare a figure of zero that appears nowhere. The lookbehind refuses a digit run that
+# a digit or a point already leads, so the fractional half of a decimal can never be read as a
+# whole number on its own. Same lesson as the thousands separator below: a token the pattern
+# cuts in half is a number the report describes wrongly, and a wrong number in a gate's own
+# output is worse than silence, because somebody goes looking for it.
+NUM = r"(?:(?<![\d.])\d{1,3}(?:,\d{3})+|(?<![\d.])\d{1,4}(?:\.\d+)?|" + "|".join(WORDS) + r")"
 
 # THE FOUR SHAPES. Each is a number the deck computed rather than quoted.
 #
@@ -147,11 +155,22 @@ def to_int(tok: str) -> int | None:
 
     A gate that misreports a figure is worse than one that misses it, and a gate that refuses
     the honest route teaches a run that the shortcut passes. This is both at once.
+
+    THE SAME DEFECT AGAIN AT THE DECIMAL POINT (2026-08-26). `NUM` was taught to consume a
+    fraction so "8.0 gallons per square foot" stops matching as "0 gallons", and this returned
+    None for "8.0" for exactly the reason it returned None for "1,400": `str.isdigit()` is False.
+    A figure a source WROTE DOWN as a decimal could not be declared through `quoted_from`, and
+    a water cap is written that way by every ordinance that has one. Returns an int when the
+    value is whole so nothing downstream that compares against an integer changes.
     """
     t = tok.strip().lower().replace(",", "")
     if t.isdigit():
         return int(t)
-    return WORDS.get(tok.strip().lower())
+    try:
+        v = float(t)
+    except ValueError:
+        return WORDS.get(tok.strip().lower())
+    return int(v) if v.is_integer() else v
 
 
 def detect(text: str, n_slides: int | None = None) -> list[dict]:
@@ -192,6 +211,12 @@ def detect(text: str, n_slides: int | None = None) -> list[dict]:
     return found
 
 
+# The nouns a coordinates footer and a compass bearing are built from. These are the ONLY
+# thing the decorative flag still exempts besides a date span, because they are furniture the
+# design doctrine asks for in words and no computation stands behind them.
+FURNITURE_NOUN = re.compile(r"\b(degrees|minutes|seconds|arcminutes|arcseconds)\b", re.I)
+
+
 def scan_report(report: dict) -> list[dict]:
     out = []
     n_slides = len(report.get("slides") or [])
@@ -211,12 +236,25 @@ def scan_report(report: dict) -> list[dict]:
             # that cries wolf nine times a deck teaches the run to scroll past the tenth. This
             # exemption is narrower than that one, because a designer had to mark the element
             # rather than the gate guessing from a pattern.
-            if node.get("decorative"):
-                continue
+            # NARROWED 2026-08-26. `continue` here exempted the WHOLE NODE, and two numbers
+            # rode out on that: slide 3's "154 DAYS" and slide 8's "3 AGENDAS", both set in
+            # 19 to 22px attribution type, both fully legible, neither declared, and the gate
+            # printed "clean (14 computed figures, all re-derived)" over the pair of them.
+            # A reader does not know a node was marked decorative.
+            #
+            # The original exemption is still right about what it was written for: a
+            # coordinates footer set as "30 degrees 33 minutes N" reads as four aggregates on
+            # every slide and none is real. So the exemption keeps its subject and loses its
+            # reach. On a decorative node a SPAN and the coordinate nouns stay exempt, and a
+            # count, a ratio or a duration is checked exactly as it would be anywhere else.
+            decorative = bool(node.get("decorative"))
             txt = (node.get("text") or "").strip()
             if not txt:
                 continue
             for d in detect(txt, n_slides):
+                if decorative and (d.get("kind") == "span"
+                                   or FURNITURE_NOUN.search(d.get("phrase") or "")):
+                    continue
                 out.append({"slide": name, "text": txt, **d})
     return out
 
