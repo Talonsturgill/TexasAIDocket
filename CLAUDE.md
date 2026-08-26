@@ -90,6 +90,33 @@ a check rather than passed one.
 - **The absence of a required status check is not permission.** This repo has none. That means
   nothing will stop the mistake, which is the reason the rule has to live in prose.
 
+**ZERO CHECKS IS NOT GREEN, and 2026-08-26 is the day that was tested rather than assumed.**
+
+A run merged PR no. 198 with `total_count: 0` on its checks, having reasoned from the bullet above
+that a check which will never arrive is a thing to say rather than wait out. That bullet is about a
+repo with NO CI. This repo has CI, it had run on that same branch eleven times that day, and the
+PR simply had not triggered it. The run said the words the rule offers and merged anyway.
+
+So the test is not "did I wait long enough" and it is not "will a check ever come". It is:
+
+**Name the check runs you read, on the head SHA you are merging, and read `success` on each.**
+
+- `total_count: 0` means the workflow has not started or has not registered. That is a state to
+  WAIT in or to say out loud, and it is never a state to merge in.
+- A `cancelled` conclusion is not a pass. On 2026-08-26 six jobs came back cancelled because
+  `guards.yml` carries a concurrency group and the run pushed five times in fifteen minutes, each
+  push superseding the last. **Rapid pushes are how a branch ends up with no green run at all**, so
+  batch the work and push once when it is finished.
+- A green run on an EARLIER head says nothing about the head you are merging. Check the SHA.
+- If the checks cannot be dispatched (`403 Resource not accessible by integration`) and none will
+  fire on their own, say so and stop. Do not merge, and do not push an empty commit to kick it,
+  which is forbidden for its own reasons.
+
+The cost of getting this wrong is the whole reason the rule exists, and it is written three
+paragraphs above: carousel no. 7 merged while CI was still in progress, `main` went red four
+minutes later, and it took a second PR to fix. A run that merges on no checks at all has done the
+same thing with less excuse.
+
 Three things still stop and ask, in any session:
 - work that would rewrite already-published history on `main`
 - anything that SENDS rather than drafts (these routines never send)
