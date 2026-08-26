@@ -165,6 +165,7 @@ def rows_for(d: Path) -> list[Row]:
     # its own CI can switch off the gate that judges it. The run record's gate table is the one
     # place a run cannot quietly skip, so the row goes here.
     artifact("labels", "label_report.json", lambda r: _labels(r))
+    artifact("quantifiers", "quantifier_report.json", lambda r: _quant(r))
 
     board = d / "storyboard.md"
     out.append(Row("dossiers", PASS if board.exists() else ABSENT,
@@ -301,6 +302,21 @@ def _qa(q) -> Row:
         n = len(q.get("slides") or [])
         return Row("qa", PASS, f"{n} slide(s), zero fails, zero warns")
     return Row("qa", FAIL if f else WARN, f"{f} fail(s), {w} warn(s)")
+
+
+def _quant(r) -> Row:
+    """Reads quantifier_check's receipt. Every universal on every surface names its set.
+
+    THE DEFECT: rounds 13 and 14 each hard failed on a scope word in prose sitting on top of a
+    correctly computed number, and each repair landed on the frame that was named and on no other
+    surface. This row exists so the gate table shows the whole surface list was read, not one.
+    """
+    probs = r.get("problems") or []
+    return Row("quantifiers", FAIL if probs else PASS,
+               (f"{len(probs)} quantifier(s) the record does not support: {probs[0][:90]}"
+                if probs else
+                f"{r.get('surfaces', 0)} published string(s) read from one list, every universal "
+                f"names its set"))
 
 
 def _labels(r) -> Row:

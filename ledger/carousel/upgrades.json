@@ -538,4 +538,27 @@
    "label_guard, added earlier this run": "HELD. It ran on every render of every round since and refused two decks: frame 6's ZONING and SEWER on a synthetic replay, and the caption's aggregate rows twice when copy.json was regenerated. It has never fired on a correct label."
   }
  }
+,
+ "2026-08-25 r15": {
+  "run": "carousel no. 7, round 15. Fourth key for one run date, by this file's own append rule.",
+  "actor": "upgrade",
+  "note": "One gate, and it is the fix both round 14 judges arrived at independently. The integrity judge: 'Every repair in this loop lands on the frame that was named and on no other surface, which is why round 13's two hard fails are still shipping in the caption and on frame 6.'",
+  "upgrades": [
+   {
+    "what": "scripts/carousel/quantifier_check.py, a new gate, plus a `quantifiers` row in gate_status so the table shows the whole surface list was read rather than one frame.",
+    "why": "Round 13 hard failed frame 3 for printing 'Nothing in their sources says the action binds'. That bucket is a MEASUREMENT, acting items carrying no `effective` key date at all, and c44 in the same run's claims file is a source saying which way for Wichita Falls, on a fact frame 8 prints. The frame was repaired. Round 14 hard failed the run TWICE for the same sentence on frame 6's foot and in the caption, and again for a universal in the caption the run's own figures refute.",
+    "how": "It reads EVERY published surface from ONE list, and the list is the point: each frame's rendered text nodes out of render_report.json, caption.txt and first_comment.txt. Rule one bans SOURCE SILENCE outright, because this product's buckets are measurements about the record's key dates and a run that genuinely needs to say the sources are silent has to prove it claim by claim, which does not fit on a slide. Rule two requires every universal standing next to a set noun to name the figures.json key it ranges over in out/<date>/quantifiers.json, and then checks claims.json against that key's from_items. Rule three requires the caption ledger's stored first_line to equal the shipped one, which round 14 found holding the pre repair wording.",
+    "files": [
+     "scripts/carousel/quantifier_check\\.py",
+     "scripts/carousel/gate_status\\.py"
+    ],
+    "verification": "python3 scripts/carousel/quantifier_check.py --self-test. It asserts the gate finds the frame AND the caption in one pass, which is the whole defect, passes the repaired measurement wording so it cannot teach a run to ignore it, refuses an undeclared universal, and refuses a declared one whose set a claim in the claims file speaks to.",
+    "reverts_as": "delete scripts/carousel/quantifier_check.py and its gate_status row"
+   }
+  ],
+  "proposals_this_run_may_not_make": {
+   "the perturbation gate": "Round 14's craft judge asked for the right thing and this run did not build it: re-render every frame twice with one string lengthened and one shortened, and fail any frame whose supposedly measured geometry does not move. One test catches the whole family this round fixed four instances of by hand, a comment describing a computation over code that returns a constant. It is not built here because it needs a render harness change in .claude/skills/carousel-engine/render.py and a measured baseline of how long two extra renders per frame cost, and a gate written against a moving deck is a gate written against nothing.",
+   "bespoke_check reads code tokens, not pixels": "Two judges independently named frames 1 and 2 as one object at contact sheet scale while bespoke_check reported 2 and 7 as the closest pair at 0.7257. It measures DOM token overlap. A pixel term, a 64px downsample compared structurally, would see what a reader sees first."
+  }
+ }
 }
