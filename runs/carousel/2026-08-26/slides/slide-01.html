@@ -1,0 +1,293 @@
+<!doctype html>
+<!-- SLIDE 1 — "The hole". A benched excavation modelled as a BOOLEAN SUBTRACTION from a
+     rock plateau (TXSDF opSub), so the terraces self-occlude and the floor is where the
+     light dies. The subject of this frame is a void, and every other tool in the library
+     would paint it as a dark shape on a light one.
+
+     v2: the first render came out near-uniform pale. The sky term drives a strong
+     hemispheric fill in txsdf's shading loop, so a bright sky washed the floor out and the
+     declared focal was the lightest thing in the frame rather than the darkest. Sky and fog
+     are now near zero and the true sky is a CSS band above the canvas, which is where it
+     belonged anyway. The figure also overprinted the dek; the bands are now disjoint. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txsdf.js"></script>
+<style>
+  /* deck tokens, declared once so the palette is readable rather than implicit
+     inside rgba() calls. These are the storyboard's own values. */
+  :root {
+    --limestone: #E5DECC;
+    --cut_face: #F4F0E4;
+    --blackland: #211E1A;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body { background:#E5DECC; position:relative;
+         font-family:"Fraunces", serif; -webkit-font-smoothing:antialiased; }
+
+  /* The canvas owns the ground. The plateau is oversized in z so its far edge never
+     enters frame, which means no background strip and no false horizon inside the art. */
+  #art { position:absolute; left:0; top:380px; }
+  /* The canvas was butted hard against the cream page and the join read as a pasted window.
+     A short blend carries the page into the art. */
+  .seam { position:absolute; left:0; right:0; top:380px; height:54px; pointer-events:none;
+          background:linear-gradient(180deg, #E5DECC 0%, rgba(229,222,204,0.55) 46%,
+                                     rgba(229,222,204,0) 100%); }
+  /* The lower third was a flat cream band with type on it, which machine QA reported as the
+     dead lower zone at 21 percent of this frame's own craft density. It is ground now. */
+  #ground { position:absolute; left:0; top:1030px; }
+  /* THE SECOND SEAM. The raymarch ends at y1040 in cool grey and the worked ground begins in
+     warm limestone, and butted together they read as two sheets of paper rather than as one
+     continuous site. The top of the canvas was blended on an earlier pass and the bottom was
+     left. */
+  .seam2 { position:absolute; left:0; right:0; top:966px; height:76px; pointer-events:none;
+           background:linear-gradient(180deg, rgba(234,228,212,0) 0%,
+                                      rgba(234,228,212,0.62) 58%, #EAE4D4 100%); }
+  .grain { position:absolute; inset:0; opacity:0.045; mix-blend-mode:overlay;
+           background-repeat:repeat; pointer-events:none; }
+
+  .kicker { position:absolute; left:80px; top:88px;
+            font-family:"JetBrains Mono",monospace; font-weight:500; font-size:26px;
+            letter-spacing:0.16em; color:#33402F; }
+  .counter { position:absolute; right:80px; top:88px;
+             font-family:"JetBrains Mono",monospace; font-weight:500; font-size:26px;
+             letter-spacing:0.12em; color:#33402F; }
+
+  /* The hook sits on a solid limestone scrim over the plateau's lit top, never on the floor. */
+  .hookwrap { position:absolute; left:80px; top:146px; width:920px; }
+  h1 { font-weight:820; font-size:104px; line-height:0.95;
+       letter-spacing:-0.021em; color:#211E1A; font-variation-settings:"opsz" 120; }
+
+  /* The zero line rides the lit upper bench, so it needs its own SOLID knockout plate. */
+  .zerowrap { position:absolute; right:80px; top:846px; text-align:right; }
+  .zeroplate { display:inline-block; background:#F4F0E4; padding:18px 24px 20px 24px; }
+  .zerolabel { font-family:"JetBrains Mono",monospace; font-size:24px; font-weight:500;
+               letter-spacing:0.11em; color:#4D5842; margin-bottom:9px; }
+  .zero { font-family:"JetBrains Mono",monospace; font-weight:700; font-size:50px;
+          font-variant-numeric:tabular-nums; color:#211E1A; }
+
+  /* Figures are ALWAYS JetBrains Mono tabular. Fraunces renders a 3 as a 5 at feed size. */
+  /* The band ran three small-caps lines into the site line and left the last one eight pixels
+     off the frame edge, on the cover. It starts higher and the figure and dek give back the
+     rest. */
+  .lower { position:absolute; left:0; right:0; top:1004px; bottom:0;
+           padding:12px 80px 0 80px; }
+  .figlabel { font-family:"JetBrains Mono",monospace; font-size:24px; font-weight:500;
+              letter-spacing:0.13em; color:#3C4534; margin-bottom:8px; }
+  .fig { font-family:"JetBrains Mono",monospace; font-weight:700; font-size:78px;
+         font-variant-numeric:tabular-nums; letter-spacing:-0.014em; color:#211E1A;
+         line-height:1.0; }
+  .dek { font-family:"Manrope",sans-serif; font-weight:500; font-size:24px; line-height:1.32;
+         color:#3A362E; max-width:900px; margin-top:10px; }
+  /* MODELED, on the cover too. The deck adopted this label on slide 2 and left the frame that
+     draws a benched excavation of the same named site carrying no label at all.
+     SET AT THE KICKER'S SIZE, which is this deck's own legible floor. At 18px it rendered
+     around 7px in the 432px feed thumb, so the frame disclosed that it invents geometry at a
+     size no reader scrolling a phone could read. A disclosure nobody can read is not one. */
+  .modeled { position:absolute; left:80px; top:846px; width:380px;
+             font-family:"JetBrains Mono",monospace; font-size:24px; font-weight:500;
+             color:#463F33; letter-spacing:0.04em; line-height:1.3; }
+  /* THE SOURCE LINE NAMES WHAT ESTABLISHES THE VERB. It read UT SYSTEM REGENTS, FACILITIES
+     COMMITTEE directly under a dek saying the regents APPROVED, and that document recommends
+     rather than records. c32 is the claim that establishes approval and it was named on no
+     frame in the deck.
+
+     AND IT WAS SET AT 18px, MARKED DECORATIVE, AND LEFT 1px OFF THE CANVAS BOTTOM. This one
+     line is the whole separation between the document that RECOMMENDS and the report that
+     ESTABLISHES THE VOTE, which is the seam this run's second hard fail lived in, and it was
+     the smallest thing on the cover. Marking it decorative also kept it out of the
+     accessibility tree and is why the 24px tiny-text warn never fired on it. It is 26px now,
+     the kicker's size, it is not decorative, and the band starts higher so it clears the
+     margin instead of riding the edge. */
+  .src { font-family:"JetBrains Mono",monospace; font-size:24px; font-weight:500;
+         color:#463F33; letter-spacing:0.02em; margin-top:10px; line-height:1.25;
+         max-width:620px; }
+  .star { position:absolute; right:80px; bottom:92px; }
+  .tx-site { position:absolute; right:80px; bottom:52px; text-align:right;
+           font-family:"JetBrains Mono",monospace; font-size:24px; font-weight:500;
+           letter-spacing:0.07em; }
+</style>
+</head>
+<body data-encodes='[{"claim":"the excavation floor is darker than the lit plateau top around it","reads":"differ","a":[[560,560,300,140]],"b":[[700,840,300,140]]}]'>
+  <canvas id="art" width="2160" height="1320" style="width:1080px;height:660px"></canvas>
+  <div class="seam" data-decorative></div>
+  <div class="seam2" data-decorative></div>
+  <canvas id="ground" width="2160" height="640" style="width:1080px;height:320px"></canvas>
+  <div class="grain" id="grain"></div>
+
+  <div class="kicker">TEXAS AI DOCKET</div>
+  <div class="counter">01 / 09</div>
+
+  <div class="hookwrap">
+    <h1>A billion dollars of bare ground</h1>
+  </div>
+
+  <div class="modeled">MODELED. THE RECORD GIVES COST LINES AND NOT A SITE PLAN</div>
+
+  <div class="zerowrap">
+    <div class="zeroplate">
+      <div class="zerolabel">FIRST LINE OF THE COST TABLE</div>
+      <div class="zero">Building Cost $0</div>
+    </div>
+  </div>
+
+  <div class="lower">
+    <div class="figlabel">TOTAL PROJECT COST, PHASE 1</div>
+    <div class="fig">$1,000,000,000</div>
+    <div class="dek">The regents approved adding Phase 1 of the UT Dell Medical Center in Austin
+      to the capital improvement program on August 12th, 2026.</div>
+    <div class="src">AGENDA BOOK FOR THE ITEM. COMMUNITY IMPACT FOR THE VOTE.</div>
+  </div>
+
+  <svg class="star" width="46" height="46" viewBox="0 0 24 24" data-decorative>
+    <path d="M12 1.6l2.9 7.5 8 .4-6.2 5.1 2.1 7.8L12 18l-6.8 4.4 2.1-7.8L1.1 9.5l8-.4z"
+          fill="#211E1A" opacity="0.5"/>
+  </svg>
+
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260826;
+  TX.reseed(SEED);
+  TXSDF.reseed(SEED);
+
+  var cv = document.getElementById('art');
+  var ctx = cv.getContext('2d');
+  ctx.scale(2, 2);                       // 2x backing store, per the contract
+
+  var S = TXSDF;
+
+  // THE SCENE. A rock plateau, with a benched excavation SUBTRACTED from it.
+  // Each bench is one box removed at a narrower footprint and a greater depth, so the
+  // terraces are real steps in the material rather than three drawn rectangles, and the
+  // walls occlude each other because the model knows which side is rock and which is air.
+  // The cut is deep relative to its width on purpose: a shallow tray lights its own floor.
+  var scene = function (p) {
+    // Oversized in x and z so the far edge never enters frame. A visible plateau edge
+    // would put a second horizon inside the art, competing with the one at the top.
+    var plateau = S.sdBox(S.sub(p, [0, -2.60, 0]), [26.0, 2.60, 26.0]);
+
+    var cut1 = S.sdBox(S.sub(p, [-0.30, -0.40, 0.60]), [3.00, 0.46, 2.10]);
+    var cut2 = S.sdBox(S.sub(p, [-0.30, -1.30, 0.60]), [2.32, 0.52, 1.56]);
+    var cut3 = S.sdBox(S.sub(p, [-0.30, -2.24, 0.60]), [1.62, 0.55, 1.04]);
+    var cut4 = S.sdBox(S.sub(p, [-0.30, -3.20, 0.60]), [0.94, 0.62, 0.56]);   // the floor
+
+    var d = plateau;
+    d = S.opSub(d, cut1);
+    d = S.opSub(d, cut2);
+    d = S.opSub(d, cut3);
+    d = S.opSub(d, cut4);
+    return [d, 1];
+  };
+
+  TXSDF.render(ctx, {
+    scene: scene,
+    // SUPERSAMPLED IN THE CALLER, because TXSDF.render takes no anti-aliasing option. It was
+    // raymarching 1040 wide and being blitted into a 1080 CSS box on a 2160 device backing
+    // store, so one sample covered 2.08 device pixels and the plateau's rim was visibly stair
+    // stepped against the sky band. Raising the sample grid is the only lever the library
+    // gives. The renderReady race in render.py is a hard 30 second cap and this frame was
+    // taking 14.4 of them, so the factor is chosen to stay inside that rather than to reach
+    // 1:1, which would cost about four times the pixels.
+    //
+    // MEASURED, NOT GUESSED, AND THEN BACKED OFF. Time scales linearly with the sample count
+    // here: 1.96 times the pixels took 2.04 times as long, and 1456 x 890 rendered in 29,380ms
+    // against that 30,000ms cap. Six hundred milliseconds of margin is a timeout on a slower
+    // runner, and a timeout is a hard fail where an aliased rim is a craft note. 1248 x 763 is
+    // 1.44 times the pixels, lands near 21 seconds, and takes one sample from covering 2.08
+    // device pixels to 1.73. That is the improvement this cap can pay for.
+    width: 1248, height: 763,
+    box: [0, 0, 1080, 660],
+    // Low oblique from the left, so the near benches read as treads and the far wall
+    // stands up rather than the whole cut reading as a tray seen from overhead.
+    // SOLVED, not eyeballed. distance 12.46, downward pitch 35.9 degrees, visible height
+    // 8.58 units at the look point. The excavation is 3.88 units deep, so it takes 45 percent
+    // of the frame height and 49 percent of its width, which puts it in the middle band
+    // rather than in the bottom fifteen percent.
+    cam: { pos: [5.0, 5.4, 9.2], look: [-0.30, -1.90, 0.60], fov: 38 },
+    light: [0.70, 0.50, 0.36],           // morning key from the left, deliberately low
+    mats: { 1: { color: [0.952, 0.902, 0.796], spec: 0.06 } },   // limestone, one step down
+    // Sky drives a hemispheric fill in the shading loop, so a bright sky here fills the
+    // excavation floor and destroys the frame's whole point. The real sky is the CSS band.
+    sky: [0.052, 0.048, 0.041],
+    fog: 0.008,
+    keyColor: [1.00, 0.964, 0.888],
+    shadowColor: [0.043, 0.040, 0.035],  // blackland, so the floor reaches the deck's TRUE dark.
+                                         // The first pass left the floor a pencil grey, and the
+                                         // strip then opened on its palest frame with the only
+                                         // dark anchor eight slides away.
+    seed: SEED,
+    deadlineMs: 110000
+  });
+
+  // THE LOWER GROUND. Worked limestone carrying the payload band, so the bottom third of the
+  // cover is ground the figure stands on rather than a caption strip under a picture.
+  var gc = document.getElementById('ground').getContext('2d');
+  gc.scale(2, 2);
+  var GW = 1080, GH = 320;
+  var AZ1 = 246 * Math.PI / 180;
+  var GX = Math.sin(AZ1), GY = -Math.cos(AZ1);
+  var gg = gc.createLinearGradient(80, 0, 1000, GH);
+  gg.addColorStop(0.00, '#EAE4D4');
+  gg.addColorStop(0.52, '#E2DBC8');
+  gg.addColorStop(1.00, '#CEC5AD');
+  gc.fillStyle = gg; gc.fillRect(0, 0, GW, GH);
+  gc.save();
+  gc.globalCompositeOperation = 'multiply';
+  for (var ti = 0; ti < 320; ti++) {
+    var tt = ti / 320;
+    var tx = -180 + TX.simplex2(ti * 0.23, 3.7) * 90 + tt * 1400;
+    var ty = -30 + TX.simplex2(ti * 0.19, 8.2) * 40 + tt * 400;
+    var tl = 90 + (TX.simplex2(ti * 0.31, 2.6) * 0.5 + 0.5) * 260;
+    var ta = 0.045 + (TX.simplex2(ti * 0.43, 7.1) * 0.5 + 0.5) * 0.085;
+    gc.strokeStyle = 'rgba(92,82,63,' + ta.toFixed(3) + ')';
+    gc.lineWidth = 1 + (TX.simplex2(ti * 0.57, 1.9) * 0.5 + 0.5) * 3.2;
+    gc.beginPath(); gc.moveTo(tx, ty); gc.lineTo(tx + GX * tl, ty + GY * tl); gc.stroke();
+  }
+  gc.restore();
+  // SPOIL, KEPT OUT OF THE COLUMN THE TYPE OCCUPIES. Drawn across the whole band it landed
+  // squarely on the dek and the source line and the payload read through a scatter of
+  // pebbles. It is confined to the two margins outside the 80px safe zone and to the strip
+  // above the label, which is where a reader's eye has nothing to do and where the frame
+  // balance measure was finding an empty lower third.
+  var lanes = [[0, 104], [956, 1080]];
+  for (var ri = 0; ri < 150; ri++) {
+    var lane = lanes[ri % 2];
+    var span = (TX.simplex2(ri * 0.49, 12.0) * 0.5 + 0.5);
+    var rx1 = lane[0] + span * (lane[1] - lane[0]);
+    var ry1 = 14 + (TX.simplex2(ri * 0.87, 6.0) * 0.5 + 0.5) * (GH - 34);
+    var rr1 = 2.2 + (TX.simplex2(ri * 1.6, 2.9) * 0.5 + 0.5) * 6.0;
+    gc.save();
+    gc.globalCompositeOperation = 'multiply';
+    gc.beginPath();
+    gc.ellipse(rx1 + GX * rr1 * 2.2, ry1 + GY * rr1 * 2.2, rr1 * 1.5, rr1 * 0.7,
+               AZ1 - Math.PI / 2, 0, Math.PI * 2);
+    gc.fillStyle = 'rgba(52,45,34,0.26)'; gc.fill();
+    gc.restore();
+    gc.beginPath();
+    gc.ellipse(rx1, ry1, rr1, rr1 * 0.78, 0, 0, Math.PI * 2);
+    gc.fillStyle = (TX.simplex2(ri * 2.3, 5.5) > 0) ? '#C6B896' : '#A2957A';
+    gc.fill();
+    gc.fillStyle = 'rgba(255,251,240,0.60)';
+    gc.beginPath();
+    gc.ellipse(rx1 - GX * rr1 * 0.36, ry1 - GY * rr1 * 0.36, rr1 * 0.50, rr1 * 0.36, 0, 0,
+               Math.PI * 2);
+    gc.fill();
+  }
+
+  // NO BENCH EDGE IN THIS BAND. One was drawn across the full width to give the lower third
+  // a real edge, and its shaded return landed under the figure label and took that label to
+  // 4.4 against the rubric's 4.5 line. The tool marks and the margin spoil carry the band.
+
+  // Grain, so a broad limestone field does not read as an unfinished render on a phone.
+  document.getElementById('grain').style.backgroundImage =
+    'url(' + TX.grainTile(220, 34, 3) + ')';
+
+  resolve();
+});
+</script>
+  <div class="tx-site" style="color:#3A362E">texasaidocket.com</div>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!doctype html>
+<!-- SLIDE 3 — "The mass". What is projected to stand on the ground, drawn as UNFILLED
+     program plates with NO SHADOW AND NO CONTACT anywhere. Slide 2 was nothing but shadow.
+     This frame has none, and a reader feels the difference before reading a word of it.
+     An unfilled plate has no mass to cast with, which is the deck's law made literal. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<script src="@@ASSETS@@/js/noise.js"></script>
+<style>
+  /* deck tokens, declared once so the palette is readable rather than implicit
+     inside rgba() calls. These are the storyboard's own values. */
+  :root {
+    --limestone: #E5DECC;
+    --cut_face: #F4F0E4;
+    --liveoak: #4D5842;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body { background:#E9E3D3; position:relative;
+         font-family:"Fraunces", serif; -webkit-font-smoothing:antialiased; }
+  #art { position:absolute; left:0; top:0; }
+  .grain { position:absolute; inset:0; opacity:0.04; mix-blend-mode:overlay;
+           background-repeat:repeat; pointer-events:none; }
+
+  .kicker { position:absolute; left:80px; top:88px;
+            font-family:"JetBrains Mono",monospace; font-weight:500; font-size:26px;
+            letter-spacing:0.16em; color:#33402F; }
+  .counter { position:absolute; right:80px; top:88px;
+             font-family:"JetBrains Mono",monospace; font-weight:500; font-size:26px;
+             letter-spacing:0.12em; color:#33402F; }
+
+  .hookwrap { position:absolute; left:80px; top:150px; width:900px; }
+  h1 { font-weight:820; font-size:98px; line-height:0.96;
+       letter-spacing:-0.02em; color:#211E1A; font-variation-settings:"opsz" 110; }
+
+  /* THE LABEL THIS FRAME WAS MISSING. The drawing is sixteen stacked plates, five of podium,
+     seven of tower and four above that, and the record gives a gross square footage and says
+     NOTHING about floors, height or profile. Slide 2 was rebuilt this run for exactly this and
+     the frame beside it kept inventing massing with no label at all. It sits directly under the
+     stack rather than in the lower band, so it attaches to the drawing it is about, and it is
+     set at the kicker's size, which is this deck's legible floor at feed size. */
+  .modeled { position:absolute; left:80px; top:872px; width:880px;
+             font-family:"JetBrains Mono",monospace; font-size:26px; font-weight:500;
+             letter-spacing:0.06em; color:#5A5444; line-height:1.35; }
+  .qwrap { position:absolute; left:80px; top:952px; width:790px; }
+  .q { font-family:"Manrope",sans-serif; font-weight:600; font-size:29px; line-height:1.32;
+       color:#211E1A; }
+  .qsrc { font-family:"JetBrains Mono",monospace; font-size:24px; color:#2A2620;
+          letter-spacing:0.08em; margin-top:14px; }
+
+  .lower { position:absolute; left:0; right:0; bottom:0; padding:18px 80px 24px 80px; }
+  .note { font-family:"Manrope",sans-serif; font-weight:700; font-size:29px; line-height:1.3;
+          color:#33402F; max-width:860px; }
+  /* The frame's SOURCE, named separately. copy.json had `source` duplicating `facility`, so the
+     frame's only source line was a quoted facility type and it named no document at all. */
+  .src { font-family:"JetBrains Mono",monospace; font-size:24px; color:#332D22;
+         letter-spacing:0.05em; margin-top:12px; }
+  .partner { font-family:"JetBrains Mono",monospace; font-size:24px; color:#3C4534;
+             letter-spacing:0.06em; margin-top:16px; }
+  .star { position:absolute; right:80px; bottom:86px; }
+  .tx-site { position:absolute; right:80px; bottom:30px; text-align:right;
+           font-family:"JetBrains Mono",monospace; font-size:24px; font-weight:500;
+           letter-spacing:0.07em; }
+  /* JetBrains Mono centres its period in a full advance width, so a mono figure set inline
+     in a Fraunces display line reads as "2 . 5". The point is pulled in on both sides. */
+  .mononum .pt { margin-left:-0.17em; margin-right:-0.17em; }
+  .mononum { font-family:"JetBrains Mono",monospace; font-weight:700; font-size:0.86em;
+             font-variant-numeric:tabular-nums; letter-spacing:-0.02em; }
+</style>
+</head>
+<body data-encodes='[{"claim":"the plate mesh is distinguishable from the open ground it floats over","reads":"differ","a":[[480,600,170,80]],"b":[[120,700,170,80]]}]'>
+  <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+  <div class="grain" id="grain"></div>
+
+  <div class="kicker">THE MASS</div>
+  <div class="counter">03 / 09</div>
+
+  <div class="hookwrap"><h1><span class="mononum">2<span class="pt">.</span>5</span> million square feet, unbuilt</h1></div>
+
+  <div class="modeled">MODELED. THE RECORD GIVES THE FLOOR AREA AND NOT THE
+    NUMBER OF FLOORS</div>
+
+  <div class="qwrap">
+    <div class="q">&quot;projected to be an approximately 2.5 million gross square feet (GSF)
+      tertiary care medical center with inpatient, outpatient, and clinical support space&quot;</div>
+    <div class="qsrc">PROJECT INFORMATION SHEET, &quot;Facility Type Healthcare Facility, Hospital&quot;</div>
+  </div>
+
+  <div class="lower">
+    <div class="note">Nothing on this frame throws a shadow. The board item calls this
+      phase early work and site preparation.</div>
+    <!-- NAMES THE PARTNER. c16's quote is "In partnership with The University of Texas M.D.
+         Anderson Cancer Center, the facility will incorporate oncology care within a fully
+         integrated healthcare enterprise", and this frame printed only the second half of it.
+         The caption then tagged #MDAnderson over a deck in which no frame named that body,
+         which is a tag reaching for an audience the deck had not earned. -->
+    <div class="partner">ONCOLOGY CARE, IN PARTNERSHIP WITH MD ANDERSON</div>
+    <div class="src">BOARD ITEM, PROJECT DESCRIPTION</div>
+  </div>
+
+  <svg class="star" width="46" height="46" viewBox="0 0 24 24" data-decorative>
+    <path d="M12 1.6l2.9 7.5 8 .4-6.2 5.1 2.1 7.8L12 18l-6.8 4.4 2.1-7.8L1.1 9.5l8-.4z"
+          fill="#211E1A" opacity="0.45"/>
+  </svg>
+
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260826;
+  TX.reseed(SEED);
+  var R = TX.rng(SEED + 3);
+
+  var ctx = document.getElementById('art').getContext('2d');
+  ctx.scale(2, 2);
+  var W = 1080, H = 1350;
+
+  // THE GROUND. It is the lowest band's modeled tone: lit limestone receding to the frame
+  // edge with a real falloff across it, so the bottom of this frame is ground rather than
+  // a rule. The plate stack's absent shadow conspicuously does not fall across it.
+  var g = ctx.createLinearGradient(0, 470, 0, 1350);
+  g.addColorStop(0.00, '#EAE4D4');
+  g.addColorStop(0.34, '#E9E3D3');
+  g.addColorStop(0.72, '#DED5BE');
+  g.addColorStop(1.00, '#CDC3A9');
+  ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+
+  // The ground's own tooth, in BOTH directions. At a ninth of an opacity and one tone it was
+  // invisible, and the dossier's promise of a receding lit site plane reached the reader as
+  // flat paper with four text blocks on it.
+  ctx.save();
+  for (var y = 0; y < 1350; y += 3) {
+    // RAMPED, NOT SWITCHED ON. A loop that starts at a fixed y draws a dead straight full width
+    // edge exactly there, which is a horizon, and this is the frame that may not have one.
+    ctx.globalAlpha = 0.20 * Math.min(1, y / 640);
+    for (var x = 0; x < W; x += 3) {
+      var n = TX.fbm2(x * 0.09, y * 0.09, {octaves: 4}) * 0.65 + TX.fbm2(x * 0.27, y * 0.27, {octaves: 4}) * 0.35;
+      if (n > 0.18) { ctx.fillStyle = '#BCB199'; ctx.fillRect(x, y, 3, 3); }
+      else if (n < -0.18) { ctx.fillStyle = '#F3EEE0'; ctx.fillRect(x, y, 3, 3); }
+    }
+  }
+  ctx.restore();
+
+  // AXONOMETRIC, not a solved camera. An axonometric construction cannot put its subject
+  // in the wrong part of the frame, which is the failure the library records twice for the
+  // software 3D renderer. The projection is fixed and the stack's centre is asserted below.
+  var AXX = 0.62, AXY = -0.34;          // one unit of plan x, projected
+  var AZX = -0.60, AZY = -0.33;         // one unit of plan z, projected
+  var LIFT = 24;                        // screen px per floor, set so the stack's top
+                                        // clears the headline's descender line at 344px
+
+  function P(x, z, lvl) {
+    return [540 + x * AXX + z * AZX, 792 + x * AXY + z * AZY - lvl * LIFT];
+  }
+
+  // The program, as plates. Wide low podium, then a narrower tower, so the stack has a
+  // real profile rather than being one prism repeated.
+  var plates = [];
+  for (var l = 0; l < 5; l++)  plates.push({ lvl: l, w: 300, d: 205 });
+  for (var l = 5; l < 12; l++) plates.push({ lvl: l, w: 210, d: 142 });
+  for (var l = 12; l < 16; l++) plates.push({ lvl: l, w: 128, d: 96 });
+
+  ctx.lineJoin = 'round';
+  for (var i = 0; i < plates.length; i++) {
+    var pl = plates[i];
+    var hw = pl.w / 2, hd = pl.d / 2;
+    var a = P(-hw, -hd, pl.lvl), b = P(hw, -hd, pl.lvl),
+        c = P(hw, hd, pl.lvl),  d2 = P(-hw, hd, pl.lvl);
+    ctx.beginPath();
+    ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]);
+    ctx.lineTo(c[0], c[1]); ctx.lineTo(d2[0], d2[1]);
+    ctx.closePath();
+    // OUTLINED, NEVER FILLED. The ground stays visible through every plate, which is the
+    // acceptance item, and it is also why the stack cannot read as a solid casting mass.
+    ctx.strokeStyle = 'rgba(33,42,30,' + (0.96 - i * 0.011).toFixed(3) + ')';
+    ctx.lineWidth = 4.6;
+    ctx.stroke();
+  }
+
+  // The four corner verticals, as hairlines only, so the stack reads as one object and still
+  // has nothing solid in it. THEY RUN FROM THE BASE PLATE, not from partway up. Drawn between
+  // levels 1.6 and 4.6 they touched neither the bottom plate nor the top of the podium, so
+  // they floated beside the mass and two judges read them as unexplained ticks. A vertical
+  // that starts nowhere is furniture.
+  var corners = [[-150, -102], [150, -102], [150, 102], [-150, 102]];
+  ctx.strokeStyle = 'rgba(33,42,30,0.52)';
+  ctx.lineWidth = 3.0;
+  for (var k = 0; k < 4; k++) {
+    var lo = P(corners[k][0], corners[k][1], 0), hi = P(corners[k][0], corners[k][1], 5);
+    ctx.beginPath(); ctx.moveTo(lo[0], lo[1]); ctx.lineTo(hi[0], hi[1]); ctx.stroke();
+  }
+
+  // NO SITE PLANE OUTLINE. The first render drew the ground as a closed dashed quadrilateral
+  // under the stack, which is the universal convention for a property line. The record gives
+  // an acreage and a campus and NO GEOMETRY, so that shape was invented data a reader could
+  // not check, and the deck's own law forbids it. The ground is read by VALUE instead, which
+  // is what the dossier's bands clause asked for and did not get on the first pass.
+
+  // ASSERTED: the stack's vertical centre must sit between 35 and 65 percent of frame
+  // height. Computed here rather than eyeballed, and reported to the render harness.
+  var top = P(0, 0, 15)[1], bot = P(0, 0, 0)[1];
+  window.__txStackCentreFrac = ((top + bot) / 2) / H;
+
+  document.getElementById('grain').style.backgroundImage =
+    'url(' + TX.grainTile(220, 26, 7) + ')';
+
+  resolve();
+});
+</script>
+  <div class="tx-site" style="color:#3E3A30">texasaidocket.com</div>
+</body>
+</html>

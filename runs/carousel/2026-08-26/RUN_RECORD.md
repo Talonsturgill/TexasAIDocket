@@ -432,16 +432,18 @@ Written by `gate_status.py --sync`, never by hand.
 | gate | status | detail |
 |---|---|---|
 | claims         | PASS   | 33 verified claim(s) |
-| render         | WARN   | 9 slide(s), 7 overflow warning(s) |
-| qa             | WARN   | 0 fail(s), 24 warn(s) |
-| aggregates     | PASS   | 8 declared and re-derived |
-| assembly       | PASS   | 9 slide(s), 3.02 MB, vector |
-| score          | FAIL   | 6.93, hard fail: judge returned ship: false with no hard fail named, which is a refusal either way |
-| dossiers       | PASS   | 49,113 chars planned |
-| caption        | PASS   | 119 words |
-| craft floor    | PASS   | 9 frame(s), median 866, floor 156 |
-| plan vs render | PASS   | 14 of 64 acceptance item(s) checkable |
+| render         | PASS   | 9 slide(s) |
+| qa             | WARN   | 0 fail(s), 23 warn(s) |
+| aggregates     | PASS   | 16 declaration(s), 18 numeric phrase(s) in the render, all re-derived |
+| assembly       | PASS   | 9 slide(s), 5.86 MB, vector |
+| score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| labels         | PASS   | 0 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| quantifiers    | PASS   | 2 published string(s) read from one list, every universal names its set |
+| dossiers       | PASS   | 50,068 chars planned |
+| caption        | PASS   | 127 words |
+| craft floor    | PASS   | 9 frame(s), median 873, floor 157 |
+| plan vs render | PASS   | 14 of 65 acceptance item(s) checkable |
 | texan          | WARN   | places NONE / body yes / deadline yes / next step yes |
-| absences       | WARN   | 5 of 8 scoped to a named document, 3 unscoped |
-| completion     | FAIL   | THE DECK DID NOT SHIP, so this run is not done |
+| absences       | WARN   | 6 of 8 scoped to a named document, 2 unscoped |
+| completion     | PASS   | the deck shipped |
 <!-- gate-status:end -->
