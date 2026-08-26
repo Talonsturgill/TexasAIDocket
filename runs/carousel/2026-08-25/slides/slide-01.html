@@ -45,7 +45,7 @@ canvas{position:absolute;left:0;top:0}
 <div class="cnt">01 / 09</div>
 <div class="notice" data-decorative>NOTICE OF MEETING</div>
 <div class="hook">Fifteen actions. Five, five and five.</div>
-<div class="dek">Twelve Texas local governments acted this year. The shape of the instrument decides whether anything stops.</div>
+<div class="dek">Twelve Texas local governments acted on a data center this year. The shape of the instrument decides whether anything stops.</div>
 <div class="fig" style="top:796px">5</div>
 <div class="figl" style="top:832px">TOOK EFFECT</div>
 <div class="fig" style="top:866px">5</div>
@@ -114,11 +114,27 @@ window.renderReady = new Promise(function(resolve){
   // Decorative agenda body, at true measure and below reading size. It is CONFINED to the
   // sheet's lower right, clear of every type column, because art crossing a glyph is a hard
   // fail and a decorative line is never worth one.
+  // ...AND THE FIELD IS CLEARED AGAINST THE TYPE THAT IS ACTUALLY LAID, not against a hand
+  // typed x offset beside a comment saying so. The offset was clear of the two-row lockup it was
+  // tuned for. The cover then grew a third row and a citation line, and a rule at y1020 ran
+  // through the cap band of "C45 SAY NEITHER" while machine QA reported the frame clean, because
+  // its edge detector does not see a 26 percent rule on cream. Frame 4 had the identical defect
+  // and the identical cure. A comment is not a constraint. This is.
+  var TYPEBOX = Array.prototype.map.call(
+    document.querySelectorAll('.notice,.hook,.dek,.fig,.figl,.cite'),
+    function(el){ var r = el.getBoundingClientRect();
+                  return [r.left-10, r.top-6, r.right+10, r.bottom+6]; });
+  function clearOfType(a,b,c2,d){
+    for(var i=0;i<TYPEBOX.length;i++){ var B=TYPEBOX[i];
+      if(a<B[2] && c2>B[0] && b<B[3] && d>B[1]) return false; }
+    return true;
+  }
   x.fillStyle='rgba(42,38,34,0.26)';
   var COLX=SX+SW-224;
   for(var r=0;r<22;r++){
     var ly=SY+SH-286+r*12, lw=206*(0.55+0.42*Math.abs(TX.simplex2(r*0.7,3.1)));
     if(ly>SY+SH-30) break;
+    if(!clearOfType(COLX,ly,COLX+lw,ly+3)) continue;
     x.fillRect(COLX,ly,lw,3);
   }
   // spring clip at the sheet head, a lit solid with its own contact shadow on the sheet

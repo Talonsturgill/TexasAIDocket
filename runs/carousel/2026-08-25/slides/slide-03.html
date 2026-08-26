@@ -59,7 +59,12 @@ window.renderReady = new Promise(function(resolve){
     x.fillRect(px,py,1.4,1.4);
   }
   // grooves the letters seat into, one per row
-  var rows=[440,526,612,698,784,870,956];
+  // A LETTERBOARD'S GROOVES RUN THE WHOLE BOARD. Seven were drawn for six month rows under
+  // a comment reading one per row, so the seventh sat empty and looked like a row with no
+  // answer, and 186px of felt below it carried nothing. The grooves run to the board's foot
+  // now, which is what a board looks like, and the empty ones read as board rather than as
+  // a question the frame declines to answer.
+  var rows=[440,526,612,698,784,870,956,1042,1128];
   rows.forEach(function(ry){
     x.fillStyle='rgba(6,9,13,0.62)'; x.fillRect(BX+22,ry+38,BW-44,4);
     x.fillStyle='rgba(120,128,138,0.10)'; x.fillRect(BX+22,ry+42,BW-44,2);

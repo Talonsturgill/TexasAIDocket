@@ -17,13 +17,13 @@ canvas{position:absolute;left:0;top:0}
 .sa{position:absolute;left:124px;top:498px;width:352px;font:400 24px/1.5 "JetBrains Mono",monospace;color:#6B6459;letter-spacing:.035em}
 .qb{position:absolute;left:588px;top:386px;width:368px;font:500 27px/1.36 "JetBrains Mono",monospace;color:#2A2622}
 .sb{position:absolute;left:588px;top:574px;width:368px;font:400 24px/1.5 "JetBrains Mono",monospace;color:#6B6459;letter-spacing:.035em}
-/* the three remaining actions that took effect, one route slip each, so the frame draws the five it says */
+/* the remaining actions that took effect, one route slip each, so the frame draws the five it says */
 .sl{position:absolute;width:246px;font:500 24px/1.42 "JetBrains Mono",monospace;color:#2A2622;letter-spacing:.01em}
 .sl b{font-weight:500;color:#2A2622;display:block}
 .sl i{font-style:normal;color:#6B6459;display:block;letter-spacing:.06em}
 .s1{left:112px;top:784px}
 .s2{left:414px;top:774px}
-.s3{left:728px;top:788px}
+.s3{left:700px;top:788px}
 .foot{position:absolute;left:96px;top:936px;width:800px;font:500 28px/1.4 "Manrope",sans-serif;color:#241B0D}
 </style></head><body>
 <canvas id="c" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
@@ -32,12 +32,12 @@ canvas{position:absolute;left:0;top:0}
 <div class="hook">Five of the fifteen took effect</div>
 <div class="qa">"Motion to deny<br>passed 5-0."</div>
 <div class="sa">BRAZORIA COUNTY, C9<br>THE ZONE THEY STOOD ON</div>
-<div class="qb">"shall not exceed 8.0<br>gallons per square<br>foot of Gross<br>Building Area"</div>
+<div class="qb" data-role="dek">"shall not exceed 8.0<br>gallons per square<br>foot of Gross<br>Building Area"</div>
 <div class="sb">SAN ANGELO, C32<br>ORDINANCE 2026-078</div>
 <div class="sl s1"><b>SAN ANGELO</b><i>ZONING</i><i>C41</i></div>
 <div class="sl s2"><b>SAN ANGELO</b><i>SEWER</i><i>C43</i></div>
 <div class="sl s3"><b>SAN MARCOS</b><i>INELIGIBLE</i><i>C35</i></div>
-<div class="foot">San Angelo wrote three of the five. On five of the fifteen the record says nothing about force either way.</div>
+<div class="foot">San Angelo wrote three of the five. On five of the fifteen no source in this run says either way.</div>
 <div class="tx-site">texasaidocket.com</div>
 <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6 L14.9 9.2 L23 9.6 L16.7 14.6 L18.9 22.4 L12 17.9 L5.1 22.4 L7.3 14.6 L1 9.6 L9.1 9.2 Z" fill="#BDB8AA"/></svg>
 <script src="@@ASSETS@@/js/noise.js"></script>
@@ -152,7 +152,9 @@ window.renderReady = new Promise(function(resolve){
   // reads as smaller hardware and the two quoted cards keep the frame's weight.
   // Three slips somebody tacked up, not three instances of one slip. Tops vary by up to 14px
   // and widths by their own content, because a row of identical rectangles is a table.
-  var SLIPS=[[96,726,272,178],[398,716,284,188],[712,730,272,174]];
+  // Widths from each slip's own longest line plus a fixed pad, so three papers somebody
+  // tacked up are three sizes rather than three instances of one size.
+  var SLIPS=[[96,726,248,178],[398,716,236,190],[684,730,300,172]];
   SLIPS.forEach(function(sh){
     var sx=sh[0], sy=sh[1], sw=sh[2], sd=sh[3];
     for(var b=12;b>=1;b--){

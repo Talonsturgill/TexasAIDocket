@@ -1,38 +1,40 @@
 {
  "lens": "integrity",
- "weighted_score": 6.99,
+ "weighted_score": 6.64,
  "criteria": {
   "artwork_craft": {
-   "score": 7.0,
+   "score": 6.9,
    "weight": 0.28,
-   "why": "nine genuinely distinct construction methods with measured light per frame; the declared mid value band shipped on one frame of nine"
+   "why": "nine constructions under one stated physical law and it is honoured, with a measured range 14.4 to 81.4; frame 8 is one mid band and type collides with art on frames 1 and 8 where machine QA saw nothing"
   },
   "claim_integrity": {
-   "score": 6.5,
+   "score": 5.4,
    "weight": 0.2,
-   "why": "every round 9 fix landed and verifies against the artifacts; STATED_BINDING is a typed map that never reads the record's own effective key dates, and El Paso cites the claim that proves what was proposed"
+   "why": "46 claims each with verbatim quote, URL and retrieval date, an exhaustiveness assert over the candidates, two findings rejected in writing; frame 9's hook is a typed count matching no computed value and frame 6 asserts a silence the record contradicts for two of its five"
   },
   "story_and_stakes": {
-   "score": 7.5,
+   "score": 6.7,
    "weight": 0.18,
-   "why": "body, county, instrument and one dated route, with c46 printed so the hearing has a purpose; the door has a date and no handle"
+   "why": "names the county, body and date throughout and the reader learns why an abatement can die without a vote; the closing hook tells a reader elsewhere there is nothing left when the record holds live rooms"
   },
   "sequence_and_momentum": {
-   "score": 7.0,
+   "score": 7.2,
    "weight": 0.12,
-   "why": "a real turn at 5 and counter turn at 6 with a measured 21.5 L* drop into 7; the cover spends both numbers so 5 and 6 restate"
+   "why": "a real build and a real turn with measured junctions of -50.0 and -21.2; frames 5 and 6 confirm rather than reveal because the cover gave both numbers"
   },
   "voice": {
-   "score": 7.0,
+   "score": 6.8,
    "weight": 0.12,
-   "why": "dry and procedural, every house rule holds across nine frames and the caption; reads like a careful clerk rather than a Texan"
+   "why": "plain and declarative, every house rule holding on every surface, and the caption's opening is a real sentence; six of nine hooks are a number plus a verb"
   },
   "variety": {
-   "score": 7.0,
+   "score": 7.4,
    "weight": 0.1,
-   "why": "Zdog new to the product, a new central object and a warmer register; the differentiator the plan leaned on is the one that did not ship"
+   "why": "distinct in subject and construction against six prior decks, with an explicit dedupe rejection at 0.70; seven of nine frames stand on the same case"
   }
  },
- "hard_fails": [],
- "one_sentence_fix": "Derive STATED_BINDING from the effective key dates already in ledger/docket.json instead of a typed map."
+ "hard_fails": [
+  "Frame 9's hook 'One door is still open' is a numeral tracing to no claim and no computation. figures.json computed still_dated = 2 and nothing equal to 1, the dossier declared only value_from c24, and the storyboard preserved the superseded rationale verbatim."
+ ],
+ "one_sentence_fix": "Make every count a frame prints a named key in figures.json that a gate asserts against the rendered string, and close STATED_BINDING against _EFFECTIVE in both directions."
 }

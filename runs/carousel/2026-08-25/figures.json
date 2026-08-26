@@ -231,6 +231,13 @@
     "value": "5 to 0",
     "rule": "quoted from tx-2026-0051-c1"
   },
+  "open_doors": {
+    "value": 1,
+    "rule": "acting items carrying a key date on or after the run date AND a public_access room a member of the public can enter, counted over the fifteen this deck carries rather than the whole docket",
+    "from_items": [
+      "tx-2026-0062"
+    ]
+  },
   "approvals": {
     "value": 2,
     "rule": "acting items whose cited claim records a body approving a data center project or the incentive one depends on, as opposed to regulating, refusing, studying or directing staff",

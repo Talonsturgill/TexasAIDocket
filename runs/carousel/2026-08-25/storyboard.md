@@ -222,7 +222,7 @@ art:
   motion: "down the lit rail, into the opening, onto the sheet"
 type:
   hook: "Fifteen actions. Five, five and five."
-  dek: "Twelve Texas local governments acted this year. The shape of the instrument decides whether anything stops."
+  dek: "Twelve Texas local governments acted on a data center this year. The shape of the instrument decides whether anything stops."
 acceptance:
   - 'the cover prints "Fifteen actions. Five, five and five." and its lockup reads "STOPS NOTHING", the words the computation supports, where bound overstated the rule that produced the six'
   - "the lock cylinder and its keyway are drawn at the right stile, so the case reads as locked rather than as a picture frame"
@@ -495,7 +495,7 @@ art:
   value_structure: >
     Lightest is the two sheets at bond. Darkest is the case's lower lip seen from slightly above,
     inside face case_dark. This frame's FIELD is the brighter side of the deck's biggest local
-    step: measured, it is 73.3 and frame 7 immediately after it is 52.1, a 21.2 L* drop, which is
+    step: measured, it is 73.2 and frame 7 immediately after it is 52.1, a 21.1 L* drop, which is
     what makes frame 7 land. It is not the brightest frame in the deck, frame 5 is, and
     an earlier draft of this line claimed it was.
   motion: "left card to right card, then down across the four slips left to right"
@@ -554,7 +554,7 @@ art:
   value_structure: >
     Lightest is the sheet's bottom edge. Darkest is the top rail's underside and its shadow across
     the frame's top, carrying the reversed hook. The falloff across the four repeats measures 16.5
-    L*, and the frame's field at 52.1 is 21.2 L* under frame 6 before it. It is not the deck's
+    L*, and the frame's field at 52.1 is 21.1 L* under frame 6 before it. It is not the deck's
     darkest field, frame 3 at 14.4 is, and an earlier draft of this line claimed it was.
     Two committed files carried two different values for that falloff, 22.1 here and 17.2 in
     artwork.json, and neither was right. It is measured once now, in out/2026-08-25/tmp/measure.py,
@@ -610,14 +610,14 @@ art:
   palette: "mesquite_shade over anodize, glaze_deep glazing, bond reflected sheet, toner"
   value_structure: >
     Lightest is the reflected sheet. Darkest is the live oak's shadow across the near case, lower
-    right. Measured it is 59.4, with frames 7 and 9 at 52.1 and 48.7 either side, so it
+    right. Measured it is 58.9, with frames 7 and 9 at 52.1 and 48.7 either side, so it
     is the BRIGHTEST of the deck's last three. An earlier draft called it the quietest between
     its two loudest, which was wrong on both halves and was reported repaired twice without being
     touched. It is written from measurements.json now.
   motion: "onto the reflection, then back to the near sheet it floats over"
 type:
   hook: "Two declined. Two said yes."
-  dek: "Tom Green County's court voted not to pursue a moratorium in Precinct 4."
+  dek: "The Tom Green County commissioners court voted not to pursue a moratorium in one commissioner's precinct."
 acceptance:
   - 'the sheet prints "Two declined. Two said yes." and substantiates both, reading "Williamson County approved an abatement" beside Wichita Falls'
   - "the reflected geometry resolves as a second notice case and not as a smudge or a double exposure"
@@ -636,9 +636,16 @@ slide: 9
 job: >
   Give the reader the one door that is open, with the only red in the deck on the date, and leave
   two empty clips where the next notice goes.
-claims: [c24]
+claims: [c24, c46]
 numerals:
   - value_from: c24
+  - computed_by: >
+      out/2026-08-25/compute.py, open_doors. THE HOOK'S NUMBER, WHICH WAS TYPED. Round 11 hard
+      failed this deck on "One door is still open": nothing computed a door, `still_dated` was 2,
+      and this dossier still carried the superseded sentence that produced the hook. A door is a
+      dated step a reader can walk into, which is two conditions. Williamson County has the date
+      and its room is contact_only with no comment period open. Fort Worth has both. It computes
+      to one over the fifteen this deck carries, and the frame cites c24 and c46.
 composition:
   structure: >
     Level and close on the case's lower left interior, because the deck has spent eight frames on

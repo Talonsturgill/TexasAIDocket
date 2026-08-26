@@ -1,38 +1,38 @@
 {
  "lens": "craft",
- "weighted_score": 7.004,
+ "weighted_score": 7.23,
  "criteria": {
   "artwork_craft": {
-   "score": 6.4,
+   "score": 7.1,
    "weight": 0.28,
-   "why": "frames 5, 7 and 9 are designed objects and frame 8's canopy and mirror fixes are real; the cover's declared Zdog never shipped, frame 6's three stocks are two with six one part pin shadows, and slide 2's dossier names its bracket in a corner the code does not draw"
+   "why": "frame 4 is a genuinely made object, frame 9's sheet sits on a lit wall, and round 10's pin finding landed with a seven stop penumbra and a contact core on all five fasteners against three real stocks; a 3px rule at 26 percent still crosses the cover's citation glyphs under a comment claiming the field is clear"
   },
   "claim_integrity": {
-   "score": 7.5,
+   "score": 7.3,
    "weight": 0.2,
-   "why": "every frame numeral resolves in computed.json and quoted strings carry ids; frame 7 prints three renderings of one item number and c9 has two different glosses across two surfaces"
+   "why": "frames 1 and 2 verify each other, the blank rule set is exactly the set the cover cites, and 8.0 gallons is quoted rather than restated; frame 7 prints one identifier two ways in a face where I and 1 collide"
   },
   "story_and_stakes": {
-   "score": 7.4,
+   "score": 7.5,
    "weight": 0.18,
-   "why": "more concrete than anything in this ledger, fourteen places named; the one actionable item gives no room and no instruction, and nothing says what a data center does to a reader's water or power"
+   "why": "fourteen Texas places named with the body in every case and a dated step at the close; the close states a fact rather than an action"
   },
   "sequence_and_momentum": {
-   "score": 7.0,
+   "score": 7.3,
    "weight": 0.12,
-   "why": "measured junctions of -50.0 and +50.6 with the turn where doctrine says to put it; frames 2, 3 and 6 are three slicings of one set and the last third is flat"
+   "why": "the measured value curve confirms the turn rather than asserting it, peak on the turn and trough on the chronology; frames 1 and 2 are the smallest junction in the strip and share a camera"
   },
   "voice": {
    "score": 7.0,
    "weight": 0.12,
-   "why": "clean, plain, on register, every house rule holding; register flat rather than Texan and the one line with a voice contradicts its own caption"
+   "why": "flat, unboosterish and honest with ordinals right on every date surface; airless, and no frame sounds like a person from Texas rather than from the record"
   },
   "variety": {
-   "score": 7.0,
+   "score": 7.2,
    "weight": 0.1,
-   "why": "bespoke median 0.1644, the lowest in the ledger; the deck's own avoid_next concedes four frames on one camera and a technique that did not ship"
+   "why": "bespoke median 0.1636, a genuinely new object and no cartography; the mid value register it argued on shipped on one frame of nine"
   }
  },
  "hard_fails": [],
- "one_sentence_fix": "Make the dossier's technique, camera, focal box and value_structure measured against the render rather than written from the plan, and gate on it."
+ "one_sentence_fix": "Derive every decorative field's bounds and every declared focal box from the laid out DOM boxes at render time and assert non intersection."
 }

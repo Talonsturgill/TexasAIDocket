@@ -113,11 +113,11 @@
           "anc": []
         },
         {
-          "text": "Twelve Texas local governments acted this year. The shape of the instrument decides whether anything stops.",
+          "text": "Twelve Texas local governments acted on a data center this year. The shape of the instrument decides whether anything stops.",
           "x": 256,
           "y": 620,
           "w": 566,
-          "h": 116,
+          "h": 155,
           "font_px": 28,
           "weight": "400",
           "family": "Manrope",
@@ -128,19 +128,25 @@
             [
               256,
               620,
-              547,
+              553,
               38
             ],
             [
               256,
               659,
-              540,
+              493,
               38
             ],
             [
               256,
               697,
-              315,
+              486,
+              38
+            ],
+            [
+              256,
+              736,
+              80,
               38
             ]
           ],
@@ -330,7 +336,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1943,
+      "render_ms": 2265,
       "ok": true,
       "canvases": [
         {
@@ -1725,7 +1731,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1256,
+      "render_ms": 1216,
       "ok": true,
       "canvases": [
         {
@@ -2269,7 +2275,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1505,
+      "render_ms": 1694,
       "ok": true,
       "canvases": [
         {
@@ -2525,7 +2531,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1397,
+      "render_ms": 1730,
       "ok": true,
       "canvases": [
         {
@@ -2799,7 +2805,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 971,
+      "render_ms": 1035,
       "ok": true,
       "canvases": [
         {
@@ -3157,7 +3163,7 @@
         },
         {
           "text": "SAN MARCOS",
-          "x": 728,
+          "x": 700,
           "y": 788,
           "w": 246,
           "h": 34,
@@ -3169,7 +3175,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              728,
+              700,
               789,
               146,
               31
@@ -3179,7 +3185,7 @@
         },
         {
           "text": "INELIGIBLE",
-          "x": 728,
+          "x": 700,
           "y": 822,
           "w": 246,
           "h": 34,
@@ -3191,7 +3197,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              728,
+              700,
               823,
               158,
               31
@@ -3201,7 +3207,7 @@
         },
         {
           "text": "C35",
-          "x": 728,
+          "x": 700,
           "y": 856,
           "w": 246,
           "h": 34,
@@ -3213,7 +3219,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              728,
+              700,
               857,
               48,
               31
@@ -3222,7 +3228,7 @@
           "anc": []
         },
         {
-          "text": "San Angelo wrote three of the five. On five of the fifteen the record says nothing about force either way.",
+          "text": "San Angelo wrote three of the five. On five of the fifteen no source in this run says either way.",
           "x": 96,
           "y": 936,
           "w": 800,
@@ -3237,13 +3243,13 @@
             [
               96,
               936,
-              775,
+              764,
               38
             ],
             [
               96,
               975,
-              563,
+              438,
               38
             ]
           ],
@@ -3279,7 +3285,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2198,
+      "render_ms": 2270,
       "ok": true,
       "canvases": [
         {
@@ -3292,8 +3298,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 159.4,
-          "variance": 4035.7
+          "mean": 159.3,
+          "variance": 4023.8
         }
       ],
       "breather": false,
@@ -3679,7 +3685,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 713,
+      "render_ms": 695,
       "ok": true,
       "canvases": [
         {
@@ -3780,11 +3786,11 @@
           "anc": []
         },
         {
-          "text": "Tom Green County's court voted not to pursue a moratorium in Precinct 4.",
+          "text": "The Tom Green County commissioners court voted not to pursue a moratorium in one commissioner's precinct.",
           "x": 120,
           "y": 372,
           "w": 410,
-          "h": 115,
+          "h": 153,
           "font_px": 27,
           "weight": "400",
           "family": "Manrope",
@@ -3795,19 +3801,25 @@
             [
               120,
               372,
-              398,
+              285,
               37
             ],
             [
               120,
               410,
-              365,
+              386,
               37
             ],
             [
               120,
               449,
-              132,
+              370,
+              37
+            ],
+            [
+              120,
+              487,
+              309,
               37
             ]
           ],
@@ -3818,43 +3830,37 @@
           "x": 120,
           "y": 522,
           "w": 410,
-          "h": 173,
+          "h": 136,
           "font_px": 24,
-          "weight": "500",
-          "family": "JetBrains Mono",
+          "weight": "400",
+          "family": "Manrope",
           "color": "rgb(20, 27, 17)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               120,
-              523,
-              389,
-              31
+              522,
+              378,
+              33
             ],
             [
               120,
-              558,
-              374,
-              31
+              556,
+              333,
+              33
             ],
             [
               120,
-              592,
-              403,
-              31
+              590,
+              364,
+              33
             ],
             [
               120,
-              627,
-              389,
-              31
-            ],
-            [
-              120,
-              661,
-              158,
-              31
+              624,
+              234,
+              33
             ]
           ],
           "anc": []
@@ -3862,7 +3868,7 @@
         {
           "text": "TOM GREEN COUNTY, C15 AND C16 REPORTED SPEECH ABOUT A LAWSUIT",
           "x": 120,
-          "y": 706,
+          "y": 672,
           "w": 470,
           "h": 67,
           "font_px": 24,
@@ -3874,13 +3880,13 @@
           "lines": [
             [
               120,
-              707,
+              673,
               438,
               31
             ],
             [
               120,
-              741,
+              707,
               469,
               31
             ]
@@ -3890,7 +3896,7 @@
         {
           "text": "\"no action taken\"",
           "x": 120,
-          "y": 800,
+          "y": 762,
           "w": 420,
           "h": 32,
           "font_px": 24,
@@ -3902,7 +3908,7 @@
           "lines": [
             [
               120,
-              800,
+              762,
               245,
               31
             ]
@@ -3910,11 +3916,11 @@
           "anc": []
         },
         {
-          "text": "Wichita Falls approved a data center. Williamson County approved an abatement.",
+          "text": "Wichita Falls approved a data center and barred evaporative cooling with it. Williamson County approved an abatement.",
           "x": 120,
-          "y": 906,
+          "y": 862,
           "w": 430,
-          "h": 98,
+          "h": 131,
           "font_px": 24,
           "weight": "400",
           "family": "Manrope",
@@ -3924,19 +3930,25 @@
           "lines": [
             [
               120,
-              905,
-              401,
+              861,
+              397,
               33
             ],
             [
               120,
-              938,
+              894,
+              418,
+              33
+            ],
+            [
+              120,
+              926,
               347,
               33
             ],
             [
               120,
-              970,
+              959,
               128,
               33
             ]
@@ -3946,7 +3958,7 @@
         {
           "text": "LAREDO MATTER HISTORY, C14",
           "x": 120,
-          "y": 846,
+          "y": 806,
           "w": 470,
           "h": 34,
           "font_px": 24,
@@ -3958,7 +3970,7 @@
           "lines": [
             [
               120,
-              847,
+              807,
               393,
               31
             ]
@@ -3966,9 +3978,9 @@
           "anc": []
         },
         {
-          "text": "WICHITA FALLS, C37 WILLIAMSON COUNTY, C45",
+          "text": "WICHITA FALLS, C37 AND C44 WILLIAMSON COUNTY, C45",
           "x": 120,
-          "y": 1016,
+          "y": 1004,
           "w": 470,
           "h": 67,
           "font_px": 24,
@@ -3980,13 +3992,13 @@
           "lines": [
             [
               120,
-              1017,
-              272,
+              1005,
+              393,
               31
             ],
             [
               120,
-              1051,
+              1039,
               333,
               31
             ]
@@ -3996,7 +4008,7 @@
         {
           "text": "Seventeen times a Texas local government took one up. Fifteen acted and two did not.",
           "x": 120,
-          "y": 1098,
+          "y": 1086,
           "w": 490,
           "h": 66,
           "font_px": 24,
@@ -4008,13 +4020,13 @@
           "lines": [
             [
               120,
-              1098,
+              1086,
               469,
               33
             ],
             [
               120,
-              1131,
+              1119,
               467,
               33
             ]
@@ -4051,7 +4063,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 3642,
+      "render_ms": 3648,
       "ok": true,
       "canvases": [
         {
@@ -4286,7 +4298,7 @@
           "anc": []
         },
         {
-          "text": "The council must hold two public hearings before a pause can take effect, to let the public weigh in. C46",
+          "text": "Two public hearings must come before a pause can take effect, and the public weighs in at them. C46",
           "x": 150,
           "y": 1020,
           "w": 520,
@@ -4301,19 +4313,19 @@
             [
               150,
               1020,
-              470,
+              449,
               33
             ],
             [
               150,
               1054,
-              453,
+              498,
               33
             ],
             [
               150,
               1087,
-              223,
+              170,
               33
             ]
           ],
@@ -4349,7 +4361,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2027,
+      "render_ms": 2219,
       "ok": true,
       "canvases": [
         {

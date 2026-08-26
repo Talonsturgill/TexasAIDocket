@@ -1,75 +1,83 @@
 {
- "weighted_score": 6.904,
+ "weighted_score": 6.658,
  "judges": [
-  6.99,
-  7.004,
-  6.47
+  6.64,
+  7.23,
+  6.25
  ],
- "spread": 0.534,
+ "spread": 0.98,
  "criteria": {
   "artwork_craft": {
-   "score": 6.4,
+   "score": 6.9,
    "weight": 0.28,
    "judges": [
-    7.0,
-    6.4,
-    6.0
+    6.9,
+    7.1,
+    6.5
    ]
   },
   "claim_integrity": {
-   "score": 7.0,
+   "score": 5.5,
    "weight": 0.2,
    "judges": [
-    6.5,
-    7.5,
-    7.0
+    5.4,
+    7.3,
+    5.5
    ]
   },
   "story_and_stakes": {
-   "score": 7.4,
+   "score": 6.7,
    "weight": 0.18,
    "judges": [
+    6.7,
     7.5,
-    7.4,
-    7.0
+    6.0
    ]
   },
   "sequence_and_momentum": {
-   "score": 7.0,
+   "score": 7.2,
    "weight": 0.12,
    "judges": [
-    7.0,
+    7.2,
+    7.3,
+    6.5
+   ]
+  },
+  "voice": {
+   "score": 6.8,
+   "weight": 0.12,
+   "judges": [
+    6.8,
     7.0,
     6.0
    ]
   },
-  "voice": {
-   "score": 7.0,
-   "weight": 0.12,
-   "judges": [
-    7.0,
-    7.0,
-    5.5
-   ]
-  },
   "variety": {
-   "score": 7.0,
+   "score": 7.4,
    "weight": 0.1,
    "judges": [
-    7.0,
-    7.0,
+    7.4,
+    7.2,
     7.5
    ]
   }
  },
- "hard_fails": [],
- "hard_fails_by_judge": [],
+ "hard_fails": [
+  "Frame 9's hook 'One door is still open' is a numeral tracing to no claim and no computation. figures.json computed still_dated = 2 and nothing equal to 1, the dossier declared only value_from c24, and the storyboard preserved the superseded rationale verbatim."
+ ],
+ "hard_fails_by_judge": [
+  {
+   "judge": 1,
+   "fail": "Frame 9's hook 'One door is still open' is a numeral tracing to no claim and no computation. figures.json computed still_dated = 2 and nothing equal to 1, the dossier declared only value_from c24, and the storyboard preserved the superseded rationale verbatim."
+  }
+ ],
  "ship": false,
  "threshold": 7.0,
  "over_threshold": false,
  "method": "per-criterion median across three judges, then weighted by the rubric",
- "hold_reason": "no judge found a hard fail, and the median 6.904 is under the rubric's 7.0 bar. This is a HOLD. Keep working the deck",
+ "note": "the judges disagree by 0.98, which is wider than 0.75. The deck is not understood yet and the disagreement is worth more than the median. Read the outlier's reasoning before acting on the number",
  "contested": [
-  "voice"
+  "claim_integrity",
+  "story_and_stakes"
  ]
 }

@@ -282,13 +282,48 @@ STATED_BINDING = {
     # the county's own minutes, not inferred from a verb.
     "tx-2026-0051": ("Brazoria County", "c9"),
 }
-_DENIAL = {"tx-2026-0051"}
-assert (set(STATED_BINDING) - _DENIAL) <= _EFFECTIVE, (
-    "every member but the denial must carry an `effective` key date in ledger/docket.json: "
-    + str(sorted((set(STATED_BINDING) - _DENIAL) - _EFFECTIVE)))
-assert "tx-2026-0028" not in STATED_BINDING, (
-    "Hays County carries no effective date and no claim speaks to its force. It belongs in "
-    "force_unstated and the deck publishes that silence")
+# AND THE GUARD DISCRIMINATES, WHICH THE FIRST ONE DID NOT. Round 11 found that
+# `(STATED_BINDING - _DENIAL) <= _EFFECTIVE` is a one way subset test, so carrying an effective
+# date was a NECESSARY condition the set never selected on, and a wrong member would have passed.
+# It named the proof: tx-2026-0062, Fort Worth, carries `effective 2027-02-16` and sits in
+# _EFFECTIVE while being classified non binding. The old assert could not see that, and the
+# second assert was an id literal, which is a regression test for last round's defect and cannot
+# catch the next one.
+#
+# The rule that actually discriminates is the one the record already states: an action took
+# effect if its effective date HAS ARRIVED. Fort Worth's has not. It is the whole reason that
+# resolution starts a process rather than stopping anything, and the guard now turns on it.
+RUN_DATE = "2026-08-25"        # this run's date, the only clock any of this reads
+
+# A DOOR IS A DATED STEP PLUS A ROOM. Either alone is not one: a deadline nobody may speak to is
+# a date, and an open meeting with nothing left on its calendar is a room with no reason to go.
+_OPEN_ROOMS = {"open_meeting", "open_comment"}
+OPEN_DOORS = {i["id"] for i in items
+              if i["id"] in ACTED
+              and any(str(k.get("date", "")) >= RUN_DATE for k in (i.get("key_dates") or []))
+              and (i.get("public_access") or {}).get("room") in _OPEN_ROOMS}
+
+_DENIAL = {"tx-2026-0051"}          # a refusal has no date to bring into effect, see above
+_IN_FORCE = {i["id"] for i in items
+             if any(k.get("kind") == "effective" and str(k.get("date", "")) <= RUN_DATE
+                    for k in (i.get("key_dates") or []))}
+_should = (set(ACTED) & _IN_FORCE) | _DENIAL
+assert set(STATED_BINDING) == _should, (
+    "STATED_BINDING must be exactly the acting items whose effective date has arrived, plus the "
+    "denial. missing=" + str(sorted(_should - set(STATED_BINDING)))
+    + " extra=" + str(sorted(set(STATED_BINDING) - _should)))
+assert not (set(STATED_NONBINDING) & _IN_FORCE), (
+    "an action whose effective date has arrived cannot be in the non binding set: "
+    + str(sorted(set(STATED_NONBINDING) & _IN_FORCE)))
+# The same effective dates prove the copy's stronger claim, that these took effect the day they
+# passed, so the deck may say it or drop it on evidence rather than on feel.
+_SAME_DAY = {i["id"] for i in items
+             if {k["date"] for k in (i.get("key_dates") or []) if k.get("kind") == "effective"}
+             == {k["date"] for k in (i.get("key_dates") or []) if k.get("kind") == "ordered"}
+             and any(k.get("kind") == "effective" for k in (i.get("key_dates") or []))}
+assert (set(STATED_BINDING) - _DENIAL) <= _SAME_DAY, (
+    "a member whose effective date differs from its order date did not take effect the day it "
+    "passed: " + str(sorted((set(STATED_BINDING) - _DENIAL) - _SAME_DAY)))
 # The three the record does not speak to either way are Brazoria's conditions resolution, El
 # Paso's policy framework and the Wichita Falls approval, and the deck publishes that silence
 # rather than rounding it into one side. Round 4 had this set at zero and said so on a frame,
@@ -391,6 +426,21 @@ out = {
   # An approval here means a body said yes to A PROJECT OR TO THE INCENTIVE ONE DEPENDS ON.
   # That is a decision about the record, so it is written down as a decision, item by item,
   # with the claim that carries it, and it cannot drift when a label is reworded.
+  # THE CLOSING FRAME'S NUMBER, WHICH WAS TYPED. Round 11 hard failed the deck on it: frame 9's
+  # hook read "One door is still open" and nothing computed a door. `still_dated` is 2, and the
+  # storyboard still carried the superseded sentence that produced the hook, "Fort Worth is the
+  # only one whose key dates hold anything on or after today", which stopped being true when
+  # Williamson County's 2027 deadline joined the set.
+  #
+  # A DOOR IS A DATED STEP A READER CAN WALK INTO, which is two conditions and not one. Williamson
+  # County has the dated step and its room is `contact_only`, with the record's own words saying
+  # no comment period remains open. Fort Worth has both. The hook happens to be right and was not
+  # computed, which on this product is the same defect as being wrong.
+  "open_doors":        {"value": len(OPEN_DOORS),
+                        "rule": "acting items carrying a key date on or after the run date AND a "
+                                "public_access room a member of the public can enter, counted over "
+                                "the fifteen this deck carries rather than the whole docket",
+                        "from_items": sorted(OPEN_DOORS)},
   "approvals":         {"value": len(APPROVALS),
                         "rule": "acting items whose cited claim records a body approving a data "
                                 "center project or the incentive one depends on, as opposed to "
