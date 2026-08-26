@@ -115,7 +115,7 @@ and one line above the table says it once.
 ## What is measurably not what the storyboard said
 
 **This is not the mid value deck it declares.** The storyboard says "ground at L\* 62 to 68".
-Measured medians, frame by frame, are 51.4, 63.0, 14.4, 30.8, 81.4, 70.8, 52.4, 55.6 and 48.8,
+Measured medians, frame by frame, are 51.2, 65.6, 14.4, 30.8, 81.4, 70.4, 52.4, 55.8 and 48.8,
 with a median of medians of 52.4 and a range of 67.0 L\*. One frame sits inside the declared band
 and eight do not.
 

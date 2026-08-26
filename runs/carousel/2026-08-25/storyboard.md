@@ -215,8 +215,8 @@ art:
     eye by area rather than by extremity.
   motion: "down the lit rail, into the opening, onto the sheet"
 type:
-  hook: "Seven ways to slow a data center"
-  dek: "Seven Texas governmental bodies acted this year. No two reached for the same instrument."
+  hook: "Fourteen ways to take up a data center"
+  dek: "Eleven Texas local governments acted this year. Fourteen actions, fourteen instruments."
 acceptance:
   - "the lock cylinder and its keyway are drawn at the right stile, so the case reads as locked rather than as a picture frame"
   - "the bond sheet is a bounded quadrilateral with the glazing's reflection over it, not a white rectangle"
@@ -230,8 +230,8 @@ risks:
 ```yaml
 slide: 2
 job: >
-  Show that the seven actions are a typology rather than one action repeated, by listing the
-  seven instruments on one sheet under one hard shadow.
+  Show that the fourteen actions are a typology rather than one action repeated, by listing all
+  fourteen instruments on one sheet, in two columns, under one hard shadow.
 claims: [c17, c5, c9, c12, c31, c30, c22]
 numerals:
   - computed_by: "out/2026-08-25/compute.py, distinct_shapes, seven instruments across seven bodies"
@@ -243,8 +243,8 @@ composition:
     is this deck's only depth cue and has to be established here where it is legible.
   bands: >
     The top third carries the sheet's head, the kicker and the counter over the lit half. The
-    middle third carries the seven instrument names set hanging indent in toner, the first rows in
-    light and the later rows crossed by the shadow. The bottom third carries the sheet's foot in graded falloff to the
+    middle third carries fourteen instrument names in two columns of seven, set hanging indent in
+    toner, the left column's first rows in light and the right column crossed by the shadow. The bottom third carries the sheet's foot in graded falloff to the
     clip shadow, the spring clip drawn as a lit modeled solid with its own cast shadow on the
     sheet, and the site line and star on the case rail below it.
   focal: >
@@ -263,23 +263,27 @@ art:
     shadow does the separating.
   motion: "left to right across the shadow boundary, then down the list"
 type:
-  hook: "Seven bodies, seven instruments"
-  dek: "One each. The shape of the instrument decides whether anything stops."
+  hook: "Fourteen actions, no two alike"
+  dek: "Eleven local governments. The shape of the instrument decides whether anything stops."
 acceptance:
   - "the shadow has a visibly wider penumbra at the bottom of the sheet than at the top, which is the air gap doing work"
-  - "every one of the seven instrument names is legible at 1080px and none is clipped by the shadow edge"
+  - "every one of the fourteen instrument names is legible at 1080px and none is clipped by the shadow edge"
+  - "the shadow edge CROSSES instrument names rather than passing to the right of all of them, which is
+     the whole job of the technique and is what round 5 found it not doing"
   - "the toner value of a name inside the shadow equals the toner value of a name outside it"
   - "the spring clip casts its own small contact shadow onto the sheet, dark core plus penumbra"
   - "no instrument name is printed that compute.py does not carry a claim id for"
 risks:
-  - "seven lines under a diagonal is one step from a table with a gradient on it, and a table is furniture"
+  - "fourteen lines under a diagonal is one step from a table with a gradient on it, and a table is furniture"
+  - "routing the edge clear of the type to stop it banding removes the reason the edge exists, which is
+     exactly what round 3 did here and round 5 caught"
 ```
 
 ```yaml
 slide: 3
 job: >  # REVISED after the flow critic, see the revision note below
-  Name the seven bodies in the record's own register and put the span on them, so a reader sees
-  commissioners courts and city councils rather than an abstraction.
+  Show WHEN the fourteen actions fell, by seating one letterboard tile per action against its month,
+  so the June cluster is a thing a reader counts rather than a sentence they are asked to believe.
 claims: []
 numerals:
   - computed_by: "out/2026-08-25/compute.py, first_action_date, the earliest ordered date"
@@ -293,8 +297,8 @@ composition:
     consecutive frames converging on one silhouette.
   bands: >
     The top third carries the board's lit aluminium head rail and the kicker and counter. The
-    middle third carries seven rows of seated white letters, each glyph a filled body with its own
-    cast shadow into the felt nap. The bottom third carries the board's lower rail as a lit modeled
+    middle third carries six month rows, each with one seated white tile per action that month, each
+    tile a filled body with its own cast shadow into the felt nap. The bottom third carries the board's lower rail as a lit modeled
     solid, the felt below the last row raked by the same overhead lobby light so the nap texture is
     visible rather than flat, and the span line set in the felt with the site line on the rail.
   focal: >
@@ -313,7 +317,7 @@ art:
   motion: "down the rows, each shorter than the last"
 type:
   hook: "From March to August"
-  dek: "The last three came inside 21 days of each other."
+  dek: "Six actions fell in June, more than any other month. One tile for each."
 acceptance:
   - "each row's letter shadows are offset differently from the row above, computed from one overhead source"
   - "at least two letters sit visibly proud of the groove, as a hand set board does"
@@ -407,7 +411,7 @@ art:
     foot. This is the deck's widest range and it is spent on the turn.
   motion: "across the band diagonally, then down to the surviving line"
 type:
-  hook: "Five of the seven stop nothing"
+  hook: "Five of the fourteen stop nothing"
   dek: "\"does not stop the project from moving forward\""
 acceptance:
   - "the blowout has two hard parallel edges and a measurable rolloff, not a soft radial glow"
@@ -465,8 +469,8 @@ art:
     an earlier draft of this line claimed it was.
   motion: "left sheet to right sheet, then down to the empty cork"
 type:
-  hook: "Two of the seven have teeth"
-  dek: "\"Initial cooling system fill shall not exceed 8.0 gallons per square foot\""
+  hook: "Six of the fourteen have teeth"
+  dek: "\"shall not exceed 8.0 gallons per square foot of Gross Building Area\""
 acceptance:
   - "no glazing plane is drawn between the camera and either sheet"
   - "the cork carries a visible staple hole field rather than a flat tan fill"
@@ -573,7 +577,7 @@ art:
     right. The frame is the deck's quietest and it sits between its two loudest.
   motion: "onto the reflection, then back to the near sheet it floats over"
 type:
-  hook: "Three went the other way"
+  hook: "Two declined. One said yes."
   dek: "Tom Green County's court voted not to pursue a moratorium in Precinct 4."
 acceptance:
   - "the reflected geometry resolves as a second notice case and not as a smudge or a double exposure"

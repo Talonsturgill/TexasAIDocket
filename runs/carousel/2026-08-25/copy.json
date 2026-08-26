@@ -1,17 +1,9 @@
 {
- "document_title": "Seven ways to slow a data center",
+ "document_title": "Fourteen ways to take up a data center",
  "slides": {
   "S1": {
    "n": 1,
-   "claims": [
-    "c17",
-    "c5",
-    "c9",
-    "c12",
-    "c31",
-    "c30",
-    "c22"
-   ],
+   "claims": [],
    "notes": {
     "aggregates": [
      "restricted_count",
@@ -22,11 +14,11 @@
     "TEXAS AI DOCKET",
     "01 / 09",
     "NOTICE OF MEETING",
-    "Seven ways to slow a data center",
-    "Seven Texas governmental bodies acted this year. No two reached for the same instrument.",
-    "7",
+    "Fourteen ways to take up a data center",
+    "Eleven Texas local governments acted this year. Fourteen actions, fourteen instruments.",
+    "14",
     "ACTED",
-    "2",
+    "6",
     "BOUND",
     "texasaidocket.com"
    ]
@@ -34,13 +26,20 @@
   "S2": {
    "n": 2,
    "claims": [
-    "c17",
     "c5",
     "c9",
-    "c12",
-    "c31",
+    "c17",
+    "c22",
     "c30",
-    "c22"
+    "c31",
+    "c32",
+    "c35",
+    "c36",
+    "c37",
+    "c39",
+    "c40",
+    "c41",
+    "c43"
    ],
    "notes": {
     "aggregates": [
@@ -48,17 +47,24 @@
     ]
    },
    "strings": [
-    "SEVEN INSTRUMENTS",
+    "FOURTEEN INSTRUMENTS",
     "02 / 09",
-    "Seven bodies, seven instruments",
-    "One each. The shape of the instrument decides whether anything stops.",
-    "Permit denied KILLEEN",
-    "Abatement denied ARCHER COUNTY",
-    "Zone denied BRAZORIA COUNTY",
-    "Water ordinance passed SAN ANGELO",
-    "Disclosure asked LUBBOCK COUNTY",
-    "Staff directed CORPUS CHRISTI",
-    "Process initiated FORT WORTH",
+    "Fourteen actions, no two alike",
+    "Eleven local governments. The shape of the instrument decides whether anything stops.",
+    "Zone denied BRAZORIA COUNTY, C9",
+    "Permit denied KILLEEN, C17",
+    "Conditional use only SAN ANGELO, C41",
+    "Discharge regulated SAN ANGELO, C43",
+    "Resolution adopted BRAZORIA COUNTY, C40",
+    "Made ineligible SAN MARCOS, C35",
+    "Cooling fill capped SAN ANGELO, C32",
+    "Abatement denied ARCHER COUNTY, C5",
+    "Review established HAYS COUNTY, C36",
+    "Framework adopted EL PASO, C39",
+    "Staff directed CORPUS CHRISTI, C30",
+    "Disclosure asked LUBBOCK COUNTY, C31",
+    "Process initiated FORT WORTH, C22",
+    "Request approved WICHITA FALLS, C37",
     "texasaidocket.com"
    ]
   },
@@ -76,22 +82,14 @@
     "THE SEQUENCE",
     "03 / 09",
     "From March to August",
-    "The last three came inside 21 days of each other.",
-    "MARCH 10TH",
-    "BRAZORIA COUNTY",
-    "APRIL 27TH",
-    "KILLEEN",
-    "JUNE 16TH",
-    "SAN ANGELO",
-    "JUNE 22ND",
-    "ARCHER COUNTY",
-    "JULY 21ST",
-    "CORPUS CHRISTI",
-    "AUGUST 10TH",
-    "LUBBOCK COUNTY",
-    "AUGUST 11TH",
-    "FORT WORTH",
-    "154 DAYS MARCH 10TH TO AUGUST 11TH",
+    "Six actions fell in June, more than any other month. One tile for each.",
+    "MARCH",
+    "APRIL",
+    "MAY",
+    "JUNE",
+    "JULY",
+    "AUGUST",
+    "156 DAYS MARCH 10TH TO AUGUST 13TH",
     "texasaidocket.com"
    ]
   },
@@ -105,12 +103,12 @@
     "aggregates": []
    },
    "strings": [
-    "FORT WORTH",
-    "04 / 09",
     "The council adopted a resolution that starts a process. The city's own release names no pause in force today.",
     "The newest pause is not in force",
     "\"tentatively set for Feb. 16, 2027\"",
     "CITY OF FORT WORTH, C22 AND C23",
+    "FORT WORTH",
+    "04 / 09",
     "texasaidocket.com"
    ]
   },
@@ -128,9 +126,9 @@
     ]
    },
    "strings": [
-    "FIVE OF THE SEVEN",
+    "FIVE OF THE FOURTEEN",
     "05 / 09",
-    "Five of the seven stop nothing",
+    "Five of the fourteen stop nothing",
     "\"does not stop the project from moving forward\"",
     "ARCHER COUNTY, C5",
     "\"Resolutions do nothing, they are not binding.\"",
@@ -155,12 +153,12 @@
    "strings": [
     "THE EXCEPTIONS",
     "06 / 09",
-    "Two of the seven have teeth",
+    "Six of the fourteen have teeth",
     "\"Motion to deny passed 5-0.\"",
-    "\"Initial cooling system fill shall not exceed 8.0 gallons per square foot\"",
     "BRAZORIA COUNTY, C9 THE ZONE THEY STOOD ON",
+    "\"shall not exceed 8.0 gallons per square foot of Gross Building Area\"",
     "SAN ANGELO, C32 ORDINANCE 2026-078",
-    "One refused the zone. One wrote the limit into the water ordinance.",
+    "San Angelo wrote three of the six. Zoning in May, the sewer in June, the water a fortnight later.",
     "texasaidocket.com"
    ]
   },
@@ -185,6 +183,9 @@
     "THE RECORD CARRIES THE SAME MINUTE ON EACH OF THE FOUR",
     "GRANTING TAX ABATEMENT OF OLD OCEAN DATACENTER LLC",
     "No action taken due to I.3 failed",
+    "No action taken due to I.3 failed",
+    "No action taken due to I.3 failed",
+    "No action taken due to I.3 failed",
     "C9, C10, C11",
     "texasaidocket.com"
    ]
@@ -192,10 +193,10 @@
   "S8": {
    "n": 8,
    "claims": [
+    "c14",
     "c15",
     "c16",
-    "c14",
-    "c29"
+    "c37"
    ],
    "notes": {
     "aggregates": [
@@ -206,15 +207,15 @@
    "strings": [
     "THE OTHER DIRECTION",
     "08 / 09",
-    "Three went the other way",
+    "Two declined. One said yes.",
     "Tom Green County's court voted not to pursue a moratorium in Precinct 4.",
     "A commissioner referenced a $100 million lawsuit filed against Hill County after it approved a similar one year moratorium.",
     "TOM GREEN COUNTY, C15 AND C16 REPORTED SPEECH ABOUT A LAWSUIT",
     "\"no action taken\"",
+    "Wichita Falls approved a data center in an existing building.",
     "LAREDO MATTER HISTORY, C14",
-    "The water board denied a petition asking it to project data center water demand.",
-    "TEXAS WATER DEVELOPMENT BOARD, C29",
-    "Ten bodies in this record took one up. Seven acted and three did not.",
+    "WICHITA FALLS, C37",
+    "Sixteen times a Texas local government took one up. Fourteen acted and two did not.",
     "texasaidocket.com"
    ]
   },
@@ -235,7 +236,7 @@
     "NOVEMBER 10TH",
     "THE CITY'S OWN WORDING IS A DEADLINE RATHER THAN A FIXED DATE",
     "CITY OF FORT WORTH, C24",
-    "Fort Worth is the only one of the ten still carrying a dated step.",
+    "Fort Worth is the only one of the sixteen still carrying a dated step.",
     "texasaidocket.com"
    ]
   }

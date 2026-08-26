@@ -279,7 +279,10 @@
     "repetition down a computed cosine bounce falloff, four identical minute lines brightening 16.5 L* from first to last",
     "a sheared and rippled Fresnel weighted mirror resolving a second notice case, carrying nothing legible",
     "sprung clips holding nothing, the near zero gap end of the same shadow physics the deck opened with",
-    "fiberboard cork as a fine 2px speckle over a lit gradient, the same code on frames 6 and 9 after two craft reads measured frame 6's own chip-scale version as a blocky mosaic"
+    "fiberboard cork as a fine 2px speckle over a lit gradient, the same code on frames 6 and 9 after two craft reads measured frame 6's own chip-scale version as a blocky mosaic",
+    "a felt letterboard counting by seated tiles rather than by numerals, one tile per action, so the busiest month is read off the board instead of asserted in the dek",
+    "brass pins whose shafts go THROUGH the paper, so the cast shadow falls on the card and not on the cork",
+    "cork as fine 2px grain UNDER a low frequency mottle, because the grain alone is correct at 2160 and gone by 432, which is the only size a reader gets"
    ],
    "palette": {
     "source": "an anodized notice case under a hot high haze Texas sky",
@@ -301,23 +304,23 @@
    "red_spent": true,
    "red_on_slide": 9,
    "red_note": "on the date NOVEMBER 10TH and on nothing else, including the words NOT LATER THAN above it, which were red until the pixel review measured the frame against its own acceptance list",
-   "camera": "FIVE distinct camera classes shipped, not the nine the storyboard declared, and one of them carries five of the nine frames: square on to a bordered sheet, on 2, 3, 5, 7 and 8. The others are near frontal on a locked case (1, whose dossier asked for three quarters from below left), level on a flat field with no case (6), steep oblique in true perspective (4), and a close crop with two ground planes (9).",
+   "camera": "SIX distinct camera classes shipped, not the nine the storyboard declared, and one of them carries four of the nine frames: square on to a bordered sheet, on 2, 5, 7 and 8. The others are near frontal on a locked case (1), level on a flat field with no case (6), a felt letterboard square on and level (3), steep oblique in true perspective (4), a close crop with two ground planes (9).",
    "light_decks_used": "wide range, bimodal, median below mid",
    "value": {
     "per_frame_median_L": [
-     51.4,
-     63.0,
+     51.2,
+     65.6,
      14.4,
      30.8,
      81.4,
-     70.8,
+     70.4,
      52.4,
-     55.6,
+     55.8,
      48.8
     ],
     "deck_median_L": 52.4,
-    "mean_L": 52.1,
-    "sd_L": 18.9,
+    "mean_L": 52.3,
+    "sd_L": 19.1,
     "range_L": [
      14.4,
      81.4
@@ -338,19 +341,19 @@
     ],
     "biggest_junction": {
      "between": 2,
-     "delta": -48.6
+     "delta": -51.2
     }
    },
    "slides": 9,
-   "bespoke_median_similarity": 0.1615,
+   "bespoke_median_similarity": 0.1594,
    "bespoke_closest_pair": [
     "slide-02.html",
     "slide-07.html",
-    0.7737
+    0.7682
    ],
-   "cut": "nothing was cut. Frame 3 was REPURPOSED from a roster that reprinted frame 2's body names into the chronology. Both frames later lost a row when the count went from eight to seven and neither container was re-flowed, so both carry dead sheet under the last row.",
+   "cut": "nothing was cut. Frame 2 went from seven instruments in one column to FOURTEEN in two when the set became a computed selection over the record, and its greeked filler field went with them, because a sheet with fourteen real lines on it does not need filler pretending to be lines. Frame 3 stopped being a roster of the same bodies and became the months, one seated tile per action, so the June cluster is a thing a reader sees rather than a sentence they are asked to believe.",
    "structural_laws": "nothing carved, embossed, milled or engraved anywhere. All depth from the air gap between glazing and sheet. No raking key. No cartography and no coordinate. No invented item number, party name or building.",
-   "avoid_next": "the square on bordered sheet, which this deck used four times and which its own storyboard promised not to repeat. Also the notice case itself for at least one cycle, and any deck that declares a value band without measuring it."
+   "avoid_next": "the square on bordered sheet, which this deck used four times and which its own storyboard promised not to repeat. Also the notice case itself for at least one cycle, and any deck that declares a value band without measuring it. This field and `camera` above are composed from ONE list of frames, because round 5 found them disagreeing, five against four, inside the entry whose own note says every number in it comes from one source."
   }
  ]
 }

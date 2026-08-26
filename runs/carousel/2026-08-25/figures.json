@@ -82,7 +82,7 @@
   },
   "still_dated": {
     "value": 1,
-    "rule": "of the ten bodies this deck carries, those whose key_dates hold a step on or after 2026-08-25",
+    "rule": "of the sixteen items this deck carries, those whose key_dates hold a step on or after 2026-08-25",
     "from_items": [
       "tx-2026-0062"
     ]
@@ -286,6 +286,18 @@
   "brazoria_vote": {
     "value": "5 to 0",
     "rule": "quoted from tx-2026-0051-c1"
+  },
+  "busiest_month": {
+    "value": "June",
+    "rule": "the calendar month carrying the most acting dates"
+  },
+  "busiest_month_count": {
+    "value": 6,
+    "rule": "how many of the acting dates fall in that month"
+  },
+  "busiest_body_binding": {
+    "value": 3,
+    "rule": "how many of the binding actions the busiest body wrote"
   },
   "acting_bodies": {
     "value": 11,

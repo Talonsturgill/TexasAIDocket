@@ -1,4 +1,4 @@
-Sources, seven news reports and six official records, fetched August 25th and 26th, 2026.
+Sources, nine official records and nine news reports, fetched August 25th and 26th, 2026.
 Archer County Commissioners deny tax abatement for proposed data center, August 25th, 2026. c5
 https://www.newschannel6now.com/2026/06/22/archer-county-commissioners-deny-tax-abatement-proposed-data-center/
 Lubbock county commissioners pass resolution regarding large-scale industrial development in Texas, August 25th, 2026. c7 c31
@@ -7,8 +7,6 @@ Legistar API, Brazoria County Commissioners Court, event 6219 agenda items for M
 https://webapi.legistar.com/v1/brazoriacountytx/events/6219/eventitems?AgendaNote=1&MinutesNote=1&Attachments=0
 Legistar API, Brazoria County, matters matching Data Center or Abatement (Matter 4459, File 18156), August 25th, 2026. c11
 https://webapi.legistar.com/v1/brazoriacountytx/matters?$filter=substringof(%27Data%20Center%27,MatterTitle)%20or%20substringof(%27Abatement%27,MatterTitle)&$orderby=MatterIntroDate%20desc&$top=40
-Data Center Information, City of San Angelo, August 25th, 2026. c12
-https://www.sanangelo.gov/803/Data-Center-Information
 City of Laredo Legistar, matter 7693 action history, August 25th, 2026. c14
 https://webapi.legistar.com/v1/cityoflaredo/Matters/7693/histories
 Tom Green County Commissioners Reject Data Center Moratorium, San Angelo LIVE!, June 2nd, 2026, August 25th, 2026. c15 c16
@@ -19,10 +17,22 @@ Killeen Planning & Zoning Votes Data Center Down, Texas Scorecard, August 25th, 
 https://texasscorecard.com/local/killeen-planning-zoning-votes-data-center-down/
 City of Fort Worth news release, republished by The Business Press under the city's own byline, August 25th, 2026. c22 c23 c24
 https://fortworthbusiness.com/government/city-advances-next-steps-in-data-center-regulation-development-process/
-Community Impact, Texas includes minimal data center info in state water plan citing limited data, August 25th, 2026. c29
-https://communityimpact.com/central-austin/texas-legislature/texas-includes-minimal-data-center-info-in-state-water-plan-citing-limited-data/
 KRIS 6 News, Corpus Christi City Council moves to develop data center regulations for the city, August 25th, 2026. c30
 https://www.kristv.com/news/local-news/in-your-neighborhood/corpus-christi/corpus-christi-city-council-moves-to-develop-data-center-regulations-for-the-city
 Ordinance 2026-078, City of San Angelo Official Minute Record, Volume 2026, page 257, June 16th, 2026. c32
 https://www.sanangelo.gov/DocumentCenter/View/2315
+San Marcos becomes the first Texas city to ban data centers, testing its local control, KSAT, June 30th, 2026. c35
+https://www.ksat.com/news/texas/2026/06/30/san-marcos-becomes-the-first-texas-city-to-ban-data-centers-testing-its-local-control/
+Hays County passes resolution pausing consideration of high water use developments, Community Impact, June 23rd, 2026. c36
+https://communityimpact.com/austin/san-marcos-buda-kyle/government/2026/06/23/hays-county-passes-resolution-pausing-consideration-of-high-water-use-developments-data-centers/
+DataNovaX data center approved on Airport Drive, Wichita Falls, News Channel 6, August 13th, 2026. c37
+https://www.newschannel6now.com/2026/08/13/datanovax-data-center-approved-airport-drive-wichita-falls/
+Legistar API, El Paso City Council, matter 15758, July 20th, 2026. c39
+https://webapi.legistar.com/v1/elpasotexas/Matters/15758
+Legistar API, Brazoria County Commissioners Court, matter 4786, June 9th, 2026. c40
+https://webapi.legistar.com/v1/brazoriacountytx/matters/4786
+Ordinance creating Section 430 Data Centers, City of San Angelo zoning ordinance, May 19th, 2026. c41
+https://www.sanangelo.gov/DocumentCenter/View/2255
+Ordinance 2026-076, City of San Angelo Official Minute Record, Volume 2026, page 248, June 2nd, 2026. c43
+https://www.sanangelo.gov/DocumentCenter/View/2316
 Day counts computed in compute.py from the source dates above.

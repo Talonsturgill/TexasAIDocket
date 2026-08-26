@@ -261,6 +261,10 @@ def _future(iid):
 still_dated = sorted(i for i in _ALL if _future(i))
 
 # The chronology frame 3 sets, in the order the bodies acted. Nothing here is typed.
+_MONTHS = ("January February March April May June July August September October November "
+           "December").split()
+_by_month = collections.Counter(int(ordered_on(i)[5:7]) for i in ACTED)
+
 chronology = [{"date": ordered_on(i), "place": ACTED[i][0], "shape": ACTED[i][1],
                "claim": ACTED[i][2], "item": i} for i in sorted(ACTED, key=ordered_on)]
 
@@ -284,7 +288,7 @@ out = {
                         "rule": "days from the %dth from last ordered action to the last, MEASURED after the half was chosen" % late_n,
                         "from_items": sorted(ACTED, key=ordered_on)[-late_n:]},
   "still_dated":       {"value": len(still_dated),
-                        "rule": "of the ten bodies this deck carries, those whose key_dates hold a step on or after 2026-08-25",
+                        "rule": "of the sixteen items this deck carries, those whose key_dates hold a step on or after 2026-08-25",
                         "from_items": still_dated},
   "chronology":        {"value": len(chronology), "rule": "the actions in the order they happened",
                         "marks": chronology},
@@ -304,6 +308,18 @@ out = {
   # Angelo reaching for three instruments in 2026, so a set of one action per body was a
   # property of the picking. Counted over the computed selection, eleven bodies took fourteen
   # actions and two of them went back.
+  # The month the deck's third frame is about, and the busiest body's share of the binding set.
+  # Both are printed, so both are computed. An earlier draft had frame 3 saying "six of the
+  # fourteen" while frame 6 said the same words about a different derivation, and the gate keys
+  # on the phrase, so one of the two would have silently satisfied the other's declaration.
+  "busiest_month":     {"value": _MONTHS[max(_by_month, key=lambda m: _by_month[m]) - 1],
+                        "rule": "the calendar month carrying the most acting dates"},
+  "busiest_month_count": {"value": max(_by_month.values()),
+                        "rule": "how many of the acting dates fall in that month"},
+  "busiest_body_binding": {"value": len([i for i in STATED_BINDING
+                                         if ACTED[i][0] == max({p for p, _s, _c in ACTED.values()},
+                                             key=lambda q: len([1 for r, _s2, _c2 in ACTED.values() if r == q]))]),
+                        "rule": "how many of the binding actions the busiest body wrote"},
   "acting_bodies":     {"value": len({p for p, _s, _c in ACTED.values()}),
                         "rule": "distinct places among the acting items",
                         "from_items": sorted(ACTED)},

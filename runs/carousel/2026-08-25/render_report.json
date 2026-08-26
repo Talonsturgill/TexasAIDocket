@@ -85,11 +85,11 @@
           "anc": []
         },
         {
-          "text": "Seven ways to slow a data center",
+          "text": "Fourteen ways to take up a data center",
           "x": 256,
           "y": 424,
           "w": 566,
-          "h": 150,
+          "h": 225,
           "font_px": 72,
           "weight": "700",
           "family": "Fraunces",
@@ -100,20 +100,26 @@
             [
               256,
               417,
-              438,
+              538,
               88
             ],
             [
               256,
               492,
-              563,
+              435,
+              88
+            ],
+            [
+              256,
+              567,
+              203,
               88
             ]
           ],
           "anc": []
         },
         {
-          "text": "Seven Texas governmental bodies acted this year. No two reached for the same instrument.",
+          "text": "Eleven Texas local governments acted this year. Fourteen actions, fourteen instruments.",
           "x": 256,
           "y": 664,
           "w": 386,
@@ -128,35 +134,35 @@
             [
               256,
               664,
-              344,
+              231,
               38
             ],
             [
               256,
               703,
-              384,
+              373,
               38
             ],
             [
               256,
               741,
-              274,
+              344,
               38
             ],
             [
               256,
               780,
-              150,
+              165,
               38
             ]
           ],
           "anc": []
         },
         {
-          "text": "7",
+          "text": "14",
           "x": 256,
           "y": 848,
-          "w": 52,
+          "w": 120,
           "h": 92,
           "font_px": 92,
           "weight": "700",
@@ -166,9 +172,9 @@
           "overlap_ok": false,
           "lines": [
             [
-              256,
+              273,
               833,
-              52,
+              103,
               122
             ]
           ],
@@ -176,7 +182,7 @@
         },
         {
           "text": "ACTED",
-          "x": 342,
+          "x": 402,
           "y": 894,
           "w": 107,
           "h": 30,
@@ -188,7 +194,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              342,
+              402,
               889,
               107,
               40
@@ -197,10 +203,10 @@
           "anc": []
         },
         {
-          "text": "2",
+          "text": "6",
           "x": 256,
           "y": 944,
-          "w": 52,
+          "w": 120,
           "h": 92,
           "font_px": 92,
           "weight": "700",
@@ -210,7 +216,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              256,
+              324,
               929,
               52,
               122
@@ -220,7 +226,7 @@
         },
         {
           "text": "BOUND",
-          "x": 342,
+          "x": 402,
           "y": 990,
           "w": 107,
           "h": 30,
@@ -232,7 +238,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              342,
+              402,
               985,
               107,
               40
@@ -270,7 +276,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1958,
+      "render_ms": 1893,
       "ok": true,
       "canvases": [
         {
@@ -295,50 +301,14 @@
       "png": "slide-02.png",
       "console_errors": [],
       "page_errors": [],
-      "overflow_warnings": [
-        {
-          "kind": "tiny-text",
-          "text": "KILLEEN",
-          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
-        },
-        {
-          "kind": "tiny-text",
-          "text": "ARCHER COUNTY",
-          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
-        },
-        {
-          "kind": "tiny-text",
-          "text": "BRAZORIA COUNTY",
-          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
-        },
-        {
-          "kind": "tiny-text",
-          "text": "SAN ANGELO",
-          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
-        },
-        {
-          "kind": "tiny-text",
-          "text": "LUBBOCK COUNTY",
-          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
-        },
-        {
-          "kind": "tiny-text",
-          "text": "CORPUS CHRISTI",
-          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
-        },
-        {
-          "kind": "tiny-text",
-          "text": "FORT WORTH",
-          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
-        }
-      ],
+      "overflow_warnings": [],
       "fonts_missing": [],
       "text_nodes": [
         {
-          "text": "SEVEN INSTRUMENTS",
+          "text": "FOURTEEN INSTRUMENTS",
           "x": 80,
           "y": 88,
-          "w": 302,
+          "w": 355,
           "h": 24,
           "font_px": 24,
           "weight": "500",
@@ -350,7 +320,7 @@
             [
               80,
               84,
-              302,
+              355,
               31
             ]
           ],
@@ -379,10 +349,10 @@
           "anc": []
         },
         {
-          "text": "Seven bodies, seven instruments",
+          "text": "Fourteen actions, no two alike",
           "x": 186,
-          "y": 270,
-          "w": 520,
+          "y": 262,
+          "w": 620,
           "h": 129,
           "font_px": 62,
           "weight": "700",
@@ -393,24 +363,24 @@
           "lines": [
             [
               186,
-              263,
-              380,
+              255,
+              573,
               77
             ],
             [
               186,
-              327,
-              519,
+              319,
+              254,
               77
             ]
           ],
           "anc": []
         },
         {
-          "text": "One each. The shape of the instrument decides whether anything stops.",
+          "text": "Eleven local governments. The shape of the instrument decides whether anything stops.",
           "x": 186,
-          "y": 400,
-          "w": 480,
+          "y": 404,
+          "w": 600,
           "h": 70,
           "font_px": 26,
           "weight": "400",
@@ -421,26 +391,26 @@
           "lines": [
             [
               186,
-              399,
-              465,
+              403,
+              518,
               36
             ],
             [
               186,
-              434,
-              393,
+              438,
+              531,
               36
             ]
           ],
           "anc": []
         },
         {
-          "text": "Permit denied KILLEEN",
+          "text": "Zone denied BRAZORIA COUNTY, C9",
           "x": 186,
           "y": 500,
-          "w": 238,
-          "h": 59,
-          "font_px": 30,
+          "w": 340,
+          "h": 61,
+          "font_px": 25,
           "weight": "500",
           "family": "JetBrains Mono",
           "color": "rgb(42, 38, 34)",
@@ -449,20 +419,20 @@
           "lines": [
             [
               186,
-              495,
-              238,
-              40
+              496,
+              168,
+              34
             ]
           ],
           "anc": []
         },
         {
-          "text": "KILLEEN",
+          "text": "BRAZORIA COUNTY, C9",
           "x": 186,
-          "y": 537,
-          "w": 238,
-          "h": 22,
-          "font_px": 22,
+          "y": 535,
+          "w": 340,
+          "h": 26,
+          "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
           "color": "rgb(74, 70, 60)",
@@ -471,9 +441,9 @@
           "lines": [
             [
               186,
-              533,
-              106,
-              29
+              532,
+              315,
+              31
             ]
           ],
           "anc": [
@@ -481,12 +451,12 @@
           ]
         },
         {
-          "text": "Abatement denied ARCHER COUNTY",
+          "text": "Permit denied KILLEEN, C17",
           "x": 186,
-          "y": 588,
-          "w": 293,
-          "h": 59,
-          "font_px": 30,
+          "y": 578,
+          "w": 340,
+          "h": 61,
+          "font_px": 25,
           "weight": "500",
           "family": "JetBrains Mono",
           "color": "rgb(42, 38, 34)",
@@ -495,20 +465,20 @@
           "lines": [
             [
               186,
-              583,
-              293,
-              40
+              574,
+              198,
+              34
             ]
           ],
           "anc": []
         },
         {
-          "text": "ARCHER COUNTY",
+          "text": "KILLEEN, C17",
           "x": 186,
-          "y": 625,
-          "w": 293,
-          "h": 22,
-          "font_px": 22,
+          "y": 613,
+          "w": 340,
+          "h": 26,
+          "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
           "color": "rgb(74, 70, 60)",
@@ -517,9 +487,9 @@
           "lines": [
             [
               186,
-              621,
-              197,
-              29
+              610,
+              199,
+              31
             ]
           ],
           "anc": [
@@ -527,12 +497,12 @@
           ]
         },
         {
-          "text": "Zone denied BRAZORIA COUNTY",
+          "text": "Conditional use only SAN ANGELO, C41",
           "x": 186,
-          "y": 676,
-          "w": 228,
-          "h": 59,
-          "font_px": 30,
+          "y": 656,
+          "w": 340,
+          "h": 61,
+          "font_px": 25,
           "weight": "500",
           "family": "JetBrains Mono",
           "color": "rgb(42, 38, 34)",
@@ -541,20 +511,20 @@
           "lines": [
             [
               186,
-              671,
-              201,
-              40
+              652,
+              305,
+              34
             ]
           ],
           "anc": []
         },
         {
-          "text": "BRAZORIA COUNTY",
+          "text": "SAN ANGELO, C41",
           "x": 186,
-          "y": 713,
-          "w": 228,
-          "h": 22,
-          "font_px": 22,
+          "y": 691,
+          "w": 340,
+          "h": 26,
+          "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
           "color": "rgb(74, 70, 60)",
@@ -563,9 +533,9 @@
           "lines": [
             [
               186,
-              709,
-              228,
-              29
+              688,
+              248,
+              31
             ]
           ],
           "anc": [
@@ -573,12 +543,12 @@
           ]
         },
         {
-          "text": "Water ordinance passed SAN ANGELO",
+          "text": "Discharge regulated SAN ANGELO, C43",
           "x": 186,
-          "y": 764,
-          "w": 403,
-          "h": 59,
-          "font_px": 30,
+          "y": 734,
+          "w": 340,
+          "h": 61,
+          "font_px": 25,
           "weight": "500",
           "family": "JetBrains Mono",
           "color": "rgb(42, 38, 34)",
@@ -587,20 +557,20 @@
           "lines": [
             [
               186,
-              759,
-              403,
-              40
+              730,
+              290,
+              34
             ]
           ],
           "anc": []
         },
         {
-          "text": "SAN ANGELO",
+          "text": "SAN ANGELO, C43",
           "x": 186,
-          "y": 801,
-          "w": 403,
-          "h": 22,
-          "font_px": 22,
+          "y": 769,
+          "w": 340,
+          "h": 26,
+          "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
           "color": "rgb(74, 70, 60)",
@@ -609,9 +579,9 @@
           "lines": [
             [
               186,
-              797,
-              152,
-              29
+              766,
+              248,
+              31
             ]
           ],
           "anc": [
@@ -619,12 +589,12 @@
           ]
         },
         {
-          "text": "Disclosure asked LUBBOCK COUNTY",
+          "text": "Resolution adopted BRAZORIA COUNTY, C40",
           "x": 186,
-          "y": 852,
-          "w": 293,
-          "h": 59,
-          "font_px": 30,
+          "y": 812,
+          "w": 340,
+          "h": 61,
+          "font_px": 25,
           "weight": "500",
           "family": "JetBrains Mono",
           "color": "rgb(42, 38, 34)",
@@ -633,20 +603,20 @@
           "lines": [
             [
               186,
-              847,
-              293,
-              40
+              808,
+              275,
+              34
             ]
           ],
           "anc": []
         },
         {
-          "text": "LUBBOCK COUNTY",
+          "text": "BRAZORIA COUNTY, C40",
           "x": 186,
-          "y": 889,
-          "w": 293,
-          "h": 22,
-          "font_px": 22,
+          "y": 847,
+          "w": 340,
+          "h": 26,
+          "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
           "color": "rgb(74, 70, 60)",
@@ -655,9 +625,9 @@
           "lines": [
             [
               186,
-              885,
-              213,
-              29
+              844,
+              331,
+              31
             ]
           ],
           "anc": [
@@ -665,12 +635,12 @@
           ]
         },
         {
-          "text": "Staff directed CORPUS CHRISTI",
+          "text": "Made ineligible SAN MARCOS, C35",
           "x": 186,
-          "y": 940,
-          "w": 256,
-          "h": 59,
-          "font_px": 30,
+          "y": 890,
+          "w": 340,
+          "h": 61,
+          "font_px": 25,
           "weight": "500",
           "family": "JetBrains Mono",
           "color": "rgb(42, 38, 34)",
@@ -679,20 +649,20 @@
           "lines": [
             [
               186,
-              935,
-              256,
-              40
+              886,
+              229,
+              34
             ]
           ],
           "anc": []
         },
         {
-          "text": "CORPUS CHRISTI",
+          "text": "SAN MARCOS, C35",
           "x": 186,
-          "y": 977,
-          "w": 256,
-          "h": 22,
-          "font_px": 22,
+          "y": 925,
+          "w": 340,
+          "h": 26,
+          "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
           "color": "rgb(74, 70, 60)",
@@ -701,9 +671,9 @@
           "lines": [
             [
               186,
-              973,
-              213,
-              29
+              922,
+              248,
+              31
             ]
           ],
           "anc": [
@@ -711,12 +681,12 @@
           ]
         },
         {
-          "text": "Process initiated FORT WORTH",
+          "text": "Cooling fill capped SAN ANGELO, C32",
           "x": 186,
-          "y": 1028,
-          "w": 311,
-          "h": 59,
-          "font_px": 30,
+          "y": 968,
+          "w": 340,
+          "h": 61,
+          "font_px": 25,
           "weight": "500",
           "family": "JetBrains Mono",
           "color": "rgb(42, 38, 34)",
@@ -725,20 +695,20 @@
           "lines": [
             [
               186,
-              1023,
-              311,
-              40
+              964,
+              290,
+              34
             ]
           ],
           "anc": []
         },
         {
-          "text": "FORT WORTH",
+          "text": "SAN ANGELO, C32",
           "x": 186,
-          "y": 1065,
-          "w": 311,
-          "h": 22,
-          "font_px": 22,
+          "y": 1003,
+          "w": 340,
+          "h": 26,
+          "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
           "color": "rgb(74, 70, 60)",
@@ -747,13 +717,335 @@
           "lines": [
             [
               186,
-              1061,
-              152,
-              29
+              1000,
+              248,
+              31
             ]
           ],
           "anc": [
             16
+          ]
+        },
+        {
+          "text": "Abatement denied ARCHER COUNTY, C5",
+          "x": 566,
+          "y": 500,
+          "w": 340,
+          "h": 61,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(42, 38, 34)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              566,
+              496,
+              244,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ARCHER COUNTY, C5",
+          "x": 566,
+          "y": 535,
+          "w": 340,
+          "h": 26,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(74, 70, 60)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              566,
+              532,
+              282,
+              31
+            ]
+          ],
+          "anc": [
+            18
+          ]
+        },
+        {
+          "text": "Review established HAYS COUNTY, C36",
+          "x": 566,
+          "y": 578,
+          "w": 340,
+          "h": 61,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(42, 38, 34)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              566,
+              574,
+              275,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "HAYS COUNTY, C36",
+          "x": 566,
+          "y": 613,
+          "w": 340,
+          "h": 26,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(74, 70, 60)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              566,
+              610,
+              265,
+              31
+            ]
+          ],
+          "anc": [
+            20
+          ]
+        },
+        {
+          "text": "Framework adopted EL PASO, C39",
+          "x": 566,
+          "y": 656,
+          "w": 340,
+          "h": 61,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(42, 38, 34)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              566,
+              652,
+              259,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "EL PASO, C39",
+          "x": 566,
+          "y": 691,
+          "w": 340,
+          "h": 26,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(74, 70, 60)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              566,
+              688,
+              199,
+              31
+            ]
+          ],
+          "anc": [
+            22
+          ]
+        },
+        {
+          "text": "Staff directed CORPUS CHRISTI, C30",
+          "x": 566,
+          "y": 734,
+          "w": 340,
+          "h": 61,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(42, 38, 34)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              566,
+              730,
+              214,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "CORPUS CHRISTI, C30",
+          "x": 566,
+          "y": 769,
+          "w": 340,
+          "h": 26,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(74, 70, 60)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              566,
+              766,
+              315,
+              31
+            ]
+          ],
+          "anc": [
+            24
+          ]
+        },
+        {
+          "text": "Disclosure asked LUBBOCK COUNTY, C31",
+          "x": 566,
+          "y": 812,
+          "w": 340,
+          "h": 61,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(42, 38, 34)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              566,
+              808,
+              244,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "LUBBOCK COUNTY, C31",
+          "x": 566,
+          "y": 847,
+          "w": 340,
+          "h": 26,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(74, 70, 60)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              566,
+              844,
+              315,
+              31
+            ]
+          ],
+          "anc": [
+            26
+          ]
+        },
+        {
+          "text": "Process initiated FORT WORTH, C22",
+          "x": 566,
+          "y": 890,
+          "w": 340,
+          "h": 61,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(42, 38, 34)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              566,
+              886,
+              259,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "FORT WORTH, C22",
+          "x": 566,
+          "y": 925,
+          "w": 340,
+          "h": 26,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(74, 70, 60)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              566,
+              922,
+              248,
+              31
+            ]
+          ],
+          "anc": [
+            28
+          ]
+        },
+        {
+          "text": "Request approved WICHITA FALLS, C37",
+          "x": 566,
+          "y": 968,
+          "w": 340,
+          "h": 61,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(42, 38, 34)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              566,
+              964,
+              244,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "WICHITA FALLS, C37",
+          "x": 566,
+          "y": 1003,
+          "w": 340,
+          "h": 26,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(74, 70, 60)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              566,
+              1000,
+              298,
+              31
+            ]
+          ],
+          "anc": [
+            30
           ]
         },
         {
@@ -786,7 +1078,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1165,
+      "render_ms": 1131,
       "ok": true,
       "canvases": [
         {
@@ -799,8 +1091,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 141.8,
-          "variance": 4190.6
+          "mean": 151.1,
+          "variance": 5324.1
         }
       ],
       "breather": false,
@@ -887,7 +1179,7 @@
           "anc": []
         },
         {
-          "text": "The last three came inside 21 days of each other.",
+          "text": "Six actions fell in June, more than any other month. One tile for each.",
           "x": 112,
           "y": 330,
           "w": 540,
@@ -902,23 +1194,23 @@
             [
               112,
               329,
-              481,
+              496,
               35
             ],
             [
               112,
               363,
-              68,
+              281,
               35
             ]
           ],
           "anc": []
         },
         {
-          "text": "MARCH 10TH",
+          "text": "MARCH",
           "x": 118,
           "y": 440,
-          "w": 192,
+          "w": 96,
           "h": 30,
           "font_px": 30,
           "weight": "500",
@@ -930,39 +1222,17 @@
             [
               118,
               435,
-              192,
+              96,
               40
             ]
           ],
           "anc": []
         },
         {
-          "text": "BRAZORIA COUNTY",
-          "x": 392,
-          "y": 440,
-          "w": 307,
-          "h": 32,
-          "font_px": 32,
-          "weight": "500",
-          "family": "JetBrains Mono",
-          "color": "rgb(232, 228, 216)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              392,
-              434,
-              307,
-              43
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "APRIL 27TH",
+          "text": "APRIL",
           "x": 118,
           "y": 526,
-          "w": 192,
+          "w": 96,
           "h": 30,
           "font_px": 30,
           "weight": "500",
@@ -974,39 +1244,17 @@
             [
               118,
               521,
-              192,
+              96,
               40
             ]
           ],
           "anc": []
         },
         {
-          "text": "KILLEEN",
-          "x": 392,
-          "y": 526,
-          "w": 143,
-          "h": 32,
-          "font_px": 32,
-          "weight": "500",
-          "family": "JetBrains Mono",
-          "color": "rgb(232, 228, 216)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              392,
-              520,
-              143,
-              43
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "JUNE 16TH",
+          "text": "MAY",
           "x": 118,
           "y": 612,
-          "w": 173,
+          "w": 58,
           "h": 30,
           "font_px": 30,
           "weight": "500",
@@ -1018,69 +1266,17 @@
             [
               118,
               607,
-              173,
+              58,
               40
             ]
           ],
           "anc": []
         },
         {
-          "text": "SAN ANGELO",
-          "x": 392,
-          "y": 612,
-          "w": 205,
-          "h": 32,
-          "font_px": 32,
-          "weight": "500",
-          "family": "JetBrains Mono",
-          "color": "rgb(232, 228, 216)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              392,
-              606,
-              123,
-              43
-            ],
-            [
-              535,
-              606,
-              61,
-              43
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "G",
-          "x": 515,
-          "y": 609,
-          "w": 21,
-          "h": 32,
-          "font_px": 32,
-          "weight": "500",
-          "family": "JetBrains Mono",
-          "color": "rgb(232, 228, 216)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              514,
-              603,
-              21,
-              43
-            ]
-          ],
-          "anc": [
-            9
-          ]
-        },
-        {
-          "text": "JUNE 22ND",
+          "text": "JUNE",
           "x": 118,
           "y": 698,
-          "w": 173,
+          "w": 77,
           "h": 30,
           "font_px": 30,
           "weight": "500",
@@ -1092,39 +1288,47 @@
             [
               118,
               693,
-              173,
+              19,
+              40
+            ],
+            [
+              156,
+              693,
+              38,
               40
             ]
           ],
           "anc": []
         },
         {
-          "text": "ARCHER COUNTY",
-          "x": 392,
-          "y": 698,
-          "w": 266,
-          "h": 32,
-          "font_px": 32,
+          "text": "U",
+          "x": 137,
+          "y": 695,
+          "w": 20,
+          "h": 30,
+          "font_px": 30,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(232, 228, 216)",
+          "color": "rgb(158, 166, 176)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              392,
-              692,
-              266,
-              43
+              137,
+              690,
+              20,
+              40
             ]
           ],
-          "anc": []
+          "anc": [
+            7
+          ]
         },
         {
-          "text": "JULY 21ST",
+          "text": "JULY",
           "x": 118,
           "y": 784,
-          "w": 173,
+          "w": 77,
           "h": 30,
           "font_px": 30,
           "weight": "500",
@@ -1136,39 +1340,17 @@
             [
               118,
               779,
-              173,
+              77,
               40
             ]
           ],
           "anc": []
         },
         {
-          "text": "CORPUS CHRISTI",
-          "x": 392,
-          "y": 784,
-          "w": 287,
-          "h": 32,
-          "font_px": 32,
-          "weight": "500",
-          "family": "JetBrains Mono",
-          "color": "rgb(232, 228, 216)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              392,
-              778,
-              287,
-              43
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "AUGUST 10TH",
+          "text": "AUGUST",
           "x": 118,
           "y": 870,
-          "w": 211,
+          "w": 115,
           "h": 30,
           "font_px": 30,
           "weight": "500",
@@ -1180,69 +1362,23 @@
             [
               118,
               865,
-              211,
+              38,
+              40
+            ],
+            [
+              176,
+              865,
+              58,
               40
             ]
           ],
           "anc": []
         },
         {
-          "text": "LUBBOCK COUNTY",
-          "x": 392,
-          "y": 870,
-          "w": 287,
-          "h": 32,
-          "font_px": 32,
-          "weight": "500",
-          "family": "JetBrains Mono",
-          "color": "rgb(232, 228, 216)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              392,
-              864,
-              41,
-              43
-            ],
-            [
-              453,
-              864,
-              225,
-              43
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "B",
-          "x": 433,
+          "text": "G",
+          "x": 156,
           "y": 872,
-          "w": 21,
-          "h": 32,
-          "font_px": 32,
-          "weight": "500",
-          "family": "JetBrains Mono",
-          "color": "rgb(232, 228, 216)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              433,
-              866,
-              21,
-              43
-            ]
-          ],
-          "anc": [
-            16
-          ]
-        },
-        {
-          "text": "AUGUST 11TH",
-          "x": 118,
-          "y": 956,
-          "w": 211,
+          "w": 20,
           "h": 30,
           "font_px": 30,
           "weight": "500",
@@ -1252,38 +1388,18 @@
           "overlap_ok": false,
           "lines": [
             [
-              118,
-              951,
-              211,
+              156,
+              867,
+              20,
               40
             ]
           ],
-          "anc": []
+          "anc": [
+            10
+          ]
         },
         {
-          "text": "FORT WORTH",
-          "x": 392,
-          "y": 956,
-          "w": 205,
-          "h": 32,
-          "font_px": 32,
-          "weight": "500",
-          "family": "JetBrains Mono",
-          "color": "rgb(232, 228, 216)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              392,
-              950,
-              205,
-              43
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "154 DAYS MARCH 10TH TO AUGUST 11TH",
+          "text": "156 DAYS MARCH 10TH TO AUGUST 13TH",
           "x": 118,
           "y": 1074,
           "w": 429,
@@ -1336,11 +1452,166 @@
       "body_overflow": false,
       "canvas_text": [],
       "svg_plates": [],
-      "rules": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 392,
+          "y": 440,
+          "w": 30,
+          "h": 40,
+          "by": "tile",
+          "color": "rgb(232, 228, 216)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 392,
+          "y": 526,
+          "w": 30,
+          "h": 40,
+          "by": "tile",
+          "color": "rgb(232, 228, 216)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 392,
+          "y": 612,
+          "w": 30,
+          "h": 40,
+          "by": "tile",
+          "color": "rgb(232, 228, 216)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 392,
+          "y": 698,
+          "w": 30,
+          "h": 40,
+          "by": "tile",
+          "color": "rgb(232, 228, 216)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 431,
+          "y": 698,
+          "w": 30,
+          "h": 40,
+          "by": "tile",
+          "color": "rgb(232, 228, 216)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 470,
+          "y": 698,
+          "w": 30,
+          "h": 40,
+          "by": "tile",
+          "color": "rgb(232, 228, 216)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 509,
+          "y": 698,
+          "w": 30,
+          "h": 40,
+          "by": "tile",
+          "color": "rgb(232, 228, 216)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 548,
+          "y": 698,
+          "w": 30,
+          "h": 40,
+          "by": "tile",
+          "color": "rgb(232, 228, 216)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 587,
+          "y": 698,
+          "w": 30,
+          "h": 40,
+          "by": "tile",
+          "color": "rgb(232, 228, 216)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 392,
+          "y": 784,
+          "w": 30,
+          "h": 40,
+          "by": "tile",
+          "color": "rgb(232, 228, 216)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 431,
+          "y": 784,
+          "w": 30,
+          "h": 40,
+          "by": "tile",
+          "color": "rgb(232, 228, 216)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 392,
+          "y": 870,
+          "w": 30,
+          "h": 40,
+          "by": "tile",
+          "color": "rgb(232, 228, 216)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 431,
+          "y": 870,
+          "w": 30,
+          "h": 40,
+          "by": "tile",
+          "color": "rgb(232, 228, 216)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 470,
+          "y": 870,
+          "w": 30,
+          "h": 40,
+          "by": "tile",
+          "color": "rgb(232, 228, 216)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1608,
+      "render_ms": 1460,
       "ok": true,
       "canvases": [
         {
@@ -1589,7 +1860,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1548,
+      "render_ms": 1455,
       "ok": true,
       "canvases": [
         {
@@ -1634,10 +1905,10 @@
       "fonts_missing": [],
       "text_nodes": [
         {
-          "text": "FIVE OF THE SEVEN",
+          "text": "FIVE OF THE FOURTEEN",
           "x": 80,
           "y": 88,
-          "w": 302,
+          "w": 355,
           "h": 24,
           "font_px": 24,
           "weight": "500",
@@ -1649,7 +1920,7 @@
             [
               80,
               84,
-              302,
+              355,
               31
             ]
           ],
@@ -1678,7 +1949,7 @@
           "anc": []
         },
         {
-          "text": "Five of the seven stop nothing",
+          "text": "Five of the fourteen stop nothing",
           "x": 150,
           "y": 236,
           "w": 660,
@@ -1693,13 +1964,13 @@
             [
               150,
               229,
-              623,
+              573,
               82
             ],
             [
               150,
               298,
-              235,
+              375,
               82
             ]
           ],
@@ -1879,7 +2150,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 942,
+      "render_ms": 894,
       "ok": true,
       "canvases": [
         {
@@ -1963,7 +2234,7 @@
           "anc": []
         },
         {
-          "text": "Two of the seven have teeth",
+          "text": "Six of the fourteen have teeth",
           "x": 96,
           "y": 168,
           "w": 640,
@@ -1978,13 +2249,13 @@
             [
               96,
               161,
-              608,
+              515,
               77
             ],
             [
               96,
               225,
-              145,
+              288,
               77
             ]
           ],
@@ -2047,7 +2318,7 @@
           "anc": []
         },
         {
-          "text": "\"Initial cooling system fill shall not exceed 8.0 gallons per square foot\"",
+          "text": "\"shall not exceed 8.0 gallons per square foot of Gross Building Area\"",
           "x": 574,
           "y": 404,
           "w": 348,
@@ -2062,13 +2333,13 @@
             [
               574,
               404,
-              259,
+              275,
               36
             ],
             [
               574,
               441,
-              275,
+              243,
               36
             ],
             [
@@ -2080,13 +2351,13 @@
             [
               574,
               514,
-              178,
+              227,
               36
             ],
             [
               574,
               551,
-              194,
+              81,
               36
             ]
           ],
@@ -2121,7 +2392,7 @@
           "anc": []
         },
         {
-          "text": "One refused the zone. One wrote the limit into the water ordinance.",
+          "text": "San Angelo wrote three of the six. Zoning in May, the sewer in June, the water a fortnight later.",
           "x": 96,
           "y": 892,
           "w": 760,
@@ -2136,13 +2407,13 @@
             [
               96,
               892,
-              731,
+              683,
               38
             ],
             [
               96,
               931,
-              139,
+              532,
               38
             ]
           ],
@@ -2178,7 +2449,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1940,
+      "render_ms": 2194,
       "ok": true,
       "canvases": [
         {
@@ -2191,8 +2462,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 158,
-          "variance": 4183.8
+          "mean": 157.3,
+          "variance": 4164.5
         }
       ],
       "breather": false,
@@ -2533,7 +2804,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 672,
+      "render_ms": 680,
       "ok": true,
       "canvases": [
         {
@@ -2576,7 +2847,7 @@
         },
         {
           "kind": "tiny-text",
-          "text": "The water board denied a petition asking it to project data center water demand.",
+          "text": "Wichita Falls approved a data center in an existing building.",
           "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
         },
         {
@@ -2586,7 +2857,7 @@
         },
         {
           "kind": "tiny-text",
-          "text": "TEXAS WATER DEVELOPMENT BOARD, C29",
+          "text": "WICHITA FALLS, C37",
           "detail": "font-size 18px < 24px mobile floor (mark data-decorative if intentional)"
         }
       ],
@@ -2637,7 +2908,7 @@
           "anc": []
         },
         {
-          "text": "Three went the other way",
+          "text": "Two declined. One said yes.",
           "x": 120,
           "y": 206,
           "w": 600,
@@ -2652,13 +2923,13 @@
             [
               120,
               200,
-              572,
+              502,
               74
             ],
             [
               120,
               262,
-              111,
+              228,
               74
             ]
           ],
@@ -2795,7 +3066,7 @@
           "anc": []
         },
         {
-          "text": "The water board denied a petition asking it to project data center water demand.",
+          "text": "Wichita Falls approved a data center in an existing building.",
           "x": 120,
           "y": 936,
           "w": 430,
@@ -2810,13 +3081,13 @@
             [
               120,
               936,
-              409,
+              397,
               28
             ],
             [
               120,
               965,
-              358,
+              164,
               28
             ]
           ],
@@ -2845,10 +3116,10 @@
           "anc": []
         },
         {
-          "text": "TEXAS WATER DEVELOPMENT BOARD, C29",
+          "text": "WICHITA FALLS, C37",
           "x": 120,
           "y": 1012,
-          "w": 416,
+          "w": 220,
           "h": 25,
           "font_px": 18,
           "weight": "400",
@@ -2860,18 +3131,18 @@
             [
               120,
               1013,
-              416,
+              220,
               23
             ]
           ],
           "anc": []
         },
         {
-          "text": "Ten bodies in this record took one up. Seven acted and three did not.",
+          "text": "Sixteen times a Texas local government took one up. Fourteen acted and two did not.",
           "x": 120,
           "y": 1064,
           "w": 430,
-          "h": 66,
+          "h": 99,
           "font_px": 24,
           "weight": "400",
           "family": "Manrope",
@@ -2882,13 +3153,19 @@
             [
               120,
               1064,
-              409,
+              295,
               33
             ],
             [
               120,
               1097,
-              336,
+              379,
+              33
+            ],
+            [
+              120,
+              1130,
+              245,
               33
             ]
           ],
@@ -2924,7 +3201,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2450,
+      "render_ms": 2375,
       "ok": true,
       "canvases": [
         {
@@ -3158,7 +3435,7 @@
           "anc": []
         },
         {
-          "text": "Fort Worth is the only one of the ten still carrying a dated step.",
+          "text": "Fort Worth is the only one of the sixteen still carrying a dated step.",
           "x": 150,
           "y": 1128,
           "w": 520,
@@ -3173,7 +3450,7 @@
             [
               150,
               1128,
-              445,
+              491,
               33
             ],
             [
@@ -3215,7 +3492,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1478,
+      "render_ms": 1454,
       "ok": true,
       "canvases": [
         {
