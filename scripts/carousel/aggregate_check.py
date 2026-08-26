@@ -89,7 +89,11 @@ NUM = r"(?:\d{1,3}(?:,\d{3})+|\d{1,4}|" + "|".join(WORDS) + r")"
 MONTHS = ("January|February|March|April|May|June|July|August|September|October|November|December"
           "|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec")
 SHAPES = {
-    "ratio": re.compile(rf"\b({NUM})\s+of\s+({NUM})\b", re.I),
+    # "N of the M" as well as "N of M", since 2026-08-25. English writes a ratio over a known set
+    # with the article far more often than without it, and this pattern could not see it: a deck
+    # printing "three of the nine" asserted a ratio no computation had to back, and passed. The
+    # article is optional rather than a second pattern so one declaration covers both forms.
+    "ratio": re.compile(rf"\b({NUM})\s+of\s+(?:the\s+)?({NUM})\b", re.I),
     "span": re.compile(rf"\b(?:{MONTHS})\s+\d{{1,2}}(?:st|nd|rd|th)?\s+to\s+"
                        rf"(?:(?:{MONTHS})\s+)?\d{{1,2}}(?:st|nd|rd|th)?\b", re.I),
     "duration": re.compile(rf"\b({NUM})\s+(day|days|week|weeks|month|months|year|years|"
@@ -159,16 +163,32 @@ def detect(text: str, n_slides: int | None = None) -> list[dict]:
     """
     if EXEMPT.search(text):
         return []
-    found = []
+    raw = []
     for kind, rx in SHAPES.items():
         for m in rx.finditer(text):
             if is_slide_counter(text, m, kind, n_slides):
                 continue
-            found.append({"kind": kind, "phrase": m.group(0).strip()})
-        if kind in ("ratio", "span") and found:
-            # A ratio or a span already explains the numbers inside it, so a count detected in
-            # the same string would be the same figure reported twice.
-            break
+            raw.append({"kind": kind, "phrase": m.group(0).strip(),
+                        "start": m.start(), "end": m.end()})
+    # A ratio or a span already explains the numbers INSIDE ITS OWN SPAN, so a count or a
+    # duration overlapping one is the same figure reported twice. Until 2026-08-25 this was a
+    # `break` out of the shape loop, which suppressed every later shape ANYWHERE in the string:
+    # "Four of the eight came in the last 21 days" reported the ratio and silently exempted the
+    # 21, on a gate whose entire purpose is that an undeclared number cannot reach a frame. The
+    # suppression is by overlap now, which is what the comment always claimed it was.
+    def over(a, bs):
+        return any(a["start"] < b["end"] and a["end"] > b["start"] for b in bs)
+    covers = [r for r in raw if r["kind"] in ("ratio", "span")]
+    durs = [r for r in raw if r["kind"] == "duration"]
+    found = []
+    for r in raw:
+        if r["kind"] in ("count", "duration") and over(r, covers):
+            continue
+        # "21 days" satisfies the count shape too, because days is a plural noun. Precedence runs
+        # ratio and span, then duration, then count, so one figure is reported once.
+        if r["kind"] == "count" and over(r, durs):
+            continue
+        found.append({"kind": r["kind"], "phrase": r["phrase"]})
     return found
 
 
@@ -569,6 +589,27 @@ def self_test() -> int:
     # author copies it rather than guessing, and this fixture uses it for the same reason.
     ratio_bad = {"aggregates": [{"phrase": "4 of 9", "kind": "ratio", "value": 4,
                                  "of": 3, "from_claims": ["c1", "c2", "c3", "c4"]}]}
+    # A RATIO DOES NOT EXEMPT THE REST OF ITS SENTENCE (2026-08-25).
+    both = detect("Four of the eight came in the last 21 days.")
+    ok("a ratio and an unrelated duration in one string are BOTH reported, once each",
+       [f["kind"] for f in both] == ["ratio", "duration"], str(both))
+    inside = detect("four of the eight bodies acted")
+    ok("...but a count inside the ratio's own span is still suppressed",
+       [f["kind"] for f in inside] == ["ratio"], str(inside))
+
+    # A RATIO WRITTEN WITH THE ARTICLE (2026-08-25), all three directions.
+    ok("a ratio written with the article is detected",
+       any(f["phrase"].lower() == "two of the eight"
+           for f in detect("Two of the eight stop nothing")),
+       str(detect("Two of the eight stop nothing")))
+    ok("...and the bare form still is",
+       any(f["kind"] == "ratio" and f["phrase"].lower() == "4 of 9"
+           for f in detect("4 of 9 bodies declined")),
+       str(detect("4 of 9 bodies declined")))
+    ok("...and an article with no second number is not a ratio",
+       not any(f["kind"] == "ratio" for f in detect("two of the commissioners spoke")),
+       str(detect("two of the commissioners spoke")))
+
     ok("caught: a numerator larger than its whole",
        any("is not a ratio" in p for p in check(ratio_report, ratio_bad, claims)))
 
