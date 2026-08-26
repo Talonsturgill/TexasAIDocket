@@ -84,7 +84,7 @@
   },
   "still_dated": {
     "value": 2,
-    "rule": "of the sixteen items this deck carries, those whose key_dates hold a step on or after 2026-08-25",
+    "rule": "of the 17 items this deck carries, those whose key_dates hold a step on or after 2026-08-25",
     "from_items": [
       "tx-2026-0029",
       "tx-2026-0062"
@@ -201,77 +201,6 @@
       }
     ]
   },
-  "distinct_shapes": {
-    "value": 15,
-    "rule": "distinct kinds of action among the acting bodies",
-    "shapes": [
-      "abatement approved",
-      "abatement denied",
-      "conditional use only",
-      "cooling fill capped",
-      "discharge regulated",
-      "disclosure asked",
-      "framework adopted",
-      "made ineligible",
-      "permit denied",
-      "process initiated",
-      "request approved",
-      "resolution adopted",
-      "review established",
-      "staff directed",
-      "zone denied"
-    ],
-    "backed_by": {
-      "Brazoria County": [
-        "resolution adopted",
-        "c40"
-      ],
-      "Killeen": [
-        "permit denied",
-        "c17"
-      ],
-      "San Angelo": [
-        "cooling fill capped",
-        "c32"
-      ],
-      "San Marcos": [
-        "made ineligible",
-        "c35"
-      ],
-      "Archer County": [
-        "abatement denied",
-        "c5"
-      ],
-      "Hays County": [
-        "review established",
-        "c36"
-      ],
-      "El Paso": [
-        "framework adopted",
-        "c39"
-      ],
-      "Corpus Christi": [
-        "staff directed",
-        "c30"
-      ],
-      "Lubbock County": [
-        "disclosure asked",
-        "c31"
-      ],
-      "Fort Worth": [
-        "process initiated",
-        "c22"
-      ],
-      "Wichita Falls": [
-        "request approved",
-        "c37"
-      ],
-      "Williamson County": [
-        "abatement approved",
-        "c45"
-      ]
-    }
-  },
   "first_action_date": {
     "value": "2026-03-10",
     "rule": "earliest ORDERED date among the acting items, the date a body acted"
@@ -301,6 +230,14 @@
   "brazoria_vote": {
     "value": "5 to 0",
     "rule": "quoted from tx-2026-0051-c1"
+  },
+  "approvals": {
+    "value": 2,
+    "rule": "acting items whose shape is an approval rather than a refusal",
+    "from_items": [
+      "tx-2026-0029",
+      "tx-2026-0041"
+    ]
   },
   "resolutions": {
     "value": 5,

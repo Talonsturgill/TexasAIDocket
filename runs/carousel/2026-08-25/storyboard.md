@@ -230,11 +230,14 @@ risks:
 ```yaml
 slide: 2
 job: >
-  Show that the fourteen actions are a typology rather than one action repeated, by listing all
-  fourteen instruments on one sheet, in two columns, under one hard shadow.
+  Show that the fifteen actions are a typology rather than one action repeated, by listing all
+  fifteen of them on one sheet, in two columns, under one broad occlusion gradient.
 claims: [c17, c5, c9, c12, c31, c30, c22]
 numerals:
-  - computed_by: "out/2026-08-25/compute.py, distinct_shapes, seven instruments across seven bodies"
+  - computed_by: "out/2026-08-25/compute.py, restricted_count and acting_bodies, fifteen actions
+      across twelve local governments. distinct_shapes is NOT declared and is not published:
+      len(set()) over labels compute.py writes can only equal the number of labels, so no two
+      alike was a sentence that could not be false. `resolutions` is the substantive version."
 composition:
   structure: >
     Square on to a single flat sheet with the case's mullion throwing one hard diagonal occlusion
@@ -243,8 +246,8 @@ composition:
     is this deck's only depth cue and has to be established here where it is legible.
   bands: >
     The top third carries the sheet's head, the kicker and the counter over the lit half. The
-    middle third carries fourteen instrument names in two columns of seven, set hanging indent in
-    toner, the left column's first rows in light and the right column crossed by the shadow. The bottom third carries the sheet's foot in graded falloff to the
+    middle third carries fifteen instrument names in two columns, eight then seven, set
+    hanging indent in toner, the left column's first rows in light and the right column in shade. The bottom third carries the sheet's foot in graded falloff to the
     clip shadow, the spring clip drawn as a lit modeled solid with its own cast shadow on the
     sheet, and the site line and star on the case rail below it.
   focal: >
@@ -258,7 +261,9 @@ art:
     geometry and carry no air gap, which is the physical fact the whole deck rests on.
   palette: "bond under sky_glare, toner type, case_dark shadow core over glaze"
   value_structure: >
-    Lightest is the lit half of the sheet. Darkest is the shadow core at the sheet's top left
+    Lightest is the lit wedge at the sheet's upper left. Darkest is the shade core at the LOWER
+    RIGHT, which is where the code puts it. An earlier draft of this line had the core top left
+    and the lit half to the right, describing the opposite of what draws
     where a corner bracket doubles the occlusion. The type holds one value throughout so the
     shadow does the separating.
   motion: "left to right across the shadow boundary, then down the list"
@@ -267,14 +272,17 @@ type:
   dek: "Twelve local governments. The shape decides whether anything stops."
 acceptance:
   - "the shadow has a visibly wider penumbra at the bottom of the sheet than at the top, which is the air gap doing work"
-  - "every one of the fourteen instrument names is legible at 1080px and none is clipped by the shadow edge"
+  - "every one of the fifteen instrument names is legible at 1080px and each carries the claim id
+     whose own words prove its shape"
   - "the shadow edge CROSSES instrument names rather than passing to the right of all of them, which is
      the whole job of the technique and is what round 5 found it not doing"
   - "the toner value of a name inside the shadow equals the toner value of a name outside it"
   - "the spring clip casts its own small contact shadow onto the sheet, dark core plus penumbra"
   - "no instrument name is printed that compute.py does not carry a claim id for"
 risks:
-  - "fourteen lines under a diagonal is one step from a table with a gradient on it, and a table is furniture"
+  - "fifteen lines under a diagonal is one step from a table with a gradient on it, and a table is furniture"
+  - "a HARD edge cannot ship on this frame. fifteen lines fill the sheet and machine QA reads a value
+     boundary across a glyph band as the strikethrough it looks like at feed size"
   - "routing the edge clear of the type to stop it banding removes the reason the edge exists, which is
      exactly what round 3 did here and round 5 caught"
 ```
@@ -282,13 +290,13 @@ risks:
 ```yaml
 slide: 3
 job: >  # REVISED after the flow critic, see the revision note below
-  Show WHEN the fourteen actions fell, by seating one letterboard tile per action against its month,
+  Show WHEN the fifteen actions fell, by seating one letterboard tile per action against its month,
   so the June cluster is a thing a reader counts rather than a sentence they are asked to believe.
 claims: []
 numerals:
   - computed_by: "out/2026-08-25/compute.py, first_action_date, the earliest ordered date"
   - computed_by: "out/2026-08-25/compute.py, last_action_date"
-  - computed_by: "out/2026-08-25/compute.py, span_days, 154"
+  - computed_by: "out/2026-08-25/compute.py, span_days, 156"
 composition:
   structure: >
     No case at all on this frame. The lobby's black felt changeable letter board, square on and
@@ -464,7 +472,7 @@ art:
   value_structure: >
     Lightest is the two sheets at bond. Darkest is the case's lower lip seen from slightly above,
     inside face case_dark. This frame's FIELD is the brighter side of the deck's biggest local
-    step: measured, it is 70.8 and frame 7 immediately after it is 52.4, a 18.4 L* drop, which is
+    step: measured, it is 70.6 and frame 7 immediately after it is 52.4, a 18.2 L* drop, which is
     what makes frame 7 land. It is not the brightest frame in the deck, frames 5 and 8 are, and
     an earlier draft of this line claimed it was.
   motion: "left sheet to right sheet, then down to the empty cork"
@@ -519,7 +527,7 @@ art:
   value_structure: >
     Lightest is the sheet's bottom edge. Darkest is the top rail's underside and its shadow across
     the frame's top, carrying the reversed hook. The falloff across the four repeats measures 16.5
-    L*, and the frame's field at 52.4 is 18.4 L* under frame 6 before it. It is not the deck's
+    L*, and the frame's field at 52.4 is 18.2 L* under frame 6 before it. It is not the deck's
     darkest field, frame 3 at 14.4 is, and an earlier draft of this line claimed it was.
     Two committed files carried two different values for that falloff, 22.1 here and 17.2 in
     artwork.json, and neither was right. It is measured once now, in out/2026-08-25/tmp/measure.py,
@@ -574,10 +582,13 @@ art:
   palette: "mesquite_shade over anodize, glaze_deep glazing, bond reflected sheet, toner"
   value_structure: >
     Lightest is the reflected sheet. Darkest is the live oak's shadow across the near case, lower
-    right. The frame is the deck's quietest and it sits between its two loudest.
+    right. Measured it is 56.2, with frames 7 and 9 at 52.4 and 48.8 either side, so it
+    is the BRIGHTEST of the deck's last three. An earlier draft called it the quietest between
+    its two loudest, which was wrong on both halves and was reported repaired twice without being
+    touched. It is written from measurements.json now.
   motion: "onto the reflection, then back to the near sheet it floats over"
 type:
-  hook: "Two declined. One said yes."
+  hook: "Two declined. Two said yes."
   dek: "Tom Green County's court voted not to pursue a moratorium in Precinct 4."
 acceptance:
   - "the reflected geometry resolves as a second notice case and not as a smudge or a double exposure"

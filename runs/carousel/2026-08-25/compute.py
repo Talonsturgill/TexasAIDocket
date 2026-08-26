@@ -200,6 +200,10 @@ def ordered_on(iid):
 restricted_n = len(ACTED)
 declined_n   = len(DECLINED)
 total_n      = restricted_n + declined_n
+# `shapes_n` is deliberately NOT published. len(set()) over labels written in this file
+# can only ever equal the number of labels, so "no two alike" was a sentence that could
+# not be false. `resolutions` below is the substantive version, counted over what the
+# CLAIMS say. Kept as a local because the shapes list at the foot still prints it.
 shapes_n     = len({shape for _, shape, _c in ACTED.values()})
 
 dates = sorted(ordered_on(i) for i in ACTED)
@@ -305,13 +309,10 @@ out = {
                         "rule": "days from the %dth from last ordered action to the last, MEASURED after the half was chosen" % late_n,
                         "from_items": sorted(ACTED, key=ordered_on)[-late_n:]},
   "still_dated":       {"value": len(still_dated),
-                        "rule": "of the sixteen items this deck carries, those whose key_dates hold a step on or after 2026-08-25",
+                        "rule": "of the %d items this deck carries, those whose key_dates hold a step on or after 2026-08-25" % total_n,
                         "from_items": still_dated},
   "chronology":        {"value": len(chronology), "rule": "the actions in the order they happened",
                         "marks": chronology},
-  "distinct_shapes":   {"value": shapes_n, "rule": "distinct kinds of action among the acting bodies",
-                        "shapes": sorted({s for _, s, _c in ACTED.values()}),
-                        "backed_by": {p: [s, c] for p, s, c in ACTED.values()}},
   "first_action_date": {"value": first_date, "rule": "earliest ORDERED date among the acting items, the date a body acted"},
   "last_action_date":  {"value": last_date,  "rule": "latest ORDERED date among the acting items"},
   "span_days":         {"value": span_days,  "rule": "days from first_action_date to last_action_date"},
@@ -336,6 +337,13 @@ out = {
   # This is the substantive version, counted over what the CLAIMS say rather than over what the
   # labels say: how many of the acting items rest on a claim whose own words call the thing a
   # resolution. Five of them do, and a resolution is one instrument used five times.
+  # HOW MANY OF THE ACTIONS SAID YES. Frame 8's hook read "One said yes" while frame 2's own
+  # list printed two approvals, because Williamson County joined the set in round 7 and the
+  # hook did not move. It was a hand-typed count on a product whose law is that no number is,
+  # and it was wrong, which is what a typed count buys you.
+  "approvals":         {"value": len([i for i in ACTED if "approv" in ACTED[i][1]]),
+                        "rule": "acting items whose shape is an approval rather than a refusal",
+                        "from_items": sorted(i for i in ACTED if "approv" in ACTED[i][1])},
   "resolutions":       {"value": len([i for i in ACTED
                                       if "resolution" in (_by_id[ACTED[i][2]].get("quote", "") + " "
                                                           + _by_id[ACTED[i][2]].get("text", "")).lower()]),

@@ -114,7 +114,11 @@ window.renderReady = new Promise(function(resolve){
   CARDS.forEach(function(sh){
     var px=sh[0]+sh[2]/2, py=sh[1]+34;
     x.fillStyle='rgba(74,52,26,0.30)'; x.fillRect(px-13,py-4,34,15);   // soft cast
-    x.fillStyle='rgba(52,36,16,0.55)'; x.fillRect(px-3,py+2,7,7);      // the puncture
+    // The puncture sits BELOW the dome's lower edge, where paper actually shows. Drawn at
+    // py+2 it was entirely inside arc(px,py,15) and contributed nothing, so the frame
+    // shipped a pin with no hole in the card under it for two rounds.
+    x.fillStyle='rgba(52,36,16,0.62)'; x.fillRect(px-3,py+13,6,9);
+    x.fillStyle='rgba(255,250,236,0.42)'; x.fillRect(px-3,py+22,6,2);
     var pg=x.createLinearGradient(px-15,py-15,px+13,py+13);
     pg.addColorStop(0,'#F0D28C'); pg.addColorStop(0.46,'#C79B45'); pg.addColorStop(1,'#7A5A20');
     x.beginPath(); x.arc(px,py,15,0,Math.PI*2); x.fillStyle=pg; x.fill();

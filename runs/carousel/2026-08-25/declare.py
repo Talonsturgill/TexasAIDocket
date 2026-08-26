@@ -55,6 +55,11 @@ PHRASES = {
                                         "acting bodies whose own source says the action does not bind", NB),
  "Six of the fifteen":            ratio("stated_binding", "restricted_count",
                                         "actions that changed a legal state on the day", BI),
+ "five times":                    count("resolutions", "acting items whose own cited claim calls the instrument a resolution",
+                                        ["c36", "c39", "c31", "c40", "c22"]),
+ "four of the fifteen":           ratio("force_unstated", "restricted_count",
+                                        "acting bodies the record says nothing about either way",
+                                        ["c40", "c39", "c37", "c45"]),
  "three of the six":              ratio("busiest_body_binding", "stated_binding",
                                         "how many of the binding actions San Angelo wrote", SA),
  "Four applications":             {"kind": "count", "value": V("brazoria_applications"),
@@ -80,8 +85,12 @@ PHRASES = {
                                    "computed_by": "not computed. Quoted from c46, the route into the Fort Worth hearing"},
 }
 
+# BOTH PUBLISHED SURFACES. The render AND the caption, because the gate now reads both and a
+# generator that checked only one would declare a caption figure the render never prints and
+# then refuse to write.
 rep = json.loads((ROOT / "out/2026-08-25/render/render_report.json").read_text())
-found = {f["phrase"] for f in A.scan_report(rep)}
+cap = (ROOT / "out/2026-08-25/caption.txt").read_text()
+found = {f["phrase"] for f in A.scan_report(rep)} | {f["phrase"] for f in A.scan_caption(cap)}
 missing = found - set(PHRASES)
 extra   = set(PHRASES) - found
 assert not missing, "the render prints numbers this file does not declare: " + ", ".join(sorted(missing))

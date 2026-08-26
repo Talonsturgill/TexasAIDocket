@@ -270,6 +270,19 @@
    "computed_by": "out/2026-08-25/compute.py, acting_bodies. distinct places among the acting items"
   },
   {
+   "phrase": "five times",
+   "kind": "count",
+   "value": 5,
+   "from_claims": [
+    "c36",
+    "c39",
+    "c31",
+    "c40",
+    "c22"
+   ],
+   "computed_by": "out/2026-08-25/compute.py, resolutions. acting items whose own cited claim calls the instrument a resolution"
+  },
+  {
    "phrase": "four of the fifteen",
    "kind": "ratio",
    "value": 4,
