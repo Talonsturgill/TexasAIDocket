@@ -23,6 +23,7 @@ The National Science Foundation made a cooperative agreement to the Texas A&M En
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-08-23 · Admitted. The award record and the agency's own announcement are both on the record, and the facility's start date has not yet arrived.
+- 2026-08-25 · Checked and unchanged. The decision still stands as decided.
 - 2026-08-26 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence

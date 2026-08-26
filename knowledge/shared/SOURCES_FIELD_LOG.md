@@ -612,6 +612,29 @@ as observation and become registry law only if a second sighting confirms them, 
 
 ---
 
+## 2026-08-26, carousel no. 7's scoring rounds
+
+**`www.puc.texas.gov/industry/projects/rules/<project>/<project>.aspx` answered 503.** The run
+reached for the project page for Project 58482 to verify a comment deadline the record already
+carried, and got a bare `503 Service Unavailable` with no body. One sighting, one path, no
+retry schedule attempted, so this is an observation and not a routing rule. It matters because the
+closing frame's whole subject was that project and the run had to decide whether it could print a
+date it could not re-fetch. **It did not.** The date stayed off the slide until the frame was
+rebuilt to cite the record item rather than a claim, which is the discipline working rather than a
+source problem.
+
+**What the run learned about its own claims rule from that.** `ledger/docket.json`'s `key_dates`
+and `public_access` are fact checked when an item is admitted, and the deck's rule is that
+published prose draws from `claims.json`. Those two are not the same set, and the closing frame
+needed a fact that lives in the first and not the second. Printing the record item id
+(`TX-2026-0002`) rather than a claim id is honest and readable, and it is also the deck admitting
+it has two provenance vocabularies. That is a design question for a maintainer, not a source note,
+and it is written here because the next run will meet it at the same frame.
+
+**Nothing else behaved differently from `SOURCES_REGISTRY.md` this run.** The Legistar APIs for
+Brazoria County and Corpus Christi, the San Angelo ordinance PDF, the Fort Worth reprint (403 on
+the origin, already registered), News Channel 6 and KCBD all answered as the registry describes.
+
 ## August 26th, 2026
 
 **`dir.texas.gov` publishes `User-agent: ClaudeBot` `Disallow: /` and `User-agent: anthropic-ai`

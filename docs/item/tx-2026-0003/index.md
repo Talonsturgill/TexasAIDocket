@@ -33,6 +33,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-20 · The docket is on the August 21st agenda after all. The published agenda for that open meeting names Docket 59315 as item 3, marked for discussion and possible action, and names a second Oncor 765 kV application as item 2. The calendar feed's entry for the meeting names no docket because no feed entry names one. The filing index now reports 5793 filings, and the web view lists only its first page of them, so a count taken from the rows on screen understates the docket.
 - 2026-08-21 · Checked. The commission's published agenda for the August 21st, 2026 open meeting still names Docket 59315 as item 3 for discussion and possible action. The filing index has moved from 5793 to 5797 since the last check.
 - 2026-08-26 · The filing index moved from 5797 to 5810, so the docket took new filings over the weekend. The case style is unchanged and the application is still pending before the commission. The landowner protests and the Comanche County resolution are still on the record.
+- 2026-08-26 · Checked and unchanged. The interchange filing list for Docket 59315 answers and its newest filing is still dated March 17th, 2026. No final order has been entered.
 
 ## Evidence
 

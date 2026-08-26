@@ -24,6 +24,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-08-19 · Checked and unchanged. The notice still sets the hearing for March 25th at 5:30 p.m. at the district office in Pecos and still puts the project cost at 6 billion dollars.
 - 2026-08-22 · Checked and unchanged. The district's notice still sets the hearing for March 25th, 2026 on the Energy Forge One reinvestment zone and the Chapter 312 abatement application. It still puts the estimated project cost at 6 billion dollars.
+- 2026-08-25 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-08-26 · Checked and unchanged. Still pending, with no dated movement.
 
 ## Evidence
