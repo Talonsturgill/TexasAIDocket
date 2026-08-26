@@ -35,9 +35,18 @@ permissions:
 env:
   PLAYWRIGHT_VERSION: "1.56.1"
 
+# SUPERSEDING A PULL REQUEST'S RUN IS RIGHT AND SUPERSEDING MAIN'S IS NOT, AND THIS DID BOTH.
+#
+# On a pull request only the head being merged matters, so a later push should kill the run for
+# the head nobody will merge. Every push to main shared that one behaviour under a single group,
+# and a merge landing while the previous merge's run was still going killed it. On 2026-08-26 six
+# jobs were cancelled at 15:21 and the next merge's run never completed either, so the branch
+# every routine checks out spent the afternoon with nothing green on it, which is precisely the
+# state the delivery policy in CLAUDE.md forbids merging in. A run on main is the record of
+# whether main is healthy, and there is nothing later to supersede it with.
 concurrency:
   group: guards-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 # SIX JOBS RATHER THAN ONE, AND THE REASON IS MEASURED RATHER THAN FELT.
 #

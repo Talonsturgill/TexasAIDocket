@@ -3354,8 +3354,15 @@ footer.site .colophon {{ width:4rem; height:4rem; fill:var(--ink); opacity:.28; 
    inside running prose stops it wrapping mid-phrase, which is a worse outcome than a small target
    a reader hits by aiming at a word. So this reaches only the standalone ones. A source citation
    and a call to action are objects on the page, not words in a sentence. */
+/* AND THE ONE THING inline-block TAKES AWAY, GIVEN BACK. An inline-block is sized by its own
+   content, and a source url has no space in it to break at, so the box grew to the width of the
+   longest url on the page and pushed the document sideways. Carousel no. 8 cited a 133 character
+   agenda book url and `/articles/2026-08-26/` scrolled 16 pixels sideways at 390, which is the
+   width of the phone most readers arrive on. `overflow-wrap:anywhere` is the one value that also
+   shrinks the box's min-content size, so `break-word` would have wrapped the text and left the
+   overflow. The rule above buys a 24 pixel target and this is what it costs without this line. */
 .meta a, cite a, a.go, .filelist a, .prose > p > a.plain {{ display:inline-block;
-  min-width:24px; padding-block:.28rem; }}
+  min-width:24px; padding-block:.28rem; overflow-wrap:anywhere; }}
 .footnav li {{ max-width:none; }}
 /* WHERE THIS RECORD IS ELSEWHERE. A row of marks, sized as targets first.
    44 pixels, not the 24 the footnav links settled for. WCAG 2.5.8 sets 24 as the floor and
