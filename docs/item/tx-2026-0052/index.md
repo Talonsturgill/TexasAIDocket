@@ -11,7 +11,7 @@ On June 9th, 2026 Brazoria County Commissioners Court adopted a measure on data 
 - Public access: Public meeting
 - Take part: https://brazoriacountytx.legistar.com/MainBody.aspx
 
-- Last checked: 2026-08-22
+- Last checked: 2026-08-26
 
 ## Dates
 
@@ -24,6 +24,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-08-19 · Checked and unchanged. Nothing about data centers, abatements or reinvestment zones has come before the court since July 15th, so the resolution stands. The court did adopt two separate license plate reader agreements on July 31st, with the Department of Public Safety and with the Houston High Intensity Drug Trafficking Area.
 - 2026-08-22 · Checked and unchanged. The county's own record still marks the resolution on data center development adopted on June 9th by the Commissioners Court.
+- 2026-08-26 · Checked and unchanged. The county's resolution still stands and its own text still supports appropriately designed and sited data centers rather than opposing them outright.
 
 ## Evidence
 

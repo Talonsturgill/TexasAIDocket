@@ -634,3 +634,67 @@ and it is written here because the next run will meet it at the same frame.
 **Nothing else behaved differently from `SOURCES_REGISTRY.md` this run.** The Legistar APIs for
 Brazoria County and Corpus Christi, the San Angelo ordinance PDF, the Fort Worth reprint (403 on
 the origin, already registered), News Channel 6 and KCBD all answered as the registry describes.
+
+## August 26th, 2026
+
+**`dir.texas.gov` publishes `User-agent: ClaudeBot` `Disallow: /` and `User-agent: anthropic-ai`
+`Disallow: /`, for the whole host.** Observed this run and settled for the research phase, which
+identifies as ClaudeBot. The Texas Department of Information Resources is the agency that certifies
+which AI awareness training satisfies House Bill 3512 and that collects every Texas city's and
+county's compliance certification, and that deadline is August 31st, 2026. **That deadline is not
+in the record and this is why.** The host answers a browser User-Agent perfectly well, which makes
+fetching it a choice rather than an obstacle, and the choice is to respect the file. The statute
+was admitted instead, on the Legislature's own bill record at
+`capitol.texas.gov/BillLookup/History.aspx?LegSess=89R&Bill=HB3512`.
+
+This is the same shape as the `lrl.texas.gov` entry above and the second host in four days whose
+whole-site agent disallow sits behind a permissive `User-agent: *`. **The pattern is now worth
+stating: read the agent blocks before the wildcard, on every new host, every time.**
+
+**`scripts/site/reverify.py` has no crawl boundary of any kind.** It fetches every claim URL in the
+record on every run. The record cites `lrl.texas.gov` in 12 claims across 4 entries. The script
+sends a descriptive `TexasAIDocket/1.0`, which matches `User-agent: *` and its `Allow: /`, so on
+the letter of the file it is permitted, and the owner's own reasoning on August 25th was to hold
+the collectors out anyway. **The code does not implement the decision this log records.**
+`scripts/site/**` is `human` owned, so this run may not fix it. Written down and stopped.
+
+**This run's own scratch fetcher reached `capitol.texas.gov/tlodocs/` once**, while re-checking
+`tx-2026-0077`, because its boundary list named three hosts and no paths. Corrected in the same run
+and the item's citation moved to a compliant primary source on `senate.texas.gov`. Recorded here
+rather than quietly fixed, because a boundary list keyed on hosts when the decision was about a
+path is a defect in the tool and the next run will build the same tool.
+
+**`www.utsystem.edu` agenda book PDFs read cleanly with `pypdf`.** The combined August 12th and
+13th book is 13,480,609 bytes across 307 pages and the per-committee extracts are small enough to
+fetch whole. UT System publishes each committee's pages as a separate file, so a committee
+document's boundary is the publisher's own and never a guess at page breaks. **The documents number
+their own pages in a running footer** (`Facilities Planning and Construction Committee Agenda Book
+- 130`), and that footer is the folio to quote. A PDF page index is not a page number, and this run
+published 129 to 133 before catching it.
+
+**`tacc.utexas.edu` answered 403 to the research phase** and `interchange.puc.texas.gov` answered
+503 to one client and 200 to another within the same run. Both are fetcher outcomes and not crawl
+boundaries, so they stay here as observation until a second sighting.
+
+**`www.statesman.com` publishes a whole-host `Disallow: /` under `User-agent: ClaudeBot`.** Read
+before fetching, while looking for coverage published after the August 12th UT System meeting, and
+not fetched. That is the third host in four days carrying an agent block behind a permissive
+`User-agent: *`, after `lrl.texas.gov` and `dir.texas.gov`, and it is the reading order stated in
+the entry above earning its keep on the same day it was written.
+
+`communityimpact.com` carries no relevant disallow and served the report that settled it, at
+`communityimpact.com/austin/central-austin/development/2026/08/13/ut-system-regents-approve-first-phase-of-dell-medical-center/`.
+
+**UT System publishes a pre-meeting agenda book and, for this meeting, no minutes.** The August
+12th book is what a committee was ASKED to approve, and there is no document on `utsystem.edu`
+published after the meeting that says what the board did. So the fact that the regents approved
+Phase 1 is not establishable from the publisher at all this week, and the only source for it is
+journalism.
+
+**This is the source behaviour behind this run's second hard fail.** The record and four deck
+surfaces said the board voted, authorized and amended, every one of them citing the agenda book,
+which is a request. The bar the routine sets is primary sources over journalism, and on this fact
+the primary source cannot answer the question and the journalism can. **Prefer the primary document
+for what a body was asked to do and require a post-meeting source for what it did**, rather than
+reading a stronger verb out of the stronger source type. `public_access.how` on `tx-2026-0095` now
+states that no minutes exist.

@@ -132,9 +132,16 @@ def provenance_line(docs: list[dict], fetched: "str | list[str]") -> str:
     and the gate reads ids rather than adverbs. `fetched` now takes the whole set of distinct
     dates and the sentence is built from how many there are.
     """
-    NAME = {"primary_official": "official records", "primary_corporate": "company filings",
-            "secondary_reported": "news reports", "data": "published data",
-            "unstated": "documents of unstated type"}
+    # SINGULAR AND PLURAL, because this line is PUBLISHED COPY and it shipped "one news reports"
+    # into the first comment of the 2026-08-26 deck. Every name here was written plural on the
+    # assumption a deck cites more than one of each kind, and the first deck to cite exactly one
+    # news report published the disagreement on the surface whose whole job is looking careful.
+    # The self-test below asserts both halves, which is why the one/two case is in it.
+    NAME = {"primary_official": ("official record", "official records"),
+            "primary_corporate": ("company filing", "company filings"),
+            "secondary_reported": ("news report", "news reports"),
+            "data": ("published dataset", "published data"),
+            "unstated": ("document of unstated type", "documents of unstated type")}
     kinds: dict[str, int] = {}
     for d in docs:
         k = d.get("source_type") or "unstated"
@@ -142,7 +149,7 @@ def provenance_line(docs: list[dict], fetched: "str | list[str]") -> str:
     def _n(i: int) -> str:
         words = "one two three four five six seven eight nine ten eleven twelve".split()
         return words[i - 1] if 1 <= i <= len(words) else str(i)
-    parts = [f"{_n(v)} {NAME.get(k, k)}" for k, v in
+    parts = [f"{_n(v)} {(NAME.get(k) or (k, k))[0 if v == 1 else 1]}" for k, v in
              sorted(kinds.items(), key=lambda kv: (-kv[1], kv[0]))]
     grade = parts[0] if len(parts) == 1 else ", ".join(parts[:-1]) + " and " + parts[-1]
     days = sorted({fetched} if isinstance(fetched, str) else set(fetched))
@@ -202,7 +209,18 @@ def build(run_dir: Path) -> str:
         lines.append(f"{title}, {ordinal_date(when)}. {' '.join(ids)}"
                      if when else f"{title}. {' '.join(ids)}")
         lines.append(url)
-    lines.append("Day counts computed in compute.py from the source dates above.")
+    # ONLY IF THE RUN ACTUALLY COMPUTED ONE. This sentence was appended unconditionally, so the
+    # 2026-08-26 deck published "Day counts computed in compute.py from the source dates above"
+    # over a compute.py that parses no date and a deck that prints no day count anywhere. An
+    # integrity judge called it a hard fail and was right: it is a provenance claim, made to a
+    # reader, asserting a computation that did not happen, inside the file whose own docstring
+    # says no count and no date in the output is typed here. A line claiming a computation is
+    # exactly the defect compute.py exists to close.
+    agg_f = run_dir / "aggregates.json"
+    aggs = (json.loads(agg_f.read_text(encoding="utf-8")).get("aggregates", [])
+            if agg_f.exists() else [])
+    if any(a.get("kind") in ("duration", "span") for a in aggs if isinstance(a, dict)):
+        lines.append("Day counts computed in compute.py from the source dates above.")
     return "\n".join(lines) + "\n"
 
 
@@ -285,7 +303,12 @@ def self_test() -> int:
          "retrieved": "2026-08-25", "quote": "the third quoted span here", "text": "c"}]}
     _line = provenance_line(_mix["claims"], "2026-08-25")
     ok("the provenance line counts the source types it actually holds",
-       "two news reports" in _line and "one official records" in _line, _line)
+       "two news reports" in _line and "one official record" in _line, _line)
+    # AND THE SINGULAR IS ASSERTED, because the line above used to read "one official recordS"
+    # and this assertion encoded the bug rather than catching it. A self-test written against
+    # the current output rather than against the intended output freezes whatever shipped.
+    ok("...and a single source of a kind is not pluralised",
+       "one official records" not in _line and "one news reports" not in _line, _line)
     ok("...and never claims they are all primary",
        "all primary" not in _line, _line)
     ok("...and a single grade reads as one clause",

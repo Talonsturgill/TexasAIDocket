@@ -1,0 +1,304 @@
+<!doctype html>
+<!-- SLIDE 2 — "The ground as it stands". Eight in the morning, an overhead read of open
+     limestone, and every object on it drawn WITH the shadow it throws. This frame teaches the
+     deck's law by showing it rather than by stating it. BUILT THINGS CAST SHADOWS. Slide 3
+     answers it with a mass that casts nothing.
+
+     REBUILT AFTER THE PANEL. It shipped drawing the shadows ALONE, with no object anywhere on
+     the frame, on the theory that a reader completes the object from its cast. All three
+     judges read the result as blurred smudges and none of them completed anything. Two named
+     it the weakest frame in the deck and one called its single lit element a render error. A
+     conceit a reader has to be told about is a conceit that did not work, and this one had its
+     own dossier risk line predicting exactly this ("shadows without objects read as stains").
+     The objects are now on the frame and the casts are theirs.
+
+     LABELLED MODELED. A reader meets this drawing beside a quotation about a named 27 acre
+     site and under the place line AUSTIN, TEXAS, and will read it as that site's inventory.
+     The record gives the acreage and says nothing whatever about what stands there, so an
+     unlabelled site plan here would be invented data wearing the shape of a survey. The frame
+     says which of the two it is, in the measured against modeled vocabulary the Grid Watch
+     already publishes. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<script src="@@ASSETS@@/js/noise.js"></script>
+<style>
+  /* deck tokens, declared once so the palette is readable rather than implicit
+     inside rgba() calls. These are the storyboard's own values. */
+  :root {
+    --limestone: #E5DECC;
+    --blackland: #211E1A;
+    --liveoak: #4D5842;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body { background:#E5DECC; position:relative;
+         font-family:"Fraunces", serif; -webkit-font-smoothing:antialiased; }
+  #art { position:absolute; left:0; top:0; }
+  .grain { position:absolute; inset:0; opacity:0.05; mix-blend-mode:overlay;
+           background-repeat:repeat; pointer-events:none; }
+
+  .kicker { position:absolute; left:80px; top:88px;
+            font-family:"JetBrains Mono",monospace; font-weight:500; font-size:26px;
+            letter-spacing:0.16em; color:#33402F; }
+  .counter { position:absolute; right:80px; top:88px;
+             font-family:"JetBrains Mono",monospace; font-weight:500; font-size:26px;
+             letter-spacing:0.12em; color:#33402F; }
+
+  .hookwrap { position:absolute; left:80px; top:150px; width:900px; }
+  h1 { font-weight:820; font-size:98px; line-height:0.96;
+       letter-spacing:-0.02em; color:#211E1A; font-variation-settings:"opsz" 110; }
+
+  /* The quote sits over open ground, so it takes a solid knockout plate. */
+  .qwrap { position:absolute; left:80px; top:840px; width:800px; }
+  .qplate { background:#F4F0E4; padding:26px 30px 28px 30px; }
+  .q { font-family:"Manrope",sans-serif; font-weight:600; font-size:31px; line-height:1.34;
+       color:#211E1A; }
+  .qsrc { font-family:"JetBrains Mono",monospace; font-size:24px; color:#3E3A30;
+          letter-spacing:0.06em; margin-top:16px; }
+
+  /* NO FILL ON THIS BAND. It carried background:#E5DECC, which painted a flat panel over the
+     ground the canvas had just worked, so the lowest third read as a caption strip at thumb
+     size on the one frame whose dossier promises lit ground there. */
+  .lower { position:absolute; left:0; right:0; bottom:0; padding:26px 80px 30px 80px; }
+  .note { font-family:"Manrope",sans-serif; font-weight:600; font-size:29px; line-height:1.32;
+          color:#33402F; max-width:840px; }
+  /* The measured against modeled label, in the same vocabulary the Grid Watch publishes.
+     SET AT THE KICKER'S SIZE, which is this deck's own legible floor. At 22px it rendered
+     around 9px in the 432px feed thumb, and this is the frame whose whole drawing is invented
+     geometry. A disclosure nobody can read is not one. */
+  .modeled { font-family:"JetBrains Mono",monospace; font-size:26px; font-weight:500;
+             letter-spacing:0.06em; color:#5A5444; margin-top:14px; line-height:1.35;
+             max-width:880px; }
+  .place { font-family:"JetBrains Mono",monospace; font-size:24px; font-weight:500;
+           letter-spacing:0.14em; color:#4D5842; margin-top:14px; }
+  .star { position:absolute; right:80px; bottom:90px; }
+  .tx-site { position:absolute; right:80px; bottom:30px; text-align:right;
+           font-family:"JetBrains Mono",monospace; font-size:24px; font-weight:500;
+           letter-spacing:0.07em; }
+  .mononum { font-family:"JetBrains Mono",monospace; font-weight:700; font-size:0.86em;
+             font-variant-numeric:tabular-nums; letter-spacing:-0.02em; }
+</style>
+</head>
+<body data-encodes='[{"claim":"the shadow masses are darker than the open limestone ground between them","reads":"differ","a":[[260,660,170,80]],"b":[[300,430,170,80]]}]'>
+  <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+  <div class="grain" id="grain"></div>
+
+  <div class="kicker">THE GROUND</div>
+  <div class="counter">02 / 09</div>
+
+  <div class="hookwrap"><h1>About <span class="mononum">27</span> acres, and what stands on them</h1></div>
+
+  <div class="qwrap">
+    <div class="qplate">
+      <div class="q">&quot;a transformative new academic medical destination on an approximately
+        27-acre site in the center of the west (former) Pickle Research Campus&quot;</div>
+      <div class="qsrc">BOARD ITEM, PROJECT DESCRIPTION</div>
+    </div>
+  </div>
+
+  <div class="lower">
+    <div class="note">Everything standing on this ground today throws a shadow.</div>
+    <div class="modeled">MODELED. THE RECORD GIVES THE ACREAGE AND NOT WHAT
+      STANDS ON IT</div>
+    <div class="place">AUSTIN, TEXAS</div>
+  </div>
+
+  <svg class="star" width="46" height="46" viewBox="0 0 24 24" data-decorative>
+    <path d="M12 1.6l2.9 7.5 8 .4-6.2 5.1 2.1 7.8L12 18l-6.8 4.4 2.1-7.8L1.1 9.5l8-.4z"
+          fill="#211E1A" opacity="0.5"/>
+  </svg>
+
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260826;
+  TX.reseed(SEED);
+  var R = TX.rng(SEED);                 // RETURNS A GENERATOR. TX.rng() * n is NaN.
+
+  var ctx = document.getElementById('art').getContext('2d');
+  ctx.scale(2, 2);
+
+  var W = 1080, H = 1350;
+
+  // ONE SUN. Eight in the morning in August at this latitude puts the sun low in the east,
+  // so every shadow on this frame runs west-southwest and every one of them is long.
+  // The same azimuth is used on slide 6, which is an acceptance item on both frames.
+  var AZ = 246 * Math.PI / 180;         // direction the shadows RUN, degrees clockwise from north
+  var SX = Math.sin(AZ), SY = -Math.cos(AZ);
+  var LEN = 2.75;                       // shadow length as a multiple of object height
+
+  // Ground: limestone, unmodulated except for a broad falloff so it is not a flat fill.
+  var g = ctx.createLinearGradient(0, 240, 1080, 1290);
+  g.addColorStop(0.00, '#EAE4D4');
+  g.addColorStop(0.55, '#E4DDCA');
+  g.addColorStop(1.00, '#D9D1BC');
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, W, H);
+
+  // A very low frequency tone in the ground so it reads as ground rather than as paper.
+  ctx.save();
+  ctx.globalAlpha = 0.20;
+  for (var y = 300; y < 1290; y += 3) {
+    for (var x = 0; x < W; x += 3) {
+      var n = TX.fbm2(x * 0.09, y * 0.09, {octaves: 4}) * 0.65 + TX.fbm2(x * 0.24, y * 0.24, {octaves: 4}) * 0.35;
+      if (n > 0.18) { ctx.fillStyle = '#BFB69C'; ctx.fillRect(x, y, 3, 3); }
+      else if (n < -0.18) { ctx.fillStyle = '#F0EADA'; ctx.fillRect(x, y, 3, 3); }
+    }
+  }
+  ctx.restore();
+
+  // Every object is drawn with the cast it throws, and the cast is solved from the object's
+  // own height rather than from a number typed beside it, so the two can't drift apart.
+  //
+  //   cast length = height * 2.75, at AZ, which is the cotangent of an eight in the morning
+  //   sun altitude in August at this latitude, stated once at the top of this file.
+
+  function cast(ax, ay, rx, ry, h) {
+    var dx = SX * h * LEN, dy = SY * h * LEN;
+    ctx.save();
+    ctx.globalCompositeOperation = 'multiply';
+    // the penumbra, marched from the object's foot out along the azimuth and opening as it
+    // goes, because a shadow's edge softens with distance from what threw it
+    // Thirty multiplied layers at three tenths each compound to very nearly opaque, and the
+    // first pass shipped shadow masses darker and larger than anything casting them. A
+    // shadow on lit limestone is a subtraction of a few L*, not a black hole.
+    var steps = 26;
+    for (var i = steps; i >= 1; i--) {
+      var t = i / steps;
+      var a = 0.075 * (1 - t * 0.70);
+      ctx.beginPath();
+      ctx.ellipse(ax + dx * t, ay + dy * t, rx * (1 + t * 0.22), ry * (1 + t * 0.26),
+                  AZ - Math.PI / 2, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(46,40,31,' + a.toFixed(4) + ')';
+      ctx.fill();
+    }
+    // THE ATTACHMENT, hard and unblurred, at the foot. Without it the mass is symmetric and
+    // floats free of its object, which is a stain and not a shadow.
+    ctx.beginPath();
+    ctx.ellipse(ax + dx * 0.10, ay + dy * 0.10, rx * 0.94, ry * 0.86,
+                AZ - Math.PI / 2, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(32,28,21,0.30)';
+    ctx.fill();
+    ctx.restore();
+  }
+
+  // A LIVE OAK CROWN, seen from above. Not a circle: a live oak spreads wider than it is tall
+  // and its crown breaks into lobes, so the outline is walked with noise and the foliage is
+  // clumped rather than flat. The lit lobes face the sun, which is the opposite side of the
+  // crown from the cast, and that is what tells a reader the two belong together.
+  function crown(cx, cy, r, seedOff) {
+    var pts = [], n = 22;
+    for (var i = 0; i < n; i++) {
+      var a = (i / n) * Math.PI * 2;
+      var wob = 0.80 + (TX.simplex2(Math.cos(a) * 1.7 + seedOff, Math.sin(a) * 1.7) * 0.5 + 0.5) * 0.42;
+      pts.push([cx + Math.cos(a) * r * wob, cy + Math.sin(a) * r * wob * 0.92]);
+    }
+    ctx.beginPath();
+    ctx.moveTo(pts[0][0], pts[0][1]);
+    for (var j = 1; j < pts.length; j++) ctx.lineTo(pts[j][0], pts[j][1]);
+    ctx.closePath();
+    // the crown's own body, shaded away from the sun
+    var body = ctx.createLinearGradient(cx - SX * r, cy - SY * r, cx + SX * r, cy + SY * r);
+    body.addColorStop(0.00, '#7A8A5F');
+    body.addColorStop(0.50, '#4D5842');
+    body.addColorStop(1.00, '#2B3325');
+    ctx.fillStyle = body;
+    ctx.fill();
+    // foliage, clumped. Each clump is lit on its own sunward side, so the crown reads as a
+    // mass of leaves rather than as a flat green shape.
+    ctx.save();
+    ctx.clip();
+    for (var k = 0; k < 42; k++) {
+      var ka = (TX.simplex2(k * 0.61 + seedOff, 3.3) * 0.5 + 0.5) * Math.PI * 2;
+      var kr = (TX.simplex2(k * 0.37 + seedOff, 8.1) * 0.5 + 0.5) * r * 0.94;
+      var kx = cx + Math.cos(ka) * kr, ky = cy + Math.sin(ka) * kr * 0.92;
+      var ks = r * (0.13 + (TX.simplex2(k * 0.83 + seedOff, 1.4) * 0.5 + 0.5) * 0.17);
+      var lit = -(Math.cos(ka) * SX + Math.sin(ka) * SY);      // 1 on the sunward side
+      ctx.beginPath();
+      ctx.ellipse(kx, ky, ks, ks * 0.82, 0, 0, Math.PI * 2);
+      ctx.fillStyle = lit > 0.15 ? 'rgba(150,166,116,0.62)'
+                    : (lit < -0.25 ? 'rgba(30,36,25,0.52)' : 'rgba(77,88,66,0.34)');
+      ctx.fill();
+    }
+    ctx.restore();
+    // the lit rim on the sunward edge, the one place the key lands square
+    ctx.save();
+    ctx.clip();
+    ctx.beginPath();
+    ctx.ellipse(cx - SX * r * 0.52, cy - SY * r * 0.52, r * 0.72, r * 0.62, 0, 0, Math.PI * 2);
+    var rim = ctx.createRadialGradient(cx - SX * r * 0.62, cy - SY * r * 0.62, 2,
+                                       cx - SX * r * 0.62, cy - SY * r * 0.62, r * 0.72);
+    rim.addColorStop(0.00, 'rgba(168,183,132,0.50)');
+    rim.addColorStop(1.00, 'rgba(168,183,132,0)');
+    ctx.fillStyle = rim; ctx.fill();
+    ctx.restore();
+  }
+
+  // A LOW ROOF, seen from the same height. Flat top in roadbase, one visible thickness edge
+  // on the shaded side, so it is a solid with a depth rather than a pasted rectangle.
+  function roof(rx, ry, w, d, h) {
+    // ANCHORED AT THE FOOT, NOT AT THE CENTRE. `cast` marches from its anchor along the azimuth,
+    // but its attachment ellipse is centred ON the anchor and rotated to the azimuth, so with the
+    // anchor at the roof's centre and a semi-axis of 0.52d against a half height of 0.50d the
+    // ellipse's rotated extent reached about 35px against the roof's 31 and poked out ABOVE the
+    // upper edge. A craft judge saw a soft grey lobe above each roof while its long cast ran down
+    // and left from the lower edge, and called it two shadow systems on one object. It was.
+    //
+    // The anchor moves down sun so the whole subtraction leaves from the shaded edge, and the
+    // radii come inside the footprint so the roof, which is drawn after this, covers what remains.
+    cast(rx + w / 2 + SX * w * 0.17, ry + d / 2 + SY * d * 0.17, w * 0.40, d * 0.42, h);
+    var top = ctx.createLinearGradient(rx, ry, rx + w, ry + d);
+    top.addColorStop(0.00, '#D6C6A4');
+    top.addColorStop(1.00, '#B3A17C');
+    ctx.fillStyle = top; ctx.fillRect(rx, ry, w, d);
+    ctx.fillStyle = 'rgba(255,250,238,0.55)';
+    ctx.fillRect(rx, ry, w, 3);                       // the sunward parapet, catching the key
+    ctx.fillStyle = 'rgba(60,52,38,0.42)';
+    ctx.fillRect(rx, ry + d, w, 7);                   // its thickness on the shaded side
+  }
+
+  // ORDER MATTERS. The fence ran last and its posts drew OVER the oak crowns, so the one frame
+  // about objects standing in space had a row of dots lying on top of the things nearest the
+  // camera. It is drawn first now, and the crowns occlude it.
+  // THE FENCE LINE. Posts on a regular run, each a small object with its own long thin cast,
+  // so the line reads as a row of separate things rather than as a drawn rule.
+  var fx0 = 946, fy0 = 486, fdx = -13.2, fdy = 11.4;
+  for (var i = 0; i < 26; i++) {
+    var px = fx0 + fdx * i, py = fy0 + fdy * i;
+    if (py > 800) break;
+    cast(px, py, 4.2, 3.4, 30);
+  }
+  for (var i2 = 0; i2 < 26; i2++) {
+    var px2 = fx0 + fdx * i2, py2 = fy0 + fdy * i2;
+    if (py2 > 800) break;
+    ctx.fillStyle = '#4A4234';
+    ctx.fillRect(px2 - 3, py2 - 5, 6, 10);
+    ctx.fillStyle = 'rgba(226,216,190,0.75)';
+    ctx.fillRect(px2 - 3, py2 - 5, 6, 3);
+  }
+
+  // Two low existing structures.
+  roof(126, 512, 138, 62, 30);
+  roof(330, 452, 96, 44, 24);
+
+  // The oaks. A motte is a clump, so they come in twos and threes sharing one ground.
+  var oaks = [
+    [418, 612, 62, 0.7], [486, 656, 44, 2.3], [372, 668, 34, 5.1],
+    [726, 566, 48, 8.4], [774, 604, 33, 11.2],
+    [792, 692, 66, 14.6], [860, 736, 45, 17.9], [734, 738, 35, 21.3]
+  ];
+  for (var m = 0; m < oaks.length; m++) cast(oaks[m][0], oaks[m][1], oaks[m][2] * 0.90,
+                                             oaks[m][2] * 0.40, oaks[m][2] * 1.30);
+  for (var m2 = 0; m2 < oaks.length; m2++) crown(oaks[m2][0], oaks[m2][1],
+                                                 oaks[m2][2], oaks[m2][3]);
+
+  document.getElementById('grain').style.backgroundImage =
+    'url(' + TX.grainTile(220, 30, 5) + ')';
+
+  resolve();
+});
+</script>
+  <div class="tx-site" style="color:#3E3A30">texasaidocket.com</div>
+</body>
+</html>

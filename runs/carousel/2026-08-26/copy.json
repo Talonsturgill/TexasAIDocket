@@ -1,0 +1,176 @@
+{
+ "document_title": "The billion buys no building. UT Dell Medical Center, Phase 1",
+ "slides": {
+  "S1": {
+   "claims": [
+    "c1",
+    "c3",
+    "c6",
+    "c32",
+    "c31"
+   ],
+   "kicker": "TEXAS AI DOCKET",
+   "hook": "A billion dollars of bare ground",
+   "dek": "The regents approved adding Phase 1 of the UT Dell Medical Center in Austin to the capital improvement program on August 12th, 2026.",
+   "figure": "$1,000,000,000",
+   "figure_label": "TOTAL PROJECT COST, PHASE 1",
+   "zero_line": "Building Cost $0",
+   "zero_label": "FIRST LINE OF THE COST TABLE",
+   "source": "AGENDA BOOK FOR THE ITEM. COMMUNITY IMPACT FOR THE VOTE.",
+   "counter": "01 / 09",
+   "modeled": "MODELED. THE RECORD GIVES COST LINES AND NOT A SITE PLAN"
+  },
+  "S2": {
+   "claims": [
+    "c14",
+    "c31",
+    "c1"
+   ],
+   "kicker": "THE GROUND",
+   "hook": "About 27 acres, and what stands on them",
+   "quote": "a transformative new academic medical destination on an approximately 27-acre site in the center of the west (former) Pickle Research Campus",
+   "note": "Everything standing on this ground today throws a shadow.",
+   "place": "AUSTIN, TEXAS",
+   "source": "Board item, project description",
+   "counter": "02 / 09",
+   "modeled": "MODELED. THE RECORD GIVES THE ACREAGE AND NOT WHAT STANDS ON IT"
+  },
+  "S3": {
+   "claims": [
+    "c15",
+    "c16",
+    "c26",
+    "c1"
+   ],
+   "kicker": "THE MASS",
+   "hook": "2.5 million square feet, unbuilt",
+   "quote": "projected to be an approximately 2.5 million gross square feet (GSF) tertiary care medical center with inpatient, outpatient, and clinical support space",
+   "note": "Nothing on this frame throws a shadow. The board item calls this phase early work and site preparation.",
+   "partner": "Oncology care, in partnership with MD Anderson.",
+   "facility": "PROJECT INFORMATION SHEET, \"Facility Type Healthcare Facility, Hospital\"",
+   "source": "BOARD ITEM, PROJECT DESCRIPTION",
+   "counter": "03 / 09",
+   "modeled": "MODELED. THE RECORD GIVES THE FLOOR AREA AND NOT THE NUMBER OF FLOORS"
+  },
+  "S4": {
+   "claims": [
+    "c17",
+    "c3",
+    "c4",
+    "c32",
+    "c31"
+   ],
+   "kicker": "THE ASK",
+   "hook": "The board approved a phase",
+   "axis_label": "PROPOSED TOTAL PROJECT COST, APPROVED BY THE CHANCELLOR",
+   "state_1_date": "JANUARY 8TH, 2024",
+   "state_1_value": "$2,900,000,000",
+   "state_2_date": "JUNE 19TH, 2025",
+   "state_2_value": "$5,000,000,000",
+   "baseline": "The axis starts at zero and is not cut.",
+   "band_label": "PHASE 1, ADDED TO THE CAPITAL PROGRAM AUGUST 12TH, 2026",
+   "band_figure": "$1,000,000,000",
+   "band_source": "RECOMMENDED FROM REVENUE FINANCING SYSTEM BOND PROCEEDS",
+   "band_line": "A phase authorization and a project total are different quantities. The board item states each of them separately.",
+   "note": "The two figures above were approved by the Chancellor. The phase below is what came to the board.",
+   "source": "BOARD ITEM, PREVIOUS ACTIONS AND BACKGROUND",
+   "counter": "04 / 09"
+  },
+  "S5": {
+   "claims": [
+    "c5",
+    "c4",
+    "c3"
+   ],
+   "kicker": "THE REPAYMENT",
+   "hook": "Who pays the billion back",
+   "quote_1": "The $1,000,000,000 in RFS debt is expected to be repaid from clinical revenues.",
+   "quote_2": "appropriate funds and authorize expenditure of $1,000,000,000 from Revenue Financing System (RFS) Bond Proceeds",
+   "note": "Clinical revenue is what a hospital earns from treating patients. The building is not open and the debt is.",
+   "source": "BOARD ITEM, BACKGROUND AND RECOMMENDATION",
+   "counter": "05 / 09"
+  },
+  "S6": {
+   "claims": [
+    "c1",
+    "c19",
+    "c22",
+    "c27",
+    "c28",
+    "c29",
+    "c30"
+   ],
+   "kicker": "THE SEARCH",
+   "hook": "Twenty pages, no mention of AI",
+   "left_terminator": "PAGE 124",
+   "right_terminator": "PAGE 143",
+   "span_label": "THE COMMITTEE'S DOCUMENT, END TO END",
+   "terms": "artificial intelligence  ·  AI  ·  machine learning  ·  algorithm",
+   "count": "0",
+   "count_label": "MATCHES, ANYWHERE IN IT",
+   "source": "UT SYSTEM AGENDA BOOK, AUGUST 2026",
+   "counter": "06 / 09",
+   "forward": "The item itself is five pages of it, 130 to 134. The same book uses the word elsewhere.",
+   "search_label": "SEARCHED, CASE INSENSITIVE"
+  },
+  "S7": {
+   "claims": [
+    "c12",
+    "c24",
+    "c2"
+   ],
+   "kicker": "TWO DOCUMENTS",
+   "hook": "Two lists. One says AI.",
+   "attribution_release": "UT AUSTIN, APRIL 21ST, 2026",
+   "line_release": "\"AI and advanced computing\"",
+   "attribution_board": "BOARD ITEM, AUGUST 12TH AND 13TH, 2026",
+   "line_board": "\"digital technology, robotics, and automation\"",
+   "note": "Neither list is marked as correct. One is a governing board voting on debt. One is a university describing a vision.",
+   "counter": "07 / 09"
+  },
+  "S8": {
+   "claims": [
+    "c20",
+    "c21",
+    "c33"
+   ],
+   "kicker": "THE SAME BOOK",
+   "hook": "The same book says AI",
+   "quote": "to provide AI technology platform",
+   "figure": "$9,850,000",
+   "who": "U.T. Medical Branch, Galveston, with Qualified Health, PBC",
+   "note": "The book names what each item buys. This one says AI in its own title. The amendment adds $5,600,000 to an agreement already running.",
+   "source": "UT SYSTEM AGENDA BOOK, AUGUST 2026",
+   "counter": "08 / 09"
+  },
+  "S9": {
+   "claims": [
+    "c10",
+    "c18",
+    "c23",
+    "c27",
+    "c28",
+    "c2"
+   ],
+   "kicker": "WHAT HAPPENS NEXT",
+   "hook": "The promise is above. The money is below.",
+   "above_line": "\"technology, data and AI are embedded to support clinicians\"",
+   "above_attrib": "UT AUSTIN, APRIL 21ST, 2026",
+   "below_attrib": "BOARD ITEM, AUGUST 12TH AND 13TH, 2026 PAGES 130 TO 134",
+   "next_step": "Construction Notice to Proceed September 2026",
+   "next_label": "THE NEXT DATED STEP",
+   "wordmark": "TEXAS AI DOCKET",
+   "site": "texasaidocket.com",
+   "source": "texasaidocket.com",
+   "counter": "09 / 09"
+  }
+ },
+ "first_comment_sources": [
+  "UT System Board of Regents, Facilities Planning and Construction Committee, agenda book pages 124 to 143, August 12th and 13th, 2026 - https://www.utsystem.edu/sites/default/files/offices/board-of-regents/board-meetings/agenda-book-facilities-planning/8-2026FPCCpp124-143.pdf",
+  "UT System Board of Regents, combined agenda book, August 12th and 13th, 2026 - https://www.utsystem.edu/sites/default/files/offices/board-of-regents/board-meetings/agenda-book-full/8-2026AB.pdf",
+  "UT System Board of Regents, Finance and Planning Committee, agenda book pages 46 to 111 - https://www.utsystem.edu/sites/default/files/offices/board-of-regents/board-meetings/agenda-book-finance-planning/8-2026FAPCpp46-111.pdf",
+  "The University of Texas at Austin, Michael and Susan Dell Surpass $1 Billion in Giving to UT Austin, April 21st, 2026 - https://news.utexas.edu/2026/04/21/michael-and-susan-dell-surpass-1-billion-in-giving-to-ut-austin/",
+  "Community Impact, UT Board of Regents approves first phase of the UT Dell Medical Center, August 13th, 2026 - https://communityimpact.com/northwest-austin/development/ut-board-of-regents-approves-first-phase-of-the-ut-dell-medical-center/",
+  "The entry on the record - https://texasaidocket.com/item/tx-2026-0095/"
+ ]
+}

@@ -10,7 +10,7 @@ The Nuclear Regulatory Commission has proposed a wholesale revision of its react
 - Comment closes: 2026-08-31
 - Take part: https://www.federalregister.gov/documents/2026/07/16/2026-14341/modernizing-reactor-licensing-safety-oversight-and-siting-practices
 
-- Last checked: 2026-08-22
+- Last checked: 2026-08-26
 
 ## Dates
 
@@ -24,6 +24,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-08-19 · The comment window is still open and still closes August 31st. A correction to the proposed rule was published on July 27th.
 - 2026-08-22 · Checked and unchanged. The published comment due date is still August 31st, 2026. The docket now carries agency responses to two separate requests to extend the comment period, and the due date has not moved.
+- 2026-08-26 · Checked and unchanged. The Nuclear Regulatory Commission's proposed rule still carries the Executive Order 14300 framing and the comment window still closes August 31st. Five days are left on it.
 
 ## Evidence
 
@@ -35,9 +36,9 @@ Every fact above rests on one of these. The words are the source's own.
 
 Source (primary_official): https://www.federalregister.gov/documents/2026/07/16/2026-14341/modernizing-reactor-licensing-safety-oversight-and-siting-practices
 
-### The Federal Register API reports the document type, docket and comment close date.
+### The Federal Register API records the date the comment window closes.
 
-> Proposed Rule | pub 2026-07-16 closes 2026-08-31 | dockets ['NRC-2025-0975']
+> "comments_close_on":"2026-08-31"
 
 Source (primary_official): https://www.federalregister.gov/api/v1/documents/2026-14341.json
 

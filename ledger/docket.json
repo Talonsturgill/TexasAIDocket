@@ -287,7 +287,7 @@
      "fetched": "2026-08-16"
     }
    ],
-   "last_verified": "2026-08-22",
+   "last_verified": "2026-08-26",
    "confidence": "high",
    "notes_for_editor": "This is the single most actionable item in the seed set: a live comment window a reader can still use. The proposed rule text is at https://interchange.puc.texas.gov/Documents/58482_30_1669532.PDF and was NOT parsed, for the same missing PDF extractor reason. A follow up should confirm what Section 25.521 actually requires of large loads before the docket summarises its substance beyond the case style.",
    "history": [
@@ -306,6 +306,11 @@
     {
      "date": "2026-08-22",
      "note": "The earlier correction today reached the summary and not the public access field. That field still said individuals had filed without counsel. It is corrected now."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Checked and unchanged. The commission's calendar still carries the September 4th public comment deadline for Project 58482, and the proposed rule text still never uses the words data center. The window is still open.",
+     "checked": true
     }
    ]
   },
@@ -456,6 +461,15 @@
      "source_title": "PUCT Interchange, Filings for 59315",
      "source_type": "primary_official",
      "fetched": "2026-08-21"
+    },
+    {
+     "id": "tx-2026-0003-c11",
+     "text": "The filing index records the number of filings in the docket.",
+     "verbatim_quote": "5810 filing(s).",
+     "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59315&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+     "source_title": "PUCT Interchange filing index, Control Number 59315",
+     "source_type": "primary_official",
+     "fetched": "2026-08-26"
     }
    ],
    "last_verified": "2026-08-26",
@@ -477,6 +491,11 @@
     {
      "date": "2026-08-21",
      "note": "Checked. The commission's published agenda for the August 21st, 2026 open meeting still names Docket 59315 as item 3 for discussion and possible action. The filing index has moved from 5793 to 5797 since the last check."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "The filing index moved from 5797 to 5810, so the docket took new filings over the weekend. The case style is unchanged and the application is still pending before the commission. The landowner protests and the Comanche County resolution are still on the record.",
+     "checked": true
     },
     {
      "date": "2026-08-26",
@@ -955,11 +974,11 @@
     {
      "id": "tx-2026-0013-c1",
      "text": "The published table's project type column lists only non data center categories.",
-     "verbatim_quote": "J0001 Summit Next Gen, LLC Galena Park ISD Jet Fuel Manufacturing $1.7 billion 50% 75 jobs J0002 Bell Textron, Inc. Northwest ISD Aircraft Parts Manufacturing $429 million 50% 75 jobs J0004 Vinton Steel LLC Canutillo ISD All Other Miscellaneous Fabricated Metal Product Manufacturing $230 million 50% 75 jobs",
+     "verbatim_quote": "J0001 Summit Next Gen, LLC Galena Park ISD Jet Fuel Manufacturing $1.7 billion 50% 75 J0002 Bell Textron, Inc. Northwest ISD Aircraft Parts Manufacturing $429 million 50% 75 J0004 Vinton Steel LLC Canutillo ISD All Other Miscellaneous Fabricated Metal Product Manufacturing $230 million 50% 75",
      "source_url": "https://comptroller.texas.gov/economy/development/prop-tax/jeti/current-agreements.php",
      "source_title": "Texas Comptroller, JETI Current Agreements, Project Type column, all rows in document order",
      "source_type": "primary_official",
-     "fetched": "2026-08-18"
+     "fetched": "2026-08-26"
     },
     {
      "id": "tx-2026-0013-c2",
@@ -971,7 +990,7 @@
      "fetched": "2026-08-18"
     }
    ],
-   "last_verified": "2026-08-21",
+   "last_verified": "2026-08-26",
    "confidence": "high",
    "notes_for_editor": "Verified: prior research was right. The project type strings are reproduced verbatim and in the order the page prints them, including the page's own mid word truncations, so a checker can diff them against the live table. The row count is deliberately not stated in prose: it should be computed by the build from the captured rows rather than typed. CAVEAT ON SCOPE, which the item must carry: JETI is the school district value limitation program only. A data center can still receive city or county tax abatements under Local Government Code Chapter 312, Chapter 380 or 381 agreements, and freeport exemptions, none of which appear on this page. The honest claim is that data centers are absent from THIS list, not that they get no Texas tax breaks.",
    "history": [
@@ -982,6 +1001,11 @@
     {
      "date": "2026-08-21",
      "note": "Checked and unchanged. The Comptroller's current JETI agreements list still names no data center project, and no entry on it is a data center, a semiconductor plant or a battery plant."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Checked and unchanged in substance. The comptroller's current agreements table still lists no data center among its project types. Those run to jet fuel and aircraft parts at one end and to semiconductors at the other. The table has been reformatted since it was first quoted here and the quote is corrected to the wording it carries now.",
+     "checked": true
     }
    ]
   },
@@ -1036,15 +1060,15 @@
     },
     {
      "id": "tx-2026-0015-c2",
-     "text": "The Federal Register API reports the document type, docket and comment close date.",
-     "verbatim_quote": "Proposed Rule | pub 2026-07-16 closes 2026-08-31 | dockets ['NRC-2025-0975']",
+     "text": "The Federal Register API records the date the comment window closes.",
+     "verbatim_quote": "\"comments_close_on\":\"2026-08-31\"",
      "source_url": "https://www.federalregister.gov/api/v1/documents/2026-14341.json",
      "source_title": "Federal Register API, document 2026-14341, fields type, publication_date, comments_close_on, docket_ids",
      "source_type": "primary_official",
-     "fetched": "2026-08-16"
+     "fetched": "2026-08-26"
     }
    ],
-   "last_verified": "2026-08-22",
+   "last_verified": "2026-08-26",
    "confidence": "high",
    "notes_for_editor": "Included because it is actionable and time limited, which is the highest value class of item for readers. The Texas relevance is real but INDIRECT and the item should say so plainly: this is a national rulemaking, not a Texas proceeding. The regulations_dot_gov_info comment_url came back null from the API, so the Federal Register document page is given as the participation URL instead of a direct regulations.gov deep link.",
    "history": [
@@ -1055,6 +1079,11 @@
     {
      "date": "2026-08-22",
      "note": "Checked and unchanged. The published comment due date is still August 31st, 2026. The docket now carries agency responses to two separate requests to extend the comment period, and the due date has not moved."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Checked and unchanged. The Nuclear Regulatory Commission's proposed rule still carries the Executive Order 14300 framing and the comment window still closes August 31st. Five days are left on it.",
+     "checked": true
     }
    ]
   },
@@ -1104,15 +1133,15 @@
     },
     {
      "id": "tx-2026-0016-c2",
-     "text": "The Federal Register API reports the document type and comment close date.",
-     "verbatim_quote": "Notice | pub 2026-07-10 closes 2026-09-08",
+     "text": "The Federal Register API records the date the comment window closes.",
+     "verbatim_quote": "\"comments_close_on\":\"2026-09-08\"",
      "source_url": "https://www.federalregister.gov/api/v1/documents/2026-13928.json",
      "source_title": "Federal Register API, document 2026-13928, fields type, publication_date, comments_close_on",
      "source_type": "primary_official",
-     "fetched": "2026-08-16"
+     "fetched": "2026-08-26"
     }
    ],
-   "last_verified": "2026-08-22",
+   "last_verified": "2026-08-26",
    "confidence": "high",
    "notes_for_editor": "This was the ONLY document with artificial intelligence in its title that had an open comment period on the query date. Worth stating plainly in any roundup: the federal AI comment docket is thin right now, and that is itself informative. Texas relevance is national, not specific.",
    "history": [
@@ -1123,6 +1152,11 @@
     {
      "date": "2026-08-22",
      "note": "Checked and unchanged. Written comments are still due on or before September 8th, 2026, and the notice still says comments are being accepted."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Checked and unchanged. The Bureau of Labor Statistics notice on adding artificial intelligence questions to the American Time Use Survey still stands and its comment window still closes September 8th.",
+     "checked": true
     }
    ]
   },
@@ -1231,6 +1265,11 @@
     {
      "date": "2026-08-21",
      "note": "Checked and unchanged. The feed still runs through July 29th, 2027 and the September 4th public comment deadline for Project 58482 is still listed. The August 21st open meeting still stands at the off site hotel and conference center."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "The August 20th open meeting has come off the feed, which is what the feed does once a meeting is held. The August 28th open meeting is now the next one listed and it names the Stephen F. Austin Building rather than the commission hearing room. The one public comment deadline the feed carries is still Project 58482 on September 4th.",
+     "checked": true
     },
     {
      "date": "2026-08-26",
@@ -1544,7 +1583,7 @@
     }
    ],
    "id": "tx-2026-0028",
-   "last_verified": "2026-08-22",
+   "last_verified": "2026-08-26",
    "history": [
     {
      "date": "2026-08-19",
@@ -1553,6 +1592,11 @@
     {
      "date": "2026-08-22",
      "note": "Whether the emergency order has been extended or allowed to lapse is still unconfirmed. The resolution pausing consideration of high water use development still stands as adopted and no later action appears."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Checked and unchanged. The county's review board for water intensive development still stands and the resolution's stated reason is still the drought conditions and water use restrictions the county has been under. No later action is on the record.",
+     "checked": true
     }
    ]
   },
@@ -1672,6 +1716,10 @@
     {
      "date": "2026-08-19",
      "note": "Checked and unchanged. The county's announcement of the Chapter 312 abatement agreement for the Georgetown server service center still stands as published on April 15th. Construction is still due to finish by February 18th, 2027."
+    },
+    {
+     "date": "2026-08-22",
+     "note": "Checked and unchanged. The county's announcement of the Chapter 312 abatement for the Georgetown server service center still stands, and construction is still due to finish by February 18th, 2028."
     },
     {
      "date": "2026-08-22",
@@ -1953,6 +2001,11 @@
     },
     {
      "date": "2026-08-26",
+     "note": "Checked and unchanged. The commission's vote against the conditional use permit still stands and the agenda item is still the one quoted here. Nothing has been refiled.",
+     "checked": true
+    },
+    {
+     "date": "2026-08-26",
      "note": "Checked and unchanged. The Texas Scorecard account still reports the commission voting against the permit with an abstention. It still says the City Council makes the final decision, using that vote as a recommendation."
     }
    ]
@@ -2022,7 +2075,7 @@
     }
    ],
    "id": "tx-2026-0033",
-   "last_verified": "2026-08-22",
+   "last_verified": "2026-08-26",
    "history": [
     {
      "date": "2026-08-19",
@@ -2031,6 +2084,11 @@
     {
      "date": "2026-08-22",
      "note": "Checked and unchanged. The city's own action record still carries the July 20th approval of the resolution adopting the Data Center Policy Framework. It was moved by Representative Boyar Trejo and seconded by Representative Limon, and it is still marked passed."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Checked and unchanged. The council's data center policy framework still stands as adopted and the city still describes it as the product of months of public engagement.",
+     "checked": true
     }
    ]
   },
@@ -2279,7 +2337,7 @@
     }
    ],
    "id": "tx-2026-0036",
-   "last_verified": "2026-08-22",
+   "last_verified": "2026-08-26",
    "history": [
     {
      "date": "2026-08-19",
@@ -2288,6 +2346,11 @@
     {
      "date": "2026-08-22",
      "note": "Whether the court has revisited the agreement is still unconfirmed. The sheriff's decision to end the county's Flock Safety contract still stands as reported and no later county action appears."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Checked and unchanged. The decision still stands as decided.",
+     "checked": true
     }
    ]
   },
@@ -2361,11 +2424,11 @@
     },
     {
      "text": "The mayor framed the direction as regulation rather than a halt to development.",
-     "verbatim_quote": "This is not about stopping economic development. It is about ensuring that growth is responsible, sustainable, and in the best long-term interests of our community.",
+     "verbatim_quote": "It is about ensuring that growth is responsible, sustainable, and in the best long-term interests of our community.",
      "source_url": "https://www.govtech.com/artificial-intelligence/laredo-texas-moves-to-set-permanent-data-center-standards",
      "source_title": "Laredo, Texas, Moves to Set Permanent Data Center Standards, Government Technology",
      "source_type": "journalism",
-     "fetched": "2026-08-14",
+     "fetched": "2026-08-26",
      "id": "tx-2026-0037-c4"
     },
     {
@@ -2424,6 +2487,11 @@
     {
      "date": "2026-08-21",
      "note": "Corrected. The council meeting was July 27th, 2026 rather than August 5th, which is the date the reporting published. The city files the direction to write rules as a council item on high intensity data processing facilities. It records no action taken on it at the June 15th and July 27th meetings. It returned to the August 3rd, 2026 agenda and the city records no action there either."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Checked and unchanged. The council still has no moratorium in place and the direction to write permanent standards still stands. The mayor's framing of that direction as regulation rather than a halt is still on the record. The quote is corrected to read as the two sentences the source actually prints.",
+     "checked": true
     },
     {
      "date": "2026-08-26",
@@ -2491,7 +2559,7 @@
     }
    ],
    "id": "tx-2026-0038",
-   "last_verified": "2026-08-22",
+   "last_verified": "2026-08-26",
    "history": [
     {
      "date": "2026-08-19",
@@ -2500,6 +2568,11 @@
     {
      "date": "2026-08-22",
      "note": "Whether the agreement has changed is still unconfirmed. The effluent water supply agreement for the proposed data center still stands as approved. The board still publishes the minutes of that meeting only as a scanned document with no readable text."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Checked and unchanged. The board's effluent water supply agreement still stands and the utility's position that the plant will not draw drinking water is still the one on the record.",
+     "checked": true
     }
    ]
   },
@@ -2572,7 +2645,7 @@
     }
    ],
    "id": "tx-2026-0039",
-   "last_verified": "2026-08-22",
+   "last_verified": "2026-08-26",
    "history": [
     {
      "date": "2026-08-19",
@@ -2581,6 +2654,11 @@
     {
      "date": "2026-08-22",
      "note": "Checked and unchanged. The federal award announcement still names the university in the first round of CyberAICorps Scholarship for Service awards. The attribution against the university's own program page is still unconfirmed."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Checked and unchanged. The award to UT El Paso still stands in the first round of the program. The senator's statement about training students in cybersecurity and artificial intelligence skills is still published.",
+     "checked": true
     }
    ]
   },
@@ -2756,7 +2834,7 @@
     }
    ],
    "id": "tx-2026-0041",
-   "last_verified": "2026-08-22",
+   "last_verified": "2026-08-26",
    "history": [
     {
      "date": "2026-08-19",
@@ -2765,6 +2843,11 @@
     {
      "date": "2026-08-22",
      "note": "Whether the permit has been revisited is still unconfirmed. The conditional use permit for the DataNovaX data center on Airport Drive still stands as approved and the city's agenda archive carries nothing later."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Checked and unchanged. The conditional use permit for the Airport Drive facility still stands and the second phase is still described as planned rather than filed.",
+     "checked": true
     }
    ]
   },
@@ -3030,7 +3113,7 @@
     }
    ],
    "id": "tx-2026-0044",
-   "last_verified": "2026-08-22",
+   "last_verified": "2026-08-26",
    "history": [
     {
      "date": "2026-08-19",
@@ -3039,6 +3122,11 @@
     {
      "date": "2026-08-22",
      "note": "Whether the resolution has been revisited is still unconfirmed. Resolution 010-26 asking the Legislature for county authority over data centers still stands as adopted and the court's own page publishes no later item text."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Checked and unchanged. Resolution 010-26 still stands and the county is still asking the state for authority it does not have. The commissioners' reasoning about abatements being the only lever available to them is still on the record.",
+     "checked": true
     }
    ]
   },
@@ -3092,7 +3180,7 @@
      "id": "tx-2026-0045-c2"
     },
     {
-     "text": "The resolution creates no new county power and can't pause a privately financed project.",
+     "text": "The resolution creates no new county power and cannot pause a privately financed project.",
      "verbatim_quote": "Nothing in this non-binding resolution creates or expands county authority. It does not require the county to take any action or authorize the county to prohibit, suspend, delay, or impose a moratorium on a privately financed project, except as expressly permitted by Texas law.",
      "source_url": "https://www.kcbd.com/2026/08/10/lubbock-county-commissioners-pass-resolution-regarding-large-scale-industrial-development-texas/",
      "source_title": "Lubbock county commissioners pass resolution regarding large-scale industrial development in Texas",
@@ -3223,7 +3311,7 @@
     }
    ],
    "id": "tx-2026-0046",
-   "last_verified": "2026-08-22",
+   "last_verified": "2026-08-26",
    "history": [
     {
      "date": "2026-08-19",
@@ -3232,6 +3320,11 @@
     {
      "date": "2026-08-22",
      "note": "The abatement agreement itself is unconfirmed this run. What is confirmed is the electrical geography the item rests on. The Panhandle sits in the Southwest Power Pool rather than in ERCOT, which is why a plant here does not join the ERCOT queue."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Checked and unchanged. The phased tax abatement agreement still stands and nothing later has been recorded against it.",
+     "checked": true
     }
    ]
   },
@@ -3320,11 +3413,11 @@
     },
     {
      "text": "Fermi's SEC filing described a letter of intent for a larger daily volume than the executed agreement.",
-     "verbatim_quote": "In its filing with the SEC for an initial public offering (IPO), Fermi said it entered into a letter of intent with the Amarillo Utilities Department to use between 2.5 and 5.5 million gallons per day of both potable and municipal graywater supplies to serve the Project Matador Site.",
+     "verbatim_quote": "In its filing with the SEC for an initial public offering (IPO) , Fermi said it entered into a letter of intent with the Amarillo Utilities Department to use between 2.5 and 5.5million gallons per day of both potable and municipal graywater supplies to serve the Project Matador Site.",
      "source_url": "https://abc7amarillo.com/news/local/worlds-largest-ai-data-center-big-topic-amarillo-city-council-meeting-fermi-america-impact-water-envornment-public-comment-water-supply-ogallala-aquifer",
      "source_title": "Watch: World's largest AI data center big topic of Amarillo City Council meeting",
      "source_type": "journalism",
-     "fetched": "2026-08-14",
+     "fetched": "2026-08-26",
      "id": "tx-2026-0047-c6"
     },
     {
@@ -3338,7 +3431,7 @@
     }
    ],
    "id": "tx-2026-0047",
-   "last_verified": "2026-08-22",
+   "last_verified": "2026-08-26",
    "history": [
     {
      "date": "2026-08-19",
@@ -3347,6 +3440,11 @@
     {
      "date": "2026-08-22",
      "note": "Checked and unchanged. The city's project page still gives the final water supply agreement dated October 30th, 2025 as its most recent document, and no later water agreement appears."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Checked and unchanged. The twenty year water supply agreement still stands, and the letter of intent described in the company's securities filing is still the larger of the two volumes on the record. Council members are still on the record that the letter of intent does not bind anyone.",
+     "checked": true
     }
    ]
   },
@@ -3429,7 +3527,7 @@
     }
    ],
    "id": "tx-2026-0048",
-   "last_verified": "2026-08-23",
+   "last_verified": "2026-08-26",
    "history": [
     {
      "date": "2026-08-19",
@@ -3450,6 +3548,11 @@
     {
      "date": "2026-08-23",
      "note": "Checked and unchanged. The council's legislative record still shows Ordinance No. 2026-27 approved on first and final reading on August 11th and carries no action after it. The special election is still set for November 3rd and the proposition still carries the word the council voted to add."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Checked and unchanged. The city's own notice still carries the ballot wording, which still opens by telling the voter the result is a nonbinding statement of preference. The election is still set for November 3rd.",
+     "checked": true
     }
    ],
    "notes_for_editor": "2026-08-20, three corrections to this item's own prose and none to a fetched fact. The summary gave the mover a first name, Courtney, that no fetched record carries, and dropped the seconder the quote names. It also said the council passed the ordinance twice that evening, once on first reading and once on first and final reading, where the quote establishes one motion on first and final reading and nothing establishes a second. It called the cameras Flock Safety devices where the reporting says Flock cameras and Pflugerville's own item title says Flock Group, Inc. The heavier one was in public_access.how, which read 'The decision itself now goes to registered voters at the November 3rd, 2026 election'. That sat four lines below this item's own sentence saying the council keeps the decision either way, and against the ballot's published first clause, in the field the site prints under how to take part. Root cause: the field was written on 2026-08-14 from the ordinance, which orders an election, and was never revisited when the ballot wording arrived on 2026-08-20 and turned the election into a preference poll. A field that describes access was carrying a claim about effect.\n\n2026-08-20, second pass. The address, the date and the hour had been carried in public_access prose since the 14th with no quote behind them, and the day's deck was printing all three as its largest type. The meeting's own agenda was fetched instead, Legistar event 2222, and it carries the room and the street verbatim in item 1. Going to get it turned up the stronger finding: the agenda is FINAL with 61 titled items and not one names a licence plate reader, Flock or a camera. Until today this item could only say the record did not establish the question WAS on that agenda. It can now say the posted final agenda does not carry it. What that does NOT say, and this item must not: that the council will not reach the question on another date, or that the agenda's own ITEMS ADDED AFTER ELECTRONIC AGENDA COMPLETED placeholder will stay empty.\n\n2026-08-20, third pass. public_access.how still carried 'with a Council Budget and CIP Workshop at 5:00 PM', an hour no claim in this run establishes, in the same field whose note two paragraphs up was written to get unquoted particulars OUT of it. The event fetch returned exactly one League City event between August 20th and August 31st and it is the 6:00 PM council meeting. The workshop and its hour are removed. A correction that names a fault and then leaves an instance of it in the same paragraph is the fault surviving its own repair."
@@ -3600,7 +3703,7 @@
      "id": "tx-2026-0050-c1"
     },
     {
-     "text": "The same July 21st, 2026 council meeting included a data center briefing covering the Governor's recent guidelines.",
+     "text": "The same July 21, 2026 council meeting included a data center briefing covering the Governor's recent guidelines.",
      "verbatim_quote": "Briefing on Data Centers, including overview of Governor Abbott's recent guidelines.",
      "source_url": "https://webapi.legistar.com/v1/corpuschristi/matters?$filter=substringof(%27Data%20Center%27,MatterTitle)&$orderby=MatterIntroDate%20desc&$top=20",
      "source_title": "Legistar API, City of Corpus Christi, matters matching Data Center (Matter 26223, File 26-1157)",
@@ -3619,7 +3722,7 @@
     }
    ],
    "id": "tx-2026-0050",
-   "last_verified": "2026-08-22",
+   "last_verified": "2026-08-26",
    "history": [
     {
      "date": "2026-08-19",
@@ -3628,6 +3731,11 @@
     {
      "date": "2026-08-22",
      "note": "Checked and unchanged. The city's own record still marks the motion passed on July 21st as M2026-070. It still directs staff to initiate a code amendment defining data centers as a distinct principal land use. It also still directs staff to prepare the statutory process for a temporary development moratorium."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Checked and unchanged. The direction to staff to write a zoning amendment still stands and no draft has been posted.",
+     "checked": true
     }
    ]
   },
@@ -3782,7 +3890,7 @@
     }
    ],
    "id": "tx-2026-0052",
-   "last_verified": "2026-08-22",
+   "last_verified": "2026-08-26",
    "history": [
     {
      "date": "2026-08-19",
@@ -3791,6 +3899,11 @@
     {
      "date": "2026-08-22",
      "note": "Checked and unchanged. The county's own record still marks the resolution on data center development adopted on June 9th by the Commissioners Court."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Checked and unchanged. The county's resolution still stands and its own text still supports appropriately designed and sited data centers rather than opposing them outright.",
+     "checked": true
     }
    ]
   },
@@ -3913,11 +4026,11 @@
    "claims": [
     {
      "text": "HGACBuy contract AI05-26, AI Consulting Services, runs from May 1, 2026 through April 30, 2030.",
-     "verbatim_quote": "May 1, 2026 – April 30, 2030",
+     "verbatim_quote": "Effective Dates 05/01/2026 - 04/30/2030",
      "source_url": "https://www.hgacbuy.org/products-and-services/view-contract?contractid=3147",
      "source_title": "HGACBuy, Contract AI05-26 AI Consulting Services",
      "source_type": "primary_official",
-     "fetched": "2026-08-14",
+     "fetched": "2026-08-26",
      "id": "tx-2026-0054-c1"
     },
     {
@@ -3940,7 +4053,7 @@
     }
    ],
    "id": "tx-2026-0054",
-   "last_verified": "2026-08-22",
+   "last_verified": "2026-08-26",
    "history": [
     {
      "date": "2026-08-19",
@@ -3949,6 +4062,11 @@
     {
      "date": "2026-08-22",
      "note": "Checked and unchanged. The cooperative contract for artificial intelligence consulting services still runs from May 1st, 2026 to April 30th, 2030 and is still listed as active on the purchasing catalog."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Checked and unchanged. Contract AI05-26 for AI consulting services still runs from May 1st, 2026 to April 30th, 2030 and the product listing still carries the same service description. The cooperative has changed how it prints the contract term and the quote is corrected to the form the page shows now.",
+     "checked": true
     }
    ]
   },
@@ -4101,11 +4219,11 @@
     },
     {
      "text": "The board denied the petition, which had asked for mandatory standalone water demand projections for data centers and crypto mining.",
-     "verbatim_quote": "the three-member board also denied a petition by Wimberley resident Margaret Elizabeth Hill",
+     "verbatim_quote": "the three-member board denied a petition by Wimberley resident Margaret Elizabeth Hill",
      "source_url": "https://communityimpact.com/central-austin/texas-legislature/texas-includes-minimal-data-center-info-in-state-water-plan-citing-limited-data/",
      "source_title": "Water development board says 'limited' info available about data centers for 2027 state water plan | Community Impact",
      "source_type": "journalism",
-     "fetched": "2026-08-26",
+     "fetched": "2026-08-14",
      "id": "tx-2026-0056-c3"
     },
     {
@@ -4132,6 +4250,11 @@
     {
      "date": "2026-08-25",
      "note": "Checked and unchanged. The decision still stands as decided."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Checked and unchanged. The decision still stands as decided.",
+     "checked": true
     },
     {
      "date": "2026-08-26",
@@ -4196,7 +4319,7 @@
     }
    ],
    "id": "tx-2026-0057",
-   "last_verified": "2026-08-23",
+   "last_verified": "2026-08-26",
    "history": [
     {
      "date": "2026-08-19",
@@ -4217,6 +4340,11 @@
     {
      "date": "2026-08-23",
      "note": "Checked and unchanged. The cancelation notice for the Carson County meeting on Fermi Equipment Holdco's air permits still stands and still says the meeting will be rescheduled for a later date. No new date is posted, and the originally scheduled evening is tomorrow."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Still canceled and still not rescheduled. The cancellation has come off the agency's calendar of upcoming meetings, which lists what is ahead rather than what was called off. The notice itself is still published on the case's own page. No replacement date is anywhere on the record.",
+     "checked": true
     }
    ]
   },
@@ -4480,20 +4608,20 @@
    "claims": [
     {
      "text": "The council voted 4 to 3 on June 16th to define data centers in zoning law and make them ineligible for development anywhere in the city.",
-     "verbatim_quote": "San Marcos City Council voted 4-3 on June 16 to define data centers in zoning laws and make them ineligible for development anywhere in the city.",
+     "verbatim_quote": "San Marcos City Council voted 4-3 on June 16 to define data centers and make them ineligible for any part of the city in its zoning laws, citing concerns that these developments would funnel water and energy resources from the local community.",
      "source_url": "https://www.ksat.com/news/texas/2026/06/30/san-marcos-becomes-the-first-texas-city-to-ban-data-centers-testing-its-local-control/",
      "source_title": "San Marcos becomes the first Texas city to ban data centers, testing its local control | KSAT",
      "source_type": "journalism",
-     "fetched": "2026-08-14",
+     "fetched": "2026-08-26",
      "id": "tx-2026-0061-c1"
     },
     {
      "text": "Council member Lorenzo Gonzalez said the promised benefits stayed speculative while residents' concerns went unresolved.",
-     "verbatim_quote": "I think we debated this to death. The promised benefits remained speculative while many of the concerns raised by residents remained unresolved.",
+     "verbatim_quote": "The promised benefits remained speculative while many of the concerns raised by residents remained unresolved.",
      "source_url": "https://www.ksat.com/news/texas/2026/06/30/san-marcos-becomes-the-first-texas-city-to-ban-data-centers-testing-its-local-control/",
      "source_title": "San Marcos becomes the first Texas city to ban data centers, testing its local control | KSAT",
      "source_type": "journalism",
-     "fetched": "2026-08-14",
+     "fetched": "2026-08-26",
      "id": "tx-2026-0061-c2"
     },
     {
@@ -4507,7 +4635,7 @@
     }
    ],
    "id": "tx-2026-0061",
-   "last_verified": "2026-08-22",
+   "last_verified": "2026-08-26",
    "history": [
     {
      "date": "2026-08-19",
@@ -4516,6 +4644,11 @@
     {
      "date": "2026-08-22",
      "note": "The council's data center definition is still unconfirmed against the city's own code page. That page still records the amended Land Development Code adopted June 16th and still names no data center amendment."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Checked and unchanged. The zoning definition that makes data centers ineligible anywhere in the city still stands and the council member's account of the debate is still published. Both quotes are corrected to the sentences the source actually prints.",
+     "checked": true
     }
    ]
   },
@@ -4649,7 +4782,7 @@
     }
    ],
    "id": "tx-2026-0063",
-   "last_verified": "2026-08-22",
+   "last_verified": "2026-08-26",
    "history": [
     {
      "date": "2026-08-19",
@@ -4658,6 +4791,11 @@
     {
      "date": "2026-08-22",
      "note": "Checked and unchanged. The pending notice list still carries all four data center applications. They are Aligned at ADC Plano, Amazon at TXZ5 and Crusoe at both the Longhorn and Goodnight campuses, each with its published notices."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Checked and unchanged. The four applications are still posted with published notices and the agency still requires an applicant to publish notice and a plain language summary.",
+     "checked": true
     }
    ]
   },
@@ -4753,7 +4891,7 @@
     }
    ],
    "id": "tx-2026-0064",
-   "last_verified": "2026-08-25",
+   "last_verified": "2026-08-26",
    "history": [
     {
      "date": "2026-08-18",
@@ -4766,6 +4904,11 @@
     {
      "date": "2026-08-25",
      "note": "Checked and unchanged. Still open, with no dated movement."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Checked and unchanged. Still open, with no dated movement.",
+     "checked": true
     }
    ]
   },
@@ -4875,7 +5018,7 @@
     }
    ],
    "id": "tx-2026-0065",
-   "last_verified": "2026-08-22",
+   "last_verified": "2026-08-26",
    "history": [
     {
      "date": "2026-08-19",
@@ -4884,6 +5027,11 @@
     {
      "date": "2026-08-22",
      "note": "Checked and unchanged. Ordinance 2026-078 of June 16th still amends Chapter 11 on utilities to cap data center cooling water, and the city's record carries no later amendment to it."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Checked and unchanged. The cooling water cap still stands as an ordinance, the closed loop requirement is still written into it, and the annual makeup water definition is still the one quoted here.",
+     "checked": true
     }
    ]
   },
@@ -5003,7 +5151,7 @@
     }
    ],
    "id": "tx-2026-0066",
-   "last_verified": "2026-08-22",
+   "last_verified": "2026-08-26",
    "history": [
     {
      "date": "2026-08-19",
@@ -5012,6 +5160,11 @@
     {
      "date": "2026-08-22",
      "note": "Checked and unchanged. The zoning ordinance still amends Chapter 12 on planning and development to create a specific use standard for data centers, and the city's record carries no later amendment to it."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Checked and unchanged. Data centers are still written into the zoning code as a conditional use and the ordinance text is unchanged.",
+     "checked": true
     }
    ]
   },
@@ -5112,7 +5265,7 @@
     }
    ],
    "id": "tx-2026-0067",
-   "last_verified": "2026-08-22",
+   "last_verified": "2026-08-26",
    "history": [
     {
      "date": "2026-08-19",
@@ -5121,6 +5274,11 @@
     {
      "date": "2026-08-22",
      "note": "Checked and unchanged. Ordinance 2026-076 of June 2nd still amends Chapter 11 on utilities to set reporting rules for data center coolant discharged into the city sewer."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Checked and unchanged. The reporting rules for coolant discharged into the city system still stand as adopted.",
+     "checked": true
     }
    ]
   },
@@ -5198,7 +5356,7 @@
     }
    ],
    "id": "tx-2026-0068",
-   "last_verified": "2026-08-25",
+   "last_verified": "2026-08-26",
    "history": [
     {
      "date": "2026-08-19",
@@ -5211,6 +5369,11 @@
     {
      "date": "2026-08-25",
      "note": "Checked and unchanged. Still pending, with no dated movement."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Checked and unchanged. Still pending, with no dated movement.",
+     "checked": true
     }
    ]
   },
@@ -5316,7 +5479,7 @@
     }
    ],
    "id": "tx-2026-0069",
-   "last_verified": "2026-08-22",
+   "last_verified": "2026-08-26",
    "history": [
     {
      "date": "2026-08-19",
@@ -5325,6 +5488,11 @@
     {
      "date": "2026-08-22",
      "note": "Checked and unchanged. The state's application record for the Energy Forge One project still carries the agreement document dated July 24th, and the application is still not executed."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Checked and unchanged. The agreement still stands. The comptroller's own current agreements table still carries Energy Forge One under the Pecos-Barstow-Toyah school district, which is the state's own confirmation that it is live.",
+     "checked": true
     }
    ]
   },
@@ -5777,7 +5945,7 @@
      "fetched": "2026-08-23"
     }
    ],
-   "last_verified": "2026-08-25",
+   "last_verified": "2026-08-26",
    "confidence": "high",
    "notes_for_editor": "Raw HTML fetched with a browser User-Agent, quotes checked character for character.",
    "history": [
@@ -5800,6 +5968,11 @@
     {
      "date": "2026-08-25",
      "note": "Checked and unchanged. Still pending, with no dated movement."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Checked and unchanged. The directive letter, the market notice and the commission's own filings still say what they said. The August 20th open meeting has come off the calendar feed now that it has been held, which is normal for that feed and not a change to the directive.",
+     "checked": true
     }
    ]
   },
@@ -5929,7 +6102,7 @@
      "fetched": "2026-08-20"
     }
    ],
-   "last_verified": "2026-08-23",
+   "last_verified": "2026-08-26",
    "confidence": "high",
    "notes_for_editor": "lrl.texas.gov robots.txt carries content signals and no path disallow.",
    "history": [
@@ -5944,6 +6117,11 @@
     {
      "date": "2026-08-23",
      "note": "Checked and unchanged. The Legislative Reference Library's posting for that week still lists the State Affairs hearing on August 19th and the Public Health hearing on August 20th. Both dates have now passed."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "The comment window closed on August 20th.",
+     "checked": true
     }
    ]
   },
@@ -6031,7 +6209,7 @@
      "fetched": "2026-08-23"
     }
    ],
-   "last_verified": "2026-08-23",
+   "last_verified": "2026-08-26",
    "confidence": "high",
    "notes_for_editor": "The quoted charter text carries semicolons and the abbreviation AI as the commission wrote them. It is quoted material and exempt from the house punctuation rules by design. The commission's report is a recommendation to the council. The ordinance submits the measures as listed in an exhibit that was not readable, so the record says the commission recommends this section and never that a ballot proposition carries this wording. The proposition letters are not published here for the same reason.",
    "history": [
@@ -6046,6 +6224,11 @@
     {
      "date": "2026-08-23",
      "note": "Checked and unchanged. The city's own legislative record shows the ordinance ordering the charter election approved on second reading on August 11th, with all members voting in favor. No later action is recorded on it. The election is still set for November 3rd."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "The comment window is still open, closing November 3rd.",
+     "checked": true
     }
    ]
   },
@@ -6125,6 +6308,15 @@
      "source_title": "PUCT Interchange, Filings for 59029",
      "source_type": "primary_official",
      "fetched": "2026-08-20"
+    },
+    {
+     "id": "tx-2026-0076-c5",
+     "text": "The filing index records the number of filings in this docket.",
+     "verbatim_quote": "498 filing(s).",
+     "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59029&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending",
+     "source_title": "PUCT Interchange filing index, Control Number 59029",
+     "source_type": "primary_official",
+     "fetched": "2026-08-26"
     }
    ],
    "last_verified": "2026-08-26",
@@ -6138,6 +6330,11 @@
     {
      "date": "2026-08-21",
      "note": "Checked and unchanged. The commission's published agenda for August 21st, 2026 still names this application as item 2 for discussion and possible action, and the filing index still stands at 489."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "The filing index moved from 489 to 498. The case style is unchanged and the application is still pending. Nothing else on the docket has moved.",
+     "checked": true
     },
     {
      "date": "2026-08-26",
@@ -6160,7 +6357,7 @@
     "metro": null,
     "on_ercot": false
    },
-   "status": "open",
+   "status": "pending",
    "key_dates": [
     {
      "date": "2026-08-25",
@@ -6246,9 +6443,27 @@
      "source_type": "primary_official",
      "id": "tx-2026-0077-c8",
      "fetched": "2026-08-23"
+    },
+    {
+     "id": "tx-2026-0077-c9",
+     "text": "The committee's own page lists the August 25th hearing in its archive of recorded meetings.",
+     "verbatim_quote": "Video/Audio — Archives 89th Session Interim August 25, 2026",
+     "source_url": "https://senate.texas.gov/cmte.php?c=640",
+     "source_title": "Senate Committee on Transportation, committee page",
+     "source_type": "primary_official",
+     "fetched": "2026-08-26"
+    },
+    {
+     "id": "tx-2026-0077-c10",
+     "text": "The committee's own page carries the autonomous vehicle interim charge in full.",
+     "verbatim_quote": "Studying the Deployment of Autonomous Vehicle Technology: Study the deployment of autonomous vehicle technology as authorized by SB 2807, (89th Session), including rule-making adopted by the Texas Department of Public Safety, the Texas Department of Motor Vehicles and the Texas Department of Licensing and Regulation.",
+     "source_url": "https://senate.texas.gov/cmte.php?c=640",
+     "source_title": "Senate Committee on Transportation, interim charges",
+     "source_type": "primary_official",
+     "fetched": "2026-08-26"
     }
    ],
-   "last_verified": "2026-08-23",
+   "last_verified": "2026-08-26",
    "confidence": "high",
    "notes_for_editor": "Statewide because the charge covers deployment on Texas roads generally. The room is in Travis County and the subject is not.",
    "history": [
@@ -6267,6 +6482,11 @@
     {
      "date": "2026-08-23",
      "note": "Checked and unchanged. The Senate's own upcoming meetings listing still sets the Transportation hearing for 9:00 AM on August 25th in hearing room E1.016. It does not mark that hearing canceled where it marks another committee's meeting the same day canceled."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "The hearing was held. The committee's own page now carries August 25th, 2026 in its archive of recorded meetings. The Legislature's upcoming listing no longer shows it, which is what that page does once a date passes. What the committee concluded is unconfirmed, because its minutes and witness list are published only under a directory this project does not fetch.",
+     "checked": true
     }
    ]
   },
@@ -6786,7 +7006,7 @@
      "fetched": "2026-08-23"
     }
    ],
-   "last_verified": "2026-08-25",
+   "last_verified": "2026-08-26",
    "confidence": "high",
    "notes_for_editor": "Award date 07/31/2026, announced by the agency on 08/03/2026. Award number 2534344, principal investigator Raymundo Arroyave.",
    "history": [
@@ -6797,6 +7017,11 @@
     {
      "date": "2026-08-25",
      "note": "Checked and unchanged. The decision still stands as decided."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Checked and unchanged. The decision still stands as decided.",
+     "checked": true
     }
    ]
   },
@@ -6910,13 +7135,18 @@
      "fetched": "2026-08-23"
     }
    ],
-   "last_verified": "2026-08-23",
+   "last_verified": "2026-08-26",
    "confidence": "high",
    "notes_for_editor": "Award 2619079 lists San Antonio as both awardee city and place of performance. Award 2619080 lists College Station as awardee city and Houston as place of performance, so only Bexar County is claimed here.",
    "history": [
     {
      "date": "2026-08-23",
      "note": "Admitted. Both award records were read directly and carry the same title, the same obligated amount and the same term."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Checked and unchanged. The decision still stands as decided.",
+     "checked": true
     }
    ]
   },
@@ -7012,13 +7242,18 @@
      "fetched": "2026-08-23"
     }
    ],
-   "last_verified": "2026-08-23",
+   "last_verified": "2026-08-26",
    "confidence": "high",
    "notes_for_editor": "Award number 2616828, principal investigator Hengrui Luo. The abstract states training activities anchored outside Texas, and the collaborating institution is not named here.",
    "history": [
     {
      "date": "2026-08-23",
      "note": "Admitted. The award record was read directly from the agency's own award endpoint."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Checked and unchanged. The decision still stands as decided.",
+     "checked": true
     }
    ]
   },
@@ -7164,13 +7399,592 @@
      "fetched": "2026-08-23"
     }
    ],
-   "last_verified": "2026-08-23",
+   "last_verified": "2026-08-26",
    "confidence": "high",
    "notes_for_editor": "Status is pending because no minutes are posted for the August 12th and 13th meeting, so the Board's action on consent agenda item 65 is not on the public record. The agenda book is the source for every figure. The seven health related institutions are not enumerated in the item, so only Galveston, the institution the item names, is claimed as geography.",
    "history": [
     {
      "date": "2026-08-23",
      "note": "Admitted. The Regents' own agenda book carries the contract's three values and states that the first two sat inside the institution's delegated authority and needed no Board approval."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Checked and unchanged. Still pending, with no dated movement.",
+     "checked": true
+    }
+   ]
+  },
+  {
+   "title": "UT System Regents put the first billion dollars of the UT Dell Medical Center into the capital program",
+   "summary": "The Board of Regents approved adding the first phase of the UT Dell Medical Center in Austin to the capital improvement program. It acted at its August 12th, 2026 meeting. The agenda book the board took up asks it to amend the program at a total project cost of one billion dollars for that phase. It also asks the board to appropriate that money from revenue financing system bond proceeds. The phase itself is early work and site preparation with a building cost of zero. The board item describes a 27 acre academic medical campus built around a digitally enabled infrastructure, with digital technology, robotics and automation folded into operations. It names MD Anderson as the partner for cancer care. The board's own document never uses the words artificial intelligence. That framing comes from the university's own April release, which describes a center where technology, data and AI are embedded to support clinicians. The debt is repaid from pledged revenues rather than from an appropriation, so the bet is on clinical income.",
+   "topic": "health-and-education",
+   "decider": {
+    "name": "University of Texas System Board of Regents",
+    "type": "state-agency"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Travis"
+    ],
+    "on_ercot": true,
+    "metro": "Austin-Round Rock-San Marcos, TX"
+   },
+   "status": "decided",
+   "confidence": "high",
+   "key_dates": [
+    {
+     "date": "2026-08-12",
+     "kind": "decided",
+     "note": "Board of Regents approved adding Phase 1 to the capital improvement program"
+    }
+   ],
+   "public_access": {
+    "room": "closed",
+    "how": "The board met on August 12th and 13th in Austin and the agenda book carrying the recommendation is published in full. UT System publishes no minutes and no record of action for that meeting. The outcome recorded here rests on a dated report of it. No further public step on this phase is named in the item.",
+    "url": "https://www.utsystem.edu/sites/default/files/offices/board-of-regents/board-meetings/agenda-book-full/8-2026AB.pdf",
+    "closes": null
+   },
+   "claims": [
+    {
+     "text": "The recommendation the board acted on names the project and the phase.",
+     "verbatim_quote": "U.T. Austin: The UT Dell Medical Center at The University of Texas at Austin, Phase 1 - Early Work and Site Preparation - Amendment of the current Capital Improvement Program to include Phase I; approval of total project cost; approval of design development for Phase I; appropriation of funds and authorization of expenditure; and resolution regarding parity debt",
+     "source_url": "https://www.utsystem.edu/sites/default/files/offices/board-of-regents/board-meetings/agenda-book-full/8-2026AB.pdf",
+     "source_title": "UT System Board of Regents agenda book, August 12 and 13, 2026, Facilities Planning and Construction Committee",
+     "source_type": "primary_official",
+     "id": "tx-2026-0095-c1",
+     "fetched": "2026-08-26"
+    },
+    {
+     "text": "The board's own item describes the campus technology as digital rather than as artificial intelligence.",
+     "verbatim_quote": "The campus will support a patient-centered model of care, incorporating digital technology, robotics, and automation to improve operations and the experience for patients and care teams.",
+     "source_url": "https://www.utsystem.edu/sites/default/files/offices/board-of-regents/board-meetings/agenda-book-full/8-2026AB.pdf",
+     "source_title": "UT System Board of Regents agenda book, August 12 and 13, 2026, project description",
+     "source_type": "primary_official",
+     "id": "tx-2026-0095-c2",
+     "fetched": "2026-08-26"
+    },
+    {
+     "text": "The board item names the site and the acreage.",
+     "verbatim_quote": "a transformative new academic medical destination on an approximately 27-acre site in the center of the west (former) Pickle Research Campus",
+     "source_url": "https://www.utsystem.edu/sites/default/files/offices/board-of-regents/board-meetings/agenda-book-full/8-2026AB.pdf",
+     "source_title": "UT System Board of Regents agenda book, August 12 and 13, 2026, project description",
+     "source_type": "primary_official",
+     "id": "tx-2026-0095-c3",
+     "fetched": "2026-08-26"
+    },
+    {
+     "text": "The university's own account of the same campus is where the artificial intelligence framing comes from.",
+     "verbatim_quote": "one where technology, data and AI are embedded to support clinicians, connect the patient journey and continuously improve outcomes",
+     "source_url": "https://news.utexas.edu/2026/04/21/michael-and-susan-dell-surpass-1-billion-in-giving-to-ut-austin/",
+     "source_title": "UT Austin, Michael and Susan Dell Surpass $1 Billion in Giving to UT Austin",
+     "source_type": "primary_official",
+     "id": "tx-2026-0095-c4",
+     "fetched": "2026-08-26"
+    },
+    {
+     "text": "A dated report of the meeting establishes that the board approved the addition, which the agenda book only recommended.",
+     "verbatim_quote": "The University of Texas System Board of Regents approved adding the first phase of the UT Dell Medical Center to UT’s capital improvement program at an Aug. 12 meeting.",
+     "source_url": "https://communityimpact.com/northwest-austin/development/ut-board-of-regents-approves-first-phase-of-the-ut-dell-medical-center/",
+     "source_title": "UT Board of Regents approves first phase of the UT Dell Medical Center, Community Impact",
+     "source_type": "journalism",
+     "id": "tx-2026-0095-c5",
+     "fetched": "2026-08-26"
+    }
+   ],
+   "id": "tx-2026-0095",
+   "last_verified": "2026-08-26",
+   "history": [
+    {
+     "date": "2026-08-26",
+     "note": "Admitted. The board's own agenda book carries the recommendation, the phase, the site and the money, and it describes the campus technology as digital rather than as artificial intelligence. The AI framing on this campus comes from the university's own release and is attributed to it here."
+    },
+    {
+     "date": "2026-08-26",
+     "note": "Corrected the same day. The entry said the board amended the program, approved the cost and authorized the money. Every source behind it was the agenda book, which is the document BEFORE the meeting and which recommends rather than records. Its own table of contents puts the committee on August 12th and the board on August 13th. UT System publishes no minutes and no record of action for that meeting. A dated report of the meeting was fetched and admitted as c5. The summary now separates what the board approved from what the item asked it to do."
+    }
+   ]
+  },
+  {
+   "title": "Senate Water, Agriculture and Rural Affairs takes up data center cooling water on September 1st",
+   "summary": "The Senate Committee on Water, Agriculture and Rural Affairs carries an interim charge directing it to examine how much water high consumption cooling technologies use. The charge names data centers. The Legislature's own upcoming meetings listing sets the committee for Tuesday, September 1st, 2026 in hearing room E1.012 at the Capitol. It is marked a public hearing, which is the room where a member of the public may testify. The charge list also carries desalination and permitting efficiency. The water question is being taken up as one supply problem rather than as a data center problem alone. How a witness registers is set out in the formal notice and is unconfirmed.",
+   "topic": "state-policy",
+   "decider": {
+    "name": "Texas Senate Committee on Water, Agriculture and Rural Affairs",
+    "type": "legislature"
+   },
+   "geography": {
+    "statewide": true,
+    "counties": [],
+    "on_ercot": true
+   },
+   "status": "open",
+   "confidence": "high",
+   "key_dates": [
+    {
+     "date": "2026-09-01",
+     "kind": "hearing",
+     "note": "Public hearing, 9:00 AM, hearing room E1.012"
+    }
+   ],
+   "public_access": {
+    "room": "open_meeting",
+    "how": "The hearing is set for Tuesday, September 1st, 2026 in hearing room E1.012 at the Capitol in Austin. The Legislature's own listing marks it a public hearing. Witness registration instructions are unconfirmed, so a member of the public should ask the committee clerk how to sign up.",
+    "url": "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S",
+    "closes": "2026-09-01"
+   },
+   "claims": [
+    {
+     "text": "The committee's interim charge names data centers as the cooling technology to be examined.",
+     "verbatim_quote": "Assessing the Water Demands of Energy-Intensive Technologies: Examine the current water consumption rates for high-consumption cooling technologies, including data centers.",
+     "source_url": "https://senate.texas.gov/cmte.php?c=700",
+     "source_title": "Texas Senate Committee on Water, Agriculture, and Rural Affairs, interim charges",
+     "source_type": "primary_official",
+     "id": "tx-2026-0096-c1",
+     "fetched": "2026-08-26"
+    },
+    {
+     "text": "The same charge list pairs the question with desalination and permitting.",
+     "verbatim_quote": "Evaluating Desalination Viability and Regulatory Efficiency: Inventory existing facilities and review the permitting framework across relevant state agencies to improve efficiency.",
+     "source_url": "https://senate.texas.gov/cmte.php?c=700",
+     "source_title": "Texas Senate Committee on Water, Agriculture, and Rural Affairs, interim charges",
+     "source_type": "primary_official",
+     "id": "tx-2026-0096-c2",
+     "fetched": "2026-08-26"
+    },
+    {
+     "text": "The Legislature's upcoming meetings listing carries the date and the room.",
+     "verbatim_quote": "Tuesday, September 1, 2026",
+     "source_url": "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S",
+     "source_title": "Upcoming Senate Committee Meetings, Texas Legislature Online",
+     "source_type": "primary_official",
+     "id": "tx-2026-0096-c3",
+     "fetched": "2026-08-26"
+    },
+    {
+     "text": "The listing names the committee taking the September 1st hearing.",
+     "verbatim_quote": "Water, Agriculture and Rural Affairs",
+     "source_url": "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S",
+     "source_title": "Upcoming Senate Committee Meetings, Texas Legislature Online",
+     "source_type": "primary_official",
+     "id": "tx-2026-0096-c4",
+     "fetched": "2026-08-26"
+    },
+    {
+     "id": "tx-2026-0096-c5",
+     "text": "The listing gives the room the September 1st hearing sits in.",
+     "verbatim_quote": "Water, Agriculture and Rural Affairs Type: Public Hearing Location: E1.012 (Hearing Room)",
+     "source_url": "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S",
+     "source_title": "Upcoming Senate Committee Meetings, Texas Legislature Online",
+     "source_type": "primary_official",
+     "fetched": "2026-08-26"
+    }
+   ],
+   "id": "tx-2026-0096",
+   "last_verified": "2026-08-26",
+   "history": [
+    {
+     "date": "2026-08-26",
+     "note": "Admitted. The committee's own charge names data centers and the Legislature's upcoming listing carries the date and the room."
+    }
+   ]
+  },
+  {
+   "title": "Texas requires AI training for state and local government employees, and this is the first annual cycle",
+   "summary": "House Bill 3512 of the 89th Regular Session created artificial intelligence training programs for certain employees and officials of state agencies and local governments. Its author was Giovanni Capriglione and its sponsor was Cesar Blanco. It took effect on September 1st, 2025. The Legislature indexes it under artificial intelligence and under the Department of Information Resources, which is the agency that certifies which programs satisfy it. Which programs carry that certification is unconfirmed. So is the date by which an entity files its compliance certification.",
+   "topic": "state-policy",
+   "decider": {
+    "name": "Texas Legislature",
+    "type": "legislature"
+   },
+   "geography": {
+    "statewide": true,
+    "counties": [],
+    "on_ercot": false
+   },
+   "status": "decided",
+   "confidence": "high",
+   "key_dates": [
+    {
+     "date": "2025-09-01",
+     "kind": "effective",
+     "note": "Effective date of House Bill 3512"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "The bill's history, caption, authors and effective date are published by the Legislature. A city or county employee who needs to know which training satisfies the requirement should ask the Department of Information Resources. That agency also holds the date by which an entity certifies.",
+    "url": "https://capitol.texas.gov/BillLookup/History.aspx?LegSess=89R&Bill=HB3512",
+    "closes": null
+   },
+   "claims": [
+    {
+     "id": "tx-2026-0097-c0",
+     "text": "The Legislature's own page names the bill and the session it passed in.",
+     "verbatim_quote": "History for 89(R) HB 3512 by Capriglione",
+     "source_url": "https://capitol.texas.gov/BillLookup/History.aspx?LegSess=89R&Bill=HB3512",
+     "source_title": "Texas Legislature Online, bill history for 89(R) HB 3512",
+     "source_type": "primary_official",
+     "fetched": "2026-08-26"
+    },
+    {
+     "text": "The enrolled caption states what the bill does.",
+     "verbatim_quote": "Relating to artificial intelligence training programs for certain employees and officials of state agencies and local governments.",
+     "source_url": "https://capitol.texas.gov/BillLookup/History.aspx?LegSess=89R&Bill=HB3512",
+     "source_title": "Texas Legislature Online, bill history for 89(R) HB 3512",
+     "source_type": "primary_official",
+     "id": "tx-2026-0097-c1",
+     "fetched": "2026-08-26"
+    },
+    {
+     "text": "The Legislature's own record gives the effective date.",
+     "verbatim_quote": "Effective on 9/1/25",
+     "source_url": "https://capitol.texas.gov/BillLookup/History.aspx?LegSess=89R&Bill=HB3512",
+     "source_title": "Texas Legislature Online, last action for 89(R) HB 3512",
+     "source_type": "primary_official",
+     "id": "tx-2026-0097-c2",
+     "fetched": "2026-08-26"
+    },
+    {
+     "text": "The Legislature indexes the bill against the agency that certifies the training.",
+     "verbatim_quote": "INFORMATION RESOURCES, DEPARTMENT OF (V9827)",
+     "source_url": "https://capitol.texas.gov/BillLookup/History.aspx?LegSess=89R&Bill=HB3512",
+     "source_title": "Texas Legislature Online, subjects for 89(R) HB 3512",
+     "source_type": "primary_official",
+     "id": "tx-2026-0097-c3",
+     "fetched": "2026-08-26"
+    }
+   ],
+   "id": "tx-2026-0097",
+   "last_verified": "2026-08-26",
+   "history": [
+    {
+     "date": "2026-08-26",
+     "note": "Admitted. The Legislature's own bill record carries the caption, the authors and the effective date. Which training programs satisfy the requirement is unconfirmed, and so is the date an entity certifies. Both are published by the Department of Information Resources rather than by the Legislature."
+    }
+   ]
+  },
+  {
+   "title": "NSF funds a Rice laboratory where a model designs the experiment and a robot runs it, bookable from anywhere",
+   "summary": "The National Science Foundation award to William Marsh Rice University funds READINESS, a cloud accessible robotic laboratory for synthesizing electronic and quantum materials. AI plans the experiments and the equipment executes them. The University of Texas at Austin is a collaborating institution. Rice describes the point as access rather than speed, putting capability that existed in a handful of laboratories behind a login a researcher anywhere in the country can use. The university's own framing is unusually careful about the limit, saying responsible AI should complement a researcher's judgement rather than replace it.",
+   "topic": "research-and-science",
+   "decider": {
+    "name": "National Science Foundation",
+    "type": "federal"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Harris",
+     "Travis"
+    ],
+    "on_ercot": true
+   },
+   "status": "decided",
+   "confidence": "high",
+   "key_dates": [
+    {
+     "date": "2026-08-01",
+     "kind": "effective",
+     "note": "Award start date recorded by the National Science Foundation"
+    }
+   ],
+   "public_access": {
+    "room": "closed",
+    "how": "The award record is public and the university publishes its own account. A researcher who wants to use the platform applies to Rice once it is running rather than to the funding agency.",
+    "url": "https://api.nsf.gov/services/v1/awards/2607553.json",
+    "closes": null
+   },
+   "claims": [
+    {
+     "text": "The award record names the project.",
+     "verbatim_quote": "PCL-Test Bed: Revolutionizing AI-Driven Autonomous Experimentation for Next-Generation Semiconductor Synthesis (READINESS)",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2607553.json?printFields=id,title,awardeeName,startDate,expDate,estimatedTotalAmt,fundProgramName,abstractText",
+     "source_title": "National Science Foundation Awards API, award 2607553",
+     "source_type": "primary_official",
+     "id": "tx-2026-0098-c1",
+     "fetched": "2026-08-26"
+    },
+    {
+     "text": "Rice states what the platform is for.",
+     "verbatim_quote": "seeks to create a remote research platform that minimizes trial-and-error experimentation and enhances access to advanced research infrastructure for electronic and quantum materials synthesis.",
+     "source_url": "https://news.rice.edu/news/2026/accelerating-discovery-rice-receives-nearly-20m-nsf-award-ai-powered-materials-laboratory",
+     "source_title": "Rice University, Accelerating discovery, Rice receives nearly $20M NSF award for AI-powered materials laboratory",
+     "source_type": "primary_official",
+     "id": "tx-2026-0098-c2",
+     "fetched": "2026-08-26"
+    },
+    {
+     "text": "The university states a limit on what the model is for.",
+     "verbatim_quote": "Responsible AI should complement researchers' capabilities rather than replace their judgment.",
+     "source_url": "https://news.rice.edu/news/2026/accelerating-discovery-rice-receives-nearly-20m-nsf-award-ai-powered-materials-laboratory",
+     "source_title": "Rice University, Accelerating discovery, Rice receives nearly $20M NSF award for AI-powered materials laboratory",
+     "source_type": "primary_official",
+     "id": "tx-2026-0098-c3",
+     "fetched": "2026-08-26"
+    },
+    {
+     "text": "The stated goal is a laboratory researchers elsewhere can use.",
+     "verbatim_quote": "Our goal is to create a laboratory that researchers from across the country can use to produce advanced electronic and quantum materials on demand.",
+     "source_url": "https://news.rice.edu/news/2026/accelerating-discovery-rice-receives-nearly-20m-nsf-award-ai-powered-materials-laboratory",
+     "source_title": "Rice University, Accelerating discovery, Rice receives nearly $20M NSF award for AI-powered materials laboratory",
+     "source_type": "primary_official",
+     "id": "tx-2026-0098-c4",
+     "fetched": "2026-08-26"
+    }
+   ],
+   "id": "tx-2026-0098",
+   "last_verified": "2026-08-26",
+   "history": [
+    {
+     "date": "2026-08-26",
+     "note": "Admitted. The award record and the university's own account agree on what the platform is and who may use it."
+    }
+   ]
+  },
+  {
+   "title": "The Army funds a Rice research center on antenna arrays that carries AI as one of six disciplines",
+   "summary": "The United States Army Research Office established a five year research center at Rice University for secure sensing, imaging and communications. Edward Knightly of the electrical and computer engineering department leads it. The center studies extremely large antenna arrays. It lists artificial intelligence alongside wireless networking, antennas, radar, circuits and physics. The release describes no specific AI method. What the models will actually do inside the work is not yet on the public record.",
+   "topic": "research-and-science",
+   "decider": {
+    "name": "United States Army Research Office",
+    "type": "federal"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Harris"
+    ],
+    "on_ercot": true,
+    "metro": "Houston-Pasadena-The Woodlands, TX"
+   },
+   "status": "decided",
+   "confidence": "high",
+   "key_dates": [
+    {
+     "date": "2026-08-04",
+     "kind": "decided",
+     "note": "Rice announced the award establishing the center"
+    }
+   ],
+   "public_access": {
+    "room": "closed",
+    "how": "The university publishes its own account of the award. No public participation step is named.",
+    "url": "https://news.rice.edu/news/2026/rice-lead-15m-army-research-center-next-generation-sensing-and-communications",
+    "closes": null
+   },
+   "claims": [
+    {
+     "text": "The release lists artificial intelligence as one of the disciplines the center combines.",
+     "verbatim_quote": "the center combines expertise in wireless networking, antennas, radar, artificial intelligence, circuits and physics to address growing demands on wireless systems.",
+     "source_url": "https://news.rice.edu/news/2026/rice-lead-15m-army-research-center-next-generation-sensing-and-communications",
+     "source_title": "Rice University, Rice to lead $15M Army Research center for next-generation sensing and communications",
+     "source_type": "primary_official",
+     "id": "tx-2026-0099-c1",
+     "fetched": "2026-08-26"
+    },
+    {
+     "text": "The centre's director states what the work is meant to produce.",
+     "verbatim_quote": "This center gives us the opportunity to develop the science and engineering needed for a new generation of wireless networks with radically new capabilities, resilience and security",
+     "source_url": "https://news.rice.edu/news/2026/rice-lead-15m-army-research-center-next-generation-sensing-and-communications",
+     "source_title": "Rice University, Rice to lead $15M Army Research center for next-generation sensing and communications",
+     "source_type": "primary_official",
+     "id": "tx-2026-0099-c2",
+     "fetched": "2026-08-26"
+    }
+   ],
+   "id": "tx-2026-0099",
+   "last_verified": "2026-08-26",
+   "history": [
+    {
+     "date": "2026-08-26",
+     "note": "Admitted. The university names artificial intelligence as one discipline in the center and describes no method, which is what is on the record and no more."
+    }
+   ]
+  },
+  {
+   "title": "UT Austin puts a computer science and AI course in the core every undergraduate takes",
+   "summary": "The University of Texas at Austin published a new Core Curriculum on August 13th, 2026 that names Computer Science and AI among the foundational courses. The others alongside it are Great Questions of Human Life, Western Civilization and Great Ideas in Science. The university says the core will be introduced in phases starting with new courses in the autumn of 2027, so no student sits the requirement yet. A history major on that campus will take an AI course to graduate, which is a different kind of AI decision from buying a machine.",
+   "topic": "health-and-education",
+   "decider": {
+    "name": "University of Texas at Austin",
+    "type": "state-agency"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Travis"
+    ],
+    "on_ercot": true,
+    "metro": "Austin-Round Rock-San Marcos, TX"
+   },
+   "status": "decided",
+   "confidence": "high",
+   "key_dates": [
+    {
+     "date": "2026-08-13",
+     "kind": "decided",
+     "note": "The university published the new Core Curriculum"
+    },
+    {
+     "date": "2027-09-01",
+     "kind": "effective",
+     "note": "New courses introduced, per the university's stated phasing"
+    }
+   ],
+   "public_access": {
+    "room": "closed",
+    "how": "The university published the course list and the phasing. No public comment step is named and the announcement does not state that the Board of Regents formally approved the core.",
+    "url": "https://news.utexas.edu/2026/08/13/new-core-curriculum-refocuses-undergraduate-education-at-ut-austin/",
+    "closes": null
+   },
+   "claims": [
+    {
+     "text": "The published list of foundational courses names the AI course.",
+     "verbatim_quote": "Great Questions of Human Life, Masterworks of Literature, Western Civilization, World Politics and Culture, Principles of American Politics, Great Ideas in Science, and Computer Science and AI",
+     "source_url": "https://news.utexas.edu/2026/08/13/new-core-curriculum-refocuses-undergraduate-education-at-ut-austin/",
+     "source_title": "UT Austin, New Core Curriculum Refocuses Undergraduate Education at UT Austin",
+     "source_type": "primary_official",
+     "id": "tx-2026-0100-c1",
+     "fetched": "2026-08-26"
+    },
+    {
+     "text": "The university states when the courses arrive.",
+     "verbatim_quote": "UT will implement the new Core Curriculum in phases, beginning with the introduction of new courses in fall 2027.",
+     "source_url": "https://news.utexas.edu/2026/08/13/new-core-curriculum-refocuses-undergraduate-education-at-ut-austin/",
+     "source_title": "UT Austin, New Core Curriculum Refocuses Undergraduate Education at UT Austin",
+     "source_type": "primary_official",
+     "id": "tx-2026-0100-c2",
+     "fetched": "2026-08-26"
+    }
+   ],
+   "id": "tx-2026-0100",
+   "last_verified": "2026-08-26",
+   "history": [
+    {
+     "date": "2026-08-26",
+     "note": "Admitted. The published course list names the AI course and the university states when the courses arrive."
+    }
+   ]
+  },
+  {
+   "title": "Houston Methodist put an imaging AI in front of its radiologists and says out loud that it is imperfect",
+   "summary": "Houston Methodist rolled out a suite of AI imaging tools across the system, starting with a small group of users before widening it. The tool flags a suspected finding on a scan and draws a heat map to direct the radiologist's attention. The stated aims are faster emergency response and cleaner patient follow up. The hospital's own account says the system is not perfect and quotes a radiologist making the same point. That is a more careful public position than a deployment of this kind usually carries.",
+   "topic": "health-and-education",
+   "decider": {
+    "name": "Houston Methodist",
+    "type": "special-district"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Harris"
+    ],
+    "on_ercot": true,
+    "metro": "Houston-Pasadena-The Woodlands, TX"
+   },
+   "status": "decided",
+   "confidence": "high",
+   "key_dates": [
+    {
+     "date": "2026-06-29",
+     "kind": "decided",
+     "note": "Houston Methodist published its account of the systemwide rollout"
+    }
+   ],
+   "public_access": {
+    "room": "closed",
+    "how": "A private hospital system's purchasing decision carries no public participation step. The system publishes its own account of what the tool does and where it is running.",
+    "url": "https://www.houstonmethodist.org/leading-medicine-blog/articles/2026/jun/houston-methodist-launches-systemwide-ai-platform-to-transform-imaging-emergency-response-care/",
+    "closes": null
+   },
+   "claims": [
+    {
+     "text": "The hospital names the tool and describes what it puts on the radiologist's screen.",
+     "verbatim_quote": "The specific tool, called Aidoc, automatically flags potential issues and displays a visual heat map to help guide radiologists' attention.",
+     "source_url": "https://www.houstonmethodist.org/leading-medicine-blog/articles/2026/jun/houston-methodist-launches-systemwide-ai-platform-to-transform-imaging-emergency-response-care/",
+     "source_title": "Houston Methodist, Houston Methodist Launches Systemwide AI Platform to Transform Imaging, Emergency Response and Care Coordination",
+     "source_type": "primary_official",
+     "id": "tx-2026-0101-c1",
+     "fetched": "2026-08-26"
+    },
+    {
+     "text": "The hospital states the limit in its own words.",
+     "verbatim_quote": "Like all AI-supported tools, the system is not perfect.",
+     "source_url": "https://www.houstonmethodist.org/leading-medicine-blog/articles/2026/jun/houston-methodist-launches-systemwide-ai-platform-to-transform-imaging-emergency-response-care/",
+     "source_title": "Houston Methodist, Houston Methodist Launches Systemwide AI Platform to Transform Imaging, Emergency Response and Care Coordination",
+     "source_type": "primary_official",
+     "id": "tx-2026-0101-c2",
+     "fetched": "2026-08-26"
+    }
+   ],
+   "id": "tx-2026-0101",
+   "last_verified": "2026-08-26",
+   "history": [
+    {
+     "date": "2026-08-26",
+     "note": "Admitted. The hospital's own account names the tool, describes what it puts on the radiologist's screen and states its limit."
+    }
+   ]
+  },
+  {
+   "title": "Four Texas campuses took roles in the Energy Department's AI for science program",
+   "summary": "The Department of Energy announced the recipients of its Genesis Mission in Washington on July 22nd, 2026. UT Austin leads two projects and partners on three more. UT Arlington leads a project on keeping AI driven experiment workflows trustworthy at large scientific facilities. Texas A&M announced its own participation five days later. The program routes federal science money through an explicitly AI first frame, so Texas campuses are competing inside that frame rather than around it. The size of the round is the universities' own restatement of the announcement rather than a figure the department published where it could be read.",
+   "topic": "research-and-science",
+   "decider": {
+    "name": "United States Department of Energy",
+    "type": "federal"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Travis",
+     "Tarrant",
+     "Brazos"
+    ],
+    "on_ercot": true
+   },
+   "status": "decided",
+   "confidence": "high",
+   "key_dates": [
+    {
+     "date": "2026-07-22",
+     "kind": "decided",
+     "note": "Recipients announced in Washington"
+    }
+   ],
+   "public_access": {
+    "room": "closed",
+    "how": "The awards are made. Each university publishes its own account of what it won and who leads it.",
+    "url": "https://news.utexas.edu/2026/07/22/department-of-energys-new-ai-for-science-genesis-mission-awards-funding-to-5-ut-research-projects/",
+    "closes": null
+   },
+   "claims": [
+    {
+     "text": "UT Austin states the size of the round and the date it was announced.",
+     "verbatim_quote": "The Department of Energy received more than 5,000 applications and awarded funding to 278 projects led by national laboratories, institutions of higher education, companies and nonprofit organizations. Recipients were announced in Washington, D.C., on July 22.",
+     "source_url": "https://news.utexas.edu/2026/07/22/department-of-energys-new-ai-for-science-genesis-mission-awards-funding-to-5-ut-research-projects/",
+     "source_title": "UT Austin, Department of Energy's New AI-for-Science Genesis Mission Awards Funding to 5 UT Research Projects",
+     "source_type": "primary_official",
+     "id": "tx-2026-0103-c1",
+     "fetched": "2026-08-26"
+    },
+    {
+     "text": "UT Arlington names the project it leads and the question it is asking.",
+     "verbatim_quote": "The project—Real-Time Trust and Resilience for AI-Driven EPICS Scientific Workflows—is part of the Genesis Mission and will be led by Habeeb Olufowobi, a faculty member in UTA's Department of Computer Science and Engineering.",
+     "source_url": "https://www.uta.edu/news/news-releases/2026/07/22/uta-selected-for-land-mark-doe-ai-initiative",
+     "source_title": "University of Texas at Arlington, UTA selected for landmark DOE AI initiative",
+     "source_type": "primary_official",
+     "id": "tx-2026-0103-c2",
+     "fetched": "2026-08-26"
+    }
+   ],
+   "id": "tx-2026-0103",
+   "last_verified": "2026-08-26",
+   "history": [
+    {
+     "date": "2026-08-26",
+     "note": "Admitted. Each university publishes its own account of what it won. No Department of Energy page was read, so the size of the round rests on the universities restating the announcement."
     }
    ]
   }

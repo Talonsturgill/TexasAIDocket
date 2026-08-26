@@ -1,255 +1,287 @@
 {
-  "_spec": {
-    "purpose": "The self-improvement ledger. The retro phase records what a run LEARNED about making decks, and the next run's directors room and copy chamber are handed the instincts that have earned their place. This is the machine's craft memory, and it is the one ledger whose entries are about how to work rather than about what was published.",
-    "confidence_is_computed_never_written": "An entry may NOT carry a confidence number. It carries the DATES it was confirmed and the dates it was contradicted, and scripts/carousel/instincts.py derives confidence from those events. Writing one by hand is a hard fail on load. This is the compute-not-generate law applied to the machine's own self-knowledge, and it is here because the sibling's ledger shows exactly what happens without it: 47 of its 101 entries sit at 0.90 confidence while only 25 entries have ever been confirmed once. Those numbers were typed by a model grading its own lesson, and a machine that can assert its own confidence will assert it high.",
-    "how_confidence_is_derived": "Laplace's rule of succession, (confirmations + 1) / (confirmations + contradictions + 2). A brand new instinct scores 0.5, which is the honest score for a lesson nothing has tested yet. Three clean confirmations reach 0.8. One contradiction against three confirmations drops to 0.67. The rule is from 1774 and is not measured from our own corpus, which matters: a threshold derived from our own history is a ratchet, and one derived from lessons we already believe would confirm whatever we happened to write first.",
-    "injection": "Before the directors room and the copy chamber, the run is handed the top 5 instincts at confidence >= 0.7. Under this formula that bar means at least three confirmations with no contradiction, so an instinct reaches the prompt by surviving three runs rather than by claiming to be important.",
-    "pruning": "An entry contradicted more often than confirmed, once it has been tested at least three times, is retired rather than deleted. Retired entries keep their evidence, because 'we tried this and it was wrong' is a lesson too and re-learning it costs a run.",
-    "why_this_starts_empty": "This repo has shipped zero decks. It cannot have learned anything from running, and seeding it with the sibling's 101 entries would be a lie about this machine's experience told in the machine's own memory. Those lessons are also about the sibling's engine and its art libraries, so most of them name files that do not exist here. Run 1 injects nothing, which is correct.",
-    "entry_schema": {
-      "id": "kebab-slug, stable, never reused",
-      "learned": "YYYY-MM-DD, the run that first wrote it down",
-      "instinct": "one imperative sentence, addressed to the next run",
-      "evidence": "what happened that taught this, specific enough to re-check",
-      "confirmed": [
-        "YYYY-MM-DD, one per run that saw it hold"
-      ],
-      "contradicted": [
-        "YYYY-MM-DD, one per run that saw it fail"
-      ],
-      "retired": "YYYY-MM-DD or absent"
-    }
+ "_spec": {
+  "purpose": "The self-improvement ledger. The retro phase records what a run LEARNED about making decks, and the next run's directors room and copy chamber are handed the instincts that have earned their place. This is the machine's craft memory, and it is the one ledger whose entries are about how to work rather than about what was published.",
+  "confidence_is_computed_never_written": "An entry may NOT carry a confidence number. It carries the DATES it was confirmed and the dates it was contradicted, and scripts/carousel/instincts.py derives confidence from those events. Writing one by hand is a hard fail on load. This is the compute-not-generate law applied to the machine's own self-knowledge, and it is here because the sibling's ledger shows exactly what happens without it: 47 of its 101 entries sit at 0.90 confidence while only 25 entries have ever been confirmed once. Those numbers were typed by a model grading its own lesson, and a machine that can assert its own confidence will assert it high.",
+  "how_confidence_is_derived": "Laplace's rule of succession, (confirmations + 1) / (confirmations + contradictions + 2). A brand new instinct scores 0.5, which is the honest score for a lesson nothing has tested yet. Three clean confirmations reach 0.8. One contradiction against three confirmations drops to 0.67. The rule is from 1774 and is not measured from our own corpus, which matters: a threshold derived from our own history is a ratchet, and one derived from lessons we already believe would confirm whatever we happened to write first.",
+  "injection": "Before the directors room and the copy chamber, the run is handed the top 5 instincts at confidence >= 0.7. Under this formula that bar means at least three confirmations with no contradiction, so an instinct reaches the prompt by surviving three runs rather than by claiming to be important.",
+  "pruning": "An entry contradicted more often than confirmed, once it has been tested at least three times, is retired rather than deleted. Retired entries keep their evidence, because 'we tried this and it was wrong' is a lesson too and re-learning it costs a run.",
+  "why_this_starts_empty": "This repo has shipped zero decks. It cannot have learned anything from running, and seeding it with the sibling's 101 entries would be a lie about this machine's experience told in the machine's own memory. Those lessons are also about the sibling's engine and its art libraries, so most of them name files that do not exist here. Run 1 injects nothing, which is correct.",
+  "entry_schema": {
+   "id": "kebab-slug, stable, never reused",
+   "learned": "YYYY-MM-DD, the run that first wrote it down",
+   "instinct": "one imperative sentence, addressed to the next run",
+   "evidence": "what happened that taught this, specific enough to re-check",
+   "confirmed": [
+    "YYYY-MM-DD, one per run that saw it hold"
+   ],
+   "contradicted": [
+    "YYYY-MM-DD, one per run that saw it fail"
+   ],
+   "retired": "YYYY-MM-DD or absent"
+  }
+ },
+ "entries": [
+  {
+   "id": "roof-must-touch-what-it-covers",
+   "learned": "2026-08-16",
+   "instinct": "When a slide claims one thing covers several, draw the covering thing touching them, with walls and an eave shadow, never as a wider bar above a gap.",
+   "evidence": "Carousel No. 1 slide 3. The roof plane sat 70px above the three stage planes with a black bar between, and the pixel critic read the whole frame as a four-bar SaaS chart. The acceptance item tested for vertical breaks crossing the plane, which a single rectangle can never fail.",
+   "confirmed": [],
+   "contradicted": []
   },
-  "entries": [
-    {
-      "id": "roof-must-touch-what-it-covers",
-      "learned": "2026-08-16",
-      "instinct": "When a slide claims one thing covers several, draw the covering thing touching them, with walls and an eave shadow, never as a wider bar above a gap.",
-      "evidence": "Carousel No. 1 slide 3. The roof plane sat 70px above the three stage planes with a black bar between, and the pixel critic read the whole frame as a four-bar SaaS chart. The acceptance item tested for vertical breaks crossing the plane, which a single rectangle can never fail.",
-      "confirmed": [],
-      "contradicted": []
-    },
-    {
-      "id": "acceptance-items-need-a-floor",
-      "learned": "2026-08-16",
-      "instinct": "Write every acceptance item so that rendering NOTHING fails it, not just so that rendering too much fails it.",
-      "evidence": "Carousel No. 1. 'The stipple density stays low enough that the paper reads as tooth' passed on slide 6 where no stipple rendered at all, and 'the bottom third carries the densest engraved mass' passed on slide 4 where a flat warm wash was doing the work. Both items had a ceiling and no floor.",
-      "confirmed": [
-        "2026-08-21",
-        "2026-08-25"
-      ],
-      "contradicted": []
-    },
-    {
-      "id": "name-the-subject-on-the-turn",
-      "learned": "2026-08-16",
-      "instinct": "The turn slide must name its subject in its own hook, because a carousel slide gets screenshotted and reshared alone.",
-      "evidence": "Carousel No. 1 slide 7 opened on 'It is not in the queue' with the antecedent last named on slide 5. The flow critic could not recover the subject at feed speed until it reached a small label at the bottom edge.",
-      "confirmed": [],
-      "contradicted": []
-    },
-    {
-      "id": "assertions-expire-on-first-use",
-      "learned": "2026-08-16",
-      "instinct": "When a gate passes because a feature has never been used, write its expiry into the assertion, because the run that first uses the feature is the one that can least afford to argue with its own suite.",
-      "evidence": "Carousel No. 1 turned two green assertions red on the same afternoon. The ask engine asserted no request leaves the page, which held only while runs/carousel was empty. The instincts self-test asserted the ledger starts empty since this repo has shipped no decks.",
-      "confirmed": [],
-      "contradicted": []
-    },
-    {
-      "id": "acceptance-lists-cannot-catch-their-own-frame",
-      "learned": "2026-08-18",
-      "instinct": "Put one acceptance item on every dossier that names what the frame must NOT be mistaken for, because a checklist of parts passes while the whole reads as the wrong thing.",
-      "evidence": "Slide 5 passed all five of its acceptance items while reading as a Gantt chart that asserted start times the record does not state, with the contradicting caption on the same frame. The list checked edges, proportions, light and labels and never asked whether it read as a chart.",
-      "confirmed": [
-        "2026-08-21"
-      ],
-      "contradicted": []
-    },
-    {
-      "id": "compute-every-drawn-proportion",
-      "learned": "2026-08-18",
-      "instinct": "Any position or length a reader could measure goes through compute.py, not just the ones that carry a printed number.",
-      "evidence": "Slide 4's stationing terminus was typed at x=660, drawing a 63:37 split where the hours are 81:19, beside ten minute ticks that were themselves to scale. The frame promised a scale and contradicted it, and no gate caught it because no numeral was printed.",
-      "confirmed": [
-        "2026-08-21",
-        "2026-08-25"
-      ],
-      "contradicted": []
-    },
-    {
-      "id": "a-gate-fix-can-create-an-editorial-defect",
-      "learned": "2026-08-18",
-      "instinct": "After answering a composition gate, re-read the frame for what the new furniture now asserts.",
-      "evidence": "A dashed leader added to clear slide 9's dead lower zone ran from the no-action node into an empty passed-date field, which is a causal drawing and turned a record into an accusation.",
-      "confirmed": [
-        "2026-08-21"
-      ],
-      "contradicted": []
-    },
-    {
-      "id": "one-geometry-two-layers-will-drift",
-      "learned": "2026-08-19",
-      "instinct": "State a shared geometry ONCE in the builder and substitute it into both the canvas layer and the CSS layer.",
-      "evidence": "Carousel No. 3 slide 6. The four terrazzo bands were drawn full bleed at W/4 and the four label plates were laid out in a safe-area box inset 80px, so the outer two words straddled a band boundary by 37px. The safe-zone breach had been fixed on the type layer and the art layer was never told. The scorer measured it at the third pass; no gate could, because each layer was internally correct. CONTRADICTED 2026-08-25, three frames over. Slide 1's dek carried `width:430` with no unit, which CSS drops whole, so its measure was the body's 1080 and the cover's only explanatory sentence printed across the case stile and over the lock cylinder at 1.8 contrast. Slide 4's citation and slide 8's three citations had no width at all and ran off the paper into the bezel and the greeked rule field. Slide 4's exclusion list was a hand-kept copy of the type boxes measured in a DIFFERENT PROJECTION from the one the browser lays type in. All three round 9 judges named it independently and it is what held artwork_craft at 6.0.",
-      "confirmed": [],
-      "contradicted": [
-        "2026-08-25"
-      ]
-    },
-    {
-      "id": "read-the-exit-code-of-the-thing-that-writes",
-      "learned": "2026-08-21",
-      "instinct": "Read the exit code of the BUILDER, not only of the checkers. A build that refuses leaves the previous build's output on disk, and everything downstream will happily process it.",
-      "evidence": "Carousel No. 5. build_slides.py was invoked with its output suppressed and its exit code unread. _footer_fit refused the run, correctly, naming a slide 9 byline 72px too wide, and exited 1 into /dev/null. The nine HTML files from the previous build were still in out/<date>/slides/, so the renderer rendered them, machine QA passed them, eleven carousel gates passed them, and three scoring judges graded a deck that had never been built. One judge caught it by comparing the render against the plan. The repo's own law says run a GATE by exit code; the gap is that the builder is not a gate and nobody had said to read its code too.",
-      "confirmed": [],
-      "contradicted": []
-    },
-    {
-      "id": "an-acceptance-item-may-not-choose-the-verb",
-      "learned": "2026-08-21",
-      "instinct": "An acceptance item may require a frame to be positive, or specific, or scoped. It may NOT prescribe the word, because the fact will be bent to fit the word rather than the other way round.",
-      "evidence": "Carousel No. 5 slide 7. The item read 'says what each does PUBLISH rather than what it fails to publish', and the frame then said 'DPS publishes first responder interaction plans' where c34 says the page TAKES them and the absence record says it CARRIES them and a submissions address. Publish and receive are opposite directions on the one frame whose subject is what each page holds. The eighth panel's integrity judge failed the deck on it and named the acceptance item as the cause rather than the sentence. Fixing only the sentence would have left the instruction that produced it in the plan for the next run to execute again.",
-      "confirmed": [],
-      "contradicted": []
-    },
-    {
-      "id": "the-rhetorical-spine-is-chosen-before-the-record-can-check-it",
-      "learned": "2026-08-21",
-      "instinct": "A deck's central line is written early, when the record is still thin, and then nothing re-reads it against the record that arrived afterwards. Re-check the HOOK against the claims file last, not first.",
-      "evidence": "Carousel No. 5. The cover read 'Every mile logged. No column for it.' over a byline of c27 and c28, a dateline and a mileage figure, neither of which supports an absence. The verified absence was narrower on both axes, a crash COUNT missing from three named pages, and the run's own rejected list says the TxDOT CRIS query never rendered and an absence cannot be asserted from a page that did not render. It survived four scoring panels, every carousel gate, a full pixel review and a flow critic, because each of them checked that the cited ids resolve and none asked whether the sentence above them says what the claims say. The sixth panel failed it. The cover now asks instead.",
-      "confirmed": [],
-      "contradicted": []
-    },
-    {
-      "id": "a-quoted-row-unmarked-becomes-our-prose",
-      "learned": "2026-08-22",
-      "instinct": "Put the quotation marks on the FRAME whenever a slide prints a source's own string, because the site treats an unmarked row as this project's own sentence.",
-      "evidence": "2026-08-22. Slide 7 printed three PUCT index rows unmarked. house_style_check failed the built article on the source's own abbreviation Sept. 4, a string this project never wrote. Slides 2, 3, 8 and 9 wore their marks and were exempt.",
-      "confirmed": [],
-      "contradicted": []
-    },
-    {
-      "id": "draw-every-plane-before-what-stands-on-it",
-      "learned": "2026-08-22",
-      "instinct": "Draw every ground plane BEFORE the objects standing on it, and stop every drawn element above the footer band, because a plane painted last erases the object and leaves its shadow behind.",
-      "evidence": "2026-08-22. Slide 7 drew a lit spine and its foot, then painted plane(1010,1350) over both. The spine died at the console line, the foot vanished, and a redrawn cast shadow ran through the texasaidocket.com glyph band. Slide 6 had the same defect the same run, three rods drawn and two shipped. CONTRADICTED 2026-08-25. Slide 9's closing line ran 1128 to 1229 and the case's lower rail is drawn at 1228, so the last line's descenders were sheared by the plane beneath them. This instinct's own second half says to stop every drawn element above the footer band, and the frame carrying the deck's one actionable date is where it was broken.",
-      "confirmed": [],
-      "contradicted": [
-        "2026-08-25"
-      ]
-    },
-    {
-      "id": "a-count-must-name-the-set-it-counted",
-      "learned": "2026-08-22",
-      "instinct": "Make every count on a frame name the set it counted, and make that set one the deck actually read, because a bare count over a partly quoted index asserts a number nothing checked.",
-      "evidence": "2026-08-22. 'The deadline sits in the index twice.' was the panel's only hard fail, over an index the deck quotes 10 of 34 rows from. It became '2 rows here carry the deadline.' and declared from c8, c9 and c10. Slide 4 carried the same defect one frame away.",
-      "confirmed": [
-        "2026-08-25"
-      ],
-      "contradicted": []
-    },
-    {
-      "id": "a-normalising-gate-cannot-see-a-missing-space",
-      "learned": "2026-08-22",
-      "instinct": "Reconcile copy.json against the render report's own text nodes rather than trusting copy_sync_check, which compares skeletons with every non-alphanumeric stripped and so cannot see a missing space.",
-      "evidence": "2026-08-22. Seven copy.json strings disagreed with the laid out text and copy_sync_check was green on all of them. The staged build published '7/16/2026Fedor Mikheev' and 'September 4th, 2026.Refer' as article prose.",
-      "confirmed": [
-        "2026-08-25"
-      ],
-      "contradicted": []
-    },
-    {
-      "id": "an-absence-needs-a-claim-id-like-any-fact",
-      "learned": "2026-08-22",
-      "instinct": "Register an absence as a first-class claim with its own id, the document it is absent from, and the search that failed to find it, because a sentence with no claim id is the one assertion nothing downstream can check.",
-      "evidence": "2026-08-22. 'The rule as published in the Texas Register does not contain the words data center' ran on slide 2, in the caption and in the first comment while living only as prose inside claims.rejected. It is now c20, with occurrences counted in code from the fetched page.",
-      "confirmed": [],
-      "contradicted": []
-    },
-    {
-      "id": "the-plan-is-not-the-product",
-      "learned": "2026-08-22",
-      "instinct": "Rebuild every artifact DERIVED from a thing you just changed in the same commit that changes it, because a stale derived file is wrong by construction and no gate is watching the gap.",
-      "evidence": "2026-08-22. Committed new claims without rebuilding docs and the freshness gate went red. Committed a rewritten caption without rebuilding gmail_payload.json and email_check went red. Both were split off to clear a dirty tree.",
-      "confirmed": [
-        "2026-08-25"
-      ],
-      "contradicted": []
-    },
-    {
-      "id": "no-gloss-is-not-no-explanation",
-      "learned": "2026-08-22",
-      "instinct": "Go back to the source for a plain sentence before concluding one would be an inference, because the law forbids inventing a reading and never forbade quoting a clearer one.",
-      "evidence": "2026-08-22. Five scoring passes said the deck never told a Texan what the rule would do. All five were answered with 'that would be an inference'. The same Texas Register page carried a 54 million dollar cap and two plain conditions further down.",
-      "confirmed": [],
-      "contradicted": []
-    },
-    {
-      "id": "a-count-must-name-the-population",
-      "learned": "2026-08-22",
-      "instinct": "State which population a published count measured, because a number computed over the wrong set is worse than a typed one and arrives wearing the authority of a computation.",
-      "evidence": "2026-08-22. The cover said 10 rows quoted when six were. The derivation counted index-row CLAIMS while the sentence described FRAMES. A note in the storyboard was congratulating the run for replacing a typed 8 with that computed 10.",
-      "confirmed": [
-        "2026-08-25"
-      ],
-      "contradicted": []
-    },
-    {
-      "id": "verify-the-adjective-not-just-the-figure",
-      "learned": "2026-08-23",
-      "instinct": "Before a deck leans on a word a news story used, check that word appears in the document itself, because a framing adjective is a claim and journalism supplies it far more often than the filing does.",
-      "evidence": "Several outlets called the UT Dell Medical Center approved on August 12th an AI-native hospital. The Regents' own agenda book never uses the words artificial intelligence in that item, saying digital technology, robotics, and automation and a digitally enabled infrastructure. The whole treatment built on AI-native would have been a word put in a document's mouth.",
-      "confirmed": [],
-      "contradicted": []
-    },
-    {
-      "id": "read-the-exit-code-after-the-record-changes",
-      "learned": "2026-08-23",
-      "instinct": "After admitting anything to the record, run the FULL site build by exit code before planning art, because the numeral gate's authorised set is site wide and a count you moved can expose a page you never touched.",
-      "evidence": "Admitting four items moved by_room open_meeting from 44 to 45, which un-authorised the digits in the campus name Project Gold Phase 2 - DFW44 on /construction/ and turned the build red at the point the deck was being planned. Reading the report's tail rather than its exit code had hidden it for two builds.",
-      "confirmed": [],
-      "contradicted": []
-    },
-    {
-      "id": "run-guards-local-before-you-push",
-      "learned": "2026-08-23",
-      "instinct": "Run scripts/shared/guards_local.py in full before the first push, never a hand picked list of gates, because the suite reads guards.yml and a hand picked list is the half that misses what your own change broke somewhere else.",
-      "evidence": "This run pushed after running about a dozen named gates by exit code and CI came back red on docket_calendar's self-test, three assertions, caused by four expires key_dates this run had itself introduced. The full local suite reproduces it in one command and was run only after CI had already found it.",
-      "confirmed": [],
-      "contradicted": []
-    },
-    {
-      "id": "a-repair-lands-on-every-surface",
-      "learned": "2026-08-25",
-      "instinct": "Apply every copy repair to every published surface in one pass, reading them from one list, because a fix that lands on the frame a judge named leaves the same sentence shipping in the caption.",
-      "evidence": "Rounds 13 and 14 hard failed three times on one sentence. Round 13 failed frame 3 for 'Nothing in their sources says the action binds'. The frame was repaired and round 14 failed the run twice more for the same sentence on frame 6's foot and in the caption. Both round 14 judges' one-sentence fix was this.",
-      "confirmed": [],
-      "contradicted": []
-    },
-    {
-      "id": "a-measurement-is-not-a-claim-about-sources",
-      "learned": "2026-08-25",
-      "instinct": "Print what the record was measured for, never what sources are said to have omitted, because one source speaking to one member refutes the whole sentence.",
-      "evidence": "force_unstated is items carrying no effective key date at all. Three frames and the caption printed it as 'no source says either way', and c44 in the same run's claims file is Wichita Falls saying 'We did prohibit evaporative cooling systems', on a fact frame 8 of the same deck prints.",
-      "confirmed": [],
-      "contradicted": []
-    },
-    {
-      "id": "a-floor-in-the-wrong-unit-passes-an-invisible-fix",
-      "learned": "2026-08-25",
-      "instinct": "State every craft floor in the unit a reader's eye uses, L star measured on the rendered PNG, because a fix can clear a floor in pixels and carry no visible difference.",
-      "evidence": "Frame 3's shadow ramp cleared 3 device px of offset per row and carried 1.5 L* of density over near black felt, which is nothing. Three consecutive rounds shipped a repair that satisfied its item numerically and was invisible.",
-      "confirmed": [],
-      "contradicted": []
-    },
-    {
-      "id": "a-selection-rule-may-not-read-prose",
-      "learned": "2026-08-25",
-      "instinct": "Select the set a published count runs over from the record's own structured fields plus ids admitted with a written reason, never a regex over summary prose.",
-      "evidence": "tx-2026-0002 entered the counted set because its summary says the Texas Register text 'does not contain the words data center'. The regex matched a negation, so a published door count rested on a phrase saying the words are absent.",
-      "confirmed": [],
-      "contradicted": []
-    }
-  ]
+  {
+   "id": "acceptance-items-need-a-floor",
+   "learned": "2026-08-16",
+   "instinct": "Write every acceptance item so that rendering NOTHING fails it, not just so that rendering too much fails it.",
+   "evidence": "Carousel No. 1. 'The stipple density stays low enough that the paper reads as tooth' passed on slide 6 where no stipple rendered at all, and 'the bottom third carries the densest engraved mass' passed on slide 4 where a flat warm wash was doing the work. Both items had a ceiling and no floor.",
+   "confirmed": [
+    "2026-08-21",
+    "2026-08-25"
+   ],
+   "contradicted": []
+  },
+  {
+   "id": "name-the-subject-on-the-turn",
+   "learned": "2026-08-16",
+   "instinct": "The turn slide must name its subject in its own hook, because a carousel slide gets screenshotted and reshared alone.",
+   "evidence": "Carousel No. 1 slide 7 opened on 'It is not in the queue' with the antecedent last named on slide 5. The flow critic could not recover the subject at feed speed until it reached a small label at the bottom edge.",
+   "confirmed": [],
+   "contradicted": []
+  },
+  {
+   "id": "assertions-expire-on-first-use",
+   "learned": "2026-08-16",
+   "instinct": "When a gate passes because a feature has never been used, write its expiry into the assertion, because the run that first uses the feature is the one that can least afford to argue with its own suite.",
+   "evidence": "Carousel No. 1 turned two green assertions red on the same afternoon. The ask engine asserted no request leaves the page, which held only while runs/carousel was empty. The instincts self-test asserted the ledger starts empty since this repo has shipped no decks.",
+   "confirmed": [],
+   "contradicted": []
+  },
+  {
+   "id": "acceptance-lists-cannot-catch-their-own-frame",
+   "learned": "2026-08-18",
+   "instinct": "Put one acceptance item on every dossier that names what the frame must NOT be mistaken for, because a checklist of parts passes while the whole reads as the wrong thing.",
+   "evidence": "Slide 5 passed all five of its acceptance items while reading as a Gantt chart that asserted start times the record does not state, with the contradicting caption on the same frame. The list checked edges, proportions, light and labels and never asked whether it read as a chart.",
+   "confirmed": [
+    "2026-08-21"
+   ],
+   "contradicted": []
+  },
+  {
+   "id": "compute-every-drawn-proportion",
+   "learned": "2026-08-18",
+   "instinct": "Any position or length a reader could measure goes through compute.py, not just the ones that carry a printed number.",
+   "evidence": "Slide 4's stationing terminus was typed at x=660, drawing a 63:37 split where the hours are 81:19, beside ten minute ticks that were themselves to scale. The frame promised a scale and contradicted it, and no gate caught it because no numeral was printed.",
+   "confirmed": [
+    "2026-08-21",
+    "2026-08-25"
+   ],
+   "contradicted": []
+  },
+  {
+   "id": "a-gate-fix-can-create-an-editorial-defect",
+   "learned": "2026-08-18",
+   "instinct": "After answering a composition gate, re-read the frame for what the new furniture now asserts.",
+   "evidence": "A dashed leader added to clear slide 9's dead lower zone ran from the no-action node into an empty passed-date field, which is a causal drawing and turned a record into an accusation.",
+   "confirmed": [
+    "2026-08-21",
+    "2026-08-26"
+   ],
+   "contradicted": []
+  },
+  {
+   "id": "one-geometry-two-layers-will-drift",
+   "learned": "2026-08-19",
+   "instinct": "State a shared geometry ONCE in the builder and substitute it into both the canvas layer and the CSS layer.",
+   "evidence": "Carousel No. 3 slide 6. The four terrazzo bands were drawn full bleed at W/4 and the four label plates were laid out in a safe-area box inset 80px, so the outer two words straddled a band boundary by 37px. The safe-zone breach had been fixed on the type layer and the art layer was never told. The scorer measured it at the third pass; no gate could, because each layer was internally correct.",
+   "confirmed": [],
+   "contradicted": [
+    "2026-08-25"
+   ]
+  },
+  {
+   "id": "read-the-exit-code-of-the-thing-that-writes",
+   "learned": "2026-08-21",
+   "instinct": "Read the exit code of the BUILDER, not only of the checkers. A build that refuses leaves the previous build's output on disk, and everything downstream will happily process it.",
+   "evidence": "Carousel No. 5. build_slides.py was invoked with its output suppressed and its exit code unread. _footer_fit refused the run, correctly, naming a slide 9 byline 72px too wide, and exited 1 into /dev/null. The nine HTML files from the previous build were still in out/<date>/slides/, so the renderer rendered them, machine QA passed them, eleven carousel gates passed them, and three scoring judges graded a deck that had never been built. One judge caught it by comparing the render against the plan. The repo's own law says run a GATE by exit code; the gap is that the builder is not a gate and nobody had said to read its code too.",
+   "confirmed": [],
+   "contradicted": []
+  },
+  {
+   "id": "an-acceptance-item-may-not-choose-the-verb",
+   "learned": "2026-08-21",
+   "instinct": "An acceptance item may require a frame to be positive, or specific, or scoped. It may NOT prescribe the word, because the fact will be bent to fit the word rather than the other way round.",
+   "evidence": "Carousel No. 5 slide 7. The item read 'says what each does PUBLISH rather than what it fails to publish', and the frame then said 'DPS publishes first responder interaction plans' where c34 says the page TAKES them and the absence record says it CARRIES them and a submissions address. Publish and receive are opposite directions on the one frame whose subject is what each page holds. The eighth panel's integrity judge failed the deck on it and named the acceptance item as the cause rather than the sentence. Fixing only the sentence would have left the instruction that produced it in the plan for the next run to execute again.",
+   "confirmed": [],
+   "contradicted": []
+  },
+  {
+   "id": "the-rhetorical-spine-is-chosen-before-the-record-can-check-it",
+   "learned": "2026-08-21",
+   "instinct": "A deck's central line is written early, when the record is still thin, and then nothing re-reads it against the record that arrived afterwards. Re-check the HOOK against the claims file last, not first.",
+   "evidence": "Carousel No. 5. The cover read 'Every mile logged. No column for it.' over a byline of c27 and c28, a dateline and a mileage figure, neither of which supports an absence. The verified absence was narrower on both axes, a crash COUNT missing from three named pages, and the run's own rejected list says the TxDOT CRIS query never rendered and an absence cannot be asserted from a page that did not render. It survived four scoring panels, every carousel gate, a full pixel review and a flow critic, because each of them checked that the cited ids resolve and none asked whether the sentence above them says what the claims say. The sixth panel failed it. The cover now asks instead.",
+   "confirmed": [],
+   "contradicted": []
+  },
+  {
+   "id": "a-quoted-row-unmarked-becomes-our-prose",
+   "learned": "2026-08-22",
+   "instinct": "Put the quotation marks on the FRAME whenever a slide prints a source's own string, because the site treats an unmarked row as this project's own sentence.",
+   "evidence": "2026-08-22. Slide 7 printed three PUCT index rows unmarked. house_style_check failed the built article on the source's own abbreviation Sept. 4, a string this project never wrote. Slides 2, 3, 8 and 9 wore their marks and were exempt.",
+   "confirmed": [],
+   "contradicted": []
+  },
+  {
+   "id": "draw-every-plane-before-what-stands-on-it",
+   "learned": "2026-08-22",
+   "instinct": "Draw every ground plane BEFORE the objects standing on it, and stop every drawn element above the footer band, because a plane painted last erases the object and leaves its shadow behind.",
+   "evidence": "2026-08-22. Slide 7 drew a lit spine and its foot, then painted plane(1010,1350) over both. The spine died at the console line, the foot vanished, and a redrawn cast shadow ran through the texasaidocket.com glyph band. Slide 6 had the same defect the same run, three rods drawn and two shipped.",
+   "confirmed": [
+    "2026-08-26"
+   ],
+   "contradicted": [
+    "2026-08-25"
+   ]
+  },
+  {
+   "id": "a-count-must-name-the-set-it-counted",
+   "learned": "2026-08-22",
+   "instinct": "Make every count on a frame name the set it counted, and make that set one the deck actually read, because a bare count over a partly quoted index asserts a number nothing checked.",
+   "evidence": "2026-08-22. 'The deadline sits in the index twice.' was the panel's only hard fail, over an index the deck quotes 10 of 34 rows from. It became '2 rows here carry the deadline.' and declared from c8, c9 and c10. Slide 4 carried the same defect one frame away.",
+   "confirmed": [
+    "2026-08-25",
+    "2026-08-26"
+   ],
+   "contradicted": []
+  },
+  {
+   "id": "a-normalising-gate-cannot-see-a-missing-space",
+   "learned": "2026-08-22",
+   "instinct": "Reconcile copy.json against the render report's own text nodes rather than trusting copy_sync_check, which compares skeletons with every non-alphanumeric stripped and so cannot see a missing space.",
+   "evidence": "2026-08-22. Seven copy.json strings disagreed with the laid out text and copy_sync_check was green on all of them. The staged build published '7/16/2026Fedor Mikheev' and 'September 4th, 2026.Refer' as article prose.",
+   "confirmed": [
+    "2026-08-25",
+    "2026-08-26"
+   ],
+   "contradicted": []
+  },
+  {
+   "id": "an-absence-needs-a-claim-id-like-any-fact",
+   "learned": "2026-08-22",
+   "instinct": "Register an absence as a first-class claim with its own id, the document it is absent from, and the search that failed to find it, because a sentence with no claim id is the one assertion nothing downstream can check.",
+   "evidence": "2026-08-22. 'The rule as published in the Texas Register does not contain the words data center' ran on slide 2, in the caption and in the first comment while living only as prose inside claims.rejected. It is now c20, with occurrences counted in code from the fetched page.",
+   "confirmed": [],
+   "contradicted": []
+  },
+  {
+   "id": "the-plan-is-not-the-product",
+   "learned": "2026-08-22",
+   "instinct": "Rebuild every artifact DERIVED from a thing you just changed in the same commit that changes it, because a stale derived file is wrong by construction and no gate is watching the gap.",
+   "evidence": "2026-08-22. Committed new claims without rebuilding docs and the freshness gate went red. Committed a rewritten caption without rebuilding gmail_payload.json and email_check went red. Both were split off to clear a dirty tree.",
+   "confirmed": [
+    "2026-08-25",
+    "2026-08-26"
+   ],
+   "contradicted": []
+  },
+  {
+   "id": "no-gloss-is-not-no-explanation",
+   "learned": "2026-08-22",
+   "instinct": "Go back to the source for a plain sentence before concluding one would be an inference, because the law forbids inventing a reading and never forbade quoting a clearer one.",
+   "evidence": "2026-08-22. Five scoring passes said the deck never told a Texan what the rule would do. All five were answered with 'that would be an inference'. The same Texas Register page carried a 54 million dollar cap and two plain conditions further down.",
+   "confirmed": [],
+   "contradicted": []
+  },
+  {
+   "id": "a-count-must-name-the-population",
+   "learned": "2026-08-22",
+   "instinct": "State which population a published count measured, because a number computed over the wrong set is worse than a typed one and arrives wearing the authority of a computation.",
+   "evidence": "2026-08-22. The cover said 10 rows quoted when six were. The derivation counted index-row CLAIMS while the sentence described FRAMES. A note in the storyboard was congratulating the run for replacing a typed 8 with that computed 10.",
+   "confirmed": [
+    "2026-08-25"
+   ],
+   "contradicted": []
+  },
+  {
+   "id": "verify-the-adjective-not-just-the-figure",
+   "learned": "2026-08-23",
+   "instinct": "Before a deck leans on a word a news story used, check that word appears in the document itself, because a framing adjective is a claim and journalism supplies it far more often than the filing does.",
+   "evidence": "Several outlets called the UT Dell Medical Center approved on August 12th an AI-native hospital. The Regents' own agenda book never uses the words artificial intelligence in that item, saying digital technology, robotics, and automation and a digitally enabled infrastructure. The whole treatment built on AI-native would have been a word put in a document's mouth.",
+   "confirmed": [],
+   "contradicted": []
+  },
+  {
+   "id": "read-the-exit-code-after-the-record-changes",
+   "learned": "2026-08-23",
+   "instinct": "After admitting anything to the record, run the FULL site build by exit code before planning art, because the numeral gate's authorised set is site wide and a count you moved can expose a page you never touched.",
+   "evidence": "Admitting four items moved by_room open_meeting from 44 to 45, which un-authorised the digits in the campus name Project Gold Phase 2 - DFW44 on /construction/ and turned the build red at the point the deck was being planned. Reading the report's tail rather than its exit code had hidden it for two builds.",
+   "confirmed": [
+    "2026-08-26"
+   ],
+   "contradicted": []
+  },
+  {
+   "id": "run-guards-local-before-you-push",
+   "learned": "2026-08-23",
+   "instinct": "Run scripts/shared/guards_local.py in full before the first push, never a hand picked list of gates, because the suite reads guards.yml and a hand picked list is the half that misses what your own change broke somewhere else.",
+   "evidence": "This run pushed after running about a dozen named gates by exit code and CI came back red on docket_calendar's self-test, three assertions, caused by four expires key_dates this run had itself introduced. The full local suite reproduces it in one command and was run only after CI had already found it.",
+   "confirmed": [],
+   "contradicted": []
+  },
+  {
+   "id": "verbatim-under-attribution",
+   "learned": "2026-08-26",
+   "instinct": "Before a frame ships, check that every string set under a dated attribution is a verbatim substring of a quote in that slide's declared claims.",
+   "evidence": "Slide 7 of the 2026-08-26 deck printed 'clinical care, research, advanced computing' under 'BOARD ITEM, AUGUST 12TH, 2026'. That string is in none of the 31 claims in the run's claims file. Every mechanical gate was green on it and two of three panel judges caught it as a hard fail.",
+   "confirmed": [],
+   "contradicted": []
+  },
+  {
+   "id": "one-azimuth-one-formula",
+   "learned": "2026-08-26",
+   "instinct": "Derive every cast and every lit facet from one stated azimuth by sin and minus cos, and never let a frame carry its own typed direction constants.",
+   "evidence": "Slide 5 of the 2026-08-26 deck ran on LX -0.62 and LY 0.78, which is 27 degrees off the deck's declared 246, and its lit facet was built from the first half of the vertex list rather than clipped to the sunward half plane, so the highlight sat wherever the polygon happened to start. The craft judge caught it against slide 2, the other overhead view.",
+   "confirmed": [],
+   "contradicted": []
+  },
+  {
+   "id": "agenda-book-only-asks",
+   "learned": "2026-08-26",
+   "instinct": "A pre-meeting agenda book records what a body was asked to do, so never let a frame say it voted, authorized or amended without a source published after the meeting.",
+   "evidence": "The 2026-08-26 record and four deck surfaces said the UT System board acted on August 12th, citing the agenda book, which is a request. Correcting it needed a Community Impact report fetched after the meeting, and the error reached the scoring panel as a hard fail with every gate green.",
+   "confirmed": [],
+   "contradicted": []
+  },
+  {
+   "id": "a-repair-lands-on-every-surface",
+   "learned": "2026-08-25",
+   "instinct": "Apply every copy repair to every published surface in one pass, reading them from one list, because a fix that lands on the frame a judge named leaves the same sentence shipping in the caption.",
+   "evidence": "Rounds 13 and 14 hard failed three times on one sentence. Round 13 failed frame 3 for 'Nothing in their sources says the action binds'. The frame was repaired and round 14 failed the run twice more for the same sentence on frame 6's foot and in the caption. Both round 14 judges' one-sentence fix was this.",
+   "confirmed": [],
+   "contradicted": []
+  },
+  {
+   "id": "a-measurement-is-not-a-claim-about-sources",
+   "learned": "2026-08-25",
+   "instinct": "Print what the record was measured for, never what sources are said to have omitted, because one source speaking to one member refutes the whole sentence.",
+   "evidence": "force_unstated is items carrying no effective key date at all. Three frames and the caption printed it as 'no source says either way', and c44 in the same run's claims file is Wichita Falls saying 'We did prohibit evaporative cooling systems', on a fact frame 8 of the same deck prints.",
+   "confirmed": [],
+   "contradicted": []
+  },
+  {
+   "id": "a-floor-in-the-wrong-unit-passes-an-invisible-fix",
+   "learned": "2026-08-25",
+   "instinct": "State every craft floor in the unit a reader's eye uses, L star measured on the rendered PNG, because a fix can clear a floor in pixels and carry no visible difference.",
+   "evidence": "Frame 3's shadow ramp cleared 3 device px of offset per row and carried 1.5 L* of density over near black felt, which is nothing. Three consecutive rounds shipped a repair that satisfied its item numerically and was invisible.",
+   "confirmed": [],
+   "contradicted": []
+  },
+  {
+   "id": "a-selection-rule-may-not-read-prose",
+   "learned": "2026-08-25",
+   "instinct": "Select the set a published count runs over from the record's own structured fields plus ids admitted with a written reason, never a regex over summary prose.",
+   "evidence": "tx-2026-0002 entered the counted set because its summary says the Texas Register text 'does not contain the words data center'. The regex matched a negation, so a published door count rested on a phrase saying the words are absent.",
+   "confirmed": [],
+   "contradicted": []
+  }
+ ]
 }

@@ -11,7 +11,7 @@ The National Science Foundation made a standard grant to William Marsh Rice Univ
 - Public access: Closed
 - Take part: https://api.nsf.gov/services/v1/awards/2616828.json
 
-- Last checked: 2026-08-23
+- Last checked: 2026-08-26
 
 ## Dates
 
@@ -23,6 +23,7 @@ The National Science Foundation made a standard grant to William Marsh Rice Univ
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-08-23 · Admitted. The award record was read directly from the agency's own award endpoint.
+- 2026-08-26 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

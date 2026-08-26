@@ -212,6 +212,25 @@ def check_plan_matches(base: Path) -> list[str]:
             bad.append(f"slide {n}: copy.json declares {sorted(missing)} and the dossier's claims "
                        f"list does not carry {'it' if len(missing) == 1 else 'them'}. The plan "
                        f"describes a frame the run no longer makes")
+
+        # THE PROSE HALF OF THIS IS NOT CHECKED, and the reason is worth more than the check.
+        #
+        # A stale `job` line is a real defect: slide 5's still read "the board item's own
+        # vocabulary for the technology" over a frame rebuilt into the repayment stake, a judge
+        # found it, and the run had reported that dossier synced because the claims half of its
+        # own edit landed and the prose half silently did not.
+        #
+        # I wrote an overlap check for it and it fired on slide 6, whose dossier reads "The
+        # measured absence, stated as a count and drawn as an unbroken span" over a frame saying
+        # SEARCHED, CASE INSENSITIVE and Twenty pages, no mention of AI. Zero shared words and a
+        # perfectly accurate dossier, because a good plan ABSTRACTS the frame rather than
+        # repeating it. A gate that misreports costs more than one that misses, since the run
+        # then hunts for something that was never there, so the unsound check came out rather
+        # than shipping behind a green banner.
+        #
+        # What would work is a signal rather than a similarity: a job naming a claim id the slide
+        # does not declare, or quoting a string the frame does not carry. Slide 5's stale line did
+        # neither, so that would not have caught it either. Written down as an open gap.
     return bad
 
 
