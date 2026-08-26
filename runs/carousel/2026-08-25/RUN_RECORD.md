@@ -37,8 +37,8 @@ off every frame, the caption, the figures and the manifests.
 
 ## Measured
 
-Per frame median L\*: 51.4, 63.3, 14.4, 30.8, 93.2, 74.4, 52.1, 58.5, 49.5. Deck median 52.1, sd
-21.6. The biggest junction is 62.4 between frames
+Per frame median L\*: 51.4, 63.3, 14.4, 30.8, 93.2, 73.6, 52.1, 58.0, 49.6. Deck median 52.1, sd
+21.5. The biggest junction is 62.4 between frames
 4 and 5. Frame 7's falloff
 measures 16.5 L\* in the gutters between its four repeat lines. Frame 6's
 cards read 89.9 against cork at 59.9.
@@ -169,7 +169,7 @@ and one line above the table says it once.
 ## What is measurably not what the storyboard said
 
 **This is not the mid value deck it declares.** The storyboard says "ground at L\* 62 to 68".
-Measured medians, frame by frame, are 51.4, 63.3, 14.4, 30.8, 93.2, 74.4, 52.1, 58.5 and 49.5,
+Measured medians, frame by frame, are 51.4, 63.3, 14.4, 30.8, 93.2, 73.6, 52.1, 58.0 and 49.6,
 with a median of medians of 52.1 and a range of 78.8 L\*. One frame sits inside the declared band
 and eight do not.
 
@@ -257,7 +257,7 @@ before acting, not after.
 - **Frame 1's numeric lockup misread at 432px** as "8 BODIES INSTRUMENTS", and the dek's fourth
   line overlapped the numeral by 15px. It counts both nouns now.
 - **The 6 to 7 value snap ran backwards.** Both dossiers claim frame 6 is the brightest field and
-  frame 7 the darkest immediately after. Measured, 6 is now 74.4 and 7 is 52.1. Frame 7's field
+  frame 7 the darkest immediately after. Measured, 6 is now 73.6 and 7 is 52.1. Frame 7's field
   was dropped and its falloff widened rather than flattened, so the four repeats now
   span 16.5 L\* rather than a field the eye read as flat.
 
@@ -468,16 +468,16 @@ rather than failing, and this is it.
 |---|---|---|
 | claims         | PASS   | 46 verified claim(s) |
 | render         | PASS   | 9 slide(s) |
-| qa             | WARN   | 0 fail(s), 4 warn(s) |
-| aggregates     | PASS   | 27 declared and re-derived |
-| assembly       | PASS   | 9 slide(s), 3.2 MB, vector |
+| qa             | WARN   | 0 fail(s), 6 warn(s) |
+| aggregates     | PASS   | 28 declared and re-derived |
+| assembly       | PASS   | 9 slide(s), 3.3 MB, vector |
 | score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
 | labels         | PASS   | 52 claim id(s) checked, every label beside one traces to the shape its claim proves |
-| dossiers       | PASS   | 51,897 chars planned |
-| caption        | PASS   | 147 words |
+| dossiers       | PASS   | 51,890 chars planned |
+| caption        | PASS   | 151 words |
 | craft floor    | WARN   | 9 frame(s), median 5116, floor 921, 2 quiet |
 | plan vs render | WARN   | 12 of 68 acceptance item(s) checkable |
 | texan          | PASS   | places Brazoria County, El Paso, Hays County, Hill County, Lubbock, Lubbock County, San Angelo, Tom Green County, Wichita Falls, Williamson County / body yes / deadline yes / next step yes |
-| absences       | WARN   | 8 of 16 scoped to a named document, 8 unscoped |
+| absences       | WARN   | 9 of 15 scoped to a named document, 6 unscoped |
 | completion     | FAIL   | THE DECK DID NOT SHIP, so this run is not done |
 <!-- gate-status:end -->
