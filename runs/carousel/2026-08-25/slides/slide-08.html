@@ -1,0 +1,110 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#333A38;
+  -webkit-font-smoothing:antialiased}
+canvas{position:absolute;left:0;top:0}
+.kick{position:absolute;left:80px;top:88px;font:500 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.14em;color:#CFD6CE}
+.cnt{position:absolute;right:80px;top:88px;font:500 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.10em;color:#CFD6CE;font-variant-numeric:tabular-nums}
+.tx-site{position:absolute;left:80px;bottom:74px;font:400 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.06em;color:#CFD6CE}
+.star{position:absolute;right:80px;bottom:68px;width:22px;height:22px}
+.hook{position:absolute;left:120px;top:206px;width:600px;font:700 60px/1.04 "Fraunces",serif;
+  color:#3A362E;letter-spacing:-.015em}
+.body{position:absolute;left:120px;top:392px;width:410px;font:400 27px/1.42 "Manrope",sans-serif;color:#443F36}
+.attr{position:absolute;left:120px;top:560px;width:410px;font:500 23px/1.44 "JetBrains Mono",monospace;
+  color:#2A2622}
+.src1{position:absolute;left:120px;top:778px;font:400 19px/1.4 "JetBrains Mono",monospace;
+  color:#6E695F;letter-spacing:.09em}
+.far{position:absolute;left:120px;top:898px;width:420px;font:500 23px/1.34 "JetBrains Mono",monospace;color:#2A2622}
+.src2{position:absolute;left:120px;top:948px;font:400 18px/1.4 "JetBrains Mono",monospace;
+  color:#6E695F;letter-spacing:.08em}
+.foot{position:absolute;left:120px;top:1044px;width:430px;font:400 24px/1.38 "Manrope",sans-serif;color:#2A2622}
+</style></head><body>
+<canvas id="c" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+<div class="kick">THE OTHER DIRECTION</div>
+<div class="cnt">08 / 09</div>
+<div class="hook">Two bodies declined to restrict</div>
+<div class="body">Tom Green County's court voted not to pursue a moratorium in Precinct 4.</div>
+<div class="attr">A commissioner referenced a $100 million lawsuit filed against Hill County after it approved a similar one year moratorium.</div>
+<div class="src1">TOM GREEN COUNTY, C15 AND C16<br>REPORTED SPEECH ABOUT A LAWSUIT</div>
+<div class="far">"no action taken"</div>
+<div class="src2">LAREDO MATTER HISTORY, C14<br>3 AGENDAS</div>
+<div class="foot">Ten bodies in this record took up a restriction. Eight imposed one and two declined.</div>
+<div class="tx-site">texasaidocket.com</div>
+<svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6 L14.9 9.2 L23 9.6 L16.7 14.6 L18.9 22.4 L12 17.9 L5.1 22.4 L7.3 14.6 L1 9.6 L9.1 9.2 Z" fill="#CFD6CE"/></svg>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = new Promise(function(resolve){
+  var c=document.getElementById('c'), x=c.getContext('2d'); x.scale(2,2);
+  var W=1080,H=1350; TX.reseed(80842); var R = TX.rng(80842);
+  var g=x.createLinearGradient(0,0,W,H);
+  g.addColorStop(0,'#4A534E'); g.addColorStop(0.5,'#3A423E'); g.addColorStop(1,'#252B29');
+  x.fillStyle=g; x.fillRect(0,0,W,H);
+  var SX=92, SY=170, SW=896, SH=1010;
+  x.fillStyle='#1F252C'; x.fillRect(SX-40,SY-38,SW+80,SH+96);
+  x.fillStyle='#9C9A90'; x.fillRect(SX-40,SY-38,SW+80,14);
+  x.fillStyle='#F2EEE4'; x.fillRect(SX,SY,SW,SH);
+  x.fillStyle='rgba(42,38,34,0.20)';
+  for(var r=0;r<24;r++){ x.fillRect(570,404+r*15,370*(0.42+0.52*Math.abs(TX.simplex2(r*0.6,2.2))),4); }
+  // A live oak's shadow falls across the near case, deep enough that the glazing stops being a
+  // window and starts being a mirror. Dappled, so it reads as a canopy rather than a gradient.
+  x.save(); x.beginPath(); x.rect(SX,SY,SW,SH); x.clip();
+  for(var i=0;i<90000;i++){
+    var px=SX+R()*SW, py=SY+R()*SH;
+    var d=TX.fbm2(px*0.006,py*0.006,4)+0.55*TX.fbm2(px*0.02,py*0.02,3);
+    var lean=(px-SX)/SW*0.55+(py-SY)/SH*0.35;
+    if(d+lean>0.62) continue;
+    var col = (px<SX+470 && py>SY+20) ? 0.34 : 1;      // lighter over the type column
+    x.fillStyle='rgba(44,54,42,'+(0.085*col*(0.62-d-lean+0.4))+')';
+    x.fillRect(px,py,3,3);
+  }
+  // THE MIRROR. Under shade the glazing resolves a SECOND notice case across the street. It is
+  // sheared and rippled because it is a reflection off a swung pane, Fresnel weighted so it
+  // strengthens toward the frame's edge where incidence is lowest, and it carries NO legible
+  // string, because a reflected document is not evidence.
+  var FX=606, FY=764, FW=336, FH=252, SHEAR=0.115, RIP=3.2;
+  function mrow(y){ return FX + (y-FY)*SHEAR + RIP*Math.sin((y-FY)*0.021); }
+  function mband(y0,y1,w,off,fill){
+    x.fillStyle=fill;
+    for(var yy=y0; yy<y1; yy++) x.fillRect(mrow(yy)+off, yy, w, 1);
+  }
+  // Fresnel: one weight per scanline, strongest at the near frame edge
+  var mopa=x.createLinearGradient(FX-60,0,FX+FW+90,0);
+  mopa.addColorStop(0,'rgba(198,208,200,0.05)'); mopa.addColorStop(0.55,'rgba(198,208,200,0.19)');
+  mopa.addColorStop(1,'rgba(198,208,200,0.40)');
+  x.fillStyle=mopa;
+  for(var yy=FY-52; yy<FY+FH+62; yy++) x.fillRect(mrow(yy)-58, yy, FW+126, 1);
+  mband(FY-18, FY+FH+40, FW+34, -17, 'rgba(88,100,92,0.62)');     // the far case's body
+  mband(FY-18, FY-8,     FW+34, -17, 'rgba(176,188,178,0.50)');   // its lit top rail
+  mband(FY,    FY+FH,    FW,      0, 'rgba(236,238,228,0.78)');   // its sheet
+  // its body copy, drawn a third of reading size so it resolves as a document and never as words
+  x.fillStyle='rgba(116,124,114,0.34)';
+  for(var k=0;k<15;k++){
+    var ky=FY+96+k*9;
+    x.fillRect(mrow(ky)+24, ky, (FW-70)*(0.36+0.54*Math.abs(TX.simplex2(k*0.9,7.7))), 2);
+  }
+  // the ripple's own highlight, so the pane reads as glass and not as a decal
+  x.fillStyle='rgba(226,232,222,0.16)';
+  for(var yy2=FY-40; yy2<FY+FH+52; yy2++) x.fillRect(mrow(yy2)+FW-26, yy2, 13, 1);
+  x.restore();
+  // sheet foot falloff and the lower rail's contact shadow
+  var fg=x.createLinearGradient(0,SY+SH-180,0,SY+SH);
+  fg.addColorStop(0,'rgba(60,70,58,0)'); fg.addColorStop(1,'rgba(44,54,44,0.40)');
+  x.fillStyle=fg; x.fillRect(SX,SY+SH-180,SW,180);
+  x.fillStyle='#6E7A5A'; x.fillRect(SX-40,SY+SH+22,SW+80,26);
+  x.fillStyle='#96A184'; x.fillRect(SX-40,SY+SH+22,SW+80,4);
+  var sg=x.createLinearGradient(0,SY+SH+48,0,H);
+  sg.addColorStop(0,'rgba(14,18,16,0.58)'); sg.addColorStop(1,'rgba(14,18,16,0)');
+  x.fillStyle=sg; x.fillRect(0,SY+SH+48,W,H-SY-SH-48);
+  for(var q=0;q<14000;q++){
+    var qx=R()*W, qy=R()*H, qn=TX.fbm2(qx*0.017,qy*0.017,3);
+    x.fillStyle='rgba('+(qn>0?255:0)+','+(qn>0?255:0)+','+(qn>0?245:0)+','+(0.022*Math.abs(qn))+')';
+    x.fillRect(qx,qy,2,2);
+  }
+  resolve();
+});
+</script>
+</body></html>

@@ -1,0 +1,102 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#B99B72;
+  -webkit-font-smoothing:antialiased}
+canvas{position:absolute;left:0;top:0}
+.kick{position:absolute;left:80px;top:88px;font:500 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.14em;color:#4A3A26}
+.cnt{position:absolute;right:80px;top:88px;font:500 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.10em;color:#4A3A26;font-variant-numeric:tabular-nums}
+.tx-site{position:absolute;left:80px;bottom:74px;font:400 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.06em;color:#BDB8AA}
+.star{position:absolute;right:80px;bottom:68px;width:22px;height:22px}
+.hook{position:absolute;left:96px;top:172px;width:600px;font:700 62px/1.04 "Fraunces",serif;
+  color:#3A2E1E;letter-spacing:-.015em}
+.qa{position:absolute;left:132px;top:392px;width:390px;font:500 27px/1.36 "JetBrains Mono",monospace;color:#2A2622}
+.sa{position:absolute;left:132px;top:566px;width:360px;font:400 18px/1.5 "JetBrains Mono",monospace;color:#6E695F;letter-spacing:.07em}
+.qb{position:absolute;left:566px;top:392px;width:390px;font:500 27px/1.36 "JetBrains Mono",monospace;color:#2A2622}
+.sb{position:absolute;left:566px;top:566px;width:360px;font:400 18px/1.5 "JetBrains Mono",monospace;color:#6E695F;letter-spacing:.07em}
+.foot{position:absolute;left:96px;top:996px;width:700px;font:500 27px/1.4 "Manrope",sans-serif;color:#241B0D}
+</style></head><body>
+<canvas id="c" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+<div class="kick">THE EXCEPTIONS</div>
+<div class="cnt">06 / 09</div>
+<div class="hook">Two of them have teeth</div>
+<div class="qa">"Motion to deny<br>passed 5-0."</div>
+<div class="sa">BRAZORIA COUNTY, C9<br>THE ZONE THEY STOOD ON</div>
+<div class="qb">"Approved 7-0 at the<br>June 16, 2026 City<br>Council meeting."</div>
+<div class="sb">SAN ANGELO, C12<br>CAPPED BY ORDINANCE</div>
+<div class="foot">One refused the zone. One wrote the limit into the water ordinance.</div>
+<div class="tx-site">texasaidocket.com</div>
+<svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6 L14.9 9.2 L23 9.6 L16.7 14.6 L18.9 22.4 L12 17.9 L5.1 22.4 L7.3 14.6 L1 9.6 L9.1 9.2 Z" fill="#BDB8AA"/></svg>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = new Promise(function(resolve){
+  var c=document.getElementById('c'), x=c.getContext('2d'); x.scale(2,2);
+  var W=1080,H=1350; TX.reseed(60631); var R = TX.rng(60631);
+  // THE INVERSION. The glazing is out of the way for the only time in the deck. Flat light,
+  // near white, two unglazed sheets a reader could pick up.
+  var g=x.createLinearGradient(0,0,W*0.4,H);
+  g.addColorStop(0,'#CBAE85'); g.addColorStop(0.5,'#B99B72'); g.addColorStop(1,'#9E8460');
+  x.fillStyle=g; x.fillRect(0,0,W,H);
+  // CORK TOOTH, SECOND PASS. The first drew 120,000 one pixel flecks at a tenth of an alpha and
+  // the frame still read as a flat tan gradient at 432px, which is where a reader meets it. One
+  // pixel of anything averages to nothing at feed scale. Fiberboard is CHIPS, four to eighteen
+  // pixels of pressed bark at visibly different values, and it has to be drawn at that size.
+  var mot=x.createLinearGradient(0,0,W*0.8,H);   // broad mottling, the patchiness of a pressed mat
+  mot.addColorStop(0,'rgba(226,198,156,0.18)'); mot.addColorStop(0.45,'rgba(120,88,50,0.10)');
+  mot.addColorStop(1,'rgba(96,68,36,0.22)');
+  x.fillStyle=mot; x.fillRect(0,0,W,H);
+  for(var i=0;i<11000;i++){
+    var px=R()*W, py=R()*H;
+    var n=TX.simplex2(px*0.06,py*0.06), r1=R(), r2=R();
+    var lit=1-0.34*(px/W)*(py/H);
+    var a=(0.045+0.085*r1)*lit;
+    x.fillStyle = n>0 ? 'rgba(240,218,178,'+a+')' : 'rgba(78,50,22,'+a+')';
+    x.fillRect(px,py,4+11*r1,3+6*r2);
+  }
+  // the chips a reader picks out at 432px, drawn last so they are not buried
+  TX.reseed(6602); R = TX.rng(6602);
+  for(var k=0;k<1500;k++){
+    var kx=R()*W, ky=R()*H, kn=TX.simplex2(kx*0.017,ky*0.017), kr=R();
+    x.fillStyle = kn>0 ? 'rgba(250,232,200,'+(0.10+0.10*kr)+')' : 'rgba(58,36,14,'+(0.09+0.09*kr)+')';
+    x.fillRect(kx,ky,7+13*kr,5+7*kr);
+  }
+  // OLD STAPLE HOLES, punched by notices that came down. Each is a dark puncture with a lit
+  // lower lip where the fibre lifted, which is what makes it a hole rather than a dot.
+  TX.reseed(9111); R = TX.rng(9111);
+  for(var h=0;h<360;h++){
+    var hx=40+R()*(W-80), hy=140+R()*(H-320);
+    var hs=2.6+2.2*R();
+    x.fillStyle='rgba(40,24,10,0.44)'; x.fillRect(hx,hy,hs,hs*2.3);
+    x.fillStyle='rgba(246,226,196,0.34)'; x.fillRect(hx,hy+hs*2.3,hs,hs*1.0);
+  }
+  // the swung glazing edge, TOP THIRD ONLY, 6px, the one appearance of edge_cyan
+  x.fillStyle='#6FA79C'; x.fillRect(16,150,6,300);
+  x.fillStyle='rgba(180,214,206,0.55)'; x.fillRect(16,150,2,300);
+  // two unglazed sheets. A CONTACT shadow, not a drop shadow: a wide soft penumbra that the
+  // sheet floats on, and a tight dark core hugging the two edges where it meets the cork.
+  [[112,330,404,340],[546,330,404,340]].forEach(function(sh){
+    var sx=sh[0], sy=sh[1], sw=sh[2], sd=sh[3];
+    for(var b=22;b>=1;b--){
+      x.fillStyle='rgba(66,46,22,'+(0.030+0.004*(22-b))+')';
+      x.fillRect(sx+b*0.55, sy+b*0.72, sw+b*0.5, sd+b*0.4);
+    }
+    x.fillStyle='rgba(48,32,14,0.62)'; x.fillRect(sx+4,sy+sd-2,sw,9);
+    x.fillStyle='rgba(48,32,14,0.50)'; x.fillRect(sx+sw-2,sy+6,9,sd-4);
+    x.fillStyle='#F2EEE4'; x.fillRect(sx,sy,sw,sd);
+    x.fillStyle='rgba(255,253,246,0.7)'; x.fillRect(sx,sy,sw,3);
+    x.fillStyle='rgba(150,132,104,0.22)'; x.fillRect(sx,sy+sd-2,sw,2);
+  });
+  // the case's lower lip seen from slightly above: the frame's darkest area
+  x.fillStyle='#2A2E36'; x.fillRect(0,H-232,W,232);
+  x.fillStyle='#4A4F58'; x.fillRect(0,H-232,W,5);
+  x.fillStyle='#14171C'; x.fillRect(0,H-117,W,5);
+  var lg=x.createLinearGradient(0,H-112,0,H);
+  lg.addColorStop(0,'rgba(8,10,14,0.30)'); lg.addColorStop(1,'rgba(8,10,14,0.62)');
+  x.fillStyle=lg; x.fillRect(0,H-112,W,112);
+  resolve();
+});
+</script>
+</body></html>

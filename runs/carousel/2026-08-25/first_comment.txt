@@ -1,0 +1,26 @@
+Sources, all primary and fetched August 25th, 2026.
+Archer County Commissioners deny tax abatement for proposed data center, August 25th, 2026. c3 c5
+https://www.newschannel6now.com/2026/06/22/archer-county-commissioners-deny-tax-abatement-proposed-data-center/
+Lubbock county commissioners pass resolution regarding large-scale industrial development in Texas, August 25th, 2026. c6 c7
+https://www.kcbd.com/2026/08/10/lubbock-county-commissioners-pass-resolution-regarding-large-scale-industrial-development-texas/
+Legistar API, Brazoria County Commissioners Court, event 6219 agenda items for March 10, 2026, August 25th, 2026. c9 c10
+https://webapi.legistar.com/v1/brazoriacountytx/events/6219/eventitems?AgendaNote=1&MinutesNote=1&Attachments=0
+Legistar API, Brazoria County, matters matching Data Center or Abatement (Matter 4459, File 18156), August 25th, 2026. c11
+https://webapi.legistar.com/v1/brazoriacountytx/matters?$filter=substringof(%27Data%20Center%27,MatterTitle)%20or%20substringof(%27Abatement%27,MatterTitle)&$orderby=MatterIntroDate%20desc&$top=40
+Data Center Information, City of San Angelo, August 25th, 2026. c12
+https://www.sanangelo.gov/803/Data-Center-Information
+City of Laredo Legistar, matter 7693 action history, August 25th, 2026. c14
+https://webapi.legistar.com/v1/cityoflaredo/Matters/7693/histories
+Tom Green County Commissioners Reject Data Center Moratorium, San Angelo LIVE!, June 2, 2026, August 25th, 2026. c15 c16
+https://sanangelolive.com/news/county/2026-06-02/tom-green-county-commissioners-reject-data-center-moratorium
+Killeen planning commission denies permit for proposed data center, KWTX, August 25th, 2026. c17
+https://www.kwtx.com/2026/04/28/killeen-planning-commission-denies-permit-proposed-data-center/
+City of Fort Worth news release, republished by The Business Press under the city's own byline, August 25th, 2026. c22 c23 c24
+https://fortworthbusiness.com/government/city-advances-next-steps-in-data-center-regulation-development-process/
+MultiState, The Local Fight Over Data Centers, A Texas Case Study, August 25th, 2026. c27
+https://www.multistate.us/insider/2026/8/19/the-local-fight-over-data-centers-a-texas-case-study
+Community Impact, Texas includes minimal data center info in state water plan citing limited data, August 25th, 2026. c29
+https://communityimpact.com/central-austin/texas-legislature/texas-includes-minimal-data-center-info-in-state-water-plan-citing-limited-data/
+KRIS 6 News, Corpus Christi City Council moves to develop data center regulations for the city, August 25th, 2026. c30
+https://www.kristv.com/news/local-news/in-your-neighborhood/corpus-christi/corpus-christi-city-council-moves-to-develop-data-center-regulations-for-the-city
+Day counts computed in compute.py from the source dates above.

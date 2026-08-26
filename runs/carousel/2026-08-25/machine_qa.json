@@ -1,0 +1,142 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.166,
+        0.1723,
+        0.239
+      ],
+      "band_ratio": 1.2285
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'KILLEEN' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'ARCHER COUNTY' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'BRAZORIA COUNTY' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'SAN ANGELO' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'LUBBOCK COUNTY' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'CORPUS CHRISTI' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'TEXAS WATER DEVELOPMENT BOARD' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'FORT WORTH' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "worst-point contrast 2.8 on 'TEXAS WATER DEVELOPMENT BOARD' (box mean 6.7) -- below the rubric's 4.5 line somewhere along the run of the text",
+        "art touching glyphs (5% of the ring around 'TEXAS WATER DEVELOPMENT BOARD', spanning 66%) -- pixel critic verify the label is not crossed"
+      ],
+      "bands": [
+        0.2752,
+        0.1723,
+        0.2518
+      ],
+      "band_ratio": 1.0764
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.5294,
+        0.7752,
+        0.5754
+      ],
+      "band_ratio": 0.9216
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: '\"tentatively set for Feb. 16, 2027\"' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'CITY OF FORT WORTH, C22 AND C23' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
+        "busy art under text (bg edge density 0.09) beneath 'The council adopted a resolution that st' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "low contrast ~3.4 on 'CITY OF FORT WORTH, C22 AND C23' (est.)"
+      ],
+      "bands": [
+        0.1366,
+        0.166,
+        0.1985
+      ],
+      "band_ratio": 1.1786
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'ARCHER COUNTY, C5' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'LUBBOCK COUNTY, C7' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "bands": [
+        0.1618,
+        0.0924,
+        0.1434
+      ],
+      "band_ratio": 1.0779
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'BRAZORIA COUNTY, C9THE ZONE THEY STOOD ON' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'SAN ANGELO, C12CAPPED BY ORDINANCE' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
+        "art touching glyphs (4% of the ring around 'Two of them have teeth', spanning 30%) -- pixel critic verify the label is not crossed"
+      ],
+      "bands": [
+        0.6534,
+        0.4832,
+        0.6011
+      ],
+      "band_ratio": 1.036
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'ITEM I.3, THE REINVESTMENT ZONE' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'NO OTHER APPLICANT IS NAMED IN THIS RECORD' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'GRANTING TAX ABATEMENT OF OLD OCEAN DATACENTER LLC' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'C9, C10, C11' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "bands": [
+        0.2185,
+        0.1429,
+        0.2868
+      ],
+      "band_ratio": 1.3079
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'A commissioner referenced a $100 million lawsuit f' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'TOM GREEN COUNTY, C15 AND C16REPORTED SPEECH ABOUT' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '\"no action taken\"' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'LAREDO MATTER HISTORY, C143 AGENDAS' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "bands": [
+        0.5693,
+        0.6534,
+        0.4651
+      ],
+      "band_ratio": 0.8332
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'THE CITY'S OWN WORDING IS A DEADLINERATHER THAN A ' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'CITY OF FORT WORTH, C24' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "bands": [
+        0.1113,
+        0.0966,
+        0.6342
+      ],
+      "band_ratio": 2.1368
+    }
+  ],
+  "fails": 0,
+  "warns": 29,
+  "verdict": "WARN"
+}

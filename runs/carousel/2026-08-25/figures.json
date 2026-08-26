@@ -1,0 +1,212 @@
+{
+  "restricted_count": {
+    "value": 8,
+    "rule": "Texas governmental bodies in the record that took a recorded 2026 action restricting, pausing, capping or denying a data center or its incentive",
+    "from_items": [
+      "tx-2026-0032",
+      "tx-2026-0043",
+      "tx-2026-0045",
+      "tx-2026-0050",
+      "tx-2026-0051",
+      "tx-2026-0056",
+      "tx-2026-0062",
+      "tx-2026-0065"
+    ]
+  },
+  "declined_count": {
+    "value": 2,
+    "rule": "bodies in the record that considered a restriction and declined it",
+    "from_items": [
+      "tx-2026-0037",
+      "tx-2026-0070"
+    ]
+  },
+  "total_count": {
+    "value": 10,
+    "rule": "restricted plus declined"
+  },
+  "stated_nonbinding": {
+    "value": 2,
+    "rule": "restricting bodies whose own source states the action does not bind",
+    "from_items": [
+      "tx-2026-0043",
+      "tx-2026-0045"
+    ]
+  },
+  "stated_binding": {
+    "value": 2,
+    "rule": "restricting bodies whose record shows the action changed a legal state on the day",
+    "from_items": [
+      "tx-2026-0051",
+      "tx-2026-0065"
+    ]
+  },
+  "force_unstated": {
+    "value": 4,
+    "rule": "restricting bodies the record says nothing about either way",
+    "from_items": [
+      "tx-2026-0032",
+      "tx-2026-0050",
+      "tx-2026-0056",
+      "tx-2026-0062"
+    ]
+  },
+  "late_window": {
+    "value": 21,
+    "rule": "the length in days of the window measured back from the last action"
+  },
+  "late_cluster": {
+    "value": 4,
+    "rule": "restricting actions falling in the final 21 days of the span",
+    "from_items": [
+      "tx-2026-0045",
+      "tx-2026-0050",
+      "tx-2026-0056",
+      "tx-2026-0062"
+    ]
+  },
+  "chronology": {
+    "value": 8,
+    "rule": "the restricting actions in the order they happened",
+    "marks": [
+      {
+        "date": "2026-03-10",
+        "place": "Brazoria County",
+        "shape": "zone refused",
+        "claim": "c9",
+        "item": "tx-2026-0051"
+      },
+      {
+        "date": "2026-04-27",
+        "place": "Killeen",
+        "shape": "permit refused",
+        "claim": "c17",
+        "item": "tx-2026-0032"
+      },
+      {
+        "date": "2026-06-16",
+        "place": "San Angelo",
+        "shape": "water capped",
+        "claim": "c12",
+        "item": "tx-2026-0065"
+      },
+      {
+        "date": "2026-06-22",
+        "place": "Archer County",
+        "shape": "incentive denied",
+        "claim": "c3",
+        "item": "tx-2026-0043"
+      },
+      {
+        "date": "2026-07-21",
+        "place": "Corpus Christi",
+        "shape": "staff directed to draft",
+        "claim": "c30",
+        "item": "tx-2026-0050"
+      },
+      {
+        "date": "2026-07-23",
+        "place": "Texas Water Development Board",
+        "shape": "category denied",
+        "claim": "c29",
+        "item": "tx-2026-0056"
+      },
+      {
+        "date": "2026-08-10",
+        "place": "Lubbock County",
+        "shape": "disclosure asked",
+        "claim": "c6",
+        "item": "tx-2026-0045"
+      },
+      {
+        "date": "2026-08-11",
+        "place": "Fort Worth",
+        "shape": "process started",
+        "claim": "c22",
+        "item": "tx-2026-0062"
+      }
+    ]
+  },
+  "distinct_shapes": {
+    "value": 8,
+    "rule": "distinct kinds of restriction among the restricting bodies",
+    "shapes": [
+      "category denied",
+      "disclosure asked",
+      "incentive denied",
+      "permit refused",
+      "process started",
+      "staff directed to draft",
+      "water capped",
+      "zone refused"
+    ],
+    "backed_by": {
+      "Killeen": [
+        "permit refused",
+        "c17"
+      ],
+      "Archer County": [
+        "incentive denied",
+        "c3"
+      ],
+      "Lubbock County": [
+        "disclosure asked",
+        "c6"
+      ],
+      "Corpus Christi": [
+        "staff directed to draft",
+        "c30"
+      ],
+      "Brazoria County": [
+        "zone refused",
+        "c9"
+      ],
+      "Texas Water Development Board": [
+        "category denied",
+        "c29"
+      ],
+      "Fort Worth": [
+        "process started",
+        "c22"
+      ],
+      "San Angelo": [
+        "water capped",
+        "c12"
+      ]
+    }
+  },
+  "first_action_date": {
+    "value": "2026-03-10",
+    "rule": "earliest ORDERED date among the restricting items, the date a body acted"
+  },
+  "last_action_date": {
+    "value": "2026-08-11",
+    "rule": "latest ORDERED date among the restricting items"
+  },
+  "span_days": {
+    "value": 154,
+    "rule": "days from first_action_date to last_action_date"
+  },
+  "brazoria_applications": {
+    "value": 4,
+    "rule": "abatement applications the Brazoria zone carried, per the item summary",
+    "from_items": [
+      "tx-2026-0051"
+    ]
+  },
+  "brazoria_vote": {
+    "value": "5 to 0",
+    "rule": "quoted from tx-2026-0051-c1"
+  },
+  "docket_items": {
+    "value": 73,
+    "rule": "items in ledger/docket.json"
+  },
+  "laredo_agendas": {
+    "value": 3,
+    "rule": "hearing key_dates on tx-2026-0037, the agendas Laredo's direction reached",
+    "from_items": [
+      "tx-2026-0037"
+    ]
+  }
+}

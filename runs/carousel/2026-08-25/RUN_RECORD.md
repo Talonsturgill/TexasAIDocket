@@ -129,6 +129,110 @@ separation, were all measured during pixel review, by hand, after the frames exi
 into the dossiers now would be writing the test to fit the artifact. It is a proposal for the
 planning phase of the next run rather than a repair to this one.
 
+## THE FINDING A HUMAN HAS TO SEE
+
+**Six of nine frames declared a texture in a comment and never drew a pixel of it, for the whole
+run, and nothing in the suite noticed.**
+
+`TX.rng` in `assets/js/noise.js` is a PRNG FACTORY. `TX.rng(42)` returns a generator function.
+Every texture loop in this deck called it as `TX.rng()`, which returns the function object, so
+`TX.rng()*W` is `NaN` and `fillRect(NaN, NaN, ...)` is a silent no operation. The paper tooth on
+frame 7, the cork tooth and the staple hole field on frames 6 and 9, and the wall grain on 1, 4,
+5 and 8 all drew nothing at all.
+
+What that survived is the point:
+
+- `render.py` exits 0, because a NaN rect throws nothing.
+- `qa.py` exits 0, because a missing texture is not a fail.
+- `craft_floor` passed all nine frames, because the frames still carry a real light and a real
+  dark from their geometry.
+- THREE pixel critics read the frames and did not name it.
+- The flow critic read all nine and named frame 6 as reading like an unfinished render, which is
+  the symptom, and diagnosed it as an alpha problem, which it was not.
+
+It was found by cropping a patch of cork at 1 to 1 and measuring it. Standard deviation 3.42
+luminance levels over a 19 level range, which is a flat fill. The first two repairs raised the
+alpha and the chip size and moved the number to 3.42 both times, and an unchanged measurement
+after a substantial change is the fact that pointed at the generator rather than at the paint.
+
+Fixed by seeding one generator per frame off that frame's own reseed value. Measured after, the
+cork carries a standard deviation of 9.04 and the letterboard felt 23.26. The first fix
+overshot to 31.98, which is a camouflage pattern, and the number is what said so.
+
+**The lesson for the machine.** A canvas API that fails silently on NaN means an effect can be
+fully written, reviewed by three critics and shipped, having never existed. The only check that
+finds it is measuring the pixels the effect was supposed to change. `knowledge/` is `human` owned and this run
+stamps `daily`, so it goes in the proposals below rather than into `GATE_LESSONS.md`, which is
+the rule working: a run that can edit the record of what fooled it has no such record.
+
+## What the flow critic changed
+
+It returned `revise` and it was right on nine of its ten findings. It was wrong on one, that
+frame 1's specular crosses the dek's last line, and the crop shows 78px of clearance. Measured
+before acting, not after.
+
+- **Frames 2 and 3 were doing one job.** Frame 2 already prints all eight body names under the
+  eight instruments and frame 3 reprinted the same eight alone for one new line of payload.
+  Frame 3 is the CHRONOLOGY now, eight dated marks in the order the bodies acted, on the same
+  changeable letter board. Its dek carries a figure no other frame holds, four of the eight
+  falling inside the final twenty one days.
+- **Frame 5's hook was a quantifier where the law requires a count.** "Most of these do not
+  bind" asserted a proportion nothing computed. It reads `Two of the eight stop nothing` now,
+  from `stated_nonbinding`, and its foot carries `force_unstated`, the four bodies the record
+  says nothing about either way. The deck is stronger for it, because it now publishes the size
+  of what it does not know rather than rounding it into "most".
+- **Frame 7's dek repeated frame 6's card verbatim.** Both dossiers had declared the same
+  sentence. Frame 7 carries the fuller act from the same claim.
+- **Frame 8's reflection was an inset panel with three readable strings on it**, against its own
+  acceptance list, which says a reflected document is not evidence. It is sheared, rippled and
+  Fresnel weighted now and carries nothing legible. Laredo's evidence moved onto the sheet at
+  full toner. Its thesis line was pale grey type sitting INSIDE the cream sheet and running
+  across the decorative rules, which is the frame's own point set in the least readable way on
+  the frame.
+- **Frame 8 had no denominator.** Two bodies declined arrived with no set to be two of. Its foot
+  states the ten now.
+- **Frame 6's cork was flat and its caption's descenders were clipped by the case lip.**
+- **Frame 1's numeric lockup misread at 432px** as "8 BODIES INSTRUMENTS", and the dek's fourth
+  line overlapped the numeral by 15px. It counts both nouns now.
+- **The 6 to 7 value snap ran backwards.** Both dossiers claim frame 6 is the brightest field and
+  frame 7 the darkest immediately after. Measured, 6 was 64.1 and 7 was 69.4. Frame 7's field
+  was dropped to 61.4 and its falloff widened rather than flattened, so the four repeats now
+  span 17.2 L\* instead of 3.4.
+
+## Three more gates were wrong about a correct deck
+
+All three were found by writing copy the gates had never been shown, and all three are in the
+`upgrade` lane with self-tests both directions.
+
+`aggregate_check` could not see a ratio written with the article, so "three of the nine" would
+have asserted a proportion no computation had to back. Worse, matching a ratio BROKE OUT of the
+shape loop, so every later shape anywhere in the same string was suppressed: "Four of the eight
+came in the last 21 days" reported the ratio and silently exempted the 21, on the gate whose
+entire purpose is that an undeclared number cannot reach a frame. Commit `4d2c58d0`.
+
+That makes five gate repairs in one run. Every one of them was a gate reporting a correct deck
+as wrong, or a wrong deck as correct, and none of them was found by a self-test. Self-tests prove
+a checker can go red. Only the product proves it is looking at the right thing.
+
+## Proposals for the machine, none of them in this actor's lane
+
+1. **A gate that proves a declared texture reached a pixel.** `knowledge/` and the engine skill
+   are `human` owned, so this is a proposal. Every frame declares its technique in its dossier.
+   A check could crop the region the technique claims to act on, measure its standard deviation
+   and fail a frame whose declared texture measures flat. Today's defect would have been caught
+   on the first render rather than after three pixel critics and a flow critic.
+2. **`assets/js/noise.js` should refuse to be called wrong.** `TX.rng` returning a function when
+   called with no seed is a footgun that costs a whole deck's texture and reports nothing. It
+   could return a default seeded stream, or throw. Either beats `NaN`.
+3. **The dossier spec should require at least one MEASURABLE acceptance item per frame.**
+   `plan_render_check` reports 0 of 46 checkable for the second deck running, and the items that
+   could have been tests here (a falloff spread in L\*, a contrast ratio, a band angle, an air
+   gap's separation) were all measured by hand after the frames existed.
+4. **The value register belongs in the artwork ledger as a MEASUREMENT.** The storyboard typed
+   "ground at L\* 62 to 68" and the deck measures a 67 point range around a median of 54.7. A
+   script could compute the per-frame medians at ship time and write the ledger entry from them,
+   which is the compute-not-generate law applied to the machine's own memory.
+
 ## Confirmations
 
 Frame 3 sits under the craft floor at variance 520 against a floor of 1030. It is deliberate. It
@@ -145,13 +249,13 @@ rather than failing, and this is it.
 |---|---|---|
 | claims         | PASS   | 30 verified claim(s) |
 | render         | WARN   | 9 slide(s), 24 overflow warning(s) |
-| qa             | WARN   | 0 fail(s), 48 warn(s) |
-| aggregates     | PASS   | 9 declared and re-derived |
-| assembly       | PASS   | 9 slide(s), 1.89 MB, vector |
+| qa             | WARN   | 0 fail(s), 29 warn(s) |
+| aggregates     | PASS   | 14 declared and re-derived |
+| assembly       | PASS   | 9 slide(s), 3.22 MB, vector |
 | score          | ABSENT | score.json not written yet |
-| dossiers       | PASS   | 29,336 chars planned |
+| dossiers       | PASS   | 30,847 chars planned |
 | caption        | PASS   | 141 words |
-| craft floor    | WARN   | 9 frame(s), median 5723, floor 1030, 1 quiet |
+| craft floor    | WARN   | 9 frame(s), median 6061, floor 1091, 1 quiet |
 | plan vs render | WARN   | 0 of 46 acceptance item(s) checkable |
 | texan          | PASS   | places Hill County, Tom Green County / body yes / deadline yes / next step yes |
 | absences       | PASS   | 10 of 10 scoped to a named document |

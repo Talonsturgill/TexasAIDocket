@@ -1,0 +1,112 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#4A505A;
+  -webkit-font-smoothing:antialiased}
+canvas{position:absolute;left:0;top:0}
+.kick{position:absolute;left:80px;top:88px;font:500 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.14em;color:#F0ECE2}
+.cnt{position:absolute;right:80px;top:88px;font:500 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.10em;color:#F0ECE2;font-variant-numeric:tabular-nums}
+.tx-site{position:absolute;left:80px;bottom:74px;font:400 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.06em;color:#F0ECE2}
+.star{position:absolute;right:80px;bottom:68px;width:22px;height:22px}
+.hook{position:absolute;left:186px;top:270px;width:520px;font:700 62px/1.04 "Fraunces",serif;
+  color:#2A2622;letter-spacing:-.015em}
+.dek{position:absolute;left:186px;top:400px;width:480px;font:400 26px/1.34 "Manrope",sans-serif;color:#514C44}
+.row{position:absolute;left:186px;font:500 30px/1 "JetBrains Mono",monospace;color:#2A2622;letter-spacing:.01em}
+.who{color:#544E44;font-size:22px;letter-spacing:.09em;display:block;margin-top:7px}
+</style></head><body>
+<canvas id="c" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+<div class="kick">EIGHT INSTRUMENTS</div>
+<div class="cnt">02 / 09</div>
+<div class="hook">Eight bodies, eight instruments</div>
+<div class="dek">One each. The shape of a refusal decides whether anything stops.</div>
+<div class="row" style="top:500px">Permit refused<span class="who">KILLEEN</span></div>
+<div class="row" style="top:582px">Incentive denied<span class="who">ARCHER COUNTY</span></div>
+<div class="row" style="top:664px">Zone refused<span class="who">BRAZORIA COUNTY</span></div>
+<div class="row" style="top:746px">Water capped<span class="who">SAN ANGELO</span></div>
+<div class="row" style="top:828px">Disclosure asked<span class="who">LUBBOCK COUNTY</span></div>
+<div class="row" style="top:910px">Staff directed to draft<span class="who">CORPUS CHRISTI</span></div>
+<div class="row" style="top:992px">Category denied<span class="who">TEXAS WATER DEVELOPMENT BOARD</span></div>
+<div class="row" style="top:1074px">Process started<span class="who">FORT WORTH</span></div>
+<div class="tx-site">texasaidocket.com</div>
+<svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6 L14.9 9.2 L23 9.6 L16.7 14.6 L18.9 22.4 L12 17.9 L5.1 22.4 L7.3 14.6 L1 9.6 L9.1 9.2 Z" fill="#D8D2C4"/></svg>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = new Promise(function(resolve){
+  var c=document.getElementById('c'), x=c.getContext('2d'); x.scale(2,2);
+  var W=1080,H=1350; TX.reseed(20802); var R = TX.rng(20802);
+  // Square on to one flat sheet. The whole frame is the sheet, so the case reads as the
+  // surround rather than as an object, which is the change of camera from frame 1.
+  var SX=150, SY=196, SW=790, SH=1000;
+  var g=x.createLinearGradient(0,0,W,H);
+  g.addColorStop(0,'#5E656F'); g.addColorStop(0.42,'#7C838D'); g.addColorStop(1,'#474D56');
+  x.fillStyle=g; x.fillRect(0,0,W,H);
+  // the furniture rides on this wall at the top and the foot and has to clear 4.5 against it.
+  // Measured, the counter was at 2.6 and the masthead at 3.0, because a diagonal rake puts the
+  // wall's lit half exactly where the top right corner is.
+  var vig=x.createLinearGradient(0,0,0,H);
+  vig.addColorStop(0,'rgba(14,18,24,0.56)'); vig.addColorStop(0.15,'rgba(14,18,24,0)');
+  vig.addColorStop(0.85,'rgba(14,18,24,0)'); vig.addColorStop(1,'rgba(14,18,24,0.50)');
+  x.fillStyle=vig; x.fillRect(0,0,W,H);
+  // case surround
+  x.fillStyle='#1F252C'; x.fillRect(SX-46,SY-46,SW+92,SH+92);
+  x.fillStyle='#B4B0A4'; x.fillRect(SX-46,SY-46,SW+92,16);
+  x.fillStyle='#6E6D67'; x.fillRect(SX-46,SY+SH+30,SW+92,16);
+  // the sheet
+  x.fillStyle='#F2EEE4'; x.fillRect(SX,SY,SW,SH);
+  // MULLION: a hard diagonal occlusion shadow whose penumbra WIDENS with the air gap.
+  // The gap grows downward, so the shadow softens as it falls. That is the deck's one depth cue.
+  // The penumbra widens with the air gap, which is the deck's one depth cue. Drawn in fine
+  // steps with a 1.5px overdraw so the ramp does not band, and held at a low core alpha so a
+  // name inside the shadow keeps the same toner value as a name outside it. The shadow's job
+  // is to separate the field, never to make a line of the record harder to read.
+  var N=1500;
+  for(var i=0;i<=1;i+=1/N){
+    var y0=SY+i*SH;
+    var gap=4+56*i;
+    var xs=SX+SW*0.74 - i*186;
+    var grad=x.createLinearGradient(xs-gap,y0,xs+gap,y0);
+    grad.addColorStop(0,'rgba(31,37,44,0)');
+    grad.addColorStop(0.55,'rgba(31,37,44,0.13)');
+    grad.addColorStop(1,'rgba(31,37,44,0.17)');
+    x.fillStyle=grad; x.fillRect(xs-gap,y0,SX+SW-(xs-gap),SH/N+1.5);
+  }
+  x.fillStyle='rgba(42,38,34,0.30)';
+  for(var dr=0;dr<34;dr++){
+    var dy=SY+150+dr*24, dw=228*(0.46+0.5*Math.abs(TX.simplex2(dr*0.53,6.1)));
+    if(dy>SY+SH-120) break;
+    x.fillRect(SX+SW-262,dy,dw,5);
+  }
+  // corner bracket doubles the occlusion at the sheet's top left: the frame's darkest core
+  var bg=x.createLinearGradient(SX+SW,SY,SX+SW-170,SY+170);
+  bg.addColorStop(0,'rgba(20,24,30,0.62)'); bg.addColorStop(1,'rgba(20,24,30,0)');
+  x.fillStyle=bg; x.fillRect(SX+SW-170,SY,170,170);
+  // spring clip at the head, lit solid with its own contact shadow on the sheet
+  x.fillStyle='rgba(30,34,40,0.34)'; x.fillRect(SX+SW/2-60,SY+34,120,11);
+  x.fillStyle='#B9B4A6'; x.fillRect(SX+SW/2-62,SY+12,124,24);
+  x.fillStyle='#E2DDCE'; x.fillRect(SX+SW/2-62,SY+12,124,4);
+  x.fillStyle='#75736B'; x.fillRect(SX+SW/2-62,SY+32,124,4);
+  x.fillStyle='rgba(30,34,40,0.20)'; x.fillRect(SX+SW/2-64,SY+SH-96,128,26);
+  x.fillStyle='rgba(30,34,40,0.40)'; x.fillRect(SX+SW/2-60,SY+SH-104,120,10);
+  x.fillStyle='#B9B4A6'; x.fillRect(SX+SW/2-62,SY+SH-128,124,24);
+  x.fillStyle='#E2DDCE'; x.fillRect(SX+SW/2-62,SY+SH-128,124,4);
+  x.fillStyle='#75736B'; x.fillRect(SX+SW/2-62,SY+SH-108,124,4);
+  // sheet foot: graded falloff into the clip shadow, so the bottom band carries modeled tone
+  var fg=x.createLinearGradient(0,SY+SH-190,0,SY+SH);
+  fg.addColorStop(0,'rgba(120,112,96,0)'); fg.addColorStop(1,'rgba(90,84,72,0.30)');
+  x.fillStyle=fg; x.fillRect(SX,SY+SH-190,SW,190);
+  // wall below, raked and grained
+  var wg=x.createLinearGradient(0,SY+SH+46,0,H);
+  wg.addColorStop(0,'rgba(18,22,28,0.50)'); wg.addColorStop(1,'rgba(18,22,28,0)');
+  x.fillStyle=wg; x.fillRect(0,SY+SH+46,W,H-SY-SH-46);
+  for(var q=0;q<14000;q++){
+    var qx=R()*W, qy=R()*H, qn=TX.fbm2(qx*0.014,qy*0.014,3);
+    x.fillStyle='rgba('+(qn>0?255:0)+','+(qn>0?255:0)+','+(qn>0?255:0)+','+(0.028*Math.abs(qn))+')';
+    x.fillRect(qx,qy,2,2);
+  }
+  resolve();
+});
+</script>
+</body></html>

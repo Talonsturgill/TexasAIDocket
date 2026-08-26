@@ -1,0 +1,94 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#4C525C;
+  -webkit-font-smoothing:antialiased}
+canvas{position:absolute;left:0;top:0}
+.kick{position:absolute;left:80px;top:88px;font:500 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.14em;color:#EDEDE4}
+.cnt{position:absolute;right:80px;top:88px;font:500 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.10em;color:#EDEDE4;font-variant-numeric:tabular-nums}
+.tx-site{position:absolute;left:80px;bottom:74px;font:400 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.06em;color:#EDEDE4}
+.star{position:absolute;right:80px;bottom:68px;width:22px;height:22px}
+.hook{position:absolute;left:150px;top:236px;width:660px;font:700 66px/1.04 "Fraunces",serif;
+  color:#2A2622;letter-spacing:-.015em}
+.q1{position:absolute;left:150px;top:404px;width:470px;font:500 29px/1.4 "JetBrains Mono",monospace;
+  color:#2A2622}
+.s1{position:absolute;left:150px;top:504px;font:400 20px/1 "JetBrains Mono",monospace;
+  color:#6E695F;letter-spacing:.10em}
+.q2{position:absolute;left:470px;top:912px;width:435px;font:500 29px/1.4 "JetBrains Mono",monospace;
+  color:#2A2622}
+.s2{position:absolute;left:470px;top:1012px;font:400 20px/1 "JetBrains Mono",monospace;
+  color:#6E695F;letter-spacing:.10em}
+.foot{position:absolute;left:150px;top:1088px;width:700px;font:400 26px/1.4 "Manrope",sans-serif;color:#3E3A34}
+</style></head><body>
+<canvas id="c" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+<div class="kick">ARCHER AND LUBBOCK</div>
+<div class="cnt">05 / 09</div>
+<div class="hook">Two of the eight stop nothing</div>
+<div class="q1">"does not stop the project<br>from moving forward"</div>
+<div class="s1">ARCHER COUNTY, C5</div>
+<div class="q2">"Resolutions do nothing,<br>they are not binding."</div>
+<div class="s2">LUBBOCK COUNTY, C7</div>
+<div class="foot">The record says nothing either way about four bodies.</div>
+<div class="tx-site">texasaidocket.com</div>
+<svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6 L14.9 9.2 L23 9.6 L16.7 14.6 L18.9 22.4 L12 17.9 L5.1 22.4 L7.3 14.6 L1 9.6 L9.1 9.2 Z" fill="#EDEDE4"/></svg>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = new Promise(function(resolve){
+  var c=document.getElementById('c'), x=c.getContext('2d'); x.scale(2,2);
+  var W=1080,H=1350; TX.reseed(50528); var R = TX.rng(50528);
+  var g=x.createLinearGradient(0,0,W,H);
+  g.addColorStop(0,'#3B414A'); g.addColorStop(0.4,'#565C66'); g.addColorStop(1,'#282C33');
+  x.fillStyle=g; x.fillRect(0,0,W,H);
+  var SX=118, SY=180, SW=844, SH=1010;
+  x.fillStyle='#1F252C'; x.fillRect(SX-48,SY-44,SW+96,SH+108);
+  x.fillStyle='#CFC9BA'; x.fillRect(SX-48,SY-44,SW+96,16);
+  x.fillStyle='#5C5B56'; x.fillRect(SX-48,SY+SH+48,SW+96,16);
+  x.fillStyle='#F2EEE4'; x.fillRect(SX,SY,SW,SH);
+  // decorative body type: this is what the blowout erases. It carries no claim. It is laid
+  // along the band's own corridor so the erasure has something to act on, and every rule is
+  // rejected if it comes within 12px of a line that carries one.
+  var ang=-0.4887, cx=SX+SW/2, cy=710, half=84, shoulder=12, m=Math.tan(ang);
+  var BLOCK=[[150,236,815,373],[150,404,620,485],[150,504,380,524],
+             [470,912,905,993],[470,1012,700,1032],[150,1088,755,1166]];
+  function clearOf(a,b,c,d){
+    for(var i=0;i<BLOCK.length;i++){ var B=BLOCK[i];
+      if(a<B[2]+12 && c>B[0]-12 && b<B[3]+12 && d>B[1]-12) return false; }
+    return true;
+  }
+  x.fillStyle='rgba(42,38,34,0.26)';
+  for(var r=0;r<34;r++){
+    var ry=556+r*15;
+    var rw=300+440*Math.abs(TX.simplex2(r*0.55,4.4));
+    if(!clearOf(170,ry,170+rw,ry+4)) continue;
+    x.fillRect(170,ry,rw,4);
+  }
+  // THE BLOWOUT: two hard parallel edges, a measured width, parallel to no frame edge,
+  // with a computed shoulder. It crosses ONLY decorative type.
+  x.save(); x.beginPath(); x.rect(SX,SY,SW,SH); x.clip();
+  x.translate(cx, cy); x.rotate(ang);
+  var bg=x.createLinearGradient(0,-half-shoulder,0,half+shoulder);
+  bg.addColorStop(0,'rgba(255,253,246,0)');
+  bg.addColorStop(shoulder/(2*(half+shoulder)),'rgba(255,253,246,0.99)');
+  bg.addColorStop(1-shoulder/(2*(half+shoulder)),'rgba(255,253,246,0.99)');
+  bg.addColorStop(1,'rgba(255,253,246,0)');
+  x.fillStyle=bg; x.fillRect(-SW*1.4,-half-shoulder,SW*2.8,(half+shoulder)*2);
+  x.restore();
+  // sheet foot falloff into the rail's own cast shadow, so the bottom band is modeled
+  var fg=x.createLinearGradient(0,SY+SH-200,0,SY+SH);
+  fg.addColorStop(0,'rgba(110,102,86,0)'); fg.addColorStop(1,'rgba(84,78,66,0.36)');
+  x.fillStyle=fg; x.fillRect(SX,SY+SH-200,SW,200);
+  var sg=x.createLinearGradient(0,SY+SH+64,0,SY+SH+180);
+  sg.addColorStop(0,'rgba(16,20,26,0.60)'); sg.addColorStop(1,'rgba(16,20,26,0)');
+  x.fillStyle=sg; x.fillRect(0,SY+SH+64,W,180);
+  for(var q=0;q<15000;q++){
+    var qx=R()*W, qy=R()*H, qn=TX.fbm2(qx*0.016,qy*0.016,3);
+    x.fillStyle='rgba('+(qn>0?255:0)+','+(qn>0?255:0)+','+(qn>0?255:0)+','+(0.024*Math.abs(qn))+')';
+    x.fillRect(qx,qy,2,2);
+  }
+  resolve();
+});
+</script>
+</body></html>

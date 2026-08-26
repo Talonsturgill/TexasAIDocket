@@ -1,0 +1,97 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#171B21;
+  -webkit-font-smoothing:antialiased}
+canvas{position:absolute;left:0;top:0}
+.kick{position:absolute;left:80px;top:88px;font:500 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.14em;color:#B6B1A4}
+.cnt{position:absolute;right:80px;top:88px;font:500 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.10em;color:#B6B1A4;font-variant-numeric:tabular-nums}
+.tx-site{position:absolute;left:80px;bottom:74px;font:400 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.06em;color:#B6B1A4}
+.star{position:absolute;right:80px;bottom:68px;width:22px;height:22px}
+.hook{position:absolute;left:112px;top:196px;width:600px;font:700 60px/1.04 "Fraunces",serif;
+  color:#E8E4D8;letter-spacing:-.015em}
+.dek{position:absolute;left:112px;top:330px;width:540px;font:400 25px/1.34 "Manrope",sans-serif;color:#9A968A}
+.dt{position:absolute;left:118px;font:500 30px/1 "JetBrains Mono",monospace;color:#9EA6B0;letter-spacing:.04em}
+.rw{position:absolute;left:392px;font:500 32px/1 "JetBrains Mono",monospace;color:#E8E4D8;letter-spacing:.04em}
+.span{position:absolute;left:118px;top:1074px;font:500 26px/1.35 "JetBrains Mono",monospace;
+  color:#B6B1A4;letter-spacing:.06em}
+</style></head><body>
+<canvas id="c" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+<div class="kick">THE SEQUENCE</div>
+<div class="cnt">03 / 09</div>
+<div class="hook">From March to August</div>
+<div class="dek">Four of the eight came in the last 21 days.</div>
+<div class="dt" style="top:434px">MARCH 10TH</div>
+<div class="rw" style="top:434px">BRAZORIA COUNTY</div>
+<div class="dt" style="top:510px">APRIL 27TH</div>
+<div class="rw" style="top:510px">KILLEEN</div>
+<div class="dt" style="top:586px">JUNE 16TH</div>
+<div class="rw" style="top:586px">SAN ANGELO</div>
+<div class="dt" style="top:662px">JUNE 22ND</div>
+<div class="rw" style="top:662px">ARCHER COUNTY</div>
+<div class="dt" style="top:738px">JULY 21ST</div>
+<div class="rw" style="top:738px">CORPUS CHRISTI</div>
+<div class="dt" style="top:814px">JULY 23RD</div>
+<div class="rw" style="top:814px">TEXAS WATER DEVELOPMENT BOARD</div>
+<div class="dt" style="top:890px">AUGUST 10TH</div>
+<div class="rw" style="top:890px">LUBBOCK COUNTY</div>
+<div class="dt" style="top:966px">AUGUST 11TH</div>
+<div class="rw" style="top:966px">FORT WORTH</div>
+<div class="span">154 DAYS<br>MARCH 10TH TO AUGUST 11TH</div>
+<div class="tx-site">texasaidocket.com</div>
+<svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6 L14.9 9.2 L23 9.6 L16.7 14.6 L18.9 22.4 L12 17.9 L5.1 22.4 L7.3 14.6 L1 9.6 L9.1 9.2 Z" fill="#B6B1A4"/></svg>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = new Promise(function(resolve){
+  var c=document.getElementById('c'), x=c.getContext('2d'); x.scale(2,2);
+  var W=1080,H=1350; TX.reseed(30913); var R = TX.rng(30913);
+  // No case on this frame. A lobby changeable letter board, square on and level. Leaving the
+  // case for one frame is what stops seven consecutive frames converging on one silhouette.
+  x.fillStyle='#171B21'; x.fillRect(0,0,W,H);
+  var BX=68, BY=160, BW=944, BH=1060;
+  // felt: near black with real nap, raked by one overhead lobby source
+  x.fillStyle='#1F252C'; x.fillRect(BX,BY,BW,BH);
+  for(var i=0;i<120000;i++){
+    var px=BX+R()*BW, py=BY+R()*BH;
+    var n=TX.simplex2(px*0.9,py*0.9);
+    var v=Math.max(0,(py-BY)/BH);
+    x.fillStyle='rgba('+(n>0?116:4)+','+(n>0?124:6)+','+(n>0?134:9)+','+(0.34*Math.abs(n)*(1-v*0.40))+')';
+    x.fillRect(px,py,1.4,1.4);
+  }
+  // grooves the letters seat into, one per row
+  var rows=[434,510,586,662,738,814,890,966];
+  rows.forEach(function(ry){
+    x.fillStyle='rgba(6,9,13,0.62)'; x.fillRect(BX+22,ry+38,BW-44,4);
+    x.fillStyle='rgba(120,128,138,0.10)'; x.fillRect(BX+22,ry+42,BW-44,2);
+  });
+  // aluminium head and foot rails, lit edges so the board has thickness
+  x.fillStyle='#8E8C83'; x.fillRect(BX,BY,BW,34);
+  x.fillStyle='#D2CCBD'; x.fillRect(BX,BY,BW,5);
+  x.fillStyle='#4E4D49'; x.fillRect(BX,BY+29,BW,5);
+  x.fillStyle='#77766F'; x.fillRect(BX,BY+BH-40,BW,40);
+  x.fillStyle='#A9A79D'; x.fillRect(BX,BY+BH-40,BW,4);
+  x.fillStyle='#3A3A37'; x.fillRect(BX,BY+BH-5,BW,5);
+  resolve();
+});
+</script>
+<script>
+// Per row shadow offset, computed from ONE overhead source, so eight rows get eight offsets.
+// A uniform offset is what makes a letterboard read as a drop shadowed webfont.
+document.addEventListener('DOMContentLoaded',function(){
+  var src={x:540,y:40};
+  document.querySelectorAll('.rw, .dt').forEach(function(el){
+    var t=parseFloat(el.style.top), cx=el.offsetLeft+el.offsetWidth/2;
+    var dx=((cx-src.x)/900)*3.4, dy=((t-src.y)/1000)*4.4+1.8;
+    el.style.textShadow=dx.toFixed(2)+'px '+dy.toFixed(2)+'px 0 rgba(4,7,10,0.88), '
+                       +(dx*1.7).toFixed(2)+'px '+(dy*1.7).toFixed(2)+'px 9px rgba(4,7,10,0.34)';
+  });
+  // two letters sit proud, as a hand set board does
+  var a=document.querySelectorAll('.rw')[2], b=document.querySelectorAll('.rw')[5];
+  a.innerHTML=a.textContent.replace('G','<span style="display:inline-block;transform:translateY(-3px) rotate(-1.2deg)">G</span>');
+  b.innerHTML=b.textContent.replace('B','<span style="display:inline-block;transform:translateY(2px) rotate(0.9deg)">B</span>');
+});
+</script>
+</body></html>

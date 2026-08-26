@@ -1,0 +1,93 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#2B3138;
+  -webkit-font-smoothing:antialiased}
+canvas{position:absolute;left:0;top:0}
+.kick{position:absolute;left:80px;top:88px;font:500 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.14em;color:#D8D2C4}
+.cnt{position:absolute;right:80px;top:88px;font:500 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.10em;color:#D8D2C4;font-variant-numeric:tabular-nums}
+.tx-site{position:absolute;left:80px;bottom:74px;font:400 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.06em;color:#D8D2C4}
+.star{position:absolute;right:80px;bottom:68px;width:22px;height:22px}
+.hook{position:absolute;left:150px;top:250px;width:470px;font:700 62px/1.04 "Fraunces",serif;
+  color:#2A2622;letter-spacing:-.015em}
+.body{position:absolute;left:150px;top:420px;width:470px;font:400 28px/1.42 "Manrope",sans-serif;color:#443F36}
+.dpre{position:absolute;left:150px;top:582px;font:500 26px/1 "JetBrains Mono",monospace;
+  color:#5E594F;letter-spacing:.13em}
+.date{position:absolute;left:150px;top:626px;width:470px;font:700 58px/1.06 "JetBrains Mono",monospace;
+  color:#BF0A30;letter-spacing:-.02em}
+.dlab{position:absolute;left:150px;top:726px;width:500px;font:500 20px/1.5 "JetBrains Mono",monospace;
+  color:#6E695F;letter-spacing:.07em}
+.src{position:absolute;left:150px;top:812px;font:400 19px/1 "JetBrains Mono",monospace;
+  color:#7A756B;letter-spacing:.10em}
+.next{position:absolute;left:150px;top:1128px;width:520px;font:500 24px/1.4 "Manrope",sans-serif;color:#33260F}
+</style></head><body>
+<canvas id="c" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+<div class="kick">WHAT IS OPEN</div>
+<div class="cnt">09 / 09</div>
+<div class="hook">One door is still open</div>
+<div class="body">Fort Worth holds the first of two required public hearings.</div>
+<div class="dpre">NOT LATER THAN</div>
+<div class="date">NOVEMBER 10TH</div>
+<div class="dlab">THE CITY'S OWN WORDING IS A DEADLINE<br>RATHER THAN A FIXED DATE</div>
+<div class="src">CITY OF FORT WORTH, C24</div>
+<div class="next">Everything else in this record is already decided.</div>
+<div class="tx-site">texasaidocket.com</div>
+<svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6 L14.9 9.2 L23 9.6 L16.7 14.6 L18.9 22.4 L12 17.9 L5.1 22.4 L7.3 14.6 L1 9.6 L9.1 9.2 Z" fill="#D8D2C4"/></svg>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = new Promise(function(resolve){
+  var c=document.getElementById('c'), x=c.getContext('2d'); x.scale(2,2);
+  var W=1080,H=1350; TX.reseed(90947); var R = TX.rng(90947);
+  var g=x.createLinearGradient(0,0,W*0.5,H);
+  g.addColorStop(0,'#3A4149'); g.addColorStop(0.5,'#2B3138'); g.addColorStop(1,'#1A1E23');
+  x.fillStyle=g; x.fillRect(0,0,W,H);
+  // Level and close on the case's lower left interior. The cork must be LIT FIRST, or a shadow
+  // cast into it is a two L* change and the clips read as pasted on.
+  var CKX=0, CKY=848, CKW=W, CKH=H-848;
+  x.fillStyle='#B99B72'; x.fillRect(CKX,CKY,CKW,CKH);
+  var cl=x.createLinearGradient(0,CKY,W*0.6,H);
+  cl.addColorStop(0,'rgba(236,216,182,0.46)'); cl.addColorStop(0.6,'rgba(150,124,90,0.10)');
+  cl.addColorStop(1,'rgba(70,54,34,0.42)');
+  x.fillStyle=cl; x.fillRect(CKX,CKY,CKW,CKH);
+  for(var i=0;i<40000;i++){
+    var px=R()*W, py=CKY+R()*CKH, n=TX.fbm2(px*0.035,py*0.035,4);
+    x.fillStyle='rgba('+(n>0?240:62)+','+(n>0?224:44)+','+(n>0?196:26)+','+(0.17*Math.abs(n))+')';
+    x.fillRect(px,py,2,2);
+  }
+  TX.reseed(4242); R = TX.rng(4242);
+  for(var h=0;h<70;h++){
+    var hx=40+R()*(W-80), hy=CKY+16+R()*(CKH-40);
+    x.fillStyle='rgba(66,48,28,0.36)'; x.fillRect(hx,hy,3,5);
+    x.fillStyle='rgba(228,208,174,0.34)'; x.fillRect(hx,hy+5,3,2);
+  }
+  // the clipped sheet, the frame's one large light area
+  var SX=110, SY=190, SW=560, SH=690;
+  x.fillStyle='rgba(20,24,28,0.44)'; x.fillRect(SX+12,SY+14,SW,SH);
+  x.fillStyle='#F2EEE4'; x.fillRect(SX,SY,SW,SH);
+  x.fillStyle='rgba(255,253,246,0.86)'; x.fillRect(SX,SY,SW,4);
+  // the clip that holds it, overlapping the sheet's top edge and casting onto it
+  x.fillStyle='rgba(30,34,40,0.34)'; x.fillRect(SX+188,SY+30,180,12);
+  x.fillStyle='#A9A497'; x.fillRect(SX+186,SY-14,184,44);
+  x.fillStyle='#DAD5C6'; x.fillRect(SX+186,SY-14,184,5);
+  x.fillStyle='#6B6A63'; x.fillRect(SX+186,SY+25,184,5);
+  // TWO SPRUNG CLIPS HOLDING NOTHING. The near-zero-gap end of the deck's shadow physics,
+  // deliberately readable against frame 2's wide penumbra. This is where the next notice goes.
+  [[712,952],[712,1094]].forEach(function(p){
+    x.fillStyle='rgba(48,34,18,0.62)'; x.fillRect(p[0]+5,p[1]+38,196,9);
+    x.fillStyle='rgba(48,34,18,0.26)'; x.fillRect(p[0]+9,p[1]+45,196,13);
+    x.fillStyle='#9E998C'; x.fillRect(p[0],p[1],196,40);
+    x.fillStyle='#D6D1C2'; x.fillRect(p[0],p[1],196,5);
+    x.fillStyle='#5E5D57'; x.fillRect(p[0],p[1]+35,196,5);
+    x.fillStyle='#7C7B74'; x.fillRect(p[0]+16,p[1]+8,10,24);
+    x.fillStyle='#7C7B74'; x.fillRect(p[0]+170,p[1]+8,10,24);
+  });
+  // the case's lower lip closing the frame
+  x.fillStyle='#1F252C'; x.fillRect(0,H-122,W,122);
+  x.fillStyle='#485058'; x.fillRect(0,H-122,W,4);
+  resolve();
+});
+</script>
+</body></html>

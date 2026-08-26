@@ -1,0 +1,208 @@
+{
+ "aggregates": [
+  {
+   "phrase": "eight ways",
+   "kind": "count",
+   "value": 8,
+   "from_claims": [
+    "c17",
+    "c3",
+    "c6",
+    "c30",
+    "c9",
+    "c29",
+    "c22",
+    "c12"
+   ],
+   "computed_by": "out/2026-08-25/compute.py, distinct_shapes over RESTRICTED, counted over the RESTRICTED and DECLINED maps in that file, whose keys are item ids in ledger/docket.json"
+  },
+  {
+   "phrase": "Eight local governments",
+   "kind": "count",
+   "value": 8,
+   "from_claims": [
+    "c17",
+    "c3",
+    "c6",
+    "c30",
+    "c9",
+    "c29",
+    "c22",
+    "c12"
+   ],
+   "computed_by": "out/2026-08-25/compute.py, restricted_count, counted over the RESTRICTED and DECLINED maps in that file, whose keys are item ids in ledger/docket.json"
+  },
+  {
+   "phrase": "Eight bodies",
+   "kind": "count",
+   "value": 8,
+   "from_claims": [
+    "c17",
+    "c3",
+    "c6",
+    "c30",
+    "c9",
+    "c29",
+    "c22",
+    "c12"
+   ],
+   "computed_by": "out/2026-08-25/compute.py, restricted_count, counted over the RESTRICTED and DECLINED maps in that file, whose keys are item ids in ledger/docket.json"
+  },
+  {
+   "phrase": "eight instruments",
+   "kind": "count",
+   "value": 8,
+   "from_claims": [
+    "c17",
+    "c3",
+    "c6",
+    "c30",
+    "c9",
+    "c29",
+    "c22",
+    "c12"
+   ],
+   "computed_by": "out/2026-08-25/compute.py, distinct_shapes, counted over the RESTRICTED and DECLINED maps in that file, whose keys are item ids in ledger/docket.json"
+  },
+  {
+   "phrase": "EIGHT INSTRUMENTS",
+   "kind": "count",
+   "value": 8,
+   "from_claims": [
+    "c17",
+    "c3",
+    "c6",
+    "c30",
+    "c9",
+    "c29",
+    "c22",
+    "c12"
+   ],
+   "computed_by": "out/2026-08-25/compute.py, distinct_shapes, counted over the RESTRICTED and DECLINED maps in that file, whose keys are item ids in ledger/docket.json"
+  },
+  {
+   "phrase": "Four applications",
+   "kind": "count",
+   "value": 4,
+   "from_claims": [
+    "c9",
+    "c10",
+    "c11"
+   ],
+   "computed_by": "out/2026-08-25/compute.py, brazoria_applications, the abatements the zone carried, counted over the RESTRICTED and DECLINED maps in that file, whose keys are item ids in ledger/docket.json"
+  },
+  {
+   "phrase": "Two bodies",
+   "kind": "count",
+   "value": 2,
+   "from_claims": [
+    "c14",
+    "c15"
+   ],
+   "computed_by": "out/2026-08-25/compute.py, declined_count, counted over the RESTRICTED and DECLINED maps in that file, whose keys are item ids in ledger/docket.json"
+  },
+  {
+   "phrase": "one year",
+   "kind": "duration",
+   "value": 1,
+   "from_claims": [
+    "c16",
+    "c27"
+   ],
+   "quoted_from": "c16",
+   "quote": "a similar one-year moratorium",
+   "computed_by": "not computed. Quoted from c16, which is reported speech about Hill County"
+  },
+  {
+   "phrase": "two required public hearings",
+   "kind": "count",
+   "value": 2,
+   "from_claims": [
+    "c24"
+   ],
+   "quoted_from": "c24",
+   "quote": "the first of the two required public hearings",
+   "computed_by": "not computed. Quoted from the city's own release, c24"
+  },
+  {
+   "phrase": "21 days",
+   "kind": "duration",
+   "value": 21,
+   "from_claims": [
+    "c17",
+    "c3",
+    "c6",
+    "c30",
+    "c9",
+    "c29",
+    "c22",
+    "c12"
+   ],
+   "computed_by": "out/2026-08-25/compute.py, late_window, the window measured back from the last ordered date in ledger/docket.json"
+  },
+  {
+   "phrase": "Ten bodies",
+   "kind": "count",
+   "value": 10,
+   "from_claims": [
+    "c17",
+    "c3",
+    "c6",
+    "c30",
+    "c9",
+    "c29",
+    "c22",
+    "c12",
+    "c14",
+    "c15"
+   ],
+   "computed_by": "out/2026-08-25/compute.py, total_count, restricted_count plus declined_count over the maps in that file, whose keys are item ids in ledger/docket.json"
+  },
+  {
+   "phrase": "Four of the eight",
+   "kind": "ratio",
+   "value": 4,
+   "of": 8,
+   "from_claims": [
+    "c17",
+    "c3",
+    "c6",
+    "c30",
+    "c9",
+    "c29",
+    "c22",
+    "c12"
+   ],
+   "computed_by": "out/2026-08-25/compute.py, late_cluster over restricted_count, counted from the ordered key dates in ledger/docket.json"
+  },
+  {
+   "phrase": "Two of the eight",
+   "kind": "ratio",
+   "value": 2,
+   "of": 8,
+   "from_claims": [
+    "c17",
+    "c3",
+    "c6",
+    "c30",
+    "c9",
+    "c29",
+    "c22",
+    "c12"
+   ],
+   "computed_by": "out/2026-08-25/compute.py, stated_nonbinding over restricted_count, counted over the STATED_NONBINDING map in that file"
+  },
+  {
+   "phrase": "four bodies",
+   "kind": "count",
+   "value": 4,
+   "from_claims": [
+    "c17",
+    "c30",
+    "c29",
+    "c22"
+   ],
+   "computed_by": "out/2026-08-25/compute.py, force_unstated, the restricting bodies in ledger/docket.json whose sources speak to binding force neither way"
+  }
+ ]
+}

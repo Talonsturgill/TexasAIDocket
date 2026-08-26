@@ -1,0 +1,173 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+:root{--bond:#F2EEE4;--sky:#DFE7EC;--anod:#9C9A90;--anod_lit:#D8D2C4;--toner:#2A2622;--dark:#1F252C}
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#5E656F;
+  -webkit-font-smoothing:antialiased}
+canvas{position:absolute;left:0;top:0}
+.kick{position:absolute;left:80px;top:88px;font:500 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.14em;color:var(--anod_lit)}
+.cnt{position:absolute;right:80px;top:88px;font:500 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.10em;color:var(--anod_lit);font-variant-numeric:tabular-nums}
+.tx-site{position:absolute;left:80px;bottom:74px;font:400 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.06em;color:var(--anod_lit)}
+.star{position:absolute;right:80px;bottom:68px;width:22px;height:22px}
+/* Type sits ON the bond sheet, which is the knockout. Dark on light, no scrim needed. */
+.hook{position:absolute;left:256px;top:424px;width:566px;font:700 88px/1.0 "Fraunces",serif;
+  color:var(--toner);letter-spacing:-.02em}
+.dek{position:absolute;left:256px;top:664px;width:330px;font:400 28px/1.38 "Manrope",sans-serif;
+  color:#514C44}
+.fig{position:absolute;left:256px;font:700 92px/1 "JetBrains Mono",monospace;
+  color:var(--toner);font-variant-numeric:tabular-nums;letter-spacing:-.04em}
+.figl{position:absolute;left:342px;font:500 30px/1 "JetBrains Mono",monospace;
+  letter-spacing:.11em;color:#6A6459}
+.notice{position:absolute;left:256px;top:372px;font:500 20px/1 "JetBrains Mono",monospace;
+  letter-spacing:.22em;color:#8A8175}
+</style></head><body>
+<canvas id="c" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+<div class="kick">TEXAS AI DOCKET</div>
+<div class="cnt">01 / 09</div>
+<div class="notice" data-decorative>NOTICE OF MEETING</div>
+<div class="hook">Texas said no eight ways</div>
+<div class="dek">Eight local governments refused a data center this year. No two reached for the same instrument.</div>
+<div class="fig" style="top:848px">8</div>
+<div class="figl" style="top:894px">BODIES</div>
+<div class="fig" style="top:944px">8</div>
+<div class="figl" style="top:990px">INSTRUMENTS</div>
+<div class="tx-site">texasaidocket.com</div>
+<svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6 L14.9 9.2 L23 9.6 L16.7 14.6 L18.9 22.4 L12 17.9 L5.1 22.4 L7.3 14.6 L1 9.6 L9.1 9.2 Z" fill="#D8D2C4"/></svg>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = new Promise(function(resolve){
+  var c=document.getElementById('c'), x=c.getContext('2d'); x.scale(2,2);
+  var W=1080,H=1350; TX.reseed(70725); var R = TX.rng(70725);
+
+  // The case is authored directly so every overlay knows exactly where it is. A library object
+  // whose transform I cannot read is a case I cannot align a reflection to.
+  var CX=140, CY=252, CW=800, CH=900;      // outer case rect
+  var RAIL=54;                              // stile width
+  var OX=CX+RAIL, OY=CY+RAIL, OW=CW-RAIL*2, OH=CH-RAIL*2;   // glazed opening
+  var SX=OX+26, SY=OY+30, SW=OW-52, SH=OH-74;               // the bond sheet inside it
+
+  // ---- wall: graded stucco lit upper left, grained so it is a surface and not a fill
+  var g=x.createLinearGradient(0,0,W*0.7,H);
+  // Dark at the head and foot, lit across the middle left. A vignette rather than a flat rake,
+  // because the furniture rides on the wall at top and bottom and needs a ground it can clear
+  // 4.5 against. The case still reads as lit from upper left off its own rail values.
+  g.addColorStop(0,'#3A4048'); g.addColorStop(0.22,'#828A94'); g.addColorStop(0.58,'#6E757F');
+  g.addColorStop(1,'#333940');
+  x.fillStyle=g; x.fillRect(0,0,W,H);
+  // the furniture rides on this wall at the top and the foot and has to clear 4.5 against it.
+  // Measured, the counter was at 2.6 and the masthead at 3.0, because a diagonal rake puts the
+  // wall's lit half exactly where the top right corner is.
+  var vig=x.createLinearGradient(0,0,0,H);
+  vig.addColorStop(0,'rgba(14,18,24,0.56)'); vig.addColorStop(0.15,'rgba(14,18,24,0)');
+  vig.addColorStop(0.85,'rgba(14,18,24,0)'); vig.addColorStop(1,'rgba(14,18,24,0.50)');
+  x.fillStyle=vig; x.fillRect(0,0,W,H);
+  for(var i=0;i<30000;i++){
+    var px=R()*W, py=R()*H, n=TX.fbm2(px*0.012,py*0.012,3);
+    x.fillStyle='rgba('+(n>0?255:0)+','+(n>0?255:0)+','+(n>0?255:0)+','+(0.04*Math.abs(n))+')';
+    x.fillRect(px,py,2,2);
+  }
+
+  // ---- cast shadow of the whole case onto the wall, down and right of a high-left sun
+  x.save();
+  var cs=x.createLinearGradient(CX+CW,CY,CX+CW+70,CY+70);
+  cs.addColorStop(0,'rgba(22,26,32,0.44)'); cs.addColorStop(1,'rgba(22,26,32,0)');
+  x.fillStyle=cs; x.fillRect(CX+18,CY+18,CW+58,CH+58);
+  x.restore();
+
+  // ---- case body: anodized aluminium, four stiles with distinct lit values
+  x.fillStyle='#1F252C'; x.fillRect(CX,CY,CW,CH);                 // interior cavity
+  x.fillStyle='#D8D2C4'; x.fillRect(CX,CY,CW,RAIL);               // top rail, catching sun
+  x.fillStyle='#6E6D67'; x.fillRect(CX,CY+CH-RAIL,CW,RAIL);       // bottom rail, in its own shade
+  x.fillStyle='#84837C'; x.fillRect(CX,CY,RAIL,CH);               // left stile
+  x.fillStyle='#B4B0A4'; x.fillRect(CX+CW-RAIL,CY,RAIL,CH);       // right stile, lit
+  // rail edges: a ridge has two edges, which is what makes it a thing
+  x.fillStyle='#F0EADA'; x.fillRect(CX,CY,CW,4);
+  x.fillStyle='#4A4A45'; x.fillRect(CX,CY+RAIL-4,CW,4);
+  x.fillStyle='#8E8D85'; x.fillRect(CX,CY+CH-RAIL,CW,3);
+  x.fillStyle='#3C3C38'; x.fillRect(CX,CY+CH-4,CW,4);
+
+  // ---- the bond sheet, the frame's one large light area
+  x.fillStyle='#F2EEE4'; x.fillRect(SX,SY,SW,SH);
+  // agenda body type at true measure, below reading size, decorative
+  // Decorative agenda body, at true measure and below reading size. It is CONFINED to the
+  // sheet's lower right, clear of every type column, because art crossing a glyph is a hard
+  // fail and a decorative line is never worth one.
+  x.fillStyle='rgba(42,38,34,0.26)';
+  var COLX=SX+SW-224;
+  for(var r=0;r<22;r++){
+    var ly=SY+SH-286+r*12, lw=206*(0.55+0.42*Math.abs(TX.simplex2(r*0.7,3.1)));
+    if(ly>SY+SH-30) break;
+    x.fillRect(COLX,ly,lw,3);
+  }
+  // spring clip at the sheet head, a lit solid with its own contact shadow on the sheet
+  x.fillStyle='rgba(30,34,40,0.30)'; x.fillRect(SX+SW/2-56,SY+30,112,10);
+  x.fillStyle='#B9B4A6'; x.fillRect(SX+SW/2-58,SY+8,116,24);
+  x.fillStyle='#E2DDCE'; x.fillRect(SX+SW/2-58,SY+8,116,4);
+  x.fillStyle='#75736B'; x.fillRect(SX+SW/2-58,SY+28,116,4);
+
+  // ---- glazing: sky reflected, additive, CLIPPED to the opening so it cannot float free
+  x.save();
+  x.beginPath(); x.rect(OX,OY,OW,OH); x.clip();
+  x.globalCompositeOperation='lighter';
+  var rg=x.createLinearGradient(OX,OY,OX+OW*0.85,OY+OH*0.8);
+  rg.addColorStop(0,'rgba(223,231,236,0.46)');
+  rg.addColorStop(0.32,'rgba(223,231,236,0.13)');
+  rg.addColorStop(0.62,'rgba(223,231,236,0.02)');
+  rg.addColorStop(1,'rgba(223,231,236,0)');
+  x.fillStyle=rg; x.fillRect(OX,OY,OW,OH);
+  // one hard specular sliver where the glazing is not quite flat
+  x.fillStyle='rgba(240,246,250,0.20)';
+  x.beginPath(); x.moveTo(OX+OW-250,OY+OH); x.lineTo(OX+OW-140,OY); x.lineTo(OX+OW-96,OY);
+  x.lineTo(OX+OW-206,OY+OH); x.closePath(); x.fill();
+  x.restore();
+
+  // ---- the lock at the right stile. Without a keyway this is a picture frame.
+  var LKX=CX+CW-RAIL/2, LKY=CY+CH/2;
+  x.fillStyle='rgba(24,28,34,0.5)'; x.beginPath(); x.arc(LKX+2,LKY+3,19,0,6.284); x.fill();
+  x.fillStyle='#C9C3B3'; x.beginPath(); x.arc(LKX,LKY,18,0,6.284); x.fill();
+  x.fillStyle='#8A887F'; x.beginPath(); x.arc(LKX,LKY,18,2.2,5.1); x.fill();
+  x.fillStyle='#2E2E2A'; x.beginPath(); x.arc(LKX,LKY,10,0,6.284); x.fill();
+  x.fillStyle='#131312'; x.fillRect(LKX-2.5,LKY-1,5,12);
+  // hinge knuckles on the left stile, so it reads as a door
+  [0.24,0.5,0.76].forEach(function(t){
+    var hy=CY+CH*t;
+    x.fillStyle='#9A9990'; x.fillRect(CX-9,hy-17,16,34);
+    x.fillStyle='#C6C1B2'; x.fillRect(CX-9,hy-17,16,4);
+    x.fillStyle='#5E5D58'; x.fillRect(CX-9,hy+13,16,4);
+  });
+
+  // ---- two-part contact shadow where the lower rail meets the wall
+  var sg=x.createLinearGradient(0,CY+CH,0,CY+CH+96);
+  sg.addColorStop(0,'rgba(20,24,30,0.50)'); sg.addColorStop(1,'rgba(20,24,30,0)');
+  x.fillStyle=sg; x.fillRect(CX-6,CY+CH,CW+12,96);
+  x.fillStyle='rgba(16,20,26,0.66)'; x.fillRect(CX+4,CY+CH,CW-8,8);
+
+  // The bottom third has to carry modeled tone rather than furniture on bare wall. Two bolted
+  // mounting feet with their own lit edges and cast shadows, and a raked sill of stucco under
+  // them, so the case is fixed to a wall rather than floating over a gradient.
+  [CX+108, CX+CW-172].forEach(function(fx){
+    x.fillStyle='rgba(18,22,28,0.52)'; x.fillRect(fx+7,CY+CH+9,64,26);
+    x.fillStyle='#8B8A82'; x.fillRect(fx,CY+CH+2,64,30);
+    x.fillStyle='#C2BDAE'; x.fillRect(fx,CY+CH+2,64,4);
+    x.fillStyle='#54534E'; x.fillRect(fx,CY+CH+28,64,4);
+    x.fillStyle='#40403C'; x.beginPath(); x.arc(fx+32,CY+CH+17,7,0,6.284); x.fill();
+    x.fillStyle='#A6A498'; x.beginPath(); x.arc(fx+32,CY+CH+15,5,0,6.284); x.fill();
+  });
+  var sill=x.createLinearGradient(0,CY+CH+40,0,H);
+  sill.addColorStop(0,'rgba(120,128,138,0.30)'); sill.addColorStop(0.5,'rgba(60,66,74,0.16)');
+  sill.addColorStop(1,'rgba(24,28,34,0.46)');
+  x.fillStyle=sill; x.fillRect(0,CY+CH+40,W,H-(CY+CH+40));
+  for(var q=0;q<9000;q++){
+    var qx=R()*W, qy=CY+CH+40+R()*(H-CY-CH-40);
+    var qn=TX.fbm2(qx*0.02,qy*0.02,3);
+    x.fillStyle='rgba('+(qn>0?230:10)+','+(qn>0?232:14)+','+(qn>0?236:20)+','+(0.07*Math.abs(qn))+')';
+    x.fillRect(qx,qy,2,2);
+  }
+
+  resolve();
+});
+</script>
+</body></html>

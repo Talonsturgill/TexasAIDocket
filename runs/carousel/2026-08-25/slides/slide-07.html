@@ -1,0 +1,92 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#12161B;
+  -webkit-font-smoothing:antialiased}
+canvas{position:absolute;left:0;top:0}
+.kick{position:absolute;left:80px;top:88px;font:500 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.14em;color:#B4AF9F}
+.cnt{position:absolute;right:80px;top:88px;font:500 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.10em;color:#B4AF9F;font-variant-numeric:tabular-nums}
+.tx-site{position:absolute;left:80px;bottom:74px;font:400 24px/1 "JetBrains Mono",monospace;font-size:24px;
+  letter-spacing:.06em;color:#B4AF9F}
+.star{position:absolute;right:80px;bottom:68px;width:22px;height:22px}
+/* the deck's only light-on-dark headline, reversed out of the rail's underside */
+.hook{position:absolute;left:80px;top:120px;width:760px;font:700 62px/1.06 "Fraunces",serif;
+  color:#F2EEE4;letter-spacing:-.015em}
+.motion{position:absolute;left:118px;top:404px;width:730px;font:700 32px/1.2 "JetBrains Mono",monospace;
+  color:#2A2622;letter-spacing:-.01em}
+.mlab{position:absolute;left:118px;top:366px;font:400 19px/1 "JetBrains Mono",monospace;
+  color:#33302A;letter-spacing:.12em}
+.rep{position:absolute;left:118px;font:500 31px/1 "JetBrains Mono",monospace;color:#2A2622}
+.rlab{position:absolute;left:118px;font:400 18px/1 "JetBrains Mono",monospace;color:#403C34;letter-spacing:.08em}
+.note{position:absolute;left:118px;top:516px;font:400 19px/1 "JetBrains Mono",monospace;
+  color:#3A362E;letter-spacing:.08em}
+.src{position:absolute;left:118px;top:1196px;font:400 20px/1 "JetBrains Mono",monospace;
+  color:#B4AF9F;letter-spacing:.10em}
+</style></head><body>
+<canvas id="c" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+<div class="kick">BRAZORIA COUNTY</div>
+<div class="cnt">07 / 09</div>
+<div class="hook">Four applications.<br>None was voted on.</div>
+<div class="mlab">ITEM I.3, THE REINVESTMENT ZONE</div>
+<div class="motion">Commissioner Linder made a motion<br>to deny order 1.3.</div>
+<div class="note">NO OTHER APPLICANT IS NAMED IN THIS RECORD</div>
+<div class="rlab" style="top:584px">GRANTING TAX ABATEMENT OF OLD OCEAN DATACENTER LLC</div>
+<div class="rep" style="top:624px">No action taken due to I.3 failed</div>
+<div class="rep" style="top:762px">No action taken due to I.3 failed</div>
+<div class="rep" style="top:900px">No action taken due to I.3 failed</div>
+<div class="rep" style="top:1038px">No action taken due to I.3 failed</div>
+<div class="src">C9, C10, C11</div>
+<div class="tx-site">texasaidocket.com</div>
+<svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6 L14.9 9.2 L23 9.6 L16.7 14.6 L18.9 22.4 L12 17.9 L5.1 22.4 L7.3 14.6 L1 9.6 L9.1 9.2 Z" fill="#B4AF9F"/></svg>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = new Promise(function(resolve){
+  var c=document.getElementById('c'), x=c.getContext('2d'); x.scale(2,2);
+  var W=1080,H=1350; TX.reseed(70734); var R = TX.rng(70734);
+  x.fillStyle='#12161B'; x.fillRect(0,0,W,H);
+  // The top rail's underside. The light comes from BELOW, off the concrete walk, which puts
+  // the vote that failed in shadow and its four consequences in the light.
+  x.fillStyle='#8A8880'; x.fillRect(0,0,W,282);
+  var tg=x.createLinearGradient(0,0,0,258);
+  tg.addColorStop(0,'rgba(12,15,19,0.86)'); tg.addColorStop(1,'rgba(12,15,19,0.42)');
+  x.fillStyle=tg; x.fillRect(0,0,W,282);
+  x.fillStyle='#C6C0B0'; x.fillRect(0,278,W,4);
+  // the sheet, graded by a computed cosine falloff, dim at the head and lit at the foot
+  var SX=82, SY=310, SW=916, SH=832;
+  for(var i=0;i<SH;i++){
+    var t=i/SH, lum=Math.cos((1-t)*Math.PI/2);
+    var r=Math.round(150+105*lum), gg=Math.round(145+108*lum), b=Math.round(132+114*lum);
+    x.fillStyle='rgb('+r+','+gg+','+b+')'; x.fillRect(SX,SY+i,SW,1);
+  }
+  // paper tooth
+  for(var q=0;q<26000;q++){
+    var qx=SX+R()*SW, qy=SY+R()*SH, qn=TX.fbm2(qx*0.05,qy*0.05,3);
+    x.fillStyle='rgba('+(qn>0?255:120)+','+(qn>0?255:112)+','+(qn>0?250:96)+','+(0.05*Math.abs(qn))+')';
+    x.fillRect(qx,qy,2,2);
+  }
+  // the rule that says a table starts, under the failed motion
+  x.fillStyle='#8E887A'; x.fillRect(SX+36,SY+186,SW-72,2);
+  // four closing rules, one per row, so the repeats read as a series of records
+  [584,722,860,998].forEach(function(ry){
+    x.fillStyle='rgba(120,112,96,0.46)'; x.fillRect(SX+36,ry+112,SW-72,1);
+  });
+  // THREE RULED AND EMPTY TITLE CELLS. The record names one applicant of the four, so the
+  // other three cells are drawn as the blank a clerk would leave, not as a sentence saying so.
+  [722,860,998].forEach(function(ry){
+    x.fillStyle='rgba(122,117,107,0.88)'; x.fillRect(SX+36,ry+15,430,2);
+  });
+  // THE AIR GAP: a 14px dark band between the sheet's foot and the rail. The deck's whole
+  // physical law visible in one stripe.
+  x.fillStyle='#1F252C'; x.fillRect(0,SY+SH,W,14);
+  // the lower rail, lit on its own edge, carrying the constellation plate
+  x.fillStyle='#5F5E58'; x.fillRect(0,SY+SH+14,W,H-(SY+SH+14));
+  x.fillStyle='#918D80'; x.fillRect(0,SY+SH+14,W,4);
+  var bg2=x.createLinearGradient(0,SY+SH+18,0,H);
+  bg2.addColorStop(0,'rgba(18,22,27,0.30)'); bg2.addColorStop(1,'rgba(18,22,27,0.72)');
+  x.fillStyle=bg2; x.fillRect(0,SY+SH+18,W,H-(SY+SH+18));
+  resolve();
+});
+</script>
+</body></html>
