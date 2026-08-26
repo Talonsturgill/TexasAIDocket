@@ -99,6 +99,22 @@ IN_PAGE_QA_JS = """
       (b && (b.scrollWidth > W + 1 || b.scrollHeight > H + 1))) {
     out.body_overflow = true;
   }
+  // Text with the boundaries the LAYOUT puts in, which `textContent` throws away: a `<br>`
+  // and any child that is not laid out inline both separate words on screen.
+  const BLOCKISH = /^(block|list-item|flex|grid|table|flow-root)/;
+  function flatText(el) {
+    let s = "";
+    el.childNodes.forEach(function (n) {
+      if (n.nodeType === 3) { s += n.textContent; return; }
+      if (n.nodeType !== 1) return;
+      if (n.nodeName === "BR") { s += " "; return; }
+      let d = "";
+      try { d = getComputedStyle(n).display || ""; } catch (e) { d = ""; }
+      if (BLOCKISH.test(d)) s += " " + flatText(n) + " ";
+      else s += flatText(n);
+    });
+    return s;
+  }
   const seenFam = new Set();
   const recorded = new Map();   // element -> index in out.text_nodes (for ancestry)
   const walk = document.createTreeWalker(document.body || de, NodeFilter.SHOW_ELEMENT);
@@ -118,7 +134,23 @@ IN_PAGE_QA_JS = """
     // an invented number. The scorer found it, no gate could have. `copy_sync` truncates
     // authored strings to the same window before comparing, so widening only widens what
     // both can see.
-    const txt = el.textContent.trim().replace(/\\s+/g, " ").slice(0, __TEXT_WINDOW__);
+    // A LINE BREAK IS A WORD BOUNDARY, and `textContent` is not told so. 2026-08-26.
+    //
+    // `<div>154 DAYS<br>MARCH 10TH TO AUGUST 11TH</div>` stored as
+    // "154 DAYSMARCH 10TH TO AUGUST 11TH", and a block-level `<span>` fused the same way:
+    // slide 8's attribution became "LAREDO MATTER HISTORY, C143 AGENDAS". Nothing looked
+    // wrong, because the strings ARE all there. What is gone is the boundary.
+    //
+    // The cost is not cosmetic. `aggregate_check` finds a computed number with `\b(NUM)\s+`,
+    // and "DAYSMARCH" and "C143" are single tokens with no boundary in them, so the pattern
+    // cannot match. Two undeclared numerals sat on two frames of the 2026-08-25 deck while
+    // that gate printed "clean (14 computed figures, all re-derived)". Any number that ends
+    // a line was structurally invisible to the gate whose whole job is catching an invented
+    // number, on every deck this engine has ever rendered.
+    //
+    // The widening from 80 to 320 characters below has the same shape and the same lesson:
+    // a gate can only judge the text it is handed.
+    const txt = flatText(el).trim().replace(/\\s+/g, " ").slice(0, __TEXT_WINDOW__);
     const fs = parseFloat(cs.fontSize);
     const fam = cs.fontFamily.split(",")[0].trim().replace(/["']/g, "");
     // For SVG text the ink is `fill`, not CSS `color`; the fill attribute or
