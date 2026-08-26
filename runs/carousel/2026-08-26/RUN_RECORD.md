@@ -157,7 +157,102 @@ who gave up.
 
 ## The deck
 
-Filled in at ship.
+**The lead item is `tx-2026-0095`,** the UT System Regents putting Phase 1 of the UT Dell Medical
+Center into the capital improvement program on August 12th, 2026, at a total project cost of
+$1,000,000,000, of which the first line of the board's own cost table is `Building Cost $0`.
+
+## A FABRICATED QUOTATION REACHED THE SCORING PANEL WITH EVERY GATE GREEN
+
+**Slide 7 printed `clinical care, research, advanced computing` under the attribution `BOARD ITEM,
+AUGUST 12TH, 2026`. That string is in no claim in this run's claims file.** All 31 were checked by
+hand. `clinical care` appears nowhere at all. `advanced computing` appears exactly once, in `c24`,
+which is the UT Austin news release and not the board item. The frame declared claims `c12` and
+`c23` and printed neither of them.
+
+The board item's technology language in the record is `c12`, "digital technology, robotics, and
+automation", which is what slide 5 prints. **So slides 5 and 7 contradicted each other about what
+the same document says**, and only one of them was reading the record.
+
+Downstream of the string, the frame's whole argument was invented with it. The headline read "The
+difference is two words wide", which asserts a minimal pair between two documents that share no
+sentence. The granite plate set in register beneath a gap in a line the board never wrote reads as
+an assertion that the board struck two words out. **That is an accusation delivered by
+composition**, on a deck whose every frame carries an anti-gotcha acceptance item.
+
+**Why nothing caught it, and this is the part that generalises.**
+
+- `claims_check` verifies that claims exist, are verified and carry sources. It has no opinion
+  about what a frame prints.
+- `copy_sync_check` compares `copy.json` against the render. `plan_render_check` compares the
+  dossier against the render. `dossier_check` reads the plan. **All three agreed with each other
+  because all three were reading the same authored string.** Three green gates, one source.
+- `aggregate_check` re-derived and PASSED a declaration that read "the difference between the two
+  quoted lines is the string AI and, from c12 and c23", which is false against both quotes. The
+  gate checks that a declared figure is declared, not that its stated derivation is true.
+- `noun_trace` checks NAMED THINGS against the claims. It does not check quoted strings.
+- Of three judges, two caught it and one scored that frame's integrity a 7 and passed the
+  unverified-fact check outright. A single scorer would have shipped it.
+
+**The proposal, for a maintainer session, and it belongs in `GATE_LESSONS.md`.** One assertion,
+in `plan_render_check` or in a new gate beside `noun_trace`: **every string a frame sets beneath or
+beside a dated document attribution must be a verbatim substring of a quote in that slide's own
+declared claim list.** The data to run it is already in `copy.json` and `claims.json` and both are
+already read by gates in the suite. It is a dozen lines and it would have failed on the first
+render. `scripts/carousel/**` is `upgrade` owned rather than `daily`, so this run's editorial half
+may not write it, and the retro phase is where it belongs if it fits inside one bounded change.
+
+**The second entry for the same file.** `aggregate_check` passing a false derivation is the same
+shape as the county-page defect above: a gate that reads the build's own intent instead of checking
+a sentence against the data the build used to write it. An aggregate's `computed_by` is prose today
+and nothing tests it. Where a declaration asserts a substring relationship between two quotes, that
+relationship is mechanically checkable and should be checked.
+
+**What shipped instead.** Slide 7 is rebuilt as two identically treated seated blocks, one per
+document, each carrying that document's own list whole and verbatim under its own date and a
+granite tick. `c24` for the release, `c12` for the board item. Neither list contains the other, so
+the frame no longer measures a difference. The headline reads "Two lists. One says AI.", which is a
+count over the two strings the frame prints and which a reader can rerun by reading the frame. The
+composition gives neither block an advantage, because the note says neither is marked as correct
+and a drawing that ranked them would contradict its own caption.
+
+## What else the panel changed
+
+**Slide 2 was an unlabelled site plan.** It drew a fence line, two structures and ten oak mottes on
+a named 27 acre site, and the record gives the acreage and says nothing whatever about what stands
+there. A reader meets that drawing beside the quotation and under the place line AUSTIN, TEXAS and
+reads it as the site's inventory. The frame now states `MODELED. THE RECORD GIVES THE ACREAGE AND
+NOT WHAT STANDS ON IT`, in the measured against modeled vocabulary the Grid Watch already
+publishes. Its craft was rebuilt with it: it had drawn the shadows ALONE with no object anywhere,
+all three judges read blurred smudges, and its own dossier risk line had predicted exactly that and
+then told the run to answer it with longer shadows rather than with objects.
+
+**One frame was taking its sun from a second set of typed constants.** Slide 5 ran on
+`LX = -0.62, LY = 0.78`, which is 27 degrees off the deck's declared 246, and the craft judge caught
+it against slide 2, the other overhead view where a reader can check. Every casting frame now takes
+`sin(AZ)` and `-cos(AZ)` from one stated azimuth, so the number cannot be edited on one frame and
+not another.
+
+**Slide 4 was crediting the board with two figures the Chancellor approved.** `c17` says the
+$2,900,000,000 and the $5,000,000,000 were "approved by the Chancellor" on two dates, and they sat
+under a headline reading "The board voted on a phase". The axis label now says who approved them.
+
+**Smaller, and each was real.** The axis label's opaque plate was painted over the word "phase" in
+slide 4's headline. Slide 3's mono decimal point sat in a full monospace cell, so the deck's second
+largest figure read as "2 . 5". Slide 9's live oak cast no shadow at all, on the one deck whose
+stated law is that standing things do. Slide 6's term list widowed "algorithm" onto its own line.
+Slide 1's raymarch was upscaled from 486px and its rim was visibly stair stepped, and its lower
+third measured 21 percent of the frame's own craft density.
+
+**Claim provenance, three frames.** Slide 6 printed `PAGE 124` and `PAGE 143` while declaring
+`c27` and `c28`, which quote the folios 130 and 134. The claims that quote 124 and 143 are `c29`
+and `c30` and the frame declared neither. Slide 9 printed `PAGES 130 TO 134` and declared no claim
+carrying a folio. The `Twenty pages` aggregate derived itself from `c1`, whose quote is the item's
+title and carries no span. All three now declare what they print.
+
+**Two caption attributions were imprecise on a deck whose subject is who said what.** It read "UT
+Austin's own release calls it a campus designed for the AI era", and `c25` is a statement from the
+donors inside that release. It read "That contract is $9,850,000", and `c21` quotes a `Funds:` line
+on an amendment, which is what slide 8 had been careful to label and the caption had not.
 
 ## Gate table
 
@@ -170,15 +265,15 @@ Written by `gate_status.py --sync`, never by hand.
 |---|---|---|
 | claims         | PASS   | 31 verified claim(s) |
 | render         | WARN   | 9 slide(s), 7 overflow warning(s) |
-| qa             | WARN   | 0 fail(s), 28 warn(s) |
-| aggregates     | PASS   | 7 declared and re-derived |
-| assembly       | PASS   | 9 slide(s), 2.7 MB, vector |
+| qa             | WARN   | 0 fail(s), 29 warn(s) |
+| aggregates     | PASS   | 8 declared and re-derived |
+| assembly       | PASS   | 9 slide(s), 2.89 MB, vector |
 | score          | ABSENT | score.json not written yet |
-| dossiers       | PASS   | 41,206 chars planned |
-| caption        | PASS   | 263 words |
-| craft floor    | WARN   | 9 frame(s), median 1771, floor 319, 2 quiet |
-| plan vs render | PASS   | 14 of 61 acceptance item(s) checkable |
+| dossiers       | PASS   | 47,376 chars planned |
+| caption        | PASS   | 272 words |
+| craft floor    | PASS   | 9 frame(s), median 866, floor 156 |
+| plan vs render | PASS   | 14 of 64 acceptance item(s) checkable |
 | texan          | WARN   | places NONE / body yes / deadline yes / next step yes |
-| absences       | WARN   | 2 of 5 scoped to a named document, 3 unscoped |
+| absences       | WARN   | 3 of 6 scoped to a named document, 3 unscoped |
 | completion     | ABSENT | not scored yet |
 <!-- gate-status:end -->
