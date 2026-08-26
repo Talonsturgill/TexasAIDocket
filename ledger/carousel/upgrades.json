@@ -491,4 +491,29 @@
       "aggregate_check EXEMPT short circuit": "LANDED. The 2026-08-21 set wrote this fix, measured it, and held it back with its reason: blanking the exempt spans surfaced six aggregates nothing declared and five of them were on 2026-08-21, which was then the NEWEST deck, so shipped_check scoped them fatal and CI would have gone red on an artifact that lane did not own. Its note said the moment 2026-08-21 stopped being newest they become notes and the fix costs nothing, and told the next upgrade phase to land it first and re-run the measurement rather than trust the list. Done. shipped_check comes back clean across every published deck with exemption by overlap in force, and the only outstanding problem in the whole history is this run's own completion gate. A held upgrade with a written trigger condition is the only kind worth holding."
     }
   }
+,
+ "2026-08-25 r13": {
+  "run": "carousel no. 7, round 13. A SECOND KEY FOR ONE RUN DATE, deliberately. This file's _shape block says the only shape that grows by pure insertion is one top level key per entry with the comma LEADING on its own line, because appending into an existing array rewrites the previous element's closing brace and ownership_check reads that as a removed line. The 2026-08-25 key above closed when it was written. This run scored again, found more, and a second key is the append this file's own rule permits. Read every key whose first ten characters parse as a date.",
+  "actor": "upgrade",
+  "note": "One change, and it is the integrity judge's own one sentence fix from round 12. The round 12 panel returned 6.09 with two hard fails on integrity, 6.45 on reader and 6.854 on craft, and both hard fails were the same shape of defect: a frame narrating around a guard that had already done its job correctly.",
+  "upgrades": [
+   {
+    "what": "scripts/carousel/label_guard.py, a new gate. Every label a frame prints beside a claim id must BE the shape compute.py guards for that item, and every word in it must appear in that claim's own quote or text, stemmed the way compute.py stems it.",
+    "why": "Round 12 hard failed the deck on BRAZORIA / CONDITIONS SET / C40, and the guard that should have caught it had already worked. compute.py's shape map refuses any shape word appearing in neither the cited claim's quote nor its text, and it has caught 'moratorium declined' on Laredo and 'disclosure asked' on Lubbock. It passed here because THE GUARD RUNS OVER THE MAP AND THE READER READS THE FRAME, and nothing stood between them. Three more were live in the same deck on frame 6: ZONING for 'conditional use only', SEWER for 'discharge regulated', INELIGIBLE for 'made ineligible'. This is the eighth instance of the repo's highest recurrence defect, a value with one home and a surface that keeps its own copy, and the first one caught where the second copy was a WORD rather than a number.",
+    "how": "It walks each slide's elements in document order, because flattening ran frame 6's three route slips together and picked up a word belonging to a different claim. For every element carrying EXACTLY ONE claim id it collects the capitalised run before it, stopping at any other id, drops place names read out of compute.py's own map and a short connective list, and applies two tests. STRICT: if that id is a proof claim, the remaining words must be the guarded shape as a set. WIDE: every remaining word must appear in the claim, stemmed. A label beside a LIST of ids is skipped, because a label over a multi id cite is a claim about the set and the figures file backs those.",
+    "files": [
+     "scripts/carousel/label_guard\\.py"
+    ],
+    "verification": "python3 scripts/carousel/label_guard.py --self-test replays the defect three ways and asserts all three. CONDITIONS SET, whose words the claim does not carry, must fail. MATTER ADOPTED, whose words the claim DOES carry and which is still not the guarded shape, must fail, because word membership alone let ZONING and SEWER through and that variant is the one a run would actually write. RESOLUTION ADOPTED must PASS, because a gate that fails correct work is the most expensive kind a checker can be and teaches a run to ignore it.",
+    "guard": "It refuses to run at all if it cannot parse compute.py's _STEM table, rather than falling back to literal matching. The first version had exactly that bug, a regex expecting the dict to close on its own line, and it fired on ESTABLISHED against a claim that says 'establishes' and on nine other correct labels. It was caught by running it on the real deck before trusting the self test, which is the lesson GATE_LESSONS.md states as a self test proves the checker can go red and only the checker proves the product is clean.",
+    "reverts_as": "delete scripts/carousel/label_guard.py"
+   }
+  ],
+  "proposals_this_run_may_not_make": {
+   "aggregate_check misses a bare count": "The caption read 'Four died in Brazoria County' and aggregate_check saw no aggregate, because its detector wants a count word followed by a noun phrase. A numeral with the noun elided is the same claim with the evidence removed. The fix belongs in scripts/carousel/aggregate_check.py, which is this lane, but it needs a measurement across every shipped caption before it goes in, because a detector that fires on every bare numeral would fire on 'Five took effect' and that is already declared under another phrase. Written down rather than guessed at."
+  },
+  "follow_through": {
+   "the 26 change set of 2026-08-25": "HELD AND CORRECT. Nothing in that set was reverted this round and two of its gates fired on this round's own work: plan_render_check caught frame 4 printing a dek its dossier did not declare, and dossier_check caught three rewritten band blocks that named no top or middle third. A gate written last round catching this round's regression is the only evidence that a gate was worth writing."
+  }
+ }
 }
