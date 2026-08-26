@@ -459,6 +459,84 @@ is the roster, a flat dark list of eight bodies between two heavily modelled fra
 detail is spread across the frame rather than absent. `craft_floor` asks for the confirmation
 rather than failing, and this is it.
 
+
+## Round 16, the panel, and the two instructions that changed the machine
+
+Three judges, per-criterion median, then weighted by the rubric.
+
+| judge | lens | total | hard fails |
+|---|---|---|---|
+| A | integrity | 6.86 | 1 |
+| B | reader | 7.016 | 0 |
+| C | craft | 7.05 | 0 |
+
+Median 7.016, spread 0.19, against a 6.8 bar. **Shipped.**
+
+**Judge A's hard fail was real and it was on the cover.** The dek published "Twelve Texas local
+governments acted on a data center this year." One of the twelve is Williamson County, and the
+county's own primary source at tx-2026-0029-c2 calls it "a server service center supporting
+enterprise and cloud infrastructure needs". c45's own caveat in this run's claims file concedes
+it in terms. The run steered around this everywhere it was careful and then asserted it flat on
+the frame every reader sees first. The dek reads "Twelve Texas governments acted on a data center
+or server facility" now, which is a predicate all twelve carry, and the second disjunct is the
+county's own noun rather than this deck's. The judge that raised it verified it closed against
+each of the twelve bodies' own cited claim text and returned no body uncovered.
+
+**Judge C found a regression this run introduced an hour earlier.** Frame 4's claim stamp was
+moved out of the dek to stop it reaching the article page as a bare numeral, and it landed inside
+the veil's clip by half a pixel, where `mix-blend-mode: screen` lifted it to about 3 to 1, the
+palest type in nine frames. The repair met its geometric constraint and made the reading worse,
+which is this run's own recurring defect wearing a new coat. The stamp is set in the dek's ink
+now, so one veil acts on one ink.
+
+**Two gates were red on the same root cause and neither was about the deck's argument.** The
+cover's hook was two sentences of six words total. `site_build`'s own self-test refuses an
+article card whose preview is under eight words, and the SEO gate refused a 37 character
+description against a 50 floor, because the description takes whole strings until one would
+carry it past 160 and the second string overran by a single character. The hook is one sentence
+now and both gates pass. The deck's title moved with it, from "Fifteen ways to take up a data
+center", which was the same generalisation the dek had just been rewritten to avoid, sitting on
+the article page and the email subject.
+
+## What the owner changed about the machine, and why
+
+Two instructions the same day, and the second is the one that matters.
+
+**"Change the ship score to a 6.8 moving forward, and put a cap on editing rounds to 10."** Then,
+after seeing the round count: **"once we hit 5 rounds of editing we ship as-is from now on, and
+stop burning so many tokens editing. Judges are becoming a token burning crutch masking your
+inefficiencies."**
+
+That diagnosis is correct and it is not about the rubric. A panel is a CHECK on a deck the run
+already believes is finished. This run used it as a design loop, pushing a half-considered frame
+into three judges and letting them find what a careful pass would have found for nothing, then
+repeating that fifteen times across a night. Five rounds is not a smaller budget for the same
+behaviour. It is different behaviour.
+
+`config/carousel/scoring_rubric.yaml` now declares `threshold: 6.8` and `max_rounds: 5`, both
+read and never passed in. `run_complete.py` reads both, so a deck under the bar past the cap with
+no hard fail is a finished run and the exit code says so. A hard fail still stops the deck at any
+round, and the rubric now states why that is not the same lever: a figure with no computation
+behind it, a quote that is not in the source, or a universal the run's own numbers refute is a
+factual gate and not a polish gate. Round 16 is the case in point. The panel's own hard fail was
+the last thing standing between this deck and a false sentence on its cover.
+
+`panel.py` counts its own rounds and writes the number, because the cap makes `rounds` the most
+valuable lie a run could tell and the run does not get to write it.
+
+## Proposals for the machine, from the panel, none built this run
+
+- **Judge A.** Have `compute.py` assert, member by member, that the predicate a summary frame
+  prints is carried by each acting item's OWN CITED CLAIM TEXT rather than by the record's topic
+  tag. It is the same guard `_STEM` already runs on shape words, and it would have refused c45 on
+  the spot instead of costing a hard fail at round 16.
+- **Judge C.** Solve the ground under every type box for its own contrast instead of typing the
+  value. This deck applies that discipline to WIDTH in three places and never once to VALUE,
+  which is why the frame 4 repair traded a rule collision for the palest line in nine frames and
+  why frame 7 ships a dek at 4.48 with a clean machine QA report.
+- **Judge B.** Lead with Brazoria. The four abatements that died on a vote about none of them is
+  the caption's own hook and is already drawn on frame 7, at position seven of nine.
+
 ## Gate status
 
 <!-- gate-status:begin -->
@@ -466,17 +544,17 @@ rather than failing, and this is it.
 |---|---|---|
 | claims         | PASS   | 46 verified claim(s) |
 | render         | PASS   | 9 slide(s) |
-| qa             | WARN   | 0 fail(s), 6 warn(s) |
-| aggregates     | PASS   | 28 declared and re-derived |
-| assembly       | PASS   | 9 slide(s), 3.3 MB, vector |
-| score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| qa             | WARN   | 0 fail(s), 3 warn(s) |
+| aggregates     | PASS   | 27 declared and re-derived |
+| assembly       | PASS   | 9 slide(s), 3.29 MB, vector |
+| score          | PASS   | 7.016 |
 | labels         | PASS   | 52 claim id(s) checked, every label beside one traces to the shape its claim proves |
-| quantifiers    | PASS   | 177 published string(s) read from one list, every universal names its set |
-| dossiers       | PASS   | 51,890 chars planned |
-| caption        | PASS   | 151 words |
-| craft floor    | WARN   | 9 frame(s), median 5116, floor 921, 2 quiet |
+| quantifiers    | PASS   | 181 published string(s) read from one list, every universal names its set |
+| dossiers       | PASS   | 52,110 chars planned |
+| caption        | PASS   | 138 words |
+| craft floor    | WARN   | 9 frame(s), median 5684, floor 1023, 2 quiet |
 | plan vs render | WARN   | 12 of 68 acceptance item(s) checkable |
 | texan          | PASS   | places Brazoria County, El Paso, Hays County, Hill County, Lubbock, Lubbock County, San Angelo, Tom Green County, Wichita Falls, Williamson County / body yes / deadline yes / next step yes |
 | absences       | WARN   | 9 of 15 scoped to a named document, 6 unscoped |
-| completion     | FAIL   | THE DECK DID NOT SHIP, so this run is not done |
+| completion     | PASS   | the deck shipped |
 <!-- gate-status:end -->

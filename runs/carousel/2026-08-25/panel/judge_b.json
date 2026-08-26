@@ -1,0 +1,39 @@
+{
+ "judge": "B, the reader lens",
+ "weighted_score": 7.016,
+ "ship": true,
+ "hard_fails": [],
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 7.1
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 6.8
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 6.6
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 7.1
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.6
+  }
+ ],
+ "one_sentence_fix": "Lead with Brazoria: open on the four abatements that died on a vote about none of them, which is already the caption's hook and already drawn on frame 7, and cut one enumeration frame to pay for it."
+}

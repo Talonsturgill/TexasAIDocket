@@ -227,10 +227,10 @@ art:
     eye by area rather than by extremity.
   motion: "down the lit rail, into the opening, onto the sheet"
 type:
-  hook: "Fifteen actions. Five, five and five."
-  dek: "Twelve Texas local governments acted on a data center this year. The instrument's shape decides whether anything stops."
+  hook: "Fifteen actions, five, five and five."
+  dek: "Twelve Texas governments acted on a data center or server facility. The instrument's shape decides whether anything stops."
 acceptance:
-  - 'the cover prints "Fifteen actions. Five, five and five." and its lockup reads "STOPS NOTHING", the words the computation supports, where bound overstated the rule that produced the six'
+  - 'the cover prints "Fifteen actions, five, five and five." and its lockup reads "STOPS NOTHING", the words the computation supports, where bound overstated the rule that produced the six'
   - "the lock cylinder and its keyway are drawn at the right stile, so the case reads as locked rather than as a picture frame"
   - "the bond sheet is a bounded quadrilateral with the glazing's reflection over it, not a white rectangle"
   - "the case's lower rail carries a two part contact shadow onto the wall, dark core and penumbra"

@@ -6,10 +6,10 @@
       "warns": [],
       "bands": [
         0.1702,
-        0.2185,
+        0.2227,
         0.2353
       ],
-      "band_ratio": 1.1246
+      "band_ratio": 1.1175
     },
     {
       "file": "slide-02.html",
@@ -38,7 +38,7 @@
       "fails": [],
       "warns": [
         "busy art under text (bg edge density 0.07) beneath 'Hays County, El Paso, Lubbock County, Br' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
-        "busy art under text (bg edge density 0.04) beneath 'C36, C38, C31, C40 AND C22' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+        "busy art under text (bg edge density 0.05) beneath 'C36, C38, C31, C40 AND C22' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
       ],
       "bands": [
         0.1345,

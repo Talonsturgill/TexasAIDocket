@@ -104,29 +104,6 @@
    "computed_by": "out/2026-08-25/compute.py, restricted_count. actions by a Texas local government"
   },
   {
-   "phrase": "Fifteen ways",
-   "kind": "count",
-   "value": 15,
-   "from_claims": [
-    "c5",
-    "c9",
-    "c17",
-    "c22",
-    "c30",
-    "c31",
-    "c32",
-    "c35",
-    "c36",
-    "c37",
-    "c38",
-    "c40",
-    "c41",
-    "c43",
-    "c45"
-   ],
-   "computed_by": "out/2026-08-25/compute.py, restricted_count. actions by a Texas local government"
-  },
-  {
    "phrase": "Five of the fifteen",
    "kind": "ratio",
    "value": 5,
@@ -220,7 +197,7 @@
    "computed_by": "out/2026-08-25/compute.py, total_count. acting plus declined"
   },
   {
-   "phrase": "Twelve Texas local governments",
+   "phrase": "Twelve Texas governments",
    "kind": "count",
    "value": 12,
    "from_claims": [
