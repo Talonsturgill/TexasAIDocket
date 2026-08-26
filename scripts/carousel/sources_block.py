@@ -110,6 +110,35 @@ def deck_claim_ids(copy: dict) -> list[str]:
     return sorted(out, key=lambda c: int(c[1:]))
 
 
+def provenance_line(docs: list[dict], fetched: str) -> str:
+    """The first line of the source block, COUNTED and never asserted.
+
+    Until 2026-08-25 this read "Sources, all primary and fetched <date>". That run's own claims
+    file typed seven of its twelve documents `secondary_reported`, so the one line whose entire
+    job is telling a reader how good the evidence is overstated exactly that, on the surface a
+    sceptic checks first. The compute-not-generate law says a numeral is produced by code from
+    data. A statement ABOUT the evidence grade is the same kind of claim and gets the same
+    treatment.
+
+    `docs` is one claim per distinct document, not per claim id, because a reader counts
+    documents.
+    """
+    NAME = {"primary_official": "official records", "primary_corporate": "company filings",
+            "secondary_reported": "news reports", "data": "published data",
+            "unstated": "documents of unstated type"}
+    kinds: dict[str, int] = {}
+    for d in docs:
+        k = d.get("source_type") or "unstated"
+        kinds[k] = kinds.get(k, 0) + 1
+    def _n(i: int) -> str:
+        words = "one two three four five six seven eight nine ten eleven twelve".split()
+        return words[i - 1] if 1 <= i <= len(words) else str(i)
+    parts = [f"{_n(v)} {NAME.get(k, k)}" for k, v in
+             sorted(kinds.items(), key=lambda kv: (-kv[1], kv[0]))]
+    grade = parts[0] if len(parts) == 1 else ", ".join(parts[:-1]) + " and " + parts[-1]
+    return f"Sources, {grade}, all fetched {ordinal_date(fetched)}."
+
+
 def build(run_dir: Path) -> str:
     copy, claims = load(run_dir)
     by_id = {c["id"]: c for c in claims}
@@ -128,7 +157,7 @@ def build(run_dir: Path) -> str:
     if not retrieved:
         raise SystemExit("sources_block: no claim carries a retrieved date")
 
-    lines = [f"Sources, all primary and fetched {ordinal_date(retrieved[-1])}."]
+    lines = [provenance_line([by_id[ids[0]] for ids in groups.values()], retrieved[-1])]
     for url, ids in groups.items():
         c = by_id[ids[0]]
         title = field(c, TITLE_KEYS)
@@ -211,6 +240,23 @@ def self_test() -> int:
         print(f"  {'ok  ' if cond else 'FAIL'}  {label}{'' if cond else '  ' + extra}")
         if not cond:
             fails += 1
+
+    # THE PROVENANCE LINE IS COUNTED (2026-08-25), both directions.
+    _mix = {"claims": [
+        {"id": "c1", "url": "https://a.example/1", "document": "A", "source_type": "primary_official",
+         "retrieved": "2026-08-25", "quote": "the first quoted span here", "text": "a"},
+        {"id": "c2", "url": "https://b.example/2", "document": "B", "source_type": "secondary_reported",
+         "retrieved": "2026-08-25", "quote": "the second quoted span here", "text": "b"},
+        {"id": "c3", "url": "https://c.example/3", "document": "C", "source_type": "secondary_reported",
+         "retrieved": "2026-08-25", "quote": "the third quoted span here", "text": "c"}]}
+    _line = provenance_line(_mix["claims"], "2026-08-25")
+    ok("the provenance line counts the source types it actually holds",
+       "two news reports" in _line and "one official records" in _line, _line)
+    ok("...and never claims they are all primary",
+       "all primary" not in _line, _line)
+    ok("...and a single grade reads as one clause",
+       provenance_line([_mix["claims"][0]], "2026-08-25").count(" and ") == 0,
+       provenance_line([_mix["claims"][0]], "2026-08-25"))
 
     ok("a date takes the ordinal, month first", ordinal_date("2026-08-19") == "August 19th, 2026",
        ordinal_date("2026-08-19"))
