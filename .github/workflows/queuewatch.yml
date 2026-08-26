@@ -35,6 +35,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
 
       # Hermetic, no network. A collector whose own checks are broken has no business appending
       # to a series, so this gates the fetch rather than reporting after it.
@@ -56,4 +59,26 @@ jobs:
           git add ledger/gridwatch/queue.jsonl ledger/gridwatch/raw || true
           git diff --cached --quiet && echo "nothing new" && exit 0
           git commit -m "queuewatch: large load queue reading"
-          git push
+
+          AHEAD=$(git rev-list --count origin/main..HEAD)
+          if [ "$AHEAD" != "1" ]; then
+            echo "::error::this job is ${AHEAD} commits ahead of main; refusing to push"
+            exit 1
+          fi
+
+          for delay in 2 4 8 16 0; do
+            git fetch --quiet origin main || true
+            if git rebase --quiet origin/main; then
+              if git push origin HEAD:main; then
+                echo "pushed"; exit 0
+              fi
+              echo "push rejected"
+            else
+              git rebase --abort || true
+              echo "::warning::rebase onto main conflicted; refusing to overwrite trunk"
+            fi
+            [ "$delay" = 0 ] && break
+            echo "retrying in ${delay}s"; sleep "$delay"
+          done
+          echo "::error::could not push the queue reading; rerun once main is settled"
+          exit 1
