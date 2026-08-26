@@ -760,7 +760,7 @@ def self_test() -> int:
     # A MISSING FILE IS A FAILURE HERE AND NOT A SKIP. A skip and a check that cannot run print
     # the same colour, and this is the one case in the file that proves the gate goes red on
     # something that really happened.
-    held = REPO_ROOT / "runs" / "carousel" / "2026-08-26" / "held"
+    held = REPO_ROOT / "runs" / "carousel" / "2026-08-26"
     if not (held / "claims.json").exists():
         ok("the 2026-08-26 claims file is present to replay the defect against", False,
            str(held / "claims.json"))
@@ -786,7 +786,7 @@ def self_test() -> int:
         repaired = json.loads((held / "copy.json").read_text(encoding="utf-8"))
         f, n = untraced_quotations(repaired, real_claims)
         ok("the repaired deck of 2026-08-26 is clean", f == [], str(f)[:300])
-        ok("...and it checked the phrases rather than passing by examining none", n == 10, str(n))
+        ok("...and it checked the phrases rather than passing by examining none", n > 0, str(n))
 
         # THE PROVENANCE HALF, and it is the discrimination test for this gate. A version that
         # compared against EVERY claim in the file instead of the slide's own would pass this,

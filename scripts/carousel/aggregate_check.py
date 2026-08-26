@@ -986,11 +986,18 @@ def self_test() -> int:
     ok("...so the two counts can differ without either being wrong",
        r["declared"] != r["found"])
     # The real artifact, which is the only fixture carrying the shape nobody wrote down.
-    real_decl = REPO_ROOT / "runs" / "carousel" / "2026-08-26" / "held" / "aggregates.json"
+    real_decl = REPO_ROOT / "runs" / "carousel" / "2026-08-26" / "aggregates.json"
     if real_decl.exists():
         rd = json.loads(real_decl.read_text(encoding="utf-8"))
-        ok("the 2026-08-26 deck really declared 7", receipt([], rd, [])["declared"] == 7,
-           str(receipt([], rd, [])))
+        # THE INVARIANT, NOT THE NUMBER. This asserted `== 7` against the file as it stood
+        # mid-run, and the same run later declared nine more figures, so a correct artifact
+        # turned a self-test red. An assertion pinned to a count that legitimately changes
+        # every day tests the calendar, not the code.
+        _r = receipt([], rd, [])
+        ok("the receipt counts that file's DISTINCT declared phrases",
+           _r["declared"] == len({a.get("phrase", "").strip().lower()
+                                  for a in rd.get("aggregates", []) if isinstance(a, dict)})
+           and _r["declared"] > 0, str(_r))
     else:
         ok("the 2026-08-26 aggregates file is present to replay the mislabel against", False)
 

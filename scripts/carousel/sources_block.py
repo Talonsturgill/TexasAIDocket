@@ -209,7 +209,18 @@ def build(run_dir: Path) -> str:
         lines.append(f"{title}, {ordinal_date(when)}. {' '.join(ids)}"
                      if when else f"{title}. {' '.join(ids)}")
         lines.append(url)
-    lines.append("Day counts computed in compute.py from the source dates above.")
+    # ONLY IF THE RUN ACTUALLY COMPUTED ONE. This sentence was appended unconditionally, so the
+    # 2026-08-26 deck published "Day counts computed in compute.py from the source dates above"
+    # over a compute.py that parses no date and a deck that prints no day count anywhere. An
+    # integrity judge called it a hard fail and was right: it is a provenance claim, made to a
+    # reader, asserting a computation that did not happen, inside the file whose own docstring
+    # says no count and no date in the output is typed here. A line claiming a computation is
+    # exactly the defect compute.py exists to close.
+    agg_f = run_dir / "aggregates.json"
+    aggs = (json.loads(agg_f.read_text(encoding="utf-8")).get("aggregates", [])
+            if agg_f.exists() else [])
+    if any(a.get("kind") in ("duration", "span") for a in aggs if isinstance(a, dict)):
+        lines.append("Day counts computed in compute.py from the source dates above.")
     return "\n".join(lines) + "\n"
 
 
