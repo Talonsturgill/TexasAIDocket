@@ -71,6 +71,33 @@ plan changed with them rather than after them.
 - **Frame 7's dek repeated frame 6's card verbatim.** Both dossiers had declared the same
   sentence. Frame 7 carries the fuller act from the same claim.
 
+## Second revision, after the scoring panel (2026-08-25)
+
+Three judges, and any one judge's hard fail stops the deck. Integrity returned 6.42 with five,
+reader 5.85 with one, craft 7.36 with none. Every hard fail was a WORD, not a number, which is
+the shape of this deck's real weakness: the compute-not-generate law covers numerals and nothing
+was reading the nouns and quantifiers wrapped around them.
+
+- **Frame 1's hook spoke AS Texas**, which `TEXAS_VERNACULAR` forbids by name, and it contradicted
+  the deck's own thesis one frame later, since eight bodies reaching for eight instruments is
+  precisely Texas not speaking with one voice. Its dek then called the Texas Water Development
+  Board a local government, on a deck that names that agency on two other frames, and said all
+  eight "refused" when four of them started a process, directed staff, asked for disclosure and
+  denied a petition.
+- **Frame 8 said eight bodies "imposed" a restriction**, contradicted by four claims in this
+  deck's own file. It says "acted" now, which is what `restricted_count`'s rule string says.
+- **Frame 9 said everything else in the record is already decided**, contradicted by c18, c30,
+  c13 and by c23, which this deck quotes on frame 4.
+- **Frame 3's dek had a tuned parameter and no referent.** A 21 day window was the SMALLEST that
+  yields four, and a reader meeting "the last 21 days" on the 25th reads it as since the 4th.
+  The split is half the set now, which nobody tuned, and the span those four occupy is measured
+  after the fact.
+- **The caption still said "most bind nothing"**, the exact quantifier the flow critic struck
+  from frame 5 and this storyboard recorded as fixed. The frame was reread and the caption was
+  not.
+- **The first comment said the sources were all primary** on a run whose claims file types seven
+  of its twelve documents as reported. It is counted from the file now rather than asserted.
+
 ## Structural laws for the ledger
 
 Legible means quoted or computed. Everything below reading size is decorative and aria-hidden.
@@ -119,8 +146,8 @@ art:
     eye by area rather than by extremity.
   motion: "down the lit rail, into the opening, onto the sheet"
 type:
-  hook: "Texas said no eight ways"
-  dek: "Eight local governments refused a data center this year. No two reached for the same instrument."
+  hook: "Eight ways to slow a data center"
+  dek: "Eight Texas governmental bodies acted this year. No two reached for the same instrument."
 acceptance:
   - "the lock cylinder and its keyway are drawn at the right stile, so the case reads as locked rather than as a picture frame"
   - "the bond sheet is a bounded quadrilateral with the glazing's reflection over it, not a white rectangle"
@@ -217,7 +244,7 @@ art:
   motion: "down the rows, each shorter than the last"
 type:
   hook: "From March to August"
-  dek: "Four of the eight came in the last 21 days."
+  dek: "The last four came inside 21 days of each other."
 acceptance:
   - "each row's letter shadows are offset differently from the row above, computed from one overhead source"
   - "at least two letters sit visibly proud of the groove, as a hand set board does"

@@ -17,22 +17,6 @@
    "computed_by": "out/2026-08-25/compute.py, distinct_shapes over RESTRICTED, counted over the RESTRICTED and DECLINED maps in that file, whose keys are item ids in ledger/docket.json"
   },
   {
-   "phrase": "Eight local governments",
-   "kind": "count",
-   "value": 8,
-   "from_claims": [
-    "c17",
-    "c3",
-    "c6",
-    "c30",
-    "c9",
-    "c29",
-    "c22",
-    "c12"
-   ],
-   "computed_by": "out/2026-08-25/compute.py, restricted_count, counted over the RESTRICTED and DECLINED maps in that file, whose keys are item ids in ledger/docket.json"
-  },
-  {
    "phrase": "Eight bodies",
    "kind": "count",
    "value": 8,
@@ -159,23 +143,6 @@
    "computed_by": "out/2026-08-25/compute.py, total_count, restricted_count plus declined_count over the maps in that file, whose keys are item ids in ledger/docket.json"
   },
   {
-   "phrase": "Four of the eight",
-   "kind": "ratio",
-   "value": 4,
-   "of": 8,
-   "from_claims": [
-    "c17",
-    "c3",
-    "c6",
-    "c30",
-    "c9",
-    "c29",
-    "c22",
-    "c12"
-   ],
-   "computed_by": "out/2026-08-25/compute.py, late_cluster over restricted_count, counted from the ordered key dates in ledger/docket.json"
-  },
-  {
    "phrase": "Two of the eight",
    "kind": "ratio",
    "value": 2,
@@ -203,6 +170,22 @@
     "c22"
    ],
    "computed_by": "out/2026-08-25/compute.py, force_unstated, the restricting bodies in ledger/docket.json whose sources speak to binding force neither way"
+  },
+  {
+   "phrase": "Eight Texas governmental bodies",
+   "kind": "count",
+   "value": 8,
+   "from_claims": [
+    "c17",
+    "c3",
+    "c6",
+    "c30",
+    "c9",
+    "c29",
+    "c22",
+    "c12"
+   ],
+   "computed_by": "out/2026-08-25/compute.py, restricted_count, counted over the RESTRICTED map in that file, whose keys are item ids in ledger/docket.json"
   }
  ]
 }

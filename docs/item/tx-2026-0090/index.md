@@ -11,7 +11,7 @@ The National Science Foundation made a cooperative agreement to the Texas A&M En
 - Public access: Closed
 - Take part: https://api.nsf.gov/services/v1/awards/2534344.json
 
-- Last checked: 2026-08-23
+- Last checked: 2026-08-25
 
 ## Dates
 
@@ -23,6 +23,7 @@ The National Science Foundation made a cooperative agreement to the Texas A&M En
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-08-23 · Admitted. The award record and the agency's own announcement are both on the record, and the facility's start date has not yet arrived.
+- 2026-08-25 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

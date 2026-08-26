@@ -214,6 +214,50 @@ That makes five gate repairs in one run. Every one of them was a gate reporting 
 as wrong, or a wrong deck as correct, and none of them was found by a self-test. Self-tests prove
 a checker can go red. Only the product proves it is looking at the right thing.
 
+## The panel, round one, and why three judges are not one judge run three times
+
+integrity 6.42 with FIVE hard fails. reader 5.85 with one. craft 7.36 with none, and craft said
+ship. Any one judge's hard fail stops the deck, so it did not.
+
+**Every hard fail was a WORD, and not one was a number.** That is the finding, and it is bigger
+than this deck. The compute-not-generate law covers numerals and this run enforced it well: all
+thirteen declared figures re-derive, every numeral on every frame traces to a claim or a
+computation, and the panel confirmed it. Nothing was reading the NOUNS and QUANTIFIERS wrapped
+around those numerals, and that is where all six failures were.
+
+1. **`caption.txt` still said "Most bind nothing."** The exact quantifier the flow critic struck
+   from frame 5 four hours earlier, recorded as fixed in the storyboard and in this record, and
+   shipped in the caption anyway. The frame was reread and the caption was not. It carries
+   `stated_nonbinding` now, and the four the record is silent on beside it.
+2. **`first_comment.txt` said "Sources, all primary and fetched August 25th, 2026"** on a run
+   whose own claims file types seven of its twelve documents `secondary_reported`. That is the
+   one line whose entire job is telling a reader how good the evidence is, on the surface a
+   sceptic checks first, and it overstated exactly that. `sources_block.provenance_line()` COUNTS
+   it now, both directions self-tested, and it reads "seven news reports and five official
+   records".
+3. **Frame 1 called the Texas Water Development Board a local government**, on a deck that names
+   that agency on two other frames, and said all eight "refused" when four of them started a
+   process, directed staff to draft, asked for disclosure and denied a petition.
+4. **Frame 1's hook spoke AS Texas**, which `TEXAS_VERNACULAR` forbids by name, and contradicted
+   the deck's own thesis one frame later.
+5. **Frame 8 said eight bodies "imposed" a restriction**, contradicted by c22, c30, c8 and c29.
+6. **Frame 9 said everything else in the record is already decided**, contradicted by c18, c30,
+   c13 and by c23, which this deck quotes on frame 4.
+
+Two more, neither a hard fail and both worse in kind than a hard fail, because both were FALSE
+PROVENANCE inside the computation itself:
+
+- `brazoria_apps = 4` was a typed literal and `aggregates.json` described it as "counted over the
+  RESTRICTED and DECLINED maps". It carries `value_from: c11` now, and compute.py says in its own
+  comment that it is not computed and must never say it is.
+- `LATE_WINDOW = 21` was CHOSEN and it is the smallest window that yields four. At twenty the
+  answer is three. A tuned parameter presented as a finding. The split is half the set now, which
+  nobody tuned, and the span those four occupy is measured after the fact.
+
+The rubric's own history says a single scorer graded one deck seven times and found zero hard
+fails where a panel of three found four. This run is that lesson again with a different number:
+one judge of three said ship.
+
 ## Proposals for the machine, none of them in this actor's lane
 
 1. **A gate that proves a declared texture reached a pixel.** `knowledge/` and the engine skill
@@ -249,15 +293,15 @@ rather than failing, and this is it.
 |---|---|---|
 | claims         | PASS   | 30 verified claim(s) |
 | render         | WARN   | 9 slide(s), 24 overflow warning(s) |
-| qa             | WARN   | 0 fail(s), 29 warn(s) |
-| aggregates     | PASS   | 14 declared and re-derived |
+| qa             | WARN   | 0 fail(s), 30 warn(s) |
+| aggregates     | PASS   | 13 declared and re-derived |
 | assembly       | PASS   | 9 slide(s), 3.22 MB, vector |
 | score          | ABSENT | score.json not written yet |
-| dossiers       | PASS   | 30,847 chars planned |
-| caption        | PASS   | 141 words |
+| dossiers       | PASS   | 32,783 chars planned |
+| caption        | PASS   | 166 words |
 | craft floor    | WARN   | 9 frame(s), median 6061, floor 1091, 1 quiet |
 | plan vs render | WARN   | 0 of 46 acceptance item(s) checkable |
 | texan          | PASS   | places Hill County, Tom Green County / body yes / deadline yes / next step yes |
-| absences       | PASS   | 10 of 10 scoped to a named document |
+| absences       | PASS   | 9 of 9 scoped to a named document |
 | completion     | ABSENT | not scored yet |
 <!-- gate-status:end -->

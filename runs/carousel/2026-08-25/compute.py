@@ -85,8 +85,11 @@ first_date, last_date = dates[0], dates[-1]
 span_days = (__import__("datetime").date.fromisoformat(last_date)
              - __import__("datetime").date.fromisoformat(first_date)).days
 
-# Brazoria: applications that died with the zone, counted from the record's own summary claims.
-brazoria_apps = 4          # stated in the item summary, sourced to the county's agenda
+# Brazoria: applications that died with the zone. This is NOT computed and must never say it is.
+# c11 states the composition, two entities named as data center companies and two named as power
+# companies, and the count follows from that sentence rather than from any structure in the
+# ledger. Its declaration carries `value_from: c11` for the same reason.
+brazoria_apps = 2 + 2      # c11, two data center companies and two power companies
 brazoria_vote = "5 to 0"
 
 # BINDING FORCE. The flow critic caught frame 5 saying "most", which is a quantifier standing in
@@ -108,10 +111,14 @@ assert set(STATED_NONBINDING) <= set(RESTRICTED) and set(STATED_BINDING) <= set(
 # How the eight fell in time. The flow critic found frames 2 and 3 doing the same job, and the
 # one thing the record holds that no other frame shows is WHEN. This is the shape of it.
 _d = __import__("datetime")
-_last = _d.date.fromisoformat(max(ordered_on(i) for i in RESTRICTED))
-LATE_WINDOW = 21
-late_n = sum(1 for i in RESTRICTED
-             if _d.date.fromisoformat(ordered_on(i)) >= _last - _d.timedelta(days=LATE_WINDOW))
+_ds = sorted(_d.date.fromisoformat(ordered_on(i)) for i in RESTRICTED)
+# THE SPLIT IS CHOSEN AND THE WINDOW IS MEASURED, in that order and never the other way. An
+# earlier version fixed the window at 21 days and counted what fell inside it, and 21 is the
+# SMALLEST window that yields four: at twenty the answer is three. That is a tuned parameter
+# wearing a finding's clothes. Half the set is a split nobody tuned, and the span those last
+# four actually occupy is then a measurement.
+late_n = len(RESTRICTED) // 2
+late_span = (_ds[-1] - _ds[-late_n]).days
 
 # The chronology frame 3 sets, in the order the bodies acted. Nothing here is typed.
 chronology = [{"date": ordered_on(i), "place": RESTRICTED[i][0], "shape": RESTRICTED[i][1],
@@ -132,11 +139,10 @@ out = {
   "force_unstated":    {"value": restricted_n - len(STATED_NONBINDING) - len(STATED_BINDING),
                         "rule": "restricting bodies the record says nothing about either way",
                         "from_items": sorted(set(RESTRICTED) - set(STATED_NONBINDING) - set(STATED_BINDING))},
-  "late_window":       {"value": LATE_WINDOW, "rule": "the length in days of the window measured back from the last action"},
-  "late_cluster":      {"value": late_n,
-                        "rule": "restricting actions falling in the final %d days of the span" % LATE_WINDOW,
-                        "from_items": sorted(i for i in RESTRICTED
-                                             if _d.date.fromisoformat(ordered_on(i)) >= _last - _d.timedelta(days=LATE_WINDOW))},
+  "late_cluster":      {"value": late_n, "rule": "half the restricting bodies, the later half by ordered date"},
+  "late_span":         {"value": late_span,
+                        "rule": "days from the %dth from last ordered action to the last, MEASURED after the half was chosen" % late_n,
+                        "from_items": sorted(RESTRICTED, key=ordered_on)[-late_n:]},
   "chronology":        {"value": len(chronology), "rule": "the restricting actions in the order they happened",
                         "marks": chronology},
   "distinct_shapes":   {"value": shapes_n, "rule": "distinct kinds of restriction among the restricting bodies",
@@ -145,7 +151,7 @@ out = {
   "first_action_date": {"value": first_date, "rule": "earliest ORDERED date among the restricting items, the date a body acted"},
   "last_action_date":  {"value": last_date,  "rule": "latest ORDERED date among the restricting items"},
   "span_days":         {"value": span_days,  "rule": "days from first_action_date to last_action_date"},
-  "brazoria_applications": {"value": brazoria_apps, "rule": "abatement applications the Brazoria zone carried, per the item summary", "from_items": ["tx-2026-0051"]},
+  "brazoria_applications": {"value": brazoria_apps, "value_from": "c11", "rule": "abatement applications the Brazoria zone carried, per the item summary", "from_items": ["tx-2026-0051"]},
   "brazoria_vote":     {"value": brazoria_vote, "rule": "quoted from tx-2026-0051-c1"},
   "docket_items":      {"value": len(items), "rule": "items in ledger/docket.json"},
   # A director checked this against claims.json and found "three agendas" stated nowhere in it.

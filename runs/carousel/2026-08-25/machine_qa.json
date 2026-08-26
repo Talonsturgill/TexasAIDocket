@@ -5,11 +5,11 @@
       "fails": [],
       "warns": [],
       "bands": [
-        0.166,
-        0.1723,
+        0.1639,
+        0.1513,
         0.239
       ],
-      "band_ratio": 1.2285
+      "band_ratio": 1.2768
     },
     {
       "file": "slide-02.html",
@@ -38,11 +38,11 @@
       "fails": [],
       "warns": [],
       "bands": [
-        0.5294,
+        0.5252,
         0.7752,
         0.5754
       ],
-      "band_ratio": 0.9216
+      "band_ratio": 0.9236
     },
     {
       "file": "slide-04.html",
@@ -117,26 +117,27 @@
       "bands": [
         0.5693,
         0.6534,
-        0.4651
+        0.4669
       ],
-      "band_ratio": 0.8332
+      "band_ratio": 0.8355
     },
     {
       "file": "slide-09.html",
       "fails": [],
       "warns": [
         "tiny-text: 'THE CITY'S OWN WORDING IS A DEADLINERATHER THAN A ' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: 'CITY OF FORT WORTH, C24' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))"
+        "tiny-text: 'CITY OF FORT WORTH, C24' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
+        "worst-point contrast 4.2 on 'It is the nearest dated step this record' (box mean 5.4) -- below the rubric's 4.5 line somewhere along the run of the text"
       ],
       "bands": [
         0.1113,
         0.0966,
-        0.6342
+        0.6397
       ],
-      "band_ratio": 2.1368
+      "band_ratio": 2.1409
     }
   ],
   "fails": 0,
-  "warns": 29,
+  "warns": 30,
   "verdict": "WARN"
 }

@@ -51,17 +51,17 @@
       "tx-2026-0062"
     ]
   },
-  "late_window": {
-    "value": 21,
-    "rule": "the length in days of the window measured back from the last action"
-  },
   "late_cluster": {
     "value": 4,
-    "rule": "restricting actions falling in the final 21 days of the span",
+    "rule": "half the restricting bodies, the later half by ordered date"
+  },
+  "late_span": {
+    "value": 21,
+    "rule": "days from the 4th from last ordered action to the last, MEASURED after the half was chosen",
     "from_items": [
-      "tx-2026-0045",
       "tx-2026-0050",
       "tx-2026-0056",
+      "tx-2026-0045",
       "tx-2026-0062"
     ]
   },
@@ -189,6 +189,7 @@
   },
   "brazoria_applications": {
     "value": 4,
+    "value_from": "c11",
     "rule": "abatement applications the Brazoria zone carried, per the item summary",
     "from_items": [
       "tx-2026-0051"
