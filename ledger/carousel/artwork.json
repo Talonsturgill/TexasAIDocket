@@ -268,7 +268,7 @@
    "date": "2026-08-25",
    "carousel_no": 7,
    "written_from": "render/render_report.json, render/machine_qa.json, the gates' own exit codes, and a per frame measurement of the rendered PNGs. The value block below is MEASURED, not read off the storyboard, because the storyboard typed a register this deck does not have.",
-   "register": "a Texas notice case seen nine ways, wide range about a median of 52.4. Anodized rail, dark case interior and cream bond carry through six of the nine frames as one object under changing light and camera. Measured against the mid value deck its own storyboard declared, exactly one of the nine sits inside the L* 62 to 68 band that plan set, and the frames run 14.4 to 81.4.",
+   "register": "a Texas notice case seen nine ways, wide range about a median of 52.4. Anodized rail, dark case interior and cream bond carry through six of the nine frames as one object under changing light and camera. Measured against the mid value deck its own storyboard declared, one of the nine sits inside the L* 62 to 68 band that plan set, and the frames run 14.4 to 81.4.",
    "techniques": [
     "a wall mounted notice case authored as geometry so every overlay knows where it is, with a keyway and hinge knuckles so it reads as locked",
     "a cast occlusion shadow whose penumbra widens with the air gap, the deck's one depth cue",
@@ -276,7 +276,7 @@
     "true one point perspective shared by a canvas projection and a CSS transform on the type, so the case and the words on it are one object",
     "additive veiling glare drawn ABOVE the type as a screening layer, so a reflection lifts ink and paper together and contrast collapses",
     "a bounded specular blowout at 28 degrees with a computed shoulder, crossing only decorative type",
-    "repetition down a computed cosine bounce falloff, four identical minute lines brightening 17.2 L* from first to last",
+    "repetition down a computed cosine bounce falloff, four identical minute lines brightening 16.5 L* from first to last",
     "a sheared and rippled Fresnel weighted mirror resolving a second notice case, carrying nothing legible",
     "sprung clips holding nothing, the near zero gap end of the same shadow physics the deck opened with",
     "fiberboard cork as a fine 2px speckle over a lit gradient, the same code on frames 6 and 9 after two craft reads measured frame 6's own chip-scale version as a blocky mosaic"
@@ -310,14 +310,14 @@
      14.4,
      30.8,
      81.4,
-     69.2,
+     70.8,
      52.4,
-     55.5,
+     55.6,
      48.8
     ],
     "deck_median_L": 52.4,
-    "mean_L": 51.9,
-    "sd_L": 18.8,
+    "mean_L": 52.1,
+    "sd_L": 18.9,
     "range_L": [
      14.4,
      81.4
@@ -327,15 +327,26 @@
      68
     ],
     "frames_inside_declared_band": 1,
-    "measured_by": "out/2026-08-25/tmp/ledgers.py over the rendered PNGs at 216x270",
-    "counted_by": "out/2026-08-25/tmp/ledgers.py over per_frame_median_L against declared_band, and the register sentence above is composed from the same array rather than typed beside it. Both the count and the sentence were hand written and wrong at different points in this run, in opposite directions."
+    "measured_by": "out/2026-08-25/tmp/measure.py over the rendered PNGs at 216x270",
+    "counted_by": "out/2026-08-25/tmp/write_measured.py, over the array above. EVERY sentence in this entry that carries one of these numbers is composed from it here rather than typed beside it, because round 4 found this deck's falloff and its bespoke median each committed twice with two different values.",
+    "frame7_falloff_L": 16.5,
+    "frame7_repeat_gutters_L": [
+     82.8,
+     91.2,
+     96.6,
+     99.3
+    ],
+    "biggest_junction": {
+     "between": 2,
+     "delta": -48.6
+    }
    },
    "slides": 9,
-   "bespoke_median_similarity": 0.2465,
+   "bespoke_median_similarity": 0.1615,
    "bespoke_closest_pair": [
     "slide-02.html",
-    "slide-05.html",
-    0.8234
+    "slide-07.html",
+    0.7737
    ],
    "cut": "nothing was cut. Frame 3 was REPURPOSED from a roster that reprinted frame 2's body names into the chronology. Both frames later lost a row when the count went from eight to seven and neither container was re-flowed, so both carry dead sheet under the last row.",
    "structural_laws": "nothing carved, embossed, milled or engraved anywhere. All depth from the air gap between glazing and sheet. No raking key. No cartography and no coordinate. No invented item number, party name or building.",
