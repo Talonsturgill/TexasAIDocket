@@ -58,8 +58,10 @@ SCORE_KEYS = ("weighted_score", "score", "weighted_total", "total", "weighted")
 # deck in front of a reader. An exit code that only ever says "keep going" is not a gate, it is
 # a loop, and the two failures are the same mistake pointed in opposite directions.
 #
-# So the bar now has a bound on the SEARCH beside it. Past `max_rounds`, a deck with no hard
-# fail is finished and ships at whatever it scored, and the email and the run record state that
+# So the bar now has a bound on the SEARCH beside it, and the owner set it at five: a panel is a
+# CHECK on a deck the run already believes is finished, and this run used it as a design loop,
+# letting three judges find what a careful pass would have found for nothing. Past `max_rounds`,
+# a deck with no hard fail is finished and ships at whatever it scored, and the email and the run record state that
 # number and the shortfall out loud. What does NOT move: a hard fail still stops the deck at any
 # round, `ship: false` still outranks the arithmetic, and a run under the cap that is under the
 # bar is still a failed run. The cap ends the search. It does not lower the standard, and a run
@@ -242,11 +244,11 @@ def self_test() -> int:
         # THE 2026-08-25 DEFECT, replayed: fifteen rounds, never shipped, no deck for a reader.
         write({"weighted_score": 6.68, "ship": False, "hard_fails": [], "rounds": 15})
         ok("a deck under the bar ON the round cap is a finished run",
-           check(d, 6.8, 10) == [], str(check(d, 6.8, 10)))
+           check(d, 6.8, 5) == [], str(check(d, 6.8, 5)))
         ok("...and with no cap in force it is still a failure", check(d, 6.8, None) != [])
 
         write({"weighted_score": 6.68, "ship": False, "hard_fails": [], "rounds": 2})
-        probs = check(d, 6.8, 10)
+        probs = check(d, 6.8, 5)
         ok("a deck under the bar BELOW the cap is still a failed run", probs != [], str(probs))
         ok("...and the message says the search has not run out",
            any("has not been reached" in p for p in probs), str(probs))
@@ -256,18 +258,18 @@ def self_test() -> int:
         write({"weighted_score": 6.68, "ship": False, "hard_fails": ["a claim with no source"],
                "rounds": 40})
         ok("a hard fail stops the deck at any number of rounds",
-           any("hard fail" in p for p in check(d, 6.8, 10)), str(check(d, 6.8, 10)))
+           any("hard fail" in p for p in check(d, 6.8, 10)), str(check(d, 6.8, 5)))
 
         # A run that did not write down how many rounds it did gets no cap.
         write({"weighted_score": 6.68, "ship": False, "hard_fails": []})
         ok("no round count means no cap, because the cap is a claim about work done",
-           check(d, 6.8, 10) != [])
+           check(d, 6.8, 5) != [])
 
     bar = threshold()
     ok("the rubric's own threshold parses", isinstance(bar, float) and bar > 0, str(bar))
     ok("...and it is the 6.8 this product is held to", bar == 6.8, str(bar))
     cap = max_rounds()
-    ok("...and the rubric declares the round cap beside it", cap == 10, str(cap))
+    ok("...and the rubric declares the round cap beside it", cap == 5, str(cap))
 
     print("\nrun_complete self-test: " + ("all passed" if not fails else f"{fails} FAILED"))
     return 1 if fails else 0

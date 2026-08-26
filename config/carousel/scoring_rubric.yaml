@@ -11,7 +11,7 @@
 
 version: 1
 threshold: 6.8          # below this the deck does not ship
-max_rounds: 10          # and after this many scoring rounds it ships anyway, see below
+max_rounds: 5           # and after this many scoring rounds it ships anyway, see below
 
 # THE THRESHOLD MOVED AND A ROUND CAP WENT IN, on the owner's instruction, 2026-08-26.
 #
@@ -33,11 +33,22 @@ max_rounds: 10          # and after this many scoring rounds it ships anyway, se
 # other.
 #
 # WHAT THE CAP IS FOR. It is not permission to ship a bad deck. A hard fail still stops the deck
-# at any round, because a hard fail is a claim about a promise this product made in public.
-# `max_rounds` bounds the SEARCH, not the standard: after ten rounds the run ships whatever the
+# at any round, because a hard fail is a claim about a promise this product made in public: a
+# figure with no computation behind it, a quote that is not in the source, a universal the run's
+# own numbers refute. That is a factual gate and not a polish gate, and it does not move.
+# `max_rounds` bounds the SEARCH, not the standard: past the cap the run ships whatever the
 # weighted score is, states that score honestly in the email, and records in the run record that
 # it shipped under the bar and by how much. A run that would rather keep scoring than say a
 # number out loud is the failure this cap exists to make impossible.
+#
+# TEN BECAME FIVE the same day, on the owner's second instruction, and the reason is sharper than
+# the first: "judges are becoming a token burning crutch masking your inefficiencies". That is
+# the correct diagnosis. A panel is a CHECK on a deck the run already believes is finished. This
+# run used it as a design loop, shipping a half-considered frame into three judges and letting
+# them find what a careful pass would have found for nothing, then repeating that fifteen times.
+# Five rounds is not a smaller budget for the same behaviour. It is a different behaviour: get
+# the frame right before it is scored, and treat every round after the first as evidence that
+# something upstream of the panel was skipped.
 scale: "0 to 10, where 7 is acceptable and 9 is the best thing shipped this month"
 
 criteria:
