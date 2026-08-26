@@ -470,13 +470,14 @@ rather than failing, and this is it.
 | render         | PASS   | 9 slide(s) |
 | qa             | WARN   | 0 fail(s), 2 warn(s) |
 | aggregates     | PASS   | 25 declared and re-derived |
-| assembly       | PASS   | 9 slide(s), 3.17 MB, vector |
+| assembly       | PASS   | 9 slide(s), 3.2 MB, vector |
 | score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
-| dossiers       | PASS   | 45,095 chars planned |
-| caption        | PASS   | 145 words |
-| craft floor    | WARN   | 9 frame(s), median 5201, floor 936, 1 quiet |
-| plan vs render | PASS   | 9 of 58 acceptance item(s) checkable |
-| texan          | PASS   | places Hill County, San Angelo, Tom Green County, Wichita Falls, Williamson County / body yes / deadline yes / next step yes |
-| absences       | WARN   | 4 of 11 scoped to a named document, 7 unscoped |
+| labels         | PASS   | 52 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| dossiers       | PASS   | 51,897 chars planned |
+| caption        | PASS   | 147 words |
+| craft floor    | WARN   | 9 frame(s), median 5142, floor 926, 2 quiet |
+| plan vs render | WARN   | 12 of 68 acceptance item(s) checkable |
+| texan          | PASS   | places Brazoria County, El Paso, Hays County, Hill County, Lubbock, Lubbock County, San Angelo, Tom Green County, Wichita Falls, Williamson County / body yes / deadline yes / next step yes |
+| absences       | WARN   | 8 of 16 scoped to a named document, 8 unscoped |
 | completion     | FAIL   | THE DECK DID NOT SHIP, so this run is not done |
 <!-- gate-status:end -->

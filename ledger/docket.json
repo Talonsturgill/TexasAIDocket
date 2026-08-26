@@ -7176,23 +7176,3 @@
   }
  ]
 }
-
-## Gate status
-
-<!-- gate-status:begin -->
-| gate | status | detail |
-|---|---|---|
-| claims         | PASS   | 46 verified claim(s) |
-| render         | PASS   | 9 slide(s) |
-| qa             | WARN   | 0 fail(s), 1 warn(s) |
-| aggregates     | PASS   | 24 declared and re-derived |
-| assembly       | PASS   | 9 slide(s), 3.19 MB, vector |
-| score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
-| dossiers       | PASS   | 51,853 chars planned |
-| caption        | PASS   | 141 words |
-| craft floor    | WARN   | 9 frame(s), median 5142, floor 926, 2 quiet |
-| plan vs render | PASS   | 13 of 69 acceptance item(s) checkable |
-| texan          | PASS   | places Hill County, San Angelo, Tom Green County, Wichita Falls, Williamson County / body yes / deadline yes / next step yes |
-| absences       | WARN   | 7 of 15 scoped to a named document, 8 unscoped |
-| completion     | FAIL   | THE DECK DID NOT SHIP, so this run is not done |
-<!-- gate-status:end -->
