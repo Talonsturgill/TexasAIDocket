@@ -268,21 +268,23 @@
    "date": "2026-08-25",
    "carousel_no": 7,
    "written_from": "render/render_report.json, render/machine_qa.json, the gates' own exit codes, and a per frame measurement of the rendered PNGs. The value block below is MEASURED, not read off the storyboard, because the storyboard typed a register this deck does not have.",
-   "register": "a Texas notice case seen nine ways, wide range about a median of 52.1. Anodized rail, dark case interior and cream bond carry through six of the nine frames as one object under changing light and camera. Measured against the mid value deck its own storyboard declared, one of the nine sits inside the L* 62 to 68 band that plan set, and the frames run 14.4 to 81.4.",
+   "register": "a Texas notice case seen nine ways, wide range about a median of 52.1. Anodized rail, dark case interior and cream bond carry through six of the nine frames as one object under changing light and camera. Measured against the mid value deck its own storyboard declared, 1 of the nine sits inside the L* 62 to 68 band that plan set, and the frames run 14.4 to 93.2. The storyboard's physical law is written from this file now rather than at it.",
    "techniques": [
     "a wall mounted notice case authored as geometry so every overlay knows where it is, with a keyway and hinge knuckles so it reads as locked",
     "a cast occlusion shadow whose penumbra widens with the air gap, the deck's one depth cue",
-    "a lobby changeable letter board with per row shadow offsets computed from one overhead source",
+    "per row cast shadows that LENGTHEN AND SOFTEN together down the board, a short crisp contact core plus a body that loses density and gains penumbra with distance from one overhead source, at a step the frame's own script asserts clears three device pixels between neighbours",
     "true one point perspective shared by a canvas projection and a CSS transform on the type, so the case and the words on it are one object",
     "additive veiling glare drawn ABOVE the type as a screening layer, so a reflection lifts ink and paper together and contrast collapses",
-    "a bounded specular blowout at 28 degrees with a computed shoulder, crossing only decorative type",
+    "a bounded specular blowout at 28 degrees with a computed shoulder, running the whole of a FULL BLEED page with no border, its lower shoulder grading into the frame's only dark, which is a surface rather than an edge",
     "repetition down a computed cosine bounce falloff, four identical minute lines brightening 16.5 L* from first to last",
     "a sheared and rippled Fresnel weighted mirror resolving a second notice case, carrying nothing legible",
-    "sprung clips holding nothing, the near zero gap end of the same shadow physics the deck opened with",
+    "two slips HUNG from the clips that held nothing for eight frames, each shrink wrapped to its own longest laid out line and hung from its own margin above the case lip, so no width and no top on that frame is typed",
     "fiberboard cork as a fine 2px speckle over a lit gradient on frames 6 and 9, with a low frequency mottle over it on frame 6 ONLY, because the grain alone is right at 2160 and gone by 432 and frame 6 is the frame whose whole field is cork",
-    "a felt letterboard counting by seated tiles rather than by numerals, one tile per action, so the busiest month is read off the board instead of asserted in the dek",
+    "a felt letterboard seating five rows of WORDS, each in a two part groove whose dark channel crosses the glyph baseline so the letters occlude the slot they stand in, with two characters set proud by content rather than by index. The board carries no tiles, no months and no numerals. The earlier entry recorded all three",
     "brass pins whose shafts go THROUGH the paper, so the cast shadow falls on the card and not on the cork",
-    "cork as fine 2px grain UNDER a low frequency mottle, because the grain alone is correct at 2160 and gone by 432, which is the only size a reader gets"
+    "cork as fine 2px grain UNDER a low frequency mottle, because the grain alone is correct at 2160 and gone by 432, which is the only size a reader gets",
+    "three route slips whose paper is measured from the type laid out inside them, at widths the frame's own script refuses within 12 percent of each other, over a staple field whose exclusion is read off getBoundingClientRect and which RESAMPLES rather than skips so it does not thin out wherever the type is",
+    "a reflected notice case carrying the near case's own vocabulary at half contrast, a lit top rail, two stiles at two values, a lower rail and a keyway, run through the same shear and ripple so it belongs to the pane"
    ],
    "palette": {
     "source": "an anodized notice case under a hot high haze Texas sky",
@@ -294,7 +296,6 @@
     "cork": "#B99B72 fiberboard backing",
     "anodize": "#9C9A90 chalked aluminium",
     "glaze": "#9DAAB4 hazed acrylic, the cool mid",
-    "edge_cyan": "#6FA79C acrylic on its edge, once, 6px, frame 6",
     "glaze_deep": "#5A6874",
     "mesquite_shade": "#6E7A5A live oak shadow, frame 8",
     "toner": "#2A2622 fused laser toner",
@@ -303,8 +304,8 @@
    },
    "red_spent": true,
    "red_on_slide": 9,
-   "red_note": "on the date NOVEMBER 10TH and on nothing else, including the words NOT LATER THAN above it, which were red until the pixel review measured the frame against its own acceptance list",
-   "camera": "SIX distinct camera classes shipped, not the nine the storyboard declared, and one of them carries four of the nine frames: square on to a bordered sheet, on 2, 5, 7 and 8. The others are near frontal on a locked case (1), level on a flat field with no case (6), a felt letterboard square on and level (3), steep oblique in true perspective (4), a close crop with two ground planes (9).",
+   "red_note": "on SEPTEMBER 4TH and on nothing else in the deck. The rule is stated rather than chosen: of the two open doors only one is inside a fortnight, so the near one takes the reserved colour and the December one does not.",
+   "camera": "SEVEN distinct camera classes shipped and no class carries more than three frames. Round 12 measured six with one class on four, and named 2 and 5 as the same picture at feed size. Frame 5 is now a FULL BLEED crop with no border at all, which is its own class and its own silhouette in the strip. The classes: near frontal on a locked case (1), square on to a bordered sheet (2, 7), a felt letterboard square on and level (3), steep oblique in true perspective (4), a full bleed crop on the page with no case and no border (5), level on a flat field with no case (6), a shaded case with a reflected second case in it (8), a close crop with two ground planes and hung paper (9).",
    "light_decks_used": "wide range, bimodal, median below mid",
    "value": {
     "per_frame_median_L": [
@@ -312,24 +313,26 @@
      64.4,
      14.4,
      30.8,
-     81.4,
-     73.2,
+     93.2,
+     74.4,
      52.1,
-     58.9,
-     48.7
+     58.5,
+     49.5
     ],
     "deck_median_L": 52.1,
-    "mean_L": 52.8,
-    "sd_L": 19.4,
+    "mean_L": 54.3,
+    "sd_L": 21.6,
     "range_L": [
      14.4,
-     81.4
+     93.2
     ],
     "declared_band": [
      62,
      68
     ],
-    "frames_inside_declared_band": 1,
+    "frames_inside_declared_band": [
+     2
+    ],
     "measured_by": "out/2026-08-25/tmp/measure.py over the rendered PNGs at 216x270",
     "counted_by": "out/2026-08-25/tmp/write_measured.py, over the array above. EVERY sentence in this entry that carries one of these numbers is composed from it here rather than typed beside it, because round 4 found this deck's falloff and its bespoke median each committed twice with two different values.",
     "frame7_falloff_L": 16.5,
@@ -340,20 +343,21 @@
      99.3
     ],
     "biggest_junction": {
-     "between": 2,
-     "delta": -50.0
+     "between": 4,
+     "delta": 62.4
     }
    },
    "slides": 9,
-   "bespoke_median_similarity": 0.1483,
+   "bespoke_median_similarity": 0.1377,
    "bespoke_closest_pair": [
     "slide-02.html",
-    "slide-06.html",
-    0.7268
+    "slide-07.html",
+    0.7257
    ],
    "cut": "nothing was cut. Frame 2 went from seven instruments in one column to FIFTEEN in two when the set became a computed selection over the record, and its greeked filler field went with them, because a sheet with fourteen real lines on it does not need filler pretending to be lines. Frame 3 stopped being a roster of the same bodies and became the months, one seated tile per action, so the June cluster is a thing a reader sees rather than a sentence they are asked to believe.",
    "structural_laws": "nothing carved, embossed, milled or engraved anywhere. All depth from the air gap between glazing and sheet. No raking key. No cartography and no coordinate. No invented item number, party name or building.",
-   "avoid_next": "the square on bordered sheet, which this deck used four times and which its own storyboard promised not to repeat. Also the notice case itself for at least one cycle, and any deck that declares a value band without measuring it. This field and `camera` above are composed from ONE list of frames, because round 5 found them disagreeing, five against four, inside the entry whose own note says every number in it comes from one source."
+   "avoid_next": "the notice case itself for at least one cycle, and any deck that declares a value band without measuring it. The square on bordered sheet is down to two frames this run, from four, so it is no longer the thing to avoid, but a third would be. This field and `camera` above are composed from ONE list of frames, because round 5 found them disagreeing, five against four, inside the entry whose own note says every number in it comes from one source.",
+   "palette_note": "edge_cyan is GONE from this deck. It shipped as a 6px bar at x16 on frame 6, attached to no drawn object, unterminated at both ends, 2.4px wide at the size a reader gets, through three craft reads. A reserved colour that buys nothing is deleted rather than elaborated."
   }
  ]
 }
