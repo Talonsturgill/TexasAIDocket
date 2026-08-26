@@ -16,7 +16,10 @@ canvas{position:absolute;left:0;top:0}
 .veil{position:absolute;left:100px;top:150px;width:840px;height:1080px;
   transform-origin:420px 540px;transform:perspective(1500px) rotateY(-19deg);
   mix-blend-mode:screen;pointer-events:none;
-  clip-path:polygon(60px 82px, 780px 82px, 780px 408px, 60px 743px);
+  /* SET FROM THE MULLION, in the script below, off the same LX/RX/MLY/MRY the
+     canvas draws it from. Four typed literals here were a hand tuned
+     correspondence between two coordinate systems, which is the defect this
+     frame's own greek exclusion was rebuilt to remove. */
   background:linear-gradient(178deg,#686D70 0%,#63686B 44%,#52575A 100%)}
 .kick{position:absolute;left:80px;top:88px;font:500 24px/1 "JetBrains Mono",monospace;font-size:24px;
   letter-spacing:.14em;color:#DFE7EC}
@@ -27,148 +30,198 @@ canvas{position:absolute;left:0;top:0}
 .star{position:absolute;right:80px;bottom:68px;width:22px;height:22px}
 .veiled{position:absolute;left:120px;top:320px;width:420px;font:400 27px/1.4 "Manrope",sans-serif;
   color:#2A2622}
-.hook{position:absolute;left:342px;top:616px;width:396px;font:700 58px/1.04 "Fraunces",serif;
+.hook{position:absolute;left:342px;top:616px;width:420px;font:700 48px/1.06 "Fraunces",serif;
   color:#2A2622;letter-spacing:-.015em}
-.q{position:absolute;left:308px;top:806px;width:376px;font:500 24px/1.4 "JetBrains Mono",monospace;
+.q{position:absolute;left:308px;top:800px;width:402px;font:500 24px/1.4 "JetBrains Mono",monospace;
   color:#2A2622;letter-spacing:.01em}
 /* THE ATTRIBUTION HAD NO WIDTH AND NO LEADING. It ran to 521px inside a 450px measure, so it
    overran the sheet onto the dark bezel, wrapped, and landed 'C23' on top of the line above it
    because line-height was 1. All three round 9 judges named this frame. A citation is two lines
    here like every other frame's, inside a measure, with leading. */
-.src{position:absolute;left:308px;top:888px;width:376px;font:400 24px/1.4 "JetBrains Mono",monospace;
+/* THE DEK'S OWN CLAIM STAMP, its own element rather than a tail on the dek's last sentence.
+   It read as prose to the site build, which lifts a deck's sentences onto the article page,
+   so 'C38' arrived there as the numeral 38 and numeral_lint refused the build: a figure on
+   a page with no computation behind it. In caps and on its own it is a stamp on both
+   surfaces. Its top is MEASURED off the dek rather than typed, for the reason the exclusion
+   list below is. */
+.cid{position:absolute;left:120px;width:420px;font:400 24px/1.4 "JetBrains Mono",monospace;
+  color:#4A453D;letter-spacing:.07em}
+.src{position:absolute;left:308px;top:900px;width:402px;font:400 24px/1.4 "JetBrains Mono",monospace;
   color:#4A453D;letter-spacing:.07em}
 </style></head><body>
 <canvas id="c" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
 <div class="plane">
-  <div class="veiled" data-role="dek">The council adopted a resolution that starts a process. The city calls February 16th a tentative adoption vote. Sources differ on whether a pause would begin there.</div>
-  <div class="hook">The newest pause is not in force</div>
-  <div class="q">"tentatively set for Feb. 16, 2027"</div>
-  <div class="src">FORT WORTH, C22 AND C23<br>READ FROM A REPRINT</div>
+  <div class="veiled" data-role="dek">Hays County, El Paso, Lubbock County, Brazoria County and Fort Worth each reached for a resolution.</div>
+  <div class="cid">C36, C38, C31, C40 AND C22</div>
+  <div class="hook">None is in the five that took effect</div>
+  <div class="q">"a resolution that initiates the legal process"</div>
+  <div class="src">FORT WORTH, C22<br>READ FROM A REPRINT</div>
 </div>
 <div class="veil"></div>
-<div class="kick">FORT WORTH</div>
+<div class="kick">THE INSTRUMENT</div>
 <div class="cnt">04 / 09</div>
 <div class="tx-site">texasaidocket.com</div>
 <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6 L14.9 9.2 L23 9.6 L16.7 14.6 L18.9 22.4 L12 17.9 L5.1 22.4 L7.3 14.6 L1 9.6 L9.1 9.2 Z" fill="#DFE7EC"/></svg>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script>
 window.renderReady = new Promise(function(resolve){
-  var c=document.getElementById('c'), x=c.getContext('2d'); x.scale(2,2);
-  var W=1080,H=1350; TX.reseed(40417); var R = TX.rng(40417);
-  // the same constants the .plane transform carries, so the case and the type are one object
-  var D=1500, TH=-19*Math.PI/180, ST=Math.sin(TH), CT=Math.cos(TH), OX=520, OY=690;
-  function P(px,py){
-    var u=px-OX, v=py-OY, s=D/(D+u*ST);
-    return [OX+u*CT*s, OY+v*s];
-  }
-  function quad(a,b,cc,d,fill){
-    var A=P(a[0],a[1]),B=P(b[0],b[1]),C2=P(cc[0],cc[1]),E=P(d[0],d[1]);
-    x.beginPath(); x.moveTo(A[0],A[1]); x.lineTo(B[0],B[1]);
-    x.lineTo(C2[0],C2[1]); x.lineTo(E[0],E[1]); x.closePath();
-    x.fillStyle=fill; x.fill();
-  }
-  var g=x.createLinearGradient(0,0,W,H);
-  g.addColorStop(0,'#2E333B'); g.addColorStop(0.45,'#454B55'); g.addColorStop(1,'#24282F');
-  x.fillStyle=g; x.fillRect(0,0,W,H);
+  // MEASURE BEHIND THE REAL FACES. The exclusion boxes come off getBoundingClientRect,
+  // and a box measured before the webfont arrives is the fallback face's box. Round 13
+  // grew the source block from two lines to three and a greeked rule went straight
+  // through the citation, because the box this loop tested against was the shorter one.
+  // The whole draw now waits, the same way frames 6 and 9 already do.
+  document.fonts.ready.then(function(){
+    // The stamp sits one line under the dek, wherever the browser actually ended it. Set before
+    // BLOCK is read below, so the greeked rule field excludes it like every other child.
+    var _dek=document.querySelector('.veiled'), _cid=document.querySelector('.cid');
+    _cid.style.top = (_dek.offsetTop + _dek.offsetHeight + 14) + 'px';
+    var c=document.getElementById('c'), x=c.getContext('2d'); x.scale(2,2);
+    var W=1080,H=1350; TX.reseed(40417); var R = TX.rng(40417);
+    // the same constants the .plane transform carries, so the case and the type are one object
+    var D=1500, TH=-19*Math.PI/180, ST=Math.sin(TH), CT=Math.cos(TH), OX=520, OY=690;
+    function P(px,py){
+      var u=px-OX, v=py-OY, s=D/(D+u*ST);
+      return [OX+u*CT*s, OY+v*s];
+    }
+    function quad(a,b,cc,d,fill){
+      var A=P(a[0],a[1]),B=P(b[0],b[1]),C2=P(cc[0],cc[1]),E=P(d[0],d[1]);
+      x.beginPath(); x.moveTo(A[0],A[1]); x.lineTo(B[0],B[1]);
+      x.lineTo(C2[0],C2[1]); x.lineTo(E[0],E[1]); x.closePath();
+      x.fillStyle=fill; x.fill();
+    }
+    var g=x.createLinearGradient(0,0,W,H);
+    g.addColorStop(0,'#2E333B'); g.addColorStop(0.45,'#454B55'); g.addColorStop(1,'#24282F');
+    x.fillStyle=g; x.fillRect(0,0,W,H);
 
-  // sheet in the plane's own coordinates; the mullion crosses it low at the far left and high
-  // at the near right, which leaves the unveiled block in the near lower corner
-  var LX=180, RX=860, TY=250, BY=1130;
-  var MLY=884, MRY=567;                       // the mullion's left and right crossings
+    // sheet in the plane's own coordinates; the mullion crosses it low at the far left and high
+    // at the near right, which leaves the unveiled block in the near lower corner
+    var LX=180, RX=860, TY=250, BY=1130;
+    var MLY=884, MRY=567;                       // the mullion's left and right crossings
 
-  // the case, seen from the right, so the FAR stile shows its inner face and the near one a sliver
-  quad([128,196],[912,196],[912,1184],[128,1184],'#1F252C');
-  quad([128,196],[180,250],[180,1130],[128,1184],'#5F5E58');   // far stile's lit inner face
-  quad([128,196],[912,196],[860,250],[180,250],'#C4BFB0');     // top rail's lit lip
-  quad([180,1130],[860,1130],[912,1184],[128,1184],'#6E6D67'); // lower rail
-  quad([180,250],[860,250],[860,266],[180,266],'rgba(20,24,30,0.42)'); // rail's shadow on the sheet
+    // the case, seen from the right, so the FAR stile shows its inner face and the near one a sliver
+    quad([128,196],[912,196],[912,1184],[128,1184],'#1F252C');
+    quad([128,196],[180,250],[180,1130],[128,1184],'#5F5E58');   // far stile's lit inner face
+    quad([128,196],[912,196],[860,250],[180,250],'#C4BFB0');     // top rail's lit lip
+    quad([180,1130],[860,1130],[912,1184],[128,1184],'#6E6D67'); // lower rail
+    quad([180,250],[860,250],[860,266],[180,266],'rgba(20,24,30,0.42)'); // rail's shadow on the sheet
 
-  // the sheet
-  quad([LX,TY],[RX,TY],[RX,BY],[LX,BY],'#F2EEE4');
+    // the sheet
+    quad([LX,TY],[RX,TY],[RX,BY],[LX,BY],'#F2EEE4');
 
-  // decorative body type, laid on the plane so it foreshortens with the sheet. Every rule is
-  // rejected if it comes near a line that carries a claim, because a rule through the veiled
-  // paragraph is a strikethrough on the one block the frame asks a reader to strain at.
-  // THE EXCLUSION LIST IS READ FROM THE TYPE, NEVER TYPED BESIDE IT. 2026-08-26.
-  //
-  // These four rectangles used to be literals: [430,800,830,985] for the hook, and so on, a
-  // hand-kept second copy of boxes the CSS above already declares. Round 9's craft judge named
-  // the class ("make every text box a child of the paper geometry it prints on") and this frame
-  // is where it bit. Moving `.src` 30px left and giving it a second line left the literal
-  // reserving 21px of height at the old x, so the greeked rule field drew straight through the
-  // citation, and machine QA reported the label crossed by art across 100 percent of its span.
-  //
-  // The boxes come out of the DOM now. `.plane` is transformed, which makes it the containing
-  // block, so each child's offsetLeft/offsetTop is already plane-relative and offsetHeight is
-  // the height the browser ACTUALLY laid, including a wrap the author did not predict. Move a
-  // string, add a line, change the measure: the exclusion follows on its own.
-  // ...and BOTH ARE MEASURED IN THE SAME SPACE, which is the half that actually bit. The DOM
-  // lays type through `perspective(1500px) rotateY(-19deg)` and this canvas draws the sheet
-  // through P(), two independent projections of one object, so the old literals were a hand
-  // tuned correspondence between them and a plane-space rectangle never matched a screen-space
-  // one. getBoundingClientRect returns the box AFTER the CSS transform, in the canvas's own CSS
-  // pixels, and every rule is projected through P() before it is tested. One space, both layers.
-  var BLOCK = (function(){
-    var out = [];
-    document.querySelectorAll('.plane div').forEach(function(el){
-      var r = el.getBoundingClientRect();
-      out.push([r.left, r.top, r.right, r.bottom]);
+    // decorative body type, laid on the plane so it foreshortens with the sheet. Every rule is
+    // rejected if it comes near a line that carries a claim, because a rule through the veiled
+    // paragraph is a strikethrough on the one block the frame asks a reader to strain at.
+    // THE EXCLUSION LIST IS READ FROM THE TYPE, NEVER TYPED BESIDE IT. 2026-08-26.
+    //
+    // These four rectangles used to be literals: [430,800,830,985] for the hook, and so on, a
+    // hand-kept second copy of boxes the CSS above already declares. Round 9's craft judge named
+    // the class ("make every text box a child of the paper geometry it prints on") and this frame
+    // is where it bit. Moving `.src` 30px left and giving it a second line left the literal
+    // reserving 21px of height at the old x, so the greeked rule field drew straight through the
+    // citation, and machine QA reported the label crossed by art across 100 percent of its span.
+    //
+    // The boxes come out of the DOM now. `.plane` is transformed, which makes it the containing
+    // block, so each child's offsetLeft/offsetTop is already plane-relative and offsetHeight is
+    // the height the browser ACTUALLY laid, including a wrap the author did not predict. Move a
+    // string, add a line, change the measure: the exclusion follows on its own.
+    // ...and BOTH ARE MEASURED IN THE SAME SPACE, which is the half that actually bit. The DOM
+    // lays type through `perspective(1500px) rotateY(-19deg)` and this canvas draws the sheet
+    // through P(), two independent projections of one object, so the old literals were a hand
+    // tuned correspondence between them and a plane-space rectangle never matched a screen-space
+    // one. getBoundingClientRect returns the box AFTER the CSS transform, in the canvas's own CSS
+    // pixels, and every rule is projected through P() before it is tested. One space, both layers.
+    var BLOCK = (function(){
+      var out = [];
+      document.querySelectorAll('.plane div').forEach(function(el){
+        var r = el.getBoundingClientRect();
+        out.push([r.left, r.top, r.right, r.bottom]);
+      });
+      return out;
+    })();
+    function clearOf(a,b,cc,d){
+      // a,b,cc,d arrive in PLANE coordinates. Project all four corners and test the screen box
+      // they actually cover, because P() shears x with depth and a plane rectangle is not a
+      // screen rectangle.
+      var c1=P(a,b), c2=P(cc,b), c3=P(cc,d), c4=P(a,d);
+      var L=Math.min(c1[0],c2[0],c3[0],c4[0]), R=Math.max(c1[0],c2[0],c3[0],c4[0]);
+      var T=Math.min(c1[1],c2[1],c3[1],c4[1]), Bo=Math.max(c1[1],c2[1],c3[1],c4[1]);
+      for(var i=0;i<BLOCK.length;i++){ var B=BLOCK[i];
+        if(L<B[2]+22 && R>B[0]-22 && T<B[3]+22 && Bo>B[1]-22) return false; }
+      return true;
+    }
+    function mully(px){ return MLY - ((px-LX)/(RX-LX))*(MLY-MRY); }
+    var KEPT=[];
+    // SHORTEN, DO NOT SKIP. Round 12 found the cover dropping four whole rules on a two pixel
+    // overlap and leaving holes in what is supposed to be a paragraph of agenda body, and found
+    // this frame leaving two orphan hairlines with 40 and 70px of nothing between them, one close
+    // enough under 'there.' to read as an underline. A line of type that meets a figure does not
+    // vanish. It runs to the figure and stops, and the next line starts where it always did.
+    // So a rule that collides is TRIMMED to the free width, and only a stub under 70px is dropped.
+    function freeWidth(x0, y, want){
+      var w = want;
+      while(w > 40 && !clearOf(x0, y, x0 + w, y + 4)) w -= 8;
+      return w;
+    }
+    for(var r=0;r<48;r++){
+      var ly=286+r*15;
+      var lw=392*(0.46+0.5*Math.abs(TX.simplex2(r*0.62,9.2)));
+      if(ly+4 > mully(222+lw)-22) continue;          // stop clear of the mullion's own edge
+      lw = freeWidth(222, ly, lw);
+      if(lw < 70) continue;
+      KEPT.push([ly, lw]);
+    }
+    // A RUN OF RULES IS TEXT. ONE RULE IS A MARK. Round 12 flagged two orphans here and the
+    // shorten-instead-of-skip fix left r=30 alone at plane y736 with 433 displayed pixels of blank
+    // sheet above it, which is the same defect the comment above quotes and claims cured. Nothing
+    // tested ISOLATION, only width. This drops any rule whose nearest neighbour is more than three
+    // leadings away, so a stray can never read as an underline again.
+    KEPT.forEach(function(rw, i){
+      var near = Infinity;
+      KEPT.forEach(function(o, j){ if(i!==j) near = Math.min(near, Math.abs(o[0]-rw[0])); });
+      if(near > 45) return;
+      quad([222,rw[0]],[222+rw[1],rw[0]],[222+rw[1],rw[0]+4],[222,rw[0]+4],'rgba(42,38,34,0.30)');
     });
-    return out;
-  })();
-  function clearOf(a,b,cc,d){
-    // a,b,cc,d arrive in PLANE coordinates. Project all four corners and test the screen box
-    // they actually cover, because P() shears x with depth and a plane rectangle is not a
-    // screen rectangle.
-    var c1=P(a,b), c2=P(cc,b), c3=P(cc,d), c4=P(a,d);
-    var L=Math.min(c1[0],c2[0],c3[0],c4[0]), R=Math.max(c1[0],c2[0],c3[0],c4[0]);
-    var T=Math.min(c1[1],c2[1],c3[1],c4[1]), Bo=Math.max(c1[1],c2[1],c3[1],c4[1]);
-    for(var i=0;i<BLOCK.length;i++){ var B=BLOCK[i];
-      if(L<B[2]+16 && R>B[0]-16 && T<B[3]+16 && Bo>B[1]-16) return false; }
-    return true;
-  }
-  function mully(px){ return MLY - ((px-LX)/(RX-LX))*(MLY-MRY); }
-  for(var r=0;r<48;r++){
-    var ly=286+r*15;
-    var lw=392*(0.46+0.5*Math.abs(TX.simplex2(r*0.62,9.2)));
-    if(ly+4 > mully(222+lw)-22) continue;          // stop clear of the mullion's own edge
-    if(!clearOf(222,ly,222+lw,ly+4)) continue;
-    quad([222,ly],[222+lw,ly],[222+lw,ly+4],[222,ly+4],'rgba(42,38,34,0.30)');
-  }
-  // the release continues below the mullion in the clear, so the sheet does not appear to end
-  // where the glazing bar crosses it
-  for(var r2=0;r2<10;r2++){
-    var cy2=946+r2*15, cw=214*(0.44+0.52*Math.abs(TX.simplex2(r2*0.71,3.3)));
-    if(cy2 < mully(210+cw)+22) continue;
-    if(!clearOf(210,cy2,210+cw,cy2+4)) continue;
-    quad([210,cy2],[210+cw,cy2],[210+cw,cy2+4],[210,cy2+4],'rgba(42,38,34,0.30)');
-  }
+    // the release continues below the mullion in the clear, so the sheet does not appear to end
+    // where the glazing bar crosses it
+    for(var r2=0;r2<10;r2++){
+      var cy2=946+r2*15, cw=214*(0.44+0.52*Math.abs(TX.simplex2(r2*0.71,3.3)));
+      if(cy2 < mully(210+cw)+22) continue;
+      cw = freeWidth(210, cy2, cw);
+      if(cw < 70) continue;
+      quad([210,cy2],[210+cw,cy2],[210+cw,cy2+4],[210,cy2+4],'rgba(42,38,34,0.30)');
+    }
 
+    // THE VEIL DIES ON THE MULLION, and it is told where that is rather than guessing.
+  // Plane coords, because .veil carries the same transform as .plane.
+  document.querySelector('.veil').style.clipPath =
+    'polygon(' + (LX-100) + 'px 82px, ' + (RX-100) + 'px 82px, '
+    + (RX-100) + 'px ' + (MRY-150) + 'px, ' + (LX-100) + 'px ' + (MLY-150) + 'px)';
   // THE MULLION, the frame's darkest thing, and the hard edge the veil dies on
-  quad([LX,MLY],[RX,MRY],[RX,MRY+15],[LX,MLY+15],'#1F252C');
-  quad([LX,MLY],[RX,MRY],[RX,MRY+3],[LX,MLY+3],'rgba(226,222,208,0.30)');
+    quad([LX,MLY],[RX,MRY],[RX,MRY+15],[LX,MLY+15],'#1F252C');
+    quad([LX,MLY],[RX,MRY],[RX,MRY+3],[LX,MLY+3],'rgba(226,222,208,0.30)');
 
-  // sheet foot: graded falloff so the bottom band carries modeled tone rather than flat paper
-  var fb=P(LX,BY-210), fb2=P(RX,BY);
-  var fg=x.createLinearGradient(0,fb[1],0,fb2[1]);
-  fg.addColorStop(0,'rgba(120,112,96,0)'); fg.addColorStop(1,'rgba(88,82,70,0.32)');
-  x.save(); x.beginPath();
-  var q1=P(LX,BY-210),q2=P(RX,BY-210),q3=P(RX,BY),q4=P(LX,BY);
-  x.moveTo(q1[0],q1[1]); x.lineTo(q2[0],q2[1]); x.lineTo(q3[0],q3[1]); x.lineTo(q4[0],q4[1]);
-  x.closePath(); x.clip(); x.fillStyle=fg; x.fillRect(0,0,W,H); x.restore();
+    // sheet foot: graded falloff so the bottom band carries modeled tone rather than flat paper
+    var fb=P(LX,BY-210), fb2=P(RX,BY);
+    var fg=x.createLinearGradient(0,fb[1],0,fb2[1]);
+    fg.addColorStop(0,'rgba(120,112,96,0)'); fg.addColorStop(1,'rgba(88,82,70,0.32)');
+    x.save(); x.beginPath();
+    var q1=P(LX,BY-210),q2=P(RX,BY-210),q3=P(RX,BY),q4=P(LX,BY);
+    x.moveTo(q1[0],q1[1]); x.lineTo(q2[0],q2[1]); x.lineTo(q3[0],q3[1]); x.lineTo(q4[0],q4[1]);
+    x.closePath(); x.clip(); x.fillStyle=fg; x.fillRect(0,0,W,H); x.restore();
 
-  // the case's contact shadow onto the wall, cast from the near side
-  var lo=P(128,1184), ro=P(912,1184);
-  var sg=x.createLinearGradient(0,Math.min(lo[1],ro[1]),0,Math.max(lo[1],ro[1])+150);
-  sg.addColorStop(0,'rgba(18,22,28,0.52)'); sg.addColorStop(1,'rgba(18,22,28,0)');
-  x.fillStyle=sg; x.fillRect(0,Math.min(lo[1],ro[1]),W,220);
+    // the case's contact shadow onto the wall, cast from the near side
+    var lo=P(128,1184), ro=P(912,1184);
+    var sg=x.createLinearGradient(0,Math.min(lo[1],ro[1]),0,Math.max(lo[1],ro[1])+150);
+    sg.addColorStop(0,'rgba(18,22,28,0.52)'); sg.addColorStop(1,'rgba(18,22,28,0)');
+    x.fillStyle=sg; x.fillRect(0,Math.min(lo[1],ro[1]),W,220);
 
-  for(var q=0;q<16000;q++){
-    var qx=R()*W, qy=R()*H, qn=TX.fbm2(qx*0.015,qy*0.015,3);
-    x.fillStyle='rgba('+(qn>0?255:0)+','+(qn>0?255:0)+','+(qn>0?255:0)+','+(0.026*Math.abs(qn))+')';
-    x.fillRect(qx,qy,2,2);
-  }
+    for(var q=0;q<16000;q++){
+      var qx=R()*W, qy=R()*H, qn=TX.fbm2(qx*0.015,qy*0.015,3);
+      x.fillStyle='rgba('+(qn>0?255:0)+','+(qn>0?255:0)+','+(qn>0?255:0)+','+(0.026*Math.abs(qn))+')';
+      x.fillRect(qx,qy,2,2);
+    }
   resolve();
+  });
 });
 </script>
 </body></html>

@@ -25,6 +25,8 @@ A reader is owed the rule, not just the number.
   OUT: an item where a data center is merely discussed, received, or scheduled.
 """
 import json, pathlib, collections, re
+import datetime as _d   # date math for the door and span computations, lifted to the top on
+                        # 2026-08-26 because DOORS needed it above the line that used to define it
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 doc = json.loads((ROOT / "ledger/docket.json").read_text(encoding="utf-8"))
@@ -79,11 +81,42 @@ by = {i["id"]: i for i in items}
 # exhaustiveness assertion could not fire on it, and the recut's whole stated guarantee that a
 # silent omission is structurally impossible did not hold. An assertion is only as wide as the
 # set it runs over, and a set defined by a regex over prose is a set the record does not control.
+# ROUND 13 HARD FAILED THE SET THIS COMPUTES OVER, and the reason is worth the paragraph.
+#
+# The regex ran over TITLE AND SUMMARY, and tx-2026-0002 entered the counted set because its
+# summary reads "The rule as published in the Texas Register does not contain the words data
+# center." THE REGEX MATCHED A NEGATION. The closing frame's whole figure then rested on a phrase
+# in a summary saying the words are absent, so rewording that one sentence would have changed a
+# published count. On a product whose first law is that numbers are computed, a count that is a
+# property of prose is not computed.
+#
+# The regex now reads the TITLE only, which is a field about what the item IS rather than a
+# paragraph about what it says. Anything the title does not name is admitted BY ID with a written
+# reason, the same way OUT already refuses by id with a written reason. A judgement written down
+# is a judgement; a judgement smuggled through a regex is an accident.
 _DC = re.compile(r"data cent|hyperscale", re.I)
+ADMITTED = {
+    "tx-2026-0002": "PUCT's Large Load Demand Management rule is the rule a data center "
+                    "interconnects under, and the comment window on it is the only state door "
+                    "this deck's subject can walk through. Its title says large load rather than "
+                    "data center and its topic is power-and-the-grid, so nothing structural "
+                    "admits it and this line does.",
+    "tx-2026-0028": "Hays County's 180 day review period covers high water use development "
+                    "applications and the county's own order names the data center it was "
+                    "written for. The title says high-usage development.",
+    "tx-2026-0001": "ERCOT large load interconnection, the queue every Texas data center sits in.",
+    "tx-2026-0069": "Pecos-Barstow-Toyah ISD's agreement is for the power plant a data center "
+                    "campus is being built around, and the deck classifies it OUT for that "
+                    "reason rather than omitting it.",
+}
 CANDIDATES = {i["id"] for i in items
               if any(str(k.get("date", "")).startswith("2026") for k in (i.get("key_dates") or []))
               and (i.get("topic") == "data-centers"
-                   or _DC.search((i.get("title") or "") + " " + (i.get("summary") or "")))}
+                   or _DC.search(i.get("title") or "")
+                   or i["id"] in ADMITTED)}
+assert set(ADMITTED) <= CANDIDATES, (
+    "an admitted id is not in the record or carries no 2026 date, so the reason written for it "
+    "is describing an item this run cannot see: " + str(sorted(set(ADMITTED) - CANDIDATES)))
 
 # ACTED: place, shape, and the claim whose own words prove the shape.
 ACTED = {
@@ -295,13 +328,93 @@ STATED_BINDING = {
 # resolution starts a process rather than stopping anything, and the guard now turns on it.
 RUN_DATE = "2026-08-25"        # this run's date, the only clock any of this reads
 
+# THE INSTRUMENT, read off each item's own cited claim rather than off a label this deck chose.
+# One home, because two figures now turn on it and the repo's highest recurrence defect is a
+# value with one home and a surface that keeps its own copy.
+RESOLUTIONS = sorted(i for i in ACTED
+                     if "resolution" in (_by_id[ACTED[i][2]].get("quote", "") + " "
+                                         + _by_id[ACTED[i][2]].get("text", "")).lower())
+
 # A DOOR IS A DATED STEP PLUS A ROOM. Either alone is not one: a deadline nobody may speak to is
 # a date, and an open meeting with nothing left on its calendar is a room with no reason to go.
+#
+# ROUND 12 HARD FAILED THIS AND WAS RIGHT TWICE OVER.
+#
+# It returned 1, and the 1 was right by accident. `any(date >= RUN_DATE)` accepted a future date
+# of ANY KIND, so Fort Worth qualified on `effective 2027-02-16`, which is the day a rule would
+# begin and not a day anybody attends. The hearing the frame was actually about is in no
+# key_dates entry at all. A count that lands on the right item through the wrong field is a
+# count that will land on the wrong item the moment the record grows, which is the same defect
+# as being wrong today.
+#
+# It was also SCOPED TO THE FIFTEEN while the frame printed an unqualified "One door is still
+# open", which the record refutes: tx-2026-0002 is a PUCT comment window closing September 4th,
+# and this account published a deck about that window on August 22nd. A superlative is a claim
+# over whatever set the reader assumes, so it has to be computed over the set the reader assumes.
+#
+# So a door is now two conditions the record states rather than one it implies:
+#   KIND  - a step the public is invited to, which is a hearing or a comment window. An effective
+#           date, a statutory deadline on a body, and every past tense kind are not doors.
+#   ROOM  - `open_meeting` or `open_comment`, the rooms a member of the public may enter.
+# and it is counted over CANDIDATES, every item this deck weighed whether it counted it or not,
+# which is the widest set the deck's own subject supports.
+_DOOR_KINDS = {"hearing", "comment_closes", "comment_opens"}
 _OPEN_ROOMS = {"open_meeting", "open_comment"}
-OPEN_DOORS = {i["id"] for i in items
-              if i["id"] in ACTED
-              and any(str(k.get("date", "")) >= RUN_DATE for k in (i.get("key_dates") or []))
-              and (i.get("public_access") or {}).get("room") in _OPEN_ROOMS}
+def _door_dates(i):
+    """Every future date this item offers the public, from both places the record keeps one.
+
+    Round 13 found the first version reading key_dates alone, which misses `public_access.closes`.
+    A room that closes on a date is a door with a deadline whether or not a key_date repeats it,
+    and tx-2026-0048 is the proof: League City's room closes 2026-11-03 and its only key_date of
+    that day is kind `effective`.
+    """
+    out = [k["date"] for k in (i.get("key_dates") or [])
+           if k.get("kind") in _DOOR_KINDS and not k.get("canceled")
+           and str(k.get("date", "")) >= RUN_DATE]
+    closes = (i.get("public_access") or {}).get("closes")
+    if closes and str(closes) >= RUN_DATE:
+        out.append(str(closes))
+    return sorted(out)
+
+
+def _doors(scope):
+    return {i["id"] for i in items if i["id"] in scope
+            and _door_dates(i)
+            and (i.get("public_access") or {}).get("room") in _OPEN_ROOMS}
+OPEN_DOORS = _doors(CANDIDATES)
+# The record's own vocabulary for a local government, which is what the closing frame's word
+# "local" has to mean. Asserted against the fifteen so it can never quietly stop matching them.
+_LOCAL_TYPES = {"city", "county", "special-district", "school-district"}
+assert all((by[i].get("decider") or {}).get("type") in _LOCAL_TYPES for i in ACTED), (
+    "every acting item is a local government by the deck's own selection rule, so any that the "
+    "record types otherwise means the two definitions have drifted: "
+    + str(sorted((i, (by[i].get("decider") or {}).get("type")) for i in ACTED
+                 if (by[i].get("decider") or {}).get("type") not in _LOCAL_TYPES)))
+# The one the old rule wrongly admitted, kept as a live guard rather than as a comment.
+assert "tx-2026-0062" not in OPEN_DOORS, (
+    "Fort Worth's only future key date is `effective`, which is a day a rule begins and not a "
+    "day a reader may speak. If the record grows a hearing entry for it this assert is what "
+    "tells you the frame's subject changed.")
+assert not (OPEN_DOORS & set(ACTED)), (
+    "the deck prints that the fifteen are done and the open doors are elsewhere. An acting item "
+    "with a door open refutes that sentence: " + str(sorted(OPEN_DOORS & set(ACTED))))
+# Each door, with the date and kind the frame prints, so no date on that frame is typed.
+_MON = ("January February March April May June July August September October November "
+        "December").split()
+def _ord(n):
+    return f"{n}th" if 11 <= n % 100 <= 13 else f"{n}{ {1:'st',2:'nd',3:'rd'}.get(n % 10, 'th') }"
+DOORS = []
+for _i in sorted(OPEN_DOORS):
+    _date = _door_dates(by[_i])[0]
+    _k = next((k for k in (by[_i].get("key_dates") or [])
+               if k.get("kind") in _DOOR_KINDS and str(k.get("date", "")) == _date),
+              {"kind": "comment_closes", "date": _date})
+    _y, _m, _dd = (int(v) for v in _date.split("-"))
+    DOORS.append({"item": _i, "kind": _k["kind"], "date": _date,
+                  "long": f"{_MON[_m - 1]} {_ord(_dd)}",
+                  "room": by[_i]["public_access"]["room"],
+                  "days_out": (_d.date.fromisoformat(_date) - _d.date.fromisoformat(RUN_DATE)).days})
+DOORS.sort(key=lambda x: x["date"])
 
 _DENIAL = {"tx-2026-0051"}          # a refusal has no date to bring into effect, see above
 _IN_FORCE = {i["id"] for i in items
@@ -317,6 +430,16 @@ assert not (set(STATED_NONBINDING) & _IN_FORCE), (
     + str(sorted(set(STATED_NONBINDING) & _IN_FORCE)))
 # The same effective dates prove the copy's stronger claim, that these took effect the day they
 # passed, so the deck may say it or drop it on evidence rather than on feel.
+# FRAME 3 PRINTS THAT THESE FIVE START ON NO DATE, so the record has to prove it. Round 13 hard
+# failed this frame for saying "nothing in their sources says the action binds", which c44 refutes
+# for Wichita Falls inside this run's own claims file. The bucket is a MEASUREMENT about key_dates
+# and the frame now prints the measurement rather than a claim about what sources say.
+_FORCE_UNSTATED = set(ACTED) - set(STATED_BINDING) - set(STATED_NONBINDING)
+assert all(not any(k.get("kind") == "effective" for k in (by[i].get("key_dates") or []))
+           for i in _FORCE_UNSTATED), (
+    "an item in the force-unstated five carries an effective key date, so the frame may no longer "
+    "print that they start on no date")
+
 _SAME_DAY = {i["id"] for i in items
              if {k["date"] for k in (i.get("key_dates") or []) if k.get("kind") == "effective"}
              == {k["date"] for k in (i.get("key_dates") or []) if k.get("kind") == "ordered"}
@@ -363,6 +486,16 @@ _by_month = collections.Counter(int(ordered_on(i)[5:7]) for i in ACTED)
 chronology = [{"date": ordered_on(i), "place": ACTED[i][0], "shape": ACTED[i][1],
                "claim": ACTED[i][2], "item": i} for i in sorted(ACTED, key=ordered_on)]
 
+# AND THE FINDING IS ASSERTED, not observed. If a future run's record puts a resolution in the
+# binding set, this stops the deck rather than letting the frame keep printing a rule the record
+# has stopped supporting. A finding a run may print is a finding a run must re-prove.
+assert not (set(RESOLUTIONS) & set(STATED_BINDING)), (
+    "a resolution whose effective date has arrived is in the record, so the deck may no longer "
+    "print that not one resolution took effect: "
+    + str(sorted(set(RESOLUTIONS) & set(STATED_BINDING))))
+assert len(RESOLUTIONS) == 5, (
+    "frame 4 prints five resolutions and the record now holds " + str(len(RESOLUTIONS)))
+
 out = {
   "restricted_count":  {"value": restricted_n, "rule": "Texas governmental bodies in the record that took a recorded 2026 action aimed at a data center or at the incentive one depended on, of any binding force",
                         "from_items": sorted(ACTED)},
@@ -376,7 +509,7 @@ out = {
                         "rule": "acting bodies whose record shows the action changed a legal state on the day",
                         "from_items": sorted(STATED_BINDING)},
   "force_unstated":    {"value": restricted_n - len(STATED_NONBINDING) - len(STATED_BINDING),
-                        "rule": "acting bodies the record says nothing about either way",
+                        "rule": "acting items carrying no `effective` key date at all, which is a measurement about the record and NOT a claim about what sources say. Round 13 and round 14 both hard failed a frame for printing the second over the first",
                         "from_items": sorted(set(ACTED) - set(STATED_NONBINDING) - set(STATED_BINDING))},
   "late_cluster":      {"value": late_n, "rule": "the later half of the acting bodies by ordered date, floor divided, so %d of %d" % (late_n, restricted_n)},
   "late_span":         {"value": late_span,
@@ -437,22 +570,56 @@ out = {
   # no comment period remains open. Fort Worth has both. The hook happens to be right and was not
   # computed, which on this product is the same defect as being wrong.
   "open_doors":        {"value": len(OPEN_DOORS),
-                        "rule": "acting items carrying a key date on or after the run date AND a "
-                                "public_access room a member of the public can enter, counted over "
-                                "the fifteen this deck carries rather than the whole docket",
+                        "rule": "every item this deck weighed that carries a HEARING or a COMMENT "
+                                "WINDOW dated on or after the run date, in a public_access room a "
+                                "member of the public may enter. An effective date is not a door "
+                                "and a deadline on a body is not a door",
                         "from_items": sorted(OPEN_DOORS)},
+  "candidates_count":  {"value": len(CANDIDATES),
+                        "rule": "every 2026 dated item this deck weighed, whether it counted it, "
+                                "declined it or ruled it out. Selected on the record's own topic "
+                                "and title fields plus four ids admitted with a written reason, "
+                                "never on a regex over summary prose",
+                        "from_items": sorted(CANDIDATES)},
+  "doors_record_wide":  {"value": len(_doors({i["id"] for i in items})),
+                        "rule": "the same door test run over EVERY item in the record rather than "
+                                "over this deck's subject. Published because a frame that prints "
+                                "a door count has to say which set it counted, and round 13 hard "
+                                "failed one that did not",
+                        "from_items": sorted(_doors({i["id"] for i in items}))},
+  "door_days_out":     {"value": min(d["days_out"] for d in DOORS),
+                        "rule": "days from the run date to the nearest open door"},
+  "doors_local":       {"value": len([i for i in OPEN_DOORS
+                                      if (by[i].get("decider") or {}).get("type") in _LOCAL_TYPES]),
+                        "rule": "how many of the open doors sit with a local government, read "
+                                "off the record's own decider.type rather than off this deck's "
+                                "selection, so the closing frame's word local is the record's"},
   "approvals":         {"value": len(APPROVALS),
                         "rule": "acting items whose cited claim records a body approving a data "
                                 "center project or the incentive one depends on, as opposed to "
                                 "regulating, refusing, studying or directing staff",
                         "from_items": sorted(APPROVALS)},
-  "resolutions":       {"value": len([i for i in ACTED
-                                      if "resolution" in (_by_id[ACTED[i][2]].get("quote", "") + " "
-                                                          + _by_id[ACTED[i][2]].get("text", "")).lower()]),
+  "resolutions":       {"value": len(RESOLUTIONS),
                         "rule": "acting items whose own cited claim calls the instrument a resolution",
                         "from_items": sorted(i for i in ACTED
                                              if "resolution" in (_by_id[ACTED[i][2]].get("quote", "") + " "
                                                                  + _by_id[ACTED[i][2]].get("text", "")).lower())},
+  # THE SENTENCE THIS DECK PROVES ACROSS FIVE FRAMES AND NEVER SAID. Round 13's reader judge:
+  # "The deck never writes its own lesson down. It shows the stop-nothing five and the took-effect
+  # five and leaves the reader to derive that an ordinance binds and a resolution does not, which
+  # is the one portable sentence in the whole record."
+  #
+  # It is not derived by feel. `resolutions` is already computed from each item's own cited claim
+  # calling the instrument a resolution, and `STATED_BINDING` is already computed from whether the
+  # effective date has arrived. The intersection is EMPTY, and the assert below is what makes that
+  # a finding rather than a coincidence this run happened to notice.
+  "resolutions_binding": {"value": len(set(RESOLUTIONS) & set(STATED_BINDING)),
+                        "rule": "acting items whose own cited claim calls the instrument a "
+                                "resolution AND whose effective date has arrived. Every one of "
+                                "the five resolutions is either stated non binding or is one the "
+                                "sources do not speak to, so this is zero, and it is the rule the "
+                                "deck can hand a reader",
+                        "from_items": sorted(set(RESOLUTIONS) & set(STATED_BINDING))},
   "busiest_month":     {"value": _MONTHS[max(_by_month, key=lambda m: _by_month[m]) - 1],
                         "rule": "the calendar month carrying the most acting dates"},
   "busiest_month_count": {"value": max(_by_month.values()),
@@ -499,6 +666,9 @@ _computed["_note"] = ("Written by compute.py beside figures.json, for the site's
 (pathlib.Path(__file__).parent / "computed.json").write_text(
     json.dumps(_computed, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
 
+# The doors, in full, so the closing frame reads its dates rather than typing them.
+out["_doors"] = {"value": len(DOORS), "rule": "each open door with its date, kind and room",
+                 "detail": DOORS}
 (pathlib.Path(__file__).parent / "figures.json").write_text(json.dumps(out, indent=2) + "\n", encoding="utf-8")
 for k, v in out.items():
     print(f"  {k:24} {v['value']}")

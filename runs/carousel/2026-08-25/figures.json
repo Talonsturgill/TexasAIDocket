@@ -56,7 +56,7 @@
   },
   "force_unstated": {
     "value": 5,
-    "rule": "acting bodies the record says nothing about either way",
+    "rule": "acting items carrying no `effective` key date at all, which is a measurement about the record and NOT a claim about what sources say. Round 13 and round 14 both hard failed a frame for printing the second over the first",
     "from_items": [
       "tx-2026-0028",
       "tx-2026-0029",
@@ -232,11 +232,76 @@
     "rule": "quoted from tx-2026-0051-c1"
   },
   "open_doors": {
-    "value": 1,
-    "rule": "acting items carrying a key date on or after the run date AND a public_access room a member of the public can enter, counted over the fifteen this deck carries rather than the whole docket",
+    "value": 2,
+    "rule": "every item this deck weighed that carries a HEARING or a COMMENT WINDOW dated on or after the run date, in a public_access room a member of the public may enter. An effective date is not a door and a deadline on a body is not a door",
     "from_items": [
-      "tx-2026-0062"
+      "tx-2026-0002",
+      "tx-2026-0072"
     ]
+  },
+  "candidates_count": {
+    "value": 36,
+    "rule": "every 2026 dated item this deck weighed, whether it counted it, declined it or ruled it out. Selected on the record's own topic and title fields plus four ids admitted with a written reason, never on a regex over summary prose",
+    "from_items": [
+      "tx-2026-0001",
+      "tx-2026-0002",
+      "tx-2026-0026",
+      "tx-2026-0027",
+      "tx-2026-0028",
+      "tx-2026-0029",
+      "tx-2026-0032",
+      "tx-2026-0033",
+      "tx-2026-0034",
+      "tx-2026-0035",
+      "tx-2026-0037",
+      "tx-2026-0041",
+      "tx-2026-0042",
+      "tx-2026-0043",
+      "tx-2026-0044",
+      "tx-2026-0045",
+      "tx-2026-0050",
+      "tx-2026-0051",
+      "tx-2026-0052",
+      "tx-2026-0056",
+      "tx-2026-0058",
+      "tx-2026-0059",
+      "tx-2026-0060",
+      "tx-2026-0061",
+      "tx-2026-0062",
+      "tx-2026-0063",
+      "tx-2026-0064",
+      "tx-2026-0065",
+      "tx-2026-0066",
+      "tx-2026-0067",
+      "tx-2026-0068",
+      "tx-2026-0069",
+      "tx-2026-0070",
+      "tx-2026-0072",
+      "tx-2026-0073",
+      "tx-2026-0078"
+    ]
+  },
+  "doors_record_wide": {
+    "value": 8,
+    "rule": "the same door test run over EVERY item in the record rather than over this deck's subject. Published because a frame that prints a door count has to say which set it counted, and round 13 hard failed one that did not",
+    "from_items": [
+      "tx-2026-0002",
+      "tx-2026-0015",
+      "tx-2026-0016",
+      "tx-2026-0024",
+      "tx-2026-0048",
+      "tx-2026-0072",
+      "tx-2026-0075",
+      "tx-2026-0077"
+    ]
+  },
+  "door_days_out": {
+    "value": 10,
+    "rule": "days from the run date to the nearest open door"
+  },
+  "doors_local": {
+    "value": 0,
+    "rule": "how many of the open doors sit with a local government, read off the record's own decider.type rather than off this deck's selection, so the closing frame's word local is the record's"
   },
   "approvals": {
     "value": 2,
@@ -256,6 +321,11 @@
       "tx-2026-0052",
       "tx-2026-0062"
     ]
+  },
+  "resolutions_binding": {
+    "value": 0,
+    "rule": "acting items whose own cited claim calls the instrument a resolution AND whose effective date has arrived. Every one of the five resolutions is either stated non binding or is one the sources do not speak to, so this is zero, and it is the rule the deck can hand a reader",
+    "from_items": []
   },
   "busiest_month": {
     "value": "June",
@@ -311,6 +381,28 @@
     "rule": "hearing key_dates on tx-2026-0037, the agendas Laredo's direction reached",
     "from_items": [
       "tx-2026-0037"
+    ]
+  },
+  "_doors": {
+    "value": 2,
+    "rule": "each open door with its date, kind and room",
+    "detail": [
+      {
+        "item": "tx-2026-0002",
+        "kind": "comment_closes",
+        "date": "2026-09-04",
+        "long": "September 4th",
+        "room": "open_comment",
+        "days_out": 10
+      },
+      {
+        "item": "tx-2026-0072",
+        "kind": "hearing",
+        "date": "2026-12-17",
+        "long": "December 17th",
+        "room": "open_meeting",
+        "days_out": 114
+      }
     ]
   }
 }

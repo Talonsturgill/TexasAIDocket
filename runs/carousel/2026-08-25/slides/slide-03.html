@@ -13,33 +13,34 @@ canvas{position:absolute;left:0;top:0}
 .star{position:absolute;right:80px;bottom:68px;width:22px;height:22px}
 .hook{position:absolute;left:112px;top:196px;width:600px;font:700 60px/1.04 "Fraunces",serif;
   color:#E8E4D8;letter-spacing:-.015em}
-.dek{position:absolute;left:112px;top:330px;width:540px;font:400 25px/1.34 "Manrope",sans-serif;color:#9A968A}
-/* SEATED LETTERS, WHICH THIS FRAME'S DOSSIER HAS CLAIMED SINCE ROUND ONE AND NEVER DREW. It
-   shipped as a bar chart of blank tiles under an art block arguing that "a letterboard is the
-   one typographic object that shows a person put each character there by hand". Two craft judges
-   called it, twice. The board seats words now, which is also the only way this frame carries the
-   third leg of the deck's own triad. */
+.dek{position:absolute;left:112px;top:330px;width:640px;font:400 25px/1.34 "Manrope",sans-serif;color:#9A968A}
+/* SEATED WORDS, NOT TILES. This frame shipped as a bar chart of blank tiles under an art block
+   arguing that "a letterboard is the one typographic object that shows a person put each
+   character there by hand", which is a sentence about an object nobody had drawn. Five rows of
+   words now, each one a place, the shape compute.py guards for it, and the claim that proves
+   the shape. */
 .pl{position:absolute;left:118px;font:500 30px/1 "JetBrains Mono",monospace;color:#E8E4D8;letter-spacing:.04em}
 .in{position:absolute;left:474px;font:400 30px/1 "JetBrains Mono",monospace;color:#9EA6B0;letter-spacing:.04em}
-.ci{position:absolute;left:856px;font:400 30px/1 "JetBrains Mono",monospace;color:#8B939D;letter-spacing:.04em}
-/* No box-shadow here. It was one hardcoded 3px 4px offset on every tile, so the per row
-   offset computed from the overhead source below reached the six month WORDS and not one
-   of the fifteen tiles, which are the elements that carry the data. The dossier's line
-   about what stops a letterboard reading as a drop shadowed webfont was refuted by this
-   frame's own CSS. The script sets it per row now. */
-.span{position:absolute;left:118px;top:1092px;width:800px;font:500 26px/1.35 "JetBrains Mono",monospace;
-  color:#B6B1A4;letter-spacing:.06em}
+.ci{position:absolute;left:856px;font:400 30px/1 "JetBrains Mono",monospace;color:#AEB6C0;letter-spacing:.04em}
+/* No box-shadow here, and no text-shadow either. Both are set per row by the script below,
+   from one overhead source, so no two rows carry the same offset and the difference between
+   neighbours clears a stated floor. A hardcoded offset on every row is what makes a
+   letterboard read as a drop shadowed webfont. */
+/* MONO IS FOR WHAT IS SET ON THE BOARD AND NOTHING ELSE. This line is the frame
+   speaking, so it takes the deck's reading face and sits clear of the last groove. */
+.span{position:absolute;left:118px;top:1048px;width:790px;font:400 27px/1.36 "Manrope",sans-serif;
+  color:#B6B1A4}
 </style></head><body>
 <canvas id="c" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
-<div class="kick">THE SILENCE</div>
+<div class="kick">NO DATE IN FORCE</div>
 <div class="cnt">03 / 09</div>
-<div class="hook">Five the sources leave open</div>
-<div class="dek" data-role="dek">Each of these acted. No source this run fetched says whether the action binds.</div>
-<div class="pl" style="top:508px">HAYS COUNTY</div><div class="in" style="top:508px">180 DAY REVIEW</div><div class="ci" style="top:508px">C36</div>
-<div class="pl" style="top:638px">WILLIAMSON</div><div class="in" style="top:638px">ABATEMENT</div><div class="ci" style="top:638px">C45</div>
-<div class="pl" style="top:768px">EL PASO</div><div class="in" style="top:768px">FRAMEWORK</div><div class="ci" style="top:768px">C38</div>
-<div class="pl" style="top:898px">WICHITA FALLS</div><div class="in" style="top:898px">CONDITIONAL USE</div><div class="ci" style="top:898px">C37</div>
-<div class="pl" style="top:1028px">BRAZORIA</div><div class="in" style="top:1028px">CONDITIONS SET</div><div class="ci" style="top:1028px">C40</div>
+<div class="hook">Five that start on no date</div>
+<div class="dek" data-role="dek">Each of these acted. Not one of their records carries a date the action takes effect.</div>
+<div class="pl">HAYS COUNTY</div><div class="in">REVIEW ESTABLISHED</div><div class="ci">C36</div>
+<div class="pl">WILLIAMSON COUNTY</div><div class="in">ABATEMENT APPROVED</div><div class="ci">C45</div>
+<div class="pl">EL PASO</div><div class="in">FRAMEWORK APPROVED</div><div class="ci">C38</div>
+<div class="pl">WICHITA FALLS</div><div class="in">REQUEST APPROVED</div><div class="ci">C37</div>
+<div class="pl">BRAZORIA COUNTY</div><div class="in">RESOLUTION ADOPTED</div><div class="ci">C40</div>
 <div class="span">A reader can't tell from these five whether anything stopped.</div>
 <div class="tx-site">texasaidocket.com</div>
 <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6 L14.9 9.2 L23 9.6 L16.7 14.6 L18.9 22.4 L12 17.9 L5.1 22.4 L7.3 14.6 L1 9.6 L9.1 9.2 Z" fill="#B6B1A4"/></svg>
@@ -51,7 +52,7 @@ window.renderReady = new Promise(function(resolve){
   // No case on this frame. A lobby changeable letter board, square on and level. Leaving the
   // case for one frame is what stops seven consecutive frames converging on one silhouette.
   x.fillStyle='#171B21'; x.fillRect(0,0,W,H);
-  var BX=68, BY=160, BW=944, BH=1060;
+  var BX=68, BY=160, BW=944, BH=1010;
   // felt: near black with real nap, raked by one overhead lobby source
   x.fillStyle='#1F252C'; x.fillRect(BX,BY,BW,BH);
   for(var i=0;i<120000;i++){
@@ -61,18 +62,43 @@ window.renderReady = new Promise(function(resolve){
     x.fillStyle='rgba('+(n>0?116:4)+','+(n>0?124:6)+','+(n>0?134:9)+','+(0.34*Math.abs(n)*(1-v*0.40))+')';
     x.fillRect(px,py,1.4,1.4);
   }
-  // grooves the letters seat into, one per row
-  // A LETTERBOARD'S GROOVES RUN THE WHOLE BOARD. Seven were drawn for six month rows under
-  // a comment reading one per row, so the seventh sat empty and looked like a row with no
-  // answer, and 186px of felt below it carried nothing. The grooves run to the board's foot
-  // now, which is what a board looks like, and the empty ones read as board rather than as
-  // a question the frame declines to answer.
-  // FIVE ROWS, FIVE GROOVES. A board sized to its content, so no groove sits empty
-  // looking like a row the frame declined to answer.
-  var rows=[500,630,760,890,1020];
+  // THE GROOVES THE LETTERS SEAT INTO. Five rows, five grooves, a board sized to its content
+  // so none sits empty looking like a row the frame declined to answer.
+  //
+  // ROUND 13: the channel dropped four pixels to the letters' FEET. At ry+30 it sat one
+  // pixel inside the cap band and machine QA read a 96px unoccluded run through
+  // WILLIAMSON COUNTY and BRAZORIA COUNTY as a strikethrough, on the two rows whose
+  // proud character widens the line box. A seat line belongs at the foot.
+  //
+  // ROUND 12 MEASURED THIS AND IT WAS DRAWN RIGHT AND LIT WRONG. The dark channel sat at ry+38,
+  // eight pixels BELOW the bottom of a 30px type box, so the letters floated above a line
+  // instead of sitting in a slot, and the lit lip at rgba(120,128,138,0.10) over #1F252C is a
+  // three L star lift, under the doctrine's own reads-as-nothing floor. The frame shipped as a
+  // table with underlines, which is the one thing its dossier says it must not be.
+  //
+  // The channel now CROSSES THE BASELINE at ry+30, and the DOM text paints over the canvas, so
+  // each character genuinely occludes the slot it stands in. The lip clears thirteen L star.
+  var rows=[500,620,740,860,980]; window.__rows=rows;
+  // A SHADOW NEEDS A LIT GROUND TO SUBTRACT FROM. Round 13 measured the per row density ramp at
+  // 1.5 L star, because alpha 0.45 and alpha 0.32 of near black over L* 14.4 felt are the same
+  // colour to an eye. The offset floor was met and the thing it was a proxy for was not, which is
+  // the third round running that a repair passed a floor in the wrong unit.
+  //
+  // The band each row stands on is lifted to about L* 26 so a cast shadow has a stop of light to
+  // take away, and the felt is graded across the band so the lift reads as the board catching the
+  // lobby source rather than as a rectangle.
   rows.forEach(function(ry){
-    x.fillStyle='rgba(6,9,13,0.62)'; x.fillRect(BX+22,ry+38,BW-44,4);
-    x.fillStyle='rgba(120,128,138,0.10)'; x.fillRect(BX+22,ry+42,BW-44,2);
+    var bg=x.createLinearGradient(BX+22,ry-16,BX+22,ry+40);
+    bg.addColorStop(0,'rgba(126,136,148,0.04)');
+    bg.addColorStop(0.55,'rgba(126,136,148,0.19)');
+    bg.addColorStop(1,'rgba(126,136,148,0.05)');
+    x.fillStyle=bg; x.fillRect(BX+22,ry-16,BW-44,56);
+    x.fillStyle='rgba(6,9,13,0.72)'; x.fillRect(BX+22,ry+34,BW-44,5);
+    x.fillStyle='rgba(150,158,168,0.30)'; x.fillRect(BX+22,ry+39,BW-44,2);
+    // the felt lifts where the slot was cut, so the channel has two edges and not one. It was
+    // 0.10, which measures 3.7 L star, the round 12 groove lip defect reborn as a different
+    // element in the same frame.
+    x.fillStyle='rgba(150,158,168,0.22)'; x.fillRect(BX+22,ry+31,BW-44,2);
   });
   // aluminium head and foot rails, lit edges so the board has thickness
   x.fillStyle='#8E8C83'; x.fillRect(BX,BY,BW,34);
@@ -85,37 +111,83 @@ window.renderReady = new Promise(function(resolve){
 });
 </script>
 <script>
-// Per row shadow offset, computed from ONE overhead source, so eight rows get eight offsets.
-// A uniform offset is what makes a letterboard read as a drop shadowed webfont.
-document.addEventListener('DOMContentLoaded',function(){
-  var src={x:540,y:40};
+// PER ROW SHADOW OFFSET, FROM ONE OVERHEAD SOURCE. A uniform offset is what makes a letterboard
+// read as a drop shadowed webfont.
+//
+// ROUND 12 DID THE ARITHMETIC AND THE RAMP WAS INVISIBLE. The old coefficient produced 0.572
+// CSS pixels of difference per row, which is 1.14 device pixels, under the threshold at which a
+// reader can see that two neighbouring rows differ at all. The acceptance item read "no two rows
+// carry the same offset", which any nonzero gradient satisfies, so the item passed while the
+// picture did not. THE ITEM NOW HAS A FLOOR AND THIS FILE ENFORCES IT: adjacent rows must differ
+// by at least three device pixels, asserted below, and the render fails if they do not.
+//
+// This runs inside the one render promise rather than on DOMContentLoaded, so a gesture that
+// does not execute stops the deck instead of shipping under a comment saying it shipped.
+window.renderReady = window.renderReady.then(function(){
+  // SEAT THE ROWS OFF THE GROOVES. window.__rows is the one array the canvas drew from, so a
+  // pitch change moves the felt and the letters together and can never move only one.
+  var ROWS=window.__rows, cols=['pl','in','ci'];
+  cols.forEach(function(cls){
+    var els=document.querySelectorAll('.'+cls);
+    if(els.length!==ROWS.length) throw new Error('the board drew '+ROWS.length+' grooves and the '+
+      'frame set '+els.length+' .'+cls+' rows, so letters and felt disagree');
+    els.forEach(function(el,i){ el.style.top=(ROWS[i]+8)+'px'; });
+  });
+  var src={x:540,y:40}, offsets=[];
   document.querySelectorAll('.pl, .in, .ci').forEach(function(el){
     var t=parseFloat(el.style.top), cx=el.offsetLeft+el.offsetWidth/2;
-    var dx=((cx-src.x)/900)*3.4, dy=((t-src.y)/1000)*4.4+1.8;
-    // THE TILES TAKE THE SAME OFFSET AS THE ROW THEY SIT IN, each seated in the felt by its own
-    // cast shadow rather than by one offset copied fifteen times.
-    el.style.textShadow=dx.toFixed(2)+'px '+dy.toFixed(2)+'px 0 rgba(4,7,10,0.88), '
-                       +(dx*1.7).toFixed(2)+'px '+(dy*1.7).toFixed(2)+'px 9px rgba(4,7,10,0.34)';
+    var dx=((cx-src.x)/900)*3.4, dy=((t-src.y)/1000)*13.5-3.0;
+    if(el.classList.contains('pl')) offsets.push(dy);
+    // A CHARACTER STANDING IN A SLOT CATCHES THE LOBBY LIGHT ON ITS TOP BEVEL. One light line
+    // above, the cast shadow below, and a soft spill under that.
+    // A LONGER SHADOW IS A SOFTER SHADOW. The contact core stays short and crisp, because the
+    // character's foot is on the felt whatever the light is doing. The cast body carries the
+    // distance, and it loses density and gains penumbra as it goes, so the bottom rows read as
+    // further from the source rather than as a second impression of the same word.
+    var soft=(2+dy*0.95).toFixed(2), den=(0.52-dy*0.021).toFixed(3);
+    // THE BEVEL CARRIES THE DISTANCE. A character further from the lobby source catches less on
+    // its top edge, and that is a LIGHT line on DARK felt, so the ramp is 18 L star rather than
+    // the 1.5 the cast shadow's density ramp could manage over near black.
+    var bev=(0.40-((t-src.y)/1000)*0.34).toFixed(3);
+    el.style.textShadow='0 -1.5px 0 rgba(236,242,250,'+bev+'), '
+                       +(dx*0.35).toFixed(2)+'px '+(dy*0.35).toFixed(2)+'px 0 rgba(4,7,10,0.70), '
+                       +dx.toFixed(2)+'px '+dy.toFixed(2)+'px '+soft+'px rgba(4,7,10,'+den+'), '
+                       +(dx*1.8).toFixed(2)+'px '+(dy*1.8).toFixed(2)+'px '+(dy*2.4).toFixed(1)
+                       +'px rgba(4,7,10,0.22)';
   });
-  // TWO LETTERS SIT PROUD, as a hand set board does.
-  //
-  // This read `.rw[2]` and `.rw[5]` and did `el.innerHTML = el.textContent.replace(...)`, from
-  // the draft where those rows held place names. When the rows became tiles their textContent
-  // was the empty string, so the line ERASED May's one tile and August's three, and the frame
-  // shipped a chronology missing four of its fourteen actions with no error anywhere. The
-  // months were still there, so nothing looked broken.
-  //
-  // It now works on the MONTH names, which are the letters actually seated in the felt, it
-  // picks its targets by the letter rather than by an index into a list whose contents change,
-  // and it refuses any element carrying a child element so it can never blank one again.
-  function proud(el, ch, dy, rot) {
-    if (!el || el.children.length || el.textContent.indexOf(ch) < 0) return;
-    el.innerHTML = el.textContent.replace(
-      ch, '<span style="display:inline-block;transform:translateY(' + dy + 'px) rotate(' + rot + 'deg)">' + ch + '</span>');
+  for(var i=1;i<offsets.length;i++){
+    var step=Math.abs(offsets[i]-offsets[i-1])*2;   // device pixels, the canvas is 2x
+    if(step<3) throw new Error('rows '+i+' and '+(i+1)+' differ by '+step.toFixed(2)+
+      ' device px of shadow offset, under the three px floor, so the ramp is invisible and the '+
+      'board reads as a table with underlines');
   }
-  var months = document.querySelectorAll('.pl');
-  proud(months[3], 'U', -3, -1.2);        // JUNE, the month the deck is about
-  proud(months[5], 'G', 2, 0.9);          // AUGUST
+
+  // TWO LETTERS SIT PROUD, as a hand set board does. It is the one gesture that separates a
+  // letterboard from a mono webfont with a drop shadow.
+  //
+  // ROUND 12 FOUND IT WAS DEAD CODE. It picked its targets by INDEX into a NodeList whose
+  // contents had changed twice: proud(months[3],'U') pointed at WICHITA FALLS, which holds no U,
+  // and proud(months[5],'G') indexed past the end of a five element list. Both guards returned
+  // early, zero letters sat proud, and artwork.json recorded the technique as shipped.
+  //
+  // It targets by CONTENT now. The two longest rows are the ones a hand would have run out of
+  // room on, and the offset glyph is picked by position within the word rather than by a letter
+  // that may not be there. The count is asserted, so this can never again be silently absent.
+  var pls=Array.prototype.slice.call(document.querySelectorAll('.pl'));
+  var longest=pls.slice().sort(function(a,b){return b.textContent.length-a.textContent.length;}).slice(0,2);
+  var made=0;
+  longest.forEach(function(el,k){
+    if(el.children.length) return;
+    var txt=el.textContent, at=Math.floor(txt.length/3);
+    while(at<txt.length-1 && txt[at]===' ') at++;
+    el.innerHTML=txt.slice(0,at)
+      +'<span class="pr" style="display:inline-block;transform:translateY('+(k?1.6:-1.8)+'px) '
+      +'rotate('+(k?2.6:-3.1)+'deg)">'+txt[at]+'</span>'+txt.slice(at+1);
+    made++;
+  });
+  if(made<2) throw new Error('the letterboard set '+made+' proud characters and needs two. '+
+    'Without them the board is a monospaced webfont on felt, which is what the dossier says '+
+    'this frame must not be');
 });
 </script>
 </body></html>

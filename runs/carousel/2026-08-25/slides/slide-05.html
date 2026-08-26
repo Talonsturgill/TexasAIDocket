@@ -5,25 +5,29 @@ html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;backgrou
   -webkit-font-smoothing:antialiased}
 canvas{position:absolute;left:0;top:0}
 .kick{position:absolute;left:80px;top:88px;font:500 24px/1 "JetBrains Mono",monospace;font-size:24px;
-  letter-spacing:.14em;color:#EDEDE4}
+  letter-spacing:.14em;color:#5A554B}
 .cnt{position:absolute;right:80px;top:88px;font:500 24px/1 "JetBrains Mono",monospace;font-size:24px;
-  letter-spacing:.10em;color:#EDEDE4;font-variant-numeric:tabular-nums}
+  letter-spacing:.10em;color:#5A554B;font-variant-numeric:tabular-nums}
 .tx-site{position:absolute;left:80px;bottom:74px;font:400 24px/1 "JetBrains Mono",monospace;font-size:24px;
-  letter-spacing:.06em;color:#EDEDE4}
+  letter-spacing:.06em;color:#3E3A30}
 .star{position:absolute;right:80px;bottom:68px;width:22px;height:22px}
 .hook{position:absolute;left:150px;top:236px;width:660px;font:700 66px/1.04 "Fraunces",serif;
   color:#2A2622;letter-spacing:-.015em}
 .q1{position:absolute;left:150px;top:404px;width:470px;font:500 29px/1.4 "JetBrains Mono",monospace;
   color:#2A2622}
 .s1{position:absolute;left:150px;top:504px;font:400 24px/1 "JetBrains Mono",monospace;
-  color:#6E695F;letter-spacing:.10em}
-.q2{position:absolute;left:470px;top:912px;width:435px;font:500 29px/1.4 "JetBrains Mono",monospace;
+  color:#56513F;letter-spacing:.10em}
+.q2{position:absolute;left:470px;top:596px;width:435px;font:500 29px/1.4 "JetBrains Mono",monospace;
   color:#2A2622}
-.s2{position:absolute;left:470px;top:1012px;font:400 24px/1 "JetBrains Mono",monospace;
-  color:#6E695F;letter-spacing:.10em}
-.s3{position:absolute;left:150px;top:1136px;font:400 24px/1 "JetBrains Mono",monospace;
-  color:#48443C;letter-spacing:.10em}
-.foot{position:absolute;left:150px;top:1086px;width:812px;font:400 24px/1.4 "Manrope",sans-serif;color:#3E3A34}
+.s2{position:absolute;left:470px;top:696px;font:400 24px/1 "JetBrains Mono",monospace;
+  color:#56513F;letter-spacing:.10em}
+/* THE OTHER THREE. A two column list, a structure this frame uses nowhere else, so the count
+   in the hook is answered without the frame becoming five pull quotes. */
+.rw,.rw2,.rw3{position:absolute;left:150px;width:812px}
+.rw{top:882px} .rw2{top:988px} .rw3{top:1094px}
+.rp{position:absolute;left:0;top:2px;width:250px;font:500 24px/1.35 "JetBrains Mono",monospace;
+  letter-spacing:.09em;color:#4E4A3B}
+.rt{position:absolute;left:284px;top:0;width:528px;font:400 26px/1.38 "Manrope",sans-serif;color:#33302A}
 </style></head><body>
 <canvas id="c" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
 <div class="kick">FIVE OF THE FIFTEEN</div>
@@ -33,10 +37,11 @@ canvas{position:absolute;left:0;top:0}
 <div class="s1">ARCHER COUNTY, C5</div>
 <div class="q2">"Resolutions do nothing,<br>they are not binding."</div>
 <div class="s2">LUBBOCK COUNTY, C7</div>
-<div class="foot">The Killeen commission's vote is a recommendation. The council decides.</div>
-<div class="s3">KILLEEN, C18</div>
+<div class="rw"><div class="rp">KILLEEN<br>C18</div><div class="rt">The commission's vote is a recommendation. The council decides.</div></div>
+<div class="rw2"><div class="rp">CORPUS CHRISTI<br>C30</div><div class="rt">The motion bans nothing. It directs staff to bring options back.</div></div>
+<div class="rw3"><div class="rp">FORT WORTH<br>C22</div><div class="rt">The resolution starts the legal process toward a moratorium.</div></div>
 <div class="tx-site">texasaidocket.com</div>
-<svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6 L14.9 9.2 L23 9.6 L16.7 14.6 L18.9 22.4 L12 17.9 L5.1 22.4 L7.3 14.6 L1 9.6 L9.1 9.2 Z" fill="#EDEDE4"/></svg>
+<svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6 L14.9 9.2 L23 9.6 L16.7 14.6 L18.9 22.4 L12 17.9 L5.1 22.4 L7.3 14.6 L1 9.6 L9.1 9.2 Z" fill="#3E3A30"/></svg>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script>
 window.renderReady = new Promise(function(resolve){
@@ -45,32 +50,78 @@ window.renderReady = new Promise(function(resolve){
   var g=x.createLinearGradient(0,0,W,H);
   g.addColorStop(0,'#3B414A'); g.addColorStop(0.4,'#565C66'); g.addColorStop(1,'#282C33');
   x.fillStyle=g; x.fillRect(0,0,W,H);
-  var SX=118, SY=180, SW=844, SH=1010;
-  x.fillStyle='#1F252C'; x.fillRect(SX-48,SY-44,SW+96,SH+108);
-  x.fillStyle='#CFC9BA'; x.fillRect(SX-48,SY-44,SW+96,16);
-  x.fillStyle='#5C5B56'; x.fillRect(SX-48,SY+SH+48,SW+96,16);
-  x.fillStyle='#F2EEE4'; x.fillRect(SX,SY,SW,SH);
+  var SX=0, SY=0, SW=W, SH=H;
+  x.fillStyle='#F2EEE4'; x.fillRect(0,0,W,H);
+  // The page is lit from the upper left and falls away to the lower right, so the frame has a
+  // dark that is a GRADED SURFACE rather than a border. Round 12: "what ships is an ~80px flat
+  // border, with no modelled rail and no graded falloff from the blowout's lower shoulder".
+  var pl=x.createLinearGradient(0,0,W*0.85,H);
+  pl.addColorStop(0,'rgba(255,253,247,0.55)'); pl.addColorStop(0.44,'rgba(214,206,190,0)');
+  pl.addColorStop(1,'rgba(96,88,74,0.42)');
+  x.fillStyle=pl; x.fillRect(0,0,W,H);
   // decorative body type: this is what the blowout erases. It carries no claim. It is laid
   // along the band's own corridor so the erasure has something to act on, and every rule is
   // rejected if it comes within 12px of a line that carries one.
   var ang=-0.4887, cx=SX+SW/2, cy=710, half=84, shoulder=12, m=Math.tan(ang);
-  var BLOCK=[[150,236,815,373],[150,404,620,485],[150,504,380,524],
-             [470,912,905,993],[470,1012,700,1032],[150,1086,950,1120]];
+  // MEASURED, NEVER TYPED. Six hand typed rectangles is a list that is wrong the first time a
+  // line rewraps, and a comment claiming the field is clear of every type column is not a
+  // constraint. This reads the laid out boxes off the DOM, the same way the cover does.
+  var BLOCK=[];
+  document.querySelectorAll('.kick,.cnt,.hook,.q1,.s1,.q2,.s2,.rp,.rt,.tx-site').forEach(function(el){
+    var r=el.getBoundingClientRect();
+    BLOCK.push([r.left,r.top,r.right,r.bottom]);
+  });
+  if(BLOCK.length<10) throw new Error('the greeked field measured '+BLOCK.length+
+    ' type boxes and this frame sets more than that, so the exclusion is reading the wrong DOM');
+  // TRIM, DO NOT SKIP, and drop only what is left isolated. Lifted from frame 4, which is
+  // the frame that got this right: a line of type meeting a figure runs to the figure and
+  // stops, and the next line starts where it always did. Skipping leaves holes in a block that
+  // is supposed to read as set text, and a rule with no neighbour reads as an underline.
+  function freeWidth(x0, y, want, h){
+    var w = want;
+    while (w > 40 && !clearOf(x0, y, x0 + w, y + (h || 4))) w -= 8;
+    return w;
+  }
+  function unorphan(kept, gap){
+    return kept.filter(function(a, i){
+      var near = Infinity;
+      kept.forEach(function(b, j){ if (i !== j) near = Math.min(near, Math.abs(b[1] - a[1])); });
+      return near <= (gap || 45);
+    });
+  }
   function clearOf(a,b,c,d){
     for(var i=0;i<BLOCK.length;i++){ var B=BLOCK[i];
       if(a<B[2]+12 && c>B[0]-12 && b<B[3]+12 && d>B[1]-12) return false; }
     return true;
   }
-  x.fillStyle='rgba(42,38,34,0.26)';
-  for(var r=0;r<34;r++){
-    var ry=556+r*15;
-    var rw=300+440*Math.abs(TX.simplex2(r*0.55,4.4));
-    if(!clearOf(170,ry,170+rw,ry+4)) continue;
-    x.fillRect(170,ry,rw,4);
+  // A PARAGRAPH, NOT A SCATTER. Round 12 on frame 4: "two orphan greeked hairlines with 40 and
+  // 70px of nothing between them, one close enough under 'there.' to read as an underline".
+  // A stray rule reads as an underline. A run of rules at one leading off one left edge reads
+  // as set text, which is what this field is supposed to be. So it is laid as paragraphs, each
+  // with its own indent and its own measure, at a leading a body face would use.
+  x.fillStyle='rgba(42,38,34,0.24)';
+  var KEPT5=[];
+  var pyy=228, para=0, lead=17;
+  while(pyy < 1290){
+    var indent = 156 + 96*Math.abs(TX.simplex2(para*0.9, 3.1));
+    var measure = 560 + 300*Math.abs(TX.simplex2(para*0.4, 7.7));
+    var lines = 5 + Math.floor(6*Math.abs(TX.simplex2(para*1.7, 2.2)));
+    for(var li=0; li<lines && pyy<1290; li++, pyy+=lead){
+      // the last line of a paragraph is short, as a last line is
+      var w = (li===lines-1) ? measure*(0.28+0.42*Math.abs(TX.simplex2(para*2.3,li*0.9)))
+                             : measure*(0.94+0.06*TX.simplex2(li*0.8,para*1.1));
+      var lx = indent + (li===0 ? 26 : 0);
+      w = freeWidth(lx, pyy, w, 3);
+      if(w >= 70) KEPT5.push([lx, pyy, w, 3]);
+    }
+    pyy += lead*1.7; para++;
   }
+  // A run of rules is text. One rule is a mark. Frame 5 built real paragraphs and
+  // then the skip destroyed them, leaving the exact orphan its own comment quotes.
+  unorphan(KEPT5, 26).forEach(function(k){ x.fillRect(k[0],k[1],k[2],k[3]); });
   // THE BLOWOUT: two hard parallel edges, a measured width, parallel to no frame edge,
   // with a computed shoulder. It crosses ONLY decorative type.
-  x.save(); x.beginPath(); x.rect(SX,SY,SW,SH); x.clip();
+  x.save(); x.beginPath(); x.rect(0,0,W,H); x.clip();
   x.translate(cx, cy); x.rotate(ang);
   var bg=x.createLinearGradient(0,-half-shoulder,0,half+shoulder);
   bg.addColorStop(0,'rgba(255,253,246,0)');
@@ -79,13 +130,11 @@ window.renderReady = new Promise(function(resolve){
   bg.addColorStop(1,'rgba(255,253,246,0)');
   x.fillStyle=bg; x.fillRect(-SW*1.4,-half-shoulder,SW*2.8,(half+shoulder)*2);
   x.restore();
-  // sheet foot falloff into the rail's own cast shadow, so the bottom band is modeled
-  var fg=x.createLinearGradient(0,SY+SH-200,0,SY+SH);
-  fg.addColorStop(0,'rgba(110,102,86,0)'); fg.addColorStop(1,'rgba(84,78,66,0.36)');
-  x.fillStyle=fg; x.fillRect(SX,SY+SH-200,SW,200);
-  var sg=x.createLinearGradient(0,SY+SH+64,0,SY+SH+180);
-  sg.addColorStop(0,'rgba(16,20,26,0.60)'); sg.addColorStop(1,'rgba(16,20,26,0)');
-  x.fillStyle=sg; x.fillRect(0,SY+SH+64,W,180);
+  // THE BLOWOUT'S LOWER SHOULDER FALLS AWAY. The band is the light source in this picture, so
+  // the page darkens with distance below it rather than at a border it no longer has.
+  var fg=x.createLinearGradient(0,860,0,H);
+  fg.addColorStop(0,'rgba(96,88,74,0)'); fg.addColorStop(1,'rgba(74,68,56,0.30)');
+  x.fillStyle=fg; x.fillRect(0,860,W,H-860);
   for(var q=0;q<15000;q++){
     var qx=R()*W, qy=R()*H, qn=TX.fbm2(qx*0.016,qy*0.016,3);
     x.fillStyle='rgba('+(qn>0?255:0)+','+(qn>0?255:0)+','+(qn>0?255:0)+','+(0.024*Math.abs(qn))+')';

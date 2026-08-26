@@ -26,17 +26,6 @@
    "value": 156
   },
   {
-   "phrase": "180 DAY",
-   "kind": "duration",
-   "value": 180,
-   "from_claims": [
-    "c36"
-   ],
-   "quoted_from": "c36",
-   "quote": "a 180 day emergency water protection review period",
-   "computed_by": "not computed. Quoted from c36, the review period Hays County's court set"
-  },
-  {
    "phrase": "8.0 gallons",
    "kind": "count",
    "value": 8,
@@ -46,6 +35,13 @@
    "quoted_from": "c32",
    "quote": "shall not exceed 8.0 gallons per square foot",
    "computed_by": "not computed. Quoted from Ordinance 2026-078 itself"
+  },
+  {
+   "phrase": "Eight items",
+   "kind": "count",
+   "value": 8,
+   "from_claims": [],
+   "computed_by": "out/2026-08-25/compute.py, doors_record_wide. The same door test run over EVERY item in ledger/docket.json, published so the closing frame can name the wider set it is scoped inside"
   },
   {
    "phrase": "FIFTEEN ACTIONS",
@@ -145,21 +141,7 @@
    "computed_by": "out/2026-08-25/compute.py, stated_nonbinding over restricted_count. acting bodies whose own source says the action does not bind"
   },
   {
-   "phrase": "Five the sources",
-   "kind": "ratio",
-   "value": 5,
-   "of": 15,
-   "from_claims": [
-    "c36",
-    "c45",
-    "c38",
-    "c37",
-    "c40"
-   ],
-   "computed_by": "out/2026-08-25/compute.py, force_unstated over restricted_count. acting items no source this run speaks to on force, which frame 3 names one by one"
-  },
-  {
-   "phrase": "Four abatement applications",
+   "phrase": "Four abatements",
    "kind": "count",
    "value": 4,
    "from_claims": [
@@ -204,6 +186,13 @@
    ],
    "computed_by": "out/2026-08-25/compute.py, first_action_date and last_action_date over the acting items",
    "value": 156
+  },
+  {
+   "phrase": "Nine frames",
+   "kind": "count",
+   "value": 9,
+   "from_claims": [],
+   "computed_by": "the deck's own slide count, out/2026-08-25/copy.json, which is regenerated from the rendered frames rather than typed"
   },
   {
    "phrase": "Seventeen times",
@@ -254,15 +243,35 @@
    "computed_by": "out/2026-08-25/compute.py, acting_bodies. distinct places among the acting items"
   },
   {
-   "phrase": "Two of the five",
-   "kind": "ratio",
+   "phrase": "Two doors have dates",
+   "kind": "count",
    "value": 2,
-   "of": 5,
+   "from_claims": [],
+   "computed_by": "out/2026-08-25/compute.py, open_doors. Items this deck weighed that carry a hearing or a comment window dated on or after the run date, in a public_access room a member of the public may enter"
+  },
+  {
+   "phrase": "Two were approvals",
+   "kind": "count",
+   "value": 2,
    "from_claims": [
     "c37",
     "c45"
    ],
-   "computed_by": "out/2026-08-25/compute.py, approvals over stated_binding. acting items whose cited claim records an approval, both of which sit inside the five the record does not speak to"
+   "computed_by": "out/2026-08-25/compute.py, approvals. Acting items whose cited claim records a body approving a data center project or the incentive one depends on, both of which sit inside the five the record does not speak to on force"
+  },
+  {
+   "phrase": "five more the record carries",
+   "kind": "ratio",
+   "value": 5,
+   "of": 15,
+   "from_claims": [
+    "c36",
+    "c45",
+    "c38",
+    "c37",
+    "c40"
+   ],
+   "computed_by": "out/2026-08-25/compute.py, force_unstated over restricted_count. Acting items carrying no `effective` key date at all, which compute.py asserts rather than observes"
   },
   {
    "phrase": "five of the fifteen",
@@ -398,7 +407,14 @@
    "computed_by": "out/2026-08-25/compute.py, busiest_body_binding over stated_binding. how many of the actions that took effect San Angelo wrote"
   },
   {
-   "phrase": "two public hearings",
+   "phrase": "twelve Texas governments",
+   "kind": "count",
+   "value": 12,
+   "from_claims": [],
+   "computed_by": "out/2026-08-25/compute.py, acting_bodies. Distinct places among the acting items"
+  },
+  {
+   "phrase": "two hearings",
    "kind": "count",
    "value": 2,
    "from_claims": [
@@ -406,18 +422,7 @@
    ],
    "quoted_from": "c46",
    "quote": "required to hold two public hearings",
-   "computed_by": "not computed. Quoted from c46, the route into the Fort Worth hearing"
-  },
-  {
-   "phrase": "two required public hearings",
-   "kind": "count",
-   "value": 2,
-   "from_claims": [
-    "c24"
-   ],
-   "quoted_from": "c24",
-   "quote": "the first of the two required public hearings",
-   "computed_by": "not computed. Quoted from the city's own release, c24"
+   "computed_by": "not computed. Quoted from c46, the two the city must hold before its pause can take effect"
   }
  ]
 }

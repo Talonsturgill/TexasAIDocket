@@ -6,67 +6,68 @@
       "warns": [],
       "bands": [
         0.1702,
-        0.2101,
-        0.239
+        0.2185,
+        0.2353
       ],
-      "band_ratio": 1.1495
+      "band_ratio": 1.1246
     },
     {
       "file": "slide-02.html",
       "fails": [],
       "warns": [],
       "bands": [
-        0.2647,
-        0.2836,
-        0.2353
+        0.229,
+        0.2857,
+        0.2702
       ],
-      "band_ratio": 0.9049
+      "band_ratio": 1.0312
     },
     {
       "file": "slide-03.html",
       "fails": [],
       "warns": [],
       "bands": [
-        0.5126,
+        0.4979,
         0.8298,
-        0.5588
+        0.4963
       ],
-      "band_ratio": 0.8865
+      "band_ratio": 0.8232
     },
     {
       "file": "slide-04.html",
       "fails": [],
       "warns": [
-        "busy art under text (bg edge density 0.08) beneath 'The council adopted a resolution that st' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+        "busy art under text (bg edge density 0.07) beneath 'Hays County, El Paso, Lubbock County, Br' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.04) beneath 'C36, C38, C31, C40 AND C22' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
       ],
       "bands": [
-        0.1324,
-        0.2185,
-        0.1893
+        0.1345,
+        0.1765,
+        0.1526
       ],
-      "band_ratio": 1.0491
+      "band_ratio": 0.9881
     },
     {
       "file": "slide-05.html",
       "fails": [],
       "warns": [],
       "bands": [
-        0.1555,
-        0.0987,
-        0.1562
+        0.1113,
+        0.1408,
+        0.2665
       ],
-      "band_ratio": 1.1347
+      "band_ratio": 1.5047
     },
     {
       "file": "slide-06.html",
       "fails": [],
       "warns": [],
       "bands": [
-        0.5252,
-        0.3193,
-        0.421
+        0.5126,
+        0.3929,
+        0.4173
       ],
-      "band_ratio": 0.998
+      "band_ratio": 0.9487
     },
     {
       "file": "slide-07.html",
@@ -82,27 +83,29 @@
     {
       "file": "slide-08.html",
       "fails": [],
-      "warns": [],
-      "bands": [
-        0.6134,
-        0.5462,
-        0.4963
+      "warns": [
+        "worst-point contrast 4.2 on 'LAREDO, C14 FROM THE MATTER HISTORY' (box mean 4.8) -- below the rubric's 4.5 line somewhere along the run of the text"
       ],
-      "band_ratio": 0.9033
+      "bands": [
+        0.6155,
+        0.6534,
+        0.636
+      ],
+      "band_ratio": 1.0016
     },
     {
       "file": "slide-09.html",
       "fails": [],
       "warns": [],
       "bands": [
-        0.1702,
-        0.1933,
-        0.6544
+        0.1765,
+        0.2206,
+        0.4338
       ],
-      "band_ratio": 1.8507
+      "band_ratio": 1.5271
     }
   ],
   "fails": 0,
-  "warns": 1,
+  "warns": 3,
   "verdict": "WARN"
 }

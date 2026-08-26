@@ -37,8 +37,8 @@ off every frame, the caption, the figures and the manifests.
 
 ## Measured
 
-Per frame median L\*: 51.4, 63.3, 14.4, 30.8, 93.2, 73.6, 52.1, 58.0, 49.6. Deck median 52.1, sd
-21.5. The biggest junction is 62.4 between frames
+Per frame median L\*: 51.4, 67.9, 14.4, 30.8, 93.2, 72.2, 52.1, 58.0, 49.6. Deck median 52.1, sd
+21.6. The biggest junction is 62.4 between frames
 4 and 5. Frame 7's falloff
 measures 16.5 L\* in the gutters between its four repeat lines. Frame 6's
 cards read 89.9 against cork at 59.9.
@@ -169,7 +169,7 @@ and one line above the table says it once.
 ## What is measurably not what the storyboard said
 
 **This is not the mid value deck it declares.** The storyboard says "ground at L\* 62 to 68".
-Measured medians, frame by frame, are 51.4, 63.3, 14.4, 30.8, 93.2, 73.6, 52.1, 58.0 and 49.6,
+Measured medians, frame by frame, are 51.4, 67.9, 14.4, 30.8, 93.2, 72.2, 52.1, 58.0 and 49.6,
 with a median of medians of 52.1 and a range of 78.8 L\*. One frame sits inside the declared band
 and eight do not.
 
@@ -257,7 +257,7 @@ before acting, not after.
 - **Frame 1's numeric lockup misread at 432px** as "8 BODIES INSTRUMENTS", and the dek's fourth
   line overlapped the numeral by 15px. It counts both nouns now.
 - **The 6 to 7 value snap ran backwards.** Both dossiers claim frame 6 is the brightest field and
-  frame 7 the darkest immediately after. Measured, 6 is now 73.6 and 7 is 52.1. Frame 7's field
+  frame 7 the darkest immediately after. Measured, 6 is now 72.2 and 7 is 52.1. Frame 7's field
   was dropped and its falloff widened rather than flattened, so the four repeats now
   span 16.5 L\* rather than a field the eye read as flat.
 
@@ -458,8 +458,6 @@ Frame 3 sits under the craft floor at variance 520 against a floor of 1030. It i
 is the roster, a flat dark list of eight bodies between two heavily modelled frames, and its
 detail is spread across the frame rather than absent. `craft_floor` asks for the confirmation
 rather than failing, and this is it.
-
-## Gate status
 
 ## Gate status
 

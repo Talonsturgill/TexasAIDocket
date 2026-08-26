@@ -11,154 +11,199 @@ canvas{position:absolute;left:0;top:0}
 .tx-site{position:absolute;left:80px;bottom:74px;font:400 24px/1 "JetBrains Mono",monospace;font-size:24px;
   letter-spacing:.06em;color:#CFD6CE}
 .star{position:absolute;right:80px;bottom:68px;width:22px;height:22px}
-.hook{position:absolute;left:120px;top:206px;width:600px;font:700 60px/1.04 "Fraunces",serif;
+.hook{position:absolute;left:120px;top:200px;width:430px;font:700 60px/1.04 "Fraunces",serif;
   color:#141B11;letter-spacing:-.015em}
-.body{position:absolute;left:120px;top:372px;width:410px;font:400 27px/1.42 "Manrope",sans-serif;color:#1B2317}
-.attr{position:absolute;left:120px;top:522px;width:410px;font:400 24px/1.42 "Manrope",sans-serif;
-  color:#141B11}
-/* NO WIDTH ON ANY OF THE THREE CITATIONS, so their measure was the body's 1080 and
-   "TOM GREEN COUNTY, C15 AND C16" ran 480px from a column 410 wide, straight into the greeked
-   rule field, which machine QA read as a rule through the letterforms. Same defect as the
-   cover's missing unit and frame 7's unwidthed labels: one geometry, two layers, no check. */
-.src1{position:absolute;left:120px;top:672px;width:470px;font:400 24px/1.4 "JetBrains Mono",monospace;
-  color:#242E1D;letter-spacing:.03em}
-.far{position:absolute;left:120px;top:762px;width:420px;font:500 24px/1.34 "JetBrains Mono",monospace;color:#141B11}
-.third{position:absolute;left:120px;top:862px;width:430px;font:400 24px/1.36 "Manrope",sans-serif;color:#1B2317}
-.src3{position:absolute;left:120px;top:1004px;width:470px;font:400 24px/1.4 "JetBrains Mono",monospace;
-  color:#242E1D;letter-spacing:.03em}
-.src2{position:absolute;left:120px;top:806px;width:470px;font:400 24px/1.4 "JetBrains Mono",monospace;
-  color:#242E1D;letter-spacing:.03em}
-.foot{position:absolute;left:120px;top:1086px;width:490px;font:400 24px/1.38 "Manrope",sans-serif;color:#141B11}
+.dek{position:absolute;left:120px;top:356px;width:420px;font:400 28px/1.4 "Manrope",sans-serif;color:#1B2317}
+/* THREE SIZES, TWO COLUMNS, AND A LABEL THAT DOES THE WORK A SIZE STEP CANNOT.
+   Round 12: "Seven type blocks, all flush left on one edge, all at one measure, with about 4px
+   of size difference between the Manrope prose and the mono cites. Eighteen lines of
+   undifferentiated column occupying 1150px of sheet height with no anchor."
+   The cites cannot step down, because 24px is the deck's mobile floor and going under it is a
+   render warning. So the hierarchy is carried by WEIGHT, COLOUR and POSITION instead: a
+   letterspaced mono label opens each half, the prose runs a size above the cite, and the cite
+   sits under its own hairline in the quietest ink on the frame. And the frame is TWO COLUMNS,
+   because the hook says two things happened and one column said so in one voice. */
+.lab{position:absolute;font:500 24px/1 "JetBrains Mono",monospace;letter-spacing:.17em;color:#1E2417}
+.lab.l1{left:120px;top:560px} .lab.l2{left:578px;top:200px}
+.body{position:absolute;left:120px;top:612px;width:440px;font:400 27px/1.42 "Manrope",sans-serif;color:#1B2317}
+.third{position:absolute;left:578px;top:252px;width:382px;font:400 27px/1.42 "Manrope",sans-serif;color:#1B2317}
+.far{position:absolute;left:120px;top:976px;width:430px;font:500 27px/1.34 "JetBrains Mono",monospace;color:#141B11}
+.src1{position:absolute;left:120px;top:868px;width:470px;font:400 24px/1.4 "JetBrains Mono",monospace;
+  color:#2C3423;letter-spacing:.03em}
+.src2{position:absolute;left:120px;top:1032px;width:470px;font:400 24px/1.4 "JetBrains Mono",monospace;
+  color:#2C3423;letter-spacing:.03em}
+.src3{position:absolute;left:578px;top:496px;width:402px;font:400 24px/1.4 "JetBrains Mono",monospace;
+  color:#2C3423;letter-spacing:.03em}
 </style></head><body>
 <canvas id="c" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
 <div class="kick">THE OTHER DIRECTION</div>
 <div class="cnt">08 / 09</div>
 <div class="hook">Two declined. Two said yes.</div>
-<div class="body" data-role="dek">The Tom Green County commissioners court voted not to pursue a moratorium in one commissioner's precinct.</div>
-<div class="attr">A commissioner referenced a $100 million lawsuit filed against Hill County after it approved a similar one year moratorium.</div>
+<div class="dek" data-role="dek">Seventeen times a Texas local government took one up. Fifteen acted and two did not.</div>
+<div class="lab l1">THE TWO THAT DECLINED</div>
+<div class="body">Tom Green County voted not to pursue a moratorium in one commissioner's precinct. A commissioner referenced a $100 million lawsuit against Hill County over a similar one year moratorium.</div>
 <div class="src1">TOM GREEN COUNTY, C15 AND C16<br>REPORTED SPEECH ABOUT A LAWSUIT</div>
-<div class="far">"no action taken"</div>
+<div class="lab l2">THE TWO THAT SAID YES</div>
 <div class="third">Wichita Falls approved a data center and barred evaporative cooling with it. Williamson County approved an abatement.</div>
-<div class="src2">LAREDO MATTER HISTORY, C14</div>
 <div class="src3">WICHITA FALLS, C37 AND C44<br>WILLIAMSON COUNTY, C45</div>
-<div class="foot">Seventeen times a Texas local government took one up. Fifteen acted and two did not.</div>
+<div class="far">"no action taken"</div>
+<div class="src2">LAREDO, C14<br>FROM THE MATTER HISTORY</div>
 <div class="tx-site">texasaidocket.com</div>
 <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6 L14.9 9.2 L23 9.6 L16.7 14.6 L18.9 22.4 L12 17.9 L5.1 22.4 L7.3 14.6 L1 9.6 L9.1 9.2 Z" fill="#CFD6CE"/></svg>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script>
 window.renderReady = new Promise(function(resolve){
-  var c=document.getElementById('c'), x=c.getContext('2d'); x.scale(2,2);
-  var W=1080,H=1350; TX.reseed(80842); var R = TX.rng(80842);
-  var g=x.createLinearGradient(0,0,W,H);
-  g.addColorStop(0,'#4A534E'); g.addColorStop(0.5,'#3A423E'); g.addColorStop(1,'#252B29');
-  x.fillStyle=g; x.fillRect(0,0,W,H);
-  var SX=92, SY=170, SW=896, SH=1010;
-  x.fillStyle='#1F252C'; x.fillRect(SX-40,SY-38,SW+80,SH+96);
-  x.fillStyle='#9C9A90'; x.fillRect(SX-40,SY-38,SW+80,14);
-  x.fillStyle='#F2EEE4'; x.fillRect(SX,SY,SW,SH);
-  x.fillStyle='rgba(42,38,34,0.20)';
-  for(var r=0;r<24;r++){ x.fillRect(610,404+r*15,352*(0.42+0.52*Math.abs(TX.simplex2(r*0.6,2.2))),4); }
-  // A live oak's shadow falls across the near case, deep enough that the glazing stops being a
-  // window and starts being a mirror. Dappled, so it reads as a canopy rather than a gradient.
-  x.save(); x.beginPath(); x.rect(SX,SY,SW,SH); x.clip();
-  for(var i=0;i<90000;i++){
-    var px=SX+R()*SW, py=SY+R()*SH;
-    var d=TX.fbm2(px*0.006,py*0.006,4)+0.55*TX.fbm2(px*0.02,py*0.02,3);
-    var lean=(px-SX)/SW*0.55+(py-SY)/SH*0.35;
-    if(d+lean>0.62) continue;
-    var col = (px<SX+470 && py>SY+20) ? 0.34 : 1;      // lighter over the type column
-    x.fillStyle='rgba(44,54,42,'+(0.085*col*(0.62-d-lean+0.4))+')';
-    x.fillRect(px,py,3,3);
-  }
-  // THE OAK'S SHADE, AS A REAL WASH AND NOT A DAPPLE ALONE. The dossier calls this the deck's
-  // quietest frame under deep shade, and it shipped at median L* 79.1, second brightest of the
-  // nine, with its declared focal DARKER than the field it floats on. A dapple at four percent
-  // over bond is a texture, not a shadow. Under a live oak at this depth the sheet loses most
-  // of a stop, and only then does a reflection off the glazing outshine it, which is what makes
-  // the frame's eye land on a document that is not there.
-  var shade=x.createLinearGradient(SX,SY,SX+SW*0.7,SY+SH);
-  shade.addColorStop(0,'rgba(38,50,38,0.46)');
-  shade.addColorStop(0.55,'rgba(42,54,42,0.36)');
-  shade.addColorStop(1,'rgba(30,40,30,0.40)');
-  x.fillStyle=shade; x.fillRect(SX,SY,SW,SH);
-
-  // THE MIRROR. Under shade the glazing resolves a SECOND notice case across the street. It is
-  // sheared and rippled because it is a reflection off a swung pane, Fresnel weighted so it
-  // strengthens toward the frame's edge where incidence is lowest, and it carries NO legible
-  // string, because a reflected document is not evidence.
-  var FX=606, FY=764, FW=336, FH=252, SHEAR=0.115, RIP=3.2;
-  function mrow(y){ return FX + (y-FY)*SHEAR + RIP*Math.sin((y-FY)*0.021); }
-  function mband(y0,y1,w,off,fill){
-    x.fillStyle=fill;
-    for(var yy=y0; yy<y1; yy++) x.fillRect(mrow(yy)+off, yy, w, 1);
-  }
-  // Fresnel: one weight per scanline, strongest at the near frame edge
-  var mopa=x.createLinearGradient(FX-60,0,FX+FW+90,0);
-  mopa.addColorStop(0,'rgba(198,208,200,0.05)'); mopa.addColorStop(0.55,'rgba(198,208,200,0.19)');
-  mopa.addColorStop(1,'rgba(198,208,200,0.40)');
-  x.fillStyle=mopa;
-  for(var yy=FY-52; yy<FY+FH+62; yy++) x.fillRect(mrow(yy)-58, yy, FW+126, 1);
-  // COMPOSITED, NOT PASTED. At 0.97 the far sheet was opaque and the near sheet's tone did not
-  // read through it anywhere, which is exactly the inset panel this frame's own dossier refuses
-  // ("an inset would be a layout device and would say nothing"). A reflection off glazing ADDS
-  // light to what is behind it. These are the alphas of a real one, so the near sheet's grain and
-  // its oak shade stay visible through the whole reflected case.
-  mband(FY-18, FY+FH+40, FW+34, -17, 'rgba(74,86,78,0.44)');      // the far case's body
-  mband(FY-18, FY-8,     FW+34, -17, 'rgba(176,188,178,0.34)');   // its lit top rail
-  mband(FY,    FY+FH,    FW,      0, 'rgba(244,246,236,0.46)');   // its sheet, the frame's lightest
-  // its body copy, drawn a third of reading size so it resolves as a document and never as words
-  x.fillStyle='rgba(116,124,114,0.34)';
-  for(var k=0;k<15;k++){
-    var ky=FY+96+k*9;
-    x.fillRect(mrow(ky)+24, ky, (FW-70)*(0.36+0.54*Math.abs(TX.simplex2(k*0.9,7.7))), 2);
-  }
-  // the ripple's own highlight, so the pane reads as glass and not as a decal
-  x.fillStyle='rgba(226,232,222,0.16)';
-  for(var yy2=FY-40; yy2<FY+FH+52; yy2++) x.fillRect(mrow(yy2)+FW-26, yy2, 13, 1);
-  x.restore();
-  // sheet foot falloff and the lower rail's contact shadow
-  var fg=x.createLinearGradient(0,SY+SH-180,0,SY+SH);
-  // 0.40 put the frame's lowest contrast under its own closing line. The falloff still reads
-  // as a foot and the type on it clears the rubric.
-  fg.addColorStop(0,'rgba(60,70,58,0)'); fg.addColorStop(1,'rgba(44,54,44,0.22)');
-  x.fillStyle=fg; x.fillRect(SX,SY+SH-180,SW,180);
-  x.fillStyle='#6E7A5A'; x.fillRect(SX-40,SY+SH+22,SW+80,26);
-  x.fillStyle='#96A184'; x.fillRect(SX-40,SY+SH+22,SW+80,4);
-  var sg=x.createLinearGradient(0,SY+SH+48,0,H);
-  sg.addColorStop(0,'rgba(14,18,16,0.58)'); sg.addColorStop(1,'rgba(14,18,16,0)');
-  x.fillStyle=sg; x.fillRect(0,SY+SH+48,W,H-SY-SH-48);
-  // THE CANOPY DOES NOT STOP AT THE PAPER. An earlier build clipped every leaf to the sheet,
-  // which put the tree inside the case. The same oak falls on the case body, the rail and the
-  // ground, and it is read from a different signal there. On bond the eye reads the LEAF,
-  // because the paper has a stop of light to lose. On ground already in shade the eye reads the
-  // SUNFLECK between the leaves, because that is the only light left to see. Same fbm, same
-  // lean, same lit direction. One canopy, two readings, continuous across the sheet's edge.
-  x.save(); x.beginPath();
-  x.rect(0,0,W,SY); x.rect(0,SY,SX,H-SY);
-  x.rect(SX+SW,SY,W-SX-SW,H-SY); x.rect(SX,SY+SH,SW,H-SY-SH);
-  x.clip();
-  for(var j=0;j<96000;j++){
-    var jx=R()*W, jy=R()*H;
-    var jd=TX.fbm2(jx*0.006,jy*0.006,4)+0.55*TX.fbm2(jx*0.02,jy*0.02,3);
-    var jv=jd+((jx-SX)/SW*0.55+(jy-SY)/SH*0.35);
-    if(jv>0.62){
-      if(jv<0.80) continue;
-      // the sunfleck. A coin of light between leaves, and the only signal a canopy leaves on
-      // ground that is already in shade. It shipped at 0.05 and read as nothing.
-      x.fillStyle='rgba(226,232,202,'+(0.135*Math.min(1,(jv-0.80)*2.0))+')';
-      x.fillRect(jx,jy,4,4);
-    } else {
-      x.fillStyle='rgba(20,28,20,'+(0.150*(1.02-jv))+')';
-      x.fillRect(jx,jy,4,4);
+  // MEASURE BEHIND THE REAL FACES. This frame reads getBoundingClientRect twice, for
+  // the canopy's column edge and for each cite's hairline, and did neither behind
+  // document.fonts.ready. A box measured before the webfont arrives is the fallback
+  // face's box, which is how frame 4 put a rule through its own citation.
+  document.fonts.ready.then(function(){
+    var c=document.getElementById('c'), x=c.getContext('2d'); x.scale(2,2);
+    var W=1080,H=1350; TX.reseed(80842); var R = TX.rng(80842);
+    var g=x.createLinearGradient(0,0,W,H);
+    g.addColorStop(0,'#4A534E'); g.addColorStop(0.5,'#3A423E'); g.addColorStop(1,'#252B29');
+    x.fillStyle=g; x.fillRect(0,0,W,H);
+    var SX=92, SY=170, SW=896, SH=1010;
+    x.fillStyle='#1F252C'; x.fillRect(SX-40,SY-38,SW+80,SH+96);
+    x.fillStyle='#9C9A90'; x.fillRect(SX-40,SY-38,SW+80,14);
+    x.fillStyle='#F2EEE4'; x.fillRect(SX,SY,SW,SH);
+    // A live oak's shadow falls across the near case, deep enough that the glazing stops being a
+    // window and starts being a mirror. Dappled, so it reads as a canopy rather than a gradient.
+    var COLR = (function(){ var r = 0;
+      document.querySelectorAll('.hook,.dek,.lab.l1,.body,.src1,.far,.src2').forEach(function(el){ r = Math.max(r, el.getBoundingClientRect().right); });
+      return r || SX + 470; })();
+    x.save(); x.beginPath(); x.rect(SX,SY,SW,SH); x.clip();
+    for(var i=0;i<90000;i++){
+      var px=SX+R()*SW, py=SY+R()*SH;
+      var d=TX.fbm2(px*0.006,py*0.006,4)+0.55*TX.fbm2(px*0.02,py*0.02,3);
+      var lean=(px-SX)/SW*0.55+(py-SY)/SH*0.35;
+      if(d+lean>0.62) continue;
+      // ONE DENSITY, NO MASK. The first pass switched on a typed 470 and the second feathered
+      // across a measured edge that was the same typed number laundered through
+      // getBoundingClientRect, plus a hard full width step at SY+20 that showed on the render as a
+      // mottled strip along the sheet's top edge. A canopy does not thin where the type is. The
+      // legibility is bought back by the shade wash below, which is what it is there for.
+      var col = 1;
+      x.fillStyle='rgba(44,54,42,'+(0.085*col*(0.62-d-lean+0.4))+')';
+      x.fillRect(px,py,3,3);
     }
-  }
-  x.restore();
-  for(var q=0;q<14000;q++){
-    var qx=R()*W, qy=R()*H, qn=TX.fbm2(qx*0.017,qy*0.017,3);
-    x.fillStyle='rgba('+(qn>0?255:0)+','+(qn>0?255:0)+','+(qn>0?245:0)+','+(0.022*Math.abs(qn))+')';
-    x.fillRect(qx,qy,2,2);
-  }
+    // THE OAK'S SHADE, AS A REAL WASH AND NOT A DAPPLE ALONE. The dossier calls this the deck's
+    // quietest frame under deep shade, and it shipped at median L* 79.1, second brightest of the
+    // nine, with its declared focal DARKER than the field it floats on. A dapple at four percent
+    // over bond is a texture, not a shadow. Under a live oak at this depth the sheet loses most
+    // of a stop, and only then does a reflection off the glazing outshine it, which is what makes
+    // the frame's eye land on a document that is not there.
+    var shade=x.createLinearGradient(SX,SY,SX+SW*0.7,SY+SH);
+    shade.addColorStop(0,'rgba(38,50,38,0.46)');
+    shade.addColorStop(0.55,'rgba(42,54,42,0.36)');
+    shade.addColorStop(1,'rgba(30,40,30,0.40)');
+    x.fillStyle=shade; x.fillRect(SX,SY,SW,SH);
+
+    // THE MIRROR. Under shade the glazing resolves a SECOND notice case across the street. It is
+    // sheared and rippled because it is a reflection off a swung pane, Fresnel weighted so it
+    // strengthens toward the frame's edge where incidence is lowest, and it carries NO legible
+    // string, because a reflected document is not evidence.
+    var FX=606, FY=764, FW=336, FH=252, SHEAR=0.115, RIP=3.2;
+    function mrow(y){ return FX + (y-FY)*SHEAR + RIP*Math.sin((y-FY)*0.021); }
+    function mband(y0,y1,w,off,fill){
+      x.fillStyle=fill;
+      for(var yy=y0; yy<y1; yy++) x.fillRect(mrow(yy)+off, yy, w, 1);
+    }
+    // Fresnel: one weight per scanline, strongest at the near frame edge
+    var mopa=x.createLinearGradient(FX-60,0,FX+FW+90,0);
+    mopa.addColorStop(0,'rgba(198,208,200,0.05)'); mopa.addColorStop(0.55,'rgba(198,208,200,0.19)');
+    mopa.addColorStop(1,'rgba(198,208,200,0.40)');
+    x.fillStyle=mopa;
+    for(var yy=FY-52; yy<FY+FH+62; yy++) x.fillRect(mrow(yy)-58, yy, FW+126, 1);
+    // COMPOSITED, NOT PASTED. At 0.97 the far sheet was opaque and the near sheet's tone did not
+    // read through it anywhere, which is exactly the inset panel this frame's own dossier refuses
+    // ("an inset would be a layout device and would say nothing"). A reflection off glazing ADDS
+    // light to what is behind it. These are the alphas of a real one, so the near sheet's grain and
+    // its oak shade stay visible through the whole reflected case.
+    mband(FY-18, FY+FH+40, FW+34, -17, 'rgba(74,86,78,0.44)');      // the far case's body
+    mband(FY-18, FY-8,     FW+34, -17, 'rgba(176,188,178,0.34)');   // its lit top rail
+    mband(FY,    FY+FH,    FW,      0, 'rgba(244,246,236,0.46)');   // its sheet, the frame's lightest
+    // its body copy, drawn a third of reading size so it resolves as a document and never as words
+    x.fillStyle='rgba(116,124,114,0.34)';
+    for(var k=0;k<15;k++){
+      var ky=FY+96+k*9;
+      x.fillRect(mrow(ky)+24, ky, (FW-70)*(0.36+0.54*Math.abs(TX.simplex2(k*0.9,7.7))), 2);
+    }
+    // TWO STILES AND A KEYWAY, at reflected scale. The near case has a top rail, four stiles at
+    // four values and a keyway, and the reflection had a rail alone, which is why it read as a
+    // smudge. Same parts, half the contrast, run through the same shear and ripple so they belong
+    // to the pane rather than to the picture.
+    mband(FY-18, FY+FH+40, 15, -13, 'rgba(196,206,196,0.30)');     // the near stile, catching light
+    mband(FY-18, FY+FH+40, 11, FW+6, 'rgba(58,68,60,0.34)');       // the far stile, in its own shade
+    mband(FY+FH+28, FY+FH+40, FW+34, -17, 'rgba(40,48,42,0.40)');  // its lower rail
+    // the keyway, a dark slot with a lit lower lip, the near case's one piece of hardware
+    mband(FY+FH*0.44, FY+FH*0.44+15, 9, FW+7, 'rgba(24,30,26,0.52)');
+    mband(FY+FH*0.44+15, FY+FH*0.44+18, 9, FW+7, 'rgba(214,222,212,0.30)');
+    // the ripple's own highlight, so the pane reads as glass and not as a decal
+    x.fillStyle='rgba(226,232,222,0.16)';
+    for(var yy2=FY-40; yy2<FY+FH+52; yy2++) x.fillRect(mrow(yy2)+FW-26, yy2, 13, 1);
+    x.restore();
+    // THE HAIRLINE THE CITES SIT UNDER, drawn. The CSS comment has declared it since this frame
+    // was relaid and nothing drew it, so a third of the hierarchy the frame claims was a sentence.
+    // Same defect as the proud() call that shipped dead for two rounds. Its width comes off each
+    // cite's own box rather than from a constant.
+    // OFF THE INK, NOT OFF THE BOX AND NOT OFF A CONSTANT. This read Math.min(r.width, 300)
+    // where .src1 and .src2 declare width:470 and .src3 declares 402, so min() returned 300 every
+    // time and all three rules measured exactly 300 CSS px, under a comment saying the width came
+    // off each cite's own box. A Range over the cite's own text nodes gives the width of what is
+    // actually set, so a longer cite gets a longer rule.
+    document.querySelectorAll('.src1,.src2,.src3').forEach(function(el){
+      var r = el.getBoundingClientRect(), w = 0;
+      var rg = document.createRange(); rg.selectNodeContents(el);
+      Array.prototype.forEach.call(rg.getClientRects(), function(q){ if (q.width > w) w = q.width; });
+      w = Math.max(120, Math.min(w, r.width));
+      x.fillStyle='rgba(30,38,26,0.30)'; x.fillRect(r.left, r.top-16, w, 1.5);
+      x.fillStyle='rgba(226,232,214,0.22)'; x.fillRect(r.left, r.top-14.5, w, 1);
+    });
+    // sheet foot falloff and the lower rail's contact shadow
+    var fg=x.createLinearGradient(0,SY+SH-180,0,SY+SH);
+    // 0.40 put the frame's lowest contrast under its own closing line. The falloff still reads
+    // as a foot and the type on it clears the rubric.
+    fg.addColorStop(0,'rgba(60,70,58,0)'); fg.addColorStop(1,'rgba(44,54,44,0.22)');
+    x.fillStyle=fg; x.fillRect(SX,SY+SH-180,SW,180);
+    x.fillStyle='#6E7A5A'; x.fillRect(SX-40,SY+SH+22,SW+80,26);
+    x.fillStyle='#96A184'; x.fillRect(SX-40,SY+SH+22,SW+80,4);
+    var sg=x.createLinearGradient(0,SY+SH+48,0,H);
+    sg.addColorStop(0,'rgba(14,18,16,0.58)'); sg.addColorStop(1,'rgba(14,18,16,0)');
+    x.fillStyle=sg; x.fillRect(0,SY+SH+48,W,H-SY-SH-48);
+    // THE CANOPY DOES NOT STOP AT THE PAPER. An earlier build clipped every leaf to the sheet,
+    // which put the tree inside the case. The same oak falls on the case body, the rail and the
+    // ground, and it is read from a different signal there. On bond the eye reads the LEAF,
+    // because the paper has a stop of light to lose. On ground already in shade the eye reads the
+    // SUNFLECK between the leaves, because that is the only light left to see. Same fbm, same
+    // lean, same lit direction. One canopy, two readings, continuous across the sheet's edge.
+    x.save(); x.beginPath();
+    x.rect(0,0,W,SY); x.rect(0,SY,SX,H-SY);
+    x.rect(SX+SW,SY,W-SX-SW,H-SY); x.rect(SX,SY+SH,SW,H-SY-SH);
+    x.clip();
+    for(var j=0;j<96000;j++){
+      var jx=R()*W, jy=R()*H;
+      var jd=TX.fbm2(jx*0.006,jy*0.006,4)+0.55*TX.fbm2(jx*0.02,jy*0.02,3);
+      var jv=jd+((jx-SX)/SW*0.55+(jy-SY)/SH*0.35);
+      if(jv>0.62){
+        if(jv<0.80) continue;
+        // the sunfleck. A coin of light between leaves, and the only signal a canopy leaves on
+        // ground that is already in shade. It shipped at 0.05 and read as nothing.
+        x.fillStyle='rgba(226,232,202,'+(0.135*Math.min(1,(jv-0.80)*2.0))+')';
+        x.fillRect(jx,jy,4,4);
+      } else {
+        x.fillStyle='rgba(20,28,20,'+(0.150*(1.02-jv))+')';
+        x.fillRect(jx,jy,4,4);
+      }
+    }
+    x.restore();
+    for(var q=0;q<14000;q++){
+      var qx=R()*W, qy=R()*H, qn=TX.fbm2(qx*0.017,qy*0.017,3);
+      x.fillStyle='rgba('+(qn>0?255:0)+','+(qn>0?255:0)+','+(qn>0?245:0)+','+(0.022*Math.abs(qn))+')';
+      x.fillRect(qx,qy,2,2);
+    }
   resolve();
+  });
 });
 </script>
 </body></html>

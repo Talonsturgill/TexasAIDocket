@@ -36,9 +36,16 @@ milled recesses, 2026-08-20 pressed ink into fiber, every one of them under a ra
 deck takes its dimension from light passing THROUGH a plane in front of a flat sheet. There is no
 raking key anywhere in it.
 
-**It is a MID VALUE deck**, ground at L* 62 to 68. Five shipped decks are dark register, one is a
-flat daylight sheet, one is paper. None is mid. Light and dark are EVENTS inside a frame here
-rather than the frame's setting, so every frame must carry `case_dark` and `bond` as real areas.
+**It is a WIDE RANGE deck**, and this sentence is written from measurements.json rather than at
+it. The plan opened as a MID VALUE deck at L* 62 to 68 and the render shipped one frame of nine
+inside that band, which is a physical law the deck never obeyed and a claim three rounds reported
+as met. What it actually is: frame medians run 14.4 to
+93.2, a deck median of 52.1 at a standard deviation of
+21.6, with the biggest junction 62.4 between frames
+4 and 5. Five shipped decks
+are dark register, one is a flat daylight sheet, one is paper. None swings like this. Light and
+dark are EVENTS inside a frame here rather than the frame's setting, so every frame must carry
+`case_dark` and `bond` as real areas, and the SWING between frames is the strip's own event.
 
 ## Palette, from an anodized notice case under a hot high-haze Texas sky
 
@@ -46,8 +53,7 @@ rather than the frame's setting, so every frame must carry `case_dark` and `bond
 acrylic. `bond #F2EEE4` the sheet in open shade. `letter #E8E4D8` white styrene changeable letter,
 frame 3. `anodize_lit #D8D2C4` the top rail catching sun. `cork #B99B72` fiberboard backing.
 `anodize #9C9A90` chalked aluminium, the warm neutral mid. `glaze #9DAAB4` hazed acrylic, the cool
-mid and the deck's constant. `edge_cyan #6FA79C` acrylic seen on its edge, once, 6px, frame 6.
-`glaze_deep #5A6874`. `mesquite_shade #6E7A5A` live oak shadow, frame 8. `toner #2A2622` fused
+mid and the deck's constant. `glaze_deep #5A6874`. `mesquite_shade #6E7A5A` live oak shadow, frame 8. `toner #2A2622` fused
 laser toner. `case_dark #1F252C` the case interior. `flag_red #BF0A30` reserved, spent ONCE as ink
 on bond, frame 9, on the one thing a reader can still act on.
 
@@ -181,7 +187,7 @@ slide: 1
 job: >
   Stop the scroll on a locked public object and state the count, so a reader learns in one look
   that this is a pattern across the state rather than one town's meeting.
-claims: []
+claims: [c36, c37, c38, c40, c45]
 numerals:
   - computed_by: "out/2026-08-25/compute.py, restricted_count, bodies that took a recorded 2026 action"
   - computed_by: "out/2026-08-25/compute.py, distinct_shapes over those bodies"
@@ -222,7 +228,7 @@ art:
   motion: "down the lit rail, into the opening, onto the sheet"
 type:
   hook: "Fifteen actions. Five, five and five."
-  dek: "Twelve Texas local governments acted on a data center this year. The shape of the instrument decides whether anything stops."
+  dek: "Twelve Texas local governments acted on a data center this year. The instrument's shape decides whether anything stops."
 acceptance:
   - 'the cover prints "Fifteen actions. Five, five and five." and its lockup reads "STOPS NOTHING", the words the computation supports, where bound overstated the rule that produced the six'
   - "the lock cylinder and its keyway are drawn at the right stile, so the case reads as locked rather than as a picture frame"
@@ -239,7 +245,7 @@ slide: 2
 job: >
   Show that the fifteen actions are a typology rather than one action repeated, by listing all
   fifteen of them on one sheet, in two columns, under one broad occlusion gradient.
-claims: [c17, c5, c9, c12, c31, c30, c22]
+claims: [c5, c9, c17, c22, c30, c31, c32, c35, c36, c37, c38, c40, c41, c43, c45]
 numerals:
   - computed_by: "out/2026-08-25/compute.py, restricted_count and acting_bodies, fifteen actions
       across twelve local governments. distinct_shapes is NOT declared and is not published:
@@ -285,7 +291,7 @@ type:
   hook: "All fifteen, in the order they happened"
   dek: "March 10th to August 13th, 156 days."
 acceptance:
-  - 'the sheet prints "All fifteen, in the order they happened" and its legend reads "NOT STATED", which is the third state the record actually holds'
+  - 'the sheet prints "All fifteen, in the order they happened" and its legend reads "NO DATE IN FORCE", which is the third state the record actually holds'
   - "the shadow has a visibly wider penumbra at the bottom of the sheet than at the top, which is the air gap doing work"
   - "every one of the fifteen instrument names is legible at 1080px and each carries the claim id
      whose own words prove its shape"
@@ -302,64 +308,68 @@ risks:
 
 ```yaml
 slide: 3
-job: >  # REVISED after the flow critic, see the revision note below
-  Show WHEN the fifteen actions fell, by seating one letterboard tile per action against its month,
-  so the June cluster is a thing a reader counts rather than a sentence they are asked to believe.
-claims: []
+job: >
+  Name the five the sources leave open, one row each, with the shape compute.py guards against
+  each claim's own words and nothing the frame invented.
+claims: [c36, c37, c38, c40, c45]
 numerals:
-  - computed_by: "out/2026-08-25/compute.py, first_action_date, the earliest ordered date"
-  - computed_by: "out/2026-08-25/compute.py, last_action_date"
-  - computed_by: "out/2026-08-25/compute.py, span_days, 156"
+  - computed_by: >
+      out/2026-08-25/compute.py, force_unstated over restricted_count. The five acting items whose
+      cited source says neither that the action binds nor that it does not.
 composition:
   structure: >
-    Square on and level to a lobby changeable letter board, with no case, which is what stops
-    the deck's other frames converging on one silhouette. A board is the right object because
-    the content is a list somebody had to set by hand, one character at a time, and because a
-    board has room left on it, which is what an open question looks like.
+    A lobby changeable letter board, square on and level, with no case. Leaving the case for one
+    frame is what stops seven consecutive frames converging on one silhouette.
   bands: >
-    The top third carries the board's lit head rail, the kicker and counter, the hook reversed
-    out of felt, and the dek. The middle third carries five seated rows, each a place, an
-    instrument and the claim that carries it, every one sitting in its own groove with its own
-    cast shadow computed from one overhead source. The bottom third carries the closing line on
-    the same felt, the board's lit foot rail as a modeled solid, and the site line beneath it.
+    The TOP THIRD carries the board's lit aluminium head rail as a modeled solid with its own
+    upper highlight and lower shadow, the kicker and counter above it, and the hook and dek set on
+    raked felt whose nap is drawn rather than filled. The MIDDLE THIRD carries the first three
+    seated rows at a 120px pitch, each in a two part groove with a lit lip, each casting its own
+    computed shadow. The BOTTOM THIRD carries the last two rows with the deck's longest and
+    softest modeled shadows, the closing line in the reading face, and the foot rail as a second
+    lit modeled solid so the board has thickness at both ends rather than one. The board is sized
+    to its content at 1010px, because 200px of empty felt below the last row is a board drawn to a
+    typed size rather than to what is set on it.
   focal: >
-    The five seated place names down the left, roughly 380 by 560, the only near white mass on
-    the deck's darkest field.
+    The five seated rows, x118 to x914, y508 to y1018, which is where the frame's only mono is
+    and the only place a groove crosses a glyph baseline.
 art:
-  technique: "hand set changeable letters seated in felt grooves, per row cast shadows from one overhead source"
+  technique: "a changeable letter board, five rows seated in lit grooves under one overhead source"
   why_this_technique: >
-    A letterboard is the one typographic object that shows a person put each character there by
-    hand, which is the right register for a finding about what a record does NOT say. Two craft
-    judges called this frame a bar chart of blank tiles under exactly this rationale, twice,
-    because it seated nothing. It seats words now, so the argument and the drawing are the same
-    thing. The per row shadow offset is computed rather than copied, which is what stops a
-    letterboard reading as a drop shadowed webfont.
-  palette: "case_dark felt, letter white styrene, anodize_lit rails"
+    A letter board is the one typographic object that shows a person put each character there by
+    hand, which is the frame's argument about a record that was assembled rather than published.
+  palette: "felt ground, aluminium rails, bond white letters, one overhead lobby source"
   value_structure: >
-    Lightest is the seated place names in bond white. Darkest is the felt itself, which is the
-    deck's darkest field at a measured L* 14.4, so the board carries the biggest junction in
-    the strip on the frame before it. The instrument column and the claim column step down in
-    two measured stages so the eye reads place, then act, then citation.
-  motion: "down the rows, each shorter than the last"
+    The felt is near black with real nap. Each groove is drawn in two parts, a dark channel that
+    CROSSES THE BASELINE at ry+30 so the letters occlude the slot they stand in, and a lit lip at
+    ry+35 that clears roughly thirteen L star over the felt. Round 12 measured the old lip at three
+    L star, under the doctrine's own reads-as-nothing floor, with the channel eight pixels below
+    the type box, so the letters floated over a line and the board read as a table with underlines.
+  motion: "down the rows, the shadows lengthening and softening as they go"
 type:
-  hook: "Five the sources leave open"
-  dek: "Each of these acted. No source this run fetched says whether the action binds."
+  hook: "Five that start on no date"
+  dek: "Each of these acted. Not one of their records carries a date the action takes effect."
 acceptance:
-  - 'the board prints "Five the sources leave open" and seats "WICHITA FALLS" against "CONDITIONAL USE", so the frame names the five rather than counting them'
-  - "every one of the five rows carries a claim id, and the five ids are exactly the set frame 1's citation line names"
-  - "each row's letters sit in a groove with a cast shadow, and no two rows carry the same offset"
-  - "the board's grooves stop where its content stops, so no groove sits empty looking like a row the frame declined to answer"
-  - "the closing line states what a reader cannot conclude, rather than describing the deck's own method"
+  - 'the board prints "RESOLUTION ADOPTED" beside C40, the string compute.py guards against c40 own words'
+  - 'no row on this board prints "CONDITIONS SET", the label the frame invented for that item and hard failed round 12 for'
+  - 'the board prints "REVIEW ESTABLISHED" and "ABATEMENT APPROVED", each the string compute.py guards for that item, which scripts/carousel/label_guard.py asserts over the whole deck'
+  - "adjacent rows differ by at least 3 device pixels of shadow offset, asserted in the frame's own script, which throws and fails the render rather than warning"
+  - "exactly two characters sit proud of their row, picked by content rather than by an index, and the frame's script throws if fewer than two were made"
+  - "the row positions come from one array, and the script throws if the number of grooves and the number of rows disagree"
+  - "each groove's dark channel crosses the glyph baseline rather than sitting below the type box"
+  - "the closing line is set in the deck's reading face, because mono on this frame means a character seated on the board"
 risks:
-  - "a board of five short rows on a dark field is one step from a table, and a table is furniture"
-  - "a frame about silence can read as a frame with nothing on it, which is why the rows carry the instrument and not only the place"
+  - "a groove drawn below the type box makes the letters float and the board reads as a table with underlines"
+  - "a shadow ramp under three device pixels per row is invisible and any nonzero gradient satisfies an item with no floor"
 ```
 
 ```yaml
 slide: 4
 job: >
-  Show that the newest and largest refusal is not in force, by making the brightest part of the
-  sheet the part a reader cannot read.
+  State the rule the record proves across five frames and the deck never said. Five of
+  the fifteen reached for a resolution and not one of them is among the five that took
+  effect, and the frame's own veil is the argument: the five names sit behind the glare
+  and the finding sits in the clear.
 claims: [c22, c23]
 numerals:
   - value_from: c23
@@ -392,10 +402,10 @@ art:
     that the brightest thing is the subject.
   motion: "down the veil into the clear foot"
 type:
-  hook: "The newest pause is not in force"
-  dek: "The council adopted a resolution that starts a process. The city calls February 16th a tentative adoption vote. Sources differ on whether a pause would begin there."
+  hook: "None is in the five that took effect"
+  dek: "Hays County, El Paso, Lubbock County, Brazoria County and Fort Worth each reached for a resolution."
+  cid: "C36, C38, C31, C40 AND C22"
 acceptance:
-  - 'the sheet prints "The newest pause is not in force" and its citation reads "READ FROM A REPRINT", because the city host served nobody this run'
   - "the veiled region is measurably lighter than the unveiled region of the same sheet"
   - "the veil has a hard straight edge where the mullion cuts it, not a soft global gradient"
   - "the word tentative or the city's own conditional wording appears in the readable block"
@@ -408,48 +418,52 @@ risks:
 ```yaml
 slide: 5
 job: >
-  Turn the deck. Blow the sheet out with direct sun so that only the two sentences that say the
-  refusals do not bind survive the light.
-claims: [c5, c7, c30]
-numerals: []
+  Name all five that stop nothing, in two registers, with the blowout running the whole page.
+claims: [c5, c7, c18, c22, c30]
+numerals:
+  - computed_by: >
+      out/2026-08-25/compute.py, stated_nonbinding over restricted_count. The five acting items
+      whose own cited source says the action does not bind.
 composition:
   structure: >
-    The case in direct sun, square on and close, with a bounded specular parallelogram crossing
-    the sheet at about 28 degrees, because the content is that most of the record's own words are
-    beside the point and two sentences are not. A blowout is the only device that removes text
-    without deleting it, so the reader sees that something was there.
+    A FULL BLEED CROP ON THE SHEET, with no case and no border. Round 12 found four of nine frames
+    standing on the square on bordered sheet and this one reading as the same picture as frame 2 at
+    feed size. The border is gone, which is a different silhouette in the strip and gives the
+    blowout the whole width to run along instead of the 96px letterbox it died inside.
   bands: >
-    The top third carries the sheet above the band with the first surviving quote at full toner
-    and the kicker and counter. The middle third carries the blowout itself, decorative body type
-    dissolving inside it. The bottom third carries the second surviving quote at full toner, the
-    case's bottom rail in its own cast shadow as a lit modeled solid, and the graded falloff from
-    the blowout's lower shoulder into that shadow so the light has somewhere to die.
+    The TOP THIRD carries the hook and the first pull quote on the page's lit shoulder, with the
+    greeked paragraphs set around them. The MIDDLE THIRD carries the blowout running corner to
+    corner at minus 28 degrees, a modeled band with graded shoulders above and below it, and the
+    second pull quote sitting inside its light. The BOTTOM THIRD carries a two column list, a
+    structure this frame uses nowhere else, naming the other three with the claim that proves
+    each, over the page's own graded falloff, which is this frame's dark and is a modeled SURFACE
+    rather than a border.
   focal: >
-    The blowout parallelogram itself, roughly 1080 by 190 at bond_sun, the lightest area in the
-    entire deck.
+    The blowout band itself, running from about x0 y980 to x1080 y360, the brightest area on the
+    frame and the first fixation. Read off the laid out render.
 art:
-  technique: "bounded specular blowout with a computed shoulder rolloff"
+  technique: "a blown out light band across a full bleed page, with the greeked field set as paragraphs"
   why_this_technique: >
-    The claim is that the record contradicts itself and the contradiction is quotable. Erasing the
-    filler optically, with a physical cause, is what makes the two survivors read as survivors
-    rather than as a pull quote layout. A crop would remove the filler and remove the point.
-  palette: "bond_sun band, bond sheet, toner quotes, case_dark rail shadow"
+    The frame is about a record that says a thing happened and does not say it binds, so the light
+    that lets you read the page is also what erases part of it.
+  palette: "bond page, graded page falloff to the lower right, no border"
   value_structure: >
-    Lightest is the blowout band. Darkest is the bottom rail in its own shadow across the frame's
-    foot. This is the deck's widest range and it is spent on the turn.
-  motion: "across the band diagonally, then down to the surviving line"
+    The page is lit from the upper left and falls away to the lower right, so the frame's dark is a
+    GRADED SURFACE rather than an 80px flat border. The blowout's lower shoulder is where the
+    falloff starts.
+  motion: "down the left column, across the band, into the list"
 type:
   hook: "Five of the fifteen stop nothing"
-  dek: "\"does not stop the project from moving forward\""
+  dek: '"does not stop the project from moving forward"'
 acceptance:
-  - 'the sheet prints "Five of the fifteen stop nothing" and carries "Resolutions do nothing, they are not binding" verbatim'
-  - "the blowout has two hard parallel edges and a measurable rolloff, not a soft radial glow"
-  - "the band crosses only decorative body type and never crosses a quoted line or a display glyph"
-  - "both surviving quotes are at full toner value and are legible at 432px"
-  - "the band is parallel to no frame edge"
-  - "the bottom rail's shadow gives the frame a dark anchor so the blowout is not the only event"
+  - 'the frame prints "Five of the fifteen stop nothing" and names five bodies under it, reading "CORPUS CHRISTI" and "FORT WORTH" alongside Archer, Lubbock and Killeen, so a reader who counts arrives at five'
+  - "the frame names five bodies, which is the number its own hook prints, and each carries the claim that proves it"
+  - "the greeked field is laid as paragraphs at one leading off one indent, with a short last line, rather than as scattered rules"
+  - "the exclusion list is read off getBoundingClientRect over the frame's own elements, and the script throws if it measures fewer than ten type boxes"
+  - "no border of any kind is drawn, so the frame's silhouette in the contact sheet is unlike frames 2, 7 and 8"
+  - "every string clears the 24px mobile floor and every one clears 4.5 to 1 against the page under it"
 risks:
-  - "a blowout that touches a quoted line destroys the one thing the frame exists to preserve"
+  - "a full bleed page with no dark anchor reads as flat unless the falloff is genuinely graded"
 ```
 
 ```yaml
@@ -470,8 +484,8 @@ composition:
     leave without being told it was ever there. Every other frame has a plane between the camera
     and the record and this one does not.
   bands: >
-    The top third carries the swung glazing edge at the far left as a 6px edge_cyan band, the open
-    case head, the kicker and the counter. The middle third carries two unglazed sheets on lit
+    The top third carries the open case head, the kicker and the counter. There is no glazing edge
+    on it any more. The middle third carries two unglazed sheets on lit
     cork, PINNED and of DIFFERENT HEIGHT, each with its own quoted line. A motion is one line in a
     minute book and an ordinance is a section of the city code, and a board carrying both would
     never carry them on matched stock. The bottom third carries THREE ROUTE SLIPS on thinner
@@ -497,28 +511,31 @@ art:
     record. Neither carries a quotable sentence, only an instrument and a claim, so drawing them
     as full cards would have invented a weight the sources do not have. Three stocks on one board
     is also simply true.
-  palette: "bond sheets, cork ground, toner type, edge_cyan once at 6px"
+  palette: "bond sheets, cork ground, toner type, no edge_cyan, deleted this run"
   value_structure: >
     Lightest is the two sheets at bond. Darkest is the case's lower lip seen from slightly above,
     inside face case_dark. This frame's FIELD is the brighter side of the deck's biggest local
-    step: measured, it is 73.2 and frame 7 immediately after it is 52.1, a 21.1 L* drop, which is
+    step: measured, it is 72.2 and frame 7 immediately after it is 52.1, a 20.1 L* drop, which is
     what makes frame 7 land. It is not the brightest frame in the deck, frame 5 is, and
     an earlier draft of this line claimed it was.
   motion: "left card to right card, then down across the four slips left to right"
 type:
   hook: "Five of the fifteen took effect"
-  dek: "\"shall not exceed 8.0 gallons per square foot of Gross Building Area\""
+  dek: "\"Initial cooling system fill shall not exceed 8.0 gallons per square foot of Gross Building Area\""
 acceptance:
-  - 'the board prints "Five of the fifteen took effect" and its last slip reads "SAN MARCOS INELIGIBLE C35", so a reader can count five papers under a hook that says five'
+  - 'the board prints "Five of the fifteen took effect" and its last slip reads "SAN MARCOS MADE INELIGIBLE C35", so a reader can count five papers under a hook that says five'
+  - "every shape printed on a slip is the string compute.py guards for that item, uppercased, which scripts/carousel/label_guard.py asserts. It read ZONING, SEWER and INELIGIBLE, three labels this frame chose over three the record proves"
   - "no glazing plane is drawn between the camera and either sheet"
   - "the cork carries a visible staple hole field rather than a flat tan fill"
   - "each of the five papers casts a two part contact shadow onto the lit cork, dark core and penumbra"
-  - "edge_cyan appears exactly once, as a band no wider than 6px"
+  - "edge_cyan appears NOWHERE in this deck. It was a 6px bar at x16 attached to no drawn object, unterminated at both ends and 2.4px wide at the size a reader gets, and three craft reads asked for it to be attached or deleted. It is deleted, so the deck stops claiming a reserved colour it does not use"
   - "both quoted lines are verbatim from c9 and c32 and are legible at 432px"
   - "each card carries a pin whose cast shadow falls on the CARD and not on the cork, because the shaft goes through the paper"
   - "the board carries FIVE pinned papers, which is the number the hook states, and a reader who counts them arrives at five"
   - "San Angelo is nameable three times on the board, which is what the foot says, so the count is verifiable rather than asserted"
-  - "the two cards and the three slips are of visibly different height and no bare cork band deeper than 300px is left under them"
+  - "the two cards and the three slips are of visibly different height, and no two slips are within 12 percent of one width, asserted in the frame's own script, which throws and fails the render rather than warning"
+  - "each slip's paper is sized from its own longest laid out line rather than from a constant, measured behind document.fonts.ready so it is the real face's width"
+  - "the staple hole field excludes every type box on bare cork, read off getBoundingClientRect, and RESAMPLES rather than skips so the count stays at 150 and the field does not thin out wherever the type is"
 risks:
   - "a flat frame with two sheets and nothing else reads as an unfinished render, which has shipped here before"
   - "a pin drawn as a flat disc reads as a sticker. It needs a lit dome, a rim and a puncture under it or it is worse than no pin"
@@ -560,7 +577,7 @@ art:
   value_structure: >
     Lightest is the sheet's bottom edge. Darkest is the top rail's underside and its shadow across
     the frame's top, carrying the reversed hook. The falloff across the four repeats measures 16.5
-    L*, and the frame's field at 52.1 is 21.1 L* under frame 6 before it. It is not the deck's
+    L*, and the frame's field at 52.1 is 20.1 L* under frame 6 before it. It is not the deck's
     darkest field, frame 3 at 14.4 is, and an earlier draft of this line claimed it was.
     Two committed files carried two different values for that falloff, 22.1 here and 17.2 in
     artwork.json, and neither was right. It is measured once now, in out/2026-08-25/tmp/measure.py,
@@ -588,7 +605,7 @@ slide: 8
 job: >
   Carry the counter image on its own frame. Two bodies considered a restriction and declined, and
   one of them said why.
-claims: [c15, c16, c27, c14]
+claims: [c14, c15, c16, c37, c44, c45]
 numerals:
   - computed_by: "out/2026-08-25/compute.py, declined_count"
   - value_from: c16
@@ -599,14 +616,23 @@ composition:
     small bright sheet. The content is that the record also holds the other direction, and a
     reflection is the only way to put a second body in the frame without drawing a map.
   bands: >
-    The top third carries the near case's head under mesquite_shade with the kicker and counter.
-    The middle third carries the near sheet with Tom Green's decision and the reflected far case
-    floating in front of it. The bottom third carries the near case's lower rail in deep shade as
-    a lit modeled solid, the oak's dappled shadow grading across the wall beneath it with grain,
-    and Laredo's action history line set on the rail's lit lip.
+    TWO COLUMNS, one per half of the hook. The TOP THIRD carries the near case's head under
+    mesquite_shade, the kicker and counter, the hook, and the right column's label and prose, all
+    on bond the oak has taken most of a stop of light off. The MIDDLE THIRD carries the dek, the
+    left column's label and its longest block, and the right column's cite, over the canopy read as
+    leaves on paper. The BOTTOM THIRD carries the reflected far case as a modeled second notice
+    case with its own lit top rail, two stiles at two values, a lower rail and a keyway, Laredo's
+    own words beside it, and the near case's lower rail as a lit modeled solid over ground where
+    the same canopy is read from its sunflecks instead. Round 12 read the old single column as
+    eighteen lines of undifferentiated column over 1150px of sheet height with no anchor, and the
+    greeked hairline field that ran beside it is gone, because on this frame you could delete it
+    and no claim changed.
   focal: >
-    The reflected far case's bond sheet, roughly 200 by 150, floating in front of the near sheet.
-    The eye lands on a document that is not there.
+    The reflected far case, 336 by 252 CSS px at x606 y764 before the shear, sheared and rippled
+    across the lower right of the near sheet. Read off the laid out render rather than off this
+    plan, which declared 200 by 150 for an object three times that area. It is not the frame's
+    highest contrast element and it is not claimed to be. The eye lands on the hook and then on a
+    document that is not there.
 art:
   technique: "Fresnel weighted mirror reflection at true mirror scale"
   why_this_technique: >
@@ -616,22 +642,25 @@ art:
   palette: "mesquite_shade over anodize, glaze_deep glazing, bond reflected sheet, toner"
   value_structure: >
     Lightest is the reflected sheet. Darkest is the live oak's shadow across the near case, lower
-    right. Measured it is 58.9, with frames 7 and 9 at 52.1 and 48.7 either side, so it
+    right. Measured it is 58.0, with frames 7 and 9 at 52.1 and 49.6 either side, so it
     is the BRIGHTEST of the deck's last three. An earlier draft called it the quietest between
     its two loudest, which was wrong on both halves and was reported repaired twice without being
     touched. It is written from measurements.json now.
   motion: "onto the reflection, then back to the near sheet it floats over"
 type:
   hook: "Two declined. Two said yes."
-  dek: "The Tom Green County commissioners court voted not to pursue a moratorium in one commissioner's precinct."
+  dek: "Seventeen times a Texas local government took one up. Fifteen acted and two did not."
 acceptance:
   - 'the sheet prints "Two declined. Two said yes." and substantiates both, reading "Williamson County approved an abatement" beside Wichita Falls'
-  - "the reflected geometry resolves as a second notice case and not as a smudge or a double exposure"
+  - "the reflected case carries the near case's own vocabulary at reflected scale, a lit top rail, a near stile catching light, a far stile in its own shade, a lower rail and a keyway with a lit lower lip, so a reader recognises the OBJECT before deciding not to read it. It shipped as a pale trapezoid with a rail alone"
   - "the reflection strengthens toward the frame edge where the incidence angle is lowest"
   - "no reflected element carries a legible string, because a reflected document is not evidence"
   - "the lawsuit is attributed as something a commissioner referenced, never stated as a finding"
   - "the near case's lower rail carries a lit lip and a contact shadow so it reads as metal in shade"
   - "the oak's canopy is continuous across the sheet's edge onto the case, the rail and the ground, read as leaves on paper and as sunflecks on ground already in shade"
+  - "the frame is set in TWO COLUMNS, one per half of its own hook, in three sizes: the hook at 60, the prose at 27 and 28, and the labels and cites at 24, which is the deck's mobile floor and the reason the cites cannot step down further"
+  - "each half sits under its own letterspaced mono label, and Laredo sits in the DECLINED column, which is the half its action belongs to"
+  - "every string clears 4.5 to 1 against the shaded sheet under it at its worst point, not only at its box mean"
 risks:
   - "a reflection that resolves into a nameable building asserts something this record cannot support"
   - "a canopy clipped to the sheet puts the tree inside the case, which is what round 8 caught here"
@@ -640,58 +669,65 @@ risks:
 ```yaml
 slide: 9
 job: >
-  Give the reader the one door that is open, with the only red in the deck on the date, and leave
-  two empty clips where the next notice goes.
+  Close on the two dated public steps this record still carries, name what a reader can do at
+  each, and print the one Fort Worth owes that the record cannot date yet.
 claims: [c24, c46]
 numerals:
-  - value_from: c24
   - computed_by: >
-      out/2026-08-25/compute.py, open_doors. THE HOOK'S NUMBER, WHICH WAS TYPED. Round 11 hard
-      failed this deck on "One door is still open": nothing computed a door, `still_dated` was 2,
-      and this dossier still carried the superseded sentence that produced the hook. A door is a
-      dated step a reader can walk into, which is two conditions. Williamson County has the date
-      and its room is contact_only with no comment period open. Fort Worth has both. It computes
-      to one over the fifteen this deck carries, and the frame cites c24 and c46.
+      out/2026-08-25/compute.py, open_doors, door_days_out and doors_local. THE HOOK IS COMPUTED
+      OVER THE WHOLE SET A READER ASSUMES. Round 12 hard failed "One door is still open" twice
+      over. It returned 1 through the wrong field, because the rule accepted a future date of any
+      kind and Fort Worth qualified on effective 2027-02-16, a day nobody attends. And it was
+      scoped to the fifteen while the frame printed an unqualified superlative the record refutes,
+      since tx-2026-0002 is a PUCT comment window closing September 4th. A door is now a HEARING
+      or a COMMENT WINDOW dated on or after the run date, in a room the public may enter, counted
+      over every item this deck weighed. It computes to two, ten days to the nearest, and none of
+      them local, which is the sentence the frame prints.
 composition:
   structure: >
-    Level and close on the case's lower left interior, because the deck has spent eight frames on
-    decisions already taken and the last frame should be at the scale of a person standing in
-    front of the case reading the one thing that has not happened yet.
+    Level and close on the case's lower left interior, at the scale of a person standing in front
+    of the case. The two clips that hung empty for eight frames carry the two doors, which is what
+    the earlier build's own comment said they were for.
   bands: >
-    The top third carries the case's interior wall in graded shade with the kicker and counter on
-    the lit upper lip. The middle third carries one clipped sheet with the hearing and the date,
-    the red on the date only. The bottom third carries two sprung clips holding nothing, drawn as
-    lit modeled metal with tight two part contact shadows on the cork beneath them, the cork's
-    staple hole texture catching the low light, and the site line and star on the lower rail.
+    The TOP THIRD carries the case's interior wall in graded shade, the open lid's spill pooled
+    behind and right of the sheet, the kicker and counter on the lit upper lip, and the clipped
+    notice sheet's head with its modeled clip casting a graded shadow onto the paper. The MIDDLE
+    THIRD carries the sheet's body with the dek, a rule drawn on the sheet's own plane, and the
+    Fort Worth gap. The BOTTOM THIRD carries the cork ledge crossing at 796 as a modeled edge with
+    a lit lip and a short shadow up onto the wall behind it, two hung slips at two sizes and two
+    heights each casting a two part shadow onto lit cork, and the case's lower lip closing the
+    frame as a dark modeled solid with its own lit upper edge.
   focal: >
-    The one clipped sheet at bond, roughly 400 by 480, the frame's only large light area.
+    The notice sheet, 560 by 690 CSS px at x110 y190, the frame's only large light area and the
+    highest contrast element on it. Read off the laid out render rather than off this plan.
 art:
-  technique: "sprung clips with tight two part contact shadows on lit cork"
+  technique: "two hung slips, shrink wrapped to their own laid out type, on lit cork"
   why_this_technique: >
-    This is the near zero gap end of the deck's shadow physics and it is deliberately readable
-    against frame 2's wide penumbra, which closes the deck on the same physical law it opened
-    with. Two empty clips are a drawn absence, which the record supports, where a drawn future
-    notice would be an invention.
-  palette: "bond sheet, cork ground, anodize clips, flag_red on the date only, case_dark shade"
+    The clips were drawn empty under a comment reading "this is where the next notice goes" and
+    the closing frame is where it goes. Both slips are MEASURED: each is sized from its own
+    longest laid out line and hung from its own margin above the case lip, so nothing about their
+    geometry is typed and a longer body name makes a wider slip rather than an overflow.
+  palette: "bond sheet, two slip stocks, cork ground, anodize clips, flag_red on the near date only"
   value_structure: >
-    Lightest is the sheet's top edge where full sky reaches it. Darkest is the shadow under the
-    two empty clips, tight cores against lit cork. The cork must be lit first or the shadow is a
-    two L star change and reads as nothing, and the case interior behind the sheet takes the open
-    lid's spill for the same reason. The sheet's own shadow is two part like everything else on
-    this deck. It shipped for eight rounds as a single offset block at flat opacity, which is the
-    drop shadow the technique library names as the move that cheapens a frame.
-  motion: "onto the sheet, down to the clips that hold nothing"
+    Lightest is the sheet's top edge. Darkest is the case lip. The cork is lit before anything is
+    cast into it. The near door gets flag red because it is ten days out and the December one does
+    not, which is a stated rule the frame can be held to rather than a colour choice.
+  motion: "down the sheet, across to the near slip, right to the far one"
 type:
-  hook: "One door is still open"
-  dek: "Fort Worth holds the first of two required public hearings."
+  hook: "Two doors have dates."
+  dek: "Eight items in this record carry a public step still ahead. The two that reach a data center both sit with a state body."
 acceptance:
-  - 'the sheet prints "NOVEMBER 10TH" in flag red and reads "NOT LATER THAN" above it, because the city stated a deadline rather than a fixed date'
-  - "flag_red appears on this frame and on no other, and only on the date"
-  - "the two empty clips cast tight dark cored contact shadows onto cork that is visibly lit"
-  - "the November date is set as an ordinal month first and is legible at 432px"
-  - "the sheet reads as clipped, with the clip overlapping its top edge and casting a graded shadow onto it"
-  - "the sheet's own shadow has a stepped penumbra and a tight contact core, and no single hard offset edge anywhere on the frame"
-  - "the wording carries the city's own not later than framing rather than presenting a fixed date"
+  - "the two slips differ in width by at least 6 percent of the wider one, asserted in the frame's own script, which throws and fails the render rather than warning"
+  - "the two slips hang at tops at least 18px apart, asserted in the frame's own script"
+  - "neither slip overlaps the other and neither runs into the case lip at y1228, both asserted in the frame's own script"
+  - 'the near slip prints "SEPTEMBER 4TH" and "COMMENTS CLOSE" and the far one prints "DECEMBER 17TH" and "HEARING", the two dated public steps this record carries ahead of the run date'
+  - 'the sheet prints "Two doors have dates." over a count computed across every item this deck weighed'
+  - 'no string on this frame reads "One door is still open", the unscoped superlative the record refutes'
+  - "flag_red appears on SEPTEMBER 4TH and on no other string in the deck"
+  - "every string on the frame is set at 24px or larger, so none trips the render report's mobile floor"
+  - "each slip prints a TX-2026 record id rather than a claim id, because both doors come from the record's key_dates and neither is in this run's claims file"
+  - "the cork ledge carries a lit lip and a graded shadow above it rather than a hard colour change"
 risks:
   - "a shadow cast onto unlit cork is a two L star change and the clips will read as pasted on"
+  - "two slips at one size read as a rack rather than as two things somebody pinned up"
 ```
