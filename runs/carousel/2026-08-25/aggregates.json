@@ -9,7 +9,8 @@
     "c10",
     "c11"
    ],
-   "computed_by": "out/2026-08-25/compute.py, brazoria_applications, the abatements the zone carried, counted over the RESTRICTED and DECLINED maps in that file, whose keys are item ids in ledger/docket.json"
+   "value_from": "c11",
+   "computed_by": "out/2026-08-25/compute.py, brazoria_applications. NOT counted over the ledger and the code says so in its own comment. c11 states two entities named as data center companies and two named as power companies, and the value follows from that sentence."
   },
   {
    "phrase": "one year",
@@ -181,6 +182,25 @@
     "c12"
    ],
    "computed_by": "out/2026-08-25/compute.py, restricted_count, counted over the RESTRICTED map in that file"
+  },
+  {
+   "phrase": "one of the ten",
+   "kind": "ratio",
+   "value": 1,
+   "of": 10,
+   "from_claims": [
+    "c17",
+    "c5",
+    "c31",
+    "c30",
+    "c9",
+    "c22",
+    "c12",
+    "c14",
+    "c15",
+    "c29"
+   ],
+   "computed_by": "out/2026-08-25/compute.py, still_dated over total_count, the bodies among the ten whose key_dates in ledger/docket.json hold a step on or after 2026-08-25"
   }
  ]
 }

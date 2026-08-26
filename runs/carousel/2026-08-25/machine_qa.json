@@ -24,11 +24,11 @@
         "tiny-text: 'FORT WORTH' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))"
       ],
       "bands": [
-        0.2752,
-        0.1681,
-        0.2077
+        0.2815,
+        0.1723,
+        0.2059
       ],
-      "band_ratio": 0.9591
+      "band_ratio": 0.939
     },
     {
       "file": "slide-03.html",
@@ -78,14 +78,15 @@
       "fails": [],
       "warns": [
         "tiny-text: 'BRAZORIA COUNTY, C9THE ZONE THEY STOOD ON' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: 'SAN ANGELO, C12CAPPED BY ORDINANCE' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))"
+        "tiny-text: 'SAN ANGELO, C12CAPPED BY ORDINANCE' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
+        "worst-point contrast 4.3 on 'One refused the zone. One wrote the limi' (box mean 5.1) -- below the rubric's 4.5 line somewhere along the run of the text"
       ],
       "bands": [
-        0.6534,
-        0.4832,
-        0.6011
+        0.4643,
+        0.4097,
+        0.4926
       ],
-      "band_ratio": 1.036
+      "band_ratio": 1.0775
     },
     {
       "file": "slide-07.html",
@@ -129,15 +130,14 @@
       "fails": [],
       "warns": [
         "tiny-text: 'THE CITY'S OWN WORDING IS A DEADLINERATHER THAN A ' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
-        "tiny-text: 'CITY OF FORT WORTH, C24' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
-        "worst-point contrast 4.2 on 'It is the nearest dated step this record' (box mean 5.4) -- below the rubric's 4.5 line somewhere along the run of the text"
+        "tiny-text: 'CITY OF FORT WORTH, C24' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))"
       ],
       "bands": [
         0.1113,
         0.0966,
-        0.6397
+        0.636
       ],
-      "band_ratio": 2.1409
+      "band_ratio": 2.1382
     }
   ],
   "fails": 0,

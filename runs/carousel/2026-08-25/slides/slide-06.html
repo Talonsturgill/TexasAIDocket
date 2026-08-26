@@ -40,37 +40,27 @@ window.renderReady = new Promise(function(resolve){
   var g=x.createLinearGradient(0,0,W*0.4,H);
   g.addColorStop(0,'#CBAE85'); g.addColorStop(0.5,'#B99B72'); g.addColorStop(1,'#9E8460');
   x.fillStyle=g; x.fillRect(0,0,W,H);
-  // CORK TOOTH, SECOND PASS. The first drew 120,000 one pixel flecks at a tenth of an alpha and
-  // the frame still read as a flat tan gradient at 432px, which is where a reader meets it. One
-  // pixel of anything averages to nothing at feed scale. Fiberboard is CHIPS, four to eighteen
-  // pixels of pressed bark at visibly different values, and it has to be drawn at that size.
-  var mot=x.createLinearGradient(0,0,W*0.8,H);   // broad mottling, the patchiness of a pressed mat
-  mot.addColorStop(0,'rgba(226,198,156,0.18)'); mot.addColorStop(0.45,'rgba(120,88,50,0.10)');
-  mot.addColorStop(1,'rgba(96,68,36,0.22)');
-  x.fillStyle=mot; x.fillRect(0,0,W,H);
-  for(var i=0;i<11000;i++){
-    var px=R()*W, py=R()*H;
-    var n=TX.simplex2(px*0.06,py*0.06), r1=R(), r2=R();
-    var lit=1-0.34*(px/W)*(py/H);
-    var a=(0.045+0.085*r1)*lit;
-    x.fillStyle = n>0 ? 'rgba(240,218,178,'+a+')' : 'rgba(78,50,22,'+a+')';
-    x.fillRect(px,py,4+11*r1,3+6*r2);
+  // CORK, THIRD PASS, AND THE ANSWER WAS ON FRAME 9 THE WHOLE TIME. The second pass drew chips
+  // at four to twenty pixels to make the material readable at 432px, and two craft reads in a
+  // row measured it as a 14 to 20px blocky mosaic with no resolvable staple hole. Frame 9 draws
+  // the same `cork` token as a fine 2px speckle over a lit gradient and it reads correctly.
+  // Same token, two renderings, one deck. This is frame 9's, on frame 6's whole field.
+  var cl=x.createLinearGradient(0,0,W*0.6,H);
+  cl.addColorStop(0,'rgba(236,216,182,0.46)'); cl.addColorStop(0.6,'rgba(150,124,90,0.10)');
+  cl.addColorStop(1,'rgba(70,54,34,0.42)');
+  x.fillStyle=cl; x.fillRect(0,0,W,H);
+  for(var i=0;i<62000;i++){
+    var px=R()*W, py=R()*H, n=TX.fbm2(px*0.035,py*0.035,4);
+    x.fillStyle='rgba('+(n>0?240:62)+','+(n>0?224:44)+','+(n>0?196:26)+','+(0.17*Math.abs(n))+')';
+    x.fillRect(px,py,2,2);
   }
-  // the chips a reader picks out at 432px, drawn last so they are not buried
-  TX.reseed(6602); R = TX.rng(6602);
-  for(var k=0;k<1500;k++){
-    var kx=R()*W, ky=R()*H, kn=TX.simplex2(kx*0.017,ky*0.017), kr=R();
-    x.fillStyle = kn>0 ? 'rgba(250,232,200,'+(0.10+0.10*kr)+')' : 'rgba(58,36,14,'+(0.09+0.09*kr)+')';
-    x.fillRect(kx,ky,7+13*kr,5+7*kr);
-  }
-  // OLD STAPLE HOLES, punched by notices that came down. Each is a dark puncture with a lit
-  // lower lip where the fibre lifted, which is what makes it a hole rather than a dot.
-  TX.reseed(9111); R = TX.rng(9111);
-  for(var h=0;h<360;h++){
-    var hx=40+R()*(W-80), hy=140+R()*(H-320);
-    var hs=2.6+2.2*R();
-    x.fillStyle='rgba(40,24,10,0.44)'; x.fillRect(hx,hy,hs,hs*2.3);
-    x.fillStyle='rgba(246,226,196,0.34)'; x.fillRect(hx,hy+hs*2.3,hs,hs*1.0);
+  // STAPLE HOLES, which this frame's acceptance line names and which no reader could resolve in
+  // either earlier pass. A dark puncture with a lit lower lip where the fibre lifted.
+  TX.reseed(4242); R = TX.rng(4242);
+  for(var h=0;h<150;h++){
+    var hx=40+R()*(W-80), hy=150+R()*(H-330);
+    x.fillStyle='rgba(58,40,20,0.52)'; x.fillRect(hx,hy,3,6);
+    x.fillStyle='rgba(238,218,186,0.44)'; x.fillRect(hx,hy+6,3,2);
   }
   // the swung glazing edge, TOP THIRD ONLY, 6px, the one appearance of edge_cyan
   x.fillStyle='#6FA79C'; x.fillRect(16,150,6,300);

@@ -5,17 +5,25 @@ to take it all the way through to a Gmail draft.
 
 ## The story
 
-Eight Texas governmental bodies restricted a data center between March 10th and August 11th, and
-no two of them reached for the same instrument. A permit refused in Killeen, an incentive denied
-in Archer County, disclosure asked for in Lubbock County, staff directed to draft in Corpus
-Christi, a reinvestment zone refused in Brazoria County, a category denied by the Texas Water
-Development Board, a process started in Fort Worth, and water capped by ordinance in San Angelo.
-Eight bodies, eight shapes. Two more considered a restriction and declined it.
+**Seven** Texas governmental bodies acted against a data center between March 10th and August
+11th, and no two reached for the same instrument. A permit denied in Killeen, an abatement denied
+in Archer County, disclosure asked for in Lubbock County, staff directed in Corpus Christi, a
+reinvestment zone denied in Brazoria County, a process initiated in Fort Worth, and a water
+ordinance passed in San Angelo. Seven bodies, seven instruments. Three more bodies went the other
+way, including the Texas Water Development Board, which denied a petition asking it to project
+data center water demand as its own category.
 
-The deck's argument is that the SHAPE of a refusal decides whether anything stops, and most of
-these shapes stop nothing. Archer County's unanimous denial "does not stop the project from moving
-forward". A Lubbock County commissioner said "Resolutions do nothing, they are not binding." San
-Angelo's ordinance is the exception, and it passed 7 to 0.
+**It said EIGHT for most of this run and the record supports seven.** The count and every
+correction to it are in the panel sections below, because the point of this document is what the
+run got wrong and how it found out, not a clean story it can tell afterwards.
+
+The deck's argument is that the SHAPE of the instrument decides whether anything stops, and most
+of these shapes stop nothing. Five of the seven say so in the sources on the record. Archer
+County's unanimous denial "does not stop the project from moving forward". A Lubbock County
+commissioner said "Resolutions do nothing, they are not binding." Corpus Christi's motion "does
+not ban data centers". Fort Worth's release names no pause in force today. Killeen's commission
+vote is a recommendation the council still has to act on. Two of the seven bind, Brazoria's zone
+denial and San Angelo's water ordinance, and the record is silent on none of them.
 
 `tx-2026-0072` was rejected at selection as a LIKELY REPEAT at 0.70 against carousel No. 3 on
 August 19th, same docket item, six days inside the thirty day window. The story that shipped is
@@ -171,10 +179,10 @@ It returned `revise` and it was right on nine of its ten findings. It was wrong 
 frame 1's specular crosses the dek's last line, and the crop shows 78px of clearance. Measured
 before acting, not after.
 
-- **Frames 2 and 3 were doing one job.** Frame 2 already prints all eight body names under the
-  eight instruments and frame 3 reprinted the same eight alone for one new line of payload.
-  Frame 3 is the CHRONOLOGY now, eight dated marks in the order the bodies acted, on the same
-  changeable letter board. Its dek carries a figure no other frame holds, four of the eight
+- **Frames 2 and 3 were doing one job.** Frame 2 already printed every body name under its
+  instrument and frame 3 reprinted the same list alone for one new line of payload.
+  Frame 3 is the CHRONOLOGY now, one dated mark per body in the order they acted, on the same
+  changeable letter board. Its dek carries a figure no other frame holds, the last few
   falling inside the final twenty one days.
 - **Frame 5's hook was a quantifier where the law requires a count.** "Most of these do not
   bind" asserted a proportion nothing computed. It reads `Two of the eight stop nothing` now,
@@ -336,17 +344,17 @@ rather than failing, and this is it.
 <!-- gate-status:begin -->
 | gate | status | detail |
 |---|---|---|
-| claims         | PASS   | 30 verified claim(s) |
+| claims         | PASS   | 31 verified claim(s) |
 | render         | WARN   | 9 slide(s), 26 overflow warning(s) |
 | qa             | WARN   | 0 fail(s), 33 warn(s) |
-| aggregates     | PASS   | 13 declared and re-derived |
-| assembly       | PASS   | 9 slide(s), 3.23 MB, vector |
+| aggregates     | PASS   | 14 declared and re-derived |
+| assembly       | PASS   | 9 slide(s), 3.13 MB, vector |
 | score          | ABSENT | score.json not written yet |
-| dossiers       | PASS   | 35,183 chars planned |
-| caption        | PASS   | 155 words |
+| dossiers       | PASS   | 37,864 chars planned |
+| caption        | PASS   | 144 words |
 | craft floor    | WARN   | 9 frame(s), median 6061, floor 1091, 1 quiet |
 | plan vs render | WARN   | 0 of 46 acceptance item(s) checkable |
 | texan          | PASS   | places Hill County, Tom Green County / body yes / deadline yes / next step yes |
-| absences       | PASS   | 10 of 10 scoped to a named document |
+| absences       | WARN   | 8 of 10 scoped to a named document, 2 unscoped |
 | completion     | ABSENT | not scored yet |
 <!-- gate-status:end -->

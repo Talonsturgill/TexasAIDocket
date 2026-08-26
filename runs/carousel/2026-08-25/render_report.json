@@ -270,7 +270,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1940,
+      "render_ms": 1872,
       "ok": true,
       "canvases": [
         {
@@ -407,7 +407,7 @@
           "anc": []
         },
         {
-          "text": "One each. The shape of a refusal decides whether anything stops.",
+          "text": "One each. The shape of the instrument decides whether anything stops.",
           "x": 186,
           "y": 400,
           "w": 480,
@@ -422,7 +422,7 @@
             [
               186,
               399,
-              389,
+              465,
               36
             ],
             [
@@ -435,10 +435,10 @@
           "anc": []
         },
         {
-          "text": "Permit refusedKILLEEN",
+          "text": "Permit deniedKILLEEN",
           "x": 186,
           "y": 500,
-          "w": 256,
+          "w": 238,
           "h": 59,
           "font_px": 30,
           "weight": "500",
@@ -450,7 +450,7 @@
             [
               186,
               495,
-              256,
+              238,
               40
             ]
           ],
@@ -460,7 +460,7 @@
           "text": "KILLEEN",
           "x": 186,
           "y": 537,
-          "w": 256,
+          "w": 238,
           "h": 22,
           "font_px": 22,
           "weight": "500",
@@ -481,7 +481,7 @@
           ]
         },
         {
-          "text": "Incentive deniedARCHER COUNTY",
+          "text": "Abatement deniedARCHER COUNTY",
           "x": 186,
           "y": 588,
           "w": 293,
@@ -527,7 +527,7 @@
           ]
         },
         {
-          "text": "Zone refusedBRAZORIA COUNTY",
+          "text": "Zone deniedBRAZORIA COUNTY",
           "x": 186,
           "y": 676,
           "w": 228,
@@ -542,7 +542,7 @@
             [
               186,
               671,
-              220,
+              201,
               40
             ]
           ],
@@ -573,10 +573,10 @@
           ]
         },
         {
-          "text": "Water cappedSAN ANGELO",
+          "text": "Water ordinance passedSAN ANGELO",
           "x": 186,
           "y": 764,
-          "w": 220,
+          "w": 403,
           "h": 59,
           "font_px": 30,
           "weight": "500",
@@ -588,7 +588,7 @@
             [
               186,
               759,
-              220,
+              403,
               40
             ]
           ],
@@ -598,7 +598,7 @@
           "text": "SAN ANGELO",
           "x": 186,
           "y": 801,
-          "w": 220,
+          "w": 403,
           "h": 22,
           "font_px": 22,
           "weight": "500",
@@ -665,10 +665,10 @@
           ]
         },
         {
-          "text": "Staff directed to draftCORPUS CHRISTI",
+          "text": "Staff directedCORPUS CHRISTI",
           "x": 186,
           "y": 940,
-          "w": 421,
+          "w": 256,
           "h": 59,
           "font_px": 30,
           "weight": "500",
@@ -680,7 +680,7 @@
             [
               186,
               935,
-              421,
+              256,
               40
             ]
           ],
@@ -690,7 +690,7 @@
           "text": "CORPUS CHRISTI",
           "x": 186,
           "y": 977,
-          "w": 421,
+          "w": 256,
           "h": 22,
           "font_px": 22,
           "weight": "500",
@@ -711,10 +711,10 @@
           ]
         },
         {
-          "text": "Process startedFORT WORTH",
+          "text": "Process initiatedFORT WORTH",
           "x": 186,
           "y": 1028,
-          "w": 275,
+          "w": 311,
           "h": 59,
           "font_px": 30,
           "weight": "500",
@@ -726,7 +726,7 @@
             [
               186,
               1023,
-              275,
+              311,
               40
             ]
           ],
@@ -736,7 +736,7 @@
           "text": "FORT WORTH",
           "x": 186,
           "y": 1065,
-          "w": 275,
+          "w": 311,
           "h": 22,
           "font_px": 22,
           "weight": "500",
@@ -786,7 +786,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1147,
+      "render_ms": 1150,
       "ok": true,
       "canvases": [
         {
@@ -1340,7 +1340,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1551,
+      "render_ms": 1443,
       "ok": true,
       "canvases": [
         {
@@ -1589,7 +1589,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1347,
+      "render_ms": 1463,
       "ok": true,
       "canvases": [
         {
@@ -1806,7 +1806,7 @@
           "anc": []
         },
         {
-          "text": "Killeen's record calls the vote a recommendation. The council decides.",
+          "text": "The Killeen commission's vote is a recommendation. The council decides.",
           "x": 150,
           "y": 1086,
           "w": 812,
@@ -1821,7 +1821,7 @@
             [
               150,
               1086,
-              765,
+              798,
               33
             ]
           ],
@@ -1879,7 +1879,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 884,
+      "render_ms": 868,
       "ok": true,
       "canvases": [
         {
@@ -2166,7 +2166,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1594,
+      "render_ms": 1888,
       "ok": true,
       "canvases": [
         {
@@ -2179,8 +2179,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 141.4,
-          "variance": 3670.5
+          "mean": 144.6,
+          "variance": 3729.6
         }
       ],
       "breather": false,
@@ -2521,7 +2521,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 615,
+      "render_ms": 600,
       "ok": true,
       "canvases": [
         {
@@ -2918,7 +2918,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1676,
+      "render_ms": 1487,
       "ok": true,
       "canvases": [
         {
@@ -3152,11 +3152,11 @@
           "anc": []
         },
         {
-          "text": "It is the nearest dated step this record carries.",
+          "text": "Fort Worth is the only one of the ten still carrying a dated step.",
           "x": 150,
           "y": 1128,
           "w": 520,
-          "h": 34,
+          "h": 67,
           "font_px": 24,
           "weight": "500",
           "family": "Manrope",
@@ -3167,7 +3167,13 @@
             [
               150,
               1128,
-              516,
+              445,
+              33
+            ],
+            [
+              150,
+              1162,
+              242,
               33
             ]
           ],
@@ -3203,7 +3209,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1414,
+      "render_ms": 1362,
       "ok": true,
       "canvases": [
         {

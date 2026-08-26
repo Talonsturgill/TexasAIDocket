@@ -51,7 +51,7 @@
   },
   "late_cluster": {
     "value": 3,
-    "rule": "half the restricting bodies, the later half by ordered date"
+    "rule": "the later half of the restricting bodies by ordered date, floor divided, so 3 of 7"
   },
   "late_span": {
     "value": 21,
@@ -62,6 +62,13 @@
       "tx-2026-0062"
     ]
   },
+  "still_dated": {
+    "value": 1,
+    "rule": "of the ten bodies this deck carries, those whose key_dates hold a step on or after 2026-08-25",
+    "from_items": [
+      "tx-2026-0062"
+    ]
+  },
   "chronology": {
     "value": 7,
     "rule": "the restricting actions in the order they happened",
@@ -69,35 +76,35 @@
       {
         "date": "2026-03-10",
         "place": "Brazoria County",
-        "shape": "zone refused",
+        "shape": "zone denied",
         "claim": "c9",
         "item": "tx-2026-0051"
       },
       {
         "date": "2026-04-27",
         "place": "Killeen",
-        "shape": "permit refused",
+        "shape": "permit denied",
         "claim": "c17",
         "item": "tx-2026-0032"
       },
       {
         "date": "2026-06-16",
         "place": "San Angelo",
-        "shape": "water capped",
+        "shape": "water ordinance passed",
         "claim": "c12",
         "item": "tx-2026-0065"
       },
       {
         "date": "2026-06-22",
         "place": "Archer County",
-        "shape": "incentive denied",
-        "claim": "c3",
+        "shape": "abatement denied",
+        "claim": "c5",
         "item": "tx-2026-0043"
       },
       {
         "date": "2026-07-21",
         "place": "Corpus Christi",
-        "shape": "staff directed to draft",
+        "shape": "staff directed",
         "claim": "c30",
         "item": "tx-2026-0050"
       },
@@ -105,13 +112,13 @@
         "date": "2026-08-10",
         "place": "Lubbock County",
         "shape": "disclosure asked",
-        "claim": "c6",
+        "claim": "c31",
         "item": "tx-2026-0045"
       },
       {
         "date": "2026-08-11",
         "place": "Fort Worth",
-        "shape": "process started",
+        "shape": "process initiated",
         "claim": "c22",
         "item": "tx-2026-0062"
       }
@@ -121,41 +128,41 @@
     "value": 7,
     "rule": "distinct kinds of restriction among the restricting bodies",
     "shapes": [
+      "abatement denied",
       "disclosure asked",
-      "incentive denied",
-      "permit refused",
-      "process started",
-      "staff directed to draft",
-      "water capped",
-      "zone refused"
+      "permit denied",
+      "process initiated",
+      "staff directed",
+      "water ordinance passed",
+      "zone denied"
     ],
     "backed_by": {
       "Killeen": [
-        "permit refused",
+        "permit denied",
         "c17"
       ],
       "Archer County": [
-        "incentive denied",
-        "c3"
+        "abatement denied",
+        "c5"
       ],
       "Lubbock County": [
         "disclosure asked",
-        "c6"
+        "c31"
       ],
       "Corpus Christi": [
-        "staff directed to draft",
+        "staff directed",
         "c30"
       ],
       "Brazoria County": [
-        "zone refused",
+        "zone denied",
         "c9"
       ],
       "Fort Worth": [
-        "process started",
+        "process initiated",
         "c22"
       ],
       "San Angelo": [
-        "water capped",
+        "water ordinance passed",
         "c12"
       ]
     }

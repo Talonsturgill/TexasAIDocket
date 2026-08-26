@@ -40,13 +40,17 @@ by = {i["id"]: i for i in items}
 #
 # A shape a claim does not state is a shape this deck does not print.
 RESTRICTED = {
-    "tx-2026-0032": ("Killeen",            "permit refused",            "c17"),
-    "tx-2026-0043": ("Archer County",      "incentive denied",          "c3"),
-    "tx-2026-0045": ("Lubbock County",     "disclosure asked",          "c6"),
-    "tx-2026-0050": ("Corpus Christi",     "staff directed to draft",   "c30"),
-    "tx-2026-0051": ("Brazoria County",    "zone refused",              "c9"),
-    "tx-2026-0062": ("Fort Worth",         "process started",           "c22"),
-    "tx-2026-0065": ("San Angelo",         "water capped",              "c12"),
+    # EVERY SHAPE IS IN ITS CLAIM'S OWN WORDS, and the assert below proves it. These read
+    # slightly less punchy than "permit refused" and "water capped" and they are what the
+    # sources say. Four of the seven are a denial and the OBJECT denied is different every
+    # time, which is what "no two reached for the same instrument" actually means.
+    "tx-2026-0032": ("Killeen",            "permit denied",             "c17"),
+    "tx-2026-0043": ("Archer County",      "abatement denied",          "c5"),
+    "tx-2026-0045": ("Lubbock County",     "disclosure asked",          "c31"),
+    "tx-2026-0050": ("Corpus Christi",     "staff directed",            "c30"),
+    "tx-2026-0051": ("Brazoria County",    "zone denied",               "c9"),
+    "tx-2026-0062": ("Fort Worth",         "process initiated",         "c22"),
+    "tx-2026-0065": ("San Angelo",         "water ordinance passed",    "c12"),
 }
 # THE WATER DEVELOPMENT BOARD IS NOT IN THIS SET, and it was until a scoring judge read c29
 # against the rule above. The board DENIED A PETITION that asked it to project data center water
@@ -57,7 +61,7 @@ RESTRICTED = {
 DECLINED = {
     "tx-2026-0037": ("Laredo",             "no action taken",           "c14"),
     "tx-2026-0056": ("Texas Water Development Board", "petition denied","c29"),
-    "tx-2026-0070": ("Tom Green County",   "moratorium declined",       "c15"),
+    "tx-2026-0070": ("Tom Green County",   "moratorium not pursued",    "c15"),
 }
 # Laredo's shape was "moratorium declined" and no claim in this run's file says so. The docket
 # item's TITLE says it and the claims file is what the deck is allowed to print from, so it says
@@ -67,8 +71,27 @@ for iid in list(RESTRICTED) + list(DECLINED):
     assert iid in by, f"{iid} is not in the record"
 # Every shape must point at a claim that exists in this run's claims file.
 _cl = {c["id"] for c in json.loads((ROOT / "out/2026-08-25/claims.json").read_text())["claims"]}
+_by_id = {c["id"]: c for c in
+          json.loads((ROOT / "out/2026-08-25/claims.json").read_text())["claims"]}
+# The stem each shape word has to be found by, so "asked" matches "asks" and "initiated"
+# matches "initiates". Deliberately short and deliberately per word: a general stemmer would
+# match things this must not, and the whole point of the assert is that it is strict.
+_STEM = {"denied": "den", "asked": "ask", "directed": "direct", "initiated": "initiat",
+         "passed": "pass", "taken": "taken", "pursued": "pursu", "disclosure": "disclos",
+         "permit": "permit", "abatement": "abatement", "zone": "zone", "water": "water",
+         "ordinance": "ordinance", "process": "process", "staff": "staff", "petition": "petition",
+         "moratorium": "moratorium", "action": "action", "no": "no", "not": "not"}
 for iid, (_p, _s, _c) in list(RESTRICTED.items()) + list(DECLINED.items()):
     assert _c in _cl, f"{iid} shape {_s!r} cites {_c}, which is not in claims.json"
+    # AND THAT THE CLAIM SAYS IT. The membership test alone let "moratorium declined" through on
+    # Laredo citing a claim reading only "no action taken", and "disclosure asked" through on
+    # Lubbock citing a claim about the vote count. Both were found by a judge reading the file,
+    # never by this assert, because the assert only asked whether the id resolved.
+    _hay = (_by_id[_c].get("quote", "") + " " + _by_id[_c].get("text", "")).lower()
+    _miss = [w for w in _s.split() if _STEM.get(w, w) not in _hay]
+    assert not _miss, (f"{iid} shape {_s!r} cites {_c}, and {_miss} appears in neither its quote "
+                       f"nor its text. A shape a claim does not state is a shape this deck does "
+                       f"not print.")
 
 def ordered_on(iid):
     """The date the BODY ACTED, which is the `ordered` key date and nothing else.
@@ -138,6 +161,18 @@ _ds = sorted(_d.date.fromisoformat(ordered_on(i)) for i in RESTRICTED)
 late_n = len(RESTRICTED) // 2
 late_span = (_ds[-1] - _ds[-late_n]).days
 
+# WHAT IS STILL DATED. Frame 9 closed on "the nearest dated step this record carries", a
+# superlative over all 73 items that nothing computed and that is FALSE: eight dated steps in
+# the record fall before November 10th, including a hearing on the day this deck was made. What
+# is true and computable is narrower and better, so the frame says that instead.
+_ALL = list(RESTRICTED) + list(DECLINED)
+_TODAY = _d.date(2026, 8, 25)
+def _future(iid):
+    return [k for k in (by[iid].get("key_dates") or [])
+            if k.get("date") and not k.get("canceled")
+            and _d.date.fromisoformat(k["date"]) >= _TODAY]
+still_dated = sorted(i for i in _ALL if _future(i))
+
 # The chronology frame 3 sets, in the order the bodies acted. Nothing here is typed.
 chronology = [{"date": ordered_on(i), "place": RESTRICTED[i][0], "shape": RESTRICTED[i][1],
                "claim": RESTRICTED[i][2], "item": i} for i in sorted(RESTRICTED, key=ordered_on)]
@@ -157,10 +192,13 @@ out = {
   "force_unstated":    {"value": restricted_n - len(STATED_NONBINDING) - len(STATED_BINDING),
                         "rule": "restricting bodies the record says nothing about either way",
                         "from_items": sorted(set(RESTRICTED) - set(STATED_NONBINDING) - set(STATED_BINDING))},
-  "late_cluster":      {"value": late_n, "rule": "half the restricting bodies, the later half by ordered date"},
+  "late_cluster":      {"value": late_n, "rule": "the later half of the restricting bodies by ordered date, floor divided, so %d of %d" % (late_n, restricted_n)},
   "late_span":         {"value": late_span,
                         "rule": "days from the %dth from last ordered action to the last, MEASURED after the half was chosen" % late_n,
                         "from_items": sorted(RESTRICTED, key=ordered_on)[-late_n:]},
+  "still_dated":       {"value": len(still_dated),
+                        "rule": "of the ten bodies this deck carries, those whose key_dates hold a step on or after 2026-08-25",
+                        "from_items": still_dated},
   "chronology":        {"value": len(chronology), "rule": "the restricting actions in the order they happened",
                         "marks": chronology},
   "distinct_shapes":   {"value": shapes_n, "rule": "distinct kinds of restriction among the restricting bodies",

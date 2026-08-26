@@ -133,6 +133,40 @@ summary reads "two from Bulldog Power and two from Old Ocean Datacenter", which 
 entities and four applications. Those disagree. No frame prints either, which is the right
 outcome, and the claim needs re-verifying before any deck leans on it.
 
+## Fourth revision, after the panel's third round (2026-08-25)
+
+integrity 6.77 with THREE hard fails, craft 6.916 with none, reader 6.35 with one. The round two
+repairs all landed in the render and were verified there by two judges. These three are the same
+family as round two's and the family is now named: **a printed string asserting something its
+cited claim does not say.**
+
+- **Lubbock's `disclosure asked` cited c6, whose quote is about the vote count.** The claim that
+  proves the shape, `tx-2026-0045-c2`, sat in the record and had never been carried into this
+  run's claims file. Re-fetched at 200 this run, added as c31, and the span is verbatim.
+- **`compute.py`'s shape guard only asserted the claim ID EXISTED.** That is what let Laredo
+  through in round two and Lubbock in round three. It reads the claim now, and every shape is
+  written in that claim's own words rather than in the deck's. `permit refused` became
+  `permit denied` because c17 says deny. `water capped` became `water ordinance passed` because
+  c12 says passed. `zone refused` became `zone denied`, `incentive denied` became
+  `abatement denied` and moved from c3 to c5 which carries both words, `process started` became
+  `process initiated`, `staff directed to draft` lost the draft, and Tom Green's
+  `moratorium declined` became `moratorium not pursued`. They read less punchy and they are what
+  the sources say. Four of the seven are now a denial, and the OBJECT denied is different every
+  time, which is what "no two reached for the same instrument" actually means.
+- **The caption said the five stop nothing "and say so themselves", and frame 5 said "Killeen's
+  record".** Not one of the five bodies' own records was read. All five sources are news reports.
+  Both lines now say what is true without claiming a source class the run does not hold.
+- **Frame 9 closed on "the nearest dated step this record carries"**, a superlative over all 73
+  items that nothing computed and that is FALSE. Eight dated steps in the record fall before
+  November 10th, including a hearing on the day this deck was made. `still_dated` computes the
+  true and narrower fact: of the ten bodies this deck carries, Fort Worth is the only one whose
+  key dates hold anything on or after today.
+- **The recut was applied ADDITIVELY and left four stale copies behind**, which is the reader
+  judge's whole one sentence fix. `copy.json`'s document title still said eight, `topics.json`
+  and `captions.json` each carried a duplicate entry for this date with the superseded text, and
+  the ledger writer appended rather than replacing so a re-run wrote the run twice. The writer
+  replaces by date now.
+
 ## Structural laws for the ledger
 
 Legible means quoted or computed. Everything below reading size is decorative and aria-hidden.
@@ -230,7 +264,7 @@ art:
   motion: "left to right across the shadow boundary, then down the list"
 type:
   hook: "Seven bodies, seven instruments"
-  dek: "One each. The shape of a refusal decides whether anything stops."
+  dek: "One each. The shape of the instrument decides whether anything stops."
 acceptance:
   - "the shadow has a visibly wider penumbra at the bottom of the sheet than at the top, which is the air gap doing work"
   - "every one of the eight instrument names is legible at 1080px and none is clipped by the shadow edge"

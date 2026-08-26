@@ -393,6 +393,20 @@
    "record_claim": "tx-2026-0050-c3",
    "docket_item": "tx-2026-0050",
    "reverified_this_run": true
+  },
+  {
+   "id": "c31",
+   "text": "The Lubbock County resolution asks any large business to disclose its water and electricity use, not only a data center.",
+   "quote": "the wording opens it up for any major business to disclose how much water and electricity it would use for its projects",
+   "url": "https://www.kcbd.com/2026/08/10/lubbock-county-commissioners-pass-resolution-regarding-large-scale-industrial-development-texas/",
+   "source_type": "secondary_reported",
+   "source_title": "Lubbock county commissioners pass resolution regarding large-scale industrial development in Texas",
+   "retrieved": "2026-08-25",
+   "confidence": "high",
+   "record_claim": "tx-2026-0045-c2",
+   "docket_item": "tx-2026-0045",
+   "reverified_this_run": true,
+   "caveat": "Added mid-run after a scoring judge found the deck printing 'disclosure asked' for Lubbock against c6, whose quote is about the vote count. The claim proving the shape existed in the record and had never been carried into this run's file. Re-fetched at 200 and the span is verbatim."
   }
  ],
  "rejected": [
