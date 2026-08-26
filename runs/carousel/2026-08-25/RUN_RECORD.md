@@ -365,6 +365,74 @@ entry whose whole purpose was recording a measurement rather than an assertion:
 `frames_inside_declared_band: 1` beside a `per_frame_median_L` array showing zero. It is computed
 from the array now.
 
+## Rounds nine and ten, and the one defect all three judges found
+
+Round nine scored 6.52 integrity, 7.14 craft, 6.36 reader. Per criterion median,
+weighted: **6.72 against a 7.0 bar**, zero hard fails, spread 0.78 which is wider
+than the panel's own note threshold.
+
+**`artwork_craft` came back 6.0, 6.2 and 6.0.** Three judges reading independently
+landed within 0.2 of each other on the heaviest criterion in the rubric, and all
+three named the same thing: **the type layer did not know where the paper ended.**
+
+- Frame 1's dek carried `width:430`, with no unit. CSS drops an invalid declaration
+  whole, so that line had no measure at all and ran the full 1080 body: off the bond
+  sheet, across the case stile, over the lock cylinder, at 1.8 contrast, on the cover,
+  at the only size a reader gets. Machine QA had reported it three ways and two review
+  rounds read it as an atmosphere note.
+- Frame 4's citation had no width either. It ran 521px inside a 450px column, onto the
+  dark bezel, wrapped, and landed `C23` on top of the line above it because
+  `line-height` was 1.
+- Frame 7's four applicant labels and frame 8's three citations had no measure at all,
+  so their column was the body and the greeked rule field ran through them.
+- Frame 9's closing line ran to 1229 and the case's lower rail is drawn at 1228.
+- Frame 4's greeked exclusion list was four hand-typed rectangles: a second copy of
+  boxes the CSS already declared, **measured in a different projection from the one the
+  browser lays type in.** The DOM lays through `perspective(1500px) rotateY(-19deg)`
+  and the canvas draws through its own `P()`, so a plane-space rectangle never matched
+  a screen-space one and the literals were a hand-tuned correspondence between them.
+
+That is the instinct `one-geometry-two-layers-will-drift`, marked **contradicted** for
+this date with the evidence. `draw-every-plane-before-what-stands-on-it` is marked
+contradicted too: its own second half says to stop every drawn element above the footer
+band, and frame 9 is where it was broken.
+
+Every text box on the deck now carries an explicit measure inside its own paper. Frame
+4 reads its exclusion boxes out of the DOM with `getBoundingClientRect`, which returns
+them AFTER the transform, in the canvas's own pixels, and projects each rule through
+`P()` before testing it, so both layers are measured in one space. `render.py` refuses
+a CSS length with no unit as a build error, because there is no case where a slide wants
+one and it is the quietest kind of typo: the frame still renders and still looks
+deliberate.
+
+**The second finding was a word.** The cover said "Six of them bind" over a rule that
+computed "changed a legal state on the day", one frame from a Lubbock commissioner
+saying "Resolutions do nothing, they are not binding" and one caption line from "Is a
+resolution that binds nothing worth passing?". One of the six is a resolution. The cover
+says **"Fifteen actions. Six took effect."** now, the lockup reads `IN EFFECT`, frame 6
+says "Six of the fifteen took effect" and frame 2's key says "took effect that day",
+which is the rule in plain words and is also what the reader judge asked for.
+
+**The third was a count that was a property of the vocabulary.** `approvals` was
+`len([i for i in ACTED if "approv" in ACTED[i][1]])`, a substring test over labels this
+file types twenty lines above it. Two items whose own claims say "approved" were
+excluded only because their labels read "review established" and "framework adopted".
+The published two was right and the derivation was the same shape as the
+`distinct_shapes` tautology this file already retired. It is a written decision per item
+now, with the two near misses named so a later reader does not re-add them.
+
+**And a surface nothing read.** `first_comment.txt` opens "Sources, ten official records
+and ten news reports", two computed counts on the surface LinkedIn shows directly under
+the post. `aggregate_check` read the render, then the caption, then the document title,
+and never this. Both counts were correct, which is the point: a correct number nothing
+checks is one edit away from a wrong number nothing checks. The list of published
+surfaces lives in one function now and its three callers ask for it.
+
+Under that sat a wider fault. `detect()` opened with `if EXEMPT.search(text): return []`,
+so **one bare year anywhere in a string exempted every figure in it** — and most citation
+lines on this deck carry a year, a bill number or a claim id. The two source counts were
+thrown away before they were ever tested. Exemption is by overlap now.
+
 ## Proposals for the machine, none of them in this actor's lane
 
 1. **A gate that proves a declared texture reached a pixel.** `knowledge/` and the engine skill
