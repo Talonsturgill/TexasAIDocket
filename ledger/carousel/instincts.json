@@ -81,7 +81,8 @@
       "instinct": "After answering a composition gate, re-read the frame for what the new furniture now asserts.",
       "evidence": "A dashed leader added to clear slide 9's dead lower zone ran from the no-action node into an empty passed-date field, which is a causal drawing and turned a record into an accusation.",
       "confirmed": [
-        "2026-08-21"
+        "2026-08-21",
+        "2026-08-26"
       ],
       "contradicted": []
     },
@@ -130,7 +131,9 @@
       "learned": "2026-08-22",
       "instinct": "Draw every ground plane BEFORE the objects standing on it, and stop every drawn element above the footer band, because a plane painted last erases the object and leaves its shadow behind.",
       "evidence": "2026-08-22. Slide 7 drew a lit spine and its foot, then painted plane(1010,1350) over both. The spine died at the console line, the foot vanished, and a redrawn cast shadow ran through the texasaidocket.com glyph band. Slide 6 had the same defect the same run, three rods drawn and two shipped.",
-      "confirmed": [],
+      "confirmed": [
+        "2026-08-26"
+      ],
       "contradicted": []
     },
     {
@@ -138,7 +141,9 @@
       "learned": "2026-08-22",
       "instinct": "Make every count on a frame name the set it counted, and make that set one the deck actually read, because a bare count over a partly quoted index asserts a number nothing checked.",
       "evidence": "2026-08-22. 'The deadline sits in the index twice.' was the panel's only hard fail, over an index the deck quotes 10 of 34 rows from. It became '2 rows here carry the deadline.' and declared from c8, c9 and c10. Slide 4 carried the same defect one frame away.",
-      "confirmed": [],
+      "confirmed": [
+        "2026-08-26"
+      ],
       "contradicted": []
     },
     {
@@ -146,7 +151,9 @@
       "learned": "2026-08-22",
       "instinct": "Reconcile copy.json against the render report's own text nodes rather than trusting copy_sync_check, which compares skeletons with every non-alphanumeric stripped and so cannot see a missing space.",
       "evidence": "2026-08-22. Seven copy.json strings disagreed with the laid out text and copy_sync_check was green on all of them. The staged build published '7/16/2026Fedor Mikheev' and 'September 4th, 2026.Refer' as article prose.",
-      "confirmed": [],
+      "confirmed": [
+        "2026-08-26"
+      ],
       "contradicted": []
     },
     {
@@ -162,7 +169,9 @@
       "learned": "2026-08-22",
       "instinct": "Rebuild every artifact DERIVED from a thing you just changed in the same commit that changes it, because a stale derived file is wrong by construction and no gate is watching the gap.",
       "evidence": "2026-08-22. Committed new claims without rebuilding docs and the freshness gate went red. Committed a rewritten caption without rebuilding gmail_payload.json and email_check went red. Both were split off to clear a dirty tree.",
-      "confirmed": [],
+      "confirmed": [
+        "2026-08-26"
+      ],
       "contradicted": []
     },
     {
@@ -202,6 +211,30 @@
       "learned": "2026-08-23",
       "instinct": "Run scripts/shared/guards_local.py in full before the first push, never a hand picked list of gates, because the suite reads guards.yml and a hand picked list is the half that misses what your own change broke somewhere else.",
       "evidence": "This run pushed after running about a dozen named gates by exit code and CI came back red on docket_calendar's self-test, three assertions, caused by four expires key_dates this run had itself introduced. The full local suite reproduces it in one command and was run only after CI had already found it.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "verbatim-under-attribution",
+      "learned": "2026-08-26",
+      "instinct": "Before a frame ships, check that every string set under a dated attribution is a verbatim substring of a quote in that slide's declared claims.",
+      "evidence": "Slide 7 of the 2026-08-26 deck printed 'clinical care, research, advanced computing' under 'BOARD ITEM, AUGUST 12TH, 2026'. That string is in none of the 31 claims in the run's claims file. Every mechanical gate was green on it and two of three panel judges caught it as a hard fail.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "one-azimuth-one-formula",
+      "learned": "2026-08-26",
+      "instinct": "Derive every cast and every lit facet from one stated azimuth by sin and minus cos, and never let a frame carry its own typed direction constants.",
+      "evidence": "Slide 5 of the 2026-08-26 deck ran on LX -0.62 and LY 0.78, which is 27 degrees off the deck's declared 246, and its lit facet was built from the first half of the vertex list rather than clipped to the sunward half plane, so the highlight sat wherever the polygon happened to start. The craft judge caught it against slide 2, the other overhead view.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "agenda-book-only-asks",
+      "learned": "2026-08-26",
+      "instinct": "A pre-meeting agenda book records what a body was asked to do, so never let a frame say it voted, authorized or amended without a source published after the meeting.",
+      "evidence": "The 2026-08-26 record and four deck surfaces said the UT System board acted on August 12th, citing the agenda book, which is a request. Correcting it needed a Community Impact report fetched after the meeting, and the error reached the scoring panel as a hard fail with every gate green.",
       "confirmed": [],
       "contradicted": []
     }
