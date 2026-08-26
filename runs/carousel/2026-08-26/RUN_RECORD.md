@@ -374,12 +374,12 @@ Written by `gate_status.py --sync`, never by hand.
 | qa             | WARN   | 0 fail(s), 24 warn(s) |
 | aggregates     | PASS   | 8 declared and re-derived |
 | assembly       | PASS   | 9 slide(s), 3.02 MB, vector |
-| score          | ABSENT | score.json not written yet |
-| dossiers       | PASS   | 49,110 chars planned |
+| score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| dossiers       | PASS   | 49,113 chars planned |
 | caption        | PASS   | 119 words |
 | craft floor    | PASS   | 9 frame(s), median 866, floor 156 |
 | plan vs render | PASS   | 14 of 64 acceptance item(s) checkable |
 | texan          | WARN   | places NONE / body yes / deadline yes / next step yes |
-| absences       | WARN   | 6 of 9 scoped to a named document, 3 unscoped |
-| completion     | ABSENT | not scored yet |
+| absences       | WARN   | 5 of 8 scoped to a named document, 3 unscoped |
+| completion     | FAIL   | THE DECK DID NOT SHIP, so this run is not done |
 <!-- gate-status:end -->
