@@ -19,12 +19,12 @@
   "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
-  "the object",
   "the correction",
   "the two things",
   "the plain question",
   "the before and after",
-  "the deadline"
+  "the deadline",
+  "the quiet decision"
  ],
  "entries": [
   {
@@ -119,16 +119,32 @@
    "critic_note": "Two directors, opposed assignments. The winner opens on Brazoria's four abatements dying on a vote about none of them, which is a procedural fact a reader has no prior for, and only then widens to the seven. The loser opened on the count and narrowed, which is the shape three of the six shipped captions already use. caption_check reported first person on the winner because a period is a word boundary and I.3 matched \\\\bI\\\\b, and the gate was repaired in the upgrade lane rather than the caption reworded around a false positive. Round 4 renamed all three moves. They had been written freehand ('the procedural fact nobody expects', 'one case in full, then the pattern it belongs to', 'put the reader's own judgement on the instrument') and none of the three was on a CAPTION_CRAFT menu, which is exactly how they cleared an exclusion list that held all three. The choices were legal, the names were not, and a list can only exclude a name it shares.",
    "words": 151,
    "commas_per_100w": 2.67
+  },
+  {
+   "date": "2026-08-26",
+   "carousel_no": 8,
+   "opening_move": "the number that is wrong",
+   "structure": "ledger",
+   "closing_move": "ask the one question the decision leaves open",
+   "first_line": "The billion buys no building.",
+   "hashtags": [
+    "#UTSystem",
+    "#DellMedicalCenter",
+    "#MDAnderson"
+   ],
+   "words": 124,
+   "commas_per_100w": 5.65,
+   "critic_note": "TWO NAMING CALLS RECORDED RATHER THAN HIDDEN. The opening is named 'the number that is wrong', whose menu entry reads 'opens on a figure the reader will misjudge, then corrects it', and 'The billion buys no building' is exactly that. A judge read it as 'the correction', which is on the last six exclusion list, and the two doors are genuinely close. The distinction taken is that the correction's own example carries no figure and this line's subject IS the figure. The structure is 'ledger', what is known then what is not known then the size of the gap, which is the caption's actual order.\n\nAND THE CLOSE REPEATS 08-25, WHICH THE EXCLUSION LIST COULD NOT HAVE PREVENTED. ledger_check derives closing_moves_recent from the entries BEFORE the newest, so while 08-25 was the newest its own closing move was excluded from the list by design and today's room was never handed it. Rolling it forward by hand made this file disagree with its own entries and turned shipped_check red on the already published 08-25 run, which is the gate working rather than failing. The room needs the lists derived INCLUDING the newest SHIPPED entry, with only the unshipped run's own entry held out. Upgrade lane, written down rather than hand edited."
   }
  ],
  "structures_recent": [
-  "question and answer",
   "clock",
-  "zoom in"
+  "zoom in",
+  "zoom out"
  ],
  "closing_moves_recent": [
-  "name what happens next and when",
   "point at the record, plainly, without a call to action",
-  "name what is still not public, and how big that is"
+  "name what is still not public, and how big that is",
+  "ask the one question the decision leaves open"
  ]
 }

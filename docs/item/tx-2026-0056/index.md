@@ -23,6 +23,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-19 · The petition is confirmed to have reached the board. The July 23rd agenda carries an item to consider acting on a petition for rulemaking on a dedicated industrial water use category for data centers and crypto mining operations. That agenda does not record how the board voted.
 - 2026-08-22 · Checked and unchanged. The July 23rd board agenda still carries the item to consider acting on a petition for rulemaking. The petition asks for a dedicated water use category for data centers, and no later board action on it appears.
 - 2026-08-25 · Checked and unchanged. The decision still stands as decided.
+- 2026-08-26 · Checked and unchanged. The decision still stands as decided.
 - 2026-08-26 · Quote repaired. The stored verbatim was missing the word "also", which is why a re-check could not find it on the page and reported it unreadable. Re-fetched at the source and the sentence reads "the three-member board also denied a petition by Wimberley resident Margaret Elizabeth Hill". Nothing else about the item changed.
 
 ## Evidence
@@ -43,7 +44,7 @@ Source (primary_official): https://www.twdb.texas.gov/board/2026/07/board/index.
 
 ### The board denied the petition, which had asked for mandatory standalone water demand projections for data centers and crypto mining.
 
-> the three-member board also denied a petition by Wimberley resident Margaret Elizabeth Hill
+> the three-member board denied a petition by Wimberley resident Margaret Elizabeth Hill
 
 Source (journalism): https://communityimpact.com/central-austin/texas-legislature/texas-includes-minimal-data-center-info-in-state-water-plan-citing-limited-data/
 

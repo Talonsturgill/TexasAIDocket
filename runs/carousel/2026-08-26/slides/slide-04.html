@@ -1,0 +1,250 @@
+<!doctype html>
+<!-- SLIDE 4 — "The ask". The load-bearing frame of the whole deck. A board votes on
+     narrower things than an institution describes. Two dated states at TRUE height on an
+     axis running to zero, and beneath them, physically detached, the phase figure on its
+     own seated slab. THE GAP BETWEEN THEM IS THE SLIDE. A phase authorization and a project
+     total are different quantities and one axis would be a lie told with true numbers. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<script src="@@ASSETS@@/js/noise.js"></script>
+<style>
+  /* deck tokens, declared once so the palette is readable rather than implicit
+     inside rgba() calls. These are the storyboard's own values. */
+  :root {
+    --limestone: #E5DECC;
+    --blackland: #211E1A;
+    --roadbase: #C3B291;
+    --liveoak: #4D5842;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body { background:#E9E3D3; position:relative;
+         font-family:"Fraunces", serif; -webkit-font-smoothing:antialiased; }
+  #art { position:absolute; left:0; top:0; }
+  .grain { position:absolute; inset:0; opacity:0.04; mix-blend-mode:overlay;
+           background-repeat:repeat; pointer-events:none; }
+
+  .kicker { position:absolute; left:80px; top:88px;
+            font-family:"JetBrains Mono",monospace; font-weight:500; font-size:26px;
+            letter-spacing:0.16em; color:#33402F; }
+  .counter { position:absolute; right:80px; top:88px;
+             font-family:"JetBrains Mono",monospace; font-weight:500; font-size:26px;
+             letter-spacing:0.12em; color:#33402F; }
+
+  .hookwrap { position:absolute; left:80px; top:142px; width:920px; }
+  /* ONE LINE at 80px, not two at 96. The second line ran to y 350 and the axis label's
+     solid plate was set over the word "phase". This is the one frame carrying a chart, so
+     the headline gives up the size the chart needs rather than the chart giving up its
+     geometry. */
+  h1 { font-weight:820; font-size:76px; line-height:0.96;
+       letter-spacing:-0.02em; color:#211E1A; font-variation-settings:"opsz" 110; }
+
+  .axlabel { position:absolute; left:80px; top:222px;
+             background:#F4F0E4; padding:12px 16px 14px 16px;
+             font-family:"JetBrains Mono",monospace; font-size:26px; font-weight:500;
+             letter-spacing:0.09em; color:#4D5842; line-height:1.32; }
+  .axsrc { position:absolute; left:80px; top:326px;
+           background:#F4F0E4; padding:10px 16px 12px 16px;
+           font-family:"JetBrains Mono",monospace; font-size:24px; font-weight:500;
+           letter-spacing:0.06em; color:#5E5A4A; }
+
+  /* Each state's type sits on its OWN SOLID PLATE, ABOVE its column, never on it. A
+     column edge running through a glyph band reads as a strikethrough at feed width. */
+  .st { position:absolute; font-family:"JetBrains Mono",monospace;
+        background:#F4F0E4; padding:14px 18px 16px 18px; }
+  .stdate { font-size:24px; font-weight:500; letter-spacing:0.11em; color:#4D5842; }
+  .stval { font-size:40px; font-weight:700; font-variant-numeric:tabular-nums;
+           color:#211E1A; margin-top:6px; }
+  /* EACH LABEL HANGS OFF ITS OWN BAR, and this is a defect three judges circled and none
+     could name. Both blocks sat at top:396px on a shared baseline while their bars top out at
+     633 and 512, so the ink from label top to the y800 baseline measured 382px over the
+     $2,900,000,000 bar and 350px over the $5,000,000,000 one. The SHORTER bar carried the
+     TALLER combined mass, and the frame's own labels encoded against its own data. Two judges
+     eyeballed the ratio at about 1.60 against a true 1.7241 and a third called it unverifiable.
+     They were reading the combined mass and they were reading it correctly.
+
+     The bars were never wrong. hOf() puts them at 167.04px and 288.00px, a ratio of 1.7241
+     against a figure ratio of 1.7241. The labels were wrong, and the 121px difference between
+     these two tops is exactly the 121px difference between the two bar tops, so the label now
+     carries the same proportion the bar does. */
+  #s1 { left:112px; top:513px; }
+  #s2 { left:562px; top:392px; }
+  .zerolab { position:absolute; right:80px; top:812px;
+             background:#F4F0E4; padding:8px 14px 10px 14px;
+             font-family:"JetBrains Mono",monospace; font-size:24px; font-weight:500;
+             letter-spacing:0.12em; color:#3A3628; }
+
+  .note { position:absolute; left:80px; top:850px; width:900px;
+          font-family:"Manrope",sans-serif; font-weight:500; font-size:26px; line-height:1.3;
+          color:#4A4738; }
+
+  /* The slab's own type sits on its lit top face, so it never needs a plate of its own. */
+  .slab { position:absolute; left:80px; right:80px; top:986px; padding:2px 34px 0 34px; }
+  .slablabel { font-family:"JetBrains Mono",monospace; font-size:24px; font-weight:500;
+               letter-spacing:0.12em; color:#C3B291; }
+  .slabfig { font-family:"JetBrains Mono",monospace; font-size:80px; font-weight:700;
+             font-variant-numeric:tabular-nums; color:#F4F0E4; line-height:1.0;
+             margin-top:10px; }
+  .slabsrc { font-family:"JetBrains Mono",monospace; font-size:24px; color:#C3B291;
+             letter-spacing:0.05em; margin-top:12px; }
+  .slabline { font-family:"Manrope",sans-serif; font-weight:600; font-size:27px; line-height:1.3;
+           color:#EDE7D8; margin-top:18px; max-width:860px; }
+  .star { position:absolute; right:88px; bottom:96px; }
+  .tx-site { position:absolute; right:80px; bottom:30px; text-align:right;
+           font-family:"JetBrains Mono",monospace; font-size:24px; font-weight:500;
+           letter-spacing:0.07em; }
+</style>
+</head>
+<body data-encodes='[{"claim":"the seated slab is darker than the limestone ground the chart stands on","reads":"differ","a":[[300,966,320,18]],"b":[[790,660,240,110]]}]'
+      data-contacts='[{"what":"the ground darkening where it meets the slab, ABOVE the slab because the slab is the near mass and the limestone recedes behind its top edge","shadow":[[140,940,760,18]],"ground":[[140,880,760,18]]}]'>
+  <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+  <div class="grain" id="grain"></div>
+
+  <div class="kicker">THE ASK</div>
+  <div class="counter">04 / 09</div>
+
+  <div class="hookwrap"><h1>The board approved a phase</h1></div>
+  <div class="axlabel">PROPOSED TOTAL PROJECT COST, APPROVED BY THE CHANCELLOR</div>
+  <div class="axsrc">BOARD ITEM, PREVIOUS ACTIONS AND BACKGROUND</div>
+
+  <div class="st" id="s1">
+    <div class="stdate">JANUARY 8TH, 2024</div>
+    <div class="stval">$2,900,000,000</div>
+  </div>
+  <div class="st" id="s2">
+    <div class="stdate">JUNE 19TH, 2025</div>
+    <div class="stval">$5,000,000,000</div>
+  </div>
+  <div class="zerolab">The axis starts at zero and is not cut.</div>
+
+  <div class="note">The two figures above were approved by the Chancellor. The phase below is
+    what came to the board.</div>
+
+  <div class="slab">
+    <div class="slablabel">PHASE 1, ADDED TO THE CAPITAL PROGRAM <br>AUGUST 12TH, 2026</div>
+    <div class="slabfig">$1,000,000,000</div>
+    <div class="slabsrc">RECOMMENDED FROM REVENUE FINANCING <br>SYSTEM BOND PROCEEDS</div>
+    <div class="slabline">A phase authorization and a project total are different quantities. The
+      board item states each of them separately.</div>
+  </div>
+
+  <svg class="star" width="44" height="44" viewBox="0 0 24 24" data-decorative>
+    <path d="M12 1.6l2.9 7.5 8 .4-6.2 5.1 2.1 7.8L12 18l-6.8 4.4 2.1-7.8L1.1 9.5l8-.4z"
+          fill="#C3B291" opacity="0.75"/>
+  </svg>
+
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260826;
+  TX.reseed(SEED);
+  var ctx = document.getElementById('art').getContext('2d');
+  ctx.scale(2, 2);
+  var W = 1080, H = 1350;
+
+  ctx.fillStyle = '#E9E3D3'; ctx.fillRect(0, 0, W, H);
+
+  // THE AXIS. Baseline at zero, top of scale set from the larger of the two quoted values,
+  // so both states stand at TRUE height. Nothing here is truncated and nothing is scaled to
+  // taste. Both figures are quoted from the item's previous actions paragraph.
+  var BASE = 800, TOP = 512;
+  var MAX = 5000000000;
+  function hOf(v) { return BASE - (v / MAX) * (BASE - TOP); }
+
+  // THE GROUND the chart stands on, so the axis is not floating on a flat fill. IT IS PAINTED
+  // BEFORE THE COLUMNS. Drawn after them it covered y800 to y962, which is exactly where their
+  // casts fall, so the shadows this frame computes existed in the code and were painted out of
+  // the render. A judge looked for them at three sizes and found none.
+  // THE GROUND the chart stands on, so the axis is not floating on a flat fill.
+  var g = ctx.createLinearGradient(0, BASE, 0, 962);
+  g.addColorStop(0, '#E6DFCC'); g.addColorStop(1, '#DCD3BC');
+  ctx.fillStyle = g; ctx.fillRect(0, BASE, W, 962 - BASE);
+
+  ctx.strokeStyle = 'rgba(108,104,88,0.55)';
+  ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(80, BASE); ctx.lineTo(1000, BASE); ctx.stroke();
+
+  // The two dated states, each a filled column at its own true height, one hue at one
+  // intensity, because a ramp across two values would encode a severity nobody claimed.
+  // ONE SUN HERE TOO. This deck's law is that a thing standing on the ground throws a shadow,
+  // and two columns standing on a drawn baseline throwing nothing is the law suspended for the
+  // frame that happens to be a chart. The cast is short, because a column at this scale is a
+  // marker rather than a mass, and it runs at the same azimuth as every other frame.
+  var CAZ = 246 * Math.PI / 180;
+  var CSX = Math.sin(CAZ), CSY = -Math.cos(CAZ);
+  var CLEN = 2.75;                             // the deck's one cast length, as a multiple of
+                                               // apparent height, same as every other frame
+  function state(cx, v) {
+    var y = hOf(v);
+    var h = Math.max(24, (BASE - y) * 0.10);   // apparent standing height at the foot,
+                                               // floored so the short column casts too
+    // THE CAST WAS ONE TIMES THE HEIGHT AND EVERY OTHER FRAME USES 2.75. At the floor that made
+    // the shorter column's cast 24px long, fading to nothing across it, and a judge measured it
+    // at a lightness difference of about 2.8, which is under the threshold at which a shadow is
+    // perceptible at all. The frame computed a shadow nobody could see, which reads exactly like
+    // the frame that painted its shadows out. Length now comes from the deck's own constant.
+    var dx = CSX * h * CLEN, dy = CSY * h * CLEN;
+    ctx.save();
+    ctx.globalCompositeOperation = 'multiply';
+    ctx.beginPath();
+    ctx.moveTo(cx - 68, BASE);
+    ctx.lineTo(cx + 68, BASE);
+    ctx.lineTo(cx + 68 + dx, BASE + dy);
+    ctx.lineTo(cx - 68 + dx, BASE + dy);
+    ctx.closePath();
+    var cs = ctx.createLinearGradient(cx, BASE, cx + dx, BASE + dy);
+    cs.addColorStop(0.0, 'rgba(46,42,34,0.54)');
+    cs.addColorStop(0.55, 'rgba(46,42,34,0.26)');
+    cs.addColorStop(1.0, 'rgba(46,42,34,0.05)');
+    ctx.fillStyle = cs; ctx.fill();
+    ctx.restore();
+    ctx.fillStyle = 'rgba(65,74,60,0.80)';
+    ctx.fillRect(cx - 68, y, 136, BASE - y);
+    ctx.fillStyle = 'rgba(33,30,26,0.9)';
+    ctx.fillRect(cx - 68, y, 136, 5);
+  }
+  state(268, 2900000000);
+  state(660, 5000000000);
+
+  // THE SLAB. Seated on the limestone, full width, with a LIT TOP EDGE catching the morning
+  // key, a darker cut front face below it, and a two part contact shadow running out onto
+  // the ground beneath. It is a modeled object rather than a filled rectangle, which is what
+  // keeps the lower third from being a caption strip.
+  var SL = 80, SR = 1000, SY = 962, SH = 1350 - SY;
+
+  // contact shadow, two parts: an occlusion core hard against the slab, and a penumbra
+  ctx.save();
+  ctx.globalCompositeOperation = 'multiply';
+  var core = ctx.createLinearGradient(0, SY - 20, 0, SY + 4);
+  core.addColorStop(0, 'rgba(33,30,26,0)');
+  core.addColorStop(1, 'rgba(33,30,26,0.46)');
+  ctx.fillStyle = core; ctx.fillRect(SL - 16, SY - 20, (SR - SL) + 32, 24);
+  var pen = ctx.createLinearGradient(0, SY - 44, 0, SY);
+  pen.addColorStop(0, 'rgba(33,30,26,0)');
+  pen.addColorStop(1, 'rgba(33,30,26,0.19)');
+  ctx.fillStyle = pen; ctx.fillRect(SL - 44, SY - 44, (SR - SL) + 88, 44);
+  ctx.restore();
+
+  // the cut front face, modeled rather than flat
+  var face = ctx.createLinearGradient(0, SY, 0, 1350);
+  face.addColorStop(0.00, '#2E2A24');
+  face.addColorStop(0.30, '#241F1B');
+  face.addColorStop(1.00, '#141210');
+  ctx.fillStyle = face; ctx.fillRect(SL, SY, SR - SL, SH);
+
+  // the lit top edge, where the key lands
+  var lip = ctx.createLinearGradient(0, SY, 0, SY + 17);
+  lip.addColorStop(0.00, '#C0B190');
+  lip.addColorStop(0.42, '#7E7359');
+  lip.addColorStop(1.00, '#33302A');
+  ctx.fillStyle = lip; ctx.fillRect(SL, SY, SR - SL, 17);
+
+  document.getElementById('grain').style.backgroundImage =
+    'url(' + TX.grainTile(220, 26, 11) + ')';
+  resolve();
+});
+</script>
+  <div class="tx-site" style="color:#C3B291;font-size:24px">texasaidocket.com</div>
+</body>
+</html>

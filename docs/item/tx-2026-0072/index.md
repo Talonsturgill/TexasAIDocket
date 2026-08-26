@@ -9,7 +9,7 @@ Governor Greg Abbott issued a directive on August 3rd, 2026. It tells the Public
 - Public access: Public meeting
 - Take part: https://gov.texas.gov/uploads/files/press/Thomas_Gleeson_Pablo_Vegas_Data_Centers_Directive_Letter_to_PUCT_ERCOT_August_2026_.pdf
 
-- Last checked: 2026-08-25
+- Last checked: 2026-08-26
 
 ## Dates
 
@@ -30,6 +30,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-20 · The exception ERCOT said it would seek is on the commission's agenda today. The published agenda for the August 20th open meeting lists Project 59142, the review of ERCOT's interconnection processes for large loads. The item includes discussion and possible action on an ERCOT request for a good cause exception. The same agenda lists Project 58481, the rulemaking to implement large load interconnection standards. Neither item is on the agenda's list of matters to be taken up without discussion.
 - 2026-08-23 · The exception was granted. The commission signed an order in Project No. 59142 on August 20th. It lets the grid operator miss the August 7th classification deadline and pause the Batch Zero study of loads at 75 megawatts or more until the audit is done. The grid operator filed the audit's design the same day. It asks community impact information from data centers and crypto facilities of 25 megawatts or more that have not yet energized. That is a lower floor than the pause uses. It reports that 290 dynamic models have been reviewed, with approximately 18 percent acceptable on first review.
 - 2026-08-25 · Checked and unchanged. Still pending, with no dated movement.
+- 2026-08-26 · Checked and unchanged. The directive letter, the market notice and the commission's own filings still say what they said. The August 20th open meeting has come off the calendar feed now that it has been held, which is normal for that feed and not a change to the directive.
 
 ## Evidence
 

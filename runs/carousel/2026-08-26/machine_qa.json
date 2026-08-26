@@ -1,0 +1,179 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'texasaidocket.com' at 727,1267 273x31 (margin 80px)"
+      ],
+      "bands": [
+        0.3046,
+        0.4538,
+        0.3511
+      ],
+      "band_ratio": 0.9515,
+      "encodings": [
+        "'the excavation floor is darker than the lit plateau top around it': dE 81.8, AUC 0.97, visible 100%/6%, seen 6720/403px at 432w"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'AUSTIN, TEXAS' at 80,1289 920x31 (margin 80px)",
+        "outside safe zone: 'texasaidocket.com' at 727,1289 273x31 (margin 80px)"
+      ],
+      "bands": [
+        0.1618,
+        0.4433,
+        0.2996
+      ],
+      "band_ratio": 0.9939,
+      "encodings": [
+        "'the shadow masses are darker than the open limestone ground between them': dE 26.8, AUC 0.78, visible 100%/100%, seen 2176/2176px at 432w"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'ONCOLOGY CARE, IN PARTNERSHIP WITH MD AN' at 80,1252 920x31 (margin 80px)",
+        "outside safe zone: 'BOARD ITEM, PROJECT DESCRIPTION' at 80,1295 920x31 (margin 80px)",
+        "outside safe zone: 'texasaidocket.com' at 727,1289 273x31 (margin 80px)"
+      ],
+      "bands": [
+        0.1933,
+        0.2878,
+        0.4853
+      ],
+      "band_ratio": 1.4726,
+      "encodings": [
+        "'the plate mesh is distinguishable from the open ground it floats over': dE 21.4, AUC 0.75, visible 100%/100%, seen 2176/2176px at 432w"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'PROPOSED TOTAL PROJECT COST, APPROVED BY' at 80,222 1000x95 (margin 80px)",
+        "outside safe zone: 'A phase authorization and a project tota' at 114,1232 852x70 (margin 80px)",
+        "outside safe zone: 'texasaidocket.com' at 727,1289 273x31 (margin 80px)"
+      ],
+      "bands": [
+        0.1786,
+        0.0714,
+        0.3529
+      ],
+      "band_ratio": 1.6977,
+      "encodings": [
+        "'the seated slab is darker than the limestone ground the chart stands on': dE 54.4, AUC 1.00, visible 100%/100%, seen 896/4224px at 432w"
+      ],
+      "contacts": [
+        "'the ground darkening where it meets the slab, ABOVE the slab because the slab is the near ': shadow L* 68.3 vs ground L* 86.5, dL 18.1 at 432w"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'BOARD ITEM, BACKGROUND AND RECOMMENDATIO' at 80,1291 920x31 (margin 80px)",
+        "outside safe zone: 'texasaidocket.com' at 727,1289 273x31 (margin 80px)"
+      ],
+      "bands": [
+        0.4769,
+        0.4643,
+        0.557
+      ],
+      "band_ratio": 1.1095,
+      "encodings": [
+        "'the lit aggregate cluster is lighter than the shaded course across the frame from it': dE 4.7, AUC 0.59, visible 26%/37%, seen 1435/2042px at 432w"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'THE COMMITTEE'S DOCUMENT, END TO END' at 0,462 1080x31 (margin 80px)",
+        "outside safe zone: '0' at 0,576 1080x168 (margin 80px)",
+        "outside safe zone: 'MATCHES, ANYWHERE IN IT' at 0,752 1080x31 (margin 80px)",
+        "outside safe zone: 'UT SYSTEM AGENDA BOOK, AUGUST 2026' at 80,1291 620x31 (margin 80px)",
+        "outside safe zone: 'texasaidocket.com' at 727,1289 273x31 (margin 80px)"
+      ],
+      "bands": [
+        0.2206,
+        0.3256,
+        0.2996
+      ],
+      "band_ratio": 1.0597,
+      "encodings": [
+        "'the searched document, drawn end to end, is lighter than the ground it lies on': dE 27.3, AUC 0.85, visible 95%/5%, seen 5928/312px at 432w"
+      ],
+      "contacts": [
+        "'the left terminator standing at grade': shadow L* 52.1 vs ground L* 74.3, dL 22.2 at 432w",
+        "'the right terminator standing at grade': shadow L* 43.7 vs ground L* 69.9, dL 26.1 at 432w"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'Neither list is marked as correct. One i' at 80,1254 880x70 (margin 80px)",
+        "outside safe zone: 'texasaidocket.com' at 727,1289 273x31 (margin 80px)"
+      ],
+      "bands": [
+        0.3193,
+        0.416,
+        0.6195
+      ],
+      "band_ratio": 1.349,
+      "encodings": [
+        "'the two seated blocks are lighter than the worked ground they stand on': dE 10.3, AUC 0.83, visible 100%/7%, seen 4928/344px at 432w"
+      ],
+      "contacts": [
+        "'the upper block, seated on the limestone': shadow L* 76.6 vs ground L* 90.3, dL 13.7 at 432w",
+        "'the lower block, seated on the same limestone': shadow L* 77.1 vs ground L* 89.3, dL 12.1 at 432w"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'The book names what each item buys. This' at 80,1172 900x109 (margin 80px)",
+        "outside safe zone: 'UT SYSTEM AGENDA BOOK, AUGUST 2026' at 80,1293 620x31 (margin 80px)",
+        "outside safe zone: 'texasaidocket.com' at 727,1289 273x31 (margin 80px)"
+      ],
+      "bands": [
+        0.1891,
+        0.1429,
+        0.3235
+      ],
+      "band_ratio": 1.4491,
+      "encodings": [
+        "'the lit plate is the only light area on an otherwise dark frame': dE 85.9, AUC 1.00, visible 100%/100%, seen 420/5376px at 432w"
+      ],
+      "contacts": [
+        "'the plate seated on the dark ground': shadow L* 7.4 vs ground L* 29.7, dL 22.3 at 432w"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'TEXAS AI DOCKET' at 80,1261 296x37 (margin 80px)",
+        "outside safe zone: 'texasaidocket.com' at 731,1266 269x31 (margin 80px)"
+      ],
+      "bands": [
+        0.0756,
+        0.2878,
+        0.7739
+      ],
+      "band_ratio": 1.9491,
+      "encodings": [
+        "'the ground below the grade edge is darker than the air above it': dE 69.5, AUC 0.97, visible 61%/83%, seen 4099/5577px at 432w"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 23,
+  "verdict": "WARN"
+}

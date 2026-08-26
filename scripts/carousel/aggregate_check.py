@@ -600,6 +600,29 @@ def check(report: dict, declared: dict, claims: dict, caption: str = "",
     return problems
 
 
+def receipt(found: list, declared: dict, problems: list) -> dict:
+    """The receipt this check leaves behind, with each side counted separately.
+
+    `declared` used to hold `len(found)`, which is the number of numeric PHRASES IN THE RENDER
+    rather than the number of DECLARATIONS, and the two differ whenever one declared phrase is
+    printed twice. On 2026-08-26 slide 7 set "One says AI." as its display line and its note said
+    "One says" again, so eight occurrences covered seven declarations and `gate_status` printed
+    "8 declared and re-derived" over an aggregates.json holding 7. Two of three judges read that
+    row as a discrepancy and nearly logged it as a defect.
+
+    Nothing was wrong except the label. **A gate that misreports a figure costs more than one that
+    misses it**, because the run then hunts for something that was never there. Both numbers are
+    written now and each is named for the side it counted.
+    """
+    return {
+        "declared": len({d.get("phrase", "").strip().lower()
+                         for d in (declared.get("aggregates") or []) if isinstance(d, dict)}),
+        "found": len(found),
+        "distinct_phrases": len({f["phrase"].strip().lower() for f in found}),
+        "problems": problems,
+    }
+
+
 def surfaces(base: Path) -> dict:
     """The published surfaces this gate reads, from one directory, named ONCE.
 
@@ -663,8 +686,20 @@ def run(date: str, out_root: Path = None) -> int:
     # caught exactly that: the gate block carried a stale aggregates row telling the run to
     # re-run the check, and re-running it could never clear the row, because a check does not
     # rewrite its own input. **Inputs precede the render. Reports describe it.**
+    #
+    # AND IT COUNTS BOTH SIDES SEPARATELY, since 2026-08-26. `declared` used to hold `len(found)`,
+    # which is the number of numeric PHRASES IN THE RENDER, not the number of DECLARATIONS. Those
+    # two differ whenever one declared phrase is printed twice, which is ordinary: that deck's
+    # slide 7 set "One says AI." as its display line and "One says" appeared again in its note, so
+    # the render carried 8 occurrences of 7 declared phrases. The status block then read "8
+    # declared and re-derived" over an aggregates.json holding 7, and two of three judges read the
+    # row as a discrepancy and nearly logged it as a defect.
+    #
+    # Nothing was wrong except the label, and a gate that misreports a figure costs more than one
+    # that misses it, because the run then hunts for something that was never there. Both counts
+    # are written now and each is named for what it counted.
     (base / "aggregate_report.json").write_text(
-        json.dumps({"declared": len(found), "problems": problems}, indent=2), encoding="utf-8")
+        json.dumps(receipt(found, declared, problems), indent=2), encoding="utf-8")
 
     if problems:
         print(f"aggregate_check: {len(problems)} problem(s)\n")
@@ -933,6 +968,38 @@ def self_test() -> int:
        not check(qr, {"aggregates": [
            {"phrase": "Two schools", "kind": "count", "value": 2,
             "computed_by": "len() over the campus list in assets/houston_future2.json"}]}, qc))
+
+    # ---- THE RECEIPT, AND THE 2026-08-26 MISLABEL -------------------------------------
+    #
+    # `declared` held len(found), which counts render occurrences. A declared phrase printed twice
+    # made the receipt say 8 over an aggregates.json holding 7, and the status block printed it as
+    # "8 declared and re-derived". Nothing was wrong and two of three judges nearly logged it as a
+    # defect. The fixture below is that deck's own shape, not an invented one.
+    twice_found = [{"phrase": "Two lists", "kind": "count", "slide": "slide-07"},
+                   {"phrase": "One says", "kind": "count", "slide": "slide-07"},
+                   {"phrase": "One says", "kind": "count", "slide": "slide-07"}]
+    twice_decl = {"aggregates": [{"phrase": "Two lists"}, {"phrase": "One says"}]}
+    r = receipt(twice_found, twice_decl, [])
+    ok("the receipt counts declarations on the declaration side", r["declared"] == 2, str(r))
+    ok("...and render occurrences on the render side", r["found"] == 3, str(r))
+    ok("...and says how many of those were distinct", r["distinct_phrases"] == 2, str(r))
+    ok("...so the two counts can differ without either being wrong",
+       r["declared"] != r["found"])
+    # The real artifact, which is the only fixture carrying the shape nobody wrote down.
+    real_decl = REPO_ROOT / "runs" / "carousel" / "2026-08-26" / "aggregates.json"
+    if real_decl.exists():
+        rd = json.loads(real_decl.read_text(encoding="utf-8"))
+        # THE INVARIANT, NOT THE NUMBER. This asserted `== 7` against the file as it stood
+        # mid-run, and the same run later declared nine more figures, so a correct artifact
+        # turned a self-test red. An assertion pinned to a count that legitimately changes
+        # every day tests the calendar, not the code.
+        _r = receipt([], rd, [])
+        ok("the receipt counts that file's DISTINCT declared phrases",
+           _r["declared"] == len({a.get("phrase", "").strip().lower()
+                                  for a in rd.get("aggregates", []) if isinstance(a, dict)})
+           and _r["declared"] > 0, str(_r))
+    else:
+        ok("the 2026-08-26 aggregates file is present to replay the mislabel against", False)
 
     # THE CAPTION IS A PUBLISHED SURFACE (2026-08-26). This gate read the render and nothing
     # else, and a judge found by hand a date delta in the caption that no gate could reach.

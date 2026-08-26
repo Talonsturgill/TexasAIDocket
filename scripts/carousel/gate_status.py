@@ -354,14 +354,31 @@ def _aggr(a) -> Row:
     reports only that somebody wrote a file. Worse, it can never clear a STALE flag, because a
     check does not rewrite its own input, so the block ends up telling the run to re-run
     something that re-running cannot fix. The end-to-end proof is what surfaced that.
+
+    AND IT SAYS WHAT WAS COUNTED ON EACH SIDE, since 2026-08-26. This row read "8 declared and
+    re-derived" on a run whose aggregates.json declared 7. Nothing was wrong. The receipt's
+    `declared` field held the number of numeric phrases found in the RENDER, and that deck printed
+    one declared phrase twice, so eight occurrences covered seven declarations. Two of three
+    judges read the row as a 7 against 8 discrepancy and nearly logged it as a defect, which is
+    what a misreported figure costs: the run goes hunting for something that was never there.
+
+    A receipt written before the split carries only the old field, and the old field counted
+    render occurrences. The legacy line therefore says occurrences and does not claim to know the
+    declaration count, because it does not.
     """
-    n = a.get("declared")
-    if n is None:
-        decl = a.get("aggregates") or []
-        n = len(decl) if isinstance(decl, list) else 0
     probs = a.get("problems") or []
-    return Row("aggregates", FAIL if probs else PASS,
-               f"{len(probs)} problem(s)" if probs else f"{n} declared and re-derived")
+    if probs:
+        return Row("aggregates", FAIL, f"{len(probs)} problem(s)")
+
+    decl, found = a.get("declared"), a.get("found")
+    if found is None:                      # a receipt written before the two counts were split
+        n = decl
+        if n is None:
+            legacy = a.get("aggregates") or []
+            n = len(legacy) if isinstance(legacy, list) else 0
+        return Row("aggregates", PASS, f"{n} numeric phrase(s) in the render, all re-derived")
+    return Row("aggregates", PASS,
+               f"{decl} declaration(s), {found} numeric phrase(s) in the render, all re-derived")
 
 
 def _assembly(a, d: Path) -> Row:
@@ -633,11 +650,13 @@ def self_test() -> int:
         ok("a record with no block at all is detectable",
            extract("# Run record\n\nnothing here\n") is None)
 
-    if failures:
-        print(f"\ngate_status self-test: {failures} FAILED", file=sys.stderr)
-        return 1
     # THE FIELD NAME THIS REPO ACTUALLY WRITES. Missing from the lookup, so a real score
     # rendered as "None, below threshold".
+    #
+    # THESE FOUR USED TO SIT BELOW THE FAILURE CHECK, which meant they could print FAIL and the
+    # process still exited 0. A self-test whose later half cannot turn the exit code is the same
+    # decoration as a gate that has never been seen to go red, and it was found by adding cases
+    # beside them. The failure check is the LAST thing in this function now, and it stays there.
     ok("the score row reads this repo's own weighted_score field",
        "6.82" in _score({"weighted_score": 6.82, "ship": False}).detail,
        _score({"weighted_score": 6.82, "ship": False}).detail)
@@ -648,6 +667,31 @@ def self_test() -> int:
     ok("...and the older field names still work",
        "7.1" in _score({"total": 7.1, "ship": True}).detail)
 
+    # ---- THE AGGREGATES ROW, AND THE FALSE DISCREPANCY OF 2026-08-26 -------------------
+    #
+    # The row read "8 declared and re-derived" on a run whose aggregates.json declared 7, because
+    # the receipt's `declared` field held the count of numeric phrases in the RENDER. Two of three
+    # judges read it as a 7 against 8 discrepancy and nearly logged a defect that did not exist.
+    real = _aggr({"declared": 7, "found": 8, "distinct_phrases": 7, "problems": []})
+    ok("the aggregates row names what was counted on each side",
+       "7 declaration(s)" in real.detail and "8 numeric phrase(s)" in real.detail, real.detail)
+    ok("...and no longer says 8 declared over a file that declares 7",
+       "8 declared" not in real.detail, real.detail)
+    ok("...and still says the figures re-derived, which is what the gate proved",
+       "re-derived" in real.detail and real.status == PASS, real.detail)
+    ok("a problem still reads as a FAIL with the count",
+       _aggr({"declared": 7, "found": 8, "problems": ["x", "y"]}).status == FAIL
+       and "2 problem(s)" in _aggr({"declared": 7, "found": 8, "problems": ["x", "y"]}).detail)
+    # A RECEIPT WRITTEN BEFORE THE SPLIT still has to render, and it must not claim to know a
+    # number it does not hold. Every committed run before 2026-08-26 carries this shape.
+    legacy = _aggr({"declared": 5, "problems": []})
+    ok("a receipt from before the split reads as render occurrences, not declarations",
+       "5 numeric phrase(s) in the render" in legacy.detail and "declaration" not in legacy.detail,
+       legacy.detail)
+
+    if failures:
+        print(f"\ngate_status self-test: {failures} FAILED", file=sys.stderr)
+        return 1
     print("\ngate_status self-test: all passed (artifacts parsed, binaries checked by magic "
           "bytes, nothing measured by length)")
     return 0

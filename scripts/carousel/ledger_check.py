@@ -45,6 +45,8 @@ import argparse, json, re, sys
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
+LIGHT_L = 60.0      # deck median L* at or above which a deck reads light
+LIGHT_CAP = 1       # brand.yaml: at most once per eight runs
 DOCTRINE = "knowledge/carousel/CAPTION_CRAFT.md"
 
 # The counts the topic prose is ABOUT. A number word in that prose has to be one of these, not
@@ -138,6 +140,54 @@ def check_captions(cap: dict, menu: dict[str, set[str]]) -> list[str]:
     return problems
 
 
+def check_register(art: dict) -> list[str]:
+    """THE LIGHT DECK CAP, COUNTED RATHER THAN ASSERTED.
+
+    `config/brand.yaml` reads: "Big Bend at dusk is the default. A light deck is allowed as a
+    deliberate high-variance move, at most once per eight runs, and the ledger enforces the
+    count." The ledger did not. Every `light_decks_used` value in `artwork.json` reads the
+    literal 1 while meaning light FRAMES inside a deck, which is a different quantity from the
+    one brand.yaml says is being counted, so the field looked like enforcement and enforced
+    nothing.
+
+    Measured off the shipped PNGs on 2026-08-26: 08-18 at deck median L* 82.7, 08-20 at 85.5 and
+    08-26 at 86.7, three light decks inside an eight run window against a cap of one. Two of
+    those three had already shipped before anyone counted.
+
+    This is GATE_LESSONS' own recurring shape, a rule stated in config with a ledger field that
+    appears to enforce it and nothing in between checking they measure the same thing, and it is
+    why the count comes from `value.deck_median_L`, which is measured off the render, rather than
+    from any field a run writes about itself.
+    """
+    problems: list[str] = []
+    entries = sorted(art.get("entries", []), key=lambda e: e.get("date", ""))
+    window = entries[-8:]
+    light = [e for e in window
+             if isinstance(e.get("value"), dict)
+             and isinstance(e["value"].get("deck_median_L"), (int, float))
+             and e["value"]["deck_median_L"] >= LIGHT_L]
+    unmeasured = [e["date"] for e in window
+                  if not (isinstance(e.get("value"), dict)
+                          and isinstance(e["value"].get("deck_median_L"), (int, float)))]
+    # THE MEASUREMENT IS NEW, SO THE CAP BINDS FROM WHERE IT EXISTS. Backfilling a measured
+    # field into already published entries would be editing the durable memory to suit a check
+    # written after them, which is the one thing an append only ledger is for refusing. The
+    # entries without it are NOTED and not failed, and the note disappears on its own as eight
+    # measured runs accumulate. What is never softened is the count itself, below.
+    if unmeasured:
+        print(f"  note  the light deck cap is counted over the {len(window) - len(unmeasured)} "
+              f"entr(y/ies) carrying a measured deck_median_L. {len(unmeasured)} older "
+              f"entr(y/ies) predate the measurement and are not counted: "
+              f"{', '.join(unmeasured)}")
+    if len(light) > LIGHT_CAP:
+        problems.append(
+            f"artwork.json: {len(light)} light deck(s) in the last {len(window)} runs "
+            f"({', '.join(e['date'] + ' at L* ' + str(e['value']['deck_median_L']) for e in light)}) "
+            f"against brand.yaml's cap of {LIGHT_CAP} per eight. Measured off the render, not "
+            f"asserted by the run")
+    return problems
+
+
 def check_topics(top: dict, figures: dict | None) -> list[str]:
     problems: list[str] = []
     entries = sorted(top.get("entries", []), key=lambda e: e["date"])
@@ -165,8 +215,13 @@ def check_topics(top: dict, figures: dict | None) -> list[str]:
     return problems
 
 
-def run(cap: dict, top: dict, figures: dict | None, doctrine: str) -> list[str]:
-    return check_captions(cap, menus(doctrine)) + check_topics(top, figures)
+def run(cap: dict, top: dict, figures: dict | None, doctrine: str,
+        art: dict | None = None) -> list[str]:
+    out = check_captions(cap, menus(doctrine)) + check_topics(top, figures)
+    if art is None:
+        f = REPO_ROOT / "ledger" / "carousel" / "artwork.json"
+        art = json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
+    return out + check_register(art)
 
 
 def self_test() -> int:

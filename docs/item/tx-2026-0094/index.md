@@ -11,7 +11,7 @@ The University of Texas Medical Branch at Galveston contracted in December 2024 
 - Public access: Public meeting
 - Take part: https://www.utsystem.edu/board-of-regents/meetings/board-meeting-2026-08-12
 
-- Last checked: 2026-08-23
+- Last checked: 2026-08-26
 
 ## Dates
 
@@ -24,6 +24,7 @@ The University of Texas Medical Branch at Galveston contracted in December 2024 
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-08-23 · Admitted. The Regents' own agenda book carries the contract's three values and states that the first two sat inside the institution's delegated authority and needed no Board approval.
+- 2026-08-26 · Checked and unchanged. Still pending, with no dated movement.
 
 ## Evidence
 

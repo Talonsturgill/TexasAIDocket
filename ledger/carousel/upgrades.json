@@ -250,248 +250,326 @@
       "aggregate_check EXEMPT short circuit": "the fix is written and measured and does NOT ship today. Blanking the exempt spans and scanning the remainder surfaces six aggregates nothing declares, and five are on 2026-08-21, which is the newest deck, so shipped_check scopes them fatal and CI would go red on an artifact this lane does not own. Every one is a real aggregate, including the '392 days' this run tried to declare and could not. The five are listed in knowledge/carousel/UPGRADE_BACKLOG.md. The moment 2026-08-21 stops being the newest deck they become notes and the fix costs nothing, so the next upgrade phase should land it first and re-run the measurement rather than trusting the list.",
       "texan_check DATE case sensitivity": "one character, re.I on DATE, plus a self-test case asserting an all caps closing date is seen. Not landed only because the ceiling is three upgrades and it costs the least of the four. It is GATE_LESSONS 35 one file over: a rule written against a rendered form by somebody who did not read the renderer."
     }
-  },
-  "2026-08-25": {
-    "run": "carousel no. 7, the fifteen actions twelve Texas local governments took on a data center between March 10th and August 13th",
+  }
+  ,
+  "2026-08-26": {
+    "run": "carousel no. 8, the UT Dell Medical Center billion. THE DECK WAS HELD at a weighted 6.93 against 7.0 with one hard fail, so this run does not merge and no deck shipped. The record half is complete.",
     "actor": "upgrade",
-    "note": "26 machine changes across ten scoring rounds, far over the three the 2026-08-21 set called a ceiling, and the ceiling is not being quietly raised. Every one is a gate or an engine that was WRONG about the product rather than one that could be better, and all but two were found by a scoring panel or by another gate rather than by this phase going looking for work. A gate reporting clean over a defect is not a backlog item.\n\nThe round 9 panel is worth recording as a measurement of the panel itself. Three judges read independently and returned 6.0, 6.2 and 6.0 on `artwork_craft`, the heaviest criterion in the rubric, and all three named the same cause in their own words: the type layer did not know where the paper ended. One of them called it out on four frames. Machine QA had been reporting the worst instance for two rounds as \"art touching glyphs\", and the run read that as an atmosphere note both times. A single grader cannot produce that signal. Agreement across three is the only thing that separates a finding from a taste.",
     "upgrades": [
       {
-        "what": "render.py builds a text node from its child nodes, inserting a space for a <br> and for any child the layout does not run inline",
-        "why": "textContent throws away the boundaries the layout puts in. '<div>154 DAYS<br>MARCH 10TH TO AUGUST 11TH</div>' was stored as '154 DAYSMARCH 10TH TO AUGUST 11TH' and a block level span fused the same way, so slide 8's attribution became 'LAREDO MATTER HISTORY, C143 AGENDAS'. Every string is still there. What is gone is the boundary, and aggregate_check finds a computed number with \\b(NUM)\\s+, so DAYSMARCH and C143 are single tokens no pattern can match. Two undeclared numerals sat on two frames while that gate printed clean over 14 re-derived figures. ANY NUMBER THAT ENDS A LINE was structurally invisible to the gate whose whole job is catching an invented number, on every deck this engine has ever rendered.",
+        "what": "copy_sync_check gains QUOTATIONS: every phrase a frame sets as a source's own words must occur verbatim in a quote on one of the claims THAT SLIDE declares. Registered in shipped_check too, so it runs in CI over every deck ever published as well as in the routine.",
+        "why": "Slide 7 of this run printed `clinical care, research, advanced computing` under the attribution `BOARD ITEM, AUGUST 12TH, 2026`. That string is in no claim in the run's claims file. The frame declared c12 and c23 and printed neither, so the minimal pair its whole composition measured did not exist, and a granite plate set beneath a gap in a sentence the board never wrote read as an assertion that the board struck two words out. EVERY MECHANICAL GATE WAS GREEN. claims_check proves claims exist and has no opinion about what a frame prints. aggregate_check re-derived a declaration whose stated derivation was false against both quotes. noun_trace checks NAMED things, never quoted ones. copy_sync_check's own two directions agreed with each other because both were reading the same authored string: three green gates, one source. Two of three judges caught it by hand and one scored that frame's integrity a 7, so a single scorer would have shipped it. The same shape hit three more frames on the same deck in its milder form, a folio quoted by c29 and c30 printed on a slide declaring c27 and c28, which is why the check is scoped PER SLIDE rather than against the whole claims file.",
         "files": [
-          "\\.claude/skills/carousel-engine/render.py"
+          "scripts/carousel/copy_sync_check.py",
+          "scripts/carousel/shipped_check.py"
         ],
-        "verification": "re-rendered the deck and read the report back: the two nodes now store '154 DAYS MARCH 10TH TO AUGUST 11TH' and 'LAREDO MATTER HISTORY, C14 3 AGENDAS', and aggregate_check went from 0 findings to 4 on artwork it had already passed. Three were real and one was the decimal defect below.",
-        "found_by": "the round 4 reader judge, which noticed aggregates.json omitted two figures that are in figures.json and are on frames"
+        "verification": "`python3 scripts/carousel/copy_sync_check.py --self-test`, 67 cases run, 33 of them new. The replay is the frame AS IT REACHED THE PANEL, reconstructed from the storyboard's own `replanned` block written before this gate existed, held against the RUN'S REAL claims.json rather than an invented one: it goes red, names the string, says it occurs in NO claim's quote, and names c12 and c23 as what the frame did declare. A missing artifact is a FAILURE in that case and not a skip. The repaired copy.json comes back clean at 10 phrases examined, so the gate can tell the fix from the defect. THE DISCRIMINATION CASE is c23's quote verbatim on a slide declaring only c12: a version comparing against every claim in the file instead of the slide's own passes that, and the two implementations are indistinguishable without it. End to end by exit code, on artifacts staged under out/2026-08-26/tmp/: `copy_sync_check.py --date 2026-08-26 --out out/2026-08-26/tmp/replay` exits 1 naming only the quotation, and `--out out/2026-08-26/tmp/repaired` exits 0 printing `10 quoted phrase(s) traced to a claim the slide declares`. CALIBRATION: 33 quoted phrases across all seven decks this repo has rendered, zero false positives, and the count is asserted per deck so a run that examined nothing cannot read as a run that found nothing.",
+        "revert": "the Phase 17 commit of 2026-08-26. Reverting copy_sync_check.py alone restores the previous gate exactly; shipped_check.py's one registry line reverts with it.",
+        "how_i_would_know_this_was_wrong": "It fires on a frame that is correct. The selector is structural, a quoted phrase carrying a space, plus a widening for keys named quote or verbatim, so the shapes that would cry wolf are a quoted search term the absence claim does not carry and a frame quoting a document this deck cites but did not turn into a claim. If either happens twice, the answer is a carve-out narrow enough to state in the file, never dropping the check. The BLIND SPOT is stated in the module header rather than implied: an unquoted string under a dated attribution is invisible here, and closing that needs the dossier to declare which regions are quotation."
       },
       {
-        "what": "aggregate_check's decorative exemption narrowed to a date span and the coordinate nouns, instead of skipping the whole node",
-        "why": "The flag is right about what it was written for. A coordinates footer set as '30 degrees 33 minutes N' reads as four aggregates on every slide and none is real, and a gate that cries wolf nine times a deck teaches the run to scroll past the tenth. It reached past its own subject: slide 3's '154 DAYS' and slide 8's '3 AGENDAS' are 19 to 22px attribution type, fully legible, undeclared, and exempt. A reader does not know a node was marked decorative.",
-        "files": [
-          "scripts/carousel/aggregate_check.py"
-        ],
-        "verification": "aggregate_check --self-test, 54 assertions, all pass. On the live deck the two figures now surface and are declared."
-      },
-      {
-        "what": "aggregate_check's NUM consumes a decimal fraction, and to_int parses one",
-        "why": "'8.0 gallons per square foot' matched as '0 gallons', so the gate asked the run to declare a figure of zero that appears nowhere, and to_int returned None for '8.0' for the same reason it once returned None for '1,400': str.isdigit() is False. NO FIGURE WRITTEN AS A DECIMAL COULD BE DECLARED THROUGH quoted_from AT ALL, and a water cap is written that way by every ordinance that has one. Exactly the thousands separator defect one punctuation mark over. A token the pattern cuts in half is a number the gate reports wrongly, and a wrong number in a gate's own output is worse than silence, because somebody goes looking for it.",
-        "files": [
-          "scripts/carousel/aggregate_check.py"
-        ],
-        "verification": "to_int('8.0') is 8, to_int('3.25') is 3.25, to_int('1,400') is still 1400. The deck's '8.0 gallons' is declared through quoted_from against c32 and re-derives."
-      },
-      {
-        "what": "sources_block's provenance line takes the whole set of fetch dates and builds the sentence from how many there are",
-        "why": "That line already counts the evidence grade rather than asserting it, and then handed the counted phrase to a sentence beginning 'all fetched' built from the LATEST retrieved date. True only while a run fetches everything in one day. This run re-opened after midnight to fetch an ordinance a scorer proved the deck needed, and the block would have told a reader all thirteen documents were fetched on the 26th when twelve were fetched on the 25th. Nothing would have caught it: every id resolved, every claim carried a date, and the gate reads ids rather than adverbs.",
-        "files": [
-          "scripts/carousel/sources_block.py"
-        ],
-        "verification": "sources_block --self-test, 32 assertions including six new ones covering one date, two in a month, two across months, two across years, three or more, and a bare string for older callers. The first implementation sliced the formatted date on its commas and shipped 'August 25th and 26th,, 2026'; it is built from the parsed parts now and a case asserts no doubled comma."
-      },
-      {
-        "what": "ledger_check.py, a new gate: the variety ledgers are derived, so they are re-derived and compared",
-        "why": "Third time. The recut from eight to seven regenerated every reader facing surface and left topics.json narrating 'the eight Texas governmental bodies that restricted a data center' against a run that computed 7, 5, 2 and 0. The same round found all three caption exclusion lists disagreeing with the entries in the file that HOLDS them, wrong in both directions. That is not cosmetic: those lists are what the caption room is handed BEFORE it writes, and it was told the quiet decision, zoom out and ask the one question were off the table. It wrote all three anyway and coined freehand names for them, which cleared the lists, because a list can only exclude a name it shares. The corruption did not merely fail to prevent a repeat. It manufactured three move names on none of the doctrine's menus, which is how the NEXT run's list gets corrupt too.",
-        "files": [
-          "scripts/carousel/ledger_check.py"
-        ],
-        "verification": "ledger_check --self-test, 18 assertions replaying both directions of the list defect, a freehand name, a duplicate date, the stale 'eight', and two false positives it must NOT fire on: 'any one of them' as English rather than a count, and a closing move stored as the head of the doctrine's own sentence. Exits 0 on the repaired ledgers.",
-        "reads_the_doctrine": "It parses CAPTION_CRAFT.md for the menus rather than keeping its own copy, because a gate with its own copy of a list is the defect it is here to catch."
-      },
-      {
-        "what": "claims_check accepts a short quote that is long enough to be a quote, MIN_QUOTE_CHARS OR'd with the four word floor",
-        "why": "logged from earlier in this run",
-        "files": [
-          "scripts/carousel/claims_check.py"
-        ]
-      },
-      {
-        "what": "texan_check's DATE pattern gains re.I and ACTION gains plurals",
-        "why": "logged from earlier in this run. GATE_LESSONS 35 one file over: a rule written against a rendered form by somebody who did not read the renderer. An all caps closing date was invisible.",
-        "files": [
-          "scripts/carousel/texan_check.py"
-        ]
-      },
-      {
-        "what": "aggregate_check sees 'N of the M' as a ratio, with overlap scoped suppression at ratio and span over duration over count",
-        "why": "logged from earlier in this run. English writes a ratio over a known set with the article far more often than without it, and the pattern could not see it, so a deck printing 'three of the nine' asserted a ratio no computation had to back.",
-        "files": [
-          "scripts/carousel/aggregate_check.py"
-        ]
-      },
-      {
-        "what": "caption_check reads brand.yaml's linkedin_post rules instead of carrying its own copy, and gains post_shape_problems",
-        "why": "logged from earlier in this run. Three caption rules lived in config and no gate read them.",
+        "what": "caption_check reads config/brand.yaml's whole linkedin_post block instead of implementing one key of it. Six of seven keys are enforced, the seventh is named unenforceable with a written reason, and a key that is neither turns the self-test red.",
+        "why": "brand.yaml sets `caption_chars: [300, 900]` and calls it a hard band. This run's caption stood at 1,970 characters and passed this gate in every one of five rounds, with three judges reading it by hand each round and none of them opening brand.yaml. It also sets `ends_with: engagement_question` and `deck_summary_line: true`, and the caption had neither. THE FILE IMPLEMENTED NONE OF THOSE THREE. It counted words, commas and hashtags, linted the house rules and printed PASS. That is the same defect this repo has now recorded four times, a rule stated in config with a surface keeping its own copy and nothing in between checking they agree, and the hashtag count in this very file already read brand.yaml for exactly that reason.",
         "files": [
           "scripts/carousel/caption_check.py"
-        ]
+        ],
+        "verification": "`python3 scripts/carousel/caption_check.py --self-test`, 20 new cases. RED ON THIS RUN'S OWN ARTIFACTS, which are real drafts and not fixtures: `caption_check.py --file out/2026-08-26/caption-A.txt` exits 1 at 1,732 characters and `caption-B.txt` exits 1 at 1,754, both naming the band and both also caught for not closing on a question, where before this change both printed `caption_check: clean` and exited 0. GREEN on the caption that shipped, `runs/carousel/2026-08-26/held/caption.txt`, 696 characters, exit 0. The self-test's real-artifact half uses committed captions rather than invented ones: 2026-08-22 at 1,289 characters is caught by the band and 2026-08-16 at 894 passes every post rule. Each of the other five keys is proved able to go red on its own, and a config value this file has never been taught, an ends_with or a date_form it does not implement, fails loudly rather than passing silently. The CLASSIFICATION case is the one that matters most: every key in the real brand.yaml block must appear in POST_RULES_ENFORCED or POST_RULES_UNENFORCEABLE, so a rule added to the config with nothing behind it goes red on the day it is added rather than on the day it is broken.",
+        "revert": "the Phase 17 commit of 2026-08-26, caption_check.py alone. check() and rate_problem() are untouched, so docket_build, house_style_check and waterwatch_page are unaffected either way: the new rules live on the run() path, which only a caption reaches, the same separation the hashtag rule uses.",
+        "how_i_would_know_this_was_wrong": "Six of the seven captions this repo has shipped are over the 900 ceiling, so this gate will fire on a caption written the way every previous one was written. That is the rule being enforced for the first time and not the gate being wrong, and the cure is a shorter caption, never a wider band: brand.yaml is human owned and this lane may not edit it. It WOULD be wrong if the band itself is a mistake, and the evidence for that would be an owner saying so in brand.yaml. The `ends_with` arm checks a necessary condition only, a question mark closing the last prose line, and says so in its own message, so a question that invites nothing still passes."
       },
       {
-        "what": "ledger_check's COUNTING_FIGURES knows all twelve of the counts its prose is about",
-        "why": "The recut added acting_bodies, repeat_bodies, busiest_body_count, busiest_body_binding and busiest_month_count, and the topic prose reads 'the fourteen actions eleven Texas local governments took'. The tuple held neither, so the gate fired on a sentence composed from the run's own computation. Scoped rather than widened: it is still a NAMED list of the counts that prose is about rather than every figure the run produced, which is the distinction that lets it catch 'on the other four the record says nothing' while four is a real figure elsewhere in the same file.",
+        "what": "aggregate_check's receipt counts declarations and render occurrences separately, gate_status's aggregates row says which is which, and gate_status's self-test can now fail after its own failure check.",
+        "why": "The gate table read `8 declared and re-derived` on a run whose aggregates.json declares 7. Nothing was wrong. The receipt's `declared` field held len(found), which counts numeric phrases IN THE RENDER, and slide 7 set `One says AI.` as its display line while its note said `One says` again, so eight occurrences covered seven declarations. Two of three judges read that row as a 7 against 8 discrepancy and nearly logged it as a defect. A gate that misreports a figure costs more than one that misses it, because the run then hunts for something that was never there. FOUND WHILE WRITING THE TEST FOR IT: four assertions in gate_status's self-test sat BELOW its `if failures: return 1` block, so they could print FAIL and the process still exited 0.",
         "files": [
-          "scripts/carousel/ledger_check.py"
+          "scripts/carousel/aggregate_check.py",
+          "scripts/carousel/gate_status.py"
         ],
-        "verification": "ledger_check --self-test, 18 assertions, and the gate exits 0 on the recomposed ledgers."
-      },
-      {
-        "what": "aggregate_check reads caption.txt, which is the surface a reader meets first",
-        "why": "The gate read render_report.json and nothing else, so it judged nine frames and left the caption unread. A round 7 judge found a date delta in it by hand: 'the water two weeks after that', over c43's June 2nd sewer ordinance and c32's June 16th water ordinance. No claim states an interval and nothing computed one. The figure was TRUE, which is why it is worth catching. A model doing correct arithmetic in published copy is still the model acting as the calculator.",
-        "files": [
-          "scripts/carousel/aggregate_check.py"
-        ],
-        "verification": "aggregate_check --self-test, 61 assertions, seven of them new: the failing sentence is seen, the compliant form of the same sentence passes, a hashtag line is not read as copy, and check() is unchanged when given no caption. Run against the live deck it reproduced the judge's finding exactly."
-      },
-      {
-        "what": "shipped_check gains `shipped fresh`, so a run's artifacts must describe the deck beside them",
-        "why": "The recut rebuilt the renders, the copy and the caption and did not copy slides/ or rebuild assemble_report.json, so the shipped directory carried the REFUTED seven body HTML and recorded its PDF under the refuted title while the PNGs beside them showed a different deck. Every gate passed, because each reads ONE artifact and asks whether it is internally right. Not one asked whether the artifacts agree with each other.",
-        "files": [
-          "scripts/carousel/shipped_check.py"
-        ],
-        "verification": "Content, not timestamps, because mtimes do not survive a clone and a timestamp version would pass CI forever while only firing on the machine that already knew. Three comparisons that hold in a fresh checkout, and the gate found a real title disagreement on 2026-08-19 the moment it ran, which is why it is scoped CURRENT."
-      },
-      {
-        "what": "ledger_check wired into the shipped-deck registry",
-        "why": "port_audit's wiring check had it red as referenced by nothing, which is exactly what that check exists for. .github/ and prompts/ are the human actor's, so a routine that writes a gate cannot connect it, and one workflow step calling shipped_check means the next gate is one function away in a file this lane owns.",
-        "files": [
-          "scripts/carousel/shipped_check.py"
-        ],
-        "verification": "port_audit exits 0."
-      },
-      {
-        "what": "aggregate_check gains scan_title, so the document title is scanned like any other published surface",
-        "why": "Round 8's recut moved the title off the cover and it stopped being a slide string. copy.json still carried it, the PDF still printed it, the email still used it as its subject, and nothing scanned it any more, because this gate reads the render report and the report holds frames. The title was \"Fifteen ways to take up a data center\", a count of the acting bodies, sitting on a published surface with no declaration behind it and no check able to notice. That is the caption defect one surface over, one round later.",
-        "files": [
-          "scripts/carousel/aggregate_check\\.py"
-        ],
-        "verification": "six new self-test assertions covering a counted title, an undeclared one, an empty one and a declared one that re-derives; the live gate went from 22 figures to 24 and the run's declaration generator had to declare the title before it would write",
-        "found_by": "this phase, following the caption fix to its own conclusion after the recut broke it"
-      },
-      {
-        "what": "aggregate_check.surfaces() owns the list of published surfaces, and its three callers ask for it",
-        "why": "This gate has three callers and each opened the surface files itself, so every time the gate learned a surface, three call sites had to learn it too, and they did not. The caption was added and shipped_check.g_aggregates kept reading the render alone, turning a caption-only figure into a phantom leftover declaration. The comment recording that fix is still in that adapter, and one day later the document title did the identical thing to the identical line. Twice is a habit. A new surface is now one edit in one place.",
-        "files": [
-          "scripts/carousel/aggregate_check\\.py",
-          "scripts/carousel/shipped_check\\.py"
-        ],
-        "verification": "seven self-test assertions covering both run-directory layouts, a missing caption, a missing copy.json and an unreadable one; shipped_check went from one problem on 2026-08-25 to zero without the gate being loosened",
-        "found_by": "shipped_check itself, reporting the title declaration as a leftover the moment the run shipped"
-      },
-      {
-        "what": "plan_render_check requires a quoted needle's marks to MATCH and refuses a mark glued to a word character",
-        "why": "The delimiters were written as [\"']...[\"'], which accepts a double quote opened and a single quote closed, and lets a POSSESSIVE open a quote. Slide 7's acceptance line reading \"all four title cells carry their applicant's name, because the county's own matter titles hold four\" was read as requiring the frame to print the string `s name, because the county`, so the gate failed a correct frame over a plan sentence that quotes nothing at all. A gate that fails correct work teaches a run to ignore it, which is the most expensive failure mode a checker has.",
-        "files": [
-          "scripts/carousel/plan_render_check\\.py"
-        ],
-        "verification": "six self-test assertions: a possessive opens nothing, a real single-quoted needle still reads, a double-quoted needle still reads, mismatched marks are not a quote, and both halves hold for forbidden needles too",
-        "found_by": "the gate, failing frame 7 after this round named all four Brazoria applicants"
-      },
-      {
-        "what": "copy_sync_check's claim stamp takes a CLAIM ID rather than any following word",
-        "why": "The pattern matched CLAIMS? followed by [A-Za-z0-9_.-]+ case insensitively, so the ordinary English word \"claim\" and whatever came next was cut out of the middle of a sentence. Slide 2's dek reads \"Each one with the claim whose own words prove its shape\" and reached the gate as \"Each one with the  own words prove its shape\", which matches no authored string because nobody wrote it. The gate then failed a correct frame and named a sentence that does not exist, which sends the next reader looking for a defect in the deck instead of in the checker.",
-        "files": [
-          "scripts/carousel/copy_sync_check\\.py"
-        ],
-        "verification": "five self-test assertions: a single-id stamp is still stripped, a multi-id stamp is stripped, the English word survives untouched, a dek using it comes back clean, and unauthored prose beside a stamp is still caught",
-        "found_by": "the gate, on a dek this round did not change"
-      },
-      {
-        "what": "dossier_check compares composition.focal against art.value_structure and fails a frame whose plan contradicts itself",
-        "why": "Both fields name where the frame's light sits, four lines apart, and nothing compared them. Slide 2's focal said \"the lit half of the sheet to the RIGHT of the mullion shadow\" while its own value_structure said \"Lightest is the lit wedge at the sheet's upper LEFT\". The code puts the light upper left. The focal line survived three review rounds and two reported repairs, because a pixel critic grades the render against the focal line and a craft critic reads the value_structure, and neither one reads both. A plan that contradicts itself is worse than a thin plan, because each half licenses a different frame.",
-        "files": [
-          "scripts/carousel/dossier_check\\.py"
-        ],
-        "verification": "nine self-test assertions including the real inverted pair, the corrected pair, a value_structure whose DARK clause names the opposite side, a focal naming both sides as a sweep, a vertical inversion on its own axis, and silence on either side",
-        "found_by": "the round 8 craft judge, which named the contradiction the gate could not"
-      },
-      {
-        "what": "shipped_check gains `measured figures`: every L* in a run's prose must exist in its own measurements.json",
-        "why": "The highest recurrence defect in this repo, now four times. Round 4 found frame 7's falloff committed twice with two values. Round 7 found slide 6 printing 70.8 and 18.4 where measurements.json said 70.6 and 18.2. Round 8 recut three frames, moved six medians, and left the storyboard, the run record and the artwork ledger each carrying the previous deck's numbers. The writer that composes them from the file existed the whole time and had gone silently dead. A writer is not a check. A writer can stop firing. This asks, of the shipped bytes, and a figure absent from measurements.json is absent whatever wrote it.",
-        "files": [
-          "scripts/carousel/shipped_check\\.py"
-        ],
-        "verification": "eight self-test assertions over a temp run, plus the live run: it immediately found three stale luminances in RUN_RECORD.md that every other gate passed, including a paragraph claiming a 12.2 L* falloff over a deck measuring 16.5",
-        "found_by": "this phase, after fixing the same class by hand for the fourth time"
-      },
-      {
-        "what": "write_measured.py matches the SHAPE of every sentence it rewrites and fails on a pattern that matched nothing",
-        "why": "It matched the OLD NUMBERS as literal strings, so the moment a value moved twice the replacement silently stopped firing and every file kept the stale figure under a script reporting success. That is exactly how round 8 shipped four files disagreeing about six measurements. Every pattern now has [\\d.]+ where a number goes, so it fires on any value, and a rewrite that matches nothing is a hard failure rather than a no-op.",
-        "files": [
-          "out/<date>/tmp/write_measured\\.py",
-          "runs/carousel/<date>/write_measured\\.py"
-        ],
-        "verification": "it refused on first run and named two dead patterns, both real; after repair it applied nine rewrites and the new `measured figures` gate came back clean over the same files",
-        "found_by": "this phase, when the measured numbers drifted for a fourth time under a script that said it had written them"
-      },
-      {
-        "what": "aggregate_check gains scan_comment, so the first comment is scanned like any other published surface",
-        "why": "first_comment.txt opens \"Sources, ten official records and ten news reports\", two computed counts on the surface LinkedIn shows directly under the post, matching this gate's own count shape and unreachable by it. Both were correct, which is the point. A correct number nothing checks is one edit away from a wrong number nothing checks. Third surface this gate learned late in two days.",
-        "files": [
-          "scripts/carousel/aggregate_check\\.py"
-        ],
-        "verification": "the live gate went from 25 to 27 scanned figures and refused to write the run's declarations until both counts were declared and re-derived off the block's own URLs",
-        "found_by": "the round 9 integrity judge, reading the file rather than running the gate"
-      },
-      {
-        "what": "aggregate_check's EXEMPT suppresses its own span rather than the whole string",
-        "why": "`detect()` opened with `if EXEMPT.search(text): return []`, so ONE bare year anywhere in a string exempted every figure in it, and most citation lines on this deck carry a year, a bill number or a claim id. The first comment's two counts were thrown away before they were ever tested. This veto was live on every frame of every deck this engine has rendered.",
-        "files": [
-          "scripts/carousel/aggregate_check\\.py"
-        ],
-        "verification": "five new assertions: a bare year, a bill number and a citation each pardon nothing beside them, and each is still not read as a figure itself. One existing assertion encoded the old behaviour and was rewritten, because \"three filings, claim c4\" was never clean.",
-        "found_by": "chasing why scan_comment saw nothing on a line the count pattern plainly matches"
-      },
-      {
-        "what": "panel.py reads the rubric's threshold and cannot report SHIP under the bar",
-        "why": "The `ship` field was `not fails` and this module never opened the rubric, so a 6.72 deck under a 7.0 bar came back `\"ship\": true` with no caveat anywhere in the file. The comment directly above the line stated the correct rule the whole time and the code implemented half of it, which is worse than either, because the file reads as though it had been thought about. The floor lived only in run_complete.py, a separate command a run has to remember to run.",
-        "files": [
-          "scripts/carousel/panel\\.py"
-        ],
-        "verification": "nine new assertions including the real round 9 numbers, a median exactly on the bar, and a hard fail well over it; the live panel now prints HOLD, under the 7.0 bar",
-        "found_by": "reading score.json after writing it, and not believing the field"
-      },
-      {
-        "what": "render.py refuses a CSS length with no unit as a build error",
-        "why": "`width:430` in slide 1's `.dek` rule. CSS drops an invalid declaration WHOLE and says nothing, so that line had no measure at all and ran the full 1080 body: off the bond sheet, across the case stile, over the lock cylinder, at 1.8 contrast, on the cover, at 432px. Machine QA reported it as art touching glyphs across 79 percent of the ring, which reads like an atmosphere note, and two review rounds took it for one. There is no case where a slide wants a bare number here.",
-        "files": [
-          "\\.claude/skills/carousel-engine/render\\.py"
-        ],
-        "verification": "eight cases including line-height, which is legitimately unitless and is exempt; every committed slide in the repo was scanned and only the offending one was found; the build was made to go red on demand",
-        "found_by": "all three round 9 judges, independently, as the deck's most visible defect"
-      },
-      {
-        "what": "sync_plan reads innermost divs, a two token class, and a data-role the frame declares",
-        "why": "Three faults in one extractor. `[a-z0-9_-]+` could not match `class=\"sl s1\"`, so frame 6's four route slips were skipped whole and neither their strings nor their four claim ids reached copy.json: the manifest described a board with two papers over a render carrying six. `(.*?)</div>` stopped at the first closing tag, so slide 4's wrapper swallowed its first child and its dek was invisible. And the dossier's `dek` role was matched by CSS CLASS NAME, which is a style hook, so a frame carrying its dek in `.veiled` could not be synced and plan_render_check then failed a correct frame against a stale plan.",
-        "files": [
-          "out/<date>/tmp/sync_plan\\.py",
-          "runs/carousel/<date>/sync_plan\\.py"
-        ],
-        "verification": "copy.json S6 went from two claims to six and gained the four slip strings; S4's dek reached the manifest; plan_render_check went green without the gate being loosened",
-        "found_by": "the round 9 integrity judge on copy.json, and plan_render_check on slide 4"
-      },
-      {
-        "what": "slide 4's greeked exclusion list is read from the DOM and tested in the same space as the rules",
-        "why": "Four hand-typed rectangles: a second copy of boxes the CSS already declares, measured in a DIFFERENT PROJECTION from the one the browser lays type in. The DOM lays through `perspective(1500px) rotateY(-19deg)` and the canvas draws through its own P(), so a plane-space rectangle never matched a screen-space one and the literals were a hand-tuned correspondence between them. Moving one string 30px left and adding a line put the rule field through the citation.",
-        "files": [
-          "out/<date>/slides/slide-04\\.html",
-          "runs/carousel/<date>/slides/slide-04\\.html"
-        ],
-        "verification": "getBoundingClientRect returns the post-transform box in the canvas's own CSS pixels and every rule is projected through P() before the test; the frame went from one QA fail to zero",
-        "found_by": "the round 9 craft judge, whose one-sentence fix was exactly this mechanism"
+        "verification": "`python3 scripts/carousel/aggregate_check.py --self-test` and `python3 scripts/carousel/gate_status.py --self-test`, ten new cases between them, and an eleventh that fires only if the replay artifact is missing. On the REAL artifacts of this run: the receipt as written says {declared: 8}, the row said `8 declared and re-derived`, and aggregates.json declares 7. After the change a re-run's receipt reads {declared: 7, found: 8, distinct_phrases: 7} and the row reads `7 declaration(s), 8 numeric phrase(s) in the render, all re-derived`. A receipt written before the split still renders and does NOT claim to know the declaration count, reading `8 numeric phrase(s) in the render, all re-derived`, which is true of what that field actually held. THE EXIT CODE REPAIR WAS PROVED BY FORCING THE RED: breaking one of the last assertions exits 1 now and exited 0 with a FAIL printed under the old ordering, measured both ways.",
+        "revert": "the Phase 17 commit of 2026-08-26. Each file reverts alone; gate_status reads the legacy receipt shape either way.",
+        "how_i_would_know_this_was_wrong": "The row is longer than it was and a longer status line is a worse status line if nobody reads the extra words. It would also be wrong if `found` and `declared` diverge on most runs rather than rarely, which would mean the deck routinely prints one declared phrase several times and the interesting number is the distinct count instead."
       }
     ],
-    "proposals_this_run_may_not_make": {
-      "register ledger_check in CI": "guards.yml and prompts/daily_routine.md are both owned by the human actor, so this run wrote the gate, ran it, and cannot wire it in. Until a human adds it, ledger_check runs only when somebody runs it. That is exactly the shape GATE_LESSONS records as 'whether a gate was connected to anything', and it is written down here rather than assumed.",
-      "camera as an enforced dossier field": "the round 4 craft judge's one sentence fix, three panels running. Seven of nine frames are square on to a bordered sheet, the storyboard promised nine distinct cameras, and the run's own artwork ledger caught it and sent it to avoid_next instead of redrawing a frame. Making camera a per frame dossier field that dossier_check enforces as distinct BEFORE any code is written would move it from a thing a judge notices to a thing a plan cannot pass without. dossier_check is in the upgrade lane and could take it; the reason it did not land today is the three upgrade ceiling was already at nine on defects.",
-      "aggregate_check EXEMPT short circuit": "still not landed, carried from 2026-08-21. See knowledge/carousel/UPGRADE_BACKLOG.md.",
-      "computed.json is an interface nothing checks": "THE ONE WORTH DOING FIRST. site_build's `_run_numerals` reads runs/<date>/computed.json to learn which numerals a deck is entitled to print, and this run has only ever written figures.json. So the gate got None, authorised nothing the run computed, and fell back to whatever numerals happened to appear inside a claim's quote or url. SIX DECKS PASSED ON THAT COINCIDENCE. The moment the claims file grew past forty four entries the article page printed a claim count nothing authorised and the build went red, which is the gate working and the interface not. This run wrote computed.json, which is in its own lane and fixes today. What it may not do is make the absence FAIL: scripts/site/** is human owned. A one line assertion in site_build that a shipped run carries computed.json turns six decks of luck into a rule.",
-      "a declared effect that never reached the pixels": "Round 5's craft judge found frame 2's declared central technique, a hard diagonal occlusion shadow whose stated job is to stop stacked lines reading as a table, rendering as a soft patch in a corner that crossed not one line. Four rounds, three pixel critics and a flow critic missed it, because every existing check asks whether an effect DREW something rather than whether it landed where the plan said. The judge's own fix is right: crop the region each dossier names as its technique's target and measure THAT. dossier_check and plan_render_check are both in this lane and could take it. It did not land today because the deck was being recut around a wrong headline and a new gate written against a moving frame is a gate written against nothing."
+    "found_while_logging_this": {
+      "gate_status self-test could not fail in its own last half": "Four score-row assertions ran after `if failures: return 1`. They printed FAIL and returned 0. Fixed in the same commit as upgrade 3 because the new aggregates cases would have landed in the same dead zone and my own verification would have been decoration. Proved by forcing the red under both orderings. This is GATE_LESSONS 51 in its quietest form, a checker that cannot go red printing the same clean line as one that went green.",
+      "aggregate_check's found list counts occurrences and its decls dict counts distinct phrases": "The pass condition already tolerates that, since it checks every found phrase is declared and every declaration is found via a SET. Only the receipt was reading len(found) as a declaration count."
     },
-    "follow_through": {
-      "aggregate_check EXEMPT short circuit": "LANDED. The 2026-08-21 set wrote this fix, measured it, and held it back with its reason: blanking the exempt spans surfaced six aggregates nothing declared and five of them were on 2026-08-21, which was then the NEWEST deck, so shipped_check scoped them fatal and CI would have gone red on an artifact that lane did not own. Its note said the moment 2026-08-21 stopped being newest they become notes and the fix costs nothing, and told the next upgrade phase to land it first and re-run the measurement rather than trust the list. Done. shipped_check comes back clean across every published deck with exemption by overlap in force, and the only outstanding problem in the whole history is this run's own completion gate. A held upgrade with a written trigger condition is the only kind worth holding."
-    }
+    "not_landed_and_why": {
+      "plan_render_check sampling a dossier-declared modeled ground": "The panel's standing finding is that four grounds the dossier declared as worked render flat, and plan_render_check reported 14 of 64 acceptance items checkable with a declared modeled ground not among the shapes it samples. NOT LANDED, deliberately. A ground-texture check that passes on any noise at all is worse than none, and this repo has that exact entry already. Landing it honestly means deciding what a worked ground IS as a measurement, against the four frames that failed and the frames that passed, and that measurement did not fit inside this phase beside three verified changes. The craft_floor gate already measures canvas variance per frame and is the place to look first, because a per-REGION variance floor derived from the frame's own median is the same statistic one scope down and would not need a new number typed.",
+      "a verbatim check on strings under a dated attribution with no quotation marks": "The gate landed today sees quoted phrases and quote-named keys. An unquoted line set under a dated document attribution is invisible to it, and no regex separates that from a label. The honest fix is a dossier key declaring which regions of a frame are the source speaking, which is a change to knowledge/carousel/SLIDE_DOSSIER_SPEC.md and to the storyboard format, and it is worth a phase of its own rather than a corner of this one."
+    },
+    "proposals_out_of_lane": [
+      {
+        "what": "GATE_LESSONS.md needs the entry for this run's fabricated quotation. Suggested title: 'Three gates agreed with each other because all three were reading the same authored string.' The body is in scripts/carousel/copy_sync_check.py's module header, written there so it survives whether or not the entry lands.",
+        "owner": "human",
+        "why": "knowledge/shared/** is human owned and the upgrade lane may not write it. The instruction to Phase 17 is that a gate change belongs in that file too, and this is the half of the instruction the ownership map does not permit."
+      },
+      {
+        "what": "The working tree of this branch carries an INCOMPLETE docs/ rebuild, uncommitted, 166 files modified. docs/item holds 73 pages against 81 items in ledger/docket.json, so the eight items admitted today have no page and 46 links from place and topic pages point at nothing. 116 built pages carry a literal `%%REVISED%%` placeholder in the colophon where a date belongs. `python3 scripts/shared/port_audit.py` is RED on it.",
+        "owner": "daily, for the rebuild. human, for whatever left %%REVISED%% unsubstituted in scripts/site.",
+        "why": "docs/** is generated and rebuild_by [daily, gridwatch, human, dispatch], which does not include upgrade, so this lane may neither rebuild it nor commit it. It matters even though this run does not merge: the showrunner commits Phase 17's work on this branch, and an unfinished build committed here is an unfinished build the next reader has to untangle. A finished rebuild would either fix it or say which builder step did not run."
+      },
+      {
+        "what": "`python3 scripts/site/schema_contract.py --self-test` exits 1: `field 'history[].checked' is new`. The record grew a field today and config/schema_contract.json has not recorded it. The non-self-test half exits 0 and prints 'the shape grew and nothing broke. Run --update to record it.'",
+        "owner": "human",
+        "why": "config/schema_contract.json is human owned by name in ownership.yaml, on the argument that a contract the process that changes the data can also rewrite is not a contract. scripts/site/** is human too. The routine's Phase 0 tells a run to fix a gate that is red at wake, and this one is red and belongs to somebody who is not here, which is the same shape that opened guards_local.py to this lane on 2026-08-20."
+      },
+      {
+        "what": "`caption_check` now enforces brand.yaml's `caption_chars: [300, 900]`. Six of the seven captions this repo has shipped are over 900, at 894, 942, 931, 1076, 1138 and 1289. Either the band is right and the captions have been long for six runs, or the band was written for a shorter form than this project actually publishes. A maintainer decides, in brand.yaml, and the gate follows.",
+        "owner": "human",
+        "why": "config/brand.yaml is human owned so that a caption-level tweak cannot silently restyle the video and the website. This lane enforced what the file says and may not argue with it, which is the correct division and is worth naming so the number gets a decision rather than a workaround."
+      },
+      {
+        "what": "brand.yaml's `linkedin_post.deck_summary_line: true` has no mechanical test and now says so in caption_check's coverage line on every run. If it is meant to be enforced, it needs a machine readable form, the way `key_dates[].canceled` replaced a fact carried only in prose.",
+        "owner": "human",
+        "why": "The rule is in a human owned config. Naming a rule unenforceable is the honest state; leaving it unmentioned is what let three keys sit unimplemented for six runs."
+      },
+      {
+        "what": "`noun_trace` and the record's geography block disagree about whether a gazetteer resolution may be published, which this run's record half wrote up under NO COUNTY ON THE DECK. It is one decision, not two, and it is the owner's.",
+        "owner": "human",
+        "why": "Restated here so the finding is in the machine's own trail as well as in the run record, since the deck did not ship and the run record is the only place it currently lives."
+      }
+    ]
+  },
+ "2026-08-25": {
+  "run": "carousel no. 7, the fifteen actions twelve Texas local governments took on a data center between March 10th and August 13th",
+  "actor": "upgrade",
+  "note": "26 machine changes across ten scoring rounds, far over the three the 2026-08-21 set called a ceiling, and the ceiling is not being quietly raised. Every one is a gate or an engine that was WRONG about the product rather than one that could be better, and all but two were found by a scoring panel or by another gate rather than by this phase going looking for work. A gate reporting clean over a defect is not a backlog item.\n\nThe round 9 panel is worth recording as a measurement of the panel itself. Three judges read independently and returned 6.0, 6.2 and 6.0 on `artwork_craft`, the heaviest criterion in the rubric, and all three named the same cause in their own words: the type layer did not know where the paper ended. One of them called it out on four frames. Machine QA had been reporting the worst instance for two rounds as \"art touching glyphs\", and the run read that as an atmosphere note both times. A single grader cannot produce that signal. Agreement across three is the only thing that separates a finding from a taste.",
+  "upgrades": [
+   {
+    "what": "render.py builds a text node from its child nodes, inserting a space for a <br> and for any child the layout does not run inline",
+    "why": "textContent throws away the boundaries the layout puts in. '<div>154 DAYS<br>MARCH 10TH TO AUGUST 11TH</div>' was stored as '154 DAYSMARCH 10TH TO AUGUST 11TH' and a block level span fused the same way, so slide 8's attribution became 'LAREDO MATTER HISTORY, C143 AGENDAS'. Every string is still there. What is gone is the boundary, and aggregate_check finds a computed number with \\b(NUM)\\s+, so DAYSMARCH and C143 are single tokens no pattern can match. Two undeclared numerals sat on two frames while that gate printed clean over 14 re-derived figures. ANY NUMBER THAT ENDS A LINE was structurally invisible to the gate whose whole job is catching an invented number, on every deck this engine has ever rendered.",
+    "files": [
+     "\\.claude/skills/carousel-engine/render.py"
+    ],
+    "verification": "re-rendered the deck and read the report back: the two nodes now store '154 DAYS MARCH 10TH TO AUGUST 11TH' and 'LAREDO MATTER HISTORY, C14 3 AGENDAS', and aggregate_check went from 0 findings to 4 on artwork it had already passed. Three were real and one was the decimal defect below.",
+    "found_by": "the round 4 reader judge, which noticed aggregates.json omitted two figures that are in figures.json and are on frames"
+   },
+   {
+    "what": "aggregate_check's decorative exemption narrowed to a date span and the coordinate nouns, instead of skipping the whole node",
+    "why": "The flag is right about what it was written for. A coordinates footer set as '30 degrees 33 minutes N' reads as four aggregates on every slide and none is real, and a gate that cries wolf nine times a deck teaches the run to scroll past the tenth. It reached past its own subject: slide 3's '154 DAYS' and slide 8's '3 AGENDAS' are 19 to 22px attribution type, fully legible, undeclared, and exempt. A reader does not know a node was marked decorative.",
+    "files": [
+     "scripts/carousel/aggregate_check.py"
+    ],
+    "verification": "aggregate_check --self-test, 54 assertions, all pass. On the live deck the two figures now surface and are declared."
+   },
+   {
+    "what": "aggregate_check's NUM consumes a decimal fraction, and to_int parses one",
+    "why": "'8.0 gallons per square foot' matched as '0 gallons', so the gate asked the run to declare a figure of zero that appears nowhere, and to_int returned None for '8.0' for the same reason it once returned None for '1,400': str.isdigit() is False. NO FIGURE WRITTEN AS A DECIMAL COULD BE DECLARED THROUGH quoted_from AT ALL, and a water cap is written that way by every ordinance that has one. Exactly the thousands separator defect one punctuation mark over. A token the pattern cuts in half is a number the gate reports wrongly, and a wrong number in a gate's own output is worse than silence, because somebody goes looking for it.",
+    "files": [
+     "scripts/carousel/aggregate_check.py"
+    ],
+    "verification": "to_int('8.0') is 8, to_int('3.25') is 3.25, to_int('1,400') is still 1400. The deck's '8.0 gallons' is declared through quoted_from against c32 and re-derives."
+   },
+   {
+    "what": "sources_block's provenance line takes the whole set of fetch dates and builds the sentence from how many there are",
+    "why": "That line already counts the evidence grade rather than asserting it, and then handed the counted phrase to a sentence beginning 'all fetched' built from the LATEST retrieved date. True only while a run fetches everything in one day. This run re-opened after midnight to fetch an ordinance a scorer proved the deck needed, and the block would have told a reader all thirteen documents were fetched on the 26th when twelve were fetched on the 25th. Nothing would have caught it: every id resolved, every claim carried a date, and the gate reads ids rather than adverbs.",
+    "files": [
+     "scripts/carousel/sources_block.py"
+    ],
+    "verification": "sources_block --self-test, 32 assertions including six new ones covering one date, two in a month, two across months, two across years, three or more, and a bare string for older callers. The first implementation sliced the formatted date on its commas and shipped 'August 25th and 26th,, 2026'; it is built from the parsed parts now and a case asserts no doubled comma."
+   },
+   {
+    "what": "ledger_check.py, a new gate: the variety ledgers are derived, so they are re-derived and compared",
+    "why": "Third time. The recut from eight to seven regenerated every reader facing surface and left topics.json narrating 'the eight Texas governmental bodies that restricted a data center' against a run that computed 7, 5, 2 and 0. The same round found all three caption exclusion lists disagreeing with the entries in the file that HOLDS them, wrong in both directions. That is not cosmetic: those lists are what the caption room is handed BEFORE it writes, and it was told the quiet decision, zoom out and ask the one question were off the table. It wrote all three anyway and coined freehand names for them, which cleared the lists, because a list can only exclude a name it shares. The corruption did not merely fail to prevent a repeat. It manufactured three move names on none of the doctrine's menus, which is how the NEXT run's list gets corrupt too.",
+    "files": [
+     "scripts/carousel/ledger_check.py"
+    ],
+    "verification": "ledger_check --self-test, 18 assertions replaying both directions of the list defect, a freehand name, a duplicate date, the stale 'eight', and two false positives it must NOT fire on: 'any one of them' as English rather than a count, and a closing move stored as the head of the doctrine's own sentence. Exits 0 on the repaired ledgers.",
+    "reads_the_doctrine": "It parses CAPTION_CRAFT.md for the menus rather than keeping its own copy, because a gate with its own copy of a list is the defect it is here to catch."
+   },
+   {
+    "what": "claims_check accepts a short quote that is long enough to be a quote, MIN_QUOTE_CHARS OR'd with the four word floor",
+    "why": "logged from earlier in this run",
+    "files": [
+     "scripts/carousel/claims_check.py"
+    ]
+   },
+   {
+    "what": "texan_check's DATE pattern gains re.I and ACTION gains plurals",
+    "why": "logged from earlier in this run. GATE_LESSONS 35 one file over: a rule written against a rendered form by somebody who did not read the renderer. An all caps closing date was invisible.",
+    "files": [
+     "scripts/carousel/texan_check.py"
+    ]
+   },
+   {
+    "what": "aggregate_check sees 'N of the M' as a ratio, with overlap scoped suppression at ratio and span over duration over count",
+    "why": "logged from earlier in this run. English writes a ratio over a known set with the article far more often than without it, and the pattern could not see it, so a deck printing 'three of the nine' asserted a ratio no computation had to back.",
+    "files": [
+     "scripts/carousel/aggregate_check.py"
+    ]
+   },
+   {
+    "what": "caption_check reads brand.yaml's linkedin_post rules instead of carrying its own copy, and gains post_shape_problems",
+    "why": "logged from earlier in this run. Three caption rules lived in config and no gate read them.",
+    "files": [
+     "scripts/carousel/caption_check.py"
+    ]
+   },
+   {
+    "what": "ledger_check's COUNTING_FIGURES knows all twelve of the counts its prose is about",
+    "why": "The recut added acting_bodies, repeat_bodies, busiest_body_count, busiest_body_binding and busiest_month_count, and the topic prose reads 'the fourteen actions eleven Texas local governments took'. The tuple held neither, so the gate fired on a sentence composed from the run's own computation. Scoped rather than widened: it is still a NAMED list of the counts that prose is about rather than every figure the run produced, which is the distinction that lets it catch 'on the other four the record says nothing' while four is a real figure elsewhere in the same file.",
+    "files": [
+     "scripts/carousel/ledger_check.py"
+    ],
+    "verification": "ledger_check --self-test, 18 assertions, and the gate exits 0 on the recomposed ledgers."
+   },
+   {
+    "what": "aggregate_check reads caption.txt, which is the surface a reader meets first",
+    "why": "The gate read render_report.json and nothing else, so it judged nine frames and left the caption unread. A round 7 judge found a date delta in it by hand: 'the water two weeks after that', over c43's June 2nd sewer ordinance and c32's June 16th water ordinance. No claim states an interval and nothing computed one. The figure was TRUE, which is why it is worth catching. A model doing correct arithmetic in published copy is still the model acting as the calculator.",
+    "files": [
+     "scripts/carousel/aggregate_check.py"
+    ],
+    "verification": "aggregate_check --self-test, 61 assertions, seven of them new: the failing sentence is seen, the compliant form of the same sentence passes, a hashtag line is not read as copy, and check() is unchanged when given no caption. Run against the live deck it reproduced the judge's finding exactly."
+   },
+   {
+    "what": "shipped_check gains `shipped fresh`, so a run's artifacts must describe the deck beside them",
+    "why": "The recut rebuilt the renders, the copy and the caption and did not copy slides/ or rebuild assemble_report.json, so the shipped directory carried the REFUTED seven body HTML and recorded its PDF under the refuted title while the PNGs beside them showed a different deck. Every gate passed, because each reads ONE artifact and asks whether it is internally right. Not one asked whether the artifacts agree with each other.",
+    "files": [
+     "scripts/carousel/shipped_check.py"
+    ],
+    "verification": "Content, not timestamps, because mtimes do not survive a clone and a timestamp version would pass CI forever while only firing on the machine that already knew. Three comparisons that hold in a fresh checkout, and the gate found a real title disagreement on 2026-08-19 the moment it ran, which is why it is scoped CURRENT."
+   },
+   {
+    "what": "ledger_check wired into the shipped-deck registry",
+    "why": "port_audit's wiring check had it red as referenced by nothing, which is exactly what that check exists for. .github/ and prompts/ are the human actor's, so a routine that writes a gate cannot connect it, and one workflow step calling shipped_check means the next gate is one function away in a file this lane owns.",
+    "files": [
+     "scripts/carousel/shipped_check.py"
+    ],
+    "verification": "port_audit exits 0."
+   },
+   {
+    "what": "aggregate_check gains scan_title, so the document title is scanned like any other published surface",
+    "why": "Round 8's recut moved the title off the cover and it stopped being a slide string. copy.json still carried it, the PDF still printed it, the email still used it as its subject, and nothing scanned it any more, because this gate reads the render report and the report holds frames. The title was \"Fifteen ways to take up a data center\", a count of the acting bodies, sitting on a published surface with no declaration behind it and no check able to notice. That is the caption defect one surface over, one round later.",
+    "files": [
+     "scripts/carousel/aggregate_check\\.py"
+    ],
+    "verification": "six new self-test assertions covering a counted title, an undeclared one, an empty one and a declared one that re-derives; the live gate went from 22 figures to 24 and the run's declaration generator had to declare the title before it would write",
+    "found_by": "this phase, following the caption fix to its own conclusion after the recut broke it"
+   },
+   {
+    "what": "aggregate_check.surfaces() owns the list of published surfaces, and its three callers ask for it",
+    "why": "This gate has three callers and each opened the surface files itself, so every time the gate learned a surface, three call sites had to learn it too, and they did not. The caption was added and shipped_check.g_aggregates kept reading the render alone, turning a caption-only figure into a phantom leftover declaration. The comment recording that fix is still in that adapter, and one day later the document title did the identical thing to the identical line. Twice is a habit. A new surface is now one edit in one place.",
+    "files": [
+     "scripts/carousel/aggregate_check\\.py",
+     "scripts/carousel/shipped_check\\.py"
+    ],
+    "verification": "seven self-test assertions covering both run-directory layouts, a missing caption, a missing copy.json and an unreadable one; shipped_check went from one problem on 2026-08-25 to zero without the gate being loosened",
+    "found_by": "shipped_check itself, reporting the title declaration as a leftover the moment the run shipped"
+   },
+   {
+    "what": "plan_render_check requires a quoted needle's marks to MATCH and refuses a mark glued to a word character",
+    "why": "The delimiters were written as [\"']...[\"'], which accepts a double quote opened and a single quote closed, and lets a POSSESSIVE open a quote. Slide 7's acceptance line reading \"all four title cells carry their applicant's name, because the county's own matter titles hold four\" was read as requiring the frame to print the string `s name, because the county`, so the gate failed a correct frame over a plan sentence that quotes nothing at all. A gate that fails correct work teaches a run to ignore it, which is the most expensive failure mode a checker has.",
+    "files": [
+     "scripts/carousel/plan_render_check\\.py"
+    ],
+    "verification": "six self-test assertions: a possessive opens nothing, a real single-quoted needle still reads, a double-quoted needle still reads, mismatched marks are not a quote, and both halves hold for forbidden needles too",
+    "found_by": "the gate, failing frame 7 after this round named all four Brazoria applicants"
+   },
+   {
+    "what": "copy_sync_check's claim stamp takes a CLAIM ID rather than any following word",
+    "why": "The pattern matched CLAIMS? followed by [A-Za-z0-9_.-]+ case insensitively, so the ordinary English word \"claim\" and whatever came next was cut out of the middle of a sentence. Slide 2's dek reads \"Each one with the claim whose own words prove its shape\" and reached the gate as \"Each one with the  own words prove its shape\", which matches no authored string because nobody wrote it. The gate then failed a correct frame and named a sentence that does not exist, which sends the next reader looking for a defect in the deck instead of in the checker.",
+    "files": [
+     "scripts/carousel/copy_sync_check\\.py"
+    ],
+    "verification": "five self-test assertions: a single-id stamp is still stripped, a multi-id stamp is stripped, the English word survives untouched, a dek using it comes back clean, and unauthored prose beside a stamp is still caught",
+    "found_by": "the gate, on a dek this round did not change"
+   },
+   {
+    "what": "dossier_check compares composition.focal against art.value_structure and fails a frame whose plan contradicts itself",
+    "why": "Both fields name where the frame's light sits, four lines apart, and nothing compared them. Slide 2's focal said \"the lit half of the sheet to the RIGHT of the mullion shadow\" while its own value_structure said \"Lightest is the lit wedge at the sheet's upper LEFT\". The code puts the light upper left. The focal line survived three review rounds and two reported repairs, because a pixel critic grades the render against the focal line and a craft critic reads the value_structure, and neither one reads both. A plan that contradicts itself is worse than a thin plan, because each half licenses a different frame.",
+    "files": [
+     "scripts/carousel/dossier_check\\.py"
+    ],
+    "verification": "nine self-test assertions including the real inverted pair, the corrected pair, a value_structure whose DARK clause names the opposite side, a focal naming both sides as a sweep, a vertical inversion on its own axis, and silence on either side",
+    "found_by": "the round 8 craft judge, which named the contradiction the gate could not"
+   },
+   {
+    "what": "shipped_check gains `measured figures`: every L* in a run's prose must exist in its own measurements.json",
+    "why": "The highest recurrence defect in this repo, now four times. Round 4 found frame 7's falloff committed twice with two values. Round 7 found slide 6 printing 70.8 and 18.4 where measurements.json said 70.6 and 18.2. Round 8 recut three frames, moved six medians, and left the storyboard, the run record and the artwork ledger each carrying the previous deck's numbers. The writer that composes them from the file existed the whole time and had gone silently dead. A writer is not a check. A writer can stop firing. This asks, of the shipped bytes, and a figure absent from measurements.json is absent whatever wrote it.",
+    "files": [
+     "scripts/carousel/shipped_check\\.py"
+    ],
+    "verification": "eight self-test assertions over a temp run, plus the live run: it immediately found three stale luminances in RUN_RECORD.md that every other gate passed, including a paragraph claiming a 12.2 L* falloff over a deck measuring 16.5",
+    "found_by": "this phase, after fixing the same class by hand for the fourth time"
+   },
+   {
+    "what": "write_measured.py matches the SHAPE of every sentence it rewrites and fails on a pattern that matched nothing",
+    "why": "It matched the OLD NUMBERS as literal strings, so the moment a value moved twice the replacement silently stopped firing and every file kept the stale figure under a script reporting success. That is exactly how round 8 shipped four files disagreeing about six measurements. Every pattern now has [\\d.]+ where a number goes, so it fires on any value, and a rewrite that matches nothing is a hard failure rather than a no-op.",
+    "files": [
+     "out/<date>/tmp/write_measured\\.py",
+     "runs/carousel/<date>/write_measured\\.py"
+    ],
+    "verification": "it refused on first run and named two dead patterns, both real; after repair it applied nine rewrites and the new `measured figures` gate came back clean over the same files",
+    "found_by": "this phase, when the measured numbers drifted for a fourth time under a script that said it had written them"
+   },
+   {
+    "what": "aggregate_check gains scan_comment, so the first comment is scanned like any other published surface",
+    "why": "first_comment.txt opens \"Sources, ten official records and ten news reports\", two computed counts on the surface LinkedIn shows directly under the post, matching this gate's own count shape and unreachable by it. Both were correct, which is the point. A correct number nothing checks is one edit away from a wrong number nothing checks. Third surface this gate learned late in two days.",
+    "files": [
+     "scripts/carousel/aggregate_check\\.py"
+    ],
+    "verification": "the live gate went from 25 to 27 scanned figures and refused to write the run's declarations until both counts were declared and re-derived off the block's own URLs",
+    "found_by": "the round 9 integrity judge, reading the file rather than running the gate"
+   },
+   {
+    "what": "aggregate_check's EXEMPT suppresses its own span rather than the whole string",
+    "why": "`detect()` opened with `if EXEMPT.search(text): return []`, so ONE bare year anywhere in a string exempted every figure in it, and most citation lines on this deck carry a year, a bill number or a claim id. The first comment's two counts were thrown away before they were ever tested. This veto was live on every frame of every deck this engine has rendered.",
+    "files": [
+     "scripts/carousel/aggregate_check\\.py"
+    ],
+    "verification": "five new assertions: a bare year, a bill number and a citation each pardon nothing beside them, and each is still not read as a figure itself. One existing assertion encoded the old behaviour and was rewritten, because \"three filings, claim c4\" was never clean.",
+    "found_by": "chasing why scan_comment saw nothing on a line the count pattern plainly matches"
+   },
+   {
+    "what": "panel.py reads the rubric's threshold and cannot report SHIP under the bar",
+    "why": "The `ship` field was `not fails` and this module never opened the rubric, so a 6.72 deck under a 7.0 bar came back `\"ship\": true` with no caveat anywhere in the file. The comment directly above the line stated the correct rule the whole time and the code implemented half of it, which is worse than either, because the file reads as though it had been thought about. The floor lived only in run_complete.py, a separate command a run has to remember to run.",
+    "files": [
+     "scripts/carousel/panel\\.py"
+    ],
+    "verification": "nine new assertions including the real round 9 numbers, a median exactly on the bar, and a hard fail well over it; the live panel now prints HOLD, under the 7.0 bar",
+    "found_by": "reading score.json after writing it, and not believing the field"
+   },
+   {
+    "what": "render.py refuses a CSS length with no unit as a build error",
+    "why": "`width:430` in slide 1's `.dek` rule. CSS drops an invalid declaration WHOLE and says nothing, so that line had no measure at all and ran the full 1080 body: off the bond sheet, across the case stile, over the lock cylinder, at 1.8 contrast, on the cover, at 432px. Machine QA reported it as art touching glyphs across 79 percent of the ring, which reads like an atmosphere note, and two review rounds took it for one. There is no case where a slide wants a bare number here.",
+    "files": [
+     "\\.claude/skills/carousel-engine/render\\.py"
+    ],
+    "verification": "eight cases including line-height, which is legitimately unitless and is exempt; every committed slide in the repo was scanned and only the offending one was found; the build was made to go red on demand",
+    "found_by": "all three round 9 judges, independently, as the deck's most visible defect"
+   },
+   {
+    "what": "sync_plan reads innermost divs, a two token class, and a data-role the frame declares",
+    "why": "Three faults in one extractor. `[a-z0-9_-]+` could not match `class=\"sl s1\"`, so frame 6's four route slips were skipped whole and neither their strings nor their four claim ids reached copy.json: the manifest described a board with two papers over a render carrying six. `(.*?)</div>` stopped at the first closing tag, so slide 4's wrapper swallowed its first child and its dek was invisible. And the dossier's `dek` role was matched by CSS CLASS NAME, which is a style hook, so a frame carrying its dek in `.veiled` could not be synced and plan_render_check then failed a correct frame against a stale plan.",
+    "files": [
+     "out/<date>/tmp/sync_plan\\.py",
+     "runs/carousel/<date>/sync_plan\\.py"
+    ],
+    "verification": "copy.json S6 went from two claims to six and gained the four slip strings; S4's dek reached the manifest; plan_render_check went green without the gate being loosened",
+    "found_by": "the round 9 integrity judge on copy.json, and plan_render_check on slide 4"
+   },
+   {
+    "what": "slide 4's greeked exclusion list is read from the DOM and tested in the same space as the rules",
+    "why": "Four hand-typed rectangles: a second copy of boxes the CSS already declares, measured in a DIFFERENT PROJECTION from the one the browser lays type in. The DOM lays through `perspective(1500px) rotateY(-19deg)` and the canvas draws through its own P(), so a plane-space rectangle never matched a screen-space one and the literals were a hand-tuned correspondence between them. Moving one string 30px left and adding a line put the rule field through the citation.",
+    "files": [
+     "out/<date>/slides/slide-04\\.html",
+     "runs/carousel/<date>/slides/slide-04\\.html"
+    ],
+    "verification": "getBoundingClientRect returns the post-transform box in the canvas's own CSS pixels and every rule is projected through P() before the test; the frame went from one QA fail to zero",
+    "found_by": "the round 9 craft judge, whose one-sentence fix was exactly this mechanism"
+   }
+  ],
+  "proposals_this_run_may_not_make": {
+   "register ledger_check in CI": "guards.yml and prompts/daily_routine.md are both owned by the human actor, so this run wrote the gate, ran it, and cannot wire it in. Until a human adds it, ledger_check runs only when somebody runs it. That is exactly the shape GATE_LESSONS records as 'whether a gate was connected to anything', and it is written down here rather than assumed.",
+   "camera as an enforced dossier field": "the round 4 craft judge's one sentence fix, three panels running. Seven of nine frames are square on to a bordered sheet, the storyboard promised nine distinct cameras, and the run's own artwork ledger caught it and sent it to avoid_next instead of redrawing a frame. Making camera a per frame dossier field that dossier_check enforces as distinct BEFORE any code is written would move it from a thing a judge notices to a thing a plan cannot pass without. dossier_check is in the upgrade lane and could take it; the reason it did not land today is the three upgrade ceiling was already at nine on defects.",
+   "aggregate_check EXEMPT short circuit": "still not landed, carried from 2026-08-21. See knowledge/carousel/UPGRADE_BACKLOG.md.",
+   "computed.json is an interface nothing checks": "THE ONE WORTH DOING FIRST. site_build's `_run_numerals` reads runs/<date>/computed.json to learn which numerals a deck is entitled to print, and this run has only ever written figures.json. So the gate got None, authorised nothing the run computed, and fell back to whatever numerals happened to appear inside a claim's quote or url. SIX DECKS PASSED ON THAT COINCIDENCE. The moment the claims file grew past forty four entries the article page printed a claim count nothing authorised and the build went red, which is the gate working and the interface not. This run wrote computed.json, which is in its own lane and fixes today. What it may not do is make the absence FAIL: scripts/site/** is human owned. A one line assertion in site_build that a shipped run carries computed.json turns six decks of luck into a rule.",
+   "a declared effect that never reached the pixels": "Round 5's craft judge found frame 2's declared central technique, a hard diagonal occlusion shadow whose stated job is to stop stacked lines reading as a table, rendering as a soft patch in a corner that crossed not one line. Four rounds, three pixel critics and a flow critic missed it, because every existing check asks whether an effect DREW something rather than whether it landed where the plan said. The judge's own fix is right: crop the region each dossier names as its technique's target and measure THAT. dossier_check and plan_render_check are both in this lane and could take it. It did not land today because the deck was being recut around a wrong headline and a new gate written against a moving frame is a gate written against nothing."
+  },
+  "follow_through": {
+   "aggregate_check EXEMPT short circuit": "LANDED. The 2026-08-21 set wrote this fix, measured it, and held it back with its reason: blanking the exempt spans surfaced six aggregates nothing declared and five of them were on 2026-08-21, which was then the NEWEST deck, so shipped_check scoped them fatal and CI would have gone red on an artifact that lane did not own. Its note said the moment 2026-08-21 stopped being newest they become notes and the fix costs nothing, and told the next upgrade phase to land it first and re-run the measurement rather than trust the list. Done. shipped_check comes back clean across every published deck with exemption by overlap in force, and the only outstanding problem in the whole history is this run's own completion gate. A held upgrade with a written trigger condition is the only kind worth holding."
   }
-,
+ },
  "2026-08-25 r13": {
   "run": "carousel no. 7, round 13. A SECOND KEY FOR ONE RUN DATE, deliberately. This file's _shape block says the only shape that grows by pure insertion is one top level key per entry with the comma LEADING on its own line, because appending into an existing array rewrites the previous element's closing brace and ownership_check reads that as a removed line. The 2026-08-25 key above closed when it was written. This run scored again, found more, and a second key is the append this file's own rule permits. Read every key whose first ten characters parse as a date.",
   "actor": "upgrade",
@@ -515,8 +593,7 @@
   "follow_through": {
    "the 26 change set of 2026-08-25": "HELD AND CORRECT. Nothing in that set was reverted this round and two of its gates fired on this round's own work: plan_render_check caught frame 4 printing a dek its dossier did not declare, and dossier_check caught three rewritten band blocks that named no top or middle third. A gate written last round catching this round's regression is the only evidence that a gate was worth writing."
   }
- }
-,
+ },
  "2026-08-25 r14": {
   "run": "carousel no. 7, round 14. Third key for one run date, by this file's own append rule.",
   "actor": "upgrade",
@@ -537,8 +614,7 @@
   "follow_through": {
    "label_guard, added earlier this run": "HELD. It ran on every render of every round since and refused two decks: frame 6's ZONING and SEWER on a synthetic replay, and the caption's aggregate rows twice when copy.json was regenerated. It has never fired on a correct label."
   }
- }
-,
+ },
  "2026-08-25 r15": {
   "run": "carousel no. 7, round 15. Fourth key for one run date, by this file's own append rule.",
   "actor": "upgrade",
@@ -560,8 +636,8 @@
    "the perturbation gate": "Round 14's craft judge asked for the right thing and this run did not build it: re-render every frame twice with one string lengthened and one shortened, and fail any frame whose supposedly measured geometry does not move. One test catches the whole family this round fixed four instances of by hand, a comment describing a computation over code that returns a constant. It is not built here because it needs a render harness change in .claude/skills/carousel-engine/render.py and a measured baseline of how long two extra renders per frame cost, and a gate written against a moving deck is a gate written against nothing.",
    "bespoke_check reads code tokens, not pixels": "Two judges independently named frames 1 and 2 as one object at contact sheet scale while bespoke_check reported 2 and 7 as the closest pair at 0.7257. It measures DOM token overlap. A pixel term, a 64px downsample compared structurally, would see what a reader sees first."
   }
- }
-, "2026-08-25 r16": {
+ },
+ "2026-08-25 r16": {
   "run": "carousel no. 7, round 16. Fifth key for one run date, by this file's own append rule.",
   "actor": "upgrade",
   "note": "The owner's instruction, verbatim: change the ship score to a 6.8 moving forward, and put a cap on editing rounds to 10, if after 10 it is not hitting a 6.8, just ship it. This run is why. It scored the same deck fifteen times across a night, never cleared the bar, and put no deck in front of a reader. Two things were true at once and the run reported only the first, which was its own failure: the panel is three judges told to default to dissatisfaction and combined by a per-criterion median, so on rounds 5 through 11 individual judges returned 7.24, 7.19, 7.14, 7.23 and 7.10 and the median never cleared 7.0 because there was always one judge under it and never the same one. AND the judges were finding real defects every round, a gesture whose guards deleted it while the ledger recorded it shipped, repairs that met a numeric floor and were invisible in the pixels, typed constants under comments claiming they were computed. Neither half excuses the other.",
@@ -591,5 +667,19 @@
    "the panel's calibration is still unmeasured": "Nobody here knows what the median of three dissatisfied judges does to a rubric whose 7 means competent and unmemorable. The cap makes that survivable and does not answer it. The measurement wanted is the distribution of individual judge scores against the median across a run, which this run has fifteen rounds of and no script reads.",
    "a round counter nothing writes": "run_complete reads rounds out of score.json and the panel does not write it. This run set it by hand, which is exactly the shape this project distrusts. panel.py should count its own invocations for a date and write the number itself."
   }
+ },
+ "2026-08-26 r2": {
+  "what": "scripts/carousel/panel_ready.py, a gate the run must pass BEFORE it spawns a scorer",
+  "why": "The owner's diagnosis, twice in two days: 'judges are becoming a token burning crutch masking your inefficiencies'. Carousel no. 7 was scored fifteen times. No. 8 was scored three times and every panel found things a measurement would have found for nothing: a MODELED disclosure published as a broken sentence behind an opaque plate, a first comment pointing at a frame that had been rebuilt out from under it, six text nodes still exempt from the occlusion and contrast checks, a site line at 1.5 against a 4.5 floor, and six dossiers describing frames the run no longer made.",
+  "checks": [
+   "nothing a reader needs is exempt from the gates",
+   "no published text has a plate through it",
+   "every slide number in published copy resolves to a frame that carries what it names",
+   "every line clears the rubric's own contrast floor, enforced rather than advised",
+   "every dossier describes the frame the run made",
+   "every ground a dossier calls worked is measurably worked"
+  ],
+  "measured": "Run against the 2026-08-26 deck on its first invocation it found six stale dossiers, which is the drift two separate judges had reported by hand.",
+  "not_in_scope": "It does not measure taste. Composition, story and voice are what the panel is for, and this gate exists so the panel spends itself on those."
  }
 }

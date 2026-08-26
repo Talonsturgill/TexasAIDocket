@@ -233,6 +233,33 @@
    "rejected": {
     "tx-2026-0072": "LIKELY REPEAT 0.70 against carousel No. 3 on 2026-08-19, same docket item, six days inside the thirty day window"
    }
+  },
+  {
+   "date": "2026-08-26",
+   "carousel_no": 8,
+   "docket_item": "tx-2026-0095",
+   "topic": "a university system board adding a billion dollar hospital phase to its capital program",
+   "angle": "the committee's own twenty pages never use the word AI while the university's release about the same building does",
+   "entities": [
+    "UT System Board of Regents",
+    "UT Austin",
+    "MD Anderson",
+    "UTMB Galveston",
+    "Qualified Health",
+    "Dell Medical Center"
+   ],
+   "keywords": [
+    "capital improvement program",
+    "Revenue Financing System bond proceeds",
+    "agenda book",
+    "clinical revenues",
+    "site preparation",
+    "Pickle Research Campus"
+   ],
+   "rejected": [
+    "that the regents never write AI anywhere in the August agenda book, which the run's own count of 24 matches on 16 pages of the combined book refutes"
+   ],
+   "angle_note": "TWO PANELS AND THREE JUDGES FLAGGED THIS ANGLE AS A REPEAT and none could fail it, because the dedupe gate compares topic, entities and keywords and never reads this field. 08-22 was 'whose text never uses the words data center' and 08-19 was 'the two different wordings one office gave the same instruction on one day'. Both are this deck's turn and the frame after it. The gate is measuring the wrong field, and that is an upgrade lane proposal rather than a reason to have stopped this deck."
   }
  ]
 }

@@ -1,0 +1,21 @@
+{
+ "per_frame_median_L": {
+  "slide-01": 80.0,
+  "slide-02": 87.1,
+  "slide-03": 87.8,
+  "slide-04": 89.0,
+  "slide-05": 91.4,
+  "slide-06": 70.6,
+  "slide-07": 86.7,
+  "slide-08": 9.4,
+  "slide-09": 76.9
+ },
+ "deck_median_L": 86.7,
+ "mean_L": 75.4,
+ "sd_L": 24.2,
+ "range_L": [
+  9.4,
+  91.4
+ ],
+ "_measured_by": "median of the luminance channel of each rendered PNG. Every L* figure in the storyboard, the run record and artwork.json must match a value here, because a value with one home and surfaces keeping their own copy is the highest recurrence defect in this repo."
+}
