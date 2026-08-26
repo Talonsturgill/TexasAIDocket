@@ -473,6 +473,7 @@ rather than failing, and this is it.
 | assembly       | PASS   | 9 slide(s), 3.3 MB, vector |
 | score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
 | labels         | PASS   | 52 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| quantifiers    | PASS   | 177 published string(s) read from one list, every universal names its set |
 | dossiers       | PASS   | 51,890 chars planned |
 | caption        | PASS   | 151 words |
 | craft floor    | WARN   | 9 frame(s), median 5116, floor 921, 2 quiet |
