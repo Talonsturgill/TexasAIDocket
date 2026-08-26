@@ -16,9 +16,12 @@ Rung (a) of the degradation ladder is the only acceptable outcome. Nine slides.
 - `main` at `7ebe2ec3`. Record is 73 items, live, built and deployed.
 - The record half for this cycle shipped as #186 (August 23rd run) and merged today. Worklist
   cleared, 4 items admitted, primary source share 78.05 percent.
-- No deck has ever shipped from this repo. `ledger/carousel/topics.json` and `artwork.json` are
-  therefore near empty, so dedupe has little to bite on and `instincts.py --top 5` will print
-  nothing. That is correct rather than a gap, per Phase 9.
+- ~~No deck has ever shipped from this repo.~~ WRONG, corrected 2026-08-25 by reading
+  `runs/carousel/`. SIX decks have shipped, August 16th through 22nd, each with nine webp frames
+  and a score. `artwork.json` carries six registers to diverge from and `topics.json` is real.
+  The run's own behaviour was right anyway: selection rejected `tx-2026-0072` at 0.70 against
+  carousel No. 3, which it could only do by reading a populated ledger. The sentence was wrong
+  and the machine was not, which is the more dangerous of the two ways round.
 - The August 23rd run left a claims file, but non-negotiable 1 says every claim carries a URL
   retrieved THIS RUN. Those claims are re-fetched here, not reused.
 
@@ -41,28 +44,31 @@ scratch `out/2026-08-25/` which is gitignored and inside the tree.
 | 12b | ALL SIX EXIT 0. plan_render caught zero dossiers declaring display strings, absence caught slide 1 citing nothing | DONE |
 | 13 | EXIT 0. 9 declarations. The gate caught WORD FORM numbers, eight and Four and Two, as computed counts | DONE |
 | 14 | EXIT 0, pdf_mode vector | DONE |
-| 15 | Panel of 3 scorers, panel.py, gate_status --sync | |
+| 15 | Panel of 3 scorers, panel.py | |
 | 16 | Ship: images, ledgers, site rebuild, 9 exit-code gates, LOOK at pages, PR, merge | |
 | 17 | Retro + upgrade | |
 | 18 | gmail_draft.py, email_check.py, create_draft | |
 
-## Rules this run must not break
+## Phase 12 as it actually went
 
-Numerals computed in Python, never typed. Every fact a claim id. Ordinal dates month first. No em
-or en dashes, no colons or semicolons in published copy, no emojis, straight quotes, never
-"cannot". No first person. Slides bespoke, dossiers before code. Bounded fan-out, showrunner only,
-subagents never spawn. Draft only, never send. `ship_images.py` exit code is a stop. Read gates by
-EXIT CODE.
+Three pixel critics over nine frames. Frames 4, 5, 7 and 9 rebuilt. Frame 4 was a full rewrite:
+its declared camera had never been drawn and its veil was under the type where it could only
+make the paper brighter, which inverts the frame's whole argument. Measured after: veiled block
+4.43 to 1, clear block 12.96 to 1. Frame 7's falloff went from 3.4 L* across the four repeats to
+12.2. Frame 5's band went from 7.3 degrees to 28 by moving the quotes to opposite corners.
 
-## The gate this run fixed, in lane
+`copy.json` rebuilt FROM the renders, in readable form, every string matched by skeleton against
+a node the browser actually laid out so nothing unrendered entered the record.
 
-`caption_check` reported first person on a caption quoting Brazoria County's minute line
-"No action taken due to I.3 failed", because a period is a word boundary and `\bI\b` matched
-the I in I.3. Both ways past it damaged the record, so the fix went to the gate.
+Two gates fixed in the `upgrade` lane, both wrong about a correct deck: `claims_check`'s word
+count refusing a JSON field pair, and `texan_check` reading a caption but never a slide.
+`claims.json` repaired: 15 source types, 3 rejection keys, one quote extended.
 
-It belongs to `upgrade`, not `daily`, so the actor stamp was switched for that one commit and
-switched back. That is what the two-actor split is for and it is the second time this run the
-ownership map has stopped something: the first was the worklog itself.
+Gate block synced into `RUN_RECORD.md` by `gate_status --sync`. Zero QA fails, verdict WARN.
 
-Five self-test cases, both directions, and a copy of the file carrying the old regex was run
-against the new suite and went red on exactly the two new cases. `30a0aa83`.
+## The one thing this run did not fix and said so
+
+`plan_render_check` reports 0 of 46 acceptance items checkable, the same ratio the routine's own
+prompt warns about by name. The dossiers' acceptance lists are descriptions. Fixing them now
+means writing tests to fit frames that already exist. It is a proposal for the next run's
+planning phase and it is in the run record.
