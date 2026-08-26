@@ -26,6 +26,17 @@
    "value": 156
   },
   {
+   "phrase": "180 DAY",
+   "kind": "duration",
+   "value": 180,
+   "from_claims": [
+    "c36"
+   ],
+   "quoted_from": "c36",
+   "quote": "a 180 day emergency water protection review period",
+   "computed_by": "not computed. Quoted from c36, the review period Hays County's court set"
+  },
+  {
    "phrase": "8.0 gallons",
    "kind": "count",
    "value": 8,
@@ -134,6 +145,20 @@
    "computed_by": "out/2026-08-25/compute.py, stated_nonbinding over restricted_count. acting bodies whose own source says the action does not bind"
   },
   {
+   "phrase": "Five the sources",
+   "kind": "ratio",
+   "value": 5,
+   "of": 15,
+   "from_claims": [
+    "c36",
+    "c45",
+    "c38",
+    "c37",
+    "c40"
+   ],
+   "computed_by": "out/2026-08-25/compute.py, force_unstated over restricted_count. acting items no source this run speaks to on force, which frame 3 names one by one"
+  },
+  {
    "phrase": "Four abatement applications",
    "kind": "count",
    "value": 4,
@@ -204,20 +229,6 @@
     "c15"
    ],
    "computed_by": "out/2026-08-25/compute.py, total_count. acting plus declined"
-  },
-  {
-   "phrase": "Six actions",
-   "kind": "count",
-   "value": 6,
-   "from_claims": [
-    "c43",
-    "c40",
-    "c35",
-    "c32",
-    "c5",
-    "c36"
-   ],
-   "computed_by": "out/2026-08-25/compute.py, busiest_month_count. acting dates falling in June"
   },
   {
    "phrase": "Twelve Texas local governments",

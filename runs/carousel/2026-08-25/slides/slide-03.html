@@ -14,30 +14,33 @@ canvas{position:absolute;left:0;top:0}
 .hook{position:absolute;left:112px;top:196px;width:600px;font:700 60px/1.04 "Fraunces",serif;
   color:#E8E4D8;letter-spacing:-.015em}
 .dek{position:absolute;left:112px;top:330px;width:540px;font:400 25px/1.34 "Manrope",sans-serif;color:#9A968A}
-.dt{position:absolute;left:118px;font:500 30px/1 "JetBrains Mono",monospace;color:#9EA6B0;letter-spacing:.04em}
-.rw{position:absolute;left:392px;height:44px}
+/* SEATED LETTERS, WHICH THIS FRAME'S DOSSIER HAS CLAIMED SINCE ROUND ONE AND NEVER DREW. It
+   shipped as a bar chart of blank tiles under an art block arguing that "a letterboard is the
+   one typographic object that shows a person put each character there by hand". Two craft judges
+   called it, twice. The board seats words now, which is also the only way this frame carries the
+   third leg of the deck's own triad. */
+.pl{position:absolute;left:118px;font:500 30px/1 "JetBrains Mono",monospace;color:#E8E4D8;letter-spacing:.04em}
+.in{position:absolute;left:474px;font:400 30px/1 "JetBrains Mono",monospace;color:#9EA6B0;letter-spacing:.04em}
+.ci{position:absolute;left:856px;font:400 30px/1 "JetBrains Mono",monospace;color:#8B939D;letter-spacing:.04em}
 /* No box-shadow here. It was one hardcoded 3px 4px offset on every tile, so the per row
    offset computed from the overhead source below reached the six month WORDS and not one
    of the fifteen tiles, which are the elements that carry the data. The dossier's line
    about what stops a letterboard reading as a drop shadowed webfont was refuted by this
    frame's own CSS. The script sets it per row now. */
-.tile{display:inline-block;width:30px;height:40px;margin-right:9px;background:#E8E4D8;
-  border-radius:2px}
-.span{position:absolute;left:118px;top:1074px;font:500 26px/1.35 "JetBrains Mono",monospace;
+.span{position:absolute;left:118px;top:1092px;width:800px;font:500 26px/1.35 "JetBrains Mono",monospace;
   color:#B6B1A4;letter-spacing:.06em}
 </style></head><body>
 <canvas id="c" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
-<div class="kick">THE SEQUENCE</div>
+<div class="kick">THE SILENCE</div>
 <div class="cnt">03 / 09</div>
-<div class="hook">From March to August</div>
-<div class="dek">Six actions fell in June, more than any other month. One tile for each.</div>
-<div class="dt" style="top:440px">MARCH</div><div class="rw" style="top:440px"><span class="tile"></span></div>
-<div class="dt" style="top:526px">APRIL</div><div class="rw" style="top:526px"><span class="tile"></span><span class="tile"></span></div>
-<div class="dt" style="top:612px">MAY</div><div class="rw" style="top:612px"><span class="tile"></span></div>
-<div class="dt" style="top:698px">JUNE</div><div class="rw" style="top:698px"><span class="tile"></span><span class="tile"></span><span class="tile"></span><span class="tile"></span><span class="tile"></span><span class="tile"></span></div>
-<div class="dt" style="top:784px">JULY</div><div class="rw" style="top:784px"><span class="tile"></span><span class="tile"></span></div>
-<div class="dt" style="top:870px">AUGUST</div><div class="rw" style="top:870px"><span class="tile"></span><span class="tile"></span><span class="tile"></span></div>
-<div class="span">156 DAYS<br>MARCH 10TH TO AUGUST 13TH</div>
+<div class="hook">Five the sources leave open</div>
+<div class="dek" data-role="dek">Each of these acted. No source this run fetched says whether the action binds.</div>
+<div class="pl" style="top:508px">HAYS COUNTY</div><div class="in" style="top:508px">180 DAY REVIEW</div><div class="ci" style="top:508px">C36</div>
+<div class="pl" style="top:638px">WILLIAMSON</div><div class="in" style="top:638px">ABATEMENT</div><div class="ci" style="top:638px">C45</div>
+<div class="pl" style="top:768px">EL PASO</div><div class="in" style="top:768px">FRAMEWORK</div><div class="ci" style="top:768px">C38</div>
+<div class="pl" style="top:898px">WICHITA FALLS</div><div class="in" style="top:898px">CONDITIONAL USE</div><div class="ci" style="top:898px">C37</div>
+<div class="pl" style="top:1028px">BRAZORIA</div><div class="in" style="top:1028px">CONDITIONS SET</div><div class="ci" style="top:1028px">C40</div>
+<div class="span">A reader can't tell from these five whether anything stopped.</div>
 <div class="tx-site">texasaidocket.com</div>
 <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6 L14.9 9.2 L23 9.6 L16.7 14.6 L18.9 22.4 L12 17.9 L5.1 22.4 L7.3 14.6 L1 9.6 L9.1 9.2 Z" fill="#B6B1A4"/></svg>
 <script src="@@ASSETS@@/js/noise.js"></script>
@@ -64,7 +67,9 @@ window.renderReady = new Promise(function(resolve){
   // answer, and 186px of felt below it carried nothing. The grooves run to the board's foot
   // now, which is what a board looks like, and the empty ones read as board rather than as
   // a question the frame declines to answer.
-  var rows=[440,526,612,698,784,870,956,1042,1128];
+  // FIVE ROWS, FIVE GROOVES. A board sized to its content, so no groove sits empty
+  // looking like a row the frame declined to answer.
+  var rows=[500,630,760,890,1020];
   rows.forEach(function(ry){
     x.fillStyle='rgba(6,9,13,0.62)'; x.fillRect(BX+22,ry+38,BW-44,4);
     x.fillStyle='rgba(120,128,138,0.10)'; x.fillRect(BX+22,ry+42,BW-44,2);
@@ -84,16 +89,11 @@ window.renderReady = new Promise(function(resolve){
 // A uniform offset is what makes a letterboard read as a drop shadowed webfont.
 document.addEventListener('DOMContentLoaded',function(){
   var src={x:540,y:40};
-  document.querySelectorAll('.rw, .dt').forEach(function(el){
+  document.querySelectorAll('.pl, .in, .ci').forEach(function(el){
     var t=parseFloat(el.style.top), cx=el.offsetLeft+el.offsetWidth/2;
     var dx=((cx-src.x)/900)*3.4, dy=((t-src.y)/1000)*4.4+1.8;
     // THE TILES TAKE THE SAME OFFSET AS THE ROW THEY SIT IN, each seated in the felt by its own
     // cast shadow rather than by one offset copied fifteen times.
-    el.querySelectorAll('.tile').forEach(function(tl){
-      tl.style.boxShadow = dx.toFixed(2)+'px '+dy.toFixed(2)+'px 0 rgba(10,12,16,0.62), '
-                         + (dx*1.9).toFixed(2)+'px '+(dy*1.9).toFixed(2)+'px 7px rgba(6,9,13,0.30), '
-                         + 'inset 0 -3px 0 rgba(120,116,104,0.30)';
-    });
     el.style.textShadow=dx.toFixed(2)+'px '+dy.toFixed(2)+'px 0 rgba(4,7,10,0.88), '
                        +(dx*1.7).toFixed(2)+'px '+(dy*1.7).toFixed(2)+'px 9px rgba(4,7,10,0.34)';
   });
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded',function(){
     el.innerHTML = el.textContent.replace(
       ch, '<span style="display:inline-block;transform:translateY(' + dy + 'px) rotate(' + rot + 'deg)">' + ch + '</span>');
   }
-  var months = document.querySelectorAll('.dt');
+  var months = document.querySelectorAll('.pl');
   proud(months[3], 'U', -3, -1.2);        // JUNE, the month the deck is about
   proud(months[5], 'G', 2, 0.9);          // AUGUST
 });

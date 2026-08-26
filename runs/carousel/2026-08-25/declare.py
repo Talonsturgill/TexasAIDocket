@@ -62,7 +62,6 @@ PHRASES = {
  "Fifteen actions":               count("restricted_count", "actions by a Texas local government"),
  "FIFTEEN ACTIONS":               count("restricted_count", "actions by a Texas local government"),
  "Twelve Texas local governments":count("acting_bodies", "distinct places among the acting items"),
- "Six actions":                   count("busiest_month_count", "acting dates falling in June", JUNE),
  "Seventeen times":               count("total_count", "acting plus declined", ACTING + ["c14", "c15"]),
  "156 DAYS":                      span("duration", "span_days"),
  "MARCH 10TH TO AUGUST 13TH":     span("span", "span_days"),
@@ -76,6 +75,15 @@ PHRASES = {
                                         "acting items whose cited claim records an approval, both of "
                                         "which sit inside the five the record does not speak to",
                                         ["c37", "c45"]),
+ "Five the sources":              ratio("force_unstated", "restricted_count",
+                                        "acting items no source this run speaks to on force, "
+                                        "which frame 3 names one by one",
+                                        ["c36", "c45", "c38", "c37", "c40"]),
+ "180 DAY":                       {"kind": "duration", "value": 180, "from_claims": ["c36"],
+                                   "quoted_from": "c36",
+                                   "quote": "a 180 day emergency water protection review period",
+                                   "computed_by": "not computed. Quoted from c36, the review "
+                                     "period Hays County's court set"},
  "Four abatement applications":   {"kind": "count", "value": V("brazoria_applications"),
                                    "from_claims": ["c9", "c10", "c11"],
                                    "computed_by": f"{CODE}, brazoria_applications. Distinct applicants "

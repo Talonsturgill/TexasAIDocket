@@ -443,11 +443,11 @@
           "anc": []
         },
         {
-          "text": "Each one with the claim whose own words prove its shape.",
+          "text": "March 10th to August 13th, 156 days.",
           "x": 186,
           "y": 436,
           "w": 360,
-          "h": 104,
+          "h": 70,
           "font_px": 26,
           "weight": "400",
           "family": "Manrope",
@@ -458,19 +458,13 @@
             [
               186,
               435,
-              281,
+              317,
               36
             ],
             [
               186,
               470,
-              321,
-              36
-            ],
-            [
-              186,
-              505,
-              80,
+              110,
               36
             ]
           ],
@@ -1731,7 +1725,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1216,
+      "render_ms": 1210,
       "ok": true,
       "canvases": [
         {
@@ -1760,10 +1754,10 @@
       "fonts_missing": [],
       "text_nodes": [
         {
-          "text": "THE SEQUENCE",
+          "text": "THE SILENCE",
           "x": 80,
           "y": 88,
-          "w": 213,
+          "w": 195,
           "h": 24,
           "font_px": 24,
           "weight": "500",
@@ -1775,7 +1769,7 @@
             [
               80,
               84,
-              213,
+              195,
               31
             ]
           ],
@@ -1804,7 +1798,7 @@
           "anc": []
         },
         {
-          "text": "From March to August",
+          "text": "Five the sources leave open",
           "x": 112,
           "y": 196,
           "w": 600,
@@ -1819,20 +1813,20 @@
             [
               112,
               190,
-              409,
+              587,
               74
             ],
             [
               112,
               252,
-              198,
+              136,
               74
             ]
           ],
           "anc": []
         },
         {
-          "text": "Six actions fell in June, more than any other month. One tile for each.",
+          "text": "Each of these acted. No source this run fetched says whether the action binds.",
           "x": 112,
           "y": 330,
           "w": 540,
@@ -1847,78 +1841,78 @@
             [
               112,
               329,
-              496,
+              450,
               35
             ],
             [
               112,
               363,
-              281,
+              448,
               35
             ]
           ],
           "anc": []
         },
         {
-          "text": "MARCH",
+          "text": "HAYS COUNTY",
           "x": 118,
-          "y": 440,
-          "w": 96,
+          "y": 508,
+          "w": 211,
           "h": 30,
           "font_px": 30,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(158, 166, 176)",
+          "color": "rgb(232, 228, 216)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               118,
-              435,
-              96,
+              503,
+              211,
               40
             ]
           ],
           "anc": []
         },
         {
-          "text": "APRIL",
-          "x": 118,
-          "y": 526,
-          "w": 96,
+          "text": "180 DAY REVIEW",
+          "x": 474,
+          "y": 508,
+          "w": 269,
           "h": 30,
           "font_px": 30,
-          "weight": "500",
+          "weight": "400",
           "family": "JetBrains Mono",
           "color": "rgb(158, 166, 176)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              118,
-              521,
-              96,
+              474,
+              503,
+              269,
               40
             ]
           ],
           "anc": []
         },
         {
-          "text": "MAY",
-          "x": 118,
-          "y": 612,
+          "text": "C36",
+          "x": 856,
+          "y": 508,
           "w": 58,
           "h": 30,
           "font_px": 30,
-          "weight": "500",
+          "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(158, 166, 176)",
+          "color": "rgb(139, 147, 157)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              118,
-              607,
+              856,
+              503,
               58,
               40
             ]
@@ -1926,101 +1920,65 @@
           "anc": []
         },
         {
-          "text": "JUNE",
+          "text": "WILLIAMSON",
           "x": 118,
-          "y": 698,
-          "w": 77,
+          "y": 638,
+          "w": 192,
           "h": 30,
           "font_px": 30,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(158, 166, 176)",
+          "color": "rgb(232, 228, 216)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               118,
-              693,
-              19,
-              40
-            ],
-            [
-              156,
-              693,
-              38,
+              633,
+              192,
               40
             ]
           ],
           "anc": []
         },
         {
-          "text": "U",
-          "x": 137,
-          "y": 695,
-          "w": 20,
+          "text": "ABATEMENT",
+          "x": 474,
+          "y": 638,
+          "w": 173,
           "h": 30,
           "font_px": 30,
-          "weight": "500",
+          "weight": "400",
           "family": "JetBrains Mono",
           "color": "rgb(158, 166, 176)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              137,
-              690,
-              20,
-              40
-            ]
-          ],
-          "anc": [
-            7
-          ]
-        },
-        {
-          "text": "JULY",
-          "x": 118,
-          "y": 784,
-          "w": 77,
-          "h": 30,
-          "font_px": 30,
-          "weight": "500",
-          "family": "JetBrains Mono",
-          "color": "rgb(158, 166, 176)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              118,
-              779,
-              77,
+              474,
+              633,
+              173,
               40
             ]
           ],
           "anc": []
         },
         {
-          "text": "AUGUST",
-          "x": 118,
-          "y": 870,
-          "w": 115,
+          "text": "C45",
+          "x": 856,
+          "y": 638,
+          "w": 58,
           "h": 30,
           "font_px": 30,
-          "weight": "500",
+          "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(158, 166, 176)",
+          "color": "rgb(139, 147, 157)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              118,
-              865,
-              38,
-              40
-            ],
-            [
-              176,
-              865,
+              856,
+              633,
               58,
               40
             ]
@@ -2028,34 +1986,208 @@
           "anc": []
         },
         {
-          "text": "G",
-          "x": 156,
-          "y": 872,
-          "w": 20,
+          "text": "EL PASO",
+          "x": 118,
+          "y": 768,
+          "w": 134,
           "h": 30,
           "font_px": 30,
           "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 228, 216)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              118,
+              763,
+              134,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "FRAMEWORK",
+          "x": 474,
+          "y": 768,
+          "w": 173,
+          "h": 30,
+          "font_px": 30,
+          "weight": "400",
           "family": "JetBrains Mono",
           "color": "rgb(158, 166, 176)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              156,
-              867,
-              20,
+              474,
+              763,
+              173,
               40
             ]
           ],
-          "anc": [
-            10
-          ]
+          "anc": []
         },
         {
-          "text": "156 DAYS MARCH 10TH TO AUGUST 13TH",
+          "text": "C38",
+          "x": 856,
+          "y": 768,
+          "w": 58,
+          "h": 30,
+          "font_px": 30,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(139, 147, 157)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              856,
+              763,
+              58,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "WICHITA FALLS",
           "x": 118,
-          "y": 1074,
-          "w": 429,
+          "y": 898,
+          "w": 250,
+          "h": 30,
+          "font_px": 30,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 228, 216)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              118,
+              893,
+              250,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "CONDITIONAL USE",
+          "x": 474,
+          "y": 898,
+          "w": 288,
+          "h": 30,
+          "font_px": 30,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(158, 166, 176)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              474,
+              893,
+              288,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "C37",
+          "x": 856,
+          "y": 898,
+          "w": 58,
+          "h": 30,
+          "font_px": 30,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(139, 147, 157)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              856,
+              893,
+              58,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "BRAZORIA",
+          "x": 118,
+          "y": 1028,
+          "w": 154,
+          "h": 30,
+          "font_px": 30,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 228, 216)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              118,
+              1023,
+              154,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "CONDITIONS SET",
+          "x": 474,
+          "y": 1028,
+          "w": 269,
+          "h": 30,
+          "font_px": 30,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(158, 166, 176)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              474,
+              1023,
+              269,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "C40",
+          "x": 856,
+          "y": 1028,
+          "w": 58,
+          "h": 30,
+          "font_px": 30,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(139, 147, 157)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              856,
+              1023,
+              58,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A reader can't tell from these five whether anything stopped.",
+          "x": 118,
+          "y": 1092,
+          "w": 800,
           "h": 70,
           "font_px": 26,
           "weight": "500",
@@ -2066,14 +2198,14 @@
           "lines": [
             [
               118,
-              1074,
-              137,
+              1092,
+              738,
               35
             ],
             [
               118,
-              1109,
-              429,
+              1127,
+              292,
               35
             ]
           ],
@@ -2105,177 +2237,11 @@
       "body_overflow": false,
       "canvas_text": [],
       "svg_plates": [],
-      "rules": [
-        {
-          "kind": "fill",
-          "x": 392,
-          "y": 440,
-          "w": 30,
-          "h": 40,
-          "by": "tile",
-          "color": "rgb(232, 228, 216)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "fill",
-          "x": 392,
-          "y": 526,
-          "w": 30,
-          "h": 40,
-          "by": "tile",
-          "color": "rgb(232, 228, 216)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "fill",
-          "x": 431,
-          "y": 526,
-          "w": 30,
-          "h": 40,
-          "by": "tile",
-          "color": "rgb(232, 228, 216)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "fill",
-          "x": 392,
-          "y": 612,
-          "w": 30,
-          "h": 40,
-          "by": "tile",
-          "color": "rgb(232, 228, 216)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "fill",
-          "x": 392,
-          "y": 698,
-          "w": 30,
-          "h": 40,
-          "by": "tile",
-          "color": "rgb(232, 228, 216)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "fill",
-          "x": 431,
-          "y": 698,
-          "w": 30,
-          "h": 40,
-          "by": "tile",
-          "color": "rgb(232, 228, 216)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "fill",
-          "x": 470,
-          "y": 698,
-          "w": 30,
-          "h": 40,
-          "by": "tile",
-          "color": "rgb(232, 228, 216)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "fill",
-          "x": 509,
-          "y": 698,
-          "w": 30,
-          "h": 40,
-          "by": "tile",
-          "color": "rgb(232, 228, 216)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "fill",
-          "x": 548,
-          "y": 698,
-          "w": 30,
-          "h": 40,
-          "by": "tile",
-          "color": "rgb(232, 228, 216)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "fill",
-          "x": 587,
-          "y": 698,
-          "w": 30,
-          "h": 40,
-          "by": "tile",
-          "color": "rgb(232, 228, 216)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "fill",
-          "x": 392,
-          "y": 784,
-          "w": 30,
-          "h": 40,
-          "by": "tile",
-          "color": "rgb(232, 228, 216)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "fill",
-          "x": 431,
-          "y": 784,
-          "w": 30,
-          "h": 40,
-          "by": "tile",
-          "color": "rgb(232, 228, 216)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "fill",
-          "x": 392,
-          "y": 870,
-          "w": 30,
-          "h": 40,
-          "by": "tile",
-          "color": "rgb(232, 228, 216)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "fill",
-          "x": 431,
-          "y": 870,
-          "w": 30,
-          "h": 40,
-          "by": "tile",
-          "color": "rgb(232, 228, 216)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "fill",
-          "x": 470,
-          "y": 870,
-          "w": 30,
-          "h": 40,
-          "by": "tile",
-          "color": "rgb(232, 228, 216)",
-          "decorative": false,
-          "skip": []
-        }
-      ],
+      "rules": [],
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1694,
+      "render_ms": 1573,
       "ok": true,
       "canvases": [
         {
@@ -2289,7 +2255,7 @@
           "backing_ratio": 2,
           "sample_ok": true,
           "mean": 39.4,
-          "variance": 530.6
+          "variance": 530.8
         }
       ],
       "breather": false,

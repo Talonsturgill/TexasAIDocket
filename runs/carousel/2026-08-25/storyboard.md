@@ -283,7 +283,7 @@ art:
   motion: "left to right across the shadow boundary, then down the list"
 type:
   hook: "All fifteen, in the order they happened"
-  dek: "Each one with the claim whose own words prove its shape."
+  dek: "March 10th to August 13th, 156 days."
 acceptance:
   - 'the sheet prints "All fifteen, in the order they happened" and its legend reads "NOT STATED", which is the third state the record actually holds'
   - "the shadow has a visibly wider penumbra at the bottom of the sheet than at the top, which is the air gap doing work"
@@ -312,41 +312,47 @@ numerals:
   - computed_by: "out/2026-08-25/compute.py, span_days, 156"
 composition:
   structure: >
-    No case at all on this frame. The lobby's black felt changeable letter board, square on and
-    level, because a roster wants the one object in a Texas public building whose entire job is
-    holding a list of who is in it. Leaving the case for one frame is also what stops seven
-    consecutive frames converging on one silhouette.
+    Square on and level to a lobby changeable letter board, with no case, which is what stops
+    the deck's other frames converging on one silhouette. A board is the right object because
+    the content is a list somebody had to set by hand, one character at a time, and because a
+    board has room left on it, which is what an open question looks like.
   bands: >
-    The top third carries the board's lit aluminium head rail and the kicker and counter. The
-    middle third carries six month rows, each with one seated white tile per action that month, each
-    tile a filled body with its own cast shadow into the felt nap. The bottom third carries the board's lower rail as a lit modeled
-    solid, the felt below the last row raked by the same overhead lobby light so the nap texture is
-    visible rather than flat, and the span line set in the felt with the site line on the rail.
+    The top third carries the board's lit head rail, the kicker and counter, the hook reversed
+    out of felt, and the dek. The middle third carries five seated rows, each a place, an
+    instrument and the claim that carries it, every one sitting in its own groove with its own
+    cast shadow computed from one overhead source. The bottom third carries the closing line on
+    the same felt, the board's lit foot rail as a modeled solid, and the site line beneath it.
   focal: >
-    The white letter mass of the longest row, roughly 700 by 44, the only near white area in an
-    otherwise near black frame.
+    The five seated place names down the left, roughly 380 by 560, the only near white mass on
+    the deck's darkest field.
 art:
-  technique: "seated changeable letters in a felt groove, per row computed shadow offset"
+  technique: "hand set changeable letters seated in felt grooves, per row cast shadows from one overhead source"
   why_this_technique: >
-    The claim is a roster of named bodies, and a letterboard is the one typographic object that
-    shows a person put each character there by hand. Set type would carry the same words and none
-    of the labour. The per row shadow offset is what stops it reading as a drop shadowed webfont.
+    A letterboard is the one typographic object that shows a person put each character there by
+    hand, which is the right register for a finding about what a record does NOT say. Two craft
+    judges called this frame a bar chart of blank tiles under exactly this rationale, twice,
+    because it seated nothing. It seats words now, so the argument and the drawing are the same
+    thing. The per row shadow offset is computed rather than copied, which is what stops a
+    letterboard reading as a drop shadowed webfont.
   palette: "case_dark felt, letter white styrene, anodize_lit rails"
   value_structure: >
-    Lightest is the top row's letter faces in letter. Darkest is the felt field itself in
-    case_dark, which is the ground and therefore not the focal. The deck's darkest frame after 7.
+    Lightest is the seated place names in bond white. Darkest is the felt itself, which is the
+    deck's darkest field at a measured L* 14.4, so the board carries the biggest junction in
+    the strip on the frame before it. The instrument column and the claim column step down in
+    two measured stages so the eye reads place, then act, then citation.
   motion: "down the rows, each shorter than the last"
 type:
-  hook: "From March to August"
-  dek: "Six actions fell in June, more than any other month. One tile for each."
+  hook: "Five the sources leave open"
+  dek: "Each of these acted. No source this run fetched says whether the action binds."
 acceptance:
-  - 'the board prints "156 DAYS" and reads "MARCH 10TH TO AUGUST 13TH", the span computed from the first and last acting dates'
-  - "each row's letter shadows are offset differently from the row above, computed from one overhead source"
-  - "at least two letters sit visibly proud of the groove, as a hand set board does"
-  - "the felt reads as nap with visible texture and not as a flat black fill"
-  - "the board's lower rail carries a lit edge and a contact shadow so the board has thickness"
+  - 'the board prints "Five the sources leave open" and seats "WICHITA FALLS" against "CONDITIONAL USE", so the frame names the five rather than counting them'
+  - "every one of the five rows carries a claim id, and the five ids are exactly the set frame 1's citation line names"
+  - "each row's letters sit in a groove with a cast shadow, and no two rows carry the same offset"
+  - "the board's grooves stop where its content stops, so no groove sits empty looking like a row the frame declined to answer"
+  - "the closing line states what a reader cannot conclude, rather than describing the deck's own method"
 risks:
-  - "a letterboard reads as a hotel directory unless the rows carry statutory names like Commissioners Court"
+  - "a board of five short rows on a dark field is one step from a table, and a table is furniture"
+  - "a frame about silence can read as a frame with nothing on it, which is why the rows carry the instrument and not only the place"
 ```
 
 ```yaml
