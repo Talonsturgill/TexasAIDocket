@@ -7525,7 +7525,7 @@
   },
   {
    "title": "Senate Water, Agriculture and Rural Affairs takes up data center cooling water on September 1st",
-   "summary": "The Senate Committee on Water, Agriculture and Rural Affairs carries an interim charge directing it to examine how much water high consumption cooling technologies use. The charge names data centers. The Legislature's own upcoming meetings listing sets the committee for Tuesday, September 1st, 2026 in hearing room E1.012 at the Capitol. It is marked a public hearing, which is the room where a member of the public may testify. The charge list also carries desalination and permitting efficiency. The water question is being taken up as one supply problem rather than as a data center problem alone. How a witness registers is set out in the formal notice and is unconfirmed.",
+   "summary": "The Senate Committee on Water, Agriculture and Rural Affairs carries an interim charge directing it to examine how much water high consumption cooling technologies use. The charge names data centers. The Legislature's own upcoming meetings listing sets the committee for Tuesday, September 1st, 2026 in hearing room E1.012 at the Capitol. It sets a second sitting in the same room the next day. Both are marked a public hearing, which is the room where a member of the public may testify. The charge list also carries desalination and permitting efficiency. The water question is being taken up as one supply problem rather than as a data center problem alone",
    "topic": "state-policy",
    "decider": {
     "name": "Texas Senate Committee on Water, Agriculture and Rural Affairs",
@@ -7543,13 +7543,18 @@
      "date": "2026-09-01",
      "kind": "hearing",
      "note": "Public hearing, 9:00 AM, hearing room E1.012"
+    },
+    {
+     "date": "2026-09-02",
+     "kind": "hearing",
+     "note": "Second public hearing, 9:00 AM, hearing room E1.012"
     }
    ],
    "public_access": {
     "room": "open_meeting",
-    "how": "The hearing is set for Tuesday, September 1st, 2026 in hearing room E1.012 at the Capitol in Austin. The Legislature's own listing marks it a public hearing. Witness registration instructions are unconfirmed, so a member of the public should ask the committee clerk how to sign up.",
+    "how": "The committee sits twice. The first hearing is Tuesday, September 1st, 2026 at 9:00 AM in hearing room E1.012 at the Capitol in Austin. The second is the following day in the same room at the same hour. The Legislature's own listing marks both a public hearing. Witness registration instructions are unconfirmed, so a member of the public should ask the committee clerk how to sign up.",
     "url": "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S",
-    "closes": "2026-09-01"
+    "closes": "2026-09-02"
    },
    "claims": [
     {
@@ -7596,6 +7601,15 @@
      "source_title": "Upcoming Senate Committee Meetings, Texas Legislature Online",
      "source_type": "primary_official",
      "fetched": "2026-08-26"
+    },
+    {
+     "id": "tx-2026-0096-c6",
+     "text": "The Legislature's upcoming meetings listing carries a second sitting of the same committee the following day.",
+     "verbatim_quote": "Wednesday, September 2, 2026",
+     "source_url": "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S",
+     "source_title": "Texas Legislature, upcoming Senate committee meetings, September 2026 listing",
+     "source_type": "primary_official",
+     "fetched": "2026-08-27"
     }
    ],
    "id": "tx-2026-0096",
@@ -7607,7 +7621,7 @@
     },
     {
      "date": "2026-08-27",
-     "note": "Checked and unchanged. The committee is still set to take up cooling water on September 1st, in the same hearing room, and the listing still marks it a public hearing.",
+     "note": "Checked, and the committee has added a day. The Legislature's listing now carries a second public hearing of the same committee on September 2nd. It sits in the same room as the first.",
      "checked": true
     }
    ]
@@ -8080,13 +8094,18 @@
      "fetched": "2026-08-22"
     }
    ],
-   "last_verified": "2026-08-22",
+   "last_verified": "2026-08-27",
    "confidence": "high",
    "notes_for_editor": "The siting decision is Amazon's. The decider of record is the announcing office, which follows the record's own precedent for a company siting announced by the state. The exact site within Austin is reported in journalism and appears in neither primary release, so it is not carried. The Governor's release calls the development multi-billion-dollar and gives no capital figure.",
    "history": [
     {
      "date": "2026-08-22",
      "note": "Amazon's release and the Office of the Governor's announcement both name the Austin siting. The mayor is quoted in Amazon's release saying no incentives were requested."
+    },
+    {
+     "date": "2026-08-27",
+     "note": "Checked and unchanged. Both announcements still stand as issued and neither has been amended. The mayor's statement that the company asked for no economic incentives and no public money is still carried inside the company's own release, and no local body has posted an item on the site.",
+     "checked": true
     }
    ]
   },
@@ -8169,13 +8188,18 @@
      "fetched": "2026-08-22"
     }
    ],
-   "last_verified": "2026-08-22",
+   "last_verified": "2026-08-27",
    "confidence": "high",
    "notes_for_editor": "The award abstract names SUNY Poly and the University of Texas at Austin as partners. The performance site on the award record is Houston, so the record carries Harris County only. The estimated total appears in the claim quote in the unformatted form the award record uses, because news.rice.edu returned a 406 on two attempts and no fetched source this run states the figure in a readable form.",
    "history": [
     {
      "date": "2026-08-22",
      "note": "The National Science Foundation award record carries the estimated total and the award dates. Its abstract describes a self driving laboratory and names Houston as the performance site."
+    },
+    {
+     "date": "2026-08-27",
+     "note": "Checked and unchanged. The award still stands and the laboratory is still described as one that designs and runs its own experiments.",
+     "checked": true
     }
    ]
   },
@@ -8267,13 +8291,18 @@
      "fetched": "2026-08-22"
     }
    ],
-   "last_verified": "2026-08-22",
+   "last_verified": "2026-08-27",
    "confidence": "high",
    "notes_for_editor": "The university's own release places the platform at the RELLIS Campus in Bryan while the award record's performance city is College Station. Both are Brazos County, so the county is safe and the city is not settled and is not published here. Figures in the university release on users per year and alloys per month do not appear in the award record and are not carried.",
    "history": [
     {
      "date": "2026-08-22",
      "note": "The National Science Foundation award record and the university's announcement both name the platform. The award record carries the start and end dates and the estimated total."
+    },
+    {
+     "date": "2026-08-27",
+     "note": "Checked and unchanged. The award still stands and the platform is still described as open to researchers outside the university that hosts it.",
+     "checked": true
     }
    ]
   },
@@ -8328,13 +8357,18 @@
      "fetched": "2026-08-22"
     }
    ],
-   "last_verified": "2026-08-22",
+   "last_verified": "2026-08-27",
    "confidence": "high",
    "notes_for_editor": "The city's file number for the item is recorded in the source link rather than in reader copy. Whether the council adopted the resolution is not in the record. Prospective hearing dates of September 22nd and October 27th were reported before the meeting and are not confirmed by a city document, so they are not carried as key dates.",
    "history": [
     {
      "date": "2026-08-22",
      "note": "The agenda item asks the council to approve the moratorium resolution. The city's legislative record shows no final action and the August 18th minutes are not finalized."
+    },
+    {
+     "date": "2026-08-27",
+     "note": "Checked and unchanged. The resolution is still on the council's legislative record with its final action field blank, so nothing has been adopted and nothing has been rejected.",
+     "checked": true
     }
    ]
   },
@@ -8412,20 +8446,25 @@
      "fetched": "2026-08-22"
     }
    ],
-   "last_verified": "2026-08-22",
+   "last_verified": "2026-08-27",
    "confidence": "high",
    "notes_for_editor": "The vote count comes from KBTX because the county's own minutes for August 18th are not yet posted. The statutory notice is primary and carries the parties, the date and the dollar figure.",
    "history": [
     {
      "date": "2026-08-22",
      "note": "The county's posted Section 312.207 notice names the pending assignee and the estimated minimum cost. A local report says the Commissioners Court approved the transfer."
+    },
+    {
+     "date": "2026-08-27",
+     "note": "Checked and unchanged. The county's own notice still carries the estimated cost of the improvements and still names the company taking over the abatement agreement.",
+     "checked": true
     }
    ]
   },
   {
    "id": "tx-2026-0089",
-   "title": "House Delivery of Government Efficiency takes up using artificial intelligence to detect fraud in state spending, and whether the state data privacy law works",
-   "summary": "The Texas House Committee on Delivery of Government Efficiency met on August 19th, 2026 to hear invited and public testimony on its interim charges. One charge asks the committee to study how the state can use technology including artificial intelligence to detect fraud, waste and abuse of taxpayer resources. Another asks whether the Texas Data Privacy and Security Act gives Texas residents and businesses adequate protection. The same notice puts the committee's oversight over the Department of Information Resources and over HB 150, which moves certain of that department's powers to the Texas Cyber Command. That department is the agency that sets state artificial intelligence standards, so the two charges reach the same records from opposite ends.",
+   "title": "The House committee on government efficiency is charged with studying whether the state should use artificial intelligence to find fraud in its own spending",
+   "summary": "The Speaker's interim charges give the House Committee on Delivery of Government Efficiency a charge to study how the state can use technology, artificial intelligence among it, to detect fraud and waste and abuse of taxpayer resources. A second charge asks whether the Texas Data Privacy and Security Act gives Texas residents and businesses adequate protection. The same document puts the Department of Information Resources and the Sunset Advisory Commission and the Texas Space Commission under the committee's oversight. A charge is an instruction to look at something and report, and it is the stage before a bill exists.",
    "topic": "state-policy",
    "decider": {
     "name": "Texas House Committee on Delivery of Government Efficiency",
@@ -8442,60 +8481,56 @@
     {
      "date": "2026-08-19",
      "kind": "hearing",
-     "note": "Committee heard invited and public testimony at 9:00 AM in room E2.012"
+     "note": "Committee met on its interim charges"
     }
    ],
    "public_access": {
     "room": "open_meeting",
-    "how": "House committee hearings are open to the public and take public testimony. Notices are posted to the Texas Legislature Online committee schedule.",
-    "url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C2332026081909001.HTM",
+    "how": "House committee meetings are open to the public and the House publishes its own committee schedules and its interim reports. The Speaker's charge document is published in full, so a reader can see what the committee was told to examine before it reports on it.",
+    "url": "https://house.texas.gov/committees/committee/233",
     "closes": null
    },
    "claims": [
     {
      "id": "tx-2026-0089-c1",
-     "text": "The committee is charged with studying artificial intelligence as a way to detect fraud in state spending.",
-     "verbatim_quote": "Preventing Fraud, Waste, and Abuse : Study methods by which the state can leverage technology, including artificial intelligence, to detect fraud, waste, and abuse of taxpayer resources.",
-     "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C2332026081909001.HTM",
-     "source_title": "Texas House of Representatives, Notice of Public Hearing, Committee on Delivery of Government Efficiency",
+     "text": "The charge directs the committee to study using technology, artificial intelligence among it, against fraud in state spending.",
+     "verbatim_quote": "Preventing Fraud, Waste, and Abuse: Study methods by which the state can leverage technology, including artificial intelligence, to detect fraud, waste, and abuse of taxpayer resources.",
+     "source_url": "https://www.house.texas.gov/pdfs/speaker/F-Interim-Charges-3.25.pdf",
+     "source_title": "Texas House of Representatives, 89th Session Interim Charges, Delivery of Government Efficiency, charge 2",
      "source_type": "primary_official",
-     "fetched": "2026-08-22"
+     "fetched": "2026-08-27"
     },
     {
      "id": "tx-2026-0089-c2",
-     "text": "The same notice charges the committee with judging whether the state data privacy law protects Texans.",
-     "verbatim_quote": "Data Privacy and Security : Study the implementation and effectiveness of the Texas Data Privacy and Security Act to determine whether the law provides adequate protection for Texas residents and businesses.",
-     "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C2332026081909001.HTM",
-     "source_title": "Texas House of Representatives, Notice of Public Hearing, Committee on Delivery of Government Efficiency",
+     "text": "A second charge asks whether the state's data privacy law protects Texans well enough.",
+     "verbatim_quote": "Data Privacy and Security: Study the implementation and effectiveness of the Texas Data Privacy and Security Act to determine whether the law provides adequate protection for Texas residents and businesses.",
+     "source_url": "https://www.house.texas.gov/pdfs/speaker/F-Interim-Charges-3.25.pdf",
+     "source_title": "Texas House of Representatives, 89th Session Interim Charges, Delivery of Government Efficiency, charge 3",
      "source_type": "primary_official",
-     "fetched": "2026-08-22"
+     "fetched": "2026-08-27"
     },
     {
      "id": "tx-2026-0089-c3",
-     "text": "The committee, time, place and chair are stated on the notice.",
-     "verbatim_quote": "COMMITTEE: Delivery of Government Efficiency TIME & DATE: 9:00 AM, Wednesday, August 19, 2026 PLACE: E2.012 CHAIR: Rep. Giovanni Capriglione",
-     "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C2332026081909001.HTM",
-     "source_title": "Texas House of Representatives, Notice of Public Hearing, Committee on Delivery of Government Efficiency",
+     "text": "The document names the agencies the committee oversees.",
+     "verbatim_quote": "The jurisdiction of the Delivery of Government Efficiency Committee includes the following agencies:",
+     "source_url": "https://www.house.texas.gov/pdfs/speaker/F-Interim-Charges-3.25.pdf",
+     "source_title": "Texas House of Representatives, 89th Session Interim Charges, Delivery of Government Efficiency, agency jurisdiction",
      "source_type": "primary_official",
-     "fetched": "2026-08-22"
-    },
-    {
-     "id": "tx-2026-0089-c4",
-     "text": "The committee is monitoring the transfer of certain Department of Information Resources duties to the Texas Cyber Command.",
-     "verbatim_quote": "HB 150, relating to the establishment of the Texas Cyber Command and the transfer to it of certain powers and duties of the Department of Information Resources;",
-     "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C2332026081909001.HTM",
-     "source_title": "Texas House of Representatives, Notice of Public Hearing, Committee on Delivery of Government Efficiency",
-     "source_type": "primary_official",
-     "fetched": "2026-08-22"
+     "fetched": "2026-08-27"
     }
    ],
-   "last_verified": "2026-08-22",
+   "last_verified": "2026-08-27",
    "confidence": "high",
-   "notes_for_editor": "This is a third House committee taking up artificial intelligence in the same week, alongside State Affairs on August 19th and Public Health on August 20th, which the record already carries as tx-2026-0078 and tx-2026-0079. What was said in the room is not in the record, only the posted charges.",
+   "notes_for_editor": "Rewritten on August 27th around the Speaker's published charge document. The claims this item was admitted with all cited hearing notices under a path that capitol.texas.gov robots.txt disallows for every agent, so this record can never re-fetch them and must not. The charge text itself is published in full on house.texas.gov, whose robots.txt disallows nothing, and every claim here is verified against that document.",
    "history": [
     {
      "date": "2026-08-22",
      "note": "The committee's posted hearing notice carries both interim charges verbatim. The same notice names the committee's oversight of the Department of Information Resources and of HB 150."
+    },
+    {
+     "date": "2026-08-27",
+     "note": "Checked and unchanged. Both charges still stand as written and the committee still holds oversight of the state's information resources agency. The hearing on the charges was held on August 19th and no report has been published against them yet.",
+     "checked": true
     }
    ]
   },
