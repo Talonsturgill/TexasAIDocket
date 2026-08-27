@@ -48,34 +48,37 @@ reads to judge which lane a commit is in, so without it every commit reaches CI 
 `guards_local.py` now FAILS rather than skips when this is unset, so the gap cannot pass under
 a green banner a second time.
 
-**Two more, and they are about the push rather than the commit.**
+**A push that lands can still report failure. Use `scripts/shared/push.sh`.**
 
 ```
-git config http.version    HTTP/1.1
-git config http.postBuffer 524288000
+scripts/shared/push.sh <branch>
 ```
 
-A push from an agent session repeatedly came back `remote rejected ... cannot lock ref
-'refs/heads/<branch>': is at <new> but expected <old>`, and `git ls-remote` then showed the push
-had LANDED. That error is what the server says when it receives the ref update TWICE: the first
-request moves the ref, the second still expects the old value and is refused. The push worked and
-reported failure.
+Four times in one run, `git push` returned non-zero with `remote rejected ... cannot lock ref`,
+once as `is at <new> but expected <old>` and once as `reference already exists`, and `ls-remote`
+then showed the commit ON the remote. Both are the server refusing a SECOND copy of a ref update
+whose first copy already applied.
 
-The cost is not the wasted request. It is that the shell reports a failed push, so the session
-verifies, re-pushes, and re-verifies every time, and a run that pushes eight times pays for it
-eight times. It also trains a session to treat a real `remote rejected` as noise, which is the
-expensive half.
+The cost is not the extra request. The shell reports a failed push, so the session verifies,
+re-pushes and verifies again, and a run that pushes eight times pays for it eight times. The
+worse half is that it teaches a session to read `remote rejected` as noise, and one day it will
+be real.
 
-The cause is the run's own payload against a default `http.postBuffer` of 1 MB. This repo pushes
-whole carousels, nine PNGs and a vector PDF near 10 MB, so git falls back to chunked transfer,
-and a chunked POST through the re-terminating egress proxy gets retried by the transport after
-the response is lost. Raising the buffer keeps the request unchunked and pinning HTTP/1.1 removes
-the stream resets that trigger the retry underneath it. Neither weakens anything: no verification
-changes and `HTTPS_PROXY` is untouched, which the proxy's own README requires.
+**The root cause is NOT established, and the script says so rather than inventing one.** Ruled
+out by measurement: the proxy (`recentRelayFailures: []`, no `gitConfigConflicts`), git itself
+(one `send-pack` under `GIT_TRACE=1`), payload size and chunking (it reproduced on a one-file
+commit, which is what killed the obvious `http.postBuffer` theory, since this repo pushes 10 MB
+carousels), and `--set-upstream` (a new ref with `-u` is clean). Something above git runs the
+command twice.
 
-Diagnosed rather than assumed: `curl "$HTTPS_PROXY/__agentproxy/status"` reported
-`recentRelayFailures: []` and no `gitConfigConflicts`, so the proxy was not rejecting anything
-and the duplicate came from git's transport.
+So the fix is to the OUTCOME. `push.sh` pushes, then compares the remote ref to the commit it
+pushed, and exits 0 if and only if they match. **A push that did NOT land still fails, loudly.**
+This is `guards_local --verdict`'s shape for the same reason: a stream that cannot be read
+reliably is replaced by a question about state.
+
+An earlier attempt at this committed `http.version` and `http.postBuffer` with a confident
+explanation that the next push falsified. A wrong explanation in this file is worse than none,
+because the next session inherits it and stops looking.
 
 ## Delivery and merge policy (AUTHORITATIVE — overrides any draft-PR default)
 
