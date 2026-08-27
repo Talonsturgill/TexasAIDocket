@@ -1,0 +1,222 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "a drawn rule crosses the glyph band of 'Two releases. Neither names a room.' (canvas edge .pixels at 82,439.5 568x2) and COULD NOT BE MEASURED: too little of the strip is clear of type to read its colour against the paper. Judge it by eye rather than reading this as a pass",
+        "a drawn rule crosses the glyph band of 'Amazon picked Austin for a plant that bu' (canvas edge .pixels at 80,849.5 555x1.5) and COULD NOT BE MEASURED: too little of the strip is clear of type to read its colour against the paper. Judge it by eye rather than reading this as a pass",
+        "art touching glyphs (3% of the ring around 'Two releases. Neither names a room.', spanning 15%) -- pixel critic verify the label is not crossed",
+        "busy art under text (bg edge density 0.04) beneath '01 / 09' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.05) beneath 'TRAVIS COUNTY' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "outside safe zone: 'texasaidocket.com' at 714,1275 286x31 (margin 80px)",
+        "busy art under text (bg edge density 0.05) beneath 'texasaidocket.com' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "bands": [
+        0.3866,
+        0.4307,
+        0.4081
+      ],
+      "band_ratio": 0.9992,
+      "encodings": [
+        "'the guard line dies as the lamp falls off': dE 64.2, AUC 1.00, visible 100%/100%, seen 540/540px at 432w"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.04) beneath '02 / 09' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.05) beneath 'TRAVIS COUNTY' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "outside safe zone: 'texasaidocket.com' at 714,1273 286x31 (margin 80px)",
+        "busy art under text (bg edge density 0.05) beneath 'texasaidocket.com' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "bands": [
+        0.2815,
+        0.2143,
+        0.3548
+      ],
+      "band_ratio": 1.2372,
+      "encodings": [
+        "'the empty bore is darker than the lit plate it sits in': dE 59.8, AUC 0.97, visible 100%/100%, seen 204/924px at 432w"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.03) beneath 'c3 c8' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.05) beneath '03 / 09' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.06) beneath 'MANUFACTURING AND ENGINEERING' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "outside safe zone: 'texasaidocket.com' at 714,1273 286x31 (margin 80px)",
+        "busy art under text (bg edge density 0.05) beneath 'texasaidocket.com' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "bands": [
+        0.145,
+        0.021,
+        0.2868
+      ],
+      "band_ratio": 1.8255,
+      "encodings": [
+        "'the guard band between the collars is not the rail': dE 66.9, AUC 0.97, visible 100%/100%, seen 540/540px at 432w"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.06) beneath 'SET READ FROM THE RECORD ON AUGUST 27TH' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.08) beneath 'tx-2026-0028' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.07) beneath 'Hays' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.08) beneath 'tx-2026-0033' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.06) beneath 'El Paso' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.08) beneath 'tx-2026-0037' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.08) beneath 'Webb' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.08) beneath 'tx-2026-0042' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.07) beneath 'Young' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.08) beneath 'tx-2026-0043' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.06) beneath 'Archer' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.08) beneath 'tx-2026-0046' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.07) beneath 'Carson' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.08) beneath 'tx-2026-0050' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.07) beneath 'Nueces' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.08) beneath 'tx-2026-0051' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.07) beneath 'Brazoria' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.08) beneath 'tx-2026-0052' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.07) beneath 'Brazoria' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.08) beneath 'tx-2026-0062' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.06) beneath 'Tarrant' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.08) beneath 'tx-2026-0070' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.06) beneath 'Tom Green' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.08) beneath 'tx-2026-0087' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.07) beneath 'Denton' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.08) beneath 'tx-2026-0088' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.07) beneath 'Brazos' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.04) beneath '04 / 09' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.05) beneath 'CITY OR COUNTY DECIDES' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "outside safe zone: 'texasaidocket.com' at 714,1273 286x31 (margin 80px)",
+        "busy art under text (bg edge density 0.06) beneath 'texasaidocket.com' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "bands": [
+        0.3592,
+        0.5231,
+        0.5129
+      ],
+      "band_ratio": 1.0976,
+      "encodings": [
+        "'the lamp falls off up the stack, so the top crate is darker than one in the pool': dE 29.9, AUC 0.99, visible 100%/100%, seen 1280/1280px at 432w"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'Amazon asked for' at 82,201 937x153 (margin 80px)",
+        "busy art under text (bg edge density 0.04) beneath 'c6 AUSTIN'S MAYOR' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.04) beneath '05 / 09' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.05) beneath 'TRAVIS COUNTY' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "outside safe zone: 'texasaidocket.com' at 84,1273 286x31 (margin 80px)",
+        "busy art under text (bg edge density 0.05) beneath 'texasaidocket.com' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "bands": [
+        0.5819,
+        0.5861,
+        0.4246
+      ],
+      "band_ratio": 0.8072,
+      "encodings": [
+        "'the near cut wall is dark and the far cut wall is lit, so the opening has thickness': dE 31.6, AUC 0.81, visible 100%/100%, seen 792/792px at 432w"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.18) beneath 'No local body. No room.' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "art touching glyphs (3% of the ring around 'No local body. No room.', spanning 27%) -- pixel critic verify the label is not crossed",
+        "busy art under text (bg edge density 0.18) beneath 'Thirteen items on the record put a Texas' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.05) beneath '06 / 09' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.06) beneath 'TRAVIS COUNTY' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "outside safe zone: 'texasaidocket.com' at 84,1273 286x31 (margin 80px)",
+        "busy art under text (bg edge density 0.05) beneath 'texasaidocket.com' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "bands": [
+        0.458,
+        0.5735,
+        0.4265
+      ],
+      "band_ratio": 0.8824,
+      "encodings": [
+        "'the perforated field is darker than the unperforated sheet above it': dE 15.0, AUC 0.84, visible 100%/100%, seen 816/864px at 432w"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.05) beneath 'c2' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.04) beneath '07 / 09' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.05) beneath 'TRAVIS COUNTY' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "outside safe zone: 'texasaidocket.com' at 714,1273 286x31 (margin 80px)",
+        "busy art under text (bg edge density 0.04) beneath 'texasaidocket.com' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "bands": [
+        0.2479,
+        0.2668,
+        0.4853
+      ],
+      "band_ratio": 1.4263,
+      "encodings": [
+        "'the mat body reads apart from the concrete around it': dE 8.0, AUC 0.85, visible 100%/100%, seen 1792/1792px at 432w"
+      ],
+      "contacts": [
+        "'the mat lying on the sealed concrete': shadow L* 21.8 vs ground L* 41.5, dL 19.6 at 432w"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.04) beneath '08 / 09' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.05) beneath 'TRAVIS COUNTY' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "outside safe zone: 'texasaidocket.com' at 714,1273 286x31 (margin 80px)",
+        "busy art under text (bg edge density 0.04) beneath 'texasaidocket.com' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "bands": [
+        0.2437,
+        0.3004,
+        0.2739
+      ],
+      "band_ratio": 1.0043,
+      "encodings": [
+        "'the unstamped value fields are darker than the plate they sit in': dE 40.5, AUC 0.87, visible 100%/100%, seen 960/960px at 432w"
+      ],
+      "contacts": [
+        "'the data plate mounted off the panel behind it': shadow L* 17.5 vs ground L* 46.1, dL 28.6 at 432w"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.03) beneath 'c20 c21 c22 c23 c24' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "outside safe zone: '09 / 09' at 84,1262 130x34 (margin 80px)",
+        "busy art under text (bg edge density 0.04) beneath '09 / 09' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "outside safe zone: 'texasaidocket.com' at 702,1262 298x34 (margin 80px)",
+        "busy art under text (bg edge density 0.05) beneath 'texasaidocket.com' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "bands": [
+        0.1576,
+        0.2206,
+        0.2408
+      ],
+      "band_ratio": 1.1584,
+      "encodings": [
+        "'the near floor is lit and the far floor is where the light stops': dE 35.9, AUC 1.00, visible 100%/100%, seen 1296/1224px at 432w"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 74,
+  "verdict": "WARN"
+}

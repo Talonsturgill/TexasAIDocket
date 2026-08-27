@@ -1,428 +1,524 @@
 {
- "_spec": {
-  "version": 1,
-  "purpose": "The variety engine. No two decks visually alike.",
-  "why": "Each run records the techniques, palette, structure and camera it used, and the next run reads this to know what it may not reach for again. Without it a machine converges on whatever worked once, which is how a daily product develops a house style nobody chose.",
-  "enforced_by": "scripts/carousel/bespoke_check.py measures WITHIN a deck. This ledger constrains ACROSS decks. Both are needed: a deck can be nine different drawings that all look like last Tuesday.",
-  "written_by": "carousel"
- },
- "recent_window": 14,
- "entries": [
-  {
-   "date": "2026-08-16",
-   "carousel_no": 1,
-   "register": "dark, Big Bend at dusk, with one deliberate paper inversion at slide 5",
-   "techniques": [
-    "extruded county with a true scale overlay",
-    "parallax planes with a two part contact shadow",
-    "engraving, white line intaglio",
-    "the residual bar at true ratio",
-    "stipple tooth on a paper register with a torn deckle",
-    "arrested flow field with a norther front stop",
-    "hachured soil section over layered horizons",
-    "Big Bend dusk field with one dust column"
-   ],
-   "palette": {
-    "source": "Post Oak Savannah, Grimes County",
-    "oak": "#4A5236 post oak canopy in late summer",
-    "bluestem": "#C9A063 little bluestem seed head in August",
-    "loam": "#A85433 iron red sandy loam at a road cut",
-    "sand": "#D8C9AB the pale leached quartz horizon over it",
-    "paper": "#F6F1E4 used on one slide only",
-    "granite": "#9A3B2A the Capitol sunset granite, on the paper slide"
-   },
-   "red_spent": false,
-   "red_note": "No comment window on this story closes in a period a reader can act on, so the reserved red stayed unspent.",
-   "camera": "one county at close range, then an object stack, then flat type, then two masses, then a sheet, then a field with a hard stop, then a section below grade, then the dusk horizon",
-   "light_decks_used": 1,
-   "bespoke_median": 0.3997,
-   "bespoke_closest_pair": "After the cut, the closest pair no longer involves cartography. bespoke_median 0.3997 was measured on the nine slide deck; the shipped deck is eight and the pair that produced 0.8859 is the frame that was cut.",
-   "slides": 8,
-   "cut": "Slide 2, the state locator, cut after the third scoring pass. Three independent reviews called it the most cuttable frame, it was the closest visual pair, and its only unique content was a county land area."
+  "_spec": {
+    "version": 1,
+    "purpose": "The variety engine. No two decks visually alike.",
+    "why": "Each run records the techniques, palette, structure and camera it used, and the next run reads this to know what it may not reach for again. Without it a machine converges on whatever worked once, which is how a daily product develops a house style nobody chose.",
+    "enforced_by": "scripts/carousel/bespoke_check.py measures WITHIN a deck. This ledger constrains ACROSS decks. Both are needed: a deck can be nine different drawings that all look like last Tuesday.",
+    "written_by": "carousel"
   },
-  {
-   "date": "2026-08-18",
-   "carousel_no": 2,
-   "register": "daylight throughout, a Gulf Coast overcast working sheet, with exactly one dark interior at slide 7",
-   "techniques": [
-    "SDF raymarch, a 16 by 9 recess carved into a brick mass",
-    "single-county spotlight with a leader line to a label outside the mesh",
-    "grid decay threshold-driven from an fBm field",
-    "line and node as engineering stationing over a heat shimmer band",
-    "relit tiles at true duration, rotated and overlapping, on no shared baseline",
-    "heightfield terrain with a horizon solved from the projection centre",
-    "a lit panel in a shadowed interior with a plate measured for a line the record does not contain",
-    "axonometric plaques, one pairing per row, widths following the names",
-    "line and node with an unfilled ring, over an oil-chart field table"
-   ],
-   "palette": {
-    "source": "a post-war Houston ISD elementary building on the Gulf Coast prairie, Harris County",
-    "overcast": "#E9EAE6 the flat August lid over Houston",
-    "brick": "#C9A67B buff face brick",
-    "terrazzo": "#DCD6C8 corridor pale",
-    "slate": "#2C3A34 chalkboard, the deck's true dark",
-    "bayou": "#5F7350 Buffalo Bayou at slack water",
-    "ochre": "#D2A03C pencil lacquer",
-    "clay": "#7A6A55 coastal prairie"
-   },
-   "red_spent": false,
-   "structural_laws": [
-    "no circles anywhere except one path node, argued for by name",
-    "filled means the source states it, outlined means the source calls it optional or does not describe it"
-   ],
-   "bespoke_median_similarity": 0.2298
-  },
-  {
-   "date": "2026-08-19",
-   "carousel_no": 3,
-   "register": "night inside a public building, no horizon on any frame, lit only from behind glass and off brass, with one bright paper sheet at slide 5",
-   "techniques": [
-    "an August month sheet embossed into limestone with one cell cut clean through, lit by a raking key that finds no floor",
-    "a constant-rate day rule with two spans of one construction sharing one origin, above and below, one capped and one left open",
-    "a true space-filling Voronoi bed of identical unassigned panels under ONE raking key, per-edge lit and shadowed, inside a hard neatline",
-    "a mid century oil chart table under a low lamp, tabular mono, three quoted figures from two documents",
-    "a flat neatlined survey sheet on the paper register, two equal quoted columns over a stack of sheets",
-    "four terrazzo inlay courses run ACROSS the frame under one key, each course a different stone at one night value, the seams cut as grooves",
-    "an engraved survey title block on stone, every field filled from the record and one ruled empty",
-    "a lit cell over a dated list of what is still open, the opening void inverted"
-   ],
-   "palette": {
-    "source": "the Texas county courthouse at night, which every county has, so a statewide story takes a statewide material rather than one place's soil",
-    "tower": "#16151C masonry in shadow, warm neutral with no violet so it is not the house Big Bend night",
-    "dial": "#EFE9DA enameled cast iron lit from behind, the deck's light",
-    "cordova": "#D9CDB4 Cordova cream limestone, Williamson County",
-    "brass": "#B98D46 the movement's works, line colour",
-    "pecos": "#8E4B3A masonry red. A band fill on slide 6, and set as TYPE on slide 5 to mark where the signed letter narrows the press release.",
-    "patina": "#4E6B62 oxidized copper, slide 6 only",
-    "paper": "#F6F1E4 on ink #23202B, slide 5 only"
-   },
-   "red_spent": false,
-   "structural_laws": [
-    "no horizon anywhere, because the story has no place",
-    "one day is 46 pixels on every frame that draws time, and no axis is truncated",
-    "ruled means quoted, a hairline above and below with attribution and claim id beneath",
-    "no cartography at all, the first deck here with none"
-   ],
-   "bespoke_median_similarity": 0.2687,
-   "camera": "one tilted sheet, then a flat rule, then straight down on a bed, then a lit table, then a flat sheet, then straight on at four courses, then a block on stone, then one lit cell",
-   "slides": 8,
-   "cut": "Slide 4, whose water and whose power, was cut after scoring. Its headline promised power and the frame delivered only water, and it sat before the deck's densest frame. The freed frame went to the close, which had no way for a reader to act.",
-   "renumbered_after_the_cut": "Recorded at the third scoring pass. The register, three palette notes and the camera line were all written against the nine slide plan and survived the cut of slide 4 unchanged, so this entry named the wrong frame for the paper inversion, for both accent fills and in every camera move after the fourth. Nothing checked it, because the variety ledgers are written at ship and no gate reads them back against the deck.",
-   "bespoke_measurement_note": "0.5314 was this deck's first measurement and it was wrong about the deck, not about the gate's arithmetic. bespoke_check was still counting the standing masthead, which this run put on every frame: on the closest pair it shared 50 tokens and exactly one was a drawing call. The gate now strips anything carrying a tx- class. RE-MEASURED under the corrected gate, the two earlier decks move only 0.3997 to 0.4061 and 0.2298 to 0.2300, because neither carried that masthead. Their own entries keep the figures they shipped with, which is what those runs were judged on.",
-   "rebuilt_at_the_ninth_pass": "Three techniques in this list named frames that were replaced during scoring and were caught by two judges reading the ledger against the renders. Slide 7 was recorded as a redaction field of struck bars, which is a drawing nobody made: two judges read the struck bars as an assertion that something had been struck out, which c17 does not support, and it was rebuilt as the survey title block its own dossier had asked for. Slide 3 was recorded as a flat field of identical cells and was rebuilt under one raking key, because a flat frame reads as an unfinished render and its own risks list said so. Slide 6 ran its courses DOWN, which forced four display words to 90 degrees under four near-black plates, and now runs them across. The ledger is the next run's only memory of what not to reuse, so a technique recorded here that never shipped blocks tomorrow from a drawing nobody made and leaves the drawing that ran unrecorded. This entry is now written against the renders rather than against the plan."
-  },
-  {
-   "date": "2026-08-20",
-   "carousel_no": 4,
-   "written_from": "render/render_report.json and the gates' own output, never from the storyboard. The 2026-08-19 entry recorded a technique that never shipped and wrote down why that is corrosive, and the very next run did it again on the frame it had cut. An entry written while the deck is still moving describes a deck that did not ship.",
-   "register": "a press proof, ballot stock at working distance printed in two plates and annotated in graphite, with three frames on the other city's dark ground",
-   "techniques": [
-    "felt-pen wick on fiber stock, an ink boundary displaced by the same field that draws the pulp",
-    "a misregistered second impression of one clause, offset 7 and 3, in the dropout plate's ink",
-    "a banded charter section stack running off both frame edges with one course lit",
-    "a raking slab with two-part contact shadows and individually lit stacked sheet edges",
-    "a bounded hard-edge figure inside an unbounded warped wash that reaches every frame edge",
-    "the empty field, bounded by a neatline and dimension ticks",
-    "a punched perforation, unbroken, each hole a lit lip and a cast shadow drawn as FILLED crescents with the far wall of the hole visible low and right",
-    "the ballot's foot reset as a drawing sheet's title block"
-   ],
-   "palette": {
-    "source": "the materials of a Texas election printing job, with the second city's side on a warm neutral black",
-    "stock": "#EFE6D2",
-    "stock_deep": "#DCCFB2",
-    "ink": "#16141A",
-    "dropout": "#A6C6BE",
-    "houston": "#17140F",
-    "clay": "#6E6154",
-    "graphite": "#56525C",
-    "chalk": "#BFB3A0"
-   },
-   "red_spent": true,
-   "red_on_slide": [
-    7
-   ],
-   "red_note": "Spent once, on the closing frame, on the label, the date and the hour of the League City council's next meeting (\"NEXT COUNCIL MEETING\"), with a solid rule beneath so the focal is an area. November 3rd is DENIED the red on every frame it appears on, because a nonbinding election is not a deadline and the deck's argument is that the date which looks like the decision is not the one. Measured 5.12 to 1 on the stock and 2.89 on the dark ground, which is why only a paper frame could carry it.",
-   "camera": "one centimetre off the paper, backing away one readable step per frame, flat copy stand at 2 and 3, the table tilts once at 4 and holds through 5, plan view over an almost empty card at 6, square to the foot of the ballot at 7",
-   "light_decks_used": 1,
-   "slides": 7,
-   "bespoke_median_similarity": 0.295,
-   "bespoke_closest_pair": "slide-06.html and slide-07.html at 0.7412, the two pale typographic frames the deck ends on",
-   "cut": "TWO frames were cut, both by scoring panels rather than by the showrunner. The duration-as-extent inversion went after panel one, where all three judges called it slide 5's argument made twice in a weaker drawing and its own dossier had named the bar chart risk that landed. The county map went after panel two, which found it asserting a county membership no claim supports and a universal negative that is probably wrong. NO CARTOGRAPHY SHIPPED and no county is named anywhere in this deck.",
-   "structural_laws": [
-    "every mark is either printed or added, never both, and a press artifact is a third thing. Slide 2's second impression of the opening clause is letterforms and is nobody's line to read, declared aria-hidden and decorative at a measured 1.47 to 1",
-    "the two GROUNDS never mix, and lit paper is not a ground. A frame stands on stock or on houston_black and never both. Stock VALUE appears on three of the dark frames, on the charter's lit course, the ballot card and the bounded figure, because paper under the deck's one lamp reads as paper wherever it lies. The law as first written said stock never crosses at all, and the fourth panel was right that the renders had already contradicted it",
-    "the palette is craft and never evidence, so no frame names a soil",
-    "an oval is never furniture, and it is empty or filled, never partly",
-    "the perforation never tears, because the election has not happened",
-    "the stock is new, no stains, no yellowing, no deckle",
-    "no numeral appears that is not in claims.json, and no county and no distance appears at all"
-   ],
-   "fourth_panel_repairs": [
-    "November 3rd, 2026 is now printed on frames 3, 4 and 7. Seven slides about a referendum named the election on none of them, and the caption is the only place it appeared. It takes no red on any of the three, per the law that already governed frames which did not exist",
-    "slide 4's dek was an ordinance citation welded out of two claims that nothing joins. c16's quote gives Ordinance No. 2026-27 and c2's gives August 11th, and no fetched record puts that number on that date. The dek is now the election date, which both c2 and c12 quote",
-    "the closing frame's eyebrow read 'where it gets decided' over a bare OPEN MEETING. The sentences stayed inside c16's fence and the LAYOUT did not, which is a verdict delivered by composition and no gate can see it. The label is now the shipped 'NEXT COUNCIL MEETING'. The panels that followed found 'regular' was in c18's text and not its quote, which is the feed-a-field defect in the deck's one reserved colour, so it dropped one step further to the wording c18's own event record supports",
-    "the perforation was drawn as hairline ARCS, a near-white stroke on cream and a dark stroke against a dark hole. Both were invisible and the ledger had recorded them as shipped. Redrawn as filled bodies stacked in light order",
-    "every <br> in the deck now carries a space before it. Without one the two words close up in textContent, which is what every gate reads, and slide 2's 'Read the first seven words.' was invisible to aggregate_check for the whole run as 'Read the firstseven words.'"
-   ]
-  },
-  {
-   "date": "2026-08-21",
-   "carousel_no": 5,
-   "written_from": "render/render_report.json, render/machine_qa.json and the gates' own exit codes, never from the storyboard. The plan changed five times during the render loop and the storyboard was reconciled to the frames afterwards, so the plan is a record of what was intended and this is a record of what ran.",
-   "register": "a Texas road at night in returned light, with one noon inversion. Retroreflective return is the deck's physical law and it carries the argument for free: a mark returns light when the record holds it, and the one mount that carries nothing returns nothing",
-   "techniques": [
-    "an axonometric instrument authored directly in SVG, mounted on a roof plane with thickness through a drawn pedestal casting an occlusion shadow on the sheet metal",
-    "a broken time scale, two lanes both linear in elapsed days at different rates, with a filled wedge whose top edge spans exactly the segment the lower lane redraws",
-    "a lit caliche haze band with the rig standing in it in silhouette, the air lit rather than the vehicle",
-    "an SVG tally of 1,400 marks in 280 groups of five, asserted at build time, under one emitter falloff computed per group index",
-    "four parallax planes and a crossing in pure CSS with no raster context on the frame at all",
-    "a single class county choropleth through TXGeo's Albers, lit on the seams by a raking sodium lamp so 254 identical fills do not read as a bed",
-    "a one point perspective road with the centre line's dashes placed by GROUND DISTANCE and projected, and retroreflective return kept as a separate term from diffuse ambient",
-    "a glyph mask driving corduroy striations INSIDE the letterforms with a lit offset edge, on pavement that stayed unmilled. WHAT SHIPPED, not what was planned. The plan was a milled band with the shadow on the near wall and the light on the far one so the type read as cut into the shoulder, and the sixth panel's craft judge measured the pavement behind the glyphs at the same value as the shoulder above and below it, so there is no band and no trough. The type reads as raised on the road rather than cut into it, which is the inverse of the technique, and the offset edge reads as misregistration. This line said the planned thing until that judge read the render and found the ledger had recorded a drawing nobody made, which is the one failure this file exists to make impossible",
-    "an SVG guide sign panel with its plate measured from the laid out legend"
-   ],
-   "palette": {
-    "source": "the materials of a Texas road at night, plus one Gulf Coast noon",
-    "asphalt": "#17181A",
-    "bitumen": "#0F1012",
-    "bead": "#E9EFE6",
-    "edgeline": "#F0C22A",
-    "amber": "#C4813A",
-    "fracsand": "#E6D8B8",
-    "dust": "#C9B393",
-    "gulf_sun": "#EDE9DE",
-    "signgreen": "#17503C",
-    "flag_red": "#BF0A30"
-   },
-   "red_spent": true,
-   "red_on_slide": [
-    9
-   ],
-   "red_note": "Spent once, on the closing frame, on the date block carrying August 25th, 2026 in white mono on the sign panel's green field. It is the deck's only dated public event and the only thing on any frame a reader can put in a calendar.",
-   "camera": "eight cameras and one register stamp naming each. The middle footer cell used to print FRAME WIDTH in feet and it was a typed numeral that contradicted its own drawing on at least two frames, so it now names how the frame is DRAWN and asserts no quantity",
-   "light_decks_used": 1,
-   "slides": 9,
-   "bespoke_median_similarity": 0.126,
-   "bespoke_closest_pair": "slide-03.html and slide-08.html at 0.8681",
-   "cut": "Nothing was cut. Two frames were REBUILT from the ground up after the pixel critics, slide 2 because a hook promising seven marks showed six at feed size, and slide 7 because its haze wedge had its apex on its own subject and its three stripes were painted out at full opacity by two band wells the frame drew over itself.",
-   "structural_laws": [
-    "returned light means the record holds it. The one mount carrying no date returns nothing and takes one rim of the lamp, and it is the darkest area in its lane",
-    "no numeral is typed. The first panel found three that were, on three frames, and each one is now interpolated from the code that computes it",
-    "no county is named anywhere, because no claim in this run names one and the committed gazetteer holds counties and metros but no cities, so Houston does not resolve to Harris from data this repo holds",
-    "no coordinate is printed. Three shipped in the first render and two of the three were wrong against the gazetteer's own computed centroids",
-    "every word on a frame is DOM text, and this deck BROKE IT on slide 8. A date on a chart is copy, and canvas fillText ships it as a bitmap that copy_sync, the vector PDF and a screen reader all miss. Slide 2's twelve raster labels were moved to the DOM when the first panel found them, and slide 8's four header strings were not, so the one frame whose entire subject is a machine readable header row ships that row as four bitmaps. machine_qa warns about it four times in the same file this entry says it was written from, and the law sat here stated and broken for three panels before the seventh read the warnings against the law and said so",
-    "a container's edge is not its content's edge. Three frames shipped a paragraph, a stripe or a tally row cut by a plate before this was written down"
-   ],
-   "panel_repairs": []
-  },
-  {
-   "date": "2026-08-22",
-   "carousel_no": 6,
-   "written_from": "render/render_report.json, render/machine_qa.json and the gates' own exit codes, never from the storyboard. The storyboard was amended twice during the render loop to follow the frames rather than the reverse, and both amendments are recorded in the run record.",
-   "register": "the Houston flight control room read as a working object, because a docket index and a status board are the same thing, a fixed set of positions each carrying a name and a short code with a clock running on all of them. The register earns the story's hardest constraint for free: a board never speculates about who is in the chair, which is exactly what the filing index does not publish.",
-   "techniques": [
-    "thirty four milled recesses in a console plane under one raking key, ten lit in trace",
-    "TX.reliefShade over TX.reliefRect, a bevelled housing relit rather than drawn as four rectangles",
-    "an engineering OPEN DIMENSION with one terminator on the left running off the right frame edge with no cap, because equal to or greater than has no upper bound",
-    "TXCARVE.surface, a wind worked machined field with a drawn tool path",
-    "a flat emissive five column table with no drawn light on the rows, on a lit console base",
-    "TX.hachureField as the tooth of the deck's one light ground, with two ruled RECESSES cut into it",
-    "TX.svgPlate plates whose widths are the measured party strings, so the ragged right edge is data",
-    "a stepped bracket on a drawn spine with amber on the two date fragments only",
-    "a seven segment readout drawn as physical segments with the dead segments left visible",
-    "a solid reserved red GROUND under white mono, because red as ink measured about 3.0 on this deck's ground in the run's own smoke test"
-   ],
-   "palette": {
-    "source": "Mission Control Center at Houston, Building 30, as a working object",
-    "room": "#101A1B the dark blue green of the room behind the consoles",
-    "console": "#24322F console metal in shadow",
-    "console_lit": "#8FA396 the eau de nil console face under task light",
-    "face_sun": "#C7D2C4 the same metal at full task light, the ground of the one light frame",
-    "legend": "#E8EFE4 the lit white of a backlit legend",
-    "trace": "#9FD3B4 the plot trace, chroma well below phosphor",
-    "event_amber": "#D99A32 the amber event indicator, slides 7 and 8 only",
-    "key_dark": "#060C0D the inside of a milled recess and a dead segment",
-    "flag_red": "#BF0A30 reserved, spent once"
-   },
-   "red_spent": true,
-   "red_on_slide": [
-    9
-   ],
-   "red_note": "Spent once, on the closing frame, as a FILLED GROUND carrying white mono. This run's own smoke test measured flag_red as INK on the deck's ground at about 3.0 against a 4.5 floor, so the colour was kept and its role inverted rather than the colour changed. White on the red measures about 5.4.",
-   "camera": "nine positions, none repeated. plan oblique on a board, square on one object, level across an empty field, straight down on a sheet, square on a lit plate, down a left aligned column, stepping through a bracket, nearest for one readout, square on a solid block.",
-   "light_decks_used": 1,
-   "slides": 9,
-   "bespoke_median_similarity": 0.52,
-   "bespoke_closest_pair": "slide-03.html and slide-09.html at 0.7491",
-   "cut": "Nothing was cut. Slides 4 and 5 were REBUILT after the pixel critics, slide 4 because the dossier declared five columns and the frame drew two so the item type read as part of the party name, and slide 5 because its two voids carried drop shadows and so read as tiles sitting ON the record rather than as holes cut in it, which inverts the frame's entire argument.",
-   "structural_laws": [
-    "legible means quoted. a block carrying a readable string is a row claims.json quotes, and absence of light never means absence of a filing",
-    "every figure is set in JetBrains Mono and never in Fraunces, because FIELD_NOTES records Fraunces rendering 3 as 5 at feed size and this deck's figures are 34, 75, 25.521 and 58482",
-    "no cartography and no coordinate. the story names no place",
-    "COM, PC, PFP and OPDM appear only as literal strings",
-    "no frame applies any noun to a party except the words in the party field"
-   ],
-   "panel_repairs": []
-  },
-  {
-   "date": "2026-08-25",
-   "carousel_no": 7,
-   "written_from": "render/render_report.json, render/machine_qa.json, the gates' own exit codes, and a per frame measurement of the rendered PNGs. The value block below is MEASURED, not read off the storyboard, because the storyboard typed a register this deck does not have.",
-   "register": "a Texas notice case seen nine ways, wide range about a median of 52.1. Anodized rail, dark case interior and cream bond carry through six of the nine frames as one object under changing light and camera. Measured against the mid value deck its own storyboard declared, one of the nine sits inside the L* 62 to 68 band that plan set, and the frames run 14.4 to 93.2.",
-   "techniques": [
-    "a wall mounted notice case authored as geometry so every overlay knows where it is, with a keyway and hinge knuckles so it reads as locked",
-    "a cast occlusion shadow whose penumbra widens with the air gap, the deck's one depth cue",
-    "per row cast shadows that LENGTHEN AND SOFTEN together down the board, a short crisp contact core plus a body that loses density and gains penumbra with distance from one overhead source, at a step the frame's own script asserts clears three device pixels between neighbours",
-    "true one point perspective shared by a canvas projection and a CSS transform on the type, so the case and the words on it are one object",
-    "additive veiling glare drawn ABOVE the type as a screening layer, so a reflection lifts ink and paper together and contrast collapses",
-    "a bounded specular blowout at 28 degrees with a computed shoulder, running the whole of a FULL BLEED page with no border, its lower shoulder grading into the frame's only dark, which is a surface rather than an edge",
-    "repetition down a computed cosine bounce falloff, four identical minute lines brightening 16.5 L* from first to last",
-    "a sheared and rippled Fresnel weighted mirror resolving a second notice case, carrying nothing legible",
-    "two slips HUNG from the clips that held nothing for eight frames, each shrink wrapped to its own longest laid out line and hung from its own margin above the case lip, so no width and no top on that frame is typed",
-    "fiberboard cork as a fine 2px speckle over a lit gradient on frames 6 and 9, with a low frequency mottle over it on frame 6 ONLY, because the grain alone is right at 2160 and gone by 432 and frame 6 is the frame whose whole field is cork",
-    "a felt letterboard seating five rows of WORDS, each in a two part groove whose dark channel crosses the glyph baseline so the letters occlude the slot they stand in, with two characters set proud by content rather than by index. The board carries no tiles, no months and no numerals. The earlier entry recorded all three",
-    "brass pins whose shafts go THROUGH the paper, so the cast shadow falls on the card and not on the cork",
-    "three route slips whose paper is measured from the type laid out inside them, at widths the frame's own script refuses within 12 percent of each other, over a staple field whose exclusion is read off getBoundingClientRect and which RESAMPLES rather than skips so it does not thin out wherever the type is",
-    "a reflected notice case carrying the near case's own vocabulary at half contrast, a lit top rail, two stiles at two values, a lower rail and a keyway, run through the same shear and ripple so it belongs to the pane"
-   ],
-   "palette": {
-    "source": "an anodized notice case under a hot high haze Texas sky",
-    "bond_sun": "#FFFDF6 blown laser bond, frame 5 only",
-    "sky_glare": "#DFE7EC hot midday sky off hazed acrylic",
-    "bond": "#F2EEE4 the sheet in open shade",
-    "letter": "#E8E4D8 white styrene changeable letter, frame 3",
-    "anodize_lit": "#D8D2C4 the top rail catching sun",
-    "cork": "#B99B72 fiberboard backing",
-    "anodize": "#9C9A90 chalked aluminium",
-    "glaze": "#9DAAB4 hazed acrylic, the cool mid",
-    "glaze_deep": "#5A6874",
-    "mesquite_shade": "#6E7A5A live oak shadow, frame 8",
-    "toner": "#2A2622 fused laser toner",
-    "case_dark": "#1F252C the case interior",
-    "flag_red": "#BF0A30"
-   },
-   "red_spent": true,
-   "red_on_slide": [
-    9
-   ],
-   "red_note": "on SEPTEMBER 4TH and on nothing else in the deck. The rule is stated rather than chosen: of the two open doors only one is inside a fortnight, so the near one takes the reserved colour and the December one does not.",
-   "camera": "EIGHT distinct camera classes over nine frames, and only one class carries two. Round 12 measured six with one class on four and named 2 and 5 as the same picture at feed size; frame 5 is now a full bleed crop with no border, which is its own class. The classes, counted off this list and nothing else: near frontal on a locked case (1), square on to a bordered sheet (2 and 7), a felt letterboard square on and level (3), steep oblique in true perspective (4), a full bleed crop with no case and no border (5), level on a flat field with no case (6), a shaded case with a reflected second case in it (8), a close crop with two ground planes and hung paper (9).",
-   "light_decks_used": "wide range, bimodal, median below mid",
-   "value": {
-    "per_frame_median_L": [
-     51.4,
-     67.9,
-     14.4,
-     30.8,
-     93.2,
-     72.2,
-     52.1,
-     58.0,
-     49.6
-    ],
-    "deck_median_L": 52.1,
-    "mean_L": 54.4,
-    "sd_L": 21.6,
-    "range_L": [
-     14.4,
-     93.2
-    ],
-    "declared_band": [
-     62,
-     68
-    ],
-    "frames_inside_declared_band": 1,
-    "measured_by": "out/2026-08-25/tmp/measure.py over the rendered PNGs at 216x270",
-    "counted_by": "out/2026-08-25/tmp/write_measured.py, over the array above. EVERY sentence in this entry that carries one of these numbers is composed from it here rather than typed beside it, because round 4 found this deck's falloff and its bespoke median each committed twice with two different values.",
-    "frame7_falloff_L": 16.5,
-    "frame7_repeat_gutters_L": [
-     82.8,
-     91.2,
-     96.6,
-     99.3
-    ],
-    "biggest_junction": {
-     "between": 4,
-     "delta": 62.4
+  "recent_window": 14,
+  "entries": [
+    {
+      "date": "2026-08-16",
+      "carousel_no": 1,
+      "register": "dark, Big Bend at dusk, with one deliberate paper inversion at slide 5",
+      "techniques": [
+        "extruded county with a true scale overlay",
+        "parallax planes with a two part contact shadow",
+        "engraving, white line intaglio",
+        "the residual bar at true ratio",
+        "stipple tooth on a paper register with a torn deckle",
+        "arrested flow field with a norther front stop",
+        "hachured soil section over layered horizons",
+        "Big Bend dusk field with one dust column"
+      ],
+      "palette": {
+        "source": "Post Oak Savannah, Grimes County",
+        "oak": "#4A5236 post oak canopy in late summer",
+        "bluestem": "#C9A063 little bluestem seed head in August",
+        "loam": "#A85433 iron red sandy loam at a road cut",
+        "sand": "#D8C9AB the pale leached quartz horizon over it",
+        "paper": "#F6F1E4 used on one slide only",
+        "granite": "#9A3B2A the Capitol sunset granite, on the paper slide"
+      },
+      "red_spent": false,
+      "red_note": "No comment window on this story closes in a period a reader can act on, so the reserved red stayed unspent.",
+      "camera": "one county at close range, then an object stack, then flat type, then two masses, then a sheet, then a field with a hard stop, then a section below grade, then the dusk horizon",
+      "light_decks_used": 1,
+      "bespoke_median": 0.3997,
+      "bespoke_closest_pair": "After the cut, the closest pair no longer involves cartography. bespoke_median 0.3997 was measured on the nine slide deck; the shipped deck is eight and the pair that produced 0.8859 is the frame that was cut.",
+      "slides": 8,
+      "cut": "Slide 2, the state locator, cut after the third scoring pass. Three independent reviews called it the most cuttable frame, it was the closest visual pair, and its only unique content was a county land area."
+    },
+    {
+      "date": "2026-08-18",
+      "carousel_no": 2,
+      "register": "daylight throughout, a Gulf Coast overcast working sheet, with exactly one dark interior at slide 7",
+      "techniques": [
+        "SDF raymarch, a 16 by 9 recess carved into a brick mass",
+        "single-county spotlight with a leader line to a label outside the mesh",
+        "grid decay threshold-driven from an fBm field",
+        "line and node as engineering stationing over a heat shimmer band",
+        "relit tiles at true duration, rotated and overlapping, on no shared baseline",
+        "heightfield terrain with a horizon solved from the projection centre",
+        "a lit panel in a shadowed interior with a plate measured for a line the record does not contain",
+        "axonometric plaques, one pairing per row, widths following the names",
+        "line and node with an unfilled ring, over an oil-chart field table"
+      ],
+      "palette": {
+        "source": "a post-war Houston ISD elementary building on the Gulf Coast prairie, Harris County",
+        "overcast": "#E9EAE6 the flat August lid over Houston",
+        "brick": "#C9A67B buff face brick",
+        "terrazzo": "#DCD6C8 corridor pale",
+        "slate": "#2C3A34 chalkboard, the deck's true dark",
+        "bayou": "#5F7350 Buffalo Bayou at slack water",
+        "ochre": "#D2A03C pencil lacquer",
+        "clay": "#7A6A55 coastal prairie"
+      },
+      "red_spent": false,
+      "structural_laws": [
+        "no circles anywhere except one path node, argued for by name",
+        "filled means the source states it, outlined means the source calls it optional or does not describe it"
+      ],
+      "bespoke_median_similarity": 0.2298
+    },
+    {
+      "date": "2026-08-19",
+      "carousel_no": 3,
+      "register": "night inside a public building, no horizon on any frame, lit only from behind glass and off brass, with one bright paper sheet at slide 5",
+      "techniques": [
+        "an August month sheet embossed into limestone with one cell cut clean through, lit by a raking key that finds no floor",
+        "a constant-rate day rule with two spans of one construction sharing one origin, above and below, one capped and one left open",
+        "a true space-filling Voronoi bed of identical unassigned panels under ONE raking key, per-edge lit and shadowed, inside a hard neatline",
+        "a mid century oil chart table under a low lamp, tabular mono, three quoted figures from two documents",
+        "a flat neatlined survey sheet on the paper register, two equal quoted columns over a stack of sheets",
+        "four terrazzo inlay courses run ACROSS the frame under one key, each course a different stone at one night value, the seams cut as grooves",
+        "an engraved survey title block on stone, every field filled from the record and one ruled empty",
+        "a lit cell over a dated list of what is still open, the opening void inverted"
+      ],
+      "palette": {
+        "source": "the Texas county courthouse at night, which every county has, so a statewide story takes a statewide material rather than one place's soil",
+        "tower": "#16151C masonry in shadow, warm neutral with no violet so it is not the house Big Bend night",
+        "dial": "#EFE9DA enameled cast iron lit from behind, the deck's light",
+        "cordova": "#D9CDB4 Cordova cream limestone, Williamson County",
+        "brass": "#B98D46 the movement's works, line colour",
+        "pecos": "#8E4B3A masonry red. A band fill on slide 6, and set as TYPE on slide 5 to mark where the signed letter narrows the press release.",
+        "patina": "#4E6B62 oxidized copper, slide 6 only",
+        "paper": "#F6F1E4 on ink #23202B, slide 5 only"
+      },
+      "red_spent": false,
+      "structural_laws": [
+        "no horizon anywhere, because the story has no place",
+        "one day is 46 pixels on every frame that draws time, and no axis is truncated",
+        "ruled means quoted, a hairline above and below with attribution and claim id beneath",
+        "no cartography at all, the first deck here with none"
+      ],
+      "bespoke_median_similarity": 0.2687,
+      "camera": "one tilted sheet, then a flat rule, then straight down on a bed, then a lit table, then a flat sheet, then straight on at four courses, then a block on stone, then one lit cell",
+      "slides": 8,
+      "cut": "Slide 4, whose water and whose power, was cut after scoring. Its headline promised power and the frame delivered only water, and it sat before the deck's densest frame. The freed frame went to the close, which had no way for a reader to act.",
+      "renumbered_after_the_cut": "Recorded at the third scoring pass. The register, three palette notes and the camera line were all written against the nine slide plan and survived the cut of slide 4 unchanged, so this entry named the wrong frame for the paper inversion, for both accent fills and in every camera move after the fourth. Nothing checked it, because the variety ledgers are written at ship and no gate reads them back against the deck.",
+      "bespoke_measurement_note": "0.5314 was this deck's first measurement and it was wrong about the deck, not about the gate's arithmetic. bespoke_check was still counting the standing masthead, which this run put on every frame: on the closest pair it shared 50 tokens and exactly one was a drawing call. The gate now strips anything carrying a tx- class. RE-MEASURED under the corrected gate, the two earlier decks move only 0.3997 to 0.4061 and 0.2298 to 0.2300, because neither carried that masthead. Their own entries keep the figures they shipped with, which is what those runs were judged on.",
+      "rebuilt_at_the_ninth_pass": "Three techniques in this list named frames that were replaced during scoring and were caught by two judges reading the ledger against the renders. Slide 7 was recorded as a redaction field of struck bars, which is a drawing nobody made: two judges read the struck bars as an assertion that something had been struck out, which c17 does not support, and it was rebuilt as the survey title block its own dossier had asked for. Slide 3 was recorded as a flat field of identical cells and was rebuilt under one raking key, because a flat frame reads as an unfinished render and its own risks list said so. Slide 6 ran its courses DOWN, which forced four display words to 90 degrees under four near-black plates, and now runs them across. The ledger is the next run's only memory of what not to reuse, so a technique recorded here that never shipped blocks tomorrow from a drawing nobody made and leaves the drawing that ran unrecorded. This entry is now written against the renders rather than against the plan."
+    },
+    {
+      "date": "2026-08-20",
+      "carousel_no": 4,
+      "written_from": "render/render_report.json and the gates' own output, never from the storyboard. The 2026-08-19 entry recorded a technique that never shipped and wrote down why that is corrosive, and the very next run did it again on the frame it had cut. An entry written while the deck is still moving describes a deck that did not ship.",
+      "register": "a press proof, ballot stock at working distance printed in two plates and annotated in graphite, with three frames on the other city's dark ground",
+      "techniques": [
+        "felt-pen wick on fiber stock, an ink boundary displaced by the same field that draws the pulp",
+        "a misregistered second impression of one clause, offset 7 and 3, in the dropout plate's ink",
+        "a banded charter section stack running off both frame edges with one course lit",
+        "a raking slab with two-part contact shadows and individually lit stacked sheet edges",
+        "a bounded hard-edge figure inside an unbounded warped wash that reaches every frame edge",
+        "the empty field, bounded by a neatline and dimension ticks",
+        "a punched perforation, unbroken, each hole a lit lip and a cast shadow drawn as FILLED crescents with the far wall of the hole visible low and right",
+        "the ballot's foot reset as a drawing sheet's title block"
+      ],
+      "palette": {
+        "source": "the materials of a Texas election printing job, with the second city's side on a warm neutral black",
+        "stock": "#EFE6D2",
+        "stock_deep": "#DCCFB2",
+        "ink": "#16141A",
+        "dropout": "#A6C6BE",
+        "houston": "#17140F",
+        "clay": "#6E6154",
+        "graphite": "#56525C",
+        "chalk": "#BFB3A0"
+      },
+      "red_spent": true,
+      "red_on_slide": [
+        7
+      ],
+      "red_note": "Spent once, on the closing frame, on the label, the date and the hour of the League City council's next meeting (\"NEXT COUNCIL MEETING\"), with a solid rule beneath so the focal is an area. November 3rd is DENIED the red on every frame it appears on, because a nonbinding election is not a deadline and the deck's argument is that the date which looks like the decision is not the one. Measured 5.12 to 1 on the stock and 2.89 on the dark ground, which is why only a paper frame could carry it.",
+      "camera": "one centimetre off the paper, backing away one readable step per frame, flat copy stand at 2 and 3, the table tilts once at 4 and holds through 5, plan view over an almost empty card at 6, square to the foot of the ballot at 7",
+      "light_decks_used": 1,
+      "slides": 7,
+      "bespoke_median_similarity": 0.295,
+      "bespoke_closest_pair": "slide-06.html and slide-07.html at 0.7412, the two pale typographic frames the deck ends on",
+      "cut": "TWO frames were cut, both by scoring panels rather than by the showrunner. The duration-as-extent inversion went after panel one, where all three judges called it slide 5's argument made twice in a weaker drawing and its own dossier had named the bar chart risk that landed. The county map went after panel two, which found it asserting a county membership no claim supports and a universal negative that is probably wrong. NO CARTOGRAPHY SHIPPED and no county is named anywhere in this deck.",
+      "structural_laws": [
+        "every mark is either printed or added, never both, and a press artifact is a third thing. Slide 2's second impression of the opening clause is letterforms and is nobody's line to read, declared aria-hidden and decorative at a measured 1.47 to 1",
+        "the two GROUNDS never mix, and lit paper is not a ground. A frame stands on stock or on houston_black and never both. Stock VALUE appears on three of the dark frames, on the charter's lit course, the ballot card and the bounded figure, because paper under the deck's one lamp reads as paper wherever it lies. The law as first written said stock never crosses at all, and the fourth panel was right that the renders had already contradicted it",
+        "the palette is craft and never evidence, so no frame names a soil",
+        "an oval is never furniture, and it is empty or filled, never partly",
+        "the perforation never tears, because the election has not happened",
+        "the stock is new, no stains, no yellowing, no deckle",
+        "no numeral appears that is not in claims.json, and no county and no distance appears at all"
+      ],
+      "fourth_panel_repairs": [
+        "November 3rd, 2026 is now printed on frames 3, 4 and 7. Seven slides about a referendum named the election on none of them, and the caption is the only place it appeared. It takes no red on any of the three, per the law that already governed frames which did not exist",
+        "slide 4's dek was an ordinance citation welded out of two claims that nothing joins. c16's quote gives Ordinance No. 2026-27 and c2's gives August 11th, and no fetched record puts that number on that date. The dek is now the election date, which both c2 and c12 quote",
+        "the closing frame's eyebrow read 'where it gets decided' over a bare OPEN MEETING. The sentences stayed inside c16's fence and the LAYOUT did not, which is a verdict delivered by composition and no gate can see it. The label is now the shipped 'NEXT COUNCIL MEETING'. The panels that followed found 'regular' was in c18's text and not its quote, which is the feed-a-field defect in the deck's one reserved colour, so it dropped one step further to the wording c18's own event record supports",
+        "the perforation was drawn as hairline ARCS, a near-white stroke on cream and a dark stroke against a dark hole. Both were invisible and the ledger had recorded them as shipped. Redrawn as filled bodies stacked in light order",
+        "every <br> in the deck now carries a space before it. Without one the two words close up in textContent, which is what every gate reads, and slide 2's 'Read the first seven words.' was invisible to aggregate_check for the whole run as 'Read the firstseven words.'"
+      ]
+    },
+    {
+      "date": "2026-08-21",
+      "carousel_no": 5,
+      "written_from": "render/render_report.json, render/machine_qa.json and the gates' own exit codes, never from the storyboard. The plan changed five times during the render loop and the storyboard was reconciled to the frames afterwards, so the plan is a record of what was intended and this is a record of what ran.",
+      "register": "a Texas road at night in returned light, with one noon inversion. Retroreflective return is the deck's physical law and it carries the argument for free: a mark returns light when the record holds it, and the one mount that carries nothing returns nothing",
+      "techniques": [
+        "an axonometric instrument authored directly in SVG, mounted on a roof plane with thickness through a drawn pedestal casting an occlusion shadow on the sheet metal",
+        "a broken time scale, two lanes both linear in elapsed days at different rates, with a filled wedge whose top edge spans exactly the segment the lower lane redraws",
+        "a lit caliche haze band with the rig standing in it in silhouette, the air lit rather than the vehicle",
+        "an SVG tally of 1,400 marks in 280 groups of five, asserted at build time, under one emitter falloff computed per group index",
+        "four parallax planes and a crossing in pure CSS with no raster context on the frame at all",
+        "a single class county choropleth through TXGeo's Albers, lit on the seams by a raking sodium lamp so 254 identical fills do not read as a bed",
+        "a one point perspective road with the centre line's dashes placed by GROUND DISTANCE and projected, and retroreflective return kept as a separate term from diffuse ambient",
+        "a glyph mask driving corduroy striations INSIDE the letterforms with a lit offset edge, on pavement that stayed unmilled. WHAT SHIPPED, not what was planned. The plan was a milled band with the shadow on the near wall and the light on the far one so the type read as cut into the shoulder, and the sixth panel's craft judge measured the pavement behind the glyphs at the same value as the shoulder above and below it, so there is no band and no trough. The type reads as raised on the road rather than cut into it, which is the inverse of the technique, and the offset edge reads as misregistration. This line said the planned thing until that judge read the render and found the ledger had recorded a drawing nobody made, which is the one failure this file exists to make impossible",
+        "an SVG guide sign panel with its plate measured from the laid out legend"
+      ],
+      "palette": {
+        "source": "the materials of a Texas road at night, plus one Gulf Coast noon",
+        "asphalt": "#17181A",
+        "bitumen": "#0F1012",
+        "bead": "#E9EFE6",
+        "edgeline": "#F0C22A",
+        "amber": "#C4813A",
+        "fracsand": "#E6D8B8",
+        "dust": "#C9B393",
+        "gulf_sun": "#EDE9DE",
+        "signgreen": "#17503C",
+        "flag_red": "#BF0A30"
+      },
+      "red_spent": true,
+      "red_on_slide": [
+        9
+      ],
+      "red_note": "Spent once, on the closing frame, on the date block carrying August 25th, 2026 in white mono on the sign panel's green field. It is the deck's only dated public event and the only thing on any frame a reader can put in a calendar.",
+      "camera": "eight cameras and one register stamp naming each. The middle footer cell used to print FRAME WIDTH in feet and it was a typed numeral that contradicted its own drawing on at least two frames, so it now names how the frame is DRAWN and asserts no quantity",
+      "light_decks_used": 1,
+      "slides": 9,
+      "bespoke_median_similarity": 0.126,
+      "bespoke_closest_pair": "slide-03.html and slide-08.html at 0.8681",
+      "cut": "Nothing was cut. Two frames were REBUILT from the ground up after the pixel critics, slide 2 because a hook promising seven marks showed six at feed size, and slide 7 because its haze wedge had its apex on its own subject and its three stripes were painted out at full opacity by two band wells the frame drew over itself.",
+      "structural_laws": [
+        "returned light means the record holds it. The one mount carrying no date returns nothing and takes one rim of the lamp, and it is the darkest area in its lane",
+        "no numeral is typed. The first panel found three that were, on three frames, and each one is now interpolated from the code that computes it",
+        "no county is named anywhere, because no claim in this run names one and the committed gazetteer holds counties and metros but no cities, so Houston does not resolve to Harris from data this repo holds",
+        "no coordinate is printed. Three shipped in the first render and two of the three were wrong against the gazetteer's own computed centroids",
+        "every word on a frame is DOM text, and this deck BROKE IT on slide 8. A date on a chart is copy, and canvas fillText ships it as a bitmap that copy_sync, the vector PDF and a screen reader all miss. Slide 2's twelve raster labels were moved to the DOM when the first panel found them, and slide 8's four header strings were not, so the one frame whose entire subject is a machine readable header row ships that row as four bitmaps. machine_qa warns about it four times in the same file this entry says it was written from, and the law sat here stated and broken for three panels before the seventh read the warnings against the law and said so",
+        "a container's edge is not its content's edge. Three frames shipped a paragraph, a stripe or a tally row cut by a plate before this was written down"
+      ],
+      "panel_repairs": []
+    },
+    {
+      "date": "2026-08-22",
+      "carousel_no": 6,
+      "written_from": "render/render_report.json, render/machine_qa.json and the gates' own exit codes, never from the storyboard. The storyboard was amended twice during the render loop to follow the frames rather than the reverse, and both amendments are recorded in the run record.",
+      "register": "the Houston flight control room read as a working object, because a docket index and a status board are the same thing, a fixed set of positions each carrying a name and a short code with a clock running on all of them. The register earns the story's hardest constraint for free: a board never speculates about who is in the chair, which is exactly what the filing index does not publish.",
+      "techniques": [
+        "thirty four milled recesses in a console plane under one raking key, ten lit in trace",
+        "TX.reliefShade over TX.reliefRect, a bevelled housing relit rather than drawn as four rectangles",
+        "an engineering OPEN DIMENSION with one terminator on the left running off the right frame edge with no cap, because equal to or greater than has no upper bound",
+        "TXCARVE.surface, a wind worked machined field with a drawn tool path",
+        "a flat emissive five column table with no drawn light on the rows, on a lit console base",
+        "TX.hachureField as the tooth of the deck's one light ground, with two ruled RECESSES cut into it",
+        "TX.svgPlate plates whose widths are the measured party strings, so the ragged right edge is data",
+        "a stepped bracket on a drawn spine with amber on the two date fragments only",
+        "a seven segment readout drawn as physical segments with the dead segments left visible",
+        "a solid reserved red GROUND under white mono, because red as ink measured about 3.0 on this deck's ground in the run's own smoke test"
+      ],
+      "palette": {
+        "source": "Mission Control Center at Houston, Building 30, as a working object",
+        "room": "#101A1B the dark blue green of the room behind the consoles",
+        "console": "#24322F console metal in shadow",
+        "console_lit": "#8FA396 the eau de nil console face under task light",
+        "face_sun": "#C7D2C4 the same metal at full task light, the ground of the one light frame",
+        "legend": "#E8EFE4 the lit white of a backlit legend",
+        "trace": "#9FD3B4 the plot trace, chroma well below phosphor",
+        "event_amber": "#D99A32 the amber event indicator, slides 7 and 8 only",
+        "key_dark": "#060C0D the inside of a milled recess and a dead segment",
+        "flag_red": "#BF0A30 reserved, spent once"
+      },
+      "red_spent": true,
+      "red_on_slide": [
+        9
+      ],
+      "red_note": "Spent once, on the closing frame, as a FILLED GROUND carrying white mono. This run's own smoke test measured flag_red as INK on the deck's ground at about 3.0 against a 4.5 floor, so the colour was kept and its role inverted rather than the colour changed. White on the red measures about 5.4.",
+      "camera": "nine positions, none repeated. plan oblique on a board, square on one object, level across an empty field, straight down on a sheet, square on a lit plate, down a left aligned column, stepping through a bracket, nearest for one readout, square on a solid block.",
+      "light_decks_used": 1,
+      "slides": 9,
+      "bespoke_median_similarity": 0.52,
+      "bespoke_closest_pair": "slide-03.html and slide-09.html at 0.7491",
+      "cut": "Nothing was cut. Slides 4 and 5 were REBUILT after the pixel critics, slide 4 because the dossier declared five columns and the frame drew two so the item type read as part of the party name, and slide 5 because its two voids carried drop shadows and so read as tiles sitting ON the record rather than as holes cut in it, which inverts the frame's entire argument.",
+      "structural_laws": [
+        "legible means quoted. a block carrying a readable string is a row claims.json quotes, and absence of light never means absence of a filing",
+        "every figure is set in JetBrains Mono and never in Fraunces, because FIELD_NOTES records Fraunces rendering 3 as 5 at feed size and this deck's figures are 34, 75, 25.521 and 58482",
+        "no cartography and no coordinate. the story names no place",
+        "COM, PC, PFP and OPDM appear only as literal strings",
+        "no frame applies any noun to a party except the words in the party field"
+      ],
+      "panel_repairs": []
+    },
+    {
+      "date": "2026-08-25",
+      "carousel_no": 7,
+      "written_from": "render/render_report.json, render/machine_qa.json, the gates' own exit codes, and a per frame measurement of the rendered PNGs. The value block below is MEASURED, not read off the storyboard, because the storyboard typed a register this deck does not have.",
+      "register": "a Texas notice case seen nine ways, wide range about a median of 52.1. Anodized rail, dark case interior and cream bond carry through six of the nine frames as one object under changing light and camera. Measured against the mid value deck its own storyboard declared, one of the nine sits inside the L* 62 to 68 band that plan set, and the frames run 14.4 to 93.2.",
+      "techniques": [
+        "a wall mounted notice case authored as geometry so every overlay knows where it is, with a keyway and hinge knuckles so it reads as locked",
+        "a cast occlusion shadow whose penumbra widens with the air gap, the deck's one depth cue",
+        "per row cast shadows that LENGTHEN AND SOFTEN together down the board, a short crisp contact core plus a body that loses density and gains penumbra with distance from one overhead source, at a step the frame's own script asserts clears three device pixels between neighbours",
+        "true one point perspective shared by a canvas projection and a CSS transform on the type, so the case and the words on it are one object",
+        "additive veiling glare drawn ABOVE the type as a screening layer, so a reflection lifts ink and paper together and contrast collapses",
+        "a bounded specular blowout at 28 degrees with a computed shoulder, running the whole of a FULL BLEED page with no border, its lower shoulder grading into the frame's only dark, which is a surface rather than an edge",
+        "repetition down a computed cosine bounce falloff, four identical minute lines brightening 16.5 L* from first to last",
+        "a sheared and rippled Fresnel weighted mirror resolving a second notice case, carrying nothing legible",
+        "two slips HUNG from the clips that held nothing for eight frames, each shrink wrapped to its own longest laid out line and hung from its own margin above the case lip, so no width and no top on that frame is typed",
+        "fiberboard cork as a fine 2px speckle over a lit gradient on frames 6 and 9, with a low frequency mottle over it on frame 6 ONLY, because the grain alone is right at 2160 and gone by 432 and frame 6 is the frame whose whole field is cork",
+        "a felt letterboard seating five rows of WORDS, each in a two part groove whose dark channel crosses the glyph baseline so the letters occlude the slot they stand in, with two characters set proud by content rather than by index. The board carries no tiles, no months and no numerals. The earlier entry recorded all three",
+        "brass pins whose shafts go THROUGH the paper, so the cast shadow falls on the card and not on the cork",
+        "three route slips whose paper is measured from the type laid out inside them, at widths the frame's own script refuses within 12 percent of each other, over a staple field whose exclusion is read off getBoundingClientRect and which RESAMPLES rather than skips so it does not thin out wherever the type is",
+        "a reflected notice case carrying the near case's own vocabulary at half contrast, a lit top rail, two stiles at two values, a lower rail and a keyway, run through the same shear and ripple so it belongs to the pane"
+      ],
+      "palette": {
+        "source": "an anodized notice case under a hot high haze Texas sky",
+        "bond_sun": "#FFFDF6 blown laser bond, frame 5 only",
+        "sky_glare": "#DFE7EC hot midday sky off hazed acrylic",
+        "bond": "#F2EEE4 the sheet in open shade",
+        "letter": "#E8E4D8 white styrene changeable letter, frame 3",
+        "anodize_lit": "#D8D2C4 the top rail catching sun",
+        "cork": "#B99B72 fiberboard backing",
+        "anodize": "#9C9A90 chalked aluminium",
+        "glaze": "#9DAAB4 hazed acrylic, the cool mid",
+        "glaze_deep": "#5A6874",
+        "mesquite_shade": "#6E7A5A live oak shadow, frame 8",
+        "toner": "#2A2622 fused laser toner",
+        "case_dark": "#1F252C the case interior",
+        "flag_red": "#BF0A30"
+      },
+      "red_spent": true,
+      "red_on_slide": [
+        9
+      ],
+      "red_note": "on SEPTEMBER 4TH and on nothing else in the deck. The rule is stated rather than chosen: of the two open doors only one is inside a fortnight, so the near one takes the reserved colour and the December one does not.",
+      "camera": "EIGHT distinct camera classes over nine frames, and only one class carries two. Round 12 measured six with one class on four and named 2 and 5 as the same picture at feed size; frame 5 is now a full bleed crop with no border, which is its own class. The classes, counted off this list and nothing else: near frontal on a locked case (1), square on to a bordered sheet (2 and 7), a felt letterboard square on and level (3), steep oblique in true perspective (4), a full bleed crop with no case and no border (5), level on a flat field with no case (6), a shaded case with a reflected second case in it (8), a close crop with two ground planes and hung paper (9).",
+      "light_decks_used": "wide range, bimodal, median below mid",
+      "value": {
+        "per_frame_median_L": [
+          51.4,
+          67.9,
+          14.4,
+          30.8,
+          93.2,
+          72.2,
+          52.1,
+          58.0,
+          49.6
+        ],
+        "deck_median_L": 52.1,
+        "mean_L": 54.4,
+        "sd_L": 21.6,
+        "range_L": [
+          14.4,
+          93.2
+        ],
+        "declared_band": [
+          62,
+          68
+        ],
+        "frames_inside_declared_band": 1,
+        "measured_by": "out/2026-08-25/tmp/measure.py over the rendered PNGs at 216x270",
+        "counted_by": "out/2026-08-25/tmp/write_measured.py, over the array above. EVERY sentence in this entry that carries one of these numbers is composed from it here rather than typed beside it, because round 4 found this deck's falloff and its bespoke median each committed twice with two different values.",
+        "frame7_falloff_L": 16.5,
+        "frame7_repeat_gutters_L": [
+          82.8,
+          91.2,
+          96.6,
+          99.3
+        ],
+        "biggest_junction": {
+          "between": 4,
+          "delta": 62.4
+        }
+      },
+      "slides": 9,
+      "bespoke_median_similarity": 0.1422,
+      "bespoke_closest_pair": [
+        "slide-02.html",
+        "slide-07.html",
+        0.7113
+      ],
+      "cut": "nothing was cut. Frame 2 went from seven instruments in one column to FIFTEEN in two when the set became a computed selection over the record, and its greeked filler field went with them, because a sheet with fifteen real lines on it does not need filler pretending to be lines. Frame 3 stayed a ROSTER and stopped being a bar chart of blank tiles: it seats five rows of WORDS in two part grooves whose dark channel crosses the glyph baseline, with two characters proud. It carries no tiles, no months and no numerals, and an earlier draft of this field said it carried all three, one field away from the technique line that says it does not. Frame 4 stopped being a third Fort Worth frame and became the sentence the deck proves and never said, that not one of the five resolutions is among the five that took effect. Frame 5 lost its border. Frame 9 was rebuilt from a hearing date with no door into the two dated public steps this record's data center items still carry.",
+      "structural_laws": "nothing carved, embossed, milled or engraved anywhere. All depth from the air gap between glazing and sheet. No raking key. No cartography and no coordinate. No invented item number, party name or building.",
+      "avoid_next": "the notice case itself for at least one cycle, and any deck that declares a value band without measuring it. The square on bordered sheet is down to two frames this run, from four, so it is no longer the thing to avoid, but a third would be. This field and `camera` above are composed from ONE list of frames, because round 5 found them disagreeing, five against four, inside the entry whose own note says every number in it comes from one source.",
+      "palette_note": "edge_cyan is GONE from this deck. It shipped as a 6px bar at x16 on frame 6, attached to no drawn object, unterminated at both ends, 2.4px wide at the size a reader gets, through three craft reads. A reserved colour that buys nothing is deleted rather than elaborated.",
+      "camera_classes": 8,
+      "frames": 9
+    },
+    {
+      "date": "2026-08-26",
+      "carousel_no": 8,
+      "written_from": "the Balcones escarpment, limestone cut and roadbase, at eight in the morning",
+      "register": "daylight limestone site, one low sun",
+      "techniques": [
+        "an SDF raymarched benched excavation, terraces self occluding, cut by four opSub boxes",
+        "plan view objects each drawn WITH the cast it throws, solved from its own height",
+        "an unfilled axonometric plate stack that casts nothing, which is the deck's law made literal",
+        "an untruncated two state bar pair with the phase figure physically detached onto a seated slab",
+        "quote plates INCISED into a crushed base course, shadowed on the sunward inner walls",
+        "an unbroken lit span bracketed by two terminators, so an absence is a positive area",
+        "two identically treated seated blocks, differing only in the height their own text needs",
+        "one lit plate on unbounded dark, the deck's only night frame",
+        "a two faced grade edge with an incised recess and a single live oak"
+      ],
+      "palette": {
+        "source": "Balcones limestone, cut face, roadbase, blackland, live oak",
+        "limestone": "#E5DECC",
+        "cut_face": "#F4F0E4",
+        "roadbase": "#C3B291",
+        "blackland": "#211E1A",
+        "liveoak": "#4D5842",
+        "granite": "#9A3B2A",
+        "note": "granite returns at the identical hex last spent on 08-16, which a judge found and which no ledger field currently compares"
+      },
+      "red_spent": true,
+      "red_on_slide": 7,
+      "red_note": "two granite ticks, one per document, drawn identically so the frame cannot rank them",
+      "camera": "nine constructions, one repeated class. The pixel closest pair is slide-04 and slide-09 at 0.68 normalised correlation over 16x16 thumbs, both being a light block over a dark block with white mono reversed out.",
+      "light_decks_used": "MEASURED, AND THIS DECK BREACHES THE CAP ON THE OWNER'S WAIVER. brand.yaml allows a light deck at most once per eight runs and says the ledger enforces the count. It did not: every light_decks_used value in this file read the literal 1 while meaning light FRAMES inside a deck, a different quantity from the one brand.yaml says is counted. Measured off the shipped PNGs on 2026-08-26: 08-18 at deck median L* 82.7, 08-20 at 85.5 and this deck at 86.7, three light decks in an eight run window against a cap of one, and two of the three had already shipped before anyone counted. A reader judge asserted it as a hard fail and was right. Waived by the owner for this deck. ledger_check.check_register now counts it off value.deck_median_L rather than off anything a run writes about itself, so the cap binds from here.",
+      "value": {
+        "per_frame_median_L": [
+          80.0,
+          87.1,
+          87.8,
+          89.0,
+          91.4,
+          70.6,
+          86.7,
+          9.4,
+          76.9
+        ],
+        "deck_median_L": 86.7,
+        "mean_L": 75.4,
+        "sd_L": 24.2,
+        "range_L": [
+          9.4,
+          91.4
+        ],
+        "measured_on": "the rendered PNGs, median of the luminance channel per frame",
+        "arc_note": "THE PLANNED TURN DID NOT SHIP AS THE BRIGHTEST FRAME. The storyboard puts the turn on the deck's lightest frame and slide 6 measures 70.6 against slide 5 at 91.4. The per frame acceptance passed because it asks only that the span be the lightest region ON ITS OWN FRAME, so nothing caught the arc level miss."
+      },
+      "slides": 9,
+      "bespoke_median_similarity": 0.2465,
+      "bespoke_closest_pair": [
+        "slide-05.html",
+        "slide-06.html",
+        0.6245
+      ],
+      "cut": "nothing cut. Slide 5 was rebuilt twice, first off the technology vocabulary that duplicated slide 7 and onto the repayment stake, then from seated plates to incised ones when three judges still read 5 and 7 as one picture. Pixel correlation between that pair went from the closest in the deck to -0.03.",
+      "structural_laws": "ONE SUN at azimuth 246 degrees on every frame, one cast length of 2.75x apparent height, contact at the foot rather than a drop shadow. A built thing casts and an unbuilt thing does not, posed on slide 2 and answered on slide 3. No sixteen marks on slide 6: the record holds the COUNT of pages carrying the words and not their folios.",
+      "avoid_next": "the raking daylight limestone register for at least one cycle, and any ground tooth written as a single noise layer. This run found every tooth loop in the deck thresholding a -1..1 fbm2 signal as if it returned 0..1, firing the dark fleck on 0.6 percent of cells and the light one on 87.8, and running at a feature size near 400px. Both are fixed and both would have shipped again."
+    },
+    {
+      "date": "2026-08-27",
+      "carousel_no": 9,
+      "written_from": "render/render_report.json, render/machine_qa.json, the gates' own exit codes, and a per frame measurement of the rendered PNGs at 216 by 270. The value block below is MEASURED and the storyboard's planned block is deliberately not copied here, because the ledger's own avoid_next line says a deck that declares a value band without measuring it is a deck to avoid.",
+      "register": "a metal fabrication high bay east of Austin at night, empty, with one 5000K fixture. Cool blue leaning light throughout so it can never be read as deck no. 6's green leaning console white, and no masonry and no console anywhere, which is the other half of the same separation.",
+      "techniques": [
+        "five receding bents in true one point perspective with a computed inverse square falloff from one high bay fixture",
+        "a two part contact shadow cast onto a slab lit FIRST, so the shadow has something to subtract from",
+        "an untruncated graduated rail with two set collars, zero drawn, one hue at one intensity, no fill",
+        "a thirteen crate stack whose height IS the count, each crate an assembly with cleats, corner blocks and a band strap, seeded jitter on the stack line",
+        "letterforms cut clean through a steel plate and backlit, the cut walls drawn INTO the plate before the aperture is knocked out so what survives is a wall and not an outline",
+        "a formed sheet machine guard relit over its own bend profile, powder coat in two layers at 600px and 1.5px feature sizes",
+        "a moulded rubber field with its drainage lattice drawn as bodies in light order, density falling off with distance",
+        "a brushed stainless data plate with four milled pockets, each a lit lip and a metal floor rather than a black bar",
+        "one point perspective floor with longitudinal control joints solved per image row as grooves, painted trapezoidal panels sized from their own laid out type, and stencil lines sized by their own depth. The type is NOT projected: each line takes its own font size from its own distance and the block takes one vertical scale, so the glyphs stay square to the camera and the frame does not meet its own acceptance item. Round three's craft judge measured it and it is recorded here as shipped rather than as planned"
+      ],
+      "palette": {
+        "source": "a metal fabrication high bay on the Blackland Prairie east of Austin, at night",
+        "blackland": "#191511 Houston Black clay, the vertisol under east Travis County",
+        "slab": "#33302B sealed concrete outside the lamp's pool",
+        "slab_lit": "#797369 the same slab inside it",
+        "coat": "#454B50 anthracite powder coat",
+        "coat_lit": "#949AA0 the same coat on a bend edge",
+        "guard": "#E7B819 machine guard yellow, the one saturated colour and the carrier of the deck's law",
+        "mill": "#7E8385",
+        "brushed": "#B9BCBA",
+        "zinc_gold": "#B0965C",
+        "belt": "#12141A",
+        "highbay": "#E9EEF3 5000K high bay LED, deliberately cool",
+        "crate": "#6B563B raw plywood, frame 4 only",
+        "urgent": "#E2788E the dark register red, frame 9 only. Declared #D7677E until round four while the frame painted #E2788E. Resolved to the painted value, which is the one that clears the 4.5 contrast floor against this frame's own normally lit panel."
+      },
+      "red_spent": true,
+      "red_on_slide": [
+        9
+      ],
+      "red_note": "Spent on frame 9 only, on the two dates a reader can still act on, September 1st and 2nd and September 4th, set inside the stencil blocks painted on the floor. Nothing else in nine frames carries it.",
+      "camera": "nine constructions. A receding bay at standing eye height, a low oblique just above slab level, an axonometric with no ground plane at all, a level view just under a stack's top course, dead flat with zero perspective, a formed sheet rotated eight degrees and filling the frame, looking down at fifty five degrees at the reader's own feet, near frontal ten degrees off axis, and one point perspective walking forward.",
+      "light_decks_used": "NONE. Measured deck median 27.7 on the rendered PNGs after four rounds of panel repairs, decisively dark. Deck no. 8 breached the cap the day before and this deck is the correction. The figure is re-measured after every round rather than carried, which is why it has moved three times.",
+      "value": {
+        "per_frame_median_L": [
+          29.7,
+          27.7,
+          10.0,
+          11.9,
+          29.1,
+          56.5,
+          19.3,
+          39.2,
+          13.3
+        ],
+        "deck_median_L": 27.7,
+        "mean_L": 26.3,
+        "sd_L": 14.1,
+        "range_L": [
+          10.0,
+          56.5
+        ],
+        "measured_on": "the nine rendered PNGs at 216 by 270, median of the luminance channel",
+        "planned_and_missed": "the storyboard planned 12, 20, 16, 30, 14, 72, 26, 50, 22 and the deck measured what is above. Frame 6 planned 72 and measured 56.5, and frames 3 and 4 planned 16 and 30 and measured 10.0 and 11.9. These three figures disagreed with per_frame_median_L in this same object until round three's craft judge read both and said so, because the repairs were re-measured and this sentence was not. A prose figure beside a measured array is a second copy of a number, and the second copy is the one that goes stale. The plan is kept in the storyboard and is NOT copied here, because a planned band recorded as if it were measured is the exact fault avoid_next names."
+      },
+      "slides": 9,
+      "structural_laws": [
+        "ONE LAMP per frame, azimuth fixed, with a computed inverse square falloff. The light reaches exactly as far as the record does. No second light, no horizon, no sky and no star field anywhere in nine frames",
+        "MACHINE GUARD YELLOW on every frame and only at the line between where a machine works and where a person stands, its position computed from that frame's own geometry. On frame 9 alone it inverts into a threshold to walk across",
+        "FABRICATED, NEVER CARVED. Every form assembled and every joint showing. Nothing milled, engraved, embossed or incised, which is what separates this from deck no. 6's console recesses and deck no. 8's incised limestone",
+        "NOTHING DEPICTED THAT NO DOCUMENT DESCRIBES. No frame draws the company's plant, its machinery, the site, or any person",
+        "every absence written as not stated in a NAMED document, never as a thing that did not happen"
+      ],
+      "cut": "nothing was cut. Slide 5 was rebuilt twice, first because the knockout composited in the wrong order and the backlit cuts rendered as dark embossed type, then again because the letterforms shipped as canvas raster and the deck's single most important sentence would have reached the platform as a bitmap. It is SVG text over the canvas walls now, with the overlap declared. ROUND FOUR, ON FRAME 5, RECORDED BECAUSE A JUDGE ASKED FOR IT AND WAS RIGHT TO. The cut is built as two feOffset copies of the glyph alpha, dark at minus six and light at plus six, under a gradient fill. Round three and round four both read the result as an emboss rather than an aperture, and round four named the cost precisely: the lit rim falls in the opposite quadrant to this deck's own lamp, which sits upper left on frames 1, 2, 3, 6, 7 and 8, and law 3 of this deck forbids anything embossed. THE FRAME SHIPS THAT WAY. It is recorded here as a MISS rather than described as met, the same way frame 9's stencil is, because the run corrected the frame 9 ledger line after a judge caught it and would otherwise have left its twin standing three frames earlier. The rebuild the craft lens asked for, feDiffuseLighting over a blurred alpha lit at the deck's own azimuth, is a proposal in the run record.",
+      "avoid_next": "the high bay night interior for at least one cycle, and any frame that paints a value field as a near black bar. Slide 8's four unstamped fields shipped as black rectangles on the first render and read as REDACTIONS, which says something was removed when the record says nothing was ever stated. They are milled pockets with a metal floor and a lit lip now. A deck about what a document does not say has to be careful that its own drawing does not accuse anybody.",
+      "bespoke_median_similarity": 0.4633,
+      "bespoke_closest_pair": [
+        "slide-02.html",
+        "slide-08.html",
+        0.8125
+      ],
+      "panel_repairs": [
+        "FRAME 4 PRINTED A JOIN NOTHING COMPUTED, and this is the entry to read if only one is read. The roster laid thirteen item ids beside twelve alphabetically sorted county names, each list ordered on its own key, and a reader met a ruled two column table asserting pairings no code had produced. Four rows were false against this run's own claims and the thirteenth orphaned. Two of three judges found it independently. compute.py now emits ask_pairs, one row per item read off that item's own geography. A TABLE IS A CLAIM ABOUT A JOIN, and a join is computed or it is not printed.",
+        "Frame 4's dek reversed the actors, reading as though the city or county did the asking when every claim has the county as the body BEING asked. The run's own caption said it the right way round on the same post. Rewritten to match.",
+        "Frame 6's dek said 'Nothing was requested here', an absence stated as a fact about the world with no document named. The storyboard's own risk note for that frame predicted this exact word. It now reads 'Neither release names a request here.'",
+        "Frame 5 shipped as embossed white type with a drop shadow against a declared technique of letterforms cut through a plate and lit from behind, and its glyphs ghosted because a canvas knockout and an SVG glyph are two rasterizers that drifted by two pixels. Rebuilt as ONE text node per line with an SVG filter chain supplying the wall and the light spill. The interim fix, a stack of offset text copies, was refused by panel_ready for marking the deck's most important sentence data-decorative, which is the exemption that gate exists to refuse, and it was right.",
+        "Frame 9 shipped with no perspective at all against a declared one point floor, so it read as horizontal bands. It now carries longitudinal control joints converging on a vanishing point, panels and tape bands drawn as trapezoids narrowing with distance, and stencil lines sized by their own depth.",
+        "Frame 3's hook read as '500 to 500 jobs' at feed size because Fraunces closes the 3's terminals at display weight. The figures are now JetBrains Mono with tabular numerals, which is what the engine's own house pairing said to do with a measurement in the first place.",
+        "round two, integrity: frame 4's dek and the caption narrated the counted set as thirteen items somebody ASKED for, and the membership test only ever reads words in the record. Half the set runs the other way. Gloss rewritten to the test's own words and compute.py now refuses any gloss carrying a direction verb",
+        "round two, integrity: the cover asserted 'No incentives.' as fact in the deck's largest type, sourced only to a quote by the beneficiary. Replaced with 'Two releases. Neither names a room.', scoped to the two documents and traced to the two claims the frame declares",
+        "round two, integrity: frame 5 stamped 'MAYOR KIRK WATSON' beside c6, whose quote and text carry no name. Now reads 'AUSTIN'S MAYOR', which is c6's own wording",
+        "round two, craft and integrity both: frame 5's cut was a flat knockout. Measured against the render, the plate-to-glyph transition was one sample step with no rim, because the filter was id='cut' and so was the SVG element carrying it, so url(#cut) had resolved to the element and the filter had never run in any round. Renamed, two wall values added, aperture given a backlit gradient, plate texture raised off a measured variance of 133",
+        "round two, craft: frame 4's thirteen crates were one value. The face mix ran through a clamp that bound on two thirds of the stack. Clamp removed, gamma added, and every body on the crate now obeys the lamp rather than only the plywood. Measured falloff 66 to 132 to 58 up the stack",
+        "round two, craft: frame 8's four value pockets were a typed 214px wide, identical, while the dossier declared widths measured from the laid out strings. Now measured off each row's own label",
+        "round two, craft: frame 9's longitudinal joints were dotted hairlines because the loop stepped a parameter rather than image rows. Rewritten to walk rows and lay three values across the groove. The near threshold moved back off the footer and both painted panels are now sized from their own type, so neither can clamp to a full bleed rectangle",
+        "round two, craft: frame 1's steel took 45 percent of its value from distance dimming rather than from the lamp, so the columns beat the declared lamp pool. Lamp now carries four fifths and the pool has a hot core",
+        "round two, reader: frame 9's two rooms now state what each is about, where it is and when it sits, from c20's note and c21, both already fetched and already cited on that frame"
+      ],
+      "bespoke_note": "Re-measured after round four. The median rose from 0.363 to 0.4633 and the closest pair moved from slides 1 and 9 to slides 2 and 8 at 0.8125, because the repairs added the same vocabulary to several frames at once: shade helpers, measured-from-type widths, and probes authored off the render. Both of those frames are a mid grey steel object photographed near frontally with mono type on it, which the deck's own risk note predicted and claimed inverted polarity would hold apart. It did not. This is above bespoke_check's 0.35 WARN band and is recorded rather than explained away."
     }
-   },
-   "slides": 9,
-   "bespoke_median_similarity": 0.1422,
-   "bespoke_closest_pair": [
-    "slide-02.html",
-    "slide-07.html",
-    0.7113
-   ],
-   "cut": "nothing was cut. Frame 2 went from seven instruments in one column to FIFTEEN in two when the set became a computed selection over the record, and its greeked filler field went with them, because a sheet with fifteen real lines on it does not need filler pretending to be lines. Frame 3 stayed a ROSTER and stopped being a bar chart of blank tiles: it seats five rows of WORDS in two part grooves whose dark channel crosses the glyph baseline, with two characters proud. It carries no tiles, no months and no numerals, and an earlier draft of this field said it carried all three, one field away from the technique line that says it does not. Frame 4 stopped being a third Fort Worth frame and became the sentence the deck proves and never said, that not one of the five resolutions is among the five that took effect. Frame 5 lost its border. Frame 9 was rebuilt from a hearing date with no door into the two dated public steps this record's data center items still carry.",
-   "structural_laws": "nothing carved, embossed, milled or engraved anywhere. All depth from the air gap between glazing and sheet. No raking key. No cartography and no coordinate. No invented item number, party name or building.",
-   "avoid_next": "the notice case itself for at least one cycle, and any deck that declares a value band without measuring it. The square on bordered sheet is down to two frames this run, from four, so it is no longer the thing to avoid, but a third would be. This field and `camera` above are composed from ONE list of frames, because round 5 found them disagreeing, five against four, inside the entry whose own note says every number in it comes from one source.",
-   "palette_note": "edge_cyan is GONE from this deck. It shipped as a 6px bar at x16 on frame 6, attached to no drawn object, unterminated at both ends, 2.4px wide at the size a reader gets, through three craft reads. A reserved colour that buys nothing is deleted rather than elaborated.",
-   "camera_classes": 8,
-   "frames": 9
-  },
-  {
-   "date": "2026-08-26",
-   "carousel_no": 8,
-   "written_from": "the Balcones escarpment, limestone cut and roadbase, at eight in the morning",
-   "register": "daylight limestone site, one low sun",
-   "techniques": [
-    "an SDF raymarched benched excavation, terraces self occluding, cut by four opSub boxes",
-    "plan view objects each drawn WITH the cast it throws, solved from its own height",
-    "an unfilled axonometric plate stack that casts nothing, which is the deck's law made literal",
-    "an untruncated two state bar pair with the phase figure physically detached onto a seated slab",
-    "quote plates INCISED into a crushed base course, shadowed on the sunward inner walls",
-    "an unbroken lit span bracketed by two terminators, so an absence is a positive area",
-    "two identically treated seated blocks, differing only in the height their own text needs",
-    "one lit plate on unbounded dark, the deck's only night frame",
-    "a two faced grade edge with an incised recess and a single live oak"
-   ],
-   "palette": {
-    "source": "Balcones limestone, cut face, roadbase, blackland, live oak",
-    "limestone": "#E5DECC",
-    "cut_face": "#F4F0E4",
-    "roadbase": "#C3B291",
-    "blackland": "#211E1A",
-    "liveoak": "#4D5842",
-    "granite": "#9A3B2A",
-    "note": "granite returns at the identical hex last spent on 08-16, which a judge found and which no ledger field currently compares"
-   },
-   "red_spent": true,
-   "red_on_slide": 7,
-   "red_note": "two granite ticks, one per document, drawn identically so the frame cannot rank them",
-   "camera": "nine constructions, one repeated class. The pixel closest pair is slide-04 and slide-09 at 0.68 normalised correlation over 16x16 thumbs, both being a light block over a dark block with white mono reversed out.",
-   "light_decks_used": "MEASURED, AND THIS DECK BREACHES THE CAP ON THE OWNER'S WAIVER. brand.yaml allows a light deck at most once per eight runs and says the ledger enforces the count. It did not: every light_decks_used value in this file read the literal 1 while meaning light FRAMES inside a deck, a different quantity from the one brand.yaml says is counted. Measured off the shipped PNGs on 2026-08-26: 08-18 at deck median L* 82.7, 08-20 at 85.5 and this deck at 86.7, three light decks in an eight run window against a cap of one, and two of the three had already shipped before anyone counted. A reader judge asserted it as a hard fail and was right. Waived by the owner for this deck. ledger_check.check_register now counts it off value.deck_median_L rather than off anything a run writes about itself, so the cap binds from here.",
-   "value": {
-    "per_frame_median_L": [
-     80.0,
-     87.1,
-     87.8,
-     89.0,
-     91.4,
-     70.6,
-     86.7,
-     9.4,
-     76.9
-    ],
-    "deck_median_L": 86.7,
-    "mean_L": 75.4,
-    "sd_L": 24.2,
-    "range_L": [
-     9.4,
-     91.4
-    ],
-    "measured_on": "the rendered PNGs, median of the luminance channel per frame",
-    "arc_note": "THE PLANNED TURN DID NOT SHIP AS THE BRIGHTEST FRAME. The storyboard puts the turn on the deck's lightest frame and slide 6 measures 70.6 against slide 5 at 91.4. The per frame acceptance passed because it asks only that the span be the lightest region ON ITS OWN FRAME, so nothing caught the arc level miss."
-   },
-   "slides": 9,
-   "bespoke_median_similarity": 0.2465,
-   "bespoke_closest_pair": [
-    "slide-05.html",
-    "slide-06.html",
-    0.6245
-   ],
-   "cut": "nothing cut. Slide 5 was rebuilt twice, first off the technology vocabulary that duplicated slide 7 and onto the repayment stake, then from seated plates to incised ones when three judges still read 5 and 7 as one picture. Pixel correlation between that pair went from the closest in the deck to -0.03.",
-   "structural_laws": "ONE SUN at azimuth 246 degrees on every frame, one cast length of 2.75x apparent height, contact at the foot rather than a drop shadow. A built thing casts and an unbuilt thing does not, posed on slide 2 and answered on slide 3. No sixteen marks on slide 6: the record holds the COUNT of pages carrying the words and not their folios.",
-   "avoid_next": "the raking daylight limestone register for at least one cycle, and any ground tooth written as a single noise layer. This run found every tooth loop in the deck thresholding a -1..1 fbm2 signal as if it returned 0..1, firing the dark fleck on 0.6 percent of cells and the light one on 87.8, and running at a feature size near 400px. Both are fixed and both would have shipped again."
-  }
- ]
+  ]
 }

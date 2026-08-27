@@ -1,0 +1,345 @@
+<!doctype html>
+<!-- SLIDE 1 — THE HOOK. An empty high bay under one fixture, five receding bents,
+     a computed inverse-square pool on the slab, and the guard-yellow floor line
+     dying into the dark as the lamp falls off.
+     LAW 1 one lamp. LAW 2 the yellow boundary. LAW 3 absences named to a document.
+     LAW 4 nothing depicted that nobody has described. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<script src="@@ASSETS@@/js/noise.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #191511; position: relative; font-family: "Fraunces", serif; }
+  canvas.art { position: absolute; left: 0; top: 0; width: 1080px; height: 1350px; }
+  .hook { position: absolute; left: 82px; top: 380px; width: 900px;
+          font-weight: 800; font-size: 106px; line-height: 0.96;
+          letter-spacing: -0.024em; color: #E9EEF3;
+          font-variation-settings: "opsz" 106; }
+  .dek { position: absolute; left: 80px; top: 742px; width: 720px;
+         font-family: "Manrope", sans-serif; font-weight: 500; font-size: 35px;
+         line-height: 1.36; color: rgba(233,238,243,0.88); }
+  .counter { position: absolute; left: 80px; bottom: 76px;
+             font-family: "JetBrains Mono", monospace; font-size: 25px;
+             letter-spacing: 0.14em; color: rgba(233,238,243,0.66); }
+  .place { position: absolute; right: 80px; bottom: 76px; text-align: right;
+           font-family: "JetBrains Mono", monospace; font-size: 25px;
+           letter-spacing: 0.14em; color: rgba(233,238,243,0.66); }
+  .tx-site { position: absolute; right: 80px; bottom: 44px; text-align: right;
+          font-family: "JetBrains Mono", monospace; font-size: 24px;
+          letter-spacing: 0.10em; color: rgba(233,238,243,0.44); }
+</style>
+</head>
+<body data-encodes='[{"claim":"the guard line dies as the lamp falls off","reads":"differ","a":[[430,1148,150,24]],"b":[[890,1148,150,24]]}]'>
+  <canvas class="art" id="art" width="2160" height="2700"></canvas>
+
+  <h1 class="hook">Two releases.<br>Neither names<br>a room.</h1>
+  <p class="dek">Amazon picked Austin for a plant that builds the robots. Neither release names a vote or a hearing or an acting public body.</p>
+  <div class="counter">01 / 09</div>
+  <div class="place">TRAVIS COUNTY</div>
+  <div class="tx-site">texasaidocket.com</div>
+
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260827;
+  TX.reseed(SEED);
+  var R = TX.rng(SEED);
+
+  var c = document.getElementById('art');
+  var g = c.getContext('2d');
+  g.scale(2, 2);
+  var W = 1080, H = 1350;
+
+  // ------------------------------------------------------------------ palette
+  function mix(a, b, t) {
+    t = t < 0 ? 0 : t > 1 ? 1 : t;
+    return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t];
+  }
+  function rgb(c) { return 'rgb(' + (c[0] | 0) + ',' + (c[1] | 0) + ',' + (c[2] | 0) + ')'; }
+  function lum(c) { return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]; }
+
+  var BLACKLAND = [25, 21, 17];
+  var SLAB      = [51, 48, 43];
+  var SLAB_LIT  = [121, 115, 105];
+  var COAT      = [69, 75, 80];
+  var COAT_LIT  = [148, 154, 160];
+  var GUARD     = [231, 184, 25];
+  var HIGHBAY   = [233, 238, 243];
+
+  // ------------------------------------------------------- perspective, one point
+  // Camera stands on the slab. The bay runs away from the reader.
+  var VP = { x: 508, y: 496 };          // vanishing point, on the horizon of the floor
+  var FOC = 300;                        // focal length in world units
+
+  // world z (depth, +away) -> screen scale
+  function sc(z) { return FOC / (FOC + z); }
+  // a point on the slab at (worldX, z) -> screen. z 0 lands below the frame, so the
+  // near floor reaches the reader's own feet instead of stopping in mid air.
+  function floorPt(wx, z) {
+    var s = sc(z);
+    return { x: VP.x + wx * s, y: VP.y + (H + 230 - VP.y) * s, s: s };
+  }
+
+  var bentZFirst = 40;
+
+  // ------------------------------------------------------------------- the lamp
+  // Hangs over the bay at depth LZ, worldX 0. Its pool lands on the slab beneath it.
+  var LZ = 290;
+  var lampScale = sc(LZ);
+  var LAMP = { x: VP.x, y: VP.y - 232 * lampScale, s: lampScale };
+  var pool = floorPt(0, LZ);            // where the light lands on the slab
+
+  // Inverse square from the lamp's ground point, in SCREEN space corrected for the
+  // floor's foreshortening so the pool is an ellipse rather than a circle.
+  function lit(x, y) {
+    var dx = (x - pool.x) / 330;
+    var dy = (y - pool.y) / 150;
+    return 1 / (1 + dx * dx + dy * dy);
+  }
+
+  // ------------------------------------------------------------------- the ground
+  g.fillStyle = rgb(BLACKLAND);
+  g.fillRect(0, 0, W, H);
+
+  // ---- THE ROOF DECK. Corrugated, above the nearest bent, catching the lamp's spill
+  // on the rib crowns only, so the top band carries modeled tone rather than black.
+  (function () {
+    var deckBottom = VP.y - 300 * sc(bentZFirst) - 10;
+    for (var y = 0; y < deckBottom; y += 2) {
+      for (var x = 0; x < W; x += 4) {
+        var up = lit(x, VP.y + 380) * 0.22;
+        var rib = 0.5 + 0.5 * Math.sin((x + y * 0.16) * 0.115);
+        var n = TX.fbm2(x * 0.006, y * 0.02, 2);
+        var t = up * (0.35 + 0.65 * rib) + 0.04 + Math.max(0, n) * 0.035;
+        g.fillStyle = rgb(mix(BLACKLAND, COAT_LIT, Math.min(0.42, t)));
+        g.fillRect(x, y, 4, 2);
+      }
+    }
+  })();
+
+  // ---- THE SLAB, drawn in perspective rows from the horizon down to the reader.
+  var HORIZON = VP.y + 6;
+  for (var y = HORIZON; y < H; y += 2) {
+    for (var x = 0; x < W; x += 8) {
+      var l = lit(x + 4, y);
+      var col = mix(SLAB, SLAB_LIT, Math.min(1, l * 1.35));
+      // sealed concrete sheen, seeded, so the floor is never a flat fill
+      var n = TX.fbm2(x * 0.004, y * 0.010, 3);
+      col = mix(col, SLAB_LIT, Math.max(0, n) * 0.13 * (0.3 + l));
+      // the floor darkens toward the horizon because the lamp is behind the reader too
+      col = mix(BLACKLAND, col, Math.min(1, 0.20 + (y - HORIZON) / 420));
+      // the hot centre of the pool, where the lamp actually lands. Without this the pool
+      // topped out at the slab's own lit value and read as a slightly paler patch.
+      col = mix(col, HIGHBAY, Math.max(0, l - 0.52) * 0.58);
+      g.fillStyle = rgb(col);
+      g.fillRect(x, y, 8, 2);
+    }
+  }
+
+  // ---- control joints, at the spacing a Texas slab on grade actually gets
+  [70, 160, 330, 620, 1200].forEach(function (z) {
+    var a = floorPt(-900, z), b = floorPt(900, z);
+    if (a.y < HORIZON + 4) return;
+    var w = Math.max(1.4, 5 * a.s);
+    for (var x = 0; x < W; x += 4) {
+      var l = lit(x, a.y);
+      g.fillStyle = rgb(mix(SLAB, BLACKLAND, 0.68));
+      g.fillRect(x, a.y, 4, w);
+      g.fillStyle = rgb(mix(mix(SLAB, SLAB_LIT, Math.min(1, l * 1.2)), HIGHBAY, 0.12));
+      g.fillRect(x, a.y - Math.max(1, w * 0.4), 4, Math.max(1, w * 0.4));
+    }
+  });
+
+  // ------------------------------------------------------- FIVE RECEDING BENTS
+  var bentZ = [40, 130, 290, 560, 1100];
+  var planeL = [];
+  for (var i = bentZ.length - 1; i >= 0; i--) {
+    (function (z, idx) {
+      var s = sc(z);
+      var footL = floorPt(-620, z), footR = floorPt(620, z);
+      var top = VP.y - 300 * s;
+      var colW = Math.max(3, 56 * s);
+      // distance dimming, independent of the lamp, so the bay recedes even off-axis
+      var far = 1 - Math.min(0.80, z / 1300);
+
+      // columns
+      [footL.x - colW, footR.x].forEach(function (cx, k) {
+        // ROUND TWO: "the declared 520x300 lamp pool is a soft cone barely separable from
+        // the floor around it; what wins is the hook, then the pale coat_lit columns". The
+        // steel was taking 45 percent of its value from plain distance dimming rather than
+        // from the lamp, so a column the lamp never reaches still came out pale, and this
+        // frame's ONE LAMP law was decoration rather than structure. The lamp now carries
+        // four fifths of it and the ceiling is lower, so steel outside the pool goes dark
+        // and the brightest thing on the floor is the pool.
+        var l = lit(cx + colW / 2, (top + footL.y) / 2) * 0.80 + far * 0.20;
+        var face = mix(mix(BLACKLAND, COAT, far), COAT_LIT, Math.min(0.60, l * 0.58));
+        g.fillStyle = rgb(face);
+        g.fillRect(cx, top, colW, footL.y - top);
+        // the lamp-facing inner edge
+        var edge = mix(face, COAT_LIT, 0.42 * far);
+        g.fillStyle = rgb(edge);
+        g.fillRect(k === 0 ? cx + colW - Math.max(1.5, colW * 0.22) : cx, top,
+                   Math.max(1.5, colW * 0.22), footL.y - top);
+        // base plate where the column meets the slab
+        g.fillStyle = rgb(mix(face, BLACKLAND, 0.28));
+        g.fillRect(cx - colW * 0.22, footL.y - Math.max(2, 9 * s), colW * 1.44, Math.max(2, 9 * s));
+      });
+
+      // roof beam
+      var beamH = Math.max(3, 46 * s);
+      var lb = lit(VP.x, top) * 0.74 + far * 0.26;
+      var beam = mix(mix(BLACKLAND, COAT, far), COAT_LIT, Math.min(0.64, lb * 0.66));
+      g.fillStyle = rgb(beam);
+      g.fillRect(footL.x - colW, top, (footR.x + colW) - (footL.x - colW), beamH);
+      // its lit underside edge
+      g.fillStyle = rgb(mix(beam, COAT_LIT, 0.34));
+      g.fillRect(footL.x - colW, top + beamH - Math.max(1.5, beamH * 0.2),
+                 (footR.x + colW) - (footL.x - colW), Math.max(1.5, beamH * 0.2));
+      // purlins
+      var np = 9;
+      for (var q = 0; q < np; q++) {
+        var px = footL.x + (footR.x - footL.x) * (q + 0.5) / np;
+        g.fillStyle = rgb(mix(beam, BLACKLAND, 0.42));
+        g.fillRect(px - Math.max(0.8, 4 * s), top + beamH, Math.max(1.4, 8 * s), Math.max(2, 34 * s));
+      }
+      planeL[idx] = lum(beam);
+    })(bentZ[i], i);
+  }
+
+  // ------------------------------------------------------------------- the fixture
+  (function () {
+    var fx = LAMP.x, fy = LAMP.y, s = Math.max(0.5, LAMP.s * 1.9);
+    g.fillStyle = rgb(mix(COAT, COAT_LIT, 0.34));
+    g.fillRect(fx - 4 * s, fy - 64 * s, 8 * s, 52 * s);
+    g.fillStyle = rgb(mix(COAT_LIT, HIGHBAY, 0.30));
+    g.beginPath();
+    g.moveTo(fx - 60 * s, fy - 14 * s); g.lineTo(fx + 60 * s, fy - 14 * s);
+    g.lineTo(fx + 42 * s, fy + 15 * s); g.lineTo(fx - 42 * s, fy + 15 * s);
+    g.closePath(); g.fill();
+    var em = g.createLinearGradient(fx - 42 * s, 0, fx + 42 * s, 0);
+    em.addColorStop(0, 'rgba(233,238,243,0.80)');
+    em.addColorStop(0.5, 'rgba(255,255,255,1)');
+    em.addColorStop(1, 'rgba(233,238,243,0.80)');
+    g.fillStyle = em;
+    g.fillRect(fx - 42 * s, fy + 12 * s, 84 * s, Math.max(4, 9 * s));
+
+    // the cone of air, anchored on the lamp and reaching the pool
+    var cone = g.createLinearGradient(fx, fy, pool.x, pool.y);
+    cone.addColorStop(0, 'rgba(233,238,243,0.16)');
+    cone.addColorStop(1, 'rgba(233,238,243,0)');
+    g.save();
+    g.beginPath();
+    g.moveTo(fx - 44 * s, fy + 16 * s); g.lineTo(fx + 44 * s, fy + 16 * s);
+    g.lineTo(pool.x + 330, pool.y + 20); g.lineTo(pool.x - 330, pool.y + 20);
+    g.closePath(); g.clip();
+    g.fillStyle = cone; g.fillRect(0, 0, W, H);
+    g.restore();
+  })();
+
+  // ------------------------------------------- THE GUARD LINE, painted on the slab
+  // Runs across the bay at a fixed depth, so it recedes with the floor and its
+  // luminance follows the lamp's own falloff rather than a painted gradient.
+  var GZ = 200;
+  (function () {
+    var a = floorPt(-1800, GZ), b = floorPt(1800, GZ);
+    var band = Math.max(14, 40 * a.s);
+    var lo = Infinity, hi = -Infinity;
+    for (var x = 0; x < W; x += 2) {
+      var dxg = (x + 1 - pool.x) / 210;
+      var l = 1 / (1 + dxg * dxg);
+      var t = Math.min(1, l * 1.28);
+      var col = mix(mix(BLACKLAND, GUARD, 0.10), GUARD, t);
+      lo = Math.min(lo, lum(col)); hi = Math.max(hi, lum(col));
+      g.fillStyle = rgb(col);
+      g.fillRect(x, a.y, 2, band);
+      // paint thickness, catching the lamp on the upper edge only
+      g.fillStyle = rgb(mix(col, [255, 244, 200], 0.34 * t));
+      g.fillRect(x, a.y, 2, Math.max(1.5, band * 0.12));
+      // the shadowed lower edge of the paint film
+      g.fillStyle = rgb(mix(col, BLACKLAND, 0.34));
+      g.fillRect(x, a.y + band - Math.max(1.5, band * 0.1), 2, Math.max(1.5, band * 0.1));
+    }
+    window.__txGuardFalloff = { lo: lo, hi: hi, span: hi - lo, y: a.y, band: band };
+  })();
+
+  // ------------------------------------- FLOOR FURNITURE IN THE NEAR FIELD
+  // The bottom third earns its keep with modeled objects rather than a caption.
+  (function () {
+    // a trench drain running across the near slab, grate bars solved from the lamp
+    var dz = 92;
+    var d = floorPt(-1800, dz);
+    var gw = Math.max(16, 46 * d.s);
+    for (var x = 0; x < W; x += 2) {
+      var l = lit(x, d.y + gw / 2);
+      // the channel, dark
+      g.fillStyle = rgb(mix(SLAB, BLACKLAND, 0.80));
+      g.fillRect(x, d.y, 2, gw);
+      // the lit upstand on the near lip
+      g.fillStyle = rgb(mix(mix(SLAB, SLAB_LIT, Math.min(1, l * 1.5)), HIGHBAY, 0.16));
+      g.fillRect(x, d.y + gw - Math.max(2, gw * 0.16), 2, Math.max(2, gw * 0.16));
+      // and the shadowed far lip
+      g.fillStyle = rgb(mix(SLAB, BLACKLAND, 0.45));
+      g.fillRect(x, d.y, 2, Math.max(2, gw * 0.12));
+    }
+    // grate bars, each a body with a lit crown and a dark flank
+    var bar = Math.max(3, 13 * d.s);
+    for (var bx = 0; bx < W; bx += bar * 2.1) {
+      var lb = lit(bx, d.y + gw / 2);
+      g.fillStyle = rgb(mix(mix(SLAB, SLAB_LIT, Math.min(1, lb * 1.35)), HIGHBAY, 0.10));
+      g.fillRect(bx, d.y + Math.max(1, gw * 0.12), bar, gw - Math.max(2, gw * 0.24));
+      g.fillStyle = rgb(mix(SLAB, BLACKLAND, 0.62));
+      g.fillRect(bx + bar - Math.max(1, bar * 0.3), d.y + Math.max(1, gw * 0.12),
+                 Math.max(1, bar * 0.3), gw - Math.max(2, gw * 0.24));
+    }
+
+    // two conduit stubs coming up out of the slab, capped, near the left column line
+    [[-470, 66], [-392, 62]].forEach(function (pr) {
+      var f = floorPt(pr[0], pr[1]);
+      var r = Math.max(5, 15 * f.s), hgt = Math.max(16, 74 * f.s);
+      var l = lit(f.x, f.y);
+      // cast on the slab first, so the stub sits rather than floats
+      var cast = g.createLinearGradient(f.x, f.y, f.x + hgt * 1.4, f.y + hgt * 0.30);
+      cast.addColorStop(0, 'rgba(12,10,8,0.62)');
+      cast.addColorStop(1, 'rgba(12,10,8,0)');
+      g.fillStyle = cast;
+      g.beginPath();
+      g.ellipse(f.x + hgt * 0.55, f.y + 2, hgt * 0.95, r * 0.62, 0, 0, Math.PI * 2);
+      g.fill();
+      // the pipe body, lit side and terminator
+      var body = mix(COAT, COAT_LIT, Math.min(0.85, l * 0.9));
+      var grad = g.createLinearGradient(f.x - r, 0, f.x + r, 0);
+      grad.addColorStop(0, rgb(mix(body, BLACKLAND, 0.55)));
+      grad.addColorStop(0.42, rgb(body));
+      grad.addColorStop(1, rgb(mix(body, BLACKLAND, 0.35)));
+      g.fillStyle = grad;
+      g.fillRect(f.x - r, f.y - hgt, r * 2, hgt);
+      // the cap, a bounded lit disc
+      g.fillStyle = rgb(mix(body, HIGHBAY, 0.22));
+      g.beginPath();
+      g.ellipse(f.x, f.y - hgt, r, r * 0.42, 0, 0, Math.PI * 2);
+      g.fill();
+    });
+  })();
+
+  // ------------------------------------------------------------------------ grain
+  (function () {
+    var img = g.getImageData(0, 0, W * 2, H * 2);
+    var d = img.data;
+    for (var i = 0; i < d.length; i += 4) {
+      var v = (R() - 0.5) * 14;
+      d[i] += v; d[i + 1] += v; d[i + 2] += v;
+    }
+    g.putImageData(img, 0, 0);
+  })();
+
+  var minGap = Infinity;
+  for (var k = 1; k < planeL.length; k++) minGap = Math.min(minGap, Math.abs(planeL[k] - planeL[k - 1]));
+  window.__txPlaneSeparation = { values: planeL, minGap: minGap };
+
+  resolve();
+});
+</script>
+</body>
+</html>

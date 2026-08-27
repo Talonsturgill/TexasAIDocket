@@ -1,0 +1,275 @@
+<!doctype html>
+<!-- SLIDE 5 — THE SENTENCE THE DECK TURNS ON. The mayor's words cut clean through a
+     steel plate and lit from behind, so the words are the material that is not there.
+     Dead flat, no perspective. The deck's one stop. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<script src="@@ASSETS@@/js/noise.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #191511; position: relative; font-family: "Fraunces", serif; }
+  canvas.art { position: absolute; left: 0; top: 0; width: 1080px; height: 1350px; }
+  svg.cut { position: absolute; left: 0; top: 0; }
+  .attrib { position: absolute; left: 84px; top: 930px; width: 760px;
+            font-family: "Manrope", sans-serif; font-weight: 500; font-size: 32px;
+            line-height: 1.34; color: rgba(233,238,243,0.90); }
+  .cid { position: absolute; left: 84px; top: 1042px;
+         font-family: "JetBrains Mono", monospace; font-size: 25px;
+         letter-spacing: 0.13em; color: rgba(233,238,243,0.56); }
+  .counter { position: absolute; left: 84px; bottom: 84px;
+             font-family: "JetBrains Mono", monospace; font-size: 25px;
+             letter-spacing: 0.14em; color: rgba(233,238,243,0.66); }
+  .place { position: absolute; right: 80px; bottom: 84px; text-align: right;
+           font-family: "JetBrains Mono", monospace; font-size: 25px;
+           letter-spacing: 0.14em; color: rgba(233,238,243,0.66); }
+  .tx-site { position: absolute; left: 84px; bottom: 46px; text-align: left;
+             font-family: "JetBrains Mono", monospace; font-size: 24px;
+             letter-spacing: 0.10em; color: rgba(233,238,243,0.42); }
+</style>
+</head>
+<!-- THE PROBE HAD TO CHANGE WITH THE ART, and the reason is the whole lesson of round two.
+     The old probe read glyph-white against plate-grey and reported dE 68.1, which a FLAT
+     KNOCKOUT passes just as easily as a cut plate, so it certified the one thing this frame's
+     acceptance list forbids. A probe that cannot go red on the defect is not a check.
+     This one straddles the top and bottom edges of the same line of type. Both bands hold
+     about the same amount of glyph, so the only thing that separates them is which cut wall
+     lies on that side, and a flat knockout has neither.
+
+     AND THE PROBE IS WHAT FOUND THE REAL BUG, which no judge could have seen and no amount of
+     looking would have explained. Measured against the render, the plate-to-glyph transition
+     was one sample step wide with no rim on either side, so the filter was not running at all.
+     The filter was declared id="cut" and the SVG element carrying it is id="cut", so
+     url(#cut) had been resolving to the SVG element since the frame was first written. Both
+     rounds shipped a genuinely flat knockout while the source read like a filter chain, and
+     "I can see no wall value" was exactly right. The bands are placed off the MEASURED glyph
+     rows rather than off the intended baseline, because line two is x-height only and the
+     intended cap line sat twenty pixels above any ink. -->
+<body data-encodes='[{"claim":"the near cut wall is dark and the far cut wall is lit, so the opening has thickness","reads":"differ","a":[[84,402,330,14]],"b":[[84,459,330,14]]}]'>
+  <canvas class="art" id="art" width="2160" height="2700"></canvas>
+  <svg class="cut" id="cut" width="1080" height="1350"></svg>
+  <p class="attrib">Austin's mayor, quoted inside the company's own announcement.</p>
+  <div class="cid">c6 &nbsp; AUSTIN'S MAYOR</div>
+  <div class="counter">05 / 09</div>
+  <div class="place">TRAVIS COUNTY</div>
+
+  <div class="tx-site">texasaidocket.com</div>
+
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260827;
+  TX.reseed(SEED + 5);
+  var R = TX.rng(SEED + 5);
+  var c = document.getElementById('art'), g = c.getContext('2d');
+  g.scale(2, 2);
+  var W = 1080, H = 1350;
+
+  function mix(a, b, t) { t = t < 0 ? 0 : t > 1 ? 1 : t;
+    return [a[0]+(b[0]-a[0])*t, a[1]+(b[1]-a[1])*t, a[2]+(b[2]-a[2])*t]; }
+  function rgb(c) { return 'rgb('+(c[0]|0)+','+(c[1]|0)+','+(c[2]|0)+')'; }
+
+  var BLACKLAND=[25,21,17], MILL=[126,131,133], COAT=[69,75,80], COAT_LIT=[148,154,160];
+  var GUARD=[231,184,25], HIGHBAY=[233,238,243];
+
+  // ---- the dark behind the plate, and the back light itself
+  g.fillStyle = rgb(BLACKLAND); g.fillRect(0,0,W,H);
+
+  // THE WORDS, cut through. Laid out here so the cut geometry and the glow agree.
+  var LINES = ['Amazon asked for', 'no economic', 'incentives, no', 'public money'];
+  var FS = 124, LH = 144, TOP = 322, LX = 84;
+
+  // 1. the back light: a broad field behind the plate, brightest behind the cut mass
+  (function () {
+    var cy = TOP + LH * (LINES.length - 1) / 2 - LH * 0.32;
+    var bg = g.createRadialGradient(W*0.44, cy, 60, W*0.44, cy, 1080);
+    bg.addColorStop(0, 'rgb(46,48,52)');
+    bg.addColorStop(0.42, 'rgb(38,40,43)');
+    bg.addColorStop(0.72, 'rgb(30,31,34)');
+    bg.addColorStop(1, 'rgb(22,23,25)');
+    g.fillStyle = bg; g.fillRect(0,0,W,H);
+  })();
+
+  // 2. the plate itself, painted OVER the back light with the letters knocked out.
+  // Everything the plate covers is opaque steel; the letters are holes.
+  var plate = document.createElement('canvas');
+  plate.width = W*2; plate.height = H*2;
+  var pg = plate.getContext('2d'); pg.scale(2,2);
+
+  // rolled steel face, raked by the front lamp from the upper left
+  var GROUND = { x: 210, y: 210 };
+  function lit(x,y){ var dx=(x-GROUND.x)/900, dy=(y-GROUND.y)/900; return 1/(1+dx*dx+dy*dy); }
+  for (var y=0;y<H;y+=2){
+    for (var x=0;x<W;x+=2){
+      var l = lit(x,y);
+      var base = mix(mix(BLACKLAND, COAT, 0.48), MILL, Math.min(0.30, l*0.32));
+      // rolling texture, broad plus fine. ROUND TWO MEASURED THIS FLAT: render_report put
+      // slide-05's canvas variance at 133 against 538 to 3073 on every other frame, and both
+      // judges read the result as a mid-grey field rather than as steel. The plate is the
+      // material the sentence is cut out of, so a plate with no surface makes the cut carry
+      // nothing. Amplitudes raised and a mill-roll direction added, which is the texture a
+      // rolled sheet actually has and the reason the light rakes across it rather than sitting.
+      var n1 = TX.fbm2(x*0.0022, y*0.0035, 3);
+      var n2 = TX.fbm2(x*0.026, y*0.013, 2);
+      var roll = TX.fbm2(x*0.0009, y*0.055, 2);          // long in x, tight in y
+      base = mix(base, MILL, Math.max(0,n1)*0.22);
+      base = mix(base, BLACKLAND, Math.max(0,-n2)*0.17);
+      base = mix(base, MILL, Math.max(0, roll) * 0.16 * l);
+      base = mix(base, BLACKLAND, Math.max(0, -roll) * 0.12);
+      pg.fillStyle = rgb(base);
+      pg.fillRect(x,y,2,2);
+    }
+  }
+  // ---- THE PLATE'S OWN HARDWARE, in the lower third.
+  //
+  // qa.py failed this frame for a top loaded composition once the cut and the mill grain
+  // put real density in the upper two thirds: "the bottom third carries 27% of this slide's
+  // own average craft density". The gate also says what not to do about it, and it is right.
+  // The answer is not a bigger quiet zone. A steel plate this size is hung and stiffened, so
+  // the answer is the fixings it would actually have.
+  //
+  // A countersunk hole is the same body frame 6's perforations are: a dark bore, a lit upper
+  // lip where the lamp catches the chamfer, and a shadow the lower lip throws inside it.
+  (function () {
+    function hole(hx, hy, r) {
+      var l = lit(hx, hy);
+      // the chamfer around the mouth, lit from the upper left like everything else here
+      for (var rr = r * 1.62; rr > r; rr -= 0.5) {
+        var t = (rr - r) / (r * 0.62);
+        pg.fillStyle = rgb(mix(mix(MILL, HIGHBAY, 0.30 * l), BLACKLAND, 0.72 * (1 - t)));
+        pg.beginPath(); pg.arc(hx - 0.6, hy - 0.6, rr, 0, Math.PI * 2); pg.fill();
+      }
+      // the bore, and the far wall of it catching a little of the lamp
+      pg.fillStyle = rgb(mix(BLACKLAND, [0, 0, 0], 0.55));
+      pg.beginPath(); pg.arc(hx, hy, r, 0, Math.PI * 2); pg.fill();
+      pg.fillStyle = rgb(mix(mix(COAT, MILL, 0.5), BLACKLAND, 0.42));
+      pg.beginPath(); pg.arc(hx + r * 0.30, hy + r * 0.30, r * 0.62, 0, Math.PI * 2); pg.fill();
+    }
+    // a two by three bolt pattern down the right, clear of the attribution block on the
+    // left. A grid, because a plate is hung on a fixing pattern and a scatter of holes at
+    // alternating sizes is a decoration pretending to be one.
+    [842, 952, 1062].forEach(function (hy) { hole(884, hy, 14); hole(968, hy, 14); });
+
+    // a rolled stiffener rib across the plate, a body with a lit crown and a dark underside
+    (function () {
+      var ry = 1112, rh = 19;
+      for (var x = 0; x < W; x += 2) {
+        var l = lit(x, ry + rh * 0.4);
+        var crown = mix(mix(COAT, MILL, 0.42), HIGHBAY, Math.min(0.42, l * 0.46));
+        pg.fillStyle = rgb(crown);
+        pg.fillRect(x, ry, 2, rh);
+        pg.fillStyle = rgb(mix(crown, HIGHBAY, 0.34 * Math.min(1, l * 1.3)));
+        pg.fillRect(x, ry, 2, 3);                       // the crown catching the lamp
+        pg.fillStyle = rgb(mix(crown, BLACKLAND, 0.62));
+        pg.fillRect(x, ry + rh - 4, 2, 4);              // its own underside, in shade
+        pg.fillStyle = 'rgba(10,9,8,0.30)';
+        pg.fillRect(x, ry + rh, 2, 7);                  // and the shadow it throws below
+      }
+    })();
+  })();
+
+  // the plate's lower return flange, bent toward the camera
+  (function(){
+    var fy = 1150;
+    var fg = pg.createLinearGradient(0, fy, 0, H);
+    fg.addColorStop(0, rgb(mix(MILL, HIGHBAY, 0.18)));
+    fg.addColorStop(0.16, rgb(mix(COAT, MILL, 0.24)));
+    fg.addColorStop(1, rgb(mix(COAT, BLACKLAND, 0.62)));
+    pg.fillStyle = fg; pg.fillRect(0, fy, W, H-fy);
+    // the guard yellow strip along the flange's leading edge, where a hand would grip
+    for (var x=0;x<W;x+=2){
+      var t = Math.min(1, lit(x, fy+42)*1.5);
+      var col = mix(mix(BLACKLAND, GUARD, 0.14), GUARD, t);
+      pg.fillStyle = rgb(col); pg.fillRect(x, fy+58, 2, 16);
+      pg.fillStyle = rgb(mix(col, [255,244,200], 0.34*t)); pg.fillRect(x, fy+58, 2, 3);
+    }
+  })();
+
+  g.drawImage(plate, 0, 0, W, H);
+
+  // grain
+  (function(){
+    var img = g.getImageData(0,0,W*2,H*2), d = img.data;
+    for (var i=0;i<d.length;i+=4){ var v=(R()-0.5)*12; d[i]+=v; d[i+1]+=v; d[i+2]+=v; }
+    g.putImageData(img,0,0);
+  })();
+
+  // THE CUT IS ONE TEXT NODE PER LINE AND A FILTER, never a stack of offset copies.
+  //
+  // The first build drew the two cut walls as duplicate <text> elements offset by the
+  // plate's thickness. That is a stack of glyphs carrying the deck's most important
+  // sentence, and the only way to stop qa.py reading each copy as a label was to mark it
+  // data-decorative, which is exactly the exemption `panel_ready` exists to refuse. It
+  // refused it, correctly. The wall and the light spill are now a filter chain on the ONE
+  // readable text node, so there is nothing to exempt and nothing a reader needs is hidden
+  // from a gate.
+  //
+  // ROUND TWO REFUSED THE SECOND BUILD TOO, and both judges named the same thing. The chain
+  // carried ONE wall, a dark offset at three pixels, under a flat #FFFFFF fill. This frame's
+  // own acceptance list says "each cut letterform shows two distinguishable wall values, one
+  // lit and one dark, so a flat knockout fails this item", and one dark rim under flat white
+  // is a flat knockout with a shadow. The integrity judge also found why the gate missed it:
+  // the data-encodes probe measures glyph-white against plate-grey, which ANY flat knockout
+  // passes. So the fix is three things the old chain did not have, and a probe that can tell.
+  //
+  //   1. TWO walls. The lamp is at the upper left, so the near wall on that side is the one
+  //      it cannot reach into and reads near black. The far wall on the lower right catches
+  //      it and reads as bright steel. Those are the two values the acceptance asks for.
+  //   2. A LIT APERTURE. The opening is a hole with a lamp behind it, so it is brightest
+  //      where the lamp is and falls off across the sentence. Flat white is a sticker.
+  //   3. Halation kept, widened, and warmed slightly toward the steel it lands on.
+  (function () {
+    var NS = 'http://www.w3.org/2000/svg';
+    var svg = document.getElementById('cut');
+    var defs = document.createElementNS(NS, 'defs');
+    var cy = TOP + LH * (LINES.length - 1) / 2 - LH * 0.32;
+    defs.innerHTML =
+      // the light coming through the opening, falling off from the lamp behind the plate
+      '<radialGradient id="aperture" gradientUnits="userSpaceOnUse" ' +
+              'cx="' + (W*0.44) + '" cy="' + cy + '" r="520">' +
+        '<stop offset="0" stop-color="#FFFFFF"/>' +
+        '<stop offset="0.35" stop-color="#EEF3F8"/>' +
+        '<stop offset="0.70" stop-color="#B9C7D4"/>' +
+        '<stop offset="1" stop-color="#8496A6"/>' +
+      '</radialGradient>' +
+      '<filter id="cutedge" x="-30%" y="-30%" width="160%" height="160%">' +
+        // the light spilling out of the opening onto the plate around it
+        '<feGaussianBlur in="SourceAlpha" stdDeviation="26" result="s"/>' +
+        '<feFlood flood-color="#8FA6BC" flood-opacity="0.52" result="sc"/>' +
+        '<feComposite in="sc" in2="s" operator="in" result="glow"/>' +
+        // FAR WALL, lower right, the plate thickness the lamp rakes across
+        '<feOffset in="SourceAlpha" dx="6" dy="6" result="fo"/>' +
+        '<feGaussianBlur in="fo" stdDeviation="1.1" result="fb"/>' +
+        '<feFlood flood-color="#B4BEC6" flood-opacity="0.92" result="fc"/>' +
+        '<feComposite in="fc" in2="fb" operator="in" result="farwall"/>' +
+        // NEAR WALL, upper left, the side the lamp cannot reach into
+        '<feOffset in="SourceAlpha" dx="-6" dy="-6" result="wo"/>' +
+        '<feGaussianBlur in="wo" stdDeviation="0.9" result="wb"/>' +
+        '<feFlood flood-color="#070706" flood-opacity="0.97" result="wc"/>' +
+        '<feComposite in="wc" in2="wb" operator="in" result="nearwall"/>' +
+        '<feMerge><feMergeNode in="glow"/><feMergeNode in="farwall"/>' +
+        '<feMergeNode in="nearwall"/><feMergeNode in="SourceGraphic"/></feMerge>' +
+      '</filter>';
+    svg.appendChild(defs);
+
+    LINES.forEach(function (t, i) {
+      var el = document.createElementNS(NS, 'text');
+      el.setAttribute('x', LX);
+      el.setAttribute('y', TOP + i * LH);
+      el.setAttribute('font-family', 'Fraunces, serif');
+      el.setAttribute('font-size', FS);
+      el.setAttribute('font-weight', '800');
+      el.setAttribute('fill', 'url(#aperture)');
+      el.setAttribute('filter', 'url(#cutedge)');
+      el.textContent = t;
+      svg.appendChild(el);
+    });
+  })();
+
+  window.__txQuote = LINES.join(' ');
+  resolve();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!doctype html>
+<!-- SLIDE 2 — WHAT WAS DECIDED. A machine base bolted down to a pre-lit slab, four
+     seated fasteners and one empty bore. Low oblique. LAW 1 one lamp, LAW 2 the
+     yellow boundary passes behind the plate, LAW 3, LAW 4. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<script src="@@ASSETS@@/js/noise.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #191511; position: relative; font-family: "Fraunces", serif; }
+  canvas.art { position: absolute; left: 0; top: 0; width: 1080px; height: 1350px; }
+  .hook { position: absolute; left: 82px; top: 128px; width: 900px;
+          font-weight: 800; font-size: 104px; line-height: 0.98;
+          letter-spacing: -0.022em; color: #E9EEF3;
+          font-variation-settings: "opsz" 104; }
+  .dek { position: absolute; left: 82px; top: 348px; width: 760px;
+         font-family: "Manrope", sans-serif; font-weight: 500; font-size: 34px;
+         line-height: 1.36; color: rgba(233,238,243,0.88); }
+  /* moved down from 470: the dek gained a line when it stopped attributing an announcement
+     date to a company whose own dateline this run never fetched, and qa.py measured the
+     collision at 38 percent overprint. A copy repair that lands on top of the next element is
+     not a repair. */
+  .cid { position: absolute; left: 82px; top: 516px;
+         font-family: "JetBrains Mono", monospace; font-size: 25px;
+         letter-spacing: 0.13em; color: rgba(233,238,243,0.52); }
+  .counter { position: absolute; left: 82px; bottom: 76px;
+             font-family: "JetBrains Mono", monospace; font-size: 25px;
+             letter-spacing: 0.14em; color: rgba(233,238,243,0.66); }
+  .place { position: absolute; right: 80px; bottom: 76px; text-align: right;
+           font-family: "JetBrains Mono", monospace; font-size: 25px;
+           letter-spacing: 0.14em; color: rgba(233,238,243,0.66); }
+  .tx-site { position: absolute; right: 80px; bottom: 46px; text-align: right;
+             font-family: "JetBrains Mono", monospace; font-size: 24px;
+             letter-spacing: 0.10em; color: rgba(233,238,243,0.42); }
+</style>
+</head>
+<body data-encodes='[{"claim":"the empty bore is darker than the lit plate it sits in","reads":"differ","a":[[700,764,44,30]],"b":[[212,700,110,54]]}]'>
+  <canvas class="art" id="art" width="2160" height="2700"></canvas>
+
+  <h1 class="hook">August 19th.<br>Austin.</h1>
+  <p class="dek">The Governor's office dated its announcement that day. The company's own release carries the same siting.</p>
+  <div class="cid">c7 &nbsp; c10 &nbsp; c1</div>
+  <div class="counter">02 / 09</div>
+  <div class="place">TRAVIS COUNTY</div>
+
+  <div class="tx-site">texasaidocket.com</div>
+
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260827;
+  TX.reseed(SEED + 2);
+  var R = TX.rng(SEED + 2);
+
+  var c = document.getElementById('art'), g = c.getContext('2d');
+  g.scale(2, 2);
+  var W = 1080, H = 1350;
+
+  function mix(a, b, t) { t = t < 0 ? 0 : t > 1 ? 1 : t;
+    return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t]; }
+  function rgb(c) { return 'rgb(' + (c[0] | 0) + ',' + (c[1] | 0) + ',' + (c[2] | 0) + ')'; }
+
+  var BLACKLAND = [25, 21, 17], SLAB = [51, 48, 43], SLAB_LIT = [121, 115, 105];
+  var COAT = [69, 75, 80], COAT_LIT = [148, 154, 160];
+  var GUARD = [231, 184, 25], ZINC = [176, 150, 92], HIGHBAY = [233, 238, 243];
+
+  // ---------------- THE ONE LAMP, high and to the upper left, off frame.
+  var LAMP = { x: 262, y: -340 };
+  var GROUND = { x: 372, y: 700 };          // where the lamp lands on the slab
+  function lit(x, y) {
+    var dx = (x - GROUND.x) / 470, dy = (y - GROUND.y) / 260;
+    return 1 / (1 + dx * dx + dy * dy);
+  }
+
+  g.fillStyle = rgb(BLACKLAND); g.fillRect(0, 0, W, H);
+
+  // ---- dark air above the plate, carrying the lamp's falloff so the top band is modeled
+  for (var y = 0; y < 566; y += 2) {
+    for (var x = 0; x < W; x += 6) {
+      var t = lit(x, y) * 0.30 + Math.max(0, TX.fbm2(x * 0.003, y * 0.006, 3)) * 0.05;
+      g.fillStyle = rgb(mix(BLACKLAND, COAT, Math.min(0.5, t)));
+      g.fillRect(x, y, 6, 2);
+    }
+  }
+
+  // ---- THE SLAB, PRE-LIT, so the plate's shadow has something to subtract from.
+  var FLOOR = 560;
+  for (var y = FLOOR; y < H; y += 2) {
+    for (var x = 0; x < W; x += 6) {
+      var l = lit(x + 3, y);
+      var col = mix(SLAB, SLAB_LIT, Math.min(1, l * 1.55));
+      var n = TX.fbm2(x * 0.0042, y * 0.011, 3);
+      col = mix(col, SLAB_LIT, Math.max(0, n) * 0.15 * (0.25 + l));
+      g.fillStyle = rgb(col);
+      g.fillRect(x, y, 6, 2);
+    }
+  }
+
+  // ---- grout line and slab joint behind the plate
+  (function () {
+    var jy = 1168;
+    for (var x = 0; x < W; x += 4) {
+      var l = lit(x, jy);
+      g.fillStyle = rgb(mix(SLAB, BLACKLAND, 0.70));
+      g.fillRect(x, jy, 4, 7);
+      g.fillStyle = rgb(mix(mix(SLAB, SLAB_LIT, Math.min(1, l * 1.4)), HIGHBAY, 0.14));
+      g.fillRect(x, jy - 3, 4, 3);
+    }
+  })();
+
+  // ---- THE GUARD LINE, behind the plate, where a person would stand
+  (function () {
+    var ly = 590, band = 24;
+    for (var x = 0; x < W; x += 2) {
+      var dxg = (x - GROUND.x) / 400;
+      var t = Math.min(1, (1 / (1 + dxg * dxg)) * 1.2);
+      var col = mix(mix(BLACKLAND, GUARD, 0.12), GUARD, t);
+      g.fillStyle = rgb(col); g.fillRect(x, ly, 2, band);
+      g.fillStyle = rgb(mix(col, [255, 244, 200], 0.32 * t)); g.fillRect(x, ly, 2, 3);
+      g.fillStyle = rgb(mix(col, BLACKLAND, 0.36)); g.fillRect(x, ly + band - 3, 2, 3);
+    }
+  })();
+
+  // ---------------------------------------------------- THE BASE PLATE and its shadow
+  var PX = 168, PY = 686, PW = 744, PH = 176, THK = 34;
+
+  // the two part contact shadow, cast away from the lamp, onto lit slab
+  (function () {
+    var core = g.createLinearGradient(PX, PY + PH, PX + PW * 1.1, PY + PH + 120);
+    core.addColorStop(0, 'rgba(10,9,7,0.72)');
+    core.addColorStop(0.30, 'rgba(10,9,7,0.34)');
+    core.addColorStop(1, 'rgba(10,9,7,0)');
+    g.fillStyle = core;
+    g.beginPath();
+    g.moveTo(PX + 22, PY + PH);
+    g.lineTo(PX + PW + 210, PY + PH - 6);
+    g.lineTo(PX + PW + 268, PY + PH + 118);
+    g.lineTo(PX + 44, PY + PH + 146);
+    g.closePath(); g.fill();
+    // the penumbra body, wider and softer
+    var pen = g.createLinearGradient(PX, PY + PH + 20, PX + PW * 1.3, PY + PH + 220);
+    pen.addColorStop(0, 'rgba(10,9,7,0.34)');
+    pen.addColorStop(1, 'rgba(10,9,7,0)');
+    g.fillStyle = pen;
+    g.beginPath();
+    g.moveTo(PX - 20, PY + PH + 10);
+    g.lineTo(PX + PW + 300, PY + PH + 4);
+    g.lineTo(PX + PW + 380, PY + PH + 214);
+    g.lineTo(PX - 40, PY + PH + 240);
+    g.closePath(); g.fill();
+  })();
+
+  // the plate's front edge, showing its thickness
+  (function () {
+    var eg = g.createLinearGradient(PX, PY + PH, PX, PY + PH + THK);
+    eg.addColorStop(0, rgb(mix(COAT, COAT_LIT, 0.30)));
+    eg.addColorStop(1, rgb(mix(COAT, BLACKLAND, 0.44)));
+    g.fillStyle = eg;
+    g.fillRect(PX, PY + PH, PW, THK);
+  })();
+
+  // the plate's lit top face, graded across by the lamp
+  (function () {
+    for (var x = PX; x < PX + PW; x += 3) {
+      for (var y = PY; y < PY + PH; y += 3) {
+        var l = lit(x, y);
+        var col = mix(mix(COAT, COAT_LIT, 0.32), COAT_LIT, Math.min(1, l * 1.15));
+        var n = TX.fbm2(x * 0.02, y * 0.05, 2);
+        col = mix(col, HIGHBAY, Math.max(0, n) * 0.06);
+        g.fillStyle = rgb(col);
+        g.fillRect(x, y, 3, 3);
+      }
+    }
+    // the machined chamfer along the lamp side
+    g.fillStyle = rgb(mix(COAT_LIT, HIGHBAY, 0.34));
+    g.fillRect(PX, PY, PW, 5);
+  })();
+
+  // ---- FOUR SEATED FASTENERS AND ONE EMPTY BORE
+  var holes = [PX + 104, PX + 254, PX + 404, PX + 554, PX + 668];
+  var EMPTY = 3;                              // the fourth position, left open
+  var probe = null;
+  holes.forEach(function (hx, i) {
+    var hy = PY + PH * 0.52, r = 40;
+    if (i === EMPTY) {
+      // the bore: a lit upper lip, a wall, and a floor the lamp does not reach
+      g.fillStyle = rgb(mix(COAT, BLACKLAND, 0.30));         // lit upper lip
+      g.beginPath(); g.ellipse(hx, hy, r, r * 0.46, 0, 0, Math.PI * 2); g.fill();
+      g.fillStyle = rgb(mix(mix(COAT, COAT_LIT, 0.5), HIGHBAY, 0.30));
+      g.beginPath(); g.ellipse(hx, hy - 2.5, r, r * 0.46, 0, Math.PI, 0); g.fill();
+      // the wall, one side lit
+      var wg = g.createLinearGradient(hx - r, 0, hx + r, 0);
+      wg.addColorStop(0, 'rgb(74,72,68)');
+      wg.addColorStop(0.55, 'rgb(30,28,25)');
+      wg.addColorStop(1, 'rgb(20,18,16)');
+      g.fillStyle = wg;
+      g.beginPath(); g.ellipse(hx, hy + 3, r * 0.86, r * 0.40, 0, 0, Math.PI * 2); g.fill();
+      // the floor of the bore, the darkest area on the plate
+      g.fillStyle = 'rgb(14,12,10)';
+      g.beginPath(); g.ellipse(hx, hy + 6, r * 0.68, r * 0.30, 0, 0, Math.PI * 2); g.fill();
+      probe = [Math.round(hx - 30), Math.round(hy - 16), 60, 44];
+    } else {
+      // washer, then nut, both bodies with a lit crown and a shadowed flank
+      g.fillStyle = rgb(mix(mix(COAT, COAT_LIT, 0.2), BLACKLAND, 0.24));
+      g.beginPath(); g.ellipse(hx, hy + 6, r * 1.06, r * 0.48, 0, 0, Math.PI * 2); g.fill();
+      var l = lit(hx, hy);
+      var nutTop = mix(mix(ZINC, COAT_LIT, 0.28), HIGHBAY, Math.min(0.5, l * 0.5));
+      // hex body
+      g.beginPath();
+      for (var k = 0; k < 6; k++) {
+        var a = Math.PI / 6 + k * Math.PI / 3;
+        var px = hx + Math.cos(a) * r * 0.80, py = hy - 14 + Math.sin(a) * r * 0.38;
+        k ? g.lineTo(px, py) : g.moveTo(px, py);
+      }
+      g.closePath();
+      g.fillStyle = rgb(nutTop); g.fill();
+      // the flank away from the lamp
+      g.fillStyle = rgb(mix(ZINC, BLACKLAND, 0.52));
+      g.beginPath();
+      g.moveTo(hx + r * 0.40, hy - 14 + r * 0.33);
+      g.lineTo(hx + r * 0.80, hy - 14 + r * 0.02);
+      g.lineTo(hx + r * 0.80, hy + 2);
+      g.lineTo(hx + r * 0.40, hy + 12);
+      g.closePath(); g.fill();
+      // the bolt end standing proud of the nut
+      g.fillStyle = rgb(mix(nutTop, HIGHBAY, 0.24));
+      g.beginPath(); g.ellipse(hx, hy - 20, r * 0.30, r * 0.15, 0, 0, Math.PI * 2); g.fill();
+    }
+  });
+
+  // grain
+  (function () {
+    var img = g.getImageData(0, 0, W * 2, H * 2), d = img.data;
+    for (var i = 0; i < d.length; i += 4) {
+      var v = (R() - 0.5) * 14; d[i] += v; d[i + 1] += v; d[i + 2] += v;
+    }
+    g.putImageData(img, 0, 0);
+  })();
+
+  window.__txBore = probe;
+  resolve();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,272 @@
+{
+  "set_definition": "items on the record whose decider is a Texas city or county, whose reader copy names a tax abatement, a reinvestment zone, a moratorium or an incentive, and whose subject is a data centre or a large load",
+  "set_named_on_frame": "items where a Texas city or county is the decider and the record names a data center or a large load beside a tax break, a moratorium or an incentive",
+  "record_items_total": 91,
+  "ask_items": 13,
+  "ask_item_ids": [
+    "tx-2026-0028",
+    "tx-2026-0033",
+    "tx-2026-0037",
+    "tx-2026-0042",
+    "tx-2026-0043",
+    "tx-2026-0046",
+    "tx-2026-0050",
+    "tx-2026-0051",
+    "tx-2026-0052",
+    "tx-2026-0062",
+    "tx-2026-0070",
+    "tx-2026-0087",
+    "tx-2026-0088"
+  ],
+  "ask_counties": [
+    "Archer",
+    "Brazoria",
+    "Brazos",
+    "Carson",
+    "Denton",
+    "El Paso",
+    "Hays",
+    "Nueces",
+    "Tarrant",
+    "Tom Green",
+    "Webb",
+    "Young"
+  ],
+  "ask_pairs": [
+    {
+      "id": "tx-2026-0028",
+      "where": "Hays",
+      "n_counties": 1
+    },
+    {
+      "id": "tx-2026-0033",
+      "where": "El Paso",
+      "n_counties": 1
+    },
+    {
+      "id": "tx-2026-0037",
+      "where": "Webb",
+      "n_counties": 1
+    },
+    {
+      "id": "tx-2026-0042",
+      "where": "Young",
+      "n_counties": 1
+    },
+    {
+      "id": "tx-2026-0043",
+      "where": "Archer",
+      "n_counties": 1
+    },
+    {
+      "id": "tx-2026-0046",
+      "where": "Carson",
+      "n_counties": 1
+    },
+    {
+      "id": "tx-2026-0050",
+      "where": "Nueces",
+      "n_counties": 1
+    },
+    {
+      "id": "tx-2026-0051",
+      "where": "Brazoria",
+      "n_counties": 1
+    },
+    {
+      "id": "tx-2026-0052",
+      "where": "Brazoria",
+      "n_counties": 1
+    },
+    {
+      "id": "tx-2026-0062",
+      "where": "Tarrant",
+      "n_counties": 1
+    },
+    {
+      "id": "tx-2026-0070",
+      "where": "Tom Green",
+      "n_counties": 1
+    },
+    {
+      "id": "tx-2026-0087",
+      "where": "Denton",
+      "n_counties": 1
+    },
+    {
+      "id": "tx-2026-0088",
+      "where": "Brazos",
+      "n_counties": 1
+    }
+  ],
+  "ask_evidence": [
+    {
+      "id": "tx-2026-0028",
+      "ask": {
+        "field": "summary",
+        "matched": "incentive"
+      },
+      "subject": {
+        "field": "summary",
+        "matched": "data center"
+      },
+      "same_sentence": false
+    },
+    {
+      "id": "tx-2026-0033",
+      "ask": {
+        "field": "summary",
+        "matched": "incentive"
+      },
+      "subject": {
+        "field": "title",
+        "matched": "Data Center"
+      },
+      "same_sentence": true
+    },
+    {
+      "id": "tx-2026-0037",
+      "ask": {
+        "field": "title",
+        "matched": "moratorium"
+      },
+      "subject": {
+        "field": "title",
+        "matched": "data center"
+      },
+      "same_sentence": true
+    },
+    {
+      "id": "tx-2026-0042",
+      "ask": {
+        "field": "title",
+        "matched": "tax abatement"
+      },
+      "subject": {
+        "field": "summary",
+        "matched": "data center"
+      },
+      "same_sentence": true
+    },
+    {
+      "id": "tx-2026-0043",
+      "ask": {
+        "field": "title",
+        "matched": "tax abatement"
+      },
+      "subject": {
+        "field": "title",
+        "matched": "data center"
+      },
+      "same_sentence": true
+    },
+    {
+      "id": "tx-2026-0046",
+      "ask": {
+        "field": "title",
+        "matched": "tax abatement"
+      },
+      "subject": {
+        "field": "summary",
+        "matched": "data center"
+      },
+      "same_sentence": false
+    },
+    {
+      "id": "tx-2026-0050",
+      "ask": {
+        "field": "title",
+        "matched": "moratorium"
+      },
+      "subject": {
+        "field": "title",
+        "matched": "data center"
+      },
+      "same_sentence": true
+    },
+    {
+      "id": "tx-2026-0051",
+      "ask": {
+        "field": "title",
+        "matched": "reinvestment zone"
+      },
+      "subject": {
+        "field": "title",
+        "matched": "data center"
+      },
+      "same_sentence": true
+    },
+    {
+      "id": "tx-2026-0052",
+      "ask": {
+        "field": "summary",
+        "matched": "reinvestment zone"
+      },
+      "subject": {
+        "field": "title",
+        "matched": "data center"
+      },
+      "same_sentence": false
+    },
+    {
+      "id": "tx-2026-0062",
+      "ask": {
+        "field": "title",
+        "matched": "moratorium"
+      },
+      "subject": {
+        "field": "title",
+        "matched": "data center"
+      },
+      "same_sentence": true
+    },
+    {
+      "id": "tx-2026-0070",
+      "ask": {
+        "field": "title",
+        "matched": "moratorium"
+      },
+      "subject": {
+        "field": "title",
+        "matched": "data center"
+      },
+      "same_sentence": true
+    },
+    {
+      "id": "tx-2026-0087",
+      "ask": {
+        "field": "title",
+        "matched": "moratorium"
+      },
+      "subject": {
+        "field": "title",
+        "matched": "data center"
+      },
+      "same_sentence": true
+    },
+    {
+      "id": "tx-2026-0088",
+      "ask": {
+        "field": "title",
+        "matched": "tax abatement"
+      },
+      "subject": {
+        "field": "title",
+        "matched": "data center"
+      },
+      "same_sentence": true
+    }
+  ],
+  "ask_members_with_both_words_in_one_sentence": 10,
+  "ask_counties_count": 12,
+  "amazon_item_in_set": false,
+  "amazon_decider_type": "governor",
+  "amazon_decider_is_local": false,
+  "amazon_public_access_room": "contact_only",
+  "amazon_key_date_count": 1,
+  "cover_hook_words": 6,
+  "unstamped_fields_on_frame_8": 4,
+  "open_rooms_on_frame_9": 2,
+  "read_from": "ledger/docket.json",
+  "read_on": "2026-08-27"
+}

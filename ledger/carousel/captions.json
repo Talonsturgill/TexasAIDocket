@@ -1,150 +1,168 @@
 {
- "_spec": {
-  "version": 1,
-  "purpose": "The caption variety engine, plus the corpus the comma ceiling will be computed from.",
-  "why": "An opening move is the most repeatable thing in a caption, and a machine will find one that scores well and use it forever. Each shipped caption records its opening move and structure so the caption room can be told what is off the table.",
-  "comma_ceiling": "NOT SET. It is computed from this product's first twenty shipped captions at ten percent below their measured mean, never copied from another product. config/parity_map.yaml carries the unblock condition; scripts/carousel/caption_check.py measures the rate every run.",
-  "written_by": "carousel",
-  "doctrine": "knowledge/carousel/CAPTION_CRAFT.md holds the menus this ledger rotates: ten opening moves, eight structures, five closing moves, and the anti-template law the critic judges by.",
-  "exclusions_handed_to_the_room": "opening moves from the last 6 runs, structures from the last 3. The room is told what is off the table before it writes, never after.",
-  "entry_schema": {
-   "date": "YYYY-MM-DD",
-   "opening_move": "one of the named moves in CAPTION_CRAFT.md",
-   "structure": "one of the named structures",
-   "closing_move": "one of the named closes",
-   "first_line": "the actual first line, VERBATIM. Stored because the critic's real job is catching a sentence skeleton that survived a change of nouns, and it can only do that with the real lines in front of it",
-   "words": "measured by caption_check.py, never typed",
-   "commas_per_100w": "measured by caption_check.py, never typed. This is the corpus the ceiling will be computed from"
+  "_spec": {
+    "version": 1,
+    "purpose": "The caption variety engine, plus the corpus the comma ceiling will be computed from.",
+    "why": "An opening move is the most repeatable thing in a caption, and a machine will find one that scores well and use it forever. Each shipped caption records its opening move and structure so the caption room can be told what is off the table.",
+    "comma_ceiling": "NOT SET. It is computed from this product's first twenty shipped captions at ten percent below their measured mean, never copied from another product. config/parity_map.yaml carries the unblock condition; scripts/carousel/caption_check.py measures the rate every run.",
+    "written_by": "carousel",
+    "doctrine": "knowledge/carousel/CAPTION_CRAFT.md holds the menus this ledger rotates: ten opening moves, eight structures, five closing moves, and the anti-template law the critic judges by.",
+    "exclusions_handed_to_the_room": "opening moves from the last 6 runs, structures from the last 3. The room is told what is off the table before it writes, never after.",
+    "entry_schema": {
+      "date": "YYYY-MM-DD",
+      "opening_move": "one of the named moves in CAPTION_CRAFT.md",
+      "structure": "one of the named structures",
+      "closing_move": "one of the named closes",
+      "first_line": "the actual first line, VERBATIM. Stored because the critic's real job is catching a sentence skeleton that survived a change of nouns, and it can only do that with the real lines in front of it",
+      "words": "measured by caption_check.py, never typed",
+      "commas_per_100w": "measured by caption_check.py, never typed. This is the corpus the ceiling will be computed from"
+    },
+    "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
   },
-  "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
- },
- "opening_moves_recent": [
-  "the correction",
-  "the two things",
-  "the plain question",
-  "the before and after",
-  "the deadline",
-  "the quiet decision"
- ],
- "entries": [
-  {
-   "date": "2026-08-16",
-   "opening_move": "the object",
-   "structure": "pivot",
-   "closing_move": "ask the one question the decision leaves open",
-   "first_line": "One roof, 1.89 miles on a side.",
-   "words": 155,
-   "commas_per_100w": 1.94
-  },
-  {
-   "date": "2026-08-18",
-   "opening_move": "the correction",
-   "structure": "ledger",
-   "closing_move": "stop on the strongest fact",
-   "first_line": "Everyone guesses more screens.",
-   "words": 185,
-   "commas_per_100w": 2.16
-  },
-  {
-   "date": "2026-08-19",
-   "opening_move": "the two things",
-   "structure": "two columns",
-   "closing_move": "ask the one question the decision leaves open",
-   "first_line": "4 days of notice. 16 days since the letter.",
-   "words": 159,
-   "commas_per_100w": 1.89,
-   "hashtags": [
-    "#ERCOT",
-    "#PUCT",
-    "#BatchZero"
-   ]
-  },
-  {
-   "date": "2026-08-20",
-   "opening_move": "the plain question",
-   "structure": "question and answer",
-   "closing_move": "name what happens next and when",
-   "first_line": "Does the November vote decide it?",
-   "words": 153,
-   "commas_per_100w": 1.96,
-   "hashtags": [
-    "#LeagueCity",
-    "#ALPR",
-    "#Pflugerville"
-   ]
-  },
-  {
-   "date": "2026-08-21",
-   "opening_move": "the before and after",
-   "structure": "clock",
-   "closing_move": "point at the record, plainly, without a call to action",
-   "first_line": "Texas authorized what was already driving.",
-   "words": 181,
-   "commas_per_100w": 1.1,
-   "hashtags": [
-    "#SB2807",
-    "#TxDMV",
-    "#PermianBasin"
-   ],
-   "commas": 2,
-   "carousel_no": 5,
-   "name_note": "NORMALISED TO THE MENU at the eighth panel, which found all three names were coined freehand and appear nowhere in CAPTION_CRAFT.md. They read 'the flat statement of the finding', 'chronology, then the charge, then what the charge leaves out' and 'name the page the record was fetched from'. The caption did not change and did not need to: 'Texas authorized what was already driving' puts the old state of the world and the new one in one line, the body is ordered by date, and the close points at the record without asking for anything. All three of those are on the menu and none was excluded. A run that coins a name each day hands the next six runs an exclusion list that excludes nothing, which is how a variety engine quietly stops being one."
-  },
-  {
-   "date": "2026-08-22",
-   "opening_move": "the deadline",
-   "structure": "zoom in",
-   "closing_move": "name what is still not public, and how big that is",
-   "first_line": "September 4th shuts the comment window.",
-   "hashtags": [
-    "#Project58482",
-    "#LargeLoadDemandManagement",
-    "#PUCT"
-   ],
-   "carousel_no": 6,
-   "critic_note": "Two directors wrote against the same closing move because the exclusion list left only two, and the critic said so rather than waving it through. B won because it DEMONSTRATES the limit on one row the reader has just met while A ASSERTS it as a general statement. A also declared 'the number that is wrong' and never corrected a number: its real turn was 'the correction', which shipped on 2026-08-18 and was excluded."
-  },
-  {
-   "date": "2026-08-25",
-   "carousel_no": 7,
-   "opening_move": "the quiet decision",
-   "structure": "zoom out",
-   "closing_move": "ask the one question the decision leaves open",
-   "first_line": "Four abatements never got a vote. The item they all stood on failed first.",
-   "hashtags": [
-    "#BrazoriaCounty",
-    "#SanAngelo",
-    "#FortWorth"
-   ],
-   "critic_note": "Two directors, opposed assignments. The winner opens on Brazoria's four abatements dying on a vote about none of them, which is a procedural fact a reader has no prior for, and only then widens to the seven. The loser opened on the count and narrowed, which is the shape three of the six shipped captions already use. caption_check reported first person on the winner because a period is a word boundary and I.3 matched \\\\bI\\\\b, and the gate was repaired in the upgrade lane rather than the caption reworded around a false positive. Round 4 renamed all three moves. They had been written freehand ('the procedural fact nobody expects', 'one case in full, then the pattern it belongs to', 'put the reader's own judgement on the instrument') and none of the three was on a CAPTION_CRAFT menu, which is exactly how they cleared an exclusion list that held all three. The choices were legal, the names were not, and a list can only exclude a name it shares.",
-   "words": 151,
-   "commas_per_100w": 2.67
-  },
-  {
-   "date": "2026-08-26",
-   "carousel_no": 8,
-   "opening_move": "the number that is wrong",
-   "structure": "ledger",
-   "closing_move": "ask the one question the decision leaves open",
-   "first_line": "The billion buys no building.",
-   "hashtags": [
-    "#UTSystem",
-    "#DellMedicalCenter",
-    "#MDAnderson"
-   ],
-   "words": 124,
-   "commas_per_100w": 5.65,
-   "critic_note": "TWO NAMING CALLS RECORDED RATHER THAN HIDDEN. The opening is named 'the number that is wrong', whose menu entry reads 'opens on a figure the reader will misjudge, then corrects it', and 'The billion buys no building' is exactly that. A judge read it as 'the correction', which is on the last six exclusion list, and the two doors are genuinely close. The distinction taken is that the correction's own example carries no figure and this line's subject IS the figure. The structure is 'ledger', what is known then what is not known then the size of the gap, which is the caption's actual order.\n\nAND THE CLOSE REPEATS 08-25, WHICH THE EXCLUSION LIST COULD NOT HAVE PREVENTED. ledger_check derives closing_moves_recent from the entries BEFORE the newest, so while 08-25 was the newest its own closing move was excluded from the list by design and today's room was never handed it. Rolling it forward by hand made this file disagree with its own entries and turned shipped_check red on the already published 08-25 run, which is the gate working rather than failing. The room needs the lists derived INCLUDING the newest SHIPPED entry, with only the unshipped run's own entry held out. Upgrade lane, written down rather than hand edited."
-  }
- ],
- "structures_recent": [
-  "clock",
-  "zoom in",
-  "zoom out"
- ],
- "closing_moves_recent": [
-  "point at the record, plainly, without a call to action",
-  "name what is still not public, and how big that is",
-  "ask the one question the decision leaves open"
- ]
+  "opening_moves_recent": [
+    "the two things",
+    "the plain question",
+    "the before and after",
+    "the deadline",
+    "the quiet decision",
+    "the number that is wrong"
+  ],
+  "entries": [
+    {
+      "date": "2026-08-16",
+      "opening_move": "the object",
+      "structure": "pivot",
+      "closing_move": "ask the one question the decision leaves open",
+      "first_line": "One roof, 1.89 miles on a side.",
+      "words": 155,
+      "commas_per_100w": 1.94
+    },
+    {
+      "date": "2026-08-18",
+      "opening_move": "the correction",
+      "structure": "ledger",
+      "closing_move": "stop on the strongest fact",
+      "first_line": "Everyone guesses more screens.",
+      "words": 185,
+      "commas_per_100w": 2.16
+    },
+    {
+      "date": "2026-08-19",
+      "opening_move": "the two things",
+      "structure": "two columns",
+      "closing_move": "ask the one question the decision leaves open",
+      "first_line": "4 days of notice. 16 days since the letter.",
+      "words": 159,
+      "commas_per_100w": 1.89,
+      "hashtags": [
+        "#ERCOT",
+        "#PUCT",
+        "#BatchZero"
+      ]
+    },
+    {
+      "date": "2026-08-20",
+      "opening_move": "the plain question",
+      "structure": "question and answer",
+      "closing_move": "name what happens next and when",
+      "first_line": "Does the November vote decide it?",
+      "words": 153,
+      "commas_per_100w": 1.96,
+      "hashtags": [
+        "#LeagueCity",
+        "#ALPR",
+        "#Pflugerville"
+      ]
+    },
+    {
+      "date": "2026-08-21",
+      "opening_move": "the before and after",
+      "structure": "clock",
+      "closing_move": "point at the record, plainly, without a call to action",
+      "first_line": "Texas authorized what was already driving.",
+      "words": 181,
+      "commas_per_100w": 1.1,
+      "hashtags": [
+        "#SB2807",
+        "#TxDMV",
+        "#PermianBasin"
+      ],
+      "commas": 2,
+      "carousel_no": 5,
+      "name_note": "NORMALISED TO THE MENU at the eighth panel, which found all three names were coined freehand and appear nowhere in CAPTION_CRAFT.md. They read 'the flat statement of the finding', 'chronology, then the charge, then what the charge leaves out' and 'name the page the record was fetched from'. The caption did not change and did not need to: 'Texas authorized what was already driving' puts the old state of the world and the new one in one line, the body is ordered by date, and the close points at the record without asking for anything. All three of those are on the menu and none was excluded. A run that coins a name each day hands the next six runs an exclusion list that excludes nothing, which is how a variety engine quietly stops being one."
+    },
+    {
+      "date": "2026-08-22",
+      "opening_move": "the deadline",
+      "structure": "zoom in",
+      "closing_move": "name what is still not public, and how big that is",
+      "first_line": "September 4th shuts the comment window.",
+      "hashtags": [
+        "#Project58482",
+        "#LargeLoadDemandManagement",
+        "#PUCT"
+      ],
+      "carousel_no": 6,
+      "critic_note": "Two directors wrote against the same closing move because the exclusion list left only two, and the critic said so rather than waving it through. B won because it DEMONSTRATES the limit on one row the reader has just met while A ASSERTS it as a general statement. A also declared 'the number that is wrong' and never corrected a number: its real turn was 'the correction', which shipped on 2026-08-18 and was excluded."
+    },
+    {
+      "date": "2026-08-25",
+      "carousel_no": 7,
+      "opening_move": "the quiet decision",
+      "structure": "zoom out",
+      "closing_move": "ask the one question the decision leaves open",
+      "first_line": "Four abatements never got a vote. The item they all stood on failed first.",
+      "hashtags": [
+        "#BrazoriaCounty",
+        "#SanAngelo",
+        "#FortWorth"
+      ],
+      "critic_note": "Two directors, opposed assignments. The winner opens on Brazoria's four abatements dying on a vote about none of them, which is a procedural fact a reader has no prior for, and only then widens to the seven. The loser opened on the count and narrowed, which is the shape three of the six shipped captions already use. caption_check reported first person on the winner because a period is a word boundary and I.3 matched \\\\bI\\\\b, and the gate was repaired in the upgrade lane rather than the caption reworded around a false positive. Round 4 renamed all three moves. They had been written freehand ('the procedural fact nobody expects', 'one case in full, then the pattern it belongs to', 'put the reader's own judgement on the instrument') and none of the three was on a CAPTION_CRAFT menu, which is exactly how they cleared an exclusion list that held all three. The choices were legal, the names were not, and a list can only exclude a name it shares.",
+      "words": 151,
+      "commas_per_100w": 2.67
+    },
+    {
+      "date": "2026-08-26",
+      "carousel_no": 8,
+      "opening_move": "the number that is wrong",
+      "structure": "ledger",
+      "closing_move": "ask the one question the decision leaves open",
+      "first_line": "The billion buys no building.",
+      "hashtags": [
+        "#UTSystem",
+        "#DellMedicalCenter",
+        "#MDAnderson"
+      ],
+      "words": 124,
+      "commas_per_100w": 5.65,
+      "critic_note": "TWO NAMING CALLS RECORDED RATHER THAN HIDDEN. The opening is named 'the number that is wrong', whose menu entry reads 'opens on a figure the reader will misjudge, then corrects it', and 'The billion buys no building' is exactly that. A judge read it as 'the correction', which is on the last six exclusion list, and the two doors are genuinely close. The distinction taken is that the correction's own example carries no figure and this line's subject IS the figure. The structure is 'ledger', what is known then what is not known then the size of the gap, which is the caption's actual order.\n\nAND THE CLOSE REPEATS 08-25, WHICH THE EXCLUSION LIST COULD NOT HAVE PREVENTED. ledger_check derives closing_moves_recent from the entries BEFORE the newest, so while 08-25 was the newest its own closing move was excluded from the list by design and today's room was never handed it. Rolling it forward by hand made this file disagree with its own entries and turned shipped_check red on the already published 08-25 run, which is the gate working rather than failing. The room needs the lists derived INCLUDING the newest SHIPPED entry, with only the unshipped run's own entry held out. Upgrade lane, written down rather than hand edited."
+    },
+    {
+      "date": "2026-08-27",
+      "carousel_no": 9,
+      "opening_move": "the who",
+      "structure": "two columns",
+      "closing_move": "ask the one question the decision leaves open",
+      "first_line": "Neither release names an acting public body.",
+      "words": 150,
+      "commas": 2,
+      "commas_per_100w": 1.33,
+      "hashtags": [
+        "#TravisCounty",
+        "#Project58482",
+        "#TexasManufacturing"
+      ],
+      "critic_note": "Two directors, opposed assignments, and the critic refused BOTH. Candidate A printed two numerals on neither the claims list nor the aggregates labels, stated an absence as a thing that did not happen, and asserted a general rule about Texas procedure that no claim supports. Candidate B was the better written caption and lost on the ledger, because it declared 'the correction' as its opening and that move was on the exclusion list the room was handed before it wrote. The one rewrite opens on 'the who', inverted, which nine runs have not spent.",
+      "naming_call": "THE CLOSING MOVE IS RECORDED AS THE ONE THE LAST THREE RUNS ALSO USED, and the reason is a hard gate rather than a lapse. brand.yaml sets linkedin_post.ends_with to engagement_question and caption_check hard fails a caption that does not end on one, so the close is a question whatever CAPTION_CRAFT's rotation would prefer. The PHRASING is new and the question is the deck's own argument put back to the reader. A rotation rule and a hard gate disagree here, and the disagreement is written down rather than resolved by quietly breaking one of them."
+    }
+  ],
+  "structures_recent": [
+    "zoom in",
+    "zoom out",
+    "ledger"
+  ],
+  "closing_moves_recent": [
+    "name what is still not public, and how big that is",
+    "ask the one question the decision leaves open",
+    "ask the one question the decision leaves open"
+  ]
 }

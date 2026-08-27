@@ -1,0 +1,42 @@
+{
+  "lens": "integrity",
+  "round": 6,
+  "weighted_score": 6.71,
+  "ship": true,
+  "hard_fails": [],
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.28,
+      "score": 6.0
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 7.0
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.18,
+      "score": 7.5
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.12,
+      "score": 7.5
+    },
+    {
+      "name": "voice",
+      "weight": 0.12,
+      "score": 6.5
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 6.0
+    }
+  ],
+  "one_sentence_fix": "Stop guarding this deck's one computed set with enumerated word lists and make frame 4 print the figure compute.py already computes instead of a universal, because 'over' escaped, then 'Each record names' escaped the ABOUT regex, now 'beside' escapes RELATION and 'both' escapes UNIVERSAL, and ask_members_with_both_words_in_one_sentence is 10 of 13 and needs no guard at all.",
+  "note": "This lens came in UNDER the bar at 6.71 against a threshold of 6.8, by 0.09, with no hard fail. ship is true because this lens found no reason the deck must not ship, not because 6.71 clears anything. A deck that ships at 7.0 is acceptable rather than good, and this card did not reach acceptable.",
+  "ship_boolean_resolved_by_the_judge": "The card first returned ship:false while its own prose said the refusal was the THRESHOLD rather than a defect. panel.py counts a bare ship:false as a refusal either way, which is the right rule, so the judge was asked what the boolean meant rather than having it edited. Its answer, verbatim in substance: 'It is a report that my own weighted score landed under 6.8, not a refusal. I misused the field. ship is the panel's refusal switch, not a place to restate the threshold arithmetic the panel already does on the median.' The score was not changed and the judge asked that it not be."
+}

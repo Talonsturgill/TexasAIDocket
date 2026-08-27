@@ -1,0 +1,34 @@
+{
+  "note": "Every L* figure this run's prose is allowed to print, MEASURED off the nine rendered PNGs at 216 by 270. A figure absent from this file is absent whatever wrote it.",
+  "measured_on": "2026-08-27",
+  "measured_from": "out/2026-08-27/render/slide-0N.png, resized to 216x270, median CIE L*",
+  "per_frame_median_lstar": [
+    29.7,
+    27.7,
+    10.0,
+    11.9,
+    29.1,
+    56.5,
+    19.3,
+    39.2,
+    13.3
+  ],
+  "deck_median_lstar": 27.7,
+  "mean_lstar": 26.3,
+  "sd_lstar": 14.1,
+  "min_lstar": 10.0,
+  "max_lstar": 56.5,
+  "range_lstar": 46.5,
+  "bespoke_median_similarity": 0.4633,
+  "bespoke_closest_pair_similarity": 0.8125,
+  "og_psnr_db": 40.5,
+  "slide_psnr_db_min": 40.8,
+  "slide_psnr_db_max": 42.3,
+  "acceptance_thresholds_lstar": {
+    "note": "DECLARED, NOT MEASURED, and the distinction is the point. Every other figure in this file is read off a rendered PNG. These are the L* separations the dossiers REQUIRE before a frame is accepted, so they are numbers this run chose rather than found. They live here because shipped_check reads every 'N L*' in the run's prose and asks which computation produced it, and the honest answer for a threshold is that a person set it. Saying so beside the measurements is better than either hiding it or letting the gate go red on a number that is doing its job.",
+    "adjacent_plane_separation": 8,
+    "guard_line_falloff_left_to_right": 25,
+    "slab_above_blackland_before_shadow": 8,
+    "near_floor_above_far_floor": 25
+  }
+}

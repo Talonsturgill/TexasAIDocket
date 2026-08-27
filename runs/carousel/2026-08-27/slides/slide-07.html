@@ -1,0 +1,210 @@
+<!doctype html>
+<!-- SLIDE 7 — THE COUNTER IMAGE. An anti fatigue mat on sealed concrete, new, with
+     nobody on it. The frame draws the WORK rather than the tool. No machine, no
+     robot, no person appears. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<script src="@@ASSETS@@/js/noise.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #191511; position: relative; font-family: "Fraunces", serif; }
+  canvas.art { position: absolute; left: 0; top: 0; width: 1080px; height: 1350px; }
+  .hook { position: absolute; left: 84px; top: 138px; width: 880px;
+          font-weight: 800; font-size: 100px; line-height: 0.98;
+          letter-spacing: -0.024em; color: #E9EEF3;
+          font-variation-settings: "opsz" 100; }
+  .dek { position: absolute; left: 84px; top: 372px; width: 800px;
+         font-family: "Manrope", sans-serif; font-weight: 500; font-size: 34px;
+         line-height: 1.36; color: rgba(233,238,243,0.88); }
+  .cid { position: absolute; left: 84px; top: 470px;
+         font-family: "JetBrains Mono", monospace; font-size: 25px;
+         letter-spacing: 0.13em; color: rgba(233,238,243,0.56); }
+  .counter { position: absolute; left: 84px; bottom: 80px;
+             font-family: "JetBrains Mono", monospace; font-size: 25px;
+             letter-spacing: 0.14em; color: rgba(233,238,243,0.66); }
+  .place { position: absolute; right: 80px; bottom: 80px; text-align: right;
+           font-family: "JetBrains Mono", monospace; font-size: 25px;
+           letter-spacing: 0.14em; color: rgba(233,238,243,0.66); }
+  .tx-site { position: absolute; right: 80px; bottom: 46px; text-align: right;
+             font-family: "JetBrains Mono", monospace; font-size: 24px;
+             letter-spacing: 0.10em; color: rgba(233,238,243,0.42); }
+</style>
+</head>
+<body data-encodes='[{"claim":"the mat body reads apart from the concrete around it","reads":"differ","a":[[430,900,160,70]],"b":[[110,700,160,70]]}]'
+      data-contacts='[{"what":"the mat lying on the sealed concrete","shadow":[[150,1178,760,22]],"ground":[[150,1236,760,22]]}]'>
+  <canvas class="art" id="art" width="2160" height="2700"></canvas>
+
+  <h1 class="hook">Repetitive tasks<br>and heavy lifting</h1>
+  <p class="dek">The company's own words for what these machines do beside its employees.</p>
+  <div class="cid">c2</div>
+  <div class="counter">07 / 09</div>
+  <div class="place">TRAVIS COUNTY</div>
+
+  <div class="tx-site">texasaidocket.com</div>
+
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260827;
+  TX.reseed(SEED + 7);
+  var R = TX.rng(SEED + 7);
+  var c = document.getElementById('art'), g = c.getContext('2d');
+  g.scale(2, 2);
+  var W = 1080, H = 1350;
+
+  function mix(a,b,t){t=t<0?0:t>1?1:t;
+    return [a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t,a[2]+(b[2]-a[2])*t];}
+  function rgb(c){return 'rgb('+(c[0]|0)+','+(c[1]|0)+','+(c[2]|0)+')';}
+
+  var BLACKLAND=[25,21,17], SLAB=[51,48,43], SLAB_LIT=[121,115,105];
+  var BELT=[18,20,26], GUARD=[231,184,25], HIGHBAY=[233,238,243];
+
+  // the one lamp, up and behind the reader's left shoulder
+  var GROUND = { x: 388, y: 1000 };
+  function lit(x,y){ var dx=(x-GROUND.x)/560, dy=(y-GROUND.y)/430; return 1/(1+dx*dx+dy*dy); }
+
+  // ---------------- the sealed concrete, looking down at about 55 degrees
+  g.fillStyle = rgb(BLACKLAND); g.fillRect(0,0,W,H);
+  for (var y=0;y<H;y+=2){
+    for (var x=0;x<W;x+=6){
+      var l = lit(x+3,y);
+      // the floor recedes upward, so it darkens toward the top of the frame
+      var depth = Math.min(1, Math.max(0, (y - 380) / 720));
+      var col = mix(SLAB, SLAB_LIT, Math.min(1, l * 1.35 * (0.30 + 0.70*depth)));
+      col = mix(BLACKLAND, col, 0.20 + 0.80*depth);
+      var n = TX.fbm2(x*0.0040, y*0.010, 3);
+      col = mix(col, SLAB_LIT, Math.max(0,n)*0.14*(0.2+l));
+      g.fillStyle = rgb(col);
+      g.fillRect(x,y,6,2);
+    }
+  }
+
+  // ---- ONE CONTROL JOINT, modeled as a groove with a lit side and a shadowed floor
+  (function(){
+    var pts = [[0, 604],[1080, 512]];
+    for (var x=0;x<W;x+=3){
+      var t = x / W;
+      var jy = pts[0][1] + (pts[1][1]-pts[0][1])*t;
+      var l = lit(x, jy);
+      g.fillStyle = rgb(mix(SLAB, BLACKLAND, 0.72));
+      g.fillRect(x, jy, 3, 9);
+      g.fillStyle = rgb(mix(mix(SLAB, SLAB_LIT, Math.min(1,l*1.3)), HIGHBAY, 0.16));
+      g.fillRect(x, jy-3, 3, 3);
+      g.fillStyle = rgb(mix(SLAB, BLACKLAND, 0.42));
+      g.fillRect(x, jy+9, 3, 3);
+    }
+  })();
+
+  // ---------------- THE MAT. Trapezoid, foreshortened, near edge wider.
+  var M = { farL: 246, farR: 872, farY: 692, nearL: 128, nearR: 962, nearY: 1176 };
+  function matX(t, yy) {
+    var f = (yy - M.farY) / (M.nearY - M.farY);
+    var L = M.farL + (M.nearL - M.farL) * f;
+    var Rr = M.farR + (M.nearR - M.farR) * f;
+    return L + (Rr - L) * t;
+  }
+
+  // ---- the two part contact shadow, cast onto the pre lit concrete
+  (function(){
+    var core = g.createLinearGradient(0, M.nearY, 0, M.nearY + 96);
+    core.addColorStop(0, 'rgba(8,7,6,0.72)');
+    core.addColorStop(0.34, 'rgba(8,7,6,0.30)');
+    core.addColorStop(1, 'rgba(8,7,6,0)');
+    g.fillStyle = core;
+    g.beginPath();
+    g.moveTo(M.nearL - 12, M.nearY);
+    g.lineTo(M.nearR + 12, M.nearY);
+    g.lineTo(M.nearR + 54, M.nearY + 92);
+    g.lineTo(M.nearL - 54, M.nearY + 92);
+    g.closePath(); g.fill();
+    // the side shadow, right of the mat where the lamp does not reach
+    var side = g.createLinearGradient(M.nearR, 0, M.nearR + 110, 0);
+    side.addColorStop(0, 'rgba(8,7,6,0.50)');
+    side.addColorStop(1, 'rgba(8,7,6,0)');
+    g.fillStyle = side;
+    g.beginPath();
+    g.moveTo(M.farR, M.farY); g.lineTo(M.farR + 66, M.farY + 20);
+    g.lineTo(M.nearR + 96, M.nearY + 16); g.lineTo(M.nearR, M.nearY);
+    g.closePath(); g.fill();
+  })();
+
+  // ---- the mat body, moulded rubber, with the lattice drawn as bodies in light order
+  (function(){
+    for (var yy = M.farY; yy < M.nearY; yy += 2) {
+      var xl = matX(0, yy), xr = matX(1, yy);
+      for (var xx = xl; xx < xr; xx += 3) {
+        var l = lit(xx, yy);
+        var col = mix(BELT, mix(BELT, HIGHBAY, 0.30), Math.min(1, l*0.62));
+        var n = TX.fbm2(xx*0.03, yy*0.06, 2);
+        col = mix(col, HIGHBAY, Math.max(0,n)*0.05*l);
+        g.fillStyle = rgb(col);
+        g.fillRect(xx, yy, 3, 2);
+      }
+    }
+    // the drainage lattice: bodies, dense near, thinning with distance
+    for (var yy = M.farY + 22; yy < M.nearY - 16; ) {
+      var f = (yy - M.farY) / (M.nearY - M.farY);
+      var pitch = 20 + 30 * f;
+      var r = 5 + 8 * f;
+      var xl2 = matX(0, yy) + pitch*0.6, xr2 = matX(1, yy) - pitch*0.6;
+      var stag = (Math.round((yy - M.farY)/pitch) % 2) ? pitch/2 : 0;
+      for (var xx = xl2 + stag; xx < xr2; xx += pitch) {
+        var l = lit(xx, yy);
+        // the hole floor, the deepest black on the frame
+        g.fillStyle = rgb(mix(BELT, BLACKLAND, 0.66));
+        g.beginPath(); g.ellipse(xx, yy, r, r*0.56, 0, 0, Math.PI*2); g.fill();
+        // the lit upper lip
+        g.strokeStyle = rgb(mix(BELT, HIGHBAY, Math.min(0.52, 0.20 + l*0.44)));
+        g.lineWidth = Math.max(1.2, r*0.30);
+        g.beginPath(); g.arc(xx, yy, r*0.86, Math.PI*1.06, Math.PI*1.96); g.stroke();
+      }
+      yy += pitch;
+    }
+  })();
+
+  // ---- THE BEVELLED NEAR EDGE in guard yellow, the frame's only lit thing down here
+  (function(){
+    var eh = 46;
+    for (var xx = M.nearL; xx < M.nearR; xx += 2) {
+      var t = (xx - M.nearL) / (M.nearR - M.nearL);
+      var l = lit(xx, M.nearY - eh/2);
+      for (var d = 0; d < eh; d += 1) {
+        var slope = d / eh;                       // across the ramp angle
+        var spec = Math.exp(-Math.pow((slope - 0.30) / 0.16, 2)) * l;
+        var col = mix(mix(GUARD, BLACKLAND, 0.34), GUARD, 0.30 + 0.70*l);
+        col = mix(col, [255, 250, 224], Math.min(0.72, spec*0.9));
+        col = mix(col, BLACKLAND, Math.max(0, slope - 0.72) * 1.1);
+        g.fillStyle = rgb(col);
+        g.fillRect(xx, M.nearY - eh + d, 2, 1);
+      }
+    }
+    // the interlocking puzzle teeth along the right edge, so this can never read as a rug
+    var tw = 30;
+    for (var k = 0; k < 8; k++) {
+      var ty = M.farY + 44 + k * ((M.nearY - M.farY - 60) / 8);
+      var tx = matX(1, ty);
+      var l2 = lit(tx, ty);
+      g.fillStyle = rgb(mix(BELT, mix(BELT, HIGHBAY, 0.26), Math.min(1, l2*0.5)));
+      g.beginPath();
+      g.ellipse(tx + tw*0.42, ty, tw*0.55, tw*0.40, 0, 0, Math.PI*2);
+      g.fill();
+      g.strokeStyle = rgb(mix(BELT, HIGHBAY, 0.22));
+      g.lineWidth = 2;
+      g.beginPath(); g.arc(tx + tw*0.42, ty, tw*0.55, Math.PI*1.1, Math.PI*1.9); g.stroke();
+    }
+  })();
+
+  // grain
+  (function(){
+    var img = g.getImageData(0,0,W*2,H*2), d = img.data;
+    for (var i=0;i<d.length;i+=4){ var v=(R()-0.5)*13; d[i]+=v; d[i+1]+=v; d[i+2]+=v; }
+    g.putImageData(img,0,0);
+  })();
+
+  resolve();
+});
+</script>
+</body>
+</html>

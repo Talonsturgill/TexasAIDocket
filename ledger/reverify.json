@@ -1,7 +1,7 @@
 {
   "_spec": {
     "version": 1,
-    "generated": "2026-08-26",
+    "generated": "2026-08-27",
     "note": "One row per source url. ETag and Last-Modified drive the next conditional request, hash short circuits the text comparison, and proven records which claim quotes have been located here, which is what tells a real change apart from a page this check cannot read."
   },
   "sources": {
@@ -124,9 +124,12 @@
     "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S": {
       "etag": null,
       "last_modified": null,
-      "hash": "94c5d3741ac9e4a649bde658d52e7c045b1a6f040a277049407dfe0d7e5907b3",
+      "hash": "7d79ff5725c6ce0e7ffd5a506dd1d4edd3cc17a13383e0399bcee1076a077dd5",
       "proven": [
-        "tx-2026-0077-c5"
+        "tx-2026-0077-c5",
+        "tx-2026-0096-c3",
+        "tx-2026-0096-c4",
+        "tx-2026-0096-c5"
       ]
     },
     "https://capitol.texas.gov/tlodocs/89R/schedules/html/C4502026081908001.htm": {
@@ -229,7 +232,7 @@
     "https://gov.texas.gov/news/post/governor-abbott-directs-comprehensive-data-center-audit": {
       "etag": null,
       "last_modified": null,
-      "hash": "8807929c553cc90179f66e89b98f1cecf989328a8ec12ffc11b2eb197f49e73c",
+      "hash": "e7cfca2d74171c4653810644fafd3b5cbfbf9a1bfcc4f767a30df7b2b125b4c8",
       "proven": [
         "tx-2026-0072-c1",
         "tx-2026-0072-c2",
@@ -430,7 +433,7 @@
     "https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx": {
       "etag": null,
       "last_modified": null,
-      "hash": "c30baf727517008b102d4a7e714fc48a6b5def064ee8a70927e2ec09f5aab2f5",
+      "hash": "628f2ac6a94b842809286f46a86aef23d15310ec35d1f7280d3732e72de4dc59",
       "proven": [
         "tx-2026-0024-c3",
         "tx-2026-0072-c7"
@@ -456,6 +459,15 @@
       "last_modified": "Tue, 11 Aug 2026 21:09:28 GMT",
       "hash": "2ec32bfffa869880fc00291e9e86cd1b589e0c45f295d47d42c1a2973c5c118b",
       "proven": []
+    },
+    "https://senate.texas.gov/cmte.php?c=700": {
+      "etag": null,
+      "last_modified": "Wed, 26 Aug 2026 12:00:00 GMT",
+      "hash": "a666082e2fa971017e689443a1d7f27b74c55d8cb9ac9a26ec320d68675298d2",
+      "proven": [
+        "tx-2026-0096-c1",
+        "tx-2026-0096-c2"
+      ]
     },
     "https://tcss.legis.texas.gov/resources/BC/htm/BC.552.htm": {
       "etag": "\"1dcc838c00b91cd\"",
@@ -804,8 +816,10 @@
     "https://www.federalregister.gov/api/v1/documents/2026-14341.json": {
       "etag": null,
       "last_modified": null,
-      "hash": "19d034ec49561a7ab5278cdf817c06b81b099b443ca23d8173a2f65736121f94",
-      "proven": []
+      "hash": "ffa3ef219ff424736b6b9eebd53fc1335edf986946859bc8f90b3303c840665f",
+      "proven": [
+        "tx-2026-0015-c2"
+      ]
     },
     "https://www.federalregister.gov/documents/2026/07/10/2026-13928/proposed-information-collection-atus-artificial-intelligence-ai-questions": {
       "etag": null,
@@ -816,7 +830,7 @@
     "https://www.federalregister.gov/documents/2026/07/16/2026-14341/modernizing-reactor-licensing-safety-oversight-and-siting-practices": {
       "etag": null,
       "last_modified": null,
-      "hash": "e65be7dbf379715a140bf6148bf42fc0db714d0d212cf83bfe8a6e22baa87bd4",
+      "hash": "07eee73df2575e2763d1a8ac86ccb6fba8a65d94703830c76e92643b08eef195",
       "proven": []
     },
     "https://www.govtech.com/artificial-intelligence/laredo-texas-moves-to-set-permanent-data-center-standards": {
@@ -972,9 +986,9 @@
       ]
     },
     "https://www.nsf.gov/news/nsf-stands-2-materials-innovation-platforms-50m-investment": {
-      "etag": "\"1787723831\"",
-      "last_modified": "Wed, 26 Aug 2026 05:57:11 GMT",
-      "hash": "4479aa9a2be84d3d61ba21f939dc5fe9c0cbf725df6476be07e052e85926ff63",
+      "etag": "\"1787823642\"",
+      "last_modified": "Thu, 27 Aug 2026 09:40:42 GMT",
+      "hash": "da5927e2ef74a51515c8175a85ef629abb6b03abdc67722343babceeb8757034",
       "proven": []
     },
     "https://www.olneyenterprise.com/news/county-votes-data-center-abatement": {

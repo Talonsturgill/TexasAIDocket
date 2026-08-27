@@ -1,0 +1,40 @@
+{
+  "lens": "reader",
+  "round": 6,
+  "weighted_score": 7.0,
+  "ship": true,
+  "hard_fails": [],
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.28,
+      "score": 7.0
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 7.5
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.18,
+      "score": 6.4
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.12,
+      "score": 6.9
+    },
+    {
+      "name": "voice",
+      "weight": 0.12,
+      "score": 7.0
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 7.2
+    }
+  ],
+  "one_sentence_fix": "Replace frame 7, the deck's only cuttable frame, with c12: thirty residents showed up in Archer County and the commissioners voted the abatement down, which is the one fact this run fetched that answers the objection every reader will have."
+}

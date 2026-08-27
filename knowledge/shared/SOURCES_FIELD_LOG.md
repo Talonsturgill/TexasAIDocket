@@ -698,3 +698,75 @@ the primary source cannot answer the question and the journalism can. **Prefer t
 for what a body was asked to do and require a post-meeting source for what it did**, rather than
 reading a stronger verb out of the stronger source type. `public_access.how` on `tx-2026-0095` now
 states that no minutes exist.
+
+## 2026-08-27, the daily run
+
+- **`capitol.texas.gov` robots.txt re-read this run and `Disallow: /TLODOCS/` is still live**, along
+  with `/BillLookup/`, `/Reports/`, `/Search/`, `/Prototype/`, `/TLOWebServices/`, `/Controls/`,
+  `/Help/`, `/Images/`, `/bin/`, `/ig_common/`, `/Scripts/`, `/Web References/` and three `/MyTLO/`
+  paths. The registry's reading holds.
+- **An item reached the published record citing four claims fetched from `/tlodocs/`.**
+  `tx-2026-0089` was admitted from the seed on August 22nd carrying a hearing notice at
+  `capitol.texas.gov/tlodocs/89R/schedules/html/C2332026081909001.HTM` as the only source for all
+  four of its claims. Nothing between the seed and the ledger checks a claim's URL against the crawl
+  boundary, so an item can be published that this project may never re-fetch to re-verify, which
+  makes it stale forever by construction. Rewritten this run around an allowed source. **The gap
+  itself is unfixed and is written up as a proposal in the run record.**
+- **`www.house.texas.gov` serves `User-agent: * / Disallow:`, an empty disallow, and is fully open.**
+  The Speaker's interim charges for every House committee are published there in full at
+  `www.house.texas.gov/pdfs/speaker/F-Interim-Charges-3.25.pdf`, 521,754 bytes with a real text
+  layer. It carries the charge text verbatim, which is what the disallowed notice pages carry, so it
+  is a working substitute for House interim charge language. `house.texas.gov/committees` lists every
+  committee with a numeric permalink of the form `/committees/committee/233`.
+  **`/committees/committee/C233`, the code form the other host uses, 404s.**
+- **`gov.texas.gov` post slugs are not guessable.** The Amazon siting announcement is at
+  `/news/post/governor-abbott-announces-amazon-expansion-in-austin`. A reasonable guess at
+  `governor-abbott-announces-amazon-manufacturing-facility-in-austin` returned 404 with a 90,489 byte
+  body, so a run checking only for a non-empty response would read the 404 page as content.
+- **`puc.texas.gov` answered a browser User-Agent with 200 this run** and its calendar feed parsed to
+  31 items with `-L`. A scout on the same beat recorded HTTP 503 from that host on four attempts and
+  402 from `interchange.puc.texas.gov`, in the same hour. **The host is intermittent rather than
+  closed**, and one run's failure there is not a finding about the source.
+- **`dir.texas.gov` returned 403 to a browser User-Agent** on
+  `/statewide-artificial-intelligence-ai-awareness-training`, and 429 to a scout earlier in the run.
+  The statewide artificial intelligence awareness training certification deadline of August 31st,
+  2026 is therefore **unconfirmed at its primary source** and was not admitted to the record on
+  journalism alone.
+- **`nsf.gov/awardsearch/show-award` renders empty to a fetch** while
+  `api.nsf.gov/services/v1/awards/<id>.json` returns the whole award record including the abstract.
+  Use the API and never the award search page.
+- **The NSF awards API field ORDER is not what a reader would guess**, and a quote assembled from
+  adjacent-looking fields will not be verbatim. `estimatedTotalAmt` is followed by `expDate`, not by
+  `fundsObligatedAmt`; `awardeeName` is followed by `awardeePhone`. Quote the raw substring.
+- **`texasstandard.org/feed/`, `houstonpublicmedia.org/feed/`, `sa.gov`, `everythinglubbock.com`,
+  `lubbocklights.com`, `aaup.org`, `statesman.com` and `hpcwire.com` each returned 403 to a scout
+  this run.** `texastribune.org` and `nytimes.com` did the same, as the registry already records.
+- **`waterdatafortexas.org` was not fetched this run.** Its `*.csv` disallow stands unresolved.
+
+### Found during the same day's panel repairs, 2026-08-27
+
+- **`api.nsf.gov` carries the SAME figure in two formats and only one of them is publishable
+  prose.** `estimatedTotalAmt` is `"29999998"` and `fundsObligatedAmt` is `"5999999"`, both bare
+  digit strings, while the `fundsObligated` ARRAY beside them holds `"FY 2026 = $5,999,999.00"`
+  with a dollar sign, thousands separators and cents. A summary that writes `29,999,998 dollars`
+  has invented the separators at writing time, which `site_build`'s numeral gate refuses, correctly
+  and by design. **Look for the formatted twin before writing the figure into prose**, and where
+  there is none, name the field instead of formatting the number yourself.
+- **`www.nsf.gov/awardsearch/show-award?AWD_ID=<id>` 301s to a trailing-slash form and the
+  destination renders "No Award Specified" with every figure blank.** This is the same finding as
+  the entry above it, one redirect deeper, and it confirms the page is client rendered rather than
+  merely slow. The API is the only route.
+- **`www.sos.state.tx.us/texreg/archive/...` is INTERMITTENT, not closed, and this run has it
+  both ways in its own evidence.** The same archive path that proved c22 and c23 earlier in the day,
+  with `fetched: 2026-08-27` recorded on both claims, returned 403 to WebFetch and 403 to curl with
+  a project User-Agent a few hours later. This is the `puc.texas.gov` pattern again and the entry
+  above it says the rule: **one run's failure at a host is not a finding about the source.** Said
+  precisely so a later run does not read this as a boundary: the deadline for PUCT Project 58482 IS
+  on the record, proved against this host. **The FILING METHOD is not**, because the second fetch is
+  the one that would have carried it and the second fetch is the one that failed. It was left off
+  the deck rather than guessed, which is the whole point of writing this down.
+- **`capitol.texas.gov/Committees/MeetingsUpcoming.aspx` names a room and no building.** The
+  Water, Agriculture and Rural Affairs entries for September 1st and 2nd read `Location: E1.012
+  (Hearing Room)` and nothing more. A scoring judge asked the deck to name the building E1.012 sits
+  in and **the listing does not carry it**, so it was not published. The E prefix is a Capitol
+  Extension convention a Texan may know and this project does not get to assert from convention.

@@ -3661,7 +3661,7 @@
    "metro": "Dallas-Fort Worth-Arlington, TX"
   },
   "status": "decided",
-  "confidence": "medium",
+  "confidence": "high",
   "key_dates": [],
   "public_access": {
    "room": "closed",
@@ -3677,7 +3677,7 @@
     "source_title": "UT Southwestern Medical Center, AI Innovations in Medical Education",
     "source_type": "primary_official",
     "id": "tx-2026-0102-c1",
-    "fetched": "2026-08-26"
+    "fetched": "2026-08-27"
    },
    {
     "text": "The stated reason is the cost and inconsistency of grading by hand.",
@@ -3686,10 +3686,276 @@
     "source_title": "UT Southwestern Medical Center, AI Innovations in Medical Education",
     "source_type": "primary_official",
     "id": "tx-2026-0102-c2",
-    "fetched": "2026-08-26"
+    "fetched": "2026-08-27"
    }
   ],
   "id": "tx-2026-0102",
-  "held_reason": "The source page carries no publication date, so whether the share of grading it states is current can't be established. Promote when a dated source states it."
+  "held_reason": "The source page carries no publication date, so whether the share of grading it states is current can't be established. Promote when a dated source states it.",
+  "last_verified": "2026-08-27",
+  "history": [
+   {
+    "date": "2026-08-27",
+    "note": "Admitted. The medical school still states that the artificial intelligence grading process has replaced more than 91 percent of human grading of these notes since the autumn of 2023, and still gives inconsistency in manual grading as the reason for building it."
+   }
+  ]
+ },
+ {
+  "id": "tx-2026-0104",
+  "title": "National Science Foundation funds a five year robotics center at UT Austin built around robots adapting to the people they work beside",
+  "summary": "The National Science Foundation made award 2535195 to the University of Texas at Austin on August 25th, 2026. It funds a Science and Technology Center on human and robot co adaptation. The award record puts the estimated total at 29,999,998 dollars. It records 5,999,999 dollars obligated so far. The project runs from September 1st, 2026 to August 31st, 2031. Joydeep Biswas is the principal investigator. The stated problem is that robots leaving the laboratory for homes and hospitals and workplaces have to understand and adapt to people over time.",
+  "topic": "research-and-science",
+  "decider": {
+   "name": "United States National Science Foundation",
+   "type": "federal"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Travis"
+   ],
+   "metro": null,
+   "on_ercot": true
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-08-25",
+    "kind": "decided",
+    "note": "Award date recorded on the agency's own award record"
+   },
+   {
+    "date": "2026-09-01",
+    "kind": "effective",
+    "note": "Project start date on the award record"
+   },
+   {
+    "date": "2031-08-31",
+    "kind": "expires",
+    "note": "Project end date on the award record"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "No comment window attaches to a made award. The agency publishes the award record and its abstract and its funding figures through its own awards service. The university is the reachable party for questions about the center itself.",
+   "url": "https://www.nsf.gov/awardsearch/show-award?AWD_ID=2535195",
+   "closes": null
+  },
+  "claims": [
+   {
+    "id": "tx-2026-0104-c1",
+    "text": "The agency states the problem the center exists to solve.",
+    "verbatim_quote": "For robots to transition from research laboratories to effective collaborators in homes, hospitals, workplaces, and public spaces, they must be able to understand, interact with, and adapt to people over time.",
+    "source_url": "https://api.nsf.gov/services/v1/awards/2535195.json",
+    "source_title": "National Science Foundation awards service, award 2535195, abstract",
+    "source_type": "primary_official",
+    "fetched": "2026-08-27"
+   },
+   {
+    "id": "tx-2026-0104-c2",
+    "text": "The award record names the center and the institution that holds it.",
+    "verbatim_quote": "\"title\":\"STC: Center for Human and Robot Co-Adaptation\"",
+    "source_url": "https://api.nsf.gov/services/v1/awards/2535195.json",
+    "source_title": "National Science Foundation awards service, award 2535195, title field",
+    "source_type": "primary_official",
+    "fetched": "2026-08-27"
+   },
+   {
+    "id": "tx-2026-0104-c3",
+    "text": "The award record carries the estimated total and the date the project runs to.",
+    "verbatim_quote": "\"estimatedTotalAmt\":\"29999998\",\"expDate\":\"08/31/2031\"",
+    "source_url": "https://api.nsf.gov/services/v1/awards/2535195.json",
+    "source_title": "National Science Foundation awards service, award 2535195, funding fields",
+    "source_type": "primary_official",
+    "fetched": "2026-08-27"
+   },
+   {
+    "id": "tx-2026-0104-c4",
+    "text": "The award record carries the amount obligated so far and the award number.",
+    "verbatim_quote": "\"fundsObligatedAmt\":\"5999999\",\"histAwd\":\"false\",\"id\":\"2535195\"",
+    "source_url": "https://api.nsf.gov/services/v1/awards/2535195.json",
+    "source_title": "National Science Foundation awards service, award 2535195, obligation and identifier fields",
+    "source_type": "primary_official",
+    "fetched": "2026-08-27"
+   },
+   {
+    "id": "tx-2026-0104-c5",
+    "text": "The award record names the institution holding the award and the date the agency made it.",
+    "verbatim_quote": "\"awardeeName\":\"University of Texas at Austin\"",
+    "source_url": "https://api.nsf.gov/services/v1/awards/2535195.json",
+    "source_title": "National Science Foundation awards service, award 2535195, awardee field",
+    "source_type": "primary_official",
+    "fetched": "2026-08-27"
+   },
+   {
+    "id": "tx-2026-0104-c6",
+    "text": "The award record carries the date of the award and the date the project starts.",
+    "verbatim_quote": "\"date\":\"08/25/2026\"",
+    "source_url": "https://api.nsf.gov/services/v1/awards/2535195.json",
+    "source_title": "National Science Foundation awards service, award 2535195, award date field",
+    "source_type": "primary_official",
+    "fetched": "2026-08-27"
+   },
+   {
+    "id": "tx-2026-0104-c7",
+    "text": "The award record carries the project start date.",
+    "verbatim_quote": "\"startDate\":\"09/01/2026\",\"title\":\"STC: Center for Human and Robot Co-Adaptation\"",
+    "source_url": "https://api.nsf.gov/services/v1/awards/2535195.json",
+    "source_title": "National Science Foundation awards service, award 2535195, start date and title fields",
+    "source_type": "primary_official",
+    "fetched": "2026-08-27"
+   }
+  ],
+  "last_verified": "2026-08-27",
+  "confidence": "high",
+  "notes_for_editor": "The agency's own award search HTML page rendered empty when fetched, so every figure here is read from the awards API record rather than from the award search page. No university release about this award was located.",
+  "history": [
+   {
+    "date": "2026-08-27",
+    "note": "Admitted. The agency's award record carries the center, the institution, the dates and the money, and the abstract states what the work is for."
+   }
+  ]
+ },
+ {
+  "id": "tx-2026-0105",
+  "title": "A statewide poll finds most Texas voters oppose a data center in their own community for a second survey running",
+  "summary": "The Texas Politics Project at the University of Texas at Austin polled 1200 registered Texas voters from August 5th to 13th, 2026. It reported that 57 percent oppose the construction of a data center in their community. Only 30 percent expressed support. The project calls the result statistically indistinguishable from its June reading. Republicans split closely in August at 45 percent supporting against 43 percent opposing. Democrats and independents stayed decisively opposed.",
+  "topic": "data-centers",
+  "decider": {
+   "name": "Texas Politics Project at the University of Texas at Austin",
+   "type": "state-agency"
+  },
+  "geography": {
+   "statewide": true,
+   "counties": [],
+   "metro": null,
+   "on_ercot": false
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-08-13",
+    "kind": "filed",
+    "note": "Last day of the polling field period"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "The project publishes its own results and its field dates and its margin of error. It points readers to a summary document carrying the detailed methodology. This is a measurement rather than a proceeding. No room is open and nothing is being decided here.",
+   "url": "https://texaspolitics.utexas.edu/blog/new-ut-texas-politics-project-poll-finds-talarico-leading-paxton-abbott-leading-hinojosa-continued-resistance-to-data-centers-2",
+   "closes": null
+  },
+  "claims": [
+   {
+    "id": "tx-2026-0105-c1",
+    "text": "The project reports the split on building a data center locally.",
+    "verbatim_quote": "For the second consecutive survey, a majority of Texans, 57%, said that they oppose the construction of a data center in their community, while only 30% expressed support, with the remaining 14% expressing no opinion.",
+    "source_url": "https://texaspolitics.utexas.edu/blog/new-ut-texas-politics-project-poll-finds-talarico-leading-paxton-abbott-leading-hinojosa-continued-resistance-to-data-centers-2",
+    "source_title": "Texas Politics Project, University of Texas at Austin, August 2026 poll release",
+    "source_type": "primary_official",
+    "fetched": "2026-08-27"
+   },
+   {
+    "id": "tx-2026-0105-c2",
+    "text": "The project states its field period, its sample and its margin of error.",
+    "verbatim_quote": "The poll was conducted August 5-13, 2026, among 1200 registered voters in Texas. The margin of error for the survey is +/- 2.83% (3.58% when accounting for the weighted sample).",
+    "source_url": "https://texaspolitics.utexas.edu/blog/new-ut-texas-politics-project-poll-finds-talarico-leading-paxton-abbott-leading-hinojosa-continued-resistance-to-data-centers-2",
+    "source_title": "Texas Politics Project, University of Texas at Austin, August 2026 poll release, methodology note",
+    "source_type": "primary_official",
+    "fetched": "2026-08-27"
+   },
+   {
+    "id": "tx-2026-0105-c3",
+    "text": "The project reports how one party's voters split on the question.",
+    "verbatim_quote": "Republicans remained closely divided on the subject in August – 45% supported while 43% opposed local data center construction.",
+    "source_url": "https://texaspolitics.utexas.edu/blog/new-ut-texas-politics-project-poll-finds-talarico-leading-paxton-abbott-leading-hinojosa-continued-resistance-to-data-centers-2",
+    "source_title": "Texas Politics Project, University of Texas at Austin, August 2026 poll release, partisan crosstab",
+    "source_type": "primary_official",
+    "fetched": "2026-08-27"
+   }
+  ],
+  "last_verified": "2026-08-27",
+  "confidence": "high",
+  "notes_for_editor": "A measurement rather than a decision, admitted because the record's data center items are a stack of local fights and this is the statewide reading those fights are a sample of. The detailed crosstabs and the question wording live in a summary document that was not opened.",
+  "history": [
+   {
+    "date": "2026-08-27",
+    "note": "Admitted. The project's own release carries the split, the field dates, the sample size and the margin of error."
+   }
+  ]
+ },
+ {
+  "id": "tx-2026-0106",
+  "title": "Austin City Council takes up a resolution to write data centers into a land development code that has no definition of one",
+  "summary": "Item 61 on the Austin City Council's regular meeting agenda for August 27th, 2026 asks the council to approve a resolution initiating amendments to Title 25 of the City Code, the Land Development Code, to establish land uses, site development regulations and development processes for data center use in certain zoning districts. The same item covers business regulations and permit requirements for data center operations. The posted item carries no megawatt or square footage threshold and the agenda records the item as having no fiscal impact.",
+  "topic": "data-centers",
+  "decider": {
+   "name": "Austin City Council",
+   "type": "city"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Travis"
+   ],
+   "metro": null,
+   "on_ercot": true
+  },
+  "status": "pending",
+  "key_dates": [
+   {
+    "date": "2026-08-21",
+    "kind": "filed",
+    "note": "Draft resolution and memo posted as agenda backup"
+   },
+   {
+    "date": "2026-08-27",
+    "kind": "hearing",
+    "note": "Regular council meeting carrying the item"
+   }
+  ],
+  "public_access": {
+   "room": "open_meeting",
+   "how": "Austin City Council regular meetings are open to the public and the city posts each item with its backup documents ahead of the meeting. Item 61 carries a draft resolution, a memo and two motion sheets as posted backup, so a reader can see the proposed text before the vote rather than after it.",
+   "url": "https://www.austintexas.gov/council/2026/20260827-reg",
+   "closes": null
+  },
+  "claims": [
+   {
+    "id": "tx-2026-0106-c1",
+    "text": "The posted item states what the resolution would set in motion.",
+    "verbatim_quote": "Approve a resolution initiating amendments to City Code Title 25 (Land Development Code) and other provisions of City Code or regulations necessary to establish land uses, site development regulations, and development processes, for data center use in certain zoning districts and to develop business regulations and permit requirements applicable to data center operations.",
+    "source_url": "https://www.austintexas.gov/council/2026/20260827-reg",
+    "source_title": "City of Austin, City Council regular meeting agenda, August 27th 2026, Item 61",
+    "source_type": "primary_official",
+    "fetched": "2026-08-27"
+   },
+   {
+    "id": "tx-2026-0106-c2",
+    "text": "The agenda records the item as carrying no cost.",
+    "verbatim_quote": "Funding: This item has no fiscal impact.",
+    "source_url": "https://www.austintexas.gov/council/2026/20260827-reg",
+    "source_title": "City of Austin, City Council regular meeting agenda, August 27th 2026, Item 61 funding line",
+    "source_type": "primary_official",
+    "fetched": "2026-08-27"
+   },
+   {
+    "id": "tx-2026-0106-c3",
+    "text": "The item posts its draft text as public backup before the meeting.",
+    "verbatim_quote": "20260827-061, Agenda Backup: Draft Resolution , PDF, 766 KB, posted 8/21/2026",
+    "source_url": "https://www.austintexas.gov/council/2026/20260827-reg",
+    "source_title": "City of Austin, City Council regular meeting agenda, August 27th 2026, Item 61 backup list",
+    "source_type": "primary_official",
+    "fetched": "2026-08-27"
+   }
+  ],
+  "last_verified": "2026-08-27",
+  "confidence": "high",
+  "notes_for_editor": "The agenda was fetched on the morning of the meeting, so the record carries the item as posted and not as decided. A later run has to check whether it passed. The sponsors are not named on the posted item.",
+  "history": [
+   {
+    "date": "2026-08-27",
+    "note": "Admitted as posted. The council has the item in front of it and the draft resolution is public, and no vote is recorded on the agenda page."
+   }
+  ]
  }
 ]
