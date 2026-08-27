@@ -873,7 +873,7 @@ def article_page(r: dict, today: str, items: list) -> str:
                 canonical=f'articles/{r["date"]}/')
 
 
-def deck_preview(r: dict, sentences: int = 2, budget: int = 210) -> str:
+def deck_preview(r: dict, sentences: int = 2, budget: int = 210, floor: int = 12) -> str:
     """The deck's own opening lines, for a card that would otherwise carry a title and a gap.
 
     WHAT WAS THERE AND WHY IT WENT BLANK. The card printed `copy.json`'s top level `hook`, which
@@ -893,6 +893,19 @@ def deck_preview(r: dict, sentences: int = 2, budget: int = 210) -> str:
     has no room for one, and house style exempts quoted material from rules this text is being
     shown under. The first slide with prose of its own supplies the preview, so a deck that
     opens on a quote is previewed by the words around it rather than by somebody else's.
+
+    A SENTENCE COUNT IS NOT A LENGTH, which is the third way this card has gone thin and the
+    first that was nobody's typo. Two sentences is the SHAPE the card wants. It guarantees
+    nothing about how much gets said, because a deck is free to open on two short ones, and on
+    August 27th one opened "Two releases. Neither names a room." Six words. The card was a
+    headline, two buttons and a shrug, which is the same page the two earlier repairs were
+    written to stop, reached by a route neither of them was looking at.
+
+    So the cap is a floor as well. `sentences` is where this stops IF what it has is already
+    worth reading, and it keeps taking whole sentences until `floor` words are in hand. The
+    material is nearly always right there: that deck's slide one carried three more sentences
+    the cap was throwing away. `budget` is still the only ceiling, so a deck that genuinely has
+    little to say gets a short card rather than a long one padded out of the next slide.
     """
     picked: list[str] = []
     for slide in (r.get("prose") or []):
@@ -918,7 +931,7 @@ def deck_preview(r: dict, sentences: int = 2, budget: int = 210) -> str:
             break
         out.append(part)
         used += len(part) + 1
-        if len(out) >= sentences:
+        if len(out) >= sentences and len(" ".join(out).split()) >= floor:
             break
     return " ".join(out)
 
