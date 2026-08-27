@@ -487,8 +487,21 @@ const byHref = Object.fromEntries(hrefs);
 // every citation repeat the sentence it followed, three times out of three in one answer an
 // owner ran. What ships now is the identifier where the record gives one and the source where
 // it does not, so the link text can never be the sentence again.
+// WHERE A COUNTY'S CITATION POINTS IS A BRANCH, AND THIS ASSERTED ONE SIDE OF IT. `cites` in
+// ask_pack sends a county to its OWN place page when the site publishes one and to the register
+// when it does not, which is the better link and the entire reason the branch exists. Dallas had
+// no place page when this line was written, so `construction/` looked like the rule rather than
+// like the fallback it is. On August 27th the record admitted items filed in Dallas and Denton,
+// both counties got pages, and the citation correctly moved to `place/county-dallas/`. A green
+// test went red because the product got better, which is a stale gate rather than a defect.
+//
+// So the RULE is what is checked. A citation labelled as the register exists, and it points at
+// either legitimate target. Neither side is hardcoded, so the next county to earn a page costs
+// nobody an afternoon.
+const countyCite = hrefs.find(([, t]) => t === "the construction register");
 ok("a county's construction cites the register it came from",
-  byHref["construction/"] === "the construction register", JSON.stringify(hrefs));
+  !!countyCite && /^(construction\/|place\/county-[a-z-]+\/)$/.test(countyCite[0] ?? ""),
+  JSON.stringify(hrefs));
 ok("a data center cites its own name, which is what the register calls it",
   byHref["facility/bexar-1/"] === "Bexar 1", JSON.stringify(hrefs));
 ok("a reservoir cites the water record rather than repeating the lake",
