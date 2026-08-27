@@ -469,15 +469,15 @@
      25.5,
      11.0,
      12.2,
-     30.2,
+     25.9,
      54.5,
      18.4,
      36.1,
      12.9
     ],
     "deck_median_L": 25.5,
-    "mean_L": 25.4,
-    "sd_L": 13.2,
+    "mean_L": 24.9,
+    "sd_L": 13.1,
     "range_L": [
      11.0,
      54.5
@@ -495,11 +495,19 @@
    ],
    "cut": "nothing was cut. Slide 5 was rebuilt twice, first because the knockout composited in the wrong order and the backlit cuts rendered as dark embossed type, then again because the letterforms shipped as canvas raster and the deck's single most important sentence would have reached the platform as a bitmap. It is SVG text over the canvas walls now, with the overlap declared.",
    "avoid_next": "the high bay night interior for at least one cycle, and any frame that paints a value field as a near black bar. Slide 8's four unstamped fields shipped as black rectangles on the first render and read as REDACTIONS, which says something was removed when the record says nothing was ever stated. They are milled pockets with a metal floor and a lit lip now. A deck about what a document does not say has to be careful that its own drawing does not accuse anybody.",
-   "bespoke_median_similarity": 0.4342,
+   "bespoke_median_similarity": 0.4419,
    "bespoke_closest_pair": [
     "slide-01.html",
     "slide-09.html",
-    0.7137
+    0.733
+   ],
+   "panel_repairs": [
+    "FRAME 4 PRINTED A JOIN NOTHING COMPUTED, and this is the entry to read if only one is read. The roster laid thirteen item ids beside twelve alphabetically sorted county names, each list ordered on its own key, and a reader met a ruled two column table asserting pairings no code had produced. Four rows were false against this run's own claims and the thirteenth orphaned. Two of three judges found it independently. compute.py now emits ask_pairs, one row per item read off that item's own geography. A TABLE IS A CLAIM ABOUT A JOIN, and a join is computed or it is not printed.",
+    "Frame 4's dek reversed the actors, reading as though the city or county did the asking when every claim has the county as the body BEING asked. The run's own caption said it the right way round on the same post. Rewritten to match.",
+    "Frame 6's dek said 'Nothing was requested here', an absence stated as a fact about the world with no document named. The storyboard's own risk note for that frame predicted this exact word. It now reads 'Neither release names a request here.'",
+    "Frame 5 shipped as embossed white type with a drop shadow against a declared technique of letterforms cut through a plate and lit from behind, and its glyphs ghosted because a canvas knockout and an SVG glyph are two rasterizers that drifted by two pixels. Rebuilt as ONE text node per line with an SVG filter chain supplying the wall and the light spill. The interim fix, a stack of offset text copies, was refused by panel_ready for marking the deck's most important sentence data-decorative, which is the exemption that gate exists to refuse, and it was right.",
+    "Frame 9 shipped with no perspective at all against a declared one point floor, so it read as horizontal bands. It now carries longitudinal control joints converging on a vanishing point, panels and tape bands drawn as trapezoids narrowing with distance, and stencil lines sized by their own depth.",
+    "Frame 3's hook read as '500 to 500 jobs' at feed size because Fraunces closes the 3's terminals at display weight. The figures are now JetBrains Mono with tabular numerals, which is what the engine's own house pairing said to do with a measurement in the first place."
    ]
   }
  ]
