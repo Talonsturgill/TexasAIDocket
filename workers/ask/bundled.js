@@ -1102,6 +1102,12 @@ const CORPUS_URL = `${SITE}/ask-corpus.json`;
 // ASK_MODEL overrides it when a model is being trialled, and /_config reports which won.
 const DEFAULT_MODEL = "claude-sonnet-5";
 const DEFAULT_CAP = 200;
+// A BUSY DEMO DAY STILL FITS. The daily ceiling is half the monthly one and one reader may use
+// half of the day. That is deliberately generous: fifty uncached questions is a real working
+// session, not a teaser. The point is to stop one script from spending the whole month before
+// lunch, not to make a person ration follow-ups while showing the product.
+const DEFAULT_DAILY_CAP = 100;
+const DEFAULT_READER_DAILY_CAP = 50;
 // Raised from 700 on 2026-08-15, after an eval cut two answers mid word. "under the Paperw"
 // and "The record only sh" both reached a reader. The questions that hit it were the ones
 // worth asking, three open comment windows and a survey of data center projects, because an
@@ -1143,25 +1149,44 @@ export function capOf(env) {
   return Number.isFinite(n) && n >= 0 ? Math.floor(n) : DEFAULT_CAP;
 }
 
+function boundedCap(raw, fallback) {
+  if (raw === undefined || raw === null || raw === "") return fallback;
+  const n = Number(raw);
+  return Number.isFinite(n) && n >= 0 ? Math.floor(n) : fallback;
+}
+
+export function dailyCapOf(env) {
+  return boundedCap(env?.ASK_DAILY_CAP, DEFAULT_DAILY_CAP);
+}
+
+export function readerDailyCapOf(env) {
+  return boundedCap(env?.ASK_READER_DAILY_CAP, DEFAULT_READER_DAILY_CAP);
+}
+
+export function dayKey(nowISO) {
+  return `spend-day:${KV_PREFIX}:${nowISO.slice(0, 10)}`;
+}
+
+export function readerDayKey(nowISO, reader) {
+  return `spend-reader:${KV_PREFIX}:${nowISO.slice(0, 10)}:${reader}`;
+}
+
 /**
- * The conversation, not just the latest line. A follow-up like "when does that close" only
- * means something with what came before it.
+ * A stable pseudonym for one connection, never the address itself.
  *
- * ONLY GUARD APPROVED TEXT GOES BACK. The client sends its own thread, and what it stores for
- * the assistant's turns is the checked prefix and never the raw reply. A sentence a reader was
- * never shown must not be something the model can build on either, or a refused claim
- * re-enters through the back door on the next question.
+ * TURNSTILE_SECRET is already present in production and is used only as salt here; an optional
+ * ASK_RATE_SALT can separate the two purposes. With neither secret the per-reader limit turns
+ * itself off rather than write an unsalted IPv4 digest that is easy to reverse. The site-wide
+ * daily and monthly ceilings still hold.
  */
-export function turnsOf(payload) {
-  const raw = Array.isArray(payload?.messages) ? payload.messages
-    : payload?.question ? [{ role: "user", content: payload.question }]
-    : [];
-  return raw
-    .filter((m) => m && typeof m.content === "string" && m.content.trim())
-    .map((m) => ({
-      role: m.role === "assistant" ? "assistant" : "user",
-      content: String(m.content).slice(0, 4000),
-    }));
+export async function readerOf(ip, env) {
+  const address = String(ip || "").trim();
+  const salt = String(env?.ASK_RATE_SALT || env?.TURNSTILE_SECRET || "");
+  if (!address || !salt) return null;
+  const digest = await crypto.subtle.digest("SHA-256",
+    new TextEncoder().encode(`${salt}\u0000${address}`));
+  return [...new Uint8Array(digest)].slice(0, 12)
+    .map((b) => b.toString(16).padStart(2, "0")).join("");
 }
 
 export function normaliseQuestion(q) {
@@ -1217,6 +1242,33 @@ export async function spendOf(env, nowISO) {
   const spent = Number(await env.ASK_KV.get(key)) || 0;
   return { month: nowISO ? nowISO.slice(0, 7) : new Date().toISOString().slice(0, 7),
            cap, spent, left: Math.max(0, cap - spent) };
+}
+
+/** The two short ceilings, reported from the same keys enforcement reads. */
+export async function dailySpendOf(env, nowISO, reader) {
+  const now = nowISO || new Date().toISOString();
+  const dayCap = dailyCapOf(env);
+  const readerCap = readerDailyCapOf(env);
+  if (!env.ASK_KV) {
+    return {
+      day: now.slice(0, 10),
+      site: { cap: dayCap, spent: null, left: null, note: "no KV bound" },
+      reader: { cap: readerCap, spent: null, left: null, note: "no KV bound" },
+    };
+  }
+  const [dayRaw, readerRaw] = await Promise.all([
+    env.ASK_KV.get(dayKey(now)),
+    reader ? env.ASK_KV.get(readerDayKey(now, reader)) : Promise.resolve(null),
+  ]);
+  const daySpent = Number(dayRaw) || 0;
+  const readerSpent = Number(readerRaw) || 0;
+  return {
+    day: now.slice(0, 10),
+    site: { cap: dayCap, spent: daySpent, left: Math.max(0, dayCap - daySpent) },
+    reader: reader
+      ? { cap: readerCap, spent: readerSpent, left: Math.max(0, readerCap - readerSpent) }
+      : { cap: readerCap, spent: null, left: null, note: "no salted reader key" },
+  };
 }
 
 async function fetchJSON(url) {
@@ -1468,10 +1520,11 @@ export async function probe(env) {
 /**
  * Everything both paths need before either spends anything, and the cap gate itself.
  *
- * A CACHED ANSWER IS SERVED EVEN IN A SPENT MONTH. Turning off new spending should not blank a
- * question that has already been paid for and checked.
+ * A CACHED ANSWER IS SERVED EVEN AFTER ANY CEILING. Turning off new spending should not blank a
+ * question that has already been paid for and checked. That ordering also means the daily
+ * limits count only uncached model calls, not readers opening an answer the site already owns.
  */
-async function preflight(turns, env, now) {
+async function preflight(turns, env, now, reader) {
   if (!env.ANTHROPIC_API_KEY) return { stop: { error: "the answerer is not configured" }, status: 503 };
   const pack = await loadPack(env);
   const key = env.ASK_KV ? await cacheKey(turns, pack.version || pack.generated) : null;
@@ -1481,10 +1534,22 @@ async function preflight(turns, env, now) {
     if (hit) return { cached: JSON.parse(hit) };
   }
 
-  const cap = capOf(env);
-  const mk = monthKey(now || new Date().toISOString());
-  const spent = env.ASK_KV ? Number(await env.ASK_KV.get(mk)) || 0 : 0;
+  const nowISO = now || new Date().toISOString();
+  const cap = capOf(env), dayCap = dailyCapOf(env), readerCap = readerDailyCapOf(env);
+  const mk = monthKey(nowISO), dk = dayKey(nowISO);
+  const rk = reader ? readerDayKey(nowISO, reader) : null;
+  const [monthRaw, dayRaw, readerRaw] = env.ASK_KV
+    ? await Promise.all([
+        env.ASK_KV.get(mk), env.ASK_KV.get(dk),
+        rk ? env.ASK_KV.get(rk) : Promise.resolve(null),
+      ])
+    : [null, null, null];
+  const spent = Number(monthRaw) || 0;
+  const daySpent = Number(dayRaw) || 0;
+  const readerSpent = Number(readerRaw) || 0;
   if (spent >= cap) return { capped: true };
+  if (daySpent >= dayCap) return { limited: "site" };
+  if (rk && readerSpent >= readerCap) return { limited: "reader" };
 
   const corpus = await loadCorpus(env);
   // ASSEMBLED ONCE, HERE, and the guard is built from the same object that gets sent. Building
@@ -1497,7 +1562,7 @@ async function preflight(turns, env, now) {
   const order = await rerank(queryOf(turns), candidates(pack, turns, env), env);
   const prompt = assemble(pack, turns, env, order);
   return {
-    pack, key, mk, spent, prompt,
+    pack, key, mk, spent, dk, daySpent, rk, readerSpent, prompt,
     ctx: {
       allowed: allowedNumerals(prompt.blocks),
       slugs: new Set(corpus.slugs),
@@ -1505,14 +1570,36 @@ async function preflight(turns, env, now) {
   };
 }
 
+async function recordSpend(env, pre) {
+  if (!env.ASK_KV) return;
+  try {
+    const writes = [
+      env.ASK_KV.put(pre.mk, String(pre.spent + 1), { expirationTtl: 60 * 60 * 24 * 70 }),
+      env.ASK_KV.put(pre.dk, String(pre.daySpent + 1), { expirationTtl: 60 * 60 * 24 * 3 }),
+    ];
+    if (pre.rk) {
+      writes.push(env.ASK_KV.put(pre.rk, String(pre.readerSpent + 1),
+        { expirationTtl: 60 * 60 * 24 * 3 }));
+    }
+    await Promise.all(writes);
+  } catch (e) {
+    // KV allows only one write per key per second and is eventually consistent. A busy moment
+    // may therefore reject an accounting write. The provider call has already happened here;
+    // hiding its checked answer would spend the money and give the reader nothing. Keep the
+    // answer, log the missing receipt, and let the other two ceilings plus Turnstile stand.
+    console.log("spend not recorded", String(e));
+  }
+}
+
 /** The whole answer at once, for a client that cannot stream. */
-export async function answer(turns, env, now) {
-  const pre = await preflight(turns, env, now);
+export async function answer(turns, env, now, reader) {
+  const pre = await preflight(turns, env, now, reader);
   if (pre.stop) return { status: pre.status, body: pre.stop };
   if (pre.cached) return { status: 200, body: pre.cached };
   if (pre.capped) return { status: 200, body: { capped: true } };
+  if (pre.limited) return { status: 200, body: { limited: pre.limited } };
 
-  const { key, mk, spent, ctx, prompt } = pre;
+  const { key, ctx, prompt } = pre;
   const r = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
     headers: HEADERS(env),
@@ -1527,9 +1614,7 @@ export async function answer(turns, env, now) {
     return { status: 502, body: { error: b?.error?.message || "the answerer could not reply" } };
   }
   const body = await r.json();
-  if (env.ASK_KV) {
-    await env.ASK_KV.put(mk, String(spent + 1), { expirationTtl: 60 * 60 * 24 * 70 });
-  }
+  await recordSpend(env, pre);
   // No first-sentence time on this path: nothing is shown until the whole reply lands, so the
   // wait a reader feels IS the whole call and there is no earlier moment to record.
   await recordUsage(env, body.usage, NaN, now);
@@ -1569,9 +1654,10 @@ export function verify(text, { allowed, slugs }) {
  * feels long. Nothing is shown first and checked later: a sentence reaching the page has
  * already passed.
  *
- * ndjson, one event per line: {stage} | {sentence} | {withheld} | {capped} | {error} | {done}
+ * ndjson, one event per line: {stage} | {sentence} | {withheld} | {capped} | {limited} |
+ * {error} | {done}
  */
-export async function answerStream(turns, env, now) {
+export async function answerStream(turns, env, now, requester) {
   const enc = new TextEncoder();
   const line = (o) => enc.encode(JSON.stringify(o) + "\n");
 
@@ -1579,9 +1665,10 @@ export async function answerStream(turns, env, now) {
     async start(controller) {
       const send = (o) => controller.enqueue(line(o));
       try {
-        const pre = await preflight(turns, env, now);
+        const pre = await preflight(turns, env, now, requester);
         if (pre.stop) { send({ error: pre.stop.error }); controller.close(); return; }
         if (pre.capped) { send({ capped: true }); controller.close(); return; }
+        if (pre.limited) { send({ limited: pre.limited }); controller.close(); return; }
         if (pre.cached) {
           // Replay a paid-for answer as if it were arriving, so the reader sees one behaviour.
           for (const s of splitSentences(pre.cached.text + " ").sentences) send({ sentence: s });
@@ -1591,7 +1678,7 @@ export async function answerStream(turns, env, now) {
           return;
         }
 
-        const { key, mk, spent, ctx, prompt } = pre;
+        const { key, ctx, prompt } = pre;
         const startedAt = Date.now();
         // WHAT IT IS ACTUALLY DOING, not a reassuring noise. The reader is told how much of
         // the record is being read closely, which is the honest description of a slice and
@@ -1617,9 +1704,7 @@ export async function answerStream(turns, env, now) {
           controller.close();
           return;
         }
-        if (env.ASK_KV) {
-          await env.ASK_KV.put(mk, String(spent + 1), { expirationTtl: 60 * 60 * 24 * 70 });
-        }
+        await recordSpend(env, pre);
 
         const reader = r.body.getReader();
         const dec = new TextDecoder();
@@ -1725,7 +1810,17 @@ export async function answerStream(turns, env, now) {
 // passes checks.js against the published record before it is sent, and a sentence that fails
 // ends the answer there, visibly, with the reason named, rather than being quietly repaired.
 
-const MAX_QUESTION = 400;
+// LARGE ENOUGH TO SHOW THE PRODUCT OFF. Sixty five messages is thirty two full exchanges and
+// one more question. Sixty four thousand characters lets those exchanges carry real answers,
+// and the body has another thirty two KiB for JSON, tokens and future envelope fields. These
+// are abuse boundaries, not product copy budgets.
+export const REQUEST_LIMITS = Object.freeze({
+  body_bytes: 96 * 1024,
+  messages: 65,
+  question_characters: 1200,
+  message_characters: 8000,
+  conversation_characters: 64000,
+});
 const DEFAULT_ORIGIN = "https://texasaidocket.com";
 
 // Read from the environment rather than hardcoded. The site moved from a github.io subpath to
@@ -1743,6 +1838,85 @@ function json(body, status, env) {
     status,
     headers: { "content-type": "application/json", ...corsFor(env) },
   });
+}
+
+/** Read the real bytes, because Content-Length is optional and supplied by the caller. */
+export async function payloadOf(request) {
+  const declared = Number(request.headers.get("content-length"));
+  if (Number.isFinite(declared) && declared > REQUEST_LIMITS.body_bytes) {
+    return { error: "request too large", status: 413 };
+  }
+
+  let text = "", bytes = 0;
+  if (request.body?.getReader) {
+    const reader = request.body.getReader();
+    const decoder = new TextDecoder();
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      bytes += value.byteLength;
+      if (bytes > REQUEST_LIMITS.body_bytes) {
+        try { await reader.cancel(); } catch { /* the rejection still stands */ }
+        return { error: "request too large", status: 413 };
+      }
+      text += decoder.decode(value, { stream: true });
+    }
+    text += decoder.decode();
+  } else {
+    text = await request.text();
+    bytes = new TextEncoder().encode(text).byteLength;
+    if (bytes > REQUEST_LIMITS.body_bytes) return { error: "request too large", status: 413 };
+  }
+
+  try {
+    return { payload: JSON.parse(text) };
+  } catch {
+    return { error: "invalid JSON", status: 400 };
+  }
+}
+
+/** Validate rather than silently trim what the model is asked to remember. */
+export function conversationOf(payload) {
+  const raw = Array.isArray(payload?.messages) ? payload.messages
+    : typeof payload?.question === "string" ? [{ role: "user", content: payload.question }]
+    : [];
+  if (!raw.length) return { error: "ask a question", status: 400 };
+  if (raw.length > REQUEST_LIMITS.messages) {
+    return { error: "That conversation is full. Start over to keep asking.", status: 413 };
+  }
+
+  const turns = [];
+  let total = 0, expected = "user";
+  for (const message of raw) {
+    if (!message || !["user", "assistant"].includes(message.role)
+        || typeof message.content !== "string" || !message.content.trim()) {
+      return { error: "messages need a role and text", status: 400 };
+    }
+    if (message.role !== expected) {
+      return { error: "messages must alternate user and assistant", status: 400 };
+    }
+    const content = message.content.trim();
+    const ownLimit = message.role === "user"
+      ? REQUEST_LIMITS.question_characters : REQUEST_LIMITS.message_characters;
+    if (content.length > ownLimit) {
+      return {
+        error: message.role === "user"
+          ? "That question is over 1,200 characters. Start a fresh follow-up for the rest."
+          : "That conversation is full. Start over to keep asking.",
+        status: 413,
+      };
+    }
+    total += content.length;
+    if (total > REQUEST_LIMITS.conversation_characters) {
+      return { error: "That conversation is full. Start over to keep asking.", status: 413 };
+    }
+    turns.push({ role: message.role, content });
+    expected = expected === "user" ? "assistant" : "user";
+  }
+  if (turns[turns.length - 1].role !== "user") {
+    return { error: "the last message must be a question", status: 400 };
+  }
+  return { turns };
 }
 
 async function verifyTurnstile(token, secret, ip) {
@@ -1771,6 +1945,8 @@ export default {
     // without printing secrets, and the alternative is asking a person to re-read a settings
     // page and taking their word for it. One request answers it instead.
     if (path === "/_config") {
+      const now = new Date().toISOString();
+      const reader = await readerOf(request.headers.get("cf-connecting-ip"), env);
       return json({
         kv_binding: !!env.ASK_KV,
         anthropic_key: !!env.ANTHROPIC_API_KEY,
@@ -1778,7 +1954,11 @@ export default {
         // Where the month stands, from the same function the cap gate reads, so enforcement
         // and diagnosis cannot disagree. The only other way to learn this was a reader
         // hitting the wall, which is the last person you want finding out.
-        spend: await spendOf(env),
+        spend: await spendOf(env, now),
+        limits: {
+          request: REQUEST_LIMITS,
+          daily: await dailySpendOf(env, now, reader),
+        },
         // The model actually in use, not the variable. Reporting the variable and calling it
         // "(default)" when unset tells a debugger nothing about which model that resolved to,
         // which is the one question this endpoint exists to answer.
@@ -1813,32 +1993,28 @@ export default {
     if (request.method !== "POST") return json({ error: "POST only" }, 405, env);
     if (path !== "/answer") return json({ error: "not found" }, 404, env);
 
-    let payload;
-    try {
-      payload = await request.json();
-    } catch {
-      return json({ error: "invalid JSON" }, 400, env);
-    }
-
-    const turns = turnsOf(payload);
-    if (!turns.length) return json({ error: "ask a question" }, 400, env);
-    const question = turns[turns.length - 1].content;
-    if (question.length > MAX_QUESTION) {
-      return json({ error: `keep it under ${MAX_QUESTION} characters` }, 400, env);
-    }
+    let read;
+    try { read = await payloadOf(request); }
+    catch { return json({ error: "invalid request" }, 400, env); }
+    if (read.error) return json({ error: read.error }, read.status, env);
+    const payload = read.payload;
+    const conversation = conversationOf(payload);
+    if (conversation.error) return json({ error: conversation.error }, conversation.status, env);
+    const turns = conversation.turns;
 
     const ip = request.headers.get("cf-connecting-ip") || "";
     const human = await verifyTurnstile(payload.turnstile_token, env.TURNSTILE_SECRET, ip);
     if (!human) return json({ error: "finish the human check first" }, 403, env);
+    const reader = await readerOf(ip, env);
 
     // Streamed by default. The guard checks a sentence at a time anyway, so a verified
     // sentence can be shown the moment it is complete rather than after the whole reply
     // lands, which is most of why the wait feels long. A client can still ask for it whole.
     if (payload.stream === false) {
-      const out = await answer(turns, env);
+      const out = await answer(turns, env, undefined, reader);
       return json(out.body, out.status, env);
     }
-    return new Response(await answerStream(turns, env), {
+    return new Response(await answerStream(turns, env, undefined, reader), {
       headers: {
         "content-type": "application/x-ndjson; charset=utf-8",
         "cache-control": "no-store",

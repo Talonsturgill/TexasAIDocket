@@ -49,7 +49,7 @@ at the keyboard.
 
 | Topic | Where it lives |
 |---|---|
-| Rate limiting | Turnstile on the worker plus a KV-backed monthly spend cap, default 200 |
+| Rate limiting | Turnstile plus KV-backed monthly, daily, and salted per-reader caps, default 200, 100, and 50 uncached answers |
 | Caching, CDN, edge caching | GitHub Pages plus Cloudflare, free and global |
 | Cache invalidation | The stylesheet URL carries a content hash, so a deploy cannot serve new markup with the old sheet |
 | CI/CD | `guards.yml`, 126 command steps reported by `guards_local.py` across eight jobs, on every pull request and every push to `main` |
@@ -155,12 +155,16 @@ automation and the history together.
 GitHub qualifies. This is the cheapest insurance on the list and the only item where the
 consequence is total.
 
-### Gap 4. The monthly cap has no burst control
+### Closed gap 4. The monthly cap needed a shorter fuse
 
-The worker's monthly cap bounds the bill but not the burst. Someone could exhaust the month's
-200 answers in an afternoon and the lane would be closed for everyone until the first. Turnstile
-raises the cost of doing that and does not make it impossible. A per-day sub-cap, or a per-IP
-counter in the KV that already exists, would turn a month-long outage into a day-long one.
+Closed on 2026-08-27. The worker refuses uncached calls once its KV-backed counts reach 100 across
+the site per UTC day or 50 from one salted reader key, while the 200-call monthly ceiling remains
+the final backstop. Cached answers still open after every ceiling because they cost nothing new.
+The reader key is a salted digest of the connecting address, expires after three days, and
+contains no raw address. KV is eventually consistent, so these are fail-soft circuit breakers,
+not an accounting ledger for simultaneous calls from different edges. The request itself is
+bounded at 96 KiB, 65 messages, and 64,000 conversation characters before Turnstile, retrieval,
+or the model can be called.
 
 ### Gap 5. Python dependencies are not centrally declared
 

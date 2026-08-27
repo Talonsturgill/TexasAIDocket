@@ -103,6 +103,11 @@ COPY = {
                     "and ask again.",
     "capped":       "That is this month's last written answer. The record itself is open at "
                     "the link below and the answers already given are still here.",
+    # SAME WORDS FOR THE SITE AND READER CEILINGS. The distinction is useful at /_config and
+    # useless here: either way, blaming a visitor or explaining an address counter does not
+    # help them read the record. The limit is deliberately large enough for a real demo day.
+    "limited":      "Written answers have reached today's allowance. The record itself is "
+                    "open at the link below and the answers already given are still here.",
     "provenance":   "Written from the published record. Every figure checked against it.",
     # NEITHER OF THESE MENTIONS A CLOCK AND NEITHER ASKS THE READER TO ASK FOR LESS.
     #
@@ -947,6 +952,13 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
         dropStage();
         if (!started) {
           body.textContent = "%%capped%%";
+        }
+        return;
+      }
+      if (ev.limited) {
+        dropStage();
+        if (!started) {
+          body.textContent = "%%limited%%";
         }
         return;
       }

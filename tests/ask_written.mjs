@@ -56,6 +56,8 @@ await page.route("**/answer", async (route) => {
       ? [{ stage: "Reading the record" },
          { sentence: "Four comment windows are open right now." },
          { long: true }]
+    : /demo day/.test(q)
+      ? [{ limited: "site" }]
     : /why one more/.test(q)
       ? [{ capped: true }]
     : /when did it close/.test(q)
@@ -326,6 +328,17 @@ ok("it says the written answers are spent", capped.includes("last written answer
 // reader can actually use is the record itself and the answers already on screen.
 ok("and points at something that still exists",
    /record itself is open/.test(capped) && !/Typing/i.test(capped), capped);
+
+// ------------------------------------------------------------------ daily allowance
+head("H2. a full demo day ends without blaming the reader");
+await page.fill("#askq", "what made this a full demo day");
+await page.press("#askq", "Enter");
+await page.waitForTimeout(600);
+const limited = await page.locator(".askreply").last().textContent();
+ok("the daily allowance is named", /today's allowance/.test(limited), limited);
+ok("the copy keeps the record open", /record itself is open/.test(limited), limited);
+ok("and says nothing about an address or rate limiter", !/\b(?:IP|address|rate limit)\b/i.test(limited),
+  limited);
 
 // ------------------------------------------------------------------ reset
 head("I. start over puts it back");

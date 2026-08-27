@@ -120,13 +120,15 @@ bindings are configured outside this repository.
 | binding | unlocks | without it |
 |---|---|---|
 | `ANTHROPIC_API_KEY` | written answers | the worker returns that the answerer is not configured |
-| `ASK_KV` | answer cache, usage receipts, and the monthly cap | answers can run, but caching and cap accounting are unavailable |
+| `ASK_KV` | answer cache, usage receipts, and monthly, daily, and per-reader caps | answers can run, but caching and cap accounting are unavailable |
 | `TURNSTILE_SECRET` | server-side verification of the public Turnstile token | the worker reports the missing binding at `/_config` and does not enforce the human check |
 | Workers AI binding `AI` | optional reranking of the retrieval shortlist | deterministic BM25 and reciprocal-rank retrieval still run |
 
 `ASK_ORIGIN`, `ASK_PACK_URL`, `ASK_CORPUS_URL`, `ASK_MODEL`, `ASK_EFFORT`, `ASK_RETRIEVAL`, and
-`ASK_MONTHLY_CAP` are optional overrides. The Worker exposes non-secret configuration state at
-`/_config` and a live provider probe at `/_probe`.
+`ASK_MONTHLY_CAP` are optional overrides. `ASK_DAILY_CAP` and `ASK_READER_DAILY_CAP` default to
+100 and 50 uncached answers. `ASK_RATE_SALT` may give the per-reader key its own salt; otherwise
+the configured `TURNSTILE_SECRET` salts it. The Worker exposes the exact request and spend limits,
+with their current counts, at `/_config`, and a live provider probe at `/_probe`.
 
 ---
 
@@ -134,10 +136,11 @@ bindings are configured outside this repository.
 
 **No analytics, no audience tracking and no account cookies.** Typing in the Ask box sends
 nothing. Submitting a question is different: after Turnstile, the question goes to the Ask Worker
-and Anthropic, and a checked answer may be cached in KV under a content hash. The browser catalogue
-path is tested in `tests/ask_engine.mjs`; the network lane and its guard are tested under
-`workers/ask/`. Adding analytics would still be a new collection decision rather than a harmless
-script tag.
+and Anthropic, and a checked answer may be cached in KV under a content hash. The daily abuse guard
+also keeps a salted digest of the connecting address for three days; it never stores the address,
+and without a secret salt the per-reader guard stays off. The browser catalogue path is tested in
+`tests/ask_engine.mjs`; the network lane and its guard are tested under `workers/ask/`. Adding
+analytics would still be a new collection decision rather than a harmless script tag.
 
 **No human review gate.** The gates are the review, by design, and `CLAUDE.md` states it.
 
