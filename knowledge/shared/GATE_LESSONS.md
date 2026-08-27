@@ -2193,3 +2193,24 @@ that is a different act from reading carefully.
 
 The tell is available and it is not in the output. **It is that you know a background job is
 running and you looked anyway.**
+
+**What was built, because a rule this easy to break needed a mechanism rather than a paragraph.**
+`guards_local.py --verdict` is now the only supported way to ask whether the suite passed. It
+reads `out/gates/verdict.json`, never the log, and that file:
+
+- is **deleted when a run starts**, so a run in flight has no answer on disk to be misread, and
+  the previous run's green cannot be spent on the tree that replaced it,
+- is **written once at the end by an atomic rename**, so it never exists half-written,
+- **records the commit and a digest of the working tree**, so a verdict earned on another branch
+  or before an edit is refused rather than reused,
+- **records the invocation**, so a `--fast` or `--only` run can never answer for a full one.
+
+It exits 0 only for a complete, current, full-coverage, all-passed run. Every other state exits
+non-zero and names itself. The self-test walks all of them, including a truncated file, and
+asserts none reads as green. **CI runs that self-test**, which is the part that matters: the
+mechanism protects local runs, so nothing local is allowed to be the proof that it works.
+
+The general form, worth more than the file. **When a check's result is read by a machine, the
+result belongs in an artifact that does not exist until it is true, not in the output stream the
+check happens to produce for a person.** A log is advice. A verdict is an answer. Give a reader
+the log and every partial state is indistinguishable from success.

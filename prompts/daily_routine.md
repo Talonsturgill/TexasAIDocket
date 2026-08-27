@@ -1259,8 +1259,25 @@ request. This phase lands it and nothing after it writes to the repository.
 3. **Red is work now.** Read the failing job's log, reproduce it in this checkout, fix it, push,
    wait again. `guards_local.py` is what tells you the work is DONE. CI reporting green is what
    tells you it may LAND. A run that treats the first as the second has skipped a check.
+
+   **Ask `python3 scripts/shared/guards_local.py --verdict` for the first half. Never read the
+   runner's log to decide it.** Exit 0 there is the only thing that counts as a local pass. Any
+   other exit names its own reason, and the commonest is that the suite has not finished, which
+   a log cannot tell you: while it runs, its output is a wall of `ok` with no `FAIL`, which is
+   also exactly what a passing run looks like. On 2026-08-27 this run read one at line 84 of an
+   eventual 269, called it green, and two CI jobs went red on work it had just certified.
+   GATE_LESSONS 69.
+
+   If `--verdict` says the suite has not finished, the answer is to WAIT for it, in one blocking
+   wait on the process, and then ask again. It is never to look at the log again.
 4. If the checks cannot start at all and cannot be dispatched, **say so in the run record and in
    the email, and stop.** Do not merge, and never push an empty commit to kick CI.
+
+   Before writing that down, check it. A pull request opened through the GitHub App does not
+   start a workflow run, which is true and is not the whole story: **a push to a branch that
+   already has an open pull request fires `pull_request: synchronize` and starts one.** The
+   2026-08-27 run wrote a confident account of undispatchable checks while the state it wanted
+   was one push away, which is what a run does after it has wrongly decided it is clean.
 5. Merge. One merge, one run.
 
 **A failed run stops here with its evidence committed and pushed, and does NOT merge.** That is

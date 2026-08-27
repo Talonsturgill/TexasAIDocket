@@ -343,6 +343,28 @@ once" for a big file. `out/<run>/tmp/` takes big files.
   cannot fall behind CI. `--fast` defers the node suites while you iterate. Running every
   `--self-test` instead is the wrong half and has already put a red build on the board: a
   self-test proves the checker can go red, and only the checker proves the product is clean.
+
+  **NEVER READ THAT RUNNER'S LOG TO DECIDE WHETHER IT PASSED. Ask `guards_local.py --verdict`.**
+  On 2026-08-27 a run piped the suite to a file, read the file, saw a wall of `ok` with no
+  `FAIL`, and recorded a pass. It had read line 84 of an eventual 269. The first `FAIL` was at
+  line 100 and ten of 120 steps had failed. Two CI jobs went red on a branch the run believed
+  was clean, and everything after it, two extra pull requests and a wrong diagnosis of the CI
+  trigger, descends from that one read.
+
+  **Reading more carefully would not have helped, and that is the whole point.** At line 84 the
+  output of a run that will fail at step 100 is byte for byte identical to the output of a run
+  that will pass. The signal is never in the content. It is in whether the writer has stopped
+  writing, which a reader looking at content cannot see. Grepping for `FAIL` rather than reading
+  `tail -1` is the discipline this file already demanded, and it is about WHICH LINES you read,
+  so it protected nothing here.
+
+  So the verdict does not live in the log. `--verdict` reads `out/gates/verdict.json`, which is
+  deleted when a run starts, written once at the end by an atomic rename, and stamped with the
+  commit, the working tree digest and the invocation. It exits 0 only for a complete, current,
+  full-coverage, all-passed run. A suite in flight, a suite that died, a verdict from another
+  branch, a verdict from before your last edit and a `--fast` verdict all exit non-zero and say
+  which one they are. There is no state a half-finished run can leave that reads as green.
+  Its `--self-test` walks all of them and CI runs it. GATE_LESSONS 69.
 - `assets/` — committed fonts, art libraries, Texas geodata, places gazetteer.
 - The front page's one live line is the **weather chip**, in `scripts/site/frontchip.py` with
   its collector in `scripts/gridwatch/weather_collect.py`.
