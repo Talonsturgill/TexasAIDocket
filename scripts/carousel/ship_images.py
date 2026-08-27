@@ -61,7 +61,21 @@ QUALITY = 82
 # search because each step is a full encode of a 2160x2700 image, and four attempts on the two
 # worst slides of a deck is cheap where a bisection is not.
 QUALITY_LADDER = (82, 88, 92, 96)
-OG_QUALITY = 90
+
+# THE OG CARD WALKS A LADDER TOO, and until 2026-08-27 it did not.
+#
+# The ladder above exists because "one fixed quality was the wrong instrument for a deck whose
+# whole premise is that no two slides are drawn alike". That reasoning was applied to the nine
+# slides and NOT to the JPEG cut from slide 1, which kept a single `OG_QUALITY = 90` and was
+# then measured against the same 40 dB floor. On 2026-08-27 slide 1 was a dark high bay with
+# long smooth gradients, JPEG's worst case, and the card encoded at 38.2 dB. The gate refused it
+# correctly and the run had nothing to turn: the only lever was a constant, and a constant is not
+# an instrument.
+#
+# JPEG rather than WebP, so the ladder runs higher and further. The floor is the same 40 dB and
+# is not moved, because moving a floor to pass an encode is the one repair this file must never
+# make.
+OG_QUALITY_LADDER = (90, 94, 96, 97)
 
 # 40 dB is the conventional visually-lossless threshold for photographic content, and it is an
 # EXTERNAL number rather than one measured from our own decks. That matters: a threshold derived
@@ -130,18 +144,31 @@ def convert_one(png: Path, dry: bool) -> dict:
 
 
 def write_og(png: Path, dest: Path, dry: bool) -> dict | None:
-    """Slide 1 as JPEG, for the unfurl. Rendered by somebody else's code, so it stays boring."""
+    """Slide 1 as JPEG, for the unfurl. Rendered by somebody else's code, so it stays boring.
+
+    Walks OG_QUALITY_LADDER until the encode clears QUALITY_FLOOR_DB, the same way a slide
+    does. A dark frame with long smooth gradients is JPEG's worst case and one fixed quality
+    cannot answer it.
+    """
     if dry:
         return {"name": dest.name, "src": png.stat().st_size, "dst": None, "psnr": None,
                 "wrote": False}
     with Image.open(png) as im:
         rgb = im.convert("RGB")
-        rgb.save(dest, "JPEG", quality=OG_QUALITY, optimize=True, progressive=True)
-        with Image.open(dest) as out:
-            out.load()
-            db = psnr(rgb, out)
-    return {"name": dest.name, "src": png.stat().st_size, "dst": dest.stat().st_size,
-            "psnr": db, "wrote": True, "path": dest}
+        db, used = 0.0, OG_QUALITY_LADDER[0]
+        for q in OG_QUALITY_LADDER:
+            rgb.save(dest, "JPEG", quality=q, optimize=True, progressive=True)
+            with Image.open(dest) as out:
+                out.load()
+                db = psnr(rgb, out)
+            used = q
+            if db >= QUALITY_FLOOR_DB:
+                break
+    out = {"name": dest.name, "src": png.stat().st_size, "dst": dest.stat().st_size,
+           "psnr": db, "wrote": True, "path": dest, "quality": used}
+    if db < QUALITY_FLOOR_DB:
+        out["floor_missed"] = True
+    return out
 
 
 def ship(run_dir: Path, dry: bool, keep_png: bool = False) -> tuple[list[dict], list[str]]:
@@ -260,6 +287,24 @@ def self_test() -> int:
         ok("every slide got a webp", all((run / f"slide-{i:02d}.webp").exists() for i in (1, 2)))
         ok("slide 1 also got an og.jpg, because scrapers still mishandle webp",
            (run / "og.jpg").exists())
+
+        # THE OG LADDER, and that it can still go red. Added 2026-08-27 with the ladder
+        # itself, because a repair with no self-test is the repair that quietly stops
+        # working. The first assertion proves the ladder CLIMBS, the second proves the
+        # floor is still a floor and was not moved to pass an encode.
+        og_row = next((r for r in results if r.get("name") == "og.jpg"), None)
+        ok("the og card records the quality the ladder actually used",
+           bool(og_row) and og_row.get("quality") in OG_QUALITY_LADDER,
+           str(og_row))
+        with Image.open(run / "slide-01.png") as base:
+            probe = base.convert("RGB")
+            worst = run / "og-probe.jpg"
+            probe.save(worst, "JPEG", quality=1, optimize=True, progressive=True)
+            with Image.open(worst) as bad:
+                bad.load()
+                ok("an encode the floor should refuse measures below it",
+                   psnr(probe, bad) < QUALITY_FLOOR_DB)
+            worst.unlink()
 
         after = sum(p.stat().st_size for p in run.glob("slide-*.webp"))
         ok(f"the deck got smaller ({before/1e6:.2f} MB to {after/1e6:.2f} MB, "
