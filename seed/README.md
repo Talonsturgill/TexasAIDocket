@@ -8,15 +8,21 @@ python3 scripts/site/docket_ingest.py --batch out/research/*.json --today <today
 python3 scripts/site/docket_build.py --promote seed/docket_seed.json --today <today>
 ```
 
-**Do not pass `--out ledger/docket.json`.** Promotion is a gate, not a merge: with `--out` it
-writes only the items admitted from this seed and would otherwise replace the published record.
-The code refuses that destructive shape, but the safe command is the one above with no `--out`.
+**The second command is the admission AND the write.** It reads the published ledger, ignores
+historical seed rows whose ids are already published, gates every seed-only candidate, appends
+only the new rows that clear the bar, then validates the entire combined record. Only after all
+of that passes does it replace `ledger/docket.json` atomically. It never writes this seed.
 
-Read the `HELD` rows. Every other row cleared the admission bar: every gate passes, confidence is
-high, and at least one claim cites a primary source rather than journalism. Append only admitted
-items whose ids are not already present in `ledger/docket.json`, then validate the combined
-ledger. The record is append-only in substance and an existing item is never replaced by a seed
-copy.
+There is no manual append and promotion has no `--out` mode. `--ledger <path>` exists so a test
+or maintainer can exercise the same merge against an explicit record; omitting it uses the live
+ledger. A published id is immutable here even when its historical seed copy differs. Rerunning
+the command with nothing new is byte-identical, and any refused validation leaves both files
+byte-identical.
+
+Read the `HELD` rows. Every admitted row has already been written by the time the command returns:
+every gate passes, confidence is high, and at least one claim cites a primary source rather than
+journalism. The record is append-only in substance and an existing item is never replaced by a
+seed copy.
 
 **A held item is not lost.** It stays here with its reason, and a later run that finds the
 primary source promotes it without anyone intervening. Nothing here waits on a person, which is
@@ -38,8 +44,9 @@ print(f"{len(seed_ids & published)} already published, {len(seed_ids - published
 PY
 ```
 
-Rows whose ids already exist in the published ledger are historical candidate copies and must not
-be appended again. Seed-only ids remain candidates.
+Rows whose ids already exist in the published ledger are historical candidate copies. Promotion
+recognizes and preserves them here while always keeping the published version. Seed-only ids
+remain candidates.
 
 Every claim carries a **verbatim quote** and a URL that was actually fetched, because the
 compute-not-generate law means no number may be stated in a model's own words. Low-confidence and
