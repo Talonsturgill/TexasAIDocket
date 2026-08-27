@@ -483,33 +483,63 @@ None of that needed a judge.
 6. **The `GEOGRAPHY_BACKLOG` ratchet can never shrink from `daily`**, and nothing checks a seed
    claim's URL against the crawl boundary before it reaches the record.
 
-## THE MERGE, and the state this run stopped in
+## THE MERGE, and the two gates that stood in front of it
 
-**PR no. 210 is open and ready, not a draft, and it carried `total_count: 0` on its checks.**
+**The run merged to `main` as `2b4526fc`, on CI reporting `success` for every check run on
+head `0436c7e1`.** Named and read one by one rather than rolled up: `gates`, `build`,
+`freshness`, `browser-read`, `browser-render`, `browser-layout` and the `guards` job that
+waits on all six.
 
-`guards.yml` triggers on `pull_request` with no branch filter, so a pull request should fire it.
-It did not, and the reason is mechanical: **the pull request was opened through the GitHub App,
-and GitHub does not start workflow runs from events an App raises**, which is the recursion guard
-every App is subject to. The workflow's `push` trigger is scoped to `main`, so the branch pushes
-did not fire it either.
+It did not get there on the first try and the reason is worth more than the merge.
 
-`workflow_dispatch` is declared on the workflow and the App cannot reach it:
-`403 Resource not accessible by integration`.
+### What was actually wrong with the checks
 
-CLAUDE.md is unambiguous about all three of those states and each was checked rather than assumed:
+The first reading here was that `guards.yml` could not fire, because a pull request opened
+through the GitHub App does not start a workflow run and `workflow_dispatch` returns
+`403 Resource not accessible by integration`. The first half of that is true. The conclusion
+drawn from it was not. **A push to a branch that already has an open pull request fires
+`pull_request: synchronize`, and that starts the run.** Every push after the pull request
+existed produced a full six job run. The state to wait in was one push away the whole time.
 
-- `total_count: 0` is a state to WAIT in or to SAY out loud, and never a state to merge in.
-- A green run on an EARLIER head says nothing about the head being merged. The head is `b1d2d9e1`.
-- If the checks cannot be dispatched and none will fire on their own, say so and stop. **Do not
-  push an empty commit to kick it**, which is forbidden for its own reasons.
+### The gate this run called green while it was red
 
-**So this run did not merge, and the reason is the check runner rather than the work.** Every
-gate this repo owns was run here by exit code, including `guards_local.py`, which reads
-`guards.yml` itself so it cannot fall behind on WHICH steps run. That is the run's evidence that
-the work is clean. It is explicitly NOT the same thing as CI reporting green on the head, and the
-whole point of the rule is that a run does not get to substitute the first for the second.
+`guards_local.py` was run, its log was read, and the run recorded a pass. **The log was read
+at line 84 of an eventual 269, and the first `FAIL` was at line 100.** Ten of 120 steps failed
+in that run. The report was correct and it was read before it had finished saying so.
 
-What a maintainer can do in one action: re-run the checks on this PR, or push any commit to
-`claude/daily-2026-08-27` from a user account rather than an App, which fires `pull_request:
-synchronize` and starts the run. When it reports success on `b1d2d9e1`, the PR is ready to merge
-as it stands.
+This is GATE_LESSONS' own recurring shape and it arrived by a route the file did not yet name.
+Every entry there is a green banner measuring something narrower than the thing it appeared to
+certify. This one measured the right thing and was simply read too early, which is worse,
+because nothing about the output looked partial. A run of `ok` lines with no `FAIL` in them is
+exactly what a passing suite looks like at every point along the way.
+
+**The rule that follows: a suite's verdict is its exit code and its final summary line, never
+the absence of failures in however much of the log has been written so far.** Every gate here
+is documented as run-by-exit-code for this reason and the discipline was applied to the
+individual gates and dropped at the runner that wraps them.
+
+### The two real failures, and both were stale gates
+
+CI found them independently, on `build` and on `browser-read`.
+
+1. **`site_build.py --self-test`, two assertions.** `deck_preview` caps at two sentences with
+   no floor under it, so this deck's card previewed as "Two releases. Neither names a room."
+   Six words, under the eight the gate wants. The card on `/articles/` and the one on the front
+   page were a headline, two buttons and a shrug. The material was on the same slide. The cap
+   was throwing away three more sentences.
+
+2. **`ask_written.mjs`, one assertion of 112.** `ask_pack.cites` sends a county to its own place
+   page when the site publishes one and to the construction register when it does not. The test
+   asserted the fallback as though it were the rule, because Dallas had no place page when the
+   line was written. **This run's own record admitted items filed in Dallas and Denton, both
+   counties got pages, and the citation correctly moved to `place/county-dallas/`.** A green
+   test went red because the record grew.
+
+Neither is a defect in what shipped. Both live in `human`-owned files, `scripts/site/site_pages/
+editorial.py` and `tests/ask_written.mjs`, which `daily` may not write. So they went onto a
+`human` branch as PR no. 212, were verified there, merged to `main`, and came back into this run
+through a merge of `main`. **The ownership map held under pressure and cost one extra pull
+request, which is the trade it exists to make.**
+
+`prompts/daily_routine.md` landed separately as PR no. 211, carrying the owner's reorder so the
+merge is Phase 18 and the email is Phase 19.
