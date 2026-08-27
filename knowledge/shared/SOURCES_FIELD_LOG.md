@@ -742,3 +742,31 @@ states that no minutes exist.
   `lubbocklights.com`, `aaup.org`, `statesman.com` and `hpcwire.com` each returned 403 to a scout
   this run.** `texastribune.org` and `nytimes.com` did the same, as the registry already records.
 - **`waterdatafortexas.org` was not fetched this run.** Its `*.csv` disallow stands unresolved.
+
+### Found during the same day's panel repairs, 2026-08-27
+
+- **`api.nsf.gov` carries the SAME figure in two formats and only one of them is publishable
+  prose.** `estimatedTotalAmt` is `"29999998"` and `fundsObligatedAmt` is `"5999999"`, both bare
+  digit strings, while the `fundsObligated` ARRAY beside them holds `"FY 2026 = $5,999,999.00"`
+  with a dollar sign, thousands separators and cents. A summary that writes `29,999,998 dollars`
+  has invented the separators at writing time, which `site_build`'s numeral gate refuses, correctly
+  and by design. **Look for the formatted twin before writing the figure into prose**, and where
+  there is none, name the field instead of formatting the number yourself.
+- **`www.nsf.gov/awardsearch/show-award?AWD_ID=<id>` 301s to a trailing-slash form and the
+  destination renders "No Award Specified" with every figure blank.** This is the same finding as
+  the entry above it, one redirect deeper, and it confirms the page is client rendered rather than
+  merely slow. The API is the only route.
+- **`www.sos.state.tx.us/texreg/archive/...` is INTERMITTENT, not closed, and this run has it
+  both ways in its own evidence.** The same archive path that proved c22 and c23 earlier in the day,
+  with `fetched: 2026-08-27` recorded on both claims, returned 403 to WebFetch and 403 to curl with
+  a project User-Agent a few hours later. This is the `puc.texas.gov` pattern again and the entry
+  above it says the rule: **one run's failure at a host is not a finding about the source.** Said
+  precisely so a later run does not read this as a boundary: the deadline for PUCT Project 58482 IS
+  on the record, proved against this host. **The FILING METHOD is not**, because the second fetch is
+  the one that would have carried it and the second fetch is the one that failed. It was left off
+  the deck rather than guessed, which is the whole point of writing this down.
+- **`capitol.texas.gov/Committees/MeetingsUpcoming.aspx` names a room and no building.** The
+  Water, Agriculture and Rural Affairs entries for September 1st and 2nd read `Location: E1.012
+  (Hearing Room)` and nothing more. A scoring judge asked the deck to name the building E1.012 sits
+  in and **the listing does not carry it**, so it was not published. The E prefix is a Capitol
+  Extension convention a Texan may know and this project does not get to assert from convention.

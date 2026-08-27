@@ -129,3 +129,282 @@ which says to record it and carry on, and it is recorded here rather than left s
   rather than being created. **The post-admission rebuild happens in Phase 16**, so the counts on
   the live hub at the time of this reading are yesterday's, which is the expected order and not
   a fault.
+
+## THE DECK, and four rounds of a panel that refused it three times
+
+The panel is three judges reading the same deck through different lenses, and `panel.py` takes
+the MEDIAN and the UNION of the hard fails, so any one judge's hard fail stops the deck whatever
+the other two said. It stopped this deck twice more after the first refusal.
+
+| round | integrity | craft | reader | median | hard fails | verdict |
+|---|---|---|---|---|---|---|
+| one | 5.288 | 5.48 | 6.15 | 5.48 | several, all three judges | HOLD |
+| two | 6.17 | 7.08 | 7.008 | 6.978 | 3, all integrity | HOLD |
+| three | 6.22 | 6.84 | 7.038 | 6.84 | 1, integrity | HOLD |
+| four | 6.02 | 6.91 | 6.906 | 6.906 | 2, integrity | HOLD |
+| five | see score.json | | | | | |
+
+### What round four refused, and one of the two refusals was wrong
+
+Two hard fails, both from the integrity lens. **One was accepted and one was refuted, and the
+difference is worth the paragraph.**
+
+**Accepted.** Frame 9 stencilled `ON DATA CENTER WATER USE` as the subject of a specific
+hearing. No source this run fetched states the AGENDA of either sitting: c20's note carries a
+date, a time, a room and the words Public Hearing, and the line's actual source, c21, is the
+committee's standing INTERIM CHARGE, which `tx-2026-0096-c2` shows also covers desalination and
+permitting. **A charge is what a committee was told to examine over an interim. An agenda is what
+a particular sitting will take up.** Reading the first as the second put an unfetched fact on the
+one frame whose whole job is sending a reader to a room, and it got there because round three's
+reader lens asked what each room was ABOUT and the honest answer was that nothing this run
+reached says. The line now names the charge as a charge. The frame's dossier gained an acceptance
+item forbidding any line that states an agenda.
+
+**Refuted, and checked before it was refused.** Round four called `tx-2026-0104-c8` a fabrication
+on the reasoning that one JSON document cannot carry both `"fundsObligatedAmt":"5999999"` and
+`FY 2026 = $5,999,999.00`, and honestly flagged that it could not fetch the URL to confirm. It
+can and it does, in adjacent fields. The response reads
+`,"fundsObligated":["FY 2026 = $5,999,999.00"],"fundsObligatedAmt":"5999999",` and the raw bytes
+were read again this run before the finding was set aside. **A hard fail resting on a premise the
+evidence refutes is a lead, not a verdict**, which is `panel.py`'s own rule for a lone objection,
+and it is the only finding across five rounds this run has not simply taken.
+
+What WAS wrong is the half the judge could see. c8's `text` announced its own purpose, that the
+quote carried the separators the summary needed. **A claim that explains why the run wanted it
+reads as a claim written to license a format, whatever its bytes.** It now says what the source
+says, and the item's `notes_for_editor` carries the response so the next reader gets the evidence
+rather than the argument.
+
+### The recurring shape, now measured four rounds running
+
+Round three named it: each repair **"was applied to one surface and not its twin"**. Round four
+found it inside the guard pair written to stop it. `IDIOM` had been added to `_surfaces_hold` and
+not to `_gloss_holds`, so the phrase that shipped in round three would still have passed the
+older guard, and `_surfaces_hold`'s own `ABOUT` regex read only "thirteen" and "twelve count", so
+two further assertions about the counted set sat on the caption invisible to it. Both are fixed.
+The pattern is the single most useful thing this run produced and it belongs in
+`GATE_LESSONS.md`.
+
+### Repairs that made things worse, and were reverted
+
+**Deriving frame 9's accent from its declared token was correct and its consequence was not.**
+The declared `#D7677E` is darker than the `#E2788E` the frame had been painting, the two dates
+fell to 4.0 and 4.2 against the rubric's 4.5 floor, and the panel under them was darkened to
+rescue the measurement. Round four measured what that cost: on the one frame where the record
+actually holds the rooms, the blocks carrying them became the darkest objects on a lit floor,
+which inverts this deck's own law 1, and painted floor tape darker than the concrete it is
+painted on is backwards besides. **The panel is back and the DECLARATION moved instead.** That is
+not moving a floor to fit an encode. The 4.5 contrast floor is the promise and it has not moved.
+The token was an internal declaration that disagreed with the code, and the code's value is the
+one chosen for legibility.
+
+### Two frames ship with their own acceptance items recorded as MISSED
+
+`ledger/carousel/artwork.json` states both rather than describing either as met.
+
+- **Frame 9's stencil is not projected.** One vertical scale on the block and a per-line font
+  size from its own depth, so the glyphs stay square to the camera, which the frame's own
+  acceptance item fails.
+- **Frame 5's cut reads as an emboss.** Two `feOffset` copies of the glyph alpha under a gradient
+  fill. Two rounds read it as raised type rather than an aperture, the lit rim falls in the
+  opposite quadrant to this deck's own lamp, and law 3 forbids anything embossed.
+
+The craft lens was asked directly whether that is a stop and said it is not: no enumerated hard
+fail covers a frame that misses its own acceptance item and says so, the frames are finished, and
+the 2026-08-21 entry on deck no. 5 is the precedent. **Recording it is the whole point.** The run
+corrected frame 9's ledger line after a judge caught it and would otherwise have left frame 5's
+twin standing three frames earlier, which is the same shape one more time.
+
+### What round two refused, and what it cost to find out
+
+Three hard fails, all from the integrity lens, all accepted rather than argued.
+
+1. **Frame 4 narrated a computed set in words its own membership test never tested.** The frame
+   said somebody ASKED a Texas city or county for a tax break on every one of thirteen items.
+   `compute.py` admits an item when its reader copy NAMES a tax break or a land rule and the
+   decider is a city or county, whichever direction the request ran, and about half the set runs
+   the other way: El Paso eliminating its own incentives, Corpus Christi directing staff to
+   prohibit them, Fort Worth opening its own moratorium, and a Webb County item whose record says
+   nobody had applied at all. The count was right, which is exactly what made the gloss
+   convincing.
+2. **The cover asserted "No incentives." as fact in the largest type in the deck**, sourced only
+   to a quote by the company inside the company's own release, which the deck itself correctly
+   presented as a QUOTE two frames later.
+3. **Frame 5 stamped a person's name beside a claim that does not carry it.** `c6` carries the
+   mayor's words and not the mayor's name, and the only place the name appeared in the run was
+   inside the REJECTED block.
+
+### What round three refused, and it is the more useful lesson
+
+One hard fail, and it was the same claim as no. 1 above, still standing on a surface the repair
+had not reached. Frame 4's dek was fixed, `compute.py` grew a `_gloss_holds` guard, and
+`caption.txt` paragraph 3 went on opening **"Thirteen items on this record run the other way"**,
+where a reader actually meets it. The guard read a string literal inside `compute.py`. It could
+not see the caption and never would have.
+
+The judge's own words for the shape, and they are worth keeping: each repair **"was applied to
+one surface and not its twin"**. It happened three times in one round. `compute.py` fixed and
+the caption not. The storyboard's numeral inventory fixed and `quantifiers.json` not. Frame 6's
+universal scoped and the caption's closing question not.
+
+**The ratchet:** `_surfaces_hold` now reads `caption.txt` and `copy.json`, restricted to
+sentences that mention the counted set, and fails the build on a direction verb or a direction
+idiom. It was proven RED against the exact sentence that shipped and green against the repair.
+What it cannot do is written into the file beside it: it matches words, so it catches "asked"
+and it catches "the other way" because that one is now written down, and it will not catch the
+next phrasing that implies a direction without naming one. That is what the panel is for.
+
+### Craft repairs, and one that was invisible in the source
+
+- **Frame 5's cut had never rendered, in any round.** The filter was declared `id="cut"` and so
+  was the SVG element carrying it, so `url(#cut)` had been resolving to the ELEMENT. Two judges
+  read the frame as a flat knockout and were exactly right, while the source read like a filter
+  chain. Found by measuring the plate-to-glyph transition on the render, which was one sample
+  step wide with no rim on either side. **No amount of reading the code would have found it.**
+- **Frame 4's thirteen crates were one value** because the face mix ran through a clamp that
+  bound on two thirds of the stack, and every body on the crate except the plywood ignored the
+  lamp entirely. Measured falloff up the stack is now 58, 94, 132, 110, 66.
+- **Frame 8's four pockets were a typed 214 pixels** while its own acceptance said the widths are
+  measured from the laid out strings. Each is now as wide as its own field name.
+- **Frame 9's longitudinal joints were dotted hairlines** because the loop stepped a parameter
+  rather than image rows. Both painted panels were clamping to full bleed rectangles, which is
+  why two judges read the type as square to the camera when the type was in fact foreshortened
+  and the SHAPE around it was not.
+- **Frame 1's steel took 45 percent of its value from distance dimming rather than from the
+  lamp**, so the columns beat the frame's own declared focal.
+
+### Probes that could not fail, replaced with probes that can
+
+Three `data-encodes` probes were measuring things the defect left alone, which is the recurring
+shape in `GATE_LESSONS.md` one layer down. Frame 5's read glyph-white against plate-grey and
+reported dE 68.1, which a flat knockout passes as easily as a cut plate. Frame 4's read a lit
+crate face against a dark stack gap, which thirteen identical crates pass. Frame 6's sampled a
+region entirely occluded by the hook, so the perforation claim was measured against nothing and
+passed. Each now measures the property its acceptance item actually names.
+
+## GAPS THIS RUN COULD NOT FILL, and did not guess at
+
+Round three's reader lens asked for the DOOR rather than the room, and named two specifics. The
+run tried both and could take neither.
+
+- **The building E1.012 sits in.** `capitol.texas.gov/Committees/MeetingsUpcoming.aspx` was
+  re-fetched. Its location line reads `E1.012 (Hearing Room)` and names no building. The E prefix
+  is a Capitol Extension convention a Texan may know and this project does not get to assert from
+  convention, so the frame says what the listing says.
+- **How a written comment on Project 58482 is filed.** Three hosts that could state it refused
+  this run: both PUCT hosts earlier, and now `www.sos.state.tx.us`, which returned 403 to two
+  fetch paths in the same run that had already proved the DEADLINE against the Texas Register.
+  The deadline is on the frame. The method is not, because nothing this run could reach states
+  it.
+
+Both are in `knowledge/shared/SOURCES_FIELD_LOG.md`. A deck that hands a reader a date and no
+door is worse than one that hands them both, and a deck that invents the door is worse than
+either.
+
+## A JUDGED CALL THE PANEL RAISED AND THE RUN DID NOT TAKE
+
+Round three's integrity lens found `tx-2026-0106` in this run's own record: Austin City Council
+item 61, data center land use, an open meeting in Travis County dated the day this deck ships,
+while frame 6 prints "No local body. No room." and frame 9 counts two rooms without it.
+
+The run left the deck alone, on two grounds stated here so a later reader can disagree with them.
+The item is a **different subject**, city-wide data center land use rather than the Amazon plant
+the deck is about, and frame 6's dek scopes its claim to the two releases in words a reader sees.
+And it is dated the ship day, so by the time the post is read the room has closed, while frame 9
+exists to hand a reader rooms they can still walk into. **The counter-argument is real**: the
+deck stamps TRAVIS COUNTY on seven frames and prints "No room" on a day its own record holds an
+open Travis County data center room, and a reader who checks will find it.
+
+## Defects found in the record while shipping, and repaired
+
+- **`tx-2026-0104`'s summary printed `29,999,998` and `5,999,999`**, thousands separators and all,
+  and NO claim carried either figure in that form. The NSF API serves bare digit strings. Every
+  other comma-formatted figure in the record's summaries appears verbatim in a claim quote, which
+  is the house pattern and this was the only exception. The obligated figure is now stated as the
+  agency states it, `$5,999,999.00`, proved by a new claim quoting `FY 2026 = $5,999,999.00`
+  verbatim from the same award service. The estimated total is named rather than formatted,
+  because nothing this run could fetch states it with separators.
+- **`tx-2026-0102` carried a field called `held_reason` that this run invented.** No script reads
+  it, it is in no schema contract, and it sat on an item whose status is `decided` rather than
+  held. `schema_contract.py --update` would have blessed it into a public contract and
+  `ownership_check` refused that write, correctly: **a routine adds ITEMS and never FIELDS.** The
+  sentence moved to `notes_for_editor`, which already existed for exactly this, and
+  `config/schema_contract.json` was left untouched.
+- **Nine written sentences across seven items ran over the 30 word backstop** and were split at a
+  clause.
+
+## THE OWNER'S INSTRUCTION, 2026-08-27, and it is the most important thing this run produced
+
+Given mid-run, after the fifth scoring round, verbatim in substance:
+
+> After 5 rounds of editing, transition to only fixing the hard fails. We need to spend a session
+> improving the agents who are creating the carousel so they can do a better job impressing the
+> judges, maybe using web search to equip them with better info and more skills. We don't want
+> them to rely on the judges for design. The judges should just be for tweaks, because the initial
+> agents are making it so great, instead of using the editing gloop as a crutch. In 5 rounds they
+> should be able to get passing scores, and if not they need to get better.
+
+**This run is the evidence for that instruction, not a counterexample to it.** Six scoring rounds,
+eighteen judge reports, and the deck still left the last full round at a median of 6.494 against a
+6.8 threshold. The rubric already says this in its own words, added the same day the cap went from
+ten to five: *"A panel is a CHECK on a deck the run already believes is finished. This run used it
+as a design loop, shipping a half-considered frame into three judges and letting them find what a
+careful pass would have found for nothing."* That is exactly what happened again here.
+
+Two specific pieces of evidence a later session should start from.
+
+**The panel found things no amount of self-review would have.** Frame 5's filter had never executed
+in any round because its `id="cut"` collided with the SVG element carrying it, and the source read
+like a working filter chain the whole time. Frame 4's declared focal measured AUC 0.62, near
+chance, and the machine had already reported it. Neither was a taste call.
+
+**And the panel also did work the builders should have done.** Three separate `data-encodes` probes
+were measuring properties the defect left alone. Two frames shipped without their own declared
+technique. The membership test's gloss was refuted three separate times, each time in a new coat.
+None of that needed a judge.
+
+### What the improvement session should carry, in the order it matters
+
+1. **The builders must read their own acceptance list before they render, and measure against it.**
+   Every craft hard finding in this run was a frame failing an item its own dossier had already
+   written down. `plan_render_check` proves the STRINGS match. Nothing proves the DRAWING does.
+2. **A probe must be authored off the render, never from the plan's arithmetic.** Frame 6's probe
+   was wrong twice from sheet-space geometry and right the first time it was measured off pixels.
+   `qa.py` already says this in its own failure text and the run had to be told twice.
+3. **A computed set may only be narrated by its own membership test, and the guard must read the
+   PUBLISHED surfaces.** This defect mutated through four rounds by changing which word did the
+   overstating: an actor, then a direction, then an idiom, then a relation. The guards now carry
+   `DIRECTION`, `IDIOM` and `RELATION` and read `caption.txt` and `copy.json`. That is a patch on a
+   symptom. The cause is that a builder wrote a sentence about a set without reading the code.
+4. **Equip the treatment and copy agents with real craft references.** The owner's suggestion of
+   web search is the right instinct: the recurring craft failures here are ordinary rendering
+   knowledge, an aperture lit against its own scene's key, a floor projection with no keystone on
+   the glyphs, a cast shadow with no penumbra.
+5. **The membership test itself is crude in both directions and needs designing, not patching.**
+   Round five's own evidence: `tx-2026-0052` is admitted because a sentence in its summary mentions
+   a reinvestment zone that a different item is about, and `tx-2026-0028` because a sentence
+   compares it to other counties' incentive votes. Meanwhile any stricter rule requiring the ask
+   word and the subject word to share a sentence would drop `tx-2026-0046`, a real tax abatement
+   for a data centre campus, because its title says HyperGrid and its data centre reference is two
+   sentences later. `compute.py` now emits `ask_evidence` per member so this is auditable rather
+   than arguable: 10 of 13 members carry both words in one sentence and the three that do not are
+   named.
+
+## Proposals for the upgrade lane, which this actor may not make
+
+1. **`_surfaces_hold` belongs in `scripts/carousel/`, not in a run's own `compute.py`.** It is a
+   general rule (a computed set may only be narrated by its own membership test, on every surface
+   a reader meets) and it currently lives in one run's scratch and dies with it.
+2. **Make every acceptance item measurable off the 432px thumb.** Round three's craft lens named
+   this as its single fix and it is right: `machine_qa` already computes the focal AUC and
+   reported frame 4 at 0.62, near chance, while the run recorded three panel repairs without
+   checking one of them against a thumb.
+3. **Frame 5's aperture wants `feDiffuseLighting` over a blurred alpha** and frame 9's stencil
+   wants a real perspective matrix on the glyphs. Both were named by the craft lens; neither was
+   attempted here, and frame 9's acceptance item is recorded as MISSED in
+   `ledger/carousel/artwork.json` rather than described there as met.
+4. **A duplicate-id check for slide sources.** One `id` collision cost this deck two rounds.
+5. **`bootstrap.sh` fails on PyYAML** with "Cannot uninstall PyYAML 6.0.1, RECORD file not found",
+   and every run works around it with `--break-system-packages --no-deps --ignore-installed`.
+6. **The `GEOGRAPHY_BACKLOG` ratchet can never shrink from `daily`**, and nothing checks a seed
+   claim's URL against the crawl boundary before it reaches the record.

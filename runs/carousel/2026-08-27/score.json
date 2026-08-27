@@ -1,0 +1,95 @@
+{
+ "weighted_score": 6.494,
+ "judges": [
+  5.67,
+  6.746,
+  7.022
+ ],
+ "spread": 1.352,
+ "criteria": {
+  "artwork_craft": {
+   "score": 5.6,
+   "weight": 0.28,
+   "judges": [
+    5.5,
+    5.6,
+    7.2
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.4,
+   "weight": 0.2,
+   "judges": [
+    4.5,
+    7.4,
+    7.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.8,
+   "weight": 0.18,
+   "judges": [
+    6.5,
+    7.6,
+    6.8
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 6.8,
+   "weight": 0.12,
+   "judges": [
+    6.5,
+    7.2,
+    6.8
+   ]
+  },
+  "voice": {
+   "score": 6.8,
+   "weight": 0.12,
+   "judges": [
+    6.5,
+    7.3,
+    6.8
+   ]
+  },
+  "variety": {
+   "score": 5.9,
+   "weight": 0.1,
+   "judges": [
+    5.0,
+    5.9,
+    6.5
+   ]
+  }
+ },
+ "hard_fails": [
+  "FRAME 4 AND THE CAPTION ASSERT A UNIVERSAL THE RECORD REFUTES. tx-2026-0052 is in the counted set and is neither a tax break nor a land rule. It is admitted only because compute.py's ASK regex matches a backward reference in its summary's last sentence to a reinvestment zone the same court refused on a DIFFERENT item, and a history note saying nothing of the kind has come before the court. The guards were extended for DIRECTION and IDIOM and never for the RELATION 'over'.",
+  "FRAME 8 ROW 1 PRINTS A UNIVERSAL NEGATIVE REFUTED BY A CLAIM THE SAME FRAME CITES. 'CAPITAL FIGURE / NEITHER RELEASE STATES A NUMBER' against c9, which slide 8 declares, whose quote states $100 billion. quantifiers.json already records that exact phrasing being struck from frame 3 in round three, and round four wrote it onto frame 8.",
+  "judge returned ship: false with no hard fail named, which is a refusal either way"
+ ],
+ "hard_fails_by_judge": [
+  {
+   "judge": 1,
+   "fail": "FRAME 4 AND THE CAPTION ASSERT A UNIVERSAL THE RECORD REFUTES. tx-2026-0052 is in the counted set and is neither a tax break nor a land rule. It is admitted only because compute.py's ASK regex matches a backward reference in its summary's last sentence to a reinvestment zone the same court refused on a DIFFERENT item, and a history note saying nothing of the kind has come before the court. The guards were extended for DIRECTION and IDIOM and never for the RELATION 'over'."
+  },
+  {
+   "judge": 1,
+   "fail": "FRAME 8 ROW 1 PRINTS A UNIVERSAL NEGATIVE REFUTED BY A CLAIM THE SAME FRAME CITES. 'CAPITAL FIGURE / NEITHER RELEASE STATES A NUMBER' against c9, which slide 8 declares, whose quote states $100 billion. quantifiers.json already records that exact phrasing being struck from frame 3 in round three, and round four wrote it onto frame 8."
+  },
+  {
+   "judge": 2,
+   "fail": "judge returned ship: false with no hard fail named, which is a refusal either way"
+  }
+ ],
+ "ship": false,
+ "threshold": 6.8,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "note": "the judges disagree by 1.35, which is wider than 0.75. The deck is not understood yet and the disagreement is worth more than the median. Read the outlier's reasoning before acting on the number",
+ "contested": [
+  "artwork_craft",
+  "claim_integrity",
+  "variety"
+ ],
+ "rounds": 2
+}

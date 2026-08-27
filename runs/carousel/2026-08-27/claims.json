@@ -1,0 +1,281 @@
+{
+  "story": "Amazon selected Austin for a plant that builds the robotics systems used in its own warehouses, and the mayor of Austin says the company asked for no economic incentives and no public money",
+  "docket_item": "tx-2026-0084",
+  "date": "2026-08-27",
+  "claims": [
+    {
+      "id": "c1",
+      "text": "Amazon announced a new manufacturing facility in Austin, Texas.",
+      "quote": "Today, Amazon announced a significant new manufacturing facility in Austin, Texas.",
+      "url": "https://press.aboutamazon.com/2026/8/amazon-announces-new-manufacturing-facility-in-austin-texas",
+      "source_type": "primary_corporate",
+      "retrieved": "2026-08-27",
+      "confidence": "high",
+      "note": "An announcement, not a permit and not an interconnection agreement. Nothing here is energised capacity."
+    },
+    {
+      "id": "c2",
+      "text": "The plant will build the robotics that work beside Amazon's own warehouse staff.",
+      "quote": "produce the robotics systems that work alongside Amazon's employees to handle repetitive tasks and heavy lifting",
+      "url": "https://press.aboutamazon.com/2026/8/amazon-announces-new-manufacturing-facility-in-austin-texas",
+      "source_type": "primary_corporate",
+      "retrieved": "2026-08-27",
+      "confidence": "high"
+    },
+    {
+      "id": "c3",
+      "text": "Amazon puts the job count for the new facility at 300 to 500, in manufacturing and engineering.",
+      "quote": "the new facility will create 300 - 500 high-paying jobs in manufacturing and engineering",
+      "url": "https://press.aboutamazon.com/2026/8/amazon-announces-new-manufacturing-facility-in-austin-texas",
+      "source_type": "primary_corporate",
+      "retrieved": "2026-08-27",
+      "confidence": "high",
+      "note": "Amazon prints a spaced hyphen. The Governor's release prints an en dash. Both are carried as printed and neither was normalised."
+    },
+    {
+      "id": "c4",
+      "text": "Amazon states its existing Austin employee base ahead of the new plant.",
+      "quote": "Adding to the company's current employee base of 17,000 in Austin",
+      "url": "https://press.aboutamazon.com/2026/8/amazon-announces-new-manufacturing-facility-in-austin-texas",
+      "source_type": "primary_corporate",
+      "retrieved": "2026-08-27",
+      "confidence": "high"
+    },
+    {
+      "id": "c5",
+      "text": "Amazon states its existing statewide employee base in the same sentence.",
+      "quote": "and 86,000 across Texas, the new facility will create 300 - 500 high-paying jobs",
+      "url": "https://press.aboutamazon.com/2026/8/amazon-announces-new-manufacturing-facility-in-austin-texas",
+      "source_type": "primary_corporate",
+      "retrieved": "2026-08-27",
+      "confidence": "high"
+    },
+    {
+      "id": "c6",
+      "text": "Austin's mayor is quoted in Amazon's own release saying the company sought nothing from the public purse.",
+      "quote": "Amazon asked for no economic incentives, no public money",
+      "url": "https://press.aboutamazon.com/2026/8/amazon-announces-new-manufacturing-facility-in-austin-texas",
+      "source_type": "primary_corporate",
+      "retrieved": "2026-08-27",
+      "confidence": "high",
+      "note": "This substring was returned identically on four separate fetches. The punctuation immediately after the word money was returned four different ways and is NOT carried. Do not extend this quote by a single character."
+    },
+    {
+      "id": "c7",
+      "text": "The Office of the Texas Governor announced the same siting, naming Austin as the selected site.",
+      "quote": "Governor Greg Abbott today announced Amazon has selected Austin as the site of a new robotics manufacturing facility.",
+      "url": "https://gov.texas.gov/news/post/governor-abbott-announces-amazon-expansion-in-austin",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-27",
+      "confidence": "high"
+    },
+    {
+      "id": "c8",
+      "text": "The state's release characterises the investment as multi billion dollar and repeats the job range.",
+      "quote": "The multi-billion-dollar development will create 300–500 new jobs in manufacturing and engineering.",
+      "url": "https://gov.texas.gov/news/post/governor-abbott-announces-amazon-expansion-in-austin",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-27",
+      "confidence": "high",
+      "note": "The dash between 300 and 500 on this page is an en dash and was confirmed by a direct character question. Verbatim, so untouched."
+    },
+    {
+      "id": "c9",
+      "text": "The state's release gives Amazon's cumulative Texas investment since 2010 and its statewide payroll.",
+      "quote": "Since 2010, Amazon has invested over $100 billion in Texas, including infrastructure and compensation to its 86,000 full- and part-time employees in Texas.",
+      "url": "https://gov.texas.gov/news/post/governor-abbott-announces-amazon-expansion-in-austin",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-27",
+      "confidence": "high"
+    },
+    {
+      "id": "c10",
+      "text": "The Office of the Texas Governor dates its announcement August 19th, 2026.",
+      "quote": "August 19, 2026 | Austin, Texas | Press Release",
+      "url": "https://gov.texas.gov/news/post/governor-abbott-announces-amazon-expansion-in-austin",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-27",
+      "confidence": "high",
+      "note": "The release's own dateline, re-fetched and confirmed verbatim on August 27th. It sits in the page's date line rather than in running prose, and Amazon's release carries the same date with a URL path of /2026/8/."
+    },
+    {
+      "id": "c11",
+      "text": "Archer County Commissioners voted unanimously against a tax abatement for a data center.",
+      "quote": "Archer County Commissioners unanimously voted Monday against a proposed tax abatement for a data center project planned in the county",
+      "url": "https://www.newschannel6now.com/2026/06/22/archer-county-commissioners-deny-tax-abatement-proposed-data-center/",
+      "source_type": "secondary_reported",
+      "retrieved": "2026-08-27",
+      "confidence": "high",
+      "docket_item": "tx-2026-0043"
+    },
+    {
+      "id": "c12",
+      "text": "More than thirty residents turned out against the Archer County incentive, and the developer is named.",
+      "quote": "More than 30 residents attended the meeting to voice opposition to the tax incentive tied to the proposed development by Dynamo Ventures LLC.",
+      "url": "https://www.newschannel6now.com/2026/06/22/archer-county-commissioners-deny-tax-abatement-proposed-data-center/",
+      "source_type": "secondary_reported",
+      "retrieved": "2026-08-27",
+      "confidence": "high",
+      "docket_item": "tx-2026-0043"
+    },
+    {
+      "id": "c13",
+      "text": "Brazoria County Commissioners Court refused to create the reinvestment zone, on a motion to deny that carried without dissent.",
+      "quote": "Commissioner Linder made a motion to deny order 1.3, Commissioner Adams seconded. Motion to deny passed 5-0.",
+      "url": "https://webapi.legistar.com/v1/brazoriacountytx/events/6219/eventitems?AgendaNote=1&MinutesNote=1&Attachments=0",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-27",
+      "confidence": "high",
+      "docket_item": "tx-2026-0051",
+      "note": "Found in the EventItemMinutesNote field of EventItemId 39975, agenda item I.3."
+    },
+    {
+      "id": "c14",
+      "text": "Killing the zone killed the abatement applications behind it without a separate vote on any one of them.",
+      "quote": "No action taken due to I.3 failed",
+      "url": "https://webapi.legistar.com/v1/brazoriacountytx/events/6219/eventitems?AgendaNote=1&MinutesNote=1&Attachments=0",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-27",
+      "confidence": "high",
+      "docket_item": "tx-2026-0051",
+      "note": "This exact string is the EventItemActionText on items I.4 through I.15, covering Bulldog Power LLC, Bulldog Power 2 LLC, Old Ocean Datacenter LLC and Old Ocean Datacenter 2 LLC. The count of those items was read off the source and not computed by the checker."
+    },
+    {
+      "id": "c15",
+      "text": "Brazos County states the estimated cost of the RELLIS campus project whose abatement it was asked to reassign.",
+      "quote": "Estimated cost of improvements and tangible personal property is at minimum approximately $700,000,000 which will include real property improvements, new tangible personal property, machinery, and equipment.",
+      "url": "https://www.brazoscountytx.gov/m/newsflash/Home/Detail/388",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-27",
+      "confidence": "high",
+      "docket_item": "tx-2026-0088"
+    },
+    {
+      "id": "c16",
+      "text": "Brazos County named the company taking over the abatement after the original developer failed.",
+      "quote": "interest in the Tax Abatement Agreement is ThisWay, Global, Inc.",
+      "url": "https://www.brazoscountytx.gov/m/newsflash/Home/Detail/388",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-27",
+      "confidence": "high",
+      "docket_item": "tx-2026-0088",
+      "note": "Trimmed to start after the original developer's possessive, because the apostrophe in it came back curly from one fetch and straight from another."
+    },
+    {
+      "id": "c17",
+      "text": "Denton City Council was asked to approve a moratorium on taking data center applications inside the city.",
+      "quote": "Consider approval of a resolution of the City of Denton regarding a moratorium on the acceptance, processing, and approval of applications for the development of data centers within the corporate limits of the City of Denton",
+      "url": "https://denton-tx.legistar.com/LegislationDetail.aspx?ID=8169473&GUID=01691CB0-D683-4CB1-BBE2-9D9452063A32",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-27",
+      "confidence": "high",
+      "docket_item": "tx-2026-0087",
+      "note": "File ID 26-1287, on agenda 8/18/2026. The Final action field is still blank, so no slide may say the council adopted anything."
+    },
+    {
+      "id": "c18",
+      "text": "The City of Taylor noticed an amended tax abatement agreement for its council to consider.",
+      "quote": "will consider the approval of an Amended and Restated Tax Abatement agreement with Compal Teechnology, Inc, and PDC TP 01 LOT A LLC",
+      "url": "https://www.taylortx.gov/m/newsflash/Home/Detail/2066",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-27",
+      "confidence": "high",
+      "docket_item": "tx-2026-0027",
+      "note": "Teechnology is the city's own misspelling and is reproduced. Do not correct it."
+    },
+    {
+      "id": "c19",
+      "text": "Taylor's notice states the estimated cost of the improvements covered by that abatement.",
+      "quote": "Estimated cost of the renovation of Taylor Port Building and other improvements is approximately $ 200 Million.",
+      "url": "https://www.taylortx.gov/m/newsflash/Home/Detail/2066",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-27",
+      "confidence": "high",
+      "docket_item": "tx-2026-0027",
+      "note": "The space between the dollar sign and 200 is the city's."
+    },
+    {
+      "id": "c20",
+      "text": "A Senate committee hearing is listed for Tuesday, September 1st, 2026.",
+      "quote": "Tuesday, September 1, 2026",
+      "url": "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-27",
+      "confidence": "high",
+      "docket_item": "tx-2026-0096",
+      "note": "Water, Agriculture and Rural Affairs is listed under this date at 9:00 AM, Public Hearing, E1.012 (Hearing Room)."
+    },
+    {
+      "id": "c21",
+      "text": "The committee's interim charge names data centers as the cooling technology it will examine.",
+      "quote": "Examine the current water consumption rates for high-consumption cooling technologies, including data centers.",
+      "url": "https://senate.texas.gov/cmte.php?c=700",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-27",
+      "confidence": "high",
+      "docket_item": "tx-2026-0096"
+    },
+    {
+      "id": "c22",
+      "text": "Written comment on the commission's proposed large load rule closes September 4th, 2026.",
+      "quote": "Comments must be filed by September 4, 2026.",
+      "url": "https://www.sos.state.tx.us/texreg/archive/August142026/Proposed%20Rules/16.ECONOMIC%20REGULATION.html",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-27",
+      "confidence": "high",
+      "docket_item": "tx-2026-0002",
+      "note": "Both PUCT hosts refused this run, so the deadline was proved against the Texas Register issue of August 14th, 2026 instead. That is the statutory publication and is primary."
+    },
+    {
+      "id": "c23",
+      "text": "The Texas Register notice directs those comments to the commission's own project number.",
+      "quote": "All comments should refer to Project Number 58482.",
+      "url": "https://www.sos.state.tx.us/texreg/archive/August142026/Proposed%20Rules/16.ECONOMIC%20REGULATION.html",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-27",
+      "confidence": "high",
+      "docket_item": "tx-2026-0002"
+    },
+    {
+      "id": "c24",
+      "text": "The Senate listing carries a second sitting of the same committee the following day.",
+      "quote": "Wednesday, September 2, 2026",
+      "url": "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-27",
+      "confidence": "high",
+      "docket_item": "tx-2026-0096",
+      "note": "Water, Agriculture and Rural Affairs is listed a second time under this date at 9:00 AM in the same hearing room."
+    }
+  ],
+  "rejected": [
+    {
+      "finding": "Austin Mayor Kirk Watson's full statement as one continuous verbatim paragraph",
+      "reason": "Four separate fetches of the same page returned four incompatible renderings of the text after the words no public money. Only the substring carried at c6 was identical every time. A stitched reconstruction would be a quote this project produced rather than found."
+    },
+    {
+      "finding": "Amazon's release headline and dateline as verbatim slide strings",
+      "reason": "Both sit in page furniture rather than running prose and the fetcher's markdown conversion is what supplied the line breaks. The Governor's date is carried at c10 at medium confidence. Nothing may assert Amazon's headline as a quotation."
+    },
+    {
+      "finding": "The PUCT Interchange filing index for control number 58482, including the case style and the filing count",
+      "reason": "interchange.puc.texas.gov returned HTTP 503 and puc.texas.gov returned HTTP 402 to the checking agent. Neither page was read, so nothing was carried from them on the record's say so. The deadline itself was re-proved independently at c22 from the Texas Register."
+    },
+    {
+      "finding": "That the Denton City Council adopted or rejected the data center moratorium resolution on August 18th, 2026",
+      "reason": "The Legistar record still shows the Final action field blank. The item text is verified at c17 and the outcome is not on the public record. Any slide saying Denton paused data centers would be wrong."
+    },
+    {
+      "finding": "That Brazos County commissioners approved the RELLIS abatement transfer 4-0 with one commissioner absent",
+      "reason": "The county's own Section 312.207 notice notices the meeting and does not record the vote. The tally is not in this file and nothing may state it."
+    },
+    {
+      "finding": "A characterisation of the Amazon plant as the largest, the first of its kind, or as adding grid load",
+      "reason": "Neither release says any of it. There is no capacity figure on either page, so the deck has no energy number for this project and must not imply one."
+    },
+    {
+      "finding": "Any arithmetic across these figures, such as jobs per dollar or a midpoint of 300 to 500",
+      "reason": "Not computed by the checker by design. Every figure in this file appears in the source in the exact form quoted. Downstream Python does any sum, ratio or conversion the deck needs, and declares it in aggregates.json."
+    }
+  ]
+}

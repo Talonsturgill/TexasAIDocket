@@ -1,0 +1,37 @@
+{
+  "ask_items": {
+    "value": 13,
+    "from_items": [
+      "tx-2026-0028",
+      "tx-2026-0033",
+      "tx-2026-0037",
+      "tx-2026-0042",
+      "tx-2026-0043",
+      "tx-2026-0046",
+      "tx-2026-0050",
+      "tx-2026-0051",
+      "tx-2026-0052",
+      "tx-2026-0062",
+      "tx-2026-0070",
+      "tx-2026-0087",
+      "tx-2026-0088"
+    ]
+  },
+  "the_two_releases": {
+    "value": 2,
+    "from_items": [],
+    "note": "Amazon's own release and the Office of the Texas Governor's release, both dated August 19th 2026 and both re-fetched August 27th. This is a set of DOCUMENTS rather than of record items, so it names none."
+  },
+  "ask_counties": 12,
+  "record_items": {
+    "value": 91,
+    "from_items": [],
+    "note": "every item in ledger/docket.json on August 27th 2026, and the 431 claims on them. The universal in the first comment ranges over the published site, which is a pure function of that ledger."
+  },
+  "jobs_low": 300,
+  "jobs_high": 500,
+  "unstated_fields": 4,
+  "open_rooms": 2,
+  "slides": 9,
+  "_computed_by": "out/2026-08-27/compute.py over ledger/docket.json, plus the two figures c3 and c8 quote, asserted against out/2026-08-27/aggregates.json on every run"
+}

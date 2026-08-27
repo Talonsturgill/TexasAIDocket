@@ -1,0 +1,203 @@
+{
+  "note": "Every universal this deck prints, and the set it ranges over. A quantifier is a claim about a set, so the set is named the same way a numeral names its computation.",
+  "quantifiers": [
+    {
+      "phrase": "A Texas city or county is the decider on all thirteen",
+      "where": "slide-04.html",
+      "figures_key": "ask_items",
+      "about": "the counted set itself",
+      "from_items": [
+        "tx-2026-0028",
+        "tx-2026-0033",
+        "tx-2026-0037",
+        "tx-2026-0042",
+        "tx-2026-0043",
+        "tx-2026-0046",
+        "tx-2026-0050",
+        "tx-2026-0051",
+        "tx-2026-0052",
+        "tx-2026-0062",
+        "tx-2026-0070",
+        "tx-2026-0087",
+        "tx-2026-0088"
+      ],
+      "set": "the thirteen items a1 counts. This is clause ONE of the membership test, that the decider type is city or county, so it is true by construction. The set line used to end 'over a data centre or a large load' and call that the whole membership test. The test never computes a relation between the two words it finds, compute.py's own RELATION guard now refuses that wording, and round six found the refuted sentence still standing HERE after it had been taken off the frame. A verification ledger describing a deck that did not ship is worse than no ledger."
+    },
+    {
+      "phrase": "neither release names an acting public body",
+      "where": "caption.txt",
+      "figures_key": "the_two_releases",
+      "about": "the two documents this deck reads",
+      "from_items": [],
+      "set": "the two announcements of August 19th 2026, Amazon's own release carried at c1 to c6 and the Office of the Texas Governor's release carried at c7 to c10. Both were re-fetched on August 27th and neither states a local agreement, an abatement, or a public body that acted."
+    },
+    {
+      "phrase": "neither release states",
+      "where": "slide-08.html",
+      "figures_key": "the_two_releases",
+      "about": "the two documents this deck reads",
+      "from_items": [],
+      "set": "the same two announcements, c1 to c6 and c7 to c10."
+    },
+    {
+      "phrase": "neither release names",
+      "where": "slide-01.html",
+      "figures_key": "the_two_releases",
+      "about": "the two documents this deck reads",
+      "from_items": [],
+      "set": "the same two announcements, c1 to c6 and c7 to c10."
+    },
+    {
+      "phrase": "every decision, every claim and every source",
+      "where": "first_comment.txt",
+      "figures_key": "record_items",
+      "about": "the published record",
+      "from_items": [],
+      "set": "every item in ledger/docket.json and every claim on it, 91 items and 431 claims on August 27th, each of which is published at texasaidocket.com with its own quote and source url. The universal ranges over the site rather than over this deck, and the site is a pure function of the ledger, so it is true by construction rather than by assertion."
+    },
+    {
+      "phrase": "Thirteen items on the record put a Texas city or county in front of the decision",
+      "where": "slide-06.html",
+      "figures_key": "ask_items",
+      "about": "the counted set itself",
+      "from_items": [
+        "tx-2026-0028",
+        "tx-2026-0033",
+        "tx-2026-0037",
+        "tx-2026-0042",
+        "tx-2026-0043",
+        "tx-2026-0046",
+        "tx-2026-0050",
+        "tx-2026-0051",
+        "tx-2026-0052",
+        "tx-2026-0062",
+        "tx-2026-0070",
+        "tx-2026-0087",
+        "tx-2026-0088"
+      ],
+      "set": "the same thirteen items a1 counts, whose first membership clause IS that the decider type is city or county. The frame's universal is clause one of the test restated, so it is true by construction. compute.py also records amazon_decider_is_local false for the item this deck is about, which is the other half of the sentence."
+    },
+    {
+      "phrase": "Neither release names one here",
+      "where": "slide-06.html",
+      "figures_key": "the_two_releases",
+      "about": "the two documents this deck reads",
+      "from_items": [],
+      "set": "the same two announcements, c1 to c6 and c7 to c10. Both were re-fetched on August 27th and neither names a city or county acting on this siting."
+    },
+    {
+      "phrase": "Neither names a room",
+      "where": "slide-01.html",
+      "figures_key": "the_two_releases",
+      "about": "the two documents this deck reads",
+      "from_items": [],
+      "set": "the same two announcements, c1 to c6 and c7 to c10. The cover's universal ranges over those two documents and nothing else, which is why it says neither rather than none. The record's own public_access.room for tx-2026-0084 is contact_only."
+    },
+    {
+      "phrase": "Neither release names a vote or a hearing or an acting public body",
+      "where": "slide-01.html",
+      "figures_key": "the_two_releases",
+      "about": "the two documents this deck reads",
+      "from_items": [],
+      "set": "the same two announcements, c1 to c6 and c7 to c10."
+    },
+    {
+      "phrase": "Both announcements state the same range",
+      "where": "slide-03.html",
+      "figures_key": "the_two_releases",
+      "about": "the two documents this deck reads",
+      "from_items": [],
+      "set": "the two announcements, c1 to c6 and c7 to c10. Both state 300 to 500, verbatim at c3 and c8, which is what makes the range the same one rather than two that agree."
+    },
+    {
+      "phrase": "Neither release states a headcount inside it",
+      "where": "slide-03.html",
+      "figures_key": "the_two_releases",
+      "about": "the two documents this deck reads",
+      "from_items": [],
+      "set": "the same two announcements. This used to read 'Neither release states a number', which round three refuted on the run's own claims: c4 states 17,000, c5 and c9 state 86,000 and c9 states $100 billion. The universal now ranges over one thing, a figure inside the 300 to 500 band, and neither release states one."
+    },
+    {
+      "phrase": "No local body. No room.",
+      "where": "slide-06.html",
+      "figures_key": "the_two_releases",
+      "about": "the two documents this deck reads",
+      "from_items": [],
+      "set": "the two announcements, c1 to c6 and c7 to c10, and the record item this deck is about, tx-2026-0084, whose decider type compute.py reads as governor rather than city or county and whose public_access.room the record states as contact_only. The frame's own dek scopes it in words a reader sees, 'Neither release names one here'."
+    },
+    {
+      "phrase": "Thirteen items on this record name a Texas city or county as the decider",
+      "where": "caption.txt",
+      "figures_key": "ask_items",
+      "about": "the counted set itself",
+      "from_items": [
+        "tx-2026-0028",
+        "tx-2026-0033",
+        "tx-2026-0037",
+        "tx-2026-0042",
+        "tx-2026-0043",
+        "tx-2026-0046",
+        "tx-2026-0050",
+        "tx-2026-0051",
+        "tx-2026-0052",
+        "tx-2026-0062",
+        "tx-2026-0070",
+        "tx-2026-0087",
+        "tx-2026-0088"
+      ],
+      "set": "the same thirteen, and this is clause ONE of the membership test. The caption used to say these thirteen 'do name one', pointing back at 'an acting public body' in its own first paragraph, and round four refuted it on tx-2026-0087, whose record states the council's published record carries no final action. Naming a DECIDER is what the test computes. Naming a body that ACTED is not."
+    },
+    {
+      "phrase": "Neither names this siting",
+      "where": "slide-09.html",
+      "figures_key": "the_two_releases",
+      "about": "the two open proceedings this frame carries",
+      "from_items": [],
+      "set": "the two proceedings on this frame, the Senate committee sittings at c20, c21 and c24 and the PUCT comment window at c22 and c23. Neither the committee's charge nor the Texas Register notice names Amazon or this Austin siting, and the frame says so because both reader rounds found a deck that spends eight frames on one siting and closes on two proceedings about something else with no bridge."
+    },
+    {
+      "phrase": "Each record names a data center or a large load beside a tax break, a moratorium or an incentive",
+      "where": "slide-04.html",
+      "figures_key": "ask_items",
+      "about": "the counted set itself",
+      "from_items": [
+        "tx-2026-0028",
+        "tx-2026-0033",
+        "tx-2026-0037",
+        "tx-2026-0042",
+        "tx-2026-0043",
+        "tx-2026-0046",
+        "tx-2026-0050",
+        "tx-2026-0051",
+        "tx-2026-0052",
+        "tx-2026-0062",
+        "tx-2026-0070",
+        "tx-2026-0087",
+        "tx-2026-0088"
+      ],
+      "set": "the same thirteen items. This is the membership test read out with NO relation between its two halves, which is all the test computes: the item's record names a subject word somewhere and an ask word somewhere. compute.py emits ask_evidence per member so which field each was found in is auditable, and 10 of the 13 carry both words in one sentence."
+    },
+    {
+      "phrase": "Each record names a data center or a large load beside a tax break, a moratorium or an incentive.",
+      "where": "caption.txt",
+      "figures_key": "ask_items",
+      "about": "the counted set itself",
+      "from_items": [
+        "tx-2026-0028",
+        "tx-2026-0033",
+        "tx-2026-0037",
+        "tx-2026-0042",
+        "tx-2026-0043",
+        "tx-2026-0046",
+        "tx-2026-0050",
+        "tx-2026-0051",
+        "tx-2026-0052",
+        "tx-2026-0062",
+        "tx-2026-0070",
+        "tx-2026-0087",
+        "tx-2026-0088"
+      ],
+      "set": "the same thirteen items and the same reading as the frame 4 entry above."
+    }
+  ]
+}

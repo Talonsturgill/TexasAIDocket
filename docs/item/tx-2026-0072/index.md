@@ -9,7 +9,7 @@ Governor Greg Abbott issued a directive on August 3rd, 2026. It tells the Public
 - Public access: Public meeting
 - Take part: https://gov.texas.gov/uploads/files/press/Thomas_Gleeson_Pablo_Vegas_Data_Centers_Directive_Letter_to_PUCT_ERCOT_August_2026_.pdf
 
-- Last checked: 2026-08-26
+- Last checked: 2026-08-27
 
 ## Dates
 
@@ -31,6 +31,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-23 · The exception was granted. The commission signed an order in Project No. 59142 on August 20th. It lets the grid operator miss the August 7th classification deadline and pause the Batch Zero study of loads at 75 megawatts or more until the audit is done. The grid operator filed the audit's design the same day. It asks community impact information from data centers and crypto facilities of 25 megawatts or more that have not yet energized. That is a lower floor than the pause uses. It reports that 290 dynamic models have been reviewed, with approximately 18 percent acceptable on first review.
 - 2026-08-25 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-08-26 · Checked and unchanged. The directive letter, the market notice and the commission's own filings still say what they said. The August 20th open meeting has come off the calendar feed now that it has been held, which is normal for that feed and not a change to the directive.
+- 2026-08-27 · Checked and unchanged. The audit is still running and no data center has been cleared to advance. The August 20th open meeting that granted the exception has been held. The next public step on the calendar is the December 17th open meeting, the one the audit's own filed schedule ends on.
 
 ## Evidence
 
@@ -72,9 +73,9 @@ Source (primary_official): https://gov.texas.gov/news/post/governor-abbott-direc
 
 Source (primary_official): https://gov.texas.gov/news/post/governor-abbott-directs-comprehensive-data-center-audit
 
-### The commission's calendar lists an open meeting on August 20th.
+### The commission's calendar lists an open meeting on December 17th.
 
-> Open Meeting - Thursday, August 20, 2026
+> Open Meeting - Thursday, December 17, 2026
 
 Source (primary_official): https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
 

@@ -1,0 +1,302 @@
+<!doctype html>
+<!-- SLIDE 8 — WHAT NEITHER DOCUMENT SAYS. A brushed stainless data plate, riveted at
+     four corners, four rows whose value fields were never stamped. Every row names the
+     document the fact is missing from. Nothing here says a thing was withheld. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #191511; position: relative; font-family: "Fraunces", serif; }
+  canvas.art { position: absolute; left: 0; top: 0; width: 1080px; height: 1350px; }
+  svg.lbl { position: absolute; left: 0; top: 0; }
+  .hook { position: absolute; left: 84px; top: 118px; width: 900px;
+          font-weight: 800; font-size: 92px; line-height: 0.98;
+          letter-spacing: -0.022em; color: #E9EEF3;
+          font-variation-settings: "opsz" 92; }
+  .dek { position: absolute; left: 84px; top: 322px; width: 800px;
+         font-family: "Manrope", sans-serif; font-weight: 500; font-size: 34px;
+         line-height: 1.36; color: rgba(233,238,243,0.88); }
+  .counter { position: absolute; left: 84px; bottom: 80px;
+             font-family: "JetBrains Mono", monospace; font-size: 25px;
+             letter-spacing: 0.14em; color: rgba(233,238,243,0.66); }
+  .place { position: absolute; right: 80px; bottom: 80px; text-align: right;
+           font-family: "JetBrains Mono", monospace; font-size: 25px;
+           letter-spacing: 0.14em; color: rgba(233,238,243,0.66); }
+  .tx-site { position: absolute; right: 80px; bottom: 46px; text-align: right;
+             font-family: "JetBrains Mono", monospace; font-size: 24px;
+             letter-spacing: 0.10em; color: rgba(233,238,243,0.42); }
+</style>
+</head>
+<body data-encodes='[{"claim":"the unstamped value fields are darker than the plate they sit in","reads":"differ","a":[[690,556,150,40]],"b":[[220,556,150,40]]}]'
+      data-contacts='[{"what":"the data plate mounted off the panel behind it","shadow":[[176,1046,660,26]],"ground":[[176,1118,660,26]]}]'>
+  <canvas class="art" id="art" width="2160" height="2700"></canvas>
+  <svg class="lbl" id="lbl" width="1080" height="1350"></svg>
+
+  <h1 class="hook">Four things neither<br>release states.</h1>
+  <p class="dek">Not withheld. Not stated.</p>
+  <div class="counter">08 / 09</div>
+  <div class="place">TRAVIS COUNTY</div>
+
+  <div class="tx-site">texasaidocket.com</div>
+
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260827;
+  TX.reseed(SEED + 8);
+  var R = TX.rng(SEED + 8);
+  var c = document.getElementById('art'), g = c.getContext('2d');
+  g.scale(2, 2);
+  var W = 1080, H = 1350;
+
+  function mix(a,b,t){t=t<0?0:t>1?1:t;
+    return [a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t,a[2]+(b[2]-a[2])*t];}
+  function rgb(c){return 'rgb('+(c[0]|0)+','+(c[1]|0)+','+(c[2]|0)+')';}
+
+  var BLACKLAND=[25,21,17], COAT=[69,75,80], COAT_LIT=[148,154,160];
+  var MILL=[126,131,133], BRUSHED=[185,188,186];
+  var GUARD=[231,184,25], ZINC=[176,150,92], HIGHBAY=[233,238,243];
+
+  var GROUND = { x: 300, y: 430 };
+  function lit(x,y){ var dx=(x-GROUND.x)/900, dy=(y-GROUND.y)/900; return 1/(1+dx*dx+dy*dy); }
+
+  // ---- the anthracite panel the plate is mounted on
+  g.fillStyle = rgb(BLACKLAND); g.fillRect(0,0,W,H);
+  for (var y=0;y<H;y+=2){
+    for (var x=0;x<W;x+=6){
+      var l = lit(x,y);
+      var col = mix(mix(BLACKLAND, COAT, 0.66), COAT_LIT, Math.min(0.36, l*0.38));
+      var n = TX.fbm2(x*0.0030, y*0.006, 3);
+      col = mix(col, COAT_LIT, Math.max(0,n)*0.10);
+      g.fillStyle = rgb(col); g.fillRect(x,y,6,2);
+    }
+  }
+
+  // ---- the guard yellow strip along the panel's own lower edge, at reading height
+  (function(){
+    var ly = 1160, band = 20;
+    for (var x=0;x<W;x+=2){
+      var dxg=(x-GROUND.x)/470;
+      var t = Math.min(1,(1/(1+dxg*dxg))*1.2);
+      var col = mix(mix(BLACKLAND, GUARD, 0.12), GUARD, t);
+      g.fillStyle = rgb(col); g.fillRect(x, ly, 2, band);
+      g.fillStyle = rgb(mix(col,[255,244,200],0.32*t)); g.fillRect(x, ly, 2, 3);
+      g.fillStyle = rgb(mix(col, BLACKLAND, 0.36)); g.fillRect(x, ly+band-3, 2, 3);
+    }
+  })();
+
+  // ---------------------------------------------------------- THE DATA PLATE
+  var PX = 152, PY = 432, PW = 780, PH = 600;
+
+  // THE LIT GROUND. A shadow needs something to subtract from, so the panel below and
+  // around the plate is lit first, by the same lamp, before anything casts into it.
+  (function () {
+    var pool = g.createRadialGradient(PX + PW*0.32, PY + PH + 60, 30,
+                                      PX + PW*0.32, PY + PH + 60, 620);
+    pool.addColorStop(0, 'rgba(178,190,200,0.44)');
+    pool.addColorStop(0.42, 'rgba(150,162,172,0.24)');
+    pool.addColorStop(1, 'rgba(150,162,172,0)');
+    g.fillStyle = pool;
+    g.fillRect(0, PY, W, H - PY);
+  })();
+
+  // its cast onto the panel behind, with a real air gap
+  (function(){
+    var sh = g.createLinearGradient(PX, PY+PH, PX-46, PY+PH+90);
+    sh.addColorStop(0, 'rgba(8,7,6,0.66)');
+    sh.addColorStop(0.30, 'rgba(8,7,6,0.30)');
+    sh.addColorStop(1, 'rgba(8,7,6,0)');
+    g.fillStyle = sh;
+    g.beginPath();
+    g.moveTo(PX-6, PY+PH); g.lineTo(PX+PW+6, PY+PH);
+    g.lineTo(PX+PW-40, PY+PH+78); g.lineTo(PX-56, PY+PH+86);
+    g.closePath(); g.fill();
+    // the side cast, away from the lamp
+    var sd = g.createLinearGradient(PX+PW, 0, PX+PW+70, 0);
+    sd.addColorStop(0,'rgba(8,7,6,0.52)'); sd.addColorStop(1,'rgba(8,7,6,0)');
+    g.fillStyle = sd;
+    g.fillRect(PX+PW, PY+18, 70, PH-6);
+  })();
+
+  // the brushed face, streaks running horizontally, plus a broad cross gradient
+  (function(){
+    for (var y=PY; y<PY+PH; y+=1){
+      var streak = 0.5 + 0.5*Math.sin(y*3.1 + TX.fbm2(0, y*0.6, 1)*7.0);
+      for (var x=PX; x<PX+PW; x+=3){
+        var l = lit(x,y);
+        var base = mix(mix(MILL, BRUSHED, 0.55), HIGHBAY, Math.min(0.42, l*0.48));
+        base = mix(base, mix(base, HIGHBAY, 0.30), streak*0.24);
+        base = mix(base, mix(base, BLACKLAND, 0.30), Math.min(0.55, (x-PX)/(PW*1.5)));
+        g.fillStyle = rgb(base); g.fillRect(x,y,3,1);
+      }
+    }
+    // the plate's own edges: lit top and left, dark bottom and right
+    g.fillStyle = rgb(mix(BRUSHED, HIGHBAY, 0.52)); g.fillRect(PX, PY, PW, 4);
+    g.fillStyle = rgb(mix(BRUSHED, HIGHBAY, 0.38)); g.fillRect(PX, PY, 4, PH);
+    g.fillStyle = rgb(mix(MILL, BLACKLAND, 0.52)); g.fillRect(PX, PY+PH-5, PW, 5);
+    g.fillStyle = rgb(mix(MILL, BLACKLAND, 0.44)); g.fillRect(PX+PW-5, PY, 5, PH);
+  })();
+
+  // ---- THE ROW LABELS, declared here because the pockets are MEASURED FROM THEM.
+  var LABELS = [
+    "THIS PLANT'S CAPITAL FIGURE",
+    'SITE ADDRESS',
+    'START OR OPENING DATE',
+    'LOCAL AGREEMENT OR BODY'
+  ];
+  // THIS ROW HAS NOW BEEN WRONG TWICE, IN OPPOSITE DIRECTIONS, and the second was worse.
+  //
+  // It read 'CAPITAL FIGURE / NOT STATED IN EITHER RELEASE', which round four called too broad
+  // because c8 has the state calling this a multi-billion-dollar development. The repair wrote
+  // 'NEITHER RELEASE STATES A NUMBER', and round five refuted THAT on c9, a claim this very
+  // frame declares: 'Since 2010, Amazon has invested over $100 billion in Texas'. That is a
+  // capital figure, stated as a number, in one of the two releases.
+  //
+  // Worse, quantifiers.json already recorded that exact phrasing being struck from FRAME 3 in
+  // round three, on these same claims. Round four then wrote the struck sentence onto frame 8.
+  // The fault was never the adjective. It was the SCOPE: both releases talk about Amazon's
+  // capital in Texas and neither costs THIS PLANT. So the row names the plant.
+  var SUFFIX = [
+    'NOT STATED IN EITHER RELEASE',
+    'NOT STATED IN EITHER RELEASE',
+    'NOT STATED IN EITHER RELEASE',
+    'NOT NAMED IN EITHER RELEASE'
+  ];
+
+  var ROWS = 4, FIELD_H = 52;
+  // 214 -> 188. Scoping row 1 to the facility made it the LONGEST label, and the pockets are
+  // sized from their labels, so the longest label and the widest pocket landed on the same
+  // row and met with no gutter. machine_qa cannot see it: its overlap test compares DOM text
+  // to DOM text, and a pocket is canvas geometry. That is the GATE_LESSONS shape again, a
+  // green check measuring something narrower than it appears to certify, and it was found by
+  // a judge measuring the render rather than by the suite.
+  var FIELD_MAX = 188;                 // the widest pocket the plate has room for
+  var FIELD_X = PX + PW - FIELD_MAX - 46;
+  var rowY = [], fieldW = [];
+
+  // THE RAGGED EDGE IS DATA OR IT IS NOTHING, and round two it was neither.
+  //
+  // This frame's own acceptance says "the four plate widths differ from each other, because
+  // they are measured from the laid out strings rather than typed", and the dossier says
+  // measuring is "what makes the ragged right edge data rather than decoration". Four pockets
+  // then shipped at a typed FIELD_W of 214, identical to the pixel, and the craft judge
+  // measured them: "all four recesses are identical width". The declared move was simply
+  // absent while the sentence describing it sat in the dossier looking satisfied.
+  //
+  // Each pocket is now as wide as its own field name is long, at the size that name is set,
+  // scaled so the longest fills the space available. Nothing here is typed but the ceiling.
+  function measureLabels() {
+    var m = document.createElement('canvas').getContext('2d');
+    m.font = '700 26px "JetBrains Mono", monospace';
+    return LABELS.map(function (t) {
+      // letter-spacing is 0.04em on the rendered label and measureText does not apply it
+      return m.measureText(t).width + (t.length - 1) * 26 * 0.04;
+    });
+  }
+
+  function drawFields() {
+  var lw = measureLabels();
+  var lwMax = Math.max.apply(null, lw);
+  for (var i=0;i<ROWS;i++){
+    var fy = PY + 118 + i*118;
+    var FIELD_W = Math.round(FIELD_MAX * lw[i] / lwMax);
+    var fx = FIELD_X;
+    rowY.push(fy); fieldW.push(FIELD_W);
+    // THE RECESS. A milled pocket in the plate, never a black bar: a redaction says
+    // something was removed and this record says nothing was ever stated. So the floor
+    // is metal in shade, the upper wall is shadowed and the lower wall catches the lamp.
+    var floorBase = mix(MILL, BLACKLAND, 0.46);
+    for (var yy = fy; yy < fy + FIELD_H; yy += 1) {
+      var d = (yy - fy) / FIELD_H;
+      // the pocket floor brightens toward its lower edge, where the lamp reaches in
+      var col = mix(mix(floorBase, BLACKLAND, 0.34), mix(floorBase, HIGHBAY, 0.16), d);
+      g.fillStyle = rgb(col);
+      g.fillRect(fx, yy, FIELD_W, 1);
+    }
+    // the machined floor keeps the plate's own brushed direction, one step finer
+    for (var yy2 = fy; yy2 < fy + FIELD_H; yy2 += 2) {
+      var st = 0.5 + 0.5 * Math.sin(yy2 * 4.4);
+      g.fillStyle = 'rgba(233,238,243,' + (0.035 * st).toFixed(3) + ')';
+      g.fillRect(fx, yy2, FIELD_W, 1);
+    }
+    // the shadowed upper and left inner walls
+    g.fillStyle = 'rgba(12,11,10,0.82)'; g.fillRect(fx, fy, FIELD_W, 7);
+    g.fillStyle = 'rgba(12,11,10,0.66)'; g.fillRect(fx, fy, 6, FIELD_H);
+    // the lit lower and right inner walls
+    g.fillStyle = rgb(mix(BRUSHED, HIGHBAY, 0.30));
+    g.fillRect(fx, fy + FIELD_H - 5, FIELD_W, 5);
+    g.fillStyle = rgb(mix(BRUSHED, HIGHBAY, 0.14));
+    g.fillRect(fx + FIELD_W - 4, fy, 4, FIELD_H);
+    // the plate's own chamfer around the pocket mouth, lit on top, dark below
+    g.fillStyle = rgb(mix(BRUSHED, HIGHBAY, 0.66));
+    g.fillRect(fx - 4, fy - 4, FIELD_W + 8, 4);
+    g.fillStyle = rgb(mix(MILL, BLACKLAND, 0.30));
+    g.fillRect(fx - 4, fy + FIELD_H, FIELD_W + 8, 4);
+  }
+
+  // ---- FOUR RIVET HEADS, relit domes, casting across the brushed grain
+  [[PX+34,PY+34],[PX+PW-34,PY+34],[PX+34,PY+PH-34],[PX+PW-34,PY+PH-34]].forEach(function(p){
+    var l = lit(p[0],p[1]);
+    // cast first
+    g.fillStyle = 'rgba(10,9,8,0.34)';
+    g.beginPath(); g.ellipse(p[0]+9, p[1]+7, 21, 18, 0, 0, Math.PI*2); g.fill();
+    // the dome, relit
+    for (var rr=20; rr>0; rr-=1){
+      var t = 1 - rr/20;
+      var col = mix(mix(MILL, BLACKLAND, 0.32), HIGHBAY, Math.min(0.86, (0.18 + t*0.72) * (0.5+l*0.6)));
+      g.fillStyle = rgb(col);
+      g.beginPath(); g.ellipse(p[0]-t*4, p[1]-t*4, rr, rr, 0, 0, Math.PI*2); g.fill();
+    }
+  });
+
+  // grain
+  (function(){
+    var img = g.getImageData(0,0,W*2,H*2), d = img.data;
+    for (var i=0;i<d.length;i+=4){ var v=(R()-0.5)*11; d[i]+=v; d[i+1]+=v; d[i+2]+=v; }
+    g.putImageData(img,0,0);
+  })();
+  }   // end drawFields
+
+  // ------------------------------------------------ THE ROW LABELS, SVG on plates
+  var NS='http://www.w3.org/2000/svg', svg=document.getElementById('lbl');
+
+  document.fonts.ready.then(function(){
+    // The pockets are measured off the loaded face, so they are drawn here rather than above.
+    drawFields();
+    LABELS.forEach(function(t,i){
+      var el = document.createElementNS(NS,'text');
+      el.setAttribute('x', PX+40); el.setAttribute('y', rowY[i]+26);
+      el.setAttribute('font-family','JetBrains Mono, monospace');
+      el.setAttribute('font-size','26'); el.setAttribute('font-weight','700');
+      el.setAttribute('letter-spacing','0.04em');
+      el.setAttribute('fill','#14120E');
+      el.textContent = t;
+      svg.appendChild(el);
+
+      var s2 = document.createElementNS(NS,'text');
+      s2.setAttribute('x', PX+40); s2.setAttribute('y', rowY[i]+56);
+      s2.setAttribute('font-family','JetBrains Mono, monospace');
+      s2.setAttribute('font-size','24'); s2.setAttribute('font-weight','500');
+      s2.setAttribute('letter-spacing','0.03em');
+      s2.setAttribute('fill','#3A3833');
+      s2.textContent = SUFFIX[i];
+      svg.appendChild(s2);
+    });
+    // a hairline between the rows, on the plate, never through a label
+    for (var i=1;i<ROWS;i++){
+      var ln = document.createElementNS(NS,'line');
+      ln.setAttribute('x1', PX+34); ln.setAttribute('x2', PX+PW-34);
+      ln.setAttribute('y1', rowY[i]-26); ln.setAttribute('y2', rowY[i]-26);
+      ln.setAttribute('stroke','rgba(20,18,14,0.26)'); ln.setAttribute('stroke-width','1.5');
+      svg.appendChild(ln);
+    }
+    resolve();
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,293 @@
+<!doctype html>
+<!-- SLIDE 4 — WHAT THE REST OF THE RECORD LOOKS LIKE. One crate per item in the
+     counted set, so the stack's height IS the count. No axis is invented. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<script src="@@ASSETS@@/js/noise.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #191511; position: relative; font-family: "Fraunces", serif; }
+  canvas.art { position: absolute; left: 0; top: 0; width: 1080px; height: 1350px; }
+  .hook { position: absolute; left: 82px; top: 110px; width: 580px;
+          font-weight: 800; font-size: 72px; line-height: 0.98;
+          letter-spacing: -0.022em; color: #E9EEF3;
+          font-variation-settings: "opsz" 72; }
+  .dek { position: absolute; left: 82px; top: 296px; width: 520px;
+         font-family: "Manrope", sans-serif; font-weight: 500; font-size: 31px;
+         line-height: 1.38; color: rgba(233,238,243,0.88); }
+  /* 484 -> 522 and the roster with it: the dek gained a line when it stopped asserting a
+     relation between the two words the membership test finds, and qa.py measured a 55
+     percent overprint. The scrim behind the roster moved by the same amount. */
+  .setline { position: absolute; left: 82px; top: 522px; width: 520px;
+             font-family: "JetBrains Mono", monospace; font-size: 24px;
+             line-height: 1.5; letter-spacing: 0.05em; color: rgba(233,238,243,0.58); }
+  .roster { position: absolute; left: 82px; top: 586px; width: 480px;
+            font-family: "JetBrains Mono", monospace; font-size: 24px;
+            letter-spacing: 0.02em; color: rgba(233,238,243,0.74); }
+  .roster .row { display: flex; justify-content: space-between;
+                 padding: 2px 0 3px 0;
+                 border-bottom: 1px solid rgba(233,238,243,0.13); }
+  .roster .k { color: rgba(233,238,243,0.50); }
+  .cid { position: absolute; left: 82px; bottom: 128px;
+         font-family: "JetBrains Mono", monospace; font-size: 25px;
+         letter-spacing: 0.13em; color: rgba(233,238,243,0.52); }
+  .counter { position: absolute; left: 82px; bottom: 76px;
+             font-family: "JetBrains Mono", monospace; font-size: 25px;
+             letter-spacing: 0.14em; color: rgba(233,238,243,0.66); }
+  .place { position: absolute; right: 80px; bottom: 76px; text-align: right;
+           font-family: "JetBrains Mono", monospace; font-size: 25px;
+           letter-spacing: 0.14em; color: rgba(233,238,243,0.66); }
+  .tx-site { position: absolute; right: 80px; bottom: 46px; text-align: right;
+             font-family: "JetBrains Mono", monospace; font-size: 24px;
+             letter-spacing: 0.10em; color: rgba(233,238,243,0.42); }
+</style>
+</head>
+<!-- THE PROBE NOW MEASURES THE DEFECT, not a thing the defect left alone. The old probe read a
+     lit crate face against a dark stack gap, which thirteen identical crates pass exactly as
+     well as a lit stack, so it stayed green while machine_qa put the frame's declared focal at
+     AUC 0.62. This one reads a crate face in the lamp's pool against a crate face at the top of
+     the same stack. A stack with no falloff cannot pass it, which is the only property worth
+     asking a probe for. -->
+<body data-encodes='[{"claim":"the lamp falls off up the stack, so the top crate is darker than one in the pool","reads":"differ","a":[[700,730,200,40]],"b":[[700,346,200,40]]}]'>
+  <canvas class="art" id="art" width="2160" height="2700"></canvas>
+
+  <h1 class="hook">Thirteen items.<br>Twelve counties.</h1>
+  <p class="dek">A Texas city or county is the decider on all thirteen. Each record names a data center or a large load beside a tax break, a moratorium or an incentive.</p>
+  <div class="setline">SET READ FROM THE RECORD ON AUGUST 27TH</div>
+  <div class="roster"><div class="row"><span class="i">tx-2026-0028</span><span class="k">Hays</span></div><div class="row"><span class="i">tx-2026-0033</span><span class="k">El Paso</span></div><div class="row"><span class="i">tx-2026-0037</span><span class="k">Webb</span></div><div class="row"><span class="i">tx-2026-0042</span><span class="k">Young</span></div><div class="row"><span class="i">tx-2026-0043</span><span class="k">Archer</span></div><div class="row"><span class="i">tx-2026-0046</span><span class="k">Carson</span></div><div class="row"><span class="i">tx-2026-0050</span><span class="k">Nueces</span></div><div class="row"><span class="i">tx-2026-0051</span><span class="k">Brazoria</span></div><div class="row"><span class="i">tx-2026-0052</span><span class="k">Brazoria</span></div><div class="row"><span class="i">tx-2026-0062</span><span class="k">Tarrant</span></div><div class="row"><span class="i">tx-2026-0070</span><span class="k">Tom Green</span></div><div class="row"><span class="i">tx-2026-0087</span><span class="k">Denton</span></div><div class="row"><span class="i">tx-2026-0088</span><span class="k">Brazos</span></div></div>
+  <div class="cid">c11 &nbsp; c13 &nbsp; c15 &nbsp; c17</div>
+  <div class="counter">04 / 09</div>
+  <div class="place">CITY OR COUNTY DECIDES</div>
+
+  <div class="tx-site">texasaidocket.com</div>
+
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260827;
+  TX.reseed(SEED + 4);
+  var R = TX.rng(SEED + 4);
+
+  var c = document.getElementById('art'), g = c.getContext('2d');
+  g.scale(2, 2);
+  var W = 1080, H = 1350;
+
+  function mix(a, b, t) { t = t < 0 ? 0 : t > 1 ? 1 : t;
+    return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t]; }
+  function rgb(c) { return 'rgb(' + (c[0] | 0) + ',' + (c[1] | 0) + ',' + (c[2] | 0) + ')'; }
+
+  var BLACKLAND = [25, 21, 17], SLAB = [51, 48, 43], SLAB_LIT = [121, 115, 105];
+  var CRATE = [107, 86, 59], COAT = [69, 75, 80], COAT_LIT = [148, 154, 160];
+  var GUARD = [231, 184, 25], ZINC = [176, 150, 92], HIGHBAY = [233, 238, 243];
+
+  // ---- THE COUNT. Read from out/2026-08-27/aggregates.json, id a1. Never typed here
+  // as a bare number without the set that produced it: the set line is on the frame.
+  var ITEMS = 13;
+
+  // one lamp, upper right this time, because the stack is on the right
+  var GROUND = { x: 828, y: 720 };
+  function lit(x, y) {
+    var dx = (x - GROUND.x) / 470, dy = (y - GROUND.y) / 420;
+    return 1 / (1 + dx * dx + dy * dy);
+  }
+
+  g.fillStyle = rgb(BLACKLAND); g.fillRect(0, 0, W, H);
+
+  // ---- air above the slab, carrying the lamp
+  for (var y = 0; y < 1046; y += 2) {
+    for (var x = 0; x < W; x += 6) {
+      var t = lit(x, y) * 0.26 + Math.max(0, TX.fbm2(x * 0.003, y * 0.006, 3)) * 0.05;
+      g.fillStyle = rgb(mix(BLACKLAND, COAT, Math.min(0.46, t)));
+      g.fillRect(x, y, 6, 2);
+    }
+  }
+
+  // ---- THE SLAB, pre-lit, so the pallet's shadow has something to subtract from
+  var FLOOR = 1046;
+  for (var y = FLOOR; y < H; y += 2) {
+    for (var x = 0; x < W; x += 6) {
+      var l = lit(x + 3, y);
+      var col = mix(SLAB, SLAB_LIT, Math.min(1, l * 1.5));
+      var n = TX.fbm2(x * 0.0042, y * 0.011, 3);
+      col = mix(col, SLAB_LIT, Math.max(0, n) * 0.14 * (0.25 + l));
+      g.fillStyle = rgb(col);
+      g.fillRect(x, y, 6, 2);
+    }
+  }
+
+  // ---- a flat reserve under the roster, so its type is read against one value
+  (function () {
+    var rg = g.createLinearGradient(0, 508, 0, 1096);
+    rg.addColorStop(0, 'rgba(20,17,14,0)');
+    rg.addColorStop(0.10, 'rgba(20,17,14,0.86)');
+    rg.addColorStop(0.93, 'rgba(20,17,14,0.86)');
+    rg.addColorStop(1, 'rgba(20,17,14,0)');
+    g.fillStyle = rg;
+    g.fillRect(58, 508, 528, 588);
+  })();
+
+  // ---- THE GUARD LINE along the pallet's near edge, where a person would stand to load
+  (function () {
+    var ly = 1302, band = 20;
+    for (var x = 0; x < W; x += 2) {
+      var dxg = (x - GROUND.x) / 420;
+      var t = Math.min(1, (1 / (1 + dxg * dxg)) * 1.15);
+      var col = mix(mix(BLACKLAND, GUARD, 0.12), GUARD, t);
+      g.fillStyle = rgb(col); g.fillRect(x, ly, 2, band);
+      g.fillStyle = rgb(mix(col, [255, 244, 200], 0.32 * t)); g.fillRect(x, ly, 2, 3);
+      g.fillStyle = rgb(mix(col, BLACKLAND, 0.36)); g.fillRect(x, ly + band - 3, 2, 3);
+    }
+  })();
+
+  // ---------------------------------------------------------- THE PALLET
+  var PALX = 640, PALW = 386, PALY = 1170, PALH = 46;
+  (function () {
+    // cast onto the pre-lit slab, two parts
+    var core = g.createLinearGradient(PALX, PALY + PALH, PALX - 190, PALY + PALH + 110);
+    core.addColorStop(0, 'rgba(10,9,7,0.76)');
+    core.addColorStop(0.32, 'rgba(10,9,7,0.36)');
+    core.addColorStop(1, 'rgba(10,9,7,0)');
+    g.fillStyle = core;
+    g.beginPath();
+    g.moveTo(PALX - 10, PALY + PALH);
+    g.lineTo(PALX + PALW + 6, PALY + PALH);
+    g.lineTo(PALX + PALW - 130, PALY + PALH + 96);
+    g.lineTo(PALX - 176, PALY + PALH + 104);
+    g.closePath(); g.fill();
+
+    // deck boards, each with a lit top edge and a dark gap
+    for (var i = 0; i < 7; i++) {
+      var bx = PALX + i * (PALW / 7);
+      var l = lit(bx, PALY);
+      var col = mix(mix(BLACKLAND, CRATE, 0.62), HIGHBAY, Math.min(0.30, l * 0.34));
+      g.fillStyle = rgb(col);
+      g.fillRect(bx, PALY, PALW / 7 - 5, 12);
+      g.fillStyle = rgb(mix(col, HIGHBAY, 0.30));
+      g.fillRect(bx, PALY, PALW / 7 - 5, 3);
+      g.fillStyle = rgb(mix(col, BLACKLAND, 0.55));
+      g.fillRect(bx, PALY + 12, PALW / 7 - 5, 5);
+    }
+    // stringers below, in shadow with a lit chamfer
+    [PALX + 6, PALX + PALW / 2 - 20, PALX + PALW - 52].forEach(function (sx) {
+      var l = lit(sx, PALY + 30);
+      var col = mix(mix(BLACKLAND, CRATE, 0.44), HIGHBAY, Math.min(0.20, l * 0.24));
+      g.fillStyle = rgb(col);
+      g.fillRect(sx, PALY + 17, 46, PALH - 17);
+      g.fillStyle = rgb(mix(col, HIGHBAY, 0.26));
+      g.fillRect(sx, PALY + 17, 46, 3);
+      g.fillStyle = rgb(mix(col, BLACKLAND, 0.5));
+      g.fillRect(sx + 46 - 5, PALY + 17, 5, PALH - 17);
+    });
+  })();
+
+  // ---------------------------------------------------- THIRTEEN CRATES, one per item
+  var CH = 64, CW = 352;
+  var seedJit = [];
+  for (var i = 0; i < ITEMS; i++) seedJit.push((R() - 0.5) * 26);
+
+  for (var i = ITEMS - 1; i >= 0; i--) {
+    (function (idx) {
+      var jitter = seedJit[idx];
+      var cx = PALX + 14 + jitter, cy = PALY - (idx + 1) * CH;
+      var l = lit(cx + CW * 0.5, cy + CH * 0.5);
+
+      // THE LAMP HAS TO FALL OFF THE STACK, and until round two it did not.
+      //
+      // machine_qa measured this frame's own declared focal at dE 13.0 and AUC 0.62, which is
+      // near chance, and the craft judge read the cause off the render before knowing the
+      // number: "all thirteen crate faces are the same value, there is no falloff on the stack
+      // at all". The arithmetic said so too. The old face mix ran through Math.min(1, l * 1.5),
+      // which clamps for every l above 0.667, and the stack's own l runs 0.50 at the bottom,
+      // 0.99 in the middle and 0.59 at the top. Two of those three clamped, so a lamp with a
+      // real pool was flattened into one tan value repeated thirteen times, and thirteen
+      // identical rectangles read as a texture rather than as a stack.
+      //
+      // The clamp is gone and a gamma opens the range instead. The pool sits mid-stack, so the
+      // crates darken in BOTH directions away from it, which is what one high bay lamp aimed at
+      // a stack actually does and what makes the stack the brightest thing on the frame.
+      var t = Math.pow(l, 1.6);
+      var face = mix(mix(BLACKLAND, CRATE, 0.18 + 0.80 * t), HIGHBAY, 0.34 * t);
+
+      // the crate's own cast onto the crate below it
+      g.fillStyle = 'rgba(9,8,6,0.42)';
+      g.fillRect(cx - 8, cy + CH - 6, CW + 12, 10);
+
+      // the lit front face, with plywood grain
+      for (var yy = cy; yy < cy + CH - 6; yy += 2) {
+        for (var xx = cx; xx < cx + CW; xx += 4) {
+          var n = TX.fbm2(xx * 0.012, yy * 0.055, 3);
+          var col = mix(face, mix(face, HIGHBAY, 0.25), Math.max(0, n) * 0.5);
+          col = mix(col, BLACKLAND, Math.max(0, -n) * 0.28);
+          // ACROSS the face, from the lamp itself rather than from a fixed left to right ramp.
+          // The old ramp was identical on all thirteen, which is the other half of why they
+          // read as one repeated object. This one is a function of where the pixel is.
+          var lp = lit(xx, yy);
+          col = mix(col, BLACKLAND, Math.min(0.62, (1 - lp) * 0.78));
+          g.fillStyle = rgb(col);
+          g.fillRect(xx, yy, 4, 2);
+        }
+      }
+      // EVERY BODY ON THE CRATE OBEYS THE LAMP, and until now only the plywood did.
+      // The corner blocks, the cleat, the top edge and the strap were painted straight off
+      // `face` with no positional term, so on all thirteen crates they held the same pale
+      // value while the plywood behind them darkened. That is why the stack still read as one
+      // object repeated: the brightest thing on each crate was identical on every crate.
+      function shade(col, sxx, syy) {
+        return mix(col, BLACKLAND, Math.min(0.62, (1 - lit(sxx, syy)) * 0.78));
+      }
+
+      // the lit top edge of the board
+      g.fillStyle = rgb(shade(mix(face, HIGHBAY, 0.34), cx + CW * 0.5, cy));
+      g.fillRect(cx, cy, CW, 3);
+      // the shadowed base rail
+      g.fillStyle = rgb(shade(mix(face, BLACKLAND, 0.5), cx + CW * 0.5, cy + CH - 9));
+      g.fillRect(cx, cy + CH - 9, CW, 4);
+
+      // corner blocks and cleats, bodies with a lit face and a dark flank
+      [cx + 4, cx + CW - 46].forEach(function (bxx) {
+        var bcol = shade(mix(face, HIGHBAY, 0.14), bxx + 21, cy + CH * 0.5);
+        g.fillStyle = rgb(bcol);
+        g.fillRect(bxx, cy + 4, 42, CH - 16);
+        g.fillStyle = rgb(mix(bcol, HIGHBAY, 0.24));
+        g.fillRect(bxx, cy + 4, 42, 3);
+        g.fillStyle = rgb(mix(bcol, BLACKLAND, 0.42));
+        g.fillRect(bxx + 42 - 5, cy + 4, 5, CH - 16);
+      });
+      // one horizontal cleat across the face
+      var ccol = shade(mix(face, HIGHBAY, 0.10), cx + CW * 0.5, cy + CH * 0.42);
+      g.fillStyle = rgb(ccol);
+      g.fillRect(cx + 46, cy + CH * 0.42, CW - 92, 13);
+      g.fillStyle = rgb(mix(ccol, HIGHBAY, 0.18));
+      g.fillRect(cx + 46, cy + CH * 0.42, CW - 92, 3);
+      g.fillStyle = rgb(mix(ccol, BLACKLAND, 0.42));
+      g.fillRect(cx + 46, cy + CH * 0.42 + 13, CW - 92, 4);
+
+      // the steel band strap, one per crate
+      var sx = cx + CW * 0.32;
+      g.fillStyle = rgb(shade(mix(mix(COAT, COAT_LIT, 0.4), HIGHBAY, 0.42 * t), sx, cy + CH * 0.5));
+      g.fillRect(sx, cy, 11, CH - 6);
+      g.fillStyle = rgb(shade(mix(COAT, BLACKLAND, 0.4), sx, cy + CH * 0.5));
+      g.fillRect(sx + 11, cy, 3, CH - 6);
+      // the seal on the strap
+      g.fillStyle = rgb(shade(mix(ZINC, HIGHBAY, 0.24 * t), sx, cy + CH * 0.6));
+      g.fillRect(sx - 3, cy + CH * 0.6, 17, 12);
+    })(i);
+  }
+
+  // grain
+  (function () {
+    var img = g.getImageData(0, 0, W * 2, H * 2), d = img.data;
+    for (var i = 0; i < d.length; i += 4) {
+      var v = (R() - 0.5) * 13; d[i] += v; d[i + 1] += v; d[i + 2] += v;
+    }
+    g.putImageData(img, 0, 0);
+  })();
+
+  window.__txCrates = ITEMS;
+  resolve();
+});
+</script>
+</body>
+</html>

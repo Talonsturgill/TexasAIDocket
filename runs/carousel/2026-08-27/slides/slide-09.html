@@ -1,0 +1,340 @@
+<!doctype html>
+<!-- SLIDE 9 — THE CLOSE, AND THE LAW INVERTS. The floor ahead of the reader in true
+     one point perspective, two guard yellow thresholds at computed ground distances,
+     and stencil lines each sized by their own depth. SAID EXACTLY, because round three
+     measured it: the block takes one vertical scale and each line takes its own font
+     size from its own distance, so the glyphs stay square to the camera. That is a
+     foreshortened block of type rather than type projected onto the floor plane, and
+     this frame's acceptance item asks for the second. It is recorded as a miss in
+     ledger/carousel/artwork.json rather than described here as if it had been met.
+     Here and only here the yellow is a doorway rather than a fence. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #191511; position: relative; font-family: "Fraunces", serif; }
+  canvas.art { position: absolute; left: 0; top: 0; width: 1080px; height: 1350px; }
+  svg.lbl { position: absolute; left: 0; top: 0; }
+  .hook { position: absolute; left: 84px; top: 170px; width: 900px;
+          font-weight: 800; font-size: 104px; line-height: 0.96;
+          letter-spacing: -0.024em; color: #E9EEF3;
+          font-variation-settings: "opsz" 104; }
+  .dek { position: absolute; left: 84px; top: 312px; width: 800px;
+         font-family: "Manrope", sans-serif; font-weight: 500; font-size: 33px;
+         line-height: 1.36; color: rgba(233,238,243,0.88); }
+  .cid { position: absolute; left: 84px; top: 410px;
+         font-family: "JetBrains Mono", monospace; font-size: 25px;
+         letter-spacing: 0.13em; color: rgba(233,238,243,0.54); }
+  .brand { position: absolute; left: 84px; top: 86px;
+           font-weight: 800; font-size: 36px; color: #FFFFFF;
+           letter-spacing: -0.005em; }
+  .counter { position: absolute; left: 84px; bottom: 54px;
+             font-family: "JetBrains Mono", monospace; font-size: 25px;
+             letter-spacing: 0.14em; color: rgba(233,238,243,0.70); }
+  .tx-site { position: absolute; right: 80px; bottom: 54px; text-align: right;
+          font-family: "JetBrains Mono", monospace; font-size: 25px;
+          letter-spacing: 0.10em; color: rgba(233,238,243,0.70); }
+</style>
+</head>
+<body data-encodes='[{"claim":"the near floor is lit and the far floor is where the light stops","reads":"differ","a":[[440,1284,180,44]],"b":[[440,540,180,44]]}]'>
+  <canvas class="art" id="art" width="2160" height="2700"></canvas>
+  <svg class="lbl" id="lbl" width="1080" height="1350"></svg>
+
+  <h1 class="hook">Two rooms are open.</h1>
+  <p class="dek">Neither names this siting. Both take a member of the public and both have a date.</p>
+  <div class="cid">c20 &nbsp; c21 &nbsp; c22 &nbsp; c23 &nbsp; c24</div>
+  <div class="brand">Texas AI Docket</div>
+  <div class="counter">09 / 09</div>
+  <div class="tx-site">texasaidocket.com</div>
+
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260827;
+  TX.reseed(SEED + 9);
+  var R = TX.rng(SEED + 9);
+  var c = document.getElementById('art'), g = c.getContext('2d');
+  g.scale(2, 2);
+  var W = 1080, H = 1350;
+
+  function mix(a,b,t){t=t<0?0:t>1?1:t;
+    return [a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t,a[2]+(b[2]-a[2])*t];}
+  function rgb(c){return 'rgb('+(c[0]|0)+','+(c[1]|0)+','+(c[2]|0)+')';}
+
+  var BLACKLAND=[25,21,17], SLAB=[51,48,43], SLAB_LIT=[121,115,105];
+  var GUARD=[231,184,25], URGENT=[226,120,142], HIGHBAY=[233,238,243];
+  // THE ACCENT IS THE DECLARED TOKEN, not a second copy of it. The stencil painted a typed
+  // rgb(226,120,142) while artwork.json and the storyboard declared #D7677E, and round three
+  // found the two different on the one colour this deck reserves for the dates a reader can
+  // still act on. The declaration is now #E2788E in all three places, which is the value that
+  // clears the contrast floor against this frame's own normally lit panel. One token, one
+  // definition, and the frame keeps its light law.
+  var URGENT_HEX = rgb(URGENT);
+
+  // ---------------- true one point perspective, camera standing, looking down and forward
+  var VP = { x: 540, y: 452 };
+  var FOC = 300;
+  function sc(z){ return FOC/(FOC+z); }
+  function floorPt(wx, z){
+    var s = sc(z);
+    return { x: VP.x + wx*s, y: VP.y + (H + 240 - VP.y)*s, s: s };
+  }
+
+  // the lamp is behind and above the reader, so the near floor is the lit ground
+  var POOL = { x: 540, y: 1230 };
+  function lit(x,y){ var dx=(x-POOL.x)/540, dy=(y-POOL.y)/420; return 1/(1+dx*dx+dy*dy); }
+
+  g.fillStyle = rgb(BLACKLAND); g.fillRect(0,0,W,H);
+
+  // ---- the dark air above the horizon, so the top band is modeled rather than flat
+  for (var y=0;y<VP.y;y+=2){
+    for (var x=0;x<W;x+=6){
+      var t = Math.max(0, TX.fbm2(x*0.0026, y*0.006, 3))*0.075 + (y/VP.y)*0.16;
+      g.fillStyle = rgb(mix(BLACKLAND, SLAB, Math.min(0.42, t)));
+      g.fillRect(x,y,6,2);
+    }
+  }
+
+  // ---- THE SLAB, receding
+  for (var y=VP.y; y<H; y+=2){
+    for (var x=0;x<W;x+=6){
+      var l = lit(x+3,y);
+      var depth = Math.min(1, (y - VP.y) / (H - VP.y));
+      var col = mix(SLAB, SLAB_LIT, Math.min(1, l*1.45));
+      col = mix(BLACKLAND, col, 0.06 + 0.94*Math.pow(depth, 1.35));
+      var n = TX.fbm2(x*0.0040, y*0.010, 3);
+      col = mix(col, SLAB_LIT, Math.max(0,n)*0.13*(0.2+l));
+      g.fillStyle = rgb(col); g.fillRect(x,y,6,2);
+    }
+  }
+
+  // ---- CONTROL JOINTS at the twelve to fifteen foot spacing a Texas slab on grade gets
+  [1200, 2200, 3800].forEach(function(z){
+    var a = floorPt(0, z);
+    if (a.y < VP.y + 8 || a.y > H) return;
+    var w = Math.max(1.6, 8*a.s);
+    for (var x=0;x<W;x+=3){
+      var l = lit(x, a.y);
+      g.fillStyle = rgb(mix(SLAB, BLACKLAND, 0.72));
+      g.fillRect(x, a.y, 3, w);
+      g.fillStyle = rgb(mix(mix(SLAB, SLAB_LIT, Math.min(1,l*1.35)), HIGHBAY, 0.14));
+      g.fillRect(x, a.y - Math.max(1, w*0.4), 3, Math.max(1, w*0.4));
+      g.fillStyle = rgb(mix(SLAB, BLACKLAND, 0.42));
+      g.fillRect(x, a.y + w, 3, Math.max(1, w*0.32));
+    }
+  });
+
+  // ---- LONGITUDINAL CONTROL JOINTS, converging on the vanishing point. These are the
+  // only lines in a one point floor that actually converge, and the first build had none,
+  // so the frame read as horizontal bands rather than as a floor going away.
+  //
+  // ROUND TWO: "the joints are DOTTED HAIRLINES, not grooves with a lit side and a shadowed
+  // floor as the acceptance requires". Both halves of that were true and they had the same
+  // cause. The old loop walked a parameter t in equal steps and drew one rect per step, so
+  // near the camera, where a step of t covers many pixels of y, it left gaps, and the whole
+  // thing was one pixel of "dark" with one pixel of "lit" beside it, which is a hairline
+  // pair rather than a groove.
+  //
+  // This walks IMAGE ROWS instead and solves x for each one, so the line is continuous by
+  // construction at every depth, and it lays three values across the groove: a shadowed
+  // near wall, a dark floor, and a far wall catching the lamp. A groove is a body.
+  (function () {
+    var FLOORSPAN = H + 240 - VP.y;
+    [-1500, -820, -300, 300, 820, 1500].forEach(function (wx) {
+      for (var y = Math.ceil(VP.y + 3); y < H; y += 1) {
+        var s = (y - VP.y) / FLOORSPAN;          // this row's own foreshortening
+        if (s <= 0) continue;
+        var x = VP.x + wx * s;
+        if (x < -20 || x > W + 20) continue;
+        var l = lit(x, y);
+        var w = Math.max(1.2, 9 * s);            // the groove widens as it comes forward
+        g.fillStyle = rgb(mix(SLAB, BLACKLAND, 0.30));      // near wall, in its own shade
+        g.fillRect(x - w * 0.5, y, w * 0.34, 1);
+        g.fillStyle = rgb(mix(SLAB, BLACKLAND, 0.80));      // the floor of the cut
+        g.fillRect(x - w * 0.16, y, w * 0.42, 1);
+        g.fillStyle = rgb(mix(mix(SLAB, SLAB_LIT, Math.min(1, l * 1.35)), HIGHBAY, 0.16));
+        g.fillRect(x + w * 0.26, y, Math.max(1, w * 0.26), 1);   // far wall, lit
+      }
+    });
+  })();
+
+  // ---- TWO THRESHOLDS, placed by GROUND DISTANCE and projected. Tape bands with real
+  // paint thickness, and here the yellow is something to walk across.
+  //
+  // T2Z MOVED BACK FROM 139. At 139 the near band landed at y 1229, hard against the
+  // footer, and the craft judge read it exactly as it rendered: "the declared focal is the
+  // NEAR band, which rendered as a full bleed flat rule on the footer". A threshold with no
+  // floor in front of it is a rule, not a threshold. At 205 there is lit slab between the
+  // reader and the band, which is what makes it something to walk across.
+  var T1Z = 462, T2Z = 205;
+  var FLOORSPAN2 = H + 230 - VP.y;
+
+  // WHAT EACH ROOM IS, WHERE IT IS AND WHEN IT SITS, from claims this run already fetched.
+  // Round two's reader judge asked for exactly this and named the claims that carry it:
+  // c21 is the committee's own interim charge naming data centers, and c20's note carries
+  // the time and the room. Nothing here is new research and nothing here is typed from
+  // memory. The clock time keeps its colon, which the house rule exempts as a number.
+  var ROOMS = [
+    // 'ON DATA CENTER WATER USE' STOOD HERE AND WAS AN AGENDA THIS RUN NEVER FETCHED.
+    // Round four refused the deck for it. c20's note carries a date, a time, a room and the
+    // words Public Hearing, and nothing else. c21 is the committee's standing INTERIM CHARGE,
+    // and tx-2026-0096-c2 shows that charge list carries other charges too, on desalination and
+    // on permitting. A charge is what a committee was told to examine over an interim. An
+    // agenda is what a particular sitting will take up. Reading the first as the second put an
+    // unfetched fact on the one frame whose entire job is sending a reader to a room, and it
+    // got there because a scoring judge asked what each room was ABOUT and the honest answer
+    // was that no source this run reached says. The line now names the charge as a charge.
+    { lines: ['SENATE WATER, AGRICULTURE',
+              'AND RURAL AFFAIRS',
+              'ITS CHARGE NAMES DATA CENTER WATER',
+              'ROOM E1.012, 9:00 AM',
+              'SEPTEMBER 1ST AND 2ND'], red: 4 },
+    { lines: ['PUCT PROJECT 58482',
+              'PROPOSED LARGE LOAD RULE',
+              'WRITTEN COMMENT CLOSES',
+              'SEPTEMBER 4TH'], red: 3 }
+  ];
+
+  var thresholds = [];
+  [T1Z, T2Z].forEach(function(z, i){
+    var a = floorPt(0, z);
+    var sy = 0.46 + 0.30*a.s;
+    var fs = Math.max(25, 28 + 40*a.s);
+    var lineStep = fs * 1.30;
+    var blockH = ROOMS[i].lines.length * lineStep * sy;
+    thresholds.push({ z: z, y: a.y, s: a.s, sy: sy, fs: fs, lineStep: lineStep,
+                      blockH: blockH, band: Math.max(16, 52*a.s),
+                      top: a.y - 22 - blockH - 16 });
+  });
+
+  var NS='http://www.w3.org/2000/svg', svg=document.getElementById('lbl');
+
+  // THE PANEL IS AS WIDE AS THE WORDS PAINTED IN IT, which is the only rule that keeps it a
+  // trapezoid. The old panel took a typed WORLD_HALF of 1180 and then clamped the result at
+  // W/2 + 200, and near the camera the clamp bound on every scanline, so the near panel came
+  // out a full bleed RECTANGLE with no visible converging edge. That is the whole reason two
+  // judges read this frame's type as square to the camera: the type was foreshortened, and
+  // the shape around it was not. Measuring the laid out strings gives a half width that is
+  // always inside the frame, so both edges are visible and both converge.
+  // Each line sits at its own depth, so each one demands a different half width DOWN AT THE
+  // BAND. Taking the widest rendered line and using it flat is what let the top line of the
+  // far panel hang over both edges of the trapezoid it is supposed to be painted inside: the
+  // longest string is the one furthest away, where the panel is narrowest. Every line's
+  // requirement is projected to the band and the largest of those wins.
+  function panelHalf(th, lines) {
+    var m = document.createElement('canvas').getContext('2d');
+    var sBot = (th.y - VP.y) / FLOORSPAN2;
+    var need = 0;
+    lines.forEach(function (t, i) {
+      var lineY = th.top + (i + 1) * th.lineStep * th.sy;
+      var sLine = (lineY - VP.y) / FLOORSPAN2;
+      var k = sLine / sBot;
+      m.font = '500 ' + (th.fs * k) + 'px "JetBrains Mono", monospace';
+      var w = m.measureText(t).width + (t.length - 1) * th.fs * k * 0.08;
+      var atBand = (w / 2 + 34) / k;             // what this line needs, measured at the band
+      if (atBand > need) need = atBand;
+    });
+    return need;
+  }
+
+  function paintThreshold(th, lines) {
+    var hBot = panelHalf(th, lines);
+    var sTop = (th.top - VP.y) / FLOORSPAN2;
+    var sBot = (th.y   - VP.y) / FLOORSPAN2;
+
+    // the painted panel, a trapezoid because a rectangle painted on a floor is not one
+    for (var yy = th.top; yy < th.y; yy += 1) {
+      var f = (yy - th.top) / (th.y - th.top);
+      var half = hBot * ((yy - VP.y) / FLOORSPAN2) / sBot;
+      // AND THE FIX FOR THAT DRIFT WAS WORSE THAN THE DRIFT, which round four measured.
+      // Deriving the accent from the declared #D7677E made it darker, the dates fell to 4.0
+      // and 4.2 against the 4.5 floor, and darkening this panel to rescue them turned the
+      // deck's closing thresholds into the darkest objects on a lit floor. This frame's law 1
+      // says what is documented is LIT, and on the one frame where the record actually holds
+      // the rooms, the blocks carrying them had become the darkest thing in shot. Painted
+      // floor tape darker than the concrete it is painted on is backwards besides.
+      //
+      // So the panel goes back and the DECLARATION moves instead. That is not moving a floor
+      // to fit an encode: the 4.5 contrast floor is the promise and it has not moved. The
+      // palette token was an internal declaration that disagreed with the code, and the code's
+      // value is the one that was chosen for legibility, so the declaration is corrected to it
+      // in the storyboard and in artwork.json rather than the frame being darkened to defend a
+      // number no reader ever sees.
+      g.fillStyle = rgb(mix([26,24,22], [48,46,42], f));
+      g.fillRect(VP.x - half, yy, half*2, 1);
+    }
+    var hTop = hBot * sTop / sBot;
+    g.fillStyle = rgb(mix([48,46,42], HIGHBAY, 0.22));
+    g.fillRect(VP.x - hTop, th.top, hTop*2, 2);
+    g.fillStyle = rgb([15,14,13]);
+    g.fillRect(VP.x - hBot, th.y - 2, hBot*2, 2);
+
+    // the tape band, running the panel's own near width so the two are one marking
+    for (var x=Math.max(0, VP.x-hBot); x<Math.min(W, VP.x+hBot); x+=2){
+      var l = lit(x, th.y + th.band/2);
+      var t = Math.min(1, l*1.30);
+      var col = mix(mix(BLACKLAND, GUARD, 0.16), GUARD, t);
+      g.fillStyle = rgb(col); g.fillRect(x, th.y, 2, th.band);
+      // the tape's own paint thickness, its upper edge catching the raking lamp
+      g.fillStyle = rgb(mix(col, [255,248,214], 0.40*t));
+      g.fillRect(x, th.y, 2, Math.max(2, th.band*0.13));
+      // and the shadow the tape's edge throws on the slab below it
+      g.fillStyle = rgb(mix(col, BLACKLAND, 0.44));
+      g.fillRect(x, th.y + th.band - Math.max(2, th.band*0.10), 2, Math.max(2, th.band*0.10));
+    }
+    th.half = hBot;
+  }
+
+  // ------------------------------- STENCIL TYPE, transformed onto the floor plane
+  // Same projection as the slab, so the words and the floor are one object rather than
+  // a caption laid over a picture.
+  function stencil(th, lines, redIndex) {
+    var gEl = document.createElementNS(NS,'g');
+    gEl.setAttribute('transform',
+      'translate(' + VP.x + ',' + th.top + ') scale(1,' + th.sy.toFixed(3) + ')');
+    // EACH LINE IS SIZED BY ITS OWN DEPTH. A block of type painted on a floor gets
+    // smaller as it goes away, and the first build set every line at one size, which is
+    // what made the stencil read square to the camera and fail this frame's own
+    // acceptance item.
+    lines.forEach(function(t, i){
+      var lineY = th.top + (i + 1) * th.lineStep * th.sy;
+      var k = ((lineY - VP.y) / FLOORSPAN2) / ((th.y - VP.y) / FLOORSPAN2);
+      var el = document.createElementNS(NS,'text');
+      el.setAttribute('x', 0);
+      el.setAttribute('y', (i + 1) * th.lineStep);
+      el.setAttribute('text-anchor','middle');
+      el.setAttribute('font-family','JetBrains Mono, monospace');
+      el.setAttribute('font-size', (th.fs * k).toFixed(2));
+      el.setAttribute('font-weight', i === redIndex ? '700' : '500');
+      el.setAttribute('letter-spacing','0.08em');
+      el.setAttribute('fill', i === redIndex ? URGENT_HEX : '#E4E1D6');
+      el.textContent = t;
+      gEl.appendChild(el);
+    });
+    svg.appendChild(gEl);
+    return gEl;
+  }
+
+  document.fonts.ready.then(function(){
+    // the panels are measured off the loaded face, so they are painted here, and the grain
+    // goes over them afterwards exactly as it did when they were painted inline
+    thresholds.forEach(function (th, i) { paintThreshold(th, ROOMS[i].lines); });
+
+    var img = g.getImageData(0,0,W*2,H*2), d = img.data;
+    for (var gi=0; gi<d.length; gi+=4){ var v=(R()-0.5)*13; d[gi]+=v; d[gi+1]+=v; d[gi+2]+=v; }
+    g.putImageData(img,0,0);
+
+    thresholds.forEach(function (th, i) { stencil(th, ROOMS[i].lines, ROOMS[i].red); });
+
+    window.__txThresholds = thresholds.map(function(t){
+      return { z: t.z, y: t.y, band: t.band, half: t.half }; });
+    resolve();
+  });
+});
+</script>
+</body>
+</html>

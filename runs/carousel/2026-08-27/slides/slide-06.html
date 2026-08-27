@@ -1,0 +1,195 @@
+<!doctype html>
+<!-- SLIDE 6 — THE TURN. A formed sheet machine guard where a gate would be and the
+     sheet simply continues. The deck's brightest frame, and its only inversion. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<script src="@@ASSETS@@/js/noise.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #191511; position: relative; font-family: "Fraunces", serif; }
+  canvas.art { position: absolute; left: 0; top: 0; width: 1080px; height: 1350px; }
+  .hook { position: absolute; left: 84px; top: 566px; width: 880px;
+          font-weight: 800; font-size: 122px; line-height: 0.94;
+          letter-spacing: -0.028em; color: #14120E;
+          font-variation-settings: "opsz" 122; }
+  .dek { position: absolute; left: 84px; top: 812px; width: 800px;
+         font-family: "Manrope", sans-serif; font-weight: 600; font-size: 33px;
+         line-height: 1.36; color: rgba(20,18,14,0.90); }
+  .setline { position: absolute; left: 84px; top: 972px;
+             display: inline-block; padding: 9px 15px 10px 15px;
+             background: #14120E; color: #E7B819;
+             font-family: "JetBrains Mono", monospace; font-size: 24px;
+             letter-spacing: 0.05em; }
+  .counter { position: absolute; left: 84px; bottom: 84px;
+             font-family: "JetBrains Mono", monospace; font-size: 25px;
+             letter-spacing: 0.14em; color: rgba(233,238,243,0.66); }
+  .place { position: absolute; right: 80px; bottom: 84px; text-align: right;
+           font-family: "JetBrains Mono", monospace; font-size: 25px;
+           letter-spacing: 0.14em; color: rgba(233,238,243,0.66); }
+  .tx-site { position: absolute; left: 84px; bottom: 46px; text-align: left;
+             font-family: "JetBrains Mono", monospace; font-size: 24px;
+             letter-spacing: 0.10em; color: rgba(233,238,243,0.42); }
+</style>
+</head>
+<!-- THE PROBE HAD TO BE SOLVED IN SHEET SPACE, not guessed in frame space. Round four
+     inverted the sheet's own 8 degree rotation and showed both regions landing outside the
+     perforated field, one inside TOP_BEND and one at BOT_BEND, with the second 44 percent
+     hidden under the dek. AUC 0.52, which is chance, on a claim about perforations measured
+     where there are none. The perforated rows run from SY+TOP_BEND+44 at a 50px pitch, so
+     both regions now sit inside that field, one on a bore row and one on the sheet between
+     two rows.
+
+     AND THE SECOND ATTEMPT WAS ALSO WRONG, so this pair was MEASURED off the render rather
+     than solved from the sheet geometry a third time. qa.py said what to do in as many
+     words: "Open the PNG, find where the feature actually drew, and author the rects from
+     that." Region a averages 114.8 inside the perforated field and region b averages 167.1
+     on the plain sheet above it, both well clear of every text box on the frame. The claim
+     is worded to what those two numbers actually show. -->
+<body data-encodes='[{"claim":"the perforated field is darker than the unperforated sheet above it","reads":"differ","a":[[830,398,120,44]],"b":[[490,221,120,44]]}]'>
+  <canvas class="art" id="art" width="2160" height="2700"></canvas>
+
+  <h1 class="hook">No local body.<br>No room.</h1>
+  <p class="dek">Thirteen items on the record put a Texas city or county in front of the decision. Neither release names one here.</p>
+  <div class="setline">SET READ FROM THE RECORD ON AUGUST 27TH</div>
+  <div class="counter">06 / 09</div>
+  <div class="place">TRAVIS COUNTY</div>
+
+  <div class="tx-site">texasaidocket.com</div>
+
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260827;
+  TX.reseed(SEED + 6);
+  var R = TX.rng(SEED + 6);
+  var c = document.getElementById('art'), g = c.getContext('2d');
+  g.scale(2, 2);
+  var W = 1080, H = 1350;
+
+  function mix(a,b,t){t=t<0?0:t>1?1:t;
+    return [a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t,a[2]+(b[2]-a[2])*t];}
+  function rgb(c){return 'rgb('+(c[0]|0)+','+(c[1]|0)+','+(c[2]|0)+')';}
+
+  var BLACKLAND=[25,21,17], SLAB=[51,48,43], SLAB_LIT=[121,115,105];
+  var COAT=[69,75,80], COAT_LIT=[148,154,160], GUARD=[231,184,25];
+  var ZINC=[176,150,92], HIGHBAY=[233,238,243];
+
+  var GROUND = { x: 300, y: 250 };
+  function lit(x,y){ var dx=(x-GROUND.x)/1180, dy=(y-GROUND.y)/1180; return 1/(1+dx*dx+dy*dy); }
+
+  // ---- the slab behind, dark, so the sheet reads as a body in front of something
+  g.fillStyle = rgb(BLACKLAND); g.fillRect(0,0,W,H);
+  for (var y=0;y<H;y+=2){
+    for (var x=0;x<W;x+=6){
+      var t = lit(x,y)*0.34 + Math.max(0, TX.fbm2(x*0.0035,y*0.007,3))*0.06;
+      g.fillStyle = rgb(mix(BLACKLAND, SLAB, Math.min(0.72, t)));
+      g.fillRect(x,y,6,2);
+    }
+  }
+
+  // ---- THE GUARD SHEET, rotated 8 degrees, filling the frame.
+  var ROT = -8 * Math.PI/180;
+  g.save();
+  g.translate(W/2, H/2);
+  g.rotate(ROT);
+  g.translate(-W/2, -H/2);
+
+  var SX = -140, SW = W + 280, SY = 176, SH = 900;
+  var TOP_BEND = 96, BOT_BEND = 92;   // the return bends, top and bottom
+
+  // the sheet's main field, powder coat in TWO layers at stated feature sizes
+  for (var y=SY+TOP_BEND; y<SY+SH-BOT_BEND; y+=2){
+    for (var x=SX; x<SX+SW; x+=3){
+      var l = lit(x,y);
+      var base = mix(mix(GUARD, BLACKLAND, 0.20), GUARD, Math.min(1, l*1.25));
+      var broad = TX.fbm2(x*0.0017, y*0.0017, 2);            // ~600px sheen
+      var fine  = TX.fbm2(x*0.66, y*0.66, 1);                // ~1.5px orange peel at 2x
+      base = mix(base, [255,236,168], Math.max(0,broad)*0.20);
+      base = mix(base, mix(GUARD, BLACKLAND, 0.30), Math.max(0,-fine)*0.10);
+      g.fillStyle = rgb(base);
+      g.fillRect(x,y,3,2);
+    }
+  }
+
+  // the UPPER return bend: a specular gradient across the radius, shadowed inner face
+  (function(){
+    var by = SY;
+    var bg = g.createLinearGradient(0, by, 0, by+TOP_BEND);
+    bg.addColorStop(0.00, rgb(mix(GUARD, BLACKLAND, 0.62)));   // inner face, in shadow
+    bg.addColorStop(0.42, rgb(mix(GUARD, BLACKLAND, 0.34)));
+    bg.addColorStop(0.66, rgb(mix(GUARD, [255,246,206], 0.52)));// the radius crown
+    bg.addColorStop(0.86, rgb(mix(GUARD, [255,240,180], 0.22)));
+    bg.addColorStop(1.00, rgb(mix(GUARD, BLACKLAND, 0.06)));
+    g.fillStyle = bg; g.fillRect(SX, by, SW, TOP_BEND);
+  })();
+
+  // the LOWER return bend, a second radius, its crown catching less light
+  (function(){
+    var by = SY+SH-BOT_BEND;
+    var bg = g.createLinearGradient(0, by, 0, by+BOT_BEND);
+    bg.addColorStop(0.00, rgb(mix(GUARD, BLACKLAND, 0.10)));
+    bg.addColorStop(0.26, rgb(mix(GUARD, [255,244,196], 0.30)));// the radius crown
+    bg.addColorStop(0.58, rgb(mix(GUARD, BLACKLAND, 0.40)));
+    bg.addColorStop(1.00, rgb(mix(GUARD, BLACKLAND, 0.70)));    // inner face, in shadow
+    g.fillStyle = bg; g.fillRect(SX, by, SW, BOT_BEND);
+  })();
+
+  // ---- PERFORATIONS, drawn as bodies with a lit upper lip and a dark bore.
+  // A staggered field across the upper part of the sheet, never across the type.
+  (function(){
+    var r = 15, pitchX = 58, pitchY = 50;
+    for (var row=0; row<5; row++){
+      var py = SY + TOP_BEND + 44 + row*pitchY;
+      for (var px = SX + 40 + (row%2)*pitchX/2; px < SX+SW-30; px += pitchX){
+        var l = lit(px, py);
+        // the bore
+        g.fillStyle = rgb(mix(BLACKLAND, SLAB, 0.22 + 0.20*l));
+        g.beginPath(); g.ellipse(px, py, r, r, 0, 0, Math.PI*2); g.fill();
+        // the lit upper lip, an arc of the sheet's own edge
+        g.strokeStyle = rgb(mix(GUARD, [255,250,220], 0.62));
+        g.lineWidth = 3.2;
+        g.beginPath(); g.arc(px, py, r-1.2, Math.PI*1.08, Math.PI*1.95); g.stroke();
+        // the shadowed lower lip
+        g.strokeStyle = rgb(mix(GUARD, BLACKLAND, 0.60));
+        g.lineWidth = 2.6;
+        g.beginPath(); g.arc(px, py, r-1.2, Math.PI*0.06, Math.PI*0.88); g.stroke();
+      }
+    }
+  })();
+
+  // ---- BOLT TABS along the lower bend, each with a modeled fastener
+  (function(){
+    var ty = SY+SH-BOT_BEND+30;
+    for (var tx = SX+130; tx < SX+SW-90; tx += 214){
+      var l = lit(tx, ty);
+      // the tab, a bent flange
+      g.fillStyle = rgb(mix(GUARD, BLACKLAND, 0.44));
+      g.fillRect(tx-40, ty, 80, 58);
+      g.fillStyle = rgb(mix(GUARD, [255,246,206], 0.26));
+      g.fillRect(tx-40, ty, 80, 5);
+      // the fastener, a body with a lit crown and a dark flank
+      g.fillStyle = rgb(mix(ZINC, HIGHBAY, Math.min(0.44, l*0.5)));
+      g.beginPath(); g.ellipse(tx, ty+28, 16, 16, 0, 0, Math.PI*2); g.fill();
+      g.fillStyle = rgb(mix(ZINC, BLACKLAND, 0.56));
+      g.beginPath(); g.arc(tx, ty+28, 16, 0.12, Math.PI-0.12); g.fill();
+      g.fillStyle = rgb(mix(ZINC, BLACKLAND, 0.30));
+      g.fillRect(tx-9, ty+26, 18, 4);
+    }
+  })();
+
+  g.restore();
+
+  // grain
+  (function(){
+    var img = g.getImageData(0,0,W*2,H*2), d = img.data;
+    for (var i=0;i<d.length;i+=4){ var v=(R()-0.5)*12; d[i]+=v; d[i+1]+=v; d[i+2]+=v; }
+    g.putImageData(img,0,0);
+  })();
+
+  resolve();
+});
+</script>
+</body>
+</html>

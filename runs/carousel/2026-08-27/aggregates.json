@@ -1,0 +1,106 @@
+{
+  "date": "2026-08-27",
+  "note": "Every figure the deck prints that is not a numeral quoted verbatim from a source. Each is either produced by out/2026-08-27/compute.py reading ledger/docket.json, or quoted from a named claim. None is typed by a person or a model.",
+  "aggregates": [
+    {
+      "id": "a1",
+      "kind": "count",
+      "value": 13,
+      "slides": [
+        4
+      ],
+      "computed_by": "out/2026-08-27/compute.py counts ask_items over ledger/docket.json, the items whose decider type is city or county, whose reader copy names a tax abatement or a reinvestment zone or a moratorium or an incentive, and whose subject is a data centre or a large load",
+      "members": [
+        "tx-2026-0028",
+        "tx-2026-0033",
+        "tx-2026-0037",
+        "tx-2026-0042",
+        "tx-2026-0043",
+        "tx-2026-0046",
+        "tx-2026-0050",
+        "tx-2026-0051",
+        "tx-2026-0052",
+        "tx-2026-0062",
+        "tx-2026-0070",
+        "tx-2026-0087",
+        "tx-2026-0088"
+      ],
+      "phrase": "Thirteen items"
+    },
+    {
+      "id": "a2",
+      "kind": "count",
+      "value": 12,
+      "slides": [
+        4
+      ],
+      "computed_by": "out/2026-08-27/compute.py counts ask_counties_count over ledger/docket.json, the distinct counties named by the thirteen items in a1, deduplicated so a county carrying two items counts once",
+      "members": [
+        "Archer",
+        "Brazoria",
+        "Brazos",
+        "Carson",
+        "Denton",
+        "El Paso",
+        "Hays",
+        "Nueces",
+        "Tarrant",
+        "Tom Green",
+        "Webb",
+        "Young"
+      ],
+      "phrase": "Twelve counties"
+    },
+    {
+      "id": "a3",
+      "kind": "count",
+      "value": 500,
+      "slides": [
+        3
+      ],
+      "quoted_from": "c3",
+      "quote": "the new facility will create 300 - 500 high-paying jobs in manufacturing and engineering",
+      "phrase": "500 jobs"
+    },
+    {
+      "id": "a4",
+      "kind": "count",
+      "value": 2,
+      "slides": [
+        1
+      ],
+      "computed_by": "the documents this deck reads, counted over claims.json: Amazon's own release carried at c1 to c6 and the Office of the Texas Governor's release carried at c7 to c10, both dated August 19th 2026 and both re-fetched on August 27th. This is the same set figures.json calls the_two_releases",
+      "phrase": "Two releases"
+    },
+    {
+      "id": "a5",
+      "kind": "count",
+      "value": 4,
+      "slides": [
+        8
+      ],
+      "computed_by": "the four rows this frame prints, counted off the frame's own row list, each naming one fact that appears in neither of the two releases carried at c1, c7, c8 and c9",
+      "phrase": "Four things neither release states"
+    },
+    {
+      "id": "a6",
+      "kind": "count",
+      "value": 2,
+      "slides": [
+        9
+      ],
+      "computed_by": "the dated rooms this deck carries, counted over the claims the closing frame declares, one hearing at c20 and c24 and one written comment window at c22",
+      "phrase": "Two rooms"
+    },
+    {
+      "id": "a7",
+      "kind": "count",
+      "value": 13,
+      "phrase": "Thirteen items and twelve counties",
+      "slides": [
+        "first_comment.txt"
+      ],
+      "computed_by": "out/2026-08-27/compute.py counts ask_items and ask_counties_count over ledger/docket.json, the same two figures a1 and a2 declare, restated in the source block so a reader following the sources meets the computation rather than the number alone"
+    }
+  ]
+}

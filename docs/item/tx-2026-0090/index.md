@@ -11,7 +11,7 @@ The National Science Foundation made a cooperative agreement to the Texas A&M En
 - Public access: Closed
 - Take part: https://api.nsf.gov/services/v1/awards/2534344.json
 
-- Last checked: 2026-08-26
+- Last checked: 2026-08-27
 
 ## Dates
 
@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-23 · Admitted. The award record and the agency's own announcement are both on the record, and the facility's start date has not yet arrived.
 - 2026-08-25 · Checked and unchanged. The decision still stands as decided.
 - 2026-08-26 · Checked and unchanged. The decision still stands as decided.
+- 2026-08-27 · Checked and unchanged. The award still stands and the laboratory is still described by the agency as equipment researchers anywhere in the country should be able to get their hands on.
 
 ## Evidence
 
@@ -68,7 +69,7 @@ Source (primary_official): https://api.nsf.gov/services/v1/awards/2534344.json
 
 ### The agency framed the two platforms it funded as equipment researchers anywhere in the country should be able to use.
 
-> NSF wants researchers with great ideas, wherever they are in the U.S., to get their hands on this equipment.
+> NSF wants researchers with great ideas, wherever they are in the U.S., to get their hands on this equipment and work together to pursue those ideas.
 
 Source (primary_official): https://www.nsf.gov/news/nsf-stands-2-materials-innovation-platforms-50m-investment
 
