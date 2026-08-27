@@ -482,3 +482,34 @@ None of that needed a judge.
    and every run works around it with `--break-system-packages --no-deps --ignore-installed`.
 6. **The `GEOGRAPHY_BACKLOG` ratchet can never shrink from `daily`**, and nothing checks a seed
    claim's URL against the crawl boundary before it reaches the record.
+
+## THE MERGE, and the state this run stopped in
+
+**PR no. 210 is open and ready, not a draft, and it carried `total_count: 0` on its checks.**
+
+`guards.yml` triggers on `pull_request` with no branch filter, so a pull request should fire it.
+It did not, and the reason is mechanical: **the pull request was opened through the GitHub App,
+and GitHub does not start workflow runs from events an App raises**, which is the recursion guard
+every App is subject to. The workflow's `push` trigger is scoped to `main`, so the branch pushes
+did not fire it either.
+
+`workflow_dispatch` is declared on the workflow and the App cannot reach it:
+`403 Resource not accessible by integration`.
+
+CLAUDE.md is unambiguous about all three of those states and each was checked rather than assumed:
+
+- `total_count: 0` is a state to WAIT in or to SAY out loud, and never a state to merge in.
+- A green run on an EARLIER head says nothing about the head being merged. The head is `b1d2d9e1`.
+- If the checks cannot be dispatched and none will fire on their own, say so and stop. **Do not
+  push an empty commit to kick it**, which is forbidden for its own reasons.
+
+**So this run did not merge, and the reason is the check runner rather than the work.** Every
+gate this repo owns was run here by exit code, including `guards_local.py`, which reads
+`guards.yml` itself so it cannot fall behind on WHICH steps run. That is the run's evidence that
+the work is clean. It is explicitly NOT the same thing as CI reporting green on the head, and the
+whole point of the rule is that a run does not get to substitute the first for the second.
+
+What a maintainer can do in one action: re-run the checks on this PR, or push any commit to
+`claude/daily-2026-08-27` from a user account rather than an App, which fires `pull_request:
+synchronize` and starts the run. When it reports success on `b1d2d9e1`, the PR is ready to merge
+as it stands.
