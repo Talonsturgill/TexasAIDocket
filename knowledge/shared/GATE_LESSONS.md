@@ -2138,3 +2138,58 @@ that the Texas Register had moved hosts. Re-fetching returned 200 from the host 
 and 403 from its named replacement, exactly backwards, so that claim stayed in the log instead.
 **One run's sighting is an observation. The bar for law is a second, independent one**, which is
 how the `courtlistener.com` note earned its place over two sightings seven days apart.
+
+## 69. The suite was passing every time it was asked, and it had not finished being asked
+
+August 27th. The daily run finished its deck, ran `guards_local.py`, read the log, and recorded
+a pass. The pull request then failed CI on two jobs.
+
+**The log was read at line 84. It ended at line 269, and the first `FAIL` was at line 100.**
+Ten of 120 steps failed in the run that was called green.
+
+Every entry above this one is a green banner that measured something narrower than the thing it
+appeared to certify. This one is not that. `guards_local.py` measured exactly the right thing,
+reported it accurately, and was read before it had finished reporting. **That is worse, because
+there is no narrowness to catch.** The output of a suite that is going to fail at step 100 is,
+at step 84, byte for byte identical to the output of a suite that will pass. A wall of `ok` with
+no `FAIL` in it is what a passing run looks like at every point along the way, including every
+point in a failing one before the failure.
+
+The run had been careful in the way that felt like care. It ran the whole suite rather than the
+self-tests, which this file already warns is the wrong half. It piped to a file rather than
+trusting a terminal. It grepped for `FAIL` rather than reading `tail -1`, which is the exact
+discipline the `scripts/` note in `CLAUDE.md` demands. **Every one of those precautions is about
+WHICH LINES you read, and none of them is about WHETHER THE WRITER HAS STOPPED WRITING.**
+
+`wc -l` said 100 and the run took that for the length of the file. It was the length so far.
+
+**The rule.** A suite's verdict is its **exit code**, and its **final summary line** where it
+prints one. It is never the absence of failures in however much of the log exists at the moment
+you look. If a check is running in the background, the only question that has an answer yet is
+whether it is still running.
+
+```
+# wrong, and it looks like diligence
+grep -n FAIL log.txt        # nothing yet, so: green
+
+# right
+until grep -q "EXIT=" log.txt; do sleep 15; done
+grep -n FAIL log.txt
+```
+
+**What it cost, and the shape of the cost.** Nothing shipped broken, because CI is the second
+half of the pair `CLAUDE.md` describes and it did its job. What it cost was the run's own
+judgement about its own state, which is the thing every phase after Phase 15 is built on. The
+run went on to write a merge section explaining that its checks could not be dispatched, and
+that diagnosis was wrong too, in a way the first error made easy: **a push to a branch with an
+open pull request fires `pull_request: synchronize` and starts the run.** A run that believes
+it is clean writes a confident account of why the world is broken.
+
+**Generalises to.** Anything read while it is being written. A log, a stream, a partially
+uploaded file, a build directory mid-build, an API listing that paginates, a `runs/` folder a
+render is still filling. The failure has no signature in the content, so it cannot be caught by
+reading harder. It is caught by establishing that the writer is done before reading at all, and
+that is a different act from reading carefully.
+
+The tell is available and it is not in the output. **It is that you know a background job is
+running and you looked anyway.**
