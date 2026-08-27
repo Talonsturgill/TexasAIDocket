@@ -1068,7 +1068,7 @@
      "fetched": "2026-08-26"
     }
    ],
-   "last_verified": "2026-08-26",
+   "last_verified": "2026-08-27",
    "confidence": "high",
    "notes_for_editor": "Included because it is actionable and time limited, which is the highest value class of item for readers. The Texas relevance is real but INDIRECT and the item should say so plainly: this is a national rulemaking, not a Texas proceeding. The regulations_dot_gov_info comment_url came back null from the API, so the Federal Register document page is given as the participation URL instead of a direct regulations.gov deep link.",
    "history": [
@@ -1083,6 +1083,11 @@
     {
      "date": "2026-08-26",
      "note": "Checked and unchanged. The Nuclear Regulatory Commission's proposed rule still carries the Executive Order 14300 framing and the comment window still closes August 31st. Five days are left on it.",
+     "checked": true
+    },
+    {
+     "date": "2026-08-27",
+     "note": "Checked and unchanged. The proposed rule still opens on the Executive Order 14300 framing and the comment window still closes August 31st. Four days are left to file.",
      "checked": true
     }
    ]
@@ -5732,7 +5737,7 @@
    ],
    "public_access": {
     "room": "open_meeting",
-    "how": "The commission carries this out in its own open meetings, which its calendar feed lists as open to the public in Commissioners Hearing Room 7-100 in Austin. The August 20th, 2026 meeting takes up ERCOT's request for a good cause exception as item 22. That agenda opens with a public comment period on any matter within the commission's jurisdiction, with speakers limited to three minutes each. Subscribing to the calendar feed is the way to see an item before it is taken up rather than after.",
+    "how": "The commission carries this out in its own open meetings, which its calendar feed lists as open to the public in Commissioners Hearing Room 7-100 in Austin. The August 20th, 2026 meeting took up ERCOT's request for a good cause exception as item 22 and granted it. The next meeting the calendar feed lists for this work is December 17th, 2026, the one the audit's own schedule points at. A commission agenda opens with a public comment period on any matter within the commission's jurisdiction, with speakers limited to three minutes each. Subscribing to the calendar feed is the way to see an item before it is taken up rather than after.",
     "url": "https://gov.texas.gov/uploads/files/press/Thomas_Gleeson_Pablo_Vegas_Data_Centers_Directive_Letter_to_PUCT_ERCOT_August_2026_.pdf",
     "closes": null
    },
@@ -5793,12 +5798,12 @@
     },
     {
      "id": "tx-2026-0072-c7",
-     "text": "The commission's calendar lists an open meeting on August 20th.",
-     "verbatim_quote": "Open Meeting - Thursday, August 20, 2026",
+     "text": "The commission's calendar lists an open meeting on December 17th.",
+     "verbatim_quote": "Open Meeting - Thursday, December 17, 2026",
      "source_url": "https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx",
-     "source_title": "PUCT calendar RSS, entry title",
+     "source_title": "Public Utility Commission of Texas, agency calendar feed, open meeting entry",
      "source_type": "primary_official",
-     "fetched": "2026-08-16"
+     "fetched": "2026-08-27"
     },
     {
      "id": "tx-2026-0072-c8",
@@ -5945,7 +5950,7 @@
      "fetched": "2026-08-23"
     }
    ],
-   "last_verified": "2026-08-26",
+   "last_verified": "2026-08-27",
    "confidence": "high",
    "notes_for_editor": "Raw HTML fetched with a browser User-Agent, quotes checked character for character.",
    "history": [
@@ -5972,6 +5977,11 @@
     {
      "date": "2026-08-26",
      "note": "Checked and unchanged. The directive letter, the market notice and the commission's own filings still say what they said. The August 20th open meeting has come off the calendar feed now that it has been held, which is normal for that feed and not a change to the directive.",
+     "checked": true
+    },
+    {
+     "date": "2026-08-27",
+     "note": "Checked and unchanged. The audit is still running and no data center has been cleared to advance. The August 20th open meeting that granted the exception has been held, so the next public step on the calendar is the December 17th open meeting, the one the audit's own filed schedule ends on.",
      "checked": true
     }
    ]
@@ -6972,11 +6982,11 @@
     {
      "id": "tx-2026-0090-c7",
      "text": "The agency framed the two platforms it funded as equipment researchers anywhere in the country should be able to use.",
-     "verbatim_quote": "NSF wants researchers with great ideas, wherever they are in the U.S., to get their hands on this equipment.",
+     "verbatim_quote": "NSF wants researchers with great ideas, wherever they are in the U.S., to get their hands on this equipment and work together to pursue those ideas.",
      "source_url": "https://www.nsf.gov/news/nsf-stands-2-materials-innovation-platforms-50m-investment",
      "source_title": "National Science Foundation, NSF stands up 2 Materials Innovation Platforms with $50M investment",
      "source_type": "primary_official",
-     "fetched": "2026-08-23"
+     "fetched": "2026-08-27"
     },
     {
      "id": "tx-2026-0090-c8",
@@ -7006,7 +7016,7 @@
      "fetched": "2026-08-23"
     }
    ],
-   "last_verified": "2026-08-26",
+   "last_verified": "2026-08-27",
    "confidence": "high",
    "notes_for_editor": "Award date 07/31/2026, announced by the agency on 08/03/2026. Award number 2534344, principal investigator Raymundo Arroyave.",
    "history": [
@@ -7021,6 +7031,11 @@
     {
      "date": "2026-08-26",
      "note": "Checked and unchanged. The decision still stands as decided.",
+     "checked": true
+    },
+    {
+     "date": "2026-08-27",
+     "note": "Checked and unchanged. The award still stands and the laboratory is still described by the agency as equipment researchers anywhere in the country should be able to get their hands on.",
      "checked": true
     }
    ]
@@ -7581,11 +7596,16 @@
     }
    ],
    "id": "tx-2026-0096",
-   "last_verified": "2026-08-26",
+   "last_verified": "2026-08-27",
    "history": [
     {
      "date": "2026-08-26",
      "note": "Admitted. The committee's own charge names data centers and the Legislature's upcoming listing carries the date and the room."
+    },
+    {
+     "date": "2026-08-27",
+     "note": "Checked and unchanged. The committee is still set to take up cooling water on September 1st, in the same hearing room, and the listing still marks it a public hearing.",
+     "checked": true
     }
    ]
   },
