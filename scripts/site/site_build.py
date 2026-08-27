@@ -822,6 +822,41 @@ def self_test() -> int:
                   for i in items if i not in located
                   and not (i.get("geography") or {}).get("statewide")))
 
+        # A COUNTY'S METRO CLAIM MUST AGREE WITH THE GAZETTEER THAT BUILT THE PAGE.
+        #
+        # all_places() used to discard each county's `metro` field and place_page() therefore
+        # rendered every touched county as outside every statistical area. Forty of fifty-nine
+        # live county pages contradicted tx-places.json while every general build gate stayed
+        # green. Compare the BUILT sentence and link against the raw gazetteer here: testing the
+        # transformed `place` dict alone would let the producer and renderer share the same bug.
+        _geo = json.loads((REPO_ROOT / "assets" / "geo" / "tx-places.json")
+                          .read_text("utf-8"))
+        _counties = {p["id"]: p for p in _geo["places"] if p.get("kind") == "county"}
+        _metros = {p["code"]: p for p in _geo["places"] if p.get("kind") == "cbsa"}
+        _outside = ("Outside every metropolitan and micropolitan area",
+                    "This county is in no federal statistical area")
+        _contradictions, _unlinked, _unmarked = [], [], []
+        for _pid, _county in _counties.items():
+            _page = Path(td) / "a" / "place" / _pid / "index.html"
+            if not _page.exists():
+                continue                         # only counties touched by the record get pages
+            _html = _page.read_text("utf-8")
+            _membership = _county.get("metro")
+            if _membership:
+                _area = _metros.get(_membership.get("cbsa"))
+                if any(_claim in _html for _claim in _outside):
+                    _contradictions.append(_county["name"])
+                if not _area or f'href="../{_area["id"]}/"' not in _html:
+                    _unlinked.append(_county["name"])
+            elif not all(_claim in _html for _claim in _outside):
+                _unmarked.append(_county["name"])
+        check("no county page contradicts its statistical-area assignment",
+              not _contradictions, f"contradictions: {_contradictions[:5]}")
+        check("every assigned county page links to its statistical-area page",
+              not _unlinked, f"unlinked: {_unlinked[:5]}")
+        check("every county outside all statistical areas still says so",
+              not _unmarked, f"unmarked: {_unmarked[:5]}")
+
         # THE NUMERAL GATE, PROVEN TO FIRE, AND PROVEN TO BE NARROW.
         #
         # This gate has been green and inert twice, for two unrelated reasons, and the
