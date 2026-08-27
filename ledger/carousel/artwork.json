@@ -423,6 +423,84 @@
    "cut": "nothing cut. Slide 5 was rebuilt twice, first off the technology vocabulary that duplicated slide 7 and onto the repayment stake, then from seated plates to incised ones when three judges still read 5 and 7 as one picture. Pixel correlation between that pair went from the closest in the deck to -0.03.",
    "structural_laws": "ONE SUN at azimuth 246 degrees on every frame, one cast length of 2.75x apparent height, contact at the foot rather than a drop shadow. A built thing casts and an unbuilt thing does not, posed on slide 2 and answered on slide 3. No sixteen marks on slide 6: the record holds the COUNT of pages carrying the words and not their folios.",
    "avoid_next": "the raking daylight limestone register for at least one cycle, and any ground tooth written as a single noise layer. This run found every tooth loop in the deck thresholding a -1..1 fbm2 signal as if it returned 0..1, firing the dark fleck on 0.6 percent of cells and the light one on 87.8, and running at a feature size near 400px. Both are fixed and both would have shipped again."
+  },
+  {
+   "date": "2026-08-27",
+   "carousel_no": 9,
+   "written_from": "render/render_report.json, render/machine_qa.json, the gates' own exit codes, and a per frame measurement of the rendered PNGs at 216 by 270. The value block below is MEASURED and the storyboard's planned block is deliberately not copied here, because the ledger's own avoid_next line says a deck that declares a value band without measuring it is a deck to avoid.",
+   "register": "a metal fabrication high bay east of Austin at night, empty, with one 5000K fixture. Cool blue leaning light throughout so it can never be read as deck no. 6's green leaning console white, and no masonry and no console anywhere, which is the other half of the same separation.",
+   "techniques": [
+    "five receding bents in true one point perspective with a computed inverse square falloff from one high bay fixture",
+    "a two part contact shadow cast onto a slab lit FIRST, so the shadow has something to subtract from",
+    "an untruncated graduated rail with two set collars, zero drawn, one hue at one intensity, no fill",
+    "a thirteen crate stack whose height IS the count, each crate an assembly with cleats, corner blocks and a band strap, seeded jitter on the stack line",
+    "letterforms cut clean through a steel plate and backlit, the cut walls drawn INTO the plate before the aperture is knocked out so what survives is a wall and not an outline",
+    "a formed sheet machine guard relit over its own bend profile, powder coat in two layers at 600px and 1.5px feature sizes",
+    "a moulded rubber field with its drainage lattice drawn as bodies in light order, density falling off with distance",
+    "a brushed stainless data plate with four milled pockets, each a lit lip and a metal floor rather than a black bar",
+    "one point perspective floor with stencil type transformed onto the floor plane by the same projection"
+   ],
+   "palette": {
+    "source": "a metal fabrication high bay on the Blackland Prairie east of Austin, at night",
+    "blackland": "#191511 Houston Black clay, the vertisol under east Travis County",
+    "slab": "#33302B sealed concrete outside the lamp's pool",
+    "slab_lit": "#797369 the same slab inside it",
+    "coat": "#454B50 anthracite powder coat",
+    "coat_lit": "#949AA0 the same coat on a bend edge",
+    "guard": "#E7B819 machine guard yellow, the one saturated colour and the carrier of the deck's law",
+    "mill": "#7E8385",
+    "brushed": "#B9BCBA",
+    "zinc_gold": "#B0965C",
+    "belt": "#12141A",
+    "highbay": "#E9EEF3 5000K high bay LED, deliberately cool",
+    "crate": "#6B563B raw plywood, frame 4 only",
+    "urgent": "#D7677E the dark register red, frame 9 only"
+   },
+   "red_spent": true,
+   "red_on_slide": [
+    9
+   ],
+   "red_note": "Spent on frame 9 only, on the two dates a reader can still act on, September 1st and 2nd and September 4th, set inside the stencil blocks painted on the floor. Nothing else in nine frames carries it.",
+   "camera": "nine constructions. A receding bay at standing eye height, a low oblique just above slab level, an axonometric with no ground plane at all, a level view just under a stack's top course, dead flat with zero perspective, a formed sheet rotated eight degrees and filling the frame, looking down at fifty five degrees at the reader's own feet, near frontal ten degrees off axis, and one point perspective walking forward.",
+   "light_decks_used": "NONE. Measured deck median 25.5 on the rendered PNGs, decisively dark. Deck no. 8 breached the cap the day before and this deck is the correction.",
+   "value": {
+    "per_frame_median_L": [
+     27.8,
+     25.5,
+     11.0,
+     12.2,
+     30.2,
+     54.5,
+     18.4,
+     36.1,
+     12.9
+    ],
+    "deck_median_L": 25.5,
+    "mean_L": 25.4,
+    "sd_L": 13.2,
+    "range_L": [
+     11.0,
+     54.5
+    ],
+    "measured_on": "the nine rendered PNGs at 216 by 270, median of the luminance channel",
+    "planned_and_missed": "the storyboard planned 12, 20, 16, 30, 14, 72, 26, 50, 22 and the deck measured what is above. Frame 6 planned 72 and measured 54.5, and frames 3 and 4 planned 16 and 30 and measured 11.0 and 12.2. The plan is kept in the storyboard and is NOT copied into this ledger, because a planned band recorded as if it were measured is the exact fault avoid_next names."
+   },
+   "slides": 9,
+   "structural_laws": [
+    "ONE LAMP per frame, azimuth fixed, with a computed inverse square falloff. The light reaches exactly as far as the record does. No second light, no horizon, no sky and no star field anywhere in nine frames",
+    "MACHINE GUARD YELLOW on every frame and only at the line between where a machine works and where a person stands, its position computed from that frame's own geometry. On frame 9 alone it inverts into a threshold to walk across",
+    "FABRICATED, NEVER CARVED. Every form assembled and every joint showing. Nothing milled, engraved, embossed or incised, which is what separates this from deck no. 6's console recesses and deck no. 8's incised limestone",
+    "NOTHING DEPICTED THAT NO DOCUMENT DESCRIBES. No frame draws the company's plant, its machinery, the site, or any person",
+    "every absence written as not stated in a NAMED document, never as a thing that did not happen"
+   ],
+   "cut": "nothing was cut. Slide 5 was rebuilt twice, first because the knockout composited in the wrong order and the backlit cuts rendered as dark embossed type, then again because the letterforms shipped as canvas raster and the deck's single most important sentence would have reached the platform as a bitmap. It is SVG text over the canvas walls now, with the overlap declared.",
+   "avoid_next": "the high bay night interior for at least one cycle, and any frame that paints a value field as a near black bar. Slide 8's four unstamped fields shipped as black rectangles on the first render and read as REDACTIONS, which says something was removed when the record says nothing was ever stated. They are milled pockets with a metal floor and a lit lip now. A deck about what a document does not say has to be careful that its own drawing does not accuse anybody.",
+   "bespoke_median_similarity": 0.4342,
+   "bespoke_closest_pair": [
+    "slide-01.html",
+    "slide-09.html",
+    0.7137
+   ]
   }
  ]
 }

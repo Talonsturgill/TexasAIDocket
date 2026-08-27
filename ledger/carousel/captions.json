@@ -135,6 +135,24 @@
    "words": 124,
    "commas_per_100w": 5.65,
    "critic_note": "TWO NAMING CALLS RECORDED RATHER THAN HIDDEN. The opening is named 'the number that is wrong', whose menu entry reads 'opens on a figure the reader will misjudge, then corrects it', and 'The billion buys no building' is exactly that. A judge read it as 'the correction', which is on the last six exclusion list, and the two doors are genuinely close. The distinction taken is that the correction's own example carries no figure and this line's subject IS the figure. The structure is 'ledger', what is known then what is not known then the size of the gap, which is the caption's actual order.\n\nAND THE CLOSE REPEATS 08-25, WHICH THE EXCLUSION LIST COULD NOT HAVE PREVENTED. ledger_check derives closing_moves_recent from the entries BEFORE the newest, so while 08-25 was the newest its own closing move was excluded from the list by design and today's room was never handed it. Rolling it forward by hand made this file disagree with its own entries and turned shipped_check red on the already published 08-25 run, which is the gate working rather than failing. The room needs the lists derived INCLUDING the newest SHIPPED entry, with only the unshipped run's own entry held out. Upgrade lane, written down rather than hand edited."
+  },
+  {
+   "date": "2026-08-27",
+   "carousel_no": 9,
+   "opening_move": "the who",
+   "structure": "two columns",
+   "closing_move": "ask the one question the decision leaves open",
+   "first_line": "Neither release names an acting public body.",
+   "words": 150,
+   "commas": 2,
+   "commas_per_100w": 1.33,
+   "hashtags": [
+    "#TravisCounty",
+    "#Project58482",
+    "#TexasManufacturing"
+   ],
+   "critic_note": "Two directors, opposed assignments, and the critic refused BOTH. Candidate A printed two numerals on neither the claims list nor the aggregates labels, stated an absence as a thing that did not happen, and asserted a general rule about Texas procedure that no claim supports. Candidate B was the better written caption and lost on the ledger, because it declared 'the correction' as its opening and that move was on the exclusion list the room was handed before it wrote. The one rewrite opens on 'the who', inverted, which nine runs have not spent.",
+   "naming_call": "THE CLOSING MOVE IS RECORDED AS THE ONE THE LAST THREE RUNS ALSO USED, and the reason is a hard gate rather than a lapse. brand.yaml sets linkedin_post.ends_with to engagement_question and caption_check hard fails a caption that does not end on one, so the close is a question whatever CAPTION_CRAFT's rotation would prefer. The PHRASING is new and the question is the deck's own argument put back to the reader. A rotation rule and a hard gate disagree here, and the disagreement is written down rather than resolved by quietly breaking one of them."
   }
  ],
  "structures_recent": [
