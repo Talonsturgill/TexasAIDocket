@@ -1256,11 +1256,25 @@ def _made_at_numerals() -> tuple:
 
 
 def all_places(items: list, today: str) -> list:
-    """Every place that gets a page: the metros, then the counties in none of them."""
+    """Every place that gets a page: touched metros, then every touched county."""
     proj = dk.project(items, today)
     out = []
     for mid, m in proj["by_metro"].items():
         out.append({**m, "kind": "metro"})
+
+    # A COUNTY PAGE MUST KEEP ITS GAZETTEER ASSIGNMENT. The page list used to rebuild each
+    # county from only its docket ids, discarding the `metro` field in tx-places.json. The
+    # renderer therefore had no way to distinguish Travis County, which is in the Austin
+    # metropolitan area, from Loving County, which genuinely is outside every CBSA. Forty of
+    # the fifty-nine published county pages consequently stated the opposite of the same
+    # gazetteer this build had read. Carry the resolved CBSA record with the page instead of
+    # making the renderer derive or remember a second geography.
+    gazetteer = json.loads(
+        (REPO_ROOT / "assets" / "geo" / "tx-places.json").read_text("utf-8"))
+    counties = {p["name"]: p for p in gazetteer["places"]
+                if p.get("kind") == "county"}
+    metros = {p["code"]: p for p in gazetteer["places"]
+              if p.get("kind") == "cbsa"}
     by_county = {}
     for it in items:
         for c in (it.get("geography") or {}).get("counties") or []:
@@ -1270,9 +1284,13 @@ def all_places(items: list, today: str) -> list:
     # county page that only existed for the unmetroed half would leave two thirds of the lit
     # counties on the map pointing at nothing.
     for c in sorted(by_county):
+        county = counties[c]       # docket_build already refuses an unresolved county
+        membership = county.get("metro")
+        metro = metros[membership["cbsa"]] if membership else None
         out.append({"id": f"county-{_place_slug(c)}", "kind": "county", "name": c,
                     "full_name": f"{c} County", "counties": [c],
-                    "touched_counties": [c], "items": by_county.get(c, [])})
+                    "touched_counties": [c], "items": by_county.get(c, []),
+                    "metro": metro})
     return out
 
 
@@ -1337,4 +1355,3 @@ class BuildContext:
 
 
 __all__ = [name for name in globals() if not name.startswith("__")]
-

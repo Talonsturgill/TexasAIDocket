@@ -1072,21 +1072,33 @@ def place_page(place: dict, items: list, today: str) -> str:
         map_scope = f"the items on this {place['name']} page"
     else:
         tx = _place_facts()
-        scope = (f'<p class="gap">This county is in no federal statistical area, which is '
-                 f'true of <span class="num">{tx["outside_any_metro"]}</span> of the '
-                 f'state\'s <span class="num">{tx["counties"]}</span>. It gets its own page '
-                 f'for that reason.</p>')
         head = f"{e(place['name'])} County"
-        sub = "Outside every metropolitan and micropolitan area"
+        metro = place.get("metro")
+        if metro:
+            # THE AREA IS THE GAZETTEER'S, AND THE LINK IS PART OF THE CLAIM. County pages
+            # once discarded this assignment and all took the `else` branch below, so forty
+            # counties that are in a CBSA said they were outside every one. Naming and linking
+            # the resolved area lets the reader inspect the larger geographic answer directly.
+            sub = (f'Part of the <a href="../{e(metro["id"])}/">{e(metro["name"])}</a> '
+                   f'{e(metro["area_type"])} statistical area')
+            scope = ""
+        else:
+            sub = "Outside every metropolitan and micropolitan area"
+            scope = (f'<p class="gap">This county is in no federal statistical area, which is '
+                     f'true of <span class="num">{tx["outside_any_metro"]}</span> of the '
+                     f'state\'s <span class="num">{tx["counties"]}</span>. It gets its own page '
+                     f'for that reason.</p>')
         map_scope = f"the items on this {place['name']} County page"
 
+    # Preserve the established indentation when a scope paragraph exists, while emitting no
+    # whitespace-only line for assigned county pages whose linked area is already in `sub`.
+    scope_html = f"  {scope}\n" if scope else ""
     body = f"""
 <h1>{head}</h1>
 <div class="prose">
   <p>{sub}. <span class="num">{len(mine)}</span>
   {"item" if len(mine) == 1 else "items"} in the record.</p>
-  {scope}
-</div>
+{scope_html}</div>
 {texas_map.render(lit=lit, inset=True, scope=map_scope)}
 <table><thead><tr><th>Item</th><th>Topic</th><th>Status</th></tr></thead>
 <tbody>{rows}</tbody></table>
@@ -1190,4 +1202,3 @@ in yet.</p></div>
 
 
 __all__ = ['docket_index', '_CAL_JS', 'docket_calendar_section', 'topic_chips', 'topic_page', 'TOPIC_BLURBS', 'topic_blurb', '_open_now', 'topics_index', 'covers_section', '_item_metros', 'item_where', 'item_timeline', 'item_page', 'place_page', 'places_index']
-
