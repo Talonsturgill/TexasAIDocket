@@ -137,6 +137,33 @@ jobs:
       - name: Every lesson citation names the lesson it points at
         run: python3 scripts/shared/lesson_refs.py
 
+      # THE LOCAL RUNNER'S OWN SELF-TEST, and it is here for one case in particular.
+      #
+      # `guards_local.py --verdict` is what a run asks instead of reading the runner's log,
+      # after August 27th, when a run read a log at line 84 of an eventual 269, saw a wall of
+      # `ok` with no `FAIL`, and called a suite green that had ten failing steps. A log cannot
+      # answer that question. At line 84 a run that will fail at step 100 looks exactly like
+      # one that will pass, so the answer moved into a file that does not exist until it is
+      # true. GATE_LESSONS 69.
+      #
+      # The self-test walks every state a half-finished or stale run can leave on disk and
+      # asserts `--verdict` says green in none of them. Running it HERE is the point: the
+      # mechanism protects local runs, so nothing local can be trusted to prove it works.
+      #
+      # `core.hooksPath` FIRST, and it is not a workaround. Two of the runner's older cases
+      # assert that this checkout really has the hooks its own skip note claims cover the
+      # ownership law locally, which is the 2026-08-16 defect in CLAUDE.md: hook configuration
+      # does not travel with a clone, so a fresh one silently enforces nothing. A runner's
+      # checkout is a fresh clone, so without this line those two cases correctly report that
+      # the hooks are absent and the job goes red on a true statement about the wrong thing.
+      # Setting it makes CI reproduce a CORRECTLY configured checkout, which is what CLAUDE.md
+      # requires of every one, rather than testing an incomplete one. It is local to this
+      # ephemeral checkout and nothing here commits, so the hooks never fire.
+      - name: The local runner refuses to call an unfinished suite green
+        run: |
+          git config core.hooksPath .githooks
+          python3 scripts/shared/guards_local.py --self-test
+
       # THE RESEARCHED DOSSIERS. Every figure is a field with a source and prose is forbidden a
       # digit, which is the only shape in which hand research can satisfy the compute-not-generate
       # law. Self-test first, same rule as the rest.
