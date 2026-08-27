@@ -149,8 +149,20 @@ jobs:
       # The self-test walks every state a half-finished or stale run can leave on disk and
       # asserts `--verdict` says green in none of them. Running it HERE is the point: the
       # mechanism protects local runs, so nothing local can be trusted to prove it works.
+      #
+      # `core.hooksPath` FIRST, and it is not a workaround. Two of the runner's older cases
+      # assert that this checkout really has the hooks its own skip note claims cover the
+      # ownership law locally, which is the 2026-08-16 defect in CLAUDE.md: hook configuration
+      # does not travel with a clone, so a fresh one silently enforces nothing. A runner's
+      # checkout is a fresh clone, so without this line those two cases correctly report that
+      # the hooks are absent and the job goes red on a true statement about the wrong thing.
+      # Setting it makes CI reproduce a CORRECTLY configured checkout, which is what CLAUDE.md
+      # requires of every one, rather than testing an incomplete one. It is local to this
+      # ephemeral checkout and nothing here commits, so the hooks never fire.
       - name: The local runner refuses to call an unfinished suite green
-        run: python3 scripts/shared/guards_local.py --self-test
+        run: |
+          git config core.hooksPath .githooks
+          python3 scripts/shared/guards_local.py --self-test
 
       # THE RESEARCHED DOSSIERS. Every figure is a field with a source and prose is forbidden a
       # digit, which is the only shape in which hand research can satisfy the compute-not-generate

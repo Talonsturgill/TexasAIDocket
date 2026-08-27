@@ -711,8 +711,14 @@ jobs:
 
         ok("a complete green verdict on this exact tree passes", verdict_of(green) == 0)
 
+        # THE FIXTURE'S STEP NAME IS DELIBERATELY NOT A REAL ONE. `read_verdict` prints the
+        # failed steps it is refusing, so a plausible name here puts a line reading
+        # `FAIL  Site build self-test` into the output of a self-test that passed. Anyone
+        # grepping this suite for FAIL would find it, which is the same confusion between a
+        # log line and a verdict that the whole mechanism exists to end.
         ok("a verdict recording a failure is not a pass",
-           verdict_of({**green, "exit": 1, "failed": ["Site build self-test"]}) != 0)
+           verdict_of({**green, "exit": 1,
+                       "failed": ["<fixture, no such step>"]}) != 0)
 
         # STALENESS, both halves. A suite that passed on other bytes says nothing about these.
         ok("a verdict from another commit is refused",
