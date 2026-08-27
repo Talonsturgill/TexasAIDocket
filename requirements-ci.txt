@@ -1,0 +1,4 @@
+# The full guard suite also exercises image production.
+-r requirements.txt
+numpy==2.4.6
+Pillow==12.3.0

@@ -52,7 +52,7 @@ from pathlib import Path
 try:
     import yaml
 except ImportError:                                                  # pragma: no cover
-    print("guards_shape: PyYAML missing (pip install pyyaml)", file=sys.stderr)
+    print("guards_shape: PyYAML missing (install requirements.txt)", file=sys.stderr)
     sys.exit(2)
 
 REPO_ROOT = Path(__file__).resolve().parents[2]

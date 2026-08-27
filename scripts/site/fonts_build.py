@@ -124,7 +124,7 @@ def build() -> int:
         from fontTools.ttLib import TTFont                          # noqa: PLC0415
         import brotli                                               # noqa: F401,PLC0415
     except ImportError:
-        print("fonts_build: needs fonttools and brotli. pip install fonttools brotli",
+        print("fonts_build: needs fonttools and brotli. Install requirements-tools.txt",
               file=sys.stderr)
         return 2
 
@@ -214,7 +214,8 @@ def manifest() -> dict:
     if not MANIFEST.exists():
         raise FileNotFoundError(
             f"{MANIFEST} is missing. The site cannot serve its typefaces without it. "
-            f"Run: pip install fonttools brotli && python3 scripts/site/fonts_build.py")
+            f"Run: python3 -m pip install -r requirements-tools.txt && "
+            f"python3 scripts/site/fonts_build.py")
     doc = json.loads(MANIFEST.read_text(encoding="utf-8"))
     if not doc.get("faces"):
         raise ValueError(f"{MANIFEST} lists no faces, so nothing would be served")

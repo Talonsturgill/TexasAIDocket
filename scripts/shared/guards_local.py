@@ -58,7 +58,7 @@ from pathlib import Path
 try:
     import yaml
 except ImportError:                                                       # pragma: no cover
-    print("guards_local: PyYAML missing (pip install pyyaml)", file=sys.stderr)
+    print("guards_local: PyYAML missing (install requirements.txt)", file=sys.stderr)
     sys.exit(2)
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -71,7 +71,7 @@ CI_EXPR = re.compile(r"\$\{\{")
 # Steps that stand up the runner rather than check the product. Running `actions/checkout`
 # locally is meaningless, and a `uses:` step has no shell command at all, so those never appear.
 # These are `run:` steps that install things this machine already has.
-SETUP_MARKERS = ("pip install", "npm install", "playwright install", "apt-get")
+SETUP_MARKERS = ("pip install", "npm install", "npm ci", "playwright install", "apt-get")
 
 # The node suites under `tests/`. Most drive a real browser, which is why they dominate the
 # wall clock and are worth being able to defer while iterating on copy. They are matched as one
@@ -437,7 +437,7 @@ jobs:
           pip install pyyaml
       - name: Browser suite
         run: |
-          npm install --no-save --silent playwright
+          npm ci --ignore-scripts --no-audit --no-fund
           SITE=docs node tests/responsive.mjs
 """)
     ok("a pure install step is classified as setup", setup[0].is_setup)
