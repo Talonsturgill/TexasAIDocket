@@ -28,6 +28,33 @@ not satisfy the rubric. A Texan scrolling past should stop.
 
 ---
 
+## WHAT THIS RUN COSTS, and it is a design constraint rather than a footnote
+
+This routine burns a lot of tokens and takes a long time, and the maintainer has said so plainly.
+Treat cost as part of the spec.
+
+**The three most expensive habits, measured on real runs rather than guessed:**
+
+1. **Using the panel as a design loop.** Three judges per round, each reading nine full-size
+   renders. A round is the single most expensive thing this routine can do and the 2026-08-27 run
+   did six. See the round rule in Phase 15. **Get the frame right before it is scored.**
+2. **Re-rendering the whole deck to fix one frame.** `render.py --only 4,8` exists. A full
+   re-render is nine headless browser passes and the reports that follow it.
+3. **Reading a whole file to change one line.** Grep for the string, edit it, and re-read only
+   what you changed.
+
+**Two habits that cost almost nothing and save the expensive ones:**
+
+- **Run gates by exit code and in one batch.** A loop that runs sixteen gates and prints an exit
+  code each is one tool call. Reading sixteen reports is sixteen.
+- **Measure off the render rather than reasoning about the source.** Every probe this project has
+  authored from the plan's arithmetic has been wrong, twice each. Opening the PNG and taking the
+  actual pixel values is cheaper than one wrong round.
+
+**None of this licenses skipping a gate.** The gates are the cheap part. The expensive part is
+the work that has to be redone because a frame went to a judge before its own acceptance list
+was read against it.
+
 ## NON-NEGOTIABLES (the contract)
 
 **1. EVERY FACT TRACES TO A FETCHED SOURCE.** Every claim carries a verbatim quote and a source
@@ -687,7 +714,7 @@ remember. The exception is Phase 5's: a beat the record has never carried needs 
 
 **IF A SURFACE DID NOT UPDATE**, say which and why in the run record. The three real causes, in
 the order they actually happen: the build did not run, the ledger did not change so there was
-nothing to regenerate, or a gate went red and Phase 16 did not merge. Only the third is a
+nothing to regenerate, or a gate went red and Phase 18 did not merge. Only the third is a
 failure of this run.
 
 **INDEXNOW SUBMITS ITSELF.** `pages.yml` pushes the day's changed urls after a successful
@@ -973,6 +1000,36 @@ stranger would. The gate is a floor under that pass, not a substitute for it.
 **`panel_ready.py` must exit 0 before you spawn anything here.** See Phase 14b. A panel is a
 check on a deck the run already believes is finished.
 
+### THE ROUND RULE, and it is the most expensive habit this routine has
+
+`config/carousel/scoring_rubric.yaml` sets `max_rounds`. **Past that cap, a round may repair a
+HARD FAIL and nothing else.** Not a craft note, not a one-sentence fix, not a judge's taste. A
+hard fail is a claim about a promise this product made in public and it stops the deck at any
+round, cap or no cap. Everything else past the cap goes into the run record as work for the next
+run and the deck ships at whatever the median is, stated honestly in the email, with the run
+record saying it shipped under the bar and by how much.
+
+Maintainer's instruction, 2026-08-27, and the whole reason this section exists:
+
+> After 5 rounds of editing, transition to only fixing the hard fails. We need to spend a session
+> improving the agents who are creating the carousel so they can do a better job impressing the
+> judges. We don't want them to rely on the judges for design. The judges should just be for
+> tweaks, instead of using the editing gloop as a crutch. In 5 rounds they should be able to get
+> passing scores, and if not they need to get better.
+
+**Every round after the first is evidence that something upstream of the panel was skipped.** The
+2026-08-27 run took six rounds and eighteen judge reports on one deck, and its own post mortem is
+the argument: the panel found two things nothing else could have (a filter that had never executed
+because its id collided with the element carrying it, and a declared focal the machine had already
+measured at near chance), and it also spent fifteen reports on things a careful builder pass would
+have found for nothing. Frames shipped without their own declared technique. A membership test
+narrated four different wrong ways. A label butted into its own recess.
+
+**So the cheapest round is the one you do not need.** Before spawning, read each frame's own
+acceptance list against the render you actually made, and read every universal in the copy against
+the code that computed it. That pass costs one agent's worth of tokens. A scoring round costs
+three, plus a repair pass, plus a re-render, plus the next round.
+
 Spawn **3** `carousel-scorer` agents IN PARALLEL, one per lens, and combine them with a script.
 Never one. Never sequentially, because a judge that can see another judge's answer is not a
 second reading.
@@ -1044,7 +1101,7 @@ valid, because a 196 byte report is valid and a 4 MB truncated PNG is not. A row
 predates the newest rendered slide reads STALE rather than PASS, which is the row a re-render
 creates and nothing else in the run would notice.
 
-## PHASE 16 — SHIP (one branch, one pull request, one merge)
+## PHASE 16 — ASSEMBLE AND OPEN THE PULL REQUEST (no merge yet)
 
 Authoritative policy is in `CLAUDE.md` and it wins over any instruction to keep work on a branch
 or open a draft.
@@ -1103,28 +1160,27 @@ is half a run old.
    the story readable as text with the images off. `media_check` is the machine half of this and
    it was written after a run shipped a page with two broken images past a fully green suite. A
    gate that reads the builder's intent cannot see what the product actually says.
-7. Commit, push, open a **ready (not draft)** pull request, **wait for CI to report green on
-   that PR's head commit**, and then **merge it to `main` in the same run.** The email's image
-   URLs point at `main`, so the merge lands before the email.
+7. Commit, push, and open a **ready (not draft)** pull request. **Do not merge here.**
 
-   **THE WAIT IS NOT OPTIONAL AND IT IS NOT A HUMAN REVIEW GATE.** Nobody is asked and nothing
-   is approved. The run polls its own PR's checks, and merges the moment they are green. On
-   2026-08-25 a run merged with CI still in progress, because `guards_local.py` had passed here
-   and no required status check stood in the way. CI went red four minutes later on
-   `email_check --all`, which reads the committed email payload beside EVERY shipped run, while
-   the local run had checked only this one. Same script, different subject, different answer.
-   `main` was red until a second pull request fixed it.
+   **THE MERGE MOVED TO PHASE 19 AND THIS IS WHY.** It used to happen at this step, and then
+   Phase 17's retro wrote to `ledger/carousel/upgrades.json` and Phase 17's upgrade lane edited
+   `scripts/carousel/`, both AFTER the branch had already merged. Every run therefore produced a
+   second commit range that either needed a second merge or silently never landed, and an
+   unmerged upgrade is worse than no upgrade, because the next run checks out `main`, does not
+   get the fix, and the ledger says the machine improved when it did not. **One run, one branch,
+   one merge, and the merge is the last thing that touches git.**
 
-   If CI is red, that is this phase's work: read the failing job's log, reproduce the failure
-   in this checkout, fix it, push, and wait again. If the repository runs no checks at all, or
-   they cannot start, SAY SO in the run record and proceed. Never wait out a check that will
-   never arrive, and never read a missing gate as a passing one.
+   Maintainer's instruction, 2026-08-27: *"the whole automation should finish and then merged, a
+   retro should find out what's wrong, then upgrades should happen, then a merge, then just the
+   Gmail draft."*
 
 **A failed run commits its evidence to its branch and does NOT merge.**
 
-## PHASE 17 — RETRO + UPGRADE
+## PHASE 17 — RETRO + UPGRADE (still on the branch, still before the merge)
 
-Two parts, and the second one changes lane.
+Two parts, and the second one changes lane. **Both commit to the run branch and push to the open
+pull request**, so that everything this run learned is inside the one commit range Phase 19
+merges. Nothing in this phase is allowed to land after the merge.
 
 **The run record.** Append what the worklist held, what was deferred and why, what was admitted and
 what was held, the instrument check's finding, and anything a source did that the registry does not
@@ -1190,9 +1246,32 @@ a lane this branch may stamp. Nothing else is added, and `human` can never be.
 
 **Never loosen a gate to make a run pass.**
 
-## PHASE 18 — GMAIL DRAFT
+## PHASE 18 — MERGE (the one merge, and the last thing that touches git)
 
-The only human touchpoint, and it gates the POST, not the merge. The reader has about ninety
+Everything this run learned is now in one commit range on one branch, behind one open pull
+request. This phase lands it and nothing after it writes to the repository.
+
+1. **Name the check runs on the head SHA you are merging and read `success` on each.** Not the
+   branch, not an earlier head, not a summary. `CLAUDE.md` carries the full rule and it is the
+   product of two separate incidents, so read it there rather than trusting a memory of it.
+2. `total_count: 0` is a state to WAIT in or to SAY out loud, and never a state to merge in. A
+   `cancelled` conclusion is not a pass.
+3. **Red is work now.** Read the failing job's log, reproduce it in this checkout, fix it, push,
+   wait again. `guards_local.py` is what tells you the work is DONE. CI reporting green is what
+   tells you it may LAND. A run that treats the first as the second has skipped a check.
+4. If the checks cannot start at all and cannot be dispatched, **say so in the run record and in
+   the email, and stop.** Do not merge, and never push an empty commit to kick CI.
+5. Merge. One merge, one run.
+
+**A failed run stops here with its evidence committed and pushed, and does NOT merge.** That is
+not a run hiding: the pull request is open, ready, and carries everything.
+
+## PHASE 19 — GMAIL DRAFT
+
+The only human touchpoint, and it gates the POST. **The merge already happened in Phase 18**,
+which is why this phase writes nothing to the repository and is the last thing the run does. If
+the merge did NOT happen, say so at the top of the email, pass the run branch to `--ref` so the
+image links resolve, and tell the reader in one line what single action clears it. The reader has about ninety
 seconds and a phone, and the one thing they must be able to do from this email is **post the
 deck** without opening the repository.
 
@@ -1264,7 +1343,9 @@ admitted, held, deferred) belongs in `--notes`. Everything a reader acts on, the
 - **The backlog is no longer than it was at wake.** Shrinking it is the goal and holding it
   steady is acceptable. Growing it is a failed run, because the entry nobody clears is the entry
   that teaches the next run the list is optional.
-- A deck shipped, merged to `main`, with a Gmail draft waiting.
+- A deck shipped, merged to `main` in **one** merge that carries the record, the deck, the site
+  rebuild, the ledgers, the run record AND the retro's upgrades, with a Gmail draft waiting.
+  Nothing this run learned lands after the merge.
 - Every fact traces to a verified claim. Every numeral traces to a claim or a computation.
 - Every machine gate green by exit code, every score honest.
 - The ledgers updated so tomorrow cannot repeat today.
