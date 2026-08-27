@@ -48,6 +48,35 @@ reads to judge which lane a commit is in, so without it every commit reaches CI 
 `guards_local.py` now FAILS rather than skips when this is unset, so the gap cannot pass under
 a green banner a second time.
 
+**Two more, and they are about the push rather than the commit.**
+
+```
+git config http.version    HTTP/1.1
+git config http.postBuffer 524288000
+```
+
+A push from an agent session repeatedly came back `remote rejected ... cannot lock ref
+'refs/heads/<branch>': is at <new> but expected <old>`, and `git ls-remote` then showed the push
+had LANDED. That error is what the server says when it receives the ref update TWICE: the first
+request moves the ref, the second still expects the old value and is refused. The push worked and
+reported failure.
+
+The cost is not the wasted request. It is that the shell reports a failed push, so the session
+verifies, re-pushes, and re-verifies every time, and a run that pushes eight times pays for it
+eight times. It also trains a session to treat a real `remote rejected` as noise, which is the
+expensive half.
+
+The cause is the run's own payload against a default `http.postBuffer` of 1 MB. This repo pushes
+whole carousels, nine PNGs and a vector PDF near 10 MB, so git falls back to chunked transfer,
+and a chunked POST through the re-terminating egress proxy gets retried by the transport after
+the response is lost. Raising the buffer keeps the request unchunked and pinning HTTP/1.1 removes
+the stream resets that trigger the retry underneath it. Neither weakens anything: no verification
+changes and `HTTPS_PROXY` is untouched, which the proxy's own README requires.
+
+Diagnosed rather than assumed: `curl "$HTTPS_PROXY/__agentproxy/status"` reported
+`recentRelayFailures: []` and no `gitConfigConflicts`, so the proxy was not rejecting anything
+and the duplicate came from git's transport.
+
 ## Delivery and merge policy (AUTHORITATIVE — overrides any draft-PR default)
 
 Routine runs SHIP AUTONOMOUSLY. When a run's quality gates pass, the run branch is merged to
