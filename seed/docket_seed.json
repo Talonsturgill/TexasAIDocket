@@ -3661,7 +3661,7 @@
    "metro": "Dallas-Fort Worth-Arlington, TX"
   },
   "status": "decided",
-  "confidence": "medium",
+  "confidence": "high",
   "key_dates": [],
   "public_access": {
    "room": "closed",
@@ -3677,7 +3677,7 @@
     "source_title": "UT Southwestern Medical Center, AI Innovations in Medical Education",
     "source_type": "primary_official",
     "id": "tx-2026-0102-c1",
-    "fetched": "2026-08-26"
+    "fetched": "2026-08-27"
    },
    {
     "text": "The stated reason is the cost and inconsistency of grading by hand.",
@@ -3686,10 +3686,17 @@
     "source_title": "UT Southwestern Medical Center, AI Innovations in Medical Education",
     "source_type": "primary_official",
     "id": "tx-2026-0102-c2",
-    "fetched": "2026-08-26"
+    "fetched": "2026-08-27"
    }
   ],
   "id": "tx-2026-0102",
-  "held_reason": "The source page carries no publication date, so whether the share of grading it states is current can't be established. Promote when a dated source states it."
+  "held_reason": "The source page carries no publication date, so whether the share of grading it states is current can't be established. Promote when a dated source states it.",
+  "last_verified": "2026-08-27",
+  "history": [
+   {
+    "date": "2026-08-27",
+    "note": "Admitted. The medical school still states that the artificial intelligence grading process has replaced more than 91 percent of human grading of these notes since the autumn of 2023, and still gives inconsistency in manual grading as the reason for building it."
+   }
+  ]
  }
 ]

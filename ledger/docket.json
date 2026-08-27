@@ -8498,6 +8498,61 @@
      "note": "The committee's posted hearing notice carries both interim charges verbatim. The same notice names the committee's oversight of the Department of Information Resources and of HB 150."
     }
    ]
+  },
+  {
+   "title": "UT Southwestern says AI now does most of the grading on its medical students' clinical exam notes",
+   "summary": "UT Southwestern Medical Center built a process that reads and grades the post encounter notes students write after their objective structured clinical examinations. The medical school says it has replaced more than 91 percent of human grading since the autumn of 2023 and returns results in days rather than weeks. The stated reason is that grading those notes by hand is slow and inconsistent. The page names no model and no vendor, and it carries no publication date, so how current the figure is can't be established from it.",
+   "topic": "health-and-education",
+   "decider": {
+    "name": "University of Texas Southwestern Medical Center",
+    "type": "state-agency"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Dallas"
+    ],
+    "on_ercot": true,
+    "metro": "Dallas-Fort Worth-Arlington, TX"
+   },
+   "status": "decided",
+   "confidence": "high",
+   "key_dates": [],
+   "public_access": {
+    "room": "closed",
+    "how": "The medical school publishes its own account of the process. No public participation step exists and no date is given for the decision.",
+    "url": "https://www.utsouthwestern.edu/research/scientific-report/articles/ai-innovations-in-medical-education.html",
+    "closes": null
+   },
+   "claims": [
+    {
+     "text": "The medical school states how much of the grading the process has taken over.",
+     "verbatim_quote": "Since fall 2023, the AI evaluation process has transformed OSCE feedback for UT Southwestern medical students, replacing more than 91% of human grading and delivering results within days versus weeks",
+     "source_url": "https://www.utsouthwestern.edu/research/scientific-report/articles/ai-innovations-in-medical-education.html",
+     "source_title": "UT Southwestern Medical Center, AI Innovations in Medical Education",
+     "source_type": "primary_official",
+     "id": "tx-2026-0102-c1",
+     "fetched": "2026-08-27"
+    },
+    {
+     "text": "The stated reason is the cost and inconsistency of grading by hand.",
+     "verbatim_quote": "The process of manually reviewing and grading these notes is labor-intensive, time-consuming, and prone to inconsistency",
+     "source_url": "https://www.utsouthwestern.edu/research/scientific-report/articles/ai-innovations-in-medical-education.html",
+     "source_title": "UT Southwestern Medical Center, AI Innovations in Medical Education",
+     "source_type": "primary_official",
+     "id": "tx-2026-0102-c2",
+     "fetched": "2026-08-27"
+    }
+   ],
+   "id": "tx-2026-0102",
+   "held_reason": "The source page carries no publication date, so whether the share of grading it states is current can't be established. Promote when a dated source states it.",
+   "last_verified": "2026-08-27",
+   "history": [
+    {
+     "date": "2026-08-27",
+     "note": "Admitted. The medical school still states that the artificial intelligence grading process has replaced more than 91 percent of human grading of these notes since the autumn of 2023, and still gives inconsistency in manual grading as the reason for building it."
+    }
+   ]
   }
  ]
 }
