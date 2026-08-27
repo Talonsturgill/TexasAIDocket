@@ -44,8 +44,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements.txt
 
-      - run: pip install --quiet pyyaml
+      - run: python -m pip install --quiet --no-deps --requirement requirements.txt
 
       # Hermetic, no network. A collector whose own checks are broken has no business
       # appending to a series, so this gates the fetch rather than reporting after it.

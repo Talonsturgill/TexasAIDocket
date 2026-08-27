@@ -167,7 +167,7 @@ because `docs/` has to be byte-identical to a rebuild and subsetting is not stab
 `fonttools` versions, while a copy is.
 
 ```bash
-pip install fonttools brotli
+python3 -m pip install --no-deps --requirement requirements-tools.txt
 python3 scripts/site/fonts_build.py             # rewrites assets/fonts/web/
 python3 scripts/site/site_build.py              # copies them into docs/
 ```

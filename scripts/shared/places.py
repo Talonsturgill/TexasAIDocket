@@ -178,7 +178,7 @@ def extract_cbsa(xlsx: Path, out: Path) -> int:
     try:
         import openpyxl                                              # noqa: PLC0415
     except ImportError:
-        print("places: extracting CBSAs needs openpyxl (pip install openpyxl). It is a "
+        print("places: extracting CBSAs needs openpyxl (install requirements-tools.txt). It is a "
               "one-off maintainer step, not a build dependency.", file=sys.stderr)
         return 2
     if not xlsx.exists():

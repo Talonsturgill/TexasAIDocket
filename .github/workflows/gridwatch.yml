@@ -96,8 +96,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements.txt
 
-      - run: pip install --quiet pyyaml
+      - run: python -m pip install --quiet --no-deps --requirement requirements.txt
 
       - name: Prove the collector's own checks can go red
         # Hermetic, no network. A collector whose checks are broken has no business appending

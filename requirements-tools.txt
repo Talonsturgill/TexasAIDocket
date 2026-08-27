@@ -1,0 +1,6 @@
+# Optional regeneration tools. CI does not install this file.
+-r requirements-ci.txt
+Brotli==1.2.0
+et_xmlfile==2.0.0
+fonttools==4.63.0
+openpyxl==3.1.5

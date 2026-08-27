@@ -29,12 +29,6 @@ on:
 permissions:
   contents: read
 
-# PINNED, because it was not. Every run did an unpinned `npm install playwright`, so the
-# version could change under us between two runs of the same commit, and a green yesterday
-# proved nothing about a red today.
-env:
-  PLAYWRIGHT_VERSION: "1.56.1"
-
 # SUPERSEDING A PULL REQUEST'S RUN IS RIGHT AND SUPERSEDING MAIN'S IS NOT, AND THIS DID BOTH.
 #
 # On a pull request only the head being merged matters, so a later push should kill the run for
@@ -93,6 +87,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
+            requirements-ci.txt
 
       - name: Install dependencies
         # Pillow and numpy are for ship_images, which measures the encode it produced rather
@@ -100,7 +98,7 @@ jobs:
         # quietly skips is a self-test that never runs, and the whole point of running these in
         # CI is that the developer's container is not the thing being checked. This exact gap
         # shipped green locally and failed here on the first push.
-        run: pip install --quiet pyyaml pillow numpy
+        run: python -m pip install --quiet --no-deps --requirement requirements-ci.txt
 
       - name: Ownership self-test (prove the gate can go red)
         run: python3 scripts/shared/ownership_check.py --self-test
@@ -116,6 +114,12 @@ jobs:
 
       - name: Every guard job is behind the required check
         run: python3 scripts/shared/guards_shape.py
+
+      - name: Dependency lock self-test (prove floating installs go red)
+        run: python3 scripts/shared/dependency_shape.py --self-test
+
+      - name: Every dependency install uses the committed locks
+        run: python3 scripts/shared/dependency_shape.py
 
       - name: Release wiring self-test (prove deployment cannot bypass full guards)
         run: python3 scripts/shared/release_shape.py --self-test
@@ -859,6 +863,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
+            requirements-ci.txt
 
       - name: Install dependencies
         # Pillow and numpy are for ship_images, which measures the encode it produced rather
@@ -866,7 +874,7 @@ jobs:
         # quietly skips is a self-test that never runs, and the whole point of running these in
         # CI is that the developer's container is not the thing being checked. This exact gap
         # shipped green locally and failed here on the first push.
-        run: pip install --quiet pyyaml pillow numpy
+        run: python -m pip install --quiet --no-deps --requirement requirements-ci.txt
 
       - name: Site build self-test
         run: python3 scripts/site/site_build.py --self-test
@@ -888,6 +896,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
+            requirements-ci.txt
 
       - name: Install dependencies
         # Pillow and numpy are for ship_images, which measures the encode it produced rather
@@ -895,7 +907,7 @@ jobs:
         # quietly skips is a self-test that never runs, and the whole point of running these in
         # CI is that the developer's container is not the thing being checked. This exact gap
         # shipped green locally and failed here on the first push.
-        run: pip install --quiet pyyaml pillow numpy
+        run: python -m pip install --quiet --no-deps --requirement requirements-ci.txt
 
       - name: Freshness gate self-test (it bites, and a date change alone does not)
         run: python3 scripts/site/site_fresh_check.py --self-test
@@ -912,6 +924,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
 
       # THE BROWSER IS INSTALLED ONCE, CACHED, AND ON A CLOCK.
       #
@@ -937,16 +954,14 @@ jobs:
       - name: Cache the browser
         uses: actions/cache@v4
         with:
-          path: |
-            ~/.cache/ms-playwright
-            node_modules
-          key: pw-${{ runner.os }}-${{ env.PLAYWRIGHT_VERSION }}
+          path: ~/.cache/ms-playwright
+          key: pw-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
       - name: Browser for the read-time checks
         timeout-minutes: 8
         run: |
-          npm install --no-save --silent "playwright@${PLAYWRIGHT_VERSION}"
-          npx playwright install chromium
+          npm ci --ignore-scripts --no-audit --no-fund
+          npx --no-install playwright install chromium
           node -e "require('playwright').chromium.launch().then(b=>b.close()).then(
             ()=>console.log('chromium launches'), e=>{console.error(e); process.exit(1)})"
 
@@ -1044,6 +1059,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+
       # THE BROWSER IS INSTALLED ONCE, CACHED, AND ON A CLOCK.
       #
       # The suites below need a browser and the first of them used to install it inline. That
@@ -1068,16 +1088,14 @@ jobs:
       - name: Cache the browser
         uses: actions/cache@v4
         with:
-          path: |
-            ~/.cache/ms-playwright
-            node_modules
-          key: pw-${{ runner.os }}-${{ env.PLAYWRIGHT_VERSION }}
+          path: ~/.cache/ms-playwright
+          key: pw-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
       - name: Browser for the read-time checks
         timeout-minutes: 8
         run: |
-          npm install --no-save --silent "playwright@${PLAYWRIGHT_VERSION}"
-          npx playwright install chromium
+          npm ci --ignore-scripts --no-audit --no-fund
+          npx --no-install playwright install chromium
           node -e "require('playwright').chromium.launch().then(b=>b.close()).then(
             ()=>console.log('chromium launches'), e=>{console.error(e); process.exit(1)})"
 
@@ -1129,6 +1147,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+
       # THE BROWSER IS INSTALLED ONCE, CACHED, AND ON A CLOCK.
       #
       # The suites below need a browser and the first of them used to install it inline. That
@@ -1153,16 +1176,14 @@ jobs:
       - name: Cache the browser
         uses: actions/cache@v4
         with:
-          path: |
-            ~/.cache/ms-playwright
-            node_modules
-          key: pw-${{ runner.os }}-${{ env.PLAYWRIGHT_VERSION }}
+          path: ~/.cache/ms-playwright
+          key: pw-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
       - name: Browser for the read-time checks
         timeout-minutes: 8
         run: |
-          npm install --no-save --silent "playwright@${PLAYWRIGHT_VERSION}"
-          npx playwright install chromium
+          npm ci --ignore-scripts --no-audit --no-fund
+          npx --no-install playwright install chromium
           node -e "require('playwright').chromium.launch().then(b=>b.close()).then(
             ()=>console.log('chromium launches'), e=>{console.error(e); process.exit(1)})"
 
