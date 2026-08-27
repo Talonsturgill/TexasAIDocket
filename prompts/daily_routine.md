@@ -414,18 +414,18 @@ forty items gets it right thirty nine times.
 
 ```
 python3 scripts/site/docket_ingest.py --batch out/research/*.json --today <today>
-python3 scripts/site/docket_build.py --promote seed/docket_seed.json
+python3 scripts/site/docket_build.py --promote seed/docket_seed.json --today <today>
 ```
 
-**THE SECOND COMMAND TAKES NO `--out`, AND THAT IS THE WHOLE POINT.** `--promote` is a GATE, not
-a merge. It writes only the items admitted on this pass, so pointing it at the ledger writes
-today's handful and drops everything already published. This file told a run to do exactly that
-until 2026-08-16. Measured that day against a temp file: 27 candidates against a 58 item ledger
-wrote 6 items and dropped 52.
+**THE SECOND COMMAND IS THE ADMISSION AND THE WRITE.** It reads `ledger/docket.json`, treats any
+seed row whose id is already there as a historical copy, gates every seed-only candidate, and
+appends only the new rows that clear the bar. It then gates the ENTIRE combined record and exposes
+the replacement in one atomic filesystem operation. The seed is never changed by promotion.
 
-Run it with no `--out`, read what passed, and append those items to `ledger/docket.json`.
-`promote()` now refuses any write that would lose a published item, so the destructive form fails
-loudly instead of succeeding quietly, but do not lean on that. **The record is append-only in
+Do not manually copy or append JSON after it. A seed copy can never overwrite a published item,
+even when the two differ. A candidate that fails stays in the seed and never enters the ledger. A
+rerun with nothing new leaves the ledger byte-identical. A combined-record or filesystem failure
+leaves both the ledger and the seed at their previous bytes. **The record is append-only in
 substance and never deletes an item.**
 
 `docket_ingest` normalises and **reports every repair it made**, including the one with teeth: an

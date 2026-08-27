@@ -32,7 +32,7 @@ would read is either promoted to a failure or replaced by derived state.
 
     docket_build.py --self-test              prove every gate can go red
     docket_build.py --validate               run the gates against ledger/docket.json
-    docket_build.py --promote SEED --out F   admit what passes, write it, hold the rest
+    docket_build.py --promote SEED           admit and append what passes atomically
     docket_build.py --project                emit the render projection to stdout
 
 EXIT CODES
@@ -43,8 +43,10 @@ from __future__ import annotations
 import argparse
 import datetime as _dt
 import json
+import os
 import re
 import sys
+import tempfile
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -701,7 +703,7 @@ def gate_narration(items: list) -> Result:
     return r
 
 
-def gate_cross_references(items: list) -> Result:
+def gate_cross_references(items: list, known_ids: set | None = None) -> Result:
     """An item this record points a reader at has to exist.
 
     FOUND BY THE NUMERAL GATE, WHICH IS NOT WHAT THE NUMERAL GATE IS FOR. Item
@@ -725,7 +727,7 @@ def gate_cross_references(items: list) -> Result:
     dangling pointer, which is a worse outcome than the pointer. The one known break is
     named, it is the only exemption, and a second one fails immediately.
     """
-    known = {i.get("id") for i in items}
+    known = {i.get("id") for i in items} | (known_ids or set())
     r = Result("cross references")
     dangling = 0
     for it in items:
@@ -1009,6 +1011,58 @@ def load(path: Path) -> list:
     if isinstance(raw, list):
         return raw
     return raw.get("items", [])
+
+
+def load_record(path: Path) -> dict:
+    """Read the published record without silently accepting a seed-shaped file.
+
+    `load()` deliberately accepts either a list or an object because candidate batches use
+    both shapes. Promotion is about to REPLACE the live ledger, so that convenience would be
+    dangerous there: a malformed object could otherwise read as an empty record and make an
+    apparently safe append erase everything. The write path therefore requires the canonical
+    object with an item list before it computes a replacement.
+    """
+    raw = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(raw, dict) or not isinstance(raw.get("items"), list):
+        raise ValueError(f"{path} is not a docket record object with an items list")
+    return raw
+
+
+def _atomic_write_text(path: Path, text: str, *, replace=os.replace) -> None:
+    """Durably prepare `text`, then expose it at `path` in one filesystem operation.
+
+    The temporary file sits beside the ledger so `os.replace` cannot cross a filesystem. It is
+    removed if writing, flushing or replacing fails, while the old ledger remains at its old
+    path. Preserve the target's mode rather than replacing a public record with NamedTemporary
+    File's private default.
+    """
+    path.parent.mkdir(parents=True, exist_ok=True)
+    mode = (path.stat().st_mode & 0o777) if path.exists() else 0o644
+    temporary: Path | None = None
+    try:
+        with tempfile.NamedTemporaryFile(
+                "w", encoding="utf-8", dir=path.parent,
+                prefix=f".{path.name}.", suffix=".tmp", delete=False) as handle:
+            temporary = Path(handle.name)
+            handle.write(text)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.chmod(temporary, mode)
+        replace(temporary, path)
+        temporary = None
+        # The replacement itself is atomic. Syncing the directory as well makes the rename
+        # durable across a sudden machine loss where the platform supports directory fsync.
+        try:
+            directory = os.open(path.parent, os.O_RDONLY)
+            try:
+                os.fsync(directory)
+            finally:
+                os.close(directory)
+        except OSError:
+            pass
+    finally:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
 
 
 # Gates whose FAIL is LOUD BUT DOES NOT STOP A REBUILD. Exactly one, and the reason is the
@@ -1479,55 +1533,83 @@ def self_test() -> int:
     if not ok:
         failures += 1
 
-    # PROMOTE MUST NOT BE ABLE TO EAT THE RECORD.
+    # PROMOTION IS ONE ATOMIC, IDEMPOTENT MERGE.
     #
-    # Until 2026-08-16 `--promote SEED --out ledger/docket.json` was the command this repo's own
-    # routine told a run to type, and it writes ONLY the admitted set. Against a 58 item ledger
-    # it wrote 6 items and dropped 52. These cases are the guard's red case: the first proves it
-    # refuses and leaves the file byte-identical, the second proves it has not been widened into
-    # refusing every write, which would just be the feature deleted.
-    import tempfile as _tf
-    with _tf.TemporaryDirectory() as td:
+    # The old command stopped after reporting what passed. A run then copied JSON into the live
+    # ledger by hand, outside every guarantee this file had just established. These fixtures
+    # exercise the actual write boundary: preserve the published prefix, append only a new id,
+    # leave the seed alone, make a rerun byte-identical, ignore a historical seed copy instead
+    # of overwriting its published item, and leave both inputs untouched on a combined failure.
+    with tempfile.TemporaryDirectory() as td:
         tmp = Path(td)
         seed = tmp / "seed.json"
         published = tmp / "ledger.json"
 
-        admitted_item = base()
-        seed.write_text(json.dumps({"items": [admitted_item]}, indent=2), encoding="utf-8")
-
-        # A ledger already holding an item this pass does not carry.
         older = base(id="tx-2026-0999")
+        admitted_item = base(
+            id="tx-2026-0998",
+            summary="The commission proposed a new rule. See item tx-2026-0999 for the "
+                    "earlier filing. Comments close September 4th.")
+        seed.write_text(json.dumps([admitted_item], indent=1) + "\n", encoding="utf-8")
         published.write_text(json.dumps(
             {"_spec": {"version": SPEC_VERSION, "generated": today, "gates": []},
-             "items": [older]}, indent=2) + "\n", encoding="utf-8")
-        before = published.read_bytes()
+             "items": [older]}, indent=1) + "\n", encoding="utf-8")
+        seed_before = seed.read_bytes()
 
-        rc = promote(seed, today, out=published, require_primary=False)
-        ok = rc == 1
-        print(f"  {'ok  ' if ok else 'FAIL'}  promote REFUSES a write that would drop a "
-              f"published item")
-        failures += 0 if ok else 1
+        rc = promote(seed, today, ledger_path=published)
+        merged = load_record(published)["items"]
+        check("promote appends an item whose reference resolves in the published ledger",
+              rc == 0 and merged == [older, admitted_item])
+        check("...without changing any published item", merged[0] == older)
+        check("...and without changing the candidate seed", seed.read_bytes() == seed_before)
 
-        ok = published.read_bytes() == before
-        print(f"  {'ok  ' if ok else 'FAIL'}  ...and the file it refused is byte-identical after")
-        failures += 0 if ok else 1
+        ledger_once = published.read_bytes()
+        rc = promote(seed, today, ledger_path=published)
+        check("a second promotion is byte-identical", rc == 0 and
+              published.read_bytes() == ledger_once)
 
-        # The feature still works where nothing is lost, which is what stops the guard above
-        # from being a deletion dressed as a safeguard.
-        fresh = tmp / "fresh.json"
-        rc = promote(seed, today, out=fresh, require_primary=False)
-        ok = rc == 0 and fresh.exists()
-        print(f"  {'ok  ' if ok else 'FAIL'}  ...but still writes when nothing would be lost")
-        failures += 0 if ok else 1
+        # A reused id is a historical candidate copy, not permission to revise the record.
+        collision = base(id=older["id"], title="A seed copy must never replace this title")
+        seed.write_text(json.dumps([collision], indent=1) + "\n", encoding="utf-8")
+        collision_seed = seed.read_bytes()
+        collision_ledger = published.read_bytes()
+        rc = promote(seed, today, ledger_path=published)
+        check("a published-id collision never overwrites the ledger", rc == 0 and
+              published.read_bytes() == collision_ledger)
+        check("...and the historical seed copy stays available", seed.read_bytes() == collision_seed)
 
-        superset = tmp / "superset.json"
-        superset.write_text(json.dumps(
-            {"_spec": {"version": SPEC_VERSION, "generated": today, "gates": []},
-             "items": [admitted_item]}, indent=2) + "\n", encoding="utf-8")
-        rc = promote(seed, today, out=superset, require_primary=False)
-        ok = rc == 0
-        print(f"  {'ok  ' if ok else 'FAIL'}  ...and rewriting the same item set is allowed")
-        failures += 0 if ok else 1
+        # Each row passes by itself; only the combined schema sees that two new rows reuse an
+        # id. That failure must happen before the atomic write and leave both files untouched.
+        duplicate_a = base(id="tx-2026-0997")
+        duplicate_b = base(id="tx-2026-0997", title="A different item using the same id")
+        seed.write_text(json.dumps([duplicate_a, duplicate_b], indent=1) + "\n",
+                        encoding="utf-8")
+        failed_seed = seed.read_bytes()
+        failed_ledger = published.read_bytes()
+        rc = promote(seed, today, ledger_path=published)
+        check("combined validation refuses duplicate candidate ids", rc == 1)
+        check("...and a refused merge leaves the ledger byte-identical",
+              published.read_bytes() == failed_ledger)
+        check("...and leaves the seed byte-identical", seed.read_bytes() == failed_seed)
+
+        # A filesystem failure at the final boundary has the same rollback property. Inject
+        # only the replace operation; the production path still uses os.replace.
+        atomic_target = tmp / "atomic.json"
+        atomic_target.write_text("before\n", encoding="utf-8")
+
+        def refuse_replace(_source, _target):
+            raise OSError("planted replacement failure")
+
+        raised = False
+        try:
+            _atomic_write_text(atomic_target, "after\n", replace=refuse_replace)
+        except OSError:
+            raised = True
+        check("an atomic replacement failure is raised", raised)
+        check("...leaves the old target byte-identical",
+              atomic_target.read_text(encoding="utf-8") == "before\n")
+        check("...and cleans up its prepared temporary file",
+              not list(tmp.glob(".atomic.json.*.tmp")))
 
     if failures:
         print(f"\ndocket_build self-test: {failures} FAILED", file=sys.stderr)
@@ -1537,9 +1619,9 @@ def self_test() -> int:
 
 
 # --------------------------------------------------------------------------- promote
-def promote(seed_path: Path, today: str, out: Path | None = None,
+def promote(seed_path: Path, today: str, ledger_path: Path = LEDGER,
             require_primary: bool = True) -> int:
-    """THE GATES ARE THE REVIEWER.
+    """THE GATES ARE THE REVIEWER, AND THE WRITE IS ONE TRANSACTION.
 
     Nothing here waits on somebody to read a report. An item enters the public record when it
     passes every gate and clears the admission bar below, and it stays out otherwise. The held
@@ -1554,85 +1636,96 @@ def promote(seed_path: Path, today: str, out: Path | None = None,
     fine as corroboration, but a public record whose entries rest on headlines is a clippings
     file. A held item is not lost: it stays in the seed with its reason, and a later pass that
     finds the primary source promotes it automatically.
+
+    Rows whose ids already exist in the ledger are historical candidate copies. They are not
+    candidates for an update: the published item wins even when the seed copy differs. New ids
+    that clear admission are appended in seed order, the entire combined record is gated, and
+    only then is the ledger atomically replaced. The seed is never written here, making a rerun
+    both safe and byte-identical when nothing new clears the bar.
     """
+    if not ledger_path.exists():
+        print(f"promotion: ledger does not exist at {ledger_path}", file=sys.stderr)
+        return 2
+
+    record = load_record(ledger_path)
+    published = record["items"]
+    published_by_id = {it.get("id"): it for it in published if it.get("id")}
     items = load(seed_path)
-    admitted, held = [], []
+    provisional, admitted, held, historical = [], [], [], []
     for it in items:
-        bad, results = run_gates([it], today)
-        reasons = [l for r in results if r.status == "FAIL" for l in r.lines]
-        if bad:
-            held.append((it.get("id"), reasons[0]))
+        item_id = it.get("id")
+        if item_id and item_id in published_by_id:
+            historical.append((item_id, it != published_by_id[item_id]))
+            continue
+        _, results = run_gates([it], today)
+        # Cross references are a COLLECTION property. A candidate may correctly point at a
+        # published item or at another candidate that clears the same pass, so judging it in
+        # isolation would hold a valid row. Decide every item-local gate first, then resolve
+        # references against the published ids plus the whole provisional admitted set.
+        local_failures = [r for r in results
+                          if r.status == "FAIL" and r.name != "cross references"]
+        reasons = [line for result in local_failures for line in result.lines]
+        if local_failures:
+            held.append((item_id, reasons[0] if reasons else "a gate failed"))
             continue
         if it.get("confidence") != "high":
-            held.append((it.get("id"), f"confidence is '{it.get('confidence')}'"))
+            held.append((item_id, f"confidence is '{it.get('confidence')}'"))
             continue
         kinds = {c.get("source_type") for c in it.get("claims", [])}
         if require_primary and not (kinds & {"primary_official", "primary_corporate"}):
-            held.append((it.get("id"),
-                         "no primary source; every claim is journalism"))
+            held.append((item_id, "no primary source; every claim is journalism"))
             continue
-        admitted.append(it)
+        provisional.append(it)
 
-    print(f"admitted {len(admitted)} of {len(items)}; held {len(held)}")
+    provisional_ids = {it.get("id") for it in provisional if it.get("id")}
+    reference_ids = set(published_by_id) | provisional_ids
+    for it in provisional:
+        references = gate_cross_references([it], known_ids=reference_ids)
+        if references.status == "FAIL":
+            held.append((it.get("id"), references.lines[0]))
+        else:
+            admitted.append(it)
+
+    candidates = len(items) - len(historical)
+    print(f"admitted {len(admitted)} of {candidates} seed-only candidate(s); "
+          f"held {len(held)}; already published {len(historical)}")
     for i, why in held:
         print(f"  HELD  {i}: {why}")
+    changed_history = [item_id for item_id, differs in historical if differs]
+    if changed_history:
+        print(f"  PUBLISHED  {len(changed_history)} historical seed copy/copies differ; "
+              "the ledger wins and is never overwritten")
+        for item_id in changed_history[:8]:
+            print(f"             {item_id}")
+        if len(changed_history) > 8:
+            print(f"             ...and {len(changed_history) - 8} more")
 
-    if out:
-        # REFUSE TO WRITE A FILE THAT WOULD LOSE PUBLISHED ITEMS.
-        #
-        # `promote` writes ONLY the admitted set. Pointed at the live ledger, as the routine
-        # itself told a run to do until 2026-08-16, it writes the handful of items that passed
-        # this run and silently drops every item already published. Measured that day against a
-        # temp file: 27 candidates against a 58 item ledger wrote 6 items and dropped 52.
-        #
-        # The old mitigation was a sentence in a run record saying not to pass `--out` at the
-        # ledger. That is not a guard, it is a hope. This is the guard, and it is deliberately
-        # written as "would this write lose anything" rather than "is this path the ledger",
-        # because the destructive shape is the loss and not the filename.
-        if out.exists():
-            try:
-                existing = load(out)
-            except Exception:                                          # noqa: BLE001
-                existing = []
-            keep = {i.get("id") for i in admitted if i.get("id")}
-            dropped = [i.get("id") for i in existing if i.get("id") and i.get("id") not in keep]
-            if dropped:
-                try:
-                    shown = out.resolve().relative_to(REPO_ROOT)
-                except ValueError:
-                    shown = out
-                print(f"\nREFUSING TO WRITE {shown}: it already holds {len(existing)} item(s) "
-                      f"and this write carries {len(admitted)}, so {len(dropped)} would be "
-                      f"dropped.", file=sys.stderr)
-                for i in dropped[:8]:
-                    print(f"  would lose  {i}", file=sys.stderr)
-                if len(dropped) > 8:
-                    print(f"  ...and {len(dropped) - 8} more", file=sys.stderr)
-                print("\n  --promote writes only the items admitted on THIS pass. It is a gate, "
-                      "not a merge.\n  Run it with no --out to see what passes, then append what "
-                      "passed to the ledger.\n  The record is append-only in substance and never "
-                      "deletes an item.", file=sys.stderr)
-                return 1
+    combined = published + admitted
+    bad, results = run_gates(combined, today)
+    if bad:
+        print("\nrefusing promotion: the combined ledger does not pass every gate",
+              file=sys.stderr)
+        report(results)
+        return 1
 
-        bad, results = run_gates(admitted, today)
-        if bad:
-            print("\nrefusing to write: the admitted set does not pass as a whole",
-                  file=sys.stderr)
-            report(results)
-            return 1
-        payload = {
-            "_spec": {"version": SPEC_VERSION, "generated": today,
-                      "gates": sorted(list(GATES) + list(DATED_GATES))},
-            "items": admitted,
-        }
-        out.parent.mkdir(parents=True, exist_ok=True)
-        out.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n",
-                       encoding="utf-8")
-        try:
-            shown = out.resolve().relative_to(REPO_ROOT)
-        except ValueError:
-            shown = out
-        print(f"\nwrote {shown} with {len(admitted)} item(s)")
+    if not admitted:
+        print("\nledger unchanged: no new item cleared admission")
+        return 0
+
+    payload = dict(record)
+    spec = dict(record.get("_spec") or {})
+    spec.update({"version": SPEC_VERSION, "generated": today,
+                 "gates": sorted(list(GATES) + list(DATED_GATES))})
+    payload["_spec"] = spec
+    payload["items"] = combined
+    text = json.dumps(payload, indent=1, ensure_ascii=False) + "\n"
+    _atomic_write_text(ledger_path, text)
+    try:
+        shown = ledger_path.resolve().relative_to(REPO_ROOT)
+    except ValueError:
+        shown = ledger_path
+    print(f"\npromoted {len(admitted)} new item(s) into {shown}; "
+          f"ledger now holds {len(combined)}; seed unchanged")
     return 0
 
 
@@ -1643,9 +1736,8 @@ def main() -> int:
     ap.add_argument("--validate", action="store_true")
     ap.add_argument("--project", action="store_true")
     ap.add_argument("--promote", metavar="FILE")
-    ap.add_argument("--out", metavar="FILE",
-                    help="with --promote, write the admitted set here")
-    ap.add_argument("--ledger", default=str(LEDGER))
+    ap.add_argument("--ledger", default=str(LEDGER),
+                    help="record to validate, project or atomically promote into")
     ap.add_argument("--today", default=_dt.date.today().isoformat())
     args = ap.parse_args()
 
@@ -1653,8 +1745,7 @@ def main() -> int:
         return self_test()
 
     if args.promote:
-        return promote(Path(args.promote), args.today,
-                       Path(args.out) if args.out else None)
+        return promote(Path(args.promote), args.today, Path(args.ledger))
 
     path = Path(args.ledger)
     if not path.exists():
